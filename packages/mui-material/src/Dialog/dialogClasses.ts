@@ -28,6 +28,8 @@ export interface DialogClasses {
   paperWidthLg: string;
   /** Styles applied to the Paper component if `maxWidth="xl"`. */
   paperWidthXl: string;
+  /** Styles applied to the Paper component if `maxWidth="uw"`. */
+  paperWidthUw: string;
   /** Styles applied to the Paper component if `fullWidth={true}`. */
   paperFullWidth: string;
   /** Styles applied to the Paper component if `fullScreen={true}`. */
@@ -54,6 +56,7 @@ const dialogClasses: DialogClasses = generateUtilityClasses('MuiDialog', [
   'paperWidthMd',
   'paperWidthLg',
   'paperWidthXl',
+  'paperWidthUw',
   'paperFullWidth',
   'paperFullScreen',
 ]);

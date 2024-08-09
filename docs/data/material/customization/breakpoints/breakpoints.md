@@ -20,6 +20,7 @@ Each breakpoint (a key) matches with a _fixed_ screen width (a value):
 - **md,** medium: 900px
 - **lg,** large: 1200px
 - **xl,** extra-large: 1536px
+- **uw,** ultra-wide: 2560px
 
 These values can be [customized](#custom-breakpoints).
 
@@ -86,6 +87,7 @@ const theme = createTheme({
       md: 900,
       lg: 1200,
       xl: 1536,
+      uw: 2560,
     },
   },
 });
@@ -118,6 +120,7 @@ declare module '@mui/material/styles' {
     md: false;
     lg: false;
     xl: false;
+    uw: false;
     mobile: true; // adds the `mobile` breakpoint
     tablet: true;
     laptop: true;

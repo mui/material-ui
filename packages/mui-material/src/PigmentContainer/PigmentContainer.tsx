@@ -142,7 +142,7 @@ PigmentContainer.propTypes /* remove-proptypes */ = {
    * Set to `false` to disable `maxWidth`.
    * @default 'lg'
    */
-  maxWidth: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs', false]),
+  maxWidth: PropTypes.oneOf(['lg', 'md', 'sm', 'uw', 'xl', 'xs', false]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

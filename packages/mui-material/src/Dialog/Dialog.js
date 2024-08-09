@@ -398,7 +398,7 @@ Dialog.propTypes /* remove-proptypes */ = {
    * @default 'sm'
    */
   maxWidth: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', false]),
+    PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', 'uw', false]),
     PropTypes.string,
   ]),
   /**

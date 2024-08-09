@@ -18,6 +18,8 @@ export interface ContainerClasses {
   maxWidthLg: string;
   /** Styles applied to the root element if `maxWidth="xl"`. */
   maxWidthXl: string;
+  /** Styles applied to the root element if `maxWidth="uw"`. */
+  maxWidthUw: string;
 }
 
 export type ContainerClassKey = keyof ContainerClasses;
@@ -35,6 +37,7 @@ const containerClasses: ContainerClasses = generateUtilityClasses('MuiContainer'
   'maxWidthMd',
   'maxWidthLg',
   'maxWidthXl',
+  'maxWidthUw',
 ]);
 
 export default containerClasses;

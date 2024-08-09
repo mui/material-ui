@@ -12,7 +12,7 @@ const textColor = style({
 });
 
 describe('breakpoints', () => {
-  const muiThemeBreakpoints = { xs: 0, sm: 600, md: 900, lg: 1200, xl: 1536 };
+  const muiThemeBreakpoints = { xs: 0, sm: 600, md: 900, lg: 1200, xl: 1536, uw: 2560 };
   const customThemeBreakpoints = {
     extraSmall: 0,
     small: 300,
@@ -24,7 +24,7 @@ describe('breakpoints', () => {
   it('should work', () => {
     const palette = breakpoints(textColor);
 
-    expect(palette.filterProps.length).to.equal(6);
+    expect(palette.filterProps.length).to.equal(7);
     expect(
       palette({
         color: 'red',

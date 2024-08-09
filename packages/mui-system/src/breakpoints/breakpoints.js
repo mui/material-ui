@@ -11,12 +11,13 @@ export const values = {
   md: 900, // small laptop
   lg: 1200, // desktop
   xl: 1536, // large screen
+  uw: 2560, // ultra-wide screen
 };
 
 const defaultBreakpoints = {
   // Sorted ASC by size. That's important.
   // It can't be configured as it's used statically for propTypes.
-  keys: ['xs', 'sm', 'md', 'lg', 'xl'],
+  keys: ['xs', 'sm', 'md', 'lg', 'xl', 'uw'],
   up: (key) => `@media (min-width:${values[key]}px)`,
 };
 
@@ -102,10 +103,11 @@ function breakpoints(styleFunction) {
           md: PropTypes.object,
           lg: PropTypes.object,
           xl: PropTypes.object,
+          uw: PropTypes.object,
         }
       : {};
 
-  newStyleFunction.filterProps = ['xs', 'sm', 'md', 'lg', 'xl', ...styleFunction.filterProps];
+  newStyleFunction.filterProps = ['xs', 'sm', 'md', 'lg', 'xl', 'uw', ...styleFunction.filterProps];
 
   return newStyleFunction;
 }
