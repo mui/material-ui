@@ -1,7 +1,7 @@
 ---
 title: Material UI v6 is out 🎉
 description: We are so excited to announce the stable release of Material UI v6. It comes with Pigment CSS integration and a lot of improvements.
-date: 2024-07-01T00:00:00.000Z
+date: 2024-08-09T00:00:00.000Z
 authors:
   [
     'aarongarciah',
@@ -12,7 +12,7 @@ authors:
     'siriwatknp',
     'zanivan',
   ]
-tags: ['Material UI', 'Product']
+tags: ['Material UI', 'Product']
 manualCard: true
 ---
 
