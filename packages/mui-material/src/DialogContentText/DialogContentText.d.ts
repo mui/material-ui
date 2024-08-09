@@ -5,7 +5,8 @@ import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Theme } from '../styles';
 import { DialogContentTextClasses } from './dialogContentTextClasses';
 
-export interface DialogContentTextOwnProps extends Omit<TypographyTypeMap['props'], 'classes'> {
+export interface DialogContentTextOwnProps
+  extends Omit<TypographyTypeMap['props'], 'classes' | 'sx'> {
   /**
    * Override or extend the styles applied to the component.
    */
