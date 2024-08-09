@@ -21,7 +21,11 @@ describe('useCurrentColorScheme', () => {
     addListener: (listener) => {
       trigger = listener;
     },
+    addEventListener: (listener) => {
+      trigger = listener;
+    },
     removeListener: () => {},
+    removeEventListener: () => {},
   });
 
   before(() => {

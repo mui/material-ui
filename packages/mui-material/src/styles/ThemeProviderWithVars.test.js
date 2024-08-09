@@ -23,7 +23,9 @@ describe('[Material UI] ThemeProviderWithVars', () => {
     });
     window.matchMedia = () => ({
       addListener: () => {},
+      addEventListener: () => {},
       removeListener: () => {},
+      removeEventListener: () => {},
     });
   });
 

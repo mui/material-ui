@@ -69,7 +69,9 @@ describe('Multiple nested theme providers', () => {
   const createMatchMedia = (matches: boolean) => () => ({
     matches,
     addListener: () => {},
+    addEventListener: () => {},
     removeListener: () => {},
+    removeEventListener: () => {},
   });
 
   beforeEach(() => {

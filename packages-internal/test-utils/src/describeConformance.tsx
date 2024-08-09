@@ -1035,7 +1035,9 @@ function describeConformance(
     window.matchMedia = () =>
       ({
         addListener: () => {},
+        addEventListener: () => {},
         removeListener: () => {},
+        removeEventListener: () => {},
       }) as unknown as MediaQueryList;
   });
   afterEach(() => {

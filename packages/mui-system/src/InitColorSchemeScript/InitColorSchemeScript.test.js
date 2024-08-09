@@ -14,8 +14,8 @@ describe('InitColorSchemeScript', () => {
   let storage = {};
   const createMatchMedia = (matches) => () => ({
     matches,
-    addListener: () => {},
-    removeListener: () => {},
+    addEventListener: () => {},
+    removeEventListener: () => {},
   });
 
   beforeEach(() => {
