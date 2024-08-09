@@ -1,0 +1,26 @@
+{
+  "name": "material-ui-pigment-css-vite",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@mui/material": "next",
+    "@mui/material-pigment-css": "next",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@pigment-css/vite-plugin": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@vitejs/plugin-react": "latest",
+    "typescript": "latest",
+    "vite": "latest"
+  }
+}

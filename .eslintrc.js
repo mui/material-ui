@@ -184,6 +184,7 @@ module.exports = {
     // This rule is great for raising people awareness of what a key is and how it works.
     'react/no-array-index-key': 'off',
     'react/no-danger': 'error',
+    'react/no-unknown-property': ['error', { ignore: ['sx'] }],
     'react/no-direct-mutation-state': 'error',
     // Not always relevant
     'react/require-default-props': 'off',
