@@ -123,7 +123,7 @@ With CSS variables, you can easily integrate your preferred styling solution wit
 }
 ```
 
-## New way of applying styles
+## New method of applying styles
 
 The new API `theme.applyStyles` has been added for creating specific mode styles. It's designed to replace the `theme.palette.mode === 'dark'` condition and to work with Pigment CSS.
 
@@ -202,7 +202,7 @@ Stay tuned, as many more updates are coming in the upcoming months! We'd love to
 
 ## Next steps
 
-Ready to upgrade to Material UI v6? Check out the [migration guide](https://mui.com/guides/migration-v5/).
+Ready to upgrade to Material UI v6? Check out the [v6 migration guide](/material-ui/migration/migrating-to-v6/).
 
 You can also explore all the updates in more detail from the links below:
 
