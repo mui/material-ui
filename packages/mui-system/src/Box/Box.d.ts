@@ -185,7 +185,7 @@ export interface BoxOwnProps<Theme extends object = SystemTheme> extends SystemP
   children?: React.ReactNode;
   /**
    * The component used for the root node.
-   * Either a string to use a HTML element or a component.
+   * Pass either a string for an HTML element or a component. It renders as a div by default.
    */
   component?: React.ElementType;
   ref?: React.Ref<unknown>;
