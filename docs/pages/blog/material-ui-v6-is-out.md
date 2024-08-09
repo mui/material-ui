@@ -116,10 +116,10 @@ With CSS variables, you can easily integrate your preferred styling solution wit
 
 ```css title="styles.css"
 .custom-card {
-  background-color: var(--palette-background-default);
-  color: var(--palette-text-primary);
-  padding: var(--spacing-2);
-  font: var(--font-body1);
+  background-color: var(--mui-palette-background-default);
+  color: var(--mui-palette-text-primary);
+  padding: var(--mui-spacing-2);
+  font: var(--mui-font-body1);
 }
 ```
 
