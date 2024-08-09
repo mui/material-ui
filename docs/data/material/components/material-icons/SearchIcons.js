@@ -5,7 +5,6 @@ import copy from 'clipboard-copy';
 import InputBase from '@mui/material/InputBase';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
-import { debounce } from '@mui/material/utils';
 import Grid from '@mui/material/Grid';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -14,6 +13,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 import * as flexsearch from 'flexsearch';
 import SearchIcon from '@mui/icons-material/Search';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -49,8 +49,6 @@ import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import synonyms from './synonyms';
 
 const FlexSearchIndex = flexsearch.default.Index;
-
-const UPDATE_SEARCH_INDEX_WAIT_MS = 220;
 
 // const mui = {
 //   ExitToApp,
@@ -129,50 +127,54 @@ const StyledSvgIcon = styled(SvgIcon)(({ theme }) => ({
   },
 }));
 
-const Icons = React.memo(function Icons(props) {
-  const { icons, handleOpenClick } = props;
+const Icons = React.memo(
+  function Icons(props) {
+    const { icons, handleOpenClick } = props;
 
-  const handleIconClick = (icon) => () => {
-    if (Math.random() < 0.1) {
-      window.gtag('event', 'material-icons', {
-        eventAction: 'click',
-        eventLabel: icon.name,
-      });
-      window.gtag('event', 'material-icons-theme', {
-        eventAction: 'click',
-        eventLabel: icon.theme,
-      });
-    }
-  };
+    const handleIconClick = (icon) => () => {
+      if (Math.random() < 0.1) {
+        window.gtag('event', 'material-icons', {
+          eventAction: 'click',
+          eventLabel: icon.name,
+        });
+        window.gtag('event', 'material-icons-theme', {
+          eventAction: 'click',
+          eventLabel: icon.theme,
+        });
+      }
+    };
 
-  const handleLabelClick = (event) => {
-    selectNode(event.currentTarget);
-  };
+    const handleLabelClick = (event) => {
+      selectNode(event.currentTarget);
+    };
 
-  return (
-    <div>
-      {icons.map((icon) => {
-        /* eslint-disable jsx-a11y/click-events-have-key-events */
-        return (
-          <StyledIcon key={icon.importName} onClick={handleIconClick(icon)}>
-            <StyledSvgIcon
-              component={icon.Component}
-              fontSize="large"
-              tabIndex={-1}
-              onClick={handleOpenClick}
-              title={icon.importName}
-            />
-            <div>
-              {/*  eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
-              <div onClick={handleLabelClick}>{icon.importName}</div>
-            </div>
-            {/* eslint-enable jsx-a11y/click-events-have-key-events */}
-          </StyledIcon>
-        );
-      })}
-    </div>
-  );
-});
+    return (
+      <div>
+        {icons.map((icon) => {
+          /* eslint-disable jsx-a11y/click-events-have-key-events */
+          return (
+            <StyledIcon key={icon.importName} onClick={handleIconClick(icon)}>
+              <StyledSvgIcon
+                component={icon.Component}
+                fontSize="large"
+                tabIndex={-1}
+                onClick={handleOpenClick}
+                title={icon.importName}
+              />
+              <div>
+                {/*  eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
+                <div onClick={handleLabelClick}>{icon.importName}</div>
+              </div>
+              {/* eslint-enable jsx-a11y/click-events-have-key-events */}
+            </StyledIcon>
+          );
+        })}
+      </div>
+    );
+  },
+  (prev, next) =>
+    prev.data.total === next.data.total && prev.data.length === next.data.length,
+);
 
 Icons.propTypes = {
   handleOpenClick: PropTypes.func.isRequired,
@@ -480,9 +482,12 @@ function useLatest(value) {
 
 export default function SearchIcons() {
   const [keys, setKeys] = React.useState(null);
-  const [theme, setTheme] = useQueryParameterState('theme', 'Filled');
+  const lazyKeys = React.useDeferredValue(keys);
+  const [theme, setTheme] = useQueryParameterState('theme', 'All');
   const [selectedIcon, setSelectedIcon] = useQueryParameterState('selected', '');
-  const [query, setQuery] = useQueryParameterState('query', '');
+  const [query, setQuery] = useQueryParameterState('query', '', 0);
+  const lazyQuery = React.useDeferredValue(query);
+  const [minIcons, setMinIcons] = React.useState(49);
 
   const handleOpenClick = React.useCallback(
     (event) => {
@@ -495,41 +500,32 @@ export default function SearchIcons() {
     setSelectedIcon('');
   }, [setSelectedIcon]);
 
-  const updateSearchResults = React.useMemo(
-    () =>
-      debounce((value) => {
-        if (value === '') {
-          setKeys(null);
-        } else {
-          searchIndex.searchAsync(value, { limit: 3000 }).then((results) => {
-            setKeys(results);
-
-            // Keep track of the no results so we can add synonyms in the future.
-            if (value.length >= 4 && results.length === 0) {
-              window.gtag('event', 'material-icons', {
-                eventAction: 'no-results',
-                eventLabel: value,
-              });
-            }
-          });
-        }
-      }, UPDATE_SEARCH_INDEX_WAIT_MS),
-    [],
-  );
-
   React.useEffect(() => {
-    updateSearchResults(query);
-    return () => {
-      updateSearchResults.clear();
-    };
-  }, [query, updateSearchResults]);
+    if (lazyQuery === '') {
+      setMinIcons(49);
+      setKeys(null);
+      return;
+    }
+
+    searchIndex.searchAsync(lazyQuery, { limit: 3000 }).then((res) => {
+      setKeys(res);
+
+      if (lazyQuery.length >= 4 && res.length === 0) {
+        window.gtag('event', 'material-icons', {
+          eventAction: 'no-results',
+          eventLabel: lazyQuery,
+        });
+      }
+    });
+  }, [lazyQuery]);
 
   const icons = React.useMemo(
     () =>
-      (keys === null ? allIcons : keys.map((key) => allIconsMap[key])).filter(
-        (icon) => theme === icon.theme,
-      ),
-    [theme, keys],
+      (lazyKeys === null
+        ? allIcons
+        : lazyKeys.map((key) => allIconsMap[key])
+      ).filter((icon) => theme === 'All' || theme === icon.theme),
+    [theme, lazyKeys],
   );
 
   const dialogSelectedIcon = useLatest(
@@ -544,7 +540,7 @@ export default function SearchIcons() {
             Filter the style
           </Typography>
           <RadioGroup>
-            {['Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map(
+            {['All', 'Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map(
               (currentTheme) => {
                 return (
                   <FormControlLabel
@@ -574,14 +570,31 @@ export default function SearchIcons() {
             autoFocus
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search icons…"
+            placeholder={`Search icons...`}
             inputProps={{ 'aria-label': 'search icons' }}
           />
         </Paper>
-        <Typography sx={{ mb: 1 }}>{`${formatNumber(
-          icons.length,
-        )} matching results`}</Typography>
-        <Icons icons={icons} handleOpenClick={handleOpenClick} />
+        <Typography variant="subtitle1" sx={{ mb: 1 }}>
+          {`${formatNumber(icons.length)} matching results`}
+        </Typography>
+        <Stack spacing={4} sx={{ height: '100%' }}>
+          <Icons
+            icons={icons.slice(0, minIcons)}
+            handleOpenClick={handleOpenClick}
+            data={{ total: icons.length, length: minIcons }}
+          />
+          {icons.length > minIcons && (
+            <Button
+              size="small"
+              color="primary"
+              variant="outlined"
+              sx={{ mt: 'auto' }}
+              onClick={() => setMinIcons((m) => (m += 99))}
+            >
+              View more
+            </Button>
+          )}
+        </Stack>
       </Grid>
       <DialogDetails
         open={!!selectedIcon}
