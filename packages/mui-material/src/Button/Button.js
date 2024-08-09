@@ -214,7 +214,6 @@ const ButtonRoot = styled(ButtonBase, {
       {
         props: {
           size: 'small',
-          variant: 'text',
         },
         style: {
           padding: '4px 5px',
@@ -224,7 +223,6 @@ const ButtonRoot = styled(ButtonBase, {
       {
         props: {
           size: 'large',
-          variant: 'text',
         },
         style: {
           padding: '8px 11px',
