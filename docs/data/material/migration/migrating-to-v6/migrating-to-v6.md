@@ -34,7 +34,7 @@ These updates reduced the Material UI package size by 2.5MB, 25% of the total s
 
 Aside from that, v6 also includes a few quality-of-life improvements regarding styling:
 
-- The `CssVarsProvider` API is now stable. That enables you to rely on CSS variables, allowing for more intricate and performant customization possibilities, along with improved overall developer experience.
+- The CSS theme variables feature is now stable. It powers components with CSS variables, allowing for more intricate and performant customization possibilities, along with improved overall developer experience.
 - Support for container queries within the theme.
 - A new theme utility for adding styles to specific color modes.
 
@@ -347,10 +347,10 @@ The following deprecated types were removed:
 
 ## Stabilized APIs
 
-### CssVarsProvider and extendTheme
+### Merged CssVarsProvider into ThemeProvider
 
-The `CssVarsProvider` and `extendTheme` APIs are now stable.
-If you already use them in v5, you can now drop the experimental prefix.
+The `CssVarsProvider` and `extendTheme` has been merged into `ThemeProvider` and `createTheme`.
+If you are using them in v5 or v6-beta, you should migrate as shown below:
 
 ```diff
 -import { experimental_extendTheme as extendTheme, Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
@@ -375,6 +375,8 @@ It's designed to replace `theme.palette.mode` when applying light or dark styles
 +  })
  }))
 ```
+
+Staring from v6, this is an official way to apply styles based on the color mode. We recommend migrating to this method to smoothly adopt new features and improvements in the next major updates.
 
 Use these codemods to migrate your project to `theme.applyStyles`:
 

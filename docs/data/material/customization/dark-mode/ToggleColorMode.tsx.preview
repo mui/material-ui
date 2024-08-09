@@ -1,5 +1,3 @@
-<ColorModeContext.Provider value={colorMode}>
-  <ThemeProvider theme={theme}>
-    <MyApp />
-  </ThemeProvider>
-</ColorModeContext.Provider>
+<ThemeProvider theme={theme}>
+  <MyApp />
+</ThemeProvider>

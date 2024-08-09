@@ -310,6 +310,73 @@ Please verify that the [APCA](https://contrast.tools/?tab=apca) color contrast i
 
 Need inspiration? The Material Design team has built an [palette configuration tool](/material-ui/customization/color/#picking-colors) to help you.
 
+## Color schemes
+
+To add both built-in light and dark color schemes, use the `colorSchemes: { light: true, dark: true }`.
+It will generate the default tokens for both color schemes:
+
+```js
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  colorSchemes: {
+    light: true,
+    dark: true,
+  },
+});
+```
+
+If you want to override the default tokens for each color scheme, use the same [palette object](#customization) as shown below:
+
+```js
+const theme = createTheme({
+  colorSchemes: {
+    light: {
+      palette: {
+        primary: {
+          main: '#FF5733',
+        },
+        // ...other tokens
+      },
+    },
+    dark: {
+      palette: {
+        primary: {
+          main: '#E0C2FF',
+        },
+        // ...other tokens
+      },
+    },
+  },
+});
+```
+
+:::warning
+If you provide both `colorSchemes` and `palette`, the `palette` will override the palette defined in color schemes.
+
+```js
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '...',
+    },
+  },
+  colorSchemes: {
+    light: {
+      // This will be replaced by the palette defined above
+      palette: {
+        primary: {
+          main: '...',
+        },
+      },
+    },
+    dark: { ... },
+  },
+});
+```
+
+:::
+
 ## Dark mode
 
 For details of how you can set up a dark mode for your theme, head to the [dark mode guide](/material-ui/customization/dark-mode/).

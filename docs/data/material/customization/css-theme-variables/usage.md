@@ -4,19 +4,20 @@
 
 ## Getting started
 
-The CSS variables API relies on a provider called `CssVarsProvider` to inject styles into Material UI components.
-`CssVarsProvider` generates CSS variables out of all tokens in the theme that are serializable, and makes them available in the React context along with the theme itself via [`ThemeProvider`](/material-ui/customization/theming/#theme-provider).
+To use CSS theme variables, create a theme with `cssVariables: true` and wrap your app with `ThemeProvider`.
 
-Once the `App` renders on the screen, you will see the CSS theme variables in the HTML `:root` stylesheet.
-The variables are flattened and prefixed with `--mui` by default:
+After rendering, you'll see CSS variables in the `:root` stylesheet of your HTML document.
+By default, these variables are flattened and prefixed with `--mui`:
 
 <codeblock>
 
 ```jsx JSX
-import { CssVarsProvider } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const theme = createTheme({ cssVariables: true });
 
 function App() {
-  return <CssVarsProvider>{/* ...you app */}</CssVarsProvider>;
+  return <ThemeProvider>{/* ...you app */}</ThemeProvider>;
 }
 ```
 
@@ -33,44 +34,33 @@ function App() {
 </codeblock>
 
 :::info
-The `CssVarsProvider` is built on top of the [`ThemeProvider`](/material-ui/customization/theming/#themeprovider) with extra features like CSS variable generation, storage synchronization, unlimited color schemes, and more.
-
-If you have an existing theme, you can migrate to CSS theme variables by following the [migration guide](/material-ui/migration/migration-css-theme-variables/).
+If you're using the experimental `CssVarsProvider` API, replace it with `ThemeProvider`.
 :::
 
-## Dark mode only application
+## Dark mode only variables
 
-To switch the default light to dark palette, set `colorSchemes: { dark: true }` to the `extendTheme`.
+To switch the default light to dark palette, set `palette: { mode: 'dark' }` to the `createTheme`.
 Material UI will generate the dark palette instead.
 
-```jsx
-import { CssVarsProvider, extendTheme } from '@mui/material/styles';
+{{"demo": "DarkThemeCssVariables.js"}}
 
-const theme = extendTheme({
-  colorSchemes: { dark: true },
-});
+## Light and dark modes
 
-function App() {
-  return <CssVarsProvider theme={theme}>{/* ...you app */}</CssVarsProvider>;
-}
-```
-
-## Light and dark mode application
-
-To support both light and dark modes, set `colorSchemes: { light: true, dark: true }` to the `extendTheme`.
-Material UI will generate both light and dark palette with [`@media (prefers-color-scheme)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme).
+To enable both light and dark modes, add `colorSchemes: { dark: true }` to `createTheme`.
+This generates light (default) and dark palettes using `@media (prefers-color-scheme)` as a default method.
 
 <codeblock>
 
 ```jsx JSX
-import { CssVarsProvider, extendTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-const theme = extendTheme({
-  colorSchemes: { light: true, dark: true },
+const theme = createTheme({
+  cssVariables: true,
+  colorSchemes: { dark: true },
 });
 
 function App() {
-  return <CssVarsProvider theme={theme}>{/* ...you app */}</CssVarsProvider>;
+  return <ThemeProvider theme={theme}>{/* ...you app */}</ThemeProvider>;
 }
 ```
 
@@ -92,7 +82,13 @@ function App() {
 
 </codeblock>
 
-If you want to manually toggle the color scheme, check out the [advanced configuration](/material-ui/customization/css-theme-variables/configuration/#advanced-configuration).
+:::info
+You can explicitly set `colorSchemes: { light: true, dark: true }` which will produce the same result as the snippet above because light is the default color scheme.
+:::
+
+The CSS media `prefers-color-scheme` method works with server-side rendering without extra configuration but you will not be able to toggle between the modes because the styles is based on the browser media.
+
+If you want to manually toggle the modes, check out the [Toggling dark mode manually](/material-ui/customization/css-theme-variables/configuration/#toggling-dark-mode-manually) guide.
 
 ## Applying dark styles
 
@@ -114,10 +110,23 @@ import Card from '@mui/material/Card';
 />;
 ```
 
+:::warning
+**Don't** use `theme.palette.mode` to switch between light and dark styles because it will produce a [flickering effect](/material-ui/customization/dark-mode/#dark-mode-flicker).
+
+```js
+<Card
+  sx={{
+    // 🚫 this will cause flickering
+    backgroundColor: theme.palette.mode === 'dark' ? '…' : '…',
+  }}
+/>
+```
+
+:::
+
 ## Using theme variables
 
-All of these variables are accessible in an object in the theme called `vars`.
-The structure of this object is a serializable theme structure with the values represent CSS variables.
+When CSS variables feature is enabled, the `vars` node is added to the theme. This `vars` object mirrors the structure of a serializable theme, with each value corresponding to a CSS variable.
 
 - `theme.vars` (recommended): an object that refers to the CSS theme variables.
 
@@ -149,121 +158,24 @@ The structure of this object is a serializable theme structure with the values r
   }
   ```
 
-## Theming
+## Color channel tokens
 
-:::warning
-`extendTheme` is not the same as [`createTheme`](/material-ui/customization/theming/#createtheme-options-args-theme).
-Do not use them interchangeably.
+Enabling `cssVariables` automatically generates channel tokens, which are used to create translucent colors. These tokens consist of color space channels without the alpha component, separated by **spaces**.
 
-- `createTheme()` returns a theme for `ThemeProvider`.
-- `extendTheme()` returns a theme for `CssVarsProvider`.
-
-:::
-
-The major difference from the [`createTheme`](/material-ui/customization/theming/#createtheme-options-args-theme) approach is in palette customization.
-With the `extendTheme` API, you can specify the palette for `light` and `dark` color schemes at once. The rest of the theme structure remains the same.
-
-Here are examples of customizing each part of the theme:
-
-<codeblock>
-
-```js color-schemes
-import { pink } from '@mui/material/colors';
-
-extendTheme({
-  colorSchemes: {
-    light: {
-      palette: {
-        primary: {
-          main: pink[600],
-        },
-      },
-    },
-    dark: {
-      palette: {
-        primary: {
-          main: pink[400],
-        },
-      },
-    },
-  },
-});
-```
-
-```js typography
-extendTheme({
-  typography: {
-    fontFamily: '"Inter", "sans-serif"',
-    h1: {
-      fontSize: customTheme.typography.pxToRem(60),
-      fontWeight: 600,
-      lineHeight: 1.2,
-      letterSpacing: -0.5,
-    },
-    h2: {
-      fontSize: customTheme.typography.pxToRem(48),
-      fontWeight: 600,
-      lineHeight: 1.2,
-    },
-  },
-});
-```
-
-```js spacing
-extendTheme({
-  spacing: '0.5rem',
-});
-```
-
-```js shape
-extendTheme({
-  shape: {
-    borderRadius: 12,
-  },
-});
-```
-
-```js components
-extendTheme({
-  components: {
-    MuiChip: {
-      styleOverrides: {
-        root: ({ theme }) => ({
-          variants: [
-            {
-              props: { variant: 'outlined', color: 'primary' },
-              style: {
-                backgroundColor: theme.vars.palette.background.paper,
-              },
-            },
-          ],
-        }),
-      },
-    },
-  },
-});
-```
-
-</codeblock>
-
-### Channel tokens
-
-A channel token is used for creating translucent color. It is a variable that consists of [color space channels](https://www.w3.org/TR/css-color-4/#color-syntax) but without the alpha component. The value of a channel token is separated by a space, for example `12 223 31`, which can be combined with the [color functions](https://www.w3.org/TR/css-color-4/#color-functions) to create a translucent color.
-
-The `extendTheme()` automatically generates channel tokens that are likely to be used frequently from the theme palette. Those colors are suffixed with `Channel`, for example:
+Those colors are suffixed with `Channel`, for example:
 
 ```js
-const theme = extendTheme();
-const light = theme.colorSchemes.light;
+const theme = createTheme({ cssVariables: true });
 
-console.log(light.palette.primary.mainChannel); // '25 118 210'
+console.log(theme.palette.primary.mainChannel); // '25 118 210'
 // This token is generated from `theme.colorSchemes.light.palette.primary.main`.
 ```
 
 You can use the channel tokens to create a translucent color like this:
 
 ```js
-const theme = extendTheme({
+const theme = createTheme({
+  cssVariables: true,
   components: {
     MuiChip: {
       styleOverrides: {
@@ -293,12 +205,13 @@ Don't use a comma (`,`) as a separator because the channel colors use empty spac
 
 :::
 
-### Adding new theme tokens
+## Adding new theme tokens
 
 You can add other key-value pairs to the theme input which will be generated as a part of the CSS theme variables:
 
 ```js
-const theme = extendTheme({
+const theme = createTheme({
+  cssVariables: true,
   colorSchemes: {
     light: {
       palette: {
@@ -323,7 +236,7 @@ const theme = extendTheme({
 });
 
 function App() {
-  return <CssVarsProvider theme={theme}>...</CssVarsProvider>;
+  return <ThemeProvider theme={theme}>...</ThemeProvider>;
 }
 ```
 

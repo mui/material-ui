@@ -10,7 +10,7 @@ To promote greater consistency between apps, light and dark theme types are avai
 
 ## Theme provider
 
-Use `ThemeProvider` or [`CssVarsProvider`](#css-variables-provider) to inject a custom theme into your application.
+Use `ThemeProvider` to inject a custom theme into your application.
 However, this is optional; Material UI components come with a default theme.
 
 `ThemeProvider` relies on the [context feature of React](https://react.dev/learn/passing-data-deeply-with-context) to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize.
@@ -115,11 +115,37 @@ You can extend the outer theme by providing a function:
 
 {{"demo": "ThemeNestingExtend.js"}}
 
-## CSS variables provider
+## CSS theme variables
 
-The `CssVarsProvider` is built on top of the `ThemeProvider` with extra features like theme CSS variables generation, built-in color scheme synchronization with the user's system preference, and more.
+To generate CSS variables from the theme, set `cssVariables` to `true` in the theme configuration and pass it to the `ThemeProvider`:
 
-To start using the `CssVarsProvider`, check out the [basic usage guide](/material-ui/customization/css-theme-variables/usage/). If you are using the `ThemeProvider`, read the [migration guide](/material-ui/migration/migration-css-theme-variables/).
+```jsx
+const theme = createTheme({
+  cssVariables: true,
+});
+
+function App() {
+  return <ThemeProvider theme={theme}>...</ThemeProvider>;
+}
+```
+
+This will generate a global stylesheet with the CSS theme variables:
+
+```css
+:root {
+  --mui-palette-primary-main: #1976d2;
+  /* ...other variables */
+}
+```
+
+All the components under the `ThemeProvider` will start using those CSS theme variables instead of raw values.
+
+```diff title="Button styles"
+- color: #1976d2;
++ color: var(--mui-palette-primary-main);
+```
+
+To learn more about this feature, see the [CSS theme variables guide](/material-ui/customization/css-theme-variables/overview/).
 
 ## API
 
