@@ -51,23 +51,27 @@ export interface PropsTranslations {
   componentDescription: string;
   deprecationInfo: string | undefined;
   propDescriptions: {
-    [key: string]: {
-      description: string;
-      requiresRef?: boolean;
-      deprecated?: string;
-      typeDescriptions?: { [t: string]: string };
-      seeMoreText?: string;
-    };
+    [key: string]: PropDescription;
   };
   classDescriptions: {
-    [key: string]: {
-      description: string;
-      conditions?: string;
-      nodeName?: string;
-      deprecationInfo?: string;
-    };
+    [key: string]: ClassDescription;
   };
   slotDescriptions?: { [key: string]: string };
+}
+
+interface PropDescription {
+  description: string;
+  requiresRef?: boolean;
+  deprecated?: string;
+  typeDescriptions?: { [t: string]: string };
+  seeMoreText?: string;
+}
+
+interface ClassDescription {
+  description: string;
+  conditions?: string;
+  nodeName?: string;
+  deprecationInfo?: string;
 }
 
 export interface ComponentReactApi extends CommonReactApi {
