@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { Components, SvgIconProps } from '@mui/material';
-import { Theme, alpha } from '@mui/material/styles';
-import { svgIconClasses } from '@mui/material/SvgIcon';
+import { Components, Theme, alpha } from '@mui/material/styles';
+import { svgIconClasses, SvgIconProps } from '@mui/material/SvgIcon';
 import { typographyClasses } from '@mui/material/Typography';
 import { buttonBaseClasses } from '@mui/material/ButtonBase';
 import { dividerClasses } from '@mui/material/Divider';
-import { listItemClasses } from '@mui/material/ListItem';
+import { listItemButtonClasses } from '@mui/material/ListItemButton';
 import { menuItemClasses } from '@mui/material/MenuItem';
 import { selectClasses } from '@mui/material/Select';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
@@ -40,20 +39,20 @@ export const menuComponentsCustomizations: Components<Theme> = {
           padding: '2px 8px',
           borderRadius: theme.shape.borderRadius,
           opacity: 0.7,
-          [`&.${listItemClasses.selected}`]: {
+          [`&.${listItemButtonClasses.selected}`]: {
             opacity: 1,
             backgroundColor: alpha(theme.palette.action.selected, 0.3),
             [`& .${svgIconClasses.root}`]: {
               color: theme.palette.text.primary,
             },
-            [`&.${listItemClasses.focusVisible}`]: {
+            [`&.${listItemButtonClasses.focusVisible}`]: {
               backgroundColor: alpha(theme.palette.action.selected, 0.3),
             },
             '&:hover': {
               backgroundColor: alpha(theme.palette.action.selected, 0.5),
             },
           },
-          [`&.${listItemClasses.focusVisible}`]: {
+          [`&.${listItemButtonClasses.focusVisible}`]: {
             backgroundColor: 'transparent',
           },
         },
