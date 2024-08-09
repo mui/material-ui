@@ -215,7 +215,9 @@ describe('extendTheme', () => {
         configurable: true,
       });
       window.matchMedia = () => ({
+        addListener: () => {},
         addEventListener: () => {},
+        removeListener: () => {},
         removeEventListener: () => {},
       });
     });

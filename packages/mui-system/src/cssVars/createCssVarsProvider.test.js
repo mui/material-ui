@@ -17,7 +17,9 @@ describe('createCssVarsProvider', () => {
   let storage = {};
   const createMatchMedia = (matches) => () => ({
     matches,
+    addListener: () => {},
     addEventListener: () => {},
+    removeListener: () => {},
     removeEventListener: () => {},
   });
 

@@ -22,7 +22,9 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       configurable: true,
     });
     window.matchMedia = () => ({
+      addListener: () => {},
       addEventListener: () => {},
+      removeListener: () => {},
       removeEventListener: () => {},
     });
   });
