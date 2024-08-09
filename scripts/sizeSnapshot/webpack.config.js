@@ -169,8 +169,7 @@ function createWebpackConfig(entry, environment) {
       library: {
         // TODO: Use `type: 'module'` once it is supported (currently incompatible with `externals`)
         name: 'M',
-        type: 'var',
-        // type: 'module',
+        type: 'module',
       },
       path: path.join(__dirname, 'build'),
     },
