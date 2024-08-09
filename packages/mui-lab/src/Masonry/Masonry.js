@@ -220,15 +220,25 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       }
 
       const masonry = masonryRef.current;
-      const masonryFirstChild = masonryRef.current.firstChild;
+
+      // Find the first visible child
+      const masonryFirstVisibleChild = Array.from(masonry.childNodes).find((child) => {
+        const childStyle = window.getComputedStyle(child);
+        return childStyle.display !== 'none' && childStyle.visibility !== 'hidden';
+      });
+
+      if (!masonryFirstVisibleChild) {
+        return;
+      }
+
       const parentWidth = masonry.clientWidth;
-      const firstChildWidth = masonryFirstChild.clientWidth;
+      const firstChildWidth = masonryFirstVisibleChild.clientWidth;
 
       if (parentWidth === 0 || firstChildWidth === 0) {
         return;
       }
 
-      const firstChildComputedStyle = window.getComputedStyle(masonryFirstChild);
+      const firstChildComputedStyle = window.getComputedStyle(masonryFirstVisibleChild);
       const firstChildMarginLeft = parseToNumber(firstChildComputedStyle.marginLeft);
       const firstChildMarginRight = parseToNumber(firstChildComputedStyle.marginRight);
 
@@ -243,6 +253,13 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
         if (child.nodeType !== Node.ELEMENT_NODE || child.dataset.class === 'line-break' || skip) {
           return;
         }
+
+        // Skip if the child is not visible
+        const childStyle = window.getComputedStyle(child);
+        if (childStyle.display === 'none' || childStyle.visibility === 'hidden') {
+          return;
+        }
+
         const childComputedStyle = window.getComputedStyle(child);
         const childMarginTop = parseToNumber(childComputedStyle.marginTop);
         const childMarginBottom = parseToNumber(childComputedStyle.marginBottom);
