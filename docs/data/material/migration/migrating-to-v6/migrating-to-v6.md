@@ -1,17 +1,37 @@
-# Migrating to v6
+# Upgrade to v6
 
-<p class="description">This guide explains how and why to migrate from Material UI v5 to v6.</p>
+<p class="description">This guide explains why and how to upgrade from Material UI v5 to v6.</p>
+
+## Why you should upgrade to Material UI v6
+
+### React Server Component support
+
+Material UI v6 introduces Pigment CSS, a zero-runtime CSS-in-JS styling engine to replace Emotion and styled-components as a more future-proof solution for writing styles in React 19 and beyond.
+With Pigment CSS, styles are extracted at build time rather than runtime, avoiding client-side recalculations and unlocking React Server Component (RSC) compatibility.
+This also leads to significant reductions in bundle sizes for Material UI apps.
+
+**In v6, Pigment CSS migration is opt-in.**
+Future major versions of Material UI will likely use Pigment CSS as the default styling solution.
+Though optional, we highly recommend migrating your Material UI app to Pigment CSS once you've upgraded to v6.
+
+### Quality-of-life improvements
+
+Material UI v6 features several other quality-of-life improvements, including:
+
+- stabilizing [the `CssVarsProvider` API](#cssvarsprovider-and-extendtheme)
+- support for container queries in themes
+- a [new theme utility](#color-mode-theme-utility) for adding styles to specific color modes
 
 ## Start using the beta release
 
-In your `package.json` file, change the package version from `latest` to `next`.
+In your `package.json` file, change the package version from `"latest"` to `"next"`.
 
 ```diff title="package.json"
 -"@mui/material": "latest",
 +"@mui/material": "next",
 ```
 
-Optionally, if you are using one of these packages, you can also change their version to `next`:
+If you're using any of these packages, you can also change their version to `"next"`:
 
 - `@mui/icons-material`
 - `@mui/system`
@@ -20,27 +40,21 @@ Optionally, if you are using one of these packages, you can also change their ve
 - `@mui/styled-engine-sc`
 - `@mui/utils`
 
-Using `next` ensures your project always uses the latest v6 beta release.
-Alternatively, you can also target and fix it to a specific version, for example, `6.0.0-beta.0`.
+Note that MUI X packages _do not_ follow the same versioning strategy as Material UI.
+If you're using any of the following packages, they should remain unchanged during the upgrade process:
 
-## Why you should migrate
+- `@mui/x-data-grid`
+- `@mui/x-data-grid-pro`
+- `@mui/x-data-grid-premium`
+- `@mui/x-date-pickers`
+- `@mui/x-date-pickers-pro`
+- `@mui/x-charts`
+- `@mui/x-tree-view`
+- `@mui/x-tree-view-pro`
 
-Material UI v6's biggest highlight is the introduction of Pigment CSS, a next-gen zero-runtime CSS-in-JS library, as an opt-in styling engine.
-Using it will make your project compatible with React Server Components, as well as help reduce its bundle size due to styles being extracted at build time, avoiding client-side recalculation.
+## Supported browsers and versions
 
-As a lesson learned from v5, this major release introduces minimal breaking changes.
-Namely, browser support updates, a Node.js version bump, and the removal of the UMD bundle.
-These updates reduced the Material UI package size by 2.5MB, 25% of the total size, and can be, for the most part, migrated automatically via codemods.
-
-Aside from that, v6 also includes a few quality-of-life improvements regarding styling:
-
-- The `CssVarsProvider` API is now stable. That enables you to rely on CSS variables, allowing for more intricate and performant customization possibilities, along with improved overall developer experience.
-- Support for container queries within the theme.
-- A new theme utility for adding styles to specific color modes.
-
-## Supported browsers and Node versions
-
-The targets of the default bundle have changed in v6.
+The default bundle targets have changed in v6.
 
 The exact versions will be pinned on release from the browserslist query: `"> 0.5%, last 2 versions, Firefox ESR, not dead, safari >= 15.4, iOS >= 15.4"`.
 
@@ -55,15 +69,13 @@ The exact versions will be pinned on release from the browserslist query: `"> 0.
 
 ### Removed support for IE 11
 
-Support for IE 11－that is, the legacy bundle and all IE 11-related code－is completely removed.
+Support for IE 11－the legacy bundle and all IE 11-related code－has been completely removed in v6.
 This decreases Material UI's bundle size and eases future development.
 
 If you need to support IE 11, you can use v5's [legacy bundle](https://v5.mui.com/material-ui/guides/minimizing-bundle-size/#legacy-bundle).
-However, note that it won't get updates or bug fixes.
+Note that it will not receive updates or bug fixes in the future.
 
-## Update React & TypeScript version
-
-### Update React
+### Minimum React version
 
 The minimum supported version of React is v17.0.0 (the same as v5).
 Use the snippet below to update your project (replace the `<version>` with the one you want):
@@ -84,7 +96,7 @@ pnpm add react@<version> react-dom@<version>
 
 </codeblock>
 
-### Update TypeScript
+### Minimum TypeScript version
 
 The minimum supported version of TypeScript has been increased from v3.5 to 4.7.
 
@@ -106,40 +118,34 @@ Make sure that your application is still running without errors, and commit the 
 
 ## Breaking changes
 
+Material UI v6 was designed to introduce minimal breaking changes when upgrading from v5.
+These include browser support updates, a Node.js version bump, and the removal of the UMD bundle.
+These updates reduce the Material UI package size by 2.5MB—nearly 25% of the total size in v5.
+
+Codemods are provided to handle the majority of these breaking changes.
+
 :::info
 This list is a work in progress.
 Expect updates as new breaking changes are introduced.
 :::
 
-### UMD bundle was removed
+### UMD bundle removed
 
 To align with React 19's removal of UMD builds, Material UI has also removed its UMD bundle.
-This results in a reduction of the `@mui/material` package size by 2.5MB or 25% of the total package size.
+This results in a reduction of the `@mui/material` package size by 2.5MB, or 25% of the total package size.
 See [Package Phobia](https://packagephobia.com/result?p=@mui/material) for more details.
 
-Instead, using ESM-based CDNs such as [esm.sh](https://esm.sh/) is recommended.
+Instead, we recommend using ESM-based CDNs such as [esm.sh](https://esm.sh/).
 For alternative installation methods, refer to the [CDN documentation](/material-ui/getting-started/installation/#cdn).
-
-### Autocomplete
-
-#### New reason values added to onInputChange
-
-Three new possible values have been added to the `reason` argument in the `onInputChange` callback of the Autocomplete component.
-These three were previously treated as `"reset"`, so if you are relying on that, you might need to adjust your code accordingly:
-
-- `"blur"`: like `"reset"` but triggered when the focus is moved off the input. `clearOnBlur` must be `true`.
-- `"selectOption"`: triggered when the input value changes after an option has been selected.
-- `"removeOption"`: triggered in multiple selection when a chip gets removed due to the corresponding option being selected.
-
-These are added on top of the existing ones: `"input"`, `"reset"`, and `"clear"`.
 
 ### Accordion
 
-#### Heading element wrapping Accordion Summary
+To meet the [W3C Accordion Pattern standard](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/), the Accordion Summary is now wrapped with a default `<h3>` heading element.
+This change may affect customizations relying on the previous DOM structure and CSS specificity.
+Additionally, the default heading element might conflict with existing heading structures on your page.
 
-To meet the [W3C Accordion Pattern standard](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/), the Accordion Summary is now wrapped with a default `h3` heading element. This change may affect customizations relying on the previous DOM structure and CSS specificity. Additionally, the default heading element might conflict with existing heading structures on your page.
-
-If your styles or DOM manipulations depend on the old structure, you will need to update them to accommodate the new heading element. If the default heading element conflicts with your existing structure, you can change the heading element using the `slotProps.heading.component` prop.
+If your styles or DOM manipulations depend on the old structure, you will need to update them to accommodate the new heading element.
+If the default heading element conflicts with your existing structure, you can change the heading element using the `slotProps.heading.component` prop.
 
 ```jsx
 <Accordion slotProps={{ heading: { component: 'h4' } }}>
@@ -157,12 +163,23 @@ If your styles or DOM manipulations depend on the old structure, you will need t
 </Accordion>
 ```
 
+### Autocomplete
+
+Three new values have been introduced to the `reason` argument in the `onInputChange` callback of the Autocomplete component.
+These values offer more granular options for three specific use cases previously covered by `"reset"`:
+
+- `"blur"`: similar to `"reset"` but triggered when the focus moves away from the input. `clearOnBlur` must be `true`.
+- `"selectOption"`: triggered when the input value changes after an option is selected.
+- `"removeOption"`: triggered in multiple selection mode when a chip is removed as a result of its corresponding option being selected.
+
+These are available in addition to the existing `"input"`, `"reset"`, and `"clear"` values.
+
 ### Chip
 
-Previously, the Chip component lost focus when the escape button was pressed, which differed from how other button-like components work.
-This issue has been resolved, and the Chip now retains focus as expected.
+In earlier versions, the Chip component would lose focus when the user pressed the <kbd class="key">esc</kbd> key, which differs from how other button-like components work.
+In v6 the Chip now retains focus as expected.
 
-If you want to keep the previous behavior, add a custom `onKeyUp` handler, as shown below:
+To preserve the previous behavior, add a custom `onKeyUp` handler as shown below:
 
 ```js
 import * as React from 'react';
@@ -188,7 +205,7 @@ export default function ChipExample() {
 
 ### Loading Button
 
-The `children` passed to the Loading Button component is now wrapped in a `<span>` tag to avoid [issues](https://github.com/mui/material-ui/issues/27853) when using tools to translate websites.
+In v6, the `children` prop passed to the Loading Button component is now wrapped in a `<span>` tag to avoid [issues](https://github.com/mui/material-ui/issues/27853) when using tools to translate websites.
 
 ### Grid v2 (Unstable_Grid)
 
@@ -247,10 +264,10 @@ The `Grid2` component API was stabilized, so its import no longer contains the `
 +import Grid from '@mui/material/Grid2';
 ```
 
-#### Size and offset props
+#### Size and offset props renamed
 
-Previously, the size and offset props were named corresponding to the theme's breakpoints.
-For the default theme this was:
+In v5, the size and offset props were named to correspond with the theme's breakpoints.
+For the default theme, these were:
 
 - Size: `xs`, `sm`, `md`, `lg`, `xl`
 - Offset: `xsOffset`, `smOffset`, `mdOffset`, `lgOffset`, `xlOffset`
@@ -268,21 +285,21 @@ In v6, these props are renamed to `size` and `offset`:
  >
 ```
 
-Note that if the size or offset is the same for all breakpoints, you can use a single value:
+If the size or offset is the same for all breakpoints then you can use a single value:
 
 ```diff
 -<Grid xs={6} xsOffset={2}>
 +<Grid size={6} offset={2}>
 ```
 
-Besides that, the `true` value for the size prop was renamed to `"grow"`:
+Additionally, the `true` value for the `size` prop was renamed to `"grow"`:
 
 ```diff
 -<Grid xs>
 +<Grid size="grow">
 ```
 
-Use this codemod to migrate your project to the new size and offset props:
+Use this codemod to migrate your project to the new `size` and `offset` props:
 
 ```bash
 npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder>
@@ -292,54 +309,62 @@ npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder>
 You need to modify the import from `@mui/material/Unstable_Grid2` to `@mui/material/Grid2` before running the codemod.
 :::
 
-If you have custom breakpoints, the change is the same:
+##### Using custom breakpoints
+
+The usage described above also applies to custom breakpoints:
 
 ```diff
 -<Grid mobile={12} mobileOffset={2} desktop={6} desktopOffset={4}>
 +<Grid size={{ mobile: 12, desktop: 6 }} offset={{ mobile: 2, desktop: 4 }}>
 ```
 
-Which you can cover with the same codemod by providing the custom breakpoints as an argument:
+You can use the same codemod for custom breakpoints by providing the breakpoints as an argument:
 
 ```bash
 npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder> --jscodeshift='--muiBreakpoints=mobile,desktop'
 ```
 
-#### Removal of the disableEqualOverflow prop
+#### disableEqualOverflow prop removed
 
-Previously, the Grid overflowed its parent.
-In v6, this is fixed, with the Grid being contained inside its parent's padding:
+In v5, the Grid overflowed its parent.
+In v6 the Grid is correctly contained within its parent's padding:
 
 <img src="/static/material-ui/migration-v5/grid-overflow-change.png" style="width: 814px;" alt="Before and after of the Grid no longer overflowing its parent in v6." width="1628" height="400" />
 
-This removes the need for the `disableEqualOverflow` prop:
+This eliminates the need for the `disableEqualOverflow` prop:
 
 ```diff
 -<Grid disableEqualOverflow>
 +<Grid>
 ```
 
-#### Spacing is no longer considered inside the Grid item's box
+:::warning
+This update may lead to unexpected changes to your app's layout.
+Still, we strongly recommend adopting this new behavior rather than trying to replicate the old pattern, as the new version is more predictable and modern.
+:::
 
-Previously, Grid items included spacing in their boxes.
-In v6, this is fixed:
+#### Grid item spacing change
 
-<img src="/static/material-ui/migration-v5/grid-spacing-change.png" style="width: 814px;" alt="Before and after of the Grid items no longer including spacing in their box." width="1628" height="400" />
+In v5, Grid items included spacing in their boxes.
+In v6, Grid items no longer inclue spacing in their boxes.
+
+Note that the item position doesn't change.
 
 :::warning
-Both of these changes might slightly affect your layout.
-Note that the items' position doesn't change.
-We recommend adopting this new behavior and **not trying to replicate the old one**, as this is a more predictable and modern approach.
+This update may lead to unexpected changes to your app's layout.
+Still, we strongly recommend adopting this new behavior rather than trying to replicate the old pattern, as the new version is more predictable and modern.
 :::
+
+<img src="/static/material-ui/migration-v5/grid-spacing-change.png" style="width: 814px;" alt="Before and after of the Grid items no longer including spacing in their boxes." width="1628" height="400" />
 
 ### Rating
 
 Previously, due to a bug, the `aria-label` attribute was "null Stars" when no value was set in the Rating component.
 This is fixed in v6, with the `aria-label` attribute being "0 Stars" when no value is set.
 
-### useMediaQuery
+### useMediaQuery types
 
-The following deprecated types were removed:
+The following deprecated types are removed in v6:
 
 - `MuiMediaQueryList`: use `MediaQueryList` (from lib.dom.d.ts) instead.
 - `MuiMediaQueryListEvent`: use `MediaQueryListEvent` (from lib.dom.d.ts) instead.
@@ -350,19 +375,18 @@ The following deprecated types were removed:
 ### CssVarsProvider and extendTheme
 
 The `CssVarsProvider` and `extendTheme` APIs are now stable.
-If you already use them in v5, you can now drop the experimental prefix.
+If you're already using them in v5 you can now drop the experimental prefix:
 
 ```diff
 -import { experimental_extendTheme as extendTheme, Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
 +import { extendTheme, CssVarsProvider } from '@mui/material/styles';
 ```
 
-Check out the [CSS theme variables page](/material-ui/customization/css-theme-variables/overview/) to learn more about it.
+See [CSS theme variables](/material-ui/customization/css-theme-variables/overview/) for more details about working with these APIs.
 
-### Add styles for specific color modes
+### Color mode theme utility
 
-Material UI v6 introduces a new utility for adding styles to specific color modes called `theme.applyStyles`.
-It's designed to replace `theme.palette.mode` when applying light or dark styles.
+Material UI v6 introduces a new utility for adding styles to specific color modes called `theme.applyStyles`, designed to replace `theme.palette.mode` when applying light or dark styles:
 
 ```diff
  const MyComponent = styled('button')(({ theme }) => ({
@@ -385,27 +409,28 @@ npx @mui/codemod@next v6.0.0/theme-v6 <path/to/theme-file>
 ```
 
 :::info
-Run `v6.0.0/theme-v6` against the file that contains the custom `styleOverrides`. Ignore this codemod if you don't have a custom theme.
+If you have a custom theme, run `v6.0.0/theme-v6` against the file that contains your custom `styleOverrides`.
+Otherwise you can ignore this codemod.
 :::
 
 ## Deprecations
 
-### Components props
+### Overriding props
 
-The `components` and `componentsProps` props have been deprecated in favor of `slots` and `slotProps`, making the API surface of the components more consistent.
+The `components` and `componentsProps` props have been deprecated in favor of `slots` and `slotProps` for a more consistent component API surface.
 
-Check out the [deprecations page](/material-ui/migration/migrating-from-deprecated-apis/) to learn which component no longer has these props.
+See [Deprecations](/material-ui/migration/migrating-from-deprecated-apis/) for details about specific components as they relate to this change.
 
 ### System props
 
-System props, such as `mt={*}`, `bgcolor={*}`, and others, are deprecated in the Box, Typography, Link, Grid, and Stack components.
-Move all system props into the `sx` prop by using the codemod below:
+MUI System props (such as `mt={*}`, `bgcolor={*}`, and more) have been deprecated in the Box, Typography, Link, Grid, and Stack components.
+Use the codemod below to move all System props to the `sx` prop:
 
 ```bash
 npx @mui/codemod@next v6.0.0/system-props <path/to/folder>
 ```
 
-Or do it manually like the example below:
+You can also manually update your components as shown in the snippet below:
 
 ```diff
 -<Button mr={2}>
@@ -415,13 +440,14 @@ Or do it manually like the example below:
 ### Theme component variants
 
 Custom component variants defined in the theme are now merged with the theme style overrides, defined within the `root` slot of the component.
-Update the theme file using the codemod:
+
+Use this codemod to update your project's theme file:
 
 ```bash
 npx @mui/codemod@next v6.0.0/theme-v6 <path/to/theme>
 ```
 
-Or do it manually like the example below:
+You can also manually update your theme as shown in the snippet below:
 
 ```diff
  createTheme({
@@ -442,4 +468,4 @@ This reduces the API surface and lets you define variants in other slots of the 
 
 ## Pigment CSS integration (optional)
 
-Check out the [Pigment CSS migration page](/material-ui/migration/migrating-to-pigment-css/) to learn how to integrate it into your project.
+Once you've finished upgrading your app to v6, you'll be ready to start [migrating to Pigment CSS](/material-ui/migration/migrating-to-pigment-css/) for RSC support and a smaller bundle size.
