@@ -82,3 +82,18 @@ You can change the placement of the label:
 ```jsx
 <Switch value="checkedA" inputProps={{ 'aria-label': 'Switch A' }} />
 ```
+
+## Experimental APIs
+
+### Material 3 version
+
+The default Material UI Switch component follows the Material Design 2 specs.
+To get the [Material 3](https://m3.material.io/) version, use the new experimental `@mui/material-next` package.
+
+```js
+import Switch from '@mui/material-next/Switch';
+```
+
+{{"demo": "SwitchMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}
+
+For more instructions on how to use it, visit the [detailed guide](/material-ui/guides/material-3-components/).
