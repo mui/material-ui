@@ -68,8 +68,8 @@ describe('Multiple nested theme providers', () => {
   let storage: Record<string, string> = {};
   const createMatchMedia = (matches: boolean) => () => ({
     matches,
-    addListener: () => {},
-    removeListener: () => {},
+    addEventListener: () => {},
+    removeEventListener: () => {},
   });
 
   beforeEach(() => {

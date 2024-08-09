@@ -23,8 +23,8 @@ describe('ThemeProvider', () => {
     });
     window.matchMedia = () =>
       ({
-        addListener: () => {},
-        removeListener: () => {},
+        addEventListener: () => {},
+        removeEventListener: () => {},
       }) as unknown as MediaQueryList;
   });
 

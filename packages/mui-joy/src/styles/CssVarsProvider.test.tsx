@@ -22,8 +22,8 @@ describe('[Joy] CssVarsProvider', () => {
     });
     window.matchMedia = () =>
       ({
-        addListener: () => {},
-        removeListener: () => {},
+        addEventListener: () => {},
+        removeEventListener: () => {},
       }) as unknown as MediaQueryList;
   });
 

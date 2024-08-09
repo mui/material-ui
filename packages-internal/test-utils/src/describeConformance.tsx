@@ -1034,8 +1034,8 @@ function describeConformance(
     });
     window.matchMedia = () =>
       ({
-        addListener: () => {},
-        removeListener: () => {},
+        addEventListener: () => {},
+        removeEventListener: () => {},
       }) as unknown as MediaQueryList;
   });
   afterEach(() => {

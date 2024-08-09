@@ -18,10 +18,10 @@ describe('useCurrentColorScheme', () => {
 
   const createMatchMedia = (matches) => () => ({
     matches,
-    addListener: (listener) => {
+    addEventListener: (listener) => {
       trigger = listener;
     },
-    removeListener: () => {},
+    removeEventListener: () => {},
   });
 
   before(() => {
