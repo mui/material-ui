@@ -93,6 +93,7 @@ export default function TemplateCarousel() {
           ...theme.applyStyles('dark', {
             borderColor: 'var(--muidocs-palette-primaryDark-700)',
           }),
+          mx: 'clamp(-147px, (1000px - 100vw) * 9999, 0px)',
         })}
       >
         <Box
