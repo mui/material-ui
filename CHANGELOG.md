@@ -1,5 +1,28 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.16.7
+
+<!-- generated comparing v5.16.6..master -->
+
+_Aug 9, 2024_
+
+A big thanks to the 3 contributors who made this release possible.
+
+### `@mui/material@5.16.7`
+
+- &#8203;<!-- 3 -->[material-ui][mui-system] Add support for version runtime checks (#43233) @DiegoAndai
+
+### Docs
+
+- &#8203;<!-- 4 -->[docs] Fix 301 @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 2 -->[website] Fix wrong link in pricing table (@zanivan) (#43143) @zanivan
+- &#8203;<!-- 1 -->[website] Add blog link to pricing table (@zanivan) (#43140) @zanivan
+
+All contributors of this release in alphabetical order: @DiegoAndai, @oliviertassinari, @zanivan
+
 ## 5.16.6
 
 <!-- generated comparing v5.16.5..master -->
