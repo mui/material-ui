@@ -132,7 +132,7 @@
     "@types/react-transition-group": "^4.4.10",
     "@types/react-window": "^1.8.8",
     "@types/stylis": "^4.2.0",
-    "chai": "^4.5.0",
+    "chai": "^5.1.1",
     "cross-fetch": "^4.0.0",
     "gm": "^1.25.0",
     "marked": "^13.0.3",

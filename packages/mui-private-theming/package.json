@@ -46,7 +46,7 @@
     "@mui/types": "workspace:^",
     "@types/chai": "^4.3.17",
     "@types/react": "^18.3.3",
-    "chai": "^4.5.0",
+    "chai": "^5.1.1",
     "react": "^18.3.1"
   },
   "peerDependencies": {
