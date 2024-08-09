@@ -14,34 +14,44 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { ThemeProvider } from '@mui/material/styles';
 
 const usesUseSyncExternalStore = React.useSyncExternalStore !== undefined;
+const matchMediaInstances = new Map();
 
-function createMatchMedia(width, ref) {
+function createMatchMedia(width) {
   const listeners = [];
   return (query) => {
-    const instance = {
-      matches: mediaQuery.match(query, {
-        width,
-      }),
-      addEventListener: (eventType, listener) => {
-        listeners.push(listener);
-      },
-      removeEventListener: (eventType, listener) => {
-        const index = listeners.indexOf(listener);
-        if (index > -1) {
-          listeners.splice(index, 1);
-        }
-      },
-    };
-    ref.push({
-      instance,
-      listeners,
-    });
+    let instance = matchMediaInstances.get(query)?.instance;
+
+    if (!instance) {
+      instance = {
+        matches: mediaQuery.match(query, {
+          width,
+        }),
+        addEventListener: (eventType, listener) => {
+          listeners.push(listener);
+        },
+        removeEventListener: (eventType, listener) => {
+          const index = listeners.indexOf(listener);
+          if (index > -1) {
+            listeners.splice(index, 1);
+          }
+        },
+      };
+      matchMediaInstances.set(query, {
+        instance,
+        listeners,
+      });
+    }
+
     return instance;
   };
 }
 
 describe('useMediaQuery', () => {
-  const { render, renderToString } = createRenderer();
+  const { render, renderToString } = createRenderer({ strict: true });
+
+  beforeEach(() => {
+    matchMediaInstances.clear();
+  });
 
   describe('without window.matchMedia', () => {
     let originalMatchmedia;
@@ -68,11 +78,8 @@ describe('useMediaQuery', () => {
   });
 
   describe('with window.matchMedia', () => {
-    let matchMediaInstances;
-
     beforeEach(() => {
-      matchMediaInstances = [];
-      const fakeMatchMedia = createMatchMedia(1200, matchMediaInstances);
+      const fakeMatchMedia = createMatchMedia(1200);
       // can't stub nonexistent properties with sinon
       // jsdom does not implement window.matchMedia
       if (window.matchMedia === undefined) {
@@ -276,8 +283,9 @@ describe('useMediaQuery', () => {
       expect(getRenderCountRef.current()).to.equal(usesUseSyncExternalStore ? 2 : 4);
     });
 
-    it('should observe the media query', () => {
+    it('should observe the media query', async () => {
       const getRenderCountRef = React.createRef();
+      const query = '(min-width:2000px)';
       function Test(props) {
         const matches = useMediaQuery(props.query);
 
@@ -291,14 +299,16 @@ describe('useMediaQuery', () => {
         query: PropTypes.string.isRequired,
       };
 
-      render(<Test query="(min-width:2000px)" />);
+      render(<Test query={query} />);
+
       expect(getRenderCountRef.current()).to.equal(1);
       expect(screen.getByTestId('matches').textContent).to.equal('false');
 
-      act(() => {
-        matchMediaInstances[matchMediaInstances.length - 1].instance.matches = true;
-        matchMediaInstances[matchMediaInstances.length - 1].listeners[0]();
+      await act(async () => {
+        matchMediaInstances.get(query).instance.matches = true;
+        matchMediaInstances.get(query).listeners[0]();
       });
+
       expect(screen.getByTestId('matches').textContent).to.equal('true');
       expect(getRenderCountRef.current()).to.equal(2);
     });

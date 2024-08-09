@@ -166,11 +166,10 @@ const Card = React.forwardRef(function Card(inProps, ref) {
         }
         const extraProps: Record<string, any> = {};
         if (isMuiElement(child, ['Divider'])) {
-          extraProps.inset = 'inset' in child.props ? child.props.inset : 'context';
+          extraProps.inset = (child.props as any)?.inset ?? 'context';
 
           const dividerOrientation = orientation === 'vertical' ? 'horizontal' : 'vertical';
-          extraProps.orientation =
-            'orientation' in child.props ? child.props.orientation : dividerOrientation;
+          extraProps.orientation = (child.props as any)?.orientation ?? dividerOrientation;
         }
         if (index === 0) {
           extraProps['data-first-child'] = '';

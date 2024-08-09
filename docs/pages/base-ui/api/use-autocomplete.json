@@ -147,8 +147,8 @@
     },
     "unstable_isActiveElementInListbox": {
       "type": {
-        "name": "(listbox: React.RefObject&lt;HTMLElement&gt;) =&gt; boolean",
-        "description": "(listbox: React.RefObject&lt;HTMLElement&gt;) =&gt; boolean"
+        "name": "(listbox: React.RefObject&lt;HTMLElement | null&gt;) =&gt; boolean",
+        "description": "(listbox: React.RefObject&lt;HTMLElement | null&gt;) =&gt; boolean"
       }
     },
     "value": {

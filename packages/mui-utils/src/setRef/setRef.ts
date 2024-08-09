@@ -14,7 +14,7 @@ import * as React from 'react';
  * @param ref A ref callback or ref object. If anything falsy, this is a no-op.
  */
 export default function setRef<T>(
-  ref: React.MutableRefObject<T | null> | ((instance: T | null) => void) | null | undefined,
+  ref: React.RefObject<T | null> | ((instance: T | null) => void) | null | undefined,
   value: T | null,
 ): void {
   if (typeof ref === 'function') {

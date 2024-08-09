@@ -29,7 +29,7 @@ const FlashCode = React.forwardRef(function FlashCode(
     startLine?: number;
     lineHeight?: number | string;
   },
-  ref: React.Ref<HTMLDivElement>,
+  ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const { children, startLine = 0, endLine = startLine, lineHeight = '0.75rem', ...other } = props;
 

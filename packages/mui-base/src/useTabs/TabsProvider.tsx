@@ -5,7 +5,7 @@ import { CompoundComponentContext, CompoundComponentContextValue } from '../useC
 
 export type TabPanelMetadata = {
   id: string | undefined;
-  ref: React.RefObject<HTMLElement>;
+  ref: React.RefObject<HTMLElement | null>;
 };
 
 export type TabsProviderValue = CompoundComponentContextValue<string | number, TabPanelMetadata> &
