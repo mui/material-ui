@@ -105,20 +105,26 @@ const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref
       );
       elements.forEach((elm) => {
         if (expanded) {
+          // Accordion is expanded
           const prevTabIndex = elm.getAttribute('data-prev-tabindex');
-          const currentTabIndex = elm.getAttribute('tabindex');
-
-          if (currentTabIndex && prevTabIndex) {
-            // restore tabindex
+          if (prevTabIndex === 'unset') {
+            // If 'unset', this element did not originally have a tabindex, so remove it.
+            elm.removeAttribute('tabindex');
+          } else if (prevTabIndex !== null) {
+            // Restore the original tabindex value and remove the tracking attribute.
             elm.setAttribute('tabindex', prevTabIndex);
             elm.removeAttribute('data-prev-tabindex');
           }
-
-          if (!prevTabIndex && !currentTabIndex) {
-            elm.removeAttribute('tabindex');
-          }
         } else {
-          elm.setAttribute('data-prev-tabindex', elm.getAttribute('tabindex') || '');
+          // Accordion is collapsed
+          const currentTabIndex = elm.getAttribute('tabindex');
+          if (currentTabIndex !== null) {
+            // Save the current tabindex for restoration later when expanded.
+            elm.setAttribute('data-prev-tabindex', currentTabIndex);
+          } else {
+            // Use 'unset' to track elements that originally had no tabindex.
+            elm.setAttribute('data-prev-tabindex', 'unset');
+          }
           elm.setAttribute('tabindex', '-1');
         }
       });
