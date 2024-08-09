@@ -12,5 +12,8 @@ declare global {
     interface HTMLAttributes {
       sx?: SxProps<Theme>;
     }
+    interface SVGProps {
+      sx?: SxProps<Theme>;
+    }
   }
 }
