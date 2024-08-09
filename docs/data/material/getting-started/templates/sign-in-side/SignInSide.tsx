@@ -10,7 +10,7 @@ import { createTheme, ThemeProvider, PaletteMode } from '@mui/material/styles';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 
-import getSignInSideTheme from './getSignInSideTheme';
+import getSignInSideTheme from './theme/getSignInSideTheme';
 import ToggleColorMode from './ToggleColorMode';
 import SignInCard from './SignInCard';
 import Content from './Content';

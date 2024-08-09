@@ -1,21 +1,21 @@
 import { getDesignTokens } from './themePrimitives';
 import {
-  buttonsCustomizations,
   inputsCustomizations,
-  layoutComponentsCustomizations,
-  menuComponentsCustomizations,
-  otherComponentsCustomizations,
+  dataDisplayCustomizations,
+  feedbackCustomizations,
+  navigationCustomizations,
+  surfacesCustomizations,
 } from './customizations';
 
 export default function getBlogTheme(mode) {
   return {
     ...getDesignTokens(mode),
     components: {
-      ...buttonsCustomizations,
       ...inputsCustomizations,
-      ...layoutComponentsCustomizations,
-      ...menuComponentsCustomizations,
-      ...otherComponentsCustomizations,
+      ...dataDisplayCustomizations,
+      ...feedbackCustomizations,
+      ...navigationCustomizations,
+      ...surfacesCustomizations,
     },
   };
 }

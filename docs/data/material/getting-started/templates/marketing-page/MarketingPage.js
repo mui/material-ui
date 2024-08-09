@@ -16,7 +16,7 @@ import Features from './components/Features';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
-import getMPTheme from './getMPTheme';
+import getMPTheme from './theme/getMPTheme';
 
 function ToggleCustomTheme({ showCustomTheme, toggleCustomTheme }) {
   return (
@@ -81,7 +81,7 @@ export default function MarketingPage() {
       <CssBaseline />
       <AppAppBar mode={mode} toggleColorMode={toggleColorMode} />
       <Hero />
-      <Box sx={{ bgcolor: 'background.default' }}>
+      <div>
         <LogoCollection />
         <Features />
         <Divider />
@@ -94,7 +94,7 @@ export default function MarketingPage() {
         <FAQ />
         <Divider />
         <Footer />
-      </Box>
+      </div>
       <ToggleCustomTheme
         showCustomTheme={showCustomTheme}
         toggleCustomTheme={toggleCustomTheme}
