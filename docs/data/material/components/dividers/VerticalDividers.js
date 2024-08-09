@@ -20,7 +20,7 @@ export default function VerticalDividers() {
         '& svg': {
           m: 1,
         },
-        '& hr': {
+        '& .MuiDivider-root': {
           mx: 0.5,
         },
       }}
