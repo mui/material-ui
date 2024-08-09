@@ -16,6 +16,8 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
+- 📦 [6.8 kB gzipped](https://bundlephobia.com/package/@mui/base).
+
 ## Introduction
 
 The Slider component lets users make selections from a range of values along a horizontal or vertical bar.

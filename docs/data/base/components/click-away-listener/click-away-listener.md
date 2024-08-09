@@ -13,6 +13,8 @@ githubLabel: 'component: ClickAwayListener'
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
+- 📦 [0.9 kB gzipped](https://bundlephobia.com/package/@mui/base).
+
 ## Introduction
 
 Click-Away Listener is a utility component that listens for click events outside of its child.

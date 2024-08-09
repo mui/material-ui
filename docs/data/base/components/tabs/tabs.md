@@ -15,6 +15,8 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
+- 📦 [2.9 kB gzipped](https://bundlephobia.com/package/@mui/base).
+
 ## Introduction
 
 Tabs are implemented using a collection of related components:
