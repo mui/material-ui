@@ -84,7 +84,7 @@
     },
     "open": { "description": "If <code>true</code>, the component is shown." },
     "openOnFocus": { "description": "If <code>true</code>, the popup will open on input focus." },
-    "options": { "description": "A list of options that will be shown in the autocomplete." },
+    "options": { "description": "Array of options." },
     "readOnly": {
       "description": "If <code>true</code>, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted."
     },
