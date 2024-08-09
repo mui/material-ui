@@ -12,6 +12,12 @@ This utility is built on top of the `styled()` module of `@mui/styled-engine` an
 You can use the utility coming from the `@mui/system` package, or if you are using `@mui/material`, you can import it from `@mui/material/styles`.
 The difference is in the default `theme` that is used (if no theme is available in the React context).
 
+```ts
+import { styled } from '@mui/system';
+// If you are using @mui/material
+import { styled } from '@mui/material/styles';
+```
+
 ### What problems does it solve?
 
 The utility can be used as a replacement for emotion's or styled-components' styled() utility.
