@@ -1,6 +1,6 @@
 ---
-title: Material UI v6 is out 🎉
-description: We are so excited to announce the stable release of Material UI v6. It comes with Pigment CSS integration and a lot of improvements.
+title: Material UI v6 is out 🎉
+description: We are so excited to announce the stable release of Material UI v6. It comes with Pigment CSS integration and a lot of improvements.
 date: 2024-07-01T00:00:00.000Z
 authors:
   [
@@ -12,17 +12,17 @@ authors:
     'siriwatknp',
     'zanivan',
   ]
-tags: ['Material UI', 'Product']
+tags: ['Material UI', 'Product']
 manualCard: true
 ---
 
-Material UI v6 is now stable! We're excited to share all the updates.
+Material UI v6 is now stable! We're excited to share all the updates.
 
 ## Opt-in CSS extraction via Pigment CSS
 
-As you know, Material UI v5 uses Emotion as a default styling solution. As a runtime CSS-in-JS library, it has several trade-offs such as slower performance and larger bundle size.
+As you know, Material UI v5 uses Emotion as a default styling solution. As a runtime CSS-in-JS library, it has several trade-offs such as slower performance and larger bundle size.
 
-In v6, we introduce an opt-in integration with [Pigment CSS](https://github.com/mui/pigment-css), our new zero-runtime styling library, that will eliminate the runtime overhead while preserving similar APIs that you are already familiar with.
+In v6, we introduce an opt-in integration with [Pigment CSS](https://github.com/mui/pigment-css), our new zero-runtime styling library, that will eliminate the runtime overhead while preserving similar APIs that you are already familiar with.
 
 Since the integration is an opt-in feature, you can upgrade to v6 and continue using Emotion if you'd like. The link to the migration guide is at the bottom of the page.
 
@@ -31,7 +31,7 @@ Since the integration is an opt-in feature, you can upgrade to v6 and continue u
 
 ### React Server Components
 
-Once integrated with Pigment CSS, Material UI v6 provides a separate set of layout components, including `Grid`, `Container`, and `Stack`, that are compatible with React Server Components.
+Once integrated with Pigment CSS, Material UI v6 provides a separate set of layout components, including `Grid`, `Container`, and `Stack`, that are compatible with React Server Components.
 
 ```jsx
 import Box from '@mui/material-pigment-css/Box';
@@ -42,7 +42,7 @@ import Stack from '@mui/material-pigment-css/Stack';
 
 ### Built-in sx prop support
 
-With Pigment CSS integration, all JSX elements support the `sx` prop out of the box.
+With Pigment CSS integration, all JSX elements support the `sx` prop out of the box.
 
 ```diff
 - import Box from '@mui/material/Box';
@@ -57,7 +57,7 @@ Box component is **no** longer required to use the `sx` prop.
 
 ## Built-in support for light and dark modes
 
-Material UI v6 supports light and dark modes out of the box.
+Material UI v6 supports light and dark modes out of the box.
 
 The new `colorSchemes` node lets you create a light and dark color schemes for your application:
 
@@ -69,7 +69,7 @@ function App() {
 }
 ```
 
-When color schemes are used, Material UI ships these features out of the box:
+When color schemes are used, Material UI ships these features out of the box:
 
 - CSS media `prefers-color-scheme` is used as the default method for switching between modes.
 - You can achieve instant transitions between modes with `disableTransitionOnChange` prop.
@@ -78,7 +78,7 @@ When color schemes are used, Material UI ships these features out of the box:
 
 ### CSS media `prefers-color-scheme`
 
-When light and dark color schemes are enabled, Material UI v6 uses the CSS media `prefers-color-scheme` as the default method for switching between modes.
+When light and dark color schemes are enabled, Material UI v6 uses the CSS media `prefers-color-scheme` as the default method for switching between modes.
 
 This method works with server-side rendering without flickering and is compatible with all modern browsers.
 
@@ -112,7 +112,7 @@ createTheme({ cssVariables: true, ... });
 
 {{"component": "components/blog/material-ui-v6-is-out/ThemeTokens.js"}}
 
-With CSS variables, you can easily integrate your preferred styling solution with Material UI.
+With CSS variables, you can easily integrate your preferred styling solution with Material UI.
 
 ```css title="styles.css"
 .custom-card {
@@ -125,9 +125,9 @@ With CSS variables, you can easily integrate your preferred styling solution wit
 
 ## New way of applying styles
 
-The new API `theme.applyStyles` has been added for creating specific mode styles. It's designed to replace the `theme.palette.mode === 'dark'` condition and to work with Pigment CSS.
+The new API `theme.applyStyles` has been added for creating specific mode styles. It's designed to replace the `theme.palette.mode === 'dark'` condition and to work with Pigment CSS.
 
-The snippet below will work for both Emotion and Pigment CSS.
+The snippet below will work for both Emotion and Pigment CSS.
 
 ```jsx
 const StyledInput = styled(InputBase)(({ theme }) => ({
@@ -186,7 +186,7 @@ It also works with the `sx` prop:
 
 ## Revamping the free templates
 
-Explore the new and enhanced [Material UI free templates](https://mui.com/material-ui/getting-started/templates/) to see these amazing features in action. We've fully revamped the templates to provide the perfect starting point for your project, whether you're adding sleek styles or using the template's sections.
+Explore the new and enhanced [Material UI free templates](https://mui.com/material-ui/getting-started/templates/) to see these amazing features in action. We've fully revamped the templates to provide the perfect starting point for your project, whether you're adding sleek styles or using the template's sections.
 
 {{"component": "components/blog/material-ui-v6-is-out/FreeTemplatesBento.js"}}
 
@@ -202,11 +202,11 @@ Stay tuned, as many more updates are coming in the upcoming months! We'd love to
 
 ## Next steps
 
-Ready to upgrade to Material UI v6? Check out the [migration guide](https://mui.com/guides/migration-v5/).
+Ready to upgrade to Material UI v6? Check out the [migration guide](https://mui.com/guides/migration-v5/).
 
 You can also explore all the updates in more detail from the links below:
 
-- [Pigment CSS integration](/)
+- [Pigment CSS integration](/)
 - [Container Queries](/)
 - [CSS theme variables](/)
 - [Stabilized Grid v2](/)
