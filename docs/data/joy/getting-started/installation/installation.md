@@ -13,16 +13,17 @@ The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Re
 <!-- #default-branch-switch -->
 
 <codeblock storageKey="package-manager">
+
 ```bash npm
 npm install @mui/joy@next @emotion/react @emotion/styled
 ```
 
-```bash yarn
-yarn add @mui/joy@next @emotion/react @emotion/styled
-```
-
 ```bash pnpm
 pnpm add @mui/joy@next @emotion/react @emotion/styled
+```
+
+```bash yarn
+yarn add @mui/joy@next @emotion/react @emotion/styled
 ```
 
 </codeblock>
@@ -51,16 +52,17 @@ Add it to your project via [Fontsource](https://fontsource.org/), or with the Go
 Run one of the following commands to add Inter through Fontsource to your Joy UI project:
 
 <codeblock storageKey="package-manager">
+
 ```bash npm
 npm install @fontsource/inter
 ```
 
-```bash yarn
-yarn add @fontsource/inter
-```
-
 ```bash pnpm
 pnpm add @fontsource/inter
+```
+
+```bash yarn
+yarn add @fontsource/inter
 ```
 
 </codeblock>
