@@ -49,6 +49,8 @@ Use `@latest` for the latest stable release.
 
 Visit [https://mui.com/joy-ui/getting-started/](https://mui.com/joy-ui/getting-started/) to view the full documentation.
 
+Visit [https://github.com/mui/material-ui/tree/next/packages/mui-joy](https://github.com/mui/material-ui/tree/next/packages/mui-joy) to view the source code.
+
 **Note**: Joy UI is still in beta.
 We are adding new components regularly and you're welcome to contribute!
 
