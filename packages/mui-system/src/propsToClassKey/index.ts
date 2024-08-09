@@ -1,2 +1,2 @@
-'use client'
-export { default } from './propsToClassKey'
+'use client';
+export { default } from './propsToClassKey';

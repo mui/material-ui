@@ -8,7 +8,7 @@ As developers use and test the components and report issues, the maintainers lea
 
 For a component to be ready to move to the core, the following criteria are considered:
 
-- It needs to be **used**. We uses Google Analytics in the documentation (among other metrics) to evaluate the usage of each component. A lab component with low usage either means that it isn't fully working yet, or that there is low demand for it.
+- It needs to be **used**. We use Google Analytics in the documentation (among other metrics) to evaluate the usage of each component. A lab component with low usage either means that it isn't fully working yet, or that there is low demand for it.
 - It needs to match the **code quality** of the core components. It doesn't have to be perfect to be part of the core, but the component should be reliable enough that developers can depend on it.
   - Each component needs **type definitions**. It is not currently required that a lab component is typed, but it would need to be typed to move to the core.
   - Requires good **test coverage**. Some of the lab components don't currently have comprehensive tests.
@@ -48,10 +48,7 @@ Note that the lab has a peer dependency on the Material UI components.
 In order to benefit from the [CSS overrides](/material-ui/customization/theme-components/#theme-style-overrides) and [default prop customization](/material-ui/customization/theme-components/#theme-default-props) with the theme, TypeScript users need to import the following types. Internally, it uses [module augmentation](/material-ui/guides/typescript/#customization-of-theme) to extend the default theme structure with the extension components available in the lab.
 
 ```tsx
-// When using TypeScript 4.x and above
 import type {} from '@mui/lab/themeAugmentation';
-// When using TypeScript 3.x and below
-import '@mui/lab/themeAugmentation';
 
 const theme = createTheme({
   components: {

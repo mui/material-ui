@@ -1,2 +1,2 @@
-'use client'
-export { default } from './createBox'
+'use client';
+export { default } from './createBox';

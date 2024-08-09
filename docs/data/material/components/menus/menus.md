@@ -14,7 +14,7 @@ unstyled: /base-ui/react-menu/
 
 A menu displays a list of choices on a temporary surface. It appears when the user interacts with a button, or other control.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic menu
 

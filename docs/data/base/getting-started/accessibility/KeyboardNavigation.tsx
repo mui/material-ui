@@ -54,7 +54,7 @@ const Select = React.forwardRef(function Select<
   return <BaseSelect {...props} ref={ref} slots={slots} />;
 }) as <TValue extends {}, Multiple extends boolean>(
   props: SelectProps<TValue, Multiple> & React.RefAttributes<HTMLButtonElement>,
-) => JSX.Element;
+) => React.JSX.Element;
 
 const SelectButton = React.forwardRef(function SelectButton<
   TValue extends {},
@@ -149,7 +149,7 @@ const Listbox = styled('ul')(
   min-width: 200px;
   border-radius: 12px;
   overflow: auto;
-  outline: 0px;
+  outline: 0;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};

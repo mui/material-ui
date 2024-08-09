@@ -15,7 +15,7 @@ A Dialog is a type of [modal](/material-ui/react-modal/) window that appears in 
 
 Dialogs are purposefully interruptive, so they should be used sparingly.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -166,3 +166,9 @@ The package [`material-ui-confirm`](https://github.com/jonatanklosko/material-ui
 ## Accessibility
 
 Follow the [Modal accessibility section](/material-ui/react-modal/#accessibility).
+
+## Experimental APIs
+
+### Imperative API
+
+You can create and manipulate dialogs imperatively with the [`useDialog`](https://mui.com/toolpad/core/react-use-dialogs/) API in `@toolpad/core`. This API provides state management for opening and closing dialogs and for passing data to the dialog and back. It allows for stacking multiple dialogs. It also provides themed alternatives for `window.alert`, `window.confirm` and `window.prompt`.

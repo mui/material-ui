@@ -4,7 +4,7 @@ description: The Base UI component library gives you complete control over the 
 date: 2022-09-07T00:00:00.000Z
 authors: ['michaldudak', 'samuelsycamore']
 tags: ['Base UI', 'Product']
-card: true
+manualCard: true
 ---
 
 <a href="https://mui.com/base-ui/"><img src="/static/blog/introducing-base-ui/hero-image.png" alt="Demo components built with Base UI, a newly introduced library of unstyled components and hooks" width="1200" height="500" /></a>
@@ -33,7 +33,7 @@ Also, many of the improvements to Material UI proposed by the community over th
 
 While they were created for different use cases, these two libraries share many common features and design patterns, and are intended to be complementary to one another within the MUI ecosystem.
 Base UI's API will be familiar to you if you've used Material UI before, making it easy to migrate a project—or just a part of it—from one library to the other if needed.
-We aim to create [unstyled versions of all Material UI components](https://github.com/mui/material-ui/issues/27170) (that make sense to do so).
+We aim to create [unstyled versions of all Material UI components](https://github.com/mui/base-ui/issues/10) (that make sense to do so).
 
 ## Components and hooks
 
@@ -86,7 +86,7 @@ function MySwitch(props: UseSwitchParameters) {
 The initial version of the library contains 17 components.
 Check out the [Base UI documentation](/base-ui/getting-started/) for details.
 
-You can track our progress in adding new components—and comment to influence our priorities—in [this dedicated GitHub issue](https://github.com/mui/material-ui/issues/27170).
+You can track our progress in adding new components—and comment to influence our priorities—in [this dedicated GitHub issue](https://github.com/mui/base-ui/issues/10).
 
 The `@mui/base` package is released as an alpha.
 This means the component APIs are subject to change—especially as we receive feedback from the community about room for improvement.

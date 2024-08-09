@@ -4,10 +4,9 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getDividerUtilityClass } from './dividerClasses';
-
-const useThemeProps = createUseThemeProps('MuiDivider');
 
 const useUtilityClasses = (ownerState) => {
   const { absolute, children, classes, flexItem, light, orientation, textAlign, variant } =
@@ -138,6 +137,8 @@ const DividerRoot = styled('div', {
         whiteSpace: 'nowrap',
         textAlign: 'center',
         border: 0,
+        borderTopStyle: 'solid',
+        borderLeftStyle: 'solid',
         '&::before, &::after': {
           content: '""',
           alignSelf: 'center',
@@ -150,6 +151,7 @@ const DividerRoot = styled('div', {
         '&::before, &::after': {
           width: '100%',
           borderTop: `thin solid ${(theme.vars || theme).palette.divider}`,
+          borderTopStyle: 'inherit',
         },
       },
     },
@@ -160,6 +162,7 @@ const DividerRoot = styled('div', {
         '&::before, &::after': {
           height: '100%',
           borderLeft: `thin solid ${(theme.vars || theme).palette.divider}`,
+          borderLeftStyle: 'inherit',
         },
       },
     },
@@ -216,7 +219,7 @@ const DividerWrapper = styled('span', {
 }));
 
 const Divider = React.forwardRef(function Divider(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiDivider' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiDivider' });
   const {
     absolute = false,
     children,
@@ -307,7 +310,7 @@ Divider.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the divider will have a lighter color.
    * @default false
-   * @deprecated Use <Divider sx={{ opacity: 0.6 }} /> (or any opacity or color) instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   * @deprecated Use <Divider sx={{ opacity: 0.6 }} /> (or any opacity or color) instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   light: PropTypes.bool,
   /**

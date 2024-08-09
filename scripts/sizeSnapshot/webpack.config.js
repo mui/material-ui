@@ -137,10 +137,6 @@ async function getWebpackEntries() {
     //   path: path.join(path.relative(workspaceRoot, materialPackagePath), 'modern/index.js'),
     // },
     {
-      id: '@material-ui/core.legacy',
-      path: path.join(path.relative(workspaceRoot, materialPackagePath), 'legacy/index.js'),
-    },
-    {
       id: '@mui/joy',
       path: path.join(path.relative(workspaceRoot, joyPackagePath), 'index.js'),
     },

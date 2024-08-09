@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { darken, lighten } from '@mui/system/colorManipulator';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import useSlot from '../utils/useSlot';
 import capitalize from '../utils/capitalize';
 import Paper from '../Paper';
@@ -15,8 +16,6 @@ import ReportProblemOutlinedIcon from '../internal/svg-icons/ReportProblemOutlin
 import ErrorOutlineIcon from '../internal/svg-icons/ErrorOutline';
 import InfoOutlinedIcon from '../internal/svg-icons/InfoOutlined';
 import CloseIcon from '../internal/svg-icons/Close';
-
-const useThemeProps = createUseThemeProps('MuiAlert');
 
 const useUtilityClasses = (ownerState) => {
   const { variant, color, severity, classes } = ownerState;
@@ -58,7 +57,7 @@ const AlertRoot = styled(Paper, {
     padding: '6px 16px',
     variants: [
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value.main && value.light)
+        .filter(([, value]) => value && value.main && value.light)
         .map(([color]) => ({
           props: { colorSeverity: color, variant: 'standard' },
           style: {
@@ -76,7 +75,7 @@ const AlertRoot = styled(Paper, {
           },
         })),
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value.main && value.light)
+        .filter(([, value]) => value && value.main && value.light)
         .map(([color]) => ({
           props: { colorSeverity: color, variant: 'outlined' },
           style: {
@@ -92,7 +91,7 @@ const AlertRoot = styled(Paper, {
           },
         })),
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value.main && value.dark)
+        .filter(([, value]) => value && value.main && value.dark)
         .map(([color]) => ({
           props: { colorSeverity: color, variant: 'filled' },
           style: {
@@ -157,7 +156,7 @@ const defaultIconMapping = {
 };
 
 const Alert = React.forwardRef(function Alert(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAlert' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiAlert' });
   const {
     action,
     children,
@@ -291,7 +290,7 @@ Alert.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -303,7 +302,7 @@ Alert.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */

@@ -14,7 +14,7 @@ unstyled: /base-ui/react-tabs/
 
 Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -67,7 +67,6 @@ Fixed tabs should be used with a limited number of tabs, and when a consistent p
 ### Full width
 
 The `variant="fullWidth"` prop should be used for smaller views.
-This demo also uses [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) to animate the Tab transition, and allowing tabs to be swiped on touch devices.
 
 {{"demo": "FullWidthTabs.js", "bg": true}}
 

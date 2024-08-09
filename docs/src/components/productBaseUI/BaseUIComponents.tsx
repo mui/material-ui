@@ -2,13 +2,14 @@ import * as React from 'react';
 import { styled as materialStyled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
 import SmartButtonRoundedIcon from '@mui/icons-material/SmartButtonRounded';
 import TabUnselectedRoundedIcon from '@mui/icons-material/TabUnselectedRounded';
 import InputRoundedIcon from '@mui/icons-material/InputRounded';
 import MenuOpenRoundedIcon from '@mui/icons-material/MenuOpenRounded';
 import LinearScaleRoundedIcon from '@mui/icons-material/LinearScaleRounded';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
@@ -18,10 +19,7 @@ import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
 import ROUTES from 'docs/src/route';
 
-// switcher icons
-
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
+// Switcher icons
 import BaseButtonDemo from './components/BaseButtonDemo';
 import BaseMenuDemo from './components/BaseMenuDemo';
 import BaseInputDemo from './components/BaseInputDemo';
@@ -74,7 +72,7 @@ export default function BaseUIComponents() {
   return (
     <Section bg="gradient">
       <Grid container spacing={2}>
-        <Grid md={6} sx={{ minWidth: 0 }}>
+        <Grid sx={{ minWidth: 0 }} size={{ md: 6 }}>
           <SectionHeadline
             overline="Unstyled components"
             title={
@@ -94,7 +92,7 @@ export default function BaseUIComponents() {
             <More href={ROUTES.baseComponents} />
           </Group>
         </Grid>
-        <Grid xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Frame
             sx={[
               {
@@ -163,26 +161,12 @@ export default function BaseUIComponents() {
             </Frame.Demo>
             <Frame.Info
               data-mui-color-scheme="dark"
-              sx={{
-                height: 360,
-                position: 'relative',
-                overflow: 'hidden',
-                p: 0,
-                pt: 5,
-              }}
+              sx={{ p: 0, pt: 5, height: 360, position: 'relative' }}
             >
-              <Box
-                sx={{
-                  overflow: 'auto',
-                  pt: 2,
-                  pb: 1,
-                  px: 2,
-                  height: '100%',
-                }}
-              >
+              <Box sx={{ overflow: 'auto', pt: 2, pb: 1, px: 2, height: '100%' }}>
                 <HighlightedCode
                   copyButtonHidden
-                  component={MarkdownElement}
+                  plainStyle
                   code={(() => {
                     const result = CODES[demo];
                     if (typeof result === 'function') {

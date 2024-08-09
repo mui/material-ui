@@ -143,7 +143,7 @@
       "typeDescriptions": {
         "event": "The event source of the callback.",
         "value": "The new value of the text input.",
-        "reason": "Can be: <code>&quot;input&quot;</code> (user input), <code>&quot;reset&quot;</code> (programmatic change), <code>&quot;clear&quot;</code>."
+        "reason": "Can be: <code>&quot;input&quot;</code> (user input), <code>&quot;reset&quot;</code> (programmatic change), <code>&quot;clear&quot;</code>, <code>&quot;blur&quot;</code>, <code>&quot;selectOption&quot;</code>, <code>&quot;removeOption&quot;</code>"
       }
     },
     "onOpen": {
@@ -189,6 +189,7 @@
     },
     "size": { "description": "The size of the component." },
     "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
@@ -245,10 +246,6 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Input element"
     },
-    "listbox": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the listbox component"
-    },
     "loading": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the loading wrapper"
@@ -260,14 +257,6 @@
     "option": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the option elements"
-    },
-    "paper": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Paper component"
-    },
-    "popper": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the popper element"
     },
     "popperDisablePortal": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -299,5 +288,10 @@
       "nodeName": "the tag elements",
       "conditions": "for example the chips if <code>size=\"small\"</code>"
     }
+  },
+  "slotDescriptions": {
+    "listbox": "The component used to render the listbox.",
+    "paper": "The component used to render the body of the popup.",
+    "popper": "The component used to position the popup."
   }
 }

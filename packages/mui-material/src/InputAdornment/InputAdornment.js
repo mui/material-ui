@@ -7,9 +7,9 @@ import capitalize from '../utils/capitalize';
 import Typography from '../Typography';
 import FormControlContext from '../FormControl/FormControlContext';
 import useFormControl from '../FormControl/useFormControl';
-import styled from '../styles/styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import inputAdornmentClasses, { getInputAdornmentUtilityClass } from './inputAdornmentClasses';
-import useThemeProps from '../styles/useThemeProps';
 
 const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -42,35 +42,52 @@ const InputAdornmentRoot = styled('div', {
   name: 'MuiInputAdornment',
   slot: 'Root',
   overridesResolver,
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   display: 'flex',
-  height: '0.01em', // Fix IE11 flexbox alignment. To remove at some point.
   maxHeight: '2em',
   alignItems: 'center',
   whiteSpace: 'nowrap',
   color: (theme.vars || theme).palette.action.active,
-  ...(ownerState.variant === 'filled' && {
-    // Styles applied to the root element if `variant="filled"`.
-    [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]: {
-      marginTop: 16,
+  variants: [
+    {
+      props: {
+        variant: 'filled',
+      },
+      style: {
+        [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]: {
+          marginTop: 16,
+        },
+      },
     },
-  }),
-  ...(ownerState.position === 'start' && {
-    // Styles applied to the root element if `position="start"`.
-    marginRight: 8,
-  }),
-  ...(ownerState.position === 'end' && {
-    // Styles applied to the root element if `position="end"`.
-    marginLeft: 8,
-  }),
-  ...(ownerState.disablePointerEvents === true && {
-    // Styles applied to the root element if `disablePointerEvents={true}`.
-    pointerEvents: 'none',
-  }),
+    {
+      props: {
+        position: 'start',
+      },
+      style: {
+        marginRight: 8,
+      },
+    },
+    {
+      props: {
+        position: 'end',
+      },
+      style: {
+        marginLeft: 8,
+      },
+    },
+    {
+      props: {
+        disablePointerEvents: true,
+      },
+      style: {
+        pointerEvents: 'none',
+      },
+    },
+  ],
 }));
 
 const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiInputAdornment' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiInputAdornment' });
   const {
     children,
     className,

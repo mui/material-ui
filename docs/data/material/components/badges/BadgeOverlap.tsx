@@ -9,7 +9,6 @@ const rectangle = <Box component="span" sx={shapeStyles} />;
 const circle = (
   <Box component="span" sx={{ ...shapeStyles, ...shapeCircleStyles }} />
 );
-
 export default function BadgeOverlap() {
   return (
     <Stack spacing={3} direction="row">

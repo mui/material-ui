@@ -13,6 +13,7 @@ The codemods for CSS files are based on [postcss](https://github.com/postcss/pos
 1. Create a new folder in `packages/mui-codemod/src/*/*` with the name of the codemod.
 2. The folder should include:
    - `<codemod>.js` - the transform implementation
+   - `index.js` - exports the transform function
    - `postcss-plugin.js` - the postcss plugin (optional)
    - `postcss.config.js` - the postcss config file (optional)
    - `<codemod>.test.js` - tests for the codemods (use jscodeshift from the `testUtils` folder)

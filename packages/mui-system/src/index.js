@@ -5,6 +5,7 @@ export { default as GlobalStyles } from './GlobalStyles';
 export { default as borders } from './borders';
 export * from './borders';
 export { default as breakpoints } from './breakpoints';
+export { default as cssContainerQueries } from './cssContainerQueries';
 export {
   handleBreakpoints,
   mergeBreakpointsInOrder,
@@ -49,7 +50,7 @@ export { default as createStyled } from './createStyled';
 export * from './createStyled';
 export { default as styled } from './styled';
 export { default as createTheme } from './createTheme';
-export { default as createBreakpoints } from './createTheme/createBreakpoints';
+export { default as createBreakpoints } from './createBreakpoints/createBreakpoints';
 export { default as createSpacing } from './createTheme/createSpacing';
 export { default as shape } from './createTheme/shape';
 export { default as useThemeProps, getThemeProps } from './useThemeProps';
@@ -66,6 +67,7 @@ export { default as unstable_createCssVarsTheme } from './cssVars/createCssVarsT
 export { default as responsivePropType } from './responsivePropType';
 export { default as RtlProvider } from './RtlProvider';
 export * from './RtlProvider';
+export * from './version';
 
 /** ----------------- */
 /** Layout components */
@@ -73,8 +75,8 @@ export { default as createContainer } from './Container/createContainer';
 export { default as Container } from './Container';
 export * from './Container';
 
-export { default as Unstable_Grid } from './Unstable_Grid/Grid';
-export * from './Unstable_Grid';
+export { default as Grid } from './Grid/Grid';
+export * from './Grid';
 
 export { default as Stack } from './Stack/Stack';
 export * from './Stack';

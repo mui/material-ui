@@ -47,7 +47,7 @@ export default function Review() {
             Shipment details
           </Typography>
           <Typography gutterBottom>John Smith</Typography>
-          <Typography color="text.secondary" gutterBottom>
+          <Typography gutterBottom sx={{ color: 'text.secondary' }}>
             {addresses.join(', ')}
           </Typography>
         </div>
@@ -64,7 +64,7 @@ export default function Review() {
                   useFlexGap
                   sx={{ width: '100%', mb: 1 }}
                 >
-                  <Typography variant="body1" color="text.secondary">
+                  <Typography variant="body1" sx={{ color: 'text.secondary' }}>
                     {payment.name}
                   </Typography>
                   <Typography variant="body2">{payment.detail}</Typography>

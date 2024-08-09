@@ -139,6 +139,7 @@ export const getButtonStyles = ({
       border: 'none',
       backgroundColor: 'transparent',
       cursor: 'pointer',
+      userSelect: 'none',
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',

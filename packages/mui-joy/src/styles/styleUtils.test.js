@@ -58,13 +58,13 @@ describe('getThemeValue', () => {
     it('return correct value if shorthand is provided', () => {
       expect(
         resolveSxValue({ theme: defaultTheme, ownerState: { sx: { p: 2 } } }, ['p']),
-      ).to.deep.equal({ p: '16px' }); // default theme.spacing(2) = '16px'
+      ).to.deep.equal({ p: 'calc(2 * var(--joy-spacing, 8px))' });
     });
 
     it('return correct value if number is provided', () => {
       expect(
         resolveSxValue({ theme: defaultTheme, ownerState: { sx: { padding: 2 } } }, ['padding']),
-      ).to.deep.equal({ padding: '16px' });
+      ).to.deep.equal({ padding: 'calc(2 * var(--joy-spacing, 8px))' });
     });
 
     it('return correct value if css value is provided', () => {

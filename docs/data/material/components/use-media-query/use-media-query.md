@@ -14,7 +14,7 @@ Some of the key features:
 - 🚀 It's performant, it observes the document to detect when its media queries change, instead of polling the values periodically.
 - 🤖 It supports server-side rendering.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 ## Basic media query
 
@@ -25,7 +25,7 @@ The media query string can be any valid CSS media query, for example [`'(prefers
 
 ⚠️ You can't use `'print'` per browsers limitation, for example [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
 
-## Using Material UI's breakpoint helpers
+## Using breakpoint helpers
 
 You can use Material UI's [breakpoint helpers](/material-ui/customization/breakpoints/) as follows:
 

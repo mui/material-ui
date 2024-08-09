@@ -1,4 +1,4 @@
-# Contributing to Material UI, Base UI, MUI System, Joy UI
+# Contributing to Material UI, MUI System, Joy UI
 
 If you're reading this, you're awesome!
 Thank you for being a part of the community and helping us make these projects great.
@@ -25,7 +25,7 @@ Here are a few guidelines that will help you along the way.
 
 ## Code of conduct
 
-We has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as our code of conduct, and we expect project participants to adhere to it.
+We have adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as our code of conduct, and we expect project participants to adhere to it.
 Please read [the full text](https://github.com/mui/.github/blob/master/CODE_OF_CONDUCT.md) to understand what actions will and will not be tolerated.
 
 ## A large spectrum of contributions
@@ -162,7 +162,7 @@ The following statements must be true:
 - The code is linted. If the code was changed, run `pnpm eslint`.
 - The code is type-safe. If TypeScript sources or declarations were changed, run `pnpm typescript` to confirm that the check passes.
 - The API docs are up to date. If API was changed, run `pnpm proptypes && pnpm docs:api`.
-- The demos are up to date. If demos were changed, run `pnpm docs:typescript:formatted`. See [about writing demos](#3-write-the-content-of-the-demo).
+- The demos are up to date. If demos were changed, run `pnpm docs:typescript:formatted`. See [about writing demos](#2-write-the-demo-code).
 - The pull request title follows the pattern `[product-name][Component] Imperative commit message`. (See: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/) for a great explanation).
 
 Don't worry if you miss a step—the Continuous Integration will run a thorough set of tests on your commits, and the maintainers of the project can assist you if you run into problems.

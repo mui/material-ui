@@ -28,8 +28,6 @@ export interface TableOwnProps {
   size?: OverridableStringUnion<'small' | 'medium', TablePropsSizeOverrides>;
   /**
    * Set the header sticky.
-   *
-   * ⚠️ It doesn't work with IE11.
    * @default false
    */
   stickyHeader?: boolean;
@@ -50,11 +48,11 @@ export interface TableTypeMap<
  *
  * Demos:
  *
- * - [Table](https://mui.com/material-ui/react-table/)
+ * - [Table](https://next.mui.com/material-ui/react-table/)
  *
  * API:
  *
- * - [Table API](https://mui.com/material-ui/api/table/)
+ * - [Table API](https://next.mui.com/material-ui/api/table/)
  */
 declare const Table: OverridableComponent<TableTypeMap>;
 

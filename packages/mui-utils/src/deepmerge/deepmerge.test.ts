@@ -4,11 +4,59 @@ import deepmerge from './deepmerge';
 
 describe('deepmerge', () => {
   // https://snyk.io/blog/after-three-years-of-silence-a-new-jquery-prototype-pollution-vulnerability-emerges-once-again/
-  it('should not be subject to prototype pollution', () => {
-    deepmerge({}, JSON.parse('{ "myProperty": "a", "__proto__" : { "isAdmin" : true } }'), {
-      clone: false,
-    });
+  it('should not be subject to prototype pollution via __proto__', () => {
+    const result = deepmerge(
+      {},
+      JSON.parse('{ "myProperty": "a", "__proto__" : { "isAdmin" : true } }'),
+      {
+        clone: false,
+      },
+    );
 
+    // @ts-expect-error __proto__ is not on this object type
+    // eslint-disable-next-line no-proto
+    expect(result.__proto__).to.have.property('isAdmin');
+    expect({}).not.to.have.property('isAdmin');
+  });
+
+  // https://cwe.mitre.org/data/definitions/915.html
+  it('should not be subject to prototype pollution via constructor', () => {
+    const result = deepmerge(
+      {},
+      JSON.parse('{ "myProperty": "a", "constructor" : { "prototype": { "isAdmin" : true } } }'),
+      {
+        clone: true,
+      },
+    );
+
+    expect(result.constructor.prototype).to.have.property('isAdmin');
+    expect({}).not.to.have.property('isAdmin');
+  });
+
+  // https://cwe.mitre.org/data/definitions/915.html
+  it('should not be subject to prototype pollution via prototype', () => {
+    const result = deepmerge(
+      {},
+      JSON.parse('{ "myProperty": "a", "prototype": { "isAdmin" : true } }'),
+      {
+        clone: false,
+      },
+    );
+
+    // @ts-expect-error prototype is not on this object type
+    expect(result.prototype).to.have.property('isAdmin');
+    expect({}).not.to.have.property('isAdmin');
+  });
+
+  it('should appropriately copy the fields without prototype pollution', () => {
+    const result = deepmerge(
+      {},
+      JSON.parse('{ "myProperty": "a", "__proto__" : { "isAdmin" : true } }'),
+    );
+
+    // @ts-expect-error __proto__ is not on this object type
+    // eslint-disable-next-line no-proto
+    expect(result.__proto__).to.have.property('isAdmin');
     expect({}).not.to.have.property('isAdmin');
   });
 

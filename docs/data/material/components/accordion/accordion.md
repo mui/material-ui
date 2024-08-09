@@ -11,7 +11,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 
 <p class="description">The Accordion component lets users show and hide sections of related content on a page.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -80,9 +80,29 @@ Learn more about controlled and uncontrolled components in the [React documentat
 ### Only one expanded at a time
 
 Use the `expanded` prop with React's `useState` hook to allow only one Accordion item to be expanded at a time.
-The demo below also shows a bit of visual customziation.
+The demo below also shows a bit of visual customization.
 
 {{"demo": "CustomizedAccordions.js", "bg": true}}
+
+### Changing heading level
+
+By default, the Accordion uses an `h3` element for the heading. You can change the heading element using the `slotProps.heading.component` prop to ensure the correct heading hierarchy in your document.
+
+```jsx
+<Accordion slotProps={{ heading: { component: 'h4' } }}>
+  <AccordionSummary
+    expandIcon={<ExpandMoreIcon />}
+    aria-controls="panel1-content"
+    id="panel1-header"
+  >
+    Accordion
+  </AccordionSummary>
+  <AccordionDetails>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
+    lacus ex, sit amet blandit leo lobortis eget.
+  </AccordionDetails>
+</Accordion>
+```
 
 ## Performance
 

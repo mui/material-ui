@@ -67,17 +67,17 @@ const PRODUCTS = [
   },
   {
     name: 'Templates',
-    description: 'Fully built, out-of-the-box, templates for your application.',
+    description: 'Fully built templates for your application.',
     href: ROUTES.productTemplates,
   },
   {
-    name: 'Design kits',
-    description: 'Our components available in your favorite design tool.',
+    name: 'Design Kits',
+    description: 'Material UI components in your favorite design tool.',
     href: ROUTES.productDesignKits,
   },
   {
     name: 'Toolpad',
-    description: 'Low-code admin builder.',
+    description: 'Components and tools for dashboards and internal apps.',
     href: ROUTES.productToolpad,
     chip: 'Beta',
   },
@@ -111,8 +111,8 @@ const DOCS = [
   },
   {
     name: 'Toolpad',
-    description: 'Low-code admin builder',
-    href: ROUTES.toolpadStudioDocs,
+    description: 'Components and tools for dashboards and internal apps.',
+    href: ROUTES.toolpadCoreDocs,
     chip: 'Beta',
   },
 ];
@@ -232,7 +232,7 @@ export default function HeaderNavDropdown() {
                               />
                             ) : null}
                           </Box>
-                          <Typography variant="body2" color="text.secondary">
+                          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                             {item.description}
                           </Typography>
                         </Anchor>
@@ -283,7 +283,7 @@ export default function HeaderNavDropdown() {
                               />
                             ) : null}
                           </Box>
-                          <Typography variant="body2" color="text.secondary">
+                          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                             {item.description}
                           </Typography>
                         </Anchor>

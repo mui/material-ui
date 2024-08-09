@@ -1,0 +1,69 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "columns": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;number&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object"
+      },
+      "default": "12"
+    },
+    "columnSpacing": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
+      }
+    },
+    "container": { "type": { "name": "bool" }, "default": "false" },
+    "direction": {
+      "type": {
+        "name": "union",
+        "description": "'column'<br>&#124;&nbsp;'column-reverse'<br>&#124;&nbsp;'row'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;Array&lt;'column'<br>&#124;&nbsp;'column-reverse'<br>&#124;&nbsp;'row'<br>&#124;&nbsp;'row-reverse'&gt;<br>&#124;&nbsp;object"
+      },
+      "default": "'row'"
+    },
+    "offset": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;number&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object"
+      }
+    },
+    "rowSpacing": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
+      }
+    },
+    "size": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;number&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object"
+      }
+    },
+    "spacing": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
+      },
+      "default": "0"
+    },
+    "wrap": {
+      "type": {
+        "name": "enum",
+        "description": "'nowrap'<br>&#124;&nbsp;'wrap-reverse'<br>&#124;&nbsp;'wrap'"
+      },
+      "default": "'wrap'"
+    }
+  },
+  "name": "PigmentGrid",
+  "imports": [
+    "import PigmentGrid from '@mui/material/PigmentGrid';",
+    "import { PigmentGrid } from '@mui/material';"
+  ],
+  "classes": [],
+  "muiName": "MuiPigmentGrid",
+  "filename": "/packages/mui-material/src/PigmentGrid/PigmentGrid.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-grid2/\">Grid version 2</a></li></ul>",
+  "cssComponent": false
+}

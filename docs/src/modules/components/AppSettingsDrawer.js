@@ -20,7 +20,7 @@ import { useTranslate } from '@mui/docs/i18n';
 
 const Heading = styled(Typography)(({ theme }) => ({
   margin: '16px 0 8px',
-  fontWeight: theme.typography.fontWeightBold,
+  fontWeight: theme.typography.fontWeightSemiBold,
   fontSize: theme.typography.pxToRem(11),
   textTransform: 'uppercase',
   letterSpacing: '.1rem',
@@ -66,14 +66,25 @@ export default function AppSettingsDrawer(props) {
       open={open}
       PaperProps={{
         elevation: 0,
-        sx: { width: { xs: 310, sm: 360 }, borderRadius: '10px 0px 0px 10px' },
+        sx: {
+          width: { xs: 310, sm: 360 },
+          borderRadius: '10px 0px 0px 10px',
+          border: '1px solid',
+          borderColor: 'divider',
+        },
       }}
       {...other}
     >
       <Box
-        sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: (1, 2) }}
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          px: 2,
+          py: 1,
+        }}
       >
-        <Typography variant="body1" fontWeight="500">
+        <Typography variant="body1" sx={{ fontWeight: 'medium' }}>
           {t('settings.settings')}
         </Typography>
         <IconButton color="inherit" onClick={onClose} edge="end" aria-label={t('close')}>
@@ -157,8 +168,8 @@ export default function AppSettingsDrawer(props) {
           href="/material-ui/customization/color/#playground"
           data-ga-event-category="settings"
           data-ga-event-action="colors"
-          size="medium"
           variant="outlined"
+          size="small"
           fullWidth
         >
           {t('settings.editDocsColors')}

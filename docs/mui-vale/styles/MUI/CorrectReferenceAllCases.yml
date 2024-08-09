@@ -25,7 +25,8 @@ swap:
   Treemap Chart: Treemap
   sub-component: subcomponent
   sub-components: subcomponents
-  use-case: 'use case'
-  usecase: 'use case'
-  client side: 'client-side'
-  server side: 'server-side'
+  use-case: use case
+  usecase: use case
+  client side: client-side
+  server side: server-side
+  Material 3: Material Design 3

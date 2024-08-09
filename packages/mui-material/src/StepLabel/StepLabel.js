@@ -6,11 +6,10 @@ import * as React from 'react';
 import StepContext from '../Step/StepContext';
 import StepIcon from '../StepIcon';
 import StepperContext from '../Stepper/StepperContext';
-import { createUseThemeProps, styled } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import stepLabelClasses, { getStepLabelUtilityClass } from './stepLabelClasses';
 import useSlot from '../utils/useSlot';
-
-const useThemeProps = createUseThemeProps('MuiStepLabel');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, orientation, active, completed, error, disabled, alternativeLabel } = ownerState;
@@ -104,7 +103,6 @@ const StepLabelIconContainer = styled('span', {
   slot: 'IconContainer',
   overridesResolver: (props, styles) => styles.iconContainer,
 })({
-  flexShrink: 0, // Fix IE11 issue
   display: 'flex',
   paddingRight: 8,
   [`&.${stepLabelClasses.alternativeLabel}`]: {
@@ -125,7 +123,7 @@ const StepLabelLabelContainer = styled('span', {
 }));
 
 const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiStepLabel' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiStepLabel' });
   const {
     children,
     className,
@@ -165,6 +163,7 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
   const externalForwardedProps = {
     slots,
     slotProps: {
+      stepIcon: StepIconProps,
       ...componentsProps,
       ...slotProps,
     },
@@ -176,6 +175,12 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
     ownerState,
   });
 
+  const [StepIconSlot, stepIconProps] = useSlot('stepIcon', {
+    elementType: StepIconComponent,
+    externalForwardedProps,
+    ownerState,
+  });
+
   return (
     <StepLabelRoot
       className={clsx(classes.root, className)}
@@ -183,14 +188,14 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
       ownerState={ownerState}
       {...other}
     >
-      {icon || StepIconComponent ? (
+      {icon || StepIconSlot ? (
         <StepLabelIconContainer className={classes.iconContainer} ownerState={ownerState}>
-          <StepIconComponent
+          <StepIconSlot
             completed={completed}
             active={active}
             error={error}
             icon={icon}
-            {...StepIconProps}
+            {...stepIconProps}
           />
         </StepLabelIconContainer>
       ) : null}
@@ -226,7 +231,7 @@ StepLabel.propTypes /* remove-proptypes */ = {
   /**
    * The props used for each slot inside.
    * @default {}
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps: PropTypes.shape({
     label: PropTypes.object,
@@ -250,6 +255,7 @@ StepLabel.propTypes /* remove-proptypes */ = {
    */
   slotProps: PropTypes.shape({
     label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    stepIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
@@ -257,6 +263,7 @@ StepLabel.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes.shape({
     label: PropTypes.elementType,
+    stepIcon: PropTypes.elementType,
   }),
   /**
    * The component to render in place of the [`StepIcon`](/material-ui/api/step-icon/).

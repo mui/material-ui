@@ -1,11 +1,11 @@
 import * as React from 'react';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import InstallDesktopRoundedIcon from '@mui/icons-material/InstallDesktopRounded';
 import WebRoundedIcon from '@mui/icons-material/WebRounded';
 import DrawRoundedIcon from '@mui/icons-material/DrawRounded';
 import PlayCircleFilledWhiteRoundedIcon from '@mui/icons-material/PlayCircleFilledWhiteRounded';
 import DesignServicesRoundedIcon from '@mui/icons-material/DesignServicesRounded';
-import InfoCard from 'docs/src/components/action/InfoCard';
+import { InfoCard } from '@mui/docs/InfoCard';
 
 const content = [
   {
@@ -47,8 +47,8 @@ const content = [
         src={`/static/branding/design-kits/figma-logo.svg`}
         alt="Figma logo"
         loading="lazy"
-        width="24"
-        height="24"
+        width="18"
+        height="18"
       />
     ),
   },
@@ -58,7 +58,7 @@ export default function MaterialStartingLinksCollection() {
   return (
     <Grid container spacing={2}>
       {content.map(({ icon, title, description, link }) => (
-        <Grid key={title} xs={12} sm={6} md={4}>
+        <Grid key={title} size={{ xs: 12, sm: 6, md: 4 }}>
           <InfoCard
             classNameTitle="algolia-lvl3"
             classNameDescription="algolia-content"

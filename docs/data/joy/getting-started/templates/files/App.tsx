@@ -58,9 +58,9 @@ export default function FilesExample() {
       <Stack
         id="tab-bar"
         direction="row"
-        justifyContent="space-around"
         spacing={1}
         sx={{
+          justifyContent: 'space-around',
           display: { xs: 'flex', sm: 'none' },
           zIndex: '999',
           bottom: 0,
@@ -108,17 +108,19 @@ export default function FilesExample() {
         </Button>
       </Stack>
       <Layout.Root
-        sx={{
-          gridTemplateColumns: {
-            xs: '1fr',
-            sm: 'minmax(64px, 200px) minmax(450px, 1fr)',
-            md: 'minmax(160px, 300px) minmax(600px, 1fr) minmax(300px, 420px)',
+        sx={[
+          {
+            gridTemplateColumns: {
+              xs: '1fr',
+              sm: 'minmax(64px, 200px) minmax(450px, 1fr)',
+              md: 'minmax(160px, 300px) minmax(600px, 1fr) minmax(300px, 420px)',
+            },
           },
-          ...(drawerOpen && {
+          drawerOpen && {
             height: '100vh',
             overflow: 'hidden',
-          }),
-        }}
+          },
+        ]}
       >
         <Layout.Header>
           <Header />
@@ -164,12 +166,7 @@ export default function FilesExample() {
                 <ListItem>
                   <ListItemButton variant="soft" sx={{ bgcolor: 'transparent' }}>
                     <ListItemContent sx={{ p: 1 }}>
-                      <Box
-                        sx={{
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                        }}
-                      >
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                         <Typography
                           level="title-sm"
                           startDecorator={<FolderRoundedIcon color="primary" />}
@@ -220,12 +217,7 @@ export default function FilesExample() {
                 <ListItem>
                   <ListItemButton variant="soft" sx={{ bgcolor: 'transparent' }}>
                     <ListItemContent sx={{ p: 1 }}>
-                      <Box
-                        sx={{
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                        }}
-                      >
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                         <Typography
                           level="title-sm"
                           startDecorator={<FolderRoundedIcon color="primary" />}
@@ -277,12 +269,7 @@ export default function FilesExample() {
                 <ListItem>
                   <ListItemButton variant="soft" sx={{ bgcolor: 'transparent' }}>
                     <ListItemContent sx={{ p: 1 }}>
-                      <Box
-                        sx={{
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                        }}
-                      >
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                         <Typography
                           level="title-sm"
                           startDecorator={<FolderRoundedIcon color="primary" />}
@@ -443,10 +430,7 @@ export default function FilesExample() {
                   <MenuButton
                     variant="plain"
                     size="sm"
-                    sx={{
-                      maxWidth: '32px',
-                      maxHeight: '32px',
-                    }}
+                    sx={{ maxWidth: '32px', maxHeight: '32px' }}
                   >
                     <IconButton
                       component="span"
@@ -527,7 +511,7 @@ export default function FilesExample() {
               >
                 <Box sx={{ flex: 1 }}>
                   <Typography level="title-md">torres-del-paine.png</Typography>
-                  <Typography level="body-xs" mt={0.5}>
+                  <Typography level="body-xs" sx={{ mt: 0.5 }}>
                     Added 5 Apr 2021
                   </Typography>
                 </Box>
@@ -535,10 +519,7 @@ export default function FilesExample() {
                   <MenuButton
                     variant="plain"
                     size="sm"
-                    sx={{
-                      maxWidth: '32px',
-                      maxHeight: '32px',
-                    }}
+                    sx={{ maxWidth: '32px', maxHeight: '32px' }}
                   >
                     <IconButton
                       component="span"
@@ -608,7 +589,7 @@ export default function FilesExample() {
               >
                 <Box sx={{ flex: 1 }}>
                   <Typography level="title-md">serra-das-araras.png</Typography>
-                  <Typography level="body-xs" mt={0.5}>
+                  <Typography level="body-xs" sx={{ mt: 0.5 }}>
                     Added 2 Mar 2021
                   </Typography>
                 </Box>
@@ -616,10 +597,7 @@ export default function FilesExample() {
                   <MenuButton
                     variant="plain"
                     size="sm"
-                    sx={{
-                      maxWidth: '32px',
-                      maxHeight: '32px',
-                    }}
+                    sx={{ maxWidth: '32px', maxHeight: '32px' }}
                   >
                     <IconButton
                       component="span"
@@ -847,7 +825,7 @@ export default function FilesExample() {
                 />
               </AspectRatio>
               <Box sx={{ p: 2, display: 'flex', gap: 1, alignItems: 'center' }}>
-                <Typography level="title-sm" mr={1}>
+                <Typography level="title-sm" sx={{ mr: 1 }}>
                   Shared with
                 </Typography>
                 <AvatarGroup size="sm" sx={{ '--Avatar-size': '24px' }}>

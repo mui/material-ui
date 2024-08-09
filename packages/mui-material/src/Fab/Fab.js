@@ -5,9 +5,11 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
-import useThemeProps from '../styles/useThemeProps';
 import fabClasses, { getFabUtilityClass } from './fabClasses';
-import styled, { rootShouldForwardProp } from '../styles/styled';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
+import { styled } from '../zero-styled';
+
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const useUtilityClasses = (ownerState) => {
   const { color, variant, classes, size } = ownerState;
@@ -46,7 +48,7 @@ const FabRoot = styled(ButtonBase, {
     ];
   },
 })(
-  ({ theme, ownerState }) => ({
+  ({ theme }) => ({
     ...theme.typography.button,
     minHeight: 36,
     transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
@@ -77,56 +79,79 @@ const FabRoot = styled(ButtonBase, {
     [`&.${fabClasses.focusVisible}`]: {
       boxShadow: (theme.vars || theme).shadows[6],
     },
-    ...(ownerState.size === 'small' && {
-      width: 40,
-      height: 40,
-    }),
-    ...(ownerState.size === 'medium' && {
-      width: 48,
-      height: 48,
-    }),
-    ...(ownerState.variant === 'extended' && {
-      borderRadius: 48 / 2,
-      padding: '0 16px',
-      width: 'auto',
-      minHeight: 'auto',
-      minWidth: 48,
-      height: 48,
-    }),
-    ...(ownerState.variant === 'extended' &&
-      ownerState.size === 'small' && {
-        width: 'auto',
-        padding: '0 8px',
-        borderRadius: 34 / 2,
-        minWidth: 34,
-        height: 34,
-      }),
-    ...(ownerState.variant === 'extended' &&
-      ownerState.size === 'medium' && {
-        width: 'auto',
-        padding: '0 16px',
-        borderRadius: 40 / 2,
-        minWidth: 40,
-        height: 40,
-      }),
-    ...(ownerState.color === 'inherit' && {
-      color: 'inherit',
-    }),
-  }),
-  ({ theme, ownerState }) => ({
-    ...(ownerState.color !== 'inherit' &&
-      ownerState.color !== 'default' &&
-      (theme.vars || theme).palette[ownerState.color] != null && {
-        color: (theme.vars || theme).palette[ownerState.color].contrastText,
-        backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
-        '&:hover': {
-          backgroundColor: (theme.vars || theme).palette[ownerState.color].dark,
-          // Reset on touch devices, it doesn't add specificity
-          '@media (hover: none)': {
-            backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
-          },
+    variants: [
+      {
+        props: { size: 'small' },
+        style: {
+          width: 40,
+          height: 40,
         },
-      }),
+      },
+      {
+        props: { size: 'medium' },
+        style: {
+          width: 48,
+          height: 48,
+        },
+      },
+      {
+        props: { variant: 'extended' },
+        style: {
+          borderRadius: 48 / 2,
+          padding: '0 16px',
+          width: 'auto',
+          minHeight: 'auto',
+          minWidth: 48,
+          height: 48,
+        },
+      },
+      {
+        props: { variant: 'extended', size: 'small' },
+        style: {
+          width: 'auto',
+          padding: '0 8px',
+          borderRadius: 34 / 2,
+          minWidth: 34,
+          height: 34,
+        },
+      },
+      {
+        props: { variant: 'extended', size: 'medium' },
+        style: {
+          width: 'auto',
+          padding: '0 16px',
+          borderRadius: 40 / 2,
+          minWidth: 40,
+          height: 40,
+        },
+      },
+      {
+        props: { color: 'inherit' },
+        style: {
+          color: 'inherit',
+        },
+      },
+    ],
+  }),
+  ({ theme }) => ({
+    variants: [
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value && value.main && value.dark && value.contrastText) // check all the used fields in the style below
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            color: (theme.vars || theme).palette[color].contrastText,
+            backgroundColor: (theme.vars || theme).palette[color].main,
+            '&:hover': {
+              backgroundColor: (theme.vars || theme).palette[color].dark,
+              // Reset on touch devices, it doesn't add specificity
+              '@media (hover: none)': {
+                backgroundColor: (theme.vars || theme).palette[color].main,
+              },
+            },
+          },
+        })),
+    ],
   }),
   ({ theme }) => ({
     [`&.${fabClasses.disabled}`]: {
@@ -138,7 +163,7 @@ const FabRoot = styled(ButtonBase, {
 );
 
 const Fab = React.forwardRef(function Fab(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiFab' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiFab' });
   const {
     children,
     className,

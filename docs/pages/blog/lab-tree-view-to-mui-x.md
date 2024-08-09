@@ -4,7 +4,7 @@ description: Migrate to the new package to start building with our powerful Tree
 date: 2023-08-21T00:00:00.000Z
 authors: ['flaviendelangle']
 tags: ['MUI X', 'Product']
-card: true
+manualCard: true
 ---
 
 After more than 4 years in the lab, the [Tree View](https://mui.com/x/react-tree-view/) components have found a new home as part of MUI X.

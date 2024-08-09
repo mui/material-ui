@@ -1,7 +1,7 @@
 /* eslint-env node */
 // eslint-ignore-next-line import/no-unresolved
 const { withPigment } = require('@pigment-css/nextjs-plugin');
-const { experimental_extendTheme: extendTheme } = require('@mui/material/styles');
+const { extendTheme } = require('@mui/material/styles');
 
 /**
  * @typedef {import('@pigment-css/nextjs-plugin').PigmentOptions} PigmentOptions
@@ -101,19 +101,21 @@ theme.getColorSchemeSelector = (colorScheme) => {
  */
 const pigmentOptions = {
   theme,
-  transformLibraries: ['local-ui-lib'],
   sourceMap: true,
   displayName: true,
-  transformSx: false,
 };
 
-/** @type {import('next').NextConfig} */
+/** @type {import('@pigment-css/nextjs-plugin').NextConfig} */
 const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
   typescript: {
     ignoreBuildErrors: true,
+  },
+  devIndicators: {
+    buildActivity: true,
+    buildActivityPosition: 'bottom-right',
   },
 };
 

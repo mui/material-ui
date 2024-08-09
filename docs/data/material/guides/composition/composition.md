@@ -123,7 +123,7 @@ import { Link } from 'react-router-dom';
 
 :::warning
 However, this strategy suffers from a limitation: prop name collisions.
-The component receiving the `component` prop (for example ListItem) might intercept the prop (for example to) that is destined to the leave element (for example Link).
+The component receiving the `component` prop (for example ListItem) might intercept the prop (for example to) that is destined to the leaf element (for example Link).
 :::
 
 ### With TypeScript

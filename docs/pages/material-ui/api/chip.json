@@ -98,6 +98,12 @@
       "isDeprecated": true
     },
     {
+      "key": "colorDefault",
+      "className": "MuiChip-colorDefault",
+      "description": "Styles applied to the root element if `color=\"default\"`.",
+      "isGlobal": false
+    },
+    {
       "key": "colorError",
       "className": "MuiChip-colorError",
       "description": "Styles applied to the root element if `color=\"error\"`.",

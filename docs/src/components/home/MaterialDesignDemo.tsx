@@ -24,7 +24,7 @@ export const componentCode = `
           label={active ? 'Active' : 'Inactive'}
           color={active ? 'success' : 'default'}
         />
-        <Rating defaultValue={1} size="small" />
+        <Rating defaultValue={4} size="small" />
       </Stack>
     </Stack>
     <Switch checked={active} />
@@ -45,7 +45,7 @@ const Switch = withPointer(MuiSwitch, { id: 'switch', name: 'Switch' });
 export default function MaterialDesignDemo(props: CardProps) {
   const [active, setActive] = React.useState(true);
   return (
-    <Card {...props} sx={{ p: 2 }}>
+    <Card {...props} variant="outlined" sx={{ p: 2 }}>
       <CardMedia
         component="img"
         alt="Yosemite National Park"
@@ -61,15 +61,9 @@ export default function MaterialDesignDemo(props: CardProps) {
               label={active ? 'Active' : 'Inactive'}
               color={active ? 'success' : 'default'}
               size="small"
-              sx={{
-                width: 'fit-content',
-                fontSize: 12,
-                height: 20,
-                px: 0,
-                zIndex: 2,
-              }}
+              sx={{ width: 'fit-content', fontSize: 12, height: 20, px: 0, zIndex: 2 }}
             />
-            <Rating name="Rating component" defaultValue={1} size="small" />
+            <Rating name="Rating component" defaultValue={4} size="small" />
           </Stack3>
         </Stack2>
         <Switch

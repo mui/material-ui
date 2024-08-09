@@ -14,7 +14,9 @@
         "name": "shape",
         "description": "{ first?: elementType, last?: elementType, next?: elementType, previous?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "page": { "type": { "name": "node" } },
@@ -29,6 +31,13 @@
         "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;string"
       },
       "default": "'medium'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ first?: func<br>&#124;&nbsp;object, last?: func<br>&#124;&nbsp;object, next?: func<br>&#124;&nbsp;object, previous?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
     },
     "slots": {
       "type": {
@@ -63,6 +72,12 @@
   "imports": [
     "import PaginationItem from '@mui/material/PaginationItem';",
     "import { PaginationItem } from '@mui/material';"
+  ],
+  "slots": [
+    { "name": "first", "description": "", "class": null },
+    { "name": "last", "description": "", "class": null },
+    { "name": "next", "description": "", "class": null },
+    { "name": "previous", "description": "", "class": null }
   ],
   "classes": [
     {

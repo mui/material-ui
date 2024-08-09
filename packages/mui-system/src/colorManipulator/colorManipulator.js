@@ -340,7 +340,7 @@ export function emphasize(color, coefficient = 0.15) {
 }
 export function private_safeEmphasize(color, coefficient, warning) {
   try {
-    return private_safeEmphasize(color, coefficient);
+    return emphasize(color, coefficient);
   } catch (error) {
     if (warning && process.env.NODE_ENV !== 'production') {
       console.warn(warning);

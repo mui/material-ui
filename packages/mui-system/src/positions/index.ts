@@ -1,3 +1,3 @@
-'use client'
-export { default } from './positions'
-export * from './positions'
+'use client';
+export { default } from './positions';
+export * from './positions';

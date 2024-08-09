@@ -13,7 +13,7 @@ interface Props {
    * You won't need it on your project.
    */
   window?: () => Window;
-  children: React.ReactElement;
+  children?: React.ReactElement<any>;
 }
 
 function ElevationScroll(props: Props) {
@@ -27,9 +27,11 @@ function ElevationScroll(props: Props) {
     target: window ? window() : undefined,
   });
 
-  return React.cloneElement(children, {
-    elevation: trigger ? 4 : 0,
-  });
+  return children
+    ? React.cloneElement(children, {
+        elevation: trigger ? 4 : 0,
+      })
+    : null;
 }
 
 export default function ElevateAppBar(props: Props) {

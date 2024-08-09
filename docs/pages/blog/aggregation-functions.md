@@ -4,7 +4,7 @@ description: Aggregation functions and summary rows are now available in the MUI
 date: 2022-08-01T00:00:00.000Z
 authors: ['josefreitas', 'flaviendelangle', 'cherniavskii']
 tags: ['MUI X', 'Product']
-card: true
+manualCard: true
 ---
 
 If you've ever worked with a data-heavy grid, then you understand how important it is for the end user to be able to set different perspectives on the data to gather the information they're looking for.

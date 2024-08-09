@@ -1,6 +1,7 @@
 import { OverridableStringUnion } from '@mui/types';
 import {
   Breakpoints,
+  CssContainerQueries,
   Spacing,
   SxProps as SystemSxProps,
   SystemProps as SystemSystemProps,
@@ -8,6 +9,7 @@ import {
   SxConfig,
   ApplyStyles,
 } from '@mui/system';
+import { ExtractTypographyTokens } from '@mui/system/cssVars';
 import { DefaultColorScheme, ExtendedColorScheme } from './colorScheme';
 import { ColorSystem } from './colorSystem';
 import { Focus } from './focus';
@@ -82,7 +84,9 @@ export type ThemeScalesOptions = MergeDefault<
 interface ColorSystemVars extends Omit<ColorSystem, 'palette'> {
   palette: Omit<ColorSystem['palette'], 'mode'>;
 }
-export interface ThemeVars extends ThemeScales, ColorSystemVars {}
+export interface ThemeVars extends ThemeScales, ColorSystemVars {
+  font: ExtractTypographyTokens<TypographySystem>;
+}
 
 export interface ThemeCssVarOverrides {}
 
@@ -95,7 +99,7 @@ export type TextColor =
 
 export type ThemeCssVar = OverridableStringUnion<NormalizeVars<ThemeVars>, ThemeCssVarOverrides>;
 
-export interface Theme extends ThemeScales, RuntimeColorSystem {
+export interface Theme extends ThemeScales, RuntimeColorSystem, CssContainerQueries {
   colorSchemes: Record<DefaultColorScheme | ExtendedColorScheme, ColorSystem>;
   defaultColorScheme: DefaultColorScheme | ExtendedColorScheme;
   focus: Focus;
@@ -109,6 +113,7 @@ export interface Theme extends ThemeScales, RuntimeColorSystem {
   getColorSchemeSelector: (colorScheme: DefaultColorScheme | ExtendedColorScheme) => string;
   generateThemeVars: () => ThemeVars;
   generateStyleSheets: () => Record<string, any>[];
+  generateSpacing: () => Spacing;
   /**
    * A function to determine if the key, value should be attached as CSS Variable
    * `keys` is an array that represents the object path keys.

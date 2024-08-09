@@ -4,7 +4,7 @@ description: We are excited to introduce MUI X v5.0.0!
 date: 2021-11-22T00:00:00.000Z
 authors:
   ['oliviertassinari', 'm4theushw', 'flaviendelangle', 'DanailH', 'alexfauquette']
-card: true
+manualCard: true
 tags: ['MUI X', 'Product']
 ---
 

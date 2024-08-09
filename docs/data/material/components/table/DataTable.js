@@ -46,6 +46,7 @@ export default function DataTable() {
         }}
         pageSizeOptions={[5, 10]}
         checkboxSelection
+        sx={{ overflow: 'clip' }}
       />
     </div>
   );

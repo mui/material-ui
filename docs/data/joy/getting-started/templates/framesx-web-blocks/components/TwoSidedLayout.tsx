@@ -10,22 +10,24 @@ export default function TwoSidedLayout({
 }: React.PropsWithChildren<{ reversed?: boolean }>) {
   return (
     <Container
-      sx={(theme) => ({
-        position: 'relative',
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: reversed ? 'column-reverse' : 'column',
-        alignItems: 'center',
-        py: 10,
-        gap: 4,
-        [theme.breakpoints.up(834)]: {
-          flexDirection: 'row',
-          gap: 6,
-        },
-        [theme.breakpoints.up(1199)]: {
-          gap: 12,
-        },
-      })}
+      sx={[
+        (theme) => ({
+          position: 'relative',
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          py: 10,
+          gap: 4,
+          [theme.breakpoints.up(834)]: {
+            flexDirection: 'row',
+            gap: 6,
+          },
+          [theme.breakpoints.up(1199)]: {
+            gap: 12,
+          },
+        }),
+        reversed ? { flexDirection: 'column-reverse' } : { flexDirection: 'column' },
+      ]}
     >
       <Box
         sx={(theme) => ({
