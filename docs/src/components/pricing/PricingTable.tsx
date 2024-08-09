@@ -907,7 +907,7 @@ const proData: Record<string, React.ReactNode> = {
   'charts/sparkline': yes,
   'charts/gauge': yes,
   'charts/treemap': pending,
-  'charts/heatmap': pending,
+  'charts/heatmap': yes,
   'charts/radar': pending,
   'charts/funnel': pending,
   'charts/sankey': pending,
@@ -918,7 +918,7 @@ const proData: Record<string, React.ReactNode> = {
   // charts - features
   'charts/legend': yes,
   'charts/tooltip': yes,
-  'charts/mouse-zoom': pending,
+  'charts/mouse-zoom': yes,
   'charts/export': pending,
   // charts - datagrid
   'charts/cell-with-charts': yes,
@@ -1009,7 +1009,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'charts/sparkline': yes,
   'charts/gauge': yes,
   'charts/treemap': pending,
-  'charts/heatmap': pending,
+  'charts/heatmap': yes,
   'charts/radar': pending,
   'charts/funnel': pending,
   'charts/sankey': pending,
@@ -1020,7 +1020,7 @@ const premiumData: Record<string, React.ReactNode> = {
   // charts - features
   'charts/legend': yes,
   'charts/tooltip': yes,
-  'charts/mouse-zoom': pending,
+  'charts/mouse-zoom': yes,
   'charts/export': pending,
   // charts - datagrid
   'charts/cell-with-charts': yes,
