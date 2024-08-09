@@ -277,7 +277,9 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     endAdornment,
     error,
     fullWidth = false,
-    id,
+    // Internal prop passed from TextField Input to differentiate between root id and html input id
+    // eslint-disable-next-line react/prop-types
+    htmlInputId,
     inputComponent = 'input',
     inputProps: inputPropsProp = {},
     inputRef: inputRefProp,
@@ -531,6 +533,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
       )}
 
       <Root
+        id={other.id}
         {...rootProps}
         ref={ref}
         onClick={handleClick}
@@ -557,7 +560,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
             autoFocus={autoFocus}
             defaultValue={defaultValue}
             disabled={fcs.disabled}
-            id={id}
+            id={htmlInputId}
             onAnimationStart={handleAutoFill}
             name={name}
             placeholder={placeholder}
