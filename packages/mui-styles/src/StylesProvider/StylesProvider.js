@@ -33,8 +33,6 @@ if (process.env.NODE_ENV !== 'production') {
   StylesContext.displayName = 'StylesContext';
 }
 
-let injectFirstNode;
-
 export default function StylesProvider(props) {
   const { children, injectFirst = false, disableGeneration = false, ...localOptions } = props;
 
@@ -82,11 +80,9 @@ export default function StylesProvider(props) {
     }
 
     if (!context.jss.options.insertionPoint && injectFirst && typeof window !== 'undefined') {
-      if (!injectFirstNode) {
-        const head = document.head;
-        injectFirstNode = document.createComment('mui-inject-first');
-        head.insertBefore(injectFirstNode, head.firstChild);
-      }
+      const head = document.head;
+      const injectFirstNode = document.createComment('mui-inject-first');
+      head.insertBefore(injectFirstNode, head.firstChild);
 
       context.jss = create({ plugins: jssPreset().plugins, insertionPoint: injectFirstNode });
     }
