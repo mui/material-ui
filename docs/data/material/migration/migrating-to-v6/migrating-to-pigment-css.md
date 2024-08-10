@@ -137,7 +137,7 @@ yarn add -D @pigment-css/vite-plugin
 
 </codeblock>
 
-Next, open vite config file, usually named `vite.config.mjs` or `vite.config.js`, and add the plugin:
+Next, open the Vite config file (usually named `vite.config.mjs` or `vite.config.js`) and add the plugin:
 
 ```js
 import { defineConfig } from 'vite';
