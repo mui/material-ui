@@ -87,8 +87,8 @@ export default function Home() {
                 >
                   <Title>Build-time CSS Extraction</Title>
                   <Typography>
-                    Pigment CSS will look through Material UI components used in the project and
-                    extract the styles into plain CSS.
+                    Pigment CSS looks through Material UI components used in the project and
+                    extracts the styles into plain CSS.
                   </Typography>
                 </li>
                 <li
@@ -98,7 +98,7 @@ export default function Home() {
                 >
                   <Title>React Server Components</Title>
                   <Typography>
-                    Material UI provides a separate set of layout components that integrate with
+                    Material UI provides a set of layout components that integrate with
                     Pigment CSS to support React Server Components.
                   </Typography>
                 </li>
@@ -109,7 +109,7 @@ export default function Home() {
                 >
                   <Title>Emotionless</Title>
                   <Typography>
-                    Emotion will be removed from the final bundle, saving ~15kB.
+                    Replacing Emotion with Pigment CSS eliminates ~15kB from the final bundle.
                   </Typography>
                 </li>
               </Stack>
