@@ -180,7 +180,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       setMenuMinWidthState(autoWidth ? null : anchorElement.clientWidth);
       displayRef.current.focus();
     }
-    // TODO: uncomment when compiler enabled // eslint-disable-next-line react-compiler/react-compiler
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [displayNode, autoWidth]);
   // `isOpenControlled` is ignored because the component should never switch between controlled and uncontrolled modes.
