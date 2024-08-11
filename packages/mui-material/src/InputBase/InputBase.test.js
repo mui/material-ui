@@ -190,7 +190,7 @@ describe('<InputBase />', () => {
     it('should inject onBlur and onFocus', () => {
       let injectedProps;
       const MyInputBase = React.forwardRef(function MyInputBase(props, ref) {
-        // TODO: uncomment eslint-disable-next-line react-compiler/react-compiler
+        // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
         injectedProps = props;
         return <input ref={ref} {...props} />;
       });
