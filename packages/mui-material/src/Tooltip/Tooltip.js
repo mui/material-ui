@@ -601,8 +601,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   if (process.env.NODE_ENV !== 'production') {
     childrenProps['data-mui-internal-clone-element'] = true;
 
-    // TODO:uncomment when compiler enabled // eslint-disable-next-line react-compiler/react-compiler
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
+    // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
     React.useEffect(() => {
       if (childNode && !childNode.getAttribute('data-mui-internal-clone-element')) {
         console.error(
