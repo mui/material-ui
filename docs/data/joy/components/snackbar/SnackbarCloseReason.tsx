@@ -37,7 +37,6 @@ export default function SnackbarCloseReason() {
         autoHideDuration={3000}
         open={open}
         onClose={(event, reason) => {
-          // @ts-ignore
           setReasons((prev) => [...new Set([...prev, reason])]);
         }}
         onUnmount={() => {

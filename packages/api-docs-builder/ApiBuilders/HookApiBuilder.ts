@@ -401,17 +401,14 @@ const extractInfoFromType = async (
   try {
     const exportedSymbol = project.exports[typeName];
     const type = project.checker.getDeclaredTypeOfSymbol(exportedSymbol);
-    // @ts-ignore
     const typeDeclaration = type?.symbol?.declarations?.[0];
     if (!typeDeclaration) {
       return [];
     }
 
     const properties: Record<string, ParsedProperty> = {};
-    // @ts-ignore
     const propertiesOnProject = type.getProperties();
 
-    // @ts-ignore
     await Promise.all(
       propertiesOnProject.map(async (propertySymbol) => {
         properties[propertySymbol.name] = await parseProperty(propertySymbol, project);

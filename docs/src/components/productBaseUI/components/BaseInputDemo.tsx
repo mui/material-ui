@@ -122,8 +122,7 @@ const FloatingLabelInput = React.forwardRef<HTMLInputElement, React.JSX.Intrinsi
 
 const TailwindFloatingLabelInput = React.forwardRef<
   HTMLInputElement,
-  React.JSX.IntrinsicElements['input']
-  // @ts-ignore
+  React.JSX.IntrinsicElements['input'] & { ownerState: unknown }
 >(function TailwindFloatingLabelInput({ ownerState, ...props }, ref) {
   const id = unstable_useId(props.id);
   return (

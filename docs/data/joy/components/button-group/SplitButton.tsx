@@ -10,7 +10,7 @@ const options = ['Create a merge commit', 'Squash and merge', 'Rebase and merge'
 
 export default function SplitButton() {
   const [open, setOpen] = React.useState(false);
-  const actionRef = React.useRef<() => void | null>(null);
+  const actionRef = React.useRef<(() => void) | null>(null);
   const anchorRef = React.useRef<HTMLDivElement>(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
@@ -41,11 +41,9 @@ export default function SplitButton() {
           aria-label="select merge strategy"
           aria-haspopup="menu"
           onMouseDown={() => {
-            // @ts-ignore
             actionRef.current = () => setOpen(!open);
           }}
           onKeyDown={() => {
-            // @ts-ignore
             actionRef.current = () => setOpen(!open);
           }}
           onClick={() => {
