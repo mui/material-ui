@@ -372,8 +372,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   let open = openState;
 
   if (process.env.NODE_ENV !== 'production') {
-    // TODO: uncomment when compiler is enabled // eslint-disable-next-line react-compiler/react-compiler
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
+    // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
     const { current: isControlled } = React.useRef(openProp !== undefined);
 
     // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
