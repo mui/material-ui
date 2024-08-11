@@ -5,6 +5,8 @@ import { promisify } from 'util';
 import yargs from 'yargs';
 import { getVersionEnvVariables, getWorkspaceRoot } from './utils.mjs';
 
+const usePackageExports = !!process.env.MUI_PACKAGE_EXPORTS;
+
 const exec = promisify(childProcess.exec);
 
 const validBundles = [
@@ -17,7 +19,7 @@ const validBundles = [
 ];
 
 async function run(argv) {
-  const { bundle, largeFiles, outDir: relativeOutDir, verbose } = argv;
+  const { bundle, largeFiles, outDir: outDirBase, verbose } = argv;
 
   if (validBundles.indexOf(bundle) === -1) {
     throw new TypeError(
@@ -51,22 +53,25 @@ async function run(argv) {
     });
   const topLevelPathImportsCanBePackages = topLevelNonIndexFiles.length === 0;
 
-  const outDir = path.resolve(
-    relativeOutDir,
-    // We generally support top level path imports e.g.
-    // 1. `import ArrowDownIcon from '@mui/icons-material/ArrowDown'`.
-    // 2. `import Typography from '@mui/material/Typography'`.
-    // The first case resolves to a file while the second case resolves to a package first i.e. a package.json
-    // This means that only in the second case the bundler can decide whether it uses ES modules or CommonJS modules.
-    // Different extensions are not viable yet since they require additional bundler config for users and additional transpilation steps in our repo.
-    //
-    // TODO v6: Switch to `exports` field.
-    {
-      node: topLevelPathImportsCanBePackages ? './node' : './',
-      modern: './modern',
-      stable: topLevelPathImportsCanBePackages ? './' : './esm',
-    }[bundle],
-  );
+  // We generally support top level path imports e.g.
+  // 1. `import ArrowDownIcon from '@mui/icons-material/ArrowDown'`.
+  // 2. `import Typography from '@mui/material/Typography'`.
+  // The first case resolves to a file while the second case resolves to a package first i.e. a package.json
+  // This means that only in the second case the bundler can decide whether it uses ES modules or CommonJS modules.
+  // Different extensions are not viable yet since they require additional bundler config for users and additional transpilation steps in our repo.
+  //
+  // TODO v6: Switch to `exports` field.
+  let relativeOutDir = {
+    node: topLevelPathImportsCanBePackages ? './node' : './',
+    modern: './modern',
+    stable: topLevelPathImportsCanBePackages ? './' : './esm',
+  }[bundle];
+
+  if (usePackageExports && (bundle === 'node' || bundle === 'stable')) {
+    relativeOutDir = './';
+  }
+
+  const outDir = path.resolve(outDirBase, relativeOutDir);
 
   const babelArgs = [
     '--config-file',
@@ -80,6 +85,11 @@ async function run(argv) {
     // Need to put these patterns in quotes otherwise they might be evaluated by the used terminal.
     `"${ignore.join('","')}"`,
   ];
+
+  if (usePackageExports && bundle === 'stable') {
+    babelArgs.push('--out-file-extension', '.mjs');
+  }
+
   if (largeFiles) {
     babelArgs.push('--compact false');
   }
