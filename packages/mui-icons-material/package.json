@@ -34,7 +34,7 @@
     "build:modern": "echo 'Skip modern build'",
     "build:node": "node ../../scripts/build.mjs node --largeFiles --outDir lib",
     "build:stable": "node ../../scripts/build.mjs stable --largeFiles --outDir lib",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs",
+    "build:copy-files": "MUI_PACKAGE_EXPORTS=false node ../../scripts/copyFiles.mjs",
     "build:typings": "node ./scripts/create-typings.mjs",
     "prebuild": "rimraf build",
     "release": "pnpm build && pnpm publish",
@@ -83,5 +83,17 @@
   },
   "engines": {
     "node": ">=14.0.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./esm/index.js",
+      "require": "./index.js"
+    },
+    "./*": {
+      "types": "./*.d.ts",
+      "import": "./esm/*.js",
+      "require": "./*.js"
+    }
   }
 }

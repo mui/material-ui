@@ -1,11 +1,8 @@
 import childProcess from 'child_process';
-import glob from 'fast-glob';
 import path from 'path';
 import { promisify } from 'util';
 import yargs from 'yargs';
 import { getVersionEnvVariables, getWorkspaceRoot } from './utils.mjs';
-
-const usePackageExports = process.env.MUI_PACKAGE_EXPORTS === 'true';
 
 const exec = promisify(childProcess.exec);
 
@@ -46,13 +43,6 @@ async function run(argv) {
     '**/*.d.ts',
   ];
 
-  const topLevelNonIndexFiles = glob
-    .sync(`*{${extensions.join(',')}}`, { cwd: srcDir, ignore })
-    .filter((file) => {
-      return path.basename(file, path.extname(file)) !== 'index';
-    });
-  const topLevelPathImportsCanBePackages = topLevelNonIndexFiles.length === 0;
-
   // We generally support top level path imports e.g.
   // 1. `import ArrowDownIcon from '@mui/icons-material/ArrowDown'`.
   // 2. `import Typography from '@mui/material/Typography'`.
@@ -61,15 +51,11 @@ async function run(argv) {
   // Different extensions are not viable yet since they require additional bundler config for users and additional transpilation steps in our repo.
   //
   // TODO v6: Switch to `exports` field.
-  let relativeOutDir = {
-    node: topLevelPathImportsCanBePackages ? './node' : './',
+  const relativeOutDir = {
+    node: './',
     modern: './modern',
-    stable: topLevelPathImportsCanBePackages ? './' : './esm',
+    stable: './',
   }[bundle];
-
-  if (usePackageExports && (bundle === 'node' || bundle === 'stable')) {
-    relativeOutDir = './';
-  }
 
   const outDir = path.resolve(outDirBase, relativeOutDir);
 
@@ -86,7 +72,7 @@ async function run(argv) {
     `"${ignore.join('","')}"`,
   ];
 
-  if (usePackageExports && bundle === 'stable') {
+  if (bundle === 'stable') {
     babelArgs.push('--out-file-extension', '.mjs');
   }
 

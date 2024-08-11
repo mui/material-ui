@@ -1,14 +1,11 @@
 /* eslint-disable no-console */
 import path from 'path';
 import {
-  createModulePackages,
   createPackageFile,
   includeFileInBuild,
   prepend,
   typescriptCopy,
 } from './copyFilesUtils.mjs';
-
-const usePackageExports = process.env.MUI_PACKAGE_EXPORTS === 'true';
 
 const packagePath = process.cwd();
 const buildPath = path.join(packagePath, './build');
@@ -54,10 +51,6 @@ async function run() {
     );
 
     await addLicense(packageData);
-
-    if (!usePackageExports) {
-      await createModulePackages({ from: srcPath, to: buildPath });
-    }
   } catch (err) {
     console.error(err);
     process.exit(1);
