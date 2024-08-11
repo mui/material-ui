@@ -109,7 +109,7 @@ export async function createPackageFile() {
             : `./index.mjs`,
         }
       : {}),
-    ...(packageDataOther.export
+    ...(packageDataOther.exports
       ? {}
       : {
           exports: {
