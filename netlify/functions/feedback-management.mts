@@ -106,7 +106,7 @@ app.action<BlockAction<ButtonAction>>('delete_action', async ({ ack, body, clien
 
     const channelId = channel?.id;
 
-    const { comment, currentLocationURL = '', commmentSectionURL = '' } = JSON.parse(value!);
+    const { comment, currentLocationURL = '', commmentSectionURL = '' } = JSON.parse(value);
 
     const googleAuth = new JWT({
       email: 'service-account-804@docs-feedbacks.iam.gserviceaccount.com',
@@ -150,7 +150,7 @@ app.action('save_message', async ({ ack, body, client, logger }) => {
     } = body as BlockAction<ButtonAction>;
 
     const channelId = channel?.id;
-    const { comment, currentLocationURL = '', commmentSectionURL = '' } = JSON.parse(value!);
+    const { comment, currentLocationURL = '', commmentSectionURL = '' } = JSON.parse(value);
 
     const googleAuth = new JWT({
       email: 'service-account-804@docs-feedbacks.iam.gserviceaccount.com',
@@ -189,8 +189,8 @@ export const handler: Handler = async (event, context, callback) => {
     return { statusCode: 404 };
   }
   try {
-    const { payload } = querystring.parse(event.body!);
-    const data = JSON.parse(payload as string);
+    const { payload } = querystring.parse(event.body);
+    const data = JSON.parse(payload);
 
     if (data.callback_id === 'send_feedback') {
       // We send the feedback to the appopiate slack channel
