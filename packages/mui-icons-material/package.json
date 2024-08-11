@@ -29,7 +29,7 @@
   },
   "scripts": {
     "build": "shx cp -r lib/ build/ && pnpm build:typings && pnpm build:copy-files",
-    "build:lib": "pnpm build:node && pnpm build:stable",
+    "build:lib": "MUI_PACKAGE_EXPORTS=false pnpm build:node && MUI_PACKAGE_EXPORTS=false pnpm build:stable",
     "build:lib:clean": "rimraf lib/ && pnpm build:lib",
     "build:modern": "echo 'Skip modern build'",
     "build:node": "node ../../scripts/build.mjs node --largeFiles --outDir lib",

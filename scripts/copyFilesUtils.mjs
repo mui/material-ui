@@ -3,7 +3,7 @@ import path from 'path';
 import fse from 'fs-extra';
 import glob from 'fast-glob';
 
-const usePackageExports = !!process.env.MUI_PACKAGE_EXPORTS;
+const usePackageExports = process.env.MUI_PACKAGE_EXPORTS === 'true';
 const packagePath = process.cwd();
 const buildPath = path.join(packagePath, './build');
 

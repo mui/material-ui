@@ -8,7 +8,7 @@ import {
   typescriptCopy,
 } from './copyFilesUtils.mjs';
 
-const usePackageExports = !!process.env.MUI_PACKAGE_EXPORTS;
+const usePackageExports = process.env.MUI_PACKAGE_EXPORTS === 'true';
 
 const packagePath = process.cwd();
 const buildPath = path.join(packagePath, './build');

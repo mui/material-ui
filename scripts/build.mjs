@@ -5,7 +5,7 @@ import { promisify } from 'util';
 import yargs from 'yargs';
 import { getVersionEnvVariables, getWorkspaceRoot } from './utils.mjs';
 
-const usePackageExports = !!process.env.MUI_PACKAGE_EXPORTS;
+const usePackageExports = process.env.MUI_PACKAGE_EXPORTS === 'true';
 
 const exec = promisify(childProcess.exec);
 
