@@ -10,10 +10,7 @@ describe('usePagination', () => {
   const renderHook = (useHook) => {
     const result = {};
     function TestCase() {
-      const hookResult = useHook();
-      React.useEffect(() => {
-        result.current = hookResult;
-      }, [hookResult]);
+      result.current = useHook();
       return null;
     }
     render(<TestCase />);
