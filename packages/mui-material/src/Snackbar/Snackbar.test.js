@@ -82,7 +82,7 @@ describe('<Snackbar />', () => {
       let setSnackbarOpen;
       function Test() {
         const [open, setOpen] = React.useState(false);
-        // TODO: uncomment when compiler is enabled // eslint-disable-next-line react-compiler/react-compiler
+        // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
         setSnackbarOpen = setOpen;
 
         function handleClose() {
