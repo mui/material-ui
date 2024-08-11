@@ -191,7 +191,6 @@ describe('<InputBase />', () => {
       let injectedProps;
       const MyInputBase = React.forwardRef(function MyInputBase(props, ref) {
         // TODO: uncomment eslint-disable-next-line react-compiler/react-compiler
-        // didn't find proper way to fix this.
         injectedProps = props;
         return <input ref={ref} {...props} />;
       });
