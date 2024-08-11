@@ -11,7 +11,7 @@
     "build:ci": "lerna run build --ignore docs --concurrency 8 --skip-nx-cache",
     "build:public": "lerna run --no-private build",
     "build:public:ci": "lerna run --no-private build --concurrency 8 --skip-nx-cache",
-    "build:codesandbox": "NODE_OPTIONS=\"--max_old_space_size=4096\" lerna run --concurrency 8 --scope \"@mui/*\" --scope \"@mui-internal/*\" --no-private build",
+    "build:codesandbox": "MUI_PACKAGE_EXPORTS=true NODE_OPTIONS=\"--max_old_space_size=4096\" lerna run --concurrency 8 --scope \"@mui/*\" --scope \"@mui-internal/*\" --no-private build",
     "release:version": "lerna version --no-changelog --no-push --no-git-tag-version --no-private --force-publish=@mui/core-downloads-tracker",
     "release:build": "lerna run --concurrency 8 --no-private build --skip-nx-cache",
     "release:changelog": "node scripts/releaseChangelog.mjs",
