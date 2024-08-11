@@ -47,8 +47,8 @@ type OwnerState = Omit<AutocompleteOwnerState<any, any, any, any>, 'onChange' | 
 
 const defaultIsActiveElementInListbox = (listboxRef: React.RefObject<HTMLElement>) =>
   listboxRef.current !== null && listboxRef.current.contains(document.activeElement);
-// @ts-ignore
-const defaultGetOptionLabel = (option) => option.label ?? option;
+
+const defaultGetOptionLabel = (option: any) => option.label ?? option;
 const defaultLimitTagsText = (more: string | number) => `+${more}`;
 const defaultRenderGroup = (params: AutocompleteRenderGroupParams) => (
   <ListItem key={params.key} nested>

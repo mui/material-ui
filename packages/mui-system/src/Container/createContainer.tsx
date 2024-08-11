@@ -82,6 +82,7 @@ export default function createContainer<Theme extends RequiredThemeStructure = D
         ...(!ownerState.disableGutters && {
           paddingLeft: theme.spacing(2),
           paddingRight: theme.spacing(2),
+          // @ts-ignore module augmentation fails if custom breakpoints are used
           [theme.breakpoints.up('sm')]: {
             paddingLeft: theme.spacing(3),
             paddingRight: theme.spacing(3),
@@ -90,29 +91,33 @@ export default function createContainer<Theme extends RequiredThemeStructure = D
       }) as Interpolation<StyleFnProps<Theme>>,
     ({ theme, ownerState }: StyleFnProps<Theme>) =>
       ownerState.fixed &&
-      Object.keys(theme.breakpoints.values).reduce(
-        (acc, breakpointValueKey) => {
-          const breakpoint = breakpointValueKey as Breakpoint;
-          const value = theme.breakpoints.values[breakpoint];
+      Object.keys(theme.breakpoints.values).reduce((acc, breakpointValueKey) => {
+        const breakpoint = breakpointValueKey;
+        const value = theme.breakpoints.values[breakpoint as Breakpoint];
 
-          if (value !== 0) {
-            acc[theme.breakpoints.up(breakpoint)] = {
-              maxWidth: `${value}${theme.breakpoints.unit}`,
-            };
-          }
-          return acc;
-        },
-        {} as Record<string, { maxWidth: string }>,
-      ),
+        if (value !== 0) {
+          // @ts-ignore
+          acc[theme.breakpoints.up(breakpoint)] = {
+            maxWidth: `${value}${theme.breakpoints.unit}`,
+          };
+        }
+        return acc;
+      }, {}),
     ({ theme, ownerState }: StyleFnProps<Theme>) => ({
+      // @ts-ignore module augmentation fails if custom breakpoints are used
       ...(ownerState.maxWidth === 'xs' && {
+        // @ts-ignore module augmentation fails if custom breakpoints are used
         [theme.breakpoints.up('xs')]: {
+          // @ts-ignore module augmentation fails if custom breakpoints are used
           maxWidth: Math.max(theme.breakpoints.values.xs, 444),
         },
       }),
       ...(ownerState.maxWidth &&
+        // @ts-ignore module augmentation fails if custom breakpoints are used
         ownerState.maxWidth !== 'xs' && {
+          // @ts-ignore module augmentation fails if custom breakpoints are used
           [theme.breakpoints.up(ownerState.maxWidth)]: {
+            // @ts-ignore module augmentation fails if custom breakpoints are used
             maxWidth: `${theme.breakpoints.values[ownerState.maxWidth]}${theme.breakpoints.unit}`,
           },
         }),
@@ -139,12 +144,14 @@ export default function createContainer<Theme extends RequiredThemeStructure = D
       maxWidth,
     };
 
+    // @ts-ignore module augmentation fails if custom breakpoints are used
     const classes = useUtilityClasses(ownerState, componentName);
 
     return (
-      // @ts-expect-error theme is injected by the styled util
+      // @ts-ignore theme is injected by the styled util
       <ContainerRoot
         as={component}
+        // @ts-ignore module augmentation fails if custom breakpoints are used
         ownerState={ownerState}
         className={clsx(classes.root, className)}
         ref={ref}

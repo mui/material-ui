@@ -243,8 +243,11 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
       // https://github.com/mui/material-ui/issues/13485#issuecomment-676048492
       // Clone the event to not override `target` of the original event.
       const nativeEvent = (event as React.SyntheticEvent).nativeEvent || event;
-      // @ts-ignore The nativeEvent is function, not object
-      const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
+
+      const clonedEvent = new (nativeEvent.constructor as typeof Event)(
+        nativeEvent.type,
+        nativeEvent,
+      );
 
       Object.defineProperty(clonedEvent, 'target', {
         writable: true,
@@ -714,7 +717,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
       type: 'range',
       min: parameters.min,
       max: parameters.max,
-      step: parameters.step === null && parameters.marks ? 'any' : parameters.step ?? undefined,
+      step: parameters.step === null && parameters.marks ? 'any' : (parameters.step ?? undefined),
       disabled,
       ...externalProps,
       ...mergedEventHandlers,

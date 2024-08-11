@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent, OverrideProps } from '@mui/types';
-// @ts-ignore
 import Container from '@mui/material-pigment-css/Container';
 import capitalize from '@mui/utils/capitalize';
 import composeClasses from '@mui/utils/composeClasses';
@@ -100,7 +99,6 @@ const PigmentContainer = React.forwardRef(function PigmentContainer(
       fixed={fixed}
       maxWidth={maxWidth}
       {...(props as any)}
-      // @ts-ignore
       ref={ref}
     />
   );

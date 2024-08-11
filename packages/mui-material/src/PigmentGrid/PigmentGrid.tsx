@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { OverridableComponent, OverrideProps } from '@mui/types';
 import { SxProps } from '@mui/system';
-// @ts-ignore
 import Grid from '@mui/material-pigment-css/Grid';
 import composeClasses from '@mui/utils/composeClasses';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';

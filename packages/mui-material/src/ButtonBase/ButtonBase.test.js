@@ -17,6 +17,8 @@ import ButtonBase, { buttonBaseClasses as classes } from '@mui/material/ButtonBa
 import describeConformance from '../../test/describeConformance';
 import * as ripple from '../../test/ripple';
 
+/** @typedef {import('./ButtonBase').ButtonBaseActions} ButtonBaseActions */
+
 describe('<ButtonBase />', () => {
   const { render } = createRenderer();
 
@@ -575,9 +577,9 @@ describe('<ButtonBase />', () => {
         top: 20,
       }));
       await ripple.startTouch(getByRole('button'), { clientX: 10, clientY: 10 });
-      const rippleRipple = container.querySelector('.touch-ripple-ripple');
+      const rippleRipple = /** @type {Element} */ (container.querySelector('.touch-ripple-ripple'));
       expect(rippleRipple).not.to.equal(null);
-      // @ts-ignore
+
       const rippleStyle = window.getComputedStyle(rippleRipple);
       expect(rippleStyle).to.have.property('height', '101px');
       expect(rippleStyle).to.have.property('width', '101px');
@@ -604,8 +606,8 @@ describe('<ButtonBase />', () => {
       await ripple.startTouch(getByRole('button'), { clientX: 10, clientY: 10 });
       const rippleRipple = container.querySelector('.touch-ripple-ripple');
       expect(rippleRipple).not.to.equal(null);
-      // @ts-ignore
-      const rippleStyle = window.getComputedStyle(rippleRipple);
+
+      const rippleStyle = window.getComputedStyle(/** @type {Element} */ (rippleRipple));
       expect(rippleStyle).not.to.have.property('height', '101px');
       expect(rippleStyle).not.to.have.property('width', '101px');
     });
@@ -1196,12 +1198,12 @@ describe('<ButtonBase />', () => {
         </ButtonBase>,
       );
 
-      // @ts-ignore
-      expect(typeof buttonActionsRef.current.focusVisible).to.equal('function');
+      expect(
+        typeof (/** @type {ButtonBaseActions} */ (buttonActionsRef.current).focusVisible),
+      ).to.equal('function');
 
       await act(async () => {
-        // @ts-ignore
-        buttonActionsRef.current.focusVisible();
+        /** @type {ButtonBaseActions} */ (buttonActionsRef.current).focusVisible();
       });
 
       expect(getByText('Hello')).toHaveFocus();
