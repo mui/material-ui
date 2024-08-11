@@ -416,7 +416,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   });
 
   if (process.env.NODE_ENV !== 'production') {
-    // TODO: uncomment when compiler enabled // eslint-disable-next-line react-compiler/react-compiler
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (!foundMatch && !multiple && value !== '') {
