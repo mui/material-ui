@@ -32,7 +32,7 @@ describe('setRef', () => {
   });
 
   it('throws on legacy string refs', () => {
-    // @ts-ignore
+    // @ts-expect-error
     expect(() => setRef('stringRef1', 'proxy')).to.throw();
   });
 });

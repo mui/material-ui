@@ -234,7 +234,7 @@ export default function createGrid(
     wrap: PropTypes.oneOf(['nowrap', 'wrap-reverse', 'wrap']),
   };
 
-  // @ts-ignore internal logic for nested grid
+  // @ts-expect-error internal logic for nested grid
   Grid.muiName = 'Grid';
 
   return Grid;
