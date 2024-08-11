@@ -451,7 +451,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   // or auto filled by the browser before the hydration (for SSR).
   React.useEffect(() => {
     checkDirty(inputRef.current);
-    // TODO: uncomment when compiler enabled // eslint-disable-next-line react-compiler/react-compiler
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
