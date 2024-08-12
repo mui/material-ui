@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { createRenderer, reactMajor } from '@mui/internal-test-utils';
+import { createRenderer, reactMajor, fireEvent } from '@mui/internal-test-utils';
 import capitalize from '@mui/utils/capitalize';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import IconButton, { iconButtonClasses as classes } from '@mui/material/IconButton';
@@ -140,5 +140,23 @@ describe('<IconButton />', () => {
         <IconButton />
       </ThemeProvider>
     )).not.to.throw();
+  });
+
+  it('should apply the hover background by default', () => {
+    const { container, getByTestId } = render(<IconButton data-testid="icon" />);
+
+    fireEvent.mouseMove(container.firstChild, {
+      clientX: 19,
+    });
+    expect(getComputedStyle(getByTestId('icon')).backgroundColor).to.equal('rgba(0, 0, 0, 0.04)');
+  });
+
+  it('should not apply the hover background if disableRipple is true', () => {
+    const { container, getByTestId } = render(<IconButton disableRipple data-testid="icon" />);
+
+    fireEvent.mouseMove(container.firstChild, {
+      clientX: 19,
+    });
+    expect(getComputedStyle(getByTestId('icon')).backgroundColor).to.equal('rgba(0, 0, 0, 0)');
   });
 });
