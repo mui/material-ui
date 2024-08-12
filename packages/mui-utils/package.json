@@ -43,7 +43,7 @@
     "@types/prop-types": "^15.7.12",
     "clsx": "^2.1.1",
     "prop-types": "^15.8.1",
-    "react-is": "19.0.0-rc-65903583-20240805"
+    "react-is": "19.0.0-rc-2d2cc042-20240809"
   },
   "devDependencies": {
     "@mui/internal-babel-macros": "workspace:^",
@@ -57,8 +57,8 @@
     "@types/react-is": "npm:types-react-is@19.0.0-rc.1",
     "@types/sinon": "^17.0.3",
     "chai": "^4.5.0",
-    "react": "19.0.0-rc-65903583-20240805",
-    "react-dom": "19.0.0-rc-65903583-20240805",
+    "react": "19.0.0-rc-2d2cc042-20240809",
+    "react-dom": "19.0.0-rc-2d2cc042-20240809",
     "sinon": "^16.1.3"
   },
   "peerDependencies": {
