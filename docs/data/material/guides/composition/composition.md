@@ -28,7 +28,7 @@ Material UI allows you to change the root element that will be rendered via a p
 
 For example, by default a `List` component will render a `<ul>` element.
 This can be changed by passing a [React component](https://react.dev/reference/react/Component) to the `component` prop.
-The following example will render the `List` component with a `<menu>` element as root element instead:
+The following example renders the `List` component with a `<menu>` element as root element instead:
 
 ```jsx
 <List component="menu">
@@ -88,7 +88,7 @@ You can find a code example with the Button and react-router-dom in [these demos
 
 ### Generic
 
-It's also possible to have a generic custom component which will accept any React component, and HTML elements.
+It's also possible to have a generic custom component which accepts any React component, and HTML elements.
 
 ```ts
 function GenericCustomComponent<C extends React.ElementType>(
