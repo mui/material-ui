@@ -98,8 +98,8 @@ export default function Home() {
                 >
                   <Title>React Server Components</Title>
                   <Typography>
-                    Material UI provides a set of layout components that integrate with
-                    Pigment CSS to support React Server Components.
+                    Material UI provides a set of layout components that integrates with Pigment CSS
+                    to support React Server Components.
                   </Typography>
                 </li>
                 <li
