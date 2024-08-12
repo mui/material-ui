@@ -18,6 +18,7 @@ import ButtonGroupContext from './ButtonGroupContext';
 import useSlot from '../utils/useSlot';
 import buttonClasses from '../Button/buttonClasses';
 import iconButtonClasses from '../IconButton/iconButtonClasses';
+import { DividerProps } from '../Divider';
 
 const useUtilityClasses = (ownerState: ButtonGroupOwnerState) => {
   const { size, variant, color, orientation } = ownerState;
@@ -236,10 +237,11 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
           }
           const extraProps: Record<string, any> = {};
           if (isMuiElement(child, ['Divider'])) {
-            extraProps.inset = (child.props as any).inset ?? 'context';
+            const childProps = child.props as DividerProps;
+            extraProps.inset = childProps?.inset ?? 'context';
 
             const dividerOrientation = orientation === 'vertical' ? 'horizontal' : 'vertical';
-            extraProps.orientation = (child.props as any).orientation ?? dividerOrientation;
+            extraProps.orientation = childProps?.orientation ?? dividerOrientation;
             extraProps.role = 'presentation';
             extraProps.component = 'span';
           }
