@@ -25,6 +25,8 @@
       "@mui/styled-engine/*": ["./packages/mui-styled-engine/src/*"],
       "@mui/styled-engine-sc": ["./packages/mui-styled-engine-sc/src"],
       "@mui/styled-engine-sc/*": ["./packages/mui-styled-engine-sc/src/*"],
+      "@mui/material-pigment-css": ["./packages/mui-material-pigment-css/src"],
+      "@mui/material-pigment-css/*": ["./packages/mui-material-pigment-css/src/*"],
       "@mui/styles": ["./packages/mui-styles/src"],
       "@mui/styles/*": ["./packages/mui-styles/src/*"],
       "@mui/system": ["./packages/mui-system/src"],
