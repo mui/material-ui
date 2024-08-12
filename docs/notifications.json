@@ -13,5 +13,10 @@
     "id": 81,
     "title": "Introducing MUI X v7",
     "text": "This new version is packed with new components, exciting features, improved usability, and developer experience. Check out the <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-v7\" href=\"https://mui.com/blog/mui-x-v7/\">announcement blog post</a>."
+  },
+  {
+    "id": 82,
+    "title": "Upcoming changes to MUI X pricing in 2024",
+    "text": "Check out the <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x\" href=\"https://mui.com/blog/mui-x-sep-2024-price-update/\">new pricing updates</a> and how to transition to the new model."
   }
 ]
