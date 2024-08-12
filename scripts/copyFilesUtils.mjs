@@ -3,6 +3,8 @@ import path from 'path';
 import fse from 'fs-extra';
 import glob from 'fast-glob';
 
+const usePackageExports = process.env.MUI_USE_PACKAGE_EXPORTS === 'true';
+
 const packagePath = process.cwd();
 const buildPath = path.join(packagePath, './build');
 
@@ -106,10 +108,10 @@ export async function createPackageFile() {
             : './index.js',
           module: fse.existsSync(path.resolve(buildPath, './esm/index.js'))
             ? './esm/index.js'
-            : `./index.mjs`,
+            : `./index.${usePackageExports ? 'mjs' : 'js'}`,
         }
       : {}),
-    ...(packageDataOther.exports
+    ...(!usePackageExports || packageDataOther.exports
       ? {}
       : {
           exports: {
