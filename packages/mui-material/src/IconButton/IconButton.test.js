@@ -143,20 +143,24 @@ describe('<IconButton />', () => {
   });
 
   it('should apply the hover background by default', () => {
-    const { container, getByTestId } = render(<IconButton data-testid="icon" />);
+    const { container, getByTestId } = render(<IconButton data-testid="icon-button" />);
 
     fireEvent.mouseMove(container.firstChild, {
       clientX: 19,
     });
-    expect(getComputedStyle(getByTestId('icon')).backgroundColor).to.equal('rgba(0, 0, 0, 0.04)');
+    expect(getByTestId('icon-button')).toHaveComputedStyle({
+      backgroundColor: 'rgba(0, 0, 0, 0.04)',
+    });
   });
 
   it('should not apply the hover background if disableRipple is true', () => {
-    const { container, getByTestId } = render(<IconButton disableRipple data-testid="icon" />);
+    const { container, getByTestId } = render(
+      <IconButton disableRipple data-testid="icon-button" />,
+    );
 
     fireEvent.mouseMove(container.firstChild, {
       clientX: 19,
     });
-    expect(getComputedStyle(getByTestId('icon')).backgroundColor).to.equal('rgba(0, 0, 0, 0)');
+    expect(getByTestId('icon-button')).toHaveComputedStyle({ backgroundColor: 'rgba(0, 0, 0, 0)' });
   });
 });
