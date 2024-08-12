@@ -376,7 +376,7 @@ It's designed to replace `theme.palette.mode` when applying light or dark styles
  }))
 ```
 
-Starting from v6, this is the official way to apply styles based on the color mode. 
+Starting from v6, this is the official way to apply styles based on the color mode.
 We highly recommend migrating to this method in order to keep up with new features and improvements in future major versions.
 
 Use these codemods to migrate your project to `theme.applyStyles`:
