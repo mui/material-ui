@@ -45,13 +45,13 @@
     "@mui/internal-test-utils": "workspace:^",
     "@mui/types": "workspace:^",
     "@types/chai": "^4.3.17",
-    "@types/react": "npm:types-react@19.0.0-rc.1",
+    "@types/react": "^18.3.3",
     "chai": "^4.5.0",
-    "react": "19.0.0-rc-2d2cc042-20240809"
+    "react": "^18.3.1"
   },
   "peerDependencies": {
-    "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
-    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
+    "@types/react": "^17.0.0 || ^18.0.0",
+    "react": "^17.0.0 || ^18.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {

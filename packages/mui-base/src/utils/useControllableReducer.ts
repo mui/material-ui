@@ -54,7 +54,7 @@ interface UseStateChangeDetectionParameters<State extends {}> {
   /**
    * The last action that was dispatched.
    */
-  lastActionRef: React.RefObject<ControllableReducerAction | null>;
+  lastActionRef: React.MutableRefObject<ControllableReducerAction | null>;
 }
 
 /**

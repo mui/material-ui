@@ -40,8 +40,8 @@ Please note that [react](https://www.npmjs.com/package/react) and [react-dom](ht
 
 ```json
 "peerDependencies": {
-  "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
-  "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
+  "react": "^17.0.0 || ^18.0.0",
+  "react-dom": "^17.0.0 || ^18.0.0"
 },
 ```
 

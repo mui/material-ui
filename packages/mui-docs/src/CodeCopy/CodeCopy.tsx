@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useRouter } from 'next/router';
 import clipboardCopy from 'clipboard-copy';
 
-const CodeBlockContext = React.createContext<React.RefObject<HTMLDivElement | null>>({
+const CodeBlockContext = React.createContext<React.MutableRefObject<HTMLDivElement | null>>({
   current: null,
 });
 

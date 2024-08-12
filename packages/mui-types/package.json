@@ -40,10 +40,10 @@
   },
   "devDependencies": {
     "@mui/types": "workspace:*",
-    "@types/react": "npm:types-react@19.0.0-rc.1"
+    "@types/react": "^18.3.3"
   },
   "peerDependencies": {
-    "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0"
+    "@types/react": "^17.0.0 || ^18.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
