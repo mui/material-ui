@@ -129,7 +129,7 @@ function App() {
 }
 ```
 
-This will generate a global stylesheet with the CSS theme variables:
+This generates a global stylesheet with the CSS theme variables:
 
 ```css
 :root {
@@ -138,7 +138,7 @@ This will generate a global stylesheet with the CSS theme variables:
 }
 ```
 
-All the components under the `ThemeProvider` will start using those CSS theme variables instead of raw values.
+All components under the `ThemeProvider` will use those CSS theme variables instead of raw values.
 
 ```diff title="Button styles"
 - color: #1976d2;

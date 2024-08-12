@@ -313,7 +313,7 @@ Need inspiration? The Material Design team has built an [palette configuration t
 ## Color schemes
 
 To add both built-in light and dark color schemes, use the `colorSchemes: { light: true, dark: true }`.
-It will generate the default tokens for both color schemes:
+This generates the default tokens for both color schemes:
 
 ```js
 import { createTheme } from '@mui/material/styles';
@@ -326,7 +326,7 @@ const theme = createTheme({
 });
 ```
 
-If you want to override the default tokens for each color scheme, use the same [palette object](#customization) as shown below:
+To override the default tokens for each color scheme, use the same [palette object](#customization) as shown below:
 
 ```js
 const theme = createTheme({
@@ -352,7 +352,7 @@ const theme = createTheme({
 ```
 
 :::warning
-If you provide both `colorSchemes` and `palette`, the `palette` will override the palette defined in color schemes.
+If you provide both `colorSchemes` and `palette`, the latter will override any styles defined in the former.
 
 ```js
 const theme = createTheme({

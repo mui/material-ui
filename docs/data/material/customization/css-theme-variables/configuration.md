@@ -99,7 +99,7 @@ function ModeSwitcher() {
 ```
 
 :::success
-After React hydrates the tree, the mode will be `system` to follow the user's preference.
+After React hydrates the tree, the mode is set to `system` to follow the user's preference.
 :::
 
 ### Determining the system mode
@@ -195,7 +195,7 @@ export default function RootLayout({ children }) {
 ```
 
 :::warning
-If you do not add `suppressHydrationWarning` to your <html>, you will get warnings `"Extra attributes from the server"` because the InitColorSchemeScript updates that element.
+If you don't add `suppressHydrationWarning` to your `<html>` tag, you will see warnings about `"Extra attributes from the server"` because `InitColorSchemeScript` updates that element.
 :::
 
 ### Next.js Pages Router
@@ -272,7 +272,8 @@ In the example below, all the components inside the `div` will always be dark:
 
 ## Disabling CSS color scheme
 
-By default, `createTheme` attaches [CSS color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) based on the palette mode. If you want to disable it, use `disableCssColorScheme`:
+By default, `createTheme` attaches a [CSS `color-scheme` property](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) based on the palette mode. 
+You can disable this by setting `disableCssColorScheme` to `true`:
 
 ```js
 createTheme({
@@ -294,7 +295,7 @@ The generated CSS will not include the `color-scheme` property:
 
 ## Instant transition between color schemes
 
-To disable CSS transition when switching between modes, use `disableTransitionOnChange` prop:
+To disable CSS transitions when switching between modes, apply the `disableTransitionOnChange` prop:
 
 ```js
 <ThemeProvider disableTransitionOnChange />

@@ -39,7 +39,7 @@ If you're using the experimental `CssVarsProvider` API, replace it with `ThemePr
 
 ## Dark mode only variables
 
-To switch the default light to dark palette, set `palette: { mode: 'dark' }` to the `createTheme`.
+To switch to the dark palette from the default light, set `palette: { mode: 'dark' }` in the `createTheme` function.
 Material UI will generate the dark palette instead.
 
 {{"demo": "DarkThemeCssVariables.js"}}
@@ -47,7 +47,7 @@ Material UI will generate the dark palette instead.
 ## Light and dark modes
 
 To enable both light and dark modes, add `colorSchemes: { dark: true }` to `createTheme`.
-This generates light (default) and dark palettes using `@media (prefers-color-scheme)` as a default method.
+This generates both palettes and defaults to `@media (prefers-color-scheme)`.
 
 <codeblock>
 
@@ -60,7 +60,7 @@ const theme = createTheme({
 });
 
 function App() {
-  return <ThemeProvider theme={theme}>{/* ...you app */}</ThemeProvider>;
+  return <ThemeProvider theme={theme}>{/* ...your app */}</ThemeProvider>;
 }
 ```
 
@@ -83,12 +83,12 @@ function App() {
 </codeblock>
 
 :::info
-You can explicitly set `colorSchemes: { light: true, dark: true }` which will produce the same result as the snippet above because light is the default color scheme.
+It's also possible to set `colorSchemes: { light: true, dark: true }`, which produces the same result as the snippet above because light is the default color scheme.
 :::
 
-The CSS media `prefers-color-scheme` method works with server-side rendering without extra configuration but you will not be able to toggle between the modes because the styles is based on the browser media.
+The CSS media `prefers-color-scheme` method works with server-side rendering without extra configuration, but users won't be able to toggle between modes because the styles are based on the browser media.
 
-If you want to manually toggle the modes, check out the [Toggling dark mode manually](/material-ui/customization/css-theme-variables/configuration/#toggling-dark-mode-manually) guide.
+If you want to be able to manually toggle modes, see the guide to [toggling dark mode manually](/material-ui/customization/css-theme-variables/configuration/#toggling-dark-mode-manually).
 
 ## Applying dark styles
 
@@ -111,7 +111,7 @@ import Card from '@mui/material/Card';
 ```
 
 :::warning
-**Don't** use `theme.palette.mode` to switch between light and dark styles because it will produce a [flickering effect](/material-ui/customization/dark-mode/#dark-mode-flicker).
+Do not use `theme.palette.mode` to switch between light and dark styles—this produces an [unwanted flickering effect](/material-ui/customization/dark-mode/#dark-mode-flicker).
 
 ```js
 <Card
@@ -126,7 +126,8 @@ import Card from '@mui/material/Card';
 
 ## Using theme variables
 
-When CSS variables feature is enabled, the `vars` node is added to the theme. This `vars` object mirrors the structure of a serializable theme, with each value corresponding to a CSS variable.
+When the CSS variables feature is enabled, the `vars` node is added to the theme. 
+This `vars` object mirrors the structure of a serializable theme, with each value corresponding to a CSS variable.
 
 - `theme.vars` (recommended): an object that refers to the CSS theme variables.
 
@@ -160,9 +161,10 @@ When CSS variables feature is enabled, the `vars` node is added to the theme. Th
 
 ## Color channel tokens
 
-Enabling `cssVariables` automatically generates channel tokens, which are used to create translucent colors. These tokens consist of color space channels without the alpha component, separated by **spaces**.
+Enabling `cssVariables` automatically generates channel tokens, which are used to create translucent colors. 
+These tokens consist of color space channels without the alpha component, separated by spaces.
 
-Those colors are suffixed with `Channel`, for example:
+The colors are suffixed with `Channel`—for example:
 
 ```js
 const theme = createTheme({ cssVariables: true });
