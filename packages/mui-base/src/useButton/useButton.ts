@@ -34,7 +34,7 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
     type,
     rootElementName: rootElementNameProp,
   } = parameters;
-  const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>(null);
+  const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement | null>(null);
 
   const [active, setActive] = React.useState<boolean>(false);
 
