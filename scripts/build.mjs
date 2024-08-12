@@ -3,6 +3,12 @@ import glob from 'fast-glob';
 import path from 'path';
 import { promisify } from 'util';
 import yargs from 'yargs';
+import * as url from 'url';
+import { rollup } from 'rollup';
+import { babel as rollupBabel } from '@rollup/plugin-babel';
+import rollupResolve from '@rollup/plugin-node-resolve';
+import rollupPreserveDirectives from 'rollup-plugin-preserve-directives';
+import rollupAlias from '@rollup/plugin-alias';
 import { getVersionEnvVariables, getWorkspaceRoot } from './utils.mjs';
 
 const usePackageExports = process.env.MUI_USE_PACKAGE_EXPORTS === 'true';
@@ -44,6 +50,8 @@ async function run(argv) {
     '**/*.spec.ts',
     '**/*.spec.tsx',
     '**/*.d.ts',
+    '**/*.test/*.*',
+    '**/test-cases/*.*',
   ];
 
   // We generally support top level path imports e.g.
@@ -84,6 +92,61 @@ async function run(argv) {
   }
 
   const outDir = path.resolve(outDirBase, relativeOutDir);
+
+  if (usePackageExports) {
+    const { default: pkg } = await import(path.resolve('./package.json'), {
+      with: { type: 'json' },
+    });
+
+    const entryFiles = await glob(`**/*{${extensions.join(',')}}`, { cwd: srcDir, ignore });
+
+    const entries = Object.fromEntries(
+      entryFiles.map((file) => [
+        // nested/foo.js becomes nested/foo
+        file.slice(0, file.length - path.extname(file).length),
+        // This expands the relative paths to absolute paths, so e.g.
+        // src/nested/foo becomes /project/src/nested/foo.js
+        url.fileURLToPath(new URL(file, `${url.pathToFileURL(srcDir)}/`)),
+      ]),
+    );
+
+    const rollupBundle = await rollup({
+      input: entries,
+      external: (id) => /node_modules/.test(id),
+      onwarn(warning, warn) {
+        if (warning.code !== 'MODULE_LEVEL_DIRECTIVE') {
+          warn(warning);
+        }
+      },
+      plugins: [
+        rollupAlias({
+          // Mostly o resolve @mui/utils/formatMuiErrorMessage correctly, but generalizes to all packages.
+          entries: [{ find: pkg.name, replacement: srcDir }],
+        }),
+        rollupResolve({ extensions }),
+        rollupBabel({
+          configFile: babelConfigPath,
+          extensions,
+          babelHelpers: 'runtime',
+          envName: bundle,
+        }),
+        rollupPreserveDirectives(),
+      ],
+    });
+
+    const outputExtension = bundle === 'node' ? '.js' : '.mjs';
+
+    await rollupBundle.write({
+      preserveModules: true,
+      interop: 'auto',
+      exports: 'named',
+      dir: outDir,
+      format: bundle === 'node' ? 'commonjs' : 'es',
+      entryFileNames: `[name]${outputExtension}`,
+    });
+
+    return;
+  }
 
   const babelArgs = [
     '--config-file',
