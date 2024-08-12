@@ -47,6 +47,23 @@ The following example will render the `List` component with a `<menu>` element a
 
 This pattern is very powerful and allows for great flexibility, as well as a way to interoperate with other libraries, such as your favorite routing or forms library.
 
+### Passing other React components
+
+You can pass any other React component to `component` prop. For example, you can pass `Link` component from `react-router-dom`:
+
+```tsx
+import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
+
+function Demo() {
+  return (
+    <Button component={Link} to="/react-router">
+      React router link
+    </Button>
+  );
+}
+```
+
 ### With TypeScript
 
 To be able to use the `component` prop, the type of the props should be used with type arguments. Otherwise, the `component` prop will not be present.
@@ -71,7 +88,7 @@ You can find a code example with the Button and react-router-dom in [these demos
 
 ### Generic
 
-It's also possible to have a generic `CustomComponent` which will accept any React component, and HTML elements.
+It's also possible to have a generic custom component which will accept any React component, and HTML elements.
 
 ```ts
 function GenericCustomComponent<C extends React.ElementType>(
