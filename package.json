@@ -125,6 +125,7 @@
     "@types/mocha": "^10.0.7",
     "@types/node": "^18.19.43",
     "@types/react": "^18.3.3",
+    "@types/webpack-bundle-analyzer": "^4.7.0",
     "@types/yargs": "^17.0.32",
     "@typescript-eslint/eslint-plugin": "^7.16.1",
     "@typescript-eslint/parser": "^7.16.1",

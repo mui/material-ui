@@ -2,7 +2,6 @@
 import * as path from 'path';
 import * as url from 'url';
 import * as fs from 'fs';
-// @ts-ignore
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { createRequire } from 'module';
 import { findPages } from './src/modules/utils/find.mjs';
