@@ -4,17 +4,15 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import resolveProps from '@mui/utils/resolveProps';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
-import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import ButtonBase from '../ButtonBase';
+import { ButtonBaseRoot } from '../ButtonBase/ButtonBase';
 import capitalize from '../utils/capitalize';
-import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
-import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
+import { getButtonUtilityClass } from './buttonClasses';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 import ButtonGroupButtonContext from '../ButtonGroup/ButtonGroupButtonContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { color, disableElevation, fullWidth, size, variant, classes } = ownerState;
@@ -70,7 +68,7 @@ const commonIconStyles = [
   },
 ];
 
-const ButtonRoot = styled(ButtonBase, {
+export const ButtonRoot = styled(ButtonBaseRoot, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiButton',
   slot: 'Root',
@@ -88,220 +86,7 @@ const ButtonRoot = styled(ButtonBase, {
       ownerState.fullWidth && styles.fullWidth,
     ];
   },
-})(
-  memoTheme(({ theme }) => {
-    const inheritContainedBackgroundColor =
-      theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[800];
-
-    const inheritContainedHoverBackgroundColor =
-      theme.palette.mode === 'light' ? theme.palette.grey.A100 : theme.palette.grey[700];
-    return {
-      ...theme.typography.button,
-      minWidth: 64,
-      padding: '6px 16px',
-      border: 0,
-      borderRadius: (theme.vars || theme).shape.borderRadius,
-      transition: theme.transitions.create(
-        ['background-color', 'box-shadow', 'border-color', 'color'],
-        {
-          duration: theme.transitions.duration.short,
-        },
-      ),
-      '&:hover': {
-        textDecoration: 'none',
-      },
-      [`&.${buttonClasses.disabled}`]: {
-        color: (theme.vars || theme).palette.action.disabled,
-      },
-      variants: [
-        {
-          props: { variant: 'contained' },
-          style: {
-            color: `var(--variant-containedColor)`,
-            backgroundColor: `var(--variant-containedBg)`,
-            boxShadow: (theme.vars || theme).shadows[2],
-            '&:hover': {
-              boxShadow: (theme.vars || theme).shadows[4],
-              // Reset on touch devices, it doesn't add specificity
-              '@media (hover: none)': {
-                boxShadow: (theme.vars || theme).shadows[2],
-              },
-            },
-            '&:active': {
-              boxShadow: (theme.vars || theme).shadows[8],
-            },
-            [`&.${buttonClasses.focusVisible}`]: {
-              boxShadow: (theme.vars || theme).shadows[6],
-            },
-            [`&.${buttonClasses.disabled}`]: {
-              color: (theme.vars || theme).palette.action.disabled,
-              boxShadow: (theme.vars || theme).shadows[0],
-              backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
-            },
-          },
-        },
-        {
-          props: { variant: 'outlined' },
-          style: {
-            padding: '5px 15px',
-            border: '1px solid currentColor',
-            borderColor: `var(--variant-outlinedBorder, currentColor)`,
-            backgroundColor: `var(--variant-outlinedBg)`,
-            color: `var(--variant-outlinedColor)`,
-            [`&.${buttonClasses.disabled}`]: {
-              border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
-            },
-          },
-        },
-        {
-          props: { variant: 'text' },
-          style: {
-            padding: '6px 8px',
-            color: `var(--variant-textColor)`,
-            backgroundColor: `var(--variant-textBg)`,
-          },
-        },
-        ...Object.entries(theme.palette)
-          .filter(createSimplePaletteValueFilter(['dark', 'contrastText']))
-          .map(([color]) => ({
-            props: { color },
-            style: {
-              '--variant-textColor': (theme.vars || theme).palette[color].main,
-              '--variant-outlinedColor': (theme.vars || theme).palette[color].main,
-              '--variant-outlinedBorder': theme.vars
-                ? `rgba(${theme.vars.palette[color].mainChannel} / 0.5)`
-                : alpha(theme.palette[color].main, 0.5),
-              '--variant-containedColor': (theme.vars || theme).palette[color].contrastText,
-              '--variant-containedBg': (theme.vars || theme).palette[color].main,
-              '@media (hover: hover)': {
-                '&:hover': {
-                  '--variant-containedBg': (theme.vars || theme).palette[color].dark,
-                  '--variant-textBg': theme.vars
-                    ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                    : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
-                  '--variant-outlinedBorder': (theme.vars || theme).palette[color].main,
-                  '--variant-outlinedBg': theme.vars
-                    ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                    : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
-                },
-              },
-            },
-          })),
-        {
-          props: {
-            color: 'inherit',
-          },
-          style: {
-            '--variant-containedColor': theme.vars
-              ? // this is safe because grey does not change between default light/dark mode
-                theme.vars.palette.text.primary
-              : theme.palette.getContrastText?.(inheritContainedBackgroundColor),
-            '--variant-containedBg': theme.vars
-              ? theme.vars.palette.Button.inheritContainedBg
-              : inheritContainedBackgroundColor,
-            '@media (hover: hover)': {
-              '&:hover': {
-                '--variant-containedBg': theme.vars
-                  ? theme.vars.palette.Button.inheritContainedHoverBg
-                  : inheritContainedHoverBackgroundColor,
-                '--variant-textBg': theme.vars
-                  ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                  : alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
-                '--variant-outlinedBg': theme.vars
-                  ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                  : alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
-              },
-            },
-          },
-        },
-        {
-          props: {
-            size: 'small',
-            variant: 'text',
-          },
-          style: {
-            padding: '4px 5px',
-            fontSize: theme.typography.pxToRem(13),
-          },
-        },
-        {
-          props: {
-            size: 'large',
-            variant: 'text',
-          },
-          style: {
-            padding: '8px 11px',
-            fontSize: theme.typography.pxToRem(15),
-          },
-        },
-        {
-          props: {
-            size: 'small',
-            variant: 'outlined',
-          },
-          style: {
-            padding: '3px 9px',
-            fontSize: theme.typography.pxToRem(13),
-          },
-        },
-        {
-          props: {
-            size: 'large',
-            variant: 'outlined',
-          },
-          style: {
-            padding: '7px 21px',
-            fontSize: theme.typography.pxToRem(15),
-          },
-        },
-        {
-          props: {
-            size: 'small',
-            variant: 'contained',
-          },
-          style: {
-            padding: '4px 10px',
-            fontSize: theme.typography.pxToRem(13),
-          },
-        },
-        {
-          props: {
-            size: 'large',
-            variant: 'contained',
-          },
-          style: {
-            padding: '8px 22px',
-            fontSize: theme.typography.pxToRem(15),
-          },
-        },
-        {
-          props: {
-            disableElevation: true,
-          },
-          style: {
-            boxShadow: 'none',
-            '&:hover': {
-              boxShadow: 'none',
-            },
-            [`&.${buttonClasses.focusVisible}`]: {
-              boxShadow: 'none',
-            },
-            '&:active': {
-              boxShadow: 'none',
-            },
-            [`&.${buttonClasses.disabled}`]: {
-              boxShadow: 'none',
-            },
-          },
-        },
-        {
-          props: { fullWidth: true },
-          style: { width: '100%' },
-        },
-      ],
-    };
-  }),
-);
+})({});
 
 const ButtonStartIcon = styled('span', {
   name: 'MuiButton',
@@ -358,8 +143,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const {
     children,
     color = 'primary',
-    component = 'button',
-    className,
     disabled = false,
     disableElevation = false,
     disableFocusRipple = false,
@@ -376,7 +159,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const ownerState = {
     ...props,
     color,
-    component,
     disabled,
     disableElevation,
     disableFocusRipple,
@@ -402,23 +184,27 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const positionClassName = buttonGroupButtonContextPositionClassName || '';
 
+  const [Root, rootProps] = useSlot('root', {
+    ref,
+    elementType: ButtonRoot,
+    externalForwardedProps: {
+      type,
+      classes,
+      disabled,
+      focusRipple: !disableFocusRipple,
+      focusVisibleClassName: clsx(classes.focusVisible, focusVisibleClassName),
+      ...other,
+    },
+    className: clsx(contextProps.className, classes.root, positionClassName),
+    ownerState,
+  });
+
   return (
-    <ButtonRoot
-      ownerState={ownerState}
-      className={clsx(contextProps.className, classes.root, className, positionClassName)}
-      component={component}
-      disabled={disabled}
-      focusRipple={!disableFocusRipple}
-      focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
-      ref={ref}
-      type={type}
-      {...other}
-      classes={classes}
-    >
+    <Root {...rootProps}>
       {startIcon}
       {children}
       {endIcon}
-    </ButtonRoot>
+    </Root>
   );
 });
 

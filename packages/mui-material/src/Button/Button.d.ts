@@ -6,6 +6,10 @@ import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
 import { ButtonClasses } from './buttonClasses';
 
+declare const ButtonRoot = 'button';
+
+export { ButtonRoot };
+
 export interface ButtonPropsVariantOverrides {}
 
 export interface ButtonPropsColorOverrides {}
@@ -66,6 +70,9 @@ export interface ButtonOwnProps {
    * @default 'medium'
    */
   size?: OverridableStringUnion<'small' | 'medium' | 'large', ButtonPropsSizeOverrides>;
+  slots?: {
+    root?: React.ElementType;
+  };
   /**
    * Element placed before the children.
    */
