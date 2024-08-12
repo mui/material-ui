@@ -33,6 +33,8 @@ if (process.env.NODE_ENV !== 'production') {
   StylesContext.displayName = 'StylesContext';
 }
 
+let injectFirstNode;
+
 export default function StylesProvider(props) {
   const { children, injectFirst = false, disableGeneration = false, ...localOptions } = props;
 
@@ -80,9 +82,14 @@ export default function StylesProvider(props) {
     }
 
     if (!context.jss.options.insertionPoint && injectFirst && typeof window !== 'undefined') {
-      const head = document.head;
-      const injectFirstNode = document.createComment('mui-inject-first');
-      head.insertBefore(injectFirstNode, head.firstChild);
+      if (!injectFirstNode) {
+        const head = document.head;
+        // TODO: uncomment once we enable eslint-plugin-react-compiler
+        // eslint-disable-next-line react-compiler/react-compiler -- injectFirstNode is called inside callback
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        injectFirstNode = document.createComment('mui-inject-first');
+        head.insertBefore(injectFirstNode, head.firstChild);
+      }
 
       context.jss = create({ plugins: jssPreset().plugins, insertionPoint: injectFirstNode });
     }
