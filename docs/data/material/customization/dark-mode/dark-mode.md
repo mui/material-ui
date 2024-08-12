@@ -125,10 +125,10 @@ function App() {
 
 ## Toggling color mode
 
-To give your users a way to toggle between modes, use the `useColorScheme` hook to read and update the mode.
+To give your users a way to toggle between modes for [built-in support](#built-in-support), use the `useColorScheme` hook to read and update the mode.
 
 :::info
-`mode` is always `undefined` on the first render, so make sure to handle this case.
+`mode` is always `undefined` on the first render, so make sure to handle this case. Otherwise, you might see a hydration mismatch error.
 :::
 
 {{"demo": "ToggleColorMode.js", "defaultCodeOpen": false}}
@@ -231,7 +231,7 @@ Apply styles for a specific mode.
 
 ### The problem
 
-Server-rendered apps are built before they reach the user's device. 
+Server-rendered apps are built before they reach the user's device.
 This means they can't automatically adjust to the user's preferred color scheme when first loaded.
 
 Here's what typically happens:
@@ -243,7 +243,7 @@ Here's what typically happens:
 
 This "flash" of light mode happens every time you open the app, as long as your browser remembers your dark mode preference.
 
-This sudden change can be jarring, especially in low-light environments. 
+This sudden change can be jarring, especially in low-light environments.
 It can strain your eyes and disrupt your experience, particularly if you interact with the app during this transition.
 
 To better understand this issue, take a look at the animated image below:
