@@ -184,6 +184,19 @@ It also works with the `sx` prop:
 
 ## Stabilized Grid v2
 
+Grid v2 has been stabilized and is now using CSS gap for creating space between grid items.
+The responsive configuration has been consolidating into `size` and `offset` props for consistency.
+
+```jsx
+import Grid from '@mui/material/Grid2';
+
+<Grid container>
+  <Grid size={{ xs: 6, sm: 4, lg: 3 }} />
+  <Grid size={{ xs: 6, sm: 4, lg: 3 }} />
+  <Grid size={{ xs: 6, sm: 4, lg: 3 }} />
+</Grid>;
+```
+
 ## Revamping the free templates
 
 Explore the new and enhanced [Material UI free templates](https://mui.com/material-ui/getting-started/templates/) to see these amazing features in action. We've fully revamped the templates to provide the perfect starting point for your project, whether you're adding sleek styles or using the template's sections.
