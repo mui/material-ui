@@ -118,7 +118,7 @@
     "@mui/utils": "workspace:^",
     "@next/eslint-plugin-next": "^14.2.5",
     "@octokit/rest": "^20.1.1",
-    "@pigment-css/react": "^0.0.18",
+    "@pigment-css/react": "0.0.20",
     "@playwright/test": "1.46.0",
     "@types/fs-extra": "^11.0.4",
     "@types/lodash": "^4.17.7",
