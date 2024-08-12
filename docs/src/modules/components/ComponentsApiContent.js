@@ -11,6 +11,8 @@ import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
+import { getPropsApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/properties';
+import { getClassApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/classes';
 import { DEFAULT_API_LAYOUT_STORAGE_KEYS } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 
 function getTranslatedHeader(t, header, text) {
@@ -53,7 +55,7 @@ export default function ComponentsApiContent(props) {
   const router = useRouter();
 
   // There are legacy links where the the components had the Unstyled suffix
-  // This effects makes sure that the anchors will be correct wtih the renames
+  // This effects makes sure that the anchors will be correct with the renames
   React.useEffect(() => {
     const anchor = router.asPath.indexOf('#') >= 0 ? router.asPath.split('#')[1] : null;
     if (router.isReady && anchor && anchor.indexOf('-unstyled') >= 0) {
@@ -144,9 +146,11 @@ export default function ComponentsApiContent(props) {
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
           )}
           <PropertiesSection
-            properties={componentProps}
-            propertiesDescriptions={propDescriptions}
-            componentName={componentName}
+            properties={getPropsApiDefinitions({
+              componentName: pageContent.name,
+              properties: componentProps,
+              propertiesDescriptions: propDescriptions,
+            })}
             spreadHint={spreadHint}
             level="h3"
             titleHash={`${componentNameKebabCase}-props`}
@@ -222,9 +226,11 @@ export default function ComponentsApiContent(props) {
             layoutStorageKey={layoutStorageKey.slots}
           />
           <ClassesSection
-            componentClasses={componentClasses}
-            componentName={pageContent.name}
-            classDescriptions={classDescriptions}
+            classes={getClassApiDefinitions({
+              componentClasses,
+              componentName: pageContent.name,
+              classDescriptions,
+            })}
             spreadHint={t('api-docs.classesDescription')}
             titleHash={`${componentNameKebabCase}-classes`}
             level="h3"
