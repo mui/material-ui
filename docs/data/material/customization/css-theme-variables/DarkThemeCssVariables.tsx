@@ -27,7 +27,7 @@ export default function DarkThemeCssVariables() {
           severity="info"
           sx={{ p: 2, width: 'fit-content', mx: 'auto' }}
         >
-          <Typography>You are seeing me in dark palette.</Typography>
+          <Typography>This is the dark palette.</Typography>
         </Alert>
       </Box>
     </ThemeProvider>

@@ -350,7 +350,7 @@ The following deprecated types were removed:
 ### Merged CssVarsProvider into ThemeProvider
 
 The `CssVarsProvider` and `extendTheme` has been merged into `ThemeProvider` and `createTheme`.
-If you are using them in v5 or v6-beta, you should migrate as shown below:
+If you are using them in v5 or v6-beta, you must migrate as shown below:
 
 ```diff
 -import { experimental_extendTheme as extendTheme, Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
@@ -376,7 +376,8 @@ It's designed to replace `theme.palette.mode` when applying light or dark styles
  }))
 ```
 
-Staring from v6, this is an official way to apply styles based on the color mode. We recommend migrating to this method to smoothly adopt new features and improvements in the next major updates.
+Starting from v6, this is the official way to apply styles based on the color mode. 
+We highly recommend migrating to this method in order to keep up with new features and improvements in future major versions.
 
 Use these codemods to migrate your project to `theme.applyStyles`:
 
