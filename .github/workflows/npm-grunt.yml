@@ -1,0 +1,28 @@
+name: ibrahim halil bulut
+
+on:
+  push:
+    branches: [ "next" ]
+  pull_request:
+    branches: [ "next" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name:ibrahim halil bulut
+      run: yardim 
+        yinstall
+        grunt
