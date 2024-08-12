@@ -143,10 +143,10 @@ describe('<IconButton />', () => {
   });
 
   it('should apply the hover background by default', function test() {
-    if(!/jsdom/.test(window.navigator.userAgent)) {
+    if (!/jsdom/.test(window.navigator.userAgent)) {
       this.skip();
     }
-    
+
     const { container, getByTestId } = render(<IconButton data-testid="icon-button" />);
 
     fireEvent.mouseMove(container.firstChild, {
@@ -157,8 +157,8 @@ describe('<IconButton />', () => {
     });
   });
 
-  it('should not apply the hover background if disableRipple is true', () => {
-    if(!/jsdom/.test(window.navigator.userAgent)) {
+  it('should not apply the hover background if disableRipple is true', function test() {
+    if (!/jsdom/.test(window.navigator.userAgent)) {
       this.skip();
     }
 
