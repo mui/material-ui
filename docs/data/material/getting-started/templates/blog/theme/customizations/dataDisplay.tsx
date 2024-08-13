@@ -32,20 +32,20 @@ export const dataDisplayCustomizations: Components<Theme> = {
           padding: '2px 8px',
           borderRadius: theme.shape.borderRadius,
           opacity: 0.7,
-          [`&.${listItemClasses.selected}`]: {
+          '&.Mui-selected': {
             opacity: 1,
             backgroundColor: alpha(theme.palette.action.selected, 0.3),
             [`& .${svgIconClasses.root}`]: {
               color: theme.palette.text.primary,
             },
-            [`&.${listItemClasses.focusVisible}`]: {
+            '&:focus-visible': {
               backgroundColor: alpha(theme.palette.action.selected, 0.3),
             },
             '&:hover': {
               backgroundColor: alpha(theme.palette.action.selected, 0.5),
             },
           },
-          [`&.${listItemClasses.focusVisible}`]: {
+          '&:focus-visible': {
             backgroundColor: 'transparent',
           },
         },

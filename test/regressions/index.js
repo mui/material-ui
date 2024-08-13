@@ -90,7 +90,6 @@ const blacklist = [
   // Marketing Page Theme Customizations
   'docs-getting-started-templates-marketing-page/getMPTheme.png',
   'docs-getting-started-templates-marketing-page/MarketingPage.png',
-
   'docs-joy-getting-started-templates/TemplateCollection.png', // No public components
   'docs-joy-core-features-automatic-adjustment/ListThemes.png', // No public components
   'docs-joy-tools/PaletteThemeViewer.png', // No need for theme tokens
