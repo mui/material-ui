@@ -370,6 +370,28 @@ The following deprecated types are removed in v6:
 - `MuiMediaQueryListEvent`: use `MediaQueryListEvent` (from lib.dom.d.ts) instead.
 - `MuiMediaQueryListListener`: use `(event: MediaQueryListEvent) => void` instead.
 
+## Breaking changes affecting testing
+
+### Ripple effect
+
+The ripple effect's performance has been improved in v6.
+Because of this, you might need to update tests involving components with the ripple effect.
+If you are using `fireEvent` from `@testing-library/react` to simulate user interactions, you will need to wrap these inside `act` and `await` to avoid React warnings:
+
+```diff
+- fireEvent.click(button);
++ await act(async () => fireEvent.mouseDown(button));
+```
+
+The components affected by this change are:
+
+- All buttons
+- Checkbox
+- Chip
+- Radio Group
+- Switch
+- Tabs
+
 ## Stabilized APIs
 
 ### CssVarsProvider and extendTheme
