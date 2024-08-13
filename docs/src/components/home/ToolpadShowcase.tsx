@@ -12,8 +12,7 @@ import ROUTES from 'docs/src/route';
 
 const ToolpadCoreShowcase = React.lazy(() => import('./ToolpadCoreShowcaseDemo'));
 
-const tabOneCode = `
-const NAVIGATION: Navigation = [
+const tabOneCode = `<AppProvider navigation={[
   {
     kind: 'header',
     title: 'Main items',
@@ -22,78 +21,15 @@ const NAVIGATION: Navigation = [
     segment: 'dashboard',
     title: 'Dashboard',
     icon: <DashboardIcon />,
-  },
-  {
-    segment: 'orders',
-    title: 'Orders',
-    icon: <ShoppingCartIcon />,
-  },
-  {
-    kind: 'divider',
-  },
-  {
-    kind: 'header',
-    title: 'Analytics',
-  },
-  {
-    segment: 'reports',
-    title: 'Reports',
-    icon: <BarChartIcon />,
-    children: [
-      {
-        segment: 'sales',
-        title: 'Sales',
-        icon: <DescriptionIcon />,
-      },
-      {
-        segment: 'traffic',
-        title: 'Traffic',
-        icon: <DescriptionIcon />,
-      },
-    ],
-  },
-  {
-    segment: 'integrations',
-    title: 'Integrations',
-    icon: <LayersIcon />,
-  },
-];
-
-function DashboardLayoutBasic(props: DemoProps) {
-  const { window } = props;
-
-  const [pathname, setPathname] = React.useState('/page');
-
-  const router = React.useMemo<Router>(() => {
-    return {
-      pathname,
-      searchParams: new URLSearchParams(),
-      navigate: (path) => setPathname(String(path)),
-    };
-  }, [pathname]);
-
-  const demoWindow = window !== undefined ? window() : undefined;
-
-  return (
-    <AppProvider navigation={NAVIGATION} router={router} window={demoWindow}>
-      <DashboardLayout>
-        <PageContainer>
-          <Grid container spacing={2}>
-            <Grid size={6}>
-              <PlaceHolder height={100} />
-            </Grid>
-            <Grid size={6}>
-              <PlaceHolder height={100} />
-            </Grid>
-            <Grid size={12}>
-              <PlaceHolder height={200} />
-            </Grid>
-          </Grid>
-        </PageContainer>
-      </DashboardLayout>
-    </AppProvider>
-  );
-}`;
+  }
+  // ...
+]}>
+  <DashboardLayout>
+    <PageContainer>
+      {/* ... */}
+    </PageContainer>
+  </DashboardLayout>
+</AppProvider>`;
 
 const tabTwoCode = `
 apiVersion: v1
@@ -196,8 +132,6 @@ const tabsCodeInfo = [
     code: tabOneCode,
     label: 'Core',
     language: 'tsx',
-    description:
-      'Drop-in components that abstract away the complexity of dashboard layouts, authentication, navigation, and more.',
     imgSrc: '/static/branding/toolpad/ex-1.png',
     imgAlt: 'Toolpad app',
     Demo: ToolpadCoreShowcaseDemo,
@@ -207,7 +141,7 @@ const tabsCodeInfo = [
     label: 'Studio',
     language: 'yml',
     description:
-      "Use a drag-and-drop interface to build your app's configuration. Changes made in Studio are automatically synced to .yml files, and vice-versa. Bring your own components and data.",
+      'A drag-and-drop builder for creating dashboards and internal tools quickly, with your own components and data. Changes you make are synced to yml, and vice versa.',
     imgSrc: '/static/branding/toolpad/ex-1.png',
     imgAlt: '.yaml file represents Toolpad app',
   },
@@ -300,18 +234,20 @@ export default function ToolpadShowcase() {
           <ShowcaseCodeWrapper maxHeight={250}>
             {tabsCodeInfo.map((tab, index) => (
               <CustomTabPanel key={index} value={tabValue} index={index}>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    pb: 1.5,
-                    mb: 1.5,
-                    borderBottom: '1px solid',
-                    borderColor: 'divider',
-                    color: 'grey.400',
-                  }}
-                >
-                  {tab.description}
-                </Typography>
+                {tab.description ? (
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      pb: 1.5,
+                      mb: 1.5,
+                      borderBottom: '1px solid',
+                      borderColor: 'divider',
+                      color: 'grey.400',
+                    }}
+                  >
+                    {tab.description}
+                  </Typography>
+                ) : null}
                 <HighlightedCode
                   copyButtonHidden
                   code={tab.code}
