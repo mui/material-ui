@@ -262,7 +262,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const id = useId(idProp);
 
-  const prevUserSelect: React.MutableRefObject<string | undefined> = React.useRef();
+  const prevUserSelect = React.useRef<string | undefined>(undefined);
   const stopTouchInteraction = useEventCallback(() => {
     if (prevUserSelect.current !== undefined) {
       (document.body.style as unknown as { WebkitUserSelect?: string }).WebkitUserSelect =

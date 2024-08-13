@@ -3,7 +3,7 @@ import { ActionWithContext } from '../utils/useControllableReducer.types';
 import { MenuInternalState } from './useMenu.types';
 
 export type MenuActionContext = ListActionContext<string> & {
-  listboxRef: React.RefObject<HTMLElement>;
+  listboxRef: React.RefObject<HTMLElement | null>;
 };
 
 export function menuReducer(

@@ -267,7 +267,7 @@ function testSlotPropsProp(
   });
 }
 
-function testClassName(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+function testClassName(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
   it('applies the className to the root component', async () => {
     const { render } = getOptions();
 
