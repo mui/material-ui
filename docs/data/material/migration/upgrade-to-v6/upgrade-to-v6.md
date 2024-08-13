@@ -242,16 +242,65 @@ As the `ListItem` no longer supports these props, the class names related to the
 
 In v6, the `children` prop passed to the Loading Button component is now wrapped in a `<span>` tag to avoid [issues](https://github.com/mui/material-ui/issues/27853) when using tools to translate websites.
 
-### Grid v2 (Unstable_Grid)
+### Rating
 
-The `Grid2` was updated and stabilized:
+Previously, due to a bug, the `aria-label` attribute was "null Stars" when no value was set in the Rating component.
+This is fixed in v6, with the `aria-label` attribute being "0 Stars" when no value is set.
+
+### useMediaQuery types
+
+The following deprecated types are removed in v6:
+
+- `MuiMediaQueryList`: use `MediaQueryList` (from lib.dom.d.ts) instead.
+- `MuiMediaQueryListEvent`: use `MediaQueryListEvent` (from lib.dom.d.ts) instead.
+- `MuiMediaQueryListListener`: use `(event: MediaQueryListEvent) => void` instead.
+
+## Breaking changes affecting testing
+
+### Ripple effect
+
+The ripple effect's performance has been improved in v6.
+Because of this, you might need to update tests involving components with the ripple effect.
+If you are using `fireEvent` from `@testing-library/react` to simulate user interactions, you will need to wrap these inside `act` and `await` to avoid React warnings:
+
+```diff
+- fireEvent.click(button);
++ await act(async () => fireEvent.mouseDown(button));
+```
+
+The components affected by this change are:
+
+- All buttons
+- Checkbox
+- Chip
+- Radio Group
+- Switch
+- Tabs
+
+## Stabilized APIs
+
+### CssVarsProvider and extendTheme
+
+The `CssVarsProvider` and `extendTheme` APIs are now stable.
+If you're already using them in v5 you can now drop the experimental prefix:
+
+```diff
+-import { experimental_extendTheme as extendTheme, Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
++import { extendTheme, CssVarsProvider } from '@mui/material/styles';
+```
+
+See [CSS theme variables](/material-ui/customization/css-theme-variables/overview/) for more details about working with these APIs.
+
+### Grid2
+
+The `Grid2` (previously `Unstable_Grid2`) was updated and stabilized:
 
 - The previous size (`xs`, `sm`, `md`, ...) and offset (`xsOffset`, `smOffset`, `mdOffset`, ...) props, which were named after the theme's breakpoints, were replaced with the `size` and `offset` props.
 - The spacing mechanism was reworked to use the `gap` CSS property.
 
 This brings some breaking changes described in the following sections.
 
-#### Stabilized API
+#### Unstable prefix removed
 
 The `Grid2` component API was stabilized, so its import no longer contains the `Unstable_` prefix:
 
@@ -339,11 +388,6 @@ This eliminates the need for the `disableEqualOverflow` prop:
 +<Grid>
 ```
 
-:::warning
-This update may lead to unexpected changes to your app's layout.
-Still, we strongly recommend adopting this new behavior rather than trying to replicate the old pattern, as the new version is more predictable and modern.
-:::
-
 #### Grid item spacing change
 
 In v5, Grid items included spacing in their boxes.
@@ -351,61 +395,12 @@ In v6, Grid items no longer inclue spacing in their boxes.
 
 Note that the item position doesn't change.
 
-:::warning
-This update may lead to unexpected changes to your app's layout.
-Still, we strongly recommend adopting this new behavior rather than trying to replicate the old pattern, as the new version is more predictable and modern.
-:::
-
 <img src="/static/material-ui/migration-v5/grid-spacing-change.png" style="width: 814px;" alt="Before and after of the Grid items no longer including spacing in their boxes." width="1628" height="400" />
 
-### Rating
-
-Previously, due to a bug, the `aria-label` attribute was "null Stars" when no value was set in the Rating component.
-This is fixed in v6, with the `aria-label` attribute being "0 Stars" when no value is set.
-
-### useMediaQuery types
-
-The following deprecated types are removed in v6:
-
-- `MuiMediaQueryList`: use `MediaQueryList` (from lib.dom.d.ts) instead.
-- `MuiMediaQueryListEvent`: use `MediaQueryListEvent` (from lib.dom.d.ts) instead.
-- `MuiMediaQueryListListener`: use `(event: MediaQueryListEvent) => void` instead.
-
-## Breaking changes affecting testing
-
-### Ripple effect
-
-The ripple effect's performance has been improved in v6.
-Because of this, you might need to update tests involving components with the ripple effect.
-If you are using `fireEvent` from `@testing-library/react` to simulate user interactions, you will need to wrap these inside `act` and `await` to avoid React warnings:
-
-```diff
-- fireEvent.click(button);
-+ await act(async () => fireEvent.mouseDown(button));
-```
-
-The components affected by this change are:
-
-- All buttons
-- Checkbox
-- Chip
-- Radio Group
-- Switch
-- Tabs
-
-## Stabilized APIs
-
-### CssVarsProvider and extendTheme
-
-The `CssVarsProvider` and `extendTheme` APIs are now stable.
-If you're already using them in v5 you can now drop the experimental prefix:
-
-```diff
--import { experimental_extendTheme as extendTheme, Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
-+import { extendTheme, CssVarsProvider } from '@mui/material/styles';
-```
-
-See [CSS theme variables](/material-ui/customization/css-theme-variables/overview/) for more details about working with these APIs.
+:::warning
+These updates may lead to unexpected changes to your app's layout.
+Still, we strongly recommend adopting this new behavior rather than trying to replicate the old pattern, as the new version is more predictable and modern.
+:::
 
 ### Color mode theme utility
 
