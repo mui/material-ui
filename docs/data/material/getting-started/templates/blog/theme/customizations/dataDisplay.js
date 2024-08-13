@@ -96,7 +96,6 @@ export const dataDisplayCustomizations = {
         border: '1px solid',
         borderRadius: '999px',
         [`& .${chipClasses.label}`]: {
-          padding: '0 4px',
           fontWeight: 600,
         },
         variants: [
@@ -179,6 +178,17 @@ export const dataDisplayCustomizations = {
             props: { size: 'small' },
             style: {
               maxHeight: 20,
+              [`& .${chipClasses.label}`]: {
+                fontSize: theme.typography.caption.fontSize,
+              },
+              [`& .${svgIconClasses.root}`]: {
+                fontSize: theme.typography.caption.fontSize,
+              },
+            },
+          },
+          {
+            props: { size: 'medium' },
+            style: {
               [`& .${chipClasses.label}`]: {
                 fontSize: theme.typography.caption.fontSize,
               },

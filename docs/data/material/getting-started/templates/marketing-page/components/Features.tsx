@@ -80,9 +80,13 @@ export function MobileLayout({
 
   return (
     <Box
-      sx={{ display: { xs: 'flex', sm: 'none' }, flexDirection: 'column', gap: 4 }}
+      sx={{
+        display: { xs: 'flex', sm: 'none' },
+        flexDirection: 'column',
+        gap: 2,
+      }}
     >
-      <Box sx={{ display: 'flex', gap: 2 }}>
+      <Box sx={{ display: 'flex', gap: 2, overflow: 'auto' }}>
         {items.map(({ title }, index) => (
           <Chip
             size="medium"
@@ -96,6 +100,7 @@ export function MobileLayout({
       <Card variant="outlined">
         <Box
           sx={(theme) => ({
+            mb: 2,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             minHeight: 280,
@@ -227,7 +232,7 @@ export default function Features() {
         <Box
           sx={{
             display: { xs: 'none', sm: 'flex' },
-            width: '70%',
+            width: { xs: '100%', md: '70%' },
             height: 'var(--items-image-height)',
           }}
         >

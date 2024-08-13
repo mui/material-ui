@@ -144,21 +144,7 @@ export default function Pricing() {
                     {tier.title}
                   </Typography>
                   {tier.title === 'Professional' && (
-                    <Chip
-                      icon={<AutoAwesomeIcon />}
-                      label={tier.subheader}
-                      size="small"
-                      sx={{
-                        borderColor: 'hsla(220, 60%, 99%, 0.3)',
-                        backgroundColor: 'hsla(220, 60%, 99%, 0.1)',
-                        '& .MuiChip-label': {
-                          color: 'hsl(0, 0%, 100%)',
-                        },
-                        '& .MuiChip-icon': {
-                          color: 'primary.light',
-                        },
-                      }}
-                    />
+                    <Chip icon={<AutoAwesomeIcon />} label={tier.subheader} />
                   )}
                 </Box>
                 <Box
