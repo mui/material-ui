@@ -13,8 +13,7 @@ import {
   ClassDefinition,
   getClassApiDefinitions,
 } from 'docs/src/modules/components/ApiPage/definitions/classes';
-import { ComponentClassDefinition } from '@mui/internal-docs-utils';
-import { PropsTranslations } from '@mui-internal/api-docs-builder';
+import { PropsTranslations, ComponentClassDefinition } from '@mui-internal/api-docs-builder';
 import kebabCase from 'lodash/kebabCase';
 
 export type GetCssToCParams = {
