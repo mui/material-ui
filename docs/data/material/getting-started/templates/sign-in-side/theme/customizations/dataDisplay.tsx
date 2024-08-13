@@ -1,5 +1,5 @@
 import { Theme, alpha, Components } from '@mui/material/styles';
-import SvgIcon, { svgIconClasses } from '@mui/material/SvgIcon';
+import { svgIconClasses } from '@mui/material/SvgIcon';
 import { typographyClasses } from '@mui/material/Typography';
 import { buttonBaseClasses } from '@mui/material/ButtonBase';
 import { listItemClasses } from '@mui/material/ListItem';
