@@ -281,7 +281,7 @@ export interface UseAutocompleteProps<
    */
   openOnFocus?: boolean;
   /**
-   * Array of options.
+   * A list of options that will be shown in the Autocomplete.
    */
   options: ReadonlyArray<Value>;
   /**

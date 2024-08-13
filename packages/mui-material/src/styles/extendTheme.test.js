@@ -723,10 +723,19 @@ describe('extendTheme', () => {
   describe('light and dark color schemes', () => {
     it('should use prefers-color-scheme (`media`) by default', () => {
       const theme = extendTheme({ colorSchemes: { light: true, dark: true } });
-      expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
-        ':root',
-        ':root',
-        '@media (prefers-color-scheme: dark) { :root',
+      const sheets = theme.generateStyleSheets();
+      sinon.assert.match(sheets, [
+        {
+          ':root': sheets[0][':root'], // non-colors related variables
+        },
+        {
+          ':root': sheets[1][':root'], // light palette
+        },
+        {
+          '@media (prefers-color-scheme: dark)': {
+            ':root': sheets[2]['@media (prefers-color-scheme: dark)'][':root'], // dark palette
+          },
+        },
       ]);
     });
 
@@ -744,11 +753,23 @@ describe('extendTheme', () => {
         colorSchemes: { light: true, dark: true },
         defaultColorScheme: 'dark',
       });
-      expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
-        ':root',
-        ':root',
-        '@media (prefers-color-scheme: dark) { :root', // this key targets excluded variables for dark
-        '@media (prefers-color-scheme: light) { :root',
+      const sheets = theme.generateStyleSheets();
+      sinon.assert.match(sheets, [
+        {
+          ':root': sheets[0][':root'], // non-colors related variables
+        },
+        {
+          ':root': sheets[1][':root'], // dark palette
+          '@media (prefers-color-scheme: dark)': {
+            // dark specific variables
+            ':root': sheets[1]['@media (prefers-color-scheme: dark)'][':root'],
+          },
+        },
+        {
+          '@media (prefers-color-scheme: light)': {
+            ':root': sheets[2]['@media (prefers-color-scheme: light)'][':root'], // light palette
+          },
+        },
       ]);
     });
 
