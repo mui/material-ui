@@ -207,10 +207,11 @@ export default function MainContent() {
           gap: 4,
         }}
       >
-        <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1 }}>
-          <Chip onClick={handleClick} label="All categories" />
+        <Box sx={{ display: 'flex', flexDirection: 'row', gap: 3 }}>
+          <Chip onClick={handleClick} size="medium" label="All categories" />
           <Chip
             onClick={handleClick}
+            size="medium"
             label="Company"
             sx={{
               backgroundColor: 'transparent',
@@ -219,6 +220,7 @@ export default function MainContent() {
           />
           <Chip
             onClick={handleClick}
+            size="medium"
             label="Product"
             sx={{
               backgroundColor: 'transparent',
@@ -227,6 +229,7 @@ export default function MainContent() {
           />
           <Chip
             onClick={handleClick}
+            size="medium"
             label="Design"
             sx={{
               backgroundColor: 'transparent',
@@ -235,6 +238,7 @@ export default function MainContent() {
           />
           <Chip
             onClick={handleClick}
+            size="medium"
             label="Engineering"
             sx={{
               backgroundColor: 'transparent',

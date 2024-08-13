@@ -1,44 +1,90 @@
-import { Components, Theme, alpha } from '@mui/material/styles';
+import { alpha } from '@mui/material/styles';
+import { svgIconClasses } from '@mui/material/SvgIcon';
+import { typographyClasses } from '@mui/material/Typography';
+import { buttonBaseClasses } from '@mui/material/ButtonBase';
+import { listItemClasses } from '@mui/material/ListItem';
 import { chipClasses } from '@mui/material/Chip';
 import { iconButtonClasses } from '@mui/material/IconButton';
-import { gray, red, brand, green } from '../themePrimitives';
+import { gray, red, green } from '../themePrimitives';
 
 /* eslint-disable import/prefer-default-export */
-export const otherComponentsCustomizations: Components<Theme> = {
-  MuiLink: {
-    defaultProps: {
-      underline: 'none',
+export const dataDisplayCustomizations = {
+  MuiList: {
+    styleOverrides: {
+      root: {
+        padding: '8px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 0,
+      },
     },
+  },
+  MuiListItem: {
     styleOverrides: {
       root: ({ theme }) => ({
-        color: brand[600],
-        fontWeight: 500,
-        position: 'relative',
-        textDecoration: 'none',
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          width: 0,
-          height: '1px',
-          bottom: 0,
-          left: 0,
-          backgroundColor: brand[200],
+        [`& .${svgIconClasses.root}`]: {
+          width: '1rem',
+          height: '1rem',
+          color: theme.palette.text.secondary,
+        },
+        [`& .${typographyClasses.root}`]: {
+          fontWeight: 500,
+        },
+        [`& .${buttonBaseClasses.root}`]: {
+          display: 'flex',
+          gap: 8,
+          padding: '2px 8px',
+          borderRadius: theme.shape.borderRadius,
           opacity: 0.7,
-          transition: 'width 0.3s ease, opacity 0.3s ease',
+          [`&.${listItemClasses.selected}`]: {
+            opacity: 1,
+            backgroundColor: alpha(theme.palette.action.selected, 0.3),
+            [`& .${svgIconClasses.root}`]: {
+              color: theme.palette.text.primary,
+            },
+            [`&.${listItemClasses.focusVisible}`]: {
+              backgroundColor: alpha(theme.palette.action.selected, 0.3),
+            },
+            '&:hover': {
+              backgroundColor: alpha(theme.palette.action.selected, 0.5),
+            },
+          },
+          [`&.${listItemClasses.focusVisible}`]: {
+            backgroundColor: 'transparent',
+          },
         },
-        '&:hover::before': {
-          width: '100%',
-          opacity: 1,
-        },
-        '&:focus-visible': {
-          outline: `3px solid ${alpha(brand[500], 0.5)}`,
-          outlineOffset: '4px',
-          borderRadius: '2px',
-        },
-        ...theme.applyStyles('dark', {
-          color: brand[200],
-        }),
       }),
+    },
+  },
+  MuiListItemText: {
+    styleOverrides: {
+      primary: ({ theme }) => ({
+        fontSize: theme.typography.body2.fontSize,
+        fontWeight: 500,
+        lineHeight: theme.typography.body2.lineHeight,
+      }),
+      secondary: ({ theme }) => ({
+        fontSize: theme.typography.caption.fontSize,
+        lineHeight: theme.typography.caption.lineHeight,
+      }),
+    },
+  },
+  MuiListSubheader: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        backgroundColor: 'transparent',
+        padding: '4px 8px',
+        fontSize: theme.typography.caption.fontSize,
+        fontWeight: 500,
+        lineHeight: theme.typography.caption.lineHeight,
+      }),
+    },
+  },
+  MuiListItemIcon: {
+    styleOverrides: {
+      root: {
+        minWidth: 0,
+      },
     },
   },
   MuiChip: {
@@ -50,7 +96,6 @@ export const otherComponentsCustomizations: Components<Theme> = {
         border: '1px solid',
         borderRadius: '999px',
         [`& .${chipClasses.label}`]: {
-          padding: '0 4px',
           fontWeight: 600,
         },
         variants: [
@@ -136,21 +181,20 @@ export const otherComponentsCustomizations: Components<Theme> = {
               [`& .${chipClasses.label}`]: {
                 fontSize: theme.typography.caption.fontSize,
               },
+              [`& .${svgIconClasses.root}`]: {
+                fontSize: theme.typography.caption.fontSize,
+              },
+            },
+          },
+          {
+            props: { size: 'medium' },
+            style: {
+              [`& .${chipClasses.label}`]: {
+                fontSize: theme.typography.caption.fontSize,
+              },
             },
           },
         ],
-      }),
-    },
-  },
-  MuiLinearProgress: {
-    styleOverrides: {
-      root: ({ theme }) => ({
-        height: 8,
-        borderRadius: 8,
-        backgroundColor: gray[200],
-        ...theme.applyStyles('dark', {
-          backgroundColor: gray[800],
-        }),
       }),
     },
   },
@@ -185,13 +229,6 @@ export const otherComponentsCustomizations: Components<Theme> = {
           },
         ],
       },
-    },
-  },
-  MuiDrawer: {
-    styleOverrides: {
-      paper: ({ theme }) => ({
-        backgroundColor: theme.palette.background.default,
-      }),
     },
   },
 };
