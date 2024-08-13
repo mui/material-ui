@@ -10,9 +10,10 @@ Material UI v6 introduces Pigment CSS, a zero-runtime CSS-in-JS styling engine
 With Pigment CSS, styles are extracted at build time rather than runtime, avoiding client-side recalculations and unlocking React Server Component (RSC) compatibility.
 This also leads to significant reductions in bundle sizes for Material UI apps.
 
-**In v6, Pigment CSS migration is opt-in.**
+**In v6, Pigment CSS is opt-in.**
 Future major versions of Material UI will likely use Pigment CSS as the default styling solution.
-Though optional, we highly recommend migrating your Material UI app to Pigment CSS once you've upgraded to v6.
+Though optional, we encourage trying Pigment CSS out in your Material UI app.
+If you wish to do so, go to the guide for [migrating to Pigment CSS](/material-ui/migration/migrating-to-pigment-css/) after this one.
 
 ### Quality-of-life improvements
 
