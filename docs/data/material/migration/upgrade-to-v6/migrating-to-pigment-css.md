@@ -2,7 +2,7 @@
 
 <p class="description">This guide helps you integrate Pigment CSS with Material UI v6.</p>
 
-Before going through this guide, make sure you have [migrated to Material UI v6](/material-ui/migration/migrating-to-v6/).
+Before going through this guide, make sure you have [upgraded to Material UI v6](/material-ui/migration/upgrade-to-v6/).
 
 ## Introduction
 
