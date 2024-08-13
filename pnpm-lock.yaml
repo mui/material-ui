@@ -16277,7 +16277,7 @@ snapshots:
 
   '@types/webpack-bundle-analyzer@4.7.0(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.92.1))':
     dependencies:
-      '@types/node': 18.19.43
+      '@types/node': 18.19.44
       tapable: 2.2.1
       webpack: 5.92.1(webpack-cli@5.1.4)
     transitivePeerDependencies:
