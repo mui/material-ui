@@ -71,6 +71,11 @@
     "test:regressions:dev": "concurrently \"pnpm test:regressions:build --watch\" \"pnpm test:regressions:server\"",
     "test:regressions:run": "nx run nx_test_regressions_run",
     "test:regressions:server": "serve test/regressions -p 5001",
+    "test:regressions-pigment-css": "cross-env NODE_ENV=production pnpm test:regressions-pigment-css:build && concurrently --success first --kill-others \"pnpm test:regressions-pigment-css:run\" \"pnpm test:regressions-pigment-css:server\"",
+    "test:regressions-pigment-css:build": "pnpm --filter @app/vite-app run build",
+    "test:regressions-pigment-css:dev": "concurrently \"pnpm test:regressions-pigment-css:build --watch\" \"pnpm test:regressions-pigment-css:server\"",
+    "test:regressions-pigment-css:run": "nx run nx_test_regressions_pigment_css_run",
+    "test:regressions-pigment-css:server": "pnpm --filter @app/vite-app run preview --port 5001",
     "test:unit": "nx run nx_test_unit",
     "test:argos": "node ./scripts/pushArgos.mjs",
     "typescript": "lerna run --no-bail --parallel typescript",
@@ -88,6 +93,7 @@
     "nx_test_karma_profile": "cross-env NODE_ENV=test karma start test/karma.conf.profile.js",
     "nx_test_karma": "cross-env NODE_ENV=test karma start test/karma.conf.js",
     "nx_test_regressions_run": "mocha --config test/regressions/.mocharc.js --delay 'test/regressions/**/*.test.js'",
+    "nx_test_regressions_pigment_css_run": "mocha --config apps/pigment-css-vite-app/.mocharc.js --delay 'apps/pigment-css-vite-app/**/*.test.js'",
     "nx_test_unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'packages-internal/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'"
   },
   "dependencies": {
