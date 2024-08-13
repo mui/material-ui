@@ -19,8 +19,8 @@ If you wish to do so, go to the guide for [migrating to Pigment CSS](/material-
 
 Material UI v6 features several other quality-of-life improvements, including:
 
-- stabilizing [the `CssVarsProvider` API](#cssvarsprovider-and-extendtheme)
-- support for container queries in themes
+- `ThemeProvider` now supports all of the `CssVarsProvider` features
+- support for [container queries](/material-ui/customization/container-queries/)
 - a [new theme utility](#color-mode-theme-utility) for adding styles to specific color modes
 
 ## Start using the beta release
