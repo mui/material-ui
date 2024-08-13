@@ -41,13 +41,13 @@ describe('utils/getDisplayName.js', () => {
       ));
       NamedForwardRefComponent.displayName = 'Div';
 
-      const AnonymousMemoComponent = React.memo((props, ref) => <div {...props} ref={ref} />);
+      const AnonymousMemoComponent = React.memo((props) => <div {...props} />);
 
-      const MemoComponent = React.memo(function Div(props, ref) {
-        return <div {...props} ref={ref} />;
+      const MemoComponent = React.memo(function Div(props) {
+        return <div {...props} />;
       });
 
-      const NamedMemoComponent = React.memo((props, ref) => <div {...props} ref={ref} />);
+      const NamedMemoComponent = React.memo((props) => <div {...props} />);
       NamedMemoComponent.displayName = 'Div';
 
       const NamedContext = React.createContext(null);
