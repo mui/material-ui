@@ -712,7 +712,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
       type: 'range',
       min: parameters.min,
       max: parameters.max,
-      step: parameters.step === null && parameters.marks ? 'any' : parameters.step ?? undefined,
+      step: parameters.step === null && parameters.marks ? 'any' : (parameters.step ?? undefined),
       disabled,
       ...externalProps,
       ...mergedEventHandlers,
