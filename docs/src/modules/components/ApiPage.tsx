@@ -94,7 +94,7 @@ interface ApiPageProps {
   descriptions: {
     [lang: string]: PropsTranslations & {
       // Table of Content added by the mapApiPageTranslations function
-      componentDescriptionToc: TableOfContentsEntry[];
+      componentDescriptionToc: TableOfContentsParams[];
     };
   };
   disableAd?: boolean;
