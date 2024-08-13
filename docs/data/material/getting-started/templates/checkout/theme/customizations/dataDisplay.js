@@ -2,7 +2,6 @@ import { alpha } from '@mui/material/styles';
 import { svgIconClasses } from '@mui/material/SvgIcon';
 import { typographyClasses } from '@mui/material/Typography';
 import { buttonBaseClasses } from '@mui/material/ButtonBase';
-import { listItemClasses } from '@mui/material/ListItem';
 import { chipClasses } from '@mui/material/Chip';
 import { iconButtonClasses } from '@mui/material/IconButton';
 import { gray, red, green } from '../themePrimitives';
@@ -36,20 +35,20 @@ export const dataDisplayCustomizations = {
           padding: '2px 8px',
           borderRadius: theme.shape.borderRadius,
           opacity: 0.7,
-          [`&.${listItemClasses.selected}`]: {
+          '&.Mui-selected': {
             opacity: 1,
             backgroundColor: alpha(theme.palette.action.selected, 0.3),
             [`& .${svgIconClasses.root}`]: {
               color: theme.palette.text.primary,
             },
-            [`&.${listItemClasses.focusVisible}`]: {
+            '&:focus-visible': {
               backgroundColor: alpha(theme.palette.action.selected, 0.3),
             },
             '&:hover': {
               backgroundColor: alpha(theme.palette.action.selected, 0.5),
             },
           },
-          [`&.${listItemClasses.focusVisible}`]: {
+          '&:focus-visible': {
             backgroundColor: 'transparent',
           },
         },
