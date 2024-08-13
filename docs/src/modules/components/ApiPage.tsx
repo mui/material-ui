@@ -30,7 +30,7 @@ import {
   getClassApiDefinitions,
   getClassesToC,
 } from 'docs/src/modules/components/ApiPage/definitions/classes';
-import { getSlotsApiDefinitions } from './ApiPage/definitions/slots';
+import { getSlotsApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/slots';
 
 // TODO Move this type definition to the AppLayoutDocs file when moved to TS
 export interface TableOfContentsParams {

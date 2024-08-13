@@ -13,8 +13,7 @@ import {
   ClassDefinition,
   getClassApiDefinitions,
 } from 'docs/src/modules/components/ApiPage/definitions/classes';
-import { ComponentClassDefinition } from '@mui/internal-docs-utils';
-import { PropsTranslations } from '@mui-internal/api-docs-builder';
+import { PropsTranslations, ComponentClassDefinition } from '@mui-internal/api-docs-builder';
 import kebabCase from 'lodash/kebabCase';
 
 export type GetCssToCParams = {
@@ -25,7 +24,7 @@ export type GetCssToCParams = {
 };
 
 /**
- * @deprecated Use the function from ApiPage/processors
+ * @deprecated Use the function from ApiPage/definitions
  */
 export const getClassesToC = ({ componentName, componentClasses, t, hash }: GetCssToCParams) =>
   !componentClasses || componentClasses.length === 0
@@ -74,8 +73,8 @@ export type ClassesSectionProps = (
   level?: 'h2' | 'h3' | 'h4';
   defaultLayout: ApiDisplayOptions;
   layoutStorageKey: string;
-  displayClassKeys: boolean;
-  styleOverridesLink: string;
+  displayClassKeys?: boolean;
+  styleOverridesLink?: string;
 };
 
 export default function ClassesSection(props: ClassesSectionProps) {
