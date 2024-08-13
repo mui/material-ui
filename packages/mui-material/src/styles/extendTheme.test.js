@@ -24,6 +24,7 @@ describe('extendTheme', () => {
       configurable: true,
     });
     window.matchMedia = () => ({
+      // Keep mocking legacy methods because @mui/material v5 still uses them
       addListener: () => {},
       addEventListener: () => {},
       removeListener: () => {},

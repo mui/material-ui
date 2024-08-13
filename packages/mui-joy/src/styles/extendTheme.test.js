@@ -215,6 +215,7 @@ describe('extendTheme', () => {
         configurable: true,
       });
       window.matchMedia = () => ({
+        // Keep mocking legacy methods because older code might still use them
         addListener: () => {},
         addEventListener: () => {},
         removeListener: () => {},
