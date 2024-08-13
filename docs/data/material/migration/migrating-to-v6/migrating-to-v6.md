@@ -188,7 +188,7 @@ export default function ChipExample() {
 
 ### Divider
 
-When using vertical orientation, the Divider now renders a `<div>` with the corresponding accessibility attributes instead of `<hr>` to adhere to the WAI-ARIA [spec](https://www.w3.org/TR/wai-aria-1.2/#separator). You might need to adjust your styles accordingly if you are targeting `hr` tags in your CSS.
+When using vertical orientation, the Divider now renders a `<div>` with the corresponding accessibility attributes instead of `<hr>` to adhere to [the WAI-ARIA spec](https://www.w3.org/TR/wai-aria-1.2/#separator). You might need to adjust your styles accordingly if you are targeting `hr` tags in your CSS.
 
 ### Loading Button
 
