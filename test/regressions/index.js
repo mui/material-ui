@@ -75,7 +75,7 @@ const blacklist = [
   'docs-getting-started-templates-dashboard-theme-customizations/menus.png',
   'docs-getting-started-templates-dashboard-theme-customizations/others.png',
   'docs-getting-started-templates-dashboard-theme-customizations/treeView.png',
-  'docs-getting-started-templates-dashboard-internals-components/CustomIcons',
+  'docs-getting-started-templates-dashboard-internals-components/CustomIcons.png',
   // Sign-In/Sign-Up Theme Customizations
   'docs-getting-started-templates-sign-in-side-theme-customizations/index.png',
   'docs-getting-started-templates-sign-in-side/CustomIcons.png',
