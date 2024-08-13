@@ -490,7 +490,7 @@ jobs:
           command: xvfb-run pnpm test:regressions
       - run:
           name: Run visual regression tests using Pigment CSS
-          command: xvfb-run pnpm test:regressions-pigment-css
+          command: xvfb-run pnpm release:build && pnpm test:regressions-pigment-css
       - run:
           name: Upload screenshots to Argos CI
           command: pnpm test:argos
