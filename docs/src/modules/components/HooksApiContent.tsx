@@ -2,16 +2,22 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import kebabCase from 'lodash/kebabCase';
-import { exactProp } from '@mui/utils';
-import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
-import { SectionTitle } from '@mui/docs/SectionTitle';
+import exactProp from '@mui/utils/exactProp';
+import { Translate, useTranslate, useUserLanguage } from '@mui/docs/i18n';
+import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
+import { HookApiContent, HooksTranslations } from '@mui-internal/api-docs-builder';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
+import { getHookApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/properties';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
-import { DEFAULT_API_LAYOUT_STORAGE_KEYS } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
+import {
+  ApiDisplayOptions,
+  DEFAULT_API_LAYOUT_STORAGE_KEYS,
+} from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
+import { LayoutStorageKeys } from 'docs/src/modules/components//ApiPage';
 
-function getTranslatedHeader(t, header, text) {
-  const translations = {
+function getTranslatedHeader(t: Translate, header: string, title?: string) {
+  const translations: Record<string, string> = {
     demos: t('api-docs.demos'),
     import: t('api-docs.import'),
     'hook-name': t('api-docs.hookName'),
@@ -19,23 +25,34 @@ function getTranslatedHeader(t, header, text) {
     'return-value': t('api-docs.returnValue'),
   };
 
-  return translations[header] || translations[text] || text || header;
+  return translations[header] || (title && translations[title]) || title || header;
 }
 
-function Heading(props) {
-  const { hash, text, level = 'h2' } = props;
+function Heading(props: SectionTitleProps) {
+  const { hash, title, level = 'h2' } = props;
   const t = useTranslate();
 
-  return <SectionTitle hash={hash} title={getTranslatedHeader(t, hash, text)} level={level} />;
+  return <SectionTitle title={getTranslatedHeader(t, hash, title)} hash={hash} level={level} />;
 }
 
 Heading.propTypes = {
   hash: PropTypes.string.isRequired,
   level: PropTypes.string,
-  text: PropTypes.string,
+  title: PropTypes.string,
 };
 
-export default function HooksApiContent(props) {
+type HooksApiContentProps = {
+  descriptions: {
+    [hookName: string]: {
+      [lang: string]: HooksTranslations;
+    };
+  };
+  pagesContents: { [component: string]: HookApiContent };
+  defaultLayout?: ApiDisplayOptions;
+  layoutStorageKey?: LayoutStorageKeys;
+};
+
+export default function HooksApiContent(props: HooksApiContentProps) {
   const {
     descriptions,
     pagesContents,
@@ -61,38 +78,42 @@ export default function HooksApiContent(props) {
     return (
       <React.Fragment key={`hook-api-${key}`}>
         <MarkdownElement>
-          <Heading hash={hookNameKebabCase} text={`${hookName} API`} />
-          <Heading text="import" hash={`${hookNameKebabCase}-import`} level="h3" />
+          <Heading hash={hookNameKebabCase} title={`${hookName} API`} />
+          <Heading title="import" hash={`${hookNameKebabCase}-import`} level="h3" />
           <HighlightedCode code={importInstructions} language="jsx" />
           {imports.length > 1 && (
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
           )}
           {Object.keys(parameters).length > 0 ? (
             <PropertiesSection
-              properties={parameters}
-              propertiesDescriptions={parametersDescriptions}
-              componentName={hookName}
-              hooksParameters
+              properties={getHookApiDefinitions({
+                kind: 'parameters',
+                hookName,
+                properties: parameters,
+                translations: parametersDescriptions,
+              })}
               level="h3"
               title="api-docs.parameters"
               titleHash={`${hookNameKebabCase}-parameters`}
               defaultLayout={defaultLayout}
-              layoutStorageKey={layoutStorageKey}
+              layoutStorageKey={layoutStorageKey.props}
             />
           ) : (
             <span>{t('api-docs.hooksNoParameters')}</span>
           )}
           <PropertiesSection
-            properties={returnValue}
-            propertiesDescriptions={returnValueDescriptions}
-            componentName={hookName}
-            showOptionalAbbr
-            hooksReturnValue
+            properties={getHookApiDefinitions({
+              kind: 'return',
+              hookName,
+              properties: returnValue,
+              translations: returnValueDescriptions,
+              showOptionalAbbr: true,
+            })}
             level="h3"
             title="api-docs.returnValue"
             titleHash={`${hookNameKebabCase}-return-value`}
             defaultLayout={defaultLayout}
-            layoutStorageKey={layoutStorageKey}
+            layoutStorageKey={layoutStorageKey.props}
           />
           <br />
         </MarkdownElement>
@@ -106,13 +127,11 @@ export default function HooksApiContent(props) {
   });
 }
 
-HooksApiContent.propTypes = {
-  defaultLayout: PropTypes.oneOf(['collapsed', 'expanded', 'table']),
-  descriptions: PropTypes.object.isRequired,
-  layoutStorageKey: PropTypes.string,
-  pagesContents: PropTypes.object.isRequired,
-};
-
 if (process.env.NODE_ENV !== 'production') {
-  HooksApiContent.propTypes = exactProp(HooksApiContent.propTypes);
+  HooksApiContent.propTypes = exactProp({
+    defaultLayout: PropTypes.oneOf(['collapsed', 'expanded', 'table']),
+    descriptions: PropTypes.object.isRequired,
+    layoutStorageKey: PropTypes.string,
+    pagesContents: PropTypes.object.isRequired,
+  });
 }

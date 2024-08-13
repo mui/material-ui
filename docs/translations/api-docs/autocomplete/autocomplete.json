@@ -155,7 +155,7 @@
     "openText": {
       "description": "Override the default text for the <em>open popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>."
     },
-    "options": { "description": "Array of options." },
+    "options": { "description": "A list of options that will be shown in the Autocomplete." },
     "PaperComponent": { "description": "The component used to render the body of the popup." },
     "PopperComponent": { "description": "The component used to position the popup." },
     "popupIcon": { "description": "The icon to display in place of the default popup icon." },

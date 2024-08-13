@@ -3,18 +3,26 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import kebabCase from 'lodash/kebabCase';
 import { useRouter } from 'next/router';
-import { exactProp } from '@mui/utils';
-import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
-import { SectionTitle } from '@mui/docs/SectionTitle';
+import exactProp from '@mui/utils/exactProp';
+import { Translate, useTranslate, useUserLanguage } from '@mui/docs/i18n';
+import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
+import { ComponentApiContent, PropsTranslations } from '@mui-internal/api-docs-builder';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
-import { DEFAULT_API_LAYOUT_STORAGE_KEYS } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
+import { getPropsApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/properties';
+import { getClassApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/classes';
+import {
+  ApiDisplayOptions,
+  DEFAULT_API_LAYOUT_STORAGE_KEYS,
+} from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
+import { getSlotsApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/slots';
+import { LayoutStorageKeys } from 'docs/src/modules/components/ApiPage';
 
-function getTranslatedHeader(t, header, text) {
-  const translations = {
+function getTranslatedHeader(t: Translate, header: string, title?: string) {
+  const translations: Record<string, string> = {
     demos: t('api-docs.demos'),
     import: t('api-docs.import'),
     props: t('api-docs.props'),
@@ -25,23 +33,34 @@ function getTranslatedHeader(t, header, text) {
     css: t('api-docs.css'),
   };
 
-  return translations[header] || translations[text] || text || header;
+  return translations[header] || (title && translations[title]) || title || header;
 }
 
-function Heading(props) {
-  const { hash, text, level = 'h2' } = props;
+function Heading(props: SectionTitleProps) {
+  const { hash, title, level = 'h2' } = props;
   const t = useTranslate();
 
-  return <SectionTitle title={getTranslatedHeader(t, hash, text)} hash={hash} level={level} />;
+  return <SectionTitle title={getTranslatedHeader(t, hash, title)} hash={hash} level={level} />;
 }
 
 Heading.propTypes = {
   hash: PropTypes.string.isRequired,
   level: PropTypes.string,
-  text: PropTypes.string,
+  title: PropTypes.string,
 };
 
-export default function ComponentsApiContent(props) {
+type ComponentsApiContentProps = {
+  descriptions: {
+    [component: string]: {
+      [lang: string]: PropsTranslations;
+    };
+  };
+  pageContents: { [component: string]: ComponentApiContent };
+  defaultLayout?: ApiDisplayOptions;
+  layoutStorageKey?: LayoutStorageKeys;
+};
+
+export default function ComponentsApiContent(props: ComponentsApiContentProps) {
   const {
     descriptions,
     pageContents,
@@ -53,7 +72,7 @@ export default function ComponentsApiContent(props) {
   const router = useRouter();
 
   // There are legacy links where the the components had the Unstyled suffix
-  // This effects makes sure that the anchors will be correct wtih the renames
+  // This effects makes sure that the anchors will be correct with the renames
   React.useEffect(() => {
     const anchor = router.asPath.indexOf('#') >= 0 ? router.asPath.split('#')[1] : null;
     if (router.isReady && anchor && anchor.indexOf('-unstyled') >= 0) {
@@ -61,7 +80,7 @@ export default function ComponentsApiContent(props) {
         {
           hash: `${anchor.replace('-unstyled', '')}`,
         },
-        null,
+        undefined,
         {
           shallow: true,
         },
@@ -137,16 +156,18 @@ export default function ComponentsApiContent(props) {
     return (
       <React.Fragment key={`component-api-${key}`}>
         <MarkdownElement>
-          <Heading hash={componentNameKebabCase} text={`${componentName} API`} />
-          <Heading text="import" hash={`${componentNameKebabCase}-import`} level="h3" />
+          <Heading hash={componentNameKebabCase} title={`${componentName} API`} />
+          <Heading title="import" hash={`${componentNameKebabCase}-import`} level="h3" />
           <HighlightedCode code={importInstructions} language="jsx" />
           {imports.length > 1 && (
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
           )}
           <PropertiesSection
-            properties={componentProps}
-            propertiesDescriptions={propDescriptions}
-            componentName={componentName}
+            properties={getPropsApiDefinitions({
+              componentName: pageContent.name,
+              properties: componentProps,
+              propertiesDescriptions: propDescriptions,
+            })}
             spreadHint={spreadHint}
             level="h3"
             titleHash={`${componentNameKebabCase}-props`}
@@ -177,7 +198,7 @@ export default function ComponentsApiContent(props) {
           {inheritance && (
             <React.Fragment>
               <Heading
-                text="inheritance"
+                title="inheritance"
                 hash={`${componentNameKebabCase}-inheritance`}
                 level="h3"
               />
@@ -195,7 +216,7 @@ export default function ComponentsApiContent(props) {
           {pageContent.themeDefaultProps && (
             <React.Fragment>
               <Heading
-                text="theme-default-props"
+                title="theme-default-props"
                 hash={`${componentName}-theme-default-props`}
                 level="h4"
               />
@@ -209,9 +230,11 @@ export default function ComponentsApiContent(props) {
             </React.Fragment>
           )}
           <SlotsSection
-            componentSlots={componentSlots}
-            slotDescriptions={slotDescriptions}
-            componentName={componentName}
+            slots={getSlotsApiDefinitions({
+              componentSlots,
+              slotDescriptions,
+              componentName,
+            })}
             titleHash={`${componentNameKebabCase}-slots`}
             level="h3"
             spreadHint={
@@ -222,9 +245,11 @@ export default function ComponentsApiContent(props) {
             layoutStorageKey={layoutStorageKey.slots}
           />
           <ClassesSection
-            componentClasses={componentClasses}
-            componentName={pageContent.name}
-            classDescriptions={classDescriptions}
+            classes={getClassApiDefinitions({
+              componentClasses,
+              componentName: pageContent.name,
+              classDescriptions,
+            })}
             spreadHint={t('api-docs.classesDescription')}
             titleHash={`${componentNameKebabCase}-classes`}
             level="h3"
@@ -242,17 +267,15 @@ export default function ComponentsApiContent(props) {
   });
 }
 
-ComponentsApiContent.propTypes = {
-  defaultLayout: PropTypes.oneOf(['collapsed', 'expanded', 'table']),
-  descriptions: PropTypes.object.isRequired,
-  layoutStorageKey: PropTypes.shape({
-    classes: PropTypes.string,
-    props: PropTypes.string,
-    slots: PropTypes.string,
-  }),
-  pageContents: PropTypes.object.isRequired,
-};
-
 if (process.env.NODE_ENV !== 'production') {
-  ComponentsApiContent.propTypes = exactProp(ComponentsApiContent.propTypes);
+  ComponentsApiContent.propTypes = exactProp({
+    defaultLayout: PropTypes.oneOf(['collapsed', 'expanded', 'table']),
+    descriptions: PropTypes.object.isRequired,
+    layoutStorageKey: PropTypes.shape({
+      classes: PropTypes.string,
+      props: PropTypes.string,
+      slots: PropTypes.string,
+    }),
+    pageContents: PropTypes.object.isRequired,
+  });
 }

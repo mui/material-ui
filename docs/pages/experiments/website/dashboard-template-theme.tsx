@@ -24,8 +24,7 @@ import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';
 import ModeNightRoundedIcon from '@mui/icons-material/ModeNightRounded';
 
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { PaletteMode } from '@mui/material';
+import { createTheme, ThemeProvider, PaletteMode } from '@mui/material/styles';
 
 import Head from 'docs/src/modules/components/Head';
 import getDashboardTheme from 'docs/data/material/getting-started/templates/dashboard/theme/getDashboardTheme';

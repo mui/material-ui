@@ -13,8 +13,13 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import { PaletteMode, Card as MuiCard } from '@mui/material';
-import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
+import MuiCard from '@mui/material/Card';
+import {
+  ThemeProvider,
+  createTheme,
+  styled,
+  PaletteMode,
+} from '@mui/material/styles';
 
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
