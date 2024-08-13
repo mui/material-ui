@@ -75,12 +75,13 @@ const blacklist = [
   'docs-getting-started-templates-dashboard-theme-customizations/menus.png',
   'docs-getting-started-templates-dashboard-theme-customizations/others.png',
   'docs-getting-started-templates-dashboard-theme-customizations/treeView.png',
+  'docs-getting-started-templates-dashboard-internals-components/CustomIcons',
   // Sign-In/Sign-Up Theme Customizations
-  'docs-getting-started-templates-sign-in-side-theme-customizations/index',
+  'docs-getting-started-templates-sign-in-side-theme-customizations/index.png',
   'docs-getting-started-templates-sign-in-side/CustomIcons.png',
-  'docs-getting-started-templates-sign-in-theme-customizations/index',
+  'docs-getting-started-templates-sign-in-theme-customizations/index.png',
   'docs-getting-started-templates-sign-in/CustomIcons.png',
-  'docs-getting-started-templates-sign-up-theme-customizations/index',
+  'docs-getting-started-templates-sign-up-theme-customizations/index.png',
   'docs-getting-started-templates-sign-in-side/getSignInSideTheme.png',
   'docs-getting-started-templates-sign-up/CustomIcons.png',
   'docs-getting-started-templates-sign-up/getSignUpTheme.png',
@@ -90,6 +91,7 @@ const blacklist = [
   // Marketing Page Theme Customizations
   'docs-getting-started-templates-marketing-page/getMPTheme.png',
   'docs-getting-started-templates-marketing-page/MarketingPage.png',
+  'docs-getting-started-templates-marketing-page-theme-customizations/index.png',
   'docs-joy-getting-started-templates/TemplateCollection.png', // No public components
   'docs-joy-core-features-automatic-adjustment/ListThemes.png', // No public components
   'docs-joy-tools/PaletteThemeViewer.png', // No need for theme tokens
