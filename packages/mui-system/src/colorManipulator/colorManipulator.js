@@ -246,7 +246,7 @@ export function getContrastRatio(foreground, background) {
 export function alpha(color, value) {
   // Test fast implementation
   if (color.charAt(0) === '#') {
-    return Color.format(Color.alpha(Color.parse(color), value));
+    return Color.format(Color.setAlpha(Color.parse(color), value));
   }
 
   color = decomposeColor(color);
