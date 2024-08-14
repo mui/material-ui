@@ -1,10 +1,14 @@
-import { get } from './bitwise';
-import { Color, OFFSET_R, OFFSET_G, OFFSET_B, OFFSET_A } from './parse';
+import {
+  Color,
+  getRed,
+  getGreen,
+  getBlue,
+} from './core';
 
 export function hsl(color: Color) {
-  const r = get(color, OFFSET_R) / 255;
-  const g = get(color, OFFSET_G) / 255;
-  const b = get(color, OFFSET_B) / 255;
+  const r = getRed(color) / 255;
+  const g = getGreen(color) / 255;
+  const b = getBlue(color) / 255;
 
   const l = Math.max(r, g, b);
   const s = l - Math.min(r, g, b);

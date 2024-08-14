@@ -1,13 +1,4 @@
-import { shl } from './bitwise';
-
-export type Color = number;
-
-export const COLOR_INVALID = -1 as Color;
-
-export const OFFSET_R = 24;
-export const OFFSET_G = 16;
-export const OFFSET_B = 8;
-export const OFFSET_A = 0;
+import { Color, newColor, COLOR_INVALID } from './core';
 
 const HASH = '#'.charCodeAt(0);
 const ARGUMENTS_END = ')'.charCodeAt(0);
@@ -71,12 +62,11 @@ function parseHex(hex: string): Color {
     }
   }
 
-  // prettier-ignore
-  return (
-    shl(parseInt(r, 16), OFFSET_R) +
-    shl(parseInt(g, 16), OFFSET_G) +
-    shl(parseInt(b, 16), OFFSET_B) +
-    shl(parseInt(a, 16), OFFSET_A)
+  return newColor(
+    parseInt(r, 16),
+    parseInt(g, 16),
+    parseInt(b, 16),
+    parseInt(a, 16),
   )
 }
 
@@ -128,13 +118,7 @@ export function parseRepresentation(color: string): Color {
       const b = parseColorChannel(p3);
       const a = p4 ? parseAlphaChannel(p4) : 255;
 
-      // prettier-ignore
-      return (
-        shl(r, OFFSET_R) +
-        shl(g, OFFSET_G) +
-        shl(b, OFFSET_B) +
-        shl(a, OFFSET_A)
-      )
+      return newColor(r, g, b, a);
     }
     case 'hsl':
     case 'hsla': {
@@ -155,13 +139,7 @@ export function parseRepresentation(color: string): Color {
         b = Math.round(hueToRGB(p, q, h - 1/3) * 255);
       }
 
-      // prettier-ignore
-      return (
-        shl(r, OFFSET_R) +
-        shl(g, OFFSET_G) +
-        shl(b, OFFSET_B) +
-        shl(a, OFFSET_A)
-      )
+      return newColor(r, g, b, a);
     }
     case 'hwb': {
       const h = parseAngle(p1);
@@ -185,13 +163,7 @@ export function parseRepresentation(color: string): Color {
       g = hwbApply(r, w, bl);
       b = hwbApply(r, w, bl);
 
-      // prettier-ignore
-      return (
-        shl(r, OFFSET_R) +
-        shl(g, OFFSET_G) +
-        shl(b, OFFSET_B) +
-        shl(a, OFFSET_A)
-      )
+      return newColor(r, g, b, a);
     }
     case 'color': {
       // https://www.npmjs.com/package/colord#plugins

@@ -1,15 +1,9 @@
 import {
   Color,
-  OFFSET_R,
-  OFFSET_G,
-  OFFSET_B,
-  OFFSET_A,
-} from './parse';
-import { get, set } from './bitwise';
-
-export function alpha(color: Color, value: number) {
-  return set(color, OFFSET_A, Math.round(value * 255))
-}
+  getRed,
+  getGreen,
+  getBlue,
+} from './core';
 
 /**
  * The relative brightness of any point in a color space, normalized to 0 for
@@ -18,9 +12,9 @@ export function alpha(color: Color, value: number) {
  * @returns The relative brightness of the color in the range 0 - 1
  */
 export function getLuminance(color: Color) {
-  const r = get(color, OFFSET_R) / 255;
-  const g = get(color, OFFSET_G) / 255;
-  const b = get(color, OFFSET_B) / 255;
+  const r = getRed(color) / 255;
+  const g = getGreen(color) / 255;
+  const b = getBlue(color) / 255;
 
   const apply = (v: number) => v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
 
