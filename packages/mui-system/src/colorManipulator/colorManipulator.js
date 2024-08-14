@@ -312,7 +312,7 @@ function parseColor(color) {
   )
 }
 function alphaColor(color, value) {
-  return (color & 0xffffff00) | ~~(value * 255)
+  return (color & 0xffffff00) | ~~(value * 256)
 }
 function colorToString(color) {
   return `#${intToHex((color & 0xff000000) >> 24)}${intToHex((color & 0x00ff0000) >> 16)}${intToHex((color & 0x0000ff00) >> 8)}${intToHex((color & 0x000000ff) >> 0)}`
