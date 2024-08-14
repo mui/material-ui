@@ -4,7 +4,7 @@ import * as playwright from 'playwright';
 
 async function main() {
   const baseUrl = 'http://localhost:5001';
-  const screenshotDir = path.resolve(__dirname, './screenshots/chrome');
+  const screenshotDir = path.resolve('screenshots/chrome');
 
   const browser = await playwright.chromium.launch({
     args: ['--font-render-hinting=none'],
