@@ -34,6 +34,7 @@ module.exports = function plugin({ types: t }, { outExtension = '.js' }) {
     visitor: {
       ImportOrExportDeclaration(path, state) {
         if (path.isExportDefaultDeclaration()) {
+          // Can't export default from an import specifier
           return;
         }
 
@@ -41,6 +42,7 @@ module.exports = function plugin({ types: t }, { outExtension = '.js' }) {
           (path.isExportDeclaration() && path.node.exportKind === 'type') ||
           (path.isImportDeclaration() && path.node.importKind === 'type')
         ) {
+          // Ignore type imports, they will get compiled away anyway
           return;
         }
 
@@ -50,6 +52,7 @@ module.exports = function plugin({ types: t }, { outExtension = '.js' }) {
           );
 
         if (!source.node) {
+          // Ignore import without source
           return;
         }
 
