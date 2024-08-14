@@ -2,6 +2,8 @@ import * as path from 'path';
 import * as fse from 'fs-extra';
 import * as playwright from 'playwright';
 
+const __dirname = path.resolve();
+
 async function main() {
   const baseUrl = 'http://localhost:5001';
   const screenshotDir = path.resolve(__dirname, './screenshots/chrome');
