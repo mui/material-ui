@@ -3,7 +3,30 @@ import {
   getRed,
   getGreen,
   getBlue,
+  getAlpha,
+  newColor,
 } from './core';
+
+/**
+ * Darkens a color.
+ * @param color - Color
+ * @param coefficient - Multiplier in the range [0, 1]
+ */
+export function darken(color: Color, coefficient: number): Color {
+  const r = getRed(color);
+  const g = getGreen(color);
+  const b = getBlue(color);
+  const a = getAlpha(color);
+
+  const factor = 1 - coefficient;
+
+  return newColor(
+    r * factor,
+    g * factor,
+    b * factor,
+    a,
+  )
+}
 
 /**
  * The relative brightness of any point in a color space, normalized to 0 for
