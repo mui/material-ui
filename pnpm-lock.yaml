@@ -10578,10 +10578,6 @@ packages:
     resolution: {integrity: sha512-MvjoMCJwEarSbUYk5O+nmoSzSutSsTwF85zcHPQ9OrlFoZOYIjaqBAJIqIXjptyD5vThxGq52Xu/MaJzRkIk4Q==}
     engines: {node: '>=0.6'}
 
-  qs@6.12.0:
-    resolution: {integrity: sha512-trVZiI6RMOkO476zLGaBIzszOdFPnCCXHPG9kn0yuS1uz6xdVxPfZdB3vUig9pxPFDM9BRAgz/YUIVQ1/vuiUg==}
-    engines: {node: '>=0.6'}
-
   qs@6.13.0:
     resolution: {integrity: sha512-+38qI9SOr8tfZ4QmJNplMUxqjbe7LKvvZgWdExBOmd+egZTtjLB67Gu0HRX3u/XOq7UU2Nx6nsjvS16Z9uwfpg==}
     engines: {node: '>=0.6'}
@@ -10892,9 +10888,6 @@ packages:
 
   readable-stream@1.0.34:
     resolution: {integrity: sha512-ok1qVCJuRkNmvebYikljxJA/UEsKwLl2nI1OmaqAu4/UE+h0wKCHok4XkL/gvi39OacXvw59RJUOFUkDib2rHg==}
-
-  readable-stream@2.3.7:
-    resolution: {integrity: sha512-Ebho8K4jIbHAxnuxi7o42OrZgF/ZTNcsZj6nRKyUmkhLFq8CHItp/fy6hQZuZmP/n3yZ9VBUbp4zz/mX8hmYPw==}
 
   readable-stream@2.3.8:
     resolution: {integrity: sha512-8p0AUk4XODgIewSi0l8Epjs+EVnWiK7NoDIEGU0HhE7+ZyY8D1IMY7odu5lRrFXGg71L15KG8QrPmum45RTtdA==}
@@ -14217,12 +14210,12 @@ snapshots:
   '@gitbeaker/core@38.12.1':
     dependencies:
       '@gitbeaker/requester-utils': 38.12.1
-      qs: 6.12.0
+      qs: 6.13.0
       xcase: 2.0.1
 
   '@gitbeaker/requester-utils@38.12.1':
     dependencies:
-      qs: 6.12.0
+      qs: 6.13.0
       xcase: 2.0.1
 
   '@gitbeaker/rest@38.12.1':
@@ -16958,7 +16951,7 @@ snapshots:
       lodash.isplainobject: 4.0.6
       lodash.union: 4.6.0
       normalize-path: 3.0.0
-      readable-stream: 2.3.7
+      readable-stream: 2.3.8
 
   archiver@3.1.1:
     dependencies:
@@ -17888,7 +17881,7 @@ snapshots:
       buffer-crc32: 0.2.13
       crc32-stream: 3.0.1
       normalize-path: 3.0.0
-      readable-stream: 2.3.7
+      readable-stream: 2.3.8
 
   compress-commons@4.1.1:
     dependencies:
@@ -18582,7 +18575,7 @@ snapshots:
 
   duplexer2@0.1.4:
     dependencies:
-      readable-stream: 2.3.7
+      readable-stream: 2.3.8
 
   duplexer@0.1.2: {}
 
@@ -18590,7 +18583,7 @@ snapshots:
     dependencies:
       end-of-stream: 1.4.4
       inherits: 2.0.4
-      readable-stream: 2.3.7
+      readable-stream: 2.3.8
       stream-shift: 1.0.1
 
   eastasianwidth@0.2.0: {}
@@ -19798,7 +19791,7 @@ snapshots:
       extend: 3.0.2
       gaxios: 6.1.1(encoding@0.1.13)
       google-auth-library: 9.13.0(encoding@0.1.13)
-      qs: 6.12.0
+      qs: 6.13.0
       url-template: 2.0.8
       uuid: 9.0.1
     transitivePeerDependencies:
@@ -20838,7 +20831,7 @@ snapshots:
     dependencies:
       lie: 3.3.0
       pako: 1.0.11
-      readable-stream: 2.3.7
+      readable-stream: 2.3.8
       setimmediate: 1.0.5
 
   junk@4.0.1: {}
@@ -20968,7 +20961,7 @@ snapshots:
 
   lazystream@1.0.1:
     dependencies:
-      readable-stream: 2.3.7
+      readable-stream: 2.3.8
 
   lerna@8.1.8(babel-plugin-macros@3.1.0)(encoding@0.1.13):
     dependencies:
@@ -22916,10 +22909,6 @@ snapshots:
     dependencies:
       side-channel: 1.0.6
 
-  qs@6.12.0:
-    dependencies:
-      side-channel: 1.0.6
-
   qs@6.13.0:
     dependencies:
       side-channel: 1.0.6
@@ -23327,16 +23316,6 @@ snapshots:
       inherits: 2.0.4
       isarray: 0.0.1
       string_decoder: 0.10.31
-
-  readable-stream@2.3.7:
-    dependencies:
-      core-util-is: 1.0.3
-      inherits: 2.0.4
-      isarray: 1.0.0
-      process-nextick-args: 2.0.1
-      safe-buffer: 5.1.2
-      string_decoder: 1.1.1
-      util-deprecate: 1.0.2
 
   readable-stream@2.3.8:
     dependencies:
@@ -24497,7 +24476,7 @@ snapshots:
 
   through2@2.0.5:
     dependencies:
-      readable-stream: 2.3.7
+      readable-stream: 2.3.8
       xtend: 4.0.2
 
   through@2.3.8: {}
@@ -24780,7 +24759,7 @@ snapshots:
       fstream: 1.0.12
       graceful-fs: 4.2.11
       listenercount: 1.0.1
-      readable-stream: 2.3.7
+      readable-stream: 2.3.8
       setimmediate: 1.0.5
 
   upath@2.0.1: {}
