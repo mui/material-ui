@@ -211,6 +211,9 @@ The new custom styles we've added allow you to dive into the best approaches for
 
 ## Bundle size improvements
 
+The bundle size has been reduced by 20% compared to Material UI v5.
+The install size has decreased from 19.3MB to 15.2MB.
+
 ## Full-stack apps
 
 To get started building full-stack apps fast, we're building [Toolpad Core](https://mui.com/toolpad/) - get Material UI, Next.js, routing, layout components and authentication out of the box while you build dashboards or internal tools.
