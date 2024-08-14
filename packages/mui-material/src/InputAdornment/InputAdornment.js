@@ -139,7 +139,7 @@ const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
         {...other}
       >
         {typeof children === 'string' && !disableTypography ? (
-          <Typography color="text.secondary">{children}</Typography>
+          <Typography color="textSecondary">{children}</Typography>
         ) : (
           <React.Fragment>
             {/* To have the correct vertical alignment baseline */}

@@ -71,6 +71,14 @@ export const TypographyRoot = styled('span', {
         },
       })),
     {
+      props: { color: 'textPrimary' },
+      style: { color: (theme.vars || theme).palette.text?.primary },
+    },
+    {
+      props: { color: 'textSecondary' },
+      style: { color: (theme.vars || theme).palette.text?.secondary },
+    },
+    {
       props: ({ ownerState }) => ownerState.align !== 'inherit',
       style: {
         textAlign: 'var(--Typography-textAlign)',
