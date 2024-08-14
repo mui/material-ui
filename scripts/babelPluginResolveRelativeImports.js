@@ -14,6 +14,7 @@ const resolve = require('resolve/sync');
  * @returns {string}
  */
 function toRelativeImportSpecifier(absolutePath, relativeTo) {
+  // posix style, because will be used as an import specifier
   const relative = nodePath.posix.relative(relativeTo, absolutePath);
   return relative.startsWith('.') ? relative : `./${relative}`;
 }
@@ -88,7 +89,6 @@ module.exports = function plugin({ types: t }, { outExtension = '.js' }) {
           cache.set(absoluteImportPath, resolvedPath);
         }
 
-        // get relative path (posix style, because will be used as an import)
         const relativeResolvedPath = toRelativeImportSpecifier(resolvedPath, dir);
 
         source.replaceWith(t.stringLiteral(relativeResolvedPath));
