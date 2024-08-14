@@ -28,7 +28,7 @@ export default function FixturesIndex() {
             }}
           >
             {childRoutes
-              .filter((item) => !!item.path)
+              .filter((item) => !!item.path && item.path !== 'index.test')
               .map((item) => (
                 <li key={item.path}>
                   <Link

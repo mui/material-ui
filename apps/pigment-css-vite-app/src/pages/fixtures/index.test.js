@@ -49,7 +49,6 @@ async function main() {
   let routes = await page.$$eval('#tests a', (links) => {
     return links.map((link) => link.href);
   });
-  routes = routes.filter((route) => !route.includes('index.test'));
   routes = routes.map((route) => route.replace(baseUrl, ''));
 
   console.log('routes');
