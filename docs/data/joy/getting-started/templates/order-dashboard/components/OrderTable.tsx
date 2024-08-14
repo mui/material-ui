@@ -384,10 +384,7 @@ export default function OrderTable() {
         >
           <thead>
             <tr>
-              <th
-                style={{ width: 48, textAlign: 'center', padding: '12px 6px' }}
-                aria-label="Selected"
-              >
+              <th style={{ width: 48, textAlign: 'center', padding: '12px 6px' }}>
                 <Checkbox
                   size="sm"
                   indeterminate={
@@ -434,7 +431,7 @@ export default function OrderTable() {
               <th style={{ width: 140, padding: '12px 6px' }}>Date</th>
               <th style={{ width: 140, padding: '12px 6px' }}>Status</th>
               <th style={{ width: 240, padding: '12px 6px' }}>Customer</th>
-              <th style={{ width: 140, padding: '12px 6px' }} aria-label="Actions" />
+              <th style={{ width: 140, padding: '12px 6px' }} />
             </tr>
           </thead>
           <tbody>
