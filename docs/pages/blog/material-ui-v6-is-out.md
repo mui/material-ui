@@ -209,13 +209,13 @@ The new custom styles we've added allow you to dive into the best approaches for
 
 {{"component": "components/blog/material-ui-v6-is-out/CustomThemeComparison.js"}}
 
-### Full-stack apps
+## Bundle size improvements
+
+## Full-stack apps
 
 To get started building full-stack apps fast, we're building [Toolpad Core](https://mui.com/toolpad/) - get Material UI, Next.js, routing, layout components and authentication out of the box while you build dashboards or internal tools.
 
 Stay tuned, as many more updates are coming in the upcoming months! We'd love to hear your feedback on which templates or sections you'd like to see next.
-
-## Bundle size improvements
 
 ## Next steps
 
