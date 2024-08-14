@@ -299,6 +299,11 @@ jobs:
           command: |
             pnpm docs:link-check
             git add -A && git diff --exit-code --staged
+      - run:
+          name: '`pnpm template:update-theme` changes committed?'
+          command: |
+            pnpm template:update-theme
+            git add -A && git diff --exit-code --staged
   test_types:
     <<: *default-job
     resource_class: 'medium+'
