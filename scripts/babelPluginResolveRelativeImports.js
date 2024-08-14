@@ -9,13 +9,32 @@ const resolve = require('resolve/sync');
  */
 
 /**
+ * Normalize a file path to POSIX in order for it to be platform-agnostic.
+ * @param {string} importPath
+ * @returns {string}
+ */
+function toPosixPath(importPath) {
+  return nodePath.normalize(importPath).split(nodePath.sep).join(nodePath.posix.sep);
+}
+
+/**
+ * Converts a file path to a node import specifier.
+ * @param {string} importPath
+ * @returns {string}
+ */
+function pathToNodeImportSpecifier(importPath) {
+  const normalized = toPosixPath(importPath);
+  return normalized.startsWith('/') || normalized.startsWith('.') ? normalized : `./${normalized}`;
+}
+
+/**
  * @param {string} absolutePath
  * @param {string} relativeTo
  * @returns {string}
  */
 function toRelativeImportSpecifier(absolutePath, relativeTo) {
   // posix style, because will be used as an import specifier
-  const relative = nodePath.posix.relative(relativeTo, absolutePath);
+  const relative = nodePath.posix.normalize(nodePath.relative(relativeTo, absolutePath));
   return relative.startsWith('.') ? relative : `./${relative}`;
 }
 
@@ -70,9 +89,10 @@ module.exports = function plugin({ types: t }, { outExtension }) {
           throw new Error('filename is not defined');
         }
 
-        const dir = nodePath.dirname(state.filename);
+        const importerPath = state.filename;
+        const importerDir = nodePath.dirname(importerPath);
         // start from fully resolved import path
-        const absoluteImportPath = nodePath.resolve(dir, importedPath);
+        const absoluteImportPath = nodePath.resolve(importerDir, importedPath);
 
         let resolvedPath = cache.get(absoluteImportPath);
 
@@ -96,9 +116,10 @@ module.exports = function plugin({ types: t }, { outExtension }) {
           cache.set(absoluteImportPath, resolvedPath);
         }
 
-        const relativeResolvedPath = toRelativeImportSpecifier(resolvedPath, dir);
+        const relativeResolvedPath = nodePath.relative(importerDir, resolvedPath);
+        const importSpecifier = pathToNodeImportSpecifier(relativeResolvedPath);
 
-        source.replaceWith(t.stringLiteral(relativeResolvedPath));
+        source.replaceWith(t.stringLiteral(importSpecifier));
       },
     },
   };
