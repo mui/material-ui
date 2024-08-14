@@ -5,7 +5,7 @@ import * as playwright from 'playwright';
 async function main() {
   const baseUrl = 'http://localhost:5001/fixtures';
   const screenshotDir = path.resolve('screenshots/chrome');
-  console.log("Screenshot directory");
+  console.log('Screenshot directory');
   console.log(screenshotDir);
   const browser = await playwright.chromium.launch({
     args: ['--font-render-hinting=none'],
@@ -52,7 +52,7 @@ async function main() {
   routes = routes.filter((route) => route.includes('index.test'));
   routes = routes.map((route) => route.replace(baseUrl, ''));
 
-  console.log("routes")
+  console.log('routes');
   console.log(routes);
 
   async function renderFixture(index) {

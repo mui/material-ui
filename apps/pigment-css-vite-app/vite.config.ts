@@ -1,7 +1,7 @@
 import { defineConfig, splitVendorChunkPlugin } from 'vite';
 import reactPlugin from '@vitejs/plugin-react';
 import Pages from 'vite-plugin-pages';
-import { nodePolyfills } from 'vite-plugin-node-polyfills'
+import { nodePolyfills } from 'vite-plugin-node-polyfills';
 import { pigment } from '@pigment-css/vite-plugin';
 import { extendTheme } from '@mui/material/styles';
 
