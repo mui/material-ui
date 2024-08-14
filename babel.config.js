@@ -76,6 +76,8 @@ module.exports = function getBabelConfig(api) {
     // in webpack config:
     api.env(['regressions']);
 
+  const outFileExtension = '.js';
+
   /** @type {babel.PluginItem[]} */
   const plugins = [
     [
@@ -115,7 +117,18 @@ module.exports = function getBabelConfig(api) {
         ],
       },
     ],
-    ...(useESModules && !usesAliases ? [[importResolverPlugin, { outExtension: '.js' }]] : []),
+    ...(useESModules
+      ? [
+          [
+            importResolverPlugin,
+            {
+              // Don't replace the extension when we're using aliases.
+              // Essentially only replace in production builds.
+              outExtension: usesAliases ? null : outFileExtension,
+            },
+          ],
+        ]
+      : []),
   ];
 
   if (process.env.NODE_ENV === 'production') {

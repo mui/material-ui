@@ -28,7 +28,7 @@ function toRelativeImportSpecifier(absolutePath, relativeTo) {
  * @param {Options} options
  * @returns {babel.PluginObj}
  */
-module.exports = function plugin({ types: t }, { outExtension = '.js' }) {
+module.exports = function plugin({ types: t }, { outExtension }) {
   /** @type {Map<string, string>} */
   const cache = new Map();
   const extensions = ['.ts', '.tsx', '.js', '.jsx'];
@@ -85,7 +85,7 @@ module.exports = function plugin({ types: t }, { outExtension = '.js' }) {
           }
 
           const resolvedExtension = nodePath.extname(resolvedPath);
-          if (extensionsSet.has(resolvedExtension)) {
+          if (outExtension && extensionsSet.has(resolvedExtension)) {
             // replace extension
             resolvedPath = nodePath.resolve(
               nodePath.dirname(resolvedPath),
