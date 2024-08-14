@@ -31,7 +31,7 @@ Since the integration is an opt-in feature, you can upgrade to v6 and continue u
 
 ### React Server Components
 
-Once integrated with Pigment CSS, Material UI v6 provides a separate set of layout components, including `Grid`, `Container`, and `Stack`, that are compatible with React Server Components.
+Once integrated with Pigment CSS, Material UI v6 provides a separate set of layout components, including `Box`, `Grid`, `Container`, and `Stack`, that are compatible with React Server Components.
 
 ```jsx
 import Box from '@mui/material-pigment-css/Box';
@@ -55,7 +55,40 @@ With Pigment CSS integration, all JSX elements support the `sx` prop out of the
 Box component is **no** longer required to use the `sx` prop.
 :::
 
-## Built-in support for light and dark modes
+## CSS theme variables
+
+The `cssVariables` flag converts serializable theme values like palette, spacing, typography, etc., into CSS variables.
+
+```js
+createTheme({ cssVariables: true, ... });
+```
+
+{{"component": "components/blog/material-ui-v6-is-out/ThemeTokens.js"}}
+
+With CSS variables, you can easily integrate your preferred styling solution with Material UI.
+
+```css title="styles.css"
+.custom-card {
+  background-color: var(--mui-palette-background-default);
+  color: var(--mui-palette-text-primary);
+  padding: var(--mui-spacing-2);
+  font: var(--mui-font-body1);
+}
+```
+
+## Revamping the free templates
+
+Explore the new and enhanced [Material UI free templates](https://mui.com/material-ui/getting-started/templates/) to see these amazing features in action. We've fully revamped the templates to provide the perfect starting point for your project, whether you're adding sleek styles or using the template's sections.
+
+{{"component": "components/blog/material-ui-v6-is-out/FreeTemplatesBento.js"}}
+
+### Custom styles
+
+The new custom styles we've added allow you to dive into the best approaches for customization or simply copy and paste some stylish elements.
+
+{{"component": "components/blog/material-ui-v6-is-out/CustomThemeComparison.js"}}
+
+## Improved support for light and dark modes
 
 Material UI v6 supports light and dark modes out of the box.
 
@@ -102,51 +135,6 @@ function ModeSwitcher() {
 }
 ```
 
-## CSS theme variables
-
-The `cssVariables` flag converts serializable theme values like palette, spacing, typography, etc., into CSS variables.
-
-```js
-createTheme({ cssVariables: true, ... });
-```
-
-{{"component": "components/blog/material-ui-v6-is-out/ThemeTokens.js"}}
-
-With CSS variables, you can easily integrate your preferred styling solution with Material UI.
-
-```css title="styles.css"
-.custom-card {
-  background-color: var(--mui-palette-background-default);
-  color: var(--mui-palette-text-primary);
-  padding: var(--mui-spacing-2);
-  font: var(--mui-font-body1);
-}
-```
-
-## New method of applying styles
-
-The new API `theme.applyStyles` has been added for creating specific mode styles. It's designed to replace the `theme.palette.mode === 'dark'` condition and to work with Pigment CSS.
-
-The snippet below will work for both Emotion and Pigment CSS.
-
-```jsx
-const StyledInput = styled(InputBase)(({ theme }) => ({
-  padding: 10,
-  width: '100%',
-  borderBottom: `1px solid #eaecef`,
-  ...theme.applyStyles('dark', {
-    borderBottom: '1px solid #30363d',
-  })
-  '& input': {
-    borderRadius: 4,
-    backgroundColor: '#fff',
-    ...theme.applyStyles('dark', {
-      backgroundColor: '#0d1117',
-    })
-  },
-}));
-```
-
 ## Container Queries
 
 We've added a [container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries) utility based on the existing `theme.breakpoints` API.
@@ -182,6 +170,30 @@ It also works with the `sx` prop:
 />
 ```
 
+## New method of applying styles
+
+The new API `theme.applyStyles` has been added for creating specific mode styles. It's designed to replace the `theme.palette.mode === 'dark'` condition and to work with Pigment CSS.
+
+The snippet below will work for both Emotion and Pigment CSS.
+
+```jsx
+const StyledInput = styled(InputBase)(({ theme }) => ({
+  padding: 10,
+  width: '100%',
+  borderBottom: `1px solid #eaecef`,
+  ...theme.applyStyles('dark', {
+    borderBottom: '1px solid #30363d',
+  })
+  '& input': {
+    borderRadius: 4,
+    backgroundColor: '#fff',
+    ...theme.applyStyles('dark', {
+      backgroundColor: '#0d1117',
+    })
+  },
+}));
+```
+
 ## Stabilized Grid v2
 
 Grid v2 has been stabilized and is now using CSS gap for creating space between grid items.
@@ -196,18 +208,6 @@ import Grid from '@mui/material/Grid2';
   <Grid size={{ xs: 6, sm: 4, lg: 3 }} />
 </Grid>;
 ```
-
-## Revamping the free templates
-
-Explore the new and enhanced [Material UI free templates](https://mui.com/material-ui/getting-started/templates/) to see these amazing features in action. We've fully revamped the templates to provide the perfect starting point for your project, whether you're adding sleek styles or using the template's sections.
-
-{{"component": "components/blog/material-ui-v6-is-out/FreeTemplatesBento.js"}}
-
-### Custom styles
-
-The new custom styles we've added allow you to dive into the best approaches for customization or simply copy and paste some stylish elements.
-
-{{"component": "components/blog/material-ui-v6-is-out/CustomThemeComparison.js"}}
 
 ## Bundle size improvements
 
