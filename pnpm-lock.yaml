@@ -290,6 +290,9 @@ importers:
       process:
         specifier: ^0.11.10
         version: 0.11.10
+      resolve:
+        specifier: ^1.22.8
+        version: 1.22.8
       rimraf:
         specifier: ^5.0.10
         version: 5.0.10

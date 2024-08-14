@@ -178,6 +178,7 @@
     "prettier": "^3.3.3",
     "pretty-quick": "^4.0.0",
     "process": "^0.11.10",
+    "resolve": "^1.22.8",
     "rimraf": "^5.0.10",
     "serve": "^14.2.3",
     "stylelint": "^15.11.0",
