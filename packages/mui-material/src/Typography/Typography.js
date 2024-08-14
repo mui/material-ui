@@ -214,6 +214,25 @@ Typography.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
+   */
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf([
+      'primary',
+      'secondary',
+      'success',
+      'error',
+      'info',
+      'warning',
+      'textPrimary',
+      'textSecondary',
+      'textDisabled',
+    ]),
+    PropTypes.string,
+  ]),
+  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
