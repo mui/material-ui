@@ -98,32 +98,27 @@ const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref
   const handleRef = useForkRef(rootRef, ref);
 
   React.useEffect(() => {
-    // When accordion is closed, prevent tabbing into the details content.
     if (rootRef.current) {
       const elements = rootRef.current.querySelectorAll(
         'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])',
       );
+
       elements.forEach((elm) => {
+        const currentTabIndex = elm.getAttribute('tabindex');
+        const prevTabIndex = elm.getAttribute('data-prev-tabindex');
+
         if (expanded) {
-          // Accordion is expanded
-          const prevTabIndex = elm.getAttribute('data-prev-tabindex');
+          // Restore the previous tabindex if it exists, or remove it if it was "unset"
           if (prevTabIndex === 'unset') {
-            // If 'unset', this element did not originally have a tabindex, so remove it.
             elm.removeAttribute('tabindex');
           } else if (prevTabIndex !== null) {
-            // Restore the original tabindex value and remove the tracking attribute.
             elm.setAttribute('tabindex', prevTabIndex);
-            elm.removeAttribute('data-prev-tabindex');
           }
+          elm.removeAttribute('data-prev-tabindex');
         } else {
-          // Accordion is collapsed
-          const currentTabIndex = elm.getAttribute('tabindex');
-          if (currentTabIndex !== null) {
-            // Save the current tabindex for restoration later when expanded.
-            elm.setAttribute('data-prev-tabindex', currentTabIndex);
-          } else {
-            // Use 'unset' to track elements that originally had no tabindex.
-            elm.setAttribute('data-prev-tabindex', 'unset');
+          // If element has no data-prev-tabindex, store the current tabindex or "unset"
+          if (prevTabIndex === null) {
+            elm.setAttribute('data-prev-tabindex', currentTabIndex || 'unset');
           }
           elm.setAttribute('tabindex', '-1');
         }
