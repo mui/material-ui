@@ -85,6 +85,12 @@ When `colorSchemes` is provided, the following features are activated:
 - Synchronization between window tabs—changes to the color scheme in one tab are applied to all other tabs
 - An option to [disable transitions](#disable-transitions) when the color scheme changes
 
+:::info
+The `colorSchemes` API is an enhanced version of the previous `palette` API.
+We encourage you to use it as it enables the features mentioned above.
+If both `colorSchemes` and `palette` are provided, `palette` will take precedence.
+:::
+
 :::success
 To test the system preference feature, follow the guide on [emulating the CSS media feature `prefers-color-scheme`](https://developer.chrome.com/docs/devtools/rendering/emulate-css#emulate_css_media_feature_prefers-color-scheme).
 :::

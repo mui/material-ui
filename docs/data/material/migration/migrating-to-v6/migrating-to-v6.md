@@ -349,7 +349,7 @@ The following deprecated types were removed:
 
 ### Merged CssVarsProvider into ThemeProvider
 
-The `CssVarsProvider` and `extendTheme` has been merged into `ThemeProvider` and `createTheme`.
+The `CssVarsProvider` and `extendTheme` features have been ported into `ThemeProvider` and `createTheme`.
 If you are using them in v5 or v6-beta, you must migrate as shown below:
 
 ```diff

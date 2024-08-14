@@ -35,6 +35,7 @@ function App() {
 
 :::info
 If you're using the experimental `CssVarsProvider` API, replace it with `ThemeProvider`.
+All the features that were included in `CssVarsProvider` are now available in `ThemeProvider`.
 :::
 
 ## Light and dark modes

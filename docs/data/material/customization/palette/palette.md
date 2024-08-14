@@ -312,7 +312,7 @@ Need inspiration? The Material Design team has built an [palette configuration t
 
 ## Color schemes
 
-To add both built-in light and dark color schemes, use the `colorSchemes: { light: true, dark: true }`.
+To add both built-in light and dark color schemes without creating separate themes, use the `colorSchemes: { light: true, dark: true }`.
 This generates the default tokens for both color schemes:
 
 ```js
@@ -352,6 +352,7 @@ const theme = createTheme({
 ```
 
 :::warning
+The `colorSchemes` API is an enhanced version of the `palette` API.
 If you provide both `colorSchemes` and `palette`, the latter will override any styles defined in the former.
 
 ```js

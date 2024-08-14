@@ -44,7 +44,7 @@ function Experimental_CssVarsProvider(props: any) {
   if (!warnedOnce) {
     console.warn(
       [
-        'MUI: The Experimental_CssVarsProvider component has been merged to ThemeProvider.',
+        'MUI: The Experimental_CssVarsProvider component has been ported into ThemeProvider.',
         '',
         "You should use `import { ThemeProvider } from '@mui/material/styles'` instead.",
         'For more details, check out https://mui.com/material-ui/customization/css-theme-variables/usage/',
@@ -79,7 +79,7 @@ const getInitColorSchemeScript: typeof deprecatedGetInitColorSchemeScript = (par
 /**
  * TODO: remove this export in v7
  * @deprecated
- * The `CssVarsProvider` component has been deprecated and merged to `ThemeProvider`.
+ * The `CssVarsProvider` component has been deprecated and ported into `ThemeProvider`.
  *
  * You should use `ThemeProvider` and `createTheme` instead:
  *
