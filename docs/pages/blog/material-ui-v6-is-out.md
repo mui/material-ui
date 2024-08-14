@@ -211,6 +211,8 @@ The new custom styles we've added allow you to dive into the best approaches for
 
 Stay tuned, as many more updates are coming in the upcoming months! We'd love to hear your feedback on which templates or sections you'd like to see next.
 
+For your full-stack needs you can also explore [Toolpad Core](https://mui.com/toolpad/)—a Next.js starter for building dashboards. It offers components like dashboard layout, next-auth powered sign-in page and more.
+
 ## Bundle size improvements
 
 ## Next steps
