@@ -6,7 +6,7 @@ const resolve = require('resolve/sync');
  */
 
 /**
- * @typedef {{ extension?: string }} Options
+ * @typedef {{ outExtension?: string }} Options
  */
 
 /**
@@ -14,7 +14,7 @@ const resolve = require('resolve/sync');
  * @param {Options} options
  * @returns {babel.PluginObj}
  */
-module.exports = function plugin({ types: t }, { extension = '.js' }) {
+module.exports = function plugin({ types: t }, { outExtension = '.js' }) {
   /** @type {Map<string, string>} */
   const cache = new Map();
   return {
@@ -24,6 +24,11 @@ module.exports = function plugin({ types: t }, { extension = '.js' }) {
         const importedPath = source.node.value;
 
         if (!importedPath.startsWith('.')) {
+          // Only handle relative imports
+          return;
+        }
+        if (nodePath.extname(importedPath)) {
+          // Assume paths with extension are already resolved
           return;
         }
         if (!state.filename) {
@@ -43,7 +48,7 @@ module.exports = function plugin({ types: t }, { extension = '.js' }) {
           // replace extension
           resolvedPath = nodePath.resolve(
             nodePath.dirname(resolvedPath),
-            nodePath.basename(resolvedPath, nodePath.extname(resolvedPath)) + extension,
+            nodePath.basename(resolvedPath, nodePath.extname(resolvedPath)) + outExtension,
           );
           // get relative path (posix style, because will be used as an import)
           resolvedPath = nodePath.posix.relative(dir, resolvedPath);

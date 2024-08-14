@@ -1,3 +1,4 @@
+const { default: test } = require('node:test');
 const path = require('path');
 
 const errorCodesPath = path.resolve(__dirname, './docs/public/static/error-codes.json');
@@ -11,6 +12,8 @@ function resolveAliasPath(relativeToBabelConf) {
 const productionPlugins = [
   ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
 ];
+
+const importResolverPlugin = path.resolve(__dirname, './scripts/babelPluginResolveRelativeImports');
 
 module.exports = function getBabelConfig(api) {
   const useESModules = api.env(['regressions', 'modern', 'stable']);
@@ -97,7 +100,7 @@ module.exports = function getBabelConfig(api) {
     // Make sure the aliasing happens before we resolve the imports to the actual file.
     // This plugin will be enabled by overrides in certain environments.
     ['babel-plugin-module-resolver', false],
-    [path.resolve(__dirname, './scripts/babelPluginResolveRelativeImports'), { extension: '.js' }],
+    [importResolverPlugin, { outExtension: '.js' }],
   ];
 
   if (process.env.NODE_ENV === 'production') {
@@ -124,6 +127,10 @@ module.exports = function getBabelConfig(api) {
       {
         exclude: /\.test\.(js|ts|tsx)$/,
         plugins: ['@babel/plugin-transform-react-constant-elements'],
+      },
+      {
+        test: /(\.test\.[^.]+$|\.test\/)/,
+        plugins: [[importResolverPlugin, false]],
       },
     ],
     env: {
