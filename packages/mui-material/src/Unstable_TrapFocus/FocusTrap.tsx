@@ -193,7 +193,7 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
         // Once IE11 support is dropped the focus() call can be unconditional.
         if (nodeToRestore.current && (nodeToRestore.current as HTMLElement).focus) {
           ignoreNextEnforceFocus.current = true;
-          (nodeToRestore.current as HTMLElement).focus();
+          (nodeToRestore.current as HTMLElement).focus({ preventScroll: true });
         }
 
         nodeToRestore.current = null;
