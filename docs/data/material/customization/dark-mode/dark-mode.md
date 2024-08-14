@@ -95,11 +95,11 @@ If both `colorSchemes` and `palette` are provided, `palette` will take precedenc
 To test the system preference feature, follow the guide on [emulating the CSS media feature `prefers-color-scheme`](https://developer.chrome.com/docs/devtools/rendering/emulate-css#emulate_css_media_feature_prefers-color-scheme).
 :::
 
-### Manual implementation
+### Accessing media prefers-color-scheme
 
 You can make use of this preference with the [`useMediaQuery`](/material-ui/react-use-media-query/) hook and the [`prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query.
 
-The following demo shows how to enable dark mode automatically by checking for the user's preference in their OS or browser settings:
+The following demo shows how to check the user's preference in their OS or browser settings:
 
 ```jsx
 import * as React from 'react';
@@ -109,23 +109,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 function App() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-
-  const theme = React.useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode: prefersDarkMode ? 'dark' : 'light',
-        },
-      }),
-    [prefersDarkMode],
-  );
-
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Routes />
-    </ThemeProvider>
-  );
+  return <div>prefersDarkMode: {prefersDarkMode.toString()}</div>;
 }
 ```
 
