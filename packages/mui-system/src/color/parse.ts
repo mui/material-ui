@@ -243,7 +243,7 @@ function parsePercentage(value: string): number {
   if (value.charCodeAt(0) === N) {
     return 0;
   }
-  return parseInt(value) / 100;
+  return parseFloat(value) / 100;
 }
 
 
