@@ -69,6 +69,9 @@ module.exports = function getBabelConfig(api) {
     '@babel/preset-typescript',
   ];
 
+  const usesAliases =
+    api.env(['coverage', 'development', 'test', 'benchmark']) || process.env.NODE_ENV === 'test';
+
   /** @type {babel.PluginItem[]} */
   const plugins = [
     [
@@ -108,7 +111,7 @@ module.exports = function getBabelConfig(api) {
         ],
       },
     ],
-    ...(useESModules ? [[importResolverPlugin, { outExtension: '.js' }]] : []),
+    ...(useESModules && !usesAliases ? [[importResolverPlugin, { outExtension: '.js' }]] : []),
   ];
 
   if (process.env.NODE_ENV === 'production') {
