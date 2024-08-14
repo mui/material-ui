@@ -354,7 +354,24 @@ If you are using them in v5 or v6-beta, you must migrate as shown below:
 
 ```diff
 -import { experimental_extendTheme as extendTheme, Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
-+import { extendTheme, CssVarsProvider } from '@mui/material/styles';
++import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+-const theme = extendTheme(
++const theme = createTheme(
+   {
++    cssVariables: true,
+     // the rest of your theme
+   }
+ );
+
+ function App() {
+   return
+-    <CssVarsProvider>
++    <ThemeProvider>
+       {/* ...you app */}
+-    <CssVarsProvider>
++    </ThemeProvider>;
+ }
 ```
 
 Check out the [CSS theme variables page](/material-ui/customization/css-theme-variables/overview/) to learn more about it.
