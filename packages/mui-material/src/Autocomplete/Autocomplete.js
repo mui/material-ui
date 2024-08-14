@@ -417,6 +417,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     autoComplete = false,
     autoHighlight = false,
     autoSelect = false,
+    asyncOptions = false,
     blurOnSelect = false,
     ChipProps: ChipPropsProp,
     className,
@@ -780,6 +781,12 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
   // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * If `true`, the component will handle asynchronously loaded options.
+   * This suppresses warnings about mismatched values when options are not yet loaded.
+   * @default false
+   */
+  asyncOptions: PropTypes.bool,
   /**
    * If `true`, the portion of the selected suggestion that the user hasn't typed,
    * known as the completion string, appears inline after the input cursor in the textbox.

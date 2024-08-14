@@ -72,6 +72,7 @@ function useAutocomplete(props) {
     autoComplete = false,
     autoHighlight = false,
     autoSelect = false,
+    asyncOptions = false,
     blurOnSelect = false,
     clearOnBlur = !props.freeSolo,
     clearOnEscape = false,
@@ -244,7 +245,7 @@ function useAutocomplete(props) {
   const listboxAvailable = open && filteredOptions.length > 0 && !readOnly;
 
   if (process.env.NODE_ENV !== 'production') {
-    if (value !== null && !freeSolo && options.length > 0) {
+    if (value !== null && !freeSolo && options.length > 0 && !asyncOptions) {
       const missingValue = (multiple ? value : [value]).filter(
         (value2) => !options.some((option) => isOptionEqualToValue(option, value2)),
       );
@@ -259,6 +260,7 @@ function useAutocomplete(props) {
                 : JSON.stringify(missingValue[0])
             }\`.`,
             'You can use the `isOptionEqualToValue` prop to customize the equality test.',
+            'If you using asynchronous options, make sure that the `asyncOptions` prop is `true`.',
           ].join('\n'),
         );
       }

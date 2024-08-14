@@ -73,6 +73,12 @@ export interface UseAutocompleteProps<
    */
   autoSelect?: boolean;
   /**
+   * If `true`, the component will handle asynchronously loaded options.
+   * This suppresses warnings about mismatched values when options are not yet loaded.
+   * @default false
+   */
+  asyncOptions?: boolean;
+  /**
    * Control if the input should be blurred when an option is selected:
    *
    * - `false` the input is not blurred.
