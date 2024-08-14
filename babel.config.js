@@ -1,20 +1,30 @@
-const { default: test } = require('node:test');
+// @ts-check
 const path = require('path');
+
+/**
+ * @typedef {import('@babel/core')} babel
+ */
 
 const errorCodesPath = path.resolve(__dirname, './docs/public/static/error-codes.json');
 const missingError = process.env.MUI_EXTRACT_ERROR_CODES === 'true' ? 'write' : 'annotate';
 
+/**
+ * @param {string} relativeToBabelConf
+ * @returns {string}
+ */
 function resolveAliasPath(relativeToBabelConf) {
   const resolvedPath = path.relative(process.cwd(), path.resolve(__dirname, relativeToBabelConf));
   return `./${resolvedPath.replace('\\', '/')}`;
 }
 
+/** @type {babel.PluginItem[]} */
 const productionPlugins = [
   ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
 ];
 
 const importResolverPlugin = path.resolve(__dirname, './scripts/babelPluginResolveRelativeImports');
 
+/** @type {babel.ConfigFunction} */
 module.exports = function getBabelConfig(api) {
   const useESModules = api.env(['regressions', 'modern', 'stable']);
 
@@ -59,6 +69,7 @@ module.exports = function getBabelConfig(api) {
     '@babel/preset-typescript',
   ];
 
+  /** @type {babel.PluginItem[]} */
   const plugins = [
     [
       'babel-plugin-macros',

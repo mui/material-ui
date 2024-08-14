@@ -1,11 +1,14 @@
-/// <reference path="./resolve.d.ts" />
 // @ts-check
+/// <reference path="./resolve.d.ts" />
 
 const nodePath = require('path');
 const resolve = require('resolve/sync');
 
 /**
- *
+ * @typedef {import('@babel/core')} babel
+ */
+
+/**
  * @param {string} absolutePath
  * @param {string} relativeTo
  * @returns {string}
@@ -14,10 +17,6 @@ function toRelativeImportSpecifier(absolutePath, relativeTo) {
   const relative = nodePath.posix.relative(relativeTo, absolutePath);
   return relative.startsWith('.') ? relative : `./${relative}`;
 }
-
-/**
- * @typedef {import('@babel/core')} babel
- */
 
 /**
  * @typedef {{ outExtension?: string }} Options
