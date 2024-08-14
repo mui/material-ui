@@ -70,14 +70,14 @@ export const TypographyRoot = styled('span', {
           color: (theme.vars || theme).palette[color].main,
         },
       })),
-    {
-      props: { color: 'textPrimary' },
-      style: { color: (theme.vars || theme).palette.text?.primary },
-    },
-    {
-      props: { color: 'textSecondary' },
-      style: { color: (theme.vars || theme).palette.text?.secondary },
-    },
+    ...Object.entries(theme.palette?.text || {})
+      .filter(([, value]) => typeof value === 'string')
+      .map(([color]) => ({
+        props: { color: `text${capitalize(color)}` },
+        style: {
+          color: (theme.vars || theme).palette.text[color],
+        },
+      })),
     {
       props: ({ ownerState }) => ownerState.align !== 'inherit',
       style: {

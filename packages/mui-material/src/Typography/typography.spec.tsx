@@ -33,6 +33,7 @@ const typographyTest = () => {
       <Typography align="justify" color="secondary" display="initial" />
       <Typography align="inherit" color="text.primary" />
       <Typography align="inherit" color="textSecondary" />
+      <Typography align="inherit" color="textDisabled" />
       <Typography align="inherit" color="error" />
       {/* TODO: system props did not catch this error. Add @ts-expect-error after it is fixed. */}
       <Typography display="incorrectValue" />

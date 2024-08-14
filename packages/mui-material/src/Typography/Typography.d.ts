@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { SxProps, SystemProps } from '@mui/system';
-import { Theme } from '../styles';
+import { Theme, TypeText } from '../styles';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Variant } from '../styles/createTypography';
 import { TypographyClasses } from './typographyClasses';
@@ -37,8 +37,7 @@ export interface TypographyOwnProps extends Omit<SystemProps<Theme>, 'color'> {
         | 'error'
         | 'info'
         | 'warning'
-        | 'textPrimary'
-        | 'textSecondary',
+        | `text${Capitalize<keyof TypeText>}`,
         TypographyPropsColorOverrides
       >
     | (string & {}); // to work with v5 color prop type which allows any string
