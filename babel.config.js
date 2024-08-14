@@ -119,7 +119,7 @@ module.exports = function getBabelConfig(api) {
     },
     presets,
     plugins,
-    ignore: [/@babel[\\|/]runtime/, 'scripts/babelPluginResolveRelativeImports.js'], // Fix a Windows issue.
+    ignore: [/@babel[\\|/]runtime/, /scripts\/babelPluginResolveRelativeImports\.js/], // Fix a Windows issue.
     overrides: [
       {
         exclude: /\.test\.(js|ts|tsx)$/,
