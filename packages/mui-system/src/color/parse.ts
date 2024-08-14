@@ -120,9 +120,6 @@ export function parseRepresentation(color: string): Color {
     p4 = consumeValue();
   }
 
-  console.log({ color, format, p1, p2, p3, p4 });
-
-  //
   switch (format) {
     case 'rgb':
     case 'rgba': {
@@ -166,6 +163,36 @@ export function parseRepresentation(color: string): Color {
         shl(a, OFFSET_A)
       )
     }
+    case 'hwb': {
+      const h = parseAngle(p1);
+      const w = parsePercentage(p2);
+      const bl = parsePercentage(p3);
+      const a = p4 ? parseAlphaChannel(p4) : 255;
+
+      /* https://drafts.csswg.org/css-color/#hwb-to-rgb */
+      const s = 1.0;
+      const l = 0.5;
+
+      // Same as HSL to RGB
+      const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+      const p = 2 * l - q;
+      let r = Math.round(hueToRGB(p, q, h + 1/3) * 255);
+      let g = Math.round(hueToRGB(p, q, h) * 255);
+      let b = Math.round(hueToRGB(p, q, h - 1/3) * 255);
+
+      // Then HWB
+      r = hwbApply(r, w, bl);
+      g = hwbApply(r, w, bl);
+      b = hwbApply(r, w, bl);
+
+      // prettier-ignore
+      return (
+        shl(r, OFFSET_R) +
+        shl(g, OFFSET_G) +
+        shl(b, OFFSET_B) +
+        shl(a, OFFSET_A)
+      )
+    }
     default: {
       return COLOR_INVALID;
     }
@@ -179,9 +206,9 @@ export function parseRepresentation(color: string): Color {
  */
 function parseColorChannel(channel: string): number {
   if (channel.charCodeAt(channel.length - 1) === PERCENT) {
-    return Math.round((parseInt(channel, 10) / 100) * 255);
+    return Math.round((parseFloat(channel) / 100) * 255);
   }
-  return parseInt(channel, 10);
+  return Math.round(parseFloat(channel));
 }
 
 /**
@@ -194,7 +221,7 @@ function parseAlphaChannel(channel: string): number {
     return 0;
   }
   if (channel.charCodeAt(channel.length - 1) === PERCENT) {
-    return Math.round((parseInt(channel, 10) / 100) * 255);
+    return Math.round((parseFloat(channel) / 100) * 255);
   }
   return Math.round(parseFloat(channel) * 255);
 }
@@ -314,4 +341,15 @@ function hueToRGB(p: number, q: number, t: number) {
   if (t < 1 / 2) { return q };
   if (t < 2 / 3) { return p + (q - p) * (2 / 3 - t) * 6 };
   { return p };
+}
+
+// HWB functions
+
+function hwbApply(channel: number, w: number, b: number) {
+  let result = channel / 255
+
+  result *= 1 - w - b
+  result += w
+
+  return Math.round(result * 255)
 }
