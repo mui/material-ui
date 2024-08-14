@@ -164,8 +164,7 @@ function useSynchronousEffect(func, values) {
   let output;
 
   // Store "generation" key. Just returns a new object every time
-  // TODO: uncomment once we enable eslint-plugin-react-compiler //
-  // eslint-disable-next-line react-compiler/react-compiler
+  // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
   const currentKey = React.useMemo(() => ({}), values); // eslint-disable-line react-hooks/exhaustive-deps
 
   // "the first render", or "memo dropped the value"
