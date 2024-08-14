@@ -1,5 +1,19 @@
+/// <reference path="./resolve.d.ts" />
+// @ts-check
+
 const nodePath = require('path');
 const resolve = require('resolve/sync');
+
+/**
+ *
+ * @param {string} absolutePath
+ * @param {string} relativeTo
+ * @returns {string}
+ */
+function toRelativeImportSpecifier(absolutePath, relativeTo) {
+  const relative = nodePath.posix.relative(relativeTo, absolutePath);
+  return relative.startsWith('.') ? relative : `./${relative}`;
+}
 
 /**
  * @typedef {import('@babel/core')} babel
@@ -19,8 +33,20 @@ module.exports = function plugin({ types: t }, { outExtension = '.js' }) {
   const cache = new Map();
   return {
     visitor: {
-      ImportDeclaration(path, state) {
-        const source = path.get('source');
+      ImportOrExportDeclaration(path, state) {
+        if (path.isExportDefaultDeclaration()) {
+          return;
+        }
+
+        const source =
+          /** @type {babel.NodePath<babel.types.StringLiteral | null | undefined> } */ (
+            path.get('source')
+          );
+
+        if (!source.node) {
+          return;
+        }
+
         const importedPath = source.node.value;
 
         if (!importedPath.startsWith('.')) {
@@ -51,7 +77,7 @@ module.exports = function plugin({ types: t }, { outExtension = '.js' }) {
             nodePath.basename(resolvedPath, nodePath.extname(resolvedPath)) + outExtension,
           );
           // get relative path (posix style, because will be used as an import)
-          resolvedPath = nodePath.posix.relative(dir, resolvedPath);
+          resolvedPath = toRelativeImportSpecifier(resolvedPath, dir);
           cache.set(absoluteImportPath, resolvedPath);
         }
 
