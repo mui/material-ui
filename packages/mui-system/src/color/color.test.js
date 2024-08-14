@@ -21,13 +21,13 @@ describe('utils/color', () => {
       })
 
       ['hsl', 'hsla'].forEach(type => {
-        expect(parse('hsl(50deg 80% 40% / 50%)')).to.equal(0xb89c1480);
-        expect(parse('hsl(50deg 80% 40% / 0.5)')).to.equal(0xb89c1480);
-        expect(parse('hsl(0 80% 40% / 0.5)')).to.equal(0xb8141480);
-        expect(parse('hsl(none 80% 40% / 0.5)')).to.equal(0xb8141480);
-        expect(parse('hsl(1turn 80% 40% / 0.5)')).to.equal(0xb8141480);
-        expect(parse('hsl(400grad 80% 40% / 0.5)')).to.equal(0xb8141480);
-        expect(parse('hsl(0rad 80% 40% / 0.5)')).to.equal(0xb8141480);
+        expect(parse(`${type}(50deg 80% 40% / 50%)`)).to.equal(0xb89c1480);
+        expect(parse(`${type}(50deg 80% 40% / 0.5)`)).to.equal(0xb89c1480);
+        expect(parse(`${type}(0 80% 40% / 0.5)`)).to.equal(0xb8141480);
+        expect(parse(`${type}(none 80% 40% / 0.5)`)).to.equal(0xb8141480);
+        expect(parse(`${type}(1turn 80% 40% / 0.5)`)).to.equal(0xb8141480);
+        expect(parse(`${type}(400grad 80% 40% / 0.5)`)).to.equal(0xb8141480);
+        expect(parse(`${type}(0rad 80% 40% / 0.5)`)).to.equal(0xb8141480);
       })
     });
   });
