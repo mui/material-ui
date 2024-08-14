@@ -70,7 +70,11 @@ module.exports = function getBabelConfig(api) {
   ];
 
   const usesAliases =
-    api.env(['coverage', 'development', 'test', 'benchmark']) || process.env.NODE_ENV === 'test';
+    // in this config:
+    api.env(['coverage', 'development', 'test', 'benchmark']) ||
+    process.env.NODE_ENV === 'test' ||
+    // in webpack config:
+    api.env(['regressions']);
 
   /** @type {babel.PluginItem[]} */
   const plugins = [
