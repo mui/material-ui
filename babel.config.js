@@ -108,9 +108,6 @@ module.exports = function getBabelConfig(api) {
         ],
       },
     ],
-    // Make sure the aliasing happens before we resolve the imports to the actual file.
-    // This plugin will be enabled by overrides in certain environments.
-    ['babel-plugin-module-resolver', false],
     [importResolverPlugin, useESModules ? { outExtension: '.js' } : false],
   ];
 
