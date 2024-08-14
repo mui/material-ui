@@ -148,6 +148,13 @@ module.exports = {
     ],
     // We are a library, we need to support it too
     'jsx-a11y/no-autofocus': 'off',
+    'jsx-a11y/control-has-associated-label': [
+      'error',
+      {
+        // Remove when https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/959 gets fixed
+        ignoreElements: ['th'],
+      },
+    ],
 
     'material-ui/docgen-ignore-before-comment': 'error',
     'material-ui/rules-of-use-theme-variants': 'error',
