@@ -238,6 +238,11 @@ export function getContrastRatio(foreground, background) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 export function alpha(color, value) {
+  // Test fast implementation
+  if (color.charAt(0) === '#') {
+    return colorToString(alphaColor(parseColor(color), value))
+  }
+
   color = decomposeColor(color);
   value = clampWrapper(value);
 
@@ -261,6 +266,57 @@ export function private_safeAlpha(color, value, warning) {
     }
     return color;
   }
+}
+
+// Fast color manipulation functions
+function parseColor(color) {
+  const hex = color.slice(1);
+  let r = '00';
+  let g = '00';
+  let b = '00';
+  let a = 'ff';
+
+  switch (hex.length) {
+    // #59f
+    case 3: {
+      r = hex.charAt(0) + hex.charAt(0);
+      g = hex.charAt(1) + hex.charAt(1);
+      b = hex.charAt(2) + hex.charAt(2);
+      break
+    }
+    // #599eff
+    case 6: {
+      r = hex.slice(0, 2);
+      g = hex.slice(2, 4);
+      b = hex.slice(4, 6);
+      break
+    }
+    // #599eff88
+    case 8: {
+      r = hex.slice(0, 2);
+      g = hex.slice(2, 4);
+      b = hex.slice(4, 6);
+      a = hex.slice(6, 8);
+      hasAlpha = true
+      break
+    }
+    default: {
+      break
+    }
+  }
+
+  return (
+    (parseInt(r, 16) << 24) +
+    (parseInt(g, 16) << 16) +
+    (parseInt(b, 16) <<  8) +
+    (parseInt(a, 16) <<  0)
+  )
+}
+function alphaColor(color, value) {
+  return (color & 0xffffff00) | (value << 0)
+}
+function colorToString(color) {
+  return `rgba(${(color & 0xff000000) >> 24}, ${(color & 0x00ff0000) >> 16}, ${(color & 0x0000ff00) >> 8}, ${(color & 0x000000ff) / 255})`
 }
 
 /**
