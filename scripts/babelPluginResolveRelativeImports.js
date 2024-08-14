@@ -37,6 +37,13 @@ module.exports = function plugin({ types: t }, { outExtension = '.js' }) {
           return;
         }
 
+        if (
+          (path.isExportDeclaration() && path.node.exportKind === 'type') ||
+          (path.isImportDeclaration() && path.node.importKind === 'type')
+        ) {
+          return;
+        }
+
         const source =
           /** @type {babel.NodePath<babel.types.StringLiteral | null | undefined> } */ (
             path.get('source')
