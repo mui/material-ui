@@ -5,8 +5,7 @@ import * as playwright from 'playwright';
 async function main() {
   const baseUrl = 'http://localhost:5001/fixtures';
   const screenshotDir = path.resolve('screenshots/chrome');
-  console.log('Screenshot directory');
-  console.log(screenshotDir);
+
   const browser = await playwright.chromium.launch({
     args: ['--font-render-hinting=none'],
     // otherwise the loaded google Roboto font isn't applied
@@ -50,9 +49,6 @@ async function main() {
     return links.map((link) => link.href);
   });
   routes = routes.map((route) => route.replace(baseUrl, ''));
-
-  console.log('routes');
-  console.log(routes);
 
   async function renderFixture(index) {
     // Use client-side routing which is much faster than full page navigation via page.goto().
