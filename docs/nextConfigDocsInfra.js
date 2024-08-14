@@ -52,7 +52,6 @@ function withDocsInfra(nextConfig) {
     // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
     optimizeFonts: false,
     reactStrictMode: true,
-    productionBrowserSourceMaps: true,
     ...nextConfig,
     env: {
       BUILD_ONLY_ENGLISH_LOCALE: 'true', // disable translations by default
