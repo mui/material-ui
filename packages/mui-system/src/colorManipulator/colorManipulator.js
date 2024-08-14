@@ -200,6 +200,11 @@ export function hslToRgb(color) {
  * @returns {number} The relative brightness of the color in the range 0 - 1
  */
 export function getLuminance(color) {
+  // Test fast implementation
+  if (color.charAt(0) === '#') {
+    return Color.format(Color.getLuminance(Color.parse(color)));
+  }
+
   color = decomposeColor(color);
 
   let rgb =
