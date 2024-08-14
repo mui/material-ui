@@ -28,17 +28,6 @@ function pathToNodeImportSpecifier(importPath) {
 }
 
 /**
- * @param {string} absolutePath
- * @param {string} relativeTo
- * @returns {string}
- */
-function toRelativeImportSpecifier(absolutePath, relativeTo) {
-  // posix style, because will be used as an import specifier
-  const relative = nodePath.posix.normalize(nodePath.relative(relativeTo, absolutePath));
-  return relative.startsWith('.') ? relative : `./${relative}`;
-}
-
-/**
  * @typedef {{ outExtension?: string }} Options
  */
 
