@@ -193,6 +193,11 @@ export function parseRepresentation(color: string): Color {
         shl(a, OFFSET_A)
       )
     }
+    case 'color': {
+      // https://www.npmjs.com/package/colord#plugins
+      // https://www.w3.org/TR/css-color-4/#color-conversion-code
+      throw new Error('unimplemented');
+    }
     default: {
       return COLOR_INVALID;
     }
