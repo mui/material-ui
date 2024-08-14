@@ -34,7 +34,6 @@ describe('utils/color', () => {
       // expect(parse('hwb(12 50% 0%)')).to.equal(0xff9980ff);
       // expect(parse('hwb(50deg 30% 40%)')).to.equal(0x998c4dff);
       // expect(parse('hwb(0.5turn 10% 0% / .5)')).to.equal(0x1affff80);
-
     });
   });
 });

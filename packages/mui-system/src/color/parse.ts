@@ -1,16 +1,33 @@
 import { Color, newColor, COLOR_INVALID } from './core';
 
 const HASH = '#'.charCodeAt(0);
-const ARGUMENTS_END = ')'.charCodeAt(0);
-const SPACE = ' '.charCodeAt(0);
-const COMMA = ','.charCodeAt(0);
-const SLASH = '/'.charCodeAt(0);
-const PERIOD = '.'.charCodeAt(0);
 const PERCENT = '%'.charCodeAt(0);
 const G = 'g'.charCodeAt(0);
 const N = 'n'.charCodeAt(0);
 const D = 'd'.charCodeAt(0);
 const E = 'e'.charCodeAt(0);
+
+/**
+ * Approximative CSS colorspace string pattern, e.g. rgb(), color()
+ */
+const PATTERN = (() => {
+  const NAME = '(\\w+)'
+  const SEPARATOR = '[\\s,\\/]'
+  const VALUE = '([^\\s,\\/]+)'
+  const SEPARATOR_THEN_VALUE = `(?:${SEPARATOR}+${VALUE})`
+
+  return new RegExp(
+    `${NAME}\\(
+      ${SEPARATOR}*${VALUE}
+      ${SEPARATOR_THEN_VALUE}
+      ${SEPARATOR_THEN_VALUE}
+      ${SEPARATOR_THEN_VALUE}?
+      ${SEPARATOR_THEN_VALUE}?
+      ${SEPARATOR}*
+    \\)`.replace(/\s/g, '')
+  )
+})();
+
 
 /**
  * Parse CSS color
@@ -70,45 +87,23 @@ function parseHex(hex: string): Color {
   )
 }
 
-/** Global parsing state */
-const state = {
-  data: '',
-  offset: 0,
-};
-
 /**
  * Parse CSS color
  * @spec https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
  * @param color CSS color string: rgb(), rgba(), hsl(), hsla(), color()
  */
 export function parseRepresentation(color: string): Color {
-  let format = '';
-  let p1 = '';
-  let p2 = '';
-  let p3 = '';
-  let p4 = '';
-
-  state.data = color;
-  state.offset = 0;
-
-  while (hasContent()) {
-    if (isLetter(peek())) {
-      format += consume();
-    } else {
-      break;
-    }
+  const match = PATTERN.exec(color);
+  if (match === null) {
+    return COLOR_INVALID;
   }
 
-  consume(); // "("
-  skipSeparators();
-
-  p1 = consumeValue();
-  p2 = consumeValue();
-  p3 = consumeValue();
-
-  if (peek() !== ARGUMENTS_END) {
-    p4 = consumeValue();
-  }
+  const format = match[1];
+  const p1 = match[2];
+  const p2 = match[3];
+  const p3 = match[4];
+  const p4 = match[5];
+  const p5 = match[6];
 
   switch (format) {
     case 'rgb':
@@ -217,8 +212,8 @@ function parseAngle(angle: string): number {
     }
     case D: {
       // 'rad', 'grad'
-      // 'grad'
       if (angle.charCodeAt(Math.max(0, angle.length - 4)) === G) {
+        // 'grad'
         factor = 400;
       } else {
         // 'rad'
@@ -251,63 +246,6 @@ function parsePercentage(value: string): number {
   return parseInt(value) / 100;
 }
 
-
-// Parsing state functions
-
-function hasContent() {
-  return state.offset < state.data.length;
-}
-
-function peek() {
-  return state.data.charCodeAt(state.offset);
-}
-
-function consume() {
-  if (process.env.NODE_ENV !== 'production') {
-    if (state.offset >= state.data.length) {
-      throw new Error(`MUI: Invalid color input: "${state.data}"`);
-    }
-  }
-
-  const result = state.data.charAt(state.offset);
-  state.offset += 1;
-  return result;
-}
-
-function skipSeparators() {
-  while (hasContent()) {
-    const code = peek();
-    // This makes the parser a bit more liberal in what it accepts,
-    // e.g. `rgb(1 / 2 / 3)` would be accepted.
-    if (code === SPACE || code === COMMA || code === SLASH) {
-      consume();
-    } else {
-      break;
-    }
-  }
-}
-
-function consumeValue() {
-  let value = '';
-  while (hasContent()) {
-    const code = peek();
-    if (isLetter(code) || isDigit(code) || code === PERIOD || code === PERCENT) {
-      value += consume();
-    } else {
-      break;
-    }
-  }
-  skipSeparators();
-  return value;
-}
-
-function isLetter(code: number) {
-  return code >= 64 && code <= 122;
-}
-
-function isDigit(code: number) {
-  return code >= 48 && code <= 57;
-}
 
 // HSL functions
 
