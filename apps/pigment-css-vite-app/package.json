@@ -33,7 +33,8 @@
     "postcss": "^8.4.41",
     "postcss-combine-media-query": "^1.0.1",
     "vite": "5.3.5",
-    "vite-plugin-pages": "^0.32.3"
+    "vite-plugin-pages": "^0.32.3",
+    "vite-plugin-node-polyfills": "0.22.0"
   },
   "nx": {
     "targets": {
