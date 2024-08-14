@@ -206,7 +206,8 @@ export default function ToolpadShowcase() {
               sx={(theme) => ({
                 width: '100%',
                 height: 260,
-                overflow: 'clip',
+                overflow: 'auto',
+                scrollbarGutter: 'stable',
                 boxShadow: `0 4px 8px ${alpha(theme.palette.common.black, 0.1)}`,
                 borderColor: 'grey.200',
                 borderRadius: '8px',

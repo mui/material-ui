@@ -97,7 +97,7 @@ function DashboardLayoutBasic(props: DemoProps) {
               <PlaceHolder height={100} />
             </Grid>
             <Grid size={12}>
-              <PlaceHolder height={200} />
+              <PlaceHolder height={100} />
             </Grid>
           </Grid>
         </PageContainer>
