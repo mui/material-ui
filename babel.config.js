@@ -108,7 +108,7 @@ module.exports = function getBabelConfig(api) {
         ],
       },
     ],
-    [importResolverPlugin, useESModules ? { outExtension: '.js' } : false],
+    ...(useESModules ? [[importResolverPlugin, { outExtension: '.js' }]] : []),
   ];
 
   if (process.env.NODE_ENV === 'production') {
