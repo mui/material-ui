@@ -209,9 +209,11 @@ The new custom styles we've added allow you to dive into the best approaches for
 
 {{"component": "components/blog/material-ui-v6-is-out/CustomThemeComparison.js"}}
 
-Stay tuned, as many more updates are coming in the upcoming months! We'd love to hear your feedback on which templates or sections you'd like to see next.
+### Full-stack apps
 
-For your full-stack needs you can also explore [Toolpad Core](https://mui.com/toolpad/)—a Next.js starter for building dashboards. It offers components like dashboard layout, next-auth powered sign-in page and more.
+To get started building full-stack apps fast, we're building [Toolpad Core](https://mui.com/toolpad/) - get Material UI, Next.js, routing, layout components and authentication out of the box while you build dashboards or internal tools.
+
+Stay tuned, as many more updates are coming in the upcoming months! We'd love to hear your feedback on which templates or sections you'd like to see next.
 
 ## Bundle size improvements
 
