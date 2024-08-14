@@ -31,6 +31,8 @@ function toRelativeImportSpecifier(absolutePath, relativeTo) {
 module.exports = function plugin({ types: t }, { outExtension = '.js' }) {
   /** @type {Map<string, string>} */
   const cache = new Map();
+  const extensions = ['.ts', '.tsx', '.js', '.jsx'];
+  const extensionsSet = new Set(extensions);
   return {
     visitor: {
       ImportOrExportDeclaration(path, state) {
@@ -63,13 +65,11 @@ module.exports = function plugin({ types: t }, { outExtension = '.js' }) {
           // Only handle relative imports
           return;
         }
-        if (nodePath.extname(importedPath)) {
-          // Assume paths with extension are already resolved
-          return;
-        }
+
         if (!state.filename) {
           throw new Error('filename is not defined');
         }
+
         const dir = nodePath.dirname(state.filename);
         // start from fully resolved import path
         const absoluteImportPath = nodePath.resolve(dir, importedPath);
@@ -78,14 +78,15 @@ module.exports = function plugin({ types: t }, { outExtension = '.js' }) {
 
         if (!resolvedPath) {
           // resolve to actual file
-          resolvedPath = resolve(absoluteImportPath, {
-            extensions: ['.ts', '.tsx', '.js', '.jsx'],
-          });
-          // replace extension
-          resolvedPath = nodePath.resolve(
-            nodePath.dirname(resolvedPath),
-            nodePath.basename(resolvedPath, nodePath.extname(resolvedPath)) + outExtension,
-          );
+          resolvedPath = resolve(absoluteImportPath, { extensions });
+          const resolvedExtension = nodePath.extname(resolvedPath);
+          if (extensionsSet.has(resolvedExtension)) {
+            // replace extension
+            resolvedPath = nodePath.resolve(
+              nodePath.dirname(resolvedPath),
+              nodePath.basename(resolvedPath, resolvedExtension) + outExtension,
+            );
+          }
           cache.set(absoluteImportPath, resolvedPath);
         }
 
