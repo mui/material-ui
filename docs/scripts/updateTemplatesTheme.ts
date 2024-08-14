@@ -7,14 +7,6 @@ import fs from 'fs/promises';
  * Description:
  *
  * This script copies the theme files from `docs/data/material/getting-started/templates/shared-theme` to each template's theme folder.
- * The copied files are (.ts and .js):
- *  - `customizations/dataDisplay`
- *  - `customizations/feedback`
- *  - `customizations/inputs`
- *  - `customizations/navigation`
- *  - `customizations/surfaces`
- *  - `themePrimitives`
- *
  * All other files should be managed in each template's theme folder, as are assumed to be unique.
  * To add a shared theme file, add it to the `shared-theme` folder and run this script.
  * To update a shared theme file, update it in the `shared-theme` folder and run this script.
@@ -36,7 +28,7 @@ const TEMPLATES = [
   'sign-up',
 ];
 
-async function traversePath(path, relativePath = '') {
+async function traversePath(path: string, relativePath = '') {
   return fs.readdir(path, { withFileTypes: true }).then((subpaths) => {
     subpaths.forEach((subpath) => {
       const sourcePath = `${subpath.parentPath}/${subpath.name}`;
