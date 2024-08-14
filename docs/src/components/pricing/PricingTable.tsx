@@ -1088,7 +1088,7 @@ function StickyHead({
   container,
   disableCalculation = false,
 }: {
-  container: React.MutableRefObject<HTMLElement | null>;
+  container: React.RefObject<HTMLElement | null>;
   disableCalculation?: boolean;
 }) {
   const [hidden, setHidden] = React.useState(true);

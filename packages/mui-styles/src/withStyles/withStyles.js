@@ -57,6 +57,7 @@ const withStyles =
 
       if (typeof name === 'string' || withTheme) {
         // name and withTheme are invariant in the outer scope
+        // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
         // eslint-disable-next-line react-hooks/rules-of-hooks
         theme = useTheme() || defaultTheme;
 
