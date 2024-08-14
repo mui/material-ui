@@ -79,6 +79,11 @@ module.exports = function plugin({ types: t }, { outExtension = '.js' }) {
         if (!resolvedPath) {
           // resolve to actual file
           resolvedPath = resolve(absoluteImportPath, { extensions });
+
+          if (!resolvedPath) {
+            throw new Error(`could not resolve "${importedPath}" from "${state.filename}"`);
+          }
+
           const resolvedExtension = nodePath.extname(resolvedPath);
           if (extensionsSet.has(resolvedExtension)) {
             // replace extension
@@ -87,6 +92,7 @@ module.exports = function plugin({ types: t }, { outExtension = '.js' }) {
               nodePath.basename(resolvedPath, resolvedExtension) + outExtension,
             );
           }
+
           cache.set(absoluteImportPath, resolvedPath);
         }
 
