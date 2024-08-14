@@ -1,10 +1,5 @@
 [
   {
-    "id": 78,
-    "title": "MUI X v6.18.x and the latest improvements before the next major",
-    "text": "New stable components, polished features, better performance and more. Check out the details in our <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-end-v6\" href=\"https://mui.com/blog/mui-x-end-v6-features/\">recent blog post</a>."
-  },
-  {
     "id": 81,
     "title": "Introducing MUI X v7",
     "text": "The new version is packed with new components, exciting features, improved usability, and developer experience. Check out the <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-v7\" href=\"https://mui.com/blog/mui-x-v7/\">announcement blog post</a>."
@@ -13,5 +8,10 @@
     "id": 82,
     "title": "Upcoming changes to MUI X pricing in 2024",
     "text": "Check out the <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x\" href=\"https://mui.com/blog/mui-x-sep-2024-price-update/\">new pricing updates</a> and how to transition to the new model."
+  },
+  {
+    "id": 83,
+    "title": "Material UI v6 is out!",
+    "text": "This major release includes opt-in CSS extraction, Custom properties support, and a lot more improvements. Check out the <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-v7\" href=\"https://mui.com/blog/material-ui-v6-is-out/\">announcement blog post</a>."
   }
 ]
