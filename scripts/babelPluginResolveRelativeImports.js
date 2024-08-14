@@ -85,12 +85,13 @@ module.exports = function plugin({ types: t }, { outExtension = '.js' }) {
             nodePath.dirname(resolvedPath),
             nodePath.basename(resolvedPath, nodePath.extname(resolvedPath)) + outExtension,
           );
-          // get relative path (posix style, because will be used as an import)
-          resolvedPath = toRelativeImportSpecifier(resolvedPath, dir);
           cache.set(absoluteImportPath, resolvedPath);
         }
 
-        source.replaceWith(t.stringLiteral(resolvedPath));
+        // get relative path (posix style, because will be used as an import)
+        const relativeResolvedPath = toRelativeImportSpecifier(resolvedPath, dir);
+
+        source.replaceWith(t.stringLiteral(relativeResolvedPath));
       },
     },
   };
