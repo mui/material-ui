@@ -108,7 +108,7 @@ function EnhancedTableHead(props) {
   return (
     <thead>
       <tr>
-        <th>
+        <th aria-label="select all desserts">
           <Checkbox
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
@@ -352,7 +352,7 @@ export default function TableSortAndSelection() {
                       : {}
                   }
                 >
-                  <th scope="row">
+                  <th scope="row" aria-labelledby={labelId}>
                     <Checkbox
                       checked={isItemSelected}
                       slotProps={{
