@@ -297,7 +297,6 @@ function parseColor(color) {
       g = hex.slice(2, 4);
       b = hex.slice(4, 6);
       a = hex.slice(6, 8);
-      hasAlpha = true
       break
     }
     default: {
@@ -316,7 +315,7 @@ function alphaColor(color, value) {
   return (color & 0xffffff00) | (value << 0)
 }
 function colorToString(color) {
-  return `rgba(${(color & 0xff000000) >> 24}, ${(color & 0x00ff0000) >> 16}, ${(color & 0x0000ff00) >> 8}, ${(color & 0x000000ff) / 255})`
+  return `#${intToHex((color & 0xff000000) >> 24)}${intToHex((color & 0x00ff0000) >> 16)}${intToHex((color & 0x0000ff00) >> 8)}${intToHex((color & 0x000000ff) >> 0)}`
 }
 
 /**
