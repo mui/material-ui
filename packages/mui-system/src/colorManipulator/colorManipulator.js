@@ -201,9 +201,7 @@ export function hslToRgb(color) {
  */
 export function getLuminance(color) {
   // Test fast implementation
-  if (color.charAt(0) === '#') {
-    return Color.format(Color.getLuminance(Color.parse(color)));
-  }
+  // return Color.format(Color.getLuminance(Color.parse(color)));
 
   color = decomposeColor(color);
 
@@ -245,9 +243,7 @@ export function getContrastRatio(foreground, background) {
  */
 export function alpha(color, value) {
   // Test fast implementation
-  if (color.charAt(0) === '#') {
-    return Color.format(Color.setAlpha(Color.parse(color), value));
-  }
+  // return Color.format(Color.setAlpha(Color.parse(color)));
 
   color = decomposeColor(color);
   value = clampWrapper(value);
@@ -281,6 +277,9 @@ export function private_safeAlpha(color, value, warning) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 export function darken(color, coefficient) {
+  // Test fast implementation
+  // return Color.format(Color.darken(Color.parse(color)));
+
   color = decomposeColor(color);
   coefficient = clampWrapper(coefficient);
 
