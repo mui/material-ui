@@ -782,12 +782,6 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * If `true`, the component will handle asynchronously loaded options.
-   * This suppresses warnings about mismatched values when options are not yet loaded.
-   * @default false
-   */
-  asyncOptions: PropTypes.bool,
-  /**
    * If `true`, the portion of the selected suggestion that the user hasn't typed,
    * known as the completion string, appears inline after the input cursor in the textbox.
    * The inline completion string is visually highlighted and has a selected state.
