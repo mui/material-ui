@@ -119,14 +119,30 @@ export default function SignUp() {
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [nameError, setNameError] = React.useState(false);
   const [nameErrorMessage, setNameErrorMessage] = React.useState('');
-
+  // This code only runs on the client side, to determine the system color preference
   React.useEffect(() => {
-    // This code only runs on the client side, to determine the system color preference
-    const systemPrefersDark = window.matchMedia(
-      '(prefers-color-scheme: dark)',
-    ).matches;
-    setMode(systemPrefersDark ? 'dark' : 'light');
+    // Check if there is a preferred mode in localStorage
+    const savedMode = localStorage.getItem('themeMode') as PaletteMode | null;
+    if (savedMode) {
+      setMode(savedMode);
+    } else {
+      // If no preference is found, it uses system preference
+      const systemPrefersDark = window.matchMedia(
+        '(prefers-color-scheme: dark)',
+      ).matches;
+      setMode(systemPrefersDark ? 'dark' : 'light');
+    }
   }, []);
+
+  const toggleColorMode = () => {
+    const newMode = mode === 'dark' ? 'light' : 'dark';
+    setMode(newMode);
+    localStorage.setItem('themeMode', newMode); // Save the selected mode to localStorage
+  };
+
+  const toggleCustomTheme = () => {
+    setShowCustomTheme((prev) => !prev);
+  };
 
   const validateInputs = () => {
     const email = document.getElementById('email') as HTMLInputElement;
@@ -163,14 +179,6 @@ export default function SignUp() {
     }
 
     return isValid;
-  };
-
-  const toggleColorMode = () => {
-    setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
-  };
-
-  const toggleCustomTheme = () => {
-    setShowCustomTheme((prev) => !prev);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
