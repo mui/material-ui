@@ -120,6 +120,14 @@ export default function SignUp() {
   const [nameError, setNameError] = React.useState(false);
   const [nameErrorMessage, setNameErrorMessage] = React.useState('');
 
+  React.useEffect(() => {
+    // This code only runs on the client side, to determine the system color preference
+    const systemPrefersDark = window.matchMedia(
+      '(prefers-color-scheme: dark)',
+    ).matches;
+    setMode(systemPrefersDark ? 'dark' : 'light');
+  }, []);
+
   const validateInputs = () => {
     const email = document.getElementById('email') as HTMLInputElement;
     const password = document.getElementById('password') as HTMLInputElement;

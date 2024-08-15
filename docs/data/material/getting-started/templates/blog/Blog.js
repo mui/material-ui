@@ -66,6 +66,14 @@ export default function Blog() {
   const blogTheme = createTheme(getBlogTheme(mode));
   const defaultTheme = createTheme({ palette: { mode } });
 
+  React.useEffect(() => {
+    // This code only runs on the client side, to determine the system color preference
+    const systemPrefersDark = window.matchMedia(
+      '(prefers-color-scheme: dark)',
+    ).matches;
+    setMode(systemPrefersDark ? 'dark' : 'light');
+  }, []);
+
   const toggleColorMode = () => {
     setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
   };
