@@ -29,41 +29,45 @@ function processStyleArg(callableStyle, props) {
     typeof callableStyle === 'function' ? callableStyle(props) : callableStyle;
 
   if (Array.isArray(resolvedStylesArg)) {
-    return resolvedStylesArg.flatMap((resolvedStyle) =>
-      processStyleArg(resolvedStyle, props),
-    );
+    return resolvedStylesArg.flatMap((style) => processStyleArg(style, props));
   }
 
   if (Array.isArray(resolvedStylesArg?.variants)) {
-    const mergedState = { ...props, ...props.ownerState, ownerState: props.ownerState };
-
-    const { variants = [], ...otherStyles } = resolvedStylesArg;
+    const { variants, ...otherStyles } = resolvedStylesArg;
 
     let result = otherStyles;
+    let mergedState = undefined; // We might not need it, initalized lazily
 
-    variants.forEach((variant) => {
-      let isMatch = true;
+    for (let i = 0; i < variants.length; i++) {
+      const variant = variants[i];
+
       if (typeof variant.props === 'function') {
-        isMatch = variant.props(mergedState);
+        mergedState ??= { ...props, ...props.ownerState, ownerState: props.ownerState };
+        if (!variant.props(mergedState)) {
+          continue;
+        }
       } else {
         for (const key in variant.props) {
           if (variant.props.hasOwnProperty(key)) {
             if (props[key] !== variant.props[key] && props.ownerState?.[key] !== variant.props[key]) {
-              isMatch = false;
-              break;
+              continue
             }
           }
         }
       }
-      if (isMatch) {
-        if (!Array.isArray(result)) {
-          result = [result];
-        }
-        result.push(
-          typeof variant.style === 'function' ? variant.style(mergedState) : variant.style,
-        );
+
+      if (!Array.isArray(result)) {
+        result = [result];
       }
-    });
+      let style;
+      if (typeof variant.style === 'function') {
+        mergedState ??= { ...props, ...props.ownerState, ownerState: props.ownerState };
+        style = variant.style(mergedState);
+      } else {
+        style = variant.style;
+      }
+      result.push(style);
+    }
 
     return result;
   }
