@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Icon from '@mui/material/Icon';
 import Tooltip from '@mui/material/Tooltip';
 import { fabClasses } from '@mui/material/Fab';
@@ -76,5 +76,11 @@ describe('<SpeedDialAction />', () => {
     );
     expect(container.querySelector('button')).to.have.class(classes.fab);
     expect(container.querySelector('button')).to.have.class(classes.fabClosed);
+  });
+
+  it('should spread other props on the underlying button', () => {
+    render(<SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="Add" data-testid="test" />);
+
+    expect(screen.getByRole('menuitem', { name: 'Add' })).to.have.attribute('data-testid', 'test');
   });
 });

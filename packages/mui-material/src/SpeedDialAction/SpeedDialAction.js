@@ -169,13 +169,15 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
   const fab = (
     <SpeedDialActionFab
       size="small"
-      className={clsx(classes.fab, className)}
       tabIndex={-1}
       role="menuitem"
       ownerState={ownerState}
+      {...other}
       {...FabProps}
+      className={clsx(classes.fab, other.className, className)}
       style={{
         ...transitionStyle,
+        ...(other.style || {}),
         ...FabProps.style,
       }}
     >
@@ -190,7 +192,6 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
         ref={ref}
         className={classes.staticTooltip}
         ownerState={ownerState}
-        {...other}
       >
         <SpeedDialActionStaticTooltipLabel
           style={transitionStyle}
@@ -221,7 +222,6 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
       onOpen={handleTooltipOpen}
       open={open && tooltipOpen}
       classes={TooltipClasses}
-      {...other}
     >
       {fab}
     </Tooltip>
@@ -264,6 +264,10 @@ SpeedDialAction.propTypes /* remove-proptypes */ = {
    * If `true`, the component is shown.
    */
   open: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
