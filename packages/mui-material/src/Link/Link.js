@@ -7,11 +7,22 @@ import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
 import isFocusVisible from '@mui/utils/isFocusVisible';
 import capitalize from '../utils/capitalize';
-import { styled, useTheme } from '../zero-styled';
+import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Typography from '../Typography';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
-import getTextDecoration, { colorTransformations } from './getTextDecoration';
+
+const v6Colors = {
+  primary: true,
+  secondary: true,
+  error: true,
+  info: true,
+  success: true,
+  warning: true,
+  textPrimary: true,
+  textSecondary: true,
+  textDisabled: true,
+};
 
 const useUtilityClasses = (ownerState) => {
   const { classes, component, focusVisible, underline } = ownerState;
@@ -91,6 +102,28 @@ const LinkRoot = styled(Typography, {
           },
         })),
       {
+        props: { underline: 'always', color: 'textPrimary' },
+        style: {
+          '--Link-underlineColor': theme.vars
+            ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.4)`
+            : alpha(theme.palette.text.primary, 0.4),
+        },
+      },
+      {
+        props: { underline: 'always', color: 'textSecondary' },
+        style: {
+          '--Link-underlineColor': theme.vars
+            ? `rgba(${theme.vars.palette.text.secondaryChannel} / 0.4)`
+            : alpha(theme.palette.text.secondary, 0.4),
+        },
+      },
+      {
+        props: { underline: 'always', color: 'textDisabled' },
+        style: {
+          '--Link-underlineColor': (theme.vars || theme).palette.text.disabled,
+        },
+      },
+      {
         props: {
           component: 'button',
         },
@@ -126,7 +159,6 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     props: inProps,
     name: 'MuiLink',
   });
-  const theme = useTheme();
 
   const {
     className,
@@ -183,16 +215,9 @@ const Link = React.forwardRef(function Link(inProps, ref) {
       variant={variant}
       {...other}
       sx={[
-        ...(colorTransformations[color] === undefined ? [{ color }] : []),
+        ...(v6Colors[color] === undefined ? [{ color }] : []),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
-      style={{
-        ...other.style,
-        ...(underline === 'always' &&
-          color !== 'inherit' && {
-            '--Link-underlineColor': getTextDecoration({ theme, ownerState }),
-          }),
-      }}
     />
   );
 });
@@ -215,10 +240,25 @@ Link.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the link.
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.any,
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf([
+      'primary',
+      'secondary',
+      'success',
+      'error',
+      'info',
+      'warning',
+      'textPrimary',
+      'textSecondary',
+      'textDisabled',
+    ]),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

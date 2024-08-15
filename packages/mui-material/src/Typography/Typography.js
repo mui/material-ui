@@ -121,31 +121,13 @@ const defaultVariantMapping = {
   inherit: 'p',
 };
 
-// TODO v7: remove this transformation and `extendSxProp`
-const colorTransformations = {
-  textPrimary: 'text.primary',
-  textSecondary: 'text.secondary',
-  // For the main palette, the color will be applied by the `...Object.entries(theme.palette)` clause in the TypographyRoot's styles
-  primary: null,
-  secondary: null,
-  error: null,
-  info: null,
-  success: null,
-  warning: null,
-};
-
 const Typography = React.forwardRef(function Typography(inProps, ref) {
-  const { color, ...themeProps } = useDefaultProps({ props: inProps, name: 'MuiTypography' });
-  const textColor = colorTransformations[color];
-  const props = extendSxProp({
-    ...themeProps,
-    ...(textColor !== null && {
-      color: textColor || color,
-    }),
-  });
+  const themeProps = useDefaultProps({ props: inProps, name: 'MuiTypography' });
+  const props = extendSxProp(themeProps);
 
   const {
     align = 'inherit',
+    color,
     className,
     component,
     gutterBottom = false,
