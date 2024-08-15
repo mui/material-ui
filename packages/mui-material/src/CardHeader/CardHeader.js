@@ -35,9 +35,6 @@ const CardHeaderRoot = styled('div', {
   display: 'flex',
   alignItems: 'center',
   padding: 16,
-  [`& > .${typographyClasses.root}`]: {
-    '--Typography-display': 'block',
-  },
 });
 
 const CardHeaderAvatar = styled('div', {
@@ -68,6 +65,9 @@ const CardHeaderContent = styled('div', {
   overridesResolver: (props, styles) => styles.content,
 })({
   flex: '1 1 auto',
+  [`& > .${typographyClasses.root}`]: {
+    '--Typography-display': 'block',
+  },
 });
 
 const CardHeader = React.forwardRef(function CardHeader(inProps, ref) {
