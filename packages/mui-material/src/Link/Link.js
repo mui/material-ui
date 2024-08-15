@@ -7,10 +7,11 @@ import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
 import isFocusVisible from '@mui/utils/isFocusVisible';
 import capitalize from '../utils/capitalize';
-import { styled } from '../zero-styled';
+import { styled, useTheme } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Typography from '../Typography';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
+import getTextDecoration from './getTextDecoration';
 
 const v6Colors = {
   primary: true,
@@ -159,6 +160,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     props: inProps,
     name: 'MuiLink',
   });
+  const theme = useTheme();
 
   const {
     className,
@@ -218,6 +220,14 @@ const Link = React.forwardRef(function Link(inProps, ref) {
         ...(v6Colors[color] === undefined ? [{ color }] : []),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
+      style={{
+        ...other.style,
+        ...(underline === 'always' &&
+          color !== 'inherit' &&
+          !v6Colors[color] && {
+            '--Link-underlineColor': getTextDecoration({ theme, ownerState }),
+          }),
+      }}
     />
   );
 });
