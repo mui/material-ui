@@ -179,12 +179,10 @@ export default function createStyled(input = {}) {
 
           // TODO: v7 remove iteration and use `resolveStyleArg(styleOverrides[slot])` directly
           for (const slotKey in styleOverrides) {
-            if (styleOverrides.hasOwnProperty(slotKey)) {
-              resolvedStyleOverrides[slotKey] = processStyleArg(
-                styleOverrides[slotKey],
-                propsWithTheme,
-              );
-            }
+            resolvedStyleOverrides[slotKey] = processStyleArg(
+              styleOverrides[slotKey],
+              propsWithTheme,
+            );
           }
 
           return overridesResolver(props, resolvedStyleOverrides);
