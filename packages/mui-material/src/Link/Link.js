@@ -240,9 +240,7 @@ Link.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component.
-   * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
+   * The color of the link.
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -272,10 +270,6 @@ Link.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onFocus: PropTypes.func,
-  /**
-   * @ignore
-   */
-  style: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
