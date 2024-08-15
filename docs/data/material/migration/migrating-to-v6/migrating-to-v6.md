@@ -236,17 +236,17 @@ As the `ListItem` no longer supports these props, the class names related to the
 -import { listItemClasses } from '@mui/material/ListItem';
 +import { listItemButtonClasses } from '@mui/material/ListItemButton';
 
-- listItemClasses.button
-+ listItemButtonClasses.root
+-listItemClasses.button
++listItemButtonClasses.root
 
-- listItemClasses.focusVisible
-+ listItemButtonClasses.focusVisible
+-listItemClasses.focusVisible
++listItemButtonClasses.focusVisible
 
-- listItemClasses.disabled
-+ listItemButtonClasses.disabled
+-listItemClasses.disabled
++listItemButtonClasses.disabled
 
-- listItemClasses.selected
-+ listItemButtonClasses.selected
+-listItemClasses.selected
++listItemButtonClasses.selected
 ```
 
 #### Stabilized API
@@ -446,12 +446,12 @@ Or do it manually like the example below:
 -      variants: [ ... ],
 +      styleOverrides: {
 +        root: {
-+          variants: [ ... ]
-+        }
-+      }
-     }
-   }
- })
++          variants: [ ... ],
++        },
++      },
+     },
+   },
+ });
 ```
 
 This reduces the API surface and lets you define variants in other slots of the component.
