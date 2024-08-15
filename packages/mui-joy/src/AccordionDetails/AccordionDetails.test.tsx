@@ -126,6 +126,10 @@ describe('<AccordionDetails />', () => {
       fireEvent.click(screen.getByRole('button')); // open
 
       expect(screen.getByTestId('textbox')).to.have.property('tabIndex', -1);
+      
+      fireEvent.click(screen.getByRole('button')); // close
+
+      expect(screen.getByTestId('textbox')).to.have.property('tabIndex', -1);
     });
   });
 });
