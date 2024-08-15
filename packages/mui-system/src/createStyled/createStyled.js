@@ -38,7 +38,8 @@ function processStyleArg(callableStyle, props) {
     let result = otherStyles;
     let mergedState; // We might not need it, initalized lazily
 
-    variantLoop: for (let i = 0; i < variants.length; i++) {
+    /* eslint-disable no-labels */
+    variantLoop: for (let i = 0; i < variants.length; i += 1) {
       const variant = variants[i];
 
       if (typeof variant.props === 'function') {
@@ -47,6 +48,7 @@ function processStyleArg(callableStyle, props) {
           continue;
         }
       } else {
+
         for (const key in variant.props) {
           if (props[key] !== variant.props[key] && props.ownerState?.[key] !== variant.props[key]) {
             continue variantLoop;
@@ -66,6 +68,7 @@ function processStyleArg(callableStyle, props) {
       }
       result.push(style);
     }
+    /* eslint-enable no-labels */
 
     return result;
   }
@@ -178,6 +181,7 @@ export default function createStyled(input = {}) {
           const propsWithTheme = { ...props, theme };
 
           // TODO: v7 remove iteration and use `resolveStyleArg(styleOverrides[slot])` directly
+          // eslint-disable-next-line guard-for-in
           for (const slotKey in styleOverrides) {
             resolvedStyleOverrides[slotKey] = processStyleArg(
               styleOverrides[slotKey],
@@ -238,6 +242,7 @@ export default function createStyled(input = {}) {
 }
 
 function isObjectEmpty(obj) {
+  // eslint-disable-next-line
   for (const _ in obj) {
     return false;
   }
