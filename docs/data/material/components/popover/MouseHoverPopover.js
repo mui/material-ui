@@ -2,10 +2,10 @@ import * as React from 'react';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 
-export default function MouseOverPopover() {
-  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
+export default function MouseHoverPopover() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
+  const handlePopoverOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
