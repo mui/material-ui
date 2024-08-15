@@ -1061,6 +1061,38 @@ The InputBase's prop `componentsProps` was deprecated in favor of `slotProps`:
  />
 ```
 
+## Link
+
+The dot notation value for the `color` prop was deprecated:
+
+```diff
+ <Link
+-  color="primary.main"
++  color="primary"
+
+-  color="secondary.main"
++  color="secondary"
+
+-  color="error.main"
++  color="error"
+
+-  color="text.primary"
++  color="textPrimary"
+
+-  color="text.secondary"
++  color="textSecondary"
+ >
+```
+
+For the `inherit` value, use the `sx` prop instead:
+
+```diff
+ <Link
+-  color="inherit"
++  sx={{ color: 'inherit' }}
+ >
+```
+
 ## ListItem
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#list-item-props) below to migrate the code as described in the following sections:
@@ -1556,6 +1588,36 @@ The Tooltip's prop `componentsProps` was deprecated in favor of `slotProps`:
 ```
 
 ## Typography
+
+The dot notation value for the `color` prop was deprecated:
+
+```diff
+ <Typography
+-  color="primary.main"
++  color="primary"
+
+-  color="secondary.main"
++  color="secondary"
+
+-  color="error.main"
++  color="error"
+
+-  color="text.primary"
++  color="textPrimary"
+
+-  color="text.secondary"
++  color="textSecondary"
+ >
+```
+
+For the `inherit` value, use the `sx` prop instead:
+
+```diff
+ <Typography
+-  color="inherit"
++  sx={{ color: 'inherit' }}
+ >
+```
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#typography-props) below to migrate the code as described in the following sections:
 
