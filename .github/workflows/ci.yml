@@ -9,6 +9,7 @@ on:
   pull_request:
     paths-ignore:
       # should sync with ci-check.yml as a workaround to bypass github checks
+      - 'docs/**'
       - 'examples/**'
 
 permissions: {}
