@@ -36,7 +36,7 @@ function processStyleArg(callableStyle, props) {
     const { variants, ...otherStyles } = resolvedStylesArg;
 
     let result = otherStyles;
-    let mergedState = undefined; // We might not need it, initalized lazily
+    let mergedState; // We might not need it, initalized lazily
 
     variantLoop: for (let i = 0; i < variants.length; i++) {
       const variant = variants[i];
@@ -44,12 +44,12 @@ function processStyleArg(callableStyle, props) {
       if (typeof variant.props === 'function') {
         mergedState ??= { ...props, ...props.ownerState, ownerState: props.ownerState };
         if (!variant.props(mergedState)) {
-          continue variantLoop;
+          continue;
         }
       } else {
         for (const key in variant.props) {
           if (props[key] !== variant.props[key] && props.ownerState?.[key] !== variant.props[key]) {
-            continue variantLoop
+            continue variantLoop;
           }
         }
       }
@@ -180,7 +180,10 @@ export default function createStyled(input = {}) {
           // TODO: v7 remove iteration and use `resolveStyleArg(styleOverrides[slot])` directly
           for (const slotKey in styleOverrides) {
             if (styleOverrides.hasOwnProperty(slotKey)) {
-              resolvedStyleOverrides[slotKey] = processStyleArg(styleOverrides[slotKey], propsWithTheme);
+              resolvedStyleOverrides[slotKey] = processStyleArg(
+                styleOverrides[slotKey],
+                propsWithTheme,
+              );
             }
           }
 
@@ -236,7 +239,6 @@ export default function createStyled(input = {}) {
   };
 }
 
-
 function isObjectEmpty(obj) {
   for (const _ in obj) {
     return false;
@@ -260,4 +262,4 @@ function lowercaseFirstLetter(string) {
     return string;
   }
   return string.charAt(0).toLowerCase() + string.slice(1);
-};
+}
