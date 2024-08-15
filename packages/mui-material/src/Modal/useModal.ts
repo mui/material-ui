@@ -56,7 +56,7 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const mountNodeRef = React.useRef<HTMLElement | null>(null);
   const modalRef = React.useRef<HTMLDivElement>(null);
   const handleRef = useForkRef(modalRef, rootRef);
-  const [exited, setExited] = React.useState(true);
+  const [exited, setExited] = React.useState(!open);
   const hasTransition = getHasTransition(children);
 
   let ariaHiddenProp = true;
