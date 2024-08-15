@@ -5,13 +5,14 @@ import lodashChunk from 'lodash/chunk.js';
 import { upload } from '@argos-ci/core';
 
 const screenshotsBase = 'test/regressions/screenshots/chrome';
-const screenshotsPigmentCSSBase = 'apps/pigment-css-vite-app/pages/fixtures/screenshots/chrome';
+const screenshotsPigmentCSSBase = 'screenshots/chrome';
 const screenshotsTmp = 'test/regressions/screenshots/argos';
 const BATCH_SIZE = 200;
 
 async function run() {
   const emotionScreenshots = await glob(`${screenshotsBase}/**/*`);
   const pigmentCSSScnreeshots = await glob(`${screenshotsPigmentCSSBase}/**/*`);
+  console.log(pigmentCSSScnreeshots.length);
   const screenshots = [...emotionScreenshots, ...pigmentCSSScnreeshots];
   const chunks = lodashChunk(screenshots, BATCH_SIZE);
 
