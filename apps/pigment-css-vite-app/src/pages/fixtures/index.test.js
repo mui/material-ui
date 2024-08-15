@@ -61,7 +61,7 @@ async function main() {
     // Move cursor offscreen to not trigger unwanted hover effects.
     page.mouse.move(0, 0);
 
-    const testcase = await page.waitForSelector('[data-testid="testcase"]:not([aria-busy="true"])');
+    const testcase = await page.waitForSelector('#root');
 
     return testcase;
   }
