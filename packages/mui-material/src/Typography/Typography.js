@@ -56,8 +56,9 @@ export const TypographyRoot = styled('span', {
   },
 })(({ theme }) => ({
   margin: 0,
-  display: 'var(--Typography-display)',
+  display: 'var(--Typography-display, block)',
   variants: [
+    { props: { as: 'span' }, style: { display: 'var(--Typography-display, inline)' } },
     {
       props: {
         variant: 'inherit',
