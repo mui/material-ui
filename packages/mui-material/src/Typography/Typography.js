@@ -8,6 +8,18 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import { getTypographyUtilityClass } from './typographyClasses';
 
+const v6Colors = {
+  primary: true,
+  secondary: true,
+  error: true,
+  info: true,
+  success: true,
+  warning: true,
+  textPrimary: true,
+  textSecondary: true,
+  textDisabled: true,
+};
+
 const extendSxProp = internal_createExtendSxProp();
 
 const useUtilityClasses = (ownerState) => {
@@ -122,12 +134,16 @@ const defaultVariantMapping = {
 };
 
 const Typography = React.forwardRef(function Typography(inProps, ref) {
-  const themeProps = useDefaultProps({ props: inProps, name: 'MuiTypography' });
-  const props = extendSxProp(themeProps);
+  const { color, ...themeProps } = useDefaultProps({ props: inProps, name: 'MuiTypography' });
+  const isSxColor = !v6Colors[color];
+  // TODO: Remove `extendSxProp` in v7
+  const props = extendSxProp({
+    ...themeProps,
+    ...(isSxColor && { color }),
+  });
 
   const {
     align = 'inherit',
-    color,
     className,
     component,
     gutterBottom = false,
