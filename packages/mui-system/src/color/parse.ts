@@ -130,9 +130,9 @@ export function parseRepresentation(color: string): Color {
       } else {
         const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
         const p = 2 * l - q;
-        r = Math.round(hueToRGB(p, q, h + 1/3) * 255);
+        r = Math.round(hueToRGB(p, q, h + 1 / 3) * 255);
         g = Math.round(hueToRGB(p, q, h) * 255);
-        b = Math.round(hueToRGB(p, q, h - 1/3) * 255);
+        b = Math.round(hueToRGB(p, q, h - 1 / 3) * 255);
       }
 
       return newColor(r, g, b, a);
@@ -150,26 +150,45 @@ export function parseRepresentation(color: string): Color {
       // Same as HSL to RGB
       const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
       const p = 2 * l - q;
-      let r = Math.round(hueToRGB(p, q, h + 1/3) * 255);
+      let r = Math.round(hueToRGB(p, q, h + 1 / 3) * 255);
       let g = Math.round(hueToRGB(p, q, h) * 255);
-      let b = Math.round(hueToRGB(p, q, h - 1/3) * 255);
+      let b = Math.round(hueToRGB(p, q, h - 1 / 3) * 255);
 
       // Then HWB
       r = hwbApply(r, w, bl);
-      g = hwbApply(r, w, bl);
-      b = hwbApply(r, w, bl);
+      g = hwbApply(g, w, bl);
+      b = hwbApply(b, w, bl);
 
       return newColor(r, g, b, a);
     }
     case 'color': {
-      // https://www.npmjs.com/package/colord#plugins
       // https://www.w3.org/TR/css-color-4/#color-conversion-code
-      throw new Error('unimplemented');
+
+      const colorspace = p1;
+
+      switch (colorspace) {
+        case 'display-p3': {
+          const c1 = parsePercentageOrValue(p2);
+          const c2 = parsePercentageOrValue(p3);
+          const c3 = parsePercentageOrValue(p4);
+          const a = parseAlphaValue(p4);
+
+          // const rgb = lin_P3([c1, c2, c3])
+          //
+          // const r = Math.round(rgb[0] * 255)
+          // const g = Math.round(rgb[1] * 255)
+          // const b = Math.round(rgb[2] * 255)
+          //
+          // return newColor(r, g, b, a)
+        }
+        default: {
+          break;
+        }
+      }
     }
-    default: {
-      return COLOR_INVALID;
-    }
+    default:
   }
+  throw new Error(`Color.parse(): invalid CSS color: "${color}"`);
 }
 
 /**
@@ -186,22 +205,31 @@ function parseColorChannel(channel: string): number {
 
 /**
  * Accepts: "50%", ".5", "0.5"
- * @spec https://developer.mozilla.org/en-US/docs/Web/CSS/alpha-value
- * @returns a value in the 0 to 255 range
+ * https://developer.mozilla.org/en-US/docs/Web/CSS/alpha-value
+ * @returns a value in the [0, 255] range
  */
 function parseAlphaChannel(channel: string): number {
+  return Math.round(parseAlphaValue(channel) * 255);
+}
+
+/**
+ * Accepts: "50%", ".5", "0.5"
+ * https://developer.mozilla.org/en-US/docs/Web/CSS/alpha-value
+ * @returns a value in the [0, 1] range
+ */
+function parseAlphaValue(channel: string): number {
   if (channel.charCodeAt(0) === N) {
     return 0;
   }
   if (channel.charCodeAt(channel.length - 1) === PERCENT) {
-    return Math.round((parseFloat(channel) / 100) * 255);
+    return parseFloat(channel) / 100;
   }
-  return Math.round(parseFloat(channel) * 255);
+  return parseFloat(channel);
 }
 
 /**
  * Accepts: "360", "360deg", "400grad", "6.28rad", "1turn", "none"
- * @spec https://developer.mozilla.org/en-US/docs/Web/CSS/angle
+ * https://developer.mozilla.org/en-US/docs/Web/CSS/angle
  * @returns a value in the 0.0 to 1.0 range
  */
 function parseAngle(angle: string): number {
@@ -237,7 +265,6 @@ function parseAngle(angle: string): number {
 
 /**
  * Accepts: "100%", "none"
- * @spec https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hsl#values
  * @returns a value in the 0.0 to 1.0 range
  */
 function parsePercentage(value: string): number {
@@ -245,6 +272,20 @@ function parsePercentage(value: string): number {
     return 0;
   }
   return parseFloat(value) / 100;
+}
+
+/**
+ * Accepts: "1.0", "100%", "none"
+ * @returns a value in the 0.0 to 1.0 range
+ */
+function parsePercentageOrValue(value: string): number {
+  if (value.charCodeAt(0) === N) {
+    return 0;
+  }
+  if (value.charCodeAt(value.length - 1) === PERCENT) {
+    return parseFloat(value) / 100;
+  }
+  return parseFloat(value);
 }
 
 

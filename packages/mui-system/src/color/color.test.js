@@ -9,7 +9,7 @@ describe.only('utils/color', () => {
       expect(Color.parse('#5599ffff')).to.equal(0x5599ffff);
     });
 
-    it('parses CSS color spaces', () => {
+    it.only('parses CSS color spaces', () => {
       ['rgb', 'rgba'].forEach(type => {
         expect(Color.parse(`${type}(255 153 85)`)).to.equal(0xff9955ff);
         expect(Color.parse(`${type}(255, 153, 85)`)).to.equal(0xff9955ff);
@@ -28,12 +28,9 @@ describe.only('utils/color', () => {
         expect(Color.parse(`${type}(0rad 80% 40% / 0.5)`)).to.equal(0xb8141480);
       });
 
-      // XXX: Not working
-      // console.log(h(0xff9980ff))
-      // console.log(h(parse('hwb(12 50% 0%)')))
-      // expect(parse('hwb(12 50% 0%)')).to.equal(0xff9980ff);
-      // expect(parse('hwb(50deg 30% 40%)')).to.equal(0x998c4dff);
-      // expect(parse('hwb(0.5turn 10% 0% / .5)')).to.equal(0x1affff80);
+      expect(Color.parse('hwb(12 50% 0%)')).to.equal(0xff9980ff);
+      expect(Color.parse('hwb(50deg 30% 40%)')).to.equal(0x998c4dff);
+      expect(Color.parse('hwb(0.5turn 10% 0% / .5)')).to.equal(0x1affff80);
     });
 
   });
