@@ -56,6 +56,7 @@ export const TypographyRoot = styled('span', {
   },
 })(({ theme }) => ({
   margin: 0,
+  display: 'var(--Typography-display)',
   variants: [
     {
       props: {

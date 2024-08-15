@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import Typography from '../Typography';
+import Typography, { typographyClasses } from '../Typography';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import cardHeaderClasses, { getCardHeaderUtilityClass } from './cardHeaderClasses';
@@ -35,6 +35,9 @@ const CardHeaderRoot = styled('div', {
   display: 'flex',
   alignItems: 'center',
   padding: 16,
+  [`& > .${typographyClasses.root}`]: {
+    '--Typography-display': 'block',
+  },
 });
 
 const CardHeaderAvatar = styled('div', {
@@ -97,7 +100,6 @@ const CardHeader = React.forwardRef(function CardHeader(inProps, ref) {
         variant={avatar ? 'body2' : 'h5'}
         className={classes.title}
         component="span"
-        display="block"
         {...titleTypographyProps}
       >
         {title}
@@ -113,7 +115,6 @@ const CardHeader = React.forwardRef(function CardHeader(inProps, ref) {
         className={classes.subheader}
         color="textSecondary"
         component="span"
-        display="block"
         {...subheaderTypographyProps}
       >
         {subheader}
