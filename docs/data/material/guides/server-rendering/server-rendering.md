@@ -208,7 +208,7 @@ function Main() {
   );
 }
 
-ReactDOM.hydrate(<Main />, document.querySelector('#root'));
+ReactDOM.hydrateRoot(<Main />, document.querySelector('#root'));
 ```
 
 ## Reference implementations
