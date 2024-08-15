@@ -186,6 +186,22 @@ export default function ChipExample() {
 }
 ```
 
+### Divider
+
+When using vertical orientation, the Divider now renders a `<div>` with the corresponding accessibility attributes instead of `<hr>` to adhere to [the WAI-ARIA spec](https://www.w3.org/TR/wai-aria-1.2/#separator). You might need to adjust your styles accordingly if you are targeting `hr` tags in your CSS.
+
+```diff
+-import Divider from '@mui/material/Divider';
++import Divider, { dividerClasses } from '@mui/material/Divider';
+
+ const Main = styled.main({
+-  '& hr': {
++  [`& .${dividerClasses.root}`]: {
+     marginTop: '16px',
+   },
+ });
+```
+
 ### Loading Button
 
 The `children` passed to the Loading Button component is now wrapped in a `<span>` tag to avoid [issues](https://github.com/mui/material-ui/issues/27853) when using tools to translate websites.
