@@ -8,7 +8,7 @@
 // standard number operators.
 
 const BYTE_OFFSET = 2 ** 8;
-const MAX_SAFE_INTEGER = (2 ** 32) - 1
+const MAX_SAFE_INTEGER = 0x80000000 - 1 // XXX: fix this
 
 export function get(n: number, offset: number) {
   if (n <= MAX_SAFE_INTEGER && offset < 24) {
