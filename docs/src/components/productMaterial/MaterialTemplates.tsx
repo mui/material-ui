@@ -173,7 +173,7 @@ export default function MaterialTemplates() {
         ))}
         <More
           component={Link}
-          href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=material-templates-cta2#populars"
+          href="https://mui.com/store/templates/?utm_source=marketing&utm_medium=referral&utm_campaign=material-templates-cta2#populars"
           noLinkStyle
         />
       </Group>

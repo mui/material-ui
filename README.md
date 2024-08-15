@@ -95,7 +95,7 @@ Our documentation features [a collection of example projects](https://github.com
 
 ## Premium templates
 
-You can find complete templates and themes in the [MUI Store](https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=readme-store).
+You can find complete templates and themes in the [MUI Store](https://mui.com/store/templates/?utm_source=docs&utm_medium=referral&utm_campaign=readme-store).
 
 ## Contributing
 

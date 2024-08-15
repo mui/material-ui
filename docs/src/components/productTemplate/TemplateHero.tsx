@@ -48,7 +48,7 @@ export default function TemplateHero() {
           <Button
             component={Link}
             noLinkStyle
-            href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=templates-cta#populars"
+            href="https://mui.com/store/templates/?utm_source=marketing&utm_medium=referral&utm_campaign=templates-cta"
             variant="contained"
             endIcon={<KeyboardArrowRightRounded />}
             sx={{ width: { xs: '100%', sm: 'auto' } }}

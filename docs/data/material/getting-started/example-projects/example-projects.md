@@ -21,7 +21,7 @@ See [Start a New React Project](https://react.dev/learn/start-a-new-react-projec
 
 Once you've chosen your preferred scaffold above, you could move on to the [Templates](/material-ui/getting-started/templates/) doc and choose a readymade user interface to plug in.
 
-For more complex prebuilt UIs, check out our [premium themes and templates](https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=example-projects-store) in the MUI Store.
+For more complex prebuilt UIs, check out our [premium themes and templates](https://mui.com/store/templates/?utm_source=docs&utm_medium=referral&utm_campaign=example-projects-store) in the MUI Store.
 
 ## Community project
 
