@@ -54,24 +54,24 @@ function parseHex(hex: string): Color {
   switch (hex.length) {
     // #59f
     case 4: {
-      r = (hexCodeToValue(hex.charCodeAt(1)) << 4) + hexCodeToValue(hex.charCodeAt(1));
-      g = (hexCodeToValue(hex.charCodeAt(2)) << 4) + hexCodeToValue(hex.charCodeAt(2));
-      b = (hexCodeToValue(hex.charCodeAt(3)) << 4) + hexCodeToValue(hex.charCodeAt(3));
+      r = (hexValue(hex.charCodeAt(1)) << 4) + hexValue(hex.charCodeAt(1));
+      g = (hexValue(hex.charCodeAt(2)) << 4) + hexValue(hex.charCodeAt(2));
+      b = (hexValue(hex.charCodeAt(3)) << 4) + hexValue(hex.charCodeAt(3));
       break;
     }
     // #5599ff
     case 7: {
-      r = (hexCodeToValue(hex.charCodeAt(1)) << 4) + hexCodeToValue(hex.charCodeAt(2));
-      g = (hexCodeToValue(hex.charCodeAt(3)) << 4) + hexCodeToValue(hex.charCodeAt(4));
-      b = (hexCodeToValue(hex.charCodeAt(5)) << 4) + hexCodeToValue(hex.charCodeAt(6));
+      r = (hexValue(hex.charCodeAt(1)) << 4) + hexValue(hex.charCodeAt(2));
+      g = (hexValue(hex.charCodeAt(3)) << 4) + hexValue(hex.charCodeAt(4));
+      b = (hexValue(hex.charCodeAt(5)) << 4) + hexValue(hex.charCodeAt(6));
       break;
     }
     // #5599ff88
     case 9: {
-      r = (hexCodeToValue(hex.charCodeAt(1)) << 4) + hexCodeToValue(hex.charCodeAt(2));
-      g = (hexCodeToValue(hex.charCodeAt(3)) << 4) + hexCodeToValue(hex.charCodeAt(4));
-      b = (hexCodeToValue(hex.charCodeAt(5)) << 4) + hexCodeToValue(hex.charCodeAt(6));
-      a = (hexCodeToValue(hex.charCodeAt(7)) << 4) + hexCodeToValue(hex.charCodeAt(8));
+      r = (hexValue(hex.charCodeAt(1)) << 4) + hexValue(hex.charCodeAt(2));
+      g = (hexValue(hex.charCodeAt(3)) << 4) + hexValue(hex.charCodeAt(4));
+      b = (hexValue(hex.charCodeAt(5)) << 4) + hexValue(hex.charCodeAt(6));
+      a = (hexValue(hex.charCodeAt(7)) << 4) + hexValue(hex.charCodeAt(8));
       break;
     }
     default: {
@@ -82,7 +82,8 @@ function parseHex(hex: string): Color {
   return newColor(r, g, b, a)
 }
 
-function hexCodeToValue(c: number) {
+// https://lemire.me/blog/2019/04/17/parsing-short-hexadecimal-strings-efficiently/
+function hexValue(c: number) {
   return (c & 0xF) + 9 * (c >> 6)
 }
 
