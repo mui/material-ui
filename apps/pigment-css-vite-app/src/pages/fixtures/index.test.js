@@ -5,7 +5,6 @@ import * as playwright from 'playwright';
 async function main() {
   const baseUrl = 'http://localhost:5001/fixtures';
   const screenshotDir = path.resolve('screenshots/chrome');
-  console.log('screenshotDir', screenshotDir);
   const browser = await playwright.chromium.launch({
     args: ['--font-render-hinting=none'],
     // otherwise the loaded google Roboto font isn't applied

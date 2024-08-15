@@ -12,7 +12,6 @@ const BATCH_SIZE = 200;
 async function run() {
   const emotionScreenshots = await glob(`${screenshotsBase}/**/*`);
   const pigmentCSSScnreeshots = await glob(`${screenshotsPigmentCSSBase}/**/*`);
-  console.log(pigmentCSSScnreeshots.length);
   const screenshots = [...emotionScreenshots, ...pigmentCSSScnreeshots];
   const chunks = lodashChunk(screenshots, BATCH_SIZE);
 
