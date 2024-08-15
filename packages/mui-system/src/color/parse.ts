@@ -46,32 +46,32 @@ export function parse(color: string): Color {
  * @param color Hex color string: #xxx, #xxxxxx, #xxxxxxxx
  */
 function parseHex(hex: string): Color {
-  let r = '00';
-  let g = '00';
-  let b = '00';
-  let a = 'ff';
+  let r = 0x00;
+  let g = 0x00;
+  let b = 0x00;
+  let a = 0xff;
 
   switch (hex.length) {
     // #59f
     case 4: {
-      r = hex.charAt(1) + hex.charAt(1);
-      g = hex.charAt(2) + hex.charAt(2);
-      b = hex.charAt(3) + hex.charAt(3);
+      r = (hexCodeToValue(hex.charCodeAt(1)) << 4) + hexCodeToValue(hex.charCodeAt(1));
+      g = (hexCodeToValue(hex.charCodeAt(2)) << 4) + hexCodeToValue(hex.charCodeAt(2));
+      b = (hexCodeToValue(hex.charCodeAt(3)) << 4) + hexCodeToValue(hex.charCodeAt(3));
       break;
     }
     // #5599ff
     case 7: {
-      r = hex.slice(1, 3);
-      g = hex.slice(3, 5);
-      b = hex.slice(5, 7);
+      r = (hexCodeToValue(hex.charCodeAt(1)) << 4) + hexCodeToValue(hex.charCodeAt(2));
+      g = (hexCodeToValue(hex.charCodeAt(3)) << 4) + hexCodeToValue(hex.charCodeAt(4));
+      b = (hexCodeToValue(hex.charCodeAt(5)) << 4) + hexCodeToValue(hex.charCodeAt(6));
       break;
     }
     // #5599ff88
     case 9: {
-      r = hex.slice(1, 3);
-      g = hex.slice(3, 5);
-      b = hex.slice(5, 7);
-      a = hex.slice(7, 9);
+      r = (hexCodeToValue(hex.charCodeAt(1)) << 4) + hexCodeToValue(hex.charCodeAt(2));
+      g = (hexCodeToValue(hex.charCodeAt(3)) << 4) + hexCodeToValue(hex.charCodeAt(4));
+      b = (hexCodeToValue(hex.charCodeAt(5)) << 4) + hexCodeToValue(hex.charCodeAt(6));
+      a = (hexCodeToValue(hex.charCodeAt(7)) << 4) + hexCodeToValue(hex.charCodeAt(8));
       break;
     }
     default: {
@@ -79,13 +79,13 @@ function parseHex(hex: string): Color {
     }
   }
 
-  return newColor(
-    parseInt(r, 16),
-    parseInt(g, 16),
-    parseInt(b, 16),
-    parseInt(a, 16),
-  )
+  return newColor(r, g, b, a)
 }
+
+function hexCodeToValue(c: number) {
+  return (c & 0xF) + 9 * (c >> 6)
+}
+
 
 /**
  * Parse CSS color
