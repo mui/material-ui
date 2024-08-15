@@ -48,7 +48,6 @@ function processStyleArg(callableStyle, props) {
           continue;
         }
       } else {
-
         for (const key in variant.props) {
           if (props[key] !== variant.props[key] && props.ownerState?.[key] !== variant.props[key]) {
             continue variantLoop;
