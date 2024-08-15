@@ -38,20 +38,18 @@ function processStyleArg(callableStyle, props) {
     let result = otherStyles;
     let mergedState = undefined; // We might not need it, initalized lazily
 
-    for (let i = 0; i < variants.length; i++) {
+    variantLoop: for (let i = 0; i < variants.length; i++) {
       const variant = variants[i];
 
       if (typeof variant.props === 'function') {
         mergedState ??= { ...props, ...props.ownerState, ownerState: props.ownerState };
         if (!variant.props(mergedState)) {
-          continue;
+          continue variantLoop;
         }
       } else {
         for (const key in variant.props) {
-          if (variant.props.hasOwnProperty(key)) {
-            if (props[key] !== variant.props[key] && props.ownerState?.[key] !== variant.props[key]) {
-              continue
-            }
+          if (props[key] !== variant.props[key] && props.ownerState?.[key] !== variant.props[key]) {
+            continue variantLoop
           }
         }
       }
