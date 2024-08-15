@@ -3,7 +3,7 @@ import { useLocation, matchRoutes, Link } from 'react-router-dom';
 import routes from '~react-pages';
 import IndexLayout from '../../Layout';
 
-export default function Layout(props: { children?: React.ReactNode }) {
+export default function Layout() {
   const location = useLocation();
   const matchedRoute = React.useMemo(
     () => matchRoutes(routes, location.pathname)?.[0],
