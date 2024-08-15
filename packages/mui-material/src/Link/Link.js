@@ -54,7 +54,6 @@ const LinkRoot = styled(Typography, {
   },
 })(({ theme }) => {
   return {
-    display: 'inline',
     variants: [
       {
         props: {

@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import Typography, { typographyClasses } from '../Typography';
+import Typography from '../Typography';
 import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -41,9 +41,6 @@ const ListItemTextRoot = styled('div', {
   minWidth: 0,
   marginTop: 4,
   marginBottom: 4,
-  [`& > .${typographyClasses.root}`]: {
-    '--Typography-display': 'block',
-  },
   variants: [
     {
       props: ({ ownerState }) => ownerState.primary && ownerState.secondary,
@@ -96,6 +93,7 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
         variant={dense ? 'body2' : 'body1'}
         className={classes.primary}
         component={primaryTypographyProps?.variant ? undefined : 'span'}
+        display="block"
         {...primaryTypographyProps}
       >
         {primary}
@@ -109,6 +107,7 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
         variant="body2"
         className={classes.secondary}
         color="textSecondary"
+        display="block"
         {...secondaryTypographyProps}
       >
         {secondary}
