@@ -6,75 +6,54 @@ import getDisplayName from '@mui/utils/getDisplayName';
 import createTheme from '../createTheme';
 import styleFunctionSx from '../styleFunctionSx';
 
-function isEmpty(obj) {
-  return Object.keys(obj).length === 0;
-}
-
-// https://github.com/emotion-js/emotion/blob/26ded6109fcd8ca9875cc2ce4564fee678a3f3c5/packages/styled/src/utils.js#L40
-function isStringTag(tag) {
-  return (
-    typeof tag === 'string' &&
-    // 96 is one less than the char code
-    // for "a" so this is checking that
-    // it's a lowercase character
-    tag.charCodeAt(0) > 96
-  );
-}
+export const systemDefaultTheme = createTheme();
 
 // Update /system/styled/#api in case if this changes
 export function shouldForwardProp(prop) {
   return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
 }
 
-export const systemDefaultTheme = createTheme();
-
-const lowercaseFirstLetter = (string) => {
-  if (!string) {
-    return string;
-  }
-  return string.charAt(0).toLowerCase() + string.slice(1);
-};
-
-function resolveTheme({ defaultTheme, theme, themeId }) {
-  return isEmpty(theme) ? defaultTheme : theme[themeId] || theme;
+function resolveTheme(themeId, theme, defaultTheme) {
+  return isObjectEmpty(theme) ? defaultTheme : theme[themeId] || theme;
 }
 
 function defaultOverridesResolver(slot) {
   if (!slot) {
     return null;
   }
-  return (props, styles) => styles[slot];
+  return (_props, styles) => styles[slot];
 }
 
-function processStyleArg(callableStyle, { ownerState, ...props }) {
+function processStyleArg(callableStyle, props) {
   const resolvedStylesArg =
-    typeof callableStyle === 'function' ? callableStyle({ ownerState, ...props }) : callableStyle;
+    typeof callableStyle === 'function' ? callableStyle(props) : callableStyle;
 
   if (Array.isArray(resolvedStylesArg)) {
     return resolvedStylesArg.flatMap((resolvedStyle) =>
-      processStyleArg(resolvedStyle, { ownerState, ...props }),
+      processStyleArg(resolvedStyle, props),
     );
   }
 
-  const mergedState = { ...props, ...ownerState, ownerState };
+  if (Array.isArray(resolvedStylesArg?.variants)) {
+    const mergedState = { ...props, ...props.ownerState, ownerState: props.ownerState };
 
-  if (
-    !!resolvedStylesArg &&
-    typeof resolvedStylesArg === 'object' &&
-    Array.isArray(resolvedStylesArg.variants)
-  ) {
     const { variants = [], ...otherStyles } = resolvedStylesArg;
+
     let result = otherStyles;
+
     variants.forEach((variant) => {
       let isMatch = true;
       if (typeof variant.props === 'function') {
         isMatch = variant.props(mergedState);
       } else {
-        Object.keys(variant.props).forEach((key) => {
-          if (ownerState?.[key] !== variant.props[key] && props[key] !== variant.props[key]) {
-            isMatch = false;
+        for (const key in variant.props) {
+          if (variant.props.hasOwnProperty(key)) {
+            if (props[key] !== variant.props[key] && props.ownerState?.[key] !== variant.props[key]) {
+              isMatch = false;
+              break;
+            }
           }
-        });
+        }
       }
       if (isMatch) {
         if (!Array.isArray(result)) {
@@ -85,8 +64,10 @@ function processStyleArg(callableStyle, { ownerState, ...props }) {
         );
       }
     });
+
     return result;
   }
+
   return resolvedStylesArg;
 }
 
@@ -99,7 +80,7 @@ export default function createStyled(input = {}) {
   } = input;
 
   const systemSx = (props) => {
-    return styleFunctionSx({ ...props, theme: resolveTheme({ ...props, defaultTheme, themeId }) });
+    return styleFunctionSx({ ...props, theme: resolveTheme(themeId, props.theme, defaultTheme) });
   };
   systemSx.__mui_systemSx = true;
 
@@ -169,18 +150,19 @@ export default function createStyled(input = {}) {
         return (props) =>
           processStyleArg(stylesArg, {
             ...props,
-            theme: resolveTheme({ theme: props.theme, defaultTheme, themeId }),
+            theme: resolveTheme(themeId, props.theme, defaultTheme),
           });
       }
       return stylesArg;
     };
+
     const muiStyledResolver = (styleArg, ...expressions) => {
       let transformedStyleArg = transformStyleArg(styleArg);
       const expressionsWithDefaultTheme = expressions ? expressions.map(transformStyleArg) : [];
 
       if (componentName && overridesResolver) {
         expressionsWithDefaultTheme.push((props) => {
-          const theme = resolveTheme({ ...props, defaultTheme, themeId });
+          const theme = resolveTheme(themeId, props.theme, defaultTheme);
           if (
             !theme.components ||
             !theme.components[componentName] ||
@@ -188,19 +170,25 @@ export default function createStyled(input = {}) {
           ) {
             return null;
           }
+
           const styleOverrides = theme.components[componentName].styleOverrides;
           const resolvedStyleOverrides = {};
+          const propsWithTheme = { ...props, theme };
+
           // TODO: v7 remove iteration and use `resolveStyleArg(styleOverrides[slot])` directly
-          Object.entries(styleOverrides).forEach(([slotKey, slotStyle]) => {
-            resolvedStyleOverrides[slotKey] = processStyleArg(slotStyle, { ...props, theme });
-          });
+          for (const slotKey in styleOverrides) {
+            if (styleOverrides.hasOwnProperty(slotKey)) {
+              resolvedStyleOverrides[slotKey] = processStyleArg(styleOverrides[slotKey], propsWithTheme);
+            }
+          }
+
           return overridesResolver(props, resolvedStyleOverrides);
         });
       }
 
       if (componentName && !skipVariantsResolver) {
         expressionsWithDefaultTheme.push((props) => {
-          const theme = resolveTheme({ ...props, defaultTheme, themeId });
+          const theme = resolveTheme(themeId, props.theme, defaultTheme);
           const themeVariants = theme?.components?.[componentName]?.variants;
           return processStyleArg({ variants: themeVariants }, { ...props, theme });
         });
@@ -245,3 +233,29 @@ export default function createStyled(input = {}) {
     return muiStyledResolver;
   };
 }
+
+
+function isObjectEmpty(obj) {
+  for (const _ in obj) {
+    return false;
+  }
+  return true;
+}
+
+// https://github.com/emotion-js/emotion/blob/26ded6109fcd8ca9875cc2ce4564fee678a3f3c5/packages/styled/src/utils.js#L40
+function isStringTag(tag) {
+  return (
+    typeof tag === 'string' &&
+    // 96 is one less than the char code
+    // for "a" so this is checking that
+    // it's a lowercase character
+    tag.charCodeAt(0) > 96
+  );
+}
+
+function lowercaseFirstLetter(string) {
+  if (!string) {
+    return string;
+  }
+  return string.charAt(0).toLowerCase() + string.slice(1);
+};
