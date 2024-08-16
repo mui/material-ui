@@ -1,5 +1,70 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.0.0-beta.6
+
+<!-- generated comparing v6.0.0-beta.5..next -->
+
+_Aug 16, 2024_
+
+A big thanks to the 18 contributors who made this release possible.
+
+### `@mui/material@6.0.0-beta.6`
+
+- [Autocomplete] Improve the `options` prop description (#41591) @pluvio72
+- [Divider] Add aria-orientation (#43241) @aarongarciah
+- [IconButton] Fix hover background color behavior (#43271) @mnajdova
+- [TypeScript] Refactor types so they're compatible with upcoming React 19 (#43276) @DiegoAndai
+- [Typography] Replace dot notation color value to work with Pigment CSS (#43288) @siriwatknp
+- [pigment-css] Fix `getSelector` prefers-color-scheme to be object (#43237) @siriwatknp
+- Remove `display="block"` usage to work with Pigment CSS (#43307) @siriwatknp
+
+### `@mui/codemod@6.0.0-beta.6`
+
+- [codemod] Skip sx spread transformation (#43291) @siriwatknp
+
+### `@mui/styles@6.0.0-beta.6`
+
+- [styles] Fix issues reported by eslint-plugin-react-compiler (#43118) @jlewins
+
+### Docs
+
+- [material-ui] Audit and copyedit the v6 migration doc (#43073) @samuelsycamore
+- [material-ui] Fix Material Icon search lag and other improvements (#41330) @anle9650
+- [material-ui][Popover] Fix description and title of hover interaction section (#43290) @ZeeshanTamboli
+- [joy-ui] Fix data grid redirection (#43247) @sai6855
+- [mui-system] Add import statement in docs (#43223) @sai6855
+- Update babel config (#43286) @romgrk
+- Fix outdated references to Materal UI version (#43321) @oliviertassinari
+- Polish migration git diff experience @oliviertassinari
+- Update LTS to match format (#43212) @oliviertassinari
+- Fix Pigment CSS migration content (#43217) @siriwatknp
+
+### Core
+
+- [code-infra] Remove unnecessary alias (#43320) @Janpot
+- [code-infra] Fix utils bundle size entrypoint (#43304) @Janpot
+- [core] missing and incorrect scripts (#43209) @Jay-Karia
+- [core] Set Node 14 as minimum version in all browserslist envs (#43326) @aarongarciah
+- [core] Add React 19 as peer dependency (#43216) @aarongarciah
+- [core] Pin `eslint-plugin-jsx-a11y` version to 6.7.1 (#43292) @Janpot
+- [core] Update supported Node.js version to 14 (#43315) @Janpot
+- [core] Use fs instead of fs-extra in script utils (#43234) @DiegoAndai
+- [core] Refactor system theme props (#43120) @romgrk
+- [docs-infra] Fix some TS issues for X docs (#43285) @Janpot
+- [docs-infra] Move API pages to TS (#43199) @alexfauquette
+- [docs-infra] Fix broken sandboxes with relative module imports (#42767) @bharatkashyap
+- [docs-infra] Simplify API sections typing (#43128) @alexfauquette
+- [examples] Fix import (#43316) @aarongarciah
+- [examples] Add material-ui-pigment-css for Next.js and Vite (#43065) @siriwatknp
+- [examples] Replace wrong import with `@mui/material/styles` (#43236) @siriwatknp
+- [useMediaQuery] Adapt test implementation for React 19 (#43269) @aarongarciah
+- [test] Update `matchMedia` mocks (#43240) @cherniavskii
+- [test] Remove unnecessary ref param (#43282) @aarongarciah
+- [website] Update showcase to include Toolpad Core (#43226) @bharatkashyap
+- [website] Replace React.MutableRefObject with React.RefObject (#43284) @aarongarciah
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @anle9650, @bharatkashyap, @cherniavskii, @DiegoAndai, @Janpot, @Jay-Karia, @jlewins, @mnajdova, @oliviertassinari, @pluvio72, @renovate[bot], @romgrk, @sai6855, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+
 ## 6.0.0-beta.5
 
 <!-- generated comparing v6.0.0-beta.4..next -->
