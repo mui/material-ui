@@ -1,3 +1,6 @@
+/**
+ * @deprecated Import if from '@mui-internal/api-docs-builder'
+ */
 export interface ComponentClassDefinition {
   key: string;
   className: string;
