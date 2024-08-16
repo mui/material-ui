@@ -13,7 +13,7 @@ This also leads to significant reductions in bundle sizes for Material UI apps.
 **In v6, Pigment CSS is opt-in.**
 Future major versions of Material UI will likely use Pigment CSS as the default styling solution.
 Though optional, it's encouraged to try Pigment CSS out in your Material UI app.
-If you wish to do so, go to the guide for [migrating to Pigment CSS](/material-ui/migration/migrating-to-pigment-css/) after this one.
+If you wish to do so, refer to the guide for [migrating to Pigment CSS](/material-ui/migration/migrating-to-pigment-css/) once you're done upgrading to Material UI v6.
 
 ### Quality-of-life improvements
 
@@ -178,7 +178,7 @@ These are available in addition to the existing `"input"`, `"reset"`, and `"clea
 ### Chip
 
 In earlier versions, the Chip component would lose focus when the user pressed the <kbd class="key">esc</kbd> key, which differs from how other button-like components work.
-In v6 the Chip now retains focus as expected.
+In v6, the Chip now retains focus as expected.
 
 To preserve the previous behavior, add a custom `onKeyUp` handler as shown below:
 
@@ -335,7 +335,7 @@ In v6, these props are renamed to `size` and `offset`:
  >
 ```
 
-If the size or offset is the same for all breakpoints then you can use a single value:
+If the size or offset is the same for all breakpoints, then you can use a single value:
 
 ```diff
 -<Grid xs={6} xsOffset={2}>
@@ -377,7 +377,7 @@ npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder> --jscodeshift='--mui
 #### disableEqualOverflow prop removed
 
 In v5, the Grid overflowed its parent.
-In v6 the Grid is correctly contained within its parent's padding:
+In v6, the Grid is correctly contained within its parent's padding:
 
 <img src="/static/material-ui/migration-v5/grid-overflow-change.png" style="width: 814px;" alt="Before and after of the Grid no longer overflowing its parent in v6." width="1628" height="400" />
 
@@ -391,7 +391,7 @@ This eliminates the need for the `disableEqualOverflow` prop:
 #### Grid item spacing change
 
 In v5, Grid items included spacing in their boxes.
-In v6, Grid items no longer include spacing in their boxes by using [CSS gap](https://developer.mozilla.org/en-US/docs/Web/CSS/gap).
+In v6, Grid items no longer include spacing in their boxes by using the [CSS gap property](https://developer.mozilla.org/en-US/docs/Web/CSS/gap).
 
 Note that the item position doesn't change.
 
