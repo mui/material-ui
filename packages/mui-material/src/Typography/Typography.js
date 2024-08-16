@@ -8,6 +8,18 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import { getTypographyUtilityClass } from './typographyClasses';
 
+const v6Colors = {
+  primary: true,
+  secondary: true,
+  error: true,
+  info: true,
+  success: true,
+  warning: true,
+  textPrimary: true,
+  textSecondary: true,
+  textDisabled: true,
+};
+
 const extendSxProp = internal_createExtendSxProp();
 
 const useUtilityClasses = (ownerState) => {
@@ -70,6 +82,14 @@ export const TypographyRoot = styled('span', {
           color: (theme.vars || theme).palette[color].main,
         },
       })),
+    ...Object.entries(theme.palette?.text || {})
+      .filter(([, value]) => typeof value === 'string')
+      .map(([color]) => ({
+        props: { color: `text${capitalize(color)}` },
+        style: {
+          color: (theme.vars || theme).palette.text[color],
+        },
+      })),
     {
       props: ({ ownerState }) => ownerState.align !== 'inherit',
       style: {
@@ -113,27 +133,13 @@ const defaultVariantMapping = {
   inherit: 'p',
 };
 
-// TODO v7: remove this transformation and `extendSxProp`
-const colorTransformations = {
-  textPrimary: 'text.primary',
-  textSecondary: 'text.secondary',
-  // For the main palette, the color will be applied by the `...Object.entries(theme.palette)` clause in the TypographyRoot's styles
-  primary: null,
-  secondary: null,
-  error: null,
-  info: null,
-  success: null,
-  warning: null,
-};
-
 const Typography = React.forwardRef(function Typography(inProps, ref) {
   const { color, ...themeProps } = useDefaultProps({ props: inProps, name: 'MuiTypography' });
-  const textColor = colorTransformations[color];
+  const isSxColor = !v6Colors[color];
+  // TODO: Remove `extendSxProp` in v7
   const props = extendSxProp({
     ...themeProps,
-    ...(textColor !== null && {
-      color: textColor || color,
-    }),
+    ...(isSxColor && { color }),
   });
 
   const {
@@ -205,6 +211,25 @@ Typography.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
+   */
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf([
+      'primary',
+      'secondary',
+      'success',
+      'error',
+      'info',
+      'warning',
+      'textPrimary',
+      'textSecondary',
+      'textDisabled',
+    ]),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
