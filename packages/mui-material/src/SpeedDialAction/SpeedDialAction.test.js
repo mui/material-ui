@@ -2,24 +2,42 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Icon from '@mui/material/Icon';
-import Tooltip from '@mui/material/Tooltip';
-import { fabClasses } from '@mui/material/Fab';
+import Fab, { fabClasses } from '@mui/material/Fab';
 import SpeedDialAction, { speedDialActionClasses as classes } from '@mui/material/SpeedDialAction';
 import describeConformance from '../../test/describeConformance';
 
 describe('<SpeedDialAction />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
+  const CustomRootComponent = React.forwardRef((props, ref) => {
+    const { ownerState, ...other } = props;
+    return <button {...other} ref={ref} data-testid="custom" />;
+  });
+  const CustomTooltipComponent = React.forwardRef((props, ref) => {
+    const { onOpen, ownerState, ...other } = props;
+    return <div {...other} ref={ref} data-testid="custom" />;
+  });
 
   describeConformance(
     <SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" />,
     () => ({
       classes,
-      inheritComponent: Tooltip,
+      inheritComponent: Fab,
       render,
       refInstanceof: window.HTMLButtonElement,
       muiName: 'MuiSpeedDialAction',
-      testRootOverrides: { slotName: 'fab' },
+      testRootOverrides: { slotName: 'root' },
       testVariantProps: { tooltipPlacement: 'right' },
+      slots: {
+        root: {
+          expectedClassName: classes.fab,
+          testWithComponent: CustomRootComponent,
+          testWithElement: null,
+        },
+        tooltip: {
+          testWithComponent: CustomTooltipComponent,
+          testWithElement: null,
+        },
+      },
       skip: ['componentProp', 'componentsProp'],
     }),
   );

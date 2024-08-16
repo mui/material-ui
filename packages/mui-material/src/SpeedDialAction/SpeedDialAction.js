@@ -11,6 +11,7 @@ import Fab from '../Fab';
 import Tooltip from '../Tooltip';
 import capitalize from '../utils/capitalize';
 import speedDialActionClasses, { getSpeedDialActionUtilityClass } from './speedDialActionClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { open, tooltipPlacement, classes } = ownerState;
@@ -144,6 +145,8 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     icon,
     id,
     open,
+    slotProps = {},
+    slots = {},
     TooltipClasses,
     tooltipOpen: tooltipOpenProp = false,
     tooltipPlacement = 'left',
@@ -153,6 +156,25 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
 
   const ownerState = { ...props, tooltipPlacement };
   const classes = useUtilityClasses(ownerState);
+  const backwardCompatibleSlotProps = { root: FabProps, ...slotProps };
+  const externalForwardedProps = {
+    slots,
+    slotProps: backwardCompatibleSlotProps,
+  };
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType: SpeedDialActionFab,
+    externalForwardedProps,
+    className: clsx(classes.fab, other.className, className),
+    ownerState,
+  });
+  const [TooltipSlot, tooltipProps] = useSlot('tooltip', {
+    elementType: tooltipOpenProp ? SpeedDialActionStaticTooltip : Tooltip,
+    externalForwardedProps,
+    className: tooltipOpenProp ? classes.staticTooltip : undefined,
+    ownerState,
+  });
+
+  delete tooltipProps.ownerState;
 
   const [tooltipOpen, setTooltipOpen] = React.useState(tooltipOpenProp);
 
@@ -167,32 +189,27 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
   const transitionStyle = { transitionDelay: `${delay}ms` };
 
   const fab = (
-    <SpeedDialActionFab
+    <RootSlot
       size="small"
       tabIndex={-1}
       role="menuitem"
       ownerState={ownerState}
       {...other}
-      {...FabProps}
-      className={clsx(classes.fab, other.className, className)}
+      {...rootProps}
+      ref={ref}
       style={{
         ...transitionStyle,
         ...(other.style || {}),
-        ...FabProps.style,
+        ...rootProps.style,
       }}
     >
       {icon}
-    </SpeedDialActionFab>
+    </RootSlot>
   );
 
   if (tooltipOpenProp) {
     return (
-      <SpeedDialActionStaticTooltip
-        id={id}
-        ref={ref}
-        className={classes.staticTooltip}
-        ownerState={ownerState}
-      >
+      <TooltipSlot id={id} ownerState={ownerState} {...tooltipProps}>
         <SpeedDialActionStaticTooltipLabel
           style={transitionStyle}
           id={`${id}-label`}
@@ -204,7 +221,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
         {React.cloneElement(fab, {
           'aria-labelledby': `${id}-label`,
         })}
-      </SpeedDialActionStaticTooltip>
+      </TooltipSlot>
     );
   }
 
@@ -213,18 +230,18 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
   }
 
   return (
-    <Tooltip
+    <TooltipSlot
       id={id}
-      ref={ref}
       title={tooltipTitle}
       placement={tooltipPlacement}
       onClose={handleTooltipClose}
       onOpen={handleTooltipOpen}
       open={open && tooltipOpen}
       classes={TooltipClasses}
+      {...tooltipProps}
     >
       {fab}
-    </Tooltip>
+    </TooltipSlot>
   );
 });
 
@@ -233,6 +250,10 @@ SpeedDialAction.propTypes /* remove-proptypes */ = {
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
   // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    */
@@ -256,14 +277,29 @@ SpeedDialAction.propTypes /* remove-proptypes */ = {
    */
   icon: PropTypes.node,
   /**
-   * This prop is used to help implement the accessibility logic.
-   * If you don't provide this prop. It falls back to a randomly generated id.
+   * @ignore
    */
   id: PropTypes.string,
   /**
    * If `true`, the component is shown.
    */
   open: PropTypes.bool,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    tooltip: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+    tooltip: PropTypes.elementType,
+  }),
   /**
    * @ignore
    */

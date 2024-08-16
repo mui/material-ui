@@ -9,10 +9,9 @@
       "description": "Props applied to the <a href=\"/material-ui/api/fab/\"><code>Fab</code></a> component."
     },
     "icon": { "description": "The icon to display in the SpeedDial Fab." },
-    "id": {
-      "description": "This prop is used to help implement the accessibility logic. If you don&#39;t provide this prop. It falls back to a randomly generated id."
-    },
     "open": { "description": "If <code>true</code>, the component is shown." },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
@@ -51,5 +50,9 @@
     "tooltipPlacementRight": {
       "description": "Styles applied to the root element if <code>tooltipOpen={true}</code> and `tooltipPlacement=&quot;right&quot;``"
     }
+  },
+  "slotDescriptions": {
+    "root": "The component that renders the root component.",
+    "tooltip": "The component that renders the tooltip."
   }
 }

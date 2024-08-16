@@ -229,6 +229,12 @@ The `Grid2` (previously `Unstable_Grid2`) was updated and stabilized:
 
 This brings some breaking changes described in the following sections.
 
+### SpeedDialAction
+
+The SpeedDialAction component consists of a button wrapped inside a tooltip. Previously, additional props were spread on the tooltip. Now, additional props are spread on the button, which is now considered the root component.
+
+If you need to customize the tooltip or pass props to it, you can use the `slots` and `slotProps` respectively.
+
 #### Unstable prefix removed
 
 The `Grid2` component API was stabilized, so its import no longer contains the `Unstable_` prefix:

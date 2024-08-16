@@ -1,12 +1,37 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '..';
-import { FabProps } from '../Fab';
+import { FabProps, FabTypeMap } from '../Fab';
 import { TooltipProps } from '../Tooltip';
 import { SpeedDialActionClasses } from './speedDialActionClasses';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils';
+import { SpeedDialProps } from '../SpeedDial/SpeedDial';
 
-export interface SpeedDialActionProps extends StandardProps<Partial<TooltipProps>, 'children'> {
+export interface SpeedDialActionSlots {
+  /**
+   * The component that renders the root component.
+   * @default Fab
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the tooltip.
+   * @default Tooltip
+   */
+  tooltip?: React.ElementType;
+}
+
+export type SpeedDialActionSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  SpeedDialActionSlots,
+  {
+    root: SlotProps<React.ElementType<FabProps>, {}, SpeedDialActionOwnerState>;
+    tooltip: SlotProps<React.ElementType<TooltipProps>, {}, SpeedDialActionOwnerState>;
+  }
+>;
+
+export interface SpeedDialActionOwnProps
+  extends Partial<Omit<FabProps, 'children'>>,
+    SpeedDialActionSlotsAndSlotProps {
   /**
    * Override or extend the styles applied to the component.
    */
@@ -25,6 +50,10 @@ export interface SpeedDialActionProps extends StandardProps<Partial<TooltipProps
    * The icon to display in the SpeedDial Fab.
    */
   icon?: React.ReactNode;
+  /**
+   * If `true`, the component is shown.
+   */
+  open?: SpeedDialProps['open'];
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -49,6 +78,14 @@ export interface SpeedDialActionProps extends StandardProps<Partial<TooltipProps
   tooltipOpen?: boolean;
 }
 
+export interface SpeedDialActionTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = FabTypeMap['defaultComponent'],
+> {
+  props: AdditionalProps & SpeedDialActionOwnProps;
+  defaultComponent: RootComponent;
+}
+
 /**
  *
  * Demos:
@@ -58,6 +95,17 @@ export interface SpeedDialActionProps extends StandardProps<Partial<TooltipProps
  * API:
  *
  * - [SpeedDialAction API](https://next.mui.com/material-ui/api/speed-dial-action/)
- * - inherits [Tooltip API](https://next.mui.com/material-ui/api/tooltip/)
+ * - inherits [Fab API](https://next.mui.com/material-ui/api/fab/)
  */
-export default function SpeedDialAction(props: SpeedDialActionProps): React.JSX.Element;
+declare const SpeedDialAction: OverridableComponent<SpeedDialActionTypeMap>;
+
+export type SpeedDialActionProps<
+  RootComponent extends React.ElementType = SpeedDialActionTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<SpeedDialActionTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
+
+export interface SpeedDialActionOwnerState extends SpeedDialActionProps {}
+
+export default SpeedDialAction;

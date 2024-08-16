@@ -4,8 +4,18 @@
     "delay": { "type": { "name": "number" }, "default": "0" },
     "FabProps": { "type": { "name": "object" }, "default": "{}" },
     "icon": { "type": { "name": "node" } },
-    "id": { "type": { "name": "string" } },
     "open": { "type": { "name": "bool" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ root?: func<br>&#124;&nbsp;object, tooltip?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType, tooltip?: elementType }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -28,6 +38,20 @@
   "imports": [
     "import SpeedDialAction from '@mui/material/SpeedDialAction';",
     "import { SpeedDialAction } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root component.",
+      "default": "Fab",
+      "class": null
+    },
+    {
+      "name": "tooltip",
+      "description": "The component that renders the tooltip.",
+      "default": "Tooltip",
+      "class": null
+    }
   ],
   "classes": [
     {
@@ -78,7 +102,7 @@
   "muiName": "MuiSpeedDialAction",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/SpeedDialAction/SpeedDialAction.js",
-  "inheritance": { "component": "Tooltip", "pathname": "/material-ui/api/tooltip/" },
+  "inheritance": { "component": "Fab", "pathname": "/material-ui/api/fab/" },
   "demos": "<ul><li><a href=\"/material-ui/react-speed-dial/\">Speed Dial</a></li></ul>",
   "cssComponent": false
 }
