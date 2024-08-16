@@ -13,7 +13,7 @@ export {
 } from './focusVisible';
 export {} from './initMatchers';
 export * as fireDiscreteEvent from './fireDiscreteEvent';
-export * as userEvent from './userEvent';
+export * as fireUserEvent from './fireUserEvent';
 export { default as flushMicrotasks } from './flushMicrotasks';
 export { default as reactMajor } from './reactMajor';
 
