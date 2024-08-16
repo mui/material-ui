@@ -277,8 +277,8 @@ const pages: MuiPage[] = [
         subheader: 'Upgrade to v6',
         children: [
           {
-            pathname: '/material-ui/migration/migrating-to-v6',
-            title: 'Migrating to v6: getting started',
+            pathname: '/material-ui/migration/upgrade-to-v6',
+            title: 'Upgrade to v6: getting started',
           },
           {
             pathname: '/material-ui/migration/migrating-from-deprecated-apis',
