@@ -120,15 +120,15 @@ import { createStyles, makeStyles } from '@mui/styles';
   }));
 }
 
+const useStyles = makeStyles<Theme>((theme) => ({
+  root: {
+    background: 'blue',
+  },
+}));
+
 function PartialTypeInferenceTest() {
   // If any generic is provided, inference breaks.
   // If the proposal https://github.com/Microsoft/TypeScript/issues/26242 goes through, we can fix this.
-  const useStyles = makeStyles<Theme>((theme) => ({
-    root: {
-      background: 'blue',
-    },
-  }));
-
   const classes = useStyles();
 
   // This doesn't fail, because inference is broken

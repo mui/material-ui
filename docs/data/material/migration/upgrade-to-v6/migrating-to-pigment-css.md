@@ -187,7 +187,7 @@ Add the following code to your [Next.js](#nextjs) or [Vite](#vite) config file:
 
  const pigmentConfig = {
    transformLibraries: ['@mui/material'],
-+  theme: createTheme(…parameters if any),
++  theme: createTheme(/* parameters if any */),
  };
 ```
 

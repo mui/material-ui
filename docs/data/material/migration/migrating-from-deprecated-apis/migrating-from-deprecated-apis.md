@@ -67,7 +67,7 @@ Bear in mind that the `.MuiAccordionSummary-gutters` class is applied to the com
 -      [`& .${accordionSummaryClasses.contentGutters}`]: {
 +      [`&.${accordionSummaryClasses.gutters} .${accordionSummaryClasses.content}`]: {
          color: 'red',
-        },
+       },
      },
    },
  },
@@ -146,51 +146,51 @@ Here's how to migrate:
 -      [`&.${alertClasses.standardSuccess}`]: {
 +      [`&.${alertClasses.standard}.${alertClasses.colorSuccess}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.standardInfo}`]: {
 +      [`&.${alertClasses.standard}.${alertClasses.colorInfo}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.standardWarning}`]: {
 +      [`&.${alertClasses.standard}.${alertClasses.colorWarning}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.standardError}`]: {
 +      [`&.${alertClasses.standard}.${alertClasses.colorError}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.outlinedSuccess}`]: {
 +      [`&.${alertClasses.outlined}.${alertClasses.colorSuccess}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.outlinedInfo}`]: {
 +      [`&.${alertClasses.outlined}.${alertClasses.colorInfo}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.outlinedWarning}`]: {
 +      [`&.${alertClasses.outlined}.${alertClasses.colorWarning}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.outlinedError}`]: {
 +      [`&.${alertClasses.outlined}.${alertClasses.colorError}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.filledSuccess}`]: {
 +      [`&.${alertClasses.filled}.${alertClasses.colorSuccess}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.filledInfo}`]: {
 +      [`&.${alertClasses.filled}.${alertClasses.colorInfo}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.filledWarning}`]: {
 +      [`&.${alertClasses.filled}.${alertClasses.colorWarning}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.filledError}`]: {
 +      [`&.${alertClasses.filled}.${alertClasses.colorError}`]: {
          color: 'red',
-        },
+       },
      },
    },
  },
@@ -274,9 +274,9 @@ The AvatarGroup's `componentsProps` was deprecated in favor of `slotProps`:
  MuiAvatarGroup: {
    defaultProps: {
 -    componentsProps: {
--      additionalAvatar: {color: "red"}
+-      additionalAvatar: { color: 'red' },
 +    slotProps: {
-+      surplus: {color: "red"}
++      surplus: { color: 'red' },
      },
    },
  },
@@ -434,135 +434,135 @@ Here's how to migrate:
 -      [`&.${buttonClasses.textInherit}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorInherit}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textPrimary}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textSecondary}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textSuccess}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorSuccess}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textError}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorError}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textInfo}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorInfo}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textWarning}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorWarning}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedInherit}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorInherit}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedPrimary}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedSecondary}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedSuccess}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorSuccess}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedError}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorError}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedInfo}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorInfo}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedWarning}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorWarning}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedInherit}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorInherit}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedPrimary}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedSecondary}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedSuccess}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorSuccess}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedError}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorError}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedInfo}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorInfo}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedWarning}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorWarning}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedSizeSmall}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.sizeSmall}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedSizeMedium}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.sizeMedium}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedSizeLarge}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.sizeLarge}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textSizeSmall}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.sizeSmall}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textSizeMedium}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.sizeMedium}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textSizeLarge}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.sizeLarge}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedSizeSmall}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.sizeSmall}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedSizeMedium}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.sizeMedium}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedSizeLarge}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.sizeLarge}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${buttonClasses.iconSizeSmall}`]: {
 +      [`&.${buttonClasses.sizeSmall} > .${buttonClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${buttonClasses.iconSizeMedium}`]: {
 +      [`&.${buttonClasses.sizeMedium} > .${buttonClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${buttonClasses.iconSizeLarge}`]: {
 +      [`&.${buttonClasses.sizeLarge} > .${buttonClasses.icon}`]: {
          color: 'red',
-        },
+       },
      },
    },
  },
@@ -623,7 +623,6 @@ Here's how to migrate:
 ```
 
 ```diff
-
  import { buttonGroupClasses } from '@mui/material/ButtonGroup';
 
   MuiButtonGroup: {
@@ -697,9 +696,9 @@ Here's how to migrate:
 +      [`&.${buttonGroupClasses.contained}.${buttonGroupClasses.colorSecondary} > .${buttonGroupClasses.grouped}`]: {
           color: 'red',
         },
-   },
+      },
+    },
   },
-
 ```
 
 ## Chip
@@ -778,7 +777,6 @@ Here's how to migrate:
 ```
 
 ```diff
-
  import { chipClasses } from '@mui/material/Chip';
 
  MuiChip: {
@@ -787,103 +785,103 @@ Here's how to migrate:
 -      [`&.${chipClasses.clickableColorPrimary}`]: {
 +      [`&.${chipClasses.clickable}.${chipClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.clickableColorSecondary}`]: {
 +      [`&.${chipClasses.clickable}.${chipClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.deletableColorPrimary}`]: {
 +      [`&.${chipClasses.deletable}.${chipClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.deletableColorSecondary}`]: {
 +      [`&.${chipClasses.deletable}.${chipClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.outlinedPrimary}`]: {
 +      [`&.${chipClasses.outlined}.${chipClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.outlinedSecondary}`]: {
 +      [`&.${chipClasses.outlined}.${chipClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.filledPrimary}`]: {
 +      [`&.${chipClasses.filled}.${chipClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.filledSecondary}`]: {
 +      [`&.${chipClasses.filled}.${chipClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.avatarSmall}`]: {
 +      [`&.${chipClasses.sizeSmall} > .${chipClasses.avatar}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.avatarMedium}`]: {
 +      [`&.${chipClasses.sizeMedium} > .${chipClasses.avatar}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.avatarColorPrimary}`]: {
 +      [`&.${chipClasses.colorPrimary} > .${chipClasses.avatar}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.avatarColorSecondary}`]: {
 +      [`&.${chipClasses.colorSecondary} > .${chipClasses.avatar}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.iconSmall}`]: {
 +      [`&.${chipClasses.sizeSmall} > .${chipClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.iconMedium}`]: {
 +      [`&.${chipClasses.sizeMedium} > .${chipClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.iconColorPrimary}`]: {
 +      [`&.${chipClasses.colorPrimary} > .${chipClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.iconColorSecondary}`]: {
 +      [`&.${chipClasses.colorSecondary} > .${chipClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.labelSmall}`]: {
 +      [`&.${chipClasses.sizeSmall} > .${chipClasses.label}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.labelMedium}`]: {
 +      [`&.${chipClasses.sizeMedium} > .${chipClasses.label}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconSmall}`]: {
 +      [`&.${chipClasses.sizeSmall} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconMedium}`]: {
 +      [`&.${chipClasses.sizeMedium} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconColorPrimary}`]: {
 +      [`&.${chipClasses.colorPrimary} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconColorSecondary}`]: {
 +      [`&.${chipClasses.colorSecondary} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconOutlinedColorPrimary}`]: {
 +      [`&.${chipClasses.outlined}.${chipClasses.colorPrimary} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconOutlinedColorSecondary}`]: {
 +      [`&.${chipClasses.outlined}.${chipClasses.colorSecondary} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconFilledColorPrimary}`]: {
 +      [`&.${chipClasses.filled}.${chipClasses.colorPrimary} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconFilledColorSecondary}`]: {
 +      [`&.${chipClasses.filled}.${chipClasses.colorSecondary} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
@@ -923,7 +921,7 @@ Here's how to migrate:
 -      [`& .${circularProgressClasses.circleDeterminate}`]: {
 +      [`&.${circularProgressClasses.determinate} > .${circularProgressClasses.circle}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${circularProgressClasses.circleIndeterminate}`]: {
 +      [`&.${circularProgressClasses.indeterminate} > .${circularProgressClasses.circle}`]: {
          color: 'red',
@@ -1292,19 +1290,19 @@ Here's how to migrate:
 -      [`&.${paginationItemClasses.textPrimary}`]: {
 +      [`&.${paginationItemClasses.text}.${paginationItemClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${paginationItemClasses.outlinedPrimary}`]: {
 +      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${paginationItemClasses.textSecondary}`]: {
 +      [`&.${paginationItemClasses.text}.${paginationItemClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${paginationItemClasses.outlinedSecondary}`]: {
 +      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
      },
    },
  },
@@ -1403,7 +1401,6 @@ Here's how to migrate:
 ```
 
 ```diff
-
  import { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
 
  MuiButtonGroup: {
@@ -1486,7 +1483,7 @@ Here's how to migrate:
 -      [`& .${tableSortLabelClasses.iconDirectionDesc}`]: {
 +      [`&.${tableSortLabelClasses.directionDesc} > .${tableSortLabelClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${tableSortLabelClasses.iconDirectionAsc}`]: {
 +      [`&.${tableSortLabelClasses.directionAsc} > .${tableSortLabelClasses.icon}`]: {
          color: 'red',
@@ -1630,11 +1627,11 @@ Here's how to migrate:
 -      [`& .${stepConnectorClasses.lineHorizontal}`]: {
 +      [`&.${stepConnectorClasses.horizontal} > .${stepConnectorClasses.line}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${stepConnectorClasses.lineVertical}`]: {
 +      [`&.${stepConnectorClasses.vertical} > .${stepConnectorClasses.line}`]: {
          color: 'red',
-        },
+       },
      },
    },
  },

@@ -204,6 +204,22 @@ export default function ChipExample() {
 }
 ```
 
+### Divider
+
+When using vertical orientation, the Divider now renders a `<div>` with the corresponding accessibility attributes instead of `<hr>` to adhere to [the WAI-ARIA spec](https://www.w3.org/TR/wai-aria-1.2/#separator). You might need to adjust your styles accordingly if you are targeting `hr` tags in your CSS.
+
+```diff
+-import Divider from '@mui/material/Divider';
++import Divider, { dividerClasses } from '@mui/material/Divider';
+
+ const Main = styled.main({
+-  '& hr': {
++  [`& .${dividerClasses.root}`]: {
+     marginTop: '16px',
+   },
+ });
+```
+
 ### ListItem
 
 `ListItem`'s props `autoFocus`, `button`, `disabled`, and `selected`, deprecated in v5, have been removed. To replace the `button` prop, use `ListItemButton` instead. The other removed props are available in the `ListItemButton` component as well.
@@ -225,17 +241,17 @@ As the `ListItem` no longer supports these props, the class names related to the
 -import { listItemClasses } from '@mui/material/ListItem';
 +import { listItemButtonClasses } from '@mui/material/ListItemButton';
 
-- listItemClasses.button
-+ listItemButtonClasses.root
+-listItemClasses.button
++listItemButtonClasses.root
 
-- listItemClasses.focusVisible
-+ listItemButtonClasses.focusVisible
+-listItemClasses.focusVisible
++listItemButtonClasses.focusVisible
 
-- listItemClasses.disabled
-+ listItemButtonClasses.disabled
+-listItemClasses.disabled
++listItemButtonClasses.disabled
 
-- listItemClasses.selected
-+ listItemButtonClasses.selected
+-listItemClasses.selected
++listItemButtonClasses.selected
 ```
 
 ### Loading Button
@@ -474,12 +490,12 @@ You can also manually update your theme as shown in the snippet below:
 -      variants: [ ... ],
 +      styleOverrides: {
 +        root: {
-+          variants: [ ... ]
-+        }
-+      }
-     }
-   }
- })
++          variants: [ ... ],
++        },
++      },
+     },
+   },
+ });
 ```
 
 This reduces the API surface and lets you define variants in other slots of the component.

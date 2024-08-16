@@ -94,7 +94,7 @@ interface ApiPageProps {
   descriptions: {
     [lang: string]: PropsTranslations & {
       // Table of Content added by the mapApiPageTranslations function
-      componentDescriptionToc: TableOfContentsEntry[];
+      componentDescriptionToc: TableOfContentsParams[];
     };
   };
   disableAd?: boolean;
@@ -180,17 +180,17 @@ export default function ApiPage(props: ApiPageProps) {
     slotDescriptions,
   });
 
-  function createTocEntry(sectionName: ApiHeaderKeys) {
+  function createTocEntry(sectionName: ApiHeaderKeys): TableOfContentsParams {
     return {
       text: getTranslatedHeader(t, sectionName),
       hash: sectionName,
       children: [
         ...(sectionName === 'props' && inheritance
           ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
-          : []),
+          : ([] as TableOfContentsParams[])),
         ...(sectionName === 'props' && pageContent.themeDefaultProps
           ? [{ text: t('api-docs.themeDefaultProps'), hash: 'theme-default-props', children: [] }]
-          : []),
+          : ([] as TableOfContentsParams[])),
       ],
     };
   }
