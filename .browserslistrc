@@ -9,7 +9,7 @@ node 14
 # `npx browserslist --mobile-to-desktop "> 0.5%, last 2 versions, Firefox ESR, not dead, safari >= 15.4, iOS >= 15.4"` when the last major is released.
 # Explicit safari versions are here based on the agreed terms in: https://github.com/mui/material-ui/issues/40958#issuecomment-1953215043
 #
-# After you update the version, you might need to run `npx update-browserslist-db@latest` to update caniuse-lite to gather latest browser versions. 
+# After you update the version, you might need to run `npx update-browserslist-db@latest` to update caniuse-lite to gather latest browser versions.
 # Otherwise, running `pnpm build` might fail due to unknown browser versions.
 #
 # On update, sync references where "#stable-snapshot" is mentioned in the codebase.
@@ -75,20 +75,20 @@ samsung 22
 # snapshot of `npx browserslist "maintained node versions"`
 # On update check all #stable-snapshot markers
 [node]
-node 12.0
+node 14.0
 
 # same as `node`
 [coverage]
-node 12.0
+node 14.0
 
 # same as `node`
 [development]
-node 12.0
+node 14.0
 
 # same as `node`
 [test]
-node 12.0
+node 14.0
 
 # same as `node`
 [benchmark]
-node 12.0
+node 14.0
