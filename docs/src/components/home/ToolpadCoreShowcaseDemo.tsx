@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Paper from '@mui/material/Paper';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import BarChartIcon from '@mui/icons-material/BarChart';
@@ -73,7 +72,7 @@ const PlaceHolder = styled('div')<{ height: number }>(({ theme, height }) => ({
 function DashboardLayoutBasic(props: DemoProps) {
   const { window } = props;
 
-  const [pathname, setPathname] = React.useState('/page');
+  const [pathname, setPathname] = React.useState('/dashboard');
 
   const router = React.useMemo<Router>(() => {
     return {
@@ -108,24 +107,8 @@ function DashboardLayoutBasic(props: DemoProps) {
 
 export default function ToolpadDashboardLayout() {
   return (
-    <Paper
-      variant="outlined"
-      sx={(theme) => ({
-        display: 'flex',
-        alignItems: 'center',
-        maxWidth: '100%',
-        mx: 'auto',
-        bgcolor: '#FFF',
-        borderRadius: '8px',
-        overflow: 'hidden',
-        ...theme.applyDarkStyles({
-          bgcolor: 'primaryDark.900',
-        }),
-      })}
-    >
-      <DemoSandbox iframe name="DashboardLayout" onResetDemoClick={NOOP} usesCssVarsTheme>
-        <DashboardLayoutBasic />
-      </DemoSandbox>
-    </Paper>
+    <DemoSandbox iframe name="DashboardLayout" onResetDemoClick={NOOP} usesCssVarsTheme>
+      <DashboardLayoutBasic />
+    </DemoSandbox>
   );
 }

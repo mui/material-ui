@@ -52,18 +52,46 @@ spec:
   - component: codeComponent.map
     name: map
 `;
-interface ImageProps {
-  alt: string;
+
+interface TabContainerProps {
   index: number;
-  src: string;
   value: number;
+  isDemo: boolean;
+  children: React.ReactNode;
 }
 
-function Image({ alt, index, src, value }: ImageProps) {
+function TabContainer({ index, value, isDemo, children }: TabContainerProps) {
+  return (
+    <Paper
+      variant="outlined"
+      key={index}
+      sx={(theme) => ({
+        width: '100%',
+        maxWidth: '100%',
+        height: 260,
+        display: value === index ? 'flex' : 'none',
+        overflow: isDemo ? 'auto' : 'clip',
+        bgcolor: '#FFF',
+        borderRadius: '8px',
+        boxShadow: `0 4px 8px ${alpha(theme.palette.common.black, 0.1)}`,
+        borderColor: 'grey.200',
+        ...(isDemo && { scrollbarGutter: 'stable' }),
+      })}
+    >
+      {children}
+    </Paper>
+  );
+}
+
+interface ImageProps {
+  alt: string;
+  src: string;
+}
+
+function Image({ alt, src }: ImageProps) {
   return (
     <Box
       component="img"
-      hidden={value !== index}
       src={src}
       alt={alt}
       loading="lazy"
@@ -77,26 +105,24 @@ function Image({ alt, index, src, value }: ImageProps) {
   );
 }
 
-interface DemoProps {
-  value: number;
-  index: number;
-}
-
-function ToolpadCoreShowcaseDemo({ value, index }: DemoProps) {
+function ToolpadCoreShowcaseDemo() {
   return (
-    <Box hidden={value !== index}>
-      <React.Suspense
-        fallback={
-          <Box
-            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}
-          >
-            <p>Loading...</p>
-          </Box>
-        }
-      >
-        <ToolpadCoreShowcase />
-      </React.Suspense>
-    </Box>
+    <React.Suspense
+      fallback={
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100%',
+          }}
+        >
+          <p>Loading...</p>
+        </div>
+      }
+    >
+      <ToolpadCoreShowcase />
+    </React.Suspense>
   );
 }
 
@@ -201,32 +227,17 @@ export default function ToolpadShowcase() {
             ))}
           </Tabs>
           <Box sx={{ p: 2 }}>
-            <Paper
-              variant="outlined"
-              sx={(theme) => ({
-                width: '100%',
-                height: 260,
-                overflow: 'auto',
-                scrollbarGutter: 'stable',
-                boxShadow: `0 4px 8px ${alpha(theme.palette.common.black, 0.1)}`,
-                borderColor: 'grey.200',
-                borderRadius: '8px',
-              })}
-            >
-              {tabsCodeInfo.map((tab, index) =>
-                tab.Demo ? (
-                  <tab.Demo index={index} value={tabValue} key={index} />
-                ) : (
-                  <Image
-                    key={index}
-                    index={index}
-                    value={tabValue}
-                    src={tab.imgSrc}
-                    alt={tab.imgAlt}
-                  />
-                ),
-              )}
-            </Paper>
+            {tabsCodeInfo.map((tab, index) =>
+              tab.Demo ? (
+                <TabContainer index={index} value={tabValue} isDemo>
+                  <tab.Demo />
+                </TabContainer>
+              ) : (
+                <TabContainer index={index} value={tabValue} isDemo={false}>
+                  <Image src={tab.imgSrc} alt={tab.imgAlt} />
+                </TabContainer>
+              ),
+            )}
           </Box>
         </Box>
       }
