@@ -2,7 +2,7 @@
 
 <p class="description">This guide helps you integrate Pigment CSS with Material UI v6.</p>
 
-Before going through this guide, make sure you have [migrated to Material UI v6](/material-ui/migration/migrating-to-v6/).
+Before going through this guide, make sure you have [upgraded to Material UI v6](/material-ui/migration/upgrade-to-v6/).
 
 ## Introduction
 
@@ -187,7 +187,7 @@ Add the following code to your [Next.js](#nextjs) or [Vite](#vite) config file:
 
  const pigmentConfig = {
    transformLibraries: ['@mui/material'],
-+  theme: createTheme(…parameters if any),
++  theme: createTheme(/* parameters if any */),
  };
 ```
 
