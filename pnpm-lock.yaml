@@ -207,7 +207,7 @@ importers:
         specifier: ^2.29.1
         version: 2.29.1(@typescript-eslint/parser@7.16.1(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-webpack@0.13.8)(eslint@8.57.0)
       eslint-plugin-jsx-a11y:
-        specifier: ^6.7.1
+        specifier: 6.7.1
         version: 6.7.1(eslint@8.57.0)
       eslint-plugin-material-ui:
         specifier: workspace:^
