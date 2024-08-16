@@ -219,7 +219,7 @@ Or use `var()` to refer to the CSS variable directly:
 ```
 
 :::warning
-If you're using a [custom prefix](/material-ui/customization/css-theme-variables/configuration/#changing-variable-prefixes), make sure to replace the default `--mui`.
+If you're using a [custom prefix](/material-ui/customization/css-theme-variables/configuration/#customizing-variable-prefix), make sure to replace the default `--mui`.
 :::
 
 For **TypeScript**, you need to augment the [palette interfaces](#palette-interfaces).
