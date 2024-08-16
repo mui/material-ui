@@ -222,12 +222,12 @@ Stay tuned, as many more updates are coming in the upcoming months! We'd love to
 
 ## Next steps
 
-Ready to upgrade to Material UI v6? Check out the [v6 migration guide](/material-ui/migration/migrating-to-v6/).
+Ready to upgrade to Material UI v6? Check out the [v6 migration guide](/material-ui/migration/upgrade-to-v6/).
 
 You can also explore all the updates in more detail from the links below:
 
 - [Pigment CSS integration](/material-ui/migration/migrating-to-pigment-css/)
 - [Container Queries](/material-ui/customization/container-queries/)
 - [CSS theme variables](/material-ui/customization/css-theme-variables/overview/)
-- [Stabilized Grid v2](/material-ui/migration/migrating-to-v6/#grid-v2-unstable-grid)
+- [Stabilized Grid v2](/material-ui/migration/upgrade-to-v6/#grid2)
 - [Free templates](/material-ui/getting-started/templates/)
