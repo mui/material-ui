@@ -40,6 +40,51 @@ The composed CSS classes are going to be deprecated and eventually removed in fa
 For example, the `.MuiAccordionSummary-contentGutters` class was deprecated in favor of the `.MuiAccordionSummary-gutters` and `.MuiAccordionSummary-content` classes.
 This improves the developer experience by reducing bloat and cognitive load.
 
+### System props
+
+MUI System props (such as `mt={*}`, `bgcolor={*}`, and more) have been deprecated in the Box, Typography, Link, Grid, and Stack components.
+Use the codemod below to move all System props to the `sx` prop:
+
+```bash
+npx @mui/codemod@next v6.0.0/system-props <path/to/folder>
+```
+
+You can also manually update your components as shown in the snippet below:
+
+```diff
+-<Button mr={2}>
++<Button sx={{ mr: 2 }}>
+```
+
+### Theme component variants
+
+Custom component variants defined in the theme are now merged with the theme style overrides, defined within the `root` slot of the component.
+
+Use this codemod to update your project's theme file:
+
+```bash
+npx @mui/codemod@next v6.0.0/theme-v6 <path/to/theme>
+```
+
+You can also manually update your theme as shown in the snippet below:
+
+```diff
+ createTheme({
+   components: {
+     MuiButton: {
+-      variants: [ ... ],
++      styleOverrides: {
++        root: {
++          variants: [ ... ],
++        },
++      },
+     },
+   },
+ });
+```
+
+This reduces the API surface and lets you define variants in other slots of the component.
+
 ## AccordionSummary
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-summary-classes) below to migrate the code as described in the following sections:

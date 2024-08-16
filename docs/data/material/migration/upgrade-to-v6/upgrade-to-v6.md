@@ -220,93 +220,6 @@ When using vertical orientation, the Divider now renders a `<div>` with the corr
  });
 ```
 
-### ListItem
-
-`ListItem`'s props `autoFocus`, `button`, `disabled`, and `selected`, deprecated in v5, have been removed. To replace the `button` prop, use `ListItemButton` instead. The other removed props are available in the `ListItemButton` component as well.
-
-```diff
--<ListItem button />
-+<ListItemButton />
-```
-
-Use this codemod to migrate your project to the `ListItemButton` component:
-
-```bash
-npx @mui/codemod@next v6.0.0/list-item-button-prop <path/to/folder>
-```
-
-As the `ListItem` no longer supports these props, the class names related to these props were removed. You should use the `listItemButtonClasses` object instead.
-
-```diff
--import { listItemClasses } from '@mui/material/ListItem';
-+import { listItemButtonClasses } from '@mui/material/ListItemButton';
-
--listItemClasses.button
-+listItemButtonClasses.root
-
--listItemClasses.focusVisible
-+listItemButtonClasses.focusVisible
-
--listItemClasses.disabled
-+listItemButtonClasses.disabled
-
--listItemClasses.selected
-+listItemButtonClasses.selected
-```
-
-### Loading Button
-
-In v6, the `children` prop passed to the Loading Button component is now wrapped in a `<span>` tag to avoid [issues](https://github.com/mui/material-ui/issues/27853) when using tools to translate websites.
-
-### Rating
-
-Previously, due to a bug, the `aria-label` attribute was "null Stars" when no value was set in the Rating component.
-This is fixed in v6, with the `aria-label` attribute being "0 Stars" when no value is set.
-
-### useMediaQuery types
-
-The following deprecated types are removed in v6:
-
-- `MuiMediaQueryList`: use `MediaQueryList` (from lib.dom.d.ts) instead.
-- `MuiMediaQueryListEvent`: use `MediaQueryListEvent` (from lib.dom.d.ts) instead.
-- `MuiMediaQueryListListener`: use `(event: MediaQueryListEvent) => void` instead.
-
-## Breaking changes affecting testing
-
-### Ripple effect
-
-The ripple effect's performance has been improved in v6.
-Because of this, you might need to update tests involving components with the ripple effect.
-If you are using `fireEvent` from `@testing-library/react` to simulate user interactions, you will need to wrap these inside `act` and `await` to avoid React warnings:
-
-```diff
-- fireEvent.click(button);
-+ await act(async () => fireEvent.mouseDown(button));
-```
-
-The components affected by this change are:
-
-- All buttons
-- Checkbox
-- Chip
-- Radio Group
-- Switch
-- Tabs
-
-## Stabilized APIs
-
-### CssVarsProvider and extendTheme
-
-The `CssVarsProvider` and `extendTheme` APIs are now stable.
-If you're already using them in v5 you can now drop the experimental prefix:
-
-```diff
--import { experimental_extendTheme as extendTheme, Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
-+import { extendTheme, CssVarsProvider } from '@mui/material/styles';
-```
-
-See [CSS theme variables](/material-ui/customization/css-theme-variables/overview/) for more details about working with these APIs.
-
 ### Grid2
 
 The `Grid2` (previously `Unstable_Grid2`) was updated and stabilized:
@@ -418,6 +331,93 @@ These updates may lead to unexpected changes to your app's layout.
 Still, we strongly recommend adopting this new behavior rather than trying to replicate the old pattern, as the new version is more predictable and modern.
 :::
 
+### ListItem
+
+`ListItem`'s props `autoFocus`, `button`, `disabled`, and `selected`, deprecated in v5, have been removed. To replace the `button` prop, use `ListItemButton` instead. The other removed props are available in the `ListItemButton` component as well.
+
+```diff
+-<ListItem button />
++<ListItemButton />
+```
+
+Use this codemod to migrate your project to the `ListItemButton` component:
+
+```bash
+npx @mui/codemod@next v6.0.0/list-item-button-prop <path/to/folder>
+```
+
+As the `ListItem` no longer supports these props, the class names related to these props were removed. You should use the `listItemButtonClasses` object instead.
+
+```diff
+-import { listItemClasses } from '@mui/material/ListItem';
++import { listItemButtonClasses } from '@mui/material/ListItemButton';
+
+-listItemClasses.button
++listItemButtonClasses.root
+
+-listItemClasses.focusVisible
++listItemButtonClasses.focusVisible
+
+-listItemClasses.disabled
++listItemButtonClasses.disabled
+
+-listItemClasses.selected
++listItemButtonClasses.selected
+```
+
+### Loading Button
+
+In v6, the `children` prop passed to the Loading Button component is now wrapped in a `<span>` tag to avoid [issues](https://github.com/mui/material-ui/issues/27853) when using tools to translate websites.
+
+### Rating
+
+Previously, due to a bug, the `aria-label` attribute was "null Stars" when no value was set in the Rating component.
+This is fixed in v6, with the `aria-label` attribute being "0 Stars" when no value is set.
+
+### useMediaQuery types
+
+The following deprecated types are removed in v6:
+
+- `MuiMediaQueryList`: use `MediaQueryList` (from lib.dom.d.ts) instead.
+- `MuiMediaQueryListEvent`: use `MediaQueryListEvent` (from lib.dom.d.ts) instead.
+- `MuiMediaQueryListListener`: use `(event: MediaQueryListEvent) => void` instead.
+
+## Breaking changes affecting testing
+
+### Ripple effect
+
+The ripple effect's performance has been improved in v6.
+Because of this, you might need to update tests involving components with the ripple effect.
+If you are using `fireEvent` from `@testing-library/react` to simulate user interactions, you will need to wrap these inside `act` and `await` to avoid React warnings:
+
+```diff
+- fireEvent.click(button);
++ await act(async () => fireEvent.mouseDown(button));
+```
+
+The components affected by this change are:
+
+- All buttons
+- Checkbox
+- Chip
+- Radio Group
+- Switch
+- Tabs
+
+## Stabilized APIs
+
+### CssVarsProvider and extendTheme
+
+The `CssVarsProvider` and `extendTheme` APIs are now stable.
+If you're already using them in v5 you can now drop the experimental prefix:
+
+```diff
+-import { experimental_extendTheme as extendTheme, Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
++import { extendTheme, CssVarsProvider } from '@mui/material/styles';
+```
+
+See [CSS theme variables](/material-ui/customization/css-theme-variables/overview/) for more details about working with these APIs.
+
 ### Color mode theme utility
 
 Material UI v6 introduces a new utility for adding styles to specific color modes called `theme.applyStyles`, designed to replace `theme.palette.mode` when applying light or dark styles:
@@ -449,56 +449,10 @@ Otherwise you can ignore this codemod.
 
 ## Deprecations
 
-### Overriding props
+It is not required to immediately go through the deprecations to use Material UI v6.
 
-The `components` and `componentsProps` props have been deprecated in favor of `slots` and `slotProps` for a more consistent component API surface.
-
-See [Deprecations](/material-ui/migration/migrating-from-deprecated-apis/) for details about specific components as they relate to this change.
-
-### System props
-
-MUI System props (such as `mt={*}`, `bgcolor={*}`, and more) have been deprecated in the Box, Typography, Link, Grid, and Stack components.
-Use the codemod below to move all System props to the `sx` prop:
-
-```bash
-npx @mui/codemod@next v6.0.0/system-props <path/to/folder>
-```
-
-You can also manually update your components as shown in the snippet below:
-
-```diff
--<Button mr={2}>
-+<Button sx={{ mr: 2 }}>
-```
-
-### Theme component variants
-
-Custom component variants defined in the theme are now merged with the theme style overrides, defined within the `root` slot of the component.
-
-Use this codemod to update your project's theme file:
-
-```bash
-npx @mui/codemod@next v6.0.0/theme-v6 <path/to/theme>
-```
-
-You can also manually update your theme as shown in the snippet below:
-
-```diff
- createTheme({
-   components: {
-     MuiButton: {
--      variants: [ ... ],
-+      styleOverrides: {
-+        root: {
-+          variants: [ ... ],
-+        },
-+      },
-     },
-   },
- });
-```
-
-This reduces the API surface and lets you define variants in other slots of the component.
+You can do it at your own pace by checking out the [deprecations page](/material-ui/migration/migrating-from-deprecated-apis/).
+Those deprecations will be removed in the next major version.
 
 ## Pigment CSS integration (optional)
 
