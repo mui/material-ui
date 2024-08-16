@@ -3,7 +3,6 @@ import { alpha } from '@mui/material/styles';
 
 import { buttonBaseClasses } from '@mui/material/ButtonBase';
 import { dividerClasses } from '@mui/material/Divider';
-import { listItemButtonClasses } from '@mui/material/ListItemButton';
 import { menuItemClasses } from '@mui/material/MenuItem';
 import { selectClasses } from '@mui/material/Select';
 import { tabClasses } from '@mui/material/Tab';
@@ -11,85 +10,7 @@ import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 import { gray, brand } from '../themePrimitives';
 
 /* eslint-disable import/prefer-default-export */
-export const menuComponentsCustomizations = {
-  MuiList: {
-    styleOverrides: {
-      root: {
-        padding: '8px',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 0,
-      },
-    },
-  },
-  MuiListItem: {
-    styleOverrides: {
-      root: ({ theme }) => ({
-        [`& .${svgIconClasses.root}`]: {
-          width: '1rem',
-          height: '1rem',
-          color: theme.palette.text.secondary,
-        },
-        [`& .${typographyClasses.root}`]: {
-          fontWeight: 500,
-        },
-        [`& .${buttonBaseClasses.root}`]: {
-          display: 'flex',
-          gap: 8,
-          padding: '2px 8px',
-          borderRadius: theme.shape.borderRadius,
-          opacity: 0.7,
-          [`&.${listItemButtonClasses.selected}`]: {
-            opacity: 1,
-            backgroundColor: alpha(theme.palette.action.selected, 0.3),
-            [`& .${svgIconClasses.root}`]: {
-              color: theme.palette.text.primary,
-            },
-            [`&.${listItemButtonClasses.focusVisible}`]: {
-              backgroundColor: alpha(theme.palette.action.selected, 0.3),
-            },
-            '&:hover': {
-              backgroundColor: alpha(theme.palette.action.selected, 0.5),
-            },
-          },
-          [`&.${listItemButtonClasses.focusVisible}`]: {
-            backgroundColor: 'transparent',
-          },
-        },
-      }),
-    },
-  },
-  MuiListItemText: {
-    styleOverrides: {
-      primary: ({ theme }) => ({
-        fontSize: theme.typography.body2.fontSize,
-        fontWeight: 500,
-        lineHeight: theme.typography.body2.lineHeight,
-      }),
-      secondary: ({ theme }) => ({
-        fontSize: theme.typography.caption.fontSize,
-        lineHeight: theme.typography.caption.lineHeight,
-      }),
-    },
-  },
-  MuiListSubheader: {
-    styleOverrides: {
-      root: ({ theme }) => ({
-        backgroundColor: 'transparent',
-        padding: '4px 8px',
-        fontSize: theme.typography.caption.fontSize,
-        fontWeight: 500,
-        lineHeight: theme.typography.caption.lineHeight,
-      }),
-    },
-  },
-  MuiListItemIcon: {
-    styleOverrides: {
-      root: {
-        minWidth: 0,
-      },
-    },
-  },
+export const navigationCustomizations = {
   MuiMenuItem: {
     styleOverrides: {
       root: ({ theme }) => ({
