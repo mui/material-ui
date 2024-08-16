@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { styled } from '@mui/material/styles';
 import Divider, { dividerClasses as classes } from '@mui/material/Divider';
 import describeConformance from '../../test/describeConformance';
@@ -165,19 +165,29 @@ describe('<Divider />', () => {
 
   describe('role', () => {
     it('avoids adding implicit aria semantics', () => {
-      const { container } = render(<Divider />);
-      expect(container.firstChild).not.to.have.attribute('role');
+      render(<Divider />);
+      expect(screen.getByRole('separator')).not.to.have.attribute('role');
+      expect(screen.getByRole('separator')).not.to.have.attribute('aria-orientation');
     });
 
     it('adds a proper role if none is specified', () => {
-      const { container } = render(<Divider component="div" />);
-      expect(container.firstChild).to.have.attribute('role', 'separator');
+      render(<Divider component="div" />);
+      expect(screen.getByRole('separator')).not.to.equal(null);
+      expect(screen.getByRole('separator')).to.have.attribute('aria-orientation');
+    });
+
+    it('adds a proper role with vertical orientation', () => {
+      render(<Divider orientation="vertical" />);
+      expect(screen.getByRole('separator')).not.to.equal(null);
+      expect(screen.getByRole('separator')).to.have.attribute('aria-orientation');
     });
 
     it('overrides the computed role with the provided one', () => {
       // presentation is the only valid aria role
-      const { container } = render(<Divider role="presentation" />);
-      expect(container.firstChild).to.have.attribute('role', 'presentation');
+      render(<Divider role="presentation" data-testid="divider" />);
+      expect(screen.queryByRole('separator')).to.equal(null);
+      expect(screen.getByTestId('divider')).to.have.attribute('role', 'presentation');
+      expect(screen.getByTestId('divider')).not.to.have.attribute('aria-orientation');
     });
   });
 });

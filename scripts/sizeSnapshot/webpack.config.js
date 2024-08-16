@@ -127,7 +127,7 @@ async function getWebpackEntries() {
     ...coreComponents,
     {
       id: '@material-ui/utils',
-      path: 'packages/mui-utils/build/index.js',
+      path: 'packages/mui-utils/build/esm/index.js',
     },
     // TODO: Requires webpack v5
     // Resolution of webpack/acorn to 7.x is blocked by nextjs (https://github.com/vercel/next.js/issues/11947)
@@ -195,7 +195,7 @@ function createWebpackConfig(entry, environment) {
         '@mui/styles': path.join(workspaceRoot, 'packages/mui-styles/build'),
         '@mui/system': path.join(workspaceRoot, 'packages/mui-system/build'),
         '@mui/private-theming': path.join(workspaceRoot, 'packages/mui-private-theming/build'),
-        '@mui/utils': path.join(workspaceRoot, 'packages/mui-utils/build'),
+        '@mui/utils': path.join(workspaceRoot, 'packages/mui-utils/build/esm'),
         '@mui/base': path.join(workspaceRoot, 'packages/mui-base/build'),
         '@mui/material-nextjs': path.join(workspaceRoot, 'packages/mui-material-nextjs/build'),
         '@mui/joy': path.join(workspaceRoot, 'packages/mui-joy/build'),
