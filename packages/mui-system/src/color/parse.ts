@@ -1,4 +1,5 @@
 import { Color, newColor, COLOR_INVALID } from './core';
+import * as convert from './convert'
 
 const HASH = '#'.charCodeAt(0);
 const PERCENT = '%'.charCodeAt(0);
@@ -37,7 +38,7 @@ export function parse(color: string): Color {
   if (color.charCodeAt(0) === HASH) {
     return parseHex(color);
   } else {
-    return parseRepresentation(color);
+    return parseColor(color);
   }
 }
 
@@ -45,7 +46,7 @@ export function parse(color: string): Color {
  * Parse hexadecimal CSS color
  * @param color Hex color string: #xxx, #xxxxxx, #xxxxxxxx
  */
-function parseHex(hex: string): Color {
+export function parseHex(hex: string): Color {
   let r = 0x00;
   let g = 0x00;
   let b = 0x00;
@@ -90,10 +91,10 @@ function hexValue(c: number) {
 
 /**
  * Parse CSS color
- * @spec https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
+ * https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
  * @param color CSS color string: rgb(), rgba(), hsl(), hsla(), color()
  */
-export function parseRepresentation(color: string): Color {
+export function parseColor(color: string): Color {
   const match = PATTERN.exec(color);
   if (match === null) {
     return COLOR_INVALID;
@@ -161,29 +162,96 @@ export function parseRepresentation(color: string): Color {
 
       return newColor(r, g, b, a);
     }
+    case 'lab': {
+      const l = parsePercentageOrValue(p1);
+      const aa = parsePercentageOrValue(p2);
+      const b = parsePercentageOrValue(p3);
+      const a = p4 ? parseAlphaChannel(p4) : 255;
+      return newColorFromArray(a,
+        convert.xyzd50ToSrgb(...convert.labToXyzd50(l, aa, b))
+      )
+    }
+    case 'lch': {
+      const l = parsePercentageOrValue(p1);
+      const c = parsePercentageOrValue(p2);
+      const h = parsePercentageOrValue(p3);
+      const a = p4 ? parseAlphaChannel(p4) : 255;
+      return newColorFromArray(a,
+        convert.xyzd50ToSrgb(...convert.labToXyzd50(...convert.lchToLab(l, c, h)))
+      )
+    }
+    case 'oklab': {
+      const l = parsePercentageOrValue(p1);
+      const aa = parsePercentageOrValue(p2);
+      const b = parsePercentageOrValue(p3);
+      const a = p4 ? parseAlphaChannel(p4) : 255;
+      return newColorFromArray(a,
+        convert.xyzd50ToSrgb(...convert.oklchToXyzd50(l, aa, b))
+      )
+    }
+    case 'oklch': {
+      const l = parsePercentageOrValue(p1);
+      const c = parsePercentageOrValue(p2);
+      const h = parsePercentageOrValue(p3);
+      const a = p4 ? parseAlphaChannel(p4) : 255;
+      return newColorFromArray(a,
+        convert.xyzd50ToSrgb(...convert.oklchToXyzd50(l, c, h))
+      )
+    }
     case 'color': {
-      // https://www.w3.org/TR/css-color-4/#color-conversion-code
+      // https://drafts.csswg.org/css-color-4/#color-function
 
       const colorspace = p1;
+      const c1 = parsePercentageOrValue(p2);
+      const c2 = parsePercentageOrValue(p3);
+      const c3 = parsePercentageOrValue(p4);
+      const a = p5 ? parseAlphaChannel(p5) : 255;
 
       switch (colorspace) {
+        // RGB color spaces
+        case 'srgb': {
+          return newColorFromArray(a, 
+            [c1, c2, c3]
+          )
+        }
+        case 'srgb-linear': {
+          return newColorFromArray(a, 
+            convert.xyzd50ToSrgb(...convert.srgbLinearToXyzd50(c1, c2, c3))
+          )
+        }
         case 'display-p3': {
-          const c1 = parsePercentageOrValue(p2);
-          const c2 = parsePercentageOrValue(p3);
-          const c3 = parsePercentageOrValue(p4);
-          const a = parseAlphaValue(p4);
-
-          // const rgb = lin_P3([c1, c2, c3])
-          //
-          // const r = Math.round(rgb[0] * 255)
-          // const g = Math.round(rgb[1] * 255)
-          // const b = Math.round(rgb[2] * 255)
-          //
-          // return newColor(r, g, b, a)
+          return newColorFromArray(a, 
+            convert.xyzd50ToSrgb(...convert.displayP3ToXyzd50(c1, c2, c3))
+          )
         }
-        default: {
-          break;
+        case 'a98-rgb': {
+          return newColorFromArray(a, 
+            convert.xyzd50ToSrgb(...convert.adobeRGBToXyzd50(c1, c2, c3))
+          )
         }
+        case 'prophoto-rgb': {
+          return newColorFromArray(a, 
+            convert.xyzd50ToSrgb(...convert.proPhotoToXyzd50(c1, c2, c3))
+          )
+        }
+        case 'rec2020': {
+          return newColorFromArray(a, 
+            convert.xyzd50ToSrgb(...convert.rec2020ToXyzd50(c1, c2, c3))
+          )
+        }
+        // XYZ color spaces
+        case 'xyz':
+        case 'xyz-d65': {
+          return newColorFromArray(a, 
+            convert.xyzd50ToSrgb(...convert.xyzd65ToD50(c1, c2, c3))
+          )
+        }
+        case 'xyz-d50': {
+          return newColorFromArray(a, 
+            convert.xyzd50ToSrgb(c1, c2, c3)
+          )
+        }
+        default:
       }
     }
     default:
@@ -193,7 +261,7 @@ export function parseRepresentation(color: string): Color {
 
 /**
  * Accepts: "50%", "128"
- * @spec https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/rgb#values
+ * https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/rgb#values
  * @returns a value in the 0 to 255 range
  */
 function parseColorChannel(channel: string): number {
@@ -309,4 +377,16 @@ function hwbApply(channel: number, w: number, b: number) {
   result += w
 
   return Math.round(result * 255)
+}
+
+
+function clamp(value: number) {
+  return Math.max(0, Math.min(255, value))
+}
+
+function newColorFromArray(a: number, rgb: [number, number, number]) {
+  const r = clamp(Math.round(rgb[0] * 255))
+  const g = clamp(Math.round(rgb[1] * 255))
+  const b = clamp(Math.round(rgb[2] * 255))
+  return newColor(r, g, b, a)
 }
