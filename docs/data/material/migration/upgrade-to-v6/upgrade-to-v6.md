@@ -449,7 +449,7 @@ Otherwise you can ignore this codemod.
 
 ## Deprecations
 
-It is not required to immediately go through the deprecations to use Material UI v6.
+It is not required to immediately go through the deprecations in order to use Material UI v6.
 
 You can do it at your own pace by checking out the [deprecations page](/material-ui/migration/migrating-from-deprecated-apis/).
 Those deprecations will be removed in the next major version.
