@@ -201,7 +201,7 @@ export function hslToRgb(color) {
  */
 export function getLuminance(color) {
   // Test fast implementation
-  // return Color.format(Color.getLuminance(Color.parse(color)));
+  return Color.format(Color.getLuminance(Color.parse(color)));
 
   color = decomposeColor(color);
 
@@ -243,7 +243,7 @@ export function getContrastRatio(foreground, background) {
  */
 export function alpha(color, value) {
   // Test fast implementation
-  // return Color.format(Color.setAlpha(Color.parse(color)));
+  return Color.format(Color.setAlpha(Color.parse(color), Math.round(value * 255)));
 
   color = decomposeColor(color);
   value = clampWrapper(value);
@@ -278,7 +278,7 @@ export function private_safeAlpha(color, value, warning) {
  */
 export function darken(color, coefficient) {
   // Test fast implementation
-  // return Color.format(Color.darken(Color.parse(color)));
+  return Color.format(Color.darken(Color.parse(color)));
 
   color = decomposeColor(color);
   coefficient = clampWrapper(coefficient);
