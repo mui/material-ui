@@ -14,9 +14,9 @@ A big thanks to the 18 contributors who made this release possible.
 - [Divider] Add aria-orientation (#43241) @aarongarciah
 - [IconButton] Fix hover background color behavior (#43271) @mnajdova
 - [TypeScript] Refactor types so they're compatible with upcoming React 19 (#43276) @DiegoAndai
-- [Typography] Replace dot notation color value to work with Pigment CSS (#43288) @siriwatknp
+- [Typography] Replace dot notation color value to work with Pigment CSS (#43288) @siriwatknp
 - [pigment-css] Fix `getSelector` prefers-color-scheme to be object (#43237) @siriwatknp
-- Remove `display="block"` usage to work with Pigment CSS (#43307) @siriwatknp
+- Remove `display="block"` usage to work with Pigment CSS (#43307) @siriwatknp
 
 ### `@mui/codemod@6.0.0-beta.6`
 
@@ -37,7 +37,7 @@ A big thanks to the 18 contributors who made this release possible.
 - Fix outdated references to Materal UI version (#43321) @oliviertassinari
 - Polish migration git diff experience @oliviertassinari
 - Update LTS to match format (#43212) @oliviertassinari
-- Fix Pigment CSS migration content (#43217) @siriwatknp
+- Fix Pigment CSS migration content (#43217) @siriwatknp
 
 ### Core
 
