@@ -158,7 +158,7 @@ export function recomposeColor(color) {
  */
 export function rgbToHex(color) {
   // Idempotent
-  if (color.indexOf('#') === 0) {
+  if (color.startsWith('#')) {
     return color;
   }
 

@@ -102,7 +102,7 @@ function createThemeNoVars(options = {}, ...args) {
     Object.keys(muiTheme.components).forEach((component) => {
       const styleOverrides = muiTheme.components[component].styleOverrides;
 
-      if (styleOverrides && component.indexOf('Mui') === 0) {
+      if (styleOverrides && component.startsWith('Mui')) {
         traverse(styleOverrides, component);
       }
     });

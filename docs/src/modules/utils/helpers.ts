@@ -88,7 +88,7 @@ export function pathnameToLanguage(pathname: string): {
 
   if (
     [...LANGUAGES, 'zh'].includes(userLanguageCandidate) &&
-    pathname.indexOf(`/${userLanguageCandidate}/`) === 0
+    pathname.startsWith(`/${userLanguageCandidate}/`)
   ) {
     userLanguage = userLanguageCandidate;
   } else {
