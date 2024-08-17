@@ -37,7 +37,7 @@ describe.only('utils/color', () => {
       });
 
       ['hsl', 'hsla'].forEach(type => {
-        expect(Color.parse(`${type}(50deg 80% 40% / 50%)`)).to.equal(c(c(c(0xb89c1480))));
+        expect(Color.parse(`${type}(50deg 80% 40% / 50%)`)).to.equal(c(0xb89c1480));
         expect(Color.parse(`${type}(50deg 80% 40% / 0.5)`)).to.equal(c(0xb89c1480));
         expect(Color.parse(`${type}(0 80% 40% / 0.5)`)).to.equal(c(0xb8141480));
         expect(Color.parse(`${type}(none 80% 40% / 0.5)`)).to.equal(c(0xb8141480));
@@ -46,7 +46,7 @@ describe.only('utils/color', () => {
         expect(Color.parse(`${type}(0rad 80% 40% / 0.5)`)).to.equal(c(0xb8141480));
       });
 
-      expect(Color.parse('hwb(12 50% 0%)')).to.equal(c(c(0xff9980ff)));
+      expect(Color.parse('hwb(12 50% 0%)')).to.equal(c(0xff9980ff));
       expect(Color.parse('hwb(50deg 30% 40%)')).to.equal(c(0x998c4dff));
       expect(Color.parse('hwb(0.5turn 10% 0% / .5)')).to.equal(c(0x1affff80));
 
