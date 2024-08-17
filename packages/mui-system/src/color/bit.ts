@@ -1,19 +1,15 @@
 // Bitwise functions
 //
-// The color representation uses 32-bits unsigned, but JS bitwise operators consider a
-// 32-bits signed representation, which means the return value will be a negative number
-// if the most significant bit is set. The MSB is always in the red channel, as the
-// representation is 0xRRGGBBAA
+// The color representation would ideally be 32-bits unsigned, but JS bitwise
+// operators only work as 32-bits signed. The range of Smi values on V8 is also
+// 32-bits signed. Those two factors make it that it's much more efficient to just
+// use signed integers to represent the data.
 //
-// To offset that issue, we cast bitwise operation results when we know we're going to run
-// into it. The MSB in signed representation is -2**31, and 2**31 when unsigned. Casting from
-// a negative number to the correct value is as simple as adding `2 * 2**31`.
-//
-// We use both safe & unsafe variants for performance reasons, for example getting the G, B or
-// A channels is always safe with native operators as the first operation will always mask the
-// MSB.
+// Colors with a R channel >= 0x80 will be a negative number, but that's not really
+// an issue at any point because the bits for signed and unsigned integers are always
+// the same, only their interpretation changes.
 
-const INT32_TO_UINT32_OFFSET = 2 * (2 ** 31)
+const INT32_TO_UINT32_OFFSET = 2 ** 32;
 
 export function cast(n: number) {
   if (n < 0) {
@@ -22,28 +18,10 @@ export function cast(n: number) {
   return n;
 }
 
-export function getUnsafe(n: number, offset: number) {
-  return (n & (0xff << offset)) >> offset
-}
-
 export function get(n: number, offset: number) {
-  return cast(
-    cast(
-      n & cast(0xff << offset)
-    ) >> offset
-  )
-}
-
-export function setUnsafe(n: number, offset: number, byte: number) {
-  return n ^ ((n ^ (byte << offset)) & (0xff << offset)); 
+  return (n >> offset) & 0xff;
 }
 
 export function set(n: number, offset: number, byte: number) {
-  return cast(n ^
-    cast(
-      cast(n ^ cast(byte << offset)) &
-      cast(0xff << offset)
-    )
-  ); 
+  return n ^ ((n ^ (byte << offset)) & (0xff << offset)); 
 }
-

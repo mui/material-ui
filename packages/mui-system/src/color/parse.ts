@@ -1,4 +1,4 @@
-import { Color, newColor, COLOR_INVALID } from './core';
+import { Color, newColor } from './core';
 import * as convert from './convert'
 
 const HASH = '#'.charCodeAt(0);
@@ -97,7 +97,7 @@ function hexValue(c: number) {
 export function parseColor(color: string): Color {
   const match = PATTERN.exec(color);
   if (match === null) {
-    return COLOR_INVALID;
+    throw new Error(`Color.parse(): invalid CSS color: "${color}"`);
   }
 
   const format = match[1];
