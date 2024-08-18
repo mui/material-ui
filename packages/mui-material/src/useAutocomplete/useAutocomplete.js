@@ -243,28 +243,6 @@ function useAutocomplete(props) {
 
   const listboxAvailable = open && filteredOptions.length > 0 && !readOnly;
 
-  if (process.env.NODE_ENV !== 'production') {
-    if (value !== null && !freeSolo && options.length > 0) {
-      const missingValue = (multiple ? value : [value]).filter(
-        (value2) => !options.some((option) => isOptionEqualToValue(option, value2)),
-      );
-
-      if (missingValue.length > 0) {
-        console.warn(
-          [
-            `MUI: The value provided to ${componentName} is invalid.`,
-            `None of the options match with \`${
-              missingValue.length > 1
-                ? JSON.stringify(missingValue)
-                : JSON.stringify(missingValue[0])
-            }\`.`,
-            'You can use the `isOptionEqualToValue` prop to customize the equality test.',
-          ].join('\n'),
-        );
-      }
-    }
-  }
-
   const focusTag = useEventCallback((tagToFocus) => {
     if (tagToFocus === -1) {
       inputRef.current.focus();

@@ -15,7 +15,7 @@ import Features from './components/Features';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
-import getMPTheme from './getMPTheme';
+import getMPTheme from './theme/getMPTheme';
 
 interface ToggleCustomThemeProps {
   showCustomTheme: Boolean;
@@ -68,8 +68,25 @@ export default function MarketingPage() {
   const MPTheme = createTheme(getMPTheme(mode));
   const defaultTheme = createTheme({ palette: { mode } });
 
+  // This code only runs on the client side, to determine the system color preference
+  React.useEffect(() => {
+    // Check if there is a preferred mode in localStorage
+    const savedMode = localStorage.getItem('themeMode') as PaletteMode | null;
+    if (savedMode) {
+      setMode(savedMode);
+    } else {
+      // If no preference is found, it uses system preference
+      const systemPrefersDark = window.matchMedia(
+        '(prefers-color-scheme: dark)',
+      ).matches;
+      setMode(systemPrefersDark ? 'dark' : 'light');
+    }
+  }, []);
+
   const toggleColorMode = () => {
-    setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
+    const newMode = mode === 'dark' ? 'light' : 'dark';
+    setMode(newMode);
+    localStorage.setItem('themeMode', newMode); // Save the selected mode to localStorage
   };
 
   const toggleCustomTheme = () => {
@@ -81,7 +98,7 @@ export default function MarketingPage() {
       <CssBaseline />
       <AppAppBar mode={mode} toggleColorMode={toggleColorMode} />
       <Hero />
-      <Box sx={{ bgcolor: 'background.default' }}>
+      <div>
         <LogoCollection />
         <Features />
         <Divider />
@@ -94,7 +111,7 @@ export default function MarketingPage() {
         <FAQ />
         <Divider />
         <Footer />
-      </Box>
+      </div>
       <ToggleCustomTheme
         showCustomTheme={showCustomTheme}
         toggleCustomTheme={toggleCustomTheme}
