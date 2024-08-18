@@ -18,8 +18,9 @@ function useGlobalId(idOverride?: string): string | undefined {
   return id;
 }
 
-// downstream bundlers may remove unnecessary concatenation, but won't remove toString call -- Workaround for https://github.com/webpack/webpack/issues/14814
-const maybeReactUseId: undefined | (() => string) = (React as any)['useId'.toString()];
+// eslint-disable-next-line no-underscore-dangle, @typescript-eslint/naming-convention -- Workaround for https://github.com/webpack/webpack/issues/14814
+const _React = { ...React };
+const maybeReactUseId: undefined | (() => string) = _React.useId;
 /**
  *
  * @example <div id={useId()} />

@@ -71,8 +71,9 @@ function useMediaQueryOld(
   return match;
 }
 
-// eslint-disable-next-line no-useless-concat -- Workaround for https://github.com/webpack/webpack/issues/14814
-const maybeReactUseSyncExternalStore: undefined | any = (React as any)['useSyncExternalStore' + ''];
+// eslint-disable-next-line no-underscore-dangle, @typescript-eslint/naming-convention -- Workaround for https://github.com/webpack/webpack/issues/14814
+const _React = { ...React };
+const maybeReactUseSyncExternalStore: undefined | any = _React.useSyncExternalStore;
 
 function useMediaQueryNew(
   query: string,
