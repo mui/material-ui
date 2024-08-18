@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import Input from '@mui/material/Input';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';

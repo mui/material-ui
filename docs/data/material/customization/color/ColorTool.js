@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { rgbToHex, useTheme } from '@mui/material/styles';
 import * as colors from '@mui/material/colors';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import Input from '@mui/material/Input';
 import Radio from '@mui/material/Radio';
 import Tooltip from '@mui/material/Tooltip';
