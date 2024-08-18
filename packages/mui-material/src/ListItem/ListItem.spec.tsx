@@ -13,12 +13,3 @@ function MouseEnterTest() {
   <ListItem onMouseEnter={handleMouseEnterButton} />; // desired: missing property button
   <ListItemButton onMouseEnter={handleMouseEnterButton} />;
 }
-
-// https://github.com/mui/material-ui/issues/26469
-const StyledListItem = styled(ListItem)({});
-function StyledTest() {
-  <StyledListItem dense />;
-
-  // @ts-expect-error
-  <StyledListItem button />; // `button` is deprecated in v5, can be removed in v6
-}
