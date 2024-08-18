@@ -11,6 +11,7 @@ A big thanks to the 18 contributors who made this release possible.
 ### `@mui/material@6.0.0-beta.6`
 
 - [Autocomplete] Improve the `options` prop description (#41591) @pluvio72
+- [Autocomplete] Remove autocomplete warning regarding value not equal to option (#43314) @ZeeshanTamboli
 - [Divider] Add aria-orientation (#43241) @aarongarciah
 - [IconButton] Fix hover background color behavior (#43271) @mnajdova
 - [TypeScript] Refactor types so they're compatible with upcoming React 19 (#43276) @DiegoAndai
@@ -31,6 +32,7 @@ A big thanks to the 18 contributors who made this release possible.
 - [material-ui] Audit and copyedit the v6 migration doc (#43073) @samuelsycamore
 - [material-ui] Fix Material Icon search lag and other improvements (#41330) @anle9650
 - [material-ui][Popover] Fix description and title of hover interaction section (#43290) @ZeeshanTamboli
+- [material-ui] Refine and unify custom template themes (#43220) @zanivan
 - [joy-ui] Fix data grid redirection (#43247) @sai6855
 - [mui-system] Add import statement in docs (#43223) @sai6855
 - Update babel config (#43286) @romgrk
@@ -41,6 +43,7 @@ A big thanks to the 18 contributors who made this release possible.
 
 ### Core
 
+- [code-infra] Remove `userEvent` export from `@mui/internal-test-utils` (#43313) @LukasTy
 - [code-infra] Remove unnecessary alias (#43320) @Janpot
 - [code-infra] Fix utils bundle size entrypoint (#43304) @Janpot
 - [core] missing and incorrect scripts (#43209) @Jay-Karia
@@ -1907,6 +1910,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [core] Fix TypeScript spelling in changelog @oliviertassinari
 - [core] Fix small detail in the autocomplete demo @oliviertassinari
 - [core] Increase node memory limit on Netlify build (#41111) @michaldudak
+- [core] Fix Netlify build cache issue (#43281) @LukasTy
 - [core][Tooltip] Remove incorrect code comment (#41179) @ZeeshanTamboli
 - [core] Fix missing context display names (#41168) @oliviertassinari
 - [core][base-ui] Remove `@mui/base` dev dependency from Base UI workspace (#41216) @ZeeshanTamboli
