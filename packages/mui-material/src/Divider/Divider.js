@@ -224,10 +224,10 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
     absolute = false,
     children,
     className,
-    component = children ? 'div' : 'hr',
+    orientation = 'horizontal',
+    component = children || orientation === 'vertical' ? 'div' : 'hr',
     flexItem = false,
     light = false,
-    orientation = 'horizontal',
     role = component !== 'hr' ? 'separator' : undefined,
     textAlign = 'center',
     variant = 'fullWidth',
@@ -255,6 +255,11 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
       role={role}
       ref={ref}
       ownerState={ownerState}
+      aria-orientation={
+        role === 'separator' && (component !== 'hr' || orientation === 'vertical')
+          ? orientation
+          : undefined
+      }
       {...other}
     >
       {children ? (

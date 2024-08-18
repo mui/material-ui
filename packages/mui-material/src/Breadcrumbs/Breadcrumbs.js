@@ -183,7 +183,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
     <BreadcrumbsRoot
       ref={ref}
       component={component}
-      color="text.secondary"
+      color="textSecondary"
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       {...other}

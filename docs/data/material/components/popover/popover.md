@@ -31,11 +31,11 @@ the position of the popover.
 
 {{"demo": "AnchorPlayground.js", "hideToolbar": true}}
 
-## Mouse over interaction
+## Mouse hover interaction
 
-This demo demonstrates how to use the `Popover` component and the mouseover event to achieve popover behavior.
+This demo demonstrates how to use the `Popover` component with `mouseenter` and `mouseleave` events to achieve popover behavior.
 
-{{"demo": "MouseOverPopover.js"}}
+{{"demo": "MouseHoverPopover.js"}}
 
 ## Virtual element
 

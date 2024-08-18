@@ -33,7 +33,9 @@ export default <
         if (rule === 'media') {
           return {
             ':root': css,
-            '@media (prefers-color-scheme: dark) { :root': excludedVariables,
+            [`@media (prefers-color-scheme: dark)`]: {
+              ':root': excludedVariables,
+            },
           };
         }
         if (rule) {
@@ -49,7 +51,11 @@ export default <
       }
     } else if (colorScheme) {
       if (rule === 'media') {
-        return `@media (prefers-color-scheme: ${String(colorScheme)}) { :root`;
+        return {
+          [`@media (prefers-color-scheme: ${String(colorScheme)})`]: {
+            ':root': css,
+          },
+        };
       }
       if (rule) {
         return rule.replace('%s', String(colorScheme));

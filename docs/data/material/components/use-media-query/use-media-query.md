@@ -79,8 +79,8 @@ function createMatchMedia(width) {
     matches: mediaQuery.match(query, {
       width,
     }),
-    addListener: () => {},
-    removeListener: () => {},
+    addEventListener: () => {},
+    removeEventListener: () => {},
   });
 }
 
