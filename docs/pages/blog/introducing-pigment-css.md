@@ -88,7 +88,7 @@ For users of Emotion and styled-components, the benefits of adopting Pigment CS
 
 ### Better page load performance
 
-When comparing the same Material UI app built with Next.js and either Emotion or Pigment CSS, we've observed the following page load performance gains using the same code, but powered by different style engines:
+When comparing the same Material UI app built with Next.js and either Emotion or Pigment CSS, we've observed the following page load performance gains using the same code:
 
 <!-- vale MUI.CorrectReferenceAllCases = NO -->
 
