@@ -44,8 +44,8 @@ importers:
         specifier: ^3.19.0
         version: 3.19.0
       execa:
-        specifier: ^9.3.0
-        version: 9.3.0
+        specifier: ^9.3.1
+        version: 9.3.1
       google-auth-library:
         specifier: ^9.13.0
         version: 9.13.0(encoding@0.1.13)
@@ -7403,8 +7403,8 @@ packages:
     resolution: {integrity: sha512-VyhnebXciFV2DESc+p6B+y0LjSm0krU4OgJN44qFAhBY0TJ+1V61tYD2+wHusZ6F9n5K+vl8k0sTy7PEfV4qpg==}
     engines: {node: '>=16.17'}
 
-  execa@9.3.0:
-    resolution: {integrity: sha512-l6JFbqnHEadBoVAVpN5dl2yCyfX28WoBAGaoQcNmLLSedOxTxcn2Qa83s8I/PA5i56vWru2OHOtrwF7Om2vqlg==}
+  execa@9.3.1:
+    resolution: {integrity: sha512-gdhefCCNy/8tpH/2+ajP9IQc14vXchNdd0weyzSJEFURhRMGncQ+zKFxwjAufIewPEJm9BPOaJnvg2UtlH2gPQ==}
     engines: {node: ^18.19.0 || >=20.5.0}
 
   expand-tilde@2.0.2:
@@ -8063,8 +8063,8 @@ packages:
     resolution: {integrity: sha512-AXcZb6vzzrFAUE61HnN4mpLqd/cSIwNQjtNWR0euPm6y0iqx3G4gOXaIDdtdDwZmhwe82LA6+zinmW4UBWVePQ==}
     engines: {node: '>=16.17.0'}
 
-  human-signals@7.0.0:
-    resolution: {integrity: sha512-74kytxOUSvNbjrT9KisAbaTZ/eJwD/LrbM/kh5j0IhPuJzwuA19dWvniFGwBzN9rVjg+O/e+F310PjObDXS+9Q==}
+  human-signals@8.0.0:
+    resolution: {integrity: sha512-/1/GPCpDUCCYwlERiYjxoczfP0zfvZMU/OWgQPMya9AbAE24vseigFdhAMObpc8Q4lc/kjutPfUddDYyAmejnA==}
     engines: {node: '>=18.18.0'}
 
   hyperlinker@1.0.0:
@@ -18823,13 +18823,13 @@ snapshots:
       signal-exit: 4.1.0
       strip-final-newline: 3.0.0
 
-  execa@9.3.0:
+  execa@9.3.1:
     dependencies:
       '@sindresorhus/merge-streams': 4.0.0
       cross-spawn: 7.0.3
       figures: 6.1.0
       get-stream: 9.0.1
-      human-signals: 7.0.0
+      human-signals: 8.0.0
       is-plain-obj: 4.1.0
       is-stream: 4.0.1
       npm-run-path: 5.2.0
@@ -19638,7 +19638,7 @@ snapshots:
 
   human-signals@5.0.0: {}
 
-  human-signals@7.0.0: {}
+  human-signals@8.0.0: {}
 
   hyperlinker@1.0.0: {}
 
