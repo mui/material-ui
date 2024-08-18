@@ -92,7 +92,7 @@
     "nx_test_unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'packages-internal/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'"
   },
   "dependencies": {
-    "@googleapis/sheets": "^8.0.0",
+    "@googleapis/sheets": "^9.1.0",
     "@netlify/functions": "^2.8.1",
     "@slack/bolt": "^3.19.0",
     "execa": "^9.3.0",
