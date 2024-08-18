@@ -40,12 +40,12 @@ The following example will render the `List` component with a `<nav>` element as
 
 ```jsx
 <List component="nav">
-  <ListItem button>
+  <ListItemButton>
     <ListItemText primary="Trash" />
-  </ListItem>
-  <ListItem button>
+  </ListItemButton>
+  <ListItemButton>
     <ListItemText primary="Spam" />
-  </ListItem>
+  </ListItemButton>
 </List>
 ```
 
@@ -67,10 +67,10 @@ function ListItemLink(props) {
 
   return (
     <li>
-      <ListItem button component={CustomLink}>
+      <ListItemButton component={CustomLink}>
         <ListItemIcon>{icon}</ListItemIcon>
         <ListItemText primary={primary} />
-      </ListItem>
+      </ListItemButton>
     </li>
   );
 }
@@ -101,10 +101,10 @@ function ListItemLink(props) {
 
   return (
     <li>
-      <ListItem button component={CustomLink}>
+      <ListItemButton component={CustomLink}>
         <ListItemIcon>{icon}</ListItemIcon>
         <ListItemText primary={primary} />
-      </ListItem>
+      </ListItemButton>
     </li>
   );
 }
@@ -118,7 +118,7 @@ In this example, we don't create any intermediary component:
 ```jsx
 import { Link } from 'react-router-dom';
 
-<ListItem button component={Link} to="/">
+<ListItemButton component={Link} to="/">
 ```
 
 :::warning
