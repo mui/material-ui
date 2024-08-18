@@ -113,7 +113,7 @@ To reproduce those numbers yourself, check out these live demos and repositories
 
 ### Better runtime performance
 
-When comparing the same Material UI app built with Next.js and either Emotion or Pigment CSS, we've observed the following runtime performance gains using the same code, but powered by different style engines:
+When comparing the same Material UI app built with Next.js and either Emotion or Pigment CSS, we've observed the following runtime performance gains using the same code:
 
 <!-- After page load, runtime performance is also improved with Pigment CSS. -->
 
