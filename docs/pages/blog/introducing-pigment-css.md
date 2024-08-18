@@ -100,7 +100,7 @@ When comparing the same Material UI app built with Next.js and either Emotion o
 <!-- vale MUI.CorrectReferenceAllCases = YES -->
 
 :::info
-**Reproduction**. Because you should only trust numbers that you can reproduce, we've shared below how we found these numbers.
+To reproduce those numbers yourself, check out these live demos and repositories:
 
 - Emotion
   - Live: https://emotion-demo.vercel.app/?metric=1
@@ -124,7 +124,7 @@ When comparing the same Material UI app built with Next.js and either Emotion o
 | Change a value inside a CSS prop        | 13.6 ms |     8.63 ms |   -37% |
 
 :::info
-**Reproduction**. Because you should only trust numbers that you can reproduce, we've shared below how we found these numbers.
+To reproduce those numbers yourself, check out these live demos and repositories:
 
 - Emotion
   - Live: https://pigment-css-demo.vercel.app/perf
