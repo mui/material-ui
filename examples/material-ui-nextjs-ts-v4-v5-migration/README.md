@@ -1,4 +1,4 @@
-# Material UI v5 and Next.js example with @mui/styles (in TypeScript)
+# Material UI and Next.js example with @mui/styles (in TypeScript)
 
 ## How to use
 
@@ -29,7 +29,9 @@ or:
 ## The idea behind the example
 
 The project uses [Next.js](https://github.com/vercel/next.js), which is a framework for server-rendered React apps.
-It includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI v5. If you prefer, you can [use styled-components instead](https://next.mui.com/material-ui/integrations/interoperability/#styled-components).
+It includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI v6.
+If you prefer, you can [use styled-components instead](https://next.mui.com/material-ui/integrations/interoperability/#styled-components).
+
 It also includes `@mui/styles`, the legacy styling solution that uses JSS as an engine.
 It provides all the necessary config for working with both Emotion and JSS for server-side rendering.
 The project is intended as a basic starter for migrating your application from v4 to v5, as it lets the JSS style overrides take precedence over the default styles passed to the components by Emotion.
