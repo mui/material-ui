@@ -19,7 +19,7 @@ export default function Elevation() {
   return (
     <Grid container spacing={2}>
       {[lightTheme, darkTheme].map((theme, index) => (
-        <Grid item xs={6} key={index}>
+        <Grid xs={6} key={index}>
           <ThemeProvider theme={theme}>
             <Box
               sx={{

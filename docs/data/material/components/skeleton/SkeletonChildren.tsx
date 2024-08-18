@@ -52,10 +52,10 @@ function SkeletonChildrenDemo(props: { loading?: boolean }) {
 export default function SkeletonChildren() {
   return (
     <Grid container spacing={8}>
-      <Grid item xs>
+      <Grid xs>
         <SkeletonChildrenDemo loading />
       </Grid>
-      <Grid item xs>
+      <Grid xs>
         <SkeletonChildrenDemo />
       </Grid>
     </Grid>

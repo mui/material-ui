@@ -27,10 +27,10 @@ function TypographyDemo(props: { loading?: boolean }) {
 export default function SkeletonTypography() {
   return (
     <Grid container spacing={8}>
-      <Grid item xs>
+      <Grid xs>
         <TypographyDemo loading />
       </Grid>
-      <Grid item xs>
+      <Grid xs>
         <TypographyDemo />
       </Grid>
     </Grid>

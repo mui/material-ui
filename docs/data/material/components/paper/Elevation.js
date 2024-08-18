@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Unstable_Grid2';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
@@ -19,7 +19,7 @@ export default function Elevation() {
   return (
     <Grid container spacing={2}>
       {[lightTheme, darkTheme].map((theme, index) => (
-        <Grid item xs={6} key={index}>
+        <Grid xs={6} key={index}>
           <ThemeProvider theme={theme}>
             <Box
               sx={{

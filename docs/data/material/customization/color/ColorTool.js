@@ -216,7 +216,7 @@ function ColorTool() {
     const color = state[`${intent}`];
 
     return (
-      <Grid item xs={12} sm={6} md={4}>
+      <Grid xs={12} sm={6} md={4}>
         <Typography component="label" gutterBottom htmlFor={intent} variant="h6">
           {capitalize(intent)}
         </Typography>
@@ -293,10 +293,10 @@ function ColorTool() {
     <Grid container spacing={5} sx={{ p: 0 }}>
       {colorPicker('primary')}
       {colorPicker('secondary')}
-      <Grid item xs={12} sm={6} md={4}>
+      <Grid xs={12} sm={6} md={4}>
         <ColorDemo data={state} />
       </Grid>
-      <Grid item xs={12}>
+      <Grid xs={12}>
         <Button variant="contained" onClick={handleChangeDocsColors}>
           Set Docs Colors
         </Button>

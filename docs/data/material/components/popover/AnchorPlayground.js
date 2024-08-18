@@ -125,7 +125,7 @@ function AnchorPlayground() {
   return (
     <div>
       <Grid container sx={{ justifyContent: 'center' }}>
-        <Grid item sx={{ position: 'relative', mb: 4 }}>
+        <Grid sx={{ position: 'relative', mb: 4 }}>
           <Button ref={anchorRef} variant="contained" onClick={handleClickButton}>
             Open Popover
           </Button>
@@ -167,7 +167,7 @@ function AnchorPlayground() {
         <Typography sx={{ m: 2 }}>The content of the Popover.</Typography>
       </Popover>
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
+        <Grid xs={12} sm={6}>
           <FormControl component="fieldset">
             <FormLabel component="legend">anchorReference</FormLabel>
             <RadioGroup
@@ -190,7 +190,7 @@ function AnchorPlayground() {
             </RadioGroup>
           </FormControl>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid xs={12} sm={6}>
           <FormControl variant="standard">
             <InputLabel htmlFor="position-top">anchorPosition.top</InputLabel>
             <Input
@@ -211,7 +211,7 @@ function AnchorPlayground() {
             />
           </FormControl>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid xs={12} sm={6}>
           <FormControl component="fieldset">
             <FormLabel component="legend">anchorOrigin.vertical</FormLabel>
             <RadioGroup
@@ -238,7 +238,7 @@ function AnchorPlayground() {
             </RadioGroup>
           </FormControl>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid xs={12} sm={6}>
           <FormControl component="fieldset">
             <FormLabel component="legend">transformOrigin.vertical</FormLabel>
             <RadioGroup
@@ -261,7 +261,7 @@ function AnchorPlayground() {
             </RadioGroup>
           </FormControl>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid xs={12} sm={6}>
           <FormControl component="fieldset">
             <FormLabel component="legend">anchorOrigin.horizontal</FormLabel>
             <RadioGroup
@@ -289,7 +289,7 @@ function AnchorPlayground() {
             </RadioGroup>
           </FormControl>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid xs={12} sm={6}>
           <FormControl component="fieldset">
             <FormLabel component="legend">transformOrigin.horizontal</FormLabel>
             <RadioGroup

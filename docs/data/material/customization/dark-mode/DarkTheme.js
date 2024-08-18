@@ -30,7 +30,7 @@ function Demo() {
   const theme = useTheme();
 
   const item = (color, name, expanded = false, border = false) => (
-    <Color item xs={12} sm={6} md={expanded ? 8 : 4}>
+    <Color xs={12} sm={6} md={expanded ? 8 : 4}>
       <div
         style={{
           backgroundColor: color,

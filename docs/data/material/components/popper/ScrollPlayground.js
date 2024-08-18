@@ -333,13 +333,13 @@ export default function ScrollPlayground() {
         </Grid>
       </Box>
       <Grid container spacing={2}>
-        <Grid container item xs={12}>
-          <Grid item xs={12}>
+        <Grid container xs={12}>
+          <Grid xs={12}>
             <Typography variant="h6" component="div">
               Appearance
             </Typography>
           </Grid>
-          <Grid item xs={6}>
+          <Grid xs={6}>
             <TextField
               margin="dense"
               sx={{ width: 200 }}
@@ -377,7 +377,7 @@ export default function ScrollPlayground() {
               <option value="bottom-end">bottom-end</option>
             </TextField>
           </Grid>
-          <Grid item xs={6}>
+          <Grid xs={6}>
             <FormControlLabel
               control={
                 <Switch
@@ -398,13 +398,13 @@ export default function ScrollPlayground() {
             </Typography>
           </Grid>
         </Grid>
-        <Grid item xs={12}>
+        <Grid xs={12}>
           <Typography variant="h6" component="div">
             Modifiers (options from Popper.js)
           </Typography>
         </Grid>
-        <Grid container item xs={12} spacing={1}>
-          <Grid item xs={6}>
+        <Grid container xs={12} spacing={1}>
+          <Grid xs={6}>
             <FormGroup>
               <Typography variant="subtitle1">Prevent Overflow</Typography>
               <FormControlLabel
@@ -499,7 +499,7 @@ export default function ScrollPlayground() {
               </TextField>
             </FormGroup>
           </Grid>
-          <Grid item xs={6}>
+          <Grid xs={6}>
             <FormGroup>
               <Typography variant="subtitle1">Flip</Typography>
               <FormControlLabel

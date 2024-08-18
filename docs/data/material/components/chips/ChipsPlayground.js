@@ -91,9 +91,9 @@ function ChipsPlayground() {
 
   return (
     <Grid container sx={{ flexGrow: 1 }}>
-      <Grid item xs={12}>
+      <Grid xs={12}>
         <Grid container sx={{ justifyContent: 'center', alignItems: 'center' }}>
-          <Grid item sx={(theme) => ({ height: theme.spacing(10) })}>
+          <Grid sx={(theme) => ({ height: theme.spacing(10) })}>
             <Chip
               label="Chip Component"
               color={color}
@@ -107,9 +107,9 @@ function ChipsPlayground() {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={12}>
+      <Grid xs={12}>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
+          <Grid xs={12} md={6}>
             <FormControl component="fieldset">
               <FormLabel>variant</FormLabel>
               <RadioGroup
@@ -132,7 +132,7 @@ function ChipsPlayground() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid xs={12} md={6}>
             <FormControl component="fieldset">
               <FormLabel>color</FormLabel>
               <RadioGroup
@@ -172,7 +172,7 @@ function ChipsPlayground() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid xs={12} md={6}>
             <FormControl component="fieldset">
               <FormLabel>size</FormLabel>
               <RadioGroup
@@ -191,7 +191,7 @@ function ChipsPlayground() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid xs={12} md={6}>
             <FormControl component="fieldset">
               <FormLabel>icon</FormLabel>
               <RadioGroup
@@ -206,7 +206,7 @@ function ChipsPlayground() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid xs={12} md={6}>
             <FormControl component="fieldset">
               <FormLabel>avatar</FormLabel>
               <RadioGroup
@@ -226,7 +226,7 @@ function ChipsPlayground() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid xs={12} md={6}>
             <FormControl component="fieldset">
               <FormLabel>onDelete</FormLabel>
               <RadioGroup
@@ -252,7 +252,7 @@ function ChipsPlayground() {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={12}>
+      <Grid xs={12}>
         <HighlightedCode code={jsx} language="jsx" />
       </Grid>
     </Grid>

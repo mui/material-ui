@@ -127,7 +127,6 @@ export default function Checkout() {
       <CssBaseline />
       <Grid container sx={{ height: { xs: '100%', sm: '100dvh' } }}>
         <Grid
-          item
           xs={12}
           sm={5}
           lg={4}
@@ -167,7 +166,6 @@ export default function Checkout() {
           </Box>
         </Grid>
         <Grid
-          item
           sm={12}
           md={7}
           lg={8}

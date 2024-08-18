@@ -148,10 +148,10 @@ export default function GoogleMaps() {
         return (
           <li key={key} {...optionProps}>
             <Grid container sx={{ alignItems: 'center' }}>
-              <Grid item sx={{ display: 'flex', width: 44 }}>
+              <Grid sx={{ display: 'flex', width: 44 }}>
                 <LocationOnIcon sx={{ color: 'text.secondary' }} />
               </Grid>
-              <Grid item sx={{ width: 'calc(100% - 44px)', wordWrap: 'break-word' }}>
+              <Grid sx={{ width: 'calc(100% - 44px)', wordWrap: 'break-word' }}>
                 {parts.map((part, index) => (
                   <Box
                     key={index}

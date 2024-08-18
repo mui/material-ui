@@ -357,17 +357,17 @@ const DialogDetails = React.memo(function DialogDetails(props) {
           </ImportLink>
           <DialogContent>
             <Grid container>
-              <Grid item xs>
+              <Grid xs>
                 <Grid container sx={{ justifyContent: 'center' }}>
                   <CanvasComponent as={selectedIcon.Component} />
                 </Grid>
               </Grid>
-              <Grid item xs>
+              <Grid xs>
                 <Grid
                   container
                   sx={{ alignItems: 'flex-end', justifyContent: 'center' }}
                 >
-                  <Grid item>
+                  <Grid>
                     <Tooltip title="fontSize small">
                       <FontSizeComponent
                         as={selectedIcon.Component}
@@ -375,12 +375,12 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                       />
                     </Tooltip>
                   </Grid>
-                  <Grid item>
+                  <Grid>
                     <Tooltip title="fontSize medium">
                       <FontSizeComponent as={selectedIcon.Component} />
                     </Tooltip>
                   </Grid>
-                  <Grid item>
+                  <Grid>
                     <Tooltip title="fontSize large">
                       <FontSizeComponent
                         as={selectedIcon.Component}
@@ -556,7 +556,7 @@ export default function SearchIcons() {
 
   return (
     <Grid container sx={{ minHeight: 500 }}>
-      <Grid item xs={12} sm={3}>
+      <Grid xs={12} sm={3}>
         <form>
           <Typography fontWeight={500} sx={{ mb: 1 }}>
             Filter the style
@@ -580,7 +580,7 @@ export default function SearchIcons() {
           </RadioGroup>
         </form>
       </Grid>
-      <Grid item xs={12} sm={9}>
+      <Grid xs={12} sm={9}>
         <Paper>
           <IconButton sx={{ padding: '10px' }} aria-label="search">
             <SearchIcon />
