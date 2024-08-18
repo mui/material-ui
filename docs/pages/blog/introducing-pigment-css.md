@@ -15,9 +15,9 @@ tags: ['Pigment CSS', 'Product']
 manualCard: true
 ---
 
-<iframe src="https://www.youtube.com/embed/0ckOUBiuxVY?si=5vCwdo2qeaJVakbM&amp;start=21664" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="width: 100%; height: 100%; aspect-ratio: 16/9;"></iframe>
+Check out MUI's CEO Olivier Tassinari introducing Pigment CSS at React Conf 2024:
 
-<p class="blog-description">Introduction of Pigment CSS during React Conf 2024</p>
+<iframe src="https://www.youtube.com/embed/n_0cz-JwlsU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="width: 100%; height: 100%; aspect-ratio: 16/9;"></iframe>
 
 In the era of React Server Components and the Next.js App Router, component libraries like Material UI have an opportunity to make some paradigm-shifting changes to gain performance improvements by moving rendering work from the client to the server.
 
