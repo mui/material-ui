@@ -64,7 +64,8 @@ So when it came time to seek out a new way to generate styles, we knew we needed
 ### Other options don't meet our needs
 
 For those of us who are perfectly happy with the patterns we know and love from CSS-in-JS, it feels frustrating to consider abandoning all that muscle memory just to reinvent the wheel yet again.
-We love the DX of colocated styles, and we'd rather not use atomic class names to support nested selectors at scale—so Tailwind CSS, StyleX, Panda CSS, and other solutions that have appeared in recent months didn't match up with our ambitious goals.
+We love the DX of colocated styles, and we'd rather not migrate the API to atomic class names.
+We want to support nested selectors at scale—so Tailwind CSS, StyleX, Panda CSS, and other solutions that have appeared in recent months are not viable options.
 
 Pigment CSS started as a [Linaria](https://linaria.dev/) fork, but we found more of the tools we needed to achieve our goals with [WyW-in-JS](https://wyw-in-js.dev/), the open-source library that also powers Linaria.
 
