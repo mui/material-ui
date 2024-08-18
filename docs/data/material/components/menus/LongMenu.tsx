@@ -53,7 +53,6 @@ export default function LongMenu() {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-   
         slotProps={{
           paper: {
             style: {
