@@ -57,7 +57,7 @@ Material UI is downloaded millions of times per month and is one of the most ri
 It's had to make some massive changes along the way to keep up with the times; most recently, moving from JSS to Emotion from v4 to v5.
 While those breaking changes did bring many benefits overall, they unfortunately came with a painful migration experience.
 
-We learned our lesson! We don't want to impose this to you again.
+We learned our lesson! We don't want to impose this on you again.
 
 So when it came time to seek out a new way to generate styles, we knew we needed to keep the syntax and authoring experience as similar as possible to Emotion and styled-components—and provide codemods for most of the breaking changes—in order to minimize friction when migrating.
 
