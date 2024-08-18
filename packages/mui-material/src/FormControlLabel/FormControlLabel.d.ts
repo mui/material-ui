@@ -48,7 +48,7 @@ export interface FormControlLabelProps
   /**
    * A control element. For instance, it can be a `Radio`, a `Switch` or a `Checkbox`.
    */
-  control: React.ReactElement<any, any>;
+  control: React.ReactElement<unknown, any>;
   /**
    * If `true`, the control is disabled.
    */
