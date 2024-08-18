@@ -18,45 +18,45 @@ import ThreeSixtyIcon from '@mui/icons-material/ThreeSixty';
 export default function SvgMaterialIcons() {
   return (
     <Grid container sx={{ color: 'text.primary' }}>
-      <Grid item xs={4}>
+      <Grid xs={4}>
         <Typography>Filled</Typography>
       </Grid>
-      <Grid item xs={8}>
+      <Grid xs={8}>
         <DeleteIcon />
         <DeleteForeverIcon />
       </Grid>
-      <Grid item xs={4}>
+      <Grid xs={4}>
         <Typography>Outlined</Typography>
       </Grid>
-      <Grid item xs={8}>
+      <Grid xs={8}>
         <DeleteOutlinedIcon />
         <DeleteForeverOutlinedIcon />
       </Grid>
-      <Grid item xs={4}>
+      <Grid xs={4}>
         <Typography>Rounded</Typography>
       </Grid>
-      <Grid item xs={8}>
+      <Grid xs={8}>
         <DeleteRoundedIcon />
         <DeleteForeverRoundedIcon />
       </Grid>
-      <Grid item xs={4}>
+      <Grid xs={4}>
         <Typography>Two Tone</Typography>
       </Grid>
-      <Grid item xs={8}>
+      <Grid xs={8}>
         <DeleteTwoToneIcon />
         <DeleteForeverTwoToneIcon />
       </Grid>
-      <Grid item xs={4}>
+      <Grid xs={4}>
         <Typography>Sharp</Typography>
       </Grid>
-      <Grid item xs={8}>
+      <Grid xs={8}>
         <DeleteSharpIcon />
         <DeleteForeverSharpIcon />
       </Grid>
-      <Grid item xs={4}>
+      <Grid xs={4}>
         <Typography>Edge-cases</Typography>
       </Grid>
-      <Grid item xs={8}>
+      <Grid xs={8}>
         <ThreeDRotationIcon />
         <FourKIcon />
         <ThreeSixtyIcon />

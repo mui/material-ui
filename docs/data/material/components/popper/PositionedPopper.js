@@ -37,40 +37,34 @@ export default function PositionedPopper() {
         )}
       </Popper>
       <Grid container sx={{ justifyContent: 'center' }}>
-        <Grid item>
+        <Grid>
           <Button onClick={handleClick('top-start')}>top-start</Button>
           <Button onClick={handleClick('top')}>top</Button>
           <Button onClick={handleClick('top-end')}>top-end</Button>
         </Grid>
       </Grid>
       <Grid container sx={{ justifyContent: 'center' }}>
-        <Grid item xs={6}>
+        <Grid xs={6}>
           <Button onClick={handleClick('left-start')}>left-start</Button>
           <br />
           <Button onClick={handleClick('left')}>left</Button>
           <br />
           <Button onClick={handleClick('left-end')}>left-end</Button>
         </Grid>
-        <Grid
-          item
-          container
-          xs={6}
-          direction="column"
-          sx={{ alignItems: 'flex-end' }}
-        >
-          <Grid item>
+        <Grid container xs={6} direction="column" sx={{ alignItems: 'flex-end' }}>
+          <Grid>
             <Button onClick={handleClick('right-start')}>right-start</Button>
           </Grid>
-          <Grid item>
+          <Grid>
             <Button onClick={handleClick('right')}>right</Button>
           </Grid>
-          <Grid item>
+          <Grid>
             <Button onClick={handleClick('right-end')}>right-end</Button>
           </Grid>
         </Grid>
       </Grid>
       <Grid container sx={{ justifyContent: 'center' }}>
-        <Grid item>
+        <Grid>
           <Button onClick={handleClick('bottom-start')}>bottom-start</Button>
           <Button onClick={handleClick('bottom')}>bottom</Button>
           <Button onClick={handleClick('bottom-end')}>bottom-end</Button>

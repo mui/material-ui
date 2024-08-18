@@ -55,7 +55,7 @@ export default function InteractiveList() {
         />
       </FormGroup>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
+        <Grid xs={12} md={6}>
           <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
             Text only
           </Typography>
@@ -72,7 +72,7 @@ export default function InteractiveList() {
             </List>
           </Demo>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid xs={12} md={6}>
           <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
             Icon with text
           </Typography>
@@ -94,7 +94,7 @@ export default function InteractiveList() {
         </Grid>
       </Grid>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
+        <Grid xs={12} md={6}>
           <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
             Avatar with text
           </Typography>
@@ -116,7 +116,7 @@ export default function InteractiveList() {
             </List>
           </Demo>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid xs={12} md={6}>
           <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
             Avatar with text and icon
           </Typography>
