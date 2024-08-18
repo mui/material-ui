@@ -125,21 +125,21 @@ To [prevent the UI from flickering](/joy-ui/main-features/dark-mode-optimization
 
 ### Next.js App Router
 
-To use the Joy UI API with a Next.js project with the App Router, add the following code to the [`app/layout.js`](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#layouts) file in order to prevent flickering:
+To use the Joy UI API with a Next.js project with the App Router, add the following code to the [root layout](https://nextjs.org/docs/app/building-your-application/routing/layouts-and-templates#root-layout-required) file in order to prevent flickering:
 
-```jsx title="layout.js"
+```jsx title="app/layout.js"
 import InitColorSchemeScript from '@mui/joy/InitColorSchemeScript';
 import { CssVarsProvider } from '@mui/joy/styles';
 import CssBaseline from '@mui/joy/CssBaseline';
 
-export default function RootLayout({ children }) {
+export default function RootLayout(props) {
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <body>
         <InitColorSchemeScript />
         <CssVarsProvider>
           <CssBaseline />
-          {children}
+          {props.children}
         </CssVarsProvider>
       </body>
     </html>
