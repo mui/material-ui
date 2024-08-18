@@ -19,7 +19,7 @@ Check out MUI's CEO Olivier Tassinari introducing Pigment CSS at React Conf 202
 
 <iframe src="https://www.youtube.com/embed/n_0cz-JwlsU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="width: 100%; height: 100%; aspect-ratio: 16/9;"></iframe>
 
-In the era of React Server Components and the Next.js App Router, component libraries like Material UI have an opportunity to make some paradigm-shifting changes to gain performance improvements by moving rendering work from the client to the server.
+In the era of React Server Components and the Next.js App Router, component libraries like Material UI have an opportunity to gain performance improvements by moving rendering work from the client to the server.
 
 Trouble is, the "traditional" CSS-in-JS solutions we rely on aren't able to come along with us because the [React context API](https://react.dev/learn/passing-data-deeply-with-context) only works with client-side components.
 With nearly 70% of respondents in the [State of CSS 2023 survey](https://2023.stateofcss.com/en-US/css-in-js/) indicating they use styled-components and Emotion, we're looking at a whole lot of React developers with no clear path forward from here.
