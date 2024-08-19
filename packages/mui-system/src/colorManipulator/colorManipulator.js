@@ -154,15 +154,11 @@ export function getLuminance(color) {
 
   const apply = (v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4);
 
-  const r1 = apply(r);
-  const g1 = apply(g);
-  const b1 = apply(b);
-
   // prettier-ignore
   return (
-    0.2126 * r1 +
-    0.7152 * g1 +
-    0.0722 * b1
+    0.2126 * apply(r) +
+    0.7152 * apply(g) +
+    0.0722 * apply(b)
   ).toFixed(3);
 }
 
