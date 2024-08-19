@@ -45,19 +45,19 @@ export function hexToRgb(hexadecimal) {
  * @returns {object} - A MUI color object: {type: string, values: number[]}
  * @deprecated
  */
-export function decomposeColor(input) {
+export function decomposeColor(color) {
   // Idempotent
   // FIXME(romgrk): This implies the types aren't respected, as color should be a `string`
-  if (input.type) {
-    return input;
+  if (color.type) {
+    return color;
   }
 
-  const color = Color.parse(hexadecimal);
+  const c = Color.parse(color);
 
-  const r = getRed(color);
-  const g = getGreen(color);
-  const b = getBlue(color);
-  const a = getAlpha(color) / 255;
+  const r = getRed(c);
+  const g = getGreen(c);
+  const b = getBlue(c);
+  const a = getAlpha(c) / 255;
 
   return {
     type: 'rgba',
@@ -146,9 +146,11 @@ export function hslToRgb(color) {
  * @returns {number} The relative brightness of the color in the range 0 - 1
  */
 export function getLuminance(color) {
-  const r = getRed(color) / 255;
-  const g = getGreen(color) / 255;
-  const b = getBlue(color) / 255;
+  const c = Color.parse(color)
+
+  const r = getRed(c) / 255;
+  const g = getGreen(c) / 255;
+  const b = getBlue(c) / 255;
 
   const apply = (v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4);
 
