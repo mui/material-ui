@@ -46,7 +46,7 @@ function processStyle(style, props) {
   const resolvedStyle = typeof style === 'function' ? style(props) : style;
 
   if (Array.isArray(resolvedStyle)) {
-    return resolvedStyle.flatMap((style) => processStyle(style, props));
+    return resolvedStyle.flatMap((subStyle) => processStyle(subStyle, props));
   }
 
   if (Array.isArray(resolvedStyle?.variants)) {
@@ -75,14 +75,12 @@ function processStyle(style, props) {
       if (!Array.isArray(result)) {
         result = [result];
       }
-      let style;
       if (typeof variant.style === 'function') {
         mergedState ??= { ...props, ...props.ownerState, ownerState: props.ownerState };
-        style = variant.style(mergedState);
+        result.push(variant.style(mergedState));
       } else {
-        style = variant.style;
+        result.push(variant.style);
       }
-      result.push(style);
     }
     /* eslint-enable no-labels */
 
