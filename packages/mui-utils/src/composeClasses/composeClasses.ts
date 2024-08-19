@@ -10,38 +10,22 @@ export default function composeClasses<ClassKey extends string>(
 ): Record<ClassKey, string> {
   const output: Record<ClassKey, string> = {} as any;
 
-  if (classes) {
-    for (const slotName in slots) {
-      const slot = slots[slotName];
-      let buffer = '';
+  for (const slotName in slots) {
+    const slot = slots[slotName];
+    let buffer = '';
 
-      for (let i = 0; i < slot.length; i += 1) {
-        const value = slot[i];
-        if (value) {
-          buffer += getUtilityClass(value) + ' ';
+    for (let i = 0; i < slot.length; i++) {
+      const value = slot[i];
+      if (value) {
+        buffer += getUtilityClass(value) + ' ';
 
-          if (classes[value]) {
-            buffer += classes[value] + ' ';
-          }
+        if (classes && classes[value]) {
+          buffer += classes[value] + ' ';
         }
       }
-
-      output[slotName] = buffer;
     }
-  } else {
-    for (const slotName in slots) {
-      const slot = slots[slotName];
-      let buffer = '';
 
-      for (let i = 0; i < slot.length; i += 1) {
-        const value = slot[i];
-        if (value) {
-          buffer += getUtilityClass(value) + ' ';
-        }
-      }
-
-      output[slotName] = buffer;
-    }
+    output[slotName] = buffer;
   }
 
   return output;
