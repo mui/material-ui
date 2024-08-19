@@ -111,8 +111,7 @@ function processStyle(style, props) {
         if (!variant.matches(props, props.ownerState ?? {})) {
           continue;
         }
-      }
-      if (typeof variant.props === 'function') {
+      } else if (typeof variant.props === 'function') {
         mergedState ??= { ...props, ...props.ownerState, ownerState: props.ownerState };
         if (!variant.props(mergedState)) {
           continue;
