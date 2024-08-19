@@ -8,6 +8,7 @@ authors:
     'brijeshb42',
     'diegoandai',
     'mnajdova',
+    'romgrk',
     'samuelsycamore',
     'siriwatknp',
     'zanivan',
@@ -27,12 +28,13 @@ Material UI v6 is now stable! We're excited to share all the updates.
   - [Container Queries](#container-queries)
   - [New method of applying styles](#new-method-of-applying-styles)
 - [Improvements](#improvements)
+  - [Optimized runtime performance](#optimized-runtime-performance)
   - [Revamping the free templates](#revamping-the-free-templates)
   - [Stabilized Grid v2](#stabilized-grid-v2)
+  - [Package size reduction](#package-size-reduction)
 - [Experimental CSS extraction via Pigment CSS](#experimental-css-extraction-via-pigmentcss)
   - [React Server Components](#react-server-components)
   - [Built-in sx prop support](#built-in-sx-prop-support)
-- [Package size reduction](#package-size-reduction)
 - [Full-stack apps](#full-stack-apps)
 - [What's next](#whats-next)
 
@@ -282,6 +284,18 @@ We provide a codemod to help you migrate from `theme.palette.mode === 'dark'` to
 
 ## Improvements
 
+### Optimized runtime performance
+
+Internal functions used to process styles have been optimized to run faster.
+Based on the [test case](https://gist.github.com/romgrk/ade3ee62b4641d5b375127e98d354b5d), the time to render a set of components has been reduced by ~30%
+
+```diff
+-before: 157.3ms	+- 6.1
++after:  109.1ms	+- 1.6
+```
+
+This is just the beginning of our performance improvements. We're working on more optimizations, so stay tuned for v6.x updates!
+
 ### Revamping the free templates
 
 Explore the new and enhanced [Material UI free templates](https://mui.com/material-ui/getting-started/templates/) to see these amazing features in action. We've fully revamped the templates to provide the perfect starting point for your project, whether you're adding sleek styles or using the template's sections.
@@ -310,6 +324,14 @@ import Grid from '@mui/material/Grid2';
   <Grid size={{ xs: 6, sm: 4, lg: 3 }} />
 </Grid>;
 ```
+
+### Package size reduction
+
+To align with React 19's removal of UMD builds, Material UI has also removed its UMD bundle.
+This results in a reduction of the `@mui/material` package size by 2.5MB, or 25% of the total package size.
+See [Package Phobia](https://packagephobia.com/result?p=@mui/material) for more details.
+Instead, we recommend using ESM-based CDNs such as [esm.sh](https://esm.sh/).
+For alternative installation methods, refer to the [CDN documentation](/material-ui/getting-started/installation/#cdn).
 
 ## Experimental CSS extraction via Pigment CSS
 
@@ -344,14 +366,6 @@ The `Box` component is no longer required to use the `sx` prop.
 -<Box component="img" sx={{ padding: 2 }} />
 +<img sx={{ padding: 2 }} />
 ```
-
-## Package size reduction
-
-To align with React 19's removal of UMD builds, Material UI has also removed its UMD bundle.
-This results in a reduction of the `@mui/material` package size by 2.5MB, or 25% of the total package size.
-See [Package Phobia](https://packagephobia.com/result?p=@mui/material) for more details.
-Instead, we recommend using ESM-based CDNs such as [esm.sh](https://esm.sh/).
-For alternative installation methods, refer to the [CDN documentation](/material-ui/getting-started/installation/#cdn).
 
 ## Full-stack apps
 

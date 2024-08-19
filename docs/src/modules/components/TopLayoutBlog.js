@@ -136,6 +136,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/37222944?',
     github: 'zanivan',
   },
+  romgrk: {
+    name: 'Romain Gregoire',
+    avatar: 'https://avatars.githubusercontent.com/u/1423607',
+    github: 'romgrk',
+  },
 };
 
 const classes = {
