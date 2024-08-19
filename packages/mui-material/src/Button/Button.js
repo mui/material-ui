@@ -86,7 +86,7 @@ const ButtonRoot = styled(ButtonBase, {
       ownerState.fullWidth && styles.fullWidth,
     ];
   },
-})(({ theme }) => {
+})(styled.pure(theme => {
   const inheritContainedBackgroundColor =
     theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[800];
 
@@ -297,7 +297,7 @@ const ButtonRoot = styled(ButtonBase, {
       },
     ],
   };
-});
+}));
 
 const ButtonStartIcon = styled('span', {
   name: 'MuiButton',

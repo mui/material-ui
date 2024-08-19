@@ -14,6 +14,53 @@ export function shouldForwardProp(prop) {
   return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
 }
 
+function pure(styleFn) {
+  let lastTheme;
+  let lastValue;
+
+  return (props) => {
+    const theme = props.theme;
+    let value = lastValue;
+    if (value === undefined || theme !== lastTheme) {
+      value = styleFn(theme);
+
+      // Example preprocessing we can do if `style` is stable.
+      preprocessVariants(value)
+
+      lastValue = value;
+      lastTheme = theme;
+    }
+    return value;
+  };
+}
+
+function preprocessVariants(style) {
+  // Compiles predicate functions for each variant, to add `variant.matches(props)`.
+
+  for (let i = 0; i < style.variants.length; i++) {
+    const variant = style.variants[i];
+    if (typeof variant.props !== 'object') {
+      continue;
+    }
+    const code = `(function matches(props, ownerState) {
+      return (${Object.entries(variant.props)
+        .map(
+          ([key, style]) =>
+            `(props[${escape(key)}] === ${escape(style)} || ownerState[${escape(key)}] === ${escape(style)})`,
+        )
+        .join(' && ')})
+    })`;
+    const matches = eval(code);
+    variant.matches = matches;
+  }
+}
+
+function escape(v) {
+  // XXX: undefined, functions, objects
+  return JSON.stringify(v);
+}
+
+
 function resolveTheme(themeId, theme, defaultTheme) {
   return isObjectEmpty(theme) ? defaultTheme : theme[themeId] || theme;
 }
@@ -60,6 +107,11 @@ function processStyle(style, props) {
     variantLoop: for (let i = 0; i < variants.length; i += 1) {
       const variant = variants[i];
 
+      if (variant.matches) {
+        if (!variant.matches(props, props.ownerState ?? {})) {
+          continue;
+        }
+      }
       if (typeof variant.props === 'function') {
         mergedState ??= { ...props, ...props.ownerState, ownerState: props.ownerState };
         if (!variant.props(mergedState)) {
@@ -252,6 +304,8 @@ export default function createStyled(input = {}) {
 
     return muiStyledResolver;
   };
+
+  styled.pure = pure;
 
   return styled;
 }

@@ -154,6 +154,8 @@ export interface CreateStyledComponent<
       Interpolation<ComponentProps & SpecificComponentProps & AdditionalProps & { theme: T }>
     >
   ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps, JSXProps>;
+
+  pure(style: (theme: T) => object): (theme: T) => object;
 }
 
 export interface CreateMUIStyled<

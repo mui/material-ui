@@ -39,7 +39,7 @@ const PaperRoot = styled('div', {
       ownerState.variant === 'elevation' && styles[`elevation${ownerState.elevation}`],
     ];
   },
-})(({ theme }) => ({
+})(styled.pure((theme) => ({
   backgroundColor: (theme.vars || theme).palette.background.paper,
   color: (theme.vars || theme).palette.text.primary,
   transition: theme.transitions.create('box-shadow'),
@@ -68,7 +68,7 @@ const PaperRoot = styled('div', {
       },
     },
   ],
-}));
+})));
 
 const Paper = React.forwardRef(function Paper(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiPaper' });

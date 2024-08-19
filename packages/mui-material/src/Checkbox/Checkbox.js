@@ -50,7 +50,8 @@ const CheckboxRoot = styled(SwitchBase, {
       ownerState.color !== 'default' && styles[`color${capitalize(ownerState.color)}`],
     ];
   },
-})(({ theme }) => ({
+
+})(styled.pure(theme => ({
   color: (theme.vars || theme).palette.text.secondary,
   variants: [
     {
@@ -101,7 +102,7 @@ const CheckboxRoot = styled(SwitchBase, {
       },
     },
   ],
-}));
+})));
 
 const defaultCheckedIcon = <CheckBoxIcon />;
 const defaultIcon = <CheckBoxOutlineBlankIcon />;
