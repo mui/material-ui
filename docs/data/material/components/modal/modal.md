@@ -5,7 +5,7 @@ components: Modal
 githubLabel: 'component: modal'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 unstyled: /base-ui/react-modal/
-githubSource: https://github.com/mui/material-ui/tree/next/packages/mui-material/src/Modal
+githubSource: packages/mui-material/src/Modal
 ---
 
 # Modal

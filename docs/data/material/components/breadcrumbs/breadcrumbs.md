@@ -4,7 +4,7 @@ title: React Breadcrumbs component
 components: Breadcrumbs, Link, Typography
 githubLabel: 'component: breadcrumbs'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/
-githubSource: https://github.com/mui/material-ui/tree/next/packages/mui-material/src/Breadcrumbs
+githubSource: packages/mui-material/src/Breadcrumbs
 ---
 
 # Breadcrumbs

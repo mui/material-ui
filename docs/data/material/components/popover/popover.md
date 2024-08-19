@@ -3,7 +3,7 @@ productId: material-ui
 title: React Popover component
 components: Grow, Popover
 githubLabel: 'component: Popover'
-githubSource: https://github.com/mui/material-ui/tree/next/packages/mui-material/src/Popover
+githubSource: packages/mui-material/src/Popover
 ---
 
 # Popover

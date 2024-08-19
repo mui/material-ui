@@ -6,7 +6,7 @@ githubLabel: 'component: menu'
 materialDesign: https://m2.material.io/components/menus
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 unstyled: /base-ui/react-menu/
-githubSource: https://github.com/mui/material-ui/tree/next/packages/mui-material/src/Menu
+githubSource: packages/mui-material/src/Menu
 ---
 
 # Menu

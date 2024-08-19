@@ -4,7 +4,7 @@ title: React Badge component
 components: Badge
 githubLabel: 'component: badge'
 unstyled: /base-ui/react-badge/
-githubSource: https://github.com/mui/material-ui/tree/next/packages/mui-material/src/Badge
+githubSource: packages/mui-material/src/Badge
 ---
 
 # Badge

@@ -4,7 +4,7 @@ title: Image List React component
 components: ImageList, ImageListItem, ImageListItemBar
 materialDesign: https://m2.material.io/components/image-lists
 githubLabel: 'component: image list'
-githubSource: https://github.com/mui/material-ui/tree/next/packages/mui-material/src/ImageList
+githubSource: packages/mui-material/src/ImageList
 ---
 
 # Image List

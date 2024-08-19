@@ -6,7 +6,7 @@ githubLabel: 'component: slider'
 materialDesign: https://m2.material.io/components/sliders
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/
 unstyled: /base-ui/react-slider/
-githubSource: https://github.com/mui/material-ui/tree/next/packages/mui-material/src/Slider
+githubSource: packages/mui-material/src/Slider
 ---
 
 # Slider

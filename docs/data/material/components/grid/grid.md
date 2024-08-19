@@ -4,7 +4,7 @@ title: React Grid component
 components: Grid
 githubLabel: 'component: Grid'
 materialDesign: https://m2.material.io/design/layout/understanding-layout.html
-githubSource: https://github.com/mui/material-ui/tree/next/packages/mui-material/src/Grid
+githubSource: packages/mui-material/src/Grid
 ---
 
 # Grid

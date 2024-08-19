@@ -204,7 +204,7 @@ export function ComponentLinkHeader(props: ComponentLinkHeaderProps) {
             size="small"
             variant="outlined"
             rel="nofollow"
-            href={headers.githubSource}
+            href={`${process.env.SOURCE_CODE_REPO}/tree/${process.env.SOURCE_GITHUB_BRANCH}/${headers.githubSource}`}
             icon={<GitHubIcon />}
             data-ga-event-category="ComponentLinkHeader"
             data-ga-event-action="click"

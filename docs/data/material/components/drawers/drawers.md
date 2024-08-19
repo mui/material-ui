@@ -4,7 +4,7 @@ title: React Drawer component
 components: Drawer, SwipeableDrawer
 githubLabel: 'component: drawer'
 materialDesign: https://m2.material.io/components/navigation-drawer
-githubSource: https://github.com/mui/material-ui/tree/next/packages/mui-material/src/Drawer
+githubSource: packages/mui-material/src/Drawer
 ---
 
 # Drawer

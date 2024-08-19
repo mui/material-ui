@@ -4,7 +4,7 @@ title: React Popper component
 components: Popper
 githubLabel: 'component: Popper'
 unstyled: /base-ui/react-popper/
-githubSource: https://github.com/mui/material-ui/tree/next/packages/mui-material/src/Popper
+githubSource: packages/mui-material/src/Popper
 ---
 
 # Popper

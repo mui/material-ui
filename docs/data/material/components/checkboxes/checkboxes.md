@@ -5,7 +5,7 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 materialDesign: https://m2.material.io/components/selection-controls#checkboxes
 githubLabel: 'component: checkbox'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
-githubSource: https://github.com/mui/material-ui/tree/next/packages/mui-material/src/Checkbox
+githubSource: packages/mui-material/src/Checkbox
 ---
 
 # Checkbox

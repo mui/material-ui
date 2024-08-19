@@ -3,7 +3,7 @@ productId: material-ui
 title: React Container component
 components: Container, PigmentContainer
 githubLabel: 'component: Container'
-githubSource: https://github.com/mui/material-ui/tree/next/packages/mui-material/src/Container
+githubSource: packages/mui-material/src/Container
 ---
 
 # Container
