@@ -25,7 +25,7 @@
     "express": "^4.19.2",
     "fs-extra": "^11.2.0",
     "jss": "^10.10.0",
-    "playwright": "^1.46.0",
+    "playwright": "^1.46.1",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -37,6 +37,6 @@
     "styled-components": "^6.1.12",
     "styled-system": "^5.1.5",
     "theme-ui": "^0.16.2",
-    "webpack": "^5.92.1"
+    "webpack": "^5.93.0"
   }
 }

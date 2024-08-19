@@ -7,7 +7,7 @@ import synonyms from 'docs/data/material/components/material-icons/synonyms';
 import myDestRewriter from '../../packages/mui-icons-material/renameFilters/material-design-icons';
 
 function not(a, b) {
-  return a.filter((value) => b.indexOf(value) === -1);
+  return a.filter((value) => !b.includes(value));
 }
 
 function union(a, b) {

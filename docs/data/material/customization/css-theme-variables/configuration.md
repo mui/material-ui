@@ -197,18 +197,18 @@ The `attribute` has to be the same as the one you set in the `colorSchemeSelecto
 
 ### Next.js App Router
 
-Add the following code to the [root layout](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#root-layout-required) file:
+Add the following code to the [root layout](https://nextjs.org/docs/app/building-your-application/routing/layouts-and-templates#root-layout-required) file:
 
 ```jsx title="app/layout.js"
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 
-export default function RootLayout({ children }) {
+export default function RootLayout(props) {
   return (
     <html lang="en">
       <body>
         {/* must come before the <main> element */}
         <InitColorSchemeScript attribute=".mode-%s" />
-        <main>{children}</main>
+        <main>{props.children}</main>
       </body>
     </html>
   );

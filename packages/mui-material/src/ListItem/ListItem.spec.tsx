@@ -18,7 +18,4 @@ function MouseEnterTest() {
 const StyledListItem = styled(ListItem)({});
 function StyledTest() {
   <StyledListItem dense />;
-
-  // @ts-expect-error
-  <StyledListItem button />; // `button` is deprecated in v5, can be removed in v6
 }

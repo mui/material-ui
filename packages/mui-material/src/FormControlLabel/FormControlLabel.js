@@ -7,7 +7,6 @@ import composeClasses from '@mui/utils/composeClasses';
 import { useFormControl } from '../FormControl';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import Stack from '../Stack';
 import Typography from '../Typography';
 import capitalize from '../utils/capitalize';
 import formControlLabelClasses, {
@@ -195,12 +194,12 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     >
       {React.cloneElement(control, controlProps)}
       {required ? (
-        <Stack display="block">
+        <div>
           {label}
           <AsteriskComponent ownerState={ownerState} aria-hidden className={classes.asterisk}>
             &thinsp;{'*'}
           </AsteriskComponent>
-        </Stack>
+        </div>
       ) : (
         label
       )}
