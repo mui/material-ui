@@ -2,6 +2,7 @@
 import styledEngineStyled, { internal_processStyles as processStyles } from '@mui/styled-engine';
 import { isPlainObject } from '@mui/utils/deepmerge';
 import capitalize from '@mui/utils/capitalize';
+import isObjectEmpty from '@mui/utils/isObjectEmpty';
 import getDisplayName from '@mui/utils/getDisplayName';
 import createTheme from '../createTheme';
 import styleFunctionSx from '../styleFunctionSx';
@@ -252,12 +253,7 @@ export default function createStyled(input = {}) {
     return muiStyledResolver;
   };
 
-function isObjectEmpty(obj) {
-  // eslint-disable-next-line
-  for (const _ in obj) {
-    return false;
-  }
-  return true;
+  return styled;
 }
 
 // https://github.com/emotion-js/emotion/blob/26ded6109fcd8ca9875cc2ce4564fee678a3f3c5/packages/styled/src/utils.js#L40
