@@ -35,6 +35,7 @@ Material UI v6 is now stable! We're excited to share all the updates.
 - [Experimental CSS extraction via Pigment CSS](#experimental-css-extraction-via-pigmentcss)
   - [React Server Components](#react-server-components)
   - [Built-in sx prop support](#built-in-sx-prop-support)
+- [React 19 support](#react-19-support)
 - [Full-stack apps](#full-stack-apps)
 - [What's next](#whats-next)
 
@@ -366,6 +367,10 @@ The `Box` component is no longer required to use the `sx` prop.
 -<Box component="img" sx={{ padding: 2 }} />
 +<img sx={{ padding: 2 }} />
 ```
+
+## React 19 support
+
+Material UI v6 is ready for React 19. We've been testing Material UI with the latest [React 19 RC](https://react.dev/blog/2024/04/25/react-19) versions to ensure compatibility once the stable release of React 19 is out.
 
 ## Full-stack apps
 
