@@ -64,7 +64,7 @@ function getColorBlock(theme, colorName, colorValue, colorTitle) {
     padding: 15,
   };
 
-  if (colorValue.toString().indexOf('A1') === 0) {
+  if (colorValue.toString().startsWith('A1')) {
     rowStyle = {
       ...rowStyle,
       marginTop: 4,
