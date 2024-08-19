@@ -98,6 +98,26 @@ export function ComponentLinkHeader(props: ComponentLinkHeaderProps) {
           />
         </Tooltip>
       </li>
+      {headers.githubSource ? (
+        <li>
+          <Chip
+            clickable
+            role={undefined}
+            component="a"
+            size="small"
+            variant="outlined"
+            rel="nofollow"
+            href={`${process.env.SOURCE_CODE_REPO}/tree/${process.env.SOURCE_GITHUB_BRANCH}/${headers.githubSource}`}
+            icon={<GitHubIcon />}
+            data-ga-event-category="ComponentLinkHeader"
+            data-ga-event-action="click"
+            data-ga-event-label="Source"
+            data-ga-event-split="0.1"
+            label="Source"
+            target="_blank"
+          />
+        </li>
+      ) : null}
       {headers.waiAria ? (
         <li>
           <Chip
@@ -195,26 +215,6 @@ export function ComponentLinkHeader(props: ComponentLinkHeaderProps) {
           )}
         </React.Fragment>
       )}
-      {headers.githubSource ? (
-        <li>
-          <Chip
-            clickable
-            role={undefined}
-            component="a"
-            size="small"
-            variant="outlined"
-            rel="nofollow"
-            href={`${process.env.SOURCE_CODE_REPO}/tree/${process.env.SOURCE_GITHUB_BRANCH}/${headers.githubSource}`}
-            icon={<GitHubIcon />}
-            data-ga-event-category="ComponentLinkHeader"
-            data-ga-event-action="click"
-            data-ga-event-label="Source"
-            data-ga-event-split="0.1"
-            label="Source"
-            target="_blank"
-          />
-        </li>
-      ) : null}
     </Root>
   );
 }
