@@ -18,84 +18,82 @@ manualCard: true
 
 Material UI v6 is now stable! We're excited to share all the updates.
 
-## Opt-in CSS extraction via Pigment CSS
+## Table of contents
 
-As you know, Material UI v5 uses Emotion as a default styling solution. As a runtime CSS-in-JS library, it has several trade-offs such as slower performance and larger bundle size.
+- [New features](#new-features)
+  - [CSS theme variables](#css-theme-variables)
+  - [Color schemes](#color-schemes)
+  - [CSS media `prefers-color-scheme`](#css-media-prefers-color-scheme)
+  - [Container Queries](#container-queries)
+  - [New method of applying styles](#new-method-of-applying-styles)
+- [Improvements](#improvements)
+  - [Revamping the free templates](#revamping-the-free-templates)
+  - [Stabilized Grid v2](#stabilized-grid-v2)
+- [Experimental CSS extraction via Pigment CSS](#experimental-css-extraction-via-pigmentcss)
+  - [React Server Components](#react-server-components)
+  - [Built-in sx prop support](#built-in-sx-prop-support)
+- [Package size reduction](#package-size-reduction)
+- [Full-stack apps](#full-stack-apps)
+- [What's next](#whats-next)
 
-In v6, we introduce an opt-in integration with [Pigment CSS](https://github.com/mui/pigment-css), our new zero-runtime styling library, that will eliminate the runtime overhead while preserving similar APIs that you are already familiar with.
+## New features
 
-Since the integration is an opt-in feature, you can upgrade to v6 and continue using Emotion if you'd like. The link to the migration guide is at the bottom of the page.
+### CSS theme variables
 
-<!-- would be nice if we have a link to a prototype page -->
-<!-- a link to Next.js repo that render templates -->
-
-### React Server Components
-
-Once integrated with Pigment CSS, Material UI v6 provides a separate set of layout components, including `Box`, `Grid`, `Container`, and `Stack`, that are compatible with React Server Components.
-
-```jsx
-import Box from '@mui/material-pigment-css/Box';
-import Grid from '@mui/material-pigment-css/Grid';
-import Container from '@mui/material-pigment-css/Container';
-import Stack from '@mui/material-pigment-css/Stack';
-```
-
-### Built-in sx prop support
-
-With Pigment CSS integration, all JSX elements support the `sx` prop out of the box.
-
-```diff
-- import Box from '@mui/material/Box';
-
-- <Box component="img" sx={{ padding: 2 }} />
-+ <img sx={{ padding: 2 }} />
-```
-
-:::success
-Box component is **no** longer required to use the `sx` prop.
-:::
-
-## CSS theme variables
-
-The `cssVariables` flag converts serializable theme values like palette, spacing, typography, etc., into CSS variables.
+CSS Variables has become an industry standard for the web.
+Material UI v6 introduces a new `cssVariables` flag that generates CSS variables from the serializable theme values like palette, spacing, typography, etc..
 
 ```js
-createTheme({ cssVariables: true, ... });
+const theme = createTheme({ cssVariables: true, ... });
 ```
 
 {{"component": "components/blog/material-ui-v6-is-out/ThemeTokens.js"}}
 
-With CSS variables, you can easily integrate your preferred styling solution with Material UI.
+After enabling the flag, you can access the variables from `theme.vars` object with the same structure as the theme.
 
-```css title="styles.css"
-.custom-card {
+<codeblock>
+
+```js JSX
+const CustomComponent = styled('div')(({ theme }) => ({
+  backgroundColor: theme.vars.palette.background.default,
+  color: theme.vars.palette.text.primary,
+}));
+```
+
+```css CSS
+.CustomComponent-ae73f {
   background-color: var(--mui-palette-background-default);
   color: var(--mui-palette-text-primary);
-  padding: var(--mui-spacing-2);
-  font: var(--mui-font-body1);
 }
 ```
 
-## Revamping the free templates
+</codeblock>
 
-Explore the new and enhanced [Material UI free templates](https://mui.com/material-ui/getting-started/templates/) to see these amazing features in action. We've fully revamped the templates to provide the perfect starting point for your project, whether you're adding sleek styles or using the template's sections.
+#### Benefits
 
-{{"component": "components/blog/material-ui-v6-is-out/FreeTemplatesBento.js"}}
+- Improved developer experience—you can see where the values are coming from in the browser's dev tools.
+- A starting point to fix the dark mode SSR flickering issue.
+- CSS variables open many doors for integration, for example, you can use Material UI theme in a plain CSS file.
 
-### Custom styles
+  ```css title="styles.css"
+  .custom-card {
+    background-color: var(--mui-palette-background-default);
+    color: var(--mui-palette-text-primary);
+    padding: var(--mui-spacing-2);
+    font: var(--mui-font-body1);
+  }
+  ```
 
-The new custom styles we've added allow you to dive into the best approaches for customization or simply copy and paste some stylish elements.
+### Color schemes
 
-{{"component": "components/blog/material-ui-v6-is-out/CustomThemeComparison.js"}}
+In the previous version, if you want to support light and dark modes, you will have to create two separate themes and handle the logics to switch between modes. This can be complex and error-prone.
 
-## Improved support for light and dark modes
-
-Material UI v6 supports light and dark modes out of the box.
-
-The new `colorSchemes` node lets you create light and dark color schemes for your application:
+But not anymore! The new `colorSchemes` node is here to simplify the process.
+With just one line of code, your application will support both light and dark modes instantly.
 
 ```js
-const theme = createTheme({ colorSchemes: { dark: true } }); // light is generated by default.
+const theme = createTheme({ colorSchemes: { dark: true } });
+// light is generated by default.
 
 function App() {
   return <ThemeProvider theme={theme}>...</ThemeProvider>;
@@ -104,18 +102,12 @@ function App() {
 
 When color schemes are used, Material UI ships these features out of the box:
 
-- CSS media `prefers-color-scheme` is used as the default method for switching between modes.
+- System preference detection.
 - You can achieve instant transitions between modes with the `disableTransitionOnChange` prop.
 - The selected mode is stored in local storage to persist the user's preference.
 - The selected mode is automatically synced between browser tabs.
 
-### CSS media `prefers-color-scheme`
-
-When light and dark color schemes are enabled, Material UI v6 uses the CSS media `prefers-color-scheme` as the default method for switching between modes.
-
-This method works with server-side rendering without flickering and is compatible with all modern browsers.
-
-### A hook for toggling between modes
+#### A hook for toggling between modes
 
 The new `useColorScheme` hook lets you read and update the mode in your application.
 
@@ -135,13 +127,52 @@ function ModeSwitcher() {
 }
 ```
 
-## Container Queries
+### CSS media `prefers-color-scheme`
+
+When [CSS variables](#css-theme-variables) and [color schemes](#color-schemes) are enabled, Material UI uses `prefers-color-scheme` media query is the default method for generating CSS variables.
+
+<codeblock>
+
+```js JSX
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  cssVariables: true,
+  colorSchemes: { dark: true },
+});
+
+function App() {
+  return <ThemeProvider theme={theme}>...</ThemeProvider>;
+}
+```
+
+```css CSS
+:root {
+  --mui-palette-primary-main: #1976d2;
+  --mui-palette-background-default: #fff;
+  ...
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mui-palette-primary-main: #90caf9;
+    --mui-palette-background-default: #121212;
+    ...
+  }
+}
+```
+
+</codeblock>
+
+### Container Queries
 
 We've added a [container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries) utility based on the existing `theme.breakpoints` API.
 
 This feature lets you define styles based on the parent container's width instead of the viewport.
 
-```jsx
+<codeblock>
+
+```jsx JSX
 const Component = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
@@ -150,14 +181,35 @@ const Component = styled('div')(({ theme }) => ({
     flexDirection: 'row',
   },
   [theme.containerQueries('sidebar').up('400px')]: {
+    // @container sidebar (min-width: 400px)
     flexDirection: 'row',
   },
 }));
 ```
 
+```css CSS
+/* Simplified CSS Output */
+
+.Component-ad83f {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  @container (min-width: 600px) {
+    flex-direction: row;
+  }
+  @container sidebar (min-width: 400px) {
+    flex-direction: row;
+  }
+}
+```
+
+</codeblock>
+
 It also works with the `sx` prop:
 
-```jsx
+<codeblock>
+
+```jsx JSX
 <Card
   sx={{
     '@sm': {
@@ -170,33 +222,83 @@ It also works with the `sx` prop:
 />
 ```
 
-## New method of applying styles
+```css CSS
+/* Simplified CSS Output */
 
-The new API `theme.applyStyles` has been added for creating specific mode styles. It's designed to replace the `theme.palette.mode === 'dark'` condition and to work with Pigment CSS.
+.MuiCard-root-dn383 {
+  @container (min-width: 600px) {
+    flex-direction: row;
+  }
+  @container sidebar (min-width: 400px) {
+    flex-direction: row;
+  }
+}
+```
 
-The snippet below will work for both Emotion and Pigment CSS.
+</codeblock>
 
-```jsx
+### New method of applying styles
+
+The new API `theme.applyStyles` has been added for creating specific mode styles. It's designed to replace the `theme.palette.mode === 'dark'` condition to fix the SSR flickering issue when combined with CSS theme variables feature.
+
+<codeblock>
+
+```jsx After
 const StyledInput = styled(InputBase)(({ theme }) => ({
   padding: 10,
   width: '100%',
-  borderBottom: `1px solid #eaecef`,
+  borderBottom: '1px solid #eaecef',
   ...theme.applyStyles('dark', {
     borderBottom: '1px solid #30363d',
-  })
+  }),
   '& input': {
     borderRadius: 4,
     backgroundColor: '#fff',
     ...theme.applyStyles('dark', {
       backgroundColor: '#0d1117',
-    })
+    }),
   },
 }));
 ```
 
-## Stabilized Grid v2
+```jsx Before
+const StyledInput = styled(InputBase)(({ theme }) => ({
+  padding: 10,
+  width: '100%',
+  borderBottom:
+    theme.palette.mode === 'dark' ? '1px solid #30363d' : '1px solid #eaecef',
+  '& input': {
+    borderRadius: 4,
+    backgroundColor: theme.palette.mode === 'dark' ? '#0d1117' : '#fff',
+  },
+}));
+```
 
-Grid v2 has been stabilized and is now using CSS gap for creating space between grid items.
+</codeblock>
+
+:::info
+We provide a codemod to help you migrate from `theme.palette.mode === 'dark'` to `theme.applyStyles()`. You can find the link to the migration guide at the end of the blog post.
+:::
+
+## Improvements
+
+### Revamping the free templates
+
+Explore the new and enhanced [Material UI free templates](https://mui.com/material-ui/getting-started/templates/) to see these amazing features in action. We've fully revamped the templates to provide the perfect starting point for your project, whether you're adding sleek styles or using the template's sections.
+
+{{"component": "components/blog/material-ui-v6-is-out/FreeTemplatesBento.js"}}
+
+#### Custom styles
+
+The new custom styles we've added allow you to dive into the best approaches for customization or simply copy and paste some stylish elements.
+
+{{"component": "components/blog/material-ui-v6-is-out/CustomThemeComparison.js"}}
+
+### Stabilized Grid v2
+
+Grid v2 has been stabilized and is now using **CSS gap** for creating space between grid items.
+This is a huge improvement over the previous version, which used padding and margin to create space.
+
 The responsive configuration has been consolidated into `size` and `offset` props for consistency.
 
 ```jsx
@@ -209,10 +311,47 @@ import Grid from '@mui/material/Grid2';
 </Grid>;
 ```
 
-## Bundle size improvements
+## Experimental CSS extraction via Pigment CSS
 
-The bundle size has been reduced by 20% compared to Material UI v5.
-The install size has decreased from 19.3MB to 15.2MB.
+As you know, Material UI v5 uses Emotion as a default styling solution. As a runtime CSS-in-JS library, it has several trade-offs such as slower performance and larger bundle size.
+
+In v6, we introduce an opt-in integration with [Pigment CSS](https://github.com/mui/pigment-css), our new zero-runtime styling library, that will eliminate the runtime overhead while preserving similar APIs that you are already familiar with.
+
+:::warning
+Pigment CSS integration is still in the experimental stage. We recommend testing it out with our examples ([Next.js](https://github.com/mui/material-ui/tree/master/examples/material-ui-pigment-css-nextjs-ts) or [Vite](https://github.com/mui/material-ui/tree/master/examples/material-ui-pigment-css-vite)) and providing feedbacks to help us improve the feature.
+
+Then, if you're ready to integrate Pigment CSS into your project, follow the migration guide at the bottom of the page
+:::
+
+### React Server Components
+
+Once integrated with Pigment CSS, Material UI v6 provides a separate set of layout components, including `Grid`, `Container`, and `Stack`, that are compatible with React Server Components.
+
+```jsx
+import Grid from '@mui/material-pigment-css/Grid';
+import Container from '@mui/material-pigment-css/Container';
+import Stack from '@mui/material-pigment-css/Stack';
+```
+
+### Built-in sx prop support
+
+With Pigment CSS integration, all JSX elements support the `sx` prop out of the box.
+The `Box` component is no longer required to use the `sx` prop.
+
+```diff
+-import Box from '@mui/material/Box';
+
+-<Box component="img" sx={{ padding: 2 }} />
++<img sx={{ padding: 2 }} />
+```
+
+## Package size reduction
+
+To align with React 19's removal of UMD builds, Material UI has also removed its UMD bundle.
+This results in a reduction of the `@mui/material` package size by 2.5MB, or 25% of the total package size.
+See [Package Phobia](https://packagephobia.com/result?p=@mui/material) for more details.
+Instead, we recommend using ESM-based CDNs such as [esm.sh](https://esm.sh/).
+For alternative installation methods, refer to the [CDN documentation](/material-ui/getting-started/installation/#cdn).
 
 ## Full-stack apps
 
@@ -220,7 +359,7 @@ To get started building full-stack apps fast, we're building [Toolpad Core](http
 
 Stay tuned, as many more updates are coming in the upcoming months! We'd love to hear your feedback on which templates or sections you'd like to see next.
 
-## Next steps
+## What's next
 
 Ready to upgrade to Material UI v6? Check out the [v6 migration guide](/material-ui/migration/upgrade-to-v6/).
 
