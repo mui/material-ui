@@ -14,7 +14,7 @@ export default function composeClasses<ClassKey extends string>(
     const slot = slots[slotName];
     let buffer = '';
 
-    for (let i = 0; i < slot.length; i++) {
+    for (let i = 0; i < slot.length; i += 1) {
       const value = slot[i];
       if (value) {
         buffer += getUtilityClass(value) + ' ';
