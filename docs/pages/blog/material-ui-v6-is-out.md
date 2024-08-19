@@ -12,7 +12,7 @@ authors:
     'siriwatknp',
     'zanivan',
   ]
-tags: ['Material UI', 'Product']
+tags: ['Material UI', 'Product']
 manualCard: true
 ---
 
@@ -29,7 +29,7 @@ Material UI v6 is now stable! We're excited to share all the updates.
 - [Improvements](#improvements)
   - [Revamping the free templates](#revamping-the-free-templates)
   - [Stabilized Grid v2](#stabilized-grid-v2)
-- [Experimental CSS extraction via Pigment CSS](#experimental-css-extraction-via-pigmentcss)
+- [Experimental CSS extraction via Pigment CSS](#experimental-css-extraction-via-pigmentcss)
   - [React Server Components](#react-server-components)
   - [Built-in sx prop support](#built-in-sx-prop-support)
 - [Package size reduction](#package-size-reduction)
@@ -129,7 +129,7 @@ function ModeSwitcher() {
 
 ### CSS media `prefers-color-scheme`
 
-When [CSS variables](#css-theme-variables) and [color schemes](#color-schemes) are enabled, Material UI uses `prefers-color-scheme` media query is the default method for generating CSS variables.
+When [CSS variables](#css-theme-variables) and [color schemes](#color-schemes) are enabled, Material UI uses `prefers-color-scheme` media query is the default method for generating CSS variables.
 
 <codeblock>
 
@@ -347,7 +347,7 @@ The `Box` component is no longer required to use the `sx` prop.
 
 ## Package size reduction
 
-To align with React 19's removal of UMD builds, Material UI has also removed its UMD bundle.
+To align with React 19's removal of UMD builds, Material UI has also removed its UMD bundle.
 This results in a reduction of the `@mui/material` package size by 2.5MB, or 25% of the total package size.
 See [Package Phobia](https://packagephobia.com/result?p=@mui/material) for more details.
 Instead, we recommend using ESM-based CDNs such as [esm.sh](https://esm.sh/).
