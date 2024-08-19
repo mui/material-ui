@@ -1,7 +1,12 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import clamp from '@mui/utils/clamp';
-import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import * as Color from '../color';
+import {
+  getRed,
+  getGreen,
+  getBlue,
+  getAlpha,
+} from '../color';
 
 /**
  * Returns a number whose value is limited to the given range.
@@ -67,7 +72,7 @@ export function decomposeColor(input) {
  * @returns {string} - The channel for the color, that can be used in rgba colors
  */
 export function colorChannel(color) {
-  const c = Color.parse(hexadecimal);
+  const c = Color.parse(color);
 
   const r = getRed(c);
   const g = getGreen(c);
@@ -170,7 +175,11 @@ export function getLuminance(color) {
 export function getContrastRatio(foreground, background) {
   const lumA = getLuminance(foreground);
   const lumB = getLuminance(background);
-  return (Math.max(lumA, lumB) + 0.05) / (Math.min(lumA, lumB) + 0.05);
+  // prettier-ignore
+  return (
+    (Math.max(lumA, lumB) + 0.05) /
+    (Math.min(lumA, lumB) + 0.05)
+  );
 }
 
 /**
@@ -181,7 +190,7 @@ export function getContrastRatio(foreground, background) {
  * @returns {string} A CSS hexadecimal color string
  */
 export function alpha(color, value) {
-  return Color.format(Color.setAlpha(Color.parse(color), Math.round(value * 255)));
+  return Color.format(Color.setAlpha(Color.parse(color), Math.round(clampWrapper(value) * 255)));
 }
 export function private_safeAlpha(color, value, warning) {
   try {
