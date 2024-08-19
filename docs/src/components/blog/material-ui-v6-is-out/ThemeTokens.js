@@ -131,14 +131,7 @@ export default function TemplateCarousel() {
             }),
           })}
         />
-        <Box
-          sx={{
-            display: 'block',
-            height: 'clamp(30vmax, 40vmax, 40vmin)',
-            maxHeight: '40vmin',
-            overflowY: 'scroll',
-          }}
-        >
+        <Box sx={{ overflow: 'auto' }}>
           <Table>
             <thead>
               <tr>
