@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "rimraf": "^5.0.10",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.4"
   },
   "publishConfig": {
     "access": "public"

@@ -21,6 +21,8 @@ const iframeDefaultJoyTheme = extendTheme({
   cssVarPrefix: 'demo-iframe',
 });
 
+let globalInjectThemeCache;
+
 function FramedDemo(props) {
   const { children, document, usesCssVarsTheme } = props;
 
@@ -208,11 +210,13 @@ function DemoSandbox(props) {
   useEnhancedEffect(() => {
     async function setupMaterialUITheme() {
       if (typeof window.getInjectTheme === 'function') {
-        window.React = React;
-        const jsx = await import('react/jsx-runtime');
-        window.jsx = jsx;
-        const themeOptions = window.getInjectTheme();
-        setInjectTheme(themeOptions);
+        if (!globalInjectThemeCache) {
+          window.React = React;
+          const jsx = await import('react/jsx-runtime');
+          window.jsx = jsx;
+          globalInjectThemeCache = window.getInjectTheme();
+        }
+        setInjectTheme(globalInjectThemeCache);
       }
     }
     setupMaterialUITheme();

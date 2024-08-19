@@ -45,7 +45,7 @@ export function createFilterOptions(config = {}) {
           }
 
           return matchFrom === 'start'
-            ? candidate.indexOf(input) === 0
+            ? candidate.startsWith(input)
             : candidate.indexOf(input) > -1;
         });
 

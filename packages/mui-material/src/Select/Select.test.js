@@ -1201,7 +1201,7 @@ describe('<Select />', () => {
         function ControlledSelectInput(props) {
           const { onChange } = props;
           const [values, clickedValue] = React.useReducer((currentValues, valueClicked) => {
-            if (currentValues.indexOf(valueClicked) === -1) {
+            if (!currentValues.includes(valueClicked)) {
               return currentValues.concat(valueClicked);
             }
             return currentValues.filter((value) => {
