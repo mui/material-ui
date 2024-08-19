@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import Box from '@mui/material/Box';
 import { CssVarsProvider, extendTheme, styled } from '@mui/material/styles';
 
@@ -31,7 +30,7 @@ const Table = styled('table')(({ theme }) => ({
   height: 'clamp(30vmax, 40vmax, 40vmin)',
   maxHeight: '40vmin',
   overflowY: 'scroll',
-  th: {
+  '& th': {
     textAlign: 'left',
     padding: 10,
     position: 'sticky',
@@ -45,7 +44,7 @@ const Table = styled('table')(({ theme }) => ({
       backgroundColor: 'hsl(210, 25%, 9%)',
     }),
   },
-  td: {
+  '& td': {
     verticalAlign: 'top',
     padding: '4px 10px',
     fontSize: '0.75rem',
