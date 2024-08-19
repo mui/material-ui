@@ -72,12 +72,14 @@ This includes issues introduced by external sources, like browser upgrades or ch
 
 ### Supported versions
 
-- Material UI v5: ✅ Stable major (Continuous support)
-- [Material UI v4](https://v4.mui.com/): ⚠️ Long-term support (Guaranteed Support for security issues and regressions).
-- [Material UI v3](https://v3.mui.com/): 🅧 No longer supported.
-- Material UI v2: 🅧 Never existed.
-- [Material UI v1](https://v1.mui.com/): 🅧 No longer supported.
-- [Material UI v0.x](https://v0.mui.com/#/): 🅧 No longer supported.
+| Material UI version | Release    | Supported                                                           |
+| ------------------: | :--------- | :------------------------------------------------------------------ |
+|              ^5.0.0 | 2021-09-16 | ✅ Stable major (Continuous support)                                |
+|              ^4.0.0 | 2019-06-23 | ⚠️ Long-term support (Support for security issues and regressions). |
+|              ^3.0.0 | 2018-08-27 | ❌                                                                  |
+|              ^2.0.0 | /          | ❌                                                                  |
+|              ^1.0.0 | 2018-06-18 | ❌                                                                  |
+|             <=1.0.0 | 2014-10-05 | ❌                                                                  |
 
 ## Community
 

@@ -3,7 +3,7 @@ import clipboardCopy from 'clipboard-copy';
 
 export default function useClipboardCopy() {
   const [isCopied, setIsCopied] = React.useState(false);
-  const timeout = React.useRef<ReturnType<typeof setTimeout>>();
+  const timeout = React.useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   React.useEffect(
     () => () => {

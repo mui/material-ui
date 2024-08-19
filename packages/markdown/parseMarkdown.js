@@ -389,7 +389,7 @@ function createRender(context) {
 
       checkUrlHealth(href, linkText, context);
 
-      if (userLanguage !== 'en' && href.indexOf('/') === 0 && !options.ignoreLanguagePages(href)) {
+      if (userLanguage !== 'en' && href.startsWith('/') && !options.ignoreLanguagePages(href)) {
         finalHref = `/${userLanguage}${href}`;
       }
 

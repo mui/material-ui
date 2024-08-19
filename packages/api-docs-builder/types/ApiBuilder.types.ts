@@ -1,6 +1,5 @@
 import { ReactDocgenApi } from 'react-docgen';
 import { JSDocTagInfo } from 'typescript';
-import { ComponentClassDefinition } from '@mui/internal-docs-utils';
 import { ComponentInfo, Slot, HookInfo, SeeMore } from './utils.types';
 
 export type AdditionalPropsInfo = {
@@ -136,6 +135,15 @@ export interface HooksTranslations {
       deprecated?: string;
     };
   };
+}
+
+export interface ComponentClassDefinition {
+  key: string;
+  className: string;
+  description: string;
+  isGlobal: boolean;
+  isDeprecated?: boolean;
+  deprecationInfo?: string;
 }
 
 interface AttributeDefinition {
