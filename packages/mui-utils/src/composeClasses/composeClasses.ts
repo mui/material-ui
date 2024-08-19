@@ -1,4 +1,4 @@
-/* eslint no-restricted-syntax: 0, prefer-template: 0
+/* eslint no-restricted-syntax: 0, prefer-template: 0, guard-for-in: 0
    ---
    These rules are preventing the performance optimizations below.
  */
@@ -15,7 +15,7 @@ export default function composeClasses<ClassKey extends string>(
       const slot = slots[slotName];
       let buffer = '';
 
-      for (let i = 0; i < slot.length; i++) {
+      for (let i = 0; i < slot.length; i += 1) {
         const value = slot[i];
         if (value) {
           buffer += getUtilityClass(value) + ' ';
@@ -33,7 +33,7 @@ export default function composeClasses<ClassKey extends string>(
       const slot = slots[slotName];
       let buffer = '';
 
-      for (let i = 0; i < slot.length; i++) {
+      for (let i = 0; i < slot.length; i += 1) {
         const value = slot[i];
         if (value) {
           buffer += getUtilityClass(value) + ' ';
