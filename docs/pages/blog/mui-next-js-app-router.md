@@ -1,13 +1,13 @@
 ---
 title: MUI Core libraries support the Next.js App Router
-description: Material UI, Base UI, and Joy UI are now compatible with the App Router as Client Components. Get started using the latest Next.js features with MUI!
+description: Material UI, Base UI, and Joy UI are now compatible with the App Router as Client Components. Get started using the latest Next.js features with MUI!
 date: 2023-07-18T00:00:00.000Z
 authors: ['samuelsycamore']
-card: true
-tags: ['News']
+manualCard: true
+tags: ['Product']
 ---
 
-With [v5.14.0](https://github.com/mui/material-ui/releases/tag/v5.14.0), MUI's Core component libraries—Material UI, Base UI, and Joy UI—are now compatible with the Next.js App Router. 🚀
+With [v5.14.0](https://github.com/mui/material-ui/releases/tag/v5.14.0), MUI's Core component libraries—Material UI, Base UI, and Joy UI—are now compatible with the Next.js App Router. 🚀
 
 <img alt="MUI and Next.js logos" src="/static/blog/mui-next-js-app-router/logos.png" loading="lazy" width="2076" height="900" />
 
@@ -27,20 +27,20 @@ Additionally, we've created guides to walk you through setting up an app using t
 
 - [Material UI setup](https://mui.com/material-ui/guides/next-js-app-router/)
 - [Base UI setup](https://mui.com/base-ui/guides/next-js-app-router/)
-- [Joy UI setup](https://mui.com/joy-ui/integrations/next-js-app-router/)
+- [Joy UI setup](https://mui.com/joy-ui/integrations/next-js-app-router/)
 
 <img alt="Screenshot of the Material UI documentation" src="/static/blog/mui-next-js-app-router/docs.png" loading="lazy" width="2400" height="1394" style="margin-bottom:24px;" />
 
 We also have example repos for each, with everything already set up for you:
 
 - [Material UI example](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-ts)
-- [Base UI with Tailwind CSS example](https://github.com/mui/material-ui/tree/master/examples/base-ui-nextjs-tailwind-ts)
-- [Joy UI example](https://github.com/mui/material-ui/tree/master/examples/joy-ui-nextjs-ts)
+- [Base UI with Tailwind CSS example](https://github.com/mui/material-ui/tree/master/examples/base-ui-nextjs-tailwind-ts)
+- [Joy UI example](https://github.com/mui/material-ui/tree/master/examples/joy-ui-nextjs-ts)
 
 ## What comes next
 
-In the world of Server Components, "traditional" CSS-in-JS poses a serious challenge that may require us to move beyond Emotion, which is the default styling solution for Material UI and Joy UI in v5.
-We're currently exploring ways to offer our own zero-runtime CSS-in-JS solution that will enable you to use relevant MUI System, Material UI, and Joy UI components as Server Components.
+In the world of Server Components, "traditional" CSS-in-JS poses a serious challenge that may require us to move beyond Emotion, which is the default styling solution for Material UI and Joy UI in v5.
+We're currently exploring ways to offer our own zero-runtime CSS-in-JS solution that will enable you to use relevant MUI System, Material UI, and Joy UI components as Server Components.
 This will also have the added benefit of improving performance across the board.
 Keep an eye out for an RFC from us very soon that will detail the proposed solution.
 

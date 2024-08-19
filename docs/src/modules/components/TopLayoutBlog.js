@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled, alpha } from '@mui/material/styles';
+import { useTheme } from '@mui/system';
 import { useRouter } from 'next/router';
 import { exactProp } from '@mui/utils';
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
@@ -13,10 +14,11 @@ import AppHeader from 'docs/src/layouts/AppHeader';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { MarkdownElement } from '@mui/docs/MarkdownElement';
+import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import ROUTES from 'docs/src/route';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 
 export const authors = {
   oliviertassinari: {
@@ -104,6 +106,26 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/92274722',
     github: 'richbustos',
   },
+  colmtuite: {
+    name: 'Colm Tuite',
+    avatar: 'https://avatars.githubusercontent.com/u/805073',
+    github: 'colmtuite',
+  },
+  diegoandai: {
+    name: 'Diego Andai',
+    avatar: 'https://avatars.githubusercontent.com/u/16889233',
+    github: 'DiegoAndai',
+  },
+  DavidCnoops: {
+    name: 'David Cnoops',
+    avatar: 'https://avatars.githubusercontent.com/u/28001064',
+    github: 'DavidCnoops',
+  },
+  brijeshb42: {
+    name: 'Brijesh Bittu',
+    avatar: 'https://avatars.githubusercontent.com/u/717550?',
+    github: 'brijeshb42',
+  },
 };
 
 const classes = {
@@ -167,6 +189,19 @@ const Root = styled('div')(
         display: 'block',
         margin: 'auto',
         marginBottom: 16,
+      },
+      '& figure': {
+        margin: 0,
+        padding: 0,
+        marginBottom: 16,
+        '& img, & video': {
+          marginBottom: 8,
+        },
+      },
+      '& figcaption': {
+        color: (theme.vars || theme).palette.text.tertiary,
+        fontSize: theme.typography.pxToRem(14),
+        textAlign: 'center',
       },
       '& strong': {
         color: (theme.vars || theme).palette.grey[900],
@@ -250,23 +285,29 @@ const Root = styled('div')(
 );
 
 export default function TopLayoutBlog(props) {
-  const { className, docs } = props;
+  const theme = useTheme();
+  const { className, docs, demos, demoComponents, srcComponents } = props;
   const { description, rendered, title, headers } = docs.en;
   const finalTitle = title || headers.title;
   const router = useRouter();
   const slug = router.pathname.replace(/(.*)\/(.*)/, '$2');
   const { canonicalAsServer } = pathnameToLanguage(router.asPath);
   const card =
-    headers.card === 'true'
-      ? `https://mui.com/static/blog/${slug}/card.png`
-      : 'https://mui.com/static/logo.png';
+    headers.manualCard === 'true'
+      ? `/static/blog/${slug}/card.png`
+      : `/edge-functions/og-image/?title=${headers.cardTitle || finalTitle}&authors=${headers.authors
+          .map((author) => {
+            const { github, name } = authors[author];
+            return `${name} @${github}`;
+          })
+          .join(',')}&product=Blog`;
 
   if (process.env.NODE_ENV !== 'production') {
-    if (headers.card === undefined) {
+    if (headers.manualCard === undefined) {
       throw new Error(
         [
-          `MUI: the "card" markdown header for the blog post "${slug}" is missing.`,
-          `Set card: true or card: false header in docs/pages/blog/${slug}.md.`,
+          `MUI: the "manualCard" markdown header for the blog post "${slug}" is missing.`,
+          `Set manualCard: true or manualCard: false header in docs/pages/blog/${slug}.md.`,
         ].join('\n'),
       );
     }
@@ -278,7 +319,7 @@ export default function TopLayoutBlog(props) {
       <Head
         title={`${finalTitle} - MUI`}
         description={description}
-        largeCard={headers.card === 'true'}
+        largeCard
         disableAlternateLocale
         card={card}
         type="article"
@@ -339,9 +380,9 @@ export default function TopLayoutBlog(props) {
             {...(ROUTES.blog.startsWith('http') && {
               rel: 'nofollow',
             })}
-            color="primary"
             variant="body2"
             className={classes.back}
+            sx={{ color: 'primary' }}
           >
             <ChevronLeftRoundedIcon fontSize="small" sx={{ mr: 0.5 }} />
             {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
@@ -377,16 +418,15 @@ export default function TopLayoutBlog(props) {
                       }?s=${36 * 3} 3x`}
                     />
                     <div>
-                      <Typography variant="body2" fontWeight="500">
+                      <Typography variant="body2" sx={{ fontWeight: '500' }}>
                         {authors[author].name}
                       </Typography>
                       <Link
                         href={`https://github.com/${authors[author].github}`}
                         target="_blank"
                         rel="noopener"
-                        color="primary"
                         variant="body2"
-                        sx={{ fontWeight: 500 }}
+                        sx={{ color: 'primary', fontWeight: 500 }}
                       >
                         @{authors[author].github}
                       </Link>
@@ -397,7 +437,20 @@ export default function TopLayoutBlog(props) {
             </React.Fragment>
           ) : null}
           {rendered.map((chunk, index) => {
-            return <MarkdownElement key={index} renderedMarkdown={chunk} />;
+            return (
+              <RichMarkdownElement
+                key={index}
+                demos={demos}
+                demoComponents={demoComponents}
+                srcComponents={srcComponents}
+                renderedMarkdown={chunk}
+                disableAd
+                localizedDoc={docs.en}
+                renderedMarkdownOrDemo={chunk}
+                theme={theme}
+                WrapperComponent={React.Fragment}
+              />
+            );
           })}
         </AppContainer>
         <Divider />
@@ -411,7 +464,10 @@ export default function TopLayoutBlog(props) {
 
 TopLayoutBlog.propTypes = {
   className: PropTypes.string,
+  demoComponents: PropTypes.object,
+  demos: PropTypes.object,
   docs: PropTypes.object.isRequired,
+  srcComponents: PropTypes.object,
 };
 
 if (process.env.NODE_ENV !== 'production') {

@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import TabScrollButton, { tabScrollButtonClasses as classes } from '@mui/material/TabScrollButton';
 import { createSvgIcon } from '@mui/material/utils';
+import describeConformance from '../../test/describeConformance';
 
 const ArrowBackIcon = createSvgIcon(<path d="M3 3h18v18H3z" />, 'ArrowBack');
 const ArrowForwardIcon = createSvgIcon(<path d="M3 3h18v18H3z" />, 'ArrowForward');

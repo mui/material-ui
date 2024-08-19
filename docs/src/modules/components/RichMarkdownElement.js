@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import HighlightedCodeWithTabs from 'docs/src/modules/components/HighlightedCodeWithTabs';
+import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
+import { HighlightedCodeWithTabs } from '@mui/docs/HighlightedCodeWithTabs';
+import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import Demo from 'docs/src/modules/components/Demo';
 
 function noComponent(moduleID) {
@@ -113,7 +113,9 @@ export default function RichMarkdownElement(props) {
         tailwindJsxPreview: demo.tailwindJsxPreview,
         cssJsxPreview: demo.cssJsxPreview,
         rawTS: demo.rawTS,
-        tsx: demoComponents[demo.moduleTS] ?? null,
+        module: demo.module,
+        moduleTS: demo.moduleTS,
+        tsx: demoComponents[demo.moduleTS] ?? noComponent(demo.moduleTS),
         rawTailwind: demo.rawTailwind,
         rawTailwindTS: demo.rawTailwindTS,
         jsTailwind: demoComponents[demo.moduleTailwind] ?? null,
@@ -123,6 +125,7 @@ export default function RichMarkdownElement(props) {
         jsCSS: demoComponents[demo.moduleCSS] ?? null,
         tsxCSS: demoComponents[demo.moduleTSCSS] ?? null,
         gaLabel: fileNameWithLocation.replace(/^\/docs\/data\//, ''),
+        relativeModules: demo.relativeModules,
       }}
       disableAd={disableAd}
       demoOptions={renderedMarkdownOrDemo}

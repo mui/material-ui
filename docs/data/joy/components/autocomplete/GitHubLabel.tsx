@@ -92,11 +92,7 @@ export default function GitHubLabel() {
           {value.map((label) => (
             <ListItem
               key={label.name}
-              sx={{
-                fontWeight: 600,
-                backgroundColor: label.color,
-                color: '#fff',
-              }}
+              sx={{ fontWeight: 600, backgroundColor: label.color, color: '#fff' }}
             >
               {label.name}
             </ListItem>
@@ -121,9 +117,9 @@ export default function GitHubLabel() {
             })}
           >
             <Typography
-              fontSize="sm"
-              fontWeight={600}
               sx={{
+                fontSize: 'sm',
+                fontWeight: 600,
                 padding: '8px 10px',
                 borderBottom: '1px solid',
                 borderColor: 'divider',
@@ -147,7 +143,8 @@ export default function GitHubLabel() {
               onChange={(event, newValue, reason) => {
                 if (
                   event.type === 'keydown' &&
-                  (event as React.KeyboardEvent).key === 'Backspace' &&
+                  ((event as React.KeyboardEvent).key === 'Backspace' ||
+                    (event as React.KeyboardEvent).key === 'Delete') &&
                   reason === 'removeOption'
                 ) {
                   return;
@@ -183,7 +180,13 @@ export default function GitHubLabel() {
                     },
                   })}
                 >
-                  <DoneIcon sx={{ visibility: selected ? 'visible' : 'hidden' }} />
+                  <DoneIcon
+                    sx={[
+                      selected
+                        ? { visibility: 'visible' }
+                        : { visibility: 'hidden' },
+                    ]}
+                  />
                   <Box
                     component="span"
                     sx={{
@@ -201,7 +204,17 @@ export default function GitHubLabel() {
                     <Typography level="title-sm">{option.name}</Typography>
                     <Typography level="body-xs">{option.description}</Typography>
                   </Box>
-                  <CloseIcon sx={{ visibility: selected ? 'visible' : 'hidden' }} />
+                  <CloseIcon
+                    sx={[
+                      selected
+                        ? {
+                            visibility: 'visible',
+                          }
+                        : {
+                            visibility: 'hidden',
+                          },
+                    ]}
+                  />
                 </AutocompleteOption>
               )}
               options={[...labels].sort((a, b) => {

@@ -49,7 +49,7 @@ export interface UseAutocompleteProps<
    * Temporary for Joy UI because the parent listbox is the document object
    * TODO v6: Normalize the logic and remove this param.
    */
-  unstable_isActiveElementInListbox?: (listbox: React.RefObject<HTMLElement>) => boolean;
+  unstable_isActiveElementInListbox?: (listbox: React.RefObject<HTMLElement | null>) => boolean;
   /**
    * If `true`, the portion of the selected suggestion that the user hasn't typed,
    * known as the completion string, appears inline after the input cursor in the textbox.
@@ -257,7 +257,7 @@ export interface UseAutocompleteProps<
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {string} value The new value of the text input.
-   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`.
+   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`, `"blur"`, `"selectOption"`, `"removeOption"`
    */
   onInputChange?: (
     event: React.SyntheticEvent,
@@ -329,7 +329,13 @@ export type AutocompleteCloseReason =
   | 'selectOption'
   | 'removeOption'
   | 'blur';
-export type AutocompleteInputChangeReason = 'input' | 'reset' | 'clear';
+export type AutocompleteInputChangeReason =
+  | 'input'
+  | 'reset'
+  | 'clear'
+  | 'blur'
+  | 'selectOption'
+  | 'removeOption';
 
 export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
   key: number;
@@ -341,11 +347,11 @@ export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
  *
  * Demos:
  *
- * - [Autocomplete](https://mui.com/base-ui/react-autocomplete/#hook)
+ * - [Autocomplete](https://next.mui.com/base-ui/react-autocomplete/#hook)
  *
  * API:
  *
- * - [useAutocomplete API](https://mui.com/base-ui/react-autocomplete/hooks-api/#use-autocomplete)
+ * - [useAutocomplete API](https://next.mui.com/base-ui/react-autocomplete/hooks-api/#use-autocomplete)
  */
 export function useAutocomplete<
   Value,
@@ -411,7 +417,7 @@ export interface UseAutocompleteReturnValue<
    */
   getOptionProps: (
     renderedOption: UseAutocompleteRenderedOption<Value>,
-  ) => React.HTMLAttributes<HTMLLIElement>;
+  ) => React.HTMLAttributes<HTMLLIElement> & { key: any };
   /**
    * Id for the Autocomplete.
    */

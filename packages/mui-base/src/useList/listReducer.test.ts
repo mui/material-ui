@@ -948,6 +948,7 @@ describe('listReducer', () => {
 
     describe('using custom item comparer', () => {
       type ItemType = { v: string };
+
       it('keeps the highlighted value if it is present among the new items', () => {
         const state: ListState<ItemType> = {
           highlightedValue: { v: '1' },

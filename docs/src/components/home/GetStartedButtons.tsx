@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import ContentCopyRounded from '@mui/icons-material/ContentCopyRounded';
 import CheckRounded from '@mui/icons-material/CheckRounded';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import NpmCopyButton from 'docs/src/components/action/NpmCopyButton';
 
 interface GetStartedButtonsProps extends BoxProps {
@@ -62,9 +62,7 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
           noLinkStyle
           variant="contained"
           endIcon={<KeyboardArrowRightRounded />}
-          sx={{
-            flexShrink: 0,
-          }}
+          sx={{ flexShrink: 0 }}
         >
           {primaryLabel}
         </Button>

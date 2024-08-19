@@ -5,10 +5,46 @@ import { TransitionProps } from '../transitions/transition';
 import { Theme } from '../styles';
 import { BackdropClasses } from './backdropClasses';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
+export interface BackdropSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the transition.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Fade
+   */
+  transition?: React.JSXElementConstructor<
+    TransitionProps & { children: React.ReactElement<any, any> }
+  >;
+}
 export interface BackdropComponentsPropsOverrides {}
 
-export interface BackdropOwnProps extends Partial<Omit<FadeProps, 'children'>> {
+export interface BackdropTransitionSlotPropsOverrides {}
+
+export type BackdropSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  BackdropSlots,
+  {
+    root: SlotProps<
+      React.ElementType<HTMLDivElement>,
+      BackdropComponentsPropsOverrides,
+      BackdropOwnerState
+    >;
+    transition: SlotProps<
+      React.JSXElementConstructor<TransitionProps>,
+      BackdropTransitionSlotPropsOverrides,
+      BackdropOwnerState
+    >;
+  }
+>;
+
+export interface BackdropOwnProps
+  extends Partial<Omit<FadeProps, 'children'>>,
+    BackdropSlotsAndSlotProps {
   /**
    * The content of the component.
    */
@@ -16,8 +52,7 @@ export interface BackdropOwnProps extends Partial<Omit<FadeProps, 'children'>> {
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated Use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -28,8 +63,7 @@ export interface BackdropOwnProps extends Partial<Omit<FadeProps, 'children'>> {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -50,27 +84,6 @@ export interface BackdropOwnProps extends Partial<Omit<FadeProps, 'children'>> {
    * If `true`, the component is shown.
    */
   open: boolean;
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
-   * @default {}
-   */
-  slotProps?: {
-    root?: React.HTMLAttributes<HTMLDivElement> & BackdropComponentsPropsOverrides;
-  };
-  /**
-   * The components used for each slot inside.
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
-   *
-   * @default {}
-   */
-  slots?: {
-    root?: React.ElementType;
-  };
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -108,12 +121,12 @@ export declare const BackdropRoot: React.FC<BackdropRootProps>;
  *
  * Demos:
  *
- * - [Backdrop](https://mui.com/material-ui/react-backdrop/)
+ * - [Backdrop](https://next.mui.com/material-ui/react-backdrop/)
  *
  * API:
  *
- * - [Backdrop API](https://mui.com/material-ui/api/backdrop/)
- * - inherits [Fade API](https://mui.com/material-ui/api/fade/)
+ * - [Backdrop API](https://next.mui.com/material-ui/api/backdrop/)
+ * - inherits [Fade API](https://next.mui.com/material-ui/api/fade/)
  */
 declare const Backdrop: OverridableComponent<BackdropTypeMap>;
 
@@ -123,5 +136,7 @@ export type BackdropProps<
 > = OverrideProps<BackdropTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
 };
+
+export interface BackdropOwnerState extends BackdropProps {}
 
 export default Backdrop;

@@ -50,5 +50,5 @@ if (window.requestIdleCallback) {
 } else {
   // Safari doesn't support requestIdleCallback
   // https://caniuse.com/requestidlecallback
-  window.setTimeout(hydrate, 1);
+  setTimeout(hydrate, 1);
 }

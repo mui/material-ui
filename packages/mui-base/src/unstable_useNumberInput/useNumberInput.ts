@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import MuiError from '@mui-internal/babel-macros/MuiError.macro';
+import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
 import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
@@ -36,11 +36,11 @@ export function getInputValueAsString(v: string): string {
  *
  * Demos:
  *
- * - [Number Input](https://mui.com/base-ui/react-number-input/#hook)
+ * - [Number Input](https://next.mui.com/base-ui/react-number-input/#hook)
  *
  * API:
  *
- * - [useNumberInput API](https://mui.com/base-ui/react-number-input/hooks-api/#use-number-input)
+ * - [useNumberInput API](https://next.mui.com/base-ui/react-number-input/hooks-api/#use-number-input)
  */
 export function useNumberInput(parameters: UseNumberInputParameters): UseNumberInputReturnValue {
   const {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { alpha } from '@mui/material/styles';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { convertProductIdToName } from 'docs/src/modules/components/AppSearch';
@@ -10,7 +10,8 @@ export default function AppFrameBanner() {
     return null;
   }
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+  // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
+  // eslint-disable-next-line react-hooks/rules-of-hooks -- FEATURE_TOGGLE never changes
   const pageContext = React.useContext(PageContext);
   const productName = convertProductIdToName(pageContext) || 'MUI';
   const message = `Influence ${productName}'s 2024 roadmap! Participate in the latest Developer Survey`;
@@ -35,9 +36,9 @@ export default function AppFrameBanner() {
           fontWeight: 'medium',
           textWrap: 'nowrap',
           maxHeight: '34px',
-          backgroundColor: (theme.vars || theme).palette.primary[50],
+          backgroundColor: alpha(theme.palette.primary[50], 0.8),
           border: '1px solid',
-          borderColor: (theme.vars || theme).palette.grey[200],
+          borderColor: (theme.vars || theme).palette.divider,
           borderRadius: 1,
           transition: 'all 150ms ease',
           '&:hover, &:focus-visible': {
@@ -47,11 +48,10 @@ export default function AppFrameBanner() {
         }),
         (theme) =>
           theme.applyDarkStyles({
-            backgroundColor: alpha(theme.palette.primary[900], 0.2),
-            borderColor: (theme.vars || theme).palette.primaryDark[700],
+            backgroundColor: alpha(theme.palette.primary[900], 0.15),
             '&:hover, &:focus-visible': {
-              backgroundColor: alpha(theme.palette.primary[900], 0.6),
-              borderColor: (theme.vars || theme).palette.primary[800],
+              backgroundColor: alpha(theme.palette.primary[900], 0.4),
+              borderColor: (theme.vars || theme).palette.primary[900],
             },
           }),
       ]}

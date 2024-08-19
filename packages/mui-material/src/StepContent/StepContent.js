@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Collapse from '../Collapse';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
@@ -26,7 +26,7 @@ const StepContentRoot = styled('div', {
 
     return [styles.root, ownerState.last && styles.last];
   },
-})(({ ownerState, theme }) => ({
+})(({ theme }) => ({
   marginLeft: 12, // half icon
   paddingLeft: 8 + 12, // margin + half icon
   paddingRight: 8,
@@ -35,9 +35,14 @@ const StepContentRoot = styled('div', {
     : `1px solid ${
         theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600]
       }`,
-  ...(ownerState.last && {
-    borderLeft: 'none',
-  }),
+  variants: [
+    {
+      props: { last: true },
+      style: {
+        borderLeft: 'none',
+      },
+    },
+  ],
 }));
 
 const StepContentTransition = styled(Collapse, {
@@ -47,7 +52,7 @@ const StepContentTransition = styled(Collapse, {
 })({});
 
 const StepContent = React.forwardRef(function StepContent(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiStepContent' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiStepContent' });
   const {
     children,
     className,
@@ -146,7 +151,7 @@ StepContent.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    */
   TransitionProps: PropTypes.object,
 };

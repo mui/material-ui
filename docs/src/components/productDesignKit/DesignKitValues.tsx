@@ -1,12 +1,13 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import Palette from '@mui/icons-material/Palette';
 import LibraryBooks from '@mui/icons-material/LibraryBooks';
+import { InfoCard } from '@mui/docs/InfoCard';
 import CodeRounded from '@mui/icons-material/CodeRounded';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Section from 'docs/src/layouts/Section';
-import InfoCard from 'docs/src/components/action/InfoCard';
+import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 const content = [
   {
@@ -25,23 +26,25 @@ const content = [
     icon: <CodeRounded fontSize="small" color="primary" />,
     title: 'For developers',
     description:
-      'Effortlessly communicate with designers using the same language around the MUI Core components props and variants.',
+      'Effortlessly communicate with designers using the same language around the Material UI components props and variants.',
   },
 ];
 
-function DesignKitValues() {
+export default function DesignKitValues() {
   return (
-    <Section>
-      <Typography variant="body2" color="primary" fontWeight="bold">
-        Collaboration
-      </Typography>
-      <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
-        Be more efficient <GradientText>designing and developing</GradientText> with the same
-        library
-      </Typography>
-      <Grid container spacing={3}>
+    <Section cozy>
+      <SectionHeadline
+        overline="Collaboration"
+        title={
+          <Typography variant="h2" sx={{ mt: 1 }}>
+            Be more efficient <GradientText>designing and developing</GradientText> with the same
+            library
+          </Typography>
+        }
+      />
+      <Grid container spacing={3} mt={4}>
         {content.map(({ icon, title, description }) => (
-          <Grid key={title} item xs={12} sm={6} md={4}>
+          <Grid key={title} size={{ xs: 12, sm: 6, md: 4 }}>
             <InfoCard title={title} icon={icon} description={description} />
           </Grid>
         ))}
@@ -49,5 +52,3 @@ function DesignKitValues() {
     </Section>
   );
 }
-
-export default DesignKitValues;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import { CssVarsProvider, extendTheme, useColorScheme } from '@mui/joy/styles';
 import GlobalStyles from '@mui/joy/GlobalStyles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
@@ -7,7 +7,7 @@ import Button from '@mui/joy/Button';
 import Checkbox from '@mui/joy/Checkbox';
 import Divider from '@mui/joy/Divider';
 import FormControl from '@mui/joy/FormControl';
-import FormLabel, { formLabelClasses } from '@mui/joy/FormLabel';
+import FormLabel from '@mui/joy/FormLabel';
 import IconButton, { IconButtonProps } from '@mui/joy/IconButton';
 import Link from '@mui/joy/Link';
 import Input from '@mui/joy/Input';
@@ -31,43 +31,35 @@ function ColorSchemeToggle(props: IconButtonProps) {
   const { onClick, ...other } = props;
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-  if (!mounted) {
-    return <IconButton size="sm" variant="outlined" color="neutral" disabled />;
-  }
+
+  React.useEffect(() => setMounted(true), []);
+
   return (
     <IconButton
-      id="toggle-mode"
+      aria-label="toggle light/dark mode"
       size="sm"
       variant="outlined"
-      color="neutral"
-      aria-label="toggle light/dark mode"
-      {...other}
+      disabled={!mounted}
       onClick={(event) => {
-        if (mode === 'light') {
-          setMode('dark');
-        } else {
-          setMode('light');
-        }
+        setMode(mode === 'light' ? 'dark' : 'light');
         onClick?.(event);
       }}
+      {...other}
     >
       {mode === 'light' ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
     </IconButton>
   );
 }
 
+const customTheme = extendTheme({ defaultColorScheme: 'dark' });
+
 export default function JoySignInSideTemplate() {
   return (
-    <CssVarsProvider defaultMode="dark" disableTransitionOnChange>
+    <CssVarsProvider theme={customTheme} disableTransitionOnChange>
       <CssBaseline />
       <GlobalStyles
         styles={{
           ':root': {
-            '--Collapsed-breakpoint': '769px', // form will stretch when viewport is below `769px`
-            '--Cover-width': '50vw', // must be `vw` only
             '--Form-maxWidth': '800px',
             '--Transition-duration': '0.4s', // set to `none` to disable transition
           },
@@ -75,8 +67,7 @@ export default function JoySignInSideTemplate() {
       />
       <Box
         sx={(theme) => ({
-          width:
-            'clamp(100vw - var(--Cover-width), (var(--Collapsed-breakpoint) - 100vw) * 999, 100vw)',
+          width: { xs: '100%', md: '50vw' },
           transition: 'width var(--Transition-duration)',
           transitionDelay: 'calc(var(--Transition-duration) + 0.1s)',
           position: 'relative',
@@ -95,20 +86,13 @@ export default function JoySignInSideTemplate() {
             display: 'flex',
             flexDirection: 'column',
             minHeight: '100dvh',
-            width:
-              'clamp(var(--Form-maxWidth), (var(--Collapsed-breakpoint) - 100vw) * 999, 100%)',
-            maxWidth: '100%',
+            width: '100%',
             px: 2,
           }}
         >
           <Box
             component="header"
-            sx={{
-              py: 3,
-              display: 'flex',
-              alignItems: 'left',
-              justifyContent: 'space-between',
-            }}
+            sx={{ py: 3, display: 'flex', justifyContent: 'space-between' }}
           >
             <Box sx={{ gap: 2, display: 'flex', alignItems: 'center' }}>
               <IconButton variant="soft" color="primary" size="sm">
@@ -136,14 +120,16 @@ export default function JoySignInSideTemplate() {
                 flexDirection: 'column',
                 gap: 2,
               },
-              [`& .${formLabelClasses.asterisk}`]: {
+              [`& .MuiFormLabel-asterisk`]: {
                 visibility: 'hidden',
               },
             }}
           >
-            <Stack gap={4} sx={{ mb: 2 }}>
-              <Stack gap={1}>
-                <Typography level="h3">Sign in</Typography>
+            <Stack sx={{ gap: 4, mb: 2 }}>
+              <Stack sx={{ gap: 1 }}>
+                <Typography component="h1" level="h3">
+                  Sign in
+                </Typography>
                 <Typography level="body-sm">
                   New to company?{' '}
                   <Link href="#replace-with-a-link" level="title-sm">
@@ -164,16 +150,12 @@ export default function JoySignInSideTemplate() {
               sx={(theme) => ({
                 [theme.getColorSchemeSelector('light')]: {
                   color: { xs: '#FFF', md: 'text.tertiary' },
-                  '--Divider-lineColor': {
-                    xs: '#FFF',
-                    md: 'var(--joy-palette-divider)',
-                  },
                 },
               })}
             >
               or
             </Divider>
-            <Stack gap={4} sx={{ mt: 2 }}>
+            <Stack sx={{ gap: 4, mt: 2 }}>
               <form
                 onSubmit={(event: React.FormEvent<SignInFormElement>) => {
                   event.preventDefault();
@@ -194,7 +176,7 @@ export default function JoySignInSideTemplate() {
                   <FormLabel>Password</FormLabel>
                   <Input type="password" name="password" />
                 </FormControl>
-                <Stack gap={4} sx={{ mt: 2 }}>
+                <Stack sx={{ gap: 4, mt: 2 }}>
                   <Box
                     sx={{
                       display: 'flex',
@@ -215,7 +197,7 @@ export default function JoySignInSideTemplate() {
             </Stack>
           </Box>
           <Box component="footer" sx={{ py: 3 }}>
-            <Typography level="body-xs" textAlign="center">
+            <Typography level="body-xs" sx={{ textAlign: 'center' }}>
               © Your company {new Date().getFullYear()}
             </Typography>
           </Box>
@@ -228,7 +210,7 @@ export default function JoySignInSideTemplate() {
           right: 0,
           top: 0,
           bottom: 0,
-          left: 'clamp(0px, (100vw - var(--Collapsed-breakpoint)) * 999, 100vw - var(--Cover-width))',
+          left: { xs: 0, md: '50vw' },
           transition:
             'background-image var(--Transition-duration), left var(--Transition-duration) !important',
           transitionDelay: 'calc(var(--Transition-duration) + 0.1s)',

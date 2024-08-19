@@ -10,13 +10,11 @@ title: Overview
 
 Material UI is an open-source React component library that implements Google's [Material Design](https://m2.material.io/).
 
-It includes a comprehensive collection of prebuilt components that are ready for use in production right out of the box.
-
-Material UI is beautiful by design and features a suite of customization options that make it easy to implement your own custom design system on top of our components.
+It includes a comprehensive collection of prebuilt components that are ready for use in production right out of the box, and features a suite of customization options that make it easy to implement your own custom design system on top of our components.
 
 :::info
-Material UI v5 supports Material Design v2.
-Adoption of v3 is tentatively planned for Material UI v6—see [the release schedule](https://mui.com/versions/#release-schedule).
+Material UI v5 supports Material Design 2.
+Adoption of Material Design 3 is tentatively planned for Material UI v7—see [the announcement blog post](/blog/2023-material-ui-v6-and-beyond/) for more details.
 You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/29345) for future updates.
 :::
 
@@ -31,12 +29,18 @@ You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/293
   The [design kits](https://mui.com/design-kits/) streamline your workflow and boost consistency between designers and developers.
 - **Trusted by thousands of organizations:** Material UI has the largest UI community in the React ecosystem.
   It's almost as old as React itself—its history stretches back to 2014—and we're in this for the long haul.
-  You can count on the community's support for years to come (e.g. [Stack Overflow](https://insights.stackoverflow.com/trends?tags=material-ui)).
+  You can count on the community's support for years to come (for example [Stack Overflow](https://trends.stackoverflow.co/?tags=material-ui)).
 
-## Material UI vs. Base UI
+### Material UI vs. Base UI
 
 Material UI and [Base UI](/base-ui/) feature many of the same UI components, but Base UI comes without any default styles or styling solutions.
 
 Material UI is _comprehensive_ in that it comes packaged with default styles, and is optimized to work with [Emotion](https://emotion.sh/docs/introduction) (or [styled-components](https://styled-components.com/)).
 
 Base UI, by contrast, could be considered the "skeletal" or "headless" counterpart to Material UI—in fact, future versions of Material UI will use Base UI components and hooks for its foundational structure.
+
+## Start now
+
+Get started with Material UI today through some of these useful resources:
+
+{{"component": "modules/components/MaterialStartingLinksCollection.js"}}

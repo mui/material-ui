@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getAccordionDetailsUtilityClass } from './accordionDetailsClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -26,7 +26,7 @@ const AccordionDetailsRoot = styled('div', {
 }));
 
 const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAccordionDetails' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiAccordionDetails' });
   const { className, ...other } = props;
   const ownerState = props;
   const classes = useUtilityClasses(ownerState);

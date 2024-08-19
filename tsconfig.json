@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "module": "esnext",
-    "target": "es5",
+    // aligning with Node18 recommendation: https://www.npmjs.com/package/@tsconfig/node18
+    "target": "es2022",
     "lib": ["es2020", "dom"],
     "jsx": "preserve",
     "moduleResolution": "node",
@@ -18,8 +19,8 @@
       "@mui/material/*": ["./packages/mui-material/src/*"],
       "@mui/lab": ["./packages/mui-lab/src"],
       "@mui/lab/*": ["./packages/mui-lab/src/*"],
-      "@mui/markdown": ["./packages/markdown"],
-      "@mui/markdown/*": ["./packages/markdown/*"],
+      "@mui/internal-markdown": ["./packages/markdown"],
+      "@mui/internal-markdown/*": ["./packages/markdown/*"],
       "@mui/styled-engine": ["./packages/mui-styled-engine/src"],
       "@mui/styled-engine/*": ["./packages/mui-styled-engine/src/*"],
       "@mui/styled-engine-sc": ["./packages/mui-styled-engine-sc/src"],
@@ -37,24 +38,18 @@
       "@mui/utils/*": ["./packages/mui-utils/src/*"],
       "@mui/docs": ["./packages/mui-docs/src"],
       "@mui/docs/*": ["./packages/mui-docs/src/*"],
-      "@mui/material-next": ["./packages/mui-material-next/src"],
-      "@mui/material-next/*": ["./packages/mui-material-next/src/*"],
       "@mui/material-nextjs": ["./packages/mui-material-nextjs/src"],
       "@mui/material-nextjs/*": ["./packages/mui-material-nextjs/src/*"],
       "@mui/joy": ["./packages/mui-joy/src"],
       "@mui/joy/*": ["./packages/mui-joy/src/*"],
-      "@mui/icons-material": ["./packages/mui-icons-material/lib"],
-      "@mui/icons-material/*": ["./packages/mui-icons-material/lib/*"],
-      "@mui/zero-next-plugin": ["./packages/zero-next-plugin/src"],
-      "@mui/zero-next-plugin/*": ["./packages/zero-next-plugin/src/*"],
-      "@mui/zero-runtime": ["./packages/zero-runtime/src"],
-      "@mui/zero-runtime/*": ["./packages/zero-runtime/src/*"],
-      "@mui/zero-tag-processor": ["./packages/zero-tag-processor/src"],
-      "@mui/zero-tag-processor/*": ["./packages/zero-tag-processor/src/*"],
-      "@mui/zero-vite-plugin": ["./packages/zero-vite-plugin/src"],
-      "@mui/zero-vite-plugin/*": ["./packages/zero-vite-plugin/src/*"],
-      "@mui-internal/docs-utils": ["./packages/docs-utils/src"],
-      "@mui-internal/typescript-to-proptypes": ["./packages/typescript-to-proptypes/src"]
+      "@mui/icons-material": ["./packages/mui-icons-material/lib/esm/index.js"],
+      "@mui/icons-material/*": ["./packages/mui-icons-material/src/icon.d.ts"],
+      "@mui/internal-docs-utils": ["./packages-internal/docs-utils/src"],
+      "@mui/internal-scripts/typescript-to-proptypes": [
+        "./packages-internal/scripts/typescript-to-proptypes/src"
+      ],
+      "@mui/internal-test-utils": ["./packages-internal/test-utils/src"],
+      "@mui/internal-test-utils/*": ["./packages-internal/test-utils/src/*"]
     },
     // Otherwise we get react-native typings which conflict with dom.lib.
     "types": ["node", "react"]

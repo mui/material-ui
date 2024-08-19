@@ -28,7 +28,7 @@
       "description": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
     },
     "TransitionProps": {
-      "description": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
+      "description": "Props applied to the transition element. By default, the element is based on this <a href=\"https://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
     }
   },
   "classDescriptions": {
@@ -60,6 +60,7 @@
     }
   },
   "slotDescriptions": {
+    "heading": "The component that renders the heading.",
     "transition": "The component that renders the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
   }
 }

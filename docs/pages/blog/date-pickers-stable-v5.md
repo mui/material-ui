@@ -3,8 +3,8 @@ title: The MUI X Date and Time Pickers get a stable v5 release
 description: Migrate to the latest version for improved DX, customizability, and API consistency.
 date: 2022-09-19T00:00:00.000Z
 authors: ['alexfauquette', 'josefreitas']
-tags: ['MUI X', 'News']
-card: true
+tags: ['MUI X', 'Product']
+manualCard: true
 ---
 
 About four months ago, we moved the date and time pickers from `@mui/lab` and released the first alpha version of the date pickers package.

@@ -2,17 +2,13 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import {
-  describeConformanceUnstyled,
-  fireEvent,
-  createRenderer,
-  createMount,
-} from '@mui-internal/test-utils';
+import { fireEvent, createRenderer } from '@mui/internal-test-utils';
 import {
   TablePagination,
   tablePaginationClasses as classes,
   LabelDisplayedRowsArgs,
 } from '@mui/base/TablePagination';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 interface WithClassName {
   className: string;
@@ -21,7 +17,6 @@ interface WithClassName {
 describe('<TablePagination />', () => {
   const noop = () => {};
   const { render } = createRenderer();
-  const mount = createMount();
 
   const CustomRootComponent = React.forwardRef(
     ({ className }: WithClassName, ref: React.Ref<any>) => (
@@ -45,16 +40,6 @@ describe('<TablePagination />', () => {
           container: container?.firstChild?.firstChild?.firstChild as HTMLElement,
           ...other,
         };
-      },
-      mount: (node: any) => {
-        const wrapper = mount(
-          <table>
-            <tbody>
-              <tr>{node}</tr>
-            </tbody>
-          </table>,
-        );
-        return wrapper.find('tr').childAt(0);
       },
       refInstanceof: window.HTMLTableCellElement,
       testComponentPropWith: 'th',

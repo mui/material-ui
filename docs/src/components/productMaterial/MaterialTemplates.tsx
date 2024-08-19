@@ -15,8 +15,7 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
-import Frame from 'docs/src/components/action/Frame';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import More from 'docs/src/components/action/More';
 
 export const DEMOS = ['Dashboard', 'Landing Pages', 'E-commerce'];
@@ -31,6 +30,7 @@ export const TEMPLATES = {
   [DEMOS[0]]: [
     {
       name: 'Devias Kit Pro - Client & Admin Dashboard',
+      author: 'Devias',
       src: {
         light: '/static/branding/store-templates/template-4light.jpg',
         dark: '/static/branding/store-templates/template-4dark.jpg',
@@ -39,6 +39,7 @@ export const TEMPLATES = {
     },
     {
       name: 'Minimal - Client & Admin Dashboard',
+      author: 'Minimal',
       src: {
         light: '/static/branding/store-templates/template-1light.jpg',
         dark: '/static/branding/store-templates/template-1dark.jpg',
@@ -47,6 +48,7 @@ export const TEMPLATES = {
     },
     {
       name: 'Berry - React Material Admin Dashboard Template',
+      author: 'CodedThemes',
       src: {
         light: '/static/branding/store-templates/template-5light.jpg',
         dark: '/static/branding/store-templates/template-5dark.jpg',
@@ -55,6 +57,7 @@ export const TEMPLATES = {
     },
     {
       name: 'Mira Pro - React Material Admin Dashboard',
+      author: 'Bootlab',
       src: {
         light: '/static/branding/store-templates/template-3light.jpg',
         dark: '/static/branding/store-templates/template-3dark.jpg',
@@ -65,6 +68,7 @@ export const TEMPLATES = {
   [DEMOS[1]]: [
     {
       name: 'theFront - Multipurpose Template + UI Kit',
+      author: 'Maccarian',
       src: {
         light: '/static/branding/store-templates/template-2light.jpg',
         dark: '/static/branding/store-templates/template-2dark.jpg',
@@ -72,7 +76,8 @@ export const TEMPLATES = {
       href: 'https://mui.com/store/items/the-front-landing-page/',
     },
     {
-      name: 'Webbee - Multipurpose landing page UI Kit',
+      name: 'Webbee Multipurpose Landing Page UI Kit',
+      author: 'Maccarian',
       src: {
         light: '/static/branding/store-templates/template-6light.jpg',
         dark: '/static/branding/store-templates/template-6dark.jpg',
@@ -82,7 +87,8 @@ export const TEMPLATES = {
   ],
   [DEMOS[2]]: [
     {
-      name: 'Bazar Pro - Multipurpose React Ecommerce Template',
+      name: 'Bazaar Pro - Multipurpose React Ecommerce Template',
+      author: 'UI Lib',
       src: {
         light: '/static/branding/store-templates/template-bazar-light.jpg',
         dark: '/static/branding/store-templates/template-bazar-dark.jpg',
@@ -98,16 +104,18 @@ function ActionArea(props: ButtonBaseProps) {
       {...props}
       sx={[
         (theme) => ({
-          width: { xs: 70, sm: 100 },
-          height: { xs: 70, sm: 100 },
+          width: { xs: 70, sm: 48 },
+          height: { xs: 70, sm: 48 },
           position: 'absolute',
           top: 'calc(50% - 50px)',
           p: 1.5,
-          color: '#FFF',
+          color: (theme.vars || theme).palette.primary[500],
+          bgcolor: '#FFF',
+          border: '1px solid',
+          borderColor: (theme.vars || theme).palette.primary[200],
           borderRadius: '50%',
+          boxShadow: `0 4px 12px ${alpha(theme.palette.grey[500], 0.2)}`,
           transition: '0.2s',
-          backdropFilter: 'blur(4px)',
-          bgcolor: alpha(theme.palette.primary[500], 0.5),
           '& > svg': { transition: '0.2s' },
           '&.Mui-disabled': {
             opacity: 0,
@@ -115,6 +123,12 @@ function ActionArea(props: ButtonBaseProps) {
           '&:hover, &:focus': {
             '& > svg': { fontSize: 28 },
           },
+          ...theme.applyDarkStyles({
+            bgcolor: (theme.vars || theme).palette.primaryDark[900],
+            borderColor: (theme.vars || theme).palette.primary[900],
+            color: (theme.vars || theme).palette.primary[300],
+            boxShadow: `0 4px 12px ${alpha(theme.palette.common.black, 0.2)}`,
+          }),
         }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
       ]}
@@ -138,9 +152,9 @@ export default function MaterialTemplates() {
             <br /> <GradientText>specific use case</GradientText>
           </Typography>
         }
-        description="A carefully curated collection of gorgeous, fully functional templates, all powered by Material UI."
+        description="A carefully curated collection of gorgeous, fully functional templates."
       />
-      <Group rowLayout desktopColumns={2} sx={{ mt: 3 }}>
+      <Group rowLayout desktopColumns={2} sx={{ p: 2 }}>
         {DEMOS.map((name) => (
           <Highlighter
             key={name}
@@ -153,6 +167,7 @@ export default function MaterialTemplates() {
             <Item
               icon={React.cloneElement(icons[name], name === demo ? { color: 'primary' } : {})}
               title={name}
+              smallerIconDistance
             />
           </Highlighter>
         ))}
@@ -162,147 +177,156 @@ export default function MaterialTemplates() {
           noLinkStyle
         />
       </Group>
-      <Frame sx={{ mt: 3 }}>
-        <Frame.Demo sx={{ minHeight: { xs: 240, sm: 320 }, height: { xs: 260, sm: 400, md: 500 } }}>
-          <Box
-            sx={{
-              overflow: 'hidden',
-              position: 'absolute',
-              left: 0,
-              right: 0,
-              top: '50%',
-              py: 2,
-              transform: 'translate(0px, -50%)',
-              '& > div': { px: '12%', overflow: 'unset !important' },
-              '& .react-swipeable-view-container > div': {
-                overflow: 'unset !important',
-              },
+      <Box
+        sx={{
+          position: 'relative',
+          mt: 3,
+          minHeight: { xs: 240, sm: 320 },
+          height: { xs: 260, sm: 400, md: 500 },
+          mx: { xs: -2, sm: 0 },
+        }}
+      >
+        <Box
+          sx={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            top: '50%',
+            py: 2,
+            transform: 'translate(0px, -50%)',
+            '& > div': { px: '12%', overflow: 'unset !important' },
+            '& .react-swipeable-view-container > div': {
+              overflow: 'unset !important',
+            },
+          }}
+        >
+          <SwipeableViews
+            springConfig={{
+              duration: '0.6s',
+              delay: '0s',
+              easeFunction: 'cubic-bezier(0.15, 0.3, 0.25, 1)',
             }}
+            index={templateIndex}
+            resistance
+            enableMouseEvents
+            onChangeIndex={(index) => setTemplateIndex(index)}
           >
-            <SwipeableViews
-              springConfig={{
-                duration: '0.6s',
-                delay: '0s',
-                easeFunction: 'cubic-bezier(0.15, 0.3, 0.25, 1)',
-              }}
-              index={templateIndex}
-              resistance
-              enableMouseEvents
-              onChangeIndex={(index) => setTemplateIndex(index)}
-            >
-              {templates.map((item, index) => (
-                <Box
-                  key={item.name}
-                  sx={(theme) => ({
-                    overflow: 'auto',
-                    borderRadius: 1,
-                    height: { xs: 220, sm: 320, md: 450 },
-                    backgroundImage: `url(${item.src.light})`,
-                    backgroundSize: 'cover',
-                    backgroundRepeat: 'no-repeat',
-                    border: '1px solid',
-                    borderColor: templateIndex === index ? 'primary.100' : 'divider',
-                    boxShadow: `0px 2px 12px ${alpha(theme.palette.primary[200], 0.3)}`,
-                    transition: '0.6s cubic-bezier(0.15, 0.3, 0.25, 1)',
-                    transform: templateIndex !== index ? 'scale(0.92)' : 'scale(1)',
-                    ...theme.applyDarkStyles({
-                      backgroundImage: `url(${item.src.dark})`,
-                      borderColor: templateIndex === index ? 'primary.800' : 'divider',
-                      boxShadow: `0px 2px 12px ${alpha(theme.palette.primary[900], 0.5)}`,
+            {templates.map((item, index) => (
+              <Box
+                key={item.name}
+                sx={(theme) => ({
+                  overflow: 'auto',
+                  borderRadius: 1,
+                  height: { xs: 220, sm: 320, md: 500 },
+                  backgroundImage: `url(${item.src.light})`,
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'no-repeat',
+                  border: '1px solid',
+                  borderColor: templateIndex === index ? 'primary.100' : 'divider',
+                  boxShadow:
+                    templateIndex === index
+                      ? `0px 2px 12px ${alpha(theme.palette.primary[200], 0.3)}`
+                      : undefined,
+                  transition: '0.6s cubic-bezier(0.15, 0.3, 0.25, 1)',
+                  transform: templateIndex !== index ? 'scale(0.92)' : 'scale(1)',
+                  opacity: templateIndex === index ? 1 : 0.2,
+                  ...theme.applyDarkStyles({
+                    backgroundImage: `url(${item.src.dark})`,
+                    borderColor: templateIndex === index ? 'primary.900' : 'divider',
+                    boxShadow:
+                      templateIndex === index
+                        ? `0px 2px 8px ${alpha(theme.palette.primary[900], 0.4)}`
+                        : undefined,
+                  }),
+                })}
+              >
+                <Link
+                  href={`${item.href}?utm_source=marketing&utm_medium=referral&utm_campaign=templates-cta2`}
+                  noLinkStyle
+                  target="_blank"
+                  sx={[
+                    (theme) => ({
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexDirection: 'column',
+                      gap: 1,
+                      transition: '0.2s',
+                      position: 'absolute',
+                      width: '100%',
+                      height: '100%',
+                      opacity: 0,
+                      top: 0,
+                      left: 0,
+                      bgcolor: alpha(theme.palette.primary[50], 0.6),
+                      backdropFilter: 'blur(4px)',
+                      textDecoration: 'none',
+                      '&:hover, &:focus': {
+                        opacity: 1,
+                      },
+                      ...theme.applyDarkStyles({
+                        bgcolor: alpha(theme.palette.primaryDark[900], 0.6),
+                      }),
                     }),
-                  })}
+                  ]}
                 >
-                  <Link
-                    href={`${item.href}?utm_source=marketing&utm_medium=referral&utm_campaign=templates-cta2`}
-                    noLinkStyle
-                    target="_blank"
+                  <Typography
+                    variant="body2"
+                    sx={{ color: 'text.tertiary', fontWeight: 'semiBold', textAlign: 'center' }}
+                  >
+                    Developed by {templates[templateIndex].author}
+                  </Typography>
+                  <Typography
+                    component="p"
+                    variant="h6"
+                    sx={{ fontWeight: 'semiBold', textAlign: 'center', color: 'text.primary' }}
+                  >
+                    {templates[templateIndex].name}
+                  </Typography>
+                  <Box
                     sx={[
                       (theme) => ({
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'center',
-                        flexDirection: 'column',
-                        gap: 1,
-                        transition: '0.2s',
-                        position: 'absolute',
-                        width: '100%',
-                        height: '100%',
-                        opacity: 0,
-                        top: 0,
-                        left: 0,
-                        bgcolor: alpha(theme.palette.primary[50], 0.6),
-                        backdropFilter: 'blur(4px)',
-                        textDecoration: 'none',
-                        '&:hover, &:focus': {
-                          opacity: 1,
-                        },
+                        gap: 0.5,
+                        color: 'primary.500',
                         ...theme.applyDarkStyles({
-                          bgcolor: alpha(theme.palette.primaryDark[900], 0.6),
+                          color: 'primary.200',
                         }),
                       }),
                     ]}
                   >
-                    <Typography
-                      component="p"
-                      variant="h6"
-                      fontWeight="bold"
-                      textAlign="center"
-                      sx={[
-                        (theme) => ({
-                          color: 'text.primary',
-                          ...theme.applyDarkStyles({
-                            color: '#FFF',
-                          }),
-                        }),
-                      ]}
-                    >
-                      {templates[templateIndex].name}
-                    </Typography>
-                    <Box
-                      sx={[
-                        (theme) => ({
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: 0.5,
-                          color: 'primary.500',
-                          ...theme.applyDarkStyles({
-                            color: 'primary.100',
-                          }),
-                        }),
-                      ]}
-                    >
-                      <Typography fontWeight="bold">Buy now</Typography>
-                      <LaunchRounded fontSize="small" />
-                    </Box>
-                  </Link>
-                </Box>
-              ))}
-            </SwipeableViews>
-            {templates.length > 1 && (
-              <React.Fragment>
-                <ActionArea
-                  aria-label="Previous template"
-                  disabled={templateIndex === 0}
-                  onClick={() => setTemplateIndex((current) => Math.max(0, current - 1))}
-                  sx={{ left: 0, transform: 'translate(-50%)', justifyContent: 'flex-end' }}
-                >
-                  <KeyboardArrowLeftRounded />
-                </ActionArea>
-                <ActionArea
-                  aria-label="Next template"
-                  disabled={templateIndex === templates.length - 1}
-                  onClick={() =>
-                    setTemplateIndex((current) => Math.min(templates.length - 1, current + 1))
-                  }
-                  sx={{ right: 0, transform: 'translate(50%)', justifyContent: 'flex-start' }}
-                >
-                  <KeyboardArrowRightRounded />
-                </ActionArea>
-              </React.Fragment>
-            )}
-          </Box>
-        </Frame.Demo>
-      </Frame>
+                    <Typography sx={{ fontWeight: 'bold' }}>Buy now</Typography>
+                    <LaunchRounded fontSize="small" />
+                  </Box>
+                </Link>
+              </Box>
+            ))}
+          </SwipeableViews>
+          {templates.length > 1 && (
+            <React.Fragment>
+              <ActionArea
+                aria-label="Previous template"
+                disabled={templateIndex === 0}
+                onClick={() => setTemplateIndex((current) => Math.max(0, current - 1))}
+                sx={{ left: 0, transform: 'translate(-50%)', justifyContent: 'flex-end' }}
+              >
+                <KeyboardArrowLeftRounded />
+              </ActionArea>
+              <ActionArea
+                aria-label="Next template"
+                disabled={templateIndex === templates.length - 1}
+                onClick={() =>
+                  setTemplateIndex((current) => Math.min(templates.length - 1, current + 1))
+                }
+                sx={{ right: 0, transform: 'translate(50%)', justifyContent: 'flex-start' }}
+              >
+                <KeyboardArrowRightRounded />
+              </ActionArea>
+            </React.Fragment>
+          )}
+        </Box>
+      </Box>
     </Section>
   );
 }

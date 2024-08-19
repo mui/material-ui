@@ -3,6 +3,7 @@
   "propDescriptions": {
     "children": { "description": "The content of the component." },
     "classes": { "description": "Override or extend the styles applied to the component." },
+    "keepMounted": { "description": "Always keep the children in the DOM." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
@@ -10,5 +11,12 @@
       "description": "The <code>value</code> of the corresponding <code>Tab</code>. Must use the index of the <code>Tab</code> when no <code>value</code> was passed to <code>Tab</code>."
     }
   },
-  "classDescriptions": { "root": { "description": "Styles applied to the root element." } }
+  "classDescriptions": {
+    "hidden": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root <code>div</code> element",
+      "conditions": "<code>hidden={true}</code>"
+    },
+    "root": { "description": "Styles applied to the root element." }
+  }
 }

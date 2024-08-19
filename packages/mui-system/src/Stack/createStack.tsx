@@ -2,11 +2,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
-import {
-  deepmerge,
-  unstable_composeClasses as composeClasses,
-  unstable_generateUtilityClass as generateUtilityClass,
-} from '@mui/utils';
+import deepmerge from '@mui/utils/deepmerge';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
+import composeClasses from '@mui/utils/composeClasses';
 import systemStyled from '../styled';
 import useThemePropsSystem from '../useThemeProps';
 import { extendSxProp } from '../styleFunctionSx';
@@ -14,7 +12,7 @@ import createTheme from '../createTheme';
 import { CreateMUIStyled } from '../createStyled';
 import { StackTypeMap, StackOwnerState } from './StackProps';
 import type { Breakpoint } from '../createTheme';
-import { Breakpoints } from '../createTheme/createBreakpoints';
+import { Breakpoints } from '../createBreakpoints/createBreakpoints';
 import {
   handleBreakpoints,
   mergeBreakpointsInOrder,
@@ -52,7 +50,7 @@ function useThemePropsDefault<T extends {}>(props: T) {
  * > joinChildren([1,2,3], 0)
  * [1,0,2,0,3]
  */
-function joinChildren(children: React.ReactNode, separator: React.ReactElement) {
+function joinChildren(children: React.ReactNode, separator: React.ReactElement<any>) {
   const childrenArray = React.Children.toArray(children).filter(Boolean);
 
   return childrenArray.reduce<React.ReactNode[]>((output, child, index) => {
@@ -211,7 +209,7 @@ export default function createStack(
         className={clsx(classes.root, className)}
         {...other}
       >
-        {divider ? joinChildren(children, divider as React.ReactElement) : children}
+        {divider ? joinChildren(children, divider as React.ReactElement<any>) : children}
       </StackRoot>
     );
   }) as OverridableComponent<StackTypeMap>;

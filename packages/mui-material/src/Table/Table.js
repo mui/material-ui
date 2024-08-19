@@ -2,10 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import TableContext from './TableContext';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getTableUtilityClass } from './tableClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -26,7 +26,7 @@ const TableRoot = styled('table', {
 
     return [styles.root, ownerState.stickyHeader && styles.stickyHeader];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   display: 'table',
   width: '100%',
   borderCollapse: 'collapse',
@@ -38,15 +38,20 @@ const TableRoot = styled('table', {
     textAlign: 'left',
     captionSide: 'bottom',
   },
-  ...(ownerState.stickyHeader && {
-    borderCollapse: 'separate',
-  }),
+  variants: [
+    {
+      props: ({ ownerState }) => ownerState.stickyHeader,
+      style: {
+        borderCollapse: 'separate',
+      },
+    },
+  ],
 }));
 
 const defaultComponent = 'table';
 
 const Table = React.forwardRef(function Table(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTable' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTable' });
   const {
     className,
     component = defaultComponent,
@@ -122,8 +127,6 @@ Table.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Set the header sticky.
-   *
-   * ⚠️ It doesn't work with IE11.
    * @default false
    */
   stickyHeader: PropTypes.bool,

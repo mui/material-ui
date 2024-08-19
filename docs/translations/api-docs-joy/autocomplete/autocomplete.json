@@ -108,7 +108,7 @@
       "description": "The maximum number of tags that will be visible when not focused. Set <code>-1</code> to disable the limit."
     },
     "loading": {
-      "description": "If <code>true</code>, the component is in a loading state. This shows the <code>loadingText</code> in place of suggestions (only if there are no suggestions to show, e.g. <code>options</code> are empty)."
+      "description": "If <code>true</code>, the component is in a loading state. This shows the <code>loadingText</code> in place of suggestions (only if there are no suggestions to show, for example <code>options</code> are empty)."
     },
     "loadingText": {
       "description": "Text to display when in a loading state.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>."
@@ -148,7 +148,7 @@
       "typeDescriptions": {
         "event": "The event source of the callback.",
         "value": "The new value of the text input.",
-        "reason": "Can be: <code>&quot;input&quot;</code> (user input), <code>&quot;reset&quot;</code> (programmatic change), <code>&quot;clear&quot;</code>."
+        "reason": "Can be: <code>&quot;input&quot;</code> (user input), <code>&quot;reset&quot;</code> (programmatic change), <code>&quot;clear&quot;</code>, <code>&quot;blur&quot;</code>, <code>&quot;selectOption&quot;</code>, <code>&quot;removeOption&quot;</code>"
       }
     },
     "onOpen": {

@@ -10,7 +10,7 @@ import SaveIcon from '@mui/icons-material/Save';
 export default function CircularIntegration() {
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
-  const timer = React.useRef();
+  const timer = React.useRef(undefined);
 
   const buttonSx = {
     ...(success && {
@@ -31,7 +31,7 @@ export default function CircularIntegration() {
     if (!loading) {
       setSuccess(false);
       setLoading(true);
-      timer.current = window.setTimeout(() => {
+      timer.current = setTimeout(() => {
         setSuccess(true);
         setLoading(false);
       }, 2000);

@@ -9,7 +9,7 @@ githubLabel: 'component: breadcrumbs'
 
 <p class="description">A breadcrumb trail is a navigational tool that helps users keep track of their location within an app.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -58,7 +58,7 @@ import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 ```
 
-The Breadcrumbs component doesn't accept common Joy UI style props like `variant`, `color`, `startDecorator`, or `endDecorator`—but [Link](/joy-ui/react-link/) and [Typography](/joy-ui/react-typography/) do.
+The Breadcrumbs component doesn't accept common Joy UI style props like `variant`, `color`, `startDecorator`, or `endDecorator`—but [Link](/joy-ui/react-link/) and [Typography](/joy-ui/react-typography/) do.
 As such, most custom styles that affect the content should be applied directly to those components rather than Breadcrumbs.
 
 The demo below shows how to add an icon to the Link with `startDecorator` and change the color with the `color` prop:
@@ -93,11 +93,9 @@ As an alternative to the behavior of the condensed demo above, consider adding a
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/)
-
 Be sure to add an informative `aria-label` description to the Breadcrumbs component.
 
-The following features are included to optimize the component's baseline accessibility:
+The following features, which follows [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/), are included to optimize the component's baseline accessibility:
 
 - The set of links is structured using an ordered list (`<ol>`).
 - Visual separators between links are hidden with `aria-hidden` to prevent screen readers from announcing them.

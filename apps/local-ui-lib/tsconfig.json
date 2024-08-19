@@ -1,8 +1,0 @@
-{
-  "extends": "../../tsconfig.json",
-  "references": [
-    {
-      "path": "../../packages/zero-runtime"
-    }
-  ]
-}

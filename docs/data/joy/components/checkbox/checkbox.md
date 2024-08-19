@@ -10,14 +10,14 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
 
 <p class="description">Checkboxes give users binary choices when presented with multiple options in a series.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
 Checkboxes provide users with a graphical representation of a binary choice (yes or no, on or off).
 They are most commonly presented in a series, giving the user multiple choices to make.
 
-The Joy UI Checkbox component replaces the native HTML `<input type="checkbox">` element and offers expanded options for styling and accessibility.
+The Joy UI Checkbox component replaces the native HTML `<input type="checkbox">` element and offers expanded options for styling and accessibility.
 
 {{"demo": "CheckboxUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
@@ -44,7 +44,7 @@ Use the `label` prop to provide text, and add `defaultChecked` when the input sh
 
 ### Variants
 
-The Checkbox component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft`, `outlined`, and `plain`. By default, when unchecked, the Checkbox is set to `outlined`;
+The Checkbox component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft`, `outlined`, and `plain`. By default, when unchecked, the Checkbox is set to `outlined`;
 when checked, the variant changes to `solid`.
 
 Adding the `variant` prop to your Checkbox overrides this default behavior. Try checking and unchecking the Checkboxes in the demo below to see the differences:

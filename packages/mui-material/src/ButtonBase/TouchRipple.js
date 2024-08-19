@@ -3,10 +3,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { TransitionGroup } from 'react-transition-group';
 import clsx from 'clsx';
-import { keyframes } from '@mui/system';
-import { unstable_useTimeout as useTimeout } from '@mui/utils';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import useTimeout from '@mui/utils/useTimeout';
+import { keyframes, styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Ripple from './Ripple';
 import touchRippleClasses from './touchRippleClasses';
 
@@ -120,7 +119,7 @@ export const TouchRippleRipple = styled(Ripple, {
  * TODO v5: Make private
  */
 const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTouchRipple' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTouchRipple' });
 
   const { center: centerProp = false, classes = {}, className, ...other } = props;
   const [ripples, setRipples] = React.useState([]);
@@ -316,7 +315,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
   );
 });
 
-TouchRipple.propTypes = {
+TouchRipple.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the ripple starts at the center of the component
    * rather than at the point of interaction.
@@ -324,7 +323,6 @@ TouchRipple.propTypes = {
   center: PropTypes.bool,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
   /**

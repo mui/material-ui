@@ -5,17 +5,18 @@ import * as fs from 'fs';
 // @ts-ignore
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { createRequire } from 'module';
-import withDocsInfra from './nextConfigDocsInfra.js';
 import { findPages } from './src/modules/utils/find.mjs';
-import {
+
+const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
+const require = createRequire(import.meta.url);
+
+const withDocsInfra = require('./nextConfigDocsInfra.js');
+const {
   LANGUAGES,
   LANGUAGES_SSR,
   LANGUAGES_IGNORE_PAGES,
   LANGUAGES_IN_PROGRESS,
-} from './config.js';
-
-const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
-const require = createRequire(import.meta.url);
+} = require('./config.js');
 
 const workspaceRoot = path.join(currentDirectory, '../');
 
@@ -71,6 +72,7 @@ export default withDocsInfra({
             '@mui/x-charts',
             '@mui/x-tree-view',
             '@mui/x-license-pro',
+            '@toolpad/core',
           ].some((dep) => request.startsWith(dep));
 
           if (hasDependencyOnRepoPackages) {
@@ -97,9 +99,15 @@ export default withDocsInfra({
           ...config.resolve.alias,
 
           // for 3rd party packages with dependencies in this repository
+          '@mui/material$': path.resolve(workspaceRoot, 'packages/mui-material/src/index.js'),
           '@mui/material': path.resolve(workspaceRoot, 'packages/mui-material/src'),
+
           '@mui/docs': path.resolve(workspaceRoot, 'packages/mui-docs/src'),
-          '@mui/icons-material': path.resolve(workspaceRoot, 'packages/mui-icons-material/lib'),
+          '@mui/icons-material$': path.resolve(
+            workspaceRoot,
+            'packages/mui-icons-material/lib/esm/index.js',
+          ),
+          '@mui/icons-material': path.resolve(workspaceRoot, 'packages/mui-icons-material/lib/esm'),
           '@mui/lab': path.resolve(workspaceRoot, 'packages/mui-lab/src'),
           '@mui/styled-engine': path.resolve(workspaceRoot, 'packages/mui-styled-engine/src'),
           '@mui/styles': path.resolve(workspaceRoot, 'packages/mui-styles/src'),
@@ -107,7 +115,6 @@ export default withDocsInfra({
           '@mui/private-theming': path.resolve(workspaceRoot, 'packages/mui-private-theming/src'),
           '@mui/utils': path.resolve(workspaceRoot, 'packages/mui-utils/src'),
           '@mui/base': path.resolve(workspaceRoot, 'packages/mui-base/src'),
-          '@mui/material-next': path.resolve(workspaceRoot, 'packages/mui-material-next/src'),
           '@mui/material-nextjs': path.resolve(workspaceRoot, 'packages/mui-material-nextjs/src'),
           '@mui/joy': path.resolve(workspaceRoot, 'packages/mui-joy/src'),
         },
@@ -124,14 +131,33 @@ export default withDocsInfra({
             test: /\.md$/,
             oneOf: [
               {
-                resourceQuery: /@mui\/markdown/,
+                resourceQuery: /muiMarkdown/,
                 use: [
                   options.defaultLoaders.babel,
                   {
-                    loader: require.resolve('@mui/markdown/loader'),
+                    loader: require.resolve('@mui/internal-markdown/loader'),
                     options: {
+                      workspaceRoot,
                       ignoreLanguagePages: LANGUAGES_IGNORE_PAGES,
                       languagesInProgress: LANGUAGES_IN_PROGRESS,
+                      packages: [
+                        {
+                          productId: 'material-ui',
+                          paths: [
+                            path.join(workspaceRoot, 'packages/mui-base/src'),
+                            path.join(workspaceRoot, 'packages/mui-lab/src'),
+                            path.join(workspaceRoot, 'packages/mui-material/src'),
+                          ],
+                        },
+                        {
+                          productId: 'base-ui',
+                          paths: [path.join(workspaceRoot, 'packages/mui-base/src')],
+                        },
+                        {
+                          productId: 'joy-ui',
+                          paths: [path.join(workspaceRoot, 'packages/mui-joy/src')],
+                        },
+                      ],
                       env: {
                         SOURCE_CODE_REPO: options.config.env.SOURCE_CODE_REPO,
                         LIB_VERSION: options.config.env.LIB_VERSION,
@@ -166,7 +192,7 @@ export default withDocsInfra({
     // docs-infra
     LIB_VERSION: pkg.version,
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
-    SOURCE_GITHUB_BRANCH: 'master', // #default-branch-switch
+    SOURCE_GITHUB_BRANCH: 'next', // #default-branch-switch
     GITHUB_TEMPLATE_DOCS_FEEDBACK: '4.docs-feedback.yml',
     BUILD_ONLY_ENGLISH_LOCALE: String(buildOnlyEnglishLocale),
     // MUI Core related
@@ -233,7 +259,7 @@ export default withDocsInfra({
 
     return map;
   },
-  // Used to signal we run yarn build
+  // Used to signal we run pnpm build
   ...(process.env.NODE_ENV === 'production'
     ? {
         output: 'export',

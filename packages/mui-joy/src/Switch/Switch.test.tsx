@@ -1,14 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  describeConformance,
-  act,
-  createRenderer,
-  fireEvent,
-  screen,
-} from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Switch, { switchClasses as classes } from '@mui/joy/Switch';
 import { ThemeProvider } from '@mui/joy/styles';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Switch />', () => {
   const { render } = createRenderer();
@@ -72,28 +67,28 @@ describe('<Switch />', () => {
     expect(switchComponent.childNodes[0]).to.have.class(classes.track);
   });
 
-  it('renders a `role="checkbox"` with the Unchecked state by default', () => {
+  it('renders a `role="switch"` with the Off state by default', () => {
     const { getByRole } = render(<Switch />);
 
-    expect(getByRole('checkbox')).to.have.property('checked', false);
+    expect(getByRole('switch')).to.have.property('checked', false);
   });
 
-  it('renders a checkbox with the Checked state when checked', () => {
+  it('renders a switch with the Checked state when On', () => {
     const { getByRole } = render(<Switch defaultChecked />);
 
-    expect(getByRole('checkbox')).to.have.property('checked', true);
+    expect(getByRole('switch')).to.have.property('checked', true);
   });
 
   it('the switch can be disabled', () => {
     const { getByRole } = render(<Switch disabled />);
 
-    expect(getByRole('checkbox')).to.have.property('disabled', true);
+    expect(getByRole('switch')).to.have.property('disabled', true);
   });
 
   it('the switch can be readonly', () => {
     const { getByRole } = render(<Switch readOnly />);
 
-    expect(getByRole('checkbox')).to.have.property('readOnly', true);
+    expect(getByRole('switch')).to.have.property('readOnly', true);
   });
 
   it('the Checked state changes after change events', () => {
@@ -101,11 +96,11 @@ describe('<Switch />', () => {
 
     // how a user would trigger it
     act(() => {
-      getByRole('checkbox').click();
-      fireEvent.change(getByRole('checkbox'), { target: { checked: '' } });
+      getByRole('switch').click();
+      fireEvent.change(getByRole('switch'), { target: { checked: '' } });
     });
 
-    expect(getByRole('checkbox')).to.have.property('checked', false);
+    expect(getByRole('switch')).to.have.property('checked', false);
   });
 
   describe('decorator', () => {
@@ -130,8 +125,8 @@ describe('<Switch />', () => {
 
       // how a user would trigger it
       act(() => {
-        getByRole('checkbox').click();
-        fireEvent.change(getByRole('checkbox'), { target: { checked: '' } });
+        getByRole('switch').click();
+        fireEvent.change(getByRole('switch'), { target: { checked: '' } });
       });
 
       expect(getByText('On')).toBeVisible();
@@ -146,8 +141,8 @@ describe('<Switch />', () => {
 
       // how a user would trigger it
       act(() => {
-        getByRole('checkbox').click();
-        fireEvent.change(getByRole('checkbox'), { target: { checked: '' } });
+        getByRole('switch').click();
+        fireEvent.change(getByRole('switch'), { target: { checked: '' } });
       });
 
       expect(getByText('On')).toBeVisible();

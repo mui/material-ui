@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeContext } from '@mui/styled-engine';
 import * as material from '@mui/material';
 import * as joy from '@mui/joy';
-import * as md3 from '@mui/material-next';
 
 // simulate 3rd-party library like Theme-UI, Chakra-UI, or Mantine
 interface LibTheme {
@@ -63,29 +62,17 @@ const CustomMaterial = material.styled('div')(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
 }));
 
-const md3Theme = md3.extendTheme({
-  components: {
-    MuiButton: {
-      defaultProps: {
-        variant: 'outlined',
-      },
-      styleOverrides: {
-        root: ({ theme }) => ({
-          color: theme.vars.palette.error.dark,
-        }),
-      },
-    },
-  },
-});
-
 describe('Multiple nested theme providers', () => {
   const { render } = createRenderer();
   let originalMatchmedia: any;
   let storage: Record<string, string> = {};
   const createMatchMedia = (matches: boolean) => () => ({
     matches,
+    // Keep mocking legacy methods because @mui/material v5 still uses them
     addListener: () => {},
+    addEventListener: () => {},
     removeListener: () => {},
+    removeEventListener: () => {},
   });
 
   beforeEach(() => {
@@ -106,6 +93,7 @@ describe('Multiple nested theme providers', () => {
     storage = {};
     window.matchMedia = createMatchMedia(false) as unknown as typeof window.matchMedia;
   });
+
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
   });
@@ -137,33 +125,6 @@ describe('Multiple nested theme providers', () => {
     expect(getByText('Joy')).toHaveComputedStyle({ mixBlendMode: 'darken' });
     expect(getByText('Material')).to.have.class(material.buttonClasses.outlinedPrimary);
     expect(getByText('Material')).toHaveComputedStyle({ mixBlendMode: 'darken' });
-  });
-
-  it('MD3 + Joy UI', () => {
-    const { getByText } = render(
-      <md3.CssVarsProvider theme={md3Theme}>
-        <joy.CssVarsProvider theme={{ [joy.THEME_ID]: joyTheme }}>
-          <joy.Button
-            sx={(theme) => ({
-              // test `sx`
-              bgcolor: theme.vars.palette.neutral[100],
-            })}
-          >
-            Joy
-          </joy.Button>
-          <md3.Button
-            sx={(theme) => ({
-              bgcolor: theme.palette.secondary.light,
-            })}
-          >
-            MD3
-          </md3.Button>
-        </joy.CssVarsProvider>
-      </md3.CssVarsProvider>,
-    );
-    // these test if `useThemeProps` works with theme scoping
-    expect(getByText('Joy')).to.have.class(joy.buttonClasses.variantOutlined);
-    expect(getByText('MD3')).to.have.class(material.buttonClasses.outlined);
   });
 
   it('Material UI works with 3rd-party lib', () => {

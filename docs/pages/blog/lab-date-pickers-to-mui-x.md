@@ -3,8 +3,8 @@ title: Date and Time Pickers are moving to MUI X
 description: Migrate to the new package to start building with our powerful Date and Time Pickers, now part of MUI X. Previously released MIT components will stay MIT.
 date: 2022-04-03T00:00:00.000Z
 authors: ['flaviendelangle']
-tags: ['MUI X', 'News']
-card: true
+tags: ['MUI X', 'Product']
+manualCard: true
 ---
 
 After more than 18 months in the lab, the Date and Time Picker components have found a new home as part of MUI X.

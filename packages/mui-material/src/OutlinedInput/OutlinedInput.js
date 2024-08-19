@@ -1,20 +1,21 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import refType from '@mui/utils/refType';
+import composeClasses from '@mui/utils/composeClasses';
 import NotchedOutline from './NotchedOutline';
 import useFormControl from '../FormControl/useFormControl';
 import formControlState from '../FormControl/formControlState';
-import styled, { rootShouldForwardProp } from '../styles/styled';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import outlinedInputClasses, { getOutlinedInputUtilityClass } from './outlinedInputClasses';
 import InputBase, {
   rootOverridesResolver as inputBaseRootOverridesResolver,
   inputOverridesResolver as inputBaseInputOverridesResolver,
   InputBaseRoot,
-  InputBaseComponent as InputBaseInput,
+  InputBaseInput,
 } from '../InputBase/InputBase';
-import useThemeProps from '../styles/useThemeProps';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -38,7 +39,7 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
   name: 'MuiOutlinedInput',
   slot: 'Root',
   overridesResolver: inputBaseRootOverridesResolver,
-})(({ theme, ownerState }) => {
+})(({ theme }) => {
   const borderColor =
     theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
   return {
@@ -47,36 +48,64 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
     [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
       borderColor: (theme.vars || theme).palette.text.primary,
     },
-    // Reset on touch devices, it doesn't add specificity
-    '@media (hover: none)': {
-      [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
-        borderColor: theme.vars
-          ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
-          : borderColor,
-      },
-    },
     [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]: {
-      borderColor: (theme.vars || theme).palette[ownerState.color].main,
       borderWidth: 2,
     },
-    [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]: {
-      borderColor: (theme.vars || theme).palette.error.main,
-    },
-    [`&.${outlinedInputClasses.disabled} .${outlinedInputClasses.notchedOutline}`]: {
-      borderColor: (theme.vars || theme).palette.action.disabled,
-    },
-    ...(ownerState.startAdornment && {
-      paddingLeft: 14,
-    }),
-    ...(ownerState.endAdornment && {
-      paddingRight: 14,
-    }),
-    ...(ownerState.multiline && {
-      padding: '16.5px 14px',
-      ...(ownerState.size === 'small' && {
-        padding: '8.5px 14px',
-      }),
-    }),
+    variants: [
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value && value.main)
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]: {
+              borderColor: (theme.vars || theme).palette[color].main,
+            },
+          },
+        })),
+      {
+        props: {}, // to overide the above style
+        style: {
+          // Reset on touch devices, it doesn't add specificity
+          '@media (hover: none)': {
+            [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+              borderColor: theme.vars
+                ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+                : borderColor,
+            },
+          },
+          [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]: {
+            borderColor: (theme.vars || theme).palette.error.main,
+          },
+          [`&.${outlinedInputClasses.disabled} .${outlinedInputClasses.notchedOutline}`]: {
+            borderColor: (theme.vars || theme).palette.action.disabled,
+          },
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.startAdornment,
+        style: {
+          paddingLeft: 14,
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.endAdornment,
+        style: {
+          paddingRight: 14,
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.multiline,
+        style: {
+          padding: '16.5px 14px',
+        },
+      },
+      {
+        props: ({ ownerState, size }) => ownerState.multiline && size === 'small',
+        style: {
+          padding: '8.5px 14px',
+        },
+      },
+    ],
   };
 });
 
@@ -98,7 +127,7 @@ const OutlinedInputInput = styled(InputBaseInput, {
   name: 'MuiOutlinedInput',
   slot: 'Input',
   overridesResolver: inputBaseInputOverridesResolver,
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   padding: '16.5px 14px',
   ...(!theme.vars && {
     '&:-webkit-autofill': {
@@ -120,22 +149,38 @@ const OutlinedInputInput = styled(InputBaseInput, {
       },
     },
   }),
-  ...(ownerState.size === 'small' && {
-    padding: '8.5px 14px',
-  }),
-  ...(ownerState.multiline && {
-    padding: 0,
-  }),
-  ...(ownerState.startAdornment && {
-    paddingLeft: 0,
-  }),
-  ...(ownerState.endAdornment && {
-    paddingRight: 0,
-  }),
+  variants: [
+    {
+      props: {
+        size: 'small',
+      },
+      style: {
+        padding: '8.5px 14px',
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.multiline,
+      style: {
+        padding: 0,
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.startAdornment,
+      style: {
+        paddingLeft: 0,
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.endAdornment,
+      style: {
+        paddingRight: 0,
+      },
+    },
+  ],
 }));
 
 const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiOutlinedInput' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiOutlinedInput' });
   const {
     components = {},
     fullWidth = false,
@@ -244,8 +289,7 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -386,6 +430,8 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 };
 
-OutlinedInput.muiName = 'Input';
+if (OutlinedInput) {
+  OutlinedInput.muiName = 'Input';
+}
 
 export default OutlinedInput;

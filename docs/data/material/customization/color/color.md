@@ -11,7 +11,7 @@ The Material Design [color system](https://m2.material.io/design/color/) can be 
 The Material Design team has also built an awesome palette configuration tool: [material.io/resources/color/](https://m2.material.io/inline-tools/color/).
 This can help you create a color palette for your UI, as well as measure the accessibility level of any color combination.
 
-<a href="https://m2.material.io/inline-tools/color/" target="_blank" rel="noopener nofollow">
+<a href="https://m2.material.io/inline-tools/color/" target="_blank" rel="noopener nofollow" class="remove-link-arrow">
   <img src="/static/images/color/colorTool.png" alt="Official color tool" style="width: 574px" width=1148" height="610" />
 </a>
 <br />
@@ -80,7 +80,7 @@ These color palettes, originally created by Material Design in 2014, are compris
 
 ### Important Terms
 
-- **Palette**: A palette is a collection of colors, i.e. hues and their shades. Material UI provides all colors from the Material Design guidelines.
+- **Palette**: A palette is a collection of colors, that is hues and their shades. Material UI provides all colors from the Material Design guidelines.
   [This color palette](#color-palette) has been designed with colors that work harmoniously with each other.
 - **Hue & Shade**: A single color within the palette is made up of a hue such as "red", and shade, such as "500".
   "red 50" is the lightest shade of red (_pink!_), while "red 900" is the darkest.

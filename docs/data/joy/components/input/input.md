@@ -9,7 +9,7 @@ unstyled: /base-ui/react-input/
 
 <p class="description">The Input component facilitates the entry of text data from the user.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -31,7 +31,7 @@ The Input component provides a customizable input field that can be used to coll
 
 ### Variants
 
-The Input component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined`, and `plain`.
+The Input component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined`, and `plain`.
 
 {{"demo": "InputVariants.js"}}
 
@@ -175,7 +175,7 @@ To create a floating label input, a custom component (combination of `<input>` a
 The Input component can be integrated with third-party formatting libraries for more complex use cases.
 
 Create an adapter component to get the props from the Input component and map them to the third-party component APIs.
-Then use that adapter as a value to the `slotProps.input.component` property of the Joy UI Input.
+Then use that adapter as a value to the `slotProps.input.component` property of the Joy UI Input.
 
 The demos below illustrate how to do this with two popular libraries.
 

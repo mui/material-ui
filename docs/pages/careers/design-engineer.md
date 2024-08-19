@@ -6,7 +6,7 @@
 
 - **Location**: Remote (preference for UTC-6 to UTC+5).
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
-- **Level**: [IC4 or above](https://mui-org.notion.site/Levelling-at-MUI-5c30f9bfe65149d697f346447cef9db1).
+- **Level**: [IC4 or above](https://mui-org.notion.site/Leveling-at-MUI-5c30f9bfe65149d697f346447cef9db1).
 - We're a **remote** company, we prefer asynchronous communication over meetings.
 
 ## The company
@@ -18,7 +18,7 @@ We're a company of 31+ people as of late 2023, and we're growing.
 ## The products
 
 MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
-Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
+Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
 We also host Design Kits and pre-built Templates.
 
 Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
@@ -50,7 +50,7 @@ Our products empower React developers to build awesome applications faster – w
 
 But while we are [the leading](https://tsh.io/state-of-frontend/#over-the-past-year-which-of-the-following-design-systems-was-your-favorite-go-to-solution) UI design system in the frontend space, the adoption of MUI is only at 25%. More importantly, the challenges of developers and designers to solve when creating UIs go way beyond the ones of design systems.
 We envision a future where MUI becomes the default toolkit for web developers to create UIs.
-It's why we started Base UI, Joy UI, and MUI Toolpad. Design is key to achieving this goal.
+It's why we started Base UI, Joy UI, and Toolpad. Design is key to achieving this goal.
 
 ## The role
 
@@ -59,9 +59,9 @@ It's why we started Base UI, Joy UI, and MUI Toolpad. Design is key to achievi
 Depending on the day, you'll:
 
 - Work closely with our designers to prototype and implement new components, features, and screens.
-- Design and build entire experiences for sites like mui.com or products like MUI Toolpad.
+- Design and build entire experiences for sites like mui.com or products like Toolpad.
 - Concept and prototype UX components and motion studies for components like the date picker.
-- Extend our different design systems (Material UI, Joy UI).
+- Extend our different design systems (Material UI, Joy UI).
 - Create appealing new demos in the docs.
 
 ## Who we're looking for
@@ -79,7 +79,7 @@ Depending on the day, you'll:
 ## Benefits and compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
+We are ready to pay top market rates for a person who can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply

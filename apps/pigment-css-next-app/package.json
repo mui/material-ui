@@ -1,0 +1,42 @@
+{
+  "name": "@app/next-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "preview": "next start",
+    "clean": "rimraf .next"
+  },
+  "dependencies": {
+    "@mui/material-pigment-css": "workspace:^",
+    "@mui/utils": "workspace:^",
+    "@mui/base": "workspace:^",
+    "@mui/icons-material": "workspace:^",
+    "@mui/lab": "workspace:^",
+    "@mui/material": "workspace:^",
+    "@mui/material-nextjs": "workspace:^",
+    "@mui/system": "workspace:^",
+    "@emotion/cache": "latest",
+    "next": "latest",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@pigment-css/nextjs-plugin": "0.0.20",
+    "@types/node": "^20.5.7",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.5"
+  },
+  "nx": {
+    "targets": {
+      "preview": {
+        "dependsOn": [
+          "^build"
+        ]
+      }
+    }
+  }
+}

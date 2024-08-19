@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ROUTES from 'docs/src/route';
 import Section from 'docs/src/layouts/Section';
@@ -48,7 +48,7 @@ export default function AboutEnd() {
         alt="A map illustration with pins loosely positioned where team members from MUI are located."
         loading="lazy"
         sx={(theme) => ({
-          mt: -8,
+          mt: -20,
           display: { xs: 'none', sm: 'block' },
           width: '100%',
           aspectRatio: '231/145',

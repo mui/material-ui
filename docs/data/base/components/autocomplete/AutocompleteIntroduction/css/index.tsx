@@ -252,7 +252,7 @@ function Styles() {
         width: 100%;
         border-radius: 12px;
         overflow: auto;
-        outline: 0px;
+        outline: 0;
         max-height: 300px;
         z-index: 1;
         position: absolute;
@@ -283,18 +283,18 @@ function Styles() {
           color: ${isDarkMode ? cyan[100] : cyan[900]};
         }
 
-        &.base--focused,
-        &.base--focusVisible {
+        &.Mui-focused,
+        &.Mui-focusVisible {
           background-color: ${isDarkMode ? grey[800] : grey[100]};
           color: ${isDarkMode ? grey[300] : grey[900]};
         }
 
-        &.base--focusVisible {
+        &.Mui-focusVisible {
           box-shadow: 0 0 0 3px ${isDarkMode ? cyan[500] : cyan[200]};
         }
 
-        &[aria-selected=true].base--focused,
-        &[aria-selected=true].base--focusVisible {
+        &[aria-selected=true].Mui-focused,
+        &[aria-selected=true].Mui-focusVisible {
           background-color: ${isDarkMode ? cyan[900] : cyan[100]};
           color: ${isDarkMode ? cyan[100] : cyan[900]};
         }

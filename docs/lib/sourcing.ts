@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { getHeaders } from '@mui/markdown';
+import { getHeaders } from '@mui/internal-markdown';
 
 const blogDir = path.join(process.cwd(), 'pages/blog');
 
@@ -32,7 +32,19 @@ export function getBlogPost(filePath: string): BlogPost {
 
 // Avoid typos in the blog markdown pages.
 // https://www.notion.so/mui-org/Blog-247ec2bff5fa46e799ef06a693c94917
-const ALLOWED_TAGS = ['MUI Core', 'MUI X', 'News', 'Company', 'Developer Survey', 'Product'];
+const ALLOWED_TAGS = [
+  'Company',
+  'Developer Survey',
+  'Guide',
+  'Product',
+  // Product tags
+  'Material UI',
+  'Base UI',
+  'Pigment CSS',
+  'Joy UI',
+  'MUI X',
+  'Toolpad',
+];
 
 export const getAllBlogPosts = () => {
   const filePaths = getBlogFilePaths();

@@ -2,14 +2,10 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import userEvent from '@testing-library/user-event';
-import {
-  act,
-  createMount,
-  createRenderer,
-  describeConformanceUnstyled,
-} from '@mui-internal/test-utils';
+import { act, createRenderer } from '@mui/internal-test-utils';
 import { MenuButton, menuButtonClasses } from '@mui/base/MenuButton';
 import { DropdownContext, DropdownContextValue, DropdownActionTypes } from '@mui/base/useDropdown';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 // TODO v6: initialize @testing-library/user-event using userEvent.setup() instead of directly calling methods e.g. userEvent.click() for all related tests in this file
 // currently the setup() method uses the ClipboardEvent constructor which is incompatible with our lowest supported version of iOS Safari (12.2) https://github.com/mui/material-ui/blob/master/.browserslistrc#L44
@@ -25,7 +21,6 @@ const testContext: DropdownContextValue = {
 };
 
 describe('<MenuButton />', () => {
-  const mount = createMount();
   const { render } = createRenderer();
 
   describeConformanceUnstyled(<MenuButton />, () => ({
@@ -35,12 +30,6 @@ describe('<MenuButton />', () => {
         <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
       );
     },
-    mount: (node: React.ReactNode) => {
-      const wrapper = mount(
-        <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
-      );
-      return wrapper.childAt(0);
-    },
     refInstanceof: window.HTMLButtonElement,
     slots: {
       root: {
@@ -48,7 +37,7 @@ describe('<MenuButton />', () => {
         testWithElement: null,
       },
     },
-    skip: ['componentProp', 'reactTestRenderer'],
+    skip: ['componentProp'],
   }));
 
   describe('prop: disabled', () => {

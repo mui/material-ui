@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import createStyled from '@mui/system/createStyled';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 
 describe('createStyled', () => {
   const { render } = createRenderer();
@@ -513,6 +513,38 @@ describe('createStyled', () => {
       expect(getByTestId('red')).toHaveComputedStyle({ backgroundColor: 'rgb(255, 0, 0)' });
     });
 
+    it('should merge props and ownerState in props callback', () => {
+      const styled = createStyled({
+        defaultTheme: {
+          colors: { blue: 'rgb(0, 0, 255)', red: 'rgb(255, 0, 0)', green: 'rgb(0, 255, 0)' },
+        },
+      });
+
+      const Test = styled('div')(({ theme, color }) => ({
+        variants: [
+          {
+            props: (props) => props.color === 'green' || props.color === 'red',
+            style: {
+              backgroundColor: theme.colors[color],
+            },
+          },
+        ],
+      }));
+
+      const { getByTestId } = render(
+        <React.Fragment>
+          <Test data-testid="red" ownerState={{ color: 'red' }}>
+            Red
+          </Test>
+          <Test data-testid="green" ownerState={{ color: 'green' }}>
+            Green
+          </Test>
+        </React.Fragment>,
+      );
+      expect(getByTestId('green')).toHaveComputedStyle({ backgroundColor: 'rgb(0, 255, 0)' });
+      expect(getByTestId('red')).toHaveComputedStyle({ backgroundColor: 'rgb(255, 0, 0)' });
+    });
+
     it('should accept variants in arrays', () => {
       const styled = createStyled({ defaultTheme: { colors: { blue: 'rgb(0, 0, 255)' } } });
 
@@ -696,6 +728,38 @@ describe('createStyled', () => {
       expect(getByTestId('filled')).toHaveComputedStyle({ backgroundColor: 'rgb(0, 0, 255)' });
       expect(getByTestId('outlined')).toHaveComputedStyle({ borderTopColor: 'rgb(0, 0, 255)' });
       expect(getByTestId('text')).toHaveComputedStyle({ color: 'rgb(0, 0, 255)' });
+    });
+
+    it('should not consume values from nested ownerState', () => {
+      const styled = createStyled({ defaultTheme: { colors: { blue: 'rgb(0, 0, 255)' } } });
+
+      const Test = styled('div')(({ theme }) => ({
+        variants: [
+          {
+            props: ({ ownerState }) => ownerState.color === 'blue',
+            style: {
+              backgroundColor: theme.colors.blue,
+            },
+          },
+        ],
+      }));
+
+      const ownerState = { color: 'blue' };
+
+      const { getByTestId } = render(
+        <React.Fragment>
+          <Test data-testid="blue" ownerState={ownerState}>
+            Blue
+          </Test>
+          <Test data-testid="nested" ownerState={{ ownerState }}>
+            Nested ownerState
+          </Test>
+        </React.Fragment>,
+      );
+      expect(getByTestId('blue')).toHaveComputedStyle({ backgroundColor: 'rgb(0, 0, 255)' });
+      expect(getByTestId('nested')).not.toHaveComputedStyle({
+        backgroundColor: 'rgb(0, 0, 255)',
+      });
     });
   });
 });

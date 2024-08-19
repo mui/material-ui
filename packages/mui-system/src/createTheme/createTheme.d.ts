@@ -1,11 +1,16 @@
 import { CSSObject } from '@mui/styled-engine';
-import { Breakpoints, BreakpointsOptions } from './createBreakpoints';
+import { Breakpoints, BreakpointsOptions } from '../createBreakpoints/createBreakpoints';
 import { Shape, ShapeOptions } from './shape';
 import { Spacing, SpacingOptions } from './createSpacing';
 import { SxConfig, SxProps } from '../styleFunctionSx';
 import { ApplyStyles } from './applyStyles';
+import { CssContainerQueries } from '../cssContainerQueries';
 
-export { Breakpoint, BreakpointOverrides } from './createBreakpoints';
+export {
+  Breakpoint,
+  Breakpoints,
+  BreakpointOverrides,
+} from '../createBreakpoints/createBreakpoints';
 
 export type Direction = 'ltr' | 'rtl';
 
@@ -24,7 +29,7 @@ export interface ThemeOptions {
   unstable_sxConfig?: SxConfig;
 }
 
-export interface Theme {
+export interface Theme extends CssContainerQueries {
   shape: Shape;
   breakpoints: Breakpoints;
   direction: Direction;

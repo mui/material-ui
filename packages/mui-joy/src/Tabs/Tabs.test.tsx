@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, screen } from '@mui-internal/test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Tabs, { tabsClasses as classes } from '@mui/joy/Tabs';
 import SizeTabsContext from './SizeTabsContext';
+import describeConformance from '../../test/describeConformance';
 
 describe('Joy <Tabs />', () => {
   const { render } = createRenderer();
@@ -17,7 +18,7 @@ describe('Joy <Tabs />', () => {
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
-    skip: ['componentsProp', 'classesRoot', 'reactTestRenderer'],
+    skip: ['componentsProp', 'classesRoot'],
     slots: {
       root: {
         expectedClassName: classes.root,

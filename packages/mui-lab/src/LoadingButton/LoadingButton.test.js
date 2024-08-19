@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { createRenderer, describeConformance, screen, within } from '@mui-internal/test-utils';
+import { createRenderer, screen, within } from '@mui/internal-test-utils';
 import { expect } from 'chai';
 import Button, { buttonClasses } from '@mui/material/Button';
 import LoadingButton, { loadingButtonClasses as classes } from '@mui/lab/LoadingButton';
 import ButtonGroup, { buttonGroupClasses } from '@mui/material/ButtonGroup';
+import describeConformance from '../../test/describeConformance';
 
 describe('<LoadingButton />', () => {
   const { render } = createRenderer();

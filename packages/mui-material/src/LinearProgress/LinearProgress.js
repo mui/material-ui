@@ -2,12 +2,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { keyframes, css, darken, lighten } from '@mui/system';
+import composeClasses from '@mui/utils/composeClasses';
+import { darken, lighten } from '@mui/system/colorManipulator';
+import { useRtl } from '@mui/system/RtlProvider';
+import { keyframes, css, styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
-import useTheme from '../styles/useTheme';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
 import { getLinearProgressUtilityClass } from './linearProgressClasses';
 
 const TRANSITION_DURATION = 4; // seconds
@@ -28,6 +28,16 @@ const indeterminate1Keyframe = keyframes`
   }
 `;
 
+// This implementation is for supporting both Styled-components v4+ and Pigment CSS.
+// A global animation has to be created here for Styled-components v4+ (https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#12).
+// which can be done by checking typeof indeterminate1Keyframe !== 'string' (at runtime, Pigment CSS transform keyframes`` to a string).
+const indeterminate1Animation =
+  typeof indeterminate1Keyframe !== 'string'
+    ? css`
+        animation: ${indeterminate1Keyframe} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+      `
+    : null;
+
 const indeterminate2Keyframe = keyframes`
   0% {
     left: -200%;
@@ -44,6 +54,12 @@ const indeterminate2Keyframe = keyframes`
     right: -8%;
   }
 `;
+const indeterminate2Animation =
+  typeof indeterminate2Keyframe !== 'string'
+    ? css`
+        animation: ${indeterminate2Keyframe} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite;
+      `
+    : null;
 
 const bufferKeyframe = keyframes`
   0% {
@@ -61,6 +77,12 @@ const bufferKeyframe = keyframes`
     background-position: -200px -23px;
   }
 `;
+const bufferAnimation =
+  typeof bufferKeyframe !== 'string'
+    ? css`
+        animation: ${bufferKeyframe} 3s infinite linear;
+      `
+    : null;
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant, color } = ownerState;
@@ -88,9 +110,6 @@ const useUtilityClasses = (ownerState) => {
 };
 
 const getColorShade = (theme, color) => {
-  if (color === 'inherit') {
-    return 'currentColor';
-  }
   if (theme.vars) {
     return theme.vars.palette.LinearProgress[`${color}Bg`];
   }
@@ -111,32 +130,49 @@ const LinearProgressRoot = styled('span', {
       styles[ownerState.variant],
     ];
   },
-})(({ ownerState, theme }) => ({
+})(({ theme }) => ({
   position: 'relative',
   overflow: 'hidden',
   display: 'block',
   height: 4,
-  zIndex: 0, // Fix Safari's bug during composition of different paint.
+  // Fix Safari's bug during composition of different paint.
+  zIndex: 0,
   '@media print': {
     colorAdjust: 'exact',
   },
-  backgroundColor: getColorShade(theme, ownerState.color),
-  ...(ownerState.color === 'inherit' &&
-    ownerState.variant !== 'buffer' && {
-      backgroundColor: 'none',
-      '&::before': {
-        content: '""',
-        position: 'absolute',
-        left: 0,
-        top: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: 'currentColor',
-        opacity: 0.3,
+  variants: [
+    ...Object.entries(theme.palette)
+      .filter(([, value]) => value && value.main)
+      .map(([color]) => ({
+        props: { color },
+        style: {
+          backgroundColor: getColorShade(theme, color),
+        },
+      })),
+    {
+      props: ({ ownerState }) => ownerState.color === 'inherit' && ownerState.variant !== 'buffer',
+      style: {
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          left: 0,
+          top: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'currentColor',
+          opacity: 0.3,
+        },
       },
-    }),
-  ...(ownerState.variant === 'buffer' && { backgroundColor: 'transparent' }),
-  ...(ownerState.variant === 'query' && { transform: 'rotate(180deg)' }),
+    },
+    {
+      props: { variant: 'buffer' },
+      style: { backgroundColor: 'transparent' },
+    },
+    {
+      props: { variant: 'query' },
+      style: { transform: 'rotate(180deg)' },
+    },
+  ],
 }));
 
 const LinearProgressDashed = styled('span', {
@@ -148,25 +184,38 @@ const LinearProgressDashed = styled('span', {
     return [styles.dashed, styles[`dashedColor${capitalize(ownerState.color)}`]];
   },
 })(
-  ({ ownerState, theme }) => {
-    const backgroundColor = getColorShade(theme, ownerState.color);
-
-    return {
-      position: 'absolute',
-      marginTop: 0,
-      height: '100%',
-      width: '100%',
-      ...(ownerState.color === 'inherit' && {
-        opacity: 0.3,
-      }),
-      backgroundImage: `radial-gradient(${backgroundColor} 0%, ${backgroundColor} 16%, transparent 42%)`,
-      backgroundSize: '10px 10px',
-      backgroundPosition: '0 -23px',
-    };
+  ({ theme }) => ({
+    position: 'absolute',
+    marginTop: 0,
+    height: '100%',
+    width: '100%',
+    backgroundSize: '10px 10px',
+    backgroundPosition: '0 -23px',
+    variants: [
+      {
+        props: { color: 'inherit' },
+        style: {
+          opacity: 0.3,
+          backgroundImage: `radial-gradient(currentColor 0%, currentColor 16%, transparent 42%)`,
+        },
+      },
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value && value.main)
+        .map(([color]) => {
+          const backgroundColor = getColorShade(theme, color);
+          return {
+            props: { color },
+            style: {
+              backgroundImage: `radial-gradient(${backgroundColor} 0%, ${backgroundColor} 16%, transparent 42%)`,
+            },
+          };
+        }),
+    ],
+  }),
+  bufferAnimation || {
+    // At runtime for Pigment CSS, `bufferAnimation` will be null and the generated keyframe will be used.
+    animation: `${bufferKeyframe} 3s infinite linear`,
   },
-  css`
-    animation: ${bufferKeyframe} 3s infinite linear;
-  `,
 );
 
 const LinearProgressBar1 = styled('span', {
@@ -184,34 +233,64 @@ const LinearProgressBar1 = styled('span', {
       ownerState.variant === 'buffer' && styles.bar1Buffer,
     ];
   },
-})(
-  ({ ownerState, theme }) => ({
-    width: '100%',
-    position: 'absolute',
-    left: 0,
-    bottom: 0,
-    top: 0,
-    transition: 'transform 0.2s linear',
-    transformOrigin: 'left',
-    backgroundColor:
-      ownerState.color === 'inherit'
-        ? 'currentColor'
-        : (theme.vars || theme).palette[ownerState.color].main,
-    ...(ownerState.variant === 'determinate' && {
-      transition: `transform .${TRANSITION_DURATION}s linear`,
-    }),
-    ...(ownerState.variant === 'buffer' && {
-      zIndex: 1,
-      transition: `transform .${TRANSITION_DURATION}s linear`,
-    }),
-  }),
-  ({ ownerState }) =>
-    (ownerState.variant === 'indeterminate' || ownerState.variant === 'query') &&
-    css`
-      width: auto;
-      animation: ${indeterminate1Keyframe} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
-    `,
-);
+})(({ theme }) => ({
+  width: '100%',
+  position: 'absolute',
+  left: 0,
+  bottom: 0,
+  top: 0,
+  transition: 'transform 0.2s linear',
+  transformOrigin: 'left',
+  variants: [
+    {
+      props: {
+        color: 'inherit',
+      },
+      style: {
+        backgroundColor: 'currentColor',
+      },
+    },
+    ...Object.entries(theme.palette)
+      .filter(([, value]) => value && value.main)
+      .map(([color]) => ({
+        props: { color },
+        style: {
+          backgroundColor: (theme.vars || theme).palette[color].main,
+        },
+      })),
+    {
+      props: {
+        variant: 'determinate',
+      },
+      style: {
+        transition: `transform .${TRANSITION_DURATION}s linear`,
+      },
+    },
+    {
+      props: {
+        variant: 'buffer',
+      },
+      style: {
+        zIndex: 1,
+        transition: `transform .${TRANSITION_DURATION}s linear`,
+      },
+    },
+    {
+      props: ({ ownerState }) =>
+        ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
+      style: {
+        width: 'auto',
+      },
+    },
+    {
+      props: ({ ownerState }) =>
+        ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
+      style: indeterminate1Animation || {
+        animation: `${indeterminate1Keyframe} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite`,
+      },
+    },
+  ],
+}));
 
 const LinearProgressBar2 = styled('span', {
   name: 'MuiLinearProgress',
@@ -227,36 +306,62 @@ const LinearProgressBar2 = styled('span', {
       ownerState.variant === 'buffer' && styles.bar2Buffer,
     ];
   },
-})(
-  ({ ownerState, theme }) => ({
-    width: '100%',
-    position: 'absolute',
-    left: 0,
-    bottom: 0,
-    top: 0,
-    transition: 'transform 0.2s linear',
-    transformOrigin: 'left',
-    ...(ownerState.variant !== 'buffer' && {
-      backgroundColor:
-        ownerState.color === 'inherit'
-          ? 'currentColor'
-          : (theme.vars || theme).palette[ownerState.color].main,
-    }),
-    ...(ownerState.color === 'inherit' && {
-      opacity: 0.3,
-    }),
-    ...(ownerState.variant === 'buffer' && {
-      backgroundColor: getColorShade(theme, ownerState.color),
-      transition: `transform .${TRANSITION_DURATION}s linear`,
-    }),
-  }),
-  ({ ownerState }) =>
-    (ownerState.variant === 'indeterminate' || ownerState.variant === 'query') &&
-    css`
-      width: auto;
-      animation: ${indeterminate2Keyframe} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite;
-    `,
-);
+})(({ theme }) => ({
+  width: '100%',
+  position: 'absolute',
+  left: 0,
+  bottom: 0,
+  top: 0,
+  transition: 'transform 0.2s linear',
+  transformOrigin: 'left',
+  variants: [
+    ...Object.entries(theme.palette)
+      .filter(([, value]) => value && value.main)
+      .map(([color]) => ({
+        props: { color },
+        style: {
+          '--LinearProgressBar2-barColor': (theme.vars || theme).palette[color].main,
+        },
+      })),
+    {
+      props: ({ ownerState }) => ownerState.variant !== 'buffer' && ownerState.color !== 'inherit',
+      style: {
+        backgroundColor: 'var(--LinearProgressBar2-barColor, currentColor)',
+      },
+    },
+    {
+      props: {
+        color: 'inherit',
+      },
+      style: {
+        opacity: 0.3,
+      },
+    },
+    ...Object.entries(theme.palette)
+      .filter(([, value]) => value && value.main)
+      .map(([color]) => ({
+        props: { color, variant: 'buffer' },
+        style: {
+          backgroundColor: getColorShade(theme, color),
+          transition: `transform .${TRANSITION_DURATION}s linear`,
+        },
+      })),
+    {
+      props: ({ ownerState }) =>
+        ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
+      style: {
+        width: 'auto',
+      },
+    },
+    {
+      props: ({ ownerState }) =>
+        ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
+      style: indeterminate2Animation || {
+        animation: `${indeterminate2Keyframe} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite`,
+      },
+    },
+  ],
+}));
 
 /**
  * ## ARIA
@@ -266,7 +371,7 @@ const LinearProgressBar2 = styled('span', {
  * attribute to `true` on that region until it has finished loading.
  */
 const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiLinearProgress' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiLinearProgress' });
   const {
     className,
     color = 'primary',
@@ -282,7 +387,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-  const theme = useTheme();
+  const isRtl = useRtl();
 
   const rootProps = {};
   const inlineStyles = { bar1: {}, bar2: {} };
@@ -293,7 +398,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
       rootProps['aria-valuemin'] = 0;
       rootProps['aria-valuemax'] = 100;
       let transform = value - 100;
-      if (theme.direction === 'rtl') {
+      if (isRtl) {
         transform = -transform;
       }
       inlineStyles.bar1.transform = `translateX(${transform}%)`;
@@ -307,7 +412,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
   if (variant === 'buffer') {
     if (valueBuffer !== undefined) {
       let transform = (valueBuffer || 0) - 100;
-      if (theme.direction === 'rtl') {
+      if (isRtl) {
         transform = -transform;
       }
       inlineStyles.bar2.transform = `translateX(${transform}%)`;

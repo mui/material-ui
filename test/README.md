@@ -18,11 +18,10 @@ Thanks for writing tests! Here's a quick run-down on our current setup.
 - [Karma](https://karma-runner.github.io/latest/index.html)
 - [Playwright](https://playwright.dev/)
 - [jsdom](https://github.com/jsdom/jsdom)
-- [enzyme](https://airbnb.io/enzyme/) (old tests only)
 
 ## Writing tests
 
-For all unit tests, please use the return value from `@mui-internal/test-utils/createRenderer`.
+For all unit tests, please use the return value from `@mui/internal-test-utils/createRenderer`.
 It prepares the test suite and returns a function with the same interface as
 [`render` from `@testing-library/react`](https://testing-library.com/docs/react-testing-library/api#render).
 
@@ -43,11 +42,11 @@ In addition to the core matchers from `chai` we also use matchers from [`chai-do
 
 Deciding where to put a test is (like naming things) a hard problem:
 
-- When in doubt, put the new test case directly in the unit test file for that component e.g. `packages/mui-material/src/Button/Button.test.js`.
+- When in doubt, put the new test case directly in the unit test file for that component, for example `packages/mui-material/src/Button/Button.test.js`.
 - If your test requires multiple components from the library create a new integration test.
 - If you find yourself using a lot of `data-testid` attributes or you're accessing
   a lot of styles consider adding a component (that doesn't require any interaction)
-  to `test/regressions/tests/` e.g. `test/regressions/tests/List/ListWithSomeStyleProp`
+  to `test/regressions/tests/`, for example `test/regressions/tests/List/ListWithSomeStyleProp`
 - If you have to dispatch and compose many different DOM events prefer end-to-end tests (Checkout the [end-to-end testing readme](./e2e/README.md) for more information.)
 
 ### Unexpected calls to `console.error` or `console.warn`
@@ -115,7 +114,7 @@ trade-off, mainly completeness vs. speed.
 
 #### Debugging tests
 
-If you want to debug tests with the e.g. Chrome inspector (chrome://inspect) you can run `pnpm t <testFilePattern> --debug`.
+If you want to debug tests with the, for example Chrome inspector (chrome://inspect) you can run `pnpm t <testFilePattern> --debug`.
 Note that the test will not get executed until you start code execution in the inspector.
 
 We have a dedicated task to use VSCode's integrated debugger to debug the currently opened test file.
@@ -212,7 +211,7 @@ the accessibility (a11y) tree and which are excluded.
 This check is fairly expensive which is why it is disabled when tests are run locally by default.
 The rationale being that in almost all cases including or excluding elements from a query-set depending on their a11y-tree membership makes no difference.
 
-The queries where this does make a difference explicitly include checking for a11y tree inclusion e.g. `getByRole('button', { hidden: false })` (see [byRole documentation](https://testing-library.com/docs/dom-testing-library/api-queries#byrole) for more information).
+The queries where this does make a difference explicitly include checking for a11y tree inclusion, for example `getByRole('button', { hidden: false })` (see [byRole documentation](https://testing-library.com/docs/dom-testing-library/api-queries#byrole) for more information).
 To see if your test (`test:karma` or `test:unit`) behaves the same between CI and local environment, set the environment variable `CI` to `'true'`.
 
 Not considering a11y tree exclusion is a common cause of "Unable to find an accessible element with the role" or "Found multiple elements with the role".
@@ -245,15 +244,40 @@ For example, in https://app.circleci.com/pipelines/github/mui/material-ui/32796/
 
 ### Testing multiple versions of React
 
-You can check integration of different versions of React (e.g. different [release channels](https://react.dev/community/versioning-policy) or PRs to React) by running `node scripts/useReactVersion.mjs <version>`.
+You can check integration of different versions of React (for example different [release channels](https://react.dev/community/versioning-policy) or PRs to React) by running:
+
+```bash
+pnpm use-react-version <version>
+```
 
 Possible values for `version`:
 
 - default: `stable` (minimum supported React version)
-- a tag on npm e.g. `next`, `experimental` or `latest`
-- an older version e.g. `^17.0.0`
+- a tag on npm, for example `next`, `experimental` or `latest`
+- an older version, for example `^17.0.0`
 
 #### CI
+
+##### Circle CI web interface
+
+There are two workflows that can be triggered for any given PR manually in the CircleCI web interface:
+
+- `react-next`
+- `react-17`
+
+Follow these steps:
+
+1. Go to https://app.circleci.com/pipelines/github/mui/material-ui?branch=pull/PR_NUMBER/head and replace `PR_NUMBER` with the PR number you want to test.
+2. Click `Trigger Pipeline` button.
+3. Expand `Add parameters (optional)` and add the following parameter:
+
+   | Parameter type | Name       | Value                      |
+   | :------------- | :--------- | :------------------------- |
+   | `string`       | `workflow` | `react-next` or `react-17` |
+
+4. Click `Trigger Pipeline` button.
+
+##### API request
 
 You can pass the same `version` to our CircleCI pipeline as well:
 

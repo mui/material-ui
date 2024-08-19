@@ -1,5 +1,5 @@
 'use client';
-import { unstable_useControlled as useControlled } from '@mui/utils';
+import useControlled from '@mui/utils/useControlled';
 
 export default function usePagination(props = {}) {
   // keep default values in sync with @default tags in Pagination.propTypes
@@ -63,11 +63,11 @@ export default function usePagination(props = {}) {
       boundaryCount + siblingCount * 2 + 2,
     ),
     // Less than endPages
-    endPages.length > 0 ? endPages[0] - 2 : count - 1,
+    count - boundaryCount - 1,
   );
 
   // Basic list of items to render
-  // e.g. itemList = ['first', 'previous', 1, 'ellipsis', 4, 5, 6, 'ellipsis', 10, 'next', 'last']
+  // for example itemList = ['first', 'previous', 1, 'ellipsis', 4, 5, 6, 'ellipsis', 10, 'next', 'last']
   const itemList = [
     ...(showFirstButton ? ['first'] : []),
     ...(hidePrevButton ? [] : ['previous']),

@@ -11,7 +11,7 @@ githubLabel: 'component: transitions'
 
 Material UI provides transitions that can be used to introduce some basic [motion](https://m2.material.io/design/motion/) to your applications.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 ## Collapse
 
@@ -94,7 +94,7 @@ export default function Main() {
 
 ## TransitionGroup
 
-To animate a component when it is mounted or unmounted, you can use the [`TransitionGroup`](http://reactcommunity.org/react-transition-group/transition-group/) component from _react-transition-group_.
+To animate a component when it is mounted or unmounted, you can use the [`TransitionGroup`](https://reactcommunity.org/react-transition-group/transition-group/) component from _react-transition-group_.
 As components are added or removed, the `in` prop is toggled automatically by `TransitionGroup`.
 
 {{"demo": "TransitionGroupExample.js"}}
@@ -110,7 +110,7 @@ It should respect the following conditions:
 - Call the `onExited` callback prop when the exit transition is completed.
   These two callbacks allow to unmount the children when in a closed state and fully transitioned.
 
-For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](http://reactcommunity.org/react-transition-group/transition/).
+For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](https://reactcommunity.org/react-transition-group/transition/).
 You can also visit the dedicated sections of some of the components:
 
 - [Modal](/material-ui/react-modal/#transitions)

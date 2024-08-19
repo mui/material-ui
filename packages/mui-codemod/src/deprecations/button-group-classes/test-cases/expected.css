@@ -1,0 +1,67 @@
+.MuiButtonGroup-root.MuiButtonGroup-horizontal > .MuiButtonGroup-grouped {
+  color: red;
+}
+
+.MuiButtonGroup-root.MuiButtonGroup-vertical > .MuiButtonGroup-grouped {
+  color: red;
+}
+
+.MuiButtonGroup-root.MuiButtonGroup-text > .MuiButtonGroup-grouped {
+  color: red;
+}
+
+.MuiButtonGroup-root.MuiButtonGroup-text.MuiButtonGroup-horizontal > .MuiButtonGroup-grouped {
+  color: red;
+}
+
+.MuiButtonGroup-root.MuiButtonGroup-text.MuiButtonGroup-vertical > .MuiButtonGroup-grouped {
+  color: red;
+}
+
+.MuiButtonGroup-root.MuiButtonGroup-text.MuiButtonGroup-colorPrimary > .MuiButtonGroup-grouped {
+  color: red;
+}
+
+.MuiButtonGroup-root.MuiButtonGroup-text.MuiButtonGroup-colorSecondary > .MuiButtonGroup-grouped {
+  color: red;
+}
+
+.MuiButtonGroup-root.MuiButtonGroup-outlined > .MuiButtonGroup-grouped {
+  color: red;
+}
+
+.MuiButtonGroup-root.MuiButtonGroup-outlined.MuiButtonGroup-horizontal > .MuiButtonGroup-grouped {
+  color: red;
+}
+
+.MuiButtonGroup-root.MuiButtonGroup-outlined.MuiButtonGroup-vertical > .MuiButtonGroup-grouped {
+  color: red;
+}
+
+.MuiButtonGroup-root.MuiButtonGroup-outlined.MuiButtonGroup-colorPrimary > .MuiButtonGroup-grouped {
+  color: red;
+}
+
+.MuiButtonGroup-root.MuiButtonGroup-outlined.MuiButtonGroup-colorSecondary > .MuiButtonGroup-grouped {
+  color: red;
+}
+
+.MuiButtonGroup-root.MuiButtonGroup-contained > .MuiButtonGroup-grouped {
+  color: red;
+}
+
+.MuiButtonGroup-root.MuiButtonGroup-contained.MuiButtonGroup-horizontal > .MuiButtonGroup-grouped {
+  color: red;
+}
+
+.MuiButtonGroup-root.MuiButtonGroup-contained.MuiButtonGroup-vertical > .MuiButtonGroup-grouped {
+  color: red;
+}
+
+.MuiButtonGroup-root.MuiButtonGroup-contained.MuiButtonGroup-colorPrimary > .MuiButtonGroup-grouped {
+  color: red;
+}
+
+.MuiButtonGroup-root.MuiButtonGroup-contained.MuiButtonGroup-colorSecondary > .MuiButtonGroup-grouped {
+  color: red;
+}

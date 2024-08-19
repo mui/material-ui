@@ -25,14 +25,16 @@ export default function ColorInversionFooter() {
       variant="solid"
       color={color}
       invertedColors
-      sx={{
-        ...(color !== 'neutral' && {
+      sx={[
+        {
+          flexGrow: 1,
+          p: 2,
+          borderRadius: { xs: 0, sm: 'sm' },
+        },
+        color !== 'neutral' && {
           bgcolor: `${color}.800`,
-        }),
-        flexGrow: 1,
-        p: 2,
-        borderRadius: { xs: 0, sm: 'sm' },
-      }}
+        },
+      ]}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
         <IconButton
@@ -108,7 +110,7 @@ export default function ColorInversionFooter() {
           size="sm"
           orientation="horizontal"
           wrap
-          sx={{ flexGrow: 0, '--ListItem-radius': '8px', '--ListItem-gap': '0px' }}
+          sx={{ flexGrow: 0, '--ListItem-radius': '8px' }}
         >
           <ListItem nested sx={{ width: { xs: '50%', md: 140 } }}>
             <ListSubheader sx={{ fontWeight: 'xl' }}>Sitemap</ListSubheader>
@@ -126,7 +128,7 @@ export default function ColorInversionFooter() {
           </ListItem>
           <ListItem nested sx={{ width: { xs: '50%', md: 180 } }}>
             <ListSubheader sx={{ fontWeight: 'xl' }}>Products</ListSubheader>
-            <List sx={{ '--ListItemDecorator-size': '32px' }}>
+            <List>
               <ListItem>
                 <ListItemButton>Joy UI</ListItemButton>
               </ListItem>

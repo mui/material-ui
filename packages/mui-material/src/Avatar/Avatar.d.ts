@@ -4,8 +4,29 @@ import { OverridableStringUnion } from '@mui/types';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { AvatarClasses } from './avatarClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+
+export interface AvatarSlots {
+  /**
+   * The component that renders the transition.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Collapse
+   */
+  img?: React.JSXElementConstructor<React.ImgHTMLAttributes<HTMLImageElement>>;
+}
 
 export interface AvatarPropsVariantOverrides {}
+
+export type AvatarSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  AvatarSlots,
+  {
+    img: SlotProps<
+      React.ElementType<React.ImgHTMLAttributes<HTMLImageElement>>,
+      {},
+      AvatarOwnProps
+    >;
+  }
+>;
 
 export interface AvatarOwnProps {
   /**
@@ -57,7 +78,7 @@ export interface AvatarTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = 'div',
 > {
-  props: AdditionalProps & AvatarOwnProps;
+  props: AdditionalProps & AvatarOwnProps & AvatarSlotsAndSlotProps;
   defaultComponent: RootComponent;
 }
 
@@ -65,11 +86,11 @@ export interface AvatarTypeMap<
  *
  * Demos:
  *
- * - [Avatar](https://mui.com/material-ui/react-avatar/)
+ * - [Avatar](https://next.mui.com/material-ui/react-avatar/)
  *
  * API:
  *
- * - [Avatar API](https://mui.com/material-ui/api/avatar/)
+ * - [Avatar API](https://next.mui.com/material-ui/api/avatar/)
  */
 declare const Avatar: OverridableComponent<AvatarTypeMap>;
 

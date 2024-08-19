@@ -2,11 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import Typography from '../Typography';
 import ListContext from '../List/ListContext';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import listItemTextClasses, { getListItemTextUtilityClass } from './listItemTextClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -36,23 +36,30 @@ const ListItemTextRoot = styled('div', {
       ownerState.dense && styles.dense,
     ];
   },
-})(({ ownerState }) => ({
+})({
   flex: '1 1 auto',
   minWidth: 0,
   marginTop: 4,
   marginBottom: 4,
-  ...(ownerState.primary &&
-    ownerState.secondary && {
-      marginTop: 6,
-      marginBottom: 6,
-    }),
-  ...(ownerState.inset && {
-    paddingLeft: 56,
-  }),
-}));
+  variants: [
+    {
+      props: ({ ownerState }) => ownerState.primary && ownerState.secondary,
+      style: {
+        marginTop: 6,
+        marginBottom: 6,
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.inset,
+      style: {
+        paddingLeft: 56,
+      },
+    },
+  ],
+});
 
 const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiListItemText' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiListItemText' });
   const {
     children,
     className,

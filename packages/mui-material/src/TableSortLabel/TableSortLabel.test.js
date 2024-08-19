@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import TableSortLabel, { tableSortLabelClasses as classes } from '@mui/material/TableSortLabel';
 import ButtonBase from '@mui/material/ButtonBase';
 import { createSvgIcon } from '@mui/material/utils';
+import describeConformance from '../../test/describeConformance';
 
 const SortIcon = createSvgIcon(<path d="M3 3h18v18H3z" />, 'Sort');
 
@@ -45,6 +46,10 @@ describe('<TableSortLabel />', () => {
       const icon = container.querySelector(`.${classes.icon}`);
       expect(icon).not.to.have.class(classes.iconDirectionAsc);
       expect(icon).to.have.class(classes.iconDirectionDesc);
+      expect(container.firstChild).to.have.class(classes.directionDesc);
+      expect(container.querySelector(`.${classes.directionDesc} > .${classes.icon}`)).not.equal(
+        null,
+      );
     });
 
     it('when given direction asc should have asc direction class', () => {
@@ -52,6 +57,10 @@ describe('<TableSortLabel />', () => {
       const icon = container.querySelector(`.${classes.icon}`);
       expect(icon).not.to.have.class(classes.iconDirectionDesc);
       expect(icon).to.have.class(classes.iconDirectionAsc);
+      expect(container.firstChild).to.have.class(classes.directionAsc);
+      expect(container.querySelector(`.${classes.directionAsc} > .${classes.icon}`)).not.equal(
+        null,
+      );
     });
 
     it('should accept a custom icon for the sort icon', () => {

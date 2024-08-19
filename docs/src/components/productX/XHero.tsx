@@ -78,11 +78,10 @@ export default function XHero() {
     [],
   );
 
-  let rowGroupingCounter = 0;
+  const rowGroupingCounterRef = React.useRef(0);
   const isGroupExpandedByDefault = React.useCallback(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    rowGroupingCounter += 1;
-    return rowGroupingCounter === 3;
+    rowGroupingCounterRef.current += 1;
+    return rowGroupingCounterRef.current === 3;
   }, []);
 
   return (
@@ -91,18 +90,22 @@ export default function XHero() {
       left={
         <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
           <Typography
-            fontWeight="bold"
             variant="body2"
-            sx={(theme) => ({
-              color: 'primary.600',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: { xs: 'center', md: 'flex-start' },
-              '& > *': { mr: 1 },
-              ...theme.applyDarkStyles({
-                color: 'primary.400',
+            sx={[
+              {
+                fontWeight: 'bold',
+              },
+              (theme) => ({
+                color: 'primary.600',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: { xs: 'center', md: 'flex-start' },
+                '& > *': { mr: 1 },
+                ...theme.applyDarkStyles({
+                  color: 'primary.400',
+                }),
               }),
-            })}
+            ]}
           >
             <IconImage width={28} height={28} loading="eager" name="product-advanced" /> MUI X
           </Typography>
@@ -112,7 +115,7 @@ export default function XHero() {
             <GradientText>advanced</GradientText>
             <br /> components
           </Typography>
-          <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
+          <Typography sx={{ color: 'text.secondary', mb: 3, maxWidth: 500 }}>
             Build complex and data-rich applications using a growing list of advanced React
             components, like the Data Grid, Date and Time Pickers, Charts, and more!
           </Typography>
@@ -141,17 +144,13 @@ export default function XHero() {
               ...theme.applyDarkStyles({
                 borderColor: 'primaryDark.700',
                 backgroundColor: 'primaryDark.900',
-                boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
+                boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
               }),
             })}
           >
             <Typography
               variant="body2"
-              fontWeight="semiBold"
-              sx={{
-                textAlign: 'center',
-                py: 1.5,
-              }}
+              sx={{ fontWeight: 'semiBold', textAlign: 'center', py: 1.5 }}
             >
               Trades, March 2023
             </Typography>
@@ -163,15 +162,12 @@ export default function XHero() {
                   '& .MuiDataGrid-root': {
                     border: 0,
                     color: 'text.secondary',
+                    '--DataGrid-rowBorderColor': (theme) => theme.palette.grey[200],
                     '& .MuiCheckbox-root': {
                       p: 0.5,
                       '& > svg': {
                         fontSize: '1.25rem',
                       },
-                    },
-                    '& .MuiDataGrid-columnHeaders': {
-                      borderBottom: '1px solid',
-                      borderColor: 'grey.200',
                     },
                     [`& .MuiDataGrid-columnHeader:focus, & .MuiDataGrid-columnHeader:focus-within`]:
                       {
@@ -187,22 +183,6 @@ export default function XHero() {
                     },
                     '& button, & button > svg': {
                       fontSize: 16,
-                    },
-                    '& .MuiDataGrid-cell': {
-                      fontSize: '0.875rem',
-                      color: 'text.secondary',
-                      borderBottom: '1px solid',
-                      borderColor: 'grey.200',
-                    },
-                    '& .MuiDataGrid-viewport': {
-                      '& .MuiDataGrid-cell': {
-                        fontSize: '0.875rem',
-                        color: 'text.secondary',
-                      },
-                      '& .MuiInputBase-input': {
-                        fontSize: '0.875rem',
-                        px: 0.5,
-                      },
                     },
                     '& .MuiChip-root.Rejected': {
                       color: red[800],
@@ -232,12 +212,7 @@ export default function XHero() {
                 (theme) =>
                   theme.applyDarkStyles({
                     '& .MuiDataGrid-root': {
-                      '& .MuiDataGrid-columnHeaders': {
-                        borderColor: 'divider',
-                      },
-                      '& .MuiDataGrid-cell': {
-                        borderColor: alpha(theme.palette.primaryDark[600], 0.5),
-                      },
+                      '--DataGrid-rowBorderColor': alpha(theme.palette.primaryDark[600], 0.5),
                       '& .MuiChip-root.Rejected': {
                         color: red[200],
                         backgroundColor: alpha(red[900], 0.2),
@@ -305,11 +280,11 @@ export default function XHero() {
                 ...theme.applyDarkStyles({
                   borderColor: 'primaryDark.700',
                   backgroundColor: 'primaryDark.900',
-                  boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
+                  boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
                 }),
               })}
             >
-              <Typography variant="body2" fontWeight="semiBold" p={2}>
+              <Typography variant="body2" sx={{ fontWeight: 'semiBold', p: 2 }}>
                 Cool UI project
               </Typography>
               <Divider />
@@ -362,7 +337,7 @@ export default function XHero() {
                 (theme) =>
                   theme.applyDarkStyles({
                     borderColor: 'primaryDark.700',
-                    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
+                    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
                     backgroundColor: 'primaryDark.900',
                     '& .MuiDateRangePickerDay-day.Mui-selected': {
                       color: '#FFF',

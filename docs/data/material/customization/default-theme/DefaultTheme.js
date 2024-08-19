@@ -4,11 +4,11 @@ import Divider from '@mui/material/Divider';
 import { createTheme, styled } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 import ThemeViewer, {
-  useNodeIdsLazy,
+  useItemIdsLazy,
 } from 'docs/src/modules/components/ThemeViewer';
-import { blue, grey } from 'docs/src/modules/brandingTheme';
+import { blue, grey } from '@mui/docs/branding';
 
 const StyledSwitch = styled(Switch)(({ theme }) => [
   {
@@ -104,7 +104,7 @@ function DefaultTheme() {
     });
   }, [darkTheme]);
 
-  const allNodeIds = useNodeIdsLazy(data);
+  const allNodeIds = useItemIdsLazy(data);
   React.useDebugValue(allNodeIds);
   React.useEffect(() => {
     if (checked) {

@@ -2,11 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { alpha } from '@mui/system';
+import composeClasses from '@mui/utils/composeClasses';
+import { alpha } from '@mui/system/colorManipulator';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import tableRowClasses, { getTableRowUtilityClass } from './tableRowClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -57,7 +57,7 @@ const defaultComponent = 'tr';
  * based on the material table element parent (head, body, etc).
  */
 const TableRow = React.forwardRef(function TableRow(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTableRow' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTableRow' });
   const {
     className,
     component = defaultComponent,
@@ -96,7 +96,7 @@ TableRow.propTypes /* remove-proptypes */ = {
   // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * Should be valid <tr> children such as `TableCell`.
+   * Should be valid `<tr>` children such as `TableCell`.
    */
   children: PropTypes.node,
   /**

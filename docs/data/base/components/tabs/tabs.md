@@ -11,7 +11,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/
 
 <p class="description">Tabs are UI elements for organizing and navigating between groups of related content.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
@@ -35,7 +35,7 @@ import { TabPanel } from '@mui/base/TabPanel';
 import { Tabs } from '@mui/base/Tabs';
 ```
 
-By default, Tab components and their corresponding panels are **zero-indexed** (i.e. the first tab has a `value` of `0`, then `1`, `2`, etc.).
+By default, Tab components and their corresponding panels are **zero-indexed** (that is the first tab has a `value` of `0`, then `1`, `2`, etc.).
 Clicking on a given Tab opens the panel with the same `value`, which corresponds to the order in which each component is nested within its container.
 
 Though not required, you can add the `value` prop to the Tab and Tab Panel to take control over how these components are associated with one another.

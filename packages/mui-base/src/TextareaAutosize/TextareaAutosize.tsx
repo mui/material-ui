@@ -1,7 +1,6 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import * as ReactDOM from 'react-dom';
 import {
   unstable_debounce as debounce,
   unstable_useForkRef as useForkRef,
@@ -9,11 +8,6 @@ import {
   unstable_ownerWindow as ownerWindow,
 } from '@mui/utils';
 import { TextareaAutosizeProps } from './TextareaAutosize.types';
-
-type State = {
-  outerHeightStyle: number;
-  overflow?: boolean | undefined;
-};
 
 function getStyleValue(value: string) {
   return parseInt(value, 10) || 0;
@@ -37,12 +31,17 @@ const styles: {
   },
 };
 
-function isEmpty(obj: State) {
+type TextareaStyles = {
+  outerHeightStyle: number;
+  overflowing: boolean;
+};
+
+function isEmpty(obj: TextareaStyles) {
   return (
     obj === undefined ||
     obj === null ||
     Object.keys(obj).length === 0 ||
-    (obj.outerHeightStyle === 0 && !obj.overflow)
+    (obj.outerHeightStyle === 0 && !obj.overflowing)
   );
 }
 
@@ -64,15 +63,12 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   const { onChange, maxRows, minRows = 1, style, value, ...other } = props;
 
   const { current: isControlled } = React.useRef(value != null);
-  const inputRef = React.useRef<HTMLInputElement>(null);
+  const inputRef = React.useRef<HTMLTextAreaElement>(null);
   const handleRef = useForkRef(forwardedRef, inputRef);
+  const heightRef = React.useRef<number | null>(null);
   const shadowRef = React.useRef<HTMLTextAreaElement>(null);
-  const renders = React.useRef(0);
-  const [state, setState] = React.useState<State>({
-    outerHeightStyle: 0,
-  });
 
-  const getUpdatedState = React.useCallback(() => {
+  const calculateTextareaStyles = React.useCallback(() => {
     const input = inputRef.current!;
 
     const containerWindow = ownerWindow(input);
@@ -82,6 +78,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
     if (computedStyle.width === '0px') {
       return {
         outerHeightStyle: 0,
+        overflowing: false,
       };
     }
 
@@ -122,71 +119,30 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
 
     // Take the box sizing into account for applying this value as a style.
     const outerHeightStyle = outerHeight + (boxSizing === 'border-box' ? padding + border : 0);
-    const overflow = Math.abs(outerHeight - innerHeight) <= 1;
+    const overflowing = Math.abs(outerHeight - innerHeight) <= 1;
 
-    return { outerHeightStyle, overflow };
+    return { outerHeightStyle, overflowing };
   }, [maxRows, minRows, props.placeholder]);
 
-  const updateState = (prevState: State, newState: State) => {
-    const { outerHeightStyle, overflow } = newState;
-    // Need a large enough difference to update the height.
-    // This prevents infinite rendering loop.
-    if (
-      renders.current < 20 &&
-      ((outerHeightStyle > 0 &&
-        Math.abs((prevState.outerHeightStyle || 0) - outerHeightStyle) > 1) ||
-        prevState.overflow !== overflow)
-    ) {
-      renders.current += 1;
-      return {
-        overflow,
-        outerHeightStyle,
-      };
-    }
-    if (process.env.NODE_ENV !== 'production') {
-      if (renders.current === 20) {
-        console.error(
-          [
-            'MUI: Too many re-renders. The layout is unstable.',
-            'TextareaAutosize limits the number of renders to prevent an infinite loop.',
-          ].join('\n'),
-        );
-      }
-    }
-    return prevState;
-  };
-
   const syncHeight = React.useCallback(() => {
-    const newState = getUpdatedState();
+    const textareaStyles = calculateTextareaStyles();
 
-    if (isEmpty(newState)) {
+    if (isEmpty(textareaStyles)) {
       return;
     }
 
-    setState((prevState) => updateState(prevState, newState));
-  }, [getUpdatedState]);
+    const outerHeightStyle = textareaStyles.outerHeightStyle;
+    const input = inputRef.current!;
+    if (heightRef.current !== outerHeightStyle) {
+      heightRef.current = outerHeightStyle;
+      input.style.height = `${outerHeightStyle}px`;
+    }
+    input.style.overflow = textareaStyles.overflowing ? 'hidden' : '';
+  }, [calculateTextareaStyles]);
 
   useEnhancedEffect(() => {
-    const syncHeightWithFlushSync = () => {
-      const newState = getUpdatedState();
-
-      if (isEmpty(newState)) {
-        return;
-      }
-
-      // In React 18, state updates in a ResizeObserver's callback are happening after
-      // the paint, this leads to an infinite rendering.
-      //
-      // Using flushSync ensures that the states is updated before the next pain.
-      // Related issue - https://github.com/facebook/react/issues/24331
-      ReactDOM.flushSync(() => {
-        setState((prevState) => updateState(prevState, newState));
-      });
-    };
-
     const handleResize = () => {
-      renders.current = 0;
-      syncHeightWithFlushSync();
+      syncHeight();
     };
     // Workaround a "ResizeObserver loop completed with undelivered notifications" error
     // in test.
@@ -222,19 +178,13 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
         resizeObserver.disconnect();
       }
     };
-  }, [getUpdatedState]);
+  }, [calculateTextareaStyles, syncHeight]);
 
   useEnhancedEffect(() => {
     syncHeight();
   });
 
-  React.useEffect(() => {
-    renders.current = 0;
-  }, [value]);
-
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    renders.current = 0;
-
     if (!isControlled) {
       syncHeight();
     }
@@ -252,13 +202,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
         ref={handleRef}
         // Apply the rows prop to get a "correct" first SSR paint
         rows={minRows as number}
-        style={{
-          height: state.outerHeightStyle,
-          // Need a large enough difference to allow scrolling.
-          // This prevents infinite rendering loop.
-          overflow: state.overflow ? 'hidden' : undefined,
-          ...style,
-        }}
+        style={style}
         {...other}
       />
       <textarea

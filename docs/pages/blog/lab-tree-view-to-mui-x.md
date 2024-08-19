@@ -3,8 +3,8 @@ title: The Tree View is moving to MUI X
 description: Migrate to the new package to start building with our powerful Tree View, now part of MUI X. Previously released MIT components will stay MIT.
 date: 2023-08-21T00:00:00.000Z
 authors: ['flaviendelangle']
-tags: ['MUI X', 'News']
-card: true
+tags: ['MUI X', 'Product']
+manualCard: true
 ---
 
 After more than 4 years in the lab, the [Tree View](https://mui.com/x/react-tree-view/) components have found a new home as part of MUI X.

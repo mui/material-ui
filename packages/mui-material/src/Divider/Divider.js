@@ -2,10 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { alpha } from '@mui/system';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { alpha } from '@mui/system/colorManipulator';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getDividerUtilityClass } from './dividerClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -54,100 +54,144 @@ const DividerRoot = styled('div', {
         styles.textAlignLeft,
     ];
   },
-})(
-  ({ theme, ownerState }) => ({
-    margin: 0, // Reset browser default style.
-    flexShrink: 0,
-    borderWidth: 0,
-    borderStyle: 'solid',
-    borderColor: (theme.vars || theme).palette.divider,
-    borderBottomWidth: 'thin',
-    ...(ownerState.absolute && {
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      width: '100%',
-    }),
-    ...(ownerState.light && {
-      borderColor: theme.vars
-        ? `rgba(${theme.vars.palette.dividerChannel} / 0.08)`
-        : alpha(theme.palette.divider, 0.08),
-    }),
-    ...(ownerState.variant === 'inset' && {
-      marginLeft: 72,
-    }),
-    ...(ownerState.variant === 'middle' &&
-      ownerState.orientation === 'horizontal' && {
+})(({ theme }) => ({
+  margin: 0, // Reset browser default style.
+  flexShrink: 0,
+  borderWidth: 0,
+  borderStyle: 'solid',
+  borderColor: (theme.vars || theme).palette.divider,
+  borderBottomWidth: 'thin',
+  variants: [
+    {
+      props: {
+        absolute: true,
+      },
+      style: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        width: '100%',
+      },
+    },
+    {
+      props: {
+        light: true,
+      },
+      style: {
+        borderColor: theme.vars
+          ? `rgba(${theme.vars.palette.dividerChannel} / 0.08)`
+          : alpha(theme.palette.divider, 0.08),
+      },
+    },
+    {
+      props: {
+        variant: 'inset',
+      },
+      style: {
+        marginLeft: 72,
+      },
+    },
+    {
+      props: {
+        variant: 'middle',
+        orientation: 'horizontal',
+      },
+      style: {
         marginLeft: theme.spacing(2),
         marginRight: theme.spacing(2),
-      }),
-    ...(ownerState.variant === 'middle' &&
-      ownerState.orientation === 'vertical' && {
+      },
+    },
+    {
+      props: {
+        variant: 'middle',
+        orientation: 'vertical',
+      },
+      style: {
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(1),
-      }),
-    ...(ownerState.orientation === 'vertical' && {
-      height: '100%',
-      borderBottomWidth: 0,
-      borderRightWidth: 'thin',
-    }),
-    ...(ownerState.flexItem && {
-      alignSelf: 'stretch',
-      height: 'auto',
-    }),
-  }),
-  ({ ownerState }) => ({
-    ...(ownerState.children && {
-      display: 'flex',
-      whiteSpace: 'nowrap',
-      textAlign: 'center',
-      border: 0,
-      '&::before, &::after': {
-        content: '""',
-        alignSelf: 'center',
       },
-    }),
-  }),
-  ({ theme, ownerState }) => ({
-    ...(ownerState.children &&
-      ownerState.orientation !== 'vertical' && {
+    },
+    {
+      props: {
+        orientation: 'vertical',
+      },
+      style: {
+        height: '100%',
+        borderBottomWidth: 0,
+        borderRightWidth: 'thin',
+      },
+    },
+    {
+      props: {
+        flexItem: true,
+      },
+      style: {
+        alignSelf: 'stretch',
+        height: 'auto',
+      },
+    },
+    {
+      props: ({ ownerState }) => !!ownerState.children,
+      style: {
+        display: 'flex',
+        whiteSpace: 'nowrap',
+        textAlign: 'center',
+        border: 0,
+        borderTopStyle: 'solid',
+        borderLeftStyle: 'solid',
+        '&::before, &::after': {
+          content: '""',
+          alignSelf: 'center',
+        },
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.children && ownerState.orientation !== 'vertical',
+      style: {
         '&::before, &::after': {
           width: '100%',
           borderTop: `thin solid ${(theme.vars || theme).palette.divider}`,
+          borderTopStyle: 'inherit',
         },
-      }),
-  }),
-  ({ theme, ownerState }) => ({
-    ...(ownerState.children &&
-      ownerState.orientation === 'vertical' && {
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.orientation === 'vertical' && ownerState.children,
+      style: {
         flexDirection: 'column',
         '&::before, &::after': {
           height: '100%',
           borderLeft: `thin solid ${(theme.vars || theme).palette.divider}`,
+          borderLeftStyle: 'inherit',
         },
-      }),
-  }),
-  ({ ownerState }) => ({
-    ...(ownerState.textAlign === 'right' &&
-      ownerState.orientation !== 'vertical' && {
+      },
+    },
+    {
+      props: ({ ownerState }) =>
+        ownerState.textAlign === 'right' && ownerState.orientation !== 'vertical',
+      style: {
         '&::before': {
           width: '90%',
         },
         '&::after': {
           width: '10%',
         },
-      }),
-    ...(ownerState.textAlign === 'left' &&
-      ownerState.orientation !== 'vertical' && {
+      },
+    },
+    {
+      props: ({ ownerState }) =>
+        ownerState.textAlign === 'left' && ownerState.orientation !== 'vertical',
+      style: {
         '&::before': {
           width: '10%',
         },
         '&::after': {
           width: '90%',
         },
-      }),
-  }),
-);
+      },
+    },
+  ],
+}));
 
 const DividerWrapper = styled('span', {
   name: 'MuiDivider',
@@ -157,18 +201,25 @@ const DividerWrapper = styled('span', {
 
     return [styles.wrapper, ownerState.orientation === 'vertical' && styles.wrapperVertical];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   display: 'inline-block',
   paddingLeft: `calc(${theme.spacing(1)} * 1.2)`,
   paddingRight: `calc(${theme.spacing(1)} * 1.2)`,
-  ...(ownerState.orientation === 'vertical' && {
-    paddingTop: `calc(${theme.spacing(1)} * 1.2)`,
-    paddingBottom: `calc(${theme.spacing(1)} * 1.2)`,
-  }),
+  variants: [
+    {
+      props: {
+        orientation: 'vertical',
+      },
+      style: {
+        paddingTop: `calc(${theme.spacing(1)} * 1.2)`,
+        paddingBottom: `calc(${theme.spacing(1)} * 1.2)`,
+      },
+    },
+  ],
 }));
 
 const Divider = React.forwardRef(function Divider(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiDivider' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiDivider' });
   const {
     absolute = false,
     children,
@@ -219,7 +270,9 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
  * The following flag is used to ensure that this component isn't tabbable i.e.
  * does not get highlight/focus inside of MUI List.
  */
-Divider.muiSkipListHighlight = true;
+if (Divider) {
+  Divider.muiSkipListHighlight = true;
+}
 
 Divider.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
@@ -257,7 +310,7 @@ Divider.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the divider will have a lighter color.
    * @default false
-   * @deprecated Use <Divider sx={{ opacity: 0.6 }} /> (or any opacity or color) instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   * @deprecated Use <Divider sx={{ opacity: 0.6 }} /> (or any opacity or color) instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   light: PropTypes.bool,
   /**

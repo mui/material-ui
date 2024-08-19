@@ -1,13 +1,7 @@
 import * as React from 'react';
 import { spy } from 'sinon';
 import { expect } from 'chai';
-import {
-  act,
-  createRenderer,
-  describeConformance,
-  screen,
-  fireEvent,
-} from '@mui-internal/test-utils';
+import { act, createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
 import { Popper as PopperUnstyled } from '@mui/base/Popper';
 import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';
 import { ThemeProvider } from '@mui/joy/styles';
@@ -15,6 +9,7 @@ import Menu, { menuClasses as classes } from '@mui/joy/Menu';
 import Dropdown from '@mui/joy/Dropdown';
 import MenuItem from '@mui/joy/MenuItem';
 import MenuButton from '@mui/joy/MenuButton';
+import describeConformance from '../../test/describeConformance';
 
 const testContext: DropdownContextValue = {
   dispatch: () => {},
@@ -36,12 +31,6 @@ describe('Joy <Menu />', () => {
         <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
       );
     },
-    wrapMount: (mount) => (node: React.ReactNode) => {
-      const wrapper = mount(
-        <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
-      );
-      return wrapper.childAt(0);
-    },
     ThemeProvider,
     muiName: 'JoyMenu',
     refInstanceof: window.HTMLUListElement,
@@ -53,7 +42,6 @@ describe('Joy <Menu />', () => {
       'classesRoot',
       'componentProp',
       'componentsProp',
-      'reactTestRenderer', // react-transition-group issue
       'themeDefaultProps', // portal, can't determine the root
     ],
   }));

@@ -17,6 +17,8 @@
     "component": { "type": { "name": "elementType" } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "focusVisibleClassName": { "type": { "name": "string" } },
+    "loading": { "type": { "name": "bool" }, "default": "false" },
+    "loadingIndicator": { "type": { "name": "node" }, "default": "<CircularProgress />" },
     "size": {
       "type": {
         "name": "union",
@@ -26,11 +28,17 @@
       "additionalInfo": { "joy-size": true }
     },
     "slotProps": {
-      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ loadingIndicator?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
       "default": "{}"
     },
     "slots": {
-      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "type": {
+        "name": "shape",
+        "description": "{ loadingIndicator?: elementType, root?: elementType }"
+      },
       "default": "{}",
       "additionalInfo": { "slotsApi": true }
     },
@@ -61,6 +69,12 @@
       "description": "The component that renders the root.",
       "default": "'button'",
       "class": "MuiIconButton-root"
+    },
+    {
+      "name": "loadingIndicator",
+      "description": "The component that renders the loading indicator.",
+      "default": "'span'",
+      "class": "MuiIconButton-loadingIndicator"
     }
   ],
   "classes": [
@@ -111,6 +125,12 @@
       "className": "Mui-focusVisible",
       "description": "State class applied to the root element if the button is keyboard focused.",
       "isGlobal": true
+    },
+    {
+      "key": "loading",
+      "className": "MuiIconButton-loading",
+      "description": "Class name applied to the root element if `loading={true}`.",
+      "isGlobal": false
     },
     {
       "key": "sizeLg",

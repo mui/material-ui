@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { createRenderer, describeConformance } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import DialogActions, { dialogActionsClasses as classes } from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 import { expect } from 'chai';
+import describeConformance from '../../test/describeConformance';
 
 describe('<DialogActions />', () => {
   const { render } = createRenderer();

@@ -269,8 +269,8 @@ export default function XGridFullDemo() {
           <DataGridPro
             {...data}
             density="compact"
-            components={{
-              Toolbar: GridToolbar,
+            slots={{
+              toolbar: GridToolbar,
             }}
             loading={loading}
             checkboxSelection
@@ -281,7 +281,10 @@ export default function XGridFullDemo() {
           />
         </Paper>
       </Frame.Demo>
-      <Frame.Info data-mui-color-scheme="dark" sx={{ pl: { xs: 2, sm: 1 }, pr: 2, py: 1.5 }}>
+      <Frame.Info
+        data-mui-color-scheme="dark"
+        sx={{ pl: { xs: 2, sm: 1 }, pr: 2, py: { xs: 2, sm: 1.5 } }}
+      >
         <SettingsPanel onApply={handleApplyClick} size={size} type={type} />
       </Frame.Info>
     </Frame>

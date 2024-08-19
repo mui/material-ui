@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
-import { getHeaders } from '@mui/markdown';
+import { getHeaders } from '@mui/internal-markdown';
 import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMarkdown';
 import { writePrettifiedFile } from '@mui-internal/api-docs-builder/buildApiUtils';
 
@@ -9,13 +9,13 @@ export async function generateBaseUIApiPages() {
   await Promise.all(
     findPagesMarkdown().map(async (markdown) => {
       const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
-      const markdownHeaders = getHeaders(markdownContent) as any;
+      const markdownHeaders = getHeaders(markdownContent);
       const pathnameTokens = markdown.pathname.split('/');
       const productName = pathnameTokens[1];
       const componentName = pathnameTokens[3];
 
       // TODO: fix `productName` should be called `productId` and include the full name,
-      // e.g. base-ui below.
+      // for example base-ui below.
       if (
         productName === 'base' &&
         (markdown.filename.indexOf('\\components\\') >= 0 ||
@@ -30,7 +30,7 @@ export async function generateBaseUIApiPages() {
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
-import * as pageProps from '${importStatement}?@mui/markdown';
+import * as pageProps from '${importStatement}?muiMarkdown';
 
 export default function Page(props) {
   const { userLanguage, ...other } = props;
@@ -116,7 +116,7 @@ Page.getLayout = (page) => {
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
-import * as pageProps from '${importStatement}?@mui/markdown';
+import * as pageProps from '${importStatement}?muiMarkdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
 ${apiTabImportStatements}
 

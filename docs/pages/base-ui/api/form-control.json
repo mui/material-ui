@@ -22,6 +22,14 @@
     "import { FormControl } from '@mui/base/FormControl';",
     "import { FormControl } from '@mui/base';"
   ],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "base-FormControl-root"
+    }
+  ],
   "classes": [
     {
       "key": "disabled",
@@ -52,12 +60,6 @@
       "className": "base--required",
       "description": "State class applied to the root element if `required={true}`.",
       "isGlobal": true
-    },
-    {
-      "key": "root",
-      "className": "base-FormControl-root",
-      "description": "Class applied to the root element.",
-      "isGlobal": false
     }
   ],
   "spread": true,

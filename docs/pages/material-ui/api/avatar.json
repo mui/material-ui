@@ -6,6 +6,14 @@
     "component": { "type": { "name": "elementType" } },
     "imgProps": { "type": { "name": "object" } },
     "sizes": { "type": { "name": "string" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ img?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ img?: elementType }" },
+      "default": "{}"
+    },
     "src": { "type": { "name": "string" } },
     "srcSet": { "type": { "name": "string" } },
     "sx": {
@@ -28,6 +36,14 @@
     "import Avatar from '@mui/material/Avatar';",
     "import { Avatar } from '@mui/material';"
   ],
+  "slots": [
+    {
+      "name": "img",
+      "description": "The component that renders the transition.\n[Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
+      "default": "Collapse",
+      "class": "MuiAvatar-img"
+    }
+  ],
   "classes": [
     {
       "key": "circular",
@@ -45,12 +61,6 @@
       "key": "fallback",
       "className": "MuiAvatar-fallback",
       "description": "Styles applied to the fallback icon",
-      "isGlobal": false
-    },
-    {
-      "key": "img",
-      "className": "MuiAvatar-img",
-      "description": "Styles applied to the img element if either `src` or `srcSet` is defined.",
       "isGlobal": false
     },
     {

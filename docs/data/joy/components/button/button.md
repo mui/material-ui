@@ -11,12 +11,12 @@ unstyled: /base-ui/react-button/
 
 <p class="description">Buttons let users take actions and make choices with a single tap.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
 Buttons communicate actions that users can take.
-The Joy UI Button component replaces the native HTML `<button>` element and offers expanded options for styling and accessibility.
+The Joy UI Button component replaces the native HTML `<button>` element and offers expanded options for styling and accessibility.
 
 {{"demo": "ButtonUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
@@ -26,7 +26,7 @@ The Joy UI Button component replaces the native HTML `<button>` element and offe
 import Button from '@mui/joy/Button';
 ```
 
-The Joy UI Button behaves similarly to the native HTML `<button>`, so it wraps around the text displayed on its surface.
+The Joy UI Button behaves similarly to the native HTML `<button>`, so it wraps around the text displayed on its surface.
 
 The demo below shows the three basic states available to the Button: default, disabled, and loading.
 
@@ -50,7 +50,7 @@ See [Loading indicator](#loading-indicator) and [Loading position](#loading-posi
 
 ### Variants
 
-The Button component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined`, and `plain`.
+The Button component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined`, and `plain`.
 
 {{"demo": "ButtonVariants.js"}}
 

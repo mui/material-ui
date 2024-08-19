@@ -45,7 +45,7 @@ import useSlot from '../utils/useSlot';
 
 type OwnerState = Omit<AutocompleteOwnerState<any, any, any, any>, 'onChange' | 'defaultValue'>;
 
-const defaultIsActiveElementInListbox = (listboxRef: React.RefObject<HTMLElement>) =>
+const defaultIsActiveElementInListbox = (listboxRef: React.RefObject<HTMLElement | null>) =>
   listboxRef.current !== null && listboxRef.current.contains(document.activeElement);
 // @ts-ignore
 const defaultGetOptionLabel = (option) => option.label ?? option;
@@ -211,7 +211,7 @@ const AutocompleteListbox = styled(StyledAutocompleteListbox, {
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
 })<{ ownerState: OwnerState }>(({ theme }) => ({
-  // `unstable_popup-zIndex` is a private variable that lets other component, e.g. Modal, to override the z-index so that the listbox can be displayed above the Modal.
+  // `unstable_popup-zIndex` is a private variable that lets other component, for example Modal, to override the z-index so that the listbox can be displayed above the Modal.
   zIndex: `var(--unstable_popup-zIndex, ${theme.vars.zIndex.popup})`,
 }));
 
@@ -338,7 +338,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   const formControl = React.useContext(FormControlContext);
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const color = inProps.color ?? (error ? 'danger' : formControl?.color ?? colorProp);
+  const color = inProps.color ?? (error ? 'danger' : (formControl?.color ?? colorProp));
   const disabled = disabledProp ?? formControl?.disabled ?? false;
 
   const {
@@ -409,13 +409,15 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       selectedOptions = renderTags(value as Array<unknown>, getCustomizedTagProps, ownerState);
     } else {
       selectedOptions = (value as Array<unknown>).map((option, index) => {
+        const { key: endDecoratorKey, ...endDecoratorProps } = getCustomizedTagProps({ index });
         return (
           <Chip
             key={index}
             size={size}
             variant="soft"
             color="neutral"
-            endDecorator={<ChipDelete {...getCustomizedTagProps({ index })} />}
+            endDecorator={<ChipDelete key={endDecoratorKey} {...endDecoratorProps} />}
+            sx={{ minWidth: 0 }}
           >
             {getOptionLabel(option)}
           </Chip>
@@ -631,9 +633,14 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     },
   });
 
-  const defaultRenderOption = (optionProps: any, option: unknown) => (
-    <SlotOption {...optionProps}>{getOptionLabel(option)}</SlotOption>
-  );
+  const defaultRenderOption = (optionProps: any, option: unknown) => {
+    const { key, ...rest } = optionProps;
+    return (
+      <SlotOption key={key} {...rest}>
+        {getOptionLabel(option)}
+      </SlotOption>
+    );
+  };
 
   const renderOption = renderOptionProp || defaultRenderOption;
 
@@ -734,7 +741,7 @@ interface AutocompleteComponent {
     FreeSolo extends boolean | undefined = undefined,
   >(
     props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
-  ): JSX.Element;
+  ): React.JSX.Element;
   propTypes?: any;
 }
 
@@ -985,7 +992,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   limitTags: integerPropType,
   /**
    * If `true`, the component is in a loading state.
-   * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, e.g. `options` are empty).
+   * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, for example `options` are empty).
    * @default false
    */
   loading: PropTypes.bool,
@@ -1042,7 +1049,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {string} value The new value of the text input.
-   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`.
+   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`, `"blur"`, `"selectOption"`, `"removeOption"`
    */
   onInputChange: PropTypes.func,
   /**

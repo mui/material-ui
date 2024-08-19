@@ -25,9 +25,7 @@ export default function Navigation() {
         </ListSubheader>
         <List
           aria-labelledby="nav-list-browse"
-          sx={{
-            '& .JoyListItemButton-root': { p: '8px' },
-          }}
+          sx={{ '& .JoyListItemButton-root': { p: '8px' } }}
         >
           <ListItem>
             <ListItemButton selected>

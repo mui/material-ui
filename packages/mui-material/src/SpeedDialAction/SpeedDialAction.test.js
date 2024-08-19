@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, fireEvent } from '@mui-internal/test-utils';
+import { createRenderer, fireEvent } from '@mui/internal-test-utils';
 import Icon from '@mui/material/Icon';
 import Tooltip from '@mui/material/Tooltip';
 import { fabClasses } from '@mui/material/Fab';
 import SpeedDialAction, { speedDialActionClasses as classes } from '@mui/material/SpeedDialAction';
+import describeConformance from '../../test/describeConformance';
 
 describe('<SpeedDialAction />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
@@ -19,7 +20,7 @@ describe('<SpeedDialAction />', () => {
       muiName: 'MuiSpeedDialAction',
       testRootOverrides: { slotName: 'fab' },
       testVariantProps: { tooltipPlacement: 'right' },
-      skip: ['componentProp', 'reactTestRenderer', 'componentsProp'],
+      skip: ['componentProp', 'componentsProp'],
     }),
   );
 

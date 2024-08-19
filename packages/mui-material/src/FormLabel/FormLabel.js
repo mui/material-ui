@@ -2,12 +2,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import capitalize from '../utils/capitalize';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import formLabelClasses, { getFormLabelUtilityClasses } from './formLabelClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -38,21 +38,35 @@ export const FormLabelRoot = styled('label', {
       ...(ownerState.filled && styles.filled),
     };
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   color: (theme.vars || theme).palette.text.secondary,
   ...theme.typography.body1,
   lineHeight: '1.4375em',
   padding: 0,
   position: 'relative',
-  [`&.${formLabelClasses.focused}`]: {
-    color: (theme.vars || theme).palette[ownerState.color].main,
-  },
-  [`&.${formLabelClasses.disabled}`]: {
-    color: (theme.vars || theme).palette.text.disabled,
-  },
-  [`&.${formLabelClasses.error}`]: {
-    color: (theme.vars || theme).palette.error.main,
-  },
+  variants: [
+    ...Object.entries(theme.palette)
+      .filter(([, value]) => value && value.main)
+      .map(([color]) => ({
+        props: { color },
+        style: {
+          [`&.${formLabelClasses.focused}`]: {
+            color: (theme.vars || theme).palette[color].main,
+          },
+        },
+      })),
+    {
+      props: {},
+      style: {
+        [`&.${formLabelClasses.disabled}`]: {
+          color: (theme.vars || theme).palette.text.disabled,
+        },
+        [`&.${formLabelClasses.error}`]: {
+          color: (theme.vars || theme).palette.error.main,
+        },
+      },
+    },
+  ],
 }));
 
 const AsteriskComponent = styled('span', {
@@ -66,7 +80,7 @@ const AsteriskComponent = styled('span', {
 }));
 
 const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiFormLabel' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiFormLabel' });
   const {
     children,
     className,

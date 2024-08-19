@@ -13,7 +13,7 @@ Masonry maintains a list of content blocks with a consistent width but different
 The contents are ordered by row.
 If a row is already filled with the specified number of columns, the next item starts another row, and it is added to the shortest column in order to optimize the use of space.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 ## Basic masonry
 
@@ -55,6 +55,13 @@ It is important to note that the value provided to the `spacing` prop is multipl
 `spacing` accepts responsive values:
 
 {{"demo": "ResponsiveSpacing.js", "bg": true}}
+
+## Sequential
+
+This example demonstrates the use of the `sequential` to configure the sequential order.
+With `sequential` enabled, items are added in order from left to right rather than adding to the shortest column.
+
+{{"demo": "Sequential.js", "bg": true}}
 
 ## Server-side rendering
 

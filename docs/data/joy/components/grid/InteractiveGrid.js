@@ -6,8 +6,8 @@ import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
 import Sheet from '@mui/joy/Sheet';
 
-import BrandingProvider from 'docs/src/BrandingProvider';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { BrandingProvider } from '@mui/docs/branding';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 
 export default function InteractiveGrid() {
   const [direction, setDirection] = React.useState('row');
@@ -18,21 +18,21 @@ export default function InteractiveGrid() {
 <Grid
   container
   direction="${direction}"
-  justifyContent="${justifyContent}"
-  alignItems="${alignItems}"
+  sx={{
+    justifyContent: "${justifyContent}",
+    alignItems: "${alignItems}",
+  }}
 >
 `;
 
   return (
     <Grid sx={{ flexGrow: 1 }} container>
-      <Grid xs={12}>
+      <Grid size={12}>
         <Grid
-          sx={{ height: 300, pt: 2, pb: 2 }}
           container
           spacing={2}
-          alignItems={alignItems}
           direction={direction}
-          justifyContent={justifyContent}
+          sx={{ alignItems, justifyContent, height: 300, pt: 2, pb: 2 }}
         >
           {[0, 1, 2].map((value) => (
             <Grid key={value}>
@@ -50,10 +50,10 @@ export default function InteractiveGrid() {
           ))}
         </Grid>
       </Grid>
-      <Grid xs={12}>
+      <Grid size={12}>
         <Sheet sx={{ p: 2 }}>
           <Grid container spacing={3}>
-            <Grid xs={12}>
+            <Grid size={12}>
               <FormControl>
                 <FormLabel sx={{ mb: 1.5 }}>direction</FormLabel>
                 <RadioGroup
@@ -73,7 +73,7 @@ export default function InteractiveGrid() {
                 </RadioGroup>
               </FormControl>
             </Grid>
-            <Grid xs={12}>
+            <Grid size={12}>
               <FormControl>
                 <FormLabel sx={{ mb: 1.5 }}>justifyContent</FormLabel>
                 <RadioGroup
@@ -95,7 +95,7 @@ export default function InteractiveGrid() {
                 </RadioGroup>
               </FormControl>
             </Grid>
-            <Grid xs={12}>
+            <Grid size={12}>
               <FormControl>
                 <FormLabel sx={{ mb: 1.5 }}>alignItems</FormLabel>
                 <RadioGroup
@@ -119,7 +119,7 @@ export default function InteractiveGrid() {
           </Grid>
         </Sheet>
       </Grid>
-      <Grid xs={12}>
+      <Grid size={12}>
         <BrandingProvider mode="dark">
           <HighlightedCode code={jsx} language="jsx" />
         </BrandingProvider>

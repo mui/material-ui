@@ -5,8 +5,8 @@ import throttle from 'lodash/throttle';
 import { styled, alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import NoSsr from '@mui/material/NoSsr';
-import Link from 'docs/src/modules/components/Link';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { Link } from '@mui/docs/Link';
+import { useTranslate } from '@mui/docs/i18n';
 import { samePageLinkNavigation } from 'docs/src/modules/components/MarkdownLinks';
 import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
 import featureToggle from 'docs/src/featureToggle';
@@ -15,7 +15,7 @@ import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 const Nav = styled('nav')(({ theme }) => ({
   top: 'var(--MuiDocs-header-height)',
   marginTop: 'var(--MuiDocs-header-height)',
-  paddingLeft: 2, // Fix truncated focus outline style
+  paddingLeft: 6, // Fix truncated focus outline style
   position: 'sticky',
   height: 'calc(100vh - var(--MuiDocs-header-height))',
   overflowY: 'auto',
@@ -23,6 +23,7 @@ const Nav = styled('nav')(({ theme }) => ({
   paddingBottom: theme.spacing(7),
   paddingRight: theme.spacing(4), // We can't use `padding` as stylis-plugin-rtl doesn't swap it
   display: 'none',
+  scrollbarWidth: 'thin',
   [theme.breakpoints.up('md')]: {
     display: 'block',
   },
@@ -31,10 +32,10 @@ const Nav = styled('nav')(({ theme }) => ({
 const NavLabel = styled(Typography)(({ theme }) => ({
   padding: theme.spacing(1, 0, 1, 1.4),
   fontSize: theme.typography.pxToRem(11),
-  fontWeight: theme.typography.fontWeightBold,
+  fontWeight: theme.typography.fontWeightSemiBold,
   textTransform: 'uppercase',
-  letterSpacing: '.08rem',
-  color: theme.palette.grey[600],
+  letterSpacing: '.1rem',
+  color: (theme.vars || theme).palette.text.tertiary,
 }));
 
 const NavList = styled(Typography)({
@@ -46,7 +47,7 @@ const NavList = styled(Typography)({
 const NavItem = styled(Link, {
   shouldForwardProp: (prop) =>
     prop !== 'active' && prop !== 'secondary' && prop !== 'secondarySubItem',
-})(({ active, secondary, secondarySubItem, theme }) => {
+})(({ theme }) => {
   const activeStyles = {
     borderLeftColor: (theme.vars || theme).palette.primary[200],
     color: (theme.vars || theme).palette.primary[600],
@@ -63,18 +64,12 @@ const NavItem = styled(Link, {
       color: (theme.vars || theme).palette.primary[400],
     },
   };
-  let paddingLeft = '12px';
-  if (secondary) {
-    paddingLeft = 3;
-  }
-  if (secondarySubItem) {
-    paddingLeft = 4.5;
-  }
 
   return [
     {
+      '--_padding-left': '12px',
       boxSizing: 'border-box',
-      padding: theme.spacing('6px', 0, '6px', paddingLeft),
+      padding: theme.spacing('6px', 0, '6px', 'var(--_padding-left)'),
       borderLeft: `1px solid transparent`,
       display: 'block',
       fontSize: theme.typography.pxToRem(13),
@@ -85,11 +80,31 @@ const NavItem = styled(Link, {
         borderLeftColor: (theme.vars || theme).palette.grey[400],
         color: (theme.vars || theme).palette.grey[600],
       },
-      ...(!active && {
-        color: (theme.vars || theme).palette.text.primary,
-      }),
       // TODO: We probably want `aria-current="location"` instead.
-      ...(active && activeStyles),
+      variants: [
+        {
+          props: ({ active }) => !!active,
+          style: activeStyles,
+        },
+        {
+          props: ({ active }) => !active,
+          style: {
+            color: (theme.vars || theme).palette.text.primary,
+          },
+        },
+        {
+          props: ({ secondary }) => secondary,
+          style: {
+            '--_padding-left': theme.spacing(3),
+          },
+        },
+        {
+          props: ({ secondarySubItem }) => secondarySubItem,
+          style: {
+            '--_padding-left': theme.spacing(4.5),
+          },
+        },
+      ],
       '&:active': activeStyles,
     },
     theme.applyDarkStyles({
@@ -97,10 +112,18 @@ const NavItem = styled(Link, {
         borderLeftColor: (theme.vars || theme).palette.grey[500],
         color: (theme.vars || theme).palette.grey[200],
       },
-      ...(!active && {
-        color: (theme.vars || theme).palette.grey[500],
-      }),
-      ...(active && activeDarkStyles),
+      variants: [
+        {
+          props: ({ active }) => !!active,
+          style: activeDarkStyles,
+        },
+        {
+          props: ({ active }) => !active,
+          style: {
+            color: (theme.vars || theme).palette.grey[500],
+          },
+        },
+      ],
       '&:active': activeDarkStyles,
     }),
   ];
@@ -204,7 +227,7 @@ export default function AppTableOfContents(props) {
   useThrottledOnScroll(items.length > 0 ? findActiveIndex : null, 166);
 
   const handleClick = (hash) => (event) => {
-    // Ignore click events meant for native link handling, e.g. open in new tab
+    // Ignore click events meant for native link handling, for example open in new tab
     if (samePageLinkNavigation(event)) {
       return;
     }
@@ -277,15 +300,17 @@ export default function AppTableOfContents(props) {
                 }),
             ]}
           >
-            <Typography component="span" variant="button" fontWeight="500" color="text.primary">
+            <Typography
+              component="span"
+              variant="button"
+              sx={{ fontWeight: '500', color: 'text.primary' }}
+            >
               {'🚀 Join the MUI team!'}
             </Typography>
             <Typography
               component="span"
               variant="caption"
-              fontWeight="normal"
-              color="text.secondary"
-              sx={{ mt: 0.5 }}
+              sx={{ fontWeight: 'normal', color: 'text.secondary', mt: 0.5 }}
             >
               {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
               {"We're looking for React Engineers and other amazing roles－come find out more!"}

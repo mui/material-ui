@@ -6,7 +6,7 @@
 
 - **Location**: Remote (preference for UTC-6 to UTC+5).
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
-- **Level**: [IC4 or above](https://mui-org.notion.site/Levelling-at-MUI-5c30f9bfe65149d697f346447cef9db1).
+- **Level**: [IC4 or above](https://mui-org.notion.site/Leveling-at-MUI-5c30f9bfe65149d697f346447cef9db1).
 - We're a **remote** company, we prefer asynchronous communication over meetings.
 
 ## The company
@@ -18,7 +18,7 @@ We're a company of 31+ people as of late 2023, and we're growing.
 ## The products
 
 MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
-Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
+Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
 We also host Design Kits and pre-built Templates.
 
 Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
@@ -39,7 +39,7 @@ For additional details about the culture, you can check our [careers](https://mu
 ## Why we're hiring
 
 The core components team (MUI Core) needs help.
-They are working on 4 products (Material UI, Base UI, Joy UI, and MUI System) with a tiny team.
+They are working on 4 products (Material UI, Base UI, Joy UI, and MUI System) with a tiny team.
 
 We also need help to continue to improve the health of the open-source product: make the core components easier to use, increase the contributions by engaging and collaborating with the community, polish all the details, make the components more accessible, guide developers to answers, and just generally be a positive presence in the open-source community.
 
@@ -149,7 +149,7 @@ Details matter to you.
 ## Benefits and compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
+We are ready to pay top market rates for a person who can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply

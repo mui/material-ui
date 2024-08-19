@@ -26,7 +26,12 @@ export default function NestedCard() {
             ratio="1"
             sx={{ minWidth: 70, '& img[data-first-child]': { p: 1.5 } }}
           >
-            <img src="https://uilogos.co/img/logomark/lighting.png" alt="" />
+            <img
+              src="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=70"
+              srcSet="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=70&dpr=2 2x"
+              loading="lazy"
+              alt=""
+            />
           </AspectRatio>
         </CardOverflow>
         <CardContent>

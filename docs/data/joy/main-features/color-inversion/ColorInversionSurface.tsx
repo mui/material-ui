@@ -12,14 +12,18 @@ export default function ColorInversionSurface() {
       variant="solid"
       color="warning"
       invertedColors
-      sx={{ gap: 2, minWidth: 300, boxShadow: 'md' }}
+      sx={{
+        gap: 2,
+        minWidth: 300,
+        boxShadow: 'md',
+        border: '1px solid',
+        borderColor: 'divider',
+      }}
     >
       <CardContent orientation="horizontal">
         <div>
           <Typography level="title-lg">$4,236</Typography>
-          <Typography fontSize="xs" fontFamily="code">
-            CREDIT
-          </Typography>
+          <Typography sx={{ fontSize: 'xs', fontFamily: 'code' }}>CREDIT</Typography>
         </div>
         <SvgIcon sx={{ ml: 'auto' }}>
           <svg
@@ -40,23 +44,25 @@ export default function ColorInversionSurface() {
           </svg>
         </SvgIcon>
       </CardContent>
-      <Typography level="title-lg" fontFamily="code">
+      <Typography level="title-lg" sx={{ fontFamily: 'code' }}>
         •••• •••• •••• 1212
       </Typography>
       <CardContent orientation="horizontal" sx={{ justifyContent: 'space-between' }}>
         <div>
-          <Typography fontSize="xs" fontFamily="code">
+          <Typography sx={{ fontSize: 'xs', fontFamily: 'code' }}>
             CARD NAME
           </Typography>
-          <Typography level="title-sm" fontSize="sm">
+          <Typography level="title-sm" sx={{ fontSize: 'sm' }}>
             JOHN DOE
           </Typography>
         </div>
         <div>
-          <Typography fontSize="xs" textAlign="right" fontFamily="code">
+          <Typography
+            sx={{ fontSize: 'xs', textAlign: 'right', fontFamily: 'code' }}
+          >
             EXPIRE
           </Typography>
-          <Typography level="title-sm" fontSize="sm" textAlign="right">
+          <Typography level="title-sm" sx={{ fontSize: 'sm', textAlign: 'right' }}>
             07/25
           </Typography>
         </div>
@@ -64,7 +70,9 @@ export default function ColorInversionSurface() {
     </Card>
   );
   return (
-    <Box sx={{ display: 'flex', gap: 2 }}>
+    <Box
+      sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2 }}
+    >
       {creditCard}
       {React.cloneElement(creditCard, { variant: 'soft' })}
     </Box>

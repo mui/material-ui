@@ -35,6 +35,11 @@ export interface MasonryOwnProps {
    */
   spacing?: ResponsiveStyleValue<number | string>;
   /**
+   * Allows using sequential order rather than adding to shortest column
+   * @default false
+   */
+  sequential?: boolean;
+  /**
    * Allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
@@ -51,11 +56,11 @@ export interface MasonryTypeMap<
  *
  * Demos:
  *
- * - [Masonry](https://mui.com/material-ui/react-masonry/)
+ * - [Masonry](https://next.mui.com/material-ui/react-masonry/)
  *
  * API:
  *
- * - [Masonry API](https://mui.com/material-ui/api/masonry/)
+ * - [Masonry API](https://next.mui.com/material-ui/api/masonry/)
  */
 declare const Masonry: OverridableComponent<MasonryTypeMap>;
 

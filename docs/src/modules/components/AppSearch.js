@@ -23,19 +23,20 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha, styled } from '@mui/material/styles';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { LANGUAGES_SSR } from 'docs/config';
-import Link from 'docs/src/modules/components/Link';
-import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
+import { Link } from '@mui/docs/Link';
+import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import PageContext from 'docs/src/modules/components/PageContext';
 
 const SearchButton = styled('button')(({ theme }) => [
   {
-    minHeight: 34,
-    minWidth: 34,
+    minHeight: 32,
+    minWidth: 32,
+    margin: 0,
+    paddingLeft: theme.spacing(1),
     display: 'flex',
     alignItems: 'center',
-    margin: 0,
-    paddingLeft: theme.spacing(0.6),
+    gap: '6px',
     [theme.breakpoints.only('xs')]: {
       backgroundColor: 'transparent',
       padding: 0,
@@ -44,23 +45,21 @@ const SearchButton = styled('button')(({ theme }) => [
         display: 'none',
       },
     },
-    fontFamily: theme.typography.fontFamily,
     position: 'relative',
-    backgroundColor: (theme.vars || theme).palette.grey[50],
-    color: (theme.vars || theme).palette.text.secondary,
+    backgroundColor: alpha(theme.palette.grey[50], 0.6),
+    fontFamily: theme.typography.fontFamily,
     fontSize: theme.typography.pxToRem(14),
+    color: (theme.vars || theme).palette.text.secondary,
     border: `1px solid ${(theme.vars || theme).palette.grey[200]}`,
     borderRadius: (theme.vars || theme).shape.borderRadius,
     cursor: 'pointer',
     transitionProperty: 'all',
     transitionDuration: '150ms',
-    boxShadow: `inset 0 -1px 1px ${(theme.vars || theme).palette.grey[100]}, 0 1px 0.5px ${alpha(
-      theme.palette.grey[100],
-      0.6,
-    )}`,
+    boxShadow: `hsl(200, 0%, 100%) 0 1px 0 inset, ${alpha(theme.palette.grey[100], 0.4)} 0 -1px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
     '&:hover': {
-      background: (theme.vars || theme).palette.grey[100],
+      background: alpha(theme.palette.grey[100], 0.5),
       borderColor: (theme.vars || theme).palette.grey[300],
+      boxShadow: 'none',
     },
     '&:focus-visible': {
       outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
@@ -69,27 +68,29 @@ const SearchButton = styled('button')(({ theme }) => [
   },
   theme.applyDarkStyles({
     backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
-    borderColor: (theme.vars || theme).palette.primaryDark[700],
-    boxShadow: `inset 0 -1px 1px ${(theme.vars || theme).palette.primaryDark[900]}, 0 1px 0.5px ${
-      (theme.vars || theme).palette.common.black
-    }`,
+    borderColor: alpha(theme.palette.primaryDark[600], 0.4),
+    boxShadow: `${alpha(theme.palette.primaryDark[600], 0.1)} 0 1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
     '&:hover': {
       background: (theme.vars || theme).palette.primaryDark[700],
       borderColor: (theme.vars || theme).palette.primaryDark[600],
+      boxShadow: 'none',
     },
   }),
 ]);
 
 const SearchLabel = styled('span')(({ theme }) => ({
-  marginLeft: theme.spacing(1),
   marginRight: 'auto',
+  marginBottom: '1px', // optical alignment
+  color: (theme.vars || theme).palette.text.tertiary,
+  lineHeight: 1,
 }));
 
-const Shortcut = styled('div')(({ theme }) => {
+const Shortcut = styled('kbd')(({ theme }) => {
   return {
+    all: 'unset',
     fontSize: theme.typography.pxToRem(12),
     fontWeight: 'bold',
-    lineHeight: '20px',
+    lineHeight: '19px',
     marginLeft: theme.spacing(0.5),
     border: `1px solid ${(theme.vars || theme).palette.grey[200]}`,
     backgroundColor: '#FFF',
@@ -204,22 +205,22 @@ function NewStartScreen() {
     },
     {
       category: {
-        name: 'MUI Toolpad',
+        name: 'Toolpad',
       },
       items: [
         {
           name: 'Overview',
-          href: '/toolpad/getting-started/',
+          href: '/toolpad/studio/getting-started/',
           icon: <StickyNote2RoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
         {
           name: 'Why Toolpad?',
-          href: '/toolpad/getting-started/why-toolpad/',
+          href: '/toolpad/studio/getting-started/why-toolpad/',
           icon: <ChecklistRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
         {
           name: 'Example applications',
-          href: '/toolpad/examples/',
+          href: '/toolpad/studio/examples/',
           icon: <LibraryBooksRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
       ],
@@ -273,6 +274,9 @@ const productNameProductId = {
   x: 'MUI X',
   system: 'MUI System',
   toolpad: 'Toolpad',
+  'toolpad-studio': 'Toolpad Studio',
+  'toolpad-core': 'Toolpad Core',
+  'docs-infra': 'Docs Infra',
 };
 
 export function convertProductIdToName(productInfo) {
@@ -429,15 +433,7 @@ export default function AppSearch(props) {
         aria-labelledby="app-search-label"
         {...props}
       >
-        <SearchIcon
-          fontSize="small"
-          sx={(theme) => ({
-            color: 'primary.500',
-            ...theme.applyDarkStyles({
-              color: 'primary.300',
-            }),
-          })}
-        />
+        <SearchIcon color="primary" sx={{ fontSize: '1.125rem' }} />
         <SearchLabel id="app-search-label">{t('searchButton')}</SearchLabel>
         <Shortcut aria-hidden="true">
           {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
@@ -546,8 +542,8 @@ export default function AppSearch(props) {
               fontSize: theme.typography.pxToRem(11),
               fontWeight: theme.typography.fontWeightBold,
               textTransform: 'uppercase',
-              letterSpacing: '.08rem',
-              color: theme.palette.grey[600],
+              letterSpacing: '.1rem',
+              color: (theme.vars || theme).palette.text.tertiary,
             },
             '& .DocSearch-NewStartScreenTitleIcon': {
               fontSize: theme.typography.pxToRem(18),
@@ -616,6 +612,10 @@ export default function AppSearch(props) {
                 width: '18px',
                 height: '18px',
               },
+              '& .DocSearch-VisuallyHiddenForAccessibility': {
+                width: 0,
+                visibility: 'hidden',
+              },
             },
             '& .DocSearch-Cancel': {
               display: 'block',
@@ -666,8 +666,8 @@ export default function AppSearch(props) {
               fontWeight: theme.typography.fontWeightBold,
               textTransform: 'uppercase',
               lineHeight: 1,
-              letterSpacing: '.08rem',
-              color: theme.palette.grey[600],
+              letterSpacing: '.1rem',
+              color: (theme.vars || theme).palette.text.tertiary,
             },
             '& .DocSearch-Hit': {
               paddingBottom: 8,

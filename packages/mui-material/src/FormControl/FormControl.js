@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { isFilled, isAdornedStart } from '../InputBase/utils';
 import capitalize from '../utils/capitalize';
 import isMuiElement from '../utils/isMuiElement';
@@ -30,7 +30,7 @@ const FormControlRoot = styled('div', {
       ...(ownerState.fullWidth && styles.fullWidth),
     };
   },
-})(({ ownerState }) => ({
+})({
   display: 'inline-flex',
   flexDirection: 'column',
   position: 'relative',
@@ -40,18 +40,29 @@ const FormControlRoot = styled('div', {
   margin: 0,
   border: 0,
   verticalAlign: 'top', // Fix alignment issue on Safari.
-  ...(ownerState.margin === 'normal' && {
-    marginTop: 16,
-    marginBottom: 8,
-  }),
-  ...(ownerState.margin === 'dense' && {
-    marginTop: 8,
-    marginBottom: 4,
-  }),
-  ...(ownerState.fullWidth && {
-    width: '100%',
-  }),
-}));
+  variants: [
+    {
+      props: { margin: 'normal' },
+      style: {
+        marginTop: 16,
+        marginBottom: 8,
+      },
+    },
+    {
+      props: { margin: 'dense' },
+      style: {
+        marginTop: 8,
+        marginBottom: 4,
+      },
+    },
+    {
+      props: { fullWidth: true },
+      style: {
+        width: '100%',
+      },
+    },
+  ],
+});
 
 /**
  * Provides context such as filled/focused/error/required for form inputs.
@@ -78,7 +89,7 @@ const FormControlRoot = styled('div', {
  * For instance, only one input can be focused at the same time, the state shouldn't be shared.
  */
 const FormControl = React.forwardRef(function FormControl(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiFormControl' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiFormControl' });
   const {
     children,
     className,

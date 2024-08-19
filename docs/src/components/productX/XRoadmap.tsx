@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
@@ -16,7 +16,7 @@ import AutoGraphRoundedIcon from '@mui/icons-material/AutoGraphRounded';
 import SpeedRounded from '@mui/icons-material/SpeedRounded';
 import { alpha } from '@mui/material/styles';
 import ROUTES from 'docs/src/route';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import Section from 'docs/src/layouts/Section';
 import GradientText from 'docs/src/components/typography/GradientText';
@@ -41,7 +41,7 @@ function RoadmapStatusDot({ color }: RoadmapStatusDotProps) {
 }
 
 export default function XRoadmap() {
-  function renderList(content: React.ReactElement, nested?: boolean) {
+  function renderList(content: React.ReactElement<any>, nested?: boolean) {
     return (
       <Box
         sx={{
@@ -101,7 +101,7 @@ export default function XRoadmap() {
       }}
     >
       <Grid container spacing={2} alignItems="center" justifyContent="space-between">
-        <Grid item xs={12} md={5}>
+        <Grid size={{ xs: 12, md: 5 }}>
           <SectionHeadline
             overline="Roadmap"
             title={
@@ -123,10 +123,7 @@ export default function XRoadmap() {
           </Button>
         </Grid>
         <Grid
-          item
-          xs={12}
-          md={7}
-          lg="auto"
+          size={{ xs: 12, md: 7, lg: 'auto' }}
           container
           spacing={2}
           sx={{
@@ -140,9 +137,13 @@ export default function XRoadmap() {
             },
           }}
         >
-          <Grid item xs={12} sm={4} lg="auto">
+          <Grid size={{ xs: 12, sm: 4, lg: 'auto' }}>
             <Paper variant="outlined">
-              <Typography component="div" fontWeight="bold" variant="body2" color="text.primary">
+              <Typography
+                component="div"
+                variant="body2"
+                sx={{ fontWeight: 'bold', color: 'text.primary' }}
+              >
                 Stable
                 <RoadmapStatusDot color="success.main" />
               </Typography>
@@ -160,28 +161,34 @@ export default function XRoadmap() {
               )}
             </Paper>
           </Grid>
-          <Grid item xs={12} sm={4} lg="auto">
+          <Grid size={{ xs: 12, sm: 4, lg: 'auto' }}>
             <Paper variant="outlined">
-              <Typography component="div" fontWeight="bold" variant="body2" color="text.primary">
+              <Typography
+                component="div"
+                variant="body2"
+                sx={{ fontWeight: 'bold', color: 'text.primary' }}
+              >
                 Work in progress
                 <RoadmapStatusDot color="warning.main" />
               </Typography>
               {renderList(
                 <React.Fragment>
-                  <Box
-                    sx={{
-                      lineHeight: 0,
-                    }}
-                  >
+                  <Box sx={{ lineHeight: 0 }}>
                     <PivotTableChartRoundedIcon sx={{ fontSize: 16 }} />
                   </Box>
                   Data Grid
                   {bullet}
-                  <Typography variant="body2" color="text.secondary" fontWeight="medium">
+                  <Typography
+                    variant="body2"
+                    sx={{ color: 'text.secondary', fontWeight: 'medium' }}
+                  >
                     Pivoting
                   </Typography>
                   {bullet}
-                  <Typography variant="body2" color="text.secondary" fontWeight="medium">
+                  <Typography
+                    variant="body2"
+                    sx={{ color: 'text.secondary', fontWeight: 'medium' }}
+                  >
                     Charts integration
                   </Typography>
                   {bullet}
@@ -193,20 +200,22 @@ export default function XRoadmap() {
               )}
               {renderList(
                 <React.Fragment>
-                  <Box
-                    sx={{
-                      lineHeight: 0,
-                    }}
-                  >
+                  <Box sx={{ lineHeight: 0 }}>
                     <AccountTreeRounded sx={{ fontSize: 16 }} />
                   </Box>
                   Tree View
                   {bullet}
-                  <Typography variant="body2" color="text.secondary" fontWeight="medium">
+                  <Typography
+                    variant="body2"
+                    sx={{ color: 'text.secondary', fontWeight: 'medium' }}
+                  >
                     Virtualization
                   </Typography>
                   {bullet}
-                  <Typography variant="body2" color="text.secondary" fontWeight="medium">
+                  <Typography
+                    variant="body2"
+                    sx={{ color: 'text.secondary', fontWeight: 'medium' }}
+                  >
                     Drag and Drop
                   </Typography>
                 </React.Fragment>,
@@ -214,9 +223,13 @@ export default function XRoadmap() {
               )}
             </Paper>
           </Grid>
-          <Grid item xs={12} sm={4} lg="auto">
+          <Grid size={{ xs: 12, sm: 4, lg: 'auto' }}>
             <Paper variant="outlined">
-              <Typography component="div" fontWeight="bold" variant="body2" color="text.primary">
+              <Typography
+                component="div"
+                variant="body2"
+                sx={{ fontWeight: 'bold', color: 'text.primary' }}
+              >
                 Future components
                 <RoadmapStatusDot color="primaryDark.400" />
               </Typography>

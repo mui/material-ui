@@ -18,7 +18,7 @@ We're a company of 31+ people as of late 2023, and we're growing.
 ## The products
 
 MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
-Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
+Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
 We also host Design Kits and pre-built Templates.
 
 Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
@@ -64,7 +64,7 @@ Depending on the day, you'll:
 - **Personas**. Build deep knowledge and understanding of MUI's technical buyer personas and the journey of our enterprise prospects via market research, prospect/customer conversations, and internal conversations.
 - **Market research**. Use customer and competitive research to tailor effective messaging to our Enterprise audience.
 - **Content**. Plan and create impactful marketing materials mapped to buying journey. Generate high-quality content for customers including website copy/landing pages, blogs, webinar content, use cases, customer stories, showcases, and more.
-- **Paid channels**. Build and help execute marketing campaigns from the bottom up (identify goals, risks, audience, messages, and tactics), e.g. we can explore SEA & conference sponsoring.
+- **Paid channels**. Build and help execute marketing campaigns from the bottom up (identify goals, risks, audience, messages, and tactics), for example we can explore SEA & conference sponsoring.
 - **Sales**. Partner with the Sales team to create effective sales enablement materials.
 - **Events** Potentially: Lead corporate event programs that result in relationship building, lead/pipeline generation and acceleration, customer engagement, retention, and brand awareness.
 
@@ -85,7 +85,7 @@ Depending on the day, you'll:
 ## Benefits and compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
+We are ready to pay top market rates for a person who can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply

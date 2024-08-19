@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent, act, screen } from '@mui-internal/test-utils';
+import { createRenderer, fireEvent, act, screen } from '@mui/internal-test-utils';
 import {
   DEFAULT_MODE_STORAGE_KEY,
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
-} from './getInitColorSchemeScript';
+} from '../InitColorSchemeScript/InitColorSchemeScript';
 import useCurrentColorScheme, { getColorScheme } from './useCurrentColorScheme';
 
 describe('useCurrentColorScheme', () => {
@@ -18,17 +18,24 @@ describe('useCurrentColorScheme', () => {
 
   const createMatchMedia = (matches) => () => ({
     matches,
+    // Keep mocking legacy methods because @mui/material v5 still uses them
     addListener: (listener) => {
       trigger = listener;
     },
+    addEventListener: (listener) => {
+      trigger = listener;
+    },
     removeListener: () => {},
+    removeEventListener: () => {},
   });
+
   before(() => {
     originalAddEventListener = window.addEventListener;
     window.addEventListener = (key, handler) => {
       storageHandler[key] = handler;
     };
   });
+
   after(() => {
     window.addEventListener = originalAddEventListener;
   });
@@ -51,8 +58,30 @@ describe('useCurrentColorScheme', () => {
     storageHandler = {};
     window.matchMedia = createMatchMedia(false);
   });
+
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
+  });
+
+  it('does not trigger a re-render for a single color scheme', () => {
+    function Data() {
+      const { mode } = useCurrentColorScheme({
+        defaultMode: 'dark',
+        supportedColorSchemes: ['dark'],
+      });
+      const count = React.useRef(0);
+      React.useEffect(() => {
+        count.current += 1;
+      });
+      return (
+        <div>
+          {mode}:{count.current}
+        </div>
+      );
+    }
+    const { container } = render(<Data />);
+
+    expect(container.firstChild.textContent).to.equal('dark:0');
   });
 
   describe('getColorScheme', () => {

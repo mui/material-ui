@@ -2,16 +2,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
-import {
-  describeConformance,
-  act,
-  createRenderer,
-  fireEvent,
-  screen,
-} from '@mui-internal/test-utils';
-import { Slider as BaseSlider } from '@mui/base/Slider';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Slider, { sliderClasses as classes } from '@mui/material/Slider';
+import describeConformance from '../../test/describeConformance';
 
 function createTouches(touches) {
   return {
@@ -742,6 +736,7 @@ describe('<Slider />', () => {
       expect(slider).to.have.attribute('aria-valuenow', String(min));
     });
   });
+
   describe('prop: max', () => {
     it('should set the max and aria-valuemax on the input', () => {
       const max = 750;
@@ -1269,7 +1264,7 @@ describe('<Slider />', () => {
   });
 
   it('should remove the slider from the tab sequence', () => {
-    render(<BaseSlider tabIndex={-1} value={30} />);
+    render(<Slider tabIndex={-1} value={30} />);
     expect(screen.getByRole('slider')).to.have.property('tabIndex', -1);
   });
 

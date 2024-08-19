@@ -1,22 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  createMount,
-  createRenderer,
-  describeConformanceUnstyled,
-  fireEvent,
-} from '@mui-internal/test-utils';
+import { createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { FormControl, formControlClasses, useFormControlContext } from '@mui/base/FormControl';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 describe('<FormControl />', () => {
-  const mount = createMount();
   const { render } = createRenderer();
 
   describeConformanceUnstyled(<FormControl />, () => ({
     inheritComponent: 'div',
     render,
-    mount,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'div',
     slots: {

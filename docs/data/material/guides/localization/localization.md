@@ -77,6 +77,7 @@ The [Data Grid and Data Grid Pro](/x/react-data-grid/) components have their own
 | Nepali                  | ne-NP               | `neNP`      |
 | Norwegian (bokmål)      | nb-NO               | `nbNO`      |
 | Norwegian (nynorsk)     | nn-NO               | `nnNO`      |
+| Pashto (Afghanistan)    | ps-AF               | `psAF`      |
 | Persian                 | fa-IR               | `faIR`      |
 | Polish                  | pl-PL               | `plPL`      |
 | Portuguese              | pt-PT               | `ptPT`      |
@@ -97,7 +98,7 @@ The [Data Grid and Data Grid Pro](/x/react-data-grid/) components have their own
 
 <!-- #default-branch-switch -->
 
-You can [find the source](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/locale/index.ts) in the GitHub repository.
+You can [find the source](https://github.com/mui/material-ui/blob/next/packages/mui-material/src/locale/index.ts) in the GitHub repository.
 
 To create your own translation, or to customize the English text, copy this file to your project, make any changes needed and import the locale from there.
 

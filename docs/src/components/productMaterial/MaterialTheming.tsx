@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
+import { CssVarsProvider } from '@mui/material/styles';
+import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
 import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
@@ -11,14 +12,11 @@ import Highlighter from 'docs/src/components/action/Highlighter';
 import SvgMaterialDesign from 'docs/src/icons/SvgMaterialDesign';
 import Frame from 'docs/src/components/action/Frame';
 import PlayerCard from 'docs/src/components/showcase/PlayerCard';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 
 const code = `
 <Card
   variant="outlined"
-  sx={{
-    p: 2,
+  sx={{  p: 2,
     width: { xs: '100%', sm: 'auto' },
     display: 'flex',
     flexDirection: { xs: 'column', sm: 'row' },
@@ -31,48 +29,43 @@ const code = `
     width="100"
     height="100"
     alt="Contemplative Reptile album cover"
-    src="/static/images/cards/contemplative-reptile.jpg"
-    sx={{
-      width: { xs: '100%', sm: 100 },
-      borderRadius: 0.6,
+    src="/images/contemplative-reptile.jpg"
+    sx={{    width: { xs: '100%', sm: 100 },
     }}
   />
-  <Stack direction="column" spacing={2} alignItems="center">
-    <Stack direction="column" spacing={0.2} alignItems="center">
-      <Typography color="text.primary" fontWeight="medium" fontSize={15}>
+  <Stack direction="column" alignItems="center" spacing={1} useFlexGap>
+    <div>
+      <Typography color="text.primary" fontWeight="semiBold">
         Contemplative Reptile
       </Typography>
       <Typography
-        component="div"
         variant="caption"
         color="text.secondary"
-        fontWeight="regular"
+        fontWeight="medium"
+        textAlign="center"
+        sx={{ width: '100%' }}
       >
         Sounds of Nature
       </Typography>
-    </Stack>
-    <Stack direction="row" alignItems="center" spacing={1.5}>
-      <IconButton 
-        disabled 
-        aria-label="shuffle" 
-        size="small" 
-        sx={{ flexGrow: 0 }}>
+    </div>
+    <Stack direction="row" alignItems="center" spacing={1} useFlexGap>
+      <IconButton aria-label="Shuffle" disabled size="small">
         <ShuffleRoundedIcon fontSize="small" />
       </IconButton>
-      <IconButton aria-label="fast rewind" disabled size="small">
+      <IconButton aria-label="Fast rewind" disabled size="small">
         <FastRewindRounded fontSize="small" />
       </IconButton>
       <IconButton
-        aria-label={paused ? 'play' : 'pause'}
-        sx={{ mx: 1 }}
+        aria-label={paused ? 'Play music' : 'Pause music'}
         onClick={() => setPaused((val) => !val)}
+        sx={{ mx: 1 }}
       >
         {paused ? <PlayArrowRounded /> : <PauseRounded />}
       </IconButton>
-      <IconButton aria-label="fast forward" disabled size="small">
+      <IconButton aria-label="Fast forward" disabled size="small">
         <FastForwardRounded fontSize="small" />
       </IconButton>
-      <IconButton aria-label="loop" disabled size="small">
+      <IconButton aria-label="Loop music" disabled size="small">
         <LoopRoundedIcon fontSize="small" />
       </IconButton>
     </Stack>
@@ -84,7 +77,7 @@ export default function MaterialTheming() {
   return (
     <Section>
       <Grid container spacing={2}>
-        <Grid item md={6} sx={{ minWidth: 0 }}>
+        <Grid sx={{ minWidth: 0 }} size={{ md: 6 }}>
           <SectionHeadline
             overline="Theming"
             title={
@@ -94,7 +87,7 @@ export default function MaterialTheming() {
             }
             description="Start quickly with Material Design or use the advanced theming feature to easily tailor the components to your needs."
           />
-          <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
+          <Group sx={{ m: -2, p: 2 }}>
             <Highlighter disableBorder selected={customized} onClick={() => setCustomized(true)}>
               <Item
                 icon={<AutoAwesomeRounded color="warning" />}
@@ -111,7 +104,7 @@ export default function MaterialTheming() {
             </Highlighter>
           </Group>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo
               sx={{
@@ -124,7 +117,7 @@ export default function MaterialTheming() {
               }}
             >
               {customized ? (
-                <PlayerCard extraStyles />
+                <PlayerCard />
               ) : (
                 <CssVarsProvider>
                   <PlayerCard disableTheming />
@@ -132,12 +125,7 @@ export default function MaterialTheming() {
               )}
             </Frame.Demo>
             <Frame.Info sx={{ maxHeight: 300, overflow: 'auto' }}>
-              <HighlightedCode
-                copyButtonHidden
-                component={MarkdownElement}
-                code={code}
-                language="jsx"
-              />
+              <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
             </Frame.Info>
           </Frame>
         </Grid>

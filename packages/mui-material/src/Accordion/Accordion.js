@@ -3,10 +3,10 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Collapse from '../Collapse';
 import Paper from '../Paper';
 import AccordionContext from './AccordionContext';
@@ -25,6 +25,7 @@ const useUtilityClasses = (ownerState) => {
       disabled && 'disabled',
       !disableGutters && 'gutters',
     ],
+    heading: ['heading'],
     region: ['region'],
   };
 
@@ -91,33 +92,49 @@ const AccordionRoot = styled(Paper, {
       },
     };
   },
-  ({ theme, ownerState }) => ({
-    ...(!ownerState.square && {
-      borderRadius: 0,
-      '&:first-of-type': {
-        borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
-        borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
-      },
-      '&:last-of-type': {
-        borderBottomLeftRadius: (theme.vars || theme).shape.borderRadius,
-        borderBottomRightRadius: (theme.vars || theme).shape.borderRadius,
-        // Fix a rendering issue on Edge
-        '@supports (-ms-ime-align: auto)': {
-          borderBottomLeftRadius: 0,
-          borderBottomRightRadius: 0,
+  ({ theme }) => ({
+    variants: [
+      {
+        props: (props) => !props.square,
+        style: {
+          borderRadius: 0,
+          '&:first-of-type': {
+            borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
+            borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
+          },
+          '&:last-of-type': {
+            borderBottomLeftRadius: (theme.vars || theme).shape.borderRadius,
+            borderBottomRightRadius: (theme.vars || theme).shape.borderRadius,
+            // Fix a rendering issue on Edge
+            '@supports (-ms-ime-align: auto)': {
+              borderBottomLeftRadius: 0,
+              borderBottomRightRadius: 0,
+            },
+          },
         },
       },
-    }),
-    ...(!ownerState.disableGutters && {
-      [`&.${accordionClasses.expanded}`]: {
-        margin: '16px 0',
+      {
+        props: (props) => !props.disableGutters,
+        style: {
+          [`&.${accordionClasses.expanded}`]: {
+            margin: '16px 0',
+          },
+        },
       },
-    }),
+    ],
   }),
 );
 
+const AccordionHeading = styled('h3', {
+  name: 'MuiAccordion',
+  slot: 'Heading',
+  overridesResolver: (props, styles) => styles.heading,
+})({
+  all: 'unset',
+});
+
 const Accordion = React.forwardRef(function Accordion(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAccordion' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiAccordion' });
   const {
     children: childrenProp,
     className,
@@ -171,16 +188,23 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
   const backwardCompatibleSlots = { transition: TransitionComponentProp, ...slots };
   const backwardCompatibleSlotProps = { transition: TransitionPropsProp, ...slotProps };
 
-  const [TransitionSlot, transitionProps] = useSlot('transition', {
-    elementType: Collapse,
-    externalForwardedProps: {
-      slots: backwardCompatibleSlots,
-      slotProps: backwardCompatibleSlotProps,
-    },
+  const externalForwardedProps = {
+    slots: backwardCompatibleSlots,
+    slotProps: backwardCompatibleSlotProps,
+  };
+
+  const [AccordionHeadingSlot, accordionProps] = useSlot('heading', {
+    elementType: AccordionHeading,
+    externalForwardedProps,
+    className: classes.heading,
     ownerState,
   });
 
-  delete transitionProps.ownerState;
+  const [TransitionSlot, transitionProps] = useSlot('transition', {
+    elementType: Collapse,
+    externalForwardedProps,
+    ownerState,
+  });
 
   return (
     <AccordionRoot
@@ -190,7 +214,9 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
       square={square}
       {...other}
     >
-      <AccordionContext.Provider value={contextValue}>{summary}</AccordionContext.Provider>
+      <AccordionHeadingSlot {...accordionProps}>
+        <AccordionContext.Provider value={contextValue}>{summary}</AccordionContext.Provider>
+      </AccordionHeadingSlot>
       <TransitionSlot in={expanded} timeout="auto" {...transitionProps}>
         <div
           aria-labelledby={summary.props.id}
@@ -268,6 +294,7 @@ Accordion.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
+    heading: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -275,6 +302,7 @@ Accordion.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
+    heading: PropTypes.elementType,
     transition: PropTypes.elementType,
   }),
   /**
@@ -293,13 +321,11 @@ Accordion.propTypes /* remove-proptypes */ = {
   /**
    * The component used for the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
   TransitionComponent: PropTypes.elementType,
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
-   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    */
   TransitionProps: PropTypes.object,
 };

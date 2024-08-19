@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { html, body } from '../CssBaseline/CssBaseline';
 import { getScopedCssBaselineUtilityClass } from './scopedCssBaselineClasses';
 
@@ -22,17 +22,24 @@ const ScopedCssBaselineRoot = styled('div', {
   name: 'MuiScopedCssBaseline',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme, ownerState }) => {
+})(({ theme }) => {
   const colorSchemeStyles = {};
-  if (ownerState.enableColorScheme && theme.colorSchemes) {
+  if (theme.colorSchemes) {
     Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
-      colorSchemeStyles[`&${theme.getColorSchemeSelector(key).replace(/\s*&/, '')}`] = {
-        colorScheme: scheme.palette?.mode,
-      };
+      const selector = theme.getColorSchemeSelector(key);
+      if (selector.startsWith('@')) {
+        colorSchemeStyles[selector] = {
+          colorScheme: scheme.palette?.mode,
+        };
+      } else {
+        colorSchemeStyles[`&${selector.replace(/\s*&/, '')}`] = {
+          colorScheme: scheme.palette?.mode,
+        };
+      }
     });
   }
   return {
-    ...html(theme, ownerState.enableColorScheme),
+    ...html(theme, false),
     ...body(theme),
     '& *, & *::before, & *::after': {
       boxSizing: 'inherit',
@@ -40,12 +47,17 @@ const ScopedCssBaselineRoot = styled('div', {
     '& strong, & b': {
       fontWeight: theme.typography.fontWeightBold,
     },
-    ...colorSchemeStyles,
+    variants: [
+      {
+        props: { enableColorScheme: true },
+        style: theme.vars ? colorSchemeStyles : { colorScheme: theme.palette.mode },
+      },
+    ],
   };
 });
 
 const ScopedCssBaseline = React.forwardRef(function ScopedCssBaseline(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiScopedCssBaseline' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiScopedCssBaseline' });
   const { className, component = 'div', enableColorScheme, ...other } = props;
 
   const ownerState = {

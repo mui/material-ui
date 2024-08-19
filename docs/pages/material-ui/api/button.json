@@ -47,9 +47,45 @@
   ],
   "classes": [
     {
+      "key": "colorError",
+      "className": "MuiButton-colorError",
+      "description": "Styles applied to the root element if `color=\"error\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorInfo",
+      "className": "MuiButton-colorInfo",
+      "description": "Styles applied to the root element if `color=\"info\"`.",
+      "isGlobal": false
+    },
+    {
       "key": "colorInherit",
       "className": "MuiButton-colorInherit",
       "description": "Styles applied to the root element if `color=\"inherit\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiButton-colorPrimary",
+      "description": "Styles applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSecondary",
+      "className": "MuiButton-colorSecondary",
+      "description": "Styles applied to the root element if `color=\"secondary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSuccess",
+      "className": "MuiButton-colorSuccess",
+      "description": "Styles applied to the root element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorWarning",
+      "className": "MuiButton-colorWarning",
+      "description": "Styles applied to the root element if `color=\"warning\"`.",
       "isGlobal": false
     },
     {
@@ -62,61 +98,71 @@
       "key": "containedError",
       "className": "MuiButton-containedError",
       "description": "Styles applied to the root element if `variant=\"contained\"` and `color=\"error\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "containedInfo",
       "className": "MuiButton-containedInfo",
       "description": "Styles applied to the root element if `variant=\"contained\"` and `color=\"info\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "containedInherit",
       "className": "MuiButton-containedInherit",
       "description": "Styles applied to the root element if `variant=\"contained\"` and `color=\"inherit\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "containedPrimary",
       "className": "MuiButton-containedPrimary",
       "description": "Styles applied to the root element if `variant=\"contained\"` and `color=\"primary\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "containedSecondary",
       "className": "MuiButton-containedSecondary",
       "description": "Styles applied to the root element if `variant=\"contained\"` and `color=\"secondary\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "containedSizeLarge",
       "className": "MuiButton-containedSizeLarge",
       "description": "Styles applied to the root element if `size=\"large\"` and `variant=\"contained\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "containedSizeMedium",
       "className": "MuiButton-containedSizeMedium",
       "description": "Styles applied to the root element if `size=\"medium\"` and `variant=\"contained\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "containedSizeSmall",
       "className": "MuiButton-containedSizeSmall",
       "description": "Styles applied to the root element if `size=\"small\"` and `variant=\"contained\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "containedSuccess",
       "className": "MuiButton-containedSuccess",
       "description": "Styles applied to the root element if `variant=\"contained\"` and `color=\"success\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "containedWarning",
       "className": "MuiButton-containedWarning",
       "description": "Styles applied to the root element if `variant=\"contained\"` and `color=\"warning\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "disabled",
@@ -149,22 +195,31 @@
       "isGlobal": false
     },
     {
+      "key": "icon",
+      "className": "MuiButton-icon",
+      "description": "Styles applied to the icon element if supplied",
+      "isGlobal": false
+    },
+    {
       "key": "iconSizeLarge",
       "className": "MuiButton-iconSizeLarge",
       "description": "Styles applied to the icon element if supplied and `size=\"large\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "iconSizeMedium",
       "className": "MuiButton-iconSizeMedium",
       "description": "Styles applied to the icon element if supplied and `size=\"medium\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "iconSizeSmall",
       "className": "MuiButton-iconSizeSmall",
       "description": "Styles applied to the icon element if supplied and `size=\"small\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "outlined",
@@ -176,61 +231,71 @@
       "key": "outlinedError",
       "className": "MuiButton-outlinedError",
       "description": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"error\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "outlinedInfo",
       "className": "MuiButton-outlinedInfo",
       "description": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"info\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "outlinedInherit",
       "className": "MuiButton-outlinedInherit",
       "description": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"inherit\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "outlinedPrimary",
       "className": "MuiButton-outlinedPrimary",
       "description": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"primary\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "outlinedSecondary",
       "className": "MuiButton-outlinedSecondary",
       "description": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"secondary\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "outlinedSizeLarge",
       "className": "MuiButton-outlinedSizeLarge",
       "description": "Styles applied to the root element if `size=\"large\"` and `variant=\"outlined\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "outlinedSizeMedium",
       "className": "MuiButton-outlinedSizeMedium",
       "description": "Styles applied to the root element if `size=\"medium\"` and `variant=\"outlined\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "outlinedSizeSmall",
       "className": "MuiButton-outlinedSizeSmall",
       "description": "Styles applied to the root element if `size=\"small\"` and `variant=\"outlined\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "outlinedSuccess",
       "className": "MuiButton-outlinedSuccess",
       "description": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"success\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "outlinedWarning",
       "className": "MuiButton-outlinedWarning",
       "description": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"warning\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "root",
@@ -272,61 +337,71 @@
       "key": "textError",
       "className": "MuiButton-textError",
       "description": "Styles applied to the root element if `variant=\"text\"` and `color=\"error\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "textInfo",
       "className": "MuiButton-textInfo",
       "description": "Styles applied to the root element if `variant=\"text\"` and `color=\"info\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "textInherit",
       "className": "MuiButton-textInherit",
       "description": "Styles applied to the root element if `variant=\"text\"` and `color=\"inherit\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "textPrimary",
       "className": "MuiButton-textPrimary",
       "description": "Styles applied to the root element if `variant=\"text\"` and `color=\"primary\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "textSecondary",
       "className": "MuiButton-textSecondary",
       "description": "Styles applied to the root element if `variant=\"text\"` and `color=\"secondary\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "textSizeLarge",
       "className": "MuiButton-textSizeLarge",
       "description": "Styles applied to the root element if `size=\"large\"` and `variant=\"text\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "textSizeMedium",
       "className": "MuiButton-textSizeMedium",
       "description": "Styles applied to the root element if `size=\"medium\"` and `variant=\"text\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "textSizeSmall",
       "className": "MuiButton-textSizeSmall",
       "description": "Styles applied to the root element if `size=\"small\"` and `variant=\"text\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "textSuccess",
       "className": "MuiButton-textSuccess",
       "description": "Styles applied to the root element if `variant=\"text\"` and `color=\"success\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "textWarning",
       "className": "MuiButton-textWarning",
       "description": "Styles applied to the root element if `variant=\"text\"` and `color=\"warning\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     }
   ],
   "spread": true,

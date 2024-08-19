@@ -105,7 +105,6 @@ function Main(props: BoxProps) {
     />
   );
 }
-
 function SideDrawer(
   props: BoxProps & { onClose: React.MouseEventHandler<HTMLDivElement> },
 ) {
@@ -121,12 +120,11 @@ function SideDrawer(
       <Box
         role="button"
         onClick={onClose}
-        sx={{
+        sx={(theme) => ({
           position: 'absolute',
           inset: 0,
-          bgcolor: (theme) =>
-            `rgba(${theme.vars.palette.neutral.darkChannel} / 0.8)`,
-        }}
+          bgcolor: `rgba(${theme.vars.palette.neutral.darkChannel} / 0.8)`,
+        })}
       />
       <Sheet
         sx={{

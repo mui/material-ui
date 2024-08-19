@@ -1,0 +1,26 @@
+import { alertClasses } from '@mui/material/Alert';
+
+('&.MuiAlert-standardSuccess');
+('&.MuiAlert-standardInfo');
+('&.MuiAlert-standardWarning');
+('&.MuiAlert-standardError');
+('&.MuiAlert-outlinedSuccess');
+('&.MuiAlert-outlinedInfo');
+('&.MuiAlert-outlinedWarning');
+('&.MuiAlert-outlinedError');
+('&.MuiAlert-filledSuccess');
+('&.MuiAlert-filledInfo');
+('&.MuiAlert-filledWarning');
+('&.MuiAlert-filledError');
+`&.${alertClasses.standardSuccess}`;
+`&.${alertClasses.standardInfo}`;
+`&.${alertClasses.standardWarning}`;
+`&.${alertClasses.standardError}`;
+`&.${alertClasses.outlinedSuccess}`;
+`&.${alertClasses.outlinedInfo}`;
+`&.${alertClasses.outlinedWarning}`;
+`&.${alertClasses.outlinedError}`;
+`&.${alertClasses.filledSuccess}`;
+`&.${alertClasses.filledInfo}`;
+`&.${alertClasses.filledWarning}`;
+`&.${alertClasses.filledError}`;

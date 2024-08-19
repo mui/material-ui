@@ -1,7 +1,8 @@
 import * as React from 'react';
 import List from '@mui/material/List';
-import Box from '@mui/material/Box';
 import ListItem from '@mui/material/ListItem';
+import Box from '@mui/material/Box';
+import ListItemButton from '@mui/material/ListItemButton';
 import Paper from '@mui/material/Paper';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -33,7 +34,7 @@ function Router(props: { children?: React.ReactNode }) {
 }
 
 interface ListItemLinkProps {
-  icon?: React.ReactElement;
+  icon?: React.ReactElement<any>;
   primary: string;
   to: string;
 }
@@ -48,19 +49,17 @@ function ListItemLink(props: ListItemLinkProps) {
   const { icon, primary, to } = props;
 
   return (
-    <li>
-      <ListItem button component={Link} to={to}>
-        {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
-        <ListItemText primary={primary} />
-      </ListItem>
-    </li>
+    <ListItemButton component={Link} to={to}>
+      {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
+      <ListItemText primary={primary} />
+    </ListItemButton>
   );
 }
 
 function Content() {
   const location = useLocation();
   return (
-    <Typography variant="body2" sx={{ pb: 2 }} color="text.secondary">
+    <Typography variant="body2" sx={{ color: 'text.secondary', pb: 2 }}>
       Current route: {location.pathname}
     </Typography>
   );
@@ -76,13 +75,21 @@ export default function ListRouter() {
 
         <Paper elevation={0}>
           <List aria-label="main mailbox folders">
-            <ListItemLink to="/inbox" primary="Inbox" icon={<InboxIcon />} />
-            <ListItemLink to="/drafts" primary="Drafts" icon={<DraftsIcon />} />
+            <ListItem disablePadding>
+              <ListItemLink to="/inbox" primary="Inbox" icon={<InboxIcon />} />
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemLink to="/drafts" primary="Drafts" icon={<DraftsIcon />} />
+            </ListItem>
           </List>
           <Divider />
           <List aria-label="secondary mailbox folders">
-            <ListItemLink to="/trash" primary="Trash" />
-            <ListItemLink to="/spam" primary="Spam" />
+            <ListItem disablePadding>
+              <ListItemLink to="/trash" primary="Trash" />
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemLink to="/spam" primary="Spam" />
+            </ListItem>
           </List>
         </Paper>
       </Box>

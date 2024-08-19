@@ -39,7 +39,7 @@
   "filename": "/packages/mui-material/src/Slide/Slide.js",
   "inheritance": {
     "component": "Transition",
-    "pathname": "http://reactcommunity.org/react-transition-group/transition/#Transition-props"
+    "pathname": "https://reactcommunity.org/react-transition-group/transition/#Transition-props"
   },
   "demos": "<ul><li><a href=\"/material-ui/react-dialog/\">Dialog</a></li>\n<li><a href=\"/material-ui/transitions/\">Transitions</a></li></ul>",
   "cssComponent": false

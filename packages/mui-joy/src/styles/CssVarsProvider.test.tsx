@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui-internal/test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { CssVarsProvider, useTheme, shouldSkipGeneratingVar } from '@mui/joy/styles';
 
 describe('[Joy] CssVarsProvider', () => {
   let originalMatchmedia: typeof window.matchMedia;
   const { render } = createRenderer();
   const storage: Record<string, string> = {};
+
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
     // Create mocks of localStorage getItem and setItem functions
@@ -21,19 +22,19 @@ describe('[Joy] CssVarsProvider', () => {
     });
     window.matchMedia = () =>
       ({
+        // Keep mocking legacy methods because @mui/material v5 still uses them
         addListener: () => {},
+        addEventListener: () => {},
         removeListener: () => {},
+        removeEventListener: () => {},
       }) as unknown as MediaQueryList;
   });
+
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
   });
 
   describe('shouldSkipGeneratingVar', () => {
-    it('skip typography', () => {
-      expect(shouldSkipGeneratingVar(['typography'])).to.equal(true);
-    });
-
     it('skip variants', () => {
       expect(shouldSkipGeneratingVar(['variants'])).to.equal(true);
     });
@@ -524,7 +525,7 @@ describe('[Joy] CssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(container.firstChild?.textContent).to.equal('16px');
+      expect(container.firstChild?.textContent).to.equal('calc(2 * var(--joy-spacing))');
     });
   });
 
@@ -560,22 +561,6 @@ describe('[Joy] CssVarsProvider', () => {
       );
 
       expect(container.firstChild?.textContent).not.to.equal('variants');
-    });
-
-    it('should not contain `typography` in theme.vars', () => {
-      function Consumer() {
-        const theme = useTheme();
-        // @ts-expect-error
-        return <div>{theme.vars.typography ? 'typography' : ''}</div>;
-      }
-
-      const { container } = render(
-        <CssVarsProvider>
-          <Consumer />
-        </CssVarsProvider>,
-      );
-
-      expect(container.firstChild?.textContent).not.to.equal('typography');
     });
 
     it('should contain only `focus.thickness` in theme.vars', () => {

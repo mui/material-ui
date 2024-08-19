@@ -1,19 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import {
-  describeConformance,
-  act,
-  createRenderer,
-  fireEvent,
-  screen,
-} from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Select, { selectClasses as classes, SelectOption } from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListDivider from '@mui/joy/ListDivider';
+import describeConformance from '../../test/describeConformance';
 
 describe('Joy <Select />', () => {
   const { render } = createRenderer({ clock: 'fake' });
@@ -54,14 +49,7 @@ describe('Joy <Select />', () => {
       startDecorator: { expectedClassName: classes.startDecorator },
       endDecorator: { expectedClassName: classes.endDecorator },
     },
-    skip: [
-      'classesRoot',
-      'propsSpread',
-      'componentProp',
-      'componentsProp',
-      // https://github.com/facebook/react/issues/11565
-      'reactTestRenderer',
-    ],
+    skip: ['classesRoot', 'propsSpread', 'componentProp', 'componentsProp'],
   }));
 
   it('should be able to mount the component', () => {

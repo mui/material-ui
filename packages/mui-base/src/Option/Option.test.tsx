@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { createMount, createRenderer, describeConformanceUnstyled } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { Option, optionClasses } from '@mui/base/Option';
 import { SelectProvider } from '../useSelect/SelectProvider';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 const dummyGetItemState = () => ({
   highlighted: false,
@@ -11,7 +12,6 @@ const dummyGetItemState = () => ({
 });
 
 describe('<Option />', () => {
-  const mount = createMount();
   const { render } = createRenderer();
 
   describeConformanceUnstyled(<Option value={42} />, () => ({
@@ -31,22 +31,6 @@ describe('<Option />', () => {
         </SelectProvider>,
       );
     },
-    mount: (node: React.ReactNode) => {
-      const wrapper = mount(
-        <SelectProvider
-          value={{
-            dispatch: () => {},
-            getItemIndex: () => 0,
-            getItemState: dummyGetItemState,
-            registerItem: () => ({ id: 0, deregister: () => {} }),
-            totalSubitemCount: 0,
-          }}
-        >
-          {node}
-        </SelectProvider>,
-      );
-      return wrapper.childAt(0);
-    },
     refInstanceof: window.HTMLLIElement,
     testComponentPropWith: 'span',
     slots: {
@@ -54,9 +38,6 @@ describe('<Option />', () => {
         expectedClassName: optionClasses.root,
       },
     },
-    skip: [
-      'componentProp',
-      'reactTestRenderer', // Need to be wrapped in SelectContext
-    ],
+    skip: ['componentProp'],
   }));
 });

@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import PricingTable, { PlanName, PlanPrice } from 'docs/src/components/pricing/PricingTable';
 import { useLicensingModel } from 'docs/src/components/pricing/LicensingModelContext';
 
@@ -75,9 +75,7 @@ const Plan = React.forwardRef<
             <img src={`/static/branding/pricing/yes-${mode}.svg`} alt="" />
             <Typography
               variant="body2"
-              color="text.secondary"
-              fontWeight="extraBold"
-              sx={{ ml: 1 }}
+              sx={{ color: 'text.secondary', fontWeight: 'extraBold', ml: 1 }}
             >
               {text}
             </Typography>
@@ -117,7 +115,7 @@ export default function PricingList() {
             theme.applyDarkStyles({
               '& .MuiTab-root': {
                 '&.Mui-selected': {
-                  bgcolor: 'primaryDark.700',
+                  bgcolor: 'primaryDark.800',
                 },
               },
             }),

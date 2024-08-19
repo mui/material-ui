@@ -21,10 +21,8 @@
       "@mui/joy/*": ["./mui-joy/src/*"],
       "@mui/lab": ["./mui-lab/src"],
       "@mui/lab/*": ["./mui-lab/src/*"],
-      "@mui/markdown": ["./markdown"],
-      "@mui/markdown/*": ["./markdown/*"],
-      "@mui/material-next": ["./mui-material-next/src"],
-      "@mui/material-next/*": ["./mui-material-next/src/*"],
+      "@mui/internal-markdown": ["./markdown"],
+      "@mui/internal-markdown/*": ["./markdown/*"],
       "@mui/material-nextjs": ["./mui-material-nextjs/src"],
       "@mui/material-nextjs/*": ["./mui-material-nextjs/src/*"],
       "@mui/material": ["./mui-material/src"],
@@ -42,15 +40,9 @@
       "@mui/types": ["./mui-types"],
       "@mui/utils": ["./mui-utils/src"],
       "@mui/utils/*": ["./mui-utils/src/*"],
-      "@mui/zero-next-plugin": ["./zero-next-plugin/src"],
-      "@mui/zero-next-plugin/*": ["./zero-next-plugin/src/*"],
-      "@mui/zero-runtime": ["./zero-runtime/src"],
-      "@mui/zero-runtime/*": ["./zero-runtime/src/*"],
-      "@mui/zero-tag-processor": ["./zero-tag-processor/src"],
-      "@mui/zero-tag-processor/*": ["./zero-tag-processor/src/*"],
-      "@mui/zero-vite-plugin": ["./zero-vite-plugin/src"],
-      "@mui/zero-vite-plugin/*": ["./zero-vite-plugin/src/*"],
-      "typescript-to-proptypes": ["./typescript-to-proptypes/src"]
+      "@mui/internal-scripts/typescript-to-proptypes": [
+        "../packages-internal/scripts/typescript-to-proptypes/src"
+      ]
     }
   },
   "exclude": ["**/node_modules/"]

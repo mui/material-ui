@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, screen } from '@mui-internal/test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Alert, { alertClasses as classes } from '@mui/material/Alert';
 import Paper, { paperClasses } from '@mui/material/Paper';
 import { iconButtonClasses } from '@mui/material/IconButton';
 import { svgIconClasses } from '@mui/material/SvgIcon';
+import describeConformance from '../../test/describeConformance';
+import capitalize from '../utils/capitalize';
 
 describe('<Alert />', () => {
   const { render } = createRenderer();
@@ -20,13 +22,14 @@ describe('<Alert />', () => {
     testDeepOverrides: { slotName: 'message', slotClassName: classes.message },
     testLegacyComponentsProp: true,
     slots: {
-      closeButton: {},
-      closeIcon: {},
+      closeButton: {
+        expectedClassName: classes.closeButton,
+      },
+      closeIcon: {
+        expectedClassName: classes.closeIcon,
+      },
     },
-    skip: [
-      'componentsProp',
-      'slotPropsCallback', // not supported yet
-    ],
+    skip: ['componentsProp'],
   }));
 
   describe('prop: square', () => {
@@ -193,6 +196,22 @@ describe('<Alert />', () => {
         );
 
         expect(screen.getByTestId(`${severity}-icon`)).toBeVisible();
+      });
+    });
+  });
+
+  describe('classes', () => {
+    it('should apply default color class to the root', () => {
+      render(<Alert data-testid="alert" />);
+
+      expect(screen.getByTestId('alert')).to.have.class(classes.colorSuccess);
+    });
+
+    ['success', 'info', 'warning', 'error'].forEach((color) => {
+      it('should apply color classes to the root', () => {
+        render(<Alert data-testid="alert" color={color} />);
+
+        expect(screen.getByTestId('alert')).to.have.class(classes[`color${capitalize(color)}`]);
       });
     });
   });

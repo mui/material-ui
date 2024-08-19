@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@mui/base": "latest",
+    "@mui/base": "next",
     "react": "latest",
     "react-dom": "latest"
   },

@@ -2,13 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import userEvent from '@testing-library/user-event';
-import {
-  act,
-  createMount,
-  createRenderer,
-  describeConformanceUnstyled,
-  fireEvent,
-} from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import {
   Unstable_NumberInput as NumberInput,
   numberInputClasses,
@@ -16,19 +10,18 @@ import {
   NumberInputIncrementButtonSlotProps,
   NumberInputDecrementButtonSlotProps,
 } from '@mui/base/Unstable_NumberInput';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 // TODO v6: initialize @testing-library/user-event using userEvent.setup() instead of directly calling methods e.g. userEvent.click() for all related tests in this file
 // currently the setup() method uses the ClipboardEvent constructor which is incompatible with our lowest supported version of iOS Safari (12.2) https://github.com/mui/material-ui/blob/master/.browserslistrc#L44
 // userEvent.setup() requires Safari 14 or up to work
 
 describe('<NumberInput />', () => {
-  const mount = createMount();
   const { render } = createRenderer();
 
   describeConformanceUnstyled(<NumberInput />, () => ({
     inheritComponent: 'div',
     render,
-    mount,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'div',
     slots: {
@@ -173,7 +166,7 @@ describe('<NumberInput />', () => {
             }}
           />,
         );
-      }).toErrorDev('Warning: Unknown event handler property `onInputChange`. It will be ignored.');
+      }).toErrorDev('Unknown event handler property `onInputChange`. It will be ignored.');
     });
 
     it('should fire on keyboard input in the textbox instead of onChange', async () => {

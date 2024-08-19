@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import ModalDialog, { modalDialogClasses as classes } from '@mui/joy/ModalDialog';
+import describeConformance from '../../test/describeConformance';
 
 describe('<ModalDialog />', () => {
   const { render } = createRenderer();

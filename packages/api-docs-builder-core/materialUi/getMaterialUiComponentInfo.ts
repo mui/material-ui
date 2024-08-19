@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
-import { getHeaders, getTitle } from '@mui/markdown';
+import { getHeaders, getTitle } from '@mui/internal-markdown';
 import {
   ComponentInfo,
   extractPackageFile,
@@ -42,7 +42,7 @@ export function getMaterialUiComponentInfo(filename: string): ComponentInfo {
         name: inheritedComponent.replace(/unstyled/i, ''),
         apiPathname:
           inheritedComponent === 'Transition'
-            ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
+            ? 'https://reactcommunity.org/react-transition-group/transition/#Transition-props'
             : `/${
                 inheritedComponent.match(/unstyled/i) ? 'base-ui' : 'material-ui'
               }/api/${kebabCase(inheritedComponent.replace(/unstyled/i, ''))}/`,
@@ -51,12 +51,12 @@ export function getMaterialUiComponentInfo(filename: string): ComponentInfo {
     getDemos: () => {
       const allMarkdowns = findPagesMarkdown().map((markdown) => {
         const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
-        const markdownHeaders = getHeaders(markdownContent) as any;
+        const markdownHeaders = getHeaders(markdownContent);
 
         return {
           ...markdown,
           markdownContent,
-          components: markdownHeaders.components as string[],
+          components: markdownHeaders.components,
         };
       });
       return allMarkdowns

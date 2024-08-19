@@ -8,7 +8,7 @@ You can play with the documentation theme object in your browser console,
 as the `theme` variable is exposed on all the documentation pages.
 
 :::warning
-This is a work in progress. Joy UI's default theme isn't finalized yet.
+This is a work in progress. Joy UI's default theme isn't finalized yet.
 <br />
 <br />
 Please note that **the documentation site is using a custom theme** (the MUI's organization branding).

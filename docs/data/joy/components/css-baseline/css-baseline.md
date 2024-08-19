@@ -6,9 +6,9 @@ githubLabel: 'component: CssBaseline'
 
 # CSS Baseline
 
-<p class="description">Joy UI provides a CssBaseline component to kickstart an elegant, consistent, and simple baseline to build upon.</p>
+<p class="description">Joy UI provides a CssBaseline component to kickstart an elegant, consistent, and simple baseline to build upon.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 ## Global reset
 
@@ -33,7 +33,7 @@ export default function MyApp() {
 
 ## Scoping on children
 
-However, you might be progressively migrating a website to Joy UI, using a global reset might not be an option.
+However, you might be progressively migrating a website to Joy UI, using a global reset might not be an option.
 It's possible to apply the baseline only to the children by using the `ScopedCssBaseline` component.
 
 ```jsx

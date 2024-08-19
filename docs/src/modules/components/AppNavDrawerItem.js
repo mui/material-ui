@@ -6,7 +6,7 @@ import Collapse from '@mui/material/Collapse';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import { samePageLinkNavigation } from 'docs/src/modules/components/MarkdownLinks';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import standardNavIcons from './AppNavIcons';
 
 const Item = styled(
@@ -17,17 +17,7 @@ const Item = styled(
     shouldForwardProp: (prop) =>
       prop !== 'depth' && prop !== 'hasIcon' && prop !== 'subheader' && prop !== 'expandable',
   },
-)(({ theme, hasIcon, depth, subheader, expandable }) => {
-  const color = {
-    color: (theme.vars || theme).palette.text.secondary,
-    ...(depth === 0 && {
-      color: (theme.vars || theme).palette.text.primary,
-    }),
-    ...(subheader && {
-      color: (theme.vars || theme).palette.grey[600],
-    }),
-  };
-
+)(({ theme }) => {
   return [
     {
       ...theme.typography.body2,
@@ -35,18 +25,18 @@ const Item = styled(
       display: 'flex',
       alignItems: 'center',
       borderRadius: 6,
+      color: `var(--_color, ${(theme.vars || theme).palette.text.secondary})`,
       outline: 0,
       width: '100%',
       padding: 6,
       justifyContent: 'flex-start',
-      fontWeight:
-        depth === 0 ? theme.typography.fontWeightSemiBold : theme.typography.fontWeightMedium,
+      fontWeight: theme.typography.fontWeightSemiBold,
       transition: theme.transitions.create(['color', 'background-color'], {
         duration: theme.transitions.duration.shortest,
       }),
       fontSize: theme.typography.pxToRem(14),
       textDecoration: 'none',
-      paddingLeft: 10 + (depth + 1) * 13 - (expandable ? 21 : 0),
+      paddingLeft: `calc(10px + (var(--_depth) + 1) * 13px - (var(--_expandable) * 21px))`,
       '&::before': {
         content: '""',
         display: 'block',
@@ -55,71 +45,104 @@ const Item = styled(
         left: 9.5,
         height: '100%',
         width: 1,
-        opacity: depth === 0 ? 0 : 1,
+        opacity: 0,
         background: (theme.vars || theme).palette.grey[100],
       },
-      ...color,
-      ...(subheader && {
-        marginTop: theme.spacing(1),
-        textTransform: 'uppercase',
-        letterSpacing: '.08rem',
-        fontWeight: theme.typography.fontWeightBold,
-        fontSize: theme.typography.pxToRem(11),
-        '&::before': {
-          content: '""',
-          display: 'block',
-          position: 'absolute',
-          zIndex: 1,
-          left: 9.5,
-          height: '55%',
-          top: 16,
-          width: 1,
-          opacity: depth === 0 ? 0 : 1,
-          background: (theme.vars || theme).palette.grey[100],
+      variants: [
+        {
+          props: ({ depth }) => depth === 0,
+          style: { '--_color': (theme.vars || theme).palette.text.primary },
         },
-        '&::after': {
-          content: '""',
-          display: 'block',
-          position: 'absolute',
-          zIndex: 5,
-          left: 6,
-          height: 8,
-          width: 8,
-          borderRadius: 2,
-          opacity: depth === 0 ? 0 : 1,
-          background: alpha(theme.palette.grey[50], 0.5),
-          border: '1px solid',
-          borderColor: (theme.vars || theme).palette.grey[200],
+        {
+          props: ({ depth }) => depth !== 0,
+          style: {
+            fontWeight: theme.typography.fontWeightMedium,
+            '&::before': {
+              opacity: 1,
+            },
+          },
         },
-      }),
-      ...(hasIcon && {
-        paddingLeft: 0,
-      }),
+        {
+          props: ({ subheader }) => !subheader,
+          style: {
+            '&:hover': {
+              color: (theme.vars || theme).palette.common.black,
+              backgroundColor: (theme.vars || theme).palette.grey[50],
+              '@media (hover: none)': {
+                color: 'var(--_color)',
+                backgroundColor: 'transparent',
+              },
+            },
+          },
+        },
+        {
+          props: ({ subheader }) => !!subheader,
+          style: {
+            '--_color': (theme.vars || theme).palette.text.tertiary,
+            marginTop: theme.spacing(1),
+            textTransform: 'uppercase',
+            letterSpacing: '.1rem',
+            fontWeight: theme.typography.fontWeightSemiBold,
+            fontSize: theme.typography.pxToRem(11),
+            '&::before': {
+              content: '""',
+              display: 'block',
+              position: 'absolute',
+              zIndex: 1,
+              left: 9.5,
+              height: '55%',
+              top: 16,
+              width: 1,
+              opacity: 0,
+              background: (theme.vars || theme).palette.grey[100],
+            },
+            '&::after': {
+              content: '""',
+              display: 'block',
+              position: 'absolute',
+              zIndex: 5,
+              left: 6,
+              height: 8,
+              width: 8,
+              borderRadius: 2,
+              opacity: 0,
+              background: alpha(theme.palette.grey[50], 0.5),
+              border: '1px solid',
+              borderColor: (theme.vars || theme).palette.grey[200],
+            },
+          },
+        },
+        {
+          props: ({ depth, subheader }) => depth !== 0 && subheader,
+          style: {
+            '&::after': {
+              opacity: 1,
+            },
+            '&::before': {
+              opacity: 1,
+            },
+          },
+        },
+        {
+          props: ({ hasIcon }) => !!hasIcon,
+          style: {
+            paddingLeft: 0,
+          },
+        },
+      ],
       '&.app-drawer-active': {
         // To match browserUrlPreviewMarge
         scrollMarginBottom: 120,
         color: (theme.vars || theme).palette.primary[600],
         backgroundColor: (theme.vars || theme).palette.primary[50],
         '&:hover': {
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-            : alpha(
-                theme.palette.primary.main,
-                theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-              ),
+          backgroundColor: alpha(theme.palette.primary[100], 0.8),
+          color: (theme.vars || theme).palette.primary[700],
           '@media (hover: none)': {
             backgroundColor: theme.vars
               ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
               : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
           },
-        },
-        '&.Mui-focusVisible': {
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-            : alpha(
-                theme.palette.primary.main,
-                theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-              ),
         },
         '&::before': {
           background: (theme.vars || theme).palette.primary[400],
@@ -128,90 +151,108 @@ const Item = styled(
       '& .MuiChip-root': {
         marginTop: '2px',
       },
-      ...(!subheader && {
-        '&:hover': {
-          color: (theme.vars || theme).palette.common.black,
-          backgroundColor: (theme.vars || theme).palette.grey[50],
-          '@media (hover: none)': {
-            color: color.color,
-            backgroundColor: 'transparent',
-          },
-        },
-      }),
-      '&.Mui-focusVisible': {
-        backgroundColor: (theme.vars || theme).palette.divider,
-      },
       [theme.breakpoints.up('md')]: {
         paddingTop: 4,
         paddingBottom: 4,
       },
       '& .ItemButtonIcon': {
-        marginRight: '5px',
+        marginRight: '6px',
         color: (theme.vars || theme).palette.primary.main,
       },
       '&:hover .ItemButtonIcon': {
-        color: (theme.vars || theme).palette.text.primary,
+        color: (theme.vars || theme).palette.primary.light,
         '@media (hover: none)': {
           color: (theme.vars || theme).palette.primary.main,
         },
       },
     },
     theme.applyDarkStyles({
-      ...color,
       '&::before': {
-        background: alpha(theme.palette.primaryDark[700], 0.6),
+        background: (theme.vars || theme).palette.primaryDark[700],
       },
       '&.app-drawer-active': {
         color: (theme.vars || theme).palette.primary[300],
         backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+        '&:hover': {
+          backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+          color: (theme.vars || theme).palette.primary[200],
+        },
         '&::before': {
           background: (theme.vars || theme).palette.primary[400],
         },
       },
-      ...(subheader && {
-        '&::before': {
-          background: alpha(theme.palette.primaryDark[700], 0.6),
-        },
-        '&::after': {
-          background: alpha(theme.palette.primaryDark[700], 0.8),
-          borderColor: alpha(theme.palette.primaryDark[600], 0.6),
-        },
-      }),
-      ...(!subheader && {
-        '&:hover': {
-          color: '#fff',
-          backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
-          '@media (hover: none)': {
-            color: color.color,
-            backgroundColor: 'transparent',
+      variants: [
+        {
+          props: ({ subheader }) => !!subheader,
+          style: {
+            '&::before': {
+              background: (theme.vars || theme).palette.primaryDark[700],
+            },
+            '&::after': {
+              background: alpha(theme.palette.primaryDark[700], 0.8),
+              borderColor: alpha(theme.palette.primaryDark[600], 0.6),
+            },
           },
         },
-      }),
+        {
+          props: ({ subheader }) => !subheader,
+          style: {
+            '&:hover': {
+              color: '#fff',
+              backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+              '@media (hover: none)': {
+                color: 'var(--_color)',
+                backgroundColor: 'transparent',
+              },
+            },
+          },
+        },
+      ],
     }),
   ];
 });
 
 const ItemButtonIcon = styled(KeyboardArrowRightRoundedIcon, {
   shouldForwardProp: (prop) => prop !== 'open',
-})(({ open }) => ({
+})({
   fontSize: '1rem',
-  transform: open && 'rotate(90deg)',
   '&&:last-child': {
     // overrrides https://github.com/mui/material-ui/blob/ca7c5c63e64b6a7f55255981f1836a565927b56c/docs/src/modules/brandingTheme.ts#L757-L759
     marginLeft: 0,
   },
-}));
+  variants: [
+    {
+      props: { open: true },
+      style: {
+        transform: 'rotate(90deg)',
+      },
+    },
+  ],
+});
 
-const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })(
-  ({ theme, depth }) => ({
-    display: 'block',
-    padding: depth === 0 ? theme.spacing(1, '10px', 0, '10px') : 0,
-  }),
-);
+const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })(({ theme }) => ({
+  display: 'block',
+  variants: [
+    {
+      props: {
+        depth: 0,
+      },
+      style: {
+        padding: theme.spacing(1, '10px', 0, '10px'),
+      },
+    },
+    {
+      props: ({ depth }) => depth !== 0,
+      style: {
+        padding: 0,
+      },
+    },
+  ],
+}));
 
 export const sxChip = (color) => [
   (theme) => ({
-    ml: 1.5,
+    ml: 1,
     fontSize: theme.typography.pxToRem(10),
     fontWeight: 'semiBold',
     textTransform: 'uppercase',
@@ -220,18 +261,18 @@ export const sxChip = (color) => [
     border: 1,
     borderColor: (theme.vars || theme).palette[color][300],
     bgcolor: alpha(theme.palette[color][100], 0.5),
-    color: (theme.vars || theme).palette[color][700],
+    color: (theme.vars || theme).palette[color][900],
     '&:hover': {
       bgcolor: alpha(theme.palette[color][100], 0.5),
     },
     '& .MuiChip-label': {
-      px: 0.6,
+      px: '4px',
     },
   }),
   (theme) =>
     theme.applyDarkStyles({
       borderColor: alpha(theme.palette[color][800], 0.5),
-      bgcolor: alpha(theme.palette[color][800], 0.5),
+      bgcolor: alpha(theme.palette[color][900], 0.5),
       color: (theme.vars || theme).palette[color][300],
       '&:hover': {
         bgcolor: alpha(theme.palette[color][900], 0.5),
@@ -253,7 +294,9 @@ DeadLink.propTypes = {
 
 export default function AppNavDrawerItem(props) {
   const {
+    beta,
     children,
+    deprecated,
     depth,
     href,
     icon,
@@ -273,7 +316,7 @@ export default function AppNavDrawerItem(props) {
   } = props;
   const [open, setOpen] = React.useState(initiallyExpanded);
   const handleClick = (event) => {
-    // Ignore click events meant for native link handling, e.g. open in new tab
+    // Ignore click events meant for native link handling, for example open in new tab
     if (samePageLinkNavigation(event)) {
       return;
     }
@@ -320,6 +363,11 @@ export default function AppNavDrawerItem(props) {
         className={topLevel ? 'algolia-lvl0' : null}
         onClick={handleClick}
         {...linkProps}
+        style={{
+          ...linkProps?.style,
+          '--_depth': depth,
+          '--_expandable': expandable ? 1 : 0,
+        }}
       >
         {iconElement}
         {expandable && <ItemButtonIcon className="ItemButtonIcon" open={open} />}
@@ -330,6 +378,8 @@ export default function AppNavDrawerItem(props) {
         {newFeature && <Chip label="New" sx={sxChip('success')} />}
         {planned && <Chip label="Planned" sx={sxChip('grey')} />}
         {unstable && <Chip label="Preview" sx={sxChip('primary')} />}
+        {beta && <Chip label="Beta" sx={sxChip('primary')} />}
+        {deprecated && <Chip label="Deprecated" sx={sxChip('warning')} />}
       </Item>
       {expandable ? (
         <Collapse in={open} timeout="auto" unmountOnExit>
@@ -343,7 +393,9 @@ export default function AppNavDrawerItem(props) {
 }
 
 AppNavDrawerItem.propTypes = {
+  beta: PropTypes.bool,
   children: PropTypes.node,
+  deprecated: PropTypes.bool,
   depth: PropTypes.number.isRequired,
   expandable: PropTypes.bool,
   href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),

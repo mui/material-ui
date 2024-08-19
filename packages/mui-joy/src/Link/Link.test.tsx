@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { SinonSpy, spy } from 'sinon';
-import { act, createRenderer, fireEvent, describeConformance } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import Link, { LinkClassKey, linkClasses as classes } from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 import { ThemeProvider, TypographySystem } from '@mui/joy/styles';
+import describeConformance from '../../test/describeConformance';
 
 function focusVisible(element: HTMLAnchorElement | null) {
   act(() => {
@@ -74,7 +75,12 @@ describe('<Link />', () => {
   });
 
   describe('keyboard focus', () => {
-    it('should add the focusVisible class when focused', () => {
+    it('should add the focusVisible class when focused', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+
       const { container } = render(<Link href="/">Home</Link>);
       const anchor = container.querySelector('a');
 

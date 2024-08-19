@@ -17,7 +17,7 @@ We're a company of 31+ people as of late 2023, and we're growing.
 ## The products
 
 MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
-Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
+Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
 We also host Design Kits and pre-built Templates.
 
 Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
@@ -85,7 +85,7 @@ Depending on the day, you'll:
 - Strong analytical, and problem-solving skills, with the ability to make data-driven decisions.
 - A high sense of curiosity, enjoying self-learning to get things done. You are [versatile](https://review.firstround.com/the-adaptable-leader-is-the-new-holy-grail-become-one-hire-one).
 - Excited about the ambiguity of an entrepreneurial, growing company, and able to juggle many projects and responsibilities.
-- Bachelor's degree in a related field (e.g. computer science, business management).
+- Bachelor's degree in a related field (for example computer science, business management).
 - 1+ year of experience in a similar role.
 
 ### Nice to have (but not required)
@@ -95,7 +95,7 @@ Depending on the day, you'll:
 ## Benefits and compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
+We are ready to pay top market rates for a person who can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply

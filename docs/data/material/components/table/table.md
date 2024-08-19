@@ -17,7 +17,7 @@ Tables display information in a way that's easy to scan, so that users can look 
 - Navigation
 - Tools to query and manipulate data
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic table
 
@@ -33,7 +33,7 @@ This constraint makes building rich data tables challenging.
 The [`DataGrid` component](/x/react-data-grid/) is designed for use-cases that are focused on handling large amounts of tabular data.
 While it comes with a more rigid structure, in exchange, you gain more powerful features.
 
-{{"demo": "DataTable.js", "bg": "inline"}}
+{{"demo": "DataTable.js", "bg": "outlined"}}
 
 ## Dense table
 
@@ -83,7 +83,6 @@ The `ActionsComponent` prop of the `TablePagination` component allows the implem
 
 Here is an example of a table with scrollable rows and fixed column headers.
 It leverages the `stickyHeader` prop.
-(⚠️ no IE 11 support)
 
 {{"demo": "StickyHeadTable.js", "bg": true}}
 

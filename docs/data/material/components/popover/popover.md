@@ -14,7 +14,7 @@ Things to know when using the `Popover` component:
 - The component is built on top of the [`Modal`](/material-ui/react-modal/) component.
 - The scroll and click away are blocked unlike with the [`Popper`](/material-ui/react-popper/) component.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 ## Basic Popover
 

@@ -10,7 +10,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 
 <p class="description">An autocomplete component is a text input enhanced by a panel of suggested options.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
@@ -24,12 +24,12 @@ It implements the WAI-ARIA Combobox pattern and is typically used to assist user
 {{"demo": "AutocompleteIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
 :::warning
-Material UI and Joy UI have Autocomplete components that are built using the `useAutocomplete` hook, and they include many features not yet described here.
+Material UI and Joy UI have Autocomplete components that are built using the `useAutocomplete` hook, and they include many features not yet described here.
 
-To learn more about implementing a custom Autocomplete, you can explore the [`useAutocomplete` API docs](/base-ui/react-autocomplete/hooks-api/#use-autocomplete), or reference the Material UI and Joy UI implementations:
+To learn more about implementing a custom Autocomplete, you can explore the [`useAutocomplete` API docs](/base-ui/react-autocomplete/hooks-api/#use-autocomplete), or reference the Material UI and Joy UI implementations:
 
 - [Material UI Autocomplete](/material-ui/react-autocomplete/)
-- [Joy UI Autocomplete](/joy-ui/react-autocomplete/)
+- [Joy UI Autocomplete](/joy-ui/react-autocomplete/)
 
 :::
 

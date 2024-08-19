@@ -2,10 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { darken, lighten } from '@mui/system';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { darken, lighten } from '@mui/system/colorManipulator';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
+import useSlot from '../utils/useSlot';
 import capitalize from '../utils/capitalize';
 import Paper from '../Paper';
 import alertClasses, { getAlertUtilityClass } from './alertClasses';
@@ -20,7 +21,12 @@ const useUtilityClasses = (ownerState) => {
   const { variant, color, severity, classes } = ownerState;
 
   const slots = {
-    root: ['root', `${variant}${capitalize(color || severity)}`, `${variant}`],
+    root: [
+      'root',
+      `color${capitalize(color || severity)}`,
+      `${variant}${capitalize(color || severity)}`,
+      `${variant}`,
+    ],
     icon: ['icon'],
     message: ['message'],
     action: ['action'],
@@ -41,58 +47,70 @@ const AlertRoot = styled(Paper, {
       styles[`${ownerState.variant}${capitalize(ownerState.color || ownerState.severity)}`],
     ];
   },
-})(({ theme, ownerState }) => {
+})(({ theme }) => {
   const getColor = theme.palette.mode === 'light' ? darken : lighten;
   const getBackgroundColor = theme.palette.mode === 'light' ? lighten : darken;
-  const color = ownerState.color || ownerState.severity;
-
   return {
     ...theme.typography.body2,
     backgroundColor: 'transparent',
     display: 'flex',
     padding: '6px 16px',
-    ...(color &&
-      ownerState.variant === 'standard' && {
-        color: theme.vars
-          ? theme.vars.palette.Alert[`${color}Color`]
-          : getColor(theme.palette[color].light, 0.6),
-        backgroundColor: theme.vars
-          ? theme.vars.palette.Alert[`${color}StandardBg`]
-          : getBackgroundColor(theme.palette[color].light, 0.9),
-        [`& .${alertClasses.icon}`]: theme.vars
-          ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
-          : {
-              color: theme.palette[color].main,
-            },
-      }),
-    ...(color &&
-      ownerState.variant === 'outlined' && {
-        color: theme.vars
-          ? theme.vars.palette.Alert[`${color}Color`]
-          : getColor(theme.palette[color].light, 0.6),
-        border: `1px solid ${(theme.vars || theme).palette[color].light}`,
-        [`& .${alertClasses.icon}`]: theme.vars
-          ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
-          : {
-              color: theme.palette[color].main,
-            },
-      }),
-    ...(color &&
-      ownerState.variant === 'filled' && {
-        fontWeight: theme.typography.fontWeightMedium,
-        ...(theme.vars
-          ? {
-              color: theme.vars.palette.Alert[`${color}FilledColor`],
-              backgroundColor: theme.vars.palette.Alert[`${color}FilledBg`],
-            }
-          : {
-              backgroundColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette[color].dark
-                  : theme.palette[color].main,
-              color: theme.palette.getContrastText(theme.palette[color].main),
-            }),
-      }),
+    variants: [
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value && value.main && value.light)
+        .map(([color]) => ({
+          props: { colorSeverity: color, variant: 'standard' },
+          style: {
+            color: theme.vars
+              ? theme.vars.palette.Alert[`${color}Color`]
+              : getColor(theme.palette[color].light, 0.6),
+            backgroundColor: theme.vars
+              ? theme.vars.palette.Alert[`${color}StandardBg`]
+              : getBackgroundColor(theme.palette[color].light, 0.9),
+            [`& .${alertClasses.icon}`]: theme.vars
+              ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
+              : {
+                  color: theme.palette[color].main,
+                },
+          },
+        })),
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value && value.main && value.light)
+        .map(([color]) => ({
+          props: { colorSeverity: color, variant: 'outlined' },
+          style: {
+            color: theme.vars
+              ? theme.vars.palette.Alert[`${color}Color`]
+              : getColor(theme.palette[color].light, 0.6),
+            border: `1px solid ${(theme.vars || theme).palette[color].light}`,
+            [`& .${alertClasses.icon}`]: theme.vars
+              ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
+              : {
+                  color: theme.palette[color].main,
+                },
+          },
+        })),
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value && value.main && value.dark)
+        .map(([color]) => ({
+          props: { colorSeverity: color, variant: 'filled' },
+          style: {
+            fontWeight: theme.typography.fontWeightMedium,
+            ...(theme.vars
+              ? {
+                  color: theme.vars.palette.Alert[`${color}FilledColor`],
+                  backgroundColor: theme.vars.palette.Alert[`${color}FilledBg`],
+                }
+              : {
+                  backgroundColor:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette[color].dark
+                      : theme.palette[color].main,
+                  color: theme.palette.getContrastText(theme.palette[color].main),
+                }),
+          },
+        })),
+    ],
   };
 });
 
@@ -138,7 +156,7 @@ const defaultIconMapping = {
 };
 
 const Alert = React.forwardRef(function Alert(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAlert' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiAlert' });
   const {
     action,
     children,
@@ -163,15 +181,34 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     color,
     severity,
     variant,
+    colorSeverity: color || severity,
   };
 
   const classes = useUtilityClasses(ownerState);
 
-  const AlertCloseButton = slots.closeButton ?? components.CloseButton ?? IconButton;
-  const AlertCloseIcon = slots.closeIcon ?? components.CloseIcon ?? CloseIcon;
+  const externalForwardedProps = {
+    slots: {
+      closeButton: components.CloseButton,
+      closeIcon: components.CloseIcon,
+      ...slots,
+    },
+    slotProps: {
+      ...componentsProps,
+      ...slotProps,
+    },
+  };
 
-  const closeButtonProps = slotProps.closeButton ?? componentsProps.closeButton;
-  const closeIconProps = slotProps.closeIcon ?? componentsProps.closeIcon;
+  const [CloseButtonSlot, closeButtonProps] = useSlot('closeButton', {
+    elementType: IconButton,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [CloseIconSlot, closeIconProps] = useSlot('closeIcon', {
+    elementType: CloseIcon,
+    externalForwardedProps,
+    ownerState,
+  });
 
   return (
     <AlertRoot
@@ -197,7 +234,7 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
       ) : null}
       {action == null && onClose ? (
         <AlertAction ownerState={ownerState} className={classes.action}>
-          <AlertCloseButton
+          <CloseButtonSlot
             size="small"
             aria-label={closeText}
             title={closeText}
@@ -205,8 +242,8 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
             onClick={onClose}
             {...closeButtonProps}
           >
-            <AlertCloseIcon fontSize="small" {...closeIconProps} />
-          </AlertCloseButton>
+            <CloseIconSlot fontSize="small" {...closeIconProps} />
+          </CloseButtonSlot>
         </AlertAction>
       ) : null}
     </AlertRoot>
@@ -253,8 +290,7 @@ Alert.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -266,8 +302,7 @@ Alert.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -313,22 +348,15 @@ Alert.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
+   * The props used for each slot inside.
    * @default {}
    */
   slotProps: PropTypes.shape({
-    closeButton: PropTypes.object,
-    closeIcon: PropTypes.object,
+    closeButton: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    closeIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
-   *
    * @default {}
    */
   slots: PropTypes.shape({

@@ -1,12 +1,17 @@
 'use client';
-import { Popper as BasePopper, PopperProps as BasePopperProps } from '@mui/base/Popper';
-import { Direction, SxProps, useThemeWithoutDefault as useTheme } from '@mui/system';
-import { HTMLElementType, refType } from '@mui/utils';
+import { SxProps } from '@mui/system';
+import { useRtl } from '@mui/system/RtlProvider';
+import refType from '@mui/utils/refType';
+import HTMLElementType from '@mui/utils/HTMLElementType';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { styled, Theme, useThemeProps } from '../styles';
+import BasePopper from './BasePopper';
+import { PopperProps as BasePopperProps } from './BasePopper.types';
+import { Theme } from '../styles';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 
-export type PopperProps = Omit<BasePopperProps, 'direction'> & {
+export interface PopperProps extends Omit<BasePopperProps, 'direction'> {
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -15,6 +20,8 @@ export type PopperProps = Omit<BasePopperProps, 'direction'> & {
   /**
    * The components used for each slot inside the Popper.
    * Either a string to use a HTML element or a component.
+   *
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    * @default {}
    */
   components?: {
@@ -22,6 +29,8 @@ export type PopperProps = Omit<BasePopperProps, 'direction'> & {
   };
   /**
    * The props used for each slot inside the Popper.
+   *
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    * @default {}
    */
   componentsProps?: BasePopperProps['slotProps'];
@@ -29,7 +38,7 @@ export type PopperProps = Omit<BasePopperProps, 'direction'> & {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
-};
+}
 
 const PopperRoot = styled(BasePopper, {
   name: 'MuiPopper',
@@ -41,20 +50,20 @@ const PopperRoot = styled(BasePopper, {
  *
  * Demos:
  *
- * - [Autocomplete](https://mui.com/material-ui/react-autocomplete/)
- * - [Menu](https://mui.com/material-ui/react-menu/)
- * - [Popper](https://mui.com/material-ui/react-popper/)
+ * - [Autocomplete](https://next.mui.com/material-ui/react-autocomplete/)
+ * - [Menu](https://next.mui.com/material-ui/react-menu/)
+ * - [Popper](https://next.mui.com/material-ui/react-popper/)
  *
  * API:
  *
- * - [Popper API](https://mui.com/material-ui/api/popper/)
+ * - [Popper API](https://next.mui.com/material-ui/api/popper/)
  */
 const Popper = React.forwardRef(function Popper(
   inProps: PopperProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
-  const theme = useTheme<{ direction?: Direction }>();
-  const props = useThemeProps({
+  const isRtl = useRtl();
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiPopper',
   });
@@ -95,7 +104,7 @@ const Popper = React.forwardRef(function Popper(
   return (
     <PopperRoot
       as={component}
-      direction={theme?.direction}
+      direction={isRtl ? 'rtl' : 'ltr'}
       slots={{ root: RootComponent }}
       slotProps={slotProps ?? componentsProps}
       {...otherProps}
@@ -135,6 +144,8 @@ Popper.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside the Popper.
    * Either a string to use a HTML element or a component.
+   *
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    * @default {}
    */
   components: PropTypes.shape({
@@ -142,6 +153,8 @@ Popper.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The props used for each slot inside the Popper.
+   *
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    * @default {}
    */
   componentsProps: PropTypes.shape({

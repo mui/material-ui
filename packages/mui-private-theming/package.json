@@ -1,6 +1,6 @@
 {
   "name": "@mui/private-theming",
-  "version": "5.15.9",
+  "version": "6.0.0-beta.5",
   "private": false,
   "author": "MUI Team",
   "description": "Private - The React theme context to be shared between `@mui/styles` and `@mui/material`.",
@@ -26,8 +26,7 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "pnpm build:legacy && pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:copy-files",
-    "build:legacy": "node ../../scripts/build.mjs legacy",
+    "build": "pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:copy-files",
     "build:modern": "node ../../scripts/build.mjs modern",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
@@ -38,17 +37,17 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.9",
-    "@mui/utils": "workspace:^",
+    "@babel/runtime": "^7.25.0",
+    "@mui/utils": "workspace:*",
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@mui-internal/test-utils": "workspace:^",
+    "@mui/internal-test-utils": "workspace:^",
     "@mui/types": "workspace:^",
-    "@types/chai": "^4.3.11",
-    "@types/react": "^18.2.55",
-    "chai": "^4.4.1",
-    "react": "^18.2.0"
+    "@types/chai": "^4.3.17",
+    "@types/react": "^18.3.3",
+    "chai": "^4.5.0",
+    "react": "^18.3.1"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0",
@@ -65,6 +64,6 @@
     "directory": "build"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=14.0.0"
   }
 }

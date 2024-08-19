@@ -10,9 +10,10 @@ import Tooltip from '@mui/material/Tooltip';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useRouter } from 'next/router';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import UnfoldMoreRounded from '@mui/icons-material/UnfoldMoreRounded';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import IconImage from 'docs/src/components/icon/IconImage';
 import LicensingModelSwitch from 'docs/src/components/pricing/LicensingModelSwitch';
 import { useLicensingModel } from 'docs/src/components/pricing/LicensingModelContext';
@@ -54,16 +55,21 @@ export function PlanName({
     <React.Fragment>
       <Typography
         variant="body2"
-        fontWeight="bold"
-        sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', pr: 0.5 }}
+        sx={{
+          fontWeight: 'bold',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          pr: 0.5,
+        }}
       >
         <IconImage name={iconName} mode="" loading="eager" sx={{ mr: 1 }} /> {title}
       </Typography>
       {!disableDescription && (
         <Typography
           variant="body2"
-          color="text.secondary"
           sx={{
+            color: 'text.secondary',
             display: 'flex',
             textAlign: 'center',
             justifyContent: 'center',
@@ -97,14 +103,12 @@ export function PlanPrice(props: PlanPriceProps) {
           <Typography
             variant="h3"
             component="div"
-            fontWeight="bold"
-            color="success.600"
-            sx={{ mt: 4.5 }}
+            sx={{ fontWeight: 'bold', color: 'success.600', mt: 4.5 }}
           >
             $0
           </Typography>
         </Box>
-        <Typography variant="body2" color="text.secondary" textAlign="center">
+        <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
           Free forever!
         </Typography>
       </React.Fragment>
@@ -134,22 +138,45 @@ export function PlanPrice(props: PlanPriceProps) {
       <React.Fragment>
         <LicensingModelSwitch />
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
-          <Typography variant="h3" component="div" fontWeight="bold" color="primary.main">
+          <Typography
+            variant="h3"
+            component="div"
+            sx={{ fontWeight: 'bold', color: 'primary.main' }}
+          >
             {formatCurrency(mainDisplayValue)}
           </Typography>
           <Box sx={{ width: 5 }} />
-          <Typography variant="body2" color="text.secondary" sx={{ mt: '3px' }}>
+          <Typography variant="body2" sx={{ color: 'text.secondary', mt: '3px' }}>
             {priceUnit}
           </Typography>
         </Box>
-        <Box sx={{ minHeight: planPriceMinHeight }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 2,
+            mb: 2,
+            minHeight: planPriceMinHeight,
+          }}
+        >
           {(annual || monthlyDisplay) && (
-            <Typography variant="body2" color="text.secondary" textAlign="center">
+            <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
               {priceExplanation}
             </Typography>
           )}
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }} textAlign="center">
-            {'No additional fee beyond 10 devs.'}
+
+          <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
+            No extra fees for orders with over 10 devs&nbsp;
+            <span>
+              <Tooltip title="Our pricing policies are changing. Read more on our blog.">
+                <Link href="/blog/mui-x-sep-2024-price-update/">
+                  by Aug 30
+                  <OpenInNewRoundedIcon sx={{ fontSize: '16px', ml: 0.5 }} />
+                </Link>
+              </Tooltip>
+            </span>
+            .
           </Typography>
         </Box>
       </React.Fragment>
@@ -175,45 +202,67 @@ export function PlanPrice(props: PlanPriceProps) {
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
         <Typography
           variant="caption"
-          fontWeight="medium"
-          sx={(theme) => ({
-            borderRadius: 0.5,
-            alignSelf: 'flex-end',
-            textDecoration: 'line-through',
-            py: 0.5,
-            px: 1,
-            mb: 0.5,
-            fontWeight: 'medium',
-            bgcolor: 'error.50',
-            color: 'error.500',
-            border: '1px solid',
-            borderColor: 'error.100',
-            ...theme.applyDarkStyles({
-              color: 'error.300',
-              bgcolor: 'error.900',
-              borderColor: 'error.800',
+          sx={[
+            {
+              fontWeight: 'medium',
+            },
+            (theme) => ({
+              borderRadius: 0.5,
+              alignSelf: 'flex-end',
+              textDecoration: 'line-through',
+              py: 0.5,
+              px: 1,
+              mb: 0.5,
+              fontWeight: 'medium',
+              bgcolor: 'error.50',
+              color: 'error.500',
+              border: '1px solid',
+              borderColor: 'error.100',
+              ...theme.applyDarkStyles({
+                color: 'error.300',
+                bgcolor: 'error.900',
+                borderColor: 'error.800',
+              }),
             }),
-          })}
+          ]}
         >
           {formatCurrency(premiumOriginalValue)}
         </Typography>
         <Box sx={{ width: 10 }} />
-        <Typography variant="h3" component="div" fontWeight="bold" color="primary.main">
+        <Typography variant="h3" component="div" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
           {formatCurrency(premiumDisplayedValue)}
         </Typography>
         <Box sx={{ width: 5 }} />
-        <Typography variant="body2" color="text.secondary" sx={{ mt: '3px' }}>
+        <Typography variant="body2" sx={{ color: 'text.secondary', mt: '3px' }}>
           {priceUnit}
         </Typography>
       </Box>
-      <Box sx={{ minHeight: planPriceMinHeight }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 2,
+          mb: 2,
+          minHeight: planPriceMinHeight,
+        }}
+      >
         {(annual || monthlyDisplay) && (
-          <Typography variant="body2" color="text.secondary" textAlign="center">
+          <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
             {priceExplanation}
           </Typography>
         )}
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }} textAlign="center">
-          🐦 Early bird special (25% off).
+        <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
+          🐦 Early Bird: <strong>25% off</strong> if ordered &nbsp;
+          <span>
+            <Tooltip title="Our pricing policies are changing. Read more on our blog.">
+              <Link href="/blog/mui-x-sep-2024-price-update/">
+                by Aug 30
+                <OpenInNewRoundedIcon sx={{ fontSize: '16px', ml: 0.5 }} />{' '}
+              </Link>
+            </Tooltip>
+          </span>
+          .
         </Typography>
       </Box>
     </React.Fragment>
@@ -234,9 +283,13 @@ function Info(props: { value: React.ReactNode; metadata?: React.ReactNode }) {
       {metadata && (
         <Typography
           variant="caption"
-          color="text.secondary"
-          fontWeight="normal"
-          sx={{ display: 'block', mt: 0.8, textAlign: 'center' }}
+          sx={{
+            color: 'text.secondary',
+            fontWeight: 'normal',
+            display: 'block',
+            mt: 0.8,
+            textAlign: 'center',
+          }}
         >
           {metadata}
         </Typography>
@@ -308,9 +361,7 @@ function ColumnHead({
       {metadata && (
         <Typography
           variant="caption"
-          color="text.secondary"
-          fontWeight="normal"
-          sx={{ display: 'block' }}
+          sx={{ color: 'text.secondary', fontWeight: 'normal', display: 'block' }}
         >
           {metadata}
         </Typography>
@@ -382,7 +433,11 @@ function Cell({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
   );
 }
 
-function RowHead({ children, startIcon, ...props }: BoxProps & { startIcon?: React.ReactElement }) {
+function RowHead({
+  children,
+  startIcon,
+  ...props
+}: BoxProps & { startIcon?: React.ReactElement<any> }) {
   return (
     <Box
       {...props}
@@ -564,18 +619,24 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'data-grid/localization': (
     <ColumnHead label="Localization" href="/x/react-data-grid/localization/" />
   ),
-  'date-picker/simple': <ColumnHead label="Date Picker" />,
-  'date-picker/range': <ColumnHead label="Date Range Picker" />,
-
-  // -- charts - components --
+  'date-picker/simple': (
+    <ColumnHead label="Date and Time Pickers" href="/x/react-date-pickers/date-picker/" />
+  ),
+  'date-picker/range': (
+    <ColumnHead
+      label="Date and Time Range Pickers"
+      href="/x/react-date-pickers/date-range-picker/"
+    />
+  ),
+  // charts - components
   'charts/line': <ColumnHead label="Line chart" href="/x/react-charts/lines/" />,
   'charts/bar': <ColumnHead label="Bar chart" href="/x/react-charts/bars/" />,
   'charts/scatter': <ColumnHead label="Scatter chart" href="/x/react-charts/scatter/" />,
   'charts/pie': <ColumnHead label="Pie chart" href="/x/react-charts/pie/" />,
   'charts/sparkline': <ColumnHead label="Sparkline" href="/x/react-charts/sparkline/" />,
   'charts/gauge': <ColumnHead label="Gauge" href="/x/react-charts/gauge/" />,
-  'charts/treemap': <ColumnHead label="Tree map" href="/x/react-charts/tree-map/" />,
-  'charts/heatmap': <ColumnHead label="Heat map" href="/x/react-charts/heat-map/" />,
+  'charts/treemap': <ColumnHead label="Treemap" href="/x/react-charts/treemap/" />,
+  'charts/heatmap': <ColumnHead label="Heatmap" href="/x/react-charts/heatmap/" />,
   'charts/radar': <ColumnHead label="Radar" href="/x/react-charts/radar/" />,
   'charts/funnel': <ColumnHead label="Funnel" href="/x/react-charts/funnel/" />,
   'charts/sankey': <ColumnHead label="Sankey" href="/x/react-charts/sankey/" />,
@@ -583,18 +644,18 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'charts/gantt-advanced': <ColumnHead label="Advanced Gantt" />,
   'charts/candlestick': <ColumnHead label="Candlestick" />,
   'charts/large-dataset': <ColumnHead label="Large dataset with canvas" />,
-  // -- charts - features --
+  // charts - features
   'charts/legend': <ColumnHead label="Legend" href="/x/react-charts/legend/" />,
   'charts/tooltip': <ColumnHead label="Tooltip" href="/x/react-charts/tooltip/" />,
   'charts/mouse-zoom': <ColumnHead label="Zoom on mouse" />,
   'charts/export': <ColumnHead label="Export" />,
-  // -- charts - datagrid --
+  // charts - datagrid
   'charts/cell-with-charts': (
     <ColumnHead label="Cell with chart" href="/x/react-data-grid/custom-columns/#sparkline" />
   ),
   'charts/filter-interaction': <ColumnHead label="Row filtering" />,
   'charts/selection-interaction': <ColumnHead label="Range selection" />,
-
+  'tree-view/tree-view': <ColumnHead label="Tree View" href="/x/react-tree-view/" />,
   'mui-x-production': <ColumnHead label="Perpetual use in production" />,
   'mui-x-development': <ColumnHead label="Development license" tooltip="For active development" />,
   'mui-x-development-perpetual': (
@@ -607,7 +668,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
       {...{
         label: 'Technical support for MUI Core',
         tooltip:
-          'Support for MUI Core (e.g. Material UI) is provided by the community. MUI Core maintainers focus on solving root issues to support the community at large.',
+          'Support for MUI Core (for example Material UI) is provided by the community. MUI Core maintainers focus on solving root issues to support the community at large.',
       }}
     />
   ),
@@ -679,11 +740,7 @@ const toBeDefined = (
     href="https://forms.gle/19vN87eBvmXPjBVp6"
     target="_blank"
     variant="body2"
-    sx={{
-      '&:hover > svg': { color: 'primary.main', opacity: 1 },
-      fontWeight: 500,
-      pl: '16px',
-    }}
+    sx={{ '&:hover > svg': { color: 'primary.main', opacity: 1 }, fontWeight: 500, pl: '16px' }}
     title="To be determined"
   >
     TBD
@@ -692,20 +749,20 @@ const toBeDefined = (
 );
 
 const communityData: Record<string, React.ReactNode> = {
-  // MUI Core
+  // Core open-source libraries
   'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
   // MUI X
-  // -- data grid - columns --
+  // data grid - columns
   'data-grid/column-groups': yes,
   'data-grid/column-spanning': yes,
-  'data-grid/column-resizing': no,
-  'data-grid/column-autosizing': no,
+  'data-grid/column-resizing': yes,
+  'data-grid/column-autosizing': yes,
   'data-grid/column-reorder': no,
   'data-grid/column-pinning': no,
-  // -- data grid - rows --
+  // data grid - rows
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': no,
@@ -713,7 +770,7 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': no,
   'data-grid/row-cell-selection': no,
-  // -- data grid - filter --
+  // data grid - filter
   'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
   'data-grid/header-filters': no,
@@ -722,10 +779,10 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/multi-column-sorting': no,
   'data-grid/pagination': yes,
   'data-grid/pagination-large': no,
-  // -- data grid - edit --
+  // data grid - edit
   'data-grid/edit-row': yes,
   'data-grid/edit-cell': yes,
-  // -- data grid - export --
+  // data grid - export
   'data-grid/file-csv': yes,
   'data-grid/file-print': yes,
   'data-grid/file-clipboard-copy': yes,
@@ -742,20 +799,18 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/accessibility': yes,
   'data-grid/keyboard-nav': yes,
   'data-grid/localization': yes,
-
-  // -- picker --
+  // picker
   'date-picker/simple': yes,
   'date-picker/range': no,
-
-  // -- charts - components --
+  // charts - components
   'charts/line': yes,
   'charts/bar': yes,
   'charts/scatter': yes,
   'charts/pie': yes,
   'charts/sparkline': yes,
-  'charts/gauge': pending,
+  'charts/gauge': yes,
   'charts/treemap': pending,
-  'charts/heatmap': pending,
+  'charts/heatmap': no,
   'charts/radar': pending,
   'charts/funnel': no,
   'charts/sankey': no,
@@ -763,17 +818,18 @@ const communityData: Record<string, React.ReactNode> = {
   'charts/gantt-advanced': no,
   'charts/candlestick': no,
   'charts/large-dataset': no,
-  // -- charts - features --
+  // charts - features
   'charts/legend': yes,
   'charts/tooltip': yes,
   'charts/mouse-zoom': no,
   'charts/export': no,
-  // -- charts - datagrid --
+  // charts - datagrid
   'charts/cell-with-charts': yes,
   'charts/filter-interaction': no,
   'charts/selection-interaction': no,
-
-  // -- general --
+  // Tree View
+  'tree-view/tree-view': yes,
+  // general
   'mui-x-production': yes,
   'mui-x-updates': yes,
   'mui-x-development': yes,
@@ -790,20 +846,20 @@ const communityData: Record<string, React.ReactNode> = {
 };
 
 const proData: Record<string, React.ReactNode> = {
-  // MUI Core
+  // Core
   'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
   // MUI X
-  // -- data grid - columns --
+  // data grid - columns
   'data-grid/column-groups': yes,
   'data-grid/column-spanning': yes,
   'data-grid/column-resizing': yes,
   'data-grid/column-autosizing': yes,
   'data-grid/column-reorder': yes,
   'data-grid/column-pinning': yes,
-  // -- data grid - rows --
+  // data grid - rows
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': yes,
@@ -811,7 +867,7 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
   'data-grid/row-cell-selection': no,
-  // -- data grid - filter --
+  // data grid - filter
   'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
   'data-grid/header-filters': yes,
@@ -820,10 +876,10 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/multi-column-sorting': yes,
   'data-grid/pagination': yes,
   'data-grid/pagination-large': yes,
-  // -- data grid - edit --
+  // data grid - edit
   'data-grid/edit-row': yes,
   'data-grid/edit-cell': yes,
-  // -- data grid - export --
+  // data grid - export
   'data-grid/file-csv': yes,
   'data-grid/file-print': yes,
   'data-grid/file-clipboard-copy': yes,
@@ -843,13 +899,13 @@ const proData: Record<string, React.ReactNode> = {
   'date-picker/simple': yes,
   'date-picker/range': yes,
 
-  // -- charts - components --
+  // charts - components
   'charts/line': yes,
   'charts/bar': yes,
   'charts/scatter': yes,
   'charts/pie': yes,
   'charts/sparkline': yes,
-  'charts/gauge': pending,
+  'charts/gauge': yes,
   'charts/treemap': pending,
   'charts/heatmap': pending,
   'charts/radar': pending,
@@ -859,17 +915,18 @@ const proData: Record<string, React.ReactNode> = {
   'charts/gantt-advanced': no,
   'charts/candlestick': no,
   'charts/large-dataset': no,
-  // -- charts - features --
+  // charts - features
   'charts/legend': yes,
   'charts/tooltip': yes,
   'charts/mouse-zoom': pending,
   'charts/export': pending,
-  // -- charts - datagrid --
+  // charts - datagrid
   'charts/cell-with-charts': yes,
   'charts/filter-interaction': pending,
   'charts/selection-interaction': no,
-
-  // -- general --
+  // Tree View
+  'tree-view/tree-view': yes,
+  // general
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
   'mui-x-development-perpetual': <Info value="Perpetual" />,
@@ -891,20 +948,20 @@ const proData: Record<string, React.ReactNode> = {
 };
 
 const premiumData: Record<string, React.ReactNode> = {
-  // MUI Core
+  // Core
   'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
   // MUI X
-  // -- data grid - columns --
+  // data grid - columns
   'data-grid/column-groups': yes,
   'data-grid/column-spanning': yes,
   'data-grid/column-resizing': yes,
   'data-grid/column-autosizing': yes,
   'data-grid/column-reorder': yes,
   'data-grid/column-pinning': yes,
-  // -- data grid - rows --
+  // data grid - rows
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': yes,
@@ -912,7 +969,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
   'data-grid/row-cell-selection': yes,
-  // -- data grid - filter --
+  // data grid - filter
   'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
   'data-grid/header-filters': yes,
@@ -921,10 +978,10 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/multi-column-sorting': yes,
   'data-grid/pagination': yes,
   'data-grid/pagination-large': yes,
-  // -- data grid - edit --
+  // data grid - edit
   'data-grid/edit-row': yes,
   'data-grid/edit-cell': yes,
-  // -- data grid - export --
+  // data grid - export
   'data-grid/file-csv': yes,
   'data-grid/file-print': yes,
   'data-grid/file-clipboard-copy': yes,
@@ -944,13 +1001,13 @@ const premiumData: Record<string, React.ReactNode> = {
   'date-picker/simple': yes,
   'date-picker/range': yes,
 
-  // -- charts - components --
+  // charts - components
   'charts/line': yes,
   'charts/bar': yes,
   'charts/scatter': yes,
   'charts/pie': yes,
   'charts/sparkline': yes,
-  'charts/gauge': pending,
+  'charts/gauge': yes,
   'charts/treemap': pending,
   'charts/heatmap': pending,
   'charts/radar': pending,
@@ -960,23 +1017,24 @@ const premiumData: Record<string, React.ReactNode> = {
   'charts/gantt-advanced': toBeDefined,
   'charts/candlestick': toBeDefined,
   'charts/large-dataset': toBeDefined,
-  // -- charts - features --
+  // charts - features
   'charts/legend': yes,
   'charts/tooltip': yes,
   'charts/mouse-zoom': pending,
   'charts/export': pending,
-  // -- charts - datagrid --
+  // charts - datagrid
   'charts/cell-with-charts': yes,
   'charts/filter-interaction': pending,
   'charts/selection-interaction': pending,
-
-  // -- general --
+  // Tree View
+  'tree-view/tree-view': yes,
+  // general
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
   'mui-x-development-perpetual': <Info value="Perpetual" />,
   'mui-x-updates': <Info value="1 year" />,
   // Support
-  'core-support': <Info value={pending} metadata="priority add-on only" />,
+  'core-support': <Info value={pending} metadata="Priority add-on only" />,
   'x-support': <Info value={yes} metadata="Priority over Pro" />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
@@ -994,7 +1052,7 @@ const premiumData: Record<string, React.ReactNode> = {
     />
   ),
   'pre-screening': <Info value={pending} metadata="4 hours (priority add-on only)" />,
-  'issue-escalation': <Info value={pending} metadata="priority add-on only" />,
+  'issue-escalation': <Info value={pending} metadata="Priority add-on only" />,
   'security-questionnaire': <Info value="Available from 4+ devs" />,
 };
 
@@ -1008,16 +1066,16 @@ function RowCategory(props: BoxProps) {
           pl: 1.5,
           display: 'block',
           textTransform: 'uppercase',
-          letterSpacing: '.08rem',
+          letterSpacing: '.1rem',
           fontWeight: theme.typography.fontWeightBold,
           fontSize: theme.typography.pxToRem(11),
-          color: 'text.secondary',
+          color: (theme.vars || theme).palette.text.tertiary,
           borderBottom: '1px solid',
-          bgcolor: 'grey.50',
-          borderColor: 'grey.200',
+          bgcolor: (theme.vars || theme).palette.grey[50],
+          borderColor: (theme.vars || theme).palette.grey[200],
           ...theme.applyDarkStyles({
-            bgcolor: 'primaryDark.900',
-            borderColor: 'primaryDark.600',
+            bgcolor: (theme.vars || theme).palette.primaryDark[900],
+            borderColor: (theme.vars || theme).palette.primaryDark[600],
           }),
         }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
@@ -1030,7 +1088,7 @@ function StickyHead({
   container,
   disableCalculation = false,
 }: {
-  container: React.MutableRefObject<HTMLElement | null>;
+  container: React.RefObject<HTMLElement | null>;
   disableCalculation?: boolean;
 }) {
   const [hidden, setHidden] = React.useState(true);
@@ -1092,7 +1150,7 @@ function StickyHead({
           gridTemplateColumns: `minmax(160px, 1fr) repeat(3, minmax(240px, 1fr))`,
         }}
       >
-        <Typography variant="body2" fontWeight="bold" sx={{ px: 2, py: 1 }}>
+        <Typography variant="body2" sx={{ fontWeight: 'bold', px: 2, py: 1 }}>
           Plans
         </Typography>
         {(['community', 'pro', 'premium'] as const).map((plan) => (
@@ -1262,7 +1320,7 @@ export default function PricingTable({
       <StickyHead container={tableRef} disableCalculation={columnHeaderHidden} />
       {!columnHeaderHidden && (
         <Box sx={gridSx}>
-          <Typography variant="body2" fontWeight="bold" sx={{ p: 2 }}>
+          <Typography variant="body2" sx={{ fontWeight: 'bold', p: 2 }}>
             Plans
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>
@@ -1330,19 +1388,16 @@ export default function PricingTable({
           endIcon={
             <KeyboardArrowRightRounded
               color="primary"
-              sx={{
-                transform: dataGridCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)',
-              }}
+              sx={{ transform: dataGridCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)' }}
             />
           }
           sx={[
             (theme) => ({
-              p: 1,
-              py: 1.5,
+              px: 1,
               justifyContent: 'flex-start',
-              fontWeight: 400,
+              fontSize: '0.875rem',
+              fontWeight: 'medium',
               borderRadius: '0px',
-              color: 'text.primary',
               position: 'absolute',
               left: 0,
               top: 0,
@@ -1482,19 +1537,16 @@ export default function PricingTable({
           endIcon={
             <KeyboardArrowRightRounded
               color="primary"
-              sx={{
-                transform: chartsCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)',
-              }}
+              sx={{ transform: chartsCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)' }}
             />
           }
           sx={[
             (theme) => ({
-              p: 1,
-              py: 1.5,
+              px: 1,
               justifyContent: 'flex-start',
-              fontWeight: 400,
+              fontSize: '0.875rem',
+              fontWeight: 'medium',
               borderRadius: '0px',
-              color: 'text.primary',
               position: 'absolute',
               left: 0,
               top: 0,
@@ -1534,9 +1586,9 @@ export default function PricingTable({
         {divider}
         {renderNestedRow('charts/treemap')}
         {divider}
-        {renderNestedRow('charts/heatmap')}
-        {divider}
         {renderNestedRow('charts/radar')}
+        {divider}
+        {renderNestedRow('charts/heatmap')}
         {divider}
         {renderNestedRow('charts/funnel')}
         {divider}
@@ -1566,6 +1618,8 @@ export default function PricingTable({
         {divider}
         {renderNestedRow('charts/selection-interaction')}
       </StyledCollapse>
+      {divider}
+      {renderRow('tree-view/tree-view')}
       {divider}
       {renderRow('mui-x-production')}
       {divider}

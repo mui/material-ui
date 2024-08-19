@@ -153,9 +153,7 @@ const AboutMenu = React.forwardRef(
               props.onMouseEnter?.(event);
               setAnchorEl(event.currentTarget);
             }}
-            sx={(theme) => ({
-              ...(open && theme.variants.plainHover.neutral),
-            })}
+            sx={[open && ((theme) => theme.variants.plainHover.neutral)]}
           >
             About <KeyboardArrowDown />
           </ListItemButton>
@@ -270,9 +268,7 @@ const AdmissionsMenu = React.forwardRef(
               props.onMouseEnter?.(event);
               setAnchorEl(event.currentTarget);
             }}
-            sx={(theme) => ({
-              ...(open && theme.variants.plainHover.neutral),
-            })}
+            sx={[open && ((theme) => theme.variants.plainHover.neutral)]}
           >
             Admissions <KeyboardArrowDown />
           </ListItemButton>

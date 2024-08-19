@@ -1,15 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  describeConformance,
-  act,
-  createRenderer,
-  fireEvent,
-  screen,
-} from '@mui-internal/test-utils';
-import { ThemeProvider, createTheme } from '@mui/system';
+import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { ThemeProvider } from '@mui/system';
+import createTheme from '@mui/system/createTheme';
 import Grow from '@mui/material/Grow';
 import Popper from '@mui/material/Popper';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Popper />', () => {
   let rtlTheme;
@@ -41,8 +37,6 @@ describe('<Popper />', () => {
       'themeDefaultProps',
       'themeStyleOverrides',
       'themeVariants',
-      // https://github.com/facebook/react/issues/11565
-      'reactTestRenderer',
       'slotPropsCallback', // not supported yet
     ],
   }));
@@ -120,9 +114,7 @@ describe('<Popper />', () => {
       );
       expect(screen.getByTestId('placement')).to.have.text('bottom');
 
-      await act(async () => {
-        await popperRef.current.setOptions({ placement: 'top' });
-      });
+      await popperRef.current.setOptions({ placement: 'top' });
 
       expect(screen.getByTestId('placement')).to.have.text('bottom');
     });

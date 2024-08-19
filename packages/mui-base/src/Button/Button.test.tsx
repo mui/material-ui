@@ -1,23 +1,16 @@
 import * as React from 'react';
-import {
-  act,
-  createMount,
-  createRenderer,
-  describeConformanceUnstyled,
-  fireEvent,
-} from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { Button, buttonClasses } from '@mui/base/Button';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 describe('<Button />', () => {
-  const mount = createMount();
   const { render, renderToString } = createRenderer();
 
   describeConformanceUnstyled(<Button />, () => ({
     inheritComponent: 'button',
     render,
-    mount,
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'span',
     slots: {

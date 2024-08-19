@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, screen, fireEvent } from '@mui-internal/test-utils';
+import { createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
 import { Tabs } from '../Tabs';
 import { Tab } from '../Tab';
 import { TabsList } from '../TabsList';
@@ -9,6 +9,7 @@ import { useTabPanel } from './useTabPanel';
 
 describe('useTabPanel', () => {
   const { render } = createRenderer();
+
   describe('getRootProps', () => {
     it('returns props for root slot', () => {
       const rootRef = React.createRef();

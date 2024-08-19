@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { act, createRenderer } from '@mui-internal/test-utils';
+import { act, createRenderer } from '@mui/internal-test-utils';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { useInput } from './useInput';
@@ -7,6 +7,7 @@ import { UseInputParameters } from './useInput.types';
 
 describe('useInput', () => {
   const { render } = createRenderer();
+
   describe('params: inputRef', () => {
     it('should be able to attach input ref passed through params', () => {
       const inputRef = React.createRef<HTMLInputElement>();

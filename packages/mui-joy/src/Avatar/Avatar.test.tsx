@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, describeConformance, fireEvent } from '@mui-internal/test-utils';
+import { createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Avatar, { AvatarClassKey, avatarClasses as classes } from '@mui/joy/Avatar';
 import PersonIcon from '../internal/svg-icons/Person';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Avatar />', () => {
   const { render } = createRenderer();

@@ -2,15 +2,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { integerPropType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import integerPropType from '@mui/utils/integerPropType';
+import composeClasses from '@mui/utils/composeClasses';
+import { useRtl } from '@mui/system/RtlProvider';
 import Modal from '../Modal';
 import Slide from '../Slide';
 import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
-import useTheme from '../styles/useTheme';
-import useThemeProps from '../styles/useThemeProps';
-import styled, { rootShouldForwardProp } from '../styles/styled';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
+import { styled, useTheme } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getDrawerUtilityClass } from './drawerClasses';
 
 const overridesResolver = (props, styles) => {
@@ -71,7 +72,7 @@ const DrawerPaper = styled(Paper, {
         styles[`paperAnchorDocked${capitalize(ownerState.anchor)}`],
     ];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   overflowY: 'auto',
   display: 'flex',
   flexDirection: 'column',
@@ -87,43 +88,75 @@ const DrawerPaper = styled(Paper, {
   // At some point, it would be better to keep it for keyboard users.
   // :focus-ring CSS pseudo-class will help.
   outline: 0,
-  ...(ownerState.anchor === 'left' && {
-    left: 0,
-  }),
-  ...(ownerState.anchor === 'top' && {
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 'auto',
-    maxHeight: '100%',
-  }),
-  ...(ownerState.anchor === 'right' && {
-    right: 0,
-  }),
-  ...(ownerState.anchor === 'bottom' && {
-    top: 'auto',
-    left: 0,
-    bottom: 0,
-    right: 0,
-    height: 'auto',
-    maxHeight: '100%',
-  }),
-  ...(ownerState.anchor === 'left' &&
-    ownerState.variant !== 'temporary' && {
-      borderRight: `1px solid ${(theme.vars || theme).palette.divider}`,
-    }),
-  ...(ownerState.anchor === 'top' &&
-    ownerState.variant !== 'temporary' && {
-      borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
-    }),
-  ...(ownerState.anchor === 'right' &&
-    ownerState.variant !== 'temporary' && {
-      borderLeft: `1px solid ${(theme.vars || theme).palette.divider}`,
-    }),
-  ...(ownerState.anchor === 'bottom' &&
-    ownerState.variant !== 'temporary' && {
-      borderTop: `1px solid ${(theme.vars || theme).palette.divider}`,
-    }),
+  variants: [
+    {
+      props: {
+        anchor: 'left',
+      },
+      style: {
+        left: 0,
+      },
+    },
+    {
+      props: {
+        anchor: 'top',
+      },
+      style: {
+        top: 0,
+        left: 0,
+        right: 0,
+        height: 'auto',
+        maxHeight: '100%',
+      },
+    },
+    {
+      props: {
+        anchor: 'right',
+      },
+      style: {
+        right: 0,
+      },
+    },
+    {
+      props: {
+        anchor: 'bottom',
+      },
+      style: {
+        top: 'auto',
+        left: 0,
+        bottom: 0,
+        right: 0,
+        height: 'auto',
+        maxHeight: '100%',
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.anchor === 'left' && ownerState.variant !== 'temporary',
+      style: {
+        borderRight: `1px solid ${(theme.vars || theme).palette.divider}`,
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.anchor === 'top' && ownerState.variant !== 'temporary',
+      style: {
+        borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
+      },
+    },
+    {
+      props: ({ ownerState }) =>
+        ownerState.anchor === 'right' && ownerState.variant !== 'temporary',
+      style: {
+        borderLeft: `1px solid ${(theme.vars || theme).palette.divider}`,
+      },
+    },
+    {
+      props: ({ ownerState }) =>
+        ownerState.anchor === 'bottom' && ownerState.variant !== 'temporary',
+      style: {
+        borderTop: `1px solid ${(theme.vars || theme).palette.divider}`,
+      },
+    },
+  ],
 }));
 
 const oppositeDirection = {
@@ -137,8 +170,8 @@ export function isHorizontal(anchor) {
   return ['left', 'right'].indexOf(anchor) !== -1;
 }
 
-export function getAnchor(theme, anchor) {
-  return theme.direction === 'rtl' && isHorizontal(anchor) ? oppositeDirection[anchor] : anchor;
+export function getAnchor({ direction }, anchor) {
+  return direction === 'rtl' && isHorizontal(anchor) ? oppositeDirection[anchor] : anchor;
 }
 
 /**
@@ -146,8 +179,9 @@ export function getAnchor(theme, anchor) {
  * when `variant="temporary"` is set.
  */
 const Drawer = React.forwardRef(function Drawer(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiDrawer' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiDrawer' });
   const theme = useTheme();
+  const isRtl = useRtl();
   const defaultTransitionDuration = {
     enter: theme.transitions.duration.enteringScreen,
     exit: theme.transitions.duration.leavingScreen,
@@ -180,7 +214,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     mounted.current = true;
   }, []);
 
-  const anchorInvariant = getAnchor(theme, anchorProp);
+  const anchorInvariant = getAnchor({ direction: isRtl ? 'rtl' : 'ltr' }, anchorProp);
   const anchor = anchorProp;
 
   const ownerState = {

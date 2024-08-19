@@ -1,17 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import sinon, { spy, stub } from 'sinon';
-import {
-  describeConformanceUnstyled,
-  act,
-  screen,
-  waitFor,
-  createMount,
-  createRenderer,
-  fireEvent,
-  strictModeDoubleLoggingSuppressed,
-} from '@mui-internal/test-utils';
+import { act, screen, waitFor, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { TextareaAutosize } from '@mui/base/TextareaAutosize';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 function getStyleValue(value: string) {
   return parseInt(value, 10) || 0;
@@ -42,11 +34,9 @@ async function raf() {
 
 describe('<TextareaAutosize />', () => {
   const { clock, render } = createRenderer();
-  const mount = createMount();
 
   describeConformanceUnstyled(<TextareaAutosize />, () => ({
     render,
-    mount,
     inheritComponent: 'textarea',
     refInstanceof: window.HTMLTextAreaElement,
     slots: {},
@@ -458,32 +448,18 @@ describe('<TextareaAutosize />', () => {
       // the input should be 2 lines
       expect(input.style).to.have.property('height', `${lineHeight * 2}px`);
     });
+  });
 
-    describe('warnings', () => {
-      it('warns if layout is unstable but not crash', () => {
-        const { container, forceUpdate } = render(<TextareaAutosize maxRows={3} />);
-        const input = container.querySelector<HTMLTextAreaElement>('textarea[aria-hidden=null]')!;
-        const shadow = container.querySelector('textarea[aria-hidden=true]')!;
-        let index = 0;
-        setLayout(input, shadow, {
-          getComputedStyle: {
-            boxSizing: 'content-box',
-          },
-          scrollHeight: 100,
-          lineHeight: () => {
-            index += 1;
-            return index;
-          },
-        });
+  it('should apply the inline styles using the "style" prop', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
 
-        expect(() => {
-          forceUpdate();
-        }).toErrorDev([
-          'MUI: Too many re-renders.',
-          !strictModeDoubleLoggingSuppressed && 'MUI: Too many re-renders.',
-          !strictModeDoubleLoggingSuppressed && 'MUI: Too many re-renders.',
-        ]);
-      });
+    const { container } = render(<TextareaAutosize style={{ backgroundColor: 'yellow' }} />);
+    const input = container.querySelector<HTMLTextAreaElement>('textarea')!;
+
+    expect(input).toHaveComputedStyle({
+      backgroundColor: 'rgb(255, 255, 0)',
     });
   });
 });

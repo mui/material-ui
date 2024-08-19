@@ -1,4 +1,4 @@
-import MuiError from '@mui-internal/babel-macros/MuiError.macro';
+import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import { isUnitless, convertLength, responsiveProperty, alignProperty, fontGrid } from './cssUtils';
 
 export default function responsiveFontSizes(themeInput, options = {}) {
@@ -34,6 +34,11 @@ export default function responsiveFontSizes(themeInput, options = {}) {
 
   variants.forEach((variant) => {
     const style = typography[variant];
+
+    if (!style) {
+      return;
+    }
+
     const remFontSize = parseFloat(convert(style.fontSize, 'rem'));
 
     if (remFontSize <= 1) {

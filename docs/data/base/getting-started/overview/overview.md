@@ -16,12 +16,9 @@ Base UI includes prebuilt components with production-ready functionality, along
 
 With Base UI, you can rapidly build on top of our foundational components using any styling solution you choose—no need to override any default style engine or theme.
 
-:::info
-Base UI is currently in beta.
-
-We're adding new components and features regularly, and you're welcome to contribute!
-
-Look for the [`package: base-ui`](https://github.com/mui/material-ui/labels/package%3A%20base-ui) label on open issues and pull requests in the `mui/material-ui` repository on GitHub to see what other community members are working on, and feel free to submit your own.
+:::warning
+Base UI's API is currently being revised; there will be no new features or components added to the current implementation.
+Learn more about plans for Base UI in [this blog post](/blog/base-ui-2024-plans/).
 :::
 
 ## Advantages of Base UI

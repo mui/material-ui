@@ -6,7 +6,7 @@ import Tooltip from '@mui/material/Tooltip';
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
 import Fade from '@mui/material/Fade';
 import { Theme } from '@mui/material/styles';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 
 export default function BackToTop() {
   const t = useTranslate();
@@ -35,45 +35,36 @@ export default function BackToTop() {
 
   return (
     <Fade in={trigger}>
-      <Tooltip title="Scroll to top" open={open} onClose={handleClose} onOpen={handleOpen}>
-        <Box
-          className="mui-fixed"
-          sx={{
-            position: 'fixed',
-            bottom: 24,
-            right: 24,
-            zIndex: 10,
-          }}
-        >
+      <Tooltip
+        title="Scroll to top"
+        placement="left"
+        open={open}
+        onClose={handleClose}
+        onOpen={handleOpen}
+      >
+        <Box className="mui-fixed" sx={{ position: 'fixed', bottom: 24, right: 24, zIndex: 10 }}>
           <Fab
-            sx={[
-              (theme) => ({
-                backgroundColor: (theme.vars || theme).palette.primary[100],
-                boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
-                '&:hover': {
-                  backgroundColor: (theme.vars || theme).palette.primary[200],
-                },
-                '&:active': {
-                  boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.6)`,
-                },
-              }),
-              (theme) =>
-                theme.applyDarkStyles({
-                  backgroundColor: (theme.vars || theme).palette.primaryDark[400],
-                  boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.5)`,
-                  '&:hover': {
-                    backgroundColor: (theme.vars || theme).palette.primaryDark[500],
-                  },
-                  '&:active': {
-                    boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.7)`,
-                  },
-                }),
-            ]}
             size="small"
             aria-label={t('backToTop')}
             onClick={handleClick}
             data-ga-event-category="docs"
             data-ga-event-action="click-back-to-top"
+            sx={(theme) => ({
+              backgroundColor: (theme.vars || theme).palette.primary[50],
+              border: `1px solid ${(theme.vars || theme).palette.primary[200]}`,
+              boxShadow: `0px 4px 12px rgba(0, 0, 0, 0.1)`,
+              '&:hover': {
+                backgroundColor: (theme.vars || theme).palette.primary[200],
+              },
+              ...theme.applyDarkStyles({
+                backgroundColor: (theme.vars || theme).palette.primary[900],
+                borderColor: (theme.vars || theme).palette.primary[700],
+                boxShadow: `0px 4px 12px rgba(0, 0, 0, 0.8)`,
+                '&:hover': {
+                  backgroundColor: (theme.vars || theme).palette.primary[800],
+                },
+              }),
+            })}
           >
             <KeyboardArrowUpRoundedIcon
               sx={(theme: Theme) => ({

@@ -1,5 +1,5 @@
 name: 'Priority Support: SLA ⏰'
-description: I'm an MUI X Premium user and we have purchased the Priority Support add-on. I can't find a solution to my problem with Material UI, Base UI, MUI System, or Joy UI.
+description: I'm an MUI X Premium user and we have purchased the Priority Support add-on. I can't find a solution to my problem with Material UI, MUI System, or Joy UI.
 title: '[question] '
 labels: ['status: waiting for maintainer', 'support: unknown']
 body:
@@ -11,7 +11,7 @@ body:
     attributes:
       label: Search keywords
       description: |
-        Your issue may have already been reported! First search for duplicates among the [existing issues](https://github.com/mui/material-ui/issues).
+        Your issue may have already been reported! First search for duplicates among the [existing issues](https://github.com/mui/material-ui/issues?q=is%3Aopen+is%3Aclosed).
         If your issue isn't a duplicate, great! Please list the keywords you used so people in the future can find this one more easily:
       required: true
   - type: checkboxes

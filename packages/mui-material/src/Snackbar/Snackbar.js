@@ -1,12 +1,12 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
-import { ClickAwayListener } from '@mui/base/ClickAwayListener';
-import { useSnackbar } from '@mui/base/useSnackbar';
-import styled from '../styles/styled';
-import useTheme from '../styles/useTheme';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import useSlotProps from '@mui/utils/useSlotProps';
+import useSnackbar from './useSnackbar';
+import ClickAwayListener from '../ClickAwayListener';
+import { styled, useTheme } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import SnackbarContent from '../SnackbarContent';
@@ -40,41 +40,58 @@ const SnackbarRoot = styled('div', {
       ],
     ];
   },
-})(({ theme, ownerState }) => {
-  const center = {
-    left: '50%',
-    right: 'auto',
-    transform: 'translateX(-50%)',
-  };
-
-  return {
-    zIndex: (theme.vars || theme).zIndex.snackbar,
-    position: 'fixed',
-    display: 'flex',
-    left: 8,
-    right: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-    ...(ownerState.anchorOrigin.vertical === 'top' ? { top: 8 } : { bottom: 8 }),
-    ...(ownerState.anchorOrigin.horizontal === 'left' && { justifyContent: 'flex-start' }),
-    ...(ownerState.anchorOrigin.horizontal === 'right' && { justifyContent: 'flex-end' }),
-    [theme.breakpoints.up('sm')]: {
-      ...(ownerState.anchorOrigin.vertical === 'top' ? { top: 24 } : { bottom: 24 }),
-      ...(ownerState.anchorOrigin.horizontal === 'center' && center),
-      ...(ownerState.anchorOrigin.horizontal === 'left' && {
-        left: 24,
-        right: 'auto',
-      }),
-      ...(ownerState.anchorOrigin.horizontal === 'right' && {
-        right: 24,
-        left: 'auto',
-      }),
+})(({ theme }) => ({
+  zIndex: (theme.vars || theme).zIndex.snackbar,
+  position: 'fixed',
+  display: 'flex',
+  left: 8,
+  right: 8,
+  justifyContent: 'center',
+  alignItems: 'center',
+  variants: [
+    {
+      props: ({ ownerState }) => ownerState.anchorOrigin.vertical === 'top',
+      style: { top: 8, [theme.breakpoints.up('sm')]: { top: 24 } },
     },
-  };
-});
+    {
+      props: ({ ownerState }) => ownerState.anchorOrigin.vertical !== 'top',
+      style: { bottom: 8, [theme.breakpoints.up('sm')]: { bottom: 24 } },
+    },
+    {
+      props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'left',
+      style: {
+        justifyContent: 'flex-start',
+        [theme.breakpoints.up('sm')]: {
+          left: 24,
+          right: 'auto',
+        },
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'right',
+      style: {
+        justifyContent: 'flex-end',
+        [theme.breakpoints.up('sm')]: {
+          right: 24,
+          left: 'auto',
+        },
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'center',
+      style: {
+        [theme.breakpoints.up('sm')]: {
+          left: '50%',
+          right: 'auto',
+          transform: 'translateX(-50%)',
+        },
+      },
+    },
+  ],
+}));
 
 const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSnackbar' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiSnackbar' });
   const theme = useTheme();
   const defaultTransitionDuration = {
     enter: theme.transitions.duration.enteringScreen,
@@ -303,7 +320,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    * @default {}
    */
   TransitionProps: PropTypes.object,

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import getInitColorSchemeScript from './getInitColorSchemeScript';
-import { Mode, Result } from './useCurrentColorScheme';
+import InitColorSchemeScript from '../InitColorSchemeScript';
+import { Result } from './useCurrentColorScheme';
 
 export interface ColorSchemeContextValue<SupportedColorScheme extends string>
   extends Result<SupportedColorScheme> {
@@ -30,11 +30,6 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
    */
   defaultColorScheme: ColorScheme | { light: ColorScheme; dark: ColorScheme };
   /**
-   * Design system default mode
-   * @default 'light'
-   */
-  defaultMode?: Mode;
-  /**
    * Disable CSS transitions when switching between modes or color schemes
    * @default false
    */
@@ -53,8 +48,10 @@ export interface CreateCssVarsProviderResult<
         theme?: Identify<
           Identifier,
           {
+            cssVariables?: false;
             cssVarPrefix?: string;
-            colorSchemes: Record<ColorScheme, Record<string, any>>;
+            colorSchemes: Partial<Record<ColorScheme, any>>;
+            colorSchemeSelector?: 'media' | 'class' | 'data' | string;
           }
         >;
         /**
@@ -67,11 +64,6 @@ export interface CreateCssVarsProviderResult<
          * @default document
          */
         colorSchemeNode?: Element | null;
-        /**
-         * The CSS selector for attaching the generated custom properties
-         * @default ':root'
-         */
-        colorSchemeSelector?: string;
         /**
          * The window that attaches the 'storage' event listener
          * @default window
@@ -90,9 +82,9 @@ export interface CreateCssVarsProviderResult<
         disableStyleSheetGeneration?: boolean;
       }
     >,
-  ) => React.ReactElement;
+  ) => React.ReactElement<any>;
   useColorScheme: () => ColorSchemeContextValue<ColorScheme>;
-  getInitColorSchemeScript: typeof getInitColorSchemeScript;
+  getInitColorSchemeScript: typeof InitColorSchemeScript;
 }
 
 export default function createCssVarsProvider<
@@ -142,14 +134,6 @@ export default function createCssVarsProvider<
      * variants from those tokens.
      */
     resolveTheme?: (theme: any) => any; // the type is any because it depends on the design system.
-    /**
-     * @internal
-     * A function that returns a list of variables that will be excluded from the `colorSchemeSelector` (:root by default)
-     *
-     * Some variables are intended to be used in a specific color scheme only. They should be excluded when the default mode is set to the color scheme.
-     * This is introduced to fix https://github.com/mui/material-ui/issues/34084
-     */
-    excludeVariablesFromRoot?: (cssVarPrefix: string) => string[];
   },
 ): CreateCssVarsProviderResult<ColorScheme, Identifier>;
 
