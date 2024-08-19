@@ -144,8 +144,8 @@ importers:
         specifier: ^9.1.3
         version: 9.1.3(@babel/core@7.25.2)(webpack@5.93.0(webpack-cli@5.1.4))
       babel-plugin-istanbul:
-        specifier: ^6.1.1
-        version: 6.1.1
+        specifier: ^7.0.0
+        version: 7.0.0
       babel-plugin-macros:
         specifier: ^3.1.0
         version: 3.1.0
@@ -6047,9 +6047,9 @@ packages:
     resolution: {integrity: sha512-WcK43U4uz+9G35Wvdnyri4Tcg8Ux9/hSbQC4ckpfrHFQp8Cuz1BIQK5NswuGxT3T8cc3d4e55wDeSO4dViOugg==}
     engines: {node: '>=10'}
 
-  babel-plugin-istanbul@6.1.1:
-    resolution: {integrity: sha512-Y1IQok9821cC9onCx5otgFfRm7Lm+I+wwxOx738M/WLPZ9Q42m4IG5W0FNX8WLL2gYMZo3JkuXIH2DOpWM+qwA==}
-    engines: {node: '>=8'}
+  babel-plugin-istanbul@7.0.0:
+    resolution: {integrity: sha512-C5OzENSx/A+gt7t4VH1I2XsflxyPUmXRFPKBxt33xncdOmq7oROVM3bZv9Ysjjkv8OJYDMa+tKuKMvqU/H3xdw==}
+    engines: {node: '>=12'}
 
   babel-plugin-macros@3.1.0:
     resolution: {integrity: sha512-Cg7TFGpIr01vOQNODXOOaGz2NpCU5gl8x1qJFbb6hbZxR7XrcE2vtbAsTAbJ7/xwJtUuJEw8K8Zr/AE0LHlesg==}
@@ -8622,10 +8622,6 @@ packages:
 
   istanbul-lib-hook@3.0.0:
     resolution: {integrity: sha512-Pt/uge1Q9s+5VAZ+pCo16TYMWPBIl+oaNIjgLQxcX0itS6ueeaA+pEfThZpH8WxhFgCiEb8sAJY6MdUKgiIWaQ==}
-    engines: {node: '>=8'}
-
-  istanbul-lib-instrument@5.2.0:
-    resolution: {integrity: sha512-6Lthe1hqXHBNsqvgDzGO6l03XNeu3CrG4RqQ1KM9+l5+jNGpEJfIELx1NS3SEHmJQA8np/u+E4EPRKRiu6m19A==}
     engines: {node: '>=8'}
 
   istanbul-lib-instrument@6.0.2:
@@ -17172,12 +17168,12 @@ snapshots:
 
   babel-plugin-define-var@0.1.0: {}
 
-  babel-plugin-istanbul@6.1.1:
+  babel-plugin-istanbul@7.0.0:
     dependencies:
       '@babel/helper-plugin-utils': 7.24.8
       '@istanbuljs/load-nyc-config': 1.1.0
       '@istanbuljs/schema': 0.1.3
-      istanbul-lib-instrument: 5.2.0
+      istanbul-lib-instrument: 6.0.2
       test-exclude: 6.0.0
     transitivePeerDependencies:
       - supports-color
@@ -20212,16 +20208,6 @@ snapshots:
   istanbul-lib-hook@3.0.0:
     dependencies:
       append-transform: 2.0.0
-
-  istanbul-lib-instrument@5.2.0:
-    dependencies:
-      '@babel/core': 7.25.2
-      '@babel/parser': 7.25.3
-      '@istanbuljs/schema': 0.1.3
-      istanbul-lib-coverage: 3.2.0
-      semver: 6.3.1
-    transitivePeerDependencies:
-      - supports-color
 
   istanbul-lib-instrument@6.0.2:
     dependencies:
