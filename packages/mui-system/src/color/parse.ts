@@ -1,5 +1,6 @@
+import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import { Color, newColor } from './core';
-import * as convert from './convert'
+import * as convert from './convert';
 
 const HASH = '#'.charCodeAt(0);
 const PERCENT = '%'.charCodeAt(0);
@@ -12,10 +13,10 @@ const E = 'e'.charCodeAt(0);
  * Approximative CSS colorspace string pattern, e.g. rgb(), color()
  */
 const PATTERN = (() => {
-  const NAME = '(\\w+)'
-  const SEPARATOR = '[\\s,\\/]'
-  const VALUE = '([^\\s,\\/]+)'
-  const SEPARATOR_THEN_VALUE = `(?:${SEPARATOR}+${VALUE})`
+  const NAME = '(\\w+)';
+  const SEPARATOR = '[\\s,\\/]';
+  const VALUE = '([^\\s,\\/]+)';
+  const SEPARATOR_THEN_VALUE = `(?:${SEPARATOR}+${VALUE})`;
 
   return new RegExp(
     `${NAME}\\(
@@ -25,14 +26,18 @@ const PATTERN = (() => {
       ${SEPARATOR_THEN_VALUE}?
       ${SEPARATOR_THEN_VALUE}?
       ${SEPARATOR}*
-    \\)`.replace(/\s/g, '')
-  )
+    \\)`.replace(/\s/g, ''),
+  );
 })();
-
 
 /**
  * Parse CSS color
- * @param color CSS color string: #xxx, #xxxxxx, #xxxxxxxx, rgb(), rgba(), hsl(), hsla(), color()
+ * Supported formats:
+ * - #hhh, #hhhhhh, #hhhhhhhh
+ * - rgb(), rgba()
+ * - hsl(), hsla()
+ * - color() with one of: 'srgb', 'display-p3', 'a98-rgb', 'prophoto-rgb', 'rec-2020'
+ * @param color CSS color string in one of the supported formats
  */
 export function parse(color: string): Color {
   if (color.charCodeAt(0) === HASH) {
@@ -80,14 +85,13 @@ export function parseHex(hex: string): Color {
     }
   }
 
-  return newColor(r, g, b, a)
+  return newColor(r, g, b, a);
 }
 
 // https://lemire.me/blog/2019/04/17/parsing-short-hexadecimal-strings-efficiently/
 function hexValue(c: number) {
-  return (c & 0xF) + 9 * (c >> 6)
+  return (c & 0xf) + 9 * (c >> 6);
 }
-
 
 /**
  * Parse CSS color
@@ -138,66 +142,6 @@ export function parseColor(color: string): Color {
 
       return newColor(r, g, b, a);
     }
-    case 'hwb': {
-      const h = parseAngle(p1);
-      const w = parsePercentage(p2);
-      const bl = parsePercentage(p3);
-      const a = p4 ? parseAlphaChannel(p4) : 255;
-
-      /* https://drafts.csswg.org/css-color/#hwb-to-rgb */
-      const s = 1.0;
-      const l = 0.5;
-
-      // Same as HSL to RGB
-      const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-      const p = 2 * l - q;
-      let r = Math.round(hueToRGB(p, q, h + 1 / 3) * 255);
-      let g = Math.round(hueToRGB(p, q, h) * 255);
-      let b = Math.round(hueToRGB(p, q, h - 1 / 3) * 255);
-
-      // Then HWB
-      r = hwbApply(r, w, bl);
-      g = hwbApply(g, w, bl);
-      b = hwbApply(b, w, bl);
-
-      return newColor(r, g, b, a);
-    }
-    case 'lab': {
-      const l = parsePercentageOrValue(p1);
-      const aa = parsePercentageOrValue(p2);
-      const b = parsePercentageOrValue(p3);
-      const a = p4 ? parseAlphaChannel(p4) : 255;
-      return newColorFromArray(a,
-        convert.xyzd50ToSrgb(...convert.labToXyzd50(l, aa, b))
-      )
-    }
-    case 'lch': {
-      const l = parsePercentageOrValue(p1);
-      const c = parsePercentageOrValue(p2);
-      const h = parsePercentageOrValue(p3);
-      const a = p4 ? parseAlphaChannel(p4) : 255;
-      return newColorFromArray(a,
-        convert.xyzd50ToSrgb(...convert.labToXyzd50(...convert.lchToLab(l, c, h)))
-      )
-    }
-    case 'oklab': {
-      const l = parsePercentageOrValue(p1);
-      const aa = parsePercentageOrValue(p2);
-      const b = parsePercentageOrValue(p3);
-      const a = p4 ? parseAlphaChannel(p4) : 255;
-      return newColorFromArray(a,
-        convert.xyzd50ToSrgb(...convert.oklchToXyzd50(l, aa, b))
-      )
-    }
-    case 'oklch': {
-      const l = parsePercentageOrValue(p1);
-      const c = parsePercentageOrValue(p2);
-      const h = parsePercentageOrValue(p3);
-      const a = p4 ? parseAlphaChannel(p4) : 255;
-      return newColorFromArray(a,
-        convert.xyzd50ToSrgb(...convert.oklchToXyzd50(l, c, h))
-      )
-    }
     case 'color': {
       // https://drafts.csswg.org/css-color-4/#color-function
 
@@ -210,53 +154,45 @@ export function parseColor(color: string): Color {
       switch (colorspace) {
         // RGB color spaces
         case 'srgb': {
-          return newColorFromArray(a, 
-            [c1, c2, c3]
-          )
-        }
-        case 'srgb-linear': {
-          return newColorFromArray(a, 
-            convert.xyzd50ToSrgb(...convert.srgbLinearToXyzd50(c1, c2, c3))
-          )
+          return newColorFromArray(a, [c1, c2, c3]);
         }
         case 'display-p3': {
-          return newColorFromArray(a, 
-            convert.xyzd50ToSrgb(...convert.displayP3ToXyzd50(c1, c2, c3))
-          )
+          return newColorFromArray(
+            a,
+            convert.xyzd50ToSrgb(...convert.displayP3ToXyzd50(c1, c2, c3)),
+          );
         }
         case 'a98-rgb': {
-          return newColorFromArray(a, 
-            convert.xyzd50ToSrgb(...convert.adobeRGBToXyzd50(c1, c2, c3))
-          )
+          return newColorFromArray(
+            a,
+            convert.xyzd50ToSrgb(...convert.adobeRGBToXyzd50(c1, c2, c3)),
+          );
         }
         case 'prophoto-rgb': {
-          return newColorFromArray(a, 
-            convert.xyzd50ToSrgb(...convert.proPhotoToXyzd50(c1, c2, c3))
-          )
+          return newColorFromArray(
+            a,
+            convert.xyzd50ToSrgb(...convert.proPhotoToXyzd50(c1, c2, c3)),
+          );
         }
         case 'rec2020': {
-          return newColorFromArray(a, 
-            convert.xyzd50ToSrgb(...convert.rec2020ToXyzd50(c1, c2, c3))
-          )
+          return newColorFromArray(a, convert.xyzd50ToSrgb(...convert.rec2020ToXyzd50(c1, c2, c3)));
         }
-        // XYZ color spaces
-        case 'xyz':
-        case 'xyz-d65': {
-          return newColorFromArray(a, 
-            convert.xyzd50ToSrgb(...convert.xyzd65ToD50(c1, c2, c3))
-          )
+        default: {
+          throw new MuiError(
+            'MUI: unsupported `%s` color space.\n' +
+              'The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rgb, rec-2020.',
+            colorspace,
+          );
         }
-        case 'xyz-d50': {
-          return newColorFromArray(a, 
-            convert.xyzd50ToSrgb(c1, c2, c3)
-          )
-        }
-        default:
       }
     }
     default:
   }
-  throw new Error(`Color.parse(): invalid CSS color: "${color}"`);
+  throw new MuiError(
+    'MUI: Unsupported `%s` color.\n' +
+      'The following formats are supported: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
+    color,
+  );
 }
 
 /**
@@ -356,37 +292,34 @@ function parsePercentageOrValue(value: string): number {
   return parseFloat(value);
 }
 
-
-// HSL functions
-
 function hueToRGB(p: number, q: number, t: number) {
-  if (t < 0) { t += 1 };
-  if (t > 1) { t -= 1 };
-  if (t < 1 / 6) { return p + (q - p) * 6 * t };
-  if (t < 1 / 2) { return q };
-  if (t < 2 / 3) { return p + (q - p) * (2 / 3 - t) * 6 };
-  { return p };
+  if (t < 0) {
+    t += 1;
+  }
+  if (t > 1) {
+    t -= 1;
+  }
+  if (t < 1 / 6) {
+    return p + (q - p) * 6 * t;
+  }
+  if (t < 1 / 2) {
+    return q;
+  }
+  if (t < 2 / 3) {
+    return p + (q - p) * (2 / 3 - t) * 6;
+  }
+  {
+    return p;
+  }
 }
-
-// HWB functions
-
-function hwbApply(channel: number, w: number, b: number) {
-  let result = channel / 255
-
-  result *= 1 - w - b
-  result += w
-
-  return Math.round(result * 255)
-}
-
 
 function clamp(value: number) {
-  return Math.max(0, Math.min(255, value))
+  return Math.max(0, Math.min(255, value));
 }
 
 function newColorFromArray(a: number, rgb: [number, number, number]) {
-  const r = clamp(Math.round(rgb[0] * 255))
-  const g = clamp(Math.round(rgb[1] * 255))
-  const b = clamp(Math.round(rgb[2] * 255))
-  return newColor(r, g, b, a)
+  const r = clamp(Math.round(rgb[0] * 255));
+  const g = clamp(Math.round(rgb[1] * 255));
+  const b = clamp(Math.round(rgb[2] * 255));
+  return newColor(r, g, b, a);
 }

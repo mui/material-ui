@@ -23,5 +23,5 @@ export function get(n: number, offset: number) {
 }
 
 export function set(n: number, offset: number, byte: number) {
-  return n ^ ((n ^ (byte << offset)) & (0xff << offset)); 
+  return n ^ ((n ^ (byte << offset)) & (0xff << offset));
 }

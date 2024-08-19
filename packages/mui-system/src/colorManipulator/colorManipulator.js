@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import clamp from '@mui/utils/clamp';
 import MuiError from '@mui/internal-babel-macros/MuiError.macro';
-import * as Color from '../color'
+import * as Color from '../color';
 
 /**
  * Returns a number whose value is limited to the given range.
@@ -23,97 +23,58 @@ function clampWrapper(value, min = 0, max = 1) {
 /**
  * Converts a color from CSS hex format to CSS rgb format.
  * @param {string} color - Hex color, i.e. #nnn or #nnnnnn
- * @returns {string} A CSS rgb color string
+ * @returns {string} A CSS rgba() color string
  */
-export function hexToRgb(color) {
-  color = color.slice(1);
-
-  const re = new RegExp(`.{1,${color.length >= 6 ? 2 : 1}}`, 'g');
-  let colors = color.match(re);
-
-  if (colors && colors[0].length === 1) {
-    colors = colors.map((n) => n + n);
-  }
-
-  return colors
-    ? `rgb${colors.length === 4 ? 'a' : ''}(${colors
-        .map((n, index) => {
-          return index < 3 ? parseInt(n, 16) : Math.round((parseInt(n, 16) / 255) * 1000) / 1000;
-        })
-        .join(', ')})`
-    : '';
-}
-
-function intToHex(int) {
-  const hex = int.toString(16);
-  return hex.length === 1 ? `0${hex}` : hex;
+export function hexToRgb(hexadecimal) {
+  return Color.formatRGB(Color.parse(hexadecimal));
 }
 
 /**
  * Returns an object with the type and values of a color.
- *
- * Note: Does not support rgb % values.
- * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()
+ * Supported formats:
+ * - #hhh, #hhhhhh, #hhhhhhhh
+ * - rgb(), rgba()
+ * - hsl(), hsla()
+ * - color() with one of: 'srgb', 'display-p3', 'a98-rgb', 'prophoto-rgb', 'rec-2020'
+ * @param {string} color - CSS color in one of the supported formats
  * @returns {object} - A MUI color object: {type: string, values: number[]}
+ * @deprecated
  */
-export function decomposeColor(color) {
+export function decomposeColor(input) {
   // Idempotent
-  if (color.type) {
-    return color;
+  // FIXME(romgrk): This implies the types aren't respected, as color should be a `string`
+  if (input.type) {
+    return input;
   }
 
-  if (color.charAt(0) === '#') {
-    return decomposeColor(hexToRgb(color));
-  }
+  const color = Color.parse(hexadecimal);
 
-  const marker = color.indexOf('(');
-  const type = color.substring(0, marker);
+  const r = getRed(color);
+  const g = getGreen(color);
+  const b = getBlue(color);
+  const a = getAlpha(color) / 255;
 
-  if (['rgb', 'rgba', 'hsl', 'hsla', 'color'].indexOf(type) === -1) {
-    throw new MuiError(
-      'MUI: Unsupported `%s` color.\n' +
-        'The following formats are supported: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
-      color,
-    );
-  }
-
-  let values = color.substring(marker + 1, color.length - 1);
-  let colorSpace;
-
-  if (type === 'color') {
-    values = values.split(' ');
-    colorSpace = values.shift();
-    if (values.length === 4 && values[3].charAt(0) === '/') {
-      values[3] = values[3].slice(1);
-    }
-    if (['srgb', 'display-p3', 'a98-rgb', 'prophoto-rgb', 'rec-2020'].indexOf(colorSpace) === -1) {
-      throw new MuiError(
-        'MUI: unsupported `%s` color space.\n' +
-          'The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rgb, rec-2020.',
-        colorSpace,
-      );
-    }
-  } else {
-    values = values.split(',');
-  }
-  values = values.map((value) => parseFloat(value));
-
-  return { type, values, colorSpace };
+  return {
+    type: 'rgba',
+    values: [r, g, b, a],
+  };
 }
 
 /**
  * Returns a channel created from the input color.
  *
- * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()
- * @returns {string} - The channel for the color, that can be used in rgba or hsla colors
+ * @param {string} color - CSS color in one of the supported formats
+ * @returns {string} - The channel for the color, that can be used in rgba colors
  */
-export const colorChannel = (color) => {
-  const decomposedColor = decomposeColor(color);
-  return decomposedColor.values
-    .slice(0, 3)
-    .map((val, idx) => (decomposedColor.type.indexOf('hsl') !== -1 && idx !== 0 ? `${val}%` : val))
-    .join(' ');
-};
+export function colorChannel(color) {
+  const c = Color.parse(hexadecimal);
+
+  const r = getRed(c);
+  const g = getGreen(c);
+  const b = getBlue(c);
+
+  return `${r} ${g} ${b}`;
+}
 export const private_safeColorChannel = (color, warning) => {
   try {
     return colorChannel(color);
@@ -131,6 +92,7 @@ export const private_safeColorChannel = (color, warning) => {
  * @param {string} color.type - One of: 'rgb', 'rgba', 'hsl', 'hsla', 'color'
  * @param {array} color.values - [n,n,n] or [n,n,n,n]
  * @returns {string} A CSS color string
+ * @deprecated
  */
 export function recomposeColor(color) {
   const { type, colorSpace } = color;
@@ -155,16 +117,10 @@ export function recomposeColor(color) {
 /**
  * Converts a color from CSS rgb format to CSS hex format.
  * @param {string} color - RGB color, i.e. rgb(n, n, n)
- * @returns {string} A CSS rgb color string, i.e. #nnnnnn
+ * @returns {string} A CSS hexadecimal color string as #rrggbbaa
  */
 export function rgbToHex(color) {
-  // Idempotent
-  if (color.indexOf('#') === 0) {
-    return color;
-  }
-
-  const { values } = decomposeColor(color);
-  return `#${values.map((n, i) => intToHex(i === 3 ? Math.round(255 * n) : n)).join('')}`;
+  return Color.format(Color.parse(color));
 }
 
 /**
@@ -173,24 +129,9 @@ export function rgbToHex(color) {
  * @returns {string} rgb color values
  */
 export function hslToRgb(color) {
-  color = decomposeColor(color);
-  const { values } = color;
-  const h = values[0];
-  const s = values[1] / 100;
-  const l = values[2] / 100;
-  const a = s * Math.min(l, 1 - l);
-  const f = (n, k = (n + h / 30) % 12) => l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
-
-  let type = 'rgb';
-  const rgb = [Math.round(f(0) * 255), Math.round(f(8) * 255), Math.round(f(4) * 255)];
-
-  if (color.type === 'hsla') {
-    type += 'a';
-    rgb.push(values[3]);
-  }
-
-  return recomposeColor({ type, values: rgb });
+  return Color.formatRGB(Color.parse(color));
 }
+
 /**
  * The relative brightness of any point in a color space,
  * normalized to 0 for darkest black and 1 for lightest white.
@@ -200,24 +141,22 @@ export function hslToRgb(color) {
  * @returns {number} The relative brightness of the color in the range 0 - 1
  */
 export function getLuminance(color) {
-  // Test fast implementation
-  // return Color.format(Color.getLuminance(Color.parse(color)));
+  const r = getRed(color) / 255;
+  const g = getGreen(color) / 255;
+  const b = getBlue(color) / 255;
 
-  color = decomposeColor(color);
+  const apply = (v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4);
 
-  let rgb =
-    color.type === 'hsl' || color.type === 'hsla'
-      ? decomposeColor(hslToRgb(color)).values
-      : color.values;
-  rgb = rgb.map((val) => {
-    if (color.type !== 'color') {
-      val /= 255; // normalized
-    }
-    return val <= 0.03928 ? val / 12.92 : ((val + 0.055) / 1.055) ** 2.4;
-  });
+  const r1 = apply(r);
+  const g1 = apply(g);
+  const b1 = apply(b);
 
-  // Truncate at 3 digits
-  return Number((0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]).toFixed(3));
+  // prettier-ignore
+  return (
+    0.2126 * r1 +
+    0.7152 * g1 +
+    0.0722 * b1
+  ).toFixed(3);
 }
 
 /**
@@ -239,25 +178,10 @@ export function getContrastRatio(foreground, background) {
  * Any existing alpha values are overwritten.
  * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()
  * @param {number} value - value to set the alpha channel to in the range 0 - 1
- * @returns {string} A CSS color string. Hex input values are returned as rgb
+ * @returns {string} A CSS hexadecimal color string
  */
 export function alpha(color, value) {
-  // Test fast implementation
-  // return Color.format(Color.setAlpha(Color.parse(color), Math.round(value * 255)));
-
-  color = decomposeColor(color);
-  value = clampWrapper(value);
-
-  if (color.type === 'rgb' || color.type === 'hsl') {
-    color.type += 'a';
-  }
-  if (color.type === 'color') {
-    color.values[3] = `/${value}`;
-  } else {
-    color.values[3] = value;
-  }
-
-  return recomposeColor(color);
+  return Color.format(Color.setAlpha(Color.parse(color), Math.round(value * 255)));
 }
 export function private_safeAlpha(color, value, warning) {
   try {
@@ -277,20 +201,16 @@ export function private_safeAlpha(color, value, warning) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 export function darken(color, coefficient) {
-  // Test fast implementation
-  // return Color.format(Color.darken(Color.parse(color)));
+  const c = Color.parse(color);
 
-  color = decomposeColor(color);
-  coefficient = clampWrapper(coefficient);
+  const r = getRed(c);
+  const g = getGreen(c);
+  const b = getBlue(c);
+  const a = getAlpha(c);
 
-  if (color.type.indexOf('hsl') !== -1) {
-    color.values[2] *= 1 - coefficient;
-  } else if (color.type.indexOf('rgb') !== -1 || color.type.indexOf('color') !== -1) {
-    for (let i = 0; i < 3; i += 1) {
-      color.values[i] *= 1 - coefficient;
-    }
-  }
-  return recomposeColor(color);
+  const factor = 1 - coefficient;
+
+  return Color.format(Color.newColor(r * factor, g * factor, b * factor, a));
 }
 export function private_safeDarken(color, coefficient, warning) {
   try {
@@ -310,22 +230,21 @@ export function private_safeDarken(color, coefficient, warning) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 export function lighten(color, coefficient) {
-  color = decomposeColor(color);
-  coefficient = clampWrapper(coefficient);
+  const c = Color.parse(color);
 
-  if (color.type.indexOf('hsl') !== -1) {
-    color.values[2] += (100 - color.values[2]) * coefficient;
-  } else if (color.type.indexOf('rgb') !== -1) {
-    for (let i = 0; i < 3; i += 1) {
-      color.values[i] += (255 - color.values[i]) * coefficient;
-    }
-  } else if (color.type.indexOf('color') !== -1) {
-    for (let i = 0; i < 3; i += 1) {
-      color.values[i] += (1 - color.values[i]) * coefficient;
-    }
-  }
+  const r = getRed(c);
+  const g = getGreen(c);
+  const b = getBlue(c);
+  const a = getAlpha(c);
 
-  return recomposeColor(color);
+  return Color.format(
+    Color.newColor(
+      r + (255 - r) * coefficient,
+      g + (255 - g) * coefficient,
+      b + (255 - b) * coefficient,
+      a,
+    ),
+  );
 }
 export function private_safeLighten(color, coefficient, warning) {
   try {
@@ -371,17 +290,12 @@ export function blend(background, overlay, opacity, gamma = 1.0) {
   const blendChannel = (b, o) =>
     Math.round((b ** (1 / gamma) * (1 - opacity) + o ** (1 / gamma) * opacity) ** gamma);
 
-  const backgroundColor = decomposeColor(background);
-  const overlayColor = decomposeColor(overlay);
+  const backgroundColor = Color.parse(background);
+  const overlayColor = Color.parse(overlay);
 
-  const rgb = [
-    blendChannel(backgroundColor.values[0], overlayColor.values[0]),
-    blendChannel(backgroundColor.values[1], overlayColor.values[1]),
-    blendChannel(backgroundColor.values[2], overlayColor.values[2]),
-  ];
+  const r = blendChannel(getRed(backgroundColor), getRed(overlayColor));
+  const g = blendChannel(getGreen(backgroundColor), getGreen(overlayColor));
+  const b = blendChannel(getBlue(backgroundColor), getBlue(overlayColor));
 
-  return recomposeColor({
-    type: 'rgb',
-    values: rgb,
-  });
+  return Color.format(Color.newColor(r, g, b, 255));
 }

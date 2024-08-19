@@ -1,33 +1,27 @@
+// This color conversion code has been extracted from chrome devtools. It has been edited
+// to remove Matrix & Vector classes, as well as remove the code for colorspaces unsupported
+// by MUI. Should more colorspaces be needed, the source below has the complete list.
+//
+// Source: https://github.com/ChromeDevTools/devtools-frontend/blob/c51201e6ee70370f7f1ac8a1a49dca7d4561aeaa/front_end/core/common/ColorConverter.ts
+// LICENSE: https://github.com/ChromeDevTools/devtools-frontend/blob/c51201e6ee70370f7f1ac8a1a49dca7d4561aeaa/LICENSE
+//
 // Copyright 2022 The Chromium Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
-//
-// Source: https://github.com/ChromeDevTools/devtools-frontend/blob/c51201e6ee70370f7f1ac8a1a49dca7d4561aeaa/front_end/core/common/ColorConverter.ts
-// License: https://github.com/ChromeDevTools/devtools-frontend/blob/c51201e6ee70370f7f1ac8a1a49dca7d4561aeaa/LICENSE
 
 /**
  * Implementation of this module and all the tests are heavily influenced by
  * https://source.chromium.org/chromium/chromium/src/+/main:ui/gfx/color_conversions.cc
  */
 
-// https://en.wikipedia.org/wiki/CIELAB_color_space#Converting_between_CIELAB_and_CIEXYZ_coordinates
-const D50_X = 0.9642;
-const D50_Y = 1.0;
-const D50_Z = 0.8251;
-
-type Matrix3x3 = [
-  [number, number, number],
-  [number, number, number],
-  [number, number, number],
-];
+type Matrix3x3 = [[number, number, number], [number, number, number], [number, number, number]];
 
 type Vector3 = [number, number, number];
 
 function multiply(matrix: Matrix3x3, other: Vector3): Vector3 {
   const dst = [0, 0, 0] as Vector3;
   for (let row = 0; row < 3; ++row) {
-    dst[row] = matrix[row][0] * other[0] + matrix[row][1] * other[1] +
-        matrix[row][2] * other[2];
+    dst[row] = matrix[row][0] * other[0] + matrix[row][1] * other[1] + matrix[row][2] * other[2];
   }
   return dst;
 }
@@ -48,7 +42,15 @@ class TransferFunction {
   e: number;
   f: number;
 
-  constructor(g: number, a: number, b: number = 0, c: number = 0, d: number = 0, e: number = 0, f: number = 0) {
+  constructor(
+    g: number,
+    a: number,
+    b: number = 0,
+    c: number = 0,
+    d: number = 0,
+    e: number = 0,
+    f: number = 0,
+  ) {
     this.g = g;
     this.a = a;
     this.b = b;
@@ -73,7 +75,7 @@ class TransferFunction {
 }
 
 const NAMED_TRANSFER_FN = {
-  sRGB: new TransferFunction(2.4, (1 / 1.055), (0.055 / 1.055), (1 / 12.92), 0.04045, 0.0, 0.0),
+  sRGB: new TransferFunction(2.4, 1 / 1.055, 0.055 / 1.055, 1 / 12.92, 0.04045, 0.0, 0.0),
   sRGB_INVERSE: new TransferFunction(0.416667, 1.13728, -0, 12.92, 0.0031308, -0.0549698, -0),
 
   proPhotoRGB: new TransferFunction(1.8, 1),
@@ -89,7 +91,7 @@ const NAMED_TRANSFER_FN = {
 const NAMED_GAMUTS = {
   sRGB: [
     [0.436065674, 0.385147095, 0.143066406],
-    [0.222488403, 0.716873169, 0.060607910],
+    [0.222488403, 0.716873169, 0.06060791],
     [0.013916016, 0.097076416, 0.714096069],
   ] as Matrix3x3,
   sRGB_INVERSE: [
@@ -118,7 +120,7 @@ const NAMED_GAMUTS = {
     [0.028696263137883395, -0.1406807819331586, 1.349252109991369],
   ] as Matrix3x3,
   rec2020: [
-    [0.673459, 0.165661, 0.125100],
+    [0.673459, 0.165661, 0.1251],
     [0.279033, 0.675338, 0.0456288],
     [-0.00193139, 0.0299794, 0.797162],
   ] as Matrix3x3,
@@ -132,45 +134,16 @@ const NAMED_GAMUTS = {
     [0.0, 1.0, 0.0],
     [0.0, 0.0, 1.0],
   ] as Matrix3x3,
-
 };
 
-function degToRad(deg: number): number {
-  return deg * (Math.PI / 180);
-}
-
-function radToDeg(rad: number): number {
-  return rad * (180 / Math.PI);
-}
-
-function applyTransferFns(fn: TransferFunction, r: number, g: number, b: number): [number, number, number] {
+function applyTransferFns(
+  fn: TransferFunction,
+  r: number,
+  g: number,
+  b: number,
+): [number, number, number] {
   return [fn.eval(r), fn.eval(g), fn.eval(b)];
 }
-
-const OKLAB_TO_LMS_MATRIX = [
-  [0.99999999845051981432, 0.39633779217376785678, 0.21580375806075880339],
-  [1.0000000088817607767, -0.1055613423236563494, -0.063854174771705903402],
-  [1.0000000546724109177, -0.089484182094965759684, -1.2914855378640917399],
-] as Matrix3x3;
-
-// Inverse of the OKLAB_TO_LMS_MATRIX
-const LMS_TO_OKLAB_MATRIX = [
-  [0.2104542553, 0.7936177849999999, -0.0040720468],
-  [1.9779984951000003, -2.4285922049999997, 0.4505937099000001],
-  [0.025904037099999982, 0.7827717662, -0.8086757660000001],
-] as Matrix3x3;
-
-const XYZ_TO_LMS_MATRIX = [
-  [0.8190224432164319, 0.3619062562801221, -0.12887378261216414],
-  [0.0329836671980271, 0.9292868468965546, 0.03614466816999844],
-  [0.048177199566046255, 0.26423952494422764, 0.6335478258136937],
-] as Matrix3x3;
-// Inverse of XYZ_TO_LMS_MATRIX
-const LMS_TO_XYZ_MATRIX = [
-  [1.226879873374156, -0.5578149965554814, 0.2813910501772159],
-  [-0.040575762624313734, 1.1122868293970596, -0.07171106666151703],
-  [-0.07637294974672144, -0.4214933239627915, 1.586924024427242],
-] as Matrix3x3;
 
 const PRO_PHOTO_TO_XYZD50_MATRIX = [
   [0.7976700747153241, 0.13519395152800417, 0.03135596341127167],
@@ -196,89 +169,6 @@ const XYZD50_TO_XYZD65_MATRIX = [
   [0.012308773293784308, -0.02050053471777469, 1.3301947294775631],
 ] as Matrix3x3;
 
-const XYZD65_TO_SRGB_MATRIX = [
-  [3.2408089365140573, -1.5375788839307314, -0.4985609572551541],
-  [-0.9692732213205414, 1.876110235238969, 0.041560501141251774],
-  [0.05567030990267439, -0.2040007921971802, 1.0571046720577026],
-] as Matrix3x3;
-
-export function labToXyzd50(l: number, a: number, b: number): [number, number, number] {
-  let y = (l + 16.0) / 116.0;
-  let x = y + a / 500.0;
-  let z = y - b / 200.0;
-
-  function labInverseTransferFunction(t: number): number {
-    const delta = (24.0 / 116.0);
-
-    if (t <= delta) {
-      return (108.0 / 841.0) * (t - (16.0 / 116.0));
-    }
-
-    return t * t * t;
-  }
-
-  x = labInverseTransferFunction(x) * D50_X;
-  y = labInverseTransferFunction(y) * D50_Y;
-  z = labInverseTransferFunction(z) * D50_Z;
-
-  return [x, y, z];
-}
-
-export function xyzd50ToLab(x: number, y: number, z: number): [number, number, number] {
-  function labTransferFunction(t: number): number {
-    const deltaLimit: number = (24.0 / 116.0) * (24.0 / 116.0) * (24.0 / 116.0);
-
-    if (t <= deltaLimit) {
-      return (841.0 / 108.0) * t + (16.0 / 116.0);
-    }
-    return Math.pow(t, 1.0 / 3.0);
-  }
-
-  x = labTransferFunction(x / D50_X);
-  y = labTransferFunction(y / D50_Y);
-  z = labTransferFunction(z / D50_Z);
-
-  const l = 116.0 * y - 16.0;
-  const a = 500.0 * (x - y);
-  const b = 200.0 * (y - z);
-
-  return [l, a, b];
-}
-
-export function oklabToXyzd65(l: number, a: number, b: number): [number, number, number] {
-  const labInput = [l, a, b] as Vector3;
-  const lmsIntermediate = multiply(OKLAB_TO_LMS_MATRIX, labInput);
-  lmsIntermediate[0] = lmsIntermediate[0] * lmsIntermediate[0] * lmsIntermediate[0];
-  lmsIntermediate[1] = lmsIntermediate[1] * lmsIntermediate[1] * lmsIntermediate[1];
-  lmsIntermediate[2] = lmsIntermediate[2] * lmsIntermediate[2] * lmsIntermediate[2];
-  const xyzOutput = multiply(LMS_TO_XYZ_MATRIX, lmsIntermediate);
-  return xyzOutput;
-}
-
-export function xyzd65ToOklab(x: number, y: number, z: number): [number, number, number] {
-  const xyzInput = [x, y, z] as Vector3;
-  const lmsIntermediate = multiply(XYZ_TO_LMS_MATRIX, xyzInput);
-
-  lmsIntermediate[0] = Math.pow(lmsIntermediate[0], 1.0 / 3.0);
-  lmsIntermediate[1] = Math.pow(lmsIntermediate[1], 1.0 / 3.0);
-  lmsIntermediate[2] = Math.pow(lmsIntermediate[2], 1.0 / 3.0);
-
-  const labOutput = multiply(LMS_TO_OKLAB_MATRIX, lmsIntermediate);
-  return [labOutput[0], labOutput[1], labOutput[2]];
-}
-
-export function lchToLab(l: number, c: number, h: number|undefined): [number, number, number] {
-  if (h === undefined) {
-    return [l, 0, 0];
-  }
-
-  return [l, c * Math.cos(degToRad(h)), c * Math.sin(degToRad(h))];
-}
-
-export function labToLch(l: number, a: number, b: number): [number, number, number] {
-  return [l, Math.sqrt(a * a + b * b), radToDeg(Math.atan2(b, a))];
-}
-
 export function displayP3ToXyzd50(r: number, g: number, b: number): [number, number, number] {
   const [mappedR, mappedG, mappedB] = applyTransferFns(NAMED_TRANSFER_FN.sRGB, r, g, b);
   const rgbInput = [mappedR, mappedG, mappedB] as Vector3;
@@ -289,8 +179,7 @@ export function displayP3ToXyzd50(r: number, g: number, b: number): [number, num
 export function xyzd50ToDisplayP3(x: number, y: number, z: number): [number, number, number] {
   const xyzInput = [x, y, z] as Vector3;
   const rgbOutput = multiply(NAMED_GAMUTS.displayP3_INVERSE, xyzInput);
-  return applyTransferFns(
-      NAMED_TRANSFER_FN.sRGB_INVERSE, rgbOutput[0], rgbOutput[1], rgbOutput[2]);
+  return applyTransferFns(NAMED_TRANSFER_FN.sRGB_INVERSE, rgbOutput[0], rgbOutput[1], rgbOutput[2]);
 }
 
 export function proPhotoToXyzd50(r: number, g: number, b: number): [number, number, number] {
@@ -304,7 +193,11 @@ export function xyzd50ToProPhoto(x: number, y: number, z: number): [number, numb
   const xyzInput = [x, y, z] as Vector3;
   const rgbOutput = multiply(XYZD50_TO_PRO_PHOTO_MATRIX, xyzInput);
   return applyTransferFns(
-      NAMED_TRANSFER_FN.proPhotoRGB_INVERSE, rgbOutput[0], rgbOutput[1], rgbOutput[2]);
+    NAMED_TRANSFER_FN.proPhotoRGB_INVERSE,
+    rgbOutput[0],
+    rgbOutput[1],
+    rgbOutput[2],
+  );
 }
 
 export function adobeRGBToXyzd50(r: number, g: number, b: number): [number, number, number] {
@@ -318,7 +211,11 @@ export function xyzd50ToAdobeRGB(x: number, y: number, z: number): [number, numb
   const xyzInput = [x, y, z] as Vector3;
   const rgbOutput = multiply(NAMED_GAMUTS.adobeRGB_INVERSE, xyzInput);
   return applyTransferFns(
-      NAMED_TRANSFER_FN.k2Dot2_INVERSE, rgbOutput[0], rgbOutput[1], rgbOutput[2]);
+    NAMED_TRANSFER_FN.k2Dot2_INVERSE,
+    rgbOutput[0],
+    rgbOutput[1],
+    rgbOutput[2],
+  );
 }
 
 export function rec2020ToXyzd50(r: number, g: number, b: number): [number, number, number] {
@@ -332,7 +229,11 @@ export function xyzd50ToRec2020(x: number, y: number, z: number): [number, numbe
   const xyzInput = [x, y, z] as Vector3;
   const rgbOutput = multiply(NAMED_GAMUTS.rec2020_INVERSE, xyzInput);
   return applyTransferFns(
-      NAMED_TRANSFER_FN.rec2020_INVERSE, rgbOutput[0], rgbOutput[1], rgbOutput[2]);
+    NAMED_TRANSFER_FN.rec2020_INVERSE,
+    rgbOutput[0],
+    rgbOutput[1],
+    rgbOutput[2],
+  );
 }
 
 export function xyzd50ToD65(x: number, y: number, z: number): [number, number, number] {
@@ -347,24 +248,6 @@ export function xyzd65ToD50(x: number, y: number, z: number): [number, number, n
   return xyzOutput;
 }
 
-export function xyzd65TosRGBLinear(x: number, y: number, z: number): [number, number, number] {
-  const xyzInput = [x, y, z] as Vector3;
-  const rgbResult = multiply(XYZD65_TO_SRGB_MATRIX, xyzInput);
-  return rgbResult;
-}
-
-export function xyzd50TosRGBLinear(x: number, y: number, z: number): [number, number, number] {
-  const xyzInput = [x, y, z] as Vector3;
-  const rgbResult = multiply(NAMED_GAMUTS.sRGB_INVERSE, xyzInput);
-  return rgbResult;
-}
-
-export function srgbLinearToXyzd50(r: number, g: number, b: number): [number, number, number] {
-  const rgbInput = [r, g, b] as Vector3;
-  const xyzOutput = multiply(NAMED_GAMUTS.sRGB, rgbInput);
-  return xyzOutput;
-}
-
 export function srgbToXyzd50(r: number, g: number, b: number): [number, number, number] {
   const [mappedR, mappedG, mappedB] = applyTransferFns(NAMED_TRANSFER_FN.sRGB, r, g, b);
   const rgbInput = [mappedR, mappedG, mappedB] as Vector3;
@@ -375,18 +258,5 @@ export function srgbToXyzd50(r: number, g: number, b: number): [number, number, 
 export function xyzd50ToSrgb(x: number, y: number, z: number): [number, number, number] {
   const xyzInput = [x, y, z] as Vector3;
   const rgbOutput = multiply(NAMED_GAMUTS.sRGB_INVERSE, xyzInput);
-  return applyTransferFns(
-      NAMED_TRANSFER_FN.sRGB_INVERSE, rgbOutput[0], rgbOutput[1], rgbOutput[2]);
-}
-
-export function oklchToXyzd50(lInput: number, c: number, h: number): [number, number, number] {
-  const [l, a, b] = lchToLab(lInput, c, h);
-  const [x65, y65, z65] = oklabToXyzd65(l, a, b);
-  return xyzd65ToD50(x65, y65, z65);
-}
-
-export function xyzd50ToOklch(x: number, y: number, z: number): [number, number, number] {
-  const [x65, y65, z65] = xyzd50ToD65(x, y, z);
-  const [l, a, b] = xyzd65ToOklab(x65, y65, z65);
-  return labToLch(l, a, b);
+  return applyTransferFns(NAMED_TRANSFER_FN.sRGB_INVERSE, rgbOutput[0], rgbOutput[1], rgbOutput[2]);
 }
