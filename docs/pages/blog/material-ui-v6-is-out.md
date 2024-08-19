@@ -12,7 +12,7 @@ authors:
     'siriwatknp',
     'zanivan',
   ]
-tags: ['Material UI', 'Product']
+tags: ['Material UI', 'Product']
 manualCard: true
 ---
 
