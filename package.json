@@ -187,7 +187,7 @@
     "terser-webpack-plugin": "^5.3.10",
     "tsx": "^4.15.7",
     "typescript": "^5.4.5",
-    "webpack": "^5.92.1",
+    "webpack": "^5.93.0",
     "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^5.1.4",
     "yargs": "^17.7.2"
