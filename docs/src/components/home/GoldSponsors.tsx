@@ -63,6 +63,20 @@ const GOLDs = [
     description: 'Instagram followers, likes, views, and comments.',
     href: 'https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
+  {
+    src: '/static/sponsors/buzzoid-square.svg',
+    srcSet: '/static/sponsors/buzzoid-square.svg 3x',
+    name: 'Buzzoid.com',
+    description: 'Buzzoid: Instant delivery Instagram followers',
+    href: 'https://buzzoid.com/buy-instagram-followers/',
+  },
+  {
+    src: '/static/sponsors/twicsy-square.svg',
+    srcSet: '/static/sponsors/twicsy-square.svg 3x',
+    name: 'Twicsy.com',
+    description: 'Twicsy: Instant delivery Instagram followers',
+    href: 'https://twicsy.com/buy-instagram-followers',
+  },
 ];
 
 export default function GoldSponsors() {
