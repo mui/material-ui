@@ -77,7 +77,7 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
   <a href="https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://mui.com/static/sponsors/megafamous.png" alt="megafamous.com" title="MegaFamous: Buy Instagram followers and likes." loading="lazy" /></a>
   <a href="https://www.dialmycalls.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/288.png" alt="dialmycalls.com" title="DialMyCalls: Send text messages, calls, and emails." loading="lazy" /></a>
   <a href="https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/goread_io/eb6337d/logo/288.png" alt="goread.io" title="Goread.io: Instagram followers, likes, views, and comments." loading="lazy" /></a>
-  <a href="https://twicsy.com/buy-instagram-followers" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="/static/sponsors/twicsy-square.svg" alt="twicsy.com" title="Twicsy: Instant delivery Instagram followers" loading="lazy" /></a>
+  <a href="https://twicsy.com/buy-instagram-followers" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="/static/sponsors/twicsy-square.svg" alt="twicsy.com" title="Twicsy: Instant delivery Instagram followers." loading="lazy" /></a>
 </p>
 
 Gold sponsors are those who have pledged \$500/month or more to MUI.
