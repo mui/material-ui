@@ -281,11 +281,11 @@ function fromTheme(styleFn) {
  */
 function fromProps(styleFn) {
   let lastValue;
-  let lastAccesses = new Map();
+  let lastAccessedProps = {};
 
   function didChange(newProps) {
-    for (const entry in lastAccesses.entries()) {
-      if (newProps[entry[0]] !== entry[1]) {
+    for (const key in lastAccessedProps) {
+      if (newProps[key] !== lastAccessedProps[key]) {
         return true;
       }
     }
@@ -299,7 +299,7 @@ function fromProps(styleFn) {
         Object.defineProperty(proxy, key, {
           get: () => {
             const value = props[key];
-            lastAccesses.set(key, value)
+            lastAccessedProps[key] = value;
             return value;
           }
         })
@@ -311,7 +311,7 @@ function fromProps(styleFn) {
   return (props) => {
     let value = lastValue;
     if (value === undefined || didChange(props)) {
-      lastAccesses.clear()
+      lastAccessedProps = {}
 
       value = styleFn(createProxy(props));
 
