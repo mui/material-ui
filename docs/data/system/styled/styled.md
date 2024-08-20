@@ -280,6 +280,12 @@ module.exports = {
               styledBaseImport: ["@mui/system", "styled"]
             }
           },
+          "@mui/material": {
+            "styled": {
+              "canonicalImport": ["@emotion/styled", "default"],
+              "styledBaseImport": ["@mui/material", "styled"]
+            }
+          },
           "@mui/material/styles": {
             styled: {
               canonicalImport: ["@emotion/styled", "default"],
@@ -293,5 +299,9 @@ module.exports = {
 };
 
 ```
+
+:::info
+Note: if [`babel-plugin-direct-import`](https://github.com/avocadowastaken/babel-plugin-direct-import) used, it must be after `@emotion/babel-plugin`.
+:::
 
 Now you should be able to use components as your selectors!
