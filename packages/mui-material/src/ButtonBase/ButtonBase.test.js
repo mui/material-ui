@@ -1290,4 +1290,10 @@ describe('<ButtonBase />', () => {
       expect(ref.current).not.to.equal(null);
     });
   });
+
+  it('should render hidden button', () => {
+    render(<ButtonBase hidden />);
+    expect(screen.getByRole('button')).to.have.property('hidden', true);
+    expect(screen.getByRole('button')).to.have.style('display', 'none');
+  });
 });

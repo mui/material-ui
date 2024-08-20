@@ -66,6 +66,16 @@ export const ButtonBaseRoot = styled('button', {
   '@media print': {
     colorAdjust: 'exact',
   },
+  variants: [
+    {
+      props: {
+        hidden: true,
+      },
+      style: {
+        display: 'none',
+      },
+    },
+  ],
 });
 
 /**
