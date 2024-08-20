@@ -291,8 +291,8 @@ Internal functions used to process styles have been optimized to run faster.
 Based on the [test case](https://gist.github.com/romgrk/ade3ee62b4641d5b375127e98d354b5d), the time to render a set of components has been reduced by ~8%
 
 ```diff
--before: 157.3ms	+- 6.1
-+after:  145.1ms	+- 11.6
+-before: 157.3ms    +- 6.1
++after:  145.1ms    +- 11.6
 ```
 
 This is just the beginning of our performance improvements. We expect to reduce it by 30% with all the optimizations, so stay tuned for v6.x updates!
