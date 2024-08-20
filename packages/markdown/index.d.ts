@@ -27,6 +27,7 @@ export interface MarkdownHeaders {
   tags?: string[];
   authors?: string[];
   date?: string;
+  githubSource?: string;
 }
 
 export function getHeaders(markdown: string): MarkdownHeaders;
