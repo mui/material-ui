@@ -508,7 +508,7 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /material-ui/guides/right-to-left/ /material-ui/customization/right-to-left/ 301
 /material-ui/guides/pickers-migration/ /material-ui/migration/pickers-migration/ 301
 /material-ui/guides/styled-components/ /material-ui/integrations/styled-components/ 301
-/material-ui/experimental-api/css-theme-variables/migration/ /material-ui/migration/migration-css-theme-variables/ 301
+/material-ui/experimental-api/css-theme-variables/migration/ /material-ui/migration/upgrade-to-v6/#cssvarsprovider-and-extendtheme 301
 /material-ui/experimental-api/css-theme-variables/overview/ /material-ui/customization/css-theme-variables/overview/ 301
 /material-ui/experimental-api/css-theme-variables/usage/ /material-ui/customization/css-theme-variables/usage/ 301
 /material-ui/experimental-api/css-theme-variables/customization/ /material-ui/customization/css-theme-variables/configuration/ 301
