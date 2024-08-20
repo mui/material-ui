@@ -10,6 +10,7 @@ import Tooltip from '@mui/material/Tooltip';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useRouter } from 'next/router';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import UnfoldMoreRounded from '@mui/icons-material/UnfoldMoreRounded';
 import { Link } from '@mui/docs/Link';
@@ -149,14 +150,33 @@ export function PlanPrice(props: PlanPriceProps) {
             {priceUnit}
           </Typography>
         </Box>
-        <Box sx={{ minHeight: planPriceMinHeight }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 2,
+            mb: 2,
+            minHeight: planPriceMinHeight,
+          }}
+        >
           {(annual || monthlyDisplay) && (
             <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
               {priceExplanation}
             </Typography>
           )}
-          <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center', mb: 3 }}>
-            {'No additional fee beyond 10 devs.'}
+
+          <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
+            No extra fees for orders with over 10 devs&nbsp;
+            <span>
+              <Tooltip title="Our pricing policies are changing. Read more on our blog.">
+                <Link href="/blog/mui-x-sep-2024-price-update/">
+                  by Aug 30
+                  <OpenInNewRoundedIcon sx={{ fontSize: '16px', ml: 0.5 }} />
+                </Link>
+              </Tooltip>
+            </span>
+            .
           </Typography>
         </Box>
       </React.Fragment>
@@ -217,14 +237,32 @@ export function PlanPrice(props: PlanPriceProps) {
           {priceUnit}
         </Typography>
       </Box>
-      <Box sx={{ minHeight: planPriceMinHeight }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 2,
+          mb: 2,
+          minHeight: planPriceMinHeight,
+        }}
+      >
         {(annual || monthlyDisplay) && (
           <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
             {priceExplanation}
           </Typography>
         )}
-        <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center', mb: 2 }}>
-          🐦 Early bird special (25% off).
+        <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
+          🐦 Early Bird: <strong>25% off</strong> if ordered &nbsp;
+          <span>
+            <Tooltip title="Our pricing policies are changing. Read more on our blog.">
+              <Link href="/blog/mui-x-sep-2024-price-update/">
+                by Aug 30
+                <OpenInNewRoundedIcon sx={{ fontSize: '16px', ml: 0.5 }} />{' '}
+              </Link>
+            </Tooltip>
+          </span>
+          .
         </Typography>
       </Box>
     </React.Fragment>
@@ -1050,7 +1088,7 @@ function StickyHead({
   container,
   disableCalculation = false,
 }: {
-  container: React.MutableRefObject<HTMLElement | null>;
+  container: React.RefObject<HTMLElement | null>;
   disableCalculation?: boolean;
 }) {
   const [hidden, setHidden] = React.useState(true);

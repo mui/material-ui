@@ -4,7 +4,7 @@ import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import AddRounded from '@mui/icons-material/AddRounded';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import SponsorCard from 'docs/src/components/home/SponsorCard';
 import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';

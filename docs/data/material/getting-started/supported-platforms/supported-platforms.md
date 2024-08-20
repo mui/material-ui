@@ -25,7 +25,7 @@ You can expect Material UI's components to render without major issues.
 
 <!-- #stable-snapshot -->
 
-Material UI supports [Node.js](https://github.com/nodejs/node) starting with version 12.0 for server-side rendering.
+Material UI supports [Node.js](https://github.com/nodejs/node) starting with version 14.0 for server-side rendering.
 The objective is to support Node.js down to the [last version in maintenance mode](https://github.com/nodejs/Release#release-schedule).
 
 ## React
@@ -37,5 +37,5 @@ Have a look at the older [versions](https://mui.com/versions/) for backward comp
 
 ## TypeScript
 
-Material UI requires a minimum version of TypeScript 3.5.
+Material UI requires a minimum version of TypeScript 4.7.
 This aims to match the policy of [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), with the support of the versions of TypeScript that are less than two years old.

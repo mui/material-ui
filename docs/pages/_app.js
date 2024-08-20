@@ -105,7 +105,7 @@ async function registerServiceWorker() {
   if (
     'serviceWorker' in navigator &&
     process.env.NODE_ENV === 'production' &&
-    window.location.host.indexOf('mui.com') !== -1
+    window.location.host.includes('mui.com')
   ) {
     // register() automatically attempts to refresh the sw.js.
     const registration = await navigator.serviceWorker.register('/sw.js');
@@ -329,6 +329,7 @@ function AppWrapper(props) {
       </NextHead>
       <DocsProvider
         config={config}
+        adConfig={{ GADisplayRatio: 0.1 }}
         defaultUserLanguage={pageProps.userLanguage}
         translations={pageProps.translations}
       >

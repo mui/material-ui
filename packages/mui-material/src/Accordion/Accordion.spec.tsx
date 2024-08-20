@@ -51,3 +51,8 @@ const AccordionComponentTest = () => {
     </div>
   );
 };
+
+// slotProps type test. Changing heading level.
+<Accordion slotProps={{ heading: { component: 'h4' } }}>
+  <div />
+</Accordion>;

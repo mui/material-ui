@@ -11,6 +11,7 @@ import transformDividerProps from '../divider-props';
 import transformFilledInputProps from '../filled-input-props';
 import transformFormControlLabelProps from '../form-control-label-props';
 import transformGridProps from '../grid-props';
+import transformImageListItemBarClasses from '../image-list-item-bar-classes';
 import transformInputBaseProps from '../input-base-props';
 import transformInputProps from '../input-props';
 import transformModalProps from '../modal-props';
@@ -41,6 +42,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformFilledInputProps(file, api, options);
   file.source = transformFormControlLabelProps(file, api, options);
   file.source = transformGridProps(file, api, options);
+  file.source = transformImageListItemBarClasses(file, api, options);
   file.source = transformInputBaseProps(file, api, options);
   file.source = transformInputProps(file, api, options);
   file.source = transformModalProps(file, api, options);

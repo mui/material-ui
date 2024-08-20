@@ -11,7 +11,6 @@ import {
   createGenerateClassName,
 } from '@mui/styles';
 import { green, red } from '@mui/material/colors';
-import Pricing from 'docs/data/material/getting-started/templates/pricing/Pricing';
 import { spacing, palette, unstable_styleFunctionSx as styleFunction } from '@mui/system';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -41,23 +40,6 @@ const theme = createTheme({
     accent: red,
   },
 });
-
-function renderPricing(req, res) {
-  const sheetsRegistry = new SheetsRegistry();
-  const html = ReactDOMServer.renderToString(
-    <StylesProvider
-      sheetsRegistry={sheetsRegistry}
-      generateClassName={createGenerateClassName()}
-      sheetsManager={new Map()}
-    >
-      <ThemeProvider theme={theme}>
-        <Pricing />
-      </ThemeProvider>
-    </StylesProvider>,
-  );
-  const css = sheetsRegistry.toString();
-  res.send(renderFullPage(html, css));
-}
 
 function renderBox(req, res) {
   const sheetsRegistry = new SheetsRegistry();
@@ -156,7 +138,6 @@ function renderSystem(req, res) {
 }
 
 const app = express();
-app.get('/', renderPricing);
 app.get('/spacing', renderSpacing);
 app.get('/palette', renderPalette);
 app.get('/system', renderSystem);

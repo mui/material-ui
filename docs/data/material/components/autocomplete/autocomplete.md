@@ -50,6 +50,8 @@ const options = ['The Godfather', 'Pulp Fiction'];
 
 However, you can use different structures by providing a `getOptionLabel` prop.
 
+If your options are objects, you must provide the `isOptionEqualToValue` prop to ensure correct selection and highlighting. By default, it uses strict equality to compare options with the current value.
+
 ### Playground
 
 Each of the following examples demonstrates one feature of the Autocomplete component.
@@ -282,7 +284,7 @@ Head to the [Customized hook](#customized-hook) section for a customization exam
 
 ### Hint
 
-The following demo shows how to add a hint feature to the Autocomplete using the `renderInput` and `filterOptions` props:
+The following demo shows how to add a hint feature to the Autocomplete:
 
 {{"demo": "AutocompleteHint.js"}}
 
