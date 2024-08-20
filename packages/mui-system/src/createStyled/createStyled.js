@@ -2,7 +2,6 @@
 import styledEngineStyled, { internal_processStyles as processStyles } from '@mui/styled-engine';
 import { isPlainObject } from '@mui/utils/deepmerge';
 import capitalize from '@mui/utils/capitalize';
-import isObjectEmpty from '@mui/utils/isObjectEmpty';
 import getDisplayName from '@mui/utils/getDisplayName';
 import createTheme from '../createTheme';
 import styleFunctionSx from '../styleFunctionSx';
@@ -33,33 +32,6 @@ function pure(styleFn) {
     return value;
   };
 }
-
-function preprocessVariants(style) {
-  // Compiles predicate functions for each variant, to add `variant.matches(props)`.
-
-  for (let i = 0; i < style.variants.length; i++) {
-    const variant = style.variants[i];
-    if (typeof variant.props !== 'object') {
-      continue;
-    }
-    const code = `(function matches(props, ownerState) {
-      return (${Object.entries(variant.props)
-        .map(
-          ([key, style]) =>
-            `(props[${escape(key)}] === ${escape(style)} || ownerState[${escape(key)}] === ${escape(style)})`,
-        )
-        .join(' && ')})
-    })`;
-    const matches = eval(code);
-    variant.matches = matches;
-  }
-}
-
-function escape(v) {
-  // XXX: undefined, functions, objects
-  return JSON.stringify(v);
-}
-
 
 function resolveTheme(themeId, theme, defaultTheme) {
   return isObjectEmpty(theme) ? defaultTheme : theme[themeId] || theme;
@@ -94,7 +66,7 @@ function processStyle(style, props) {
   const resolvedStyle = typeof style === 'function' ? style(props) : style;
 
   if (Array.isArray(resolvedStyle)) {
-    return resolvedStyle.flatMap((style) => processStyle(style, props));
+    return resolvedStyle.flatMap((subStyle) => processStyle(subStyle, props));
   }
 
   if (Array.isArray(resolvedStyle?.variants)) {
@@ -107,11 +79,7 @@ function processStyle(style, props) {
     variantLoop: for (let i = 0; i < variants.length; i += 1) {
       const variant = variants[i];
 
-      if (variant.matches) {
-        if (!variant.matches(props, props.ownerState ?? {})) {
-          continue;
-        }
-      } else if (typeof variant.props === 'function') {
+      if (typeof variant.props === 'function') {
         mergedState ??= { ...props, ...props.ownerState, ownerState: props.ownerState };
         if (!variant.props(mergedState)) {
           continue;
@@ -127,14 +95,12 @@ function processStyle(style, props) {
       if (!Array.isArray(result)) {
         result = [result];
       }
-      let style;
       if (typeof variant.style === 'function') {
         mergedState ??= { ...props, ...props.ownerState, ownerState: props.ownerState };
-        style = variant.style(mergedState);
+        result.push(variant.style(mergedState));
       } else {
-        style = variant.style;
+        result.push(variant.style);
       }
-      result.push(style);
     }
     /* eslint-enable no-labels */
 
@@ -307,6 +273,15 @@ export default function createStyled(input = {}) {
   styled.pure = pure;
 
   return styled;
+}
+
+
+function isObjectEmpty(object) {
+  // eslint-disable-next-line
+  for (const _ in object) {
+    return false;
+  }
+  return true;
 }
 
 // https://github.com/emotion-js/emotion/blob/26ded6109fcd8ca9875cc2ce4564fee678a3f3c5/packages/styled/src/utils.js#L40

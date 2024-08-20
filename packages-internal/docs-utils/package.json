@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-docs-utils",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "author": "MUI Team",
   "description": "Utilities for MUI docs. This is an internal package not meant for general use.",
   "main": "./build/index.js",
@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "rimraf": "^5.0.10",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.4"
   },
   "publishConfig": {
     "access": "public"

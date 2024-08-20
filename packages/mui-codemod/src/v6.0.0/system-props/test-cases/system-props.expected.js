@@ -1,4 +1,4 @@
-import { Box as Boxxx, Grid as Griddd } from '@mui/material';
+import { Box as Boxxx, Grid as Griddd, Grid2 as Griddd2 } from '@mui/material';
 import Typographyyy from '@mui/material/Typography';
 import Stackkk from '@mui/material/Stack';
 
@@ -12,6 +12,9 @@ import Stackkk from '@mui/material/Stack';
   }} />;
 
 <Griddd container sx={{
+  flexDirection: `column`
+}} />;
+<Griddd2 container sx={{
   flexDirection: `column`
 }} />;
 

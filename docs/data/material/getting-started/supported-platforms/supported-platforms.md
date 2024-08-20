@@ -25,7 +25,7 @@ You can expect Material UI's components to render without major issues.
 
 <!-- #stable-snapshot -->
 
-Material UI supports [Node.js](https://github.com/nodejs/node) starting with version 12.0 for server-side rendering.
+Material UI supports [Node.js](https://github.com/nodejs/node) starting with version 14.0 for server-side rendering.
 The objective is to support Node.js down to the [last version in maintenance mode](https://github.com/nodejs/Release#release-schedule).
 
 ## React

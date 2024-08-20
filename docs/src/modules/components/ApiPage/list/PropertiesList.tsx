@@ -157,12 +157,12 @@ export default function PropertiesList(props: PropertiesListProps) {
               <React.Fragment>
                 {propName}
                 {isProPlan && (
-                  <a href="/x/introduction/licensing/#pro-plan">
+                  <a href="/x/introduction/licensing/#pro-plan" aria-label="Pro plan">
                     <span className="plan-pro" />
                   </a>
                 )}
                 {isPremiumPlan && (
-                  <a href="/x/introduction/licensing/#premium-plan">
+                  <a href="/x/introduction/licensing/#premium-plan" aria-label="Premium plan">
                     <span className="plan-premium" />
                   </a>
                 )}

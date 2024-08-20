@@ -800,7 +800,6 @@ npx @mui/codemod@latest deprecations/button-group-classes <path>
 JS transforms:
 
 ```diff
-
  import { chipClasses } from '@mui/material/Chip';
 
   MuiChip: {

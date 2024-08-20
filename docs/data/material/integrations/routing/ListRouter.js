@@ -11,13 +11,7 @@ import Divider from '@mui/material/Divider';
 import InboxIcon from '@mui/icons-material/Inbox';
 import DraftsIcon from '@mui/icons-material/Drafts';
 import Typography from '@mui/material/Typography';
-import {
-  Link as RouterLink,
-  Route,
-  Routes,
-  MemoryRouter,
-  useLocation,
-} from 'react-router-dom';
+import { Link, Route, Routes, MemoryRouter, useLocation } from 'react-router-dom';
 import { StaticRouter } from 'react-router-dom/server';
 
 function Router(props) {
@@ -36,10 +30,6 @@ function Router(props) {
 Router.propTypes = {
   children: PropTypes.node,
 };
-
-const Link = React.forwardRef(function Link(itemProps, ref) {
-  return <RouterLink ref={ref} {...itemProps} role={undefined} />;
-});
 
 function ListItemLink(props) {
   const { icon, primary, to } = props;
