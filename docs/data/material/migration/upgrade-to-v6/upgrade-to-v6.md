@@ -404,6 +404,31 @@ The components affected by this change are:
 - Switch
 - Tabs
 
+## Breaking changes affecting types
+
+### Box
+
+The `component` prop has been removed from the `BoxOwnProps` as it is already included in the `Box` type.
+This might affect your code if you are using the `styled` function with the `Box` component.
+If this is the case, use a `div` element instead of `Box`:
+
+```diff
+-const StyledBox = styled(Box)`
++const StyledDiv = styled('div')`
+   color: white;
+ `;
+```
+
+This yields the same end result.
+If this doesn't work for you, you can also cast the `styled` returned value to `typeof Box`:
+
+```diff
+ const StyledBox = styled(Box)`
+   color: white;
+-`;
++` as typeof Box;
+```
+
 ## Stabilized APIs
 
 ### CssVarsProvider and extendTheme
