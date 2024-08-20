@@ -157,7 +157,7 @@ export default function GoldSponsors() {
       </Grid>
       <div>
         {BACKLINKs.map((item) => (
-          <BacklinkSponsor key={item.name} inView={inView} item={item} />
+          <BacklinkSponsor key={item.name} item={item} />
         ))}
       </div>
     </div>

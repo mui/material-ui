@@ -8,7 +8,6 @@ export default function BacklinkSponsor(props: {
     description: string;
     href: string;
   };
-  inView?: boolean;
 }) {
   const { item } = props;
   // Keep it under two rows maximum.
