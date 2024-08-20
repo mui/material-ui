@@ -1,5 +1,8 @@
 import { get, set } from './bit';
 
+/* eslint-disable no-bitwise */
+/* eslint-disable prefer-template */
+
 export type Color = number;
 
 export const OFFSET_R = 24;

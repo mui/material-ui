@@ -2,6 +2,8 @@ import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import { Color, newColor } from './core';
 import * as convert from './convert';
 
+/* eslint-disable no-bitwise */
+
 const HASH = '#'.charCodeAt(0);
 const PERCENT = '%'.charCodeAt(0);
 const G = 'g'.charCodeAt(0);
@@ -42,9 +44,8 @@ const PATTERN = (() => {
 export function parse(color: string): Color {
   if (color.charCodeAt(0) === HASH) {
     return parseHex(color);
-  } else {
-    return parseColor(color);
   }
+  return parseColor(color);
 }
 
 /**
@@ -126,9 +127,14 @@ export function parseColor(color: string): Color {
       const a = p4 ? parseAlphaChannel(p4) : 255;
 
       // https://stackoverflow.com/a/9493060/3112706
-      let r, g, b;
+      let r;
+      let g;
+      let b;
       if (s === 0) {
-        r = g = b = Math.round(l * 255); // achromatic
+        // achromatic
+        r = Math.round(l * 255);
+        g = Math.round(l * 255);
+        b = Math.round(l * 255);
       } else {
         const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
         const p = 2 * l - q;
@@ -305,9 +311,7 @@ function hueToRGB(p: number, q: number, t: number) {
   if (t < 2 / 3) {
     return p + (q - p) * (2 / 3 - t) * 6;
   }
-  {
-    return p;
-  }
+  return p;
 }
 
 function clamp(value: number) {

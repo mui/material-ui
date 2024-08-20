@@ -20,7 +20,7 @@ type Vector3 = [number, number, number];
 
 function multiply(matrix: Matrix3x3, other: Vector3): Vector3 {
   const dst = [0, 0, 0] as Vector3;
-  for (let row = 0; row < 3; ++row) {
+  for (let row = 0; row < 3; row += 1) {
     dst[row] = matrix[row][0] * other[0] + matrix[row][1] * other[1] + matrix[row][2] * other[2];
   }
   return dst;
@@ -35,11 +35,17 @@ function multiply(matrix: Matrix3x3, other: Vector3): Vector3 {
 // (A simple gamma transfer function sets g to gamma and a to 1.)
 class TransferFunction {
   g: number;
+
   a: number;
+
   b: number;
+
   c: number;
+
   d: number;
+
   e: number;
+
   f: number;
 
   constructor(
@@ -70,7 +76,7 @@ class TransferFunction {
     }
 
     // d <= |encoded| path
-    return sign * (Math.pow(this.a * abs + this.b, this.g) + this.e);
+    return sign * ((this.a * abs + this.b) ** this.g + this.e);
   }
 }
 

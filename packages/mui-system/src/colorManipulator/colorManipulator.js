@@ -1,12 +1,8 @@
 /* eslint-disable @typescript-eslint/naming-convention */
+import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import clampProduction from '@mui/utils/clamp';
 import * as Color from '../color';
-import {
-  getRed,
-  getGreen,
-  getBlue,
-  getAlpha,
-} from '../color';
+import { getRed, getGreen, getBlue, getAlpha } from '../color';
 
 const clamp = process.env.NODE_ENV === 'production' ? clampProduction : clampDevelopment;
 
@@ -93,7 +89,7 @@ export function decomposeColor(color) {
 export function colorChannel(color) {
   const c = decomposeColor(color);
   const channels = c.values;
-  return `${channels[0]} ${channels[1] + (c.type.includes('hsl') ? '%' : '')} ${channels[2] + (c.type.includes('hsl') ? '%' : '')}`
+  return `${channels[0]} ${channels[1] + (c.type.includes('hsl') ? '%' : '')} ${channels[2] + (c.type.includes('hsl') ? '%' : '')}`;
 }
 export const private_safeColorChannel = (color, warning) => {
   try {
@@ -177,7 +173,7 @@ export function hslToRgb(color) {
  * @returns {number} The relative brightness of the color in the range 0 - 1
  */
 export function getLuminance(color) {
-  const c = Color.parse(color)
+  const c = Color.parse(color);
 
   const r = getRed(c) / 255;
   const g = getGreen(c) / 255;

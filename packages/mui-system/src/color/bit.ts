@@ -9,6 +9,8 @@
 // an issue at any point because the bits for signed and unsigned integers are always
 // the same, only their interpretation changes.
 
+/* eslint-disable no-bitwise */
+
 export function get(n: number, offset: number) {
   return (n >> offset) & 0xff;
 }

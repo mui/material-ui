@@ -470,7 +470,9 @@ describe('utils/colorManipulator', () => {
     });
 
     it('works with a gamma correction factor', () => {
-      expect(blend('rgb(90, 90, 90)', 'rgb(10, 100, 255)', 0.5, 2.2)).to.equal(hex('rgb(39, 95, 161)'));
+      expect(blend('rgb(90, 90, 90)', 'rgb(10, 100, 255)', 0.5, 2.2)).to.equal(
+        hex('rgb(39, 95, 161)'),
+      );
     });
 
     it('selects only the background color with an opacity of 0.0', () => {
