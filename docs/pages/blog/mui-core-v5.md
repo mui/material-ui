@@ -704,7 +704,7 @@ We hope we can reach 50% of the React community by 2026. This is an ambitious go
 You can use the GitHub projects to learn about what features we're working on, what stage they're at, and when we expect to bring them to you:
 
 - [MUI Core](https://github.com/mui/material-ui/projects?query=is:open)
-- [MUI X](https://github.com/mui/mui-x/projects/1)
+- [MUI X](https://github.com/orgs/mui/projects/35)
 
 We offer this transparency into what we plan to work on so that you can plan better and share feedback earlier to influence what we're building.
 

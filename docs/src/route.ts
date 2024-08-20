@@ -35,7 +35,7 @@ const ROUTES = {
   systemDocs: '/system/getting-started/',
   // X general pages
   xIntro: '/x/introduction/',
-  xRoadmap: 'https://github.com/mui/mui-x/projects/1',
+  xRoadmap: 'https://github.com/orgs/mui/projects/35',
   xLicensing: '/x/introduction/licensing/',
   // Data Grid doc pages
   dataGridOverview: '/x/react-data-grid/',
