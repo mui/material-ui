@@ -5,6 +5,7 @@ components: Snackbar, SnackbarContent
 githubLabel: 'component: snackbar'
 materialDesign: https://m2.material.io/components/snackbars
 waiAria: https://www.w3.org/TR/wai-aria-1.1/#alert
+githubSource: packages/mui-material/src/Snackbar
 ---
 
 # Snackbar

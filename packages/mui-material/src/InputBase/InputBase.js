@@ -186,7 +186,7 @@ export const InputBaseInput = styled('input', {
       display: 'block',
       // Make the flex item shrink with Firefox
       minWidth: 0,
-      flexGrow: 1,
+      width: '100%',
       '&::-webkit-input-placeholder': placeholder,
       '&::-moz-placeholder': placeholder, // Firefox 19+
       '&::-ms-input-placeholder': placeholder, // Edge

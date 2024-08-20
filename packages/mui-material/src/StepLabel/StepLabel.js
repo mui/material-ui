@@ -106,6 +106,7 @@ const StepLabelIconContainer = styled('span', {
   slot: 'IconContainer',
   overridesResolver: (props, styles) => styles.iconContainer,
 })({
+  flexShrink: 0,
   display: 'flex',
   paddingRight: 8,
   [`&.${stepLabelClasses.alternativeLabel}`]: {
