@@ -8,7 +8,8 @@ type ThemeStyleFunction = (props: { theme: Theme }) => CSSInterpolation;
 const arg = { theme: undefined as unknown as Theme };
 
 /**
- * Memoize style function on theme
+ * Memoize style function on theme.
+ * Intended to be used in styled() calls that only need access to the theme.
  */
 export default function memoTheme(styleFn: ThemeStyleFunction) {
   let lastValue: CSSInterpolation;
