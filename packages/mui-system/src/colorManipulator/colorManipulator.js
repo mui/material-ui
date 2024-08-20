@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import clamp from '@mui/utils/clamp';
+import clampProduction from '@mui/utils/clamp';
 import * as Color from '../color';
 import {
   getRed,
@@ -8,27 +8,19 @@ import {
   getAlpha,
 } from '../color';
 
-/**
- * Returns a number whose value is limited to the given range.
- * @param {number} value The value to be clamped
- * @param {number} min The lower boundary of the output range
- * @param {number} max The upper boundary of the output range
- * @returns {number} A number in the range [min, max]
- */
-function clampWrapper(value, min = 0, max = 1) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (value < min || value > max) {
-      console.error(`MUI: The value provided ${value} is out of range [${min}, ${max}].`);
-    }
-  }
+const clamp = process.env.NODE_ENV === 'production' ? clampProduction : clampDevelopment;
 
-  return clamp(value, min, max);
+function clampDevelopment(value, min = 0, max = 1) {
+  if (value < min || value > max) {
+    console.error(`MUI: The value provided ${value} is out of range [${min}, ${max}].`);
+  }
+  return clampProduction(value, min, max);
 }
 
 /**
  * Converts a color from CSS hex format to CSS rgb format.
  * @param {string} color - Hex color, i.e. #nnn or #nnnnnn
- * @returns {string} A CSS rgba() color string
+ * @returns {string} A CSS rgb() or rgba() color string
  */
 export function hexToRgb(hexadecimal) {
   return Color.formatRGB(Color.parse(hexadecimal));
@@ -52,17 +44,43 @@ export function decomposeColor(color) {
     return color;
   }
 
-  const c = Color.parse(color);
+  if (color.charAt(0) === '#') {
+    return decomposeColor(hexToRgb(color));
+  }
 
-  const r = getRed(c);
-  const g = getGreen(c);
-  const b = getBlue(c);
-  const a = getAlpha(c) / 255;
+  const marker = color.indexOf('(');
+  const type = color.substring(0, marker);
 
-  return {
-    type: 'rgba',
-    values: [r, g, b, a],
-  };
+  if (['rgb', 'rgba', 'hsl', 'hsla', 'color'].indexOf(type) === -1) {
+    throw new MuiError(
+      'MUI: Unsupported `%s` color.\n' +
+        'The following formats are supported: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
+      color,
+    );
+  }
+
+  let values = color.substring(marker + 1, color.length - 1);
+  let colorSpace;
+
+  if (type === 'color') {
+    values = values.split(' ');
+    colorSpace = values.shift();
+    if (values.length === 4 && values[3].charAt(0) === '/') {
+      values[3] = values[3].slice(1);
+    }
+    if (['srgb', 'display-p3', 'a98-rgb', 'prophoto-rgb', 'rec-2020'].indexOf(colorSpace) === -1) {
+      throw new MuiError(
+        'MUI: unsupported `%s` color space.\n' +
+          'The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rgb, rec-2020.',
+        colorSpace,
+      );
+    }
+  } else {
+    values = values.split(',');
+  }
+  values = values.map((value) => parseFloat(value));
+
+  return { type, values, colorSpace };
 }
 
 /**
@@ -70,15 +88,12 @@ export function decomposeColor(color) {
  *
  * @param {string} color - CSS color in one of the supported formats
  * @returns {string} - The channel for the color, that can be used in rgba colors
+ * @deprecated
  */
 export function colorChannel(color) {
-  const c = Color.parse(color);
-
-  const r = getRed(c);
-  const g = getGreen(c);
-  const b = getBlue(c);
-
-  return `${r} ${g} ${b}`;
+  const c = decomposeColor(color);
+  const channels = c.values;
+  return `${channels[0]} ${channels[1] + (c.type.includes('hsl') ? '%' : '')} ${channels[2] + (c.type.includes('hsl') ? '%' : '')}`
 }
 export const private_safeColorChannel = (color, warning) => {
   try {
@@ -134,7 +149,23 @@ export function rgbToHex(color) {
  * @returns {string} rgb color values
  */
 export function hslToRgb(color) {
-  return Color.formatRGB(Color.parse(color));
+  color = decomposeColor(color);
+  const { values } = color;
+  const h = values[0];
+  const s = values[1] / 100;
+  const l = values[2] / 100;
+  const a = s * Math.min(l, 1 - l);
+  const f = (n, k = (n + h / 30) % 12) => l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+
+  let type = 'rgb';
+  const rgb = [Math.round(f(0) * 255), Math.round(f(8) * 255), Math.round(f(4) * 255)];
+
+  if (color.type === 'hsla') {
+    type += 'a';
+    rgb.push(values[3]);
+  }
+
+  return recomposeColor({ type, values: rgb });
 }
 
 /**
@@ -155,11 +186,11 @@ export function getLuminance(color) {
   const apply = (v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4);
 
   // prettier-ignore
-  return (
+  return Number((
     0.2126 * apply(r) +
     0.7152 * apply(g) +
     0.0722 * apply(b)
-  ).toFixed(3);
+  ).toFixed(3));
 }
 
 /**
@@ -188,7 +219,7 @@ export function getContrastRatio(foreground, background) {
  * @returns {string} A CSS hexadecimal color string
  */
 export function alpha(color, value) {
-  return Color.format(Color.setAlpha(Color.parse(color), Math.round(clampWrapper(value) * 255)));
+  return Color.format(Color.setAlpha(Color.parse(color), Math.round(clamp(value) * 255)));
 }
 export function private_safeAlpha(color, value, warning) {
   try {
@@ -215,9 +246,15 @@ export function darken(color, coefficient) {
   const b = getBlue(c);
   const a = getAlpha(c);
 
-  const factor = 1 - coefficient;
+  const factor = 1 - clamp(coefficient);
 
-  return Color.format(Color.newColor(r * factor, g * factor, b * factor, a));
+  // prettier-ignore
+  return Color.format(Color.newColor(
+    r * factor,
+    g * factor,
+    b * factor,
+    a
+  ));
 }
 export function private_safeDarken(color, coefficient, warning) {
   try {
@@ -243,6 +280,8 @@ export function lighten(color, coefficient) {
   const g = getGreen(c);
   const b = getBlue(c);
   const a = getAlpha(c);
+
+  coefficient = clamp(coefficient);
 
   return Color.format(
     Color.newColor(

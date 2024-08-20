@@ -9,15 +9,6 @@
 // an issue at any point because the bits for signed and unsigned integers are always
 // the same, only their interpretation changes.
 
-const INT32_TO_UINT32_OFFSET = 2 ** 32;
-
-export function cast(n: number) {
-  if (n < 0) {
-    return n + INT32_TO_UINT32_OFFSET;
-  }
-  return n;
-}
-
 export function get(n: number, offset: number) {
   return (n >> offset) & 0xff;
 }

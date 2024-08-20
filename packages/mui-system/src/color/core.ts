@@ -56,8 +56,7 @@ const FORMAT_HEX = Array.from({ length: 256 }).map((_, byte) => byte.toString(16
 export function format(color: Color): string {
   /*
    * Implementing this as `cast(color).toString(16).padStart(8, '0')` would be simpler,
-   * but `cast()` makes the color a non-Smi value on V8, as well as allocates more strings
-   * and makes more function calls.
+   * but `cast()` makes the color a non-Smi value on V8.
    * This version is about 4 times faster than the simple one.
    */
   return (
@@ -75,5 +74,8 @@ export function formatRGB(color: Color) {
   const b = getBlue(color);
   const a = getAlpha(color) / 255;
 
-  return `rgba(${r} ${g} ${b} / ${a})`;
+  if (a === 1.0) {
+    return `rgb(${r}, ${g}, ${b})`;
+  }
+  return `rgba(${r}, ${g}, ${b}, ${a.toFixed(3)})`;
 }

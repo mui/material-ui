@@ -99,10 +99,7 @@ function hexValue(c: number) {
  * @param color CSS color string: rgb(), rgba(), hsl(), hsla(), color()
  */
 export function parseColor(color: string): Color {
-  const match = PATTERN.exec(color);
-  if (match === null) {
-    throw new Error(`Color.parse(): invalid CSS color: "${color}"`);
-  }
+  const match = PATTERN.exec(color) || [];
 
   const format = match[1];
   const p1 = match[2];
