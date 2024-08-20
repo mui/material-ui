@@ -39,7 +39,7 @@ const PaperRoot = styled('div', {
       ownerState.variant === 'elevation' && styles[`elevation${ownerState.elevation}`],
     ];
   },
-})(styled.pure((theme) => ({
+})(styled.fromTheme((theme) => ({
   backgroundColor: (theme.vars || theme).palette.background.paper,
   color: (theme.vars || theme).palette.text.primary,
   transition: theme.transitions.create('box-shadow'),

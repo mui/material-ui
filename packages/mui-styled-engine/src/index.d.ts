@@ -155,7 +155,17 @@ export interface CreateStyledComponent<
     >
   ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps, JSXProps>;
 
-  pure(style: (theme: T) => object): (theme: T) => object;
+  /**
+   * Create a styling function memoized on theme.
+   */
+  fromTheme(style: (theme: T) => object): (theme: T) => object;
+
+  /**
+   * Create a styling function memoized on props.
+   */
+  fromProps(
+    style: (theme: FunctionInterpolation<ComponentProps & SpecificComponentProps & { theme: T }>) => object
+  ): (theme: T) => object;
 }
 
 export interface CreateMUIStyled<

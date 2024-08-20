@@ -86,7 +86,7 @@ const ButtonRoot = styled(ButtonBase, {
       ownerState.fullWidth && styles.fullWidth,
     ];
   },
-})(styled.pure(theme => {
+})(styled.fromTheme(theme => {
   const inheritContainedBackgroundColor =
     theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[800];
 

@@ -51,7 +51,7 @@ const CheckboxRoot = styled(SwitchBase, {
     ];
   },
 
-})(styled.pure(theme => ({
+})(styled.fromTheme(theme => ({
   color: (theme.vars || theme).palette.text.secondary,
   variants: [
     {
