@@ -11,12 +11,14 @@ const steps = ['Step 1', 'Step 2'];
 
 export default function CustomizedSteppers() {
   return (
-      <Stepper sx={{ width: 200 }}>
-        {steps.map((label) => (
-          <Step key={label}>
-            <StepLabel StepIconComponent={TestIcon} sx={{ width: "1px" }}>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
+    <Stepper sx={{ width: 200 }}>
+      {steps.map((label) => (
+        <Step key={label}>
+          <StepLabel StepIconComponent={TestIcon} sx={{ width: '1px' }}>
+            {label}
+          </StepLabel>
+        </Step>
+      ))}
+    </Stepper>
   );
 }
