@@ -77,5 +77,5 @@ export function formatRGB(color: Color) {
   if (a === 1.0) {
     return `rgb(${r}, ${g}, ${b})`;
   }
-  return `rgba(${r}, ${g}, ${b}, ${a.toFixed(3)})`;
+  return `rgba(${r}, ${g}, ${b}, ${Math.round(a * 1000) / 1000})`;
 }

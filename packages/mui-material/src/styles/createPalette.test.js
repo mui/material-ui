@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { darken, lighten } from '@mui/system/colorManipulator';
+import { darken, lighten, hexToRgb } from '@mui/system/colorManipulator';
 import { deepOrange, blue, purple, indigo } from '../colors';
 import createPalette, { dark, light } from './createPalette';
 
@@ -37,8 +37,8 @@ describe('createPalette()', () => {
 
     expect(palette.primary).to.deep.include({
       main: deepOrange[500],
-      light: lighten(deepOrange[500], 0.2),
-      dark: darken(deepOrange[500], 0.3),
+      light: hexToRgb(lighten(deepOrange[500], 0.2)),
+      dark: hexToRgb(darken(deepOrange[500], 0.3)),
     });
   });
 
@@ -50,8 +50,8 @@ describe('createPalette()', () => {
 
     expect(palette.primary).to.deep.include({
       main: deepOrange[500],
-      light: lighten(deepOrange[500], 0.1),
-      dark: darken(deepOrange[500], 0.15),
+      light: hexToRgb(lighten(deepOrange[500], 0.1)),
+      dark: hexToRgb(darken(deepOrange[500], 0.15)),
     });
   });
 
@@ -66,8 +66,8 @@ describe('createPalette()', () => {
 
     expect(palette.primary).to.deep.include({
       main: deepOrange[500],
-      light: lighten(deepOrange[500], 0.8),
-      dark: darken(deepOrange[500], 0.5),
+      light: hexToRgb(lighten(deepOrange[500], 0.8)),
+      dark: hexToRgb(darken(deepOrange[500], 0.5)),
     });
   });
 

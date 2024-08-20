@@ -1,6 +1,6 @@
 import deepmerge from '@mui/utils/deepmerge';
 import MuiError from '@mui/internal-babel-macros/MuiError.macro';
-import { darken, getContrastRatio, lighten } from '@mui/system/colorManipulator';
+import { darken, getContrastRatio, lighten, hexToRgb } from '@mui/system/colorManipulator';
 import common from '../colors/common';
 import grey from '../colors/grey';
 import purple from '../colors/purple';
@@ -84,9 +84,9 @@ function addLightOrDark(intent, direction, shade, tonalOffset) {
     if (intent.hasOwnProperty(shade)) {
       intent[direction] = intent[shade];
     } else if (direction === 'light') {
-      intent.light = lighten(intent.main, tonalOffsetLight);
+      intent.light = hexToRgb(lighten(intent.main, tonalOffsetLight));
     } else if (direction === 'dark') {
-      intent.dark = darken(intent.main, tonalOffsetDark);
+      intent.dark = hexToRgb(darken(intent.main, tonalOffsetDark));
     }
   }
 }
