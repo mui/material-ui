@@ -1292,8 +1292,12 @@ describe('<ButtonBase />', () => {
   });
 
   it('should render hidden button', () => {
-    render(<ButtonBase hidden />);
-    expect(screen.getByRole('button')).to.have.property('hidden', true);
-    expect(screen.getByRole('button')).to.have.style('display', 'none');
+    const { getByTestId } = render(
+      <ButtonBase hidden data-testid="hidden-button">
+        hidden
+      </ButtonBase>,
+    );
+    expect(getByTestId('hidden-button')).to.have.property('hidden', true);
+    expect(getByTestId('hidden-button')).to.have.style('display', 'none');
   });
 });
