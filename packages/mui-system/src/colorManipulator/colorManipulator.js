@@ -140,17 +140,7 @@ export function recomposeColor(color) {
  * @returns {string} A CSS hexadecimal color string as #rrggbbaa
  */
 export function rgbToHex(color) {
-<<<<<<< HEAD
   return Color.format(Color.parse(color));
-=======
-  // Idempotent
-  if (color.startsWith('#')) {
-    return color;
-  }
-
-  const { values } = decomposeColor(color);
-  return `#${values.map((n, i) => intToHex(i === 3 ? Math.round(255 * n) : n)).join('')}`;
->>>>>>> next
 }
 
 /**
