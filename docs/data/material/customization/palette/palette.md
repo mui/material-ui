@@ -352,7 +352,7 @@ const theme = createTheme({
 ```
 
 :::warning
-The `colorSchemes` API is an enhanced version of the `palette` API.
+The `colorSchemes` API is an enhanced version of the `palette` API, and is the preferred API for this purpose starting from Material UI v6.
 If you provide both `colorSchemes` and `palette`, the latter will override any styles defined in the former.
 
 ```js

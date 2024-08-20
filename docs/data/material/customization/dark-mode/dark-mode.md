@@ -81,13 +81,12 @@ function App() {
 
 When `colorSchemes` is provided, the following features are activated:
 
-- Automatic switching between light and dark color schemes based on the user's preference.
+- Automatic switching between light and dark color schemes based on the user's preference
 - Synchronization between window tabs—changes to the color scheme in one tab are applied to all other tabs
 - An option to [disable transitions](#disable-transitions) when the color scheme changes
 
 :::info
-The `colorSchemes` API is an enhanced version of the previous `palette` API.
-We encourage you to use it as it enables the features mentioned above.
+The `colorSchemes` API is an enhanced version of the earlier and more limited `palette` API—the aforementioned features are only accessible with the `colorSchemes` API, so we recommend using it over the `palette` API.
 If both `colorSchemes` and `palette` are provided, `palette` will take precedence.
 :::
 
@@ -118,7 +117,7 @@ function App() {
 To give your users a way to toggle between modes for [built-in support](#built-in-support), use the `useColorScheme` hook to read and update the mode.
 
 :::info
-`mode` is always `undefined` on the first render, so make sure to handle this case. Otherwise, you might see a hydration mismatch error.
+The `mode` is always `undefined` on first render, so make sure to handle this case as shown in the demo below—otherwise you may encounter a hydration mismatch error.
 :::
 
 {{"demo": "ToggleColorMode.js", "defaultCodeOpen": false}}

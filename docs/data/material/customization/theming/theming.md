@@ -10,8 +10,8 @@ To promote greater consistency between apps, light and dark theme types are avai
 
 ## Theme provider
 
-Use `ThemeProvider` if you want to use a custom theme in your application.
-If this provider is not used, Material UI components will use the library's default theme.
+Material UI components adhere to the library's default theme out of the box.
+Use `ThemeProvider` to inject a custom theme into your application.
 
 `ThemeProvider` relies on the [context feature of React](https://react.dev/learn/passing-data-deeply-with-context) to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize.
 You can learn more about this in [the API section](#themeprovider).

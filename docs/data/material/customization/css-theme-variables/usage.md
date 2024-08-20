@@ -35,7 +35,7 @@ function App() {
 
 :::info
 If you're using the experimental `CssVarsProvider` API, replace it with `ThemeProvider`.
-All the features that were included in `CssVarsProvider` are now available in `ThemeProvider`.
+All features that were previously available to the `CssVarsProvider` are now available with the `ThemeProvider`.
 :::
 
 ## Light and dark modes
@@ -117,7 +117,7 @@ This `vars` object mirrors the structure of a serializable theme, with each valu
 
 ## Color channel tokens
 
-Enabling `cssVariables` automatically generates channel tokens, which are used to create translucent colors.
+Enabling `cssVariables` automatically generates channel tokens which are used to create translucent colors.
 These tokens consist of color space channels without the alpha component, separated by spaces.
 
 The colors are suffixed with `Channel`—for example:
