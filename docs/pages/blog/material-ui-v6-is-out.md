@@ -287,15 +287,9 @@ We provide a codemod to help you migrate from `theme.palette.mode === 'dark'` to
 
 ### Optimized runtime performance
 
-Internal functions used to process styles have been optimized to run faster.
-Based on the [test case](https://gist.github.com/romgrk/ade3ee62b4641d5b375127e98d354b5d), the time to render a set of components has been reduced by ~8%
+[Several optimizations](https://github.com/mui/material-ui/pulls?q=is%3Apr+author%3Aromgrk+is%3Aclosed+perf+sort%3Aupdated-desc) have been made to improve the runtime performance of Material UI v6.
 
-```diff
--before: 157.3ms    +- 6.1
-+after:  145.1ms    +- 11.6
-```
-
-This is just the beginning of our performance improvements. We expect to reduce it by 30% with all the optimizations, so stay tuned for v6.x updates!
+This is just the beginning of our performance improvements. There are more optimizations in our pipeline, so stay tuned for v6.x updates and the benchmark result!
 
 ### Revamping the free templates
 
