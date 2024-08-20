@@ -4,7 +4,7 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 
 function TestIcon() {
-  return <div style={{ border: '1px solid red' }}>shouldn't shrink</div>;
+  return <div style={{ border: '1px solid red' }}>should not shrink</div>;
 }
 
 const steps = ['Step 1', 'Step 2'];
