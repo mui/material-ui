@@ -153,7 +153,7 @@ describe('<IconButton />', () => {
       clientX: 19,
     });
     expect(getByTestId('icon-button')).toHaveComputedStyle({
-      backgroundColor: 'rgba(0, 0, 0, 0.04)',
+      backgroundColor: 'rgba(0, 0, 0, 0.039)',
     });
   });
 
