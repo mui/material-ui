@@ -127,7 +127,7 @@ async function getWebpackEntries() {
     ...coreComponents,
     {
       id: '@material-ui/utils',
-      path: 'packages/mui-utils/build/index.js',
+      path: 'packages/mui-utils/build/esm/index.js',
     },
     // TODO: Requires webpack v5
     // Resolution of webpack/acorn to 7.x is blocked by nextjs (https://github.com/vercel/next.js/issues/11947)
@@ -186,21 +186,6 @@ function createWebpackConfig(entry, environment) {
         reportFilename: `${entry.id}.html`,
       }),
     ],
-    resolve: {
-      alias: {
-        '@mui/material': path.join(workspaceRoot, 'packages/mui-material/build'),
-        '@mui/lab': path.join(workspaceRoot, 'packages/mui-lab/build'),
-        '@mui/styled-engine': path.join(workspaceRoot, 'packages/mui-styled-engine/build'),
-        '@mui/styled-engine-sc': path.join(workspaceRoot, 'packages/mui-styles-sc/build'),
-        '@mui/styles': path.join(workspaceRoot, 'packages/mui-styles/build'),
-        '@mui/system': path.join(workspaceRoot, 'packages/mui-system/build'),
-        '@mui/private-theming': path.join(workspaceRoot, 'packages/mui-private-theming/build'),
-        '@mui/utils': path.join(workspaceRoot, 'packages/mui-utils/build'),
-        '@mui/base': path.join(workspaceRoot, 'packages/mui-base/build'),
-        '@mui/material-nextjs': path.join(workspaceRoot, 'packages/mui-material-nextjs/build'),
-        '@mui/joy': path.join(workspaceRoot, 'packages/mui-joy/build'),
-      },
-    },
     entry: { [entry.id]: path.join(workspaceRoot, entry.path) },
     // TODO: 'browserslist:modern'
     // See https://github.com/webpack/webpack/issues/14203

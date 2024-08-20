@@ -352,7 +352,7 @@ function textCriteriaMatches<ItemValue>(
     return false;
   }
 
-  return text.indexOf(searchString) === 0;
+  return text.startsWith(searchString);
 }
 
 function handleTextNavigation<ItemValue, State extends ListState<ItemValue>>(

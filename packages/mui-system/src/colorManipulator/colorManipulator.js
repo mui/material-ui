@@ -51,7 +51,7 @@ export function decomposeColor(color) {
   const marker = color.indexOf('(');
   const type = color.substring(0, marker);
 
-  if (['rgb', 'rgba', 'hsl', 'hsla', 'color'].indexOf(type) === -1) {
+  if (!['rgb', 'rgba', 'hsl', 'hsla', 'color'].includes(type)) {
     throw new MuiError(
       'MUI: Unsupported `%s` color.\n' +
         'The following formats are supported: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
@@ -68,7 +68,7 @@ export function decomposeColor(color) {
     if (values.length === 4 && values[3].charAt(0) === '/') {
       values[3] = values[3].slice(1);
     }
-    if (['srgb', 'display-p3', 'a98-rgb', 'prophoto-rgb', 'rec-2020'].indexOf(colorSpace) === -1) {
+    if (!['srgb', 'display-p3', 'a98-rgb', 'prophoto-rgb', 'rec-2020'].includes(colorSpace)) {
       throw new MuiError(
         'MUI: unsupported `%s` color space.\n' +
           'The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rgb, rec-2020.',
@@ -118,14 +118,14 @@ export function recomposeColor(color) {
   const { type, colorSpace } = color;
   let { values } = color;
 
-  if (type.indexOf('rgb') !== -1) {
+  if (type.includes('rgb')) {
     // Only convert the first 3 values to int (i.e. not alpha)
     values = values.map((n, i) => (i < 3 ? parseInt(n, 10) : n));
-  } else if (type.indexOf('hsl') !== -1) {
+  } else if (type.includes('hsl')) {
     values[1] = `${values[1]}%`;
     values[2] = `${values[2]}%`;
   }
-  if (type.indexOf('color') !== -1) {
+  if (type.includes('color')) {
     values = `${colorSpace} ${values.join(' ')}`;
   } else {
     values = `${values.join(', ')}`;
@@ -140,7 +140,17 @@ export function recomposeColor(color) {
  * @returns {string} A CSS hexadecimal color string as #rrggbbaa
  */
 export function rgbToHex(color) {
+<<<<<<< HEAD
   return Color.format(Color.parse(color));
+=======
+  // Idempotent
+  if (color.startsWith('#')) {
+    return color;
+  }
+
+  const { values } = decomposeColor(color);
+  return `#${values.map((n, i) => intToHex(i === 3 ? Math.round(255 * n) : n)).join('')}`;
+>>>>>>> next
 }
 
 /**
@@ -241,6 +251,7 @@ export function private_safeAlpha(color, value, warning) {
 export function darken(color, coefficient) {
   const c = Color.parse(color);
 
+<<<<<<< HEAD
   const r = getRed(c);
   const g = getGreen(c);
   const b = getBlue(c);
@@ -255,6 +266,16 @@ export function darken(color, coefficient) {
     b * factor,
     a
   ));
+=======
+  if (color.type.includes('hsl')) {
+    color.values[2] *= 1 - coefficient;
+  } else if (color.type.includes('rgb') || color.type.includes('color')) {
+    for (let i = 0; i < 3; i += 1) {
+      color.values[i] *= 1 - coefficient;
+    }
+  }
+  return recomposeColor(color);
+>>>>>>> next
 }
 export function private_safeDarken(color, coefficient, warning) {
   try {
@@ -276,10 +297,24 @@ export function private_safeDarken(color, coefficient, warning) {
 export function lighten(color, coefficient) {
   const c = Color.parse(color);
 
+<<<<<<< HEAD
   const r = getRed(c);
   const g = getGreen(c);
   const b = getBlue(c);
   const a = getAlpha(c);
+=======
+  if (color.type.includes('hsl')) {
+    color.values[2] += (100 - color.values[2]) * coefficient;
+  } else if (color.type.includes('rgb')) {
+    for (let i = 0; i < 3; i += 1) {
+      color.values[i] += (255 - color.values[i]) * coefficient;
+    }
+  } else if (color.type.includes('color')) {
+    for (let i = 0; i < 3; i += 1) {
+      color.values[i] += (1 - color.values[i]) * coefficient;
+    }
+  }
+>>>>>>> next
 
   coefficient = clamp(coefficient);
 

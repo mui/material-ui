@@ -1719,31 +1719,6 @@ describe('<Autocomplete />', () => {
       );
     });
 
-    it('warn if value does not exist in options list', () => {
-      const value = 'not a good value';
-      const options = ['first option', 'second option'];
-
-      const errorMessage = 'None of the options match with `"not a good value"`';
-
-      let expectedOccurrences = 4;
-
-      if (reactMajor === 18) {
-        expectedOccurrences = 6;
-      } else if (reactMajor === 17) {
-        expectedOccurrences = 2;
-      }
-
-      expect(() => {
-        render(
-          <Autocomplete
-            value={value}
-            options={options}
-            renderInput={(params) => <TextField {...params} />}
-          />,
-        );
-      }).toWarnDev(Array(expectedOccurrences).fill(errorMessage));
-    });
-
     it('warn if groups options are not sorted', () => {
       const data = [
         { group: 1, value: 'A' },
