@@ -24,7 +24,7 @@ We typically add umbrella issues to the project board after discussing them inte
 ### Milestones
 
 We also create milestones within the Material UI repository to keep track of larger cycles.
-Check it out to keep up with ongoing progress and see which issues have been picked up for the stable release.
+Check it out to keep up with ongoing changes and updates to the library.
 
 **[Visit the Material UI milestones page 👉](https://github.com/mui/material-ui/milestones/)**
 
