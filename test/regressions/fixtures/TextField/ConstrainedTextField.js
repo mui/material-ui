@@ -1,6 +1,7 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 
+// TextField shouldn't overflow the red bordered container
 export default function ConstrainedTextField() {
   return (
     <div
