@@ -241,7 +241,6 @@ export function private_safeAlpha(color, value, warning) {
 export function darken(color, coefficient) {
   const c = Color.parse(color);
 
-<<<<<<< HEAD
   const r = getRed(c);
   const g = getGreen(c);
   const b = getBlue(c);
@@ -256,16 +255,6 @@ export function darken(color, coefficient) {
     b * factor,
     a
   ));
-=======
-  if (color.type.includes('hsl')) {
-    color.values[2] *= 1 - coefficient;
-  } else if (color.type.includes('rgb') || color.type.includes('color')) {
-    for (let i = 0; i < 3; i += 1) {
-      color.values[i] *= 1 - coefficient;
-    }
-  }
-  return recomposeColor(color);
->>>>>>> next
 }
 export function private_safeDarken(color, coefficient, warning) {
   try {
@@ -287,24 +276,10 @@ export function private_safeDarken(color, coefficient, warning) {
 export function lighten(color, coefficient) {
   const c = Color.parse(color);
 
-<<<<<<< HEAD
   const r = getRed(c);
   const g = getGreen(c);
   const b = getBlue(c);
   const a = getAlpha(c);
-=======
-  if (color.type.includes('hsl')) {
-    color.values[2] += (100 - color.values[2]) * coefficient;
-  } else if (color.type.includes('rgb')) {
-    for (let i = 0; i < 3; i += 1) {
-      color.values[i] += (255 - color.values[i]) * coefficient;
-    }
-  } else if (color.type.includes('color')) {
-    for (let i = 0; i < 3; i += 1) {
-      color.values[i] += (1 - color.values[i]) * coefficient;
-    }
-  }
->>>>>>> next
 
   coefficient = clamp(coefficient);
 
