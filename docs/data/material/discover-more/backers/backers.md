@@ -32,7 +32,7 @@ via [Open Collective](https://opencollective.com/mui-org) or via [the for-profi
 
 <!--
 List gold sponsors that regular sponsors could feel uncomfortable being listed next to.
-For example, it could be because the service breaks another service's Terms of service and hence is a moral midfield.
+For example, it could be because the service breaks another service's Terms of service and hence is a moral minefield.
 -->
 <p style="display: flex; justify-content: start; align-items: center; flex-wrap: wrap;">
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="buzzoid.com" href="https://buzzoid.com/buy-instagram-followers/" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;"><img height="24" width="24" src="https://images.opencollective.com/buzzoidz/d23d9bb/logo/24.png" srcset="https://images.opencollective.com/buzzoidz/d23d9bb/logo/72.png 3x" alt="buzzoid.com" title="Buzzoid: Instant delivery Instagram followers" loading="lazy" style="margin-right:8px;" />Buzzoid</a>
