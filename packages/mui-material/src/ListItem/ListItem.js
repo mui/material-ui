@@ -61,94 +61,96 @@ export const ListItemRoot = styled('div', {
   name: 'MuiListItem',
   slot: 'Root',
   overridesResolver,
-})(memoTheme(({ theme }) => ({
-  display: 'flex',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-  position: 'relative',
-  textDecoration: 'none',
-  width: '100%',
-  boxSizing: 'border-box',
-  textAlign: 'left',
-  variants: [
-    {
-      props: ({ ownerState }) => !ownerState.disablePadding,
-      style: {
-        paddingTop: 8,
-        paddingBottom: 8,
+})(
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    position: 'relative',
+    textDecoration: 'none',
+    width: '100%',
+    boxSizing: 'border-box',
+    textAlign: 'left',
+    variants: [
+      {
+        props: ({ ownerState }) => !ownerState.disablePadding,
+        style: {
+          paddingTop: 8,
+          paddingBottom: 8,
+        },
       },
-    },
-    {
-      props: ({ ownerState }) => !ownerState.disablePadding && ownerState.dense,
-      style: {
-        paddingTop: 4,
-        paddingBottom: 4,
+      {
+        props: ({ ownerState }) => !ownerState.disablePadding && ownerState.dense,
+        style: {
+          paddingTop: 4,
+          paddingBottom: 4,
+        },
       },
-    },
-    {
-      props: ({ ownerState }) => !ownerState.disablePadding && !ownerState.disableGutters,
-      style: {
-        paddingLeft: 16,
-        paddingRight: 16,
+      {
+        props: ({ ownerState }) => !ownerState.disablePadding && !ownerState.disableGutters,
+        style: {
+          paddingLeft: 16,
+          paddingRight: 16,
+        },
       },
-    },
-    {
-      props: ({ ownerState }) => !ownerState.disablePadding && !!ownerState.secondaryAction,
-      style: {
-        // Add some space to avoid collision as `ListItemSecondaryAction`
-        // is absolutely positioned.
-        paddingRight: 48,
-      },
-    },
-    {
-      props: ({ ownerState }) => !!ownerState.secondaryAction,
-      style: {
-        [`& > .${listItemButtonClasses.root}`]: {
+      {
+        props: ({ ownerState }) => !ownerState.disablePadding && !!ownerState.secondaryAction,
+        style: {
+          // Add some space to avoid collision as `ListItemSecondaryAction`
+          // is absolutely positioned.
           paddingRight: 48,
         },
       },
-    },
-    {
-      props: {
-        alignItems: 'flex-start',
-      },
-      style: {
-        alignItems: 'flex-start',
-      },
-    },
-    {
-      props: ({ ownerState }) => ownerState.divider,
-      style: {
-        borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
-        backgroundClip: 'padding-box',
-      },
-    },
-    {
-      props: ({ ownerState }) => ownerState.button,
-      style: {
-        transition: theme.transitions.create('background-color', {
-          duration: theme.transitions.duration.shortest,
-        }),
-        '&:hover': {
-          textDecoration: 'none',
-          backgroundColor: (theme.vars || theme).palette.action.hover,
-          // Reset on touch devices, it doesn't add specificity
-          '@media (hover: none)': {
-            backgroundColor: 'transparent',
+      {
+        props: ({ ownerState }) => !!ownerState.secondaryAction,
+        style: {
+          [`& > .${listItemButtonClasses.root}`]: {
+            paddingRight: 48,
           },
         },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.hasSecondaryAction,
-      style: {
-        // Add some space to avoid collision as `ListItemSecondaryAction`
-        // is absolutely positioned.
-        paddingRight: 48,
+      {
+        props: {
+          alignItems: 'flex-start',
+        },
+        style: {
+          alignItems: 'flex-start',
+        },
       },
-    },
-  ],
-})));
+      {
+        props: ({ ownerState }) => ownerState.divider,
+        style: {
+          borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
+          backgroundClip: 'padding-box',
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.button,
+        style: {
+          transition: theme.transitions.create('background-color', {
+            duration: theme.transitions.duration.shortest,
+          }),
+          '&:hover': {
+            textDecoration: 'none',
+            backgroundColor: (theme.vars || theme).palette.action.hover,
+            // Reset on touch devices, it doesn't add specificity
+            '@media (hover: none)': {
+              backgroundColor: 'transparent',
+            },
+          },
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.hasSecondaryAction,
+        style: {
+          // Add some space to avoid collision as `ListItemSecondaryAction`
+          // is absolutely positioned.
+          paddingRight: 48,
+        },
+      },
+    ],
+  })),
+);
 
 const ListItemContainer = styled('li', {
   name: 'MuiListItem',

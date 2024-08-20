@@ -26,32 +26,36 @@ const StepIconRoot = styled(SvgIcon, {
   name: 'MuiStepIcon',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(memoTheme(({ theme }) => ({
-  display: 'block',
-  transition: theme.transitions.create('color', {
-    duration: theme.transitions.duration.shortest,
-  }),
-  color: (theme.vars || theme).palette.text.disabled,
-  [`&.${stepIconClasses.completed}`]: {
-    color: (theme.vars || theme).palette.primary.main,
-  },
-  [`&.${stepIconClasses.active}`]: {
-    color: (theme.vars || theme).palette.primary.main,
-  },
-  [`&.${stepIconClasses.error}`]: {
-    color: (theme.vars || theme).palette.error.main,
-  },
-})));
+})(
+  memoTheme(({ theme }) => ({
+    display: 'block',
+    transition: theme.transitions.create('color', {
+      duration: theme.transitions.duration.shortest,
+    }),
+    color: (theme.vars || theme).palette.text.disabled,
+    [`&.${stepIconClasses.completed}`]: {
+      color: (theme.vars || theme).palette.primary.main,
+    },
+    [`&.${stepIconClasses.active}`]: {
+      color: (theme.vars || theme).palette.primary.main,
+    },
+    [`&.${stepIconClasses.error}`]: {
+      color: (theme.vars || theme).palette.error.main,
+    },
+  })),
+);
 
 const StepIconText = styled('text', {
   name: 'MuiStepIcon',
   slot: 'Text',
   overridesResolver: (props, styles) => styles.text,
-})(memoTheme(({ theme }) => ({
-  fill: (theme.vars || theme).palette.primary.contrastText,
-  fontSize: theme.typography.caption.fontSize,
-  fontFamily: theme.typography.fontFamily,
-})));
+})(
+  memoTheme(({ theme }) => ({
+    fill: (theme.vars || theme).palette.primary.contrastText,
+    fontSize: theme.typography.caption.fontSize,
+    fontFamily: theme.typography.fontFamily,
+  })),
+);
 
 const StepIcon = React.forwardRef(function StepIcon(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiStepIcon' });

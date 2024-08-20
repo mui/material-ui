@@ -27,27 +27,29 @@ const TableRoot = styled('table', {
 
     return [styles.root, ownerState.stickyHeader && styles.stickyHeader];
   },
-})(memoTheme(({ theme }) => ({
-  display: 'table',
-  width: '100%',
-  borderCollapse: 'collapse',
-  borderSpacing: 0,
-  '& caption': {
-    ...theme.typography.body2,
-    padding: theme.spacing(2),
-    color: (theme.vars || theme).palette.text.secondary,
-    textAlign: 'left',
-    captionSide: 'bottom',
-  },
-  variants: [
-    {
-      props: ({ ownerState }) => ownerState.stickyHeader,
-      style: {
-        borderCollapse: 'separate',
-      },
+})(
+  memoTheme(({ theme }) => ({
+    display: 'table',
+    width: '100%',
+    borderCollapse: 'collapse',
+    borderSpacing: 0,
+    '& caption': {
+      ...theme.typography.body2,
+      padding: theme.spacing(2),
+      color: (theme.vars || theme).palette.text.secondary,
+      textAlign: 'left',
+      captionSide: 'bottom',
     },
-  ],
-})));
+    variants: [
+      {
+        props: ({ ownerState }) => ownerState.stickyHeader,
+        style: {
+          borderCollapse: 'separate',
+        },
+      },
+    ],
+  })),
+);
 
 const defaultComponent = 'table';
 

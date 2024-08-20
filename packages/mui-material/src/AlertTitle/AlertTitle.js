@@ -23,12 +23,14 @@ const AlertTitleRoot = styled(Typography, {
   name: 'MuiAlertTitle',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(memoTheme(({ theme }) => {
-  return {
-    fontWeight: theme.typography.fontWeightMedium,
-    marginTop: -2,
-  };
-}));
+})(
+  memoTheme(({ theme }) => {
+    return {
+      fontWeight: theme.typography.fontWeightMedium,
+      marginTop: -2,
+    };
+  }),
+);
 
 const AlertTitle = React.forwardRef(function AlertTitle(inProps, ref) {
   const props = useDefaultProps({

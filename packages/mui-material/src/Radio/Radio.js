@@ -43,58 +43,60 @@ const RadioRoot = styled(SwitchBase, {
       styles[`color${capitalize(ownerState.color)}`],
     ];
   },
-})(memoTheme(({ theme }) => ({
-  color: (theme.vars || theme).palette.text.secondary,
-  [`&.${radioClasses.disabled}`]: {
-    color: (theme.vars || theme).palette.action.disabled,
-  },
-  variants: [
-    {
-      props: { color: 'default', disableRipple: false },
-      style: {
-        '&:hover': {
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
-            : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
-        },
-      },
+})(
+  memoTheme(({ theme }) => ({
+    color: (theme.vars || theme).palette.text.secondary,
+    [`&.${radioClasses.disabled}`]: {
+      color: (theme.vars || theme).palette.action.disabled,
     },
-    ...Object.entries(theme.palette)
-      .filter(([, palette]) => palette && palette.main)
-      .map(([color]) => ({
-        props: { color, disableRipple: false },
+    variants: [
+      {
+        props: { color: 'default', disableRipple: false },
         style: {
           '&:hover': {
             backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-              : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
-          },
-        },
-      })),
-    ...Object.entries(theme.palette)
-      .filter(([, palette]) => palette && palette.main)
-      .map(([color]) => ({
-        props: { color },
-        style: {
-          [`&.${radioClasses.checked}`]: {
-            color: (theme.vars || theme).palette[color].main,
-          },
-        },
-      })),
-    {
-      // Should be last to override other colors
-      props: { disableRipple: false },
-      style: {
-        // Reset on touch devices, it doesn't add specificity
-        '&:hover': {
-          '@media (hover: none)': {
-            backgroundColor: 'transparent',
+              ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
+              : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
           },
         },
       },
-    },
-  ],
-})));
+      ...Object.entries(theme.palette)
+        .filter(([, palette]) => palette && palette.main)
+        .map(([color]) => ({
+          props: { color, disableRipple: false },
+          style: {
+            '&:hover': {
+              backgroundColor: theme.vars
+                ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
+                : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
+            },
+          },
+        })),
+      ...Object.entries(theme.palette)
+        .filter(([, palette]) => palette && palette.main)
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            [`&.${radioClasses.checked}`]: {
+              color: (theme.vars || theme).palette[color].main,
+            },
+          },
+        })),
+      {
+        // Should be last to override other colors
+        props: { disableRipple: false },
+        style: {
+          // Reset on touch devices, it doesn't add specificity
+          '&:hover': {
+            '@media (hover: none)': {
+              backgroundColor: 'transparent',
+            },
+          },
+        },
+      },
+    ],
+  })),
+);
 
 function areEqualValues(a, b) {
   if (typeof b === 'object' && b !== null) {

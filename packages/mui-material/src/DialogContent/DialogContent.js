@@ -27,31 +27,33 @@ const DialogContentRoot = styled('div', {
 
     return [styles.root, ownerState.dividers && styles.dividers];
   },
-})(memoTheme(({ theme }) => ({
-  flex: '1 1 auto',
-  // Add iOS momentum scrolling for iOS < 13.0
-  WebkitOverflowScrolling: 'touch',
-  overflowY: 'auto',
-  padding: '20px 24px',
-  variants: [
-    {
-      props: ({ ownerState }) => ownerState.dividers,
-      style: {
-        padding: '16px 24px',
-        borderTop: `1px solid ${(theme.vars || theme).palette.divider}`,
-        borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
-      },
-    },
-    {
-      props: ({ ownerState }) => !ownerState.dividers,
-      style: {
-        [`.${dialogTitleClasses.root} + &`]: {
-          paddingTop: 0,
+})(
+  memoTheme(({ theme }) => ({
+    flex: '1 1 auto',
+    // Add iOS momentum scrolling for iOS < 13.0
+    WebkitOverflowScrolling: 'touch',
+    overflowY: 'auto',
+    padding: '20px 24px',
+    variants: [
+      {
+        props: ({ ownerState }) => ownerState.dividers,
+        style: {
+          padding: '16px 24px',
+          borderTop: `1px solid ${(theme.vars || theme).palette.divider}`,
+          borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
         },
       },
-    },
-  ],
-})));
+      {
+        props: ({ ownerState }) => !ownerState.dividers,
+        style: {
+          [`.${dialogTitleClasses.root} + &`]: {
+            paddingTop: 0,
+          },
+        },
+      },
+    ],
+  })),
+);
 
 const DialogContent = React.forwardRef(function DialogContent(inProps, ref) {
   const props = useDefaultProps({

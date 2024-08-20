@@ -53,108 +53,110 @@ const LinkRoot = styled(Typography, {
       ownerState.component === 'button' && styles.button,
     ];
   },
-})(memoTheme(({ theme }) => {
-  return {
-    variants: [
-      {
-        props: {
-          underline: 'none',
+})(
+  memoTheme(({ theme }) => {
+    return {
+      variants: [
+        {
+          props: {
+            underline: 'none',
+          },
+          style: {
+            textDecoration: 'none',
+          },
         },
-        style: {
-          textDecoration: 'none',
+        {
+          props: {
+            underline: 'hover',
+          },
+          style: {
+            textDecoration: 'none',
+            '&:hover': {
+              textDecoration: 'underline',
+            },
+          },
         },
-      },
-      {
-        props: {
-          underline: 'hover',
-        },
-        style: {
-          textDecoration: 'none',
-          '&:hover': {
+        {
+          props: {
+            underline: 'always',
+          },
+          style: {
             textDecoration: 'underline',
+            '&:hover': {
+              textDecorationColor: 'inherit',
+            },
           },
         },
-      },
-      {
-        props: {
-          underline: 'always',
-        },
-        style: {
-          textDecoration: 'underline',
-          '&:hover': {
-            textDecorationColor: 'inherit',
+        {
+          props: ({ underline, ownerState }) =>
+            underline === 'always' && ownerState.color !== 'inherit',
+          style: {
+            textDecorationColor: 'var(--Link-underlineColor)',
           },
         },
-      },
-      {
-        props: ({ underline, ownerState }) =>
-          underline === 'always' && ownerState.color !== 'inherit',
-        style: {
-          textDecorationColor: 'var(--Link-underlineColor)',
-        },
-      },
-      ...Object.entries(theme.palette)
-        .filter(([, value]) => value && value.main)
-        .map(([color]) => ({
-          props: { underline: 'always', color },
+        ...Object.entries(theme.palette)
+          .filter(([, value]) => value && value.main)
+          .map(([color]) => ({
+            props: { underline: 'always', color },
+            style: {
+              '--Link-underlineColor': theme.vars
+                ? `rgba(${theme.vars.palette[color].mainChannel} / 0.4)`
+                : alpha(theme.palette[color].main, 0.4),
+            },
+          })),
+        {
+          props: { underline: 'always', color: 'textPrimary' },
           style: {
             '--Link-underlineColor': theme.vars
-              ? `rgba(${theme.vars.palette[color].mainChannel} / 0.4)`
-              : alpha(theme.palette[color].main, 0.4),
-          },
-        })),
-      {
-        props: { underline: 'always', color: 'textPrimary' },
-        style: {
-          '--Link-underlineColor': theme.vars
-            ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.4)`
-            : alpha(theme.palette.text.primary, 0.4),
-        },
-      },
-      {
-        props: { underline: 'always', color: 'textSecondary' },
-        style: {
-          '--Link-underlineColor': theme.vars
-            ? `rgba(${theme.vars.palette.text.secondaryChannel} / 0.4)`
-            : alpha(theme.palette.text.secondary, 0.4),
-        },
-      },
-      {
-        props: { underline: 'always', color: 'textDisabled' },
-        style: {
-          '--Link-underlineColor': (theme.vars || theme).palette.text.disabled,
-        },
-      },
-      {
-        props: {
-          component: 'button',
-        },
-        style: {
-          position: 'relative',
-          WebkitTapHighlightColor: 'transparent',
-          backgroundColor: 'transparent', // Reset default value
-          // We disable the focus ring for mouse, touch and keyboard users.
-          outline: 0,
-          border: 0,
-          margin: 0, // Remove the margin in Safari
-          borderRadius: 0,
-          padding: 0, // Remove the padding in Firefox
-          cursor: 'pointer',
-          userSelect: 'none',
-          verticalAlign: 'middle',
-          MozAppearance: 'none', // Reset
-          WebkitAppearance: 'none', // Reset
-          '&::-moz-focus-inner': {
-            borderStyle: 'none', // Remove Firefox dotted outline.
-          },
-          [`&.${linkClasses.focusVisible}`]: {
-            outline: 'auto',
+              ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.4)`
+              : alpha(theme.palette.text.primary, 0.4),
           },
         },
-      },
-    ],
-  };
-}));
+        {
+          props: { underline: 'always', color: 'textSecondary' },
+          style: {
+            '--Link-underlineColor': theme.vars
+              ? `rgba(${theme.vars.palette.text.secondaryChannel} / 0.4)`
+              : alpha(theme.palette.text.secondary, 0.4),
+          },
+        },
+        {
+          props: { underline: 'always', color: 'textDisabled' },
+          style: {
+            '--Link-underlineColor': (theme.vars || theme).palette.text.disabled,
+          },
+        },
+        {
+          props: {
+            component: 'button',
+          },
+          style: {
+            position: 'relative',
+            WebkitTapHighlightColor: 'transparent',
+            backgroundColor: 'transparent', // Reset default value
+            // We disable the focus ring for mouse, touch and keyboard users.
+            outline: 0,
+            border: 0,
+            margin: 0, // Remove the margin in Safari
+            borderRadius: 0,
+            padding: 0, // Remove the padding in Firefox
+            cursor: 'pointer',
+            userSelect: 'none',
+            verticalAlign: 'middle',
+            MozAppearance: 'none', // Reset
+            WebkitAppearance: 'none', // Reset
+            '&::-moz-focus-inner': {
+              borderStyle: 'none', // Remove Firefox dotted outline.
+            },
+            [`&.${linkClasses.focusVisible}`]: {
+              outline: 'auto',
+            },
+          },
+        },
+      ],
+    };
+  }),
+);
 
 const Link = React.forwardRef(function Link(inProps, ref) {
   const props = useDefaultProps({

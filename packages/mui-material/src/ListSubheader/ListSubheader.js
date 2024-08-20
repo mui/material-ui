@@ -39,55 +39,57 @@ const ListSubheaderRoot = styled('li', {
       !ownerState.disableSticky && styles.sticky,
     ];
   },
-})(memoTheme(({ theme }) => ({
-  boxSizing: 'border-box',
-  lineHeight: '48px',
-  listStyle: 'none',
-  color: (theme.vars || theme).palette.text.secondary,
-  fontFamily: theme.typography.fontFamily,
-  fontWeight: theme.typography.fontWeightMedium,
-  fontSize: theme.typography.pxToRem(14),
-  variants: [
-    {
-      props: {
-        color: 'primary',
+})(
+  memoTheme(({ theme }) => ({
+    boxSizing: 'border-box',
+    lineHeight: '48px',
+    listStyle: 'none',
+    color: (theme.vars || theme).palette.text.secondary,
+    fontFamily: theme.typography.fontFamily,
+    fontWeight: theme.typography.fontWeightMedium,
+    fontSize: theme.typography.pxToRem(14),
+    variants: [
+      {
+        props: {
+          color: 'primary',
+        },
+        style: {
+          color: (theme.vars || theme).palette.primary.main,
+        },
       },
-      style: {
-        color: (theme.vars || theme).palette.primary.main,
+      {
+        props: {
+          color: 'inherit',
+        },
+        style: {
+          color: 'inherit',
+        },
       },
-    },
-    {
-      props: {
-        color: 'inherit',
+      {
+        props: ({ ownerState }) => !ownerState.disableGutters,
+        style: {
+          paddingLeft: 16,
+          paddingRight: 16,
+        },
       },
-      style: {
-        color: 'inherit',
+      {
+        props: ({ ownerState }) => ownerState.inset,
+        style: {
+          paddingLeft: 72,
+        },
       },
-    },
-    {
-      props: ({ ownerState }) => !ownerState.disableGutters,
-      style: {
-        paddingLeft: 16,
-        paddingRight: 16,
+      {
+        props: ({ ownerState }) => !ownerState.disableSticky,
+        style: {
+          position: 'sticky',
+          top: 0,
+          zIndex: 1,
+          backgroundColor: (theme.vars || theme).palette.background.paper,
+        },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.inset,
-      style: {
-        paddingLeft: 72,
-      },
-    },
-    {
-      props: ({ ownerState }) => !ownerState.disableSticky,
-      style: {
-        position: 'sticky',
-        top: 0,
-        zIndex: 1,
-        backgroundColor: (theme.vars || theme).palette.background.paper,
-      },
-    },
-  ],
-})));
+    ],
+  })),
+);
 
 const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiListSubheader' });

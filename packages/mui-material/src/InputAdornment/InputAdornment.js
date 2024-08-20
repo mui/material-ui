@@ -43,49 +43,52 @@ const InputAdornmentRoot = styled('div', {
   name: 'MuiInputAdornment',
   slot: 'Root',
   overridesResolver,
-})(memoTheme(({ theme }) => ({
-  display: 'flex',
-  maxHeight: '2em',
-  alignItems: 'center',
-  whiteSpace: 'nowrap',
-  color: (theme.vars || theme).palette.action.active,
-  variants: [
-    {
-      props: {
-        variant: 'filled',
-      },
-      style: {
-        [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]: {
-          marginTop: 16,
+})(
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    maxHeight: '2em',
+    alignItems: 'center',
+    whiteSpace: 'nowrap',
+    color: (theme.vars || theme).palette.action.active,
+    variants: [
+      {
+        props: {
+          variant: 'filled',
+        },
+        style: {
+          [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]:
+            {
+              marginTop: 16,
+            },
         },
       },
-    },
-    {
-      props: {
-        position: 'start',
+      {
+        props: {
+          position: 'start',
+        },
+        style: {
+          marginRight: 8,
+        },
       },
-      style: {
-        marginRight: 8,
+      {
+        props: {
+          position: 'end',
+        },
+        style: {
+          marginLeft: 8,
+        },
       },
-    },
-    {
-      props: {
-        position: 'end',
+      {
+        props: {
+          disablePointerEvents: true,
+        },
+        style: {
+          pointerEvents: 'none',
+        },
       },
-      style: {
-        marginLeft: 8,
-      },
-    },
-    {
-      props: {
-        disablePointerEvents: true,
-      },
-      style: {
-        pointerEvents: 'none',
-      },
-    },
-  ],
-})));
+    ],
+  })),
+);
 
 const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiInputAdornment' });

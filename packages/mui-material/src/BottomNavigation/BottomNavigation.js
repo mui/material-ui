@@ -23,12 +23,14 @@ const BottomNavigationRoot = styled('div', {
   name: 'MuiBottomNavigation',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(memoTheme(({ theme }) => ({
-  display: 'flex',
-  justifyContent: 'center',
-  height: 56,
-  backgroundColor: (theme.vars || theme).palette.background.paper,
-})));
+})(
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    justifyContent: 'center',
+    height: 56,
+    backgroundColor: (theme.vars || theme).palette.background.paper,
+  })),
+);
 
 const BottomNavigation = React.forwardRef(function BottomNavigation(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiBottomNavigation' });

@@ -28,29 +28,31 @@ const TableRowRoot = styled('tr', {
 
     return [styles.root, ownerState.head && styles.head, ownerState.footer && styles.footer];
   },
-})(memoTheme(({ theme }) => ({
-  color: 'inherit',
-  display: 'table-row',
-  verticalAlign: 'middle',
-  // We disable the focus ring for mouse, touch and keyboard users.
-  outline: 0,
-  [`&.${tableRowClasses.hover}:hover`]: {
-    backgroundColor: (theme.vars || theme).palette.action.hover,
-  },
-  [`&.${tableRowClasses.selected}`]: {
-    backgroundColor: theme.vars
-      ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-      : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-    '&:hover': {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-        : alpha(
-            theme.palette.primary.main,
-            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-          ),
+})(
+  memoTheme(({ theme }) => ({
+    color: 'inherit',
+    display: 'table-row',
+    verticalAlign: 'middle',
+    // We disable the focus ring for mouse, touch and keyboard users.
+    outline: 0,
+    [`&.${tableRowClasses.hover}:hover`]: {
+      backgroundColor: (theme.vars || theme).palette.action.hover,
     },
-  },
-})));
+    [`&.${tableRowClasses.selected}`]: {
+      backgroundColor: theme.vars
+        ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+        : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      '&:hover': {
+        backgroundColor: theme.vars
+          ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+          : alpha(
+              theme.palette.primary.main,
+              theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+            ),
+      },
+    },
+  })),
+);
 
 const defaultComponent = 'tr';
 /**

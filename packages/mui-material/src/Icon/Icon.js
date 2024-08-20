@@ -35,83 +35,85 @@ const IconRoot = styled('span', {
       styles[`fontSize${capitalize(ownerState.fontSize)}`],
     ];
   },
-})(memoTheme(({ theme }) => ({
-  userSelect: 'none',
-  width: '1em',
-  height: '1em',
-  // Chrome fix for https://bugs.chromium.org/p/chromium/issues/detail?id=820541
-  // To remove at some point.
-  overflow: 'hidden',
-  display: 'inline-block', // allow overflow hidden to take action
-  textAlign: 'center', // support non-square icon
-  flexShrink: 0,
-  variants: [
-    {
-      props: {
-        fontSize: 'inherit',
-      },
-      style: {
-        fontSize: 'inherit',
-      },
-    },
-    {
-      props: {
-        fontSize: 'small',
-      },
-      style: {
-        fontSize: theme.typography.pxToRem(20),
-      },
-    },
-    {
-      props: {
-        fontSize: 'medium',
-      },
-      style: {
-        fontSize: theme.typography.pxToRem(24),
-      },
-    },
-    {
-      props: {
-        fontSize: 'large',
-      },
-      style: {
-        fontSize: theme.typography.pxToRem(36),
-      },
-    },
-    {
-      props: {
-        color: 'action',
-      },
-      style: {
-        color: (theme.vars || theme).palette.action.active,
-      },
-    },
-    {
-      props: {
-        color: 'disabled',
-      },
-      style: {
-        color: (theme.vars || theme).palette.action.disabled,
-      },
-    },
-    {
-      props: {
-        color: 'inherit',
-      },
-      style: {
-        color: undefined,
-      },
-    },
-    ...Object.entries(theme.palette)
-      .filter(([, palette]) => palette && palette.main)
-      .map(([color]) => ({
-        props: { color },
-        style: {
-          color: (theme.vars || theme).palette[color].main,
+})(
+  memoTheme(({ theme }) => ({
+    userSelect: 'none',
+    width: '1em',
+    height: '1em',
+    // Chrome fix for https://bugs.chromium.org/p/chromium/issues/detail?id=820541
+    // To remove at some point.
+    overflow: 'hidden',
+    display: 'inline-block', // allow overflow hidden to take action
+    textAlign: 'center', // support non-square icon
+    flexShrink: 0,
+    variants: [
+      {
+        props: {
+          fontSize: 'inherit',
         },
-      })),
-  ],
-})));
+        style: {
+          fontSize: 'inherit',
+        },
+      },
+      {
+        props: {
+          fontSize: 'small',
+        },
+        style: {
+          fontSize: theme.typography.pxToRem(20),
+        },
+      },
+      {
+        props: {
+          fontSize: 'medium',
+        },
+        style: {
+          fontSize: theme.typography.pxToRem(24),
+        },
+      },
+      {
+        props: {
+          fontSize: 'large',
+        },
+        style: {
+          fontSize: theme.typography.pxToRem(36),
+        },
+      },
+      {
+        props: {
+          color: 'action',
+        },
+        style: {
+          color: (theme.vars || theme).palette.action.active,
+        },
+      },
+      {
+        props: {
+          color: 'disabled',
+        },
+        style: {
+          color: (theme.vars || theme).palette.action.disabled,
+        },
+      },
+      {
+        props: {
+          color: 'inherit',
+        },
+        style: {
+          color: undefined,
+        },
+      },
+      ...Object.entries(theme.palette)
+        .filter(([, palette]) => palette && palette.main)
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            color: (theme.vars || theme).palette[color].main,
+          },
+        })),
+    ],
+  })),
+);
 
 const Icon = React.forwardRef(function Icon(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiIcon' });

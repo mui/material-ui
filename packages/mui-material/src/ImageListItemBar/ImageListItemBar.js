@@ -39,45 +39,47 @@ const ImageListItemBarRoot = styled('div', {
 
     return [styles.root, styles[`position${capitalize(ownerState.position)}`]];
   },
-})(memoTheme(({ theme }) => {
-  return {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    background: 'rgba(0, 0, 0, 0.5)',
-    display: 'flex',
-    alignItems: 'center',
-    fontFamily: theme.typography.fontFamily,
-    variants: [
-      {
-        props: {
-          position: 'bottom',
+})(
+  memoTheme(({ theme }) => {
+    return {
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      background: 'rgba(0, 0, 0, 0.5)',
+      display: 'flex',
+      alignItems: 'center',
+      fontFamily: theme.typography.fontFamily,
+      variants: [
+        {
+          props: {
+            position: 'bottom',
+          },
+          style: {
+            bottom: 0,
+          },
         },
-        style: {
-          bottom: 0,
+        {
+          props: {
+            position: 'top',
+          },
+          style: {
+            top: 0,
+          },
         },
-      },
-      {
-        props: {
-          position: 'top',
+        {
+          props: {
+            position: 'below',
+          },
+          style: {
+            position: 'relative',
+            background: 'transparent',
+            alignItems: 'normal',
+          },
         },
-        style: {
-          top: 0,
-        },
-      },
-      {
-        props: {
-          position: 'below',
-        },
-        style: {
-          position: 'relative',
-          background: 'transparent',
-          alignItems: 'normal',
-        },
-      },
-    ],
-  };
-}));
+      ],
+    };
+  }),
+);
 
 const ImageListItemBarTitleWrap = styled('div', {
   name: 'MuiImageListItemBar',
@@ -91,65 +93,71 @@ const ImageListItemBarTitleWrap = styled('div', {
       ownerState.actionIcon && styles[`titleWrapActionPos${capitalize(ownerState.actionPosition)}`],
     ];
   },
-})(memoTheme(({ theme }) => {
-  return {
-    flexGrow: 1,
-    padding: '12px 16px',
-    color: (theme.vars || theme).palette.common.white,
-    overflow: 'hidden',
-    variants: [
-      {
-        props: {
-          position: 'below',
+})(
+  memoTheme(({ theme }) => {
+    return {
+      flexGrow: 1,
+      padding: '12px 16px',
+      color: (theme.vars || theme).palette.common.white,
+      overflow: 'hidden',
+      variants: [
+        {
+          props: {
+            position: 'below',
+          },
+          style: {
+            padding: '6px 0 12px',
+            color: 'inherit',
+          },
         },
-        style: {
-          padding: '6px 0 12px',
-          color: 'inherit',
+        {
+          props: ({ ownerState }) => ownerState.actionIcon && ownerState.actionPosition === 'left',
+          style: {
+            paddingLeft: 0,
+          },
         },
-      },
-      {
-        props: ({ ownerState }) => ownerState.actionIcon && ownerState.actionPosition === 'left',
-        style: {
-          paddingLeft: 0,
+        {
+          props: ({ ownerState }) => ownerState.actionIcon && ownerState.actionPosition === 'right',
+          style: {
+            paddingRight: 0,
+          },
         },
-      },
-      {
-        props: ({ ownerState }) => ownerState.actionIcon && ownerState.actionPosition === 'right',
-        style: {
-          paddingRight: 0,
-        },
-      },
-    ],
-  };
-}));
+      ],
+    };
+  }),
+);
 
 const ImageListItemBarTitle = styled('div', {
   name: 'MuiImageListItemBar',
   slot: 'Title',
   overridesResolver: (props, styles) => styles.title,
-})(memoTheme(({ theme }) => {
-  return {
-    fontSize: theme.typography.pxToRem(16),
-    lineHeight: '24px',
-    textOverflow: 'ellipsis',
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-  };
-}));
+})(
+  memoTheme(({ theme }) => {
+    return {
+      fontSize: theme.typography.pxToRem(16),
+      lineHeight: '24px',
+      textOverflow: 'ellipsis',
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+    };
+  }),
+);
 
 const ImageListItemBarSubtitle = styled('div', {
   name: 'MuiImageListItemBar',
   slot: 'Subtitle',
   overridesResolver: (props, styles) => styles.subtitle,
-})(memoTheme(({ theme }) => {
-  return {
-    fontSize: theme.typography.pxToRem(12),
-    lineHeight: 1,
-    textOverflow: 'ellipsis',
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-  };
-}));
+})(
+  memoTheme(({ theme }) => {
+    return {
+      fontSize: theme.typography.pxToRem(12),
+      lineHeight: 1,
+      textOverflow: 'ellipsis',
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+    };
+  }),
+);
 
 const ImageListItemBarActionIcon = styled('div', {
   name: 'MuiImageListItemBar',

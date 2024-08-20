@@ -40,36 +40,38 @@ const PaperRoot = styled('div', {
       ownerState.variant === 'elevation' && styles[`elevation${ownerState.elevation}`],
     ];
   },
-})(memoTheme(({ theme }) => ({
-  backgroundColor: (theme.vars || theme).palette.background.paper,
-  color: (theme.vars || theme).palette.text.primary,
-  transition: theme.transitions.create('box-shadow'),
-  variants: [
-    {
-      props: ({ ownerState }) => !ownerState.square,
-      style: {
-        borderRadius: theme.shape.borderRadius,
+})(
+  memoTheme(({ theme }) => ({
+    backgroundColor: (theme.vars || theme).palette.background.paper,
+    color: (theme.vars || theme).palette.text.primary,
+    transition: theme.transitions.create('box-shadow'),
+    variants: [
+      {
+        props: ({ ownerState }) => !ownerState.square,
+        style: {
+          borderRadius: theme.shape.borderRadius,
+        },
       },
-    },
-    {
-      props: {
-        variant: 'outlined',
+      {
+        props: {
+          variant: 'outlined',
+        },
+        style: {
+          border: `1px solid ${(theme.vars || theme).palette.divider}`,
+        },
       },
-      style: {
-        border: `1px solid ${(theme.vars || theme).palette.divider}`,
+      {
+        props: {
+          variant: 'elevation',
+        },
+        style: {
+          boxShadow: 'var(--Paper-shadow)',
+          backgroundImage: 'var(--Paper-overlay)',
+        },
       },
-    },
-    {
-      props: {
-        variant: 'elevation',
-      },
-      style: {
-        boxShadow: 'var(--Paper-shadow)',
-        backgroundImage: 'var(--Paper-overlay)',
-      },
-    },
-  ],
-})));
+    ],
+  })),
+);
 
 const Paper = React.forwardRef(function Paper(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiPaper' });

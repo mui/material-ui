@@ -44,48 +44,50 @@ const CollapseRoot = styled('div', {
         styles.hidden,
     ];
   },
-})(memoTheme(({ theme }) => ({
-  height: 0,
-  overflow: 'hidden',
-  transition: theme.transitions.create('height'),
-  variants: [
-    {
-      props: {
-        orientation: 'horizontal',
+})(
+  memoTheme(({ theme }) => ({
+    height: 0,
+    overflow: 'hidden',
+    transition: theme.transitions.create('height'),
+    variants: [
+      {
+        props: {
+          orientation: 'horizontal',
+        },
+        style: {
+          height: 'auto',
+          width: 0,
+          transition: theme.transitions.create('width'),
+        },
       },
-      style: {
-        height: 'auto',
-        width: 0,
-        transition: theme.transitions.create('width'),
+      {
+        props: {
+          state: 'entered',
+        },
+        style: {
+          height: 'auto',
+          overflow: 'visible',
+        },
       },
-    },
-    {
-      props: {
-        state: 'entered',
+      {
+        props: {
+          state: 'entered',
+          orientation: 'horizontal',
+        },
+        style: {
+          width: 'auto',
+        },
       },
-      style: {
-        height: 'auto',
-        overflow: 'visible',
+      {
+        props: ({ ownerState }) =>
+          ownerState.state === 'exited' && !ownerState.in && ownerState.collapsedSize === '0px',
+        style: {
+          visibility: 'hidden',
+        },
       },
-    },
-    {
-      props: {
-        state: 'entered',
-        orientation: 'horizontal',
-      },
-      style: {
-        width: 'auto',
-      },
-    },
-    {
-      props: ({ ownerState }) =>
-        ownerState.state === 'exited' && !ownerState.in && ownerState.collapsedSize === '0px',
-      style: {
-        visibility: 'hidden',
-      },
-    },
-  ],
-})));
+    ],
+  })),
+);
 
 const CollapseWrapper = styled('div', {
   name: 'MuiCollapse',

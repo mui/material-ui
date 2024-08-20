@@ -51,66 +51,68 @@ const SpeedDialRoot = styled('div', {
 
     return [styles.root, styles[`direction${capitalize(ownerState.direction)}`]];
   },
-})(memoTheme(({ theme }) => ({
-  zIndex: (theme.vars || theme).zIndex.speedDial,
-  display: 'flex',
-  alignItems: 'center',
-  pointerEvents: 'none',
-  variants: [
-    {
-      props: {
-        direction: 'up',
-      },
-      style: {
-        flexDirection: 'column-reverse',
-        [`& .${speedDialClasses.actions}`]: {
+})(
+  memoTheme(({ theme }) => ({
+    zIndex: (theme.vars || theme).zIndex.speedDial,
+    display: 'flex',
+    alignItems: 'center',
+    pointerEvents: 'none',
+    variants: [
+      {
+        props: {
+          direction: 'up',
+        },
+        style: {
           flexDirection: 'column-reverse',
-          marginBottom: -dialRadius,
-          paddingBottom: spacingActions + dialRadius,
+          [`& .${speedDialClasses.actions}`]: {
+            flexDirection: 'column-reverse',
+            marginBottom: -dialRadius,
+            paddingBottom: spacingActions + dialRadius,
+          },
         },
       },
-    },
-    {
-      props: {
-        direction: 'down',
-      },
-      style: {
-        flexDirection: 'column',
-        [`& .${speedDialClasses.actions}`]: {
+      {
+        props: {
+          direction: 'down',
+        },
+        style: {
           flexDirection: 'column',
-          marginTop: -dialRadius,
-          paddingTop: spacingActions + dialRadius,
+          [`& .${speedDialClasses.actions}`]: {
+            flexDirection: 'column',
+            marginTop: -dialRadius,
+            paddingTop: spacingActions + dialRadius,
+          },
         },
       },
-    },
-    {
-      props: {
-        direction: 'left',
-      },
-      style: {
-        flexDirection: 'row-reverse',
-        [`& .${speedDialClasses.actions}`]: {
+      {
+        props: {
+          direction: 'left',
+        },
+        style: {
           flexDirection: 'row-reverse',
-          marginRight: -dialRadius,
-          paddingRight: spacingActions + dialRadius,
+          [`& .${speedDialClasses.actions}`]: {
+            flexDirection: 'row-reverse',
+            marginRight: -dialRadius,
+            paddingRight: spacingActions + dialRadius,
+          },
         },
       },
-    },
-    {
-      props: {
-        direction: 'right',
-      },
-      style: {
-        flexDirection: 'row',
-        [`& .${speedDialClasses.actions}`]: {
+      {
+        props: {
+          direction: 'right',
+        },
+        style: {
           flexDirection: 'row',
-          marginLeft: -dialRadius,
-          paddingLeft: spacingActions + dialRadius,
+          [`& .${speedDialClasses.actions}`]: {
+            flexDirection: 'row',
+            marginLeft: -dialRadius,
+            paddingLeft: spacingActions + dialRadius,
+          },
         },
       },
-    },
-  ],
-})));
+    ],
+  })),
+);
 
 const SpeedDialFab = styled(Fab, {
   name: 'MuiSpeedDial',

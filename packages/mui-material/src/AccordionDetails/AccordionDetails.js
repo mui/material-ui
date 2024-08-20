@@ -22,9 +22,11 @@ const AccordionDetailsRoot = styled('div', {
   name: 'MuiAccordionDetails',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(memoTheme(({ theme }) => ({
-  padding: theme.spacing(1, 2, 2),
-})));
+})(
+  memoTheme(({ theme }) => ({
+    padding: theme.spacing(1, 2, 2),
+  })),
+);
 
 const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiAccordionDetails' });
