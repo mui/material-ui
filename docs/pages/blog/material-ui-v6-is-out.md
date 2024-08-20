@@ -372,6 +372,8 @@ The `Box` component is no longer required to use the `sx` prop.
 
 Material UI v6 is ready for React 19. We've been testing Material UI with the latest [React 19 RC](https://react.dev/blog/2024/04/25/react-19) versions to ensure compatibility once the stable release of React 19 is out.
 
+Also, we're working on backporting React 19 support to Material UI v5. Stay tuned.
+
 ## Full-stack apps
 
 To get started building full-stack apps fast, we're building [Toolpad Core](https://mui.com/toolpad/) - get Material UI, Next.js, routing, layout components and authentication out of the box while you build dashboards or internal tools.
