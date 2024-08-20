@@ -7,7 +7,7 @@
 To change the default variable prefix (`--mui`), provide a string to `cssVarPrefix` property, as shown below:
 
 ```js
-extendTheme({ cssVarPrefix: 'any' });
+createTheme({ cssVariables: { cssVarPrefix: 'any' } });
 
 // generated stylesheet:
 // --any-palette-primary-main: ...;
@@ -16,7 +16,7 @@ extendTheme({ cssVarPrefix: 'any' });
 To remove the prefix, use an empty string as a value:
 
 ```js
-extendTheme({ cssVarPrefix: '' });
+createTheme({ cssVariables: { cssVarPrefix: '' } });
 
 // generated stylesheet:
 // --palette-primary-main: ...;
@@ -29,9 +29,11 @@ To toggle between modes manually, set the `colorSchemeSelector` with one of the 
 <codeblock>
 
 ```js class
-extendTheme({
+createTheme({
   colorSchemes: { light: true, dark: true },
-  colorSchemeSelector: 'class'
+  cssVariables: {
+    colorSchemeSelector: 'class'
+  }
 });
 
 // CSS Result
@@ -40,9 +42,11 @@ extendTheme({
 ```
 
 ```js data
-extendTheme({
+createTheme({
   colorSchemes: { light: true, dark: true },
-  colorSchemeSelector: 'data'
+  cssVariables: {
+    colorSchemeSelector: 'data'
+  }
 });
 
 // CSS Result
@@ -52,9 +56,11 @@ extendTheme({
 
 ```js string
 // The value must start with dot (.) for class or square brackets ([]) for data
-extendTheme({
+createTheme({
   colorSchemes: { light: true, dark: true },
-  colorSchemeSelector: '.theme-%s'
+  cssVariables: {
+    colorSchemeSelector: '.theme-%s'
+  }
 });
 
 // CSS Result
@@ -66,44 +72,13 @@ extendTheme({
 
 Then, use `useColorScheme` hook to switch between modes:
 
-<codeblock>
-
-```jsx client-side-app
+```jsx
 import { useColorScheme } from '@mui/material/styles';
 
 function ModeSwitcher() {
   const { mode, setMode } = useColorScheme();
 
-  return (
-    <select
-      value={mode}
-      onChange={(event) => {
-        setMode(event.target.value);
-        // For TypeScript, cast `event.target.value as 'light' | 'dark' | 'system'`:
-      }}
-    >
-      <option value="system">System</option>
-      <option value="light">Light</option>
-      <option value="dark">Dark</option>
-    </select>
-  );
-}
-```
-
-```jsx server-side-app
-import { useColorScheme } from '@mui/material/styles';
-
-function ModeSwitcher() {
-  const { mode, setMode } = useColorScheme();
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    // for server-side rendering
-    // learn more at https://github.com/pacocoursey/next-themes#avoid-hydration-mismatch
+  if (!mode) {
     return null;
   }
 
@@ -123,10 +98,8 @@ function ModeSwitcher() {
 }
 ```
 
-</codeblock>
-
 :::success
-The mode will be `system` by default to follow the user's preference.
+After React hydrates the tree, the mode is set to `system` to follow the user's preference.
 :::
 
 ### Determining the system mode
@@ -190,7 +163,13 @@ Next, if you have a custom selector that is **not** `media`, add the `InitColorS
 The `attribute` has to be the same as the one you set in the `colorSchemeSelector` property:
 
 ```js
-<InitColorSchemeScript attribute=".mode-%s" />
+createTheme({
+  cssVariables: {
+    colorSchemeSelector: 'class'
+  }
+})
+
+<InitColorSchemeScript attribute="class" />
 ```
 
 :::
@@ -204,16 +183,20 @@ import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 
 export default function RootLayout(props) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
         {/* must come before the <main> element */}
-        <InitColorSchemeScript attribute=".mode-%s" />
-        <main>{props.children}</main>
+        <InitColorSchemeScript attribute="class" />
+        <main>{children}</main>
       </body>
     </html>
   );
 }
 ```
+
+:::warning
+If you don't add `suppressHydrationWarning` to your `<html>` tag, you will see warnings about `"Extra attributes from the server"` because `InitColorSchemeScript` updates that element.
+:::
 
 ### Next.js Pages Router
 
@@ -226,11 +209,11 @@ import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html data-color-scheme="light">
+      <Html>
         <Head>...</Head>
         <body>
           {/* must come before the <Main> element */}
-          <InitColorSchemeScript attribute=".mode-%s" />
+          <InitColorSchemeScript attribute="class" />
           <Main />
           <NextScript />
         </body>
@@ -249,7 +232,7 @@ import * as React from 'react';
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 
 export function onRenderBody({ setPreBodyComponents }) {
-  setPreBodyComponents([<InitColorSchemeScript attribute=".mode-%s" />]);
+  setPreBodyComponents([<InitColorSchemeScript attribute="class" />]);
 }
 ```
 
@@ -289,12 +272,12 @@ In the example below, all the components inside the `div` will always be dark:
 
 ## Disabling CSS color scheme
 
-By default, the `extendTheme` attach [CSS color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) based on the palette mode. If you want to disable it, set `disableCssColorScheme` to `true`:
+By default, `createTheme` attaches a [CSS `color-scheme` property](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) based on the palette mode.
+You can disable this by setting `disableCssColorScheme` to `true`:
 
 ```js
-extendTheme({
-  colorSchemes: { light: true, dark: true },
-  disableCssColorScheme: true,
+createTheme({
+  cssVariables: { disableCssColorScheme: true },
 });
 ```
 
@@ -312,8 +295,10 @@ The generated CSS will not include the `color-scheme` property:
 
 ## Instant transition between color schemes
 
-To disable CSS transition when switching between modes, use `disableTransitionOnChange` prop:
+To disable CSS transitions when switching between modes, apply the `disableTransitionOnChange` prop:
 
 ```js
-<CssVarsProvider disableTransitionOnChange />
+<ThemeProvider disableTransitionOnChange />
 ```
+
+{{"demo": "DisableTransitionOnChange.js"}}
