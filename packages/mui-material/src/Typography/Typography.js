@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled, internal_createExtendSxProp } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import { getTypographyUtilityClass } from './typographyClasses';
@@ -54,7 +55,7 @@ export const TypographyRoot = styled('span', {
       ownerState.paragraph && styles.paragraph,
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   margin: 0,
   variants: [
     {
@@ -117,7 +118,7 @@ export const TypographyRoot = styled('span', {
       },
     },
   ],
-}));
+})));
 
 const defaultVariantMapping = {
   h1: 'h1',

@@ -8,6 +8,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import FocusTrap from '../Unstable_TrapFocus';
 import Portal from '../Portal';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Backdrop from '../Backdrop';
 import useModal from './useModal';
@@ -34,7 +35,7 @@ const ModalRoot = styled('div', {
 
     return [styles.root, !ownerState.open && ownerState.exited && styles.hidden];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   position: 'fixed',
   zIndex: (theme.vars || theme).zIndex.modal,
   right: 0,
@@ -49,7 +50,7 @@ const ModalRoot = styled('div', {
       },
     },
   ],
-}));
+})));
 
 const ModalBackdrop = styled(Backdrop, {
   name: 'MuiModal',

@@ -6,6 +6,7 @@ import * as React from 'react';
 import ButtonBase from '../ButtonBase';
 import ArrowDownwardIcon from '../internal/svg-icons/ArrowDownward';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import tableSortLabelClasses, { getTableSortLabelUtilityClass } from './tableSortLabelClasses';
@@ -29,7 +30,7 @@ const TableSortLabelRoot = styled(ButtonBase, {
 
     return [styles.root, ownerState.active && styles.active];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   cursor: 'pointer',
   display: 'inline-flex',
   justifyContent: 'flex-start',
@@ -51,7 +52,7 @@ const TableSortLabelRoot = styled(ButtonBase, {
       color: (theme.vars || theme).palette.text.secondary,
     },
   },
-}));
+})));
 
 const TableSortLabelIcon = styled('span', {
   name: 'MuiTableSortLabel',
@@ -61,7 +62,7 @@ const TableSortLabelIcon = styled('span', {
 
     return [styles.icon, styles[`iconDirection${capitalize(ownerState.direction)}`]];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   fontSize: 18,
   marginRight: 4,
   marginLeft: 4,
@@ -88,7 +89,7 @@ const TableSortLabelIcon = styled('span', {
       },
     },
   ],
-}));
+})));
 
 /**
  * A button based label for placing inside `TableCell` for column sorting.

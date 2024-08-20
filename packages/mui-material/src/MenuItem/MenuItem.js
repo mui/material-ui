@@ -6,6 +6,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ListContext from '../List/ListContext';
 import ButtonBase from '../ButtonBase';
@@ -53,7 +54,7 @@ const MenuItemRoot = styled(ButtonBase, {
   name: 'MuiMenuItem',
   slot: 'Root',
   overridesResolver,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   ...theme.typography.body1,
   display: 'flex',
   justifyContent: 'flex-start',
@@ -159,7 +160,7 @@ const MenuItemRoot = styled(ButtonBase, {
       },
     },
   ],
-}));
+})));
 
 const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiMenuItem' });

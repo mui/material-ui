@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { emphasize } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Fab from '../Fab';
 import Tooltip from '../Tooltip';
@@ -37,7 +38,7 @@ const SpeedDialActionFab = styled(Fab, {
 
     return [styles.fab, !ownerState.open && styles.fabClosed];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   margin: 8,
   color: (theme.vars || theme).palette.text.secondary,
   backgroundColor: (theme.vars || theme).palette.background.paper,
@@ -59,7 +60,7 @@ const SpeedDialActionFab = styled(Fab, {
       },
     },
   ],
-}));
+})));
 
 const SpeedDialActionStaticTooltip = styled('span', {
   name: 'MuiSpeedDialAction',
@@ -73,7 +74,7 @@ const SpeedDialActionStaticTooltip = styled('span', {
       styles[`tooltipPlacement${capitalize(ownerState.tooltipPlacement)}`],
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
@@ -118,13 +119,13 @@ const SpeedDialActionStaticTooltip = styled('span', {
       },
     },
   ],
-}));
+})));
 
 const SpeedDialActionStaticTooltipLabel = styled('span', {
   name: 'MuiSpeedDialAction',
   slot: 'StaticTooltipLabel',
   overridesResolver: (props, styles) => styles.staticTooltipLabel,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   position: 'absolute',
   ...theme.typography.body1,
   backgroundColor: (theme.vars || theme).palette.background.paper,
@@ -133,7 +134,7 @@ const SpeedDialActionStaticTooltipLabel = styled('span', {
   color: (theme.vars || theme).palette.text.secondary,
   padding: '4px 16px',
   wordBreak: 'keep-all',
-}));
+})));
 
 const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiSpeedDialAction' });

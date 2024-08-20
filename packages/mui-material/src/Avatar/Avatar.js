@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Person from '../internal/svg-icons/Person';
 import { getAvatarUtilityClass } from './avatarClasses';
@@ -33,7 +34,7 @@ const AvatarRoot = styled('div', {
       ownerState.colorDefault && styles.colorDefault,
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
@@ -75,7 +76,7 @@ const AvatarRoot = styled('div', {
       },
     },
   ],
-}));
+})));
 
 const AvatarImg = styled('img', {
   name: 'MuiAvatar',

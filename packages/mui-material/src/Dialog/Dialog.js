@@ -12,6 +12,7 @@ import dialogClasses, { getDialogUtilityClass } from './dialogClasses';
 import DialogContext from './DialogContext';
 import Backdrop from '../Backdrop';
 import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 
 import { useDefaultProps } from '../DefaultPropsProvider';
 
@@ -113,7 +114,7 @@ const DialogPaper = styled(Paper, {
       ownerState.fullScreen && styles.paperFullScreen,
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   margin: 32,
   position: 'relative',
   '@media print': {
@@ -198,7 +199,7 @@ const DialogPaper = styled(Paper, {
       },
     },
   ],
-}));
+})));
 
 /**
  * Dialogs are overlaid modal paper based components with a backdrop.

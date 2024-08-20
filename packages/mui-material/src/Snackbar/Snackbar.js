@@ -6,6 +6,7 @@ import useSlotProps from '@mui/utils/useSlotProps';
 import useSnackbar from './useSnackbar';
 import ClickAwayListener from '../ClickAwayListener';
 import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
@@ -40,7 +41,7 @@ const SnackbarRoot = styled('div', {
       ],
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   zIndex: (theme.vars || theme).zIndex.snackbar,
   position: 'fixed',
   display: 'flex',
@@ -88,7 +89,7 @@ const SnackbarRoot = styled('div', {
       },
     },
   ],
-}));
+})));
 
 const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiSnackbar' });

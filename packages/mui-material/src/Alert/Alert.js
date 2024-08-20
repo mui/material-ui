@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { darken, lighten } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import useSlot from '../utils/useSlot';
 import capitalize from '../utils/capitalize';
@@ -47,7 +48,7 @@ const AlertRoot = styled(Paper, {
       styles[`${ownerState.variant}${capitalize(ownerState.color || ownerState.severity)}`],
     ];
   },
-})(({ theme }) => {
+})(memoTheme(({ theme }) => {
   const getColor = theme.palette.mode === 'light' ? darken : lighten;
   const getBackgroundColor = theme.palette.mode === 'light' ? lighten : darken;
   return {
@@ -112,7 +113,7 @@ const AlertRoot = styled(Paper, {
         })),
     ],
   };
-});
+}));
 
 const AlertIcon = styled('div', {
   name: 'MuiAlert',

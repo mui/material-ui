@@ -12,6 +12,7 @@ import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
 import useFormControl from '../FormControl/useFormControl';
 import { styled, globalCss } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import useForkRef from '../utils/useForkRef';
@@ -103,7 +104,7 @@ export const InputBaseRoot = styled('div', {
   name: 'MuiInputBase',
   slot: 'Root',
   overridesResolver: rootOverridesResolver,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   ...theme.typography.body1,
   color: (theme.vars || theme).palette.text.primary,
   lineHeight: '1.4375em', // 23px
@@ -136,13 +137,13 @@ export const InputBaseRoot = styled('div', {
       },
     },
   ],
-}));
+})));
 
 export const InputBaseInput = styled('input', {
   name: 'MuiInputBase',
   slot: 'Input',
   overridesResolver: inputOverridesResolver,
-})(({ theme }) => {
+})(memoTheme(({ theme }) => {
   const light = theme.palette.mode === 'light';
   const placeholder = {
     color: 'currentColor',
@@ -249,7 +250,7 @@ export const InputBaseInput = styled('input', {
       },
     ],
   };
-});
+}));
 
 const InputGlobalStyles = globalCss({
   '@keyframes mui-auto-fill': { from: { display: 'block' } },

@@ -13,6 +13,7 @@ import capitalize from '../utils/capitalize';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 
 import { useDefaultProps } from '../DefaultPropsProvider';
 
@@ -51,7 +52,7 @@ const CheckboxRoot = styled(SwitchBase, {
     ];
   },
 
-})(styled.fromTheme(theme => ({
+})(memoTheme(({ theme }) => ({
   color: (theme.vars || theme).palette.text.secondary,
   variants: [
     {

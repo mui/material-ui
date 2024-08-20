@@ -8,6 +8,7 @@ import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
 import LinearProgress from '../LinearProgress';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import { getMobileStepperUtilityClass } from './mobileStepperClasses';
@@ -34,7 +35,7 @@ const MobileStepperRoot = styled(Paper, {
 
     return [styles.root, styles[`position${capitalize(ownerState.position)}`]];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-between',
@@ -60,7 +61,7 @@ const MobileStepperRoot = styled(Paper, {
       style: { bottom: 0 },
     },
   ],
-}));
+})));
 
 const MobileStepperDots = styled('div', {
   name: 'MuiMobileStepper',
@@ -87,7 +88,7 @@ const MobileStepperDot = styled('div', {
 
     return [styles.dot, dotActive && styles.dotActive];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   variants: [
     {
       props: { variant: 'dots' },
@@ -109,7 +110,7 @@ const MobileStepperDot = styled('div', {
       },
     },
   ],
-}));
+})));
 
 const MobileStepperProgress = styled(LinearProgress, {
   name: 'MuiMobileStepper',

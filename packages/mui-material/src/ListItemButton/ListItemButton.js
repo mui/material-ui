@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import ButtonBase from '../ButtonBase';
@@ -53,7 +54,7 @@ const ListItemButtonRoot = styled(ButtonBase, {
   name: 'MuiListItemButton',
   slot: 'Root',
   overridesResolver,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   display: 'flex',
   flexGrow: 1,
   justifyContent: 'flex-start',
@@ -140,7 +141,7 @@ const ListItemButtonRoot = styled(ButtonBase, {
       },
     },
   ],
-}));
+})));
 
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiListItemButton' });

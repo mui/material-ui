@@ -7,6 +7,7 @@ import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import getOverlayAlpha from '../styles/getOverlayAlpha';
 import { getPaperUtilityClass } from './paperClasses';
@@ -39,7 +40,7 @@ const PaperRoot = styled('div', {
       ownerState.variant === 'elevation' && styles[`elevation${ownerState.elevation}`],
     ];
   },
-})(styled.fromTheme((theme) => ({
+})(memoTheme(({ theme }) => ({
   backgroundColor: (theme.vars || theme).palette.background.paper,
   color: (theme.vars || theme).palette.text.primary,
   transition: theme.transitions.create('box-shadow'),

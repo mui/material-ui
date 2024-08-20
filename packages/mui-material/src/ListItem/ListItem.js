@@ -7,6 +7,7 @@ import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import isHostComponent from '../utils/isHostComponent';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import isMuiElement from '../utils/isMuiElement';
 import useForkRef from '../utils/useForkRef';
@@ -60,7 +61,7 @@ export const ListItemRoot = styled('div', {
   name: 'MuiListItem',
   slot: 'Root',
   overridesResolver,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   display: 'flex',
   justifyContent: 'flex-start',
   alignItems: 'center',
@@ -147,7 +148,7 @@ export const ListItemRoot = styled('div', {
       },
     },
   ],
-}));
+})));
 
 const ListItemContainer = styled('li', {
   name: 'MuiListItem',

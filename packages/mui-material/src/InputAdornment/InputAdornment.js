@@ -8,6 +8,7 @@ import Typography from '../Typography';
 import FormControlContext from '../FormControl/FormControlContext';
 import useFormControl from '../FormControl/useFormControl';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import inputAdornmentClasses, { getInputAdornmentUtilityClass } from './inputAdornmentClasses';
 
@@ -42,7 +43,7 @@ const InputAdornmentRoot = styled('div', {
   name: 'MuiInputAdornment',
   slot: 'Root',
   overridesResolver,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   display: 'flex',
   maxHeight: '2em',
   alignItems: 'center',
@@ -84,7 +85,7 @@ const InputAdornmentRoot = styled('div', {
       },
     },
   ],
-}));
+})));
 
 const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiInputAdornment' });

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getDialogContentUtilityClass } from './dialogContentClasses';
 import dialogTitleClasses from '../DialogTitle/dialogTitleClasses';
@@ -26,7 +27,7 @@ const DialogContentRoot = styled('div', {
 
     return [styles.root, ownerState.dividers && styles.dividers];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   flex: '1 1 auto',
   // Add iOS momentum scrolling for iOS < 13.0
   WebkitOverflowScrolling: 'touch',
@@ -50,7 +51,7 @@ const DialogContentRoot = styled('div', {
       },
     },
   ],
-}));
+})));
 
 const DialogContent = React.forwardRef(function DialogContent(inProps, ref) {
   const props = useDefaultProps({

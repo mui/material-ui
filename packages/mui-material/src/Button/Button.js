@@ -7,6 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
@@ -86,7 +87,7 @@ const ButtonRoot = styled(ButtonBase, {
       ownerState.fullWidth && styles.fullWidth,
     ];
   },
-})(styled.fromTheme(theme => {
+})(memoTheme(({ theme }) => {
   const inheritContainedBackgroundColor =
     theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[800];
 
@@ -307,7 +308,7 @@ const ButtonStartIcon = styled('span', {
 
     return [styles.startIcon, styles[`iconSize${capitalize(ownerState.size)}`]];
   },
-})(() => ({
+})({
   display: 'inherit',
   marginRight: 8,
   marginLeft: -4,
@@ -320,7 +321,7 @@ const ButtonStartIcon = styled('span', {
     },
     ...commonIconStyles,
   ],
-}));
+});
 
 const ButtonEndIcon = styled('span', {
   name: 'MuiButton',
@@ -330,7 +331,7 @@ const ButtonEndIcon = styled('span', {
 
     return [styles.endIcon, styles[`iconSize${capitalize(ownerState.size)}`]];
   },
-})(() => ({
+})({
   display: 'inherit',
   marginRight: -4,
   marginLeft: 8,
@@ -343,7 +344,7 @@ const ButtonEndIcon = styled('span', {
     },
     ...commonIconStyles,
   ],
-}));
+});
 
 const Button = React.forwardRef(function Button(inProps, ref) {
   // props priority: `inProps` > `contextProps` > `themeDefaultProps`

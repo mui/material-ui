@@ -7,6 +7,7 @@ import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import formLabelClasses, { getFormLabelUtilityClasses } from './formLabelClasses';
 
@@ -38,7 +39,7 @@ export const FormLabelRoot = styled('label', {
       ...(ownerState.filled && styles.filled),
     };
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   color: (theme.vars || theme).palette.text.secondary,
   ...theme.typography.body1,
   lineHeight: '1.4375em',
@@ -67,17 +68,17 @@ export const FormLabelRoot = styled('label', {
       },
     },
   ],
-}));
+})));
 
 const AsteriskComponent = styled('span', {
   name: 'MuiFormLabel',
   slot: 'Asterisk',
   overridesResolver: (props, styles) => styles.asterisk,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   [`&.${formLabelClasses.error}`]: {
     color: (theme.vars || theme).palette.error.main,
   },
-}));
+})));
 
 const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiFormLabel' });

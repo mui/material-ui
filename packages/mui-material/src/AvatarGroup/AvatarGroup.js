@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Avatar, { avatarClasses } from '../Avatar';
 import avatarGroupClasses, { getAvatarGroupUtilityClass } from './avatarGroupClasses';
@@ -34,7 +35,7 @@ const AvatarGroupRoot = styled('div', {
     [`& .${avatarGroupClasses.avatar}`]: styles.avatar,
     ...styles.root,
   }),
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   display: 'flex',
   flexDirection: 'row-reverse',
   [`& .${avatarClasses.root}`]: {
@@ -45,7 +46,7 @@ const AvatarGroupRoot = styled('div', {
       marginLeft: 0,
     },
   },
-}));
+})));
 
 const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   const props = useDefaultProps({

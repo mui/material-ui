@@ -8,6 +8,7 @@ import capitalize from '../utils/capitalize';
 import TableContext from '../Table/TableContext';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import tableCellClasses, { getTableCellUtilityClass } from './tableCellClasses';
 
@@ -43,7 +44,7 @@ const TableCellRoot = styled('td', {
       ownerState.stickyHeader && styles.stickyHeader,
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   ...theme.typography.body2,
   display: 'table-cell',
   verticalAlign: 'inherit',
@@ -163,7 +164,7 @@ const TableCellRoot = styled('td', {
       },
     },
   ],
-}));
+})));
 
 /**
  * The component renders a `<th>` element when the parent context is a header

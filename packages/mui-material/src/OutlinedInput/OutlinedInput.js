@@ -8,6 +8,7 @@ import useFormControl from '../FormControl/useFormControl';
 import formControlState from '../FormControl/formControlState';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import outlinedInputClasses, { getOutlinedInputUtilityClass } from './outlinedInputClasses';
 import InputBase, {
@@ -39,7 +40,7 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
   name: 'MuiOutlinedInput',
   slot: 'Root',
   overridesResolver: inputBaseRootOverridesResolver,
-})(({ theme }) => {
+})(memoTheme(({ theme }) => {
   const borderColor =
     theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
   return {
@@ -107,13 +108,13 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
       },
     ],
   };
-});
+}));
 
 const NotchedOutlineRoot = styled(NotchedOutline, {
   name: 'MuiOutlinedInput',
   slot: 'NotchedOutline',
   overridesResolver: (props, styles) => styles.notchedOutline,
-})(({ theme }) => {
+})(memoTheme(({ theme }) => {
   const borderColor =
     theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
   return {
@@ -121,13 +122,13 @@ const NotchedOutlineRoot = styled(NotchedOutline, {
       ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
       : borderColor,
   };
-});
+}));
 
 const OutlinedInputInput = styled(InputBaseInput, {
   name: 'MuiOutlinedInput',
   slot: 'Input',
   overridesResolver: inputBaseInputOverridesResolver,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   padding: '16.5px 14px',
   ...(!theme.vars && {
     '&:-webkit-autofill': {
@@ -177,7 +178,7 @@ const OutlinedInputInput = styled(InputBaseInput, {
       },
     },
   ],
-}));
+})));
 
 const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiOutlinedInput' });

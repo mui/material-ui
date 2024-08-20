@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import getValidReactChildren from '@mui/utils/getValidReactChildren';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import toggleButtonGroupClasses, {
@@ -55,7 +56,7 @@ const ToggleButtonGroupRoot = styled('div', {
       ownerState.fullWidth && styles.fullWidth,
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   display: 'inline-flex',
   borderRadius: (theme.vars || theme).shape.borderRadius,
   variants: [
@@ -121,7 +122,7 @@ const ToggleButtonGroupRoot = styled('div', {
       },
     },
   ],
-}));
+})));
 
 const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiToggleButtonGroup' });

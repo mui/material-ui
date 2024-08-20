@@ -3,10 +3,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { emphasize } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import MoreHorizIcon from '../internal/svg-icons/MoreHoriz';
 import ButtonBase from '../ButtonBase';
 
-const BreadcrumbCollapsedButton = styled(ButtonBase)(({ theme }) => ({
+const BreadcrumbCollapsedButton = styled(ButtonBase)(memoTheme(({ theme }) => ({
   display: 'flex',
   marginLeft: `calc(${theme.spacing(1)} * 0.5)`,
   marginRight: `calc(${theme.spacing(1)} * 0.5)`,
@@ -25,7 +26,7 @@ const BreadcrumbCollapsedButton = styled(ButtonBase)(({ theme }) => ({
       ? { backgroundColor: emphasize(theme.palette.grey[200], 0.12) }
       : { backgroundColor: emphasize(theme.palette.grey[600], 0.12) }),
   },
-}));
+})));
 
 const BreadcrumbCollapsedIcon = styled(MoreHorizIcon)({
   width: 24,

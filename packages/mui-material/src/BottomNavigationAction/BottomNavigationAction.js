@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import unsupportedProp from '../utils/unsupportedProp';
@@ -30,7 +31,7 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
 
     return [styles.root, !ownerState.showLabel && !ownerState.selected && styles.iconOnly];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   transition: theme.transitions.create(['color', 'padding-top'], {
     duration: theme.transitions.duration.short,
   }),
@@ -57,13 +58,13 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
       },
     },
   ],
-}));
+})));
 
 const BottomNavigationActionLabel = styled('span', {
   name: 'MuiBottomNavigationAction',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   fontFamily: theme.typography.fontFamily,
   fontSize: theme.typography.pxToRem(12),
   opacity: 1,
@@ -81,7 +82,7 @@ const BottomNavigationActionLabel = styled('span', {
       },
     },
   ],
-}));
+})));
 
 const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiBottomNavigationAction' });

@@ -11,6 +11,7 @@ import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getDrawerUtilityClass } from './drawerClasses';
 
@@ -45,9 +46,9 @@ const DrawerRoot = styled(Modal, {
   name: 'MuiDrawer',
   slot: 'Root',
   overridesResolver,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   zIndex: (theme.vars || theme).zIndex.drawer,
-}));
+})));
 
 const DrawerDockedRoot = styled('div', {
   shouldForwardProp: rootShouldForwardProp,
@@ -72,7 +73,7 @@ const DrawerPaper = styled(Paper, {
         styles[`paperAnchorDocked${capitalize(ownerState.anchor)}`],
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   overflowY: 'auto',
   display: 'flex',
   flexDirection: 'column',
@@ -157,7 +158,7 @@ const DrawerPaper = styled(Paper, {
       },
     },
   ],
-}));
+})));
 
 const oppositeDirection = {
   left: 'right',

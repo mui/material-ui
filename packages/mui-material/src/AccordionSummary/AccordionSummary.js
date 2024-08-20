@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import AccordionContext from '../Accordion/AccordionContext';
@@ -28,7 +29,7 @@ const AccordionSummaryRoot = styled(ButtonBase, {
   name: 'MuiAccordionSummary',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme }) => {
+})(memoTheme(({ theme }) => {
   const transition = {
     duration: theme.transitions.duration.shortest,
   };
@@ -58,13 +59,13 @@ const AccordionSummaryRoot = styled(ButtonBase, {
       },
     ],
   };
-});
+}));
 
 const AccordionSummaryContent = styled('div', {
   name: 'MuiAccordionSummary',
   slot: 'Content',
   overridesResolver: (props, styles) => styles.content,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   display: 'flex',
   flexGrow: 1,
   margin: '12px 0',
@@ -81,13 +82,13 @@ const AccordionSummaryContent = styled('div', {
       },
     },
   ],
-}));
+})));
 
 const AccordionSummaryExpandIconWrapper = styled('div', {
   name: 'MuiAccordionSummary',
   slot: 'ExpandIconWrapper',
   overridesResolver: (props, styles) => styles.expandIconWrapper,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   display: 'flex',
   color: (theme.vars || theme).palette.action.active,
   transform: 'rotate(0deg)',
@@ -97,7 +98,7 @@ const AccordionSummaryExpandIconWrapper = styled('div', {
   [`&.${accordionSummaryClasses.expanded}`]: {
     transform: 'rotate(180deg)',
   },
-}));
+})));
 
 const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiAccordionSummary' });

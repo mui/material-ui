@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getDividerUtilityClass } from './dividerClasses';
 
@@ -54,7 +55,7 @@ const DividerRoot = styled('div', {
         styles.textAlignLeft,
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   margin: 0, // Reset browser default style.
   flexShrink: 0,
   borderWidth: 0,
@@ -191,7 +192,7 @@ const DividerRoot = styled('div', {
       },
     },
   ],
-}));
+})));
 
 const DividerWrapper = styled('span', {
   name: 'MuiDivider',
@@ -201,7 +202,7 @@ const DividerWrapper = styled('span', {
 
     return [styles.wrapper, ownerState.orientation === 'vertical' && styles.wrapperVertical];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   display: 'inline-block',
   paddingLeft: `calc(${theme.spacing(1)} * 1.2)`,
   paddingRight: `calc(${theme.spacing(1)} * 1.2)`,
@@ -216,7 +217,7 @@ const DividerWrapper = styled('span', {
       },
     },
   ],
-}));
+})));
 
 const Divider = React.forwardRef(function Divider(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiDivider' });

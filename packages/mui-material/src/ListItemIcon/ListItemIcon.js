@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getListItemIconUtilityClass } from './listItemIconClasses';
 import ListContext from '../List/ListContext';
@@ -26,7 +27,7 @@ const ListItemIconRoot = styled('div', {
 
     return [styles.root, ownerState.alignItems === 'flex-start' && styles.alignItemsFlexStart];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   minWidth: 56,
   color: (theme.vars || theme).palette.action.active,
   flexShrink: 0,
@@ -41,7 +42,7 @@ const ListItemIconRoot = styled('div', {
       },
     },
   ],
-}));
+})));
 
 /**
  * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.

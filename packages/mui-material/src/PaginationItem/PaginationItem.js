@@ -14,6 +14,7 @@ import NavigateBeforeIcon from '../internal/svg-icons/NavigateBefore';
 import NavigateNextIcon from '../internal/svg-icons/NavigateNext';
 import useSlot from '../utils/useSlot';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 
 import { useDefaultProps } from '../DefaultPropsProvider';
 
@@ -67,7 +68,7 @@ const PaginationItemEllipsis = styled('div', {
   name: 'MuiPaginationItem',
   slot: 'Root',
   overridesResolver,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   ...theme.typography.body2,
   borderRadius: 32 / 2,
   textAlign: 'center',
@@ -100,13 +101,13 @@ const PaginationItemEllipsis = styled('div', {
       },
     },
   ],
-}));
+})));
 
 const PaginationItemPage = styled(ButtonBase, {
   name: 'MuiPaginationItem',
   slot: 'Root',
   overridesResolver,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   ...theme.typography.body2,
   borderRadius: 32 / 2,
   textAlign: 'center',
@@ -276,13 +277,13 @@ const PaginationItemPage = styled(ButtonBase, {
         },
       })),
   ],
-}));
+})));
 
 const PaginationItemPageIcon = styled('div', {
   name: 'MuiPaginationItem',
   slot: 'Icon',
   overridesResolver: (props, styles) => styles.icon,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   fontSize: theme.typography.pxToRem(20),
   margin: '0 -8px',
   variants: [
@@ -299,7 +300,7 @@ const PaginationItemPageIcon = styled('div', {
       },
     },
   ],
-}));
+})));
 
 const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiPaginationItem' });

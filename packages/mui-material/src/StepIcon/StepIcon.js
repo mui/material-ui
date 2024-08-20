@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import CheckCircle from '../internal/svg-icons/CheckCircle';
 import Warning from '../internal/svg-icons/Warning';
@@ -25,7 +26,7 @@ const StepIconRoot = styled(SvgIcon, {
   name: 'MuiStepIcon',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   display: 'block',
   transition: theme.transitions.create('color', {
     duration: theme.transitions.duration.shortest,
@@ -40,17 +41,17 @@ const StepIconRoot = styled(SvgIcon, {
   [`&.${stepIconClasses.error}`]: {
     color: (theme.vars || theme).palette.error.main,
   },
-}));
+})));
 
 const StepIconText = styled('text', {
   name: 'MuiStepIcon',
   slot: 'Text',
   overridesResolver: (props, styles) => styles.text,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   fill: (theme.vars || theme).palette.primary.contrastText,
   fontSize: theme.typography.caption.fontSize,
   fontFamily: theme.typography.fontFamily,
-}));
+})));
 
 const StepIcon = React.forwardRef(function StepIcon(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiStepIcon' });

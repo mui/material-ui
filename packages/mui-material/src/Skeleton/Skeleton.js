@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha, unstable_getUnit as getUnit, unstable_toUnitless as toUnitless } from '../styles';
 import { keyframes, css, styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getSkeletonUtilityClass } from './skeletonClasses';
 
@@ -86,7 +87,7 @@ const SkeletonRoot = styled('span', {
       ownerState.hasChildren && !ownerState.height && styles.heightAuto,
     ];
   },
-})(({ theme }) => {
+})(memoTheme(({ theme }) => {
   const radiusUnit = getUnit(theme.shape.borderRadius) || 'px';
   const radiusValue = toUnitless(theme.shape.borderRadius);
 
@@ -196,7 +197,7 @@ const SkeletonRoot = styled('span', {
       },
     ],
   };
-});
+}));
 
 const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiSkeleton' });

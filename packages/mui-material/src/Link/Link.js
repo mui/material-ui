@@ -8,6 +8,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import isFocusVisible from '@mui/utils/isFocusVisible';
 import capitalize from '../utils/capitalize';
 import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Typography from '../Typography';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
@@ -52,7 +53,7 @@ const LinkRoot = styled(Typography, {
       ownerState.component === 'button' && styles.button,
     ];
   },
-})(({ theme }) => {
+})(memoTheme(({ theme }) => {
   return {
     variants: [
       {
@@ -153,7 +154,7 @@ const LinkRoot = styled(Typography, {
       },
     ],
   };
-});
+}));
 
 const Link = React.forwardRef(function Link(inProps, ref) {
   const props = useDefaultProps({

@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
@@ -70,7 +71,7 @@ const StepConnectorLine = styled('span', {
 
     return [styles.line, styles[`line${capitalize(ownerState.orientation)}`]];
   },
-})(({ theme }) => {
+})(memoTheme(({ theme }) => {
   const borderColor =
     theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600];
   return {
@@ -94,7 +95,7 @@ const StepConnectorLine = styled('span', {
       },
     ],
   };
-});
+}));
 
 const StepConnector = React.forwardRef(function StepConnector(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiStepConnector' });

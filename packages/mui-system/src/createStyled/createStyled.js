@@ -250,75 +250,7 @@ export default function createStyled(input = {}) {
     return muiStyledResolver;
   };
 
-  styled.fromTheme = fromTheme;
-  styled.fromProps = fromProps;
-
   return styled;
-}
-
-/**
- * Memoize style function on props.theme
- */
-function fromTheme(styleFn) {
-  let lastValue;
-  let lastTheme;
-
-  return (props) => {
-    const theme = props.theme;
-    let value = lastValue;
-    if (value === undefined || theme !== lastTheme) {
-      value = styleFn(theme);
-
-      lastValue = value;
-      lastTheme = theme;
-    }
-    return value;
-  };
-}
-
-/**
- * Memoize style function on props
- */
-function fromProps(styleFn) {
-  let lastValue;
-  let lastAccessedProps = {};
-
-  function didChange(newProps) {
-    for (const key in lastAccessedProps) {
-      if (newProps[key] !== lastAccessedProps[key]) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  function createProxy(props) {
-    const proxy = {}
-    for (const key in props) {
-      if (Object.prototype.hasOwnProperty.call(props, key)) {
-        Object.defineProperty(proxy, key, {
-          get: () => {
-            const value = props[key];
-            lastAccessedProps[key] = value;
-            return value;
-          }
-        })
-      }
-    }
-    return proxy;
-  }
-
-  return (props) => {
-    let value = lastValue;
-    if (value === undefined || didChange(props)) {
-      lastAccessedProps = {}
-
-      value = styleFn(createProxy(props));
-
-      lastValue = value;
-    }
-    return value;
-  };
 }
 
 function isObjectEmpty(object) {

@@ -7,6 +7,7 @@ import useTimeout from '@mui/utils/useTimeout';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { duration } from '../styles/createTransitions';
 import { getTransitionProps } from '../transitions/utils';
@@ -43,7 +44,7 @@ const CollapseRoot = styled('div', {
         styles.hidden,
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   height: 0,
   overflow: 'hidden',
   transition: theme.transitions.create('height'),
@@ -84,7 +85,7 @@ const CollapseRoot = styled('div', {
       },
     },
   ],
-}));
+})));
 
 const CollapseWrapper = styled('div', {
   name: 'MuiCollapse',

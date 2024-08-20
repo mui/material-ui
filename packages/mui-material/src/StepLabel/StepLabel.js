@@ -7,6 +7,7 @@ import StepContext from '../Step/StepContext';
 import StepIcon from '../StepIcon';
 import StepperContext from '../Stepper/StepperContext';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import stepLabelClasses, { getStepLabelUtilityClass } from './stepLabelClasses';
 import useSlot from '../utils/useSlot';
@@ -76,7 +77,7 @@ const StepLabelLabel = styled('span', {
   name: 'MuiStepLabel',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   ...theme.typography.body2,
   display: 'block',
   transition: theme.transitions.create('color', {
@@ -96,7 +97,7 @@ const StepLabelLabel = styled('span', {
   [`&.${stepLabelClasses.error}`]: {
     color: (theme.vars || theme).palette.error.main,
   },
-}));
+})));
 
 const StepLabelIconContainer = styled('span', {
   name: 'MuiStepLabel',
@@ -114,13 +115,13 @@ const StepLabelLabelContainer = styled('span', {
   name: 'MuiStepLabel',
   slot: 'LabelContainer',
   overridesResolver: (props, styles) => styles.labelContainer,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   width: '100%',
   color: (theme.vars || theme).palette.text.secondary,
   [`&.${stepLabelClasses.alternativeLabel}`]: {
     textAlign: 'center',
   },
-}));
+})));
 
 const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiStepLabel' });

@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
 import { keyframes, css, styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
@@ -79,7 +80,7 @@ const CircularProgressRoot = styled('span', {
       styles[`color${capitalize(ownerState.color)}`],
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   display: 'inline-block',
   variants: [
     {
@@ -107,7 +108,7 @@ const CircularProgressRoot = styled('span', {
         },
       })),
   ],
-}));
+})));
 
 const CircularProgressSVG = styled('svg', {
   name: 'MuiCircularProgress',
@@ -129,7 +130,7 @@ const CircularProgressCircle = styled('circle', {
       ownerState.disableShrink && styles.circleDisableShrink,
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   stroke: 'currentColor',
   variants: [
     {
@@ -159,7 +160,7 @@ const CircularProgressCircle = styled('circle', {
       },
     },
   ],
-}));
+})));
 
 /**
  * ## ARIA

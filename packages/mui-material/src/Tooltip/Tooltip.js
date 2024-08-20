@@ -11,6 +11,7 @@ import isFocusVisible from '@mui/utils/isFocusVisible';
 import appendOwnerState from '@mui/utils/appendOwnerState';
 import getReactNodeRef from '@mui/utils/getReactNodeRef';
 import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
@@ -55,7 +56,7 @@ const TooltipPopper = styled(Popper, {
       !ownerState.open && styles.popperClose,
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   zIndex: (theme.vars || theme).zIndex.tooltip,
   pointerEvents: 'none',
   variants: [
@@ -141,7 +142,7 @@ const TooltipPopper = styled(Popper, {
       },
     },
   ],
-}));
+})));
 
 const TooltipTooltip = styled('div', {
   name: 'MuiTooltip',
@@ -156,7 +157,7 @@ const TooltipTooltip = styled('div', {
       styles[`tooltipPlacement${capitalize(ownerState.placement.split('-')[0])}`],
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   backgroundColor: theme.vars
     ? theme.vars.palette.Tooltip.bg
     : alpha(theme.palette.grey[700], 0.92),
@@ -261,13 +262,13 @@ const TooltipTooltip = styled('div', {
       },
     },
   ],
-}));
+})));
 
 const TooltipArrow = styled('span', {
   name: 'MuiTooltip',
   slot: 'Arrow',
   overridesResolver: (props, styles) => styles.arrow,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   overflow: 'hidden',
   position: 'absolute',
   width: '1em',
@@ -283,7 +284,7 @@ const TooltipArrow = styled('span', {
     backgroundColor: 'currentColor',
     transform: 'rotate(45deg)',
   },
-}));
+})));
 
 let hystersisOpen = false;
 const hystersisTimer = new Timeout();

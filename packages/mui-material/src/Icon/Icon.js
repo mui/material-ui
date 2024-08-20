@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getIconUtilityClass } from './iconClasses';
 
@@ -34,7 +35,7 @@ const IconRoot = styled('span', {
       styles[`fontSize${capitalize(ownerState.fontSize)}`],
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   userSelect: 'none',
   width: '1em',
   height: '1em',
@@ -110,7 +111,7 @@ const IconRoot = styled('span', {
         },
       })),
   ],
-}));
+})));
 
 const Icon = React.forwardRef(function Icon(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiIcon' });

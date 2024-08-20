@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getToolbarUtilityClass } from './toolbarClasses';
 
@@ -25,7 +26,7 @@ const ToolbarRoot = styled('div', {
 
     return [styles.root, !ownerState.disableGutters && styles.gutters, styles[ownerState.variant]];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
@@ -56,7 +57,7 @@ const ToolbarRoot = styled('div', {
       style: theme.mixins.toolbar,
     },
   ],
-}));
+})));
 
 const Toolbar = React.forwardRef(function Toolbar(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiToolbar' });

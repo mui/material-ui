@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import Paper from '../Paper';
@@ -35,7 +36,7 @@ const AppBarRoot = styled(Paper, {
       styles[`color${capitalize(ownerState.color)}`],
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   width: '100%',
@@ -159,7 +160,7 @@ const AppBarRoot = styled(Paper, {
       },
     },
   ],
-}));
+})));
 
 const AppBar = React.forwardRef(function AppBar(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiAppBar' });

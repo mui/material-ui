@@ -7,6 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import useTimeout from '@mui/utils/useTimeout';
 import clamp from '@mui/utils/clamp';
 import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Zoom from '../Zoom';
 import Fab from '../Fab';
@@ -50,7 +51,7 @@ const SpeedDialRoot = styled('div', {
 
     return [styles.root, styles[`direction${capitalize(ownerState.direction)}`]];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   zIndex: (theme.vars || theme).zIndex.speedDial,
   display: 'flex',
   alignItems: 'center',
@@ -109,15 +110,15 @@ const SpeedDialRoot = styled('div', {
       },
     },
   ],
-}));
+})));
 
 const SpeedDialFab = styled(Fab, {
   name: 'MuiSpeedDial',
   slot: 'Fab',
   overridesResolver: (props, styles) => styles.fab,
-})(() => ({
+})({
   pointerEvents: 'auto',
-}));
+});
 
 const SpeedDialActions = styled('div', {
   name: 'MuiSpeedDial',

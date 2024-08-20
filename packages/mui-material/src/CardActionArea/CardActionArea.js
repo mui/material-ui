@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import cardActionAreaClasses, { getCardActionAreaUtilityClass } from './cardActionAreaClasses';
 import ButtonBase from '../ButtonBase';
@@ -23,7 +24,7 @@ const CardActionAreaRoot = styled(ButtonBase, {
   name: 'MuiCardActionArea',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   display: 'block',
   textAlign: 'inherit',
   borderRadius: 'inherit', // for Safari to work https://github.com/mui/material-ui/issues/36285.
@@ -37,13 +38,13 @@ const CardActionAreaRoot = styled(ButtonBase, {
   [`&.${cardActionAreaClasses.focusVisible} .${cardActionAreaClasses.focusHighlight}`]: {
     opacity: (theme.vars || theme).palette.action.focusOpacity,
   },
-}));
+})));
 
 const CardActionAreaFocusHighlight = styled('span', {
   name: 'MuiCardActionArea',
   slot: 'FocusHighlight',
   overridesResolver: (props, styles) => styles.focusHighlight,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   overflow: 'hidden',
   pointerEvents: 'none',
   position: 'absolute',
@@ -57,7 +58,7 @@ const CardActionAreaFocusHighlight = styled('span', {
   transition: theme.transitions.create('opacity', {
     duration: theme.transitions.duration.short,
   }),
-}));
+})));
 
 const CardActionArea = React.forwardRef(function CardActionArea(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiCardActionArea' });

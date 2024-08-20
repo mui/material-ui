@@ -9,6 +9,7 @@ import { alpha } from '@mui/system/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import toggleButtonClasses, { getToggleButtonUtilityClass } from './toggleButtonClasses';
 import ToggleButtonGroupContext from '../ToggleButtonGroup/ToggleButtonGroupContext';
@@ -40,7 +41,7 @@ const ToggleButtonRoot = styled(ButtonBase, {
 
     return [styles.root, styles[`size${capitalize(ownerState.size)}`]];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   ...theme.typography.button,
   borderRadius: (theme.vars || theme).shape.borderRadius,
   padding: 11,
@@ -134,7 +135,7 @@ const ToggleButtonRoot = styled(ButtonBase, {
       },
     },
   ],
-}));
+})));
 
 const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
   // props priority: `inProps` > `contextProps` > `themeDefaultProps`

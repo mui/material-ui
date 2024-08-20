@@ -13,6 +13,7 @@ import useRadioGroup from '../RadioGroup/useRadioGroup';
 import radioClasses, { getRadioUtilityClass } from './radioClasses';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 
 import { useDefaultProps } from '../DefaultPropsProvider';
 
@@ -42,7 +43,7 @@ const RadioRoot = styled(SwitchBase, {
       styles[`color${capitalize(ownerState.color)}`],
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   color: (theme.vars || theme).palette.text.secondary,
   [`&.${radioClasses.disabled}`]: {
     color: (theme.vars || theme).palette.action.disabled,
@@ -93,7 +94,7 @@ const RadioRoot = styled(SwitchBase, {
       },
     },
   ],
-}));
+})));
 
 function areEqualValues(a, b) {
   if (typeof b === 'object' && b !== null) {

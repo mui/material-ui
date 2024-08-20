@@ -9,6 +9,7 @@ import FormLabel, { formLabelClasses } from '../FormLabel';
 import capitalize from '../utils/capitalize';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getInputLabelUtilityClasses } from './inputLabelClasses';
 
@@ -51,7 +52,7 @@ const InputLabelRoot = styled(FormLabel, {
       styles[ownerState.variant],
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   display: 'block',
   transformOrigin: 'top left',
   whiteSpace: 'nowrap',
@@ -168,7 +169,7 @@ const InputLabelRoot = styled(FormLabel, {
       },
     },
   ],
-}));
+})));
 
 const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
   const props = useDefaultProps({ name: 'MuiInputLabel', props: inProps });

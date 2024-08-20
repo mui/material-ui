@@ -6,6 +6,7 @@ import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import { useFormControl } from '../FormControl';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Typography from '../Typography';
 import capitalize from '../utils/capitalize';
@@ -44,7 +45,7 @@ export const FormControlLabelRoot = styled('label', {
       styles[`labelPlacement${capitalize(ownerState.labelPlacement)}`],
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   display: 'inline-flex',
   alignItems: 'center',
   cursor: 'pointer',
@@ -89,17 +90,17 @@ export const FormControlLabelRoot = styled('label', {
       },
     },
   ],
-}));
+})));
 
 const AsteriskComponent = styled('span', {
   name: 'MuiFormControlLabel',
   slot: 'Asterisk',
   overridesResolver: (props, styles) => styles.asterisk,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   [`&.${formControlLabelClasses.error}`]: {
     color: (theme.vars || theme).palette.error.main,
   },
-}));
+})));
 
 /**
  * Drop-in replacement of the `Radio`, `Switch` and `Checkbox` component.

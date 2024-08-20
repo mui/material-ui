@@ -10,6 +10,7 @@ import useSlotProps from '@mui/utils/useSlotProps';
 import { useSlider, valueToPercent } from './useSlider';
 import isHostComponent from '../utils/isHostComponent';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
@@ -37,7 +38,7 @@ export const SliderRoot = styled('span', {
       ownerState.track === false && styles.trackFalse,
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   borderRadius: 12,
   boxSizing: 'content-box',
   display: 'inline-block',
@@ -118,7 +119,7 @@ export const SliderRoot = styled('span', {
       },
     },
   ],
-}));
+})));
 
 export const SliderRail = styled('span', {
   name: 'MuiSlider',
@@ -162,7 +163,7 @@ export const SliderTrack = styled('span', {
   name: 'MuiSlider',
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
-})(({ theme }) => {
+})(memoTheme(({ theme }) => {
   return {
     display: 'block',
     position: 'absolute',
@@ -225,7 +226,7 @@ export const SliderTrack = styled('span', {
         })),
     ],
   };
-});
+}));
 
 export const SliderThumb = styled('span', {
   name: 'MuiSlider',
@@ -238,7 +239,7 @@ export const SliderThumb = styled('span', {
       ownerState.size !== 'medium' && styles[`thumbSize${capitalize(ownerState.size)}`],
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   position: 'absolute',
   width: 20,
   height: 20,
@@ -330,13 +331,13 @@ export const SliderThumb = styled('span', {
         },
       })),
   ],
-}));
+})));
 
 export const SliderValueLabel = styled(BaseSliderValueLabel, {
   name: 'MuiSlider',
   slot: 'ValueLabel',
   overridesResolver: (props, styles) => styles.valueLabel,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   zIndex: 1,
   whiteSpace: 'nowrap',
   ...theme.typography.body2,
@@ -410,7 +411,7 @@ export const SliderValueLabel = styled(BaseSliderValueLabel, {
       },
     },
   ],
-}));
+})));
 
 export const SliderMark = styled('span', {
   name: 'MuiSlider',
@@ -421,7 +422,7 @@ export const SliderMark = styled('span', {
 
     return [styles.mark, markActive && styles.markActive];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   position: 'absolute',
   width: 2,
   height: 2,
@@ -450,14 +451,14 @@ export const SliderMark = styled('span', {
       },
     },
   ],
-}));
+})));
 
 export const SliderMarkLabel = styled('span', {
   name: 'MuiSlider',
   slot: 'MarkLabel',
   shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'markLabelActive',
   overridesResolver: (props, styles) => styles.markLabel,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   ...theme.typography.body2,
   color: (theme.vars || theme).palette.text.secondary,
   position: 'absolute',
@@ -490,7 +491,7 @@ export const SliderMarkLabel = styled('span', {
       },
     },
   ],
-}));
+})));
 
 const useUtilityClasses = (ownerState) => {
   const { disabled, dragging, marked, orientation, track, classes, color, size } = ownerState;

@@ -12,6 +12,7 @@ import { capitalize, useForkRef, useControlled, unstable_useId as useId } from '
 import Star from '../internal/svg-icons/Star';
 import StarBorder from '../internal/svg-icons/StarBorder';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import ratingClasses, { getRatingUtilityClass } from './ratingClasses';
@@ -69,7 +70,7 @@ const RatingRoot = styled('span', {
       ownerState.readOnly && styles.readOnly,
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   display: 'inline-flex',
   // Required to position the pristine input absolutely
   position: 'relative',
@@ -112,7 +113,7 @@ const RatingRoot = styled('span', {
       },
     },
   ],
-}));
+})));
 
 const RatingLabel = styled('label', {
   name: 'MuiRating',
@@ -152,7 +153,7 @@ const RatingIcon = styled('span', {
       ownerState.iconActive && styles.iconActive,
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   // Fit wrapper to actual icon size.
   display: 'flex',
   transition: theme.transitions.create('transform', {
@@ -175,7 +176,7 @@ const RatingIcon = styled('span', {
       },
     },
   ],
-}));
+})));
 
 const RatingDecimal = styled('span', {
   name: 'MuiRating',

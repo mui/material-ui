@@ -7,6 +7,7 @@ import refType from '@mui/utils/refType';
 import InputBase from '../InputBase';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 import {
@@ -44,7 +45,7 @@ const InputRoot = styled(InputBaseRoot, {
       !ownerState.disableUnderline && styles.underline,
     ];
   },
-})(({ theme }) => {
+})(memoTheme(({ theme }) => {
   const light = theme.palette.mode === 'light';
   let bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
   if (theme.vars) {
@@ -123,7 +124,7 @@ const InputRoot = styled(InputBaseRoot, {
         })),
     ],
   };
-});
+}));
 
 const InputInput = styled(InputBaseInput, {
   name: 'MuiInput',

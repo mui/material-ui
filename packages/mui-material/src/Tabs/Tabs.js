@@ -8,6 +8,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { useRtl } from '@mui/system/RtlProvider';
 import useSlotProps from '@mui/utils/useSlotProps';
 import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import debounce from '../utils/debounce';
 import animate from '../internal/animate';
@@ -112,7 +113,7 @@ const TabsRoot = styled('div', {
       ownerState.vertical && styles.vertical,
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   overflow: 'hidden',
   minHeight: 48,
   // Add iOS momentum scrolling for iOS < 13.0
@@ -136,7 +137,7 @@ const TabsRoot = styled('div', {
       },
     },
   ],
-}));
+})));
 
 const TabsScroller = styled('div', {
   name: 'MuiTabs',
@@ -224,7 +225,7 @@ const TabsIndicator = styled('span', {
   name: 'MuiTabs',
   slot: 'Indicator',
   overridesResolver: (props, styles) => styles.indicator,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   position: 'absolute',
   height: 2,
   bottom: 0,
@@ -256,7 +257,7 @@ const TabsIndicator = styled('span', {
       },
     },
   ],
-}));
+})));
 
 const TabsScrollbarSize = styled(ScrollbarSize)({
   overflowX: 'auto',

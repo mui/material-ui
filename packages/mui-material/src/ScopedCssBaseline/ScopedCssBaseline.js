@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { html, body } from '../CssBaseline/CssBaseline';
 import { getScopedCssBaselineUtilityClass } from './scopedCssBaselineClasses';
@@ -22,7 +23,7 @@ const ScopedCssBaselineRoot = styled('div', {
   name: 'MuiScopedCssBaseline',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme }) => {
+})(memoTheme(({ theme }) => {
   const colorSchemeStyles = {};
   if (theme.colorSchemes) {
     Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
@@ -54,7 +55,7 @@ const ScopedCssBaselineRoot = styled('div', {
       },
     ],
   };
-});
+}));
 
 const ScopedCssBaseline = React.forwardRef(function ScopedCssBaseline(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiScopedCssBaseline' });

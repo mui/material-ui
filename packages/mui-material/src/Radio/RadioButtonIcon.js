@@ -5,6 +5,7 @@ import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 
 const RadioButtonIconRoot = styled('span', { shouldForwardProp: rootShouldForwardProp })({
   position: 'relative',
@@ -16,7 +17,7 @@ const RadioButtonIconBackground = styled(RadioButtonUncheckedIcon)({
   transform: 'scale(1)',
 });
 
-const RadioButtonIconDot = styled(RadioButtonCheckedIcon)(({ theme }) => ({
+const RadioButtonIconDot = styled(RadioButtonCheckedIcon)(memoTheme(({ theme }) => ({
   left: 0,
   position: 'absolute',
   transform: 'scale(0)',
@@ -36,7 +37,7 @@ const RadioButtonIconDot = styled(RadioButtonCheckedIcon)(({ theme }) => ({
       },
     },
   ],
-}));
+})));
 
 /**
  * @ignore - internal component.

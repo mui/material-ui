@@ -6,6 +6,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import unsupportedProp from '../utils/unsupportedProp';
 import tabClasses, { getTabUtilityClass } from './tabClasses';
@@ -49,7 +50,7 @@ const TabRoot = styled(ButtonBase, {
       },
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   ...theme.typography.button,
   maxWidth: 360,
   minWidth: 90,
@@ -182,7 +183,7 @@ const TabRoot = styled(ButtonBase, {
       },
     },
   ],
-}));
+})));
 
 const Tab = React.forwardRef(function Tab(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiTab' });

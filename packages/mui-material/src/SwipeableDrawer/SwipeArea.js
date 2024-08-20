@@ -3,11 +3,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import capitalize from '../utils/capitalize';
 import { isHorizontal } from '../Drawer/Drawer';
 
-const SwipeAreaRoot = styled('div', { shouldForwardProp: rootShouldForwardProp })(({ theme }) => ({
+const SwipeAreaRoot = styled('div', { shouldForwardProp: rootShouldForwardProp })(memoTheme(({ theme }) => ({
   position: 'fixed',
   top: 0,
   left: 0,
@@ -51,7 +52,7 @@ const SwipeAreaRoot = styled('div', { shouldForwardProp: rootShouldForwardProp }
       },
     },
   ],
-}));
+})));
 
 /**
  * @ignore - internal component.

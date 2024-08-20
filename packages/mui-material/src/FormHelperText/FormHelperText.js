@@ -6,6 +6,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import formHelperTextClasses, { getFormHelperTextUtilityClasses } from './formHelperTextClasses';
@@ -41,7 +42,7 @@ const FormHelperTextRoot = styled('p', {
       ownerState.filled && styles.filled,
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   color: (theme.vars || theme).palette.text.secondary,
   ...theme.typography.caption,
   textAlign: 'left',
@@ -72,7 +73,7 @@ const FormHelperTextRoot = styled('p', {
       },
     },
   ],
-}));
+})));
 
 const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiFormHelperText' });

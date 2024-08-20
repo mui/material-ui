@@ -19,6 +19,7 @@ import filledInputClasses from '../FilledInput/filledInputClasses';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import capitalize from '../utils/capitalize';
@@ -278,7 +279,7 @@ const AutocompletePopper = styled(Popper, {
       ownerState.disablePortal && styles.popperDisablePortal,
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   zIndex: (theme.vars || theme).zIndex.modal,
   variants: [
     {
@@ -288,40 +289,40 @@ const AutocompletePopper = styled(Popper, {
       },
     },
   ],
-}));
+})));
 
 const AutocompletePaper = styled(Paper, {
   name: 'MuiAutocomplete',
   slot: 'Paper',
   overridesResolver: (props, styles) => styles.paper,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   ...theme.typography.body1,
   overflow: 'auto',
-}));
+})));
 
 const AutocompleteLoading = styled('div', {
   name: 'MuiAutocomplete',
   slot: 'Loading',
   overridesResolver: (props, styles) => styles.loading,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   color: (theme.vars || theme).palette.text.secondary,
   padding: '14px 16px',
-}));
+})));
 
 const AutocompleteNoOptions = styled('div', {
   name: 'MuiAutocomplete',
   slot: 'NoOptions',
   overridesResolver: (props, styles) => styles.noOptions,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   color: (theme.vars || theme).palette.text.secondary,
   padding: '14px 16px',
-}));
+})));
 
 const AutocompleteListbox = styled('div', {
   name: 'MuiAutocomplete',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   listStyle: 'none',
   margin: 0,
   padding: '8px 0',
@@ -385,16 +386,16 @@ const AutocompleteListbox = styled('div', {
       },
     },
   },
-}));
+})));
 
 const AutocompleteGroupLabel = styled(ListSubheader, {
   name: 'MuiAutocomplete',
   slot: 'GroupLabel',
   overridesResolver: (props, styles) => styles.groupLabel,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   backgroundColor: (theme.vars || theme).palette.background.paper,
   top: -8,
-}));
+})));
 
 const AutocompleteGroupUl = styled('ul', {
   name: 'MuiAutocomplete',

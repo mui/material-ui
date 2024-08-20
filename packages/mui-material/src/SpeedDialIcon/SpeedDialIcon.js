@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import AddIcon from '../internal/svg-icons/Add';
 import speedDialIconClasses, { getSpeedDialIconUtilityClass } from './speedDialIconClasses';
@@ -38,7 +39,7 @@ const SpeedDialIconRoot = styled('span', {
       styles.root,
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   height: 24,
   [`& .${speedDialIconClasses.icon}`]: {
     transition: theme.transitions.create(['transform', 'opacity'], {
@@ -80,7 +81,7 @@ const SpeedDialIconRoot = styled('span', {
       },
     },
   ],
-}));
+})));
 
 const SpeedDialIcon = React.forwardRef(function SpeedDialIcon(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiSpeedDialIcon' });

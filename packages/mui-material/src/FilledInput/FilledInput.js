@@ -7,6 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import InputBase from '../InputBase';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import filledInputClasses, { getFilledInputUtilityClass } from './filledInputClasses';
 import {
@@ -53,7 +54,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
       !ownerState.disableUnderline && styles.underline,
     ];
   },
-})(({ theme }) => {
+})(memoTheme(({ theme }) => {
   const light = theme.palette.mode === 'light';
   const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
   const backgroundColor = light ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.09)';
@@ -187,13 +188,13 @@ const FilledInputRoot = styled(InputBaseRoot, {
       },
     ],
   };
-});
+}));
 
 const FilledInputInput = styled(InputBaseInput, {
   name: 'MuiFilledInput',
   slot: 'Input',
   overridesResolver: inputBaseInputOverridesResolver,
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   paddingTop: 25,
   paddingRight: 12,
   paddingBottom: 8,
@@ -266,7 +267,7 @@ const FilledInputInput = styled(InputBaseInput, {
       },
     },
   ],
-}));
+})));
 
 const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiFilledInput' });

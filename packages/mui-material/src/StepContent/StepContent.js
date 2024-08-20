@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Collapse from '../Collapse';
 import StepperContext from '../Stepper/StepperContext';
@@ -26,7 +27,7 @@ const StepContentRoot = styled('div', {
 
     return [styles.root, ownerState.last && styles.last];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   marginLeft: 12, // half icon
   paddingLeft: 8 + 12, // margin + half icon
   paddingRight: 8,
@@ -43,7 +44,7 @@ const StepContentRoot = styled('div', {
       },
     },
   ],
-}));
+})));
 
 const StepContentTransition = styled(Collapse, {
   name: 'MuiStepContent',

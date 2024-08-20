@@ -6,6 +6,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { darken, lighten } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
 import { keyframes, css, styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import { getLinearProgressUtilityClass } from './linearProgressClasses';
@@ -130,7 +131,7 @@ const LinearProgressRoot = styled('span', {
       styles[ownerState.variant],
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   position: 'relative',
   overflow: 'hidden',
   display: 'block',
@@ -173,7 +174,7 @@ const LinearProgressRoot = styled('span', {
       style: { transform: 'rotate(180deg)' },
     },
   ],
-}));
+})));
 
 const LinearProgressDashed = styled('span', {
   name: 'MuiLinearProgress',
@@ -184,7 +185,7 @@ const LinearProgressDashed = styled('span', {
     return [styles.dashed, styles[`dashedColor${capitalize(ownerState.color)}`]];
   },
 })(
-  ({ theme }) => ({
+  memoTheme(({ theme }) => ({
     position: 'absolute',
     marginTop: 0,
     height: '100%',
@@ -211,7 +212,7 @@ const LinearProgressDashed = styled('span', {
           };
         }),
     ],
-  }),
+  })),
   bufferAnimation || {
     // At runtime for Pigment CSS, `bufferAnimation` will be null and the generated keyframe will be used.
     animation: `${bufferKeyframe} 3s infinite linear`,
@@ -233,7 +234,7 @@ const LinearProgressBar1 = styled('span', {
       ownerState.variant === 'buffer' && styles.bar1Buffer,
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   width: '100%',
   position: 'absolute',
   left: 0,
@@ -290,7 +291,7 @@ const LinearProgressBar1 = styled('span', {
       },
     },
   ],
-}));
+})));
 
 const LinearProgressBar2 = styled('span', {
   name: 'MuiLinearProgress',
@@ -306,7 +307,7 @@ const LinearProgressBar2 = styled('span', {
       ownerState.variant === 'buffer' && styles.bar2Buffer,
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   width: '100%',
   position: 'absolute',
   left: 0,
@@ -361,7 +362,7 @@ const LinearProgressBar2 = styled('span', {
       },
     },
   ],
-}));
+})));
 
 /**
  * ## ARIA

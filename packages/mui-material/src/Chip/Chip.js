@@ -10,6 +10,7 @@ import unsupportedProp from '../utils/unsupportedProp';
 import capitalize from '../utils/capitalize';
 import ButtonBase from '../ButtonBase';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 
@@ -75,7 +76,7 @@ const ChipRoot = styled('div', {
       styles[`${variant}${capitalize(color)}`],
     ];
   },
-})(({ theme }) => {
+})(memoTheme(({ theme }) => {
   const textColor =
     theme.palette.mode === 'light' ? theme.palette.grey[700] : theme.palette.grey[300];
   return {
@@ -327,7 +328,7 @@ const ChipRoot = styled('div', {
         })),
     ],
   };
-});
+}));
 
 const ChipLabel = styled('span', {
   name: 'MuiChip',

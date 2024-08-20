@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import TableContext from './TableContext';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getTableUtilityClass } from './tableClasses';
 
@@ -26,7 +27,7 @@ const TableRoot = styled('table', {
 
     return [styles.root, ownerState.stickyHeader && styles.stickyHeader];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   display: 'table',
   width: '100%',
   borderCollapse: 'collapse',
@@ -46,7 +47,7 @@ const TableRoot = styled('table', {
       },
     },
   ],
-}));
+})));
 
 const defaultComponent = 'table';
 

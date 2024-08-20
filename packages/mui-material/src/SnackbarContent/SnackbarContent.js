@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { emphasize } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Paper from '../Paper';
 import { getSnackbarContentUtilityClass } from './snackbarContentClasses';
@@ -25,7 +26,7 @@ const SnackbarContentRoot = styled(Paper, {
   name: 'MuiSnackbarContent',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme }) => {
+})(memoTheme(({ theme }) => {
   const emphasis = theme.palette.mode === 'light' ? 0.8 : 0.98;
   const backgroundColor = emphasize(theme.palette.background.default, emphasis);
 
@@ -46,7 +47,7 @@ const SnackbarContentRoot = styled(Paper, {
       minWidth: 288,
     },
   };
-});
+}));
 
 const SnackbarContentMessage = styled('div', {
   name: 'MuiSnackbarContent',

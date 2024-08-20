@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getSvgIconUtilityClass } from './svgIconClasses';
 
@@ -34,7 +35,7 @@ const SvgIconRoot = styled('svg', {
       styles[`fontSize${capitalize(ownerState.fontSize)}`],
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   userSelect: 'none',
   width: '1em',
   height: '1em',
@@ -88,7 +89,7 @@ const SvgIconRoot = styled('svg', {
       style: { color: undefined },
     },
   ],
-}));
+})));
 
 const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiSvgIcon' });

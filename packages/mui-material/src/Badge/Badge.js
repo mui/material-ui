@@ -7,6 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import useSlotProps from '@mui/utils/useSlotProps';
 import useBadge from './useBadge';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
@@ -65,7 +66,7 @@ const BadgeBadge = styled('span', {
       ownerState.invisible && styles.invisible,
     ];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',
@@ -236,7 +237,7 @@ const BadgeBadge = styled('span', {
       },
     },
   ],
-}));
+})));
 
 const Badge = React.forwardRef(function Badge(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiBadge' });

@@ -309,6 +309,7 @@ const GridRoot = styled('div', {
     ];
   },
 })(
+  // FIXME(romgrk): Can't use memoTheme here
   ({ ownerState }) => ({
     boxSizing: 'border-box',
     ...(ownerState.container && {

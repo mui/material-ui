@@ -6,6 +6,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import tableRowClasses, { getTableRowUtilityClass } from './tableRowClasses';
 
@@ -27,7 +28,7 @@ const TableRowRoot = styled('tr', {
 
     return [styles.root, ownerState.head && styles.head, ownerState.footer && styles.footer];
   },
-})(({ theme }) => ({
+})(memoTheme(({ theme }) => ({
   color: 'inherit',
   display: 'table-row',
   verticalAlign: 'middle',
@@ -49,7 +50,7 @@ const TableRowRoot = styled('tr', {
           ),
     },
   },
-}));
+})));
 
 const defaultComponent = 'tr';
 /**
