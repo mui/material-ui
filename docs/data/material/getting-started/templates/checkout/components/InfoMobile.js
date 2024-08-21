@@ -9,7 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 
-import Info from './Info';
+import Info from '../Info';
 
 function InfoMobile({ totalPrice }) {
   const [open, setOpen] = React.useState(false);
