@@ -839,6 +839,10 @@ workflows:
           <<: *default-context
           requires:
             - checkout
+      - test_types_next:
+          <<: *default-context
+          requires:
+            - checkout
   e2e-website:
     when:
       equal: [e2e-website, << pipeline.parameters.workflow >>]
