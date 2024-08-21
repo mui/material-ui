@@ -360,6 +360,23 @@ export default function ApiPage(props: ApiPageProps) {
           layoutStorageKey={layoutStorageKey.classes}
           displayClassKeys
         />
+
+        {pageContent.filename ? (
+          <div
+            className="MuiCallout-root MuiCallout-info"
+            dangerouslySetInnerHTML={{
+              __html: t('api-docs.seeSourceCode').replace(
+                '{{href}}',
+                `${process.env.SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}/${pageContent.filename}`,
+              ),
+            }}
+            style={{
+              alignItems: 'baseline',
+              gap: '4px',
+              marginTop: 0,
+            }}
+          />
+        ) : null}
       </MarkdownElement>
       <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">
         <symbol id="anchor-link-icon" viewBox="0 0 12 6">
