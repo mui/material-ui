@@ -495,8 +495,28 @@ describe('extendTheme', () => {
 
     it('can be customized as a function', () => {
       const theme = extendTheme({ spacing: (factor) => `${0.25 * factor}rem` });
-      expect(theme.vars.spacing).to.deep.equal('var(--mui-spacing, 0.25rem)');
-      expect(theme.spacing(2)).to.equal('calc(2 * var(--mui-spacing, 0.25rem))');
+      expect('spacing' in theme.vars).to.equal(false);
+      expect(theme.spacing(2)).to.equal('0.5rem');
+    });
+
+    it('can be customized as a function2', () => {
+      const theme = extendTheme({
+        spacing: (val) => {
+          const base = 8;
+
+          if (val === 'xs') {
+            return `100px`;
+          }
+
+          if (typeof val === 'string') {
+            return val;
+          }
+
+          return `${Number(val) * base}px`;
+        },
+      });
+      expect('spacing' in theme.vars).to.equal(false);
+      expect(theme.spacing('xs')).to.equal('100px');
     });
   });
 

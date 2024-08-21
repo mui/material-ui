@@ -68,7 +68,7 @@ function getSpacingVal(spacingInput) {
     return spacingInput;
   }
   if (typeof spacingInput === 'function') {
-    return getSpacingVal(spacingInput(1));
+    return spacingInput;
   }
   if (Array.isArray(spacingInput)) {
     return spacingInput;
