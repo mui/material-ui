@@ -59,7 +59,6 @@ export default function SignInSide() {
             backgroundImage:
               'radial-gradient(ellipse at 70% 51%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))',
             backgroundSize: 'cover',
-
             ...theme.applyStyles('dark', {
               backgroundImage:
                 'radial-gradient(at 70% 51%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
