@@ -343,7 +343,7 @@ Material UI v6 introduces opt-in integration with [Pigment CSS](https://github
 Pigment CSS integration is still in the experimental stage.
 We recommend testing it out with our examples ([Next.js](https://github.com/mui/material-ui/tree/master/examples/material-ui-pigment-css-nextjs-ts) or [Vite](https://github.com/mui/material-ui/tree/master/examples/material-ui-pigment-css-vite)), and we'd love to get your feedback to help us improve it.
 
-When you're ready to integrate Pigment CSS into your project, you can find complete details in [the guide to migrating to Pigment CSS](/material-ui/migration/migrating-to-pigment-css/).
+When you're ready to integrate Pigment CSS into your project, you can find complete details in [the guide to migrating to Pigment CSS](/material-ui/migration/migrating-to-pigment-css/).
 :::
 
 ### React Server Components
