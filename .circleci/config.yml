@@ -353,13 +353,13 @@ jobs:
     resource_class: 'medium+'
     steps:
       - checkout
+      - install_js
       - run:
           name: Resolve typescript version
           command: |
-            pnpm add typescript@next -d -w
+            pnpm update -r typescript@next
             # log a patch for maintainers who want to check out this change
             git --no-pager diff HEAD
-      - install_js
       - run:
           name: Tests TypeScript definitions
           command: |
