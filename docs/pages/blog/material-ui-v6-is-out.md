@@ -17,7 +17,7 @@ tags: ['Material UI', 'Product']
 manualCard: true
 ---
 
-Material UI v6 is now stable! We're excited to share all the updates.
+Material UI v6 is now stable! It comes with new features, improvements, and experimental static CSS extraction.
 
 ## Table of contents
 
@@ -89,7 +89,7 @@ const CustomComponent = styled('div')(({ theme }) => ({
 
 ### Color schemes
 
-Prior to v6, if you wanted to support light and dark modes, you would have to create two separate themes and handle the logic to switch between modes. 
+Prior to v6, if you wanted to support light and dark modes, you would have to create two separate themes and handle the logic to switch between modes.
 This can be complex and error-prone.
 
 Material UI v6 introduces the new `colorSchemes` node to simplify this process: With just one line of code, your application supports both light and dark modes instantly.
@@ -242,7 +242,7 @@ It also works with the `sx` prop:
 
 ### New method of applying styles
 
-The new API `theme.applyStyles` has been added for creating specific mode styles. 
+The new API `theme.applyStyles` has been added for creating specific mode styles.
 It's designed to replace the `theme.palette.mode === 'dark'` condition to fix the SSR flickering issue when combined with the CSS theme variables feature.
 
 <codeblock>
@@ -281,7 +281,7 @@ const StyledInput = styled(InputBase)(({ theme }) => ({
 </codeblock>
 
 :::info
-We provide a codemod to help you migrate from `theme.palette.mode === 'dark'` to `theme.applyStyles()`. 
+We provide a codemod to help you migrate from `theme.palette.mode === 'dark'` to `theme.applyStyles()`.
 See the [v6 migration guide](/material-ui/migration/upgrade-to-v6/) for complete details.
 :::
 
@@ -291,7 +291,7 @@ See the [v6 migration guide](/material-ui/migration/upgrade-to-v6/) for complete
 
 [Several optimizations](https://github.com/mui/material-ui/pulls?q=is%3Apr+author%3Aromgrk+is%3Aclosed+perf+sort%3Aupdated-desc) have been made to improve the runtime performance of Material UI v6.
 
-This is just the beginning of our performance improvements. 
+This is just the beginning of our performance improvements.
 There are more optimizations in our pipeline, so stay tuned for further v6.x updates and the benchmark results.
 
 ### Revamped free templates
@@ -334,13 +334,13 @@ For alternative installation methods, refer to the [CDN documentation](/material
 
 ## Experimental CSS extraction via Pigment CSS
 
-Material UI v5 uses Emotion as its default styling solution. 
+Material UI v5 uses Emotion as its default styling solution.
 Because it's a runtime CSS-in-JS library, Emotion forces us to make compromises to performance and bundle size.
 
 Material UI v6 introduces opt-in integration with [Pigment CSS](https://github.com/mui/pigment-css), our new zero-runtime styling library that eliminates the runtime overhead while preserving the API design patterns you already know and love.
 
 :::warning
-Pigment CSS integration is still in the experimental stage. 
+Pigment CSS integration is still in the experimental stage.
 We recommend testing it out with our examples ([Next.js](https://github.com/mui/material-ui/tree/master/examples/material-ui-pigment-css-nextjs-ts) or [Vite](https://github.com/mui/material-ui/tree/master/examples/material-ui-pigment-css-vite)), and we'd love to get your feedback to help us improve it.
 
 When you're ready to integrate Pigment CSS into your project, you can find complete details in [the guide to migrating to Pigment CSS](/material-ui/migration/migrating-to-pigment-css/).
@@ -370,7 +370,7 @@ This means you no longer have to clutter the DOM with wrappers like Box or Stack
 
 ## React 19 support
 
-Material UI v6 is ready for React 19. 
+Material UI v6 is ready for React 19.
 We've been testing Material UI with the latest [React 19 RC](https://react.dev/blog/2024/04/25/react-19) versions to ensure compatibility once the stable release of React 19 is out.
 
 We're also working on backporting React 19 support to Material UI v5—stay tuned.
@@ -383,7 +383,7 @@ Stay tuned for more updates on Toolpad Core in the near future.
 
 ## Get started with Material UI v6
 
-Ready to upgrade to Material UI v6? 
+Ready to upgrade to Material UI v6?
 Head to [the v6 migration guide](/material-ui/migration/upgrade-to-v6/) next.
 
 Visit the links below for further details on some of the key features covered here:
