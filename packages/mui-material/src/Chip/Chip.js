@@ -10,6 +10,7 @@ import unsupportedProp from '../utils/unsupportedProp';
 import capitalize from '../utils/capitalize';
 import ButtonBase from '../ButtonBase';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 
@@ -75,259 +76,261 @@ const ChipRoot = styled('div', {
       styles[`${variant}${capitalize(color)}`],
     ];
   },
-})(({ theme }) => {
-  const textColor =
-    theme.palette.mode === 'light' ? theme.palette.grey[700] : theme.palette.grey[300];
-  return {
-    maxWidth: '100%',
-    fontFamily: theme.typography.fontFamily,
-    fontSize: theme.typography.pxToRem(13),
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 32,
-    color: (theme.vars || theme).palette.text.primary,
-    backgroundColor: (theme.vars || theme).palette.action.selected,
-    borderRadius: 32 / 2,
-    whiteSpace: 'nowrap',
-    transition: theme.transitions.create(['background-color', 'box-shadow']),
-    // reset cursor explicitly in case ButtonBase is used
-    cursor: 'unset',
-    // We disable the focus ring for mouse, touch and keyboard users.
-    outline: 0,
-    textDecoration: 'none',
-    border: 0, // Remove `button` border
-    padding: 0, // Remove `button` padding
-    verticalAlign: 'middle',
-    boxSizing: 'border-box',
-    [`&.${chipClasses.disabled}`]: {
-      opacity: (theme.vars || theme).palette.action.disabledOpacity,
-      pointerEvents: 'none',
-    },
-    [`& .${chipClasses.avatar}`]: {
-      marginLeft: 5,
-      marginRight: -6,
-      width: 24,
-      height: 24,
-      color: theme.vars ? theme.vars.palette.Chip.defaultAvatarColor : textColor,
-      fontSize: theme.typography.pxToRem(12),
-    },
-    [`& .${chipClasses.avatarColorPrimary}`]: {
-      color: (theme.vars || theme).palette.primary.contrastText,
-      backgroundColor: (theme.vars || theme).palette.primary.dark,
-    },
-    [`& .${chipClasses.avatarColorSecondary}`]: {
-      color: (theme.vars || theme).palette.secondary.contrastText,
-      backgroundColor: (theme.vars || theme).palette.secondary.dark,
-    },
-    [`& .${chipClasses.avatarSmall}`]: {
-      marginLeft: 4,
-      marginRight: -4,
-      width: 18,
-      height: 18,
-      fontSize: theme.typography.pxToRem(10),
-    },
-    [`& .${chipClasses.icon}`]: {
-      marginLeft: 5,
-      marginRight: -6,
-    },
-    [`& .${chipClasses.deleteIcon}`]: {
-      WebkitTapHighlightColor: 'transparent',
-      color: theme.vars
-        ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.26)`
-        : alpha(theme.palette.text.primary, 0.26),
-      fontSize: 22,
-      cursor: 'pointer',
-      margin: '0 5px 0 -6px',
-      '&:hover': {
-        color: theme.vars
-          ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.4)`
-          : alpha(theme.palette.text.primary, 0.4),
+})(
+  memoTheme(({ theme }) => {
+    const textColor =
+      theme.palette.mode === 'light' ? theme.palette.grey[700] : theme.palette.grey[300];
+    return {
+      maxWidth: '100%',
+      fontFamily: theme.typography.fontFamily,
+      fontSize: theme.typography.pxToRem(13),
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: 32,
+      color: (theme.vars || theme).palette.text.primary,
+      backgroundColor: (theme.vars || theme).palette.action.selected,
+      borderRadius: 32 / 2,
+      whiteSpace: 'nowrap',
+      transition: theme.transitions.create(['background-color', 'box-shadow']),
+      // reset cursor explicitly in case ButtonBase is used
+      cursor: 'unset',
+      // We disable the focus ring for mouse, touch and keyboard users.
+      outline: 0,
+      textDecoration: 'none',
+      border: 0, // Remove `button` border
+      padding: 0, // Remove `button` padding
+      verticalAlign: 'middle',
+      boxSizing: 'border-box',
+      [`&.${chipClasses.disabled}`]: {
+        opacity: (theme.vars || theme).palette.action.disabledOpacity,
+        pointerEvents: 'none',
       },
-    },
-    variants: [
-      {
-        props: { size: 'small' },
-        style: {
-          height: 24,
-          [`& .${chipClasses.icon}`]: {
-            fontSize: 18,
-            marginLeft: 4,
-            marginRight: -4,
-          },
-          [`& .${chipClasses.deleteIcon}`]: {
-            fontSize: 16,
-            marginRight: 4,
-            marginLeft: -4,
-          },
+      [`& .${chipClasses.avatar}`]: {
+        marginLeft: 5,
+        marginRight: -6,
+        width: 24,
+        height: 24,
+        color: theme.vars ? theme.vars.palette.Chip.defaultAvatarColor : textColor,
+        fontSize: theme.typography.pxToRem(12),
+      },
+      [`& .${chipClasses.avatarColorPrimary}`]: {
+        color: (theme.vars || theme).palette.primary.contrastText,
+        backgroundColor: (theme.vars || theme).palette.primary.dark,
+      },
+      [`& .${chipClasses.avatarColorSecondary}`]: {
+        color: (theme.vars || theme).palette.secondary.contrastText,
+        backgroundColor: (theme.vars || theme).palette.secondary.dark,
+      },
+      [`& .${chipClasses.avatarSmall}`]: {
+        marginLeft: 4,
+        marginRight: -4,
+        width: 18,
+        height: 18,
+        fontSize: theme.typography.pxToRem(10),
+      },
+      [`& .${chipClasses.icon}`]: {
+        marginLeft: 5,
+        marginRight: -6,
+      },
+      [`& .${chipClasses.deleteIcon}`]: {
+        WebkitTapHighlightColor: 'transparent',
+        color: theme.vars
+          ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.26)`
+          : alpha(theme.palette.text.primary, 0.26),
+        fontSize: 22,
+        cursor: 'pointer',
+        margin: '0 5px 0 -6px',
+        '&:hover': {
+          color: theme.vars
+            ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.4)`
+            : alpha(theme.palette.text.primary, 0.4),
         },
       },
-      ...Object.entries(theme.palette)
-        .filter(([, value]) => value && value.main && value.contrastText)
-        .map(([color]) => {
-          return {
-            props: { color },
-            style: {
-              backgroundColor: (theme.vars || theme).palette[color].main,
-              color: (theme.vars || theme).palette[color].contrastText,
-              [`& .${chipClasses.deleteIcon}`]: {
-                color: theme.vars
-                  ? `rgba(${theme.vars.palette[color].contrastTextChannel} / 0.7)`
-                  : alpha(theme.palette[color].contrastText, 0.7),
-                '&:hover, &:active': {
-                  color: (theme.vars || theme).palette[color].contrastText,
+      variants: [
+        {
+          props: { size: 'small' },
+          style: {
+            height: 24,
+            [`& .${chipClasses.icon}`]: {
+              fontSize: 18,
+              marginLeft: 4,
+              marginRight: -4,
+            },
+            [`& .${chipClasses.deleteIcon}`]: {
+              fontSize: 16,
+              marginRight: 4,
+              marginLeft: -4,
+            },
+          },
+        },
+        ...Object.entries(theme.palette)
+          .filter(([, value]) => value && value.main && value.contrastText)
+          .map(([color]) => {
+            return {
+              props: { color },
+              style: {
+                backgroundColor: (theme.vars || theme).palette[color].main,
+                color: (theme.vars || theme).palette[color].contrastText,
+                [`& .${chipClasses.deleteIcon}`]: {
+                  color: theme.vars
+                    ? `rgba(${theme.vars.palette[color].contrastTextChannel} / 0.7)`
+                    : alpha(theme.palette[color].contrastText, 0.7),
+                  '&:hover, &:active': {
+                    color: (theme.vars || theme).palette[color].contrastText,
+                  },
                 },
               },
-            },
-          };
-        }),
-      {
-        props: (props) => props.iconColor === props.color,
-        style: {
-          [`& .${chipClasses.icon}`]: {
-            color: theme.vars ? theme.vars.palette.Chip.defaultIconColor : textColor,
-          },
-        },
-      },
-      {
-        props: (props) => props.iconColor === props.color && props.color !== 'default',
-        style: {
-          [`& .${chipClasses.icon}`]: {
-            color: 'inherit',
-          },
-        },
-      },
-      {
-        props: { onDelete: true },
-        style: {
-          [`&.${chipClasses.focusVisible}`]: {
-            backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-              : alpha(
-                  theme.palette.action.selected,
-                  theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-                ),
-          },
-        },
-      },
-      ...Object.entries(theme.palette)
-        .filter(([, value]) => value && value.dark)
-        .map(([color]) => {
-          return {
-            props: { color, onDelete: true },
-            style: {
-              [`&.${chipClasses.focusVisible}`]: {
-                background: (theme.vars || theme).palette[color].dark,
-              },
-            },
-          };
-        }),
-      {
-        props: { clickable: true },
-        style: {
-          userSelect: 'none',
-          WebkitTapHighlightColor: 'transparent',
-          cursor: 'pointer',
-          '&:hover': {
-            backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-              : alpha(
-                  theme.palette.action.selected,
-                  theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-                ),
-          },
-          [`&.${chipClasses.focusVisible}`]: {
-            backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-              : alpha(
-                  theme.palette.action.selected,
-                  theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-                ),
-          },
-          '&:active': {
-            boxShadow: (theme.vars || theme).shadows[1],
-          },
-        },
-      },
-      ...Object.entries(theme.palette)
-        .filter(([, value]) => value && value.dark)
-        .map(([color]) => ({
-          props: { color, clickable: true },
+            };
+          }),
+        {
+          props: (props) => props.iconColor === props.color,
           style: {
-            [`&:hover, &.${chipClasses.focusVisible}`]: {
-              backgroundColor: (theme.vars || theme).palette[color].dark,
+            [`& .${chipClasses.icon}`]: {
+              color: theme.vars ? theme.vars.palette.Chip.defaultIconColor : textColor,
             },
           },
-        })),
-      {
-        props: { variant: 'outlined' },
-        style: {
-          backgroundColor: 'transparent',
-          border: theme.vars
-            ? `1px solid ${theme.vars.palette.Chip.defaultBorder}`
-            : `1px solid ${
-                theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[700]
-              }`,
-          [`&.${chipClasses.clickable}:hover`]: {
-            backgroundColor: (theme.vars || theme).palette.action.hover,
-          },
-          [`&.${chipClasses.focusVisible}`]: {
-            backgroundColor: (theme.vars || theme).palette.action.focus,
-          },
-          [`& .${chipClasses.avatar}`]: {
-            marginLeft: 4,
-          },
-          [`& .${chipClasses.avatarSmall}`]: {
-            marginLeft: 2,
-          },
-          [`& .${chipClasses.icon}`]: {
-            marginLeft: 4,
-          },
-          [`& .${chipClasses.iconSmall}`]: {
-            marginLeft: 2,
-          },
-          [`& .${chipClasses.deleteIcon}`]: {
-            marginRight: 5,
-          },
-          [`& .${chipClasses.deleteIconSmall}`]: {
-            marginRight: 3,
+        },
+        {
+          props: (props) => props.iconColor === props.color && props.color !== 'default',
+          style: {
+            [`& .${chipClasses.icon}`]: {
+              color: 'inherit',
+            },
           },
         },
-      },
-      ...Object.entries(theme.palette)
-        .filter(([, value]) => value && value.main) // no need to check for mainChannel as it's calculated from main
-        .map(([color]) => ({
-          props: { variant: 'outlined', color },
+        {
+          props: { onDelete: true },
           style: {
-            color: (theme.vars || theme).palette[color].main,
-            border: `1px solid ${
-              theme.vars
-                ? `rgba(${theme.vars.palette[color].mainChannel} / 0.7)`
-                : alpha(theme.palette[color].main, 0.7)
-            }`,
-            [`&.${chipClasses.clickable}:hover`]: {
+            [`&.${chipClasses.focusVisible}`]: {
               backgroundColor: theme.vars
-                ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
+                ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+                : alpha(
+                    theme.palette.action.selected,
+                    theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+                  ),
+            },
+          },
+        },
+        ...Object.entries(theme.palette)
+          .filter(([, value]) => value && value.dark)
+          .map(([color]) => {
+            return {
+              props: { color, onDelete: true },
+              style: {
+                [`&.${chipClasses.focusVisible}`]: {
+                  background: (theme.vars || theme).palette[color].dark,
+                },
+              },
+            };
+          }),
+        {
+          props: { clickable: true },
+          style: {
+            userSelect: 'none',
+            WebkitTapHighlightColor: 'transparent',
+            cursor: 'pointer',
+            '&:hover': {
+              backgroundColor: theme.vars
+                ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+                : alpha(
+                    theme.palette.action.selected,
+                    theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+                  ),
             },
             [`&.${chipClasses.focusVisible}`]: {
               backgroundColor: theme.vars
-                ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.focusOpacity})`
-                : alpha(theme.palette[color].main, theme.palette.action.focusOpacity),
+                ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+                : alpha(
+                    theme.palette.action.selected,
+                    theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+                  ),
             },
-            [`& .${chipClasses.deleteIcon}`]: {
-              color: theme.vars
-                ? `rgba(${theme.vars.palette[color].mainChannel} / 0.7)`
-                : alpha(theme.palette[color].main, 0.7),
-              '&:hover, &:active': {
-                color: (theme.vars || theme).palette[color].main,
-              },
+            '&:active': {
+              boxShadow: (theme.vars || theme).shadows[1],
             },
           },
-        })),
-    ],
-  };
-});
+        },
+        ...Object.entries(theme.palette)
+          .filter(([, value]) => value && value.dark)
+          .map(([color]) => ({
+            props: { color, clickable: true },
+            style: {
+              [`&:hover, &.${chipClasses.focusVisible}`]: {
+                backgroundColor: (theme.vars || theme).palette[color].dark,
+              },
+            },
+          })),
+        {
+          props: { variant: 'outlined' },
+          style: {
+            backgroundColor: 'transparent',
+            border: theme.vars
+              ? `1px solid ${theme.vars.palette.Chip.defaultBorder}`
+              : `1px solid ${
+                  theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[700]
+                }`,
+            [`&.${chipClasses.clickable}:hover`]: {
+              backgroundColor: (theme.vars || theme).palette.action.hover,
+            },
+            [`&.${chipClasses.focusVisible}`]: {
+              backgroundColor: (theme.vars || theme).palette.action.focus,
+            },
+            [`& .${chipClasses.avatar}`]: {
+              marginLeft: 4,
+            },
+            [`& .${chipClasses.avatarSmall}`]: {
+              marginLeft: 2,
+            },
+            [`& .${chipClasses.icon}`]: {
+              marginLeft: 4,
+            },
+            [`& .${chipClasses.iconSmall}`]: {
+              marginLeft: 2,
+            },
+            [`& .${chipClasses.deleteIcon}`]: {
+              marginRight: 5,
+            },
+            [`& .${chipClasses.deleteIconSmall}`]: {
+              marginRight: 3,
+            },
+          },
+        },
+        ...Object.entries(theme.palette)
+          .filter(([, value]) => value && value.main) // no need to check for mainChannel as it's calculated from main
+          .map(([color]) => ({
+            props: { variant: 'outlined', color },
+            style: {
+              color: (theme.vars || theme).palette[color].main,
+              border: `1px solid ${
+                theme.vars
+                  ? `rgba(${theme.vars.palette[color].mainChannel} / 0.7)`
+                  : alpha(theme.palette[color].main, 0.7)
+              }`,
+              [`&.${chipClasses.clickable}:hover`]: {
+                backgroundColor: theme.vars
+                  ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
+                  : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
+              },
+              [`&.${chipClasses.focusVisible}`]: {
+                backgroundColor: theme.vars
+                  ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.focusOpacity})`
+                  : alpha(theme.palette[color].main, theme.palette.action.focusOpacity),
+              },
+              [`& .${chipClasses.deleteIcon}`]: {
+                color: theme.vars
+                  ? `rgba(${theme.vars.palette[color].mainChannel} / 0.7)`
+                  : alpha(theme.palette[color].main, 0.7),
+                '&:hover, &:active': {
+                  color: (theme.vars || theme).palette[color].main,
+                },
+              },
+            },
+          })),
+      ],
+    };
+  }),
+);
 
 const ChipLabel = styled('span', {
   name: 'MuiChip',
