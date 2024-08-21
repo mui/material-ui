@@ -1,6 +1,6 @@
 ---
 title: Material UI v6 is out now 🎉
-description: Material UI v6 ships with support for CSS variables, container queries, and advanced color schemes, as well as improved runtime performance and a reduced bundle size.
+description: Material UI v6 ships with support for CSS variables, container queries, and advanced color schemes, as well as improved runtime performance and a reduced bundle size.
 date: 2024-08-09T00:00:00.000Z
 authors:
   [
@@ -92,7 +92,7 @@ const CustomComponent = styled('div')(({ theme }) => ({
 Prior to v6, if you wanted to support light and dark modes, you would have to create two separate themes and handle the logic to switch between modes.
 This can be complex and error-prone.
 
-Material UI v6 introduces the new `colorSchemes` node to simplify this process: With just one line of code, your application supports both light and dark modes instantly.
+Material UI v6 introduces the new `colorSchemes` node to simplify this process: With just one line of code, your application supports both light and dark modes instantly.
 
 ```js
 const theme = createTheme({ colorSchemes: { dark: true } });
@@ -103,7 +103,7 @@ function App() {
 }
 ```
 
-The `colorSchemes` node makes it possible for Material UI to support the following features out of the box:
+The `colorSchemes` node makes it possible for Material UI to support the following features out of the box:
 
 - System preference detection
 - Instant transitions between modes with the `disableTransitionOnChange` prop
@@ -169,7 +169,7 @@ function App() {
 
 ### Container queries
 
-Material UI v6 introduces a [container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries) utility based on the existing `theme.breakpoints` API.
+Material UI v6 introduces a [container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries) utility based on the existing `theme.breakpoints` API.
 
 This feature lets you define styles based on the parent container's width instead of the viewport.
 
@@ -337,7 +337,7 @@ For alternative installation methods, refer to the [CDN documentation](/material
 Material UI v5 uses Emotion as its default styling solution.
 Because it's a runtime CSS-in-JS library, Emotion forces us to make compromises to performance and bundle size.
 
-Material UI v6 introduces opt-in integration with [Pigment CSS](https://github.com/mui/pigment-css), our new zero-runtime styling library that eliminates the runtime overhead while preserving the API design patterns you already know and love.
+Material UI v6 introduces opt-in integration with [Pigment CSS](https://github.com/mui/pigment-css), our new zero-runtime styling library that eliminates the runtime overhead while preserving the API design patterns you already know and love.
 
 :::warning
 Pigment CSS integration is still in the experimental stage.
@@ -381,7 +381,7 @@ To help you build full-stack apps faster than ever, we're launching [Toolpad Cor
 
 Stay tuned for more updates on Toolpad Core in the near future.
 
-## Get started with Material UI v6
+## Get started with Material UI v6
 
 Ready to upgrade to Material UI v6?
 Head to [the v6 migration guide](/material-ui/migration/upgrade-to-v6/) next.
