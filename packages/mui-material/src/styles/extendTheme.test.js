@@ -499,7 +499,7 @@ describe('extendTheme', () => {
       expect(theme.spacing(2)).to.equal('0.5rem');
     });
 
-    it('can be customized as a function2', () => {
+    it('a custom function should not be altered', () => {
       const theme = extendTheme({
         spacing: (val) => {
           const base = 8;
