@@ -11,7 +11,7 @@ import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
 import SideMenuMobile from './SideMenuMobile';
 import MenuButton from './MenuButton';
 
-interface NavBarProps {
+interface AppNavBarProps {
   mode: PaletteMode;
   toggleColorMode: () => void;
 }
@@ -32,7 +32,7 @@ const Toolbar = styled(MuiToolbar)({
   },
 });
 
-export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
+export default function AppNavbar({ mode, toggleColorMode }: AppNavBarProps) {
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
@@ -70,12 +70,7 @@ export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
           <MenuButton aria-label="menu" onClick={toggleDrawer(true)}>
             <MenuRoundedIcon />
           </MenuButton>
-          <SideMenuMobile
-            open={open}
-            toggleDrawer={toggleDrawer}
-            mode={mode}
-            toggleColorMode={toggleColorMode}
-          />
+          <SideMenuMobile open={open} toggleDrawer={toggleDrawer} />
         </Stack>
       </Toolbar>
     </AppBar>

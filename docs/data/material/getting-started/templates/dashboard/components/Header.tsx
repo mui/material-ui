@@ -4,17 +4,11 @@ import Stack from '@mui/material/Stack';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 import CustomDatePicker from './CustomDatePicker';
 import NavbarBreadcrumbs from './NavbarBreadcrumbs';
-import ToggleColorMode from './ToggleColorMode';
 import MenuButton from './MenuButton';
 
 import Search from './Search';
 
-interface HeaderProps {
-  mode: PaletteMode;
-  toggleColorMode: () => void;
-}
-
-export default function Header({ mode, toggleColorMode }: HeaderProps) {
+export default function Header() {
   return (
     <Stack
       direction="row"
@@ -34,11 +28,6 @@ export default function Header({ mode, toggleColorMode }: HeaderProps) {
         <MenuButton showBadge aria-label="Open notifications">
           <NotificationsRoundedIcon />
         </MenuButton>
-        <ToggleColorMode
-          mode={mode}
-          toggleColorMode={toggleColorMode}
-          data-screenshot="toggle-mode"
-        />
       </Stack>
     </Stack>
   );
