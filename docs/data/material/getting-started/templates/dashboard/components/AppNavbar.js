@@ -44,6 +44,7 @@ export default function AppNavbar() {
         backgroundImage: 'none',
         borderBottom: '1px solid',
         borderColor: 'divider',
+        top: '56px',
       }}
     >
       <Toolbar variant="regular">

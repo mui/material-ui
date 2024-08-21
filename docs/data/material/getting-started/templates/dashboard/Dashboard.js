@@ -50,7 +50,7 @@ export default function Dashboard() {
         mode={mode}
         toggleColorMode={toggleColorMode}
       />
-      <Box sx={{ display: 'flex', mt: 8 }}>
+      <Box sx={{ display: 'flex' }}>
         <SideMenu />
         <AppNavbar />
         {/* Main content */}
@@ -58,10 +58,9 @@ export default function Dashboard() {
           component="main"
           sx={(theme) => ({
             position: { sm: 'relative', md: '' },
-            top: { sm: '48px', md: '0' },
+            top: { sm: '48px', md: '60px' },
             height: { sm: 'calc(100vh - 48px)', md: '100vh' },
             flexGrow: 1,
-            pt: 2,
             backgroundColor: alpha(theme.palette.background.default, 1),
             overflow: 'auto',
           })}
@@ -72,6 +71,7 @@ export default function Dashboard() {
               alignItems: 'center',
               mx: 3,
               pb: 10,
+              mt: { xs: 16, sm: 10, md: 0 },
             }}
           >
             <Header />

@@ -26,6 +26,7 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
   boxShadow: theme.shadows[1],
   backgroundImage: 'none',
   padding: 4,
+  zIndex: theme.zIndex.drawer + 1,
 }));
 
 function NavBar({ showCustomTheme, toggleCustomTheme, mode, toggleColorMode }) {
