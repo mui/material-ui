@@ -5,6 +5,7 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 githubLabel: 'component: accordion'
 materialDesign: https://m1.material.io/components/expansion-panels.html
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
+githubSource: packages/mui-material/src/Accordion
 ---
 
 # Accordion

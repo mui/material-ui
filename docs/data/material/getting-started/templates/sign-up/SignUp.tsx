@@ -24,7 +24,7 @@ import {
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 
-import getSignUpTheme from './getSignUpTheme';
+import getSignUpTheme from './theme/getSignUpTheme';
 import ToggleColorMode from './ToggleColorMode';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 
@@ -77,18 +77,18 @@ const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignSelf: 'center',
-  gap: theme.spacing(4),
   width: '100%',
-  padding: theme.spacing(2),
+  padding: theme.spacing(4),
+  gap: theme.spacing(2),
   boxShadow:
-    'hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px, hsla(220, 30%, 5%, 0.05) 0px 0px 0px 1px',
+    'hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px',
   [theme.breakpoints.up('sm')]: {
     padding: theme.spacing(4),
     width: '450px',
   },
   ...theme.applyStyles('dark', {
     boxShadow:
-      'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px, hsla(220, 30%, 5%, 0.05) 0px 0px 0px 1px',
+      'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px',
   }),
 }));
 
@@ -104,7 +104,7 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
   },
   ...theme.applyStyles('dark', {
     backgroundImage:
-      'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.3), hsl(220, 30%, 5%))',
+      'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
   }),
 }));
 
@@ -119,6 +119,30 @@ export default function SignUp() {
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [nameError, setNameError] = React.useState(false);
   const [nameErrorMessage, setNameErrorMessage] = React.useState('');
+  // This code only runs on the client side, to determine the system color preference
+  React.useEffect(() => {
+    // Check if there is a preferred mode in localStorage
+    const savedMode = localStorage.getItem('themeMode') as PaletteMode | null;
+    if (savedMode) {
+      setMode(savedMode);
+    } else {
+      // If no preference is found, it uses system preference
+      const systemPrefersDark = window.matchMedia(
+        '(prefers-color-scheme: dark)',
+      ).matches;
+      setMode(systemPrefersDark ? 'dark' : 'light');
+    }
+  }, []);
+
+  const toggleColorMode = () => {
+    const newMode = mode === 'dark' ? 'light' : 'dark';
+    setMode(newMode);
+    localStorage.setItem('themeMode', newMode); // Save the selected mode to localStorage
+  };
+
+  const toggleCustomTheme = () => {
+    setShowCustomTheme((prev) => !prev);
+  };
 
   const validateInputs = () => {
     const email = document.getElementById('email') as HTMLInputElement;
@@ -155,14 +179,6 @@ export default function SignUp() {
     }
 
     return isValid;
-  };
-
-  const toggleColorMode = () => {
-    setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
-  };
-
-  const toggleCustomTheme = () => {
-    setShowCustomTheme((prev) => !prev);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -209,7 +225,7 @@ export default function SignUp() {
             p: 2,
           }}
         >
-          <Card>
+          <Card variant="outlined">
             <SitemarkIcon />
             <Typography
               component="h1"
@@ -280,13 +296,18 @@ export default function SignUp() {
               >
                 Sign up
               </Button>
-              <Link
-                href="/material-ui/getting-started/templates/sign-in/"
-                variant="body2"
-                sx={{ alignSelf: 'center' }}
-              >
-                Already have an account? Sign in
-              </Link>
+              <Typography sx={{ textAlign: 'center' }}>
+                Already have an account?{' '}
+                <span>
+                  <Link
+                    href="/material-ui/getting-started/templates/sign-in/"
+                    variant="body2"
+                    sx={{ alignSelf: 'center' }}
+                  >
+                    Sign in
+                  </Link>
+                </span>
+              </Typography>
             </Box>
             <Divider>
               <Typography sx={{ color: 'text.secondary' }}>or</Typography>
@@ -296,7 +317,6 @@ export default function SignUp() {
                 type="submit"
                 fullWidth
                 variant="outlined"
-                color="secondary"
                 onClick={() => alert('Sign up with Google')}
                 startIcon={<GoogleIcon />}
               >
@@ -306,7 +326,6 @@ export default function SignUp() {
                 type="submit"
                 fullWidth
                 variant="outlined"
-                color="secondary"
                 onClick={() => alert('Sign up with Facebook')}
                 startIcon={<FacebookIcon />}
               >

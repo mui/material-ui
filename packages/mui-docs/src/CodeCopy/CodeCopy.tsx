@@ -173,7 +173,7 @@ export function CodeCopyProvider({ children }: CodeCopyProviderProps) {
       if (
         !(
           (event.ctrlKey || event.metaKey) &&
-          event.key.toLowerCase() === 'c' &&
+          String.fromCharCode(event.keyCode) === 'C' &&
           !event.shiftKey &&
           !event.altKey
         )

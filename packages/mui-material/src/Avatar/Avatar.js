@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Person from '../internal/svg-icons/Person';
 import { getAvatarUtilityClass } from './avatarClasses';
@@ -33,49 +34,51 @@ const AvatarRoot = styled('div', {
       ownerState.colorDefault && styles.colorDefault,
     ];
   },
-})(({ theme }) => ({
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  flexShrink: 0,
-  width: 40,
-  height: 40,
-  fontFamily: theme.typography.fontFamily,
-  fontSize: theme.typography.pxToRem(20),
-  lineHeight: 1,
-  borderRadius: '50%',
-  overflow: 'hidden',
-  userSelect: 'none',
-  variants: [
-    {
-      props: { variant: 'rounded' },
-      style: {
-        borderRadius: (theme.vars || theme).shape.borderRadius,
+})(
+  memoTheme(({ theme }) => ({
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+    width: 40,
+    height: 40,
+    fontFamily: theme.typography.fontFamily,
+    fontSize: theme.typography.pxToRem(20),
+    lineHeight: 1,
+    borderRadius: '50%',
+    overflow: 'hidden',
+    userSelect: 'none',
+    variants: [
+      {
+        props: { variant: 'rounded' },
+        style: {
+          borderRadius: (theme.vars || theme).shape.borderRadius,
+        },
       },
-    },
-    {
-      props: { variant: 'square' },
-      style: {
-        borderRadius: 0,
+      {
+        props: { variant: 'square' },
+        style: {
+          borderRadius: 0,
+        },
       },
-    },
-    {
-      props: { colorDefault: true },
-      style: {
-        color: (theme.vars || theme).palette.background.default,
-        ...(theme.vars
-          ? {
-              backgroundColor: theme.vars.palette.Avatar.defaultBg,
-            }
-          : {
-              backgroundColor: theme.palette.grey[400],
-              ...theme.applyStyles('dark', { backgroundColor: theme.palette.grey[600] }),
-            }),
+      {
+        props: { colorDefault: true },
+        style: {
+          color: (theme.vars || theme).palette.background.default,
+          ...(theme.vars
+            ? {
+                backgroundColor: theme.vars.palette.Avatar.defaultBg,
+              }
+            : {
+                backgroundColor: theme.palette.grey[400],
+                ...theme.applyStyles('dark', { backgroundColor: theme.palette.grey[600] }),
+              }),
+        },
       },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 const AvatarImg = styled('img', {
   name: 'MuiAvatar',
