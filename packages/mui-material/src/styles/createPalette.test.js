@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { darken, lighten, hexToRgb } from '@mui/system/colorManipulator';
+import { darken, lighten, hexToRgb } from '@mui/system/color/manipulator';
 import { deepOrange, blue, purple, indigo } from '../colors';
 import createPalette, { dark, light } from './createPalette';
 

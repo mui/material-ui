@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { emphasize } from '@mui/system/colorManipulator';
+import { emphasize } from '@mui/system/color/manipulator';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import MoreHorizIcon from '../internal/svg-icons/MoreHoriz';

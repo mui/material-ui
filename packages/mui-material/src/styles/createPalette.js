@@ -1,6 +1,6 @@
 import deepmerge from '@mui/utils/deepmerge';
 import MuiError from '@mui/internal-babel-macros/MuiError.macro';
-import { darken, getContrastRatio, lighten, hexToRgb } from '@mui/system/colorManipulator';
+import { darken, getContrastRatio, lighten, hexToRgb } from '@mui/system/color/manipulator';
 import common from '../colors/common';
 import grey from '../colors/grey';
 import purple from '../colors/purple';
