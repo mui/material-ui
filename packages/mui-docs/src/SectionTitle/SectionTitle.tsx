@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-export interface SectionTitleProps {
+export interface SectionTitleProps<Hash extends string = string> {
   title: string;
-  hash: string;
+  hash: Hash;
   level?: 'h2' | 'h3' | 'h4';
 }
 export function SectionTitle(props: SectionTitleProps) {

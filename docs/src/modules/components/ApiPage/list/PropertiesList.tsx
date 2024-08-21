@@ -1,16 +1,16 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import kebabCase from 'lodash/kebabCase';
 import { useTranslate } from '@mui/docs/i18n';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
 } from '@mui/docs/branding';
 import ExpandableApiItem, {
-  ApiItemContaier,
+  ApiItemContainer,
 } from 'docs/src/modules/components/ApiPage/list/ExpandableApiItem';
 import ApiWarningAlert from 'docs/src/modules/components/ApiPage/ApiWarningAlert';
+import { PropertyDefinition } from 'docs/src/modules/components/ApiPage/definitions/properties';
 
 const StyledApiItem = styled(ExpandableApiItem)(
   ({ theme }) => ({
@@ -111,50 +111,8 @@ function PropDescription(props: { description: string }) {
   );
 }
 
-export function getHash({
-  componentName,
-  propName,
-  hooksParameters,
-  hooksReturnValue,
-}: {
-  componentName: string;
-  propName: string;
-  hooksParameters?: boolean;
-  hooksReturnValue?: boolean;
-}) {
-  let sectionName = 'prop';
-  if (hooksParameters) {
-    sectionName = 'parameters';
-  } else if (hooksReturnValue) {
-    sectionName = 'return-value';
-  }
-  return `${kebabCase(componentName)}-${sectionName}-${propName}`;
-}
-
-export interface Properties {
-  additionalInfo: string[];
-  componentName: string;
-  deprecationInfo?: string;
-  description?: string;
-  hooksParameters?: boolean;
-  hooksReturnValue?: boolean;
-  isDeprecated?: boolean;
-  isOptional?: boolean;
-  isRequired?: boolean;
-  isProPlan?: boolean;
-  isPremiumPlan?: boolean;
-  propDefault?: string;
-  propName: string;
-  requiresRef?: string;
-  seeMoreDescription?: string;
-  signature?: string;
-  signatureArgs?: { argName: string; argDescription?: string }[];
-  signatureReturnDescription?: string;
-  typeName: string;
-}
-
 interface PropertiesListProps {
-  properties: Properties[];
+  properties: PropertyDefinition[];
   displayOption: 'collapsed' | 'expanded';
 }
 
@@ -162,10 +120,9 @@ export default function PropertiesList(props: PropertiesListProps) {
   const { properties, displayOption } = props;
   const t = useTranslate();
   return (
-    <ApiItemContaier>
+    <ApiItemContainer>
       {properties.map((params) => {
         const {
-          componentName,
           propName,
           seeMoreDescription,
           description,
@@ -175,8 +132,6 @@ export default function PropertiesList(props: PropertiesListProps) {
           isDeprecated,
           isProPlan,
           isPremiumPlan,
-          hooksParameters,
-          hooksReturnValue,
           deprecationInfo,
           typeName,
           propDefault,
@@ -184,6 +139,7 @@ export default function PropertiesList(props: PropertiesListProps) {
           signature,
           signatureArgs,
           signatureReturnDescription,
+          hash,
         } = params;
 
         let note =
@@ -196,17 +152,17 @@ export default function PropertiesList(props: PropertiesListProps) {
         return (
           <StyledApiItem
             key={propName}
-            id={getHash({ componentName, propName, hooksParameters, hooksReturnValue })}
+            id={hash}
             title={
               <React.Fragment>
                 {propName}
                 {isProPlan && (
-                  <a href="/x/introduction/licensing/#pro-plan">
+                  <a href="/x/introduction/licensing/#pro-plan" aria-label="Pro plan">
                     <span className="plan-pro" />
                   </a>
                 )}
                 {isPremiumPlan && (
-                  <a href="/x/introduction/licensing/#premium-plan">
+                  <a href="/x/introduction/licensing/#premium-plan" aria-label="Premium plan">
                     <span className="plan-premium" />
                   </a>
                 )}
@@ -228,12 +184,12 @@ export default function PropertiesList(props: PropertiesListProps) {
                 />
               </ApiWarningAlert>
             )}
-            {additionalInfo.map((key) => (
+            {additionalInfo?.map((key) => (
               <p
                 className="prop-list-additional-description  MuiApi-collapsible"
                 key={key}
                 dangerouslySetInnerHTML={{
-                  __html: t(`api-docs.additional-info.${key}`),
+                  __html: t(`api-docs.additional-info.${key}`)!,
                 }}
               />
             ))}
@@ -310,6 +266,6 @@ export default function PropertiesList(props: PropertiesListProps) {
           </StyledApiItem>
         );
       })}
-    </ApiItemContaier>
+    </ApiItemContainer>
   );
 }

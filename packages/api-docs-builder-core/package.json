@@ -15,12 +15,12 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.16",
+    "@types/chai": "^4.3.17",
     "@types/mocha": "^10.0.7",
-    "@types/node": "^18.19.39",
+    "@types/node": "^18.19.44",
     "@types/sinon": "^17.0.3",
-    "chai": "^4.4.1",
+    "chai": "^4.5.0",
     "sinon": "^16.1.3",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.4"
   }
 }

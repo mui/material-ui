@@ -1,17 +1,17 @@
 ---
 productId: material-ui
-title: 9+ Free React Templates
+title: New Free React Templates
 ---
 
 # React Templates
 
-<p class="description">Browse our collection of free React templates to get started building your app with Material UI, including a React dashboard, React landing page, and more.</p>
+<p class="description">Browse our collection of free React templates to get started building your app with Material UI, including a React dashboard, React marketing page, and more.</p>
 
 <!-- #default-branch-switch -->
 
 ## Free templates
 
-Our curated collection of free Material UI templates includes dashboards, landing pages, sign-in and sign-up pages, a blog, a checkout flow, and more.
+Our curated collection of free Material UI templates includes dashboards, marketing pages, sign-in and sign-up pages, a blog, a checkout flow, and more.
 They can be combined with one of the [example projects](/material-ui/getting-started/example-projects/) to form a complete starter.
 
 Sections of each layout are clearly defined either by comments or use of separate files,
@@ -37,3 +37,9 @@ Looking for something more? You can find complete templates and themes in the <a
 <img src="/static/images/themes-display-dark.png" alt="The MUI Store includes several carefully curated React templates using Material UI" width="2280" height="1200" />
 </span>
 </a>
+
+## Toolpad Core (beta)
+
+[Toolpad Core](https://mui.com/toolpad/core/introduction/) is a framework designed to build dashboards and internal tools. It leverages the existing suite of components offered by Material UI and ties them together to help you create applications quickly.
+
+{{"demo": "../../components/app-bar/DashboardLayoutBasic.js", "height": 400, "iframe": true, "hideToolbar": true}}

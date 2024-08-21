@@ -33,20 +33,29 @@ export default <
         if (rule === 'media') {
           return {
             ':root': css,
-            '@media (prefers-color-scheme: dark) { :root': excludedVariables,
+            [`@media (prefers-color-scheme: dark)`]: {
+              ':root': excludedVariables,
+            },
           };
         }
         if (rule) {
           return {
             [rule.replace('%s', colorScheme)]: excludedVariables,
-            ':root': css,
+            [`:root, ${rule.replace('%s', colorScheme)}`]: css,
           };
         }
         return { ':root': { ...css, ...excludedVariables } };
       }
+      if (rule && rule !== 'media') {
+        return `:root, ${rule.replace('%s', String(colorScheme))}`;
+      }
     } else if (colorScheme) {
       if (rule === 'media') {
-        return `@media (prefers-color-scheme: ${String(colorScheme)}) { :root`;
+        return {
+          [`@media (prefers-color-scheme: ${String(colorScheme)})`]: {
+            ':root': css,
+          },
+        };
       }
       if (rule) {
         return rule.replace('%s', String(colorScheme));

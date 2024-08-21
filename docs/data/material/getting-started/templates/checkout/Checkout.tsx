@@ -14,8 +14,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
 
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { PaletteMode } from '@mui/material';
+import { createTheme, ThemeProvider, PaletteMode } from '@mui/material/styles';
 
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
@@ -23,7 +22,7 @@ import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 
 import AddressForm from './AddressForm';
-import getCheckoutTheme from './getCheckoutTheme';
+import getCheckoutTheme from './theme/getCheckoutTheme';
 import Info from './Info';
 import InfoMobile from './InfoMobile';
 import PaymentForm from './PaymentForm';
@@ -94,8 +93,25 @@ export default function Checkout() {
   const checkoutTheme = createTheme(getCheckoutTheme(mode));
   const defaultTheme = createTheme({ palette: { mode } });
   const [activeStep, setActiveStep] = React.useState(0);
+  // This code only runs on the client side, to determine the system color preference
+  React.useEffect(() => {
+    // Check if there is a preferred mode in localStorage
+    const savedMode = localStorage.getItem('themeMode') as PaletteMode | null;
+    if (savedMode) {
+      setMode(savedMode);
+    } else {
+      // If no preference is found, it uses system preference
+      const systemPrefersDark = window.matchMedia(
+        '(prefers-color-scheme: dark)',
+      ).matches;
+      setMode(systemPrefersDark ? 'dark' : 'light');
+    }
+  }, []);
+
   const toggleColorMode = () => {
-    setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
+    const newMode = mode === 'dark' ? 'light' : 'dark';
+    setMode(newMode);
+    localStorage.setItem('themeMode', newMode); // Save the selected mode to localStorage
   };
   const toggleCustomTheme = () => {
     setShowCustomTheme((prev) => !prev);

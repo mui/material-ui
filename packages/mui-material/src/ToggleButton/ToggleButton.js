@@ -9,6 +9,7 @@ import { alpha } from '@mui/system/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import toggleButtonClasses, { getToggleButtonUtilityClass } from './toggleButtonClasses';
 import ToggleButtonGroupContext from '../ToggleButtonGroup/ToggleButtonGroupContext';
@@ -40,101 +41,103 @@ const ToggleButtonRoot = styled(ButtonBase, {
 
     return [styles.root, styles[`size${capitalize(ownerState.size)}`]];
   },
-})(({ theme }) => ({
-  ...theme.typography.button,
-  borderRadius: (theme.vars || theme).shape.borderRadius,
-  padding: 11,
-  border: `1px solid ${(theme.vars || theme).palette.divider}`,
-  color: (theme.vars || theme).palette.action.active,
-  [`&.${toggleButtonClasses.disabled}`]: {
-    color: (theme.vars || theme).palette.action.disabled,
-    border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
-  },
-  '&:hover': {
-    textDecoration: 'none',
-    // Reset on mouse devices
-    backgroundColor: theme.vars
-      ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.hoverOpacity})`
-      : alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
-    '@media (hover: none)': {
-      backgroundColor: 'transparent',
+})(
+  memoTheme(({ theme }) => ({
+    ...theme.typography.button,
+    borderRadius: (theme.vars || theme).shape.borderRadius,
+    padding: 11,
+    border: `1px solid ${(theme.vars || theme).palette.divider}`,
+    color: (theme.vars || theme).palette.action.active,
+    [`&.${toggleButtonClasses.disabled}`]: {
+      color: (theme.vars || theme).palette.action.disabled,
+      border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
     },
-  },
-  variants: [
-    {
-      props: { color: 'standard' },
-      style: {
-        [`&.${toggleButtonClasses.selected}`]: {
-          color: (theme.vars || theme).palette.text.primary,
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.selectedOpacity})`
-            : alpha(theme.palette.text.primary, theme.palette.action.selectedOpacity),
-          '&:hover': {
-            backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette.text.primaryChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-              : alpha(
-                  theme.palette.text.primary,
-                  theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-                ),
-            // Reset on touch devices, it doesn't add specificity
-            '@media (hover: none)': {
-              backgroundColor: theme.vars
-                ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.selectedOpacity})`
-                : alpha(theme.palette.text.primary, theme.palette.action.selectedOpacity),
-            },
-          },
-        },
+    '&:hover': {
+      textDecoration: 'none',
+      // Reset on mouse devices
+      backgroundColor: theme.vars
+        ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.hoverOpacity})`
+        : alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
       },
     },
-    ...Object.entries(theme.palette)
-      .filter(([, palette]) => palette && palette.main)
-      .map(([color]) => ({
-        props: { color },
+    variants: [
+      {
+        props: { color: 'standard' },
         style: {
           [`&.${toggleButtonClasses.selected}`]: {
-            color: (theme.vars || theme).palette[color].main,
+            color: (theme.vars || theme).palette.text.primary,
             backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-              : alpha(theme.palette[color].main, theme.palette.action.selectedOpacity),
+              ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.selectedOpacity})`
+              : alpha(theme.palette.text.primary, theme.palette.action.selectedOpacity),
             '&:hover': {
               backgroundColor: theme.vars
-                ? `rgba(${theme.vars.palette[color].mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+                ? `rgba(${theme.vars.palette.text.primaryChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
                 : alpha(
-                    theme.palette[color].main,
+                    theme.palette.text.primary,
                     theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
                   ),
               // Reset on touch devices, it doesn't add specificity
               '@media (hover: none)': {
                 backgroundColor: theme.vars
-                  ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-                  : alpha(theme.palette[color].main, theme.palette.action.selectedOpacity),
+                  ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.selectedOpacity})`
+                  : alpha(theme.palette.text.primary, theme.palette.action.selectedOpacity),
               },
             },
           },
         },
-      })),
-    {
-      props: { fullWidth: true },
-      style: {
-        width: '100%',
       },
-    },
-    {
-      props: { size: 'small' },
-      style: {
-        padding: 7,
-        fontSize: theme.typography.pxToRem(13),
+      ...Object.entries(theme.palette)
+        .filter(([, palette]) => palette && palette.main)
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            [`&.${toggleButtonClasses.selected}`]: {
+              color: (theme.vars || theme).palette[color].main,
+              backgroundColor: theme.vars
+                ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+                : alpha(theme.palette[color].main, theme.palette.action.selectedOpacity),
+              '&:hover': {
+                backgroundColor: theme.vars
+                  ? `rgba(${theme.vars.palette[color].mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+                  : alpha(
+                      theme.palette[color].main,
+                      theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+                    ),
+                // Reset on touch devices, it doesn't add specificity
+                '@media (hover: none)': {
+                  backgroundColor: theme.vars
+                    ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+                    : alpha(theme.palette[color].main, theme.palette.action.selectedOpacity),
+                },
+              },
+            },
+          },
+        })),
+      {
+        props: { fullWidth: true },
+        style: {
+          width: '100%',
+        },
       },
-    },
-    {
-      props: { size: 'large' },
-      style: {
-        padding: 15,
-        fontSize: theme.typography.pxToRem(15),
+      {
+        props: { size: 'small' },
+        style: {
+          padding: 7,
+          fontSize: theme.typography.pxToRem(13),
+        },
       },
-    },
-  ],
-}));
+      {
+        props: { size: 'large' },
+        style: {
+          padding: 15,
+          fontSize: theme.typography.pxToRem(15),
+        },
+      },
+    ],
+  })),
+);
 
 const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
   // props priority: `inProps` > `contextProps` > `themeDefaultProps`

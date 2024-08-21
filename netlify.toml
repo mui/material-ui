@@ -9,7 +9,6 @@
 
 [build.environment]
   NODE_VERSION = "18"
-  PNPM_FLAGS = "--shamefully-hoist"
 
 [[plugins]]
   package = "./packages/netlify-plugin-cache-docs"

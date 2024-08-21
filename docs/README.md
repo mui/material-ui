@@ -5,7 +5,7 @@ This is the website of the company (MUI), the documentation of Material UI, Bas
 To start the docs site in development mode, from the project root, run:
 
 ```bash
-pnpm start
+pnpm docs:dev
 ```
 
 If you do not have pnpm installed, select your OS and follow the instructions on the [pnpm website](https://pnpm.io/installation).

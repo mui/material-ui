@@ -11,6 +11,7 @@ import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getDrawerUtilityClass } from './drawerClasses';
 
@@ -45,9 +46,11 @@ const DrawerRoot = styled(Modal, {
   name: 'MuiDrawer',
   slot: 'Root',
   overridesResolver,
-})(({ theme }) => ({
-  zIndex: (theme.vars || theme).zIndex.drawer,
-}));
+})(
+  memoTheme(({ theme }) => ({
+    zIndex: (theme.vars || theme).zIndex.drawer,
+  })),
+);
 
 const DrawerDockedRoot = styled('div', {
   shouldForwardProp: rootShouldForwardProp,
@@ -72,92 +75,96 @@ const DrawerPaper = styled(Paper, {
         styles[`paperAnchorDocked${capitalize(ownerState.anchor)}`],
     ];
   },
-})(({ theme }) => ({
-  overflowY: 'auto',
-  display: 'flex',
-  flexDirection: 'column',
-  height: '100%',
-  flex: '1 0 auto',
-  zIndex: (theme.vars || theme).zIndex.drawer,
-  // Add iOS momentum scrolling for iOS < 13.0
-  WebkitOverflowScrolling: 'touch',
-  // temporary style
-  position: 'fixed',
-  top: 0,
-  // We disable the focus ring for mouse, touch and keyboard users.
-  // At some point, it would be better to keep it for keyboard users.
-  // :focus-ring CSS pseudo-class will help.
-  outline: 0,
-  variants: [
-    {
-      props: {
-        anchor: 'left',
+})(
+  memoTheme(({ theme }) => ({
+    overflowY: 'auto',
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    flex: '1 0 auto',
+    zIndex: (theme.vars || theme).zIndex.drawer,
+    // Add iOS momentum scrolling for iOS < 13.0
+    WebkitOverflowScrolling: 'touch',
+    // temporary style
+    position: 'fixed',
+    top: 0,
+    // We disable the focus ring for mouse, touch and keyboard users.
+    // At some point, it would be better to keep it for keyboard users.
+    // :focus-ring CSS pseudo-class will help.
+    outline: 0,
+    variants: [
+      {
+        props: {
+          anchor: 'left',
+        },
+        style: {
+          left: 0,
+        },
       },
-      style: {
-        left: 0,
+      {
+        props: {
+          anchor: 'top',
+        },
+        style: {
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 'auto',
+          maxHeight: '100%',
+        },
       },
-    },
-    {
-      props: {
-        anchor: 'top',
+      {
+        props: {
+          anchor: 'right',
+        },
+        style: {
+          right: 0,
+        },
       },
-      style: {
-        top: 0,
-        left: 0,
-        right: 0,
-        height: 'auto',
-        maxHeight: '100%',
+      {
+        props: {
+          anchor: 'bottom',
+        },
+        style: {
+          top: 'auto',
+          left: 0,
+          bottom: 0,
+          right: 0,
+          height: 'auto',
+          maxHeight: '100%',
+        },
       },
-    },
-    {
-      props: {
-        anchor: 'right',
+      {
+        props: ({ ownerState }) =>
+          ownerState.anchor === 'left' && ownerState.variant !== 'temporary',
+        style: {
+          borderRight: `1px solid ${(theme.vars || theme).palette.divider}`,
+        },
       },
-      style: {
-        right: 0,
+      {
+        props: ({ ownerState }) =>
+          ownerState.anchor === 'top' && ownerState.variant !== 'temporary',
+        style: {
+          borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
+        },
       },
-    },
-    {
-      props: {
-        anchor: 'bottom',
+      {
+        props: ({ ownerState }) =>
+          ownerState.anchor === 'right' && ownerState.variant !== 'temporary',
+        style: {
+          borderLeft: `1px solid ${(theme.vars || theme).palette.divider}`,
+        },
       },
-      style: {
-        top: 'auto',
-        left: 0,
-        bottom: 0,
-        right: 0,
-        height: 'auto',
-        maxHeight: '100%',
+      {
+        props: ({ ownerState }) =>
+          ownerState.anchor === 'bottom' && ownerState.variant !== 'temporary',
+        style: {
+          borderTop: `1px solid ${(theme.vars || theme).palette.divider}`,
+        },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.anchor === 'left' && ownerState.variant !== 'temporary',
-      style: {
-        borderRight: `1px solid ${(theme.vars || theme).palette.divider}`,
-      },
-    },
-    {
-      props: ({ ownerState }) => ownerState.anchor === 'top' && ownerState.variant !== 'temporary',
-      style: {
-        borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
-      },
-    },
-    {
-      props: ({ ownerState }) =>
-        ownerState.anchor === 'right' && ownerState.variant !== 'temporary',
-      style: {
-        borderLeft: `1px solid ${(theme.vars || theme).palette.divider}`,
-      },
-    },
-    {
-      props: ({ ownerState }) =>
-        ownerState.anchor === 'bottom' && ownerState.variant !== 'temporary',
-      style: {
-        borderTop: `1px solid ${(theme.vars || theme).palette.divider}`,
-      },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 const oppositeDirection = {
   left: 'right',
@@ -167,7 +174,7 @@ const oppositeDirection = {
 };
 
 export function isHorizontal(anchor) {
-  return ['left', 'right'].indexOf(anchor) !== -1;
+  return ['left', 'right'].includes(anchor);
 }
 
 export function getAnchor({ direction }, anchor) {
