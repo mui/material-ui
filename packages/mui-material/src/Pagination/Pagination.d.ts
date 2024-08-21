@@ -46,7 +46,11 @@ export interface PaginationProps
    * @param {bool} selected If true, the current page is selected.
    * @returns {string}
    */
-  getItemAriaLabel?: (type: UsePaginationItem['type'], page: number, selected: boolean) => string;
+  getItemAriaLabel?: (
+    type: UsePaginationItem['type'],
+    page: UsePaginationItem['page'],
+    selected: boolean,
+  ) => string;
 
   /**
    * Render the item.
