@@ -46,46 +46,44 @@ export default function Dashboard() {
   };
 
   return (
-    <React.Fragment>
-      <ThemeProvider theme={showCustomTheme ? dashboardTheme : defaultTheme}>
-        <CssBaseline />
-        {/* you can delete this NavBar component since it's just no navigate to other pages */}
-        <NavBar
-          toggleCustomTheme={toggleCustomTheme}
-          showCustomTheme={showCustomTheme}
-          mode={mode}
-          toggleColorMode={toggleColorMode}
-        />
-        <Box sx={{ display: 'flex', mt: 8 }}>
-          <SideMenu />
-          <AppNavbar />
-          {/* Main content */}
-          <Box
-            component="main"
-            sx={(theme) => ({
-              position: { sm: 'relative', md: '' },
-              top: { sm: '48px', md: '0' },
-              height: { sm: 'calc(100vh - 48px)', md: '100vh' },
-              flexGrow: 1,
-              pt: 2,
-              backgroundColor: alpha(theme.palette.background.default, 1),
-              overflow: 'auto',
-            })}
+    <ThemeProvider theme={showCustomTheme ? dashboardTheme : defaultTheme}>
+      <CssBaseline />
+      {/* you can delete this NavBar component since it's just no navigate to other pages */}
+      <NavBar
+        toggleCustomTheme={toggleCustomTheme}
+        showCustomTheme={showCustomTheme}
+        mode={mode}
+        toggleColorMode={toggleColorMode}
+      />
+      <Box sx={{ display: 'flex', mt: 8 }}>
+        <SideMenu />
+        <AppNavbar />
+        {/* Main content */}
+        <Box
+          component="main"
+          sx={(theme) => ({
+            position: { sm: 'relative', md: '' },
+            top: { sm: '48px', md: '0' },
+            height: { sm: 'calc(100vh - 48px)', md: '100vh' },
+            flexGrow: 1,
+            pt: 2,
+            backgroundColor: alpha(theme.palette.background.default, 1),
+            overflow: 'auto',
+          })}
+        >
+          <Stack
+            spacing={2}
+            sx={{
+              alignItems: 'center',
+              mx: 3,
+              pb: 10,
+            }}
           >
-            <Stack
-              spacing={2}
-              sx={{
-                alignItems: 'center',
-                mx: 3,
-                pb: 10,
-              }}
-            >
-              <Header mode={mode} toggleColorMode={toggleColorMode} />
-              <MainGrid />
-            </Stack>
-          </Box>
+            <Header />
+            <MainGrid />
+          </Stack>
         </Box>
-      </ThemeProvider>
-    </React.Fragment>
+      </Box>
+    </ThemeProvider>
   );
 }
