@@ -1,16 +1,14 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 
 import Stack from '@mui/material/Stack';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 import CustomDatePicker from './CustomDatePicker';
 import NavbarBreadcrumbs from './NavbarBreadcrumbs';
-import ToggleColorMode from './ToggleColorMode';
 import MenuButton from './MenuButton';
 
 import Search from './Search';
 
-function Header({ mode, toggleColorMode }) {
+export default function Header() {
   return (
     <Stack
       direction="row"
@@ -30,19 +28,7 @@ function Header({ mode, toggleColorMode }) {
         <MenuButton showBadge aria-label="Open notifications">
           <NotificationsRoundedIcon />
         </MenuButton>
-        <ToggleColorMode
-          mode={mode}
-          toggleColorMode={toggleColorMode}
-          data-screenshot="toggle-mode"
-        />
       </Stack>
     </Stack>
   );
 }
-
-Header.propTypes = {
-  mode: PropTypes.oneOf(['dark', 'light']).isRequired,
-  toggleColorMode: PropTypes.func.isRequired,
-};
-
-export default Header;

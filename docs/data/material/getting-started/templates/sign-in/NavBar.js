@@ -11,8 +11,8 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
-import ToggleColorMode from './components/ToggleColorMode';
-import getCheckoutTheme from './theme/getCheckoutTheme';
+import ToggleColorMode from './ToggleColorMode';
+import getSignInTheme from './theme/getSignInTheme';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   position: 'fixed',
@@ -32,10 +32,10 @@ function NavBar({ showCustomTheme, toggleCustomTheme, mode, toggleColorMode }) {
   const handleChange = (event) => {
     toggleCustomTheme(event.target.value === 'custom');
   };
-  const blogTheme = createTheme(getCheckoutTheme(mode));
+  const signInTheme = createTheme(getSignInTheme(mode));
 
   return (
-    <ThemeProvider theme={blogTheme}>
+    <ThemeProvider theme={signInTheme}>
       <StyledAppBar>
         <Container maxWidth="lg">
           <Toolbar
