@@ -134,9 +134,6 @@ importers:
       '@types/react':
         specifier: 18.3.3
         version: 18.3.3
-      '@types/resolve':
-        specifier: ^1.20.6
-        version: 1.20.6
       '@types/yargs':
         specifier: ^17.0.33
         version: 17.0.33
@@ -296,9 +293,6 @@ importers:
       process:
         specifier: ^0.11.10
         version: 0.11.10
-      resolve:
-        specifier: ^1.22.8
-        version: 1.22.8
       rimraf:
         specifier: ^5.0.10
         version: 5.0.10
@@ -908,6 +902,22 @@ importers:
       yargs:
         specifier: ^17.7.2
         version: 17.7.2
+
+  packages-internal/babel-plugin-resolve-imports:
+    dependencies:
+      '@babel/core':
+        specifier: ^7.25.2
+        version: 7.25.2
+      resolve:
+        specifier: ^1.22.8
+        version: 1.22.8
+    devDependencies:
+      '@types/babel__core':
+        specifier: ^7.20.5
+        version: 7.20.5
+      '@types/resolve':
+        specifier: ^1.20.6
+        version: 1.20.6
 
   packages-internal/docs-utils:
     dependencies:
