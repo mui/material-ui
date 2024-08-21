@@ -45,7 +45,7 @@
     "refNotHeld": "The component cannot hold a ref.",
     "refRootElement": "The <code>ref</code> is forwarded to the root element.",
     "ruleName": "Rule name",
-    "seeSourceCode": "If you did not find the information in this AOI page, consider having a look at the <a href=\"{{href}}\">implementation of the component</a> for more detail.",
+    "seeSourceCode": "If you did not find the information in this page, consider having a look at the <a href=\"{{href}}\">implementation of the component</a> for more detail.",
     "signature": "Signature",
     "slots": "Slots",
     "spreadHint": "Props of the {{spreadHintElement}} component are also available.",
