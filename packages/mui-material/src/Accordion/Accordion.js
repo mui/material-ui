@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Collapse from '../Collapse';
 import Paper from '../Paper';
@@ -46,7 +47,7 @@ const AccordionRoot = styled(Paper, {
     ];
   },
 })(
-  ({ theme }) => {
+  memoTheme(({ theme }) => {
     const transition = {
       duration: theme.transitions.duration.shortest,
     };
@@ -91,8 +92,8 @@ const AccordionRoot = styled(Paper, {
         backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
       },
     };
-  },
-  ({ theme }) => ({
+  }),
+  memoTheme(({ theme }) => ({
     variants: [
       {
         props: (props) => !props.square,
@@ -122,7 +123,7 @@ const AccordionRoot = styled(Paper, {
         },
       },
     ],
-  }),
+  })),
 );
 
 const AccordionHeading = styled('h3', {
