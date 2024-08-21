@@ -59,7 +59,7 @@ import '@pigment-css/react/styles.css';
 
 ## Usage
 
-### Creating styles
+### Creating reusable styles
 
 Use the `css` API to create reusable styles:
 ```js
@@ -81,6 +81,21 @@ const mainClass = css({
   display: "#000",
   color: "#fff"
 });
+```
+
+### Creating global styles
+
+You can also define global styles by using the `globalCSS` API:
+
+```js
+import { globalCSS } from '@pigment-css/react';
+
+globalCss`
+  body {
+    margin: 0;
+    padding: 0;
+  }
+`;
 ```
 
 ### Creating styled components
