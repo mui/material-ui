@@ -140,6 +140,14 @@ const pages: MuiPage[] = [
         ],
       },
       {
+        pathname: '/toolpad', // the pathname does not matter here because the links to Toolpad are outbound.
+        subheader: 'Toolpad Core',
+        children: [
+          { pathname: '/toolpad/core/react-dashboard-layout/', title: 'Dashboard Layout' },
+          { pathname: '/toolpad/core/react-sign-in-page/', title: 'Sign In Page' },
+        ],
+      },
+      {
         pathname: '/material-ui',
         subheader: 'lab',
         children: [
