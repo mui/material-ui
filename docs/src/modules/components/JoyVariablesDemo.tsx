@@ -33,7 +33,7 @@ function formatSx(sx: { [k: string]: string | number }) {
 interface SlotVariablesProps {
   slot: string;
   data: Array<DataItem>;
-  renderField: (item: DataItem) => React.ReactElement<any>;
+  renderField: (item: DataItem) => React.ReactElement<unknown>;
   defaultOpen?: boolean;
 }
 
@@ -83,7 +83,7 @@ export default function JoyVariablesDemo(props: {
   componentName: string;
   childrenAccepted?: boolean;
   data: Array<DataItem | [string, Array<DataItem>, { defaultOpen?: boolean } | undefined]>;
-  renderDemo: (sx: { [k: string]: string | number }) => React.ReactElement<any>;
+  renderDemo: (sx: { [k: string]: string | number }) => React.ReactElement<unknown>;
   renderCode?: (formattedSx: string) => string;
 }) {
   const { componentName, data = [], childrenAccepted = false, renderCode } = props;

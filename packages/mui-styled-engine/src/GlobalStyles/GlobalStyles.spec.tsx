@@ -25,7 +25,7 @@ export interface GlobalStylesProps {
   styles: EmGlobalStylesProps<Theme>['styles'];
 }
 
-function GlobalStyles(props: GlobalStylesProps): React.ReactElement<any> {
+function GlobalStyles(props: GlobalStylesProps): React.ReactElement<unknown> {
   return <EmGlobalStyles {...props} defaultTheme={defaultTheme} />;
 }
 
