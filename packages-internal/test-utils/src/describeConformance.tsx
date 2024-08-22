@@ -1046,7 +1046,7 @@ const fullSuite = {
  * components.
  */
 function describeConformance(
-  minimalElement: React.ReactElement<HTMLElement & { 'data-testid': string }>,
+  minimalElement: React.ReactElement<HTMLElement & { 'data-testid'?: string }>,
   getOptions: () => ConformanceOptions,
 ) {
   let originalMatchmedia: typeof window.matchMedia;
