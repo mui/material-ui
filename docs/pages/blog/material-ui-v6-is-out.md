@@ -52,7 +52,7 @@ const theme = createTheme({ cssVariables: true, ... });
 
 {{"component": "components/blog/material-ui-v6-is-out/ThemeTokens.js"}}
 
-After enabling the flag, you can access the variables from `theme.vars` object with the same structure as the theme.
+After enabling the flag, you can access the variables from the `theme.vars` object with the same structure as the theme.
 
 <codeblock>
 
