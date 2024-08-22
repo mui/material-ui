@@ -5,7 +5,7 @@ import { createTheme, ThemeProvider, PaletteMode } from '@mui/material/styles';
 import getSignInSideTheme from './theme/getSignInSideTheme';
 import SignInCard from './SignInCard';
 import Content from './Content';
-import NavBar from './NavBar';
+import TemplateFrame from './TemplateFrame';
 
 export default function SignInSide() {
   const [mode, setMode] = React.useState<PaletteMode>('light');
@@ -38,47 +38,48 @@ export default function SignInSide() {
   };
 
   return (
-    <ThemeProvider theme={showCustomTheme ? SignInSideTheme : defaultTheme}>
-      <CssBaseline />
-      {/* you can delete this NavBar component since it's just no navigate to other pages */}
-      <NavBar
-        toggleCustomTheme={toggleCustomTheme}
-        showCustomTheme={showCustomTheme}
-        mode={mode}
-        toggleColorMode={toggleColorMode}
-      />
-      <Stack
-        direction="column"
-        component="main"
-        sx={[
-          {
-            justifyContent: 'space-between',
-            py: 8,
-          },
-          (theme) => ({
-            backgroundImage:
-              'radial-gradient(ellipse at 70% 51%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))',
-            backgroundSize: 'cover',
-            ...theme.applyStyles('dark', {
-              backgroundImage:
-                'radial-gradient(at 70% 51%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
-            }),
-          }),
-        ]}
-      >
+    // You can delete this TemplateFrame component since it's just no navigate to other pages
+    <TemplateFrame
+      toggleCustomTheme={toggleCustomTheme}
+      showCustomTheme={showCustomTheme}
+      mode={mode}
+      toggleColorMode={toggleColorMode}
+    >
+      <ThemeProvider theme={showCustomTheme ? SignInSideTheme : defaultTheme}>
+        <CssBaseline />
         <Stack
-          direction={{ xs: 'column-reverse', md: 'row' }}
-          sx={{
-            justifyContent: 'center',
-            gap: { xs: 6, sm: 12 },
-            height: { xs: '100%', md: '100dvh' },
-            p: 2,
-          }}
+          direction="column"
+          component="main"
+          sx={[
+            {
+              justifyContent: 'space-between',
+              height: { xs: 'auto', md: '100%' },
+            },
+            (theme) => ({
+              backgroundImage:
+                'radial-gradient(ellipse at 70% 51%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))',
+              backgroundSize: 'cover',
+              ...theme.applyStyles('dark', {
+                backgroundImage:
+                  'radial-gradient(at 70% 51%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
+              }),
+            }),
+          ]}
         >
-          <Content />
-          <SignInCard />
+          <Stack
+            direction={{ xs: 'column-reverse', md: 'row' }}
+            sx={{
+              justifyContent: 'center',
+              gap: { xs: 6, sm: 12 },
+              p: 2,
+              m: 'auto',
+            }}
+          >
+            <Content />
+            <SignInCard />
+          </Stack>
         </Stack>
-      </Stack>
-    </ThemeProvider>
+      </ThemeProvider>
+    </TemplateFrame>
   );
 }

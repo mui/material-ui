@@ -15,7 +15,7 @@ import MuiCard from '@mui/material/Card';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import getSignUpTheme from './theme/getSignUpTheme';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
-import NavBar from './NavBar';
+import TemplateFrame from './TemplateFrame';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -24,6 +24,7 @@ const Card = styled(MuiCard)(({ theme }) => ({
   width: '100%',
   padding: theme.spacing(4),
   gap: theme.spacing(2),
+  margin: 'auto',
   boxShadow:
     'hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px',
   [theme.breakpoints.up('sm')]: {
@@ -36,13 +37,11 @@ const Card = styled(MuiCard)(({ theme }) => ({
 }));
 
 const SignUpContainer = styled(Stack)(({ theme }) => ({
-  height: 'auto',
+  height: '100%',
+  padding: 4,
   backgroundImage:
     'radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))',
   backgroundRepeat: 'no-repeat',
-  [theme.breakpoints.up('sm')]: {
-    height: '100dvh',
-  },
   ...theme.applyStyles('dark', {
     backgroundImage:
       'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
@@ -134,133 +133,134 @@ export default function SignUp() {
   };
 
   return (
-    <ThemeProvider theme={showCustomTheme ? SignUpTheme : defaultTheme}>
-      <CssBaseline />
-      {/* you can delete this NavBar component since it's just no navigate to other pages */}
-      <NavBar
-        toggleCustomTheme={toggleCustomTheme}
-        showCustomTheme={showCustomTheme}
-        mode={mode}
-        toggleColorMode={toggleColorMode}
-      />
-      <SignUpContainer direction="column" justifyContent="space-between">
-        <Stack
-          sx={{
-            justifyContent: 'center',
-            height: '100dvh',
-            p: 2,
-          }}
-        >
-          <Card variant="outlined">
-            <SitemarkIcon />
-            <Typography
-              component="h1"
-              variant="h4"
-              sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
-            >
-              Sign up
-            </Typography>
-            <Box
-              component="form"
-              onSubmit={handleSubmit}
-              sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
-            >
-              <FormControl>
-                <FormLabel htmlFor="name">Full name</FormLabel>
-                <TextField
-                  autoComplete="name"
-                  name="name"
-                  required
-                  fullWidth
-                  id="name"
-                  placeholder="Jon Snow"
-                  error={nameError}
-                  helperText={nameErrorMessage}
-                  color={nameError ? 'error' : 'primary'}
-                />
-              </FormControl>
-              <FormControl>
-                <FormLabel htmlFor="email">Email</FormLabel>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  placeholder="your@email.com"
-                  name="email"
-                  autoComplete="email"
-                  variant="outlined"
-                  error={emailError}
-                  helperText={emailErrorMessage}
-                  color={passwordError ? 'error' : 'primary'}
-                />
-              </FormControl>
-              <FormControl>
-                <FormLabel htmlFor="password">Password</FormLabel>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  placeholder="••••••"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                  variant="outlined"
-                  error={passwordError}
-                  helperText={passwordErrorMessage}
-                  color={passwordError ? 'error' : 'primary'}
-                />
-              </FormControl>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive updates via email."
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                onClick={validateInputs}
+    // You can delete this TemplateFrame component since it's just no navigate to other pages
+    <TemplateFrame
+      toggleCustomTheme={toggleCustomTheme}
+      showCustomTheme={showCustomTheme}
+      mode={mode}
+      toggleColorMode={toggleColorMode}
+    >
+      <ThemeProvider theme={showCustomTheme ? SignUpTheme : defaultTheme}>
+        <CssBaseline />
+        <SignUpContainer direction="column" justifyContent="space-between">
+          <Stack
+            sx={{
+              justifyContent: 'center',
+              height: '100dvh',
+              p: 2,
+            }}
+          >
+            <Card variant="outlined">
+              <SitemarkIcon />
+              <Typography
+                component="h1"
+                variant="h4"
+                sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
               >
                 Sign up
-              </Button>
-              <Typography sx={{ textAlign: 'center' }}>
-                Already have an account?{' '}
-                <span>
-                  <Link
-                    href="/material-ui/getting-started/templates/sign-in/"
-                    variant="body2"
-                    sx={{ alignSelf: 'center' }}
-                  >
-                    Sign in
-                  </Link>
-                </span>
               </Typography>
-            </Box>
-            <Divider>
-              <Typography sx={{ color: 'text.secondary' }}>or</Typography>
-            </Divider>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-              <Button
-                type="submit"
-                fullWidth
-                variant="outlined"
-                onClick={() => alert('Sign up with Google')}
-                startIcon={<GoogleIcon />}
+              <Box
+                component="form"
+                onSubmit={handleSubmit}
+                sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
               >
-                Sign up with Google
-              </Button>
-              <Button
-                type="submit"
-                fullWidth
-                variant="outlined"
-                onClick={() => alert('Sign up with Facebook')}
-                startIcon={<FacebookIcon />}
-              >
-                Sign up with Facebook
-              </Button>
-            </Box>
-          </Card>
-        </Stack>
-      </SignUpContainer>
-    </ThemeProvider>
+                <FormControl>
+                  <FormLabel htmlFor="name">Full name</FormLabel>
+                  <TextField
+                    autoComplete="name"
+                    name="name"
+                    required
+                    fullWidth
+                    id="name"
+                    placeholder="Jon Snow"
+                    error={nameError}
+                    helperText={nameErrorMessage}
+                    color={nameError ? 'error' : 'primary'}
+                  />
+                </FormControl>
+                <FormControl>
+                  <FormLabel htmlFor="email">Email</FormLabel>
+                  <TextField
+                    required
+                    fullWidth
+                    id="email"
+                    placeholder="your@email.com"
+                    name="email"
+                    autoComplete="email"
+                    variant="outlined"
+                    error={emailError}
+                    helperText={emailErrorMessage}
+                    color={passwordError ? 'error' : 'primary'}
+                  />
+                </FormControl>
+                <FormControl>
+                  <FormLabel htmlFor="password">Password</FormLabel>
+                  <TextField
+                    required
+                    fullWidth
+                    name="password"
+                    placeholder="••••••"
+                    type="password"
+                    id="password"
+                    autoComplete="new-password"
+                    variant="outlined"
+                    error={passwordError}
+                    helperText={passwordErrorMessage}
+                    color={passwordError ? 'error' : 'primary'}
+                  />
+                </FormControl>
+                <FormControlLabel
+                  control={<Checkbox value="allowExtraEmails" color="primary" />}
+                  label="I want to receive updates via email."
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  onClick={validateInputs}
+                >
+                  Sign up
+                </Button>
+                <Typography sx={{ textAlign: 'center' }}>
+                  Already have an account?{' '}
+                  <span>
+                    <Link
+                      href="/material-ui/getting-started/templates/sign-in/"
+                      variant="body2"
+                      sx={{ alignSelf: 'center' }}
+                    >
+                      Sign in
+                    </Link>
+                  </span>
+                </Typography>
+              </Box>
+              <Divider>
+                <Typography sx={{ color: 'text.secondary' }}>or</Typography>
+              </Divider>
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="outlined"
+                  onClick={() => alert('Sign up with Google')}
+                  startIcon={<GoogleIcon />}
+                >
+                  Sign up with Google
+                </Button>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="outlined"
+                  onClick={() => alert('Sign up with Facebook')}
+                  startIcon={<FacebookIcon />}
+                >
+                  Sign up with Facebook
+                </Button>
+              </Box>
+            </Card>
+          </Stack>
+        </SignUpContainer>
+      </ThemeProvider>
+    </TemplateFrame>
   );
 }

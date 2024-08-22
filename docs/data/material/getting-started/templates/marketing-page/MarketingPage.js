@@ -12,7 +12,7 @@ import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import getMPTheme from './theme/getMPTheme';
-import NavBar from './NavBar';
+import TemplateFrame from './TemplateFrame';
 
 export default function MarketingPage() {
   const [mode, setMode] = React.useState('light');
@@ -46,31 +46,32 @@ export default function MarketingPage() {
   };
 
   return (
-    <ThemeProvider theme={showCustomTheme ? MPTheme : defaultTheme}>
-      <CssBaseline />
-      {/* you can delete this NavBar component since it's just no navigate to other pages */}
-      <NavBar
-        toggleCustomTheme={toggleCustomTheme}
-        showCustomTheme={showCustomTheme}
-        mode={mode}
-        toggleColorMode={toggleColorMode}
-      />
-      <AppAppBar />
-      <Hero />
-      <div>
-        <LogoCollection />
-        <Features />
-        <Divider />
-        <Testimonials />
-        <Divider />
-        <Highlights />
-        <Divider />
-        <Pricing />
-        <Divider />
-        <FAQ />
-        <Divider />
-        <Footer />
-      </div>
-    </ThemeProvider>
+    // You can delete this TemplateFrame component since it's just no navigate to other pages
+    <TemplateFrame
+      toggleCustomTheme={toggleCustomTheme}
+      showCustomTheme={showCustomTheme}
+      mode={mode}
+      toggleColorMode={toggleColorMode}
+    >
+      <ThemeProvider theme={showCustomTheme ? MPTheme : defaultTheme}>
+        <CssBaseline />
+        <AppAppBar />
+        <Hero />
+        <div>
+          <LogoCollection />
+          <Features />
+          <Divider />
+          <Testimonials />
+          <Divider />
+          <Highlights />
+          <Divider />
+          <Pricing />
+          <Divider />
+          <FAQ />
+          <Divider />
+          <Footer />
+        </div>
+      </ThemeProvider>
+    </TemplateFrame>
   );
 }
