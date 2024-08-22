@@ -4,7 +4,11 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha, lighten, darken } from '@mui/system/color/manipulator';
+import {
+  unstable_alpha as alpha,
+  unstable_lighten as lighten,
+  unstable_darken as darken,
+} from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
 import useSlotProps from '@mui/utils/useSlotProps';
 import { useSlider, valueToPercent } from './useSlider';

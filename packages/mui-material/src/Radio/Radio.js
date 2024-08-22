@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/color/manipulator';
+import { unstable_alpha as alpha } from '@mui/system/colorManipulator';
 import SwitchBase from '../internal/SwitchBase';
 import RadioButtonIcon from './RadioButtonIcon';
 import capitalize from '../utils/capitalize';

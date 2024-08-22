@@ -1,5 +1,5 @@
 import { getPath } from '@mui/system/style';
-import { alpha, hexToRgb } from '@mui/system/color/manipulator';
+import { unstable_alpha as alpha, hexToRgb } from '@mui/system/colorManipulator';
 import type { Theme } from '../styles';
 
 const getTextDecoration = <T extends Theme>({

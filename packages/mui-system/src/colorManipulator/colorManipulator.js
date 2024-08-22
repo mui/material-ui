@@ -8,6 +8,10 @@ import {
   colorChannel,
   getLuminance,
   getContrastRatio,
+  unstable_alpha,
+  unstable_darken,
+  unstable_emphasize,
+  unstable_lighten,
 } from './fast/manipulator';
 import { parse } from './fast/parse';
 import { getRed, getGreen, getBlue } from './fast/core';
@@ -159,7 +163,7 @@ export function alpha(color, value) {
 }
 export function private_safeAlpha(color, value, warning) {
   try {
-    return alpha(color, value);
+    return unstable_alpha(color, value);
   } catch (error) {
     if (warning && process.env.NODE_ENV !== 'production') {
       console.warn(warning);
@@ -189,7 +193,7 @@ export function darken(color, coefficient) {
 }
 export function private_safeDarken(color, coefficient, warning) {
   try {
-    return darken(color, coefficient);
+    return unstable_darken(color, coefficient);
   } catch (error) {
     if (warning && process.env.NODE_ENV !== 'production') {
       console.warn(warning);
@@ -224,7 +228,7 @@ export function lighten(color, coefficient) {
 }
 export function private_safeLighten(color, coefficient, warning) {
   try {
-    return lighten(color, coefficient);
+    return unstable_lighten(color, coefficient);
   } catch (error) {
     if (warning && process.env.NODE_ENV !== 'production') {
       console.warn(warning);
@@ -245,7 +249,7 @@ export function emphasize(color, coefficient = 0.15) {
 }
 export function private_safeEmphasize(color, coefficient, warning) {
   try {
-    return emphasize(color, coefficient);
+    return unstable_emphasize(color, coefficient);
   } catch (error) {
     if (warning && process.env.NODE_ENV !== 'production') {
       console.warn(warning);

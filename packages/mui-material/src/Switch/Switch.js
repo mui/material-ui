@@ -5,7 +5,11 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha, darken, lighten } from '@mui/system/color/manipulator';
+import {
+  unstable_alpha as alpha,
+  unstable_darken as darken,
+  unstable_lighten as lighten,
+} from '@mui/system/colorManipulator';
 import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
 import { styled } from '../zero-styled';

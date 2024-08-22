@@ -1,3 +1,4 @@
+import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import clamp from '@mui/utils/clamp';
 import {
   newColor,
@@ -68,11 +69,19 @@ export const colorChannel = (color: string) => {
       const colorspace = p1;
       switch (colorspace) {
         case 'srgb':
+        case 'display-p3':
+        case 'a98-rgb':
+        case 'prophoto-rgb':
+        case 'rec2020':
           return `${p2} ${p3} ${p3}`;
       }
     }
   }
-  return '';
+  throw new MuiError(
+    'MUI: Unsupported `%s` color.\n' +
+      'The following formats are supported: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
+    color,
+  );
 };
 
 /**
