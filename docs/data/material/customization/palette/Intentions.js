@@ -35,7 +35,7 @@ function IntentionsInner() {
       <div>
         <Typography variant="body2">{name}</Typography>
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-          {rgbToHex(color).slice(0, -2)}
+          {rgbToHex(color)}
         </Typography>
       </div>
     </Color>
