@@ -14,7 +14,7 @@ To get started on an existing project, install Pigment CSS with the following c
 
 **Next.js**
 
-```bashƒpi
+```bash
 npm install @pigment-css/react
 npm install --save-dev @pigment-css/nextjs-plugin
 ```
