@@ -9,6 +9,8 @@ import {
   getBlue,
   getAlpha,
   setAlpha,
+  extractHex,
+  matchColor,
 } from './index';
 
 /**
@@ -37,6 +39,41 @@ export function rgbToHex(color: string) {
 export function hslToRgb(color: string) {
   return formatRGB(parse(color));
 }
+
+/**
+ * Returns a channel created from the input color.
+ *
+ * @param color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()
+ * @returns The channel for the color, that can be used in rgba or hsla colors
+ */
+export const colorChannel = (color: string) => {
+  const HASH = '#'.charCodeAt(0);
+  if (color.charCodeAt(0) === HASH) {
+    const hex = extractHex(color);
+    return `${hex[0]} ${hex[1]} ${hex[2]}`;
+  }
+  const match = matchColor(color);
+  const format = match[1];
+  const p1 = match[2];
+  const p2 = match[3];
+  const p3 = match[4];
+  switch (format) {
+    case 'rgb':
+    case 'rgba':
+    case 'hsl':
+    case 'hsla': {
+      return `${p1} ${p2} ${p3}`;
+    }
+    case 'color': {
+      const colorspace = p1;
+      switch (colorspace) {
+        case 'srgb':
+          return `${p2} ${p3} ${p3}`;
+      }
+    }
+  }
+  return '';
+};
 
 /**
  * The relative brightness of any point in a color space,
@@ -88,7 +125,7 @@ export function getContrastRatio(foreground: string, background: string) {
  * @param value - value to set the alpha channel to in the range 0 - 1
  * @returns A CSS hexadecimal color string
  */
-export function alpha(color: string, value: number) {
+export function unstable_alpha(color: string, value: number) {
   return format(setAlpha(parse(color), Math.round(clamp(value) * 255)));
 }
 
@@ -98,7 +135,7 @@ export function alpha(color: string, value: number) {
  * @param coefficient - multiplier in the range 0 - 1
  * @returns A CSS color string. Hex input values are returned as rgb
  */
-export function darken(color: string, coefficient: number) {
+export function unstable_darken(color: string, coefficient: number) {
   const c = parse(color);
 
   const r = getRed(c);
@@ -123,7 +160,7 @@ export function darken(color: string, coefficient: number) {
  * @param coefficient - multiplier in the range 0 - 1
  * @returns A CSS color string. Hex input values are returned as rgb
  */
-export function lighten(color: string, coefficient: number) {
+export function unstable_lighten(color: string, coefficient: number) {
   const c = parse(color);
 
   const r = getRed(c);
@@ -150,28 +187,8 @@ export function lighten(color: string, coefficient: number) {
  * @param coefficient=0.15 - multiplier in the range 0 - 1
  * @returns A CSS color string. Hex input values are returned as rgb
  */
-export function emphasize(color: string, coefficient = 0.15) {
-  return getLuminance(color) > 0.5 ? darken(color, coefficient) : lighten(color, coefficient);
-}
-
-/**
- * Blend a transparent overlay color with a background color, resulting in a single
- * RGB color.
- * @param background - CSS color
- * @param overlay - CSS color
- * @param opacity - Opacity multiplier in the range 0 - 1
- * @param [gamma=1.0] - Gamma correction factor. For gamma-correct blending, 2.2 is usual.
- */
-export function blend(background: string, overlay: string, opacity: number, gamma = 1.0) {
-  const blendChannel = (b: number, o: number) =>
-    Math.round((b ** (1 / gamma) * (1 - opacity) + o ** (1 / gamma) * opacity) ** gamma);
-
-  const backgroundColor = parse(background);
-  const overlayColor = parse(overlay);
-
-  const r = blendChannel(getRed(backgroundColor), getRed(overlayColor));
-  const g = blendChannel(getGreen(backgroundColor), getGreen(overlayColor));
-  const b = blendChannel(getBlue(backgroundColor), getBlue(overlayColor));
-
-  return format(newColor(r, g, b, 255));
+export function unstable_emphasize(color: string, coefficient = 0.15) {
+  return getLuminance(color) > 0.5
+    ? unstable_darken(color, coefficient)
+    : unstable_lighten(color, coefficient);
 }

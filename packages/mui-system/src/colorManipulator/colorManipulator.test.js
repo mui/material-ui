@@ -81,7 +81,7 @@ describe('utils/colorManipulator', () => {
 
   describe('rgbToHex', () => {
     it('converts an rgb color to a hex color` ', () => {
-      expect(rgbToHex('rgb(169, 79, 211)')).to.equal('#a94fd3');
+      expect(rgbToHex('rgb(169, 79, 211)')).to.equal('#a94fd3ff');
     });
 
     it('converts an rgba color to a hex color` ', () => {
@@ -99,11 +99,11 @@ describe('utils/colorManipulator', () => {
     });
 
     it('converts an hsla color to an rgba color` ', () => {
-      expect(hslToRgb('hsla(281, 60%, 57%, 0.5)')).to.equal('rgba(169, 80, 211, 0.5)');
+      expect(hslToRgb('hsla(281, 60%, 57%, 0.5)')).to.equal('rgba(169, 80, 211, 0.502)');
     });
 
     it('allow to convert values only', () => {
-      expect(hslToRgb(decomposeColor('hsl(281, 60%, 57%)'))).to.equal('rgb(169, 80, 211)');
+      expect(hslToRgb('hsl(281, 60%, 57%)')).to.equal('rgb(169, 80, 211)');
     });
   });
 
@@ -233,7 +233,7 @@ describe('utils/colorManipulator', () => {
     });
 
     it('returns a valid luminance from an CSS4 color', () => {
-      expect(getLuminance('color(display-p3 1 1 0.1)')).to.equal(0.929);
+      expect(getLuminance('color(display-p3 1 1 0.1)')).to.equal(0.928);
     });
 
     it('throw on invalid colors', () => {

@@ -48,11 +48,7 @@ export function parse(color: string): Color {
   return parseColor(color);
 }
 
-/**
- * Parse hexadecimal CSS color
- * @param color Hex color string: #xxx, #xxxxxx, #xxxxxxxx
- */
-export function parseHex(hex: string): Color {
+export function extractHex(hex: string) {
   let r = 0x00;
   let g = 0x00;
   let b = 0x00;
@@ -86,12 +82,24 @@ export function parseHex(hex: string): Color {
     }
   }
 
-  return newColor(r, g, b, a);
+  return [r, g, b, a] as [number, number, number, number];
+}
+
+/**
+ * Parse hexadecimal CSS color
+ * @param color Hex color string: #xxx, #xxxxxx, #xxxxxxxx
+ */
+export function parseHex(hex: string): Color {
+  return newColor(...extractHex(hex));
 }
 
 // https://lemire.me/blog/2019/04/17/parsing-short-hexadecimal-strings-efficiently/
 function hexValue(c: number) {
   return (c & 0xf) + 9 * (c >> 6);
+}
+
+export function matchColor(color: string) {
+  return PATTERN.exec(color) || [];
 }
 
 /**

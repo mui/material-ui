@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import * as Color from '@mui/system/color';
+import * as Color from './index';
 
 const c = Color.from;
 
