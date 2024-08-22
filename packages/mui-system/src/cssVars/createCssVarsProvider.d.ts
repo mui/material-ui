@@ -82,7 +82,7 @@ export interface CreateCssVarsProviderResult<
         disableStyleSheetGeneration?: boolean;
       }
     >,
-  ) => React.ReactElement<any>;
+  ) => React.ReactElement<unknown>;
   useColorScheme: () => ColorSchemeContextValue<ColorScheme>;
   getInitColorSchemeScript: typeof InitColorSchemeScript;
 }
