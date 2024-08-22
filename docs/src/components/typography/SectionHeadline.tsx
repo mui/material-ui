@@ -11,7 +11,7 @@ interface SectionHeadlineProps {
    */
   inverted?: boolean;
   overline?: React.ReactNode;
-  title: string | React.ReactElement<unknown>;
+  title: string | React.ReactElement<any>;
 }
 
 export default function SectionHeadline(props: SectionHeadlineProps) {
@@ -62,7 +62,7 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
       ) : (
         React.cloneElement(title, {
           style: {
-            maxWidth: 500,
+            maxWidth: '500',
             ...(alwaysCenter && {
               maxWidth: '100%',
               textAlign: 'center',
