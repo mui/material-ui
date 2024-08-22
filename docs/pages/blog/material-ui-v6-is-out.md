@@ -17,7 +17,7 @@ tags: ['Material UI', 'Product']
 manualCard: true
 ---
 
-Material UI v6 is now stable! It comes with new features, improvements, and an experimental integration for static CSS extraction.
+Material UI v6 is now stable - just in time to celebrate [10 years since our initial commit](https://github.com/mui/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46)! It comes with new features, improvements, and an experimental integration for static CSS extraction.
 
 ## Table of contents
 
