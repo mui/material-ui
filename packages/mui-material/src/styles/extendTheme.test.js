@@ -501,7 +501,7 @@ describe('extendTheme', () => {
 
     it('a custom function should not be altered', () => {
       const theme = extendTheme({
-        spacing: (val) => val === 'xs' ? '100px' : val,
+        spacing: (val) => (val === 'xs' ? '100px' : val),
       });
       expect('spacing' in theme.vars).to.equal(false);
       expect(theme.spacing('xs')).to.equal('100px');
