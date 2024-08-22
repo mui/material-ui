@@ -5,7 +5,7 @@ import {
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 export default function describeConformance(
-  minimalElement: React.ReactElement<unknown>,
+  minimalElement: React.ReactElement<HTMLElement>,
   getOptions: () => ConformanceOptions,
 ) {
   function getOptionsWithDefaults() {
