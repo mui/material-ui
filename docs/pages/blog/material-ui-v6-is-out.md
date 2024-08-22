@@ -1,7 +1,7 @@
 ---
 title: Material UI v6 is out now 🎉
 description: Material UI v6 ships with support for CSS variables, container queries, and advanced color schemes, as well as improved runtime performance and a reduced bundle size.
-date: 2024-08-09T00:00:00.000Z
+date: 2024-08-26T00:00:00.000Z
 authors:
   [
     'aarongarciah',
