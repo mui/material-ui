@@ -118,6 +118,16 @@ To create a file upload button, turn the button into a label using `component="l
 
 {{"demo": "InputFileUpload.js"}}
 
+### Loading button
+
+Use the `loading` prop to give buttons a loading state and disable interactions
+
+{{"demo": "LoadingButtons.js"}}
+
+Toggle the loading switch to see the transition between the different states.
+
+{{"demo": "LoadingButtonsTransition.js"}}
+
 ## Customization
 
 Here are some examples of customizing the component.
@@ -173,15 +183,3 @@ However:
 ```
 
 This has the advantage of supporting any element, for instance, a link `<a>` element.
-
-## Experimental APIs
-
-### Loading button
-
-[`@mui/lab`](/material-ui/about-the-lab/) offers loading buttons that can show loading state and disable interactions.
-
-{{"demo": "LoadingButtons.js"}}
-
-Toggle the loading switch to see the transition between the different states.
-
-{{"demo": "LoadingButtonsTransition.js"}}

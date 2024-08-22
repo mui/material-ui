@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen, simulateKeyboardDevice } from '@mui/internal-test-utils';
+import { createRenderer, screen, simulateKeyboardDevice, within } from '@mui/internal-test-utils';
 import { ClassNames } from '@emotion/react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button, { buttonClasses as classes } from '@mui/material/Button';
 import ButtonBase, { touchRippleClasses } from '@mui/material/ButtonBase';
+import ButtonGroup, { buttonGroupClasses } from '@mui/material/ButtonGroup';
 import describeConformance from '../../test/describeConformance';
 import * as ripple from '../../test/ripple';
 
@@ -804,9 +805,9 @@ describe('<Button />', () => {
         </ButtonGroup>,
       );
       const button = getByRole('button');
-      expect(button).to.have.class(buttonClasses.contained);
-      expect(button).to.have.class(buttonClasses.sizeLarge);
-      expect(button).to.have.class(buttonClasses.containedSecondary);
+      expect(button).to.have.class(classes.contained);
+      expect(button).to.have.class(classes.sizeLarge);
+      expect(button).to.have.class(classes.containedSecondary);
     });
 
     it('correctly applies position classes to loading buttons', () => {

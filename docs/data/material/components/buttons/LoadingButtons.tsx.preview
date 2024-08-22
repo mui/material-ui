@@ -1,14 +1,14 @@
-<LoadingButton loading variant="outlined">
+<Button loading variant="outlined">
   Submit
-</LoadingButton>
-<LoadingButton loading loadingIndicator="Loading…" variant="outlined">
+</Button>
+<Button loading loadingIndicator="Loading…" variant="outlined">
   Fetch data
-</LoadingButton>
-<LoadingButton
+</Button>
+<Button
   loading
   loadingPosition="start"
   startIcon={<SaveIcon />}
   variant="outlined"
 >
   Save
-</LoadingButton>
+</Button>
