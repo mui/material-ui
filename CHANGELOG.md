@@ -23,7 +23,7 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 
 ### Docs
 
-- [blog] Add video to the Pigment CSS blog post (#42500) @oliviertassinari
+- [blog] Add video to the Pigment CSS blog post (#42500) @oliviertassinari
 - Fix broken link to milestones (#43379) @oliviertassinari
 - Update CSS theme variables related content (#43130) @siriwatknp
 - Fix link to createTheme source (#43332) @oliviertassinari
