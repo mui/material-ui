@@ -303,7 +303,7 @@ We've fully revamped the templates to demonstrate some common real-world use cas
 
 #### Custom styles
 
-The new custom styles we've added allow you to dive into the best approaches for customization or simply copy and paste some stylish elements.
+The new templates can be toggled between the default Material Design and a fully custom theme that's shared across the entire suite, so you can dig deep into the best approaches for component customization—or just grab the pieces you like best and start building from there.
 
 {{"component": "components/blog/material-ui-v6-is-out/CustomThemeComparison.js"}}
 
