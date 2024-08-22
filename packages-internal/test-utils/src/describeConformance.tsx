@@ -91,7 +91,7 @@ function throwMissingPropError(field: string): never {
  * the root component.
  */
 export function testClassName(
-  element: React.ReactElement<HTMLElement & { 'data-testid': string }>,
+  element: React.ReactElement<HTMLElement & { 'data-testid'?: string }>,
   getOptions: () => ConformanceOptions,
 ) {
   it('applies the className to the root component', async () => {
@@ -120,7 +120,7 @@ export function testComponentProp(
   element: React.ReactElement<
     HTMLElement & {
       component?: string | ((props: {}) => React.ReactElement);
-      'data-testid': string;
+      'data-testid'?: string;
     }
   >,
   getOptions: () => ConformanceOptions,
@@ -158,7 +158,12 @@ export function testComponentProp(
  * MUI components spread additional props to its root.
  */
 export function testPropsSpread(
-  element: React.ReactElement<HTMLElement & { [key: `data-${string}`]: string }>,
+  element: React.ReactElement<
+    HTMLElement & {
+      'data-testid'?: string;
+      'data-test-props-spread'?: string;
+    }
+  >,
   getOptions: () => ConformanceOptions,
 ) {
   it(`spreads props to the root component`, async () => {
@@ -213,7 +218,7 @@ export function describeRef(
  * Tests that the root component has the root class
  */
 export function testRootClass(
-  element: React.ReactElement<HTMLElement & { classes: Record<string, string> }>,
+  element: React.ReactElement<HTMLElement & { classes?: Record<string, string> }>,
   getOptions: () => ConformanceOptions,
 ) {
   it('applies the root class to the root component if it has this class', async () => {
@@ -267,12 +272,13 @@ function forEachSlot(
 
 function testSlotsProp(
   element: React.ReactElement<
-    HTMLElement & {
-      slots: Record<string, any>;
-      slotProps: Record<string, any>;
-      components: Record<string, any>;
-      componentsProps: Record<string, any>;
-    }
+    HTMLElement &
+      Partial<{
+        slots: Record<string, any>;
+        slotProps: Record<string, any>;
+        components: Record<string, any>;
+        componentsProps: Record<string, any>;
+      }>
   >,
   getOptions: () => ConformanceOptions,
 ) {
@@ -448,7 +454,7 @@ function testSlotsProp(
 
 function testSlotPropsProp(
   element: React.ReactElement<
-    HTMLElement & { slotProps: Record<string, any>; componentsProps: Record<string, any> }
+    HTMLElement & { slotProps?: Record<string, any>; componentsProps?: Record<string, any> }
   >,
   getOptions: () => ConformanceOptions,
 ) {
@@ -535,7 +541,7 @@ function testSlotPropsProp(
 }
 
 function testSlotPropsCallback(
-  element: React.ReactElement<HTMLElement & { slotProps: Record<string, any> }>,
+  element: React.ReactElement<HTMLElement & { slotProps?: Record<string, any> }>,
   getOptions: () => ConformanceOptions,
 ) {
   const { render, slots } = getOptions();
@@ -567,7 +573,7 @@ function testSlotPropsCallback(
  */
 function testComponentsProp(
   element: React.ReactElement<
-    HTMLElement & { components: Record<string, any>; 'data-testid': string }
+    HTMLElement & { components?: Record<string, any>; 'data-testid'?: string }
   >,
   getOptions: () => ConformanceOptions,
 ) {
@@ -887,7 +893,7 @@ function testThemeStyleOverrides(
  * Components from @inheritComponent
  */
 function testThemeVariants(
-  element: React.ReactElement<HTMLElement & { 'data-testid': string; variant: string }>,
+  element: React.ReactElement<HTMLElement & { 'data-testid'?: string; variant?: string }>,
   getOptions: () => ConformanceOptions,
 ) {
   describe('theme variants:', () => {
@@ -1040,7 +1046,7 @@ const fullSuite = {
  * components.
  */
 function describeConformance(
-  minimalElement: React.ReactElement<HTMLElement>,
+  minimalElement: React.ReactElement<HTMLElement & { 'data-testid': string }>,
   getOptions: () => ConformanceOptions,
 ) {
   let originalMatchmedia: typeof window.matchMedia;
