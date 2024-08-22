@@ -11,7 +11,7 @@ import {
   getBlue,
   getAlpha,
   setAlpha,
-  extractHex,
+  parseHex,
   matchColor,
 } from './index';
 
@@ -51,8 +51,8 @@ export function hslToRgb(color: string) {
 export const colorChannel = (color: string) => {
   const HASH = '#'.charCodeAt(0);
   if (color.charCodeAt(0) === HASH) {
-    const hex = extractHex(color);
-    return `${hex[0]} ${hex[1]} ${hex[2]}`;
+    const hex = parseHex(color);
+    return `${getRed(hex)} ${getGreen(hex)} ${getBlue(hex)}`;
   }
   const match = matchColor(color);
   const name = match[1];
