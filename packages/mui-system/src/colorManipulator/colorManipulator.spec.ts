@@ -14,7 +14,7 @@ import {
   alpha,
   lighten,
   darken,
-} from '@mui/system/color/manipulator';
+} from '@mui/system/colorManipulator';
 
 expectType<(color: string) => string, typeof hexToRgb>(hexToRgb);
 
