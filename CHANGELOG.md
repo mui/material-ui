@@ -12,7 +12,33 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 
 ### `@mui/material@6.0.0-rc.0`
 
+#### Breaking changes
+
 - [Box] Remove `component` from `BoxOwnProps` (#43384) @DiegoAndai
+
+  The `component` prop has been removed from the `BoxOwnProps` as it is already included in the `Box` type.
+  This might affect your code if you are using the `styled` function with the `Box` component.
+  If this is the case, use a `div` element instead of `Box`:
+
+  ```diff
+  -const StyledBox = styled(Box)`
+  +const StyledDiv = styled('div')`
+    color: white;
+  `;
+  ```
+
+  This yields the same end result.
+  If this doesn't work for you, you can also cast the `styled` returned value to `typeof Box`:
+
+  ```diff
+  const StyledBox = styled(Box)`
+    color: white;
+  -`;
+  +` as typeof Box;
+  ```
+
+#### Changes
+
 - [ListItem] Remove unnecessary TypeScript test (#43359) @sai6855
 - Skip generating CSS variables for a custom spacing function (#43389) @siriwatknp
 - Revert visual regressions from #42283 (#43364) @ZeeshanTamboli
