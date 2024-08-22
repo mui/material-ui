@@ -1,5 +1,52 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.0.0-rc.0
+
+<!-- generated comparing v6.0.0-beta.6..next -->
+
+_Aug 22, 2024_
+
+A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
+
+- ⚡ Rendering performance improvements
+
+### `@mui/material@6.0.0-rc.0`
+
+- [Box] Remove `component` from `BoxOwnProps` (#43384) @DiegoAndai
+- [ListItem] Remove unnecessary TypeScript test (#43359) @sai6855
+- Skip generating CSS variables for a custom spacing function (#43389) @siriwatknp
+- Revert visual regressions from #42283 (#43364) @ZeeshanTamboli
+
+### `@mui/codemod@6.0.0-rc.0`
+
+- Add Grid2 to removeSystemProps codemod (#43302) @DiegoAndai
+
+### Docs
+
+- [blog] Add video to the Pigment CSS blog post (#42500) @oliviertassinari
+- Fix broken link to milestones (#43379) @oliviertassinari
+- Update CSS theme variables related content (#43130) @siriwatknp
+- Fix link to createTheme source (#43332) @oliviertassinari
+- Add cache to avoid unnecessary jsx dynamic import and theme getting (#43139) @Vxee
+- Fix broken link to Next.js docs @oliviertassinari
+- [material-ui] Revamp `Composition` guide (#43266) @ZeeshanTamboli
+- [material-ui][Menu] Replace `PaperProps` with `slotProps.paper` in demos (#43354) @sai6855
+
+### Core
+
+- [code-infra] Change docs:start script to serve the exports folder (#43375) @Janpot
+- [core] Fix typescript-next CI workflow (#43394) @aarongarciah
+- [core] Run `@mui/system` TypeScript module augmentation tests in CI (#43386) @ZeeshanTamboli
+- [core] Enable manage-package-manager-versions pnpm flag (#43366) @aarongarciah
+- [core] Replace `indexOf` with `includes` (#42883) @k-rajat19
+- [docs-infra] Add GitHub source link to components (#43228) @Jay-Karia
+- [docs-infra] Fix copy shortcut (#43361) @oliviertassinari
+- [perf] Remove theme/styling allocations (#43372) @romgrk
+- [perf] Improve `composeClasses` (#43363) @romgrk
+- [perf] Remove system allocations (#43306) @romgrk
+
+All contributors of this release in alphabetical order: @aarongarciah, @DiegoAndai, @Janpot, @Jay-Karia, @k-rajat19, @oliviertassinari, @rluzists1, @romgrk, @sai6855, @siriwatknp, @Vxee, @ZeeshanTamboli
+
 ## 6.0.0-beta.6
 
 <!-- generated comparing v6.0.0-beta.5..next -->
