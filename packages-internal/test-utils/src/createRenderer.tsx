@@ -306,7 +306,7 @@ function render(
       traceSync('forceUpdate', () =>
         testingLibraryRenderResult.rerender(
           React.cloneElement(element, {
-            ['data-force-update' as any]: String(Math.random()),
+            ['data-force-update' as string]: String(Math.random()),
           }),
         ),
       );
