@@ -23,16 +23,16 @@ A big thanks to the 12 contributors who made this release possible. Here are som
   ```diff
   -const StyledBox = styled(Box)`
   +const StyledDiv = styled('div')`
-    color: white;
-  `;
+     color: white;
+   `;
   ```
 
   This yields the same end result.
   If this doesn't work for you, you can also cast the `styled` returned value to `typeof Box`:
 
   ```diff
-  const StyledBox = styled(Box)`
-    color: white;
+   const StyledBox = styled(Box)`
+     color: white;
   -`;
   +` as typeof Box;
   ```
