@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import clamp from '@mui/utils/clamp';
 import {
@@ -54,11 +55,11 @@ export const colorChannel = (color: string) => {
     return `${hex[0]} ${hex[1]} ${hex[2]}`;
   }
   const match = matchColor(color);
-  const format = match[1];
+  const name = match[1];
   const p1 = match[2];
   const p2 = match[3];
   const p3 = match[4];
-  switch (format) {
+  switch (name) {
     case 'rgb':
     case 'rgba':
     case 'hsl':
@@ -74,8 +75,16 @@ export const colorChannel = (color: string) => {
         case 'prophoto-rgb':
         case 'rec2020':
           return `${p2} ${p3} ${p3}`;
+        default: {
+          throw new MuiError(
+            'MUI: unsupported `%s` color space.\n' +
+              'The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rgb, rec-2020.',
+            colorspace,
+          );
+        }
       }
     }
+    default:
   }
   throw new MuiError(
     'MUI: Unsupported `%s` color.\n' +
