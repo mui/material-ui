@@ -4,6 +4,7 @@ title: React Autocomplete component
 components: TextField, Popper, Autocomplete
 githubLabel: 'component: autocomplete'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
+githubSource: packages/mui-material/src/Autocomplete
 ---
 
 # Autocomplete
@@ -49,6 +50,8 @@ const options = ['The Godfather', 'Pulp Fiction'];
 ```
 
 However, you can use different structures by providing a `getOptionLabel` prop.
+
+If your options are objects, you must provide the `isOptionEqualToValue` prop to ensure correct selection and highlighting. By default, it uses strict equality to compare options with the current value.
 
 ### Playground
 

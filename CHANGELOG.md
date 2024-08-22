@@ -1,5 +1,289 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.0.0-rc.0
+
+<!-- generated comparing v6.0.0-beta.6..next -->
+
+_Aug 22, 2024_
+
+A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
+
+- ⚡ Rendering performance improvements
+
+### `@mui/material@6.0.0-rc.0`
+
+#### Breaking changes
+
+- [Box] Remove `component` from `BoxOwnProps` (#43384) @DiegoAndai
+
+  The `component` prop has been removed from the `BoxOwnProps` as it is already included in the `Box` type.
+  This might affect your code if you are using the `styled` function with the `Box` component.
+  If this is the case, use a `div` element instead of `Box`:
+
+  ```diff
+  -const StyledBox = styled(Box)`
+  +const StyledDiv = styled('div')`
+     color: white;
+   `;
+  ```
+
+  This yields the same end result.
+  If this doesn't work for you, you can also cast the `styled` returned value to `typeof Box`:
+
+  ```diff
+   const StyledBox = styled(Box)`
+     color: white;
+  -`;
+  +` as typeof Box;
+  ```
+
+#### Changes
+
+- [ListItem] Remove unnecessary TypeScript test (#43359) @sai6855
+- Skip generating CSS variables for a custom spacing function (#43389) @siriwatknp
+- Revert visual regressions from #42283 (#43364) @ZeeshanTamboli
+
+### `@mui/codemod@6.0.0-rc.0`
+
+- Add Grid2 to removeSystemProps codemod (#43302) @DiegoAndai
+
+### Docs
+
+- [blog] Add video to the Pigment CSS blog post (#42500) @oliviertassinari
+- Fix broken link to milestones (#43379) @oliviertassinari
+- Update CSS theme variables related content (#43130) @siriwatknp
+- Fix link to createTheme source (#43332) @oliviertassinari
+- Add cache to avoid unnecessary jsx dynamic import and theme getting (#43139) @Vxee
+- Fix broken link to Next.js docs @oliviertassinari
+- [material-ui] Revamp `Composition` guide (#43266) @ZeeshanTamboli
+- [material-ui][Menu] Replace `PaperProps` with `slotProps.paper` in demos (#43354) @sai6855
+
+### Core
+
+- [code-infra] Change docs:start script to serve the exports folder (#43375) @Janpot
+- [core] Fix typescript-next CI workflow (#43394) @aarongarciah
+- [core] Run `@mui/system` TypeScript module augmentation tests in CI (#43386) @ZeeshanTamboli
+- [core] Enable manage-package-manager-versions pnpm flag (#43366) @aarongarciah
+- [core] Replace `indexOf` with `includes` (#42883) @k-rajat19
+- [docs-infra] Add GitHub source link to components (#43228) @Jay-Karia
+- [docs-infra] Fix copy shortcut (#43361) @oliviertassinari
+- [perf] Remove theme/styling allocations (#43372) @romgrk
+- [perf] Improve `composeClasses` (#43363) @romgrk
+- [perf] Remove system allocations (#43306) @romgrk
+
+All contributors of this release in alphabetical order: @aarongarciah, @DiegoAndai, @Janpot, @Jay-Karia, @k-rajat19, @oliviertassinari, @rluzists1, @romgrk, @sai6855, @siriwatknp, @Vxee, @ZeeshanTamboli
+
+## 6.0.0-beta.6
+
+<!-- generated comparing v6.0.0-beta.5..next -->
+
+_Aug 16, 2024_
+
+A big thanks to the 18 contributors who made this release possible.
+
+### `@mui/material@6.0.0-beta.6`
+
+- [Autocomplete] Improve the `options` prop description (#41591) @pluvio72
+- [Autocomplete] Remove autocomplete warning regarding value not equal to option (#43314) @ZeeshanTamboli
+- [Divider] Add aria-orientation (#43241) @aarongarciah
+- [IconButton] Fix hover background color behavior (#43271) @mnajdova
+- [TypeScript] Refactor types so they're compatible with upcoming React 19 (#43276) @DiegoAndai
+- [Typography] Replace dot notation color value to work with Pigment CSS (#43288) @siriwatknp
+- [pigment-css] Fix `getSelector` prefers-color-scheme to be object (#43237) @siriwatknp
+- Remove `display="block"` usage to work with Pigment CSS (#43307) @siriwatknp
+
+### `@mui/codemod@6.0.0-beta.6`
+
+- [codemod] Skip sx spread transformation (#43291) @siriwatknp
+
+### `@mui/styles@6.0.0-beta.6`
+
+- [styles] Fix issues reported by eslint-plugin-react-compiler (#43118) @jlewins
+
+### Docs
+
+- [material-ui] Audit and copyedit the v6 migration doc (#43073) @samuelsycamore
+- [material-ui] Fix Material Icon search lag and other improvements (#41330) @anle9650
+- [material-ui][Popover] Fix description and title of hover interaction section (#43290) @ZeeshanTamboli
+- [material-ui] Refine and unify custom template themes (#43220) @zanivan
+- [joy-ui] Fix data grid redirection (#43247) @sai6855
+- [mui-system] Add import statement in docs (#43223) @sai6855
+- Update babel config (#43286) @romgrk
+- Fix outdated references to Materal UI version (#43321) @oliviertassinari
+- Polish migration git diff experience @oliviertassinari
+- Update LTS to match format (#43212) @oliviertassinari
+- Fix Pigment CSS migration content (#43217) @siriwatknp
+
+### Core
+
+- [code-infra] Remove `userEvent` export from `@mui/internal-test-utils` (#43313) @LukasTy
+- [code-infra] Remove unnecessary alias (#43320) @Janpot
+- [code-infra] Fix utils bundle size entrypoint (#43304) @Janpot
+- [core] missing and incorrect scripts (#43209) @Jay-Karia
+- [core] Set Node 14 as minimum version in all browserslist envs (#43326) @aarongarciah
+- [core] Add React 19 as peer dependency (#43216) @aarongarciah
+- [core] Pin `eslint-plugin-jsx-a11y` version to 6.7.1 (#43292) @Janpot
+- [core] Update supported Node.js version to 14 (#43315) @Janpot
+- [core] Use fs instead of fs-extra in script utils (#43234) @DiegoAndai
+- [core] Refactor system theme props (#43120) @romgrk
+- [docs-infra] Fix some TS issues for X docs (#43285) @Janpot
+- [docs-infra] Move API pages to TS (#43199) @alexfauquette
+- [docs-infra] Fix broken sandboxes with relative module imports (#42767) @bharatkashyap
+- [docs-infra] Simplify API sections typing (#43128) @alexfauquette
+- [examples] Fix import (#43316) @aarongarciah
+- [examples] Add material-ui-pigment-css for Next.js and Vite (#43065) @siriwatknp
+- [examples] Replace wrong import with `@mui/material/styles` (#43236) @siriwatknp
+- [useMediaQuery] Adapt test implementation for React 19 (#43269) @aarongarciah
+- [test] Update `matchMedia` mocks (#43240) @cherniavskii
+- [test] Remove unnecessary ref param (#43282) @aarongarciah
+- [website] Update showcase to include Toolpad Core (#43226) @bharatkashyap
+- [website] Replace React.MutableRefObject with React.RefObject (#43284) @aarongarciah
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @anle9650, @bharatkashyap, @cherniavskii, @DiegoAndai, @Janpot, @Jay-Karia, @jlewins, @mnajdova, @oliviertassinari, @pluvio72, @renovate[bot], @romgrk, @sai6855, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+
+## 6.0.0-beta.5
+
+<!-- generated comparing v6.0.0-beta.4..next -->
+
+_Aug 8, 2024_
+
+A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+
+- Remove some deprecated props from the ListItem component (#41566) @thathva
+- Bumped the minimum supported version of TypeScript (#43116) @mnajdova
+
+### `@mui/material@6.0.0-beta.5`
+
+#### BREAKING CHANGES
+
+- &#8203;<!-- 14 -->[material-ui][ListItem] Removing deprecated props (#41566) @thathva
+
+  `ListItem`'s props `autoFocus`, `button`, `disabled`, and `selected`, deprecated in v5, have been removed. To replace the `button` prop, use `ListItemButton` instead. The other removed props are available in the `ListItemButton` component as well.
+
+  ```diff
+  -<ListItem button />
+  +<ListItemButton />
+  ```
+
+  Use this codemod to migrate your project to the `ListItemButton` component:
+
+  ```bash
+  npx @mui/codemod@next v6.0.0/list-item-button-prop <path/to/folder>
+  ```
+
+  As the `ListItem` no longer supports these props, the class names related to these props were removed. You should use the `listItemButtonClasses` object instead.
+
+  ```diff
+  -import { listItemClasses } from '@mui/material/ListItem';
+  +import { listItemButtonClasses } from '@mui/material/ListItemButton';
+
+  - listItemClasses.button
+  + listItemButtonClasses.root
+
+  - listItemClasses.focusVisible
+  + listItemButtonClasses.focusVisible
+
+  - listItemClasses.disabled
+  + listItemButtonClasses.disabled
+
+  - listItemClasses.selected
+  + listItemButtonClasses.selected
+  ```
+
+#### Changes
+
+- &#8203;<!-- 36 -->[material-ui][Autocomplete] Fix default value for multiple mode getting redefined with React 19 (#43189) @DiegoAndai
+- &#8203;<!-- 12 -->[material-ui] Merge `CssVarsProvider` into `ThemeProvider` (#43115) @siriwatknp
+- &#8203;<!-- 11 -->[material-ui] Make tests compatible with React 19 (#43155) @DiegoAndai
+- &#8203;<!-- 10 -->[material-ui] Refine Blog template (#42825) @zanivan
+- &#8203;<!-- 09 -->[material-ui] Element ref access React 19 compatibility (#43132) @DiegoAndai
+- &#8203;<!-- 08 -->[material-ui][mui-system] Add support for version runtime checks (#43190) @DiegoAndai
+
+### `@mui/material-pigment-css@6.0.0-beta.5`
+
+- &#8203;<!-- 13 -->Reexport Pigment CSS from index file (#43218) @siriwatknp
+
+### `@mui/codemod@6.0.0-beta.5`
+
+- &#8203;<!-- 31 -->Fix codemod crash on MuiDivider property (#43125) @Janpot
+
+### Docs
+
+- &#8203;<!-- 37 -->Fix resolution of @mui/material-ui in docs (#43108) @Janpot
+- &#8203;<!-- 25 -->Refine and polish out Templates page (#43131) @zanivan
+- &#8203;<!-- 24 -->Fix the link test script (#43195) @alexfauquette
+- &#8203;<!-- 23 -->Fix alpha usage (#43194) @siriwatknp
+- &#8203;<!-- 22 -->Link Toolpad Core components from Material UI docs (#43036) @prakhargupta1
+- &#8203;<!-- 21 -->Link Toolpad core docs to the docs menu (#42952) @prakhargupta1
+- &#8203;<!-- 20 -->Polish migration guide (#43021) @oliviertassinari
+- &#8203;<!-- 19 -->Fix 404 link to migration pages @oliviertassinari
+- &#8203;<!-- 18 -->Support inject dynamic theme (#42879) @Vxee
+- &#8203;<!-- 17 -->Fix 301 @oliviertassinari
+- &#8203;<!-- 35 -->[blog] Announcing pricing changes Sep 2024 (#43061) @joserodolfofreitas
+- &#8203;<!-- 15 -->[material-ui][TextField] Remove mentions of `redux-form` from TextField documentation (#43176) @AbdurRahman2004
+
+### Core
+
+- &#8203;<!-- 34 -->[code-infra] Fix `@mui/internal-test-utils` `screen` export type (#43150) @LukasTy
+- &#8203;<!-- 33 -->[code-infra] Do not look for changes with previous commit when releasing a canary version (#43129) @michaldudak
+- &#8203;<!-- 32 -->[code-infra] Automate canary releases (#43066) @michaldudak
+- &#8203;<!-- 30 -->[core] Apply top-level eslint rule to docs and fix violations (#43126) @Janpot
+- &#8203;<!-- 29 -->[core] Patch styled-components to use React.JSX namespace (#43205) @aarongarciah
+- &#8203;<!-- 28 -->[core] Replace JSX namespace usages with React.JSX (#43204) @aarongarciah
+- &#8203;<!-- 27 -->[core] Remove `react-router` package from `pigment-css-vite-app` (#43201) @ZeeshanTamboli
+- &#8203;<!-- 26 -->[core] Remove unnecessary types packages from `@mui/internal-babel-macros` (#43193) @ZeeshanTamboli
+- &#8203;<!-- 16 -->[docs-infra] Move `ApiPage` to TS (#43149) @alexfauquette
+- &#8203;<!-- 07 -->[test] Remove unnecessary prop type check in test (#43211) @aarongarciah
+- &#8203;<!-- 06 -->[test] Make conformance tests work with async render function (#43156) @michaldudak
+- &#8203;<!-- 05 -->[typescript] Update the minimum supported version (#43116) @mnajdova
+- &#8203;<!-- 04 -->[website] Add icons to core page products (#43151) @zanivan
+- &#8203;<!-- 03 -->[website] Copyedit Docs and Product menu taglines (#43075) @samuelsycamore
+- &#8203;<!-- 02 -->[website] Fix wrong link in pricing table (#43141) @zanivan
+- &#8203;<!-- 01 -->[website] Add blog link to pricing table (#43123) @zanivan
+
+All contributors of this release in alphabetical order: @aarongarciah, @AbdurRahman2004, @alexfauquette, @DiegoAndai, @Janpot, @joserodolfofreitas, @LukasTy, @michaldudak, @mnajdova, @oliviertassinari, @prakhargupta1, @samuelsycamore, @siriwatknp, @thathva, @Vxee, @zanivan, @ZeeshanTamboli
+
+## 6.0.0-beta.4
+
+<!-- generated comparing v6.0.0-beta.3..next -->
+
+_Jul 30, 2024_
+
+A big thanks to the 12 contributors who made this release possible.
+
+### `@mui/material@6.0.0-beta.4`
+
+- [Accordion] Render a heading wrapping `AccordionSummary` button per W3C Accordion Pattern standards (#42914) @ZeeshanTamboli
+- [Divider] Enable borderStyle enhancement in divider with children (#42715) @anuujj
+- [ImageListItemBar] Deprecate composed classes (#42905) @sai6855
+- Attach selector for default color scheme (#43035) @siriwatknp
+- Stabilize Grid v2 and deprecate Grid v1 (#43054) @DiegoAndai
+
+### `@mui/system@6.0.0-beta.4`
+
+- Make `createBreakpoints` independent for stringify theme (#43048) @siriwatknp
+
+### `@mui/utils@6.0.0-beta.4`
+
+- Fix issues reported by the React Compiler (#43051) @markliu2013
+
+### Docs
+
+- [material-ui] Replace deprecated `<ListItem button/>` with `ListItemButton` component in routing libraries list example (#43110) @aliharis99
+- [material-ui][Card] Update CardMedia description (#43067) @shahzaibdev1
+- [material-ui] Polish out data table demo (#43072) @zanivan
+- [material-ui][Snackbar] Improve reason type in demos (#43077) @sai6855
+- [pigment-css] Fix syntax in migrating-to-pigment-css guide (#43107) @KevinVandy
+- Fix page description line break @oliviertassinari
+
+### Core
+
+- Fix event naming convention @oliviertassinari
+- [docs-infra] Move ads to the `@mui/docs` package (#42944) @alexfauquette
+- [website] Fine-tune button styles on the branding theme (#43082) @zanivan
+
+All contributors of this release in alphabetical order: @alexfauquette, @aliharis99, @anuujj, @DiegoAndai, @KevinVandy, @markliu2013, @oliviertassinari, @sai6855, @shahzaibdev1, @siriwatknp, @zanivan, @ZeeshanTamboli
+
 ## 6.0.0-beta.3
 
 <!-- generated comparing v6.0.0-beta.2..next -->
@@ -1699,6 +1983,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [core] Fix TypeScript spelling in changelog @oliviertassinari
 - [core] Fix small detail in the autocomplete demo @oliviertassinari
 - [core] Increase node memory limit on Netlify build (#41111) @michaldudak
+- [core] Fix Netlify build cache issue (#43281) @LukasTy
 - [core][Tooltip] Remove incorrect code comment (#41179) @ZeeshanTamboli
 - [core] Fix missing context display names (#41168) @oliviertassinari
 - [core][base-ui] Remove `@mui/base` dev dependency from Base UI workspace (#41216) @ZeeshanTamboli

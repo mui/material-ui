@@ -71,8 +71,6 @@ function withDocsInfra(nextConfig) {
       NETLIFY_DEPLOY_URL: process.env.DEPLOY_URL,
       // Name of the site, its Netlify subdomain; for example, material-ui-docs
       NETLIFY_SITE_NAME: process.env.SITE_NAME,
-      // The ratio of ads display reported to Google Analytics. Used to avoid an exceed on the Google Analytics quotas.
-      GA_ADS_DISPLAY_RATIO: 0.1,
     },
     experimental: {
       scrollRestoration: true,

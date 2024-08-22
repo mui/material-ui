@@ -1,9 +1,9 @@
-export { buttonsCustomizations } from './buttons';
 export { chartsCustomizations } from './charts';
 export { dataGridCustomizations } from './dataGrid';
 export { datePickersCustomizations } from './datePickers';
 export { treeViewCustomizations } from './treeView';
 export { inputsCustomizations } from './inputs';
-export { layoutComponentsCustomizations } from './layoutComponents';
-export { menuComponentsCustomizations } from './menus';
-export { otherComponentsCustomizations } from './others';
+export { dataDisplayCustomizations } from './dataDisplay';
+export { feedbackCustomizations } from './feedback';
+export { navigationCustomizations } from './navigation';
+export { surfacesCustomizations } from './surfaces';

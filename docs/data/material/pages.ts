@@ -106,8 +106,8 @@ const pages: MuiPage[] = [
         children: [
           { pathname: '/material-ui/react-box' },
           { pathname: '/material-ui/react-container' },
-          { pathname: '/material-ui/react-grid' },
-          { pathname: '/material-ui/react-grid2', title: 'Grid v2', newFeature: true },
+          { pathname: '/material-ui/react-grid', deprecated: true },
+          { pathname: '/material-ui/react-grid2', title: 'Grid v2' },
           { pathname: '/material-ui/react-stack' },
           { pathname: '/material-ui/react-image-list', title: 'Image List' },
           { pathname: '/material-ui/react-hidden' },
@@ -277,16 +277,12 @@ const pages: MuiPage[] = [
         subheader: 'Upgrade to v6',
         children: [
           {
-            pathname: '/material-ui/migration/migrating-to-v6',
-            title: 'Migrating to v6: getting started',
+            pathname: '/material-ui/migration/upgrade-to-v6',
+            title: 'Upgrade to v6: getting started',
           },
           {
             pathname: '/material-ui/migration/migrating-from-deprecated-apis',
             title: 'Migrating from deprecated APIs',
-          },
-          {
-            pathname: '/material-ui/migration/migration-css-theme-variables',
-            title: 'Migrating to CSS theme variables',
           },
           {
             pathname: '/material-ui/migration/migrating-to-pigment-css',

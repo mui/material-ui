@@ -800,7 +800,6 @@ npx @mui/codemod@latest deprecations/button-group-classes <path>
 JS transforms:
 
 ```diff
-
  import { chipClasses } from '@mui/material/Chip';
 
   MuiChip: {
@@ -1844,7 +1843,7 @@ However, it has some **limitations**:
 npx @mui/codemod@next v6.0.0/grid-v2-props <path>
 ```
 
-Updates the usage of the `Unstable_Grid` (Grid v2) component to have the same API as the `PigmentGrid`.
+Updates the usage of the `@mui/material/Grid2`, `@mui/system/Grid`, and `@mui/joy/Grid` components to their updated APIs.
 
 ```diff
  <Grid

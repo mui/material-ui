@@ -3,7 +3,7 @@
   "compilerOptions": {
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "types": ["react", "node"]
+    "types": ["react", "node", "csstype"]
   },
   "include": ["src/**/*", "test/**/*"]
 }

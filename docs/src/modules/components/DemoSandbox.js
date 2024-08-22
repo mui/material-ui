@@ -15,10 +15,13 @@ import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from '@mui/docs/i18n';
 import { getDesignTokens } from '@mui/docs/branding';
 import { highDensity } from 'docs/src/modules/components/ThemeContext';
+import { deepmerge, unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 
 const iframeDefaultJoyTheme = extendTheme({
   cssVarPrefix: 'demo-iframe',
 });
+
+let globalInjectThemeCache;
 
 function FramedDemo(props) {
   const { children, document, usesCssVarsTheme } = props;
@@ -139,7 +142,7 @@ DemoIframe.propTypes = {
 };
 
 // Use the default Material UI theme for the demos
-function getTheme(outerTheme) {
+function getTheme(outerTheme, injectTheme) {
   const brandingDesignTokens = getDesignTokens(outerTheme.palette.mode);
   const isCustomized =
     outerTheme.palette.primary?.main &&
@@ -165,6 +168,14 @@ function getTheme(outerTheme) {
   if (outerTheme.spacing) {
     resultTheme.spacing = outerTheme.spacing;
   }
+
+  if (injectTheme && Object.prototype.toString.call(injectTheme) === '[object Object]') {
+    try {
+      return deepmerge(resultTheme, injectTheme);
+    } catch (e) {
+      return resultTheme;
+    }
+  }
   return resultTheme;
 }
 
@@ -187,6 +198,7 @@ function DemoSandbox(props) {
     usesCssVarsTheme,
     ...other
   } = props;
+  const [injectTheme, setInjectTheme] = React.useState();
   const Sandbox = iframe ? DemoIframe : React.Fragment;
   const sandboxProps = iframe ? { name, usesCssVarsTheme, ...other } : {};
 
@@ -195,13 +207,30 @@ function DemoSandbox(props) {
   // `childrenProp` needs to be a child of `Sandbox` since the iframe implementation rely on `cloneElement`.
   const children = <Sandbox {...sandboxProps}>{childrenProp}</Sandbox>;
 
+  useEnhancedEffect(() => {
+    async function setupMaterialUITheme() {
+      if (typeof window.getInjectTheme === 'function') {
+        if (!globalInjectThemeCache) {
+          window.React = React;
+          const jsx = await import('react/jsx-runtime');
+          window.jsx = jsx;
+          globalInjectThemeCache = window.getInjectTheme();
+        }
+        setInjectTheme(globalInjectThemeCache);
+      }
+    }
+    setupMaterialUITheme();
+  }, []);
+
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
       {usesCssVarsTheme ? (
         children
       ) : (
         <StylesProvider jss={jss}>
-          <ThemeProvider theme={(outerTheme) => getTheme(outerTheme)}>{children}</ThemeProvider>
+          <ThemeProvider theme={(outerTheme) => getTheme(outerTheme, injectTheme)}>
+            {children}
+          </ThemeProvider>
         </StylesProvider>
       )}
     </DemoErrorBoundary>

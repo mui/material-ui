@@ -1,9 +1,10 @@
 ---
 productId: material-ui
 title: React Grid component
-components: PigmentGrid
+components: PigmentGrid, Grid2
 githubLabel: 'component: Grid'
 materialDesign: https://m2.material.io/design/layout/understanding-layout.html
+githubSource: packages/mui-material/src/Grid2
 ---
 
 # Grid version 2
@@ -14,29 +15,6 @@ The `Grid` component works well for a layout with a known number of columns.
 The columns can be configured with multiple breakpoints to specify the column span of each child.
 
 {{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
-
-## What's changed
-
-We built the `Grid` component from scratch in order to:
-
-- Fix [known issues](https://github.com/mui/material-ui/pull/32746) introduced in Material UI v5.
-- Simplify the logic with CSS variables, removing the unnecessary `item` prop and reducing CSS specificity.
-- Introduce a proper fix for [preventing a scrollbar](#prevent-scrollbar) by switching between negative margin approaches.
-- Set negative margins of equal size on all sides of the grid container by default.
-
-Since the new implementation is considered a breaking change, we introduced it as `Unstable_Grid2` to gather feedbacks from the community before making it stable in the next major release of Material UI.
-
-We encourage everyone to try the new version of the `Grid` by visiting the [Grid v2 migration guide](/material-ui/migration/migration-grid-v2/).
-
-:::info
-From now on, the `Grid` v1 and `Grid` v2 refer to the import as:
-
-```js
-import Grid from '@mui/material/Grid'; // Grid version 1
-import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
-```
-
-:::
 
 ## How it works
 
