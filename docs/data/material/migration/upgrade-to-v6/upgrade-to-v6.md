@@ -365,10 +365,6 @@ As the `ListItem` no longer supports these props, the class names related to the
 +listItemButtonClasses.selected
 ```
 
-### Loading Button
-
-In v6, the `children` prop passed to the Loading Button component is now wrapped in a `<span>` tag to avoid [issues](https://github.com/mui/material-ui/issues/27853) when using tools to translate websites.
-
 ### Rating
 
 Previously, due to a bug, the `aria-label` attribute was "null Stars" when no value was set in the Rating component.

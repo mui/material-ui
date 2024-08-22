@@ -241,17 +241,9 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
       classes={classes}
       ownerState={ownerState}
     >
-      {ownerState.loadingPosition === 'end' ? (
-        <span>{children}</span>
-      ) : (
-        loadingButtonLoadingIndicator
-      )}
-
-      {ownerState.loadingPosition === 'end' ? (
-        loadingButtonLoadingIndicator
-      ) : (
-        <span>{children}</span>
-      )}
+      {ownerState.loadingPosition === 'end' ? null : loadingButtonLoadingIndicator}
+      {children}
+      {ownerState.loadingPosition === 'end' ? loadingButtonLoadingIndicator : null}
     </LoadingButtonRoot>
   );
 });
