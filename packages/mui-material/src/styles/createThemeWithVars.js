@@ -64,13 +64,11 @@ function getSpacingVal(spacingInput) {
   if (typeof spacingInput === 'number') {
     return `${spacingInput}px`;
   }
-  if (typeof spacingInput === 'string') {
-    return spacingInput;
-  }
-  if (typeof spacingInput === 'function') {
-    return spacingInput;
-  }
-  if (Array.isArray(spacingInput)) {
+  if (
+    typeof spacingInput === 'string' ||
+    typeof spacingInput === 'function' ||
+    Array.isArray(spacingInput)
+  ) {
     return spacingInput;
   }
   return '8px';
