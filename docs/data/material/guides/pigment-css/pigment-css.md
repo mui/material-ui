@@ -1,4 +1,4 @@
-# Pigment CSS
+# Getting started with Pigment CSS
 
 <p class="description">Quickstart your Pigment CSS setup.</p>
 
@@ -7,6 +7,8 @@
 [Pigment CSS](https://github.com/mui/pigment-css) is a zero-runtime CSS-in-JS library that pre-compiles at build time, making it compatible with React Server Components and providing you with significant performance improvements over other styling engines.
 
 Pigment CSS is compatible with any React component library and can be used with Vite and Next.js.
+
+Check out the [Migrating to Pigment CSS](/material-ui/migration/migrating-to-pigment-css/) guide if you have an existing Material UI project.
 
 ## Installation
 
@@ -85,7 +87,7 @@ const mainClass = css({
 
 ### Creating global styles
 
-You can also define global styles by using the `globalCSS` API:
+You can define global styles by using the `globalCSS` API:
 
 ```js
 import { globalCSS } from '@pigment-css/react';
@@ -112,7 +114,8 @@ const Heading = styled('div')({
 });
 ```
 
-You can add different styling options based on props by using the `variants` key. Each `variant` is an object with `props` and `style` keys:
+You can add different styling options based on props by using the `variants` key. 
+Each `variant` is an object with `props` and `style` keys:
 ```js
 import { styled } from '@pigment-css/react';
 
@@ -136,7 +139,7 @@ const Heading = styled('div')({
 
 ### Creating themes
 
-Pigment CSS supports theming, letting you reuse styles and values across your application.
+Pigment CSS supports theming to apply consistent styles and values across your application.
 You can create themes by defining them in your config file:
 ```js
 import { withPigment } from '@pigment-css/nextjs-plugin';
@@ -172,7 +175,7 @@ const Heading = styled('h1')(({ theme }) => ({
 
 ### CSS variables
 
-Pigment CSS generates CSS variables from the theme values when these are wrapped by the `extendTheme` utility, creating a `vars` object:
+Pigment CSS generates CSS variables from the theme values when they're wrapped by the `extendTheme` utility, creating a `vars` object:
 
 ```js
 import { withPigment, extendTheme } from '@pigment-css/nextjs-plugin';
@@ -245,11 +248,11 @@ You can also customize the behavior by providing a `getSelector` function:
   });
 ```
 
-### sx prop
+### The sx prop
 
-Additionally, you can use the special `sx` prop, which lets you apply styles directly to any element.
-When using the `sx` prop, Pigment CSS will replace it with `className` and `style` props at build time.
-This will work on any element, including HTML elements, and 3rd party custom components (as long as it's JSX):
+The `sx` prop lets you apply custom styles directly to any element.
+At build time, Pigment CSS replaces the `sx` prop with `className` and `style` props.
+The `sx` prop works with all Material UI components as well as HTML elements and any third-party JSX components.
 
 ```js
 <div sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -257,7 +260,7 @@ This will work on any element, including HTML elements, and 3rd party custom com
 <AnyComponent sx={{ fontSize: 12, color: 'red' }} />;
 ```
 
-Note that if you want to use the `sx` prop on an HTML element, you'll need to augment the `HTMLAttributes` interface:
+If you use the `sx` prop on an HTML element, you'll need to augment the `HTMLAttributes` interface:
 
 ```js
 type Theme = {
