@@ -145,7 +145,7 @@ const pages: MuiPage[] = [
         newFeature: true,
         children: [
           { pathname: '/toolpad/core/react-dashboard-layout/', title: 'Dashboard Layout' },
-          { pathname: '/toolpad/core/react-sign-in-page/', title: 'Sign In Page' },
+          { pathname: '/toolpad/core/react-sign-in-page/', title: 'Sign-in Page' },
         ],
       },
       {
