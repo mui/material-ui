@@ -121,6 +121,7 @@
     "@octokit/rest": "^21.0.2",
     "@pigment-css/react": "0.0.20",
     "@playwright/test": "1.46.1",
+    "@types/babel__core": "^7.20.5",
     "@types/fs-extra": "^11.0.4",
     "@types/lodash": "^4.17.7",
     "@types/mocha": "^10.0.7",
