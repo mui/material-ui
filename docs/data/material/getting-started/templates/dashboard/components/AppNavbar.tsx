@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -28,10 +27,10 @@ const Toolbar = styled(MuiToolbar)({
   },
 });
 
-function Navbar({ mode, toggleColorMode }) {
+export default function AppNavbar() {
   const [open, setOpen] = React.useState(false);
 
-  const toggleDrawer = (newOpen) => () => {
+  const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
   };
 
@@ -45,6 +44,7 @@ function Navbar({ mode, toggleColorMode }) {
         backgroundImage: 'none',
         borderBottom: '1px solid',
         borderColor: 'divider',
+        top: '56px',
       }}
     >
       <Toolbar variant="regular">
@@ -66,24 +66,12 @@ function Navbar({ mode, toggleColorMode }) {
           <MenuButton aria-label="menu" onClick={toggleDrawer(true)}>
             <MenuRoundedIcon />
           </MenuButton>
-          <SideMenuMobile
-            open={open}
-            toggleDrawer={toggleDrawer}
-            mode={mode}
-            toggleColorMode={toggleColorMode}
-          />
+          <SideMenuMobile open={open} toggleDrawer={toggleDrawer} />
         </Stack>
       </Toolbar>
     </AppBar>
   );
 }
-
-Navbar.propTypes = {
-  mode: PropTypes.oneOf(['dark', 'light']).isRequired,
-  toggleColorMode: PropTypes.func.isRequired,
-};
-
-export default Navbar;
 
 export function CustomIcon() {
   return (

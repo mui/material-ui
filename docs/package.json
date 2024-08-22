@@ -11,7 +11,7 @@
     "dev": "next dev",
     "deploy": "git push -f material-ui-docs next:next",
     "icons": "rimraf --glob public/static/icons/* && node ./scripts/buildIcons.js",
-    "start": "next start",
+    "start": "serve ./export",
     "create-playground": "cpy --cwd=scripts playground.template.tsx ../../pages/playground --rename=index.tsx",
     "typescript": "tsc -p tsconfig.json && tsc -p scripts/tsconfig.json",
     "typescript:transpile": "echo 'Use `pnpm docs:typescript:formatted'` instead && exit 1",
