@@ -93,7 +93,7 @@ async function run(argv) {
 
   const outDir = path.resolve(outDirBase, relativeOutDir);
 
-  if (usePackageExports) {
+  if (argv.rollup) {
     const { default: pkg } = await import(path.resolve('./package.json'), {
       with: { type: 'json' },
     });
@@ -203,6 +203,11 @@ yargs(process.argv.slice(2))
           describe: 'Set to `true` if you know you are transpiling large files.',
         })
         .option('out-dir', { default: './build', type: 'string' })
+        .option('rollup', {
+          default: false,
+          type: 'boolean',
+          describe: '(Experiment) Use rollup to build the files.',
+        })
         .option('verbose', { type: 'boolean' });
     },
     handler: run,
