@@ -42,14 +42,14 @@ export interface PaginationProps
    *
    * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @param {string} type The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous' | 'start-ellipsis' | 'end-ellipsis'). Defaults to 'page'.
-   * @param {number} page The page number to format.
-   * @param {bool} selected If true, the current page is selected.
+   * @param {number | null} page The page number to format.
+   * @param {boolean} selected If true, the current page is selected.
    * @returns {string}
    */
   getItemAriaLabel?: (
     type: UsePaginationItem['type'],
     page: UsePaginationItem['page'],
-    selected: boolean,
+    selected: UsePaginationItem['selected'],
   ) => string;
 
   /**
