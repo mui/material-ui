@@ -70,10 +70,8 @@ export default function Footer() {
               <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2 }}>
                 Subscribe for weekly updates. No spams ever!
               </Typography>
+              <InputLabel htmlFor="email-newsletter">Email</InputLabel>
               <Stack direction="row" spacing={1} useFlexGap>
-                <InputLabel htmlFor="email-newsletter" sx={visuallyHidden}>
-                  Email
-                </InputLabel>
                 <TextField
                   id="email-newsletter"
                   hiddenLabel
