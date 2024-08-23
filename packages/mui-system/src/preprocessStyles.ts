@@ -2,9 +2,11 @@ import { internal_serializeStyles } from '@mui/styled-engine';
 
 export default function preprocessStyles(styles: any) {
   const variants = styles.variants
-  styles.variants = undefined
 
+  // Avoid passing `style.variants` to emotion, it will pollute the styles.
+  styles.variants = undefined
   const serialized = internal_serializeStyles(styles) as any
+  styles.variants = variants
 
   // Not supported on styled-components
   if (serialized === styles) {
