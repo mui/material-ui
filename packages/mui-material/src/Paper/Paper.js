@@ -47,6 +47,7 @@ const PaperRoot = styled('div', {
     transition: theme.transitions.create('box-shadow'),
     variants: [
       {
+        // XXX: inverse this style to use `props: { square: true }`
         props: ({ ownerState }) => !ownerState.square,
         style: {
           borderRadius: theme.shape.borderRadius,
