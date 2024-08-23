@@ -41,7 +41,7 @@ export default function Blog() {
   };
 
   return (
-    // you can delete this TemplateFrame component since it's just no navigate to other pages
+    // You can delete this TemplateFrame component since it's just no navigate to other pages
     <TemplateFrame
       toggleCustomTheme={toggleCustomTheme}
       showCustomTheme={showCustomTheme}
