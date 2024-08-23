@@ -18,9 +18,6 @@
       "description": "If <code>true</code>, the ripple effect is disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the <code>.Mui-focusVisible</code> class."
     },
     "endIcon": { "description": "Element placed after the children." },
-    "endIconLoadingEnd": {
-      "description": "Styles applied to the endIcon element if <code>loading={true}</code> and <code>loadingPosition=&quot;end&quot;</code>."
-    },
     "fullWidth": {
       "description": "If <code>true</code>, the button will take up the full width of its container."
     },
@@ -33,15 +30,6 @@
     "loadingIndicator": {
       "description": "Element placed before the children if the button is in loading state. The node should contain an element with <code>role=&quot;progressbar&quot;</code> with an accessible name. By default we render a <code>CircularProgress</code> that is labelled by the button itself."
     },
-    "loadingIndicatorCenter": {
-      "description": "Styles applied to the loadingIndicator element if <code>loadingPosition=&quot;center&quot;</code>."
-    },
-    "loadingIndicatorEnd": {
-      "description": "Styles applied to the loadingIndicator element if <code>loadingPosition=&quot;end&quot;</code>."
-    },
-    "loadingIndicatorStart": {
-      "description": "Styles applied to the loadingIndicator element if <code>loadingPosition=&quot;start&quot;</code>."
-    },
     "loadingPosition": {
       "description": "The loading indicator can be positioned on the start, end, or the center of the button."
     },
@@ -49,9 +37,6 @@
       "description": "The size of the component. <code>small</code> is equivalent to the dense button styling."
     },
     "startIcon": { "description": "Element placed before the children." },
-    "startIconLoadingStart": {
-      "description": "Styles applied to the startIcon element if <code>loading={true}</code> and <code>loadingPosition=&quot;start&quot;</code>."
-    },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },

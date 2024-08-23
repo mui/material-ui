@@ -1,9 +1,9 @@
 import * as React from 'react';
-import LoadingButton from '@mui/lab/LoadingButton';
+import Button from '@mui/material/Button';
 
 function ClassesTest() {
   return (
-    <LoadingButton
+    <Button
       classes={{
         outlined: 'extra-outlined',
         loadingIndicator: 'extra-loading-indicator',
@@ -11,6 +11,6 @@ function ClassesTest() {
       }}
     >
       Button
-    </LoadingButton>
+    </Button>
   );
 }

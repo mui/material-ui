@@ -578,17 +578,9 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       classes={classes}
     >
       {startIcon}
-      {ownerState.loadingPosition === 'end' ? (
-        <span>{children}</span>
-      ) : (
-        buttonLoadingIndicator
-      )}
+      {ownerState.loadingPosition === 'end' ? <span>{children}</span> : buttonLoadingIndicator}
 
-      {ownerState.loadingPosition === 'end' ? (
-        buttonLoadingIndicator
-      ) : (
-        <span>{children}</span>
-      )}
+      {ownerState.loadingPosition === 'end' ? buttonLoadingIndicator : <span>{children}</span>}
 
       {endIcon}
     </ButtonRoot>
@@ -668,6 +660,27 @@ Button.propTypes /* remove-proptypes */ = {
    * If defined, an `a` element will be used as the root node.
    */
   href: PropTypes.string,
+  /**
+   * @ignore
+   */
+  id: PropTypes.string,
+  /**
+   * If `true`, the loading indicator is shown and the button becomes disabled.
+   * @default false
+   */
+  loading: PropTypes.bool,
+  /**
+   * Element placed before the children if the button is in loading state.
+   * The node should contain an element with `role="progressbar"` with an accessible name.
+   * By default we render a `CircularProgress` that is labelled by the button itself.
+   * @default <CircularProgress color="inherit" size={16} />
+   */
+  loadingIndicator: PropTypes.node,
+  /**
+   * The loading indicator can be positioned on the start, end, or the center of the button.
+   * @default 'center'
+   */
+  loadingPosition: PropTypes.oneOf(['center', 'end', 'start']),
   /**
    * The size of the component.
    * `small` is equivalent to the dense button styling.

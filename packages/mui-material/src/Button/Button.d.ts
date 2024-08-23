@@ -77,16 +77,6 @@ export interface ButtonOwnProps {
    * @default 'center'
    */
   loadingPosition?: 'start' | 'end' | 'center';
-  /** Styles applied to the loadingIndicator element if `loadingPosition="center"`. */
-  loadingIndicatorCenter?: string;
-  /** Styles applied to the loadingIndicator element if `loadingPosition="start"`. */
-  loadingIndicatorStart?: string;
-  /** Styles applied to the loadingIndicator element if `loadingPosition="end"`. */
-  loadingIndicatorEnd?: string;
-  /** Styles applied to the endIcon element if `loading={true}` and `loadingPosition="end"`. */
-  endIconLoadingEnd?: string;
-  /** Styles applied to the startIcon element if `loading={true}` and `loadingPosition="start"`. */
-  startIconLoadingStart?: string;
   /**
    * The size of the component.
    * `small` is equivalent to the dense button styling.

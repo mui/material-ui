@@ -15,7 +15,6 @@
     "disableFocusRipple": { "type": { "name": "bool" }, "default": "false" },
     "disableRipple": { "type": { "name": "bool" }, "default": "false" },
     "endIcon": { "type": { "name": "node" } },
-    "endIconLoadingEnd": { "type": { "name": "string" } },
     "fullWidth": { "type": { "name": "bool" }, "default": "false" },
     "href": { "type": { "name": "string" } },
     "loading": { "type": { "name": "bool" }, "default": "false" },
@@ -23,9 +22,6 @@
       "type": { "name": "node" },
       "default": "<CircularProgress color=\"inherit\" size={16} />"
     },
-    "loadingIndicatorCenter": { "type": { "name": "string" } },
-    "loadingIndicatorEnd": { "type": { "name": "string" } },
-    "loadingIndicatorStart": { "type": { "name": "string" } },
     "loadingPosition": {
       "type": {
         "name": "enum",
@@ -41,7 +37,6 @@
       "default": "'medium'"
     },
     "startIcon": { "type": { "name": "node" } },
-    "startIconLoadingStart": { "type": { "name": "string" } },
     "sx": {
       "type": {
         "name": "union",
