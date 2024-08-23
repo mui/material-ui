@@ -24,7 +24,7 @@ export default function EditPage(props) {
     <Button
       component="a"
       size="small"
-      variant="outlined"
+      variant="text"
       color="secondary"
       startIcon={<GitHubIcon sx={{ mr: 0.5 }} />}
       href={
@@ -40,7 +40,6 @@ export default function EditPage(props) {
       data-ga-event-category={userLanguage === 'en' ? undefined : 'l10n'}
       data-ga-event-action={userLanguage === 'en' ? undefined : 'edit-button'}
       data-ga-event-label={userLanguage === 'en' ? undefined : userLanguage}
-      sx={{ '&:hover > span': { transform: 'translateX(-2px)' } }}
     >
       {t('editPage')}
     </Button>

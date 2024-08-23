@@ -5,7 +5,7 @@ import {
 } from '@mui/base/Unstable_Popup';
 import { styled, css, Theme } from '@mui/system';
 
-function Radio({ value, ...props }: JSX.IntrinsicElements['input']) {
+function Radio({ value, ...props }: React.JSX.IntrinsicElements['input']) {
   return (
     <span>
       <input

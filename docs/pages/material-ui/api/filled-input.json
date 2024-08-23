@@ -11,11 +11,15 @@
     },
     "components": {
       "type": { "name": "shape", "description": "{ Input?: elementType, Root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ input?: object, root?: object }" },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
@@ -118,42 +122,6 @@
       "isGlobal": false
     },
     {
-      "key": "inputAdornedEnd",
-      "className": "MuiFilledInput-inputAdornedEnd",
-      "description": "Styles applied to the input element if `endAdornment` is provided.",
-      "isGlobal": false
-    },
-    {
-      "key": "inputAdornedStart",
-      "className": "MuiFilledInput-inputAdornedStart",
-      "description": "Styles applied to the input element if `startAdornment` is provided.",
-      "isGlobal": false
-    },
-    {
-      "key": "inputHiddenLabel",
-      "className": "MuiFilledInput-inputHiddenLabel",
-      "description": "Styles applied to the `input` if in `<FormControl hiddenLabel />`.",
-      "isGlobal": false
-    },
-    {
-      "key": "inputMultiline",
-      "className": "MuiFilledInput-inputMultiline",
-      "description": "Styles applied to the input element if `multiline={true}`.",
-      "isGlobal": false
-    },
-    {
-      "key": "inputSizeSmall",
-      "className": "MuiFilledInput-inputSizeSmall",
-      "description": "Styles applied to the input element if `size=\"small\"`.",
-      "isGlobal": false
-    },
-    {
-      "key": "inputTypeSearch",
-      "className": "MuiFilledInput-inputTypeSearch",
-      "description": "Styles applied to the input element if `type=\"search\"`.",
-      "isGlobal": false
-    },
-    {
       "key": "multiline",
       "className": "MuiFilledInput-multiline",
       "description": "Styles applied to the root element if `multiline={true}`.",
@@ -168,7 +136,7 @@
     {
       "key": "sizeSmall",
       "className": "MuiFilledInput-sizeSmall",
-      "description": "Styles applied to the input element if `size=\"small\"`.",
+      "description": "Styles applied to the root element if `size=\"small\"`.",
       "isGlobal": false
     },
     {

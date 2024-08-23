@@ -1,15 +1,11 @@
 fn({
   MuiAutocomplete: {
     defaultProps: {
-      slots: {
-        paper: CustomPaper,
-        popper: CustomPopper,
-        listbox: CustomListbox
-      },
-
       slotProps: {
-        listbox: { height: 12 },
-        chip: { height: 10 }
+        clearIndicator: { width: 10 },
+        paper: { width: 12 },
+        popper: { width: 14 },
+        popupIndicator: { width: 16 }
       }
     },
   },
@@ -19,15 +15,14 @@ fn({
   MuiAutocomplete: {
     defaultProps: {
       slotProps: {
-        popupIndicator: { width: 20 },
-        listbox: { height: 12 },
-        chip: { height: 10 }
-      },
+        clearIndicator: { width: 10 },
+        paper: { width: 12 },
+        popper: { width: 14 },
 
-      slots: {
-        paper: CustomPaper,
-        popper: CustomPopper,
-        listbox: CustomListbox
+        popupIndicator: {
+          ...{ width: 16 },
+          ...{ width: 20 }
+        }
       }
     },
   },

@@ -21,7 +21,7 @@ export default function DiscreteSlider() {
 }
 
 interface SliderValueLabelProps {
-  children: React.ReactElement;
+  children: React.ReactElement<any>;
 }
 
 function SliderValueLabel({ children }: SliderValueLabelProps) {

@@ -316,7 +316,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         'Enter',
       ];
 
-      if (validKeys.indexOf(event.key) !== -1) {
+      if (validKeys.includes(event.key)) {
         event.preventDefault();
         update(true, event);
       }
@@ -531,8 +531,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         disabled={disabled}
         className={classes.nativeInput}
         autoFocus={autoFocus}
-        ownerState={ownerState}
         {...other}
+        ownerState={ownerState}
       />
       <SelectIcon as={IconComponent} className={classes.icon} ownerState={ownerState} />
       <Menu

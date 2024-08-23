@@ -185,23 +185,29 @@ function EnhancedTableHead(props: EnhancedTableProps) {
                 textColor={active ? 'primary.plainColor' : undefined}
                 component="button"
                 onClick={createSortHandler(headCell.id)}
-                fontWeight="lg"
                 startDecorator={
                   headCell.numeric ? (
-                    <ArrowDownwardIcon sx={{ opacity: active ? 1 : 0 }} />
+                    <ArrowDownwardIcon
+                      sx={[active ? { opacity: 1 } : { opacity: 0 }]}
+                    />
                   ) : null
                 }
                 endDecorator={
                   !headCell.numeric ? (
-                    <ArrowDownwardIcon sx={{ opacity: active ? 1 : 0 }} />
+                    <ArrowDownwardIcon
+                      sx={[active ? { opacity: 1 } : { opacity: 0 }]}
+                    />
                   ) : null
                 }
                 sx={{
+                  fontWeight: 'lg',
+
                   '& svg': {
                     transition: '0.2s',
                     transform:
                       active && order === 'desc' ? 'rotate(0deg)' : 'rotate(180deg)',
                   },
+
                   '&:hover': { '& svg': { opacity: 1 } },
                 }}
               >
@@ -219,28 +225,27 @@ function EnhancedTableHead(props: EnhancedTableProps) {
     </thead>
   );
 }
-
 interface EnhancedTableToolbarProps {
   numSelected: number;
 }
-
 function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
   const { numSelected } = props;
-
   return (
     <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        py: 1,
-        pl: { sm: 2 },
-        pr: { xs: 1, sm: 1 },
-        ...(numSelected > 0 && {
+      sx={[
+        {
+          display: 'flex',
+          alignItems: 'center',
+          py: 1,
+          pl: { sm: 2 },
+          pr: { xs: 1, sm: 1 },
+          borderTopLeftRadius: 'var(--unstable_actionRadius)',
+          borderTopRightRadius: 'var(--unstable_actionRadius)',
+        },
+        numSelected > 0 && {
           bgcolor: 'background.level1',
-        }),
-        borderTopLeftRadius: 'var(--unstable_actionRadius)',
-        borderTopRightRadius: 'var(--unstable_actionRadius)',
-      }}
+        },
+      ]}
     >
       {numSelected > 0 ? (
         <Typography sx={{ flex: '1 1 100%' }} component="div">
@@ -256,7 +261,6 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           Nutrition
         </Typography>
       )}
-
       {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton size="sm" color="danger" variant="solid">
@@ -273,14 +277,12 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
     </Box>
   );
 }
-
 export default function TableSortAndSelection() {
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof Data>('calories');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
     property: keyof Data,
@@ -289,7 +291,6 @@ export default function TableSortAndSelection() {
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
-
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
       const newSelected = rows.map((n) => n.name);
@@ -298,11 +299,9 @@ export default function TableSortAndSelection() {
     }
     setSelected([]);
   };
-
   const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
     const selectedIndex = selected.indexOf(name);
     let newSelected: readonly string[] = [];
-
     if (selectedIndex === -1) {
       newSelected = newSelected.concat(selected, name);
     } else if (selectedIndex === 0) {
@@ -315,19 +314,15 @@ export default function TableSortAndSelection() {
         selected.slice(selectedIndex + 1),
       );
     }
-
     setSelected(newSelected);
   };
-
   const handleChangePage = (newPage: number) => {
     setPage(newPage);
   };
-
   const handleChangeRowsPerPage = (event: any, newValue: number | null) => {
     setRowsPerPage(parseInt(newValue!.toString(), 10));
     setPage(0);
   };
-
   const getLabelDisplayedRowsTo = () => {
     if (rows.length === -1) {
       return (page + 1) * rowsPerPage;
@@ -336,13 +331,10 @@ export default function TableSortAndSelection() {
       ? rows.length
       : Math.min(rows.length, (page + 1) * rowsPerPage);
   };
-
   const isSelected = (name: string) => selected.indexOf(name) !== -1;
-
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
   return (
     <Sheet
       variant="outlined"
@@ -453,7 +445,7 @@ export default function TableSortAndSelection() {
                     <Option value={25}>25</Option>
                   </Select>
                 </FormControl>
-                <Typography textAlign="center" sx={{ minWidth: 80 }}>
+                <Typography sx={{ textAlign: 'center', minWidth: 80 }}>
                   {labelDisplayedRows({
                     from: rows.length === 0 ? 0 : page * rowsPerPage + 1,
                     to: getLabelDisplayedRowsTo(),

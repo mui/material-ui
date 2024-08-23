@@ -1,3 +1,3 @@
 # Pigment CSS
 
-The package has moved [here](https://github.com/mui/pigment-css).
+The package has moved to [mui/pigment-css](https://github.com/mui/pigment-css).

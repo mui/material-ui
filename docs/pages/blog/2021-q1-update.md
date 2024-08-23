@@ -141,7 +141,7 @@ The date picker is at the border between the advanced components and the design 
 
   <img src="/static/blog/2021-q1-update/column-selector.png" alt="" style="width: 518px; margin-bottom: 16px;" />
 
-### Design kits
+### Design Kits
 
 #### Figma
 
@@ -215,7 +215,7 @@ We have the following objectives:
 - 🗓 Execute on all the items in the [public roadmap](https://github.com/mui/mui-x/projects/1).
 - ❓ Please upvote [GitHub issues](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
-### Design kits
+### Design Kits
 
 - Release an update with the new Material Design icons on Figma, Adobe XD, Sketch.
 - Figma, continue to polish the kit as our most important one.

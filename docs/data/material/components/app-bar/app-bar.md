@@ -4,6 +4,7 @@ title: App Bar React component
 components: AppBar, Toolbar, Menu
 githubLabel: 'component: app bar'
 materialDesign: https://m2.material.io/components/app-bars-top
+githubSource: packages/mui-material/src/AppBar
 ---
 
 # App Bar
@@ -152,3 +153,11 @@ Following the [Material Design guidelines](https://m2.material.io/design/color/d
 You can override this behavior by setting the `enableColorOnDark` prop to `true`.
 
 {{"demo": "EnableColorOnDarkAppBar.js", "bg": true}}
+
+## Experimental APIs
+
+### DashboardLayout
+
+The [DashboardLayout](https://mui.com/toolpad/core/react-dashboard-layout/) component from `@toolpad/core` is the starting point for dashboarding applications. It takes care of application layout, theming, navigation, and more. An example usage of this component:
+
+{{"demo": "DashboardLayoutBasic.js", "height": 400, "iframe": true, "hideToolbar": true}}

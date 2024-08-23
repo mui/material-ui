@@ -60,13 +60,13 @@ export type LoadingButtonTypeMap<
  *
  * Demos:
  *
- * - [Button Group](https://mui.com/material-ui/react-button-group/)
- * - [Button](https://mui.com/material-ui/react-button/)
+ * - [Button Group](https://next.mui.com/material-ui/react-button-group/)
+ * - [Button](https://next.mui.com/material-ui/react-button/)
  *
  * API:
  *
- * - [LoadingButton API](https://mui.com/material-ui/api/loading-button/)
- * - inherits [Button API](https://mui.com/material-ui/api/button/)
+ * - [LoadingButton API](https://next.mui.com/material-ui/api/loading-button/)
+ * - inherits [Button API](https://next.mui.com/material-ui/api/button/)
  */
 declare const LoadingButton: ExtendButton<LoadingButtonTypeMap>;
 

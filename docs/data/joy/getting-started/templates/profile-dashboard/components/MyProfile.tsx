@@ -65,12 +65,11 @@ export default function MyProfile() {
               underline="hover"
               color="neutral"
               href="#some-link"
-              fontSize={12}
-              fontWeight={500}
+              sx={{ fontSize: 12, fontWeight: 500 }}
             >
               Users
             </Link>
-            <Typography color="primary" fontWeight={500} fontSize={12}>
+            <Typography color="primary" sx={{ fontWeight: 500, fontSize: 12 }}>
               My profile
             </Typography>
           </Breadcrumbs>
@@ -78,12 +77,7 @@ export default function MyProfile() {
             My profile
           </Typography>
         </Box>
-        <Tabs
-          defaultValue={0}
-          sx={{
-            bgcolor: 'transparent',
-          }}
-        >
+        <Tabs defaultValue={0} sx={{ bgcolor: 'transparent' }}>
           <TabList
             tabFlex={1}
             size="sm"
@@ -214,13 +208,13 @@ export default function MyProfile() {
                   >
                     <Option value="1">
                       Indochina Time (Bangkok){' '}
-                      <Typography textColor="text.tertiary" ml={0.5}>
+                      <Typography textColor="text.tertiary" sx={{ ml: 0.5 }}>
                         — GMT+07:00
                       </Typography>
                     </Option>
                     <Option value="2">
                       Indochina Time (Ho Chi Minh City){' '}
-                      <Typography textColor="text.tertiary" ml={0.5}>
+                      <Typography textColor="text.tertiary" sx={{ ml: 0.5 }}>
                         — GMT+07:00
                       </Typography>
                     </Option>
@@ -310,13 +304,13 @@ export default function MyProfile() {
                 >
                   <Option value="1">
                     Indochina Time (Bangkok){' '}
-                    <Typography textColor="text.tertiary" ml={0.5}>
+                    <Typography textColor="text.tertiary" sx={{ ml: 0.5 }}>
                       — GMT+07:00
                     </Typography>
                   </Option>
                   <Option value="2">
                     Indochina Time (Ho Chi Minh City){' '}
-                    <Typography textColor="text.tertiary" ml={0.5}>
+                    <Typography textColor="text.tertiary" sx={{ ml: 0.5 }}>
                       — GMT+07:00
                     </Typography>
                   </Option>

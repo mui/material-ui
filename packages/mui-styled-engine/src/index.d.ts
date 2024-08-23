@@ -64,7 +64,9 @@ export interface CSSObject
 interface CSSObjectWithVariants<Props> extends Omit<CSSObject, 'variants'> {
   variants: Array<{
     props: Props | ((props: Props) => boolean);
-    style: CSSObject;
+    style:
+      | CSSObject
+      | ((args: Props extends { theme: any } ? { theme: Props['theme'] } : any) => CSSObject);
   }>;
 }
 
@@ -200,20 +202,22 @@ export interface CreateMUIStyled<
   ): CreateStyledComponent<PropsOf<C> & MUIStyledCommonProps, {}, {}, Theme>;
 
   <
-    Tag extends keyof JSX.IntrinsicElements,
-    ForwardedProps extends keyof JSX.IntrinsicElements[Tag] = keyof JSX.IntrinsicElements[Tag],
+    Tag extends keyof React.JSX.IntrinsicElements,
+    ForwardedProps extends
+      keyof React.JSX.IntrinsicElements[Tag] = keyof React.JSX.IntrinsicElements[Tag],
   >(
     tag: Tag,
-    options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps> & MuiStyledOptions,
+    options: FilteringStyledOptions<React.JSX.IntrinsicElements[Tag], ForwardedProps> &
+      MuiStyledOptions,
   ): CreateStyledComponent<
     MUIStyledCommonProps,
-    Pick<JSX.IntrinsicElements[Tag], ForwardedProps>,
+    Pick<React.JSX.IntrinsicElements[Tag], ForwardedProps>,
     {},
     Theme
   >;
 
-  <Tag extends keyof JSX.IntrinsicElements>(
+  <Tag extends keyof React.JSX.IntrinsicElements>(
     tag: Tag,
     options?: StyledOptions<MUIStyledCommonProps> & MuiStyledOptions,
-  ): CreateStyledComponent<MUIStyledCommonProps, JSX.IntrinsicElements[Tag], {}, Theme>;
+  ): CreateStyledComponent<MUIStyledCommonProps, React.JSX.IntrinsicElements[Tag], {}, Theme>;
 }

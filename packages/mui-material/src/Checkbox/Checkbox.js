@@ -12,9 +12,10 @@ import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckB
 import capitalize from '../utils/capitalize';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
-import { createUseThemeProps, styled } from '../zero-styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 
-const useThemeProps = createUseThemeProps('MuiCheckbox');
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, indeterminate, color, size } = ownerState;
@@ -50,65 +51,67 @@ const CheckboxRoot = styled(SwitchBase, {
       ownerState.color !== 'default' && styles[`color${capitalize(ownerState.color)}`],
     ];
   },
-})(({ theme }) => ({
-  color: (theme.vars || theme).palette.text.secondary,
-  variants: [
-    {
-      props: { color: 'default', disableRipple: false },
-      style: {
-        '&:hover': {
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
-            : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
-        },
-      },
-    },
-    ...Object.entries(theme.palette)
-      .filter(([, palette]) => palette.main)
-      .map(([color]) => ({
-        props: { color, disableRipple: false },
+})(
+  memoTheme(({ theme }) => ({
+    color: (theme.vars || theme).palette.text.secondary,
+    variants: [
+      {
+        props: { color: 'default', disableRipple: false },
         style: {
           '&:hover': {
             backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-              : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
-          },
-        },
-      })),
-    ...Object.entries(theme.palette)
-      .filter(([, palette]) => palette.main)
-      .map(([color]) => ({
-        props: { color },
-        style: {
-          [`&.${checkboxClasses.checked}, &.${checkboxClasses.indeterminate}`]: {
-            color: (theme.vars || theme).palette[color].main,
-          },
-          [`&.${checkboxClasses.disabled}`]: {
-            color: (theme.vars || theme).palette.action.disabled,
-          },
-        },
-      })),
-    {
-      // Should be last to override other colors
-      props: { disableRipple: false },
-      style: {
-        // Reset on touch devices, it doesn't add specificity
-        '&:hover': {
-          '@media (hover: none)': {
-            backgroundColor: 'transparent',
+              ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
+              : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
           },
         },
       },
-    },
-  ],
-}));
+      ...Object.entries(theme.palette)
+        .filter(([, palette]) => palette && palette.main)
+        .map(([color]) => ({
+          props: { color, disableRipple: false },
+          style: {
+            '&:hover': {
+              backgroundColor: theme.vars
+                ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
+                : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
+            },
+          },
+        })),
+      ...Object.entries(theme.palette)
+        .filter(([, palette]) => palette && palette.main)
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            [`&.${checkboxClasses.checked}, &.${checkboxClasses.indeterminate}`]: {
+              color: (theme.vars || theme).palette[color].main,
+            },
+            [`&.${checkboxClasses.disabled}`]: {
+              color: (theme.vars || theme).palette.action.disabled,
+            },
+          },
+        })),
+      {
+        // Should be last to override other colors
+        props: { disableRipple: false },
+        style: {
+          // Reset on touch devices, it doesn't add specificity
+          '&:hover': {
+            '@media (hover: none)': {
+              backgroundColor: 'transparent',
+            },
+          },
+        },
+      },
+    ],
+  })),
+);
 
 const defaultCheckedIcon = <CheckBoxIcon />;
 const defaultIcon = <CheckBoxOutlineBlankIcon />;
 const defaultIndeterminateIcon = <IndeterminateCheckBoxIcon />;
 
 const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiCheckbox' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiCheckbox' });
   const {
     checkedIcon = defaultCheckedIcon,
     color = 'primary',

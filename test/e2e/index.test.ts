@@ -7,8 +7,8 @@ import type {
   MatcherOptions,
   SelectorMatcherOptions,
 } from '@testing-library/dom';
-import '@mui-internal/test-utils/initMatchers';
-import '@mui-internal/test-utils/initPlaywrightMatchers';
+import '@mui/internal-test-utils/initMatchers';
+import '@mui/internal-test-utils/initPlaywrightMatchers';
 
 function sleep(duration: number): Promise<void> {
   return new Promise<void>((resolve) => {

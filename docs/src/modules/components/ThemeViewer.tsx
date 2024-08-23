@@ -210,7 +210,7 @@ export default function ThemeViewer({
       sx={{
         color: '#FFF',
         p: 1.5,
-        bgcolor: 'hsl(210, 35%, 9%)', // one-off code container color
+        bgcolor: 'hsl(210, 25%, 9%)', // one-off code container color
         borderRadius: 3,
         border: `1px solid ${blueDark[700]}`,
       }}

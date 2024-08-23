@@ -4,6 +4,7 @@ title: React Autocomplete component
 components: TextField, Popper, Autocomplete
 githubLabel: 'component: autocomplete'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
+githubSource: packages/mui-material/src/Autocomplete
 ---
 
 # Autocomplete
@@ -49,6 +50,8 @@ const options = ['The Godfather', 'Pulp Fiction'];
 ```
 
 However, you can use different structures by providing a `getOptionLabel` prop.
+
+If your options are objects, you must provide the `isOptionEqualToValue` prop to ensure correct selection and highlighting. By default, it uses strict equality to compare options with the current value.
 
 ### Playground
 
@@ -210,6 +213,10 @@ overriding the `filterOptions` prop:
 A customized UI for Google Maps Places Autocomplete.
 For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/overview) and [Google Places](https://developers.google.com/maps/documentation/places/web-service/overview) API.
 
+:::info
+The following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
+:::
+
 {{"demo": "GoogleMaps.js"}}
 
 :::error
@@ -278,7 +285,7 @@ Head to the [Customized hook](#customized-hook) section for a customization exam
 
 ### Hint
 
-The following demo shows how to add a hint feature to the Autocomplete using the `renderInput` and `filterOptions` props:
+The following demo shows how to add a hint feature to the Autocomplete:
 
 {{"demo": "AutocompleteHint.js"}}
 
@@ -388,7 +395,7 @@ In the event you want the avoid autofill, you can try the following:
   />
   ```
 
-Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) for more details.
+Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Practical_implementation_guides/Turning_off_form_autocompletion) for more details.
 
 ### iOS VoiceOver
 

@@ -11,10 +11,10 @@ import Paper from '../Paper';
 import dialogClasses, { getDialogUtilityClass } from './dialogClasses';
 import DialogContext from './DialogContext';
 import Backdrop from '../Backdrop';
-import useTheme from '../styles/useTheme';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 
-const useThemeProps = createUseThemeProps('MuiDialog');
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const DialogBackdrop = styled(Backdrop, {
   name: 'MuiDialog',
@@ -114,99 +114,100 @@ const DialogPaper = styled(Paper, {
       ownerState.fullScreen && styles.paperFullScreen,
     ];
   },
-})(({ theme }) => ({
-  margin: 32,
-  position: 'relative',
-  overflowY: 'auto', // Fix IE11 issue, to remove at some point.
-  '@media print': {
-    overflowY: 'visible',
-    boxShadow: 'none',
-  },
-  variants: [
-    {
-      props: {
-        scroll: 'paper',
-      },
-      style: {
-        display: 'flex',
-        flexDirection: 'column',
-        maxHeight: 'calc(100% - 64px)',
-      },
+})(
+  memoTheme(({ theme }) => ({
+    margin: 32,
+    position: 'relative',
+    '@media print': {
+      overflowY: 'visible',
+      boxShadow: 'none',
     },
-    {
-      props: {
-        scroll: 'body',
-      },
-      style: {
-        display: 'inline-block',
-        verticalAlign: 'middle',
-        textAlign: 'left', // 'initial' doesn't work on IE11
-      },
-    },
-    {
-      props: ({ ownerState }) => !ownerState.maxWidth,
-      style: {
-        maxWidth: 'calc(100% - 64px)',
-      },
-    },
-    {
-      props: {
-        maxWidth: 'xs',
-      },
-      style: {
-        maxWidth:
-          theme.breakpoints.unit === 'px'
-            ? Math.max(theme.breakpoints.values.xs, 444)
-            : `max(${theme.breakpoints.values.xs}${theme.breakpoints.unit}, 444px)`,
-        [`&.${dialogClasses.paperScrollBody}`]: {
-          [theme.breakpoints.down(Math.max(theme.breakpoints.values.xs, 444) + 32 * 2)]: {
-            maxWidth: 'calc(100% - 64px)',
-          },
+    variants: [
+      {
+        props: {
+          scroll: 'paper',
+        },
+        style: {
+          display: 'flex',
+          flexDirection: 'column',
+          maxHeight: 'calc(100% - 64px)',
         },
       },
-    },
-    ...Object.keys(theme.breakpoints.values)
-      .filter((maxWidth) => maxWidth !== 'xs')
-      .map((maxWidth) => ({
-        props: { maxWidth },
+      {
+        props: {
+          scroll: 'body',
+        },
         style: {
-          maxWidth: `${theme.breakpoints.values[maxWidth]}${theme.breakpoints.unit}`,
+          display: 'inline-block',
+          verticalAlign: 'middle',
+          textAlign: 'initial',
+        },
+      },
+      {
+        props: ({ ownerState }) => !ownerState.maxWidth,
+        style: {
+          maxWidth: 'calc(100% - 64px)',
+        },
+      },
+      {
+        props: {
+          maxWidth: 'xs',
+        },
+        style: {
+          maxWidth:
+            theme.breakpoints.unit === 'px'
+              ? Math.max(theme.breakpoints.values.xs, 444)
+              : `max(${theme.breakpoints.values.xs}${theme.breakpoints.unit}, 444px)`,
           [`&.${dialogClasses.paperScrollBody}`]: {
-            [theme.breakpoints.down(theme.breakpoints.values[maxWidth] + 32 * 2)]: {
+            [theme.breakpoints.down(Math.max(theme.breakpoints.values.xs, 444) + 32 * 2)]: {
               maxWidth: 'calc(100% - 64px)',
             },
           },
         },
-      })),
-    {
-      props: ({ ownerState }) => ownerState.fullWidth,
-      style: {
-        width: 'calc(100% - 64px)',
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.fullScreen,
-      style: {
-        margin: 0,
-        width: '100%',
-        maxWidth: '100%',
-        height: '100%',
-        maxHeight: 'none',
-        borderRadius: 0,
-        [`&.${dialogClasses.paperScrollBody}`]: {
-          margin: 0,
-          maxWidth: '100%',
+      ...Object.keys(theme.breakpoints.values)
+        .filter((maxWidth) => maxWidth !== 'xs')
+        .map((maxWidth) => ({
+          props: { maxWidth },
+          style: {
+            maxWidth: `${theme.breakpoints.values[maxWidth]}${theme.breakpoints.unit}`,
+            [`&.${dialogClasses.paperScrollBody}`]: {
+              [theme.breakpoints.down(theme.breakpoints.values[maxWidth] + 32 * 2)]: {
+                maxWidth: 'calc(100% - 64px)',
+              },
+            },
+          },
+        })),
+      {
+        props: ({ ownerState }) => ownerState.fullWidth,
+        style: {
+          width: 'calc(100% - 64px)',
         },
       },
-    },
-  ],
-}));
+      {
+        props: ({ ownerState }) => ownerState.fullScreen,
+        style: {
+          margin: 0,
+          width: '100%',
+          maxWidth: '100%',
+          height: '100%',
+          maxHeight: 'none',
+          borderRadius: 0,
+          [`&.${dialogClasses.paperScrollBody}`]: {
+            margin: 0,
+            maxWidth: '100%',
+          },
+        },
+      },
+    ],
+  })),
+);
 
 /**
  * Dialogs are overlaid modal paper based components with a backdrop.
  */
 const Dialog = React.forwardRef(function Dialog(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiDialog' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiDialog' });
   const theme = useTheme();
   const defaultTransitionDuration = {
     enter: theme.transitions.duration.enteringScreen,

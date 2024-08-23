@@ -610,7 +610,7 @@ If you use a different framework, or already have set up your project, follow th
 
 ```
 
-Most of the CSS used by Material UI has as specificity of 1, hence this `important` property is unnecessary.
+Most of the CSS used by Material UI has a specificity of 1, hence this `important` property is unnecessary.
 However, in a few edge cases, Material UI uses nested CSS selectors that win over Tailwind CSS.
 Use this step to help ensure that the [deeper elements](#deeper-elements-5) can always be customized using Tailwind's utility classes.
 More details on this option can be found here https://tailwindcss.com/docs/configuration#selector-strategy

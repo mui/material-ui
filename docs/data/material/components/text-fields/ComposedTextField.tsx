@@ -11,9 +11,7 @@ export default function ComposedTextField() {
   return (
     <Box
       component="form"
-      sx={{
-        '& > :not(style)': { m: 1 },
-      }}
+      sx={{ '& > :not(style)': { m: 1 } }}
       noValidate
       autoComplete="off"
     >

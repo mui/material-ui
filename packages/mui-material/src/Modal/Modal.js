@@ -4,16 +4,17 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
-import { useSlotProps } from '@mui/base/utils';
-import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
 import composeClasses from '@mui/utils/composeClasses';
 import FocusTrap from '../Unstable_TrapFocus';
 import Portal from '../Portal';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Backdrop from '../Backdrop';
+import useModal from './useModal';
 import { getModalUtilityClass } from './modalClasses';
-
-const useThemeProps = createUseThemeProps('MuiModal');
+import useSlot from '../utils/useSlot';
+import { useForkRef } from '../utils';
 
 const useUtilityClasses = (ownerState) => {
   const { open, exited, classes } = ownerState;
@@ -34,22 +35,24 @@ const ModalRoot = styled('div', {
 
     return [styles.root, !ownerState.open && ownerState.exited && styles.hidden];
   },
-})(({ theme }) => ({
-  position: 'fixed',
-  zIndex: (theme.vars || theme).zIndex.modal,
-  right: 0,
-  bottom: 0,
-  top: 0,
-  left: 0,
-  variants: [
-    {
-      props: ({ ownerState }) => !ownerState.open && ownerState.exited,
-      style: {
-        visibility: 'hidden',
+})(
+  memoTheme(({ theme }) => ({
+    position: 'fixed',
+    zIndex: (theme.vars || theme).zIndex.modal,
+    right: 0,
+    bottom: 0,
+    top: 0,
+    left: 0,
+    variants: [
+      {
+        props: ({ ownerState }) => !ownerState.open && ownerState.exited,
+        style: {
+          visibility: 'hidden',
+        },
       },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 const ModalBackdrop = styled(Backdrop, {
   name: 'MuiModal',
@@ -75,7 +78,7 @@ const ModalBackdrop = styled(Backdrop, {
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
  */
 const Modal = React.forwardRef(function Modal(inProps, ref) {
-  const props = useThemeProps({ name: 'MuiModal', props: inProps });
+  const props = useDefaultProps({ name: 'MuiModal', props: inProps });
   const {
     BackdropComponent = ModalBackdrop,
     BackdropProps,
@@ -100,8 +103,8 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     onTransitionEnter,
     onTransitionExited,
     open,
-    slotProps,
-    slots,
+    slotProps = {},
+    slots = {},
     // eslint-disable-next-line react/prop-types
     theme,
     ...other
@@ -152,16 +155,21 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     childProps.onExited = onExited;
   }
 
-  const RootSlot = slots?.root ?? components.Root ?? ModalRoot;
-  const BackdropSlot = slots?.backdrop ?? components.Backdrop ?? BackdropComponent;
+  const externalForwardedProps = {
+    slots: {
+      root: components.Root,
+      backdrop: components.Backdrop,
+      ...slots,
+    },
+    slotProps: {
+      ...componentsProps,
+      ...slotProps,
+    },
+  };
 
-  const rootSlotProps = slotProps?.root ?? componentsProps.root;
-  const backdropSlotProps = slotProps?.backdrop ?? componentsProps.backdrop;
-
-  const rootProps = useSlotProps({
-    elementType: RootSlot,
-    externalSlotProps: rootSlotProps,
-    externalForwardedProps: other,
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType: ModalRoot,
+    externalForwardedProps,
     getSlotProps: getRootProps,
     additionalProps: {
       ref,
@@ -170,15 +178,14 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     ownerState,
     className: clsx(
       className,
-      rootSlotProps?.className,
       classes?.root,
       !ownerState.open && ownerState.exited && classes?.hidden,
     ),
   });
 
-  const backdropProps = useSlotProps({
-    elementType: BackdropSlot,
-    externalSlotProps: backdropSlotProps,
+  const [BackdropSlot, backdropProps] = useSlot('backdrop', {
+    elementType: BackdropComponent,
+    externalForwardedProps,
     additionalProps: BackdropProps,
     getSlotProps: (otherHandlers) => {
       return getBackdropProps({
@@ -193,9 +200,11 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
         },
       });
     },
-    className: clsx(backdropSlotProps?.className, BackdropProps?.className, classes?.backdrop),
+    className: clsx(BackdropProps?.className, classes?.backdrop),
     ownerState,
   });
+
+  const backdropRef = useForkRef(BackdropProps?.ref, backdropProps.ref);
 
   if (!keepMounted && !open && (!hasTransition || exited)) {
     return null;
@@ -209,8 +218,10 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
        * is not meant for humans to interact with directly.
        * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
        */}
-      <RootSlot {...rootProps}>
-        {!hideBackdrop && BackdropComponent ? <BackdropSlot {...backdropProps} /> : null}
+      <RootSlot {...rootProps} {...other}>
+        {!hideBackdrop && BackdropComponent ? (
+          <BackdropSlot {...backdropProps} ref={backdropRef} />
+        ) : null}
         <FocusTrap
           disableEnforceFocus={disableEnforceFocus}
           disableAutoFocus={disableAutoFocus}
@@ -275,8 +286,7 @@ Modal.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated Use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -288,8 +298,7 @@ Modal.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */

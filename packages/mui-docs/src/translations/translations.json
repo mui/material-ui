@@ -1,5 +1,6 @@
 {
   "adblock": "If you don't mind tech-related ads (no tracking or remarketing), and want to keep us running, please whitelist us in your blocker.",
+  "adPublisher": "ad by {{publisher}}",
   "api-docs": {
     "componentName": "Component name",
     "componentsApi": "Components API",
@@ -15,6 +16,7 @@
     "defaultComponent": "Default component",
     "defaultValue": "Default value",
     "defaultHTMLTag": "Default HTML tag",
+    "defaultDeprecationMessage": "This API is deprecated.",
     "demos": "Demos",
     "deprecated": "Deprecated",
     "description": "Description",
@@ -62,8 +64,8 @@
       "joy-variant": "To learn how to add your own variants, check out <a href='/joy-ui/customization/themed-components/#extend-variants'>Themed components—Extend variants</a>."
     }
   },
-  "landingPageDescr": "A responsive landing page layout with common sections found in marketing pages.",
-  "landingPageTitle": "Landing page",
+  "marketingPageDescr": "A responsive marketing page layout with common sections found in marketing pages.",
+  "marketingPageTitle": "Marketing page",
   "searchButton": "Search…",
   "algoliaSearch": "What are you looking for?",
   "appFrame": {
@@ -93,12 +95,12 @@
   "copySource": "Copy the source",
   "copySourceLinkJS": "Copy link to JavaScript source",
   "copySourceLinkTS": "Copy link to TypeScript source",
-  "dashboardDescr": "Contains a taskbar and a mini variant drawer. The chart is courtesy of Recharts.",
+  "dashboardDescr": "A collection of charts and complex components in a responsive dashboard layout.",
   "dashboardTitle": "Dashboard",
   "decreaseSpacing": "decrease spacing",
   "demoToolbarLabel": "demo source",
   "demoStylingSelectSystem": "MUI System",
-  "demoStylingSelectTailwind": "Tailwind CSS",
+  "demoStylingSelectTailwind": "Tailwind CSS",
   "demoStylingSelectCSS": "Plain CSS",
   "diamondSponsors": "Diamond sponsors",
   "becomeADiamondSponsor": "Become a Diamond sponsor",

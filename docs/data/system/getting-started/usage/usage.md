@@ -96,12 +96,7 @@ return (
     sx={{ color: 'success.dark', fontSize: 16, verticalAlign: 'sub' }}
   />
   <Box
-    sx={{
-      color: 'success.dark',
-      display: 'inline',
-      fontWeight: 'medium',
-      mx: 0.5,
-    }}
+    sx={{ color: 'success.dark', display: 'inline', fontWeight: 'medium', mx: 0.5 }}
   >
     18.77%
   </Box>
@@ -218,8 +213,7 @@ Here is an example of a few:
 
 ```jsx
 <Box
-  sx={{
-    boxShadow: 1, // theme.shadows[1]
+  sx={{  boxShadow: 1, // theme.shadows[1]
     color: 'primary.main', // theme.palette.primary.main
     m: 1, // margin: theme.spacing(1)
     p: {
@@ -241,8 +235,7 @@ Here are a few examples of how you can implement these CSS features:
 
   ```jsx
   <Box
-    sx={{
-      // some styles
+    sx={{    // some styles
       ":hover": {
         boxShadow: 6,
       },
@@ -254,8 +247,7 @@ Here are a few examples of how you can implement these CSS features:
 
   ```jsx
   <Box
-    sx={{
-      // some styles
+    sx={{    // some styles
       '@media print': {
         width: 300,
       },
@@ -267,8 +259,7 @@ Here are a few examples of how you can implement these CSS features:
 
   ```jsx
   <Box
-    sx={{
-      // some styles
+    sx={{    // some styles
       '& .ChildSelector': {
         bgcolor: 'primary.main',
       },

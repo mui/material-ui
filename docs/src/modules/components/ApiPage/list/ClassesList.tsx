@@ -1,17 +1,16 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import kebabCase from 'lodash/kebabCase';
-import { ComponentClassDefinition } from '@mui/internal-docs-utils';
 import { useTranslate } from '@mui/docs/i18n';
 import ExpandableApiItem, {
-  ApiItemContaier,
+  ApiItemContainer,
 } from 'docs/src/modules/components/ApiPage/list/ExpandableApiItem';
+import { ClassDefinition } from 'docs/src/modules/components/ApiPage/definitions/classes';
 import {
   brandingLightTheme as lightTheme,
   brandingDarkTheme as darkTheme,
 } from '@mui/docs/branding';
-import ApiWarning from 'docs/src/modules/components/ApiPage/ApiWarning';
+import ApiWarningAlert from 'docs/src/modules/components/ApiPage/ApiWarningAlert';
 
 const StyledApiItem = styled(ExpandableApiItem)(
   ({ theme }) => ({
@@ -34,10 +33,6 @@ const StyledApiItem = styled(ExpandableApiItem)(
         color: `var(--muidocs-palette-warning-700, ${lightTheme.palette.warning[700]})`,
       },
     },
-    '& .classes-list-alert': {
-      marginTop: 12,
-      marginBottom: 16,
-    },
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
@@ -53,27 +48,23 @@ const StyledApiItem = styled(ExpandableApiItem)(
   }),
 );
 
-type HashParams = { componentName: string; className: string };
-
-export function getHash({ componentName, className }: HashParams) {
-  return `${kebabCase(componentName)}-classes-${className}`;
-}
-
 type ClassesListProps = {
-  componentName: string;
-  classes: ComponentClassDefinition[];
+  classes: ClassDefinition[];
   displayOption: 'collapsed' | 'expanded';
+  /**
+   * If `true` the the associated key in the classes object is visible.
+   */
   displayClassKeys?: boolean;
 };
 
 export default function ClassesList(props: ClassesListProps) {
-  const { classes, displayOption, componentName, displayClassKeys } = props;
+  const { classes, displayOption, displayClassKeys } = props;
   const t = useTranslate();
 
   return (
-    <ApiItemContaier>
+    <ApiItemContainer>
       {classes.map((classDefinition) => {
-        const { className, key, description, isGlobal, isDeprecated, deprecationInfo } =
+        const { hash, className, key, description, isGlobal, isDeprecated, deprecationInfo } =
           classDefinition;
 
         let note = isGlobal ? t('api-docs.state') : '';
@@ -84,7 +75,7 @@ export default function ClassesList(props: ClassesListProps) {
 
         return (
           <StyledApiItem
-            id={getHash({ componentName, className: key })}
+            id={hash}
             key={key}
             note={note}
             title={`.${className}`}
@@ -101,7 +92,7 @@ export default function ClassesList(props: ClassesListProps) {
               </p>
             )}
             {isDeprecated && (
-              <ApiWarning className="MuiApi-collapsible classes-list-alert">
+              <ApiWarningAlert>
                 <b>{t('api-docs.deprecated')}</b>
                 {deprecationInfo && (
                   <React.Fragment>
@@ -113,11 +104,11 @@ export default function ClassesList(props: ClassesListProps) {
                     />
                   </React.Fragment>
                 )}
-              </ApiWarning>
+              </ApiWarningAlert>
             )}
           </StyledApiItem>
         );
       })}
-    </ApiItemContaier>
+    </ApiItemContainer>
   );
 }

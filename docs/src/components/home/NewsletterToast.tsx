@@ -29,15 +29,7 @@ export default function NewsletterToast() {
   }, [hidden]);
   return (
     <Slide in={!hidden} timeout={400} direction="down">
-      <Box
-        sx={{
-          position: 'fixed',
-          zIndex: 1300,
-          top: 80,
-          left: 0,
-          width: '100%',
-        }}
-      >
+      <Box sx={{ position: 'fixed', zIndex: 1300, top: 80, left: 0, width: '100%' }}>
         <Card
           variant="outlined"
           role="alert"
@@ -60,9 +52,7 @@ export default function NewsletterToast() {
           <div>
             <Typography
               variant="body2"
-              color="text.secondary"
-              fontWeight={500}
-              sx={{ ml: 1, mr: 2 }}
+              sx={{ color: 'text.secondary', fontWeight: 500, ml: 1, mr: 2 }}
             >
               You have subscribed to MUI newsletter.
             </Typography>

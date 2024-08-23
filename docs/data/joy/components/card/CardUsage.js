@@ -37,14 +37,7 @@ export default function CardUsage() {
         { propName: 'invertedColors', knob: 'switch' },
       ]}
       renderDemo={(props) => (
-        <Card
-          {...props}
-          sx={{
-            m: 1,
-            mb: 4,
-            maxWidth: 350,
-          }}
-        >
+        <Card {...props} sx={{ m: 1, mb: 4, maxWidth: 350 }}>
           <AspectRatio ratio="16/9">
             <img
               src="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286"

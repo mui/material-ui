@@ -31,20 +31,20 @@ export interface HighlightedCodeProps {
   copyButtonProps?: ButtonProps;
   language: string;
   parentComponent?: React.ElementType;
-  preComponent?: React.ElementType;
   plainStyle?: boolean;
+  preComponent?: React.ElementType;
   sx?: SxProps;
 }
 
 export const HighlightedCode = React.forwardRef<HTMLDivElement, HighlightedCodeProps>(
   function HighlightedCode(props, ref) {
     const {
+      code,
       copyButtonHidden = false,
       copyButtonProps,
-      code,
       language,
       plainStyle,
-      parentComponent: Component = plainStyle ? 'div' : MarkdownElement,
+      parentComponent: Component = plainStyle ? React.Fragment : MarkdownElement,
       preComponent: PreComponent = plainStyle ? Pre : 'pre',
       ...other
     } = props;
@@ -55,7 +55,7 @@ export const HighlightedCode = React.forwardRef<HTMLDivElement, HighlightedCodeP
 
     return (
       <Component ref={ref} {...other}>
-        <div className="MuiCode-root" {...handlers}>
+        <div className="MuiCode-root" {...handlers} style={{ height: '100%' }}>
           {copyButtonHidden ? null : (
             <NoSsr>
               <CodeCopyButton code={code} {...copyButtonProps} />

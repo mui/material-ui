@@ -34,11 +34,7 @@ export default function RemoveActiveTokens() {
   }, []);
 
   return (
-    <CssVarsProvider
-      theme={theme}
-      colorSchemeNode={node || null}
-      colorSchemeSelector="#remove-active-tokens-demo"
-    >
+    <CssVarsProvider theme={theme} colorSchemeNode={node || null}>
       <Box
         id="remove-active-tokens-demo"
         sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}

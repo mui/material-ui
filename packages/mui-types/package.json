@@ -1,6 +1,6 @@
 {
   "name": "@mui/types",
-  "version": "7.2.14",
+  "version": "7.2.15",
   "private": false,
   "author": "MUI Team",
   "description": "Utility types for MUI.",
@@ -40,10 +40,10 @@
   },
   "devDependencies": {
     "@mui/types": "workspace:*",
-    "@types/react": "^18.2.55"
+    "@types/react": "^18.3.3"
   },
   "peerDependencies": {
-    "@types/react": "^17.0.0 || ^18.0.0"
+    "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {

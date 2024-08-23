@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { spy } from 'sinon';
 import { expect } from 'chai';
-import { act, createRenderer, screen, fireEvent } from '@mui-internal/test-utils';
+import { act, createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
 import { Popper as PopperUnstyled } from '@mui/base/Popper';
 import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';
 import { ThemeProvider } from '@mui/joy/styles';
@@ -31,12 +31,6 @@ describe('Joy <Menu />', () => {
         <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
       );
     },
-    wrapMount: (mount) => (node: React.ReactNode) => {
-      const wrapper = mount(
-        <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
-      );
-      return wrapper.childAt(0);
-    },
     ThemeProvider,
     muiName: 'JoyMenu',
     refInstanceof: window.HTMLUListElement,
@@ -48,7 +42,6 @@ describe('Joy <Menu />', () => {
       'classesRoot',
       'componentProp',
       'componentsProp',
-      'reactTestRenderer', // react-transition-group issue
       'themeDefaultProps', // portal, can't determine the root
     ],
   }));

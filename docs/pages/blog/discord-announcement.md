@@ -10,7 +10,7 @@ manualCard: true
 <a href="https://mui.com/r/discord/"><img src="/static/blog/discord-announcement/discord.png" width="1280" height="640" style="margin-bottom: 16px;" alt="Discord banner with link" /></a>
 
 This year, one of our highest priorities has been to create a central hub for the MUI community.
-Up until now, our community has been scattered across discussions and interactions on [X](https://twitter.com/MUI_hq), [LinkedIn](https://linkedin.com/company/mui), [GitHub](https://github.com/mui), and [Stack Overflow](https://stackoverflow.com/questions/tagged/material-ui).
+Up until now, our community has been scattered across discussions and interactions on [X](https://x.com/MUI_hq), [LinkedIn](https://linkedin.com/company/mui), [GitHub](https://github.com/mui), and [Stack Overflow](https://stackoverflow.com/questions/tagged/material-ui).
 
 That's why we've officially launched our [Discord Server](https://mui.com/r/discord/)—and we'd love for you to be a part of our community!
 

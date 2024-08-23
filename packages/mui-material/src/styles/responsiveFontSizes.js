@@ -34,6 +34,11 @@ export default function responsiveFontSizes(themeInput, options = {}) {
 
   variants.forEach((variant) => {
     const style = typography[variant];
+
+    if (!style) {
+      return;
+    }
+
     const remFontSize = parseFloat(convert(style.fontSize, 'rem'));
 
     if (remFontSize <= 1) {

@@ -66,12 +66,10 @@ export interface StepLabelProps
   optional?: React.ReactNode;
   /**
    * The component to render in place of the [`StepIcon`](/material-ui/api/step-icon/).
-   * @deprecated Use `slots.stepIcon` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   StepIconComponent?: React.ElementType<StepIconProps>;
   /**
    * Props applied to the [`StepIcon`](/material-ui/api/step-icon/) element.
-   * @deprecated Use `slotProps.stepIcon` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   StepIconProps?: Partial<StepIconProps>;
   /**
@@ -86,13 +84,13 @@ export type StepLabelClasskey = keyof NonNullable<StepLabelProps['classes']>;
  *
  * Demos:
  *
- * - [Stepper](https://mui.com/material-ui/react-stepper/)
+ * - [Stepper](https://next.mui.com/material-ui/react-stepper/)
  *
  * API:
  *
- * - [StepLabel API](https://mui.com/material-ui/api/step-label/)
+ * - [StepLabel API](https://next.mui.com/material-ui/api/step-label/)
  */
-declare const StepLabel: ((props: StepLabelProps) => JSX.Element) & {
+declare const StepLabel: ((props: StepLabelProps) => React.JSX.Element) & {
   muiName: string;
 };
 

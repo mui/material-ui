@@ -39,6 +39,9 @@ function resolveComponentApiUrl(productId, componentPkg, component) {
   if (componentPkg === 'mui-base' || BaseUIReexportedComponents.indexOf(component) >= 0) {
     return `/base-ui/react-${kebabCase(component)}/components-api/#${kebabCase(component)}`;
   }
+  if (productId === 'toolpad-core') {
+    return `/toolpad/core/api/${kebabCase(component)}/`;
+  }
   return `/${productId}/api/${kebabCase(component)}/`;
 }
 

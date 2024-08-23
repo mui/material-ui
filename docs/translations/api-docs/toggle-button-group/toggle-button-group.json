@@ -73,6 +73,11 @@
       "nodeName": "buttons in the middle of the toggle button group"
     },
     "root": { "description": "Styles applied to the root element." },
+    "selected": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>selected={true}</code>"
+    },
     "vertical": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

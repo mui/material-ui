@@ -22,10 +22,7 @@ export default function NestedList() {
       <List
         variant="outlined"
         size={small ? 'sm' : undefined}
-        sx={{
-          width: 200,
-          borderRadius: 'sm',
-        }}
+        sx={{ width: 200, borderRadius: 'sm' }}
       >
         <ListItem nested>
           <ListSubheader>Category 1</ListSubheader>

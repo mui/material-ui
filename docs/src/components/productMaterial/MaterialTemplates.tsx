@@ -29,8 +29,8 @@ export const icons = {
 export const TEMPLATES = {
   [DEMOS[0]]: [
     {
-      name: 'Client & Admin Dashboard',
-      author: 'Devias Kit Pro',
+      name: 'Devias Kit Pro - Client & Admin Dashboard',
+      author: 'Devias',
       src: {
         light: '/static/branding/store-templates/template-4light.jpg',
         dark: '/static/branding/store-templates/template-4dark.jpg',
@@ -38,7 +38,7 @@ export const TEMPLATES = {
       href: 'https://mui.com/store/items/devias-kit-pro/',
     },
     {
-      name: 'Client & Admin Dashboard',
+      name: 'Minimal - Client & Admin Dashboard',
       author: 'Minimal',
       src: {
         light: '/static/branding/store-templates/template-1light.jpg',
@@ -47,8 +47,8 @@ export const TEMPLATES = {
       href: 'https://mui.com/store/items/minimal-dashboard/',
     },
     {
-      name: 'React Material Admin Dashboard Template',
-      author: 'Berry',
+      name: 'Berry - React Material Admin Dashboard Template',
+      author: 'CodedThemes',
       src: {
         light: '/static/branding/store-templates/template-5light.jpg',
         dark: '/static/branding/store-templates/template-5dark.jpg',
@@ -56,8 +56,8 @@ export const TEMPLATES = {
       href: 'https://mui.com/store/items/berry-react-material-admin/',
     },
     {
-      name: 'React Material Admin Dashboard',
-      author: 'Mira Pro',
+      name: 'Mira Pro - React Material Admin Dashboard',
+      author: 'Bootlab',
       src: {
         light: '/static/branding/store-templates/template-3light.jpg',
         dark: '/static/branding/store-templates/template-3dark.jpg',
@@ -67,8 +67,8 @@ export const TEMPLATES = {
   ],
   [DEMOS[1]]: [
     {
-      name: 'Multipurpose Template + UI Kit',
-      author: 'theFront',
+      name: 'theFront - Multipurpose Template + UI Kit',
+      author: 'Maccarian',
       src: {
         light: '/static/branding/store-templates/template-2light.jpg',
         dark: '/static/branding/store-templates/template-2dark.jpg',
@@ -76,8 +76,8 @@ export const TEMPLATES = {
       href: 'https://mui.com/store/items/the-front-landing-page/',
     },
     {
-      name: 'Multipurpose Landing Page UI Kit',
-      author: 'Webbe',
+      name: 'Webbee Multipurpose Landing Page UI Kit',
+      author: 'Maccarian',
       src: {
         light: '/static/branding/store-templates/template-6light.jpg',
         dark: '/static/branding/store-templates/template-6dark.jpg',
@@ -87,8 +87,8 @@ export const TEMPLATES = {
   ],
   [DEMOS[2]]: [
     {
-      name: 'Multipurpose React Ecommerce Template',
-      author: 'Bazar Pro',
+      name: 'Bazaar Pro - Multipurpose React Ecommerce Template',
+      author: 'UI Lib',
       src: {
         light: '/static/branding/store-templates/template-bazar-light.jpg',
         dark: '/static/branding/store-templates/template-bazar-dark.jpg',
@@ -272,18 +272,14 @@ export default function MaterialTemplates() {
                 >
                   <Typography
                     variant="body2"
-                    color="text.tertiary"
-                    fontWeight="semiBold"
-                    textAlign="center"
+                    sx={{ color: 'text.tertiary', fontWeight: 'semiBold', textAlign: 'center' }}
                   >
                     Developed by {templates[templateIndex].author}
                   </Typography>
                   <Typography
                     component="p"
                     variant="h6"
-                    fontWeight="semiBold"
-                    textAlign="center"
-                    color="text.primary"
+                    sx={{ fontWeight: 'semiBold', textAlign: 'center', color: 'text.primary' }}
                   >
                     {templates[templateIndex].name}
                   </Typography>
@@ -300,7 +296,7 @@ export default function MaterialTemplates() {
                       }),
                     ]}
                   >
-                    <Typography fontWeight="bold">Buy now</Typography>
+                    <Typography sx={{ fontWeight: 'bold' }}>Buy now</Typography>
                     <LaunchRounded fontSize="small" />
                   </Box>
                 </Link>

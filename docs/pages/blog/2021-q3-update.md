@@ -15,7 +15,7 @@ It also covers what we aim to achieve in the months ahead.
 - [Product](#product)
   - [MUI Core](#mui-core)
   - [MUI X](#mui-x)
-  - [Design kits](#design-kits)
+  - [Design Kits](#design-kits)
 - [Company](#company)
 - [Our roadmap intent for Q4 2021](#our-roadmap-intent-for-q4-2021)
 
@@ -126,7 +126,7 @@ The date picker sits at the border between the core component and advanced compo
 - Last but not least, we have resumed the work on [key missing features](https://github.com/mui/mui-x/issues?q=is%3Aopen+label%3A%22linked+in+docs%22+sort%3Areactions-%2B1-desc).
   Print export and tree data are in the pipeline.
 
-### Design kits
+### Design Kits
 
 We introduced a brand new [product page](/design-kits/) this quarter to better present the design kits.
 
@@ -150,7 +150,7 @@ No updates.
 We held our first company retreat 🏝 in Lisbon, Portugal 🇵🇹 ,
 for members of the team that were not prevented by COVID-19 related travel restrictions, and who felt safe enough to travel.
 Less than half the company made it, but it was still fun!
-We spent half the time doing a [Hackathon](https://twitter.com/olivtassinari/status/1441773885259583491) and the other half on activities (surfing, biking, winery tour, and sightseeing).
+We spent half the time doing a [Hackathon](https://x.com/olivtassinari/status/1441773885259583491) and the other half on activities (surfing, biking, winery tour, and sightseeing).
 
 <img loading="lazy" src="/static/blog/2021-q3-update/retreat.jpeg" alt="" style="width: 596px; margin-bottom: 8px" />
 
@@ -223,7 +223,7 @@ No plans. We probably won't progress its development this quarter.
 However, we are growing the team.
 We plan to resume work on it in Q1 2022, starting with the equivalent of one full-time developer.
 
-### Design kits
+### Design Kits
 
 We will release a v5 for Sketch and Adobe XD, as we have already done for Figma.
 While the visual difference between MUI Core v4 and v5 is not major, we still need to sync the design components.

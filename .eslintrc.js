@@ -1,5 +1,4 @@
 const path = require('path');
-const { rules: baseStyleRules } = require('eslint-config-airbnb-base/rules/style');
 
 const OneLevelImportMessage = [
   'Prefer one level nested imports to avoid bundling everything in dev mode or breaking CJS/ESM split.',
@@ -11,6 +10,34 @@ const forbidCreateStylesMessage =
   'Use `MuiStyles<ClassKey, Props>` instead if the styles are exported. Otherwise use `as const` assertions. ' +
   '`createStyles` will lead to inlined, at-compile-time-resolved type-imports. ' +
   'See https://github.com/microsoft/TypeScript/issues/36097#issuecomment-578324386 for more information';
+
+const ENABLE_REACT_COMPILER_PLUGIN = false;
+
+const NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES = [
+  {
+    name: '@mui/material',
+    message: OneLevelImportMessage,
+  },
+  {
+    name: '@mui/lab',
+    message: OneLevelImportMessage,
+  },
+];
+
+const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
+  {
+    group: [
+      '@mui/*/*/*',
+      '@pigment-css/*/*/*',
+      '@base_ui/*/*/*',
+      // Allow any import depth with any internal packages
+      '!@mui/internal-*/**',
+      // TODO delete, @mui/docs should be @mui/internal-docs
+      '!@mui/docs/**',
+    ],
+    message: OneLevelImportMessage,
+  },
+];
 
 module.exports = {
   root: true, // So parent files don't get applied
@@ -35,6 +62,7 @@ module.exports = {
     'eslint-plugin-react-hooks',
     '@typescript-eslint/eslint-plugin',
     'eslint-plugin-filenames',
+    ...(ENABLE_REACT_COMPILER_PLUGIN ? ['eslint-plugin-react-compiler'] : []),
   ],
   settings: {
     'import/resolver': {
@@ -65,20 +93,7 @@ module.exports = {
     'no-restricted-imports': [
       'error',
       {
-        patterns: [
-          {
-            group: [
-              '@mui/*/*/*',
-              '@pigment-css/*/*/*',
-              '@base_ui/*/*/*',
-              // Allow any import depth with any internal packages
-              '!@mui/internal-*/**',
-              // TODO delete, @mui/docs should be @mui/internal-docs
-              '!@mui/docs/**',
-            ],
-            message: OneLevelImportMessage,
-          },
-        ],
+        patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
       },
     ],
     'no-continue': 'off',
@@ -169,6 +184,7 @@ module.exports = {
     // This rule is great for raising people awareness of what a key is and how it works.
     'react/no-array-index-key': 'off',
     'react/no-danger': 'error',
+    'react/no-unknown-property': ['error', { ignore: ['sx'] }],
     'react/no-direct-mutation-state': 'error',
     // Not always relevant
     'react/require-default-props': 'off',
@@ -182,8 +198,7 @@ module.exports = {
     'react/jsx-no-target-blank': ['error', { allowReferrer: true }],
 
     'no-restricted-syntax': [
-      // See https://github.com/eslint/eslint/issues/9192 for why it's needed
-      ...baseStyleRules['no-restricted-syntax'],
+      'error',
       {
         message:
           "Do not import default or named exports from React. Use a namespace import (import * as React from 'react';) instead.",
@@ -219,6 +234,7 @@ module.exports = {
 
     'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
     'lines-around-directive': 'off',
+    ...(ENABLE_REACT_COMPILER_PLUGIN ? { 'react-compiler/react-compiler': 'error' } : {}),
   },
   overrides: [
     {
@@ -299,7 +315,7 @@ module.exports = {
     },
     // Next.js entry points pages
     {
-      files: ['docs/pages/**/*.js'],
+      files: ['docs/pages/**/*{.tsx,.js}'],
       rules: {
         'react/prop-types': 'off',
       },
@@ -416,41 +432,38 @@ module.exports = {
       },
     },
     {
+      files: ['docs/**/*{.ts,.tsx,.js}'],
+      rules: {
+        'no-restricted-imports': [
+          'error',
+          {
+            paths: NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
+            patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
+          },
+        ],
+      },
+    },
+    {
       files: ['packages/*/src/**/*{.ts,.tsx,.js}'],
       excludedFiles: ['*.d.ts', '*.spec.ts', '*.spec.tsx'],
       rules: {
         'no-restricted-imports': [
           'error',
           {
-            paths: [
-              {
-                name: '@mui/material',
-                message: OneLevelImportMessage,
-              },
-              {
-                name: '@mui/lab',
-                message: OneLevelImportMessage,
-              },
-            ],
+            paths: NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
           },
         ],
-        'import/no-cycle': ['error', { ignoreExternal: true }],
+        // TODO: Consider setting back to `ignoreExternal: true` when the expected behavior is fixed:
+        // https://github.com/import-js/eslint-plugin-import/issues/2348#issuecomment-1587320057
+        // Reevaluate when https://github.com/import-js/eslint-plugin-import/pull/2998 is released.
+        'import/no-cycle': ['error', { ignoreExternal: false }],
       },
     },
     {
       files: ['packages/*/src/**/*{.ts,.tsx,.js}'],
       excludedFiles: ['*.d.ts', '*.spec.ts', '*.spec.tsx', 'packages/mui-joy/**/*{.ts,.tsx,.js}'],
       rules: {
-        'material-ui/mui-name-matches-component-name': [
-          'error',
-          {
-            customHooks: [
-              'useDatePickerDefaultizedProps',
-              'useDateTimePickerDefaultizedProps',
-              'useTimePickerDefaultizedProps',
-            ],
-          },
-        ],
+        'material-ui/mui-name-matches-component-name': 'error',
       },
     },
     {
@@ -471,6 +484,38 @@ module.exports = {
       rules: {
         'import/no-default-export': 'error',
         'import/prefer-default-export': 'off',
+        'react-compiler/react-compiler': 'off',
+      },
+    },
+    {
+      /**
+       * Examples are for demonstration purposes and should not be considered a part of the library.
+       * They don't contain ESLint setup, so we don't want them to contain ESLint directives
+       * We do, however, want to keep the rules in place to ensure the examples are following
+       * a reasonably similar code style as the library.
+       */
+      files: ['examples/**/*'],
+      rules: {
+        'no-console': 'off',
+        'no-underscore-dangle': 'off',
+        'import/no-unresolved': 'off',
+        'import/namespace': 'off',
+        'import/extensions': 'off',
+        'import/named': 'off',
+        'import/no-duplicates': 'off',
+        'import/no-named-as-default': 'off',
+        'import/default': 'off',
+        'import/no-named-as-default-member': 'off',
+        'import/order': 'off',
+        // Reset the default until https://github.com/jsx-eslint/eslint-plugin-react/issues/3672 is fixed.
+        'react/jsx-no-target-blank': ['error', { allowReferrer: false }],
+      },
+    },
+    {
+      // TODO, move rule to be global, propagate: https://github.com/mui/material-ui/issues/42169
+      files: ['examples/pigment-css-remix-ts/**/*'],
+      rules: {
+        'react/react-in-jsx-scope': 'off',
       },
     },
   ],

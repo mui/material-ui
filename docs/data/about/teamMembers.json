@@ -54,15 +54,6 @@
     "github": "siriwatknp"
   },
   {
-    "name": "Danilo Leal",
-    "title": "Lead Designer",
-    "location": "São Paulo, Brazil",
-    "locationCountry": "br",
-    "about": "Music production, hiking, and traveling!",
-    "github": "danilo-leal",
-    "twitter": "danilobleal"
-  },
-  {
     "name": "Flavien Delangle",
     "title": "Tech Lead - X",
     "location": "Lille, France",
@@ -225,14 +216,6 @@
     "github": "brijeshb42"
   },
   {
-    "name": "David Cnoops",
-    "title": "Design Engineer - Core",
-    "location": "Leuven, Belgium",
-    "locationCountry": "be",
-    "about": "Volleyball, Cycling, Parenting, Movies",
-    "github": "DavidCnoops"
-  },
-  {
     "name": "Raffaella Luzi",
     "title": "Head of Operations",
     "location": "Rome, Italy",
@@ -279,6 +262,7 @@
     "location": "Gold Coast, Australia",
     "locationCountry": "au",
     "about": "Enjoy creating open source libraries and reading about AI 🤖",
+    "twitter": "atomiksdev",
     "github": "atomiks"
   },
   {
@@ -305,5 +289,38 @@
     "locationCountry": "fr",
     "about": "Cooking 🍳, plant caring 🪴 and literature 📖",
     "github": "arthurbalduini"
+  },
+  {
+    "name": "Kenan Yusuf",
+    "title": "Design Engineer - X",
+    "location": "London, UK",
+    "locationCountry": "gb",
+    "about": "Amateur cook, DIYer, and film photographer",
+    "github": "KenanYusuf",
+    "twitter": "KebabYusuf"
+  },
+  {
+    "name": "Nikita Ossei",
+    "title": "Customer Support",
+    "location": "London, United Kingdom",
+    "locationCountry": "gb",
+    "about": "Astrology ♊️, learning 📚 and designing stuff 🎨",
+    "github": "nikitaa24"
+  },
+  {
+    "name": "Armin Mehinovic",
+    "title": "React Engineer - X",
+    "location": "Amsterdam, Netherlands",
+    "locationCountry": "nl",
+    "about": "♟️ Chess, 🛠️ Small DIY projects and learning about space 🌌",
+    "github": "arminmeh"
+  },
+  {
+    "name": "Alejandra Thomas",
+    "title": "Content Engineer",
+    "location": "New York, US",
+    "locationCountry": "us",
+    "about": "Books 📚, long coffee walks ☕️, and my cat 🐈‍⬛",
+    "github": "alelthomas"
   }
 ]

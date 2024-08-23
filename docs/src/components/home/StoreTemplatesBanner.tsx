@@ -91,7 +91,7 @@ const StoreTemplateLink = React.forwardRef<
           justifyContent: 'center',
         }}
       >
-        <Typography fontWeight="bold">Go to store</Typography>
+        <Typography sx={{ fontWeight: 'bold' }}>Go to store</Typography>
         <LaunchRounded fontSize="small" sx={{ ml: 1 }} />
       </Box>
     </Anchor>
@@ -100,7 +100,7 @@ const StoreTemplateLink = React.forwardRef<
 
 const StoreTemplateImage = React.forwardRef<
   HTMLImageElement,
-  { brand: TemplateBrand } & Omit<JSX.IntrinsicElements['img'], 'ref'>
+  { brand: TemplateBrand } & Omit<React.JSX.IntrinsicElements['img'], 'ref'>
 >(function StoreTemplateImage({ brand, ...props }, ref) {
   return (
     <Image

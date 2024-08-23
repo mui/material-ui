@@ -27,12 +27,7 @@ export default function AvatarUsage() {
         },
       ]}
       renderDemo={(props) => (
-        <Box
-          sx={{
-            display: 'flex',
-            gap: 2,
-          }}
-        >
+        <Box sx={{ display: 'flex', gap: 2 }}>
           <Avatar src="/static/images/avatar/1.jpg" {...props} />
           <Avatar {...props}>M</Avatar>
           <Avatar {...props} />

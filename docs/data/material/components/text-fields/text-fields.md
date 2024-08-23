@@ -5,6 +5,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 githubLabel: 'component: text field'
 materialDesign: https://m2.material.io/components/text-fields
 unstyled: /base-ui/react-input/
+githubSource: packages/mui-material/src/TextField
 ---
 
 # Text Field
@@ -357,7 +358,6 @@ For more advanced use cases, you might be able to take advantage of:
 - [react-hook-form](https://react-hook-form.com/): React hook for form validation.
 - [react-hook-form-mui](https://github.com/dohomi/react-hook-form-mui): Material UI and react-hook-form combined.
 - [formik-material-ui](https://github.com/stackworx/formik-mui): Bindings for using Material UI with [formik](https://formik.org/).
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using Material UI with [Redux Form](https://redux-form.com/).
 - [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using Material UI with [React Final Form](https://final-form.org/react).
 - [@ui-schema/ds-material](https://www.npmjs.com/package/@ui-schema/ds-material) Bindings for using Material UI with [UI Schema](https://github.com/ui-schema/ui-schema). JSON Schema compatible.
 - [@data-driven-forms/mui-component-mapper](https://www.data-driven-forms.org/provided-mappers/mui-component-mapper): Bindings for using Material UI with [Data Driven Forms](https://github.com/data-driven-forms/react-forms).

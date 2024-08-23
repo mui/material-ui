@@ -143,7 +143,7 @@
       "typeDescriptions": {
         "event": "The event source of the callback.",
         "value": "The new value of the text input.",
-        "reason": "Can be: <code>&quot;input&quot;</code> (user input), <code>&quot;reset&quot;</code> (programmatic change), <code>&quot;clear&quot;</code>."
+        "reason": "Can be: <code>&quot;input&quot;</code> (user input), <code>&quot;reset&quot;</code> (programmatic change), <code>&quot;clear&quot;</code>, <code>&quot;blur&quot;</code>, <code>&quot;selectOption&quot;</code>, <code>&quot;removeOption&quot;</code>"
       }
     },
     "onOpen": {
@@ -155,7 +155,7 @@
     "openText": {
       "description": "Override the default text for the <em>open popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>."
     },
-    "options": { "description": "Array of options." },
+    "options": { "description": "A list of options that will be shown in the Autocomplete." },
     "PaperComponent": { "description": "The component used to render the body of the popup." },
     "PopperComponent": { "description": "The component used to position the popup." },
     "popupIcon": { "description": "The icon to display in place of the default popup icon." },

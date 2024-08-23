@@ -3,7 +3,7 @@ import SwipeableViews from 'react-swipeable-views';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import KeyboardArrowLeftRounded from '@mui/icons-material/KeyboardArrowLeftRounded';
@@ -59,7 +59,7 @@ export default function TemplateDemo() {
   return (
     <Section bg="gradient">
       <Grid container spacing={2} alignItems="center">
-        <Grid md={6} sx={{ minWidth: 0 }}>
+        <Grid sx={{ minWidth: 0 }} size={{ md: 6 }}>
           <SectionHeadline
             overline="Templates"
             title={
@@ -92,7 +92,7 @@ export default function TemplateDemo() {
             />
           </Group>
         </Grid>
-        <Grid xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Frame>
             <Frame.Demo sx={{ minHeight: { xs: 240, sm: 320 } }}>
               <Box
@@ -163,7 +163,7 @@ export default function TemplateDemo() {
                           },
                         }}
                       >
-                        <Typography fontWeight="bold">Go to store</Typography>
+                        <Typography sx={{ fontWeight: 'bold' }}>Go to store</Typography>
                         <LaunchRounded fontSize="small" sx={{ ml: 1 }} />
                       </Link>
                     </Box>
@@ -203,14 +203,14 @@ export default function TemplateDemo() {
               }}
             >
               <div>
-                <Typography variant="body2" fontWeight="medium" noWrap sx={{ mb: 0.5 }}>
+                <Typography variant="body2" noWrap sx={{ fontWeight: 'medium', mb: 0.5 }}>
                   {templates[templateIndex].name}
                 </Typography>
-                <Typography variant="body2" color="grey.500" noWrap sx={{ fontSize: '0.75rem' }}>
+                <Typography variant="body2" noWrap sx={{ color: 'grey.500', fontSize: '0.75rem' }}>
                   Developed by {templates[templateIndex].author}
                 </Typography>
               </div>
-              <Typography color="grey.500" variant="caption">
+              <Typography variant="caption" sx={{ color: 'grey.500' }}>
                 {templateIndex + 1} / {templates.length}
               </Typography>
             </Frame.Info>

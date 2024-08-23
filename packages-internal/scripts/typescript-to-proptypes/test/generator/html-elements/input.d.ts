@@ -3,4 +3,4 @@ export function Foo(props: {
   optional?: Element;
   htmlElement: HTMLElement;
   bothTypes: Element | HTMLElement;
-}): JSX.Element;
+}): React.JSX.Element;

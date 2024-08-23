@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, strictModeDoubleLoggingSuppressed } from '@mui-internal/test-utils';
+import { createRenderer, strictModeDoubleLoggingSuppressed } from '@mui/internal-test-utils';
 import HiddenCss from './HiddenCss';
 import { createTheme, ThemeProvider } from '../styles';
 import classes from './hiddenCssClasses';
