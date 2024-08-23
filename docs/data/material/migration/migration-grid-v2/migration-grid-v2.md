@@ -80,7 +80,7 @@ The Grid v2 is marked as stable in Material UI v6, so the `Unstable_` prefix is
 ```
 
 Alongside the stabilization, the API has been improved.
-You can see the changes and further details on how to migrate in the [Material UI v6 upgrade guide](/material-ui/migration/upgrade-to-v6/#grid-v2-unstable-grid).
+You can see the changes and further details on how to migrate in the [Material UI v6 upgrade guide](/material-ui/migration/upgrade-to-v6/#grid2).
 
 Finally, the original Grid component is deprecated and will be removed in the future, so we highly encourage you to migrate to Grid v2.
 
