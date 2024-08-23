@@ -4,6 +4,7 @@ title: React Alert component
 components: Alert, AlertTitle
 githubLabel: 'component: alert'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
+githubSource: packages/mui-material/src/Alert
 ---
 
 # Alert

@@ -1,19 +1,30 @@
+// @ts-check
 const path = require('path');
+
+/**
+ * @typedef {import('@babel/core')} babel
+ */
 
 const errorCodesPath = path.resolve(__dirname, './docs/public/static/error-codes.json');
 const missingError = process.env.MUI_EXTRACT_ERROR_CODES === 'true' ? 'write' : 'annotate';
 
 const usePackageExports = process.env.MUI_USE_PACKAGE_EXPORTS === 'true';
 
+/**
+ * @param {string} relativeToBabelConf
+ * @returns {string}
+ */
 function resolveAliasPath(relativeToBabelConf) {
   const resolvedPath = path.relative(process.cwd(), path.resolve(__dirname, relativeToBabelConf));
   return `./${resolvedPath.replace('\\', '/')}`;
 }
 
+/** @type {babel.PluginItem[]} */
 const productionPlugins = [
   ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
 ];
 
+/** @type {babel.ConfigFunction} */
 module.exports = function getBabelConfig(api) {
   const useESModules = api.env(['regressions', 'modern', 'stable']) || usePackageExports;
 
@@ -58,6 +69,16 @@ module.exports = function getBabelConfig(api) {
     '@babel/preset-typescript',
   ];
 
+  const usesAliases =
+    // in this config:
+    api.env(['coverage', 'development', 'test', 'benchmark']) ||
+    process.env.NODE_ENV === 'test' ||
+    // in webpack config:
+    api.env(['regressions']);
+
+  const outFileExtension = usePackageExports && useESModules ? '.mjs' : '.js';
+
+  /** @type {babel.PluginItem[]} */
   const plugins = [
     [
       'babel-plugin-macros',
@@ -96,6 +117,18 @@ module.exports = function getBabelConfig(api) {
         ],
       },
     ],
+    ...(useESModules
+      ? [
+          [
+            '@mui/internal-babel-plugin-resolve-imports',
+            {
+              // Don't replace the extension when we're using aliases.
+              // Essentially only replace in production builds.
+              outExtension: usesAliases ? null : outFileExtension,
+            },
+          ],
+        ]
+      : []),
   ];
 
   if (process.env.NODE_ENV === 'production') {
@@ -122,6 +155,10 @@ module.exports = function getBabelConfig(api) {
       {
         exclude: /\.test\.(js|ts|tsx)$/,
         plugins: ['@babel/plugin-transform-react-constant-elements'],
+      },
+      {
+        test: /(\.test\.[^.]+$|\.test\/)/,
+        plugins: [['@mui/internal-babel-plugin-resolve-imports', false]],
       },
     ],
     env: {

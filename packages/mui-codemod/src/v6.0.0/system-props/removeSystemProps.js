@@ -129,7 +129,7 @@ const defaultSxConfig = {
   typography: {},
 };
 const systemProps = Object.keys(defaultSxConfig);
-const components = ['Box', 'Stack', 'Typography', 'Link', 'Grid'];
+const components = ['Box', 'Stack', 'Typography', 'Link', 'Grid', 'Grid2'];
 
 /**
  * @param {import('jscodeshift').FileInfo} file

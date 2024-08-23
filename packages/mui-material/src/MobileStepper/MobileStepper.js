@@ -8,6 +8,7 @@ import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
 import LinearProgress from '../LinearProgress';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import { getMobileStepperUtilityClass } from './mobileStepperClasses';
@@ -34,33 +35,35 @@ const MobileStepperRoot = styled(Paper, {
 
     return [styles.root, styles[`position${capitalize(ownerState.position)}`]];
   },
-})(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  background: (theme.vars || theme).palette.background.default,
-  padding: 8,
-  variants: [
-    {
-      props: ({ position }) => position === 'top' || position === 'bottom',
-      style: {
-        position: 'fixed',
-        left: 0,
-        right: 0,
-        zIndex: (theme.vars || theme).zIndex.mobileStepper,
+})(
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    background: (theme.vars || theme).palette.background.default,
+    padding: 8,
+    variants: [
+      {
+        props: ({ position }) => position === 'top' || position === 'bottom',
+        style: {
+          position: 'fixed',
+          left: 0,
+          right: 0,
+          zIndex: (theme.vars || theme).zIndex.mobileStepper,
+        },
       },
-    },
-    {
-      props: { position: 'top' },
-      style: { top: 0 },
-    },
-    {
-      props: { position: 'bottom' },
-      style: { bottom: 0 },
-    },
-  ],
-}));
+      {
+        props: { position: 'top' },
+        style: { top: 0 },
+      },
+      {
+        props: { position: 'bottom' },
+        style: { bottom: 0 },
+      },
+    ],
+  })),
+);
 
 const MobileStepperDots = styled('div', {
   name: 'MuiMobileStepper',
@@ -87,29 +90,31 @@ const MobileStepperDot = styled('div', {
 
     return [styles.dot, dotActive && styles.dotActive];
   },
-})(({ theme }) => ({
-  variants: [
-    {
-      props: { variant: 'dots' },
-      style: {
-        transition: theme.transitions.create('background-color', {
-          duration: theme.transitions.duration.shortest,
-        }),
-        backgroundColor: (theme.vars || theme).palette.action.disabled,
-        borderRadius: '50%',
-        width: 8,
-        height: 8,
-        margin: '0 2px',
+})(
+  memoTheme(({ theme }) => ({
+    variants: [
+      {
+        props: { variant: 'dots' },
+        style: {
+          transition: theme.transitions.create('background-color', {
+            duration: theme.transitions.duration.shortest,
+          }),
+          backgroundColor: (theme.vars || theme).palette.action.disabled,
+          borderRadius: '50%',
+          width: 8,
+          height: 8,
+          margin: '0 2px',
+        },
       },
-    },
-    {
-      props: { variant: 'dots', dotActive: true },
-      style: {
-        backgroundColor: (theme.vars || theme).palette.primary.main,
+      {
+        props: { variant: 'dots', dotActive: true },
+        style: {
+          backgroundColor: (theme.vars || theme).palette.primary.main,
+        },
       },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 const MobileStepperProgress = styled(LinearProgress, {
   name: 'MuiMobileStepper',

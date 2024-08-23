@@ -1,11 +1,7 @@
 import * as React from 'react';
 import { PaletteMode, ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import AppAppBar from './components/AppAppBar';
 import Hero from './components/Hero';
 import LogoCollection from './components/LogoCollection';
@@ -15,52 +11,8 @@ import Features from './components/Features';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
-import getMPTheme from './getMPTheme';
-
-interface ToggleCustomThemeProps {
-  showCustomTheme: Boolean;
-  toggleCustomTheme: () => void;
-}
-
-function ToggleCustomTheme({
-  showCustomTheme,
-  toggleCustomTheme,
-}: ToggleCustomThemeProps) {
-  return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        width: '100dvw',
-        position: 'fixed',
-        bottom: 24,
-      }}
-    >
-      <ToggleButtonGroup
-        color="primary"
-        exclusive
-        value={showCustomTheme}
-        onChange={toggleCustomTheme}
-        aria-label="Toggle design language"
-        sx={{
-          backgroundColor: 'background.default',
-          '& .Mui-selected': {
-            pointerEvents: 'none',
-          },
-        }}
-      >
-        <ToggleButton value>
-          <AutoAwesomeRoundedIcon sx={{ fontSize: '20px', mr: 1 }} />
-          Custom theme
-        </ToggleButton>
-        <ToggleButton data-screenshot="toggle-default-theme" value={false}>
-          Material Design 2
-        </ToggleButton>
-      </ToggleButtonGroup>
-    </Box>
-  );
-}
+import getMPTheme from './theme/getMPTheme';
+import NavBar from './NavBar';
 
 export default function MarketingPage() {
   const [mode, setMode] = React.useState<PaletteMode>('light');
@@ -68,8 +20,25 @@ export default function MarketingPage() {
   const MPTheme = createTheme(getMPTheme(mode));
   const defaultTheme = createTheme({ palette: { mode } });
 
+  // This code only runs on the client side, to determine the system color preference
+  React.useEffect(() => {
+    // Check if there is a preferred mode in localStorage
+    const savedMode = localStorage.getItem('themeMode') as PaletteMode | null;
+    if (savedMode) {
+      setMode(savedMode);
+    } else {
+      // If no preference is found, it uses system preference
+      const systemPrefersDark = window.matchMedia(
+        '(prefers-color-scheme: dark)',
+      ).matches;
+      setMode(systemPrefersDark ? 'dark' : 'light');
+    }
+  }, []);
+
   const toggleColorMode = () => {
-    setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
+    const newMode = mode === 'dark' ? 'light' : 'dark';
+    setMode(newMode);
+    localStorage.setItem('themeMode', newMode); // Save the selected mode to localStorage
   };
 
   const toggleCustomTheme = () => {
@@ -79,9 +48,16 @@ export default function MarketingPage() {
   return (
     <ThemeProvider theme={showCustomTheme ? MPTheme : defaultTheme}>
       <CssBaseline />
-      <AppAppBar mode={mode} toggleColorMode={toggleColorMode} />
+      {/* you can delete this NavBar component since it's just no navigate to other pages */}
+      <NavBar
+        toggleCustomTheme={toggleCustomTheme}
+        showCustomTheme={showCustomTheme}
+        mode={mode}
+        toggleColorMode={toggleColorMode}
+      />
+      <AppAppBar />
       <Hero />
-      <Box sx={{ bgcolor: 'background.default' }}>
+      <div>
         <LogoCollection />
         <Features />
         <Divider />
@@ -94,11 +70,7 @@ export default function MarketingPage() {
         <FAQ />
         <Divider />
         <Footer />
-      </Box>
-      <ToggleCustomTheme
-        showCustomTheme={showCustomTheme}
-        toggleCustomTheme={toggleCustomTheme}
-      />
+      </div>
     </ThemeProvider>
   );
 }

@@ -4,6 +4,7 @@ title: React Grid component
 components: PigmentGrid, Grid2
 githubLabel: 'component: Grid'
 materialDesign: https://m2.material.io/design/layout/understanding-layout.html
+githubSource: packages/mui-material/src/Grid2
 ---
 
 # Grid version 2

@@ -1,6 +1,6 @@
 {
   "name": "@mui/base",
-  "version": "5.0.0-beta.56",
+  "version": "5.0.0-beta.58",
   "private": false,
   "author": "MUI Team",
   "description": "Base UI is a library of headless ('unstyled') React components and low-level hooks. You gain complete control over your app's CSS and accessibility features.",
@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.25.0",
-    "@floating-ui/react-dom": "^2.1.0",
+    "@floating-ui/react-dom": "^2.1.1",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:*",
     "@popperjs/core": "^2.11.8",

@@ -5,6 +5,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 githubLabel: 'component: dialog'
 materialDesign: https://m2.material.io/components/dialogs
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
+githubSource: packages/mui-material/src/Dialog
 ---
 
 # Dialog

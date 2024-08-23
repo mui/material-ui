@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PaletteMode, styled } from '@mui/material/styles';
+import { alpha, styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,7 +11,6 @@ import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import ToggleColorMode from './ToggleColorMode';
 import Sitemark from './SitemarkIcon';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
@@ -23,17 +22,12 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   backdropFilter: 'blur(24px)',
   border: '1px solid',
   borderColor: theme.palette.divider,
-  backgroundColor: theme.palette.background.default,
+  backgroundColor: alpha(theme.palette.background.default, 0.4),
   boxShadow: theme.shadows[1],
   padding: '8px 12px',
 }));
 
-interface AppAppBarProps {
-  mode: PaletteMode;
-  toggleColorMode: () => void;
-}
-
-export default function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
+export default function AppAppBar() {
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
@@ -43,7 +37,7 @@ export default function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
   return (
     <AppBar
       position="fixed"
-      sx={{ boxShadow: 0, bgcolor: 'transparent', backgroundImage: 'none', mt: 2 }}
+      sx={{ boxShadow: 0, bgcolor: 'transparent', backgroundImage: 'none', mt: 10 }}
     >
       <Container maxWidth="lg">
         <StyledToolbar variant="dense" disableGutters>
@@ -83,11 +77,6 @@ export default function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
             <Button color="primary" variant="contained" size="small">
               Sign up
             </Button>
-            <ToggleColorMode
-              data-screenshot="toggle-mode"
-              mode={mode}
-              toggleColorMode={toggleColorMode}
-            />
           </Box>
           <Box sx={{ display: { sm: 'flex', md: 'none' } }}>
             <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
@@ -102,7 +91,6 @@ export default function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
                     justifyContent: 'space-between',
                   }}
                 >
-                  <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
                   <IconButton onClick={toggleDrawer(false)}>
                     <CloseRoundedIcon />
                   </IconButton>

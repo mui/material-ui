@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  aws-cli: circleci/aws-cli@4.1.3
+  aws-cli: circleci/aws-cli@4.2.3
   aws-s3: circleci/aws-s3@4.0
 
 parameters:
@@ -300,6 +300,12 @@ jobs:
           command: |
             pnpm docs:link-check
             git add -A && git diff --exit-code --staged
+      - run:
+          name: Update the templates shared themes
+          command: pnpm template:update-theme
+      - run:
+          name: '`pnpm template:update-theme` changes committed?'
+          command: git add -A && git diff --exit-code --staged
   test_types:
     <<: *default-job
     resource_class: 'medium+'
@@ -323,6 +329,7 @@ jobs:
             pnpm --filter @mui/material typescript:module-augmentation
             pnpm --filter @mui/base typescript:module-augmentation
             pnpm --filter @mui/joy typescript:module-augmentation
+            pnpm --filter @mui/system typescript:module-augmentation
       - run:
           name: Diff declaration files
           command: |
@@ -347,13 +354,13 @@ jobs:
     resource_class: 'medium+'
     steps:
       - checkout
+      - install_js
       - run:
           name: Resolve typescript version
           command: |
-            pnpm add typescript@next -d -w
+            pnpm update -r typescript@next
             # log a patch for maintainers who want to check out this change
             git --no-pager diff HEAD
-      - install_js
       - run:
           name: Tests TypeScript definitions
           command: |
@@ -393,7 +400,7 @@ jobs:
     <<: *default-job
     resource_class: 'medium+'
     docker:
-      - image: mcr.microsoft.com/playwright:v1.45.3-focal
+      - image: mcr.microsoft.com/playwright:v1.46.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -423,7 +430,7 @@ jobs:
   test_e2e:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.45.3-focal
+      - image: mcr.microsoft.com/playwright:v1.46.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -437,7 +444,7 @@ jobs:
     # NOTE: This workflow runs after successful docs deploy. See /test/e2e-website/README.md#ci
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.45.3-focal
+      - image: mcr.microsoft.com/playwright:v1.46.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -452,7 +459,7 @@ jobs:
   test_profile:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.45.3-focal
+      - image: mcr.microsoft.com/playwright:v1.46.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -479,7 +486,7 @@ jobs:
   test_regressions:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.45.3-focal
+      - image: mcr.microsoft.com/playwright:v1.46.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -533,7 +540,7 @@ jobs:
     <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.45.3-focal
+      - image: mcr.microsoft.com/playwright:v1.46.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -557,7 +564,7 @@ jobs:
     <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.45.3-focal
+      - image: mcr.microsoft.com/playwright:v1.46.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -581,7 +588,7 @@ jobs:
     <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.45.3-focal
+      - image: mcr.microsoft.com/playwright:v1.46.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -605,7 +612,7 @@ jobs:
     <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.45.3-focal
+      - image: mcr.microsoft.com/playwright:v1.46.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -629,7 +636,7 @@ jobs:
     <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.45.3-focal
+      - image: mcr.microsoft.com/playwright:v1.46.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -653,7 +660,7 @@ jobs:
     <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.45.3-focal
+      - image: mcr.microsoft.com/playwright:v1.46.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -681,7 +688,7 @@ jobs:
     <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.45.3-focal
+      - image: mcr.microsoft.com/playwright:v1.46.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -782,7 +789,7 @@ jobs:
   test_benchmark:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.45.3-focal
+      - image: mcr.microsoft.com/playwright:v1.46.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
