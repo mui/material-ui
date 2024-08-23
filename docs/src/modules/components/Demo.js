@@ -298,10 +298,10 @@ const DemoRootMaterial = styled('div', {
       },
       style: {
         padding: theme.spacing(3),
-        backgroundColor: alpha((theme.vars || theme).palette.grey[50], 0.5),
+        backgroundColor: alpha(theme.palette.grey[50], 0.5),
         border: `1px solid ${(theme.vars || theme).palette.divider}`,
         ...theme.applyDarkStyles({
-          backgroundColor: alpha((theme.vars || theme).palette.primaryDark[700], 0.4),
+          backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
         }),
       },
     },
@@ -317,10 +317,10 @@ const DemoRootMaterial = styled('div', {
         borderRightWidth: 0,
         backgroundClip: 'padding-box',
         backgroundColor: alpha(theme.palette.primary[50], 0.2),
-        backgroundImage: `radial-gradient(120% 140% at 50% 10%, transparent 40%, ${alpha((theme.vars || theme).palette.primary[100], 0.2)} 70%)`,
+        backgroundImage: `radial-gradient(120% 140% at 50% 10%, transparent 40%, ${alpha(theme.palette.primary[100], 0.2)} 70%)`,
         ...theme.applyDarkStyles({
           backgroundColor: (theme.vars || theme).palette.primaryDark[900],
-          backgroundImage: `radial-gradient(120% 140% at 50% 10%, transparent 30%, ${alpha((theme.vars || theme).palette.primary[900], 0.3)} 80%)`,
+          backgroundImage: `radial-gradient(120% 140% at 50% 10%, transparent 30%, ${alpha(theme.palette.primary[900], 0.3)} 80%)`,
         }),
       },
     },
@@ -428,7 +428,7 @@ const selectionOverride = (theme) => ({
     borderColor: (theme.vars || theme).palette.primary[200],
     ...theme.applyDarkStyles({
       color: (theme.vars || theme).palette.primary[200],
-      backgroundColor: alpha((theme.vars || theme).palette.primary[900], 0.4),
+      backgroundColor: alpha(theme.palette.primary[900], 0.4),
       borderColor: (theme.vars || theme).palette.primary[800],
     }),
   },

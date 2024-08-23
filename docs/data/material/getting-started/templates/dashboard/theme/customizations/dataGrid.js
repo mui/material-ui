@@ -1,4 +1,4 @@
-import { paperClasses } from '@mui/material';
+import { paperClasses } from '@mui/material/Paper';
 import { alpha } from '@mui/material/styles';
 
 import { menuItemClasses } from '@mui/material/MenuItem';

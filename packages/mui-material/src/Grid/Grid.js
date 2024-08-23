@@ -112,7 +112,7 @@ export function generateDirection({ theme, ownerState }) {
       flexDirection: propValue,
     };
 
-    if (propValue.indexOf('column') === 0) {
+    if (propValue.startsWith('column')) {
       output[`& > .${gridClasses.item}`] = {
         maxWidth: 'none',
       };
@@ -309,6 +309,7 @@ const GridRoot = styled('div', {
     ];
   },
 })(
+  // FIXME(romgrk): Can't use memoTheme here
   ({ ownerState }) => ({
     boxSizing: 'border-box',
     ...(ownerState.container && {

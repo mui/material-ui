@@ -44,7 +44,7 @@ function textCriteriaMatches(nextFocus, textCriteria) {
   if (textCriteria.repeating) {
     return text[0] === textCriteria.keys[0];
   }
-  return text.indexOf(textCriteria.keys.join('')) === 0;
+  return text.startsWith(textCriteria.keys.join(''));
 }
 
 function moveFocus(

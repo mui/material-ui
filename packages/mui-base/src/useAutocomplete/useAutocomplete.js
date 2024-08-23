@@ -45,7 +45,7 @@ export function createFilterOptions(config = {}) {
           }
 
           return matchFrom === 'start'
-            ? candidate.indexOf(input) === 0
+            ? candidate.startsWith(input)
             : candidate.indexOf(input) > -1;
         });
 
@@ -61,6 +61,8 @@ const pageSize = 5;
 const defaultIsActiveElementInListbox = (listboxRef) =>
   listboxRef.current !== null && listboxRef.current.parentElement?.contains(document.activeElement);
 
+const MULTIPLE_DEFAULT_VALUE = [];
+
 export function useAutocomplete(props) {
   const {
     // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -74,7 +76,7 @@ export function useAutocomplete(props) {
     clearOnBlur = !props.freeSolo,
     clearOnEscape = false,
     componentName = 'useAutocomplete',
-    defaultValue = props.multiple ? [] : null,
+    defaultValue = props.multiple ? MULTIPLE_DEFAULT_VALUE : null,
     disableClearable = false,
     disableCloseOnSelect = false,
     disabled: disabledProp,
