@@ -222,9 +222,10 @@ export default function createStyled(input = {}) {
         taggedStrings     = [...placeholdersHead, ...expressionFirst,     ...placeholdersTail];
         taggedStrings.raw = [...placeholdersHead, ...expressionFirst.raw, ...placeholdersTail];
 
+        // The only case where we put something before `attachTheme`
         expressionsHead.unshift(taggedStrings)
       } else {
-        // Unless it's a tagged template case, we still want attachTheme to run first.
+        // But otherwise, we always want attachTheme to stay first.
         expressionsHead.push(expressionFirst)
       }
 
