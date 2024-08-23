@@ -3,7 +3,7 @@ import SvgIcon from '@mui/material/SvgIcon';
 
 export default function SitemarkIcon() {
   return (
-    <SvgIcon sx={{ height: 21, width: 100, ml: 1 }}>
+    <SvgIcon sx={{ height: 40, width: 100 }}>
       <svg
         width={86}
         height={19}

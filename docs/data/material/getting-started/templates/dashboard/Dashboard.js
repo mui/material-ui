@@ -4,11 +4,11 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import getDashboardTheme from './theme/getDashboardTheme';
-import ToggleCustomTheme from './internals/components/ToggleCustomTheme';
-import Navbar from './components/Navbar';
+import AppNavbar from './components/AppNavbar';
 import Header from './components/Header';
 import MainGrid from './components/MainGrid';
 import SideMenu from './components/SideMenu';
+import NavBar from './NavBar';
 
 export default function Dashboard() {
   const [mode, setMode] = React.useState('light');
@@ -43,18 +43,24 @@ export default function Dashboard() {
   return (
     <ThemeProvider theme={showCustomTheme ? dashboardTheme : defaultTheme}>
       <CssBaseline />
+      {/* you can delete this NavBar component since it's just no navigate to other pages */}
+      <NavBar
+        toggleCustomTheme={toggleCustomTheme}
+        showCustomTheme={showCustomTheme}
+        mode={mode}
+        toggleColorMode={toggleColorMode}
+      />
       <Box sx={{ display: 'flex' }}>
         <SideMenu />
-        <Navbar mode={mode} toggleColorMode={toggleColorMode} />
+        <AppNavbar />
         {/* Main content */}
         <Box
           component="main"
           sx={(theme) => ({
             position: { sm: 'relative', md: '' },
-            top: { sm: '48px', md: '0' },
+            top: { sm: '48px', md: '60px' },
             height: { sm: 'calc(100vh - 48px)', md: '100vh' },
             flexGrow: 1,
-            pt: 2,
             backgroundColor: alpha(theme.palette.background.default, 1),
             overflow: 'auto',
           })}
@@ -65,16 +71,13 @@ export default function Dashboard() {
               alignItems: 'center',
               mx: 3,
               pb: 10,
+              mt: { xs: 16, sm: 10, md: 0 },
             }}
           >
-            <Header mode={mode} toggleColorMode={toggleColorMode} />
+            <Header />
             <MainGrid />
           </Stack>
         </Box>
-        <ToggleCustomTheme
-          showCustomTheme={showCustomTheme}
-          toggleCustomTheme={toggleCustomTheme}
-        />
       </Box>
     </ThemeProvider>
   );
