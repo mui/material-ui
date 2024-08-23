@@ -10,7 +10,7 @@ export interface FocusTrapProps {
    * For instance, you can provide the "tabbable" npm dependency.
    * @param {HTMLElement} root
    */
-  getTabbable?: (root: HTMLElement) => ReadonlyArray<HTMLElement>;
+  getTabbable?: (root: HTMLElement) => ReadonlyArray<string>;
   /**
    * This prop extends the `open` prop.
    * It allows to toggle the open state without having to wait for a rerender when changing the `open` prop.
