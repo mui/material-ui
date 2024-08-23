@@ -21,8 +21,7 @@ export default function memoTheme<T>(styleFn: ThemeStyleFunction<T>) {
     if (value === undefined || props.theme !== lastTheme) {
       arg.theme = props.theme;
 
-      value = styleFn(arg);
-      value = preprocessStyles(value);
+      value = preprocessStyles(styleFn(arg));
 
       lastValue = value;
       lastTheme = props.theme;

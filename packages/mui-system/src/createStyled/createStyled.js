@@ -165,9 +165,7 @@ export default function createStyled(input = {}) {
       return style;
     };
 
-    const muiStyledResolver = (expressionFirst, ...expressionsMiddle) => {
-      expressionFirst = transformStyle(expressionFirst)
-
+    const muiStyledResolver = (...expressionsMiddle) => {
       const expressionsHead = []
       const expressionsTail = []
 
@@ -210,23 +208,25 @@ export default function createStyled(input = {}) {
         expressionsTail.push(styleFunctionSx);
       }
 
-      // This function can be called as a tagged template, so `style` would contain CSS
-      // `string[]` values and `expressions` would contain the interpolated values.
-      if (Array.isArray(expressionFirst)) {
+      // This function can be called as a tagged template, so the first argument would contain
+      // CSS `string[]` values.
+      if (Array.isArray(expressionsMiddle[0])) {
+        const inputStrings = expressionsMiddle.shift();
+
         // We need to add placeholders in the tagged template for the custom functions we have
         // possibly added (attachTheme, overrides, variants, and sx).
         const placeholdersHead = new Array(expressionsHead.length).fill('');
         const placeholdersTail = new Array(expressionsTail.length).fill('');
 
-        let taggedStrings;
-        taggedStrings     = [...placeholdersHead, ...expressionFirst,     ...placeholdersTail];
-        taggedStrings.raw = [...placeholdersHead, ...expressionFirst.raw, ...placeholdersTail];
+        let outputStrings;
+        // prettier-ignore
+        {
+          outputStrings     = [...placeholdersHead, ...inputStrings,     ...placeholdersTail];
+          outputStrings.raw = [...placeholdersHead, ...inputStrings.raw, ...placeholdersTail];
+        }
 
         // The only case where we put something before `attachTheme`
-        expressionsHead.unshift(taggedStrings)
-      } else {
-        // But otherwise, we always want attachTheme to stay first.
-        expressionsHead.push(expressionFirst)
+        expressionsHead.unshift(outputStrings)
       }
 
       const expressions = [

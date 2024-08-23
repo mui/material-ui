@@ -4,9 +4,9 @@ export default function preprocessStyles(styles: any) {
   const variants = styles.variants
 
   // Avoid passing `style.variants` to emotion, it will pollute the styles.
-  styles.variants = undefined
+  if (variants) { styles.variants = undefined }
   const serialized = internal_serializeStyles(styles) as any
-  styles.variants = variants
+  if (variants) { styles.variants = variants }
 
   // Not supported on styled-components
   if (serialized === styles) {
@@ -15,11 +15,9 @@ export default function preprocessStyles(styles: any) {
 
   if (variants) {
     variants.forEach((variant: any) => {
-      if (typeof variant.style === 'function') {
-        return variant
+      if (typeof variant.style !== 'function') {
+        variant.style = internal_serializeStyles(variant.style)
       }
-
-      variant.style = internal_serializeStyles(variant.style)
     })
 
     serialized.variants = variants
