@@ -1,10 +1,6 @@
 import { internal_serializeStyles } from '@mui/styled-engine';
 
 export default function preprocessStyles(styles: any) {
-  if (!styles || typeof styles !== 'object') {
-    debugger
-  }
-
   const variants = styles.variants
   styles.variants = undefined
 

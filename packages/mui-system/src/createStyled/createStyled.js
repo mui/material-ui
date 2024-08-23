@@ -1,14 +1,10 @@
 /* eslint-disable no-underscore-dangle */
-import styledEngineStyled, {
-  internal_processStyles as processStyles,
-  internal_serializeStyles as serializeStyles,
-} from '@mui/styled-engine';
+import styledEngineStyled, { internal_processStyles as processStyles } from '@mui/styled-engine';
 import { isPlainObject } from '@mui/utils/deepmerge';
 import capitalize from '@mui/utils/capitalize';
 import getDisplayName from '@mui/utils/getDisplayName';
 import createTheme from '../createTheme';
 import styleFunctionSx from '../styleFunctionSx';
-import memoProps from '../memoProps';
 import preprocessStyles from '../preprocessStyles';
 
 export const systemDefaultTheme = createTheme();
