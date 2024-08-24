@@ -53,6 +53,7 @@
     "styleOverrides": "The name <code>{{componentStyles.name}}</code> can be used when providing <a href={{defaultPropsLink}}>default props</a> or <a href={{styleOverridesLink}}>style overrides</a> in the theme.",
     "slotDescription": "To learn how to customize the slot, check out the <a href={{slotGuideLink}}>Overriding component structure</a> guide.",
     "slotName": "Slot name",
+    "source-code": "Source code",
     "type": "Type",
     "required": "Required",
     "optional": "Optional",
