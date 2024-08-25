@@ -8,7 +8,7 @@ const workspaceRoot = path.join(__dirname, '..', '..');
 
 async function getWebpackEntries() {
   const materialPackagePath = path.join(workspaceRoot, 'packages/mui-material/build');
-  const materialComponents = (await glob(path.join(materialPackagePath, '([A-Z])*/index.js'))).map(
+  const materialComponents = (await glob(path.join(materialPackagePath, '([A-Z])*/index.mjs'))).map(
     (componentPath) => {
       const componentName = path.basename(path.dirname(componentPath));
       let entryName = componentName;
@@ -27,7 +27,7 @@ async function getWebpackEntries() {
   );
 
   const corePackagePath = path.join(workspaceRoot, 'packages/mui-base/build');
-  const coreComponents = (await glob(path.join(corePackagePath, '([A-Z])*/index.js'))).map(
+  const coreComponents = (await glob(path.join(corePackagePath, '([A-Z])*/index.mjs'))).map(
     (componentPath) => {
       const componentName = path.basename(path.dirname(componentPath));
       let entryName = componentName;
@@ -44,7 +44,7 @@ async function getWebpackEntries() {
   );
 
   const labPackagePath = path.join(workspaceRoot, 'packages/mui-lab/build');
-  const labComponents = (await glob(path.join(labPackagePath, '([A-Z])*/index.js'))).map(
+  const labComponents = (await glob(path.join(labPackagePath, '([A-Z])*/index.mjs'))).map(
     (componentPath) => {
       const componentName = path.basename(path.dirname(componentPath));
 
@@ -56,7 +56,7 @@ async function getWebpackEntries() {
   );
 
   const joyPackagePath = path.join(workspaceRoot, 'packages/mui-joy/build');
-  const joyComponents = (await glob(path.join(joyPackagePath, '([A-Z])*/index.js'))).map(
+  const joyComponents = (await glob(path.join(joyPackagePath, '([A-Z])*/index.mjs'))).map(
     (componentPath) => {
       const componentName = path.basename(path.dirname(componentPath));
 
@@ -72,73 +72,73 @@ async function getWebpackEntries() {
       // WARNING: Changing the name will break tracking of bundle size over time
       // If the name of the package changes, rename its display name in https://github.com/eps1lon/mui-contributor-dashboard/blob/main/src/pages/SizeComparison.tsx
       id: '@material-ui/core',
-      path: path.join(path.relative(workspaceRoot, materialPackagePath), 'index.js'),
+      path: path.join(path.relative(workspaceRoot, materialPackagePath), 'index.mjs'),
     },
     ...materialComponents,
     {
       id: '@material-ui/lab',
-      path: path.join(path.relative(workspaceRoot, labPackagePath), 'index.js'),
+      path: path.join(path.relative(workspaceRoot, labPackagePath), 'index.mjs'),
     },
     ...labComponents,
     {
       id: '@material-ui/styles',
-      path: 'packages/mui-styles/build/index.js',
+      path: 'packages/mui-styles/build/index.mjs',
     },
     {
       id: '@material-ui/private-theming',
-      path: 'packages/mui-private-theming/build/index.js',
+      path: 'packages/mui-private-theming/build/index.mjs',
     },
     {
       id: '@material-ui/system',
-      path: 'packages/mui-system/build/index.js',
+      path: 'packages/mui-system/build/index.mjs',
     },
     {
       id: 'createBox',
-      path: 'packages/mui-system/build/createBox/index.js',
+      path: 'packages/mui-system/build/createBox/index.mjs',
     },
     {
       id: 'createStyled',
-      path: 'packages/mui-system/build/createStyled/index.js',
+      path: 'packages/mui-system/build/createStyled/index.mjs',
     },
     {
       id: '@material-ui/core/styles/createTheme',
-      path: 'packages/mui-material/build/styles/createTheme.js',
+      path: 'packages/mui-material/build/styles/createTheme.mjs',
     },
     {
       id: 'colorManipulator',
-      path: 'packages/mui-system/build/colorManipulator/index.js',
+      path: 'packages/mui-system/build/colorManipulator/index.mjs',
     },
     {
       id: 'useAutocomplete',
-      path: 'packages/mui-lab/build/useAutocomplete/index.js',
+      path: 'packages/mui-lab/build/useAutocomplete/index.mjs',
     },
     {
       id: '@material-ui/core/useMediaQuery',
-      path: 'packages/mui-material/build/useMediaQuery/index.js',
+      path: 'packages/mui-material/build/useMediaQuery/index.mjs',
     },
     {
       id: '@material-ui/core/useScrollTrigger',
-      path: 'packages/mui-material/build/useScrollTrigger/index.js',
+      path: 'packages/mui-material/build/useScrollTrigger/index.mjs',
     },
     {
       id: '@material-ui/unstyled',
-      path: path.join(path.relative(workspaceRoot, corePackagePath), 'index.js'),
+      path: path.join(path.relative(workspaceRoot, corePackagePath), 'index.mjs'),
     },
     ...coreComponents,
     {
       id: '@material-ui/utils',
-      path: 'packages/mui-utils/build/esm/index.js',
+      path: 'packages/mui-utils/build/index.mjs',
     },
     // TODO: Requires webpack v5
-    // Resolution of webpack/acorn to 7.x is blocked by nextjs (https://github.com/vercel/next.js/issues/11947)
+    // Resolution of webpack/acorn to 7.x is blocked by nextjs (https://github.com/vercel/next.mjs/issues/11947)
     // {
     //   id: '@material-ui/core.modern',
     //   webpack: true,
-    //   path: path.join(path.relative(workspaceRoot, materialPackagePath), 'modern/index.js'),
+    //   path: path.join(path.relative(workspaceRoot, materialPackagePath), 'modern/index.mjs'),
     // },
     {
       id: '@mui/joy',
-      path: path.join(path.relative(workspaceRoot, joyPackagePath), 'index.js'),
+      path: path.join(path.relative(workspaceRoot, joyPackagePath), 'index.mjs'),
     },
     ...joyComponents,
   ];
@@ -160,12 +160,12 @@ function createWebpackConfig(entry, environment) {
       concatenateModules,
       minimizer: [
         new TerserPlugin({
-          test: /\.js(\?.*)?$/i,
+          test: /\.mjs(\?.*)?$/i,
         }),
       ],
     },
     output: {
-      filename: '[name].js',
+      filename: '[name].mjs',
       library: {
         // TODO: Use `type: 'module'` once it is supported (currently incompatible with `externals`)
         name: 'M',
