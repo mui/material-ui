@@ -61,6 +61,19 @@
       "useTheme": "@pigment-css/react/exports/useTheme"
     }
   },
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.mjs",
+      "require": "./index.js"
+    },
+    "./*": {
+      "types": "./*/index.d.ts",
+      "import": "./*/index.mjs",
+      "require": "./*/index.js"
+    },
+    "./index.css": "./index.css"
+  },
   "engines": {
     "node": ">=14.0.0"
   }
