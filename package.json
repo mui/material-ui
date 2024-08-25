@@ -89,7 +89,8 @@
     "nx_test_karma_profile": "cross-env NODE_ENV=test karma start test/karma.conf.profile.js",
     "nx_test_karma": "cross-env NODE_ENV=test karma start test/karma.conf.js",
     "nx_test_regressions_run": "mocha --config test/regressions/.mocharc.js --delay 'test/regressions/**/*.test.js'",
-    "nx_test_unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'packages-internal/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'"
+    "nx_test_unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'packages-internal/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
+    "clean": "pnpm -r exec rm -rf build"
   },
   "dependencies": {
     "@googleapis/sheets": "^9.1.0",

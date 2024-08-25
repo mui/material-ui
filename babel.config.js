@@ -8,8 +8,6 @@ const path = require('path');
 const errorCodesPath = path.resolve(__dirname, './docs/public/static/error-codes.json');
 const missingError = process.env.MUI_EXTRACT_ERROR_CODES === 'true' ? 'write' : 'annotate';
 
-const usePackageExports = process.env.MUI_USE_PACKAGE_EXPORTS === 'true';
-
 /**
  * @param {string} relativeToBabelConf
  * @returns {string}
@@ -26,7 +24,7 @@ const productionPlugins = [
 
 /** @type {babel.ConfigFunction} */
 module.exports = function getBabelConfig(api) {
-  const useESModules = api.env(['regressions', 'modern', 'stable']) || usePackageExports;
+  const useESModules = api.env(['regressions', 'modern', 'stable']);
 
   const defaultAlias = {
     '@mui/material': resolveAliasPath('./packages/mui-material/src'),
@@ -76,7 +74,7 @@ module.exports = function getBabelConfig(api) {
     // in webpack config:
     api.env(['regressions']);
 
-  const outFileExtension = usePackageExports && useESModules ? '.mjs' : '.js';
+  const outFileExtension = useESModules ? '.mjs' : '.js';
 
   /** @type {babel.PluginItem[]} */
   const plugins = [
