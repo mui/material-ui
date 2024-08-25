@@ -17,10 +17,10 @@ export default function composeClasses<ClassKey extends string>(
     for (let i = 0; i < slot.length; i += 1) {
       const value = slot[i];
       if (value) {
-        buffer += getUtilityClass(value) + ' ';
+        buffer += (buffer === '' ? '' : ' ') + getUtilityClass(value);
 
         if (classes && classes[value]) {
-          buffer += classes[value] + ' ';
+          buffer += ' ' + classes[value];
         }
       }
     }

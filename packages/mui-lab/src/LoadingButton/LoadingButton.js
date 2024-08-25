@@ -229,7 +229,7 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
     <LoadingButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
       {loadingIndicator}
     </LoadingButtonLoadingIndicator>
-  ) : null;
+  ) : <span />;
 
   return (
     <LoadingButtonRoot
@@ -242,9 +242,7 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
       ownerState={ownerState}
     >
       {ownerState.loadingPosition === 'end' ? null : loadingButtonLoadingIndicator}
-      <React.Fragment>
-        {children}
-      </React.Fragment>
+      {children}
       {ownerState.loadingPosition === 'end' ? loadingButtonLoadingIndicator : null}
     </LoadingButtonRoot>
   );
