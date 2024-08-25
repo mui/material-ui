@@ -261,6 +261,7 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
       ) : (
         loadingButtonLoadingIndicator
       )}
+
       {ownerState.loadingPosition === 'end' ? (
         loadingButtonLoadingIndicator
       ) : (
