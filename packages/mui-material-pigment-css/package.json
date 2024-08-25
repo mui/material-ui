@@ -72,7 +72,7 @@
       "import": "./*/index.mjs",
       "require": "./*/index.js"
     },
-    "./index.css": "./index.css"
+    "./styles.css": "./styles.css"
   },
   "engines": {
     "node": ">=14.0.0"
