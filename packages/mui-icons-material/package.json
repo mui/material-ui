@@ -90,6 +90,11 @@
       "import": "./esm/index.js",
       "require": "./index.js"
     },
+    "./esm/*": {
+      "types": "./*.d.ts",
+      "import": "./esm/*.js",
+      "require": null
+    },
     "./*": {
       "types": "./*.d.ts",
       "import": "./esm/*.js",
