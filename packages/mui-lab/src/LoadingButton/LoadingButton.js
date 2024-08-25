@@ -203,7 +203,6 @@ const LoadingButtonLabel = styled('span', {
     return [styles.label];
   },
 })({
-  width: '100%', // Ensure the correct width for iOS Safari
   display: 'inherit',
   alignItems: 'inherit',
   justifyContent: 'inherit',
