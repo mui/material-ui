@@ -4,9 +4,9 @@
   "private": true,
   "dependencies": {
     "@mui/base": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "react-scripts": "latest"
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "^5.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

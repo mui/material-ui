@@ -11,21 +11,21 @@
   },
   "dependencies": {
     "@mui/base": "latest",
-    "clsx": "latest",
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "clsx": "^2.0.0",
+    "next": "^14.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
     "@types/node": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
     "autoprefixer": "latest",
     "eslint": "latest",
     "eslint-config-next": "latest",
     "postcss": "latest",
     "postcss-nesting": "latest",
     "tailwindcss": "latest",
-    "typescript": "latest"
+    "typescript": "~5.5.0"
   }
 }

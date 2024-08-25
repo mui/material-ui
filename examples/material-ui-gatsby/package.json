@@ -7,15 +7,15 @@
     "not dead"
   ],
   "dependencies": {
-    "@emotion/react": "latest",
-    "@emotion/server": "latest",
-    "@emotion/styled": "latest",
-    "@mui/material": "latest",
+    "@emotion/react": "^11.0.0",
+    "@emotion/server": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "@mui/material": "^5.0.0",
     "gatsby": "latest",
     "gatsby-plugin-react-helmet": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "react-helmet": "latest"
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-helmet": "^6.0.0"
   },
   "scripts": {
     "develop": "gatsby develop",

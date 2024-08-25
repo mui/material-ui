@@ -9,12 +9,12 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "@emotion/react": "latest",
-    "@emotion/styled": "latest",
-    "@mui/material": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "react-scripts": "latest"
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "@mui/material": "^5.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "^5.0.0"
   },
   "browserslist": {
     "production": [

@@ -11,23 +11,23 @@
   },
   "dependencies": {
     "@mui/base": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
-    "@vitejs/plugin-react": "latest",
+    "@vitejs/plugin-react": "^4.0.0",
     "autoprefixer": "latest",
     "eslint": "latest",
     "eslint-plugin-react-hooks": "latest",
     "eslint-plugin-react-refresh": "latest",
     "postcss": "latest",
     "tailwindcss": "latest",
-    "typescript": "latest",
-    "vite": "latest"
+    "typescript": "~5.5.0",
+    "vite": "v5.0.0"
   },
   "browserslist": {
     "production": [

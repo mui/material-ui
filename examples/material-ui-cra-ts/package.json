@@ -3,15 +3,15 @@
   "version": "5.0.0",
   "private": true,
   "dependencies": {
-    "@emotion/react": "latest",
-    "@emotion/styled": "latest",
-    "@mui/material": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "react-scripts": "latest",
-    "typescript": "latest"
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "@mui/material": "^5.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "^5.0.0",
+    "typescript": "~5.5.0"
   },
   "scripts": {
     "start": "react-scripts start",

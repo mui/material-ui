@@ -4,12 +4,12 @@
   "private": true,
   "dependencies": {
     "@mui/base": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "react-scripts": "latest",
-    "typescript": "latest"
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "^5.0.0",
+    "typescript": "~5.5.0"
   },
   "scripts": {
     "start": "react-scripts start",

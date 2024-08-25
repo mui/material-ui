@@ -10,17 +10,17 @@
     "post-update": "echo \"codesandbox preview only, need an update\" && pnpm update --latest"
   },
   "dependencies": {
-    "@emotion/cache": "latest",
-    "@emotion/react": "latest",
-    "@emotion/server": "latest",
-    "@emotion/styled": "latest",
-    "@mui/icons-material": "latest",
-    "@mui/material": "latest",
-    "@mui/material-nextjs": "latest",
-    "next": "latest",
-    "prop-types": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "@emotion/cache": "^11.0.0",
+    "@emotion/react": "^11.0.0",
+    "@emotion/server": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "@mui/icons-material": "^5.0.0",
+    "@mui/material": "^5.0.0",
+    "@mui/material-nextjs": "^5.0.0",
+    "next": "^14.0.0",
+    "prop-types": "^15.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
     "eslint": "latest",
