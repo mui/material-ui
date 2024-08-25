@@ -1,4 +1,3 @@
-'use client';
 import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/utils';
 
 export { default as capitalize } from './capitalize';
