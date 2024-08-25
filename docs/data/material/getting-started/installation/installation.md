@@ -20,6 +20,10 @@ yarn add @mui/material @emotion/react @emotion/styled
 pnpm add @mui/material @emotion/react @emotion/styled
 ```
 
+```bash bun
+bun add @mui/material @emotion/react @emotion/styled
+```
+
 </codeblock>
 
 ### Peer dependencies
@@ -54,6 +58,10 @@ yarn add @mui/material @mui/styled-engine-sc styled-components
 pnpm add @mui/material @mui/styled-engine-sc styled-components
 ```
 
+```bash bun
+bun add @mui/material @mui/styled-engine-sc styled-components
+```
+
 </codeblock>
 
 Next, follow the [styled-components how-to guide](/material-ui/integrations/styled-components/) to properly configure your bundler to support `@mui/styled-engine-sc`.
@@ -83,6 +91,10 @@ yarn add @fontsource/roboto
 
 ```bash pnpm
 pnpm add @fontsource/roboto
+```
+
+```bash bun
+bun add @fontsource/roboto
 ```
 
 </codeblock>
@@ -130,6 +142,10 @@ yarn add @mui/icons-material
 
 ```bash pnpm
 pnpm add @mui/icons-material
+```
+
+```bash bun
+bun add @mui/icons-material
 ```
 
 </codeblock>
