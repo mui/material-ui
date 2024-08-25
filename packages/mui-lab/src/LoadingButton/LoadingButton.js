@@ -17,6 +17,7 @@ const useUtilityClasses = (ownerState) => {
 
   const slots = {
     root: ['root', loading && 'loading'],
+    label: ['label'],
     startIcon: [loading && `startIconLoading${capitalize(loadingPosition)}`],
     endIcon: [loading && `endIconLoading${capitalize(loadingPosition)}`],
     loadingIndicator: [
@@ -52,6 +53,7 @@ const LoadingButtonRoot = styled(Button, {
     ];
   },
 })(({ theme }) => ({
+  display: 'inline-flex',
   [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
     {
       transition: theme.transitions.create(['opacity'], {
@@ -194,6 +196,19 @@ const LoadingButtonLoadingIndicator = styled('span', {
   ],
 }));
 
+const LoadingButtonLabel = styled('span', {
+  name: 'MuiLoadingButton',
+  slot: 'Label',
+  overridesResolver: (props, styles) => {
+    return [styles.label];
+  },
+})({
+  width: '100%', // Ensure the correct width for iOS Safari
+  display: 'inherit',
+  alignItems: 'inherit',
+  justifyContent: 'inherit',
+});
+
 const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
   const contextProps = React.useContext(ButtonGroupContext);
   const resolvedProps = resolveProps(contextProps, inProps);
@@ -242,15 +257,14 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
       ownerState={ownerState}
     >
       {ownerState.loadingPosition === 'end' ? (
-        <span>{children}</span>
+        <LoadingButtonLabel className={classes.label}>{children}</LoadingButtonLabel>
       ) : (
         loadingButtonLoadingIndicator
       )}
-
       {ownerState.loadingPosition === 'end' ? (
         loadingButtonLoadingIndicator
       ) : (
-        <span>{children}</span>
+        <LoadingButtonLabel className={classes.label}>{children}</LoadingButtonLabel>
       )}
     </LoadingButtonRoot>
   );
