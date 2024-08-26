@@ -13,7 +13,10 @@ export default function AppFrameBanner() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const pageContext = React.useContext(PageContext);
   const productName = convertProductIdToName(pageContext) || 'MUI';
-  const message = `Influence ${productName}'s 2024 roadmap! Participate in the latest Developer Survey`;
+  if (pageContext.productId !== 'material-ui' && pageContext.productId !== 'system') {
+    return null;
+  }
+  const message = `🎉 ${productName} v6 is out now! Head to the upgrading guide to get started.`;
 
   if (process.env.NODE_ENV !== 'production') {
     if (message.length > 100) {
@@ -25,7 +28,7 @@ export default function AppFrameBanner() {
 
   return (
     <Link
-      href="https://tally.so/r/3Ex4PN?source=docs-banner"
+      href="https://mui.com/material-ui/migration/upgrade-to-v6/"
       target="_blank"
       variant="caption"
       sx={[

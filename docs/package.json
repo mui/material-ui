@@ -9,7 +9,7 @@
     "build:clean": "rimraf .next && pnpm build",
     "build-sw": "node ./scripts/buildServiceWorker.js",
     "dev": "next dev",
-    "deploy": "git push -f material-ui-docs master:latest",
+    "deploy": "git push -f material-ui-docs v5.x:v5",
     "icons": "rimraf --glob public/static/icons/* && node ./scripts/buildIcons.js",
     "start": "next start",
     "create-playground": "cpy --cwd=scripts playground.template.tsx ../../pages/playground --rename=index.tsx",
