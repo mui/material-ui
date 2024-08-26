@@ -69,13 +69,6 @@ async function getWebpackEntries() {
 
   return [
     {
-      id: '@material-ui/utils',
-      import: '@mui/utils',
-    },
-  ];
-
-  return [
-    {
       // WARNING: Changing the name will break tracking of bundle size over time
       // If the name of the package changes, rename its display name in https://github.com/eps1lon/mui-contributor-dashboard/blob/main/src/pages/SizeComparison.tsx
       id: '@material-ui/core',
