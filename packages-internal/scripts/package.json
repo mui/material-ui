@@ -43,7 +43,7 @@
     "@types/doctrine": "^0.0.9",
     "@types/lodash": "^4.17.7",
     "@types/node": "^18.19.46",
-    "@types/react": "^18.3.4",
+    "@types/react": "npm:types-react@19.0.0-rc.1",
     "@types/uuid": "^9.0.8",
     "chai": "^4.5.0",
     "fast-glob": "^3.3.2",
