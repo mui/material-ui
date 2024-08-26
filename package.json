@@ -117,7 +117,7 @@
     "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@next/eslint-plugin-next": "^14.2.5",
+    "@next/eslint-plugin-next": "^14.2.6",
     "@octokit/rest": "^21.0.2",
     "@pigment-css/react": "0.0.20",
     "@playwright/test": "1.46.1",
