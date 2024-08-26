@@ -21,7 +21,7 @@ async function getWebpackEntries() {
 
       return {
         id: entryName,
-        import: `@mui/material/${componentName}/index.js`,
+        import: `@mui/material/${componentName}`,
       };
     },
   );
@@ -38,7 +38,7 @@ async function getWebpackEntries() {
 
       return {
         id: entryName,
-        import: `@mui/base/${componentName}/index.js`,
+        import: `@mui/base/${componentName}`,
       };
     },
   );
@@ -50,7 +50,7 @@ async function getWebpackEntries() {
 
       return {
         id: componentName,
-        import: `@mui/lab/${componentName}/index.js`,
+        import: `@mui/lab/${componentName}`,
       };
     },
   );
@@ -62,7 +62,7 @@ async function getWebpackEntries() {
 
       return {
         id: `@mui/joy/${componentName}`,
-        import: `@mui/joy/${componentName}/index.js`,
+        import: `@mui/joy/${componentName}`,
       };
     },
   );
@@ -72,63 +72,63 @@ async function getWebpackEntries() {
       // WARNING: Changing the name will break tracking of bundle size over time
       // If the name of the package changes, rename its display name in https://github.com/eps1lon/mui-contributor-dashboard/blob/main/src/pages/SizeComparison.tsx
       id: '@material-ui/core',
-      import: '@mui/material/index.js',
+      import: '@mui/material',
     },
     ...materialComponents,
     {
       id: '@material-ui/lab',
-      import: '@mui/lab/index.js',
+      import: '@mui/lab',
     },
     ...labComponents,
     {
       id: '@material-ui/styles',
-      import: '@mui/styles/index.js',
+      import: '@mui/styles',
     },
     {
       id: '@material-ui/private-theming',
-      import: '@mui/private-theming/index.js',
+      import: '@mui/private-theming',
     },
     {
       id: '@material-ui/system',
-      import: '@mui/system/index.js',
+      import: '@mui/system',
     },
     {
       id: 'createBox',
-      import: '@mui/system/createBox/index.js',
+      import: '@mui/system/createBox',
     },
     {
       id: 'createStyled',
-      import: '@mui/system/createStyled/index.js',
+      import: '@mui/system/createStyled',
     },
     {
       id: '@material-ui/core/styles/createTheme',
       importName: 'createTheme',
-      import: '@mui/material/styles/index.js',
+      import: '@mui/material/styles',
     },
     {
       id: 'colorManipulator',
-      import: '@mui/system/colorManipulator/index.js',
+      import: '@mui/system/colorManipulator',
     },
     {
       id: 'useAutocomplete',
-      import: '@mui/lab/useAutocomplete/index.js',
+      import: '@mui/lab/useAutocomplete',
     },
     {
       id: '@material-ui/core/useMediaQuery',
-      import: '@mui/material/useMediaQuery/index.js',
+      import: '@mui/material/useMediaQuery',
     },
     {
       id: '@material-ui/core/useScrollTrigger',
-      import: '@mui/material/useScrollTrigger/index.js',
+      import: '@mui/material/useScrollTrigger',
     },
     {
       id: '@material-ui/unstyled',
-      import: '@mui/base/index.js',
+      import: '@mui/base',
     },
     ...baseComponents,
     {
       id: '@material-ui/utils',
-      import: '@mui/utils/index.js',
+      import: '@mui/utils',
     },
     // TODO: Requires webpack v5
     // Resolution of webpack/acorn to 7.x is blocked by nextjs (https://github.com/vercel/next.js/issues/11947)
@@ -139,7 +139,7 @@ async function getWebpackEntries() {
     // },
     {
       id: '@mui/joy',
-      import: '@mui/joy/index.js',
+      import: '@mui/joy',
     },
     ...joyComponents,
   ];
@@ -191,7 +191,7 @@ function createWebpackConfig(entry, environment) {
     ],
     context: __dirname,
     entry: {
-      [entry.id]: `data:text/javascript,import ${importNames} from ${JSON.stringify(entry.import)};console.log(foo);`,
+      [entry.id]: `./index.js!=!data:text/javascript,import ${importNames} from '${entry.import}';console.log(foo);`,
     },
     // TODO: 'browserslist:modern'
     // See https://github.com/webpack/webpack/issues/14203
