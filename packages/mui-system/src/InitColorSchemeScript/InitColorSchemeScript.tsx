@@ -92,10 +92,10 @@ export default function InitColorSchemeScript(options?: InitColorSchemeScriptPro
       dangerouslySetInnerHTML={{
         __html: `(function() {
 try {
-  var mode = localStorage.getItem('${modeStorageKey}') || 'system';
-  var colorScheme = '';
-  var dark = localStorage.getItem('${colorSchemeStorageKey}-dark') || '${defaultDarkColorScheme}';
-  var light = localStorage.getItem('${colorSchemeStorageKey}-light') || '${defaultLightColorScheme}';
+  let mode = localStorage.getItem('${modeStorageKey}') || 'system';
+  let colorScheme = '';
+  const dark = localStorage.getItem('${colorSchemeStorageKey}-dark') || '${defaultDarkColorScheme}';
+  const light = localStorage.getItem('${colorSchemeStorageKey}-light') || '${defaultLightColorScheme}';
   if (mode === 'system') {
     // handle system mode
     var mql = window.matchMedia('(prefers-color-scheme: dark)');
