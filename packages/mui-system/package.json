@@ -49,7 +49,7 @@
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@emotion/react": "^11.13.0",
+    "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@mui/internal-babel-macros": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",

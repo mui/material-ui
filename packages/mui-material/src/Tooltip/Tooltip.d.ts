@@ -16,7 +16,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
   /**
    * Tooltip reference element.
    */
-  children: React.ReactElement<any, any>;
+  children: React.ReactElement<unknown, any>;
   /**
    * Override or extend the styles applied to the component.
    */
@@ -204,7 +204,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    * @default Grow
    */
   TransitionComponent?: React.JSXElementConstructor<
-    TransitionProps & { children: React.ReactElement<any, any> }
+    TransitionProps & { children: React.ReactElement<unknown, any> }
   >;
   /**
    * Props applied to the transition element.

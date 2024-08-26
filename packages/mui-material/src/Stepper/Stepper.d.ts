@@ -32,7 +32,7 @@ export interface StepperOwnProps extends Pick<PaperProps, 'elevation' | 'square'
    * An element to be placed between each step.
    * @default <StepConnector />
    */
-  connector?: React.ReactElement<any, any> | null;
+  connector?: React.ReactElement<unknown, any> | null;
   /**
    * If set the `Stepper` will not assist in controlling steps for linear flow.
    * @default false

@@ -88,7 +88,7 @@ export interface DialogProps extends StandardProps<ModalProps, 'children'> {
    * @default Fade
    */
   TransitionComponent?: React.JSXElementConstructor<
-    TransitionProps & { children: React.ReactElement<any, any> }
+    TransitionProps & { children: React.ReactElement<unknown, any> }
   >;
   /**
    * The duration for the transition, in milliseconds.

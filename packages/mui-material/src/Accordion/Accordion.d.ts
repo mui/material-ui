@@ -19,7 +19,7 @@ export interface AccordionSlots {
    * @default Collapse
    */
   transition?: React.JSXElementConstructor<
-    TransitionProps & { children?: React.ReactElement<any, any> }
+    TransitionProps & { children?: React.ReactElement<unknown, any> }
   >;
 }
 
@@ -92,7 +92,7 @@ export type AccordionTypeMap<
        * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
        */
       TransitionComponent?: React.JSXElementConstructor<
-        TransitionProps & { children?: React.ReactElement<any, any> }
+        TransitionProps & { children?: React.ReactElement<unknown, any> }
       >;
       /**
        * Props applied to the transition element.
