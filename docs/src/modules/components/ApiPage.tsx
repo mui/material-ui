@@ -364,19 +364,15 @@ export default function ApiPage(props: ApiPageProps) {
           displayClassKeys
         />
 
-        {pageContent.filename ? (
-          <React.Fragment>
-            <Heading hash="source-code" level="h2" />
-            <p
-              dangerouslySetInnerHTML={{
-                __html: t('api-docs.seeSourceCode').replace(
-                  '{{href}}',
-                  `${process.env.SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}${pageContent.filename}`,
-                ),
-              }}
-            />
-          </React.Fragment>
-        ) : null}
+        <Heading hash="source-code" level="h2" />
+        <p
+          dangerouslySetInnerHTML={{
+            __html: t('api-docs.seeSourceCode').replace(
+              '{{href}}',
+              `${process.env.SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}${pageContent.filename}`,
+            ),
+          }}
+        />
       </MarkdownElement>
       <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">
         <symbol id="anchor-link-icon" viewBox="0 0 12 6">
