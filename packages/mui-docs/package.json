@@ -53,9 +53,9 @@
   },
   "peerDependencies": {
     "@mui/base": "*",
-    "@mui/icons-material": "^5.0.0",
-    "@mui/material": "^5.0.0",
-    "@mui/system": "^5.0.0",
+    "@mui/icons-material": "^5.0.0 || ^6.0.0",
+    "@mui/material": "^5.0.0 || ^6.0.0",
+    "@mui/system": "^5.0.0 || ^6.0.0",
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
     "chai": "^4.4.1",
     "csstype": "^3.1.3",
