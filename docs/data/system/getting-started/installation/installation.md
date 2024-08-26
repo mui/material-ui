@@ -45,14 +45,6 @@ If you want to use [styled-components](https://styled-components.com/) instead, 
 npm install @mui/system @mui/styled-engine-sc styled-components
 ```
 
-# <<<<<<< HEAD
-
-```bash yarn
-yarn add @mui/system @mui/styled-engine-sc styled-components
-```
-
-> > > > > > > parent of d37dd5cec5 ([docs] Update the installation guides to use the next tag (#41558))
-
 ```bash pnpm
 pnpm add @mui/system @mui/styled-engine-sc styled-components
 ```
