@@ -139,7 +139,6 @@ export interface GridOwnProps extends SystemProps<Theme>, Breakpoints {
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.
    * @default 'wrap'
-   * @deprecated Use `flexWrap` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   wrap?: GridWrap;
   /**
