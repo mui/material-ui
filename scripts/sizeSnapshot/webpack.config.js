@@ -33,7 +33,7 @@ async function getWebpackEntries() {
       let entryName = componentName;
 
       if (['Popper'].indexOf(componentName) !== -1) {
-        entryName = `@material-ui/core/${componentName}/index.js`;
+        entryName = `@material-ui/core/${componentName}`;
       }
 
       return {
@@ -66,6 +66,13 @@ async function getWebpackEntries() {
       };
     },
   );
+
+  return [
+    {
+      id: 'Accordion',
+      import: '@mui/material/Accordion/index.js',
+    },
+  ];
 
   return [
     {
