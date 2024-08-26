@@ -213,7 +213,7 @@ We have planned to:
 - ✨ Release the tree data feature.
 - ✨ Revamp the virtualization to yield better rendering performance and fix bugs.
   It unlocks new features like column pinning and lazy loading.
-- 🗓 Execute on all of the items in the [public roadmap](https://github.com/mui/mui-x/projects/1).
+- 🗓 Execute on all of the items in the [public roadmap](https://github.com/orgs/mui/projects/35).
 - ❓ Please upvote [GitHub issues](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
 #### Date Picker

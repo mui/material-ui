@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@emotion/cache": "^11.13.1",
-    "@emotion/react": "^11.13.0",
+    "@emotion/react": "^11.13.3",
     "@emotion/server": "^11.11.0",
     "@types/react": "^18.3.3",
     "next": "14.2.5",
