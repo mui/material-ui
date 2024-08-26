@@ -47,9 +47,9 @@
     "@mui/styled-engine-sc": "workspace:*",
     "@types/chai": "^4.3.17",
     "@types/hoist-non-react-statics": "^3.3.5",
-    "@types/react": "^18.3.3",
+    "@types/react": "catalog:",
     "chai": "^4.5.0",
-    "react": "^18.3.1",
+    "react": "catalog:",
     "styled-components": "^6.1.12"
   },
   "peerDependencies": {

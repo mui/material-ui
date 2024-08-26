@@ -48,9 +48,9 @@
     "@mui/internal-test-utils": "workspace:^",
     "@mui/styled-engine": "workspace:*",
     "@types/chai": "^4.3.17",
-    "@types/react": "^18.3.3",
+    "@types/react": "catalog:",
     "chai": "^4.5.0",
-    "react": "^18.3.1"
+    "react": "catalog:"
   },
   "peerDependencies": {
     "@emotion/react": "^11.4.1",

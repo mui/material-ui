@@ -8,10 +8,10 @@
     "@mui/base": "5.0.0-beta.30",
     "@mui/joy": "5.0.0-beta.22",
     "@mui/material": "5.15.4",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "devDependencies": {
-    "@types/react": "^18.3.3"
+    "@types/react": "catalog:"
   }
 }

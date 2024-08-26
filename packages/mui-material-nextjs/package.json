@@ -42,9 +42,9 @@
     "@emotion/cache": "^11.13.1",
     "@emotion/react": "^11.13.3",
     "@emotion/server": "^11.11.0",
-    "@types/react": "^18.3.3",
+    "@types/react": "catalog:",
     "next": "14.2.5",
-    "react": "^18.3.1"
+    "react": "catalog:"
   },
   "peerDependencies": {
     "@emotion/cache": "^11.11.0",
