@@ -7,6 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import useTimeout from '@mui/utils/useTimeout';
 import clamp from '@mui/utils/clamp';
 import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Zoom from '../Zoom';
 import Fab from '../Fab';
@@ -50,74 +51,76 @@ const SpeedDialRoot = styled('div', {
 
     return [styles.root, styles[`direction${capitalize(ownerState.direction)}`]];
   },
-})(({ theme }) => ({
-  zIndex: (theme.vars || theme).zIndex.speedDial,
-  display: 'flex',
-  alignItems: 'center',
-  pointerEvents: 'none',
-  variants: [
-    {
-      props: {
-        direction: 'up',
-      },
-      style: {
-        flexDirection: 'column-reverse',
-        [`& .${speedDialClasses.actions}`]: {
+})(
+  memoTheme(({ theme }) => ({
+    zIndex: (theme.vars || theme).zIndex.speedDial,
+    display: 'flex',
+    alignItems: 'center',
+    pointerEvents: 'none',
+    variants: [
+      {
+        props: {
+          direction: 'up',
+        },
+        style: {
           flexDirection: 'column-reverse',
-          marginBottom: -dialRadius,
-          paddingBottom: spacingActions + dialRadius,
+          [`& .${speedDialClasses.actions}`]: {
+            flexDirection: 'column-reverse',
+            marginBottom: -dialRadius,
+            paddingBottom: spacingActions + dialRadius,
+          },
         },
       },
-    },
-    {
-      props: {
-        direction: 'down',
-      },
-      style: {
-        flexDirection: 'column',
-        [`& .${speedDialClasses.actions}`]: {
+      {
+        props: {
+          direction: 'down',
+        },
+        style: {
           flexDirection: 'column',
-          marginTop: -dialRadius,
-          paddingTop: spacingActions + dialRadius,
+          [`& .${speedDialClasses.actions}`]: {
+            flexDirection: 'column',
+            marginTop: -dialRadius,
+            paddingTop: spacingActions + dialRadius,
+          },
         },
       },
-    },
-    {
-      props: {
-        direction: 'left',
-      },
-      style: {
-        flexDirection: 'row-reverse',
-        [`& .${speedDialClasses.actions}`]: {
+      {
+        props: {
+          direction: 'left',
+        },
+        style: {
           flexDirection: 'row-reverse',
-          marginRight: -dialRadius,
-          paddingRight: spacingActions + dialRadius,
+          [`& .${speedDialClasses.actions}`]: {
+            flexDirection: 'row-reverse',
+            marginRight: -dialRadius,
+            paddingRight: spacingActions + dialRadius,
+          },
         },
       },
-    },
-    {
-      props: {
-        direction: 'right',
-      },
-      style: {
-        flexDirection: 'row',
-        [`& .${speedDialClasses.actions}`]: {
+      {
+        props: {
+          direction: 'right',
+        },
+        style: {
           flexDirection: 'row',
-          marginLeft: -dialRadius,
-          paddingLeft: spacingActions + dialRadius,
+          [`& .${speedDialClasses.actions}`]: {
+            flexDirection: 'row',
+            marginLeft: -dialRadius,
+            paddingLeft: spacingActions + dialRadius,
+          },
         },
       },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 const SpeedDialFab = styled(Fab, {
   name: 'MuiSpeedDial',
   slot: 'Fab',
   overridesResolver: (props, styles) => styles.fab,
-})(() => ({
+})({
   pointerEvents: 'auto',
-}));
+});
 
 const SpeedDialActions = styled('div', {
   name: 'MuiSpeedDial',
@@ -552,7 +555,6 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    * The component used for the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Zoom
-   * * @deprecated Use `slots.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
    */
   TransitionComponent: PropTypes.elementType,
   /**
@@ -574,7 +576,6 @@ SpeedDial.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
-   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
    */
   TransitionProps: PropTypes.object,
 };

@@ -3,7 +3,7 @@ import SwipeableViews from 'react-swipeable-views';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import KeyboardArrowLeftRounded from '@mui/icons-material/KeyboardArrowLeftRounded';
@@ -59,7 +59,7 @@ export default function TemplateDemo() {
   return (
     <Section bg="gradient">
       <Grid container spacing={2} alignItems="center">
-        <Grid md={6} sx={{ minWidth: 0 }}>
+        <Grid sx={{ minWidth: 0 }} size={{ md: 6 }}>
           <SectionHeadline
             overline="Templates"
             title={
@@ -92,7 +92,7 @@ export default function TemplateDemo() {
             />
           </Group>
         </Grid>
-        <Grid xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Frame>
             <Frame.Demo sx={{ minHeight: { xs: 240, sm: 320 } }}>
               <Box

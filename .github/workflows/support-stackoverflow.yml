@@ -22,7 +22,7 @@ jobs:
           # Comment to post on issues marked as support requests. Add a link
           # to a support page, or set to `false` to disable
           issue-comment: |
-            👋 Thanks for using our open-source projects!
+            👋 Thanks for using this project!
 
             We use GitHub issues exclusively as a bug and feature requests tracker, however,
             this issue appears to be a support request.

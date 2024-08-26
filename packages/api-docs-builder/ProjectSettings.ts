@@ -1,10 +1,11 @@
-import { ComponentClassDefinition } from '@mui/internal-docs-utils';
-import { ComponentInfo, HookInfo } from './buildApiUtils';
 import { CreateTypeScriptProjectOptions } from './utils/createTypeScriptProject';
 import { CreateDescribeablePropSettings } from './utils/createDescribeableProp';
-import { ReactApi as ComponentReactApi } from './ApiBuilders/ComponentApiBuilder';
-import { ReactApi as HookReactApi } from './ApiBuilders/HookApiBuilder';
-import { Slot } from './utils/parseSlotsAndClasses';
+import {
+  ComponentClassDefinition,
+  ComponentReactApi,
+  HookReactApi,
+} from './types/ApiBuilder.types';
+import { Slot, ComponentInfo, HookInfo } from './types/utils.types';
 
 export type SortingStrategiesType = {
   /**
@@ -56,6 +57,10 @@ export interface ProjectSettings {
    * Fuction called to detemine whether to skip the generation of a particular component's API docs
    */
   skipComponent: (filename: string) => boolean;
+  /**
+   * Fuction called to detemine whether to skip the generation of a particular hook's API docs
+   */
+  skipHook?: (filename: string) => boolean;
   /**
    * Determine is the component definition should be updated.
    */

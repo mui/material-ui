@@ -3,7 +3,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
-import { NoSsr } from '@mui/base';
+import NoSsr from '../NoSsr';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import useForkRef from '../utils/useForkRef';
 import ownerDocument from '../utils/ownerDocument';
@@ -188,7 +188,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       const { mode = null, changeTransition = true } = options;
 
       const anchorRtl = getAnchor(theme, anchor);
-      const rtlTranslateMultiplier = ['right', 'bottom'].indexOf(anchorRtl) !== -1 ? 1 : -1;
+      const rtlTranslateMultiplier = ['right', 'bottom'].includes(anchorRtl) ? 1 : -1;
       const horizontalSwipe = isHorizontal(anchor);
 
       const transform = horizontalSwipe

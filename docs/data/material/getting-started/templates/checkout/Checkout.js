@@ -1,77 +1,26 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CssBaseline from '@mui/material/CssBaseline';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Stepper from '@mui/material/Stepper';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
-
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
-import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
-
-import AddressForm from './AddressForm';
-import getCheckoutTheme from './getCheckoutTheme';
-import Info from './Info';
-import InfoMobile from './InfoMobile';
-import PaymentForm from './PaymentForm';
-import Review from './Review';
-import ToggleColorMode from './ToggleColorMode';
-import SitemarkIcon from './SitemarkIcon';
-
-function ToggleCustomTheme({ showCustomTheme, toggleCustomTheme }) {
-  return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        width: '100dvw',
-        position: 'fixed',
-        bottom: 24,
-      }}
-    >
-      <ToggleButtonGroup
-        color="primary"
-        exclusive
-        value={showCustomTheme}
-        onChange={toggleCustomTheme}
-        aria-label="Toggle design language"
-        sx={{
-          backgroundColor: 'background.default',
-          '& .Mui-selected': {
-            pointerEvents: 'none',
-          },
-        }}
-      >
-        <ToggleButton value>
-          <AutoAwesomeRoundedIcon sx={{ fontSize: '20px', mr: 1 }} />
-          Custom theme
-        </ToggleButton>
-        <ToggleButton value={false}>Material Design 2</ToggleButton>
-      </ToggleButtonGroup>
-    </Box>
-  );
-}
-
-ToggleCustomTheme.propTypes = {
-  showCustomTheme: PropTypes.shape({
-    valueOf: PropTypes.func.isRequired,
-  }).isRequired,
-  toggleCustomTheme: PropTypes.func.isRequired,
-};
+import AddressForm from './components/AddressForm';
+import getCheckoutTheme from './theme/getCheckoutTheme';
+import Info from './components/Info';
+import InfoMobile from './components/InfoMobile';
+import PaymentForm from './components/PaymentForm';
+import Review from './components/Review';
+import SitemarkIcon from './components/SitemarkIcon';
+import NavBar from './NavBar';
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 function getStepContent(step) {
@@ -92,8 +41,25 @@ export default function Checkout() {
   const checkoutTheme = createTheme(getCheckoutTheme(mode));
   const defaultTheme = createTheme({ palette: { mode } });
   const [activeStep, setActiveStep] = React.useState(0);
+  // This code only runs on the client side, to determine the system color preference
+  React.useEffect(() => {
+    // Check if there is a preferred mode in localStorage
+    const savedMode = localStorage.getItem('themeMode');
+    if (savedMode) {
+      setMode(savedMode);
+    } else {
+      // If no preference is found, it uses system preference
+      const systemPrefersDark = window.matchMedia(
+        '(prefers-color-scheme: dark)',
+      ).matches;
+      setMode(systemPrefersDark ? 'dark' : 'light');
+    }
+  }, []);
+
   const toggleColorMode = () => {
-    setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
+    const newMode = mode === 'dark' ? 'light' : 'dark';
+    setMode(newMode);
+    localStorage.setItem('themeMode', newMode); // Save the selected mode to localStorage
   };
   const toggleCustomTheme = () => {
     setShowCustomTheme((prev) => !prev);
@@ -107,12 +73,16 @@ export default function Checkout() {
   return (
     <ThemeProvider theme={showCustomTheme ? checkoutTheme : defaultTheme}>
       <CssBaseline />
+      {/* you can delete this NavBar component since it's just no navigate to other pages */}
+      <NavBar
+        toggleCustomTheme={toggleCustomTheme}
+        showCustomTheme={showCustomTheme}
+        mode={mode}
+        toggleColorMode={toggleColorMode}
+      />
       <Grid container sx={{ height: { xs: '100%', sm: '100dvh' } }}>
         <Grid
-          item
-          xs={12}
-          sm={5}
-          lg={4}
+          size={{ xs: 12, sm: 5, lg: 4 }}
           sx={{
             display: { xs: 'none', md: 'flex' },
             flexDirection: 'column',
@@ -120,22 +90,12 @@ export default function Checkout() {
             borderRight: { sm: 'none', md: '1px solid' },
             borderColor: { sm: 'none', md: 'divider' },
             alignItems: 'start',
-            pt: 4,
+            pt: 24,
             px: 10,
             gap: 4,
           }}
         >
-          <Box sx={{ display: 'flex', alignItems: 'end', height: 150 }}>
-            <Button
-              startIcon={<ArrowBackRoundedIcon />}
-              component="a"
-              href="/material-ui/getting-started/templates/"
-              sx={{ ml: '-8px' }}
-            >
-              Back to
-              <SitemarkIcon />
-            </Button>
-          </Box>
+          <SitemarkIcon />
           <Box
             sx={{
               display: 'flex',
@@ -149,10 +109,7 @@ export default function Checkout() {
           </Box>
         </Grid>
         <Grid
-          item
-          sm={12}
-          md={7}
-          lg={8}
+          size={{ sm: 12, md: 7, lg: 8 }}
           sx={{
             display: 'flex',
             flexDirection: 'column',
@@ -160,7 +117,7 @@ export default function Checkout() {
             width: '100%',
             backgroundColor: { xs: 'transparent', sm: 'background.default' },
             alignItems: 'start',
-            pt: { xs: 2, sm: 4 },
+            pt: { xs: 6, sm: 24 },
             px: { xs: 2, sm: 10 },
             gap: { xs: 4, md: 8 },
           }}
@@ -176,34 +133,13 @@ export default function Checkout() {
           >
             <Box
               sx={{
-                display: { xs: 'flex', md: 'none' },
-                flexDirection: 'row',
-                width: '100%',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Button
-                startIcon={<ArrowBackRoundedIcon />}
-                component="a"
-                href="/material-ui/getting-started/templates/"
-                sx={{ alignSelf: 'start' }}
-              >
-                Back to
-                <SitemarkIcon />
-              </Button>
-              <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
-            </Box>
-            <Box
-              sx={{
                 display: { xs: 'none', md: 'flex' },
                 flexDirection: 'column',
                 justifyContent: 'space-between',
                 alignItems: 'flex-end',
                 flexGrow: 1,
-                height: 150,
               }}
             >
-              <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
               <Stepper
                 id="desktop-stepper"
                 activeStep={activeStep}
@@ -227,7 +163,6 @@ export default function Checkout() {
                 width: '100%',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                ':last-child': { pb: 2 },
               }}
             >
               <div>
@@ -348,10 +283,6 @@ export default function Checkout() {
           </Box>
         </Grid>
       </Grid>
-      <ToggleCustomTheme
-        toggleCustomTheme={toggleCustomTheme}
-        showCustomTheme={showCustomTheme}
-      />
     </ThemeProvider>
   );
 }

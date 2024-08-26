@@ -6,6 +6,7 @@ import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
@@ -41,7 +42,7 @@ const IconButtonRoot = styled(ButtonBase, {
     ];
   },
 })(
-  ({ theme }) => ({
+  memoTheme(({ theme }) => ({
     textAlign: 'center',
     flex: '0 0 auto',
     fontSize: theme.typography.pxToRem(24),
@@ -91,64 +92,62 @@ const IconButtonRoot = styled(ButtonBase, {
         },
       },
     ],
-  }),
-  ({ theme }) => {
-    return {
-      variants: [
-        {
-          props: { color: 'inherit' },
-          style: {
-            color: 'inherit',
-          },
+  })),
+  memoTheme(({ theme }) => ({
+    variants: [
+      {
+        props: { color: 'inherit' },
+        style: {
+          color: 'inherit',
         },
-        ...Object.entries(theme.palette)
-          .filter(([, value]) => value && value.main) // check all the used fields in the style below
-          .map(([color]) => ({
-            props: { color },
-            style: {
-              color: (theme.vars || theme).palette[color].main,
-            },
-          })),
-        ...Object.entries(theme.palette)
-          .filter(([, value]) => value && value.main) // check all the used fields in the style below
-          .map(([color]) => ({
-            props: { color, disableRipple: false },
-            style: {
-              '&:hover': {
-                backgroundColor: theme.vars
-                  ? `rgba(${(theme.vars || theme).palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                  : alpha(
-                      (theme.vars || theme).palette[color].main,
-                      theme.palette.action.hoverOpacity,
-                    ),
-                // Reset on touch devices, it doesn't add specificity
-                '@media (hover: none)': {
-                  backgroundColor: 'transparent',
-                },
+      },
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value && value.main) // check all the used fields in the style below
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            color: (theme.vars || theme).palette[color].main,
+          },
+        })),
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value && value.main) // check all the used fields in the style below
+        .map(([color]) => ({
+          props: { color, disableRipple: false },
+          style: {
+            '&:hover': {
+              backgroundColor: theme.vars
+                ? `rgba(${(theme.vars || theme).palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
+                : alpha(
+                    (theme.vars || theme).palette[color].main,
+                    theme.palette.action.hoverOpacity,
+                  ),
+              // Reset on touch devices, it doesn't add specificity
+              '@media (hover: none)': {
+                backgroundColor: 'transparent',
               },
             },
-          })),
-        {
-          props: { size: 'small' },
-          style: {
-            padding: 5,
-            fontSize: theme.typography.pxToRem(18),
           },
+        })),
+      {
+        props: { size: 'small' },
+        style: {
+          padding: 5,
+          fontSize: theme.typography.pxToRem(18),
         },
-        {
-          props: { size: 'large' },
-          style: {
-            padding: 12,
-            fontSize: theme.typography.pxToRem(28),
-          },
-        },
-      ],
-      [`&.${iconButtonClasses.disabled}`]: {
-        backgroundColor: 'transparent',
-        color: (theme.vars || theme).palette.action.disabled,
       },
-    };
-  },
+      {
+        props: { size: 'large' },
+        style: {
+          padding: 12,
+          fontSize: theme.typography.pxToRem(28),
+        },
+      },
+    ],
+    [`&.${iconButtonClasses.disabled}`]: {
+      backgroundColor: 'transparent',
+      color: (theme.vars || theme).palette.action.disabled,
+    },
+  })),
 );
 
 /**
@@ -164,6 +163,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     color = 'default',
     disabled = false,
     disableFocusRipple = false,
+    disableRipple = false,
     size = 'medium',
     ...other
   } = props;
@@ -174,6 +174,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     color,
     disabled,
     disableFocusRipple,
+    disableRipple,
     size,
   };
 
@@ -185,6 +186,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
       centerRipple
       focusRipple={!disableFocusRipple}
       disabled={disabled}
+      disableRipple={disableRipple}
       ref={ref}
       {...other}
       ownerState={ownerState}

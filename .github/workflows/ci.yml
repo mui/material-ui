@@ -9,7 +9,6 @@ on:
   pull_request:
     paths-ignore:
       # should sync with ci-check.yml as a workaround to bypass github checks
-      - 'docs/**'
       - 'examples/**'
 
 permissions: {}
@@ -32,7 +31,7 @@ jobs:
       - name: Set up pnpm
         uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
       - name: Use Node.js 18.x
-        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
+        uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
         with:
           node-version: 18
           cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useInView } from 'react-intersection-observer';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -61,12 +61,12 @@ export default function DiamondSponsors() {
       </Typography>
       <Grid container spacing={{ xs: 2, md: 3 }}>
         {DIAMONDs.map((item) => (
-          <Grid key={item.name} xs={12} sm={6} md={4}>
+          <Grid key={item.name} size={{ xs: 12, sm: 6, md: 4 }}>
             <SponsorCard logoSize={64} inView={inView} item={item} />
           </Grid>
         ))}
         {spotIsAvailable && (
-          <Grid xs={12} sm={6} md={4}>
+          <Grid size={{ xs: 12, sm: 6, md: 4 }}>
             <Paper
               variant="outlined"
               sx={{

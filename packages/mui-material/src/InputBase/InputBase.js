@@ -5,13 +5,14 @@ import clsx from 'clsx';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import refType from '@mui/utils/refType';
 import MuiError from '@mui/internal-babel-macros/MuiError.macro';
-import { TextareaAutosize } from '@mui/base';
-import { isHostComponent } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
+import TextareaAutosize from '../TextareaAutosize';
+import isHostComponent from '../utils/isHostComponent';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
 import useFormControl from '../FormControl/useFormControl';
 import { styled, globalCss } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import useForkRef from '../utils/useForkRef';
@@ -103,153 +104,157 @@ export const InputBaseRoot = styled('div', {
   name: 'MuiInputBase',
   slot: 'Root',
   overridesResolver: rootOverridesResolver,
-})(({ theme }) => ({
-  ...theme.typography.body1,
-  color: (theme.vars || theme).palette.text.primary,
-  lineHeight: '1.4375em', // 23px
-  boxSizing: 'border-box', // Prevent padding issue with fullWidth.
-  position: 'relative',
-  cursor: 'text',
-  display: 'inline-flex',
-  alignItems: 'center',
-  [`&.${inputBaseClasses.disabled}`]: {
-    color: (theme.vars || theme).palette.text.disabled,
-    cursor: 'default',
-  },
-  variants: [
-    {
-      props: ({ ownerState }) => ownerState.multiline,
-      style: {
-        padding: '4px 0 5px',
-      },
-    },
-    {
-      props: ({ ownerState, size }) => ownerState.multiline && size === 'small',
-      style: {
-        paddingTop: 1,
-      },
-    },
-    {
-      props: ({ ownerState }) => ownerState.fullWidth,
-      style: {
-        width: '100%',
-      },
-    },
-  ],
-}));
-
-export const InputBaseInput = styled('input', {
-  name: 'MuiInputBase',
-  slot: 'Input',
-  overridesResolver: inputOverridesResolver,
-})(({ theme }) => {
-  const light = theme.palette.mode === 'light';
-  const placeholder = {
-    color: 'currentColor',
-    ...(theme.vars
-      ? {
-          opacity: theme.vars.opacity.inputPlaceholder,
-        }
-      : {
-          opacity: light ? 0.42 : 0.5,
-        }),
-    transition: theme.transitions.create('opacity', {
-      duration: theme.transitions.duration.shorter,
-    }),
-  };
-  const placeholderHidden = {
-    opacity: '0 !important',
-  };
-  const placeholderVisible = theme.vars
-    ? {
-        opacity: theme.vars.opacity.inputPlaceholder,
-      }
-    : {
-        opacity: light ? 0.42 : 0.5,
-      };
-
-  return {
-    font: 'inherit',
-    letterSpacing: 'inherit',
-    color: 'currentColor',
-    padding: '4px 0 5px',
-    border: 0,
-    boxSizing: 'content-box',
-    background: 'none',
-    height: '1.4375em', // Reset 23pxthe native input line-height
-    margin: 0, // Reset for Safari
-    WebkitTapHighlightColor: 'transparent',
-    display: 'block',
-    // Make the flex item shrink with Firefox
-    minWidth: 0,
-    flexGrow: 1,
-    '&::-webkit-input-placeholder': placeholder,
-    '&::-moz-placeholder': placeholder, // Firefox 19+
-    '&::-ms-input-placeholder': placeholder, // Edge
-    '&:focus': {
-      outline: 0,
-    },
-    // Reset Firefox invalid required input style
-    '&:invalid': {
-      boxShadow: 'none',
-    },
-    '&::-webkit-search-decoration': {
-      // Remove the padding when type=search.
-      WebkitAppearance: 'none',
-    },
-    // Show and hide the placeholder logic
-    [`label[data-shrink=false] + .${inputBaseClasses.formControl} &`]: {
-      '&::-webkit-input-placeholder': placeholderHidden,
-      '&::-moz-placeholder': placeholderHidden, // Firefox 19+
-      '&::-ms-input-placeholder': placeholderHidden, // Edge
-      '&:focus::-webkit-input-placeholder': placeholderVisible,
-      '&:focus::-moz-placeholder': placeholderVisible, // Firefox 19+
-      '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
-    },
+})(
+  memoTheme(({ theme }) => ({
+    ...theme.typography.body1,
+    color: (theme.vars || theme).palette.text.primary,
+    lineHeight: '1.4375em', // 23px
+    boxSizing: 'border-box', // Prevent padding issue with fullWidth.
+    position: 'relative',
+    cursor: 'text',
+    display: 'inline-flex',
+    alignItems: 'center',
     [`&.${inputBaseClasses.disabled}`]: {
-      opacity: 1, // Reset iOS opacity
-      WebkitTextFillColor: (theme.vars || theme).palette.text.disabled, // Fix opacity Safari bug
+      color: (theme.vars || theme).palette.text.disabled,
+      cursor: 'default',
     },
     variants: [
       {
-        props: ({ ownerState }) => !ownerState.disableInjectingGlobalStyles,
+        props: ({ ownerState }) => ownerState.multiline,
         style: {
-          animationName: 'mui-auto-fill-cancel',
-          animationDuration: '10ms',
-          '&:-webkit-autofill': {
-            animationDuration: '5000s',
-            animationName: 'mui-auto-fill',
-          },
+          padding: '4px 0 5px',
         },
       },
       {
-        props: {
-          size: 'small',
-        },
+        props: ({ ownerState, size }) => ownerState.multiline && size === 'small',
         style: {
           paddingTop: 1,
         },
       },
       {
-        props: ({ ownerState }) => ownerState.multiline,
+        props: ({ ownerState }) => ownerState.fullWidth,
         style: {
-          height: 'auto',
-          resize: 'none',
-          padding: 0,
-          paddingTop: 0,
-        },
-      },
-      {
-        props: {
-          type: 'search',
-        },
-        style: {
-          MozAppearance: 'textfield', // Improve type search style.
+          width: '100%',
         },
       },
     ],
-  };
-});
+  })),
+);
+
+export const InputBaseInput = styled('input', {
+  name: 'MuiInputBase',
+  slot: 'Input',
+  overridesResolver: inputOverridesResolver,
+})(
+  memoTheme(({ theme }) => {
+    const light = theme.palette.mode === 'light';
+    const placeholder = {
+      color: 'currentColor',
+      ...(theme.vars
+        ? {
+            opacity: theme.vars.opacity.inputPlaceholder,
+          }
+        : {
+            opacity: light ? 0.42 : 0.5,
+          }),
+      transition: theme.transitions.create('opacity', {
+        duration: theme.transitions.duration.shorter,
+      }),
+    };
+    const placeholderHidden = {
+      opacity: '0 !important',
+    };
+    const placeholderVisible = theme.vars
+      ? {
+          opacity: theme.vars.opacity.inputPlaceholder,
+        }
+      : {
+          opacity: light ? 0.42 : 0.5,
+        };
+
+    return {
+      font: 'inherit',
+      letterSpacing: 'inherit',
+      color: 'currentColor',
+      padding: '4px 0 5px',
+      border: 0,
+      boxSizing: 'content-box',
+      background: 'none',
+      height: '1.4375em', // Reset 23pxthe native input line-height
+      margin: 0, // Reset for Safari
+      WebkitTapHighlightColor: 'transparent',
+      display: 'block',
+      // Make the flex item shrink with Firefox
+      minWidth: 0,
+      width: '100%',
+      '&::-webkit-input-placeholder': placeholder,
+      '&::-moz-placeholder': placeholder, // Firefox 19+
+      '&::-ms-input-placeholder': placeholder, // Edge
+      '&:focus': {
+        outline: 0,
+      },
+      // Reset Firefox invalid required input style
+      '&:invalid': {
+        boxShadow: 'none',
+      },
+      '&::-webkit-search-decoration': {
+        // Remove the padding when type=search.
+        WebkitAppearance: 'none',
+      },
+      // Show and hide the placeholder logic
+      [`label[data-shrink=false] + .${inputBaseClasses.formControl} &`]: {
+        '&::-webkit-input-placeholder': placeholderHidden,
+        '&::-moz-placeholder': placeholderHidden, // Firefox 19+
+        '&::-ms-input-placeholder': placeholderHidden, // Edge
+        '&:focus::-webkit-input-placeholder': placeholderVisible,
+        '&:focus::-moz-placeholder': placeholderVisible, // Firefox 19+
+        '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
+      },
+      [`&.${inputBaseClasses.disabled}`]: {
+        opacity: 1, // Reset iOS opacity
+        WebkitTextFillColor: (theme.vars || theme).palette.text.disabled, // Fix opacity Safari bug
+      },
+      variants: [
+        {
+          props: ({ ownerState }) => !ownerState.disableInjectingGlobalStyles,
+          style: {
+            animationName: 'mui-auto-fill-cancel',
+            animationDuration: '10ms',
+            '&:-webkit-autofill': {
+              animationDuration: '5000s',
+              animationName: 'mui-auto-fill',
+            },
+          },
+        },
+        {
+          props: {
+            size: 'small',
+          },
+          style: {
+            paddingTop: 1,
+          },
+        },
+        {
+          props: ({ ownerState }) => ownerState.multiline,
+          style: {
+            height: 'auto',
+            resize: 'none',
+            padding: 0,
+            paddingTop: 0,
+          },
+        },
+        {
+          props: {
+            type: 'search',
+          },
+          style: {
+            MozAppearance: 'textfield', // Improve type search style.
+          },
+        },
+      ],
+    };
+  }),
+);
 
 const InputGlobalStyles = globalCss({
   '@keyframes mui-auto-fill': { from: { display: 'block' } },

@@ -5,7 +5,7 @@ import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import { Link } from '@mui/docs/Link';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 
 const NativeLink = styled('a')(({ theme }) => ({
   boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
@@ -27,7 +27,7 @@ const NativeLink = styled('a')(({ theme }) => ({
     backgroundColor: (theme.vars || theme).palette.grey[50],
   },
   '&:focus-visible': {
-    outline: `3px solid ${alpha((theme.vars || theme).palette.primary[500], 0.5)}`,
+    outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
     outlineOffset: '-3px',
   },
   '& img': {

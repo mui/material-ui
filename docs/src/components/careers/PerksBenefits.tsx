@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -105,7 +105,7 @@ export default function PerksBenefits() {
   return (
     <Section bg="gradient" cozy>
       <Grid container spacing={5} alignItems="center">
-        <Grid md={6}>
+        <Grid size={{ md: 6 }}>
           <SectionHeadline
             overline="Working at MUI"
             title={
@@ -149,14 +149,13 @@ export default function PerksBenefits() {
           </Box>
         </Grid>
         <Grid
-          xs={12}
-          md={6}
           sx={{
             p: { xs: 2, sm: 0 },
             display: 'flex',
             flexDirection: { xs: 'column', sm: 'row' },
             gap: 2,
           }}
+          size={{ xs: 12, md: 6 }}
         >
           <RemoteAwardCard />
           <Stack spacing={2} useFlexGap>

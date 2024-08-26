@@ -17,12 +17,8 @@ const LANGUAGES_LABEL = [
   },
 ];
 
-// The ratio of ads display sending event to Google Analytics
-const GA_ADS_DISPLAY_RATIO = 0.1;
-
 module.exports = {
   CODE_VARIANTS,
   LANGUAGES_LABEL,
   CODE_STYLING,
-  GA_ADS_DISPLAY_RATIO,
 };

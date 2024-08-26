@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/system/Box';
-import Grid from '@mui/system/Unstable_Grid';
+import Grid from '@mui/system/Grid';
 import styled from '@mui/system/styled';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
@@ -25,7 +25,7 @@ export default function AutoGridNoWrap() {
           <Grid>
             <Avatar>W</Avatar>
           </Grid>
-          <Grid xs>
+          <Grid size="grow">
             <Typography noWrap>{message}</Typography>
           </Grid>
         </Grid>
@@ -35,7 +35,7 @@ export default function AutoGridNoWrap() {
           <Grid>
             <Avatar>W</Avatar>
           </Grid>
-          <Grid xs>
+          <Grid size="grow">
             <Typography
               sx={{
                 display: '-webkit-box',

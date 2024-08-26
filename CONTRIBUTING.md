@@ -162,7 +162,7 @@ The following statements must be true:
 - The code is linted. If the code was changed, run `pnpm eslint`.
 - The code is type-safe. If TypeScript sources or declarations were changed, run `pnpm typescript` to confirm that the check passes.
 - The API docs are up to date. If API was changed, run `pnpm proptypes && pnpm docs:api`.
-- The demos are up to date. If demos were changed, run `pnpm docs:typescript:formatted`. See [about writing demos](#3-write-the-content-of-the-demo).
+- The demos are up to date. If demos were changed, run `pnpm docs:typescript:formatted`. See [about writing demos](#2-write-the-demo-code).
 - The pull request title follows the pattern `[product-name][Component] Imperative commit message`. (See: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/) for a great explanation).
 
 Don't worry if you miss a step—the Continuous Integration will run a thorough set of tests on your commits, and the maintainers of the project can assist you if you run into problems.
@@ -263,7 +263,7 @@ $ pnpm docs:api
 ### Coding style
 
 Please follow the coding style of the project.
-MUI Core projects use prettier and ESLint, so if possible, enable linting in your editor to get real-time feedback.
+It uses Prettier and ESLint, so if possible, enable linting in your editor to get real-time feedback.
 
 - `pnpm prettier` reformats the code.
 - `pnpm eslint` runs the linting rules.

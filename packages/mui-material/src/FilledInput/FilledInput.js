@@ -7,6 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import InputBase from '../InputBase';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import filledInputClasses, { getFilledInputUtilityClass } from './filledInputClasses';
 import {
@@ -53,220 +54,226 @@ const FilledInputRoot = styled(InputBaseRoot, {
       !ownerState.disableUnderline && styles.underline,
     ];
   },
-})(({ theme }) => {
-  const light = theme.palette.mode === 'light';
-  const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
-  const backgroundColor = light ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.09)';
-  const hoverBackground = light ? 'rgba(0, 0, 0, 0.09)' : 'rgba(255, 255, 255, 0.13)';
-  const disabledBackground = light ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.12)';
-  return {
-    position: 'relative',
-    backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor,
-    borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
-    borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
-    transition: theme.transitions.create('background-color', {
-      duration: theme.transitions.duration.shorter,
-      easing: theme.transitions.easing.easeOut,
-    }),
-    '&:hover': {
-      backgroundColor: theme.vars ? theme.vars.palette.FilledInput.hoverBg : hoverBackground,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
+})(
+  memoTheme(({ theme }) => {
+    const light = theme.palette.mode === 'light';
+    const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
+    const backgroundColor = light ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.09)';
+    const hoverBackground = light ? 'rgba(0, 0, 0, 0.09)' : 'rgba(255, 255, 255, 0.13)';
+    const disabledBackground = light ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.12)';
+    return {
+      position: 'relative',
+      backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor,
+      borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
+      borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
+      transition: theme.transitions.create('background-color', {
+        duration: theme.transitions.duration.shorter,
+        easing: theme.transitions.easing.easeOut,
+      }),
+      '&:hover': {
+        backgroundColor: theme.vars ? theme.vars.palette.FilledInput.hoverBg : hoverBackground,
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor,
+        },
+      },
+      [`&.${filledInputClasses.focused}`]: {
         backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor,
       },
-    },
-    [`&.${filledInputClasses.focused}`]: {
-      backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor,
-    },
-    [`&.${filledInputClasses.disabled}`]: {
-      backgroundColor: theme.vars ? theme.vars.palette.FilledInput.disabledBg : disabledBackground,
-    },
-    variants: [
-      {
-        props: ({ ownerState }) => !ownerState.disableUnderline,
-        style: {
-          '&::after': {
-            left: 0,
-            bottom: 0,
-            content: '""',
-            position: 'absolute',
-            right: 0,
-            transform: 'scaleX(0)',
-            transition: theme.transitions.create('transform', {
-              duration: theme.transitions.duration.shorter,
-              easing: theme.transitions.easing.easeOut,
-            }),
-            pointerEvents: 'none', // Transparent to the hover style.
-          },
-          [`&.${filledInputClasses.focused}:after`]: {
-            // translateX(0) is a workaround for Safari transform scale bug
-            // See https://github.com/mui/material-ui/issues/31766
-            transform: 'scaleX(1) translateX(0)',
-          },
-          [`&.${filledInputClasses.error}`]: {
-            '&::before, &::after': {
-              borderBottomColor: (theme.vars || theme).palette.error.main,
-            },
-          },
-          '&::before': {
-            borderBottom: `1px solid ${
-              theme.vars
-                ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputUnderline})`
-                : bottomLineColor
-            }`,
-            left: 0,
-            bottom: 0,
-            content: '"\\00a0"',
-            position: 'absolute',
-            right: 0,
-            transition: theme.transitions.create('border-bottom-color', {
-              duration: theme.transitions.duration.shorter,
-            }),
-            pointerEvents: 'none', // Transparent to the hover style.
-          },
-          [`&:hover:not(.${filledInputClasses.disabled}, .${filledInputClasses.error}):before`]: {
-            borderBottom: `1px solid ${(theme.vars || theme).palette.text.primary}`,
-          },
-          [`&.${filledInputClasses.disabled}:before`]: {
-            borderBottomStyle: 'dotted',
-          },
-        },
+      [`&.${filledInputClasses.disabled}`]: {
+        backgroundColor: theme.vars
+          ? theme.vars.palette.FilledInput.disabledBg
+          : disabledBackground,
       },
-      ...Object.entries(theme.palette)
-        .filter(([, value]) => value && value.main) // check all the used fields in the style below
-        .map(([color]) => ({
-          props: {
-            disableUnderline: false,
-            color,
-          },
+      variants: [
+        {
+          props: ({ ownerState }) => !ownerState.disableUnderline,
           style: {
             '&::after': {
-              borderBottom: `2px solid ${(theme.vars || theme).palette[color]?.main}`,
+              left: 0,
+              bottom: 0,
+              content: '""',
+              position: 'absolute',
+              right: 0,
+              transform: 'scaleX(0)',
+              transition: theme.transitions.create('transform', {
+                duration: theme.transitions.duration.shorter,
+                easing: theme.transitions.easing.easeOut,
+              }),
+              pointerEvents: 'none', // Transparent to the hover style.
+            },
+            [`&.${filledInputClasses.focused}:after`]: {
+              // translateX(0) is a workaround for Safari transform scale bug
+              // See https://github.com/mui/material-ui/issues/31766
+              transform: 'scaleX(1) translateX(0)',
+            },
+            [`&.${filledInputClasses.error}`]: {
+              '&::before, &::after': {
+                borderBottomColor: (theme.vars || theme).palette.error.main,
+              },
+            },
+            '&::before': {
+              borderBottom: `1px solid ${
+                theme.vars
+                  ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputUnderline})`
+                  : bottomLineColor
+              }`,
+              left: 0,
+              bottom: 0,
+              content: '"\\00a0"',
+              position: 'absolute',
+              right: 0,
+              transition: theme.transitions.create('border-bottom-color', {
+                duration: theme.transitions.duration.shorter,
+              }),
+              pointerEvents: 'none', // Transparent to the hover style.
+            },
+            [`&:hover:not(.${filledInputClasses.disabled}, .${filledInputClasses.error}):before`]: {
+              borderBottom: `1px solid ${(theme.vars || theme).palette.text.primary}`,
+            },
+            [`&.${filledInputClasses.disabled}:before`]: {
+              borderBottomStyle: 'dotted',
             },
           },
-        })),
-      {
-        props: ({ ownerState }) => ownerState.startAdornment,
-        style: {
-          paddingLeft: 12,
+        },
+        ...Object.entries(theme.palette)
+          .filter(([, value]) => value && value.main) // check all the used fields in the style below
+          .map(([color]) => ({
+            props: {
+              disableUnderline: false,
+              color,
+            },
+            style: {
+              '&::after': {
+                borderBottom: `2px solid ${(theme.vars || theme).palette[color]?.main}`,
+              },
+            },
+          })),
+        {
+          props: ({ ownerState }) => ownerState.startAdornment,
+          style: {
+            paddingLeft: 12,
+          },
+        },
+        {
+          props: ({ ownerState }) => ownerState.endAdornment,
+          style: {
+            paddingRight: 12,
+          },
+        },
+        {
+          props: ({ ownerState }) => ownerState.multiline,
+          style: {
+            padding: '25px 12px 8px',
+          },
+        },
+        {
+          props: ({ ownerState, size }) => ownerState.multiline && size === 'small',
+          style: {
+            paddingTop: 21,
+            paddingBottom: 4,
+          },
+        },
+        {
+          props: ({ ownerState }) => ownerState.multiline && ownerState.hiddenLabel,
+          style: {
+            paddingTop: 16,
+            paddingBottom: 17,
+          },
+        },
+        {
+          props: ({ ownerState }) =>
+            ownerState.multiline && ownerState.hiddenLabel && ownerState.size === 'small',
+          style: {
+            paddingTop: 8,
+            paddingBottom: 9,
+          },
+        },
+      ],
+    };
+  }),
+);
+
+const FilledInputInput = styled(InputBaseInput, {
+  name: 'MuiFilledInput',
+  slot: 'Input',
+  overridesResolver: inputBaseInputOverridesResolver,
+})(
+  memoTheme(({ theme }) => ({
+    paddingTop: 25,
+    paddingRight: 12,
+    paddingBottom: 8,
+    paddingLeft: 12,
+    ...(!theme.vars && {
+      '&:-webkit-autofill': {
+        WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
+        WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
+        caretColor: theme.palette.mode === 'light' ? null : '#fff',
+        borderTopLeftRadius: 'inherit',
+        borderTopRightRadius: 'inherit',
+      },
+    }),
+    ...(theme.vars && {
+      '&:-webkit-autofill': {
+        borderTopLeftRadius: 'inherit',
+        borderTopRightRadius: 'inherit',
+      },
+      [theme.getColorSchemeSelector('dark')]: {
+        '&:-webkit-autofill': {
+          WebkitBoxShadow: '0 0 0 100px #266798 inset',
+          WebkitTextFillColor: '#fff',
+          caretColor: '#fff',
         },
       },
+    }),
+    variants: [
       {
-        props: ({ ownerState }) => ownerState.endAdornment,
-        style: {
-          paddingRight: 12,
+        props: {
+          size: 'small',
         },
-      },
-      {
-        props: ({ ownerState }) => ownerState.multiline,
-        style: {
-          padding: '25px 12px 8px',
-        },
-      },
-      {
-        props: ({ ownerState, size }) => ownerState.multiline && size === 'small',
         style: {
           paddingTop: 21,
           paddingBottom: 4,
         },
       },
       {
-        props: ({ ownerState }) => ownerState.multiline && ownerState.hiddenLabel,
+        props: ({ ownerState }) => ownerState.hiddenLabel,
         style: {
           paddingTop: 16,
           paddingBottom: 17,
         },
       },
       {
-        props: ({ ownerState }) =>
-          ownerState.multiline && ownerState.hiddenLabel && ownerState.size === 'small',
+        props: ({ ownerState }) => ownerState.startAdornment,
+        style: {
+          paddingLeft: 0,
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.endAdornment,
+        style: {
+          paddingRight: 0,
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.hiddenLabel && ownerState.size === 'small',
         style: {
           paddingTop: 8,
           paddingBottom: 9,
         },
       },
+      {
+        props: ({ ownerState }) => ownerState.multiline,
+        style: {
+          paddingTop: 0,
+          paddingBottom: 0,
+          paddingLeft: 0,
+          paddingRight: 0,
+        },
+      },
     ],
-  };
-});
-
-const FilledInputInput = styled(InputBaseInput, {
-  name: 'MuiFilledInput',
-  slot: 'Input',
-  overridesResolver: inputBaseInputOverridesResolver,
-})(({ theme }) => ({
-  paddingTop: 25,
-  paddingRight: 12,
-  paddingBottom: 8,
-  paddingLeft: 12,
-  ...(!theme.vars && {
-    '&:-webkit-autofill': {
-      WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
-      WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
-      caretColor: theme.palette.mode === 'light' ? null : '#fff',
-      borderTopLeftRadius: 'inherit',
-      borderTopRightRadius: 'inherit',
-    },
-  }),
-  ...(theme.vars && {
-    '&:-webkit-autofill': {
-      borderTopLeftRadius: 'inherit',
-      borderTopRightRadius: 'inherit',
-    },
-    [theme.getColorSchemeSelector('dark')]: {
-      '&:-webkit-autofill': {
-        WebkitBoxShadow: '0 0 0 100px #266798 inset',
-        WebkitTextFillColor: '#fff',
-        caretColor: '#fff',
-      },
-    },
-  }),
-  variants: [
-    {
-      props: {
-        size: 'small',
-      },
-      style: {
-        paddingTop: 21,
-        paddingBottom: 4,
-      },
-    },
-    {
-      props: ({ ownerState }) => ownerState.hiddenLabel,
-      style: {
-        paddingTop: 16,
-        paddingBottom: 17,
-      },
-    },
-    {
-      props: ({ ownerState }) => ownerState.startAdornment,
-      style: {
-        paddingLeft: 0,
-      },
-    },
-    {
-      props: ({ ownerState }) => ownerState.endAdornment,
-      style: {
-        paddingRight: 0,
-      },
-    },
-    {
-      props: ({ ownerState }) => ownerState.hiddenLabel && ownerState.size === 'small',
-      style: {
-        paddingTop: 8,
-        paddingBottom: 9,
-      },
-    },
-    {
-      props: ({ ownerState }) => ownerState.multiline,
-      style: {
-        paddingTop: 0,
-        paddingBottom: 0,
-        paddingLeft: 0,
-        paddingRight: 0,
-      },
-    },
-  ],
-}));
+  })),
+);
 
 const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiFilledInput' });
@@ -298,7 +305,7 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
   const filledInputComponentsProps = { root: { ownerState }, input: { ownerState } };
 
   const componentsProps =
-    slotProps ?? componentsPropsProp
+    (slotProps ?? componentsPropsProp)
       ? deepmerge(filledInputComponentsProps, slotProps ?? componentsPropsProp)
       : filledInputComponentsProps;
 

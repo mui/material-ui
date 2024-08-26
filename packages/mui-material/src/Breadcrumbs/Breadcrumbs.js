@@ -4,8 +4,8 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import integerPropType from '@mui/utils/integerPropType';
-import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
+import useSlotProps from '@mui/utils/useSlotProps';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Typography from '../Typography';
@@ -183,7 +183,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
     <BreadcrumbsRoot
       ref={ref}
       component={component}
-      color="text.secondary"
+      color="textSecondary"
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       {...other}

@@ -5,7 +5,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Paper from '@mui/material/Paper';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
-import Grid from '@mui/system/Unstable_Grid';
+import Grid from '@mui/system/Grid';
 import Stack from '@mui/system/Stack';
 import { styled } from '@mui/system';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
@@ -52,7 +52,7 @@ export default function InteractiveStack() {
       </Stack>
       <Paper sx={{ p: 2 }}>
         <Grid container spacing={3}>
-          <Grid xs={12}>
+          <Grid size={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">direction</FormLabel>
               <RadioGroup
@@ -83,7 +83,7 @@ export default function InteractiveStack() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid xs={12}>
+          <Grid size={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">alignItems</FormLabel>
               <RadioGroup
@@ -123,7 +123,7 @@ export default function InteractiveStack() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid xs={12}>
+          <Grid size={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">justifyContent</FormLabel>
               <RadioGroup
@@ -168,7 +168,7 @@ export default function InteractiveStack() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid xs={12}>
+          <Grid size={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">spacing</FormLabel>
               <RadioGroup

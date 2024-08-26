@@ -7,16 +7,12 @@ import visuallyHidden from '@mui/utils/visuallyHidden';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
 import { useRtl } from '@mui/system/RtlProvider';
-import {
-  capitalize,
-  useForkRef,
-  useIsFocusVisible,
-  useControlled,
-  unstable_useId as useId,
-} from '../utils';
+import isFocusVisible from '@mui/utils/isFocusVisible';
+import { capitalize, useForkRef, useControlled, unstable_useId as useId } from '../utils';
 import Star from '../internal/svg-icons/Star';
 import StarBorder from '../internal/svg-icons/StarBorder';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import ratingClasses, { getRatingUtilityClass } from './ratingClasses';
@@ -74,50 +70,52 @@ const RatingRoot = styled('span', {
       ownerState.readOnly && styles.readOnly,
     ];
   },
-})(({ theme }) => ({
-  display: 'inline-flex',
-  // Required to position the pristine input absolutely
-  position: 'relative',
-  fontSize: theme.typography.pxToRem(24),
-  color: '#faaf00',
-  cursor: 'pointer',
-  textAlign: 'left',
-  width: 'min-content',
-  WebkitTapHighlightColor: 'transparent',
-  [`&.${ratingClasses.disabled}`]: {
-    opacity: (theme.vars || theme).palette.action.disabledOpacity,
-    pointerEvents: 'none',
-  },
-  [`&.${ratingClasses.focusVisible} .${ratingClasses.iconActive}`]: {
-    outline: '1px solid #999',
-  },
-  [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
-  variants: [
-    {
-      props: {
-        size: 'small',
-      },
-      style: {
-        fontSize: theme.typography.pxToRem(18),
-      },
+})(
+  memoTheme(({ theme }) => ({
+    display: 'inline-flex',
+    // Required to position the pristine input absolutely
+    position: 'relative',
+    fontSize: theme.typography.pxToRem(24),
+    color: '#faaf00',
+    cursor: 'pointer',
+    textAlign: 'left',
+    width: 'min-content',
+    WebkitTapHighlightColor: 'transparent',
+    [`&.${ratingClasses.disabled}`]: {
+      opacity: (theme.vars || theme).palette.action.disabledOpacity,
+      pointerEvents: 'none',
     },
-    {
-      props: {
-        size: 'large',
-      },
-      style: {
-        fontSize: theme.typography.pxToRem(30),
-      },
+    [`&.${ratingClasses.focusVisible} .${ratingClasses.iconActive}`]: {
+      outline: '1px solid #999',
     },
-    {
-      // TODO v6: use the .Mui-readOnly global state class
-      props: ({ ownerState }) => ownerState.readOnly,
-      style: {
-        pointerEvents: 'none',
+    [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
+    variants: [
+      {
+        props: {
+          size: 'small',
+        },
+        style: {
+          fontSize: theme.typography.pxToRem(18),
+        },
       },
-    },
-  ],
-}));
+      {
+        props: {
+          size: 'large',
+        },
+        style: {
+          fontSize: theme.typography.pxToRem(30),
+        },
+      },
+      {
+        // TODO v6: use the .Mui-readOnly global state class
+        props: ({ ownerState }) => ownerState.readOnly,
+        style: {
+          pointerEvents: 'none',
+        },
+      },
+    ],
+  })),
+);
 
 const RatingLabel = styled('label', {
   name: 'MuiRating',
@@ -157,30 +155,32 @@ const RatingIcon = styled('span', {
       ownerState.iconActive && styles.iconActive,
     ];
   },
-})(({ theme }) => ({
-  // Fit wrapper to actual icon size.
-  display: 'flex',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-  // Fix mouseLeave issue.
-  // https://github.com/facebook/react/issues/4492
-  pointerEvents: 'none',
-  variants: [
-    {
-      props: ({ ownerState }) => ownerState.iconActive,
-      style: {
-        transform: 'scale(1.2)',
+})(
+  memoTheme(({ theme }) => ({
+    // Fit wrapper to actual icon size.
+    display: 'flex',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+    // Fix mouseLeave issue.
+    // https://github.com/facebook/react/issues/4492
+    pointerEvents: 'none',
+    variants: [
+      {
+        props: ({ ownerState }) => ownerState.iconActive,
+        style: {
+          transform: 'scale(1.2)',
+        },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.iconEmpty,
-      style: {
-        color: (theme.vars || theme).palette.action.disabled,
+      {
+        props: ({ ownerState }) => ownerState.iconEmpty,
+        style: {
+          color: (theme.vars || theme).palette.action.disabled,
+        },
       },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 const RatingDecimal = styled('span', {
   name: 'MuiRating',
@@ -326,7 +326,7 @@ const defaultIcon = <Star fontSize="inherit" />;
 const defaultEmptyIcon = <StarBorder fontSize="inherit" />;
 
 function defaultLabelText(value) {
-  return `${value} Star${value !== 1 ? 's' : ''}`;
+  return `${value || '0'} Star${value !== 1 ? 's' : ''}`;
 }
 
 const Rating = React.forwardRef(function Rating(inProps, ref) {
@@ -377,16 +377,10 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     value = focus;
   }
 
-  const {
-    isFocusVisibleRef,
-    onBlur: handleBlurVisible,
-    onFocus: handleFocusVisible,
-    ref: focusVisibleRef,
-  } = useIsFocusVisible();
   const [focusVisible, setFocusVisible] = React.useState(false);
 
   const rootRef = React.useRef();
-  const handleRef = useForkRef(focusVisibleRef, rootRef, ref);
+  const handleRef = useForkRef(rootRef, ref);
 
   const handleMouseMove = (event) => {
     if (onMouseMove) {
@@ -475,8 +469,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
   };
 
   const handleFocus = (event) => {
-    handleFocusVisible(event);
-    if (isFocusVisibleRef.current === true) {
+    if (isFocusVisible(event.target)) {
       setFocusVisible(true);
     }
 
@@ -492,8 +485,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
       return;
     }
 
-    handleBlurVisible(event);
-    if (isFocusVisibleRef.current === false) {
+    if (!isFocusVisible(event.target)) {
       setFocusVisible(false);
     }
 
@@ -683,7 +675,7 @@ Rating.propTypes /* remove-proptypes */ = {
    * @param {number} value The rating label's value to format.
    * @returns {string}
    * @default function defaultLabelText(value) {
-   *   return `${value} Star${value !== 1 ? 's' : ''}`;
+   *   return `${value || '0'} Star${value !== 1 ? 's' : ''}`;
    * }
    */
   getLabelText: PropTypes.func,

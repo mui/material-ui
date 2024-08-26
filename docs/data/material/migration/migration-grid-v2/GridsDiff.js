@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Grid2 from '@mui/material/Unstable_Grid2';
+import Grid2 from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
 
 export default function GridsDiff() {
@@ -50,7 +50,7 @@ export default function GridsDiff() {
               alignItems="center"
               justifyContent="center"
               textAlign="center"
-              xs
+              size="grow"
             >
               ver.2 <br />
               All sides

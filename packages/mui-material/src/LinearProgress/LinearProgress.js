@@ -6,6 +6,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { darken, lighten } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
 import { keyframes, css, styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import { getLinearProgressUtilityClass } from './linearProgressClasses';
@@ -130,50 +131,53 @@ const LinearProgressRoot = styled('span', {
       styles[ownerState.variant],
     ];
   },
-})(({ theme }) => ({
-  position: 'relative',
-  overflow: 'hidden',
-  display: 'block',
-  height: 4,
-  // Fix Safari's bug during composition of different paint.
-  zIndex: 0,
-  '@media print': {
-    colorAdjust: 'exact',
-  },
-  variants: [
-    ...Object.entries(theme.palette)
-      .filter(([, value]) => value && value.main)
-      .map(([color]) => ({
-        props: { color },
+})(
+  memoTheme(({ theme }) => ({
+    position: 'relative',
+    overflow: 'hidden',
+    display: 'block',
+    height: 4,
+    // Fix Safari's bug during composition of different paint.
+    zIndex: 0,
+    '@media print': {
+      colorAdjust: 'exact',
+    },
+    variants: [
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value && value.main)
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            backgroundColor: getColorShade(theme, color),
+          },
+        })),
+      {
+        props: ({ ownerState }) =>
+          ownerState.color === 'inherit' && ownerState.variant !== 'buffer',
         style: {
-          backgroundColor: getColorShade(theme, color),
-        },
-      })),
-    {
-      props: ({ ownerState }) => ownerState.color === 'inherit' && ownerState.variant !== 'buffer',
-      style: {
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          left: 0,
-          top: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: 'currentColor',
-          opacity: 0.3,
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'currentColor',
+            opacity: 0.3,
+          },
         },
       },
-    },
-    {
-      props: { variant: 'buffer' },
-      style: { backgroundColor: 'transparent' },
-    },
-    {
-      props: { variant: 'query' },
-      style: { transform: 'rotate(180deg)' },
-    },
-  ],
-}));
+      {
+        props: { variant: 'buffer' },
+        style: { backgroundColor: 'transparent' },
+      },
+      {
+        props: { variant: 'query' },
+        style: { transform: 'rotate(180deg)' },
+      },
+    ],
+  })),
+);
 
 const LinearProgressDashed = styled('span', {
   name: 'MuiLinearProgress',
@@ -184,7 +188,7 @@ const LinearProgressDashed = styled('span', {
     return [styles.dashed, styles[`dashedColor${capitalize(ownerState.color)}`]];
   },
 })(
-  ({ theme }) => ({
+  memoTheme(({ theme }) => ({
     position: 'absolute',
     marginTop: 0,
     height: '100%',
@@ -211,7 +215,7 @@ const LinearProgressDashed = styled('span', {
           };
         }),
     ],
-  }),
+  })),
   bufferAnimation || {
     // At runtime for Pigment CSS, `bufferAnimation` will be null and the generated keyframe will be used.
     animation: `${bufferKeyframe} 3s infinite linear`,
@@ -233,64 +237,66 @@ const LinearProgressBar1 = styled('span', {
       ownerState.variant === 'buffer' && styles.bar1Buffer,
     ];
   },
-})(({ theme }) => ({
-  width: '100%',
-  position: 'absolute',
-  left: 0,
-  bottom: 0,
-  top: 0,
-  transition: 'transform 0.2s linear',
-  transformOrigin: 'left',
-  variants: [
-    {
-      props: {
-        color: 'inherit',
-      },
-      style: {
-        backgroundColor: 'currentColor',
-      },
-    },
-    ...Object.entries(theme.palette)
-      .filter(([, value]) => value && value.main)
-      .map(([color]) => ({
-        props: { color },
-        style: {
-          backgroundColor: (theme.vars || theme).palette[color].main,
+})(
+  memoTheme(({ theme }) => ({
+    width: '100%',
+    position: 'absolute',
+    left: 0,
+    bottom: 0,
+    top: 0,
+    transition: 'transform 0.2s linear',
+    transformOrigin: 'left',
+    variants: [
+      {
+        props: {
+          color: 'inherit',
         },
-      })),
-    {
-      props: {
-        variant: 'determinate',
+        style: {
+          backgroundColor: 'currentColor',
+        },
       },
-      style: {
-        transition: `transform .${TRANSITION_DURATION}s linear`,
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value && value.main)
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            backgroundColor: (theme.vars || theme).palette[color].main,
+          },
+        })),
+      {
+        props: {
+          variant: 'determinate',
+        },
+        style: {
+          transition: `transform .${TRANSITION_DURATION}s linear`,
+        },
       },
-    },
-    {
-      props: {
-        variant: 'buffer',
+      {
+        props: {
+          variant: 'buffer',
+        },
+        style: {
+          zIndex: 1,
+          transition: `transform .${TRANSITION_DURATION}s linear`,
+        },
       },
-      style: {
-        zIndex: 1,
-        transition: `transform .${TRANSITION_DURATION}s linear`,
+      {
+        props: ({ ownerState }) =>
+          ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
+        style: {
+          width: 'auto',
+        },
       },
-    },
-    {
-      props: ({ ownerState }) =>
-        ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
-      style: {
-        width: 'auto',
+      {
+        props: ({ ownerState }) =>
+          ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
+        style: indeterminate1Animation || {
+          animation: `${indeterminate1Keyframe} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite`,
+        },
       },
-    },
-    {
-      props: ({ ownerState }) =>
-        ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
-      style: indeterminate1Animation || {
-        animation: `${indeterminate1Keyframe} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite`,
-      },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 const LinearProgressBar2 = styled('span', {
   name: 'MuiLinearProgress',
@@ -306,62 +312,65 @@ const LinearProgressBar2 = styled('span', {
       ownerState.variant === 'buffer' && styles.bar2Buffer,
     ];
   },
-})(({ theme }) => ({
-  width: '100%',
-  position: 'absolute',
-  left: 0,
-  bottom: 0,
-  top: 0,
-  transition: 'transform 0.2s linear',
-  transformOrigin: 'left',
-  variants: [
-    ...Object.entries(theme.palette)
-      .filter(([, value]) => value && value.main)
-      .map(([color]) => ({
-        props: { color },
+})(
+  memoTheme(({ theme }) => ({
+    width: '100%',
+    position: 'absolute',
+    left: 0,
+    bottom: 0,
+    top: 0,
+    transition: 'transform 0.2s linear',
+    transformOrigin: 'left',
+    variants: [
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value && value.main)
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            '--LinearProgressBar2-barColor': (theme.vars || theme).palette[color].main,
+          },
+        })),
+      {
+        props: ({ ownerState }) =>
+          ownerState.variant !== 'buffer' && ownerState.color !== 'inherit',
         style: {
-          '--LinearProgressBar2-barColor': (theme.vars || theme).palette[color].main,
+          backgroundColor: 'var(--LinearProgressBar2-barColor, currentColor)',
         },
-      })),
-    {
-      props: ({ ownerState }) => ownerState.variant !== 'buffer' && ownerState.color !== 'inherit',
-      style: {
-        backgroundColor: 'var(--LinearProgressBar2-barColor, currentColor)',
       },
-    },
-    {
-      props: {
-        color: 'inherit',
-      },
-      style: {
-        opacity: 0.3,
-      },
-    },
-    ...Object.entries(theme.palette)
-      .filter(([, value]) => value && value.main)
-      .map(([color]) => ({
-        props: { color, variant: 'buffer' },
+      {
+        props: {
+          color: 'inherit',
+        },
         style: {
-          backgroundColor: getColorShade(theme, color),
-          transition: `transform .${TRANSITION_DURATION}s linear`,
+          opacity: 0.3,
         },
-      })),
-    {
-      props: ({ ownerState }) =>
-        ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
-      style: {
-        width: 'auto',
       },
-    },
-    {
-      props: ({ ownerState }) =>
-        ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
-      style: indeterminate2Animation || {
-        animation: `${indeterminate2Keyframe} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite`,
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value && value.main)
+        .map(([color]) => ({
+          props: { color, variant: 'buffer' },
+          style: {
+            backgroundColor: getColorShade(theme, color),
+            transition: `transform .${TRANSITION_DURATION}s linear`,
+          },
+        })),
+      {
+        props: ({ ownerState }) =>
+          ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
+        style: {
+          width: 'auto',
+        },
       },
-    },
-  ],
-}));
+      {
+        props: ({ ownerState }) =>
+          ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
+        style: indeterminate2Animation || {
+          animation: `${indeterminate2Keyframe} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite`,
+        },
+      },
+    ],
+  })),
+);
 
 /**
  * ## ARIA

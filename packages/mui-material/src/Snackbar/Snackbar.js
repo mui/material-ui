@@ -1,11 +1,12 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
-import { ClickAwayListener } from '@mui/base/ClickAwayListener';
-import { useSnackbar } from '@mui/base/useSnackbar';
+import useSlotProps from '@mui/utils/useSlotProps';
+import useSnackbar from './useSnackbar';
+import ClickAwayListener from '../ClickAwayListener';
 import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
@@ -40,55 +41,57 @@ const SnackbarRoot = styled('div', {
       ],
     ];
   },
-})(({ theme }) => ({
-  zIndex: (theme.vars || theme).zIndex.snackbar,
-  position: 'fixed',
-  display: 'flex',
-  left: 8,
-  right: 8,
-  justifyContent: 'center',
-  alignItems: 'center',
-  variants: [
-    {
-      props: ({ ownerState }) => ownerState.anchorOrigin.vertical === 'top',
-      style: { top: 8, [theme.breakpoints.up('sm')]: { top: 24 } },
-    },
-    {
-      props: ({ ownerState }) => ownerState.anchorOrigin.vertical !== 'top',
-      style: { bottom: 8, [theme.breakpoints.up('sm')]: { bottom: 24 } },
-    },
-    {
-      props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'left',
-      style: {
-        justifyContent: 'flex-start',
-        [theme.breakpoints.up('sm')]: {
-          left: 24,
-          right: 'auto',
+})(
+  memoTheme(({ theme }) => ({
+    zIndex: (theme.vars || theme).zIndex.snackbar,
+    position: 'fixed',
+    display: 'flex',
+    left: 8,
+    right: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    variants: [
+      {
+        props: ({ ownerState }) => ownerState.anchorOrigin.vertical === 'top',
+        style: { top: 8, [theme.breakpoints.up('sm')]: { top: 24 } },
+      },
+      {
+        props: ({ ownerState }) => ownerState.anchorOrigin.vertical !== 'top',
+        style: { bottom: 8, [theme.breakpoints.up('sm')]: { bottom: 24 } },
+      },
+      {
+        props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'left',
+        style: {
+          justifyContent: 'flex-start',
+          [theme.breakpoints.up('sm')]: {
+            left: 24,
+            right: 'auto',
+          },
         },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'right',
-      style: {
-        justifyContent: 'flex-end',
-        [theme.breakpoints.up('sm')]: {
-          right: 24,
-          left: 'auto',
+      {
+        props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'right',
+        style: {
+          justifyContent: 'flex-end',
+          [theme.breakpoints.up('sm')]: {
+            right: 24,
+            left: 'auto',
+          },
         },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'center',
-      style: {
-        [theme.breakpoints.up('sm')]: {
-          left: '50%',
-          right: 'auto',
-          transform: 'translateX(-50%)',
+      {
+        props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'center',
+        style: {
+          [theme.breakpoints.up('sm')]: {
+            left: '50%',
+            right: 'auto',
+            transform: 'translateX(-50%)',
+          },
         },
       },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiSnackbar' });

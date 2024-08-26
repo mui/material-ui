@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import integerPropType from '@mui/utils/integerPropType';
 import chainPropTypes from '@mui/utils/chainPropTypes';
-import { isHostComponent } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
+import isHostComponent from '../utils/isHostComponent';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import InputBase from '../InputBase';
 import MenuItem from '../MenuItem';
@@ -21,15 +22,17 @@ const TablePaginationRoot = styled(TableCell, {
   name: 'MuiTablePagination',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme }) => ({
-  overflow: 'auto',
-  color: (theme.vars || theme).palette.text.primary,
-  fontSize: theme.typography.pxToRem(14),
-  // Increase the specificity to override TableCell.
-  '&:last-child': {
-    padding: 0,
-  },
-}));
+})(
+  memoTheme(({ theme }) => ({
+    overflow: 'auto',
+    color: (theme.vars || theme).palette.text.primary,
+    fontSize: theme.typography.pxToRem(14),
+    // Increase the specificity to override TableCell.
+    '&:last-child': {
+      padding: 0,
+    },
+  })),
+);
 
 const TablePaginationToolbar = styled(Toolbar, {
   name: 'MuiTablePagination',
@@ -38,21 +41,23 @@ const TablePaginationToolbar = styled(Toolbar, {
     [`& .${tablePaginationClasses.actions}`]: styles.actions,
     ...styles.toolbar,
   }),
-})(({ theme }) => ({
-  minHeight: 52,
-  paddingRight: 2,
-  [`${theme.breakpoints.up('xs')} and (orientation: landscape)`]: {
-    minHeight: 52,
-  },
-  [theme.breakpoints.up('sm')]: {
+})(
+  memoTheme(({ theme }) => ({
     minHeight: 52,
     paddingRight: 2,
-  },
-  [`& .${tablePaginationClasses.actions}`]: {
-    flexShrink: 0,
-    marginLeft: 20,
-  },
-}));
+    [`${theme.breakpoints.up('xs')} and (orientation: landscape)`]: {
+      minHeight: 52,
+    },
+    [theme.breakpoints.up('sm')]: {
+      minHeight: 52,
+      paddingRight: 2,
+    },
+    [`& .${tablePaginationClasses.actions}`]: {
+      flexShrink: 0,
+      marginLeft: 20,
+    },
+  })),
+);
 
 const TablePaginationSpacer = styled('div', {
   name: 'MuiTablePagination',
@@ -66,10 +71,12 @@ const TablePaginationSelectLabel = styled('p', {
   name: 'MuiTablePagination',
   slot: 'SelectLabel',
   overridesResolver: (props, styles) => styles.selectLabel,
-})(({ theme }) => ({
-  ...theme.typography.body2,
-  flexShrink: 0,
-}));
+})(
+  memoTheme(({ theme }) => ({
+    ...theme.typography.body2,
+    flexShrink: 0,
+  })),
+);
 
 const TablePaginationSelect = styled(Select, {
   name: 'MuiTablePagination',
@@ -104,10 +111,12 @@ const TablePaginationDisplayedRows = styled('p', {
   name: 'MuiTablePagination',
   slot: 'DisplayedRows',
   overridesResolver: (props, styles) => styles.displayedRows,
-})(({ theme }) => ({
-  ...theme.typography.body2,
-  flexShrink: 0,
-}));
+})(
+  memoTheme(({ theme }) => ({
+    ...theme.typography.body2,
+    flexShrink: 0,
+  })),
+);
 
 function defaultLabelDisplayedRows({ from, to, count }) {
   return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;

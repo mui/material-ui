@@ -1,5 +1,6 @@
 {
   "adblock": "If you don't mind tech-related ads (no tracking or remarketing), and want to keep us running, please whitelist us in your blocker.",
+  "adPublisher": "ad by {{publisher}}",
   "api-docs": {
     "componentName": "Component name",
     "componentsApi": "Components API",
@@ -63,8 +64,8 @@
       "joy-variant": "To learn how to add your own variants, check out <a href='/joy-ui/customization/themed-components/#extend-variants'>Themed components—Extend variants</a>."
     }
   },
-  "landingPageDescr": "A responsive landing page layout with common sections found in marketing pages.",
-  "landingPageTitle": "Landing page",
+  "marketingPageDescr": "A responsive marketing page layout with common sections found in marketing pages.",
+  "marketingPageTitle": "Marketing page",
   "searchButton": "Search…",
   "algoliaSearch": "What are you looking for?",
   "appFrame": {

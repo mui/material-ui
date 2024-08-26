@@ -61,7 +61,7 @@ npx @mui/codemod@next <transform> <path> --jscodeshift="--printOptions='{\"quote
 
 ## Included scripts
 
-- [Deprecation](#deprecations)
+- [Deprecations](#deprecations)
 - [v6](#v600)
 - [v5](#v500)
 - [v4](#v400)
@@ -106,7 +106,7 @@ JS transforms:
 -      [`& .${accordionSummaryClasses.contentGutters}`]: {
 +      [`&.${accordionSummaryClasses.gutters} .${accordionSummaryClasses.content}`]: {
          color: 'red',
-        },
+       },
      },
    },
  },
@@ -119,7 +119,7 @@ JS transforms:
 -      '& .MuiAccordionSummary-contentGutters': {
 +      '&.MuiAccordionSummary-gutters .MuiAccordionSummary-content': {
          color: 'red',
-        },
+       },
      },
    },
  },
@@ -130,7 +130,6 @@ CSS transforms:
 ```diff
 -.MuiAccordionSummary-root .MuiAccordionSummary-contentGutters
 +.MuiAccordionSummary-root.MuiAccordionSummary-gutters .MuiAccordionSummary-content
- />
 ```
 
 ```bash
@@ -150,51 +149,51 @@ JS transforms:
 -      [`&.${alertClasses.standardSuccess}`]: {
 +      [`&.${alertClasses.standard}.${alertClasses.colorSuccess}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.standardInfo}`]: {
 +      [`&.${alertClasses.standard}.${alertClasses.colorInfo}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.standardWarning}`]: {
 +      [`&.${alertClasses.standard}.${alertClasses.colorWarning}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.standardError}`]: {
 +      [`&.${alertClasses.standard}.${alertClasses.colorError}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.outlinedSuccess}`]: {
 +      [`&.${alertClasses.outlined}.${alertClasses.colorSuccess}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.outlinedInfo}`]: {
 +      [`&.${alertClasses.outlined}.${alertClasses.colorInfo}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.outlinedWarning}`]: {
 +      [`&.${alertClasses.outlined}.${alertClasses.colorWarning}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.outlinedError}`]: {
 +      [`&.${alertClasses.outlined}.${alertClasses.colorError}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.filledSuccess}`]: {
 +      [`&.${alertClasses.filled}.${alertClasses.colorSuccess}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.filledInfo}`]: {
 +      [`&.${alertClasses.filled}.${alertClasses.colorInfo}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.filledWarning}`]: {
 +      [`&.${alertClasses.filled}.${alertClasses.colorWarning}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.filledError}`]: {
 +      [`&.${alertClasses.filled}.${alertClasses.colorError}`]: {
          color: 'red',
-        },
+       },
      },
    },
  },
@@ -238,8 +237,8 @@ npx @mui/codemod@next deprecations/alert-classes <path>
 ```diff
  <Alert
 -  components={{ CloseButton: CustomButton }}
-+  slots={{ closeButton: CustomButton }}
 -  componentsProps={{ closeButton: { testid: 'test-id' } }}
++  slots={{ closeButton: CustomButton }}
 +  slotProps={{ closeButton: { testid: 'test-id' } }}
  />
 ```
@@ -248,10 +247,10 @@ npx @mui/codemod@next deprecations/alert-classes <path>
  MuiAlert: {
    defaultProps: {
 -    components: { CloseButton: CustomButton }
-+    slots: { closeButton: CustomButton },
 -    componentsProps: { closeButton: { testid: 'test-id' }}
++    slots: { closeButton: CustomButton },
 +    slotProps: { closeButton: { testid: 'test-id' } },
-  },
+   },
  },
 ```
 
@@ -330,29 +329,29 @@ npx @mui/codemod@next deprecations/autocomplete-props <path>
 ```diff
  <AvatarGroup
 -  componentsProps={{
--    additionalAvatar: {color: "red"}
+-    additionalAvatar: { color: 'red' },
 +  slotProps={{
-+    surplus: {color: "red"}
++    surplus: { color: 'red' },
    }}
- />;
+ />
 ```
 
 ```diff
  <AvatarGroup
    slotProps={{
--    additionalAvatar: {color: "red"}
-+    surplus: {color: "red"}
+-    additionalAvatar: { color: 'red' },
++    surplus: { color: 'red' },
    }}
- />;
+ />
 ```
 
 ```diff
  MuiAvatarGroup: {
    defaultProps: {
 -    componentsProps: {
--      additionalAvatar: {color: "red"}
+-      additionalAvatar: { color: 'red' },
 +    slotProps: {
-+      surplus: {color: "red"}
++      surplus: { color: 'red' },
      },
    },
  },
@@ -362,8 +361,8 @@ npx @mui/codemod@next deprecations/autocomplete-props <path>
  MuiAvatarGroup: {
    defaultProps: {
      slotProps: {
--      additionalAvatar: {color: "red"}
-+      surplus: {color: "red"}
+-      additionalAvatar: { color: 'red' },
++      surplus: { color: 'red' },
      },
    },
  },
@@ -384,9 +383,9 @@ npx @mui/codemod@next deprecations/avatar-group-props <path>
 +    img: {
 +      onError: () => {},
 +      onLoad: () => {},
-+    }
++    },
    }}
- />;
+ />
 ```
 
 #### `backdrop-props`
@@ -394,8 +393,8 @@ npx @mui/codemod@next deprecations/avatar-group-props <path>
 ```diff
  <Backdrop
 -  components={{ Root: CustomRoot }}
-+  slots={{ root: CustomRoot }}
 -  componentsProps={{ root: { testid: 'test-id' } }}
++  slots={{ root: CustomRoot }}
 +  slotProps={{ root: { testid: 'test-id' } }}
  />
 ```
@@ -404,8 +403,8 @@ npx @mui/codemod@next deprecations/avatar-group-props <path>
  MuiBackdrop: {
    defaultProps: {
 -    components: { Root: CustomRoot }
-+    slots: { root: CustomRoot },
 -    componentsProps: { root: { testid: 'root-id' } }
++    slots: { root: CustomRoot },
 +    slotProps: { root: { testid: 'root-id' } },
   },
  },
@@ -413,8 +412,8 @@ npx @mui/codemod@next deprecations/avatar-group-props <path>
 
 ```diff
  <Backdrop
--    TransitionComponent={CustomTransition}
-+    slots={{ transition: CustomTransition }}
+-  TransitionComponent={CustomTransition}
++  slots={{ transition: CustomTransition }}
  />
 ```
 
@@ -427,8 +426,8 @@ npx @mui/codemod@next deprecations/backdrop-props <path>
 ```diff
  <Badge
 -  components={{ Root: CustomRoot }}
-+  slots={{ root: CustomRoot }}
 -  componentsProps={{ root: { testid: 'test-id' } }}
++  slots={{ root: CustomRoot }}
 +  slotProps={{ root: { testid: 'test-id' } }}
  />
 ```
@@ -437,8 +436,8 @@ npx @mui/codemod@next deprecations/backdrop-props <path>
  MuiBadge: {
    defaultProps: {
 -    components: { Root: CustomRoot }
-+    slots: { root: CustomRoot },
 -    componentsProps: { root: { testid: 'test-id' }}
++    slots: { root: CustomRoot },
 +    slotProps: { root: { testid: 'test-id' } },
   },
  },
@@ -461,135 +460,135 @@ JS transforms:
 -      [`&.${buttonClasses.textInherit}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorInherit}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textPrimary}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textSecondary}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textSuccess}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorSuccess}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textError}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorError}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textInfo}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorInfo}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textWarning}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorWarning}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedInherit}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorInherit}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedPrimary}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedSecondary}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedSuccess}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorSuccess}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedError}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorError}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedInfo}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorInfo}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedWarning}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorWarning}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedInherit}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorInherit}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedPrimary}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedSecondary}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedSuccess}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorSuccess}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedError}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorError}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedInfo}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorInfo}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedWarning}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorWarning}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedSizeSmall}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.sizeSmall}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedSizeMedium}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.sizeMedium}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedSizeLarge}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.sizeLarge}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textSizeSmall}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.sizeSmall}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textSizeMedium}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.sizeMedium}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textSizeLarge}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.sizeLarge}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedSizeSmall}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.sizeSmall}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedSizeMedium}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.sizeMedium}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedSizeLarge}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.sizeLarge}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${buttonClasses.iconSizeSmall}`]: {
 +      [`&.${buttonClasses.sizeSmall} > .${buttonClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${buttonClasses.iconSizeMedium}`]: {
 +      [`&.${buttonClasses.sizeMedium} > .${buttonClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${buttonClasses.iconSizeLarge}`]: {
 +      [`&.${buttonClasses.sizeLarge} > .${buttonClasses.icon}`]: {
          color: 'red',
-        },
+       },
      },
    },
  },
@@ -664,7 +663,6 @@ CSS transforms:
 +.MuiButton-root.MuiButton-sizeMedium > .MuiButton-icon
 -.MuiButton-root .MuiButton-iconSizeLarge
 +.MuiButton-root.MuiButton-sizeLarge > .MuiButton-icon
- />
 ```
 
 ```bash
@@ -684,71 +682,71 @@ JS transforms:
 -      [`& .${buttonGroupClasses.groupedHorizontal}`]: {
 +      [`&.${buttonGroupClasses.horizontal} > .${buttonGroupClasses.grouped}`]: {
           color: 'red',
-        },
+       },
 -      [`& .${buttonGroupClasses.groupedVertical}`]: {
 +      [`&.${buttonGroupClasses.vertical} > .${buttonGroupClasses.grouped}`]: {
           color: 'red',
-        },
+       },
 -      [`& .${buttonGroupClasses.groupedText}`]: {
 +      [`&.${buttonGroupClasses.text} > .${buttonGroupClasses.grouped}`]: {
           color: 'red',
-        },
+       },
 -      [`& .${buttonGroupClasses.groupedTextHorizontal}`]: {
 +      [`&.${buttonGroupClasses.text}.${buttonGroupClasses.horizontal} > .${buttonGroupClasses.grouped}`]: {
           color: 'red',
-        },
+       },
 -      [`& .${buttonGroupClasses.groupedTextVertical}`]: {
 +      [`&.${buttonGroupClasses.text}.${buttonGroupClasses.vertical} > .${buttonGroupClasses.grouped}`]: {
           color: 'red',
-        },
+       },
 -      [`& .${buttonGroupClasses.groupedTextPrimary}`]: {
 +      [`&.${buttonGroupClasses.text}.${buttonGroupClasses.colorPrimary} > .${buttonGroupClasses.grouped}`]: {
           color: 'red',
-        },
+       },
 -      [`& .${buttonGroupClasses.groupedTextSecondary}`]: {
 +      [`&.${buttonGroupClasses.text}.${buttonGroupClasses.colorSecondary} > .${buttonGroupClasses.grouped}`]: {
           color: 'red',
-        },
+       },
 -      [`& .${buttonGroupClasses.groupedOutlined}`]: {
 +      [`&.${buttonGroupClasses.outlined} > .${buttonGroupClasses.grouped}`]: {
           color: 'red',
-        },
+       },
 -      [`& .${buttonGroupClasses.groupedOutlinedHorizontal}`]: {
 +      [`&.${buttonGroupClasses.outlined}.${buttonGroupClasses.horizontal} > .${buttonGroupClasses.grouped}`]: {
           color: 'red',
-        },
+       },
 -      [`& .${buttonGroupClasses.groupedOutlinedVertical}`]: {
 +      [`&.${buttonGroupClasses.outlined}.${buttonGroupClasses.vertical} > .${buttonGroupClasses.grouped}`]: {
           color: 'red',
-        },
+       },
 -      [`& .${buttonGroupClasses.groupedOutlinedPrimary}`]: {
 +      [`&.${buttonGroupClasses.outlined}.${buttonGroupClasses.colorPrimary} > .${buttonGroupClasses.grouped}`]: {
           color: 'red',
-        },
+       },
 -      [`& .${buttonGroupClasses.groupedOutlinedSecondary}`]: {
 +      [`&.${buttonGroupClasses.outlined}.${buttonGroupClasses.colorSecondary} > .${buttonGroupClasses.grouped}`]: {
           color: 'red',
-        },
+       },
 -      [`& .${buttonGroupClasses.groupedContained}`]: {
 +      [`&.${buttonGroupClasses.contained} > .${buttonGroupClasses.grouped}`]: {
           color: 'red',
-        },
+       },
 -      [`& .${buttonGroupClasses.groupedContainedHorizontal}`]: {
 +      [`&.${buttonGroupClasses.contained}.${buttonGroupClasses.horizontal} > .${buttonGroupClasses.grouped}`]: {
           color: 'red',
-        },
+       },
 -      [`& .${buttonGroupClasses.groupedContainedVertical}`]: {
 +      [`&.${buttonGroupClasses.contained}.${buttonGroupClasses.vertical} > .${buttonGroupClasses.grouped}`]: {
           color: 'red',
-        },
+       },
 -      [`& .${buttonGroupClasses.groupedContainedPrimary}`]: {
 +      [`&.${buttonGroupClasses.contained}.${buttonGroupClasses.colorPrimary} > .${buttonGroupClasses.grouped}`]: {
           color: 'red',
-        },
+       },
 -      [`& .${buttonGroupClasses.groupedContainedSecondary}`]: {
 +      [`&.${buttonGroupClasses.contained}.${buttonGroupClasses.colorSecondary} > .${buttonGroupClasses.grouped}`]: {
           color: 'red',
-        },
+       },
      },
    },
  },
@@ -802,7 +800,6 @@ npx @mui/codemod@latest deprecations/button-group-classes <path>
 JS transforms:
 
 ```diff
-
  import { chipClasses } from '@mui/material/Chip';
 
   MuiChip: {
@@ -811,107 +808,107 @@ JS transforms:
 -      [`&.${chipClasses.clickableColorPrimary}`]: {
 +      [`&.${chipClasses.clickable}.${chipClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.clickableColorSecondary}`]: {
 +      [`&.${chipClasses.clickable}.${chipClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.deletableColorPrimary}`]: {
 +      [`&.${chipClasses.deletable}.${chipClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.deletableColorSecondary}`]: {
 +      [`&.${chipClasses.deletable}.${chipClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.outlinedPrimary}`]: {
 +      [`&.${chipClasses.outlined}.${chipClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.outlinedSecondary}`]: {
 +      [`&.${chipClasses.outlined}.${chipClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.filledPrimary}`]: {
 +      [`&.${chipClasses.filled}.${chipClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.filledSecondary}`]: {
 +      [`&.${chipClasses.filled}.${chipClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.avatarSmall}`]: {
 +      [`&.${chipClasses.sizeSmall} > .${chipClasses.avatar}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.avatarMedium}`]: {
 +      [`&.${chipClasses.sizeMedium} > .${chipClasses.avatar}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.avatarColorPrimary}`]: {
 +      [`&.${chipClasses.colorPrimary} > .${chipClasses.avatar}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.avatarColorSecondary}`]: {
 +      [`&.${chipClasses.colorSecondary} > .${chipClasses.avatar}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.iconSmall}`]: {
 +      [`&.${chipClasses.sizeSmall} > .${chipClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.iconMedium}`]: {
 +      [`&.${chipClasses.sizeMedium} > .${chipClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.iconColorPrimary}`]: {
 +      [`&.${chipClasses.colorPrimary} > .${chipClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.iconColorSecondary}`]: {
 +      [`&.${chipClasses.colorSecondary} > .${chipClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.labelSmall}`]: {
 +      [`&.${chipClasses.sizeSmall} > .${chipClasses.label}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.labelMedium}`]: {
 +      [`&.${chipClasses.sizeMedium} > .${chipClasses.label}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconSmall}`]: {
 +      [`&.${chipClasses.sizeSmall} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconMedium}`]: {
 +      [`&.${chipClasses.sizeMedium} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconColorPrimary}`]: {
 +      [`&.${chipClasses.colorPrimary} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconColorSecondary}`]: {
 +      [`&.${chipClasses.colorSecondary} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconOutlinedColorPrimary}`]: {
 +      [`&.${chipClasses.outlined}.${chipClasses.colorPrimary} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconOutlinedColorSecondary}`]: {
 +      [`&.${chipClasses.outlined}.${chipClasses.colorSecondary} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconFilledColorPrimary}`]: {
 +      [`&.${chipClasses.filled}.${chipClasses.colorPrimary} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconFilledColorSecondary}`]: {
 +      [`&.${chipClasses.filled}.${chipClasses.colorSecondary} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-     },
+       },
      },
    },
   },
@@ -992,11 +989,11 @@ JS transforms:
 -      [`& .${circularProgressClasses.circleDeterminate}`]: {
 +      [`&.${circularProgressClasses.determinate} > .${circularProgressClasses.circle}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${circularProgressClasses.circleIndeterminate}`]: {
 +      [`&.${circularProgressClasses.indeterminate} > .${circularProgressClasses.circle}`]: {
          color: 'red',
-        },
+       },
      },
    },
  },
@@ -1005,9 +1002,12 @@ JS transforms:
 CSS transforms:
 
 ```diff
-- .MuiCircularProgress-circleDeterminate
+-.MuiCircularProgress-circleDeterminate
 +.MuiCircularProgress-determinate > .MuiCircularProgress-circle
-- .MuiCircularProgress-circleIndeterminate
+```
+
+```diff
+-.MuiCircularProgress-circleIndeterminate
 +.MuiCircularProgress-indeterminate > .MuiCircularProgress-circle
 ```
 
@@ -1020,7 +1020,7 @@ npx @mui/codemod@next deprecations/circular-progress-classes <path>
 ```diff
  <Divider
 -  light
-+  sx={{opacity: "0.6"}}
++  sx={{ opacity: 0.6 }}
  />
 ```
 
@@ -1033,8 +1033,8 @@ npx @mui/codemod@next deprecations/divider-props <path>
 ```diff
  <FilledInput
 -  components={{ Input: CustomInput, Root: CustomRoot }}
-+  slots={{ input: CustomInput, root: CustomRoot }}
 -  componentsProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
++  slots={{ input: CustomInput, root: CustomRoot }}
 +  slotProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
  />
 ```
@@ -1043,8 +1043,8 @@ npx @mui/codemod@next deprecations/divider-props <path>
  MuiFilledInput: {
    defaultProps: {
 -    components: { Input: CustomInput, Root: CustomRoot }
-+    slots: { input: CustomInput, root: CustomRoot },
 -    componentsProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }
++    slots: { input: CustomInput, root: CustomRoot },
 +    slotProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } },
    },
  },
@@ -1066,9 +1066,9 @@ npx @mui/codemod@next deprecations/filled-input-props <path>
 ```diff
  MuiFormControlLabel: {
    defaultProps: {
--  componentsProps={{ typography: typographyProps }}
-+  slotProps={{ typography: typographyProps }}
-  },
+-    componentsProps={{ typography: typographyProps }}
++    slotProps={{ typography: typographyProps }}
+   },
  },
 ```
 
@@ -1082,8 +1082,8 @@ npx @mui/codemod@next deprecations/form-control-label-props <path>
 ```diff
  <ListItem
 -  components={{ Root: CustomRoot }}
-+  slots={{ root: CustomRoot }}
 -  componentsProps={{ root: { testid: 'test-id' } }}
++  slots={{ root: CustomRoot }}
 +  slotProps={{ root: { testid: 'test-id' } }}
  />
 ```
@@ -1092,8 +1092,8 @@ npx @mui/codemod@next deprecations/form-control-label-props <path>
  MuiListItem: {
    defaultProps: {
 -    components: { Root: CustomRoot }
-+    slots: { root: CustomRoot },
 -    componentsProps: { root: { testid: 'test-id' }}
++    slots: { root: CustomRoot },
 +    slotProps: { root: { testid: 'test-id' } },
   },
  },
@@ -1107,8 +1107,8 @@ npx @mui/codemod@next deprecations/list-item-props <path>
 
 ```diff
  <Grid
--    wrap="nowrap"
-+    flexWrap="nowrap"
+-  wrap="nowrap"
++  flexWrap="nowrap"
  />
 ```
 
@@ -1116,13 +1116,70 @@ npx @mui/codemod@next deprecations/list-item-props <path>
 npx @mui/codemod@next deprecations/grid-props <path>
 ```
 
+#### `image-list-item-bar-classes`
+
+JS transforms:
+
+```diff
+ import { imageListItemBarClasses } from '@mui/material/ImageListItemBar';
+
+ MuiImageListItemBar: {
+   styleOverrides: {
+     root: {
+-      [`& .${imageListItemBarClasses.titleWrapBelow}`]: {
++      [`&.${imageListItemBarClasses.positionBelow} > .${imageListItemBarClasses.titleWrap}`]: {
+         color: 'red',
+       },
+-      [`& .${imageListItemBarClasses.titleWrapActionPosLeft}`]: {
++      [`&.${imageListItemBarClasses.actionPositionLeft} > .${imageListItemBarClasses.titleWrap}`]: {
+         color: 'red',
+       },
+-      [`& .${imageListItemBarClasses.titleWrapActionPosRight}`]: {
++      [`&.${imageListItemBarClasses.actionPositionRight} > .${imageListItemBarClasses.titleWrap}`]: {
+         color: 'red',
+       },
+-      [`& .${imageListItemBarClasses.actionIconActionPosLeft}`]: {
++      [`&.${imageListItemBarClasses.actionPositionLeft} > .${imageListItemBarClasses.actionIcon}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+- .MuiImageListItemBar-titleWrapBelow
++.MuiImageListItemBar-positionBelow > .MuiImageListItemBar-titleWrap
+```
+
+```diff
+- .MuiImageListItemBar-titleWrapActionPosLeft
++.MuiImageListItemBar-actionPositionLeft > .MuiImageListItemBar-titleWrap
+```
+
+```diff
+- .MuiImageListItemBar-titleWrapActionPosRight
++.MuiImageListItemBar-actionPositionRight > .MuiImageListItemBar-titleWrap
+```
+
+```diff
+- .MuiImageListItemBar-actionIconActionPosLeft
++.MuiImageListItemBar-actionPositionLeft > .MuiImageListItemBar-actionIcon
+```
+
+```bash
+npx @mui/codemod@next deprecations/image-list-item-bar-classes <path>
+```
+
 #### `input-base-props`
 
 ```diff
  <InputBase
 -  components={{ Input: CustomInput, Root: CustomRoot }}
-+  slots={{ input: CustomInput, root: CustomRoot }}
 -  componentsProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
++  slots={{ input: CustomInput, root: CustomRoot }}
 +  slotProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
  />
 ```
@@ -1131,8 +1188,8 @@ npx @mui/codemod@next deprecations/grid-props <path>
  MuiInputBase: {
    defaultProps: {
 -    components: { Input: CustomInput, Root: CustomRoot }
-+    slots: { input: CustomInput, root: CustomRoot },
 -    componentsProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }
++    slots: { input: CustomInput, root: CustomRoot },
 +    slotProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } },
    },
  },
@@ -1147,8 +1204,8 @@ npx @mui/codemod@next deprecations/input-base-props <path>
 ```diff
  <Input
 -  components={{ Input: CustomInput, Root: CustomRoot }}
-+  slots={{ input: CustomInput, root: CustomRoot }}
 -  componentsProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
++  slots={{ input: CustomInput, root: CustomRoot }}
 +  slotProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
  />
 ```
@@ -1157,8 +1214,8 @@ npx @mui/codemod@next deprecations/input-base-props <path>
  MuiInput: {
    defaultProps: {
 -    components: { Input: CustomInput, Root: CustomRoot }
-+    slots: { input: CustomInput, root: CustomRoot },
 -    componentsProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }
++    slots: { input: CustomInput, root: CustomRoot },
 +    slotProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } },
    },
  },
@@ -1173,8 +1230,8 @@ npx @mui/codemod@next deprecations/input-props <path>
 ```diff
  <Modal
 -  components={{ Root: CustomRoot, Backdrop: CustomBackdrop }}
-+  slots={{ root: CustomRoot, backdrop: CustomBackdrop }}
 -  componentsProps={{ root: { testid: 'root-id' }, backdrop: { testid: 'backdrop-id' } }}
++  slots={{ root: CustomRoot, backdrop: CustomBackdrop }}
 +  slotProps={{ root: { testid: 'root-id' }, backdrop: { testid: 'backdrop-id' } }}
  />
 ```
@@ -1183,8 +1240,8 @@ npx @mui/codemod@next deprecations/input-props <path>
  MuiModal: {
    defaultProps: {
 -    components: { Root: CustomRoot, Backdrop: CustomBackdrop }
-+    slots: { root: CustomRoot, backdrop: CustomBackdrop },
 -    componentsProps: { root: { testid: 'root-id' }, backdrop: { testid: 'backdrop-id' }}
++    slots: { root: CustomRoot, backdrop: CustomBackdrop },
 +    slotProps: { root: { testid: 'root-id' }, backdrop: { testid: 'backdrop-id' } },
   },
  },
@@ -1207,35 +1264,35 @@ JS transforms:
 -      [`&.${paginationItemClasses.textPrimary}`]: {
 +      [`&.${paginationItemClasses.text}.${paginationItemClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${paginationItemClasses.textSecondary}`]: {
 +      [`&.${paginationItemClasses.text}.${paginationItemClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${paginationItemClasses.outlinedPrimary}`]: {
 +      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${paginationItemClasses.outlinedSecondary}`]: {
 +      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      '&.MuiPaginationItem-textPrimary': {
 +      '&.MuiPaginationItem-text.MuiPaginationItem-colorPrimary': {
          color: 'red',
-        },
+       },
 -      '&.MuiPaginationItem-textSecondary': {
 +      '&.MuiPaginationItem-text.MuiPaginationItem-colorSecondary': {
          color: 'red',
-        },
+       },
 -      '&.MuiPaginationItem-outlinedPrimary': {
 +      '&.MuiPaginationItem-outlined.MuiPaginationItem-colorPrimary': {
          color: 'red',
-        },
+       },
 -      '&.MuiPaginationItem-outlinedSecondary': {
 +      '&.MuiPaginationItem-outlined.MuiPaginationItem-colorSecondary': {
          color: 'red',
-        },
+       },
      },
    },
  },
@@ -1285,8 +1342,8 @@ npx @mui/codemod@next deprecations/pagination-item-props <path>
 ```diff
  <Popper
 -  components={{ Root: CustomRoot }}
-+  slots={{ root: CustomRoot }}
 -  componentsProps={{ root: { testid: 'test-id' } }}
++  slots={{ root: CustomRoot }}
 +  slotProps={{ root: { testid: 'test-id' } }}
  />
 ```
@@ -1295,8 +1352,8 @@ npx @mui/codemod@next deprecations/pagination-item-props <path>
  MuiPopper: {
    defaultProps: {
 -    components: { Root: CustomRoot }
-+    slots: { root: CustomRoot },
 -    componentsProps: { root: { testid: 'test-id' }}
++    slots: { root: CustomRoot },
 +    slotProps: { root: { testid: 'test-id' } },
   },
  },
@@ -1311,8 +1368,8 @@ npx @mui/codemod@next deprecations/popper-props <path>
 ```diff
  <OutlinedInput
 -  components={{ Input: CustomInput, Root: CustomRoot }}
-+  slots={{ input: CustomInput, root: CustomRoot }}
 -  componentsProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
++  slots={{ input: CustomInput, root: CustomRoot }}
 +  slotProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
  />
 ```
@@ -1321,8 +1378,8 @@ npx @mui/codemod@next deprecations/popper-props <path>
  MuiOutlinedInput: {
    defaultProps: {
 -    components: { Input: CustomInput, Root: CustomRoot }
-+    slots: { input: CustomInput, root: CustomRoot },
 -    componentsProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }
++    slots: { input: CustomInput, root: CustomRoot },
 +    slotProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } },
    },
  },
@@ -1337,8 +1394,8 @@ npx @mui/codemod@next deprecations/outlined-input-props <path>
 ```diff
  <Slider
 -  components={{ Track: CustomTrack }}
-+  slots={{ track: CustomTrack }}
 -  componentsProps={{ track: { testid: 'test-id' } }}
++  slots={{ track: CustomTrack }}
 +  slotProps={{ track: { testid: 'test-id' } }}
  />
 ```
@@ -1347,8 +1404,8 @@ npx @mui/codemod@next deprecations/outlined-input-props <path>
  MuiSlider: {
    defaultProps: {
 -    components: { Track: CustomTrack }
-+    slots: { track: CustomTrack },
 -    componentsProps: { track: { testid: 'test-id' }}
++    slots: { track: CustomTrack },
 +    slotProps: { track: { testid: 'test-id' } },
   },
  },
@@ -1363,8 +1420,8 @@ npx @mui/codemod@next deprecations/slider-props <path>
 ```diff
  <Tooltip
 -  components={{ Arrow: CustomArrow }}
-+  slots={{ arrow: CustomArrow }}
 -  componentsProps={{ arrow: { testid: 'test-id' } }}
++  slots={{ arrow: CustomArrow }}
 +  slotProps={{ arrow: { testid: 'test-id' } }}
  />
 ```
@@ -1397,11 +1454,11 @@ JS transforms:
 -      [`& .${stepConnectorClasses.lineHorizontal}`]: {
 +      [`&.${stepConnectorClasses.horizontal} > .${stepConnectorClasses.line}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${stepConnectorClasses.lineVertical}`]: {
 +      [`&.${stepConnectorClasses.vertical} > .${stepConnectorClasses.line}`]: {
          color: 'red',
-        },
+       },
      },
    },
  },
@@ -1441,18 +1498,18 @@ npx @mui/codemod@latest deprecations/step-label-props <path>
 
 ```diff
  <TextField
--    InputProps={CustomInputProps}
--    inputProps={CustomHtmlInputProps}
--    SelectProps={CustomSelectProps}
--    InputLabelProps={CustomInputLabelProps}
--    FormHelperTextProps={CustomFormHelperProps}
-+    slotProps={{
-+        input: CustomInputProps
-+        htmlInput: CustomHtmlInputProps
-+        select: CustomSelectProps
-+        inputLabel: CustomInputLabelProps
-+        formHelper: CustomFormHelperProps
-+    }}
+-  InputProps={CustomInputProps}
+-  inputProps={CustomHtmlInputProps}
+-  SelectProps={CustomSelectProps}
+-  InputLabelProps={CustomInputLabelProps}
+-  FormHelperTextProps={CustomFormHelperProps}
++  slotProps={{
++    input: CustomInputProps,
++    htmlInput: CustomHtmlInputProps,
++    select: CustomSelectProps,
++    inputLabel: CustomInputLabelProps,
++    formHelper: CustomFormHelperProps,
++  }}
  />
 ```
 
@@ -1473,11 +1530,11 @@ JS transforms:
 -      [`& .${toggleButtonGroupClasses.groupedHorizontal}`]: {
 +      [`&.${toggleButtonGroupClasses.horizontal} > .${toggleButtonGroupClasses.grouped}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${toggleButtonGroupClasses.groupedVertical}`]: {
 +      [`&.${toggleButtonGroupClasses.vertical} > .${toggleButtonGroupClasses.grouped}`]: {
          color: 'red',
-        },
+       },
      },
    },
  },
@@ -1488,9 +1545,11 @@ CSS transforms:
 ```diff
 -.MuiToggleButtonGroup-root .MuiToggleButtonGroup-groupedHorizontal
 +.MuiToggleButtonGroup-root.MuiToggleButtonGroup-horizontal > .MuiToggleButtonGroup-grouped
+```
+
+```diff
 -.MuiToggleButtonGroup-root .MuiToggleButtonGroup-groupedVertical
 +.MuiToggleButtonGroup-root.MuiToggleButtonGroup-vertical > .MuiToggleButtonGroup-grouped
- />
 ```
 
 ```bash
@@ -1500,9 +1559,12 @@ npx @mui/codemod@latest deprecations/toggle-button-group-classes <path>
 CSS transforms:
 
 ```diff
-- .MuiStepConnector-lineHorizontal
+-.MuiStepConnector-lineHorizontal
 +.MuiStepConnector-horizontal > .MuiStepConnector-line
-- .MuiStepConnector-lineVertical
+```
+
+```diff
+-.MuiStepConnector-lineVertical
 +.MuiStepConnector-vertical > .MuiStepConnector-line
 ```
 
@@ -1523,7 +1585,8 @@ JS transforms:
 -      [`& .${tabClasses.iconWrapper}`]: {
 +      [`& .${tabClasses.icon}`]: {
          color: 'red',
-        },
+       },
+     },
    },
  },
 ```
@@ -1531,8 +1594,8 @@ JS transforms:
 CSS transforms:
 
 ```diff
-- .MuiTab-iconWrapper
-+ .MuiTab-icon
+-.MuiTab-iconWrapper
++.MuiTab-icon
 ```
 
 ```bash
@@ -1552,11 +1615,11 @@ JS transforms:
 -      [`& .${tableSortLabelClasses.iconDirectionDesc}`]: {
 +      [`&.${tableSortLabelClasses.directionDesc} > .${tableSortLabelClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${tableSortLabelClasses.iconDirectionAsc}`]: {
 +      [`&.${tableSortLabelClasses.directionAsc} > .${tableSortLabelClasses.icon}`]: {
          color: 'red',
-        },
+       },
      },
    },
  },
@@ -1565,14 +1628,39 @@ JS transforms:
 CSS transforms:
 
 ```diff
-- .MuiTableSortLabel-iconDirectionDesc
+-.MuiTableSortLabel-iconDirectionDesc
 +.MuiTableSortLabel-directionDesc > .MuiTableSortLabel-icon
-- .MuiTableSortLabel-iconDirectionAsc
+```
+
+```diff
+-.MuiTableSortLabel-iconDirectionAsc
 +.MuiTableSortLabel-directionAsc > .MuiTableSortLabel-icon
 ```
 
 ```bash
 npx @mui/codemod@next deprecations/table-sort-label-classes <path>
+```
+
+#### `typography-props`
+
+```diff
+ <Typography
+-  paragraph
++  sx={{ marginBottom: '16px' }}
+ />
+```
+
+```diff
+ MuiTypography: {
+   defaultProps: {
+-    paragraph: true
++    sx: { marginBottom: '16px' },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/typography-props <path>
 ```
 
 ### v6.0.0
@@ -1589,7 +1677,7 @@ Update the usage of the `sx` prop to be compatible with `@pigment-css/react`.
  <Box
 -  sx={{
 -    backgroundColor: (theme) =>
--       theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[900],
+-      theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[900],
 -  }}
 +  sx={theme => ({
 +    backgroundColor: theme.palette.grey[900],
@@ -1609,8 +1697,8 @@ npx @mui/codemod@next v6.0.0/system-props <path>
 Remove system props and add them to the `sx` prop.
 
 ```diff
-- <Box ml="2px" py={1} color="primary.main" />
-+ <Box sx={{ ml: "2px", py: 1, color: 'primary.main' }} />
+-<Box ml="2px" py={1} color="primary.main" />
++<Box sx={{ ml: '2px', py: 1, color: 'primary.main' }} />
 ```
 
 #### `theme-v6`
@@ -1629,14 +1717,14 @@ Update the theme creation from `@mui/system@v5` to be compatible with `@pigment-
   createTheme({
     components: {
       MuiButton: {
--        variants: [
--          {
--            props: { color: 'primary' },
--            style: {
--              color: 'red',
--            },
--          },
--        ],
+-       variants: [
+-         {
+-           props: { color: 'primary' },
+-           style: {
+-             color: 'red',
+-           },
+-         },
+-       ],
         styleOverrides: {
 -          root: ({ theme, ownerState }) => ({
 +          root: ({ theme }) => ({
@@ -1749,6 +1837,36 @@ However, it has some **limitations**:
   }));
   ```
 
+#### `grid-v2-props`
+
+```bash
+npx @mui/codemod@next v6.0.0/grid-v2-props <path>
+```
+
+Updates the usage of the `@mui/material/Grid2`, `@mui/system/Grid`, and `@mui/joy/Grid` components to their updated APIs.
+
+```diff
+ <Grid
+-   xs={12}
+-   sm={6}
+-   xsOffset={2}
+-   smOffset={3}
++   size={{ xs: 12, sm: 6 }}
++   offset={{ xs: 2, sm: 3 }}
+ />
+```
+
+You can provide the theme breakpoints via options, for example, `--jscodeshift='--muiBreakpoints=mobile,desktop'`, to use your custom breakpoints in the transformation.
+
+```bash
+npx @mui/codemod@next v6.0.0/grid-v2-props <path> --jscodeshift='--muiBreakpoints=mobile,desktop'
+```
+
+```diff
+- <Grid mobile={12} mobileOffset={2} desktop={6} desktopOffset={4} >
++ <Grid size={{ mobile: 12, desktop: 6 }} offset={{ mobile: 2, desktop: 4 }} >
+```
+
 ### v5.0.0
 
 #### `base-use-named-exports`
@@ -1848,7 +1966,7 @@ Transforms `row` prop to `orientation` prop across `Card`, `List` and `RadioGrou
 ```diff
  <Card
 -  row
-+  orientation={"horizontal"}
++  orientation="horizontal"
  />;
 ```
 
@@ -1876,7 +1994,7 @@ npx @mui/codemod@next v5.0.0/joy-avatar-remove-imgProps <path>
 
 #### `joy-text-field-to-input`
 
-Replace `<TextField>` with composition of `Input`
+Replace `<TextField>` with a composition of input components:
 
 This change only affects Joy UI components.
 

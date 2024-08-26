@@ -4,9 +4,22 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled, internal_createExtendSxProp } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import { getTypographyUtilityClass } from './typographyClasses';
+
+const v6Colors = {
+  primary: true,
+  secondary: true,
+  error: true,
+  info: true,
+  success: true,
+  warning: true,
+  textPrimary: true,
+  textSecondary: true,
+  textDisabled: true,
+};
 
 const extendSxProp = internal_createExtendSxProp();
 
@@ -42,62 +55,72 @@ export const TypographyRoot = styled('span', {
       ownerState.paragraph && styles.paragraph,
     ];
   },
-})(({ theme }) => ({
-  margin: 0,
-  variants: [
-    {
-      props: {
-        variant: 'inherit',
-      },
-      style: {
-        // Some elements, like <button> on Chrome have default font that doesn't inherit, reset this.
-        font: 'inherit',
-        lineHeight: 'inherit',
-        letterSpacing: 'inherit',
-      },
-    },
-    ...Object.entries(theme.typography)
-      .filter(([variant, value]) => variant !== 'inherit' && value && typeof value === 'object')
-      .map(([variant, value]) => ({
-        props: { variant },
-        style: value,
-      })),
-    ...Object.entries(theme.palette)
-      .filter(([, value]) => value && value.main)
-      .map(([color]) => ({
-        props: { color },
-        style: {
-          color: (theme.vars || theme).palette[color].main,
+})(
+  memoTheme(({ theme }) => ({
+    margin: 0,
+    variants: [
+      {
+        props: {
+          variant: 'inherit',
         },
-      })),
-    {
-      props: ({ ownerState }) => ownerState.align !== 'inherit',
-      style: {
-        textAlign: 'var(--Typography-textAlign)',
+        style: {
+          // Some elements, like <button> on Chrome have default font that doesn't inherit, reset this.
+          font: 'inherit',
+          lineHeight: 'inherit',
+          letterSpacing: 'inherit',
+        },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.noWrap,
-      style: {
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
+      ...Object.entries(theme.typography)
+        .filter(([variant, value]) => variant !== 'inherit' && value && typeof value === 'object')
+        .map(([variant, value]) => ({
+          props: { variant },
+          style: value,
+        })),
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value && value.main)
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            color: (theme.vars || theme).palette[color].main,
+          },
+        })),
+      ...Object.entries(theme.palette?.text || {})
+        .filter(([, value]) => typeof value === 'string')
+        .map(([color]) => ({
+          props: { color: `text${capitalize(color)}` },
+          style: {
+            color: (theme.vars || theme).palette.text[color],
+          },
+        })),
+      {
+        props: ({ ownerState }) => ownerState.align !== 'inherit',
+        style: {
+          textAlign: 'var(--Typography-textAlign)',
+        },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.gutterBottom,
-      style: {
-        marginBottom: '0.35em',
+      {
+        props: ({ ownerState }) => ownerState.noWrap,
+        style: {
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+        },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.paragraph,
-      style: {
-        marginBottom: 16,
+      {
+        props: ({ ownerState }) => ownerState.gutterBottom,
+        style: {
+          marginBottom: '0.35em',
+        },
       },
-    },
-  ],
-}));
+      {
+        props: ({ ownerState }) => ownerState.paragraph,
+        style: {
+          marginBottom: 16,
+        },
+      },
+    ],
+  })),
+);
 
 const defaultVariantMapping = {
   h1: 'h1',
@@ -113,27 +136,13 @@ const defaultVariantMapping = {
   inherit: 'p',
 };
 
-// TODO v7: remove this transformation and `extendSxProp`
-const colorTransformations = {
-  textPrimary: 'text.primary',
-  textSecondary: 'text.secondary',
-  // For the main palette, the color will be applied by the `...Object.entries(theme.palette)` clause in the TypographyRoot's styles
-  primary: null,
-  secondary: null,
-  error: null,
-  info: null,
-  success: null,
-  warning: null,
-};
-
 const Typography = React.forwardRef(function Typography(inProps, ref) {
   const { color, ...themeProps } = useDefaultProps({ props: inProps, name: 'MuiTypography' });
-  const textColor = colorTransformations[color];
+  const isSxColor = !v6Colors[color];
+  // TODO: Remove `extendSxProp` in v7
   const props = extendSxProp({
     ...themeProps,
-    ...(textColor !== null && {
-      color: textColor || color,
-    }),
+    ...(isSxColor && { color }),
   });
 
   const {
@@ -206,6 +215,25 @@ Typography.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
+   */
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf([
+      'primary',
+      'secondary',
+      'success',
+      'error',
+      'info',
+      'warning',
+      'textPrimary',
+      'textSecondary',
+      'textDisabled',
+    ]),
+    PropTypes.string,
+  ]),
+  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
@@ -226,6 +254,7 @@ Typography.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the element will be a paragraph element.
    * @default false
+   * @deprecated Use the `component` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   paragraph: PropTypes.bool,
   /**

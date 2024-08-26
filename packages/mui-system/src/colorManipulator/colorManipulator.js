@@ -68,7 +68,7 @@ export function decomposeColor(color) {
   const marker = color.indexOf('(');
   const type = color.substring(0, marker);
 
-  if (['rgb', 'rgba', 'hsl', 'hsla', 'color'].indexOf(type) === -1) {
+  if (!['rgb', 'rgba', 'hsl', 'hsla', 'color'].includes(type)) {
     throw new MuiError(
       'MUI: Unsupported `%s` color.\n' +
         'The following formats are supported: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
@@ -85,7 +85,7 @@ export function decomposeColor(color) {
     if (values.length === 4 && values[3].charAt(0) === '/') {
       values[3] = values[3].slice(1);
     }
-    if (['srgb', 'display-p3', 'a98-rgb', 'prophoto-rgb', 'rec-2020'].indexOf(colorSpace) === -1) {
+    if (!['srgb', 'display-p3', 'a98-rgb', 'prophoto-rgb', 'rec-2020'].includes(colorSpace)) {
       throw new MuiError(
         'MUI: unsupported `%s` color space.\n' +
           'The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rgb, rec-2020.',
@@ -110,7 +110,7 @@ export const colorChannel = (color) => {
   const decomposedColor = decomposeColor(color);
   return decomposedColor.values
     .slice(0, 3)
-    .map((val, idx) => (decomposedColor.type.indexOf('hsl') !== -1 && idx !== 0 ? `${val}%` : val))
+    .map((val, idx) => (decomposedColor.type.includes('hsl') && idx !== 0 ? `${val}%` : val))
     .join(' ');
 };
 export const private_safeColorChannel = (color, warning) => {
@@ -135,14 +135,14 @@ export function recomposeColor(color) {
   const { type, colorSpace } = color;
   let { values } = color;
 
-  if (type.indexOf('rgb') !== -1) {
+  if (type.includes('rgb')) {
     // Only convert the first 3 values to int (i.e. not alpha)
     values = values.map((n, i) => (i < 3 ? parseInt(n, 10) : n));
-  } else if (type.indexOf('hsl') !== -1) {
+  } else if (type.includes('hsl')) {
     values[1] = `${values[1]}%`;
     values[2] = `${values[2]}%`;
   }
-  if (type.indexOf('color') !== -1) {
+  if (type.includes('color')) {
     values = `${colorSpace} ${values.join(' ')}`;
   } else {
     values = `${values.join(', ')}`;
@@ -158,7 +158,7 @@ export function recomposeColor(color) {
  */
 export function rgbToHex(color) {
   // Idempotent
-  if (color.indexOf('#') === 0) {
+  if (color.startsWith('#')) {
     return color;
   }
 
@@ -273,9 +273,9 @@ export function darken(color, coefficient) {
   color = decomposeColor(color);
   coefficient = clampWrapper(coefficient);
 
-  if (color.type.indexOf('hsl') !== -1) {
+  if (color.type.includes('hsl')) {
     color.values[2] *= 1 - coefficient;
-  } else if (color.type.indexOf('rgb') !== -1 || color.type.indexOf('color') !== -1) {
+  } else if (color.type.includes('rgb') || color.type.includes('color')) {
     for (let i = 0; i < 3; i += 1) {
       color.values[i] *= 1 - coefficient;
     }
@@ -303,13 +303,13 @@ export function lighten(color, coefficient) {
   color = decomposeColor(color);
   coefficient = clampWrapper(coefficient);
 
-  if (color.type.indexOf('hsl') !== -1) {
+  if (color.type.includes('hsl')) {
     color.values[2] += (100 - color.values[2]) * coefficient;
-  } else if (color.type.indexOf('rgb') !== -1) {
+  } else if (color.type.includes('rgb')) {
     for (let i = 0; i < 3; i += 1) {
       color.values[i] += (255 - color.values[i]) * coefficient;
     }
-  } else if (color.type.indexOf('color') !== -1) {
+  } else if (color.type.includes('color')) {
     for (let i = 0; i < 3; i += 1) {
       color.values[i] += (1 - color.values[i]) * coefficient;
     }

@@ -1,24 +1,44 @@
 import * as React from 'react';
-import { PaletteMode } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {
+  PaletteMode,
+  createTheme,
+  ThemeProvider,
+  alpha,
+} from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import getDashboardTheme from './getDashboardTheme';
-import ToggleCustomTheme from './internals/components/ToggleCustomTheme';
-import Copyright from './internals/components/Copyright';
-import Navbar from './components/Navbar';
+import Stack from '@mui/material/Stack';
+import getDashboardTheme from './theme/getDashboardTheme';
+import AppNavbar from './components/AppNavbar';
 import Header from './components/Header';
 import MainGrid from './components/MainGrid';
+import SideMenu from './components/SideMenu';
+import NavBar from './NavBar';
 
 export default function Dashboard() {
   const [mode, setMode] = React.useState<PaletteMode>('light');
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const dashboardTheme = createTheme(getDashboardTheme(mode));
   const defaultTheme = createTheme({ palette: { mode } });
+  // This code only runs on the client side, to determine the system color preference
+  React.useEffect(() => {
+    // Check if there is a preferred mode in localStorage
+    const savedMode = localStorage.getItem('themeMode') as PaletteMode | null;
+    if (savedMode) {
+      setMode(savedMode);
+    } else {
+      // If no preference is found, it uses system preference
+      const systemPrefersDark = window.matchMedia(
+        '(prefers-color-scheme: dark)',
+      ).matches;
+      setMode(systemPrefersDark ? 'dark' : 'light');
+    }
+  }, []);
 
   const toggleColorMode = () => {
-    setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
+    const newMode = mode === 'dark' ? 'light' : 'dark';
+    setMode(newMode);
+    localStorage.setItem('themeMode', newMode); // Save the selected mode to localStorage
   };
 
   const toggleCustomTheme = () => {
@@ -28,36 +48,41 @@ export default function Dashboard() {
   return (
     <ThemeProvider theme={showCustomTheme ? dashboardTheme : defaultTheme}>
       <CssBaseline />
+      {/* you can delete this NavBar component since it's just no navigate to other pages */}
+      <NavBar
+        toggleCustomTheme={toggleCustomTheme}
+        showCustomTheme={showCustomTheme}
+        mode={mode}
+        toggleColorMode={toggleColorMode}
+      />
       <Box sx={{ display: 'flex' }}>
-        <Navbar mode={mode} toggleColorMode={toggleColorMode} />
+        <SideMenu />
+        <AppNavbar />
+        {/* Main content */}
         <Box
           component="main"
-          sx={{
-            backgroundColor: 'background.default',
+          sx={(theme) => ({
+            position: { sm: 'relative', md: '' },
+            top: { sm: '48px', md: '60px' },
+            height: { sm: 'calc(100vh - 48px)', md: '100vh' },
             flexGrow: 1,
-            height: '100vh',
+            backgroundColor: alpha(theme.palette.background.default, 1),
             overflow: 'auto',
-          }}
+          })}
         >
-          {/* Main content */}
-          <Container
-            maxWidth="xl"
+          <Stack
+            spacing={2}
             sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              py: { xs: 14, sm: 16 },
-              gap: 2,
+              alignItems: 'center',
+              mx: 3,
+              pb: 10,
+              mt: { xs: 16, sm: 10, md: 0 },
             }}
           >
             <Header />
             <MainGrid />
-            <Copyright sx={{ my: 4 }} />
-          </Container>
+          </Stack>
         </Box>
-        <ToggleCustomTheme
-          showCustomTheme={showCustomTheme}
-          toggleCustomTheme={toggleCustomTheme}
-        />
       </Box>
     </ThemeProvider>
   );

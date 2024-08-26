@@ -4,10 +4,9 @@ import Box from '@mui/material/Box';
 import { NoSsr } from '@mui/base/NoSsr';
 import { styled, alpha, useTheme } from '@mui/material/styles';
 import prism from '@mui/internal-markdown/prism';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import CodeCopyButton from 'docs/src/modules/components/CodeCopyButton';
+import { MarkdownElement } from '@mui/docs/MarkdownElement';
+import { CodeCopyButton, useCodeCopy } from '@mui/docs/CodeCopy';
 import { useTranslate } from '@mui/docs/i18n';
-import { useCodeCopy } from '@mui/docs/CodeCopy';
 import { blueDark } from '@mui/docs/branding';
 
 const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
@@ -20,10 +19,10 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
       border: 0,
       colorScheme: 'dark',
       '&:hover': {
-        boxShadow: `0 0 0 3px ${alpha((theme.vars || theme).palette.primary[500], 0.5)}`,
+        boxShadow: `0 0 0 3px ${alpha(theme.palette.primary[500], 0.5)}`,
       },
       '&:focus-within': {
-        boxShadow: `0 0 0 3px ${alpha((theme.vars || theme).palette.primary[500], 0.8)}`,
+        boxShadow: `0 0 0 3px ${alpha(theme.palette.primary[500], 0.8)}`,
       },
       [theme.breakpoints.up('sm')]: {
         borderRadius: '0 0 12px 12px',

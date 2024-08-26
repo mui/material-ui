@@ -5,7 +5,7 @@
 ## Getting started
 
 Material UI for Figma consists of representations of the library's React components in Figma so designers and developers can communicate and iterate more efficiently.
-The kit includes:
+This Design Kit includes:
 
 - components with the same design as Material UI
 - additional components and features not covered by Material Design
@@ -81,7 +81,7 @@ The video below shows how to add new columns by copying cells directly on the ma
 
 <iframe width="100%" height="490" src="https://www.youtube.com/embed/s_n3LHm1daI?si=_QbXvtYPkc8EBd5d" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
 
-## Code sync
+## Code sync (beta)
 
 You can export theme tokens and component customizations to code using [the Sync plugin for Figma](/material-ui/design-resources/material-ui-sync/).
 The Design Kit has been built to be as close to the React components as possible, making it for a fluid integration with code.
@@ -96,3 +96,7 @@ If you need to replace a single component that's been updated, there are a coupl
 1. Add the new version of the design kit as a library and use [the new Figma library swap feature](https://www.youtube.com/watch?v=GQ2jztKpxLk). The components must have the same names in both libraries.
 2. Observe the new component and re-apply the changes to the existing projects. This is the recommended approach when you need to update multiple projects.
 3. Copy and paste the new component into your existing project, give it a different temporary name, then re-link tokens to the new component. When using [Select Similar plugins](https://www.figma.com/community/plugin/792767780551514994/select-similar) this shouldn't take more than five minutes. Then you can remove the old component and update the new component name.
+
+## Feedback and bug reports
+
+If you've got any feedback, we'd love to [hear from you](https://github.com/mui/mui-design-kits/discussions/84).

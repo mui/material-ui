@@ -67,14 +67,7 @@ describe('<SwipeableDrawer />', () => {
     classes: {},
     inheritComponent: Drawer,
     refInstanceof: window.HTMLDivElement,
-    skip: [
-      'componentProp',
-      'themeDefaultProps',
-      'themeStyleOverrides',
-      'themeVariants',
-      // https://github.com/facebook/react/issues/11565
-      'reactTestRenderer',
-    ],
+    skip: ['componentProp', 'themeDefaultProps', 'themeStyleOverrides', 'themeVariants'],
   }));
 
   it('should render a Drawer and a SwipeArea', () => {
@@ -581,8 +574,8 @@ describe('<SwipeableDrawer />', () => {
         render(
           <SwipeableDrawer
             anchor={'bottom'}
-            allowSwipeInChildren={(e) => {
-              const elem = e.target;
+            allowSwipeInChildren={(event) => {
+              const elem = event.target;
               // ignore touch events from .ignore &^ from swipe area
               return (
                 !elem.classList.contains('ignore') &&

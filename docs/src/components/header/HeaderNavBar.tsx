@@ -111,15 +111,24 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
         {...props}
       >
         <Box sx={{ px: 2 }}>{icon}</Box>
-        <Box sx={{ flexGrow: 1 }}>
-          <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'bold' }}>
-            {name}
-          </Typography>
+        <div style={{ flexGrow: 1 }}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+          >
+            <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'bold' }}>
+              {name}
+            </Typography>
+            {chip}
+          </div>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
             {description}
           </Typography>
-        </Box>
-        {chip}
+        </div>
       </Box>
     );
   },
@@ -129,13 +138,19 @@ export default function HeaderNavBar() {
   const [subMenuOpen, setSubMenuOpen] = React.useState<null | 'products' | 'docs'>(null);
   const [subMenuIndex, setSubMenuIndex] = React.useState<number | null>(null);
   const navRef = React.useRef<HTMLUListElement | null>(null);
+  const productSelectorRef = React.useRef<HTMLDivElement | null>(null);
   const productsMenuRef = React.useRef<HTMLButtonElement>(null);
   const docsMenuRef = React.useRef<HTMLButtonElement>(null);
+
   React.useEffect(() => {
-    if (typeof subMenuIndex === 'number') {
-      document.getElementById(PRODUCT_IDS[subMenuIndex])?.focus();
+    if (typeof subMenuIndex === 'number' && subMenuOpen === 'products') {
+      document.getElementById(PRODUCT_IDS[subMenuIndex])!.focus();
     }
-  }, [subMenuIndex]);
+
+    if (typeof subMenuIndex === 'number' && subMenuOpen === 'docs') {
+      (productSelectorRef.current!.querySelector('[role="menuitem"]') as HTMLElement).focus();
+    }
+  }, [subMenuIndex, subMenuOpen]);
 
   function handleKeyDown(event: React.KeyboardEvent) {
     let menuItem;
@@ -148,31 +163,37 @@ export default function HeaderNavBar() {
       return;
     }
 
-    if (event.key === 'ArrowDown' && subMenuOpen === 'products') {
+    if (event.key === 'ArrowDown') {
       event.preventDefault();
-      setSubMenuIndex((prevValue) => {
-        if (prevValue === null) {
-          return 0;
-        }
-        if (prevValue === PRODUCT_IDS.length - 1) {
-          return 0;
-        }
-        return prevValue + 1;
-      });
-    }
-    if (event.key === 'ArrowUp' && subMenuOpen === 'products') {
+      if (subMenuOpen === 'products') {
+        setSubMenuIndex((prevValue) => {
+          if (prevValue === null) {
+            return 0;
+          }
+          if (prevValue === PRODUCT_IDS.length - 1) {
+            return 0;
+          }
+          return prevValue + 1;
+        });
+      } else if (subMenuOpen === 'docs') {
+        setSubMenuIndex(0);
+      }
+    } else if (event.key === 'ArrowUp') {
       event.preventDefault();
-      setSubMenuIndex((prevValue) => {
-        if (prevValue === null) {
-          return 0;
-        }
-        if (prevValue === 0) {
-          return PRODUCT_IDS.length - 1;
-        }
-        return prevValue - 1;
-      });
-    }
-    if (event.key === 'Escape' || event.key === 'Tab') {
+      if (subMenuOpen === 'products') {
+        setSubMenuIndex((prevValue) => {
+          if (prevValue === null) {
+            return 0;
+          }
+          if (prevValue === 0) {
+            return PRODUCT_IDS.length - 1;
+          }
+          return prevValue - 1;
+        });
+      } else if (subMenuOpen === 'docs') {
+        setSubMenuIndex(0);
+      }
+    } else if (event.key === 'Escape' || event.key === 'Tab') {
       menuItem.focus();
       setSubMenuOpen(null);
       setSubMenuIndex(null);
@@ -184,10 +205,16 @@ export default function HeaderNavBar() {
     [setSubMenuOpen],
   );
 
-  const setSubMenuOpenUndebounce = (value: typeof subMenuOpen) => () => {
-    setSubMenuOpenDebounced.clear();
-    setSubMenuOpen(value);
-  };
+  const setSubMenuOpenUndebounce =
+    (value: typeof subMenuOpen) => (event: React.MouseEvent | React.FocusEvent) => {
+      setSubMenuOpenDebounced.clear();
+      setSubMenuOpen(value);
+
+      if (event.type === 'mouseenter') {
+        // Reset keyboard
+        setSubMenuIndex(null);
+      }
+    };
 
   const handleClickMenu = (value: typeof subMenuOpen) => () => {
     setSubMenuOpenDebounced.clear();
@@ -285,8 +312,25 @@ export default function HeaderNavBar() {
                         href={ROUTES.productToolpad}
                         icon={<IconImage name="product-toolpad" />}
                         name="Toolpad"
-                        chip={<Chip label="Beta" size="small" color="primary" variant="outlined" />}
-                        description="Low-code admin builder."
+                        chip={
+                          <Chip
+                            label="Beta"
+                            size="small"
+                            color="primary"
+                            variant="outlined"
+                            sx={{
+                              fontSize: '.625rem',
+                              fontWeight: 'semiBold',
+                              textTransform: 'uppercase',
+                              letterSpacing: '.04rem',
+                              height: '16px',
+                              '& .MuiChip-label': {
+                                px: '4px',
+                              },
+                            }}
+                          />
+                        }
+                        description="Components and tools for dashboards and internal apps."
                       />
                     </li>
                     <li>
@@ -295,7 +339,7 @@ export default function HeaderNavBar() {
                         href={ROUTES.productTemplates}
                         icon={<IconImage name="product-templates" />}
                         name="Templates"
-                        description="Fully built, out-of-the-box, templates for your application."
+                        description="Fully built templates for your application."
                       />
                     </li>
                     <li>
@@ -353,7 +397,7 @@ export default function HeaderNavBar() {
                     }),
                   })}
                 >
-                  <MuiProductSelector autoFocusItem={subMenuOpen === 'docs'} />
+                  <MuiProductSelector ref={productSelectorRef} />
                 </Paper>
               </Fade>
             )}

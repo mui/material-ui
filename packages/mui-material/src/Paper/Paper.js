@@ -7,6 +7,7 @@ import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import getOverlayAlpha from '../styles/getOverlayAlpha';
 import { getPaperUtilityClass } from './paperClasses';
@@ -39,36 +40,38 @@ const PaperRoot = styled('div', {
       ownerState.variant === 'elevation' && styles[`elevation${ownerState.elevation}`],
     ];
   },
-})(({ theme }) => ({
-  backgroundColor: (theme.vars || theme).palette.background.paper,
-  color: (theme.vars || theme).palette.text.primary,
-  transition: theme.transitions.create('box-shadow'),
-  variants: [
-    {
-      props: ({ ownerState }) => !ownerState.square,
-      style: {
-        borderRadius: theme.shape.borderRadius,
+})(
+  memoTheme(({ theme }) => ({
+    backgroundColor: (theme.vars || theme).palette.background.paper,
+    color: (theme.vars || theme).palette.text.primary,
+    transition: theme.transitions.create('box-shadow'),
+    variants: [
+      {
+        props: ({ ownerState }) => !ownerState.square,
+        style: {
+          borderRadius: theme.shape.borderRadius,
+        },
       },
-    },
-    {
-      props: {
-        variant: 'outlined',
+      {
+        props: {
+          variant: 'outlined',
+        },
+        style: {
+          border: `1px solid ${(theme.vars || theme).palette.divider}`,
+        },
       },
-      style: {
-        border: `1px solid ${(theme.vars || theme).palette.divider}`,
+      {
+        props: {
+          variant: 'elevation',
+        },
+        style: {
+          boxShadow: 'var(--Paper-shadow)',
+          backgroundImage: 'var(--Paper-overlay)',
+        },
       },
-    },
-    {
-      props: {
-        variant: 'elevation',
-      },
-      style: {
-        boxShadow: 'var(--Paper-shadow)',
-        backgroundImage: 'var(--Paper-overlay)',
-      },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 const Paper = React.forwardRef(function Paper(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiPaper' });
@@ -115,7 +118,7 @@ const Paper = React.forwardRef(function Paper(inProps, ref) {
         ...(variant === 'elevation' && {
           '--Paper-shadow': (theme.vars || theme).shadows[elevation],
           ...(theme.vars && {
-            '--Paper-overlay': theme.overlays?.[elevation],
+            '--Paper-overlay': theme.vars.overlays?.[elevation],
           }),
           ...(!theme.vars &&
             theme.palette.mode === 'dark' && {

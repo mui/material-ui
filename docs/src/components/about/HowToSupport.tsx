@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
@@ -64,7 +64,7 @@ export default function HowToSupport() {
         description=""
       />
       <Grid container spacing={3}>
-        <Grid xs={12} sm={6} md={4}>
+        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
           <Widget
             icon={<ForumRoundedIcon fontSize="small" color="primary" />}
             title="Give feedback"
@@ -88,7 +88,7 @@ export default function HowToSupport() {
             </Button>
           </Widget>
         </Grid>
-        <Grid xs={12} sm={6} md={4}>
+        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
           <Widget
             icon={<PeopleRoundedIcon fontSize="small" color="primary" />}
             title="Join the community"
@@ -141,7 +141,7 @@ export default function HowToSupport() {
             </Button>
           </Widget>
         </Grid>
-        <Grid xs={12} sm={6} md={4}>
+        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
           <Widget
             icon={<LocalAtmRoundedIcon fontSize="small" color="primary" />}
             title="Support us financially"

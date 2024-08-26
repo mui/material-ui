@@ -40,35 +40,50 @@ The composed CSS classes are going to be deprecated and eventually removed in fa
 For example, the `.MuiAccordionSummary-contentGutters` class was deprecated in favor of the `.MuiAccordionSummary-gutters` and `.MuiAccordionSummary-content` classes.
 This improves the developer experience by reducing bloat and cognitive load.
 
-## Accordion
+### System props
 
-Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-props) below to migrate the code as described in the following sections:
+MUI System props (such as `mt={*}`, `bgcolor={*}`, and more) have been deprecated in the Box, Typography, Link, Grid, and Stack components.
+Use the codemod below to move all System props to the `sx` prop:
 
 ```bash
-npx @mui/codemod@latest deprecations/accordion-props <path>
+npx @mui/codemod@next v6.0.0/system-props <path/to/folder>
 ```
 
-### TransitionComponent
-
-The Accordion's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
+You can also manually update your components as shown in the snippet below:
 
 ```diff
- <Accordion
--  TransitionComponent={CustomTransition}
-+  slots={{ transition: CustomTransition }}
- />
+-<Button mr={2}>
++<Button sx={{ mr: 2 }}>
 ```
 
-### TransitionProps
+### Theme component variants
 
-The Accordion's `TransitionProps` prop was deprecated in favor of `slotProps.transition`:
+Custom component variants defined in the theme are now merged with the theme style overrides, defined within the `root` slot of the component.
+
+Use this codemod to update your project's theme file:
+
+```bash
+npx @mui/codemod@next v6.0.0/theme-v6 <path/to/theme>
+```
+
+You can also manually update your theme as shown in the snippet below:
 
 ```diff
- <Accordion
--  TransitionProps={{ unmountOnExit: true }}
-+  slotProps={{ transition: { unmountOnExit: true } }}
- />
+ createTheme({
+   components: {
+     MuiButton: {
+-      variants: [ ... ],
++      styleOverrides: {
++        root: {
++          variants: [ ... ],
++        },
++      },
+     },
+   },
+ });
 ```
+
+This reduces the API surface and lets you define variants in other slots of the component.
 
 ## AccordionSummary
 
@@ -86,7 +101,6 @@ Bear in mind that the `.MuiAccordionSummary-gutters` class is applied to the com
 ```diff
 -.MuiAccordionSummary-root .MuiAccordionSummary-contentGutters
 +.MuiAccordionSummary-root.MuiAccordionSummary-gutters .MuiAccordionSummary-content
- />
 ```
 
 ```diff
@@ -98,7 +112,7 @@ Bear in mind that the `.MuiAccordionSummary-gutters` class is applied to the com
 -      [`& .${accordionSummaryClasses.contentGutters}`]: {
 +      [`&.${accordionSummaryClasses.gutters} .${accordionSummaryClasses.content}`]: {
          color: 'red',
-        },
+       },
      },
    },
  },
@@ -177,51 +191,51 @@ Here's how to migrate:
 -      [`&.${alertClasses.standardSuccess}`]: {
 +      [`&.${alertClasses.standard}.${alertClasses.colorSuccess}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.standardInfo}`]: {
 +      [`&.${alertClasses.standard}.${alertClasses.colorInfo}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.standardWarning}`]: {
 +      [`&.${alertClasses.standard}.${alertClasses.colorWarning}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.standardError}`]: {
 +      [`&.${alertClasses.standard}.${alertClasses.colorError}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.outlinedSuccess}`]: {
 +      [`&.${alertClasses.outlined}.${alertClasses.colorSuccess}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.outlinedInfo}`]: {
 +      [`&.${alertClasses.outlined}.${alertClasses.colorInfo}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.outlinedWarning}`]: {
 +      [`&.${alertClasses.outlined}.${alertClasses.colorWarning}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.outlinedError}`]: {
 +      [`&.${alertClasses.outlined}.${alertClasses.colorError}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.filledSuccess}`]: {
 +      [`&.${alertClasses.filled}.${alertClasses.colorSuccess}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.filledInfo}`]: {
 +      [`&.${alertClasses.filled}.${alertClasses.colorInfo}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.filledWarning}`]: {
 +      [`&.${alertClasses.filled}.${alertClasses.colorWarning}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.filledError}`]: {
 +      [`&.${alertClasses.filled}.${alertClasses.colorError}`]: {
          color: 'red',
-        },
+       },
      },
    },
  },
@@ -233,38 +247,6 @@ Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-code
 
 ```bash
 npx @mui/codemod@next deprecations/autocomplete-props <path>
-```
-
-### \*Component props
-
-All of the Autocomplete's slot (`*Component`) props were deprecated in favor of equivalent `slots` entries:
-
-```diff
- <Autocomplete
--    ListboxComponent={CustomListboxComponent}
--    PaperComponent={CustomPaperComponent}
--    PopperComponent={CustomPopperComponent}
-+    slots={{
-+        listbox: CustomListboxComponent,
-+        paper: CustomPaperComponent,
-+        popper: CustomPopperComponent,
-+    }}
- />
-```
-
-### \*Props props
-
-All of the Autocomplete's slot props (`*Props`) props were deprecated in favor of equivalent `slotProps` entries:
-
-```diff
- <Autocomplete
--    ChipProps={CustomChipProps}
--    ListboxProps={CustomListboxProps}
-+    slotProps={{
-+        chip: CustomChipProps,
-+        listbox: CustomListboxProps,
-+    }}
- />
 ```
 
 ### componentsProps
@@ -283,34 +265,8 @@ The Autocomplete's `componentsProps` prop was deprecated in favor of `slotProps`
 +    paper: { width: 12 },
 +    popper: { width: 14 },
 +    popupIndicator: { width: 16 },
-    }}
- />
-```
-
-## Avatar
-
-Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-props) below to migrate the code as described in the following sections:
-
-```bash
-npx @mui/codemod@latest deprecations/avatar-props <path>
-```
-
-### imgProps
-
-The Avatar's `imgProps` prop was deprecated in favor of `slotProps.img`:
-
-```diff
- <Avatar
--  imgProps={{
--    onError: () => {},
--    onLoad: () => {},
-+  slotProps={{
-+    img: {
-+      onError: () => {},
-+      onLoad: () => {},
-+    }
    }}
- />;
+ />
 ```
 
 ## AvatarGroup
@@ -328,18 +284,18 @@ The AvatarGroup's `slotProps.additionalAvatar` was deprecated in favor of `slotP
 ```diff
  <AvatarGroup
    slotProps={{
--    additionalAvatar: {color: "red"}
-+    surplus: {color: "red"}
+-    additionalAvatar: { color: 'red' },
++    surplus: { color: 'red' },
    }}
- />;
+ >
 ```
 
 ```diff
  MuiAvatarGroup: {
    defaultProps: {
      slotProps: {
--      additionalAvatar: {color: "red"}
-+      surplus: {color: "red"}
+-      additionalAvatar: { color: 'red' },
++      surplus: { color: 'red' },
      },
    },
  },
@@ -352,20 +308,20 @@ The AvatarGroup's `componentsProps` was deprecated in favor of `slotProps`:
 ```diff
  <AvatarGroup
 -  componentsProps={{
--    additionalAvatar: {color: "red"}
+-    additionalAvatar: { color: 'red' },
 +  slotProps={{
-+    surplus: {color: "red"}
++    surplus: { color: 'red' },
    }}
- />;
+ >
 ```
 
 ```diff
  MuiAvatarGroup: {
    defaultProps: {
 -    componentsProps: {
--      additionalAvatar: {color: "red"}
+-      additionalAvatar: { color: 'red' },
 +    slotProps: {
-+      surplus: {color: "red"}
++      surplus: { color: 'red' },
      },
    },
  },
@@ -401,16 +357,6 @@ The Backdrop's `componentsProps` prop was deprecated in favor of `slotProps`:
  />
 ```
 
-### TransitionComponent
-
-The Backdrop's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
-
-```diff
- <Slider
--  TransitionComponent={CustomTransition}
-+  slots={{ transition: CustomTransition }}
-```
-
 ## Badge
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#badge-props) below to migrate the code as described in the following sections:
@@ -427,7 +373,7 @@ The Badge's `components` prop was deprecated in favor of `slots`:
  <Badge
 -  components={{ root: CustomRoot }}
 +  slots={{ root: CustomRoot }}
- />
+ >
 ```
 
 ### componentsProps
@@ -438,7 +384,7 @@ The Badge's `componentsProps` prop was deprecated in favor of `slotProps`:
  <Badge
 -  componentsProps={{ root: { testid: 'test-id' } }}
 +  slotProps={{ root: { testid: 'test-id' } }}
- />
+ >
 ```
 
 ## Button
@@ -533,135 +479,135 @@ Here's how to migrate:
 -      [`&.${buttonClasses.textInherit}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorInherit}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textPrimary}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textSecondary}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textSuccess}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorSuccess}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textError}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorError}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textInfo}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorInfo}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textWarning}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorWarning}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedInherit}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorInherit}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedPrimary}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedSecondary}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedSuccess}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorSuccess}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedError}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorError}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedInfo}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorInfo}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedWarning}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorWarning}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedInherit}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorInherit}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedPrimary}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedSecondary}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedSuccess}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorSuccess}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedError}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorError}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedInfo}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorInfo}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedWarning}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorWarning}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedSizeSmall}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.sizeSmall}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedSizeMedium}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.sizeMedium}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedSizeLarge}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.sizeLarge}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textSizeSmall}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.sizeSmall}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textSizeMedium}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.sizeMedium}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textSizeLarge}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.sizeLarge}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedSizeSmall}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.sizeSmall}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedSizeMedium}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.sizeMedium}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedSizeLarge}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.sizeLarge}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${buttonClasses.iconSizeSmall}`]: {
 +      [`&.${buttonClasses.sizeSmall} > .${buttonClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${buttonClasses.iconSizeMedium}`]: {
 +      [`&.${buttonClasses.sizeMedium} > .${buttonClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${buttonClasses.iconSizeLarge}`]: {
 +      [`&.${buttonClasses.sizeLarge} > .${buttonClasses.icon}`]: {
          color: 'red',
-        },
+       },
      },
    },
  },
@@ -722,7 +668,6 @@ Here's how to migrate:
 ```
 
 ```diff
-
  import { buttonGroupClasses } from '@mui/material/ButtonGroup';
 
   MuiButtonGroup: {
@@ -796,9 +741,9 @@ Here's how to migrate:
 +      [`&.${buttonGroupClasses.contained}.${buttonGroupClasses.colorSecondary} > .${buttonGroupClasses.grouped}`]: {
           color: 'red',
         },
-   },
+      },
+    },
   },
-
 ```
 
 ## Chip
@@ -877,120 +822,118 @@ Here's how to migrate:
 ```
 
 ```diff
-
  import { chipClasses } from '@mui/material/Chip';
 
-  MuiChip: {
+ MuiChip: {
    styleOverrides: {
      root: {
 -      [`&.${chipClasses.clickableColorPrimary}`]: {
 +      [`&.${chipClasses.clickable}.${chipClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.clickableColorSecondary}`]: {
 +      [`&.${chipClasses.clickable}.${chipClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.deletableColorPrimary}`]: {
 +      [`&.${chipClasses.deletable}.${chipClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.deletableColorSecondary}`]: {
 +      [`&.${chipClasses.deletable}.${chipClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.outlinedPrimary}`]: {
 +      [`&.${chipClasses.outlined}.${chipClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.outlinedSecondary}`]: {
 +      [`&.${chipClasses.outlined}.${chipClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.filledPrimary}`]: {
 +      [`&.${chipClasses.filled}.${chipClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.filledSecondary}`]: {
 +      [`&.${chipClasses.filled}.${chipClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.avatarSmall}`]: {
 +      [`&.${chipClasses.sizeSmall} > .${chipClasses.avatar}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.avatarMedium}`]: {
 +      [`&.${chipClasses.sizeMedium} > .${chipClasses.avatar}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.avatarColorPrimary}`]: {
 +      [`&.${chipClasses.colorPrimary} > .${chipClasses.avatar}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.avatarColorSecondary}`]: {
 +      [`&.${chipClasses.colorSecondary} > .${chipClasses.avatar}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.iconSmall}`]: {
 +      [`&.${chipClasses.sizeSmall} > .${chipClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.iconMedium}`]: {
 +      [`&.${chipClasses.sizeMedium} > .${chipClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.iconColorPrimary}`]: {
 +      [`&.${chipClasses.colorPrimary} > .${chipClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.iconColorSecondary}`]: {
 +      [`&.${chipClasses.colorSecondary} > .${chipClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.labelSmall}`]: {
 +      [`&.${chipClasses.sizeSmall} > .${chipClasses.label}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.labelMedium}`]: {
 +      [`&.${chipClasses.sizeMedium} > .${chipClasses.label}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconSmall}`]: {
 +      [`&.${chipClasses.sizeSmall} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconMedium}`]: {
 +      [`&.${chipClasses.sizeMedium} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconColorPrimary}`]: {
 +      [`&.${chipClasses.colorPrimary} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconColorSecondary}`]: {
 +      [`&.${chipClasses.colorSecondary} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconOutlinedColorPrimary}`]: {
 +      [`&.${chipClasses.outlined}.${chipClasses.colorPrimary} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconOutlinedColorSecondary}`]: {
 +      [`&.${chipClasses.outlined}.${chipClasses.colorSecondary} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconFilledColorPrimary}`]: {
 +      [`&.${chipClasses.filled}.${chipClasses.colorPrimary} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconFilledColorSecondary}`]: {
 +      [`&.${chipClasses.filled}.${chipClasses.colorSecondary} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-     },
+       },
      },
    },
-  },
-
+ },
 ```
 
 ## CircularProgress
@@ -1008,9 +951,9 @@ The CSS classes that composed the `circle` CSS class and `variant` prop values w
 Here's how to migrate:
 
 ```diff
-- .MuiCircularProgress-circleDeterminate
+-.MuiCircularProgress-circleDeterminate
+-.MuiCircularProgress-circleIndeterminate
 +.MuiCircularProgress-determinate > .MuiCircularProgress-circle
-- .MuiCircularProgress-circleIndeterminate
 +.MuiCircularProgress-indeterminate > .MuiCircularProgress-circle
 ```
 
@@ -1023,11 +966,11 @@ Here's how to migrate:
 -      [`& .${circularProgressClasses.circleDeterminate}`]: {
 +      [`&.${circularProgressClasses.determinate} > .${circularProgressClasses.circle}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${circularProgressClasses.circleIndeterminate}`]: {
 +      [`&.${circularProgressClasses.indeterminate} > .${circularProgressClasses.circle}`]: {
          color: 'red',
-        },
+       },
      },
    },
  },
@@ -1239,7 +1182,63 @@ The Grid's `wrap` prop was deprecated in favor of `flexWrap` MUI System prop:
  <Grid
 -  wrap="nowrap"
 +  flexWrap="nowrap"
- />;
+ >
+```
+
+## ImageListItemBar
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#image-list-item-bar-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/image-list-item-bar-classes <path>
+```
+
+### Composed CSS classes
+
+The CSS classes that composed the following props were deprecated:
+
+- `position` prop and `titleWrap` class
+- `actionPosition` prop and `titleWrap` class
+- `actionPosition` prop and `actionIcon` class
+
+Here's how to migrate:
+
+```diff
+-.MuiImageListItemBar-titleWrapBelow
++.MuiImageListItemBar-positionBelow > .MuiImageListItemBar-titleWrap
+-.MuiImageListItemBar-titleWrapActionPosLeft
++.MuiImageListItemBar-actionPositionLeft > .MuiImageListItemBar-titleWrap
+-.MuiImageListItemBar-titleWrapActionPosRight
++.MuiImageListItemBar-actionPositionRight > .MuiImageListItemBar-titleWrap
+-.MuiImageListItemBar-actionIconActionPosLeft
++.MuiImageListItemBar-actionPositionLeft > .MuiImageListItemBar-actionIcon
+```
+
+```diff
+ import { imageListItemBarClasses } from '@mui/material/ImageListItemBar';
+
+ MuiImageListItemBar: {
+   styleOverrides: {
+     root: {
+-      [`& .${imageListItemBarClasses.titleWrapBelow}`]: {
++      [`&.${imageListItemBarClasses.positionBelow} > .${imageListItemBarClasses.titleWrap}`]: {
+         color: 'red',
+       },
+-      [`& .${imageListItemBarClasses.titleWrapActionPosLeft}`]: {
++      [`&.${imageListItemBarClasses.actionPositionLeft} > .${imageListItemBarClasses.titleWrap}`]: {
+         color: 'red',
+       },
+-      [`& .${imageListItemBarClasses.titleWrapActionPosRight}`]: {
++      [`&.${imageListItemBarClasses.actionPositionRight} > .${imageListItemBarClasses.titleWrap}`]: {
+         color: 'red',
+       },
+-      [`& .${imageListItemBarClasses.actionIconActionPosLeft}`]: {
++      [`&.${imageListItemBarClasses.actionPositionLeft} > .${imageListItemBarClasses.actionIcon}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
 ```
 
 ## Modal
@@ -1258,7 +1257,7 @@ The Modal's `components` prop was deprecated in favor of `slots`:
  <Modal
 -  components={{ Root: CustomRoot, Backdrop: CustomBackdrop }}
 +  slots={{ root: CustomRoot, backdrop: CustomBackdrop }}
- />
+ >
 ```
 
 ### componentsProps
@@ -1269,7 +1268,7 @@ The Modal's `componentsProps` prop was deprecated in favor of `slotProps`:
  <Modal
 -  componentsProps={{ root: { testid: 'root-id' }, backdrop: { testid: 'backdrop-id' } }}
 +  slotProps={{ root: { testid: 'root-id' }, backdrop: { testid: 'backdrop-id' } }}
- />
+ >
 ```
 
 ## OutlinedInput
@@ -1336,19 +1335,19 @@ Here's how to migrate:
 -      [`&.${paginationItemClasses.textPrimary}`]: {
 +      [`&.${paginationItemClasses.text}.${paginationItemClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${paginationItemClasses.outlinedPrimary}`]: {
 +      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${paginationItemClasses.textSecondary}`]: {
 +      [`&.${paginationItemClasses.text}.${paginationItemClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${paginationItemClasses.outlinedSecondary}`]: {
 +      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
      },
    },
  },
@@ -1447,10 +1446,9 @@ Here's how to migrate:
 ```
 
 ```diff
-
  import { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
 
-  MuiButtonGroup: {
+ MuiButtonGroup: {
    styleOverrides: {
      root: {
 -      [`& .${toggleButtonGroupClasses.groupedHorizontal}`]: {
@@ -1460,9 +1458,10 @@ Here's how to migrate:
 -      [`& .${toggleButtonGroupClasses.groupedVertical}`]: {
 +      [`&.${toggleButtonGroupClasses.vertical} > .${toggleButtonGroupClasses.grouped}`]: {
           color: 'red',
-        },
+       },
+     },
    },
-  },
+ },
 ```
 
 ## Tab
@@ -1493,7 +1492,8 @@ Here's how to migrate:
 -      [`& .${tabClasses.iconWrapper}`]: {
 +      [`& .${tabClasses.icon}`]: {
          color: 'red',
-        },
+       },
+     },
    },
  },
 ```
@@ -1513,9 +1513,9 @@ The CSS classes that composed the `direction` prop and `icon` prop were removed.
 Here's how to migrate:
 
 ```diff
-- .MuiTableSortLabel-iconDirectionDesc
+-.MuiTableSortLabel-iconDirectionDesc
 +.MuiTableSortLabel-directionDesc > .MuiTableSortLabel-icon
-- .MuiTableSortLabel-iconDirectionAsc
+-.MuiTableSortLabel-iconDirectionAsc
 +.MuiTableSortLabel-directionAsc > .MuiTableSortLabel-icon
 ```
 
@@ -1528,11 +1528,11 @@ Here's how to migrate:
 -      [`& .${tableSortLabelClasses.iconDirectionDesc}`]: {
 +      [`&.${tableSortLabelClasses.directionDesc} > .${tableSortLabelClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${tableSortLabelClasses.iconDirectionAsc}`]: {
 +      [`&.${tableSortLabelClasses.directionAsc} > .${tableSortLabelClasses.icon}`]: {
          color: 'red',
-        },
+       },
      },
    },
  },
@@ -1552,18 +1552,18 @@ All of the TextField's slot props (`*Props`) props were deprecated in favor of e
 
 ```diff
  <TextField
--    InputProps={CustomInputProps}
--    inputProps={CustomHtmlInputProps}
--    SelectProps={CustomSelectProps}
--    InputLabelProps={CustomInputLabelProps}
--    FormHelperTextProps={CustomFormHelperProps}
-+    slotProps={{
-+        input: CustomInputProps
-+        htmlInput: CustomHtmlInputProps
-+        select: CustomSelectProps
-+        inputLabel: CustomInputLabelProps
-+        formHelper: CustomFormHelperProps
-+    }}
+-  InputProps={CustomInputProps}
+-  inputProps={CustomHtmlInputProps}
+-  SelectProps={CustomSelectProps}
+-  InputLabelProps={CustomInputLabelProps}
+-  FormHelperTextProps={CustomFormHelperProps}
++  slotProps={{
++    input: CustomInputProps
++    htmlInput: CustomHtmlInputProps
++    select: CustomSelectProps
++    inputLabel: CustomInputLabelProps
++    formHelper: CustomFormHelperProps
++  }}
  />
 ```
 
@@ -1597,6 +1597,32 @@ The Tooltip's prop `componentsProps` was deprecated in favor of `slotProps`:
  />
 ```
 
+## Typography
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#typography-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/typography-props <path>
+```
+
+### paragraph
+
+The Typography's `paragraph` prop was deprecated. If you want to render `p` when using Typography, pass `component="p"`.
+
+```diff
+ <Typography
+   variant="subtitle1"
+-  paragraph
++  component="p"
+ />
+```
+
+Note that Typography already renders a `p` by default, so there's no need to pass `component="p"` when not explicitly passing a variant.
+This is because `body1` is the default variant in Typography, and `body1` and `body2` variants render `p`, so there's no need to pass `component="p"` when using one of these variants.
+
+The `16px` of margin-bottom that was automatically added to the element when using `paragraph` must be manually handled now.
+The codemod that removes the `paragraph` prop adds `sx={{ marginBottom: '16px' }}` to the Typography component.
+
 ## StepLabel
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#step-label-props) below to migrate the code as described in the following sections:
@@ -1616,28 +1642,6 @@ The StepLabel's `componentsProps` prop was deprecated in favor of `slotProps`:
  />
 ```
 
-### StepIconComponent
-
-The StepLabel's `StepIconComponent` prop was deprecated in favor of `slots.stepIcon`:
-
-```diff
- <StepLabel
--  StepIconComponent={StepIconComponent}
-+  slots={{ stepIcon: StepIconComponent }}
- />
-```
-
-### StepIconProps
-
-The StepLabel's `StepIconProps` prop was deprecated in favor of `slotProps.stepIcon`:
-
-```diff
- <StepLabel
--  StepIconProps={StepIconProps}
-+  slotProps={{ stepIcon: StepIconProps }}
- />
-```
-
 ## StepConnector
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#step-connector-classes) below to migrate the code as described in the following sections:
@@ -1653,9 +1657,9 @@ The CSS classes that composed the `line` CSS class and `orientation` prop values
 Here's how to migrate:
 
 ```diff
-- .MuiStepConnector-lineHorizontal
+-.MuiStepConnector-lineHorizontal
 +.MuiStepConnector-horizontal > .MuiStepConnector-line
-- .MuiStepConnector-lineVertical
+-.MuiStepConnector-lineVertical
 +.MuiStepConnector-vertical > .MuiStepConnector-line
 ```
 
@@ -1668,41 +1672,12 @@ Here's how to migrate:
 -      [`& .${stepConnectorClasses.lineHorizontal}`]: {
 +      [`&.${stepConnectorClasses.horizontal} > .${stepConnectorClasses.line}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${stepConnectorClasses.lineVertical}`]: {
 +      [`&.${stepConnectorClasses.vertical} > .${stepConnectorClasses.line}`]: {
          color: 'red',
-        },
+       },
      },
    },
  },
-```
-
-## SpeedDial
-
-Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#speed-dial-props) below to migrate the code as described in the following sections:
-
-```bash
-npx @mui/codemod@next deprecations/speed-dial-props <path>
-```
-
-### TransitionComponent
-
-The SpeedDial's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
-
-```diff
- <SpeedDial
--  TransitionComponent={CustomTransition}
-+  slots={{ transition: CustomTransition }}
-```
-
-### TransitionProps
-
-The SpeedDial's `TransitionProps` prop was deprecated in favor of `slotProps.transition`:
-
-```diff
- <SpeedDial
--  TransitionProps={{ unmountOnExit: true }}
-+  slotProps={{ transition: { unmountOnExit: true } }}
- />
 ```

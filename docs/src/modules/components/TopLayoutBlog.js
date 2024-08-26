@@ -14,7 +14,7 @@ import AppHeader from 'docs/src/layouts/AppHeader';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import ROUTES from 'docs/src/route';
@@ -125,6 +125,21 @@ export const authors = {
     name: 'Brijesh Bittu',
     avatar: 'https://avatars.githubusercontent.com/u/717550?',
     github: 'brijeshb42',
+  },
+  aarongarciah: {
+    name: 'Aarón García',
+    avatar: 'https://avatars.githubusercontent.com/u/7225802?',
+    github: 'aarongarciah',
+  },
+  zanivan: {
+    name: 'Victor Zanivan Monteiro',
+    avatar: 'https://avatars.githubusercontent.com/u/37222944?',
+    github: 'zanivan',
+  },
+  romgrk: {
+    name: 'Romain Gregoire',
+    avatar: 'https://avatars.githubusercontent.com/u/1423607',
+    github: 'romgrk',
   },
 };
 

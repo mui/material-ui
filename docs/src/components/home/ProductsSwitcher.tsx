@@ -2,80 +2,70 @@ import * as React from 'react';
 import dynamic from 'next/dynamic';
 import { Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import { visuallyHidden } from '@mui/utils';
+import Chip from '@mui/material/Chip';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import IconImage from 'docs/src/components/icon/IconImage';
 import Highlighter from 'docs/src/components/action/Highlighter';
-import { Link } from '@mui/docs/Link';
-import ROUTES from 'docs/src/route';
+import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 
 const SwipeableViews = dynamic(() => import('react-swipeable-views'), { ssr: false });
 
 function ProductItem({
-  label,
   icon,
   name,
   description,
-  href,
+  chip,
 }: {
-  label: string;
   icon: React.ReactNode;
   name: React.ReactNode;
   description: React.ReactNode;
-  href: string;
+  chip?: React.ReactNode;
 }) {
   return (
     <Box
       component="span"
       sx={{
+        width: '100%',
         display: 'flex',
-        p: 2,
-        flexDirection: { xs: 'column', md: 'row' },
-        alignItems: { md: 'center' },
-        gap: 2.5,
+        alignItems: 'center',
+        justifyContent: 'space-between',
       }}
     >
-      <span>{icon}</span>
-      <span>
-        <Typography
-          component="span"
-          variant="body2"
-          sx={{ color: 'text.primary', fontWeight: 'bold', display: 'block' }}
-        >
-          {name}
-        </Typography>
-        <Typography
-          component="span"
-          variant="body2"
-          sx={{ color: 'text.secondary', fontWeight: 'regular', display: 'block', my: 0.5 }}
-        >
-          {description}
-        </Typography>
-        <Link
-          href={href}
-          variant="body2"
-          onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
-            event.stopPropagation();
-          }}
+      <Box
+        sx={{
+          p: 2,
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
+          alignItems: { md: 'center' },
+          gap: 2.5,
+        }}
+      >
+        <Box
           sx={{
-            color: 'primary',
-            fontWeight: 'bold',
-            display: 'inline-flex',
+            height: 32,
+            width: 32,
+            display: 'flex',
             alignItems: 'center',
-            '& > svg': { transition: '0.2s' },
-            '&:hover > svg': { transform: 'translateX(2px)' },
+            justifyContent: 'center',
+            flexShrink: 0,
           }}
         >
-          <span>Learn more</span>{' '}
-          <Box component="span" sx={visuallyHidden}>
-            {label}
+          {icon}
+        </Box>
+        <span>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Typography color="text.primary" variant="body2" fontWeight="semiBold">
+              {name}
+            </Typography>
+            {chip}
           </Box>
-          <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px', ml: '2px' }} />
-        </Link>
-      </span>
+          <Typography color="text.secondary" variant="body2" fontWeight="regular" sx={{ my: 0.5 }}>
+            {description}
+          </Typography>
+        </span>
+      </Box>
     </Box>
   );
 }
@@ -89,36 +79,47 @@ export default function ProductsSwitcher(props: {
   const isBelowMd = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   const productElements = [
     <ProductItem
-      label="by going to the Core components page"
-      icon={<IconImage name="product-core" />}
-      name="MUI Core"
-      description="Foundational components for shipping features faster. Includes Material UI."
-      href={ROUTES.productCore}
+      name="Material UI"
+      description="Foundational components for shipping features faster."
+      icon={<SvgMuiLogomark height={28} width={28} />}
     />,
     <ProductItem
-      label="by going to the Advanced components page"
-      icon={<IconImage name="product-advanced" />}
-      name={
-        <Box component="span" sx={{ display: 'inline-flex', alignItems: 'center' }}>
-          MUI X
-        </Box>
-      }
+      name="MUI X"
       description="Advanced components for complex use cases."
-      href={ROUTES.productAdvanced}
+      icon={<IconImage name="product-advanced" height={32} width={32} />}
     />,
     <ProductItem
-      label="by going to the templates page"
-      icon={<IconImage name="product-templates" />}
+      name="Toolpad"
+      description="Components and tools for building dashboards and internal apps"
+      icon={<IconImage name="product-toolpad" />}
+      chip={
+        <Chip
+          size="small"
+          label="Beta"
+          color="primary"
+          variant="outlined"
+          sx={{
+            fontSize: (theme) => theme.typography.pxToRem(10),
+            fontWeight: 'semiBold',
+            textTransform: 'uppercase',
+            letterSpacing: '.04rem',
+            height: '16px',
+            '& .MuiChip-label': {
+              px: '5px',
+            },
+          }}
+        />
+      }
+    />,
+    <ProductItem
       name="Templates"
-      description="Professionally designed UI layouts to jumpstart your next project."
-      href={ROUTES.productTemplates}
+      description="Professionally built UIs to jumpstart your next project."
+      icon={<IconImage name="product-templates" height={32} width={32} />}
     />,
     <ProductItem
-      label="by going to the design-kits page"
-      icon={<IconImage name="product-designkits" />}
-      name="Design Kits"
-      description="Bring our components to your favorite design tool."
-      href={ROUTES.productDesignKits}
+      name="Design kits"
+      description="The core components available on your favorite design tool."
+      icon={<IconImage name="product-designkits" height={32} width={32} />}
     />,
   ];
   return (

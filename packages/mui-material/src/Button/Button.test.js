@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, simulateKeyboardDevice } from '@mui/internal-test-utils';
 import { ClassNames } from '@emotion/react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button, { buttonClasses as classes } from '@mui/material/Button';
 import ButtonBase, { touchRippleClasses } from '@mui/material/ButtonBase';
 import describeConformance from '../../test/describeConformance';
+import * as ripple from '../../test/ripple';
 
 describe('<Button />', () => {
   const { render, renderToString } = createRenderer();
@@ -555,23 +556,23 @@ describe('<Button />', () => {
     expect(endIcon).not.to.have.class(classes.startIcon);
   });
 
-  it('should have a ripple by default', () => {
+  it('should have a ripple', async () => {
     const { getByRole } = render(
       <Button TouchRippleProps={{ className: 'touch-ripple' }}>Hello World</Button>,
     );
     const button = getByRole('button');
-
+    await ripple.startTouch(button);
     expect(button.querySelector('.touch-ripple')).not.to.equal(null);
   });
 
-  it('can disable the ripple', () => {
+  it('can disable the ripple', async () => {
     const { getByRole } = render(
       <Button disableRipple TouchRippleProps={{ className: 'touch-ripple' }}>
         Hello World
       </Button>,
     );
     const button = getByRole('button');
-
+    await ripple.startTouch(button);
     expect(button.querySelector('.touch-ripple')).to.equal(null);
   });
 
@@ -582,7 +583,12 @@ describe('<Button />', () => {
     expect(button).to.have.class(classes.disableElevation);
   });
 
-  it('should have a focusRipple by default', () => {
+  it('should have a focusRipple', async function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // JSDOM doesn't support :focus-visible
+      this.skip();
+    }
+
     const { getByRole } = render(
       <Button TouchRippleProps={{ classes: { ripplePulsate: 'pulsate-focus-visible' } }}>
         Hello World
@@ -590,15 +596,18 @@ describe('<Button />', () => {
     );
     const button = getByRole('button');
 
-    fireEvent.keyDown(document.body, { key: 'TAB' });
-    act(() => {
-      button.focus();
-    });
+    simulateKeyboardDevice();
+    await ripple.startFocus(button);
 
     expect(button.querySelector('.pulsate-focus-visible')).not.to.equal(null);
   });
 
-  it('can disable the focusRipple', () => {
+  it('can disable the focusRipple', async function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // JSDOM doesn't support :focus-visible
+      this.skip();
+    }
+
     const { getByRole } = render(
       <Button
         disableFocusRipple
@@ -609,10 +618,8 @@ describe('<Button />', () => {
     );
     const button = getByRole('button');
 
-    act(() => {
-      fireEvent.keyDown(document.body, { key: 'TAB' });
-      button.focus();
-    });
+    simulateKeyboardDevice();
+    await ripple.startFocus(button);
 
     expect(button.querySelector('.pulsate-focus-visible')).to.equal(null);
   });
@@ -666,7 +673,7 @@ describe('<Button />', () => {
     expect(container.firstChild.querySelector(`.${touchRippleClasses.root}`)).to.equal(null);
   });
 
-  it("should disable ripple when MuiButtonBase has disableRipple in theme's defaultProps but override on the individual Buttons if provided", () => {
+  it("should disable ripple when MuiButtonBase has disableRipple in theme's defaultProps but override on the individual Buttons if provided", async () => {
     const theme = createTheme({
       components: {
         MuiButtonBase: {
@@ -683,6 +690,7 @@ describe('<Button />', () => {
         <Button>Disabled ripple 2</Button>
       </ThemeProvider>,
     );
+    await ripple.startTouch(container.querySelector('button'));
     expect(container.querySelectorAll(`.${touchRippleClasses.root}`)).to.have.length(1);
   });
 

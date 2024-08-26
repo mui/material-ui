@@ -129,5 +129,77 @@ describe('@mui/codemod', () => {
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
     });
+
+    describe('conditional sx-v6', () => {
+      it('transforms props as needed', () => {
+        const actual = transform(
+          { source: read('./test-cases/sx-condition.actual.js') },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./test-cases/sx-condition.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+
+      it('should be idempotent', () => {
+        const actual = transform(
+          { source: read('./test-cases/sx-condition.expected.js') },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./test-cases/sx-condition.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+    });
+
+    describe('applyStyles sx-v6', () => {
+      it('transforms props as needed', () => {
+        const actual = transform(
+          { source: read('./test-cases/sx-applyStyles.actual.js') },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./test-cases/sx-applyStyles.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+
+      it('should be idempotent', () => {
+        const actual = transform(
+          { source: read('./test-cases/sx-applyStyles.expected.js') },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./test-cases/sx-applyStyles.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+    });
+
+    describe('inheritance sx-v6', () => {
+      it('should do nothing', () => {
+        const actual = transform(
+          { source: read('./test-cases/sx-inheritance.actual.js') },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./test-cases/sx-inheritance.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+
+      it('should be idempotent', () => {
+        const actual = transform(
+          { source: read('./test-cases/sx-inheritance.expected.js') },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./test-cases/sx-inheritance.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+    });
   });
 });
