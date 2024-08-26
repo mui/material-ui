@@ -40,7 +40,16 @@ describe('@mui/envinfo', () => {
     // Other libraries
     expect(envinfo).to.have.nested.property('npmPackages.react');
     expect(envinfo).to.have.nested.property('npmPackages.react-dom');
-    expect(envinfo).to.have.nested.property('npmPackages.@types/react');
+
+    // TODO: remove this check once React 19 stable types are released
+    // React 19 RC requires setting `@types/react' to `npm:types-react@19.0.0-rc.1`
+    // See https://react.dev/blog/2024/04/25/react-19-upgrade-guide#installing
+    if (process.env.REACT_VERSION === 'next') {
+      expect(envinfo).to.have.nested.property('npmPackages.@types/react');
+    } else {
+      expect(envinfo).to.have.nested.property('npmPackages.types-react');
+    }
+
     expect(envinfo).to.have.nested.property('npmPackages.@emotion/react');
     expect(envinfo).to.have.nested.property('npmPackages.@emotion/styled');
   });
