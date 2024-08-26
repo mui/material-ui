@@ -14,8 +14,8 @@ These changes are made to reflect the expanded feature set and help support the 
 
 ### Current pricing
 
-Under the current pricing model, you only purchase a license for the first 10 developer.
-So to license the Pro plan for 50 developers you only need to purchase 10 licenses.
+Under the current pricing model, you only purchase a license for the first 10 developers.
+So to license the Pro plan for 50 developers you would purchase 10 licenses.
 This concept was introduced in the very beginning of the MUI X offering (2021) when we offered only the Data Grid Pro with a small feature set.
 
 Since the release of this component, we launched several new components and features, including [Date and Time Range Pickers](/x/react-date-pickers/date-time-range-picker/).
@@ -30,7 +30,7 @@ These new features will only be available under the updated pricing: moving forw
 We value our loyal customers and want to ensure a smooth transition: current customers will be grandfathered into their existing plans.
 
 This means you can continue to renew your licenses under the legacy pricing for as long as you wish.
-However, the legacy pricing only covers the previous feature scope: Data Grid and Date Pickers.
+However, the legacy pricing only covers the previously released components: Data Grid and Date Pickers.
 
 :::info
 **Access to new components:** The Pro versions of Charts and Tree View, and other future Pro components, will be available exclusively through the new Pro plan model or a Premium plan (Premium customers will experience no change, all Pro components are included).
@@ -53,7 +53,7 @@ We're happy to discuss volume discounts to accommodate larger teams.
 ### New Pro components
 
 We will soon release the first Pro features of the [Charts](/x/react-charts/) and [Tree View](/x/react-tree-view/).
-This feature will be available to all Premium customers.
+These features will be available to all Premium customers without any further action needed.
 
 ### Ending the early bird discount
 
