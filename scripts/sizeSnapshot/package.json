@@ -7,6 +7,9 @@
     "@mui/base": "workspace:^",
     "@mui/joy": "workspace:^",
     "@mui/material": "workspace:^",
+    "@mui/styles": "workspace:^",
+    "@mui/private-theming": "workspace:^",
+    "@mui/utils": "workspace:^",
     "@mui/system": "workspace:^"
   }
 }

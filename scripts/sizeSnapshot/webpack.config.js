@@ -27,7 +27,7 @@ async function getWebpackEntries() {
   );
 
   const corePackagePath = path.join(workspaceRoot, 'packages/mui-base/build');
-  const coreComponents = (await glob(path.join(corePackagePath, '([A-Z])*/index.js'))).map(
+  const baseComponents = (await glob(path.join(corePackagePath, '([A-Z])*/index.js'))).map(
     (componentPath) => {
       const componentName = path.basename(path.dirname(componentPath));
       let entryName = componentName;
@@ -69,72 +69,66 @@ async function getWebpackEntries() {
 
   return [
     {
-      id: 'Accordion',
-      import: '@mui/material/Accordion/index.js',
-    },
-  ];
-
-  return [
-    {
       // WARNING: Changing the name will break tracking of bundle size over time
       // If the name of the package changes, rename its display name in https://github.com/eps1lon/mui-contributor-dashboard/blob/main/src/pages/SizeComparison.tsx
       id: '@material-ui/core',
-      path: path.join(path.relative(workspaceRoot, materialPackagePath), 'index.js'),
+      import: '@mui/material/index.js',
     },
     ...materialComponents,
     {
       id: '@material-ui/lab',
-      path: path.join(path.relative(workspaceRoot, labPackagePath), 'index.js'),
+      import: '@mui/lab/index.js',
     },
     ...labComponents,
     {
       id: '@material-ui/styles',
-      path: 'packages/mui-styles/build/index.js',
+      import: '@mui/styles/index.js',
     },
     {
       id: '@material-ui/private-theming',
-      path: 'packages/mui-private-theming/build/index.js',
+      import: '@mui/private-theming/index.js',
     },
     {
       id: '@material-ui/system',
-      path: 'packages/mui-system/build/index.js',
+      import: '@mui/system/index.js',
     },
     {
       id: 'createBox',
-      path: 'packages/mui-system/build/createBox/index.js',
+      import: '@mui/system/createBox/index.js',
     },
     {
       id: 'createStyled',
-      path: 'packages/mui-system/build/createStyled/index.js',
+      import: '@mui/system/createStyled/index.js',
     },
     {
       id: '@material-ui/core/styles/createTheme',
-      path: 'packages/mui-material/build/styles/createTheme.js',
+      importName: 'createTheme',
+      import: '@mui/material/styles/index.js',
     },
     {
       id: 'colorManipulator',
-      path: 'packages/mui-system/build/colorManipulator/index.js',
+      import: '@mui/system/colorManipulator/index.js',
     },
     {
       id: 'useAutocomplete',
-      path: 'packages/mui-lab/build/useAutocomplete/index.js',
+      import: '@mui/lab/useAutocomplete/index.js',
     },
     {
       id: '@material-ui/core/useMediaQuery',
-      path: 'packages/mui-material/build/useMediaQuery/index.js',
+      import: '@mui/material/useMediaQuery/index.js',
     },
     {
       id: '@material-ui/core/useScrollTrigger',
-      path: 'packages/mui-material/build/useScrollTrigger/index.js',
+      import: '@mui/material/useScrollTrigger/index.js',
     },
     {
       id: '@material-ui/unstyled',
-      path: path.join(path.relative(workspaceRoot, corePackagePath), 'index.js'),
+      import: '@mui/base/index.js',
     },
-    ...coreComponents,
+    ...baseComponents,
     {
       id: '@material-ui/utils',
-      path: 'packages/mui-utils/build/esm/index.js',
+      import: '@mui/utils/index.js',
     },
     // TODO: Requires webpack v5
     // Resolution of webpack/acorn to 7.x is blocked by nextjs (https://github.com/vercel/next.js/issues/11947)
@@ -145,7 +139,7 @@ async function getWebpackEntries() {
     // },
     {
       id: '@mui/joy',
-      path: path.join(path.relative(workspaceRoot, joyPackagePath), 'index.js'),
+      import: '@mui/joy/index.js',
     },
     ...joyComponents,
   ];
@@ -154,6 +148,8 @@ async function getWebpackEntries() {
 function createWebpackConfig(entry, environment) {
   const analyzerMode = environment.analyze ? 'static' : 'disabled';
   const concatenateModules = !environment.accurateBundles;
+
+  const importNames = entry.importName ? `{ ${entry.importName} as foo }` : '* as foo';
 
   /**
    * @type {import('webpack').Configuration}
@@ -193,11 +189,9 @@ function createWebpackConfig(entry, environment) {
         reportFilename: `${entry.id}.html`,
       }),
     ],
-    context: entry.import ? __dirname : undefined,
+    context: __dirname,
     entry: {
-      [entry.id]: entry.import
-        ? `data:text/javascript,import * as lib from ${JSON.stringify(entry.import)};console.log(lib);`
-        : path.join(workspaceRoot, entry.path),
+      [entry.id]: `data:text/javascript,import ${importNames} from ${JSON.stringify(entry.import)};console.log(foo);`,
     },
     // TODO: 'browserslist:modern'
     // See https://github.com/webpack/webpack/issues/14203

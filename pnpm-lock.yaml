@@ -2249,9 +2249,18 @@ importers:
       '@mui/material':
         specifier: workspace:^
         version: link:../../packages/mui-material/build
+      '@mui/private-theming':
+        specifier: workspace:^
+        version: link:../../packages/mui-private-theming/build
+      '@mui/styles':
+        specifier: workspace:^
+        version: link:../../packages/mui-styles/build
       '@mui/system':
         specifier: workspace:^
         version: link:../../packages/mui-system/build
+      '@mui/utils':
+        specifier: workspace:^
+        version: link:../../packages/mui-utils/build
 
   test:
     dependencies:
