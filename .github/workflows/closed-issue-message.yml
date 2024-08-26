@@ -1,0 +1,17 @@
+name: Add closing message to issue
+
+on:
+  issues:
+    types:
+      - closed
+  workflow_call:
+
+permissions: {}
+
+jobs:
+  add-comment:
+    name: Add closing message
+    uses: mui/mui-public/.github/workflows/reusable/add-closing-message-to-issue.yml@master
+    permissions:
+      contents: read
+      issues: write
