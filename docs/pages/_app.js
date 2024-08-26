@@ -177,10 +177,6 @@ function AppWrapper(props) {
         logoSvg: muiSvgLogoString,
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
-          {
-            text: 'v6 (next)',
-            href: `https://next.mui.com${languagePrefix}/material-ui/getting-started/`,
-          },
           { text: `v${materialPkgJson.version}`, current: true },
           { text: `v5`, href: `https://mui.com${languagePrefix}/material-ui/getting-started/` },
           {
@@ -214,10 +210,6 @@ function AppWrapper(props) {
         logoSvg: muiSvgLogoString,
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
-          {
-            text: 'v6 (next)',
-            href: `https://next.mui.com${languagePrefix}/system/getting-started/`,
-          },
           { text: `v${systemPkgJson.version}`, current: true },
           { text: 'v5', href: `https://mui.com${languagePrefix}/system/getting-started/` },
           { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
