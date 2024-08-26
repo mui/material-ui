@@ -87,12 +87,12 @@ Use the snippet below to update your project (replace the `<version>` with the o
 npm install react@<version> react-dom@<version>
 ```
 
-```bash yarn
-yarn add react@<version> react-dom@<version>
-```
-
 ```bash pnpm
 pnpm add react@<version> react-dom@<version>
+```
+
+```bash yarn
+yarn add react@<version> react-dom@<version>
 ```
 
 </codeblock>
