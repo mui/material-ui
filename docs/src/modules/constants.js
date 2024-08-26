@@ -20,5 +20,5 @@ const LANGUAGES_LABEL = [
 module.exports = {
   CODE_VARIANTS,
   LANGUAGES_LABEL,
-  CODE_STYLING
+  CODE_STYLING,
 };
