@@ -33,7 +33,7 @@ describe('CodeSandbox', () => {
             'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.js',
           dependencies: {
             react: 'latest',
-            '@mui/material': 'next',
+            '@mui/material': 'latest',
             'react-dom': 'latest',
             '@emotion/react': 'latest',
             '@emotion/styled': 'latest',
@@ -123,7 +123,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
             'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.tsx',
           dependencies: {
             react: 'latest',
-            '@mui/material': 'next',
+            '@mui/material': 'latest',
             'react-dom': 'latest',
             '@emotion/react': 'latest',
             '@emotion/styled': 'latest',
@@ -230,7 +230,7 @@ ReactDOM.createRoot(document.querySelector("#root")!).render(
     expect(result.dependencies).to.deep.equal({
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@mui/material': 'next',
+      '@mui/material': 'latest',
       '@types/react': 'latest',
       '@types/react-dom': 'latest',
       react: 'latest',

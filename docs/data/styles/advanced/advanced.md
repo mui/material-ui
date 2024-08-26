@@ -417,11 +417,15 @@ It's a must-do for static pages, but it needs to be put in balance with not doin
 There is [an official Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@mui/styles`.
 Refer to the plugin's page for setup and usage instructions.
 
+<!-- #default-branch-switch -->
+
 Refer to [this example Gatsby project](https://github.com/mui/material-ui/tree/v4.x/examples/gatsby) for an usage example.
 
 ### Next.js Pages Router
 
 You need to have a custom `pages/_document.js`, then copy [this logic](https://github.com/mui/material-ui/blob/v4.x/examples/nextjs/pages/_document.js#L52-L59) to inject the server-side rendered styles into the `<head>` element.
+
+<!-- #default-branch-switch -->
 
 Refer to [this example project](https://github.com/mui/material-ui/tree/v4.x/examples/nextjs) for an up-to-date usage example.
 
