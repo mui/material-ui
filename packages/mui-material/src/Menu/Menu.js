@@ -4,13 +4,14 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { useSlotProps } from '@mui/base/utils';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import { useRtl } from '@mui/system/RtlProvider';
+import useSlotProps from '@mui/utils/useSlotProps';
 import MenuList from '../MenuList';
 import Popover, { PopoverPaper } from '../Popover';
-import styled, { rootShouldForwardProp } from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getMenuUtilityClass } from './menuClasses';
 
 const RTL_ORIGIN = {
@@ -65,7 +66,7 @@ const MenuMenuList = styled(MenuList, {
 });
 
 const Menu = React.forwardRef(function Menu(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiMenu' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiMenu' });
 
   const {
     autoFocus = true,
@@ -283,9 +284,7 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   PopoverClasses: PropTypes.object,
   /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
+   * The props used for each slot inside.
    * @default {}
    */
   slotProps: PropTypes.shape({
@@ -294,7 +293,6 @@ Menu.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The components used for each slot inside.
-   *
    * @default {}
    */
   slots: PropTypes.shape({

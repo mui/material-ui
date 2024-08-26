@@ -4,7 +4,7 @@ description: Check out all the newest additions to the next major of the advance
 date: 2024-03-22T08:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'Product']
-card: true
+manualCard: true
 ---
 
 <div style="max-width: 692px; width: 100%; height: 230px; overflow: hidden; margin-bottom: 16px;">

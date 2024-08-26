@@ -12,18 +12,16 @@ import fs from 'fs';
 import os from 'os';
 import path from 'path';
 import { promisify } from 'util';
-import { getWorkspaceRoot } from './utils.mjs';
 
 const exec = promisify(childProcess.exec);
 
 // packages published from the react monorepo using the same version
-const reactPackageNames = ['react', 'react-dom', 'react-is', 'react-test-renderer', 'scheduler'];
-const devDependenciesPackageNames = ['@mnajdova/enzyme-adapter-react-18', '@testing-library/react'];
+const reactPackageNames = ['react', 'react-dom', 'react-is', 'scheduler'];
+const devDependenciesPackageNames = ['@testing-library/react'];
 
 // if we need to support more versions we will need to add new mapping here
 const additionalVersionsMappings = {
   17: {
-    '@mnajdova/enzyme-adapter-react-18': 'npm:@eps1lon/enzyme-adapter-react-17',
     '@testing-library/react': '^12.1.0',
   },
 };
@@ -38,7 +36,7 @@ async function main(version) {
     return;
   }
 
-  const packageJsonPath = path.resolve(getWorkspaceRoot(), 'package.json');
+  const packageJsonPath = path.resolve(process.cwd(), 'package.json');
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, { encoding: 'utf8' }));
 
   // the version is something in format: "17.0.0"
@@ -82,8 +80,6 @@ async function main(version) {
   // At this moment all dist tags reference React 18 version, so we don't need
   // to update these dependencies unless an older version is used, or when the
   // next/experimental dist tag reference to a future version of React
-  // packageJson.devDependencies['@mnajdova/enzyme-adapter-react-18'] =
-  //   'npm:@mnajdova/enzyme-adapter-react-next';
   // packageJson.devDependencies['@testing-library/react'] = 'alpha';
 
   if (majorVersion && additionalVersionsMappings[majorVersion]) {
@@ -100,6 +96,17 @@ async function main(version) {
 
   // add newline for clean diff
   fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}${os.EOL}`);
+
+  console.log('Installing dependencies...');
+  const pnpmInstall = childProcess.spawn('pnpm', ['install', '--no-frozen-lockfile'], {
+    shell: true,
+    stdio: ['inherit', 'inherit', 'inherit'],
+  });
+  pnpmInstall.on('exit', (exitCode) => {
+    if (exitCode !== 0) {
+      throw new Error('Failed to install dependencies');
+    }
+  });
 }
 
 const [version = process.env.REACT_VERSION] = process.argv.slice(2);

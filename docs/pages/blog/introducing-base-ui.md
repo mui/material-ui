@@ -4,7 +4,7 @@ description: The Base UI component library gives you complete control over the 
 date: 2022-09-07T00:00:00.000Z
 authors: ['michaldudak', 'samuelsycamore']
 tags: ['Base UI', 'Product']
-card: true
+manualCard: true
 ---
 
 <a href="https://mui.com/base-ui/"><img src="/static/blog/introducing-base-ui/hero-image.png" alt="Demo components built with Base UI, a newly introduced library of unstyled components and hooks" width="1200" height="500" /></a>

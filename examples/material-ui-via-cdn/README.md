@@ -19,22 +19,13 @@ open index.html
 
 ## The idea behind the example
 
-You can start using Material UI with minimal front-end infrastructure, which is great for prototyping.
+You can start using Material UI with minimal front-end infrastructure, which is great for prototyping. It uses [ESM CDNs](https://esm.sh/).
 We discourage using this approach in production, though.
 The client has to download the entire library, regardless of which components are used, affecting performance and bandwidth usage.
 
 <!-- #default-branch-switch -->
 
 [The live preview.](https://rawcdn.githack.com/mui/material-ui/next/examples/material-ui-via-cdn/index.html)
-
-## UMD releases
-
-We are providing two Universal Module Definition (UMD) files:
-
-- one for development: https://unpkg.com/@mui/material@latest/umd/material-ui.development.js
-- one for production: https://unpkg.com/@mui/material@latest/umd/material-ui.production.min.js
-
-<!-- #default-branch-switch -->
 
 ## What's next?
 

@@ -6,13 +6,14 @@ githubLabel: 'component: select'
 materialDesign: https://m2.material.io/components/menus#exposed-dropdown-menu
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
 unstyled: /base-ui/react-select/
+githubSource: packages/mui-material/src/Select
 ---
 
 # Select
 
 <p class="description">Select components are used for collecting user provided information from a list of options.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic select
 

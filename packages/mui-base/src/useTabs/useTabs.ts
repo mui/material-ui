@@ -8,7 +8,7 @@ import { TabPanelMetadata } from './TabsProvider';
 export interface TabMetadata {
   disabled: boolean;
   id: string | undefined;
-  ref: React.RefObject<HTMLElement>;
+  ref: React.RefObject<HTMLElement | null>;
 }
 
 type IdLookupFunction = (id: string | number) => string | undefined;
@@ -17,11 +17,11 @@ type IdLookupFunction = (id: string | number) => string | undefined;
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/base-ui/react-tabs/#hooks)
+ * - [Tabs](https://next.mui.com/base-ui/react-tabs/#hooks)
  *
  * API:
  *
- * - [useTabs API](https://mui.com/base-ui/react-tabs/hooks-api/#use-tabs)
+ * - [useTabs API](https://next.mui.com/base-ui/react-tabs/hooks-api/#use-tabs)
  */
 function useTabs(parameters: UseTabsParameters): UseTabsReturnValue {
   const {

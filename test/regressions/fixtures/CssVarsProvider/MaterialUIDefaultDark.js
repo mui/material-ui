@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
+import { CssVarsProvider, extendTheme } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Toolbar from '@mui/material/Toolbar';
+
+const theme = extendTheme({ colorSchemes: { dark: true }, colorSchemeSelector: '.mode-%s' });
 
 export default function MaterialUIDefaultDark() {
   const [, rerender] = React.useState(false);
@@ -13,7 +15,7 @@ export default function MaterialUIDefaultDark() {
     rerender(true);
   }, []);
   return (
-    <CssVarsProvider defaultMode="dark">
+    <CssVarsProvider theme={theme}>
       <Box
         sx={{
           display: 'grid',

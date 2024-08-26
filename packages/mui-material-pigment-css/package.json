@@ -1,0 +1,66 @@
+{
+  "name": "@mui/material-pigment-css",
+  "version": "6.0.0-rc.0",
+  "author": "MUI Team",
+  "description": "A wrapper over Pigment CSS that provides the same styled and theming APIs as Material UI.",
+  "main": "./src/index.ts",
+  "keywords": [
+    "react",
+    "mui",
+    "material-ui",
+    "css-in-js",
+    "zero-runtime"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mui/material-ui.git",
+    "directory": "packages/mui-pigment-css"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mui/material-ui/issues"
+  },
+  "homepage": "https://mui.com/material-ui/",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/mui-org"
+  },
+  "scripts": {
+    "build": "pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
+    "build:modern": "node ../../scripts/build.mjs modern",
+    "build:node": "node ../../scripts/build.mjs node",
+    "build:stable": "node ../../scripts/build.mjs stable",
+    "build:copy-files": "node ../../scripts/copyFiles.mjs styles.css",
+    "build:types": "node ../../scripts/buildTypes.mjs",
+    "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
+    "release": "pnpm build && pnpm publish",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-material/**/*.test.{js,ts,tsx}'",
+    "typescript": "tsc -p tsconfig.json",
+    "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
+  },
+  "dependencies": {
+    "@mui/system": "workspace:*",
+    "@pigment-css/react": "0.0.20"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public",
+    "directory": "build"
+  },
+  "wyw-in-js": {
+    "tags": {
+      "styled": "@pigment-css/react/exports/styled",
+      "sx": "@pigment-css/react/exports/sx",
+      "keyframes": "@pigment-css/react/exports/keyframes",
+      "generateAtomics": "@pigment-css/react/exports/generateAtomics",
+      "css": "@pigment-css/react/exports/css",
+      "createUseThemeProps": "@pigment-css/react/exports/createUseThemeProps",
+      "internal_createExtendSxProp": "@pigment-css/react/exports/internal_createExtendSxProp",
+      "globalCss": "@pigment-css/react/exports/globalCss",
+      "useTheme": "@pigment-css/react/exports/useTheme"
+    }
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

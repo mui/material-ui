@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import Snackbar, { snackbarClasses as classes } from '@mui/material/Snackbar';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
@@ -30,13 +30,7 @@ describe('<Snackbar />', () => {
     render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiSnackbar',
-    skip: [
-      'componentProp',
-      'componentsProp',
-      'themeVariants',
-      // react-transition-group issue
-      'reactTestRenderer',
-    ],
+    skip: ['componentProp', 'componentsProp', 'themeVariants'],
   }));
 
   describe('prop: onClose', () => {

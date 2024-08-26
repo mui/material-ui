@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, screen } from '@mui-internal/test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import ToggleButtonGroup, {
   toggleButtonGroupClasses as classes,
 } from '@mui/material/ToggleButtonGroup';
@@ -37,6 +37,15 @@ describe('<ToggleButtonGroup />', () => {
     );
     expect(getByRole('group')).to.have.class('MuiToggleButtonGroup-vertical');
     expect(getByRole('button')).to.have.class('MuiToggleButtonGroup-groupedVertical');
+  });
+
+  it('should have horizontal class', () => {
+    const { getByRole } = render(
+      <ToggleButtonGroup>
+        <ToggleButton value="one">1</ToggleButton>
+      </ToggleButtonGroup>,
+    );
+    expect(getByRole('group')).to.have.class(classes.horizontal);
   });
 
   it('should disable all ToggleButton if disabled prop is passed', () => {

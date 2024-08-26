@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import { keyframes, css } from '@mui/system';
+import { keyframes, css, styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
 
 const SIZE = 44;
@@ -39,6 +39,23 @@ const circularDashKeyframe = keyframes`
   }
 `;
 
+// This implementation is for supporting both Styled-components v4+ and Pigment CSS.
+// A global animation has to be created here for Styled-components v4+ (https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#12).
+// which can be done by checking typeof indeterminate1Keyframe !== 'string' (at runtime, Pigment CSS transform keyframes`` to a string).
+const rotateAnimation =
+  typeof circularRotateKeyframe !== 'string'
+    ? css`
+        animation: ${circularRotateKeyframe} 1.4s linear infinite;
+      `
+    : null;
+
+const dashAnimation =
+  typeof circularDashKeyframe !== 'string'
+    ? css`
+        animation: ${circularDashKeyframe} 1.4s ease-in-out infinite;
+      `
+    : null;
+
 const useUtilityClasses = (ownerState) => {
   const { classes, variant, color, disableShrink } = ownerState;
 
@@ -64,20 +81,35 @@ const CircularProgressRoot = styled('span', {
     ];
   },
 })(
-  ({ ownerState, theme }) => ({
+  memoTheme(({ theme }) => ({
     display: 'inline-block',
-    ...(ownerState.variant === 'determinate' && {
-      transition: theme.transitions.create('transform'),
-    }),
-    ...(ownerState.color !== 'inherit' && {
-      color: (theme.vars || theme).palette[ownerState.color].main,
-    }),
-  }),
-  ({ ownerState }) =>
-    ownerState.variant === 'indeterminate' &&
-    css`
-      animation: ${circularRotateKeyframe} 1.4s linear infinite;
-    `,
+    variants: [
+      {
+        props: {
+          variant: 'determinate',
+        },
+        style: {
+          transition: theme.transitions.create('transform'),
+        },
+      },
+      {
+        props: {
+          variant: 'indeterminate',
+        },
+        style: rotateAnimation || {
+          animation: `${circularRotateKeyframe} 1.4s linear infinite`,
+        },
+      },
+      ...Object.entries(theme.palette)
+        .filter(([, palette]) => palette && palette.main)
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            color: (theme.vars || theme).palette[color].main,
+          },
+        })),
+    ],
+  })),
 );
 
 const CircularProgressSVG = styled('svg', {
@@ -101,25 +133,37 @@ const CircularProgressCircle = styled('circle', {
     ];
   },
 })(
-  ({ ownerState, theme }) => ({
+  memoTheme(({ theme }) => ({
     stroke: 'currentColor',
-    // Use butt to follow the specification, by chance, it's already the default CSS value.
-    // strokeLinecap: 'butt',
-    ...(ownerState.variant === 'determinate' && {
-      transition: theme.transitions.create('stroke-dashoffset'),
-    }),
-    ...(ownerState.variant === 'indeterminate' && {
-      // Some default value that looks fine waiting for the animation to kicks in.
-      strokeDasharray: '80px, 200px',
-      strokeDashoffset: 0, // Add the unit to fix a Edge 16 and below bug.
-    }),
-  }),
-  ({ ownerState }) =>
-    ownerState.variant === 'indeterminate' &&
-    !ownerState.disableShrink &&
-    css`
-      animation: ${circularDashKeyframe} 1.4s ease-in-out infinite;
-    `,
+    variants: [
+      {
+        props: {
+          variant: 'determinate',
+        },
+        style: {
+          transition: theme.transitions.create('stroke-dashoffset'),
+        },
+      },
+      {
+        props: {
+          variant: 'indeterminate',
+        },
+        style: {
+          // Some default value that looks fine waiting for the animation to kicks in.
+          strokeDasharray: '80px, 200px',
+          strokeDashoffset: 0, // Add the unit to fix a Edge 16 and below bug.
+        },
+      },
+      {
+        props: ({ ownerState }) =>
+          ownerState.variant === 'indeterminate' && !ownerState.disableShrink,
+        style: dashAnimation || {
+          // At runtime for Pigment CSS, `bufferAnimation` will be null and the generated keyframe will be used.
+          animation: `${circularDashKeyframe} 1.4s ease-in-out infinite`,
+        },
+      },
+    ],
+  })),
 );
 
 /**
@@ -130,7 +174,7 @@ const CircularProgressCircle = styled('circle', {
  * attribute to `true` on that region until it has finished loading.
  */
 const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiCircularProgress' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiCircularProgress' });
   const {
     className,
     color = 'primary',

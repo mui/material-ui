@@ -4,14 +4,13 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import refType from '@mui/utils/refType';
-import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
 import { useRtl } from '@mui/system/RtlProvider';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
-import useTheme from '../styles/useTheme';
+import useSlotProps from '@mui/utils/useSlotProps';
+import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import debounce from '../utils/debounce';
-import { getNormalizedScrollLeft, detectScrollType } from '../utils/scrollLeft';
 import animate from '../internal/animate';
 import ScrollbarSize from './ScrollbarSize';
 import TabScrollButton from '../TabScrollButton';
@@ -114,23 +113,33 @@ const TabsRoot = styled('div', {
       ownerState.vertical && styles.vertical,
     ];
   },
-})(({ ownerState, theme }) => ({
-  overflow: 'hidden',
-  minHeight: 48,
-  // Add iOS momentum scrolling for iOS < 13.0
-  WebkitOverflowScrolling: 'touch',
-  display: 'flex',
-  ...(ownerState.vertical && {
-    flexDirection: 'column',
-  }),
-  ...(ownerState.scrollButtonsHideMobile && {
-    [`& .${tabsClasses.scrollButtons}`]: {
-      [theme.breakpoints.down('sm')]: {
-        display: 'none',
+})(
+  memoTheme(({ theme }) => ({
+    overflow: 'hidden',
+    minHeight: 48,
+    // Add iOS momentum scrolling for iOS < 13.0
+    WebkitOverflowScrolling: 'touch',
+    display: 'flex',
+    variants: [
+      {
+        props: ({ ownerState }) => ownerState.vertical,
+        style: {
+          flexDirection: 'column',
+        },
       },
-    },
-  }),
-}));
+      {
+        props: ({ ownerState }) => ownerState.scrollButtonsHideMobile,
+        style: {
+          [`& .${tabsClasses.scrollButtons}`]: {
+            [theme.breakpoints.down('sm')]: {
+              display: 'none',
+            },
+          },
+        },
+      },
+    ],
+  })),
+);
 
 const TabsScroller = styled('div', {
   name: 'MuiTabs',
@@ -145,31 +154,45 @@ const TabsScroller = styled('div', {
       ownerState.scrollableY && styles.scrollableY,
     ];
   },
-})(({ ownerState }) => ({
+})({
   position: 'relative',
   display: 'inline-block',
   flex: '1 1 auto',
   whiteSpace: 'nowrap',
-  ...(ownerState.fixed && {
-    overflowX: 'hidden',
-    width: '100%',
-  }),
-  ...(ownerState.hideScrollbar && {
-    // Hide dimensionless scrollbar on macOS
-    scrollbarWidth: 'none', // Firefox
-    '&::-webkit-scrollbar': {
-      display: 'none', // Safari + Chrome
+  variants: [
+    {
+      props: ({ ownerState }) => ownerState.fixed,
+      style: {
+        overflowX: 'hidden',
+        width: '100%',
+      },
     },
-  }),
-  ...(ownerState.scrollableX && {
-    overflowX: 'auto',
-    overflowY: 'hidden',
-  }),
-  ...(ownerState.scrollableY && {
-    overflowY: 'auto',
-    overflowX: 'hidden',
-  }),
-}));
+    {
+      props: ({ ownerState }) => ownerState.hideScrollbar,
+      style: {
+        // Hide dimensionless scrollbar on macOS
+        scrollbarWidth: 'none', // Firefox
+        '&::-webkit-scrollbar': {
+          display: 'none', // Safari + Chrome
+        },
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.scrollableX,
+      style: {
+        overflowX: 'auto',
+        overflowY: 'hidden',
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.scrollableY,
+      style: {
+        overflowY: 'auto',
+        overflowX: 'hidden',
+      },
+    },
+  ],
+});
 
 const FlexContainer = styled('div', {
   name: 'MuiTabs',
@@ -182,38 +205,63 @@ const FlexContainer = styled('div', {
       ownerState.centered && styles.centered,
     ];
   },
-})(({ ownerState }) => ({
+})({
   display: 'flex',
-  ...(ownerState.vertical && {
-    flexDirection: 'column',
-  }),
-  ...(ownerState.centered && {
-    justifyContent: 'center',
-  }),
-}));
+  variants: [
+    {
+      props: ({ ownerState }) => ownerState.vertical,
+      style: {
+        flexDirection: 'column',
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.centered,
+      style: {
+        justifyContent: 'center',
+      },
+    },
+  ],
+});
 
 const TabsIndicator = styled('span', {
   name: 'MuiTabs',
   slot: 'Indicator',
   overridesResolver: (props, styles) => styles.indicator,
-})(({ ownerState, theme }) => ({
-  position: 'absolute',
-  height: 2,
-  bottom: 0,
-  width: '100%',
-  transition: theme.transitions.create(),
-  ...(ownerState.indicatorColor === 'primary' && {
-    backgroundColor: (theme.vars || theme).palette.primary.main,
-  }),
-  ...(ownerState.indicatorColor === 'secondary' && {
-    backgroundColor: (theme.vars || theme).palette.secondary.main,
-  }),
-  ...(ownerState.vertical && {
-    height: '100%',
-    width: 2,
-    right: 0,
-  }),
-}));
+})(
+  memoTheme(({ theme }) => ({
+    position: 'absolute',
+    height: 2,
+    bottom: 0,
+    width: '100%',
+    transition: theme.transitions.create(),
+    variants: [
+      {
+        props: {
+          indicatorColor: 'primary',
+        },
+        style: {
+          backgroundColor: (theme.vars || theme).palette.primary.main,
+        },
+      },
+      {
+        props: {
+          indicatorColor: 'secondary',
+        },
+        style: {
+          backgroundColor: (theme.vars || theme).palette.secondary.main,
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.vertical,
+        style: {
+          height: '100%',
+          width: 2,
+          right: 0,
+        },
+      },
+    ],
+  })),
+);
 
 const TabsScrollbarSize = styled(ScrollbarSize)({
   overflowX: 'auto',
@@ -230,7 +278,7 @@ const defaultIndicatorStyle = {};
 let warnedOnceTabPresent = false;
 
 const Tabs = React.forwardRef(function Tabs(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTabs' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTabs' });
   const theme = useTheme();
   const isRtl = useRtl();
   const {
@@ -334,7 +382,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         clientWidth: tabsNode.clientWidth,
         scrollLeft: tabsNode.scrollLeft,
         scrollTop: tabsNode.scrollTop,
-        scrollLeftNormalized: getNormalizedScrollLeft(tabsNode, isRtl ? 'rtl' : 'ltr'),
         scrollWidth: tabsNode.scrollWidth,
         top: rect.top,
         bottom: rect.bottom,
@@ -406,11 +453,9 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     } else {
       startIndicator = isRtl ? 'right' : 'left';
       if (tabMeta && tabsMeta) {
-        const correction = isRtl
-          ? tabsMeta.scrollLeftNormalized + tabsMeta.clientWidth - tabsMeta.scrollWidth
-          : tabsMeta.scrollLeft;
         startValue =
-          (isRtl ? -1 : 1) * (tabMeta[startIndicator] - tabsMeta[startIndicator] + correction);
+          (isRtl ? -1 : 1) *
+          (tabMeta[startIndicator] - tabsMeta[startIndicator] + tabsMeta.scrollLeft);
       }
     }
 
@@ -420,9 +465,10 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       [size]: tabMeta ? tabMeta[size] : 0,
     };
 
-    // IE11 support, replace with Number.isNaN
-    // eslint-disable-next-line no-restricted-globals
-    if (isNaN(indicatorStyle[startIndicator]) || isNaN(indicatorStyle[size])) {
+    if (
+      typeof indicatorStyle[startIndicator] !== 'number' ||
+      typeof indicatorStyle[size] !== 'number'
+    ) {
       setIndicatorStyle(newIndicatorStyle);
     } else {
       const dStart = Math.abs(indicatorStyle[startIndicator] - newIndicatorStyle[startIndicator]);
@@ -451,8 +497,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       scrollValue += delta;
     } else {
       scrollValue += delta * (isRtl ? -1 : 1);
-      // Fix for Edge
-      scrollValue *= isRtl && detectScrollType() === 'reverse' ? -1 : 1;
     }
 
     scroll(scrollValue);

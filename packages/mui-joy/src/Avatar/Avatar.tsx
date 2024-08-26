@@ -76,7 +76,7 @@ const AvatarImg = styled('img', {
   width: '100%',
   height: '100%',
   textAlign: 'center',
-  // Handle non-square image. The property isn't supported by IE11.
+  // Handle non-square image.
   objectFit: 'cover',
   // Hide alt text.
   color: 'transparent',

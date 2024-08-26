@@ -6,7 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import Paper from '@mui/material/Paper';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 
 type GridItemsAlignment =
   | 'flex-start'
@@ -33,8 +33,10 @@ export default function InteractiveGrid() {
 <Grid
   container
   direction="${direction}"
-  justifyContent="${justifyContent}"
-  alignItems="${alignItems}"
+  sx={{
+    justifyContent: "${justifyContent}",
+    alignItems: "${alignItems}",
+  }}
 >
 `;
 
@@ -42,25 +44,25 @@ export default function InteractiveGrid() {
     <Grid sx={{ flexGrow: 1 }} container>
       <Grid item xs={12}>
         <Grid
-          sx={{ height: 300, pb: 2 }}
           container
           spacing={2}
-          alignItems={alignItems}
           direction={direction}
-          justifyContent={justifyContent}
+          sx={{ alignItems, justifyContent, height: 300, pb: 2 }}
         >
           {[0, 1, 2].map((value) => (
             <Grid key={value} item>
               <Paper
-                sx={{
+                sx={(theme) => ({
                   p: 2,
-                  backgroundColor: (theme) =>
-                    theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+                  backgroundColor: '#fff',
                   height: '100%',
                   color: 'text.secondary',
                   pt: `${(value + 1) * 10}px`,
                   pb: `${(value + 1) * 10}px`,
-                }}
+                  ...theme.applyStyles('dark', {
+                    backgroundColor: '#1A2027',
+                  }),
+                })}
               >
                 {`Cell ${value + 1}`}
               </Paper>

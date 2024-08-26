@@ -9,9 +9,10 @@ import Modal from '../Modal';
 import Slide from '../Slide';
 import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
-import useTheme from '../styles/useTheme';
-import useThemeProps from '../styles/useThemeProps';
-import styled, { rootShouldForwardProp } from '../styles/styled';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
+import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getDrawerUtilityClass } from './drawerClasses';
 
 const overridesResolver = (props, styles) => {
@@ -45,9 +46,11 @@ const DrawerRoot = styled(Modal, {
   name: 'MuiDrawer',
   slot: 'Root',
   overridesResolver,
-})(({ theme }) => ({
-  zIndex: (theme.vars || theme).zIndex.drawer,
-}));
+})(
+  memoTheme(({ theme }) => ({
+    zIndex: (theme.vars || theme).zIndex.drawer,
+  })),
+);
 
 const DrawerDockedRoot = styled('div', {
   shouldForwardProp: rootShouldForwardProp,
@@ -72,60 +75,96 @@ const DrawerPaper = styled(Paper, {
         styles[`paperAnchorDocked${capitalize(ownerState.anchor)}`],
     ];
   },
-})(({ theme, ownerState }) => ({
-  overflowY: 'auto',
-  display: 'flex',
-  flexDirection: 'column',
-  height: '100%',
-  flex: '1 0 auto',
-  zIndex: (theme.vars || theme).zIndex.drawer,
-  // Add iOS momentum scrolling for iOS < 13.0
-  WebkitOverflowScrolling: 'touch',
-  // temporary style
-  position: 'fixed',
-  top: 0,
-  // We disable the focus ring for mouse, touch and keyboard users.
-  // At some point, it would be better to keep it for keyboard users.
-  // :focus-ring CSS pseudo-class will help.
-  outline: 0,
-  ...(ownerState.anchor === 'left' && {
-    left: 0,
-  }),
-  ...(ownerState.anchor === 'top' && {
+})(
+  memoTheme(({ theme }) => ({
+    overflowY: 'auto',
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    flex: '1 0 auto',
+    zIndex: (theme.vars || theme).zIndex.drawer,
+    // Add iOS momentum scrolling for iOS < 13.0
+    WebkitOverflowScrolling: 'touch',
+    // temporary style
+    position: 'fixed',
     top: 0,
-    left: 0,
-    right: 0,
-    height: 'auto',
-    maxHeight: '100%',
-  }),
-  ...(ownerState.anchor === 'right' && {
-    right: 0,
-  }),
-  ...(ownerState.anchor === 'bottom' && {
-    top: 'auto',
-    left: 0,
-    bottom: 0,
-    right: 0,
-    height: 'auto',
-    maxHeight: '100%',
-  }),
-  ...(ownerState.anchor === 'left' &&
-    ownerState.variant !== 'temporary' && {
-      borderRight: `1px solid ${(theme.vars || theme).palette.divider}`,
-    }),
-  ...(ownerState.anchor === 'top' &&
-    ownerState.variant !== 'temporary' && {
-      borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
-    }),
-  ...(ownerState.anchor === 'right' &&
-    ownerState.variant !== 'temporary' && {
-      borderLeft: `1px solid ${(theme.vars || theme).palette.divider}`,
-    }),
-  ...(ownerState.anchor === 'bottom' &&
-    ownerState.variant !== 'temporary' && {
-      borderTop: `1px solid ${(theme.vars || theme).palette.divider}`,
-    }),
-}));
+    // We disable the focus ring for mouse, touch and keyboard users.
+    // At some point, it would be better to keep it for keyboard users.
+    // :focus-ring CSS pseudo-class will help.
+    outline: 0,
+    variants: [
+      {
+        props: {
+          anchor: 'left',
+        },
+        style: {
+          left: 0,
+        },
+      },
+      {
+        props: {
+          anchor: 'top',
+        },
+        style: {
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 'auto',
+          maxHeight: '100%',
+        },
+      },
+      {
+        props: {
+          anchor: 'right',
+        },
+        style: {
+          right: 0,
+        },
+      },
+      {
+        props: {
+          anchor: 'bottom',
+        },
+        style: {
+          top: 'auto',
+          left: 0,
+          bottom: 0,
+          right: 0,
+          height: 'auto',
+          maxHeight: '100%',
+        },
+      },
+      {
+        props: ({ ownerState }) =>
+          ownerState.anchor === 'left' && ownerState.variant !== 'temporary',
+        style: {
+          borderRight: `1px solid ${(theme.vars || theme).palette.divider}`,
+        },
+      },
+      {
+        props: ({ ownerState }) =>
+          ownerState.anchor === 'top' && ownerState.variant !== 'temporary',
+        style: {
+          borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
+        },
+      },
+      {
+        props: ({ ownerState }) =>
+          ownerState.anchor === 'right' && ownerState.variant !== 'temporary',
+        style: {
+          borderLeft: `1px solid ${(theme.vars || theme).palette.divider}`,
+        },
+      },
+      {
+        props: ({ ownerState }) =>
+          ownerState.anchor === 'bottom' && ownerState.variant !== 'temporary',
+        style: {
+          borderTop: `1px solid ${(theme.vars || theme).palette.divider}`,
+        },
+      },
+    ],
+  })),
+);
 
 const oppositeDirection = {
   left: 'right',
@@ -135,7 +174,7 @@ const oppositeDirection = {
 };
 
 export function isHorizontal(anchor) {
-  return ['left', 'right'].indexOf(anchor) !== -1;
+  return ['left', 'right'].includes(anchor);
 }
 
 export function getAnchor({ direction }, anchor) {
@@ -147,7 +186,7 @@ export function getAnchor({ direction }, anchor) {
  * when `variant="temporary"` is set.
  */
 const Drawer = React.forwardRef(function Drawer(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiDrawer' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiDrawer' });
   const theme = useTheme();
   const isRtl = useRtl();
   const defaultTransitionDuration = {

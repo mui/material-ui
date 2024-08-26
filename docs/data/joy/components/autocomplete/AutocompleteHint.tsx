@@ -12,14 +12,24 @@ const StyledDiv = styled('div')({
 });
 
 type WrapperProps = {
-  children: JSX.Element;
+  children: React.JSX.Element;
   hint: string;
 };
 
 function Wrapper({ children, hint, ...props }: WrapperProps) {
   return (
     <StyledDiv {...props}>
-      <Typography sx={{ position: 'absolute', opacity: 0.6 }}>{hint}</Typography>
+      <Typography
+        sx={{
+          position: 'absolute',
+          opacity: 0.6,
+          overflow: 'hidden', // Hide overflow
+          whiteSpace: 'nowrap', // Prevent text wrapping
+          maxWidth: '100%', // Ensure the hint doesn't exceed container width
+        }}
+      >
+        {hint}
+      </Typography>
       {children}
     </StyledDiv>
   );
@@ -52,7 +62,7 @@ export default function AutocompleteHint() {
           }
         }
       }}
-      onBlur={() => {
+      onClose={() => {
         hint.current = '';
       }}
       inputValue={inputValue}

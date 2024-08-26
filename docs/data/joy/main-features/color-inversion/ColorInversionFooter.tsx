@@ -25,14 +25,16 @@ export default function ColorInversionFooter() {
       variant="solid"
       color={color}
       invertedColors
-      sx={{
-        ...(color !== 'neutral' && {
+      sx={[
+        {
+          flexGrow: 1,
+          p: 2,
+          borderRadius: { xs: 0, sm: 'sm' },
+        },
+        color !== 'neutral' && {
           bgcolor: `${color}.800`,
-        }),
-        flexGrow: 1,
-        p: 2,
-        borderRadius: { xs: 0, sm: 'sm' },
-      }}
+        },
+      ]}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
         <IconButton

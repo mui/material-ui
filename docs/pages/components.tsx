@@ -38,12 +38,7 @@ export default function Components() {
         >
           {pageToTitleI18n(aPage, t) || ''}
           <KeyboardArrowRightRounded
-            sx={{
-              ml: 'auto',
-              fontSize: '1.125rem',
-              opacity: 0,
-              color: 'primary.main',
-            }}
+            sx={{ ml: 'auto', fontSize: '1.125rem', opacity: 0, color: 'primary.main' }}
           />
         </ListItemButton>
       </ListItem>
@@ -62,21 +57,14 @@ export default function Components() {
             All Components
           </Typography>
           <Box
-            sx={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-            }}
+            sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))' }}
           >
             {(componentPageData?.children || []).map((page) => (
               <Box key={page.pathname} sx={{ pb: 2 }}>
                 <Typography
                   component="h2"
                   variant="body2"
-                  sx={{
-                    fontWeight: 500,
-                    color: 'grey.600',
-                    px: 1,
-                  }}
+                  sx={{ fontWeight: 500, color: 'grey.600', px: 1 }}
                 >
                   {pageToTitleI18n(page, t)}
                 </Typography>
@@ -89,10 +77,7 @@ export default function Components() {
                             <Typography
                               component="div"
                               variant="body2"
-                              sx={{
-                                fontWeight: 500,
-                                color: 'grey.600',
-                              }}
+                              sx={{ fontWeight: 500, color: 'grey.600' }}
                             >
                               {pageToTitleI18n(nestedPage, t) || ''}
                             </Typography>

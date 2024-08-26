@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import Popover from '@mui/material/Popover';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 
 const inlineStyles = {
   anchorVertical: {
@@ -124,7 +124,7 @@ function AnchorPlayground() {
 
   return (
     <div>
-      <Grid container justifyContent="center">
+      <Grid container sx={{ justifyContent: 'center' }}>
         <Grid item sx={{ position: 'relative', mb: 4 }}>
           <Button ref={anchorRef} variant="contained" onClick={handleClickButton}>
             Open Popover

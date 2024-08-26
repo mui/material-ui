@@ -4,6 +4,7 @@ title: React Floating Action Button (FAB) component
 components: Fab
 githubLabel: 'component: Fab'
 materialDesign: https://m2.material.io/components/buttons-floating-action-button
+githubSource: packages/mui-material/src/Fab
 ---
 
 # Floating Action Button
@@ -16,7 +17,7 @@ FABs come in two types: regular, and extended.
 Only use a FAB if it is the most suitable way to present a screen's primary action.
 Only one component is recommended per screen to represent the most common action.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic FAB
 

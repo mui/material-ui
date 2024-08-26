@@ -5,7 +5,7 @@ import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import NextHead from 'next/head';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import { LicenseInfo } from '@mui/x-data-grid-pro';
+import { LicenseInfo } from '@mui/x-license';
 import materialPkgJson from 'packages/mui-material/package.json';
 import joyPkgJson from 'packages/mui-joy/package.json';
 import systemPkgJson from 'packages/mui-system/package.json';
@@ -18,7 +18,7 @@ import joyPages from 'docs/data/joy/pages';
 import systemPages from 'docs/data/system/pages';
 import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
-import { CodeCopyProvider } from 'docs/src/modules/utils/CodeCopy';
+import { CodeCopyProvider } from '@mui/docs/CodeCopy';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { CodeVariantProvider } from 'docs/src/modules/utils/codeVariant';
 import { CodeStylingProvider } from 'docs/src/modules/utils/codeStylingSolution';
@@ -29,6 +29,14 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
 import { DocsProvider } from '@mui/docs/DocsProvider';
 import { mapTranslations } from '@mui/docs/i18n';
+import SvgMuiLogomark, {
+  muiSvgLogoString,
+  muiSvgWordmarkString,
+} from 'docs/src/icons/SvgMuiLogomark';
+import SvgBaseUiLogo, {
+  baseSvgLogoString,
+  baseSvgWordmarkString,
+} from 'docs/src/icons/SvgBaseUiLogo';
 import './global.css';
 import '../public/static/components-gallery/base-theme.css';
 import config from '../config';
@@ -97,7 +105,7 @@ async function registerServiceWorker() {
   if (
     'serviceWorker' in navigator &&
     process.env.NODE_ENV === 'production' &&
-    window.location.host.indexOf('mui.com') !== -1
+    window.location.host.includes('mui.com')
   ) {
     // register() automatically attempts to refresh the sw.js.
     const registration = await navigator.serviceWorker.register('/sw.js');
@@ -163,8 +171,11 @@ function AppWrapper(props) {
 
     if (productId === 'material-ui') {
       return {
-        metadata: 'MUI Core',
+        metadata: '',
         name: 'Material UI',
+        logo: SvgMuiLogomark,
+        logoSvg: muiSvgLogoString,
+        wordmarkSvg: muiSvgWordmarkString,
         versions: [
           {
             text: 'v6 (next)',
@@ -186,16 +197,22 @@ function AppWrapper(props) {
 
     if (productId === 'joy-ui') {
       return {
-        metadata: 'MUI Core',
+        metadata: '',
         name: 'Joy UI',
+        logo: SvgMuiLogomark,
+        logoSvg: muiSvgLogoString,
+        wordmarkSvg: muiSvgWordmarkString,
         versions: [{ text: `v${joyPkgJson.version}`, current: true }],
       };
     }
 
     if (productId === 'system') {
       return {
-        metadata: 'MUI Core',
+        metadata: '',
         name: 'MUI System',
+        logo: SvgMuiLogomark,
+        logoSvg: muiSvgLogoString,
+        wordmarkSvg: muiSvgWordmarkString,
         versions: [
           {
             text: 'v6 (next)',
@@ -214,8 +231,11 @@ function AppWrapper(props) {
 
     if (productId === 'base-ui') {
       return {
-        metadata: 'MUI Core',
+        metadata: '',
         name: 'Base UI',
+        logo: SvgBaseUiLogo,
+        logoSvg: baseSvgLogoString,
+        wordmarkSvg: baseSvgWordmarkString,
         versions: [{ text: `v${basePkgJson.version}`, current: true }],
       };
     }
@@ -224,6 +244,9 @@ function AppWrapper(props) {
       return {
         metadata: '',
         name: 'MUI Core',
+        logo: SvgMuiLogomark,
+        logoSvg: muiSvgLogoString,
+        wordmarkSvg: muiSvgWordmarkString,
         versions: [
           { text: `v${materialPkgJson.version}`, current: true },
           {
@@ -238,6 +261,9 @@ function AppWrapper(props) {
       return {
         metadata: '',
         name: 'Docs-infra',
+        logo: SvgMuiLogomark,
+        logoSvg: muiSvgLogoString,
+        wordmarkSvg: muiSvgWordmarkString,
         versions: [
           {
             text: 'v0.0.0',
@@ -251,6 +277,9 @@ function AppWrapper(props) {
       return {
         metadata: '',
         name: 'Home docs',
+        logo: SvgMuiLogomark,
+        logoSvg: muiSvgLogoString,
+        wordmarkSvg: muiSvgWordmarkString,
         versions: [
           {
             text: 'v0.0.0',
@@ -308,6 +337,7 @@ function AppWrapper(props) {
       </NextHead>
       <DocsProvider
         config={config}
+        adConfig={{ GADisplayRatio: 0.1 }}
         defaultUserLanguage={pageProps.userLanguage}
         translations={pageProps.translations}
       >
@@ -355,7 +385,7 @@ MyApp.propTypes = {
 MyApp.getInitialProps = async ({ ctx, Component }) => {
   let pageProps = {};
 
-  const req = require.context('docs/translations', false, /translations.*\.json$/);
+  const req = require.context('docs/translations', false, /\.\/translations.*\.json$/);
   const translations = mapTranslations(req);
 
   if (Component.getInitialProps) {

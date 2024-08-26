@@ -53,6 +53,14 @@ export interface MuiPage {
    * Indicates if the component/hook is not stable yet.
    */
   unstable?: boolean;
+  /**
+   * Indicates the item is in beta release.
+   */
+  beta?: boolean;
+  /**
+   * Indicates if the pages are regarding some deprecated API.
+   */
+  deprecated?: boolean;
 }
 
 export interface OrderedMuiPage extends MuiPage {

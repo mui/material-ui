@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
@@ -39,28 +40,19 @@ const items = [
 export default function Content() {
   return (
     <Stack
-      flexDirection="column"
-      alignSelf="center"
-      gap={4}
-      sx={{
-        maxWidth: 450,
-      }}
+      sx={{ flexDirection: 'column', alignSelf: 'center', gap: 4, maxWidth: 450 }}
     >
-      <SitemarkIcon
-        sx={{
-          fontSize: 150,
-          height: 'fit-content',
-          display: { xs: 'none', md: 'flex' },
-        }}
-      />
-      {items.map((item) => (
-        <Stack direction="row" gap={2}>
+      <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+        <SitemarkIcon />
+      </Box>
+      {items.map((item, index) => (
+        <Stack key={index} direction="row" sx={{ gap: 2 }}>
           {item.icon}
           <div>
-            <Typography fontWeight="medium" gutterBottom>
+            <Typography gutterBottom sx={{ fontWeight: 'medium' }}>
               {item.title}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
               {item.description}
             </Typography>
           </div>

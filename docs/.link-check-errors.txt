@@ -1,2 +1,5 @@
 Broken links found by `pnpm docs:link-check` that exist:
 
+- https://mui.com/material-ui/customization/theme-components/#creating-new-component-variants
+- https://mui.com/material-ui/customization/theme-components/#overrides-based-on-props
+- https://mui.com/material-ui/react-grid2/#whats-changed

@@ -8,12 +8,13 @@ import capitalize from '../utils/capitalize';
 import Modal from '../Modal';
 import Fade from '../Fade';
 import Paper from '../Paper';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
 import dialogClasses, { getDialogUtilityClass } from './dialogClasses';
 import DialogContext from './DialogContext';
 import Backdrop from '../Backdrop';
-import useTheme from '../styles/useTheme';
+import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const DialogBackdrop = styled(Backdrop, {
   name: 'MuiDialog',
@@ -61,31 +62,43 @@ const DialogContainer = styled('div', {
 
     return [styles.container, styles[`scroll${capitalize(ownerState.scroll)}`]];
   },
-})(({ ownerState }) => ({
+})({
   height: '100%',
   '@media print': {
     height: 'auto',
   },
   // We disable the focus ring for mouse, touch and keyboard users.
   outline: 0,
-  ...(ownerState.scroll === 'paper' && {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  }),
-  ...(ownerState.scroll === 'body' && {
-    overflowY: 'auto',
-    overflowX: 'hidden',
-    textAlign: 'center',
-    '&::after': {
-      content: '""',
-      display: 'inline-block',
-      verticalAlign: 'middle',
-      height: '100%',
-      width: '0',
+  variants: [
+    {
+      props: {
+        scroll: 'paper',
+      },
+      style: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
     },
-  }),
-}));
+    {
+      props: {
+        scroll: 'body',
+      },
+      style: {
+        overflowY: 'auto',
+        overflowX: 'hidden',
+        textAlign: 'center',
+        '&::after': {
+          content: '""',
+          display: 'inline-block',
+          verticalAlign: 'middle',
+          height: '100%',
+          width: '0',
+        },
+      },
+    },
+  ],
+});
 
 const DialogPaper = styled(Paper, {
   name: 'MuiDialog',
@@ -101,69 +114,100 @@ const DialogPaper = styled(Paper, {
       ownerState.fullScreen && styles.paperFullScreen,
     ];
   },
-})(({ theme, ownerState }) => ({
-  margin: 32,
-  position: 'relative',
-  overflowY: 'auto', // Fix IE11 issue, to remove at some point.
-  '@media print': {
-    overflowY: 'visible',
-    boxShadow: 'none',
-  },
-  ...(ownerState.scroll === 'paper' && {
-    display: 'flex',
-    flexDirection: 'column',
-    maxHeight: 'calc(100% - 64px)',
-  }),
-  ...(ownerState.scroll === 'body' && {
-    display: 'inline-block',
-    verticalAlign: 'middle',
-    textAlign: 'left', // 'initial' doesn't work on IE11
-  }),
-  ...(!ownerState.maxWidth && {
-    maxWidth: 'calc(100% - 64px)',
-  }),
-  ...(ownerState.maxWidth === 'xs' && {
-    maxWidth:
-      theme.breakpoints.unit === 'px'
-        ? Math.max(theme.breakpoints.values.xs, 444)
-        : `max(${theme.breakpoints.values.xs}${theme.breakpoints.unit}, 444px)`,
-    [`&.${dialogClasses.paperScrollBody}`]: {
-      [theme.breakpoints.down(Math.max(theme.breakpoints.values.xs, 444) + 32 * 2)]: {
-        maxWidth: 'calc(100% - 64px)',
-      },
+})(
+  memoTheme(({ theme }) => ({
+    margin: 32,
+    position: 'relative',
+    '@media print': {
+      overflowY: 'visible',
+      boxShadow: 'none',
     },
-  }),
-  ...(ownerState.maxWidth &&
-    ownerState.maxWidth !== 'xs' && {
-      maxWidth: `${theme.breakpoints.values[ownerState.maxWidth]}${theme.breakpoints.unit}`,
-      [`&.${dialogClasses.paperScrollBody}`]: {
-        [theme.breakpoints.down(theme.breakpoints.values[ownerState.maxWidth] + 32 * 2)]: {
+    variants: [
+      {
+        props: {
+          scroll: 'paper',
+        },
+        style: {
+          display: 'flex',
+          flexDirection: 'column',
+          maxHeight: 'calc(100% - 64px)',
+        },
+      },
+      {
+        props: {
+          scroll: 'body',
+        },
+        style: {
+          display: 'inline-block',
+          verticalAlign: 'middle',
+          textAlign: 'initial',
+        },
+      },
+      {
+        props: ({ ownerState }) => !ownerState.maxWidth,
+        style: {
           maxWidth: 'calc(100% - 64px)',
         },
       },
-    }),
-  ...(ownerState.fullWidth && {
-    width: 'calc(100% - 64px)',
-  }),
-  ...(ownerState.fullScreen && {
-    margin: 0,
-    width: '100%',
-    maxWidth: '100%',
-    height: '100%',
-    maxHeight: 'none',
-    borderRadius: 0,
-    [`&.${dialogClasses.paperScrollBody}`]: {
-      margin: 0,
-      maxWidth: '100%',
-    },
-  }),
-}));
+      {
+        props: {
+          maxWidth: 'xs',
+        },
+        style: {
+          maxWidth:
+            theme.breakpoints.unit === 'px'
+              ? Math.max(theme.breakpoints.values.xs, 444)
+              : `max(${theme.breakpoints.values.xs}${theme.breakpoints.unit}, 444px)`,
+          [`&.${dialogClasses.paperScrollBody}`]: {
+            [theme.breakpoints.down(Math.max(theme.breakpoints.values.xs, 444) + 32 * 2)]: {
+              maxWidth: 'calc(100% - 64px)',
+            },
+          },
+        },
+      },
+      ...Object.keys(theme.breakpoints.values)
+        .filter((maxWidth) => maxWidth !== 'xs')
+        .map((maxWidth) => ({
+          props: { maxWidth },
+          style: {
+            maxWidth: `${theme.breakpoints.values[maxWidth]}${theme.breakpoints.unit}`,
+            [`&.${dialogClasses.paperScrollBody}`]: {
+              [theme.breakpoints.down(theme.breakpoints.values[maxWidth] + 32 * 2)]: {
+                maxWidth: 'calc(100% - 64px)',
+              },
+            },
+          },
+        })),
+      {
+        props: ({ ownerState }) => ownerState.fullWidth,
+        style: {
+          width: 'calc(100% - 64px)',
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.fullScreen,
+        style: {
+          margin: 0,
+          width: '100%',
+          maxWidth: '100%',
+          height: '100%',
+          maxHeight: 'none',
+          borderRadius: 0,
+          [`&.${dialogClasses.paperScrollBody}`]: {
+            margin: 0,
+            maxWidth: '100%',
+          },
+        },
+      },
+    ],
+  })),
+);
 
 /**
  * Dialogs are overlaid modal paper based components with a backdrop.
  */
 const Dialog = React.forwardRef(function Dialog(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiDialog' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiDialog' });
   const theme = useTheme();
   const defaultTransitionDuration = {
     enter: theme.transitions.duration.enteringScreen,
@@ -182,6 +226,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     fullWidth = false,
     maxWidth = 'sm',
     onBackdropClick,
+    onClick,
     onClose,
     open,
     PaperComponent = Paper,
@@ -211,6 +256,10 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     backdropClick.current = event.target === event.currentTarget;
   };
   const handleBackdropClick = (event) => {
+    if (onClick) {
+      onClick(event);
+    }
+
     // Ignore the events not coming from the "backdrop".
     if (!backdropClick.current) {
       return;
@@ -360,6 +409,10 @@ Dialog.propTypes /* remove-proptypes */ = {
    * @deprecated Use the `onClose` prop with the `reason` argument to handle the `backdropClick` events.
    */
   onBackdropClick: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
   /**
    * Callback fired when the component requests to be closed.
    *

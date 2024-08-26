@@ -12,7 +12,7 @@ authors:
     'danilo-leal',
     'mbrookes',
   ]
-card: true
+manualCard: true
 tags: ['Product', 'Material UI']
 ---
 
@@ -49,13 +49,13 @@ This release features some major highlights:
   - [Change of the package names](#change-of-the-package-names)
   - [Change of the styling solution](#change-of-the-styling-solution)
   - [Changes to the supported platforms](#changes-to-the-supported-platforms)
-- [Design kits](#design-kits)
+- [Design Kits](#design-kits)
 - [What's next?](#whats-next)
   - [A public roadmap](#a-public-roadmap)
   - [Unstyled components and hooks](#unstyled-components-and-hooks)
   - [Second design system](#second-design-system)
   - [MUI X](#mui-x)
-  - [Design kits](#design-kits-1)
+  - [Design Kits](#design-kits-1)
 - [Thank you](#thank-you)
 
 ## High-level goals for v5
@@ -165,7 +165,7 @@ For instance, you can add one unit of vertical margin with:
 
 <p class="blog-description"><a href="https://codesandbox.io/p/sandbox/nostalgic-williams-zmo5r?file=/src/App.js">CodeSandbox</a></p>
 
-Developers already seem to [love it](https://twitter.com/AnsonLowZF/status/1397034690771443715).
+Developers already seem to [love it](https://x.com/AnsonLowZF/status/1397034690771443715).
 You can find a [side-by-side comparison](https://mui.com/system/getting-started/usage/#why-use-mui-system) of `styled()` vs. `sx` in the documentation to determine when you should use the prop.
 Some developers use `sx` for everything, others only in simple cases.
 
@@ -477,7 +477,7 @@ Although each product has its unique vision and mission statements, they complem
   - Vision: Create the last UI component library developers will ever need. High quality, consistent, feature-rich, and covering the most frequent/challenging use-cases.
   - Mission: Make building rich, data-intensive, dynamic apps a breeze.
 
-MUI Core has a positive cash flow thanks to its paid templates, design assets, ads on the documentation, and backers/sponsors (❤️). The [MIT](https://tldrlegal.com/license/mit-license) license model works great for it.
+MUI Core has a positive cash flow thanks to its paid templates, design assets, ads on the documentation, and backers/sponsors (❤️). The [MIT](https://www.tldrlegal.com/license/mit-license) license model works great for it.
 
 However, none of these revenue sources would scale with the outcome and amount of work required for MUI X.
 It's why we are using an [open core license model](https://en.m.wikipedia.org/wiki/Open-core_model) for this new product.
@@ -660,7 +660,7 @@ This breaking change is an opportunity to drop the support of legacy upstream de
 
 These changes have allowed us to save [6 kB gzipped](https://github.com/mui/material-ui/pull/22814#issuecomment-700995216) on the `@mui/material` package.
 
-## Design kits
+## Design Kits
 
 We now have design kits for the MUI components available in the three main design tools out there: [Figma](https://mui.com/store/items/figma-react/), [Sketch](https://mui.com/store/items/sketch-react/), and [Adobe XD](https://mui.com/store/items/adobe-xd-react/). If you work together with a designer or team of designers, having them use the design kits makes for easier communication, as you'll be speaking the same language around the components. It'll also help designers to understand how the library is structured, especially theming features and each component prop, enabling much faster development.
 
@@ -754,7 +754,7 @@ We still have column pinning, tree data, grouping, pivoting, excel export, and m
 
 Once we would have grown the team and made enough progress, we will expand to a second component.
 
-### Design kits
+### Design Kits
 
 We plan to run extended research and surveys.
 We have already identified that accessibility is something leading companies care about.

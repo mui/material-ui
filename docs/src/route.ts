@@ -14,6 +14,7 @@ const ROUTES = {
   // Material UI doc pages
   materialDocs: '/material-ui/getting-started/',
   materialIcons: '/material-ui/material-icons/',
+  materialAllComponents: '/material-ui/all-components/',
   freeTemplates: '/material-ui/getting-started/templates/',
   components: '/material-ui/getting-started/supported-components/',
   customization: '/material-ui/customization/how-to-customize/',
@@ -49,8 +50,11 @@ const ROUTES = {
   // Tree View doc pages
   treeViewOverview: '/x/react-tree-view/',
   // Toolpad pages
-  toolpadDocs: '/toolpad/getting-started/',
-  toolpadStudioDocs: '/toolpad/studio/getting-started',
+  toolpadLandingPage: '/toolpad/',
+  toolpadStudioLandingPage: '/toolpad/studio/',
+  toolpadStudioDocs: '/toolpad/studio/getting-started/',
+  toolpadCoreDocs: '/toolpad/core/introduction/',
+  toolpadStudioWhy: '/toolpad/studio/getting-started/why-toolpad/',
   // External pages
   rssFeed: '/feed/blog/rss.xml',
   handbook: 'https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b',

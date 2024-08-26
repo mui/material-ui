@@ -54,14 +54,16 @@
     {
       "key": "lineHorizontal",
       "className": "MuiStepConnector-lineHorizontal",
-      "description": "Styles applied to the root element if `orientation=\"horizontal\"`.",
-      "isGlobal": false
+      "description": "Styles applied to the line element if `orientation=\"horizontal\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "lineVertical",
       "className": "MuiStepConnector-lineVertical",
-      "description": "Styles applied to the root element if `orientation=\"vertical\"`.",
-      "isGlobal": false
+      "description": "Styles applied to the line element if `orientation=\"vertical\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "root",

@@ -1,7 +1,7 @@
 // @ts-check
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Typography, { typographyClasses as classes } from '@mui/material/Typography';
 import describeConformance from '../../test/describeConformance';
 

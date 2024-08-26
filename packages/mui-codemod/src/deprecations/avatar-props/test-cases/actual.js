@@ -13,6 +13,16 @@ import { Avatar as MyAvatar } from '@mui/material';
     onLoad: () => {},
   }}
 />;
+<MyAvatar
+  imgProps={{
+    onLoad: () => {},
+  }}
+  slotProps={{
+    img: {
+      onError: () => {},
+    },
+  }}
+/>;
 
 // should skip non MUI components
 <NonMuiAvatar

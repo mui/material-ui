@@ -4,7 +4,7 @@ description: An update on our mission for Q2 2021.
 date: 2021-07-12T00:00:00.000Z
 authors: ['oliviertassinari', 'mbrookes']
 tags: ['Company']
-card: true
+manualCard: true
 ---
 
 This update covers our progress over the last three months.
@@ -15,7 +15,7 @@ It also covers what we aim to achieve in the months ahead.
 - [Product](#product)
   - [Core components](#core-components)
   - [Advanced components](#advanced-components)
-  - [Design kits](#design-kits)
+  - [Design Kits](#design-kits)
 - [Company](#company)
 - [Our roadmap intent for Q3 2021](#our-roadmap-intent-for-q3-2021)
 
@@ -134,7 +134,7 @@ The date picker is at the border between the core component and advanced compone
 - ⚡️ We have fixed support for components that use portals, like Select and Autocomplete, in the cell editing mode.
 - 🌏 We have accepted many new built-in locales (+15) from the community, after the introduction of [the feature](/x/react-data-grid/localization/#supported-locales) in Q1.
 
-### Design kits
+### Design Kits
 
 #### Figma
 
@@ -232,7 +232,7 @@ We have the following objectives:
 - 🗓 Execute on all of the items in the [public roadmap](https://github.com/mui/mui-x/projects/1).
 - ❓ Please upvote [GitHub issues](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
-### Design kits
+### Design Kits
 
 - Handle designers' pain and bug reports to polish the products.
 - Run a survey on thousands of customers to identify important improvement opportunities. Should we build plugins to more easily switch the token variables between design and code? Should we add more in context examples? Should we focus on inconsistencies? etc.

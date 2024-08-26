@@ -6,7 +6,7 @@ describe('animate', () => {
 
   before(function beforeHook() {
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-    const isJSDOM = navigator.userAgent === 'node.js';
+    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
     if (isJSDOM || isSafari) {
       // The test fails on Safari with just:
       //

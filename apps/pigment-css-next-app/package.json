@@ -9,27 +9,26 @@
     "clean": "rimraf .next"
   },
   "dependencies": {
-    "@pigment-css/react": "workspace:^",
+    "@mui/material-pigment-css": "workspace:^",
     "@mui/utils": "workspace:^",
     "@mui/base": "workspace:^",
+    "@mui/icons-material": "workspace:^",
     "@mui/lab": "workspace:^",
     "@mui/material": "workspace:^",
-    "@mui/system": "workspace:^",
     "@mui/material-nextjs": "workspace:^",
-    "@mui/icons-material": "workspace:^",
+    "@mui/system": "workspace:^",
     "@emotion/cache": "latest",
-    "local-ui-lib": "workspace:^",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "next": "latest"
+    "next": "latest",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@pigment-css/nextjs-plugin": "workspace:^",
+    "@pigment-css/nextjs-plugin": "0.0.20",
     "@types/node": "^20.5.7",
-    "@types/react": "^18.2.55",
-    "@types/react-dom": "^18.2.19",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
     "eslint": "^8.57.0",
-    "typescript": "^5.4.4"
+    "typescript": "^5.5.4"
   },
   "nx": {
     "targets": {

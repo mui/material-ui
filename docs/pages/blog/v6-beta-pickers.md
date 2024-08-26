@@ -4,7 +4,7 @@ description: Check out the new features coming in v6 beta.
 date: 2023-01-22T00:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'Product']
-card: true
+manualCard: true
 ---
 
 There's a lot of exciting news in [MUI X v6.0.0-beta.0](https://github.com/mui/mui-x/releases/v6.0.0-beta.0), but there's hardly anything comparable to the revamp we're delivering for the Date and Time Pickers.

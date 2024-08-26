@@ -6,6 +6,7 @@ githubLabel: 'component: slider'
 materialDesign: https://m2.material.io/components/sliders
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/
 unstyled: /base-ui/react-slider/
+githubSource: packages/mui-material/src/Slider
 ---
 
 # Slider
@@ -14,7 +15,7 @@ unstyled: /base-ui/react-slider/
 
 Sliders reflect a range of values along a bar, from which users may select a single value. They are ideal for adjusting settings such as volume, brightness, or applying image filters.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Continuous sliders
 

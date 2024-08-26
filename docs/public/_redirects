@@ -23,6 +23,7 @@
 /r/custom-component-variants /material-ui/customization/how-to-customize/#adding-new-component-variants 302
 /r/migration-v4 /material-ui/migration/migration-v4/ 302
 /r/discord https://discord.com/invite/tewQuNeUyS 302
+/r/pigment /blog/introducing-pigment-css/
 
 # Legacy redirection
 # Added in chronological order (the last line is the most recent one)
@@ -507,6 +508,10 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /material-ui/guides/right-to-left/ /material-ui/customization/right-to-left/ 301
 /material-ui/guides/pickers-migration/ /material-ui/migration/pickers-migration/ 301
 /material-ui/guides/styled-components/ /material-ui/integrations/styled-components/ 301
+/material-ui/experimental-api/css-theme-variables/migration/ /material-ui/migration/upgrade-to-v6/#cssvarsprovider-and-extendtheme 301
+/material-ui/experimental-api/css-theme-variables/overview/ /material-ui/customization/css-theme-variables/overview/ 301
+/material-ui/experimental-api/css-theme-variables/usage/ /material-ui/customization/css-theme-variables/usage/ 301
+/material-ui/experimental-api/css-theme-variables/customization/ /material-ui/customization/css-theme-variables/configuration/ 301
 
 # Proxies
 
@@ -527,13 +532,13 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /r/x-* https://material-ui-x.netlify.app/r/x-:splat 200
 /:lang/x/* https://material-ui-x.netlify.app/:lang/x/:splat 200
 
-## MUI Toolpad
+## Toolpad
 /static/toolpad/* https://mui-toolpad-docs.netlify.app/static/toolpad/:splat 200
 /toolpad/_next/* https://mui-toolpad-docs.netlify.app/_next/:splat 200
 /toolpad/* https://mui-toolpad-docs.netlify.app/toolpad/:splat 200
 /r/toolpad-* https://mui-toolpad-docs.netlify.app/r/toolpad-:splat 200
 
-### MUI Design kits
-/figma/getting-started/ https://mui-org.notion.site/MUI-for-Figma-docs-4eb22360388047a9a31fc19d300a285e 302
+### MUI Design Kits
+/figma/getting-started/ /material-ui/design-resources/material-ui-for-figma/ 302
 /r/material-ui-figma-* https://mui-store.netlify.app/r/material-ui-figma-:splat 200
 /r/joy-ui-figma-* https://mui-store.netlify.app/r/joy-ui-figma-:splat 200
