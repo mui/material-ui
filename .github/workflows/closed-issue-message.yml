@@ -11,7 +11,7 @@ permissions: {}
 jobs:
   add-comment:
     name: Add closing message
-    uses: mui/mui-public/.github/workflows/reusable/add-closing-message-to-issue.yml@master
+    uses: mui/mui-public/.github/workflows/reusable/add-closing-message-to-issue.yml@04275a99fe10cee127ee417b8a872cfebc7d08e7
     permissions:
       contents: read
       issues: write
