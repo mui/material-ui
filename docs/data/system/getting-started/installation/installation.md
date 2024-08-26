@@ -58,7 +58,7 @@ pnpm add @mui/system @mui/styled-engine-sc styled-components
 ```
 
 ```bash yarn
-yarn add @mui/system@next @mui/styled-engine-sc@next styled-components
+yarn add @mui/system @mui/styled-engine-sc styled-components
 ```
 
 </codeblock>

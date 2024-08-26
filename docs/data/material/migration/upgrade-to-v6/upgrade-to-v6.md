@@ -281,7 +281,7 @@ Additionally, the `true` value for the `size` prop was renamed to `"grow"`:
 Use this codemod to migrate your project to the new `size` and `offset` props:
 
 ```bash
-npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder>
+npx @mui/codemod@latest v6.0.0/grid-v2-props <path/to/folder>
 ```
 
 :::warning
@@ -300,7 +300,7 @@ The usage described above also applies to custom breakpoints:
 You can use the same codemod for custom breakpoints by providing the breakpoints as an argument:
 
 ```bash
-npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder> --jscodeshift='--muiBreakpoints=mobile,desktop'
+npx @mui/codemod@latest v6.0.0/grid-v2-props <path/to/folder> --jscodeshift='--muiBreakpoints=mobile,desktop'
 ```
 
 #### disableEqualOverflow prop removed
@@ -343,7 +343,7 @@ Still, we strongly recommend adopting this new behavior rather than trying to re
 Use this codemod to migrate your project to the `ListItemButton` component:
 
 ```bash
-npx @mui/codemod@next v6.0.0/list-item-button-prop <path/to/folder>
+npx @mui/codemod@latest v6.0.0/list-item-button-prop <path/to/folder>
 ```
 
 As the `ListItem` no longer supports these props, the class names related to these props were removed. You should use the `listItemButtonClasses` object instead.
@@ -462,9 +462,9 @@ Material UI v6 introduces a new utility for adding styles to specific color mod
 Use these codemods to migrate your project to `theme.applyStyles`:
 
 ```bash
-npx @mui/codemod@next v6.0.0/styled <path/to/folder-or-file>
-npx @mui/codemod@next v6.0.0/sx-prop <path/to/folder-or-file>
-npx @mui/codemod@next v6.0.0/theme-v6 <path/to/theme-file>
+npx @mui/codemod@latest v6.0.0/styled <path/to/folder-or-file>
+npx @mui/codemod@latest v6.0.0/sx-prop <path/to/folder-or-file>
+npx @mui/codemod@latest v6.0.0/theme-v6 <path/to/theme-file>
 ```
 
 :::info
