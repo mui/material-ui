@@ -1295,6 +1295,73 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
 All contributors of this release in alphabetical order: @aacevski, @brijeshb42, @cherniavskii, @cipherlogs, @danilo-leal, @DiegoAndai, @harry-whorlow, @Janpot, @joserodolfofreitas, @michael-land, @michaldudak, @mnajdova, @nekoya, @sai6855, @siriwatknp, @StylesTrip, @zanivan, @ZeeshanTamboli
 
+## 5.16.7
+
+<!-- generated comparing v5.16.6..master -->
+
+_Aug 9, 2024_
+
+A big thanks to the 3 contributors who made this release possible.
+
+### `@mui/material@5.16.7`
+
+- &#8203;<!-- 3 -->[material-ui][mui-system] Add support for version runtime checks (#43233) @DiegoAndai
+
+### Docs
+
+- &#8203;<!-- 4 -->[docs] Fix 301 @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 2 -->[website] Fix wrong link in pricing table (@zanivan) (#43143) @zanivan
+- &#8203;<!-- 1 -->[website] Add blog link to pricing table (@zanivan) (#43140) @zanivan
+
+All contributors of this release in alphabetical order: @DiegoAndai, @oliviertassinari, @zanivan
+
+## 5.16.6
+
+<!-- generated comparing v5.16.5..master -->
+
+_Jul 30, 2024_
+
+A big thanks to the 5 contributors who made this release possible.
+
+### `@mui/material@5.16.6`
+
+- [Divider] Enable borderStyle enhancement in divider with children (#43059) @anuujj
+
+### Docs
+
+- [material-ui][Card] Update CardMedia description (#43121) @shahzaibdev1
+- [material-ui] Replace deprecated `<ListItem button/>` with `ListItemButton` component in routing libraries list example (#43114) @aliharis99
+- [material-ui][Snackbar] Improve close `reason` type in demos (#43105) @sai6855
+
+### Core
+
+- [code-infra] Use the same CI names on master & next (#43064) @mnajdova
+
+All contributors of this release in alphabetical order: @aliharis99, @anuujj, @mnajdova, @sai6855, @shahzaibdev1
+
+## 5.16.5
+
+<!-- generated comparing v5.16.4..master -->
+
+_Jul 25, 2024_
+
+A big thanks to the 4 contributors who made this release possible.
+
+### `@mui/utils@5.16.5`
+
+- &#8203;<!-- 1 -->[utils] Add dependency to @mui/types (@mnajdova) (#43047) @mnajdova
+
+### Docs
+
+- &#8203;<!-- 4 -->[material-ui][joy-ui][Autocomplete] Fix `Hint` demo (@ManthanGajjar) (#43039) @ManthanGajjar
+- &#8203;<!-- 3 -->Fix CHANGELOG convention @oliviertassinari
+- &#8203;<!-- 2 -->[material-ui] Fix broken image links in blog template on master branch (#42969) @navedqb
+
+All contributors of this release in alphabetical order: @ManthanGajjar, @mnajdova, @navedqb, @oliviertassinari
+
 ## 5.16.4
 
 <!-- generated comparing v5.16.3..master -->
