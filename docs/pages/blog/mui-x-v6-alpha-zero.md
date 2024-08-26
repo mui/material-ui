@@ -96,7 +96,7 @@ It contains the highlights that will be included in the first versions.
   - [Enable customization through component slots on every component](https://github.com/mui/mui-x/issues/4466).
 
 :::info
-You can check our [roadmap](https://github.com/mui/mui-x/projects/1) for the full live list.
+You can check our [roadmap](https://github.com/orgs/mui/projects/35) for the full live list.
 :::
 
 ## How to migrate?
