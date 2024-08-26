@@ -11,10 +11,8 @@ Base UI is a library of headless ("unstyled") React components and low-level ho
 
 Install the package in your project directory with:
 
-<!-- #default-branch-switch -->
-
 ```bash
-npm install @mui/base@next
+npm install @mui/base
 ```
 
 ## Documentation
