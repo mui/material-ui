@@ -1,3 +1,4 @@
+'use client';
 export { default } from './BottomNavigation';
 
 export { default as bottomNavigationClasses } from './bottomNavigationClasses';
