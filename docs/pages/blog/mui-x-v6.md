@@ -284,7 +284,7 @@ Here's a list of what you can expect to be delivered in the following months (wh
 
 - Preview of chart components 🔥 ([mui-x#1408](https://github.com/mui/mui-x/issues/1408))
 
-You can get more details of our next steps in [MUI X public roadmap](https://github.com/mui/mui-x/projects/1).
+You can get more details of our next steps in [MUI X public roadmap](https://github.com/orgs/mui/projects/35).
 
 ## Decoupling versions from MUI Core
 
