@@ -14,11 +14,11 @@ import {
  *
  * Demos:
  *
- * - [Input](https://next.mui.com/base-ui/react-input/#hook)
+ * - [Input](https://mui.com/base-ui/react-input/#hook)
  *
  * API:
  *
- * - [useInput API](https://next.mui.com/base-ui/react-input/hooks-api/#use-input)
+ * - [useInput API](https://mui.com/base-ui/react-input/hooks-api/#use-input)
  */
 export function useInput(parameters: UseInputParameters = {}): UseInputReturnValue {
   const {

@@ -47,5 +47,5 @@ export const projectSettings: ProjectSettings = {
   generateClassName: generateUtilityClass,
   isGlobalClassName: isGlobalState,
   // #default-branch-switch
-  baseApiUrl: 'https://next.mui.com',
+  baseApiUrl: 'https://mui.com',
 };
