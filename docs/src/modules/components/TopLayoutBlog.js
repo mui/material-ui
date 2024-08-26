@@ -126,6 +126,21 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/717550?',
     github: 'brijeshb42',
   },
+  aarongarciah: {
+    name: 'Aarón García',
+    avatar: 'https://avatars.githubusercontent.com/u/7225802?',
+    github: 'aarongarciah',
+  },
+  zanivan: {
+    name: 'Victor Zanivan Monteiro',
+    avatar: 'https://avatars.githubusercontent.com/u/37222944?',
+    github: 'zanivan',
+  },
+  romgrk: {
+    name: 'Romain Gregoire',
+    avatar: 'https://avatars.githubusercontent.com/u/1423607',
+    github: 'romgrk',
+  },
 };
 
 const classes = {
