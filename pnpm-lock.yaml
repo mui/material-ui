@@ -2235,6 +2235,24 @@ importers:
 
   packages/waterfall: {}
 
+  scripts/sizeSnapshot:
+    dependencies:
+      '@mui/base':
+        specifier: workspace:^
+        version: link:../../packages/mui-base/build
+      '@mui/joy':
+        specifier: workspace:^
+        version: link:../../packages/mui-joy/build
+      '@mui/lab':
+        specifier: workspace:^
+        version: link:../../packages/mui-lab/build
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../packages/mui-material/build
+      '@mui/system':
+        specifier: workspace:^
+        version: link:../../packages/mui-system/build
+
   test:
     dependencies:
       '@react-spring/web':

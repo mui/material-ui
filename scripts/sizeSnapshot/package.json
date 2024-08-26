@@ -1,0 +1,12 @@
+{
+  "name": "size-snapshot",
+  "version": "1.0.0",
+  "description": "Size snapshot of MUI packages",
+  "dependencies": {
+    "@mui/lab": "workspace:^",
+    "@mui/base": "workspace:^",
+    "@mui/joy": "workspace:^",
+    "@mui/material": "workspace:^",
+    "@mui/system": "workspace:^"
+  }
+}

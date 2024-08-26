@@ -21,7 +21,7 @@ async function getWebpackEntries() {
 
       return {
         id: entryName,
-        path: path.relative(workspaceRoot, path.dirname(componentPath)),
+        import: `@mui/material/${componentName}/index.js`,
       };
     },
   );
@@ -33,12 +33,12 @@ async function getWebpackEntries() {
       let entryName = componentName;
 
       if (['Popper'].indexOf(componentName) !== -1) {
-        entryName = `@material-ui/core/${componentName}`;
+        entryName = `@material-ui/core/${componentName}/index.js`;
       }
 
       return {
         id: entryName,
-        path: path.relative(workspaceRoot, path.dirname(componentPath)),
+        import: `@mui/base/${componentName}/index.js`,
       };
     },
   );
@@ -50,7 +50,7 @@ async function getWebpackEntries() {
 
       return {
         id: componentName,
-        path: path.relative(workspaceRoot, path.dirname(componentPath)),
+        import: `@mui/lab/${componentName}/index.js`,
       };
     },
   );
@@ -62,7 +62,7 @@ async function getWebpackEntries() {
 
       return {
         id: `@mui/joy/${componentName}`,
-        path: path.relative(workspaceRoot, path.dirname(componentPath)),
+        import: `@mui/joy/${componentName}/index.js`,
       };
     },
   );
@@ -158,6 +158,7 @@ function createWebpackConfig(entry, environment) {
     mode: 'production',
     optimization: {
       concatenateModules,
+      minimize: false,
       minimizer: [
         new TerserPlugin({
           test: /\.js(\?.*)?$/i,
@@ -186,7 +187,12 @@ function createWebpackConfig(entry, environment) {
         reportFilename: `${entry.id}.html`,
       }),
     ],
-    entry: { [entry.id]: path.join(workspaceRoot, entry.path) },
+    context: entry.import ? __dirname : undefined,
+    entry: {
+      [entry.id]: entry.import
+        ? `data:text/javascript,import * as lib from ${JSON.stringify(entry.import)};console.log(lib);`
+        : path.join(workspaceRoot, entry.path),
+    },
     // TODO: 'browserslist:modern'
     // See https://github.com/webpack/webpack/issues/14203
     target: 'web',
