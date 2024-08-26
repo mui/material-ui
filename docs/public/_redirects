@@ -8,7 +8,7 @@
 /size-snapshot https://s3.eu-central-1.amazonaws.com/mui-org-ci/artifacts/master/latest/size-snapshot.json 200
 
 # To add when we finish work on v6
-# https://next.mui.com/* https://mui.com/:splat 301!
+https://next.mui.com/* https://mui.com/:splat 301!
 
 # For links that we can't edit later on, for example hosted in the code published on npm
 /r/styles-instance-warning /material-ui/getting-started/faq/#i-have-several-instances-of-styles-on-the-page 302
@@ -522,11 +522,12 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 ## MUI X
 ## Unlike the store that expect to be hosted under a subfolder,
 ## MUI X is configured to be hosted at the root.
-/static/x/* https://material-ui-x.netlify.app/static/x/:splat 200
-/x/_next/* https://material-ui-x.netlify.app/_next/:splat 200
-/x/* https://material-ui-x.netlify.app/x/:splat 200
-/r/x-* https://material-ui-x.netlify.app/r/x-:splat 200
-/:lang/x/* https://material-ui-x.netlify.app/:lang/x/:splat 200
+/static/x/* https://docs-v5--material-ui-x.netlify.app/static/x/:splat 200
+/static/* https://mui.com/static/:splat 200
+/x/_next/* https://docs-v5--material-ui-x.netlify.app/_next/:splat 200
+/x/* https://docs-v5--material-ui-x.netlify.app/x/:splat 200
+/r/x-* https://docs-v5--material-ui-x.netlify.app/r/x-:splat 200
+/:lang/x/* https://docs-v5--material-ui-x.netlify.app/:lang/x/:splat 200
 
 ## MUI Toolpad
 /static/toolpad/* https://mui-toolpad-docs.netlify.app/static/toolpad/:splat 200
