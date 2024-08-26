@@ -91,7 +91,6 @@ pnpm add @fontsource/roboto
 yarn add @fontsource/roboto
 ```
 
-
 </codeblock>
 
 Then you can import it in your entry point like this:
@@ -138,7 +137,6 @@ pnpm add @mui/icons-material
 ```bash yarn
 yarn add @mui/icons-material
 ```
-
 
 </codeblock>
 

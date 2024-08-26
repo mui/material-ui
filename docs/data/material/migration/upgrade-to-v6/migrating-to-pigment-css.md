@@ -30,12 +30,12 @@ First, install the Material UI wrapper package for Pigment CSS:
 npm install @mui/material-pigment-css
 ```
 
-```bash yarn
-yarn add @mui/material-pigment-css
-```
-
 ```bash pnpm
 pnpm add @mui/material-pigment-css
+```
+
+```bash yarn
+yarn add @mui/material-pigment-css
 ```
 
 </codeblock>
@@ -52,12 +52,12 @@ Install the Next.js plugin as a dev dependency:
 npm install --save-dev @pigment-css/nextjs-plugin
 ```
 
-```bash yarn
-yarn add -D @pigment-css/nextjs-plugin
-```
-
 ```bash pnpm
 pnpm add -D @pigment-css/nextjs-plugin
+```
+
+```bash yarn
+yarn add -D @pigment-css/nextjs-plugin
 ```
 
 </codeblock>
@@ -200,12 +200,12 @@ Otherwise you're now ready to start the development server:
 npm run dev
 ```
 
-```bash yarn
-yarn dev
-```
-
 ```bash pnpm
 pnpm dev
+```
+
+```bash yarn
+yarn dev
 ```
 
 </codeblock>
