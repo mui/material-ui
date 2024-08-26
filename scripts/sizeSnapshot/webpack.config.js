@@ -158,10 +158,9 @@ function createWebpackConfig(entry, environment) {
     mode: 'production',
     optimization: {
       concatenateModules,
-      minimize: false,
       minimizer: [
         new TerserPlugin({
-          test: /\.js(\?.*)?$/i,
+          test: /\.m?js(\?.*)?$/i,
         }),
       ],
     },
