@@ -1421,7 +1421,7 @@ importers:
         specifier: workspace:^
         version: link:../markdown
       '@mui/system':
-        specifier: ^5.0.0
+        specifier: ^5.0.0 || ^6.0.0
         version: 5.16.5(@emotion/react@11.13.0(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.0(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1)
       chai:
         specifier: ^4.4.1
