@@ -26,7 +26,7 @@ export interface NativeSelectProps
    * An `Input` element; does not have to be a material-ui specific `Input`.
    * @default <Input />
    */
-  input?: React.ReactElement<any, any>;
+  input?: React.ReactElement<unknown, any>;
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attributes) applied to the `select` element.
    */

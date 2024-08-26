@@ -17,7 +17,7 @@ export interface SpeedDialSlots {
    * @default {}
    */
   transition?: React.JSXElementConstructor<
-    TransitionProps & { children: React.ReactElement<any, any> }
+    TransitionProps & { children: React.ReactElement<unknown, any> }
   >;
 }
 

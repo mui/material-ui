@@ -37,7 +37,7 @@ export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDi
   /**
    * Replace the `SnackbarContent` component.
    */
-  children?: React.ReactElement<any, any>;
+  children?: React.ReactElement<unknown, any>;
   /**
    * Override or extend the styles applied to the component.
    */
@@ -98,7 +98,7 @@ export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDi
    * @default Grow
    */
   TransitionComponent?: React.JSXElementConstructor<
-    TransitionProps & { children: React.ReactElement<any, any> }
+    TransitionProps & { children: React.ReactElement<unknown, any> }
   >;
   /**
    * The duration for the transition, in milliseconds.

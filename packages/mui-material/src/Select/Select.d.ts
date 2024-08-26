@@ -63,7 +63,7 @@ export interface BaseSelectProps<Value = unknown>
   /**
    * An `Input` element; does not have to be a material-ui specific `Input`.
    */
-  input?: React.ReactElement<any, any>;
+  input?: React.ReactElement<unknown, any>;
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
    * When `native` is `true`, the attributes are applied on the `select` element.

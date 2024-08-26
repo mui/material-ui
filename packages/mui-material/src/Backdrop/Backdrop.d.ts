@@ -19,7 +19,7 @@ export interface BackdropSlots {
    * @default Fade
    */
   transition?: React.JSXElementConstructor<
-    TransitionProps & { children: React.ReactElement<any, any> }
+    TransitionProps & { children: React.ReactElement<unknown, any> }
   >;
 }
 export interface BackdropComponentsPropsOverrides {}
@@ -100,7 +100,7 @@ export interface BackdropOwnProps
    */
   TransitionComponent?: React.JSXElementConstructor<
     TransitionProps & {
-      children: React.ReactElement<any, any>;
+      children: React.ReactElement<unknown, any>;
     }
   >;
 }

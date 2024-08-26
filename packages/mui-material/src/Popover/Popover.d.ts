@@ -146,7 +146,7 @@ export interface PopoverProps
    * @default Grow
    */
   TransitionComponent?: React.JSXElementConstructor<
-    TransitionProps & { children: React.ReactElement<any, any> }
+    TransitionProps & { children: React.ReactElement<unknown, any> }
   >;
   /**
    * Set to 'auto' to automatically calculate transition time based on height.
