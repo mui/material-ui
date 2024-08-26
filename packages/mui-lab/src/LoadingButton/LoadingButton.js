@@ -2,7 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { chainPropTypes } from '@mui/utils';
-import { capitalize, unstable_useId as useId } from '@mui/material/utils';
+import {
+  capitalize,
+  unstable_useId as useId,
+  unstable_memoTheme as memoTheme,
+} from '@mui/material/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useDefaultProps } from '@mui/material/DefaultPropsProvider';
 import Button from '@mui/material/Button';
@@ -52,57 +56,59 @@ const LoadingButtonRoot = styled(Button, {
       },
     ];
   },
-})(({ theme }) => ({
-  display: 'inline-flex',
-  [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
-    {
-      transition: theme.transitions.create(['opacity'], {
-        duration: theme.transitions.duration.short,
-      }),
-      opacity: 0,
-    },
-  variants: [
-    {
-      props: {
-        loadingPosition: 'center',
-      },
-      style: {
-        transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
+})(
+  memoTheme(({ theme }) => ({
+    display: 'inline-flex',
+    [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
+      {
+        transition: theme.transitions.create(['opacity'], {
           duration: theme.transitions.duration.short,
         }),
-        [`&.${loadingButtonClasses.loading}`]: {
-          color: 'transparent',
+        opacity: 0,
+      },
+    variants: [
+      {
+        props: {
+          loadingPosition: 'center',
+        },
+        style: {
+          transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
+            duration: theme.transitions.duration.short,
+          }),
+          [`&.${loadingButtonClasses.loading}`]: {
+            color: 'transparent',
+          },
         },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.loadingPosition === 'start' && ownerState.fullWidth,
-      style: {
-        [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
-          {
-            transition: theme.transitions.create(['opacity'], {
-              duration: theme.transitions.duration.short,
-            }),
-            opacity: 0,
-            marginRight: -8,
-          },
+      {
+        props: ({ ownerState }) => ownerState.loadingPosition === 'start' && ownerState.fullWidth,
+        style: {
+          [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
+            {
+              transition: theme.transitions.create(['opacity'], {
+                duration: theme.transitions.duration.short,
+              }),
+              opacity: 0,
+              marginRight: -8,
+            },
+        },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.loadingPosition === 'end' && ownerState.fullWidth,
-      style: {
-        [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
-          {
-            transition: theme.transitions.create(['opacity'], {
-              duration: theme.transitions.duration.short,
-            }),
-            opacity: 0,
-            marginLeft: -8,
-          },
+      {
+        props: ({ ownerState }) => ownerState.loadingPosition === 'end' && ownerState.fullWidth,
+        style: {
+          [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
+            {
+              transition: theme.transitions.create(['opacity'], {
+                duration: theme.transitions.duration.short,
+              }),
+              opacity: 0,
+              marginLeft: -8,
+            },
+        },
       },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 const LoadingButtonLoadingIndicator = styled('span', {
   name: 'MuiLoadingButton',
@@ -114,87 +120,89 @@ const LoadingButtonLoadingIndicator = styled('span', {
       styles[`loadingIndicator${capitalize(ownerState.loadingPosition)}`],
     ];
   },
-})(({ theme }) => ({
-  position: 'absolute',
-  visibility: 'visible',
-  display: 'flex',
-  variants: [
-    {
-      props: {
-        loadingPosition: 'start',
-        size: 'small',
+})(
+  memoTheme(({ theme }) => ({
+    position: 'absolute',
+    visibility: 'visible',
+    display: 'flex',
+    variants: [
+      {
+        props: {
+          loadingPosition: 'start',
+          size: 'small',
+        },
+        style: {
+          left: 10,
+        },
       },
-      style: {
-        left: 10,
+      {
+        props: ({ loadingPosition, ownerState }) =>
+          loadingPosition === 'start' && ownerState.size !== 'small',
+        style: {
+          left: 14,
+        },
       },
-    },
-    {
-      props: ({ loadingPosition, ownerState }) =>
-        loadingPosition === 'start' && ownerState.size !== 'small',
-      style: {
-        left: 14,
+      {
+        props: {
+          variant: 'text',
+          loadingPosition: 'start',
+        },
+        style: {
+          left: 6,
+        },
       },
-    },
-    {
-      props: {
-        variant: 'text',
-        loadingPosition: 'start',
+      {
+        props: {
+          loadingPosition: 'center',
+        },
+        style: {
+          left: '50%',
+          transform: 'translate(-50%)',
+          color: (theme.vars || theme).palette.action.disabled,
+        },
       },
-      style: {
-        left: 6,
+      {
+        props: {
+          loadingPosition: 'end',
+          size: 'small',
+        },
+        style: {
+          right: 10,
+        },
       },
-    },
-    {
-      props: {
-        loadingPosition: 'center',
+      {
+        props: ({ loadingPosition, ownerState }) =>
+          loadingPosition === 'end' && ownerState.size !== 'small',
+        style: {
+          right: 14,
+        },
       },
-      style: {
-        left: '50%',
-        transform: 'translate(-50%)',
-        color: (theme.vars || theme).palette.action.disabled,
+      {
+        props: {
+          variant: 'text',
+          loadingPosition: 'end',
+        },
+        style: {
+          right: 6,
+        },
       },
-    },
-    {
-      props: {
-        loadingPosition: 'end',
-        size: 'small',
+      {
+        props: ({ ownerState }) => ownerState.loadingPosition === 'start' && ownerState.fullWidth,
+        style: {
+          position: 'relative',
+          left: -10,
+        },
       },
-      style: {
-        right: 10,
+      {
+        props: ({ ownerState }) => ownerState.loadingPosition === 'end' && ownerState.fullWidth,
+        style: {
+          position: 'relative',
+          right: -10,
+        },
       },
-    },
-    {
-      props: ({ loadingPosition, ownerState }) =>
-        loadingPosition === 'end' && ownerState.size !== 'small',
-      style: {
-        right: 14,
-      },
-    },
-    {
-      props: {
-        variant: 'text',
-        loadingPosition: 'end',
-      },
-      style: {
-        right: 6,
-      },
-    },
-    {
-      props: ({ ownerState }) => ownerState.loadingPosition === 'start' && ownerState.fullWidth,
-      style: {
-        position: 'relative',
-        left: -10,
-      },
-    },
-    {
-      props: ({ ownerState }) => ownerState.loadingPosition === 'end' && ownerState.fullWidth,
-      style: {
-        position: 'relative',
-        right: -10,
-      },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 const LoadingButtonLabel = styled('span', {
   name: 'MuiLoadingButton',
