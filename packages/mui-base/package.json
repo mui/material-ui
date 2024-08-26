@@ -43,7 +43,7 @@
     "@babel/runtime": "^7.25.0",
     "@floating-ui/react-dom": "^2.1.1",
     "@mui/types": "workspace:^",
-    "@mui/utils": "workspace:*",
+    "@mui/utils": "workspace:^",
     "@popperjs/core": "^2.11.8",
     "clsx": "^2.1.1",
     "prop-types": "^15.8.1"

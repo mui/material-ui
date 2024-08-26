@@ -41,9 +41,9 @@
     "@babel/runtime": "^7.25.0",
     "@mui/base": "workspace:*",
     "@mui/core-downloads-tracker": "workspace:^",
-    "@mui/system": "workspace:*",
+    "@mui/system": "workspace:^",
     "@mui/types": "workspace:^",
-    "@mui/utils": "workspace:*",
+    "@mui/utils": "workspace:^",
     "clsx": "^2.1.1",
     "prop-types": "^15.8.1"
   },
