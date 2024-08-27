@@ -1,6 +1,6 @@
-import systemMemoTheme from '@mui/system/memoTheme';
+import { unstable_memoTheme } from '@mui/system';
 import { Theme } from '../styles/createTheme';
 
-const memoTheme = systemMemoTheme<Theme>;
+const memoTheme = unstable_memoTheme<Theme>;
 
 export default memoTheme;
