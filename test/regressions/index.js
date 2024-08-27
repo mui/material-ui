@@ -33,14 +33,14 @@ importRegressionFixtures.keys().forEach((path) => {
 }, []);
 
 const blacklist = [
-  // Blog Components
+  // Blog template components and theme customizations
   'docs-getting-started-templates-blog/Blog.png',
+  'docs-getting-started-templates-blog/TemplateFrame.png',
   'docs-getting-started-templates-blog-components/AppAppbar.png',
   'docs-getting-started-templates-blog-components/Footer.png',
   'docs-getting-started-templates-blog-components/Latest.png',
   'docs-getting-started-templates-blog-components/SitemarkIcon.png',
   'docs-getting-started-templates-blog-components/ToggleColorMode.png',
-  // Blog Theme Customizations
   'docs-getting-started-templates-blog-theme-customizations/buttons.png',
   'docs-getting-started-templates-blog-theme-customizations/index.png',
   'docs-getting-started-templates-blog-theme-customizations/inputs.png',
@@ -49,6 +49,7 @@ const blacklist = [
   'docs-getting-started-templates-blog-theme-customizations/others.png',
   // Dashboard template components and theme customizations
   'docs-getting-started-templates-dashboard/Dashboard.png',
+  'docs-getting-started-templates-dashboard/TemplateFrame.png',
   'docs-getting-started-templates-dashboard-components/ChartUserByCountry.png',
   'docs-getting-started-templates-dashboard-components/CustomDatePicker.png',
   'docs-getting-started-templates-dashboard-components/CustomizedDataGrid.png',
@@ -77,18 +78,23 @@ const blacklist = [
   'docs-getting-started-templates-dashboard-theme-customizations/treeView.png',
   'docs-getting-started-templates-dashboard-internals-components/CustomIcons.png',
   // Sign-In/Sign-Up Theme Customizations
+  'docs-getting-started-templates-sign-in-side/TemplateFrame.png',
   'docs-getting-started-templates-sign-in-side-theme-customizations/index.png',
   'docs-getting-started-templates-sign-in-side/CustomIcons.png',
+  'docs-getting-started-templates-sign-in/TemplateFrame.png',
   'docs-getting-started-templates-sign-in-theme-customizations/index.png',
   'docs-getting-started-templates-sign-in/CustomIcons.png',
+  'docs-getting-started-templates-sign-up/TemplateFrame.png',
   'docs-getting-started-templates-sign-up-theme-customizations/index.png',
   'docs-getting-started-templates-sign-in-side/getSignInSideTheme.png',
   'docs-getting-started-templates-sign-up/CustomIcons.png',
   'docs-getting-started-templates-sign-up/getSignUpTheme.png',
   // Checkout Theme Customizations
+  'docs-getting-started-templates-checkout/TemplateFrame.png',
   'docs-getting-started-templates-checkout-theme-customizations/index.png',
   'docs-getting-started-templates-checkout/getCheckoutTheme.png',
   // Marketing Page Theme Customizations
+  'docs-getting-started-templates-marketing-page/TemplateFrame.png',
   'docs-getting-started-templates-marketing-page/getMPTheme.png',
   'docs-getting-started-templates-marketing-page/MarketingPage.png',
   'docs-getting-started-templates-marketing-page-theme-customizations/index.png',

@@ -1,11 +1,7 @@
 import * as React from 'react';
-import {
-  createTheme,
-  ThemeProvider,
-  PaletteMode,
-  styled,
-} from '@mui/material/styles';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import PropTypes from 'prop-types';
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
@@ -13,13 +9,12 @@ import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import Container from '@mui/material/Container';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
-import ToggleColorMode from './ToggleColorMode';
-import getSignInSideTheme from './theme/getSignInSideTheme';
+import ToggleColorMode from './components/ToggleColorMode';
+import getBlogTheme from './theme/getBlogTheme';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
-  position: 'fixed',
+  position: 'relative',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
@@ -29,35 +24,35 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
   boxShadow: theme.shadows[1],
   backgroundImage: 'none',
-  padding: 4,
+  zIndex: theme.zIndex.drawer + 1,
+  flex: '0 0 auto',
 }));
 
-interface NavBarProps {
-  showCustomTheme: boolean;
-  toggleCustomTheme: (theme: boolean) => void;
-  mode: PaletteMode;
-  toggleColorMode: () => void;
-}
-
-export default function NavBar({
+function TemplateFrame({
   showCustomTheme,
   toggleCustomTheme,
   mode,
   toggleColorMode,
-}: NavBarProps) {
-  const handleChange = (event: SelectChangeEvent) => {
+  children,
+}) {
+  const handleChange = (event) => {
     toggleCustomTheme(event.target.value === 'custom');
   };
-  const signSideInTheme = createTheme(getSignInSideTheme(mode));
+  const blogTheme = createTheme(getBlogTheme(mode));
 
   return (
-    <ThemeProvider theme={signSideInTheme}>
-      <StyledAppBar>
-        <Container maxWidth="lg">
+    <ThemeProvider theme={blogTheme}>
+      <Box sx={{ height: '100dvh', display: 'flex', flexDirection: 'column' }}>
+        <StyledAppBar>
           <Toolbar
             variant="dense"
             disableGutters
-            sx={{ display: 'flex', justifyContent: 'space-between' }}
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              width: '100%',
+              p: '8px 12px',
+            }}
           >
             <Button
               variant="text"
@@ -100,8 +95,19 @@ export default function NavBar({
               />
             </Box>
           </Toolbar>
-        </Container>
-      </StyledAppBar>
+        </StyledAppBar>
+        <Box sx={{ flex: '1 1', overflow: 'auto' }}>{children}</Box>
+      </Box>
     </ThemeProvider>
   );
 }
+
+TemplateFrame.propTypes = {
+  children: PropTypes.node,
+  mode: PropTypes.oneOf(['dark', 'light']).isRequired,
+  showCustomTheme: PropTypes.bool.isRequired,
+  toggleColorMode: PropTypes.func.isRequired,
+  toggleCustomTheme: PropTypes.func.isRequired,
+};
+
+export default TemplateFrame;
