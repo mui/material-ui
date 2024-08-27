@@ -35,15 +35,14 @@ export function internal_processStyles(tag, processor) {
   if (Array.isArray(tag.__emotion_styles)) {
     tag.__emotion_styles = processor(tag.__emotion_styles);
   }
-};
-
-const wrapper = []
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export function internal_serializeStyles(styles) {
-  wrapper[0] = styles
-  return emSerializeStyles(wrapper);
 }
 
+const wrapper = [];
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function internal_serializeStyles(styles) {
+  wrapper[0] = styles;
+  return emSerializeStyles(wrapper);
+}
 
 export { ThemeContext, keyframes, css } from '@emotion/react';
 export { default as StyledEngineProvider } from './StyledEngineProvider';

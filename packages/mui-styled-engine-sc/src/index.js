@@ -46,7 +46,7 @@ export function internal_processStyles(tag, processor) {
   if (tag.componentStyle) {
     tag.componentStyle.rules = processor(tag.componentStyle.rules);
   }
-};
+}
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function internal_serializeStyles(styles) {

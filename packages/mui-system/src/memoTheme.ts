@@ -1,7 +1,6 @@
 import { CSSInterpolation } from './index.d';
 import preprocessStyles from './preprocessStyles';
 
-
 type ThemeStyleFunction<T> = (props: { theme: T }) => CSSInterpolation;
 
 // We need to pass an argument as `{ theme }` for PigmentCSS, but we don't want to
@@ -12,7 +11,7 @@ const arg = { theme: undefined as any };
  * Memoize style function on theme.
  * Intended to be used in styled() calls that only need access to the theme.
  */
-export default function memoTheme<T>(styleFn: ThemeStyleFunction<T>) {
+export default function unstable_memoTheme<T>(styleFn: ThemeStyleFunction<T>) {
   let lastValue: CSSInterpolation;
   let lastTheme: T;
 

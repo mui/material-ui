@@ -1,27 +1,26 @@
 import { internal_serializeStyles } from '@mui/styled-engine';
 
-export default function preprocessStyles(styles: any) {
-  const variants = styles.variants
+export default function preprocessStyles(input: any) {
+  const { variants, ...style } = input;
 
-  // Avoid passing `style.variants` to emotion, it will pollute the styles.
-  if (variants) { styles.variants = undefined }
-  const serialized = internal_serializeStyles(styles) as any
-  if (variants) { styles.variants = variants }
+  const result = {
+    variants,
+    style: internal_serializeStyles(style) as any,
+    isProcessed: true,
+  };
 
   // Not supported on styled-components
-  if (serialized === styles) {
-    return styles;
+  if (result.style === style) {
+    return result;
   }
 
   if (variants) {
     variants.forEach((variant: any) => {
       if (typeof variant.style !== 'function') {
-        variant.style = internal_serializeStyles(variant.style)
+        variant.style = internal_serializeStyles(variant.style);
       }
-    })
-
-    serialized.variants = variants
+    });
   }
 
-  return serialized;
+  return result;
 }
