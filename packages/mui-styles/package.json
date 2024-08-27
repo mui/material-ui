@@ -59,7 +59,7 @@
     "@mui/internal-test-utils": "workspace:^",
     "@mui/material": "workspace:^",
     "@types/chai": "^4.3.17",
-    "@types/react": "^18.3.3",
+    "@types/react": "^18.3.4",
     "@types/react-dom": "^18.3.0",
     "@types/sinon": "^17.0.3",
     "chai": "^4.5.0",
