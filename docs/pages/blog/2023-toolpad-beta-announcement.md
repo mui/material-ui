@@ -98,7 +98,7 @@ Lastly, Toolpad is the only product that offers a drag-and-drop UI builder close
 ## How can I use Toolpad?
 
 Toolpad is available as an npm package. Follow the [Installation guide](https://mui.com/toolpad/studio/getting-started/installation/) in the docs to get started.
-You can learn more about Toolpad by visiting the [home page](https://mui.com/toolpad/).
+You can learn more about Toolpad by visiting the [home page](https://mui.com/toolpad/studio/).
 
 <img alt="Toolpad documentation and instructions on how to use it" src="/static/blog/2023-toolpad-beta-announcement/docs.png" loading="lazy" width="2400" height="1394" />
 
