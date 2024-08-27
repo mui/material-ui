@@ -19,7 +19,7 @@ export interface BackdropSlots {
    * @default Fade
    */
   transition?: React.JSXElementConstructor<
-    TransitionProps & { children: React.ReactElement<any, any> }
+    TransitionProps & { children: React.ReactElement<unknown, any> }
   >;
 }
 export interface BackdropComponentsPropsOverrides {}
@@ -100,7 +100,7 @@ export interface BackdropOwnProps
    */
   TransitionComponent?: React.JSXElementConstructor<
     TransitionProps & {
-      children: React.ReactElement<any, any>;
+      children: React.ReactElement<unknown, any>;
     }
   >;
 }
@@ -121,12 +121,12 @@ export declare const BackdropRoot: React.FC<BackdropRootProps>;
  *
  * Demos:
  *
- * - [Backdrop](https://next.mui.com/material-ui/react-backdrop/)
+ * - [Backdrop](https://mui.com/material-ui/react-backdrop/)
  *
  * API:
  *
- * - [Backdrop API](https://next.mui.com/material-ui/api/backdrop/)
- * - inherits [Fade API](https://next.mui.com/material-ui/api/fade/)
+ * - [Backdrop API](https://mui.com/material-ui/api/backdrop/)
+ * - inherits [Fade API](https://mui.com/material-ui/api/fade/)
  */
 declare const Backdrop: OverridableComponent<BackdropTypeMap>;
 

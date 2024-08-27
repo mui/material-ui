@@ -15,8 +15,8 @@ import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import UnfoldMoreRounded from '@mui/icons-material/UnfoldMoreRounded';
 import { Link } from '@mui/docs/Link';
 import IconImage from 'docs/src/components/icon/IconImage';
-import LicensingModelSwitch from 'docs/src/components/pricing/LicensingModelSwitch';
-import { useLicensingModel } from 'docs/src/components/pricing/LicensingModelContext';
+import LicenseModelSwitch from 'docs/src/components/pricing/LicenseModelSwitch';
+import { useLicenseModel } from 'docs/src/components/pricing/LicenseModelContext';
 
 const planInfo = {
   community: {
@@ -92,8 +92,8 @@ interface PlanPriceProps {
 export function PlanPrice(props: PlanPriceProps) {
   const { plan } = props;
 
-  const { licensingModel } = useLicensingModel();
-  const annual = licensingModel === 'annual';
+  const { licenseModel } = useLicenseModel();
+  const annual = licenseModel === 'annual';
   const planPriceMinHeight = 64;
 
   if (plan === 'community') {
@@ -136,7 +136,7 @@ export function PlanPrice(props: PlanPriceProps) {
 
     return (
       <React.Fragment>
-        <LicensingModelSwitch />
+        <LicenseModelSwitch />
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
           <Typography
             variant="h3"
@@ -198,7 +198,7 @@ export function PlanPrice(props: PlanPriceProps) {
 
   return (
     <React.Fragment>
-      <LicensingModelSwitch />
+      <LicenseModelSwitch />
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
         <Typography
           variant="caption"
@@ -1196,22 +1196,22 @@ function renderMasterRow(key: string, gridSx: object, plans: Array<any>) {
 
 function PricingTableDevelopment(props: any) {
   const { renderRow } = props;
-  const { licensingModel } = useLicensingModel();
+  const { licenseModel } = useLicenseModel();
 
-  return licensingModel === 'annual'
+  return licenseModel === 'annual'
     ? renderRow('mui-x-development')
     : renderRow('mui-x-development-perpetual');
 }
 
 function PricingTableBuyPro() {
-  const { licensingModel } = useLicensingModel();
+  const { licenseModel } = useLicenseModel();
 
   return (
     <Button
       component={Link}
       noLinkStyle
       href={
-        licensingModel === 'annual'
+        licenseModel === 'annual'
           ? 'https://mui.com/store/items/mui-x-pro/'
           : 'https://mui.com/store/items/mui-x-pro-perpetual/'
       }
@@ -1225,14 +1225,14 @@ function PricingTableBuyPro() {
 }
 
 function PricingTableBuyPremium() {
-  const { licensingModel } = useLicensingModel();
+  const { licenseModel } = useLicenseModel();
 
   return (
     <Button
       component={Link}
       noLinkStyle
       href={
-        licensingModel === 'annual'
+        licenseModel === 'annual'
           ? 'https://mui.com/store/items/mui-x-premium/'
           : 'https://mui.com/store/items/mui-x-premium-perpetual/'
       }

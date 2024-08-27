@@ -19,7 +19,7 @@ export interface AccordionSlots {
    * @default Collapse
    */
   transition?: React.JSXElementConstructor<
-    TransitionProps & { children?: React.ReactElement<any, any> }
+    TransitionProps & { children?: React.ReactElement<unknown, any> }
   >;
 }
 
@@ -92,7 +92,7 @@ export type AccordionTypeMap<
        * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
        */
       TransitionComponent?: React.JSXElementConstructor<
-        TransitionProps & { children?: React.ReactElement<any, any> }
+        TransitionProps & { children?: React.ReactElement<unknown, any> }
       >;
       /**
        * Props applied to the transition element.
@@ -109,12 +109,12 @@ export type AccordionTypeMap<
  *
  * Demos:
  *
- * - [Accordion](https://next.mui.com/material-ui/react-accordion/)
+ * - [Accordion](https://mui.com/material-ui/react-accordion/)
  *
  * API:
  *
- * - [Accordion API](https://next.mui.com/material-ui/api/accordion/)
- * - inherits [Paper API](https://next.mui.com/material-ui/api/paper/)
+ * - [Accordion API](https://mui.com/material-ui/api/accordion/)
+ * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
  */
 declare const Accordion: OverridableComponent<AccordionTypeMap>;
 
