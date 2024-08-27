@@ -75,7 +75,7 @@ function withDocsInfra(nextConfig) {
     experimental: {
       scrollRestoration: true,
       esmExternals: false,
-      workerThreads: true,
+      workerThreads: false,
       cpus: 3,
       ...nextConfig.experimental,
     },
