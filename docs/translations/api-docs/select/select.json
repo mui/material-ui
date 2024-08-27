@@ -28,13 +28,13 @@
       "description": "<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes\">Attributes</a> applied to the <code>input</code> element. When <code>native</code> is <code>true</code>, the attributes are applied on the <code>select</code> element."
     },
     "label": {
-      "description": "See <a href=\"https://next.mui.com/material-ui/api/outlined-input/#props\">OutlinedInput#label</a>"
+      "description": "See <a href=\"https://mui.com/material-ui/api/outlined-input/#props\">OutlinedInput#label</a>"
     },
     "labelId": {
       "description": "The ID of an element that acts as an additional label. The Select will be labelled by the additional label and the selected value."
     },
     "MenuProps": {
-      "description": "Props applied to the <a href=\"https://next.mui.com/material-ui/api/menu/\"><code>Menu</code></a> element."
+      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/menu/\"><code>Menu</code></a> element."
     },
     "multiple": {
       "description": "If <code>true</code>, <code>value</code> must be an array and the menu will support multiple selections."

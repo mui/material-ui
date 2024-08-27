@@ -798,7 +798,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/).
    *
    * @default {}
    */
@@ -812,7 +812,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/).
    *
    * @default {}
    */
@@ -926,7 +926,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
    */
   PopperComponent: PropTypes.elementType,
   /**
-   * Props applied to the [`Popper`](https://next.mui.com/material-ui/api/popper/) element.
+   * Props applied to the [`Popper`](https://mui.com/material-ui/api/popper/) element.
    * @default {}
    */
   PopperProps: PropTypes.object,
@@ -971,7 +971,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
   title: PropTypes.node,
   /**
    * The component used for the transition.
-   * [Follow this guide](https://next.mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Grow
    */
   TransitionComponent: PropTypes.elementType,

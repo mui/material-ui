@@ -40,7 +40,7 @@ export interface RatingProps
    * Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating.
    * This is important for screen reader users.
    *
-   * For localization purposes, you can use the provided [translations](https://next.mui.com/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @param {number} value The rating label's value to format.
    * @returns {string}
    * @default function defaultLabelText(value) {

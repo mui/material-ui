@@ -12,10 +12,10 @@
     "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },
     "StepIconComponent": {
-      "description": "The component to render in place of the <a href=\"https://next.mui.com/material-ui/api/step-icon/\"><code>StepIcon</code></a>."
+      "description": "The component to render in place of the <a href=\"https://mui.com/material-ui/api/step-icon/\"><code>StepIcon</code></a>."
     },
     "StepIconProps": {
-      "description": "Props applied to the <a href=\"https://next.mui.com/material-ui/api/step-icon/\"><code>StepIcon</code></a> element."
+      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/step-icon/\"><code>StepIcon</code></a> element."
     },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
@@ -69,6 +69,6 @@
   },
   "slotDescriptions": {
     "label": "The component that renders the label.",
-    "stepIcon": "The component to render in place of the <a href=\"https://next.mui.com/material-ui/api/step-icon/\"><code>StepIcon</code></a>."
+    "stepIcon": "The component to render in place of the <a href=\"https://mui.com/material-ui/api/step-icon/\"><code>StepIcon</code></a>."
   }
 }

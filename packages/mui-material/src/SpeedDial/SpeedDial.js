@@ -473,7 +473,7 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    */
   direction: PropTypes.oneOf(['down', 'left', 'right', 'up']),
   /**
-   * Props applied to the [`Fab`](https://next.mui.com/material-ui/api/fab/) element.
+   * Props applied to the [`Fab`](https://mui.com/material-ui/api/fab/) element.
    * @default {}
    */
   FabProps: PropTypes.object,
@@ -553,7 +553,7 @@ SpeedDial.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The component used for the transition.
-   * [Follow this guide](https://next.mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Zoom
    */
   TransitionComponent: PropTypes.elementType,

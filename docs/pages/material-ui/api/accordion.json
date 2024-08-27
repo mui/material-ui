@@ -35,16 +35,8 @@
       },
       "additionalInfo": { "sx": true }
     },
-    "TransitionComponent": {
-      "type": { "name": "elementType" },
-      "deprecated": true,
-      "deprecationInfo": "Use <code>slots.transition</code> instead. This prop will be removed in v7. See <a href=\"https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
-    },
-    "TransitionProps": {
-      "type": { "name": "object" },
-      "deprecated": true,
-      "deprecationInfo": "Use <code>slotProps.transition</code> instead. This prop will be removed in v7. See <a href=\"https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
-    }
+    "TransitionComponent": { "type": { "name": "elementType" } },
+    "TransitionProps": { "type": { "name": "object" } }
   },
   "name": "Accordion",
   "imports": [
@@ -60,7 +52,7 @@
     },
     {
       "name": "transition",
-      "description": "The component that renders the transition.\n[Follow this guide](https://next.mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
+      "description": "The component that renders the transition.\n[Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
       "default": "Collapse",
       "class": null
     }

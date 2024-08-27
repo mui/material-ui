@@ -985,7 +985,7 @@ Tabs.propTypes /* remove-proptypes */ = {
    */
   TabIndicatorProps: PropTypes.object,
   /**
-   * Props applied to the [`TabScrollButton`](https://next.mui.com/material-ui/api/tab-scroll-button/) element.
+   * Props applied to the [`TabScrollButton`](https://mui.com/material-ui/api/tab-scroll-button/) element.
    * @default {}
    */
   TabScrollButtonProps: PropTypes.object,

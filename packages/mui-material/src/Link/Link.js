@@ -296,7 +296,7 @@ Link.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * `classes` prop applied to the [`Typography`](https://next.mui.com/material-ui/api/typography/) element.
+   * `classes` prop applied to the [`Typography`](https://mui.com/material-ui/api/typography/) element.
    */
   TypographyClasses: PropTypes.object,
   /**

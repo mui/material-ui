@@ -344,7 +344,7 @@ Drawer.propTypes /* remove-proptypes */ = {
    */
   hideBackdrop: PropTypes.bool,
   /**
-   * Props applied to the [`Modal`](https://next.mui.com/material-ui/api/modal/) element.
+   * Props applied to the [`Modal`](https://mui.com/material-ui/api/modal/) element.
    * @default {}
    */
   ModalProps: PropTypes.object,
@@ -362,12 +362,12 @@ Drawer.propTypes /* remove-proptypes */ = {
    */
   open: PropTypes.bool,
   /**
-   * Props applied to the [`Paper`](https://next.mui.com/material-ui/api/paper/) element.
+   * Props applied to the [`Paper`](https://mui.com/material-ui/api/paper/) element.
    * @default {}
    */
   PaperProps: PropTypes.object,
   /**
-   * Props applied to the [`Slide`](https://next.mui.com/material-ui/api/slide/) element.
+   * Props applied to the [`Slide`](https://mui.com/material-ui/api/slide/) element.
    */
   SlideProps: PropTypes.object,
   /**

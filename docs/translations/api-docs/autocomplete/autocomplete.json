@@ -14,7 +14,7 @@
       "description": "<p>Control if the input should be blurred when an option is selected:</p>\n<ul>\n<li><code>false</code> the input is not blurred.</li>\n<li><code>true</code> the input is always blurred.</li>\n<li><code>touch</code> the input is blurred after a touch event.</li>\n<li><code>mouse</code> the input is blurred after a mouse event.</li>\n</ul>\n"
     },
     "ChipProps": {
-      "description": "Props applied to the <a href=\"https://next.mui.com/material-ui/api/chip/\"><code>Chip</code></a> element."
+      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/chip/\"><code>Chip</code></a> element."
     },
     "classes": { "description": "Override or extend the styles applied to the component." },
     "clearIcon": { "description": "The icon to display in place of the default clear icon." },
@@ -25,10 +25,10 @@
       "description": "If <code>true</code>, clear all values when the user presses escape and the popup is closed."
     },
     "clearText": {
-      "description": "Override the default text for the <em>clear</em> icon button.<br>For localization purposes, you can use the provided <a href=\"https://next.mui.com/material-ui/guides/localization/\">translations</a>."
+      "description": "Override the default text for the <em>clear</em> icon button.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>."
     },
     "closeText": {
-      "description": "Override the default text for the <em>close popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"https://next.mui.com/material-ui/guides/localization/\">translations</a>."
+      "description": "Override the default text for the <em>close popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>."
     },
     "componentsProps": { "description": "The props used for each slot inside." },
     "defaultValue": {
@@ -107,13 +107,13 @@
       "description": "If <code>true</code>, the component is in a loading state. This shows the <code>loadingText</code> in place of suggestions (only if there are no suggestions to show, for example <code>options</code> are empty)."
     },
     "loadingText": {
-      "description": "Text to display when in a loading state.<br>For localization purposes, you can use the provided <a href=\"https://next.mui.com/material-ui/guides/localization/\">translations</a>."
+      "description": "Text to display when in a loading state.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>."
     },
     "multiple": {
       "description": "If <code>true</code>, <code>value</code> must be an array and the menu will support multiple selections."
     },
     "noOptionsText": {
-      "description": "Text to display when there are no options.<br>For localization purposes, you can use the provided <a href=\"https://next.mui.com/material-ui/guides/localization/\">translations</a>."
+      "description": "Text to display when there are no options.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>."
     },
     "onChange": {
       "description": "Callback fired when the value changes.",
@@ -153,7 +153,7 @@
     "open": { "description": "If <code>true</code>, the component is shown." },
     "openOnFocus": { "description": "If <code>true</code>, the popup will open on input focus." },
     "openText": {
-      "description": "Override the default text for the <em>open popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"https://next.mui.com/material-ui/guides/localization/\">translations</a>."
+      "description": "Override the default text for the <em>open popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>."
     },
     "options": { "description": "A list of options that will be shown in the Autocomplete." },
     "PaperComponent": { "description": "The component used to render the body of the popup." },

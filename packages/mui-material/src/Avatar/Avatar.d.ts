@@ -9,7 +9,7 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 export interface AvatarSlots {
   /**
    * The component that renders the transition.
-   * [Follow this guide](https://next.mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
    */
   img?: React.JSXElementConstructor<React.ImgHTMLAttributes<HTMLImageElement>>;

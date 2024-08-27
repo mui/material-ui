@@ -43,7 +43,7 @@ export interface ModalOwnProps {
    */
   BackdropComponent?: React.ElementType<BackdropProps>;
   /**
-   * Props applied to the [`Backdrop`](https://next.mui.com/material-ui/api/backdrop/) element.
+   * Props applied to the [`Backdrop`](https://mui.com/material-ui/api/backdrop/) element.
    * @deprecated Use `slotProps.backdrop` instead.
    */
   BackdropProps?: Partial<BackdropProps>;
@@ -67,7 +67,7 @@ export interface ModalOwnProps {
   /**
    * The components used for each slot inside.
    *
-   * @deprecated Use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -79,7 +79,7 @@ export interface ModalOwnProps {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */

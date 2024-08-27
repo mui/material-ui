@@ -44,7 +44,7 @@
     },
     "TabIndicatorProps": { "description": "Props applied to the tab indicator element." },
     "TabScrollButtonProps": {
-      "description": "Props applied to the <a href=\"https://next.mui.com/material-ui/api/tab-scroll-button/\"><code>TabScrollButton</code></a> element."
+      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/tab-scroll-button/\"><code>TabScrollButton</code></a> element."
     },
     "textColor": { "description": "Determines the color of the <code>Tab</code>." },
     "value": {

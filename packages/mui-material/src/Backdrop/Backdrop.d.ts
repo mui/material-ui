@@ -15,7 +15,7 @@ export interface BackdropSlots {
   root?: React.ElementType;
   /**
    * The component that renders the transition.
-   * [Follow this guide](https://next.mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
    */
   transition?: React.JSXElementConstructor<
@@ -95,7 +95,7 @@ export interface BackdropOwnProps
   transitionDuration?: TransitionProps['timeout'];
   /**
    * The component used for the transition.
-   * [Follow this guide](https://next.mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
    */
   TransitionComponent?: React.JSXElementConstructor<

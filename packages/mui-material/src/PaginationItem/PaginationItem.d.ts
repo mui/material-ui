@@ -58,7 +58,7 @@ export interface PaginationItemOwnProps extends PaginationItemSlotsAndSlotProps 
    * It's recommended to use the `slots` prop instead.
    *
    * @default {}
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   components?: {
     first?: React.ElementType;

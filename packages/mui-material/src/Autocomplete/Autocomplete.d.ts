@@ -178,20 +178,20 @@ export interface AutocompleteProps<
   /**
    * Override the default text for the *clear* icon button.
    *
-   * For localization purposes, you can use the provided [translations](https://next.mui.com/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Clear'
    */
   clearText?: string;
   /**
    * Override the default text for the *close popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](https://next.mui.com/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Close'
    */
   closeText?: string;
   /**
    * The props used for each slot inside.
-   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps?: {
     clearIndicator?: Partial<IconButtonProps>;
@@ -248,7 +248,7 @@ export interface AutocompleteProps<
   /**
    * Text to display when in a loading state.
    *
-   * For localization purposes, you can use the provided [translations](https://next.mui.com/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Loading…'
    */
   loadingText?: React.ReactNode;
@@ -261,7 +261,7 @@ export interface AutocompleteProps<
   /**
    * Text to display when there are no options.
    *
-   * For localization purposes, you can use the provided [translations](https://next.mui.com/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'No options'
    */
   noOptionsText?: React.ReactNode;
@@ -271,7 +271,7 @@ export interface AutocompleteProps<
   /**
    * Override the default text for the *open popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](https://next.mui.com/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Open'
    */
   openText?: string;

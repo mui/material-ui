@@ -7,7 +7,7 @@
       "type": { "name": "shape", "description": "{ typography?: object }" },
       "default": "{}",
       "deprecated": true,
-      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in v7. See <a href=\"https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "disabled": { "type": { "name": "bool" } },
     "disableTypography": { "type": { "name": "bool" } },

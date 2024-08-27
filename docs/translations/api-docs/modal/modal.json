@@ -5,7 +5,7 @@
       "description": "A backdrop component. This prop enables custom backdrop rendering."
     },
     "BackdropProps": {
-      "description": "Props applied to the <a href=\"https://next.mui.com/material-ui/api/backdrop/\"><code>Backdrop</code></a> element."
+      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/backdrop/\"><code>Backdrop</code></a> element."
     },
     "children": { "description": "A single child content element.", "requiresRef": true },
     "classes": { "description": "Override or extend the styles applied to the component." },

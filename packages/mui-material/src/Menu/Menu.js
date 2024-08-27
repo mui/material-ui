@@ -260,7 +260,7 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   disableAutoFocusItem: PropTypes.bool,
   /**
-   * Props applied to the [`MenuList`](https://next.mui.com/material-ui/api/menu-list/) element.
+   * Props applied to the [`MenuList`](https://mui.com/material-ui/api/menu-list/) element.
    * @default {}
    */
   MenuListProps: PropTypes.object,
@@ -280,7 +280,7 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   PaperProps: PropTypes.object,
   /**
-   * `classes` prop applied to the [`Popover`](https://next.mui.com/material-ui/api/popover/) element.
+   * `classes` prop applied to the [`Popover`](https://mui.com/material-ui/api/popover/) element.
    */
   PopoverClasses: PropTypes.object,
   /**
