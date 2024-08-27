@@ -6,6 +6,8 @@
 
 Run one of the following commands to add Material UI to your project:
 
+<!-- #default-branch-switch -->
+
 <codeblock storageKey="package-manager">
 
 ```bash npm

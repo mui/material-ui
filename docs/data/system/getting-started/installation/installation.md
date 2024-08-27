@@ -39,6 +39,8 @@ Please note that [react](https://www.npmjs.com/package/react) is a peer dependen
 MUI System uses [Emotion](https://emotion.sh/docs/introduction) as its default styling engine.
 If you want to use [styled-components](https://styled-components.com/) instead, run one of the following commands:
 
+<!-- #default-branch-switch -->
+
 <codeblock storageKey="package-manager">
 
 ```bash npm
