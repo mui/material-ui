@@ -29,25 +29,38 @@ function attachTheme(props, themeId, defaultTheme) {
 }
 
 function processStyle(props, style) {
+  /*
+   * Types:
+   *  - null/undefined
+   *  - string
+   *  - CSS style object: { [cssKey]: [cssValue], variants }
+   *  - Processed style object: { style, variants, isProcessed: true }
+   *  - Array of any of the above
+   */
+
   const resolvedStyle = typeof style === 'function' ? style(props) : style;
 
   if (Array.isArray(resolvedStyle)) {
     return resolvedStyle.flatMap((subStyle) => processStyle(props, subStyle));
   }
 
-  let rootStyle;
-  if (resolvedStyle.isProcessed) {
-    rootStyle = resolvedStyle.style;
-  } else {
-    const { variants, ...otherStyles } = resolvedStyle;
-    rootStyle = otherStyles;
-  }
-
   if (Array.isArray(resolvedStyle?.variants)) {
+    let rootStyle;
+    if (resolvedStyle.isProcessed) {
+      rootStyle = resolvedStyle.style;
+    } else {
+      const { variants, ...otherStyles } = resolvedStyle;
+      rootStyle = otherStyles;
+    }
+
     return processStyleVariants(props, resolvedStyle.variants, [rootStyle]);
   }
 
-  return rootStyle;
+  if (resolvedStyle?.isProcessed) {
+    return resolvedStyle.style;
+  }
+
+  return resolvedStyle;
 }
 
 function processStyleVariants(props, variants, results = []) {
