@@ -1,4 +1,4 @@
-import { CSSInterpolation } from './index.d';
+import { CSSInterpolation } from '@mui/styled-engine';
 import preprocessStyles from './preprocessStyles';
 
 /* eslint-disable @typescript-eslint/naming-convention */
