@@ -30,9 +30,9 @@ async function run(argv) {
   });
 
   const babelRuntimeVersion = pkg.dependencies['@babel/runtime'];
-  if (bundle === 'node' && !babelRuntimeVersion) {
+  if (!babelRuntimeVersion) {
     throw new Error(
-      'package.json needs to have a dependency on `@babel/runtime` when building for commonjs.',
+      'package.json needs to have a dependency on `@babel/runtime` when building with `@babel/plugin-transform-runtime`.',
     );
   }
 
