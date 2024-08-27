@@ -3,6 +3,7 @@ import glob from 'fast-glob';
 import path from 'path';
 import { promisify } from 'util';
 import yargs from 'yargs';
+import * as fs from 'fs/promises';
 import { getVersionEnvVariables, getWorkspaceRoot } from './utils.mjs';
 
 const exec = promisify(childProcess.exec);
@@ -25,11 +26,10 @@ async function run(argv) {
     );
   }
 
-  const { default: pkg } = await import(path.resolve('./package.json'), {
-    with: { type: 'json' },
-  });
+  const packageJsonPath = path.resolve('./package.json');
+  const packageJson = JSON.parse(await fs.readFile(packageJsonPath, { encoding: 'utf8' }));
 
-  const babelRuntimeVersion = pkg.dependencies['@babel/runtime'];
+  const babelRuntimeVersion = packageJson.dependencies['@babel/runtime'];
   if (!babelRuntimeVersion) {
     throw new Error(
       'package.json needs to have a dependency on `@babel/runtime` when building with `@babel/plugin-transform-runtime`.',
