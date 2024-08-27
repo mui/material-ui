@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 const Link = styled('a')({
   textOverflow: 'ellipsis',

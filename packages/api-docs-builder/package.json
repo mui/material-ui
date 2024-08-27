@@ -8,9 +8,9 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/core": "^7.24.8",
+    "@babel/core": "^7.25.2",
     "@babel/preset-typescript": "^7.24.7",
-    "@babel/traverse": "^7.24.8",
+    "@babel/traverse": "^7.25.3",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-markdown": "workspace:^",
     "ast-types": "^0.14.2",
@@ -18,24 +18,24 @@
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
     "lodash": "^4.17.21",
-    "prettier": "^3.3.2",
+    "prettier": "^3.3.3",
     "react-docgen": "^5.4.3",
     "recast": "^0.23.9",
     "remark": "^13.0.0",
-    "typescript": "^5.4.5",
+    "typescript": "^5.5.4",
     "unist-util-visit": "^2.0.3"
   },
   "devDependencies": {
     "@types/babel__core": "^7.20.5",
     "@types/babel__traverse": "^7.20.6",
-    "@types/chai": "^4.3.16",
+    "@types/chai": "^4.3.17",
     "@types/doctrine": "^0.0.9",
     "@types/mdast": "4.0.4",
     "@types/mocha": "^10.0.7",
-    "@types/node": "^18.19.39",
+    "@types/node": "^18.19.46",
     "@types/react-docgen": "workspace:*",
     "@types/sinon": "^17.0.3",
-    "chai": "^4.4.1",
+    "chai": "^4.5.0",
     "sinon": "^16.1.3"
   }
 }

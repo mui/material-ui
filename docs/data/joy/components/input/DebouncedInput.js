@@ -7,7 +7,7 @@ import Box from '@mui/joy/Box';
 function DebounceInput(props) {
   const { handleDebounce, debounceTimeout, ...other } = props;
 
-  const timerRef = React.useRef();
+  const timerRef = React.useRef(undefined);
 
   const handleChange = (event) => {
     clearTimeout(timerRef.current);

@@ -9,10 +9,21 @@
     },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;'textPrimary'<br>&#124;&nbsp;'textSecondary'<br>&#124;&nbsp;'textDisabled'<br>&#124;&nbsp;string"
+      }
+    },
     "component": { "type": { "name": "elementType" } },
     "gutterBottom": { "type": { "name": "bool" }, "default": "false" },
     "noWrap": { "type": { "name": "bool" }, "default": "false" },
-    "paragraph": { "type": { "name": "bool" }, "default": "false" },
+    "paragraph": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "deprecated": true,
+      "deprecationInfo": "Use the <code>component</code> prop instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -150,7 +161,8 @@
       "key": "paragraph",
       "className": "MuiTypography-paragraph",
       "description": "Styles applied to the root element if `paragraph={true}`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "root",

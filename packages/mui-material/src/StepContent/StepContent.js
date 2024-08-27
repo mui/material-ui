@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Collapse from '../Collapse';
 import StepperContext from '../Stepper/StepperContext';
@@ -26,24 +27,26 @@ const StepContentRoot = styled('div', {
 
     return [styles.root, ownerState.last && styles.last];
   },
-})(({ theme }) => ({
-  marginLeft: 12, // half icon
-  paddingLeft: 8 + 12, // margin + half icon
-  paddingRight: 8,
-  borderLeft: theme.vars
-    ? `1px solid ${theme.vars.palette.StepContent.border}`
-    : `1px solid ${
-        theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600]
-      }`,
-  variants: [
-    {
-      props: { last: true },
-      style: {
-        borderLeft: 'none',
+})(
+  memoTheme(({ theme }) => ({
+    marginLeft: 12, // half icon
+    paddingLeft: 8 + 12, // margin + half icon
+    paddingRight: 8,
+    borderLeft: theme.vars
+      ? `1px solid ${theme.vars.palette.StepContent.border}`
+      : `1px solid ${
+          theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600]
+        }`,
+    variants: [
+      {
+        props: { last: true },
+        style: {
+          borderLeft: 'none',
+        },
       },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 const StepContentTransition = styled(Collapse, {
   name: 'MuiStepContent',

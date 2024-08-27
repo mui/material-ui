@@ -32,7 +32,7 @@ describe('<Menu />', () => {
     element: React.ReactElement<any, string | React.JSXElementConstructor<any>>,
     options?: RenderOptions,
   ): Promise<MuiRenderResult> {
-    const rendered = internalRender(element, options);
+    const rendered = await internalRender(element, options);
     await flushMicrotasks();
     return rendered;
   }
@@ -206,7 +206,7 @@ describe('<Menu />', () => {
       const item2 = getByTestId('item-2');
       const item3 = getByTestId('item-3');
 
-      act(() => {
+      await act(() => {
         item1.focus();
       });
 
@@ -234,7 +234,7 @@ describe('<Menu />', () => {
       const item1 = getByTestId('item-1');
       const item3 = getByTestId('item-3');
 
-      act(() => {
+      await act(() => {
         item1.focus();
       });
 
@@ -260,7 +260,7 @@ describe('<Menu />', () => {
       const item1 = getByTestId('item-1');
       const item2 = getByTestId('item-2');
 
-      act(() => {
+      await act(() => {
         item1.focus();
       });
 
@@ -293,7 +293,7 @@ describe('<Menu />', () => {
 
         const items = getAllByRole('menuitem');
 
-        act(() => {
+        await act(() => {
           items[0].focus();
         });
 
@@ -326,7 +326,7 @@ describe('<Menu />', () => {
 
         const items = getAllByRole('menuitem');
 
-        act(() => {
+        await act(() => {
           items[0].focus();
         });
 
@@ -357,7 +357,7 @@ describe('<Menu />', () => {
 
         const items = getAllByRole('menuitem');
 
-        act(() => {
+        await act(() => {
           items[0].focus();
         });
 
@@ -399,7 +399,7 @@ describe('<Menu />', () => {
 
         const items = getAllByRole('menuitem');
 
-        act(() => {
+        await act(() => {
           items[0].focus();
         });
 
@@ -436,7 +436,7 @@ describe('<Menu />', () => {
 
         const items = getAllByRole('menuitem');
 
-        act(() => {
+        await act(() => {
           items[0].focus();
         });
 
@@ -471,7 +471,7 @@ describe('<Menu />', () => {
 
         const items = getAllByRole('menuitem');
 
-        act(() => {
+        await act(() => {
           items[0].focus();
         });
 
@@ -666,7 +666,7 @@ describe('<Menu />', () => {
     );
 
     const menuItems = getAllByRole('menuitem');
-    act(() => {
+    await act(() => {
       menuItems[0].focus();
     });
 

@@ -11,7 +11,7 @@ import {
   generateDirectionClasses,
   generateSizeClassNames,
   generateSpacingClassNames,
-} from '@mui/system/Unstable_Grid/gridGenerator';
+} from '@mui/system/Grid/gridGenerator';
 import { Breakpoint, Theme } from '../styles';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
@@ -145,11 +145,11 @@ const useUtilityClasses = (ownerState: GridBaseProps) => {
  *
  * Demos:
  *
- * - [Grid version 2](https://next.mui.com/material-ui/react-grid2/)
+ * - [Grid version 2](https://mui.com/material-ui/react-grid2/)
  *
  * API:
  *
- * - [PigmentGrid API](https://next.mui.com/material-ui/api/pigment-grid/)
+ * - [PigmentGrid API](https://mui.com/material-ui/api/pigment-grid/)
  */
 const PigmentGrid = React.forwardRef(function PigmentGrid(props, ref) {
   const { className, ...other } = props;

@@ -45,7 +45,7 @@ import useSlot from '../utils/useSlot';
 
 type OwnerState = Omit<AutocompleteOwnerState<any, any, any, any>, 'onChange' | 'defaultValue'>;
 
-const defaultIsActiveElementInListbox = (listboxRef: React.RefObject<HTMLElement>) =>
+const defaultIsActiveElementInListbox = (listboxRef: React.RefObject<HTMLElement | null>) =>
   listboxRef.current !== null && listboxRef.current.contains(document.activeElement);
 // @ts-ignore
 const defaultGetOptionLabel = (option) => option.label ?? option;
@@ -338,7 +338,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   const formControl = React.useContext(FormControlContext);
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const color = inProps.color ?? (error ? 'danger' : formControl?.color ?? colorProp);
+  const color = inProps.color ?? (error ? 'danger' : (formControl?.color ?? colorProp));
   const disabled = disabledProp ?? formControl?.disabled ?? false;
 
   const {

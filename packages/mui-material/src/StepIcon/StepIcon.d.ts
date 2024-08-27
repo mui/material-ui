@@ -41,10 +41,10 @@ export type StepIconClasskey = keyof NonNullable<StepIconProps['classes']>;
  *
  * Demos:
  *
- * - [Stepper](https://next.mui.com/material-ui/react-stepper/)
+ * - [Stepper](https://mui.com/material-ui/react-stepper/)
  *
  * API:
  *
- * - [StepIcon API](https://next.mui.com/material-ui/api/step-icon/)
+ * - [StepIcon API](https://mui.com/material-ui/api/step-icon/)
  */
 export default function StepIcon(props: StepIconProps): React.JSX.Element;

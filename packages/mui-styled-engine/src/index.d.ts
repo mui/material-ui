@@ -64,7 +64,9 @@ export interface CSSObject
 interface CSSObjectWithVariants<Props> extends Omit<CSSObject, 'variants'> {
   variants: Array<{
     props: Props | ((props: Props) => boolean);
-    style: CSSObject;
+    style:
+      | CSSObject
+      | ((args: Props extends { theme: any } ? { theme: Props['theme'] } : any) => CSSObject);
   }>;
 }
 

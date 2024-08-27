@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, reactMajor, fireEvent } from '@mui/internal-test-utils';
 import capitalize from '@mui/utils/capitalize';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import IconButton, { iconButtonClasses as classes } from '@mui/material/IconButton';
@@ -108,7 +108,12 @@ describe('<IconButton />', () => {
     });
   });
 
-  it('should raise a warning about onClick in children because of Firefox', () => {
+  it('should raise a warning about onClick in children because of Firefox', function test() {
+    if (reactMajor >= 19) {
+      // React 19 removed prop types support
+      this.skip();
+    }
+
     expect(() => {
       PropTypes.checkPropTypes(
         IconButton.propTypes,
@@ -135,5 +140,35 @@ describe('<IconButton />', () => {
         <IconButton />
       </ThemeProvider>
     )).not.to.throw();
+  });
+
+  it('should apply the hover background by default', function test() {
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const { container, getByTestId } = render(<IconButton data-testid="icon-button" />);
+
+    fireEvent.mouseMove(container.firstChild, {
+      clientX: 19,
+    });
+    expect(getByTestId('icon-button')).toHaveComputedStyle({
+      backgroundColor: 'rgba(0, 0, 0, 0.04)',
+    });
+  });
+
+  it('should not apply the hover background if disableRipple is true', function test() {
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const { container, getByTestId } = render(
+      <IconButton disableRipple data-testid="icon-button" />,
+    );
+
+    fireEvent.mouseMove(container.firstChild, {
+      clientX: 19,
+    });
+    expect(getByTestId('icon-button')).toHaveComputedStyle({ backgroundColor: 'rgba(0, 0, 0, 0)' });
   });
 });

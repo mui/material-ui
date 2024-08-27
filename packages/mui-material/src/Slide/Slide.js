@@ -5,6 +5,7 @@ import { Transition } from 'react-transition-group';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
+import getReactNodeRef from '@mui/utils/getReactNodeRef';
 import debounce from '../utils/debounce';
 import useForkRef from '../utils/useForkRef';
 import { useTheme } from '../zero-styled';
@@ -119,7 +120,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
   } = props;
 
   const childrenRef = React.useRef(null);
-  const handleRef = useForkRef(children.ref, childrenRef, ref);
+  const handleRef = useForkRef(getReactNodeRef(children), childrenRef, ref);
 
   const normalizedTransitionCallback = (callback) => (isAppearing) => {
     if (callback) {

@@ -8,6 +8,7 @@ import {
   unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_useForkRef as useForkRef,
   unstable_setRef as setRef,
+  unstable_getReactNodeRef as getReactNodeRef,
 } from '@mui/utils';
 import { PortalProps } from './Portal.types';
 
@@ -21,11 +22,11 @@ function getContainer(container: PortalProps['container']) {
  *
  * Demos:
  *
- * - [Portal](https://next.mui.com/material-ui/react-portal/)
+ * - [Portal](https://mui.com/material-ui/react-portal/)
  *
  * API:
  *
- * - [Portal API](https://next.mui.com/material-ui/api/portal/)
+ * - [Portal API](https://mui.com/material-ui/api/portal/)
  */
 const Portal = React.forwardRef(function Portal(
   props: PortalProps,
@@ -33,8 +34,7 @@ const Portal = React.forwardRef(function Portal(
 ) {
   const { children, container, disablePortal = false } = props;
   const [mountNode, setMountNode] = React.useState<ReturnType<typeof getContainer>>(null);
-  // @ts-expect-error TODO upstream fix
-  const handleRef = useForkRef(React.isValidElement(children) ? children.ref : null, forwardedRef);
+  const handleRef = useForkRef(getReactNodeRef(children), forwardedRef);
 
   useEnhancedEffect(() => {
     if (!disablePortal) {

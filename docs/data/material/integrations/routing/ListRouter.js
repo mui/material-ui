@@ -1,8 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import List from '@mui/material/List';
-import Box from '@mui/material/Box';
 import ListItem from '@mui/material/ListItem';
+import Box from '@mui/material/Box';
+import ListItemButton from '@mui/material/ListItemButton';
 import Paper from '@mui/material/Paper';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -10,13 +11,7 @@ import Divider from '@mui/material/Divider';
 import InboxIcon from '@mui/icons-material/Inbox';
 import DraftsIcon from '@mui/icons-material/Drafts';
 import Typography from '@mui/material/Typography';
-import {
-  Link as RouterLink,
-  Route,
-  Routes,
-  MemoryRouter,
-  useLocation,
-} from 'react-router-dom';
+import { Link, Route, Routes, MemoryRouter, useLocation } from 'react-router-dom';
 import { StaticRouter } from 'react-router-dom/server';
 
 function Router(props) {
@@ -36,20 +31,14 @@ Router.propTypes = {
   children: PropTypes.node,
 };
 
-const Link = React.forwardRef(function Link(itemProps, ref) {
-  return <RouterLink ref={ref} {...itemProps} role={undefined} />;
-});
-
 function ListItemLink(props) {
   const { icon, primary, to } = props;
 
   return (
-    <li>
-      <ListItem button component={Link} to={to}>
-        {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
-        <ListItemText primary={primary} />
-      </ListItem>
-    </li>
+    <ListItemButton component={Link} to={to}>
+      {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
+      <ListItemText primary={primary} />
+    </ListItemButton>
   );
 }
 
@@ -78,13 +67,21 @@ export default function ListRouter() {
 
         <Paper elevation={0}>
           <List aria-label="main mailbox folders">
-            <ListItemLink to="/inbox" primary="Inbox" icon={<InboxIcon />} />
-            <ListItemLink to="/drafts" primary="Drafts" icon={<DraftsIcon />} />
+            <ListItem disablePadding>
+              <ListItemLink to="/inbox" primary="Inbox" icon={<InboxIcon />} />
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemLink to="/drafts" primary="Drafts" icon={<DraftsIcon />} />
+            </ListItem>
           </List>
           <Divider />
           <List aria-label="secondary mailbox folders">
-            <ListItemLink to="/trash" primary="Trash" />
-            <ListItemLink to="/spam" primary="Spam" />
+            <ListItem disablePadding>
+              <ListItemLink to="/trash" primary="Trash" />
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemLink to="/spam" primary="Spam" />
+            </ListItem>
           </List>
         </Paper>
       </Box>

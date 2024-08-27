@@ -108,7 +108,7 @@ function TestFillPropCallback() {
 // eslint-disable-next-line material-ui/no-styled-box
 const StyledBox = styled(Box)`
   color: white;
-`;
+` as typeof Box;
 
 function StyledBoxWithSx() {
   return (

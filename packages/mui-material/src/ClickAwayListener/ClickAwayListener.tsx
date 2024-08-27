@@ -8,6 +8,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useEventCallback as useEventCallback,
 } from '@mui/utils';
+import getReactNodeRef from '@mui/utils/getReactNodeRef';
 
 // TODO: return `EventHandlerName extends `on${infer EventName}` ? Lowercase<EventName> : never` once generatePropTypes runs with TS 4.1
 function mapEventPropToEvent(
@@ -64,12 +65,12 @@ export interface ClickAwayListenerProps {
  *
  * Demos:
  *
- * - [Click-Away Listener](https://next.mui.com/material-ui/react-click-away-listener/)
- * - [Menu](https://next.mui.com/material-ui/react-menu/)
+ * - [Click-Away Listener](https://mui.com/material-ui/react-click-away-listener/)
+ * - [Menu](https://mui.com/material-ui/react-menu/)
  *
  * API:
  *
- * - [ClickAwayListener API](https://next.mui.com/material-ui/api/click-away-listener/)
+ * - [ClickAwayListener API](https://mui.com/material-ui/api/click-away-listener/)
  */
 function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
   const {
@@ -95,11 +96,7 @@ function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
     };
   }, []);
 
-  const handleRef = useForkRef(
-    // @ts-expect-error TODO upstream fix
-    children.ref,
-    nodeRef,
-  );
+  const handleRef = useForkRef(getReactNodeRef(children), nodeRef);
 
   // The handler doesn't take event.defaultPrevented into account:
   //

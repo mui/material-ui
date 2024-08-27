@@ -156,16 +156,7 @@ async function setVersion(packages: PackageInfo[]) {
     const packageJsonPath = resolve(pkg.path, './package.json');
     try {
       const packageJson = JSON.parse(await readFile(packageJsonPath, { encoding: 'utf8' }));
-      const version = packageJson.version;
-      const dashIndex = version.indexOf('-');
-      let newVersion = version;
-      if (dashIndex !== -1) {
-        newVersion = version.slice(0, dashIndex);
-      }
-
-      newVersion = `${newVersion}-dev.${timestamp}-${currentRevisionSha}`;
-      packageJson.version = newVersion;
-
+      packageJson.version = `${packageJson.version}-dev.${timestamp}-${currentRevisionSha}`;
       await writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2) + '\n');
     } catch (error) {
       console.error(`${chalk.red(`❌ ${packageJsonPath}`)}`, error);

@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { darken, lighten } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import useSlot from '../utils/useSlot';
 import capitalize from '../utils/capitalize';
@@ -47,72 +48,74 @@ const AlertRoot = styled(Paper, {
       styles[`${ownerState.variant}${capitalize(ownerState.color || ownerState.severity)}`],
     ];
   },
-})(({ theme }) => {
-  const getColor = theme.palette.mode === 'light' ? darken : lighten;
-  const getBackgroundColor = theme.palette.mode === 'light' ? lighten : darken;
-  return {
-    ...theme.typography.body2,
-    backgroundColor: 'transparent',
-    display: 'flex',
-    padding: '6px 16px',
-    variants: [
-      ...Object.entries(theme.palette)
-        .filter(([, value]) => value && value.main && value.light)
-        .map(([color]) => ({
-          props: { colorSeverity: color, variant: 'standard' },
-          style: {
-            color: theme.vars
-              ? theme.vars.palette.Alert[`${color}Color`]
-              : getColor(theme.palette[color].light, 0.6),
-            backgroundColor: theme.vars
-              ? theme.vars.palette.Alert[`${color}StandardBg`]
-              : getBackgroundColor(theme.palette[color].light, 0.9),
-            [`& .${alertClasses.icon}`]: theme.vars
-              ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
-              : {
-                  color: theme.palette[color].main,
-                },
-          },
-        })),
-      ...Object.entries(theme.palette)
-        .filter(([, value]) => value && value.main && value.light)
-        .map(([color]) => ({
-          props: { colorSeverity: color, variant: 'outlined' },
-          style: {
-            color: theme.vars
-              ? theme.vars.palette.Alert[`${color}Color`]
-              : getColor(theme.palette[color].light, 0.6),
-            border: `1px solid ${(theme.vars || theme).palette[color].light}`,
-            [`& .${alertClasses.icon}`]: theme.vars
-              ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
-              : {
-                  color: theme.palette[color].main,
-                },
-          },
-        })),
-      ...Object.entries(theme.palette)
-        .filter(([, value]) => value && value.main && value.dark)
-        .map(([color]) => ({
-          props: { colorSeverity: color, variant: 'filled' },
-          style: {
-            fontWeight: theme.typography.fontWeightMedium,
-            ...(theme.vars
-              ? {
-                  color: theme.vars.palette.Alert[`${color}FilledColor`],
-                  backgroundColor: theme.vars.palette.Alert[`${color}FilledBg`],
-                }
-              : {
-                  backgroundColor:
-                    theme.palette.mode === 'dark'
-                      ? theme.palette[color].dark
-                      : theme.palette[color].main,
-                  color: theme.palette.getContrastText(theme.palette[color].main),
-                }),
-          },
-        })),
-    ],
-  };
-});
+})(
+  memoTheme(({ theme }) => {
+    const getColor = theme.palette.mode === 'light' ? darken : lighten;
+    const getBackgroundColor = theme.palette.mode === 'light' ? lighten : darken;
+    return {
+      ...theme.typography.body2,
+      backgroundColor: 'transparent',
+      display: 'flex',
+      padding: '6px 16px',
+      variants: [
+        ...Object.entries(theme.palette)
+          .filter(([, value]) => value && value.main && value.light)
+          .map(([color]) => ({
+            props: { colorSeverity: color, variant: 'standard' },
+            style: {
+              color: theme.vars
+                ? theme.vars.palette.Alert[`${color}Color`]
+                : getColor(theme.palette[color].light, 0.6),
+              backgroundColor: theme.vars
+                ? theme.vars.palette.Alert[`${color}StandardBg`]
+                : getBackgroundColor(theme.palette[color].light, 0.9),
+              [`& .${alertClasses.icon}`]: theme.vars
+                ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
+                : {
+                    color: theme.palette[color].main,
+                  },
+            },
+          })),
+        ...Object.entries(theme.palette)
+          .filter(([, value]) => value && value.main && value.light)
+          .map(([color]) => ({
+            props: { colorSeverity: color, variant: 'outlined' },
+            style: {
+              color: theme.vars
+                ? theme.vars.palette.Alert[`${color}Color`]
+                : getColor(theme.palette[color].light, 0.6),
+              border: `1px solid ${(theme.vars || theme).palette[color].light}`,
+              [`& .${alertClasses.icon}`]: theme.vars
+                ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
+                : {
+                    color: theme.palette[color].main,
+                  },
+            },
+          })),
+        ...Object.entries(theme.palette)
+          .filter(([, value]) => value && value.main && value.dark)
+          .map(([color]) => ({
+            props: { colorSeverity: color, variant: 'filled' },
+            style: {
+              fontWeight: theme.typography.fontWeightMedium,
+              ...(theme.vars
+                ? {
+                    color: theme.vars.palette.Alert[`${color}FilledColor`],
+                    backgroundColor: theme.vars.palette.Alert[`${color}FilledBg`],
+                  }
+                : {
+                    backgroundColor:
+                      theme.palette.mode === 'dark'
+                        ? theme.palette[color].dark
+                        : theme.palette[color].main,
+                    color: theme.palette.getContrastText(theme.palette[color].main),
+                  }),
+            },
+          })),
+      ],
+    };
+  }),
+);
 
 const AlertIcon = styled('div', {
   name: 'MuiAlert',
