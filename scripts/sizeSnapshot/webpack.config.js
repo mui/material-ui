@@ -154,7 +154,7 @@ function createWebpackConfig(entry, environment) {
   const configuration = {
     // ideally this would be computed from the bundles peer dependencies
     // Ensure that `react` as well as `react/*` are considered externals but not `react*`
-    externals: /^(date-fns|dayjs|luxon|moment|react|react-dom)(\/.*)?$/,
+    externals: /^(date-fns|dayjs|luxon|moment|react|react-dom|use-sync-external-store)(\/.*)?$/,
     mode: 'production',
     optimization: {
       concatenateModules,
