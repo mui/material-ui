@@ -23,16 +23,7 @@ Material UI v6 features several other quality-of-life improvements, including:
 - support for [container queries](/material-ui/customization/container-queries/)
 - a [new theme utility](#color-mode-theme-utility) for adding styles to specific color modes
 
-## Start using the beta release
-
-In your `package.json` file, change the package version from `"latest"` to `"next"`.
-
-```diff title="package.json"
--"@mui/material": "latest",
-+"@mui/material": "next",
-```
-
-If you're using any of these packages, you can also change their version to `"next"`:
+If you're using any of these packages, you can also change their version to `"6.0.0"`:
 
 - `@mui/icons-material`
 - `@mui/system`
