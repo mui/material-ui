@@ -78,7 +78,7 @@ export default function Checkout() {
       toggleColorMode={toggleColorMode}
     >
       <ThemeProvider theme={showCustomTheme ? checkoutTheme : defaultTheme}>
-        <CssBaseline />
+        <CssBaseline enableColorScheme />
 
         <Grid container sx={{ height: { xs: '100%', sm: '100dvh' } }}>
           <Grid

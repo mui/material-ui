@@ -53,7 +53,7 @@ export default function MarketingPage() {
       toggleColorMode={toggleColorMode}
     >
       <ThemeProvider theme={showCustomTheme ? MPTheme : defaultTheme}>
-        <CssBaseline />
+        <CssBaseline enableColorScheme />
         <AppAppBar />
         <Hero />
         <div>

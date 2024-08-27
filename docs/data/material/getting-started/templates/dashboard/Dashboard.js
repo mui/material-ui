@@ -48,7 +48,7 @@ export default function Dashboard() {
       toggleColorMode={toggleColorMode}
     >
       <ThemeProvider theme={showCustomTheme ? dashboardTheme : defaultTheme}>
-        <CssBaseline />
+        <CssBaseline enableColorScheme />
         <Box sx={{ display: 'flex' }}>
           <SideMenu />
           <AppNavbar />

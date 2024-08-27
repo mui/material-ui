@@ -48,7 +48,7 @@ export default function Blog() {
       toggleColorMode={toggleColorMode}
     >
       <ThemeProvider theme={showCustomTheme ? blogTheme : defaultTheme}>
-        <CssBaseline />
+        <CssBaseline enableColorScheme />
 
         <AppAppBar />
         <Container
