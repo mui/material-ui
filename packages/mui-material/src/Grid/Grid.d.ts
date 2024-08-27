@@ -168,7 +168,7 @@ export interface GridTypeMap<
  *
  * - [Grid API](https://mui.com/material-ui/api/grid/)
  *
- * @deprecated Use the [`Grid2`](https://next.mui.com/material-ui/react-grid2/) component instead.
+ * @deprecated Use the [`Grid2`](https://mui.com/material-ui/react-grid2/) component instead.
  */
 declare const Grid: OverridableComponent<GridTypeMap>;
 
