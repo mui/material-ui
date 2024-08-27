@@ -137,7 +137,7 @@ export default function SignIn() {
       toggleColorMode={toggleColorMode}
     >
       <ThemeProvider theme={showCustomTheme ? SignInTheme : defaultTheme}>
-        <CssBaseline />
+        <CssBaseline enableColorScheme />
         <SignInContainer direction="column" justifyContent="space-between">
           <Card variant="outlined">
             <SitemarkIcon />
