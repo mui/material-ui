@@ -177,11 +177,6 @@ function createWebpackConfig(entry, environment) {
       },
       path: path.join(__dirname, 'build'),
     },
-    resolve: {
-      alias: {
-        '@mui/utils': '@mui/utils/esm',
-      },
-    },
     plugins: [
       new CompressionPlugin(),
       new BundleAnalyzerPlugin({
@@ -196,7 +191,7 @@ function createWebpackConfig(entry, environment) {
     ],
     context: __dirname,
     entry: {
-      [entry.id]: `./index.js!=!data:text/javascript,import ${importNames} from '${entry.import}';console.log(foo);`,
+      [entry.id]: `./index.mjs!=!data:text/javascript,import ${importNames} from '${entry.import}';console.log(foo);`,
     },
     // TODO: 'browserslist:modern'
     // See https://github.com/webpack/webpack/issues/14203
