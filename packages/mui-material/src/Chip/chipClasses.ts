@@ -27,21 +27,21 @@ export interface ChipClasses {
   /** Styles applied to the root element if `onClick` is defined or `clickable={true}`. */
   clickable: string;
   /** Styles applied to the root element if `onClick` and `color="primary"` is defined or `clickable={true}`.
-   * @deprecated Combine the [.MuiChip-clickable](https://next.mui.com/material-ui/api/chip/#chip-classes-clickable) and [.MuiChip-colorPrimary](https://next.mui.com/material-ui/api/chip/#chip-classes-colorPrimary) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-clickable](https://mui.com/material-ui/api/chip/#chip-classes-clickable) and [.MuiChip-colorPrimary](https://mui.com/material-ui/api/chip/#chip-classes-colorPrimary) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   clickableColorPrimary: string;
   /** Styles applied to the root element if `onClick` and `color="secondary"` is defined or `clickable={true}`.
-   * @deprecated Combine the [.MuiChip-clickable](https://next.mui.com/material-ui/api/chip/#chip-classes-clickable) and [.MuiChip-colorSecondary](https://next.mui.com/material-ui/api/chip/#chip-classes-colorSecondary) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-clickable](https://mui.com/material-ui/api/chip/#chip-classes-clickable) and [.MuiChip-colorSecondary](https://mui.com/material-ui/api/chip/#chip-classes-colorSecondary) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   clickableColorSecondary: string;
   /** Styles applied to the root element if `onDelete` is defined. */
   deletable: string;
   /** Styles applied to the root element if `onDelete` and `color="primary"` is defined.
-   * @deprecated Combine the [.MuiChip-deletable](https://next.mui.com/material-ui/api/chip/#chip-classes-deletable) and [.MuiChip-colorPrimary](https://next.mui.com/material-ui/api/chip/#chip-classes-colorPrimary) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-deletable](https://mui.com/material-ui/api/chip/#chip-classes-deletable) and [.MuiChip-colorPrimary](https://mui.com/material-ui/api/chip/#chip-classes-colorPrimary) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   deletableColorPrimary: string;
   /** Styles applied to the root element if `onDelete` and `color="secondary"` is defined.
-   * @deprecated Combine the [.MuiChip-deletable](https://next.mui.com/material-ui/api/chip/#chip-classes-deletable) and [.MuiChip-colorSecondary](https://next.mui.com/material-ui/api/chip/#chip-classes-colorSecondary) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-deletable](https://mui.com/material-ui/api/chip/#chip-classes-deletable) and [.MuiChip-colorSecondary](https://mui.com/material-ui/api/chip/#chip-classes-colorSecondary) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   deletableColorSecondary: string;
   /** Styles applied to the root element if `variant="outlined"`. */
@@ -49,99 +49,99 @@ export interface ChipClasses {
   /** Styles applied to the root element if `variant="filled"`. */
   filled: string;
   /** Styles applied to the root element if `variant="outlined"` and `color="primary"`.
-   * @deprecated Combine the [.MuiChip-outlined](https://next.mui.com/material-ui/api/chip/#chip-classes-outlined) and [.MuiChip-colorPrimary](https://next.mui.com/material-ui/api/chip/#chip-classes-colorPrimary) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-outlined](https://mui.com/material-ui/api/chip/#chip-classes-outlined) and [.MuiChip-colorPrimary](https://mui.com/material-ui/api/chip/#chip-classes-colorPrimary) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   outlinedPrimary: string;
   /** Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
-   * @deprecated Combine the [.MuiChip-outlined](https://next.mui.com/material-ui/api/chip/#chip-classes-outlined) and [.MuiChip-colorSecondary](https://next.mui.com/material-ui/api/chip/#chip-classes-colorSecondary) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-outlined](https://mui.com/material-ui/api/chip/#chip-classes-outlined) and [.MuiChip-colorSecondary](https://mui.com/material-ui/api/chip/#chip-classes-colorSecondary) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   outlinedSecondary: string;
   /** Styles applied to the root element if `variant="filled"` and `color="primary"`.
-   * @deprecated Combine the [.MuiChip-filled](https://next.mui.com/material-ui/api/chip/#chip-classes-filled) and [.MuiChip-colorPrimary](https://next.mui.com/material-ui/api/chip/#chip-classes-colorPrimary) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-filled](https://mui.com/material-ui/api/chip/#chip-classes-filled) and [.MuiChip-colorPrimary](https://mui.com/material-ui/api/chip/#chip-classes-colorPrimary) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   filledPrimary: string;
   /** Styles applied to the root element if `variant="filled"` and `color="secondary"`.
-   * @deprecated Combine the [.MuiChip-filled](https://next.mui.com/material-ui/api/chip/#chip-classes-filled) and [.MuiChip-colorSecondary](https://next.mui.com/material-ui/api/chip/#chip-classes-colorSecondary) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-filled](https://mui.com/material-ui/api/chip/#chip-classes-filled) and [.MuiChip-colorSecondary](https://mui.com/material-ui/api/chip/#chip-classes-colorSecondary) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   filledSecondary: string;
   /** Styles applied to the avatar element. */
   avatar: string;
   /** Styles applied to the avatar element if `size="small"`.
-   * @deprecated Combine the [.MuiChip-avatar](https://next.mui.com/material-ui/api/chip/#chip-classes-avatar) and [.MuiChip-sizeSmall](https://next.mui.com/material-ui/api/chip/#chip-classes-sizeSmall) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-avatar](https://mui.com/material-ui/api/chip/#chip-classes-avatar) and [.MuiChip-sizeSmall](https://mui.com/material-ui/api/chip/#chip-classes-sizeSmall) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   avatarSmall: string;
   /** Styles applied to the avatar element if `size="medium"`.
-   * @deprecated Combine the [.MuiChip-avatar](https://next.mui.com/material-ui/api/chip/#chip-classes-avatar) and [.MuiChip-sizeMedium](https://next.mui.com/material-ui/api/chip/#chip-classes-sizeMedium) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-avatar](https://mui.com/material-ui/api/chip/#chip-classes-avatar) and [.MuiChip-sizeMedium](https://mui.com/material-ui/api/chip/#chip-classes-sizeMedium) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   avatarMedium: string;
   /** Styles applied to the avatar element if `color="primary"`.
-   * @deprecated Combine the [.MuiChip-avatar](https://next.mui.com/material-ui/api/chip/#chip-classes-avatar) and [.MuiChip-colorPrimary](https://next.mui.com/material-ui/api/chip/#chip-classes-colorPrimary) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-avatar](https://mui.com/material-ui/api/chip/#chip-classes-avatar) and [.MuiChip-colorPrimary](https://mui.com/material-ui/api/chip/#chip-classes-colorPrimary) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   avatarColorPrimary: string;
   /** Styles applied to the avatar element if `color="secondary"`.
-   * @deprecated Combine the [.MuiChip-avatar](https://next.mui.com/material-ui/api/chip/#chip-classes-avatar) and [.MuiChip-colorSecondary](https://next.mui.com/material-ui/api/chip/#chip-classes-colorSecondary) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-avatar](https://mui.com/material-ui/api/chip/#chip-classes-avatar) and [.MuiChip-colorSecondary](https://mui.com/material-ui/api/chip/#chip-classes-colorSecondary) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   avatarColorSecondary: string;
   /** Styles applied to the icon element. */
   icon: string;
   /** Styles applied to the icon element if `size="small"`.
-   * @deprecated Combine the [.MuiChip-icon](https://next.mui.com/material-ui/api/chip/#chip-classes-icon) and [.MuiChip-sizeSmall](https://next.mui.com/material-ui/api/chip/#chip-classes-sizeSmall) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-icon](https://mui.com/material-ui/api/chip/#chip-classes-icon) and [.MuiChip-sizeSmall](https://mui.com/material-ui/api/chip/#chip-classes-sizeSmall) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   iconSmall: string;
   /** Styles applied to the icon element if `size="medium"`.
-   * @deprecated Combine the [.MuiChip-icon](https://next.mui.com/material-ui/api/chip/#chip-classes-icon) and [.MuiChip-sizeMedium](https://next.mui.com/material-ui/api/chip/#chip-classes-sizeMedium) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-icon](https://mui.com/material-ui/api/chip/#chip-classes-icon) and [.MuiChip-sizeMedium](https://mui.com/material-ui/api/chip/#chip-classes-sizeMedium) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   iconMedium: string;
   /** Styles applied to the icon element if `color="primary"`.
-   * @deprecated Combine the [.MuiChip-icon](https://next.mui.com/material-ui/api/chip/#chip-classes-icon) and [.MuiChip-colorPrimary](https://next.mui.com/material-ui/api/chip/#chip-classes-colorPrimary) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-icon](https://mui.com/material-ui/api/chip/#chip-classes-icon) and [.MuiChip-colorPrimary](https://mui.com/material-ui/api/chip/#chip-classes-colorPrimary) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   iconColorPrimary: string;
   /** Styles applied to the icon element if `color="secondary"`.
-   * @deprecated Combine the [.MuiChip-icon](https://next.mui.com/material-ui/api/chip/#chip-classes-icon) and [.MuiChip-colorSecondary](https://next.mui.com/material-ui/api/chip/#chip-classes-colorSecondary) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-icon](https://mui.com/material-ui/api/chip/#chip-classes-icon) and [.MuiChip-colorSecondary](https://mui.com/material-ui/api/chip/#chip-classes-colorSecondary) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   iconColorSecondary: string;
   /** Styles applied to the label `span` element. */
   label: string;
   /** Styles applied to the label `span` element if `size="small"`.
-   * @deprecated Combine the [.MuiChip-label](https://next.mui.com/material-ui/api/chip/#chip-classes-label) and [.MuiChip-sizeSmall](https://next.mui.com/material-ui/api/chip/#chip-classes-sizeSmall) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-label](https://mui.com/material-ui/api/chip/#chip-classes-label) and [.MuiChip-sizeSmall](https://mui.com/material-ui/api/chip/#chip-classes-sizeSmall) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   labelSmall: string;
   /** Styles applied to the label `span` element if `size="medium"`.
-   * @deprecated Combine the [.MuiChip-label](https://next.mui.com/material-ui/api/chip/#chip-classes-label) and [.MuiChip-sizeMedium](https://next.mui.com/material-ui/api/chip/#chip-classes-sizeMedium) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-label](https://mui.com/material-ui/api/chip/#chip-classes-label) and [.MuiChip-sizeMedium](https://mui.com/material-ui/api/chip/#chip-classes-sizeMedium) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   labelMedium: string;
   /** Styles applied to the deleteIcon element. */
   deleteIcon: string;
   /** Styles applied to the deleteIcon element if `size="small"`.
-   * @deprecated Combine the [.MuiChip-deleteIcon](https://next.mui.com/material-ui/api/chip/#chip-classes-deleteIcon) and [.MuiChip-sizeSmall](https://next.mui.com/material-ui/api/chip/#chip-classes-sizeSmall) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-deleteIcon](https://mui.com/material-ui/api/chip/#chip-classes-deleteIcon) and [.MuiChip-sizeSmall](https://mui.com/material-ui/api/chip/#chip-classes-sizeSmall) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   deleteIconSmall: string;
   /** Styles applied to the deleteIcon element if `size="medium"`.
-   * @deprecated Combine the [.MuiChip-deleteIcon](https://next.mui.com/material-ui/api/chip/#chip-classes-deleteIcon) and [.MuiChip-sizeMedium](https://next.mui.com/material-ui/api/chip/#chip-classes-sizeMedium) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-deleteIcon](https://mui.com/material-ui/api/chip/#chip-classes-deleteIcon) and [.MuiChip-sizeMedium](https://mui.com/material-ui/api/chip/#chip-classes-sizeMedium) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   deleteIconMedium: string;
   /** Styles applied to the deleteIcon element if `color="primary"`.
-   * @deprecated Combine the [.MuiChip-deleteIcon](https://next.mui.com/material-ui/api/chip/#chip-classes-deleteIcon) and [.MuiChip-colorPrimary](https://next.mui.com/material-ui/api/chip/#chip-classes-colorPrimary) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-deleteIcon](https://mui.com/material-ui/api/chip/#chip-classes-deleteIcon) and [.MuiChip-colorPrimary](https://mui.com/material-ui/api/chip/#chip-classes-colorPrimary) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   deleteIconColorPrimary: string;
   /** Styles applied to the deleteIcon element if `color="secondary"`.
-   * @deprecated Combine the [.MuiChip-deleteIcon](https://next.mui.com/material-ui/api/chip/#chip-classes-deleteIcon) and [.MuiChip-colorSecondary](https://next.mui.com/material-ui/api/chip/#chip-classes-colorSecondary) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-deleteIcon](https://mui.com/material-ui/api/chip/#chip-classes-deleteIcon) and [.MuiChip-colorSecondary](https://mui.com/material-ui/api/chip/#chip-classes-colorSecondary) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   deleteIconColorSecondary: string;
   /** Styles applied to the deleteIcon element if `color="primary"` and `variant="outlined"`.
-   * @deprecated Combine the [.MuiChip-deleteIcon](https://next.mui.com/material-ui/api/chip/#chip-classes-deleteIcon) , [.MuiChip-outlined](https://next.mui.com/material-ui/api/chip/#chip-classes-outlined) and [.MuiChip-colorPrimary](https://next.mui.com/material-ui/api/chip/#chip-classes-colorPrimary) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-deleteIcon](https://mui.com/material-ui/api/chip/#chip-classes-deleteIcon) , [.MuiChip-outlined](https://mui.com/material-ui/api/chip/#chip-classes-outlined) and [.MuiChip-colorPrimary](https://mui.com/material-ui/api/chip/#chip-classes-colorPrimary) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   deleteIconOutlinedColorPrimary: string;
   /** Styles applied to the deleteIcon element if `color="secondary"` and `variant="outlined"`.
-   * @deprecated Combine the [.MuiChip-deleteIcon](https://next.mui.com/material-ui/api/chip/#chip-classes-deleteIcon) , [.MuiChip-outlined](https://next.mui.com/material-ui/api/chip/#chip-classes-outlined) and [.MuiChip-colorSecondary](https://next.mui.com/material-ui/api/chip/#chip-classes-colorSecondary) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-deleteIcon](https://mui.com/material-ui/api/chip/#chip-classes-deleteIcon) , [.MuiChip-outlined](https://mui.com/material-ui/api/chip/#chip-classes-outlined) and [.MuiChip-colorSecondary](https://mui.com/material-ui/api/chip/#chip-classes-colorSecondary) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   deleteIconOutlinedColorSecondary: string;
   /** Styles applied to the deleteIcon element if `color="primary"` and `variant="filled"`.
-   * @deprecated Combine the [.MuiChip-deleteIcon](https://next.mui.com/material-ui/api/chip/#chip-classes-deleteIcon) , [.MuiChip-filled](https://next.mui.com/material-ui/api/chip/#chip-classes-filled) and [.MuiChip-colorPrimary](https://next.mui.com/material-ui/api/chip/#chip-classes-colorPrimary) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-deleteIcon](https://mui.com/material-ui/api/chip/#chip-classes-deleteIcon) , [.MuiChip-filled](https://mui.com/material-ui/api/chip/#chip-classes-filled) and [.MuiChip-colorPrimary](https://mui.com/material-ui/api/chip/#chip-classes-colorPrimary) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   deleteIconFilledColorPrimary: string;
   /** Styles applied to the deleteIcon element if `color="secondary"` and `variant="filled"`.
-   * @deprecated Combine the [.MuiChip-deleteIcon](https://next.mui.com/material-ui/api/chip/#chip-classes-deleteIcon) , [.MuiChip-filled](https://next.mui.com/material-ui/api/chip/#chip-classes-filled) and [.MuiChip-colorSecondary](https://next.mui.com/material-ui/api/chip/#chip-classes-colorSecondary) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-deleteIcon](https://mui.com/material-ui/api/chip/#chip-classes-deleteIcon) , [.MuiChip-filled](https://mui.com/material-ui/api/chip/#chip-classes-filled) and [.MuiChip-colorSecondary](https://mui.com/material-ui/api/chip/#chip-classes-colorSecondary) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   deleteIconFilledColorSecondary: string;
   /** State class applied to the root element if keyboard focused. */

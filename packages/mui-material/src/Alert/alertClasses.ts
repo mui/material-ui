@@ -19,75 +19,75 @@ export interface AlertClasses {
   /** Styles applied to the root element if `color="error"`. */
   colorError: string;
   /** Styles applied to the root element if `variant="standard"` and `color="success"`.
-   * @deprecated Combine the [.MuiAlert-standard](https://next.mui.com/material-ui/api/alert/#alert-classes-standard)
-   * and [.MuiAlert-colorSuccess](https://next.mui.com/material-ui/api/alert/#alert-classes-colorSuccess) classes instead.
-   * See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiAlert-standard](https://mui.com/material-ui/api/alert/#alert-classes-standard)
+   * and [.MuiAlert-colorSuccess](https://mui.com/material-ui/api/alert/#alert-classes-colorSuccess) classes instead.
+   * See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   standardSuccess: string;
   /** Styles applied to the root element if `variant="standard"` and `color="info"`.
-   * @deprecated Combine the [.MuiAlert-standard](https://next.mui.com/material-ui/api/alert/#alert-classes-standard)
-   * and [.MuiAlert-colorInfo](https://next.mui.com/material-ui/api/alert/#alert-classes-colorInfo) classes instead.
-   * See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiAlert-standard](https://mui.com/material-ui/api/alert/#alert-classes-standard)
+   * and [.MuiAlert-colorInfo](https://mui.com/material-ui/api/alert/#alert-classes-colorInfo) classes instead.
+   * See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   standardInfo: string;
   /** Styles applied to the root element if `variant="standard"` and `color="warning"`.
-   * @deprecated Combine the [.MuiAlert-standard](https://next.mui.com/material-ui/api/alert/#alert-classes-standard)
-   * and [.MuiAlert-colorWarning](https://next.mui.com/material-ui/api/alert/#alert-classes-colorWarning) classes instead.
-   * See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiAlert-standard](https://mui.com/material-ui/api/alert/#alert-classes-standard)
+   * and [.MuiAlert-colorWarning](https://mui.com/material-ui/api/alert/#alert-classes-colorWarning) classes instead.
+   * See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   standardWarning: string;
   /** Styles applied to the root element if `variant="standard"` and `color="error"`.
-   * @deprecated Combine the [.MuiAlert-standard](https://next.mui.com/material-ui/api/alert/#alert-classes-standard)
-   * and [.MuiAlert-colorError](https://next.mui.com/material-ui/api/alert/#alert-classes-colorError) classes instead.
-   * See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiAlert-standard](https://mui.com/material-ui/api/alert/#alert-classes-standard)
+   * and [.MuiAlert-colorError](https://mui.com/material-ui/api/alert/#alert-classes-colorError) classes instead.
+   * See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   standardError: string;
   /** Styles applied to the root element if `variant="outlined"` and `color="success"`.
-   * @deprecated Combine the [.MuiAlert-outlined](https://next.mui.com/material-ui/api/alert/#alert-classes-outlined)
-   * and [.MuiAlert-colorSuccess](https://next.mui.com/material-ui/api/alert/#alert-classes-colorSuccess) classes instead.
-   * See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiAlert-outlined](https://mui.com/material-ui/api/alert/#alert-classes-outlined)
+   * and [.MuiAlert-colorSuccess](https://mui.com/material-ui/api/alert/#alert-classes-colorSuccess) classes instead.
+   * See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   outlinedSuccess: string;
   /** Styles applied to the root element if `variant="outlined"` and `color="info"`.
-   * @deprecated Combine the [.MuiAlert-outlined](https://next.mui.com/material-ui/api/alert/#alert-classes-outlined)
-   * and [.MuiAlert-colorInfo](https://next.mui.com/material-ui/api/alert/#alert-classes-colorInfo) classes instead.
-   * See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiAlert-outlined](https://mui.com/material-ui/api/alert/#alert-classes-outlined)
+   * and [.MuiAlert-colorInfo](https://mui.com/material-ui/api/alert/#alert-classes-colorInfo) classes instead.
+   * See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   outlinedInfo: string;
   /** Styles applied to the root element if `variant="outlined"` and `color="warning"`.
-   * @deprecated Combine the [.MuiAlert-outlined](https://next.mui.com/material-ui/api/alert/#alert-classes-outlined)
-   * and [.MuiAlert-colorWarning](https://next.mui.com/material-ui/api/alert/#alert-classes-colorWarning) classes instead.
-   * See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiAlert-outlined](https://mui.com/material-ui/api/alert/#alert-classes-outlined)
+   * and [.MuiAlert-colorWarning](https://mui.com/material-ui/api/alert/#alert-classes-colorWarning) classes instead.
+   * See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   outlinedWarning: string;
   /** Styles applied to the root element if `variant="outlined"` and `color="error"`.
-   * @deprecated Combine the [.MuiAlert-outlined](https://next.mui.com/material-ui/api/alert/#alert-classes-outlined)
-   * and [.MuiAlert-colorError](https://next.mui.com/material-ui/api/alert/#alert-classes-colorError) classes instead.
-   * See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiAlert-outlined](https://mui.com/material-ui/api/alert/#alert-classes-outlined)
+   * and [.MuiAlert-colorError](https://mui.com/material-ui/api/alert/#alert-classes-colorError) classes instead.
+   * See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   outlinedError: string;
   /** Styles applied to the root element if `variant="filled"` and `color="success"`.
-   * @deprecated Combine the [.MuiAlert-filled](https://next.mui.com/material-ui/api/alert/#alert-classes-filled)
-   * and [.MuiAlert-colorSuccess](https://next.mui.com/material-ui/api/alert/#alert-classes-colorSuccess) classes instead.
-   * See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiAlert-filled](https://mui.com/material-ui/api/alert/#alert-classes-filled)
+   * and [.MuiAlert-colorSuccess](https://mui.com/material-ui/api/alert/#alert-classes-colorSuccess) classes instead.
+   * See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   filledSuccess: string;
   /** Styles applied to the root element if `variant="filled"` and `color="info"`.
-   * @deprecated Combine the [.MuiAlert-filled](https://next.mui.com/material-ui/api/alert/#alert-classes-filled)
-   * and [.MuiAlert-colorInfo](https://next.mui.com/material-ui/api/alert/#alert-classes-colorInfo) classes instead.
-   * See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiAlert-filled](https://mui.com/material-ui/api/alert/#alert-classes-filled)
+   * and [.MuiAlert-colorInfo](https://mui.com/material-ui/api/alert/#alert-classes-colorInfo) classes instead.
+   * See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   filledInfo: string;
   /** Styles applied to the root element if `variant="filled"` and `color="warning"`
-   * @deprecated Combine the [.MuiAlert-filled](https://next.mui.com/material-ui/api/alert/#alert-classes-filled)
-   * and [.MuiAlert-colorWarning](https://next.mui.com/material-ui/api/alert/#alert-classes-colorWarning) classes instead.
-   * See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiAlert-filled](https://mui.com/material-ui/api/alert/#alert-classes-filled)
+   * and [.MuiAlert-colorWarning](https://mui.com/material-ui/api/alert/#alert-classes-colorWarning) classes instead.
+   * See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   filledWarning: string;
   /** Styles applied to the root element if `variant="filled"` and `color="error"`.
-   * @deprecated Combine the [.MuiAlert-filled](https://next.mui.com/material-ui/api/alert/#alert-classes-filled)
-   * and [.MuiAlert-colorError](https://next.mui.com/material-ui/api/alert/#alert-classes-colorError) classes instead.
-   * See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiAlert-filled](https://mui.com/material-ui/api/alert/#alert-classes-filled)
+   * and [.MuiAlert-colorError](https://mui.com/material-ui/api/alert/#alert-classes-colorError) classes instead.
+   * See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   filledError: string;
   /** Styles applied to the icon wrapper element. */

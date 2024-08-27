@@ -61,17 +61,17 @@
     "textColorInherit": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "the parent <a href=\"https://next.mui.com/material-ui/api/tabs/\"><code>Tabs</code></a> has <code>textColor=\"inherit\"</code>"
+      "conditions": "the parent <a href=\"https://mui.com/material-ui/api/tabs/\"><code>Tabs</code></a> has <code>textColor=\"inherit\"</code>"
     },
     "textColorPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "the parent <a href=\"https://next.mui.com/material-ui/api/tabs/\"><code>Tabs</code></a> has <code>textColor=\"primary\"</code>"
+      "conditions": "the parent <a href=\"https://mui.com/material-ui/api/tabs/\"><code>Tabs</code></a> has <code>textColor=\"primary\"</code>"
     },
     "textColorSecondary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "the parent <a href=\"https://next.mui.com/material-ui/api/tabs/\"><code>Tabs</code></a> has <code>textColor=\"secondary\"</code>"
+      "conditions": "the parent <a href=\"https://mui.com/material-ui/api/tabs/\"><code>Tabs</code></a> has <code>textColor=\"secondary\"</code>"
     },
     "wrapped": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

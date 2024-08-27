@@ -73,19 +73,19 @@
     {
       "key": "textColorInherit",
       "className": "MuiTab-textColorInherit",
-      "description": "Styles applied to the root element if the parent [`Tabs`](https://next.mui.com/material-ui/api/tabs/) has `textColor=\"inherit\"`.",
+      "description": "Styles applied to the root element if the parent [`Tabs`](https://mui.com/material-ui/api/tabs/) has `textColor=\"inherit\"`.",
       "isGlobal": false
     },
     {
       "key": "textColorPrimary",
       "className": "MuiTab-textColorPrimary",
-      "description": "Styles applied to the root element if the parent [`Tabs`](https://next.mui.com/material-ui/api/tabs/) has `textColor=\"primary\"`.",
+      "description": "Styles applied to the root element if the parent [`Tabs`](https://mui.com/material-ui/api/tabs/) has `textColor=\"primary\"`.",
       "isGlobal": false
     },
     {
       "key": "textColorSecondary",
       "className": "MuiTab-textColorSecondary",
-      "description": "Styles applied to the root element if the parent [`Tabs`](https://next.mui.com/material-ui/api/tabs/) has `textColor=\"secondary\"`.",
+      "description": "Styles applied to the root element if the parent [`Tabs`](https://mui.com/material-ui/api/tabs/) has `textColor=\"secondary\"`.",
       "isGlobal": false
     },
     {

@@ -23,7 +23,7 @@ export interface DividerClasses {
   /** Styles applied to the root element if divider have text. */
   withChildren: string;
   /** Styles applied to the root element if divider have text and `orientation="vertical"`.
-   * @deprecated Combine the [.MuiDivider-withChildren](https://next.mui.com/material-ui/api/divider/#divider-classes-withChildren) and [.MuiDivider-vertical](https://next.mui.com/material-ui/api/divider/#divider-classes-vertical) classes instead.
+   * @deprecated Combine the [.MuiDivider-withChildren](https://mui.com/material-ui/api/divider/#divider-classes-withChildren) and [.MuiDivider-vertical](https://mui.com/material-ui/api/divider/#divider-classes-vertical) classes instead.
    */
   withChildrenVertical: string;
   /** Styles applied to the root element if `textAlign="right" orientation="horizontal"`. */

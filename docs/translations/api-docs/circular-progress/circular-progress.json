@@ -31,7 +31,7 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the <code>circle</code> svg path",
       "conditions": "<code>variant=\"determinate\"</code>",
-      "deprecationInfo": "Combine the <a href=\"https://next.mui.com/material-ui/api/circular-progress/#circular-progress-classes-circle\">.MuiCircularProgress-circle</a> and <a href=\"https://next.mui.com/material-ui/api/circular-progress/#circular-progress-classes-determinate\">.MuiCircularProgress-determinate</a> classes instead. See <a href=\"https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "Combine the <a href=\"https://mui.com/material-ui/api/circular-progress/#circular-progress-classes-circle\">.MuiCircularProgress-circle</a> and <a href=\"https://mui.com/material-ui/api/circular-progress/#circular-progress-classes-determinate\">.MuiCircularProgress-determinate</a> classes instead. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "circleDisableShrink": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -42,7 +42,7 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the <code>circle</code> svg path",
       "conditions": "<code>variant=\"indeterminate\"</code>",
-      "deprecationInfo": "Combine the <a href=\"https://next.mui.com/material-ui/api/circular-progress/#circular-progress-classes-circle\">.MuiCircularProgress-circle</a> and <a href=\"https://next.mui.com/material-ui/api/circular-progress/#circular-progress-classes-indeterminate\">.MuiCircularProgress-indeterminate</a> classes instead. See <a href=\"https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "Combine the <a href=\"https://mui.com/material-ui/api/circular-progress/#circular-progress-classes-circle\">.MuiCircularProgress-circle</a> and <a href=\"https://mui.com/material-ui/api/circular-progress/#circular-progress-classes-indeterminate\">.MuiCircularProgress-indeterminate</a> classes instead. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "colorPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

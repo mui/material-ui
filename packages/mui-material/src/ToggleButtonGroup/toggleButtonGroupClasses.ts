@@ -15,11 +15,11 @@ export interface ToggleButtonGroupClasses {
   /** Styles applied to the children. */
   grouped: string;
   /** Styles applied to the children if `orientation="horizontal"`.
-   *  @deprecated Combine the [.MuiToggleButtonGroup-horizontal](https://next.mui.com/material-ui/api/toggle-button-group/#toggle-button-group-classes-horizontal) and [.MuiToggleButtonGroup-grouped](https://next.mui.com/material-ui/api/toggle-button-group/#toggle-button-group-classes-grouped) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   *  @deprecated Combine the [.MuiToggleButtonGroup-horizontal](https://mui.com/material-ui/api/toggle-button-group/#toggle-button-group-classes-horizontal) and [.MuiToggleButtonGroup-grouped](https://mui.com/material-ui/api/toggle-button-group/#toggle-button-group-classes-grouped) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   groupedHorizontal: string;
   /** Styles applied to the children if `orientation="vertical"`.
-   * @deprecated Combine the [.MuiToggleButtonGroup-vertical](https://next.mui.com/material-ui/api/toggle-button-group/#toggle-button-group-classes-vertical) and [.MuiToggleButtonGroup-grouped](https://next.mui.com/material-ui/api/toggle-button-group/#toggle-button-group-classes-grouped) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiToggleButtonGroup-vertical](https://mui.com/material-ui/api/toggle-button-group/#toggle-button-group-classes-vertical) and [.MuiToggleButtonGroup-grouped](https://mui.com/material-ui/api/toggle-button-group/#toggle-button-group-classes-grouped) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   groupedVertical: string;
   /** Styles applied to the root element if `fullWidth={true}`. */

@@ -17,11 +17,11 @@ export interface CircularProgressClasses {
   /** Styles applied to the `circle` svg path. */
   circle: string;
   /** Styles applied to the `circle` svg path if `variant="determinate"`.
-   * @deprecated Combine the [.MuiCircularProgress-circle](https://next.mui.com/material-ui/api/circular-progress/#circular-progress-classes-circle) and [.MuiCircularProgress-determinate](https://next.mui.com/material-ui/api/circular-progress/#circular-progress-classes-determinate) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiCircularProgress-circle](https://mui.com/material-ui/api/circular-progress/#circular-progress-classes-circle) and [.MuiCircularProgress-determinate](https://mui.com/material-ui/api/circular-progress/#circular-progress-classes-determinate) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   circleDeterminate: string;
   /** Styles applied to the `circle` svg path if `variant="indeterminate"`.
-   * @deprecated Combine the [.MuiCircularProgress-circle](https://next.mui.com/material-ui/api/circular-progress/#circular-progress-classes-circle) and [.MuiCircularProgress-indeterminate](https://next.mui.com/material-ui/api/circular-progress/#circular-progress-classes-indeterminate) classes instead. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiCircularProgress-circle](https://mui.com/material-ui/api/circular-progress/#circular-progress-classes-circle) and [.MuiCircularProgress-indeterminate](https://mui.com/material-ui/api/circular-progress/#circular-progress-classes-indeterminate) classes instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   circleIndeterminate: string;
   /** Styles applied to the `circle` svg path if `disableShrink={true}`. */
