@@ -25,10 +25,22 @@ async function run(argv) {
     );
   }
 
+  const { default: pkg } = await import(path.resolve('./package.json'), {
+    with: { type: 'json' },
+  });
+
+  const babelRuntimeVersion = pkg.dependencies['@babel/runtime'];
+  if (bundle === 'node' && !babelRuntimeVersion) {
+    throw new Error(
+      'package.json needs to have a dependency on `@babel/runtime` when building for commonjs.',
+    );
+  }
+
   const env = {
     NODE_ENV: 'production',
     BABEL_ENV: bundle,
     MUI_BUILD_VERBOSE: verbose,
+    MUI_BABEL_RUNTIME_VERSION: babelRuntimeVersion,
     ...(await getVersionEnvVariables()),
   };
 
