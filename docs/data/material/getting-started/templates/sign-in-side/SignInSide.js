@@ -38,7 +38,6 @@ export default function SignInSide() {
   };
 
   return (
-    // You can delete this TemplateFrame component since it's just no navigate to other pages
     <TemplateFrame
       toggleCustomTheme={toggleCustomTheme}
       showCustomTheme={showCustomTheme}

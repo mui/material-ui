@@ -71,7 +71,6 @@ export default function Checkout() {
     setActiveStep(activeStep - 1);
   };
   return (
-    // You can delete this NavBar component since it's just no navigate to other pages
     <TemplateFrame
       toggleCustomTheme={toggleCustomTheme}
       showCustomTheme={showCustomTheme}
