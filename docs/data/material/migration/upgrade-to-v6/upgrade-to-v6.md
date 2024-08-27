@@ -23,16 +23,7 @@ Material UI v6 features several other quality-of-life improvements, including:
 - support for [container queries](/material-ui/customization/container-queries/)
 - a [new theme utility](#color-mode-theme-utility) for adding styles to specific color modes
 
-## Start using the beta release
-
-In your `package.json` file, change the package version from `"latest"` to `"next"`.
-
-```diff title="package.json"
--"@mui/material": "latest",
-+"@mui/material": "next",
-```
-
-If you're using any of these packages, you can also change their version to `"next"`:
+If you're using any of these packages, you can also change their version to `"6.0.0"`:
 
 - `@mui/icons-material`
 - `@mui/system`
@@ -87,12 +78,12 @@ Use the snippet below to update your project (replace the `<version>` with the o
 npm install react@<version> react-dom@<version>
 ```
 
-```bash yarn
-yarn add react@<version> react-dom@<version>
-```
-
 ```bash pnpm
 pnpm add react@<version> react-dom@<version>
+```
+
+```bash yarn
+yarn add react@<version> react-dom@<version>
 ```
 
 </codeblock>
@@ -281,7 +272,7 @@ Additionally, the `true` value for the `size` prop was renamed to `"grow"`:
 Use this codemod to migrate your project to the new `size` and `offset` props:
 
 ```bash
-npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder>
+npx @mui/codemod@latest v6.0.0/grid-v2-props <path/to/folder>
 ```
 
 :::warning
@@ -300,7 +291,7 @@ The usage described above also applies to custom breakpoints:
 You can use the same codemod for custom breakpoints by providing the breakpoints as an argument:
 
 ```bash
-npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder> --jscodeshift='--muiBreakpoints=mobile,desktop'
+npx @mui/codemod@latest v6.0.0/grid-v2-props <path/to/folder> --jscodeshift='--muiBreakpoints=mobile,desktop'
 ```
 
 #### disableEqualOverflow prop removed
@@ -343,7 +334,7 @@ Still, we strongly recommend adopting this new behavior rather than trying to re
 Use this codemod to migrate your project to the `ListItemButton` component:
 
 ```bash
-npx @mui/codemod@next v6.0.0/list-item-button-prop <path/to/folder>
+npx @mui/codemod@latest v6.0.0/list-item-button-prop <path/to/folder>
 ```
 
 As the `ListItem` no longer supports these props, the class names related to these props were removed. You should use the `listItemButtonClasses` object instead.
@@ -368,11 +359,6 @@ As the `ListItem` no longer supports these props, the class names related to the
 ### Loading Button
 
 In v6, the `children` prop passed to the Loading Button component is now wrapped in a `<span>` tag to avoid [issues](https://github.com/mui/material-ui/issues/27853) when using tools to translate websites.
-
-### Rating
-
-Previously, due to a bug, the `aria-label` attribute was "null Stars" when no value was set in the Rating component.
-This is fixed in v6, with the `aria-label` attribute being "0 Stars" when no value is set.
 
 ### useMediaQuery types
 
@@ -462,9 +448,9 @@ Material UI v6 introduces a new utility for adding styles to specific color mod
 Use these codemods to migrate your project to `theme.applyStyles`:
 
 ```bash
-npx @mui/codemod@next v6.0.0/styled <path/to/folder-or-file>
-npx @mui/codemod@next v6.0.0/sx-prop <path/to/folder-or-file>
-npx @mui/codemod@next v6.0.0/theme-v6 <path/to/theme-file>
+npx @mui/codemod@latest v6.0.0/styled <path/to/folder-or-file>
+npx @mui/codemod@latest v6.0.0/sx-prop <path/to/folder-or-file>
+npx @mui/codemod@latest v6.0.0/theme-v6 <path/to/theme-file>
 ```
 
 :::info

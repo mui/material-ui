@@ -50,7 +50,7 @@ export default function SandboxDependencies(
       process.env.SOURCE_CODE_REPO !== 'https://github.com/mui/material-ui'
     ) {
       // #default-branch-switch
-      return 'next';
+      return 'latest';
     }
     const shortSha = commitRef.slice(0, 8);
     return `https://pkg.csb.dev/mui/material-ui/commit/${shortSha}/@mui/${packageName}`;

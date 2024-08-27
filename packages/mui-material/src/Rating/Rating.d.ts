@@ -118,10 +118,10 @@ export interface RatingProps
  *
  * Demos:
  *
- * - [Rating](https://next.mui.com/material-ui/react-rating/)
+ * - [Rating](https://mui.com/material-ui/react-rating/)
  *
  * API:
  *
- * - [Rating API](https://next.mui.com/material-ui/api/rating/)
+ * - [Rating API](https://mui.com/material-ui/api/rating/)
  */
 export default function Rating(props: RatingProps): React.JSX.Element;

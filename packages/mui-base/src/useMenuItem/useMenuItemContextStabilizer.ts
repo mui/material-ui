@@ -8,11 +8,11 @@ import { ListContext, ListContextValue, ListItemState } from '../useList';
  *
  * Demos:
  *
- * - [Menu](https://next.mui.com/base-ui/react-menu/#hooks)
+ * - [Menu](https://mui.com/base-ui/react-menu/#hooks)
  *
  * API:
  *
- * - [useMenuItemContextStabilizer API](https://next.mui.com/base-ui/react-menu/hooks-api/#use-menu-item-context-stabilizer)
+ * - [useMenuItemContextStabilizer API](https://mui.com/base-ui/react-menu/hooks-api/#use-menu-item-context-stabilizer)
  *
  * @param id - The id of the MenuItem. If undefined, it will be generated with useId.
  * @returns The stable ListContext value and the id of the MenuItem.

@@ -1,5 +1,51 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.0.0
+
+<!-- generated comparing v6.0.0-rc.0..master -->
+
+_Aug 27, 2024_
+
+We are excited to announce the stable release of Material-UI v6 🎉, check out [the blog post](https://mui.com/blog/material-ui-v6-is-out/) to see all the updates.
+
+### `@mui/material@6.0.0`
+
+- Change React.ReactElement<any,any> type from any to unknown (#43358) @sai6855
+- [Pagination] Update `getItemAriaLabel` page param type (#43399) @sydneyjodon-wk
+- [Unstable_TrapFocus] Fix `getTabbable` function return type (#42237) @KalmarLorand
+
+### `@mui/lab@6.0.0-beta.8`
+
+- [button] Add missing customize points for span (#43436) @oliviertassinari
+
+### Docs
+
+- Fix broken links (#43144) @DiegoAndai
+- Updated mui-x roadmap links with the new project URL (#43444) @michelengelen
+- Update pnpm order, move to second (#42712) @ahmadnadeem6236
+- Fix CSS theme variables section (#43439) @siriwatknp
+- Add two Toolpad Core components to Material UI sidebar (#43391) @prakhargupta1
+- Fix licensingModel -> licenseModel @oliviertassinari
+- Fix Stack Overflow issue canned response @oliviertassinari
+- Avoid referencing MUI Core @oliviertassinari
+- Fix description of eslint-plugin-material-ui @oliviertassinari
+- [docs-infra] Polish reportBrokenLinks.js to support Base UI @oliviertassinari
+- [material-ui] Clarify RTL language support in localization guide (#41784) @bahmanworld
+- [material-ui] Refine templates theme selector (#43396) @zanivan
+
+### Core
+
+- Prepare for v6 stable release (#43454) @siriwatknp
+- [blog] Polish Upcoming changes to MUI X pricing in 2024 (#43438) @oliviertassinari
+- [blog] Add Material UI v6 stable release (#41932) @siriwatknp
+- [ci] Fix the release:changelog cmd (#43451) @mnajdova
+- [core] Allow `^6.0.0` for `@mui/` dependencies in `@mui/docs` (#43445) @LukasTy
+- [code-infra] Babel plugin to fully resolve imported paths (#43294) @Janpot
+- [infra] Add closing message workflow (#43450) @michelengelen
+- [website] Make beta chip consistent for Toolpad (#43392) @prakhargupta1
+
+All contributors of this release in alphabetical order: @ahmadnadeem6236, @bahmanworld, @DiegoAndai, @Janpot, @KalmarLorand, @LukasTy, @michelengelen, @mnajdova, @oliviertassinari, @prakhargupta1, @sai6855, @siriwatknp, @sydneyjodon-wk, @zanivan
+
 ## 6.0.0-rc.0
 
 <!-- generated comparing v6.0.0-beta.6..next -->

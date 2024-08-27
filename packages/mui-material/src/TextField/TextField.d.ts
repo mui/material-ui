@@ -299,12 +299,12 @@ export type TextFieldOwnerState = BaseTextFieldProps;
  * It's important to understand that the text field is a simple abstraction
  * on top of the following components:
  *
- * *   [FormControl](https://next.mui.com/material-ui/api/form-control/)
- * *   [InputLabel](https://next.mui.com/material-ui/api/input-label/)
- * *   [FilledInput](https://next.mui.com/material-ui/api/filled-input/)
- * *   [OutlinedInput](https://next.mui.com/material-ui/api/outlined-input/)
- * *   [Input](https://next.mui.com/material-ui/api/input/)
- * *   [FormHelperText](https://next.mui.com/material-ui/api/form-helper-text/)
+ * *   [FormControl](https://mui.com/material-ui/api/form-control/)
+ * *   [InputLabel](https://mui.com/material-ui/api/input-label/)
+ * *   [FilledInput](https://mui.com/material-ui/api/filled-input/)
+ * *   [OutlinedInput](https://mui.com/material-ui/api/outlined-input/)
+ * *   [Input](https://mui.com/material-ui/api/input/)
+ * *   [FormHelperText](https://mui.com/material-ui/api/form-helper-text/)
  *
  * If you wish to alter the props applied to the `input` element, you can do so as follows:
  *
@@ -324,13 +324,13 @@ export type TextFieldOwnerState = BaseTextFieldProps;
  *
  * Demos:
  *
- * - [Autocomplete](https://next.mui.com/material-ui/react-autocomplete/)
- * - [Text Field](https://next.mui.com/material-ui/react-text-field/)
+ * - [Autocomplete](https://mui.com/material-ui/react-autocomplete/)
+ * - [Text Field](https://mui.com/material-ui/react-text-field/)
  *
  * API:
  *
- * - [TextField API](https://next.mui.com/material-ui/api/text-field/)
- * - inherits [FormControl API](https://next.mui.com/material-ui/api/form-control/)
+ * - [TextField API](https://mui.com/material-ui/api/text-field/)
+ * - inherits [FormControl API](https://mui.com/material-ui/api/form-control/)
  */
 export default function TextField<Variant extends TextFieldVariants>(
   props: {

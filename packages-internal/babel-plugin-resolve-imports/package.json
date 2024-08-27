@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-babel-plugin-resolve-imports",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "author": "MUI Team",
   "description": "babel plugin that resolves import specifiers to their actual output file.",
   "main": "./index.js",
@@ -18,8 +18,8 @@
     "resolve": "^1.22.8"
   },
   "devDependencies": {
-    "@types/resolve": "^1.20.6",
-    "@types/babel__core": "^7.20.5"
+    "@types/babel__core": "^7.20.5",
+    "@types/resolve": "^1.20.6"
   },
   "peerDependencies": {
     "@babel/core": "7"
