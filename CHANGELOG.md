@@ -26,17 +26,17 @@ We are excited to announce the stable release of Material-UI v6 🎉, check out 
 - Fix CSS theme variables section (#43439) @siriwatknp
 - Add two Toolpad Core components to Material UI sidebar (#43391) @prakhargupta1
 - Fix licensingModel -> licenseModel @oliviertassinari
-- Fix Stack Overflow issue canned response @oliviertassinari
-- Avoid referencing MUI Core @oliviertassinari
+- Fix Stack Overflow issue canned response @oliviertassinari
+- Avoid referencing MUI Core @oliviertassinari
 - Fix description of eslint-plugin-material-ui @oliviertassinari
-- [docs-infra] Polish reportBrokenLinks.js to support Base UI @oliviertassinari
+- [docs-infra] Polish reportBrokenLinks.js to support Base UI @oliviertassinari
 - [material-ui] Clarify RTL language support in localization guide (#41784) @bahmanworld
 - [material-ui] Refine templates theme selector (#43396) @zanivan
 
 ### Core
 
 - Prepare for v6 stable release (#43454) @siriwatknp
-- [blog] Polish Upcoming changes to MUI X pricing in 2024 (#43438) @oliviertassinari
+- [blog] Polish Upcoming changes to MUI X pricing in 2024 (#43438) @oliviertassinari
 - [blog] Add Material UI v6 stable release (#41932) @siriwatknp
 - [ci] Fix the release:changelog cmd (#43451) @mnajdova
 - [core] Allow `^6.0.0` for `@mui/` dependencies in `@mui/docs` (#43445) @LukasTy
