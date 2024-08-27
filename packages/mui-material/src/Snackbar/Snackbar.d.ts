@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { ClickAwayListenerProps } from '@mui/base/ClickAwayListener';
+import { ClickAwayListenerProps } from '../ClickAwayListener';
 import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '..';
 import { SnackbarContentProps } from '../SnackbarContent';
@@ -37,7 +37,7 @@ export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDi
   /**
    * Replace the `SnackbarContent` component.
    */
-  children?: React.ReactElement<any, any>;
+  children?: React.ReactElement<unknown, any>;
   /**
    * Override or extend the styles applied to the component.
    */
@@ -98,7 +98,7 @@ export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDi
    * @default Grow
    */
   TransitionComponent?: React.JSXElementConstructor<
-    TransitionProps & { children: React.ReactElement<any, any> }
+    TransitionProps & { children: React.ReactElement<unknown, any> }
   >;
   /**
    * The duration for the transition, in milliseconds.
@@ -121,10 +121,10 @@ export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDi
  *
  * Demos:
  *
- * - [Snackbar](https://next.mui.com/material-ui/react-snackbar/)
+ * - [Snackbar](https://mui.com/material-ui/react-snackbar/)
  *
  * API:
  *
- * - [Snackbar API](https://next.mui.com/material-ui/api/snackbar/)
+ * - [Snackbar API](https://mui.com/material-ui/api/snackbar/)
  */
 export default function Snackbar(props: SnackbarProps): React.JSX.Element;

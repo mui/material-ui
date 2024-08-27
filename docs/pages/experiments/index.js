@@ -53,7 +53,6 @@ export default function Experiments({ experiments }) {
             <Typography component="h1" variant="h2" sx={{ my: 1 }}>
               MUI <GradientText>Experiments</GradientText>
             </Typography>
-
             <Box sx={{ textAlign: 'left' }}>
               <ul>
                 <Typography component="li">
@@ -68,10 +67,13 @@ export default function Experiments({ experiments }) {
           </Box>
         </Container>
         <Box
-          sx={{
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
+          sx={(theme) => ({
+            bgcolor: 'grey.50',
             flexGrow: 1,
-          }}
+            ...theme.applyStyles('dark', {
+              bgcolor: 'primaryDark.900',
+            }),
+          })}
         >
           <Container sx={{ py: { xs: 4, md: 8 } }}>
             <Typography

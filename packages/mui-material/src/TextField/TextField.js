@@ -5,7 +5,8 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import useId from '@mui/utils/useId';
 import refType from '@mui/utils/refType';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Input from '../Input';
 import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
@@ -15,8 +16,6 @@ import FormHelperText from '../FormHelperText';
 import Select from '../Select';
 import { getTextFieldUtilityClass } from './textFieldClasses';
 import useSlot from '../utils/useSlot';
-
-const useThemeProps = createUseThemeProps('MuiTextField');
 
 const variantComponent = {
   standard: Input,
@@ -73,7 +72,7 @@ const TextFieldRoot = styled(FormControl, {
  * - using the underlying components directly as shown in the demos
  */
 const TextField = React.forwardRef(function TextField(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTextField' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTextField' });
   const {
     autoComplete,
     autoFocus = false,

@@ -274,8 +274,8 @@ If, however, you would like to use styled-components, you can configure your app
 
 <!-- #default-branch-switch -->
 
-- [Create React App with styled-components](https://github.com/mui/material-ui/tree/next/examples/material-ui-cra-styled-components)
-- [Create React App with styled-components and TypeScript](https://github.com/mui/material-ui/tree/next/examples/material-ui-cra-styled-components-ts)
+- [Create React App with styled-components](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components)
+- [Create React App with styled-components and TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components-ts)
 
 Following this approach reduces the bundle size, and removes the need to configure the CSS injection order.
 

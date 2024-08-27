@@ -82,16 +82,17 @@ declare module 'react' {
 }
 
 const StyledTreeItemRoot = styled(TreeItem2Root)(({ theme }) => ({
-  color: theme.palette.mode === 'light' ? theme.palette.grey[800] : theme.palette.grey[400],
+  color: theme.palette.grey[800],
   position: 'relative',
   [`& .${treeItemClasses.groupTransition}`]: {
     paddingLeft: theme.spacing(0.5),
   },
+  ...theme.applyStyles('dark', {
+    color: theme.palette.grey[400],
+  }),
 })) as unknown as typeof TreeItem2Root;
-
 const CustomTreeItemContent = styled(TreeItem2Content)(({ theme }) => ({
   borderRadius: theme.spacing(0.5),
-
   '&.Mui-expanded&::before': {
     content: '""',
     display: 'block',
@@ -100,10 +101,10 @@ const CustomTreeItemContent = styled(TreeItem2Content)(({ theme }) => ({
     top: '28px',
     height: 'calc(100% - 28px)',
     width: '1.5px',
-    backgroundColor:
-      theme.palette.mode === 'light'
-        ? (theme.vars || theme).palette.grey[100]
-        : (theme.vars || theme).palette.primaryDark[700],
+    backgroundColor: (theme.vars || theme).palette.grey[100],
+    ...theme.applyStyles('dark', {
+      backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+    }),
   },
 }));
 
@@ -128,7 +129,7 @@ interface CustomLabelProps {
 }
 
 function CustomLabel({ color, expandable, children, ...other }: CustomLabelProps) {
-  let Icon;
+  let Icon: null | React.ElementType = null;
   if (expandable) {
     Icon = FolderRounded;
   } else {

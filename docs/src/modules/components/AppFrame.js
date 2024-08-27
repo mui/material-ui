@@ -98,18 +98,10 @@ const RootDiv = styled('div')(({ theme }) => {
 
 const StyledAppBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== 'disablePermanent',
-})(({ disablePermanent, theme }) => {
+})(({ theme }) => {
   return {
     padding: theme.spacing(1.5),
     transition: theme.transitions.create('width'),
-    ...(disablePermanent && {
-      boxShadow: 'none',
-    }),
-    ...(!disablePermanent && {
-      [theme.breakpoints.up('lg')]: {
-        width: 'calc(100% - var(--MuiDocs-navDrawer-width))',
-      },
-    }),
     justifyContent: 'center',
     boxShadow: 'none',
     backdropFilter: 'blur(8px)',
@@ -120,33 +112,57 @@ const StyledAppBar = styled(AppBar, {
       backgroundColor: alpha(theme.palette.primaryDark[900], 0.6),
       color: (theme.vars || theme).palette.grey[500],
     }),
+    variants: [
+      {
+        props: ({ disablePermanent }) => disablePermanent,
+        style: {
+          boxShadow: 'none',
+        },
+      },
+      {
+        props: ({ disablePermanent }) => !disablePermanent,
+        style: {
+          [theme.breakpoints.up('lg')]: {
+            width: 'calc(100% - var(--MuiDocs-navDrawer-width))',
+          },
+        },
+      },
+    ],
   };
 });
 
 const NavIconButton = styled(IconButton, {
   shouldForwardProp: (prop) => prop !== 'disablePermanent',
-})(({ disablePermanent, theme }) => {
-  if (disablePermanent) {
-    return {};
-  }
-  return {
-    [theme.breakpoints.up('lg')]: {
-      display: 'none',
+})(({ theme }) => ({
+  variants: [
+    {
+      props: {
+        disablePermanent: false,
+      },
+      style: {
+        [theme.breakpoints.up('lg')]: {
+          display: 'none',
+        },
+      },
     },
-  };
-});
+  ],
+}));
 
-const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) => {
-  if (disablePermanent) {
-    return {};
-  }
-  return {
-    [theme.breakpoints.up('lg')]: {
-      flexShrink: 0,
-      width: 'var(--MuiDocs-navDrawer-width)',
+const StyledAppNavDrawer = styled(AppNavDrawer)(({ theme }) => ({
+  variants: [
+    {
+      props: {
+        disablePermanent: false,
+      },
+      style: {
+        [theme.breakpoints.up('lg')]: {
+          flexShrink: 0,
+          width: 'var(--MuiDocs-navDrawer-width)',
+        },
+      },
     },
-  };
-});
+  ],
+}));
 
 export const HEIGHT = 57;
 

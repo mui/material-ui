@@ -309,12 +309,13 @@ function createRender(context) {
    */
   function render(markdown) {
     const renderer = new marked.Renderer();
-    renderer.heading = (headingHtml, level) => {
+    renderer.heading = function heading({ tokens, depth: level }) {
       // Main title, no need for an anchor.
       // It adds noises to the URL.
       //
       // Small title, no need for an anchor.
       // It reduces the risk of duplicated id and it's fewer elements in the DOM.
+      const headingHtml = this.parser.parseInline(tokens);
       if (level === 1 || level >= 4) {
         return `<h${level}>${headingHtml}</h${level}>`;
       }
@@ -372,11 +373,12 @@ function createRender(context) {
         `</h${level}>`,
       ].join('');
     };
-    renderer.link = (href, linkTitle, linkText) => {
+    renderer.link = function link({ href, title, tokens }) {
+      const linkText = this.parser.parseInline(tokens);
       let more = '';
 
-      if (linkTitle) {
-        more += ` title="${linkTitle}"`;
+      if (title) {
+        more += ` title="${title}"`;
       }
 
       if (noSEOadvantage.some((domain) => href.indexOf(domain) !== -1)) {
@@ -387,7 +389,7 @@ function createRender(context) {
 
       checkUrlHealth(href, linkText, context);
 
-      if (userLanguage !== 'en' && href.indexOf('/') === 0 && !options.ignoreLanguagePages(href)) {
+      if (userLanguage !== 'en' && href.startsWith('/') && !options.ignoreLanguagePages(href)) {
         finalHref = `/${userLanguage}${href}`;
       }
 
@@ -404,17 +406,17 @@ function createRender(context) {
 
       return `<a href="${finalHref}"${more}>${linkText}</a>`;
     };
-    renderer.code = (code, infostring, escaped) => {
+    renderer.code = ({ lang, text, escaped }) => {
       // https://github.com/markedjs/marked/blob/30e90e5175700890e6feb1836c57b9404c854466/src/Renderer.js#L15
-      const lang = (infostring || '').match(/\S*/)[0];
-      const title = (infostring || '').match(/title="([^"]*)"/)?.[1];
-      const out = prism(code, lang);
-      if (out != null && out !== code) {
+      const langString = (lang || '').match(/\S*/)[0];
+      const title = (lang || '').match(/title="([^"]*)"/)?.[1];
+      const out = prism(text, langString);
+      if (out != null && out !== text) {
         escaped = true;
-        code = out;
+        text = out;
       }
 
-      code = `${code.replace(/\n$/, '')}\n`;
+      const code = `${text.replace(/\n$/, '')}\n`;
 
       if (!lang) {
         return `<pre><code>${escaped ? code : escape(code, true)}</code></pre>\n`;
@@ -462,9 +464,11 @@ function createRender(context) {
             ${
               ['info', 'success', 'warning', 'error'].includes(token.severity)
                 ? [
+                    '<div class="MuiCallout-icon-container">',
                     '<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyRoundedIcon">',
                     `<use class="MuiCode-copied-icon" xlink:href="#${token.severity}-icon" />`,
                     '</svg>',
+                    '</div>',
                   ].join('\n')
                 : ''
             }

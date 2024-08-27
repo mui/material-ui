@@ -215,8 +215,11 @@ describe('extendTheme', () => {
         configurable: true,
       });
       window.matchMedia = () => ({
+        // Keep mocking legacy methods because older code might still use them
         addListener: () => {},
+        addEventListener: () => {},
         removeListener: () => {},
+        removeEventListener: () => {},
       });
     });
 
@@ -241,6 +244,7 @@ describe('extendTheme', () => {
 
       function Test() {
         const theme = useTheme();
+        // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- styles is required outside the component
         styles = theme.unstable_sx({ bgcolor: 'primary.500' });
         return null;
       }
@@ -279,6 +283,9 @@ describe('extendTheme', () => {
 
     it('applyStyles', () => {
       const attribute = 'data-custom-color-scheme';
+      const customTheme2 = extendTheme({
+        colorSchemeSelector: attribute,
+      });
       let darkStyles = {};
       const Test = styled('div')(({ theme }) => {
         darkStyles = theme.applyStyles('dark', {
@@ -288,7 +295,7 @@ describe('extendTheme', () => {
       });
 
       render(
-        <CssVarsProvider attribute={attribute}>
+        <CssVarsProvider theme={customTheme2}>
           <Test />
         </CssVarsProvider>,
       );

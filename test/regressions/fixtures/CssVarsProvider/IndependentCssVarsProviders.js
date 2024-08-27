@@ -27,6 +27,7 @@ const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
 
 const nestedTheme = createCssVarsTheme({
   cssVarPrefix: 'nested',
+  colorSchemeSelector: '[data-nested-color-scheme="%s"]',
   colorSchemes: {
     light: {
       background: {
@@ -61,11 +62,7 @@ export default function IndependentCssVarsProviders() {
       >
         Background should be red.
         {/* If `disableNestedContext` is true, the upper CssVarsProvider should be independent */}
-        <CssVarsProvider
-          theme={nestedTheme}
-          disableNestedContext
-          attribute="data-nested-color-scheme"
-        >
+        <CssVarsProvider theme={nestedTheme} disableNestedContext>
           <DarkMode />
           <div
             style={{

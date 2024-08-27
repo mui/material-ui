@@ -6,11 +6,11 @@ import * as React from 'react';
 import StepContext from '../Step/StepContext';
 import StepIcon from '../StepIcon';
 import StepperContext from '../Stepper/StepperContext';
-import { createUseThemeProps, styled } from '../zero-styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import stepLabelClasses, { getStepLabelUtilityClass } from './stepLabelClasses';
 import useSlot from '../utils/useSlot';
-
-const useThemeProps = createUseThemeProps('MuiStepLabel');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, orientation, active, completed, error, disabled, alternativeLabel } = ownerState;
@@ -77,33 +77,36 @@ const StepLabelLabel = styled('span', {
   name: 'MuiStepLabel',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
-})(({ theme }) => ({
-  ...theme.typography.body2,
-  display: 'block',
-  transition: theme.transitions.create('color', {
-    duration: theme.transitions.duration.shortest,
-  }),
-  [`&.${stepLabelClasses.active}`]: {
-    color: (theme.vars || theme).palette.text.primary,
-    fontWeight: 500,
-  },
-  [`&.${stepLabelClasses.completed}`]: {
-    color: (theme.vars || theme).palette.text.primary,
-    fontWeight: 500,
-  },
-  [`&.${stepLabelClasses.alternativeLabel}`]: {
-    marginTop: 16,
-  },
-  [`&.${stepLabelClasses.error}`]: {
-    color: (theme.vars || theme).palette.error.main,
-  },
-}));
+})(
+  memoTheme(({ theme }) => ({
+    ...theme.typography.body2,
+    display: 'block',
+    transition: theme.transitions.create('color', {
+      duration: theme.transitions.duration.shortest,
+    }),
+    [`&.${stepLabelClasses.active}`]: {
+      color: (theme.vars || theme).palette.text.primary,
+      fontWeight: 500,
+    },
+    [`&.${stepLabelClasses.completed}`]: {
+      color: (theme.vars || theme).palette.text.primary,
+      fontWeight: 500,
+    },
+    [`&.${stepLabelClasses.alternativeLabel}`]: {
+      marginTop: 16,
+    },
+    [`&.${stepLabelClasses.error}`]: {
+      color: (theme.vars || theme).palette.error.main,
+    },
+  })),
+);
 
 const StepLabelIconContainer = styled('span', {
   name: 'MuiStepLabel',
   slot: 'IconContainer',
   overridesResolver: (props, styles) => styles.iconContainer,
 })({
+  flexShrink: 0,
   display: 'flex',
   paddingRight: 8,
   [`&.${stepLabelClasses.alternativeLabel}`]: {
@@ -115,16 +118,18 @@ const StepLabelLabelContainer = styled('span', {
   name: 'MuiStepLabel',
   slot: 'LabelContainer',
   overridesResolver: (props, styles) => styles.labelContainer,
-})(({ theme }) => ({
-  width: '100%',
-  color: (theme.vars || theme).palette.text.secondary,
-  [`&.${stepLabelClasses.alternativeLabel}`]: {
-    textAlign: 'center',
-  },
-}));
+})(
+  memoTheme(({ theme }) => ({
+    width: '100%',
+    color: (theme.vars || theme).palette.text.secondary,
+    [`&.${stepLabelClasses.alternativeLabel}`]: {
+      textAlign: 'center',
+    },
+  })),
+);
 
 const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiStepLabel' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiStepLabel' });
   const {
     children,
     className,
@@ -267,13 +272,11 @@ StepLabel.propTypes /* remove-proptypes */ = {
     stepIcon: PropTypes.elementType,
   }),
   /**
-   * The component to render in place of the [`StepIcon`](https://next.mui.com/material-ui/api/step-icon/).
-   * @deprecated Use `slots.stepIcon` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * The component to render in place of the [`StepIcon`](https://mui.com/material-ui/api/step-icon/).
    */
   StepIconComponent: PropTypes.elementType,
   /**
-   * Props applied to the [`StepIcon`](https://next.mui.com/material-ui/api/step-icon/) element.
-   * @deprecated Use `slotProps.stepIcon` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * Props applied to the [`StepIcon`](https://mui.com/material-ui/api/step-icon/) element.
    */
   StepIconProps: PropTypes.object,
   /**

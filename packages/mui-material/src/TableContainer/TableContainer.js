@@ -3,10 +3,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getTableContainerUtilityClass } from './tableContainerClasses';
-
-const useThemeProps = createUseThemeProps('MuiTableContainer');
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -28,7 +27,7 @@ const TableContainerRoot = styled('div', {
 });
 
 const TableContainer = React.forwardRef(function TableContainer(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTableContainer' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTableContainer' });
   const { className, component = 'div', ...other } = props;
 
   const ownerState = {

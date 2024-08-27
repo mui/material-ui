@@ -89,12 +89,6 @@
       "isGlobal": false
     },
     {
-      "key": "button",
-      "className": "MuiListItem-button",
-      "description": "Styles applied to the inner `component` element if `button={true}`.",
-      "isGlobal": false
-    },
-    {
       "key": "container",
       "className": "MuiListItem-container",
       "description": "Styles applied to the container element if `children` includes `ListItemSecondaryAction`.",
@@ -107,22 +101,10 @@
       "isGlobal": false
     },
     {
-      "key": "disabled",
-      "className": "Mui-disabled",
-      "description": "State class applied to the inner `component` element if `disabled={true}`.",
-      "isGlobal": true
-    },
-    {
       "key": "divider",
       "className": "MuiListItem-divider",
       "description": "Styles applied to the inner `component` element if `divider={true}`.",
       "isGlobal": false
-    },
-    {
-      "key": "focusVisible",
-      "className": "Mui-focusVisible",
-      "description": "State class applied to the `component`'s `focusVisibleClassName` prop if `button={true}`.",
-      "isGlobal": true
     },
     {
       "key": "gutters",
@@ -147,12 +129,6 @@
       "className": "MuiListItem-secondaryAction",
       "description": "Styles applied to the component element if `children` includes `ListItemSecondaryAction`.",
       "isGlobal": false
-    },
-    {
-      "key": "selected",
-      "className": "Mui-selected",
-      "description": "State class applied to the root element if `selected={true}`.",
-      "isGlobal": true
     }
   ],
   "spread": true,

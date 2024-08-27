@@ -29,23 +29,30 @@ const FrameInfo = React.forwardRef<HTMLDivElement, BoxProps>(function FrameInfo(
       ref={ref}
       {...props}
       sx={{
-        color: '#fff',
         p: 2,
+        overflow: 'clip',
+        position: 'relative',
+        colorScheme: 'dark',
+        color: '#fff',
         bgcolor: 'common.black',
         border: '1px solid',
         borderColor: 'primaryDark.700',
         borderTop: 0,
-        colorScheme: 'dark',
-        overflow: 'clip',
+        borderBottomLeftRadius: 12,
+        borderBottomRightRadius: 12,
         ...props.sx,
       }}
     />
   );
 });
 
-function Frame({ sx, ...props }: BoxProps) {
+const Frame = React.forwardRef<HTMLDivElement, BoxProps>(function Frame(
+  { sx, ...props }: BoxProps,
+  ref,
+) {
   return (
     <Box
+      ref={ref}
       {...props}
       sx={[
         {
@@ -64,7 +71,10 @@ function Frame({ sx, ...props }: BoxProps) {
       ]}
     />
   );
-}
+}) as ReturnType<typeof React.forwardRef<HTMLDivElement, BoxProps>> & {
+  Demo: typeof FrameDemo;
+  Info: typeof FrameInfo;
+};
 
 Frame.Demo = FrameDemo;
 Frame.Info = FrameInfo;

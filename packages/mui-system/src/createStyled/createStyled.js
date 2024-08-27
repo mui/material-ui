@@ -6,88 +6,88 @@ import getDisplayName from '@mui/utils/getDisplayName';
 import createTheme from '../createTheme';
 import styleFunctionSx from '../styleFunctionSx';
 
-function isEmpty(obj) {
-  return Object.keys(obj).length === 0;
-}
-
-// https://github.com/emotion-js/emotion/blob/26ded6109fcd8ca9875cc2ce4564fee678a3f3c5/packages/styled/src/utils.js#L40
-function isStringTag(tag) {
-  return (
-    typeof tag === 'string' &&
-    // 96 is one less than the char code
-    // for "a" so this is checking that
-    // it's a lowercase character
-    tag.charCodeAt(0) > 96
-  );
-}
+export const systemDefaultTheme = createTheme();
 
 // Update /system/styled/#api in case if this changes
 export function shouldForwardProp(prop) {
   return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
 }
 
-export const systemDefaultTheme = createTheme();
+function resolveTheme(themeId, theme, defaultTheme) {
+  return isObjectEmpty(theme) ? defaultTheme : theme[themeId] || theme;
+}
 
-const lowercaseFirstLetter = (string) => {
-  if (!string) {
-    return string;
+const PROCESSED_PROPS = Symbol('mui.processed_props');
+
+function attachTheme(props, themeId, defaultTheme) {
+  if (PROCESSED_PROPS in props) {
+    return props[PROCESSED_PROPS];
   }
-  return string.charAt(0).toLowerCase() + string.slice(1);
-};
 
-function resolveTheme({ defaultTheme, theme, themeId }) {
-  return isEmpty(theme) ? defaultTheme : theme[themeId] || theme;
+  const processedProps = {
+    ...props,
+    theme: resolveTheme(themeId, props.theme, defaultTheme),
+  };
+
+  props[PROCESSED_PROPS] = processedProps;
+  processedProps[PROCESSED_PROPS] = processedProps;
+
+  return processedProps;
 }
 
 function defaultOverridesResolver(slot) {
   if (!slot) {
     return null;
   }
-  return (props, styles) => styles[slot];
+  return (_props, styles) => styles[slot];
 }
 
-function processStyleArg(callableStyle, { ownerState, ...props }) {
-  const resolvedStylesArg =
-    typeof callableStyle === 'function' ? callableStyle({ ownerState, ...props }) : callableStyle;
+function processStyle(style, props) {
+  const resolvedStyle = typeof style === 'function' ? style(props) : style;
 
-  if (Array.isArray(resolvedStylesArg)) {
-    return resolvedStylesArg.flatMap((resolvedStyle) =>
-      processStyleArg(resolvedStyle, { ownerState, ...props }),
-    );
+  if (Array.isArray(resolvedStyle)) {
+    return resolvedStyle.flatMap((subStyle) => processStyle(subStyle, props));
   }
 
-  const mergedState = { ...props, ...ownerState, ownerState };
+  if (Array.isArray(resolvedStyle?.variants)) {
+    const { variants, ...otherStyles } = resolvedStyle;
 
-  if (
-    !!resolvedStylesArg &&
-    typeof resolvedStylesArg === 'object' &&
-    Array.isArray(resolvedStylesArg.variants)
-  ) {
-    const { variants = [], ...otherStyles } = resolvedStylesArg;
     let result = otherStyles;
-    variants.forEach((variant) => {
-      let isMatch = true;
+    let mergedState; // We might not need it, initalized lazily
+
+    /* eslint-disable no-labels */
+    variantLoop: for (let i = 0; i < variants.length; i += 1) {
+      const variant = variants[i];
+
       if (typeof variant.props === 'function') {
-        isMatch = variant.props(mergedState);
-      } else {
-        Object.keys(variant.props).forEach((key) => {
-          if (ownerState?.[key] !== variant.props[key] && props[key] !== variant.props[key]) {
-            isMatch = false;
-          }
-        });
-      }
-      if (isMatch) {
-        if (!Array.isArray(result)) {
-          result = [result];
+        mergedState ??= { ...props, ...props.ownerState, ownerState: props.ownerState };
+        if (!variant.props(mergedState)) {
+          continue;
         }
-        result.push(
-          typeof variant.style === 'function' ? variant.style(mergedState) : variant.style,
-        );
+      } else {
+        for (const key in variant.props) {
+          if (props[key] !== variant.props[key] && props.ownerState?.[key] !== variant.props[key]) {
+            continue variantLoop;
+          }
+        }
       }
-    });
+
+      if (!Array.isArray(result)) {
+        result = [result];
+      }
+      if (typeof variant.style === 'function') {
+        mergedState ??= { ...props, ...props.ownerState, ownerState: props.ownerState };
+        result.push(variant.style(mergedState));
+      } else {
+        result.push(variant.style);
+      }
+    }
+    /* eslint-enable no-labels */
+
     return result;
   }
-  return resolvedStylesArg;
+
+  return resolvedStyle;
 }
 
 export default function createStyled(input = {}) {
@@ -99,11 +99,11 @@ export default function createStyled(input = {}) {
   } = input;
 
   const systemSx = (props) => {
-    return styleFunctionSx({ ...props, theme: resolveTheme({ ...props, defaultTheme, themeId }) });
+    return styleFunctionSx(attachTheme(props, themeId, defaultTheme));
   };
   systemSx.__mui_systemSx = true;
 
-  return (tag, inputOptions = {}) => {
+  const styled = (tag, inputOptions = {}) => {
     // Filter out the `sx` style function from the previous styled component to prevent unnecessary styles generated by the composite components.
     processStyles(tag, (styles) => styles.filter((style) => !style?.__mui_systemSx));
 
@@ -158,29 +158,23 @@ export default function createStyled(input = {}) {
       ...options,
     });
 
-    const transformStyleArg = (stylesArg) => {
+    const transformStyleArg = (style) => {
       // On the server Emotion doesn't use React.forwardRef for creating components, so the created
       // component stays as a function. This condition makes sure that we do not interpolate functions
       // which are basically components used as a selectors.
-      if (
-        (typeof stylesArg === 'function' && stylesArg.__emotion_real !== stylesArg) ||
-        isPlainObject(stylesArg)
-      ) {
-        return (props) =>
-          processStyleArg(stylesArg, {
-            ...props,
-            theme: resolveTheme({ theme: props.theme, defaultTheme, themeId }),
-          });
+      if ((typeof style === 'function' && style.__emotion_real !== style) || isPlainObject(style)) {
+        return (props) => processStyle(style, attachTheme(props, themeId, defaultTheme));
       }
-      return stylesArg;
+      return style;
     };
-    const muiStyledResolver = (styleArg, ...expressions) => {
-      let transformedStyleArg = transformStyleArg(styleArg);
+
+    const muiStyledResolver = (style, ...expressions) => {
+      let transformedStyle = transformStyleArg(style);
       const expressionsWithDefaultTheme = expressions ? expressions.map(transformStyleArg) : [];
 
       if (componentName && overridesResolver) {
         expressionsWithDefaultTheme.push((props) => {
-          const theme = resolveTheme({ ...props, defaultTheme, themeId });
+          const theme = resolveTheme(themeId, props.theme, defaultTheme);
           if (
             !theme.components ||
             !theme.components[componentName] ||
@@ -188,21 +182,32 @@ export default function createStyled(input = {}) {
           ) {
             return null;
           }
+
           const styleOverrides = theme.components[componentName].styleOverrides;
           const resolvedStyleOverrides = {};
+          const propsWithTheme = attachTheme(props, themeId, defaultTheme);
+
           // TODO: v7 remove iteration and use `resolveStyleArg(styleOverrides[slot])` directly
-          Object.entries(styleOverrides).forEach(([slotKey, slotStyle]) => {
-            resolvedStyleOverrides[slotKey] = processStyleArg(slotStyle, { ...props, theme });
-          });
+          // eslint-disable-next-line guard-for-in
+          for (const slotKey in styleOverrides) {
+            resolvedStyleOverrides[slotKey] = processStyle(styleOverrides[slotKey], propsWithTheme);
+          }
+
           return overridesResolver(props, resolvedStyleOverrides);
         });
       }
 
       if (componentName && !skipVariantsResolver) {
         expressionsWithDefaultTheme.push((props) => {
-          const theme = resolveTheme({ ...props, defaultTheme, themeId });
+          const theme = resolveTheme(themeId, props.theme, defaultTheme);
           const themeVariants = theme?.components?.[componentName]?.variants;
-          return processStyleArg({ variants: themeVariants }, { ...props, theme });
+          if (!themeVariants) {
+            return null;
+          }
+          return processStyle(
+            { variants: themeVariants },
+            attachTheme(props, themeId, defaultTheme),
+          );
         });
       }
 
@@ -212,13 +217,13 @@ export default function createStyled(input = {}) {
 
       const numOfCustomFnsApplied = expressionsWithDefaultTheme.length - expressions.length;
 
-      if (Array.isArray(styleArg) && numOfCustomFnsApplied > 0) {
+      if (Array.isArray(style) && numOfCustomFnsApplied > 0) {
         const placeholders = new Array(numOfCustomFnsApplied).fill('');
         // If the type is array, than we need to add placeholders in the template for the overrides, variants and the sx styles.
-        transformedStyleArg = [...styleArg, ...placeholders];
-        transformedStyleArg.raw = [...styleArg.raw, ...placeholders];
+        transformedStyle = [...style, ...placeholders];
+        transformedStyle.raw = [...style.raw, ...placeholders];
       }
-      const Component = defaultStyledResolver(transformedStyleArg, ...expressionsWithDefaultTheme);
+      const Component = defaultStyledResolver(transformedStyle, ...expressionsWithDefaultTheme);
 
       if (process.env.NODE_ENV !== 'production') {
         let displayName;
@@ -244,4 +249,32 @@ export default function createStyled(input = {}) {
 
     return muiStyledResolver;
   };
+
+  return styled;
+}
+
+function isObjectEmpty(object) {
+  // eslint-disable-next-line
+  for (const _ in object) {
+    return false;
+  }
+  return true;
+}
+
+// https://github.com/emotion-js/emotion/blob/26ded6109fcd8ca9875cc2ce4564fee678a3f3c5/packages/styled/src/utils.js#L40
+function isStringTag(tag) {
+  return (
+    typeof tag === 'string' &&
+    // 96 is one less than the char code
+    // for "a" so this is checking that
+    // it's a lowercase character
+    tag.charCodeAt(0) > 96
+  );
+}
+
+function lowercaseFirstLetter(string) {
+  if (!string) {
+    return string;
+  }
+  return string.charAt(0).toLowerCase() + string.slice(1);
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Slider from '@mui/material/Slider';
@@ -52,9 +52,11 @@ const Widget = styled('div')(({ theme }) => ({
   margin: 'auto',
   position: 'relative',
   zIndex: 1,
-  backgroundColor:
-    theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.4)',
+  backgroundColor: 'rgba(255,255,255,0.4)',
   backdropFilter: 'blur(40px)',
+  ...theme.applyStyles('dark', {
+    backgroundColor: 'rgba(0,0,0,0.6)',
+  }),
 }));
 
 const CoverImage = styled('div')({
@@ -78,7 +80,6 @@ const TinyText = styled(Typography)({
 });
 
 export default function MusicPlayerSlider() {
-  const theme = useTheme();
   const duration = 200; // seconds
   const [position, setPosition] = React.useState(32);
   const [paused, setPaused] = React.useState(false);
@@ -87,9 +88,6 @@ export default function MusicPlayerSlider() {
     const secondLeft = value - minute * 60;
     return `${minute}:${secondLeft < 10 ? `0${secondLeft}` : secondLeft}`;
   }
-  const mainIconColor = theme.palette.mode === 'dark' ? '#fff' : '#000';
-  const lightIconColor =
-    theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)';
   return (
     <Box sx={{ width: '100%', overflow: 'hidden' }}>
       <Widget>
@@ -164,39 +162,52 @@ export default function MusicPlayerSlider() {
           <TinyText>-{formatDuration(duration - position)}</TinyText>
         </Box>
         <Box
-          sx={{
+          sx={(theme) => ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             mt: -1,
-          }}
+            '& svg': {
+              color: '#000',
+              ...theme.applyStyles('dark', {
+                color: '#fff',
+              }),
+            },
+          })}
         >
           <IconButton aria-label="previous song">
-            <FastRewindRounded fontSize="large" htmlColor={mainIconColor} />
+            <FastRewindRounded fontSize="large" />
           </IconButton>
           <IconButton
             aria-label={paused ? 'play' : 'pause'}
             onClick={() => setPaused(!paused)}
           >
             {paused ? (
-              <PlayArrowRounded
-                sx={{ fontSize: '3rem' }}
-                htmlColor={mainIconColor}
-              />
+              <PlayArrowRounded sx={{ fontSize: '3rem' }} />
             ) : (
-              <PauseRounded sx={{ fontSize: '3rem' }} htmlColor={mainIconColor} />
+              <PauseRounded sx={{ fontSize: '3rem' }} />
             )}
           </IconButton>
           <IconButton aria-label="next song">
-            <FastForwardRounded fontSize="large" htmlColor={mainIconColor} />
+            <FastForwardRounded fontSize="large" />
           </IconButton>
         </Box>
         <Stack
           spacing={2}
           direction="row"
-          sx={{ alignItems: 'center', mb: 1, px: 1 }}
+          sx={(theme) => ({
+            mb: 1,
+            px: 1,
+            '& > svg': {
+              color: 'rgba(0,0,0,0.4)',
+              ...theme.applyStyles('dark', {
+                color: 'rgba(255,255,255,0.4)',
+              }),
+            },
+          })}
+          alignItems="center"
         >
-          <VolumeDownRounded htmlColor={lightIconColor} />
+          <VolumeDownRounded />
           <Slider
             aria-label="Volume"
             defaultValue={30}
@@ -221,7 +232,7 @@ export default function MusicPlayerSlider() {
               }),
             })}
           />
-          <VolumeUpRounded htmlColor={lightIconColor} />
+          <VolumeUpRounded />
         </Stack>
       </Widget>
       <WallPaper />

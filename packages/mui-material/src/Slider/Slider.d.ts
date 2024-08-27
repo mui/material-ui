@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { SlotComponentProps } from '@mui/base';
-import { Mark } from '@mui/base/useSlider';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
+import { Mark } from './useSlider.types';
+import { SlotComponentProps } from '../utils/types';
 import { Theme } from '../styles';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import SliderValueLabelComponent from './SliderValueLabel';
@@ -306,11 +306,11 @@ export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
  *
  * Demos:
  *
- * - [Slider](https://next.mui.com/material-ui/react-slider/)
+ * - [Slider](https://mui.com/material-ui/react-slider/)
  *
  * API:
  *
- * - [Slider API](https://next.mui.com/material-ui/api/slider/)
+ * - [Slider API](https://mui.com/material-ui/api/slider/)
  */
 declare const Slider: OverridableComponent<SliderTypeMap>;
 

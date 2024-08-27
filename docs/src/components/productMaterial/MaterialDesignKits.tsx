@@ -2,7 +2,7 @@ import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import ExtensionRoundedIcon from '@mui/icons-material/ExtensionRounded';
@@ -43,7 +43,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
   return (
     <Section cozy bg={gradient ? 'gradient' : 'white'}>
       <Grid container spacing={2} alignItems="center">
-        <Grid md={6} sx={{ minWidth: 0 }}>
+        <Grid sx={{ minWidth: 0 }} size={{ md: 6 }}>
           <SectionHeadline
             overline="Design resources"
             title={
@@ -70,7 +70,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
             </Highlighter>
           </Group>
         </Grid>
-        <Grid xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Frame>
             <Frame.Demo sx={{ overflow: 'clip', height: { xs: 240, sm: 420 } }}>
               <MaterialFigmaComponents fadeIn={customized} />

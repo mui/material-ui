@@ -16,7 +16,13 @@ export const projectSettings: ProjectSettings = {
     {
       name: 'material',
       rootPath: path.join(process.cwd(), 'packages/mui-material'),
-      entryPointPath: 'src/index.d.ts',
+      entryPointPath: [
+        'src/index.d.ts',
+        'src/PigmentStack/PigmentStack.tsx',
+        'src/PigmentContainer/PigmentContainer.tsx',
+        'src/PigmentHidden/PigmentHidden.tsx',
+        'src/PigmentGrid/PigmentGrid.tsx',
+      ],
     },
     {
       name: 'lab',
@@ -28,11 +34,15 @@ export const projectSettings: ProjectSettings = {
   getComponentInfo: getMaterialUiComponentInfo,
   translationLanguages: LANGUAGES,
   skipComponent(filename: string) {
-    return filename.match(/(ThemeProvider|CssVarsProvider|Grid2)/) !== null;
+    return (
+      filename.match(
+        /(ThemeProvider|CssVarsProvider|DefaultPropsProvider|InitColorSchemeScript)/,
+      ) !== null
+    );
   },
   translationPagesDirectory: 'docs/translations/api-docs',
   generateClassName: generateUtilityClass,
   isGlobalClassName: isGlobalState,
   // #default-branch-switch
-  baseApiUrl: 'https://next.mui.com',
+  baseApiUrl: 'https://mui.com',
 };

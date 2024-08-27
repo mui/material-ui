@@ -45,16 +45,6 @@ describe('<TablePagination />', () => {
         );
         return { container: container.firstChild.firstChild.firstChild, ...other };
       },
-      wrapMount: (mount) => (node) => {
-        const wrapper = mount(
-          <table>
-            <tbody>
-              <tr>{node}</tr>
-            </tbody>
-          </table>,
-        );
-        return wrapper.find('tr').childAt(0);
-      },
       muiName: 'MuiTablePagination',
       refInstanceof: window.HTMLTableCellElement,
       testComponentPropWith: 'td',

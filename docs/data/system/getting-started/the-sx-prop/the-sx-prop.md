@@ -185,14 +185,7 @@ Read more on the [Usage page—Responsive values](/system/getting-started/usage/
 
 ## Callback values
 
-Each property in the `sx` prop can receive a function callback as a value.
-This is useful when you want to use the `theme` for calculating a value:
-
-```jsx
-<Box sx={{ height: (theme) => theme.spacing(10) }} />
-```
-
-The `sx` prop can also receive a callback when you need to get theme values that are objects:
+Use a callback when you need to get theme values that are objects:
 
 ```jsx
 <Box
@@ -202,6 +195,24 @@ The `sx` prop can also receive a callback when you need to get theme values that
   })}
 />
 ```
+
+:::info
+Callback as a value has been deprecated.
+Please use the callback as the entire value instead.
+
+```diff
+- sx={{ height: (theme) => theme.spacing(10) }}
++ sx={(theme) => ({ height: theme.spacing(10) })}
+```
+
+<br />
+You can migrate the code using our codemod:
+
+```bash
+npx @mui/codemod@latest v6.0.0/sx-prop path/to/file-or-folder
+```
+
+:::
 
 In TypeScript, to use custom theme properties with the `sx` prop callback, extend the `Theme` type from the `@mui/system` library using [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation):
 

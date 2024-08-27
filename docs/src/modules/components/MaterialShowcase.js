@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Card from '@mui/material/Card';
@@ -470,7 +470,7 @@ export default function Showcase() {
           .filter((item) => item[sortFunctionName] !== undefined)
           .sort(sortFunction)
           .map((app) => (
-            <Grid key={app.title} item xs={12} sm={6}>
+            <Grid key={app.title} item size={{ xs: 12, sm: 6 }}>
               {app.image ? (
                 <Card
                   variant="outlined"
@@ -489,7 +489,7 @@ export default function Showcase() {
                     }),
                   })}
                 >
-                  <a href={app.link} rel="noopener nofollow" target="_blank">
+                  <a href={app.link} rel="noopener nofollow" target="_blank" aria-label={app.title}>
                     <CardMedia
                       component="img"
                       loading="lazy"

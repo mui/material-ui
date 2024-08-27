@@ -73,12 +73,16 @@ export default function InstagramPost() {
           {[...Array(5)].map((_, index) => (
             <Box
               key={index}
-              sx={{
-                borderRadius: '50%',
-                width: `max(${6 - index}px, 3px)`,
-                height: `max(${6 - index}px, 3px)`,
-                bgcolor: index === 0 ? 'primary.solidBg' : 'background.level3',
-              }}
+              sx={[
+                {
+                  borderRadius: '50%',
+                  width: `max(${6 - index}px, 3px)`,
+                  height: `max(${6 - index}px, 3px)`,
+                },
+                index === 0
+                  ? { bgcolor: 'primary.solidBg' }
+                  : { bgcolor: 'background.level3' },
+              ]}
             />
           ))}
         </Box>

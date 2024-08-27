@@ -69,6 +69,7 @@ describe('mochaHooks', () => {
         let unsafeSetState;
         function Parent() {
           const [state, setState] = React.useState(0);
+          // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- unsafeSetState is required outside the component
           unsafeSetState = setState;
 
           React.useEffect(() => {});

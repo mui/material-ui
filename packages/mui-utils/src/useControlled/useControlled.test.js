@@ -105,4 +105,10 @@ describe('useControlled', () => {
       setProps({ defaultValue: 1 });
     }).not.toErrorDev();
   });
+
+  it('should not raise a warning if setting NaN as the defaultValue when uncontrolled', () => {
+    expect(() => {
+      render(<TestComponent defaultValue={NaN}>{() => null}</TestComponent>);
+    }).not.toErrorDev();
+  });
 });

@@ -58,11 +58,11 @@ The Material UI Sync plugin also bakes in an embedded Storybook preview panel s
 
 ## Try Sync now
 
-Get the beta version of Material UI Sync now, available for free in the [Figma Community](https://www.figma.com/community/plugin/1336346114713490235/material-ui-sync)!
+Get the beta version of Material UI Sync now, available to try for free in the [Figma Community](https://www.figma.com/community/plugin/1336346114713490235/material-ui-sync)!
 
 There's still a lot to do, and we're looking forward to hearing from all of you [who requested this plugin years ago](https://github.com/mui/mui-design-kits/issues/10).
 
 - Check out the documentation for [the Sync plugin](/material-ui/design-resources/material-ui-sync/) and [the Material UI Design Kit](/material-ui/design-resources/material-ui-for-figma/).
-- If you've got any feedback, we'd love to [hear from you](https://material-ui-sync.canny.io/).
+- If you've got any feedback, we'd love to [hear from you](https://github.com/mui/mui-design-kits/discussions/84).
 
 Happy designing! 👨‍🎨

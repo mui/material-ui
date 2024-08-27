@@ -179,7 +179,13 @@ export default function GitHubLabel() {
                     },
                   })}
                 >
-                  <DoneIcon sx={{ visibility: selected ? 'visible' : 'hidden' }} />
+                  <DoneIcon
+                    sx={[
+                      selected
+                        ? { visibility: 'visible' }
+                        : { visibility: 'hidden' },
+                    ]}
+                  />
                   <Box
                     component="span"
                     sx={{
@@ -197,7 +203,17 @@ export default function GitHubLabel() {
                     <Typography level="title-sm">{option.name}</Typography>
                     <Typography level="body-xs">{option.description}</Typography>
                   </Box>
-                  <CloseIcon sx={{ visibility: selected ? 'visible' : 'hidden' }} />
+                  <CloseIcon
+                    sx={[
+                      selected
+                        ? {
+                            visibility: 'visible',
+                          }
+                        : {
+                            visibility: 'hidden',
+                          },
+                    ]}
+                  />
                 </AutocompleteOption>
               )}
               options={[...labels].sort((a, b) => {

@@ -78,12 +78,14 @@ function NavMenuButton({
           isOnButton.current = false;
         }}
         onKeyDown={handleButtonKeyDown}
-        sx={{
-          bgcolor: open ? 'neutral.plainHoverBg' : undefined,
-          '&:focus-visible': {
-            bgcolor: 'neutral.plainHoverBg',
+        sx={[
+          {
+            '&:focus-visible': {
+              bgcolor: 'neutral.plainHoverBg',
+            },
           },
-        }}
+          open ? { bgcolor: 'neutral.plainHoverBg' } : { bgcolor: null },
+        ]}
       >
         {children}
       </MenuButton>

@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import sinon from 'sinon';
 import { createRenderer } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
-import { CssVarsProvider, extendTheme, styled } from '@mui/material/styles';
+import { CssVarsProvider, extendTheme } from '@mui/material/styles';
 import { deepOrange, green } from '@mui/material/colors';
 
 describe('extendTheme', () => {
@@ -23,8 +24,11 @@ describe('extendTheme', () => {
       configurable: true,
     });
     window.matchMedia = () => ({
+      // Keep mocking legacy methods because @mui/material v5 still uses them
       addListener: () => {},
+      addEventListener: () => {},
       removeListener: () => {},
+      removeEventListener: () => {},
     });
   });
 
@@ -32,10 +36,67 @@ describe('extendTheme', () => {
     window.matchMedia = originalMatchmedia;
   });
 
-  it('should have a colorSchemes', () => {
+  it('should have a light colorScheme by default', () => {
     const theme = extendTheme();
     expect(typeof extendTheme).to.equal('function');
     expect(typeof theme.colorSchemes).to.equal('object');
+    expect(typeof theme.colorSchemes.light).to.equal('object');
+    expect(theme.colorSchemes.dark).to.equal(undefined);
+  });
+
+  it('should have a light as a default colorScheme regardless of key order', () => {
+    const theme = extendTheme({
+      colorSchemes: { dark: true, light: true },
+    });
+    expect(theme.defaultColorScheme).to.equal('light');
+  });
+
+  it('should have "media" colorSchemeSelector', () => {
+    const theme = extendTheme({ colorSchemeSelector: 'media' });
+    expect(theme.colorSchemeSelector).to.equal('media');
+  });
+
+  it('should have CSS color-scheme by default', () => {
+    const theme = extendTheme();
+    sinon.assert.match(theme.generateStyleSheets()[1], {
+      ':root': {
+        colorScheme: 'light',
+      },
+    });
+  });
+
+  it('should have CSS color-scheme: dark', () => {
+    const theme = extendTheme({ defaultColorScheme: 'dark' });
+    sinon.assert.match(theme.generateStyleSheets()[1], {
+      ':root': {
+        colorScheme: 'dark',
+      },
+    });
+  });
+
+  it('should throw error if the default color scheme is invalid', () => {
+    expect(() =>
+      extendTheme({ colorSchemes: { dark: false }, defaultColorScheme: 'dark' }),
+    ).to.throw('MUI: The `colorSchemes.dark` option is either missing or invalid.');
+  });
+
+  it('should throw error if the default color scheme is missing', () => {
+    expect(() => extendTheme({ defaultColorScheme: 'paper' })).to.throw(
+      'MUI: The `colorSchemes.paper` option is either missing or invalid.',
+    );
+  });
+
+  it('should not attach to `colorSchemes` if the provided scheme is invalid', () => {
+    const theme = extendTheme({ colorSchemes: { dark: null, light: true } });
+    expect(theme.colorSchemes.dark).to.equal(undefined);
+  });
+
+  it('disableCssColorScheme should remove CSS color-scheme', () => {
+    const theme = extendTheme({ disableCssColorScheme: true });
+    expect(theme.generateStyleSheets()[1][':root'].colorScheme).to.equal(undefined);
+
+    const theme2 = extendTheme({ defaultColorScheme: 'dark', disableCssColorScheme: true });
+    expect(theme2.generateStyleSheets()[1][':root'].colorScheme).to.equal(undefined);
   });
 
   it('should have the custom color schemes', () => {
@@ -52,59 +113,61 @@ describe('extendTheme', () => {
 
   it('should generate color channels', () => {
     const theme = extendTheme();
-    expect(theme.colorSchemes.dark.palette.background.defaultChannel).to.equal('18 18 18');
+
     expect(theme.colorSchemes.light.palette.background.defaultChannel).to.equal('255 255 255');
 
-    expect(theme.colorSchemes.dark.palette.background.paperChannel).to.equal('18 18 18');
     expect(theme.colorSchemes.light.palette.background.paperChannel).to.equal('255 255 255');
-
-    expect(theme.colorSchemes.dark.palette.primary.mainChannel).to.equal('144 202 249');
-    expect(theme.colorSchemes.dark.palette.primary.darkChannel).to.equal('66 165 245');
-    expect(theme.colorSchemes.dark.palette.primary.lightChannel).to.equal('227 242 253');
-    expect(theme.colorSchemes.dark.palette.primary.contrastTextChannel).to.equal('0 0 0');
 
     expect(theme.colorSchemes.light.palette.primary.mainChannel).to.equal('25 118 210');
     expect(theme.colorSchemes.light.palette.primary.darkChannel).to.equal('21 101 192');
     expect(theme.colorSchemes.light.palette.primary.lightChannel).to.equal('66 165 245');
     expect(theme.colorSchemes.light.palette.primary.contrastTextChannel).to.equal('255 255 255');
 
-    expect(theme.colorSchemes.dark.palette.secondary.mainChannel).to.equal('206 147 216');
-    expect(theme.colorSchemes.dark.palette.secondary.darkChannel).to.equal('171 71 188');
-    expect(theme.colorSchemes.dark.palette.secondary.lightChannel).to.equal('243 229 245');
-    expect(theme.colorSchemes.dark.palette.secondary.contrastTextChannel).to.equal('0 0 0');
-
     expect(theme.colorSchemes.light.palette.secondary.mainChannel).to.equal('156 39 176');
     expect(theme.colorSchemes.light.palette.secondary.darkChannel).to.equal('123 31 162');
     expect(theme.colorSchemes.light.palette.secondary.lightChannel).to.equal('186 104 200');
     expect(theme.colorSchemes.light.palette.secondary.contrastTextChannel).to.equal('255 255 255');
 
-    expect(theme.colorSchemes.dark.palette.text.primaryChannel).to.equal('255 255 255');
-    expect(theme.colorSchemes.dark.palette.text.secondaryChannel).to.equal('255 255 255');
-
     expect(theme.colorSchemes.light.palette.text.primaryChannel).to.equal('0 0 0');
     expect(theme.colorSchemes.light.palette.text.secondaryChannel).to.equal('0 0 0');
 
-    expect(theme.colorSchemes.dark.palette.dividerChannel).to.equal('255 255 255');
-
     expect(theme.colorSchemes.light.palette.dividerChannel).to.equal('0 0 0');
 
-    expect(theme.colorSchemes.dark.palette.action.activeChannel).to.equal('255 255 255');
     expect(theme.colorSchemes.light.palette.action.activeChannel).to.equal('0 0 0');
 
-    expect(theme.colorSchemes.dark.palette.action.selectedChannel).to.equal('255 255 255');
     expect(theme.colorSchemes.light.palette.action.selectedChannel).to.equal('0 0 0');
+  });
+
+  it('should generate dark color channels', () => {
+    const theme = extendTheme({ defaultColorScheme: 'dark' });
+
+    expect(theme.colorSchemes.dark.palette.background.defaultChannel).to.equal('18 18 18');
+
+    expect(theme.colorSchemes.dark.palette.background.paperChannel).to.equal('18 18 18');
+
+    expect(theme.colorSchemes.dark.palette.primary.mainChannel).to.equal('144 202 249');
+    expect(theme.colorSchemes.dark.palette.primary.darkChannel).to.equal('66 165 245');
+    expect(theme.colorSchemes.dark.palette.primary.lightChannel).to.equal('227 242 253');
+    expect(theme.colorSchemes.dark.palette.primary.contrastTextChannel).to.equal('0 0 0');
+
+    expect(theme.colorSchemes.dark.palette.secondary.mainChannel).to.equal('206 147 216');
+    expect(theme.colorSchemes.dark.palette.secondary.darkChannel).to.equal('171 71 188');
+    expect(theme.colorSchemes.dark.palette.secondary.lightChannel).to.equal('243 229 245');
+    expect(theme.colorSchemes.dark.palette.secondary.contrastTextChannel).to.equal('0 0 0');
+
+    expect(theme.colorSchemes.dark.palette.text.primaryChannel).to.equal('255 255 255');
+    expect(theme.colorSchemes.dark.palette.text.secondaryChannel).to.equal('255 255 255');
+
+    expect(theme.colorSchemes.dark.palette.dividerChannel).to.equal('255 255 255');
+
+    expect(theme.colorSchemes.dark.palette.action.activeChannel).to.equal('255 255 255');
+
+    expect(theme.colorSchemes.dark.palette.action.selectedChannel).to.equal('255 255 255');
   });
 
   it('should generate common background, onBackground channels', () => {
     const theme = extendTheme({
       colorSchemes: {
-        dark: {
-          palette: {
-            common: {
-              onBackground: '#f9f9f9', // this should not be overridden
-            },
-          },
-        },
         light: {
           palette: {
             common: {
@@ -118,7 +181,21 @@ describe('extendTheme', () => {
     expect(theme.colorSchemes.light.palette.common.backgroundChannel).to.equal('249 249 249');
     expect(theme.colorSchemes.light.palette.common.onBackground).to.equal('#000');
     expect(theme.colorSchemes.light.palette.common.onBackgroundChannel).to.equal('0 0 0');
+  });
 
+  it('should generate dark common background, onBackground channels', () => {
+    const theme = extendTheme({
+      defaultColorScheme: 'dark',
+      colorSchemes: {
+        dark: {
+          palette: {
+            common: {
+              onBackground: '#f9f9f9', // this should not be overridden
+            },
+          },
+        },
+      },
+    });
     expect(theme.colorSchemes.dark.palette.common.background).to.equal('#000');
     expect(theme.colorSchemes.dark.palette.common.backgroundChannel).to.equal('0 0 0');
     expect(theme.colorSchemes.dark.palette.common.onBackground).to.equal('#f9f9f9');
@@ -212,6 +289,10 @@ describe('extendTheme', () => {
         switchTrackDisabled: 0.12,
         switchTrack: 0.38,
       });
+    });
+
+    it('should provide the default dark opacities', () => {
+      const theme = extendTheme({ defaultColorScheme: 'dark' });
       expect(theme.colorSchemes.dark.opacity).to.deep.equal({
         inputPlaceholder: 0.5,
         inputUnderline: 0.7,
@@ -228,16 +309,24 @@ describe('extendTheme', () => {
               inputPlaceholder: 1,
             },
           },
+        },
+      });
+      expect(theme.colorSchemes.light.opacity).to.deep.include({
+        inputPlaceholder: 1,
+        inputUnderline: 0.42,
+      });
+    });
+
+    it('should allow overriding of the default dark opacities', () => {
+      const theme = extendTheme({
+        defaultColorScheme: 'dark',
+        colorSchemes: {
           dark: {
             opacity: {
               inputPlaceholder: 0.2,
             },
           },
         },
-      });
-      expect(theme.colorSchemes.light.opacity).to.deep.include({
-        inputPlaceholder: 1,
-        inputUnderline: 0.42,
       });
       expect(theme.colorSchemes.dark.opacity).to.deep.include({
         inputPlaceholder: 0.2,
@@ -250,6 +339,10 @@ describe('extendTheme', () => {
     it('should provide the default array', () => {
       const theme = extendTheme();
       expect(theme.colorSchemes.light.overlays).to.have.length(0);
+    });
+
+    it('should provide the default array for dark', () => {
+      const theme = extendTheme({ defaultColorScheme: 'dark' });
       expect(theme.colorSchemes.dark.overlays).to.have.length(25);
 
       expect(theme.colorSchemes.dark.overlays[0]).to.equal(undefined);
@@ -260,7 +353,10 @@ describe('extendTheme', () => {
 
     it('should override the array as expected', () => {
       const overlays = Array(24).fill('none');
-      const theme = extendTheme({ colorSchemes: { dark: { overlays } } });
+      const theme = extendTheme({
+        defaultColorScheme: 'dark',
+        colorSchemes: { dark: { overlays } },
+      });
       expect(theme.colorSchemes.dark.overlays).to.equal(overlays);
     });
   });
@@ -399,8 +495,16 @@ describe('extendTheme', () => {
 
     it('can be customized as a function', () => {
       const theme = extendTheme({ spacing: (factor) => `${0.25 * factor}rem` });
-      expect(theme.vars.spacing).to.deep.equal('var(--mui-spacing, 0.25rem)');
-      expect(theme.spacing(2)).to.equal('calc(2 * var(--mui-spacing, 0.25rem))');
+      expect('spacing' in theme.vars).to.equal(false);
+      expect(theme.spacing(2)).to.equal('0.5rem');
+    });
+
+    it('a custom function should not be altered', () => {
+      const theme = extendTheme({
+        spacing: (val) => (val === 'xs' ? '100px' : val),
+      });
+      expect('spacing' in theme.vars).to.equal(false);
+      expect(theme.spacing('xs')).to.equal('100px');
     });
   });
 
@@ -605,47 +709,147 @@ describe('extendTheme', () => {
     });
   });
 
-  it('should use the right selector with applyStyles', function test() {
-    const attribute = 'data-custom-color-scheme';
-    let darkStyles = {};
-    const Test = styled('div')(({ theme }) => {
-      darkStyles = theme.applyStyles('dark', {
-        backgroundColor: 'rgba(0, 0, 0, 0)',
-      });
-      return null;
+  describe('dark color scheme only', () => {
+    it('should use dark as default color scheme', () => {
+      expect(extendTheme({ colorSchemes: { dark: true } }).defaultColorScheme).to.deep.equal(
+        'dark',
+      );
     });
 
-    render(
-      <CssVarsProvider attribute={attribute}>
-        <Test />
-      </CssVarsProvider>,
-    );
+    it('should not have colorSchemeSelector', () => {
+      expect(extendTheme({ colorSchemes: { dark: true } }).colorSchemeSelector).to.deep.equal(
+        undefined,
+      );
+    });
 
-    expect(darkStyles).to.deep.equal({
-      [`*:where([${attribute}="dark"]) &`]: {
-        backgroundColor: 'rgba(0, 0, 0, 0)',
-      },
+    it('should have dark palette and not light color scheme', () => {
+      const theme = extendTheme({ colorSchemes: { dark: true } });
+      expect(theme.colorSchemes.dark.palette.text.primary).to.equal('#fff');
+      expect(theme.colorSchemes.light).to.equal(undefined);
     });
   });
 
-  it("should `generateStyleSheets` based on the theme's attribute and colorSchemeSelector", () => {
-    const theme = extendTheme();
+  describe('light and dark color schemes', () => {
+    it('should use prefers-color-scheme (`media`) by default', () => {
+      const theme = extendTheme({ colorSchemes: { light: true, dark: true } });
+      const sheets = theme.generateStyleSheets();
+      sinon.assert.match(sheets, [
+        {
+          ':root': sheets[0][':root'], // non-colors related variables
+        },
+        {
+          ':root': sheets[1][':root'], // light palette
+        },
+        {
+          '@media (prefers-color-scheme: dark)': {
+            ':root': sheets[2]['@media (prefers-color-scheme: dark)'][':root'], // dark palette
+          },
+        },
+      ]);
+    });
 
-    expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
-      ':root',
-      ':root, [data-mui-color-scheme="light"]',
-      '[data-mui-color-scheme="dark"]',
-    ]);
+    it('[media] should use prefers-color-scheme for styling', () => {
+      const theme = extendTheme({ colorSchemes: { light: true, dark: true } });
 
-    theme.attribute = 'data-custom-color-scheme';
-    theme.colorSchemeSelector = '.root';
-    theme.defaultColorScheme = 'dark';
+      expect(theme.getColorSchemeSelector('light')).to.equal(
+        '@media (prefers-color-scheme: light)',
+      );
+      expect(theme.getColorSchemeSelector('dark')).to.equal('@media (prefers-color-scheme: dark)');
+    });
 
-    expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
-      '.root',
-      '[data-custom-color-scheme="dark"]',
-      '.root',
-      '[data-custom-color-scheme="light"]',
-    ]);
+    it('[media] should use prefers-color-scheme with dark as default', () => {
+      const theme = extendTheme({
+        colorSchemes: { light: true, dark: true },
+        defaultColorScheme: 'dark',
+      });
+      const sheets = theme.generateStyleSheets();
+      sinon.assert.match(sheets, [
+        {
+          ':root': sheets[0][':root'], // non-colors related variables
+        },
+        {
+          ':root': sheets[1][':root'], // dark palette
+          '@media (prefers-color-scheme: dark)': {
+            // dark specific variables
+            ':root': sheets[1]['@media (prefers-color-scheme: dark)'][':root'],
+          },
+        },
+        {
+          '@media (prefers-color-scheme: light)': {
+            ':root': sheets[2]['@media (prefers-color-scheme: light)'][':root'], // light palette
+          },
+        },
+      ]);
+    });
+
+    it('should use default class selector', () => {
+      const theme = extendTheme({
+        colorSchemes: { light: true, dark: true },
+        colorSchemeSelector: 'class',
+      });
+      expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
+        ':root',
+        ':root, .light',
+        '.dark',
+      ]);
+    });
+
+    it('should use a custom class selector', () => {
+      const theme = extendTheme({
+        colorSchemes: { light: true, dark: true },
+        colorSchemeSelector: '.mode-%s',
+      });
+      expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
+        ':root',
+        ':root, .mode-light',
+        '.mode-dark',
+      ]);
+    });
+
+    it('should use default data selector for styling', () => {
+      const theme = extendTheme({
+        colorSchemes: { light: true, dark: true },
+        colorSchemeSelector: 'data',
+      });
+
+      expect(theme.getColorSchemeSelector('light')).to.equal('[data-light] &');
+      expect(theme.getColorSchemeSelector('dark')).to.equal('[data-dark] &');
+    });
+
+    it('should use data attribute selector', () => {
+      const theme = extendTheme({
+        colorSchemes: { light: true, dark: true },
+        colorSchemeSelector: '[data-theme-%s]',
+      });
+      expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
+        ':root',
+        ':root, [data-theme-light]',
+        '[data-theme-dark]',
+      ]);
+    });
+
+    it('should use data attribute for styling', () => {
+      const theme = extendTheme({
+        colorSchemes: { light: true, dark: true },
+        colorSchemeSelector: '[data-theme-%s]',
+      });
+
+      expect(theme.getColorSchemeSelector('light')).to.equal('[data-theme-light] &');
+      expect(theme.getColorSchemeSelector('dark')).to.equal('[data-theme-dark] &');
+    });
+
+    it('should use a custom class selector when dark is the default', () => {
+      const theme = extendTheme({
+        colorSchemes: { light: true, dark: true },
+        colorSchemeSelector: '.mode-%s',
+        defaultColorScheme: 'dark',
+      });
+      expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
+        ':root',
+        '.mode-dark', // specific variables for dark
+        ':root, .mode-dark',
+        '.mode-light',
+      ]);
+    });
   });
 });

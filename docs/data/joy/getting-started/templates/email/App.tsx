@@ -84,12 +84,12 @@ export default function EmailExample() {
         </Button>
       </Stack>
       <Layout.Root
-        sx={{
-          ...(drawerOpen && {
+        sx={[
+          drawerOpen && {
             height: '100vh',
             overflow: 'hidden',
-          }),
-        }}
+          },
+        ]}
       >
         <Layout.Header>
           <Header />

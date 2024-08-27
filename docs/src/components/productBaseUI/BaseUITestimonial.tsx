@@ -3,7 +3,7 @@ import * as React from 'react';
 import { alpha } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
@@ -14,7 +14,7 @@ export default function BaseUITestimonial() {
   return (
     <Section>
       <Grid container spacing={{ xs: 6, sm: 10 }} alignItems="center">
-        <Grid xs={12} sm={6}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <Box
             sx={{
               border: '1px solid',
@@ -64,7 +64,7 @@ export default function BaseUITestimonial() {
             </Link>
           </Typography>
         </Grid>
-        <Grid xs={12} sm={6} sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+        <Grid sx={{ display: 'flex', flexDirection: 'column', gap: 3 }} size={{ xs: 12, sm: 6 }}>
           <Typography>
             “After considering various options, we decided to migrate our custom components to
             Material UI, and that&apos;s when we discovered Base UI. As a set of headless

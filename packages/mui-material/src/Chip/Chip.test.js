@@ -11,7 +11,7 @@ import {
 } from '@mui/internal-test-utils';
 import Avatar from '@mui/material/Avatar';
 import Chip, { chipClasses as classes } from '@mui/material/Chip';
-import { ThemeProvider, createTheme, hexToRgb, extendTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, hexToRgb } from '@mui/material/styles';
 import CheckBox from '../internal/svg-icons/CheckBox';
 import defaultTheme from '../styles/defaultTheme';
 import describeConformance from '../../test/describeConformance';
@@ -85,7 +85,6 @@ describe('<Chip />', () => {
 
       expect(container.firstChild).to.have.class('MuiButtonBase-root');
       expect(container.firstChild).to.have.tagName('a');
-      expect(container.firstChild.querySelector('.MuiTouchRipple-root')).not.to.equal(null);
     });
 
     it('should disable ripple when MuiButtonBase has disableRipple in theme', () => {
@@ -665,6 +664,13 @@ describe('<Chip />', () => {
   });
 
   describe('event: focus', () => {
+    before(function beforeCallback() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+    });
+
     it('has a focus-visible polyfill', () => {
       const { container } = render(<Chip label="Test Chip" onClick={() => {}} />);
       const chip = container.querySelector(`.${classes.root}`);
@@ -704,7 +710,7 @@ describe('<Chip />', () => {
 
   describe('CSS vars', () => {
     it('should not throw when there is theme value is CSS variable', () => {
-      const theme = extendTheme();
+      const theme = createTheme({ cssVariables: true });
       theme.palette = theme.colorSchemes.light.palette;
       theme.palette.text = {
         ...theme.palette.text,
@@ -712,7 +718,7 @@ describe('<Chip />', () => {
       };
       expect(() =>
         render(
-          <ThemeProvider theme={theme}>
+          <ThemeProvider disableStyleSheetGeneration theme={theme}>
             <Chip label="Test Chip" />
           </ThemeProvider>,
         ),

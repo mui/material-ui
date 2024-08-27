@@ -1,17 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { act, createRenderer, fireEvent, queries } from '@mui/internal-test-utils';
+import { createRenderer, reactMajor } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 import ListItem, { listItemClasses as classes } from '@mui/material/ListItem';
 import ListContext from '../List/ListContext';
 import describeConformance from '../../test/describeConformance';
-
-const NoContent = React.forwardRef(() => {
-  return null;
-});
 
 describe('<ListItem />', () => {
   const { render } = createRenderer();
@@ -38,21 +34,9 @@ describe('<ListItem />', () => {
     expect(getByRole('listitem')).to.have.class(classes.gutters);
   });
 
-  it('should render with the selected class', () => {
-    const { getByRole } = render(<ListItem selected />);
-    expect(getByRole('listitem')).to.have.class(classes.selected);
-  });
-
   it('should disable the gutters', () => {
     const { getByRole } = render(<ListItem disableGutters />);
     expect(getByRole('listitem')).not.to.have.class(classes.gutters);
-  });
-
-  describe('prop: button', () => {
-    it('renders a div', () => {
-      const { container } = render(<ListItem button />);
-      expect(container.firstChild).to.have.property('nodeName', 'DIV');
-    });
   });
 
   describe('context: dense', () => {
@@ -108,19 +92,6 @@ describe('<ListItem />', () => {
       expect(listItem.querySelector(`span.${classes.root}`)).not.to.equal(null);
     });
 
-    it('should accept a button property', () => {
-      const { getByRole } = render(
-        <ListItem button>
-          <ListItemText primary="primary" />
-          <ListItemSecondaryAction />
-        </ListItem>,
-      );
-      const listItem = getByRole('listitem');
-
-      expect(listItem).to.have.class(classes.container);
-      expect(queries.getByRole(listItem, 'button')).not.to.equal(null);
-    });
-
     it('should accept a ContainerComponent property', () => {
       const { getByRole } = render(
         <ListItem ContainerComponent="div" ContainerProps={{ role: 'listitem' }}>
@@ -133,21 +104,6 @@ describe('<ListItem />', () => {
       expect(listItem).to.have.property('nodeName', 'DIV');
       expect(listItem).to.have.class(classes.container);
       expect(listItem.querySelector(`div.${classes.root}`)).not.to.equal(null);
-    });
-
-    it('can autofocus a custom ContainerComponent', () => {
-      const { getByRole } = render(
-        <ListItem
-          autoFocus
-          ContainerComponent="div"
-          ContainerProps={{ role: 'listitem', tabIndex: -1 }}
-        >
-          <ListItemText primary="primary" />
-          <ListItemSecondaryAction />
-        </ListItem>,
-      );
-
-      expect(getByRole('listitem')).toHaveFocus();
     });
 
     it('should allow customization of the wrapper', () => {
@@ -168,7 +124,12 @@ describe('<ListItem />', () => {
         PropTypes.resetWarningCache();
       });
 
-      it('warns if it cant detect the secondary action properly', () => {
+      it('warns if it cant detect the secondary action properly', function test() {
+        if (reactMajor >= 19) {
+          // React 19 removed prop types support
+          this.skip();
+        }
+
         expect(() => {
           PropTypes.checkPropTypes(
             ListItem.propTypes,
@@ -184,35 +145,6 @@ describe('<ListItem />', () => {
           );
         }).toErrorDev('Warning: Failed prop type: MUI: You used an element');
       });
-
-      it('should warn (but not error) with autoFocus with a function component with no content', () => {
-        expect(() => {
-          render(<ListItem component={NoContent} autoFocus />);
-        }).toErrorDev([
-          'MUI: Unable to set focus to a ListItem whose component has not been rendered.',
-          // React 18 Strict Effects run mount effects twice
-          React.version.startsWith('18') &&
-            'MUI: Unable to set focus to a ListItem whose component has not been rendered.',
-        ]);
-      });
-    });
-  });
-
-  // TODO remove in v6 in favor of ListItemButton
-  describe('prop: focusVisibleClassName', () => {
-    it('should merge the class names', () => {
-      const { getByRole } = render(
-        <ListItem button focusVisibleClassName="focusVisibleClassName" />,
-      );
-      const button = getByRole('button');
-
-      act(() => {
-        fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
-        button.focus();
-      });
-
-      expect(button).to.have.class('focusVisibleClassName');
-      expect(button).to.have.class(classes.focusVisible);
     });
   });
 

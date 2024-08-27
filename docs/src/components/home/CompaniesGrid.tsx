@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import IconImage, { IconImageProps } from 'docs/src/components/icon/IconImage';
 
 export const CORE_CUSTOMERS: Array<IconImageProps> = [
@@ -189,15 +189,13 @@ export default function CompaniesGrid({ data }: { data: Array<IconImageProps> })
       {data.map((imgProps) => (
         <Grid
           key={imgProps.name}
-          xs={6}
-          sm={4}
-          md={2}
           sx={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             objectFit: 'contain',
           }}
+          size={{ xs: 6, sm: 4, md: 2 }}
         >
           <IconImage alt={imgProps.alt} loading="eager" {...imgProps} />
         </Grid>

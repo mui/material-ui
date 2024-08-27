@@ -118,7 +118,7 @@ Here are the most significant improvements since June 2020. This was a dense qua
   <p class="blog-description">Slider powered by styled-components</p>
 
 - ♿︎ We have kept investing in accessibility, we have fixed [13 bugs](https://github.com/mui/material-ui/pulls?q=is%3Apr+label%3Aaccessibility+is%3Aclosed+sort%3Aupdated-desc).
-- 🗓 We have introduced public quarterly roadmaps, both for each [MUI Core](https://github.com/mui/material-ui/projects?query=is%3Aopen) product and [MUI X](https://github.com/mui/mui-x/projects/1).
+- 🗓 We have introduced public quarterly roadmaps, both for each [MUI Core](https://github.com/mui/material-ui/projects?query=is%3Aopen) product and [MUI X](https://github.com/orgs/mui/projects/35).
 
 ## Company
 
@@ -158,7 +158,7 @@ We'll do our best, no guarantee!
 ### Enterprise
 
 - 👩‍🎨 Complete the collaboration we started with a design agency last quarter to update the branding of the company, redesign the homepage, and design the marketing pages for the enterprise package.
-- 🗓 Execute on all the items in the [public roadmap](https://github.com/mui/mui-x/projects/1).
+- 🗓 Execute on all the items in the [public roadmap](https://github.com/orgs/mui/projects/35).
 - ❓ Please upvote [GitHub issues](https://github.com/mui/mui-x/issues) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
 ### Company

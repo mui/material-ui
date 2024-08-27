@@ -186,6 +186,11 @@ export default function migrateToVariants(j, styles) {
   const objectToArrowFunction = getObjectToArrowFunction(j);
 
   /**
+   * A map of used variable with its original name
+   */
+  const parameterMap = {};
+
+  /**
    *
    * @param {import('jscodeshift').Identifier | import('jscodeshift').BinaryExpression | import('jscodeshift').UnaryExpression | import('jscodeshift').MemberExpression} node
    */
@@ -216,6 +221,19 @@ export default function migrateToVariants(j, styles) {
     return result;
   }
 
+  function resolveParamName(name) {
+    if (typeof name !== 'string') {
+      if (name.type === 'Identifier' && parameterMap[name.name]) {
+        if (parameterMap[name.name].includes('-')) {
+          return j.stringLiteral(parameterMap[name.name]);
+        }
+        return { ...name, name: parameterMap[name.name] };
+      }
+      return name;
+    }
+    return parameterMap[name] || name;
+  }
+
   /**
    *
    * @param {import('jscodeshift').LogicalExpression | import('jscodeshift').BinaryExpression | import('jscodeshift').UnaryExpression | import('jscodeshift').MemberExpression} node
@@ -227,25 +245,27 @@ export default function migrateToVariants(j, styles) {
     let tempNode = { ...node };
     function assignProperties(_node) {
       if (_node.type === 'BinaryExpression') {
-        variables.add(getObjectKey(_node.left).name);
+        variables.add(resolveParamName(getObjectKey(_node.left).name));
         if (_node.operator === '===') {
-          properties.push(j.objectProperty(getIdentifierKey(_node.left), _node.right));
+          properties.push(
+            j.objectProperty(resolveParamName(getIdentifierKey(_node.left)), _node.right),
+          );
         } else {
           isAllEqual = false;
         }
       }
       if (_node.type === 'MemberExpression' || _node.type === 'Identifier') {
         isAllEqual = false;
-        variables.add(getObjectKey(_node).name);
+        variables.add(resolveParamName(getObjectKey(_node).name));
       }
       if (_node.type === 'UnaryExpression') {
         isAllEqual = false;
         if (_node.argument.type === 'UnaryExpression') {
           // handle `!!variable`
-          variables.add(getObjectKey(_node.argument.argument).name);
+          variables.add(resolveParamName(getObjectKey(_node.argument.argument).name));
         } else {
           // handle `!variable`
-          variables.add(getObjectKey(_node.argument).name);
+          variables.add(resolveParamName(getObjectKey(_node.argument).name));
         }
       }
     }
@@ -285,7 +305,7 @@ export default function migrateToVariants(j, styles) {
       currentProps.type === 'ObjectExpression' ? objectToArrowFunction(currentProps) : currentProps;
     const variables = new Set();
     [...parentArrow.params[0].properties, ...currentArrow.params[0].properties].forEach((param) => {
-      variables.add(param.key.name);
+      variables.add(resolveParamName(param.key.name));
     });
     return buildArrowFunctionAST(
       variables,
@@ -299,7 +319,24 @@ export default function migrateToVariants(j, styles) {
     style.params.forEach((param) => {
       if (param.type === 'ObjectPattern') {
         param.properties.forEach((prop) => {
-          parameters.add(prop.key.name);
+          if (prop.type === 'ObjectProperty') {
+            let paramName;
+            if (prop.value.type === 'Identifier') {
+              paramName = prop.value.name;
+            }
+            if (prop.value.type === 'AssignmentPattern') {
+              paramName = prop.value.left.name;
+            }
+            if (paramName) {
+              parameters.add(paramName);
+              if (prop.key.type === 'Identifier') {
+                parameterMap[paramName] = prop.key.name;
+              }
+              if (prop.key.type === 'StringLiteral') {
+                parameterMap[paramName] = prop.key.value;
+              }
+            }
+          }
         });
       }
       if (param.type === 'Identifier') {
@@ -331,39 +368,46 @@ export default function migrateToVariants(j, styles) {
     } else if (style.body.type === 'ConditionalExpression') {
       // skip ConditionalExpression
     } else {
-      let objectExpression = style.body;
-      let counter = 0;
-      while (objectExpression.type !== 'ObjectExpression' && counter < MAX_DEPTH) {
-        counter += 1;
-        if (objectExpression.type === 'BlockStatement') {
-          objectExpression = objectExpression.body.find(
-            (item) => item.type === 'ReturnStatement',
-          ).argument;
+      const expressions = [];
+      if (style.body.type === 'ArrayExpression') {
+        expressions.push(...style.body.elements);
+      } else {
+        expressions.push(style.body);
+      }
+      expressions.forEach((objectExpression) => {
+        let counter = 0;
+        while (objectExpression.type !== 'ObjectExpression' && counter < MAX_DEPTH) {
+          counter += 1;
+          if (objectExpression.type === 'BlockStatement') {
+            objectExpression = objectExpression.body.find(
+              (item) => item.type === 'ReturnStatement',
+            ).argument;
+          }
         }
-      }
 
-      recurseObjectExpression({ node: objectExpression, buildStyle: createBuildStyle() });
+        recurseObjectExpression({ node: objectExpression, buildStyle: createBuildStyle() });
 
-      if (variants.length) {
-        objectExpression.properties.push(
-          j.objectProperty(
-            j.identifier('variants'),
-            j.arrayExpression(
-              variants.filter((variant) => {
-                const props = variant.properties.find((prop) => prop.key.name === 'props');
-                const styleVal = variant.properties.find((prop) => prop.key.name === 'style');
-                return (
-                  props &&
-                  styleVal &&
-                  (!styleVal.value.properties || styleVal.value.properties.length > 0) &&
-                  (props.value.type === 'ArrowFunctionExpression' ||
-                    props.value.properties.length > 0)
-                );
-              }),
+        if (variants.length && objectExpression.type === 'ObjectExpression') {
+          objectExpression.properties.push(
+            j.objectProperty(
+              j.identifier('variants'),
+              j.arrayExpression(
+                variants.filter((variant) => {
+                  const props = variant.properties.find((prop) => prop.key.name === 'props');
+                  const styleVal = variant.properties.find((prop) => prop.key.name === 'style');
+                  return (
+                    props &&
+                    styleVal &&
+                    (!styleVal.value.properties || styleVal.value.properties.length > 0) &&
+                    (props.value.type === 'ArrowFunctionExpression' ||
+                      props.value.properties.length > 0)
+                  );
+                }),
+              ),
             ),
-          ),
-        );
-      }
+          );
+        }
+      });
     }
 
     function recurseObjectExpression(data) {
@@ -509,19 +553,26 @@ export default function migrateToVariants(j, styles) {
             };
             variants.push(buildObjectAST(variant));
 
-            // create another variant with inverted condition
-            let props2 = buildProps(inverseBinaryExpression(data.node.test));
-            if (data.props) {
-              props2 = mergeProps(data.props, props2);
-            }
-            const styleVal2 = data.buildStyle(data.node.alternate);
-            const variant2 = {
-              props: props2,
-              style: styleVal2,
-            };
-            variants.push(buildObjectAST(variant2));
-            if (data.parentNode?.type === 'ObjectExpression') {
-              removeProperty(data.parentNode, data.node);
+            if (
+              data.node.consequent.type === 'ObjectExpression' &&
+              data.node.alternate.type === 'ObjectExpression'
+            ) {
+              // create another variant with inverted condition
+              let props2 = buildProps(inverseBinaryExpression(data.node.test));
+              if (data.props) {
+                props2 = mergeProps(data.props, props2);
+              }
+              const styleVal2 = data.buildStyle(data.node.alternate);
+              const variant2 = {
+                props: props2,
+                style: styleVal2,
+              };
+              variants.push(buildObjectAST(variant2));
+              if (data.parentNode?.type === 'ObjectExpression') {
+                removeProperty(data.parentNode, data.node);
+              }
+            } else {
+              data.replaceValue?.(data.node.alternate);
             }
           }
           if (

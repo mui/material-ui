@@ -34,7 +34,7 @@ export default function LoadingButtonsTransition() {
           variant="outlined"
           disabled
         >
-          <span>disabled</span>
+          Disabled
         </LoadingButton>
         <LoadingButton
           size="small"
@@ -43,7 +43,7 @@ export default function LoadingButtonsTransition() {
           loadingIndicator="Loading…"
           variant="outlined"
         >
-          <span>Fetch data</span>
+          Fetch data
         </LoadingButton>
         <LoadingButton
           size="small"
@@ -53,7 +53,7 @@ export default function LoadingButtonsTransition() {
           loadingPosition="end"
           variant="contained"
         >
-          <span>Send</span>
+          Send
         </LoadingButton>
         <LoadingButton
           size="small"
@@ -64,7 +64,7 @@ export default function LoadingButtonsTransition() {
           startIcon={<SaveIcon />}
           variant="contained"
         >
-          <span>Save</span>
+          Save
         </LoadingButton>
       </Box>
       <Box sx={{ '& > button': { m: 1 } }}>
@@ -74,7 +74,7 @@ export default function LoadingButtonsTransition() {
           variant="outlined"
           disabled
         >
-          <span>disabled</span>
+          Disabled
         </LoadingButton>
         <LoadingButton
           onClick={handleClick}
@@ -82,7 +82,7 @@ export default function LoadingButtonsTransition() {
           loadingIndicator="Loading…"
           variant="outlined"
         >
-          <span>Fetch data</span>
+          Fetch data
         </LoadingButton>
         <LoadingButton
           onClick={handleClick}
@@ -91,7 +91,7 @@ export default function LoadingButtonsTransition() {
           loadingPosition="end"
           variant="contained"
         >
-          <span>Send</span>
+          Send
         </LoadingButton>
         <LoadingButton
           color="secondary"
@@ -101,7 +101,7 @@ export default function LoadingButtonsTransition() {
           startIcon={<SaveIcon />}
           variant="contained"
         >
-          <span>Save</span>
+          Save
         </LoadingButton>
       </Box>
     </div>

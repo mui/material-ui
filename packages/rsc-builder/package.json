@@ -8,7 +8,7 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "@types/mocha": "^10.0.6",
-    "@types/node": "^18.19.33"
+    "@types/mocha": "^10.0.7",
+    "@types/node": "^18.19.46"
   }
 }

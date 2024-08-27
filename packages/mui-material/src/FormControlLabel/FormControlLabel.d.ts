@@ -48,7 +48,7 @@ export interface FormControlLabelProps
   /**
    * A control element. For instance, it can be a `Radio`, a `Switch` or a `Checkbox`.
    */
-  control: React.ReactElement<any, any>;
+  control: React.ReactElement<unknown, any>;
   /**
    * If `true`, the control is disabled.
    */
@@ -98,12 +98,12 @@ export interface FormControlLabelProps
  *
  * Demos:
  *
- * - [Checkbox](https://next.mui.com/material-ui/react-checkbox/)
- * - [Radio Group](https://next.mui.com/material-ui/react-radio-button/)
- * - [Switch](https://next.mui.com/material-ui/react-switch/)
+ * - [Checkbox](https://mui.com/material-ui/react-checkbox/)
+ * - [Radio Group](https://mui.com/material-ui/react-radio-button/)
+ * - [Switch](https://mui.com/material-ui/react-switch/)
  *
  * API:
  *
- * - [FormControlLabel API](https://next.mui.com/material-ui/api/form-control-label/)
+ * - [FormControlLabel API](https://mui.com/material-ui/api/form-control-label/)
  */
 export default function FormControlLabel(props: FormControlLabelProps): React.JSX.Element;

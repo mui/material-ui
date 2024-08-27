@@ -21,7 +21,7 @@ function ColorSchemeToggle({ onClick, sx, ...props }: IconButtonProps) {
   }
   return (
     <IconButton
-      id="toggle-mode"
+      data-screenshot="toggle-mode"
       size="sm"
       variant="outlined"
       color="neutral"
@@ -35,14 +35,12 @@ function ColorSchemeToggle({ onClick, sx, ...props }: IconButtonProps) {
         onClick?.(event);
       }}
       sx={[
-        {
-          '& > *:first-of-type': {
-            display: mode === 'dark' ? 'none' : 'initial',
-          },
-          '& > *:last-of-type': {
-            display: mode === 'light' ? 'none' : 'initial',
-          },
-        },
+        mode === 'dark'
+          ? { '& > *:first-of-type': { display: 'none' } }
+          : { '& > *:first-of-type': { display: 'initial' } },
+        mode === 'light'
+          ? { '& > *:last-of-type': { display: 'none' } }
+          : { '& > *:last-of-type': { display: 'initial' } },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >

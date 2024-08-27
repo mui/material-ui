@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { CssVarsProvider, alpha } from '@mui/material/styles';
+import { CssVarsProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
-import Button, { buttonClasses } from '@mui/material/Button';
-import Grid from '@mui/material/Unstable_Grid2';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -28,13 +28,13 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
+import { ShowcaseCodeWrapper } from 'docs/src/components/home/ShowcaseContainer';
 import { customTheme } from 'docs/src/components/home/MaterialDesignComponents';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
-
-import StylingInfo from 'docs/src/components/action/StylingInfo';
+import MaterialVsCustomToggle from 'docs/src/components/action/MaterialVsCustomToggle';
 import ROUTES from 'docs/src/route';
 
-const DEMOS = ['Button', 'Text field', 'Table', 'Alert', 'Tooltip'] as const;
+const DEMOS = ['Button', 'Text Field', 'Table', 'Alert', 'Tooltip'] as const;
 
 const CODES = {
   Button: `
@@ -48,7 +48,7 @@ const CODES = {
   Add item
 </Button>
 `,
-  'Text field': `
+  'Text Field': `
   <TextField variant="standard" label="Username" />
 <TextField variant="outlined" label="Email" type="email" />
 <TextField variant="filled" label="Password" type="password" />
@@ -118,7 +118,7 @@ export default function MaterialComponents() {
   return (
     <Section bg="gradient">
       <Grid container spacing={2}>
-        <Grid md={6} sx={{ minWidth: 0 }}>
+        <Grid sx={{ minWidth: 0 }} size={{ md: 6 }}>
           <SectionHeadline
             overline="Component library"
             title={
@@ -137,7 +137,7 @@ export default function MaterialComponents() {
             <More href={ROUTES.components} />
           </Group>
         </Grid>
-        <Grid xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo className="mui-default-theme" sx={{ flexGrow: 1 }}>
               <CssVarsProvider theme={customized ? customTheme : undefined}>
@@ -164,10 +164,11 @@ export default function MaterialComponents() {
                     </Button>
                   </Box>
                 )}
-                {demo === 'Text field' && (
+                {demo === 'Text Field' && (
                   <Stack
+                    justifyContent="center"
                     spacing={2}
-                    sx={{ justifyContent: 'center', p: 2, width: '50%', margin: 'auto' }}
+                    sx={{ p: 2, width: '50%', margin: 'auto' }}
                   >
                     <TextField variant="standard" label="Username" />
                     <TextField variant="outlined" label="Email" type="email" />
@@ -238,8 +239,10 @@ export default function MaterialComponents() {
                 )}
                 {demo === 'Tooltip' && (
                   <Stack
+                    alignItems="center"
+                    justifyContent="center"
                     spacing={1}
-                    sx={{ alignItems: 'center', justifyContent: 'center', minHeight: 100, py: 2 }}
+                    sx={{ minHeight: 100, py: 2 }}
                   >
                     <Tooltip
                       title="Appears on hover"
@@ -247,7 +250,7 @@ export default function MaterialComponents() {
                       placement="top"
                       slotProps={{ popper: { disablePortal: true } }}
                     >
-                      <Typography sx={{ color: 'text.secondary' }}>Top</Typography>
+                      <Typography color="text.secondary">Top</Typography>
                     </Tooltip>
                     <Box sx={{ '& > *': { display: 'inline-block' } }}>
                       <Tooltip
@@ -257,7 +260,7 @@ export default function MaterialComponents() {
                         open
                         slotProps={{ popper: { disablePortal: true } }}
                       >
-                        <Typography sx={{ color: 'text.secondary' }}>Left</Typography>
+                        <Typography color="text.secondary">Left</Typography>
                       </Tooltip>
                       <Box sx={{ display: 'inline-block', width: 80 }} />
                       <Tooltip
@@ -266,7 +269,7 @@ export default function MaterialComponents() {
                         placement="right"
                         slotProps={{ popper: { disablePortal: true } }}
                       >
-                        <Typography sx={{ color: 'text.secondary' }}>Right</Typography>
+                        <Typography color="text.secondary">Right</Typography>
                       </Tooltip>
                     </Box>
                     <Tooltip
@@ -275,72 +278,17 @@ export default function MaterialComponents() {
                       placement="bottom"
                       slotProps={{ popper: { disablePortal: true } }}
                     >
-                      <Typography sx={{ color: 'text.secondary' }}>Bottom</Typography>
+                      <Typography color="text.secondary">Bottom</Typography>
                     </Tooltip>
                   </Stack>
                 )}
               </CssVarsProvider>
             </Frame.Demo>
-            <Frame.Info
-              data-mui-color-scheme="dark"
-              sx={{
-                minHeight: 220,
-                maxHeight: demo === 'Table' ? 260 : 'none',
-                position: 'relative',
-                p: 0,
-                pt: 5,
-              }}
-            >
-              <StylingInfo appeared={customized} />
-              <Box sx={{ overflow: 'auto', pt: 2, pb: 1, px: 2, height: '100%' }}>
+            <Frame.Info data-mui-color-scheme="dark" sx={{ p: 0 }}>
+              <MaterialVsCustomToggle customized={customized} setCustomized={setCustomized} />
+              <ShowcaseCodeWrapper maxHeight={demo === 'Table' ? 220 : 350} hasDesignToggle>
                 <HighlightedCode copyButtonHidden plainStyle code={CODES[demo]} language="jsx" />
-              </Box>
-              <Box
-                sx={(theme) => ({
-                  pb: 3,
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 1,
-                  position: 'absolute',
-                  top: 16,
-                  left: 12,
-                  right: 0,
-                  zIndex: 10,
-                  background: `linear-gradient(to bottom, ${
-                    (theme.vars || theme).palette.common.black
-                  } 30%, transparent)`,
-                  [`& .${buttonClasses.root}`]: {
-                    borderRadius: 40,
-                    padding: '2px 10px',
-                    fontSize: '0.75rem',
-                    lineHeight: 18 / 12,
-                  },
-                  '& .MuiButton-outlinedPrimary': {
-                    backgroundColor: alpha(theme.palette.primary[900], 0.5),
-                  },
-                })}
-              >
-                <Button
-                  size="small"
-                  variant="outlined"
-                  color={customized ? 'secondary' : 'primary'}
-                  onClick={() => {
-                    setCustomized(false);
-                  }}
-                >
-                  Material Design
-                </Button>
-                <Button
-                  size="small"
-                  variant="outlined"
-                  color={customized ? 'primary' : 'secondary'}
-                  onClick={() => {
-                    setCustomized(true);
-                  }}
-                >
-                  Custom theme
-                </Button>
-              </Box>
+              </ShowcaseCodeWrapper>
             </Frame.Info>
           </Frame>
         </Grid>

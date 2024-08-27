@@ -8,10 +8,10 @@ import composeClasses from '@mui/utils/composeClasses';
 import { alpha, darken, lighten } from '@mui/system/colorManipulator';
 import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
-
-const useThemeProps = createUseThemeProps('MuiSwitch');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, edge, size, color, checked, disabled } = ownerState;
@@ -106,7 +106,7 @@ const SwitchSwitchBase = styled(SwitchBase, {
     ];
   },
 })(
-  ({ theme }) => ({
+  memoTheme(({ theme }) => ({
     position: 'absolute',
     top: 0,
     left: 0,
@@ -137,8 +137,8 @@ const SwitchSwitchBase = styled(SwitchBase, {
       left: '-100%',
       width: '300%',
     },
-  }),
-  ({ theme }) => ({
+  })),
+  memoTheme(({ theme }) => ({
     '&:hover': {
       backgroundColor: theme.vars
         ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
@@ -180,43 +180,47 @@ const SwitchSwitchBase = styled(SwitchBase, {
           },
         })),
     ],
-  }),
+  })),
 );
 
 const SwitchTrack = styled('span', {
   name: 'MuiSwitch',
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
-})(({ theme }) => ({
-  height: '100%',
-  width: '100%',
-  borderRadius: 14 / 2,
-  zIndex: -1,
-  transition: theme.transitions.create(['opacity', 'background-color'], {
-    duration: theme.transitions.duration.shortest,
-  }),
-  backgroundColor: theme.vars
-    ? theme.vars.palette.common.onBackground
-    : `${theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white}`,
-  opacity: theme.vars
-    ? theme.vars.opacity.switchTrack
-    : `${theme.palette.mode === 'light' ? 0.38 : 0.3}`,
-}));
+})(
+  memoTheme(({ theme }) => ({
+    height: '100%',
+    width: '100%',
+    borderRadius: 14 / 2,
+    zIndex: -1,
+    transition: theme.transitions.create(['opacity', 'background-color'], {
+      duration: theme.transitions.duration.shortest,
+    }),
+    backgroundColor: theme.vars
+      ? theme.vars.palette.common.onBackground
+      : `${theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white}`,
+    opacity: theme.vars
+      ? theme.vars.opacity.switchTrack
+      : `${theme.palette.mode === 'light' ? 0.38 : 0.3}`,
+  })),
+);
 
 const SwitchThumb = styled('span', {
   name: 'MuiSwitch',
   slot: 'Thumb',
   overridesResolver: (props, styles) => styles.thumb,
-})(({ theme }) => ({
-  boxShadow: (theme.vars || theme).shadows[1],
-  backgroundColor: 'currentColor',
-  width: 20,
-  height: 20,
-  borderRadius: '50%',
-}));
+})(
+  memoTheme(({ theme }) => ({
+    boxShadow: (theme.vars || theme).shadows[1],
+    backgroundColor: 'currentColor',
+    width: 20,
+    height: 20,
+    borderRadius: '50%',
+  })),
+);
 
 const Switch = React.forwardRef(function Switch(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSwitch' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiSwitch' });
   const { className, color = 'primary', edge = false, size = 'medium', sx, ...other } = props;
 
   const ownerState = {

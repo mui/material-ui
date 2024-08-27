@@ -146,7 +146,7 @@ export interface PopoverProps
    * @default Grow
    */
   TransitionComponent?: React.JSXElementConstructor<
-    TransitionProps & { children: React.ReactElement<any, any> }
+    TransitionProps & { children: React.ReactElement<unknown, any> }
   >;
   /**
    * Set to 'auto' to automatically calculate transition time based on height.
@@ -182,12 +182,12 @@ export declare const PopoverPaper: React.FC<PopoverPaperProps>;
  *
  * Demos:
  *
- * - [Menu](https://next.mui.com/material-ui/react-menu/)
- * - [Popover](https://next.mui.com/material-ui/react-popover/)
+ * - [Menu](https://mui.com/material-ui/react-menu/)
+ * - [Popover](https://mui.com/material-ui/react-popover/)
  *
  * API:
  *
- * - [Popover API](https://next.mui.com/material-ui/api/popover/)
- * - inherits [Modal API](https://next.mui.com/material-ui/api/modal/)
+ * - [Popover API](https://mui.com/material-ui/api/popover/)
+ * - inherits [Modal API](https://mui.com/material-ui/api/modal/)
  */
 export default function Popover(props: PopoverProps): React.JSX.Element;

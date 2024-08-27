@@ -53,18 +53,40 @@ const countries = [
 
 const StyledText = styled('text', {
   shouldForwardProp: (prop) => prop !== 'variant',
-})(({ theme, variant }) => ({
+})(({ theme }) => ({
   textAnchor: 'middle',
   dominantBaseline: 'central',
   fill: theme.palette.text.secondary,
-  fontSize:
-    variant === 'primary'
-      ? theme.typography.h5.fontSize
-      : theme.typography.body2.fontSize,
-  fontWeight:
-    variant === 'primary'
-      ? theme.typography.h5.fontWeight
-      : theme.typography.body2.fontWeight,
+  variants: [
+    {
+      props: {
+        variant: 'primary',
+      },
+      style: {
+        fontSize: theme.typography.h5.fontSize,
+      },
+    },
+    {
+      props: ({ variant }) => variant !== 'primary',
+      style: {
+        fontSize: theme.typography.body2.fontSize,
+      },
+    },
+    {
+      props: {
+        variant: 'primary',
+      },
+      style: {
+        fontWeight: theme.typography.h5.fontWeight,
+      },
+    },
+    {
+      props: ({ variant }) => variant !== 'primary',
+      style: {
+        fontWeight: theme.typography.body2.fontWeight,
+      },
+    },
+  ],
 }));
 
 function PieCenterLabel({ primaryText, secondaryText }) {
@@ -90,15 +112,18 @@ PieCenterLabel.propTypes = {
 };
 
 const colors = [
-  'hsl(220, 25%, 65%)',
-  'hsl(220, 25%, 45%)',
-  'hsl(220, 25%, 30%)',
-  'hsl(220, 25%, 20%)',
+  'hsl(220, 20%, 65%)',
+  'hsl(220, 20%, 42%)',
+  'hsl(220, 20%, 35%)',
+  'hsl(220, 20%, 25%)',
 ];
 
 export default function ChartUserByCountry() {
   return (
-    <Card variant="outlined" sx={{ pb: '8px' }}>
+    <Card
+      variant="outlined"
+      sx={{ display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1 }}
+    >
       <CardContent>
         <Typography component="h2" variant="subtitle2">
           Users by country
@@ -155,6 +180,7 @@ export default function ChartUserByCountry() {
               </Stack>
               <LinearProgress
                 variant="determinate"
+                aria-label="Number of users by country"
                 value={country.value}
                 sx={{
                   [`& .${linearProgressClasses.bar}`]: {

@@ -164,6 +164,7 @@ function useSynchronousEffect(func, values) {
   let output;
 
   // Store "generation" key. Just returns a new object every time
+  // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
   const currentKey = React.useMemo(() => ({}), values); // eslint-disable-line react-hooks/exhaustive-deps
 
   // "the first render", or "memo dropped the value"
@@ -238,7 +239,8 @@ export default function makeStyles(stylesOrCreator, options = {}) {
 
     const classes = getClasses(instance.current, props.classes, Component);
     if (process.env.NODE_ENV !== 'production') {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
+      // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
+      // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
       React.useDebugValue(classes);
     }
     if (process.env.NODE_ENV !== 'production') {

@@ -99,7 +99,7 @@
     "limitTags": { "type": { "name": "custom", "description": "integer" }, "default": "-1" },
     "ListboxComponent": {
       "type": { "name": "elementType" },
-      "default": "'ul'",
+      "default": "'ul'\n<<<<<<< HEAD",
       "deprecated": true,
       "deprecationInfo": "Use <code>slots.listbox</code> instead. This prop will be removed in v7. See <a href=\"https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
@@ -152,13 +152,13 @@
     "openText": { "type": { "name": "string" }, "default": "'Open'" },
     "PaperComponent": {
       "type": { "name": "elementType" },
-      "default": "Paper",
+      "default": "Paper\n<<<<<<< HEAD",
       "deprecated": true,
       "deprecationInfo": "Use <code>slots.paper</code> instead. This prop will be removed in v7. See <a href=\"https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "PopperComponent": {
       "type": { "name": "elementType" },
-      "default": "Popper",
+      "default": "Popper\n<<<<<<< HEAD",
       "deprecated": true,
       "deprecationInfo": "Use <code>slots.popper</code> instead. This prop will be removed in v7. See <a href=\"https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },

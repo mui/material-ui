@@ -7,11 +7,11 @@ import { TransitionContextValue } from './TransitionContext';
  *
  * Demos:
  *
- * - [Transitions](https://next.mui.com/base-ui/react-transitions/#hooks)
+ * - [Transitions](https://mui.com/base-ui/react-transitions/#hooks)
  *
  * API:
  *
- * - [useTransitionTrigger API](https://next.mui.com/base-ui/react-transitions/hooks-api/#use-transition-trigger)
+ * - [useTransitionTrigger API](https://mui.com/base-ui/react-transitions/hooks-api/#use-transition-trigger)
  */
 export function useTransitionTrigger(requestEnter: boolean): UseTransitionTriggerReturnValue {
   const [exitTransitionFinished, setExitTransitionFinished] = React.useState(true);

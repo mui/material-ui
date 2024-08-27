@@ -5,6 +5,7 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 githubLabel: 'component: table'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/table/
 materialDesign: https://m2.material.io/components/data-tables
+githubSource: packages/mui-material/src/Table
 ---
 
 # Table
@@ -33,7 +34,7 @@ This constraint makes building rich data tables challenging.
 The [`DataGrid` component](/x/react-data-grid/) is designed for use-cases that are focused on handling large amounts of tabular data.
 While it comes with a more rigid structure, in exchange, you gain more powerful features.
 
-{{"demo": "DataTable.js", "bg": "inline"}}
+{{"demo": "DataTable.js", "bg": "outlined"}}
 
 ## Dense table
 

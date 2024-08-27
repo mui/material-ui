@@ -4,16 +4,15 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { useSlotProps } from '@mui/base/utils';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import { useRtl } from '@mui/system/RtlProvider';
+import useSlotProps from '@mui/utils/useSlotProps';
 import MenuList from '../MenuList';
 import Popover, { PopoverPaper } from '../Popover';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getMenuUtilityClass } from './menuClasses';
-
-const useThemeProps = createUseThemeProps('MuiMenu');
 
 const RTL_ORIGIN = {
   vertical: 'top',
@@ -67,7 +66,7 @@ const MenuMenuList = styled(MenuList, {
 });
 
 const Menu = React.forwardRef(function Menu(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiMenu' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiMenu' });
 
   const {
     autoFocus = true,

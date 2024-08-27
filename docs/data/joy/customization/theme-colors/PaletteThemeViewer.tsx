@@ -10,7 +10,7 @@ import LightMode from '@mui/icons-material/LightModeOutlined';
 import DarkMode from '@mui/icons-material/DarkModeOutlined';
 import InfoOutlined from '@mui/icons-material/InfoOutlined';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
-import useClipboardCopy from 'docs/src/modules/utils/useClipboardCopy';
+import { useClipboardCopy } from '@mui/docs/CodeCopy';
 
 const defaultTheme = extendTheme();
 
@@ -18,7 +18,6 @@ const traverseObject = (palette: Palette) => {
   const result: Record<string, any> = {};
   const traverse = (object: any, parts: string[] = []) => {
     if (object && typeof object === 'object') {
-      // eslint-disable-next-line no-restricted-syntax
       for (const key of Object.keys(object)) {
         traverse(object[key], [...parts, key]);
       }
@@ -113,21 +112,23 @@ export default function PaletteThemeViewer() {
       <Sheet
         variant="solid"
         color="success"
-        sx={{
-          position: 'absolute',
-          left: '50%',
-          bottom: 0,
-          transform: `translateX(-50%) translateY(${
-            isCopied ? '-0.5rem' : 'calc(100% + 0.5rem)'
-          })`,
-          transition: '0.3s',
-          p: 0.5,
-          pl: 0.5,
-          pr: 1,
-          borderRadius: 'xl',
-          boxShadow: 'md',
-          zIndex: 1,
-        }}
+        sx={[
+          {
+            position: 'absolute',
+            left: '50%',
+            bottom: 0,
+            transition: '0.3s',
+            p: 0.5,
+            pl: 0.5,
+            pr: 1,
+            borderRadius: 'xl',
+            boxShadow: 'md',
+            zIndex: 1,
+          },
+          isCopied
+            ? { transform: `translateX(-50%) translateY(-0.5rem)` }
+            : { transform: `translateX(-50%) translateY(calc(100% + 0.5rem))` },
+        ]}
       >
         <Typography
           level="body-xs"

@@ -5,12 +5,15 @@ import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  backgroundColor: '#fff',
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',
   color: theme.palette.text.secondary,
   flexGrow: 1,
+  ...theme.applyStyles('dark', {
+    backgroundColor: '#1A2027',
+  }),
 }));
 
 export default function FlexboxGapStack() {

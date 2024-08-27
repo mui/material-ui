@@ -7,10 +7,10 @@ import { darken, alpha, lighten } from '@mui/system/colorManipulator';
 import capitalize from '../utils/capitalize';
 import TableContext from '../Table/TableContext';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import tableCellClasses, { getTableCellUtilityClass } from './tableCellClasses';
-
-const useThemeProps = createUseThemeProps('MuiTableCell');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant, align, padding, size, stickyHeader } = ownerState;
@@ -44,134 +44,136 @@ const TableCellRoot = styled('td', {
       ownerState.stickyHeader && styles.stickyHeader,
     ];
   },
-})(({ theme }) => ({
-  ...theme.typography.body2,
-  display: 'table-cell',
-  verticalAlign: 'inherit',
-  // Workaround for a rendering bug with spanned columns in Chrome 62.0.
-  // Removes the alpha (sets it to 1), and lightens or darkens the theme color.
-  borderBottom: theme.vars
-    ? `1px solid ${theme.vars.palette.TableCell.border}`
-    : `1px solid
+})(
+  memoTheme(({ theme }) => ({
+    ...theme.typography.body2,
+    display: 'table-cell',
+    verticalAlign: 'inherit',
+    // Workaround for a rendering bug with spanned columns in Chrome 62.0.
+    // Removes the alpha (sets it to 1), and lightens or darkens the theme color.
+    borderBottom: theme.vars
+      ? `1px solid ${theme.vars.palette.TableCell.border}`
+      : `1px solid
     ${
       theme.palette.mode === 'light'
         ? lighten(alpha(theme.palette.divider, 1), 0.88)
         : darken(alpha(theme.palette.divider, 1), 0.68)
     }`,
-  textAlign: 'left',
-  padding: 16,
-  variants: [
-    {
-      props: {
-        variant: 'head',
+    textAlign: 'left',
+    padding: 16,
+    variants: [
+      {
+        props: {
+          variant: 'head',
+        },
+        style: {
+          color: (theme.vars || theme).palette.text.primary,
+          lineHeight: theme.typography.pxToRem(24),
+          fontWeight: theme.typography.fontWeightMedium,
+        },
       },
-      style: {
-        color: (theme.vars || theme).palette.text.primary,
-        lineHeight: theme.typography.pxToRem(24),
-        fontWeight: theme.typography.fontWeightMedium,
+      {
+        props: {
+          variant: 'body',
+        },
+        style: {
+          color: (theme.vars || theme).palette.text.primary,
+        },
       },
-    },
-    {
-      props: {
-        variant: 'body',
+      {
+        props: {
+          variant: 'footer',
+        },
+        style: {
+          color: (theme.vars || theme).palette.text.secondary,
+          lineHeight: theme.typography.pxToRem(21),
+          fontSize: theme.typography.pxToRem(12),
+        },
       },
-      style: {
-        color: (theme.vars || theme).palette.text.primary,
-      },
-    },
-    {
-      props: {
-        variant: 'footer',
-      },
-      style: {
-        color: (theme.vars || theme).palette.text.secondary,
-        lineHeight: theme.typography.pxToRem(21),
-        fontSize: theme.typography.pxToRem(12),
-      },
-    },
-    {
-      props: {
-        size: 'small',
-      },
-      style: {
-        padding: '6px 16px',
-        [`&.${tableCellClasses.paddingCheckbox}`]: {
-          width: 24, // prevent the checkbox column from growing
-          padding: '0 12px 0 16px',
-          '& > *': {
-            padding: 0,
+      {
+        props: {
+          size: 'small',
+        },
+        style: {
+          padding: '6px 16px',
+          [`&.${tableCellClasses.paddingCheckbox}`]: {
+            width: 24, // prevent the checkbox column from growing
+            padding: '0 12px 0 16px',
+            '& > *': {
+              padding: 0,
+            },
           },
         },
       },
-    },
-    {
-      props: {
-        padding: 'checkbox',
+      {
+        props: {
+          padding: 'checkbox',
+        },
+        style: {
+          width: 48, // prevent the checkbox column from growing
+          padding: '0 0 0 4px',
+        },
       },
-      style: {
-        width: 48, // prevent the checkbox column from growing
-        padding: '0 0 0 4px',
+      {
+        props: {
+          padding: 'none',
+        },
+        style: {
+          padding: 0,
+        },
       },
-    },
-    {
-      props: {
-        padding: 'none',
+      {
+        props: {
+          align: 'left',
+        },
+        style: {
+          textAlign: 'left',
+        },
       },
-      style: {
-        padding: 0,
+      {
+        props: {
+          align: 'center',
+        },
+        style: {
+          textAlign: 'center',
+        },
       },
-    },
-    {
-      props: {
-        align: 'left',
+      {
+        props: {
+          align: 'right',
+        },
+        style: {
+          textAlign: 'right',
+          flexDirection: 'row-reverse',
+        },
       },
-      style: {
-        textAlign: 'left',
+      {
+        props: {
+          align: 'justify',
+        },
+        style: {
+          textAlign: 'justify',
+        },
       },
-    },
-    {
-      props: {
-        align: 'center',
+      {
+        props: ({ ownerState }) => ownerState.stickyHeader,
+        style: {
+          position: 'sticky',
+          top: 0,
+          zIndex: 2,
+          backgroundColor: (theme.vars || theme).palette.background.default,
+        },
       },
-      style: {
-        textAlign: 'center',
-      },
-    },
-    {
-      props: {
-        align: 'right',
-      },
-      style: {
-        textAlign: 'right',
-        flexDirection: 'row-reverse',
-      },
-    },
-    {
-      props: {
-        align: 'justify',
-      },
-      style: {
-        textAlign: 'justify',
-      },
-    },
-    {
-      props: ({ ownerState }) => ownerState.stickyHeader,
-      style: {
-        position: 'sticky',
-        top: 0,
-        zIndex: 2,
-        backgroundColor: (theme.vars || theme).palette.background.default,
-      },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 /**
  * The component renders a `<th>` element when the parent context is a header
  * or otherwise a `<td>` element.
  */
 const TableCell = React.forwardRef(function TableCell(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTableCell' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTableCell' });
   const {
     align = 'inherit',
     className,

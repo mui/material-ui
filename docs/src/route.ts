@@ -14,6 +14,7 @@ const ROUTES = {
   // Material UI doc pages
   materialDocs: '/material-ui/getting-started/',
   materialIcons: '/material-ui/material-icons/',
+  materialAllComponents: '/material-ui/all-components/',
   freeTemplates: '/material-ui/getting-started/templates/',
   components: '/material-ui/getting-started/supported-components/',
   customization: '/material-ui/customization/how-to-customize/',
@@ -35,7 +36,7 @@ const ROUTES = {
   systemDocs: '/system/getting-started/',
   // X general pages
   xIntro: '/x/introduction/',
-  xRoadmap: 'https://github.com/mui/mui-x/projects/1',
+  xRoadmap: 'https://github.com/orgs/mui/projects/35',
   xLicensing: '/x/introduction/licensing/',
   // Data Grid doc pages
   dataGridOverview: '/x/react-data-grid/',
@@ -49,8 +50,11 @@ const ROUTES = {
   // Tree View doc pages
   treeViewOverview: '/x/react-tree-view/',
   // Toolpad pages
-  toolpadDocs: '/toolpad/studio/getting-started/',
-  toolpadStudioDocs: '/toolpad/studio/getting-started',
+  toolpadLandingPage: '/toolpad/',
+  toolpadStudioLandingPage: '/toolpad/studio/',
+  toolpadStudioDocs: '/toolpad/studio/getting-started/',
+  toolpadCoreDocs: '/toolpad/core/introduction/',
+  toolpadStudioWhy: '/toolpad/studio/getting-started/why-toolpad/',
   // External pages
   rssFeed: '/feed/blog/rss.xml',
   handbook: 'https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b',

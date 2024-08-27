@@ -6,7 +6,7 @@ import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
 } from '@mui/docs/branding';
-import { Properties, getHash } from 'docs/src/modules/components/ApiPage/list/PropertiesList';
+import { PropertyDefinition } from 'docs/src/modules/components/ApiPage/definitions/properties';
 import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
 import ApiWarningAlert from 'docs/src/modules/components/ApiPage/ApiWarningAlert';
 
@@ -119,7 +119,7 @@ function PropDescription({ description }: { description: string }) {
 }
 
 interface PropertiesTableProps {
-  properties: Properties[];
+  properties: PropertyDefinition[];
 }
 
 export default function PropertiesTable(props: PropertiesTableProps) {
@@ -142,7 +142,6 @@ export default function PropertiesTable(props: PropertiesTableProps) {
         <tbody>
           {properties.map((params) => {
             const {
-              componentName,
               propName,
               description,
               seeMoreDescription,
@@ -152,8 +151,6 @@ export default function PropertiesTable(props: PropertiesTableProps) {
               isProPlan,
               isPremiumPlan,
               isDeprecated,
-              hooksParameters,
-              hooksReturnValue,
               deprecationInfo,
               typeName,
               propDefault,
@@ -161,24 +158,22 @@ export default function PropertiesTable(props: PropertiesTableProps) {
               signature,
               signatureArgs,
               signatureReturnDescription,
+              hash,
             } = params;
 
             return (
-              <tr
-                key={propName}
-                id={getHash({ componentName, propName, hooksParameters, hooksReturnValue })}
-              >
+              <tr key={propName} id={hash}>
                 <td className="MuiApi-table-item-title algolia-lvl3">
                   {propName}
                   {isRequired ? '*' : ''}
                   {isOptional ? '?' : ''}
                   {isProPlan && (
-                    <a href="/x/introduction/licensing/#pro-plan">
+                    <a href="/x/introduction/licensing/#pro-plan" aria-label="Pro plan">
                       <span className="plan-pro" />
                     </a>
                   )}
                   {isPremiumPlan && (
-                    <a href="/x/introduction/licensing/#premium-plan">
+                    <a href="/x/introduction/licensing/#premium-plan" aria-label="Premium plan">
                       <span className="plan-premium" />
                     </a>
                   )}
@@ -210,7 +205,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                       className="prop-table-additional-description"
                     />
                   )}
-                  {additionalInfo.map((key) => (
+                  {additionalInfo?.map((key) => (
                     <p
                       className="prop-table-additional-description"
                       key={key}

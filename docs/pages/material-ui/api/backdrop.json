@@ -40,7 +40,7 @@
     },
     "TransitionComponent": {
       "type": { "name": "elementType" },
-      "default": "Fade",
+      "default": "Fade\n<<<<<<< HEAD",
       "deprecated": true,
       "deprecationInfo": "Use <code>slots.transition</code> instead. This prop will be removed in v7. See <a href=\"https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
