@@ -69,7 +69,7 @@
     "css-mediaquery": "^0.1.2",
     "date-fns": "^2.30.0",
     "date-fns-jalali": "^2.21.3-1",
-    "dayjs": "^1.11.12",
+    "dayjs": "^1.11.13",
     "feed": "^4.2.2",
     "fg-loadcss": "^3.1.0",
     "final-form": "^4.20.10",
