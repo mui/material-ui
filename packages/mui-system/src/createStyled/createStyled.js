@@ -30,7 +30,7 @@ function attachTheme(props, themeId, defaultTheme) {
 
 function processStyle(props, style) {
   /*
-   * Types:
+   * Style types:
    *  - null/undefined
    *  - string
    *  - CSS style object: { [cssKey]: [cssValue], variants }
