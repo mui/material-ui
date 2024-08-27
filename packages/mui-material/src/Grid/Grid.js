@@ -595,7 +595,7 @@ Grid.propTypes /* remove-proptypes */ = {
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.
    * @default 'wrap'
-   * @deprecated Use `flexWrap` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `flexWrap` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   wrap: PropTypes.oneOf(['nowrap', 'wrap-reverse', 'wrap']),
   /**

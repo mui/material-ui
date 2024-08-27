@@ -24,7 +24,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
   /**
    * The components used for each slot inside.
    *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/).
    *
    * @default {}
    */
@@ -38,7 +38,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/).
    *
    * @default {}
    */
@@ -155,7 +155,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    */
   PopperComponent?: React.JSXElementConstructor<PopperProps>;
   /**
-   * Props applied to the [`Popper`](/material-ui/api/popper/) element.
+   * Props applied to the [`Popper`](https://mui.com/material-ui/api/popper/) element.
    * @default {}
    */
   PopperProps?: Partial<PopperProps>;
@@ -200,7 +200,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
   title: React.ReactNode;
   /**
    * The component used for the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Grow
    */
   TransitionComponent?: React.JSXElementConstructor<
