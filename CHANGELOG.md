@@ -24,7 +24,7 @@ We are excited to announce the stable release of Material-UI v6 🎉, check out 
 - Updated mui-x roadmap links with the new project URL (#43444) @michelengelen
 - Update pnpm order, move to second (#42712) @ahmadnadeem6236
 - Fix CSS theme variables section (#43439) @siriwatknp
-- Add two Toolpad Core components to Material UI sidebar (#43391) @prakhargupta1
+- Add two Toolpad Core components to Material UI sidebar (#43391) @prakhargupta1
 - Fix licensingModel -> licenseModel @oliviertassinari
 - Fix Stack Overflow issue canned response @oliviertassinari
 - Avoid referencing MUI Core @oliviertassinari
@@ -37,7 +37,7 @@ We are excited to announce the stable release of Material-UI v6 🎉, check out 
 
 - Prepare for v6 stable release (#43454) @siriwatknp
 - [blog] Polish Upcoming changes to MUI X pricing in 2024 (#43438) @oliviertassinari
-- [blog] Add Material UI v6 stable release (#41932) @siriwatknp
+- [blog] Add Material UI v6 stable release (#41932) @siriwatknp
 - [ci] Fix the release:changelog cmd (#43451) @mnajdova
 - [core] Allow `^6.0.0` for `@mui/` dependencies in `@mui/docs` (#43445) @LukasTy
 - [code-infra] Babel plugin to fully resolve imported paths (#43294) @Janpot
