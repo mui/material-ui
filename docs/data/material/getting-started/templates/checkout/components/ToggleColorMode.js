@@ -11,6 +11,7 @@ function ToggleColorMode({ mode, toggleColorMode, ...props }) {
     <IconButton
       onClick={toggleColorMode}
       color="primary"
+      size="small"
       aria-label="Theme toggle button"
       {...props}
     >

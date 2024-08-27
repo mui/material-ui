@@ -116,6 +116,9 @@ importers:
       '@playwright/test':
         specifier: 1.46.1
         version: 1.46.1
+      '@types/babel__core':
+        specifier: ^7.20.5
+        version: 7.20.5
       '@types/fs-extra':
         specifier: ^11.0.4
         version: 11.0.4
@@ -648,7 +651,7 @@ importers:
         version: 9.7.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@toolpad/core':
         specifier: ^0.5.1
-        version: 0.5.1(@emotion/react@11.13.0(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.0(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@types/node@18.19.44)(@types/react@18.3.3)(happy-dom@12.10.3)(jsdom@24.0.0)(next@14.2.5(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.46.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(terser@5.29.2)
+        version: 0.5.1(@emotion/react@11.13.0(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.0(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@types/node@18.19.44)(@types/react@18.3.3)(happy-dom@12.10.3)(jsdom@24.0.0)(next@14.2.6(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.46.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(terser@5.29.2)
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.41)
@@ -735,7 +738,7 @@ importers:
         version: 5.1.2(@mui/material@packages+mui-material+build)(react@18.3.1)
       next:
         specifier: ^14.2.5
-        version: 14.2.5(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.46.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 14.2.6(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.46.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       notistack:
         specifier: 3.0.1
         version: 3.0.1(csstype@3.1.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -899,6 +902,22 @@ importers:
       yargs:
         specifier: ^17.7.2
         version: 17.7.2
+
+  packages-internal/babel-plugin-resolve-imports:
+    dependencies:
+      '@babel/core':
+        specifier: ^7.25.2
+        version: 7.25.2
+      resolve:
+        specifier: ^1.22.8
+        version: 1.22.8
+    devDependencies:
+      '@types/babel__core':
+        specifier: ^7.20.5
+        version: 7.20.5
+      '@types/resolve':
+        specifier: ^1.20.6
+        version: 1.20.6
 
   packages-internal/docs-utils:
     dependencies:
@@ -1443,7 +1462,7 @@ importers:
         version: 18.3.3
       next:
         specifier: ^14.2.5
-        version: 14.2.5(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.46.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 14.2.6(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.46.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -1617,7 +1636,7 @@ importers:
         version: 4.17.21
       next:
         specifier: ^14.2.5
-        version: 14.2.5(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.46.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 14.2.6(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.46.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -5518,6 +5537,9 @@ packages:
 
   '@types/react@18.3.3':
     resolution: {integrity: sha512-hti/R0pS0q1/xx+TsI73XIqk26eBsISZ2R0wUijXIngRK9R/e7Xw/cXVxQK7R5JjW+SV4zGcn5hXjudkN/pLIw==}
+
+  '@types/resolve@1.20.6':
+    resolution: {integrity: sha512-A4STmOXPhMUtHH+S6ymgE2GiBSMqf4oTvcQZMcHzokuTLVYzXTB8ttjcgxOVaAp2lGwEdzZ0J+cRbbeevQj1UQ==}
 
   '@types/retry@0.12.0':
     resolution: {integrity: sha512-wWKOClTTiizcZhXnPY4wikVAwmdYHp8q6DmC+EJUzAMsycb7HB32Kh9RN4+0gExjmPmZSAQjgURXIGATPegAvA==}
@@ -16265,7 +16287,7 @@ snapshots:
       '@theme-ui/css': 0.16.2(@emotion/react@11.13.0(@types/react@18.3.3)(react@18.3.1))
       react: 18.3.1
 
-  '@toolpad/core@0.5.1(@emotion/react@11.13.0(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.0(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@types/node@18.19.44)(@types/react@18.3.3)(happy-dom@12.10.3)(jsdom@24.0.0)(next@14.2.5(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.46.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(terser@5.29.2)':
+  '@toolpad/core@0.5.1(@emotion/react@11.13.0(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.0(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@types/node@18.19.44)(@types/react@18.3.3)(happy-dom@12.10.3)(jsdom@24.0.0)(next@14.2.6(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.46.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(terser@5.29.2)':
     dependencies:
       '@babel/runtime': 7.25.0
       '@mui/icons-material': link:packages/mui-icons-material/build
@@ -16278,7 +16300,7 @@ snapshots:
       prop-types: 15.8.1
       react: 18.3.1
     optionalDependencies:
-      next: 14.2.5(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.46.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      next: 14.2.6(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.46.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     transitivePeerDependencies:
       - '@edge-runtime/vm'
       - '@emotion/react'
@@ -16567,6 +16589,8 @@ snapshots:
     dependencies:
       '@types/prop-types': 15.7.12
       csstype: 3.1.3
+
+  '@types/resolve@1.20.6': {}
 
   '@types/retry@0.12.0': {}
 
