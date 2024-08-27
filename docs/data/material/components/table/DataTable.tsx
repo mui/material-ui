@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import Paper from '@mui/material/Paper';
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -35,7 +36,7 @@ const rows = [
 
 export default function DataTable() {
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <Paper sx={{ height: 400, width: '100%' }}>
       <DataGrid
         rows={rows}
         columns={columns}
@@ -46,8 +47,8 @@ export default function DataTable() {
         }}
         pageSizeOptions={[5, 10]}
         checkboxSelection
-        sx={{ overflow: 'clip' }}
+        sx={{ border: 0 }}
       />
-    </div>
+    </Paper>
   );
 }
