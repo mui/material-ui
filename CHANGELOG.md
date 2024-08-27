@@ -6,7 +6,6 @@
 
 _Aug 27, 2024_
 
-A big thanks to the 14 contributors who made this release possible.
 We are excited to announce the stable release of Material-UI v6 🎉, check out [the blog post](https://mui.com/blog/material-ui-v6-is-out/) to see all the updates.
 
 ### `@mui/material@6.0.0`
