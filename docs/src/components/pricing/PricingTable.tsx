@@ -169,8 +169,6 @@ export function PlanPrice(props: PlanPriceProps) {
     );
   }
   // else Premium
-
-  const originalPriceMultiplicator = monthlyDisplay ? 1 : 12;
   const premiumMonthlyValue = annual ? 49 : 49 * 3;
   const premiumAnnualValue = premiumMonthlyValue * 12;
 
