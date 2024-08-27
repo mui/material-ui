@@ -45,7 +45,7 @@ export default function SignInSide() {
       toggleColorMode={toggleColorMode}
     >
       <ThemeProvider theme={showCustomTheme ? SignInSideTheme : defaultTheme}>
-        <CssBaseline />
+        <CssBaseline enableColorScheme />
         <Stack
           direction="column"
           component="main"

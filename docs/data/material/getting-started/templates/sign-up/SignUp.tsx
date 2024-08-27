@@ -145,7 +145,7 @@ export default function SignUp() {
       toggleColorMode={toggleColorMode}
     >
       <ThemeProvider theme={showCustomTheme ? SignUpTheme : defaultTheme}>
-        <CssBaseline />
+        <CssBaseline enableColorScheme />
 
         <SignUpContainer direction="column" justifyContent="space-between">
           <Stack
