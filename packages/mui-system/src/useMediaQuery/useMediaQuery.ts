@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
+import { useSyncExternalStore } from 'use-sync-external-store/shim';
 import { getThemeProps } from '../useThemeProps';
 import useTheme from '../useThemeWithoutDefault';
 
@@ -28,91 +28,6 @@ export interface UseMediaQueryOptions {
    * You can provide your own implementation of `matchMedia`, it's used when rendering server-side.
    */
   ssrMatchMedia?: (query: string) => { matches: boolean };
-}
-
-function useMediaQueryOld(
-  query: string,
-  defaultMatches: boolean,
-  matchMedia: typeof window.matchMedia | null,
-  ssrMatchMedia: ((query: string) => { matches: boolean }) | null,
-  noSsr: boolean,
-): boolean {
-  const [match, setMatch] = React.useState(() => {
-    if (noSsr && matchMedia) {
-      return matchMedia!(query).matches;
-    }
-    if (ssrMatchMedia) {
-      return ssrMatchMedia(query).matches;
-    }
-
-    // Once the component is mounted, we rely on the
-    // event listeners to return the correct matches value.
-    return defaultMatches;
-  });
-
-  useEnhancedEffect(() => {
-    if (!matchMedia) {
-      return undefined;
-    }
-
-    const queryList = matchMedia!(query);
-    const updateMatch = () => {
-      setMatch(queryList.matches);
-    };
-
-    updateMatch();
-    queryList.addEventListener('change', updateMatch);
-
-    return () => {
-      queryList.removeEventListener('change', updateMatch);
-    };
-  }, [query, matchMedia]);
-
-  return match;
-}
-
-// eslint-disable-next-line no-useless-concat -- Workaround for https://github.com/webpack/webpack/issues/14814
-const maybeReactUseSyncExternalStore: undefined | any = (React as any)['useSyncExternalStore' + ''];
-
-function useMediaQueryNew(
-  query: string,
-  defaultMatches: boolean,
-  matchMedia: typeof window.matchMedia | null,
-  ssrMatchMedia: ((query: string) => { matches: boolean }) | null,
-  noSsr: boolean,
-): boolean {
-  const getDefaultSnapshot = React.useCallback(() => defaultMatches, [defaultMatches]);
-  const getServerSnapshot = React.useMemo(() => {
-    if (noSsr && matchMedia) {
-      return () => matchMedia!(query).matches;
-    }
-
-    if (ssrMatchMedia !== null) {
-      const { matches } = ssrMatchMedia(query);
-      return () => matches;
-    }
-    return getDefaultSnapshot;
-  }, [getDefaultSnapshot, query, ssrMatchMedia, noSsr, matchMedia]);
-  const [getSnapshot, subscribe] = React.useMemo(() => {
-    if (matchMedia === null) {
-      return [getDefaultSnapshot, () => () => {}];
-    }
-
-    const mediaQueryList = matchMedia(query);
-
-    return [
-      () => mediaQueryList.matches,
-      (notify: () => void) => {
-        mediaQueryList.addEventListener('change', notify);
-        return () => {
-          mediaQueryList.removeEventListener('change', notify);
-        };
-      },
-    ];
-  }, [getDefaultSnapshot, matchMedia, query]);
-  const match = maybeReactUseSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
-
-  return match;
 }
 
 export default function useMediaQuery<Theme = unknown>(
@@ -148,16 +63,36 @@ export default function useMediaQuery<Theme = unknown>(
   let query = typeof queryInput === 'function' ? queryInput(theme) : queryInput;
   query = query.replace(/^@media( ?)/m, '');
 
-  // TODO: Drop `useMediaQueryOld` and use  `use-sync-external-store` shim in `useMediaQueryNew` once the package is stable
-  const useMediaQueryImplementation =
-    maybeReactUseSyncExternalStore !== undefined ? useMediaQueryNew : useMediaQueryOld;
-  const match = useMediaQueryImplementation(
-    query,
-    defaultMatches,
-    matchMedia,
-    ssrMatchMedia,
-    noSsr,
-  );
+  const getDefaultSnapshot = React.useCallback(() => defaultMatches, [defaultMatches]);
+  const getServerSnapshot = React.useMemo(() => {
+    if (noSsr && matchMedia) {
+      return () => matchMedia!(query).matches;
+    }
+
+    if (ssrMatchMedia !== null) {
+      const { matches } = ssrMatchMedia(query);
+      return () => matches;
+    }
+    return getDefaultSnapshot;
+  }, [getDefaultSnapshot, query, ssrMatchMedia, noSsr, matchMedia]);
+  const [getSnapshot, subscribe] = React.useMemo(() => {
+    if (matchMedia === null) {
+      return [getDefaultSnapshot, () => () => {}];
+    }
+
+    const mediaQueryList = matchMedia(query);
+
+    return [
+      () => mediaQueryList.matches,
+      (notify: () => void) => {
+        mediaQueryList.addEventListener('change', notify);
+        return () => {
+          mediaQueryList.removeEventListener('change', notify);
+        };
+      },
+    ];
+  }, [getDefaultSnapshot, matchMedia, query]);
+  const match = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
