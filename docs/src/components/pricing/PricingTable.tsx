@@ -10,7 +10,6 @@ import Tooltip from '@mui/material/Tooltip';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useRouter } from 'next/router';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import UnfoldMoreRounded from '@mui/icons-material/UnfoldMoreRounded';
 import { Link } from '@mui/docs/Link';
@@ -94,7 +93,7 @@ export function PlanPrice(props: PlanPriceProps) {
 
   const { licenseModel } = useLicenseModel();
   const annual = licenseModel === 'annual';
-  const planPriceMinHeight = 64;
+  const planPriceMinHeight = 24;
 
   if (plan === 'community') {
     return (
@@ -103,7 +102,7 @@ export function PlanPrice(props: PlanPriceProps) {
           <Typography
             variant="h3"
             component="div"
-            sx={{ fontWeight: 'bold', color: 'success.600', mt: 4.5 }}
+            sx={{ fontWeight: 'bold', color: 'success.600', mt: 6 }}
           >
             $0
           </Typography>
@@ -165,19 +164,6 @@ export function PlanPrice(props: PlanPriceProps) {
               {priceExplanation}
             </Typography>
           )}
-
-          <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
-            No extra fees for orders with over 10 devs&nbsp;
-            <span>
-              <Tooltip title="Our pricing policies are changing. Read more on our blog.">
-                <Link href="/blog/mui-x-sep-2024-price-update/">
-                  by Aug 30
-                  <OpenInNewRoundedIcon sx={{ fontSize: '16px', ml: 0.5 }} />
-                </Link>
-              </Tooltip>
-            </span>
-            .
-          </Typography>
         </Box>
       </React.Fragment>
     );
@@ -185,10 +171,7 @@ export function PlanPrice(props: PlanPriceProps) {
   // else Premium
 
   const originalPriceMultiplicator = monthlyDisplay ? 1 : 12;
-  const premiumOriginalValue = annual
-    ? 49 * originalPriceMultiplicator
-    : 49 * 3 * originalPriceMultiplicator;
-  const premiumMonthlyValue = annual ? 37 : 37 * 3;
+  const premiumMonthlyValue = annual ? 49 : 49 * 3;
   const premiumAnnualValue = premiumMonthlyValue * 12;
 
   const premiumDisplayedValue = monthlyDisplay ? premiumMonthlyValue : premiumAnnualValue;
@@ -200,34 +183,6 @@ export function PlanPrice(props: PlanPriceProps) {
     <React.Fragment>
       <LicenseModelSwitch />
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
-        <Typography
-          variant="caption"
-          sx={[
-            {
-              fontWeight: 'medium',
-            },
-            (theme) => ({
-              borderRadius: 0.5,
-              alignSelf: 'flex-end',
-              textDecoration: 'line-through',
-              py: 0.5,
-              px: 1,
-              mb: 0.5,
-              fontWeight: 'medium',
-              bgcolor: 'error.50',
-              color: 'error.500',
-              border: '1px solid',
-              borderColor: 'error.100',
-              ...theme.applyDarkStyles({
-                color: 'error.300',
-                bgcolor: 'error.900',
-                borderColor: 'error.800',
-              }),
-            }),
-          ]}
-        >
-          {formatCurrency(premiumOriginalValue)}
-        </Typography>
         <Box sx={{ width: 10 }} />
         <Typography variant="h3" component="div" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
           {formatCurrency(premiumDisplayedValue)}
@@ -252,18 +207,6 @@ export function PlanPrice(props: PlanPriceProps) {
             {priceExplanation}
           </Typography>
         )}
-        <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
-          🐦 Early Bird: <strong>25% off</strong> if ordered &nbsp;
-          <span>
-            <Tooltip title="Our pricing policies are changing. Read more on our blog.">
-              <Link href="/blog/mui-x-sep-2024-price-update/">
-                by Aug 30
-                <OpenInNewRoundedIcon sx={{ fontSize: '16px', ml: 0.5 }} />{' '}
-              </Link>
-            </Tooltip>
-          </span>
-          .
-        </Typography>
       </Box>
     </React.Fragment>
   );
@@ -939,12 +882,7 @@ const proData: Record<string, React.ReactNode> = {
   'response-time': no,
   'pre-screening': no,
   'issue-escalation': no,
-  'security-questionnaire': (
-    <Info
-      value="Available from 10+ devs"
-      metadata={'Not available under the "Capped at 10 licenses" policy'}
-    />
-  ),
+  'security-questionnaire': <Info value="Available from 10+ devs" />,
 };
 
 const premiumData: Record<string, React.ReactNode> = {
