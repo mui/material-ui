@@ -16,6 +16,8 @@ function generateAbsolutePaths(context) {
 }
 
 module.exports = {
+  // Restore the `.next/cache` folder
+  // based on: https://github.com/netlify/next-runtime/blob/733a0219e5413aa1eea790af48c745322dbce917/src/index.ts
   async onPreBuild(context) {
     const { constants, utils } = context;
     const { nextjsCacheDir } = generateAbsolutePaths({ constants });
@@ -30,6 +32,9 @@ module.exports = {
     const restoredCacheDir = fse.existsSync(nextjsCacheDir);
     console.log("'%s' exists: %s", nextjsCacheDir, String(restoredCacheDir));
   },
+  // On build, cache the `.next/cache` folder
+  // based on: https://github.com/netlify/next-runtime/blob/733a0219e5413aa1eea790af48c745322dbce917/src/index.ts
+  // This hook is called immediately after the build command is executed.
   async onBuild(context) {
     const { constants, utils } = context;
     const { nextjsCacheDir } = generateAbsolutePaths({ constants });
