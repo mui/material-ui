@@ -1,6 +1,8 @@
 import { CSSInterpolation } from './index.d';
 import preprocessStyles from './preprocessStyles';
 
+/* eslint-disable @typescript-eslint/naming-convention */
+
 type ThemeStyleFunction<T> = (props: { theme: T }) => CSSInterpolation;
 
 // We need to pass an argument as `{ theme }` for PigmentCSS, but we don't want to

@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-labels */
 import styledEngineStyled, { internal_processStyles as processStyles } from '@mui/styled-engine';
 import { isPlainObject } from '@mui/utils/deepmerge';
 import capitalize from '@mui/utils/capitalize';
@@ -7,6 +5,10 @@ import getDisplayName from '@mui/utils/getDisplayName';
 import createTheme from '../createTheme';
 import styleFunctionSx from '../styleFunctionSx';
 import preprocessStyles from '../preprocessStyles';
+
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-labels */
+/* eslint-disable no-lone-blocks */
 
 export const systemDefaultTheme = createTheme();
 
@@ -27,7 +29,7 @@ function attachTheme(props, themeId, defaultTheme) {
 }
 
 function processStyle(props, style) {
-  let resolvedStyle = typeof style === 'function' ? style(props) : style;
+  const resolvedStyle = typeof style === 'function' ? style(props) : style;
 
   if (Array.isArray(resolvedStyle)) {
     return resolvedStyle.flatMap((subStyle) => processStyle(props, subStyle));
