@@ -49,8 +49,6 @@ process.env.DEPLOY_ENV = DEPLOY_ENV;
 function withDocsInfra(nextConfig) {
   return {
     trailingSlash: true,
-    // TODO: Remove when upgrading to Next.js 15, see https://github.com/vercel/next.js/pull/69137
-    optimizeFonts: false,
     reactStrictMode: true,
     ...nextConfig,
     env: {
