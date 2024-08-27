@@ -1309,7 +1309,7 @@ importers:
         specifier: workspace:^
         version: link:../mui-types/build
       '@mui/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-utils/build
       '@popperjs/core':
         specifier: ^2.11.8
@@ -1589,13 +1589,13 @@ importers:
         specifier: workspace:^
         version: link:../mui-core-downloads-tracker/build
       '@mui/system':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-system/build
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build
       '@mui/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-utils/build
       clsx:
         specifier: ^2.1.1
@@ -1666,13 +1666,13 @@ importers:
         specifier: workspace:^
         version: link:../mui-material-pigment-css/build
       '@mui/system':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-system/build
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build
       '@mui/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-utils/build
       clsx:
         specifier: ^2.1.1
@@ -1734,13 +1734,13 @@ importers:
         specifier: workspace:^
         version: link:../mui-material-pigment-css/build
       '@mui/system':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-system/build
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build
       '@mui/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-utils/build
       '@popperjs/core':
         specifier: ^2.11.8
@@ -1865,7 +1865,7 @@ importers:
         specifier: ^7.25.0
         version: 7.25.0
       '@mui/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-utils/build
       prop-types:
         specifier: ^15.8.1
@@ -1982,13 +1982,13 @@ importers:
         specifier: ^0.9.2
         version: 0.9.2
       '@mui/private-theming':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-private-theming/build
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build
       '@mui/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-utils/build
       clsx:
         specifier: ^2.1.1
@@ -2065,16 +2065,16 @@ importers:
         specifier: ^7.25.0
         version: 7.25.0
       '@mui/private-theming':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-private-theming/build
       '@mui/styled-engine':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-styled-engine/build
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build
       '@mui/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-utils/build
       clsx:
         specifier: ^2.1.1

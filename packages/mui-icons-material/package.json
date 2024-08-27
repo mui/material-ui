@@ -67,7 +67,7 @@
     "yargs": "^17.7.2"
   },
   "peerDependencies": {
-    "@mui/material": "workspace:*",
+    "@mui/material": "workspace:^",
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
     "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },

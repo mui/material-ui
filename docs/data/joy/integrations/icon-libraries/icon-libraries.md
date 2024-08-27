@@ -13,12 +13,8 @@ This section assumes that you've already installed Joy UI in your app—see [In
 
 #### yarn
 
-:::info
-The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Remove it to get the current stable version.
-:::
-
 ```bash
-yarn add @mui/icons-material@next @mui/material@next
+yarn add @mui/icons-material @mui/material
 ```
 
 :::warning
@@ -43,14 +39,8 @@ You can keep track of the progress in [this issue](https://github.com/mui/materi
 
 #### npm
 
-:::info
-The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Remove it to get the current stable version.
-:::
-
-<!-- #default-branch-switch -->
-
 ```bash
-npm install @mui/icons-material@next @mui/material@next
+npm install @mui/icons-material @mui/material
 ```
 
 :::warning

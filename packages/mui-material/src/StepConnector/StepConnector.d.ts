@@ -24,10 +24,10 @@ export type StepConnectorClasskey = keyof NonNullable<StepConnectorProps['classe
  *
  * Demos:
  *
- * - [Stepper](https://next.mui.com/material-ui/react-stepper/)
+ * - [Stepper](https://mui.com/material-ui/react-stepper/)
  *
  * API:
  *
- * - [StepConnector API](https://next.mui.com/material-ui/api/step-connector/)
+ * - [StepConnector API](https://mui.com/material-ui/api/step-connector/)
  */
 export default function StepConnector(props: StepConnectorProps): React.JSX.Element;
