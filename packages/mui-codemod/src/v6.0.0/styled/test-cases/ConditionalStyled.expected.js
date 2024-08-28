@@ -17,6 +17,15 @@ const LinearProgressBar1 = styled('span', {
   theme
 }) => ({
   variants: [{
+    props: {
+      variant: 'buffer'
+    },
+    style: {
+      backgroundColor:
+        (theme.vars || theme).palette[ownerState.color].light,
+      '&:hover': {},
+    }
+  }, {
     props: (
       {
         variant,
@@ -25,14 +34,6 @@ const LinearProgressBar1 = styled('span', {
     ) => variant === 'buffer' && ownerState.color !== 'normal',
     style: {
       backgroundColor: 'currentColor'
-    }
-  }, {
-    props: {
-      variant: 'buffer',
-      color: 'normal'
-    },
-    style: {
-      backgroundColor: (theme.vars || theme).palette[ownerState.color].light
     }
   }, {
     props: (
@@ -57,11 +58,14 @@ const LinearProgressBar1 = styled('span', {
           }
     }
   }, {
-    props: {
-      variant: 'buffer'
-    },
+    props: (
+      {
+        ownerState
+      }
+    ) => ownerState.variant !== 'buffer',
     style: {
-      '&:hover': {}
+      backgroundColor:
+        (theme.vars || theme).palette[ownerState.color].main,
     }
   }, {
     props: (
@@ -73,15 +77,6 @@ const LinearProgressBar1 = styled('span', {
     style: {
       backgroundColor: 'currentColor'
     }
-  }, {
-    props: (
-      {
-        ownerState
-      }
-    ) => ownerState.variant !== 'buffer' && ownerState.color !== 'inherit',
-    style: {
-      backgroundColor: (theme.vars || theme).palette[ownerState.color].main
-    }
   }]
 }));
 
@@ -91,6 +86,7 @@ const ExpandMore = styled((props) => {
 })(({
   theme
 }) => ({
+  transform: 'rotate(180deg)',
   marginLeft: 'auto',
   transition: theme.transitions.create('transform', {
     duration: theme.transitions.duration.shortest,
@@ -104,16 +100,7 @@ const ExpandMore = styled((props) => {
     style: {
       transform: 'rotate(0deg)'
     }
-  }, {
-    props: (
-      {
-        expand
-      }
-    ) => !!expand,
-    style: {
-      transform: 'rotate(180deg)'
-    }
-  }],
+  }]
 }));
 
 const Main = styled('main', {
@@ -230,3 +217,44 @@ const StyledAppContainer = styled(AppContainer, {
     }]
   };
 });
+
+const DialogContentRoot = styled('div', {
+  name: 'MuiDialogContent',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [styles.root, ownerState.dividers && styles.dividers];
+  },
+})(({
+  theme
+}) => ({
+  flex: '1 1 auto',
+  // Add iOS momentum scrolling for iOS < 13.0
+  WebkitOverflowScrolling: 'touch',
+  overflowY: 'auto',
+  padding: '20px 24px',
+  variants: [{
+    props: (
+      {
+        ownerState
+      }
+    ) => ownerState.dividers,
+    style: {
+          padding: '16px 24px',
+          borderTop: `1px solid ${(theme.vars || theme).palette.divider}`,
+          borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
+        }
+  }, {
+    props: (
+      {
+        ownerState
+      }
+    ) => !ownerState.dividers,
+    style: {
+          [`.${dialogTitleClasses.root} + &`]: {
+            paddingTop: 0,
+          },
+        }
+  }]
+}));

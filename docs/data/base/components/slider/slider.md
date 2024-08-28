@@ -9,10 +9,9 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/
 
 # Slider
 
-<p class="description">A slider is a UI element that lets users select a single value or a range of values along a bar.
-</p>
+<p class="description">A slider is a UI element that lets users select a single value or a range of values along a bar.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 

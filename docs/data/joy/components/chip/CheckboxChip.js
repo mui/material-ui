@@ -11,7 +11,7 @@ export default function CheckboxChip() {
   return (
     <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
       <div>
-        <Typography level="title-lg" id="fav-movie" mb={2}>
+        <Typography level="title-lg" id="fav-movie" sx={{ mb: 2 }}>
           Favorite Movies
         </Typography>
         <Box

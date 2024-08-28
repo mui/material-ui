@@ -31,7 +31,6 @@ const Document = withEmotionCache(({ children, title }: DocumentProps, emotionCa
     const tags = emotionCache.sheet.tags;
     emotionCache.sheet.flush();
     tags.forEach((tag) => {
-      // eslint-disable-next-line no-underscore-dangle
       (emotionCache.sheet as any)._insertTag(tag);
     });
     // reset cache to reapply global styles

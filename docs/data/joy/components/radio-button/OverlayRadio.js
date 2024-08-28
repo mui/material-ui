@@ -32,13 +32,7 @@ export default function OverlayRadio() {
               borderRadius: 'md',
             }}
           >
-            <Radio
-              value={`person${num}`}
-              variant="soft"
-              sx={{
-                mb: 2,
-              }}
-            />
+            <Radio value={`person${num}`} variant="soft" sx={{ mb: 2 }} />
             <Avatar alt={`person${num}`} src={`/static/images/avatar/${num}.jpg`} />
             <Typography level="body-sm" sx={{ mt: 1 }}>
               Person {num}

@@ -12,13 +12,19 @@ This utility is built on top of the `styled()` module of `@mui/styled-engine` an
 You can use the utility coming from the `@mui/system` package, or if you are using `@mui/material`, you can import it from `@mui/material/styles`.
 The difference is in the default `theme` that is used (if no theme is available in the React context).
 
+```ts
+import { styled } from '@mui/system';
+// If you are using @mui/material
+import { styled } from '@mui/material/styles';
+```
+
 ### What problems does it solve?
 
 The utility can be used as a replacement for emotion's or styled-components' styled() utility.
 It aims to solve the same problem, but also provides the following benefits:
 
 1. It uses a default `theme` if no theme is available in React context.
-2. It supports the theme's [`styleOverrides`](/material-ui/customization/theme-components/#theme-style-overrides) and [`variants`](/material-ui/customization/theme-components/#creating-new-component-variants) to be applied, based on the `name` applied in the options (can be skipped).
+2. It supports the theme's [`styleOverrides`](/material-ui/customization/theme-components/#theme-style-overrides) and [`variants`](/material-ui/customization/theme-components/#variants) to be applied, based on the `name` applied in the options (can be skipped).
 3. It adds support for the [the `sx` prop](/system/getting-started/the-sx-prop/) (can be skipped).
 4. It adds by default the `shouldForwardProp` option (that can be overridden), taking into account: `ownerState`, `theme`, `sx`, and `as`.
 

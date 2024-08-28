@@ -65,12 +65,8 @@ export default (function More(props: ButtonBaseProps) {
       </Box>
       <Typography
         component="span"
-        color="primary.main"
         variant="body2"
-        fontWeight="bold"
-        sx={{
-          width: '100%',
-        }}
+        sx={{ color: 'primary.main', fontWeight: 'bold', width: '100%' }}
       >
         Much more{' '}
         <KeyboardArrowRightRounded

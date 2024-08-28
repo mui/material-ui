@@ -24,7 +24,6 @@ const ignoredIconNames = new Set([
   'data_exploration',
   'disabled_visible',
   'drive_file_move_rtl',
-  'emergency',
   'exposure_neg_1', // Google product
   'exposure_neg_2', // Google product
   'exposure_plus_1', // Google product

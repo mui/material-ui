@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverrideProps } from '@mui/types';
-import { SlotComponentProps } from '@mui/base';
+import { SlotComponentProps } from '../utils/types';
 import { PortalProps } from '../Portal';
 import { Theme } from '../styles';
 import Backdrop, { BackdropProps } from '../Backdrop';
@@ -43,14 +43,14 @@ export interface ModalOwnProps {
    */
   BackdropComponent?: React.ElementType<BackdropProps>;
   /**
-   * Props applied to the [`Backdrop`](/material-ui/api/backdrop/) element.
+   * Props applied to the [`Backdrop`](https://mui.com/material-ui/api/backdrop/) element.
    * @deprecated Use `slotProps.backdrop` instead.
    */
   BackdropProps?: Partial<BackdropProps>;
   /**
    * A single child content element.
    */
-  children: React.ReactElement;
+  children: React.ReactElement<unknown>;
   /**
    * Override or extend the styles applied to the component.
    */
@@ -67,8 +67,7 @@ export interface ModalOwnProps {
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated Use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -80,8 +79,7 @@ export interface ModalOwnProps {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */

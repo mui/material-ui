@@ -10,6 +10,8 @@ export interface LoadingButtonOwnProps {
   classes?: Partial<ButtonClasses> & {
     /** Styles applied to the root element. */
     root?: string;
+    /** Styles applied to the span element that wraps the children. */
+    label?: string;
     /** Styles applied to the root element if `loading={true}`. */
     loading?: string;
     /** Styles applied to the loadingIndicator element. */

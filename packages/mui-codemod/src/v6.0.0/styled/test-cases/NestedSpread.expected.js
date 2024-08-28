@@ -28,6 +28,13 @@ const Component = styled('div')(({
       }
     }, {
       props: {
+        edge: 'start'
+      },
+      style: {
+        marginLeft: -12,
+      }
+    }, {
+      props: {
         edge: 'start',
         size: 'small'
       },
@@ -35,14 +42,11 @@ const Component = styled('div')(({
         marginLeft: -3
       }
     }, {
-      props: (
-        {
-          edge,
-          ownerState
-        }
-      ) => edge === 'start' && ownerState.size !== 'small',
+      props: {
+        edge: 'end'
+      },
       style: {
-        marginLeft: -12
+        marginRight: -12,
       }
     }, {
       props: {
@@ -55,12 +59,12 @@ const Component = styled('div')(({
     }, {
       props: (
         {
-          edge,
           ownerState
         }
-      ) => edge === 'end' && ownerState.size !== 'small',
+      ) => ownerState.color !== 'inherit' &&
+        ownerState.color !== 'default',
       style: {
-        marginRight: -12
+        color: palette?.main
       }
     }, {
       props: (
@@ -83,16 +87,6 @@ const Component = styled('div')(({
             backgroundColor: 'transparent',
           },
         },
-      }
-    }, {
-      props: (
-        {
-          ownerState
-        }
-      ) => ownerState.color !== 'inherit' &&
-        ownerState.color !== 'default',
-      style: {
-        color: palette?.main
       }
     }]
   };

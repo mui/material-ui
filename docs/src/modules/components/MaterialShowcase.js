@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Card from '@mui/material/Card';
@@ -135,17 +135,6 @@ const appList = [
     dateAdded: '2019-01-01',
   },
   {
-    title: 'VMware CloudHealth',
-    description:
-      'The most trusted cloud management platform that enables users to analyze and manage cloud ' +
-      'cost, usage and performance in one place. ' +
-      '(Used for the business application, but not the marketing website.)',
-    image: 'cloudhealth.jpg',
-    link: 'https://cloudhealth.vmware.com/',
-    similarWebVisits: 132,
-    dateAdded: '2018-01-27',
-  },
-  {
     title: 'CityAds',
     description:
       'CityAds Media: global technology platform for online performance marketing ' +
@@ -185,15 +174,6 @@ const appList = [
     link: 'https://www.forex.no/',
     similarWebVisits: 95,
     dateAdded: '2018-01-24',
-  },
-  {
-    title: 'LocalMonero',
-    description:
-      'A safe and easy-to-use person-to-person platform to allow anyone ' +
-      'to trade their local currency for Monero, anywhere.',
-    image: 'localmonero.jpg',
-    link: 'https://localmonero.co/?rc=ogps',
-    dateAdded: '2018-01-04',
   },
   {
     title: 'LessWrong',
@@ -428,9 +408,9 @@ const appList = [
     dateAdded: '2019-03-25',
   },
   {
-    title: 'refine FineFoods demo',
+    title: 'Refine Foods demo',
     description: 'A full-featured Admin panel app',
-    image: 'refine-finefoods.png',
+    image: 'refine-foods.jpeg',
     link: 'https://example.mui.admin.refine.dev/',
     source: 'https://github.com/pankod/refine/tree/next/examples/fineFoods/admin/mui',
     stars: 2415,
@@ -469,7 +449,7 @@ export default function Showcase() {
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 3 }}>
-        <Typography variant="body2" color="text.secondary" fontWeight="semiBold">
+        <Typography variant="body2" sx={{ color: 'text.secondary', fontWeight: 'semiBold' }}>
           {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
           {'Sort by:'}
         </Typography>
@@ -490,7 +470,7 @@ export default function Showcase() {
           .filter((item) => item[sortFunctionName] !== undefined)
           .sort(sortFunction)
           .map((app) => (
-            <Grid key={app.title} item xs={12} sm={6}>
+            <Grid key={app.title} item size={{ xs: 12, sm: 6 }}>
               {app.image ? (
                 <Card
                   variant="outlined"
@@ -509,7 +489,7 @@ export default function Showcase() {
                     }),
                   })}
                 >
-                  <a href={app.link} rel="noopener nofollow" target="_blank">
+                  <a href={app.link} rel="noopener nofollow" target="_blank" aria-label={app.title}>
                     <CardMedia
                       component="img"
                       loading="lazy"
@@ -534,8 +514,8 @@ export default function Showcase() {
                     <Typography
                       component="h2"
                       variant="body1"
-                      fontWeight="semiBold"
                       sx={{
+                        fontWeight: 'semiBold',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between',
@@ -552,15 +532,19 @@ export default function Showcase() {
                         </IconButton>
                       ) : null}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" flexGrow={1}>
+                    <Typography variant="body2" sx={{ color: 'text.secondary', flexGrow: 1 }}>
                       {app.description}
                     </Typography>
                     <Typography
                       variant="caption"
-                      fontWeight="semiBold"
-                      color="text.secondary"
-                      mt={1}
-                      sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}
+                      sx={{
+                        fontWeight: 'semiBold',
+                        color: 'text.secondary',
+                        mt: 1,
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 0.5,
+                      }}
                     >
                       <CalendarMonthRoundedIcon sx={{ fontSize: 17, opacity: 0.8 }} />
                       {app.dateAdded}

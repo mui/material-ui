@@ -11,7 +11,7 @@ export interface MenuItemMetadata {
   id: string;
   disabled: boolean;
   label?: string;
-  ref: React.RefObject<HTMLElement>;
+  ref: React.RefObject<HTMLElement | null>;
 }
 
 export type UseMenuItemRootSlotProps<ExternalProps = {}> = ExternalProps &

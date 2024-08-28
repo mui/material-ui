@@ -6,6 +6,7 @@ githubLabel: 'component: menu'
 materialDesign: https://m2.material.io/components/menus
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 unstyled: /base-ui/react-menu/
+githubSource: packages/mui-material/src/Menu
 ---
 
 # Menu
@@ -14,7 +15,7 @@ unstyled: /base-ui/react-menu/
 
 A menu displays a list of choices on a temporary surface. It appears when the user interacts with a button, or other control.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic menu
 

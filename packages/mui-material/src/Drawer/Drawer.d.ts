@@ -27,7 +27,7 @@ export interface DrawerProps extends StandardProps<ModalProps, 'open' | 'childre
    */
   elevation?: number;
   /**
-   * Props applied to the [`Modal`](/material-ui/api/modal/) element.
+   * Props applied to the [`Modal`](https://mui.com/material-ui/api/modal/) element.
    * @default {}
    */
   ModalProps?: Partial<ModalProps>;
@@ -45,12 +45,12 @@ export interface DrawerProps extends StandardProps<ModalProps, 'open' | 'childre
    */
   open?: boolean;
   /**
-   * Props applied to the [`Paper`](/material-ui/api/paper/) element.
+   * Props applied to the [`Paper`](https://mui.com/material-ui/api/paper/) element.
    * @default {}
    */
   PaperProps?: Partial<PaperProps<React.ElementType>>;
   /**
-   * Props applied to the [`Slide`](/material-ui/api/slide/) element.
+   * Props applied to the [`Slide`](https://mui.com/material-ui/api/slide/) element.
    */
   SlideProps?: Partial<SlideProps>;
   /**
@@ -85,4 +85,4 @@ export interface DrawerProps extends StandardProps<ModalProps, 'open' | 'childre
  *
  * - [Drawer API](https://mui.com/material-ui/api/drawer/)
  */
-export default function Drawer(props: DrawerProps): JSX.Element;
+export default function Drawer(props: DrawerProps): React.JSX.Element;

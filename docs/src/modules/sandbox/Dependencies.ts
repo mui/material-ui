@@ -2,6 +2,7 @@ import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import type { MuiProductId } from 'docs/src/modules/utils/getProductInfoFromUrl';
 
 const packagesWithBundledTypes = ['date-fns', '@emotion/react', '@emotion/styled', 'dayjs'];
+const muiNpmOrgs = ['@mui', '@base_ui', '@pigment-css', '@toolpad'];
 
 /**
  * WARNING: Always uses `latest` typings.
@@ -13,9 +14,9 @@ const packagesWithBundledTypes = ['date-fns', '@emotion/react', '@emotion/styled
  */
 function addTypeDeps(deps: Record<string, string>): void {
   const packagesWithDTPackage = Object.keys(deps)
-    .filter((name) => packagesWithBundledTypes.indexOf(name) === -1)
+    .filter((name) => !packagesWithBundledTypes.includes(name))
     // All the MUI packages come with bundled types
-    .filter((name) => name.indexOf('@mui/') !== 0);
+    .filter((name) => !muiNpmOrgs.some((org) => name.startsWith(org)));
 
   packagesWithDTPackage.forEach((name) => {
     let resolvedName = name;
@@ -49,7 +50,7 @@ export default function SandboxDependencies(
       process.env.SOURCE_CODE_REPO !== 'https://github.com/mui/material-ui'
     ) {
       // #default-branch-switch
-      return 'next';
+      return 'latest';
     }
     const shortSha = commitRef.slice(0, 8);
     return `https://pkg.csb.dev/mui/material-ui/commit/${shortSha}/@mui/${packageName}`;
@@ -79,7 +80,7 @@ export default function SandboxDependencies(
       }
 
       // TODO: consider if this configuration could be injected in a "cleaner" way.
-      if (muiDocConfig) {
+      if (muiDocConfig && muiDocConfig.csbIncludePeerDependencies) {
         newDeps = muiDocConfig.csbIncludePeerDependencies(newDeps, {
           versions,
         });
@@ -108,7 +109,7 @@ export default function SandboxDependencies(
     };
 
     // TODO: consider if this configuration could be injected in a "cleaner" way.
-    if (muiDocConfig) {
+    if (muiDocConfig && muiDocConfig.csbGetVersions) {
       versions = muiDocConfig.csbGetVersions(versions, { muiCommitRef: commitRef });
     }
 
@@ -125,8 +126,8 @@ export default function SandboxDependencies(
         deps[name] = versions[name] ?? 'latest';
       }
 
-      if (muiDocConfig) {
-        const resolvedDep = muiDocConfig?.postProcessImport(fullName);
+      if (muiDocConfig && muiDocConfig.postProcessImport) {
+        const resolvedDep = muiDocConfig.postProcessImport(fullName);
         if (resolvedDep) {
           deps = { ...deps, ...resolvedDep };
         }

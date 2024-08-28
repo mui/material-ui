@@ -5,9 +5,9 @@ interface ButtonProps {
 }
 
 interface Component<C extends React.ElementType = 'div'> {
-  (props: ButtonProps): JSX.Element;
-  (props: { component: C } & ButtonProps): JSX.Element;
+  (props: ButtonProps): React.JSX.Element;
+  (props: { component: C } & ButtonProps): React.JSX.Element;
 }
 
 // a component using overloading and intersection of function signature
-declare const ButtonBase: Component & ((props: { href: string } & ButtonProps) => JSX.Element);
+declare const ButtonBase: Component & ((props: { href: string } & ButtonProps) => React.JSX.Element);

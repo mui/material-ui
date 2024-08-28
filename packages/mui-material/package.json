@@ -1,6 +1,6 @@
 {
   "name": "@mui/material",
-  "version": "6.0.0-alpha.3",
+  "version": "6.0.0",
   "private": false,
   "author": "MUI Team",
   "description": "Material UI is an open-source React component library that implements Google's Material Design. It's comprehensive and can be used in production out of the box.",
@@ -27,11 +27,10 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:umd && pnpm build:types && pnpm build:copy-files",
+    "build": "pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
     "build:modern": "node ../../scripts/build.mjs modern",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
-    "build:umd": "cross-env BABEL_ENV=rollup rollup -c scripts/rollup.config.mjs",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "build:types": "node ../../scripts/buildTypes.mjs",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
@@ -41,55 +40,47 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.24.4",
-    "@mui/base": "workspace:*",
+    "@babel/runtime": "^7.25.0",
     "@mui/core-downloads-tracker": "workspace:^",
     "@mui/system": "workspace:^",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@types/react-transition-group": "^4.4.10",
-    "clsx": "^2.1.0",
+    "@popperjs/core": "^2.11.8",
+    "@types/react-transition-group": "^4.4.11",
+    "clsx": "^2.1.1",
     "csstype": "^3.1.3",
     "prop-types": "^15.8.1",
-    "react-is": "^18.2.0",
+    "react-is": "^18.3.1",
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
-    "@mui-internal/test-utils": "workspace:^",
     "@mui/internal-babel-macros": "workspace:^",
-    "@popperjs/core": "^2.11.8",
-    "@rollup/plugin-replace": "^5.0.5",
-    "@testing-library/dom": "^9.3.4",
+    "@mui/internal-test-utils": "workspace:^",
+    "@testing-library/dom": "^10.4.0",
     "@testing-library/user-event": "^14.5.2",
-    "@types/chai": "^4.3.14",
+    "@types/chai": "^4.3.17",
     "@types/prop-types": "^15.7.12",
-    "@types/react": "^18.2.55",
-    "@types/react-dom": "^18.2.19",
-    "@types/sinon": "^10.0.20",
-    "chai": "^4.4.1",
+    "@types/react": "^18.3.4",
+    "@types/react-dom": "^18.3.0",
+    "@types/sinon": "^17.0.3",
+    "chai": "^4.5.0",
     "css-mediaquery": "^0.1.2",
-    "express": "^4.19.2",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
     "lodash": "^4.17.21",
-    "playwright": "^1.43.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.3",
-    "rollup": "^3.29.4",
-    "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-globals": "^1.4.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-terser": "^7.0.2",
-    "sinon": "^15.2.0"
+    "playwright": "^1.46.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.1",
+    "sinon": "^16.1.3"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
-    "@types/react": "^17.0.0 || ^18.0.0",
-    "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0"
+    "@mui/material-pigment-css": "workspace:^",
+    "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -100,6 +91,9 @@
     },
     "@emotion/styled": {
       "optional": true
+    },
+    "@mui/material-pigment-css": {
+      "optional": true
     }
   },
   "sideEffects": false,
@@ -108,6 +102,18 @@
     "directory": "build"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=14.0.0"
+  },
+  "pigment-css": {
+    "vite": {
+      "include": [
+        "prop-types",
+        "react-is",
+        "hoist-non-react-statics",
+        "react",
+        "react-dom",
+        "@emotion/react"
+      ]
+    }
   }
 }

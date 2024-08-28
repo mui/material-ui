@@ -11,7 +11,7 @@ export interface ZoomProps extends TransitionProps {
   /**
    * A single child content element.
    */
-  children: React.ReactElement<any, any>;
+  children: React.ReactElement<unknown, any>;
   /**
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.
@@ -47,4 +47,4 @@ export interface ZoomProps extends TransitionProps {
  * - [Zoom API](https://mui.com/material-ui/api/zoom/)
  * - inherits [Transition API](https://reactcommunity.org/react-transition-group/transition/#Transition-props)
  */
-export default function Zoom(props: ZoomProps): JSX.Element;
+export default function Zoom(props: ZoomProps): React.JSX.Element;

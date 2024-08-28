@@ -13,6 +13,7 @@ const Button = styled('button')(({ theme }) => ({
   marginTop: 16,
   cursor: 'copy',
   padding: 0,
+  position: 'relative',
   display: 'inline-flex',
   alignItems: 'flex-start',
   justifyContent: 'center',
@@ -43,8 +44,8 @@ const Button = styled('button')(({ theme }) => ({
   },
   '& svg': {
     display: 'inline-block',
-    position: 'relative',
-    right: 3,
+    position: 'absolute',
+    right: -24,
     top: 1,
     opacity: 0,
     transition: theme.transitions.create('opacity', {

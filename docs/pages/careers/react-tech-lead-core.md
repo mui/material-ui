@@ -64,7 +64,7 @@ You will extend the [React Engineer](https://mui-org.notion.site/Software-Engine
   - Guide people in making the right technical decisions themselves over imposing them.
   - Be aware of the current technical landscape and knows where the wind blows.
 - **Nurture community contributions**. You will provide guidance and direction to unlock the contributions of the community. Your time will often be way better spent doing this than fixing the problems yourself.
-- **Shape the product**. You will be laser-focused on the end goal. It's not about solving technical challenges but about the problem solved for the users.
+- **Shape the product**. You will be laser-focused on the end goal. It's not about solving technical challenges but about the problems solved for the users.
 - **Enable quality work**. You will:
   - Embody and foster the engineering culture, for example rigorousness, push for small single-purpose PRs, encourage peer reviews, create strong feedback loops between decision and outcome.
   - Empower the team to aim for high-quality outputs. By doing such it aims for the success of delivered solutions.
@@ -125,7 +125,7 @@ We're looking for someone with strong front-end skills. More important than spec
 ## Benefits and compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
+We are ready to pay top market rates for a person who can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply

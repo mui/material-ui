@@ -53,10 +53,10 @@ export default function AppFooter(props: AppFooterProps) {
           <Link prefetch={false} href="/" aria-label="Go to homepage" sx={{ mb: 2 }}>
             <SvgMuiLogotype height={28} width={91} />
           </Link>
-          <Typography variant="body2" fontWeight="semiBold" gutterBottom>
+          <Typography variant="body2" gutterBottom sx={{ fontWeight: 'semiBold' }}>
             Keep up to date
           </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+          <Typography variant="body2" sx={{ color: 'text.secondary', mb: 1 }}>
             Join our newsletter for regular updates. No spam ever.
           </Typography>
           <EmailSubscribe />
@@ -70,7 +70,7 @@ export default function AppFooter(props: AppFooterProps) {
           }}
         >
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography fontWeight="semiBold" variant="body2" sx={{ mb: 0.5 }}>
+            <Typography variant="body2" sx={{ fontWeight: 'semiBold', mb: 0.5 }}>
               Products
             </Typography>
             <Link prefetch={false} href={ROUTES.productMaterial}>
@@ -85,22 +85,16 @@ export default function AppFooter(props: AppFooterProps) {
             <Link prefetch={false} href={ROUTES.productToolpad}>
               Toolpad
             </Link>
-            <Link prefetch={false} href={ROUTES.productTemplates}>
-              Templates
-            </Link>
-            <Link prefetch={false} href={ROUTES.productDesignKits}>
-              Design kits
-            </Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography fontWeight="semiBold" variant="body2" sx={{ mb: 0.5 }}>
+            <Typography variant="body2" sx={{ fontWeight: 'semiBold', mb: 0.5 }}>
               Resources
             </Typography>
             <Link prefetch={false} href={ROUTES.materialIcons}>
               Material Icons
             </Link>
             <Link prefetch={false} href={ROUTES.freeTemplates}>
-              Free templates
+              Templates
             </Link>
             <Link prefetch={false} href={ROUTES.components}>
               Components
@@ -108,12 +102,12 @@ export default function AppFooter(props: AppFooterProps) {
             <Link prefetch={false} href={ROUTES.customization}>
               Customization
             </Link>
-            <Link prefetch={false} href={ROUTES.theming}>
-              Theming
+            <Link prefetch={false} href={ROUTES.productDesignKits}>
+              Design Kits
             </Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography fontWeight="semiBold" variant="body2" sx={{ mb: 0.5 }}>
+            <Typography variant="body2" sx={{ fontWeight: 'semiBold', mb: 0.5 }}>
               Explore
             </Typography>
             <Link prefetch={false} href={ROUTES.documentation}>
@@ -133,7 +127,7 @@ export default function AppFooter(props: AppFooterProps) {
             </Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography fontWeight="semiBold" variant="body2" sx={{ mb: 0.5 }}>
+            <Typography variant="body2" sx={{ fontWeight: 'semiBold', mb: 0.5 }}>
               Company
             </Typography>
             <Link prefetch={false} href={ROUTES.about}>
@@ -178,15 +172,17 @@ export default function AppFooter(props: AppFooterProps) {
       <Divider />
       <Stack
         direction={{ xs: 'column', sm: 'row' }}
-        alignItems="center"
-        justifyContent={{ sm: 'space-between' }}
-        gap={{ xs: 2, sm: 1 }}
-        sx={{ my: 4 }}
+        sx={{
+          alignItems: 'center',
+          justifyContent: { sm: 'space-between' },
+          gap: { xs: 2, sm: 1 },
+          my: 4,
+        }}
       >
-        <Typography color="text.tertiary" variant="caption" fontWeight={400}>
+        <Typography variant="caption" sx={{ color: 'text.tertiary', fontWeight: 400 }}>
           Copyright © {new Date().getFullYear()} Material UI SAS, trading as MUI.
         </Typography>
-        <Stack spacing={1} direction="row" flexWrap="wrap" useFlexGap>
+        <Stack spacing={1} direction="row" useFlexGap sx={{ flexWrap: 'wrap' }}>
           <IconButton
             target="_blank"
             rel="noopener"
@@ -210,8 +206,8 @@ export default function AppFooter(props: AppFooterProps) {
           <IconButton
             target="_blank"
             rel="noopener"
-            href="https://twitter.com/MUI_hq"
-            aria-label="twitter"
+            href="https://x.com/MUI_hq"
+            aria-label="X/twitter"
             title="X"
             size="small"
           >

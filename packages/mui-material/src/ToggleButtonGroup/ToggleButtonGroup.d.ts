@@ -86,4 +86,4 @@ export interface ToggleButtonGroupProps
  *
  * - [ToggleButtonGroup API](https://mui.com/material-ui/api/toggle-button-group/)
  */
-export default function ToggleButtonGroup(props: ToggleButtonGroupProps): JSX.Element;
+export default function ToggleButtonGroup(props: ToggleButtonGroupProps): React.JSX.Element;

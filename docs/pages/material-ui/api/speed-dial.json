@@ -29,6 +29,14 @@
     },
     "open": { "type": { "name": "bool" } },
     "openIcon": { "type": { "name": "node" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ transition?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ transition?: elementType }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -50,6 +58,14 @@
   "imports": [
     "import SpeedDial from '@mui/material/SpeedDial';",
     "import { SpeedDial } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "transition",
+      "description": "The component that renders the transition.\n[Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
+      "default": "{}",
+      "class": null
+    }
   ],
   "classes": [
     {

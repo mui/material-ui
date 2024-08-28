@@ -5,12 +5,7 @@ This project is not part of the workspace yet.
 
 ## How to run
 
-You can either run `pnpm build` to build all packages or else build the two most important ones:
-
-1. `@pigment-css/react`
-2. `@pigment-css/vite-plugin`
-
-Make sure to run `pnpm release:build` at least once because the project uses the `@mui/material` and `@mui/system` packages. On subsequent runs, you can build only the above packages using:
+First, build all the packages in the workspace at least once. Run
 
 ```bash
 pnpm build

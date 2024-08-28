@@ -177,5 +177,29 @@ describe('@mui/codemod', () => {
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
     });
+
+    describe('dynamic props styled-v6', () => {
+      it('transforms props as needed', () => {
+        const actual = transform(
+          { source: read('./test-cases/DynamicPropsStyled.actual.js') },
+          { jscodeshift },
+          { printOptions: { trailingComma: false } },
+        );
+
+        const expected = read('./test-cases/DynamicPropsStyled.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+
+      it('should be idempotent', () => {
+        const actual = transform(
+          { source: read('./test-cases/DynamicPropsStyled.expected.js') },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./test-cases/DynamicPropsStyled.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+    });
   });
 });

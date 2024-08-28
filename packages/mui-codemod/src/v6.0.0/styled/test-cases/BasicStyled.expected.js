@@ -117,3 +117,44 @@ const ImageListRoot = styled('ul')({
     }
   }]
 });
+
+const ImageListItemRoot = styled('li')(({
+  display: 'block',
+  position: 'relative',
+  [`& .${imageListItemClasses.img}`]: {
+    objectFit: 'cover',
+    width: '100%',
+    height: '100%',
+    display: 'block',
+    '&:hover': {
+      '&[data-shape="circular"]': {
+        borderRadius: '50%'
+      },
+    }
+  },
+  variants: [{
+    props: {
+      variant: 'standard'
+    },
+    style: {
+      [`& .${imageListItemClasses.img}`]: {
+        height: 'auto',
+        flexGrow: 1,
+      }
+    }
+  }, {
+    props: {
+      variant: 'unique'
+    },
+    style: {
+      [`& .${imageListItemClasses.img}`]: {
+        '&:hover': {
+          '&[data-shape="circular"]': {
+            height: 'auto',
+            flexGrow: 1,
+          }
+        }
+      }
+    }
+  }]
+}));

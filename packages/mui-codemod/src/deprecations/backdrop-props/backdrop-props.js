@@ -1,4 +1,4 @@
-import movePropIntoSlots from '../utils/movePropIntoSlots';
+import replaceComponentsWithSlots from '../utils/replaceComponentsWithSlots';
 
 /**
  * @param {import('jscodeshift').FileInfo} file
@@ -9,12 +9,7 @@ export default function transformer(file, api, options) {
   const root = j(file.source);
   const printOptions = options.printOptions;
 
-  movePropIntoSlots(j, {
-    root,
-    componentName: 'Backdrop',
-    propName: 'TransitionComponent',
-    slotName: 'transition',
-  });
+  replaceComponentsWithSlots(j, { root, componentName: 'Backdrop' });
 
   return root.toSource(printOptions);
 }

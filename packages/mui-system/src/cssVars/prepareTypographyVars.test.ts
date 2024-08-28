@@ -1,11 +1,11 @@
 import { expect } from 'chai';
 import { createTheme } from '@mui/material/styles';
-import prepareTypographyTokens from './prepareTypographyVars';
+import prepareTypographyVars from './prepareTypographyVars';
 
 describe('prepareTypographyVars', () => {
   it('should prepare typography vars', () => {
     const theme = createTheme();
-    expect(prepareTypographyTokens(theme.typography)).to.deep.equal({
+    expect(prepareTypographyVars(theme.typography)).to.deep.equal({
       body1: '400 1rem/1.5 "Roboto", "Helvetica", "Arial", sans-serif',
       body2: '400 0.875rem/1.43 "Roboto", "Helvetica", "Arial", sans-serif',
       button: '500 0.875rem/1.75 "Roboto", "Helvetica", "Arial", sans-serif',

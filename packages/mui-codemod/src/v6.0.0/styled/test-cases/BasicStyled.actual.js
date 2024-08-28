@@ -58,3 +58,27 @@ const ImageListRoot = styled('ul')(({ ownerState }) => {
     }),
   };
 });
+
+const ImageListItemRoot = styled('li')(({ ownerState }) => ({
+  display: 'block',
+  position: 'relative',
+  [`& .${imageListItemClasses.img}`]: {
+    objectFit: 'cover',
+    width: '100%',
+    height: '100%',
+    display: 'block',
+    ...(ownerState.variant === 'standard' && {
+      height: 'auto',
+      flexGrow: 1,
+    }),
+    '&:hover': {
+      '&[data-shape="circular"]': {
+        borderRadius: '50%',
+        ...(ownerState.variant === 'unique' && {
+          height: 'auto',
+          flexGrow: 1,
+        }),
+      },
+    },
+  },
+}));

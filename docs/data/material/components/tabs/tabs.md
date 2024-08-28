@@ -6,6 +6,7 @@ githubLabel: 'component: tabs'
 materialDesign: https://m2.material.io/components/tabs
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/
 unstyled: /base-ui/react-tabs/
+githubSource: packages/mui-material/src/Tabs
 ---
 
 # Tabs
@@ -14,7 +15,7 @@ unstyled: /base-ui/react-tabs/
 
 Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 

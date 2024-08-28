@@ -6,7 +6,7 @@ import Typography, { TypographyOwnerState } from '@mui/joy/Typography';
   Text
 </Typography>;
 
-function Link(props: JSX.IntrinsicElements['a']) {
+function Link(props: React.JSX.IntrinsicElements['a']) {
   return <a {...props} />;
 }
 <Typography component={Link} href="/">

@@ -3,13 +3,14 @@ productId: material-ui
 title: React Avatar component
 components: Avatar, AvatarGroup, Badge
 githubLabel: 'component: avatar'
+githubSource: packages/mui-material/src/Avatar
 ---
 
 # Avatar
 
 <p class="description">Avatars are found throughout material design with uses in everything from tables to dialog menus.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Image avatars
 

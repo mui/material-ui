@@ -5,6 +5,7 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 materialDesign: https://m2.material.io/components/selection-controls#checkboxes
 githubLabel: 'component: checkbox'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
+githubSource: packages/mui-material/src/Checkbox
 ---
 
 # Checkbox
@@ -17,7 +18,7 @@ If you have multiple options appearing in a list,
 you can preserve space by using checkboxes instead of on/off switches.
 If you have a single option, avoid using a checkbox and use an on/off switch instead.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic checkboxes
 
