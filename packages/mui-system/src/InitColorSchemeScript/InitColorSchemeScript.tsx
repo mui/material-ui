@@ -92,8 +92,8 @@ export default function InitColorSchemeScript(options?: InitColorSchemeScriptPro
       dangerouslySetInnerHTML={{
         __html: `(function() {
 try {
-  let mode = localStorage.getItem('${modeStorageKey}') || 'system';
   let colorScheme = '';
+  const mode = localStorage.getItem('${modeStorageKey}') || 'system';
   const dark = localStorage.getItem('${colorSchemeStorageKey}-dark') || '${defaultDarkColorScheme}';
   const light = localStorage.getItem('${colorSchemeStorageKey}-light') || '${defaultLightColorScheme}';
   if (mode === 'system') {
