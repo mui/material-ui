@@ -17,11 +17,11 @@ import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
  *
  * Demos:
  *
- * - [Button](https://next.mui.com/base-ui/react-button/#hook)
+ * - [Button](https://mui.com/base-ui/react-button/#hook)
  *
  * API:
  *
- * - [useButton API](https://next.mui.com/base-ui/react-button/hooks-api/#use-button)
+ * - [useButton API](https://mui.com/base-ui/react-button/hooks-api/#use-button)
  */
 export function useButton(parameters: UseButtonParameters = {}): UseButtonReturnValue {
   const {

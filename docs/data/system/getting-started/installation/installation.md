@@ -6,20 +6,18 @@
 
 Run one of the following commands to add MUI System to your project:
 
-<!-- #default-branch-switch -->
-
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/system@next @emotion/react @emotion/styled
+npm install @mui/system @emotion/react @emotion/styled
 ```
 
 ```bash pnpm
-pnpm add @mui/system@next @emotion/react @emotion/styled
+pnpm add @mui/system @emotion/react @emotion/styled
 ```
 
 ```bash yarn
-yarn add @mui/system@next @emotion/react @emotion/styled
+yarn add @mui/system @emotion/react @emotion/styled
 ```
 
 </codeblock>
@@ -41,24 +39,20 @@ Please note that [react](https://www.npmjs.com/package/react) is a peer dependen
 MUI System uses [Emotion](https://emotion.sh/docs/introduction) as its default styling engine.
 If you want to use [styled-components](https://styled-components.com/) instead, run one of the following commands:
 
-:::info
-The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Remove it to get the current stable version.
-:::
-
 <!-- #default-branch-switch -->
 
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/system@next @mui/styled-engine-sc@next styled-components
+npm install @mui/system @mui/styled-engine-sc styled-components
 ```
 
 ```bash pnpm
-pnpm add @mui/system@next @mui/styled-engine-sc@next styled-components
+pnpm add @mui/system @mui/styled-engine-sc styled-components
 ```
 
 ```bash yarn
-yarn add @mui/system@next @mui/styled-engine-sc@next styled-components
+yarn add @mui/system @mui/styled-engine-sc styled-components
 ```
 
 </codeblock>

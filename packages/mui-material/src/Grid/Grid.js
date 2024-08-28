@@ -399,7 +399,7 @@ const useUtilityClasses = (ownerState) => {
 };
 
 /**
- * @deprecated Use the [`Grid2`](https://next.mui.com/material-ui/react-grid2/) component instead.
+ * @deprecated Use the [`Grid2`](https://mui.com/material-ui/react-grid2/) component instead.
  */
 const Grid = React.forwardRef(function Grid(inProps, ref) {
   const themeProps = useThemeProps({ props: inProps, name: 'MuiGrid' });

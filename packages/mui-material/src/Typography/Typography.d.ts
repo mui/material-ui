@@ -57,7 +57,7 @@ export interface TypographyOwnProps extends Omit<SystemProps<Theme>, 'color'> {
   /**
    * If `true`, the element will be a paragraph element.
    * @default false
-   * @deprecated Use the `component` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `component` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   paragraph?: boolean;
   /**
@@ -105,12 +105,12 @@ export interface TypographyTypeMap<
  *
  * Demos:
  *
- * - [Breadcrumbs](https://next.mui.com/material-ui/react-breadcrumbs/)
- * - [Typography](https://next.mui.com/material-ui/react-typography/)
+ * - [Breadcrumbs](https://mui.com/material-ui/react-breadcrumbs/)
+ * - [Typography](https://mui.com/material-ui/react-typography/)
  *
  * API:
  *
- * - [Typography API](https://next.mui.com/material-ui/api/typography/)
+ * - [Typography API](https://mui.com/material-ui/api/typography/)
  */
 declare const Typography: OverridableComponent<TypographyTypeMap>;
 

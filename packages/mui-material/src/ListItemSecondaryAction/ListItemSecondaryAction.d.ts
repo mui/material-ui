@@ -24,13 +24,13 @@ export interface ListItemSecondaryActionProps
  *
  * Demos:
  *
- * - [Lists](https://next.mui.com/material-ui/react-list/)
+ * - [Lists](https://mui.com/material-ui/react-list/)
  *
  * API:
  *
- * - [ListItemSecondaryAction API](https://next.mui.com/material-ui/api/list-item-secondary-action/)
+ * - [ListItemSecondaryAction API](https://mui.com/material-ui/api/list-item-secondary-action/)
  *
- * @deprecated Use the `secondaryAction` prop in the `ListItem` component instead. This component will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+ * @deprecated Use the `secondaryAction` prop in the `ListItem` component instead. This component will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
  */
 declare const ListItemSecondaryAction: ((
   props: ListItemSecondaryActionProps,

@@ -295,7 +295,7 @@ const theme = extendTheme({
 Run the following codemod to remove the owner state from the theme:
 
 ```bash
-npx @mui/codemod@next v6.0.0/theme-v6 next.config.mjs
+npx @mui/codemod@latest v6.0.0/theme-v6 next.config.mjs
 ```
 
 There are cases where the codemod is not able to remove the owner state. In such cases, you have to manually replace the owner state with `variants`.
@@ -399,7 +399,7 @@ Use `DefaultPropsProvider` in your main application file and move all the compon
 Run the following codemod:
 
 ```bash
-npx @mui/codemod@next v6.0.0/sx-prop path/to/folder
+npx @mui/codemod@latest v6.0.0/sx-prop path/to/folder
 ```
 
 The scenarios below are not covered by the codemod, so you have to manually update them:
@@ -485,7 +485,7 @@ If you have custom components that are using `styled` from `@mui/material/styles
 Then, run the following codemod:
 
 ```bash
-npx @mui/codemod@next v6.0.0/styled path/to/folder
+npx @mui/codemod@latest v6.0.0/styled path/to/folder
 ```
 
 The scenarios below are not covered by the codemod, so you have to manually update them:
