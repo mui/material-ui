@@ -33,6 +33,8 @@ importRegressionFixtures.keys().forEach((path) => {
 }, []);
 
 const blacklist = [
+  // Excludes demos that we don't want
+  /^docs-(.*)(?<=NoSnap)\.png$/,
   // Blog template components and theme customizations
   'docs-getting-started-templates-blog/Blog.png',
   'docs-getting-started-templates-blog/TemplateFrame.png',
