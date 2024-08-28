@@ -217,6 +217,7 @@ const DemoRootMaterial = styled('div', {
   margin: 'auto',
   display: 'flex',
   justifyContent: 'center',
+  zIndex: 1,
   variants: [
     {
       props: ({ hideToolbar }) => hideToolbar,
@@ -334,6 +335,7 @@ const DemoRootJoy = joyStyled('div', {
   margin: 'auto',
   display: 'flex',
   justifyContent: 'center',
+  zIndex: 1,
   [theme.breakpoints.up('sm')]: {
     borderRadius: hideToolbar ? 12 : '12px 12px 0 0',
     ...(bg === 'outlined' && {
