@@ -85,6 +85,16 @@
     "node": ">=14.0.0"
   },
   "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./esm/index.js",
+      "require": "./index.js"
+    },
+    "./*": {
+      "types": "./*.d.ts",
+      "import": "./esm/*.js",
+      "require": "./*.js"
+    },
     "./esm/*": {
       "types": "./*.d.ts",
       "import": "./esm/*.js",

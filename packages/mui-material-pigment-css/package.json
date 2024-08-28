@@ -62,7 +62,8 @@
     }
   },
   "exports": {
-    "./styles.css": "./styles.css"
+    "./styles.css": "./styles.css",
+    "./modern/styles.css": "./styles.css"
   },
   "engines": {
     "node": ">=14.0.0"

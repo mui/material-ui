@@ -98,33 +98,33 @@ export async function createPackageFile() {
   const { nyc, scripts, devDependencies, workspaces, ...packageDataOther } =
     JSON.parse(packageData);
 
-  const modernCodition = 'mui-modern';
+  const modernCondition = 'mui-modern';
   const legacyModernPrefix = './modern';
 
   const packageExports = {
     '.': {
       types: './index.d.ts',
       import: './index.mjs',
-      [modernCodition]: './index.modern.mjs',
+      [modernCondition]: './index.modern.mjs',
       require: './index.js',
     },
     './*': {
       types: './*/index.d.ts',
       import: './*/index.mjs',
-      [modernCodition]: './*/index.modern.mjs',
+      [modernCondition]: './*/index.modern.mjs',
       require: './*/index.js',
     },
     ...packageDataOther.exports,
   };
 
-  // Support legacy modern resolution. We can deprecate this on a major
-  const modernExports = Object.fromEntries(
-    Object.entries(packageExports).map(([key, value]) => {
-      const mappedKey = key.replace(/^\./, legacyModernPrefix);
-      const mappedValue = value[modernCodition] ?? null;
-      return [mappedKey, mappedValue];
-    }),
-  );
+  const exportedNames = new Set(Object.keys(packageExports));
+  for (const exportedName of exportedNames) {
+    const modernName = exportedName.replace(/^\./, legacyModernPrefix);
+    const modernExport = packageExports[exportedName][modernCondition] ?? null;
+    if (typeof modernExport === 'string' && !exportedNames.has(modernName)) {
+      packageExports[modernName] = modernExport;
+    }
+  }
 
   const newPackageData = {
     ...packageDataOther,
@@ -141,10 +141,7 @@ export async function createPackageFile() {
       : {}),
     ...(usePackageExports
       ? {
-          exports: {
-            ...packageExports,
-            ...modernExports,
-          },
+          exports: packageExports,
         }
       : {}),
   };
