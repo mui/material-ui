@@ -30,6 +30,15 @@ via [Open Collective](https://opencollective.com/mui-org) or via [the for-profi
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="goread.io" href="https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;"><img height="110" width="96" src="https://images.opencollective.com/goread_io/eb6337d/logo/96.png" srcset="https://images.opencollective.com/goread_io/eb6337d/logo/288.png 3x" alt="goread.io" title="Goread.io: Instagram followers, likes, views, and comments." loading="lazy" /></a>
 </p>
 
+<!--
+List gold sponsors that regular sponsors could feel uncomfortable being listed next to.
+For example, it could be because the service breaks another service's Terms of service and hence is a moral minefield.
+-->
+<p style="display: flex; justify-content: start; align-items: center; flex-wrap: wrap;">
+  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="buzzoid.com" href="https://buzzoid.com/" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;"><img height="24" width="24" src="https://images.opencollective.com/buzzoidz/d23d9bb/logo/24.png" srcset="https://images.opencollective.com/buzzoidz/d23d9bb/logo/72.png 3x" alt="buzzoid.com" title="Buzzoid: Instant delivery Instagram followers." loading="lazy" style="margin-right:8px;" />Buzzoid</a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="twicsy.com" href="https://twicsy.com/" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;"><img height="24" width="24" src="/static/sponsors/twicsy-square.svg" alt="twicsy.com" title="Twicsy: Instant delivery Instagram followers." loading="lazy" style="margin-right:8px;" />Twicsy</a>
+</p>
+
 Gold sponsors are those who've pledged \$500/month or more to the MUI organization. [Tier benefits](#gold).
 
 ## Silver sponsors

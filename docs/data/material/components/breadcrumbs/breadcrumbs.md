@@ -4,6 +4,7 @@ title: React Breadcrumbs component
 components: Breadcrumbs, Link, Typography
 githubLabel: 'component: breadcrumbs'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/
+githubSource: packages/mui-material/src/Breadcrumbs
 ---
 
 # Breadcrumbs
@@ -58,3 +59,11 @@ The accessibility of this component relies on:
 - The set of links is structured using an ordered list (`<ol>` element).
 - To prevent screen reader announcement of the visual separators between links, they are hidden with `aria-hidden`.
 - A nav element labeled with `aria-label` identifies the structure as a breadcrumb trail and makes it a navigation landmark so that it is easy to locate.
+
+## Experimental APIs
+
+### Page Container
+
+The [PageContainer](https://mui.com/toolpad/core/react-page-container/) component in `@toolpad/core` is the ideal wrapper for the content of your dashboard. It makes the Material UI Container navigation aware and extends it with page title, breadcrumbs, actions, and more.
+
+{{"demo": "./PageContainerBasic.js", "height": 400, "hideToolbar": true}}

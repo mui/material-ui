@@ -7,11 +7,11 @@ import { Theme as MaterialTheme } from '../styles';
  *
  * Demos:
  *
- * - [Box](https://next.mui.com/material-ui/react-box/)
+ * - [Box](https://mui.com/material-ui/react-box/)
  *
  * API:
  *
- * - [Box API](https://next.mui.com/material-ui/api/box/)
+ * - [Box API](https://mui.com/material-ui/api/box/)
  */
 declare const Box: OverridableComponent<BoxTypeMap<{}, 'div', MaterialTheme>>;
 

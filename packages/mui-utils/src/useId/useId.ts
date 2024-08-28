@@ -31,6 +31,7 @@ export default function useId(idOverride?: string): string | undefined {
     const reactId = maybeReactUseId();
     return idOverride ?? reactId;
   }
+  // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
   // eslint-disable-next-line react-hooks/rules-of-hooks -- `React.useId` is invariant at runtime.
   return useGlobalId(idOverride);
 }

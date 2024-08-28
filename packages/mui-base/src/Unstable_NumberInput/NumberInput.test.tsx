@@ -166,7 +166,7 @@ describe('<NumberInput />', () => {
             }}
           />,
         );
-      }).toErrorDev('Warning: Unknown event handler property `onInputChange`. It will be ignored.');
+      }).toErrorDev('Unknown event handler property `onInputChange`. It will be ignored.');
     });
 
     it('should fire on keyboard input in the textbox instead of onChange', async () => {

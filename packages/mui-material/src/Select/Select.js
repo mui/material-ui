@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import deepmerge from '@mui/utils/deepmerge';
+import getReactNodeRef from '@mui/utils/getReactNodeRef';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
@@ -85,7 +86,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
       filled: <StyledFilledInput ownerState={ownerState} />,
     }[variant];
 
-  const inputComponentRef = useForkRef(ref, InputComponent.ref);
+  const inputComponentRef = useForkRef(ref, getReactNodeRef(InputComponent));
 
   return (
     <React.Fragment>
@@ -198,7 +199,7 @@ Select.propTypes /* remove-proptypes */ = {
    */
   inputProps: PropTypes.object,
   /**
-   * See [OutlinedInput#label](/material-ui/api/outlined-input/#props)
+   * See [OutlinedInput#label](https://mui.com/material-ui/api/outlined-input/#props)
    */
   label: PropTypes.node,
   /**
@@ -207,7 +208,7 @@ Select.propTypes /* remove-proptypes */ = {
    */
   labelId: PropTypes.string,
   /**
-   * Props applied to the [`Menu`](/material-ui/api/menu/) element.
+   * Props applied to the [`Menu`](https://mui.com/material-ui/api/menu/) element.
    */
   MenuProps: PropTypes.object,
   /**

@@ -10,12 +10,13 @@ import Tooltip from '@mui/material/Tooltip';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useRouter } from 'next/router';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import UnfoldMoreRounded from '@mui/icons-material/UnfoldMoreRounded';
 import { Link } from '@mui/docs/Link';
 import IconImage from 'docs/src/components/icon/IconImage';
-import LicensingModelSwitch from 'docs/src/components/pricing/LicensingModelSwitch';
-import { useLicensingModel } from 'docs/src/components/pricing/LicensingModelContext';
+import LicenseModelSwitch from 'docs/src/components/pricing/LicenseModelSwitch';
+import { useLicenseModel } from 'docs/src/components/pricing/LicenseModelContext';
 
 const planInfo = {
   community: {
@@ -91,8 +92,8 @@ interface PlanPriceProps {
 export function PlanPrice(props: PlanPriceProps) {
   const { plan } = props;
 
-  const { licensingModel } = useLicensingModel();
-  const annual = licensingModel === 'annual';
+  const { licenseModel } = useLicenseModel();
+  const annual = licenseModel === 'annual';
   const planPriceMinHeight = 64;
 
   if (plan === 'community') {
@@ -135,7 +136,7 @@ export function PlanPrice(props: PlanPriceProps) {
 
     return (
       <React.Fragment>
-        <LicensingModelSwitch />
+        <LicenseModelSwitch />
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
           <Typography
             variant="h3"
@@ -149,14 +150,33 @@ export function PlanPrice(props: PlanPriceProps) {
             {priceUnit}
           </Typography>
         </Box>
-        <Box sx={{ minHeight: planPriceMinHeight }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 2,
+            mb: 2,
+            minHeight: planPriceMinHeight,
+          }}
+        >
           {(annual || monthlyDisplay) && (
             <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
               {priceExplanation}
             </Typography>
           )}
-          <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center', mb: 3 }}>
-            {'No additional fee beyond 10 devs.'}
+
+          <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
+            No extra fees for orders with over 10 devs&nbsp;
+            <span>
+              <Tooltip title="Our pricing policies are changing. Read more on our blog.">
+                <Link href="/blog/mui-x-sep-2024-price-update/">
+                  by Aug 30
+                  <OpenInNewRoundedIcon sx={{ fontSize: '16px', ml: 0.5 }} />
+                </Link>
+              </Tooltip>
+            </span>
+            .
           </Typography>
         </Box>
       </React.Fragment>
@@ -178,7 +198,7 @@ export function PlanPrice(props: PlanPriceProps) {
 
   return (
     <React.Fragment>
-      <LicensingModelSwitch />
+      <LicenseModelSwitch />
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
         <Typography
           variant="caption"
@@ -217,14 +237,32 @@ export function PlanPrice(props: PlanPriceProps) {
           {priceUnit}
         </Typography>
       </Box>
-      <Box sx={{ minHeight: planPriceMinHeight }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 2,
+          mb: 2,
+          minHeight: planPriceMinHeight,
+        }}
+      >
         {(annual || monthlyDisplay) && (
           <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
             {priceExplanation}
           </Typography>
         )}
-        <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center', mb: 2 }}>
-          🐦 Early bird special (25% off).
+        <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
+          🐦 Early Bird: <strong>25% off</strong> if ordered &nbsp;
+          <span>
+            <Tooltip title="Our pricing policies are changing. Read more on our blog.">
+              <Link href="/blog/mui-x-sep-2024-price-update/">
+                by Aug 30
+                <OpenInNewRoundedIcon sx={{ fontSize: '16px', ml: 0.5 }} />{' '}
+              </Link>
+            </Tooltip>
+          </span>
+          .
         </Typography>
       </Box>
     </React.Fragment>
@@ -1050,7 +1088,7 @@ function StickyHead({
   container,
   disableCalculation = false,
 }: {
-  container: React.MutableRefObject<HTMLElement | null>;
+  container: React.RefObject<HTMLElement | null>;
   disableCalculation?: boolean;
 }) {
   const [hidden, setHidden] = React.useState(true);
@@ -1158,22 +1196,22 @@ function renderMasterRow(key: string, gridSx: object, plans: Array<any>) {
 
 function PricingTableDevelopment(props: any) {
   const { renderRow } = props;
-  const { licensingModel } = useLicensingModel();
+  const { licenseModel } = useLicenseModel();
 
-  return licensingModel === 'annual'
+  return licenseModel === 'annual'
     ? renderRow('mui-x-development')
     : renderRow('mui-x-development-perpetual');
 }
 
 function PricingTableBuyPro() {
-  const { licensingModel } = useLicensingModel();
+  const { licenseModel } = useLicenseModel();
 
   return (
     <Button
       component={Link}
       noLinkStyle
       href={
-        licensingModel === 'annual'
+        licenseModel === 'annual'
           ? 'https://mui.com/store/items/mui-x-pro/'
           : 'https://mui.com/store/items/mui-x-pro-perpetual/'
       }
@@ -1187,14 +1225,14 @@ function PricingTableBuyPro() {
 }
 
 function PricingTableBuyPremium() {
-  const { licensingModel } = useLicensingModel();
+  const { licenseModel } = useLicenseModel();
 
   return (
     <Button
       component={Link}
       noLinkStyle
       href={
-        licensingModel === 'annual'
+        licenseModel === 'annual'
           ? 'https://mui.com/store/items/mui-x-premium/'
           : 'https://mui.com/store/items/mui-x-premium-perpetual/'
       }

@@ -14,11 +14,17 @@
       }
     },
     "slotProps": {
-      "type": { "name": "shape", "description": "{ transition?: func<br>&#124;&nbsp;object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ heading?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
+      },
       "default": "{}"
     },
     "slots": {
-      "type": { "name": "shape", "description": "{ transition?: elementType }" },
+      "type": {
+        "name": "shape",
+        "description": "{ heading?: elementType, transition?: elementType }"
+      },
       "default": "{}"
     },
     "square": { "type": { "name": "bool" }, "default": "false" },
@@ -39,8 +45,14 @@
   ],
   "slots": [
     {
+      "name": "heading",
+      "description": "The component that renders the heading.",
+      "default": "'h3'",
+      "class": "MuiAccordion-heading"
+    },
+    {
       "name": "transition",
-      "description": "The component that renders the transition.\n[Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
+      "description": "The component that renders the transition.\n[Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
       "default": "Collapse",
       "class": null
     }

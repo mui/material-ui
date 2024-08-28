@@ -6,6 +6,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import formHelperTextClasses, { getFormHelperTextUtilityClasses } from './formHelperTextClasses';
@@ -41,38 +42,40 @@ const FormHelperTextRoot = styled('p', {
       ownerState.filled && styles.filled,
     ];
   },
-})(({ theme }) => ({
-  color: (theme.vars || theme).palette.text.secondary,
-  ...theme.typography.caption,
-  textAlign: 'left',
-  marginTop: 3,
-  marginRight: 0,
-  marginBottom: 0,
-  marginLeft: 0,
-  [`&.${formHelperTextClasses.disabled}`]: {
-    color: (theme.vars || theme).palette.text.disabled,
-  },
-  [`&.${formHelperTextClasses.error}`]: {
-    color: (theme.vars || theme).palette.error.main,
-  },
-  variants: [
-    {
-      props: {
-        size: 'small',
-      },
-      style: {
-        marginTop: 4,
-      },
+})(
+  memoTheme(({ theme }) => ({
+    color: (theme.vars || theme).palette.text.secondary,
+    ...theme.typography.caption,
+    textAlign: 'left',
+    marginTop: 3,
+    marginRight: 0,
+    marginBottom: 0,
+    marginLeft: 0,
+    [`&.${formHelperTextClasses.disabled}`]: {
+      color: (theme.vars || theme).palette.text.disabled,
     },
-    {
-      props: ({ ownerState }) => ownerState.contained,
-      style: {
-        marginLeft: 14,
-        marginRight: 14,
-      },
+    [`&.${formHelperTextClasses.error}`]: {
+      color: (theme.vars || theme).palette.error.main,
     },
-  ],
-}));
+    variants: [
+      {
+        props: {
+          size: 'small',
+        },
+        style: {
+          marginTop: 4,
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.contained,
+        style: {
+          marginLeft: 14,
+          marginRight: 14,
+        },
+      },
+    ],
+  })),
+);
 
 const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiFormHelperText' });

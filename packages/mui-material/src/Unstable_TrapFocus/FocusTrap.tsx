@@ -7,6 +7,7 @@ import {
   elementAcceptingRef,
   unstable_useForkRef as useForkRef,
   unstable_ownerDocument as ownerDocument,
+  unstable_getReactNodeRef as getReactNodeRef,
 } from '@mui/utils';
 import { FocusTrapProps } from './FocusTrap.types';
 
@@ -144,8 +145,7 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
   const activated = React.useRef(false);
 
   const rootRef = React.useRef<HTMLElement>(null);
-  // @ts-expect-error TODO upstream fix
-  const handleRef = useForkRef(children.ref, rootRef);
+  const handleRef = useForkRef(getReactNodeRef(children), rootRef);
   const lastKeydown = React.useRef<KeyboardEvent | null>(null);
 
   React.useEffect(() => {
@@ -270,7 +270,7 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
         return;
       }
 
-      let tabbable: ReadonlyArray<string> | HTMLElement[] = [];
+      let tabbable: ReadonlyArray<HTMLElement> = [];
       if (
         doc.activeElement === sentinelStart.current ||
         doc.activeElement === sentinelEnd.current

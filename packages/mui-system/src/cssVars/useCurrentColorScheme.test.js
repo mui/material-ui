@@ -18,10 +18,15 @@ describe('useCurrentColorScheme', () => {
 
   const createMatchMedia = (matches) => () => ({
     matches,
+    // Keep mocking legacy methods because @mui/material v5 still uses them
     addListener: (listener) => {
       trigger = listener;
     },
+    addEventListener: (listener) => {
+      trigger = listener;
+    },
     removeListener: () => {},
+    removeEventListener: () => {},
   });
 
   before(() => {
@@ -56,6 +61,27 @@ describe('useCurrentColorScheme', () => {
 
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
+  });
+
+  it('does not trigger a re-render for a single color scheme', () => {
+    function Data() {
+      const { mode } = useCurrentColorScheme({
+        defaultMode: 'dark',
+        supportedColorSchemes: ['dark'],
+      });
+      const count = React.useRef(0);
+      React.useEffect(() => {
+        count.current += 1;
+      });
+      return (
+        <div>
+          {mode}:{count.current}
+        </div>
+      );
+    }
+    const { container } = render(<Data />);
+
+    expect(container.firstChild.textContent).to.equal('dark:0');
   });
 
   describe('getColorScheme', () => {

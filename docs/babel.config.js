@@ -8,10 +8,10 @@ const { version: transformRuntimeVersion } = fse.readJSONSync(
 );
 
 module.exports = {
-  // TODO: Enable once nextjs uses babel 7.13
-  // assumptions: {
-  //   noDocumentAll: true,
-  // },
+  assumptions: {
+    noDocumentAll: true,
+    setSpreadProperties: true,
+  },
   presets: [
     // backport of https://github.com/vercel/next.js/pull/9511
     [
