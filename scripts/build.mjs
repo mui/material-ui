@@ -120,7 +120,7 @@ async function run(argv) {
       },
       plugins: [
         rollupAlias({
-          // Mostly o resolve @mui/utils/formatMuiErrorMessage correctly, but generalizes to all packages.
+          // Mostly to resolve @mui/utils/formatMuiErrorMessage correctly, but generalizes to all packages.
           entries: [{ find: pkg.name, replacement: srcDir }],
         }),
         rollupResolve({ extensions }),
