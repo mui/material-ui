@@ -29,7 +29,7 @@
 /tmp
 .next
 build
-apps/*/dist
+dist
 node_modules
 .nyc_output
 pnpm-lock.yaml
