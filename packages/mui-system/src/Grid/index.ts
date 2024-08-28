@@ -1,4 +1,3 @@
-'use client';
 export { default } from './Grid';
 export { default as createGrid } from './createGrid';
 export * from './GridProps';
