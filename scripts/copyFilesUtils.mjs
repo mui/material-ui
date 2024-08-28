@@ -98,6 +98,34 @@ export async function createPackageFile() {
   const { nyc, scripts, devDependencies, workspaces, ...packageDataOther } =
     JSON.parse(packageData);
 
+  const modernCodition = 'mui-modern';
+  const legacyModernPrefix = './modern';
+
+  const packageExports = {
+    '.': {
+      types: './index.d.ts',
+      import: './index.mjs',
+      [modernCodition]: './index.modern.mjs',
+      require: './index.js',
+    },
+    './*': {
+      types: './*/index.d.ts',
+      import: './*/index.mjs',
+      [modernCodition]: './*/index.modern.mjs',
+      require: './*/index.js',
+    },
+    ...packageDataOther.exports,
+  };
+
+  // Support legacy modern resolution. We can deprecate this on a major
+  const modernExports = Object.fromEntries(
+    Object.entries(packageExports).map(([key, value]) => {
+      const mappedKey = key.replace(/^\./, legacyModernPrefix);
+      const mappedValue = value[modernCodition] ?? null;
+      return [mappedKey, mappedValue];
+    }),
+  );
+
   const newPackageData = {
     ...packageDataOther,
     private: false,
@@ -111,22 +139,14 @@ export async function createPackageFile() {
             : `./index.${usePackageExports ? 'mjs' : 'js'}`,
         }
       : {}),
-    ...(!usePackageExports || packageDataOther.exports
-      ? {}
-      : {
+    ...(usePackageExports
+      ? {
           exports: {
-            '.': {
-              types: './index.d.ts',
-              import: './index.mjs',
-              require: './index.js',
-            },
-            './*': {
-              types: './*/index.d.ts',
-              import: './*/index.mjs',
-              require: './*/index.js',
-            },
+            ...packageExports,
+            ...modernExports,
           },
-        }),
+        }
+      : {}),
   };
 
   const typeDefinitionsFilePath = path.resolve(buildPath, './index.d.ts');

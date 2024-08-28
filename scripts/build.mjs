@@ -62,11 +62,7 @@ async function run(argv) {
   // Different extensions are not viable yet since they require additional bundler config for users and additional transpilation steps in our repo.
   //
   // TODO v6: Switch to `exports` field.
-  let relativeOutDir = {
-    node: './',
-    modern: './modern',
-    stable: './',
-  }[bundle];
+  let relativeOutDir = './';
 
   if (!usePackageExports) {
     const topLevelNonIndexFiles = glob
@@ -161,8 +157,12 @@ async function run(argv) {
     `"${ignore.join('","')}"`,
   ];
 
-  if (usePackageExports && bundle === 'stable') {
-    babelArgs.push('--out-file-extension', '.mjs');
+  if (usePackageExports) {
+    if (bundle === 'stable') {
+      babelArgs.push('--out-file-extension', '.mjs');
+    } else if (bundle === 'modern') {
+      babelArgs.push('--out-file-extension', '.modern.mjs');
+    }
   }
 
   if (largeFiles) {
