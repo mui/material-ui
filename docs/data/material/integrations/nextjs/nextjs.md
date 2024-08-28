@@ -14,15 +14,15 @@ Then, run one of the following commands to install the dependencies:
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/material-nextjs @emotion/cache
+npm install @mui/material-nextjs @emotion/cache @mui/material
 ```
 
 ```bash pnpm
-pnpm add @mui/material-nextjs @emotion/cache
+pnpm add @mui/material-nextjs @emotion/cache @mui/material
 ```
 
 ```bash yarn
-yarn add @mui/material-nextjs @emotion/cache
+yarn add @mui/material-nextjs @emotion/cache @mui/material
 ```
 
 </codeblock>
