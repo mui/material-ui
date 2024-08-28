@@ -62,16 +62,6 @@
     }
   },
   "exports": {
-    ".": {
-      "types": "./index.d.ts",
-      "import": "./index.mjs",
-      "require": "./index.js"
-    },
-    "./*": {
-      "types": "./*/index.d.ts",
-      "import": "./*/index.mjs",
-      "require": "./*/index.js"
-    },
     "./styles.css": "./styles.css"
   },
   "engines": {
