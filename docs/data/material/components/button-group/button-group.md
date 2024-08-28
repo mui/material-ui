@@ -1,7 +1,7 @@
 ---
 productId: material-ui
 title: React Button Group component
-components: Button, ButtonGroup, LoadingButton
+components: Button, ButtonGroup
 githubLabel: 'component: ButtonGroup'
 ---
 
@@ -48,10 +48,8 @@ You can remove the elevation with the `disableElevation` prop.
 
 {{"demo": "DisableElevation.js"}}
 
-## Experimental APIs
+## Loading button
 
-### Loading button
-
-You can use the [`<LoadingButton />`](/material-ui/react-button/#loading-button) from [`@mui/lab`](/material-ui/about-the-lab/) in the button group.
+You can use the `loading` prop to create loading buttons in button groups
 
 {{"demo": "LoadingButtonGroup.js"}}
