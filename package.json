@@ -93,14 +93,14 @@
     "clean": "pnpm -r exec rm -rf build"
   },
   "dependencies": {
-    "@googleapis/sheets": "^9.1.0",
+    "@googleapis/sheets": "^9.3.0",
     "@netlify/functions": "^2.8.1",
     "@slack/bolt": "^3.21.1",
     "execa": "^9.3.1",
     "google-auth-library": "^9.13.0"
   },
   "devDependencies": {
-    "@argos-ci/core": "^2.4.1",
+    "@argos-ci/core": "^2.5.0",
     "@babel/cli": "^7.24.8",
     "@babel/core": "^7.25.2",
     "@babel/node": "^7.25.0",
@@ -177,7 +177,7 @@
     "lodash": "^4.17.21",
     "markdownlint-cli2": "^0.13.0",
     "mocha": "^10.7.3",
-    "nx": "^19.6.0",
+    "nx": "^19.6.3",
     "nyc": "^17.0.0",
     "piscina": "^4.6.1",
     "postcss-styled-syntax": "^0.6.4",

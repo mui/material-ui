@@ -70,7 +70,7 @@ export interface BaseSelectProps<Value = unknown>
    */
   inputProps?: InputProps['inputProps'];
   /**
-   * See [OutlinedInput#label](/material-ui/api/outlined-input/#props)
+   * See [OutlinedInput#label](https://mui.com/material-ui/api/outlined-input/#props)
    */
   label?: React.ReactNode;
   /**
@@ -79,7 +79,7 @@ export interface BaseSelectProps<Value = unknown>
    */
   labelId?: string;
   /**
-   * Props applied to the [`Menu`](/material-ui/api/menu/) element.
+   * Props applied to the [`Menu`](https://mui.com/material-ui/api/menu/) element.
    */
   MenuProps?: Partial<MenuProps>;
   /**

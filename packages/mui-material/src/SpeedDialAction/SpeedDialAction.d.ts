@@ -12,7 +12,7 @@ export interface SpeedDialActionProps extends StandardProps<Partial<TooltipProps
    */
   classes?: Partial<SpeedDialActionClasses>;
   /**
-   * Props applied to the [`Fab`](/material-ui/api/fab/) component.
+   * Props applied to the [`Fab`](https://mui.com/material-ui/api/fab/) component.
    * @default {}
    */
   FabProps?: Partial<FabProps>;
@@ -30,7 +30,7 @@ export interface SpeedDialActionProps extends StandardProps<Partial<TooltipProps
    */
   sx?: SxProps<Theme>;
   /**
-   * `classes` prop applied to the [`Tooltip`](/material-ui/api/tooltip/) element.
+   * `classes` prop applied to the [`Tooltip`](https://mui.com/material-ui/api/tooltip/) element.
    */
   TooltipClasses?: TooltipProps['classes'];
   /**
