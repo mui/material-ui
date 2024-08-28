@@ -10,7 +10,27 @@ Pigment CSS is compatible with any React component library and can be used with
 
 Check out the [Migrating to Pigment CSS](/material-ui/migration/migrating-to-pigment-css/) guide if you have an existing Material UI project.
 
-## Installation
+## Prerequisites
+
+- Node.js
+- A package manager
+- A Next.js or Vite project
+
+If using Next.js, you can fast track your Pigment CSS installation and project creation with the following commands:
+
+```bash
+curl https://codeload.github.com/mui/pigment-css/tar.gz/master | tar -xz --strip=2  pigment-css-master/examples/pigment-css-nextjs-ts
+cd pigment-css-nextjs-ts
+```
+
+For Vite:
+
+```bash
+curl https://codeload.github.com/mui/pigment-css/tar.gz/master | tar -xz --strip=2 pigment-css/examples/pigment-css-vite-ts
+cd pigment-css-vite-ts
+```
+
+## Manual installation
 
 To get started on an existing project, install Pigment CSS with the following command:
 
