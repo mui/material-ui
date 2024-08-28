@@ -11,7 +11,6 @@ type Project = {
   rootPath: string;
   additionalPaths?: string[];
   additionalFiles?: string[];
-  filesToSkip?: string[]; // relative to the src directory
   ignorePaths?: string[];
 };
 
