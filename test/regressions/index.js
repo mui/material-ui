@@ -256,7 +256,7 @@ function excludeDemoFixture(suite, name) {
     }
 
     // assume regex
-    if (pattern.test(suite) || pattern.test(`${suite}/${name}.png`)) {
+    if (pattern.test(`${suite}/${name}.png`)) {
       unusedBlacklistPatterns.delete(pattern);
       return true;
     }
