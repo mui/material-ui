@@ -32,11 +32,11 @@ Next, head over to your config file and import the `withPigment` plugin:
 
 **Next.js**
 
-``` js
+```js
 // next.config.js
 import { withPigment } from '@pigment-css/nextjs-plugin';
 
-export default withPigment({nextConfig});
+export default withPigment({ nextConfig });
 ```
 
 **Vite**
@@ -64,6 +64,7 @@ import '@pigment-css/react/styles.css';
 ### Creating reusable styles
 
 Use the `css` API to create reusable styles:
+
 ```js
 import { css } from '@pigment-css/react';
 ```
@@ -71,17 +72,20 @@ import { css } from '@pigment-css/react';
 You can do this either with the `template` or `object` syntax:
 
 **Template syntax**
+
 ```js
 const bodyBackground = css`
   background-color: #000;
   color: #fff;
 `;
 ```
+
 **Object syntax**
+
 ```js
 const mainClass = css({
-  display: "#000",
-  color: "#fff"
+  display: '#000',
+  color: '#fff',
 });
 ```
 
@@ -103,27 +107,29 @@ globalCss`
 ### Creating styled components
 
 Use the `styled` API to create styled components:
+
 ```js
 import { styled } from '@pigment-css/react';
 
 const Heading = styled('div')({
-  fontSize: "2rem",
-  color: "#9FADBC",
-  fontWeight: "bold",
-  margin: "1rem",
+  fontSize: '2rem',
+  color: '#9FADBC',
+  fontWeight: 'bold',
+  margin: '1rem',
 });
 ```
 
-You can add different styling options based on props by using the `variants` key. 
+You can add different styling options based on props by using the `variants` key.
 Each `variant` is an object with `props` and `style` keys:
+
 ```js
 import { styled } from '@pigment-css/react';
 
 const Heading = styled('div')({
-  fontSize: "2rem",
-  color: "#9FADBC",
-  fontWeight: "bold",
-  margin: "1rem",
+  fontSize: '2rem',
+  color: '#9FADBC',
+  fontWeight: 'bold',
+  margin: '1rem',
   variants: [
     {
       props: { variant: 'success' },
@@ -141,26 +147,25 @@ const Heading = styled('div')({
 
 Pigment CSS supports theming to apply consistent styles and values across your application.
 You can create themes by defining them in your config file:
+
 ```js
 import { withPigment } from '@pigment-css/nextjs-plugin';
 
-export default withPigment(nextConfig,
-  {
-    theme: {
-      colors: {
-        primary: 'tomato',
-        secondary: 'cyan',
-      },
-      spacing: {
-        unit: 8,
-      },
-      typography: {
-        fontFamily: 'Inter, sans-serif',
-      },
-      // ...more keys and values, it's free style!
+export default withPigment(nextConfig, {
+  theme: {
+    colors: {
+      primary: 'tomato',
+      secondary: 'cyan',
     },
+    spacing: {
+      unit: 8,
+    },
+    typography: {
+      fontFamily: 'Inter, sans-serif',
+    },
+    // ...more keys and values, it's free style!
   },
-);
+});
 ```
 
 To access your themes, use a callback with the `styled()` and `css()` APIs:
@@ -180,22 +185,20 @@ Pigment CSS generates CSS variables from the theme values when they're wrapped 
 ```js
 import { withPigment, extendTheme } from '@pigment-css/nextjs-plugin';
 
-export default withPigment(nextConfig,
-  {
-    theme: extendTheme({
-      colors: {
-        primary: 'tomato',
-        secondary: 'cyan',
-      },
-      spacing: {
-        unit: 8,
-      },
-      typography: {
-        fontFamily: 'Inter, sans-serif',
-      },
-    }),
-  },
-);
+export default withPigment(nextConfig, {
+  theme: extendTheme({
+    colors: {
+      primary: 'tomato',
+      secondary: 'cyan',
+    },
+    spacing: {
+      unit: 8,
+    },
+    typography: {
+      fontFamily: 'Inter, sans-serif',
+    },
+  }),
+});
 ```
 
 ### Color schemes
