@@ -578,9 +578,9 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       classes={classes}
     >
       {startIcon}
-      {ownerState.loadingPosition === 'end' ? <span>{children}</span> : buttonLoadingIndicator}
+      {ownerState.loadingPosition === 'end' ? children : buttonLoadingIndicator}
 
-      {ownerState.loadingPosition === 'end' ? buttonLoadingIndicator : <span>{children}</span>}
+      {ownerState.loadingPosition === 'end' ? buttonLoadingIndicator : children}
 
       {endIcon}
     </ButtonRoot>
