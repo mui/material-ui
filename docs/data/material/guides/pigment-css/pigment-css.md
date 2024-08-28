@@ -1,6 +1,6 @@
 # Getting started with Pigment CSS
 
-<p class="description">Learn how to get started customizing Material UI components using Pigment CSS.</p>
+<p class="description">Learn how to get started customizing your components using Pigment CSS.</p>
 
 <iframe width="100%" height="400" src="https://www.youtube.com/embed/UVeDpUey5Es?si=w8OtdStXHtWWIODa" title="YouTube video player: Getting Started with Pigment CSS" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
