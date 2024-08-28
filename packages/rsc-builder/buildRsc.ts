@@ -27,6 +27,7 @@ const PROJECTS: Project[] = [
       'packages/mui-material/src/PigmentContainer/PigmentContainer.tsx', // RSC compatible
       'packages/mui-material/src/PigmentGrid/PigmentGrid.tsx', // RSC compatible
       'packages/mui-material/src/PigmentStack/PigmentStack.tsx', // RSC compatible
+      'packages/mui-material/src/useAutocomplete/useAutocomplete.js', // RSC compatible
     ],
   },
   {
