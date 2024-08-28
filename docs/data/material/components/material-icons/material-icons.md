@@ -18,24 +18,20 @@ includes the 2,100+ official [Material Icons](https://fonts.google.com/icons?ico
 It depends on `@mui/material`, which requires Emotion packages.
 Use one of the following commands to install it:
 
-:::info
-The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Remove it to get the current stable version.
-:::
-
 <!-- #default-branch-switch -->
 
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/icons-material@next @mui/material@next @emotion/styled @emotion/react
-```
-
-```bash yarn
-yarn add @mui/icons-material@next @mui/material@next @emotion/styled @emotion/react
+npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
 ```
 
 ```bash pnpm
-pnpm add @mui/icons-material@next @mui/material@next @emotion/styled @emotion/react
+pnpm add @mui/icons-material @mui/material @emotion/styled @emotion/react
+```
+
+```bash yarn
+yarn add @mui/icons-material @mui/material @emotion/styled @emotion/react
 ```
 
 </codeblock>

@@ -7,7 +7,7 @@
     "children": { "description": "The content of the component." },
     "classes": { "description": "Override or extend the styles applied to the component." },
     "closeText": {
-      "description": "Override the default label for the <em>close popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>."
+      "description": "Override the default label for the <em>close popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>."
     },
     "color": {
       "description": "The color of the component. Unless provided, the value is taken from the <code>severity</code> prop. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#custom-colors\">palette customization guide</a>."

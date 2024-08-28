@@ -562,7 +562,7 @@ The majority of respondents don't use any paid libraries, but those who do are m
 - **More features:** [Grouping](/x/react-data-grid/row-grouping/) was the most requested feature for the Data Grid Pro, followed by [master detail](/x/react-data-grid/master-detail/), aggregation, search, [tree data](/x/react-data-grid/tree-data/), and [column pinning](/x/react-data-grid/column-pinning/).
   We've already released some of these in the time it took us to analyze the survey results.
   Check the links to see their docs and demos.
-  Alternatively, you can follow [the public roadmap](https://github.com/mui/mui-x/projects/1) to see when the others will land.
+  Alternatively, you can follow [the public roadmap](https://github.com/orgs/mui/projects/35) to see when the others will land.
 - **Customizability:** The majority of requests about customizability were asking for possibilities to tweak data grid interactions, which we need to delve into more deeply to better understand.
   Following next were requests for more style customizability, and more documentation on customization.
 - **Fix features:** Filtering got first place as the most requested feature to fix on Data Grid Pro.

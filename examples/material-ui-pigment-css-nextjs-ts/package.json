@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@mui/material": "next",
-    "@mui/material-pigment-css": "next",
+    "@mui/material": "latest",
+    "@mui/material-pigment-css": "latest",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"

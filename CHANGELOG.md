@@ -1,5 +1,124 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.0.0
+
+<!-- generated comparing v6.0.0-rc.0..master -->
+
+_Aug 27, 2024_
+
+We are excited to announce the stable release of Material-UI v6 🎉, check out [the blog post](https://mui.com/blog/material-ui-v6-is-out/) to see all the updates.
+
+### `@mui/material@6.0.0`
+
+- Change React.ReactElement<any,any> type from any to unknown (#43358) @sai6855
+- [Pagination] Update `getItemAriaLabel` page param type (#43399) @sydneyjodon-wk
+- [Unstable_TrapFocus] Fix `getTabbable` function return type (#42237) @KalmarLorand
+
+### `@mui/lab@6.0.0-beta.8`
+
+- [button] Add missing customize points for span (#43436) @oliviertassinari
+
+### Docs
+
+- Fix broken links (#43144) @DiegoAndai
+- Updated mui-x roadmap links with the new project URL (#43444) @michelengelen
+- Update pnpm order, move to second (#42712) @ahmadnadeem6236
+- Fix CSS theme variables section (#43439) @siriwatknp
+- Add two Toolpad Core components to Material UI sidebar (#43391) @prakhargupta1
+- Fix licensingModel -> licenseModel @oliviertassinari
+- Fix Stack Overflow issue canned response @oliviertassinari
+- Avoid referencing MUI Core @oliviertassinari
+- Fix description of eslint-plugin-material-ui @oliviertassinari
+- [docs-infra] Polish reportBrokenLinks.js to support Base UI @oliviertassinari
+- [material-ui] Clarify RTL language support in localization guide (#41784) @bahmanworld
+- [material-ui] Refine templates theme selector (#43396) @zanivan
+
+### Core
+
+- Prepare for v6 stable release (#43454) @siriwatknp
+- [blog] Polish Upcoming changes to MUI X pricing in 2024 (#43438) @oliviertassinari
+- [blog] Add Material UI v6 stable release (#41932) @siriwatknp
+- [ci] Fix the release:changelog cmd (#43451) @mnajdova
+- [core] Allow `^6.0.0` for `@mui/` dependencies in `@mui/docs` (#43445) @LukasTy
+- [code-infra] Babel plugin to fully resolve imported paths (#43294) @Janpot
+- [infra] Add closing message workflow (#43450) @michelengelen
+- [website] Make beta chip consistent for Toolpad (#43392) @prakhargupta1
+
+All contributors of this release in alphabetical order: @ahmadnadeem6236, @bahmanworld, @DiegoAndai, @Janpot, @KalmarLorand, @LukasTy, @michelengelen, @mnajdova, @oliviertassinari, @prakhargupta1, @sai6855, @siriwatknp, @sydneyjodon-wk, @zanivan
+
+## 6.0.0-rc.0
+
+<!-- generated comparing v6.0.0-beta.6..next -->
+
+_Aug 22, 2024_
+
+A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
+
+- ⚡ Rendering performance improvements
+
+### `@mui/material@6.0.0-rc.0`
+
+#### Breaking changes
+
+- [Box] Remove `component` from `BoxOwnProps` (#43384) @DiegoAndai
+
+  The `component` prop has been removed from the `BoxOwnProps` as it is already included in the `Box` type.
+  This might affect your code if you are using the `styled` function with the `Box` component.
+  If this is the case, use a `div` element instead of `Box`:
+
+  ```diff
+  -const StyledBox = styled(Box)`
+  +const StyledDiv = styled('div')`
+     color: white;
+   `;
+  ```
+
+  This yields the same end result.
+  If this doesn't work for you, you can also cast the `styled` returned value to `typeof Box`:
+
+  ```diff
+   const StyledBox = styled(Box)`
+     color: white;
+  -`;
+  +` as typeof Box;
+  ```
+
+#### Changes
+
+- [ListItem] Remove unnecessary TypeScript test (#43359) @sai6855
+- Skip generating CSS variables for a custom spacing function (#43389) @siriwatknp
+- Revert visual regressions from #42283 (#43364) @ZeeshanTamboli
+
+### `@mui/codemod@6.0.0-rc.0`
+
+- Add Grid2 to removeSystemProps codemod (#43302) @DiegoAndai
+
+### Docs
+
+- [blog] Add video to the Pigment CSS blog post (#42500) @oliviertassinari
+- Fix broken link to milestones (#43379) @oliviertassinari
+- Update CSS theme variables related content (#43130) @siriwatknp
+- Fix link to createTheme source (#43332) @oliviertassinari
+- Add cache to avoid unnecessary jsx dynamic import and theme getting (#43139) @Vxee
+- Fix broken link to Next.js docs @oliviertassinari
+- [material-ui] Revamp `Composition` guide (#43266) @ZeeshanTamboli
+- [material-ui][Menu] Replace `PaperProps` with `slotProps.paper` in demos (#43354) @sai6855
+
+### Core
+
+- [code-infra] Change docs:start script to serve the exports folder (#43375) @Janpot
+- [core] Fix typescript-next CI workflow (#43394) @aarongarciah
+- [core] Run `@mui/system` TypeScript module augmentation tests in CI (#43386) @ZeeshanTamboli
+- [core] Enable manage-package-manager-versions pnpm flag (#43366) @aarongarciah
+- [core] Replace `indexOf` with `includes` (#42883) @k-rajat19
+- [docs-infra] Add GitHub source link to components (#43228) @Jay-Karia
+- [docs-infra] Fix copy shortcut (#43361) @oliviertassinari
+- [perf] Remove theme/styling allocations (#43372) @romgrk
+- [perf] Improve `composeClasses` (#43363) @romgrk
+- [perf] Remove system allocations (#43306) @romgrk
+
+All contributors of this release in alphabetical order: @aarongarciah, @DiegoAndai, @Janpot, @Jay-Karia, @k-rajat19, @oliviertassinari, @rluzists1, @romgrk, @sai6855, @siriwatknp, @Vxee, @ZeeshanTamboli
+
 ## 6.0.0-beta.6
 
 <!-- generated comparing v6.0.0-beta.5..next -->

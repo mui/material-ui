@@ -8,7 +8,7 @@ import basePages from 'docs/data/base/pages';
 import joyPages from 'docs/data/joy/pages';
 import { MuiPage } from 'docs/src/MuiPage';
 
-const EXCLUDES = ['/api', '/blog', '/x/react-'];
+const EXCLUDES = ['/api', '/blog', '/x/react-', '/toolpad'];
 
 async function run() {
   const translationsFilename = path.join(__dirname, '../translations/translations.json');
