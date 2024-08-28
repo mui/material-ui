@@ -13,13 +13,12 @@ import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import Container from '@mui/material/Container';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import ToggleColorMode from './components/ToggleColorMode';
-import getDashboardTheme from './theme/getDashboardTheme';
+import getMPTheme from './theme/getMPTheme';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
-  position: 'fixed',
+  position: 'relative',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
@@ -29,36 +28,43 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
   boxShadow: theme.shadows[1],
   backgroundImage: 'none',
-  padding: 4,
   zIndex: theme.zIndex.drawer + 1,
+  flex: '0 0 auto',
 }));
 
-interface NavBarProps {
+interface TemplateFrameProps {
   showCustomTheme: boolean;
   toggleCustomTheme: (theme: boolean) => void;
   mode: PaletteMode;
   toggleColorMode: () => void;
+  children: React.ReactNode;
 }
 
-export default function NavBar({
+export default function TemplateFrame({
   showCustomTheme,
   toggleCustomTheme,
   mode,
   toggleColorMode,
-}: NavBarProps) {
+  children,
+}: TemplateFrameProps) {
   const handleChange = (event: SelectChangeEvent) => {
     toggleCustomTheme(event.target.value === 'custom');
   };
-  const dashboardTheme = createTheme(getDashboardTheme(mode));
+  const MPTheme = createTheme(getMPTheme(mode));
 
   return (
-    <ThemeProvider theme={dashboardTheme}>
-      <StyledAppBar>
-        <Container maxWidth="lg">
+    <ThemeProvider theme={MPTheme}>
+      <Box sx={{ height: '100dvh', display: 'flex', flexDirection: 'column' }}>
+        <StyledAppBar>
           <Toolbar
             variant="dense"
             disableGutters
-            sx={{ display: 'flex', justifyContent: 'space-between' }}
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              width: '100%',
+              p: '8px 12px',
+            }}
           >
             <Button
               variant="text"
@@ -101,8 +107,9 @@ export default function NavBar({
               />
             </Box>
           </Toolbar>
-        </Container>
-      </StyledAppBar>
+        </StyledAppBar>
+        <Box sx={{ flex: '1 1', overflow: 'auto' }}>{children}</Box>
+      </Box>
     </ThemeProvider>
   );
 }

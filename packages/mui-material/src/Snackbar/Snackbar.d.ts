@@ -47,7 +47,7 @@ export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDi
    */
   ClickAwayListenerProps?: Partial<ClickAwayListenerProps>;
   /**
-   * Props applied to the [`SnackbarContent`](/material-ui/api/snackbar-content/) element.
+   * Props applied to the [`SnackbarContent`](https://mui.com/material-ui/api/snackbar-content/) element.
    */
   ContentProps?: Partial<SnackbarContentProps>;
   /**
@@ -94,7 +94,7 @@ export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDi
   sx?: SxProps<Theme>;
   /**
    * The component used for the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Grow
    */
   TransitionComponent?: React.JSXElementConstructor<
