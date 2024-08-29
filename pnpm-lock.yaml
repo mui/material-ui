@@ -43,9 +43,6 @@ importers:
       '@slack/bolt':
         specifier: ^3.21.1
         version: 3.21.1
-      babel-plugin-add-import-extension:
-        specifier: ^1.6.0
-        version: 1.6.0(@babel/core@7.25.2)
       execa:
         specifier: ^9.3.1
         version: 9.3.1
@@ -6133,11 +6130,6 @@ packages:
   babel-merge@3.0.0:
     resolution: {integrity: sha512-eBOBtHnzt9xvnjpYNI5HmaPp/b2vMveE5XggzqHnQeHJ8mFIBrBv6WZEVIj5jJ2uwTItkqKo9gWzEEcBxEq0yw==}
     deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
-    peerDependencies:
-      '@babel/core': ^7.25.2
-
-  babel-plugin-add-import-extension@1.6.0:
-    resolution: {integrity: sha512-JVSQPMzNzN/S4wPRoKQ7+u8PlkV//BPUMnfWVbr63zcE+6yHdU2Mblz10Vf7qe+6Rmu4svF5jG7JxdcPi9VvKg==}
     peerDependencies:
       '@babel/core': ^7.25.2
 
@@ -17341,11 +17333,6 @@ snapshots:
       '@babel/core': 7.25.2
       deepmerge: 2.2.1
       object.omit: 3.0.0
-
-  babel-plugin-add-import-extension@1.6.0(@babel/core@7.25.2):
-    dependencies:
-      '@babel/core': 7.25.2
-      '@babel/helper-plugin-utils': 7.24.8
 
   babel-plugin-define-var@0.1.0: {}
 
