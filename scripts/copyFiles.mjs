@@ -58,7 +58,7 @@ async function run(argv) {
 
     await addLicense(packageData, exportFormat);
 
-    await createModulePackages({ from: srcPath, to: buildPath, exportFormat });
+    // await createModulePackages({ from: srcPath, to: buildPath, exportFormat });
   } catch (err) {
     console.error(err);
     process.exit(1);
