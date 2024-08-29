@@ -56,7 +56,7 @@ describe('createTheme', () => {
     expect(theme.palette.secondary.main).to.equal(green.A400);
   });
 
-  it.only('should be customizable through `colorSchemes` node', () => {
+  it('should be customizable through `colorSchemes` node', () => {
     const theme = createTheme({
       colorSchemes: {
         dark: {
@@ -68,6 +68,9 @@ describe('createTheme', () => {
         },
         light: {
           palette: {
+            background: {
+              default: grey[50],
+            },
             bg: {
               main: grey[800],
               dark: grey[700],
@@ -77,8 +80,42 @@ describe('createTheme', () => {
       },
     });
     expect(theme.colorSchemes.dark.palette.background.default).to.equal(grey[900]);
+    expect(theme.colorSchemes.light.palette.background.default).to.equal(grey[50]);
     expect(theme.colorSchemes.light.palette.bg.main).to.equal(grey[800]);
     expect(theme.colorSchemes.light.palette.bg.dark).to.equal(grey[700]);
+    expect(theme.palette.mode).to.equal('light');
+    expect(theme.palette.background.default).to.equal(grey[50]);
+  });
+
+  it('should be customizable through `colorSchemes` node with non-existing fields', () => {
+    const theme = createTheme({
+      colorSchemes: {
+        dark: {
+          opacity: {
+            disabled: 0.38,
+          },
+          palette: {
+            gradient: 'linear-gradient(90deg, #000000 0%, #ffffff 100%)',
+          },
+        },
+        light: {
+          opacity: {
+            disabled: 0.5,
+          },
+          palette: {
+            gradient: 'linear-gradient(90deg, #ffffff 0%, #000000 100%)',
+          },
+        },
+      },
+    });
+    expect(theme.colorSchemes.dark.opacity.disabled).to.equal(0.38);
+    expect(theme.colorSchemes.light.opacity.disabled).to.equal(0.5);
+    expect(theme.colorSchemes.dark.palette.gradient).to.equal(
+      'linear-gradient(90deg, #000000 0%, #ffffff 100%)',
+    );
+    expect(theme.colorSchemes.light.palette.gradient).to.equal(
+      'linear-gradient(90deg, #ffffff 0%, #000000 100%)',
+    );
   });
 
   describe('CSS variables', () => {

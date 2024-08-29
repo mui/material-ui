@@ -22,7 +22,7 @@ function attachColorScheme(
     theme.colorSchemes[scheme] = {
       ...(colorScheme !== true && colorScheme),
       palette: createPalette({
-        ...(colorScheme === true ? {} : colorScheme),
+        ...(colorScheme === true ? {} : colorScheme.palette),
         mode: scheme,
       } as any), // cast type to skip module augmentation test
     };
@@ -72,24 +72,45 @@ export default function createTheme(
   };
 
   if (cssVariables === false) {
-    const theme = createThemeNoVars(options as ThemeOptions, ...args) as unknown as Theme & {
+    if (!('colorSchemes' in options)) {
+      // v5 signature
+      return createThemeNoVars(options as ThemeOptions, ...args);
+    }
+
+    let paletteOptions;
+    if (!('palette' in options)) {
+      if (colorSchemesInput[defaultColorSchemeInput]) {
+        if (colorSchemesInput[defaultColorSchemeInput] !== true) {
+          paletteOptions = colorSchemesInput[defaultColorSchemeInput].palette;
+        } else if (defaultColorSchemeInput === 'dark') {
+          paletteOptions = { mode: 'dark' };
+        }
+      }
+    }
+
+    const theme = createThemeNoVars(
+      { ...options, palette: paletteOptions } as ThemeOptions,
+      ...args,
+    ) as unknown as Theme & {
       defaultColorScheme?: 'light' | 'dark';
       colorSchemes?: Partial<Record<string, any>>;
     };
-
-    if (!('colorSchemes' in options)) {
-      return theme;
-    }
 
     theme.defaultColorScheme = defaultColorSchemeInput;
     theme.colorSchemes = colorSchemesInput as Record<string, ColorSystem>;
 
     if (theme.palette.mode === 'light') {
-      theme.colorSchemes.light = { palette: theme.palette } as ColorSystem;
+      theme.colorSchemes.light = {
+        ...(colorSchemesInput.light !== true && colorSchemesInput.light),
+        palette: theme.palette,
+      } as ColorSystem;
       attachColorScheme(theme, 'dark', colorSchemesInput.dark);
     }
     if (theme.palette.mode === 'dark') {
-      theme.colorSchemes.dark = { palette: theme.palette } as ColorSystem;
+      theme.colorSchemes.dark = {
+        ...(colorSchemesInput.dark !== true && colorSchemesInput.dark),
+        palette: theme.palette,
+      } as ColorSystem;
       attachColorScheme(theme, 'light', colorSchemesInput.light);
     }
 
