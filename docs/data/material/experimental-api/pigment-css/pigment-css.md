@@ -8,7 +8,7 @@
 
 Pigment CSS is compatible with any React component library and can be used with Vite and Next.js.
 
-Check out the [Migrating to Pigment CSS](/material-ui/migration/migrating-to-pigment-css/) guide if you have an existing Material UI project.
+Check out the [Migrating to Pigment CSS](/material-ui/migration/migrating-to-pigment-css/) guide if you have an existing Material UI project.
 
 ## Prerequisites
 
