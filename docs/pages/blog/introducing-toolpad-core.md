@@ -15,7 +15,7 @@ At MUI, our vision is to provide a unified UI creation ecosystem for web develop
 
 Today, we're extending that ecosystem by launching Toolpad Core. If you're someone who's started out with templates before but found them to require too much manual setup, or built internal tools with Material UI and MUI X but found it difficult to integrate them together and with other third-party libraries, then [Toolpad Core](https://mui.com/toolpad/) is for you.
 
-## Introducing Toolpad Core
+## Toolpad Core
 
 <a href="https://mui.com/toolpad/">
 <img alt="MUI public app for tracking KPIs" src="/static/blog/introducing-toolpad-core/toolpad-core.png" width="2400" height="1394" />
