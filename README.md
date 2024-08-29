@@ -5,7 +5,7 @@
 
 <h1 align="center">Material UI</h1>
 
-[Material UI](https://mui.com/material-ui/) is a comprehensive library of components that features our independent implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
+[Material UI](https://mui.com/material-ui/) is a comprehensive library of React components that features our independent implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
 
 <div align="center">
 
