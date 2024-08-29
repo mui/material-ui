@@ -74,7 +74,7 @@ module.exports = function getBabelConfig(api) {
     // in webpack config:
     api.env(['regressions']);
 
-  const outFileExtension = '.js';
+  const outFileExtension = useESModules ? '.mjs' : '.js';
 
   /** @type {babel.PluginItem[]} */
   const plugins = [
@@ -140,10 +140,6 @@ module.exports = function getBabelConfig(api) {
         root: ['./'],
       },
     ]);
-  }
-
-  if (process.env.MUI_ADD_IMPORT_EXTENSIONS === 'true') {
-    plugins.push(['babel-plugin-add-import-extension', { extension: useESModules ? 'mjs' : 'js' }]);
   }
 
   return {
