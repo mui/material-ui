@@ -8,7 +8,7 @@ _Aug 29, 2024_
 
 A big thanks to the 12 contributors who made this release possible. It contains bug fixes and documentation improvements.
 
-### `@mui/material@6.0.0`
+### `@mui/material@6.0.1`
 
 - Attach default light color scheme when enabling CSS theme variables (#43493) @siriwatknp
 - [Skeleton] Apply the wave animation to the correct element (#43474) @mnajdova
