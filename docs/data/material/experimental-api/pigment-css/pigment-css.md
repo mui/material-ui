@@ -303,9 +303,10 @@ You can also customize the behavior by providing a `getSelector` function:
 
 ### The sx prop
 
-The `sx` prop lets you apply custom styles directly to any element.
+Pigment CSS introduces the `sx` prop, letting you provide inline, one-off custom styles to any element.
+
 At build time, Pigment CSS replaces the `sx` prop with `className` and `style` props.
-The `sx` prop works with all Material UI components as well as HTML elements and any third-party JSX components.
+The `sx` prop works with all Material UI components as well as HTML elements and any third-party JSX components.
 
 ```js
 <div sx={{ display: 'flex', flexDirection: 'column' }}>
