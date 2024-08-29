@@ -81,7 +81,20 @@ import '@pigment-css/react/styles.css';
 
 ## Usage
 
-### Creating reusable styles
+Pigment CSS addresses the needs of modern React development: it's compatible with React Server Components and lets you reap the benefits of CSS-in-JS—all without runtime performance costs.
+
+With Pigment CSS, you can create locally scoped reusable styles, themes, CSS variables, and more.
+
+### Styling
+
+Pigment CSS simplifies the creation and definition of styles through various APIs:
+
+- `css`: for reusable styles
+- `globalCss`: for global styles
+- `keyframes`: for reusable animation keyframes
+- `styled`: for styled components
+
+#### Creating reusable styles
 
 Use the `css` API to create reusable styles:
 
@@ -109,9 +122,11 @@ const mainClass = css({
 });
 ```
 
-### Creating global styles
+#### Creating global styles
 
-You can define global styles by using the `globalCSS` API:
+If you'd like some CSS to be loaded by every page, you can define global styles by using the `globalCSS` API.
+
+These should be defined at the top level of your JavaScript file:
 
 ```js
 import { globalCSS } from '@pigment-css/react';
@@ -124,7 +139,9 @@ globalCss`
 `;
 ```
 
-### Creating styled components
+#### Creating styled components
+
+Keeping your styles scoped to your components ensures that only the necessary CSS is loaded and stays modular, easily readable, and maintainable. Additionally, you can apply conditional styling to your components based on props or runtime values.
 
 Use the `styled` API to create styled components:
 
@@ -139,7 +156,10 @@ const Heading = styled('div')({
 });
 ```
 
-You can add different styling options based on props by using the `variants` key.
+**Styling based on props**
+
+You can add different styling options based on props by using the `variants` key. This approach is recommended when the value of the prop is known at build time.
+
 Each `variant` is an object with `props` and `style` keys:
 
 ```js
@@ -163,7 +183,17 @@ const Heading = styled('div')({
 });
 ```
 
-### Creating themes
+**Styling based on runtime values**
+
+When the value of a prop is unknown ahead of time, you can style your components based on runtime values:
+
+```js
+const Heading = styled('h1')({
+  color: ({ isError }) => (isError ? 'red' : 'black'),
+});
+```
+
+### Themes
 
 Pigment CSS supports theming to apply consistent styles and values across your application.
 You can create themes by defining them in your config file:
@@ -198,7 +228,7 @@ const Heading = styled('h1')(({ theme }) => ({
 }));
 ```
 
-### CSS variables
+#### CSS variables support
 
 Pigment CSS generates CSS variables from the theme values when they're wrapped by the `extendTheme` utility, creating a `vars` object:
 
@@ -221,7 +251,7 @@ export default withPigment(nextConfig, {
 });
 ```
 
-### Color schemes
+#### Color schemes
 
 You can use the `colorSchemes` key within the `extendTheme` utility to assign different values based on different conditions, such as switching between dark mode and light mode:
 
