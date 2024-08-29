@@ -1,7 +1,7 @@
 ---
 title: Introducing Toolpad Core
-description: Build your next react dashboard using full-stack components from Toolpad Core.
-date: 2024-09-01T00:00:00.000Z
+description: Components and tools for building dashboards and internal apps.
+date: 2024-09-03T00:00:00.000Z
 authors: ['prakhargupta']
 manualCard: true
 tags: ['Product', 'Toolpad']
@@ -13,7 +13,7 @@ At MUI, our vision is to provide a unified UI creation ecosystem for web develop
 - MUI X: Advanced components that enable developers to include data-intensive functionality in their apps.
 - Templates: Ready-to-use interfaces for developers who need a good-looking starting point to extend from.
 
-Today, we're extending that ecosystem by launching Toolpad Core. If you're someone who's started out with templates before but found them to require too much manual setup, or built internal tools with Material UI and MUI X but found it difficult to integrate them together and with other third-party libraries, then Toolpad Core is for you.
+Today, we're extending that ecosystem by launching Toolpad Core. If you're someone who's started out with templates before but found them to require too much manual setup, or built internal tools with Material UI and MUI X but found it difficult to integrate them together and with other third-party libraries, then [Toolpad Core](https://mui.com/toolpad/) is for you.
 
 ## Introducing Toolpad Core
 
@@ -38,7 +38,7 @@ Your browser does not support the video tag.
 
 By integrating Toolpad Core components with your existing Material UI and MUI X components, you can build dashboards and internal apps faster than ever before.
 
-We plan to continue to work on MUI's [mission](https://www.notion.so/Direction-d8b8c142a6a44e3aa963f26edf4e03db?pvs=21): to enable developers of any level to quickly and efficiently build UIs that feel amazing. We'll be rolling out more features and updates regularly as we accelerate Toolpad Core's development. We're actively seeking feedback and feature requests, and we encourage you to get involved by [creating an issue](https://github.com/mui/mui-toolpad)!
+We plan to continue to work on MUI's mission—to enable developers of any level to quickly and efficiently build UIs that feel amazing. We'll be rolling out more features and updates regularly as we accelerate Toolpad Core's development. We're actively seeking feedback and feature requests, and we encourage you to get involved by [creating an issue](https://github.com/mui/mui-toolpad)!
 
 ## What's next for Toolpad Studio
 
