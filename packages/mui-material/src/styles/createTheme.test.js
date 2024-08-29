@@ -4,7 +4,7 @@ import { createRenderer } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
-import { deepOrange, green } from '@mui/material/colors';
+import { deepOrange, green, grey } from '@mui/material/colors';
 import createPalette from './createPalette';
 
 const lightPalette = createPalette({ mode: 'light' });
@@ -54,6 +54,31 @@ describe('createTheme', () => {
     });
     expect(theme.palette.primary.main).to.equal(deepOrange[500]);
     expect(theme.palette.secondary.main).to.equal(green.A400);
+  });
+
+  it.only('should be customizable through `colorSchemes` node', () => {
+    const theme = createTheme({
+      colorSchemes: {
+        dark: {
+          palette: {
+            background: {
+              default: grey[900],
+            },
+          },
+        },
+        light: {
+          palette: {
+            bg: {
+              main: grey[800],
+              dark: grey[700],
+            },
+          },
+        },
+      },
+    });
+    expect(theme.colorSchemes.dark.palette.background.default).to.equal(grey[900]);
+    expect(theme.colorSchemes.light.palette.bg.main).to.equal(grey[800]);
+    expect(theme.colorSchemes.light.palette.bg.dark).to.equal(grey[700]);
   });
 
   describe('CSS variables', () => {
