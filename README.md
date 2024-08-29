@@ -5,11 +5,7 @@
 
 <h1 align="center">Material UI</h1>
 
-**Material UI** contains foundational React UI component libraries for shipping new features faster:
-
-- [Material UI](https://mui.com/material-ui/) is a comprehensive library of components that features our implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
-
-- [Joy UI](https://mui.com/joy-ui/getting-started/) is a library of beautifully designed React UI components built to spark joy.
+[Material UI](https://mui.com/material-ui/) is a comprehensive library of components that features our independent implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
 
 <div align="center">
 
@@ -29,28 +25,28 @@
 
 ## Documentation
 
-### Material UI
-
-Visit [https://mui.com/material-ui/](https://mui.com/material-ui/) to view the full documentation.
+Get started in the [Material UI documentation](https://mui.com/material-ui/getting-started/).
 
 <details>
   <summary>Older versions</summary>
 
-- **[v4.x](https://v4.mui.com/)** ([Migration from v4 to v5](https://mui.com/material-ui/migration/migration-v4/))
-- **[v3.x](https://v3.mui.com/)** ([Migration from v3 to v4](https://mui.com/material-ui/migration/migration-v3/))
-- **[v0.x](https://v0.mui.com/)** ([Migration to v1](https://mui.com/material-ui/migration/migration-v0x/))
+- **[v5.x](https://v5.mui.com/)** ([Upgrading from v5 to v6](https://mui.com/material-ui/migration/upgrade-to-v6/))
+- **[v4.x](https://v4.mui.com/)** ([Upgrading from v4 to v5](https://mui.com/material-ui/migration/migration-v4/))
+- **[v3.x](https://v3.mui.com/)** ([Upgrading from v3 to v4](https://mui.com/material-ui/migration/migration-v3/))
+- **[v0.x](https://v0.mui.com/)** ([Upgrading to v1](https://mui.com/material-ui/migration/migration-v0x/))
 
 </details>
 
-**Note:** `@next` only points to pre-releases.
+**Note:** `@next` points to pre-releases.
 Use `@latest` for the latest stable release.
 
-### Joy UI
+## Joy UI
 
-Visit [https://mui.com/joy-ui/getting-started/](https://mui.com/joy-ui/getting-started/) to view the full documentation.
+This repository also contains Joy UI, an experimental component library that implements our own in-house Joy Design. Joy UI is in beta and _development is currently on hold_. When starting a new project from scratch, we recommend Material UI over Joy UI because we can guarantee ongoing support.
 
-**Note**: Joy UI is still in beta.
-We are adding new components regularly and you're welcome to contribute!
+You're welcome to open new issues and PRs to help improve Joy UI, but please keep in mind that the maintainers are primarily focused on other projects and may not be able to respond in a timely manner.
+
+View the [Joy UI documentation](https://mui.com/joy-ui/getting-started/).
 
 ## Sponsors
 
