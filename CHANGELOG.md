@@ -14,7 +14,7 @@ A big thanks to the 12 contributors who made this release possible. It contains 
 ### Docs
 
 - [material-ui][Dialog] Update confirmation dialog description (#43488) @Michael-Hutchinson
-- Add Material UI v6 is out! to the notifications (#43448) @oliviertassinari
+- Add Material UI v6 is out! to the notifications (#43448) @oliviertassinari
 - [material-ui] Dark scroll bars in templates (#43483) @aarongarciah
 - [material-ui] Add TemplateFrame to templates (#43406) @zanivan
 - [table] Make the data grid blend in (#43489) @oliviertassinari
@@ -31,7 +31,7 @@ A big thanks to the 12 contributors who made this release possible. It contains 
 - [docs-infra] Skip shadow DOM regression test (#43500) @aarongarciah
 - [docs-infra] Fix use of process.env.DEPLOY_ENV (#43490) @oliviertassinari
 - [docs-infra] Add comment about removing optimizeFonts Next.js config (#43469) @aarongarciah
-- [examples] Use `latest` on all Material UI dependencies (#43494) @mnajdova
+- [examples] Use `latest` on all Material UI dependencies (#43494) @mnajdova
 - [infra] fix workflow path (#43464) @michelengelen
 
 All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @DiegoAndai, @Janpot, @JCQuintas, @Michael-Hutchinson, @michelengelen, @mnajdova, @oliviertassinari, @prakhargupta1, @siriwatknp, @zanivan
