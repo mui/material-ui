@@ -23,7 +23,7 @@
     "recast": "^0.23.9",
     "remark": "^13.0.0",
     "typescript": "^5.5.4",
-    "unist-util-visit": "^2.0.3"
+    "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
     "@types/babel__core": "^7.20.5",
