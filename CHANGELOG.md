@@ -1,7 +1,9 @@
 # [Versions](https://mui.com/versions/)
 
 ## v6.0.1
+
 <!-- generated comparing v6.0.0..master -->
+
 _Aug 29, 2024_
 
 A big thanks to the 12 contributors who made this release possible. It contains bug fixes and documentation improvements.
