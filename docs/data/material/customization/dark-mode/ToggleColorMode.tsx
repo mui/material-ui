@@ -1,15 +1,14 @@
 import * as React from 'react';
-import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
-import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
-
-const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import { ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
 
 function MyApp() {
-  const theme = useTheme();
-  const colorMode = React.useContext(ColorModeContext);
+  const { mode, setMode } = useColorScheme();
+  if (!mode) {
+    return null;
+  }
   return (
     <Box
       sx={{
@@ -21,42 +20,33 @@ function MyApp() {
         color: 'text.primary',
         borderRadius: 1,
         p: 3,
+        minHeight: '56px',
       }}
     >
-      {theme.palette.mode} mode
-      <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
-        {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-      </IconButton>
+      <Select
+        value={mode}
+        onChange={(event) =>
+          setMode(event.target.value as 'system' | 'light' | 'dark')
+        }
+      >
+        <MenuItem value="system">System</MenuItem>
+        <MenuItem value="light">Light</MenuItem>
+        <MenuItem value="dark">Dark</MenuItem>
+      </Select>
     </Box>
   );
 }
 
+const theme = createTheme({
+  colorSchemes: {
+    dark: true,
+  },
+});
+
 export default function ToggleColorMode() {
-  const [mode, setMode] = React.useState<'light' | 'dark'>('light');
-  const colorMode = React.useMemo(
-    () => ({
-      toggleColorMode: () => {
-        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
-      },
-    }),
-    [],
-  );
-
-  const theme = React.useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode,
-        },
-      }),
-    [mode],
-  );
-
   return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <MyApp />
-      </ThemeProvider>
-    </ColorModeContext.Provider>
+    <ThemeProvider theme={theme}>
+      <MyApp />
+    </ThemeProvider>
   );
 }

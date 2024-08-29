@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useLocation, matchRoutes, Link } from 'react-router-dom';
-import Box from '@pigment-css/react/Box';
 import routes from '~react-pages';
 import Layout from '../../Layout';
 
@@ -17,8 +16,7 @@ export default function MaterialIndex() {
       <div>
         <h1>Material UI Components</h1>
         <nav>
-          <Box
-            as="ul"
+          <ul
             sx={{
               margin: 0,
               marginBlock: '1rem',
@@ -33,8 +31,7 @@ export default function MaterialIndex() {
               .filter((item) => !!item.path)
               .map((item) => (
                 <li key={item.path}>
-                  <Box
-                    as={Link}
+                  <Link
                     to={`/material-ui/${item.path}`}
                     sx={{
                       textDecoration: 'underline',
@@ -42,10 +39,10 @@ export default function MaterialIndex() {
                     }}
                   >
                     {item.path}
-                  </Box>
+                  </Link>
                 </li>
               ))}
-          </Box>
+          </ul>
         </nav>
       </div>
     </Layout>

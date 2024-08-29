@@ -7,7 +7,7 @@ This is a Pigment CSS and [Next.js](https://nextjs.org/) project bootstrapped w
 First, build all the packages in the workspace at least once. Run
 
 ```bash
-pnpm build:zero
+pnpm build
 ```
 
 Then start the Next.js development server:

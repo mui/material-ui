@@ -11,7 +11,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-sel
 
 <p class="description">The Select components let you create lists of options for users to choose from.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
@@ -60,7 +60,7 @@ const CustomSelect = React.forwardRef(function CustomSelect<TValue>(
   return <Select {...props} ref={ref} />;
 }) as <TValue>(
   props: SelectProps<TValue> & React.RefAttributes<HTMLUListElement>,
-) => JSX.Element;
+) => React.JSX.Element;
 ```
 
 For the sake of brevity, the rest of the demos throughout this doc will not use `forwardRef`.

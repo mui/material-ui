@@ -4,13 +4,14 @@ title: React Alert component
 components: Alert, AlertTitle
 githubLabel: 'component: alert'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
+githubSource: packages/mui-material/src/Alert
 ---
 
 # Alert
 
 <p class="description">Alerts display brief messages for the user without interrupting their use of the app.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 

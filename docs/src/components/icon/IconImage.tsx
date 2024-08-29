@@ -40,7 +40,7 @@ export type IconImageProps = {
   mode?: '' | 'light' | 'dark';
   sx?: SxProps<Theme>;
   width?: number;
-} & Omit<JSX.IntrinsicElements['img'], 'ref'>;
+} & Omit<React.JSX.IntrinsicElements['img'], 'ref'>;
 
 const Img = styled('img')({ display: 'inline-block', verticalAlign: 'bottom' });
 
@@ -64,7 +64,7 @@ export default function IconImage(props: IconImageProps) {
   } else if (name.startsWith('pricing/x-plan-')) {
     defaultWidth = 13;
     defaultHeight = 15;
-  } else if (['pricing/yes', 'pricing/no', 'pricing/time'].indexOf(name) !== -1) {
+  } else if (['pricing/yes', 'pricing/no', 'pricing/time'].includes(name)) {
     defaultWidth = 18;
     defaultHeight = 18;
   }

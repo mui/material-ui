@@ -1,3 +1,8 @@
+/* eslint no-restricted-syntax: 0, prefer-template: 0, guard-for-in: 0
+   ---
+   These rules are preventing the performance optimizations below.
+ */
+
 export default function composeClasses<ClassKey extends string>(
   slots: Record<ClassKey, ReadonlyArray<string | false | undefined | null>>,
   getUtilityClass: (slot: string) => string,
@@ -5,26 +10,23 @@ export default function composeClasses<ClassKey extends string>(
 ): Record<ClassKey, string> {
   const output: Record<ClassKey, string> = {} as any;
 
-  Object.keys(slots).forEach(
-    // `Object.keys(slots)` can't be wider than `T` because we infer `T` from `slots`.
-    // @ts-expect-error https://github.com/microsoft/TypeScript/pull/12253#issuecomment-263132208
-    (slot: ClassKey) => {
-      output[slot] = slots[slot]
-        .reduce((acc, key) => {
-          if (key) {
-            const utilityClass = getUtilityClass(key);
-            if (utilityClass !== '') {
-              acc.push(utilityClass);
-            }
-            if (classes && classes[key]) {
-              acc.push(classes[key]);
-            }
-          }
-          return acc;
-        }, [] as string[])
-        .join(' ');
-    },
-  );
+  for (const slotName in slots) {
+    const slot = slots[slotName];
+    let buffer = '';
+
+    for (let i = 0; i < slot.length; i += 1) {
+      const value = slot[i];
+      if (value) {
+        buffer += getUtilityClass(value) + ' ';
+
+        if (classes && classes[value]) {
+          buffer += classes[value] + ' ';
+        }
+      }
+    }
+
+    output[slotName] = buffer;
+  }
 
   return output;
 }

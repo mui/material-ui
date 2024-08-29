@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';
 import { ThemeProvider } from '@mui/joy/styles';
 import MenuButton, { menuButtonClasses as classes } from '@mui/joy/MenuButton';
@@ -22,12 +22,6 @@ describe('<MenuButton />', () => {
   describeConformance(<MenuButton />, () => ({
     classes,
     inheritComponent: 'button',
-    wrapMount: (mount) => (node: React.ReactNode) => {
-      const wrapper = mount(
-        <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
-      );
-      return wrapper.childAt(0);
-    },
     muiName: 'JoyMenuButton',
     refInstanceof: window.HTMLButtonElement,
     render: (node) => {
@@ -38,7 +32,7 @@ describe('<MenuButton />', () => {
     slots: {
       root: { expectedClassName: classes.root },
     },
-    skip: ['reactTestRenderer', 'componentsProp', 'classesRoot'],
+    skip: ['componentsProp', 'classesRoot'],
     testRootOverrides: { slotName: 'root', slotClassName: classes.root },
     testVariantProps: { variant: 'soft' },
     ThemeProvider,

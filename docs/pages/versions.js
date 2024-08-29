@@ -45,7 +45,7 @@ Page.getInitialProps = async () => {
    */
   const versions = [];
   branches.forEach((branch) => {
-    if (FILTERED_BRANCHES.indexOf(branch.name) === -1) {
+    if (!FILTERED_BRANCHES.includes(branch.name)) {
       const version = branch.name;
       versions.push({
         version,

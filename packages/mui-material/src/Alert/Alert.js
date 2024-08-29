@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { darken, lighten } from '@mui/system/colorManipulator';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import useSlot from '../utils/useSlot';
 import capitalize from '../utils/capitalize';
 import Paper from '../Paper';
@@ -15,8 +17,6 @@ import ReportProblemOutlinedIcon from '../internal/svg-icons/ReportProblemOutlin
 import ErrorOutlineIcon from '../internal/svg-icons/ErrorOutline';
 import InfoOutlinedIcon from '../internal/svg-icons/InfoOutlined';
 import CloseIcon from '../internal/svg-icons/Close';
-
-const useThemeProps = createUseThemeProps('MuiAlert');
 
 const useUtilityClasses = (ownerState) => {
   const { variant, color, severity, classes } = ownerState;
@@ -48,72 +48,74 @@ const AlertRoot = styled(Paper, {
       styles[`${ownerState.variant}${capitalize(ownerState.color || ownerState.severity)}`],
     ];
   },
-})(({ theme }) => {
-  const getColor = theme.palette.mode === 'light' ? darken : lighten;
-  const getBackgroundColor = theme.palette.mode === 'light' ? lighten : darken;
-  return {
-    ...theme.typography.body2,
-    backgroundColor: 'transparent',
-    display: 'flex',
-    padding: '6px 16px',
-    variants: [
-      ...Object.entries(theme.palette)
-        .filter(([, value]) => value.main && value.light)
-        .map(([color]) => ({
-          props: { colorSeverity: color, variant: 'standard' },
-          style: {
-            color: theme.vars
-              ? theme.vars.palette.Alert[`${color}Color`]
-              : getColor(theme.palette[color].light, 0.6),
-            backgroundColor: theme.vars
-              ? theme.vars.palette.Alert[`${color}StandardBg`]
-              : getBackgroundColor(theme.palette[color].light, 0.9),
-            [`& .${alertClasses.icon}`]: theme.vars
-              ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
-              : {
-                  color: theme.palette[color].main,
-                },
-          },
-        })),
-      ...Object.entries(theme.palette)
-        .filter(([, value]) => value.main && value.light)
-        .map(([color]) => ({
-          props: { colorSeverity: color, variant: 'outlined' },
-          style: {
-            color: theme.vars
-              ? theme.vars.palette.Alert[`${color}Color`]
-              : getColor(theme.palette[color].light, 0.6),
-            border: `1px solid ${(theme.vars || theme).palette[color].light}`,
-            [`& .${alertClasses.icon}`]: theme.vars
-              ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
-              : {
-                  color: theme.palette[color].main,
-                },
-          },
-        })),
-      ...Object.entries(theme.palette)
-        .filter(([, value]) => value.main && value.dark)
-        .map(([color]) => ({
-          props: { colorSeverity: color, variant: 'filled' },
-          style: {
-            fontWeight: theme.typography.fontWeightMedium,
-            ...(theme.vars
-              ? {
-                  color: theme.vars.palette.Alert[`${color}FilledColor`],
-                  backgroundColor: theme.vars.palette.Alert[`${color}FilledBg`],
-                }
-              : {
-                  backgroundColor:
-                    theme.palette.mode === 'dark'
-                      ? theme.palette[color].dark
-                      : theme.palette[color].main,
-                  color: theme.palette.getContrastText(theme.palette[color].main),
-                }),
-          },
-        })),
-    ],
-  };
-});
+})(
+  memoTheme(({ theme }) => {
+    const getColor = theme.palette.mode === 'light' ? darken : lighten;
+    const getBackgroundColor = theme.palette.mode === 'light' ? lighten : darken;
+    return {
+      ...theme.typography.body2,
+      backgroundColor: 'transparent',
+      display: 'flex',
+      padding: '6px 16px',
+      variants: [
+        ...Object.entries(theme.palette)
+          .filter(([, value]) => value && value.main && value.light)
+          .map(([color]) => ({
+            props: { colorSeverity: color, variant: 'standard' },
+            style: {
+              color: theme.vars
+                ? theme.vars.palette.Alert[`${color}Color`]
+                : getColor(theme.palette[color].light, 0.6),
+              backgroundColor: theme.vars
+                ? theme.vars.palette.Alert[`${color}StandardBg`]
+                : getBackgroundColor(theme.palette[color].light, 0.9),
+              [`& .${alertClasses.icon}`]: theme.vars
+                ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
+                : {
+                    color: theme.palette[color].main,
+                  },
+            },
+          })),
+        ...Object.entries(theme.palette)
+          .filter(([, value]) => value && value.main && value.light)
+          .map(([color]) => ({
+            props: { colorSeverity: color, variant: 'outlined' },
+            style: {
+              color: theme.vars
+                ? theme.vars.palette.Alert[`${color}Color`]
+                : getColor(theme.palette[color].light, 0.6),
+              border: `1px solid ${(theme.vars || theme).palette[color].light}`,
+              [`& .${alertClasses.icon}`]: theme.vars
+                ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
+                : {
+                    color: theme.palette[color].main,
+                  },
+            },
+          })),
+        ...Object.entries(theme.palette)
+          .filter(([, value]) => value && value.main && value.dark)
+          .map(([color]) => ({
+            props: { colorSeverity: color, variant: 'filled' },
+            style: {
+              fontWeight: theme.typography.fontWeightMedium,
+              ...(theme.vars
+                ? {
+                    color: theme.vars.palette.Alert[`${color}FilledColor`],
+                    backgroundColor: theme.vars.palette.Alert[`${color}FilledBg`],
+                  }
+                : {
+                    backgroundColor:
+                      theme.palette.mode === 'dark'
+                        ? theme.palette[color].dark
+                        : theme.palette[color].main,
+                    color: theme.palette.getContrastText(theme.palette[color].main),
+                  }),
+            },
+          })),
+      ],
+    };
+  }),
+);
 
 const AlertIcon = styled('div', {
   name: 'MuiAlert',
@@ -157,7 +159,7 @@ const defaultIconMapping = {
 };
 
 const Alert = React.forwardRef(function Alert(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAlert' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiAlert' });
   const {
     action,
     children,
@@ -275,7 +277,7 @@ Alert.propTypes /* remove-proptypes */ = {
   /**
    * Override the default label for the *close popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Close'
    */
   closeText: PropTypes.string,
@@ -291,7 +293,7 @@ Alert.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -303,7 +305,7 @@ Alert.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */

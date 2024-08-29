@@ -14,13 +14,7 @@ import SvgIcon from '@mui/joy/SvgIcon';
 
 export default function BioCard() {
   return (
-    <Card
-      sx={{
-        width: 320,
-        maxWidth: '100%',
-        boxShadow: 'lg',
-      }}
-    >
+    <Card sx={{ width: 320, maxWidth: '100%', boxShadow: 'lg' }}>
       <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
         <Avatar src="/static/images/avatar/1.jpg" sx={{ '--Avatar-size': '4rem' }} />
         <Chip

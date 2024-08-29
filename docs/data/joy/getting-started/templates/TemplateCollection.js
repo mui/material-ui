@@ -26,11 +26,11 @@ import sourceJoyTemplates from 'docs/src/modules/joy/sourceJoyTemplates';
 const authors = {
   MUI: {
     name: 'MUI',
-    link: 'https://twitter.com/MUI_hq',
+    link: 'https://x.com/MUI_hq',
   },
   SteveEberger: {
     name: 'Steve Ernstberger',
-    link: 'https://twitter.com/SteveEberger',
+    link: 'https://x.com/SteveEberger',
   },
 };
 
@@ -127,11 +127,15 @@ export default function TemplateCollection() {
               >
                 <Box
                   sx={(theme) => ({
-                    background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${template.name}.jpg)`,
+                    background: 'var(--template-name)',
                     [theme.getColorSchemeSelector('dark')]: {
-                      background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${template.name}-dark.jpg)`,
+                      background: 'var(--template-name-dark)',
                     },
                   })}
+                  style={{
+                    '--template-name': `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${template.name}.jpg)`,
+                    '--template-name-dark': `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${template.name}-dark.jpg)`,
+                  }}
                 />
                 <NextLink
                   href={`/joy-ui/getting-started/templates/${template.name}/`}
@@ -173,9 +177,8 @@ export default function TemplateCollection() {
                   >
                     <Visibility />
                     <Typography
-                      fontWeight="bold"
-                      fontFamily="IBM Plex Sans"
                       textColor="text.primary"
+                      sx={{ fontWeight: 'bold', fontFamily: 'IBM Plex Sans' }}
                     >
                       View live preview
                     </Typography>
@@ -183,17 +186,14 @@ export default function TemplateCollection() {
                 </NextLink>
               </AspectRatio>
             </CardOverflow>
-            <CardContent
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-            >
+            <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
               <Typography
                 component="h3"
-                fontFamily="IBM Plex Sans"
-                fontSize="lg"
-                fontWeight="xl"
+                sx={{
+                  fontFamily: 'IBM Plex Sans',
+                  fontSize: 'lg',
+                  fontWeight: 'xl',
+                }}
               >
                 {startCase(template.name)}
               </Typography>
@@ -209,8 +209,7 @@ export default function TemplateCollection() {
                 {template.author && (
                   <Typography
                     level="body-sm"
-                    fontWeight="md"
-                    fontFamily="IBM Plex Sans"
+                    sx={{ fontWeight: 'md', fontFamily: 'IBM Plex Sans' }}
                   >
                     Built by{' '}
                     <Link
@@ -226,16 +225,14 @@ export default function TemplateCollection() {
                   <React.Fragment>
                     <Typography
                       level="caption"
-                      fontWeight="md"
                       textColor="text.tertiary"
-                      sx={{ mx: 0.5 }}
+                      sx={{ fontWeight: 'md', mx: 0.5 }}
                     >
                       •
                     </Typography>
                     <Typography
                       level="body-sm"
-                      fontWeight="md"
-                      fontFamily="IBM Plex Sans"
+                      sx={{ fontWeight: 'md', fontFamily: 'IBM Plex Sans' }}
                     >
                       Designed by{' '}
                       <Link

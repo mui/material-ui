@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import { keyframes, css, createUseThemeProps, styled } from '../zero-styled';
+import { keyframes, css, styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
-
-const useThemeProps = createUseThemeProps('MuiCircularProgress');
 
 const SIZE = 44;
 
@@ -39,13 +39,22 @@ const circularDashKeyframe = keyframes`
   }
 `;
 
-const rotateAnimation = css`
-  animation: ${circularRotateKeyframe} 1.4s linear infinite;
-`;
+// This implementation is for supporting both Styled-components v4+ and Pigment CSS.
+// A global animation has to be created here for Styled-components v4+ (https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#12).
+// which can be done by checking typeof indeterminate1Keyframe !== 'string' (at runtime, Pigment CSS transform keyframes`` to a string).
+const rotateAnimation =
+  typeof circularRotateKeyframe !== 'string'
+    ? css`
+        animation: ${circularRotateKeyframe} 1.4s linear infinite;
+      `
+    : null;
 
-const dashAnimation = css`
-  animation: ${circularDashKeyframe} 1.4s ease-in-out infinite;
-`;
+const dashAnimation =
+  typeof circularDashKeyframe !== 'string'
+    ? css`
+        animation: ${circularDashKeyframe} 1.4s ease-in-out infinite;
+      `
+    : null;
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant, color, disableShrink } = ownerState;
@@ -71,39 +80,37 @@ const CircularProgressRoot = styled('span', {
       styles[`color${capitalize(ownerState.color)}`],
     ];
   },
-})(({ theme }) => ({
-  display: 'inline-block',
-  variants: [
-    {
-      props: {
-        variant: 'determinate',
-      },
-      style: {
-        transition: theme.transitions.create('transform'),
-      },
-    },
-    {
-      props: {
-        variant: 'indeterminate',
-      },
-      style:
-        // For Styled-components v4+: https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#12
-        rotateAnimation !== 'string'
-          ? rotateAnimation
-          : {
-              animation: `${circularRotateKeyframe} 1.4s linear infinite`,
-            },
-    },
-    ...Object.entries(theme.palette)
-      .filter(([, palette]) => palette.main)
-      .map(([color]) => ({
-        props: { color },
-        style: {
-          color: (theme.vars || theme).palette[color].main,
+})(
+  memoTheme(({ theme }) => ({
+    display: 'inline-block',
+    variants: [
+      {
+        props: {
+          variant: 'determinate',
         },
-      })),
-  ],
-}));
+        style: {
+          transition: theme.transitions.create('transform'),
+        },
+      },
+      {
+        props: {
+          variant: 'indeterminate',
+        },
+        style: rotateAnimation || {
+          animation: `${circularRotateKeyframe} 1.4s linear infinite`,
+        },
+      },
+      ...Object.entries(theme.palette)
+        .filter(([, palette]) => palette && palette.main)
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            color: (theme.vars || theme).palette[color].main,
+          },
+        })),
+    ],
+  })),
+);
 
 const CircularProgressSVG = styled('svg', {
   name: 'MuiCircularProgress',
@@ -125,40 +132,39 @@ const CircularProgressCircle = styled('circle', {
       ownerState.disableShrink && styles.circleDisableShrink,
     ];
   },
-})(({ theme }) => ({
-  stroke: 'currentColor',
-  variants: [
-    {
-      props: {
-        variant: 'determinate',
+})(
+  memoTheme(({ theme }) => ({
+    stroke: 'currentColor',
+    variants: [
+      {
+        props: {
+          variant: 'determinate',
+        },
+        style: {
+          transition: theme.transitions.create('stroke-dashoffset'),
+        },
       },
-      style: {
-        transition: theme.transitions.create('stroke-dashoffset'),
+      {
+        props: {
+          variant: 'indeterminate',
+        },
+        style: {
+          // Some default value that looks fine waiting for the animation to kicks in.
+          strokeDasharray: '80px, 200px',
+          strokeDashoffset: 0, // Add the unit to fix a Edge 16 and below bug.
+        },
       },
-    },
-    {
-      props: {
-        variant: 'indeterminate',
+      {
+        props: ({ ownerState }) =>
+          ownerState.variant === 'indeterminate' && !ownerState.disableShrink,
+        style: dashAnimation || {
+          // At runtime for Pigment CSS, `bufferAnimation` will be null and the generated keyframe will be used.
+          animation: `${circularDashKeyframe} 1.4s ease-in-out infinite`,
+        },
       },
-      style: {
-        // Some default value that looks fine waiting for the animation to kicks in.
-        strokeDasharray: '80px, 200px',
-        strokeDashoffset: 0, // Add the unit to fix a Edge 16 and below bug.
-      },
-    },
-    {
-      // For Styled-components v4+: https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#12
-      props: ({ ownerState }) =>
-        ownerState.variant === 'indeterminate' && !ownerState.disableShrink,
-      style:
-        typeof dashAnimation !== 'string'
-          ? dashAnimation
-          : {
-              animation: `${circularDashKeyframe} 1.4s ease-in-out infinite`,
-            },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 /**
  * ## ARIA
@@ -168,7 +174,7 @@ const CircularProgressCircle = styled('circle', {
  * attribute to `true` on that region until it has finished loading.
  */
 const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiCircularProgress' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiCircularProgress' });
   const {
     className,
     color = 'primary',

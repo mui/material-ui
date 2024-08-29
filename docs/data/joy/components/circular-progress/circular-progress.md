@@ -9,7 +9,7 @@ githubLabel: 'component: CircularProgress'
 
 <p class="description">The Circular Progress component showcases the duration of a process or an indefinite wait period.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 

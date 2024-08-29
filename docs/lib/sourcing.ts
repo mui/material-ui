@@ -40,11 +40,10 @@ const ALLOWED_TAGS = [
   // Product tags
   'Material UI',
   'Base UI',
+  'Pigment CSS',
   'Joy UI',
   'MUI X',
-  'MUI System',
   'Toolpad',
-  'Connect',
 ];
 
 export const getAllBlogPosts = () => {

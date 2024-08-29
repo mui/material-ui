@@ -5,7 +5,7 @@
 ## Getting started
 
 Material UI for Figma consists of representations of the library's React components in Figma so designers and developers can communicate and iterate more efficiently.
-The kit includes:
+This Design Kit includes:
 
 - components with the same design as Material UI
 - additional components and features not covered by Material Design
@@ -24,7 +24,11 @@ The Material UI design kit is available in the [community (free) version](https
 ### Installing the full version
 
 Start by extracting the `.zip` archive which contains the `.fig` files.
-Then you can either follow [Figma's import guide](https://help.figma.com/hc/en-us/articles/360041003114-Import-files-into-Figma) or [add it to your team library](https://help.figma.com/hc/en-us/articles/360041051154-Getting-Started-with-Team-Library).
+Then you can either follow [Figma's import guide](https://help.figma.com/hc/en-us/articles/360041003114-Import-files-to-the-file-browser) or [add it to your team library](https://help.figma.com/hc/en-us/articles/360041051154-Guide-to-libraries-in-Figma).
+
+### Changelog
+
+Visit [the Releases tab on GitHub](https://github.com/mui/mui-design-kits/releases?q=figma&expanded=true) to keep track of new design kit versions.
 
 ## Theme
 
@@ -58,7 +62,7 @@ The design kit uses Figma's local variables to let you toggle the variable mode 
 
 ### Editing the main components
 
-You can use the [Similayer](https://www.figma.com/community/plugin/735733267883397781/Similayer) plugin to select multiple components at once that share some property.
+You can use the [Similayer](https://www.figma.com/community/plugin/735733267883397781/similayer) plugin to select multiple components at once that share some property.
 
 <iframe width="100%" height="490" src="https://www.youtube.com/embed/eHBk0FbS0P8?si=QbOiMU2F1yvGB6s8" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
 
@@ -77,10 +81,10 @@ The video below shows how to add new columns by copying cells directly on the ma
 
 <iframe width="100%" height="490" src="https://www.youtube.com/embed/s_n3LHm1daI?si=_QbXvtYPkc8EBd5d" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
 
-## Code sync
+## Code sync (beta)
 
-You can export theme tokens and component customizations to code using [the Connect plugin for Figma](/material-ui/design-resources/connect/).
-Material UI for Figma has been built to be as close to the React components as possible, making it for a fluid integration with code.
+You can export theme tokens and component customizations to code using [the Sync plugin for Figma](/material-ui/design-resources/material-ui-sync/).
+The Design Kit has been built to be as close to the React components as possible, making it for a fluid integration with code.
 
 Learn more about the Material UI theme structure by visiting the [Theming](https://mui.com/material-ui/customization/theming/) and [Default theme viewer](https://mui.com/material-ui/customization/theming/) pages.
 
@@ -91,4 +95,8 @@ If you need to replace a single component that's been updated, there are a coupl
 
 1. Add the new version of the design kit as a library and use [the new Figma library swap feature](https://www.youtube.com/watch?v=GQ2jztKpxLk). The components must have the same names in both libraries.
 2. Observe the new component and re-apply the changes to the existing projects. This is the recommended approach when you need to update multiple projects.
-3. Copy and paste the new component into your existing project, give it a different temporary name, then re-link tokens to the new component. When using [Select Similar plugins](https://www.figma.com/community/plugin/792767780551514994/Select-Similar) this shouldn't take more than five minutes. Then you can remove the old component and update the new component name.
+3. Copy and paste the new component into your existing project, give it a different temporary name, then re-link tokens to the new component. When using [Select Similar plugins](https://www.figma.com/community/plugin/792767780551514994/select-similar) this shouldn't take more than five minutes. Then you can remove the old component and update the new component name.
+
+## Feedback and bug reports
+
+If you've got any feedback, we'd love to [hear from you](https://github.com/mui/mui-design-kits/discussions/84).

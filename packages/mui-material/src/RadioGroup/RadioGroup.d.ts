@@ -36,4 +36,4 @@ export interface RadioGroupProps extends Omit<FormGroupProps, 'onChange'> {
  * - [RadioGroup API](https://mui.com/material-ui/api/radio-group/)
  * - inherits [FormGroup API](https://mui.com/material-ui/api/form-group/)
  */
-export default function RadioGroup(props: RadioGroupProps): JSX.Element;
+export default function RadioGroup(props: RadioGroupProps): React.JSX.Element;

@@ -236,7 +236,7 @@ export default function MaterialUIComponents() {
               </TableCell>
               <TableCell>
                 {component.materialUI &&
-                component.materialUI.indexOf('/material-ui') === 0 ? (
+                component.materialUI.startsWith('/material-ui') ? (
                   <Link
                     variant="body2"
                     data-no-markdown-link="true"
@@ -245,7 +245,7 @@ export default function MaterialUIComponents() {
                     Native support
                   </Link>
                 ) : null}
-                {component.materialUI && component.materialUI.indexOf('/x') === 0 ? (
+                {component.materialUI && component.materialUI.startsWith('/x') ? (
                   <Link
                     variant="body2"
                     data-no-markdown-link="true"

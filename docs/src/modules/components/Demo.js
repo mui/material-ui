@@ -1,28 +1,34 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import copy from 'clipboard-copy';
 import { useRouter } from 'next/router';
 import { debounce } from '@mui/material/utils';
 import { alpha, styled } from '@mui/material/styles';
 import { styled as joyStyled } from '@mui/joy/styles';
+import { Tabs } from '@mui/base/Tabs';
+import { TabPanel } from '@mui/base/TabPanel';
 import { unstable_useId as useId } from '@mui/utils';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import NoSsr from '@mui/material/NoSsr';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { CodeTab, CodeTabList } from '@mui/docs/HighlightedCodeWithTabs';
+import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
+import LibraryAddCheckRoundedIcon from '@mui/icons-material/LibraryAddCheckRounded';
 import DemoSandbox from 'docs/src/modules/components/DemoSandbox';
 import ReactRunner from 'docs/src/modules/components/ReactRunner';
 import DemoEditor from 'docs/src/modules/components/DemoEditor';
 import DemoEditorError from 'docs/src/modules/components/DemoEditorError';
-import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { useCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
 import { CODE_VARIANTS, CODE_STYLING } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
-import { BrandingProvider, blue, blueDark, grey } from '@mui/docs/branding';
 import DemoToolbarRoot from 'docs/src/modules/components/DemoToolbarRoot';
+import { AdCarbonInline } from '@mui/docs/Ad';
+import { BrandingProvider, blue, blueDark, grey } from '@mui/docs/branding';
 
 /**
  * Removes leading spaces (indentation) present in the `.tsx` previews
@@ -39,7 +45,7 @@ function DemoToolbarFallback() {
   const t = useTranslate();
 
   // Sync with styles from DemoToolbar, we can't import the styles
-  return <Box sx={{ height: 40 }} aria-busy aria-label={t('demoToolbarLabel')} role="toolbar" />;
+  return <Box sx={{ height: 42 }} aria-busy aria-label={t('demoToolbarLabel')} role="toolbar" />;
 }
 
 function getDemoName(location) {
@@ -68,24 +74,31 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
     }
 
     let codeOptions = {};
-
     if (codeStyling === CODE_STYLING.SYSTEM) {
       if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
         codeOptions = {
           codeVariant: CODE_VARIANTS.TS,
           githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
           raw: demo.rawTS,
-          Component: demo.tsx,
+          module: demo.moduleTS,
+          Component: demo.tsx ?? null,
           sourceLanguage: 'tsx',
         };
+        if (demo.relativeModules) {
+          codeOptions.relativeModules = demo.relativeModules[CODE_VARIANTS.TS];
+        }
       } else {
         codeOptions = {
           codeVariant: CODE_VARIANTS.JS,
           githubLocation,
           raw: demo.raw,
+          module: demo.module,
           Component: demo.js,
           sourceLanguage: 'jsx',
         };
+        if (demo.relativeModules) {
+          codeOptions.relativeModules = demo.relativeModules[CODE_VARIANTS.JS];
+        }
       }
     } else if (codeStyling === CODE_STYLING.TAILWIND) {
       if (codeVariant === CODE_VARIANTS.TS && demo.rawTailwindTS) {
@@ -93,6 +106,7 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
           codeVariant: CODE_VARIANTS.TS,
           githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/tailwind/index.tsx'),
           raw: demo.rawTailwindTS,
+          module: demo.moduleTS,
           Component: demo.tsxTailwind,
           sourceLanguage: 'tsx',
         };
@@ -101,6 +115,7 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
           codeVariant: CODE_VARIANTS.JS,
           githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/tailwind/index.js'),
           raw: demo.rawTailwind ?? demo.raw,
+          module: demo.module,
           Component: demo.jsTailwind ?? demo.js,
           sourceLanguage: 'jsx',
         };
@@ -111,6 +126,7 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
           codeVariant: CODE_VARIANTS.TS,
           githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/css/index.tsx'),
           raw: demo.rawCSSTS,
+          module: demo.moduleTS,
           Component: demo.tsxCSS,
           sourceLanguage: 'tsx',
         };
@@ -119,6 +135,7 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
           codeVariant: CODE_VARIANTS.JS,
           githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/css/index.js'),
           raw: demo.rawCSS ?? demo.raw,
+          module: demo.module,
           Component: demo.jsCSS ?? demo.js,
           sourceLanguage: 'jsx',
         };
@@ -195,68 +212,119 @@ const Root = styled('div')(({ theme }) => ({
 
 const DemoRootMaterial = styled('div', {
   shouldForwardProp: (prop) => prop !== 'hideToolbar' && prop !== 'bg',
-})(({ theme, hideToolbar, bg }) => ({
+})(({ theme }) => ({
   position: 'relative',
   margin: 'auto',
   display: 'flex',
   justifyContent: 'center',
-  [theme.breakpoints.up('sm')]: {
-    borderRadius: hideToolbar ? 12 : '12px 12px 0 0',
-    ...(bg === 'outlined' && {
-      borderLeftWidth: 1,
-      borderRightWidth: 1,
-    }),
-    /* Make no difference between the demo and the markdown. */
-    ...(bg === 'inline' && {
-      padding: theme.spacing(0),
-    }),
-    ...(bg === 'gradient' && {
-      padding: theme.spacing(12, 8),
-      borderLeftWidth: 1,
-      borderRightWidth: 1,
-    }),
-  },
-  /* Isolate the demo with an outline. */
-  ...(bg === 'outlined' && {
-    padding: theme.spacing(3),
-    backgroundColor: (theme.vars || theme).palette.background.paper,
-    border: `1px solid ${(theme.vars || theme).palette.divider}`,
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    ...theme.applyDarkStyles({
-      backgroundColor: alpha(theme.palette.primaryDark[700], 0.1),
-    }),
-  }),
-  /* Similar to the outlined one but without padding. Ideal for playground demos. */
-  ...(bg === 'playground' && {
-    backgroundColor: (theme.vars || theme).palette.background.paper,
-    border: `1px solid ${(theme.vars || theme).palette.divider}`,
-    overflow: 'auto',
-  }),
-  /* Prepare the background to display an inner elevation. */
-  ...(bg === true && {
-    padding: theme.spacing(3),
-    backgroundColor: alpha((theme.vars || theme).palette.grey[50], 0.5),
-    border: `1px solid ${(theme.vars || theme).palette.divider}`,
-    ...theme.applyDarkStyles({
-      backgroundColor: alpha((theme.vars || theme).palette.primaryDark[700], 0.4),
-    }),
-  }),
-  /* Mostly meant for introduction demos. */
-  ...(bg === 'gradient' && {
-    overflow: 'auto',
-    padding: theme.spacing(4, 2),
-    border: `1px solid ${(theme.vars || theme).palette.divider}`,
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    backgroundClip: 'padding-box',
-    backgroundColor: alpha(theme.palette.primary[50], 0.2),
-    backgroundImage: `radial-gradient(120% 140% at 50% 10%, transparent 40%, ${alpha((theme.vars || theme).palette.primary[100], 0.2)} 70%)`,
-    ...theme.applyDarkStyles({
-      backgroundColor: (theme.vars || theme).palette.primaryDark[900],
-      backgroundImage: `radial-gradient(120% 140% at 50% 10%, transparent 30%, ${alpha((theme.vars || theme).palette.primary[900], 0.3)} 80%)`,
-    }),
-  }),
+  variants: [
+    {
+      props: ({ hideToolbar }) => hideToolbar,
+      style: {
+        [theme.breakpoints.up('sm')]: {
+          borderRadius: 12,
+        },
+      },
+    },
+    {
+      props: ({ hideToolbar }) => !hideToolbar,
+      style: {
+        [theme.breakpoints.up('sm')]: {
+          borderRadius: '12px 12px 0 0',
+        },
+      },
+    },
+    {
+      props: {
+        bg: 'outlined',
+      },
+      style: {
+        [theme.breakpoints.up('sm')]: {
+          borderLeftWidth: 1,
+          borderRightWidth: 1,
+        },
+      },
+    },
+    {
+      props: {
+        bg: 'inline',
+      },
+      style: {
+        [theme.breakpoints.up('sm')]: {
+          padding: theme.spacing(0),
+        },
+      },
+    },
+    {
+      props: {
+        bg: 'gradient',
+      },
+      style: {
+        [theme.breakpoints.up('sm')]: {
+          padding: theme.spacing(12, 8),
+          borderLeftWidth: 1,
+          borderRightWidth: 1,
+        },
+      },
+    },
+    {
+      props: {
+        bg: 'outlined',
+      },
+      style: {
+        padding: theme.spacing(3),
+        backgroundColor: (theme.vars || theme).palette.background.paper,
+        border: `1px solid ${(theme.vars || theme).palette.divider}`,
+        borderLeftWidth: 0,
+        borderRightWidth: 0,
+        ...theme.applyDarkStyles({
+          backgroundColor: alpha(theme.palette.primaryDark[700], 0.1),
+        }),
+      },
+    },
+    {
+      props: {
+        bg: 'playground',
+      },
+      style: {
+        backgroundColor: (theme.vars || theme).palette.background.paper,
+        border: `1px solid ${(theme.vars || theme).palette.divider}`,
+        overflow: 'auto',
+      },
+    },
+    {
+      props: {
+        bg: true,
+      },
+      style: {
+        padding: theme.spacing(3),
+        backgroundColor: alpha(theme.palette.grey[50], 0.5),
+        border: `1px solid ${(theme.vars || theme).palette.divider}`,
+        ...theme.applyDarkStyles({
+          backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+        }),
+      },
+    },
+    {
+      props: {
+        bg: 'gradient',
+      },
+      style: {
+        overflow: 'auto',
+        padding: theme.spacing(4, 2),
+        border: `1px solid ${(theme.vars || theme).palette.divider}`,
+        borderLeftWidth: 0,
+        borderRightWidth: 0,
+        backgroundClip: 'padding-box',
+        backgroundColor: alpha(theme.palette.primary[50], 0.2),
+        backgroundImage: `radial-gradient(120% 140% at 50% 10%, transparent 40%, ${alpha(theme.palette.primary[100], 0.2)} 70%)`,
+        ...theme.applyDarkStyles({
+          backgroundColor: (theme.vars || theme).palette.primaryDark[900],
+          backgroundImage: `radial-gradient(120% 140% at 50% 10%, transparent 30%, ${alpha(theme.palette.primary[900], 0.3)} 80%)`,
+        }),
+      },
+    },
+  ],
 }));
 
 const DemoRootJoy = joyStyled('div', {
@@ -329,12 +397,12 @@ const DemoRootJoy = joyStyled('div', {
 const DemoCodeViewer = styled(HighlightedCode)(() => ({
   '& pre': {
     margin: 0,
+    marginTop: -1,
     maxHeight: 'min(68vh, 1000px)',
     maxWidth: 'initial',
     borderRadius: 0,
-  },
-  '& .MuiCode-copy': {
-    display: 'none',
+    borderBottomLeftRadius: 12,
+    borderBottomRightRadius: 12,
   },
 }));
 
@@ -351,6 +419,20 @@ const InitialFocus = styled(IconButton)(({ theme }) => ({
   height: theme.spacing(4),
   pointerEvents: 'none',
 }));
+
+const selectionOverride = (theme) => ({
+  cursor: 'pointer',
+  '&.base--selected': {
+    color: (theme.vars || theme).palette.primary[700],
+    backgroundColor: (theme.vars || theme).palette.primary[50],
+    borderColor: (theme.vars || theme).palette.primary[200],
+    ...theme.applyDarkStyles({
+      color: (theme.vars || theme).palette.primary[200],
+      backgroundColor: alpha(theme.palette.primary[900], 0.4),
+      borderColor: (theme.vars || theme).palette.primary[800],
+    }),
+  },
+});
 
 export default function Demo(props) {
   const { demo, demoOptions, disableAd, githubLocation, mode } = props;
@@ -500,6 +582,47 @@ export default function Demo(props) {
     liveDemoActive,
   });
 
+  const [activeTab, setActiveTab] = React.useState(0);
+  const handleTabChange = (event, newValue) => {
+    setActiveTab(newValue);
+  };
+  const ownerState = { mounted: true, contained: true };
+
+  const tabs = React.useMemo(() => {
+    if (!demoData.relativeModules) {
+      return [{ module: demoData.module, raw: demoData.raw }];
+    }
+    let demoModule = demoData.module;
+    if (codeVariant === CODE_VARIANTS.TS && demo.moduleTS) {
+      demoModule =
+        demo.moduleTS === demo.module ? demoData.module.replace(/\.js$/, '.tsx') : demo.moduleTS;
+    }
+
+    return [{ module: demoModule, raw: demoData.raw }, ...demoData.relativeModules];
+  }, [
+    codeVariant,
+    demo.moduleTS,
+    demo.module,
+    demoData.module,
+    demoData.raw,
+    demoData.relativeModules,
+  ]);
+
+  const [copiedContent, setCopiedContent] = React.useState(false);
+
+  const handleCopyClick = async () => {
+    try {
+      const activeTabData = tabs[activeTab];
+      await copy(activeTabData.raw);
+      setCopiedContent(true);
+      setTimeout(() => {
+        setCopiedContent(false);
+      }, 1000);
+    } catch (error) {
+      console.error('Code content not copied', error);
+    }
+  };
+
   return (
     <Root>
       <AnchorLink id={demoName} />
@@ -515,7 +638,7 @@ export default function Demo(props) {
           key={demoKey}
           style={demoSandboxedStyle}
           iframe={demoOptions.iframe}
-          productId={demoData.productId}
+          usesCssVarsTheme={demoData.productId === 'joy-ui'}
           name={demoName}
           onResetDemoClick={resetDemo}
         >
@@ -539,6 +662,10 @@ export default function Demo(props) {
                 <DemoToolbar
                   codeOpen={codeOpen}
                   codeVariant={codeVariant}
+                  copyIcon={
+                    copiedContent ? <LibraryAddCheckRoundedIcon /> : <ContentCopyRoundedIcon />
+                  }
+                  copyButtonOnClick={handleCopyClick}
                   hasNonSystemDemos={hasNonSystemDemos}
                   demo={demo}
                   demoData={demoData}
@@ -558,46 +685,72 @@ export default function Demo(props) {
               </React.Suspense>
             </NoSsr>
           </DemoToolbarRoot>
-          <Collapse in={openDemoSource} unmountOnExit timeout={150}>
-            {/* A limitation from https://github.com/nihgwu/react-runner,
+          <Tabs value={activeTab} onChange={handleTabChange}>
+            {demoData.relativeModules && openDemoSource && !editorCode.isPreview ? (
+              <CodeTabList ownerState={ownerState}>
+                {tabs.map((tab, index) => (
+                  <CodeTab
+                    sx={selectionOverride}
+                    ownerState={ownerState}
+                    key={tab.module}
+                    value={index}
+                  >
+                    {tab.module}
+                  </CodeTab>
+                ))}
+              </CodeTabList>
+            ) : null}
+            <Collapse in={openDemoSource} unmountOnExit timeout={150}>
+              {/* A limitation from https://github.com/nihgwu/react-runner,
                 we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
-            {demoOptions.disableLiveEdit ? (
-              <DemoCodeViewer
-                code={editorCode.value}
-                id={demoSourceId}
-                language={demoData.sourceLanguage}
-                copyButtonProps={{
-                  'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                  'data-ga-event-label': demo.gaLabel,
-                  'data-ga-event-action': 'copy-click',
-                }}
-              />
-            ) : (
-              <DemoEditor
-                // Mount a new text editor when the preview mode change to reset the undo/redo history.
-                key={editorCode.isPreview}
-                value={editorCode.value}
-                onChange={(value) => {
-                  setEditorCode({
-                    ...editorCode,
-                    value,
-                  });
-                }}
-                onFocus={() => {
-                  setLiveDemoActive(true);
-                }}
-                id={demoSourceId}
-                language={demoData.sourceLanguage}
-                copyButtonProps={{
-                  'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                  'data-ga-event-label': demo.gaLabel,
-                  'data-ga-event-action': 'copy-click',
-                }}
-              >
-                <DemoEditorError>{debouncedError}</DemoEditorError>
-              </DemoEditor>
-            )}
-          </Collapse>
+              {tabs.map((tab, index) => (
+                <TabPanel value={index} index={index} key={index}>
+                  {demoOptions.disableLiveEdit || index > 0 ? (
+                    <DemoCodeViewer
+                      key={index}
+                      code={tab.raw}
+                      id={demoSourceId}
+                      language={demoData.sourceLanguage}
+                      copyButtonProps={{
+                        'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                        'data-ga-event-label': demo.gaLabel,
+                        'data-ga-event-action': 'copy-click',
+                      }}
+                      sx={{
+                        '& .MuiCode-copy': {
+                          display: 'none',
+                        },
+                      }}
+                    />
+                  ) : (
+                    <DemoEditor
+                      // Mount a new text editor when the preview mode change to reset the undo/redo history.
+                      key={editorCode.isPreview}
+                      value={editorCode.value}
+                      onChange={(value) => {
+                        setEditorCode({
+                          ...editorCode,
+                          value,
+                        });
+                      }}
+                      onFocus={() => {
+                        setLiveDemoActive(true);
+                      }}
+                      id={demoSourceId}
+                      language={demoData.sourceLanguage}
+                      copyButtonProps={{
+                        'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                        'data-ga-event-label': demo.gaLabel,
+                        'data-ga-event-action': 'copy-click',
+                      }}
+                    >
+                      <DemoEditorError>{debouncedError}</DemoEditorError>
+                    </DemoEditor>
+                  )}
+                </TabPanel>
+              ))}
+            </Collapse>
+          </Tabs>
           {adVisibility ? <AdCarbonInline /> : null}
         </Wrapper>
       )}

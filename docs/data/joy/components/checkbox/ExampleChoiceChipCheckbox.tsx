@@ -10,7 +10,7 @@ export default function ExampleChoiceChipCheckbox() {
   const [value, setValue] = React.useState<string[]>([]);
   return (
     <Sheet variant="outlined" sx={{ width: 360, p: 2, borderRadius: 'sm' }}>
-      <Typography id="rank" level="body-sm" fontWeight="lg" sx={{ mb: 1.5 }}>
+      <Typography id="rank" level="body-sm" sx={{ fontWeight: 'lg', mb: 1.5 }}>
         Choose amenities
       </Typography>
       <div role="group" aria-labelledby="rank">

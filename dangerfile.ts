@@ -1,4 +1,3 @@
-// Inspired by React dangerfile
 // danger has to be the first thing required!
 import { danger, markdown } from 'danger';
 import { exec } from 'child_process';

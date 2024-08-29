@@ -145,7 +145,7 @@ describe('createTransitions', () => {
       zeroHeightDuration = getAutoHeightDuration(0.0001);
       expect(zeroHeightDuration).to.equal(46);
       zeroHeightDuration = getAutoHeightDuration(100000);
-      expect(zeroHeightDuration).to.equal(6685);
+      expect(zeroHeightDuration).to.equal(3000);
     });
   });
 });

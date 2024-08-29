@@ -10,7 +10,7 @@ githubLabel: 'component: number input'
 
 <p class="description">The Number Input component provides users with a field for integer values, and buttons to increment or decrement the value.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 

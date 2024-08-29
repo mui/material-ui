@@ -24,24 +24,19 @@ async function addLicense(packageData, exportFormat = 'legacy') {
  */
 `;
   await Promise.all(
-    [
-      `./index.${esmExtension}`,
-      `./legacy/index.${esmExtension}`,
-      `./modern/index.${esmExtension}`,
-      './node/index.js',
-      './umd/material-ui.development.js',
-      './umd/material-ui.production.min.js',
-    ].map(async (file) => {
-      try {
-        await prepend(path.resolve(buildPath, file), license);
-      } catch (err) {
-        if (err.code === 'ENOENT') {
-          console.log(`Skipped license for ${file}`);
-        } else {
-          throw err;
+    [`./index.${esmExtension}`, `./modern/index.${esmExtension}`, './node/index.js'].map(
+      async (file) => {
+        try {
+          await prepend(path.resolve(buildPath, file), license);
+        } catch (err) {
+          if (err.code === 'ENOENT') {
+            console.log(`Skipped license for ${file}`);
+          } else {
+            throw err;
+          }
         }
-      }
-    }),
+      },
+    ),
   );
 }
 

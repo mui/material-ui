@@ -27,12 +27,16 @@ So, it renders the "outlined" background variant.
 
 ## "hideToolbar": true
 
-{{"demo": "DemoInDocs.js", "hideToolbar": true}}
+{{"demo": "DemoInDocsNotEditable.js", "hideToolbar": true}}
 
 ## "hideToolbar": true, "bg": true
 
-{{"demo": "DemoInDocs.js", "hideToolbar": true, "bg": true}}
+{{"demo": "DemoInDocsNotEditable.js", "hideToolbar": true, "bg": true}}
 
 ## "hideToolbar": true, "bg": "inline"
 
-{{"demo": "DemoInDocs.js", "hideToolbar": true, "bg": "inline"}}
+{{"demo": "DemoInDocsNotEditable.js", "hideToolbar": true, "bg": "inline"}}
+
+## Multiple Tabs demo
+
+{{"demo": "DemoMultiTabs.js", "bg": "inline" }}

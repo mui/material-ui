@@ -1,3 +1,3 @@
 export default class MuiError {
-  constructor(message: string);
+  constructor(message: string, ...args: string[]);
 }

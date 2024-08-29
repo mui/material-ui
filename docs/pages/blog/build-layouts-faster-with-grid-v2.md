@@ -38,7 +38,7 @@ To get started right away, head over to the [Grid v2 migration guide](/material-
 
 ### 🚀 New features
 
-#### [Disable the scrollbar](/material-ui/react-grid2/#disable-the-scrollbar)
+#### [Disable the scrollbar](https://v5.mui.com/material-ui/react-grid2/#disable-the-scrollbar)
 
 A new prop called `disableEqualOverflow` solves the problem of an unwanted scrollbar appearing on small viewports.
 

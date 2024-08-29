@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import TimelineDot, { timelineDotClasses as classes } from '@mui/lab/TimelineDot';
 import describeConformance from '../../test/describeConformance';
 

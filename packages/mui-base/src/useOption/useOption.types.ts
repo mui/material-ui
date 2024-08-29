@@ -4,7 +4,7 @@ export interface SelectOption<Value> {
   value: Value;
   label: React.ReactNode;
   disabled?: boolean;
-  ref: React.RefObject<HTMLElement>;
+  ref: React.RefObject<HTMLElement | null>;
   id?: string;
 }
 

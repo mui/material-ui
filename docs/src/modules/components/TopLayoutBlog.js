@@ -14,7 +14,7 @@ import AppHeader from 'docs/src/layouts/AppHeader';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import ROUTES from 'docs/src/route';
@@ -120,6 +120,26 @@ export const authors = {
     name: 'David Cnoops',
     avatar: 'https://avatars.githubusercontent.com/u/28001064',
     github: 'DavidCnoops',
+  },
+  brijeshb42: {
+    name: 'Brijesh Bittu',
+    avatar: 'https://avatars.githubusercontent.com/u/717550?',
+    github: 'brijeshb42',
+  },
+  aarongarciah: {
+    name: 'Aarón García',
+    avatar: 'https://avatars.githubusercontent.com/u/7225802?',
+    github: 'aarongarciah',
+  },
+  zanivan: {
+    name: 'Victor Zanivan Monteiro',
+    avatar: 'https://avatars.githubusercontent.com/u/37222944?',
+    github: 'zanivan',
+  },
+  romgrk: {
+    name: 'Romain Gregoire',
+    avatar: 'https://avatars.githubusercontent.com/u/1423607',
+    github: 'romgrk',
   },
 };
 
@@ -375,9 +395,9 @@ export default function TopLayoutBlog(props) {
             {...(ROUTES.blog.startsWith('http') && {
               rel: 'nofollow',
             })}
-            color="primary"
             variant="body2"
             className={classes.back}
+            sx={{ color: 'primary' }}
           >
             <ChevronLeftRoundedIcon fontSize="small" sx={{ mr: 0.5 }} />
             {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
@@ -413,16 +433,15 @@ export default function TopLayoutBlog(props) {
                       }?s=${36 * 3} 3x`}
                     />
                     <div>
-                      <Typography variant="body2" fontWeight="500">
+                      <Typography variant="body2" sx={{ fontWeight: '500' }}>
                         {authors[author].name}
                       </Typography>
                       <Link
                         href={`https://github.com/${authors[author].github}`}
                         target="_blank"
                         rel="noopener"
-                        color="primary"
                         variant="body2"
-                        sx={{ fontWeight: 500 }}
+                        sx={{ color: 'primary', fontWeight: 500 }}
                       >
                         @{authors[author].github}
                       </Link>
