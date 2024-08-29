@@ -1,4 +1,3 @@
-'use client';
 export { Popper } from './Popper';
 export type {
   PopperPlacementType,

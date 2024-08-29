@@ -136,7 +136,7 @@ export interface TabsOwnProps {
     sx?: SxProps<Theme>;
   };
   /**
-   * Props applied to the [`TabScrollButton`](/material-ui/api/tab-scroll-button/) element.
+   * Props applied to the [`TabScrollButton`](https://mui.com/material-ui/api/tab-scroll-button/) element.
    * @default {}
    */
   TabScrollButtonProps?: Partial<TabScrollButtonProps>;

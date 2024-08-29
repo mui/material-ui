@@ -13,7 +13,7 @@ export type OpenReason = 'toggle' | 'focus' | 'mouseEnter';
 export interface SpeedDialSlots {
   /**
    * The component that renders the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default {}
    */
   transition?: React.JSXElementConstructor<
@@ -58,7 +58,7 @@ export interface SpeedDialProps
    */
   hidden?: boolean;
   /**
-   * Props applied to the [`Fab`](/material-ui/api/fab/) element.
+   * Props applied to the [`Fab`](https://mui.com/material-ui/api/fab/) element.
    * @default {}
    */
   FabProps?: Partial<FabProps>;
@@ -95,7 +95,7 @@ export interface SpeedDialProps
   sx?: SxProps<Theme>;
   /**
    * The component used for the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Zoom
    */
   TransitionComponent?: React.JSXElementConstructor<TransitionProps>;

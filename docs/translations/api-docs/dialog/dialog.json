@@ -29,14 +29,14 @@
     "open": { "description": "If <code>true</code>, the component is shown." },
     "PaperComponent": { "description": "The component used to render the body of the dialog." },
     "PaperProps": {
-      "description": "Props applied to the <a href=\"/material-ui/api/paper/\"><code>Paper</code></a> element."
+      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/paper/\"><code>Paper</code></a> element."
     },
     "scroll": { "description": "Determine the container for scrolling the dialog." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
     "TransitionComponent": {
-      "description": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
+      "description": "The component used for the transition. <a href=\"https://mui.com/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
     },
     "transitionDuration": {
       "description": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object."

@@ -92,14 +92,14 @@
     "nx_test_unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'packages-internal/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'"
   },
   "dependencies": {
-    "@googleapis/sheets": "^9.1.0",
+    "@googleapis/sheets": "^9.3.0",
     "@netlify/functions": "^2.8.1",
     "@slack/bolt": "^3.21.1",
     "execa": "^9.3.1",
     "google-auth-library": "^9.13.0"
   },
   "devDependencies": {
-    "@argos-ci/core": "^2.4.1",
+    "@argos-ci/core": "^2.5.0",
     "@babel/cli": "^7.24.8",
     "@babel/core": "^7.25.2",
     "@babel/node": "^7.25.0",
@@ -156,7 +156,7 @@
     "eslint-plugin-material-ui": "workspace:^",
     "eslint-plugin-mocha": "^10.5.0",
     "eslint-plugin-react": "^7.35.0",
-    "eslint-plugin-react-compiler": "0.0.0-experimental-9aef357-20240815",
+    "eslint-plugin-react-compiler": "0.0.0-experimental-3f2f4f0-20240826",
     "eslint-plugin-react-hooks": "^4.6.2",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
@@ -173,7 +173,7 @@
     "lodash": "^4.17.21",
     "markdownlint-cli2": "^0.13.0",
     "mocha": "^10.7.3",
-    "nx": "^19.6.0",
+    "nx": "^19.6.3",
     "nyc": "^17.0.0",
     "piscina": "^4.6.1",
     "postcss-styled-syntax": "^0.6.4",

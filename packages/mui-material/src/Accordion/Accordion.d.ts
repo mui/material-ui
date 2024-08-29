@@ -15,7 +15,7 @@ export interface AccordionSlots {
   heading?: React.ElementType;
   /**
    * The component that renders the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
    */
   transition?: React.JSXElementConstructor<
@@ -89,7 +89,7 @@ export type AccordionTypeMap<
       sx?: SxProps<Theme>;
       /**
        * The component used for the transition.
-       * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+       * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
        */
       TransitionComponent?: React.JSXElementConstructor<
         TransitionProps & { children?: React.ReactElement<unknown, any> }
