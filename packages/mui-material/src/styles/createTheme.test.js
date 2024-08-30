@@ -118,6 +118,52 @@ describe('createTheme', () => {
     );
   });
 
+  it('should work with `palette` and `colorSchemes`', () => {
+    const theme = createTheme({
+      palette: {
+        primary: {
+          main: '#27272a',
+        },
+        background: {
+          default: '#f5f5f5',
+        },
+      },
+      colorSchemes: {
+        dark: true,
+      },
+    });
+    expect(theme.palette.primary.main).to.equal('#27272a');
+    expect(theme.palette.background.default).to.equal('#f5f5f5');
+    expect(theme.colorSchemes.light.palette.primary.main).to.equal('#27272a');
+    expect(theme.colorSchemes.light.palette.background.default).to.equal('#f5f5f5');
+    expect(theme.colorSchemes.dark.palette.primary.main).to.equal(darkPalette.primary.main);
+    expect(theme.colorSchemes.dark.palette.background.default).to.equal(
+      darkPalette.background.default,
+    );
+  });
+
+  it('should work with `palette` and a custom `colorSchemes.dark`', () => {
+    const theme = createTheme({
+      palette: {
+        background: {
+          default: '#f5f5f5',
+        },
+      },
+      colorSchemes: {
+        dark: {
+          palette: {
+            background: {
+              default: 'red',
+            },
+          },
+        },
+      },
+    });
+    expect(theme.palette.background.default).to.equal('#f5f5f5');
+    expect(theme.colorSchemes.light.palette.background.default).to.equal('#f5f5f5');
+    expect(theme.colorSchemes.dark.palette.background.default).to.equal('red');
+  });
+
   describe('CSS variables', () => {
     it('should have default light with media selector if no `palette` and colorSchemes.dark is provided ', () => {
       const theme = createTheme({

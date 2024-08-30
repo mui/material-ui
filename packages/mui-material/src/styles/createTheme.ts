@@ -77,7 +77,7 @@ export default function createTheme(
       return createThemeNoVars(options as ThemeOptions, ...args);
     }
 
-    let paletteOptions;
+    let paletteOptions = palette;
     if (!('palette' in options)) {
       if (colorSchemesInput[defaultColorSchemeInput]) {
         if (colorSchemesInput[defaultColorSchemeInput] !== true) {
