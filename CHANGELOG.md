@@ -1,5 +1,43 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.0.1
+
+<!-- generated comparing v6.0.0..master -->
+
+_Aug 29, 2024_
+
+A big thanks to the 12 contributors who made this release possible. It contains bug fixes and documentation improvements.
+
+### `@mui/material@6.0.1`
+
+- Attach default light color scheme when enabling CSS theme variables (#43493) @siriwatknp
+- [Skeleton] Apply the wave animation to the correct element (#43474) @mnajdova
+
+### Docs
+
+- [material-ui][Dialog] Update confirmation dialog description (#43488) @Michael-Hutchinson
+- Add Material UI v6 is out! to the notifications (#43448) @oliviertassinari
+- [material-ui] Dark scroll bars in templates (#43483) @aarongarciah
+- [material-ui] Add TemplateFrame to templates (#43406) @zanivan
+- [table] Make the data grid blend in (#43489) @oliviertassinari
+
+### Core
+
+- [blog] Update Toolpad Studio marketing page links in the blogs (#43407) @prakhargupta1
+- [blog] Add missing social card to the blog post (#43465) @siriwatknp
+- [code-infra] Fix typing issues with `@mui-internal/api-docs-builder` (#43498) @Janpot
+- [code-infra] Fix nextjs build cache (#43467) @JCQuintas
+- Remove `'use client'` from index files and useAutocomplete reexport (#41956) @DiegoAndai
+- Replace relative links to absolute ones in JSDocs (#43472) @alexfauquette
+- Upgrade babel runtime (#43243) @Janpot
+- [docs-infra] Skip shadow DOM regression test (#43500) @aarongarciah
+- [docs-infra] Fix use of process.env.DEPLOY_ENV (#43490) @oliviertassinari
+- [docs-infra] Add comment about removing optimizeFonts Next.js config (#43469) @aarongarciah
+- [examples] Use `latest` on all Material UI dependencies (#43494) @mnajdova
+- [infra] fix workflow path (#43464) @michelengelen
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @DiegoAndai, @Janpot, @JCQuintas, @Michael-Hutchinson, @michelengelen, @mnajdova, @oliviertassinari, @prakhargupta1, @siriwatknp, @zanivan
+
 ## 6.0.0
 
 <!-- generated comparing v6.0.0-rc.0..master -->
