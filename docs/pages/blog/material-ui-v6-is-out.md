@@ -38,7 +38,7 @@ It comes with new features, improvements, and an experimental integration for st
   - [Built-in `sx` prop support](#built-in-sx-prop-support)
 - [React 19 support](#react-19-support)
 - [Full-stack apps via Toolpad Core](#full-stack-apps-via-toolpad-core)
-- [What's next](#get-started-with-material-ui-v6)
+- [Get started with Material UI v6](#get-started-with-material-ui-v6)
 
 ## New features
 
