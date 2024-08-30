@@ -1,12 +1,12 @@
-import { SxProps } from '@mui/system';
 import * as React from 'react';
+import { SxProps } from '@mui/system';
 import { BackdropProps, InternalStandardProps as StandardProps } from '..';
-import Modal, { ModalOwnerState, ModalProps } from '../Modal';
 import Paper, { PaperProps } from '../Paper';
+import Modal, { ModalOwnerState, ModalProps } from '../Modal';
 import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { PopoverClasses } from './popoverClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface PopoverSlots {
   root?: React.ElementType;
