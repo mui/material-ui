@@ -1,6 +1,5 @@
 /.git
 /.yarn
-/benchmark/**/dist
 /coverage
 /docs/export
 /docs/pages/playground/
@@ -29,6 +28,7 @@
 /tmp
 .next
 build
+dist
 node_modules
 .nyc_output
 pnpm-lock.yaml

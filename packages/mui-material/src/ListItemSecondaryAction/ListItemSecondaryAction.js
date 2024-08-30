@@ -44,7 +44,7 @@ const ListItemSecondaryActionRoot = styled('div', {
 /**
  * Must be used as the last child of ListItem to function properly.
  *
- * @deprecated Use the `secondaryAction` prop in the `ListItem` component instead. This component will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+ * @deprecated Use the `secondaryAction` prop in the `ListItem` component instead. This component will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
  */
 const ListItemSecondaryAction = React.forwardRef(function ListItemSecondaryAction(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiListItemSecondaryAction' });

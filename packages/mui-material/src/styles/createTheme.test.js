@@ -57,6 +57,17 @@ describe('createTheme', () => {
   });
 
   describe('CSS variables', () => {
+    it('should have default light with media selector if no `palette` and colorSchemes.dark is provided ', () => {
+      const theme = createTheme({
+        cssVariables: true,
+        colorSchemes: { dark: true },
+      });
+      expect(theme.defaultColorScheme).to.equal('light');
+      expect(theme.colorSchemeSelector).to.equal('media');
+      expect(theme.colorSchemes.light).not.to.equal(undefined);
+      expect(theme.colorSchemes.dark).not.to.equal(undefined);
+    });
+
     it('should have a light as a default colorScheme if only `palette` is provided', () => {
       const theme = createTheme({
         cssVariables: true,

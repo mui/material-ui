@@ -198,9 +198,9 @@ We provide codemods to migrate your codebase from using `theme.palette.mode` to 
 You can run each codemod below or all of them at once.
 
 ```bash
-npx @mui/codemod@next v6.0.0/styled <path/to/folder-or-file>
-npx @mui/codemod@next v6.0.0/sx-prop <path/to/folder-or-file>
-npx @mui/codemod@next v6.0.0/theme-v6 <path/to/theme-file>
+npx @mui/codemod@latest v6.0.0/styled <path/to/folder-or-file>
+npx @mui/codemod@latest v6.0.0/sx-prop <path/to/folder-or-file>
+npx @mui/codemod@latest v6.0.0/theme-v6 <path/to/theme-file>
 ```
 
 > Run `v6.0.0/theme-v6` against the file that contains the custom `styleOverrides`. Ignore this codemod if you don't have a custom theme.

@@ -23,7 +23,7 @@ export type AvatarGroupSlotsAndSlotProps = CreateSlotsAndSlotProps<
   AvatarGroupSlots,
   {
     /**
-     * @deprecated use `slotProps.surplus` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+     * @deprecated use `slotProps.surplus` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
      *  */
     additionalAvatar: React.ComponentPropsWithRef<typeof Avatar> &
       AvatarGroupComponentsPropsOverrides;
@@ -54,7 +54,7 @@ export interface AvatarGroupOwnProps extends AvatarGroupSlotsAndSlotProps {
    *
    * This prop is an alias for the `slotProps` prop.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps?: {
     additionalAvatar?: React.ComponentPropsWithRef<typeof Avatar> &
@@ -107,11 +107,11 @@ export interface AvatarGroupTypeMap<
  *
  * Demos:
  *
- * - [Avatar](https://next.mui.com/material-ui/react-avatar/)
+ * - [Avatar](https://mui.com/material-ui/react-avatar/)
  *
  * API:
  *
- * - [AvatarGroup API](https://next.mui.com/material-ui/api/avatar-group/)
+ * - [AvatarGroup API](https://mui.com/material-ui/api/avatar-group/)
  */
 declare const AvatarGroup: OverridableComponent<AvatarGroupTypeMap>;
 

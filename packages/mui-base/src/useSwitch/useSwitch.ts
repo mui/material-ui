@@ -12,11 +12,11 @@ import { UseSwitchParameters, UseSwitchReturnValue } from './useSwitch.types';
  *
  * Demos:
  *
- * - [Switch](https://next.mui.com/base-ui/react-switch/#hook)
+ * - [Switch](https://mui.com/base-ui/react-switch/#hook)
  *
  * API:
  *
- * - [useSwitch API](https://next.mui.com/base-ui/react-switch/hooks-api/#use-switch)
+ * - [useSwitch API](https://mui.com/base-ui/react-switch/hooks-api/#use-switch)
  */
 export function useSwitch(props: UseSwitchParameters): UseSwitchReturnValue {
   const {

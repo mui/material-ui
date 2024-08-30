@@ -199,7 +199,7 @@ Select.propTypes /* remove-proptypes */ = {
    */
   inputProps: PropTypes.object,
   /**
-   * See [OutlinedInput#label](/material-ui/api/outlined-input/#props)
+   * See [OutlinedInput#label](https://mui.com/material-ui/api/outlined-input/#props)
    */
   label: PropTypes.node,
   /**
@@ -208,7 +208,7 @@ Select.propTypes /* remove-proptypes */ = {
    */
   labelId: PropTypes.string,
   /**
-   * Props applied to the [`Menu`](/material-ui/api/menu/) element.
+   * Props applied to the [`Menu`](https://mui.com/material-ui/api/menu/) element.
    */
   MenuProps: PropTypes.object,
   /**

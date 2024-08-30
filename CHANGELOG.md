@@ -1,5 +1,89 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.0.1
+
+<!-- generated comparing v6.0.0..master -->
+
+_Aug 29, 2024_
+
+A big thanks to the 12 contributors who made this release possible. It contains bug fixes and documentation improvements.
+
+### `@mui/material@6.0.1`
+
+- Attach default light color scheme when enabling CSS theme variables (#43493) @siriwatknp
+- [Skeleton] Apply the wave animation to the correct element (#43474) @mnajdova
+
+### Docs
+
+- [material-ui][Dialog] Update confirmation dialog description (#43488) @Michael-Hutchinson
+- Add Material UI v6 is out! to the notifications (#43448) @oliviertassinari
+- [material-ui] Dark scroll bars in templates (#43483) @aarongarciah
+- [material-ui] Add TemplateFrame to templates (#43406) @zanivan
+- [table] Make the data grid blend in (#43489) @oliviertassinari
+
+### Core
+
+- [blog] Update Toolpad Studio marketing page links in the blogs (#43407) @prakhargupta1
+- [blog] Add missing social card to the blog post (#43465) @siriwatknp
+- [code-infra] Fix typing issues with `@mui-internal/api-docs-builder` (#43498) @Janpot
+- [code-infra] Fix nextjs build cache (#43467) @JCQuintas
+- Remove `'use client'` from index files and useAutocomplete reexport (#41956) @DiegoAndai
+- Replace relative links to absolute ones in JSDocs (#43472) @alexfauquette
+- Upgrade babel runtime (#43243) @Janpot
+- [docs-infra] Skip shadow DOM regression test (#43500) @aarongarciah
+- [docs-infra] Fix use of process.env.DEPLOY_ENV (#43490) @oliviertassinari
+- [docs-infra] Add comment about removing optimizeFonts Next.js config (#43469) @aarongarciah
+- [examples] Use `latest` on all Material UI dependencies (#43494) @mnajdova
+- [infra] fix workflow path (#43464) @michelengelen
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @DiegoAndai, @Janpot, @JCQuintas, @Michael-Hutchinson, @michelengelen, @mnajdova, @oliviertassinari, @prakhargupta1, @siriwatknp, @zanivan
+
+## 6.0.0
+
+<!-- generated comparing v6.0.0-rc.0..master -->
+
+_Aug 27, 2024_
+
+We are excited to announce the stable release of Material-UI v6 🎉, check out [the blog post](https://mui.com/blog/material-ui-v6-is-out/) to see all the updates.
+
+### `@mui/material@6.0.0`
+
+- Change React.ReactElement<any,any> type from any to unknown (#43358) @sai6855
+- [Pagination] Update `getItemAriaLabel` page param type (#43399) @sydneyjodon-wk
+- [Unstable_TrapFocus] Fix `getTabbable` function return type (#42237) @KalmarLorand
+
+### `@mui/lab@6.0.0-beta.8`
+
+- [button] Add missing customize points for span (#43436) @oliviertassinari
+
+### Docs
+
+- Fix broken links (#43144) @DiegoAndai
+- Updated mui-x roadmap links with the new project URL (#43444) @michelengelen
+- Update pnpm order, move to second (#42712) @ahmadnadeem6236
+- Fix CSS theme variables section (#43439) @siriwatknp
+- Add two Toolpad Core components to Material UI sidebar (#43391) @prakhargupta1
+- Fix licensingModel -> licenseModel @oliviertassinari
+- Fix Stack Overflow issue canned response @oliviertassinari
+- Avoid referencing MUI Core @oliviertassinari
+- Fix description of eslint-plugin-material-ui @oliviertassinari
+- [docs-infra] Polish reportBrokenLinks.js to support Base UI @oliviertassinari
+- [material-ui] Clarify RTL language support in localization guide (#41784) @bahmanworld
+- [material-ui] Refine templates theme selector (#43396) @zanivan
+
+### Core
+
+- Prepare for v6 stable release (#43454) @siriwatknp
+- [blog] Polish Upcoming changes to MUI X pricing in 2024 (#43438) @oliviertassinari
+- [blog] Add Material UI v6 stable release (#41932) @siriwatknp
+- [ci] Fix the release:changelog cmd (#43451) @mnajdova
+- [core] Allow `^6.0.0` for `@mui/` dependencies in `@mui/docs` (#43445) @LukasTy
+- [code-infra] Babel plugin to fully resolve imported paths (#43294) @Janpot
+- [infra] Add closing message workflow (#43450) @michelengelen
+- [website] Make beta chip consistent for Toolpad (#43392) @prakhargupta1
+
+All contributors of this release in alphabetical order: @ahmadnadeem6236, @bahmanworld, @DiegoAndai, @Janpot, @KalmarLorand, @LukasTy, @michelengelen, @mnajdova, @oliviertassinari, @prakhargupta1, @sai6855, @siriwatknp, @sydneyjodon-wk, @zanivan
+
 ## 6.0.0-rc.0
 
 <!-- generated comparing v6.0.0-beta.6..next -->
