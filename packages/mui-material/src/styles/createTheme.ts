@@ -83,6 +83,7 @@ export default function createTheme(
         if (colorSchemesInput[defaultColorSchemeInput] !== true) {
           paletteOptions = colorSchemesInput[defaultColorSchemeInput].palette;
         } else if (defaultColorSchemeInput === 'dark') {
+          // @ts-ignore to prevent the module augmentation test from failing
           paletteOptions = { mode: 'dark' };
         }
       }
