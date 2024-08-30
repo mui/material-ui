@@ -21,7 +21,7 @@ export type MUIStyledComponent<
  * For internal usage in `@mui/system` package
  */
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export function internal_mutateStyles(
+export function internal_processStyles(
   tag: React.ElementType,
   processor: (styles: any) => any,
 ): void;
