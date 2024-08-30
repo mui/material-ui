@@ -110,6 +110,11 @@ export default function transformer(file, api, options) {
       return false;
     })
     .remove();
+
+  if (importsToRemove.length === 0) {
+    return root.toSource(printOptions);
+  }
+
   // If ListItemButton does not already exist, add it at the end
   const imports = root
     .find(j.ImportDeclaration)
