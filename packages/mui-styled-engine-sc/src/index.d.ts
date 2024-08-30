@@ -76,7 +76,7 @@ export * from './GlobalStyles';
  * For internal usage in `@mui/system` package
  */
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export function internal_processStyles(
+export function internal_mutateStyles(
   tag: React.ElementType,
   processor: (styles: any) => any,
 ): void;

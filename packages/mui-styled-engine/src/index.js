@@ -29,7 +29,7 @@ export default function styled(tag, options) {
 }
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export function internal_processStyles(tag, processor) {
+export function internal_mutateStyles(tag, processor) {
   // Emotion attaches all the styles as `__emotion_styles`.
   // Ref: https://github.com/emotion-js/emotion/blob/16d971d0da229596d6bcc39d282ba9753c9ee7cf/packages/styled/src/base.js#L186
   if (Array.isArray(tag.__emotion_styles)) {
