@@ -122,7 +122,7 @@ function ModeSwitcher() {
   const { mode, setMode } = useColorScheme();
   if (!mode) return null;
   return (
-    <select onChange={(event) => setMode(event.target.mode)}>
+    <select onChange={(event) => setMode(event.target.value)}>
       <option value="system">System</option>
       <option value="light">Light</option>
       <option value="dark">Dark</option>
