@@ -258,8 +258,8 @@ importers:
         specifier: ^0.4.0
         version: 0.4.0
       karma-webpack:
-        specifier: ^5.0.0
-        version: 5.0.0(webpack@5.93.0(webpack-cli@5.1.4))
+        specifier: ^5.0.1
+        version: 5.0.1(webpack@5.93.0(webpack-cli@5.1.4))
       lerna:
         specifier: ^8.1.8
         version: 8.1.8(babel-plugin-macros@3.1.0)(encoding@0.1.13)
@@ -8966,9 +8966,9 @@ packages:
   karma-sourcemap-loader@0.4.0:
     resolution: {integrity: sha512-xCRL3/pmhAYF3I6qOrcn0uhbQevitc2DERMPH82FMnG+4WReoGcGFZb1pURf2a5apyrOHRdvD+O6K7NljqKHyA==}
 
-  karma-webpack@5.0.0:
-    resolution: {integrity: sha512-+54i/cd3/piZuP3dr54+NcFeKOPnys5QeM1IY+0SPASwrtHsliXUiCL50iW+K9WWA7RvamC4macvvQ86l3KtaA==}
-    engines: {node: '>= 6'}
+  karma-webpack@5.0.1:
+    resolution: {integrity: sha512-oo38O+P3W2mSPCSUrQdySSPv1LvPpXP+f+bBimNomS5sW+1V4SuhCuW8TfJzV+rDv921w2fDSDw0xJbPe6U+kQ==}
+    engines: {node: '>= 18'}
     peerDependencies:
       webpack: ^5.0.0
 
@@ -20750,10 +20750,10 @@ snapshots:
     dependencies:
       graceful-fs: 4.2.11
 
-  karma-webpack@5.0.0(webpack@5.93.0(webpack-cli@5.1.4)):
+  karma-webpack@5.0.1(webpack@5.93.0(webpack-cli@5.1.4)):
     dependencies:
       glob: 7.2.3
-      minimatch: 3.1.2
+      minimatch: 9.0.5
       webpack: 5.93.0(webpack-cli@5.1.4)
       webpack-merge: 4.2.2
 

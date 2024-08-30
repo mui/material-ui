@@ -168,7 +168,7 @@
     "karma-firefox-launcher": "^2.1.3",
     "karma-mocha": "^2.0.1",
     "karma-sourcemap-loader": "^0.4.0",
-    "karma-webpack": "^5.0.0",
+    "karma-webpack": "^5.0.1",
     "lerna": "^8.1.8",
     "lodash": "^4.17.21",
     "markdownlint-cli2": "^0.13.0",
