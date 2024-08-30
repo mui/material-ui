@@ -73,7 +73,7 @@ export default function createTheme(
 
   if (cssVariables === false) {
     if (!('colorSchemes' in options)) {
-      // v5 signature
+      // Behaves exactly as v5
       return createThemeNoVars(options as ThemeOptions, ...args);
     }
 
