@@ -6,6 +6,7 @@ import {
   includeFileInBuild,
   prepend,
   typescriptCopy,
+  cjsCopy,
 } from './copyFilesUtils.mjs';
 
 const usePackageExports = process.env.MUI_USE_PACKAGE_EXPORTS === 'true';
@@ -45,6 +46,8 @@ async function run() {
   try {
     // TypeScript
     await typescriptCopy({ from: srcPath, to: buildPath });
+
+    await cjsCopy({ from: srcPath, to: buildPath });
 
     const packageData = await createPackageFile();
 
