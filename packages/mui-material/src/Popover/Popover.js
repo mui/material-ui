@@ -519,6 +519,26 @@ Popover.propTypes /* remove-proptypes */ = {
    */
   anchorReference: PropTypes.oneOf(['anchorEl', 'anchorPosition', 'none']),
   /**
+   * A backdrop component. This prop enables custom backdrop rendering.
+   * @deprecated Use `slotProps.root.slots.backdrop` instead. While this prop currently works, it will be removed in the next major version.
+   * Use the `slotProps.root.slots.backdrop` prop to make your application ready for the next version of Material UI.
+   * @default styled(Backdrop, {
+   *   name: 'MuiModal',
+   *   slot: 'Backdrop',
+   *   overridesResolver: (props, styles) => {
+   *     return styles.backdrop;
+   *   },
+   * })({
+   *   zIndex: -1,
+   * })
+   */
+  BackdropComponent: PropTypes.elementType,
+  /**
+   * Props applied to the [`Backdrop`](/material-ui/api/backdrop/) element.
+   * @deprecated Use `slotProps.root.slotProps.backdrop` instead.
+   */
+  BackdropProps: PropTypes.object,
+  /**
    * The content of the component.
    */
   children: PropTypes.node,

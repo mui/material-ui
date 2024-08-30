@@ -96,6 +96,10 @@ export default function createTheme(
     return theme;
   }
 
+  if (!palette && !('light' in colorSchemesInput) && defaultColorSchemeInput === 'light') {
+    colorSchemesInput.light = true;
+  }
+
   return createThemeWithVars(
     {
       ...rest,
