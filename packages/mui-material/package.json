@@ -104,6 +104,14 @@
   "engines": {
     "node": ">=14.0.0"
   },
+  "exports": {
+    "/ButtonBase/TouchRipple": {
+      "types": "./ButtonBase/TouchRipple.d.ts",
+      "import": "./ButtonBase/TouchRipple.mjs",
+      "mui-modern": "./ButtonBase/TouchRipple.moder.mjs",
+      "require": "./ButtonBase/TouchRipple.js"
+    }
+  },
   "pigment-css": {
     "vite": {
       "include": [
