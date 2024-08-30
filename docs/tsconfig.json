@@ -2,7 +2,6 @@
   "extends": "../tsconfig.json",
   "include": ["next-env.d.ts", "types", "src", "pages", "data", "next.config.mjs"],
   "compilerOptions": {
-    "paths": {},
     "moduleResolution": "Bundler",
     "allowJs": true,
     "isolatedModules": true,
