@@ -7,7 +7,7 @@ import nextDocument from './nextDocument.cjs';
 import { EmotionCacheProviderProps } from './pagesRouterV13App';
 import createEmotionCache from './createCache';
 
-const Document = nextDocument.default;
+const Document = nextDocument.default ?? nextDocument;
 
 interface Plugin {
   enhanceApp: (
