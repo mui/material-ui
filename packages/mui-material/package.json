@@ -105,7 +105,7 @@
     "node": ">=14.0.0"
   },
   "exports": {
-    "/ButtonBase/TouchRipple": {
+    "./ButtonBase/TouchRipple": {
       "types": "./ButtonBase/TouchRipple.d.ts",
       "import": "./ButtonBase/TouchRipple.mjs",
       "mui-modern": "./ButtonBase/TouchRipple.modern.mjs",
