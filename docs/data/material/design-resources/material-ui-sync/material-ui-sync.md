@@ -58,7 +58,7 @@ After you've added your custom tokens, click on **Regenerate theme** to include 
 
 The Sync plugin can also generate theme styles for customized components, enabling you to completely change their look and feel and create your custom design system from within Figma.
 
-:::info
+:::warn
 This feature is currently experimental and limited to the Button, Switch, and Typography components.
 :::
 
