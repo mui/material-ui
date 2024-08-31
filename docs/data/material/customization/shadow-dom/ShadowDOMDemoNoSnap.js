@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export default function ShadowDOMDemo() {
+export default function ShadowDOMDemoNoSnap() {
   return (
     <iframe
       title="codesandbox"

@@ -20,10 +20,10 @@ overrides:
   '@types/react': ^18.3.4
   '@types/react-dom': 18.3.0
   cross-fetch: ^4.0.0
-  '@pigment-css/react': 0.0.20
-  '@pigment-css/unplugin': 0.0.20
-  '@pigment-css/nextjs-plugin': 0.0.20
-  '@pigment-css/vite-plugin': 0.0.20
+  '@pigment-css/react': 0.0.21
+  '@pigment-css/unplugin': 0.0.21
+  '@pigment-css/nextjs-plugin': 0.0.21
+  '@pigment-css/vite-plugin': 0.0.21
 
 patchedDependencies:
   styled-components@6.1.12:
@@ -111,8 +111,8 @@ importers:
         specifier: ^21.0.2
         version: 21.0.2
       '@pigment-css/react':
-        specifier: 0.0.20
-        version: 0.0.20(@types/react@18.3.4)(react@18.3.1)
+        specifier: 0.0.21
+        version: 0.0.21(@types/react@18.3.4)(react@18.3.1)
       '@playwright/test':
         specifier: 1.46.1
         version: 1.46.1
@@ -370,8 +370,8 @@ importers:
         version: 18.3.1(react@18.3.1)
     devDependencies:
       '@pigment-css/nextjs-plugin':
-        specifier: 0.0.20
-        version: 0.0.20(@types/react@18.3.4)(next@14.2.7(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.46.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+        specifier: 0.0.21
+        version: 0.0.21(@types/react@18.3.4)(next@14.2.7(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.46.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       '@types/node':
         specifier: ^18.19.46
         version: 18.19.46
@@ -434,8 +434,8 @@ importers:
         specifier: ^7.24.7
         version: 7.24.7(@babel/core@7.25.2)
       '@pigment-css/vite-plugin':
-        specifier: 0.0.20
-        version: 0.0.20(@types/react@18.3.4)(react@18.3.1)(vite@5.4.2(@types/node@18.19.46)(terser@5.29.2))
+        specifier: 0.0.21
+        version: 0.0.21(@types/react@18.3.4)(react@18.3.1)(vite@5.4.2(@types/node@18.19.46)(terser@5.29.2))
       '@types/react':
         specifier: ^18.3.4
         version: 18.3.4
@@ -1064,8 +1064,8 @@ importers:
         specifier: ^18.2.0
         version: 18.3.1(react@18.3.1)
       sinon:
-        specifier: ^16.1.3
-        version: 16.1.3
+        specifier: ^18.0.0
+        version: 18.0.0
     devDependencies:
       '@types/chai':
         specifier: ^4.3.17
@@ -1140,8 +1140,8 @@ importers:
         specifier: ^5.5.4
         version: 5.5.4
       unist-util-visit:
-        specifier: ^2.0.3
-        version: 2.0.3
+        specifier: ^5.0.0
+        version: 5.0.0
     devDependencies:
       '@types/babel__core':
         specifier: ^7.20.5
@@ -1174,8 +1174,8 @@ importers:
         specifier: ^4.5.0
         version: 4.5.0
       sinon:
-        specifier: ^16.1.3
-        version: 16.1.3
+        specifier: ^18.0.0
+        version: 18.0.0
 
   packages/api-docs-builder-core:
     dependencies:
@@ -1208,8 +1208,8 @@ importers:
         specifier: ^4.5.0
         version: 4.5.0
       sinon:
-        specifier: ^16.1.3
-        version: 16.1.3
+        specifier: ^18.0.0
+        version: 18.0.0
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
@@ -1364,8 +1364,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       sinon:
-        specifier: ^16.1.3
-        version: 16.1.3
+        specifier: ^18.0.0
+        version: 18.0.0
     publishDirectory: build
 
   packages/mui-codemod:
@@ -1644,8 +1644,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       sinon:
-        specifier: ^16.1.3
-        version: 16.1.3
+        specifier: ^18.0.0
+        version: 18.0.0
     publishDirectory: build
 
   packages/mui-lab:
@@ -1712,8 +1712,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       sinon:
-        specifier: ^16.1.3
-        version: 16.1.3
+        specifier: ^18.0.0
+        version: 18.0.0
     publishDirectory: build
 
   packages/mui-material:
@@ -1819,8 +1819,8 @@ importers:
         specifier: ^6.26.1
         version: 6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       sinon:
-        specifier: ^16.1.3
-        version: 16.1.3
+        specifier: ^18.0.0
+        version: 18.0.0
     publishDirectory: build
 
   packages/mui-material-nextjs:
@@ -1855,8 +1855,8 @@ importers:
         specifier: workspace:*
         version: link:../mui-system/build
       '@pigment-css/react':
-        specifier: 0.0.20
-        version: 0.0.20(@types/react@18.3.4)(react@18.3.1)
+        specifier: 0.0.21
+        version: 0.0.21(@types/react@18.3.4)(react@18.3.1)
     publishDirectory: build
 
   packages/mui-private-theming:
@@ -2055,8 +2055,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       sinon:
-        specifier: ^16.1.3
-        version: 16.1.3
+        specifier: ^18.0.0
+        version: 18.0.0
     publishDirectory: build
 
   packages/mui-system:
@@ -2126,8 +2126,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1
       sinon:
-        specifier: ^16.1.3
-        version: 16.1.3
+        specifier: ^18.0.0
+        version: 18.0.0
       styled-components:
         specifier: ^6.1.12
         version: 6.1.12(patch_hash=ua4w6griwxbnxnkzzvndsl67he)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -2201,8 +2201,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       sinon:
-        specifier: ^16.1.3
-        version: 16.1.3
+        specifier: ^18.0.0
+        version: 18.0.0
     publishDirectory: build
 
   packages/netlify-plugin-cache-docs:
@@ -2329,8 +2329,8 @@ importers:
         specifier: ^6.26.1
         version: 6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       sinon:
-        specifier: ^16.1.3
-        version: 16.1.3
+        specifier: ^18.0.0
+        version: 18.0.0
       styled-components:
         specifier: ^6.1.12
         version: 6.1.12(patch_hash=ua4w6griwxbnxnkzzvndsl67he)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -4805,21 +4805,21 @@ packages:
     resolution: {integrity: sha512-I/s6F7yKUDdtMsoBWXJe8Qz40Tui5vsuKCWJEWVL+5q9sSWRzzx6v2KeNsOBEwd94j0eWkpWCH4yB6rZg9Mf0w==}
     engines: {node: '>=8.0.0'}
 
-  '@pigment-css/nextjs-plugin@0.0.20':
-    resolution: {integrity: sha512-KOyhDfGqCNVfbKOG6fjzk42Kp1fVzMjypEc97j1Irju0/h3mYRfagrwTVX1AgVEVQUsQIGfZ6BNVd1Jf2y6osg==}
+  '@pigment-css/nextjs-plugin@0.0.21':
+    resolution: {integrity: sha512-Pj4BOHE1r3oORDmbwjrqO3dqyvMr74Y7C06agybXsEYqhWi7Yb5GYY1lVhqDe7zmC59smpjfLxnJFINWKxTs1Q==}
     peerDependencies:
       next: ^12.0.0 || ^13.0.0 || ^14.0.0
 
-  '@pigment-css/react@0.0.20':
-    resolution: {integrity: sha512-ctp4qV7iX51T9F1XKD86NccR1Odly8wQqm3JjFAboOXKvlZBkiJqXlDe9HIwKFI3z/MxHzu+TCYyexgceOK1cg==}
+  '@pigment-css/react@0.0.21':
+    resolution: {integrity: sha512-AxX5P59/wheAGIfqdxFQ8t9Qpw+Dc88icbqiCZMm5CusGXE1Kue7Etx74vIiAanD9Vg112hM5CNkI2DHsO80fQ==}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0
 
-  '@pigment-css/unplugin@0.0.20':
-    resolution: {integrity: sha512-hLECqhjSIjw7meNllVxobtDIObOuKGLxhZESSq5qpCqDwFMvApCgpSJKRxs8uY7EVBa1NuVhgK/Yn3JR5GNEKw==}
+  '@pigment-css/unplugin@0.0.21':
+    resolution: {integrity: sha512-DYhYgUIoPUhgYwNRy5oUftfKS+aD/DP32Kq0rdimgvrRtx7dL44++ALXYRJu6p6xW/rw6iYzRGG3JNZHmj/+iQ==}
 
-  '@pigment-css/vite-plugin@0.0.20':
-    resolution: {integrity: sha512-OvOPOTlZMkpkheAzXctdfW0t48xA+s0QMpGtMLiiFIGNPHhK1+UTBv9/B2wocpMMojNi13nH0p2J7lKaaT2kUw==}
+  '@pigment-css/vite-plugin@0.0.21':
+    resolution: {integrity: sha512-jTVuRJ7I9Rf6YnaB/yieD7Wi6fFp1Tys/66O21JW/1Tw0BRjO0leaAbDJO1AICqjVMdgl1uY6HhFyHiJ1DnkNw==}
     peerDependencies:
       vite: ^4.0.0 || ^5.0.0
 
@@ -5145,11 +5145,14 @@ packages:
   '@sinonjs/commons@2.0.0':
     resolution: {integrity: sha512-uLa0j859mMrg2slwQYdO/AkrOfmH+X6LTVmNTS9CqexuE2IvVORIkSpJLqePAbEnKJ77aMmCwr1NUZ57120Xcg==}
 
-  '@sinonjs/commons@3.0.0':
-    resolution: {integrity: sha512-jXBtWAF4vmdNmZgD5FoKsVLv3rPgDnLgPbU84LIJ3otV44vJlDRokVng5v8NFJdCf/da9legHcKaRuZs4L7faA==}
+  '@sinonjs/commons@3.0.1':
+    resolution: {integrity: sha512-K3mCHKQ9sVh8o1C9cxkwxaOmXoAMlDxC1mYyHrjqOWEcBjYr76t96zL2zlj5dUGZ3HSw240X1qgH3Mjf1yJWpQ==}
 
   '@sinonjs/fake-timers@10.3.0':
     resolution: {integrity: sha512-V4BG07kuYSUkTCSBHG8G8TNhM+F19jXFWnQtzj+we8DrkpSBCee9Z3Ms8yiGer/dlmhe35/Xdgyo3/0rQKg7YA==}
+
+  '@sinonjs/fake-timers@11.3.1':
+    resolution: {integrity: sha512-EVJO7nW5M/F5Tur0Rf2z/QoMo+1Ia963RiMtapiQrEWvY0iBUvADo8Beegwjpnle5BHkyHuoxSTW3jF43H1XRA==}
 
   '@sinonjs/samsam@8.0.0':
     resolution: {integrity: sha512-Bp8KUVlLp8ibJZrnvq2foVhP0IVX2CIprMJPK0vqGqgrDa0OHVKeZyBykqskkrdxV6yKBPmGasO8LVjAKR3Gew==}
@@ -9002,8 +9005,8 @@ packages:
   just-diff@6.0.2:
     resolution: {integrity: sha512-S59eriX5u3/QhMNq3v/gm8Kd0w8OS6Tz2FS1NG4blv+z0MuQcBRJyFWjdovM0Rad4/P4aUPFtnkNjMjyMlMSYA==}
 
-  just-extend@4.2.1:
-    resolution: {integrity: sha512-g3UB796vUFIY90VIv/WX3L2c8CS2MdWUww3CNrYmqza1Fg0DURc2K/O4YrnklBdQarSJ/y8JnJYDGc+1iumQjg==}
+  just-extend@6.2.0:
+    resolution: {integrity: sha512-cYofQu2Xpom82S6qD778jBDpwvvy39s1l/hrYij2u9AMdQcGRpaBu6kY4mVhuno5kJVi1DAz4aiphA2WI1/OAw==}
 
   jwa@1.4.1:
     resolution: {integrity: sha512-qiLX/xhEEFKUAJ6FiBMbes3w9ATzyk5W7Hvzpa/SLYdxNtng+gcurvrI7TbACjIXlsJyr05/S1oUhZrc63evQA==}
@@ -9744,8 +9747,8 @@ packages:
     resolution: {integrity: sha512-px/KnJAJZf5RuBGcfD+Sp2pAKq0ytz8j+1NehvgIGFkvtvFrDM3T8E4x/JJODXK9WZow8RRGrbA9QQ3hs+pDhA==}
     os: ['!win32']
 
-  nise@5.1.4:
-    resolution: {integrity: sha512-8+Ib8rRJ4L0o3kfmyVCL7gzrohyDe0cMFTBa2d364yIrEGMEoetznKJx899YxjybU6bL9SQkYPSBBs1gyYs8Xg==}
+  nise@6.0.0:
+    resolution: {integrity: sha512-K8ePqo9BFvN31HXwEtTNGzgrPpmvgciDsFz8aztFjt4LqKO/JeFD8tBOeuDiCMXrIl/m1YvfH8auSpxfaD09wg==}
 
   no-case@3.0.4:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
@@ -10262,9 +10265,6 @@ packages:
 
   path-to-regexp@0.1.7:
     resolution: {integrity: sha512-5DFkuoqlv1uYQKxy8omFBeJPQcdoE07Kv2sferDCrAq1ohOU+MSDswDIbnx3YAM60qIOnYa53wBhXW0EbMonrQ==}
-
-  path-to-regexp@1.8.0:
-    resolution: {integrity: sha512-n43JRhlUKUAlibEJhPeir1ncUID16QnEjNpwzNdO3Lm4ywrBpBZ5oLD0I6br9evr1Y9JTqwRtAh7JLoOzAQdVA==}
 
   path-to-regexp@2.2.1:
     resolution: {integrity: sha512-gu9bD6Ta5bwGrrU8muHzVOBFFREpp2iRkVfhBJahwJ6p6Xw20SjT0MxLnwkjOibQmGSYhiUnf2FLe7k+jcFmGQ==}
@@ -11375,8 +11375,8 @@ packages:
   simple-swizzle@0.2.2:
     resolution: {integrity: sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==}
 
-  sinon@16.1.3:
-    resolution: {integrity: sha512-mjnWWeyxcAf9nC0bXcPmiDut+oE8HYridTNzBbF98AYVLmWwGRp2ISEpyhYflG1ifILT+eNn3BmKUJPxjXUPlA==}
+  sinon@18.0.0:
+    resolution: {integrity: sha512-+dXDXzD1sBO6HlmZDd7mXZCR/y5ECiEiGCBSGuFD/kZ0bDTofPYc6JaeGmPSF+1j1MejGUWkORbYOLDyvqCWpA==}
 
   sirv@2.0.3:
     resolution: {integrity: sha512-O9jm9BsID1P+0HOi81VpXPoDxYP374pkOLzACAoyUQ/3OUVndNpsz6wMnY2z+yOxzbllCKZrM+9QrWsv4THnyA==}
@@ -12124,17 +12124,17 @@ packages:
     resolution: {integrity: sha512-WrcA6AyEfqDX5bWige/4NQfPZMtASNVxdmWR76WESYQVAACSgWcR6e9i0mofqqBxYFtL4oAxPIptY73/0YE1DQ==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
-  unist-util-is@4.1.0:
-    resolution: {integrity: sha512-ZOQSsnce92GrxSqlnEEseX0gi7GH9zTJZ0p9dtu87WRb/37mMPO2Ilx1s/t9vBHrFhbgweUwb+t7cIn5dxPhZg==}
+  unist-util-is@6.0.0:
+    resolution: {integrity: sha512-2qCTHimwdxLfz+YzdGfkqNlH0tLi9xjTnHddPmJwtIG9MGsdbutfTc4P+haPD7l7Cjxf/WZj+we5qfVPvvxfYw==}
 
   unist-util-stringify-position@2.0.3:
     resolution: {integrity: sha512-3faScn5I+hy9VleOq/qNbAd6pAx7iH5jYBMS9I1HgQVijz/4mv5Bvw5iw1sC/90CODiKo81G/ps8AJrISn687g==}
 
-  unist-util-visit-parents@3.1.1:
-    resolution: {integrity: sha512-1KROIZWo6bcMrZEwiH2UrXDyalAa0uqzWCxCJj6lPOvTve2WkfgCytoDTPaMnodXh1WrXOq0haVYHj99ynJlsg==}
+  unist-util-visit-parents@6.0.1:
+    resolution: {integrity: sha512-L/PqWzfTP9lzzEa6CKs0k2nARxTdZduw3zyh8d2NVBnsyvHjSX4TWse388YrrQKbvI8w20fGjGlhgT96WwKykw==}
 
-  unist-util-visit@2.0.3:
-    resolution: {integrity: sha512-iJ4/RczbJMkD0712mGktuGpm/U4By4FfDonL7N/9tATGIF4imikjOuagyMY53tnZq3NP6BcmlrHhEKAfGWjh7Q==}
+  unist-util-visit@5.0.0:
+    resolution: {integrity: sha512-MR04uvD+07cwl/yhVuVWAtw+3GOR/knlL55Nd/wAdblk27GCVt3lqpTivy/tkJcZoNPzTwS1Y+KMojlLDhoTzg==}
 
   universal-user-agent@6.0.0:
     resolution: {integrity: sha512-isyNax3wXoKaulPDZWHQqbmIx1k2tb9fb3GGDBRxCscfYV2Ch7WxPArBsFEG8s/safwXTT7H4QGhaIkTp9447w==}
@@ -15528,16 +15528,16 @@ snapshots:
   '@opentelemetry/api@1.8.0':
     optional: true
 
-  '@pigment-css/nextjs-plugin@0.0.20(@types/react@18.3.4)(next@14.2.7(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.46.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
+  '@pigment-css/nextjs-plugin@0.0.21(@types/react@18.3.4)(next@14.2.7(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.46.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@pigment-css/unplugin': 0.0.20(@types/react@18.3.4)(react@18.3.1)
+      '@pigment-css/unplugin': 0.0.21(@types/react@18.3.4)(react@18.3.1)
       next: 14.2.7(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.46.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     transitivePeerDependencies:
       - '@types/react'
       - react
       - supports-color
 
-  '@pigment-css/react@0.0.20(@types/react@18.3.4)(react@18.3.1)':
+  '@pigment-css/react@0.0.21(@types/react@18.3.4)(react@18.3.1)':
     dependencies:
       '@babel/core': 7.25.2
       '@babel/helper-module-imports': 7.24.7
@@ -15565,10 +15565,10 @@ snapshots:
       - '@types/react'
       - supports-color
 
-  '@pigment-css/unplugin@0.0.20(@types/react@18.3.4)(react@18.3.1)':
+  '@pigment-css/unplugin@0.0.21(@types/react@18.3.4)(react@18.3.1)':
     dependencies:
       '@babel/core': 7.25.2
-      '@pigment-css/react': 0.0.20(@types/react@18.3.4)(react@18.3.1)
+      '@pigment-css/react': 0.0.21(@types/react@18.3.4)(react@18.3.1)
       '@wyw-in-js/shared': 0.5.4
       '@wyw-in-js/transform': 0.5.4
       babel-plugin-define-var: 0.1.0
@@ -15578,11 +15578,11 @@ snapshots:
       - react
       - supports-color
 
-  '@pigment-css/vite-plugin@0.0.20(@types/react@18.3.4)(react@18.3.1)(vite@5.4.2(@types/node@18.19.46)(terser@5.29.2))':
+  '@pigment-css/vite-plugin@0.0.21(@types/react@18.3.4)(react@18.3.1)(vite@5.4.2(@types/node@18.19.46)(terser@5.29.2))':
     dependencies:
       '@babel/core': 7.25.2
       '@babel/preset-typescript': 7.24.7(@babel/core@7.25.2)
-      '@pigment-css/react': 0.0.20(@types/react@18.3.4)(react@18.3.1)
+      '@pigment-css/react': 0.0.21(@types/react@18.3.4)(react@18.3.1)
       '@wyw-in-js/shared': 0.5.4
       '@wyw-in-js/transform': 0.5.4
       babel-plugin-define-var: 0.1.0
@@ -16071,13 +16071,17 @@ snapshots:
     dependencies:
       type-detect: 4.0.8
 
-  '@sinonjs/commons@3.0.0':
+  '@sinonjs/commons@3.0.1':
     dependencies:
       type-detect: 4.0.8
 
   '@sinonjs/fake-timers@10.3.0':
     dependencies:
-      '@sinonjs/commons': 3.0.0
+      '@sinonjs/commons': 3.0.1
+
+  '@sinonjs/fake-timers@11.3.1':
+    dependencies:
+      '@sinonjs/commons': 3.0.1
 
   '@sinonjs/samsam@8.0.0':
     dependencies:
@@ -20821,7 +20825,7 @@ snapshots:
 
   just-diff@6.0.2: {}
 
-  just-extend@4.2.1: {}
+  just-extend@6.2.0: {}
 
   jwa@1.4.1:
     dependencies:
@@ -21850,13 +21854,13 @@ snapshots:
       node-gyp-build: 4.5.0
     optional: true
 
-  nise@5.1.4:
+  nise@6.0.0:
     dependencies:
-      '@sinonjs/commons': 2.0.0
-      '@sinonjs/fake-timers': 10.3.0
+      '@sinonjs/commons': 3.0.1
+      '@sinonjs/fake-timers': 11.3.1
       '@sinonjs/text-encoding': 0.7.2
-      just-extend: 4.2.1
-      path-to-regexp: 1.8.0
+      just-extend: 6.2.0
+      path-to-regexp: 6.2.1
 
   no-case@3.0.4:
     dependencies:
@@ -22474,10 +22478,6 @@ snapshots:
       minipass: 7.0.4
 
   path-to-regexp@0.1.7: {}
-
-  path-to-regexp@1.8.0:
-    dependencies:
-      isarray: 0.0.1
 
   path-to-regexp@2.2.1: {}
 
@@ -23750,13 +23750,13 @@ snapshots:
     dependencies:
       is-arrayish: 0.3.2
 
-  sinon@16.1.3:
+  sinon@18.0.0:
     dependencies:
-      '@sinonjs/commons': 3.0.0
-      '@sinonjs/fake-timers': 10.3.0
+      '@sinonjs/commons': 3.0.1
+      '@sinonjs/fake-timers': 11.3.1
       '@sinonjs/samsam': 8.0.0
       diff: 5.2.0
-      nise: 5.1.4
+      nise: 6.0.0
       supports-color: 7.2.0
 
   sirv@2.0.3:
@@ -24607,22 +24607,24 @@ snapshots:
     dependencies:
       imurmurhash: 0.1.4
 
-  unist-util-is@4.1.0: {}
+  unist-util-is@6.0.0:
+    dependencies:
+      '@types/unist': 3.0.2
 
   unist-util-stringify-position@2.0.3:
     dependencies:
       '@types/unist': 2.0.6
 
-  unist-util-visit-parents@3.1.1:
+  unist-util-visit-parents@6.0.1:
     dependencies:
-      '@types/unist': 2.0.6
-      unist-util-is: 4.1.0
+      '@types/unist': 3.0.2
+      unist-util-is: 6.0.0
 
-  unist-util-visit@2.0.3:
+  unist-util-visit@5.0.0:
     dependencies:
-      '@types/unist': 2.0.6
-      unist-util-is: 4.1.0
-      unist-util-visit-parents: 3.1.1
+      '@types/unist': 3.0.2
+      unist-util-is: 6.0.0
+      unist-util-visit-parents: 6.0.1
 
   universal-user-agent@6.0.0: {}
 
