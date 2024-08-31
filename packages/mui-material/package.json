@@ -107,8 +107,8 @@
   "exports": {
     "./ButtonBase/TouchRipple": {
       "types": "./ButtonBase/TouchRipple.d.ts",
-      "import": "./ButtonBase/TouchRipple.mjs",
-      "mui-modern": "./ButtonBase/TouchRipple.modern.mjs",
+      "import": "./esm/ButtonBase/TouchRipple.mjs",
+      "mui-modern": "./modern/ButtonBase/TouchRipple.modern.mjs",
       "require": "./ButtonBase/TouchRipple.js"
     }
   },

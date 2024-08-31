@@ -54,7 +54,11 @@ async function run(argv) {
     '**/test-cases/*.*',
   ];
 
-  let relativeOutDir = './';
+  let relativeOutDir = {
+    node: './',
+    modern: './modern',
+    stable: './esm',
+  }[bundle];
 
   if (!usePackageExports) {
     const topLevelNonIndexFiles = glob
@@ -122,15 +126,13 @@ async function run(argv) {
       ],
     });
 
-    const outputExtension = bundle === 'node' ? '.js' : '.mjs';
-
     await rollupBundle.write({
       preserveModules: true,
       interop: 'auto',
       exports: 'named',
       dir: outDir,
       format: bundle === 'node' ? 'commonjs' : 'es',
-      entryFileNames: `[name]${outputExtension}`,
+      entryFileNames: `[name].js`,
     });
 
     return;
@@ -148,14 +150,6 @@ async function run(argv) {
     // Need to put these patterns in quotes otherwise they might be evaluated by the used terminal.
     `"${ignore.join('","')}"`,
   ];
-
-  if (usePackageExports) {
-    if (bundle === 'stable') {
-      babelArgs.push('--out-file-extension', '.mjs');
-    } else if (bundle === 'modern') {
-      babelArgs.push('--out-file-extension', '.modern.mjs');
-    }
-  }
 
   if (largeFiles) {
     babelArgs.push('--compact false');

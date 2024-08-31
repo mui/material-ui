@@ -74,7 +74,7 @@ module.exports = function getBabelConfig(api) {
     // in webpack config:
     api.env(['regressions']);
 
-  const outFileExtension = useESModules ? '.mjs' : '.js';
+  const outFileExtension = '.js';
 
   /** @type {babel.PluginItem[]} */
   const plugins = [

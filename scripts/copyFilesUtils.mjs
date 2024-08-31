@@ -115,14 +115,14 @@ export async function createPackageFile() {
   const packageExports = {
     '.': {
       types: './index.d.ts',
-      import: './index.mjs',
-      [modernCondition]: './index.modern.mjs',
+      import: './esm/index.js',
+      [modernCondition]: './modern/index.js',
       require: './index.js',
     },
     './*': {
       types: './*/index.d.ts',
-      import: './*/index.mjs',
-      [modernCondition]: './*/index.modern.mjs',
+      import: './esm/*/index.js',
+      [modernCondition]: './modern/*/index.js',
       require: './*/index.js',
     },
     ...packageDataOther.exports,
@@ -147,7 +147,7 @@ export async function createPackageFile() {
             : './index.js',
           module: fse.existsSync(path.resolve(buildPath, './esm/index.js'))
             ? './esm/index.js'
-            : `./index.${usePackageExports ? 'mjs' : 'js'}`,
+            : `./index.js`,
         }
       : {}),
     ...(usePackageExports
