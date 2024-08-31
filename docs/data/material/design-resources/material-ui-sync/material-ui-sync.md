@@ -132,87 +132,87 @@ From here you can run Sync to generate a new theme—here's what would be genera
     MuiSwitch: {
       styleOverrides: {
         root: {
-          "&.MuiSwitch-sizeMedium:has(.MuiSwitch-colorPrimary)": {
-            width: "40px",
-            height: "21px",
-            padding: "0",
-            "& .MuiSwitch-switchBase": {
-              padding: "0",
-              "& .MuiSwitch-thumb": {
-                width: "17px",
-                height: "17px",
-                background: "#FAFAFA",
+          '&.MuiSwitch-sizeMedium:has(.MuiSwitch-colorPrimary)': {
+            width: '40px',
+            height: '21px',
+            padding: '0',
+            '& .MuiSwitch-switchBase': {
+              padding: '0',
+              '& .MuiSwitch-thumb': {
+                width: '17px',
+                height: '17px',
+                background: '#FAFAFA',
               },
-              "& + .MuiSwitch-track": {
-                width: "38px",
-                height: "21px",
-                borderRadius: "100px",
-                opacity: "1",
+              '& + .MuiSwitch-track': {
+                width: '38px',
+                height: '21px',
+                borderRadius: '100px',
+                opacity: '1',
               },
             },
-            "&:not(:has(.Mui-checked)):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible))": {
-              "& .MuiSwitch-switchBase": {
-                transform: "translateX(3px) translateY(2px)",
-                "& + .MuiSwitch-track": {
-                  background: "#BDBDBD",
+            '&:not(:has(.Mui-checked)):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible))': {
+              '& .MuiSwitch-switchBase': {
+                transform: 'translateX(3px) translateY(2px)',
+                '& + .MuiSwitch-track': {
+                  background: '#BDBDBD',
                 },
               },
             },
-            "&:not(:has(.Mui-checked)):has(.Mui-disabled):not(:has(.Mui-focusVisible))": {
-              "& .MuiSwitch-switchBase": {
-                transform: "translateX(3px) translateY(2px)",
-                "& + .MuiSwitch-track": {
-                  background: "rgba(229, 229, 229, 0.99)",
+            '&:not(:has(.Mui-checked)):has(.Mui-disabled):not(:has(.Mui-focusVisible))': {
+              '& .MuiSwitch-switchBase': {
+                transform: 'translateX(3px) translateY(2px)',
+                '& + .MuiSwitch-track': {
+                  background: 'rgba(229, 229, 229, 0.99)',
                 },
               },
             },
-            "&:not(:has(.Mui-checked)):not(:has(.Mui-disabled)):has(.Mui-focusVisible)": {
-              "& .MuiSwitch-switchBase": {
-                transform: "translateX(3px) translateY(2px)",
-                "& + .MuiSwitch-track": {
-                  border: "1px solid #000",
-                  background: "#BDBDBD",
+            '&:not(:has(.Mui-checked)):not(:has(.Mui-disabled)):has(.Mui-focusVisible)': {
+              '& .MuiSwitch-switchBase': {
+                transform: 'translateX(3px) translateY(2px)',
+                '& + .MuiSwitch-track': {
+                  border: '1px solid #000',
+                  background: '#BDBDBD',
                 },
               },
             },
-            "&:has(.Mui-checked):has(.Mui-disabled):not(:has(.Mui-focusVisible))": {
-              "& .MuiSwitch-switchBase": {
-                transform: "translateX(19px) translateY(2px)",
-                "& + .MuiSwitch-track": {
-                  background: "rgba(187, 231, 188, 0.99)",
+            '&:has(.Mui-checked):has(.Mui-disabled):not(:has(.Mui-focusVisible))': {
+              '& .MuiSwitch-switchBase': {
+                transform: 'translateX(19px) translateY(2px)',
+                '& + .MuiSwitch-track': {
+                  background: 'rgba(187, 231, 188, 0.99)',
                 },
               },
             },
-            "&:not(:has(.Mui-checked)):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible)):hover": {
-              "& .MuiSwitch-switchBase": {
-                transform: "translateX(3px) translateY(2px)",
-                "& + .MuiSwitch-track": {
-                  background: "#616161",
+            '&:not(:has(.Mui-checked)):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible)):hover': {
+              '& .MuiSwitch-switchBase': {
+                transform: 'translateX(3px) translateY(2px)',
+                '& + .MuiSwitch-track': {
+                  background: '#616161',
                 },
               },
             },
-            "&:has(.Mui-checked):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible))": {
-              "& .MuiSwitch-switchBase": {
-                transform: "translateX(19px) translateY(2px)",
-                "& + .MuiSwitch-track": {
-                  background: "var(--mui-palette-success-light)",
+            '&:has(.Mui-checked):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible))': {
+              '& .MuiSwitch-switchBase': {
+                transform: 'translateX(19px) translateY(2px)',
+                '& + .MuiSwitch-track': {
+                  background: 'var(--mui-palette-success-light)',
                 },
               },
             },
-            "&:has(.Mui-checked):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible)):hover": {
-              "& .MuiSwitch-switchBase": {
-                transform: "translateX(19px) translateY(2px)",
-                "& + .MuiSwitch-track": {
-                  background: "var(--mui-palette-success-dark)",
+            '&:has(.Mui-checked):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible)):hover': {
+              '& .MuiSwitch-switchBase': {
+                transform: 'translateX(19px) translateY(2px)',
+                '& + .MuiSwitch-track': {
+                  background: 'var(--mui-palette-success-dark)',
                 },
               },
             },
-            "&:has(.Mui-checked):not(:has(.Mui-disabled)):has(.Mui-focusVisible)": {
-              "& .MuiSwitch-switchBase": {
-                transform: "translateX(19px) translateY(2px)",
-                "& + .MuiSwitch-track": {
-                  border: "1px solid #000",
-                  background: "var(--mui-palette-success-light)",
+            '&:has(.Mui-checked):not(:has(.Mui-disabled)):has(.Mui-focusVisible)': {
+              '& .MuiSwitch-switchBase': {
+                transform: 'translateX(19px) translateY(2px)',
+                '& + .MuiSwitch-track': {
+                  border: '1px solid #000',
+                  background: 'var(--mui-palette-success-light)',
                 },
               },
             },
@@ -241,45 +241,46 @@ Here's an example of how to add a Sync-generated theme to your codebase:
 ```tsx title="_app.tsx"
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-export default function MyApp({ Component, pageProps }) {
-  const theme = createTheme({
-    cssVariables: true,
-    shape: {
-      borderRadiusRound: 999,
-    },
-    components: {
-      MuiSwitch: {
-        styleOverrides: {
-          root: {
-            '&.MuiSwitch-sizeMedium:has(.MuiSwitch-colorPrimary)': {
-              '&:has(.Mui-checked):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible))':
-                {
-                  width: '40px',
-                  height: '21px',
-                  padding: '0',
-                  '& .MuiSwitch-switchBase': {
-                    transform: 'translateX(19px) translateY(2px)',
-                    padding: '0',
-                    '& .MuiSwitch-thumb': {
-                      width: '17px',
-                      height: '17px',
-                      background: '#FAFAFA',
-                    },
-                    '& + .MuiSwitch-track': {
-                      width: '38px',
-                      height: '21px',
-                      background: 'var(--mui-palette-success-light)',
-                      borderRadius: 'var(--mui-shape-borderRadiusRound)',
-                      opacity: '1',
-                    },
-                  },
+const theme = createTheme({
+  cssVariables: true,
+  shape: {
+    borderRadiusRound: 999,
+  },
+  components: {
+    MuiSwitch: {
+      styleOverrides: {
+        root: {
+          '&.MuiSwitch-sizeMedium:has(.MuiSwitch-colorPrimary)': {
+            '&:has(.Mui-checked):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible))': {
+              width: '40px',
+              height: '21px',
+              padding: '0',
+              '& .MuiSwitch-switchBase': {
+                transform: 'translateX(19px) translateY(2px)',
+                padding: '0',
+                '& .MuiSwitch-thumb': {
+                  width: '17px',
+                  height: '17px',
+                  background: '#FAFAFA',
                 },
+                '& + .MuiSwitch-track': {
+                  width: '38px',
+                  height: '21px',
+                  background: 'var(--mui-palette-success-light)',
+                  borderRadius: 'var(--mui-shape-borderRadiusRound)',
+                  opacity: '1',
+                },
+              },
             },
           },
         },
       },
     },
-  });
+  },
+});
+
+export default function MyApp(props) {
+  const { Component, pageProps } = props;
 
   return (
     <ThemeProvider theme={theme}>
