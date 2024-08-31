@@ -1,5 +1,5 @@
 ---
-title: 'Introducing Sync: a Figma plugin that exports Material UI theme code'
+title: 'Material UI Sync: a Figma plugin that exports theme code'
 description: Enable designers to generate production-ready code directly from the Material UI Figma Design Kit.
 date: 2024-04-30T00:00:00.000Z
 authors: ['danilo-leal', 'DavidCnoops']
@@ -7,9 +7,9 @@ tags: ['Material UI', 'Product']
 manualCard: true
 ---
 
-Over the last few years we've seen designers increasingly seeking out ways to participate more directly and collaborate more effectively in the development process.
+Over the last few years, we've seen designers increasingly seeking out ways to participate more directly and collaborate more effectively in the development process.
 The [Material UI Design Kit for Figma](/store/items/figma-react/) was our first attempt to meet those needs by providing designers with one-to-one mockups of Material UI components for implementing custom design systems.
-But it doesn't go far enough on its own to bridge the gap between design and code—the developer still need to write the designer's custom styles from scratch.
+But it doesn't go far enough on its own to bridge the gap between design and code—the developer still needs to write the designer's custom styles from scratch.
 
 That got us thinking:
 What if designers could generate production-ready code directly from their design software to hand off to developers working with a Material UI codebase?
@@ -45,7 +45,7 @@ This is one of the most exciting features because it enables designers to use th
 :::warning
 While in beta, not all components are supported yet.
 We'll expand component coverage progressively in the coming months.
-For now you can experiment with the Button, Switch, and Typography.
+For now, you can experiment with the Button, Switch, and Typography.
 :::
 
 ## Quick Storybook preview
@@ -58,11 +58,11 @@ The Material UI Sync plugin also bakes in an embedded Storybook preview panel s
 
 ## Try Sync now
 
-Get the beta version of Material UI Sync now, available for free in the [Figma Community](https://www.figma.com/community/plugin/1336346114713490235/material-ui-sync)!
+Get the beta version of Material UI Sync now, available to try for free in the [Figma Community](https://www.figma.com/community/plugin/1336346114713490235/material-ui-sync)!
 
 There's still a lot to do, and we're looking forward to hearing from all of you [who requested this plugin years ago](https://github.com/mui/mui-design-kits/issues/10).
 
-- Check out documentation for [the Sync plugin](/material-ui/design-resources/material-ui-sync/) and [the Material UI Design Kit](/material-ui/design-resources/material-ui-for-figma/).
-- If you've got any feedback, we'd love to [hear from you](https://material-ui-sync.canny.io/).
+- Check out the documentation for [the Sync plugin](/material-ui/design-resources/material-ui-sync/) and [the Material UI Design Kit](/material-ui/design-resources/material-ui-for-figma/).
+- If you've got any feedback, we'd love to [hear from you](https://github.com/mui/mui-design-kits/discussions/84).
 
 Happy designing! 👨‍🎨

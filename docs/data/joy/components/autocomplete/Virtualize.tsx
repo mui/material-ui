@@ -66,7 +66,7 @@ const ListboxComponent = React.forwardRef<
   const { children, anchorEl, open, modifiers, ...other } = props;
   const itemData: Array<any> = [];
   (
-    children as [Array<{ children: Array<React.ReactElement> | undefined }>]
+    children as [Array<{ children: Array<React.ReactElement<any>> | undefined }>]
   )[0].forEach((item) => {
     if (item) {
       itemData.push(item);

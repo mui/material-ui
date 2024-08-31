@@ -123,11 +123,10 @@ export default function ListThemes() {
 <List${
               preset
                 ? `
-  sx={{
-    ${JSON.stringify(rootPresets[preset], null, 4)
-      .replace('{', '')
-      .replace('}', '')
-      .trim()}
+  sx={{  ${JSON.stringify(rootPresets[preset], null, 4)
+    .replace('{', '')
+    .replace('}', '')
+    .trim()}
   }}
 `
                 : ''
@@ -137,11 +136,10 @@ export default function ListThemes() {
     <List${
       nestedPresets[preset]
         ? `
-      sx={{
-        ${JSON.stringify(nestedPresets[preset], null, 8)
-          .replace('{', '')
-          .replace('}', '')
-          .trim()}
+      sx={{      ${JSON.stringify(nestedPresets[preset], null, 8)
+        .replace('{', '')
+        .replace('}', '')
+        .trim()}
       }}
     `
         : ''
@@ -162,10 +160,7 @@ export default function ListThemes() {
 `}
             copyButtonHidden
             language="jsx"
-            sx={{
-              display: { xs: 'none', md: 'block' },
-              borderRadius: '7px',
-            }}
+            sx={{ display: { xs: 'none', md: 'block' }, borderRadius: '7px' }}
           />
         </BrandingProvider>
       }

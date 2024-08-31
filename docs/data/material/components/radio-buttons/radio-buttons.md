@@ -5,6 +5,7 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 githubLabel: 'component: radio'
 materialDesign: https://m2.material.io/components/selection-controls#radio-buttons
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radio/
+githubSource: packages/mui-material/src/RadioGroup
 ---
 
 # Radio Group
@@ -16,7 +17,7 @@ If available options can be collapsed, consider using a [Select component](/mate
 
 Radio buttons should have the most commonly used option selected by default.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Radio group
 

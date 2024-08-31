@@ -1,6 +1,6 @@
 {
   "name": "@mui/system",
-  "version": "6.0.0-alpha.4",
+  "version": "6.0.1",
   "private": false,
   "author": "MUI Team",
   "description": "MUI System is a set of CSS utilities to help you build custom designs more efficiently. It makes it possible to rapidly lay out custom designs.",
@@ -39,7 +39,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.24.4",
+    "@babel/runtime": "^7.25.0",
     "@mui/private-theming": "workspace:^",
     "@mui/styled-engine": "workspace:^",
     "@mui/types": "workspace:^",
@@ -49,27 +49,27 @@
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
-    "@mui-internal/test-utils": "workspace:^",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
     "@mui/internal-babel-macros": "workspace:^",
+    "@mui/internal-test-utils": "workspace:^",
     "@mui/system": "workspace:*",
-    "@types/chai": "^4.3.14",
+    "@types/chai": "^4.3.17",
     "@types/prop-types": "^15.7.12",
-    "@types/react": "^18.2.55",
-    "@types/sinon": "^10.0.20",
-    "chai": "^4.4.1",
+    "@types/react": "^18.3.4",
+    "@types/sinon": "^17.0.3",
+    "chai": "^4.5.0",
     "fast-glob": "^3.3.2",
     "lodash": "^4.17.21",
-    "react": "^18.2.0",
-    "sinon": "^15.2.0",
-    "styled-components": "^6.1.8"
+    "react": "^18.3.1",
+    "sinon": "^18.0.0",
+    "styled-components": "^6.1.12"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
-    "@types/react": "^17.0.0 || ^18.0.0",
-    "react": "^17.0.0 || ^18.0.0"
+    "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -88,6 +88,6 @@
     "directory": "build"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=14.0.0"
   }
 }

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import type {} from '@mui/material/themeCssVarsAugmentation';
-import { createTheme, ThemeOptions, alpha } from '@mui/material/styles';
-import { PaletteMode } from '@mui/material';
+import { createTheme, ThemeOptions, alpha, PaletteMode } from '@mui/material/styles';
 
 import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
@@ -231,156 +230,195 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
       },
       MuiButton: {
         styleOverrides: {
-          root: ({ theme, ownerState }) => ({
+          root: ({ theme }) => ({
             boxShadow: 'none',
             borderRadius: theme.shape.borderRadius,
             textTransform: 'none',
-            ...(ownerState.size === 'small' && {
-              height: '2rem', // 32px
-              padding: '0 0.5rem',
-            }),
-            ...(ownerState.size === 'medium' && {
-              height: '2.5rem', // 40px
-            }),
-            ...(ownerState.variant === 'contained' &&
-              ownerState.color === 'primary' && {
-                color: 'white',
-                backgroundColor: brand[300],
-                backgroundImage: `linear-gradient(to bottom, ${alpha(brand[400], 0.8)}, ${brand[500]})`,
-                boxShadow: `inset 0 2px 0 ${alpha(brand[200], 0.2)}, inset 0 -2px 0 ${alpha(brand[700], 0.4)}`,
-                border: `1px solid ${brand[500]}`,
-                '&:hover': {
-                  backgroundColor: brand[700],
-                  boxShadow: 'none',
+            variants: [
+              {
+                props: {
+                  size: 'small',
                 },
-                '&:active': {
-                  backgroundColor: brand[700],
-                  boxShadow: `inset 0 2.5px 0 ${alpha(brand[700], 0.4)}`,
+                style: {
+                  height: '2rem', // 32px
+                  padding: '0 0.5rem',
                 },
-              }),
-            ...(ownerState.variant === 'outlined' && {
-              color: brand[700],
-              backgroundColor: alpha(brand[300], 0.1),
-              borderColor: alpha(brand[200], 0.8),
-              boxShadow: `inset 0 2px ${alpha(brand[50], 0.5)}, inset 0 -2px ${alpha(brand[200], 0.2)}`,
-              '&:hover': {
-                backgroundColor: alpha(brand[300], 0.2),
-                borderColor: alpha(brand[300], 0.5),
-                boxShadow: 'none',
               },
-              '&:active': {
-                backgroundColor: alpha(brand[300], 0.3),
-                boxShadow: `inset 0 2.5px 0 ${alpha(brand[400], 0.2)}`,
-                backgroundImage: 'none',
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  height: '2.5rem', // 40px
+                },
               },
-            }),
-            ...(ownerState.variant === 'outlined' &&
-              ownerState.color === 'secondary' && {
-                backgroundColor: alpha(gray[300], 0.1),
-                borderColor: alpha(gray[300], 0.5),
-                color: gray[700],
-                '&:hover': {
-                  backgroundColor: alpha(gray[300], 0.3),
-                  borderColor: alpha(gray[300], 0.5),
-                  boxShadow: 'none',
+              {
+                props: {
+                  color: 'primary',
+                  variant: 'contained',
                 },
-                '&:active': {
-                  backgroundColor: alpha(gray[300], 0.4),
-                  boxShadow: `inset 0 2.5px 0 ${alpha(gray[400], 0.2)}`,
-                  backgroundImage: 'none',
-                },
-              }),
-            ...(ownerState.variant === 'text' &&
-              ownerState.color === 'primary' && {
-                color: brand[700],
-                '&:hover': {
-                  backgroundColor: alpha(brand[300], 0.3),
-                },
-              }),
-            ...(ownerState.variant === 'text' &&
-              ownerState.color === 'info' && {
-                color: gray[700],
-                '&:hover': {
-                  backgroundColor: alpha(gray[300], 0.3),
-                },
-              }),
-            ...(theme.palette.mode === 'dark' && {
-              ...(ownerState.variant === 'outlined' && {
-                color: brand[200],
-                backgroundColor: alpha(brand[600], 0.1),
-                borderColor: alpha(brand[600], 0.6),
-                boxShadow: `inset 0 2.5px ${alpha(brand[400], 0.1)}, inset 0 -2px ${alpha(gray[900], 0.5)}`,
-                '&:hover': {
-                  backgroundColor: alpha(brand[700], 0.2),
-                  borderColor: alpha(brand[700], 0.5),
-                  boxShadow: 'none',
-                },
-                '&:active': {
-                  backgroundColor: alpha(brand[800], 0.2),
-                  boxShadow: `inset 0 2.5px 0 ${alpha(brand[900], 0.4)}`,
-                  backgroundImage: 'none',
-                },
-              }),
-              ...(ownerState.variant === 'text' &&
-                ownerState.color === 'info' && {
-                  color: gray[200],
+                style: {
+                  color: 'white',
+                  backgroundColor: brand[300],
+                  backgroundImage: `linear-gradient(to bottom, ${alpha(brand[400], 0.8)}, ${brand[500]})`,
+                  boxShadow: `inset 0 2px 0 ${alpha(brand[200], 0.2)}, inset 0 -2px 0 ${alpha(brand[700], 0.4)}`,
+                  border: `1px solid ${brand[500]}`,
                   '&:hover': {
-                    backgroundColor: alpha(gray[700], 0.3),
-                  },
-                }),
-              ...(ownerState.variant === 'outlined' &&
-                ownerState.color === 'secondary' && {
-                  color: gray[300],
-                  backgroundColor: alpha(gray[600], 0.1),
-                  borderColor: alpha(gray[700], 0.5),
-                  boxShadow: `inset 0 2.5px ${alpha(gray[600], 0.1)}, inset 0 -2px ${alpha(gray[900], 0.5)}`,
-                  '&:hover': {
-                    backgroundColor: alpha(gray[700], 0.2),
-                    borderColor: alpha(gray[700], 0.5),
+                    backgroundColor: brand[700],
                     boxShadow: 'none',
                   },
                   '&:active': {
-                    backgroundColor: alpha(gray[800], 0.2),
-                    boxShadow: `inset 0 2.5px 0 ${alpha(gray[900], 0.4)}`,
+                    backgroundColor: brand[700],
+                    boxShadow: `inset 0 2.5px 0 ${alpha(brand[700], 0.4)}`,
+                  },
+                },
+              },
+              {
+                props: {
+                  variant: 'outlined',
+                },
+                style: {
+                  color: brand[700],
+                  backgroundColor: alpha(brand[300], 0.1),
+                  borderColor: alpha(brand[200], 0.8),
+                  boxShadow: `inset 0 2px ${alpha(brand[50], 0.5)}, inset 0 -2px ${alpha(brand[200], 0.2)}`,
+                  '&:hover': {
+                    backgroundColor: alpha(brand[300], 0.2),
+                    borderColor: alpha(brand[300], 0.5),
+                    boxShadow: 'none',
+                  },
+                  '&:active': {
+                    backgroundColor: alpha(brand[300], 0.3),
+                    boxShadow: `inset 0 2.5px 0 ${alpha(brand[400], 0.2)}`,
                     backgroundImage: 'none',
                   },
-                }),
-              ...(ownerState.variant === 'text' &&
-                ownerState.color === 'primary' && {
-                  color: brand[200],
+                  ...theme.applyStyles('dark', {
+                    color: brand[200],
+                    backgroundColor: alpha(brand[600], 0.1),
+                    borderColor: alpha(brand[600], 0.6),
+                    boxShadow: `inset 0 2.5px ${alpha(brand[400], 0.1)}, inset 0 -2px ${alpha(gray[900], 0.5)}`,
+                    '&:hover': {
+                      backgroundColor: alpha(brand[700], 0.2),
+                      borderColor: alpha(brand[700], 0.5),
+                      boxShadow: 'none',
+                    },
+                    '&:active': {
+                      backgroundColor: alpha(brand[800], 0.2),
+                      boxShadow: `inset 0 2.5px 0 ${alpha(brand[900], 0.4)}`,
+                      backgroundImage: 'none',
+                    },
+                  }),
+                },
+              },
+              {
+                props: {
+                  color: 'secondary',
+                  variant: 'outlined',
+                },
+                style: {
+                  backgroundColor: alpha(gray[300], 0.1),
+                  borderColor: alpha(gray[300], 0.5),
+                  color: gray[700],
                   '&:hover': {
-                    backgroundColor: alpha(brand[700], 0.3),
+                    backgroundColor: alpha(gray[300], 0.3),
+                    borderColor: alpha(gray[300], 0.5),
+                    boxShadow: 'none',
                   },
-                }),
-            }),
+                  '&:active': {
+                    backgroundColor: alpha(gray[300], 0.4),
+                    boxShadow: `inset 0 2.5px 0 ${alpha(gray[400], 0.2)}`,
+                    backgroundImage: 'none',
+                  },
+                  ...theme.applyStyles('dark', {
+                    color: gray[300],
+                    backgroundColor: alpha(gray[600], 0.1),
+                    borderColor: alpha(gray[700], 0.5),
+                    boxShadow: `inset 0 2.5px ${alpha(gray[600], 0.1)}, inset 0 -2px ${alpha(gray[900], 0.5)}`,
+                    '&:hover': {
+                      backgroundColor: alpha(gray[700], 0.2),
+                      borderColor: alpha(gray[700], 0.5),
+                      boxShadow: 'none',
+                    },
+                    '&:active': {
+                      backgroundColor: alpha(gray[800], 0.2),
+                      boxShadow: `inset 0 2.5px 0 ${alpha(gray[900], 0.4)}`,
+                      backgroundImage: 'none',
+                    },
+                  }),
+                },
+              },
+              {
+                props: {
+                  color: 'primary',
+                  variant: 'text',
+                },
+                style: {
+                  color: brand[700],
+                  '&:hover': {
+                    backgroundColor: alpha(brand[300], 0.3),
+                  },
+                  ...theme.applyStyles('dark', {
+                    color: brand[200],
+                    '&:hover': {
+                      backgroundColor: alpha(brand[700], 0.3),
+                    },
+                  }),
+                },
+              },
+              {
+                props: {
+                  color: 'info',
+                  variant: 'text',
+                },
+                style: {
+                  color: gray[700],
+                  '&:hover': {
+                    backgroundColor: alpha(gray[300], 0.3),
+                  },
+                  ...theme.applyStyles('dark', {
+                    color: gray[200],
+                    '&:hover': {
+                      backgroundColor: alpha(gray[700], 0.3),
+                    },
+                  }),
+                },
+              },
+            ],
           }),
         },
       },
       MuiCard: {
         styleOverrides: {
-          root: ({ theme, ownerState }) => ({
+          root: ({ theme }) => ({
             transition: 'all 100ms ease',
             backgroundColor: gray[50],
             borderRadius: theme.shape.borderRadius,
             border: `1px solid ${alpha(gray[200], 0.5)}`,
             boxShadow: 'none',
-            ...(ownerState.variant === 'outlined' && {
-              border: `1px solid ${gray[200]}`,
-              boxShadow: 'none',
-              background: `linear-gradient(to bottom, hsl(0, 0%, 100%), ${gray[50]})`,
-            }),
-            ...(theme.palette.mode === 'dark' && {
+            ...theme.applyStyles('dark', {
               backgroundColor: alpha(gray[800], 0.6),
               border: `1px solid ${alpha(gray[700], 0.3)}`,
-              ...(ownerState.variant === 'outlined' && {
-                border: `1px solid ${alpha(gray[700], 0.4)}`,
-                boxShadow: 'none',
-                background: `linear-gradient(to bottom, ${gray[900]}, ${alpha(
-                  gray[800],
-                  0.5,
-                )})`,
-              }),
             }),
+            variants: [
+              {
+                props: {
+                  variant: 'outlined',
+                },
+                style: {
+                  border: `1px solid ${gray[200]}`,
+                  boxShadow: 'none',
+                  background: `linear-gradient(to bottom, hsl(0, 0%, 100%), ${gray[50]})`,
+                  ...theme.applyStyles('dark', {
+                    border: `1px solid ${alpha(gray[700], 0.4)}`,
+                    boxShadow: 'none',
+                    background: `linear-gradient(to bottom, ${gray[900]}, ${alpha(
+                      gray[800],
+                      0.5,
+                    )})`,
+                  }),
+                },
+              },
+            ],
           }),
         },
       },
@@ -422,7 +460,7 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
                 backgroundColor: brand[600],
               },
             },
-            ...(theme.palette.mode === 'dark' && {
+            ...theme.applyStyles('dark', {
               borderColor: alpha(gray[700], 0.5),
               boxShadow: '0 0 0 1.5px hsl(210, 0%, 0%) inset',
               backgroundColor: alpha(gray[900], 0.8),
@@ -453,7 +491,7 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
         styleOverrides: {
           root: ({ theme }) => ({
             borderColor: `${alpha(gray[200], 0.8)}`,
-            ...(theme.palette.mode === 'dark' && {
+            ...theme.applyStyles('dark', {
               borderColor: `${alpha(gray[700], 0.4)}`,
             }),
           }),
@@ -469,27 +507,39 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
       },
       MuiIconButton: {
         styleOverrides: {
-          root: ({ theme, ownerState }) => ({
-            ...(ownerState.size === 'small' && {
-              height: '2rem',
-              width: '2rem',
-            }),
-            ...(ownerState.size === 'medium' && {
-              height: '2.5rem',
-              width: '2.5rem',
-            }),
+          root: ({ theme }) => ({
             color: brand[500],
             '&:hover': {
               backgroundColor: alpha(brand[300], 0.3),
               borderColor: brand[200],
             },
-            ...(theme.palette.mode === 'dark' && {
+            ...theme.applyStyles('dark', {
               color: brand[200],
               '&:hover': {
                 backgroundColor: alpha(brand[600], 0.3),
                 borderColor: brand[700],
               },
             }),
+            variants: [
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  height: '2rem',
+                  width: '2rem',
+                },
+              },
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  height: '2.5rem',
+                  width: '2.5rem',
+                },
+              },
+            ],
           }),
         },
       },
@@ -530,7 +580,7 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
               outlineOffset: '4px',
               borderRadius: '2px',
             },
-            ...(theme.palette.mode === 'dark' && {
+            ...theme.applyStyles('dark', {
               color: brand[200],
             }),
           }),
@@ -544,7 +594,7 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
           input: {
             paddingLeft: 10,
           },
-          root: ({ theme, ownerState }) => ({
+          root: ({ theme }) => ({
             'input:-webkit-autofill': {
               WebkitBoxShadow: `0 0 0 1000px ${brand[100]} inset, 0 0 0 1px ${brand[200]}`,
               maxHeight: '4px',
@@ -574,14 +624,7 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
               outlineOffset: '2px',
               borderColor: brand[400],
             },
-            ...(ownerState.color === 'error' && {
-              borderColor: red[200],
-              color: red[500],
-              '& + .MuiFormHelperText-root': {
-                color: red[500],
-              },
-            }),
-            ...(theme.palette.mode === 'dark' && {
+            ...theme.applyStyles('dark', {
               'input:-webkit-autofill': {
                 WebkitBoxShadow: `0 0 0 1000px ${brand[900]} inset, 0 0 0 1px ${brand[600]}`,
                 maxHeight: '6px',
@@ -606,14 +649,28 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
                 outline: `3px solid ${alpha(brand[500], 0.5)}`,
                 outlineOffset: '2px',
               },
-              ...(ownerState.color === 'error' && {
-                borderColor: red[700],
-                color: red[300],
-                '& + .MuiFormHelperText-root': {
-                  color: red[300],
-                },
-              }),
             }),
+            variants: [
+              {
+                props: {
+                  color: 'error',
+                },
+                style: {
+                  borderColor: red[200],
+                  color: red[500],
+                  '& + .MuiFormHelperText-root': {
+                    color: red[500],
+                  },
+                  ...theme.applyStyles('dark', {
+                    borderColor: red[700],
+                    color: red[300],
+                    '& + .MuiFormHelperText-root': {
+                      color: red[300],
+                    },
+                  }),
+                },
+              },
+            ],
           }),
         },
       },
@@ -635,7 +692,7 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
             '& .Mui-selected': {
               color: brand[500],
             },
-            ...(theme.palette.mode === 'dark' && {
+            ...theme.applyStyles('dark', {
               '& .Mui-selected': {
                 color: 'hsl(0, 0%, 100%)',
               },
@@ -651,7 +708,7 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
             textTransform: 'none',
             borderRadius: theme.shape.borderRadius,
             fontWeight: 500,
-            ...(theme.palette.mode === 'dark' && {
+            ...theme.applyStyles('dark', {
               color: gray[400],
               '&.Mui-selected': { color: brand[300] },
             }),

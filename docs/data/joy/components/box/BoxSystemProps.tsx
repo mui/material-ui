@@ -4,14 +4,16 @@ import Box from '@mui/joy/Box';
 export default function BoxSystemProps() {
   return (
     <Box
-      height={200}
-      width={200}
-      my={4}
-      display="flex"
-      alignItems="center"
-      gap={4}
-      p={2}
-      sx={{ border: '2px solid grey' }}
+      sx={{
+        height: 200,
+        width: 200,
+        my: 4,
+        display: 'flex',
+        alignItems: 'center',
+        gap: 4,
+        p: 2,
+        border: '2px solid grey',
+      }}
     >
       This Box uses MUI System props for quick customization.
     </Box>

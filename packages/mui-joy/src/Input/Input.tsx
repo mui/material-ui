@@ -271,6 +271,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 
   if (process.env.NODE_ENV !== 'production') {
     const registerEffect = formControl?.registerEffect;
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- process.env never changes
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (registerEffect) {
@@ -283,7 +284,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const color = inProps.color ?? (error ? 'danger' : formControl?.color ?? colorProp);
+  const color = inProps.color ?? (error ? 'danger' : (formControl?.color ?? colorProp));
 
   const ownerState = {
     instanceColor: error ? 'danger' : inProps.color,
@@ -358,7 +359,7 @@ Input.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  autoComplete: PropTypes.string,
+  autoComplete: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * @ignore
    */

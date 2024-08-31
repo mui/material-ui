@@ -44,7 +44,7 @@ function textCriteriaMatches(nextFocus, textCriteria) {
   if (textCriteria.repeating) {
     return text[0] === textCriteria.keys[0];
   }
-  return text.indexOf(textCriteria.keys.join('')) === 0;
+  return text.startsWith(textCriteria.keys.join(''));
 }
 
 function moveFocus(
@@ -144,6 +144,16 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
   const handleKeyDown = (event) => {
     const list = listRef.current;
     const key = event.key;
+    const isModifierKeyPressed = event.ctrlKey || event.metaKey || event.altKey;
+
+    if (isModifierKeyPressed) {
+      if (onKeyDown) {
+        onKeyDown(event);
+      }
+
+      return;
+    }
+
     /**
      * @type {Element} - will always be defined since we are in a keydown handler
      * attached to an element. A keydown event is either dispatched to the activeElement

@@ -124,7 +124,7 @@ function AnchorPlayground() {
 
   return (
     <div>
-      <Grid container justifyContent="center">
+      <Grid container sx={{ justifyContent: 'center' }}>
         <Grid item sx={{ position: 'relative', mb: 4 }}>
           <Button ref={anchorRef} variant="contained" onClick={handleClickButton}>
             Open Popover

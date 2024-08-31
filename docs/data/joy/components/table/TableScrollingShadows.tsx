@@ -29,19 +29,17 @@ const rows = [
 export default function TableScrollingShadows() {
   return (
     <div>
-      <Typography level="body-sm" textAlign="center" sx={{ mb: 2 }}>
+      <Typography level="body-sm" sx={{ textAlign: 'center', mb: 2 }}>
         The table body is scrollable.
       </Typography>
       <Sheet
-        sx={{
+        sx={(theme) => ({
           '--TableCell-height': '40px',
           // the number is the amount of the header rows.
           '--TableHeader-height': 'calc(1 * var(--TableCell-height))',
           height: 200,
           overflow: 'auto',
-          background: (
-            theme,
-          ) => `linear-gradient(${theme.vars.palette.background.surface} 30%, rgba(255, 255, 255, 0)),
+          background: `linear-gradient(${theme.vars.palette.background.surface} 30%, rgba(255, 255, 255, 0)),
             linear-gradient(rgba(255, 255, 255, 0), ${theme.vars.palette.background.surface} 70%) 0 100%,
             radial-gradient(
               farthest-side at 50% 0,
@@ -60,7 +58,7 @@ export default function TableScrollingShadows() {
           backgroundPosition:
             '0 var(--TableHeader-height), 0 100%, 0 var(--TableHeader-height), 0 100%',
           backgroundColor: 'background.surface',
-        }}
+        })}
       >
         <Table stickyHeader>
           <thead>

@@ -6,24 +6,20 @@
 
 Run one of the following commands to add Material UI to your project:
 
-:::info
-The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Remove it to get the current stable version.
-:::
-
 <!-- #default-branch-switch -->
 
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/material@next @emotion/react @emotion/styled
-```
-
-```bash yarn
-yarn add @mui/material@next @emotion/react @emotion/styled
+npm install @mui/material @emotion/react @emotion/styled
 ```
 
 ```bash pnpm
-pnpm add @mui/material@next @emotion/react @emotion/styled
+pnpm add @mui/material @emotion/react @emotion/styled
+```
+
+```bash yarn
+yarn add @mui/material @emotion/react @emotion/styled
 ```
 
 </codeblock>
@@ -52,12 +48,12 @@ If you want to use [styled-components](https://styled-components.com/) instead, 
 npm install @mui/material @mui/styled-engine-sc styled-components
 ```
 
-```bash yarn
-yarn add @mui/material @mui/styled-engine-sc styled-components
-```
-
 ```bash pnpm
 pnpm add @mui/material @mui/styled-engine-sc styled-components
+```
+
+```bash yarn
+yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
 </codeblock>
@@ -83,12 +79,12 @@ Add it to your project via Fontsource, or with the Google Fonts CDN.
 npm install @fontsource/roboto
 ```
 
-```bash yarn
-yarn add @fontsource/roboto
-```
-
 ```bash pnpm
 pnpm add @fontsource/roboto
+```
+
+```bash yarn
+yarn add @fontsource/roboto
 ```
 
 </codeblock>
@@ -130,12 +126,12 @@ You can do so with npm, or with the Google Web Fonts CDN.
 npm install @mui/icons-material
 ```
 
-```bash yarn
-yarn add @mui/icons-material
-```
-
 ```bash pnpm
 pnpm add @mui/icons-material
+```
+
+```bash yarn
+yarn add @mui/icons-material
 ```
 
 </codeblock>
@@ -159,20 +155,12 @@ For instance, via Google Web Fonts:
 ## CDN
 
 You can start using Material UI right away with minimal front-end infrastructure by installing it via CDN, which is a great option for rapid prototyping.
+
+<!-- #default-branch-switch -->
+
 Follow [this CDN example](https://github.com/mui/material-ui/tree/master/examples/material-ui-via-cdn) to get started.
 
 :::error
 We do _not_ recommend using this approach in production.
 It requires the client to download the entire library—regardless of which components are actually used—which negatively impacts performance and bandwidth utilization.
-:::
-
-Two Universal Module Definition (UMD) files are provided:
-
-- one for development: https://unpkg.com/@mui/material@latest/umd/material-ui.development.js
-- one for production: https://unpkg.com/@mui/material@latest/umd/material-ui.production.min.js
-
-:::warning
-The UMD links use the `latest` tag to point to the latest version of the library.
-This pointer is _unstable_ and subject to change as we release new versions.
-You should consider pointing to a specific version, such as [v5.0.0](https://unpkg.com/@mui/material@5.0.0/umd/material-ui.development.js).
 :::

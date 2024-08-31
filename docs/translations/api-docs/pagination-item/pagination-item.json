@@ -65,13 +65,13 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"primary\"</code>",
-      "deprecationInfo": "Combine the <a href=\"/material-ui/api/pagination-item/#pagination-item-classes-outlined\">.MuiPaginationItem-outlined</a> and <a href=\"/material-ui/api/pagination-item/#pagination-item-classes-colorPrimary\">.MuiPaginationItem-colorPrimary</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/pagination-item/#pagination-item-classes-outlined\">.MuiPaginationItem-outlined</a> and <a href=\"/material-ui/api/pagination-item/#pagination-item-classes-colorPrimary\">.MuiPaginationItem-colorPrimary</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "outlinedSecondary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"secondary\"</code>",
-      "deprecationInfo": "Combine the <a href=\"/material-ui/api/pagination-item/#pagination-item-classes-outlined\">.MuiPaginationItem-outlined</a> and <a href=\"/material-ui/api/pagination-item/#pagination-item-classes-colorSecondary\">.MuiPaginationItem-colorSecondary</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/pagination-item/#pagination-item-classes-outlined\">.MuiPaginationItem-outlined</a> and <a href=\"/material-ui/api/pagination-item/#pagination-item-classes-colorSecondary\">.MuiPaginationItem-colorSecondary</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "page": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -113,13 +113,13 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"text\"</code> and <code>color=\"primary\"</code>",
-      "deprecationInfo": "Combine the <a href=\"/material-ui/api/pagination-item/#pagination-item-classes-text\">.MuiPaginationItem-text</a> and <a href=\"/material-ui/api/pagination-item/#pagination-item-classes-colorPrimary\">.MuiPaginationItem-colorPrimary</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/pagination-item/#pagination-item-classes-text\">.MuiPaginationItem-text</a> and <a href=\"/material-ui/api/pagination-item/#pagination-item-classes-colorPrimary\">.MuiPaginationItem-colorPrimary</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "textSecondary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"text\"</code> and <code>color=\"secondary\"</code>",
-      "deprecationInfo": "Combine the <a href=\"/material-ui/api/pagination-item/#pagination-item-classes-text\">.MuiPaginationItem-text</a> and <a href=\"/material-ui/api/pagination-item/#pagination-item-classes-colorSecondary\">.MuiPaginationItem-colorSecondary</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/pagination-item/#pagination-item-classes-text\">.MuiPaginationItem-text</a> and <a href=\"/material-ui/api/pagination-item/#pagination-item-classes-colorSecondary\">.MuiPaginationItem-colorSecondary</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     }
   },
   "slotDescriptions": { "first": "", "last": "", "next": "", "previous": "" }

@@ -9,7 +9,7 @@ export interface UseTabParameters {
    */
   value?: number | string;
   /**
-   * If `true`, the tab will be disabled.
+   * Callback invoked when new value is being set.
    */
   onChange?: (event: React.SyntheticEvent, value: number | string) => void;
   /**

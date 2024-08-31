@@ -10,7 +10,7 @@ githubLabel: 'component: input'
 
 <p class="description">The Input component provides users with a field to enter and edit text.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 

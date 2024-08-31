@@ -1,5 +1,4 @@
 <Autocomplete
-  id="disabled-options-demo"
   options={timeSlots}
   getOptionDisabled={(option) =>
     option === timeSlots[0] || option === timeSlots[2]

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { act, createRenderer } from '@mui-internal/test-utils';
+import { act, createRenderer } from '@mui/internal-test-utils';
 import { ClassNames } from '@emotion/react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import FormControl from '@mui/material/FormControl';

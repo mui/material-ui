@@ -357,7 +357,7 @@ Additionally, the following are the deliveries planned for the next few months.
 
 - [Time Range Picker](https://github.com/mui/mui-x/issues/4460)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
-For a complete overview, please visit the [MUI X roadmap](https://github.com/mui/mui-x/projects/1).
+For a complete overview, please visit the [MUI X roadmap](https://github.com/orgs/mui/projects/35).
 
 ## Long-Term Support
 

@@ -11,24 +11,18 @@ This section walks through the Material UI integration with the Next.js [App Ro
 Start by ensuring that you already have `@mui/material` and `next` installed.
 Then, run one of the following commands to install the dependencies:
 
-:::info
-The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Remove it to get the current stable version.
-:::
-
-<!-- #default-branch-switch -->
-
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/material-nextjs@next @emotion/cache
-```
-
-```bash yarn
-yarn add @mui/material-nextjs@next @emotion/cache
+npm install @mui/material-nextjs @emotion/cache
 ```
 
 ```bash pnpm
-pnpm add @mui/material-nextjs@next @emotion/cache
+pnpm add @mui/material-nextjs @emotion/cache
+```
+
+```bash yarn
+yarn add @mui/material-nextjs @emotion/cache
 ```
 
 </codeblock>
@@ -124,19 +118,16 @@ To learn more about theming, check out the [theming guide](/material-ui/customiz
 
 #### CSS theme variables
 
-If you want to use [CSS theme variables](/material-ui/experimental-api/css-theme-variables/overview/), use the `extendTheme` and `CssVarsProvider` utilities instead:
+To use [CSS theme variables](/material-ui/customization/css-theme-variables/overview/), enable the `cssVariables` flag:
 
 ```diff title="src/theme.ts"
  'use client';
--import { createTheme } from '@mui/material/styles';
-+import { extendTheme } from '@mui/material/styles';
-
- // app/layout.tsx
--import { ThemeProvider } from '@mui/material/styles';
-+import { CssVarsProvider } from '@mui/material/styles';
+ const theme = createTheme({
++  cssVariables: true,
+ });
 ```
 
-Learn more about [the advantages of CSS theme variables](/material-ui/experimental-api/css-theme-variables/overview/#advantages).
+Learn more about [the advantages of CSS theme variables](/material-ui/customization/css-theme-variables/overview/#advantages) and how to [prevent SSR flickering](/material-ui/customization/css-theme-variables/configuration/#preventing-ssr-flickering).
 
 ### Using other styling solutions
 
@@ -165,12 +156,12 @@ Then, run one of the following commands to install the dependencies:
 npm install @mui/material-nextjs @emotion/cache @emotion/server
 ```
 
-```bash yarn
-yarn add @mui/material-nextjs @emotion/cache @emotion/server
-```
-
 ```bash pnpm
 pnpm add @mui/material-nextjs @emotion/cache @emotion/server
+```
+
+```bash yarn
+yarn add @mui/material-nextjs @emotion/cache @emotion/server
 ```
 
 </codeblock>
@@ -367,11 +358,13 @@ To learn more about theming, check out the [Theming guide](/material-ui/customiz
 
 #### CSS theme variables
 
-If you want to use [CSS theme variables](/material-ui/experimental-api/css-theme-variables/overview/), use the `extendTheme` and `CssVarsProvider` instead:
+To use [CSS theme variables](/material-ui/customization/css-theme-variables/overview/), enable the `cssVariables` flag:
 
-```diff title="pages/_app.tsx"
--import { ThemeProvider, createTheme } from '@mui/material/styles';
-+import { CssVarsProvider, extendTheme } from '@mui/material/styles';
+```diff title="src/theme.ts"
+ 'use client';
+ const theme = createTheme({
++  cssVariables: true,
+ });
 ```
 
-Learn more about [the advantages of CSS theme variables](/material-ui/experimental-api/css-theme-variables/overview/#advantages).
+Learn more about [the advantages of CSS theme variables](/material-ui/customization/css-theme-variables/overview/#advantages) and how to [prevent SSR flickering](/material-ui/customization/css-theme-variables/configuration/#preventing-ssr-flickering).

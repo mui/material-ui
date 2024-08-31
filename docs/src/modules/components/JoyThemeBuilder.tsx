@@ -503,12 +503,7 @@ function ColorInput({
       size="sm"
       error={isError}
       startDecorator={
-        <ColorBubblePreview
-          value={internalValue || props.placeholder}
-          sx={{
-            mr: -0.5,
-          }}
-        />
+        <ColorBubblePreview value={internalValue || props.placeholder} sx={{ mr: -0.5 }} />
       }
       value={internalValue}
       onFocus={(event) => {
@@ -983,7 +978,11 @@ function filterGlobalVariantTokens(palette: Partial<PaletteVariant>, variant: Va
   return tokens;
 }
 
-type StateReducer<T> = (state: T, action: Partial<T>) => T;
+type ReducerState = {
+  hover: boolean;
+  active: boolean;
+  disabled: boolean;
+};
 
 function GlobalVariantForm({
   color,
@@ -1001,13 +1000,14 @@ function GlobalVariantForm({
   onRemove: (token: string) => void;
 }) {
   const [selectedVariant, setSelectedVariant] = React.useState<VariantProp>('solid');
-  const [states, setStates] = React.useReducer<
-    StateReducer<{ hover: boolean; active: boolean; disabled: boolean }>
-  >((prevState, action) => ({ ...prevState, ...action }), {
-    hover: false,
-    active: false,
-    disabled: false,
-  });
+  const [states, setStates] = React.useReducer(
+    (prevState: ReducerState, action: Partial<ReducerState>) => ({ ...prevState, ...action }),
+    {
+      hover: false,
+      active: false,
+      disabled: false,
+    },
+  );
   const themeDefaultValue = filterGlobalVariantTokens(themeDefaultValueProp, selectedVariant);
   const value = filterGlobalVariantTokens(valueProp, selectedVariant);
   const mergedValue = { ...themeDefaultValue, ...value };
@@ -1030,14 +1030,13 @@ function GlobalVariantForm({
   ].filter((item) => !(tokens as Array<string>).includes(item));
   return (
     <React.Fragment>
-      <Typography component="div" fontWeight="xl" level="title-md">
+      <Typography component="div" level="title-md" sx={{ fontWeight: 'xl' }}>
         Global variant tokens
       </Typography>
-      <Typography component="div" level="body-sm" mb={2} mt={0.5}>
+      <Typography component="div" level="body-sm" sx={{ mb: 2, mt: 0.5 }}>
         Pick the specific primitive color, now in CSS variables form already, to correspond to a
         semantic global variant token.
       </Typography>
-
       <Sheet
         variant="outlined"
         sx={{
@@ -1077,12 +1076,7 @@ function GlobalVariantForm({
           <Option value="outlined">outlined</Option>
           <Option value="plain">plain</Option>
         </Select>
-        <Box
-          sx={{
-            display: 'flex',
-            gap: 1,
-          }}
-        >
+        <Box sx={{ display: 'flex', gap: 1 }}>
           <Checkbox
             size="sm"
             label=":hover"
@@ -1273,7 +1267,7 @@ function getAvailableTokens(colorSchemes: any, colorMode: 'light' | 'dark') {
   return tokens;
 }
 
-function TemplatesDialog({ children, data }: { children: React.ReactElement; data: any }) {
+function TemplatesDialog({ children, data }: { children: React.ReactElement<any>; data: any }) {
   const [open, setOpen] = React.useState(false);
   const { map: templateMap } = sourceJoyTemplates();
   const renderItem = (name: string, item: TemplateData) => {
@@ -1317,8 +1311,6 @@ function TemplatesDialog({ children, data }: { children: React.ReactElement; dat
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <Link
               component="button"
-              fontSize="xl"
-              fontWeight="xl"
               color="neutral"
               textColor="#fff"
               overlay
@@ -1334,6 +1326,7 @@ function TemplatesDialog({ children, data }: { children: React.ReactElement; dat
                   .openSandbox();
               }}
               endDecorator={<ArrowOutwardIcon sx={{ color: 'inherit', opacity: 0.72 }} />}
+              sx={{ fontSize: 'xl', fontWeight: 'xl' }}
             >
               {startCase(name)}
             </Link>
@@ -1361,7 +1354,11 @@ function TemplatesDialog({ children, data }: { children: React.ReactElement; dat
           <Typography level="h2" id="templates-dialog">
             Clone a template sandbox
           </Typography>
-          <Typography id="templates-dialog-description" textColor="text.secondary" fontSize="md">
+          <Typography
+            id="templates-dialog-description"
+            textColor="text.secondary"
+            sx={{ fontSize: 'md' }}
+          >
             Click on one of these template to see start a sandbox with your custom theme.
           </Typography>
 
@@ -1389,8 +1386,6 @@ function TemplatesDialog({ children, data }: { children: React.ReactElement; dat
               {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <Link
                 component="button"
-                fontSize="lg"
-                fontWeight="lg"
                 color="neutral"
                 textColor="text.primary"
                 overlay
@@ -1409,6 +1404,7 @@ function TemplatesDialog({ children, data }: { children: React.ReactElement; dat
                     .openSandbox();
                 }}
                 endDecorator={<ArrowOutwardIcon />}
+                sx={{ fontSize: 'lg', fontWeight: 'lg' }}
               >
                 Minimal template
               </Link>
@@ -1547,12 +1543,7 @@ export default function JoyThemeBuilder() {
                   >
                     <ListItemDecorator>
                       <Box
-                        sx={{
-                          width: 20,
-                          height: 20,
-                          borderRadius: '50%',
-                          bgcolor: `${color}.500`,
-                        }}
+                        sx={{ width: 20, height: 20, borderRadius: '50%', bgcolor: `${color}.500` }}
                       />
                     </ListItemDecorator>
                     <ListItemContent sx={{ fontSize: 'sm' }}>{color}</ListItemContent>
@@ -1581,9 +1572,7 @@ export default function JoyThemeBuilder() {
             if (colorProp === 'etc') {
               return (
                 <Box sx={{ p: 3, flex: 1 }}>
-                  <Typography fontSize="sm" fontWeight="lg">
-                    background
-                  </Typography>
+                  <Typography sx={{ fontSize: 'sm', fontWeight: 'lg' }}>background</Typography>
                   <ColorPaletteForm
                     availableTokens={availableTokens}
                     {...getPaletteFormProps(
@@ -1605,9 +1594,7 @@ export default function JoyThemeBuilder() {
                       });
                     }}
                   />
-                  <Typography fontSize="sm" fontWeight="lg" mt={2}>
-                    common
-                  </Typography>
+                  <Typography sx={{ fontSize: 'sm', fontWeight: 'lg', mt: 2 }}>common</Typography>
                   <ColorPaletteForm
                     availableTokens={availableTokens}
                     {...getPaletteFormProps(
@@ -1629,9 +1616,7 @@ export default function JoyThemeBuilder() {
                       });
                     }}
                   />
-                  <Typography fontSize="sm" fontWeight="lg" mt={2}>
-                    text
-                  </Typography>
+                  <Typography sx={{ fontSize: 'sm', fontWeight: 'lg', mt: 2 }}>text</Typography>
                   <ColorPaletteForm
                     availableTokens={availableTokens}
                     {...getPaletteFormProps(
@@ -1675,10 +1660,10 @@ export default function JoyThemeBuilder() {
                   <Tab>Global variants</Tab>
                 </TabList>
                 <TabPanel value={0}>
-                  <Typography component="div" fontWeight="xl" level="title-md">
+                  <Typography component="div" level="title-md" sx={{ fontWeight: 'xl' }}>
                     Customize primitive colors
                   </Typography>
-                  <Typography component="div" level="body-sm" mb={2} mt={0.5}>
+                  <Typography component="div" level="body-sm" sx={{ mb: 2, mt: 0.5 }}>
                     Add your custom-tailored palette here, inserting each HEX value to the scale, or
                     choose from an available set of popular color palettes.
                   </Typography>

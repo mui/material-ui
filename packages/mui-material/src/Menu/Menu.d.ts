@@ -39,7 +39,7 @@ export interface MenuProps extends StandardProps<PopoverProps> {
    */
   disableAutoFocusItem?: boolean;
   /**
-   * Props applied to the [`MenuList`](/material-ui/api/menu-list/) element.
+   * Props applied to the [`MenuList`](https://mui.com/material-ui/api/menu-list/) element.
    * @default {}
    */
   MenuListProps?: Partial<MenuListProps>;
@@ -55,7 +55,7 @@ export interface MenuProps extends StandardProps<PopoverProps> {
    */
   open: boolean;
   /**
-   * `classes` prop applied to the [`Popover`](/material-ui/api/popover/) element.
+   * `classes` prop applied to the [`Popover`](https://mui.com/material-ui/api/popover/) element.
    */
   PopoverClasses?: PopoverProps['classes'];
   /**
@@ -94,4 +94,4 @@ export declare const MenuPaper: React.FC<PaperProps>;
  * - [Menu API](https://mui.com/material-ui/api/menu/)
  * - inherits [Popover API](https://mui.com/material-ui/api/popover/)
  */
-export default function Menu(props: MenuProps): JSX.Element;
+export default function Menu(props: MenuProps): React.JSX.Element;

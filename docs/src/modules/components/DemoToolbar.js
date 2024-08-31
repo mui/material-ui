@@ -19,7 +19,6 @@ import Tooltip from '@mui/material/Tooltip';
 import Divider from '@mui/material/Divider';
 import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak';
-import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import { useRouter } from 'next/router';
 import { CODE_VARIANTS, CODE_STYLING } from 'docs/src/modules/constants';
 import { useSetCodeVariant } from 'docs/src/modules/utils/codeVariant';
@@ -32,16 +31,26 @@ import stackBlitz from '../sandbox/StackBlitz';
 const Root = styled('div')(({ theme }) => [
   {
     [theme.breakpoints.up('sm')]: {
-      justifyContent: 'space-between',
-      alignItems: 'center',
       display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+    },
+    '& .MuiIconButton-root': {
+      '&:hover': {
+        backgroundColor: (theme.vars || theme).palette.grey[100],
+      },
     },
     '& .MuiSvgIcon-root': {
       fontSize: 16,
-      color: (theme.vars || theme).palette.grey[800],
+      color: (theme.vars || theme).palette.grey[900],
     },
   },
   theme.applyDarkStyles({
+    '& .MuiIconButton-root': {
+      '&:hover': {
+        backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+      },
+    },
     '& .MuiSvgIcon-root': {
       color: (theme.vars || theme).palette.grey[400],
     },
@@ -51,7 +60,7 @@ const Root = styled('div')(({ theme }) => [
 function DemoTooltip(props) {
   return (
     <Tooltip
-      componentsProps={{
+      slotProps={{
         popper: {
           sx: {
             zIndex: (theme) => theme.zIndex.appBar - 1,
@@ -80,7 +89,7 @@ const ToggleButtonGroup = styled(MDToggleButtonGroup)(({ theme }) => [
 
 const Button = styled(MDButton)(({ theme }) => ({
   height: 26,
-  padding: '6px 8px 8px 8px',
+  padding: '7px 8px 8px 8px', // 7px for optical alignment
   flexShrink: 0,
   borderRadius: 999,
   border: '1px solid',
@@ -262,35 +271,12 @@ function useToolbar(controlRefs, options = {}) {
   };
 }
 
-function copyWithRelativeModules(raw, relativeModules) {
-  if (relativeModules) {
-    relativeModules.forEach(({ module, raw: content }) => {
-      // remove exports from relative module
-      content = content.replace(/export( )*(default)*( )*\w+;|export default|export/gm, '');
-      // replace import statement with relative module content
-      // the module might be imported with or without extension, so we need to cover all cases
-      // E.g.: /import .* from '(.\/top100Films.js|.\/top100Films)';/
-      const extensions = ['', '.js', '.jsx', '.ts', '.tsx', '.css', '.json'];
-      const patterns = extensions
-        .map((ext) => {
-          if (module.endsWith(ext)) {
-            return module.replace(ext, '');
-          }
-          return '';
-        })
-        .filter(Boolean)
-        .join('|');
-      const importPattern = new RegExp(`import .* from '(${patterns})';`);
-      raw = raw.replace(importPattern, content);
-    });
-  }
-  return copy(raw);
-}
-
 export default function DemoToolbar(props) {
   const {
     codeOpen,
     codeVariant,
+    copyButtonOnClick,
+    copyIcon,
     hasNonSystemDemos,
     demo,
     demoData,
@@ -337,16 +323,6 @@ export default function DemoToolbar(props) {
 
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
-  };
-
-  const handleCopyClick = async () => {
-    try {
-      await copyWithRelativeModules(demoData.raw, demoData.relativeModules);
-      setSnackbarMessage(t('copiedSource'));
-      setSnackbarOpen(true);
-    } finally {
-      handleMoreClose();
-    }
   };
 
   const createHandleCodeSourceLink = (anchor, codeVariantParam, stylingSolution) => async () => {
@@ -399,6 +375,7 @@ export default function DemoToolbar(props) {
   const devMenuItems = [];
   if (process.env.DEPLOY_ENV === 'staging' || process.env.DEPLOY_ENV === 'pull-request') {
     /* eslint-disable material-ui/no-hardcoded-labels -- staging only */
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- valid reason to disable rules of hooks
     // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
     const router = useRouter();
 
@@ -591,11 +568,11 @@ export default function DemoToolbar(props) {
               data-ga-event-category="demo"
               data-ga-event-label={demo.gaLabel}
               data-ga-event-action="copy"
-              onClick={handleCopyClick}
+              onClick={copyButtonOnClick}
               {...getControlProps(6)}
               sx={{ borderRadius: 1 }}
             >
-              <ContentCopyRoundedIcon />
+              {copyIcon}
             </IconButton>
           </DemoTooltip>
           <DemoTooltip title={t('resetFocus')} placement="bottom">
@@ -741,6 +718,8 @@ export default function DemoToolbar(props) {
 DemoToolbar.propTypes = {
   codeOpen: PropTypes.bool.isRequired,
   codeVariant: PropTypes.string.isRequired,
+  copyButtonOnClick: PropTypes.func.isRequired,
+  copyIcon: PropTypes.object.isRequired,
   demo: PropTypes.object.isRequired,
   demoData: PropTypes.object.isRequired,
   demoId: PropTypes.string,

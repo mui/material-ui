@@ -96,11 +96,7 @@ export default function ToggleGroupToolbar() {
         <AspectRatio
           variant="plain"
           ratio="1"
-          sx={{
-            borderRadius: '50%',
-            width: '1.5em',
-            bgcolor: color,
-          }}
+          sx={{ borderRadius: '50%', width: '1.5em', bgcolor: color }}
         >
           <div />
         </AspectRatio>

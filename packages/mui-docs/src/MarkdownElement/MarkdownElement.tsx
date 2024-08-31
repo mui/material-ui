@@ -1,12 +1,13 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { alpha, darken, styled } from '@mui/material/styles';
+import useForkRef from '@mui/utils/useForkRef';
 import { brandingDarkTheme as darkTheme, brandingLightTheme as lightTheme } from '../branding';
 
 const Root = styled('div')(
   ({ theme }) => ({
     ...lightTheme.typography.body1,
-    lineHeight: 1.6, // Increased compared to the 1.5 default to make the docs easier to read.
+    lineHeight: 1.625, // Rounds up to 26px－increased compared to the 1.5 default to make the docs easier to read.
     color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
     '& :focus-visible': {
       outline: `3px solid ${alpha(lightTheme.palette.primary[500], 0.5)}`,
@@ -20,7 +21,7 @@ const Root = styled('div')(
       lineHeight: 1.5, // Developers like when the code is dense.
       margin: theme.spacing(2, 'auto'),
       padding: theme.spacing(2),
-      backgroundColor: 'hsl(210, 35%, 9%)', // a special, one-off, color tailored for the code blocks using MUI's branding theme blue palette as the starting point. It has a less saturaded color but still maintaining a bit of the blue tint.
+      backgroundColor: 'hsl(210, 25%, 9%)', // a special, one-off, color tailored for the code blocks using MUI's branding theme blue palette as the starting point. It has a less saturaded color but still maintaining a bit of the blue tint.
       color: 'hsl(60, 30%, 96%)',
       colorScheme: 'dark',
       borderRadius: `var(--muidocs-shape-borderRadius, ${
@@ -120,6 +121,43 @@ const Root = styled('div')(
         marginBottom: 6,
       },
     },
+    '& a[target="_blank"]::after': {
+      content: '""',
+      maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' focusable='false' aria-hidden='true' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M6 6v2h8.59L5 17.59 6.41 19 16 9.41V18h2V6z'%3E%3C/path%3E%3C/svg%3E")`,
+      display: 'inline-flex',
+      width: '1em',
+      height: '1em',
+      color: 'inherit',
+      backgroundColor: 'currentColor',
+      transform: 'translate(0, 2px)',
+      transition: 'transform 0.3s cubic-bezier(0.1, 0.8, 0.3, 1)', // bounce effect
+      opacity: 0.8,
+    },
+    '& a[target="_blank"]:hover::after': {
+      opacity: 1,
+      transform: 'translate(1px, 0)',
+    },
+    '& a.remove-link-arrow::after': {
+      // Allows to remove link arrows for images
+      display: 'none',
+    },
+    '& .Ad-root a::after': {
+      // Remove link arrow for ads
+      display: 'none',
+    },
+    '& a': {
+      // Style taken from the Link component
+      color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
+      fontWeight: theme.typography.fontWeightMedium,
+      textDecoration: 'underline',
+      textDecorationColor: alpha(lightTheme.palette.primary.main, 0.4),
+      '&:hover': {
+        textDecorationColor: 'inherit',
+      },
+    },
+    '& a code': {
+      color: darken(lightTheme.palette.primary.main, 0.2),
+    },
     '& h1, & h2, & h3, & h4': {
       display: 'flex',
       alignItems: 'center',
@@ -133,21 +171,16 @@ const Root = styled('div')(
       '& .title-link-to-anchor': {
         color: 'inherit',
         textDecoration: 'none',
+        boxShadow: 'none',
+        fontWeight: 'inherit',
         position: 'relative',
-        display: 'flex',
-        alignItems: 'center',
+        userSelect: 'text',
       },
       '& .anchor-icon': {
         // To prevent the link to get the focus.
         display: 'inline-flex',
         alignItems: 'center',
         visibility: 'hidden',
-      },
-      '& a:not(.title-link-to-anchor):hover': {
-        color: 'currentColor',
-        border: 'none',
-        boxShadow: '0 1px 0 0 currentColor',
-        textDecoration: 'none',
       },
       '& .anchor-icon, & .comment-link': {
         padding: 0,
@@ -159,11 +192,16 @@ const Root = styled('div')(
         marginLeft: 8,
         height: 26,
         width: 26,
-        backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.grey[50]})`,
         color: `var(--muidocs-palette-grey-600, ${lightTheme.palette.grey[600]})`,
-        border: '1px solid',
-        borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
+        backgroundColor: 'transparent',
+        border: '1px solid transparent',
         borderRadius: 8,
+        transition: theme.transitions.create(
+          ['visibility', 'background-color', 'color', 'border-color'],
+          {
+            duration: theme.transitions.duration.shortest,
+          },
+        ),
         '&:hover': {
           backgroundColor: alpha(lightTheme.palette.primary[100], 0.4),
           borderColor: `var(--muidocs-palette-primary-100, ${lightTheme.palette.primary[100]})`,
@@ -183,7 +221,7 @@ const Root = styled('div')(
       '& .comment-link': {
         display: 'none', // So we can have the comment button opt-in.
         marginLeft: 'auto',
-        transition: theme.transitions.create('opacity', {
+        transition: theme.transitions.create(['background-color', 'color', 'border-color'], {
           duration: theme.transitions.duration.shortest,
         }),
         '& svg': {
@@ -282,8 +320,8 @@ const Root = styled('div')(
     },
     '& .MuiCallout-root': {
       display: 'flex',
-      gap: 12,
-      padding: '16px',
+      gap: '8px',
+      padding: '12px',
       margin: '16px 0',
       border: '1px solid',
       color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
@@ -291,36 +329,49 @@ const Root = styled('div')(
       borderRadius: `var(--muidocs-shape-borderRadius, ${
         theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
       }px)`,
-      '& > code': {
+      '& .MuiCallout-content': {
+        minWidth: 0, // Allows content to shrink. Useful when callout contains code block
+        flexGrow: 1,
+      },
+      '& code': {
         height: 'fit-content',
         backgroundColor: `var(--muidocs-palette-grey-100, ${lightTheme.palette.grey[100]})`,
         borderColor: `var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
       },
-      '& .MuiCallout-content': {
-        minWidth: 0, // Allows content to shrink. Useful when callout contains code block
-        flexGrow: 1,
+      '& p': {
+        marginBottom: '8px',
         '& > p:last-child, & > ul:last-child': {
           // Avoid margin on last child
           marginBottom: 0,
-        },
-        '& .MuiCode-root': {
-          '& > pre': {
-            margin: 0,
-            marginTop: 4,
-          },
         },
         '& > ul': {
           // Because of the gap left by the icon, we visually need less padding
           paddingLeft: 22,
         },
       },
-      '& > svg': {
-        marginTop: 2,
-        width: 20,
-        height: 20,
-        flexShrink: 0,
+      '& .MuiCode-root': {
+        '& pre': {
+          margin: '4px 0 0 0',
+          borderRadius: '12px 12px 6px 12px',
+          borderColor: alpha(lightTheme.palette.primaryDark[600], 0.6),
+          '& code': {
+            backgroundColor: 'transparent',
+          },
+        },
       },
-      '& > ul, & > p': {
+      '& .MuiCallout-icon-container': {
+        width: 26, // to match text's line-height
+        height: 26,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexShrink: 0,
+        '& svg': {
+          width: 18,
+          height: 18,
+        },
+      },
+      '& ul, & p': {
         '&:last-child': {
           margin: 0,
         },
@@ -335,7 +386,7 @@ const Root = styled('div')(
         '& strong': {
           color: `var(--muidocs-palette-error-800, ${lightTheme.palette.error[800]})`,
         },
-        '& > svg': {
+        '& svg': {
           fill: `var(--muidocs-palette-error-500, ${lightTheme.palette.error[600]})`,
         },
         '& a': {
@@ -353,7 +404,7 @@ const Root = styled('div')(
         '& strong': {
           color: `var(--muidocs-palette-primary-800, ${lightTheme.palette.primary[800]})`,
         },
-        '& > svg': {
+        '& svg': {
           fill: `var(--muidocs-palette-grey-600, ${lightTheme.palette.grey[600]})`,
         },
       },
@@ -364,7 +415,7 @@ const Root = styled('div')(
         '& strong': {
           color: `var(--muidocs-palette-success-900, ${lightTheme.palette.success[900]})`,
         },
-        '& > svg': {
+        '& svg': {
           fill: `var(--muidocs-palette-success-600, ${lightTheme.palette.success[600]})`,
         },
         '& a': {
@@ -382,7 +433,7 @@ const Root = styled('div')(
         '& strong': {
           color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
         },
-        '& > svg': {
+        '& svg': {
           fill: `var(--muidocs-palette-warning-600, ${lightTheme.palette.warning[600]})`,
         },
         '& a': {
@@ -393,46 +444,6 @@ const Root = styled('div')(
           },
         },
       },
-    },
-    '& a[target="_blank"]::after': {
-      content: '""',
-      maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' focusable='false' aria-hidden='true' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M6 6v2h8.59L5 17.59 6.41 19 16 9.41V18h2V6z'%3E%3C/path%3E%3C/svg%3E")`,
-      display: 'inline-flex',
-      width: '1em',
-      height: '1em',
-      color: 'inherit',
-      backgroundColor: 'currentColor',
-      transform: 'translate(0, 2px)',
-      transition: 'transform 0.3s cubic-bezier(0.1, 0.8, 0.3, 1)', // bounce effect
-      opacity: 0.8,
-    },
-    '& a[target="_blank"]:hover::after': {
-      opacity: 1,
-      transform: 'translate(1px, 0)',
-    },
-    '& a.remove-link-arrow::after': {
-      // Allows to remove link arrows for images
-      display: 'none',
-    },
-    '& .Ad-root a::after': {
-      // Remove link arrow for ads
-      display: 'none',
-    },
-    '& a:not(.title-link-to-anchor), & a:not(.title-link-to-anchor) code': {
-      // Style taken from the Link component
-      color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
-      fontWeight: theme.typography.fontWeightMedium,
-      textDecoration: 'underline',
-      textDecorationColor: alpha(lightTheme.palette.primary.main, 0.4),
-      '&:hover': {
-        textDecorationColor: 'inherit',
-      },
-    },
-    '& a code': {
-      color: darken(lightTheme.palette.primary.main, 0.04),
-    },
-    '& a:not(.title-link-to-anchor) code': {
-      color: darken(lightTheme.palette.primary.main, 0.2),
     },
     '& img, & video': {
       // Use !important so that inline style on <img> or <video> can't win.
@@ -532,44 +543,33 @@ const Root = styled('div')(
       top: 0,
     },
     '& .MuiCode-copy': {
-      display: 'inline-flex',
-      flexDirection: 'row-reverse',
-      alignItems: 'center',
-      width: 26,
-      height: 26,
       cursor: 'pointer',
       position: 'absolute',
       top: 12,
       right: 12,
+      display: 'inline-flex',
+      flexDirection: 'row-reverse',
+      alignItems: 'center',
       padding: theme.spacing(0.5),
-      fontFamily: 'inherit',
-      fontWeight: 500,
+      paddingBottom: '5px', // optical alignment
+      fontFamily: lightTheme.typography.fontFamily,
+      fontWeight: lightTheme.typography.fontWeightMedium,
+      fontSize: lightTheme.typography.pxToRem(12),
       borderRadius: 6,
-      border: 'none',
-      backgroundColor: 'hsl(210, 35%, 9%)', // using the code block one-off background color (defined in line 23)
-      color: '#FFF',
+      border: '1px solid',
+      borderColor: alpha(lightTheme.palette.primaryDark[600], 0.5),
+      backgroundColor: alpha(lightTheme.palette.primaryDark[800], 0.5),
+      color: `var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
       transition: theme.transitions.create(['background', 'borderColor', 'display'], {
         duration: theme.transitions.duration.shortest,
       }),
-      '& svg': {
-        userSelect: 'none',
-        width: theme.typography.pxToRem(16),
-        height: theme.typography.pxToRem(16),
-        display: 'inline-block',
-        fill: 'currentcolor',
-        flexShrink: 0,
-        fontSize: '18px',
-        margin: 'auto',
-        opacity: 0.5,
-      },
-      '& .MuiCode-copied-icon': {
+      '& .MuiCode-copied-label': {
         display: 'none',
       },
       '&:hover, &:focus': {
-        backgroundColor: lightTheme.palette.primaryDark[600],
-        '& svg': {
-          opacity: 1,
-        },
+        borderColor: `var(--muidocs-palette-primaryDark-400, ${lightTheme.palette.primaryDark[400]})`,
+        backgroundColor: `var(--muidocs-palette-primaryDark-700, ${lightTheme.palette.primaryDark[700]})`,
+        color: '#FFF',
         '& .MuiCode-copyKeypress': {
           display: 'block',
           // Approximate no hover capabilities with no keyboard
@@ -582,17 +582,19 @@ const Root = styled('div')(
       '& .MuiCode-copyKeypress': {
         display: 'none',
         position: 'absolute',
-        right: 26,
+        right: 34,
       },
       '&[data-copied]': {
-        // style of the button when it is in copied state.
-        borderColor: lightTheme.palette.primary[700],
+        borderColor: `var(--muidocs-palette-primaryDark-400, ${lightTheme.palette.primaryDark[400]})`,
+        backgroundColor: `var(--muidocs-palette-primaryDark-700, ${lightTheme.palette.primaryDark[700]})`,
         color: '#fff',
-        backgroundColor: lightTheme.palette.primaryDark[600],
-        '& .MuiCode-copy-icon': {
+        '& .MuiCode-copyKeypress': {
+          opacity: 0,
+        },
+        '& .MuiCode-copy-label': {
           display: 'none',
         },
-        '& .MuiCode-copied-icon': {
+        '& .MuiCode-copied-label': {
           display: 'block',
         },
       },
@@ -669,23 +671,25 @@ const Root = styled('div')(
       '& hr': {
         backgroundColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
       },
+      '& a': {
+        color: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primary[300]})`,
+      },
+      '& a code': {
+        color: `var(--muidocs-palette-primary-light, ${darkTheme.palette.primary.light})`,
+      },
       '& h1, & h2, & h3, & h4, & h5': {
         color: `var(--muidocs-palette-grey-50, ${darkTheme.palette.grey[50]})`,
+        '& .anchor-icon, & .comment-link': {
+          color: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primaryDark[400]})`,
+          '&:hover': {
+            color: `var(--muidocs-palette-primary-100, ${darkTheme.palette.primary[100]})`,
+            borderColor: `var(--muidocs-palette-primary-900, ${darkTheme.palette.primary[900]})`,
+            backgroundColor: alpha(darkTheme.palette.primary[900], 0.6),
+          },
+        },
       },
       '& p, & ul, & ol': {
         color: `var(--muidocs-palette-grey-400, ${darkTheme.palette.grey[400]})`,
-      },
-      '& h1, & h2, & h3, & h4': {
-        '&:hover .anchor-icon, & .comment-link': {
-          color: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primaryDark[300]})`,
-          borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
-          backgroundColor: alpha(darkTheme.palette.primaryDark[700], 0.5),
-          '&:hover': {
-            borderColor: `var(--muidocs-palette-primary-900, ${darkTheme.palette.primary[900]})`,
-            backgroundColor: alpha(darkTheme.palette.primary[900], 0.6),
-            color: `var(--muidocs-palette-primary-100, ${darkTheme.palette.primary[100]})`,
-          },
-        },
       },
       '& h1 code, & h2 code, & h3 code': {
         color: `var(--muidocs-palette-grey-100, ${darkTheme.palette.grey[100]})`,
@@ -720,8 +724,7 @@ const Root = styled('div')(
       },
       '& .MuiCallout-root': {
         borderColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
-        '& > code': {
-          height: 'fit-content',
+        '& code': {
           backgroundColor: `var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
           borderColor: `var(--muidocs-palette-primaryDark-500, ${darkTheme.palette.primaryDark[500]})`,
         },
@@ -732,7 +735,7 @@ const Root = styled('div')(
           '& strong': {
             color: `var(--muidocs-palette-error-300, ${darkTheme.palette.error[300]})`,
           },
-          '& > svg': {
+          '& svg': {
             fill: `var(--muidocs-palette-error-500, ${darkTheme.palette.error[500]})`,
           },
           '& a': {
@@ -746,7 +749,7 @@ const Root = styled('div')(
           '& strong': {
             color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
           },
-          '& > svg': {
+          '& svg': {
             fill: `var(--muidocs-palette-grey-400, ${darkTheme.palette.grey[400]})`,
           },
         },
@@ -757,7 +760,7 @@ const Root = styled('div')(
           '& strong': {
             color: `var(--muidocs-palette-success-200, ${darkTheme.palette.success[200]})`,
           },
-          '& > svg': {
+          '& svg': {
             fill: `var(--muidocs-palette-success-500, ${darkTheme.palette.success[500]})`,
           },
           '& a': {
@@ -771,19 +774,13 @@ const Root = styled('div')(
           '& strong': {
             color: `var(--muidocs-palette-warning-200, ${darkTheme.palette.warning[200]})`,
           },
-          '& > svg': {
+          '& svg': {
             fill: `var(--muidocs-palette-warning-400, ${darkTheme.palette.warning[400]})`,
           },
           '& a': {
             color: `var(--muidocs-palette-warning-100, ${darkTheme.palette.warning[100]})`,
           },
         },
-      },
-      '& a:not(.title-link-to-anchor), & a:not(.title-link-to-anchor) code': {
-        color: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primary[300]})`,
-      },
-      '& a:not(.title-link-to-anchor) code': {
-        color: `var(--muidocs-palette-primary-light, ${darkTheme.palette.primary.light})`,
       },
       '& kbd.key': {
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
@@ -810,14 +807,41 @@ const Root = styled('div')(
   }),
 );
 
+function handleHeaderClick(event: Event) {
+  const selection = document.getSelection();
+
+  if (selection === null) {
+    return;
+  }
+
+  if (selection.type === 'Range') {
+    // Disable the <a> behavior to be able to select text.
+    event.preventDefault();
+  }
+}
+
 export interface MarkdownElementProps {
   className?: string;
   renderedMarkdown?: string;
+  children?: React.ReactNode;
 }
 
 export const MarkdownElement = React.forwardRef<HTMLDivElement, MarkdownElementProps>(
   function MarkdownElement(props, ref) {
     const { className, renderedMarkdown, ...other } = props;
+    const rootRef = React.useRef<HTMLElement>(null);
+    const handleRef = useForkRef(rootRef, ref);
+
+    React.useEffect(() => {
+      const elements = rootRef.current!.getElementsByClassName('title-link-to-anchor');
+
+      for (let i = 0; i < elements.length; i += 1) {
+        // More reliable than `-webkit-user-drag` (https://caniuse.com/webkit-user-drag)
+        elements[i].setAttribute('draggable', 'false');
+        elements[i].addEventListener('click', handleHeaderClick);
+      }
+    }, []);
+
     const more: React.ComponentProps<typeof Root> = {};
 
     if (typeof renderedMarkdown === 'string') {
@@ -826,6 +850,8 @@ export const MarkdownElement = React.forwardRef<HTMLDivElement, MarkdownElementP
       more.dangerouslySetInnerHTML = { __html: renderedMarkdown };
     }
 
-    return <Root className={clsx('markdown-body', className)} {...more} {...other} ref={ref} />;
+    return (
+      <Root className={clsx('markdown-body', className)} {...more} {...other} ref={handleRef} />
+    );
   },
 );

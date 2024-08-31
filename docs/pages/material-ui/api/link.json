@@ -2,7 +2,13 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
-    "color": { "type": { "name": "any" }, "default": "'primary'" },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;'textPrimary'<br>&#124;&nbsp;'textSecondary'<br>&#124;&nbsp;'textDisabled'<br>&#124;&nbsp;string"
+      },
+      "default": "'primary'"
+    },
     "component": { "type": { "name": "custom", "description": "element type" } },
     "sx": {
       "type": {

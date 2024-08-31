@@ -35,7 +35,7 @@ export interface FormControlLabelProps
   /**
    * The props used for each slot inside.
    * @default {}
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps?: {
     /**
@@ -48,7 +48,7 @@ export interface FormControlLabelProps
   /**
    * A control element. For instance, it can be a `Radio`, a `Switch` or a `Checkbox`.
    */
-  control: React.ReactElement<any, any>;
+  control: React.ReactElement<unknown, any>;
   /**
    * If `true`, the control is disabled.
    */
@@ -106,4 +106,4 @@ export interface FormControlLabelProps
  *
  * - [FormControlLabel API](https://mui.com/material-ui/api/form-control-label/)
  */
-export default function FormControlLabel(props: FormControlLabelProps): JSX.Element;
+export default function FormControlLabel(props: FormControlLabelProps): React.JSX.Element;

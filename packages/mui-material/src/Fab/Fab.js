@@ -6,10 +6,11 @@ import composeClasses from '@mui/utils/composeClasses';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import fabClasses, { getFabUtilityClass } from './fabClasses';
-import { rootShouldForwardProp } from '../styles/styled';
-import { styled, createUseThemeProps } from '../zero-styled';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 
-const useThemeProps = createUseThemeProps('MuiFab');
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const useUtilityClasses = (ownerState) => {
   const { color, variant, classes, size } = ownerState;
@@ -48,7 +49,7 @@ const FabRoot = styled(ButtonBase, {
     ];
   },
 })(
-  ({ theme }) => ({
+  memoTheme(({ theme }) => ({
     ...theme.typography.button,
     minHeight: 36,
     transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
@@ -132,11 +133,11 @@ const FabRoot = styled(ButtonBase, {
         },
       },
     ],
-  }),
-  ({ theme }) => ({
+  })),
+  memoTheme(({ theme }) => ({
     variants: [
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value.main && value.dark && value.contrastText) // check all the used fields in the style below
+        .filter(([, value]) => value && value.main && value.dark && value.contrastText) // check all the used fields in the style below
         .map(([color]) => ({
           props: { color },
           style: {
@@ -152,18 +153,18 @@ const FabRoot = styled(ButtonBase, {
           },
         })),
     ],
-  }),
-  ({ theme }) => ({
+  })),
+  memoTheme(({ theme }) => ({
     [`&.${fabClasses.disabled}`]: {
       color: (theme.vars || theme).palette.action.disabled,
       boxShadow: (theme.vars || theme).shadows[0],
       backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
     },
-  }),
+  })),
 );
 
 const Fab = React.forwardRef(function Fab(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiFab' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiFab' });
   const {
     children,
     className,

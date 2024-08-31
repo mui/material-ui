@@ -3,7 +3,7 @@ import glob from 'fast-glob';
 import path from 'path';
 import { promisify } from 'util';
 import yargs from 'yargs';
-import { getWorkspaceRoot } from './utils.mjs';
+import { getVersionEnvVariables, getWorkspaceRoot } from './utils.mjs';
 
 const exec = promisify(childProcess.exec);
 
@@ -29,7 +29,9 @@ async function run(argv) {
     NODE_ENV: 'production',
     BABEL_ENV: bundle,
     MUI_BUILD_VERBOSE: verbose,
+    ...(await getVersionEnvVariables()),
   };
+
   const babelConfigPath = path.resolve(getWorkspaceRoot(), 'babel.config.js');
   const srcDir = path.resolve('./src');
   const extensions = ['.js', '.ts', '.tsx'];

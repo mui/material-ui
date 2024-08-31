@@ -5,9 +5,7 @@ export default function TriggerFocusTextarea() {
   return (
     <Textarea
       placeholder="Looks like I'm focused but no"
-      sx={{
-        '--Textarea-focused': 1,
-      }}
+      sx={{ '--Textarea-focused': 1 }}
     />
   );
 }

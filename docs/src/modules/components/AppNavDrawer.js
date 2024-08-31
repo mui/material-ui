@@ -1,21 +1,24 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import NextLink from 'next/link';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import { styled, ThemeProvider } from '@mui/material/styles';
+import { styled, alpha, ThemeProvider } from '@mui/material/styles';
 import List from '@mui/material/List';
 import Drawer from '@mui/material/Drawer';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import Fade from '@mui/material/Fade';
+import Paper from '@mui/material/Paper';
+import Popper from '@mui/material/Popper';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import DoneRounded from '@mui/icons-material/DoneRounded';
-import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
+import LogoWithCopyMenu from 'docs/src/components/action/LogoWithCopyMenu';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -44,69 +47,89 @@ function transitionTheme(theme) {
 
 const savedScrollTop = {};
 
+const customButtonStyles = (theme) => ({
+  pl: 1,
+  pr: '6px',
+  height: 26,
+  fontSize: theme.typography.pxToRem(13),
+  fontWeight: theme.typography.fontWeightMedium,
+  letterSpacing: '0.01rem',
+});
+
 function ProductDrawerButton(props) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
 
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
   };
 
-  const handleEventDelegation = (event) => {
-    // Assert whether an 'a' tag resides in the parent of the clicked element through which the event bubbles out.
-    const isLinkInParentTree = Boolean(event.target.closest('a'));
-    // If the element clicked is link or just inside of a link element then close the menu.
-    if (isLinkInParentTree) {
-      handleClose();
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
     }
+    setOpen(false);
   };
+
+  function handleListKeyDown(event) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpen(false);
+    } else if (event.key === 'Escape') {
+      setOpen(false);
+    }
+  }
 
   return (
     <React.Fragment>
       <Button
+        size="small"
         id="mui-product-selector"
+        ref={anchorRef}
         aria-haspopup="true"
         aria-controls={open ? 'drawer-open-button' : undefined}
         aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
+        onClick={handleToggle}
         endIcon={<ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />}
-        sx={(theme) => ({
-          minWidth: 0,
-          p: '1px 8px',
-          fontSize: theme.typography.pxToRem(13),
-          fontWeight: theme.typography.fontWeightMedium,
-          color: (theme.vars || theme).palette.primary[600],
-          '& svg': {
-            width: 18,
-            height: 18,
-          },
-          ...theme.applyDarkStyles({
-            color: (theme.vars || theme).palette.primary[300],
-          }),
-        })}
+        sx={customButtonStyles}
       >
         {props.productName}
       </Button>
-      <Menu
-        id="mui-product-menu"
-        anchorEl={anchorEl}
+      <Popper
         open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'mui-product-selector',
-        }}
-        PaperProps={{
-          sx: {
-            width: { xs: 340, sm: 'auto' },
-          },
-        }}
-        onClick={handleEventDelegation}
+        anchorEl={anchorRef.current}
+        role={undefined}
+        placement="bottom-start"
+        disablePortal
+        transition
+        style={{ zIndex: 1200 }}
       >
-        <MuiProductSelector />
-      </Menu>
+        {({ TransitionProps }) => (
+          <Fade {...TransitionProps} timeout={250}>
+            <Paper
+              variant="outlined"
+              sx={(theme) => ({
+                mt: 1,
+                minWidth: { xs: '100%', sm: 600 },
+                overflow: 'clip',
+                boxShadow: `0 4px 16px ${alpha(theme.palette.common.black, 0.15)}`,
+                ...theme.applyDarkStyles({
+                  bgcolor: 'primaryDark.900',
+                }),
+              })}
+            >
+              <ClickAwayListener onClickAway={handleClose}>
+                <MuiProductSelector
+                  autoFocusItem={open}
+                  id="mui-product-menu"
+                  aria-labelledby="mui-product-selector"
+                  onKeyDown={handleListKeyDown}
+                />
+              </ClickAwayListener>
+            </Paper>
+          </Fade>
+        )}
+      </Popper>
     </React.Fragment>
   );
 }
@@ -121,8 +144,8 @@ function ProductIdentifier(props) {
     <Box sx={{ flexGrow: 1 }}>
       <Typography
         sx={(theme) => ({
-          ml: 1,
-          fontSize: theme.typography.pxToRem(11),
+          ml: '6px',
+          fontSize: theme.typography.pxToRem(10),
           fontWeight: theme.typography.fontWeightBold,
           textTransform: 'uppercase',
           letterSpacing: '.1rem',
@@ -170,6 +193,7 @@ function PersistScroll(props) {
     }
 
     return () => {
+      // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- useEnhancedEffect uses useEffect under the hood
       savedScrollTop[slot] = scrollContainer.scrollTop;
     };
   }, [enabled, slot]);
@@ -184,7 +208,7 @@ PersistScroll.propTypes = {
 };
 
 const ToolbarDiv = styled('div')(({ theme }) => ({
-  padding: theme.spacing(1.6, 2),
+  padding: theme.spacing(1.5),
   paddingRight: 0,
   flexShrink: 0,
   height: 'var(--MuiDocs-header-height)',
@@ -193,6 +217,8 @@ const ToolbarDiv = styled('div')(({ theme }) => ({
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'space-between',
+  borderBottom: '1px solid',
+  borderColor: (theme.vars || theme).palette.divider,
 }));
 
 const StyledDrawer = styled(Drawer)(({ theme }) => ({
@@ -235,8 +261,9 @@ function reduceChildRoutes(context) {
 
   const title = pageToTitleI18n(page, t);
   if (page.children && page.children.length >= 1) {
-    const topLevel =
-      activePageParents.map((parentPage) => parentPage.pathname).indexOf(page.pathname) !== -1;
+    const topLevel = activePageParents
+      .map((parentPage) => parentPage.pathname)
+      .includes(page.pathname);
 
     let firstChild = page.children[0];
 
@@ -262,6 +289,7 @@ function reduceChildRoutes(context) {
         planned={page.planned}
         unstable={page.unstable}
         beta={page.beta}
+        deprecated={page.deprecated}
         plan={page.plan}
         icon={page.icon}
         subheader={subheader}
@@ -296,6 +324,7 @@ function reduceChildRoutes(context) {
         planned={page.planned}
         unstable={page.unstable}
         beta={page.beta}
+        deprecated={page.deprecated}
         plan={page.plan}
         icon={page.icon}
         subheader={Boolean(page.subheader)}
@@ -323,7 +352,7 @@ export default function AppNavDrawer(props) {
   const drawer = React.useMemo(() => {
     const navItems = renderNavItems({ onClose, pages, activePageParents, depth: 0, t });
 
-    const renderVersionSelector = (versions, sx) => {
+    const renderVersionSelector = (versions) => {
       if (!versions?.length) {
         return null;
       }
@@ -332,6 +361,9 @@ export default function AppNavDrawer(props) {
       return (
         <React.Fragment>
           <Button
+            variant="text"
+            color="secondary"
+            size="small"
             id="mui-version-selector"
             onClick={(event) => {
               setAnchorEl(event.currentTarget);
@@ -341,24 +373,7 @@ export default function AppNavDrawer(props) {
                 <ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />
               ) : null
             }
-            sx={[
-              (theme) => ({
-                py: 0.1,
-                minWidth: 0,
-                fontSize: theme.typography.pxToRem(13),
-                fontWeight: 500,
-                color: (theme.vars || theme).palette.primary[600],
-                '& svg': {
-                  ml: -0.6,
-                  width: 18,
-                  height: 18,
-                },
-                ...theme.applyDarkStyles({
-                  color: (theme.vars || theme).palette.primary[300],
-                }),
-              }),
-              ...(Array.isArray(sx) ? sx : [sx]),
-            ]}
+            sx={customButtonStyles}
           >
             {currentVersion.text}
           </Button>
@@ -392,7 +407,7 @@ export default function AppNavDrawer(props) {
                         onClick: onClose,
                       })}
                 >
-                  {item.text} {item.current && <DoneRounded sx={{ fontSize: 16, ml: 0.25 }} />}
+                  {item.text} {item.current && <DoneRounded sx={{ fontSize: 16, ml: 'auto' }} />}
                 </MenuItem>
               );
             })}
@@ -404,28 +419,17 @@ export default function AppNavDrawer(props) {
     return (
       <React.Fragment>
         <ToolbarDiv>
-          <NextLink href="/" passHref legacyBehavior>
-            <Box
-              component="a"
-              onClick={onClose}
-              aria-label={t('goToHome')}
-              sx={{
-                pr: '12px',
-                mr: '8px',
-                borderRight: '1px solid',
-                borderColor: 'divider',
-              }}
-            >
-              <SvgMuiLogomark width={30} />
-            </Box>
-          </NextLink>
+          <LogoWithCopyMenu
+            logo={productIdentifier.logo}
+            logoSvgString={productIdentifier.logoSvg}
+            wordmarkSvgString={productIdentifier.wordmarkSvg}
+          />
           <ProductIdentifier
             name={productIdentifier.name}
             metadata={productIdentifier.metadata}
             versionSelector={renderVersionSelector(productIdentifier.versions)}
           />
         </ToolbarDiv>
-        <Divider />
         <Box
           sx={{
             pt: 0.5,

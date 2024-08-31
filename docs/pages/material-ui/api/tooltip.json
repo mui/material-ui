@@ -8,14 +8,18 @@
         "name": "shape",
         "description": "{ Arrow?: elementType, Popper?: elementType, Tooltip?: elementType, Transition?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in v7. <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
     },
     "componentsProps": {
       "type": {
         "name": "shape",
         "description": "{ arrow?: object, popper?: object, tooltip?: object, transition?: object }"
       },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in v7. <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
     },
     "describeChild": { "type": { "name": "bool" }, "default": "false" },
     "disableFocusListener": { "type": { "name": "bool" }, "default": "false" },

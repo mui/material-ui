@@ -2,12 +2,26 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { extendSxProp } from '@mui/system/styleFunctionSx';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, internal_createExtendSxProp } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import { getTypographyUtilityClass } from './typographyClasses';
+
+const v6Colors = {
+  primary: true,
+  secondary: true,
+  error: true,
+  info: true,
+  success: true,
+  warning: true,
+  textPrimary: true,
+  textSecondary: true,
+  textDisabled: true,
+};
+
+const extendSxProp = internal_createExtendSxProp();
 
 const useUtilityClasses = (ownerState) => {
   const { align, gutterBottom, noWrap, paragraph, variant, classes } = ownerState;
@@ -41,30 +55,72 @@ export const TypographyRoot = styled('span', {
       ownerState.paragraph && styles.paragraph,
     ];
   },
-})(({ theme, ownerState }) => ({
-  margin: 0,
-  ...(ownerState.variant === 'inherit' && {
-    // Some elements, like <button> on Chrome have default font that doesn't inherit, reset this.
-    font: 'inherit',
-    lineHeight: 'inherit',
-    letterSpacing: 'inherit',
-  }),
-  ...(ownerState.variant !== 'inherit' && theme.typography[ownerState.variant]),
-  ...(ownerState.align !== 'inherit' && {
-    textAlign: ownerState.align,
-  }),
-  ...(ownerState.noWrap && {
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-  }),
-  ...(ownerState.gutterBottom && {
-    marginBottom: '0.35em',
-  }),
-  ...(ownerState.paragraph && {
-    marginBottom: 16,
-  }),
-}));
+})(
+  memoTheme(({ theme }) => ({
+    margin: 0,
+    variants: [
+      {
+        props: {
+          variant: 'inherit',
+        },
+        style: {
+          // Some elements, like <button> on Chrome have default font that doesn't inherit, reset this.
+          font: 'inherit',
+          lineHeight: 'inherit',
+          letterSpacing: 'inherit',
+        },
+      },
+      ...Object.entries(theme.typography)
+        .filter(([variant, value]) => variant !== 'inherit' && value && typeof value === 'object')
+        .map(([variant, value]) => ({
+          props: { variant },
+          style: value,
+        })),
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value && value.main)
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            color: (theme.vars || theme).palette[color].main,
+          },
+        })),
+      ...Object.entries(theme.palette?.text || {})
+        .filter(([, value]) => typeof value === 'string')
+        .map(([color]) => ({
+          props: { color: `text${capitalize(color)}` },
+          style: {
+            color: (theme.vars || theme).palette.text[color],
+          },
+        })),
+      {
+        props: ({ ownerState }) => ownerState.align !== 'inherit',
+        style: {
+          textAlign: 'var(--Typography-textAlign)',
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.noWrap,
+        style: {
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.gutterBottom,
+        style: {
+          marginBottom: '0.35em',
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.paragraph,
+        style: {
+          marginBottom: 16,
+        },
+      },
+    ],
+  })),
+);
 
 const defaultVariantMapping = {
   h1: 'h1',
@@ -80,23 +136,14 @@ const defaultVariantMapping = {
   inherit: 'p',
 };
 
-// TODO v6: deprecate these color values in v5.x and remove the transformation in v6
-const colorTransformations = {
-  primary: 'primary.main',
-  textPrimary: 'text.primary',
-  secondary: 'secondary.main',
-  textSecondary: 'text.secondary',
-  error: 'error.main',
-};
-
-const transformDeprecatedColors = (color) => {
-  return colorTransformations[color] || color;
-};
-
 const Typography = React.forwardRef(function Typography(inProps, ref) {
-  const themeProps = useThemeProps({ props: inProps, name: 'MuiTypography' });
-  const color = transformDeprecatedColors(themeProps.color);
-  const props = extendSxProp({ ...themeProps, color });
+  const { color, ...themeProps } = useDefaultProps({ props: inProps, name: 'MuiTypography' });
+  const isSxColor = !v6Colors[color];
+  // TODO: Remove `extendSxProp` in v7
+  const props = extendSxProp({
+    ...themeProps,
+    ...(isSxColor && { color }),
+  });
 
   const {
     align = 'inherit',
@@ -137,6 +184,10 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
       className={clsx(classes.root, className)}
       {...other}
       ownerState={ownerState}
+      style={{
+        ...(align !== 'inherit' && { '--Typography-textAlign': align }),
+        ...other.style,
+      }}
     />
   );
 });
@@ -164,6 +215,25 @@ Typography.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
+   */
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf([
+      'primary',
+      'secondary',
+      'success',
+      'error',
+      'info',
+      'warning',
+      'textPrimary',
+      'textSecondary',
+      'textDisabled',
+    ]),
+    PropTypes.string,
+  ]),
+  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
@@ -184,8 +254,13 @@ Typography.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the element will be a paragraph element.
    * @default false
+   * @deprecated Use the `component` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   paragraph: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

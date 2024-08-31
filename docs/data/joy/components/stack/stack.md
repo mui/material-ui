@@ -9,7 +9,7 @@ githubLabel: 'component: Stack'
 
 <p class="description">Stack is a container component for arranging elements vertically or horizontally.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -96,13 +96,15 @@ function App() {
 
 ### System props
 
-As a CSS utility component, Stack supports all [MUI System properties](/system/properties/).
-You can use them as props directly on the component.
-For instance, a margin-top:
+:::info
+System props are deprecated and will be removed in the next major release. Please use the `sx` prop instead.
 
-```jsx
-<Stack mt={2}>
+```diff
+- <Stack mt={2} />
++ <Stack sx={{ mt: 2 }} />
 ```
+
+:::
 
 ## Limitations
 

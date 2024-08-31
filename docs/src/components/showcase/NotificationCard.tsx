@@ -42,7 +42,7 @@ export default function NotificationCard() {
         >
           <Avatar
             slotProps={{ img: { 'aria-labelledby': 'demo-notification-card-messenger-name' } }}
-            src="/static/images/avatar/3-sm.jpeg"
+            src="/static/images/avatar/3.jpg"
             sx={{ width: 40, height: 40 }}
           />
         </Box>
@@ -50,23 +50,21 @@ export default function NotificationCard() {
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Typography
               id="demo-notification-card-messenger-name"
-              color="primary.main"
-              fontWeight="semiBold"
-              fontSize={12}
               gutterBottom
+              sx={{ color: 'primary.main', fontWeight: 'semiBold', fontSize: 12 }}
             >
               Angela Erickson
             </Typography>
-            <Typography color="text.secondary" variant="caption">
+            <Typography variant="caption" sx={{ color: 'text.secondary' }}>
               09:41
             </Typography>
           </Box>
           <Box sx={{ display: 'flex', gap: 2 }}>
             <div>
-              <Typography fontWeight="semiBold" fontSize={14}>
+              <Typography sx={{ fontWeight: 'semiBold', fontSize: 14 }}>
                 Incredible discoveries
               </Typography>
-              <Typography fontSize={14} color="text.secondary">
+              <Typography sx={{ fontSize: 14, color: 'text.secondary' }}>
                 It&apos;s about Material UI & Base UI...
               </Typography>
             </div>

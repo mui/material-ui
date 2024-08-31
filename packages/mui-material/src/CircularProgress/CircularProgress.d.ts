@@ -73,4 +73,4 @@ export interface CircularProgressProps
  *
  * - [CircularProgress API](https://mui.com/material-ui/api/circular-progress/)
  */
-export default function CircularProgress(props: CircularProgressProps): JSX.Element;
+export default function CircularProgress(props: CircularProgressProps): React.JSX.Element;

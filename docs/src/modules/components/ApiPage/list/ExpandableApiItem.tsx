@@ -1,9 +1,10 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { alpha, styled } from '@mui/material/styles';
+import { alpha, styled, SxProps } from '@mui/material/styles';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { Divider, IconButton, SxProps } from '@mui/material';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
@@ -56,13 +57,12 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       p: { marginBottom: theme.spacing(1.5) },
     },
     '& .MuiApi-item-note': {
-      fontSize: 12,
       marginLeft: 2,
-      letterSpacing: '1px',
-      textTransform: 'uppercase',
       color: `var(--muidocs-palette-success-800, ${lightTheme.palette.success[800]})`,
-      fontWeight: theme.typography.fontWeightBold,
-      lineHeight: '24px',
+      fontSize: theme.typography.pxToRem(11),
+      fontWeight: theme.typography.fontWeightSemiBold,
+      letterSpacing: '.1rem',
+      textTransform: 'uppercase',
     },
     '& .MuiApi-expend-button': {},
     '& hr': {
@@ -178,6 +178,9 @@ export default function ExpandableApiItem(props: ExpandableApiItemProps) {
   React.useEffect(() => {
     setIsExtended(displayOption === 'expanded');
   }, [displayOption]);
+
+  const anchorLabelId = React.useId();
+
   return (
     <Root
       ownerState={{ type }}
@@ -189,12 +192,13 @@ export default function ExpandableApiItem(props: ExpandableApiItemProps) {
       )}
     >
       <div className="MuiApi-item-header">
-        <a className="MuiApi-item-link-visual" href={`#${id}`}>
+        <a className="MuiApi-item-link-visual" href={`#${id}`} aria-labelledby={anchorLabelId}>
           <svg>
             <use xlinkHref="#anchor-link-icon" />
           </svg>
         </a>
         <span
+          id={anchorLabelId}
           className="MuiApi-item-title algolia-lvl3" // This className is used by Algolia
         >
           {title}
@@ -222,7 +226,7 @@ export default function ExpandableApiItem(props: ExpandableApiItemProps) {
   );
 }
 
-export const ApiItemContaier = styled('div')({
+export const ApiItemContainer = styled('div')({
   width: '100%',
   display: 'flex',
   flexDirection: 'column',

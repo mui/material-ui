@@ -834,6 +834,7 @@ const synonyms = {
   ElevenMp:
     'camera digits font image letters megapixels numbers quality resolution symbol text type',
   Email: 'envelope letters message note post receive send write',
+  Emergency: 'asterisk clinic health hospital maps medical symbol',
   EmergencyRecording:
     'alert attention camera caution danger filming hardware image important motion notification picture videography warning',
   EmergencyShare: 'alert attention caution danger important notification warning',

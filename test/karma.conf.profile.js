@@ -39,7 +39,7 @@ module.exports = function setKarmaConfig(config) {
       'karma-chrome-launcher',
       'karma-sourcemap-loader',
       'karma-webpack',
-      '@mui-internal/test-utils/KarmaReporterReactProfiler',
+      '@mui/internal-test-utils/KarmaReporterReactProfiler',
     ],
     /**
      * possible values:
@@ -81,7 +81,7 @@ module.exports = function setKarmaConfig(config) {
           'process.env.TEST_GATE': JSON.stringify('enable-dispatching-profiler'),
         }),
         new webpack.ProvidePlugin({
-          // required by enzyme > cheerio > parse5 > util
+          // required by code accessing `process.env` in the browser
           process: 'process/browser.js',
         }),
       ],
@@ -108,7 +108,7 @@ module.exports = function setKarmaConfig(config) {
           // needed by sourcemap
           fs: false,
           path: false,
-          // needed by enzyme > cheerio
+          // Exclude polyfill and treat 'stream' as an empty module since it is not required. next -> gzip-size relies on it.
           stream: false,
         },
       },

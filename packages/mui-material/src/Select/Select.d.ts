@@ -63,14 +63,14 @@ export interface BaseSelectProps<Value = unknown>
   /**
    * An `Input` element; does not have to be a material-ui specific `Input`.
    */
-  input?: React.ReactElement<any, any>;
+  input?: React.ReactElement<unknown, any>;
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
    * When `native` is `true`, the attributes are applied on the `select` element.
    */
   inputProps?: InputProps['inputProps'];
   /**
-   * See [OutlinedInput#label](/material-ui/api/outlined-input/#props)
+   * See [OutlinedInput#label](https://mui.com/material-ui/api/outlined-input/#props)
    */
   label?: React.ReactNode;
   /**
@@ -79,7 +79,7 @@ export interface BaseSelectProps<Value = unknown>
    */
   labelId?: string;
   /**
-   * Props applied to the [`Menu`](/material-ui/api/menu/) element.
+   * Props applied to the [`Menu`](https://mui.com/material-ui/api/menu/) element.
    */
   MenuProps?: Partial<MenuProps>;
   /**
@@ -196,7 +196,7 @@ export type SelectProps<Value = unknown> =
  * - [Select API](https://mui.com/material-ui/api/select/)
  * - inherits [OutlinedInput API](https://mui.com/material-ui/api/outlined-input/)
  */
-declare const Select: (<Value = unknown>(props: SelectProps<Value>) => JSX.Element) & {
+declare const Select: (<Value = unknown>(props: SelectProps<Value>) => React.JSX.Element) & {
   muiName: string;
 };
 

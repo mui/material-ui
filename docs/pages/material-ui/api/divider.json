@@ -9,7 +9,7 @@
       "type": { "name": "bool" },
       "default": "false",
       "deprecated": true,
-      "deprecationInfo": "Use &lt;Divider sx={{ opacity: 0.6 }} /&gt; (or any opacity or color) instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
+      "deprecationInfo": "Use &lt;Divider sx={{ opacity: 0.6 }} /&gt; (or any opacity or color) instead. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
