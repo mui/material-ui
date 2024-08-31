@@ -54,13 +54,12 @@ After you've added your custom tokens, click on **Regenerate theme** to include 
 
 <img src="/static/material-ui/design-resources/sync-regenerate.png" style="width: 814px" alt="The Regenerate button in the Connect plugin UI." width="1628" height="400" />
 
-## Customizing components
+## Customizing components (experimental)
 
 The Sync plugin can also generate theme styles for customized components, enabling you to completely change their look and feel and create your custom design system from within Figma.
 
 :::info
-This feature is currently limited to the Button, Switch, and Typography components.
-Support for more components is coming soon.
+This feature is currently experimental and limited to the Button, Switch, and Typography components.
 :::
 
 As an example, here's how to customize the checked state, medium size, and primary color of a Switch component to replicate the iOS look and feel:
