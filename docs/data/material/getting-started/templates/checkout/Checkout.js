@@ -364,7 +364,6 @@ export default function Checkout() {
                       Previous
                     </Button>
                   )}
-
                   {activeStep !== 0 && (
                     <Button
                       startIcon={<ChevronLeftRoundedIcon />}
@@ -378,7 +377,6 @@ export default function Checkout() {
                       Previous
                     </Button>
                   )}
-
                   <Button
                     variant="contained"
                     endIcon={<ChevronRightRoundedIcon />}
