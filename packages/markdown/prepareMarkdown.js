@@ -91,7 +91,7 @@ function prepareMarkdown(config) {
         throw new Error(`docs-infra: Missing description in the page: ${location}\n`);
       }
 
-      if (description.length > 165) {
+      if (description.length > 160) {
         throw new Error(
           [
             `docs-infra: The description "${description}" is too long (${description.length} characters).`,
