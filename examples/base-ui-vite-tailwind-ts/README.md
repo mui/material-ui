@@ -1,6 +1,6 @@
 # Base UI - Vite.js example with Tailwind CSS in TypeScript
 
-[Base UI](https://mui.com/base-ui/) is a library of unstyled React UI components and hooks.
+[Base UI](https://v5.mui.com/base-ui/) is a library of unstyled React UI components and hooks.
 
 [Vite](https://vitejs.dev/) is a build tool that aims to provide a faster and leaner development experience for modern web projects, consisting of a dev server and a build command
 
