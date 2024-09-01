@@ -1,6 +1,6 @@
 # @mui/icons-material
 
-This package provides the Google [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to [`SvgIcon`](https://mui.com/material-ui/api/svg-icon/) components.
+This package provides the Google [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to [`SvgIcon`](https://v5.mui.com/material-ui/api/svg-icon/) components.
 
 ## Installation
 
@@ -14,7 +14,7 @@ npm install @mui/icons-material
 
 <!-- #default-branch-switch -->
 
-These components use the Material UI's [SvgIcon](https://mui.com/material-ui/api/svg-icon) component to render the SVG path for each icon.
+These components use the Material UI's [SvgIcon](https://v5.mui.com/material-ui/api/svg-icon) component to render the SVG path for each icon.
 
 If you are not already using Material UI in your project, you can add it with:
 
@@ -26,8 +26,8 @@ npm install @mui/material
 
 <!-- #default-branch-switch -->
 
-- [The SvgIcon documentation](https://mui.com/material-ui/icons/#svgicon)
-- [The Material Design icons search](https://mui.com/material-ui/material-icons/)
+- [The SvgIcon documentation](https://v5.mui.com/material-ui/icons/#svgicon)
+- [The Material Design icons search](https://v5.mui.com/material-ui/material-icons/)
 
 ## Contributing
 

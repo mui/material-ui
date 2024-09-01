@@ -28,7 +28,7 @@ or:
 
 ## The idea behind the example
 
-This is the reference implementation of the [Server Rendering tutorial](https://mui.com/material-ui/guides/server-rendering/).
+This is the reference implementation of the [Server Rendering tutorial](https://v5.mui.com/material-ui/guides/server-rendering/).
 
 The example project includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI v5.
 If you prefer, you can [use styled-components instead](https://v5.mui.com/material-ui/integrations/interoperability/#styled-components).

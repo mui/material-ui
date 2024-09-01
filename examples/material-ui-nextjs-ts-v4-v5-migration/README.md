@@ -33,7 +33,7 @@ It includes `@mui/material` and its peer dependencies, including [Emotion](https
 It also includes `@mui/styles`, the legacy styling solution that uses JSS as an engine.
 It provides all the necessary config for working with both Emotion and JSS for server-side rendering.
 The project is intended as a basic starter for migrating your application from v4 to v5, as it lets the JSS style overrides take precedence over the default styles passed to the components by Emotion.
-It demonstrates what results after handling v5's breaking changes to the [theme](https://mui.com/material-ui/migration/v5-style-changes/) and [components](https://mui.com/material-ui/migration/v5-component-changes/).
+It demonstrates what results after handling v5's breaking changes to the [theme](https://v5.mui.com/material-ui/migration/v5-style-changes/) and [components](https://v5.mui.com/material-ui/migration/v5-component-changes/).
 
 ## The Link component
 

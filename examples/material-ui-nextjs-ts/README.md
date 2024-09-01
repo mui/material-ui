@@ -35,7 +35,7 @@ or:
 To learn more about this example:
 
 - [Next.js documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Customizing Material UI](https://mui.com/material-ui/customization/how-to-customize/) - approaches to customizing Material UI.
+- [Customizing Material UI](https://v5.mui.com/material-ui/customization/how-to-customize/) - approaches to customizing Material UI.
 
 ## What's next?
 
