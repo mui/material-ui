@@ -1022,8 +1022,8 @@ importers:
         specifier: ^10.4.0
         version: 10.4.0
       '@testing-library/react':
-        specifier: ^16.0.0
-        version: 16.0.0(@testing-library/dom@10.4.0)(@types/react-dom@18.3.0)(@types/react@18.3.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^16.0.1
+        version: 16.0.1(@testing-library/dom@10.4.0)(@types/react-dom@18.3.0)(@types/react@18.3.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@testing-library/user-event':
         specifier: ^14.5.2
         version: 14.5.2(@testing-library/dom@10.4.0)
@@ -1328,8 +1328,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages-internal/test-utils
       '@testing-library/react':
-        specifier: ^16.0.0
-        version: 16.0.0(@testing-library/dom@10.4.0)(@types/react-dom@18.3.0)(@types/react@18.3.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^16.0.1
+        version: 16.0.1(@testing-library/dom@10.4.0)(@types/react-dom@18.3.0)(@types/react@18.3.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@testing-library/user-event':
         specifier: ^14.5.2
         version: 14.5.2(@testing-library/dom@10.4.0)
@@ -5243,8 +5243,8 @@ packages:
     resolution: {integrity: sha512-pemlzrSESWbdAloYml3bAJMEfNh1Z7EduzqPKprCH5S341frlpYnUEW0H72dLxa6IsYr+mPno20GiSm+h9dEdQ==}
     engines: {node: '>=18'}
 
-  '@testing-library/react@16.0.0':
-    resolution: {integrity: sha512-guuxUKRWQ+FgNX0h0NS0FIq3Q3uLtWVpBzcLOggmfMoUpgBnzBzvLLd4fbm6yS8ydJd94cIfY4yP9qUQjM2KwQ==}
+  '@testing-library/react@16.0.1':
+    resolution: {integrity: sha512-dSmwJVtJXmku+iocRhWOUFbrERC76TX2Mnf0ATODz8brzAZrMBbzLwQixlBSanZxR6LddK3eiwpSFZgDET1URg==}
     engines: {node: '>=18'}
     peerDependencies:
       '@testing-library/dom': ^10.0.0
@@ -16242,7 +16242,7 @@ snapshots:
       lz-string: 1.5.0
       pretty-format: 27.5.1
 
-  '@testing-library/react@16.0.0(@testing-library/dom@10.4.0)(@types/react-dom@18.3.0)(@types/react@18.3.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@testing-library/react@16.0.1(@testing-library/dom@10.4.0)(@types/react-dom@18.3.0)(@types/react@18.3.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.25.0
       '@testing-library/dom': 10.4.0
