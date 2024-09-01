@@ -54,7 +54,7 @@
     "@mui/x-tree-view": "7.13.0",
     "@popperjs/core": "^2.11.8",
     "@react-spring/web": "^9.7.4",
-    "@toolpad/core": "^0.5.1",
+    "@toolpad/core": "^0.5.2",
     "autoprefixer": "^10.4.20",
     "autosuggest-highlight": "^3.3.4",
     "babel-plugin-module-resolver": "^5.0.2",
