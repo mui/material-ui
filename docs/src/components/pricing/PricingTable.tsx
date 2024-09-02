@@ -596,7 +596,15 @@ const rowHeaders: Record<string, React.ReactNode> = {
   ),
   'charts/filter-interaction': <ColumnHead label="Row filtering" />,
   'charts/selection-interaction': <ColumnHead label="Range selection" />,
-  'tree-view/tree-view': <ColumnHead label="Tree View" href="/x/react-tree-view/" />,
+  // Treeview - components
+  'tree-view/simple-tree-view': <ColumnHead label="Simple Tree View" href="/x/react-tree-view/simple-tree-view/items/" />,
+  'tree-view/rich-tree-view': <ColumnHead label="Rich Tree View" href="/x/react-tree-view/rich-tree-view/items/" />,
+
+  // Treeview - advanced features
+  'tree-view/inline-editing': <ColumnHead label="Inline editing" href="/x/react-tree-view/rich-tree-view/editing/" />,
+  'tree-view/drag-to-reorder': <ColumnHead label="Drag to reorder" href="/x/react-tree-view/rich-tree-view/ordering/" />,
+  'tree-view/virtualization': <ColumnHead label="Virtualization" />,
+  
   'mui-x-production': <ColumnHead label="Perpetual use in production" />,
   'mui-x-development': <ColumnHead label="Development license" tooltip="For active development" />,
   'mui-x-development-perpetual': (
@@ -769,7 +777,11 @@ const communityData: Record<string, React.ReactNode> = {
   'charts/filter-interaction': no,
   'charts/selection-interaction': no,
   // Tree View
-  'tree-view/tree-view': yes,
+  'tree-view/simple-tree-view': yes,
+  'tree-view/rich-tree-view': yes,
+  'tree-view/inline-editing': yes,
+  'tree-view/drag-to-reorder': no,
+  'tree-view/virtualization': no,
   // general
   'mui-x-production': yes,
   'mui-x-updates': yes,
@@ -867,7 +879,11 @@ const proData: Record<string, React.ReactNode> = {
   'charts/filter-interaction': pending,
   'charts/selection-interaction': no,
   // Tree View
-  'tree-view/tree-view': yes,
+  'tree-view/simple-tree-view': yes,
+  'tree-view/rich-tree-view': yes,
+  'tree-view/inline-editing': yes,
+  'tree-view/drag-to-reorder': yes,
+  'tree-view/virtualization': pending,
   // general
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
@@ -964,7 +980,11 @@ const premiumData: Record<string, React.ReactNode> = {
   'charts/filter-interaction': pending,
   'charts/selection-interaction': pending,
   // Tree View
-  'tree-view/tree-view': yes,
+  'tree-view/simple-tree-view': yes,
+  'tree-view/rich-tree-view': yes,
+  'tree-view/inline-editing': yes,
+  'tree-view/drag-to-reorder': yes,
+  'tree-view/virtualization': pending,
   // general
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
@@ -1210,11 +1230,13 @@ export default function PricingTable({
   const router = useRouter();
   const [dataGridCollapsed, setDataGridCollapsed] = React.useState(false);
   const [chartsCollapsed, setChartsCollapsed] = React.useState(false);
+  const [treeViewCollapsed, setTreeViewCollapsed] = React.useState(false);
 
   React.useEffect(() => {
     if (router.query['expand-path'] === 'all') {
       setDataGridCollapsed(true);
       setChartsCollapsed(true);
+      setTreeViewCollapsed(true);
     }
   }, [router.query]);
 
@@ -1246,6 +1268,12 @@ export default function PricingTable({
     <UnfoldMoreRounded
       fontSize="small"
       sx={{ color: 'grey.600', opacity: chartsCollapsed ? 0 : 1 }}
+    />
+  );
+  const treeViewUnfoldMore = (
+    <UnfoldMoreRounded
+      fontSize="small"
+      sx={{ color: 'grey.600', opacity: treeViewCollapsed ? 0 : 1 }}
     />
   );
 
@@ -1556,7 +1584,74 @@ export default function PricingTable({
         {renderNestedRow('charts/selection-interaction')}
       </StyledCollapse>
       {divider}
-      {renderRow('tree-view/tree-view')}
+      <Box
+        sx={{
+          position: 'relative',
+          minHeight: 58,
+          '& svg': { transition: '0.3s' },
+          '&:hover svg': { color: 'primary.main' },
+          ...gridSx,
+        }}
+      >
+        <Cell />
+        <Cell sx={{ minHeight: 60 }}>{treeViewUnfoldMore}</Cell>
+        <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+          {treeViewUnfoldMore}
+        </Cell>
+        <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>{treeViewUnfoldMore}</Cell>
+        <Button
+          fullWidth
+          onClick={() => setTreeViewCollapsed((bool) => !bool)}
+          endIcon={
+            <KeyboardArrowRightRounded
+              color="primary"
+              sx={{ transform: treeViewCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)' }}
+            />
+          }
+          sx={[
+            (theme) => ({
+              px: 1,
+              justifyContent: 'flex-start',
+              fontSize: '0.875rem',
+              fontWeight: 'medium',
+              borderRadius: '0px',
+              position: 'absolute',
+              left: 0,
+              top: 0,
+              width: '100%',
+              height: '100%',
+              '&:hover': {
+                bgcolor: alpha(theme.palette.primary.main, 0.06),
+                '@media (hover: none)': {
+                  bgcolor: 'initial',
+                },
+              },
+            }),
+            (theme) =>
+              theme.applyDarkStyles({
+                '&:hover': {
+                  bgcolor: alpha(theme.palette.primary.main, 0.06),
+                },
+              }),
+          ]}
+        >
+          TreeView
+        </Button>
+      </Box>
+      <StyledCollapse in={treeViewCollapsed} timeout={700}>
+        <RowCategory>Components</RowCategory>
+        {renderNestedRow('tree-view/simple-tree-view')}
+        {divider}
+        {renderNestedRow('tree-view/rich-tree-view')}
+        {divider}
+        <RowCategory>Advanced features</RowCategory>
+        {renderNestedRow('tree-view/inline-editing')}
+        {divider}
+        {renderNestedRow('tree-view/drag-to-reorder')}
+        {divider}
+        {renderNestedRow('tree-view/virtualization')}
+        {divider}
+      </StyledCollapse>
       {divider}
       {renderRow('mui-x-production')}
       {divider}
