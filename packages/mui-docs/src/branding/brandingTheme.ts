@@ -615,6 +615,10 @@ export function getThemedComponents(): ThemeOptions {
                   '&:active': {
                     backgroundColor: alpha(theme.palette.primary[900], 0.3),
                   },
+                  '&.Mui-disabled': {
+                    background: 'none',
+                    backgroundColor: alpha(theme.palette.primaryDark[700], 0.2),
+                  },
                 }),
               }),
             ...(ownerState.variant === 'contained' &&
@@ -640,6 +644,13 @@ export function getThemedComponents(): ThemeOptions {
                   textShadow: 'none',
                   borderColor: theme.palette.grey[400],
                 },
+                ...theme.applyDarkStyles({
+                  '&.Mui-disabled': {
+                    color: theme.palette.grey[500],
+                    textShadow: 'none',
+                    borderColor: theme.palette.grey[800],
+                  },
+                }),
               }),
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'secondary' && {
@@ -664,6 +675,13 @@ export function getThemedComponents(): ThemeOptions {
                   textShadow: 'none',
                   borderColor: theme.palette.grey[400],
                 },
+                ...theme.applyDarkStyles({
+                  '&.Mui-disabled': {
+                    color: theme.palette.grey[500],
+                    textShadow: 'none',
+                    borderColor: theme.palette.grey[800],
+                  },
+                }),
               }),
             ...(ownerState.variant === 'text' &&
               ownerState.color === 'secondary' && {
