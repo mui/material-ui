@@ -57,7 +57,7 @@
     "test:extended": "pnpm eslint && pnpm typescript && pnpm test:coverage",
     "test:pigment-css-react:ci": "pnpm nx run @pigment-css/react:test:ci",
     "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=text mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' --exclude 'packages/pigment-css-react/**/*.test.{js,ts,tsx}' && pnpm test:pigment-css-react",
-    "test:coverage:ci": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' --exclude 'packages/pigment-css-react/**/*.test.{js,ts,tsx}' && pnpm test:pigment-css-react:ci",
+    "test:coverage:ci": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' --exclude 'packages/pigment-css-react/**/*.test.{js,ts,tsx}' && BROWSERSLIST_IGNORE_OLD_DATA=true pnpm test:pigment-css-react:ci",
     "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=html mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
     "test:e2e": "cross-env NODE_ENV=production pnpm test:e2e:build && concurrently --success first --kill-others \"pnpm test:e2e:run\" \"pnpm test:e2e:server\"",
     "test:e2e:build": "webpack --config test/e2e/webpack.config.js",
