@@ -30,7 +30,7 @@ function getDefaultHiringMessage() {
     <React.Fragment>
       🎉&#160;Material UI v6 is out now! Check out the&#160;
       <Link
-        href="https://mui.com/blog/material-ui-v6-is-out"
+        href="https://mui.com/blog/material-ui-v6-is-out/"
         target="_blank"
         color="inherit"
         underline="always"
@@ -42,7 +42,6 @@ function getDefaultHiringMessage() {
       >
         announcement blog post →
       </Link>
-      .
     </React.Fragment>
   );
 }
