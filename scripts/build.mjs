@@ -33,10 +33,13 @@ async function run(argv) {
     );
   }
 
+  const outFileExtension = '.js';
+
   const env = {
     NODE_ENV: 'production',
     BABEL_ENV: bundle,
     MUI_BUILD_VERBOSE: verbose,
+    MUI_OUT_FILE_EXTENSION: outFileExtension,
     ...(await getVersionEnvVariables()),
   };
 
@@ -132,7 +135,7 @@ async function run(argv) {
       exports: 'named',
       dir: outDir,
       format: bundle === 'node' ? 'commonjs' : 'es',
-      entryFileNames: `[name].js`,
+      entryFileNames: `[name]${outFileExtension}`,
     });
 
     return;
@@ -150,6 +153,10 @@ async function run(argv) {
     // Need to put these patterns in quotes otherwise they might be evaluated by the used terminal.
     `"${ignore.join('","')}"`,
   ];
+
+  if (outFileExtension !== '.js') {
+    babelArgs.push('--out-file-extension', outFileExtension);
+  }
 
   if (largeFiles) {
     babelArgs.push('--compact false');

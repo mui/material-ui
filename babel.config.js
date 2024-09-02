@@ -67,14 +67,9 @@ module.exports = function getBabelConfig(api) {
     '@babel/preset-typescript',
   ];
 
-  const usesAliases =
-    // in this config:
-    api.env(['coverage', 'development', 'test', 'benchmark']) ||
-    process.env.NODE_ENV === 'test' ||
-    // in webpack config:
-    api.env(['regressions']);
-
-  const outFileExtension = '.js';
+  // Essentially only replace in production builds.
+  // When aliasing we want to keep the original extension
+  const outFileExtension = process.env.MUI_OUT_FILE_EXTENSION || null;
 
   /** @type {babel.PluginItem[]} */
   const plugins = [
@@ -120,9 +115,7 @@ module.exports = function getBabelConfig(api) {
           [
             '@mui/internal-babel-plugin-resolve-imports',
             {
-              // Don't replace the extension when we're using aliases.
-              // Essentially only replace in production builds.
-              outExtension: usesAliases ? null : outFileExtension,
+              outExtension: outFileExtension,
             },
           ],
         ]
