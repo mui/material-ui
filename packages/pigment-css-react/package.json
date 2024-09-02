@@ -28,7 +28,7 @@
     "build": "tsup",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/pigment-css-react/**/*.test.{js,ts,tsx}'",
     "test:update": "cd ../../ && cross-env NODE_ENV=test UPDATE_FIXTURES=true mocha 'packages/pigment-css-react/**/*.test.{js,ts,tsx}'",
-    "test:ci": "cd ../../ && cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov --report-dir=./coverage/pigment-css-react mocha 'packages/pigment-css-react/**/*.test.{js,ts,tsx}'",
+    "test:ci": "cd ../../ && cross-env BROWSERSLIST_IGNORE_OLD_DATA=true NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov --report-dir=./coverage/pigment-css-react mocha 'packages/pigment-css-react/**/*.test.{js,ts,tsx}'",
     "typecheck": "tsc --noEmit -p ."
   },
   "dependencies": {
