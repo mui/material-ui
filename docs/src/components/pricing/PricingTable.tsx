@@ -849,7 +849,7 @@ const proData: Record<string, React.ReactNode> = {
   'charts/gauge': yes,
   'charts/heatmap': yes,
   'charts/treemap': pending,
-  
+
   'charts/radar': pending,
   'charts/funnel': pending,
   'charts/sankey': pending,
