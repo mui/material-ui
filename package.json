@@ -54,7 +54,7 @@
     "lodash.merge": "^4.6.0",
     "lodash.throttle": "^4.1.1",
     "prop-types": "^15.5.7",
-    "react-event-listener": "^0.6.2",
+    "react-event-listener": "^0.5.9",
     "react-transition-group": "^1.2.1",
     "recompose": "^0.26.0",
     "simple-assign": "^0.1.0",
