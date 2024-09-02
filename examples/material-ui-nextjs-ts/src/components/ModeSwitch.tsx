@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
@@ -13,18 +13,22 @@ export default function ModeSwitch() {
     return null;
   }
   return (
-    <Box sx={{
-      display: 'flex',
-      justifyContent: 'flex-end',
-      mt: 1,
-      p: 1
-    }}>
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'flex-end',
+        mt: 1,
+        p: 1,
+      }}
+    >
       <FormControl>
         <InputLabel id="mode-select-label">Theme</InputLabel>
         <Select
           labelId="mode-select-label"
           id="mode-select"
-          value={mode} onChange={(event) => setMode(event.target.value as typeof mode)} label="Theme"
+          value={mode}
+          onChange={(event) => setMode(event.target.value as typeof mode)}
+          label="Theme"
         >
           <MenuItem value="system">System</MenuItem>
           <MenuItem value="light">Light</MenuItem>
@@ -34,4 +38,3 @@ export default function ModeSwitch() {
     </Box>
   );
 }
-
