@@ -588,7 +588,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
   // charts - features
   'charts/legend': <ColumnHead label="Legend" href="/x/react-charts/legend/" />,
   'charts/tooltip': <ColumnHead label="Tooltip" href="/x/react-charts/tooltip/" />,
-  'charts/zoom-and-pan': <ColumnHead label="Zoom and Pan" href="/x/react-charts/zoom-and-pan/"/>,
+  'charts/zoom-and-pan': <ColumnHead label="Zoom and Pan" href="/x/react-charts/zoom-and-pan/" />,
   'charts/export': <ColumnHead label="Export" />,
   // charts - datagrid
   'charts/cell-with-charts': (
