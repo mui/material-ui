@@ -54,6 +54,7 @@ export default function transformer(file, api, options) {
 
   const openTaggedNotHavingButtonProp = new Set();
   const openTaggedHavingButtonProp = new Set();
+  let addedListItemButton = false;
   // Rename components that have ListItem button to ListItemButton
   findComponentJSX(j, { root, componentName: 'ListItem' }, (elementPath) => {
     const index = elementPath.node.openingElement.attributes.findIndex(
@@ -62,6 +63,7 @@ export default function transformer(file, api, options) {
     // The ListItem has a button prop
     if (index !== -1) {
       openTaggedHavingButtonProp.add(elementPath.node.openingElement.name.name);
+      addedListItemButton = true;
       elementPath.node.openingElement.name.name = `ListItemButton`;
       elementPath.node.openingElement.attributes.splice(index, 1);
     } else {
@@ -111,16 +113,12 @@ export default function transformer(file, api, options) {
     })
     .remove();
 
-  if (importsToRemove.length === 0) {
-    return root.toSource(printOptions);
-  }
-
-  // If ListItemButton does not already exist, add it at the end
+  // If ListItemButton import does not already exist, add it at the end
   const imports = root
     .find(j.ImportDeclaration)
     .filter((path) => path.node.source.value === '@mui/material/ListItemButton');
 
-  if (imports.length === 0) {
+  if (addedListItemButton && imports.length === 0) {
     const lastImport = root.find(j.ImportDeclaration).at(-1);
 
     // Insert the import for 'ListItemButton' after the last import declaration
