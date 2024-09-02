@@ -87,7 +87,7 @@
   "traffic": "Traffic",
   "v5IsOut": "🎉 Material UI v5 is out now! Check out the",
   "v5docsLink": "announcement blog post",
-  "v5startAdoption": "→.",
+  "v5startAdoption": "→",
   "usage": "Usage",
   "usageButton": "Explore the docs",
   "usageDescr": "Material-UI components work without any additional setup, and don't pollute the global scope.",
