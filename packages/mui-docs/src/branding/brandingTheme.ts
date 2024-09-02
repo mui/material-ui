@@ -635,6 +635,11 @@ export function getThemedComponents(): ThemeOptions {
                   borderColor: (theme.vars || theme).palette.primary[600],
                   boxShadow: `${alpha(theme.palette.primary[900], 0.7)} 0 1px 0 1px inset`,
                 },
+                '&.Mui-disabled': {
+                  color: theme.palette.grey[700],
+                  textShadow: 'none',
+                  borderColor: theme.palette.grey[400],
+                },
               }),
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'secondary' && {
@@ -653,6 +658,11 @@ export function getThemedComponents(): ThemeOptions {
                   backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                   borderColor: (theme.vars || theme).palette.primaryDark[600],
                   boxShadow: `${alpha(theme.palette.primaryDark[900], 0.7)} 0 1px 0 1px inset`,
+                },
+                '&.Mui-disabled': {
+                  color: theme.palette.grey[700],
+                  textShadow: 'none',
+                  borderColor: theme.palette.grey[400],
                 },
               }),
             ...(ownerState.variant === 'text' &&
