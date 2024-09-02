@@ -5,11 +5,6 @@
 
 <h1 align="center">Material UI</h1>
 
-[Material UI](https://mui.com/material-ui/) is a comprehensive library of React components that features our independent implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
-It's trusted by some of the world's greatest product teams because it's been rigorously battle-tested through more than a decade of development by thousands of open-source contributors.
-
-Material UI's core functionality is extended by [MUI X](https://github.com/mui/mui-x), a suite of complex components for advanced use cases.
-
 <div align="center">
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mui/material-ui/blob/HEAD/LICENSE)
@@ -25,6 +20,11 @@ Material UI's core functionality is extended by [MUI X](https://github.com/mui/
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/1320/badge)](https://bestpractices.coreinfrastructure.org/projects/1320)
 
 </div>
+
+[Material UI](https://mui.com/material-ui/) is a comprehensive library of React components that features our independent implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
+It's trusted by some of the world's greatest product teams because it's been rigorously battle-tested through more than a decade of development by thousands of open-source contributors.
+
+Material UI's core functionality is extended by [MUI X](https://github.com/mui/mui-x), a suite of complex components for advanced use cases.
 
 ## Documentation
 
