@@ -44,7 +44,7 @@
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",
     "@mui/types": "workspace:^",
-    "@types/chai": "^4.3.17",
+    "@types/chai": "^4.3.19",
     "@types/react": "^18.3.4",
     "chai": "^4.5.0",
     "react": "^18.3.1"
