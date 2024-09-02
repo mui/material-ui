@@ -605,13 +605,16 @@ const rowHeaders: Record<string, React.ReactNode> = {
   ),
 
   // Treeview - advanced features
+  'tree-view/selection': <ColumnHead label="Item Selection" href="/x/react-tree-view/simple-tree-view/selection/#single-selection"/>,
+  'tree-view/multi-selection': <ColumnHead label="Multi Selection" href="/x/react-tree-view/simple-tree-view/selection/#multi-selection" />,
   'tree-view/inline-editing': (
-    <ColumnHead label="Inline editing" href="/x/react-tree-view/rich-tree-view/editing/" />
+    <ColumnHead label="Inline label editing" href="/x/react-tree-view/rich-tree-view/editing/" />
   ),
   'tree-view/drag-to-reorder': (
     <ColumnHead label="Drag to reorder" href="/x/react-tree-view/rich-tree-view/ordering/" />
   ),
   'tree-view/virtualization': <ColumnHead label="Virtualization" />,
+  
 
   'mui-x-production': <ColumnHead label="Perpetual use in production" />,
   'mui-x-development': <ColumnHead label="Development license" tooltip="For active development" />,
@@ -787,6 +790,8 @@ const communityData: Record<string, React.ReactNode> = {
   // Tree View
   'tree-view/simple-tree-view': yes,
   'tree-view/rich-tree-view': yes,
+  'tree-view/selection': yes,
+  'tree-view/multi-selection': yes,
   'tree-view/inline-editing': yes,
   'tree-view/drag-to-reorder': no,
   'tree-view/virtualization': no,
@@ -889,6 +894,8 @@ const proData: Record<string, React.ReactNode> = {
   // Tree View
   'tree-view/simple-tree-view': yes,
   'tree-view/rich-tree-view': yes,
+  'tree-view/selection': yes,
+  'tree-view/multi-selection': yes,
   'tree-view/inline-editing': yes,
   'tree-view/drag-to-reorder': yes,
   'tree-view/virtualization': pending,
@@ -990,6 +997,8 @@ const premiumData: Record<string, React.ReactNode> = {
   // Tree View
   'tree-view/simple-tree-view': yes,
   'tree-view/rich-tree-view': yes,
+  'tree-view/selection': yes,
+  'tree-view/multi-selection': yes,
   'tree-view/inline-editing': yes,
   'tree-view/drag-to-reorder': yes,
   'tree-view/virtualization': pending,
@@ -1655,6 +1664,10 @@ export default function PricingTable({
         {renderNestedRow('tree-view/rich-tree-view')}
         {divider}
         <RowCategory>Advanced features</RowCategory>
+        {renderNestedRow('tree-view/selection')}
+        {divider}
+        {renderNestedRow('tree-view/multi-selection')}
+        {divider}
         {renderNestedRow('tree-view/inline-editing')}
         {divider}
         {renderNestedRow('tree-view/drag-to-reorder')}
