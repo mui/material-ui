@@ -122,7 +122,7 @@
     "@types/chai": "^4.3.12",
     "@types/css-mediaquery": "^0.1.4",
     "@types/json2mq": "^0.2.2",
-    "@types/node": "^18.19.25",
+    "@types/node": "^18.19.48",
     "@types/prop-types": "^15.7.12",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",

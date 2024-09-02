@@ -43,7 +43,7 @@
   "devDependencies": {
     "@mui/icons-material": "workspace:*",
     "@mui/material": "workspace:*",
-    "@types/node": "^18.19.25",
+    "@types/node": "^18.19.48",
     "@types/prop-types": "^15.7.12",
     "@types/react": "^19.0.0",
     "next": "^15.0.4",
