@@ -10,6 +10,7 @@ import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import checkSimplePaletteColorValues from '../utils/checkSimplePaletteColorValues';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import toggleButtonClasses, { getToggleButtonUtilityClass } from './toggleButtonClasses';
 import ToggleButtonGroupContext from '../ToggleButtonGroup/ToggleButtonGroupContext';
@@ -89,7 +90,7 @@ const ToggleButtonRoot = styled(ButtonBase, {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, palette]) => palette && palette.main)
+        .filter(([, palette]) => palette && checkSimplePaletteColorValues(palette))
         .map(([color]) => ({
           props: { color },
           style: {

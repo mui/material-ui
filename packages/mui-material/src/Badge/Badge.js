@@ -8,6 +8,7 @@ import useSlotProps from '@mui/utils/useSlotProps';
 import useBadge from './useBadge';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import checkSimplePaletteColorValues from '../utils/checkSimplePaletteColorValues';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
@@ -91,7 +92,9 @@ const BadgeBadge = styled('span', {
     }),
     variants: [
       ...Object.entries(theme.palette)
-        .filter(([, palette]) => palette && palette.main && palette.contrastText)
+        .filter(
+          ([, palette]) => palette && checkSimplePaletteColorValues(palette, ['contrastText']),
+        )
         .map(([color]) => ({
           props: { color },
           style: {

@@ -11,6 +11,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
+import checkSimplePaletteColorValues from '../utils/checkSimplePaletteColorValues';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 import ButtonGroupButtonContext from '../ButtonGroup/ButtonGroupButtonContext';
@@ -161,7 +162,10 @@ const ButtonRoot = styled(ButtonBase, {
           },
         },
         ...Object.entries(theme.palette)
-          .filter(([, palette]) => palette && palette.main && palette.dark && palette.contrastText)
+          .filter(
+            ([, palette]) =>
+              palette && checkSimplePaletteColorValues(palette, ['dark', 'contrastText']),
+          )
           .map(([color]) => ({
             props: { color },
             style: {

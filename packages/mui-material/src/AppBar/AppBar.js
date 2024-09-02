@@ -7,6 +7,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
+import checkSimplePaletteColorValues from '../utils/checkSimplePaletteColorValues';
 import Paper from '../Paper';
 import { getAppBarUtilityClass } from './appBarClasses';
 
@@ -116,7 +117,9 @@ const AppBarRoot = styled(Paper, {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, palette]) => palette && palette.main && palette.contrastText)
+        .filter(
+          ([, palette]) => palette && checkSimplePaletteColorValues(palette, ['contrastText']),
+        )
         .map(([color]) => ({
           props: { color },
           style: {

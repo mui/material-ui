@@ -14,6 +14,7 @@ import radioClasses, { getRadioUtilityClass } from './radioClasses';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import checkSimplePaletteColorValues from '../utils/checkSimplePaletteColorValues';
 
 import { useDefaultProps } from '../DefaultPropsProvider';
 
@@ -61,7 +62,7 @@ const RadioRoot = styled(SwitchBase, {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, palette]) => palette && palette.main)
+        .filter(([, palette]) => palette && checkSimplePaletteColorValues(palette))
         .map(([color]) => ({
           props: { color, disableRipple: false },
           style: {
@@ -73,7 +74,7 @@ const RadioRoot = styled(SwitchBase, {
           },
         })),
       ...Object.entries(theme.palette)
-        .filter(([, palette]) => palette && palette.main)
+        .filter(([, palette]) => palette && checkSimplePaletteColorValues(palette))
         .map(([color]) => ({
           props: { color },
           style: {

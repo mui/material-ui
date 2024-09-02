@@ -8,6 +8,7 @@ import { keyframes, css, styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
+import checkSimplePaletteColorValues from '../utils/checkSimplePaletteColorValues';
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
 
 const SIZE = 44;
@@ -101,7 +102,7 @@ const CircularProgressRoot = styled('span', {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, palette]) => palette && palette.main)
+        .filter(([, palette]) => palette && checkSimplePaletteColorValues(palette))
         .map(([color]) => ({
           props: { color },
           style: {
