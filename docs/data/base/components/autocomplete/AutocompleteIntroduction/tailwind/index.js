@@ -69,6 +69,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
             <ClearIcon className="translate-y-[2px] scale-90" />
           </Button>
         )}
+
         <Button
           {...getPopupIndicatorProps()}
           className="self-center outline-0 shadow-none border-0 py-0 px-0.5 rounded-[4px] bg-transparent hover:bg-violet-100 dark:hover:bg-gray-700 hover:cursor-pointer"
