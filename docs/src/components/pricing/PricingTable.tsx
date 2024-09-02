@@ -576,8 +576,8 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'charts/pie': <ColumnHead label="Pie chart" href="/x/react-charts/pie/" />,
   'charts/sparkline': <ColumnHead label="Sparkline" href="/x/react-charts/sparkline/" />,
   'charts/gauge': <ColumnHead label="Gauge" href="/x/react-charts/gauge/" />,
-  'charts/treemap': <ColumnHead label="Treemap" href="/x/react-charts/treemap/" />,
   'charts/heatmap': <ColumnHead label="Heatmap" href="/x/react-charts/heatmap/" />,
+  'charts/treemap': <ColumnHead label="Treemap" href="/x/react-charts/treemap/" />,
   'charts/radar': <ColumnHead label="Radar" href="/x/react-charts/radar/" />,
   'charts/funnel': <ColumnHead label="Funnel" href="/x/react-charts/funnel/" />,
   'charts/sankey': <ColumnHead label="Sankey" href="/x/react-charts/sankey/" />,
@@ -750,8 +750,8 @@ const communityData: Record<string, React.ReactNode> = {
   'charts/pie': yes,
   'charts/sparkline': yes,
   'charts/gauge': yes,
-  'charts/treemap': pending,
   'charts/heatmap': no,
+  'charts/treemap': pending,
   'charts/radar': pending,
   'charts/funnel': no,
   'charts/sankey': no,
@@ -847,8 +847,9 @@ const proData: Record<string, React.ReactNode> = {
   'charts/pie': yes,
   'charts/sparkline': yes,
   'charts/gauge': yes,
+  'charts/heatmap': yes,
   'charts/treemap': pending,
-  'charts/heatmap': pending,
+  
   'charts/radar': pending,
   'charts/funnel': pending,
   'charts/sankey': pending,
@@ -859,7 +860,7 @@ const proData: Record<string, React.ReactNode> = {
   // charts - features
   'charts/legend': yes,
   'charts/tooltip': yes,
-  'charts/mouse-zoom': pending,
+  'charts/mouse-zoom': yes,
   'charts/export': pending,
   // charts - datagrid
   'charts/cell-with-charts': yes,
@@ -944,8 +945,8 @@ const premiumData: Record<string, React.ReactNode> = {
   'charts/pie': yes,
   'charts/sparkline': yes,
   'charts/gauge': yes,
+  'charts/heatmap': yes,
   'charts/treemap': pending,
-  'charts/heatmap': pending,
   'charts/radar': pending,
   'charts/funnel': pending,
   'charts/sankey': pending,
@@ -956,7 +957,7 @@ const premiumData: Record<string, React.ReactNode> = {
   // charts - features
   'charts/legend': yes,
   'charts/tooltip': yes,
-  'charts/mouse-zoom': pending,
+  'charts/mouse-zoom': yes,
   'charts/export': pending,
   // charts - datagrid
   'charts/cell-with-charts': yes,
@@ -1520,11 +1521,11 @@ export default function PricingTable({
         {divider}
         {renderNestedRow('charts/gauge')}
         {divider}
+        {renderNestedRow('charts/heatmap')}
+        {divider}
         {renderNestedRow('charts/treemap')}
         {divider}
         {renderNestedRow('charts/radar')}
-        {divider}
-        {renderNestedRow('charts/heatmap')}
         {divider}
         {renderNestedRow('charts/funnel')}
         {divider}
