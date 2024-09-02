@@ -112,12 +112,11 @@ Future plans and high-priority features and enhancements can be found in the [ro
 
 ## License
 
-This project is licensed under the terms of the
-[MIT license](/LICENSE).
+This project is licensed under the terms of the [MIT license](/LICENSE).
 
 ## Security
 
-For details of supported versions and contact details for reporting security issues, please refer to the [security policy](https://github.com/mui/material-ui/security/policy).
+For details on supported versions and contact information for reporting security issues, please refer to the [security policy](https://github.com/mui/material-ui/security/policy).
 
 ## Sponsoring services
 
