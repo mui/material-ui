@@ -52,7 +52,7 @@
     "@mui/internal-babel-macros": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",
     "@mui/types": "workspace:^",
-    "@testing-library/react": "^16.0.0",
+    "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
     "@types/chai": "^4.3.17",
     "@types/prop-types": "^15.7.12",
