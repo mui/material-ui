@@ -93,17 +93,6 @@ export async function typescriptCopy({ from, to }) {
   return Promise.all(cmds);
 }
 
-export async function cjsCopy({ from, to }) {
-  if (!(await fse.pathExists(to))) {
-    console.warn(`path ${to} does not exists`);
-    return [];
-  }
-
-  const files = await glob('**/*.cjs', { cwd: from });
-  const cmds = files.map((file) => fse.copy(path.resolve(from, file), path.resolve(to, file)));
-  return Promise.all(cmds);
-}
-
 export async function createPackageFile() {
   const packageData = await fse.readFile(path.resolve(packagePath, './package.json'), 'utf8');
   const { nyc, scripts, devDependencies, workspaces, ...packageDataOther } =
