@@ -222,7 +222,7 @@ function AppFrame(props) {
           <Link
             color="inherit"
             className={classes.bannerLink}
-            href="https://mui.com/material-ui/migration/migration-v4/"
+            href="https://mui.com/blog/mui-core-v5/"
           >
             {t('v5docsLink')}
           </Link>{' '}
