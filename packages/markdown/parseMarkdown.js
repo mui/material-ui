@@ -458,22 +458,20 @@ function createRender(context) {
             }
             return undefined;
           },
-
           renderer(token) {
-            return `<aside class="MuiCallout-root MuiCallout-${token.severity}">
-            ${
-              ['info', 'success', 'warning', 'error'].includes(token.severity)
-                ? [
-                    '<div class="MuiCallout-icon-container">',
-                    '<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyRoundedIcon">',
-                    `<use class="MuiCode-copied-icon" xlink:href="#${token.severity}-icon" />`,
-                    '</svg>',
-                    '</div>',
-                  ].join('\n')
-                : ''
+            if (!['info', 'success', 'warning', 'error'].includes(token.severity)) {
+              throw new Error(`docs-infra: Callout :::${token.severity} is not supported`);
             }
-            <div class="MuiCallout-content">
-            ${this.parser.parse(token.tokens)}\n</div></aside>`;
+
+            return `<aside class="MuiCallout-root MuiCallout-${token.severity}">${[
+              '<div class="MuiCallout-icon-container">',
+              '<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyRoundedIcon">',
+              `<use class="MuiCode-copied-icon" xlink:href="#${token.severity}-icon" />`,
+              '</svg>',
+              '</div>',
+            ].join(
+              '\n',
+            )}<div class="MuiCallout-content">${this.parser.parse(token.tokens)}</div></aside>`;
           },
         },
       ],
