@@ -23,7 +23,7 @@
     "envinfo": "^7.13.0"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.17",
+    "@types/chai": "^4.3.19",
     "chai": "^4.5.0",
     "fs-extra": "^11.2.0"
   },

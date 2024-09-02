@@ -26,7 +26,7 @@
     "prismjs": "^1.29.0"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.17",
+    "@types/chai": "^4.3.19",
     "chai": "^4.5.0"
   },
   "publishConfig": {

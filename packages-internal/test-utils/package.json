@@ -53,7 +53,7 @@
     "sinon": "^18.0.0"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.17",
+    "@types/chai": "^4.3.19",
     "@types/chai-dom": "^1.11.3",
     "@types/format-util": "^1.0.4",
     "@types/prop-types": "^15.7.12",
