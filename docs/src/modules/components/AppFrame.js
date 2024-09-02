@@ -200,13 +200,13 @@ class AppFrame extends React.Component {
               <MarkdownLinks />
               <AppBar className={appBarClassName}>
                 <Link
-                  href="http://next.material-ui.com"
+                  href="https://mui.com/blog/material-ui-v4-is-out/"
                   color="inherit"
                   className={classes.banner}
                   variant="body2"
                   noWrap
                 >
-                  {'Aww yeah, Material-UI v4 is here!'}
+                  {'🎉 Material UI v4 is out now! Check out the announcement blog post →'}
                 </Link>
                 <Toolbar>
                   <IconButton
