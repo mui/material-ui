@@ -605,8 +605,18 @@ const rowHeaders: Record<string, React.ReactNode> = {
   ),
 
   // Treeview - advanced features
-  'tree-view/selection': <ColumnHead label="Item Selection" href="/x/react-tree-view/simple-tree-view/selection/#single-selection"/>,
-  'tree-view/multi-selection': <ColumnHead label="Multi Selection" href="/x/react-tree-view/simple-tree-view/selection/#multi-selection" />,
+  'tree-view/selection': (
+    <ColumnHead
+      label="Item Selection"
+      href="/x/react-tree-view/simple-tree-view/selection/#single-selection"
+    />
+  ),
+  'tree-view/multi-selection': (
+    <ColumnHead
+      label="Multi Selection"
+      href="/x/react-tree-view/simple-tree-view/selection/#multi-selection"
+    />
+  ),
   'tree-view/inline-editing': (
     <ColumnHead label="Inline label editing" href="/x/react-tree-view/rich-tree-view/editing/" />
   ),
@@ -614,7 +624,6 @@ const rowHeaders: Record<string, React.ReactNode> = {
     <ColumnHead label="Drag to reorder" href="/x/react-tree-view/rich-tree-view/ordering/" />
   ),
   'tree-view/virtualization': <ColumnHead label="Virtualization" />,
-  
 
   'mui-x-production': <ColumnHead label="Perpetual use in production" />,
   'mui-x-development': <ColumnHead label="Development license" tooltip="For active development" />,
