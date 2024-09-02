@@ -47,6 +47,7 @@ import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterStat
 // import DeleteForeverTwoTone from '@mui/icons-material/DeleteForeverTwoTone';
 // import DeleteForeverSharp from '@mui/icons-material/DeleteForeverSharp';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { Toolbar } from '@mui/material';
 import synonyms from './synonyms';
 
 const FlexSearchIndex = flexsearch.Index;
@@ -131,15 +132,17 @@ const StyledSvgIcon = styled(SvgIcon)(({ theme }) => ({
 const Icons = React.memo(function Icons(props) {
   const { icons, handleOpenClick } = props;
 
-  const handleIconClick = (icon) => () => {
+  const handleIconClick = (event) => {
+    const { iconName, iconTheme } = event.currentTarget.dataset;
+
     if (Math.random() < 0.1) {
       window.gtag('event', 'material-icons', {
         eventAction: 'click',
-        eventLabel: icon.name,
+        eventLabel: iconName,
       });
       window.gtag('event', 'material-icons-theme', {
         eventAction: 'click',
-        eventLabel: icon.theme,
+        eventLabel: iconTheme,
       });
     }
   };
@@ -153,7 +156,12 @@ const Icons = React.memo(function Icons(props) {
       {icons.map((icon) => {
         /* eslint-disable jsx-a11y/click-events-have-key-events */
         return (
-          <StyledIcon key={icon.importName} onClick={handleIconClick(icon)}>
+          <StyledIcon
+            key={icon.importName}
+            onClick={handleIconClick}
+            data-icon-theme={icon.theme}
+            data-icon-name={icon.name}
+          >
             <StyledSvgIcon
               component={icon.Component}
               fontSize="large"
