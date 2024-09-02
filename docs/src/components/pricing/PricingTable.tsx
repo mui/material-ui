@@ -455,7 +455,7 @@ const rowHeaders = {
     <ColumnHead label="Column autosizing" href="/x/react-data-grid/column-dimensions/#autosizing" />
   ),
   'data-grid/column-reordering': (
-    <ColumnHead label="Column reordering" href="/x/react-data-grid/column-ordering/" />
+    <ColumnHead label="Column ordering" href="/x/react-data-grid/column-ordering/" />
   ),
   'data-grid/column-pinning': (
     <ColumnHead label="Column pinning" href="/x/react-data-grid/column-pinning/" />
