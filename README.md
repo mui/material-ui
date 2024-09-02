@@ -100,7 +100,7 @@ You can find complete templates and themes in the [MUI Store](https://mui.com/s
 Read the [contributing guide](/CONTRIBUTING.md) to learn about our development process, how to propose bug fixes and improvements, and how to build and test your changes.
 
 Contributing is about more than just issues and pull requests!
-There are many other ways to [support Material UI](https://mui.com/material-ui/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project) beyond contributing to the code base.
+There are many other ways to [support Material UI](https://mui.com/material-ui/getting-started/faq/#mui-is-an-awesome-organization-how-can-i-support-it) beyond contributing to the code base.
 
 ## Changelog
 
