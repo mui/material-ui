@@ -597,14 +597,22 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'charts/filter-interaction': <ColumnHead label="Row filtering" />,
   'charts/selection-interaction': <ColumnHead label="Range selection" />,
   // Treeview - components
-  'tree-view/simple-tree-view': <ColumnHead label="Simple Tree View" href="/x/react-tree-view/simple-tree-view/items/" />,
-  'tree-view/rich-tree-view': <ColumnHead label="Rich Tree View" href="/x/react-tree-view/rich-tree-view/items/" />,
+  'tree-view/simple-tree-view': (
+    <ColumnHead label="Simple Tree View" href="/x/react-tree-view/simple-tree-view/items/" />
+  ),
+  'tree-view/rich-tree-view': (
+    <ColumnHead label="Rich Tree View" href="/x/react-tree-view/rich-tree-view/items/" />
+  ),
 
   // Treeview - advanced features
-  'tree-view/inline-editing': <ColumnHead label="Inline editing" href="/x/react-tree-view/rich-tree-view/editing/" />,
-  'tree-view/drag-to-reorder': <ColumnHead label="Drag to reorder" href="/x/react-tree-view/rich-tree-view/ordering/" />,
+  'tree-view/inline-editing': (
+    <ColumnHead label="Inline editing" href="/x/react-tree-view/rich-tree-view/editing/" />
+  ),
+  'tree-view/drag-to-reorder': (
+    <ColumnHead label="Drag to reorder" href="/x/react-tree-view/rich-tree-view/ordering/" />
+  ),
   'tree-view/virtualization': <ColumnHead label="Virtualization" />,
-  
+
   'mui-x-production': <ColumnHead label="Perpetual use in production" />,
   'mui-x-development': <ColumnHead label="Development license" tooltip="For active development" />,
   'mui-x-development-perpetual': (
@@ -1598,7 +1606,9 @@ export default function PricingTable({
         <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
           {treeViewUnfoldMore}
         </Cell>
-        <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>{treeViewUnfoldMore}</Cell>
+        <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+          {treeViewUnfoldMore}
+        </Cell>
         <Button
           fullWidth
           onClick={() => setTreeViewCollapsed((bool) => !bool)}
