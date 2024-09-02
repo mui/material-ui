@@ -588,7 +588,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
   // charts - features
   'charts/legend': <ColumnHead label="Legend" href="/x/react-charts/legend/" />,
   'charts/tooltip': <ColumnHead label="Tooltip" href="/x/react-charts/tooltip/" />,
-  'charts/mouse-zoom': <ColumnHead label="Zoom on mouse" />,
+  'charts/zoom-and-pan': <ColumnHead label="Zoom and Pan" href="/x/react-charts/zoom-and-pan/"/>,
   'charts/export': <ColumnHead label="Export" />,
   // charts - datagrid
   'charts/cell-with-charts': (
@@ -778,7 +778,7 @@ const communityData: Record<string, React.ReactNode> = {
   // charts - features
   'charts/legend': yes,
   'charts/tooltip': yes,
-  'charts/mouse-zoom': no,
+  'charts/zoom-and-pan': no,
   'charts/export': no,
   // charts - datagrid
   'charts/cell-with-charts': yes,
@@ -880,7 +880,7 @@ const proData: Record<string, React.ReactNode> = {
   // charts - features
   'charts/legend': yes,
   'charts/tooltip': yes,
-  'charts/mouse-zoom': yes,
+  'charts/zoom-and-pan': yes,
   'charts/export': pending,
   // charts - datagrid
   'charts/cell-with-charts': yes,
@@ -981,7 +981,7 @@ const premiumData: Record<string, React.ReactNode> = {
   // charts - features
   'charts/legend': yes,
   'charts/tooltip': yes,
-  'charts/mouse-zoom': yes,
+  'charts/zoom-and-pan': yes,
   'charts/export': pending,
   // charts - datagrid
   'charts/cell-with-charts': yes,
@@ -1580,7 +1580,7 @@ export default function PricingTable({
         {divider}
         {renderNestedRow('charts/tooltip')}
         {divider}
-        {renderNestedRow('charts/mouse-zoom')}
+        {renderNestedRow('charts/zoom-and-pan')}
         {divider}
         {renderNestedRow('charts/export')}
         {divider}
