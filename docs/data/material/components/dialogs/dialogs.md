@@ -5,6 +5,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 githubLabel: 'component: dialog'
 materialDesign: https://m2.material.io/components/dialogs
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
+githubSource: packages/mui-material/src/Dialog
 ---
 
 # Dialog
@@ -112,7 +113,7 @@ function MyComponent() {
 Confirmation dialogs require users to explicitly confirm their choice before an option is committed.
 For example, users can listen to multiple ringtones but only make a final selection upon touching "OK".
 
-Touching "Cancel" in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
+Touching "Cancel" in a confirmation dialog, cancels the action, discards any changes, and closes the dialog.
 
 {{"demo": "ConfirmationDialog.js"}}
 

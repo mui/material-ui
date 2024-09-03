@@ -7,6 +7,7 @@ import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import formLabelClasses, { getFormLabelUtilityClasses } from './formLabelClasses';
 
@@ -38,46 +39,50 @@ export const FormLabelRoot = styled('label', {
       ...(ownerState.filled && styles.filled),
     };
   },
-})(({ theme }) => ({
-  color: (theme.vars || theme).palette.text.secondary,
-  ...theme.typography.body1,
-  lineHeight: '1.4375em',
-  padding: 0,
-  position: 'relative',
-  variants: [
-    ...Object.entries(theme.palette)
-      .filter(([, value]) => value && value.main)
-      .map(([color]) => ({
-        props: { color },
+})(
+  memoTheme(({ theme }) => ({
+    color: (theme.vars || theme).palette.text.secondary,
+    ...theme.typography.body1,
+    lineHeight: '1.4375em',
+    padding: 0,
+    position: 'relative',
+    variants: [
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value && value.main)
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            [`&.${formLabelClasses.focused}`]: {
+              color: (theme.vars || theme).palette[color].main,
+            },
+          },
+        })),
+      {
+        props: {},
         style: {
-          [`&.${formLabelClasses.focused}`]: {
-            color: (theme.vars || theme).palette[color].main,
+          [`&.${formLabelClasses.disabled}`]: {
+            color: (theme.vars || theme).palette.text.disabled,
+          },
+          [`&.${formLabelClasses.error}`]: {
+            color: (theme.vars || theme).palette.error.main,
           },
         },
-      })),
-    {
-      props: {},
-      style: {
-        [`&.${formLabelClasses.disabled}`]: {
-          color: (theme.vars || theme).palette.text.disabled,
-        },
-        [`&.${formLabelClasses.error}`]: {
-          color: (theme.vars || theme).palette.error.main,
-        },
       },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 const AsteriskComponent = styled('span', {
   name: 'MuiFormLabel',
   slot: 'Asterisk',
   overridesResolver: (props, styles) => styles.asterisk,
-})(({ theme }) => ({
-  [`&.${formLabelClasses.error}`]: {
-    color: (theme.vars || theme).palette.error.main,
-  },
-}));
+})(
+  memoTheme(({ theme }) => ({
+    [`&.${formLabelClasses.error}`]: {
+      color: (theme.vars || theme).palette.error.main,
+    },
+  })),
+);
 
 const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiFormLabel' });

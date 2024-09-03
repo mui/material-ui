@@ -1,5 +1,211 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.0.2
+
+<!-- generated comparing v6.0.1..master -->
+
+_Sep 3, 2024_
+
+A big thanks to the 11 contributors who made this release possible.
+
+### `@mui/material@6.0.2`
+
+- &#8203;<!-- 07 -->Fix `createTheme` with just color schemes (#43518) @siriwatknp
+- &#8203;<!-- 06 -->[Menu,Popover] Fix Backdrop props descriptions (#43503) @Michael-Hutchinson
+- &#8203;<!-- 05 -->[MenuList] Do not react to an event with modifier key pressed (#43505) @MateuszGroth
+
+### `@mui/system@6.0.2`
+
+- &#8203;<!-- 08 -->[InitColorSchemeScript] Use `let/const` instead of `var` (#43468) @ishon19
+- &#8203;<!-- 04 -->Fix composeClasses v6 behavior change (#43537) @oliviertassinari
+
+### `@mui/codemod@6.0.2`
+
+- &#8203;<!-- 19 -->Skip `ListItemButton` import for unrelated files (#43532) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 10 -->[figma] Clarity state or Figma Plugin component export (#43543) @oliviertassinari
+- &#8203;<!-- 09 -->[material-ui] Fix template shadow tokens (#43514) @zanivan
+- &#8203;<!-- 15 -->Update version support range (#43565) @oliviertassinari
+- &#8203;<!-- 14 -->Polish Material UI Sync plugin code format @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 24 -->[blog] Update Material UI v6 blog post link to reflect correct section title (#43535) @Michael-Hutchinson
+- &#8203;<!-- 23 -->[blog] Makes the v5 name change clearer @oliviertassinari
+- &#8203;<!-- 22 -->[blog] Fix typo in Material UI v6 blog post (#43502) @iamandrewluca
+- &#8203;<!-- 21 -->[code-infra] Add missing @babel/runtime dependency to @mui/material-pigment-css (#43473) @Janpot
+- &#8203;<!-- 20 -->[code-infra] Remove permissions in publish-canaries.yml (#43491) @oliviertassinari
+- &#8203;<!-- 18 -->[core] Fix CodeQL scan (#43547) @oliviertassinari
+- &#8203;<!-- 17 -->[core] Fix CHANGELOG `@mui/material@6.0.1` version (#43516) @DiegoAndai
+- &#8203;<!-- 14 -->[docs-infra] Reduce description max-length (#43562) @oliviertassinari
+- &#8203;<!-- 13 -->[docs-infra] Crash on invalid callout type (#43546) @oliviertassinari
+- &#8203;<!-- 12 -->[docs-infra] Fix GitHub source link redirection (#43534) @oliviertassinari
+- &#8203;<!-- 09 -->[infra] Fixed workflow file path (#43528) @michelengelen
+- &#8203;<!-- 03 -->[typescript] Fix missing `Theme` generic (#43523) @siriwatknp
+- &#8203;<!-- 02 -->[website] Match pricing label with page @oliviertassinari
+- &#8203;<!-- 01 -->[website] Update Premium price and remove any mention to cap (#43466) @joserodolfofreitas
+
+All contributors of this release in alphabetical order: @DiegoAndai, @iamandrewluca, @ishon19, @Janpot, @joserodolfofreitas, @MateuszGroth, @Michael-Hutchinson, @michelengelen, @oliviertassinari, @siriwatknp, @zanivan
+
+## v6.0.1
+
+<!-- generated comparing v6.0.0..master -->
+
+_Aug 29, 2024_
+
+A big thanks to the 12 contributors who made this release possible. It contains bug fixes and documentation improvements.
+
+### `@mui/material@6.0.1`
+
+- Attach default light color scheme when enabling CSS theme variables (#43493) @siriwatknp
+- [Skeleton] Apply the wave animation to the correct element (#43474) @mnajdova
+
+### Docs
+
+- [material-ui][Dialog] Update confirmation dialog description (#43488) @Michael-Hutchinson
+- Add Material UI v6 is out! to the notifications (#43448) @oliviertassinari
+- [material-ui] Dark scroll bars in templates (#43483) @aarongarciah
+- [material-ui] Add TemplateFrame to templates (#43406) @zanivan
+- [table] Make the data grid blend in (#43489) @oliviertassinari
+
+### Core
+
+- [blog] Update Toolpad Studio marketing page links in the blogs (#43407) @prakhargupta1
+- [blog] Add missing social card to the blog post (#43465) @siriwatknp
+- [code-infra] Fix typing issues with `@mui-internal/api-docs-builder` (#43498) @Janpot
+- [code-infra] Fix nextjs build cache (#43467) @JCQuintas
+- Remove `'use client'` from index files and useAutocomplete reexport (#41956) @DiegoAndai
+- Replace relative links to absolute ones in JSDocs (#43472) @alexfauquette
+- Upgrade babel runtime (#43243) @Janpot
+- [docs-infra] Skip shadow DOM regression test (#43500) @aarongarciah
+- [docs-infra] Fix use of process.env.DEPLOY_ENV (#43490) @oliviertassinari
+- [docs-infra] Add comment about removing optimizeFonts Next.js config (#43469) @aarongarciah
+- [examples] Use `latest` on all Material UI dependencies (#43494) @mnajdova
+- [infra] fix workflow path (#43464) @michelengelen
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @DiegoAndai, @Janpot, @JCQuintas, @Michael-Hutchinson, @michelengelen, @mnajdova, @oliviertassinari, @prakhargupta1, @siriwatknp, @zanivan
+
+## 6.0.0
+
+<!-- generated comparing v6.0.0-rc.0..master -->
+
+_Aug 27, 2024_
+
+We are excited to announce the stable release of Material-UI v6 🎉, check out [the blog post](https://mui.com/blog/material-ui-v6-is-out/) to see all the updates.
+
+### `@mui/material@6.0.0`
+
+- Change React.ReactElement<any,any> type from any to unknown (#43358) @sai6855
+- [Pagination] Update `getItemAriaLabel` page param type (#43399) @sydneyjodon-wk
+- [Unstable_TrapFocus] Fix `getTabbable` function return type (#42237) @KalmarLorand
+
+### `@mui/lab@6.0.0-beta.8`
+
+- [button] Add missing customize points for span (#43436) @oliviertassinari
+
+### Docs
+
+- Fix broken links (#43144) @DiegoAndai
+- Updated mui-x roadmap links with the new project URL (#43444) @michelengelen
+- Update pnpm order, move to second (#42712) @ahmadnadeem6236
+- Fix CSS theme variables section (#43439) @siriwatknp
+- Add two Toolpad Core components to Material UI sidebar (#43391) @prakhargupta1
+- Fix licensingModel -> licenseModel @oliviertassinari
+- Fix Stack Overflow issue canned response @oliviertassinari
+- Avoid referencing MUI Core @oliviertassinari
+- Fix description of eslint-plugin-material-ui @oliviertassinari
+- [docs-infra] Polish reportBrokenLinks.js to support Base UI @oliviertassinari
+- [material-ui] Clarify RTL language support in localization guide (#41784) @bahmanworld
+- [material-ui] Refine templates theme selector (#43396) @zanivan
+
+### Core
+
+- Prepare for v6 stable release (#43454) @siriwatknp
+- [blog] Polish Upcoming changes to MUI X pricing in 2024 (#43438) @oliviertassinari
+- [blog] Add Material UI v6 stable release (#41932) @siriwatknp
+- [ci] Fix the release:changelog cmd (#43451) @mnajdova
+- [core] Allow `^6.0.0` for `@mui/` dependencies in `@mui/docs` (#43445) @LukasTy
+- [code-infra] Babel plugin to fully resolve imported paths (#43294) @Janpot
+- [infra] Add closing message workflow (#43450) @michelengelen
+- [website] Make beta chip consistent for Toolpad (#43392) @prakhargupta1
+
+All contributors of this release in alphabetical order: @ahmadnadeem6236, @bahmanworld, @DiegoAndai, @Janpot, @KalmarLorand, @LukasTy, @michelengelen, @mnajdova, @oliviertassinari, @prakhargupta1, @sai6855, @siriwatknp, @sydneyjodon-wk, @zanivan
+
+## 6.0.0-rc.0
+
+<!-- generated comparing v6.0.0-beta.6..next -->
+
+_Aug 22, 2024_
+
+A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
+
+- ⚡ Rendering performance improvements
+
+### `@mui/material@6.0.0-rc.0`
+
+#### Breaking changes
+
+- [Box] Remove `component` from `BoxOwnProps` (#43384) @DiegoAndai
+
+  The `component` prop has been removed from the `BoxOwnProps` as it is already included in the `Box` type.
+  This might affect your code if you are using the `styled` function with the `Box` component.
+  If this is the case, use a `div` element instead of `Box`:
+
+  ```diff
+  -const StyledBox = styled(Box)`
+  +const StyledDiv = styled('div')`
+     color: white;
+   `;
+  ```
+
+  This yields the same end result.
+  If this doesn't work for you, you can also cast the `styled` returned value to `typeof Box`:
+
+  ```diff
+   const StyledBox = styled(Box)`
+     color: white;
+  -`;
+  +` as typeof Box;
+  ```
+
+#### Changes
+
+- [ListItem] Remove unnecessary TypeScript test (#43359) @sai6855
+- Skip generating CSS variables for a custom spacing function (#43389) @siriwatknp
+- Revert visual regressions from #42283 (#43364) @ZeeshanTamboli
+
+### `@mui/codemod@6.0.0-rc.0`
+
+- Add Grid2 to removeSystemProps codemod (#43302) @DiegoAndai
+
+### Docs
+
+- [blog] Add video to the Pigment CSS blog post (#42500) @oliviertassinari
+- Fix broken link to milestones (#43379) @oliviertassinari
+- Update CSS theme variables related content (#43130) @siriwatknp
+- Fix link to createTheme source (#43332) @oliviertassinari
+- Add cache to avoid unnecessary jsx dynamic import and theme getting (#43139) @Vxee
+- Fix broken link to Next.js docs @oliviertassinari
+- [material-ui] Revamp `Composition` guide (#43266) @ZeeshanTamboli
+- [material-ui][Menu] Replace `PaperProps` with `slotProps.paper` in demos (#43354) @sai6855
+
+### Core
+
+- [code-infra] Change docs:start script to serve the exports folder (#43375) @Janpot
+- [core] Fix typescript-next CI workflow (#43394) @aarongarciah
+- [core] Run `@mui/system` TypeScript module augmentation tests in CI (#43386) @ZeeshanTamboli
+- [core] Enable manage-package-manager-versions pnpm flag (#43366) @aarongarciah
+- [core] Replace `indexOf` with `includes` (#42883) @k-rajat19
+- [docs-infra] Add GitHub source link to components (#43228) @Jay-Karia
+- [docs-infra] Fix copy shortcut (#43361) @oliviertassinari
+- [perf] Remove theme/styling allocations (#43372) @romgrk
+- [perf] Improve `composeClasses` (#43363) @romgrk
+- [perf] Remove system allocations (#43306) @romgrk
+
+All contributors of this release in alphabetical order: @aarongarciah, @DiegoAndai, @Janpot, @Jay-Karia, @k-rajat19, @oliviertassinari, @rluzists1, @romgrk, @sai6855, @siriwatknp, @Vxee, @ZeeshanTamboli
+
 ## 6.0.0-beta.6
 
 <!-- generated comparing v6.0.0-beta.5..next -->

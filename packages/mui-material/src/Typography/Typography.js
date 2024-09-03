@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled, internal_createExtendSxProp } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import { getTypographyUtilityClass } from './typographyClasses';
@@ -54,70 +55,72 @@ export const TypographyRoot = styled('span', {
       ownerState.paragraph && styles.paragraph,
     ];
   },
-})(({ theme }) => ({
-  margin: 0,
-  variants: [
-    {
-      props: {
-        variant: 'inherit',
-      },
-      style: {
-        // Some elements, like <button> on Chrome have default font that doesn't inherit, reset this.
-        font: 'inherit',
-        lineHeight: 'inherit',
-        letterSpacing: 'inherit',
-      },
-    },
-    ...Object.entries(theme.typography)
-      .filter(([variant, value]) => variant !== 'inherit' && value && typeof value === 'object')
-      .map(([variant, value]) => ({
-        props: { variant },
-        style: value,
-      })),
-    ...Object.entries(theme.palette)
-      .filter(([, value]) => value && value.main)
-      .map(([color]) => ({
-        props: { color },
-        style: {
-          color: (theme.vars || theme).palette[color].main,
+})(
+  memoTheme(({ theme }) => ({
+    margin: 0,
+    variants: [
+      {
+        props: {
+          variant: 'inherit',
         },
-      })),
-    ...Object.entries(theme.palette?.text || {})
-      .filter(([, value]) => typeof value === 'string')
-      .map(([color]) => ({
-        props: { color: `text${capitalize(color)}` },
         style: {
-          color: (theme.vars || theme).palette.text[color],
+          // Some elements, like <button> on Chrome have default font that doesn't inherit, reset this.
+          font: 'inherit',
+          lineHeight: 'inherit',
+          letterSpacing: 'inherit',
         },
-      })),
-    {
-      props: ({ ownerState }) => ownerState.align !== 'inherit',
-      style: {
-        textAlign: 'var(--Typography-textAlign)',
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.noWrap,
-      style: {
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
+      ...Object.entries(theme.typography)
+        .filter(([variant, value]) => variant !== 'inherit' && value && typeof value === 'object')
+        .map(([variant, value]) => ({
+          props: { variant },
+          style: value,
+        })),
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value && value.main)
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            color: (theme.vars || theme).palette[color].main,
+          },
+        })),
+      ...Object.entries(theme.palette?.text || {})
+        .filter(([, value]) => typeof value === 'string')
+        .map(([color]) => ({
+          props: { color: `text${capitalize(color)}` },
+          style: {
+            color: (theme.vars || theme).palette.text[color],
+          },
+        })),
+      {
+        props: ({ ownerState }) => ownerState.align !== 'inherit',
+        style: {
+          textAlign: 'var(--Typography-textAlign)',
+        },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.gutterBottom,
-      style: {
-        marginBottom: '0.35em',
+      {
+        props: ({ ownerState }) => ownerState.noWrap,
+        style: {
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+        },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.paragraph,
-      style: {
-        marginBottom: 16,
+      {
+        props: ({ ownerState }) => ownerState.gutterBottom,
+        style: {
+          marginBottom: '0.35em',
+        },
       },
-    },
-  ],
-}));
+      {
+        props: ({ ownerState }) => ownerState.paragraph,
+        style: {
+          marginBottom: 16,
+        },
+      },
+    ],
+  })),
+);
 
 const defaultVariantMapping = {
   h1: 'h1',
@@ -251,7 +254,7 @@ Typography.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the element will be a paragraph element.
    * @default false
-   * @deprecated Use the `component` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `component` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   paragraph: PropTypes.bool,
   /**

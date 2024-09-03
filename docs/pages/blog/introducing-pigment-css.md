@@ -1,5 +1,5 @@
 ---
-title: 'Introducing Pigment CSS: the next generation of CSS-in-JS'
+title: 'A preview of Pigment CSS: the next generation of CSS-in-JS'
 description: 'Pigment CSS offers significant performance gains along with RSC and App Router support.'
 date: 2024-05-16T00:00:00.000Z
 authors:
@@ -15,55 +15,63 @@ tags: ['Pigment CSS', 'Product']
 manualCard: true
 ---
 
-In the era of React Server Components and the Next.js App Router, component libraries like Material UI must make some paradigm-shifting changes to reap the potential performance gains by moving more of the work of rendering UIs from client to server.
+Check out MUI's CEO Olivier Tassinari introducing Pigment CSS at React Conf 2024:
 
-Trouble is, the "traditional" CSS-in-JS solutions we rely on aren't able to come along with us because the [React context API](https://react.dev/learn/passing-data-deeply-with-context) only works on the client.
-And with nearly 70% of respondents in the [State of CSS 2023 survey](https://2023.stateofcss.com/en-US/css-in-js/) indicating they use styled-components and Emotion, we're looking at a whole lot of React developers with no clear path forward from here.
+<iframe src="https://www.youtube.com/embed/n_0cz-JwlsU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="width: 100%; height: 100%; aspect-ratio: 16/9;"></iframe>
 
-For a library as widely used as Material UI, the biggest challenge is to stay up-to-date while introducing as few breaking changes as humanly possible, to maintain a consistent and reliable developer experience without asking users to completely change the way they build UI components.
+In the era of React Server Components and the Next.js App Router, component libraries like Material UI have an opportunity to gain performance improvements by moving rendering work from the client to the server.
 
-That's where Pigment CSS comes in.
+Trouble is, the "traditional" CSS-in-JS solutions we rely on aren't able to come along with us because the [React context API](https://react.dev/learn/passing-data-deeply-with-context) only works with client-side components.
+With nearly 70% of respondents in the [State of CSS 2023 survey](https://2023.stateofcss.com/en-US/css-in-js/) indicating they use styled-components and Emotion, we're looking at a whole lot of React developers with no clear path forward from here.
 
-<img src="/static/blog/introducing-pigment-css/card.png" alt="Introducing Pigment CSS: the next generation of CSS-in-JS" width="1280" height="640" />
+For a library as widely used as Material UI, the biggest challenge is to innovate while introducing as few breaking changes as possible.
+We need to maintain a consistent and reliable developer experience without asking you to completely change the way you build UI components.
 
-Pigment CSS is MUI's new in-house styling solution: a zero-runtime CSS-in-JS package that generates colocated styles to their own CSS files at build-time.
-With Pigment CSS you get RSC compatibility, _plus_ significant performance improvements when compared with Emotion, the styling engine used in Material UI v5.
+That's where [Pigment CSS](https://github.com/mui/pigment-css) comes in.
+
+<a href="https://github.com/mui/pigment-css">
+  <img src="/static/blog/introducing-pigment-css/card.png" alt="Introducing Pigment CSS: the next generation of CSS-in-JS" width="1280" height="640" />
+</a>
+
+Pigment CSS is a zero-runtime CSS-in-JS library that generates colocated styles to their own CSS files at build time.
+With Pigment CSS you get significant performance improvements when compared with Emotion, the styling engine used in Material UI v5, _plus_ RSC compatibility.
 And though we're prioritizing the needs of Material UI users in early development and focusing on a smooth migration, Pigment CSS can be used with _any_ React component library you prefer.
 
 ## Why Pigment CSS?
 
 ### Traditional CSS-in-JS is not enough
 
-Emotion made a lot of sense for Material UI v5 in late 2021, but so much has changed in the React ecosystem since then.
+Emotion made a lot of sense for Material UI v5.0.0 in late 2021, but so much has changed in the React ecosystem since then.
 After Next.js offered the first implementation of the React Server Components spec with [the App Router](https://nextjs.org/blog/next-13) towards the end of 2022, it became clear that there was a monumental shift on the horizon.
 
 RSCs unlock a whole new realm of possibilities for React; for us as UI developers, it means we can create components that are fully renderable at build-time so we don't have to pass that burden on to the client at run-time.
 But working with RSCs requires us to let go of familiar APIs like `React.useContext`, which in turn becomes a major blocker for using the last generation's style engines like Emotion that rely heavily on this hook for theming.
 
 :::info
-To learn more about RSCs, we highly recommend reading [Making Sense of React Server Components](https://www.joshwcomeau.com/react/server-components/) by Josh Comeau.
+To learn more about RSCs, we recommend reading [Making Sense of React Server Components](https://www.joshwcomeau.com/react/server-components/) by Josh Comeau.
 :::
 
 ### Material UI is a unique use case
 
 Material UI is downloaded millions of times per month and is one of the most rigorously battle-tested UI libraries on the internet, with a GitHub history spanning all the way back to 2014.
 It's had to make some massive changes along the way to keep up with the times; most recently, moving from JSS to Emotion from v4 to v5.
-While those breaking changes did bring many benefits overall, they unfortunately came with a notoriously painful migration experience.
+While those breaking changes did bring many benefits overall, they unfortunately came with a painful migration experience.
 
-We learned our lesson!
-We can't do that to our users again.
+We learned our lesson! We don't want to impose this on you again.
 
 So when it came time to seek out a new way to generate styles, we knew we needed to keep the syntax and authoring experience as similar as possible to Emotion and styled-components—and provide codemods for most of the breaking changes—in order to minimize friction when migrating.
 
 ### Other options don't meet our needs
 
 For those of us who are perfectly happy with the patterns we know and love from CSS-in-JS, it feels frustrating to consider abandoning all that muscle memory just to reinvent the wheel yet again.
-We like the DX of colocated styles, and we'd rather not bloat the DOM with atomic class names—so Tailwind CSS, StyleX, Panda CSS, and other solutions that have cropped up in recent months just don't match up with our preferences.
+We love the DX of colocated styles, and we'd rather not migrate the API to atomic class names.
+We want to support nested selectors at scale—so Tailwind CSS, StyleX, Panda CSS, and other solutions that have appeared in recent months are not viable options.
+
 Pigment CSS started as a [Linaria](https://linaria.dev/) fork, but we found more of the tools we needed to achieve our goals with [WyW-in-JS](https://wyw-in-js.dev/), the open-source library that also powers Linaria.
 
 ## How Pigment CSS works
 
-Pigment CSS is a zero-runtime CSS-in-JS library: This means it doesn't have access to the end user's browser runtime, which would be necessary to generate and insert authored CSS at run-time.
+Pigment CSS is a zero-runtime CSS-in-JS library: This means it doesn't have access to the end user's browser JavaScript runtime, so it can't use the runtime to generate and insert CSS.
 Instead, it does all its processing at build-time to pre-generate the CSS which then becomes part of the output bundle.
 
 It uses WyW-in-JS processor feature which makes it possible to create custom logic that's triggered by the presence of different imports from the library.
@@ -78,19 +86,53 @@ Check out [How Pigment CSS works](https://github.com/mui/pigment-css/blob/maste
 
 For users of Emotion and styled-components, the benefits of adopting Pigment CSS are clear: your end users get better performance, and you get RSC and App Router compatibility without having to significantly change how you author component styles.
 
-### Better performance
+### Better page load performance
 
-When comparing the same Material UI app built with Next.js and either Emotion or Pigment CSS, we've observed the following page load performance gains:
+When comparing the same Material UI app built with Next.js and either Emotion or Pigment CSS, we've observed the following page load performance gains using the same code:
 
-| Metrics                | Emotion | Pigment CSS | Reduction |
-| :--------------------- | ------: | ----------: | --------: |
-| First load JavaScript  |   131kB |       104kB |       20% |
-| First Contentful Paint |   503ms |       455ms |        9% |
-| Time To First Byte     | 447.5ms |     381.5ms |       15% |
-| Total Page HTML        |  15.9kB |      14.7kB |      7.5% |
+<!-- vale MUI.CorrectReferenceAllCases = NO -->
+
+| Metrics             |                                                                                                        Emotion |                                                                                                        Pigment CSS | Change |
+| :------------------ | -------------------------------------------------------------------------------------------------------------: | -----------------------------------------------------------------------------------------------------------------: | -----: |
+| First Load JS       |                                                            [131 kB](https://emotion-demo.vercel.app/?metric=1) |                                                            [104 kB](https://pigment-css-demo.vercel.app/?metric=1) |   -20% |
+| Total blocking time | [280 ms](https://pagespeed.web.dev/analysis/https-emotion-demo-vercel-app/uxfpkvbp31?hl=fr&form_factor=mobile) | [210 ms](https://pagespeed.web.dev/analysis/https-pigment-css-demo-vercel-app/azcw1qxkec?hl=fr&form_factor=mobile) |   -25% |
+
+<!-- vale MUI.CorrectReferenceAllCases = YES -->
 
 :::info
-To learn more about runtime performance improvements, [check out this app](https://pigment-css-demo.vercel.app/perf) that compares Pigment CSS, Emotion, and styled-components across a variety of tests.
+To reproduce those numbers yourself, check out these live demos and repositories:
+
+- Emotion
+  - Live: https://emotion-demo.vercel.app/?metric=1
+  - Source: https://github.com/brijeshb42/emotion-demo
+- Pigment CSS
+  - Live: https://pigment-css-demo.vercel.app/?metric=1
+  - Source: https://github.com/brijeshb42/pigment-css-landing-page-demo
+
+:::
+
+### Better runtime performance
+
+When comparing the same Material UI app built with Next.js and either Emotion or Pigment CSS, we've observed the following runtime performance gains using the same code:
+
+<!-- After page load, runtime performance is also improved with Pigment CSS. -->
+
+| Metrics                                 | Emotion | Pigment CSS | Change |
+| :-------------------------------------- | ------: | ----------: | -----: |
+| Create and mount a new button           | 17.3 ms |     10.1 ms |   -42% |
+| Change a variant on a mounted component | 14.0 ms |     9.13 ms |   -34% |
+| Change a value inside a CSS prop        | 13.6 ms |     8.63 ms |   -37% |
+
+:::info
+To reproduce those numbers yourself, check out these live demos and repositories:
+
+- Emotion
+  - Live: https://pigment-css-demo.vercel.app/perf
+  - Source: https://github.com/brijeshb42/emotion-demo
+- Pigment CSS
+  - Live: https://pigment-css-demo.vercel.app/perf
+  - Source: https://github.com/brijeshb42/pigment-css-landing-page-demo
+
 :::
 
 ### Familiar developer experience

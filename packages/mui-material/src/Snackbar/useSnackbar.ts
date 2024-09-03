@@ -17,11 +17,11 @@ import { EventHandlers } from '../utils/types';
  *
  * Demos:
  *
- * - [Snackbar](https://next.mui.com/base-ui/react-snackbar/#hook)
+ * - [Snackbar](https://mui.com/base-ui/react-snackbar/#hook)
  *
  * API:
  *
- * - [useSnackbar API](https://next.mui.com/base-ui/react-snackbar/hooks-api/#use-snackbar)
+ * - [useSnackbar API](https://mui.com/base-ui/react-snackbar/hooks-api/#use-snackbar)
  */
 function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbarReturnValue {
   const {

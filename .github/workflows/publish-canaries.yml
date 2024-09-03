@@ -3,6 +3,8 @@ name: Publish canary packages to npm
 on:
   workflow_dispatch:
 
+permissions: {}
+
 jobs:
   publish:
     runs-on: ubuntu-latest

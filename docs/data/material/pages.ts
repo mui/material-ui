@@ -140,6 +140,15 @@ const pages: MuiPage[] = [
         ],
       },
       {
+        pathname: '/toolpad', // the pathname does not matter here because the links to Toolpad are outbound.
+        subheader: 'Toolpad Core',
+        newFeature: true,
+        children: [
+          { pathname: '/toolpad/core/react-dashboard-layout/', title: 'Dashboard Layout' },
+          { pathname: '/toolpad/core/react-sign-in-page/', title: 'Sign-in Page' },
+        ],
+      },
+      {
         pathname: '/material-ui',
         subheader: 'lab',
         children: [
@@ -283,10 +292,6 @@ const pages: MuiPage[] = [
           {
             pathname: '/material-ui/migration/migrating-from-deprecated-apis',
             title: 'Migrating from deprecated APIs',
-          },
-          {
-            pathname: '/material-ui/migration/migration-css-theme-variables',
-            title: 'Migrating to CSS theme variables',
           },
           {
             pathname: '/material-ui/migration/migrating-to-pigment-css',

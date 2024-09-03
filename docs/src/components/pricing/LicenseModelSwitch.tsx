@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import { useLicensingModel } from 'docs/src/components/pricing/LicensingModelContext';
+import { useLicenseModel } from 'docs/src/components/pricing/LicenseModelContext';
 
 const StyledTabs = styled(Tabs)(({ theme }) => ({
   margin: '14px auto 4px',
@@ -94,19 +94,19 @@ const tooltipProps = {
   },
 };
 
-export default function LicensingModelSwitch() {
-  const { licensingModel, setLicensingModel } = useLicensingModel();
+export default function LicenseModelSwitch() {
+  const { licenseModel, setLicenseModel } = useLicenseModel();
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setLicensingModel(newValue);
+    setLicenseModel(newValue);
   };
 
   return (
     <Box sx={{ display: 'flex' }}>
       <StyledTabs
-        aria-label="licensing model"
+        aria-label="license model"
         selectionFollowsFocus
-        value={licensingModel}
+        value={licenseModel}
         onChange={handleChange}
       >
         <Tab

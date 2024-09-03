@@ -77,7 +77,7 @@ You can find the initial RFC plan for v5 in [issue #20012](https://github.com/mu
 
 ## A new brand
 
-Material-UI is now **Material UI**! Head to the [dedicated blog post](https://mui.com/blog/material-ui-is-now-mui/) to learn more.
+Material-UI is now **Material UI**! We ditched the hyphen, head to the [dedicated blog post](https://mui.com/blog/material-ui-is-now-mui/) to learn more.
 
 We hope you are going to enjoy the DX improvement of only having to type 3 letters to type to find us on the internet: [mui.com](https://mui.com) and to import us from npm `@mui`!
 
@@ -236,7 +236,7 @@ declare module '@mui/material/Button' {
 
 <p class="blog-description"><a href="https://codesandbox.io/p/sandbox/stupefied-mclaren-ho4zs?file=/src/App.tsx">CodeSandbox</a></p>
 
-**Second**, you can add [custom variants](/material-ui/customization/theme-components/#creating-new-component-variants) to the theme, overriding the CSS for specific component prop combinations.
+**Second**, you can add [custom variants](https://v5.mui.com/material-ui/customization/theme-components/#creating-new-component-variants) to the theme, overriding the CSS for specific component prop combinations.
 
 ```jsx
 import { createTheme, Button } from '@mui/material';
@@ -704,7 +704,7 @@ We hope we can reach 50% of the React community by 2026. This is an ambitious go
 You can use the GitHub projects to learn about what features we're working on, what stage they're at, and when we expect to bring them to you:
 
 - [MUI Core](https://github.com/mui/material-ui/projects?query=is:open)
-- [MUI X](https://github.com/mui/mui-x/projects/1)
+- [MUI X](https://github.com/orgs/mui/projects/35)
 
 We offer this transparency into what we plan to work on so that you can plan better and share feedback earlier to influence what we're building.
 

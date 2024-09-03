@@ -3,6 +3,7 @@ productId: material-ui
 title: React Box
 components: Box
 githubLabel: 'component: Box'
+githubSource: packages/mui-material/src/Box
 ---
 
 <!-- This page's content is duplicated (with some product-specific details) across the Material UI, Joy UI, and MUI System docs. Any changes should be applied to all three pages at the same time. -->

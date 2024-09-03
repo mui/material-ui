@@ -5,6 +5,7 @@ export { default as createSvgIcon } from './createSvgIcon';
 export { default as debounce } from './debounce';
 export { default as deprecatedPropType } from './deprecatedPropType';
 export { default as isMuiElement } from './isMuiElement';
+export { default as unstable_memoTheme } from './memoTheme';
 export { default as ownerDocument } from './ownerDocument';
 export { default as ownerWindow } from './ownerWindow';
 export { default as requirePropFactory } from './requirePropFactory';

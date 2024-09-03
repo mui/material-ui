@@ -52,11 +52,11 @@ export interface MobileStepperProps extends StandardProps<PaperProps, 'children'
  *
  * Demos:
  *
- * - [Stepper](https://next.mui.com/material-ui/react-stepper/)
+ * - [Stepper](https://mui.com/material-ui/react-stepper/)
  *
  * API:
  *
- * - [MobileStepper API](https://next.mui.com/material-ui/api/mobile-stepper/)
- * - inherits [Paper API](https://next.mui.com/material-ui/api/paper/)
+ * - [MobileStepper API](https://mui.com/material-ui/api/mobile-stepper/)
+ * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
  */
 export default function MobileStepper(props: MobileStepperProps): React.JSX.Element;
