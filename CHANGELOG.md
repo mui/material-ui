@@ -1,5 +1,54 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.0.2
+
+<!-- generated comparing v6.0.1..master -->
+
+_Sep 3, 2024_
+
+A big thanks to the 11 contributors who made this release possible.
+
+### `@mui/material@6.0.2`
+
+- &#8203;<!-- 07 -->Fix `createTheme` with just color schemes (#43518) @siriwatknp
+- &#8203;<!-- 06 -->[Menu,Popover] Fix Backdrop props descriptions (#43503) @Michael-Hutchinson
+- &#8203;<!-- 05 -->[MenuList] Do not react to an event with modifier key pressed (#43505) @MateuszGroth
+
+### `@mui/system@6.0.2`
+
+- &#8203;<!-- 08 -->[InitColorSchemeScript] Use `let/const` instead of `var` (#43468) @ishon19
+- &#8203;<!-- 04 -->Fix composeClasses v6 behavior change (#43537) @oliviertassinari
+
+### `@mui/codemod@6.0.2`
+
+- &#8203;<!-- 19 -->Skip `ListItemButton` import for unrelated files (#43532) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 10 -->[figma] Clarity state or Figma Plugin component export (#43543) @oliviertassinari
+- &#8203;<!-- 09 -->[material-ui] Fix template shadow tokens (#43514) @zanivan
+- &#8203;<!-- 15 -->Update version support range (#43565) @oliviertassinari
+- &#8203;<!-- 14 -->Polish Material UI Sync plugin code format @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 24 -->[blog] Update Material UI v6 blog post link to reflect correct section title (#43535) @Michael-Hutchinson
+- &#8203;<!-- 23 -->[blog] Makes the v5 name change clearer @oliviertassinari
+- &#8203;<!-- 22 -->[blog] Fix typo in Material UI v6 blog post (#43502) @iamandrewluca
+- &#8203;<!-- 21 -->[code-infra] Add missing @babel/runtime dependency to @mui/material-pigment-css (#43473) @Janpot
+- &#8203;<!-- 20 -->[code-infra] Remove permissions in publish-canaries.yml (#43491) @oliviertassinari
+- &#8203;<!-- 18 -->[core] Fix CodeQL scan (#43547) @oliviertassinari
+- &#8203;<!-- 17 -->[core] Fix CHANGELOG `@mui/material@6.0.1` version (#43516) @DiegoAndai
+- &#8203;<!-- 14 -->[docs-infra] Reduce description max-length (#43562) @oliviertassinari
+- &#8203;<!-- 13 -->[docs-infra] Crash on invalid callout type (#43546) @oliviertassinari
+- &#8203;<!-- 12 -->[docs-infra] Fix GitHub source link redirection (#43534) @oliviertassinari
+- &#8203;<!-- 09 -->[infra] Fixed workflow file path (#43528) @michelengelen
+- &#8203;<!-- 03 -->[typescript] Fix missing `Theme` generic (#43523) @siriwatknp
+- &#8203;<!-- 02 -->[website] Match pricing label with page @oliviertassinari
+- &#8203;<!-- 01 -->[website] Update Premium price and remove any mention to cap (#43466) @joserodolfofreitas
+
+All contributors of this release in alphabetical order: @DiegoAndai, @iamandrewluca, @ishon19, @Janpot, @joserodolfofreitas, @MateuszGroth, @Michael-Hutchinson, @michelengelen, @oliviertassinari, @siriwatknp, @zanivan
+
 ## v6.0.1
 
 <!-- generated comparing v6.0.0..master -->
