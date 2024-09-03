@@ -538,8 +538,8 @@ export default function SearchIcons() {
     setSelectedIcon('');
   }, [setSelectedIcon]);
 
-  const deferredQuery = React.useDeferredValue(query);
-  const deferredTheme = React.useDeferredValue(theme);
+  const deferredQuery = query;
+  const deferredTheme = theme;
 
   const isPending = query !== deferredQuery || theme !== deferredTheme;
 
