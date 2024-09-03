@@ -128,54 +128,65 @@ const StyledSvgIcon = styled(SvgIcon)(({ theme }) => ({
   },
 }));
 
+function Icon(props) {
+  const { icon, onOpenClick, onIconClick, onLabelClick } = props;
+  /* eslint-disable jsx-a11y/click-events-have-key-events */
+  return (
+    <StyledIcon
+      key={icon.importName}
+      onClick={onIconClick}
+      data-icon-theme={icon.theme}
+      data-icon-name={icon.name}
+    >
+      <StyledSvgIcon
+        component={icon.Component}
+        fontSize="large"
+        tabIndex={-1}
+        onClick={onOpenClick}
+        title={icon.importName}
+      />
+      <div>
+        {/*  eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
+        <div onClick={onLabelClick}>{icon.importName}</div>
+      </div>
+      {/* eslint-enable jsx-a11y/click-events-have-key-events */}
+    </StyledIcon>
+  );
+}
+
+const handleIconClick = (event) => {
+  const { iconName, iconTheme } = event.currentTarget.dataset;
+
+  if (Math.random() < 0.1) {
+    window.gtag('event', 'material-icons', {
+      eventAction: 'click',
+      eventLabel: iconName,
+    });
+    window.gtag('event', 'material-icons-theme', {
+      eventAction: 'click',
+      eventLabel: iconTheme,
+    });
+  }
+};
+
+const handleLabelClick = (event) => {
+  selectNode(event.currentTarget);
+};
+
 const Icons = React.memo(function Icons(props) {
   const { icons, handleOpenClick } = props;
 
-  const handleIconClick = (event) => {
-    const { iconName, iconTheme } = event.currentTarget.dataset;
-
-    if (Math.random() < 0.1) {
-      window.gtag('event', 'material-icons', {
-        eventAction: 'click',
-        eventLabel: iconName,
-      });
-      window.gtag('event', 'material-icons-theme', {
-        eventAction: 'click',
-        eventLabel: iconTheme,
-      });
-    }
-  };
-
-  const handleLabelClick = (event) => {
-    selectNode(event.currentTarget);
-  };
-
   return (
     <div>
-      {icons.map((icon) => {
-        /* eslint-disable jsx-a11y/click-events-have-key-events */
-        return (
-          <StyledIcon
-            key={icon.importName}
-            onClick={handleIconClick}
-            data-icon-theme={icon.theme}
-            data-icon-name={icon.name}
-          >
-            <StyledSvgIcon
-              component={icon.Component}
-              fontSize="large"
-              tabIndex={-1}
-              onClick={handleOpenClick}
-              title={icon.importName}
-            />
-            <div>
-              {/*  eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
-              <div onClick={handleLabelClick}>{icon.importName}</div>
-            </div>
-            {/* eslint-enable jsx-a11y/click-events-have-key-events */}
-          </StyledIcon>
-        );
-      })}
+      {icons.map((icon) => (
+        <Icon
+          key={icon.importName}
+          icon={icon}
+          onIconClick={handleIconClick}
+          onOpenClick={handleOpenClick}
+          onLabelClick={handleLabelClick}
+        />
+      ))}
     </div>
   );
 });
