@@ -167,8 +167,8 @@ function AppWrapper(props) {
         name: 'Material UI',
         versions: [
           {
-            text: 'v6 (next)',
-            href: `https://next.mui.com${languagePrefix}/material-ui/getting-started/`,
+            text: 'v6',
+            href: `https://mui.com${languagePrefix}/material-ui/getting-started/`,
           },
           { text: `v${materialPkgJson.version}`, current: true },
           {
