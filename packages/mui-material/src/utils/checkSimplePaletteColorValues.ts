@@ -15,7 +15,7 @@ function isSimplePaletteColor(obj: PaletteColorOptions): obj is SimplePaletteCol
  */
 export default function checkSimplePaletteColorValues(
   obj: PaletteColorOptions,
-  optionalValuesToCheck: (keyof SimplePaletteColorOptions)[],
+  optionalValuesToCheck: (keyof SimplePaletteColorOptions)[] = [],
 ): boolean {
   if (!isSimplePaletteColor(obj)) {
     return false;
