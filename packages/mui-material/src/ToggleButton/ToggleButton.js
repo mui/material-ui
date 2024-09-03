@@ -90,7 +90,7 @@ const ToggleButtonRoot = styled(ButtonBase, {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, palette]) => palette && checkSimplePaletteColorValues(palette))
+        .filter(([, value]) => value && checkSimplePaletteColorValues(value))
         .map(([color]) => ({
           props: { color },
           style: {

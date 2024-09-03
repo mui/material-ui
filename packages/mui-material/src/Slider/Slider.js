@@ -63,7 +63,7 @@ export const SliderRoot = styled('span', {
     },
     variants: [
       ...Object.entries(theme.palette)
-        .filter(([, palette]) => palette && checkSimplePaletteColorValues(palette))
+        .filter(([, value]) => value && checkSimplePaletteColorValues(value))
         .map(([color]) => ({
           props: { color },
           style: {
@@ -207,7 +207,7 @@ export const SliderTrack = styled('span', {
           },
         },
         ...Object.entries(theme.palette)
-          .filter(([, palette]) => palette && checkSimplePaletteColorValues(palette))
+          .filter(([, value]) => value && checkSimplePaletteColorValues(value))
           .map(([color]) => ({
             props: { color, track: 'inverted' },
             style: {
@@ -309,7 +309,7 @@ export const SliderThumb = styled('span', {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, palette]) => palette && checkSimplePaletteColorValues(palette))
+        .filter(([, value]) => value && checkSimplePaletteColorValues(value))
         .map(([color]) => ({
           props: { color },
           style: {

@@ -117,9 +117,7 @@ const AppBarRoot = styled(Paper, {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(
-          ([, palette]) => palette && checkSimplePaletteColorValues(palette, ['contrastText']),
-        )
+        .filter(([, value]) => value && checkSimplePaletteColorValues(value, ['contrastText']))
         .map(([color]) => ({
           props: { color },
           style: {

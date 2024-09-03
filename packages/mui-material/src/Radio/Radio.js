@@ -62,7 +62,7 @@ const RadioRoot = styled(SwitchBase, {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, palette]) => palette && checkSimplePaletteColorValues(palette))
+        .filter(([, value]) => value && checkSimplePaletteColorValues(value))
         .map(([color]) => ({
           props: { color, disableRipple: false },
           style: {
@@ -74,7 +74,7 @@ const RadioRoot = styled(SwitchBase, {
           },
         })),
       ...Object.entries(theme.palette)
-        .filter(([, palette]) => palette && checkSimplePaletteColorValues(palette))
+        .filter(([, value]) => value && checkSimplePaletteColorValues(value))
         .map(([color]) => ({
           props: { color },
           style: {
