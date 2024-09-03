@@ -588,6 +588,9 @@ export function getThemedComponents(): ThemeOptions {
                   '&:active': {
                     backgroundColor: (theme.vars || theme).palette.primaryDark[800],
                   },
+                  '&.Mui-disabled': {
+                    color: theme.palette.grey[500],
+                  },
                 }),
               }),
             ...(ownerState.variant === 'outlined' &&
@@ -618,6 +621,7 @@ export function getThemedComponents(): ThemeOptions {
                   '&.Mui-disabled': {
                     background: 'none',
                     backgroundColor: alpha(theme.palette.primaryDark[700], 0.2),
+                    color: theme.palette.grey[500],
                   },
                 }),
               }),
@@ -646,7 +650,7 @@ export function getThemedComponents(): ThemeOptions {
                 },
                 ...theme.applyDarkStyles({
                   '&.Mui-disabled': {
-                    color: theme.palette.grey[500],
+                    color: theme.palette.grey[400],
                     textShadow: 'none',
                     borderColor: theme.palette.grey[800],
                   },
@@ -677,7 +681,7 @@ export function getThemedComponents(): ThemeOptions {
                 },
                 ...theme.applyDarkStyles({
                   '&.Mui-disabled': {
-                    color: theme.palette.grey[500],
+                    color: theme.palette.grey[400],
                     textShadow: 'none',
                     borderColor: theme.palette.grey[800],
                   },
@@ -699,6 +703,9 @@ export function getThemedComponents(): ThemeOptions {
                   '&:active': {
                     backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                   },
+                  '&.Mui-disabled': {
+                    color: theme.palette.grey[500],
+                  },
                 }),
               }),
             ...(ownerState.variant === 'text' &&
@@ -717,6 +724,9 @@ export function getThemedComponents(): ThemeOptions {
                   },
                   '&:active': {
                     backgroundColor: alpha(theme.palette.primary[900], 0.1),
+                  },
+                  '&.Mui-disabled': {
+                    color: theme.palette.grey[500],
                   },
                 }),
               }),
