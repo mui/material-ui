@@ -500,7 +500,7 @@ const allIcons = Object.keys(mui)
       theme = 'Filled';
     }
 
-    const name = icon.importName.replace(/(Outlined|TwoTone|Rounded|Sharp)$/, '');
+    const name = importName.replace(/(Outlined|TwoTone|Rounded|Sharp)$/, '');
     const icon = {
       importName,
       name,
