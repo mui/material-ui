@@ -546,30 +546,26 @@ export default function SearchIcons() {
     setSelectedIcon('');
   }, [setSelectedIcon]);
 
-  const deferredQuery = React.useDeferredValue(query);
-  const deferredTheme = React.useDeferredValue(theme);
-
-  const isPending = query !== deferredQuery || theme !== deferredTheme;
-
   const icons = React.useMemo(() => {
-    const keys =
-      deferredQuery === ''
-        ? null
-        : searchIndex.search(deferredQuery, { limit: 3000 });
+    const keys = query === '' ? null : searchIndex.search(query, { limit: 3000 });
     return (keys === null ? allIcons : keys.map((key) => allIconsMap[key])).filter(
-      (icon) => deferredTheme === icon.theme,
+      (icon) => theme === icon.theme,
     );
-  }, [deferredQuery, deferredTheme]);
+  }, [query, theme]);
+
+  const deferredIcons = React.useDeferredValue(icons);
+
+  const isPending = deferredIcons !== icons;
 
   React.useEffect(() => {
     // Keep track of the no results so we can add synonyms in the future.
-    if (deferredQuery.length >= 4 && icons.length === 0) {
+    if (query.length >= 4 && icons.length === 0) {
       window.gtag('event', 'material-icons', {
         eventAction: 'no-results',
-        eventLabel: deferredQuery,
+        eventLabel: query,
       });
     }
-  }, [deferredQuery, icons.length]);
+  }, [query, icons.length]);
 
   const dialogSelectedIcon = useLatest(
     selectedIcon ? allIconsMap[selectedIcon] : null,
@@ -624,7 +620,7 @@ export default function SearchIcons() {
         <Typography sx={{ mb: 1 }}>{`${formatNumber(
           icons.length,
         )} matching results`}</Typography>
-        <Icons icons={icons} handleOpenClick={handleOpenClick} />
+        <Icons icons={deferredIcons} handleOpenClick={handleOpenClick} />
       </Grid>
       <DialogDetails
         open={!!selectedIcon}
