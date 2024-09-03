@@ -500,6 +500,7 @@ const allIcons = Object.keys(mui)
       theme = 'Filled';
     }
 
+    const name = icon.importName.replace(/(Outlined|TwoTone|Rounded|Sharp)$/, '');
     const icon = {
       importName,
       name,
@@ -513,8 +514,7 @@ const allIcons = Object.keys(mui)
 // Avoid blocking the main thread
 Promise.resolve().then(() => {
   allIcons.forEach((icon) => {
-    const name = icon.importName.replace(/(Outlined|TwoTone|Rounded|Sharp)$/, '');
-    let searchable = name;
+    let searchable = icon.name;
     if (synonyms[searchable]) {
       searchable += ` ${synonyms[searchable]}`;
     }
