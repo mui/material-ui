@@ -511,15 +511,15 @@ const allIcons = Object.keys(mui)
   });
 
 // Avoid blocking the main thread
-Promise.resolve().then(async () => {
+Promise.resolve().then(() => {
   allIcons.forEach((icon) => {
     const name = icon.importName.replace(/(Outlined|TwoTone|Rounded|Sharp)$/, '');
     let searchable = name;
     if (synonyms[searchable]) {
       searchable += ` ${synonyms[searchable]}`;
     }
+    searchIndex.addAsync(icon.importName, searchable);
   });
-  await searchIndex.addAsync(importName, searchable);
 });
 
 /**
