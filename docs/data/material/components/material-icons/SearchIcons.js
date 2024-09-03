@@ -47,7 +47,6 @@ import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterStat
 // import DeleteForeverTwoTone from '@mui/icons-material/DeleteForeverTwoTone';
 // import DeleteForeverSharp from '@mui/icons-material/DeleteForeverSharp';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import { Toolbar } from '@mui/material';
 import synonyms from './synonyms';
 
 const FlexSearchIndex = flexsearch.Index;
