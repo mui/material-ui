@@ -169,9 +169,7 @@ const handleIconClick = (event) => {
   }
 };
 
-const handleLabelClick = (event) => {
-  selectNode(event.currentTarget);
-};
+const handleLabelClick = (event) => selectNode(event.currentTarget);
 
 const Icons = React.memo(function Icons(props) {
   const { icons, handleOpenClick } = props;
