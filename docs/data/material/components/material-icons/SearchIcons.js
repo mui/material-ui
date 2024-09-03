@@ -501,6 +501,12 @@ const allIcons = Object.keys(mui)
     }
 
     const name = importName.replace(/(Outlined|TwoTone|Rounded|Sharp)$/, '');
+    let searchable = name;
+    if (synonyms[searchable]) {
+      searchable += ` ${synonyms[searchable]}`;
+    }
+    searchIndex.addAsync(importName, searchable);
+
     const icon = {
       importName,
       name,
@@ -510,17 +516,6 @@ const allIcons = Object.keys(mui)
     allIconsMap[importName] = icon;
     return icon;
   });
-
-// Avoid blocking the main thread
-Promise.resolve().then(() => {
-  allIcons.forEach((icon) => {
-    let searchable = icon.name;
-    if (synonyms[searchable]) {
-      searchable += ` ${synonyms[searchable]}`;
-    }
-    searchIndex.addAsync(icon.importName, searchable);
-  });
-});
 
 /**
  * Returns the last defined value that has been passed in [value]
