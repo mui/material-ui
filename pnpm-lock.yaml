@@ -1851,6 +1851,9 @@ importers:
 
   packages/mui-material-pigment-css:
     dependencies:
+      '@babel/runtime':
+        specifier: ^7.25.0
+        version: 7.25.0
       '@mui/system':
         specifier: workspace:*
         version: link:../mui-system/build
