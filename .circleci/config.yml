@@ -712,7 +712,7 @@ jobs:
             DANGER_COMMAND: prepareBundleSizeReport
       - run:
           name: build @mui packages
-          command: pnpm lerna run --ignore @mui/icons-material --concurrency 6 --scope "@mui/*" build
+          command: BROWSERSLIST_IGNORE_OLD_DATA=true pnpm lerna run --ignore @mui/icons-material --concurrency 6 --scope "@mui/*" build
       - run:
           name: create @mui/material canary distributable
           command: |
