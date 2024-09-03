@@ -51,9 +51,9 @@ const RadioRoot = styled(SwitchBase, {
     },
     variants: [
       {
-        props: { color: 'default', disabled: false, disableRipple: false },
+        props: { color: 'default', disableRipple: false },
         style: {
-          '&:hover': {
+          [`&:not(.${radioClasses.disabled})&:hover`]: {
             backgroundColor: theme.vars
               ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
               : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
@@ -63,9 +63,9 @@ const RadioRoot = styled(SwitchBase, {
       ...Object.entries(theme.palette)
         .filter(([, palette]) => palette && palette.main)
         .map(([color]) => ({
-          props: { color, disabled: false, disableRipple: false },
+          props: { color, disableRipple: false },
           style: {
-            '&:hover': {
+            [`&:not(.${radioClasses.disabled})&:hover`]: {
               backgroundColor: theme.vars
                 ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
                 : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
@@ -75,9 +75,9 @@ const RadioRoot = styled(SwitchBase, {
       ...Object.entries(theme.palette)
         .filter(([, palette]) => palette && palette.main)
         .map(([color]) => ({
-          props: { color, disabled: false },
+          props: { color },
           style: {
-            [`&.${radioClasses.checked}`]: {
+            [`&.${radioClasses.checked}&:not(.${radioClasses.disabled})`]: {
               color: (theme.vars || theme).palette[color].main,
             },
           },
@@ -121,13 +121,11 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     onChange: onChangeProp,
     size = 'medium',
     className,
-    disabled = false,
     disableRipple = false,
     ...other
   } = props;
   const ownerState = {
     ...props,
-    disabled,
     disableRipple,
     color,
     size,
@@ -156,7 +154,6 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
       checkedIcon={React.cloneElement(checkedIcon, {
         fontSize: defaultCheckedIcon.props.fontSize ?? size,
       })}
-      disabled={disabled}
       ownerState={ownerState}
       classes={classes}
       name={name}
