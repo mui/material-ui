@@ -1,4 +1,4 @@
-import { CSSInterpolation } from '@mui/styled-engine';
+import { CSSInterpolation } from '@mui/system';
 import { Theme } from '../styles/createTheme';
 
 type ThemeStyleFunction = (props: { theme: Theme }) => CSSInterpolation;
