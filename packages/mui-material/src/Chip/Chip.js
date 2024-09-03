@@ -11,6 +11,7 @@ import capitalize from '../utils/capitalize';
 import ButtonBase from '../ButtonBase';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import checkSimplePaletteColorValues from '../utils/checkSimplePaletteColorValues';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 
@@ -165,7 +166,7 @@ const ChipRoot = styled('div', {
           },
         },
         ...Object.entries(theme.palette)
-          .filter(([, value]) => value && value.main && value.contrastText)
+          .filter(([, value]) => value && checkSimplePaletteColorValues(value, ['contrastText']))
           .map(([color]) => {
             return {
               props: { color },
@@ -213,7 +214,7 @@ const ChipRoot = styled('div', {
           },
         },
         ...Object.entries(theme.palette)
-          .filter(([, value]) => value && value.dark)
+          .filter(([, value]) => value && checkSimplePaletteColorValues(value, ['dark']))
           .map(([color]) => {
             return {
               props: { color, onDelete: true },
@@ -252,7 +253,7 @@ const ChipRoot = styled('div', {
           },
         },
         ...Object.entries(theme.palette)
-          .filter(([, value]) => value && value.dark)
+          .filter(([, value]) => value && checkSimplePaletteColorValues(value, ['dark']))
           .map(([color]) => ({
             props: { color, clickable: true },
             style: {
@@ -297,7 +298,7 @@ const ChipRoot = styled('div', {
           },
         },
         ...Object.entries(theme.palette)
-          .filter(([, value]) => value && value.main) // no need to check for mainChannel as it's calculated from main
+          .filter(([, value]) => value && checkSimplePaletteColorValues(value)) // no need to check for mainChannel as it's calculated from main
           .map(([color]) => ({
             props: { variant: 'outlined', color },
             style: {

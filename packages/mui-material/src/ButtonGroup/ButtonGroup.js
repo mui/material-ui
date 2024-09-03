@@ -8,6 +8,7 @@ import getValidReactChildren from '@mui/utils/getValidReactChildren';
 import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import checkSimplePaletteColorValues from '../utils/checkSimplePaletteColorValues';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import buttonGroupClasses, { getButtonGroupUtilityClass } from './buttonGroupClasses';
 import ButtonGroupContext from './ButtonGroupContext';
@@ -165,7 +166,7 @@ const ButtonGroupRoot = styled('div', {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value && value.main)
+        .filter(([, value]) => value && checkSimplePaletteColorValues(value))
         .flatMap(([color]) => [
           {
             props: { variant: 'text', color },
@@ -229,7 +230,7 @@ const ButtonGroupRoot = styled('div', {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value && value.dark)
+        .filter(([, value]) => value && checkSimplePaletteColorValues(value, ['dark']))
         .map(([color]) => ({
           props: { variant: 'contained', color },
           style: {
