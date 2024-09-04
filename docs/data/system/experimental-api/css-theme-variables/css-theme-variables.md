@@ -12,7 +12,7 @@ If this is your first time encountering CSS variables, you should check out [the
 
 CSS theme variable support is a new feature in MUI System added in [`v5.0.5`](https://github.com/mui/material-ui/releases/tag/v5.0.5) as an experimental export. It tells the underlying Material UI, Joy UI or even custom UI library components to use the generated CSS theme variables instead of raw values. This provides significant improvements in developer experience related to theming and customization.
 With these variables, you can inject a theme into your app's stylesheet _at build time_ to apply the user's selected settings before the whole app is rendered.
-Learn more about the [advantages](https://mui.com/material-ui/customization/css-theme-variables/overview/#advantages) and [trade-offs](https://mui.com/material-ui/customization/css-theme-variables/overview/#trade-offs) of using CSS theme variables.
+Learn more about the [advantages](/material-ui/customization/css-theme-variables/overview/#advantages) and [trade-offs](/material-ui/customization/css-theme-variables/overview/#trade-offs) of using CSS theme variables.
 
 ### Advantages
 
@@ -40,7 +40,7 @@ The comparison described in the table above may not be applicable to large and c
 ## Usage
 
 The CSS variables API usage is exposed as a higher order function called `unstable_createCssVarsProvider` which can be called to create a theme provider and other utilities to share the theme config throughout your app. This is a very low-level function and has a lot of moving parts.
-If you're using [Material UI](https://mui.com/material-ui/customization/css-theme-variables/overview/) or [Joy UI](https://mui.com/joy-ui/customization/using-css-variables/), they expose their own `CssVarsProvider` component that you can use directly without configuring your theme.
+If you're using [Material UI](/material-ui/customization/css-theme-variables/overview/) or [Joy UI](/joy-ui/customization/using-css-variables/), they expose their own `CssVarsProvider` component that you can use directly without configuring your theme.
 
 We'll first define a minimal theme palette for light and dark modes.
 
@@ -185,8 +185,9 @@ Now, the Button's `backgroundColor`, `borderColor` and text `color` values will 
 ### Demo
 
 {{"demo": "CreateCssVarsProvider.js"}}
-For framework- or language-specific setup instructions, see [CSS theme variables—Usage—Server-side rendering](https://mui.com/material-ui/customization/css-theme-variables/usage/#server-side-rendering).
-For framework or language specific setup, see [this](https://mui.com/material-ui/customization/css-theme-variables/usage/#server-side-rendering)
+
+For framework- or language-specific setup instructions, see [CSS theme variables—Usage—Server-side rendering](/material-ui/customization/css-theme-variables/usage/).
+For framework or language specific setup, see [this](/material-ui/customization/css-theme-variables/usage/)
 
 See the complete usage of `createCssVarsProvider` in [Material UI](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/styles/CssVarsProvider.tsx) and [Joy UI](https://github.com/mui/material-ui/blob/master/packages/mui-joy/src/styles/CssVarsProvider.tsx).
 

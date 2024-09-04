@@ -10,7 +10,6 @@ import Tooltip from '@mui/material/Tooltip';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useRouter } from 'next/router';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import UnfoldMoreRounded from '@mui/icons-material/UnfoldMoreRounded';
 import { Link } from '@mui/docs/Link';
@@ -94,7 +93,7 @@ export function PlanPrice(props: PlanPriceProps) {
 
   const { licenseModel } = useLicenseModel();
   const annual = licenseModel === 'annual';
-  const planPriceMinHeight = 64;
+  const planPriceMinHeight = 24;
 
   if (plan === 'community') {
     return (
@@ -103,7 +102,7 @@ export function PlanPrice(props: PlanPriceProps) {
           <Typography
             variant="h3"
             component="div"
-            sx={{ fontWeight: 'bold', color: 'success.600', mt: 4.5 }}
+            sx={{ fontWeight: 'bold', color: 'success.600', mt: 6 }}
           >
             $0
           </Typography>
@@ -165,30 +164,12 @@ export function PlanPrice(props: PlanPriceProps) {
               {priceExplanation}
             </Typography>
           )}
-
-          <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
-            No extra fees for orders with over 10 devs&nbsp;
-            <span>
-              <Tooltip title="Our pricing policies are changing. Read more on our blog.">
-                <Link href="/blog/mui-x-sep-2024-price-update/">
-                  by Aug 30
-                  <OpenInNewRoundedIcon sx={{ fontSize: '16px', ml: 0.5 }} />
-                </Link>
-              </Tooltip>
-            </span>
-            .
-          </Typography>
         </Box>
       </React.Fragment>
     );
   }
   // else Premium
-
-  const originalPriceMultiplicator = monthlyDisplay ? 1 : 12;
-  const premiumOriginalValue = annual
-    ? 49 * originalPriceMultiplicator
-    : 49 * 3 * originalPriceMultiplicator;
-  const premiumMonthlyValue = annual ? 37 : 37 * 3;
+  const premiumMonthlyValue = annual ? 49 : 49 * 3;
   const premiumAnnualValue = premiumMonthlyValue * 12;
 
   const premiumDisplayedValue = monthlyDisplay ? premiumMonthlyValue : premiumAnnualValue;
@@ -200,34 +181,6 @@ export function PlanPrice(props: PlanPriceProps) {
     <React.Fragment>
       <LicenseModelSwitch />
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
-        <Typography
-          variant="caption"
-          sx={[
-            {
-              fontWeight: 'medium',
-            },
-            (theme) => ({
-              borderRadius: 0.5,
-              alignSelf: 'flex-end',
-              textDecoration: 'line-through',
-              py: 0.5,
-              px: 1,
-              mb: 0.5,
-              fontWeight: 'medium',
-              bgcolor: 'error.50',
-              color: 'error.500',
-              border: '1px solid',
-              borderColor: 'error.100',
-              ...theme.applyDarkStyles({
-                color: 'error.300',
-                bgcolor: 'error.900',
-                borderColor: 'error.800',
-              }),
-            }),
-          ]}
-        >
-          {formatCurrency(premiumOriginalValue)}
-        </Typography>
         <Box sx={{ width: 10 }} />
         <Typography variant="h3" component="div" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
           {formatCurrency(premiumDisplayedValue)}
@@ -252,18 +205,6 @@ export function PlanPrice(props: PlanPriceProps) {
             {priceExplanation}
           </Typography>
         )}
-        <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
-          🐦 Early Bird: <strong>25% off</strong> if ordered &nbsp;
-          <span>
-            <Tooltip title="Our pricing policies are changing. Read more on our blog.">
-              <Link href="/blog/mui-x-sep-2024-price-update/">
-                by Aug 30
-                <OpenInNewRoundedIcon sx={{ fontSize: '16px', ml: 0.5 }} />{' '}
-              </Link>
-            </Tooltip>
-          </span>
-          .
-        </Typography>
       </Box>
     </React.Fragment>
   );
@@ -508,7 +449,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
     <ColumnHead label="Column autosizing" href="/x/react-data-grid/column-dimensions/#autosizing" />
   ),
   'data-grid/column-reorder': (
-    <ColumnHead label="Column reorder" href="/x/react-data-grid/column-ordering/" />
+    <ColumnHead label="Column ordering" href="/x/react-data-grid/column-ordering/" />
   ),
   'data-grid/column-pinning': (
     <ColumnHead label="Column pinning" href="/x/react-data-grid/column-pinning/" />
@@ -635,8 +576,8 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'charts/pie': <ColumnHead label="Pie chart" href="/x/react-charts/pie/" />,
   'charts/sparkline': <ColumnHead label="Sparkline" href="/x/react-charts/sparkline/" />,
   'charts/gauge': <ColumnHead label="Gauge" href="/x/react-charts/gauge/" />,
-  'charts/treemap': <ColumnHead label="Treemap" href="/x/react-charts/treemap/" />,
   'charts/heatmap': <ColumnHead label="Heatmap" href="/x/react-charts/heatmap/" />,
+  'charts/treemap': <ColumnHead label="Treemap" href="/x/react-charts/treemap/" />,
   'charts/radar': <ColumnHead label="Radar" href="/x/react-charts/radar/" />,
   'charts/funnel': <ColumnHead label="Funnel" href="/x/react-charts/funnel/" />,
   'charts/sankey': <ColumnHead label="Sankey" href="/x/react-charts/sankey/" />,
@@ -647,7 +588,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
   // charts - features
   'charts/legend': <ColumnHead label="Legend" href="/x/react-charts/legend/" />,
   'charts/tooltip': <ColumnHead label="Tooltip" href="/x/react-charts/tooltip/" />,
-  'charts/mouse-zoom': <ColumnHead label="Zoom on mouse" />,
+  'charts/zoom-and-pan': <ColumnHead label="Zoom and Pan" href="/x/react-charts/zoom-and-pan/" />,
   'charts/export': <ColumnHead label="Export" />,
   // charts - datagrid
   'charts/cell-with-charts': (
@@ -655,7 +596,35 @@ const rowHeaders: Record<string, React.ReactNode> = {
   ),
   'charts/filter-interaction': <ColumnHead label="Row filtering" />,
   'charts/selection-interaction': <ColumnHead label="Range selection" />,
-  'tree-view/tree-view': <ColumnHead label="Tree View" href="/x/react-tree-view/" />,
+  // Treeview - components
+  'tree-view/simple-tree-view': (
+    <ColumnHead label="Simple Tree View" href="/x/react-tree-view/simple-tree-view/items/" />
+  ),
+  'tree-view/rich-tree-view': (
+    <ColumnHead label="Rich Tree View" href="/x/react-tree-view/rich-tree-view/items/" />
+  ),
+
+  // Treeview - advanced features
+  'tree-view/selection': (
+    <ColumnHead
+      label="Item Selection"
+      href="/x/react-tree-view/simple-tree-view/selection/#single-selection"
+    />
+  ),
+  'tree-view/multi-selection': (
+    <ColumnHead
+      label="Multi Selection"
+      href="/x/react-tree-view/simple-tree-view/selection/#multi-selection"
+    />
+  ),
+  'tree-view/inline-editing': (
+    <ColumnHead label="Inline label editing" href="/x/react-tree-view/rich-tree-view/editing/" />
+  ),
+  'tree-view/drag-to-reorder': (
+    <ColumnHead label="Drag to reorder" href="/x/react-tree-view/rich-tree-view/ordering/" />
+  ),
+  'tree-view/virtualization': <ColumnHead label="Virtualization" />,
+
   'mui-x-production': <ColumnHead label="Perpetual use in production" />,
   'mui-x-development': <ColumnHead label="Development license" tooltip="For active development" />,
   'mui-x-development-perpetual': (
@@ -809,8 +778,8 @@ const communityData: Record<string, React.ReactNode> = {
   'charts/pie': yes,
   'charts/sparkline': yes,
   'charts/gauge': yes,
-  'charts/treemap': pending,
   'charts/heatmap': no,
+  'charts/treemap': pending,
   'charts/radar': pending,
   'charts/funnel': no,
   'charts/sankey': no,
@@ -821,14 +790,20 @@ const communityData: Record<string, React.ReactNode> = {
   // charts - features
   'charts/legend': yes,
   'charts/tooltip': yes,
-  'charts/mouse-zoom': no,
+  'charts/zoom-and-pan': no,
   'charts/export': no,
   // charts - datagrid
   'charts/cell-with-charts': yes,
   'charts/filter-interaction': no,
   'charts/selection-interaction': no,
   // Tree View
-  'tree-view/tree-view': yes,
+  'tree-view/simple-tree-view': yes,
+  'tree-view/rich-tree-view': yes,
+  'tree-view/selection': yes,
+  'tree-view/multi-selection': yes,
+  'tree-view/inline-editing': yes,
+  'tree-view/drag-to-reorder': no,
+  'tree-view/virtualization': no,
   // general
   'mui-x-production': yes,
   'mui-x-updates': yes,
@@ -906,8 +881,9 @@ const proData: Record<string, React.ReactNode> = {
   'charts/pie': yes,
   'charts/sparkline': yes,
   'charts/gauge': yes,
+  'charts/heatmap': yes,
   'charts/treemap': pending,
-  'charts/heatmap': pending,
+
   'charts/radar': pending,
   'charts/funnel': pending,
   'charts/sankey': pending,
@@ -918,14 +894,20 @@ const proData: Record<string, React.ReactNode> = {
   // charts - features
   'charts/legend': yes,
   'charts/tooltip': yes,
-  'charts/mouse-zoom': pending,
+  'charts/zoom-and-pan': yes,
   'charts/export': pending,
   // charts - datagrid
   'charts/cell-with-charts': yes,
   'charts/filter-interaction': pending,
   'charts/selection-interaction': no,
   // Tree View
-  'tree-view/tree-view': yes,
+  'tree-view/simple-tree-view': yes,
+  'tree-view/rich-tree-view': yes,
+  'tree-view/selection': yes,
+  'tree-view/multi-selection': yes,
+  'tree-view/inline-editing': yes,
+  'tree-view/drag-to-reorder': yes,
+  'tree-view/virtualization': pending,
   // general
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
@@ -939,12 +921,7 @@ const proData: Record<string, React.ReactNode> = {
   'response-time': no,
   'pre-screening': no,
   'issue-escalation': no,
-  'security-questionnaire': (
-    <Info
-      value="Available from 10+ devs"
-      metadata={'Not available under the "Capped at 10 licenses" policy'}
-    />
-  ),
+  'security-questionnaire': <Info value="Available from 10+ devs" />,
 };
 
 const premiumData: Record<string, React.ReactNode> = {
@@ -1008,8 +985,8 @@ const premiumData: Record<string, React.ReactNode> = {
   'charts/pie': yes,
   'charts/sparkline': yes,
   'charts/gauge': yes,
+  'charts/heatmap': yes,
   'charts/treemap': pending,
-  'charts/heatmap': pending,
   'charts/radar': pending,
   'charts/funnel': pending,
   'charts/sankey': pending,
@@ -1020,14 +997,20 @@ const premiumData: Record<string, React.ReactNode> = {
   // charts - features
   'charts/legend': yes,
   'charts/tooltip': yes,
-  'charts/mouse-zoom': pending,
+  'charts/zoom-and-pan': yes,
   'charts/export': pending,
   // charts - datagrid
   'charts/cell-with-charts': yes,
   'charts/filter-interaction': pending,
   'charts/selection-interaction': pending,
   // Tree View
-  'tree-view/tree-view': yes,
+  'tree-view/simple-tree-view': yes,
+  'tree-view/rich-tree-view': yes,
+  'tree-view/selection': yes,
+  'tree-view/multi-selection': yes,
+  'tree-view/inline-editing': yes,
+  'tree-view/drag-to-reorder': yes,
+  'tree-view/virtualization': pending,
   // general
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
@@ -1273,11 +1256,13 @@ export default function PricingTable({
   const router = useRouter();
   const [dataGridCollapsed, setDataGridCollapsed] = React.useState(false);
   const [chartsCollapsed, setChartsCollapsed] = React.useState(false);
+  const [treeViewCollapsed, setTreeViewCollapsed] = React.useState(false);
 
   React.useEffect(() => {
     if (router.query['expand-path'] === 'all') {
       setDataGridCollapsed(true);
       setChartsCollapsed(true);
+      setTreeViewCollapsed(true);
     }
   }, [router.query]);
 
@@ -1309,6 +1294,12 @@ export default function PricingTable({
     <UnfoldMoreRounded
       fontSize="small"
       sx={{ color: 'grey.600', opacity: chartsCollapsed ? 0 : 1 }}
+    />
+  );
+  const treeViewUnfoldMore = (
+    <UnfoldMoreRounded
+      fontSize="small"
+      sx={{ color: 'grey.600', opacity: treeViewCollapsed ? 0 : 1 }}
     />
   );
 
@@ -1584,11 +1575,11 @@ export default function PricingTable({
         {divider}
         {renderNestedRow('charts/gauge')}
         {divider}
+        {renderNestedRow('charts/heatmap')}
+        {divider}
         {renderNestedRow('charts/treemap')}
         {divider}
         {renderNestedRow('charts/radar')}
-        {divider}
-        {renderNestedRow('charts/heatmap')}
         {divider}
         {renderNestedRow('charts/funnel')}
         {divider}
@@ -1607,7 +1598,7 @@ export default function PricingTable({
         {divider}
         {renderNestedRow('charts/tooltip')}
         {divider}
-        {renderNestedRow('charts/mouse-zoom')}
+        {renderNestedRow('charts/zoom-and-pan')}
         {divider}
         {renderNestedRow('charts/export')}
         {divider}
@@ -1619,7 +1610,80 @@ export default function PricingTable({
         {renderNestedRow('charts/selection-interaction')}
       </StyledCollapse>
       {divider}
-      {renderRow('tree-view/tree-view')}
+      <Box
+        sx={{
+          position: 'relative',
+          minHeight: 58,
+          '& svg': { transition: '0.3s' },
+          '&:hover svg': { color: 'primary.main' },
+          ...gridSx,
+        }}
+      >
+        <Cell />
+        <Cell sx={{ minHeight: 60 }}>{treeViewUnfoldMore}</Cell>
+        <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+          {treeViewUnfoldMore}
+        </Cell>
+        <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+          {treeViewUnfoldMore}
+        </Cell>
+        <Button
+          fullWidth
+          onClick={() => setTreeViewCollapsed((bool) => !bool)}
+          endIcon={
+            <KeyboardArrowRightRounded
+              color="primary"
+              sx={{ transform: treeViewCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)' }}
+            />
+          }
+          sx={[
+            (theme) => ({
+              px: 1,
+              justifyContent: 'flex-start',
+              fontSize: '0.875rem',
+              fontWeight: 'medium',
+              borderRadius: '0px',
+              position: 'absolute',
+              left: 0,
+              top: 0,
+              width: '100%',
+              height: '100%',
+              '&:hover': {
+                bgcolor: alpha(theme.palette.primary.main, 0.06),
+                '@media (hover: none)': {
+                  bgcolor: 'initial',
+                },
+              },
+            }),
+            (theme) =>
+              theme.applyDarkStyles({
+                '&:hover': {
+                  bgcolor: alpha(theme.palette.primary.main, 0.06),
+                },
+              }),
+          ]}
+        >
+          TreeView
+        </Button>
+      </Box>
+      <StyledCollapse in={treeViewCollapsed} timeout={700}>
+        <RowCategory>Components</RowCategory>
+        {renderNestedRow('tree-view/simple-tree-view')}
+        {divider}
+        {renderNestedRow('tree-view/rich-tree-view')}
+        {divider}
+        <RowCategory>Advanced features</RowCategory>
+        {renderNestedRow('tree-view/selection')}
+        {divider}
+        {renderNestedRow('tree-view/multi-selection')}
+        {divider}
+        {renderNestedRow('tree-view/inline-editing')}
+        {divider}
+        {renderNestedRow('tree-view/drag-to-reorder')}
+        {divider}
+        {renderNestedRow('tree-view/virtualization')}
+        {divider}
+      </StyledCollapse>
       {divider}
       {renderRow('mui-x-production')}
       {divider}

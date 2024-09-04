@@ -31,7 +31,7 @@ export const getStaticProps = () => {
   const ButtonApiDescriptions = mapApiPageTranslations(ButtonApiReq);
 
   const useButtonApiReq = require.context(
-    'docs/translations/api-docs/use-button',
+    'docs/translations/api-docs-base/use-button',
     false,
     /use-button.*.json$/,
   );

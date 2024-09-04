@@ -4,7 +4,7 @@ import { createRenderer } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
-import { deepOrange, green } from '@mui/material/colors';
+import { deepOrange, green, grey } from '@mui/material/colors';
 import createPalette from './createPalette';
 
 const lightPalette = createPalette({ mode: 'light' });
@@ -54,6 +54,114 @@ describe('createTheme', () => {
     });
     expect(theme.palette.primary.main).to.equal(deepOrange[500]);
     expect(theme.palette.secondary.main).to.equal(green.A400);
+  });
+
+  it('should be customizable through `colorSchemes` node', () => {
+    const theme = createTheme({
+      colorSchemes: {
+        dark: {
+          palette: {
+            background: {
+              default: grey[900],
+            },
+          },
+        },
+        light: {
+          palette: {
+            background: {
+              default: grey[50],
+            },
+            bg: {
+              main: grey[800],
+              dark: grey[700],
+            },
+          },
+        },
+      },
+    });
+    expect(theme.colorSchemes.dark.palette.background.default).to.equal(grey[900]);
+    expect(theme.colorSchemes.light.palette.background.default).to.equal(grey[50]);
+    expect(theme.colorSchemes.light.palette.bg.main).to.equal(grey[800]);
+    expect(theme.colorSchemes.light.palette.bg.dark).to.equal(grey[700]);
+    expect(theme.palette.mode).to.equal('light');
+    expect(theme.palette.background.default).to.equal(grey[50]);
+  });
+
+  it('should be customizable through `colorSchemes` node with non-existing fields', () => {
+    const theme = createTheme({
+      colorSchemes: {
+        dark: {
+          opacity: {
+            disabled: 0.38,
+          },
+          palette: {
+            gradient: 'linear-gradient(90deg, #000000 0%, #ffffff 100%)',
+          },
+        },
+        light: {
+          opacity: {
+            disabled: 0.5,
+          },
+          palette: {
+            gradient: 'linear-gradient(90deg, #ffffff 0%, #000000 100%)',
+          },
+        },
+      },
+    });
+    expect(theme.colorSchemes.dark.opacity.disabled).to.equal(0.38);
+    expect(theme.colorSchemes.light.opacity.disabled).to.equal(0.5);
+    expect(theme.colorSchemes.dark.palette.gradient).to.equal(
+      'linear-gradient(90deg, #000000 0%, #ffffff 100%)',
+    );
+    expect(theme.colorSchemes.light.palette.gradient).to.equal(
+      'linear-gradient(90deg, #ffffff 0%, #000000 100%)',
+    );
+  });
+
+  it('should work with `palette` and `colorSchemes`', () => {
+    const theme = createTheme({
+      palette: {
+        primary: {
+          main: '#27272a',
+        },
+        background: {
+          default: '#f5f5f5',
+        },
+      },
+      colorSchemes: {
+        dark: true,
+      },
+    });
+    expect(theme.palette.primary.main).to.equal('#27272a');
+    expect(theme.palette.background.default).to.equal('#f5f5f5');
+    expect(theme.colorSchemes.light.palette.primary.main).to.equal('#27272a');
+    expect(theme.colorSchemes.light.palette.background.default).to.equal('#f5f5f5');
+    expect(theme.colorSchemes.dark.palette.primary.main).to.equal(darkPalette.primary.main);
+    expect(theme.colorSchemes.dark.palette.background.default).to.equal(
+      darkPalette.background.default,
+    );
+  });
+
+  it('should work with `palette` and a custom `colorSchemes.dark`', () => {
+    const theme = createTheme({
+      palette: {
+        background: {
+          default: '#f5f5f5',
+        },
+      },
+      colorSchemes: {
+        dark: {
+          palette: {
+            background: {
+              default: 'red',
+            },
+          },
+        },
+      },
+    });
+    expect(theme.palette.background.default).to.equal('#f5f5f5');
+    expect(theme.colorSchemes.light.palette.background.default).to.equal('#f5f5f5');
+    expect(theme.colorSchemes.dark.palette.background.default).to.equal('red');
   });
 
   describe('CSS variables', () => {

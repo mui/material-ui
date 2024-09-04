@@ -12,7 +12,7 @@ export interface AvatarSlots {
    * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
    */
-  img?: React.JSXElementConstructor<React.ImgHTMLAttributes<HTMLImageElement>>;
+  img: React.JSXElementConstructor<React.ImgHTMLAttributes<HTMLImageElement>>;
 }
 
 export interface AvatarPropsVariantOverrides {}

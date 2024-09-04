@@ -180,12 +180,8 @@ export default function PricingWhatToExpect() {
             </Typography>
           </Box>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            The Pro plan is capped at 10 developers licensed; you do not need to pay for additional
-            licenses for more than 10 developers.
-            <br />
-            <br />
-            You can contact <Link href="mailto:sales@mui.com">sales</Link> for a volume discount
-            when licensing over 25 developers under the Premium plan.
+            Have a team of 25 or more developers? Get in touch with our{' '}
+            <Link href="mailto:sales@mui.com">sales team</Link> for a volume discount.
           </Typography>
         </Paper>
       </Box>
