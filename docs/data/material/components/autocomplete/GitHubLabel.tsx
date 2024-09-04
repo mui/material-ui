@@ -84,7 +84,7 @@ const StyledInput = styled(InputBase)(({ theme }) => ({
   borderBottom: `1px solid ${'#30363d'}`,
   '& input': {
     borderRadius: 4,
-    backgroundColor:   '#fff',
+    backgroundColor: '#fff',
     border: `1px solid ${'#30363d'}`,
     padding: 8,
     transition: theme.transitions.create(['border-color', 'box-shadow']),
