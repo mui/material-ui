@@ -102,7 +102,7 @@ Use the `css` API to create reusable styles:
 import { css } from '@pigment-css/react';
 ```
 
-You can do this either with the `template` or `object` syntax:
+You can do this with either template or object syntax:
 
 **Template syntax**
 
@@ -124,9 +124,9 @@ const mainClass = css({
 
 #### Creating global styles
 
-If you'd like some CSS to be loaded by every page, you can define global styles by using the `globalCSS` API.
+Use the `globalCSS` API to define global styles to load across an entire app.
 
-These should be defined at the top level of your JavaScript file:
+You should define these at the top level of your JavaScript file:
 
 ```js
 import { globalCSS } from '@pigment-css/react';
@@ -141,7 +141,8 @@ globalCss`
 
 #### Creating styled components
 
-Keeping your styles scoped to your components ensures that only the necessary CSS is loaded and stays modular, easily readable, and maintainable. Additionally, you can apply conditional styling to your components based on props or runtime values.
+Keeping styles scoped to components ensures that only the necessary CSS is loaded and leads to better modularity, readability, and maintainability.
+You can apply conditional styling to your components based on props or runtime values.
 
 Use the `styled` API to create styled components:
 
@@ -158,9 +159,10 @@ const Heading = styled('div')({
 
 **Styling based on props**
 
-You can add different styling options based on props by using the `variants` key. This approach is recommended when the value of the prop is known at build time.
+Use the `variants` key to define different styling options based on props. 
+This approach is recommended when the value of the prop is known at build time.
 
-Each `variant` is an object with `props` and `style` keys:
+Each of the `variants` is an object with `props` and `style` keys:
 
 ```js
 import { styled } from '@pigment-css/react';
@@ -303,7 +305,7 @@ You can also customize the behavior by providing a `getSelector` function:
 
 ### The sx prop
 
-Pigment CSS introduces the `sx` prop, letting you provide inline, one-off custom styles to any element.
+Pigment CSS includes [the `sx` prop](/system/getting-started/the-sx-prop/) which lets you provide one-off inline custom styles to any element.
 
 At build time, Pigment CSS replaces the `sx` prop with `className` and `style` props.
 The `sx` prop works with all Material UI components as well as HTML elements and any third-party JSX components.
