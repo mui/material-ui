@@ -231,6 +231,26 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(getByRole('listbox'), 'two');
     });
 
+    it('should not throw error when slotProps.htmlInput is passed', () => {
+      const options = ['one', 'two'];
+      expect(() => {
+        render(
+          <Autocomplete
+            value="one"
+            open
+            options={options}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                autoFocus
+                slotProps={{ htmlInput: { className: 'my-class' } }}
+              />
+            )}
+          />,
+        );
+      }).not.toErrorDev();
+    });
+
     it('should set the focus on the first item when possible', () => {
       const options = ['one', 'two'];
       const { getByRole, setProps } = render(

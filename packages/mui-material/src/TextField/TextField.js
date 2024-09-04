@@ -142,12 +142,30 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
   const externalForwardedProps = {
     slots,
     slotProps: {
-      input: InputPropsProp,
-      inputLabel: InputLabelPropsProp,
-      htmlInput: inputPropsProp,
-      formHelperText: FormHelperTextPropsProp,
-      select: SelectPropsProp,
       ...slotProps,
+      input:
+        typeof slotProps.input === 'function'
+          ? slotProps.input
+          : { ...(InputPropsProp ?? {}), ...(slotProps.input ?? {}) },
+      inputLabel:
+        typeof slotProps.inputLabel === 'function'
+          ? slotProps.inputLabel
+          : { ...(InputLabelPropsProp ?? {}), ...(slotProps.inputLabel ?? {}) },
+      htmlInput:
+        typeof slotProps.htmlInput === 'function'
+          ? slotProps.htmlInput
+          : { ...(inputPropsProp ?? {}), ...(slotProps.htmlInput ?? {}) },
+      formHelperText:
+        typeof slotProps.formHelperText === 'function'
+          ? slotProps.formHelperText
+          : {
+              ...(FormHelperTextPropsProp ?? {}),
+              ...(slotProps.formHelperText ?? {}),
+            },
+      select:
+        typeof slotProps.select === 'function'
+          ? slotProps.select
+          : { ...(SelectPropsProp ?? {}), ...(slotProps.select ?? {}) },
     },
   };
 
