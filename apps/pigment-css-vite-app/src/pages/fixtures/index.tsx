@@ -10,16 +10,30 @@ export default function Layout() {
     [location.pathname],
   );
 
+  const materialUIRoute = React.useMemo(
+    () => matchRoutes(routes, location.pathname.replace('fixtures', 'material-ui'))?.[0],
+    [location.pathname],
+  );
+
   const demo = new URLSearchParams(location.search).get('demo');
-  const childRoutes = (matchedRoute?.route.children ?? []).filter(
+  const fixturesRoutes = (matchedRoute?.route.children ?? []).filter(
+    (item) => !!item.path && item.path !== 'index.test' && item.path !== 'layout',
+  );
+
+  const demosRoutes = (materialUIRoute?.route.children ?? []).filter(
     (item) => !!item.path && item.path !== 'index.test' && item.path !== 'layout',
   );
 
   return (
     <IndexLayout>
-      {demo && <div id="root-demo">{childRoutes.find((item) => item.path === demo)?.element}</div>}
+      {demo && (
+        <div id="root-demo">
+          {fixturesRoutes.find((item) => item.path === demo)?.element}
+          {demosRoutes.find((item) => item.path === demo)?.element}
+        </div>
+      )}
       <div>
-        <h1>Fixtures Material UI + PIgment CSS</h1>
+        <h1>Fixtures Material UI + Pigment CSS</h1>
         <nav id="tests">
           <ul
             sx={{
@@ -32,7 +46,20 @@ export default function Layout() {
               gap: '0.5rem',
             }}
           >
-            {childRoutes.map((item) => (
+            {fixturesRoutes.map((item) => (
+              <li key={item.path}>
+                <Link
+                  to={`/fixtures/?demo=${item.path}`}
+                  sx={{
+                    textDecoration: 'underline',
+                    fontSize: '17px',
+                  }}
+                >
+                  {item.path}
+                </Link>
+              </li>
+            ))}
+            {demosRoutes.map((item) => (
               <li key={item.path}>
                 <Link
                   to={`/fixtures/?demo=${item.path}`}
