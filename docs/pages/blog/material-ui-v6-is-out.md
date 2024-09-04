@@ -1,6 +1,6 @@
 ---
 title: Material UI v6 is out now 🎉
-description: Material UI v6 ships with support for CSS variables, container queries, and advanced color schemes, as well as improved runtime performance and a reduced bundle size.
+description: Material UI v6 is now stable. It comes with new features, improvements, and an experimental integration for static CSS extraction.
 date: 2024-08-26T00:00:00.000Z
 authors:
   [
@@ -38,7 +38,7 @@ It comes with new features, improvements, and an experimental integration for st
   - [Built-in `sx` prop support](#built-in-sx-prop-support)
 - [React 19 support](#react-19-support)
 - [Full-stack apps via Toolpad Core](#full-stack-apps-via-toolpad-core)
-- [What's next](#whats-next)
+- [Get started with Material UI v6](#get-started-with-material-ui-v6)
 
 ## New features
 
@@ -122,7 +122,7 @@ function ModeSwitcher() {
   const { mode, setMode } = useColorScheme();
   if (!mode) return null;
   return (
-    <select onChange={(event) => setMode(event.target.mode)}>
+    <select onChange={(event) => setMode(event.target.value)}>
       <option value="system">System</option>
       <option value="light">Light</option>
       <option value="dark">Dark</option>

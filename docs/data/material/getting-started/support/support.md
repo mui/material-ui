@@ -74,8 +74,9 @@ This includes issues introduced by external sources, like browser upgrades or ch
 
 | Material UI version | Release    | Supported                                                           |
 | ------------------: | :--------- | :------------------------------------------------------------------ |
-|              ^5.0.0 | 2021-09-16 | ✅ Stable major (Continuous support)                                |
-|              ^4.0.0 | 2019-06-23 | ⚠️ Long-term support (Support for security issues and regressions). |
+|              ^6.0.0 | 2024-08-26 | ✅ Stable major (Continuous support)                                |
+|              ^5.0.0 | 2021-09-16 | ⚠️ Long-term support (Support for security issues and regressions). |
+|              ^4.0.0 | 2019-06-23 | ❌                                                                  |
 |              ^3.0.0 | 2018-08-27 | ❌                                                                  |
 |              ^2.0.0 | /          | ❌                                                                  |
 |              ^1.0.0 | 2018-06-18 | ❌                                                                  |

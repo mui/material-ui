@@ -83,17 +83,6 @@ const faqData = [
     ),
   },
   {
-    summary: 'Why are you calling it "early access"?',
-    detail: (
-      <React.Fragment>
-        We think you'll love the features we've built so far, but we're planning to release more. We
-        opened it up as soon as we had something useful so that you can start getting value from it
-        right away, and we'll be adding new features and components based on our own ideas, and on
-        suggestions from early access customers.
-      </React.Fragment>
-    ),
-  },
-  {
     summary: 'Do developers have to be named?',
     detail: (
       <React.Fragment>
