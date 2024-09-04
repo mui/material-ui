@@ -1,6 +1,6 @@
 {
   "name": "@mui/envinfo",
-  "version": "2.0.24",
+  "version": "2.0.25",
   "private": false,
   "author": "MUI Team",
   "description": "Logs infos about the environment relevant to @mui/*",
@@ -23,7 +23,7 @@
     "envinfo": "^7.13.0"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.17",
+    "@types/chai": "^4.3.19",
     "chai": "^4.5.0",
     "fs-extra": "^11.2.0"
   },

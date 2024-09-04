@@ -1,7 +1,7 @@
 {
   "buildCommand": "build:codesandbox",
   "installCommand": "install:codesandbox",
-  "node": "18",
+  "node": "20",
   "packages": [
     "packages/markdown",
     "packages/mui-babel-macros",

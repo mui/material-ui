@@ -9,6 +9,7 @@ import { babel as rollupBabel } from '@rollup/plugin-babel';
 import rollupResolve from '@rollup/plugin-node-resolve';
 import rollupPreserveDirectives from 'rollup-plugin-preserve-directives';
 import rollupAlias from '@rollup/plugin-alias';
+import * as fs from 'fs/promises';
 import { getVersionEnvVariables, getWorkspaceRoot } from './utils.mjs';
 
 const usePackageExports = process.env.MUI_USE_PACKAGE_EXPORTS === 'true';
@@ -33,12 +34,23 @@ async function run(argv) {
     );
   }
 
+  const packageJsonPath = path.resolve('./package.json');
+  const packageJson = JSON.parse(await fs.readFile(packageJsonPath, { encoding: 'utf8' }));
+
+  const babelRuntimeVersion = packageJson.dependencies['@babel/runtime'];
+  if (!babelRuntimeVersion) {
+    throw new Error(
+      'package.json needs to have a dependency on `@babel/runtime` when building with `@babel/plugin-transform-runtime`.',
+    );
+  }
+
   const outFileExtension = '.js';
 
   const env = {
     NODE_ENV: 'production',
     BABEL_ENV: bundle,
     MUI_BUILD_VERBOSE: verbose,
+    MUI_BABEL_RUNTIME_VERSION: babelRuntimeVersion,
     MUI_OUT_FILE_EXTENSION: outFileExtension,
     ...(await getVersionEnvVariables()),
   };
@@ -89,10 +101,6 @@ async function run(argv) {
   const outDir = path.resolve(outDirBase, relativeOutDir);
 
   if (argv.rollup) {
-    const { default: pkg } = await import(path.resolve('./package.json'), {
-      with: { type: 'json' },
-    });
-
     const entryFiles = await glob(`**/*{${extensions.join(',')}}`, { cwd: srcDir, ignore });
 
     const entries = Object.fromEntries(
@@ -116,7 +124,7 @@ async function run(argv) {
       plugins: [
         rollupAlias({
           // Mostly to resolve @mui/utils/formatMuiErrorMessage correctly, but generalizes to all packages.
-          entries: [{ find: pkg.name, replacement: srcDir }],
+          entries: [{ find: packageJson.name, replacement: srcDir }],
         }),
         rollupResolve({ extensions }),
         rollupBabel({

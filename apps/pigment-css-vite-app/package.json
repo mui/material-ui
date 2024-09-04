@@ -25,11 +25,11 @@
   "devDependencies": {
     "@babel/preset-react": "^7.24.7",
     "@babel/preset-typescript": "^7.24.7",
-    "@pigment-css/vite-plugin": "0.0.20",
+    "@pigment-css/vite-plugin": "0.0.21",
     "@types/react": "^18.3.4",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
-    "postcss": "^8.4.41",
+    "postcss": "^8.4.44",
     "postcss-combine-media-query": "^1.0.1",
     "vite": "5.4.2",
     "vite-plugin-pages": "^0.32.3"

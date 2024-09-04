@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "6.0.0",
+  "version": "6.0.2",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -118,9 +118,9 @@
     "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@next/eslint-plugin-next": "^14.2.6",
+    "@next/eslint-plugin-next": "^14.2.7",
     "@octokit/rest": "^21.0.2",
-    "@pigment-css/react": "0.0.20",
+    "@pigment-css/react": "0.0.21",
     "@playwright/test": "1.46.1",
     "@rollup/plugin-alias": "^5.1.0",
     "@rollup/plugin-babel": "^6.0.4",
@@ -129,7 +129,7 @@
     "@types/fs-extra": "^11.0.4",
     "@types/lodash": "^4.17.7",
     "@types/mocha": "^10.0.7",
-    "@types/node": "^18.19.46",
+    "@types/node": "^20.14.8",
     "@types/react": "^18.3.4",
     "@types/yargs": "^17.0.33",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
@@ -177,7 +177,7 @@
     "lodash": "^4.17.21",
     "markdownlint-cli2": "^0.13.0",
     "mocha": "^10.7.3",
-    "nx": "^19.6.3",
+    "nx": "^19.6.4",
     "nyc": "^17.0.0",
     "piscina": "^4.6.1",
     "postcss-styled-syntax": "^0.6.4",
@@ -215,14 +215,14 @@
     "@definitelytyped/header-parser": "^0.2.12",
     "@definitelytyped/typescript-versions": "^0.1.4",
     "@definitelytyped/utils": "^0.1.7",
-    "@types/node": "^18.19.46",
+    "@types/node": "^20.14.8",
     "@types/react": "^18.3.4",
     "@types/react-dom": "18.3.0",
     "cross-fetch": "^4.0.0",
-    "@pigment-css/react": "0.0.20",
-    "@pigment-css/unplugin": "0.0.20",
-    "@pigment-css/nextjs-plugin": "0.0.20",
-    "@pigment-css/vite-plugin": "0.0.20"
+    "@pigment-css/react": "0.0.21",
+    "@pigment-css/unplugin": "0.0.21",
+    "@pigment-css/nextjs-plugin": "0.0.21",
+    "@pigment-css/vite-plugin": "0.0.21"
   },
   "nyc": {
     "include": [

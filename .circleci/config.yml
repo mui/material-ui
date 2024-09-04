@@ -46,7 +46,7 @@ default-job: &default-job
     MUI_USE_PACKAGE_EXPORTS: 'true'
   working_directory: /tmp/material-ui
   docker:
-    - image: cimg/node:18.20
+    - image: cimg/node:20.17
 
 default-context: &default-context
   context:
