@@ -54,7 +54,7 @@ const RadioRoot = styled(SwitchBase, {
       {
         props: { color: 'default', disabled: false, disableRipple: false },
         style: {
-          [`&:hover`]: {
+          '&:hover': {
             backgroundColor: theme.vars
               ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
               : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
@@ -66,7 +66,7 @@ const RadioRoot = styled(SwitchBase, {
         .map(([color]) => ({
           props: { color, disabled: false, disableRipple: false },
           style: {
-            [`&:hover`]: {
+            '&:hover': {
               backgroundColor: theme.vars
                 ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
                 : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
