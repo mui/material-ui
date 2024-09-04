@@ -18,6 +18,13 @@ import useAutocomplete, {
 import { AutocompleteClasses } from './autocompleteClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
+export interface AutocompleteChipSlotPropsOverrides {}
+export interface AutocompleteClearIndicatorSlotPropsOverrides {}
+export interface AutocompleteListboxSlotPropsOverrides {}
+export interface AutocompletePaperSlotPropsOverrides {}
+export interface AutocompletePopperSlotPropsOverrides {}
+export interface AutocompletePopupIndicatorSlotPropsOverrides {}
+
 export {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
@@ -89,17 +96,17 @@ export interface AutocompleteSlots {
    * The component used to render the listbox.
    * @default 'ul'
    */
-  listbox: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
+  listbox: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement> & AutocompleteListboxSlotPropsOverrides>;
   /**
    * The component used to render the body of the popup.
    * @default Paper
    */
-  paper: React.JSXElementConstructor<PaperProps>;
+  paper: React.JSXElementConstructor<PaperProps & AutocompletePaperSlotPropsOverrides>;
   /**
    * The component used to position the popup.
    * @default Popper
    */
-  popper: React.JSXElementConstructor<PopperProps>;
+  popper: React.JSXElementConstructor<PopperProps & AutocompletePopperSlotPropsOverrides>;
 }
 
 export type AutocompleteSlotsAndSlotProps<
@@ -113,12 +120,12 @@ export type AutocompleteSlotsAndSlotProps<
   {
     chip: SlotProps<
       React.ElementType<Partial<ChipProps<ChipComponent>>>,
-      {},
+      AutocompleteChipSlotPropsOverrides,
       AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
     >;
     clearIndicator: SlotProps<
       React.ElementType<Partial<IconButtonProps>>,
-      {},
+      AutocompleteClearIndicatorSlotPropsOverrides,
       AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
     >;
     /**
@@ -131,23 +138,23 @@ export type AutocompleteSlotsAndSlotProps<
           ref?: React.Ref<Element>;
         }
       >,
-      {},
+      AutocompleteListboxSlotPropsOverrides,
       AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
     >;
 
     paper: SlotProps<
       React.ElementType<Partial<PaperProps>>,
-      {},
+      AutocompletePaperSlotPropsOverrides,
       AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
     >;
     popper: SlotProps<
       React.ElementType<Partial<PopperProps>>,
-      {},
+      AutocompletePopperSlotPropsOverrides,
       AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
     >;
     popupIndicator: SlotProps<
       React.ElementType<Partial<IconButtonProps>>,
-      {},
+      AutocompletePopupIndicatorSlotPropsOverrides,
       AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
     >;
   }
