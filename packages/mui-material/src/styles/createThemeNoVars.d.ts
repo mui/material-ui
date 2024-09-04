@@ -79,7 +79,7 @@ type CssVarsProperties = CssThemeVariables extends { enabled: true }
  * Our [TypeScript guide on theme customization](https://mui.com/material-ui/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.
  */
 export interface Theme extends BaseTheme, CssVarsProperties {
-  cssVariables?: false;
+  cssVariables?: boolean;
   components?: Components<BaseTheme>;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
   unstable_sxConfig: SxConfig;
