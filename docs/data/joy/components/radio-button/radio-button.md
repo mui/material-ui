@@ -150,7 +150,7 @@ This example demonstrates the composition of the components, and was inspired by
 
 ### Alignment buttons
 
-This example uses icons as labels for a group of Radio buttons to recreate the form and function of [Toggle Buttons](https://mui.com/material-ui/react-toggle-button/).
+This example uses icons as labels for a group of Radio buttons to recreate the form and function of [Toggle Buttons](/material-ui/react-toggle-button/).
 In this case, you must provide an `aria-label` to the input slot for users who rely on screen readers.
 
 {{"demo": "ExampleAlignmentButtons.js"}}
