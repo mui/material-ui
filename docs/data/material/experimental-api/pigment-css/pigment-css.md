@@ -16,7 +16,7 @@ Check out the [Migrating to Pigment CSS](/material-ui/migration/migrating-to-pi
 - A package manager
 - A Next.js or Vite project
 
-If using Next.js, you can fast track your Pigment CSS installation and project creation with the following commands:
+You can fast track your Pigment CSS installation and project creation with the following commands:
 
 <codeblock storageKey="framework">
 
