@@ -16,3 +16,12 @@ function Test() {
     </React.Fragment>
   );
 }
+
+<Popover
+  open
+  slotProps={{
+    paper: {
+      sx: (theme) => ({ backgroundColor: theme.palette.primary.main }),
+    },
+  }}
+/>;

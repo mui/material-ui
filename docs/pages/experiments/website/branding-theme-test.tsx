@@ -80,6 +80,32 @@ export default function BrandingThemeTest() {
               <GitHubIcon fontSize="small" />
             </IconButton>
           </Stack>
+          <Stack direction="row" spacing={2} useFlexGap sx={{ width: 'fit-content', mt: 8 }}>
+            <Button variant="contained" size="small" color="primary" disabled>
+              Contained primary
+            </Button>
+            <Button variant="contained" size="small" color="secondary" disabled>
+              Contained secondary
+            </Button>
+            <Button variant="outlined" size="small" color="primary" disabled>
+              Outlined primary
+            </Button>
+            <Button variant="outlined" size="small" color="secondary" disabled>
+              Outlined secondary
+            </Button>
+            <Button variant="text" size="small" disabled>
+              This button
+            </Button>
+            <IconButton color="primary">
+              <GitHubIcon fontSize="small" />
+            </IconButton>
+            <IconButton color="info">
+              <GitHubIcon fontSize="small" />
+            </IconButton>
+            <IconButton>
+              <GitHubIcon fontSize="small" />
+            </IconButton>
+          </Stack>
           <Stack direction="column" spacing={2} useFlexGap sx={{ width: 'fit-content', mt: 8 }}>
             <Button variant="contained" size="large" color="primary">
               Large
