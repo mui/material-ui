@@ -6,7 +6,7 @@
       "type": { "name": "shape", "description": "{ label?: object }" },
       "default": "{}",
       "deprecated": true,
-      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "error": { "type": { "name": "bool" }, "default": "false" },
     "icon": { "type": { "name": "node" } },
@@ -46,7 +46,7 @@
     },
     {
       "name": "stepIcon",
-      "description": "The component to render in place of the [`StepIcon`](https://mui.com/material-ui/api/step-icon/).",
+      "description": "The component to render in place of the [`StepIcon`](/material-ui/api/step-icon/).",
       "class": null
     }
   ],
