@@ -18,50 +18,50 @@ Check out the [Migrating to Pigment CSS](/material-ui/migration/migrating-to-pi
 
 If using Next.js, you can fast track your Pigment CSS installation and project creation with the following commands:
 
-```bash
+<codeblock storageKey="framework">
+
+```bash Next.js
 curl https://codeload.github.com/mui/pigment-css/tar.gz/master | tar -xz --strip=2  pigment-css-master/examples/pigment-css-nextjs-ts
 cd pigment-css-nextjs-ts
 ```
 
-For Vite:
-
-```bash
+```bash Vite
 curl https://codeload.github.com/mui/pigment-css/tar.gz/master | tar -xz --strip=2 pigment-css/examples/pigment-css-vite-ts
 cd pigment-css-vite-ts
 ```
+
+</codeblock>
 
 ## Manual installation
 
 To get started on an existing project, install Pigment CSS with the following command:
 
-**Next.js**
+<codeblock storageKey="framework">
 
-```bash
+```bash Next.js
 npm install @pigment-css/react
 npm install --save-dev @pigment-css/nextjs-plugin
 ```
 
-**Vite**
-
-```bash
+```bash Vite
 npm install @pigment-css/react@next
 npm install --save-dev @pigment-css/vite-plugin@next
 ```
 
+</codeblock>
+
 Next, head over to your config file and import the `withPigment` plugin:
 
-**Next.js**
+<codeblock storageKey="framework">
 
-```js
+```js Next.js
 // next.config.js
 import { withPigment } from '@pigment-css/nextjs-plugin';
 
 export default withPigment({ nextConfig });
 ```
 
-**Vite**
-
-```ts
+```ts Vite
 // main.tsx
 import { pigment } from '@pigment-css/vite-plugin';
 
@@ -72,6 +72,8 @@ export default defineConfig({
   ],
 });
 ```
+
+</codeblock>
 
 Finally, import the Pigment CSS stylesheet in your `layout.tsx` (Next.js) or `main.tsx` (Vite) file:
 
