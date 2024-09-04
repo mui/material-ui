@@ -1,23 +1,23 @@
 /* eslint-env mocha */
-import * as React from 'react';
-import * as ReactDOMServer from 'react-dom/server';
 import createEmotionCache from '@emotion/cache';
 import { CacheProvider as EmotionCacheProvider } from '@emotion/react';
 import {
-  act as rtlAct,
   buildQueries,
   cleanup,
-  fireEvent as rtlFireEvent,
+  prettyDOM,
   queries,
   queryHelpers,
-  render as testingLibraryRender,
-  prettyDOM,
-  within,
   RenderResult,
+  act as rtlAct,
+  fireEvent as rtlFireEvent,
   screen as rtlScreen,
   Screen,
+  render as testingLibraryRender,
+  within,
 } from '@testing-library/react/pure';
 import { userEvent } from '@testing-library/user-event';
+import * as React from 'react';
+import * as ReactDOMServer from 'react-dom/server';
 import { useFakeTimers } from 'sinon';
 import reactMajor from './reactMajor';
 
@@ -114,8 +114,8 @@ class DispatchingProfiler implements Profiler {
 
   private renders: RenderMark[] = [];
 
-  constructor(test: import('mocha').Test) {
-    this.id = test.fullTitle();
+  constructor(test: any) {
+    this.id = test?.fullTitle?.() || test?.task?.name || test?.task?.id;
   }
 
   onRender: Profiler['onRender'] = (
@@ -511,7 +511,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
    */
   let prepared = false;
   let profiler: Profiler = null!;
-  beforeEach(function beforeEachHook() {
+  beforeEach(function beforeEachHook(t) {
     if (!wasCalledInSuite) {
       const error = new Error(
         'Unable to run `before` hook for `createRenderer`. This usually indicates that `createRenderer` was called in a `before` hook instead of in a `describe()` block.',
@@ -520,7 +520,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
       throw error;
     }
 
-    const test = this.currentTest;
+    const test = this?.currentTest || t;
     if (test === undefined) {
       throw new Error(
         'Unable to find the currently running test. This is a bug with the client-renderer. Please report this issue to a maintainer.',
