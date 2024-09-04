@@ -6,6 +6,4 @@ import './initMatchers';
 // in the test files which helps documenting what is part of the DOM but hidden
 // from assistive technology
 const defaultHidden = !process.env.CI;
-// adds verbosity for something that might be confusing
-console.warn(`${defaultHidden ? 'including' : 'excluding'} inaccessible elements by default`);
 testingLibrary.configure({ defaultHidden });
