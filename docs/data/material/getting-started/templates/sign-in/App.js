@@ -59,16 +59,20 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
 
 function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();
-  if (!mode) {
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+  if (!mounted) {
     return null;
   }
   return (
     <Select
-      SelectDisplayProps={{ 'aria-controls': 'template-mode-trigger' }}
       data-template-mode-trigger=""
       size="small"
       value={mode}
-      onChange={(e) => setMode(e.target.value as 'system' | 'light' | 'dark')}
+      onChange={(e) => setMode(e.target.value)}
+      sx={{ position: 'fixed', top: '1rem', right: '1rem' }}
     >
       <MenuItem value="system">System</MenuItem>
       <MenuItem value="light">Light</MenuItem>
@@ -77,7 +81,7 @@ function ColorSchemeToggle() {
   );
 }
 
-export default function SignIn(props: { disableCustomTheme?: boolean }) {
+export default function App(props) {
   const [emailError, setEmailError] = React.useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
   const [passwordError, setPasswordError] = React.useState(false);
@@ -92,7 +96,7 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
     setOpen(false);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
@@ -102,8 +106,8 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
   };
 
   const validateInputs = () => {
-    const email = document.getElementById('email') as HTMLInputElement;
-    const password = document.getElementById('password') as HTMLInputElement;
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
 
     let isValid = true;
 
@@ -132,7 +136,7 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
       <SignInContainer direction="column" justifyContent="space-between">
-        {/* <ColorSchemeToggle /> */}
+        <ColorSchemeToggle />
         <Card variant="outlined">
           <SitemarkIcon />
           <Typography
