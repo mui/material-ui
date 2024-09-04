@@ -81,8 +81,8 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
 </p>
 
 <p>
-  <a href="https://buzzoid.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="24" width="24" src="https://images.opencollective.com/buzzoidz/d23d9bb/logo/24.png" srcset="https://images.opencollective.com/buzzoidz/d23d9bb/logo/72.png 3x" alt="buzzoid.com" title="Buzzoid: Instant delivery Instagram followers." loading="lazy" /></a>
-  <a href="https://twicsy.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="24" width="24" src="/static/sponsors/twicsy-square.svg" alt="twicsy.com" title="Twicsy: Instant delivery Instagram followers." loading="lazy" /></a>
+  <a href="https://buzzoid.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="24" width="24" src="https://images.opencollective.com/buzzoidz/d23d9bb/logo/24.png" srcset="https://images.opencollective.com/buzzoidz/d23d9bb/logo/72.png 3x" alt="buzzoid.com" title="Buzzoid: Instant delivery Instagram followers." loading="lazy" />Buzzoid</a>
+  <a href="https://twicsy.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="24" width="24" src="/static/sponsors/twicsy-square.svg" alt="twicsy.com" title="Twicsy: Instant delivery Instagram followers." loading="lazy" />Twicsy</a>
 </p>
 
 Gold sponsors are those who have pledged \$500/month or more to MUI.
