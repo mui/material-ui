@@ -2,9 +2,12 @@ import * as React from 'react';
 import { AppType } from 'next/app';
 import { EmotionCache } from '@emotion/react';
 import createEmotionServer from '@emotion/server/create-instance';
-import Document, { DocumentContext, DocumentInitialProps } from 'next/document';
+import type { DocumentContext, DocumentInitialProps } from 'next/document';
+import nextDocument from './nextDocument.cjs';
 import { EmotionCacheProviderProps } from './pagesRouterV13App';
 import createEmotionCache from './createCache';
+
+const Document = nextDocument.default || nextDocument;
 
 interface Plugin {
   enhanceApp: (

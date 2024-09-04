@@ -44,17 +44,6 @@ async function run(argv) {
     );
   }
 
-  const outFileExtension = '.js';
-
-  const env = {
-    NODE_ENV: 'production',
-    BABEL_ENV: bundle,
-    MUI_BUILD_VERBOSE: verbose,
-    MUI_BABEL_RUNTIME_VERSION: babelRuntimeVersion,
-    MUI_OUT_FILE_EXTENSION: outFileExtension,
-    ...(await getVersionEnvVariables()),
-  };
-
   const babelConfigPath = path.resolve(getWorkspaceRoot(), 'babel.config.js');
   const srcDir = path.resolve('./src');
   const extensions = ['.js', '.ts', '.tsx'];
@@ -69,13 +58,16 @@ async function run(argv) {
     '**/test-cases/*.*',
   ];
 
-  let relativeOutDir = {
-    node: './',
-    modern: './modern',
-    stable: './esm',
+  let outFileExtension = {
+    node: '.js',
+    modern: '.modern.mjs',
+    stable: '.mjs',
   }[bundle];
 
+  let relativeOutDir = './';
+
   if (!usePackageExports) {
+    outFileExtension = '.js';
     const topLevelNonIndexFiles = glob
       .sync(`*{${extensions.join(',')}}`, { cwd: srcDir, ignore })
       .filter((file) => {
@@ -99,6 +91,15 @@ async function run(argv) {
   }
 
   const outDir = path.resolve(outDirBase, relativeOutDir);
+
+  const env = {
+    NODE_ENV: 'production',
+    BABEL_ENV: bundle,
+    MUI_BUILD_VERBOSE: verbose,
+    MUI_BABEL_RUNTIME_VERSION: babelRuntimeVersion,
+    MUI_OUT_FILE_EXTENSION: outFileExtension,
+    ...(await getVersionEnvVariables()),
+  };
 
   if (argv.rollup) {
     const entryFiles = await glob(`**/*{${extensions.join(',')}}`, { cwd: srcDir, ignore });

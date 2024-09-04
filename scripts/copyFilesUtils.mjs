@@ -93,6 +93,17 @@ export async function typescriptCopy({ from, to }) {
   return Promise.all(cmds);
 }
 
+export async function cjsCopy({ from, to }) {
+  if (!(await fse.pathExists(to))) {
+    console.warn(`path ${to} does not exists`);
+    return [];
+  }
+
+  const files = await glob('**/*.cjs', { cwd: from });
+  const cmds = files.map((file) => fse.copy(path.resolve(from, file), path.resolve(to, file)));
+  return Promise.all(cmds);
+}
+
 export async function createPackageFile() {
   const packageData = await fse.readFile(path.resolve(packagePath, './package.json'), 'utf8');
   const { nyc, scripts, devDependencies, workspaces, ...packageDataOther } =
@@ -104,14 +115,14 @@ export async function createPackageFile() {
   const packageExports = {
     '.': {
       types: './index.d.ts',
-      import: './esm/index.js',
-      [modernCondition]: './modern/index.js',
+      import: './index.mjs',
+      [modernCondition]: './index.modern.mjs',
       require: './index.js',
     },
     './*': {
       types: './*/index.d.ts',
-      import: './esm/*/index.js',
-      [modernCondition]: './modern/*/index.js',
+      import: './*/index.mjs',
+      [modernCondition]: './*/index.modern.mjs',
       require: './*/index.js',
     },
     ...packageDataOther.exports,
@@ -135,8 +146,8 @@ export async function createPackageFile() {
             ? './node/index.js'
             : './index.js',
           module: fse.existsSync(path.resolve(buildPath, './esm/index.js'))
-            ? './esm/index.js'
-            : `./index.js`,
+            ? `./esm/index${usePackageExports ? '.mjs' : '.js'}`
+            : `./index${usePackageExports ? '.mjs' : '.js'}`,
         }
       : {}),
     ...(usePackageExports
