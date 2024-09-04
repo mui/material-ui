@@ -100,3 +100,17 @@ If you need to replace a single component that's been updated, there are a coupl
 ## Feedback and bug reports
 
 If you've got any feedback, we'd love to [hear from you](https://github.com/mui/mui-design-kits/discussions/84).
+
+## Integrations
+
+### Quest
+
+MUI works with [Quest](https://www.quest.ai/) to help you convert your Figma designs into Material UI code. Use the Material UI Figma kit to design your components, then Quest.ai automates the process of generating clean, production-ready code.
+
+**How to use it:**
+
+1. Design your components using the [Material UI Figma kit](https://mui.com/store/items/figma-react/).
+2. Export your designs to [Quest's Figma plugin](https://www.figma.com/community/plugin/862039267149408972/figma-to-react-from-quest).
+3. Get production-ready Material UI code.
+
+For more info, check out [Quest's docs](https://docs.quest.ai/quest-docs).
