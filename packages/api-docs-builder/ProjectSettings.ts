@@ -1,7 +1,10 @@
-import { ComponentClassDefinition } from '@mui/internal-docs-utils';
 import { CreateTypeScriptProjectOptions } from './utils/createTypeScriptProject';
 import { CreateDescribeablePropSettings } from './utils/createDescribeableProp';
-import { ComponentReactApi, HookReactApi } from './types/ApiBuilder.types';
+import {
+  ComponentClassDefinition,
+  ComponentReactApi,
+  HookReactApi,
+} from './types/ApiBuilder.types';
 import { Slot, ComponentInfo, HookInfo } from './types/utils.types';
 
 export type SortingStrategiesType = {

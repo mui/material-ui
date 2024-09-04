@@ -97,7 +97,6 @@ function Demo() {
   );
 }
 
-const lightTheme = createTheme();
 const darkTheme = createTheme({
   palette: {
     // Switching the dark mode on is a single property value change.
@@ -106,14 +105,9 @@ const darkTheme = createTheme({
 });
 
 export default function DarkTheme() {
-  // Note that if you intend to use two or more themes at the same time on your site,
-  // you need to wrap them with a single ThemeProvider at the root (not like in this example).
   return (
     <Box sx={{ width: '100%' }}>
       <ThemeProvider theme={darkTheme}>
-        <Demo />
-      </ThemeProvider>
-      <ThemeProvider theme={lightTheme}>
         <Demo />
       </ThemeProvider>
     </Box>

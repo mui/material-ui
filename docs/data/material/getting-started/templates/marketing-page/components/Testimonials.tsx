@@ -6,7 +6,7 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import { useTheme } from '@mui/system';
 
 const userTestimonials = [
@@ -100,7 +100,12 @@ export default function Testimonials() {
           textAlign: { sm: 'left', md: 'center' },
         }}
       >
-        <Typography component="h2" variant="h4" sx={{ color: 'text.primary' }}>
+        <Typography
+          component="h2"
+          variant="h4"
+          gutterBottom
+          sx={{ color: 'text.primary' }}
+        >
           Testimonials
         </Typography>
         <Typography variant="body1" sx={{ color: 'text.secondary' }}>
@@ -111,18 +116,22 @@ export default function Testimonials() {
       </Box>
       <Grid container spacing={2}>
         {userTestimonials.map((testimonial, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index} sx={{ display: 'flex' }}>
+          <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index} sx={{ display: 'flex' }}>
             <Card
+              variant="outlined"
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
                 flexGrow: 1,
-                p: 1,
               }}
             >
               <CardContent>
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                <Typography
+                  variant="body1"
+                  gutterBottom
+                  sx={{ color: 'text.secondary' }}
+                >
                   {testimonial.testimonial}
                 </Typography>
               </CardContent>
@@ -131,7 +140,6 @@ export default function Testimonials() {
                   display: 'flex',
                   flexDirection: 'row',
                   justifyContent: 'space-between',
-                  pr: 2,
                 }}
               >
                 <CardHeader

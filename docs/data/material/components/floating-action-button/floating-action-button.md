@@ -4,6 +4,7 @@ title: React Floating Action Button (FAB) component
 components: Fab
 githubLabel: 'component: Fab'
 materialDesign: https://m2.material.io/components/buttons-floating-action-button
+githubSource: packages/mui-material/src/Fab
 ---
 
 # Floating Action Button

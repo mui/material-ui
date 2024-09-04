@@ -1,5 +1,6 @@
 import { SxProps } from '@mui/system';
 import { SlotComponentProps } from '@mui/utils';
+import { Theme } from '../styles';
 
 export type {
   EventHandlers,
@@ -10,7 +11,7 @@ export type {
 
 export type SlotCommonProps = {
   component?: React.ElementType;
-  sx?: SxProps;
+  sx?: SxProps<Theme>;
 };
 
 export type SlotProps<

@@ -112,7 +112,7 @@ export function generateDirection({ theme, ownerState }) {
       flexDirection: propValue,
     };
 
-    if (propValue.indexOf('column') === 0) {
+    if (propValue.startsWith('column')) {
       output[`& > .${gridClasses.item}`] = {
         maxWidth: 'none',
       };
@@ -309,6 +309,7 @@ const GridRoot = styled('div', {
     ];
   },
 })(
+  // FIXME(romgrk): Can't use memoTheme here
   ({ ownerState }) => ({
     boxSizing: 'border-box',
     ...(ownerState.container && {
@@ -398,7 +399,7 @@ const useUtilityClasses = (ownerState) => {
 };
 
 /**
- * @deprecated Use the [`Grid2`](https://next.mui.com/material-ui/react-grid2/) component instead.
+ * @deprecated Use the [`Grid2`](https://mui.com/material-ui/react-grid2/) component instead.
  */
 const Grid = React.forwardRef(function Grid(inProps, ref) {
   const themeProps = useThemeProps({ props: inProps, name: 'MuiGrid' });
@@ -594,7 +595,7 @@ Grid.propTypes /* remove-proptypes */ = {
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.
    * @default 'wrap'
-   * @deprecated Use `flexWrap` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `flexWrap` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   wrap: PropTypes.oneOf(['nowrap', 'wrap-reverse', 'wrap']),
   /**

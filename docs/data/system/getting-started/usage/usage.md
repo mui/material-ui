@@ -158,7 +158,7 @@ Runtime performance takes a hit.
 
 <!-- #default-branch-switch -->
 
-Visit the [benchmark folder](https://github.com/mui/material-ui/tree/next/benchmark/browser) for a reproduction of the metrics above.
+Visit the [benchmark folder](https://github.com/mui/material-ui/tree/master/benchmark/browser) for a reproduction of the metrics above.
 
 We believe that for most use cases it's fast enough, but there are simple workarounds when performance becomes critical.
 For instance, when rendering a list with many items, you can use a CSS child selector to have a single "style injection" point (using d. for the wrapper and a. for each item).

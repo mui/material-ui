@@ -84,6 +84,7 @@ export default function StylesProvider(props) {
     if (!context.jss.options.insertionPoint && injectFirst && typeof window !== 'undefined') {
       if (!injectFirstNode) {
         const head = document.head;
+        // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- injectFirstNode is called inside callback
         injectFirstNode = document.createComment('mui-inject-first');
         head.insertBefore(injectFirstNode, head.firstChild);
       }

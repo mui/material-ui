@@ -1,10 +1,11 @@
-import { PropsTableItem, PropsTranslations } from '@mui-internal/api-docs-builder';
-import { Translate } from '@mui/docs/i18n';
-import kebabCase from 'lodash/kebabCase';
 import {
+  PropsTableItem,
+  PropsTranslations,
   HookApiContent,
   HooksTranslations,
-} from 'packages/api-docs-builder/types/ApiBuilder.types';
+} from '@mui-internal/api-docs-builder';
+import { Translate } from '@mui/docs/i18n';
+import kebabCase from 'lodash/kebabCase';
 import type { TableOfContentsParams } from 'docs/src/modules/components/ApiPage';
 
 export interface PropertyDefinition {

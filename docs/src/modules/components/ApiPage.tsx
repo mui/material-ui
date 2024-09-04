@@ -30,7 +30,7 @@ import {
   getClassApiDefinitions,
   getClassesToC,
 } from 'docs/src/modules/components/ApiPage/definitions/classes';
-import { getSlotsApiDefinitions } from './ApiPage/definitions/slots';
+import { getSlotsApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/slots';
 
 // TODO Move this type definition to the AppLayoutDocs file when moved to TS
 export interface TableOfContentsParams {
@@ -47,7 +47,8 @@ type ApiHeaderKeys =
   | 'inheritance'
   | 'slots'
   | 'classes'
-  | 'css';
+  | 'css'
+  | 'source-code';
 
 export function getTranslatedHeader(t: Translate, header: ApiHeaderKeys) {
   const translations = {
@@ -59,6 +60,7 @@ export function getTranslatedHeader(t: Translate, header: ApiHeaderKeys) {
     slots: t('api-docs.slots'),
     classes: t('api-docs.classes'),
     css: t('api-docs.css'),
+    'source-code': t('api-docs.source-code'),
   };
 
   // TODO Drop runtime type-checking once we type-check this file
@@ -94,7 +96,7 @@ interface ApiPageProps {
   descriptions: {
     [lang: string]: PropsTranslations & {
       // Table of Content added by the mapApiPageTranslations function
-      componentDescriptionToc: TableOfContentsEntry[];
+      componentDescriptionToc: TableOfContentsParams[];
     };
   };
   disableAd?: boolean;
@@ -180,17 +182,17 @@ export default function ApiPage(props: ApiPageProps) {
     slotDescriptions,
   });
 
-  function createTocEntry(sectionName: ApiHeaderKeys) {
+  function createTocEntry(sectionName: ApiHeaderKeys): TableOfContentsParams {
     return {
       text: getTranslatedHeader(t, sectionName),
       hash: sectionName,
       children: [
         ...(sectionName === 'props' && inheritance
           ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
-          : []),
+          : ([] as TableOfContentsParams[])),
         ...(sectionName === 'props' && pageContent.themeDefaultProps
           ? [{ text: t('api-docs.themeDefaultProps'), hash: 'theme-default-props', children: [] }]
-          : []),
+          : ([] as TableOfContentsParams[])),
       ],
     };
   }
@@ -202,7 +204,8 @@ export default function ApiPage(props: ApiPageProps) {
     getPropertiesToC({ properties: propertiesDef, hash: 'props', t }),
     ...(componentSlots?.length > 0 ? [createTocEntry('slots')] : []),
     ...getClassesToC({ classes: classesDef, t }),
-  ].filter(Boolean);
+    pageContent.filename ? createTocEntry('source-code') : null,
+  ].filter((item): item is TableOfContentsParams => Boolean(item));
 
   // The `ref` is forwarded to the root element.
   let refHint = t('api-docs.refRootElement');
@@ -359,6 +362,16 @@ export default function ApiPage(props: ApiPageProps) {
           defaultLayout={defaultLayout}
           layoutStorageKey={layoutStorageKey.classes}
           displayClassKeys
+        />
+
+        <Heading hash="source-code" level="h2" />
+        <p
+          dangerouslySetInnerHTML={{
+            __html: t('api-docs.seeSourceCode').replace(
+              '{{href}}',
+              `${process.env.SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}${pageContent.filename}`,
+            ),
+          }}
         />
       </MarkdownElement>
       <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">

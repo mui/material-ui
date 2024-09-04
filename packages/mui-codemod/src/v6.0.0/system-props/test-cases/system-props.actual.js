@@ -1,4 +1,4 @@
-import { Box as Boxxx, Grid as Griddd } from '@mui/material';
+import { Box as Boxxx, Grid as Griddd, Grid2 as Griddd2 } from '@mui/material';
 import Typographyyy from '@mui/material/Typography';
 import Stackkk from '@mui/material/Stack';
 
@@ -6,6 +6,7 @@ import Stackkk from '@mui/material/Stack';
 <Boxxx color="palette.main" sx={{ display: 'block' }} />;
 
 <Griddd container flexDirection={`column`} />;
+<Griddd2 container flexDirection={`column`} />;
 
 const sx = { display: 'flex' };
 const ml = 2;

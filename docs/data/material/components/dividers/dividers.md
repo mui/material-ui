@@ -4,6 +4,7 @@ title: React Divider component
 components: Divider
 githubLabel: 'component: divider'
 materialDesign: https://m2.material.io/components/dividers
+githubSource: packages/mui-material/src/Divider
 ---
 
 # Divider
@@ -32,7 +33,7 @@ The Divider component supports three variants: `fullWidth` (default), `inset`, a
 
 ### Orientation
 
-Use the `orientation` prop to change the Divider from horizontal to vertical.
+Use the `orientation` prop to change the Divider from horizontal to vertical. When using vertical orientation, the Divider renders a `<div>` with the corresponding accessibility attributes instead of `<hr>` to adhere to the WAI-ARIA [spec](https://www.w3.org/TR/wai-aria-1.2/#separator).
 
 {{"demo": "VerticalDividers.js", "bg": true}}
 

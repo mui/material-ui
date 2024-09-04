@@ -1034,8 +1034,11 @@ function describeConformance(
     });
     window.matchMedia = () =>
       ({
+        // Keep mocking legacy methods because @mui/material v5 still uses them
         addListener: () => {},
+        addEventListener: () => {},
         removeListener: () => {},
+        removeEventListener: () => {},
       }) as unknown as MediaQueryList;
   });
   afterEach(() => {

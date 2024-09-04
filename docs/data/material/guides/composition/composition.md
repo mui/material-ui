@@ -26,105 +26,43 @@ WrappedIcon.muiName = Icon.muiName;
 
 Material UI allows you to change the root element that will be rendered via a prop called `component`.
 
-### How does it work?
-
-The custom component will be rendered by Material UI like this:
-
-```js
-return React.createElement(props.component, props);
-```
-
 For example, by default a `List` component will render a `<ul>` element.
 This can be changed by passing a [React component](https://react.dev/reference/react/Component) to the `component` prop.
-The following example will render the `List` component with a `<nav>` element as root element instead:
+The following example renders the `List` component with a `<menu>` element as root element instead:
 
 ```jsx
-<List component="nav">
-  <ListItem button>
-    <ListItemText primary="Trash" />
+<List component="menu">
+  <ListItem>
+    <ListItemButton>
+      <ListItemText primary="Trash" />
+    </ListItemButton>
   </ListItem>
-  <ListItem button>
-    <ListItemText primary="Spam" />
+  <ListItem>
+    <ListItemButton>
+      <ListItemText primary="Spam" />
+    </ListItemButton>
   </ListItem>
 </List>
 ```
 
 This pattern is very powerful and allows for great flexibility, as well as a way to interoperate with other libraries, such as your favorite routing or forms library.
-But it also **comes with a small caveat!**
 
-### Inlining & caveat
+### Passing other React components
 
-Using an inline function as an argument for the `component` prop may result in **unexpected unmounting**, since a new component is passed every time React renders.
-For instance, if you want to create a custom `ListItem` that acts as a link, you could do the following:
-
-```jsx
-import { Link } from 'react-router-dom';
-
-function ListItemLink(props) {
-  const { icon, primary, to } = props;
-
-  const CustomLink = (props) => <Link to={to} {...props} />;
-
-  return (
-    <li>
-      <ListItem button component={CustomLink}>
-        <ListItemIcon>{icon}</ListItemIcon>
-        <ListItemText primary={primary} />
-      </ListItem>
-    </li>
-  );
-}
-```
-
-:::warning
-However, since we are using an inline function to change the rendered component, React will remount the link every time `ListItemLink` is rendered. Not only will React update the DOM unnecessarily but the state will be lost, for example the ripple effect of the `ListItem` will also not work correctly.
-:::
-
-The solution is simple: **avoid inline functions and pass a static component to the `component` prop** instead.
-Let's change the `ListItemLink` component so `CustomLink` always reference the same component:
+You can pass any other React component to `component` prop. For example, you can pass `Link` component from `react-router-dom`:
 
 ```tsx
-import { Link, LinkProps } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
 
-function ListItemLink(props) {
-  const { icon, primary, to } = props;
-
-  const CustomLink = React.useMemo(
-    () =>
-      React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, 'to'>>(
-        function Link(linkProps, ref) {
-          return <Link ref={ref} to={to} {...linkProps} />;
-        },
-      ),
-    [to],
-  );
-
+function Demo() {
   return (
-    <li>
-      <ListItem button component={CustomLink}>
-        <ListItemIcon>{icon}</ListItemIcon>
-        <ListItemText primary={primary} />
-      </ListItem>
-    </li>
+    <Button component={Link} to="/react-router">
+      React router link
+    </Button>
   );
 }
 ```
-
-### Prop forwarding & caveat
-
-You can take advantage of the prop forwarding to simplify the code.
-In this example, we don't create any intermediary component:
-
-```jsx
-import { Link } from 'react-router-dom';
-
-<ListItem button component={Link} to="/">
-```
-
-:::warning
-However, this strategy suffers from a limitation: prop name collisions.
-The component receiving the `component` prop (for example ListItem) might intercept the prop (for example to) that is destined to the leaf element (for example Link).
-:::
 
 ### With TypeScript
 
@@ -148,9 +86,9 @@ The other props of the `Typography` component will also be present in props of t
 
 You can find a code example with the Button and react-router-dom in [these demos](/material-ui/integrations/routing/#component-prop).
 
-#### Generic
+### Generic
 
-It's also possible to have a generic `CustomComponent` which will accept any React component, and HTML elements.
+It's also possible to have a generic custom component which accepts any React component, including [built-in components](https://react.dev/reference/react-dom/components/common).
 
 ```ts
 function GenericCustomComponent<C extends React.ElementType>(

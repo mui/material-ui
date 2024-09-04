@@ -13,7 +13,7 @@
       "description": "When opening the menu will not focus the active item but the <code>[role=&quot;menu&quot;]</code> unless <code>autoFocus</code> is also set to <code>false</code>. Not using the default means not following WAI-ARIA authoring practices. Please be considerate about possible accessibility implications."
     },
     "MenuListProps": {
-      "description": "Props applied to the <a href=\"/material-ui/api/menu-list/\"><code>MenuList</code></a> element."
+      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/menu-list/\"><code>MenuList</code></a> element."
     },
     "onClose": {
       "description": "Callback fired when the component requests to be closed.",
@@ -24,7 +24,7 @@
     },
     "open": { "description": "If <code>true</code>, the component is shown." },
     "PopoverClasses": {
-      "description": "<code>classes</code> prop applied to the <a href=\"/material-ui/api/popover/\"><code>Popover</code></a> element."
+      "description": "<code>classes</code> prop applied to the <a href=\"https://mui.com/material-ui/api/popover/\"><code>Popover</code></a> element."
     },
     "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },

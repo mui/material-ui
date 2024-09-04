@@ -184,6 +184,7 @@ module.exports = {
     // This rule is great for raising people awareness of what a key is and how it works.
     'react/no-array-index-key': 'off',
     'react/no-danger': 'error',
+    'react/no-unknown-property': ['error', { ignore: ['sx'] }],
     'react/no-direct-mutation-state': 'error',
     // Not always relevant
     'react/require-default-props': 'off',
@@ -221,6 +222,11 @@ module.exports = {
           "Do not import default or named exports from ReactDOMServer. Use a namespace import (import * as ReactDOM from 'react-dom/server';) instead.",
         selector:
           'ImportDeclaration[source.value="react-dom/server"] ImportDefaultSpecifier, ImportDeclaration[source.value="react-dom/server"] ImportSpecifier',
+      },
+      {
+        message:
+          "The 'use client' pragma can't be used with export * in the same module. This is not supported by Next.js.",
+        selector: 'ExpressionStatement[expression.value="use client"] ~ ExportAllDeclaration',
       },
     ],
 

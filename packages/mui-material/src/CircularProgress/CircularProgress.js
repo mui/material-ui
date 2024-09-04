@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
 import { keyframes, css, styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
@@ -79,35 +80,37 @@ const CircularProgressRoot = styled('span', {
       styles[`color${capitalize(ownerState.color)}`],
     ];
   },
-})(({ theme }) => ({
-  display: 'inline-block',
-  variants: [
-    {
-      props: {
-        variant: 'determinate',
-      },
-      style: {
-        transition: theme.transitions.create('transform'),
-      },
-    },
-    {
-      props: {
-        variant: 'indeterminate',
-      },
-      style: rotateAnimation || {
-        animation: `${circularRotateKeyframe} 1.4s linear infinite`,
-      },
-    },
-    ...Object.entries(theme.palette)
-      .filter(([, palette]) => palette && palette.main)
-      .map(([color]) => ({
-        props: { color },
-        style: {
-          color: (theme.vars || theme).palette[color].main,
+})(
+  memoTheme(({ theme }) => ({
+    display: 'inline-block',
+    variants: [
+      {
+        props: {
+          variant: 'determinate',
         },
-      })),
-  ],
-}));
+        style: {
+          transition: theme.transitions.create('transform'),
+        },
+      },
+      {
+        props: {
+          variant: 'indeterminate',
+        },
+        style: rotateAnimation || {
+          animation: `${circularRotateKeyframe} 1.4s linear infinite`,
+        },
+      },
+      ...Object.entries(theme.palette)
+        .filter(([, palette]) => palette && palette.main)
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            color: (theme.vars || theme).palette[color].main,
+          },
+        })),
+    ],
+  })),
+);
 
 const CircularProgressSVG = styled('svg', {
   name: 'MuiCircularProgress',
@@ -129,37 +132,39 @@ const CircularProgressCircle = styled('circle', {
       ownerState.disableShrink && styles.circleDisableShrink,
     ];
   },
-})(({ theme }) => ({
-  stroke: 'currentColor',
-  variants: [
-    {
-      props: {
-        variant: 'determinate',
+})(
+  memoTheme(({ theme }) => ({
+    stroke: 'currentColor',
+    variants: [
+      {
+        props: {
+          variant: 'determinate',
+        },
+        style: {
+          transition: theme.transitions.create('stroke-dashoffset'),
+        },
       },
-      style: {
-        transition: theme.transitions.create('stroke-dashoffset'),
+      {
+        props: {
+          variant: 'indeterminate',
+        },
+        style: {
+          // Some default value that looks fine waiting for the animation to kicks in.
+          strokeDasharray: '80px, 200px',
+          strokeDashoffset: 0, // Add the unit to fix a Edge 16 and below bug.
+        },
       },
-    },
-    {
-      props: {
-        variant: 'indeterminate',
+      {
+        props: ({ ownerState }) =>
+          ownerState.variant === 'indeterminate' && !ownerState.disableShrink,
+        style: dashAnimation || {
+          // At runtime for Pigment CSS, `bufferAnimation` will be null and the generated keyframe will be used.
+          animation: `${circularDashKeyframe} 1.4s ease-in-out infinite`,
+        },
       },
-      style: {
-        // Some default value that looks fine waiting for the animation to kicks in.
-        strokeDasharray: '80px, 200px',
-        strokeDashoffset: 0, // Add the unit to fix a Edge 16 and below bug.
-      },
-    },
-    {
-      props: ({ ownerState }) =>
-        ownerState.variant === 'indeterminate' && !ownerState.disableShrink,
-      style: dashAnimation || {
-        // At runtime for Pigment CSS, `bufferAnimation` will be null and the generated keyframe will be used.
-        animation: `${circularDashKeyframe} 1.4s ease-in-out infinite`,
-      },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 /**
  * ## ARIA

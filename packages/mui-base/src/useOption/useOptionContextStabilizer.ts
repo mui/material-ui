@@ -7,11 +7,11 @@ import { ListContext, ListContextValue } from '../useList';
  *
  * Demos:
  *
- * - [Select](https://next.mui.com/base-ui/react-select/#hooks)
+ * - [Select](https://mui.com/base-ui/react-select/#hooks)
  *
  * API:
  *
- * - [useOptionContextStabilizer API](https://next.mui.com/base-ui/react-select/hooks-api/#use-option-context-stabilizer)
+ * - [useOptionContextStabilizer API](https://mui.com/base-ui/react-select/hooks-api/#use-option-context-stabilizer)
  *
  * @param value - The value of the Option.
  * @returns The stable ListContext value.
