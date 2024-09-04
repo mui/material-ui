@@ -11,13 +11,19 @@ import MenuItem from '@mui/joy/MenuItem';
 import MenuButton from '@mui/joy/MenuButton';
 import describeConformance from '../../test/describeConformance';
 
+function createAnchor(element = 'div') {
+  const anchor = document.createElement(element);
+  document.body.appendChild(anchor);
+  return anchor;
+}
+
 const testContext: DropdownContextValue = {
   dispatch: () => {},
   popupId: 'menu-popup',
   registerPopup: () => {},
   registerTrigger: () => {},
   state: { open: true, changeReason: null },
-  triggerElement: document.createElement('div'),
+  triggerElement: createAnchor(),
 };
 
 describe('Joy <Menu />', () => {
@@ -46,7 +52,7 @@ describe('Joy <Menu />', () => {
     ],
   }));
 
-  const anchorEl = document.createElement('div');
+  const anchorEl = createAnchor();
   anchorEl.setAttribute('aria-controls', 'test');
 
   it('should render with `ul` by default', () => {

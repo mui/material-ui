@@ -6,6 +6,12 @@ import { styled } from '../styles';
 import { SlotProps } from './types';
 import useSlot from './useSlot';
 
+function createAnchor(element = 'div') {
+  const anchor = document.createElement(element);
+  document.body.appendChild(anchor);
+  return anchor;
+}
+
 describe('useSlot', () => {
   const { render } = createRenderer();
 
@@ -158,7 +164,7 @@ describe('useSlot', () => {
         ownerState: {},
         additionalProps: {
           open: true, // !!force the popper to always visible for testing
-          anchorEl: () => document.createElement('div'),
+          anchorEl: () => createAnchor(),
         },
         internalForwardedProps: {
           slots: { root: ItemRoot },
@@ -232,7 +238,7 @@ describe('useSlot', () => {
         additionalProps: {
           open: true, // !!force the popper to always visible for testing
           role: 'menu',
-          anchorEl: () => document.createElement('div'),
+          anchorEl: () => createAnchor(),
         },
         internalForwardedProps: {
           slots: { root: ItemListbox },

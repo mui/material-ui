@@ -10,6 +10,12 @@ import Select from '@mui/joy/Select';
 import RadioGroup from '@mui/joy/RadioGroup';
 import describeConformance from '../../test/describeConformance';
 
+function createAnchor(element = 'div') {
+  const anchor = document.createElement(element);
+  document.body.appendChild(anchor);
+  return anchor;
+}
+
 describe('Joy <List />', () => {
   const { render } = createRenderer();
 
@@ -100,7 +106,7 @@ describe('Joy <List />', () => {
   });
 
   describe('Menu - integration', () => {
-    const element = document.createElement('div');
+    const element = createAnchor();
     element.setAttribute('aria-controls', 'test');
 
     it('should have role="group" inside Menu', () => {
