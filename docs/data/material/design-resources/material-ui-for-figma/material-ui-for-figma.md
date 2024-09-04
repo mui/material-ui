@@ -86,7 +86,7 @@ The video below shows how to add new columns by copying cells directly on the ma
 You can export theme tokens and component customizations to code using [the Sync plugin for Figma](/material-ui/design-resources/material-ui-sync/).
 The Design Kit has been built to be as close to the React components as possible, making it for a fluid integration with code.
 
-Learn more about the Material UI theme structure by visiting the [Theming](https://mui.com/material-ui/customization/theming/) and [Default theme viewer](https://mui.com/material-ui/customization/theming/) pages.
+Learn more about the Material UI theme structure by visiting the [Theming](/material-ui/customization/theming/) and [Default theme viewer](/material-ui/customization/theming/) pages.
 
 ## Using new design kit versions
 
