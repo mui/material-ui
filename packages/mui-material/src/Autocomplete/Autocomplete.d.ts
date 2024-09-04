@@ -96,7 +96,9 @@ export interface AutocompleteSlots {
    * The component used to render the listbox.
    * @default 'ul'
    */
-  listbox: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement> & AutocompleteListboxSlotPropsOverrides>;
+  listbox: React.JSXElementConstructor<
+    React.HTMLAttributes<HTMLElement> & AutocompleteListboxSlotPropsOverrides
+  >;
   /**
    * The component used to render the body of the popup.
    * @default Paper
