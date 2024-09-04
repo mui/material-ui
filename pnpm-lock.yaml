@@ -416,7 +416,7 @@ importers:
         version: 2.1.1
       playwright:
         specifier: ^1.46.0
-        version: 1.46.0
+        version: 1.46.1
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -457,6 +457,9 @@ importers:
       vite:
         specifier: 5.4.2
         version: 5.4.2(@types/node@20.16.3)(terser@5.29.2)
+      vite-plugin-node-polyfills:
+        specifier: 0.22.0
+        version: 0.22.0(rollup@4.21.1)(vite@5.4.2(@types/node@20.16.3)(terser@5.29.2))
       vite-plugin-pages:
         specifier: ^0.32.3
         version: 0.32.3(vite@5.4.2(@types/node@20.16.3)(terser@5.29.2))
@@ -4947,6 +4950,24 @@ packages:
   '@remix-run/router@1.19.1':
     resolution: {integrity: sha512-S45oynt/WH19bHbIXjtli6QmwNYvaz+vtnubvNpNDvUOoA/OWh6j1OikIP3G+v5GHdxyC6EXoChG3HgYGEUfcg==}
     engines: {node: '>=14.0.0'}
+
+  '@rollup/plugin-inject@5.0.5':
+    resolution: {integrity: sha512-2+DEJbNBoPROPkgTDNe8/1YXWcqxbN5DTjASVIOx8HS+pITXushyNiBV56RB08zuptzz8gT3YfkqriTBVycepg==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+
+  '@rollup/pluginutils@5.1.0':
+    resolution: {integrity: sha512-XTIWOPPcpvyKI6L1NHo0lFlCyznUEyPmPY1mc3KpPVDYulHSTvyeLNVW00QTLIAFNhR3kYnJTQHeGqU4M3n09g==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
 
   '@rollup/rollup-android-arm-eabi@4.21.1':
     resolution: {integrity: sha512-2thheikVEuU7ZxFXubPDOtspKn1x0yqaYQwvALVtEcvFhMifPADBrgRPyHV0TF3b+9BgvgjgagVyvA/UqPZHmg==}
@@ -16033,6 +16054,22 @@ snapshots:
 
   '@remix-run/router@1.19.1': {}
 
+  '@rollup/plugin-inject@5.0.5(rollup@4.21.1)':
+    dependencies:
+      '@rollup/pluginutils': 5.1.0(rollup@4.21.1)
+      estree-walker: 2.0.2
+      magic-string: 0.30.10
+    optionalDependencies:
+      rollup: 4.21.1
+
+  '@rollup/pluginutils@5.1.0(rollup@4.21.1)':
+    dependencies:
+      '@types/estree': 1.0.5
+      estree-walker: 2.0.2
+      picomatch: 2.3.1
+    optionalDependencies:
+      rollup: 4.21.1
+
   '@rollup/rollup-android-arm-eabi@4.21.1':
     optional: true
 
@@ -25108,6 +25145,14 @@ snapshots:
       - sugarss
       - supports-color
       - terser
+
+  vite-plugin-node-polyfills@0.22.0(rollup@4.21.1)(vite@5.4.2(@types/node@20.16.3)(terser@5.29.2)):
+    dependencies:
+      '@rollup/plugin-inject': 5.0.5(rollup@4.21.1)
+      node-stdlib-browser: 1.2.0
+      vite: 5.4.2(@types/node@20.16.3)(terser@5.29.2)
+    transitivePeerDependencies:
+      - rollup
 
   vite-plugin-pages@0.32.3(vite@5.4.2(@types/node@20.16.3)(terser@5.29.2)):
     dependencies:
