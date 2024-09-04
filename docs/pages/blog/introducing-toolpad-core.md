@@ -1,6 +1,6 @@
 ---
 title: Introducing Toolpad Core
-description: Components and tools for building dashboards and internal apps.
+description: Material UI-based components and tools for building dashboards and internal apps.
 date: 2024-09-03T00:00:00.000Z
 authors: ['prakhargupta']
 manualCard: true
@@ -25,11 +25,12 @@ With Toolpad Core we're building a set of higher-level abstractions to get you f
 
 The beta release includes the following component sets:
 
-- layout and navigation
-- sign-in and account display
-- dialogs
-- notifications
-- persisted state
+- [layout and navigation](https://mui.com/toolpad/core/react-dashboard-layout/)
+- [page container](https://mui.com/toolpad/core/react-page-container/)
+- [sign-in and account display](https://mui.com/toolpad/core/react-sign-in-page/)
+- [dialogs](https://mui.com/toolpad/core/react-use-dialogs/)
+- [notifications](https://mui.com/toolpad/core/react-use-notifications/)
+- [persisted state](https://mui.com/toolpad/core/react-persistent-state/)
 
 <video controls width="100%" height="auto" style="contain" alt="toolpad core product walkthrough">
   <source src="/static/blog/introducing-toolpad-core/toolpad_core_walkthrough.mp4" type="video/mp4">
@@ -40,8 +41,10 @@ By integrating Toolpad Core components with your existing Material UI and MUI 
 
 We plan to continue to work on MUI's mission—to enable developers of any level to quickly and efficiently build UIs that feel amazing. We'll be rolling out more features and updates regularly as we accelerate Toolpad Core's development. We're actively seeking feedback and feature requests, and we encourage you to get involved by [creating an issue](https://github.com/mui/mui-toolpad)!
 
-## What's next for Toolpad Studio
+## What's next
 
-It's been a year since we introduced [Toolpad Studio](https://mui.com/blog/2023-toolpad-beta-announcement/), a low-code internal tool builder designed for programmers. With Toolpad Studio, a tech-savvy user can create a functional application using a drag-and-drop editor with deep customization capabilities that saves your pages as files right next to your code.
+In the coming months, we'll offer a well-designed dashboard template powered by Toolpad components. This should help you kickstart your next internal tool faster.
 
-We believe there is value in enabling low-code workflows for your less tech-savvy team members. But these workflows need to seamlessly embed inside of your developer workflow, not the other way around. Our plan is to integrate Studio and Core so that you can embed low-code pages built in Studio into your applications built in Core, just the way you like—as React components.
+In another initiative, we want to offer a CRUD component in Toolpad Core. It's a critical internal tool feature that a lot of users build from scratch. If this interests you, please visit [this](https://github.com/mui/mui-toolpad/discussions/3311) RFC for more details.
+
+In case you need any further information, feel free to reach out to the team at toolpad@mui.com.
