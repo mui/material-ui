@@ -30,7 +30,7 @@ function openSandbox({ files, codeVariant, initialFile, embed }: any) {
   addHiddenInput(
     form,
     'query',
-    `file=${initialFile}${initialFile.match(/(\.tsx|\.ts|\.js)$/) ? '' : extension}`,
+    `module=${initialFile}${initialFile.match(/(\.tsx|\.ts|\.js)$/) ? '' : extension}`,
   );
   document.body.appendChild(form);
   form.submit();
