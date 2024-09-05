@@ -554,11 +554,11 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     profiler = null!;
 
     emotionCache.sheet.tags.forEach((styleTag) => {
-      styleTag.remove();
+      styleTag?.remove();
     });
     emotionCache = null!;
 
-    serverContainer.remove();
+    serverContainer?.remove();
     serverContainer = null!;
   });
 

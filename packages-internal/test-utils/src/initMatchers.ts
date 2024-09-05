@@ -1,10 +1,10 @@
-import chai, { AssertionError } from 'chai';
-import chaiDom from 'chai-dom';
-import _ from 'lodash';
 import { isInaccessible } from '@testing-library/dom';
 import { prettyDOM } from '@testing-library/react/pure';
+import chai, { AssertionError } from 'chai';
+import chaiDom from 'chai-dom';
 import { computeAccessibleDescription, computeAccessibleName } from 'dom-accessibility-api';
 import formatUtil from 'format-util';
+import _ from 'lodash';
 
 chai.use(chaiDom);
 
