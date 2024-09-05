@@ -97,7 +97,6 @@
       "import": "./esm/*.js",
       "require": "./*.js"
     },
-    "./esm": "./esm/index.js",
     "./esm/*": "./esm/*.js",
     "./esm/*.js": "./esm/*.js"
   }
