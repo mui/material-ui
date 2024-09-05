@@ -1,6 +1,7 @@
 /* eslint-disable material-ui/no-hardcoded-labels */
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import { createTheme, ThemeProvider, styled, useColorScheme } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio, { radioClasses } from '@mui/material/Radio';
@@ -17,7 +18,13 @@ import SvgIcon from '@mui/material/SvgIcon';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import PaletteIcon from '@mui/icons-material/Palette';
 import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
-import sourceMaterialTemplates from 'docs/src/modules/joy/sourceMaterialTemplates';
+import sourceMaterialTemplates from 'docs/src/modules/material/sourceMaterialTemplates';
+
+function pascalCase(str) {
+  return str
+    .replace(/[^\w]+(.)/g, (_, chr) => chr.toUpperCase())
+    .replace(/^(.)/, (_, chr) => chr.toUpperCase());
+}
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   position: 'relative',
@@ -135,7 +142,6 @@ export function ColorSchemeControls() {
   }
   return (
     <RadioGroup
-      defaultValue="system"
       row
       aria-label="Color scheme"
       name="color-scheme-segmented-control"
@@ -158,6 +164,7 @@ export function ColorSchemeControls() {
         },
         '& label': { margin: 0 },
       }}
+      value={mode}
       onChange={(event) => {
         setMode(event.target.value);
       }}
@@ -257,6 +264,8 @@ ThemeSelector.propTypes = {
 };
 
 function TemplateFrame({ children }) {
+  const router = useRouter();
+  const templateName = pascalCase(router.pathname.split('/').pop());
   const [selectedTheme, setSelectedTheme] = React.useState('custom');
   const materialTemplates = sourceMaterialTemplates();
   const item = materialTemplates.map.get('sign-in');
@@ -324,14 +333,22 @@ function TemplateFrame({ children }) {
                     codeSandbox
                       .createMaterialTemplate({
                         ...item,
-                        title: `Sign in Template - Material UI`,
+                        files: { ...item.files, ...materialTemplates.sharedTheme?.files },
+                        title: `${templateName} Template - Material UI`,
                         githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
                           process.env.LIB_VERSION
-                        }/docs/data/material/templates/sign-in/App.${
+                        }/docs/data/material/templates/${router.pathname.split('/').pop()}/${templateName}.${
                           item.codeVariant === 'TS' ? 'tsx' : 'js'
                         }`,
                       })
-                      .openSandbox()
+                      .editFile(
+                        `${templateName}.${item.codeVariant === 'TS' ? 'tsx' : 'js'}`,
+                        (content) => content.replace('../shared-theme/', './theme/'),
+                      )
+                      .editFile(`index.${item.codeVariant === 'TS' ? 'tsx' : 'js'}`, (content) =>
+                        content.replace('./App', `./${templateName}`),
+                      )
+                      .openSandbox(`/${templateName}`, { embed: true })
                   }
                   sx={{ alignSelf: 'center' }}
                 >

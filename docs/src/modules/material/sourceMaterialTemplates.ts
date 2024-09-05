@@ -1,4 +1,5 @@
 const templateMap = new Map<string, { files: Record<string, string>; codeVariant: 'TS' | 'JS' }>();
+let sharedTheme: { files: Record<string, string>; codeVariant: 'TS' | 'JS' } | null = null;
 // @ts-ignore
 const req = require.context(
   '../../../data/material/getting-started/templates/?raw',
@@ -10,12 +11,18 @@ req.keys().forEach((key: string) => {
   if (match) {
     const name = match.groups?.name;
     const filePath = match.groups?.filePath;
-    if (name && filePath) {
-      const { files, codeVariant } = templateMap.get(name) || {};
-      templateMap.set(name, {
-        files: { ...files, [filePath]: req(key) },
-        codeVariant: filePath.match(/\.(ts|tsx)$/) ? 'TS' : codeVariant || 'JS',
-      });
+    if (name && filePath?.match(/\.(ts|tsx)$/)) {
+      if (name === 'shared-theme') {
+        sharedTheme = {
+          files: { ...sharedTheme?.files, [`/theme/${filePath}`]: req(key) },
+          codeVariant: 'TS',
+        };
+      } else {
+        templateMap.set(name, {
+          files: { ...templateMap.get(name)?.files, [filePath]: req(key) },
+          codeVariant: 'TS',
+        });
+      }
     }
   }
 });
@@ -30,5 +37,6 @@ export default function sourceMaterialTemplates() {
     names: Array.from(templateMap.keys()),
     templates: Array.from(templateMap.values()),
     map: new Map(templateMap),
+    sharedTheme,
   };
 }

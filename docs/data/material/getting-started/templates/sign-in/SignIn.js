@@ -81,7 +81,7 @@ function ColorSchemeToggle() {
   );
 }
 
-export default function App(props) {
+export default function SignIn(props) {
   const [emailError, setEmailError] = React.useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
   const [passwordError, setPasswordError] = React.useState(false);

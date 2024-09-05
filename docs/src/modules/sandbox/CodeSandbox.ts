@@ -14,7 +14,7 @@ function compress(object: any) {
     .replace(/=+$/, ''); // Remove ending '='
 }
 
-function openSandbox({ files, codeVariant, initialFile }: any) {
+function openSandbox({ files, codeVariant, initialFile, embed }: any) {
   const extension = codeVariant === 'TS' ? '.tsx' : '.js';
   const parameters = compress({ files });
 
@@ -24,6 +24,9 @@ function openSandbox({ files, codeVariant, initialFile }: any) {
   form.target = '_blank';
   form.action = 'https://codesandbox.io/api/v1/sandboxes/define';
   addHiddenInput(form, 'parameters', parameters);
+  if (embed) {
+    addHiddenInput(form, 'embed', '1');
+  }
   addHiddenInput(
     form,
     'query',
@@ -210,7 +213,7 @@ function createMaterialTemplate(templateData: {
   // document.querySelector returns 'Element | null' but createRoot expects 'Element | DocumentFragment'.
   const type = templateData.codeVariant === 'TS' ? '!' : '';
 
-  const files: Record<string, object> = {
+  const files: Record<string, { content: string | Record<string, any> }> = {
     'public/index.html': {
       content: CRA.getHtml({
         title: templateData.title,
@@ -281,8 +284,15 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
     files,
     dependencies,
     devDependencies,
-    openSandbox: (initialFile: string = '/App') =>
-      openSandbox({ files, codeVariant: templateData.codeVariant, initialFile }),
+    editFile(filePath: string, editor: (prev: string | Record<string, any>) => string) {
+      if (files[filePath]) {
+        files[filePath].content = editor(files[filePath].content);
+        return this;
+      }
+      throw new Error(`File ${filePath} not found`);
+    },
+    openSandbox: (initialFile: string = '/App', options = {}) =>
+      openSandbox({ files, codeVariant: templateData.codeVariant, initialFile, ...options }),
   };
 }
 
