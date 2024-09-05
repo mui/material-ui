@@ -108,7 +108,7 @@ export function testClassName(
       React.cloneElement(element, { className, 'data-testid': testId }),
     );
 
-    expect(getByTestId(testId)).to.have.class(className);
+    expect(getByTestId(testId).getAttribute('class')).to.include(className);
   });
 }
 
@@ -172,7 +172,7 @@ export function testPropsSpread(
       React.cloneElement(element, { [testProp]: value, 'data-testid': testId }),
     );
 
-    expect(getByTestId(testId)).to.have.attribute(testProp, value);
+    expect(getByTestId(testId).getAttribute(testProp)).to.equal(value);
   });
 }
 
@@ -230,14 +230,14 @@ export function testRootClass(
     // jump to the host component because some components pass the `root` class
     // to the `classes` prop of the root component.
     // https://github.com/mui/material-ui/blob/f9896bcd129a1209153106296b3d2487547ba205/packages/material-ui/src/OutlinedInput/OutlinedInput.js#L101
-    expect(container.firstChild).to.have.class(className);
-    expect(container.firstChild).to.have.class(classes.root);
+    expect(container.firstElementChild?.getAttribute('class')).to.include(className);
+    expect(container.firstElementChild?.getAttribute('class')).to.include(classes.root);
     expect(document.querySelectorAll(`.${classes.root}`).length).to.equal(1);
 
     // classes test only for @mui/material
     if (!skip || !skip.includes('classesRoot')) {
       // Test that classes prop works
-      expect(container.firstChild).to.have.class(classesRootClassname);
+      expect(container.firstElementChild?.getAttribute('class')).to.include(classesRootClassname);
 
       // Test that `classes` does not spread to DOM
       expect(document.querySelectorAll('[classes]').length).to.equal(0);
@@ -288,7 +288,7 @@ function testSlotsProp(element: React.ReactElement<any>, getOptions: () => Confo
       const renderedElement = queryByTestId('custom');
       expect(renderedElement).not.to.equal(null);
       if (slotOptions.expectedClassName) {
-        expect(renderedElement).to.have.class(slotOptions.expectedClassName);
+        expect(renderedElement?.getAttribute('class')).to.include(slotOptions.expectedClassName);
       }
     });
 
@@ -319,7 +319,7 @@ function testSlotsProp(element: React.ReactElement<any>, getOptions: () => Confo
 
         expect(renderedElement!.nodeName.toLowerCase()).to.equal(slotElement);
         if (slotOptions.expectedClassName) {
-          expect(renderedElement).to.have.class(slotOptions.expectedClassName);
+          expect(renderedElement?.getAttribute('class')).to.include(slotOptions.expectedClassName);
         }
       });
     }
@@ -343,7 +343,7 @@ function testSlotsProp(element: React.ReactElement<any>, getOptions: () => Confo
         const renderedElement = queryByTestId('custom');
         expect(renderedElement).not.to.equal(null);
         if (slotOptions.expectedClassName) {
-          expect(renderedElement).to.have.class(slotOptions.expectedClassName);
+          expect(renderedElement?.getAttribute('class')).to.include(slotOptions.expectedClassName);
         }
       });
 
@@ -423,7 +423,9 @@ function testSlotsProp(element: React.ReactElement<any>, getOptions: () => Confo
 
           expect(renderedElement!.nodeName.toLowerCase()).to.equal(slotElement);
           if (slotOptions.expectedClassName) {
-            expect(renderedElement).to.have.class(slotOptions.expectedClassName);
+            expect(renderedElement?.getAttribute('class')).to.include(
+              slotOptions.expectedClassName,
+            );
           }
         });
       }
@@ -451,7 +453,7 @@ function testSlotPropsProp(element: React.ReactElement<any>, getOptions: () => C
       expect(slotComponent).not.to.equal(null);
 
       if (slotOptions.expectedClassName) {
-        expect(slotComponent).to.have.class(slotOptions.expectedClassName);
+        expect(slotComponent?.getAttribute('class')).to.include(slotOptions.expectedClassName);
       }
     });
 
@@ -466,8 +468,12 @@ function testSlotPropsProp(element: React.ReactElement<any>, getOptions: () => C
 
         const { getByTestId } = await render(React.cloneElement(element, { slotProps }));
 
-        expect(getByTestId('custom')).to.have.class(slotOptions.expectedClassName);
-        expect(getByTestId('custom')).to.have.class(slotProps[slotName].className);
+        expect(getByTestId('custom').getAttribute('class')).to.include(
+          slotOptions.expectedClassName,
+        );
+        expect(getByTestId('custom').getAttribute('class')).to.include(
+          slotProps[slotName].className,
+        );
       });
     }
 
@@ -484,7 +490,7 @@ function testSlotPropsProp(element: React.ReactElement<any>, getOptions: () => C
         expect(slotComponent).not.to.equal(null);
 
         if (slotOptions.expectedClassName) {
-          expect(slotComponent).to.have.class(slotOptions.expectedClassName);
+          expect(slotComponent?.getAttribute('class')).to.include(slotOptions.expectedClassName);
         }
       });
 
@@ -507,8 +513,9 @@ function testSlotPropsProp(element: React.ReactElement<any>, getOptions: () => C
           React.cloneElement(element, { componentsProps, slotProps }),
         );
         const slotComponent = queryByTestId('custom');
-        expect(slotComponent).to.have.attribute('data-from-slot-props', 'true');
-        expect(slotComponent).not.to.have.attribute('data-from-components-props');
+        expect(slotComponent?.getAttribute('data-from-slot-props')).to.equal('true');
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        expect(slotComponent?.getAttribute('data-from-components-props')).to.be.undefined;
       });
     }
   });
@@ -608,7 +615,7 @@ function testThemeDefaultProps(
 
       const { container } = await render(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
 
-      expect(container.firstChild).to.have.attribute(testProp, 'testProp');
+      expect(container.firstElementChild?.getAttribute(testProp)).to.equal('testProp');
     });
   });
 }
