@@ -118,7 +118,7 @@ const DialogPaper = styled(Paper, {
   memoTheme(({ theme }) => ({
     margin: 32,
     position: 'relative',
-    overflow: 'auto', // Ensure scrolling by default
+    overflowY: 'auto', 
     '@media print': {
       overflowY: 'visible',
       boxShadow: 'none',
@@ -193,12 +193,12 @@ const DialogPaper = styled(Paper, {
           maxWidth: '100%',
           height: '100%',
           maxHeight: 'none',
-          overflow: 'auto', // Fix: Add scrolling for full-screen dialog
+         
           borderRadius: 0,
           [`&.${dialogClasses.paperScrollBody}`]: {
             margin: 0,
             maxWidth: '100%',
-            overflow: 'auto', // Fix: Ensure overflow is handled properly
+            
           },
         },
       },
