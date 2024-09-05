@@ -3,7 +3,7 @@
     "lib": ["es2020", "dom"],
     "noEmit": true,
     "moduleResolution": "node",
-    "types": ["node"],
+    "types": ["node", "mocha"],
     "strict": true,
     "esModuleInterop": true,
     "isolatedModules": true,

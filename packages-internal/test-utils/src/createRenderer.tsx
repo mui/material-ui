@@ -550,7 +550,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     }
 
     cleanup();
-    profiler.report();
+    profiler?.report();
     profiler = null!;
 
     emotionCache.sheet.tags.forEach((styleTag) => {
