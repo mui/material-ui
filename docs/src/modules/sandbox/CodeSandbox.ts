@@ -24,10 +24,11 @@ function openSandbox({ files, codeVariant, initialFile }: any) {
   form.target = '_blank';
   form.action = 'https://codesandbox.io/api/v1/sandboxes/define';
   addHiddenInput(form, 'parameters', parameters);
+  addHiddenInput(form, 'embed', '1');
   addHiddenInput(
     form,
     'query',
-    `file=${initialFile}${initialFile.match(/(\.tsx|\.ts|\.js)$/) ? '' : extension}`,
+    `module=${initialFile}${initialFile.match(/(\.tsx|\.ts|\.js)$/) ? '' : extension}`,
   );
   document.body.appendChild(form);
   form.submit();
