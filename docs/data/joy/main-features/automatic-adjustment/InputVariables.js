@@ -6,9 +6,9 @@ import Input from '@mui/joy/Input';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 
-export default function InputIntegration() {
+export default function InputVariables() {
   const [radius, setRadius] = React.useState(16);
-  const [childHeight, setChildHeight] = React.useState(32);
+  const [childHeight, setChildHeight] = React.useState(28);
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
       <Input
@@ -21,7 +21,7 @@ export default function InputIntegration() {
         }
         sx={{
           '--Input-radius': `${radius}px`,
-          '--Input-decorator-childHeight': `${childHeight}px`,
+          '--Input-decoratorChildHeight': `${childHeight}px`,
         }}
       />
       <ListDivider component="hr" />
@@ -36,7 +36,7 @@ export default function InputIntegration() {
           />
         </FormControl>
         <FormControl>
-          <FormLabel>--Input-childHeight</FormLabel>
+          <FormLabel>--Input-decoratorChildHeight</FormLabel>
           <Input
             size="sm"
             type="number"

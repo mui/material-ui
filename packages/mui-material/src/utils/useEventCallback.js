@@ -1,3 +1,4 @@
-import { unstable_useEventCallback as useEventCallback } from '@mui/utils';
+'use client';
+import useEventCallback from '@mui/utils/useEventCallback';
 
 export default useEventCallback;

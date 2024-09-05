@@ -3,11 +3,11 @@ title: Build layouts faster with the new Grid component
 description: The new Grid v2 features simplified logic, support for offsetting and nested grids, and more.
 date: 2022-08-20T00:00:00.000Z
 authors: ['siriwatknp']
-tags: ['MUI Core', 'News']
-card: true
+tags: ['Material UI', 'Guide']
+manualCard: true
 ---
 
-You can now use the new `Grid` component, shipped with [Material UI v5.9.0](https://github.com/mui/material-ui/releases/tag/v5.9.0), for updated features and a better developer experience when building layouts.
+You can now use the new `Grid` component, shipped with [Material UI v5.9.0](https://github.com/mui/material-ui/releases/tag/v5.9.0), for updated features and a better developer experience when building layouts.
 
 ```js
 import Grid from '@mui/material/Grid'; // The current grid, a.k.a. Grid v1
@@ -29,7 +29,7 @@ For v2, the `Grid` component has been rewritten from scratch using CSS variables
 ### 💥 Breaking change
 
 The negative margin in the new `Grid` spreads equally on all sides by default.
-This is the same as the `Grid` in Material UI v4.
+This is the same as the `Grid` in Material UI v4.
 
 :::info
 We believe that the migration from Grid v1 to v2 will be smooth for most users.
@@ -38,7 +38,7 @@ To get started right away, head over to the [Grid v2 migration guide](/material-
 
 ### 🚀 New features
 
-#### [Disable the scrollbar](/material-ui/react-grid2/#disable-the-scrollbar)
+#### [Disable the scrollbar](https://v5.mui.com/material-ui/react-grid2/#disable-the-scrollbar)
 
 A new prop called `disableEqualOverflow` solves the problem of an unwanted scrollbar appearing on small viewports.
 
@@ -120,23 +120,24 @@ With the addition of CSS variables and the removal of the `item` prop, there are
 As a bonus, a grid container automatically inherits row and column spacing values from the root grid container, unless they are specified directly on the component.
 
 ```js
-import Grid from '@mui/material/Unstable_Grid2`;
+import Grid from '@mui/material/Unstable_Grid2';
 
 // root grid container
 <Grid container spacing={2}>
   <Grid>...</Grid>
-  <Grid container> {/* inherits spacing from the root container */}
+  <Grid container>
+    {/* inherits spacing from the root container */}
     <Grid>...</Grid>
     <Grid>...</Grid>
   </Grid>
   <Grid>...</Grid>
-</Grid>
+</Grid>;
 ```
 
 ## Future plan and migration
 
 Since the `Grid` has been rewritten from scratch for v2, it is currently considered _unstable_ as we give the community time to try it out and offer feedback.
-We will make it stable and deprecate v1 in the next major release of Material UI.
+We will make it stable and deprecate v1 in the next major release of Material UI.
 
 Ready to make the jump?
 Check out the [Grid v2 documentation](/material-ui/react-grid2/) and the [Grid v2 migration guide](/material-ui/migration/migration-grid-v2/).

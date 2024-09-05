@@ -1,5 +1,5 @@
-import './utils/init';
-import './utils/setupKarma';
+import '@mui/internal-test-utils/init';
+import '@mui/internal-test-utils/setupKarma';
 
 const materialIntegrationContext = require.context(
   '../packages/mui-material/test/integration',
@@ -7,13 +7,6 @@ const materialIntegrationContext = require.context(
   /\.test\.(js|ts|tsx)$/,
 );
 materialIntegrationContext.keys().forEach(materialIntegrationContext);
-
-const baseIntegrationContext = require.context(
-  '../packages/mui-base/test/integration',
-  true,
-  /\.test\.(js|ts|tsx)$/,
-);
-baseIntegrationContext.keys().forEach(baseIntegrationContext);
 
 const materialUnitContext = require.context(
   '../packages/mui-material/src/',
@@ -47,13 +40,6 @@ baseUnitContext.keys().forEach(baseUnitContext);
 
 const utilsContext = require.context('../packages/mui-utils/src/', true, /\.test\.(js|ts|tsx)$/);
 utilsContext.keys().forEach(utilsContext);
-
-const materialNextContext = require.context(
-  '../packages/mui-material-next/src/',
-  true,
-  /\.test\.(js|ts|tsx)$/,
-);
-materialNextContext.keys().forEach(materialNextContext);
 
 const joyContext = require.context('../packages/mui-joy/src', true, /\.test\.(js|ts|tsx)$/);
 joyContext.keys().forEach(joyContext);

@@ -1,0 +1,4 @@
+<Textarea
+  placeholder="Looks like I'm focused but no"
+  sx={{ '--Textarea-focused': 1 }}
+/>

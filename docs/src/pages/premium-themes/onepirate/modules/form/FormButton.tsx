@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ButtonProps } from '@mui/material';
+import { ButtonProps } from '@mui/material/Button';
 import Button from '../components/Button';
 import defer from './defer';
 
@@ -17,7 +17,7 @@ function FormButton<C extends React.ElementType>(
       disabled={!mounted || !!disabled}
       type="submit"
       variant="contained"
-      {...others}
+      {...(others as ButtonProps<C, { component?: C }>)}
     />
   );
 }

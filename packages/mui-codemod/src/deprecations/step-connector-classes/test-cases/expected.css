@@ -1,0 +1,7 @@
+.MuiStepConnector-root.MuiStepConnector-horizontal > .MuiStepConnector-line {
+  color: red;
+}
+
+.MuiStepConnector-root.MuiStepConnector-vertical > .MuiStepConnector-line {
+  color: red;
+}

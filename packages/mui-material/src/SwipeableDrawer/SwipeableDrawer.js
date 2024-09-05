@@ -1,16 +1,17 @@
+'use client';
 import * as React from 'react';
-import { flushSync } from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { elementTypeAcceptingRef } from '@mui/utils';
-import { useThemeProps } from '@mui/system';
-import { NoSsr } from '@mui/base';
+import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
+import NoSsr from '../NoSsr';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import useForkRef from '../utils/useForkRef';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import useEventCallback from '../utils/useEventCallback';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
-import useTheme from '../styles/useTheme';
+import { useTheme } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getTransitionProps } from '../transitions/utils';
 import SwipeArea from './SwipeArea';
 
@@ -134,7 +135,7 @@ function computeHasNativeHandler({ domTreeShapes, start, current, anchor }) {
 const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) {
-  const props = useThemeProps({ name: 'MuiSwipeableDrawer', props: inProps });
+  const props = useDefaultProps({ name: 'MuiSwipeableDrawer', props: inProps });
   const theme = useTheme();
   const transitionDurationDefault = {
     enter: theme.transitions.duration.enteringScreen,
@@ -187,7 +188,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       const { mode = null, changeTransition = true } = options;
 
       const anchorRtl = getAnchor(theme, anchor);
-      const rtlTranslateMultiplier = ['right', 'bottom'].indexOf(anchorRtl) !== -1 ? 1 : -1;
+      const rtlTranslateMultiplier = ['right', 'bottom'].includes(anchorRtl) ? 1 : -1;
       const horizontalSwipe = isHorizontal(anchor);
 
       const transform = horizontalSwipe
@@ -239,7 +240,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     }
     claimedSwipeInstance = null;
     touchDetected.current = false;
-    flushSync(() => {
+    ReactDOM.flushSync(() => {
       setMaybeSwiping(false);
     });
 
@@ -308,7 +309,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       // this is because Safari Mobile will not fire any mouse events (still fires touch though) if the DOM changes during mousemove.
       // so do this change on first touchmove instead of touchstart
       if (force || !(disableDiscovery && allowSwipeInChildren)) {
-        flushSync(() => {
+        ReactDOM.flushSync(() => {
           setMaybeSwiping(true);
         });
       }
@@ -629,10 +630,10 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
 });
 
 SwipeableDrawer.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If set to true, the swipe event will open the drawer even if the user begins the swipe on one of the drawer's children.
    * This can be useful in scenarios where the drawer is partially visible.
@@ -645,7 +646,7 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
    *
    * @default false
    */
-  allowSwipeInChildren: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
+  allowSwipeInChildren: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
   /**
    * @ignore
    */
@@ -700,20 +701,20 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the component requests to be closed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent<{}>} event The event source of the callback.
    */
   onClose: PropTypes.func.isRequired,
   /**
    * Callback fired when the component requests to be opened.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent<{}>} event The event source of the callback.
    */
   onOpen: PropTypes.func.isRequired,
   /**
    * If `true`, the component is shown.
    * @default false
    */
-  open: PropTypes.bool.isRequired,
+  open: PropTypes.bool,
   /**
    * @ignore
    */

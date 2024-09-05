@@ -1,10 +1,11 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Text Field component
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 githubLabel: 'component: text field'
 materialDesign: https://m2.material.io/components/text-fields
-unstyled: /base/react-input/
+unstyled: /base-ui/react-input/
+githubSource: packages/mui-material/src/TextField
 ---
 
 # Text Field
@@ -13,7 +14,7 @@ unstyled: /base/react-input/
 
 Text fields allow users to enter text into a UI. They typically appear in forms and dialogs.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic TextField
 
@@ -25,12 +26,12 @@ It comes with three variants: outlined (default), filled, and standard.
 :::info
 The standard variant of the Text Field is no longer documented in the [Material Design guidelines](https://m2.material.io/)
 ([this article explains why](https://medium.com/google-design/the-evolution-of-material-designs-text-fields-603688b3fe03)),
-but Material UI will continue to support it.
+but Material UI will continue to support it.
 :::
 
 ## Form props
 
-Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field's input, such as how the input will be used.
+Standard form attributes are supported, for example `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field's input, such as how the input will be used.
 
 {{"demo": "FormPropsTextFields.js"}}
 
@@ -96,6 +97,14 @@ Using `none` (default) doesn't apply margins to the `FormControl` whereas `dense
 
 The component can be controlled or uncontrolled.
 
+:::info
+
+- A component is **controlled** when it's managed by its parent using props.
+- A component is **uncontrolled** when it's managed by its own local state.
+
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
+:::
+
 {{"demo": "StateTextFields.js"}}
 
 ## Components
@@ -131,7 +140,16 @@ The `color` prop changes the highlight color of the text field when focused.
 Here are some examples of customizing the component.
 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
-{{"demo": "CustomizedInputs.js"}}
+### Using the styled API
+
+{{"demo": "CustomizedInputsStyled.js"}}
+
+### Using the theme style overrides API
+
+Use the `styleOverrides` key to change any style injected by Material UI into the DOM.
+See the [theme style overrides](/material-ui/customization/theme-components/#theme-style-overrides) documentation for further details.
+
+{{"demo": "CustomizedInputsStyleOverrides.js"}}
 
 Customization does not stop at CSS.
 You can use composition to build custom components and give your app a unique feel.
@@ -139,7 +157,7 @@ Below is an example using the [`InputBase`](/material-ui/api/input-base/) compon
 
 {{"demo": "CustomizedInputBase.js", "bg": true}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/text-field/).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/textField-introduction--docs).
 
 ## `useFormControl`
 
@@ -177,6 +195,40 @@ import { useFormControl } from '@mui/material/FormControl';
 
 {{"demo": "UseFormControl.js"}}
 
+## Performance
+
+Global styles for the auto-fill keyframes are injected and removed on each mount and unmount, respectively.
+If you are loading a large number of Text Field components at once, it might be a good idea to change this default behavior by enabling [`disableInjectingGlobalStyles`](/material-ui/api/input-base/#input-base-prop-disableInjectingGlobalStyles) in `MuiInputBase`.
+Make sure to inject `GlobalStyles` for the auto-fill keyframes at the top of your application.
+
+```jsx
+import { GlobalStyles, createTheme, ThemeProvider } from '@mui/material';
+
+const theme = createTheme({
+  components: {
+    MuiInputBase: {
+      defaultProps: {
+        disableInjectingGlobalStyles: true,
+      },
+    },
+  },
+});
+
+export default function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyles
+        styles={{
+          '@keyframes mui-auto-fill': { from: { display: 'block' } },
+          '@keyframes mui-auto-fill-cancel': { from: { display: 'block' } },
+        }}
+      />
+      ...
+    </ThemeProvider>
+  );
+}
+```
+
 ## Limitations
 
 ### Shrink
@@ -207,20 +259,18 @@ Make sure that the input is larger than the label to display correctly.
 
 ### type="number"
 
-Inputs of type="number" have potential usability issues:
+:::warning
+We do not recommend using `type="number"` with a Text Field due to potential usability issues:
 
-- Allowing certain non-numeric characters ('e', '+', '-', '.') and silently discarding others
-- The functionality of scrolling to increment/decrement the number can cause accidental and hard-to-notice changes
+- it allows certain non-numeric characters ('e', '+', '-', '.') and silently discards others
+- the functionality of scrolling to increment/decrement the number can cause accidental and hard-to-notice changes
+- and more—see [Why the GOV.UK Design System team changed the input type for numbers](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) for a more detailed explanation of the limitations of `<input type="number">`
 
-and more - see [this article](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) by the GOV.UK Design System team for a more detailed explanation.
+  :::
 
-For number validation, one viable alternative is to use the default input type="text" with the _pattern_ attribute, for example:
+If you need a text field with number validation, you can use Base UI's [Number Input](/base-ui/react-number-input/) instead.
 
-```jsx
-<TextField inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} />
-```
-
-In the future, we might provide a [number input component](https://github.com/mui/material-ui/issues/19154).
+You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/19154) to track the progress of introducing the Number Input component to Material UI.
 
 ### Helper text
 
@@ -237,7 +287,7 @@ This can be fixed by passing a space character to the `helperText` prop:
 You can use third-party libraries to format an input.
 You have to provide a custom implementation of the `<input>` element with the `inputComponent` property.
 
-The following demo uses the [react-imask](https://github.com/uNmAnNeR/imaskjs) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries. The same concept could be applied to [e.g. react-stripe-element](https://github.com/mui/material-ui/issues/16037).
+The following demo uses the [react-imask](https://github.com/uNmAnNeR/imaskjs) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries. The same concept could be applied to, for example [react-stripe-element](https://github.com/mui/material-ui/issues/16037).
 
 {{"demo": "FormattedInputs.js"}}
 
@@ -289,7 +339,7 @@ In order for the text field to be accessible, **the input should be linked to th
 </div>
 ```
 
-- If you are using the `TextField` component, you just have to provide a unique `id` unless you're using the `TextField` only client side.
+- If you are using the `TextField` component, you just have to provide a unique `id` unless you're using the `TextField` only client-side.
   Until the UI is hydrated `TextField` without an explicit `id` will not have associated labels.
 - If you are composing the component:
 
@@ -306,9 +356,8 @@ In order for the text field to be accessible, **the input should be linked to th
 For more advanced use cases, you might be able to take advantage of:
 
 - [react-hook-form](https://react-hook-form.com/): React hook for form validation.
-- [react-hook-form-mui](https://github.com/dohomi/react-hook-form-mui): MUI and react-hook-form combined.
-- [formik-material-ui](https://github.com/stackworx/formik-mui): Bindings for using MUI with [formik](https://formik.org/).
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using MUI with [Redux Form](https://redux-form.com/).
-- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using MUI with [React Final Form](https://final-form.org/react).
-- [@ui-schema/ds-material](https://www.npmjs.com/package/@ui-schema/ds-material) Bindings for using Material UI with [UI Schema](https://github.com/ui-schema/ui-schema). JSON Schema compatible.
-- [@data-driven-forms/mui-component-mapper](https://data-driven-forms.org/provided-mappers/mui-component-mapper): Bindings for using Material UI with [Data Driven Forms](https://github.com/data-driven-forms/react-forms).
+- [react-hook-form-mui](https://github.com/dohomi/react-hook-form-mui): Material UI and react-hook-form combined.
+- [formik-material-ui](https://github.com/stackworx/formik-mui): Bindings for using Material UI with [formik](https://formik.org/).
+- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using Material UI with [React Final Form](https://final-form.org/react).
+- [@ui-schema/ds-material](https://www.npmjs.com/package/@ui-schema/ds-material) Bindings for using Material UI with [UI Schema](https://github.com/ui-schema/ui-schema). JSON Schema compatible.
+- [@data-driven-forms/mui-component-mapper](https://www.data-driven-forms.org/provided-mappers/mui-component-mapper): Bindings for using Material UI with [Data Driven Forms](https://github.com/data-driven-forms/react-forms).

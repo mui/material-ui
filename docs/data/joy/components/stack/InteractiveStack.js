@@ -2,12 +2,23 @@ import * as React from 'react';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Grid from '@mui/joy/Grid';
-import BrandingProvider from 'docs/src/BrandingProvider';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Sheet from '@mui/joy/Sheet';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
 import Stack from '@mui/joy/Stack';
+import { styled } from '@mui/joy/styles';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { BrandingProvider } from '@mui/docs/branding';
+
+const Item = styled(Sheet)(({ theme }) => ({
+  ...theme.typography['body-sm'],
+  textAlign: 'center',
+  fontWeight: theme.fontWeight.md,
+  color: theme.vars.palette.text.secondary,
+  border: '1px solid',
+  borderColor: theme.palette.divider,
+  borderRadius: theme.radius.md,
+}));
 
 export default function InteractiveStack() {
   const [direction, setDirection] = React.useState('row');
@@ -18,41 +29,46 @@ export default function InteractiveStack() {
   const jsx = `
 <Stack
   direction="${direction}"
-  justifyContent="${justifyContent}"
-  alignItems="${alignItems}"
   spacing={${spacing}}
+  sx={{
+    justifyContent: "${justifyContent}",
+    alignItems: "${alignItems}",
+  }}
 >
 `;
 
   return (
-    <Stack sx={{ flexGrow: 1 }}>
+    <Stack sx={{ flexGrow: 1, '* pre': { mb: 0 } }}>
       <Stack
         direction={direction}
-        justifyContent={justifyContent}
-        alignItems={alignItems}
         spacing={spacing}
-        sx={{ height: 300, pt: 2, pb: 2 }}
+        sx={{ justifyContent, alignItems, minHeight: 200, pb: 3 }}
       >
         {[0, 1, 2].map((value) => (
-          <Sheet
-            key={value}
-            sx={{
-              p: 2,
-              pt: value + 1,
-              pb: value + 1,
-              typography: 'body2',
-            }}
-          >
+          <Item key={value} sx={{ p: 2, pt: value + 1, pb: value + 1 }}>
             {`Item ${value + 1}`}
-          </Sheet>
+          </Item>
         ))}
       </Stack>
-      <Sheet sx={{ p: 2 }}>
+      <Sheet
+        variant="outlined"
+        sx={(theme) => ({
+          p: 2,
+          borderRadius: 'md',
+          bgcolor: theme.palette.neutral[50],
+          borderColor: theme.palette.neutral[100],
+          [theme.getColorSchemeSelector('dark')]: {
+            borderColor: theme.palette.neutral[800],
+            backgroundColor: theme.palette.neutral[900],
+          },
+        })}
+      >
         <Grid container spacing={3}>
-          <Grid xs={12}>
+          <Grid size={12}>
             <FormControl>
-              <FormLabel sx={{ mb: 1.5 }}>direction</FormLabel>
+              <FormLabel sx={{ mb: 0.5 }}>direction</FormLabel>
               <RadioGroup
+                size="sm"
                 orientation="horizontal"
                 name="direction"
                 aria-label="direction"
@@ -69,10 +85,11 @@ export default function InteractiveStack() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid xs={12}>
+          <Grid size={12}>
             <FormControl>
-              <FormLabel sx={{ mb: 1.5 }}>alignItems</FormLabel>
+              <FormLabel sx={{ mb: 0.5 }}>alignItems</FormLabel>
               <RadioGroup
+                size="sm"
                 orientation="horizontal"
                 name="alignItems"
                 aria-label="align items"
@@ -90,10 +107,11 @@ export default function InteractiveStack() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid xs={12}>
+          <Grid size={12}>
             <FormControl>
-              <FormLabel sx={{ mb: 1.5 }}>justifyContent</FormLabel>
+              <FormLabel sx={{ mb: 0.5 }}>justifyContent</FormLabel>
               <RadioGroup
+                size="sm"
                 orientation="horizontal"
                 name="justifyContent"
                 aria-label="justifyContent"
@@ -112,10 +130,11 @@ export default function InteractiveStack() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid xs={12}>
+          <Grid size={12}>
             <FormControl>
-              <FormLabel sx={{ mb: 1.5 }}>spacing</FormLabel>
+              <FormLabel sx={{ mb: 0.5 }}>spacing</FormLabel>
               <RadioGroup
+                size="sm"
                 orientation="horizontal"
                 name="spacing"
                 aria-label="spacing"

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Autocomplete from '@mui/joy/Autocomplete';
 
-export default function ComboBox() {
+export default function BasicAutocomplete() {
   return (
     <Autocomplete
       placeholder="Combo box"

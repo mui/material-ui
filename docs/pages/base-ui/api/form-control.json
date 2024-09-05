@@ -1,0 +1,72 @@
+{
+  "props": {
+    "children": { "type": { "name": "union", "description": "node<br>&#124;&nbsp;func" } },
+    "className": { "type": { "name": "string" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "error": { "type": { "name": "bool" }, "default": "false" },
+    "onChange": { "type": { "name": "func" } },
+    "required": { "type": { "name": "bool" }, "default": "false" },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
+    },
+    "value": { "type": { "name": "any" } }
+  },
+  "name": "FormControl",
+  "imports": [
+    "import { FormControl } from '@mui/base/FormControl';",
+    "import { FormControl } from '@mui/base';"
+  ],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "base-FormControl-root"
+    }
+  ],
+  "classes": [
+    {
+      "key": "disabled",
+      "className": "base--disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "error",
+      "className": "base--error",
+      "description": "State class applied to the root element if `error={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "filled",
+      "className": "base-FormControl-filled",
+      "description": "State class applied to the root element if the inner input has value.",
+      "isGlobal": false
+    },
+    {
+      "key": "focused",
+      "className": "base--focused",
+      "description": "State class applied to the root element if the inner input is focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "required",
+      "className": "base--required",
+      "description": "State class applied to the root element if `required={true}`.",
+      "isGlobal": true
+    }
+  ],
+  "spread": true,
+  "muiName": "FormControl",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-base/src/FormControl/FormControl.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-form-control/\">Form Control</a></li>\n<li><a href=\"/joy-ui/react-input/\">Input</a></li>\n<li><a href=\"/material-ui/react-checkbox/\">Checkbox</a></li>\n<li><a href=\"/material-ui/react-radio-button/\">Radio Group</a></li>\n<li><a href=\"/material-ui/react-switch/\">Switch</a></li>\n<li><a href=\"/material-ui/react-text-field/\">Text Field</a></li></ul>",
+  "cssComponent": false
+}

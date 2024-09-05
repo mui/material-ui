@@ -1,9 +1,25 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { RadioProps } from '../Radio/RadioProps';
-import { SxProps } from '../styles/types';
+import { ApplyColorInversion, SxProps } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type RadioGroupSlot = 'root';
+
+export interface RadioGroupSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+}
+
+export type RadioGroupSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  RadioGroupSlots,
+  {
+    root: SlotProps<'div', {}, RadioGroupOwnerState>;
+  }
+>;
 
 export interface RadioGroupTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -18,6 +34,7 @@ export interface RadioGroupTypeMap<P = {}, D extends React.ElementType = 'div'> 
     component?: React.ElementType;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
+     * @default 'neutral'
      */
     color?: RadioProps['color'];
     /**
@@ -26,6 +43,7 @@ export interface RadioGroupTypeMap<P = {}, D extends React.ElementType = 'div'> 
     defaultValue?: any;
     /**
      * The radio's `disabledIcon` prop. If specified, the value is passed down to every radios under this element.
+     * @default false
      */
     disableIcon?: boolean;
     /**
@@ -35,6 +53,7 @@ export interface RadioGroupTypeMap<P = {}, D extends React.ElementType = 'div'> 
     name?: string;
     /**
      * The radio's `overlay` prop. If specified, the value is passed down to every radios under this element.
+     * @default false
      */
     overlay?: boolean;
     /**
@@ -63,10 +82,11 @@ export interface RadioGroupTypeMap<P = {}, D extends React.ElementType = 'div'> 
      */
     value?: any;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+     * @default 'plain'
      */
     variant?: RadioProps['variant'];
-  };
+  } & RadioGroupSlotsAndSlotProps;
   defaultComponent: D;
 }
 
@@ -77,4 +97,4 @@ export type RadioGroupProps<
   },
 > = OverrideProps<RadioGroupTypeMap<P, D>, D>;
 
-export interface RadioGroupOwnerState extends RadioGroupProps {}
+export interface RadioGroupOwnerState extends ApplyColorInversion<RadioGroupProps> {}

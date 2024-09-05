@@ -19,6 +19,12 @@ describe('replaceUrl', () => {
     expect(replaceMaterialLinks(`/discover-more/related-projects/`)).to.equal(
       `/material-ui/discover-more/related-projects/`,
     );
+    expect(replaceMaterialLinks(`/experimental-api/css-theme-variables/overview/`)).to.equal(
+      `/material-ui/experimental-api/css-theme-variables/overview/`,
+    );
+    expect(replaceMaterialLinks(`/migration/migration-grid-v2/`)).to.equal(
+      `/material-ui/migration/migration-grid-v2/`,
+    );
   });
 
   it('should not change if links have been updated', () => {
@@ -204,6 +210,32 @@ describe('replaceUrl', () => {
     );
   });
 
+  it('replace correct API links', () => {
+    expect(replaceAPILinks(`/api/button/`)).to.equal(`/material-ui/api/button/`);
+    expect(replaceAPILinks(`/api/no-ssr/`)).to.equal(`/base-ui/api/no-ssr/`);
+    expect(replaceAPILinks(`/api/portal/`)).to.equal(`/base-ui/api/portal/`);
+    expect(replaceAPILinks(`/api/textarea-autosize/`)).to.equal(`/base-ui/api/textarea-autosize/`);
+    expect(replaceAPILinks(`/api/button-unstyled/`)).to.equal(`/base-ui/api/button-unstyled/`);
+    expect(replaceAPILinks(`/api/loading-button/`)).to.equal(`/material-ui/api/loading-button/`);
+    expect(replaceAPILinks(`/api/tab-list/`)).to.equal(`/material-ui/api/tab-list/`);
+    expect(replaceAPILinks(`/api/tab-panel/`)).to.equal(`/material-ui/api/tab-panel/`);
+    expect(replaceAPILinks(`/api/tab-panel-unstyled/`)).to.equal(
+      `/base-ui/api/tab-panel-unstyled/`,
+    );
+    expect(replaceAPILinks(`/api/tabs-list-unstyled/`)).to.equal(
+      `/base-ui/api/tabs-list-unstyled/`,
+    );
+    expect(replaceAPILinks(`/api/tabs-unstyled/`)).to.equal(`/base-ui/api/tabs-unstyled/`);
+    expect(replaceAPILinks(`/api/unstable-trap-focus/`)).to.equal(
+      `/base-ui/api/unstable-trap-focus/`,
+    );
+    expect(replaceAPILinks(`/api/click-away-listener/`)).to.equal(
+      `/base-ui/api/click-away-listener/`,
+    );
+    expect(replaceAPILinks(`/api/data-grid/data-grid/`)).to.equal(`/x/api/data-grid/data-grid/`);
+    expect(replaceAPILinks(`/system/basic/`)).to.equal(`/system/basic/`);
+  });
+
   it('should do nothing if the components have updated', () => {
     expect(replaceComponentLinks(`/material-ui/react-button-group/`)).to.equal(
       `/material-ui/react-button-group/`,
@@ -211,27 +243,11 @@ describe('replaceUrl', () => {
     expect(replaceComponentLinks(`/x/react-data-grid/demo/`)).to.equal(`/x/react-data-grid/demo/`);
   });
 
-  it('replace correct API links', () => {
-    expect(replaceAPILinks(`/api/button/`)).to.equal(`/material-ui/api/button/`);
-    expect(replaceAPILinks(`/api/no-ssr/`)).to.equal(`/base/api/no-ssr/`);
-    expect(replaceAPILinks(`/api/portal/`)).to.equal(`/base/api/portal/`);
-    expect(replaceAPILinks(`/api/textarea-autosize/`)).to.equal(`/base/api/textarea-autosize/`);
-    expect(replaceAPILinks(`/api/button-unstyled/`)).to.equal(`/base/api/button-unstyled/`);
-    expect(replaceAPILinks(`/api/loading-button/`)).to.equal(`/material-ui/api/loading-button/`);
-    expect(replaceAPILinks(`/api/tab-list/`)).to.equal(`/material-ui/api/tab-list/`);
-    expect(replaceAPILinks(`/api/tab-panel/`)).to.equal(`/material-ui/api/tab-panel/`);
-    expect(replaceAPILinks(`/api/tab-panel-unstyled/`)).to.equal(`/base/api/tab-panel-unstyled/`);
-    expect(replaceAPILinks(`/api/tabs-list-unstyled/`)).to.equal(`/base/api/tabs-list-unstyled/`);
-    expect(replaceAPILinks(`/api/tabs-unstyled/`)).to.equal(`/base/api/tabs-unstyled/`);
-    expect(replaceAPILinks(`/api/unstable-trap-focus/`)).to.equal(`/base/api/unstable-trap-focus/`);
-    expect(replaceAPILinks(`/api/click-away-listener/`)).to.equal(`/base/api/click-away-listener/`);
-    expect(replaceAPILinks(`/api/data-grid/data-grid/`)).to.equal(`/x/api/data-grid/data-grid/`);
-    expect(replaceAPILinks(`/system/basic/`)).to.equal(`/system/basic/`);
-  });
-
   it('should do nothing if the APIs have updated', () => {
     expect(replaceAPILinks(`/material-ui/api/button/`)).to.equal(`/material-ui/api/button/`);
-    expect(replaceAPILinks(`/base/api/button-unstyled/`)).to.equal(`/base/api/button-unstyled/`);
+    expect(replaceAPILinks(`/base-ui/api/button-unstyled/`)).to.equal(
+      `/base-ui/api/button-unstyled/`,
+    );
     expect(replaceAPILinks(`/material-ui/api/loading-button/`)).to.equal(
       `/material-ui/api/loading-button/`,
     );
@@ -248,8 +264,8 @@ describe('replaceUrl', () => {
     expect(
       replaceUrl(`/components/data-grid/components/#main-content`, '/x/react-data-grid'),
     ).to.equal(`/x/react-data-grid/components/#main-content`);
-    expect(replaceUrl(`/api/button-unstyled`, '/base/api/button-unstyled')).to.equal(
-      `/base/api/button-unstyled`,
+    expect(replaceUrl(`/api/button-unstyled`, '/base-ui/api/button-unstyled')).to.equal(
+      `/base-ui/api/button-unstyled`,
     );
     expect(replaceUrl(`/styles/api/`, `/system/basics`)).to.equal(`/system/styles/api/`);
   });
@@ -264,8 +280,8 @@ describe('replaceUrl', () => {
     expect(
       replaceUrl(`/zh/components/data-grid/components/#main-content`, '/zh/x/react-data-grid'),
     ).to.equal(`/zh/x/react-data-grid/components/#main-content`);
-    expect(replaceUrl(`/zh/api/button-unstyled`, '/zh/base/api/button-unstyled')).to.equal(
-      `/zh/base/api/button-unstyled`,
+    expect(replaceUrl(`/zh/api/button-unstyled`, '/zh/base-ui/api/button-unstyled')).to.equal(
+      `/zh/base-ui/api/button-unstyled`,
     );
     expect(replaceUrl(`/zh/styles/api/`, `/system/basics`)).to.equal(`/zh/system/styles/api/`);
   });

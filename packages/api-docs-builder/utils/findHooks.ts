@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import findIndexFile from './findIndexFile';
 
 const hooksRegexp = /use([A-Z][a-z]+)+\.(js|tsx|ts)/;
 
@@ -8,7 +9,10 @@ const hooksRegexp = /use([A-Z][a-z]+)+\.(js|tsx|ts)/;
  * @param {string} directory
  * @param {Array<{ filename: string }>} hooks
  */
-export default function findHooks(directory: string, hooks: { filename: string }[] = []) {
+export default function findHooks(
+  directory: string,
+  hooks: { filename: string; indexFilename: string | null }[] = [],
+) {
   const items = fs.readdirSync(directory);
 
   items.forEach((item) => {
@@ -23,8 +27,11 @@ export default function findHooks(directory: string, hooks: { filename: string }
       return;
     }
 
+    const indexFile = findIndexFile(directory);
+
     hooks.push({
       filename: itemPath,
+      ...indexFile,
     });
   });
 

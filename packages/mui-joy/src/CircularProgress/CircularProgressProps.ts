@@ -5,12 +5,35 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type CircularProgressSlot = 'root' | 'svg' | 'track' | 'progress';
 
+export interface CircularProgressSlots {
+  /**
+   * The component that renders the root.
+   * @default 'span'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the svg.
+   * @default 'svg'
+   */
+  svg?: React.ElementType;
+  /**
+   * The component that renders the track.
+   * @default 'circle'
+   */
+  track?: React.ElementType;
+  /**
+   * The component that renders the progress.
+   * @default 'circle'
+   */
+  progress?: React.ElementType;
+}
+
 export interface CircularProgressPropsColorOverrides {}
 export interface CircularProgressPropsSizeOverrides {}
 export interface CircularProgressPropsVariantOverrides {}
 
 export type CircularProgressSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  CircularProgressSlot,
+  CircularProgressSlots,
   {
     root: SlotProps<'span', {}, CircularProgressOwnerState>;
     svg: SlotProps<'svg', {}, CircularProgressOwnerState>;
@@ -51,11 +74,11 @@ export interface CircularProgressTypeMap<P = {}, D extends React.ElementType = '
        * The value of the progress indicator for the determinate variant.
        * Value between 0 and 100.
        *
-       * For indeterminate, @default 25
+       * @default determinate ? 0 : 25
        */
       value?: number;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'soft'
        */
       variant?: OverridableStringUnion<VariantProp, CircularProgressPropsVariantOverrides>;

@@ -1,13 +1,17 @@
 import * as React from 'react';
-import { describeConformance, createRenderer } from 'test/utils';
+import { expect } from 'chai';
+import { createRenderer } from '@mui/internal-test-utils';
+import Typography from '@mui/material/Typography';
 import DialogTitle, { dialogTitleClasses as classes } from '@mui/material/DialogTitle';
+import Dialog from '@mui/material/Dialog';
+import describeConformance from '../../test/describeConformance';
 
 describe('<DialogTitle />', () => {
   const { render } = createRenderer();
 
   describeConformance(<DialogTitle>foo</DialogTitle>, () => ({
     classes,
-    inheritComponent: 'h2',
+    inheritComponent: Typography,
     render,
     muiName: 'MuiDialogTitle',
     refInstanceof: window.HTMLHeadingElement,
@@ -27,5 +31,37 @@ describe('<DialogTitle />', () => {
     const { getByText } = render(<DialogTitle>{children}</DialogTitle>);
 
     getByText('Hello');
+  });
+
+  describe('prop: id', () => {
+    it('should apply the id attribute provided to the Dialog title', () => {
+      const { getByText } = render(
+        <Dialog open>
+          <DialogTitle id="custom-id">title test</DialogTitle>
+        </Dialog>,
+      );
+
+      expect(getByText('title test')).to.have.attribute('id', 'custom-id');
+    });
+
+    it('should fallback to the aria-labelledby from the Dialog', () => {
+      const { getByText } = render(
+        <Dialog open aria-labelledby="custom-id">
+          <DialogTitle>title test</DialogTitle>
+        </Dialog>,
+      );
+
+      expect(getByText('title test')).to.have.attribute('id', 'custom-id');
+    });
+
+    it('should apply the id attribute explicitly provided to the DialogTitle and not take from Dialog', () => {
+      const { getByText } = render(
+        <Dialog open aria-labelledby="custom-id-1">
+          <DialogTitle id="custom-id-2">title test</DialogTitle>
+        </Dialog>,
+      );
+
+      expect(getByText('title test')).to.have.attribute('id', 'custom-id-2');
+    });
   });
 });

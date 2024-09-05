@@ -46,7 +46,7 @@ export interface InputBaseProps
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
   color?: OverridableStringUnion<
@@ -56,8 +56,7 @@ export interface InputBaseProps
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -69,8 +68,7 @@ export interface InputBaseProps
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -133,7 +131,7 @@ export interface InputBaseProps
    */
   margin?: 'dense' | 'none';
   /**
-   * If `true`, a [TextareaAutosize](/material-ui/react-textarea-autosize/) element is rendered.
+   * If `true`, a [TextareaAutosize](https://mui.com/material-ui/react-textarea-autosize/) element is rendered.
    * @default false
    */
   multiline?: boolean;
@@ -209,8 +207,10 @@ export interface InputBaseProps
    * @default {}
    */
   slotProps?: {
-    root?: React.HTMLAttributes<HTMLDivElement> & InputBaseComponentsPropsOverrides;
-    input?: React.InputHTMLAttributes<HTMLInputElement> & InputBaseComponentsPropsOverrides;
+    root?: React.HTMLAttributes<HTMLDivElement> &
+      InputBaseComponentsPropsOverrides & { sx?: SxProps<Theme> };
+    input?: React.InputHTMLAttributes<HTMLInputElement> &
+      InputBaseComponentsPropsOverrides & { sx?: SxProps<Theme> };
   };
   /**
    * The components used for each slot inside.
@@ -261,4 +261,4 @@ export interface InputBaseComponentProps
  *
  * - [InputBase API](https://mui.com/material-ui/api/input-base/)
  */
-export default function InputBase(props: InputBaseProps): JSX.Element;
+export default function InputBase(props: InputBaseProps): React.JSX.Element;

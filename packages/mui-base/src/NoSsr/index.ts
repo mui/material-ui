@@ -1,2 +1,2 @@
-export { default } from './NoSsr';
+export { NoSsr } from './NoSsr';
 export * from './NoSsr.types';

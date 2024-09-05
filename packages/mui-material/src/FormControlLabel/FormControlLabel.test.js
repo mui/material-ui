@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import FormControlLabel, {
   formControlLabelClasses as classes,
 } from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
 import Typography from '@mui/material/Typography';
+import describeConformance from '../../test/describeConformance';
 
 describe('<FormControlLabel />', () => {
   const { render } = createRenderer();
@@ -17,17 +18,11 @@ describe('<FormControlLabel />', () => {
     render,
     muiName: 'MuiFormControlLabel',
     testVariantProps: { disabled: true },
-    testLegacyComponentsProp: true,
     refInstanceof: window.HTMLLabelElement,
     slots: {
       typography: { expectedClassName: classes.label },
     },
-    skip: [
-      'componentProp',
-      'componentsProp',
-      'slotsProp',
-      'slotPropsCallback', // not supported yet
-    ],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   describe('prop: label', () => {
@@ -41,7 +36,7 @@ describe('<FormControlLabel />', () => {
       expect(getByText(/Pizza/)).to.have.class(classes.label);
     });
 
-    it('should render numberic labels', () => {
+    it('should render numeric labels', () => {
       const { getByText } = render(<FormControlLabel label={5} control={<div />} />);
 
       expect(getByText(/5/)).not.to.equal(null);
@@ -179,6 +174,23 @@ describe('<FormControlLabel />', () => {
     });
   });
 
+  describe('prop: required', () => {
+    it('should visually show an asterisk but not include it in the a11y tree', () => {
+      const { container } = render(<FormControlLabel required label="Pizza" control={<div />} />);
+
+      expect(container.querySelector('label')).to.have.text('Pizza\u2009*');
+      expect(container.querySelectorAll(`.${classes.asterisk}`)).to.have.lengthOf(1);
+      expect(container.querySelector(`.${classes.asterisk}`)).toBeInaccessible();
+    });
+
+    it('should not show an asterisk by default', () => {
+      const { container } = render(<FormControlLabel label="Pizza" control={<div />} />);
+
+      expect(container.querySelector('label')).to.have.text('Pizza');
+      expect(container.querySelectorAll(`.${classes.asterisk}`)).to.have.lengthOf(0);
+    });
+  });
+
   describe('componentsProps: typography', () => {
     it('should spread its contents to the typography element', () => {
       const { getByTestId } = render(
@@ -210,6 +222,7 @@ describe('<FormControlLabel />', () => {
         expect(getByTestId('FormControlLabel')).to.have.class(classes.error);
       });
     });
+
     describe('enabled', () => {
       it('should not have the disabled class', () => {
         const { getByTestId } = render(
@@ -261,6 +274,43 @@ describe('<FormControlLabel />', () => {
         );
 
         expect(getByTestId('FormControlLabel')).not.to.have.class(classes.disabled);
+      });
+    });
+
+    describe('required', () => {
+      it('should not have the required class', () => {
+        const { getByTestId } = render(
+          <FormControl required>
+            <FormControlLabel data-testid="FormControlLabel" control={<div />} label="Pizza" />
+          </FormControl>,
+        );
+
+        expect(getByTestId('FormControlLabel')).not.to.have.class(classes.required);
+      });
+
+      it('should be overridden by props', () => {
+        const { getByTestId } = render(
+          <FormControl required>
+            <FormControlLabel
+              data-testid="FormControlLabel"
+              control={<div />}
+              required
+              label="Pizza"
+            />
+          </FormControl>,
+        );
+
+        expect(getByTestId('FormControlLabel')).to.have.class(classes.required);
+      });
+
+      it('should not have the required attribute', () => {
+        const { container } = render(
+          <FormControl required>
+            <FormControlLabel data-testid="FormControlLabel" control={<input />} label="Pizza" />
+          </FormControl>,
+        );
+        const input = container.querySelector('input');
+        expect(input).to.have.property('required', false);
       });
     });
   });

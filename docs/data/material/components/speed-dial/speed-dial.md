@@ -1,10 +1,11 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Speed Dial component
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
 githubLabel: 'component: speed dial'
 materialDesign: https://m2.material.io/components/buttons-floating-action-button#types-of-transitions
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
+githubSource: packages/mui-material/src/SpeedDial
 ---
 
 # Speed Dial
@@ -13,7 +14,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 
 If more than six actions are needed, something other than a FAB should be used to present them.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic speed dial
 

@@ -1,8 +1,24 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type TabSlot = 'root';
+
+export interface TabSlots {
+  /**
+   * The component that renders the root.
+   * @default 'button'
+   */
+  root?: React.ElementType;
+}
+
+export type TabSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  TabSlots,
+  {
+    root: SlotProps<'button', {}, TabOwnerState>;
+  }
+>;
 
 export interface TabPropsColorOverrides {}
 export interface TabPropsVariantOverrides {}
@@ -26,6 +42,21 @@ export interface TabTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     disabled?: boolean;
     /**
+     * If `true`, the pseudo element indicator is hidden.
+     * @default false
+     */
+    disableIndicator?: boolean;
+    /**
+     * The indicator's position when the Tab is selected.
+     * @default row ? 'bottom' : 'right'
+     */
+    indicatorPlacement?: 'top' | 'bottom' | 'left' | 'right';
+    /**
+     * If `true`, the indicator stay within the padding based on the `Tabs` orientation.
+     * @default false
+     */
+    indicatorInset?: boolean;
+    /**
      * The content direction flow.
      * @default 'horizontal'
      */
@@ -35,7 +66,7 @@ export interface TabTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     sx?: SxProps;
     /**
-     * You can provide your own value. Otherwise, we fall back to the child position index.
+     * You can provide your own value. Otherwise, it falls back to the child position index.
      */
     value?: number | string;
     /**
@@ -43,11 +74,11 @@ export interface TabTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     onChange?: (event: React.SyntheticEvent, value: number | string) => void;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, TabPropsVariantOverrides>;
-  };
+  } & TabSlotsAndSlotProps;
   defaultComponent: D;
 }
 

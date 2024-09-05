@@ -1,4 +1,6 @@
 import * as React from 'react';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import Slide from '@mui/material/Slide';
@@ -33,11 +35,21 @@ export default function DirectionSnackbar() {
   };
 
   return (
-    <div>
-      <Button onClick={handleClick(TransitionLeft)}>Right</Button>
-      <Button onClick={handleClick(TransitionUp)}>Up</Button>
-      <Button onClick={handleClick(TransitionRight)}>Left</Button>
-      <Button onClick={handleClick(TransitionDown)}>Down</Button>
+    <Box sx={{ width: 300 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Button onClick={handleClick(TransitionUp)}>Up</Button>
+      </Box>
+      <Grid container sx={{ justifyContent: 'center' }}>
+        <Grid item xs={6}>
+          <Button onClick={handleClick(TransitionRight)}>Left</Button>
+        </Grid>
+        <Grid item xs={6} sx={{ textAlign: 'right' }}>
+          <Button onClick={handleClick(TransitionLeft)}>Right</Button>
+        </Grid>
+      </Grid>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Button onClick={handleClick(TransitionDown)}>Down</Button>
+      </Box>
       <Snackbar
         open={open}
         onClose={handleClose}
@@ -45,6 +57,6 @@ export default function DirectionSnackbar() {
         message="I love snacks"
         key={transition ? transition.name : ''}
       />
-    </div>
+    </Box>
   );
 }

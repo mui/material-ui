@@ -1,23 +1,24 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Button component
+components: Button, IconButton
 githubLabel: 'component: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
-unstyled: /base/react-button/
+unstyled: /base-ui/react-button/
 ---
 
 # Button
 
 <p class="description">Buttons let users take actions and make choices with a single tap.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
 ## Introduction
 
 Buttons communicate actions that users can take.
-The Joy UI Button component replaces the native HTML `<button>` element, and offers expanded options for styling and accessibility.
+The Joy UI Button component replaces the native HTML `<button>` element and offers expanded options for styling and accessibility.
 
 {{"demo": "ButtonUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Basics
 
@@ -25,7 +26,7 @@ The Joy UI Button component replaces the native HTML `<button>` element, and off
 import Button from '@mui/joy/Button';
 ```
 
-The Joy UI Button behaves similar to the native HTML `<button>`, so it wraps around the text that will be displayed on its surface.
+The Joy UI Button behaves similarly to the native HTML `<button>`, so it wraps around the text displayed on its surface.
 
 The demo below shows the three basic states available to the Button: default, disabled, and loading.
 
@@ -49,7 +50,7 @@ See [Loading indicator](#loading-indicator) and [Loading position](#loading-posi
 
 ### Variants
 
-The Alert component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined`, and `plain`.
+The Button component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined`, and `plain`.
 
 {{"demo": "ButtonVariants.js"}}
 
@@ -99,6 +100,20 @@ It supports three values:
 
 {{"demo": "ButtonLoadingPosition.js"}}
 
+### Link Button
+
+Buttons let users take actions, but if that action is to navigate to a new page, then an anchor tag is generally preferable over a button tag.
+
+If you need the style of a button with the functionality of a link, then you can use the `component` prop to replace the default `<button>` with an `<a>`, as shown below:
+
+{{"demo": "ButtonLink.js"}}
+
+### File upload
+
+To create a file upload button, turn the button into a label using `component="label"` and then create a visually-hidden input with type `file`.
+
+{{"demo": "InputFileUpload.js"}}
+
 ## Icon Button
 
 ```jsx
@@ -109,26 +124,18 @@ Use the Icon Button component for a square button to house an icon with no text 
 
 {{"demo": "IconButtons.js"}}
 
-## Link Button
-
-Buttons let users take actions, but if that action is to navigate to a new page, then an anchor tag is generally preferable over a button tag.
-
-If you need the style of a button with the functionality of a link, then you can use the `component` prop to replace the default `<button>` with an `<a>`, as shown below:
-
-{{"demo": "ButtonLink.js"}}
-
-## CSS variable playground
+## CSS variables playground
 
 Play around with the CSS variables available to the Button and Icon Button components to see how the design changes.
 You can use these to customize the components with both the `sx` prop and the theme.
 
 ### Button
 
-{{"demo": "ButtonVariables.js", "hideToolbar": true}}
+{{"demo": "ButtonVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ### Icon Button
 
-{{"demo": "IconButtonVariables.js", "hideToolbar": true}}
+{{"demo": "IconButtonVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Accessibility
 
@@ -148,7 +155,7 @@ For example, an Icon Button that displays a `<FavoriteBorder />` icon might have
 The Button component is composed of a single root `<button>` element that wraps around its contents:
 
 ```html
-<button class="JoyButton-root" type="button">
+<button class="MuiButton-root" type="button">
   <!-- Button contents -->
 </button>
 ```

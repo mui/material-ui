@@ -1,0 +1,8 @@
+<Router>
+  <div>
+    <Routes>
+      <Route path="*" element={<CurrentRoute />} />
+    </Routes>
+    <MyTabs />
+  </div>
+</Router>

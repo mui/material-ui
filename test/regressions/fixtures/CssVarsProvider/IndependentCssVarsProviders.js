@@ -1,8 +1,11 @@
 import * as React from 'react';
-import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
+import {
+  unstable_createCssVarsProvider as createCssVarsProvider,
+  unstable_createCssVarsTheme as createCssVarsTheme,
+} from '@mui/system';
 
 const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
-  theme: {
+  theme: createCssVarsTheme({
     colorSchemes: {
       light: {
         background: {
@@ -15,15 +18,16 @@ const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
         },
       },
     },
-  },
+  }),
   defaultColorScheme: {
     light: 'light',
     dark: 'dark',
   },
 });
 
-const nestedTheme = {
+const nestedTheme = createCssVarsTheme({
   cssVarPrefix: 'nested',
+  colorSchemeSelector: '[data-nested-color-scheme="%s"]',
   colorSchemes: {
     light: {
       background: {
@@ -36,7 +40,7 @@ const nestedTheme = {
       },
     },
   },
-};
+});
 
 function DarkMode() {
   const { setMode } = useColorScheme();
@@ -58,11 +62,7 @@ export default function IndependentCssVarsProviders() {
       >
         Background should be red.
         {/* If `disableNestedContext` is true, the upper CssVarsProvider should be independent */}
-        <CssVarsProvider
-          theme={nestedTheme}
-          disableNestedContext
-          attribute="data-nested-color-scheme"
-        >
+        <CssVarsProvider theme={nestedTheme} disableNestedContext>
           <DarkMode />
           <div
             style={{

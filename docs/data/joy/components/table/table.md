@@ -1,6 +1,7 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Table component
+components: Table
 githubLabel: 'component: table'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/table/
 ---
@@ -9,17 +10,17 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/table/
 
 <p class="description">Tables display sets of data organized in rows and columns.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
 ## Introduction
 
-The Joy UI Table component lets you use plain HTML structure to assemble a table in JSX.
+The Joy UI Table component lets you use plain HTML structure to assemble a table in JSX.
 
 {{"demo": "TableUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
-
 ## Basics
 
-Joy UI Table will apply the styles based on a table structure using `<thead>`, `<tbody>`, and `<tfoot>` elements.
+Joy UI Table will apply the styles based on a table structure using `<thead>`, `<tbody>`, and `<tfoot>` elements.
 
 ```jsx
 import Table from '@mui/joy/Table';
@@ -49,7 +50,7 @@ To learn more about why we take this approach, check out this article from Chris
 
 #### Inline style
 
-An alternative way of controlling the column's width is to use [inline styles](https://reactjs.org/docs/dom-elements.html#style) on the `<th>` element:
+An alternative way of controlling the column's width is to use [inline styles](https://react.dev/learn/javascript-in-jsx-with-curly-braces#using-double-curlies-css-and-other-objects-in-jsx) on the `<th>` element:
 
 ```js
 <thead>
@@ -73,7 +74,7 @@ Use the `sx` prop to target columns with the appropriate CSS selector and apply 
 
 ### Variants
 
-Table supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `plain` (default), `outlined`, `soft`, and `solid`.
+Table supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `plain` (default), `outlined`, `soft`, and `solid`.
 
 {{"demo": "TableVariants.js"}}
 
@@ -94,7 +95,7 @@ To learn how to add custom sizes to the component, check out [Themed components�
 
 ### Stripe
 
-To create constast between rows, use the `stripe` prop with `odd` or `even` values.
+To create contrast between rows, use the `stripe` prop with `odd` or `even` values.
 
 {{"demo": "TableStripe.js"}}
 
@@ -112,7 +113,7 @@ For example, you can use `3n` as a value to create stripes on row numbers three,
 
 ### Hover
 
-To highlight a row of the table body when hovering over it, set the `hoverAxis` prop to true.
+To highlight a row of the table body when hovering over it, set the `hoverRow` prop to true.
 
 {{"demo": "TableHover.js"}}
 
@@ -160,12 +161,14 @@ declare module '@mui/joy/Table' {
 }
 ```
 
-### Sticky header
+### Sticky header and footer
 
-Set the `stickyHeader` prop to true to make the header follow the user as they scroll down the page.
+Set the `stickyHeader` to true to always stick the header at the top as users scroll the table.
+
+Set the `stickyFooter` to true to always stick the footer at the bottom of the table.
 
 :::success
-For `stickyHeader` to work correctly, the Table must be a child of a fixed-height element with overflow `auto` (or `scroll`).
+For `stickyHeader` and `stickyFooter` to work correctly, the Table must be a child of a fixed-height element with overflow `auto` (or `scroll`).
 We recommend wrapping your Table with [Sheet](/joy-ui/react-sheet/) for this purpose.
 See [usage with Sheet](#usage-with-sheet) to learn more.
 :::
@@ -232,19 +235,16 @@ There are two workarounds:
 ### Text ellipsis
 
 To truncate the text, set `noWrap` to true.
+The header cells always truncate the text to keep the header's height predictable.
 
 {{"demo": "TableTextEllipsis.js"}}
 
-:::info
-The header cells always truncate the text to keep the header's height predictable.
-:::
-
-## CSS variable playground
+## CSS variables playground
 
 Play around with the CSS variables available to the Table component to see how the design changes.
 You can use these to customize the components with both the `sx` prop and the theme.
 
-{{"demo": "TableVariables.js"}}
+{{"demo": "TableVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Usage with Sheet
 
@@ -283,6 +283,6 @@ Use `theme.variants.*` to apply global variant styles to the Table.
 
 ### Scrolling shadows
 
-Inspired by this article from Lea Verou on [CSS scrolling shadows](https://lea.verou.me/2012/04/background-attachment-local/), the shadows appear and hide when scrolling on the Table.
+Inspired by this article from Lea Verou on [CSS scrolling shadows](https://lea.verou.me/blog/2012/04/background-attachment-local/), the shadows appear and hide when scrolling on the Table.
 
 {{"demo": "TableScrollingShadows.js"}}

@@ -1,7 +1,7 @@
 const childProcess = require('child_process');
 const fs = require('fs');
-const glob = require('fast-glob');
 const path = require('path');
+const glob = require('fast-glob');
 const yargs = require('yargs');
 
 async function run(argv) {
@@ -26,6 +26,7 @@ async function run(argv) {
     .sync(globPattern, {
       cwd: workspaceRoot,
       ignore,
+      followSymbolicLinks: false,
     })
     .filter((relativeFile) => {
       return /\.test\.(js|ts|tsx)$/.test(relativeFile);
@@ -52,7 +53,7 @@ async function run(argv) {
     args.push(`--grep '${argv.testNamePattern}'`);
   }
 
-  const mochaProcess = childProcess.spawn('yarn', args, {
+  const mochaProcess = childProcess.spawn('pnpm', args, {
     env: {
       ...process.env,
       BABEL_ENV: 'test',

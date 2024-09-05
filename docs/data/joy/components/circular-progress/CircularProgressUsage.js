@@ -1,6 +1,6 @@
 import * as React from 'react';
-import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import CircularProgress from '@mui/joy/CircularProgress';
+import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
 export default function CircularProgressUsage() {
   return (
@@ -9,7 +9,7 @@ export default function CircularProgressUsage() {
       data={[
         {
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           defaultValue: 'soft',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },

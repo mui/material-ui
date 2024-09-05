@@ -1,13 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { Interpolation, StyledComponent } from '@mui/styled-engine';
+import { Interpolation, MUIStyledComponent as StyledComponent } from '@mui/styled-engine';
 import { OverridableComponent } from '@mui/types';
-import {
-  unstable_capitalize as capitalize,
-  unstable_composeClasses as composeClasses,
-  unstable_generateUtilityClass as generateUtilityClass,
-} from '@mui/utils';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
+import composeClasses from '@mui/utils/composeClasses';
+import capitalize from '@mui/utils/capitalize';
 import { ContainerProps, ContainerTypeMap } from './ContainerProps';
 import useThemePropsSystem from '../useThemeProps';
 import systemStyled from '../styled';
@@ -81,7 +79,6 @@ export default function createContainer<Theme extends RequiredThemeStructure = D
         marginLeft: 'auto',
         boxSizing: 'border-box',
         marginRight: 'auto',
-        display: 'block', // Fix IE11 layout when used with main.
         ...(!ownerState.disableGutters && {
           paddingLeft: theme.spacing(2),
           paddingRight: theme.spacing(2),
@@ -91,7 +88,7 @@ export default function createContainer<Theme extends RequiredThemeStructure = D
             paddingRight: theme.spacing(3),
           },
         }),
-      } as Interpolation<StyleFnProps<Theme>>),
+      }) as Interpolation<StyleFnProps<Theme>>,
     ({ theme, ownerState }: StyleFnProps<Theme>) =>
       ownerState.fixed &&
       Object.keys(theme.breakpoints.values).reduce((acc, breakpointValueKey) => {

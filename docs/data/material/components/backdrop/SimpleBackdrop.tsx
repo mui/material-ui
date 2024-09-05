@@ -8,15 +8,15 @@ export default function SimpleBackdrop() {
   const handleClose = () => {
     setOpen(false);
   };
-  const handleToggle = () => {
-    setOpen(!open);
+  const handleOpen = () => {
+    setOpen(true);
   };
 
   return (
     <div>
-      <Button onClick={handleToggle}>Show backdrop</Button>
+      <Button onClick={handleOpen}>Show backdrop</Button>
       <Backdrop
-        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
         open={open}
         onClick={handleClose}
       >

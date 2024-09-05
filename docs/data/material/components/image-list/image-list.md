@@ -1,9 +1,10 @@
 ---
-product: material-ui
+productId: material-ui
 title: Image List React component
 components: ImageList, ImageListItem, ImageListItemBar
 materialDesign: https://m2.material.io/components/image-lists
 githubLabel: 'component: image list'
+githubSource: packages/mui-material/src/ImageList
 ---
 
 # Image List
@@ -12,7 +13,7 @@ githubLabel: 'component: image list'
 
 Image lists represent a collection of items in a repeated pattern. They help improve the visual comprehension of the content they hold.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Standard image list
 

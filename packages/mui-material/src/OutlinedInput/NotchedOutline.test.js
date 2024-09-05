@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import NotchedOutline from './NotchedOutline';
 
@@ -54,6 +54,7 @@ describe('<NotchedOutline />', () => {
       paddingRight: '8px',
     });
   });
+
   it('should not set padding (notch) for empty, null or undefined label props', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {
       this.skip();

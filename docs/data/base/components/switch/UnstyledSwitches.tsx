@@ -1,15 +1,59 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import SwitchUnstyled, { switchUnstyledClasses } from '@mui/base/SwitchUnstyled';
+import { Switch, switchClasses } from '@mui/base/Switch';
 
+export default function UnstyledSwitches() {
+  const label = { slotProps: { input: { 'aria-label': 'Demo switch' } } };
+
+  return (
+    <div>
+      <Switch
+        slots={{
+          root: Root,
+        }}
+        {...label}
+        defaultChecked
+      />
+      <Switch
+        slots={{
+          root: Root,
+        }}
+        {...label}
+      />
+      <Switch
+        slots={{
+          root: Root,
+        }}
+        {...label}
+        defaultChecked
+        disabled
+      />
+      <Switch
+        slots={{
+          root: Root,
+        }}
+        {...label}
+        disabled
+      />
+    </div>
+  );
+}
 const blue = {
+  200: '#99CCF3',
   500: '#007FFF',
 };
 
 const grey = {
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
 const Root = styled('span')(
@@ -17,58 +61,67 @@ const Root = styled('span')(
   font-size: 0;
   position: relative;
   display: inline-block;
-  width: 40px;
+  width: 38px;
   height: 24px;
   margin: 10px;
   cursor: pointer;
 
-  &.${switchUnstyledClasses.disabled} {
+  &.${switchClasses.disabled} {
     opacity: 0.4;
     cursor: not-allowed;
   }
 
-  & .${switchUnstyledClasses.track} {
-    background: ${theme.palette.mode === 'dark' ? grey[600] : grey[400]};
-    border-radius: 16px;
+  & .${switchClasses.track} {
+    background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+    border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+    border-radius: 24px;
     display: block;
     height: 100%;
     width: 100%;
     position: absolute;
+    box-shadow: inset 0px 1px 1px ${
+      theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.05)'
+    };
   }
 
-  & .${switchUnstyledClasses.thumb} {
+  &:hover .${switchClasses.track} {
+    background: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
+  }
+
+  &.${switchClasses.focusVisible} .${switchClasses.track} {
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? grey[700] : blue[200]};
+  }
+
+  & .${switchClasses.thumb} {
     display: block;
     width: 16px;
     height: 16px;
     top: 4px;
     left: 4px;
     border-radius: 16px;
-    background-color: #fff;
+    background-color: #FFF;
+    border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
     position: relative;
-    
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 120ms;
+    box-shadow: 0px 1px 2px ${
+      theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.25)' : 'rgba(0, 0, 0, 0.1)'
+    };
   }
-
-  &.${switchUnstyledClasses.focusVisible} .${switchUnstyledClasses.thumb} {
-    background-color: ${grey[500]};
-    box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
-  }
-
-  &.${switchUnstyledClasses.checked} {
-    .${switchUnstyledClasses.thumb} {
-      left: 20px;
-      top: 4px;
+  
+  &.${switchClasses.checked} {
+    .${switchClasses.thumb} {
+      left: 17px;
       background-color: #fff;
     }
 
-    .${switchUnstyledClasses.track} {
+    .${switchClasses.track} {
       background: ${blue[500]};
     }
   }
 
-  & .${switchUnstyledClasses.input} {
+  & .${switchClasses.input} {
     cursor: inherit;
     position: absolute;
     width: 100%;
@@ -81,16 +134,3 @@ const Root = styled('span')(
   }
   `,
 );
-
-export default function UnstyledSwitches() {
-  const label = { slotProps: { input: { 'aria-label': 'Demo switch' } } };
-
-  return (
-    <div>
-      <SwitchUnstyled component={Root} {...label} defaultChecked />
-      <SwitchUnstyled component={Root} {...label} />
-      <SwitchUnstyled component={Root} {...label} defaultChecked disabled />
-      <SwitchUnstyled component={Root} {...label} disabled />
-    </div>
-  );
-}

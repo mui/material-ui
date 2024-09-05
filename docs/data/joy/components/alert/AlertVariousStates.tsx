@@ -14,12 +14,12 @@ export default function AlertVariousStates() {
   const items: {
     title: string;
     color: ColorPaletteProp;
-    icon: React.ReactElement;
+    icon: React.ReactElement<any>;
   }[] = [
     { title: 'Success', color: 'success', icon: <CheckCircleIcon /> },
     { title: 'Warning', color: 'warning', icon: <WarningIcon /> },
     { title: 'Error', color: 'danger', icon: <ReportIcon /> },
-    { title: 'Info', color: 'info', icon: <InfoIcon /> },
+    { title: 'Neutral', color: 'neutral', icon: <InfoIcon /> },
   ];
   return (
     <Box sx={{ display: 'flex', gap: 2, width: '100%', flexDirection: 'column' }}>
@@ -27,23 +27,18 @@ export default function AlertVariousStates() {
         <Alert
           key={title}
           sx={{ alignItems: 'flex-start' }}
-          startDecorator={React.cloneElement(icon, {
-            sx: { mt: '2px', mx: '4px' },
-            fontSize: 'xl2',
-          })}
+          startDecorator={icon}
           variant="soft"
           color={color}
           endDecorator={
-            <IconButton variant="soft" size="sm" color={color}>
+            <IconButton variant="soft" color={color}>
               <CloseRoundedIcon />
             </IconButton>
           }
         >
           <div>
-            <Typography fontWeight="lg" mt={0.25}>
-              {title}
-            </Typography>
-            <Typography fontSize="sm" sx={{ opacity: 0.8 }}>
+            <div>{title}</div>
+            <Typography level="body-sm" color={color}>
               This is a time-sensitive {title} Alert.
             </Typography>
           </div>

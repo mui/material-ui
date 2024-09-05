@@ -1,51 +1,49 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface SwitchClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
   /** State class applied to the root `checked` class. */
   checked: string;
   /** State class applied to the root disabled class. */
   disabled: string;
-  /** Styles applied to the action element. */
+  /** Class name applied to the action element. */
   action: string;
-  /** Styles applied to the input element. */
+  /** Class name applied to the input element. */
   input: string;
-  /** Styles Styles applied to the input element. */
+  /** Class name applied to the input element. */
   thumb: string;
-  /** Styles applied to the track element. */
+  /** Class name applied to the track element. */
   track: string;
-  /** Class applied to the root element if the switch has visible focus */
+  /** State class applied to the root element if the switch has visible focus */
   focusVisible: string;
-  /** Class applied to the root element if the switch is read-only */
+  /** Class name applied to the root element if the switch is read-only */
   readOnly: string;
-  /** Styles applied to the root element if `color="primary"`. */
+  /** Class name applied to the root element if `color="primary"`. */
   colorPrimary: string;
-  /** Styles applied to the root element if `color="danger"`. */
+  /** Class name applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Styles applied to the root element if `color="info"`. */
-  colorInfo: string;
-  /** Styles applied to the root element if `color="success"`. */
+  /** Class name applied to the root element if `color="success"`. */
   colorSuccess: string;
-  /** Styles applied to the root element if `color="warning"`. */
+  /** Class name applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element when color inversion is triggered. */
+  /** Class name applied to the root element when color inversion is triggered. */
   colorContext: string;
-  /** Styles applied to the root element if `size="sm"`. */
+  /** Class name applied to the root element if `size="sm"`. */
   sizeSm: string;
-  /** Styles applied to the root element if `size="md"`. */
+  /** Class name applied to the root element if `size="md"`. */
   sizeMd: string;
-  /** Styles applied to the root element if `size="lg"`. */
+  /** Class name applied to the root element if `size="lg"`. */
   sizeLg: string;
-  /** Styles applied to the root element if `variant="outlined"`. */
+  /** Class name applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Styles applied to the root element if `variant="soft"`. */
+  /** Class name applied to the root element if `variant="soft"`. */
   variantSoft: string;
-  /** Styles applied to the root element if `variant="solid"`. */
+  /** Class name applied to the root element if `variant="solid"`. */
   variantSolid: string;
-  /** Styles applied to the startDecorator element. */
+  /** Class name applied to the startDecorator element. */
   startDecorator: string;
-  /** Styles applied to the endDecorator element. */
+  /** Class name applied to the endDecorator element. */
   endDecorator: string;
 }
 
@@ -67,7 +65,6 @@ const switchClasses: SwitchClasses = generateUtilityClasses('MuiSwitch', [
   'readOnly',
   'colorPrimary',
   'colorDanger',
-  'colorInfo',
   'colorSuccess',
   'colorWarning',
   'colorContext',

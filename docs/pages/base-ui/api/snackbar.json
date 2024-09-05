@@ -1,0 +1,49 @@
+{
+  "props": {
+    "autoHideDuration": { "type": { "name": "number" }, "default": "null" },
+    "disableWindowBlurListener": { "type": { "name": "bool" }, "default": "false" },
+    "exited": { "type": { "name": "bool" }, "default": "true" },
+    "onClose": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent<any> | Event, reason: string) => void",
+        "describedArgs": ["event", "reason"]
+      }
+    },
+    "open": { "type": { "name": "bool" } },
+    "resumeHideDuration": { "type": { "name": "number" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ clickAwayListener?: func<br>&#124;&nbsp;{ children: element, disableReactTree?: bool, mouseEvent?: 'onClick'<br>&#124;&nbsp;'onMouseDown'<br>&#124;&nbsp;'onMouseUp'<br>&#124;&nbsp;'onPointerDown'<br>&#124;&nbsp;'onPointerUp'<br>&#124;&nbsp;false, onClickAway?: func, touchEvent?: 'onTouchEnd'<br>&#124;&nbsp;'onTouchStart'<br>&#124;&nbsp;false }, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
+    }
+  },
+  "name": "Snackbar",
+  "imports": [
+    "import { Snackbar } from '@mui/base/Snackbar';",
+    "import { Snackbar } from '@mui/base';"
+  ],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "base-Snackbar-root"
+    }
+  ],
+  "classes": [],
+  "spread": true,
+  "muiName": "Snackbar",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-base/src/Snackbar/Snackbar.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-snackbar/\">Snackbar</a></li>\n<li><a href=\"/joy-ui/react-snackbar/\">Snackbar</a></li>\n<li><a href=\"/material-ui/react-snackbar/\">Snackbar</a></li></ul>",
+  "cssComponent": false
+}

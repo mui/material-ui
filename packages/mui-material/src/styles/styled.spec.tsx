@@ -1,3 +1,4 @@
+/* eslint-disable material-ui/no-empty-box */
 import * as React from 'react';
 import { styled, css, ThemeProvider, createTheme } from '@mui/material/styles';
 
@@ -124,8 +125,8 @@ function Button({
             return styles;
           },
           startIcon: ({ ownerState: { startIcon, endIcon } }) => [
-            startIcon && { marginRight: 8 },
-            endIcon && { marginLeft: 8 },
+            !!startIcon && { marginRight: 8 },
+            !!endIcon && { marginLeft: 8 },
           ],
         },
       },
@@ -154,3 +155,33 @@ function Button({
     Hello
   </Button>
 </ThemeProvider>;
+
+function variantsAPI() {
+  const ObjectSyntax = styled('div')<{ foo?: string; bar?: number }>({
+    variants: [
+      {
+        props: { foo: 'a' },
+        style: { color: 'blue' },
+      },
+    ],
+  });
+
+  const FunctionSyntax = styled('div')<{ foo?: string; bar?: number }>(() => ({
+    variants: [
+      {
+        props: { foo: 'a' },
+        style: { color: 'blue' },
+      },
+    ],
+  }));
+
+  // @ts-expect-error the API is not valid for CSS properties
+  const WrongUsage = styled('div')<{ foo?: string; bar?: number }>({
+    color: [
+      {
+        props: { foo: 'a' },
+        style: { color: 'blue' },
+      },
+    ],
+  });
+}

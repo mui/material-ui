@@ -51,6 +51,15 @@ const defaultSxConfig = {
     themeKey: 'palette',
   },
 
+  outline: {
+    themeKey: 'borders',
+    transform: borderTransform,
+  },
+
+  outlineColor: {
+    themeKey: 'palette',
+  },
+
   borderRadius: {
     themeKey: 'shape.borderRadius',
     style: borderRadius,
@@ -281,6 +290,9 @@ const defaultSxConfig = {
   boxSizing: {},
 
   // typography
+  font: {
+    themeKey: 'font',
+  },
   fontFamily: {
     themeKey: 'typography',
   },

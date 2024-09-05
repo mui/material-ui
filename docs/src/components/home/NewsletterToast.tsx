@@ -29,19 +29,11 @@ export default function NewsletterToast() {
   }, [hidden]);
   return (
     <Slide in={!hidden} timeout={400} direction="down">
-      <Box
-        sx={{
-          position: 'fixed',
-          zIndex: 1300,
-          top: 80,
-          left: 0,
-          width: '100%',
-        }}
-      >
+      <Box sx={{ position: 'fixed', zIndex: 1300, top: 80, left: 0, width: '100%' }}>
         <Card
           variant="outlined"
           role="alert"
-          sx={{
+          sx={(theme) => ({
             p: 1,
             position: 'absolute',
             left: '50%',
@@ -50,19 +42,17 @@ export default function NewsletterToast() {
             transition: '0.5s',
             display: 'flex',
             alignItems: 'center',
-            boxShadow: (theme) =>
-              theme.palette.mode === 'dark'
-                ? '0px 4px 20px rgba(0, 0, 0, 0.6)'
-                : '0px 4px 20px rgba(61, 71, 82, 0.25)',
-          }}
+            boxShadow: '0px 4px 20px rgba(61, 71, 82, 0.25)',
+            ...theme.applyDarkStyles({
+              boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.6)',
+            }),
+          })}
         >
           <MarkEmailReadTwoTone color="success" sx={{ mx: 0.5 }} />
           <div>
             <Typography
               variant="body2"
-              color="text.secondary"
-              fontWeight={500}
-              sx={{ ml: 1, mr: 2 }}
+              sx={{ color: 'text.secondary', fontWeight: 500, ml: 1, mr: 2 }}
             >
               You have subscribed to MUI newsletter.
             </Typography>

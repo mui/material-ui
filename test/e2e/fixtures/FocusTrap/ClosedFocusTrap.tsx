@@ -1,5 +1,5 @@
 import * as React from 'react';
-import FocusTrap from '@mui/base/FocusTrap';
+import { FocusTrap } from '@mui/base/FocusTrap';
 
 export default function ClosedFocusTrap() {
   return (

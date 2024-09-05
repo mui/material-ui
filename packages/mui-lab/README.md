@@ -8,12 +8,8 @@ Install the package in your project directory with:
 
 <!-- #default-branch-switch -->
 
-```sh
-// with npm
+```bash
 npm install @mui/lab
-
-// with yarn
-yarn add @mui/lab
 ```
 
 The lab has peer dependencies on the Material Design components and on the Emotion library.
@@ -21,16 +17,12 @@ If you are not already using them in your project, you can install with:
 
 <!-- #default-branch-switch -->
 
-```sh
-// with npm
+```bash
 npm install @mui/material @emotion/react @emotion/styled
-
-// with yarn
-yarn add @mui/material @emotion/react @emotion/styled
 ```
 
 ## Documentation
 
 <!-- #default-branch-switch -->
 
-[The documentation](https://mui.com/components/about-the-lab/)
+Visit [https://mui.com/material-ui/about-the-lab/](https://mui.com/material-ui/about-the-lab/) to view the full documentation.

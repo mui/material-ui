@@ -1,28 +1,25 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { OverridableComponent } from '@mui/types';
 import {
   chainPropTypes,
   integerPropType,
   unstable_useForkRef as useForkRef,
   unstable_capitalize as capitalize,
 } from '@mui/utils';
-import composeClasses from '@mui/base/composeClasses';
-import {
-  useAutocomplete,
-  AutocompleteGroupedOption,
-  UseAutocompleteProps,
-} from '@mui/base/AutocompleteUnstyled';
-import PopperUnstyled, { PopperUnstyledTypeMap } from '@mui/base/PopperUnstyled';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { useAutocomplete, AutocompleteGroupedOption } from '@mui/base/useAutocomplete';
+import { Popper } from '@mui/base/Popper';
 import { useThemeProps } from '../styles';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import styled from '../styles/styled';
+import { VariantColorProvider, getChildVariantAndColor } from '../styles/variantColorInheritance';
 // slot components
 import { StyledIconButton } from '../IconButton/IconButton';
 // default render components
-import Chip, { chipClasses } from '../Chip';
+import Chip from '../Chip';
 import ChipDelete from '../ChipDelete';
 import {
   StyledInputRoot,
@@ -45,14 +42,13 @@ import FormControlContext from '../FormControl/FormControlContext';
 import { StyledAutocompleteListbox } from '../AutocompleteListbox/AutocompleteListbox';
 import { StyledAutocompleteOption } from '../AutocompleteOption/AutocompleteOption';
 import useSlot from '../utils/useSlot';
-import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 
 type OwnerState = Omit<AutocompleteOwnerState<any, any, any, any>, 'onChange' | 'defaultValue'>;
 
-const defaultIsActiveElementInListbox = (listboxRef: React.RefObject<HTMLElement>) =>
+const defaultIsActiveElementInListbox = (listboxRef: React.RefObject<HTMLElement | null>) =>
   listboxRef.current !== null && listboxRef.current.contains(document.activeElement);
-const defaultGetOptionLabel = <T extends unknown>(option: T) =>
-  (option as { label: string }).label ?? option;
+// @ts-ignore
+const defaultGetOptionLabel = (option) => option.label ?? option;
 const defaultLimitTagsText = (more: string | number) => `+${more}`;
 const defaultRenderGroup = (params: AutocompleteRenderGroupParams) => (
   <ListItem key={params.key} nested>
@@ -61,16 +57,18 @@ const defaultRenderGroup = (params: AutocompleteRenderGroupParams) => (
   </ListItem>
 );
 
-const defaultVariantMapping = {
-  plain: 'plain',
-  outlined: 'plain',
-  soft: 'soft',
-  solid: 'solid',
-};
-
 const useUtilityClasses = (ownerState: OwnerState) => {
-  const { focused, hasClearIcon, hasPopupIcon, popupOpen, variant, color, size, multiple } =
-    ownerState;
+  const {
+    disabled,
+    focused,
+    hasClearIcon,
+    hasPopupIcon,
+    popupOpen,
+    variant,
+    color,
+    size,
+    multiple,
+  } = ownerState;
 
   const slots = {
     root: [
@@ -87,7 +85,7 @@ const useUtilityClasses = (ownerState: OwnerState) => {
     startDecorator: ['startDecorator'],
     endDecorator: ['endDecorator'],
     clearIndicator: ['clearIndicator'],
-    popupIndicator: ['popupIndicator', popupOpen && 'popupIndicatorOpen'],
+    popupIndicator: ['popupIndicator', popupOpen && 'popupIndicatorOpen', disabled && 'disabled'],
     listbox: ['listbox'],
     option: ['option'],
     loading: ['loading'],
@@ -103,9 +101,14 @@ const AutocompleteRoot = styled(StyledInputRoot as unknown as 'div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: OwnerState }>(({ ownerState }) => ({
-  '--Autocomplete-wrapper-gap': '3px',
+  ...(ownerState.size === 'sm' && {
+    '--Autocomplete-wrapperGap': '3px',
+  }),
+  ...(ownerState.size === 'md' && {
+    '--Autocomplete-wrapperGap': '3px',
+  }),
   ...(ownerState.size === 'lg' && {
-    '--Autocomplete-wrapper-gap': '4px',
+    '--Autocomplete-wrapperGap': '4px',
   }),
   /* Avoid double tap issue on iOS */
   '@media (pointer: fine)': {
@@ -133,24 +136,15 @@ const AutocompleteWrapper = styled('div', {
   display: 'flex',
   alignItems: 'center',
   flexWrap: 'wrap',
+  gap: 'var(--Autocomplete-wrapperGap)',
   [`&.${autocompleteClasses.multiple}`]: {
-    paddingBlockEnd: 'min(var(--_Input-paddingBlock), var(--Autocomplete-wrapper-gap))',
-    // TODO: use [CSS :has](https://caniuse.com/?search=%3Ahas) later
-    ...(ownerState.startDecorator &&
-      Array.isArray(ownerState.value) &&
-      (ownerState.value as Array<unknown>).length > 0 && {
-        marginBlockStart: 'min(var(--_Input-paddingBlock) - var(--Autocomplete-wrapper-gap), 0px)',
-        marginInlineStart: 'calc(-1 * var(--Autocomplete-wrapper-gap))',
-        [`& .${autocompleteClasses.input}`]: {
-          marginInlineStart: 'max(var(--Autocomplete-wrapper-gap), var(--Input-gap))',
-        },
-      }),
-  },
-  [`& .${chipClasses.root}`]: {
-    // TODO: use flexbox `gap` later.
-    minWidth: 0,
-    marginInlineStart: 'var(--Autocomplete-wrapper-gap)',
-    marginBlockStart: 'var(--Autocomplete-wrapper-gap)',
+    paddingBlock: 'var(--Autocomplete-wrapperGap)',
+    ...(!ownerState.startDecorator && {
+      paddingInlineStart: 'var(--Autocomplete-wrapperGap)',
+    }),
+    ...(!ownerState.endDecorator && {
+      paddingInlineEnd: 'var(--Autocomplete-wrapperGap)',
+    }),
   },
 }));
 
@@ -162,20 +156,17 @@ const AutocompleteInput = styled(StyledInputHtml as unknown as 'input', {
   minWidth: 30,
   minHeight: 'var(--Chip-minHeight)',
   ...(ownerState.multiple && {
-    marginBlockStart: 'var(--Autocomplete-wrapper-gap)',
-    ...(!ownerState.startDecorator && {
-      marginInlineStart: 'var(--Input-paddingInline)',
-    }),
+    marginInlineStart: 'calc(var(--Autocomplete-wrapperGap) * 2.5)',
   }),
 }));
 
-const AutocompleteStartDecorator = styled(StyledInputStartDecorator as unknown as 'span', {
+const AutocompleteStartDecorator = styled(StyledInputStartDecorator as unknown as 'div', {
   name: 'JoyAutocomplete',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: OwnerState }>({});
 
-const AutocompleteEndDecorator = styled(StyledInputEndDecorator as unknown as 'span', {
+const AutocompleteEndDecorator = styled(StyledInputEndDecorator as unknown as 'div', {
   name: 'JoyAutocomplete',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
@@ -193,8 +184,9 @@ const AutocompleteClearIndicator = styled(StyledIconButton as unknown as 'button
   slot: 'ClearIndicator',
   overridesResolver: (props, styles) => styles.clearIndicator,
 })<{ ownerState: OwnerState }>(({ ownerState }) => ({
+  alignSelf: 'center',
   ...(!ownerState.hasPopupIcon && {
-    marginInlineEnd: 'calc(var(--Input-decorator-childOffset) * -1)',
+    marginInlineEnd: 'calc(var(--Input-decoratorChildOffset) * -1)',
   }),
   marginInlineStart: 'calc(var(--_Input-paddingBlock) / 2)',
   visibility: ownerState.focused ? 'visible' : 'hidden',
@@ -204,19 +196,24 @@ const AutocompletePopupIndicator = styled(StyledIconButton as unknown as 'button
   name: 'JoyAutocomplete',
   slot: 'PopupIndicator',
   overridesResolver: (props, styles) => styles.popupIndicator,
-})<{ ownerState: OwnerState }>(({ ownerState }) => ({
+})<{ ownerState: OwnerState }>({
+  alignSelf: 'center',
   marginInlineStart: 'calc(var(--_Input-paddingBlock) / 2)',
-  marginInlineEnd: 'calc(var(--Input-decorator-childOffset) * -1)',
-  ...(ownerState.popupOpen && {
+  marginInlineEnd: 'calc(var(--Input-decoratorChildOffset) * -1)',
+  [`&.${autocompleteClasses.popupIndicatorOpen}`]: {
     transform: 'rotate(180deg)',
-  }),
-}));
+    '--Icon-color': 'currentColor',
+  },
+});
 
 const AutocompleteListbox = styled(StyledAutocompleteListbox, {
   name: 'JoyAutocomplete',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
-})<{ ownerState: OwnerState }>({});
+})<{ ownerState: OwnerState }>(({ theme }) => ({
+  // `unstable_popup-zIndex` is a private variable that lets other component, for example Modal, to override the z-index so that the listbox can be displayed above the Modal.
+  zIndex: `var(--unstable_popup-zIndex, ${theme.vars.zIndex.popup})`,
+}));
 
 const AutocompleteOption = styled(StyledAutocompleteOption, {
   name: 'JoyAutocomplete',
@@ -240,7 +237,7 @@ const AutocompleteNoOptions = styled(ListItem, {
   color: (theme.vars || theme).palette.text.secondary,
 }));
 
-const AutocompleteLimitTag = styled('span', {
+const AutocompleteLimitTag = styled('div', {
   name: 'JoyAutocomplete',
   slot: 'NoOptions',
   overridesResolver: (props, styles) => styles.noOptions,
@@ -248,28 +245,16 @@ const AutocompleteLimitTag = styled('span', {
   marginInlineStart: 'calc(var(--Input-paddingInline) / 2)',
   marginBlockStart: 'var(--_Input-paddingBlock)',
 });
-
-const excludeUseAutocompleteParams = <
-  T extends Partial<UseAutocompleteProps<any, undefined, undefined, undefined>>,
->({
-  autoComplete,
-  autoHighlight,
-  autoSelect,
-  blurOnSelect,
-  clearOnBlur,
-  clearOnEscape,
-  defaultValue,
-  disableCloseOnSelect,
-  disabledItemsFocusable,
-  disableListWrap,
-  filterSelectedOptions,
-  handleHomeEndKeys,
-  includeInputInList,
-  openOnFocus,
-  selectOnFocus,
-  ...other
-}: T) => other as T;
-
+/**
+ *
+ * Demos:
+ *
+ * - [Autocomplete](https://mui.com/joy-ui/react-autocomplete/)
+ *
+ * API:
+ *
+ * - [Autocomplete API](https://mui.com/joy-ui/api/autocomplete/)
+ */
 const Autocomplete = React.forwardRef(function Autocomplete(
   inProps,
   ref: React.ForwardedRef<HTMLDivElement>,
@@ -283,20 +268,34 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     'aria-describedby': ariaDescribedby,
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledby,
+    autoComplete,
+    autoHighlight,
+    autoSelect,
     autoFocus,
+    blurOnSelect,
     clearIcon = <ClearIcon fontSize="md" />,
+    clearOnBlur,
+    clearOnEscape,
     clearText = 'Clear',
     closeText = 'Close',
+    defaultValue,
+    disableCloseOnSelect,
+    disabledItemsFocusable,
+    disableListWrap,
     disableClearable = false,
     disabled: disabledProp,
     endDecorator,
     error: errorProp = false,
     filterOptions,
+    filterSelectedOptions,
     forcePopupIcon = 'auto',
     freeSolo = false,
     getLimitTagsText = defaultLimitTagsText,
     getOptionDisabled,
+    getOptionKey,
     getOptionLabel = defaultGetOptionLabel,
+    handleHomeEndKeys,
+    includeInputInList,
     isOptionEqualToValue,
     groupBy,
     id,
@@ -313,6 +312,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     onInputChange,
     onOpen,
     open,
+    openOnFocus,
     openText = 'Open',
     options,
     placeholder,
@@ -328,15 +328,17 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     color: colorProp = 'neutral',
     variant = 'outlined',
     value: valueProp,
-    ...otherProps
+    component,
+    selectOnFocus,
+    slots = {},
+    slotProps = {},
+    ...other
   } = props;
-  const other = excludeUseAutocompleteParams(otherProps);
 
-  const { getColor } = useColorInversion(variant);
   const formControl = React.useContext(FormControlContext);
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const color = getColor(inProps.color, error ? 'danger' : formControl?.color ?? colorProp);
+  const color = inProps.color ?? (error ? 'danger' : (formControl?.color ?? colorProp));
   const disabled = disabledProp ?? formControl?.disabled ?? false;
 
   const {
@@ -360,17 +362,23 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     ...props,
     id: id ?? formControl?.htmlFor,
     componentName: 'Autocomplete',
-    unstable_classNamePrefix: 'Joy',
+    unstable_classNamePrefix: 'Mui',
     unstable_isActiveElementInListbox: defaultIsActiveElementInListbox,
   });
 
+  const { onMouseDown: handleInputMouseDown } = getInputProps();
+  const { onClick: handleRootOnClick } = getRootProps();
   const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
+  // If you modify this, make sure to keep the `AutocompleteOwnerState` type in sync.
   const ownerState = {
+    instanceColor: inProps.color,
     ...props,
     value,
+    disabled,
     focused,
+    getOptionLabel,
     hasOptions: !!groupedOptions.length,
     hasClearIcon,
     hasPopupIcon,
@@ -382,6 +390,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   let selectedOptions;
 
@@ -400,13 +409,15 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       selectedOptions = renderTags(value as Array<unknown>, getCustomizedTagProps, ownerState);
     } else {
       selectedOptions = (value as Array<unknown>).map((option, index) => {
+        const { key: endDecoratorKey, ...endDecoratorProps } = getCustomizedTagProps({ index });
         return (
           <Chip
             key={index}
             size={size}
             variant="soft"
-            color={color === 'context' ? undefined : 'neutral'}
-            endDecorator={<ChipDelete {...getCustomizedTagProps({ index })} />}
+            color="neutral"
+            endDecorator={<ChipDelete key={endDecoratorKey} {...endDecoratorProps} />}
+            sx={{ minWidth: 0 }}
           >
             {getOptionLabel(option)}
           </Chip>
@@ -428,15 +439,25 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     ref: rootRef,
     className: [classes.root, rootStateClasses],
     elementType: AutocompleteRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
     getSlotProps: getRootProps,
+    additionalProps: {
+      onClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        if (handleRootOnClick) {
+          handleRootOnClick(event);
+        }
+        if (event.currentTarget === event.target && handleInputMouseDown) {
+          handleInputMouseDown(event as React.MouseEvent<HTMLInputElement, MouseEvent>);
+        }
+      },
+    },
   });
 
   const [SlotWrapper, wrapperProps] = useSlot('wrapper', {
     className: classes.wrapper,
     elementType: AutocompleteWrapper,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -465,7 +486,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
         },
       };
     },
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
     additionalProps: {
       autoFocus,
@@ -485,14 +506,14 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
     elementType: AutocompleteStartDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
     elementType: AutocompleteEndDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -500,12 +521,13 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     className: classes.clearIndicator,
     elementType: AutocompleteClearIndicator,
     getSlotProps: getClearProps,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
-      variant: mergedProps.variant || defaultVariantMapping[variant] || 'plain',
-      color: mergedProps.color || 'neutral',
+      variant: mergedProps.variant || getChildVariantAndColor(variant, color).variant || 'plain',
+      color: mergedProps.color || getChildVariantAndColor(variant, color).color || 'neutral',
+      disableColorInversion: !!inProps.color,
     }),
     additionalProps: {
       'aria-label': clearText,
@@ -517,12 +539,13 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     className: classes.popupIndicator,
     elementType: AutocompletePopupIndicator,
     getSlotProps: getPopupIndicatorProps,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
-      variant: mergedProps.variant || defaultVariantMapping[variant] || 'plain',
-      color: mergedProps.color || 'neutral',
+      variant: mergedProps.variant || getChildVariantAndColor(variant, color).variant || 'plain',
+      color: mergedProps.color || getChildVariantAndColor(variant, color).color || 'neutral',
+      disableColorInversion: !!inProps.color,
     }),
     additionalProps: {
       disabled,
@@ -534,14 +557,14 @@ const Autocomplete = React.forwardRef(function Autocomplete(
 
   const [SlotListbox, listboxProps] = useSlot('listbox', {
     className: classes.listbox,
-    elementType: PopperUnstyled as OverridableComponent<PopperUnstyledTypeMap<{}, 'ul'>>,
+    elementType: AutocompleteListbox,
     getSlotProps: getListboxProps,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
-      variant: mergedProps.variant || 'outlined',
-      color: mergedProps.color || 'neutral',
+      variant: mergedProps.variant || variant,
+      color: mergedProps.color || color,
       disableColorInversion: !mergedProps.disablePortal,
     }),
     additionalProps: {
@@ -553,22 +576,19 @@ const Autocomplete = React.forwardRef(function Autocomplete(
           }
         : {},
     },
-    internalForwardedProps: {
-      component: AutocompleteListbox,
-    },
   });
 
   const [SlotLoading, loadingProps] = useSlot('loading', {
     className: classes.loading,
     elementType: AutocompleteLoading,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotNoOptions, noOptionsProps] = useSlot('noOptions', {
     className: classes.noOptions,
     elementType: AutocompleteNoOptions,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
     additionalProps: {
       role: 'presentation',
@@ -582,7 +602,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   const [SlotLimitTag, limitTagProps] = useSlot('limitTag', {
     className: classes.limitTag,
     elementType: AutocompleteLimitTag,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -601,11 +621,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   const [SlotOption, baseOptionProps] = useSlot('option', {
     className: classes.option,
     elementType: AutocompleteOption,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
-      variant: mergedProps.variant || 'plain',
-      color: mergedProps.color || 'neutral',
+      variant: mergedProps.variant || getChildVariantAndColor(variant, color).variant || 'plain',
+      color: mergedProps.color || getChildVariantAndColor(variant, color).color || 'neutral',
       disableColorInversion: !listboxProps.disablePortal,
     }),
     additionalProps: {
@@ -613,9 +633,14 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     },
   });
 
-  const defaultRenderOption = (optionProps: any, option: unknown) => (
-    <SlotOption {...optionProps}>{getOptionLabel(option)}</SlotOption>
-  );
+  const defaultRenderOption = (optionProps: any, option: unknown) => {
+    const { key, ...rest } = optionProps;
+    return (
+      <SlotOption key={key} {...rest}>
+        {getOptionLabel(option)}
+      </SlotOption>
+    );
+  };
 
   const renderOption = renderOptionProp || defaultRenderOption;
 
@@ -630,6 +655,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     });
   };
 
+  // Wait for `listboxProps` because `slotProps.listbox` could be a function.
   const modifiers = React.useMemo(
     () => [
       {
@@ -646,42 +672,41 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   let popup = null;
   if (anchorEl) {
     popup = (
-      <ListProvider nested>
-        <SlotListbox
-          {...listboxProps}
-          className={clsx(
-            listboxProps.className,
-            listboxProps.ownerState?.color === 'context' && autocompleteClasses.colorContext,
-          )}
-          modifiers={modifiers}
-        >
-          {groupedOptions.map((option, index) => {
-            if (groupBy) {
-              const typedOption = option as AutocompleteGroupedOption;
-              return renderGroup({
-                key: String(typedOption.key),
-                group: typedOption.group,
-                children: typedOption.options.map((option2, index2) =>
-                  renderListOption(option2, typedOption.index + index2),
-                ),
-              });
-            }
-            return renderListOption(option, index);
-          })}
-          {loading && groupedOptions.length === 0 ? (
-            <SlotLoading {...loadingProps}>{loadingText}</SlotLoading>
-          ) : null}
-          {groupedOptions.length === 0 && !freeSolo && !loading ? (
-            <SlotNoOptions {...noOptionsProps}>{noOptionsText}</SlotNoOptions>
-          ) : null}
-        </SlotListbox>
-      </ListProvider>
+      <VariantColorProvider variant={variant} color={color}>
+        <ListProvider nested>
+          <SlotListbox
+            {...listboxProps}
+            className={clsx(listboxProps.className)}
+            // @ts-ignore internal logic (too complex to typed PopperOwnProps to SlotListbox but this should be removed when we have `usePopper`)
+            modifiers={modifiers}
+            {...(!props.slots?.listbox && {
+              as: Popper,
+              slots: { root: listboxProps.as || 'ul' },
+            })}
+          >
+            {groupedOptions.map((option, index) => {
+              if (groupBy) {
+                const typedOption = option as AutocompleteGroupedOption;
+                return renderGroup({
+                  key: String(typedOption.key),
+                  group: typedOption.group,
+                  children: typedOption.options.map((option2, index2) =>
+                    renderListOption(option2, typedOption.index + index2),
+                  ),
+                });
+              }
+              return renderListOption(option, index);
+            })}
+            {loading && groupedOptions.length === 0 ? (
+              <SlotLoading {...loadingProps}>{loadingText}</SlotLoading>
+            ) : null}
+            {groupedOptions.length === 0 && !freeSolo && !loading ? (
+              <SlotNoOptions {...noOptionsProps}>{noOptionsText}</SlotNoOptions>
+            ) : null}
+          </SlotListbox>
+        </ListProvider>
+      </VariantColorProvider>
     );
-
-    if (!listboxProps.disablePortal) {
-      // For portal popup, the children should not inherit color inversion from the upper parent.
-      popup = <ColorInversion.Provider value={undefined}>{popup}</ColorInversion.Provider>;
-    }
   }
 
   return (
@@ -716,15 +741,15 @@ interface AutocompleteComponent {
     FreeSolo extends boolean | undefined = undefined,
   >(
     props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
-  ): JSX.Element;
+  ): React.JSX.Element;
   propTypes?: any;
 }
 
 Autocomplete.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Identifies the element (or elements) that describes the object.
    * @see aria-labelledby
@@ -741,25 +766,70 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   'aria-labelledby': PropTypes.string,
   /**
+   * If `true`, the portion of the selected suggestion that the user hasn't typed,
+   * known as the completion string, appears inline after the input cursor in the textbox.
+   * The inline completion string is visually highlighted and has a selected state.
+   * @default false
+   */
+  autoComplete: PropTypes.bool,
+  /**
    * If `true`, the `input` element is focused during the first mount.
    */
   autoFocus: PropTypes.bool,
   /**
+   * If `true`, the first option is automatically highlighted.
+   * @default false
+   */
+  autoHighlight: PropTypes.bool,
+  /**
+   * If `true`, the selected option becomes the value of the input
+   * when the Autocomplete loses focus unless the user chooses
+   * a different option or changes the character string in the input.
+   *
+   * When using the `freeSolo` mode, the typed value will be the input value
+   * if the Autocomplete loses focus without highlighting an option.
+   * @default false
+   */
+  autoSelect: PropTypes.bool,
+  /**
+   * Control if the input should be blurred when an option is selected:
+   *
+   * - `false` the input is not blurred.
+   * - `true` the input is always blurred.
+   * - `touch` the input is blurred after a touch event.
+   * - `mouse` the input is blurred after a mouse event.
+   * @default false
+   */
+  blurOnSelect: PropTypes.oneOfType([PropTypes.oneOf(['mouse', 'touch']), PropTypes.bool]),
+  /**
    * The icon to display in place of the default clear icon.
-   * @default <ClearIcon fontSize="small" />
+   * @default <ClearIcon fontSize="md" />
    */
   clearIcon: PropTypes.node,
   /**
+   * If `true`, the input's text is cleared on blur if no value is selected.
+   *
+   * Set it to `true` if you want to help the user enter a new value.
+   * Set it to `false` if you want to help the user resume their search.
+   * @default !props.freeSolo
+   */
+  clearOnBlur: PropTypes.bool,
+  /**
+   * If `true`, clear all values when the user presses escape and the popup is closed.
+   * @default false
+   */
+  clearOnEscape: PropTypes.bool,
+  /**
    * Override the default text for the *clear* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Clear'
    */
   clearText: PropTypes.string,
   /**
    * Override the default text for the *close popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Close'
    */
   closeText: PropTypes.string,
@@ -767,7 +837,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
   /**
    * The default value. Use when the component is not controlled.
    * @default props.multiple ? [] : null
@@ -789,10 +859,25 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   disableClearable: PropTypes.bool,
   /**
+   * If `true`, the popup won't close when a value is selected.
+   * @default false
+   */
+  disableCloseOnSelect: PropTypes.bool,
+  /**
    * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, will allow focus on disabled items.
+   * @default false
+   */
+  disabledItemsFocusable: PropTypes.bool,
+  /**
+   * If `true`, the list box in the popup will not wrap focus.
+   * @default false
+   */
+  disableListWrap: PropTypes.bool,
   /**
    * Trailing adornment for this input.
    */
@@ -800,16 +885,23 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   * @default false
    */
   error: PropTypes.bool,
   /**
    * A function that determines the filtered options to be rendered on search.
    *
-   * @param {T[]} options The options to render.
+   * @default createFilterOptions()
+   * @param {Value[]} options The options to render.
    * @param {object} state The state of the component.
-   * @returns {T[]}
+   * @returns {Value[]}
    */
   filterOptions: PropTypes.func,
+  /**
+   * If `true`, hide the selected options from the list box.
+   * @default false
+   */
+  filterSelectedOptions: PropTypes.bool,
   /**
    * Force the visibility display of the popup icon.
    * @default 'auto'
@@ -823,25 +915,33 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * The label to display when the tags are truncated (`limitTags`).
    *
-   * @param {number} more The number of truncated tags.
+   * @param {string | number} more The number of truncated tags.
    * @returns {ReactNode}
-   * @default (more) => `+${more}`
+   * @default (more: string | number) => `+${more}`
    */
   getLimitTagsText: PropTypes.func,
   /**
    * Used to determine the disabled state for a given option.
    *
-   * @param {T} option The option to test.
+   * @param {Value} option The option to test.
    * @returns {boolean}
    */
   getOptionDisabled: PropTypes.func,
+  /**
+   * Used to determine the key for a given option.
+   * This can be useful when the labels of options are not unique (since labels are used as keys by default).
+   *
+   * @param {Value} option The option to get the key for.
+   * @returns {string | number}
+   */
+  getOptionKey: PropTypes.func,
   /**
    * Used to determine the string value for a given option.
    * It's used to fill the input (and the list box options if `renderOption` is not provided).
    *
    * If used in free solo mode, it must accept both the type of the options and a string.
    *
-   * @param {T} option
+   * @param {Value} option
    * @returns {string}
    * @default (option) => option.label ?? option
    */
@@ -850,15 +950,26 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
    *
-   * @param {T} options The options to group.
+   * @param {Value} options The options to group.
    * @returns {string}
    */
   groupBy: PropTypes.func,
+  /**
+   * If `true`, the component handles the "Home" and "End" keys when the popup is open.
+   * It should move focus to the first option and last option, respectively.
+   * @default !props.freeSolo
+   */
+  handleHomeEndKeys: PropTypes.bool,
   /**
    * This prop is used to help implement the accessibility logic.
    * If you don't provide an id it will fall back to a randomly generated one.
    */
   id: PropTypes.string,
+  /**
+   * If `true`, the highlight can move to the input.
+   * @default false
+   */
+  includeInputInList: PropTypes.bool,
   /**
    * The input value.
    */
@@ -868,8 +979,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Uses strict equality by default.
    * ⚠️ Both arguments need to be handled, an option can only match with one value.
    *
-   * @param {T} option The option to test.
-   * @param {T} value The value to test against.
+   * @param {Value} option The option to test.
+   * @param {Value} value The value to test against.
    * @returns {boolean}
    */
   isOptionEqualToValue: PropTypes.func,
@@ -881,14 +992,14 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   limitTags: integerPropType,
   /**
    * If `true`, the component is in a loading state.
-   * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, e.g. `options` are empty).
+   * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, for example `options` are empty).
    * @default false
    */
   loading: PropTypes.bool,
   /**
    * Text to display when in a loading state.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Loading…'
    */
   loadingText: PropTypes.node,
@@ -904,7 +1015,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Text to display when there are no options.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'No options'
    */
   noOptionsText: PropTypes.node,
@@ -912,7 +1023,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Callback fired when the value changes.
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
-   * @param {T|T[]} value The new value of the component.
+   * @param {Value|Value[]} value The new value of the component.
    * @param {string} reason One of "createOption", "selectOption", "removeOption", "blur" or "clear".
    * @param {string} [details]
    */
@@ -929,8 +1040,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Callback fired when the highlight option changes.
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
-   * @param {T} option The highlighted option.
-   * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`.
+   * @param {Value} option The highlighted option.
+   * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`, `"touch"`.
    */
   onHighlightChange: PropTypes.func,
   /**
@@ -938,7 +1049,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {string} value The new value of the text input.
-   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`.
+   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`, `"blur"`, `"selectOption"`, `"removeOption"`
    */
   onInputChange: PropTypes.func,
   /**
@@ -957,9 +1068,14 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   open: PropTypes.bool,
   /**
+   * If `true`, the popup will open on input focus.
+   * @default false
+   */
+  openOnFocus: PropTypes.bool,
+  /**
    * Override the default text for the *open popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Open'
    */
   openText: PropTypes.string,
@@ -1012,6 +1128,12 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   required: PropTypes.bool,
   /**
+   * If `true`, the input's text is selected on focus.
+   * It helps the user clear the selected value.
+   * @default !props.freeSolo
+   */
+  selectOnFocus: PropTypes.bool,
+  /**
    * The size of the component.
    * @default 'md'
    */
@@ -1019,6 +1141,42 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    clearIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    limitTag: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    loading: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    noOptions: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    option: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    popupIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    wrapper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    clearIndicator: PropTypes.elementType,
+    endDecorator: PropTypes.elementType,
+    input: PropTypes.elementType,
+    limitTag: PropTypes.elementType,
+    listbox: PropTypes.elementType,
+    loading: PropTypes.elementType,
+    noOptions: PropTypes.elementType,
+    option: PropTypes.elementType,
+    popupIndicator: PropTypes.elementType,
+    root: PropTypes.elementType,
+    startDecorator: PropTypes.elementType,
+    wrapper: PropTypes.elementType,
+  }),
   /**
    * Leading adornment for this input.
    */
@@ -1053,7 +1211,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     return null;
   }),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'outlined'
    */
   variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

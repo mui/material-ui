@@ -1,0 +1,67 @@
+{
+  "props": {
+    "open": { "type": { "name": "bool" }, "required": true },
+    "anchorEl": {
+      "type": {
+        "name": "custom",
+        "description": "HTML element<br>&#124;&nbsp;object<br>&#124;&nbsp;func"
+      }
+    },
+    "children": { "type": { "name": "union", "description": "node<br>&#124;&nbsp;func" } },
+    "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
+    "direction": {
+      "type": { "name": "enum", "description": "'ltr'<br>&#124;&nbsp;'rtl'" },
+      "default": "'ltr'"
+    },
+    "disablePortal": { "type": { "name": "bool" }, "default": "false" },
+    "keepMounted": { "type": { "name": "bool" }, "default": "false" },
+    "modifiers": {
+      "type": {
+        "name": "arrayOf",
+        "description": "Array&lt;{ data?: object, effect?: func, enabled?: bool, fn?: func, name?: any, options?: object, phase?: 'afterMain'<br>&#124;&nbsp;'afterRead'<br>&#124;&nbsp;'afterWrite'<br>&#124;&nbsp;'beforeMain'<br>&#124;&nbsp;'beforeRead'<br>&#124;&nbsp;'beforeWrite'<br>&#124;&nbsp;'main'<br>&#124;&nbsp;'read'<br>&#124;&nbsp;'write', requires?: Array&lt;string&gt;, requiresIfExists?: Array&lt;string&gt; }&gt;"
+      }
+    },
+    "placement": {
+      "type": {
+        "name": "enum",
+        "description": "'auto-end'<br>&#124;&nbsp;'auto-start'<br>&#124;&nbsp;'auto'<br>&#124;&nbsp;'bottom-end'<br>&#124;&nbsp;'bottom-start'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'left-end'<br>&#124;&nbsp;'left-start'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right-end'<br>&#124;&nbsp;'right-start'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top-end'<br>&#124;&nbsp;'top-start'<br>&#124;&nbsp;'top'"
+      },
+      "default": "'bottom'"
+    },
+    "popperOptions": {
+      "type": {
+        "name": "shape",
+        "description": "{ modifiers?: array, onFirstUpdate?: func, placement?: 'auto-end'<br>&#124;&nbsp;'auto-start'<br>&#124;&nbsp;'auto'<br>&#124;&nbsp;'bottom-end'<br>&#124;&nbsp;'bottom-start'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'left-end'<br>&#124;&nbsp;'left-start'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right-end'<br>&#124;&nbsp;'right-start'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top-end'<br>&#124;&nbsp;'top-start'<br>&#124;&nbsp;'top', strategy?: 'absolute'<br>&#124;&nbsp;'fixed' }"
+      },
+      "default": "{}"
+    },
+    "popperRef": { "type": { "name": "custom", "description": "ref" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
+    },
+    "transition": { "type": { "name": "bool" }, "default": "false" }
+  },
+  "name": "Popper",
+  "imports": ["import { Popper } from '@mui/base/Popper';", "import { Popper } from '@mui/base';"],
+  "classes": [
+    {
+      "key": "root",
+      "className": "base-Popper-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "muiName": "Popper",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-base/src/Popper/Popper.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-popper/\">Popper</a></li></ul>",
+  "cssComponent": false
+}

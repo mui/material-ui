@@ -1,13 +1,28 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, screen, describeJoyColorInversion } from 'test/utils';
-import { TabsContext, useTabs, TabsUnstyledProps } from '@mui/base/TabsUnstyled';
+import { createRenderer, screen } from '@mui/internal-test-utils';
+import { TabsProps } from '@mui/base/Tabs';
+import { useTabs, TabsProvider as BaseTabsProvider } from '@mui/base/useTabs';
+import { useTabsList, TabsListProvider as BaseTabsListProvider } from '@mui/base/useTabsList';
 import { ThemeProvider } from '@mui/joy/styles';
 import Tab, { tabClasses as classes } from '@mui/joy/Tab';
+import describeConformance from '../../test/describeConformance';
 
-function TabsProvider({ children, ...props }: TabsUnstyledProps) {
-  const { tabsContextValue } = useTabs(props);
-  return <TabsContext.Provider value={tabsContextValue}>{children}</TabsContext.Provider>;
+function TabsListProvider({ children }: React.PropsWithChildren<{}>) {
+  const { contextValue: tabsListContextValue } = useTabsList({
+    rootRef: { current: null },
+  });
+  return <BaseTabsListProvider value={tabsListContextValue}>{children}</BaseTabsListProvider>;
+}
+
+function TabsProvider({ children, ...props }: TabsProps) {
+  const { contextValue: tabsContextValue } = useTabs(props);
+
+  return (
+    <BaseTabsProvider value={tabsContextValue}>
+      <TabsListProvider>{children}</TabsListProvider>
+    </BaseTabsProvider>
+  );
 }
 
 describe('Joy <Tab />', () => {
@@ -17,20 +32,18 @@ describe('Joy <Tab />', () => {
     classes,
     inheritComponent: 'button',
     render: (node) => render(<TabsProvider defaultValue={0}>{node}</TabsProvider>),
-    wrapMount: (mount) => (node) => mount(<TabsProvider defaultValue={0}>{node}</TabsProvider>),
     ThemeProvider,
     muiName: 'JoyTab',
     refInstanceof: window.HTMLButtonElement,
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
-    skip: ['componentsProp', 'classesRoot', 'reactTestRenderer'],
+    skip: ['componentsProp', 'classesRoot'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
-
-  describeJoyColorInversion(<Tab />, {
-    muiName: 'JoyTab',
-    classes,
-    wrapper: (node) => <TabsProvider defaultValue={0}>{node}</TabsProvider>,
-  });
 
   it('prop: variant', () => {
     render(
@@ -57,6 +70,6 @@ describe('Joy <Tab />', () => {
       </TabsProvider>,
     );
     expect(screen.getByRole('tab')).to.have.class(classes.disabled);
-    expect(screen.getByRole('tab')).to.have.attribute('disabled');
+    expect(screen.getByRole('tab')).to.have.attribute('aria-disabled');
   });
 });

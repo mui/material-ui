@@ -1,8 +1,24 @@
 import * as React from 'react';
 import { OverrideProps, OverridableStringUnion } from '@mui/types';
 import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type AutocompleteOptionSlot = 'root';
+
+export interface AutocompleteOptionSlots {
+  /**
+   * The component that renders the root.
+   * @default 'li'
+   */
+  root?: React.ElementType;
+}
+
+export type AutocompleteOptionSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  AutocompleteOptionSlots,
+  {
+    root: SlotProps<'li', {}, AutocompleteOptionOwnerState>;
+  }
+>;
 
 export interface AutocompleteOptionPropsColorOverrides {}
 export interface AutocompleteOptionPropsVariantOverrides {}
@@ -15,7 +31,7 @@ export interface AutocompleteOptionTypeMap<P = {}, D extends React.ElementType =
      */
     color?: OverridableStringUnion<ColorPaletteProp, AutocompleteOptionPropsColorOverrides>;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, AutocompleteOptionPropsVariantOverrides>;
@@ -23,7 +39,7 @@ export interface AutocompleteOptionTypeMap<P = {}, D extends React.ElementType =
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
-  };
+  } & AutocompleteOptionSlotsAndSlotProps;
   defaultComponent: D;
 }
 

@@ -1,11 +1,15 @@
 import * as React from 'react';
-import Paper from '@mui/material/Paper';
-import { styled, Stack } from '@mui/system';
+import Stack from '@mui/system/Stack';
+import { styled } from '@mui/system';
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+const Item = styled('div')(({ theme }) => ({
+  backgroundColor: '#fff',
   padding: theme.spacing(1),
   textAlign: 'center',
+  borderRadius: 4,
+  ...theme.applyStyles('dark', {
+    backgroundColor: '#262B32',
+  }),
 }));
 
 export default function ResponsiveStack() {

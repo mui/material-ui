@@ -1,55 +1,66 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeProvider } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import {
   act,
   createRenderer,
   screen,
   RenderCounter,
-  strictModeDoubleLoggingSupressed,
-} from 'test/utils';
+  strictModeDoubleLoggingSuppressed,
+} from '@mui/internal-test-utils';
 import mediaQuery from 'css-mediaquery';
 import { expect } from 'chai';
 import { stub } from 'sinon';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { ThemeProvider } from '@mui/material/styles';
 
 const usesUseSyncExternalStore = React.useSyncExternalStore !== undefined;
+const matchMediaInstances = new Map();
 
-function createMatchMedia(width, ref) {
+function createMatchMedia(width) {
   const listeners = [];
   return (query) => {
-    const instance = {
-      matches: mediaQuery.match(query, {
-        width,
-      }),
-      // Mocking matchMedia in Safari < 14 where MediaQueryList doesn't inherit from EventTarget
-      addListener: (listener) => {
-        listeners.push(listener);
-      },
-      removeListener: (listener) => {
-        const index = listeners.indexOf(listener);
-        if (index > -1) {
-          listeners.splice(index, 1);
-        }
-      },
-    };
-    ref.push({
-      instance,
-      listeners,
-    });
+    let instance = matchMediaInstances.get(query)?.instance;
+
+    if (!instance) {
+      instance = {
+        matches: mediaQuery.match(query, {
+          width,
+        }),
+        addEventListener: (eventType, listener) => {
+          listeners.push(listener);
+        },
+        removeEventListener: (eventType, listener) => {
+          const index = listeners.indexOf(listener);
+          if (index > -1) {
+            listeners.splice(index, 1);
+          }
+        },
+      };
+      matchMediaInstances.set(query, {
+        instance,
+        listeners,
+      });
+    }
+
     return instance;
   };
 }
 
 describe('useMediaQuery', () => {
-  const { render, renderToString } = createRenderer();
+  const { render, renderToString } = createRenderer({ strict: true });
+
+  beforeEach(() => {
+    matchMediaInstances.clear();
+  });
 
   describe('without window.matchMedia', () => {
     let originalMatchmedia;
+
     beforeEach(() => {
       originalMatchmedia = window.matchMedia;
       delete window.matchMedia;
     });
+
     afterEach(() => {
       window.matchMedia = originalMatchmedia;
     });
@@ -67,12 +78,9 @@ describe('useMediaQuery', () => {
   });
 
   describe('with window.matchMedia', () => {
-    let matchMediaInstances;
-
     beforeEach(() => {
-      matchMediaInstances = [];
-      const fakeMatchMedia = createMatchMedia(1200, matchMediaInstances);
-      // can't stub non-existent properties with sinon
+      const fakeMatchMedia = createMatchMedia(1200);
+      // can't stub nonexistent properties with sinon
       // jsdom does not implement window.matchMedia
       if (window.matchMedia === undefined) {
         window.matchMedia = fakeMatchMedia;
@@ -144,7 +152,7 @@ describe('useMediaQuery', () => {
         expect(getRenderCountRef.current()).to.equal(1);
       });
 
-      it('should render twice if the default value does not match the expectation', () => {
+      it('render API: should render once if the default value does not match the expectation', () => {
         const getRenderCountRef = React.createRef();
         function Test() {
           const matches = useMediaQuery('(min-width:2000px)', {
@@ -163,7 +171,7 @@ describe('useMediaQuery', () => {
         expect(getRenderCountRef.current()).to.equal(usesUseSyncExternalStore ? 1 : 2);
       });
 
-      it('should render once if the default value does not match the expectation but `noSsr` is enabled', () => {
+      it('render API: should render once if the default value does not match the expectation but `noSsr` is enabled', () => {
         const getRenderCountRef = React.createRef();
         function Test() {
           const matches = useMediaQuery('(min-width:2000px)', {
@@ -179,6 +187,47 @@ describe('useMediaQuery', () => {
         }
 
         render(<Test />);
+        expect(screen.getByTestId('matches').textContent).to.equal('false');
+        expect(getRenderCountRef.current()).to.equal(1);
+      });
+
+      it('hydrate API: should render twice if the default value does not match the expectation', () => {
+        const getRenderCountRef = React.createRef();
+        function Test() {
+          const matches = useMediaQuery('(min-width:2000px)', {
+            defaultMatches: true,
+          });
+
+          return (
+            <RenderCounter ref={getRenderCountRef}>
+              <span data-testid="matches">{`${matches}`}</span>
+            </RenderCounter>
+          );
+        }
+
+        const { hydrate } = renderToString(<Test />);
+        hydrate();
+        expect(screen.getByTestId('matches').textContent).to.equal('false');
+        expect(getRenderCountRef.current()).to.equal(2);
+      });
+
+      it('hydrate API: should render once if the default value does not match the expectation but `noSsr` is enabled', () => {
+        const getRenderCountRef = React.createRef();
+        function Test() {
+          const matches = useMediaQuery('(min-width:2000px)', {
+            defaultMatches: true,
+            noSsr: true,
+          });
+
+          return (
+            <RenderCounter ref={getRenderCountRef}>
+              <span data-testid="matches">{`${matches}`}</span>
+            </RenderCounter>
+          );
+        }
+
+        const { hydrate } = renderToString(<Test />);
+        hydrate();
         expect(screen.getByTestId('matches').textContent).to.equal('false');
         expect(getRenderCountRef.current()).to.equal(1);
       });
@@ -234,8 +283,9 @@ describe('useMediaQuery', () => {
       expect(getRenderCountRef.current()).to.equal(usesUseSyncExternalStore ? 2 : 4);
     });
 
-    it('should observe the media query', () => {
+    it('should observe the media query', async () => {
       const getRenderCountRef = React.createRef();
+      const query = '(min-width:2000px)';
       function Test(props) {
         const matches = useMediaQuery(props.query);
 
@@ -249,21 +299,23 @@ describe('useMediaQuery', () => {
         query: PropTypes.string.isRequired,
       };
 
-      render(<Test query="(min-width:2000px)" />);
+      render(<Test query={query} />);
+
       expect(getRenderCountRef.current()).to.equal(1);
       expect(screen.getByTestId('matches').textContent).to.equal('false');
 
-      act(() => {
-        matchMediaInstances[matchMediaInstances.length - 1].instance.matches = true;
-        matchMediaInstances[matchMediaInstances.length - 1].listeners[0]();
+      await act(async () => {
+        matchMediaInstances.get(query).instance.matches = true;
+        matchMediaInstances.get(query).listeners[0]();
       });
+
       expect(screen.getByTestId('matches').textContent).to.equal('true');
       expect(getRenderCountRef.current()).to.equal(2);
     });
   });
 
   describe('server-side', () => {
-    it('should use the ssr match media ponyfill', () => {
+    it('should use the SSR match media implementation', () => {
       function MyComponent() {
         const matches = useMediaQuery('(min-width:2000px)');
 
@@ -303,7 +355,7 @@ describe('useMediaQuery', () => {
         render(<MyComponent />);
       }).toErrorDev([
         'MUI: The `query` argument provided is invalid',
-        !strictModeDoubleLoggingSupressed && 'MUI: The `query` argument provided is invalid',
+        !strictModeDoubleLoggingSuppressed && 'MUI: The `query` argument provided is invalid',
       ]);
     });
   });

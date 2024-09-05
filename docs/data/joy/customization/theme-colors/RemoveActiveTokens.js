@@ -26,7 +26,7 @@ const theme = extendTheme({
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
-export default function BootstrapVariantTokens() {
+export default function RemoveActiveTokens() {
   // the `node` is used for attaching CSS variables to this demo, you might not need it in your application.
   const [node, setNode] = React.useState(null);
   useEnhancedEffect(() => {
@@ -34,11 +34,7 @@ export default function BootstrapVariantTokens() {
   }, []);
 
   return (
-    <CssVarsProvider
-      theme={theme}
-      colorSchemeNode={node || null}
-      colorSchemeSelector="#remove-active-tokens-demo"
-    >
+    <CssVarsProvider theme={theme} colorSchemeNode={node || null}>
       <Box
         id="remove-active-tokens-demo"
         sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}

@@ -1,19 +1,10 @@
 import * as React from 'react';
-import RootSvg, { RootSvgProps } from 'docs/src/icons/RootSvg';
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 
-function SvgComponent(props: RootSvgProps) {
+export default function SvgStackOverflow(props: SvgIconProps) {
   return (
-    <RootSvg
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="currentColor"
-      width="20"
-      height="20"
-      {...props}
-    >
-      <path d="M18.986 21.865v-6.404h2.134V24H1.844v-8.539h2.13v6.404h15.012zM6.111 19.731H16.85v-2.137H6.111v2.137zm.259-4.852l10.48 2.189.451-2.07-10.478-2.187-.453 2.068zm1.359-5.056l9.705 4.53.903-1.95-9.706-4.53-.902 1.936v.014zm2.715-4.785l8.217 6.855 1.359-1.62-8.216-6.853-1.35 1.617-.01.001zM15.751 0l-1.746 1.294 6.405 8.604 1.746-1.294L15.749 0h.002z" />
-    </RootSvg>
+    <SvgIcon {...props}>
+      <path d="M19.04 20.04v-5.87h1.99V22H3v-7.83h2v5.87h14.05-.01ZM6.98 18.09h10.05v-1.96H6.99v1.96Zm.25-4.45 9.8 2 .42-1.89-9.8-2.02-.41 1.9-.01.01ZM8.5 9l9.07 4.15.84-1.78L9.34 7.2 8.5 9V9Zm2.53-4.38 7.69 6.28 1.27-1.49-7.69-6.28-1.26 1.49ZM16.01 0l-1.64 1.2 6 7.87L22 7.88 16 0Z" />
+    </SvgIcon>
   );
 }
-
-export default SvgComponent;

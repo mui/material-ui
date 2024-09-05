@@ -1,10 +1,17 @@
 import * as React from 'react';
-import FormControlUnstyled, {
-  useFormControlUnstyledContext,
-} from '@mui/base/FormControlUnstyled';
+import { FormControl, useFormControlContext } from '@mui/base/FormControl';
+
+export default function UseFormControl() {
+  return (
+    <FormControl defaultValue="" required>
+      <CustomInput />
+      <ControlStateDisplay />
+    </FormControl>
+  );
+}
 
 function CustomInput() {
-  const formControlContext = useFormControlUnstyledContext();
+  const formControlContext = useFormControlContext();
 
   if (formControlContext === undefined) {
     return null;
@@ -26,7 +33,7 @@ function CustomInput() {
 }
 
 function ControlStateDisplay() {
-  const formControlContext = useFormControlUnstyledContext();
+  const formControlContext = useFormControlContext();
   if (formControlContext === undefined) {
     return null;
   }
@@ -38,14 +45,5 @@ function ControlStateDisplay() {
       {filled ? 'filled' : 'empty'}&nbsp;|&nbsp;
       {focused ? 'focused' : 'not focused'}
     </p>
-  );
-}
-
-export default function UseFormControl() {
-  return (
-    <FormControlUnstyled defaultValue="" required>
-      <CustomInput />
-      <ControlStateDisplay />
-    </FormControlUnstyled>
   );
 }

@@ -1,16 +1,17 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Badge component
 components: Badge
 githubLabel: 'component: badge'
-unstyled: /base/react-badge/
+unstyled: /base-ui/react-badge/
+githubSource: packages/mui-material/src/Badge
 ---
 
 # Badge
 
 <p class="description">Badge generates a small badge to the top-right of its child(ren).</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic badge
 

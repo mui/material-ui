@@ -1,7 +1,7 @@
 import * as React from 'react';
-import PopperUnstyled, { PopperPlacementType } from '@mui/base/PopperUnstyled';
+import { Popper, PopperPlacementType } from '@mui/base/Popper';
 
-function Radio({ value, ...props }: JSX.IntrinsicElements['input']) {
+function Radio({ value, ...props }: React.JSX.IntrinsicElements['input']) {
   return (
     <span>
       <input
@@ -25,8 +25,8 @@ function PlacementForm({
   return (
     <div
       style={{
-        backgroundColor: 'rgba(0,0,0,0.04)',
-        borderRadius: '4px',
+        backgroundColor: 'rgba(0,0,0,0.05)',
+        borderRadius: '8px',
         padding: '0.5rem',
       }}
     >
@@ -98,19 +98,20 @@ export default function PlacementPopper() {
   return (
     <div style={{ width: '100%' }}>
       <PlacementForm setPlacement={setPlacement} />
-      <div style={{ padding: '3rem', textAlign: 'center' }}>
+      <div style={{ padding: '4rem 0', textAlign: 'center' }}>
         <span
           ref={(elm) => setAnchorEl(elm)}
           aria-describedby="placement-popper"
           style={{
             display: 'inline-block',
-            backgroundColor: 'rgba(0,0,0,0.12)',
-            padding: '1.5rem',
+            backgroundColor: 'rgba(0,0,0,0.05)',
+            padding: '0.5rem 1rem',
+            borderRadius: '0.5rem',
           }}
         >
-          ANCHOR
+          Anchor
         </span>
-        <PopperUnstyled
+        <Popper
           id="placement-popper"
           open={Boolean(anchorEl)}
           anchorEl={anchorEl}
@@ -118,14 +119,17 @@ export default function PlacementPopper() {
         >
           <div
             style={{
-              padding: '0.25rem',
+              padding: '0.5rem 1rem',
               border: '1px solid',
-              boxShadow: '0 2px 8px 0 rgba(0,0,0,0.2)',
+              borderColor: 'rgba(0,0,0,0.2)',
+              margin: '0.5rem',
+              borderRadius: '0.5rem',
+              boxShadow: '0 2px 8px 0 rgba(0,0,0,0.1)',
             }}
           >
             The content of the Popper.
           </div>
-        </PopperUnstyled>
+        </Popper>
       </div>
     </div>
   );

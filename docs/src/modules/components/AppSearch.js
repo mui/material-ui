@@ -1,89 +1,103 @@
 import * as React from 'react';
-import { createPortal } from 'react-dom';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOM from 'react-dom';
+import * as ReactDOMServer from 'react-dom/server';
 import PropTypes from 'prop-types';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react';
 import Chip from '@mui/material/Chip';
-import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
-import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
-import EditRoundedIcon from '@mui/icons-material/EditRounded';
-import HandymanRoundedIcon from '@mui/icons-material/HandymanRounded';
-import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import SearchIcon from '@mui/icons-material/Search';
+import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
+import StickyNote2RoundedIcon from '@mui/icons-material/StickyNote2Rounded';
+import SmartButtonRoundedIcon from '@mui/icons-material/SmartButtonRounded';
+import IntegrationInstructionsRoundedIcon from '@mui/icons-material/IntegrationInstructionsRounded';
+import DesignServicesRoundedIcon from '@mui/icons-material/DesignServicesRounded';
+import CopyrightRoundedIcon from '@mui/icons-material/CopyrightRounded';
+import CollectionsBookmarkRoundedIcon from '@mui/icons-material/CollectionsBookmarkRounded';
+import LibraryBooksRoundedIcon from '@mui/icons-material/LibraryBooksRounded';
+import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
+import ChecklistRoundedIcon from '@mui/icons-material/ChecklistRounded';
+import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRenameOutlineRounded';
+import NewspaperRoundedIcon from '@mui/icons-material/NewspaperRounded';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha, styled } from '@mui/material/styles';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { LANGUAGES_SSR } from 'docs/config';
-import Link from 'docs/src/modules/components/Link';
-import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
+import { Link } from '@mui/docs/Link';
+import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
-import getUrlProduct from 'docs/src/modules/utils/getUrlProduct';
+import PageContext from 'docs/src/modules/components/PageContext';
 
 const SearchButton = styled('button')(({ theme }) => [
   {
-    minHeight: 34,
-    display: 'flex',
-    alignItems: 'center',
+    minHeight: 32,
+    minWidth: 32,
     margin: 0,
     paddingLeft: theme.spacing(1),
+    display: 'flex',
+    alignItems: 'center',
+    gap: '6px',
     [theme.breakpoints.only('xs')]: {
       backgroundColor: 'transparent',
       padding: 0,
-      minWidth: 34,
       justifyContent: 'center',
       '& > *:not(.MuiSvgIcon-root)': {
         display: 'none',
       },
     },
-    [theme.breakpoints.up('sm')]: {
-      minWidth: 200,
-    },
-    fontFamily: theme.typography.fontFamily,
     position: 'relative',
-    backgroundColor: (theme.vars || theme).palette.grey[50],
-    color: (theme.vars || theme).palette.text.secondary,
+    backgroundColor: alpha(theme.palette.grey[50], 0.6),
+    fontFamily: theme.typography.fontFamily,
     fontSize: theme.typography.pxToRem(14),
+    color: (theme.vars || theme).palette.text.secondary,
     border: `1px solid ${(theme.vars || theme).palette.grey[200]}`,
-    borderRadius: 10,
+    borderRadius: (theme.vars || theme).shape.borderRadius,
     cursor: 'pointer',
     transitionProperty: 'all',
     transitionDuration: '150ms',
+    boxShadow: `hsl(200, 0%, 100%) 0 1px 0 inset, ${alpha(theme.palette.grey[100], 0.4)} 0 -1px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
     '&:hover': {
-      background: alpha(theme.palette.grey[100], 0.7),
+      background: alpha(theme.palette.grey[100], 0.5),
       borderColor: (theme.vars || theme).palette.grey[300],
+      boxShadow: 'none',
+    },
+    '&:focus-visible': {
+      outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+      outlineOffset: '2px',
     },
   },
   theme.applyDarkStyles({
-    backgroundColor: (theme.vars || theme).palette.primaryDark[900],
-    borderColor: (theme.vars || theme).palette.primaryDark[700],
+    backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+    borderColor: alpha(theme.palette.primaryDark[600], 0.4),
+    boxShadow: `${alpha(theme.palette.primaryDark[600], 0.1)} 0 1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
     '&:hover': {
-      background: alpha(theme.palette.primaryDark[700], 0.4),
+      background: (theme.vars || theme).palette.primaryDark[700],
       borderColor: (theme.vars || theme).palette.primaryDark[600],
+      boxShadow: 'none',
     },
   }),
 ]);
 
-const SearchLabel = styled('span')(({ theme }) => {
-  return {
-    marginLeft: theme.spacing(1),
-    marginRight: 'auto',
-  };
-});
+const SearchLabel = styled('span')(({ theme }) => ({
+  marginRight: 'auto',
+  marginBottom: '1px', // optical alignment
+  color: (theme.vars || theme).palette.text.tertiary,
+  lineHeight: 1,
+}));
 
-const Shortcut = styled('div')(({ theme }) => {
+const Shortcut = styled('kbd')(({ theme }) => {
   return {
+    all: 'unset',
     fontSize: theme.typography.pxToRem(12),
-    fontWeight: 700,
-    lineHeight: '20px',
+    fontWeight: 'bold',
+    lineHeight: '19px',
     marginLeft: theme.spacing(0.5),
     border: `1px solid ${(theme.vars || theme).palette.grey[200]}`,
     backgroundColor: '#FFF',
-    padding: theme.spacing(0, 0.8),
-    borderRadius: 5,
+    padding: theme.spacing(0, 0.5),
+    borderRadius: 7,
     ...theme.applyDarkStyles({
-      borderColor: (theme.vars || theme).palette.primaryDark[500],
+      borderColor: (theme.vars || theme).palette.primaryDark[600],
       backgroundColor: (theme.vars || theme).palette.primaryDark[800],
     }),
   };
@@ -93,46 +107,146 @@ function NewStartScreen() {
   const startScreenOptions = [
     {
       category: {
-        name: 'Getting started',
-        icon: <ArticleRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        name: 'Material UI',
       },
       items: [
-        { name: 'Installation', href: '/material-ui/getting-started/installation/' },
-        { name: 'Usage', href: '/material-ui/getting-started/usage/' },
-        { name: 'Learn', href: '/material-ui/getting-started/learn/' },
+        {
+          name: 'Installation',
+          href: '/material-ui/getting-started/installation/',
+          icon: <DownloadRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'Components',
+          href: '/material-ui/getting-started/supported-components/',
+          icon: <SmartButtonRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'Example projects',
+          href: '/material-ui/getting-started/example-projects/',
+          icon: <LibraryBooksRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'Templates',
+          href: '/material-ui/getting-started/templates/',
+          icon: <CollectionsBookmarkRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
       ],
     },
     {
       category: {
-        name: 'Popular searches',
-        icon: <ToggleOffRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        name: 'Base UI',
       },
       items: [
-        { name: 'Material Icons', href: '/material-ui/material-icons/' },
-        { name: 'Text Field', href: '/material-ui/react-text-field/' },
-        { name: 'Button', href: '/material-ui/react-button/' },
+        {
+          name: 'Installation',
+          href: '/base-ui/getting-started/quickstart/',
+          icon: <DownloadRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'Components',
+          href: '/base-ui/all-components/',
+          icon: <SmartButtonRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'Customization',
+          href: '/base-ui/getting-started/customization/',
+          icon: <DesignServicesRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'Usage',
+          href: '/base-ui/getting-started/usage/',
+          icon: <DriveFileRenameOutlineRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
       ],
     },
     {
       category: {
-        name: 'Customization',
-        icon: <EditRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        name: 'MUI X',
       },
       items: [
-        { name: 'How to customize', href: '/material-ui/customization/how-to-customize/' },
-        { name: 'Theming', href: '/material-ui/customization/theming/' },
-        { name: 'Default theme', href: '/material-ui/customization/default-theme/' },
+        {
+          name: 'Overview',
+          href: '/x/introduction/',
+          icon: <StickyNote2RoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'Licensing',
+          href: '/x/introduction/licensing/',
+          icon: <CopyrightRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'What is new in MUI X',
+          href: '/x/whats-new/',
+          icon: <NewspaperRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
       ],
     },
     {
       category: {
-        name: 'System',
-        icon: <HandymanRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        name: 'Joy UI',
       },
       items: [
-        { name: 'Overview', href: '/system/getting-started/overview/' },
-        { name: 'Properties', href: '/system/properties/' },
-        { name: 'The sx prop', href: '/system/getting-started/the-sx-prop/' },
+        {
+          name: 'Installation',
+          href: '/joy-ui/getting-started/installation/',
+          icon: <DownloadRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'Templates',
+          href: '/joy-ui/getting-started/templates/',
+          icon: <CollectionsBookmarkRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'Customization',
+          href: '/joy-ui/customization/approaches/',
+          icon: <DesignServicesRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+      ],
+    },
+    {
+      category: {
+        name: 'Toolpad',
+      },
+      items: [
+        {
+          name: 'Overview',
+          href: '/toolpad/studio/getting-started/',
+          icon: <StickyNote2RoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'Why Toolpad?',
+          href: '/toolpad/studio/getting-started/why-toolpad/',
+          icon: <ChecklistRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'Example applications',
+          href: '/toolpad/studio/examples/',
+          icon: <LibraryBooksRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+      ],
+    },
+    {
+      category: {
+        name: 'MUI System',
+      },
+      items: [
+        {
+          name: 'Overview',
+          href: '/system/getting-started/',
+          icon: <StickyNote2RoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'Usage',
+          href: '/system/getting-started/usage/',
+          icon: (
+            <IntegrationInstructionsRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />
+          ),
+        },
+        {
+          name: 'The sx prop',
+          href: '/system/getting-started/the-sx-prop/',
+          icon: <SettingsRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
       ],
     },
   ];
@@ -140,14 +254,11 @@ function NewStartScreen() {
     <div className="DocSearch-NewStartScreen">
       {startScreenOptions.map(({ category, items }) => (
         <div key={category.name} className="DocSearch-NewStartScreenCategory">
-          <div className="DocSearch-NewStartScreenTitle">
-            {category.icon}
-            {category.name}
-          </div>
-          {items.map(({ name, href }) => (
+          <div className="DocSearch-NewStartScreenTitle">{category.name}</div>
+          {items.map(({ name, icon, href }) => (
             <NextLink key={name} href={href} className="DocSearch-NewStartScreenItem">
+              {icon}
               {name}
-              <KeyboardArrowRightRounded className="DocSearch-NewStartScreenItemIcon" />
             </NextLink>
           ))}
         </div>
@@ -156,27 +267,46 @@ function NewStartScreen() {
   );
 }
 
-function DocSearcHit(props) {
-  const { children, hit } = props;
+const productNameProductId = {
+  'material-ui': 'Material UI',
+  'joy-ui': 'Joy UI',
+  'base-ui': 'Base UI',
+  x: 'MUI X',
+  system: 'MUI System',
+  toolpad: 'Toolpad',
+  'toolpad-studio': 'Toolpad Studio',
+  'toolpad-core': 'Toolpad Core',
+  'docs-infra': 'Docs Infra',
+};
 
-  function displayTag(pathname) {
-    // does not need to show product label for MUI X because they are grouped by the product name in the search
-    // ie. Data Grid, Date Picker
-    if (!pathname.match(/^\/(material-ui|joy-ui|base)\//)) {
-      return null;
-    }
-    let text = '';
-    if (pathname.startsWith('/material-ui/')) {
-      text = 'Material UI';
-    }
-    if (pathname.startsWith('/joy-ui/')) {
-      text = 'Joy UI';
-    }
-    if (pathname.startsWith('/base/')) {
-      text = 'MUI Base';
-    }
-    return <Chip label={text} size="small" variant="outlined" sx={{ mr: 1 }} />;
+export function convertProductIdToName(productInfo) {
+  return (
+    productNameProductId[productInfo.productId] ||
+    productNameProductId[productInfo.productCategoryId]
+  );
+}
+
+function getDisplayTag(hit) {
+  if (hit.productId === undefined || hit.productCategoryId === undefined) {
+    return null;
   }
+
+  const productName = convertProductIdToName({
+    productId: hit.productId,
+    productCategoryId: hit.productCategoryId,
+  });
+
+  if (!productName) {
+    console.error(
+      `getDisplayTag missing mapping for productId: ${hit.productId}, pathname: ${hit.pathname}.`,
+    );
+  }
+
+  return <Chip label={productName} size="small" variant="outlined" sx={{ mr: 1 }} />;
+}
+
+function DocSearchHit(props) {
+  const { children, hit } = props;
 
   if (hit.pathname) {
     return (
@@ -186,7 +316,7 @@ function DocSearcHit(props) {
         sx={{ display: 'flex !important', '& .DocSearch-Hit-Container': { flex: 1, minWidth: 0 } }}
       >
         {children}
-        {displayTag(hit.pathname)}
+        {getDisplayTag(hit)}
       </Link>
     );
   }
@@ -196,30 +326,31 @@ function DocSearcHit(props) {
   return <Link href={hit.url}>{children}</Link>;
 }
 
-DocSearcHit.propTypes = {
+DocSearchHit.propTypes = {
   children: PropTypes.node,
   hit: PropTypes.object.isRequired,
 };
 
-export default function AppSearch() {
+export default function AppSearch(props) {
   useLazyCSS(
     'https://cdn.jsdelivr.net/npm/@docsearch/css@3.0.0-alpha.40/dist/style.min.css',
     '#app-search',
   );
-  const FADE_DURATION = 100; // ms
+  const FADE_DURATION = 120; // ms
   const t = useTranslate();
   const userLanguage = useUserLanguage();
   const searchButtonRef = React.useRef(null);
   const [isOpen, setIsOpen] = React.useState(false);
   const [initialQuery, setInitialQuery] = React.useState(undefined);
-  const facetFilterLanguage =
-    LANGUAGES_SSR.indexOf(userLanguage) !== -1 ? `language:${userLanguage}` : `language:en`;
+  const facetFilterLanguage = LANGUAGES_SSR.includes(userLanguage)
+    ? `language:${userLanguage}`
+    : `language:en`;
   const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0;
   const onOpen = React.useCallback(() => {
     setIsOpen(true);
   }, [setIsOpen]);
   const router = useRouter();
-  const productSpace = getUrlProduct(router.asPath);
+  const pageContext = React.useContext(PageContext);
 
   const keyboardNavigator = {
     navigate({ item }) {
@@ -288,39 +419,58 @@ export default function AppSearch() {
     return () => {};
   }, [isOpen]);
 
-  const search = `${t('algoliaSearch')}…`;
+  const optionalFilters = [];
+  if (pageContext.productId !== 'null') {
+    optionalFilters.push(`productId:${pageContext.productId}`);
+  } else if (pageContext.productCategoryId !== 'null') {
+    optionalFilters.push(`productCategoryId:${pageContext.productCategoryId}`);
+  }
 
   return (
     <React.Fragment>
-      <SearchButton ref={searchButtonRef} onClick={onOpen}>
-        <SearchIcon
-          fontSize="small"
-          sx={(theme) => ({
-            color: 'primary.500',
-            ...theme.applyDarkStyles({
-              color: 'primary.300',
-            }),
-          })}
-        />
-        <SearchLabel>{search}</SearchLabel>
-        <Shortcut>
+      <SearchButton
+        ref={searchButtonRef}
+        onClick={onOpen}
+        aria-labelledby="app-search-label"
+        {...props}
+      >
+        <SearchIcon color="primary" sx={{ fontSize: '1.125rem' }} />
+        <SearchLabel id="app-search-label">{t('searchButton')}</SearchLabel>
+        <Shortcut aria-hidden="true">
           {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
           {macOS ? '⌘' : 'Ctrl+'}K
         </Shortcut>
       </SearchButton>
       {isOpen &&
-        createPortal(
+        ReactDOM.createPortal(
           <DocSearchModal
             initialQuery={initialQuery}
-            appId={'TZGZ85B9TB'}
-            apiKey={'8177dfb3e2be72b241ffb8c5abafa899'}
+            appId="TZGZ85B9TB"
+            apiKey="8177dfb3e2be72b241ffb8c5abafa899"
             indexName="material-ui"
             searchParameters={{
               facetFilters: ['version:master', facetFilterLanguage],
-              optionalFilters: [`product:${productSpace}`],
+              optionalFilters,
+              attributesToRetrieve: [
+                // Copied from https://github.com/algolia/docsearch/blob/ce0c865cd8767e961ce3088b3155fc982d4c2e2e/packages/docsearch-react/src/DocSearchModal.tsx#L231
+                'hierarchy.lvl0',
+                'hierarchy.lvl1',
+                'hierarchy.lvl2',
+                'hierarchy.lvl3',
+                'hierarchy.lvl4',
+                'hierarchy.lvl5',
+                'hierarchy.lvl6',
+                'content',
+                'type',
+                'url',
+                // Extra
+                'productId',
+                'productCategoryId',
+              ],
+              analyticsTags: [facetFilterLanguage, `product:${pageContext.productId}`],
               hitsPerPage: 40,
             }}
-            placeholder={search}
+            placeholder={`${t('algoliaSearch')}`}
             transformItems={(items) => {
               return items.map((item) => {
                 // `url` contains the domain
@@ -340,7 +490,7 @@ export default function AppSearch() {
                 };
               });
             }}
-            hitComponent={DocSearcHit}
+            hitComponent={DocSearchHit}
             initialScrollY={typeof window !== 'undefined' ? window.scrollY : undefined}
             onClose={onClose}
             navigator={keyboardNavigator}
@@ -351,24 +501,18 @@ export default function AppSearch() {
         styles={(theme) => ({
           html: {
             ':root': {
-              '--docsearch-primary-color':
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[300]
-                  : theme.palette.primary[500],
-              '--docsearch-text-color': theme.palette.text.primary,
-              '--docsearch-muted-color': theme.palette.grey[600],
+              '--docsearch-primary-color': (theme.vars || theme).palette.primary[600],
+              '--docsearch-text-color': (theme.vars || theme).palette.text.primary,
+              '--docsearch-muted-color': (theme.vars || theme).palette.grey[600],
               '--docsearch-searchbox-shadow': 0,
               '--docsearch-hit-shadow': 0,
               '--docsearch-footer-shadow': 0,
               '--docsearch-spacing': theme.spacing(1.5),
-              '--docsearch-hit-active-color':
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primary[300]
-                  : theme.palette.primary[600],
-              '--docsearch-logo-color': theme.palette.grey[600],
+              '--docsearch-hit-active-color': (theme.vars || theme).palette.primary[600],
+              '--docsearch-logo-color': (theme.vars || theme).palette.grey[600],
               '--docsearch-searchbox-focus-background': 'unset',
               '--docsearch-footer-background': 'unset',
-              '--docsearch-modal-background': theme.palette.background.paper,
+              '--docsearch-modal-background': (theme.vars || theme).palette.background.paper,
             },
           },
           body: {
@@ -376,11 +520,8 @@ export default function AppSearch() {
               transition: `opacity ${FADE_DURATION}ms`,
               opacity: 0,
               zIndex: theme.zIndex.tooltip + 100,
-              backgroundColor:
-                theme.palette.mode === 'dark'
-                  ? alpha(theme.palette.grey[900], 0.7)
-                  : alpha(theme.palette.grey[600], 0.2),
-              backdropFilter: 'blur(4px)',
+              backgroundColor: alpha(theme.palette.grey[700], 0.5),
+              backdropFilter: 'blur(2px)',
             },
             '& .DocSearch-StartScreen': {
               display: 'none',
@@ -389,7 +530,7 @@ export default function AppSearch() {
               display: 'grid',
               gridTemplateColumns: 'repeat(2, 1fr)',
               gap: theme.spacing(2),
-              padding: theme.spacing(2, 1),
+              paddingBottom: theme.spacing(2),
             },
             '& .DocSearch-NewStartScreenCategory': {
               display: 'flex',
@@ -398,73 +539,83 @@ export default function AppSearch() {
             '& .DocSearch-NewStartScreenTitle': {
               display: 'flex',
               alignItems: 'center',
-              padding: theme.spacing(1, 1),
-              fontSize: theme.typography.pxToRem(14),
-              color: theme.palette.text.secondary,
+              padding: theme.spacing(2, 3, 1.5, 2),
+              fontSize: theme.typography.pxToRem(11),
+              fontWeight: theme.typography.fontWeightBold,
+              textTransform: 'uppercase',
+              letterSpacing: '.1rem',
+              color: (theme.vars || theme).palette.text.tertiary,
             },
             '& .DocSearch-NewStartScreenTitleIcon': {
-              color:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[300]
-                  : theme.palette.primary[500],
+              fontSize: theme.typography.pxToRem(18),
+              color: (theme.vars || theme).palette.primary[500],
               marginRight: theme.spacing(1.5),
-              fontSize: theme.typography.pxToRem(16),
+              opacity: 0.6,
+              // Redefine SvgIcon-root style as ReactDOMServer.renderToStaticMarkup doesn't
+              // Generate the CSS.
+              // TODO v6: This hack should no longer be needed with static CSS rendering.
+              userSelect: 'none',
+              width: '1em',
+              height: '1em',
+              display: 'inline-block',
+              flexShrink: 0,
+              fill: 'currentColor',
             },
             '& .DocSearch-NewStartScreenItem': {
               display: 'flex',
               alignItems: 'center',
               cursor: 'pointer',
               width: '100%',
-              padding: theme.spacing(0.5, 4.6),
-              color:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[300]
-                  : theme.palette.primary[500],
-              fontWeight: 500,
+              height: '42px',
+              color: (theme.vars || theme).palette.primary[600],
               fontSize: theme.typography.pxToRem(14),
+              fontWeight: theme.typography.fontWeightMedium,
+              padding: theme.spacing(0.25, 0),
+              paddingLeft: theme.spacing(2),
+              border: '1px solid transparent',
+              borderRadius: theme.shape.borderRadius,
+              backgroundColor: alpha(theme.palette.grey[50], 0.4),
+              borderColor: alpha(theme.palette.grey[100], 0.5),
+              marginBottom: theme.spacing(1),
               '&:hover, &:focus': {
-                '.DocSearch-NewStartScreenItemIcon': {
-                  marginLeft: theme.spacing(1),
-                },
+                backgroundColor: (theme.vars || theme).palette.primary[50],
+                borderColor: (theme.vars || theme).palette.primary[300],
+              },
+              '&:focus-visible': {
+                outline: '3px solid',
+                outlineColor: (theme.vars || theme).palette.primary[200],
+                outlineOffset: 0,
               },
             },
-            '& .DocSearch-NewStartScreenItemIcon': {
-              marginLeft: theme.spacing(0.5),
-              transition: 'margin 0.2s',
-              fontSize: theme.typography.pxToRem(16),
-            },
             '& .DocSearch-Modal': {
-              maxWidth: '700px',
-              boxShadow: `0px 4px 20px ${
-                theme.palette.mode === 'dark'
-                  ? alpha(theme.palette.background.paper, 0.7)
-                  : alpha(theme.palette.grey[700], 0.2)
-              }`,
-              ...(theme.palette.mode === 'dark' && {
-                border: '1px solid',
-                borderColor: theme.palette.primaryDark[700],
-              }),
               // docsearch.css: <= 750px will be full screen modal
-              borderRadius: `clamp(0px, (100vw - 750px) * 9999, ${theme.shape.borderRadius}px)`,
+              maxWidth: '640px',
+              boxShadow: `0px 4px 16px ${alpha(theme.palette.common.black, 0.2)}`,
+              borderRadius: theme.shape.borderRadius,
+              border: '1px solid',
+              borderColor: (theme.vars || theme).palette.grey[300],
             },
             '& .DocSearch-SearchBar': {
               borderBottom: '1px solid',
-              borderColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[700]
-                  : theme.palette.grey[200],
-              padding: theme.spacing(1),
+              borderColor: (theme.vars || theme).palette.grey[200],
+              padding: theme.spacing(0.5, 1),
             },
             '& .DocSearch-Form': {
               '& .DocSearch-Reset': {
                 display: 'none',
               },
               '& .DocSearch-Input': {
-                paddingLeft: theme.spacing(2.5),
+                paddingLeft: theme.spacing(2),
+                fontSize: theme.typography.pxToRem(16),
+                fontWeight: theme.typography.fontWeightMedium,
               },
               '& .DocSearch-Search-Icon': {
-                width: '20px',
-                height: '20px',
+                width: '18px',
+                height: '18px',
+              },
+              '& .DocSearch-VisuallyHiddenForAccessibility': {
+                width: 0,
+                visibility: 'hidden',
               },
             },
             '& .DocSearch-Cancel': {
@@ -475,116 +626,203 @@ export default function AppSearch() {
               marginRight: theme.spacing(1),
               padding: theme.spacing(0.3, 0.8, 0.6, 0.8),
               fontSize: 0,
-              borderRadius: 5,
-              backgroundColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[800]
-                  : theme.palette.grey[50],
+              borderRadius: 6,
+              backgroundColor: (theme.vars || theme).palette.grey[50],
               border: '1px solid',
-              borderColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[600]
-                  : theme.palette.grey[300],
+              borderColor: (theme.vars || theme).palette.grey[200],
               '&::before': {
                 content: '"esc"',
+                fontFamily: theme.typography.fontFamilyCode,
                 fontSize: theme.typography.pxToRem(12),
-                letterSpacing: '.08rem',
-                fontWeight: 700,
-                color: theme.palette.text.secondary,
+                fontWeight: theme.typography.fontWeightBold,
+                color: (theme.vars || theme).palette.text.secondary,
               },
             },
             '& .DocSearch-Dropdown': {
               minHeight: 384, // = StartScreen height, to prevent layout shift when first char
               '&::-webkit-scrollbar-thumb': {
-                borderColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[900]
-                    : theme.palette.background.paper,
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[700]
-                    : theme.palette.grey[500],
+                borderColor: (theme.vars || theme).palette.background.paper,
+                backgroundColor: (theme.vars || theme).palette.grey[500],
               },
               '&::-webkit-scrollbar-track': {
-                backgroundColor: theme.palette.background.paper,
+                backgroundColor: (theme.vars || theme).palette.background.paper,
+              },
+              '* ul': {
+                marginTop: theme.spacing(1),
               },
             },
             '& .DocSearch-Dropdown-Container': {
               '& .DocSearch-Hits:first-of-type': {
                 '& .DocSearch-Hit-source': {
-                  paddingTop: theme.spacing(1),
+                  paddingTop: theme.spacing(2.5),
+                  paddingBottom: theme.spacing(0.5),
                 },
               },
             },
             '& .DocSearch-Hit-source': {
               top: 'initial',
-              paddingTop: theme.spacing(2),
-              background: theme.palette.background.paper,
-              fontSize: theme.typography.pxToRem(13),
-              fontWeight: 500,
-              color: theme.palette.text.secondary,
+              padding: theme.spacing(1.5, 3, 1.5, 3),
+              background: 'transparent',
+              fontSize: theme.typography.pxToRem(11),
+              fontWeight: theme.typography.fontWeightBold,
+              textTransform: 'uppercase',
+              lineHeight: 1,
+              letterSpacing: '.1rem',
+              color: (theme.vars || theme).palette.text.tertiary,
             },
             '& .DocSearch-Hit': {
-              paddingBottom: 0,
+              paddingBottom: 8,
               '&:not(:first-of-type)': {
                 marginTop: -1,
               },
+              '& .DocSearch-Hit-Container': {
+                height: '52px',
+              },
             },
             '& .DocSearch-Hit a': {
-              backgroundColor: 'transparent',
               padding: theme.spacing(0.25, 0),
               paddingLeft: theme.spacing(2),
               border: '1px solid transparent',
-              borderBottomColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[700]
-                  : theme.palette.grey[100],
+              borderRadius: theme.shape.borderRadius,
+              backgroundColor: alpha(theme.palette.grey[50], 0.4),
+              borderColor: alpha(theme.palette.grey[100], 0.5),
+              '&:focus-visible': {
+                outline: '3px solid',
+                outlineColor: (theme.vars || theme).palette.primary[200],
+                outlineOffset: 0,
+                backgroundColor: (theme.vars || theme).palette.primary[50],
+                borderColor: (theme.vars || theme).palette.primary[300],
+              },
             },
             '& .DocSearch-Hit-content-wrapper': {
-              paddingLeft: theme.spacing(2),
+              paddingLeft: theme.spacing(1),
             },
             '& .DocSearch-Hit-title': {
               fontSize: theme.typography.pxToRem(14),
-              color: `${theme.palette.text.primary}`,
+              fontWeight: theme.typography.fontWeightMedium,
+              color: (theme.vars || theme).palette.text.primary,
             },
             '& .DocSearch-Hit-path': {
               fontSize: theme.typography.pxToRem(12),
-              color: `${theme.palette.text.secondary}`,
+              color: (theme.vars || theme).palette.text.secondary,
+            },
+            '& .DocSearch-Hit-icon': {
+              '> svg': {
+                height: '16px',
+                width: '16px',
+                margin: 0,
+              },
             },
             '& .DocSearch-Hit-Select-Icon': {
-              height: '15px',
-              width: '15px',
+              height: '14px',
+              width: '14px',
             },
             '& .DocSearch-Hit[aria-selected="true"] a': {
-              backgroundColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[800]
-                  : theme.palette.primary[50],
-              borderColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[400]
-                  : theme.palette.primary[500],
-              borderRadius: theme.shape.borderRadius,
+              backgroundColor: (theme.vars || theme).palette.primary[50],
+              borderColor: (theme.vars || theme).palette.primary[300],
             },
             '& .DocSearch-Hit-action, & .DocSearch-Hits mark': {
-              color: `${
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primary[400]
-                  : theme.palette.primary[500]
-              }`,
+              color: (theme.vars || theme).palette.primary[500],
+              '& .DocSearch-Hit-action-button': {
+                display: 'flex',
+                width: '24px',
+                borderRadius: '6px',
+                border: '1px solid transparent',
+                '> svg': {
+                  margin: 0,
+                },
+                '&:hover': {
+                  backgroundColor: (theme.vars || theme).palette.primary[100],
+                  borderColor: (theme.vars || theme).palette.primary[300],
+                },
+              },
             },
             '& .DocSearch-Footer': {
               borderTop: '1px solid',
-              borderColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[700]
-                  : theme.palette.grey[200],
+              borderColor: (theme.vars || theme).palette.grey[200],
               '& .DocSearch-Commands': {
                 display: 'none',
               },
             },
           },
         })}
+      />
+      <GlobalStyles
+        styles={(theme) => [
+          {
+            [theme.vars ? '[data-mui-color-scheme="dark"]:root' : '.mode-dark']: {
+              '--docsearch-primary-color': (theme.vars || theme).palette.primaryDark[300],
+              '--docsearch-hit-active-color': (theme.vars || theme).palette.primary[300],
+            },
+          },
+          {
+            [theme.vars ? '[data-mui-color-scheme="dark"] body' : '.mode-dark']: {
+              '.DocSearch-Container': {
+                backgroundColor: alpha(theme.palette.grey[900], 0.6),
+              },
+              '& .DocSearch-NewStartScreenTitleIcon': {
+                color: (theme.vars || theme).palette.primary[300],
+              },
+              '& .DocSearch-NewStartScreenItem': {
+                color: (theme.vars || theme).palette.primary[300],
+                backgroundColor: alpha(theme.palette.primaryDark[800], 0.5),
+                borderColor: alpha(theme.palette.primaryDark[700], 0.8),
+                '&:hover, &:focus': {
+                  backgroundColor: alpha(theme.palette.primary[900], 0.4),
+                  borderColor: alpha(theme.palette.primary[700], 0.6),
+                },
+                '&:focus-visible': {
+                  outlineColor: (theme.vars || theme).palette.primary[700],
+                },
+              },
+              '& .DocSearch-Modal': {
+                backgroundColor: (theme.vars || theme).palette.primaryDark[900],
+                boxShadow: `0px 4px 16px ${alpha(theme.palette.common.black, 0.8)}`,
+                border: '1px solid',
+                borderColor: (theme.vars || theme).palette.primaryDark[700],
+              },
+              '& .DocSearch-SearchBar': {
+                borderColor: (theme.vars || theme).palette.primaryDark[700],
+              },
+              '& .DocSearch-Cancel': {
+                backgroundColor: (theme.vars || theme).palette.primaryDark[800],
+                borderColor: (theme.vars || theme).palette.primaryDark[600],
+              },
+              '& .DocSearch-Dropdown': {
+                '&::-webkit-scrollbar-thumb': {
+                  borderColor: (theme.vars || theme).palette.primaryDark[900],
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[100],
+                },
+              },
+              '& .DocSearch-Hit a': {
+                backgroundColor: alpha(theme.palette.primaryDark[800], 0.5),
+                borderColor: alpha(theme.palette.primaryDark[700], 0.8),
+                '&:focus-visible': {
+                  outlineColor: alpha(theme.palette.primary[400], 0.5),
+                  backgroundColor: alpha(theme.palette.primary[900], 0.4),
+                  borderColor: alpha(theme.palette.primary[700], 0.6),
+                },
+              },
+              '& .DocSearch-Hit[aria-selected="true"] a': {
+                color: (theme.vars || theme).palette.primary[300],
+                backgroundColor: alpha(theme.palette.primary[900], 0.4),
+                borderColor: alpha(theme.palette.primary[700], 0.6),
+              },
+              '& .DocSearch-Hit-action, & .DocSearch-Hits mark': {
+                color: (theme.vars || theme).palette.primary[400],
+                '& .DocSearch-Hit-action-button': {
+                  '&:hover': {
+                    backgroundColor: alpha(theme.palette.primary[900], 0.8),
+                    borderColor: alpha(theme.palette.primary[700], 0.8),
+                  },
+                },
+              },
+              '& .DocSearch-Footer': {
+                borderColor: (theme.vars || theme).palette.primaryDark[700],
+              },
+            },
+          },
+        ]}
       />
     </React.Fragment>
   );

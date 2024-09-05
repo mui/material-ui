@@ -5,12 +5,35 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type TextareaSlot = 'root' | 'textarea' | 'startDecorator' | 'endDecorator';
 
+export interface TextareaSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the textarea.
+   * @default 'textarea'
+   */
+  textarea?: React.ElementType;
+  /**
+   * The component that renders the start decorator.
+   * @default 'div'
+   */
+  startDecorator?: React.ElementType;
+  /**
+   * The component that renders the end decorator.
+   * @default 'div'
+   */
+  endDecorator?: React.ElementType;
+}
+
 export interface TextareaPropsVariantOverrides {}
 export interface TextareaPropsColorOverrides {}
 export interface TextareaPropsSizeOverrides {}
 
 export type TextareaSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  TextareaSlot,
+  TextareaSlots,
   {
     root: SlotProps<'div', {}, TextareaOwnerState>;
     textarea: SlotProps<'textarea', {}, TextareaOwnerState>;
@@ -53,6 +76,7 @@ export interface TextareaTypeMap<P = {}, D extends React.ElementType = 'div'> {
       /**
        * If `true`, the `input` will indicate an error.
        * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+       * @default false
        */
       error?: boolean;
       /**
@@ -78,7 +102,7 @@ export interface TextareaTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       sx?: SxProps;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'outlined'
        */
       variant?: OverridableStringUnion<VariantProp, TextareaPropsVariantOverrides>;
@@ -98,4 +122,8 @@ export interface TextareaOwnerState extends ApplyColorInversion<TextareaProps> {
    * If `true`, the input is focused.
    */
   focused: boolean;
+  /**
+   * @internal
+   */
+  instanceColor: OverridableStringUnion<ColorPaletteProp, TextareaPropsColorOverrides> | undefined;
 }

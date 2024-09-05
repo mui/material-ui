@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, act, createRenderer, fireEvent } from 'test/utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import ListItemButton, { listItemButtonClasses as classes } from '@mui/material/ListItemButton';
 import ButtonBase from '@mui/material/ButtonBase';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ListContext from '../List/ListContext';
+import describeConformance from '../../test/describeConformance';
 
 describe('<ListItemButton />', () => {
   const { render } = createRenderer();
@@ -53,14 +55,22 @@ describe('<ListItemButton />', () => {
   });
 
   describe('prop: focusVisibleClassName', () => {
-    it('should merge the class names', () => {
+    before(function beforeCallback() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+    });
+
+    it('should merge the class names', async () => {
       const { getByRole } = render(
         <ListItemButton focusVisibleClassName="focusVisibleClassName" />,
       );
       const button = getByRole('button');
 
-      act(() => {
-        fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
+      fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
+
+      await act(async () => {
         button.focus();
       });
 
@@ -138,6 +148,113 @@ describe('<ListItemButton />', () => {
       const heading = getByRole('heading');
 
       expect(!!heading).to.equal(true);
+    });
+  });
+
+  describe('prop: LinkComponent', () => {
+    const href = 'example.com';
+    const customLinkId = 'customLink';
+    const CustomLink = React.forwardRef((props, ref) => {
+      // eslint-disable-next-line jsx-a11y/anchor-has-content
+      return <a data-testid={customLinkId} ref={ref} {...props} />;
+    });
+
+    it('should rendered as LinkComponent when href is provided', () => {
+      const { container, getByTestId } = render(
+        <ListItemButton href={href} LinkComponent={CustomLink} />,
+      );
+      const button = container.firstChild;
+
+      expect(getByTestId(customLinkId)).not.to.equal(null);
+      expect(button).to.have.property('nodeName', 'A');
+      expect(button).to.have.attribute('href', href);
+    });
+
+    it('should ignore LinkComponent is component is provided', () => {
+      const { container, queryByTestId } = render(
+        <ListItemButton href={href} LinkComponent={CustomLink} component="h1" />,
+      );
+      const button = container.firstChild;
+
+      expect(queryByTestId(customLinkId)).to.equal(null);
+      expect(button).to.have.property('nodeName', 'H1');
+      expect(button).to.have.attribute('href', href);
+    });
+
+    it('should rendered as LinkComponent (from theme) when href is provided', () => {
+      const theme = createTheme({
+        components: {
+          MuiListItemButton: {
+            defaultProps: {
+              LinkComponent: CustomLink,
+            },
+          },
+        },
+      });
+      const { container, getByTestId } = render(
+        <ThemeProvider theme={theme}>
+          <ListItemButton href={href} />,
+        </ThemeProvider>,
+      );
+      const button = container.firstChild;
+
+      expect(getByTestId(customLinkId)).not.to.equal(null);
+      expect(button).to.have.property('nodeName', 'A');
+      expect(button).to.have.attribute('href', href);
+    });
+
+    it('should rendered as LinkComponent (from theme MuiButtonBase) when href is provided', () => {
+      const theme = createTheme({
+        components: {
+          MuiButtonBase: {
+            defaultProps: {
+              LinkComponent: CustomLink,
+            },
+          },
+        },
+      });
+      const { container, getByTestId } = render(
+        <ThemeProvider theme={theme}>
+          <ListItemButton href={href} />,
+        </ThemeProvider>,
+      );
+      const button = container.firstChild;
+
+      expect(getByTestId(customLinkId)).not.to.equal(null);
+      expect(button).to.have.property('nodeName', 'A');
+      expect(button).to.have.attribute('href', href);
+    });
+
+    it('should prefer LinkComponent from MuiListItemButton over MuiButtonBase', () => {
+      const WrongCustomLink = React.forwardRef((props, ref) => {
+        // eslint-disable-next-line jsx-a11y/anchor-has-content
+        return <a data-testid="wrong-link" ref={ref} {...props} />;
+      });
+
+      const theme = createTheme({
+        components: {
+          MuiListItemButton: {
+            defaultProps: {
+              LinkComponent: CustomLink,
+            },
+          },
+          MuiButtonBase: {
+            defaultProps: {
+              LinkComponent: WrongCustomLink,
+            },
+          },
+        },
+      });
+      const { container, getByTestId } = render(
+        <ThemeProvider theme={theme}>
+          <ListItemButton href={href} />,
+        </ThemeProvider>,
+      );
+      const button = container.firstChild;
+
+      expect(getByTestId(customLinkId)).not.to.equal(null);
+      expect(button).to.have.property('nodeName', 'A');
+      expect(button).to.have.attribute('href', href);
     });
   });
 });

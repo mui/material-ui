@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import SwitchUnstyled, { switchUnstyledClasses } from '@mui/base/SwitchUnstyled';
+import { Switch, switchClasses } from '@mui/base/Switch';
 
-const Root = styled('span')`
+const SwitchRoot = styled('span')`
   font-size: 0;
   position: relative;
   display: inline-block;
@@ -13,17 +13,17 @@ const Root = styled('span')`
   margin: 10px;
   cursor: pointer;
 
-  &.${switchUnstyledClasses.disabled} {
+  &.${switchClasses.disabled} {
     opacity: 0.4;
     cursor: not-allowed;
   }
 
-  &.${switchUnstyledClasses.checked} {
+  &.${switchClasses.checked} {
     background: #007fff;
   }
 `;
 
-const Thumb = styled('span')`
+const SwitchThumb = styled('span')`
   display: block;
   width: 14px;
   height: 14px;
@@ -34,19 +34,19 @@ const Thumb = styled('span')`
   position: relative;
   transition: all 200ms ease;
 
-  &.${switchUnstyledClasses.focusVisible} {
-    background-color: rgba(255, 255, 255, 1);
-    box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
+  .${switchClasses.focusVisible} & {
+    background-color: rgb(255 255 255 / 1);
+    box-shadow: 0 0 1px 8px rgb(0 0 0 / 0.25);
   }
 
-  &.${switchUnstyledClasses.checked} {
+  .${switchClasses.checked} > & {
     left: 14px;
     top: 3px;
     background-color: #fff;
   }
 `;
 
-const Input = styled('input')`
+const SwitchInput = styled('input')`
   cursor: inherit;
   position: absolute;
   width: 100%;
@@ -59,5 +59,7 @@ const Input = styled('input')`
 `;
 
 export default function StylingSlots() {
-  return <SwitchUnstyled slots={{ root: Root, thumb: Thumb, input: Input }} />;
+  return (
+    <Switch slots={{ root: SwitchRoot, thumb: SwitchThumb, input: SwitchInput }} />
+  );
 }

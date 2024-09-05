@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Button from '@mui/joy/Button';
+import MenuButton from '@mui/joy/MenuButton';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
@@ -8,47 +8,21 @@ import Menu from '@mui/joy/Menu';
 import MenuItem from '@mui/joy/MenuItem';
 import ArrowRight from '@mui/icons-material/ArrowRight';
 import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
+import Dropdown from '@mui/joy/Dropdown';
 
-export default function BasicMenu() {
+export default function GroupMenu() {
   const SIZES = ['X-Small', 'Small', 'Medium', 'Large', 'X-Large'];
   const [size, setSize] = React.useState('Medium');
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   return (
-    <div>
-      <Button
-        id="group-demo-button"
-        aria-controls={open ? 'group-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        variant="outlined"
-        color="neutral"
-        onClick={handleClick}
-        endDecorator={<ArrowDropDown />}
-      >
-        Size
-      </Button>
-      <Menu
-        id="group-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="group-demo-button"
-        sx={{ minWidth: 160, '--List-decorator-size': '24px' }}
-      >
+    <Dropdown>
+      <MenuButton endDecorator={<ArrowDropDown />}>Size</MenuButton>
+      <Menu sx={{ minWidth: 160, '--ListItemDecorator-size': '24px' }}>
         <MenuItem
           onClick={() => {
             const nextIndex = SIZES.indexOf(size) - 1;
             const value = nextIndex < 0 ? SIZES[SIZES.length - 1] : SIZES[nextIndex];
             setSize(value);
-            handleClose();
           }}
         >
           Smaller
@@ -58,7 +32,6 @@ export default function BasicMenu() {
             const nextIndex = SIZES.indexOf(size) + 1;
             const value = nextIndex > SIZES.length - 1 ? SIZES[0] : SIZES[nextIndex];
             setSize(value);
-            handleClose();
           }}
         >
           Larger
@@ -73,7 +46,6 @@ export default function BasicMenu() {
                 aria-checked={item === size ? 'true' : 'false'}
                 onClick={() => {
                   setSize(item);
-                  handleClose();
                 }}
               >
                 <ListItemDecorator>
@@ -85,6 +57,6 @@ export default function BasicMenu() {
           </List>
         </ListItem>
       </Menu>
-    </div>
+    </Dropdown>
   );
 }

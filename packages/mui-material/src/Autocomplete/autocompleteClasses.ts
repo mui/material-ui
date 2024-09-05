@@ -1,18 +1,22 @@
-import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
-import generateUtilityClass from '../generateUtilityClass';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
 
 export interface AutocompleteClasses {
   /** Styles applied to the root element. */
   root: string;
   /** Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: string;
+  /** State class applied to the root element if the listbox is displayed. */
+  expanded: string;
   /** State class applied to the root element if focused. */
   focused: string;
-  /** Styles applied to the tag elements, e.g. the chips. */
+  /** Styles applied to the option elements if they are keyboard focused. */
+  focusVisible: string;
+  /** Styles applied to the tag elements, for example the chips. */
   tag: string;
-  /** Styles applied to the tag elements, e.g. the chips if `size="small"`. */
+  /** Styles applied to the tag elements, for example the chips if `size="small"`. */
   tagSizeSmall: string;
-  /** Styles applied to the tag elements, e.g. the chips if `size="medium"`. */
+  /** Styles applied to the tag elements, for example the chips if `size="medium"`. */
   tagSizeMedium: string;
   /** Styles applied when the popup icon is rendered. */
   hasPopupIcon: string;
@@ -60,6 +64,7 @@ export function getAutocompleteUtilityClass(slot: string): string {
 
 const autocompleteClasses: AutocompleteClasses = generateUtilityClasses('MuiAutocomplete', [
   'root',
+  'expanded',
   'fullWidth',
   'focused',
   'focusVisible',

@@ -1,17 +1,17 @@
 [
   {
-    "id": 68,
-    "title": "<b>Check out MUI Base today</b> 💥",
-    "text": "Love Material UI, but don't need Material Design? Try MUI Base, the new \"unstyled\" alternative. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"introducing-mui-base\" href=\"/blog/introducing-mui-base/\">Read more in this announcement</a>."
+    "id": 81,
+    "title": "Introducing MUI X v7",
+    "text": "The new version is packed with new components, exciting features, improved usability, and developer experience. Check out the <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-v7\" href=\"https://mui.com/blog/mui-x-v7/\">announcement blog post</a>."
   },
   {
-    "id": 72,
-    "title": "<b>A major update is coming for MUI X—and you can get involved</b>",
-    "text": "Check out the <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-v6-alpha-zero\" href=\"/blog/mui-x-v6-alpha-zero/\">blog post</a> for details, and let us know what you want to see in MUI X v6."
+    "id": 82,
+    "title": "Upcoming changes to MUI X pricing in 2024",
+    "text": "Check out the <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x\" href=\"https://mui.com/blog/mui-x-sep-2024-price-update/\">new pricing updates</a> and how to transition to the new model."
   },
   {
-    "id": 73,
-    "title": "<b>Date and Time Pickers revamped</b>",
-    "text": "<a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"v6-beta-pickers\" href=\"/blog/v6-beta-pickers/\">Discover</a> the exciting new features landing now with v6 beta."
+    "id": 83,
+    "title": "Material UI v6 is out now",
+    "text": "This major release includes CSS variables support, experimental opt-in CSS extraction, and many more improvements. Check out the <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"material-ui-v6\" href=\"https://mui.com/blog/material-ui-v6-is-out/\">announcement blog post</a>."
   }
 ]

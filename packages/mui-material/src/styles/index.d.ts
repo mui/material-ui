@@ -1,9 +1,11 @@
+export { default as THEME_ID } from './identifier';
 export {
   default as createTheme,
   default as unstable_createMuiStrictModeTheme,
   createMuiTheme,
   ThemeOptions,
   Theme,
+  CssThemeVariables,
 } from './createTheme';
 export { default as adaptV4Theme, DeprecatedThemeOptions } from './adaptV4Theme';
 export { Shadows } from './shadows';
@@ -18,7 +20,10 @@ export {
   TypeText,
   TypeAction,
   TypeBackground,
+  PaletteMode,
+  Color,
 } from './createPalette';
+export { default as createColorScheme } from './createColorScheme';
 export { default as createStyles } from './createStyles';
 export {
   Typography as TypographyVariants,
@@ -65,6 +70,7 @@ export {
   StyledEngineProvider,
   SxProps,
 } from '@mui/system';
+export { unstable_createBreakpoints } from '@mui/system/createBreakpoints';
 // TODO: Remove this function in v6.
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function experimental_sx(): any;
@@ -96,9 +102,10 @@ export { default as makeStyles } from './makeStyles';
 export { default as withStyles } from './withStyles';
 export { default as withTheme } from './withTheme';
 
-export * from './CssVarsProvider';
+export * from './ThemeProviderWithVars';
 
-export { default as experimental_extendTheme } from './experimental_extendTheme';
+export { default as extendTheme } from './createThemeWithVars';
+
 export type {
   ColorSchemeOverrides,
   SupportedColorScheme,
@@ -131,8 +138,9 @@ export type {
   ThemeCssVar,
   ThemeCssVarOverrides,
   ColorSystemOptions,
-} from './experimental_extendTheme';
+} from './createThemeWithVars';
 export { default as getOverlayAlpha } from './getOverlayAlpha';
+export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
 
 // Private methods for creating parts of the theme
 export { default as private_createTypography } from './createTypography';

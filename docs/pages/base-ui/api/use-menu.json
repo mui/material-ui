@@ -1,0 +1,77 @@
+{
+  "parameters": {
+    "autoFocus": { "type": { "name": "boolean", "description": "boolean" }, "default": "true" },
+    "componentName": {
+      "type": { "name": "string", "description": "string" },
+      "default": "'useMenu'"
+    },
+    "disabledItemsFocusable": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "true"
+    },
+    "disableListWrap": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false"
+    },
+    "id": { "type": { "name": "string", "description": "string" } },
+    "listboxRef": {
+      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
+    },
+    "onItemsChange": {
+      "type": {
+        "name": "(items: string[]) =&gt; void",
+        "description": "(items: string[]) =&gt; void"
+      }
+    }
+  },
+  "returnValue": {
+    "contextValue": {
+      "type": { "name": "MenuProviderValue", "description": "MenuProviderValue" },
+      "required": true
+    },
+    "dispatch": {
+      "type": {
+        "name": "(action: ListAction&lt;string&gt;) =&gt; void",
+        "description": "(action: ListAction&lt;string&gt;) =&gt; void"
+      },
+      "required": true
+    },
+    "getListboxProps": {
+      "type": {
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseMenuListboxSlotProps",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseMenuListboxSlotProps"
+      },
+      "required": true
+    },
+    "highlightedValue": {
+      "type": { "name": "string | null", "description": "string | null" },
+      "required": true
+    },
+    "listboxRef": {
+      "type": {
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
+      },
+      "required": true
+    },
+    "menuItems": {
+      "type": {
+        "name": "Map&lt;string, MenuItemMetadata&gt;",
+        "description": "Map&lt;string, MenuItemMetadata&gt;"
+      },
+      "required": true
+    },
+    "open": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "triggerElement": {
+      "type": { "name": "HTMLElement | null", "description": "HTMLElement | null" },
+      "required": true
+    }
+  },
+  "name": "useMenu",
+  "filename": "/packages/mui-base/src/useMenu/useMenu.ts",
+  "imports": [
+    "import { useMenu } from '@mui/base/useMenu';",
+    "import { useMenu } from '@mui/base';"
+  ],
+  "demos": "<ul><li><a href=\"/base-ui/react-menu/#hooks\">Menu</a></li></ul>"
+}

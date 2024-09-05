@@ -1,99 +1,187 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Chip from '@mui/material/Chip';
 import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import { DateRange } from '@mui/x-date-pickers-pro/DateRangePicker';
+import Chip from '@mui/material/Chip';
+import Divider from '@mui/material/Divider';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePicker';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { PickersShortcutsItem, PickersShortcutsProps, DateRange } from '@mui/x-date-pickers-pro';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import dayjs, { Dayjs } from 'dayjs';
 import Frame from 'docs/src/components/action/Frame';
 
-const startDate = new Date();
-startDate.setDate(10);
-const endDate = new Date();
-endDate.setDate(endDate.getDate() + 28);
+const startDate = dayjs();
+startDate.date(10);
+const endDate = dayjs();
+endDate.date(endDate.date() + 28);
+
+function CustomRangeShortcuts(props: PickersShortcutsProps<DateRange<Dayjs>>) {
+  const { items, onChange, isValid, changeImportance = 'accept' } = props;
+
+  if (items == null || items.length === 0) {
+    return null;
+  }
+
+  const resolvedItems = items.map((item: PickersShortcutsItem<DateRange<Dayjs>>) => {
+    const newValue = item.getValue({ isValid });
+
+    return {
+      label: item.label,
+      onClick: () => {
+        onChange(newValue, changeImportance, item);
+      },
+      disabled: !isValid(newValue),
+    };
+  });
+
+  return (
+    <Box sx={{ gridRow: 1, gridColumn: 2 }}>
+      <List
+        sx={{
+          display: 'flex',
+          p: 1.5,
+          gap: 1.5,
+          '& .MuiListItem-root': {
+            p: 0,
+            width: 'fit-content',
+          },
+        }}
+      >
+        {resolvedItems.map((item) => {
+          return (
+            <ListItem key={item.label}>
+              <Chip size="small" {...item} />
+            </ListItem>
+          );
+        })}
+      </List>
+      <Divider />
+    </Box>
+  );
+}
+
+const code = `
+<LocalizationProvider dateAdapter={AdapterDateFns}>
+  <StaticDateRangePicker
+    displayStaticWrapperAs="desktop"
+    value={[startDate, endDate]}
+    slots={{
+      shortcuts: CustomRangeShortcuts,
+    }}
+    slotProps={{
+      shortcuts: {
+        items: shortcutsItems,
+      },
+    }}
+  />
+</LocalizationProvider>`;
 
 export default function XDateRangeDemo() {
-  const [value, setValue] = React.useState<DateRange<Date>>([startDate, endDate]);
+  const today = dayjs();
+  const shortcutsItems: PickersShortcutsItem<DateRange<Dayjs>>[] = [
+    {
+      label: 'This Week',
+      getValue: () => {
+        return [today.startOf('week'), today.endOf('week')];
+      },
+    },
+    {
+      label: 'Last Week',
+      getValue: () => {
+        const prevWeek = today.add(-7, 'days');
+        return [prevWeek.startOf('week'), prevWeek.endOf('week')];
+      },
+    },
+    {
+      label: 'Last 7 Days',
+      getValue: () => {
+        return [today.add(-7, 'days'), today];
+      },
+    },
+    { label: 'Reset', getValue: () => [null, null] },
+  ];
+
   return (
     <Frame>
       <Frame.Demo sx={{ p: 2 }}>
         <Paper
           variant="outlined"
-          sx={{
-            '& > div': {
-              borderRadius: 1,
-              overflow: 'auto',
-              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : '#fff'),
+          sx={[
+            {
+              '& > div': {
+                borderRadius: 1,
+                overflow: 'auto',
+                bgcolor: '#FFF',
+              },
+              '& > div > div > div > div': {
+                flexGrow: 1,
+              },
+              '& .MuiTypography-subtitle1': {
+                fontSize: '0.875rem',
+              },
+              '& .MuiTypography-caption': {
+                width: 28,
+                height: 32,
+              },
+              '& .MuiPickersSlideTransition-root': {
+                minWidth: 258,
+                minHeight: 238,
+              },
+              '& [role="row"]': {
+                margin: '4px 0',
+              },
+              '& .MuiDateRangePickerDay-root': {
+                lineHeight: 0,
+                margin: 0,
+              },
+              '& .MuiPickersArrowSwitcher-root': {
+                padding: 0,
+                paddingTop: 0.5,
+              },
+              '& .MuiPickersDay-root': {
+                width: 28,
+                height: 28,
+                fontWeight: 'regular',
+              },
+              '& .MuiDateRangePickerDay-day.Mui-selected': {
+                fontWeight: 'semiBold',
+              },
+              '& .MuiDateRangePickerDay-day:not(.Mui-selected)': {
+                borderColor: 'primary.300',
+              },
             },
-            '& > div > div > div > div': {
-              flexGrow: 1,
-            },
-            '& .MuiTypography-subtitle1': {
-              fontSize: '0.875rem',
-            },
-            '& .MuiTypography-caption': {
-              width: 28,
-              height: 32,
-            },
-            '& .MuiPickersSlideTransition-root': {
-              minWidth: 258,
-              minHeight: 238,
-            },
-            '& [role="row"]': {
-              margin: '4px 0',
-            },
-            '& .MuiDateRangePickerDay-root': {
-              lineHeight: 0,
-              margin: 0,
-            },
-            '& .MuiPickersDay-root': {
-              width: 28,
-              height: 28,
-              fontWeight: 400,
-            },
-          }}
+            (theme) =>
+              theme.applyDarkStyles({
+                '& > div': {
+                  bgcolor: 'primaryDark.900',
+                },
+                '& .MuiDateRangePickerDay-day.Mui-selected': {
+                  color: '#FFF',
+                },
+              }),
+          ]}
         >
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
             <StaticDateRangePicker
               displayStaticWrapperAs="desktop"
-              value={value}
-              onChange={(newValue) => {
-                setValue(newValue);
+              value={[startDate, endDate]}
+              slots={{
+                shortcuts: CustomRangeShortcuts,
               }}
-              renderInput={(startProps, endProps) => (
-                <React.Fragment>
-                  <TextField {...startProps} />
-                  <Box sx={{ mx: 2 }}> to </Box>
-                  <TextField {...endProps} />
-                </React.Fragment>
-              )}
+              slotProps={{
+                shortcuts: {
+                  items: shortcutsItems,
+                },
+              }}
             />
           </LocalizationProvider>
         </Paper>
       </Frame.Demo>
-      <Frame.Info data-mui-color-scheme="dark">
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            lineHeight: 1,
-            mb: 0.5,
-          }}
-        >
-          <Typography variant="body2" fontWeight="bold" sx={{ mr: 1 }}>
-            Available now for your project.
-          </Typography>
-          <Chip
-            label="See docs"
-            size="small"
-            href="/x/react-date-pickers/date-range-picker/"
-            component="a"
-            sx={{ fontWeight: 500, cursor: 'pointer' }}
-          />
-        </Box>
+      <Frame.Info data-mui-color-scheme="dark" sx={{ maxHeight: 300, overflow: 'auto' }}>
+        <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
       </Frame.Info>
     </Frame>
   );

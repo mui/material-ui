@@ -1,4 +1,5 @@
-import { unstable_useControlled as useControlled } from '@mui/utils';
+'use client';
+import useControlled from '@mui/utils/useControlled';
 
 export default function usePagination(props = {}) {
   // keep default values in sync with @default tags in Pagination.propTypes
@@ -62,11 +63,11 @@ export default function usePagination(props = {}) {
       boundaryCount + siblingCount * 2 + 2,
     ),
     // Less than endPages
-    endPages.length > 0 ? endPages[0] - 2 : count - 1,
+    count - boundaryCount - 1,
   );
 
   // Basic list of items to render
-  // e.g. itemList = ['first', 'previous', 1, 'ellipsis', 4, 5, 6, 'ellipsis', 10, 'next', 'last']
+  // for example itemList = ['first', 'previous', 1, 'ellipsis', 4, 5, 6, 'ellipsis', 10, 'next', 'last']
   const itemList = [
     ...(showFirstButton ? ['first'] : []),
     ...(hidePrevButton ? [] : ['previous']),
@@ -77,8 +78,8 @@ export default function usePagination(props = {}) {
     ...(siblingsStart > boundaryCount + 2
       ? ['start-ellipsis']
       : boundaryCount + 1 < count - boundaryCount
-      ? [boundaryCount + 1]
-      : []),
+        ? [boundaryCount + 1]
+        : []),
 
     // Sibling pages
     ...range(siblingsStart, siblingsEnd),
@@ -88,8 +89,8 @@ export default function usePagination(props = {}) {
     ...(siblingsEnd < count - boundaryCount - 1
       ? ['end-ellipsis']
       : count - boundaryCount > boundaryCount
-      ? [count - boundaryCount]
-      : []),
+        ? [count - boundaryCount]
+        : []),
 
     ...endPages,
     ...(hideNextButton ? [] : ['next']),
@@ -134,7 +135,7 @@ export default function usePagination(props = {}) {
           selected: false,
           disabled:
             disabled ||
-            (item.indexOf('ellipsis') === -1 &&
+            (!item.includes('ellipsis') &&
               (item === 'next' || item === 'last' ? page >= count : page <= 1)),
         };
   });

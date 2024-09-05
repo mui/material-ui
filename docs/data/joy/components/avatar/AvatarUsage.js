@@ -10,7 +10,7 @@ export default function AvatarUsage() {
       data={[
         {
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           defaultValue: 'soft',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
@@ -19,16 +19,18 @@ export default function AvatarUsage() {
           knob: 'color',
           defaultValue: 'neutral',
         },
+        {
+          propName: 'size',
+          knob: 'radio',
+          options: ['sm', 'md', 'lg'],
+          defaultValue: 'md',
+        },
       ]}
       renderDemo={(props) => (
-        <Box
-          sx={{
-            display: 'flex',
-            gap: 2,
-          }}
-        >
+        <Box sx={{ display: 'flex', gap: 2 }}>
           <Avatar src="/static/images/avatar/1.jpg" {...props} />
           <Avatar {...props}>M</Avatar>
+          <Avatar {...props} />
         </Box>
       )}
     />

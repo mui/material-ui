@@ -4,7 +4,9 @@ import {
   getDescription,
   getTitle,
   getHeaders,
-  prepareMarkdown,
+  getCodeblock,
+  renderMarkdown,
+  createRender,
 } from './parseMarkdown';
 
 describe('parseMarkdown', () => {
@@ -151,288 +153,174 @@ authors:
         ]);
       });
     });
+
+    describe('Split markdown into an array, separating codeblocks', () => {
+      it('uses a `<codeblock>` tag to split', () => {
+        expect(
+          getContents(
+            [
+              '## Tabs',
+              '',
+              '<codeblock storageKey="package-manager">',
+              '',
+              '```bash npm',
+              'npm install @mui/material @emotion/react @emotion/styled',
+              '```',
+              '',
+              '```bash yarn',
+              'yarn add @mui/material @emotion/react @emotion/styled',
+              '```',
+              '',
+              '</codeblock>',
+            ].join('\n'),
+          ),
+        ).to.deep.equal([
+          '## Tabs\n\n',
+          [
+            '<codeblock storageKey="package-manager">',
+            '',
+            '```bash npm',
+            'npm install @mui/material @emotion/react @emotion/styled',
+            '```',
+            '',
+            '```bash yarn',
+            'yarn add @mui/material @emotion/react @emotion/styled',
+            '```',
+            '',
+            '</codeblock>',
+          ].join('\n'),
+        ]);
+      });
+    });
   });
 
-  describe('prepareMarkdown', () => {
-    it('returns the table of contents with html and emojis stripped', () => {
-      const markdown = `
-# Support
-
-<p class="description">Foo</p>
-
-## Community help (free)
-### GitHub <img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub logo" loading="lazy" />
-### Unofficial 👍
-### Warning ⚠️
-`;
-
-      const {
-        docs: {
-          en: { toc },
-        },
-      } = prepareMarkdown({
-        pageFilename: '/test',
-        translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
-      });
-
-      expect(toc).to.have.deep.ordered.members([
-        {
-          children: [
-            { hash: 'github', level: 3, text: 'GitHub' },
-            { hash: 'unofficial', level: 3, text: 'Unofficial' },
-            { hash: 'warning', level: 3, text: 'Warning' },
-          ],
-          hash: 'community-help-free',
-          level: 2,
-          text: 'Community help (free)',
-        },
-      ]);
+  describe('getCodeblock', () => {
+    it('should return undefined if no codeblock found', () => {
+      const codeblock = getCodeblock('## Tabs');
+      expect(codeblock).to.equal(undefined);
     });
 
-    it('enables word-break for function signatures', () => {
-      const markdown = `
-# Theming
-
-<p class="description">Foo</p>
-
-## API
-### responsiveFontSizes(theme, options) => theme
-### createTheme(options, ...args) => theme
-`;
-
-      const {
-        docs: {
-          en: { toc },
-        },
-      } = prepareMarkdown({
-        pageFilename: '/test',
-        translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
-      });
-
-      expect(toc).to.have.deep.ordered.members([
-        {
-          children: [
-            {
-              hash: 'responsivefontsizes-theme-options-theme',
-              level: 3,
-              text: 'responsiveFontSizes(&#8203;theme, options) =&gt; theme',
-            },
-            {
-              hash: 'createtheme-options-args-theme',
-              level: 3,
-              text: 'createTheme(&#8203;options, ...args) =&gt; theme',
-            },
-          ],
-          hash: 'api',
-          level: 2,
-          text: 'API',
-        },
-      ]);
-    });
-
-    it('use english hash for different locales', () => {
-      const markdownEn = `
-# Localization
-
-<p class="description">Foo</p>
-
-## Locales
-### Example
-### Use same hash
-`;
-
-      const markdownPt = `
-# Localização
-
-<p class="description">Foo</p>
-
-## Idiomas
-### Exemplo
-### Usar o mesmo hash
-`;
-
-      const markdownZh = `
-# 所在位置
-
-<p class="description">Foo</p>
-
-## 语言环境
-### 例
-### 使用相同的哈希
-`;
-      const {
-        docs: {
-          en: { toc: tocEn },
-          pt: { toc: tocPt },
-          zh: { toc: tocZh },
-        },
-      } = prepareMarkdown({
-        pageFilename: '/same-hash-test',
-        translations: [
-          { filename: 'localization.md', markdown: markdownEn, userLanguage: 'en' },
-          { filename: 'localization-pt.md', markdown: markdownPt, userLanguage: 'pt' },
-          { filename: 'localization-zh.md', markdown: markdownZh, userLanguage: 'zh' },
+    it('should return the codeblock', () => {
+      const codeblock = getCodeblock(
+        [
+          '<codeblock storageKey="package-manager">',
+          '',
+          '```bash npm',
+          'npm install @mui/material @emotion/react @emotion/styled',
+          '# `@emotion/react` and `@emotion/styled` are peer dependencies',
+          '```',
+          '',
+          '```sh yarn',
+          'yarn add @mui/material @emotion/react @emotion/styled',
+          '# `@emotion/react` and `@emotion/styled` are peer dependencies',
+          '```',
+          '',
+          '</codeblock>',
+        ].join('\n'),
+      );
+      expect(codeblock).to.deep.equal({
+        type: 'codeblock',
+        storageKey: 'package-manager',
+        data: [
+          {
+            language: 'bash',
+            tab: 'npm',
+            code: [
+              'npm install @mui/material @emotion/react @emotion/styled',
+              '# `@emotion/react` and `@emotion/styled` are peer dependencies',
+            ].join('\n'),
+          },
+          {
+            language: 'sh',
+            tab: 'yarn',
+            code: [
+              'yarn add @mui/material @emotion/react @emotion/styled',
+              '# `@emotion/react` and `@emotion/styled` are peer dependencies',
+            ].join('\n'),
+          },
         ],
       });
+    });
+  });
 
-      expect(tocZh).to.have.deep.ordered.members([
-        {
-          children: [
-            {
-              hash: 'example',
-              level: 3,
-              text: '例',
-            },
-            {
-              hash: 'use-same-hash',
-              level: 3,
-              text: '使用相同的哈希',
-            },
-          ],
-          hash: 'locales',
-          level: 2,
-          text: '语言环境',
-        },
-      ]);
-
-      expect(tocPt).to.have.deep.ordered.members([
-        {
-          children: [
-            {
-              hash: 'example',
-              level: 3,
-              text: 'Exemplo',
-            },
-            {
-              hash: 'use-same-hash',
-              level: 3,
-              text: 'Usar o mesmo hash',
-            },
-          ],
-          hash: 'locales',
-          level: 2,
-          text: 'Idiomas',
-        },
-      ]);
-
-      expect(tocEn).to.have.deep.ordered.members([
-        {
-          children: [
-            {
-              hash: 'example',
-              level: 3,
-              text: 'Example',
-            },
-            {
-              hash: 'use-same-hash',
-              level: 3,
-              text: 'Use same hash',
-            },
-          ],
-          hash: 'locales',
-          level: 2,
-          text: 'Locales',
-        },
-      ]);
+  describe('renderMarkdown', () => {
+    it('should render markdown lists correctly', () => {
+      expect(
+        renderMarkdown(
+          [
+            'The track presentation:',
+            '- `normal` the track will render a bar representing the slider value.',
+            '- `inverted` the track will render a bar representing the remaining slider value.',
+            '- `false` the track will render without a bar.',
+          ].join('\n'),
+        ),
+      ).to.equal(
+        [
+          '<p>The track presentation:</p>',
+          '<ul>',
+          '<li><code>normal</code> the track will render a bar representing the slider value.</li>',
+          '<li><code>inverted</code> the track will render a bar representing the remaining slider value.</li>',
+          '<li><code>false</code> the track will render without a bar.</li>',
+          '</ul>',
+          '',
+        ].join('\n'),
+      );
     });
 
-    it('use translated hash for translations are not synced', () => {
-      const markdownEn = `
-# Localization
-
-<p class="description">Foo</p>
-
-## Locales
-### Example
-### Use same hash
-`;
-
-      const markdownPt = `
-# Localização
-
-<p class="description">Foo</p>
-
-## Idiomas
-### Exemplo
-### Usar o mesmo hash
-### Usar traduzido
-`;
-
-      const {
-        docs: {
-          en: { toc: tocEn },
-          pt: { toc: tocPt },
-        },
-      } = prepareMarkdown({
-        pageFilename: '/same-hash-test',
-        translations: [
-          { filename: 'localization.md', markdown: markdownEn, userLanguage: 'en' },
-          { filename: 'localization-pt.md', markdown: markdownPt, userLanguage: 'pt' },
-        ],
-      });
-
-      expect(tocPt).to.have.deep.ordered.members([
-        {
-          children: [
-            {
-              hash: 'example',
-              level: 3,
-              text: 'Exemplo',
-            },
-            {
-              hash: 'use-same-hash',
-              level: 3,
-              text: 'Usar o mesmo hash',
-            },
-            {
-              hash: 'usar-traduzido',
-              level: 3,
-              text: 'Usar traduzido',
-            },
-          ],
-          hash: 'locales',
-          level: 2,
-          text: 'Idiomas',
-        },
-      ]);
-
-      expect(tocEn).to.have.deep.ordered.members([
-        {
-          children: [
-            {
-              hash: 'example',
-              level: 3,
-              text: 'Example',
-            },
-            {
-              hash: 'use-same-hash',
-              level: 3,
-              text: 'Use same hash',
-            },
-          ],
-          hash: 'locales',
-          level: 2,
-          text: 'Locales',
-        },
-      ]);
+    it('should render inline descriptions correctly', () => {
+      expect(
+        renderMarkdown(
+          'Allows to control whether the dropdown is open. This is a controlled counterpart of `defaultOpen`.',
+        ),
+      ).to.equal(
+        'Allows to control whether the dropdown is open. This is a controlled counterpart of <code>defaultOpen</code>.',
+      );
     });
+  });
 
-    it('should report missing trailing splashes', () => {
-      const markdown = `
-# Localization
+  describe('createRender', () => {
+    it('should collect headers correctly', () => {
+      const context = { toc: [], headingHashes: {} };
+      const render = createRender(context);
 
-<p class="description">Foo</p>
+      expect(
+        render(
+          [
+            '# Accordion',
+            '## Basic features 🧪',
+            '## Using `slots` and `slotProps`',
+            '### Specific example',
+          ].join('\n'),
+        ),
+      ).to.equal(
+        [
+          `<h1>Accordion</h1>`,
+          `<h2 id="basic-features"><a href="#basic-features" class="title-link-to-anchor">Basic features 🧪<span class="anchor-icon"><svg><use xlink:href="#anchor-link-icon" /></svg></span></a><button title="Post a comment" class="comment-link" data-feedback-hash="basic-features"><svg><use xlink:href="#comment-link-icon" /></svg></button></h2>`,
+          `<h2 id="using-slots-and-slotprops"><a href="#using-slots-and-slotprops" class="title-link-to-anchor">Using <code>slots</code> and <code>slotProps</code><span class="anchor-icon"><svg><use xlink:href="#anchor-link-icon" /></svg></span></a><button title="Post a comment" class="comment-link" data-feedback-hash="using-slots-and-slotprops"><svg><use xlink:href="#comment-link-icon" /></svg></button></h2>`,
+          `<h3 id="specific-example"><a href="#specific-example" class="title-link-to-anchor">Specific example<span class="anchor-icon"><svg><use xlink:href="#anchor-link-icon" /></svg></span></a><button title="Post a comment" class="comment-link" data-feedback-hash="specific-example"><svg><use xlink:href="#comment-link-icon" /></svg></button></h3>`,
+        ].join(''),
+      );
 
-[bar](/bar/)
-[foo](/foo)
-`;
-
-      expect(() => {
-        prepareMarkdown({
-          pageFilename: '/test',
-          translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
-        });
-      }).to.throw(/\[foo]\(\/foo\) in \/docs\/test\/index\.md is missing a trailing slash/);
+      expect(context.toc).to.deep.equal([
+        {
+          children: [],
+          hash: 'basic-features',
+          level: 2,
+          text: 'Basic features 🧪',
+        },
+        {
+          children: [
+            {
+              hash: 'specific-example',
+              level: 3,
+              text: 'Specific example',
+            },
+          ],
+          hash: 'using-slots-and-slotprops',
+          level: 2,
+          text: 'Using slots and slotProps',
+        },
+      ]);
     });
   });
 });

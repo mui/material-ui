@@ -1,58 +1,81 @@
 # Installation
 
-<p class="description">Install Joy UI, a library of beautifully designed React UI components.</p>
+<p class="description">Install Joy UI, a library of beautifully designed React UI components.</p>
 
-Run one of the following commands to add Joy UI to your project:
+## Default installation
 
-## npm
+Run one of the following commands to add Joy UI to your project:
 
-```sh
+<codeblock storageKey="package-manager">
+
+```bash npm
 npm install @mui/joy @emotion/react @emotion/styled
 ```
 
-## yarn
+```bash pnpm
+pnpm add @mui/joy @emotion/react @emotion/styled
+```
 
-```sh
+```bash yarn
 yarn add @mui/joy @emotion/react @emotion/styled
 ```
 
-## Peer dependencies
+</codeblock>
+
+### Peer dependencies
 
 <!-- #react-peer-version -->
 
-[`react`](https://www.npmjs.com/package/react) >= 17.0.0 and [`react-dom`](https://www.npmjs.com/package/react-dom) >= 17.0.0 are peer dependencies.
+Please note that [react](https://www.npmjs.com/package/react) and [react-dom](https://www.npmjs.com/package/react-dom) are peer dependencies, meaning you should ensure they are installed before installing Joy UI.
 
-## Public Sans font
+```json
+"peerDependencies": {
+  "react": "^17.0.0 || ^18.0.0",
+  "react-dom": "^17.0.0 || ^18.0.0"
+},
+```
 
-Joy UI is designed to use the [Public Sans](https://fonts.google.com/specimen/Public+Sans)
+## Inter font
+
+Joy UI uses the [Inter](https://rsms.me/inter/)
 font by default.
-You may add it to your project with npm or yarn via [Fontsource](https://fontsource.org/), or with the Google Fonts CDN.
+Add it to your project via [Fontsource](https://fontsource.org/), or with the Google Fonts CDN.
 
-### npm
+### Fontsource
 
-```sh
-npm install @fontsource/public-sans
+Run one of the following commands to add Inter through Fontsource to your Joy UI project:
+
+<codeblock storageKey="package-manager">
+
+```bash npm
+npm install @fontsource/inter
 ```
 
-### yarn
-
-```sh
-yarn add @fontsource/public-sans
+```bash pnpm
+pnpm add @fontsource/inter
 ```
+
+```bash yarn
+yarn add @fontsource/inter
+```
+
+</codeblock>
 
 Then you can import it in your entry point like this:
 
 ```tsx
-import '@fontsource/public-sans';
+import '@fontsource/inter';
 ```
 
 ### Google Web Fonts
 
-To install the Public Sans font in your project using the Google Web Fonts CDN, add the following code snippet inside your project's `<head />` tag:
+To install Inter through the Google Web Fonts CDN, add the following code inside your project's `<head />` tag:
 
 ```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
   rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Public+Sans&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
 />
 ```

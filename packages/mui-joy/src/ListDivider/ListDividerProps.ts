@@ -1,9 +1,24 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/types';
-import { ListDividerClasses } from './listDividerClasses';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type ListDividerSlot = 'root';
+
+export interface ListDividerSlots {
+  /**
+   * The component that renders the root.
+   * @default 'li'
+   */
+  root?: React.ElementType;
+}
+
+export type ListDividerSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  ListDividerSlots,
+  {
+    root: SlotProps<'li', {}, ListDividerOwnerState>;
+  }
+>;
 
 export interface ListDividerInsetOverrides {}
 
@@ -14,13 +29,10 @@ export interface ListDividerTypeMap<P = {}, D extends React.ElementType = 'li'> 
      */
     children?: React.ReactNode;
     /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<ListDividerClasses>;
-    /**
      * The empty space on the side(s) of the divider in a vertical list.
      *
      * For horizontal list (the nearest parent List has `row` prop set to `true`), only `inset="gutter"` affects the list divider.
+     * @default 'context'
      */
     inset?: OverridableStringUnion<
       'context' | 'gutter' | 'startDecorator' | 'startContent',
@@ -35,7 +47,7 @@ export interface ListDividerTypeMap<P = {}, D extends React.ElementType = 'li'> 
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
-  };
+  } & ListDividerSlotsAndSlotProps;
   defaultComponent: D;
 }
 

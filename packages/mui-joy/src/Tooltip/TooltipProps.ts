@@ -1,21 +1,34 @@
 import * as React from 'react';
-import { PopperUnstyledProps } from '@mui/base';
+import { PopperProps } from '@mui/base';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type TooltipSlot = 'root' | 'arrow';
 
+export interface TooltipSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the arrow.
+   * @default 'span'
+   */
+  arrow?: React.ElementType;
+}
+
 export interface TooltipPropsVariantOverrides {}
 export interface TooltipPropsColorOverrides {}
 export interface TooltipPropsSizeOverrides {}
 
 export type TooltipSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  TooltipSlot,
+  TooltipSlots,
   {
     root: SlotProps<
       'div',
-      { component?: React.ElementType; sx?: SxProps } & Omit<PopperUnstyledProps, 'direction'>,
+      { component?: React.ElementType; sx?: SxProps } & Omit<PopperProps, 'direction'>,
       TooltipOwnerState
     >;
     arrow: SlotProps<'span', {}, TooltipOwnerState>;
@@ -25,7 +38,7 @@ export type TooltipSlotsAndSlotProps = CreateSlotsAndSlotProps<
 export interface TooltipTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
     TooltipSlotsAndSlotProps &
-    Pick<PopperUnstyledProps, 'disablePortal' | 'direction' | 'keepMounted' | 'modifiers'> & {
+    Pick<PopperProps, 'disablePortal' | 'direction' | 'keepMounted' | 'modifiers'> & {
       /**
        * If `true`, adds an arrow to the tooltip.
        * @default false
@@ -34,10 +47,10 @@ export interface TooltipTypeMap<P = {}, D extends React.ElementType = 'div'> {
       /**
        * Tooltip reference element.
        */
-      children: React.ReactElement;
+      children: React.ReactElement<any>;
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
-       * @default 'primary'
+       * @default 'neutral'
        */
       color?: OverridableStringUnion<ColorPaletteProp, TooltipPropsColorOverrides>;
       /**
@@ -151,8 +164,8 @@ export interface TooltipTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       title: React.ReactNode;
       /**
-       * The variant to use.
-       * @default 'soft'
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+       * @default 'solid'
        */
       variant?: OverridableStringUnion<VariantProp, TooltipPropsVariantOverrides>;
     };

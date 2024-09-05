@@ -6,7 +6,7 @@ export default function TableGlobalVariant() {
     <Table
       stickyHeader
       sx={(theme) => ({
-        '& tr > *:first-child': { bgcolor: 'info.softBg' },
+        '& tr > *:first-child': { bgcolor: 'success.softBg' },
         '& th[scope="col"]': theme.variants.solid.neutral,
         '& td': theme.variants.soft.neutral,
       })}

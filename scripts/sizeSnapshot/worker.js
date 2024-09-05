@@ -21,7 +21,7 @@ async function getSizes({ entry, webpackEnvironment, index, total }) {
       errors: true,
     });
     throw new Error(
-      `The following errors occured during bundling of ${Object.keys(
+      `The following errors occurred during bundling of ${Object.keys(
         entrypoints,
       )} with webpack: \n${errors
         .map((error) => {

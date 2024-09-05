@@ -1,6 +1,6 @@
 import * as React from 'react';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
-import ClickAwayListener from '@mui/base/ClickAwayListener';
+import { Popper } from '@mui/base/Popper';
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import Box from '@mui/joy/Box';
 import IconButton from '@mui/joy/IconButton';
 import Chip from '@mui/joy/Chip';
@@ -18,7 +18,13 @@ import FactCheck from '@mui/icons-material/FactCheck';
 import BookmarkAdd from '@mui/icons-material/BookmarkAdd';
 
 const useRovingIndex = (options) => {
-  const { initialActiveIndex = 0, vertical = false, handlers = {} } = options || {};
+  const {
+    initialActiveIndex = 0,
+    vertical = false,
+    handlers = {
+      onKeyDown: () => {},
+    },
+  } = options || {};
   const [activeIndex, setActiveIndex] = React.useState(initialActiveIndex);
   const targetRefs = React.useRef([]);
   const targets = targetRefs.current;
@@ -100,7 +106,7 @@ const AboutMenu = React.forwardRef(({ focusNext, focusPrevious, ...props }, ref)
   const id = open ? 'about-popper' : undefined;
   return (
     <ClickAwayListener onClickAway={() => setAnchorEl(null)}>
-      <Box onMouseLeave={() => setAnchorEl(null)}>
+      <div onMouseLeave={() => setAnchorEl(null)}>
         <ListItemButton
           aria-haspopup
           aria-expanded={open ? 'true' : 'false'}
@@ -123,19 +129,11 @@ const AboutMenu = React.forwardRef(({ focusNext, focusPrevious, ...props }, ref)
             props.onMouseEnter?.(event);
             setAnchorEl(event.currentTarget);
           }}
-          sx={(theme) => ({
-            ...(open && theme.variants.plainHover.neutral),
-          })}
+          sx={[open && ((theme) => theme.variants.plainHover.neutral)]}
         >
           About <KeyboardArrowDown />
         </ListItemButton>
-        <PopperUnstyled
-          id={id}
-          open={open}
-          anchorEl={anchorEl}
-          disablePortal
-          keepMounted
-        >
+        <Popper id={id} open={open} anchorEl={anchorEl} disablePortal keepMounted>
           <List
             role="menu"
             aria-label="About"
@@ -146,8 +144,8 @@ const AboutMenu = React.forwardRef(({ focusNext, focusPrevious, ...props }, ref)
               borderRadius: 'sm',
               '--List-radius': '8px',
               '--List-padding': '4px',
-              '--List-divider-gap': '4px',
-              '--List-decorator-size': '32px',
+              '--ListDivider-gap': '4px',
+              '--ListItemDecorator-size': '32px',
             }}
           >
             <ListItem role="none">
@@ -175,8 +173,8 @@ const AboutMenu = React.forwardRef(({ focusNext, focusPrevious, ...props }, ref)
               </ListItemButton>
             </ListItem>
           </List>
-        </PopperUnstyled>
-      </Box>
+        </Popper>
+      </div>
     </ClickAwayListener>
   );
 });
@@ -212,7 +210,7 @@ const AdmissionsMenu = React.forwardRef(
     const id = open ? 'admissions-popper' : undefined;
     return (
       <ClickAwayListener onClickAway={() => setAnchorEl(null)}>
-        <Box onMouseLeave={() => setAnchorEl(null)}>
+        <div onMouseLeave={() => setAnchorEl(null)}>
           <ListItemButton
             aria-haspopup
             aria-expanded={open ? 'true' : 'false'}
@@ -235,19 +233,11 @@ const AdmissionsMenu = React.forwardRef(
               props.onMouseEnter?.(event);
               setAnchorEl(event.currentTarget);
             }}
-            sx={(theme) => ({
-              ...(open && theme.variants.plainHover.neutral),
-            })}
+            sx={[open && ((theme) => theme.variants.plainHover.neutral)]}
           >
             Admissions <KeyboardArrowDown />
           </ListItemButton>
-          <PopperUnstyled
-            id={id}
-            open={open}
-            anchorEl={anchorEl}
-            disablePortal
-            keepMounted
-          >
+          <Popper id={id} open={open} anchorEl={anchorEl} disablePortal keepMounted>
             <List
               role="menu"
               aria-label="About"
@@ -259,7 +249,7 @@ const AdmissionsMenu = React.forwardRef(
                 minWidth: 180,
                 '--List-radius': '8px',
                 '--List-padding': '4px',
-                '--List-divider-gap': '4px',
+                '--ListDivider-gap': '4px',
               }}
             >
               <ListItem role="none">
@@ -289,8 +279,8 @@ const AdmissionsMenu = React.forwardRef(
                 </ListItemButton>
               </ListItem>
             </List>
-          </PopperUnstyled>
-        </Box>
+          </Popper>
+        </div>
       </ClickAwayListener>
     );
   },
@@ -308,6 +298,7 @@ export default function ExampleNavigationMenu() {
           '--List-radius': '8px',
           '--List-padding': '4px',
           '--List-gap': '8px',
+          '--ListItem-gap': '0px',
         }}
       >
         <ListItem role="none">

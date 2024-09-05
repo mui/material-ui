@@ -1,144 +1,164 @@
 import * as React from 'react';
+import { styled, alpha } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import { useTheme, styled, alpha } from '@mui/material/styles';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-// import Link from 'docs/src/modules/components/Link';
+import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
+import { Link } from '@mui/docs/Link';
+import { useTranslate } from '@mui/docs/i18n';
 
-const Root = styled('div')(({ theme }) => ({
-  margin: theme.spacing(1, 2),
+const NativeLink = styled('a')(({ theme }) => ({
+  boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
+  width: '100%',
+  height: 45,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  borderLeft: '1px solid',
+  borderRight: '1px solid',
+  borderBottom: 0,
+  borderColor: (theme.vars || theme).palette.divider,
+  transition: theme.transitions.create(['background-color']),
+  '&:first-of-type': {
+    borderTop: `1px solid ${(theme.vars || theme).palette.divider}`,
+    borderRadius: '12px 12px 0 0',
+  },
+  '&:hover': {
+    backgroundColor: (theme.vars || theme).palette.grey[50],
+  },
+  '&:focus-visible': {
+    outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+    outlineOffset: '-3px',
+  },
   '& img': {
     display: 'inline-block',
   },
+  ...theme.applyDarkStyles({
+    '&:hover': {
+      backgroundColor: alpha(theme.palette.primary[900], 0.1),
+    },
+  }),
 }));
 
 export default function DiamondSponsors() {
-  const theme = useTheme();
   const t = useTranslate();
 
   return (
-    <Root>
-      <Button
-        component="a"
-        href="/material-ui/discover-more/backers/#diamond"
+    <Stack direction="column" sx={{ mt: 2 }}>
+      <NativeLink
+        data-ga-event-category="sponsor"
+        data-ga-event-action="docs-premium"
+        data-ga-event-label="octopus.com"
+        href="https://octopus.com/?utm_source=materialui&utm_medium=referral"
+        rel="noopener sponsored"
         target="_blank"
-        rel="noopener nofollow"
-        size="small"
-        endIcon={<InfoOutlinedIcon fontSize="small" />}
-        sx={{
-          mb: 1,
-          fontSize: theme.typography.pxToRem(12.5),
-          fontWeight: 500,
-          color:
-            theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
-          '& svg': {
-            width: 14,
-            height: 14,
-          },
-        }}
       >
-        {t('diamondSponsors')}
-      </Button>
-      <Stack
-        spacing={1.5}
-        sx={{
-          '& a': {
-            width: '100%',
-            height: 52,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
-            border: `1px solid ${
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[700]
-                : theme.palette.grey[200]
-            }`,
-            fontSize: theme.typography.pxToRem(14),
-            fontWeight: 700,
-            borderRadius: 1,
-            transition: theme.transitions.create(['color', 'border-color']),
-            '&:hover': {
-              color:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primary[300]
-                  : theme.palette.primary[500],
-              borderColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[600]
-                  : theme.palette.grey[300],
-              backgroundColor:
-                theme.palette.mode === 'dark'
-                  ? alpha(theme.palette.primaryDark[700], 0.4)
-                  : theme.palette.grey[50],
+        <Box
+          component="img"
+          src="/static/sponsors/octopus-light.svg"
+          alt="octopus"
+          title="Repeatable, reliable deployments"
+          loading="lazy"
+          sx={[
+            {
+              height: '25px',
+              width: '116px',
             },
-          },
-        }}
+            (theme) =>
+              theme.applyDarkStyles({
+                content: `url(/static/sponsors/octopus-dark.svg)`,
+              }),
+          ]}
+        />
+      </NativeLink>
+      <Divider />
+      <NativeLink
+        data-ga-event-category="sponsor"
+        data-ga-event-action="docs-premium"
+        data-ga-event-label="doit.com"
+        href="https://www.doit.com/?utm_source=materialui&utm_medium=referral"
+        rel="noopener sponsored"
+        target="_blank"
       >
-        <a
-          data-ga-event-category="sponsor"
-          data-ga-event-action="drawer"
-          data-ga-event-label="octopus"
-          href="https://www.octopus.com/?utm_source=materialui&utm_medium=referral"
-          rel="noopener noreferrer sponsored"
-          target="_blank"
-        >
-          <img
-            height="30"
-            src={`/static/sponsors/octopus-${theme.palette.mode}.svg`}
-            alt="octopus"
-            title="Repeatable, reliable deployments"
-            loading="lazy"
-          />
-        </a>
-        <a
-          data-ga-event-category="sponsor"
-          data-ga-event-action="drawer"
-          data-ga-event-label="doit"
-          href="https://www.doit.com/flexsave/?utm_source=materialui&utm_medium=referral"
-          rel="noopener noreferrer sponsored"
-          target="_blank"
-        >
-          <img
-            height="26"
-            src={`/static/sponsors/doit-${theme.palette.mode}.svg`}
-            alt="doit"
-            title="Management Platform for Google Cloud and AWS"
-            loading="lazy"
-          />
-        </a>
-        <a
-          data-ga-event-category="sponsor"
-          data-ga-event-action="drawer"
-          data-ga-event-label="zesty.io"
-          href="https://www.zesty.io/integrations/mui-nextjs/?utm_source=mui&utm_medium=referral&utm_campaign=sponsor"
-          rel="noopener noreferrer sponsored"
-          target="_blank"
-        >
-          <img
-            height="26"
-            src={
-              theme.palette.mode === 'light'
-                ? 'https://brand.zesty.io/zesty-io-logo-horizontal.svg'
-                : 'https://brand.zesty.io/zesty-io-logo-horizontal-light-color.svg'
-            }
-            alt="zesty.io"
-            title="The only Next.js CMS you need"
-            loading="lazy"
-          />
-        </a>
-        {/*
-        <Link
-          aria-label={t('diamondSponsors')}
-          rel="noopener noreferrer"
-          href="/material-ui/discover-more/backers/#diamond"
-          // eslint-disable-next-line material-ui/no-hardcoded-labels
-        >
-          +1
-        </Link>
-        */}
-      </Stack>
-    </Root>
+        <Box
+          component="img"
+          src="/static/sponsors/doit-light.svg"
+          alt="doit"
+          title="Management Platform for Google Cloud and AWS"
+          loading="lazy"
+          sx={[
+            {
+              height: '29px',
+              width: '70px',
+            },
+            (theme) =>
+              theme.applyDarkStyles({
+                content: `url(/static/sponsors/doit-dark.svg)`,
+              }),
+          ]}
+        />
+      </NativeLink>
+      <Divider />
+      <NativeLink
+        data-ga-event-category="sponsor"
+        data-ga-event-action="docs-premium"
+        data-ga-event-label="marblism.com"
+        href="https://www.marblism.com/?utm_source=mui"
+        rel="noopener sponsored"
+        target="_blank"
+      >
+        <Box
+          component="img"
+          src="/static/sponsors/marblism-light.svg"
+          alt="marblism"
+          title="AI web app generation"
+          loading="lazy"
+          sx={[
+            {
+              height: '27px',
+              width: '90px',
+            },
+            (theme) =>
+              theme.applyDarkStyles({
+                content: `url(/static/sponsors/marblism-dark.svg)`,
+              }),
+          ]}
+        />
+      </NativeLink>
+      <Link
+        href="/material-ui/discover-more/backers/#diamond-sponsors"
+        sx={(theme) => ({
+          height: 45,
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          border: '1px dashed',
+          borderColor: (theme.vars || theme).palette.grey[300],
+          borderRadius: '0 0 12px 12px',
+          backgroundColor: alpha(theme.palette.primary[50], 0.4),
+          transition: theme.transitions.create(['color', 'background-color']),
+          '&:hover': {
+            backgroundColor: (theme.vars || theme).palette.primary[50],
+            borderColor: (theme.vars || theme).palette.primary[200],
+          },
+          '&:focus-visible': {
+            outlineOffset: '-3px',
+          },
+          ...theme.applyDarkStyles({
+            backgroundColor: alpha(theme.palette.primaryDark[700], 0.3),
+            borderColor: alpha(theme.palette.primaryDark[600], 0.5),
+            '&:hover': {
+              backgroundColor: alpha(theme.palette.primary[700], 0.1),
+              borderColor: alpha(theme.palette.primary[600], 0.4),
+            },
+          }),
+        })}
+      >
+        <Typography variant="caption" sx={{ fontWeight: 'medium' }}>
+          {t('becomeADiamondSponsor')}
+        </Typography>
+      </Link>
+    </Stack>
   );
 }

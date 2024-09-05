@@ -1,9 +1,11 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import styled, { rootShouldForwardProp } from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Typography from '../Typography';
 import { getDialogContentTextUtilityClass } from './dialogContentTextClasses';
 
@@ -30,7 +32,7 @@ const DialogContentTextRoot = styled(Typography, {
 })({});
 
 const DialogContentText = React.forwardRef(function DialogContentText(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiDialogContentText' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiDialogContentText' });
   const { children, className, ...ownerState } = props;
   const classes = useUtilityClasses(ownerState);
 
@@ -38,7 +40,7 @@ const DialogContentText = React.forwardRef(function DialogContentText(inProps, r
     <DialogContentTextRoot
       component="p"
       variant="body1"
-      color="text.secondary"
+      color="textSecondary"
       ref={ref}
       ownerState={ownerState}
       className={clsx(classes.root, className)}
@@ -49,10 +51,10 @@ const DialogContentText = React.forwardRef(function DialogContentText(inProps, r
 });
 
 DialogContentText.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

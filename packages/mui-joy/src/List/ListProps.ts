@@ -1,8 +1,24 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type ListSlot = 'root';
+
+export interface ListSlots {
+  /**
+   * The component that renders the root.
+   * @default 'ul'
+   */
+  root?: React.ElementType;
+}
+
+export type ListSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  ListSlots,
+  {
+    root: SlotProps<'ul', {}, ListOwnerState>;
+  }
+>;
 
 export interface ListPropsSizeOverrides {}
 export interface ListPropsVariantOverrides {}
@@ -25,6 +41,13 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     orientation?: 'horizontal' | 'vertical';
     /**
+     * The marker (such as a disc, character, or custom counter style) of the list items.
+     * When this prop is specified, the List Item changes the CSS display to `list-item` in order to apply the marker.
+     *
+     * To see all available options, check out the [MDN list-style-type page](https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type).
+     */
+    marker?: string;
+    /**
      * The size of the component (affect other nested list* components).
      * @default 'md'
      */
@@ -34,7 +57,7 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     sx?: SxProps;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, ListPropsVariantOverrides>;
@@ -45,7 +68,7 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      * @default false
      */
     wrap?: boolean;
-  };
+  } & ListSlotsAndSlotProps;
   defaultComponent: D;
 }
 

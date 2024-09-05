@@ -1,24 +1,25 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import {
-  chainPropTypes,
-  integerPropType,
-  elementTypeAcceptingRef,
-  refType,
-  HTMLElementType,
-} from '@mui/utils';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import HTMLElementType from '@mui/utils/HTMLElementType';
+import refType from '@mui/utils/refType';
+import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
+import integerPropType from '@mui/utils/integerPropType';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import isHostComponent from '../utils/isHostComponent';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import debounce from '../utils/debounce';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import useForkRef from '../utils/useForkRef';
 import Grow from '../Grow';
 import Modal from '../Modal';
-import Paper from '../Paper';
+import PaperBase from '../Paper';
 import { getPopoverUtilityClass } from './popoverClasses';
+import useSlot from '../utils/useSlot';
 
 export function getOffsetTop(rect, vertical) {
   let offset = 0;
@@ -69,13 +70,13 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getPopoverUtilityClass, classes);
 };
 
-const PopoverRoot = styled(Modal, {
+export const PopoverRoot = styled(Modal, {
   name: 'MuiPopover',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })({});
 
-const PopoverPaper = styled(Paper, {
+export const PopoverPaper = styled(PaperBase, {
   name: 'MuiPopover',
   slot: 'Paper',
   overridesResolver: (props, styles) => styles.paper,
@@ -94,7 +95,7 @@ const PopoverPaper = styled(Paper, {
 });
 
 const Popover = React.forwardRef(function Popover(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiPopover' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiPopover' });
   const {
     action,
     anchorEl,
@@ -110,7 +111,9 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     elevation = 8,
     marginThreshold = 16,
     open,
-    PaperProps = {},
+    PaperProps: PaperPropsProp = {},
+    slots = {},
+    slotProps = {},
     transformOrigin = {
       vertical: 'top',
       horizontal: 'left',
@@ -118,10 +121,13 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     TransitionComponent = Grow,
     transitionDuration: transitionDurationProp = 'auto',
     TransitionProps: { onEntering, ...TransitionProps } = {},
+    disableScrollLock = false,
     ...other
   } = props;
+
+  const externalPaperSlotProps = slotProps?.paper ?? PaperPropsProp;
+
   const paperRef = React.useRef();
-  const handlePaperRef = useForkRef(paperRef, PaperProps.ref);
 
   const ownerState = {
     ...props,
@@ -129,7 +135,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     anchorReference,
     elevation,
     marginThreshold,
-    PaperProps,
+    externalPaperSlotProps,
     transformOrigin,
     TransitionComponent,
     transitionDuration: transitionDurationProp,
@@ -234,13 +240,17 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       const widthThreshold = containerWindow.innerWidth - marginThreshold;
 
       // Check if the vertical axis needs shifting
-      if (top < marginThreshold) {
+      if (marginThreshold !== null && top < marginThreshold) {
         const diff = top - marginThreshold;
+
         top -= diff;
+
         elemTransformOrigin.vertical += diff;
-      } else if (bottom > heightThreshold) {
+      } else if (marginThreshold !== null && bottom > heightThreshold) {
         const diff = bottom - heightThreshold;
+
         top -= diff;
+
         elemTransformOrigin.vertical += diff;
       }
 
@@ -259,7 +269,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       }
 
       // Check if the horizontal axis needs shifting
-      if (left < marginThreshold) {
+      if (marginThreshold !== null && left < marginThreshold) {
         const diff = left - marginThreshold;
         left -= diff;
         elemTransformOrigin.horizontal += diff;
@@ -298,6 +308,13 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     element.style.transformOrigin = positioning.transformOrigin;
     setIsPositioned(true);
   }, [getPositioningStyle]);
+
+  React.useEffect(() => {
+    if (disableScrollLock) {
+      window.addEventListener('scroll', setPositioningStyles);
+    }
+    return () => window.removeEventListener('scroll', setPositioningStyles);
+  }, [anchorEl, disableScrollLock, setPositioningStyles]);
 
   const handleEntering = (element, isAppearing) => {
     if (onEntering) {
@@ -359,15 +376,47 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
   const container =
     containerProp || (anchorEl ? ownerDocument(resolveAnchorEl(anchorEl)).body : undefined);
 
+  const externalForwardedProps = {
+    slots,
+    slotProps: {
+      ...slotProps,
+      paper: externalPaperSlotProps,
+    },
+  };
+
+  const [PaperSlot, paperProps] = useSlot('paper', {
+    elementType: PopoverPaper,
+    externalForwardedProps,
+    additionalProps: {
+      elevation,
+      className: clsx(classes.paper, externalPaperSlotProps?.className),
+      style: isPositioned
+        ? externalPaperSlotProps.style
+        : { ...externalPaperSlotProps.style, opacity: 0 },
+    },
+    ownerState,
+  });
+
+  const [RootSlot, { slotProps: rootSlotPropsProp, ...rootProps }] = useSlot('root', {
+    elementType: PopoverRoot,
+    externalForwardedProps,
+    additionalProps: {
+      slotProps: { backdrop: { invisible: true } },
+      container,
+      open,
+    },
+    ownerState,
+    className: clsx(classes.root, className),
+  });
+
+  const handlePaperRef = useForkRef(paperRef, paperProps.ref);
+
   return (
-    <PopoverRoot
-      BackdropProps={{ invisible: true }}
-      className={clsx(classes.root, className)}
-      container={container}
-      open={open}
-      ref={ref}
-      ownerState={ownerState}
+    <RootSlot
+      {...rootProps}
+      {...(!isHostComponent(RootSlot) && { slotProps: rootSlotPropsProp, disableScrollLock })}
       {...other}
+      ref={ref}
     >
       <TransitionComponent
         appear
@@ -377,33 +426,27 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
         timeout={transitionDuration}
         {...TransitionProps}
       >
-        <PopoverPaper
-          elevation={elevation}
-          {...PaperProps}
-          ref={handlePaperRef}
-          className={clsx(classes.paper, PaperProps.className)}
-          {...(isPositioned ? undefined : { style: { ...PaperProps.style, opacity: 0 } })}
-          ownerState={ownerState}
-        >
+        <PaperSlot {...paperProps} ref={handlePaperRef}>
           {children}
-        </PopoverPaper>
+        </PaperSlot>
       </TransitionComponent>
-    </PopoverRoot>
+    </RootSlot>
   );
 });
 
 Popover.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A ref for imperative actions.
    * It currently only supports updatePosition() action.
    */
   action: refType,
   /**
-   * An HTML element, or a function that returns one.
+   * An HTML element, [PopoverVirtualElement](https://mui.com/material-ui/react-popover/#virtual-element),
+   * or a function that returns either.
    * It's used to set the position of the popover.
    */
   anchorEl: chainPropTypes(PropTypes.oneOfType([HTMLElementType, PropTypes.func]), (props) => {
@@ -432,7 +475,7 @@ Popover.propTypes /* remove-proptypes */ = {
         return new Error(
           [
             'MUI: The `anchorEl` prop provided to the component is invalid.',
-            `It should be an Element instance but it's \`${resolvedAnchorEl}\` instead.`,
+            `It should be an Element or PopoverVirtualElement instance but it's \`${resolvedAnchorEl}\` instead.`,
           ].join('\n'),
         );
       }
@@ -476,6 +519,26 @@ Popover.propTypes /* remove-proptypes */ = {
    */
   anchorReference: PropTypes.oneOf(['anchorEl', 'anchorPosition', 'none']),
   /**
+   * A backdrop component. This prop enables custom backdrop rendering.
+   * @deprecated Use `slotProps.root.slots.backdrop` instead. While this prop currently works, it will be removed in the next major version.
+   * Use the `slotProps.root.slots.backdrop` prop to make your application ready for the next version of Material UI.
+   * @default styled(Backdrop, {
+   *   name: 'MuiModal',
+   *   slot: 'Backdrop',
+   *   overridesResolver: (props, styles) => {
+   *     return styles.backdrop;
+   *   },
+   * })({
+   *   zIndex: -1,
+   * })
+   */
+  BackdropComponent: PropTypes.elementType,
+  /**
+   * Props applied to the [`Backdrop`](/material-ui/api/backdrop/) element.
+   * @deprecated Use `slotProps.root.slotProps.backdrop` instead.
+   */
+  BackdropProps: PropTypes.object,
+  /**
    * The content of the component.
    */
   children: PropTypes.node,
@@ -499,12 +562,18 @@ Popover.propTypes /* remove-proptypes */ = {
     PropTypes.func,
   ]),
   /**
+   * Disable the scroll lock behavior.
+   * @default false
+   */
+  disableScrollLock: PropTypes.bool,
+  /**
    * The elevation of the popover.
    * @default 8
    */
   elevation: integerPropType,
   /**
    * Specifies how close to the edge of the window the popover can appear.
+   * If null, the popover will not be constrained by the window.
    * @default 16
    */
   marginThreshold: PropTypes.number,
@@ -518,11 +587,31 @@ Popover.propTypes /* remove-proptypes */ = {
    */
   open: PropTypes.bool.isRequired,
   /**
-   * Props applied to the [`Paper`](/material-ui/api/paper/) element.
+   * Props applied to the [`Paper`](https://mui.com/material-ui/api/paper/) element.
+   *
+   * This prop is an alias for `slotProps.paper` and will be overriden by it if both are used.
+   * @deprecated Use `slotProps.paper` instead.
+   *
    * @default {}
    */
   PaperProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     component: elementTypeAcceptingRef,
+  }),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    paper: PropTypes.elementType,
+    root: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
@@ -554,7 +643,7 @@ Popover.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The component used for the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Grow
    */
   TransitionComponent: PropTypes.elementType,
@@ -573,7 +662,7 @@ Popover.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    * @default {}
    */
   TransitionProps: PropTypes.object,

@@ -1,0 +1,51 @@
+{
+  "parameters": {
+    "checked": { "type": { "name": "boolean", "description": "boolean" } },
+    "defaultChecked": { "type": { "name": "boolean", "description": "boolean" } },
+    "disabled": { "type": { "name": "boolean", "description": "boolean" } },
+    "onBlur": {
+      "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
+    },
+    "onChange": {
+      "type": {
+        "name": "React.ChangeEventHandler&lt;HTMLInputElement&gt;",
+        "description": "React.ChangeEventHandler&lt;HTMLInputElement&gt;"
+      }
+    },
+    "onFocus": {
+      "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
+    },
+    "onFocusVisible": {
+      "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
+    },
+    "readOnly": { "type": { "name": "boolean", "description": "boolean" } },
+    "required": { "type": { "name": "boolean", "description": "boolean" } }
+  },
+  "returnValue": {
+    "checked": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "disabled": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "focusVisible": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "getInputProps": {
+      "type": {
+        "name": "(externalProps?: React.HTMLAttributes&lt;HTMLInputElement&gt;) =&gt; UseSwitchInputSlotProps",
+        "description": "(externalProps?: React.HTMLAttributes&lt;HTMLInputElement&gt;) =&gt; UseSwitchInputSlotProps"
+      },
+      "required": true
+    },
+    "inputRef": {
+      "type": {
+        "name": "React.RefCallback&lt;HTMLInputElement&gt; | null",
+        "description": "React.RefCallback&lt;HTMLInputElement&gt; | null"
+      },
+      "required": true
+    },
+    "readOnly": { "type": { "name": "boolean", "description": "boolean" }, "required": true }
+  },
+  "name": "useSwitch",
+  "filename": "/packages/mui-base/src/useSwitch/useSwitch.ts",
+  "imports": [
+    "import { useSwitch } from '@mui/base/useSwitch';",
+    "import { useSwitch } from '@mui/base';"
+  ],
+  "demos": "<ul><li><a href=\"/base-ui/react-switch/#hook\">Switch</a></li></ul>"
+}

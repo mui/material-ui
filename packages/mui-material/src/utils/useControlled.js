@@ -1,3 +1,4 @@
-import { unstable_useControlled as useControlled } from '@mui/utils';
+'use client';
+import useControlled from '@mui/utils/useControlled';
 
 export default useControlled;

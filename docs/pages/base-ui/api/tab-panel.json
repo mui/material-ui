@@ -1,0 +1,43 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
+    },
+    "value": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } }
+  },
+  "name": "TabPanel",
+  "imports": [
+    "import { TabPanel } from '@mui/base/TabPanel';",
+    "import { TabPanel } from '@mui/base';"
+  ],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "base-TabPanel-root"
+    }
+  ],
+  "classes": [
+    {
+      "key": "hidden",
+      "className": "base-TabPanel-hidden",
+      "description": "State class applied to the root `div` element if `hidden={true}`.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "muiName": "TabPanel",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-base/src/TabPanel/TabPanel.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-tabs/\">Tabs</a></li></ul>",
+  "cssComponent": false
+}

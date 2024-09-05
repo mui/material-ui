@@ -1,41 +1,46 @@
-import { deepmerge } from '@mui/utils';
+'use client';
+// do not remove the following import (https://github.com/microsoft/TypeScript/issues/29808#issuecomment-1320713018)
+/* eslint-disable @typescript-eslint/no-unused-vars */
+// @ts-ignore
+import * as React from 'react';
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
-import extendTheme, { CssVarsThemeOptions } from './extendTheme';
-import { createSoftInversion, createSolidInversion } from './variantUtils';
-import type { Theme, DefaultColorScheme, ExtendedColorScheme } from './types';
+import defaultTheme from './defaultTheme';
+import type { SupportedColorScheme } from './types';
+import THEME_ID from './identifier';
+import { defaultConfig } from '../InitColorSchemeScript/InitColorSchemeScript';
 
-const shouldSkipGeneratingVar = (keys: string[]) =>
-  !!keys[0].match(/^(typography|variants|breakpoints|colorInversion|colorInversionConfig)$/) ||
-  !!keys[0].match(/sxConfig$/) || // ends with sxConfig
-  (keys[0] === 'palette' && !!keys[1]?.match(/^(mode)$/)) ||
-  (keys[0] === 'focus' && keys[1] !== 'thickness');
-
-const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
-  DefaultColorScheme | ExtendedColorScheme
->({
-  theme: extendTheme(),
-  attribute: 'data-joy-color-scheme',
-  modeStorageKey: 'joy-mode',
-  colorSchemeStorageKey: 'joy-color-scheme',
+const {
+  CssVarsProvider,
+  useColorScheme,
+  getInitColorSchemeScript: deprecatedGetInitColorSchemeScript,
+} = createCssVarsProvider<SupportedColorScheme, typeof THEME_ID>({
+  themeId: THEME_ID,
+  theme: defaultTheme,
+  attribute: defaultConfig.attribute,
+  modeStorageKey: defaultConfig.modeStorageKey,
+  colorSchemeStorageKey: defaultConfig.colorSchemeStorageKey,
   defaultColorScheme: {
-    light: 'light',
-    dark: 'dark',
+    light: defaultConfig.defaultLightColorScheme,
+    dark: defaultConfig.defaultDarkColorScheme,
   },
-  resolveTheme: (mergedTheme: Theme) => {
-    const colorInversionInput = mergedTheme.colorInversion as CssVarsThemeOptions['colorInversion'];
-    mergedTheme.colorInversion = deepmerge(
-      {
-        soft: createSoftInversion(mergedTheme),
-        solid: createSolidInversion(mergedTheme),
-      },
-      typeof colorInversionInput === 'function'
-        ? colorInversionInput(mergedTheme)
-        : colorInversionInput,
-      { clone: false },
-    );
-    return mergedTheme;
-  },
-  shouldSkipGeneratingVar,
 });
 
-export { CssVarsProvider, useColorScheme, getInitColorSchemeScript, shouldSkipGeneratingVar };
+let warnedInitScriptOnce = false;
+
+const getInitColorSchemeScript: typeof deprecatedGetInitColorSchemeScript = (params) => {
+  if (!warnedInitScriptOnce) {
+    console.warn(
+      [
+        'MUI: The getInitColorSchemeScript function has been deprecated.',
+        '',
+        "You should use `import InitColorSchemeScript from '@mui/joy/InitColorSchemeScript'`",
+        'and replace the function call with `<InitColorSchemeScript />` instead.',
+      ].join('\n'),
+    );
+
+    warnedInitScriptOnce = true;
+  }
+  return deprecatedGetInitColorSchemeScript(params);
+};
+
+export { CssVarsProvider, useColorScheme, getInitColorSchemeScript };

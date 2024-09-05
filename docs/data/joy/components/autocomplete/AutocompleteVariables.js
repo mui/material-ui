@@ -1,10 +1,10 @@
 import * as React from 'react';
-import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 import Autocomplete from '@mui/joy/Autocomplete';
 import Stack from '@mui/joy/Stack';
 import LiveTv from '@mui/icons-material/LiveTv';
+import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 
-export default function ButtonVariables() {
+export default function AutocompleteVariables() {
   return (
     <JoyVariablesDemo
       componentName="Autocomplete"
@@ -29,7 +29,7 @@ export default function ButtonVariables() {
               defaultValue: '12px',
             },
             {
-              var: '--Input-decorator-childHeight',
+              var: '--Input-decoratorChildHeight',
               defaultValue: '32px',
             },
           ],
@@ -38,7 +38,7 @@ export default function ButtonVariables() {
           'Autocomplete',
           [
             {
-              var: '--Autocomplete-wrapper-gap',
+              var: '--Autocomplete-wrapperGap',
               defaultValue: '3px',
             },
           ],

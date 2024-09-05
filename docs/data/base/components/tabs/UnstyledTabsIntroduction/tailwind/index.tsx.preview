@@ -1,0 +1,10 @@
+<Tabs defaultValue={0}>
+  <TabsList>
+    <Tab value={0}>My account</Tab>
+    <Tab value={1}>Profile</Tab>
+    <Tab value={2}>Language</Tab>
+  </TabsList>
+  <TabPanel value={0}>My account page</TabPanel>
+  <TabPanel value={1}>Profile page</TabPanel>
+  <TabPanel value={2}>Language page</TabPanel>
+</Tabs>

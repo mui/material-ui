@@ -108,7 +108,7 @@ export default function CustomizedList() {
                         opacity: 1,
                       },
                     },
-                    '&:after': {
+                    '&::after': {
                       content: '""',
                       position: 'absolute',
                       height: '80%',
@@ -126,20 +126,54 @@ export default function CustomizedList() {
             </ListItem>
             <Divider />
             <Box
-              sx={{
-                bgcolor: open ? 'rgba(71, 98, 130, 0.2)' : null,
-                pb: open ? 2 : 0,
-              }}
+              sx={[
+                open
+                  ? {
+                      bgcolor: 'rgba(71, 98, 130, 0.2)',
+                    }
+                  : {
+                      bgcolor: null,
+                    },
+                open
+                  ? {
+                      pb: 2,
+                    }
+                  : {
+                      pb: 0,
+                    },
+              ]}
             >
               <ListItemButton
                 alignItems="flex-start"
                 onClick={() => setOpen(!open)}
-                sx={{
-                  px: 3,
-                  pt: 2.5,
-                  pb: open ? 0 : 2.5,
-                  '&:hover, &:focus': { '& svg': { opacity: open ? 1 : 0 } },
-                }}
+                sx={[
+                  {
+                    px: 3,
+                    pt: 2.5,
+                  },
+                  open
+                    ? {
+                        pb: 0,
+                      }
+                    : {
+                        pb: 2.5,
+                      },
+                  open
+                    ? {
+                        '&:hover, &:focus': {
+                          '& svg': {
+                            opacity: 1,
+                          },
+                        },
+                      }
+                    : {
+                        '&:hover, &:focus': {
+                          '& svg': {
+                            opacity: 0,
+                          },
+                        },
+                      },
+                ]}
               >
                 <ListItemText
                   primary="Build"
@@ -159,12 +193,20 @@ export default function CustomizedList() {
                   sx={{ my: 0 }}
                 />
                 <KeyboardArrowDown
-                  sx={{
-                    mr: -1,
-                    opacity: 0,
-                    transform: open ? 'rotate(-180deg)' : 'rotate(0)',
-                    transition: '0.2s',
-                  }}
+                  sx={[
+                    {
+                      mr: -1,
+                      opacity: 0,
+                      transition: '0.2s',
+                    },
+                    open
+                      ? {
+                          transform: 'rotate(-180deg)',
+                        }
+                      : {
+                          transform: 'rotate(0)',
+                        },
+                  ]}
                 />
               </ListItemButton>
               {open &&

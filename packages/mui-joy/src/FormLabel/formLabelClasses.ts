@@ -1,9 +1,9 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface FormLabelClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
-  /** Styles applied to the asterisk element. */
+  /** Class name applied to the asterisk element. */
   asterisk: string;
 }
 

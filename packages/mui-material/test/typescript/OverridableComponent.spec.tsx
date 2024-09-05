@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
 import { expectType } from '@mui/types';
+import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
 
 interface MyOverrideProps {
   className: string;
@@ -75,9 +75,9 @@ declare const Foo: OverridableComponent<{
   ref={(elem) => {
     expectType<HTMLButtonElement | null, typeof elem>(elem);
   }}
-  onClick={(e) => {
-    expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof e>(e);
-    e.currentTarget.checkValidity();
+  onClick={(event) => {
+    expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof event>(event);
+    event.currentTarget.checkValidity();
   }}
 />;
 

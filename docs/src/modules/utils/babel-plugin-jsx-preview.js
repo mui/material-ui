@@ -47,7 +47,7 @@ export default function babelPluginJsxPreview() {
             //   <Stack>
             //     <div />
             // ^^^^ Blank JSXText including newline
-            //   </Stacke>
+            //   </Stack>
             // )
             previewNode = previewNode.children.filter((child, index, children) => {
               const isSurroundingBlankJSXText =
@@ -74,13 +74,13 @@ export default function babelPluginJsxPreview() {
 
         const previewLines = preview.split(/\n/);
         // The first line is already trimmed either due to trimmed blank JSXText or because it's a single node which babel already trims.
-        // The last line is therefore the meassure for indendation
-        const indendation = previewLines.slice(-1)[0].match(/^\s*/)[0].length;
+        // The last line is therefore the measure for indentation
+        const indentation = previewLines.slice(-1)[0].match(/^\s*/)[0].length;
         const deindentedPreviewLines = preview.split(/\n/).map((line, index) => {
           if (index === 0) {
             return line;
           }
-          return line.slice(indendation);
+          return line.slice(indentation);
         });
 
         if (deindentedPreviewLines.length <= maxLines) {

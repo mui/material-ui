@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Badge, { BadgeOwnerState } from '@mui/joy/Badge';
 import { expectType } from '@mui/types';
+import Badge, { BadgeOwnerState } from '@mui/joy/Badge';
 
 <Badge />;
 
@@ -14,7 +14,6 @@ import { expectType } from '@mui/types';
 // `color`
 <Badge color="primary" />;
 <Badge color="danger" />;
-<Badge color="info" />;
 <Badge color="success" />;
 <Badge color="warning" />;
 <Badge color="neutral" />;

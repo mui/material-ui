@@ -9,38 +9,41 @@ interface MarkdownPage {
 /**
  * Returns the markdowns of the documentation in a flat array.
  */
-export default function findPagesMarkdownNew(
+export default function findPagesMarkdown(
   directory: string = path.resolve(__dirname, '../../../docs/data'),
   pagesMarkdown: MarkdownPage[] = [],
 ) {
   const items = fs.readdirSync(directory);
 
   items.forEach((item) => {
-    const itemPath = path.resolve(directory, item);
+    const filename = path.resolve(directory, item);
 
-    if (fs.statSync(itemPath).isDirectory()) {
-      findPagesMarkdownNew(itemPath, pagesMarkdown);
+    if (fs.statSync(filename).isDirectory()) {
+      findPagesMarkdown(filename, pagesMarkdown);
       return;
     }
 
-    if (!/\.md$/.test(item) || /-(zh|pt)\.md/.test(item)) {
-      // neglect translation markdown
+    // Ignore non en-US source markdown.
+    if (!/\.mdx?$/.test(item) || /-(zh|pt)\.mdx?/.test(item)) {
       return;
     }
 
-    let pathname = itemPath
+    let pathname = filename
       .replace(new RegExp(`\\${path.sep}`, 'g'), '/')
       .replace(/^.*\/data/, '')
-      .replace('.md', '');
+      .replace(/\.mdx?/, '');
 
     // Remove the last pathname segment.
-    pathname = pathname.split('/').slice(0, 4).join('/');
+    pathname = pathname
+      .split('/')
+      .slice(0, pathname.split('/').length - 1)
+      .join('/');
 
     pagesMarkdown.push({
-      // Relative location in the path (URL) system.
+      // Relative location of the markdown file in the file system.
+      filename,
+      // Relative location of the page in the URL.
       pathname,
-      // Relative location in the file system.
-      filename: itemPath,
     });
   });
 

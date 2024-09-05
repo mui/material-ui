@@ -1,17 +1,20 @@
 import * as React from 'react';
+import { expectType } from '@mui/types';
 import Autocomplete, {
+  AutocompleteOwnerState,
   AutocompleteProps,
   AutocompleteRenderGetTagProps,
 } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import { expectType } from '@mui/types';
+import { ChipTypeMap } from '@mui/material/Chip';
 
 interface MyAutocompleteProps<
   T,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
-> extends AutocompleteProps<T, Multiple, DisableClearable, FreeSolo> {
+  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
+> extends AutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent> {
   myProp?: string;
 }
 
@@ -20,9 +23,23 @@ function MyAutocomplete<
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
->(props: MyAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>) {
+  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
+>(props: MyAutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent>) {
   return <Autocomplete {...props} />;
 }
+
+// Test for ChipComponent generic type
+<MyAutocomplete<string, false, false, false, 'span'>
+  options={['1', '2', '3']}
+  renderTags={(value, getTagProps, ownerState) => {
+    expectType<AutocompleteOwnerState<string, false, false, false, 'span'>, typeof ownerState>(
+      ownerState,
+    );
+
+    return '';
+  }}
+  renderInput={() => null}
+/>;
 
 // multiple prop can be assigned for components that extend AutocompleteProps
 <MyAutocomplete
@@ -39,6 +56,13 @@ function MyAutocomplete<
   onChange={(event, value) => {
     expectType<string | null, typeof value>(value);
   }}
+  renderInput={() => null}
+/>;
+
+// Tests presence of sx prop in ListboxProps
+<Autocomplete
+  options={['1', '2', '3']}
+  ListboxProps={{ sx: { height: '10px' } }}
   renderInput={() => null}
 />;
 
@@ -64,6 +88,13 @@ function MyAutocomplete<
 <MyAutocomplete
   options={[{ label: '1' }, { label: '2' }]}
   renderInput={(params) => <TextField {...params} value={params.inputProps.value} />}
+/>;
+
+// Test for focusVisible class
+<Autocomplete
+  classes={{ focusVisible: 'test' }}
+  options={[{ label: '1' }, { label: '2' }]}
+  renderInput={(params) => <TextField {...params} />}
 />;
 
 interface Option {
@@ -115,3 +146,28 @@ function AutocompleteComponentsProps() {
     />
   );
 }
+
+function CustomListboxRef() {
+  const ref = React.useRef(null);
+  return (
+    <Autocomplete
+      renderInput={(params) => <TextField {...params} />}
+      options={['one', 'two', 'three']}
+      ListboxProps={{ ref }}
+    />
+  );
+}
+
+// Tests presence of defaultMuiPrevented in event
+<Autocomplete
+  renderInput={(params) => <TextField {...params} />}
+  options={['one', 'two', 'three']}
+  onKeyDown={(e) => {
+    expectType<
+      React.KeyboardEvent<HTMLDivElement> & {
+        defaultMuiPrevented?: boolean;
+      },
+      typeof e
+    >(e);
+  }}
+/>;

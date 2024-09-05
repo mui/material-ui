@@ -1,6 +1,7 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Autocomplete component
+components: Autocomplete, AutocompleteListbox, AutocompleteOption
 githubLabel: 'component: autocomplete'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 ---
@@ -9,13 +10,13 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 
 <p class="description">The autocomplete is a text input enhanced by a panel of suggested options when users start typing.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
 ## Introduction
 
 `Autocomplete` is an enhanced version of text input that shows suggested options as the users type and also let them select an option from the list.
 
 {{"demo": "Playground.js", "hideToolbar": true}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Usage
 
@@ -72,11 +73,26 @@ To customize the appearance of the options, use `renderOption` prop in combinati
 
 The autocomplete component supports the four global variants: `outlined` (default), `soft`, `solid`, and `plain`.
 
-{{"demo": "InputAppearance.js"}}
+The variant and color values are propagated to the Autocomplete's `input` and `listbox` slots.
+
+{{"demo": "AutocompleteVariants.js"}}
 
 :::info
 To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
 :::
+
+To customize the variant and color for a specific slot, use `slotProps`:
+
+```js
+<Autocomplete
+  variant="plain"
+  slotProps={{
+    listbox: {
+      variant: 'outlined',
+    },
+  }}
+/>
+```
 
 ### Label
 
@@ -97,8 +113,14 @@ The component has two states that can be controlled:
 1. the "value" state with the `value`/`onChange` props combination. This state represents the value selected by the user, for instance when pressing <kbd class="key">Enter</kbd>.
 2. the "input value" state with the `inputValue`/`onInputChange` props combination. This state represents the value displayed in the textbox.
 
-:::warning
 These two states are isolated, and should be controlled independently.
+
+:::info
+
+- A component is **controlled** when it's managed by its parent using props.
+- A component is **uncontrolled** when it's managed by its own local state.
+
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
 :::
 
 {{"demo": "ControllableStates.js"}}
@@ -125,7 +147,7 @@ It displays a progress state as long as the network request is pending.
 
 ### Search input
 
-Use `freeSolo` to create a **search input** with suggestions experience, e.g. Google search or [react-autowhatever](https://github.com/moroshko/react-autowhatever).
+Use `freeSolo` to create a **search input** with suggestions experience, for example Google search or [react-autowhatever](https://github.com/moroshko/react-autowhatever).
 
 {{"demo": "FreeSolo.js"}}
 
@@ -151,7 +173,7 @@ You could also display a dialog when the user wants to add a new value.
 {{"demo": "FreeSoloCreateOptionDialog.js"}}
 
 :::info
-The `AutocompleteOption` uses the same styles and variables as [`ListItemButton`](/joy-ui/react-list/#actionable), so that you get the same customization experience.
+The `AutocompleteOption` uses the same styles and variables as [`ListItemButton`](/joy-ui/react-list/#interactive-list-items), so that you get the same customization experience.
 :::
 
 ### Validation
@@ -243,7 +265,19 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 <Autocomplete filterOptions={filterOptions} />;
 ```
 
+## CSS variables playground
+
+The Autocomplete component reuses CSS variables from the Input component to give you the consistent customization experience.
+
+{{"demo": "AutocompleteVariables.js", "hideToolbar": true, "bg": "gradient"}}
+
 ## Common examples
+
+### Hint
+
+The following demo shows how to add a hint feature to the Autocomplete using the `filterOptions` prop:
+
+{{"demo": "AutocompleteHint.js"}}
 
 ### Highlighting options
 
@@ -253,7 +287,7 @@ The following demo relies on [autosuggest-highlight](https://github.com/moroshko
 
 ### GitHub's picker
 
-To reproduce GitHub's label picker, the `Autocomplete` is rendered inside a [`PopperUnstyled`](/base/react-popper/). To remove the popup behavior from the autocomplete, replace the listbox slot with the `AutocompleteListbox` component.
+To reproduce GitHub's label picker, the `Autocomplete` is rendered inside a Base UI [`Popper`](/base-ui/react-popper/). To remove the popup behavior from the autocomplete, replace the listbox slot with the `AutocompleteListbox` component.
 
 {{"demo": "GitHubLabel.js"}}
 
@@ -279,12 +313,6 @@ If you would like to prevent the default key handler behavior, you can set the e
 />
 ```
 
-## CSS Variables
-
-The Autocomplete component reuses CSS variables from the Input component to give you the consistent customization experience.
-
-{{"demo": "AutocompleteVariables.js", "hideToolbar": true}}
-
 ## Limitations
 
 ### autocomplete/autofill
@@ -296,7 +324,7 @@ A possible workaround is to remove the `id` to have the component generate a ran
 In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details).
 In the event you want the avoid autofill, you can try the following:
 
-- Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
+- Name the input without leaking any information the browser can use. For example `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
 - Set `autoComplete="new-password"` (some browsers will suggest a strong password for inputs with this attribute setting):
 
   ```jsx
@@ -309,7 +337,7 @@ In the event you want the avoid autofill, you can try the following:
   />
   ```
 
-Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) for more details.
+Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Practical_implementation_guides/Turning_off_form_autocompletion) for more details.
 
 ### iOS VoiceOver
 

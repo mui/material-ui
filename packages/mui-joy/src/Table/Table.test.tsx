@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Table, { tableClasses as classes } from '@mui/joy/Table';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Table />', () => {
-  const { render } = createRenderer({ emotionCompat: true });
+  const { render } = createRenderer();
 
   describeConformance(<Table />, () => ({
     classes,
@@ -21,16 +22,17 @@ describe('<Table />', () => {
     skip: [
       'classesRoot',
       'componentsProp',
-      // Emotion `compat` is not set with `createMount` for these tests
       'componentProp',
       'mergeClassName',
       'propsSpread',
-      'reactTestRenderer',
       'refForwarding',
     ],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
-
-  describeJoyColorInversion(<Table />, { muiName: 'JoyTable', classes, emotionCompat: true });
 
   describe('prop: variant', () => {
     it('plain by default', () => {
@@ -57,7 +59,7 @@ describe('<Table />', () => {
       expect(getByRole('table')).to.have.class(classes.colorNeutral);
     });
 
-    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+    (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByRole } = render(<Table color={color} />);
 
@@ -120,5 +122,11 @@ describe('<Table />', () => {
     const { getByRole } = render(<Table stickyHeader />);
 
     expect(getByRole('table')).to.have.class(classes.stickyHeader);
+  });
+
+  it('adds `stickyFooter` class', () => {
+    const { getByRole } = render(<Table stickyFooter />);
+
+    expect(getByRole('table')).to.have.class(classes.stickyFooter);
   });
 });

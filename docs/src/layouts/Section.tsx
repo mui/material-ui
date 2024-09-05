@@ -1,43 +1,54 @@
 import * as React from 'react';
 import Container from '@mui/material/Container';
 import Box, { BoxProps } from '@mui/material/Box';
+import { alpha } from '@mui/material/styles';
 
 interface SelectionProps extends BoxProps {
-  bg?: 'white' | 'comfort' | 'dim' | 'gradient';
+  bg?: 'white' | 'comfort' | 'dim' | 'gradient' | 'transparent';
+  /**
+   * Less vertical spacing
+   */
+  cozy?: boolean;
+  noPaddingBottom?: boolean;
 }
 
-export default function Section(props: SelectionProps) {
-  const { bg = 'white', children, sx, ...other } = props;
+const map = {
+  white: {
+    light: 'common.white',
+    dark: 'primaryDark.900',
+  },
+  comfort: {
+    light: 'grey.50',
+    dark: 'primaryDark.900',
+  },
+  dim: {
+    light: 'primaryDark.700',
+    dark: 'primaryDark.700',
+  },
+  transparent: {
+    light: 'transparent',
+    dark: 'transparent',
+  },
+};
 
-  const map = {
-    white: {
-      light: 'common.white',
-      dark: 'primaryDark.800',
-    },
-    comfort: {
-      light: 'grey.50',
-      dark: 'primaryDark.900',
-    },
-    dim: {
-      light: 'primaryDark.700',
-      dark: 'primaryDark.700',
-    },
-  };
+const Section = React.forwardRef<HTMLDivElement, SelectionProps>(function Section(props, ref) {
+  const { bg = 'white', children, sx, cozy = false, noPaddingBottom = false, ...other } = props;
 
   return (
     <Box
+      ref={ref}
       {...other}
       sx={[
         (theme) => ({
           ...(bg === 'gradient'
             ? {
-                background: `linear-gradient(180deg, ${
-                  (theme.vars || theme).palette.grey[50]
-                } 0%, #FFFFFF 100%)`,
+                background: `linear-gradient(#FFF 0%, ${
+                  (theme.vars || theme).palette.primary[50]
+                } 100%)`,
                 ...theme.applyDarkStyles({
-                  background: `linear-gradient(180deg, ${
+                  background: `linear-gradient(${
                     (theme.vars || theme).palette.primaryDark[900]
-                  } 0%, #001E3C 100%)`,
+                  } 0%, ${alpha(theme.palette.primary[900], 0.2)} 100%)`,
                 }),
               }
             : {
@@ -46,7 +57,8 @@ export default function Section(props: SelectionProps) {
                   bgcolor: map[bg].dark,
                 }),
               }),
-          py: { xs: 4, sm: 6, md: 8 },
+          py: cozy ? { xs: 6, sm: 10, md: 12 } : { xs: 4, sm: 12, md: 14 },
+          pb: noPaddingBottom ? '0 !important' : undefined,
           overflow: 'hidden',
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
@@ -55,4 +67,6 @@ export default function Section(props: SelectionProps) {
       <Container>{children}</Container>
     </Box>
   );
-}
+});
+
+export default Section;

@@ -1,11 +1,12 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Menu component
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 githubLabel: 'component: menu'
 materialDesign: https://m2.material.io/components/menus
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
-unstyled: /base/react-menu/
+unstyled: /base-ui/react-menu/
+githubSource: packages/mui-material/src/Menu
 ---
 
 # Menu
@@ -14,7 +15,7 @@ unstyled: /base/react-menu/
 
 A menu displays a list of choices on a temporary surface. It appears when the user interacts with a button, or other control.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic menu
 
@@ -79,7 +80,7 @@ You can learn more about this in the [overrides documentation page](/material-ui
 The `MenuItem` is a wrapper around `ListItem` with some additional styles.
 You can use the same list composition features with the `MenuItem` component:
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/menu/).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/menu-introduction--docs).
 
 ## Max height menu
 
@@ -110,8 +111,11 @@ Here is an example of a context menu. (Right click to open.)
 
 For more advanced use cases you might be able to take advantage of:
 
-### PopupState helper
+### material-ui-popup-state
 
-There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of menu state for you in most cases.
+![stars](https://img.shields.io/github/stars/jcoreio/material-ui-popup-state?style=social&label=Star)
+![npm downloads](https://img.shields.io/npm/dm/material-ui-popup-state.svg)
+
+The package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of menu state for you in most cases.
 
 {{"demo": "MenuPopupState.js"}}

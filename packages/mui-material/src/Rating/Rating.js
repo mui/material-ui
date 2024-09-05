@@ -1,31 +1,21 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, visuallyHidden } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import useTheme from '../styles/useTheme';
-import {
-  capitalize,
-  useForkRef,
-  useIsFocusVisible,
-  useControlled,
-  unstable_useId as useId,
-} from '../utils';
+import clamp from '@mui/utils/clamp';
+import visuallyHidden from '@mui/utils/visuallyHidden';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import composeClasses from '@mui/utils/composeClasses';
+import { useRtl } from '@mui/system/RtlProvider';
+import isFocusVisible from '@mui/utils/isFocusVisible';
+import { capitalize, useForkRef, useControlled, unstable_useId as useId } from '../utils';
 import Star from '../internal/svg-icons/Star';
 import StarBorder from '../internal/svg-icons/StarBorder';
-import useThemeProps from '../styles/useThemeProps';
-import styled, { slotShouldForwardProp } from '../styles/styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
+import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import ratingClasses, { getRatingUtilityClass } from './ratingClasses';
-
-function clamp(value, min, max) {
-  if (value < min) {
-    return min;
-  }
-  if (value > max) {
-    return max;
-  }
-  return value;
-}
 
 function getDecimalPrecision(num) {
   const decimalPart = num.toString().split('.')[1];
@@ -50,7 +40,7 @@ const useUtilityClasses = (ownerState) => {
       `size${capitalize(size)}`,
       disabled && 'disabled',
       focusVisible && 'focusVisible',
-      readOnly && 'readyOnly',
+      readOnly && 'readOnly',
     ],
     label: ['label', 'pristine'],
     labelEmptyValue: [emptyValueFocused && 'labelEmptyValueActive'],
@@ -80,33 +70,52 @@ const RatingRoot = styled('span', {
       ownerState.readOnly && styles.readOnly,
     ];
   },
-})(({ theme, ownerState }) => ({
-  display: 'inline-flex',
-  // Required to position the pristine input absolutely
-  position: 'relative',
-  fontSize: theme.typography.pxToRem(24),
-  color: '#faaf00',
-  cursor: 'pointer',
-  textAlign: 'left',
-  WebkitTapHighlightColor: 'transparent',
-  [`&.${ratingClasses.disabled}`]: {
-    opacity: (theme.vars || theme).palette.action.disabledOpacity,
-    pointerEvents: 'none',
-  },
-  [`&.${ratingClasses.focusVisible} .${ratingClasses.iconActive}`]: {
-    outline: '1px solid #999',
-  },
-  [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
-  ...(ownerState.size === 'small' && {
-    fontSize: theme.typography.pxToRem(18),
-  }),
-  ...(ownerState.size === 'large' && {
-    fontSize: theme.typography.pxToRem(30),
-  }),
-  ...(ownerState.readOnly && {
-    pointerEvents: 'none',
-  }),
-}));
+})(
+  memoTheme(({ theme }) => ({
+    display: 'inline-flex',
+    // Required to position the pristine input absolutely
+    position: 'relative',
+    fontSize: theme.typography.pxToRem(24),
+    color: '#faaf00',
+    cursor: 'pointer',
+    textAlign: 'left',
+    width: 'min-content',
+    WebkitTapHighlightColor: 'transparent',
+    [`&.${ratingClasses.disabled}`]: {
+      opacity: (theme.vars || theme).palette.action.disabledOpacity,
+      pointerEvents: 'none',
+    },
+    [`&.${ratingClasses.focusVisible} .${ratingClasses.iconActive}`]: {
+      outline: '1px solid #999',
+    },
+    [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
+    variants: [
+      {
+        props: {
+          size: 'small',
+        },
+        style: {
+          fontSize: theme.typography.pxToRem(18),
+        },
+      },
+      {
+        props: {
+          size: 'large',
+        },
+        style: {
+          fontSize: theme.typography.pxToRem(30),
+        },
+      },
+      {
+        // TODO v6: use the .Mui-readOnly global state class
+        props: ({ ownerState }) => ownerState.readOnly,
+        style: {
+          pointerEvents: 'none',
+        },
+      },
+    ],
+  })),
+);
 
 const RatingLabel = styled('label', {
   name: 'MuiRating',
@@ -115,16 +124,21 @@ const RatingLabel = styled('label', {
     styles.label,
     ownerState.emptyValueFocused && styles.labelEmptyValueActive,
   ],
-})(({ ownerState }) => ({
+})({
   cursor: 'inherit',
-  ...(ownerState.emptyValueFocused && {
-    top: 0,
-    bottom: 0,
-    position: 'absolute',
-    outline: '1px solid #999',
-    width: '100%',
-  }),
-}));
+  variants: [
+    {
+      props: ({ ownerState }) => ownerState.emptyValueFocused,
+      style: {
+        top: 0,
+        bottom: 0,
+        position: 'absolute',
+        outline: '1px solid #999',
+        width: '100%',
+      },
+    },
+  ],
+});
 
 const RatingIcon = styled('span', {
   name: 'MuiRating',
@@ -141,22 +155,32 @@ const RatingIcon = styled('span', {
       ownerState.iconActive && styles.iconActive,
     ];
   },
-})(({ theme, ownerState }) => ({
-  // Fit wrapper to actual icon size.
-  display: 'flex',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-  // Fix mouseLeave issue.
-  // https://github.com/facebook/react/issues/4492
-  pointerEvents: 'none',
-  ...(ownerState.iconActive && {
-    transform: 'scale(1.2)',
-  }),
-  ...(ownerState.iconEmpty && {
-    color: (theme.vars || theme).palette.action.disabled,
-  }),
-}));
+})(
+  memoTheme(({ theme }) => ({
+    // Fit wrapper to actual icon size.
+    display: 'flex',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+    // Fix mouseLeave issue.
+    // https://github.com/facebook/react/issues/4492
+    pointerEvents: 'none',
+    variants: [
+      {
+        props: ({ ownerState }) => ownerState.iconActive,
+        style: {
+          transform: 'scale(1.2)',
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.iconEmpty,
+        style: {
+          color: (theme.vars || theme).palette.action.disabled,
+        },
+      },
+    ],
+  })),
+);
 
 const RatingDecimal = styled('span', {
   name: 'MuiRating',
@@ -167,12 +191,17 @@ const RatingDecimal = styled('span', {
 
     return [styles.decimal, iconActive && styles.iconActive];
   },
-})(({ iconActive }) => ({
+})({
   position: 'relative',
-  ...(iconActive && {
-    transform: 'scale(1.2)',
-  }),
-}));
+  variants: [
+    {
+      props: ({ iconActive }) => iconActive,
+      style: {
+        transform: 'scale(1.2)',
+      },
+    },
+  ],
+});
 
 function IconContainer(props) {
   const { value, ...other } = props;
@@ -297,11 +326,11 @@ const defaultIcon = <Star fontSize="inherit" />;
 const defaultEmptyIcon = <StarBorder fontSize="inherit" />;
 
 function defaultLabelText(value) {
-  return `${value} Star${value !== 1 ? 's' : ''}`;
+  return `${value || '0'} Star${value !== 1 ? 's' : ''}`;
 }
 
 const Rating = React.forwardRef(function Rating(inProps, ref) {
-  const props = useThemeProps({ name: 'MuiRating', props: inProps });
+  const props = useDefaultProps({ name: 'MuiRating', props: inProps });
   const {
     className,
     defaultValue = null,
@@ -334,7 +363,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
   });
 
   const valueRounded = roundValueToPrecision(valueDerived, precision);
-  const theme = useTheme();
+  const isRtl = useRtl();
   const [{ hover, focus }, setState] = React.useState({
     hover: -1,
     focus: -1,
@@ -348,16 +377,10 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     value = focus;
   }
 
-  const {
-    isFocusVisibleRef,
-    onBlur: handleBlurVisible,
-    onFocus: handleFocusVisible,
-    ref: focusVisibleRef,
-  } = useIsFocusVisible();
   const [focusVisible, setFocusVisible] = React.useState(false);
 
   const rootRef = React.useRef();
-  const handleRef = useForkRef(focusVisibleRef, rootRef, ref);
+  const handleRef = useForkRef(rootRef, ref);
 
   const handleMouseMove = (event) => {
     if (onMouseMove) {
@@ -365,14 +388,14 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     }
 
     const rootNode = rootRef.current;
-    const { right, left } = rootNode.getBoundingClientRect();
-    const { width } = rootNode.firstChild.getBoundingClientRect();
+    const { right, left, width: containerWidth } = rootNode.getBoundingClientRect();
+
     let percent;
 
-    if (theme.direction === 'rtl') {
-      percent = (right - event.clientX) / (width * max);
+    if (isRtl) {
+      percent = (right - event.clientX) / containerWidth;
     } else {
-      percent = (event.clientX - left) / (width * max);
+      percent = (event.clientX - left) / containerWidth;
     }
 
     let newHover = roundValueToPrecision(max * percent + precision / 2, precision);
@@ -446,8 +469,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
   };
 
   const handleFocus = (event) => {
-    handleFocusVisible(event);
-    if (isFocusVisibleRef.current === true) {
+    if (isFocusVisible(event.target)) {
       setFocusVisible(true);
     }
 
@@ -463,8 +485,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
       return;
     }
 
-    handleBlurVisible(event);
-    if (isFocusVisibleRef.current === false) {
+    if (!isFocusVisible(event.target)) {
       setFocusVisible(false);
     }
 
@@ -501,7 +522,14 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
       ref={handleRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={clsx(classes.root, className)}
+      className={clsx(
+        classes.root,
+        {
+          // TODO v6: remove this class as it duplicates with the global state class Mui-readOnly
+          'MuiRating-readOnly': readOnly,
+        },
+        className,
+      )}
       ownerState={ownerState}
       role={readOnly ? 'img' : null}
       aria-label={readOnly ? getLabelText(value) : null}
@@ -607,10 +635,10 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 });
 
 Rating.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Override or extend the styles applied to the component.
    */
@@ -643,11 +671,11 @@ Rating.propTypes /* remove-proptypes */ = {
    * Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating.
    * This is important for screen reader users.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @param {number} value The rating label's value to format.
    * @returns {string}
    * @default function defaultLabelText(value) {
-   *   return `${value} Star${value !== 1 ? 's' : ''}`;
+   *   return `${value || '0'} Star${value !== 1 ? 's' : ''}`;
    * }
    */
   getLabelText: PropTypes.func,

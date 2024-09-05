@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/joy/Box';
 import Checkbox from '@mui/joy/Checkbox';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -10,21 +9,19 @@ import Done from '@mui/icons-material/Done';
 export default function ExampleChoiceChipCheckbox() {
   const [value, setValue] = React.useState([]);
   return (
-    <Sheet
-      variant="outlined"
-      sx={{ width: 360, p: 2, borderRadius: 'sm', bgcolor: 'background.body' }}
-    >
-      <Typography id="rank" level="body2" fontWeight="lg" sx={{ mb: 1.5 }}>
+    <Sheet variant="outlined" sx={{ width: 360, p: 2, borderRadius: 'sm' }}>
+      <Typography id="rank" level="body-sm" sx={{ fontWeight: 'lg', mb: 1.5 }}>
         Choose amenities
       </Typography>
-      <Box role="group" aria-labelledby="rank">
+      <div role="group" aria-labelledby="rank">
         <List
           orientation="horizontal"
           wrap
           sx={{
             '--List-gap': '8px',
-            '--List-item-radius': '20px',
-            '--List-item-minHeight': '32px',
+            '--ListItem-radius': '20px',
+            '--ListItem-minHeight': '32px',
+            '--ListItem-gap': '4px',
           }}
         >
           {['Elevator', 'Washer/Dryer', 'Fireplace', 'Dogs ok', 'Cats ok'].map(
@@ -34,9 +31,10 @@ export default function ExampleChoiceChipCheckbox() {
                   <Done
                     fontSize="md"
                     color="primary"
-                    sx={{ ml: -0.5, mr: 0.5, zIndex: 2, pointerEvents: 'none' }}
+                    sx={{ ml: -0.5, zIndex: 2, pointerEvents: 'none' }}
                   />
                 )}
+
                 <Checkbox
                   size="sm"
                   disabled={index === 0}
@@ -67,7 +65,7 @@ export default function ExampleChoiceChipCheckbox() {
             ),
           )}
         </List>
-      </Box>
+      </div>
     </Sheet>
   );
 }

@@ -1,7 +1,0 @@
-{
-  "parameters": {},
-  "returnValue": {},
-  "name": "useSelect",
-  "filename": "/packages/mui-base/src/SelectUnstyled/useSelect.ts",
-  "demos": "<ul><li><a href=\"/base/react-select/#hook\">Unstyled Select</a></li></ul>"
-}

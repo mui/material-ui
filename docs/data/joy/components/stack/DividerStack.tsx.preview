@@ -1,3 +1,10 @@
-<Item>Item 1</Item>
-<Item>Item 2</Item>
-<Item>Item 3</Item>
+<Stack
+  direction="row"
+  divider={<Divider orientation="vertical" />}
+  spacing={2}
+  sx={{ justifyContent: 'center' }}
+>
+  <Item>Item 1</Item>
+  <Item>Item 2</Item>
+  <Item>Item 3</Item>
+</Stack>

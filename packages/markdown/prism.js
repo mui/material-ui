@@ -1,10 +1,12 @@
 const prism = require('prismjs');
 require('prismjs/components/prism-css');
+require('prismjs/components/prism-bash');
 require('prismjs/components/prism-diff');
 require('prismjs/components/prism-javascript');
 require('prismjs/components/prism-json');
 require('prismjs/components/prism-jsx');
 require('prismjs/components/prism-markup');
+require('prismjs/components/prism-yaml');
 require('prismjs/components/prism-tsx');
 
 function highlight(code, language) {
@@ -15,9 +17,22 @@ function highlight(code, language) {
       break;
 
     case 'js':
-    case 'sh':
       prismLanguage = prism.languages.jsx;
       break;
+
+    case 'sh':
+      throw new Error(
+        [
+          `docs-infra: Unsupported language: "sh" in:`,
+          '',
+          '```sh',
+          code,
+          '```',
+          '',
+          'Use "bash" instead.',
+          '',
+        ].join('\n'),
+      );
 
     case 'diff':
       prismLanguage = { ...prism.languages.diff };

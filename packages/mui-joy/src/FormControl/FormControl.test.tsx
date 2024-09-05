@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import FormControl, { formControlClasses as classes } from '@mui/joy/FormControl';
-import { unstable_capitalize as capitalize } from '@mui/utils';
 import FormLabel from '@mui/joy/FormLabel';
 import FormHelperText from '@mui/joy/FormHelperText';
 import Checkbox, { checkboxClasses } from '@mui/joy/Checkbox';
@@ -14,6 +14,7 @@ import RadioGroup from '@mui/joy/RadioGroup';
 import Radio, { radioClasses } from '@mui/joy/Radio';
 import Switch, { switchClasses } from '@mui/joy/Switch';
 import Autocomplete, { autocompleteClasses } from '@mui/joy/Autocomplete';
+import describeConformance from '../../test/describeConformance';
 
 describe('<FormControl />', () => {
   const { render } = createRenderer();
@@ -28,6 +29,11 @@ describe('<FormControl />', () => {
     testComponentPropWith: 'fieldset',
     testVariantProps: { color: 'success' },
     skip: ['classesRoot', 'componentsProp'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   describe('prop: color', () => {
@@ -37,12 +43,11 @@ describe('<FormControl />', () => {
       expect(getByTestId('root')).not.to.have.class(classes.colorNeutral);
       expect(getByTestId('root')).not.to.have.class(classes.colorPrimary);
       expect(getByTestId('root')).not.to.have.class(classes.colorDanger);
-      expect(getByTestId('root')).not.to.have.class(classes.colorInfo);
       expect(getByTestId('root')).not.to.have.class(classes.colorSuccess);
       expect(getByTestId('root')).not.to.have.class(classes.colorWarning);
     });
 
-    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+    (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByTestId } = render(<FormControl data-testid="root" color={color} />);
 
@@ -295,11 +300,12 @@ describe('<FormControl />', () => {
     });
 
     it('works with radio buttons', () => {
-      const { getByLabelText, getByRole, getByText } = render(
+      const { getByLabelText, getByRole, getByText, getAllByRole } = render(
         <FormControl>
           <FormLabel>label</FormLabel>
           <RadioGroup>
-            <Radio />
+            <Radio value="1" />
+            <Radio value="2" />
           </RadioGroup>
           <FormHelperText>helper text</FormHelperText>
         </FormControl>,
@@ -308,10 +314,36 @@ describe('<FormControl />', () => {
       const label = getByText('label');
       const helperText = getByText('helper text');
 
-      expect(getByRole('radio')).toBeVisible();
+      expect(getAllByRole('radio')).to.have.length(2);
       expect(getByLabelText('label')).to.have.attribute('role', 'radiogroup');
       expect(getByRole('radiogroup')).to.have.attribute('aria-labelledby', label.id);
       expect(getByRole('radiogroup')).to.have.attribute('aria-describedby', helperText.id);
+    });
+
+    it('radio buttons should inherit size from the FormControl', () => {
+      const { getByTestId } = render(
+        <FormControl size="sm">
+          <FormLabel>label</FormLabel>
+          <RadioGroup>
+            <Radio value="1" data-testid="radio1" />
+          </RadioGroup>
+          <FormHelperText>helper text</FormHelperText>
+        </FormControl>,
+      );
+      expect(getByTestId('radio1')).to.have.class(radioClasses.sizeSm);
+    });
+
+    it('radio buttons should inherit size from the RadioGroup', () => {
+      const { getByTestId } = render(
+        <FormControl size="sm">
+          <FormLabel>label</FormLabel>
+          <RadioGroup size="md">
+            <Radio value="1" data-testid="radio1" />
+          </RadioGroup>
+          <FormHelperText>helper text</FormHelperText>
+        </FormControl>,
+      );
+      expect(getByTestId('radio1')).to.have.class(radioClasses.sizeMd);
     });
   });
 
@@ -473,5 +505,23 @@ describe('<FormControl />', () => {
 
       expect(getByRole('combobox')).to.have.attribute('disabled');
     });
+  });
+
+  it('should inherit htmlFor from FormControl if htmlFor is undefined', () => {
+    const { getByText } = render(
+      <FormControl>
+        <FormLabel htmlFor={undefined}>label</FormLabel>
+      </FormControl>,
+    );
+    expect(getByText('label')).to.have.attribute('for');
+  });
+
+  it('should inherit id from FormControl if id is undefined', () => {
+    const { getByText } = render(
+      <FormControl>
+        <FormLabel id={undefined}>label</FormLabel>
+      </FormControl>,
+    );
+    expect(getByText('label')).to.have.attribute('id');
   });
 });

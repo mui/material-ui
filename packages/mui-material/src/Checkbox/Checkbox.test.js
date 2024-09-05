@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, act, createRenderer } from 'test/utils';
+import { act, createRenderer } from '@mui/internal-test-utils';
 import Checkbox, { checkboxClasses as classes } from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
 import ButtonBase from '@mui/material/ButtonBase';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Checkbox />', () => {
   const { render } = createRenderer();
@@ -63,6 +65,74 @@ describe('<Checkbox />', () => {
     it('should render an indeterminate icon', () => {
       const { getByTestId } = render(<Checkbox indeterminate />);
       expect(getByTestId('IndeterminateCheckBoxIcon')).not.to.equal(null);
+    });
+  });
+
+  describe('prop: size', () => {
+    it('add sizeSmall class to the root element when the size prop equals "small"', () => {
+      const { getByRole } = render(<Checkbox size="small" />);
+      const checkbox = getByRole('checkbox');
+      const root = checkbox.parentElement;
+
+      expect(root).to.have.class(classes.sizeSmall);
+    });
+
+    it('add sizeMedium class to the root element when the size prop equals "medium"', () => {
+      const { getByRole } = render(<Checkbox size="medium" />);
+      const checkbox = getByRole('checkbox');
+      const root = checkbox.parentElement;
+
+      expect(root).to.have.class(classes.sizeMedium);
+    });
+
+    it('add sizeMedium class to the root element when the size is not expplicitly provided', () => {
+      const { getByRole } = render(<Checkbox />);
+      const checkbox = getByRole('checkbox');
+      const root = checkbox.parentElement;
+
+      expect(root).to.have.class(classes.sizeMedium);
+    });
+  });
+
+  describe('theme: customization', () => {
+    it('should be customizable in the theme using the size prop.', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const theme = createTheme({
+        components: {
+          MuiCheckbox: {
+            styleOverrides: {
+              sizeMedium: {
+                marginTop: 40,
+                paddingLeft: 20,
+              },
+              sizeSmall: {
+                marginLeft: -40,
+                paddingRight: 2,
+              },
+            },
+          },
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Checkbox />
+          <Checkbox size="small" />
+        </ThemeProvider>,
+      );
+
+      expect(container.querySelector(`.${classes.sizeMedium}`)).toHaveComputedStyle({
+        marginTop: '40px',
+        paddingLeft: '20px',
+      });
+
+      expect(container.querySelector(`.${classes.sizeSmall}`)).toHaveComputedStyle({
+        marginLeft: '-40px',
+        paddingRight: '2px',
+      });
     });
   });
 

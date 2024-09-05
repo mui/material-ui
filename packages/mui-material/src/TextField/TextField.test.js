@@ -1,24 +1,68 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { spy } from 'sinon';
+import { createRenderer, fireEvent } from '@mui/internal-test-utils';
 import FormControl from '@mui/material/FormControl';
 import { inputBaseClasses } from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import TextField, { textFieldClasses as classes } from '@mui/material/TextField';
+import describeConformance from '../../test/describeConformance';
 
 describe('<TextField />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<TextField variant="standard" />, () => ({
-    classes,
-    inheritComponent: FormControl,
-    render,
-    muiName: 'MuiTextField',
-    refInstanceof: window.HTMLDivElement,
-    testVariantProps: { variant: 'outlined' },
-    skip: ['componentProp', 'componentsProp'],
-  }));
+  function TestComponent(props) {
+    const { children, className, 'data-testid': testId } = props;
+    return (
+      <div className={className} data-testid={testId ?? 'custom'}>
+        {typeof children === 'function' ? children({}) : children}
+      </div>
+    );
+  }
+
+  describeConformance(
+    <TextField variant="standard" helperText="Helper text" label="Label" />,
+    () => ({
+      classes,
+      inheritComponent: FormControl,
+      render,
+      muiName: 'MuiTextField',
+      refInstanceof: window.HTMLDivElement,
+      testVariantProps: { variant: 'outlined' },
+      slots: {
+        input: {
+          testWithComponent: TestComponent,
+          testWithElement: null,
+        },
+        inputLabel: {},
+        htmlInput: {
+          testWithElement: 'input',
+        },
+        formHelperText: {},
+      },
+      skip: ['componentProp', 'componentsProp'],
+    }),
+  );
+
+  describeConformance(
+    <TextField select>
+      <option>A</option>
+    </TextField>,
+    () => ({
+      classes,
+      inheritComponent: FormControl,
+      render,
+      muiName: 'MuiTextField',
+      slots: {
+        select: {
+          testWithComponent: TestComponent,
+          testWithElement: null,
+        },
+      },
+      only: ['slotsProp', 'slotPropsProp', 'slotPropsCallback'],
+    }),
+  );
 
   describe('structure', () => {
     it('should have an input as the only child', () => {
@@ -111,7 +155,7 @@ describe('<TextField />', () => {
       const [, fakeLabel] = getAllByTestId('label');
       const notch = container.querySelector('.notch legend');
       expect(notch).to.contain(fakeLabel);
-      expect(notch).to.have.text('label\u00a0*');
+      expect(notch).to.have.text('label\u2009*');
     });
 
     it('should set shrink prop on outline from label', () => {
@@ -121,13 +165,14 @@ describe('<TextField />', () => {
         outlinedInputClasses.notchedOutline,
       );
     });
+
     it('should render `0` label properly', () => {
       const { container } = render(
         <TextField InputProps={{ classes: { notchedOutline: 'notch' } }} label={0} required />,
       );
 
       const notch = container.querySelector('.notch legend');
-      expect(notch).to.have.text('0\u00a0*');
+      expect(notch).to.have.text('0\u2009*');
     });
 
     it('should not set padding for empty, null or undefined label props', function test() {
@@ -201,7 +246,7 @@ describe('<TextField />', () => {
         </TextField>,
       );
 
-      expect(getByRole('button')).toHaveAccessibleName('Release: Stable');
+      expect(getByRole('combobox')).toHaveAccessibleName('Release:');
     });
 
     it('creates an input[hidden] that has no accessible properties', () => {
@@ -223,7 +268,34 @@ describe('<TextField />', () => {
         </TextField>,
       );
 
-      expect(getByRole('button')).toHaveAccessibleDescription('Foo bar');
+      expect(getByRole('combobox')).toHaveAccessibleDescription('Foo bar');
+    });
+  });
+
+  describe('event: click', () => {
+    it('registers `onClick` on the root slot', () => {
+      const handleClick = spy((event) => event.currentTarget);
+      const { getByTestId, getByRole } = render(
+        <TextField data-testid="root" onClick={handleClick} />,
+      );
+
+      const input = getByRole('textbox');
+
+      const root = getByTestId('root');
+
+      fireEvent.click(input);
+
+      expect(handleClick.callCount).to.equal(1);
+      // return value is event.currentTarget
+      expect(handleClick.returned(root)).to.equal(true);
+    });
+  });
+
+  describe('prop: inputProps', () => {
+    it('should apply additional props to the input element', () => {
+      const { getByRole } = render(<TextField inputProps={{ 'data-testid': 'input-element' }} />);
+
+      expect(getByRole('textbox')).to.have.attribute('data-testid', 'input-element');
     });
   });
 });

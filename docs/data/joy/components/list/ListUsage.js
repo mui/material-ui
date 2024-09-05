@@ -4,7 +4,8 @@ import ListItem from '@mui/joy/ListItem';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemButton from '@mui/joy/ListItemButton';
-import Home from '@mui/icons-material/Home';
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import JoyUsageDemo, {
   prependLinesSpace,
@@ -17,7 +18,7 @@ export default function ListUsage() {
       data={[
         {
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           options: ['plain', 'outlined', 'soft', 'solid'],
           defaultValue: 'plain',
         },
@@ -53,9 +54,18 @@ ${prependLinesSpace(code, 3)}
           <ListItem>
             <ListItemButton {...props}>
               <ListItemDecorator>
-                <Home />
+                <HomeRoundedIcon />
               </ListItemDecorator>
               <ListItemContent>Home</ListItemContent>
+              <KeyboardArrowRight />
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton {...props}>
+              <ListItemDecorator>
+                <ShoppingCartRoundedIcon />
+              </ListItemDecorator>
+              <ListItemContent>Orders</ListItemContent>
               <KeyboardArrowRight />
             </ListItemButton>
           </ListItem>

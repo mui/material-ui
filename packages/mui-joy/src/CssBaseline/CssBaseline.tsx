@@ -1,14 +1,25 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { GlobalStyles } from '@mui/system';
+import GlobalStyles from '../GlobalStyles';
+import defaultTheme from '../styles/defaultTheme';
 import { Theme, DefaultColorScheme, ColorSystem } from '../styles/types';
 import { Components } from '../styles/components';
 import { CssBaselineProps } from './CssBaselineProps';
 
 /**
  * Kickstart an elegant, consistent, and simple baseline to build upon.
+ *
+ * Demos:
+ *
+ * - [CSS Baseline](https://mui.com/joy-ui/react-css-baseline/)
+ *
+ * API:
+ *
+ * - [CssBaseline API](https://mui.com/joy-ui/api/css-baseline/)
  */
-function CssBaseline({ children, disableColorScheme = false }: CssBaselineProps) {
+function CssBaseline(props: CssBaselineProps) {
+  const { children, disableColorScheme = false } = props;
   return (
     <React.Fragment>
       <GlobalStyles
@@ -26,7 +37,7 @@ function CssBaseline({ children, disableColorScheme = false }: CssBaselineProps)
           }
           const defaultTypographyLevel =
             (theme as unknown as { components: Components<Theme> }).components?.JoyTypography
-              ?.defaultProps?.level ?? 'body1';
+              ?.defaultProps?.level ?? 'body-md';
           return {
             html: {
               WebkitFontSmoothing: 'antialiased',
@@ -41,7 +52,7 @@ function CssBaseline({ children, disableColorScheme = false }: CssBaselineProps)
               boxSizing: 'inherit',
             },
             'strong, b': {
-              fontWeight: 'bold',
+              fontWeight: theme.vars.fontWeight.lg,
             },
             body: {
               margin: 0, // Remove the margin in all browsers.
@@ -62,6 +73,7 @@ function CssBaseline({ children, disableColorScheme = false }: CssBaselineProps)
             ...colorSchemeStyles,
           };
         }}
+        defaultTheme={defaultTheme}
       />
       {children}
     </React.Fragment>
@@ -69,10 +81,10 @@ function CssBaseline({ children, disableColorScheme = false }: CssBaselineProps)
 }
 
 CssBaseline.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * You can wrap a node.
    */

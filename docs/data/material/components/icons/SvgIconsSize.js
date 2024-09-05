@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import SvgIcon from '@mui/material/SvgIcon';
 
 function HomeIcon(props) {
@@ -12,17 +12,11 @@ function HomeIcon(props) {
 
 export default function SvgIconsSize() {
   return (
-    <Box
-      sx={{
-        '& > :not(style)': {
-          m: 2,
-        },
-      }}
-    >
+    <Stack direction="row" spacing={3} sx={{ alignItems: 'flex-end' }}>
       <HomeIcon fontSize="small" />
       <HomeIcon />
       <HomeIcon fontSize="large" />
       <HomeIcon sx={{ fontSize: 40 }} />
-    </Box>
+    </Stack>
   );
 }

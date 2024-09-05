@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp, unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
@@ -15,13 +16,13 @@ import { NoSsrProps } from './NoSsr.types';
  *
  * Demos:
  *
- * - [No SSR](https://mui.com/base/react-no-ssr/)
+ * - [No SSR](https://mui.com/base-ui/react-no-ssr/)
  *
  * API:
  *
- * - [NoSsr API](https://mui.com/base/api/no-ssr/)
+ * - [NoSsr API](https://mui.com/base-ui/react-no-ssr/components-api/#no-ssr)
  */
-function NoSsr(props: NoSsrProps): JSX.Element {
+function NoSsr(props: NoSsrProps): React.JSX.Element {
   const { children, defer = false, fallback = null } = props;
   const [mountedState, setMountedState] = React.useState(false);
 
@@ -42,10 +43,10 @@ function NoSsr(props: NoSsrProps): JSX.Element {
 }
 
 NoSsr.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * You can wrap a node.
    */
@@ -68,4 +69,4 @@ if (process.env.NODE_ENV !== 'production') {
   (NoSsr as any)['propTypes' + ''] = exactProp(NoSsr.propTypes);
 }
 
-export default NoSsr;
+export { NoSsr };

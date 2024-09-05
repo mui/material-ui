@@ -1,5 +1,5 @@
-import { styled, createTheme } from '@mui/material/styles';
 import { expectType } from '@mui/types';
+import { styled, createTheme } from '@mui/material/styles';
 
 {
   // properties of the variants can be "unset"

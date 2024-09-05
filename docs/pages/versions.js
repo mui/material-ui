@@ -2,7 +2,7 @@ import * as React from 'react';
 import sortedUniqBy from 'lodash/sortedUniqBy';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import VersionsContext from 'docs/src/pages/versions/VersionsContext';
-import * as pageProps from 'docs/src/pages/versions/versions.md?@mui/markdown';
+import * as pageProps from 'docs/src/pages/versions/versions.md?muiMarkdown';
 
 export default function Page(props) {
   const { versions } = props;
@@ -45,7 +45,7 @@ Page.getInitialProps = async () => {
    */
   const versions = [];
   branches.forEach((branch) => {
-    if (FILTERED_BRANCHES.indexOf(branch.name) === -1) {
+    if (!FILTERED_BRANCHES.includes(branch.name)) {
       const version = branch.name;
       versions.push({
         version,

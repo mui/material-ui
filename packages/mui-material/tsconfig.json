@@ -1,5 +1,8 @@
 {
-  "extends": "../../tsconfig",
+  "extends": "../../tsconfig.json",
   "include": ["src/**/*", "test/**/*"],
+  "compilerOptions": {
+    "moduleResolution": "Bundler"
+  },
   "exclude": ["test/typescript/moduleAugmentation", "src/types/OverridableComponentAugmentation.ts"]
 }

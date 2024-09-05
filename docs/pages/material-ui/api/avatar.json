@@ -2,17 +2,26 @@
   "props": {
     "alt": { "type": { "name": "string" } },
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "component": { "type": { "name": "elementType" } },
     "imgProps": { "type": { "name": "object" } },
     "sizes": { "type": { "name": "string" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ img?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ img?: elementType }" },
+      "default": "{}"
+    },
     "src": { "type": { "name": "string" } },
     "srcSet": { "type": { "name": "string" } },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "variant": {
       "type": {
@@ -23,12 +32,59 @@
     }
   },
   "name": "Avatar",
-  "styles": {
-    "classes": ["root", "colorDefault", "circular", "rounded", "square", "img", "fallback"],
-    "globalClasses": {},
-    "name": "MuiAvatar"
-  },
+  "imports": [
+    "import Avatar from '@mui/material/Avatar';",
+    "import { Avatar } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "img",
+      "description": "The component that renders the transition.\n[Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
+      "default": "Collapse",
+      "class": "MuiAvatar-img"
+    }
+  ],
+  "classes": [
+    {
+      "key": "circular",
+      "className": "MuiAvatar-circular",
+      "description": "Styles applied to the root element if `variant=\"circular\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorDefault",
+      "className": "MuiAvatar-colorDefault",
+      "description": "Styles applied to the root element if not `src` or `srcSet`.",
+      "isGlobal": false
+    },
+    {
+      "key": "fallback",
+      "className": "MuiAvatar-fallback",
+      "description": "Styles applied to the fallback icon",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiAvatar-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "rounded",
+      "className": "MuiAvatar-rounded",
+      "description": "Styles applied to the root element if `variant=\"rounded\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "square",
+      "className": "MuiAvatar-square",
+      "description": "Styles applied to the root element if `variant=\"square\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiAvatar",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Avatar/Avatar.js",
   "inheritance": null,

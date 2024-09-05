@@ -1,13 +1,16 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Badge component
+components: Badge
 githubLabel: 'component: badge'
-unstyled: /base/react-badge/
+unstyled: /base-ui/react-badge/
 ---
 
 # Badge
 
 <p class="description">The Badge component generates a small label that is attached to its child element.</p>
+
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -15,8 +18,6 @@ A badge is a small descriptor for UI elements.
 It typically sits on or near an element and indicates the status of that element by displaying a number, icon, or other short set of characters.
 
 {{"demo": "BadgeUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Basics
 
@@ -56,7 +57,7 @@ Use the `max` prop to cap the content to a maximum numerical value.
 
 ### Variants
 
-The Badge component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft` , `outlined`, and `plain`.
+The Badge component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft` , `outlined`, and `plain`.
 
 {{"demo": "BadgeVariants.js"}}
 
@@ -123,9 +124,9 @@ To make your Badge accessible, you must provide a full description with `aria-la
 The Badge component is composed of a root `<span>` that houses the element that the Badge is attached to, followed by a `<span>` to represent the Badge itself:
 
 ```html
-<span class="JoyBadge-root">
+<span class="MuiBadge-root">
   <!-- the element the Badge is attached to -->
-  <span class="JoyBadge-badge">
+  <span class="MuiBadge-badge">
     <!-- Badge content -->
   </span>
 </span>

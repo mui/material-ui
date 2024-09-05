@@ -2,19 +2,51 @@ import * as React from 'react';
 import Box, { BoxProps } from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
 import NoSsr from '@mui/material/NoSsr';
-import Paper, { PaperProps } from '@mui/material/Paper';
+import Frame from 'docs/src/components/action/Frame';
 
-export default function ShowcaseContainer({
-  preview,
-  previewSx,
-  code,
-  codeSx,
+export function ShowcaseCodeWrapper({
+  children,
+  clip,
+  hasDesignToggle,
+  maxHeight,
   sx,
 }: {
-  preview?: React.ReactNode;
-  previewSx?: PaperProps['sx'];
+  clip?: boolean;
+  children: React.ReactNode;
+  hasDesignToggle?: boolean;
+  maxHeight: number | string;
+  sx?: BoxProps['sx'];
+}) {
+  return (
+    <Box
+      sx={{
+        p: 2,
+        pt: hasDesignToggle ? 7 : 2,
+        maxHeight: { xs: 'auto', sm: maxHeight },
+        position: 'relative',
+        display: 'flex',
+        overflow: clip ? 'clip' : 'auto',
+        flexGrow: 1,
+        '&::-webkit-scrollbar': {
+          display: 'none',
+        },
+        ...sx,
+      }}
+    >
+      {children}
+    </Box>
+  );
+}
+
+export default function ShowcaseContainer({
+  code,
+  noPadding,
+  preview,
+  sx,
+}: {
   code?: React.ReactNode;
-  codeSx?: BoxProps['sx'];
+  noPadding?: boolean;
+  preview?: React.ReactNode;
   sx?: BoxProps['sx'];
 }) {
   return (
@@ -24,48 +56,34 @@ export default function ShowcaseContainer({
           display: 'flex',
           flexDirection: 'column',
           height: '100%',
+          '& > div:first-of-type': {
+            borderTopLeftRadius: '12px',
+            borderTopRightRadius: '12px',
+          },
+          '& > div:last-of-type': {
+            borderBottomLeftRadius: '12px',
+            borderBottomRightRadius: '12px',
+          },
           ...sx,
         }}
       >
-        <Paper
-          variant="outlined"
+        <Frame.Demo
           sx={{
-            display: 'flex',
-            position: 'relative',
+            p: noPadding ? 0 : 2,
             minHeight: 220,
+            position: 'relative',
+            display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            p: 2,
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100'),
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.300',
-            borderBottomLeftRadius: 0,
-            borderBottomRightRadius: 0,
-            ...previewSx,
           }}
         >
           {preview}
-        </Paper>
-        <Box
-          sx={{
-            flexGrow: 0,
-            display: 'flex',
-            flexDirection: 'column',
-            maxWidth: '100%',
-            position: 'relative',
-            minHeight: 200,
-            borderWidth: '0 1px 1px 1px',
-            borderStyle: 'solid',
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.700' : 'primaryDark.900',
-            bgcolor: 'primaryDark.800',
-            borderBottomLeftRadius: 10,
-            borderBottomRightRadius: 10,
-            ...codeSx,
-          }}
-        >
-          <NoSsr>{code}</NoSsr>
-        </Box>
+        </Frame.Demo>
+        {code ? (
+          <Frame.Info data-mui-color-scheme="dark" sx={{ p: 0 }}>
+            <NoSsr>{code}</NoSsr>
+          </Frame.Info>
+        ) : null}
       </Box>
     </Fade>
   );

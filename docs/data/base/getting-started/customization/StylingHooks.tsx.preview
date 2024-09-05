@@ -1,1 +1,1 @@
-<BasicSwitch />
+<Switch aria-label="Demo switch" />

@@ -1,6 +1,8 @@
+'use client';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import getReactNodeRef from '@mui/utils/getReactNodeRef';
 import {
   exactProp,
   HTMLElementType,
@@ -20,20 +22,19 @@ function getContainer(container: PortalProps['container']) {
  *
  * Demos:
  *
- * - [Portal](https://mui.com/base/react-portal/)
+ * - [Portal](https://mui.com/base-ui/react-portal/)
  *
  * API:
  *
- * - [Portal API](https://mui.com/base/api/portal/)
+ * - [Portal API](https://mui.com/base-ui/react-portal/components-api/#portal)
  */
 const Portal = React.forwardRef(function Portal(
   props: PortalProps,
-  ref: React.ForwardedRef<Element>,
+  forwardedRef: React.ForwardedRef<Element>,
 ) {
   const { children, container, disablePortal = false } = props;
   const [mountNode, setMountNode] = React.useState<ReturnType<typeof getContainer>>(null);
-  // @ts-expect-error TODO upstream fix
-  const handleRef = useForkRef(React.isValidElement(children) ? children.ref : null, ref);
+  const handleRef = useForkRef(getReactNodeRef(children), forwardedRef);
 
   useEnhancedEffect(() => {
     if (!disablePortal) {
@@ -43,14 +44,14 @@ const Portal = React.forwardRef(function Portal(
 
   useEnhancedEffect(() => {
     if (mountNode && !disablePortal) {
-      setRef(ref, mountNode);
+      setRef(forwardedRef, mountNode);
       return () => {
-        setRef(ref, null);
+        setRef(forwardedRef, null);
       };
     }
 
     return undefined;
-  }, [ref, mountNode, disablePortal]);
+  }, [forwardedRef, mountNode, disablePortal]);
 
   if (disablePortal) {
     if (React.isValidElement(children)) {
@@ -70,10 +71,10 @@ const Portal = React.forwardRef(function Portal(
 }) as React.ForwardRefExoticComponent<PortalProps & React.RefAttributes<Element>>;
 
 Portal.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The children to render into the `container`.
    */
@@ -81,6 +82,9 @@ Portal.propTypes /* remove-proptypes */ = {
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
+   *
+   * You can also provide a callback, which is called in a React layout effect.
+   * This lets you set the container from a ref, and also makes server-side rendering possible.
    *
    * By default, it uses the body of the top-level document object,
    * so it's simply `document.body` most of the time.
@@ -101,4 +105,4 @@ if (process.env.NODE_ENV !== 'production') {
   (Portal as any)['propTypes' + ''] = exactProp((Portal as any).propTypes);
 }
 
-export default Portal;
+export { Portal };

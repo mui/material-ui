@@ -4,15 +4,13 @@ import fse from 'fs-extra';
 import path from 'path';
 import yargs from 'yargs';
 import { fileURLToPath } from 'url';
-import Queue from '../../../modules/waterfall/Queue.mjs';
-import sleep from '../../../modules/waterfall/sleep.mjs';
-import retry from '../../../modules/waterfall/retry.mjs';
+import { Queue, sleep, retry } from '@mui/internal-waterfall';
 
 const currentDirectory = fileURLToPath(new URL('.', import.meta.url));
 
 // Icons we don't publish.
 // This is just a list of new icons.
-// In the future we might change what icons we want to exclude (e.g. by popularity)
+// In the future we might change what icons we want to exclude (for example by popularity)
 const ignoredIconNames = new Set([
   // TODO v6: Whatsapp duplicates with WhatsApp
   // We don't need it https://fonts.google.com/icons?icon.set=Material+Icons&icon.query=whatsapp
@@ -20,20 +18,12 @@ const ignoredIconNames = new Set([
   '123',
   '6_ft_apart',
   'add_chart', // Leads to inconsistent casing with `Addchart`
-  'ads_click',
   'area_chart',
-  'back_hand',
-  'checklist_rtl',
-  'checklist',
   'compost',
   'cruelty_free',
   'data_exploration',
   'disabled_visible',
-  'draw',
   'drive_file_move_rtl',
-  'edit_calendar',
-  'edit_note',
-  'emergency',
   'exposure_neg_1', // Google product
   'exposure_neg_2', // Google product
   'exposure_plus_1', // Google product
@@ -56,11 +46,7 @@ const ignoredIconNames = new Set([
   'polymer', // Legacy brand
   'private_connectivity',
   'real_estate_agent',
-  'recycling',
-  'space_dashboard',
   'vertical_distribute', // Advanced text editor
-  'water_drop',
-  'waving_hand',
 ]);
 
 const themeMap = {

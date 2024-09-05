@@ -25,7 +25,7 @@ export default function transformer(file, api, options) {
       if (node.imported.name === 'Theme') {
         hasTheme = true;
       }
-      if (node.imported.name === 'ThemeProvider' || node.imported.nmae === 'MuiThemeProvider') {
+      if (node.imported.name === 'ThemeProvider' || node.imported.name === 'MuiThemeProvider') {
         isRootFile = true;
       }
     });

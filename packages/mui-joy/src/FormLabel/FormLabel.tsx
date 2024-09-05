@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
-import composeClasses from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import useSlot from '../utils/useSlot';
 import { FormLabelProps, FormLabelTypeMap } from './FormLabelProps';
@@ -22,16 +23,18 @@ const FormLabelRoot = styled('label', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: FormLabelProps }>(({ theme }) => ({
+  '--Icon-fontSize': 'calc(var(--FormLabel-lineHeight) * 1em)',
   WebkitTapHighlightColor: 'transparent',
   alignSelf: 'var(--FormLabel-alignSelf)', // to not fill the block space. It seems like a bug when clicking on empty space (within the label area), even though it is not.
   display: 'flex',
+  gap: '2px',
   alignItems: 'center',
   flexWrap: 'wrap',
   userSelect: 'none',
   fontFamily: theme.vars.fontFamily.body,
   fontSize: `var(--FormLabel-fontSize, ${theme.vars.fontSize.sm})`,
   fontWeight: theme.vars.fontWeight.md,
-  lineHeight: theme.vars.lineHeight.md,
+  lineHeight: `var(--FormLabel-lineHeight, ${theme.vars.lineHeight.sm})`,
   color: `var(--FormLabel-color, ${theme.vars.palette.text.primary})`,
   margin: 'var(--FormLabel-margin, 0px)',
 }));
@@ -41,16 +44,34 @@ const AsteriskComponent = styled('span', {
   slot: 'Asterisk',
   overridesResolver: (props, styles) => styles.asterisk,
 })<{ ownerState: FormLabelProps }>({
-  color: 'var(--FormLabel-asterisk-color)',
+  color: 'var(--FormLabel-asteriskColor)',
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Input](https://mui.com/joy-ui/react-input/)
+ *
+ * API:
+ *
+ * - [FormLabel API](https://mui.com/joy-ui/api/form-label/)
+ */
 const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'JoyFormLabel',
   });
 
-  const { children, component = 'label', ...other } = props;
+  const {
+    children,
+    component = 'label',
+    htmlFor,
+    id,
+    slots = {},
+    slotProps = {},
+    ...other
+  } = props;
+
   const formControl = React.useContext(FormControlContext);
   const required = inProps.required ?? formControl?.required ?? false;
 
@@ -60,12 +81,17 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
   };
 
   const classes = useUtilityClasses();
-  const externalForwardedProps = { ...other, component };
+  const externalForwardedProps = {
+    ...other,
+    component,
+    slots,
+    slotProps,
+  };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     additionalProps: {
-      htmlFor: formControl?.htmlFor,
-      id: formControl?.labelId,
+      htmlFor: htmlFor ?? formControl?.htmlFor,
+      id: id ?? formControl?.labelId,
     },
     ref,
     className: classes.root,
@@ -91,10 +117,10 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
 }) as OverridableComponent<FormLabelTypeMap>;
 
 FormLabel.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -105,9 +131,33 @@ FormLabel.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * @ignore
+   */
+  htmlFor: PropTypes.string,
+  /**
+   * @ignore
+   */
+  id: PropTypes.string,
+  /**
    * The asterisk is added if required=`true`
    */
   required: PropTypes.bool,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    asterisk: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    asterisk: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

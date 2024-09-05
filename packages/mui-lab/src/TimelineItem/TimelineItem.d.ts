@@ -8,7 +8,7 @@ export interface TimelineItemProps extends StandardProps<React.HTMLAttributes<HT
   /**
    * The position where the timeline's item should appear.
    */
-  position?: 'left' | 'right';
+  position?: 'left' | 'right' | 'alternate' | 'alternate-reverse';
   /**
    * The content of the component.
    */
@@ -33,4 +33,4 @@ export interface TimelineItemProps extends StandardProps<React.HTMLAttributes<HT
  *
  * - [TimelineItem API](https://mui.com/material-ui/api/timeline-item/)
  */
-export default function TimelineItem(props: TimelineItemProps): JSX.Element;
+export default function TimelineItem(props: TimelineItemProps): React.JSX.Element;

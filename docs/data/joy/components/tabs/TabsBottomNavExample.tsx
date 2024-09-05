@@ -4,24 +4,25 @@ import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Tabs from '@mui/joy/Tabs';
 import TabList from '@mui/joy/TabList';
 import Tab, { tabClasses } from '@mui/joy/Tab';
-import HomeOutlined from '@mui/icons-material/HomeOutlined';
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Search from '@mui/icons-material/Search';
 import Person from '@mui/icons-material/Person';
 
 export default function TabsBottomNavExample() {
   const [index, setIndex] = React.useState(0);
-  const colors = ['primary', 'info', 'danger', 'success'] as const;
+  const colors = ['primary', 'danger', 'success', 'warning'] as const;
   return (
     <Box
       sx={{
         flexGrow: 1,
         m: -3,
-        p: 3,
-        py: 5,
-        borderRadius: 'sm',
-        bgcolor: `${colors[index]}.600`,
+        p: 4,
+        borderTopLeftRadius: '12px',
+        borderTopRightRadius: '12px',
+        bgcolor: `${'var(--colors-index)'}.500`,
       }}
+      style={{ '--colors-index': colors[index] } as any}
     >
       <Tabs
         size="lg"
@@ -29,38 +30,44 @@ export default function TabsBottomNavExample() {
         value={index}
         onChange={(event, value) => setIndex(value as number)}
         sx={(theme) => ({
-          borderRadius: 'xl',
+          p: 1,
+          borderRadius: 16,
           maxWidth: 400,
           mx: 'auto',
           boxShadow: theme.shadow.sm,
-          '--Tabs-gap': '8px',
           '--joy-shadowChannel': theme.vars.palette[colors[index]].darkChannel,
           [`& .${tabClasses.root}`]: {
-            boxShadow: 'none',
-            borderRadius: 'lg',
-            whiteSpace: 'nowrap',
-            transition: '0.3s',
-            fontWeight: 'lg',
+            py: 1,
             flex: 1,
+            transition: '0.3s',
+            fontWeight: 'md',
+            fontSize: 'md',
             [`&:not(.${tabClasses.selected}):not(:hover)`]: {
-              opacity: 0.72,
+              opacity: 0.7,
             },
           },
         })}
       >
-        <TabList variant="plain" sx={{ '--List-decorator-size': '28px' }}>
+        <TabList
+          variant="plain"
+          size="sm"
+          disableUnderline
+          sx={{ borderRadius: 'lg', p: 0 }}
+        >
           <Tab
+            disableIndicator
             orientation="vertical"
-            {...(index === 0 && { variant: 'soft', color: colors[0] })}
+            {...(index === 0 && { color: colors[0] })}
           >
             <ListItemDecorator>
-              <HomeOutlined />
+              <HomeRoundedIcon />
             </ListItemDecorator>
             Home
           </Tab>
           <Tab
+            disableIndicator
             orientation="vertical"
-            {...(index === 1 && { variant: 'soft', color: colors[1] })}
+            {...(index === 1 && { color: colors[1] })}
           >
             <ListItemDecorator>
               <FavoriteBorder />
@@ -68,8 +75,9 @@ export default function TabsBottomNavExample() {
             Likes
           </Tab>
           <Tab
+            disableIndicator
             orientation="vertical"
-            {...(index === 2 && { variant: 'soft', color: colors[2] })}
+            {...(index === 2 && { color: colors[2] })}
           >
             <ListItemDecorator>
               <Search />
@@ -77,8 +85,9 @@ export default function TabsBottomNavExample() {
             Search
           </Tab>
           <Tab
+            disableIndicator
             orientation="vertical"
-            {...(index === 3 && { variant: 'soft', color: colors[3] })}
+            {...(index === 3 && { color: colors[3] })}
           >
             <ListItemDecorator>
               <Person />

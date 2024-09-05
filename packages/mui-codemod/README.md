@@ -1,19 +1,20 @@
 # @mui/codemod
 
-> Codemod scripts for MUI
+> Codemod scripts for Material UI, Base UI, MUI System, Joy UI.
 
 [![npm version](https://img.shields.io/npm/v/@mui/codemod.svg?style=flat-square)](https://www.npmjs.com/package/@mui/codemod)
 [![npm downloads](https://img.shields.io/npm/dm/@mui/codemod.svg?style=flat-square)](https://www.npmjs.com/package/@mui/codemod)
 
 This repository contains a collection of codemod scripts based for use with
-[jscodeshift](https://github.com/facebook/jscodeshift) that help update MUI APIs.
+[jscodeshift](https://github.com/facebook/jscodeshift) that help update the APIs.
+Some of the codemods also run [postcss](https://github.com/postcss/postcss) plugins to update CSS files.
 
 ## Setup & run
 
 <!-- #default-branch-switch -->
 
 ```bash
-npx @mui/codemod <codemod> <paths...>
+npx @mui/codemod@latest <codemod> <paths...>
 
 Applies a `@mui/codemod` to the specified paths
 
@@ -33,18 +34,18 @@ Options:
   --jscodeshift                                  [string] [default: false]
 
 Examples:
-  npx @mui/codemod v4.0.0/theme-spacing-api src
-  npx @mui/codemod v5.0.0/component-rename-prop src --
+  npx @mui/codemod@latest v4.0.0/theme-spacing-api src
+  npx @mui/codemod@latest v5.0.0/component-rename-prop src --
   --component=Grid --from=prop --to=newProp
-  npx @mui/codemod v5.0.0/preset-safe src --parser=flow
+  npx @mui/codemod@latest v5.0.0/preset-safe src --parser=flow
 ```
 
 ### jscodeshift options
 
 To pass more options directly to jscodeshift, use `--jscodeshift="..."`. For example:
 
-```sh
-npx @mui/codemod --jscodeshift="--run-in-band --verbose=2"
+```bash
+npx @mui/codemod@latest --jscodeshift="--run-in-band --verbose=2"
 ```
 
 See all available options [here](https://github.com/facebook/jscodeshift#usage-cli).
@@ -54,17 +55,1898 @@ See all available options [here](https://github.com/facebook/jscodeshift#usage-c
 Options to [recast](https://github.com/benjamn/recast)'s printer can be provided
 through jscodeshift's `printOptions` command line argument
 
-```sh
-npx @mui/codemod <transform> <path> --jscodeshift="--printOptions='{\"quote\":\"double\"}'"
+```bash
+npx @mui/codemod@latest <transform> <path> --jscodeshift="--printOptions='{\"quote\":\"double\"}'"
 ```
 
 ## Included scripts
 
+- [Deprecations](#deprecations)
+- [v6](#v600)
+- [v5](#v500)
+- [v4](#v400)
+- [v1](#v100)
+- [v0.15](#v0150)
+
+### Deprecations
+
+```bash
+npx @mui/codemod@latest deprecations/all <path>
+```
+
+#### `all`
+
+A combination of all deprecations.
+
+#### `accordion-props`
+
+```diff
+ <Accordion
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ unmountOnExit: true }}
++  slots={{ transition: CustomTransition }}
++  slotProps={{ transition: { unmountOnExit: true } }}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/accordion-props <path>
+```
+
+#### `accordion-summary-classes`
+
+JS transforms:
+
+```diff
+ import { accordionSummaryClasses } from '@mui/material/AccordionSummary';
+
+ MuiAccordionSummary: {
+   styleOverrides: {
+     root: {
+-      [`& .${accordionSummaryClasses.contentGutters}`]: {
++      [`&.${accordionSummaryClasses.gutters} .${accordionSummaryClasses.content}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+```diff
+ MuiAccordionSummary: {
+   styleOverrides: {
+     root: {
+-      '& .MuiAccordionSummary-contentGutters': {
++      '&.MuiAccordionSummary-gutters .MuiAccordionSummary-content': {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiAccordionSummary-root .MuiAccordionSummary-contentGutters
++.MuiAccordionSummary-root.MuiAccordionSummary-gutters .MuiAccordionSummary-content
+```
+
+```bash
+npx @mui/codemod@latest deprecations/accordion-summary-classes <path>
+```
+
+#### `alert-classes`
+
+JS transforms:
+
+```diff
+ import { alertClasses } from '@mui/material/PaginationItem';
+
+ MuiPaginationItem: {
+   styleOverrides: {
+     root: {
+-      [`&.${alertClasses.standardSuccess}`]: {
++      [`&.${alertClasses.standard}.${alertClasses.colorSuccess}`]: {
+         color: 'red',
+       },
+-      [`&.${alertClasses.standardInfo}`]: {
++      [`&.${alertClasses.standard}.${alertClasses.colorInfo}`]: {
+         color: 'red',
+       },
+-      [`&.${alertClasses.standardWarning}`]: {
++      [`&.${alertClasses.standard}.${alertClasses.colorWarning}`]: {
+         color: 'red',
+       },
+-      [`&.${alertClasses.standardError}`]: {
++      [`&.${alertClasses.standard}.${alertClasses.colorError}`]: {
+         color: 'red',
+       },
+-      [`&.${alertClasses.outlinedSuccess}`]: {
++      [`&.${alertClasses.outlined}.${alertClasses.colorSuccess}`]: {
+         color: 'red',
+       },
+-      [`&.${alertClasses.outlinedInfo}`]: {
++      [`&.${alertClasses.outlined}.${alertClasses.colorInfo}`]: {
+         color: 'red',
+       },
+-      [`&.${alertClasses.outlinedWarning}`]: {
++      [`&.${alertClasses.outlined}.${alertClasses.colorWarning}`]: {
+         color: 'red',
+       },
+-      [`&.${alertClasses.outlinedError}`]: {
++      [`&.${alertClasses.outlined}.${alertClasses.colorError}`]: {
+         color: 'red',
+       },
+-      [`&.${alertClasses.filledSuccess}`]: {
++      [`&.${alertClasses.filled}.${alertClasses.colorSuccess}`]: {
+         color: 'red',
+       },
+-      [`&.${alertClasses.filledInfo}`]: {
++      [`&.${alertClasses.filled}.${alertClasses.colorInfo}`]: {
+         color: 'red',
+       },
+-      [`&.${alertClasses.filledWarning}`]: {
++      [`&.${alertClasses.filled}.${alertClasses.colorWarning}`]: {
+         color: 'red',
+       },
+-      [`&.${alertClasses.filledError}`]: {
++      [`&.${alertClasses.filled}.${alertClasses.colorError}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiAlert-standardSuccess
++.MuiAlert-standard.MuiAlert-colorSuccess
+-.MuiAlert-standardInfo
++.MuiAlert-standard.MuiAlert-colorInfo
+-.MuiAlert-standardWarning
++.MuiAlert-standard.MuiAlert-colorWarning
+-.MuiAlert-standardError
++.MuiAlert-standard.MuiAlert-colorError
+-.MuiAlert-outlinedSuccess
++.MuiAlert-outlined.MuiAlert-colorSuccess
+-.MuiAlert-outlinedInfo
++.MuiAlert-outlined.MuiAlert-colorInfo
+-.MuiAlert-outlinedWarning
++.MuiAlert-outlined.MuiAlert-colorWarning
+-.MuiAlert-outlinedError
++.MuiAlert-outlined.MuiAlert-colorError
+-.MuiAlert-filledSuccess
++.MuiAlert-filled.MuiAlert-colorSuccess
+-.MuiAlert-filledInfo
++.MuiAlert-filled.MuiAlert-colorInfo
+-.MuiAlert-filledWarning
++.MuiAlert-filled.MuiAlert-colorWarning
+-.MuiAlert-filledError
++.MuiAlert-filled.MuiAlert-colorError
+```
+
+```bash
+npx @mui/codemod@latest deprecations/alert-classes <path>
+```
+
+#### `alert-props`
+
+```diff
+ <Alert
+-  components={{ CloseButton: CustomButton }}
+-  componentsProps={{ closeButton: { testid: 'test-id' } }}
++  slots={{ closeButton: CustomButton }}
++  slotProps={{ closeButton: { testid: 'test-id' } }}
+ />
+```
+
+```diff
+ MuiAlert: {
+   defaultProps: {
+-    components: { CloseButton: CustomButton }
+-    componentsProps: { closeButton: { testid: 'test-id' }}
++    slots: { closeButton: CustomButton },
++    slotProps: { closeButton: { testid: 'test-id' } },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/alert-props <path>
+```
+
+#### `autocomplete-props`
+
+```diff
+ <Autocomplete
+-  ChipProps={{ height: 10 }}
+-  PaperComponent={CustomPaper}
+-  PopperComponent={CustomPopper}
+-  ListboxComponent={CustomListbox}
+-  ListboxProps={{ height: 12 }}
+-  componentsProps={{
+-    clearIndicator: { width: 10 },
+-    paper: { width: 12 },
+-    popper: { width: 14 },
+-    popupIndicator: { width: 16 },
+-  }}
++  slots={{
++    paper: CustomPaper,
++    popper: CustomPopper,
++    listbox: CustomListbox,
++  }}
++  slotProps={{
++    chip: { height: 10 },
++    listbox: { height: 12 },
++    clearIndicator: { width: 10 },
++    paper: { width: 12 },
++    popper: { width: 14 },
++    popupIndicator: { width: 16 },
++  }}
+ />
+```
+
+```diff
+ MuiAutocomplete: {
+   defaultProps: {
+-    ChipProps: { height: 10 },
+-    PaperComponent: CustomPaper,
+-    PopperComponent: CustomPopper,
+-    ListboxComponent: CustomListbox,
+-    ListboxProps: { height: 12 },
+-    componentsProps: {
+-       clearIndicator: { width: 10 },
+-       paper: { width: 12 },
+-       popper: { width: 14 },
+-       popupIndicator: { width: 16 },
+-     }
++    slots: {
++      paper: CustomPaper,
++      popper: CustomPopper,
++      listbox: CustomListbox,
++    },
++    slotProps: {
++      chip: { height: 10 },
++      listbox: { height: 12 },
++      clearIndicator: { width: 10 },
++      paper: { width: 12 },
++      popper: { width: 14 },
++      popupIndicator: { width: 16 },
++    },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/autocomplete-props <path>
+```
+
+#### `avatar-group-props`
+
+```diff
+ <AvatarGroup
+-  componentsProps={{
+-    additionalAvatar: { color: 'red' },
++  slotProps={{
++    surplus: { color: 'red' },
+   }}
+ />
+```
+
+```diff
+ <AvatarGroup
+   slotProps={{
+-    additionalAvatar: { color: 'red' },
++    surplus: { color: 'red' },
+   }}
+ />
+```
+
+```diff
+ MuiAvatarGroup: {
+   defaultProps: {
+-    componentsProps: {
+-      additionalAvatar: { color: 'red' },
++    slotProps: {
++      surplus: { color: 'red' },
+     },
+   },
+ },
+```
+
+```diff
+ MuiAvatarGroup: {
+   defaultProps: {
+     slotProps: {
+-      additionalAvatar: { color: 'red' },
++      surplus: { color: 'red' },
+     },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/avatar-group-props <path>
+```
+
+#### `avatar-props`
+
+```diff
+ <Avatar
+-  imgProps={{
+-    onError: () => {},
+-    onLoad: () => {},
++  slotProps={{
++    img: {
++      onError: () => {},
++      onLoad: () => {},
++    },
+   }}
+ />
+```
+
+#### `backdrop-props`
+
+```diff
+ <Backdrop
+-  components={{ Root: CustomRoot }}
+-  componentsProps={{ root: { testid: 'test-id' } }}
++  slots={{ root: CustomRoot }}
++  slotProps={{ root: { testid: 'test-id' } }}
+ />
+```
+
+```diff
+ MuiBackdrop: {
+   defaultProps: {
+-    components: { Root: CustomRoot }
+-    componentsProps: { root: { testid: 'root-id' } }
++    slots: { root: CustomRoot },
++    slotProps: { root: { testid: 'root-id' } },
+  },
+ },
+```
+
+```diff
+ <Backdrop
+-  TransitionComponent={CustomTransition}
++  slots={{ transition: CustomTransition }}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/backdrop-props <path>
+```
+
+#### `badge-props`
+
+```diff
+ <Badge
+-  components={{ Root: CustomRoot }}
+-  componentsProps={{ root: { testid: 'test-id' } }}
++  slots={{ root: CustomRoot }}
++  slotProps={{ root: { testid: 'test-id' } }}
+ />
+```
+
+```diff
+ MuiBadge: {
+   defaultProps: {
+-    components: { Root: CustomRoot }
+-    componentsProps: { root: { testid: 'test-id' }}
++    slots: { root: CustomRoot },
++    slotProps: { root: { testid: 'test-id' } },
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/badge-props <path>
+```
+
+#### `button-classes`
+
+JS transforms:
+
+```diff
+ import { buttonClasses } from '@mui/material/Button';
+
+ MuiButton: {
+   styleOverrides: {
+     root: {
+-      [`&.${buttonClasses.textInherit}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorInherit}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.textPrimary}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorPrimary}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.textSecondary}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorSecondary}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.textSuccess}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorSuccess}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.textError}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorError}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.textInfo}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorInfo}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.textWarning}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.colorWarning}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.outlinedInherit}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorInherit}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.outlinedPrimary}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorPrimary}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.outlinedSecondary}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorSecondary}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.outlinedSuccess}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorSuccess}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.outlinedError}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorError}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.outlinedInfo}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorInfo}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.outlinedWarning}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.colorWarning}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.containedInherit}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorInherit}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.containedPrimary}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorPrimary}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.containedSecondary}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorSecondary}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.containedSuccess}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorSuccess}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.containedError}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorError}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.containedInfo}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorInfo}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.containedWarning}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.colorWarning}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.containedSizeSmall}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.sizeSmall}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.containedSizeMedium}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.sizeMedium}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.containedSizeLarge}`]: {
++      [`&.${buttonClasses.contained}.${buttonClasses.sizeLarge}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.textSizeSmall}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.sizeSmall}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.textSizeMedium}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.sizeMedium}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.textSizeLarge}`]: {
++      [`&.${buttonClasses.text}.${buttonClasses.sizeLarge}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.outlinedSizeSmall}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.sizeSmall}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.outlinedSizeMedium}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.sizeMedium}`]: {
+         color: 'red',
+       },
+-      [`&.${buttonClasses.outlinedSizeLarge}`]: {
++      [`&.${buttonClasses.outlined}.${buttonClasses.sizeLarge}`]: {
+         color: 'red',
+       },
+-      [`& .${buttonClasses.iconSizeSmall}`]: {
++      [`&.${buttonClasses.sizeSmall} > .${buttonClasses.icon}`]: {
+         color: 'red',
+       },
+-      [`& .${buttonClasses.iconSizeMedium}`]: {
++      [`&.${buttonClasses.sizeMedium} > .${buttonClasses.icon}`]: {
+         color: 'red',
+       },
+-      [`& .${buttonClasses.iconSizeLarge}`]: {
++      [`&.${buttonClasses.sizeLarge} > .${buttonClasses.icon}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiButton-textInherit
++.MuiButton-text.MuiButton-colorInherit
+-.MuiButton-textPrimary
++.MuiButton-text.MuiButton-colorPrimary
+-.MuiButton-textSecondary
++.MuiButton-text.MuiButton-colorSecondary
+-.MuiButton-textSuccess
++.MuiButton-text.MuiButton-colorSuccess
+-.MuiButton-textError
++.MuiButton-text.MuiButton-colorError
+-.MuiButton-textInfo
++.MuiButton-text.MuiButton-colorInfo
+-.MuiButton-textWarning
++.MuiButton-text.MuiButton-colorWarning
+-.MuiButton-outlinedInherit
++.MuiButton-outlined.MuiButton-colorInherit
+-.MuiButton-outlinedPrimary
++.MuiButton-outlined.MuiButton-colorPrimary
+-.MuiButton-outlinedSecondary
++.MuiButton-outlined.MuiButton-colorSecondary
+-.MuiButton-outlinedSuccess
++.MuiButton-outlined.MuiButton-colorSuccess
+-.MuiButton-outlinedError
++.MuiButton-outlined.MuiButton-colorError
+-.MuiButton-outlinedInfo
++.MuiButton-outlined.MuiButton-colorInfo
+-.MuiButton-outlinedWarning
++.MuiButton-outlined.MuiButton-colorWarning
+-.MuiButton-containedInherit
++.MuiButton-contained.MuiButton-colorInherit
+-.MuiButton-containedPrimary
++.MuiButton-contained.MuiButton-colorPrimary
+-.MuiButton-containedSecondary
++.MuiButton-contained.MuiButton-colorSecondary
+-.MuiButton-containedSuccess
++.MuiButton-contained.MuiButton-colorSuccess
+-.MuiButton-containedError
++.MuiButton-contained.MuiButton-colorError
+-.MuiButton-containedInfo
++.MuiButton-contained.MuiButton-colorInfo
+-.MuiButton-containedWarning
++.MuiButton-contained.MuiButton-colorWarning
+-.MuiButton-textSizeSmall
++.MuiButton-text.MuiButton-sizeSmall
+-.MuiButton-textSizeMedium
++.MuiButton-text.MuiButton-sizeMedium
+-.MuiButton-textSizeLarge
++.MuiButton-text.MuiButton-sizeLarge
+-.MuiButton-outlinedSizeSmall
++.MuiButton-outlined.MuiButton-sizeSmall
+-.MuiButton-outlinedSizeMedium
++.MuiButton-outlined.MuiButton-sizeMedium
+-.MuiButton-outlinedSizeLarge
++.MuiButton-outlined.MuiButton-sizeLarge
+-.MuiButton-containedSizeSmall
++.MuiButton-contained.MuiButton-sizeSmall
+-.MuiButton-containedSizeMedium
++.MuiButton-contained.MuiButton-sizeMedium
+-.MuiButton-containedSizeLarge
++.MuiButton-contained.MuiButton-sizeLarge
+-.MuiButton-root .MuiButton-iconSizeSmall
++.MuiButton-root.MuiButton-sizeSmall > .MuiButton-icon
+-.MuiButton-root .MuiButton-iconSizeMedium
++.MuiButton-root.MuiButton-sizeMedium > .MuiButton-icon
+-.MuiButton-root .MuiButton-iconSizeLarge
++.MuiButton-root.MuiButton-sizeLarge > .MuiButton-icon
+```
+
+```bash
+npx @mui/codemod@latest deprecations/button-classes <path>
+```
+
+#### `button-group-classes`
+
+JS transforms:
+
+```diff
+ import { buttonGroupClasses } from '@mui/material/ButtonGroup';
+
+ MuiButtonGroup: {
+   styleOverrides: {
+     root: {
+-      [`& .${buttonGroupClasses.groupedHorizontal}`]: {
++      [`&.${buttonGroupClasses.horizontal} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+       },
+-      [`& .${buttonGroupClasses.groupedVertical}`]: {
++      [`&.${buttonGroupClasses.vertical} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+       },
+-      [`& .${buttonGroupClasses.groupedText}`]: {
++      [`&.${buttonGroupClasses.text} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+       },
+-      [`& .${buttonGroupClasses.groupedTextHorizontal}`]: {
++      [`&.${buttonGroupClasses.text}.${buttonGroupClasses.horizontal} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+       },
+-      [`& .${buttonGroupClasses.groupedTextVertical}`]: {
++      [`&.${buttonGroupClasses.text}.${buttonGroupClasses.vertical} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+       },
+-      [`& .${buttonGroupClasses.groupedTextPrimary}`]: {
++      [`&.${buttonGroupClasses.text}.${buttonGroupClasses.colorPrimary} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+       },
+-      [`& .${buttonGroupClasses.groupedTextSecondary}`]: {
++      [`&.${buttonGroupClasses.text}.${buttonGroupClasses.colorSecondary} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+       },
+-      [`& .${buttonGroupClasses.groupedOutlined}`]: {
++      [`&.${buttonGroupClasses.outlined} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+       },
+-      [`& .${buttonGroupClasses.groupedOutlinedHorizontal}`]: {
++      [`&.${buttonGroupClasses.outlined}.${buttonGroupClasses.horizontal} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+       },
+-      [`& .${buttonGroupClasses.groupedOutlinedVertical}`]: {
++      [`&.${buttonGroupClasses.outlined}.${buttonGroupClasses.vertical} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+       },
+-      [`& .${buttonGroupClasses.groupedOutlinedPrimary}`]: {
++      [`&.${buttonGroupClasses.outlined}.${buttonGroupClasses.colorPrimary} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+       },
+-      [`& .${buttonGroupClasses.groupedOutlinedSecondary}`]: {
++      [`&.${buttonGroupClasses.outlined}.${buttonGroupClasses.colorSecondary} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+       },
+-      [`& .${buttonGroupClasses.groupedContained}`]: {
++      [`&.${buttonGroupClasses.contained} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+       },
+-      [`& .${buttonGroupClasses.groupedContainedHorizontal}`]: {
++      [`&.${buttonGroupClasses.contained}.${buttonGroupClasses.horizontal} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+       },
+-      [`& .${buttonGroupClasses.groupedContainedVertical}`]: {
++      [`&.${buttonGroupClasses.contained}.${buttonGroupClasses.vertical} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+       },
+-      [`& .${buttonGroupClasses.groupedContainedPrimary}`]: {
++      [`&.${buttonGroupClasses.contained}.${buttonGroupClasses.colorPrimary} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+       },
+-      [`& .${buttonGroupClasses.groupedContainedSecondary}`]: {
++      [`&.${buttonGroupClasses.contained}.${buttonGroupClasses.colorSecondary} > .${buttonGroupClasses.grouped}`]: {
+          color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiButtonGroup-root .MuiButtonGroup-groupedHorizontal
++.MuiButtonGroup-root.MuiButtonGroup-horizontal > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedVertical
++.MuiButtonGroup-root.MuiButtonGroup-vertical > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedText
++.MuiButtonGroup-root.MuiButtonGroup-text > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedTextHorizontal
++.MuiButtonGroup-root.MuiButtonGroup-text.MuiButtonGroup-horizontal > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedTextVertical
++.MuiButtonGroup-root.MuiButtonGroup-text.MuiButtonGroup-vertical > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedTextPrimary
++.MuiButtonGroup-root.MuiButtonGroup-text.MuiButtonGroup-colorPrimary > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedTextSecondary
++.MuiButtonGroup-root.MuiButtonGroup-text.MuiButtonGroup-colorSecondary > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedOutlined
++.MuiButtonGroup-root.MuiButtonGroup-outlined > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedOutlinedHorizontal
++.MuiButtonGroup-root.MuiButtonGroup-outlined.MuiButtonGroup-horizontal > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedOutlinedVertical
++.MuiButtonGroup-root.MuiButtonGroup-outlined.MuiButtonGroup-vertical > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedOutlinedPrimary
++.MuiButtonGroup-root.MuiButtonGroup-outlined.MuiButtonGroup-colorPrimary > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedOutlinedSecondary
++.MuiButtonGroup-root.MuiButtonGroup-outlined.MuiButtonGroup-colorSecondary > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedContained
++.MuiButtonGroup-root.MuiButtonGroup-contained > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedContainedHorizontal
++.MuiButtonGroup-root.MuiButtonGroup-contained.MuiButtonGroup-horizontal > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedContainedVertical
++.MuiButtonGroup-root.MuiButtonGroup-contained.MuiButtonGroup-vertical > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedContainedPrimary
++.MuiButtonGroup-root.MuiButtonGroup-contained.MuiButtonGroup-colorPrimary > .MuiButtonGroup-grouped
+-.MuiButtonGroup-root .MuiButtonGroup-groupedContainedSecondary
++.MuiButtonGroup-root.MuiButtonGroup-contained.MuiButtonGroup-colorSecondary > .MuiButtonGroup-grouped
+```
+
+```bash
+npx @mui/codemod@latest deprecations/button-group-classes <path>
+```
+
+#### `chip-classes`
+
+JS transforms:
+
+```diff
+ import { chipClasses } from '@mui/material/Chip';
+
+  MuiChip: {
+   styleOverrides: {
+     root: {
+-      [`&.${chipClasses.clickableColorPrimary}`]: {
++      [`&.${chipClasses.clickable}.${chipClasses.colorPrimary}`]: {
+         color: 'red',
+       },
+-      [`&.${chipClasses.clickableColorSecondary}`]: {
++      [`&.${chipClasses.clickable}.${chipClasses.colorSecondary}`]: {
+         color: 'red',
+       },
+-      [`&.${chipClasses.deletableColorPrimary}`]: {
++      [`&.${chipClasses.deletable}.${chipClasses.colorPrimary}`]: {
+         color: 'red',
+       },
+-      [`&.${chipClasses.deletableColorSecondary}`]: {
++      [`&.${chipClasses.deletable}.${chipClasses.colorSecondary}`]: {
+         color: 'red',
+       },
+-      [`&.${chipClasses.outlinedPrimary}`]: {
++      [`&.${chipClasses.outlined}.${chipClasses.colorPrimary}`]: {
+         color: 'red',
+       },
+-      [`&.${chipClasses.outlinedSecondary}`]: {
++      [`&.${chipClasses.outlined}.${chipClasses.colorSecondary}`]: {
+         color: 'red',
+       },
+-      [`&.${chipClasses.filledPrimary}`]: {
++      [`&.${chipClasses.filled}.${chipClasses.colorPrimary}`]: {
+         color: 'red',
+       },
+-      [`&.${chipClasses.filledSecondary}`]: {
++      [`&.${chipClasses.filled}.${chipClasses.colorSecondary}`]: {
+         color: 'red',
+       },
+-      [`& .${chipClasses.avatarSmall}`]: {
++      [`&.${chipClasses.sizeSmall} > .${chipClasses.avatar}`]: {
+         color: 'red',
+       },
+-      [`& .${chipClasses.avatarMedium}`]: {
++      [`&.${chipClasses.sizeMedium} > .${chipClasses.avatar}`]: {
+         color: 'red',
+       },
+-      [`& .${chipClasses.avatarColorPrimary}`]: {
++      [`&.${chipClasses.colorPrimary} > .${chipClasses.avatar}`]: {
+         color: 'red',
+       },
+-      [`& .${chipClasses.avatarColorSecondary}`]: {
++      [`&.${chipClasses.colorSecondary} > .${chipClasses.avatar}`]: {
+         color: 'red',
+       },
+-      [`& .${chipClasses.iconSmall}`]: {
++      [`&.${chipClasses.sizeSmall} > .${chipClasses.icon}`]: {
+         color: 'red',
+       },
+-      [`& .${chipClasses.iconMedium}`]: {
++      [`&.${chipClasses.sizeMedium} > .${chipClasses.icon}`]: {
+         color: 'red',
+       },
+-      [`& .${chipClasses.iconColorPrimary}`]: {
++      [`&.${chipClasses.colorPrimary} > .${chipClasses.icon}`]: {
+         color: 'red',
+       },
+-      [`& .${chipClasses.iconColorSecondary}`]: {
++      [`&.${chipClasses.colorSecondary} > .${chipClasses.icon}`]: {
+         color: 'red',
+       },
+-      [`& .${chipClasses.labelSmall}`]: {
++      [`&.${chipClasses.sizeSmall} > .${chipClasses.label}`]: {
+         color: 'red',
+       },
+-      [`& .${chipClasses.labelMedium}`]: {
++      [`&.${chipClasses.sizeMedium} > .${chipClasses.label}`]: {
+         color: 'red',
+       },
+-      [`& .${chipClasses.deleteIconSmall}`]: {
++      [`&.${chipClasses.sizeSmall} > .${chipClasses.deleteIcon}`]: {
+         color: 'red',
+       },
+-      [`& .${chipClasses.deleteIconMedium}`]: {
++      [`&.${chipClasses.sizeMedium} > .${chipClasses.deleteIcon}`]: {
+         color: 'red',
+       },
+-      [`& .${chipClasses.deleteIconColorPrimary}`]: {
++      [`&.${chipClasses.colorPrimary} > .${chipClasses.deleteIcon}`]: {
+         color: 'red',
+       },
+-      [`& .${chipClasses.deleteIconColorSecondary}`]: {
++      [`&.${chipClasses.colorSecondary} > .${chipClasses.deleteIcon}`]: {
+         color: 'red',
+       },
+-      [`& .${chipClasses.deleteIconOutlinedColorPrimary}`]: {
++      [`&.${chipClasses.outlined}.${chipClasses.colorPrimary} > .${chipClasses.deleteIcon}`]: {
+         color: 'red',
+       },
+-      [`& .${chipClasses.deleteIconOutlinedColorSecondary}`]: {
++      [`&.${chipClasses.outlined}.${chipClasses.colorSecondary} > .${chipClasses.deleteIcon}`]: {
+         color: 'red',
+       },
+-      [`& .${chipClasses.deleteIconFilledColorPrimary}`]: {
++      [`&.${chipClasses.filled}.${chipClasses.colorPrimary} > .${chipClasses.deleteIcon}`]: {
+         color: 'red',
+       },
+-      [`& .${chipClasses.deleteIconFilledColorSecondary}`]: {
++      [`&.${chipClasses.filled}.${chipClasses.colorSecondary} > .${chipClasses.deleteIcon}`]: {
+         color: 'red',
+       },
+     },
+   },
+  },
+
+```
+
+CSS transforms:
+
+```diff
+-.MuiChip-clickableColorPrimary
++.MuiChip-clickable.MuiChip-colorPrimary
+-.MuiChip-clickableColorSecondary
++.MuiChip-clickable.MuiChip-colorSecondary
+-.MuiChip-deletableColorPrimary
++.MuiChip-deletable.MuiChip-colorPrimary
+-.MuiChip-deletableColorSecondary
++.MuiChip-deletable.MuiChip-colorSecondary
+-.MuiChip-outlinedPrimary
++.MuiChip-outlined.MuiChip-colorPrimary
+-.MuiChip-outlinedSecondary
++.MuiChip-outlined.MuiChip-colorSecondary
+-.MuiChip-filledPrimary
++.MuiChip-filled.MuiChip-colorPrimary
+-.MuiChip-filledSecondary
++.MuiChip-filled.MuiChip-colorSecondary
+-.MuiChip-root .MuiChip-avatarSmall
++.MuiChip-root.MuiChip-sizeSmall > .MuiChip-avatar
+-.MuiChip-root .MuiChip-avatarMedium
++.MuiChip-root.MuiChip-sizeMedium > .MuiChip-avatar
+-.MuiChip-root .MuiChip-avatarColorPrimary
++.MuiChip-root.MuiChip-colorPrimary > .MuiChip-avatar
+-.MuiChip-root .MuiChip-avatarColorSecondary
++.MuiChip-root.MuiChip-colorSecondary > .MuiChip-avatar
+-.MuiChip-root .MuiChip-iconSmall
++.MuiChip-root.MuiChip-sizeSmall > .MuiChip-icon
+-.MuiChip-root .MuiChip-iconMedium
++.MuiChip-root.MuiChip-sizeMedium > .MuiChip-icon
+-.MuiChip-root .MuiChip-iconColorPrimary
++.MuiChip-root.MuiChip-colorPrimary > .MuiChip-icon
+-.MuiChip-root .MuiChip-iconColorSecondary
++.MuiChip-root.MuiChip-colorSecondary > .MuiChip-icon
+-.MuiChip-root .MuiChip-labelSmall
++.MuiChip-root.MuiChip-sizeSmall > .MuiChip-label
+-.MuiChip-root .MuiChip-labelMedium
++.MuiChip-root.MuiChip-sizeMedium > .MuiChip-label
+-.MuiChip-root .MuiChip-deleteIconSmall
++.MuiChip-root.MuiChip-sizeSmall > .MuiChip-deleteIcon
+-.MuiChip-root .MuiChip-deleteIconMedium
++.MuiChip-root.MuiChip-sizeMedium > .MuiChip-deleteIcon
+-.MuiChip-root .MuiChip-deleteIconColorPrimary
++.MuiChip-root.MuiChip-colorPrimary > .MuiChip-deleteIcon
+-.MuiChip-root .MuiChip-deleteIconColorSecondary
++.MuiChip-root.MuiChip-colorSecondary > .MuiChip-deleteIcon
+-.MuiChip-root .MuiChip-deleteIconOutlinedColorPrimary
++.MuiChip-root.MuiChip-outlined.MuiChip-colorPrimary > .MuiChip-deleteIcon
+-.MuiChip-root .MuiChip-deleteIconOutlinedColorSecondary
++.MuiChip-root.MuiChip-outlined.MuiChip-colorSecondary > .MuiChip-deleteIcon
+-.MuiChip-root .MuiChip-deleteIconFilledColorPrimary
++.MuiChip-root.MuiChip-filled.MuiChip-colorPrimary > .MuiChip-deleteIcon
+-.MuiChip-root .MuiChip-deleteIconFilledColorSecondary
++.MuiChip-root.MuiChip-filled.MuiChip-colorSecondary > .MuiChip-deleteIcon
+```
+
+```bash
+npx @mui/codemod@latest deprecations/chip-classes <path>
+```
+
+#### `circular-progress-classes`
+
+JS transforms:
+
+```diff
+ import { circularProgressClasses } from '@mui/material/CircularProgress';
+
+ MuiCircularProgress: {
+   styleOverrides: {
+     root: {
+-      [`& .${circularProgressClasses.circleDeterminate}`]: {
++      [`&.${circularProgressClasses.determinate} > .${circularProgressClasses.circle}`]: {
+         color: 'red',
+       },
+-      [`& .${circularProgressClasses.circleIndeterminate}`]: {
++      [`&.${circularProgressClasses.indeterminate} > .${circularProgressClasses.circle}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiCircularProgress-circleDeterminate
++.MuiCircularProgress-determinate > .MuiCircularProgress-circle
+```
+
+```diff
+-.MuiCircularProgress-circleIndeterminate
++.MuiCircularProgress-indeterminate > .MuiCircularProgress-circle
+```
+
+```bash
+npx @mui/codemod@latest deprecations/circular-progress-classes <path>
+```
+
+#### `divider-props`
+
+```diff
+ <Divider
+-  light
++  sx={{ opacity: 0.6 }}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/divider-props <path>
+```
+
+#### `filled-input-props`
+
+```diff
+ <FilledInput
+-  components={{ Input: CustomInput, Root: CustomRoot }}
+-  componentsProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
++  slots={{ input: CustomInput, root: CustomRoot }}
++  slotProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
+ />
+```
+
+```diff
+ MuiFilledInput: {
+   defaultProps: {
+-    components: { Input: CustomInput, Root: CustomRoot }
+-    componentsProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }
++    slots: { input: CustomInput, root: CustomRoot },
++    slotProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/filled-input-props <path>
+```
+
+#### `form-control-label-props`
+
+```diff
+ <FormControlLabel
+-  componentsProps={{ typography: typographyProps }}
++  slotProps={{ typography: typographyProps }}
+ />
+```
+
+```diff
+ MuiFormControlLabel: {
+   defaultProps: {
+-    componentsProps={{ typography: typographyProps }}
++    slotProps={{ typography: typographyProps }}
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/form-control-label-props <path>
+
+```
+
+#### `list-item-props`
+
+```diff
+ <ListItem
+-  components={{ Root: CustomRoot }}
+-  componentsProps={{ root: { testid: 'test-id' } }}
++  slots={{ root: CustomRoot }}
++  slotProps={{ root: { testid: 'test-id' } }}
+ />
+```
+
+```diff
+ MuiListItem: {
+   defaultProps: {
+-    components: { Root: CustomRoot }
+-    componentsProps: { root: { testid: 'test-id' }}
++    slots: { root: CustomRoot },
++    slotProps: { root: { testid: 'test-id' } },
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/list-item-props <path>
+```
+
+#### `grid-props`
+
+```diff
+ <Grid
+-  wrap="nowrap"
++  flexWrap="nowrap"
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/grid-props <path>
+```
+
+#### `image-list-item-bar-classes`
+
+JS transforms:
+
+```diff
+ import { imageListItemBarClasses } from '@mui/material/ImageListItemBar';
+
+ MuiImageListItemBar: {
+   styleOverrides: {
+     root: {
+-      [`& .${imageListItemBarClasses.titleWrapBelow}`]: {
++      [`&.${imageListItemBarClasses.positionBelow} > .${imageListItemBarClasses.titleWrap}`]: {
+         color: 'red',
+       },
+-      [`& .${imageListItemBarClasses.titleWrapActionPosLeft}`]: {
++      [`&.${imageListItemBarClasses.actionPositionLeft} > .${imageListItemBarClasses.titleWrap}`]: {
+         color: 'red',
+       },
+-      [`& .${imageListItemBarClasses.titleWrapActionPosRight}`]: {
++      [`&.${imageListItemBarClasses.actionPositionRight} > .${imageListItemBarClasses.titleWrap}`]: {
+         color: 'red',
+       },
+-      [`& .${imageListItemBarClasses.actionIconActionPosLeft}`]: {
++      [`&.${imageListItemBarClasses.actionPositionLeft} > .${imageListItemBarClasses.actionIcon}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+- .MuiImageListItemBar-titleWrapBelow
++.MuiImageListItemBar-positionBelow > .MuiImageListItemBar-titleWrap
+```
+
+```diff
+- .MuiImageListItemBar-titleWrapActionPosLeft
++.MuiImageListItemBar-actionPositionLeft > .MuiImageListItemBar-titleWrap
+```
+
+```diff
+- .MuiImageListItemBar-titleWrapActionPosRight
++.MuiImageListItemBar-actionPositionRight > .MuiImageListItemBar-titleWrap
+```
+
+```diff
+- .MuiImageListItemBar-actionIconActionPosLeft
++.MuiImageListItemBar-actionPositionLeft > .MuiImageListItemBar-actionIcon
+```
+
+```bash
+npx @mui/codemod@latest deprecations/image-list-item-bar-classes <path>
+```
+
+#### `input-base-props`
+
+```diff
+ <InputBase
+-  components={{ Input: CustomInput, Root: CustomRoot }}
+-  componentsProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
++  slots={{ input: CustomInput, root: CustomRoot }}
++  slotProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
+ />
+```
+
+```diff
+ MuiInputBase: {
+   defaultProps: {
+-    components: { Input: CustomInput, Root: CustomRoot }
+-    componentsProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }
++    slots: { input: CustomInput, root: CustomRoot },
++    slotProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/input-base-props <path>
+```
+
+#### `input-props`
+
+```diff
+ <Input
+-  components={{ Input: CustomInput, Root: CustomRoot }}
+-  componentsProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
++  slots={{ input: CustomInput, root: CustomRoot }}
++  slotProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
+ />
+```
+
+```diff
+ MuiInput: {
+   defaultProps: {
+-    components: { Input: CustomInput, Root: CustomRoot }
+-    componentsProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }
++    slots: { input: CustomInput, root: CustomRoot },
++    slotProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/input-props <path>
+```
+
+#### `modal-props`
+
+```diff
+ <Modal
+-  components={{ Root: CustomRoot, Backdrop: CustomBackdrop }}
+-  componentsProps={{ root: { testid: 'root-id' }, backdrop: { testid: 'backdrop-id' } }}
++  slots={{ root: CustomRoot, backdrop: CustomBackdrop }}
++  slotProps={{ root: { testid: 'root-id' }, backdrop: { testid: 'backdrop-id' } }}
+ />
+```
+
+```diff
+ MuiModal: {
+   defaultProps: {
+-    components: { Root: CustomRoot, Backdrop: CustomBackdrop }
+-    componentsProps: { root: { testid: 'root-id' }, backdrop: { testid: 'backdrop-id' }}
++    slots: { root: CustomRoot, backdrop: CustomBackdrop },
++    slotProps: { root: { testid: 'root-id' }, backdrop: { testid: 'backdrop-id' } },
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/modal-props <path>
+```
+
+#### `pagination-item-classes`
+
+JS transforms:
+
+```diff
+ import { paginationItemClasses } from '@mui/material/PaginationItem';
+
+ MuiPaginationItem: {
+   styleOverrides: {
+     root: {
+-      [`&.${paginationItemClasses.textPrimary}`]: {
++      [`&.${paginationItemClasses.text}.${paginationItemClasses.colorPrimary}`]: {
+         color: 'red',
+       },
+-      [`&.${paginationItemClasses.textSecondary}`]: {
++      [`&.${paginationItemClasses.text}.${paginationItemClasses.colorSecondary}`]: {
+         color: 'red',
+       },
+-      [`&.${paginationItemClasses.outlinedPrimary}`]: {
++      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.colorPrimary}`]: {
+         color: 'red',
+       },
+-      [`&.${paginationItemClasses.outlinedSecondary}`]: {
++      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.colorSecondary}`]: {
+         color: 'red',
+       },
+-      '&.MuiPaginationItem-textPrimary': {
++      '&.MuiPaginationItem-text.MuiPaginationItem-colorPrimary': {
+         color: 'red',
+       },
+-      '&.MuiPaginationItem-textSecondary': {
++      '&.MuiPaginationItem-text.MuiPaginationItem-colorSecondary': {
+         color: 'red',
+       },
+-      '&.MuiPaginationItem-outlinedPrimary': {
++      '&.MuiPaginationItem-outlined.MuiPaginationItem-colorPrimary': {
+         color: 'red',
+       },
+-      '&.MuiPaginationItem-outlinedSecondary': {
++      '&.MuiPaginationItem-outlined.MuiPaginationItem-colorSecondary': {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiPaginationItem-textPrimary
++.MuiPaginationItem-text.MuiPaginationItem-primary
+-.MuiPaginationItem-textSecondary
++.MuiPaginationItem-text.MuiPaginationItem-secondary
+-.MuiPaginationItem-outlinedPrimary
++.MuiPaginationItem-outlined.MuiPaginationItem-primary
+-.MuiPaginationItem-outlinedSecondary
++.MuiPaginationItem-outlined.MuiPaginationItem-secondary
+```
+
+```bash
+npx @mui/codemod@latest deprecations/pagination-item-classes <path>
+```
+
+#### `pagination-item-props`
+
+```diff
+ <PaginationItem
+-  components={{ first: FirstIcon, last: LastIcon, next: NextIcon, previous: PreviousIcons }}
++  slots={{ first: FirstIcon, last: LastIcon, next: NextIcon, previous: PreviousIcons }}
+ />
+```
+
+```diff
+ MuiPaginationItem: {
+   defaultProps: {
+-    components: { first: FirstIcon, last: LastIcon, next: NextIcon, previous: PreviousIcons }
++    slots: { first: FirstIcon, last: LastIcon, next: NextIcon, previous: PreviousIcons }
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/pagination-item-props <path>
+```
+
+#### `popper-props`
+
+```diff
+ <Popper
+-  components={{ Root: CustomRoot }}
+-  componentsProps={{ root: { testid: 'test-id' } }}
++  slots={{ root: CustomRoot }}
++  slotProps={{ root: { testid: 'test-id' } }}
+ />
+```
+
+```diff
+ MuiPopper: {
+   defaultProps: {
+-    components: { Root: CustomRoot }
+-    componentsProps: { root: { testid: 'test-id' }}
++    slots: { root: CustomRoot },
++    slotProps: { root: { testid: 'test-id' } },
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/popper-props <path>
+```
+
+#### `outlined-input-props`
+
+```diff
+ <OutlinedInput
+-  components={{ Input: CustomInput, Root: CustomRoot }}
+-  componentsProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
++  slots={{ input: CustomInput, root: CustomRoot }}
++  slotProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
+ />
+```
+
+```diff
+ MuiOutlinedInput: {
+   defaultProps: {
+-    components: { Input: CustomInput, Root: CustomRoot }
+-    componentsProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }
++    slots: { input: CustomInput, root: CustomRoot },
++    slotProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/outlined-input-props <path>
+```
+
+#### `slider-props`
+
+```diff
+ <Slider
+-  components={{ Track: CustomTrack }}
+-  componentsProps={{ track: { testid: 'test-id' } }}
++  slots={{ track: CustomTrack }}
++  slotProps={{ track: { testid: 'test-id' } }}
+ />
+```
+
+```diff
+ MuiSlider: {
+   defaultProps: {
+-    components: { Track: CustomTrack }
+-    componentsProps: { track: { testid: 'test-id' }}
++    slots: { track: CustomTrack },
++    slotProps: { track: { testid: 'test-id' } },
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/slider-props <path>
+```
+
+#### `tooltip-props`
+
+```diff
+ <Tooltip
+-  components={{ Arrow: CustomArrow }}
+-  componentsProps={{ arrow: { testid: 'test-id' } }}
++  slots={{ arrow: CustomArrow }}
++  slotProps={{ arrow: { testid: 'test-id' } }}
+ />
+```
+
+```diff
+ MuiTooltip: {
+   defaultProps: {
+-    components: { Arrow: CustomArrow }
++    slots: { arrow: CustomArrow },
+-    componentsProps: { arrow: { testid: 'test-id' }}
++    slotProps: { arrow: { testid: 'test-id' } },
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/tooltip-props <path>
+```
+
+#### `step-connector-classes`
+
+JS transforms:
+
+```diff
+ import { stepConnectorClasses } from '@mui/material/StepConnector';
+
+ MuiStepConnector: {
+   styleOverrides: {
+     root: {
+-      [`& .${stepConnectorClasses.lineHorizontal}`]: {
++      [`&.${stepConnectorClasses.horizontal} > .${stepConnectorClasses.line}`]: {
+         color: 'red',
+       },
+-      [`& .${stepConnectorClasses.lineVertical}`]: {
++      [`&.${stepConnectorClasses.vertical} > .${stepConnectorClasses.line}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+#### `step-label-props`
+
+```diff
+ <StepLabel
+-  componentsProps={{ label: labelProps }}
++  slotProps={{ label: labelProps }}
+-  StepIconComponent={StepIconComponent}
++  slots={{ stepIcon: StepIconComponent }}
+-  StepIconProps={StepIconProps}
++  slotProps={{ stepIcon: StepIconProps }}
+ />
+```
+
+```diff
+ MuiStepLabel: {
+   defaultProps: {
+-  componentsProps:{ label: labelProps }
++  slotProps:{ label: labelProps }
+-  StepIconComponent:StepIconComponent
++  slots:{ stepIcon: StepIconComponent }
+-  StepIconProps:StepIconProps
++  slotProps:{ stepIcon: StepIconProps }
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/step-label-props <path>
+```
+
+#### `text-field-props`
+
+```diff
+ <TextField
+-  InputProps={CustomInputProps}
+-  inputProps={CustomHtmlInputProps}
+-  SelectProps={CustomSelectProps}
+-  InputLabelProps={CustomInputLabelProps}
+-  FormHelperTextProps={CustomFormHelperProps}
++  slotProps={{
++    input: CustomInputProps,
++    htmlInput: CustomHtmlInputProps,
++    select: CustomSelectProps,
++    inputLabel: CustomInputLabelProps,
++    formHelper: CustomFormHelperProps,
++  }}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/text-field-props <path>
+```
+
+#### `toggle-button-group-classes`
+
+JS transforms:
+
+```diff
+ import { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
+
+ MuiToggleButtonGroup: {
+   styleOverrides: {
+     root: {
+-      [`& .${toggleButtonGroupClasses.groupedHorizontal}`]: {
++      [`&.${toggleButtonGroupClasses.horizontal} > .${toggleButtonGroupClasses.grouped}`]: {
+         color: 'red',
+       },
+-      [`& .${toggleButtonGroupClasses.groupedVertical}`]: {
++      [`&.${toggleButtonGroupClasses.vertical} > .${toggleButtonGroupClasses.grouped}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiToggleButtonGroup-root .MuiToggleButtonGroup-groupedHorizontal
++.MuiToggleButtonGroup-root.MuiToggleButtonGroup-horizontal > .MuiToggleButtonGroup-grouped
+```
+
+```diff
+-.MuiToggleButtonGroup-root .MuiToggleButtonGroup-groupedVertical
++.MuiToggleButtonGroup-root.MuiToggleButtonGroup-vertical > .MuiToggleButtonGroup-grouped
+```
+
+```bash
+npx @mui/codemod@latest deprecations/toggle-button-group-classes <path>
+```
+
+CSS transforms:
+
+```diff
+-.MuiStepConnector-lineHorizontal
++.MuiStepConnector-horizontal > .MuiStepConnector-line
+```
+
+```diff
+-.MuiStepConnector-lineVertical
++.MuiStepConnector-vertical > .MuiStepConnector-line
+```
+
+```bash
+npx @mui/codemod@latest deprecations/step-connector-classes <path>
+```
+
+#### `tab-classes`
+
+JS transforms:
+
+```diff
+ import { tabClasses } from '@mui/material/Tab';
+
+ MuiTab: {
+   styleOverrides: {
+     root: {
+-      [`& .${tabClasses.iconWrapper}`]: {
++      [`& .${tabClasses.icon}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiTab-iconWrapper
++.MuiTab-icon
+```
+
+```bash
+npx @mui/codemod@latest deprecations/tab-classes <path>
+```
+
+#### `table-sort-label-classes`
+
+JS transforms:
+
+```diff
+ import { tableSortLabelClasses } from '@mui/material/TableSortLabel';
+
+ MuiTableSortLabel: {
+   styleOverrides: {
+     root: {
+-      [`& .${tableSortLabelClasses.iconDirectionDesc}`]: {
++      [`&.${tableSortLabelClasses.directionDesc} > .${tableSortLabelClasses.icon}`]: {
+         color: 'red',
+       },
+-      [`& .${tableSortLabelClasses.iconDirectionAsc}`]: {
++      [`&.${tableSortLabelClasses.directionAsc} > .${tableSortLabelClasses.icon}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiTableSortLabel-iconDirectionDesc
++.MuiTableSortLabel-directionDesc > .MuiTableSortLabel-icon
+```
+
+```diff
+-.MuiTableSortLabel-iconDirectionAsc
++.MuiTableSortLabel-directionAsc > .MuiTableSortLabel-icon
+```
+
+```bash
+npx @mui/codemod@latest deprecations/table-sort-label-classes <path>
+```
+
+#### `typography-props`
+
+```diff
+ <Typography
+-  paragraph
++  sx={{ marginBottom: '16px' }}
+ />
+```
+
+```diff
+ MuiTypography: {
+   defaultProps: {
+-    paragraph: true
++    sx: { marginBottom: '16px' },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/typography-props <path>
+```
+
+### v6.0.0
+
+#### `sx-prop`
+
+```bash
+npx @mui/codemod@latest v6.0.0/sx-prop <path>
+```
+
+Update the usage of the `sx` prop to be compatible with `@pigment-css/react`.
+
+```diff
+ <Box
+-  sx={{
+-    backgroundColor: (theme) =>
+-      theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[900],
+-  }}
++  sx={theme => ({
++    backgroundColor: theme.palette.grey[900],
++    ...theme.applyStyles("light", {
++      backgroundColor: theme.palette.grey[100]
++    })
++  })}
+ />
+```
+
+#### `system-props`
+
+```bash
+npx @mui/codemod@latest v6.0.0/system-props <path>
+```
+
+Remove system props and add them to the `sx` prop.
+
+```diff
+-<Box ml="2px" py={1} color="primary.main" />
++<Box sx={{ ml: '2px', py: 1, color: 'primary.main' }} />
+```
+
+#### `theme-v6`
+
+```bash
+npx @mui/codemod@latest v6.0.0/theme-v6 <path>
+```
+
+Update the theme creation from `@mui/system@v5` to be compatible with `@pigment-css/react`.
+
+- replace palette mode conditional with `theme.applyStyles()`
+- replace `ownerState` with `variants`
+- move theme variants to the root slot
+
+```diff
+  createTheme({
+    components: {
+      MuiButton: {
+-       variants: [
+-         {
+-           props: { color: 'primary' },
+-           style: {
+-             color: 'red',
+-           },
+-         },
+-       ],
+        styleOverrides: {
+-          root: ({ theme, ownerState }) => ({
++          root: ({ theme }) => ({
+            ...ownerState.variant === 'contained' && {
+              backgroundColor: alpha(theme.palette.primary.main, 0.8),
+              ...theme.palette.mode === 'dark' && {
+                backgroundColor: alpha(theme.palette.primary.light, 0.9),
+              }
+            },
++           variants: [
++             {
++               prop: { variant: 'contained' },
++               style: {
++                 backgroundColor: alpha(theme.palette.primary.main, 0.8),
++               },
++             },
++             {
++               prop: { variant: 'contained' },
++               style: {
++                 ...theme.applyStyles('dark', {
++                   backgroundColor: alpha(theme.palette.primary.light, 0.9),
++                 })
++               },
++             },
++             {
++               prop: { color: 'primary' },
++               style: {
++                 color: 'red',
++               },
++             },
++           ],
+          })
+        }
+      }
+    }
+  })
+```
+
+#### `styled`
+
+```bash
+npx @mui/codemod@latest v6.0.0/styled <path>
+```
+
+Updates the usage of `styled` from `@mui/system@v5` to be compatible with `@pigment-css/react`.
+
+This codemod transforms the styles based on props to `variants` by looking for `styled` calls:
+
+```diff
+ styled('div')(({ theme, disabled }) => ({
+   color: theme.palette.primary.main,
+-  ...(disabled && {
+-    opacity: 0.5,
+-  }),
++  variants: [
++    {
++      prop: 'disabled',
++      style: {
++        opacity: 0.5,
++      },
++    },
++  ],
+ }));
+```
+
+This codemod can handle complex styles with spread operators, ternary operators, and nested objects.
+
+However, it has some **limitations**:
+
+- It does not transform dynamic values as shown below:
+
+  ```js
+  const ResizableContainer = styled('div')(({ ownerState, theme }) => ({
+    width: ownerState.width ?? '100%',
+    height: ownerState.height ?? '100%',
+  }));
+  ```
+
+  You need to manually declare a CSS variable and set the values using inline styles:
+
+  ```js
+  // ✅ Recommended way
+  const ResizableContainer = styled('div')({
+    width: 'var(--ResizableContainer-width, 100%)',
+    height: 'var(--ResizableContainer-height, 100%)',
+  });
+  ```
+
+- It does not transform dynamic reference from the theme, for example color palette.
+
+  ```js
+  const Test = styled('div')(({ ownerState, theme }) => ({
+    backgroundColor: (theme.vars || theme).palette[ownerState.color]?.main,
+  }));
+  ```
+
+  You need to manually iterate the theme object and create `variants` for each color.
+
+  ```js
+  // ✅ Recommended way
+  const Test = styled('div')(({ theme }) => ({
+    variants: Object.entries(theme.palette)
+      .filter(([color, value]) => value.main)
+      .map(([color, value]) => ({
+        props: { color },
+        style: {
+          backgroundColor: value.main,
+        },
+      })),
+  }));
+  ```
+
+#### `grid-v2-props`
+
+```bash
+npx @mui/codemod@latest v6.0.0/grid-v2-props <path>
+```
+
+Updates the usage of the `@mui/material/Grid2`, `@mui/system/Grid`, and `@mui/joy/Grid` components to their updated APIs.
+
+```diff
+ <Grid
+-   xs={12}
+-   sm={6}
+-   xsOffset={2}
+-   smOffset={3}
++   size={{ xs: 12, sm: 6 }}
++   offset={{ xs: 2, sm: 3 }}
+ />
+```
+
+You can provide the theme breakpoints via options, for example, `--jscodeshift='--muiBreakpoints=mobile,desktop'`, to use your custom breakpoints in the transformation.
+
+```bash
+npx @mui/codemod@latest v6.0.0/grid-v2-props <path> --jscodeshift='--muiBreakpoints=mobile,desktop'
+```
+
+```diff
+- <Grid mobile={12} mobileOffset={2} desktop={6} desktopOffset={4} >
++ <Grid size={{ mobile: 12, desktop: 6 }} offset={{ mobile: 2, desktop: 4 }} >
+```
+
 ### v5.0.0
+
+#### `base-use-named-exports`
+
+Base UI default exports were changed to named ones. Previously we had a mix of default and named ones.
+This was changed to improve consistency and avoid problems some bundlers have with default exports.
+See https://github.com/mui/material-ui/issues/21862 for more context.
+
+This codemod updates the import and re-export statements.
+
+```diff
+-import BaseButton from '@mui/base/Button';
+-export { default as BaseSlider } from '@mui/base/Slider';
++import { Button as BaseButton } from '@mui/base/Button';
++export { Slider as BaseSlider } from '@mui/base/Slider';
+```
+
+```bash
+npx @mui/codemod@latest v5.0.0/base-use-named-exports <path>
+```
+
+#### `base-remove-unstyled-suffix`
+
+The `Unstyled` suffix has been removed from all Base UI component names, including names of types and other related identifiers.
+
+```diff
+-<Input component='a' href='url' />;
++<Input slots={{ root: 'a' }} href='url' />;
+```
+
+```bash
+npx @mui/codemod@latest v5.0.0/base-remove-unstyled-suffix <path>
+```
+
+#### `base-remove-component-prop`
+
+Remove `component` prop from all Base UI components by transferring its value into `slots.root`.
+
+This change only affects Base UI components.
+
+```diff
+-<Input component={CustomRoot} />
++<Input slots={{ root: CustomRoot }} />
+```
+
+```bash
+npx @mui/codemod@latest v5.0.0/base-remove-component-prop <path>
+```
+
+#### `rename-css-variables`
+
+Updates the names of the CSS variables of the Joy UI components to adapt to the new naming standards of the CSS variables for components.
+
+```diff
+-<List sx={{ py: 'var(--List-divider-gap)' }}>
+-<Switch sx={{ '--Switch-track-width': '40px' }}>
++<List sx={{ py: 'var(--ListDivider-gap)' }}>
++<Switch sx={{ '--Switch-trackWidth': '40px' }}>
+```
+
+```bash
+npx @mui/codemod@latest v5.0.0/rename-css-variables <path>
+```
+
+#### `base-hook-imports`
+
+Updates the sources of the imports of the Base UI hooks to adapt to the new directories of the hooks.
+
+```diff
+-import { useBadge } from '@mui/base/BadgeUnstyled';
++import useBadge from '@mui/base/useBadge';
+```
+
+```bash
+npx @mui/codemod@latest v5.0.0/base-hook-imports <path>
+```
 
 #### `joy-rename-classname-prefix`
 
-Renames the classname prefix from `'Joy'` to `'Mui'` for Joy UI components.
+Renames the classname prefix from `'Joy'` to `'Mui'` for Joy UI components.
 
 ```diff
  <Button
@@ -73,8 +1955,8 @@ Renames the classname prefix from `'Joy'` to `'Mui'` for Joy UI components.
  />;
 ```
 
-```sh
-npx @mui/codemod v5.0.0/joy-rename-classname-prefix <path>
+```bash
+npx @mui/codemod@latest v5.0.0/joy-rename-classname-prefix <path>
 ```
 
 #### `joy-rename-row-prop`
@@ -84,19 +1966,19 @@ Transforms `row` prop to `orientation` prop across `Card`, `List` and `RadioGrou
 ```diff
  <Card
 -  row
-+  orientation={"horizontal"}
++  orientation="horizontal"
  />;
 ```
 
-```sh
-npx @mui/codemod v5.0.0/joy-rename-row-prop <path>
+```bash
+npx @mui/codemod@latest v5.0.0/joy-rename-row-prop <path>
 ```
 
 #### `joy-avatar-remove-imgProps`
 
 Remove `imgProps` prop by transferring its value into `slotProps.img`
 
-This change only affects Joy UI Avatar component.
+This change only affects Joy UI Avatar component.
 
 ```diff
  <Avatar
@@ -106,15 +1988,15 @@ This change only affects Joy UI Avatar component.
  />;
 ```
 
-```sh
-npx @mui/codemod v5.0.0/joy-avatar-remove-imgProps <path>
+```bash
+npx @mui/codemod@latest v5.0.0/joy-avatar-remove-imgProps <path>
 ```
 
 #### `joy-text-field-to-input`
 
-Replace `<TextField>` with composition of `Input`
+Replace `<TextField>` with a composition of input components:
 
-This change only affects Joy UI components.
+This change only affects Joy UI components.
 
 ```diff
 -import TextField from '@mui/joy/TextField';
@@ -164,45 +2046,53 @@ This change only affects Joy UI components.
 +</FormControl>
 ```
 
-```sh
-npx @mui/codemod v5.0.0/joy-text-field-to-input <path>
+```bash
+npx @mui/codemod@latest v5.0.0/joy-text-field-to-input <path>
 ```
 
 #### `joy-rename-components-to-slots`
 
 Renames the `components` and `componentsProps` props to `slots` and `slotProps`, respectively.
 
-This change only affects Joy UI components.
+This change only affects Joy UI components.
 
 ```diff
  <Autocomplete
 -  components={{ listbox: CustomListbox }}
-+  slots={{ listbox: CustomListbox }}
 -  componentsProps={{ root: { className: 'root' }, listbox: { 'data-testid': 'listbox' } }}
++  slots={{ listbox: CustomListbox }}
 +  slotProps={{ root: { className: 'root' }, listbox: { 'data-testid': 'listbox' } }}
  />;
 ```
 
-```sh
-npx @mui/codemod v5.0.0/joy-rename-components-to-slots <path>
+```bash
+npx @mui/codemod@latest v5.0.0/joy-rename-components-to-slots <path>
 ```
 
 The associated breaking change was done in [#34997](https://github.com/mui/material-ui/pull/34997).
 
 #### `date-pickers-moved-to-x`
 
-Rename the imports of date and time pickers from `@mui/lab` to `@mui/x-date-pickers` and `@mui/x-date-pickers-pro`.
+Rename the imports of Date and Time Pickers from `@mui/lab` to `@mui/x-date-pickers` and `@mui/x-date-pickers-pro`.
 
-```sh
-npx @mui/codemod v5.0.0/date-pickers-moved-to-x <path>
+```bash
+npx @mui/codemod@latest v5.0.0/date-pickers-moved-to-x <path>
+```
+
+#### `tree-view-moved-to-x`
+
+Rename the imports of Tree View from `@mui/lab` to `@mui/x-tree-view`.
+
+```bash
+npx @mui/codemod@latest v5.0.0/tree-view-moved-to-x <path>
 ```
 
 #### 🚀 `preset-safe`
 
 A combination of all important transformers for migrating v4 to v5. ⚠️ This codemod should be run only once.
 
-```sh
-npx @mui/codemod v5.0.0/preset-safe <path|folder>
+```bash
+npx @mui/codemod@latest v5.0.0/preset-safe <path|folder>
 ```
 
 The list includes these transformers
@@ -268,8 +2158,8 @@ Imports and inserts `adaptV4Theme` into `createTheme` (or `createMuiTheme`)
 +createTheme(adaptV4Theme({ palette: { ... }}))
 ```
 
-```sh
-npx @mui/codemod v5.0.0/adapter-v4 <path>
+```bash
+npx @mui/codemod@latest v5.0.0/adapter-v4 <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#theme).
@@ -285,8 +2175,8 @@ Renames `Autocomplete`'s `closeIcon` prop to `clearIcon`.
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v5.0.0/autocomplete-rename-closeicon  <path>
+```bash
+npx @mui/codemod@latest v5.0.0/autocomplete-rename-closeicon  <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#autocomplete).
@@ -304,8 +2194,8 @@ Renames `Autocomplete`'s `getOptionSelected` to `isOptionEqualToValue`.
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v5.0.0/autocomplete-rename-option  <path>
+```bash
+npx @mui/codemod@latest v5.0.0/autocomplete-rename-option  <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#autocomplete).
@@ -323,8 +2213,8 @@ Updates the `Avatar`'s `variant` value and `classes` key from 'circle' to 'circu
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v5.0.0/avatar-circle-circular <path>
+```bash
+npx @mui/codemod@latest v5.0.0/avatar-circle-circular <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#avatar).
@@ -358,8 +2248,8 @@ Renames the badge's props.
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v5.0.0/badge-overlap-value <path>
+```bash
+npx @mui/codemod@latest v5.0.0/badge-overlap-value <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#badge).
@@ -369,21 +2259,21 @@ You can find more details about this breaking change in [the migration guide](ht
 Renames the `components` and `componentsProps` props to `slots` and `slotProps`, respectively.
 Also, changes `slots`' fields names to camelCase.
 
-This change only affects MUI Base components.
+This change only affects Base UI components.
 
 ```diff
  <BadgeUnstyled
 -  components={{ Root, Badge: CustomBadge }}
-+  slots={{ root: Root, badge: CustomBadge }}
 -  componentsProps={{ root: { className: 'root' }, badge: { 'data-testid': 'badge' } }}
++  slots={{ root: Root, badge: CustomBadge }}
 +  slotProps={{ root: { className: 'root' }, badge: { 'data-testid': 'badge' } }}
  />;
 ```
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v5.0.0/base-rename-components-to-slots <path>
+```bash
+npx @mui/codemod@latest v5.0.0/base-rename-components-to-slots <path>
 ```
 
 The associated breaking change was done in [#34693](https://github.com/mui/material-ui/pull/34693).
@@ -401,8 +2291,8 @@ Updates the Box API from separate system props to `sx`.
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v5.0.0/box-borderradius-values <path>
+```bash
+npx @mui/codemod@latest v5.0.0/box-borderradius-values <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#box).
@@ -416,8 +2306,8 @@ Renames the Box `css` prop to `sx`
 +<Box sx={{ m: 2 }}>
 ```
 
-```sh
-npx @mui/codemod v5.0.0/box-rename-css <path>
+```bash
+npx @mui/codemod@latest v5.0.0/box-rename-css <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#box).
@@ -437,8 +2327,8 @@ Renames the Box `grid*Gap` props.
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v5.0.0/box-rename-gap <path>
+```bash
+npx @mui/codemod@latest v5.0.0/box-rename-gap <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#box).
@@ -454,8 +2344,8 @@ Removes the outdated `color` prop values.
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v5.0.0/button-color-prop <path>
+```bash
+npx @mui/codemod@latest v5.0.0/button-color-prop <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#button).
@@ -471,8 +2361,8 @@ Removes the Chip `variant` prop if the value is `"default"`.
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v5.0.0/chip-variant-prop <path>
+```bash
+npx @mui/codemod@latest v5.0.0/chip-variant-prop <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#chip).
@@ -488,8 +2378,8 @@ Renames the CircularProgress `static` variant to `determinate`.
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v5.0.0/circularprogress-variant <path>
+```bash
+npx @mui/codemod@latest v5.0.0/circularprogress-variant <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#circularprogress).
@@ -507,8 +2397,8 @@ Renames `Collapse`'s `collapsedHeight` prop to `collapsedSize`.
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v5.0.0/collapse-rename-collapsedheight <path>
+```bash
+npx @mui/codemod@latest v5.0.0/collapse-rename-collapsedheight <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#collapse).
@@ -526,8 +2416,8 @@ A generic codemod to rename any component prop.
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v5.0.0/component-rename-prop <path> -- --component=Grid --from=prop --to=newProp
+```bash
+npx @mui/codemod@latest v5.0.0/component-rename-prop <path> -- --component=Grid --from=prop --to=newProp
 ```
 
 #### `core-styles-import`
@@ -539,8 +2429,8 @@ Renames private import from `core/styles/*` to `core/styles`
 +import { darken, lighten } from '@material-ui/core/styles';
 ```
 
-```sh
-npx @mui/codemod v5.0.0/core-styles-import <path>
+```bash
+npx @mui/codemod@latest v5.0.0/core-styles-import <path>
 ```
 
 #### `create-theme`
@@ -552,8 +2442,8 @@ Renames the function `createMuiTheme` to `createTheme`
 +import { createTheme } from '@material-ui/core/styles';
 ```
 
-```sh
-npx @mui/codemod v5.0.0/create-theme <path>
+```bash
+npx @mui/codemod@latest v5.0.0/create-theme <path>
 ```
 
 #### `dialog-props`
@@ -565,8 +2455,8 @@ Remove `disableBackdropClick` prop from `<Dialog>`
 +<Dialog />
 ```
 
-```sh
-npx @mui/codemod v5.0.0/dialog-props <path>
+```bash
+npx @mui/codemod@latest v5.0.0/dialog-props <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#dialog).
@@ -580,8 +2470,8 @@ Remove `disableTypography` prop from `<DialogTitle>`
 +<DialogTitle />
 ```
 
-```sh
-npx @mui/codemod v5.0.0/dialog-title-props <path>
+```bash
+npx @mui/codemod@latest v5.0.0/dialog-title-props <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#dialog).
@@ -597,16 +2487,16 @@ Adds `prepend: true` to Emotion `createCache`
  });
 ```
 
-```sh
-npx @mui/codemod v5.0.0/create-theme <path>
+```bash
+npx @mui/codemod@latest v5.0.0/create-theme <path>
 ```
 
 #### `expansion-panel-component`
 
 Renames `ExpansionPanel*` to `Accordion*`
 
-```sh
-npx @mui/codemod v5.0.0/expansion-panel-component <path>
+```bash
+npx @mui/codemod@latest v5.0.0/expansion-panel-component <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#expansionpanel).
@@ -618,8 +2508,8 @@ You can find more details about this breaking change in [the migration guide](ht
 +<Fab variant="circular" />
 ```
 
-```sh
-npx @mui/codemod v5.0.0/fab-variant <path>
+```bash
+npx @mui/codemod@latest v5.0.0/fab-variant <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#fab).
@@ -638,8 +2528,8 @@ Renames the `fade` style utility import and calls to `alpha`.
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v5.0.0/fade-rename-alpha <path>
+```bash
+npx @mui/codemod@latest v5.0.0/fade-rename-alpha <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#styles).
@@ -655,8 +2545,8 @@ Renames `Grid`'s `justify` prop to `justifyContent`.
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v5.0.0/grid-justify-justifycontent <path>
+```bash
+npx @mui/codemod@latest v5.0.0/grid-justify-justifycontent <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#grid).
@@ -665,8 +2555,8 @@ You can find more details about this breaking change in [the migration guide](ht
 
 Renames `GridList*` to `ImageList*`
 
-```sh
-npx @mui/codemod v5.0.0/grid-list-component <path>
+```bash
+npx @mui/codemod@latest v5.0.0/grid-list-component <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#gridlist).
@@ -682,8 +2572,8 @@ Adds `size="large"` if `size` is not defined to get the same appearance as v4.
 +<IconButton size="large" />
 ```
 
-```sh
-npx @mui/codemod v5.0.0/icon-button-size <path>
+```bash
+npx @mui/codemod@latest v5.0.0/icon-button-size <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#iconbutton).
@@ -747,8 +2637,8 @@ Replace JSS styling with `makeStyles` or `withStyles` to `styled` API.
  }
 ```
 
-```sh
-npx @mui/codemod v5.0.0/jss-to-styled <path>
+```bash
+npx @mui/codemod@latest v5.0.0/jss-to-styled <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#1-use-styled-or-sx-api).
@@ -819,21 +2709,21 @@ Migrate JSS styling with `makeStyles` or `withStyles` to the corresponding `tss-
  export default App;
 ```
 
-```sh
-npx @mui/codemod v5.0.0/jss-to-tss-react <path>
+```bash
+npx @mui/codemod@latest v5.0.0/jss-to-tss-react <path>
 ```
 
 The following scenarios are not currently handled by this codemod and will be marked with a
 "TODO jss-to-tss-react codemod" comment:
 
-- If the hook returned by `makeStyles` (e.g. `useStyles`) is exported and used in another file,
+- If the hook returned by `makeStyles` (for example `useStyles`) is exported and used in another file,
   the usages in other files will not be converted.
 - Arrow functions as the value for a CSS prop will not be converted. Arrow functions **are**
   supported at the rule level, though with some caveats listed below.
 - In order for arrow functions at the rule level to be converted, the parameter must use object
-  destructuring (e.g. `root: ({color, padding}) => (...)`). If the parameter is not destructured
-  (e.g. `root: (props) => (...)`), it will not be converted.
-- If an arrow function at the rule level contains a code block (i.e. contains an explicit `return`
+  destructuring (for example `root: ({color, padding}) => (...)`). If the parameter is not destructured
+  (for example `root: (props) => (...)`), it will not be converted.
+- If an arrow function at the rule level contains a code block (that is contains an explicit `return`
   statement) rather than just an object expression, it will not be converted.
 
 You can find more details about migrating from JSS to tss-react in [the migration guide](https://mui.com/material-ui/migration/migrating-from-jss/#2-use-tss-react).
@@ -847,8 +2737,8 @@ Apply `underline="hover"` to `<Link />` that does not define `underline` prop (t
 +<Link underline="hover" />
 ```
 
-```sh
-npx @mui/codemod v5.0.0/link-underline-hover <path>
+```bash
+npx @mui/codemod@latest v5.0.0/link-underline-hover <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#link).
@@ -885,8 +2775,8 @@ Moves JSS imports to `@material-ui/styles`
  import mergeClasses from '@material-ui/styles/mergeClasses';
 ```
 
-```sh
-npx @mui/codemod v5.0.0/material-ui-styles <path>
+```bash
+npx @mui/codemod@latest v5.0.0/material-ui-styles <path>
 ```
 
 #### `material-ui-types`
@@ -898,8 +2788,8 @@ Renames `Omit` import from `@material-ui/types` to `DistributiveOmit`
 +import { DistributiveOmit } from '@material-ui/types';
 ```
 
-```sh
-npx @mui/codemod v5.0.0/material-ui-types <path>
+```bash
+npx @mui/codemod@latest v5.0.0/material-ui-types <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#material-ui-types).
@@ -915,8 +2805,8 @@ Removes `disableBackdropClick` and `onEscapeKeyDown` from `<Modal>`
  />
 ```
 
-```sh
-npx @mui/codemod v5.0.0/modal-props <path>
+```bash
+npx @mui/codemod@latest v5.0.0/modal-props <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#modal).
@@ -939,8 +2829,8 @@ or
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v5.0.0/moved-lab-modules <path>
+```bash
+npx @mui/codemod@latest v5.0.0/moved-lab-modules <path>
 ```
 
 You can find more details about this breaking change in the migration guide.
@@ -964,8 +2854,8 @@ Renames `Pagination*`'s `shape` values from 'round' to 'circular'.
 +<PaginationItem shape="circular" />
 ```
 
-```sh
-npx @mui/codemod v5.0.0/pagination-round-circular <path>
+```bash
+npx @mui/codemod@latest v5.0.0/pagination-round-circular <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#pagination).
@@ -983,16 +2873,16 @@ Fix private import paths.
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v5.0.0/optimal-imports <path>
+```bash
+npx @mui/codemod@latest v5.0.0/optimal-imports <path>
 ```
 
 #### `root-ref`
 
 Removes `RootRef` from the codebase.
 
-```sh
-npx @mui/codemod v5.0.0/root-ref <path>
+```bash
+npx @mui/codemod@latest v5.0.0/root-ref <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#rootref).
@@ -1006,8 +2896,8 @@ You can find more details about this breaking change in [the migration guide](ht
 +<Skeleton variant="rectangular" />
 ```
 
-```sh
-npx @mui/codemod v5.0.0/skeleton-variant <path>
+```bash
+npx @mui/codemod@latest v5.0.0/skeleton-variant <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#skeleton).
@@ -1016,8 +2906,8 @@ You can find more details about this breaking change in [the migration guide](ht
 
 Applies `StyledEngineProvider` to the files that contains `ThemeProvider`.
 
-```sh
-npx @mui/codemod v5.0.0/styled-engine-provider <path>
+```bash
+npx @mui/codemod@latest v5.0.0/styled-engine-provider <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-style-changes/#style-library).
@@ -1042,8 +2932,8 @@ Renames props in `Table*` components.
 
 ```
 
-```sh
-npx @mui/codemod v5.0.0/table-props <path>
+```bash
+npx @mui/codemod@latest v5.0.0/table-props <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#table).
@@ -1061,8 +2951,8 @@ Renames the `Tabs`'s `scrollButtons` prop values.
 +<Tabs scrollButtons={false} />
 ```
 
-```sh
-npx @mui/codemod v5.0.0/tabs-scroll-buttons <path>
+```bash
+npx @mui/codemod@latest v5.0.0/tabs-scroll-buttons <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#tabs).
@@ -1080,8 +2970,8 @@ Renames `TextField`'s rows props.
 +<TextareaAutosize minRows={3} maxRows={6} />
 ```
 
-```sh
-npx @mui/codemod v5.0.0/textarea-minmax-rows <path>
+```bash
+npx @mui/codemod@latest v5.0.0/textarea-minmax-rows <path>
 ```
 
 You can find more details about this breaking change in the migration guide.
@@ -1091,10 +2981,10 @@ You can find more details about this breaking change in the migration guide.
 
 #### `theme-augment`
 
-Adds `DefaultTheme` module augmentation to typescript projects.
+Adds `DefaultTheme` module augmentation to TypeScript projects.
 
-```sh
-npx @mui/codemod v5.0.0/theme-augment <path>
+```bash
+npx @mui/codemod@latest v5.0.0/theme-augment <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#material-ui-styles).
@@ -1112,8 +3002,8 @@ Updates breakpoint values to match new logic. ⚠️ This mod is not idempotent,
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v5.0.0/theme-breakpoints <path>
+```bash
+npx @mui/codemod@latest v5.0.0/theme-breakpoints <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#theme).
@@ -1122,8 +3012,8 @@ You can find more details about this breaking change in [the migration guide](ht
 
 Renames `theme.breakpoints.width('md')` to `theme.breakpoints.values.md`.
 
-```sh
-npx @mui/codemod v5.0.0/theme-breakpoints-width <path>
+```bash
+npx @mui/codemod@latest v5.0.0/theme-breakpoints-width <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#theme).
@@ -1135,8 +3025,8 @@ You can find more details about this breaking change in [the migration guide](ht
 +import { DeprecatedThemeOptions } from '@material-ui/core';
 ```
 
-```sh
-npx @mui/codemod v5.0.0/theme-options <path>
+```bash
+npx @mui/codemod@latest v5.0.0/theme-options <path>
 ```
 
 #### `theme-palette-mode`
@@ -1157,8 +3047,8 @@ Renames `type` to `mode`.
 +theme.palette.mode === 'dark'
 ```
 
-```sh
-npx @mui/codemod v5.0.0/theme-palette-mode <path>
+```bash
+npx @mui/codemod@latest v5.0.0/theme-palette-mode <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#theme).
@@ -1167,8 +3057,8 @@ You can find more details about this breaking change in [the migration guide](ht
 
 Renames `MuiThemeProvider` to `ThemeProvider`.
 
-```sh
-npx @mui/codemod v5.0.0/theme-provider <path>
+```bash
+npx @mui/codemod@latest v5.0.0/theme-provider <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#material-ui-core-styles).
@@ -1186,8 +3076,8 @@ Removes the 'px' suffix from some template strings.
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v5.0.0/theme-spacing <path>
+```bash
+npx @mui/codemod@latest v5.0.0/theme-spacing <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#theme).
@@ -1201,8 +3091,8 @@ Renames `theme.typography.round($number)` to `Math.round($number * 1e5) / 1e5`.
 +`${Math.round($number * 1e5) / 1e5}`
 ```
 
-```sh
-npx @mui/codemod v5.0.0/theme-typography-round <path>
+```bash
+npx @mui/codemod@latest v5.0.0/theme-typography-round <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#theme).
@@ -1219,8 +3109,8 @@ Converts all `@mui/material` submodule imports to the root module:
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v5.0.0/top-level-imports <path>
+```bash
+npx @mui/codemod@latest v5.0.0/top-level-imports <path>
 ```
 
 Head to https://mui.com/guides/minimizing-bundle-size/ to understand when it's useful.
@@ -1229,8 +3119,8 @@ Head to https://mui.com/guides/minimizing-bundle-size/ to understand when it's u
 
 Renames import `transitions` to `createTransitions`
 
-```sh
-npx @mui/codemod v5.0.0/transitions <path>
+```bash
+npx @mui/codemod@latest v5.0.0/transitions <path>
 ```
 
 #### `use-autocomplete`
@@ -1242,8 +3132,8 @@ Renames `useAutocomplete` related import from lab to core
 +import useAutocomplete from '@material-ui/core/useAutocomplete';
 ```
 
-```sh
-npx @mui/codemod v5.0.0/use-autocomplete <path>
+```bash
+npx @mui/codemod@latest v5.0.0/use-autocomplete <path>
 ```
 
 #### `use-transitionprops`
@@ -1271,8 +3161,8 @@ Updates Dialog, Menu, Popover, and Snackbar to use the `TransitionProps` prop to
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v5.0.0/use-transitionprops <path>
+```bash
+npx @mui/codemod@latest v5.0.0/use-transitionprops <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](/material-ui/migration/v5-component-changes/#dialog).
@@ -1301,8 +3191,8 @@ The diff should look like this:
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v5.0.0/variant-prop <path>
+```bash
+npx @mui/codemod@latest v5.0.0/variant-prop <path>
 ```
 
 #### `with-mobile-dialog`
@@ -1315,8 +3205,8 @@ Removes imported `withMobileDialog`, and inserts hardcoded version to prevent ap
 +const withMobileDialog = () => (WrappedComponent) => (props) => <WrappedComponent {...props} width="lg" fullScreen={false} />;
 ```
 
-```sh
-npx @mui/codemod v5.0.0/with-mobile-dialog <path>
+```bash
+npx @mui/codemod@latest v5.0.0/with-mobile-dialog <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#dialog).
@@ -1331,8 +3221,8 @@ Removes `withWidth` import, and inserts hardcoded version to prevent application
 +const withWidth = () => (WrappedComponent) => (props) => <WrappedComponent {...props} width="xs" />;
 ```
 
-```sh
-npx @mui/codemod v5.0.0/with-width <path>
+```bash
+npx @mui/codemod@latest v5.0.0/with-width <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-style-changes/#material-ui-core-styles).
@@ -1392,8 +3282,8 @@ Replace every occurrence of `material-ui` related package with the new package n
 +"@mui/styled-engine-sc": "next",
 ```
 
-```sh
-npx @mui/codemod v5.0.0/mui-replace <path>
+```bash
+npx @mui/codemod@latest v5.0.0/mui-replace <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/migration-v4/#update-material-ui-version).
@@ -1412,8 +3302,8 @@ The diff should look like this:
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v4.0.0/theme-spacing-api <path>
+```bash
+npx @mui/codemod@latest v4.0.0/theme-spacing-api <path>
 ```
 
 This codemod tries to perform a basic expression simplification which can be improved for expressions that use more than one operation.
@@ -1439,8 +3329,8 @@ Converts all `@material-ui/core` imports more than 1 level deep to the optimal f
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v4.0.0/optimal-imports <path>
+```bash
+npx @mui/codemod@latest v4.0.0/optimal-imports <path>
 ```
 
 Head to https://mui.com/guides/minimizing-bundle-size/ to understand when it's useful.
@@ -1457,8 +3347,8 @@ Converts all `@material-ui/core` submodule imports to the root module:
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v4.0.0/top-level-imports <path>
+```bash
+npx @mui/codemod@latest v4.0.0/top-level-imports <path>
 ```
 
 Head to https://mui.com/guides/minimizing-bundle-size/ to understand when it's useful.
@@ -1468,7 +3358,7 @@ Head to https://mui.com/guides/minimizing-bundle-size/ to understand when it's u
 #### `import-path`
 
 Updates the `import-paths` for the new location of the components.
-MUI v1.0.0 flatten the import paths.
+Material UI v1.0.0 flatten the import paths.
 The diff should look like this:
 
 ```diff
@@ -1478,8 +3368,8 @@ The diff should look like this:
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v1.0.0/import-path <path>
+```bash
+npx @mui/codemod@latest v1.0.0/import-path <path>
 ```
 
 **Notice**: if you are migrating from pre-v1.0, and your imports use `material-ui`, you will need to manually find and replace all references to `material-ui` in your code to `@material-ui/core`. E.g.:
@@ -1493,7 +3383,7 @@ Subsequently, you can run the above `find ...` command to flatten your imports.
 
 #### `color-imports`
 
-Updates the `color-imports` for the new location of MUI color palettes.
+Updates the `color-imports` for the new location of Material UI color palettes.
 The diff should look like this:
 
 ```diff
@@ -1505,16 +3395,16 @@ The diff should look like this:
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v1.0.0/color-imports <path>
+```bash
+npx @mui/codemod@latest v1.0.0/color-imports <path>
 ```
 
 **additional options**
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v1.0.0/color-imports <path> -- --importPath='mui/styles/colors' --targetPath='mui/colors'
+```bash
+npx @mui/codemod@latest v1.0.0/color-imports <path> -- --importPath='mui/styles/colors' --targetPath='mui/colors'
 ```
 
 #### `svg-icon-imports`
@@ -1531,8 +3421,8 @@ The diff should look like this:
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v1.0.0/svg-icon-imports <path>
+```bash
+npx @mui/codemod@latest v1.0.0/svg-icon-imports <path>
 ```
 
 #### `menu-item-primary-text`
@@ -1549,8 +3439,8 @@ The diff should look like this:
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v1.0.0/menu-item-primary-text <path>
+```bash
+npx @mui/codemod@latest v1.0.0/menu-item-primary-text <path>
 ```
 
 ### v0.15.0
@@ -1558,7 +3448,7 @@ npx @mui/codemod v1.0.0/menu-item-primary-text <path>
 #### `import-path`
 
 Updates the `import-paths` for the new location of the components.
-MUI v0.15.0 is reorganizing the folder distribution of the project.
+Material UI v0.15.0 is reorganizing the folder distribution of the project.
 The diff should look like this:
 
 ```diff
@@ -1573,6 +3463,6 @@ The diff should look like this:
 
 <!-- #default-branch-switch -->
 
-```sh
-npx @mui/codemod v0.15.0/import-path <path>
+```bash
+npx @mui/codemod@latest v0.15.0/import-path <path>
 ```

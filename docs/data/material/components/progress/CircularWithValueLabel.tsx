@@ -26,14 +26,14 @@ function CircularProgressWithLabel(
         <Typography
           variant="caption"
           component="div"
-          color="text.secondary"
+          sx={{ color: 'text.secondary' }}
         >{`${Math.round(props.value)}%`}</Typography>
       </Box>
     </Box>
   );
 }
 
-export default function CircularStatic() {
+export default function CircularWithValueLabel() {
   const [progress, setProgress] = React.useState(10);
 
   React.useEffect(() => {

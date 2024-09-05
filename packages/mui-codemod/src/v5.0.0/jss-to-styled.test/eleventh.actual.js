@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import SomeNamespace from 'SomeNamespace';
 import makeStyles from '@material-ui/styles/makeStyles';
 

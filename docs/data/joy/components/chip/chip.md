@@ -1,6 +1,7 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Chip component
+components: Chip, ChipDelete
 githubLabel: 'component: chip'
 ---
 
@@ -8,17 +9,13 @@ githubLabel: 'component: chip'
 
 <p class="description">Chip generates a compact element that can represent an input, attribute, or action.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
 ## Introduction
 
 Chips are most frequently used in two main use cases: as pills of informative content or as filtering options.
 
 {{"demo": "ChipUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-:::info
-To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page.
-:::
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 
@@ -94,10 +91,10 @@ Use checkboxes when you want to enable multiple selection.
 
 {{"demo": "CheckboxChip.js"}}
 
-## CSS variables
+## CSS variables playground
 
 Play around with all the CSS variables available in the slider component to see how the design changes.
 
 You can use those to customize the component on both the `sx` prop and the theme.
 
-{{"demo": "ChipVariables.js", "hideToolbar": true}}
+{{"demo": "ChipVariables.js", "hideToolbar": true, "bg": "gradient"}}

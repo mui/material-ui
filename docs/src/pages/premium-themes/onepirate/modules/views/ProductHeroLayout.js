@@ -17,7 +17,7 @@ const ProductHeroLayoutRoot = styled('section')(({ theme }) => ({
   },
 }));
 
-const Background = styled(Box)({
+const Background = styled('div')({
   position: 'absolute',
   left: 0,
   right: 0,
@@ -65,10 +65,8 @@ function ProductHeroLayout(props) {
         <Box
           component="img"
           src="/static/themes/onepirate/productHeroArrowDown.png"
-          height="16"
-          width="12"
           alt="arrow down"
-          sx={{ position: 'absolute', bottom: 32 }}
+          sx={{ height: '16', width: '12', position: 'absolute', bottom: 32 }}
         />
       </Container>
     </ProductHeroLayoutRoot>

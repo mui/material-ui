@@ -1,19 +1,20 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Tooltip component
+components: Tooltip
 githubLabel: 'component: tooltip'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 ---
 
 # Tooltip
 
-<p class="description">A toolip .</p>
+<p class="description">Tooltips display informative text when users hover over, focus on, or tap an element.</p>
+
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
 {{"demo": "TooltipUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 
@@ -65,11 +66,11 @@ You can use the `arrow` prop to give your tooltip an arrow indicating which elem
 
 The `title` prop can receive a custom React element.
 
-{{"demo": "GithubTooltip.js"}}
+{{"demo": "GitHubTooltip.js"}}
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)
+Here are a few tips for ensuring an accessible link component, based on [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/):
 
 By default, the tooltip only labels its child element.
 This is notably different from `title` which can either label **or** describe its child depending on whether the child already has a label.

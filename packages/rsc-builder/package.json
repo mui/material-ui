@@ -1,0 +1,14 @@
+{
+  "name": "rsc-builder",
+  "version": "1.0.0",
+  "private": "true",
+  "main": "./buildRsc.ts",
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.7",
+    "@types/node": "^20.14.8"
+  }
+}

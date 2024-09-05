@@ -1,11 +1,29 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme, InternalStandardProps as StandardProps } from '..';
-import { TypographyProps } from '../Typography';
+import Typography, { TypographyProps } from '../Typography';
 import { FormControlLabelClasses } from './formControlLabelClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+
+export interface FormControlLabelSlots {
+  /**
+   * The component that renders the label.
+   * This is unused if `disableTypography` is true.
+   * @default Typography
+   */
+  typography: React.ElementType;
+}
+
+export type FormControlLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  FormControlLabelSlots,
+  {
+    typography: SlotProps<typeof Typography, {}, FormControlLabelProps>;
+  }
+>;
 
 export interface FormControlLabelProps
-  extends StandardProps<React.LabelHTMLAttributes<HTMLLabelElement>, 'children' | 'onChange'> {
+  extends StandardProps<React.LabelHTMLAttributes<HTMLLabelElement>, 'children' | 'onChange'>,
+    FormControlLabelSlotsAndSlotProps {
   /**
    * If `true`, the component appears selected.
    */
@@ -17,6 +35,7 @@ export interface FormControlLabelProps
   /**
    * The props used for each slot inside.
    * @default {}
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps?: {
     /**
@@ -29,7 +48,7 @@ export interface FormControlLabelProps
   /**
    * A control element. For instance, it can be a `Radio`, a `Switch` or a `Checkbox`.
    */
-  control: React.ReactElement<any, any>;
+  control: React.ReactElement<unknown, any>;
   /**
    * If `true`, the control is disabled.
    */
@@ -60,17 +79,9 @@ export interface FormControlLabelProps
    */
   onChange?: (event: React.SyntheticEvent, checked: boolean) => void;
   /**
-   * The props used for each slot inside.
-   * @default {}
+   * If `true`, the label will indicate that the `input` is required.
    */
-  slotProps?: {
-    /**
-     * Props applied to the Typography wrapper of the passed label.
-     * This is unused if disableTypography is true.
-     * @default {}
-     */
-    typography?: TypographyProps;
-  };
+  required?: boolean;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -95,4 +106,4 @@ export interface FormControlLabelProps
  *
  * - [FormControlLabel API](https://mui.com/material-ui/api/form-control-label/)
  */
-export default function FormControlLabel(props: FormControlLabelProps): JSX.Element;
+export default function FormControlLabel(props: FormControlLabelProps): React.JSX.Element;

@@ -1,41 +1,52 @@
 import * as React from 'react';
-import JoyMenu, { MenuUnstyledActions } from '@mui/joy/Menu';
+import JoyMenu, { MenuActions } from '@mui/joy/Menu';
 import MenuItem from '@mui/joy/MenuItem';
+import { ListActionTypes } from '@mui/base/useList';
 
-function Menu({
-  control,
-  menus,
-  id,
-}: {
-  control: React.ReactElement;
+export default function Menu(props: {
+  control: React.ReactElement<any>;
   id: string;
   menus: Array<{ label: string } & { [k: string]: any }>;
 }) {
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
-  const isOpen = Boolean(anchorEl);
+  const { control, menus, id } = props;
+  const [buttonElement, setButtonElement] = React.useState<HTMLButtonElement | null>(
+    null,
+  );
+  const [isOpen, setOpen] = React.useState(false);
   const buttonRef = React.useRef<HTMLButtonElement>(null);
-  const menuActions = React.useRef<MenuUnstyledActions>(null);
+  const menuActions = React.useRef<MenuActions>(null);
+  const preventReopen = React.useRef(false);
+
+  const updateAnchor = React.useCallback((node: HTMLButtonElement | null) => {
+    setButtonElement(node);
+  }, []);
 
   const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (isOpen) {
-      setAnchorEl(null);
-    } else {
-      setAnchorEl(event.currentTarget);
+    if (preventReopen.current) {
+      event.preventDefault();
+      preventReopen.current = false;
+      return;
     }
+
+    setOpen((open) => !open);
   };
 
   const handleButtonKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
       event.preventDefault();
-      setAnchorEl(event.currentTarget);
+      setOpen(true);
       if (event.key === 'ArrowUp') {
-        menuActions.current?.highlightLastItem();
+        menuActions.current?.dispatch({
+          type: ListActionTypes.keyDown,
+          key: event.key,
+          event,
+        });
       }
     }
   };
 
   const close = () => {
-    setAnchorEl(null);
+    setOpen(false);
     buttonRef.current!.focus();
   };
 
@@ -45,7 +56,7 @@ function Menu({
         type: 'button',
         onClick: handleButtonClick,
         onKeyDown: handleButtonKeyDown,
-        ref: buttonRef,
+        ref: updateAnchor,
         'aria-controls': isOpen ? id : undefined,
         'aria-expanded': isOpen || undefined,
         'aria-haspopup': 'menu',
@@ -56,7 +67,7 @@ function Menu({
         actions={menuActions}
         open={isOpen}
         onClose={close}
-        anchorEl={anchorEl}
+        anchorEl={buttonElement}
         sx={{ minWidth: 120 }}
       >
         {menus.map(({ label, active, ...item }) => {
@@ -83,5 +94,3 @@ function Menu({
     </React.Fragment>
   );
 }
-
-export default Menu;

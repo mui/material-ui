@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, screen } from 'test/utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import ButtonGroup, { buttonGroupClasses as classes } from '@mui/material/ButtonGroup';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button, { buttonClasses } from '@mui/material/Button';
 import ButtonGroupContext from './ButtonGroupContext';
+import describeConformance from '../../test/describeConformance';
+import * as ripple from '../../test/ripple';
 
 describe('<ButtonGroup />', () => {
   const { render } = createRenderer();
@@ -35,6 +37,28 @@ describe('<ButtonGroup />', () => {
     expect(buttonGroup).to.have.class(classes.root);
     expect(buttonGroup).not.to.have.class(classes.contained);
     expect(buttonGroup).not.to.have.class(classes.fullWidth);
+  });
+
+  it('should have colorPrimary, horizontal class', () => {
+    const { container } = render(
+      <ButtonGroup>
+        <Button>Hello World</Button>
+      </ButtonGroup>,
+    );
+    const buttonGroup = container.firstChild;
+    expect(buttonGroup).to.have.class(classes.colorPrimary);
+    expect(buttonGroup).to.have.class(classes.horizontal);
+  });
+
+  it('should have colorSecondary class', () => {
+    const { container } = render(
+      <ButtonGroup color="secondary">
+        <Button>Hello World</Button>
+      </ButtonGroup>,
+    );
+
+    const buttonGroup = container.firstChild;
+    expect(buttonGroup).to.have.class(classes.colorSecondary);
   });
 
   it('should render an outlined button', () => {
@@ -99,12 +123,13 @@ describe('<ButtonGroup />', () => {
     expect(button).to.have.class('MuiButton-outlinedSizeLarge');
   });
 
-  it('should have a ripple by default', () => {
-    const { container } = render(
+  it('should have a ripple', async () => {
+    const { container, getByRole } = render(
       <ButtonGroup>
         <Button TouchRippleProps={{ classes: { root: 'touchRipple' } }}>Hello World</Button>
       </ButtonGroup>,
     );
+    await ripple.startTouch(getByRole('button'));
     expect(container.querySelector('.touchRipple')).not.to.equal(null);
   });
 
@@ -118,12 +143,13 @@ describe('<ButtonGroup />', () => {
     expect(button).to.have.class('MuiButton-disableElevation');
   });
 
-  it('can disable the ripple', () => {
-    const { container } = render(
+  it('can disable the ripple', async () => {
+    const { container, getByRole } = render(
       <ButtonGroup disableRipple>
         <Button TouchRippleProps={{ classes: { root: 'touchRipple' } }}>Hello World</Button>
       </ButtonGroup>,
     );
+    await ripple.startTouch(getByRole('button'));
     expect(container.querySelector('.touchRipple')).to.equal(null);
   });
 
@@ -136,7 +162,7 @@ describe('<ButtonGroup />', () => {
     const button = getByRole('button');
     const buttonGroup = container.firstChild;
     expect(buttonGroup).not.to.have.class(classes.fullWidth);
-    expect(button).not.to.have.class('MuiButton-fullWidth');
+    expect(button).not.to.have.class(buttonClasses.fullWidth);
   });
 
   it('can pass fullWidth to Button', () => {
@@ -148,7 +174,7 @@ describe('<ButtonGroup />', () => {
     const buttonGroup = container.firstChild;
     const button = getByRole('button');
     expect(buttonGroup).to.have.class(classes.fullWidth);
-    expect(button).to.have.class('MuiButton-fullWidth');
+    expect(button).to.have.class(buttonClasses.fullWidth);
   });
 
   it('classes.grouped should be merged with Button className', () => {
@@ -207,6 +233,48 @@ describe('<ButtonGroup />', () => {
       expect(screen.getByRole('button')).to.have.class(buttonClasses.outlined);
       expect(screen.getByRole('button')).to.have.class(buttonClasses.sizeSmall);
       expect(screen.getByRole('button')).to.have.class(buttonClasses.outlinedSecondary);
+    });
+  });
+
+  describe('position classes', () => {
+    it('correctly applies position classes to buttons', () => {
+      render(
+        <ButtonGroup>
+          <Button>Button 1</Button>
+          <Button>Button 2</Button>
+          <Button>Button 3</Button>
+        </ButtonGroup>,
+      );
+
+      const firstButton = screen.getAllByRole('button')[0];
+      const middleButton = screen.getAllByRole('button')[1];
+      const lastButton = screen.getAllByRole('button')[2];
+
+      expect(firstButton).to.have.class(classes.firstButton);
+      expect(firstButton).not.to.have.class(classes.middleButton);
+      expect(firstButton).not.to.have.class(classes.lastButton);
+
+      expect(middleButton).to.have.class(classes.middleButton);
+      expect(middleButton).not.to.have.class(classes.firstButton);
+      expect(middleButton).not.to.have.class(classes.lastButton);
+
+      expect(lastButton).to.have.class(classes.lastButton);
+      expect(lastButton).not.to.have.class(classes.middleButton);
+      expect(lastButton).not.to.have.class(classes.firstButton);
+    });
+
+    it('does not apply any position classes to a single button', () => {
+      render(
+        <ButtonGroup>
+          <Button>Single Button</Button>
+        </ButtonGroup>,
+      );
+
+      const button = screen.getByRole('button');
+
+      expect(button).not.to.have.class(classes.firstButton);
+      expect(button).not.to.have.class(classes.middleButton);
+      expect(button).not.to.have.class(classes.lastButton);
     });
   });
 });

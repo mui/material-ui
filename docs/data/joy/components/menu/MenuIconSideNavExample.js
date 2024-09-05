@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import Menu, { menuClasses } from '@mui/joy/Menu';
 import MenuItem from '@mui/joy/MenuItem';
 import IconButton from '@mui/joy/IconButton';
@@ -8,9 +9,12 @@ import Sheet from '@mui/joy/Sheet';
 import Apps from '@mui/icons-material/Apps';
 import Settings from '@mui/icons-material/Settings';
 import Person from '@mui/icons-material/Person';
+import Dropdown from '@mui/joy/Dropdown';
+import MenuButton from '@mui/joy/MenuButton';
 
 // The Menu is built on top of Popper v2, so it accepts `modifiers` prop that will be passed to the Popper.
 // https://popper.js.org/docs/v2/modifiers/offset/
+
 const modifiers = [
   {
     name: 'offset',
@@ -25,10 +29,16 @@ const modifiers = [
   },
 ];
 
-function MenuButton({ children, menu, open, onOpen, onLeaveMenu, label, ...props }) {
-  const buttonRef = React.useRef(null);
+function NavMenuButton({
+  children,
+  menu,
+  open,
+  onOpen,
+  onLeaveMenu,
+  label,
+  ...props
+}) {
   const isOnButton = React.useRef(false);
-  const menuActions = React.useRef(null);
   const internalOpen = React.useRef(open);
 
   const handleButtonKeyDown = (event) => {
@@ -36,22 +46,22 @@ function MenuButton({ children, menu, open, onOpen, onLeaveMenu, label, ...props
     if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
       event.preventDefault();
       onOpen(event);
-      if (event.key === 'ArrowUp') {
-        menuActions.current?.highlightLastItem();
-      }
     }
   };
 
   return (
-    <React.Fragment>
-      <IconButton
+    <Dropdown
+      open={open}
+      onOpenChange={(_, isOpen) => {
+        if (isOpen) {
+          onOpen?.();
+        }
+      }}
+    >
+      <MenuButton
         {...props}
-        ref={buttonRef}
-        variant="plain"
-        color="neutral"
-        aria-haspopup="menu"
-        aria-expanded={open ? 'true' : undefined}
-        aria-controls={open ? `nav-example-menu-${label}` : undefined}
+        slots={{ root: IconButton }}
+        slotProps={{ root: { variant: 'plain', color: 'neutral' } }}
         onMouseDown={() => {
           internalOpen.current = open;
         }}
@@ -68,26 +78,21 @@ function MenuButton({ children, menu, open, onOpen, onLeaveMenu, label, ...props
           isOnButton.current = false;
         }}
         onKeyDown={handleButtonKeyDown}
-        sx={{
-          bgcolor: open ? 'neutral.plainHoverBg' : undefined,
-          '&.Joy-focusVisible': {
-            bgcolor: 'neutral.plainHoverBg',
+        sx={[
+          {
+            '&:focus-visible': {
+              bgcolor: 'neutral.plainHoverBg',
+            },
           },
-        }}
+          open ? { bgcolor: 'neutral.plainHoverBg' } : { bgcolor: null },
+        ]}
       >
         {children}
-      </IconButton>
+      </MenuButton>
       {React.cloneElement(menu, {
-        open,
-        onClose: () => {
-          menu.props.onClose?.();
-          buttonRef.current?.focus();
-        },
         onMouseLeave: () => {
           onLeaveMenu(() => isOnButton.current);
         },
-        actions: menuActions,
-        anchorEl: buttonRef.current,
         modifiers,
         slotProps: {
           listbox: {
@@ -99,13 +104,22 @@ function MenuButton({ children, menu, open, onOpen, onLeaveMenu, label, ...props
         sx: {
           width: 288,
           [`& .${menuClasses.listbox}`]: {
-            '--List-padding': 'var(--List-divider-gap)',
+            '--List-padding': 'var(--ListDivider-gap)',
           },
         },
       })}
-    </React.Fragment>
+    </Dropdown>
   );
 }
+
+NavMenuButton.propTypes = {
+  children: PropTypes.node,
+  label: PropTypes.string.isRequired,
+  menu: PropTypes.element.isRequired,
+  onLeaveMenu: PropTypes.func.isRequired,
+  onOpen: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+};
 
 export default function MenuIconSideNavExample() {
   const [menuIndex, setMenuIndex] = React.useState(null);
@@ -126,10 +140,10 @@ export default function MenuIconSideNavExample() {
     }, 200);
   };
   return (
-    <Sheet sx={{ borderRadius: 'sm', py: 1, mr: 20, bgcolor: 'background.body' }}>
+    <Sheet sx={{ borderRadius: 'sm', py: 1, mr: 20 }}>
       <List>
         <ListItem>
-          <MenuButton
+          <NavMenuButton
             label="Apps"
             open={menuIndex === 0}
             onOpen={() => setMenuIndex(0)}
@@ -143,10 +157,10 @@ export default function MenuIconSideNavExample() {
             }
           >
             <Apps />
-          </MenuButton>
+          </NavMenuButton>
         </ListItem>
         <ListItem>
-          <MenuButton
+          <NavMenuButton
             label="Settings"
             open={menuIndex === 1}
             onOpen={() => setMenuIndex(1)}
@@ -160,10 +174,10 @@ export default function MenuIconSideNavExample() {
             }
           >
             <Settings />
-          </MenuButton>
+          </NavMenuButton>
         </ListItem>
         <ListItem>
-          <MenuButton
+          <NavMenuButton
             label="Personal"
             open={menuIndex === 2}
             onOpen={() => setMenuIndex(2)}
@@ -177,7 +191,7 @@ export default function MenuIconSideNavExample() {
             }
           >
             <Person />
-          </MenuButton>
+          </NavMenuButton>
         </ListItem>
       </List>
     </Sheet>

@@ -1,5 +1,5 @@
 ---
-product: system
+productId: system
 title: React Container component
 components: Container
 githubLabel: 'component: Container'
@@ -11,7 +11,7 @@ githubLabel: 'component: Container'
 
 While containers can be nested, most layouts do not require a nested container.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 ## Fluid
 

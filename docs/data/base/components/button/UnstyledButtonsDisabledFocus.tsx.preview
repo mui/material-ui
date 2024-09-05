@@ -1,4 +1,4 @@
-<CustomButton disabled>focusableWhenDisabled = false</CustomButton>
-<CustomButton disabled focusableWhenDisabled>
-  focusableWhenDisabled = true
-</CustomButton>
+<Button disabled>{'focusableWhenDisabled = false'}</Button>
+<Button disabled focusableWhenDisabled>
+  {'focusableWhenDisabled = true'}
+</Button>

@@ -1,0 +1,49 @@
+{
+  "parameters": {
+    "rootRef": {
+      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" },
+      "required": true
+    },
+    "disabled": { "type": { "name": "boolean", "description": "boolean" } },
+    "disableFocusOnHover": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false"
+    },
+    "id": { "type": { "name": "string", "description": "string" } },
+    "label": { "type": { "name": "string", "description": "string" } },
+    "onClick": {
+      "type": {
+        "name": "React.MouseEventHandler&lt;any&gt;",
+        "description": "React.MouseEventHandler&lt;any&gt;"
+      }
+    }
+  },
+  "returnValue": {
+    "disabled": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "focusVisible": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "getRootProps": {
+      "type": {
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseMenuItemRootSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseMenuItemRootSlotProps&lt;ExternalProps&gt;"
+      },
+      "required": true
+    },
+    "highlighted": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "index": { "type": { "name": "number", "description": "number" }, "required": true },
+    "rootRef": {
+      "type": {
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
+      },
+      "required": true
+    },
+    "totalItemCount": { "type": { "name": "number", "description": "number" }, "required": true }
+  },
+  "name": "useMenuItem",
+  "filename": "/packages/mui-base/src/useMenuItem/useMenuItem.ts",
+  "imports": [
+    "import { useMenuItem } from '@mui/base/useMenuItem';",
+    "import { useMenuItem } from '@mui/base';"
+  ],
+  "demos": "<ul><li><a href=\"/base-ui/react-menu/#hooks\">Menu</a></li></ul>"
+}

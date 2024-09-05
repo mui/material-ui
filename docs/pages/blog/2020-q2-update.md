@@ -4,6 +4,7 @@ description: An update on our mission for Q2 2020.
 date: 2020-07-17T00:00:00.000Z
 authors: ['oliviertassinari']
 tags: ['Company']
+manualCard: true
 ---
 
 This update covers our progress over the last three months, and what we aim to achieve in the coming months.
@@ -20,13 +21,13 @@ Here are the most significant improvements since March 2020:
 
   <img src="/static/blog/2020-q2-update/icons.png" alt="icons" style="width: 615px; margin-bottom: 24px;" />
 
-- 🎨 [Figma assets](https://mui.com/store/items/figma-react/) for MUI extend the support for design tools beyond Sketch.
+- 🎨 [Figma assets](https://mui.com/store/items/figma-react/) for Material UI extend the support for design tools beyond Sketch.
 
   <a href="https://mui.com/store/items/figma-react/"><img src="/static/blog/2020-q1-update/figma.png" alt="figma" style="width: 160px; margin-bottom: 24px;" /></a>
 
   Adobe XD and Framer support are also up for consideration if they attract a significant audience, but not until we've polished the Sketch and Figma assets.
 
-- 🔄 `LoadingButton` – [a new component in the lab](https://mui.com/material-ui/react-button/#loading-button). This work is influenced by the [concurrent UI patterns](https://reactjs.org/docs/concurrent-mode-patterns.html) presented by the React team.
+- 🔄 `LoadingButton` – [a new component in the lab](https://mui.com/material-ui/react-button/#loading-button). This work is influenced by the [concurrent UI patterns](https://17.reactjs.org/docs/concurrent-mode-patterns.html) presented by the React team.
 
   <img src="/static/blog/2020-q2-update/loading.gif" alt="loading" style="margin-bottom: 24px;" />
 
@@ -38,7 +39,7 @@ Here are the most significant improvements since March 2020:
 
   <img src="/static/blog/2020-q2-update/timeline.png" alt="timeline" style="width: 244px; margin-bottom: 24px;" />
 
-- 📣 We have analyzed and published the results of the "MUI Developer Survey 2020". If you haven't read it yet, you can follow this link to [read it in detail](/blog/2020-developer-survey-results/). It contains a lot of interesting insights that will shape the future of the library and company. Thanks for the contributions! ❤️
+- 📣 We have analyzed and published the results of the "Material UI Developer Survey 2020". If you haven't read it yet, you can follow this link to [read it in detail](/blog/2020-developer-survey-results/). It contains a lot of interesting insights that will shape the future of the library and company. Thanks for the contributions! ❤️
 - 🇨🇳🇧🇷 The non-API documentation has been fully translated to Chinese and Brazilian, thanks to the collaboration of [Danica Shen](https://github.com/DDDDDanica), [Yan Lee](https://github.com/AGDholo), and [Jairon Alves Lima](https://github.com/jaironalves), native speakers from the community 🙏.
 
   <img src="/static/blog/2020-q2-update/chinese.png" alt="chinese" style="width: 146px; padding-right: 3px; box-sizing: content-box;" />
@@ -46,9 +47,9 @@ Here are the most significant improvements since March 2020:
   <img src="/static/blog/2020-q2-update/brazilian.png" alt="brazilian" style="width: 152px; margin-bottom: 24px;" />
 
   After English, Chinese, and Brazilian, the languages that would benefit the most from translation are **Russian** and **Spanish**.<br />
-  Feel free to [get stuck into](https://translate.mui.com/) if you are a native speaker and able to give a hand with either of these two languages.
+  Feel free to [get stuck into](https://crowdin.com/project/material-ui-docs) if you are a native speaker and able to give a hand with either of these two languages.
 
-- 🗂 A new extension of the Tab API [in the lab](/material-ui/react-tabs/#experimental-api) implements accessible tabs following [WAI-ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/) authoring practices.
+- 🗂 A new extension of the Tab API [in the lab](/material-ui/react-tabs/#experimental-api) implements accessible tabs following [WAI-ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/) authoring practices.
 
 ```jsx
 <TabContext value={value}>
@@ -63,7 +64,7 @@ Here are the most significant improvements since March 2020:
 </TabContext>
 ```
 
-- 📆 On the [date picker](https://next.material-ui-pickers.dev/):
+- 📆 On the [date picker](https://mui.com/x/react-date-pickers/):
 
   - A new `renderInput` API which matches that of the autocomplete component has been added.
   - The input mask UX has been improved.
@@ -112,6 +113,6 @@ These are objectives, no guarantees:
 ### Enterprise components
 
 - ⌗ Make available a first alpha version of our advanced data grid component as part of the enterprise bundle.
-  You can already [play with an early version](https://muix-preview.netlify.app/#/grid).
+  You can already play with an early version.
 - 📆 Make available a first alpha version of the date range picker as part of the enterprise bundle.
-  You can already [play with an early version](https://next.material-ui-pickers.dev/demo/daterangepicker).
+  You can already play with an early version.

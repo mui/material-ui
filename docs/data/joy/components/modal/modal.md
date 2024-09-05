@@ -1,6 +1,7 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Modal component
+components: Modal, ModalClose, ModalDialog, ModalOverflow, DialogTitle, DialogContent, DialogActions
 githubLabel: 'component: modal'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 ---
@@ -9,9 +10,11 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 
 <p class="description">The modal component provides a solid foundation for creating dialogs, popovers, lightboxes, or whatever else.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
 ## Introduction
 
-Joy UI provides three modal-related components:
+Joy UI provides three modal-related components:
 
 - [`Modal`](#basic-usage): A container that renders its `children` node in front of a backdrop component.
 - [`ModalClose`](#dialog): A button for closing the modal.
@@ -26,8 +29,6 @@ Joy UI provides three modal-related components:
 - 🔐 Disables page scrolling while open.
 - ⌨️ Manages focus correctly between the modal and its parent app.
 - ♿️ Adds the appropriate ARIA roles automatically.
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 :::info
 The term "modal" is sometimes used interchangeably with "dialog," but this is incorrect.
@@ -51,15 +52,15 @@ export default function MyApp() {
 
 ### Basic usage
 
-The `Modal` accepts only a single React element as a child.
-That can be either a Joy UI component, e.g. [`Sheet`](/joy-ui/react-sheet/), or any other custom element.
+The Modal accepts only a single React element as a child.
+That can be either a Joy UI component, for example [`Sheet`](/joy-ui/react-sheet/), or any other custom element.
 
-Use the `ModalClose` component to render a close button that inherits the modal's `onClose` function.
+Use the Modal Close component to render a close button that inherits the modal's `onClose` function.
 
 {{"demo": "BasicModal.js"}}
 
 :::info
-`ModalClose` accepts the variant prop because it uses the same styles as the [`IconButton`](/joy-ui/react-button/#icon-button).
+Modal Close accepts the variant prop because it uses the same styles as the [`IconButton`](/joy-ui/react-button/#icon-button).
 :::
 
 ### Close reason
@@ -74,33 +75,46 @@ The possible values are:
 
 {{"demo": "CloseModal.js"}}
 
-### Dialog
+### Modal Dialog
 
-To create a modal dialog, renders the `ModalDialog` component inside the `Modal`.
+To create a modal dialog, render the Modal Dialog component inside the Modal.
 
-It will apply spacing to the elements that have `aria-labelledby` or `aria-describedby` attribute.
+The Dialog will apply spacing to the elements that have `aria-labelledby` or `aria-describedby` attribute.
 
 {{"demo": "BasicModalDialog.js"}}
 
+#### Variant
+
+The Modal Dialog supports the [global variants](/joy-ui/main-features/global-variants/) feature.
+
+The Modal Close component's variant adapts automatically to contrast with the Modal Dialog, as demonstrated below:
+
+{{"demo": "VariantModalDialog.js"}}
+
+#### Size
+
+The Modal Dialog comes in 3 sizes: `sm`, `md` (default), and `lg`.
+
+The Modal Close and Modal Dialog Title components inherit the size from the Modal Dialog unless specified in each component directly.
+
+{{"demo": "SizeModalDialog.js"}}
+
 #### Layout
 
-The `ModalDialog`'s layout can be:
+The Modal Dialog's layout can be:
 
 - `center` (default): the modal dialog appears at the center of the viewport.
 - `fullScreen`: the modal dialog covers the whole viewport.
 
 {{"demo": "LayoutModalDialog.js"}}
 
-To add more layout, apply a style to the theme like this:
+To add more layout, create a new theme with [`styleOverrides`](/joy-ui/customization/themed-components/#theme-style-overrides) like this:
 
 ```js
-// Add a new `top` layout to the ModalDialog
-extendTheme({
+const theme = extendTheme({
   components: {
     JoyModalDialog: {
-      defaultProps: {
-        layout: 'top',
-      },
+      defaultProps: { layout: 'top' },
       styleOverrides: {
         root: ({ ownerState }) => ({
           ...(ownerState.layout === 'top' && {
@@ -126,23 +140,33 @@ declare module '@mui/joy/ModalDialog' {
 }
 ```
 
-#### Variant
+#### Vertical scroll
 
-The `ModalDialog` supports the [global variants](/joy-ui/main-features/global-variants/) feature.
+By default, content within the Modal Dialog won't overflow the screen when its height is bigger than the viewport.
 
-The `ModalClose`'s variant adapts automatically to have a proper contrast to the `ModalDialog`.
+To ensure your content is visible, make the container holding it overflow by adding the [`overflow` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow) with either `scroll` or `auto` values.
 
-{{"demo": "VariantModalDialog.js"}}
+{{"demo": "DialogVerticalScroll.js"}}
 
-#### Size
+### Modal Overflow
 
-The `ModalDialog` comes with 3 sizes, `sm`, `md` (default), and `lg`.
+The previous section demonstrated how to make content _within_ the modal scrollable.
 
-The `ModalClose` and `ModalDialogTitle` inherits the size from the `ModalDialog` unless it is specified in each component directly.
+To make the _whole_ modal scrollable, in case its higher than the viewport, use the Modal Overflow component.
+It will allow the Modal Dialog to vertically overflow the screen.
 
-{{"demo": "SizeModalDialog.js"}}
+The Modal Overflow supports both `center` and `fullScreen` built-in layouts.
 
-### Alert Dialog
+{{"demo": "ModalDialogOverflow.js"}}
+
+You can achieve the same result by using the Box component and CSS with the `sx` prop.
+However, the Modal Overflow component adds greater convenience:
+
+- It makes your styling more consistent, as you won't need to copy styles across different instances.
+- You can also add theming customization to it directly from the theme.
+- It automatically handles the close action when the user clicks on the Modal's backdrop.
+
+### Alert dialog
 
 Use `role="alertdialog"` to create an [alert dialog](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/) that interrupts the user's workflow.
 
@@ -185,16 +209,24 @@ Explore other possible bottlenecks in performance where you could make more cons
 
 ### Server-side modal
 
-React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server.
+React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://react.dev/reference/react-dom/createPortal) API on the server.
 Therefore, in order to display a modal rendered on the server, disable the portal feature with the `disablePortal` prop, as shown in the following demo:
 
 {{"demo": "ServerModal.js", "defaultCodeOpen": false}}
+
+## Common examples
+
+### Mobile modal
+
+Use `sx` prop with `theme.breakpoints.only('xs')` to customize the styles of the modal dialog to stick at the bottom in mobile viewport.
+
+{{"demo": "ResponsiveModal.js"}}
 
 ## Limitations
 
 ### Focus trap
 
-`ModalUnstyled` moves the focus back to the body of the component if the focus tries to escape it.
+Base UI `Modal` moves the focus back to the body of the component if the focus tries to escape it.
 
 This is done for accessibility purposes, but it can potentially create issues for your users.
 
@@ -214,7 +246,7 @@ See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/AR
   </Modal>
   ```
 
-- Follow the [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/dialog/) to help you set the initial focus on the most relevant element based on the content of the modal.
+- Follow the [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/dialog/) to help you set the initial focus on the most relevant element based on the content of the modal.
   :::warning
   A modal window can sit on top of either the parent application, or another modal window.
   _All_ windows under the topmost modal are **inert**, meaning the user cannot interact with them.

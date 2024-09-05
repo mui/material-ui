@@ -1,31 +1,47 @@
 {
   "componentDescription": "A button based label for placing inside `TableCell` for column sorting.",
   "propDescriptions": {
-    "active": "If <code>true</code>, the label will have the active styling (should be true for the sorted column).",
-    "children": "Label contents, the arrow will be appended automatically.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "direction": "The current sort direction.",
-    "hideSortIcon": "Hide sort icon when active is false.",
-    "IconComponent": "Sort icon to use.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
+    "active": {
+      "description": "If <code>true</code>, the label will have the active styling (should be true for the sorted column)."
+    },
+    "children": { "description": "Label contents, the arrow will be appended automatically." },
+    "classes": { "description": "Override or extend the styles applied to the component." },
+    "direction": { "description": "The current sort direction." },
+    "hideSortIcon": { "description": "Hide sort icon when active is false." },
+    "IconComponent": { "description": "Sort icon to use." },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
+    }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
     "active": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>active={true}</code>"
     },
-    "icon": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the icon component" },
-    "iconDirectionDesc": {
+    "directionAsc": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the icon component",
+      "nodeName": "the root element",
+      "conditions": "<code>direction=\"asc\"</code>"
+    },
+    "directionDesc": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>direction=\"desc\"</code>"
     },
+    "icon": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the icon component" },
     "iconDirectionAsc": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the icon component",
-      "conditions": "<code>direction=\"asc\"</code>"
-    }
+      "conditions": "<code>direction=\"asc\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/table-sort-label/#table-sort-label-classes-icon\">.MuiTableSortLabel-icon</a> and <a href=\"/material-ui/api/table-sort-label/#table-sort-label-classes-direction-asc\">.MuiTableSortLabel-directionAsc</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
+    "iconDirectionDesc": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the icon component",
+      "conditions": "<code>direction=\"desc\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/table-sort-label/#table-sort-label-classes-icon\">.MuiTableSortLabel-icon</a> and <a href=\"/material-ui/api/table-sort-label/#table-sort-label-classes-direction-desc\">.MuiTableSortLabel-directionDesc</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
+    "root": { "description": "Styles applied to the root element." }
   }
 }

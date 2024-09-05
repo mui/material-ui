@@ -2,10 +2,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
-import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { SliderUnstyled } from '@mui/base';
 import Slider, { sliderClasses as classes } from '@mui/material/Slider';
+import describeConformance from '../../test/describeConformance';
 
 function createTouches(touches) {
   return {
@@ -119,23 +119,23 @@ describe('<Slider />', () => {
     }));
 
     fireEvent.touchStart(container.firstChild, createTouches([{ identifier: 1, clientX: 0 }]));
-    expect(handleChange.callCount).to.equal(1);
+    expect(handleChange.callCount).to.equal(0);
     expect(handleChangeCommitted.callCount).to.equal(0);
 
     fireEvent.touchStart(document.body, createTouches([{ identifier: 2, clientX: 40 }]));
-    expect(handleChange.callCount).to.equal(1);
+    expect(handleChange.callCount).to.equal(0);
     expect(handleChangeCommitted.callCount).to.equal(0);
 
     fireEvent.touchMove(document.body, createTouches([{ identifier: 1, clientX: 1 }]));
-    expect(handleChange.callCount).to.equal(2);
+    expect(handleChange.callCount).to.equal(1);
     expect(handleChangeCommitted.callCount).to.equal(0);
 
     fireEvent.touchMove(document.body, createTouches([{ identifier: 2, clientX: 41 }]));
-    expect(handleChange.callCount).to.equal(2);
+    expect(handleChange.callCount).to.equal(1);
     expect(handleChangeCommitted.callCount).to.equal(0);
 
     fireEvent.touchEnd(document.body, createTouches([{ identifier: 1, clientX: 2 }]));
-    expect(handleChange.callCount).to.equal(2);
+    expect(handleChange.callCount).to.equal(1);
     expect(handleChangeCommitted.callCount).to.equal(1);
   });
 
@@ -195,6 +195,30 @@ describe('<Slider />', () => {
     expect(handleChange.callCount).to.equal(2);
     expect(handleChange.args[0][1]).to.deep.equal(21);
     expect(handleChange.args[1][1]).to.deep.equal(22);
+  });
+
+  describe('prop: classes', () => {
+    it('adds custom classes to the component', () => {
+      const selectedClasses = ['root', 'rail', 'track', 'mark'];
+      const customClasses = selectedClasses.reduce((acc, curr) => {
+        acc[curr] = `custom-${curr}`;
+        return acc;
+      }, {});
+
+      const { container } = render(
+        <Slider
+          marks={[{ value: 0 }, { value: 20 }, { value: 30 }]}
+          defaultValue={0}
+          classes={customClasses}
+        />,
+      );
+
+      expect(container.firstChild).to.have.class(classes.root);
+      expect(container.firstChild).to.have.class('custom-root');
+      selectedClasses.slice(1).forEach((className, index) => {
+        expect(container.firstChild.children[index]).to.have.class(`custom-${className}`);
+      });
+    });
   });
 
   describe('prop: orientation', () => {
@@ -271,6 +295,34 @@ describe('<Slider />', () => {
       expect(document.activeElement).to.have.attribute('data-index', '1');
     });
 
+    it('custom marks with restricted float values should support keyboard', () => {
+      const getMarks = (value) => value.map((val) => ({ value: val, label: val }));
+
+      const { getByRole } = render(<Slider step={null} marks={getMarks([0.5, 30.45, 90.53])} />);
+      const slider = getByRole('slider');
+
+      act(() => {
+        slider.focus();
+      });
+
+      fireEvent.change(slider, { target: { value: '0.4' } });
+      expect(slider.getAttribute('aria-valuenow')).to.equal('0.5');
+
+      fireEvent.change(slider, { target: { value: '30' } });
+      expect(slider.getAttribute('aria-valuenow')).to.equal('30.45');
+
+      fireEvent.change(slider, { target: { value: '90' } });
+      expect(slider.getAttribute('aria-valuenow')).to.equal('90.53');
+
+      fireEvent.change(slider, { target: { value: '100' } });
+      expect(slider.getAttribute('aria-valuenow')).to.equal('90.53');
+
+      fireEvent.change(slider, { target: { value: '30' } });
+      expect(slider.getAttribute('aria-valuenow')).to.equal('30.45');
+
+      expect(document.activeElement).to.have.attribute('data-index', '0');
+    });
+
     it('should focus the slider when dragging', () => {
       const { getByRole, getByTestId, container } = render(
         <Slider
@@ -306,25 +358,27 @@ describe('<Slider />', () => {
         left: 0,
       }));
 
-      fireEvent.touchStart(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
-      );
+      fireEvent.touchStart(container.firstChild, createTouches([{ identifier: 1, clientX: 20 }]));
 
-      fireEvent.touchMove(
-        document.body,
-        createTouches([{ identifier: 1, clientX: 22, clientY: 0 }]),
-      );
-      fireEvent.touchMove(
-        document.body,
-        createTouches([{ identifier: 1, clientX: 22.1, clientY: 0 }]),
-      );
+      fireEvent.touchMove(document.body, createTouches([{ identifier: 1, clientX: 21 }]));
 
-      expect(handleChange.callCount).to.equal(3);
+      fireEvent.touchEnd(document.body, createTouches([{ identifier: 1, clientX: 21 }]));
+
+      fireEvent.touchStart(container.firstChild, createTouches([{ identifier: 1, clientX: 21 }]));
+
+      fireEvent.touchMove(document.body, createTouches([{ identifier: 1, clientX: 22 }]));
+
+      fireEvent.touchEnd(document.body, createTouches([{ identifier: 1, clientX: 22 }]));
+
+      fireEvent.touchStart(container.firstChild, createTouches([{ identifier: 1, clientX: 22 }]));
+
+      fireEvent.touchMove(document.body, createTouches([{ identifier: 1, clientX: 22.1 }]));
+
+      fireEvent.touchEnd(document.body, createTouches([{ identifier: 1, clientX: 22.1 }]));
+
+      expect(handleChange.callCount).to.equal(2);
       expect(handleChange.args[0][1]).to.deep.equal([21, 30]);
       expect(handleChange.args[1][1]).to.deep.equal([22, 30]);
-      // TODO, consider not firing this change event since the values are the same to improve the DX.
-      expect(handleChange.args[2][1]).to.deep.equal([22, 30]);
     });
 
     it('should not react to right clicks', () => {
@@ -682,6 +736,7 @@ describe('<Slider />', () => {
       expect(slider).to.have.attribute('aria-valuenow', String(min));
     });
   });
+
   describe('prop: max', () => {
     it('should set the max and aria-valuemax on the input', () => {
       const max = 750;
@@ -1092,12 +1147,20 @@ describe('<Slider />', () => {
         </div>
       );
     }
+
     render(<Test />);
     const slider = screen.getByTestId('slider');
 
-    fireEvent.touchStart(slider, createTouches([{ identifier: 1 }]));
+    stub(slider, 'getBoundingClientRect').callsFake(() => ({
+      width: 100,
+      height: 10,
+      bottom: 10,
+      left: 0,
+    }));
 
-    expect(handleChange.callCount).to.equal(1);
+    fireEvent.touchStart(slider, createTouches([{ identifier: 1, clientX: 0 }]));
+
+    expect(handleChange.callCount).to.equal(0);
     expect(handleNativeEvent.callCount).to.equal(1);
     expect(handleNativeEvent.firstCall.args[0]).to.have.property('target', slider);
     expect(handleEvent.callCount).to.equal(1);
@@ -1125,9 +1188,16 @@ describe('<Slider />', () => {
     render(<Test />);
     const slider = screen.getByTestId('slider');
 
+    stub(slider, 'getBoundingClientRect').callsFake(() => ({
+      width: 100,
+      height: 10,
+      bottom: 10,
+      left: 0,
+    }));
+
     fireEvent.mouseDown(slider);
 
-    expect(handleChange.callCount).to.equal(1);
+    expect(handleChange.callCount).to.equal(0);
     expect(handleNativeEvent.callCount).to.equal(1);
     expect(handleNativeEvent.firstCall.args[0]).to.have.property('target', slider);
     expect(handleEvent.callCount).to.equal(1);
@@ -1194,7 +1264,7 @@ describe('<Slider />', () => {
   });
 
   it('should remove the slider from the tab sequence', () => {
-    render(<SliderUnstyled tabIndex={-1} value={30} />);
+    render(<Slider tabIndex={-1} value={30} />);
     expect(screen.getByRole('slider')).to.have.property('tabIndex', -1);
   });
 

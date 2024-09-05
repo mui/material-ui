@@ -3,11 +3,12 @@ import {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
   AutocompleteCloseReason,
+  AutocompleteFreeSoloValueMapping,
   AutocompleteInputChangeReason,
   AutocompleteValue,
   UseAutocompleteProps,
-} from '@mui/base/AutocompleteUnstyled';
-import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
+} from '@mui/base/useAutocomplete';
+import { PopperOwnProps } from '@mui/base/Popper';
 import { OverridableStringUnion } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
@@ -25,6 +26,69 @@ export type AutocompleteSlot =
   | 'loading'
   | 'noOptions'
   | 'limitTag';
+
+export interface AutocompleteSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the wrapper.
+   * @default 'div'
+   */
+  wrapper?: React.ElementType;
+  /**
+   * The component that renders the input.
+   * @default 'input'
+   */
+  input?: React.ElementType;
+  /**
+   * The component that renders the start decorator.
+   * @default 'div'
+   */
+  startDecorator?: React.ElementType;
+  /**
+   * The component that renders the end decorator.
+   * @default 'div'
+   */
+  endDecorator?: React.ElementType;
+  /**
+   * The component that renders the clear indicator.
+   * @default 'button'
+   */
+  clearIndicator?: React.ElementType;
+  /**
+   * The component that renders the popup indicator.
+   * @default 'button'
+   */
+  popupIndicator?: React.ElementType;
+  /**
+   * The component that renders the listbox.
+   * @default 'ul'
+   */
+  listbox?: React.ElementType;
+  /**
+   * The component that renders the option.
+   * @default 'li'
+   */
+  option?: React.ElementType;
+  /**
+   * The component that renders the loading.
+   * @default 'li'
+   */
+  loading?: React.ElementType;
+  /**
+   * The component that renders the no-options.
+   * @default 'li'
+   */
+  noOptions?: React.ElementType;
+  /**
+   * The component that renders the limit tag.
+   * @default 'div'
+   */
+  limitTag?: React.ElementType;
+}
 
 export interface AutocompletePropsVariantOverrides {}
 
@@ -60,7 +124,7 @@ export interface AutocompleteRenderGroupParams {
 }
 
 export type AutocompleteSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  AutocompleteSlot,
+  AutocompleteSlots,
   {
     root: SlotProps<'div', {}, AutocompleteOwnerState<any, any, any, any>>;
     wrapper: SlotProps<'div', {}, AutocompleteOwnerState<any, any, any, any>>;
@@ -91,7 +155,7 @@ export type AutocompleteSlotsAndSlotProps = CreateSlotsAndSlotProps<
         color?: OverridableStringUnion<ColorPaletteProp, AutocompletePropsColorOverrides>;
         variant?: OverridableStringUnion<VariantProp, AutocompletePropsVariantOverrides>;
         size?: OverridableStringUnion<'sm' | 'md' | 'lg', AutocompletePropsSizeOverrides>;
-      } & Omit<PopperUnstyledOwnProps, 'slots' | 'slotProps' | 'open'>,
+      } & Omit<PopperOwnProps, 'slots' | 'slotProps' | 'open'>,
       AutocompleteOwnerState<any, any, any, any>
     >;
     option: SlotProps<
@@ -121,20 +185,20 @@ type AutocompleteOwnProps<
     autoFocus?: boolean;
     /**
      * The icon to display in place of the default clear icon.
-     * @default <ClearIcon fontSize="small" />
+     * @default <ClearIcon fontSize="md" />
      */
     clearIcon?: React.ReactNode;
     /**
      * Override the default text for the *clear* icon button.
      *
-     * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+     * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
      * @default 'Clear'
      */
     clearText?: string;
     /**
      * Override the default text for the *close popup* icon button.
      *
-     * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+     * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
      * @default 'Close'
      */
     closeText?: string;
@@ -156,6 +220,7 @@ type AutocompleteOwnProps<
     /**
      * If `true`, the `input` will indicate an error.
      * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+     * @default false
      */
     error?: boolean;
     /**
@@ -170,21 +235,21 @@ type AutocompleteOwnProps<
     /**
      * The label to display when the tags are truncated (`limitTags`).
      *
-     * @param {number} more The number of truncated tags.
+     * @param {string | number} more The number of truncated tags.
      * @returns {ReactNode}
-     * @default (more) => `+${more}`
+     * @default (more: string | number) => `+${more}`
      */
-    getLimitTagsText?: (more: number) => React.ReactNode;
+    getLimitTagsText?: (more: string | number) => React.ReactNode;
     /**
      * If `true`, the component is in a loading state.
-     * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, e.g. `options` are empty).
+     * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, for example `options` are empty).
      * @default false
      */
     loading?: boolean;
     /**
      * Text to display when in a loading state.
      *
-     * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+     * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
      * @default 'Loading…'
      */
     loadingText?: React.ReactNode;
@@ -201,14 +266,14 @@ type AutocompleteOwnProps<
     /**
      * Text to display when there are no options.
      *
-     * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+     * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
      * @default 'No options'
      */
     noOptionsText?: React.ReactNode;
     /**
      * Override the default text for the *open popup* icon button.
      *
-     * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+     * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
      * @default 'Open'
      */
     openText?: string;
@@ -278,7 +343,7 @@ type AutocompleteOwnProps<
      */
     sx?: SxProps;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'outlined'
      */
     variant?: OverridableStringUnion<VariantProp, AutocompletePropsVariantOverrides>;
@@ -315,6 +380,7 @@ export interface AutocompleteOwnerState<
   FreeSolo extends boolean | undefined,
 > extends ApplyColorInversion<AutocompleteOwnProps<T, Multiple, DisableClearable, FreeSolo>> {
   focused?: boolean;
+  getOptionLabel: (option: T | AutocompleteFreeSoloValueMapping<FreeSolo>) => string;
   hasClearIcon?: boolean;
   hasPopupIcon?: boolean;
   hasOptions?: boolean;

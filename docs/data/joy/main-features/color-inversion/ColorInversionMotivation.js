@@ -10,7 +10,7 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 export default function ColorInversionMotivation() {
   const demo = (
-    <Card sx={{ gap: 2, maxWidth: 300, boxShadow: 'md' }}>
+    <Card sx={{ gap: 2, maxWidth: { xs: '100%', sm: 300 } }}>
       <Chip
         size="sm"
         variant="soft"
@@ -26,7 +26,7 @@ export default function ColorInversionMotivation() {
       >
         <BookmarkOutlinedIcon />
       </IconButton>
-      <Typography fontSize="xl2" fontWeight="lg">
+      <Typography level="title-lg" sx={{ fontWeight: 'lg' }}>
         Learn how to build super fast websites.
       </Typography>
       <Button variant="solid" endDecorator={<KeyboardArrowRightIcon />}>
@@ -36,24 +36,26 @@ export default function ColorInversionMotivation() {
   );
 
   return (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5, pt: 3 }}>
+    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
       {/* Left: The global variants are applied to children only */}
-      <Box>
+      <Box sx={{ maxWidth: { xs: '100%', sm: 300 } }}>
         {demo}
-        <Typography level="body3" mt={2} textAlign="center">
-          <b>One layer</b> <br /> global variants are applied only to the children.
+        <Typography level="body-sm" sx={{ mt: 2, textAlign: 'center' }}>
+          <b>One layer</b>
+          <br />
+          Global variants are applied only to the children.
         </Typography>
       </Box>
-
       {/* Right: The global variants are applied to both parent and children */}
-      <Box>
+      <Box sx={{ maxWidth: { xs: '100%', sm: 300 } }}>
         {React.cloneElement(demo, {
           variant: 'solid',
           color: 'primary',
         })}
-        <Typography level="body3" mt={2} textAlign="center">
+        <Typography level="body-sm" sx={{ mt: 2, textAlign: 'center' }}>
           <b>Two layers</b>
-          <br /> global variants are applied to the card and children.
+          <br />
+          Global variants are applied to the card <i>and</i> children.
         </Typography>
       </Box>
     </Box>

@@ -1,9 +1,9 @@
-import * as fse from 'fs-extra';
 import * as path from 'path';
+import * as fse from 'fs-extra';
 import * as playwright from 'playwright';
 
 async function main() {
-  const baseUrl = 'http://localhost:3000';
+  const baseUrl = 'http://localhost:5001';
   const screenshotDir = path.resolve(__dirname, './screenshots/chrome');
 
   const browser = await playwright.chromium.launch({
@@ -13,7 +13,10 @@ async function main() {
   });
   // reuse viewport from `vrtest`
   // https://github.com/nathanmarks/vrtest/blob/1185b852a6c1813cedf5d81f6d6843d9a241c1ce/src/server/runner.js#L44
-  const page = await browser.newPage({ viewport: { width: 1000, height: 700 } });
+  const page = await browser.newPage({
+    viewport: { width: 1000, height: 700 },
+    reducedMotion: 'reduce',
+  });
 
   // Block images since they slow down tests (need download).
   // They're also most likely decorative for documentation demos
@@ -27,7 +30,7 @@ async function main() {
   });
 
   // Wait for all requests to finish.
-  // This should load shared ressources such as fonts.
+  // This should load shared resources such as fonts.
   await page.goto(`${baseUrl}#no-dev`, { waitUntil: 'networkidle0' });
   // If we still get flaky fonts after awaiting this try `document.fonts.ready`
   await page.waitForSelector('[data-webfontloader="active"]', { state: 'attached' });
@@ -70,7 +73,11 @@ async function main() {
     const explicitScreenshotTarget = await page.$('[data-testid="screenshot-target"]');
     const screenshotTarget = explicitScreenshotTarget || testcase;
 
-    await screenshotTarget.screenshot({ path: screenshotPath, type: 'png' });
+    await screenshotTarget.screenshot({
+      path: screenshotPath,
+      type: 'png',
+      animations: 'disabled',
+    });
   }
 
   // prepare screenshots

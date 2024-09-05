@@ -69,8 +69,9 @@ const rule = {
     return {
       CallExpression(node) {
         let nameLiteral = null;
-        const isUseThemePropsCall = node.callee.name === 'useThemeProps';
-        if (isUseThemePropsCall) {
+        const isUseDefaultPropsCall =
+          node.callee.name === 'useDefaultProps' || node.callee.name === 'useThemeProps';
+        if (isUseDefaultPropsCall) {
           let isCalledFromCustomHook = false;
           let parent = node.parent;
           while (parent != null) {
@@ -96,6 +97,20 @@ const rule = {
           while (parent != null && componentName === null) {
             if (parent.type === 'FunctionExpression' || parent.type === 'FunctionDeclaration') {
               componentName = parent.id.name;
+            }
+
+            if (
+              parent.type === 'VariableDeclarator' &&
+              parent.init.type.match(/(CallExpression|TSAsExpression)/)
+            ) {
+              const callee =
+                parent.init.type === 'TSAsExpression'
+                  ? parent.init.expression.callee
+                  : parent.init.callee;
+              if (callee.name.includes(parent.id.name)) {
+                // For component factory, for example const Container = createContainer({ ... })
+                componentName = parent.id.name;
+              }
             }
 
             parent = parent.parent;

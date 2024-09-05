@@ -29,9 +29,6 @@ export default function AlertColors() {
         <Alert variant={variant} color="danger">
           Danger
         </Alert>
-        <Alert variant={variant} color="info">
-          Info
-        </Alert>
         <Alert variant={variant} color="success">
           Success
         </Alert>
@@ -41,11 +38,10 @@ export default function AlertColors() {
       </Stack>
       <Sheet sx={{ pl: 4, ml: 3, borderLeft: '1px solid', borderColor: 'divider' }}>
         <Typography
-          level="body2"
-          fontWeight="xl"
+          level="body-sm"
           id="variant-label"
           textColor="text.primary"
-          mb={1}
+          sx={{ fontWeight: 'xl', mb: 1 }}
         >
           Variant:
         </Typography>

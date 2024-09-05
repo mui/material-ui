@@ -13,18 +13,11 @@ import Crop from '@mui/icons-material/Crop';
 
 export default function LevelOfImportance() {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        width: '100%',
-        py: 2,
-        borderRadius: 'xs',
-      }}
-    >
+    <Box sx={{ display: 'flex', width: '100%', py: 2, borderRadius: 'xs' }}>
       <Box
         sx={{
           border: '1px solid',
-          borderColor: 'background.level2',
+          borderColor: 'var(--joy-palette-neutral-outlinedBorder)',
           alignSelf: 'center',
           maxWidth: '100%',
           minWidth: { xs: 220, sm: 360 },
@@ -41,10 +34,10 @@ export default function LevelOfImportance() {
             alignItems: 'center',
             p: 2,
             borderBottom: '1px solid',
-            borderColor: 'background.level2',
+            borderColor: 'var(--joy-palette-neutral-outlinedBorder)',
           }}
         >
-          <Typography level="h2" fontSize="md">
+          <Typography level="h2" sx={{ fontSize: 'md' }}>
             Photo upload
           </Typography>
           <IconButton size="sm" variant="plain" color="neutral" sx={{ ml: 'auto' }}>
@@ -57,7 +50,7 @@ export default function LevelOfImportance() {
             sx={{
               borderRadius: 'md',
               overflow: 'auto',
-              borderColor: 'background.level2',
+              borderColor: 'var(--joy-palette-neutral-outlinedBorder)',
               bgcolor: 'background.level1',
             }}
           >
@@ -69,7 +62,7 @@ export default function LevelOfImportance() {
                 display: 'flex',
                 p: 1.5,
                 gap: 1.5,
-                '& > button': { bgcolor: 'background.body' },
+                '& > button': { bgcolor: 'background.surface' },
               }}
             >
               <IconButton
@@ -97,7 +90,7 @@ export default function LevelOfImportance() {
             display: 'flex',
             p: 2,
             borderTop: '1px solid',
-            borderColor: 'background.level2',
+            borderColor: 'var(--joy-palette-neutral-outlinedBorder)',
             gap: 1,
           }}
         >

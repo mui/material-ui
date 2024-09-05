@@ -1,0 +1,44 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "children": { "description": "The content of the component." },
+    "implementation": {
+      "description": "Specify which implementation to use.  &#39;js&#39; is the default, &#39;css&#39; works better for server-side rendering."
+    },
+    "initialWidth": {
+      "description": "You can use this prop when choosing the <code>js</code> implementation with server-side rendering.<br>As <code>window.innerWidth</code> is unavailable on the server, we default to rendering an empty component during the first mount. You might want to use a heuristic to approximate the screen width of the client browser screen width.<br>For instance, you could be using the user-agent or the client-hints. <a href=\"https://caniuse.com/#search=client%20hint\">https://caniuse.com/#search=client%20hint</a>"
+    },
+    "lgDown": {
+      "description": "If <code>true</code>, component is hidden on screens below (but not including) this size."
+    },
+    "lgUp": {
+      "description": "If <code>true</code>, component is hidden on screens this size and above."
+    },
+    "mdDown": {
+      "description": "If <code>true</code>, component is hidden on screens below (but not including) this size."
+    },
+    "mdUp": {
+      "description": "If <code>true</code>, component is hidden on screens this size and above."
+    },
+    "only": { "description": "Hide the given breakpoint(s)." },
+    "smDown": {
+      "description": "If <code>true</code>, component is hidden on screens below (but not including) this size."
+    },
+    "smUp": {
+      "description": "If <code>true</code>, component is hidden on screens this size and above."
+    },
+    "xlDown": {
+      "description": "If <code>true</code>, component is hidden on screens below (but not including) this size."
+    },
+    "xlUp": {
+      "description": "If <code>true</code>, component is hidden on screens this size and above."
+    },
+    "xsDown": {
+      "description": "If <code>true</code>, component is hidden on screens below (but not including) this size."
+    },
+    "xsUp": {
+      "description": "If <code>true</code>, component is hidden on screens this size and above."
+    }
+  },
+  "classDescriptions": {}
+}

@@ -1,4 +1,0 @@
-{
-  "extends": "../../../../../tsconfig",
-  "files": ["selectUnstyledComponentsProps.spec.tsx"]
-}

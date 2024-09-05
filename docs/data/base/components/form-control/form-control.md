@@ -1,69 +1,72 @@
 ---
-product: base
-title: Unstyled React Form Control component and hook
-components: FormControlUnstyled
-hooks: useFormControlUnstyledContext
+productId: base-ui
+title: React Form Control component and hook
+components: FormControl
+hooks: useFormControlContext
 githubLabel: 'component: FormControl'
 ---
 
-# Unstyled Form Control
+# Form Control
 
-<p class="description">The Unstyled Form Control component is a utility that lets you associate a form input with auxiliary components, such as labels, error indicators, or helper text.</p>
+<p class="description">The Form Control component is a utility that lets you associate a form input with auxiliary components, such as labels, error indicators, or helper text.</p>
+
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
 
 ## Introduction
 
-Unstyled Form Control is a utility that wraps an input component with other associated components in order to make the state of the input available to those components.
+Form Control is a utility that wraps an input component with other associated components in order to make the state of the input available to those components.
 
 For instance, you may want to show an additional element asking the user to enter a value if the input is empty, or display a warning icon if the entered value is incorrect.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
-
 ## Component
 
-### Usage
-
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
-
 ```jsx
-import FormControlUnstyled from '@mui/base/FormControlUnstyled';
-
-export default function MyApp() {
-  return (
-    <FormControlUnstyled>
-      {/* <input> and/or other contents of the form */}
-    </FormControlUnstyled>
-  );
-}
+import { FormControl } from '@mui/base/FormControl';
 ```
 
-### Basics
-
-Unstyled Form Control wraps around the elements of a form that need access to the state of an `<input>`.
+Form Control wraps around the elements of a form that need access to the state of an `<input>`.
 For instance, if the form's **Submit** button needs to change states after the user enters information, then the component will be structured like this:
 
 ```jsx
-<FormControlUnstyled>
+<FormControl>
   <input>
   <button>Submit</button>
-</FormControlUnstyled>
+</FormControl>
 ```
 
-The following demo shows how to create and style a form that uses Unstyled Form Control to wrap the elements of the form.
-Note that it also uses the `useFormControlUnstyledContext` hook in order to pass props to the custom Unstyled Input—see the [Hook](#hook) section below for more details.
+The following demo shows how to create and style a form that uses Form Control to wrap the elements of the form.
+Note that it also uses the `useFormControlContext` hook in order to pass props to the custom Input—see the [Hook](#hook) section below for more details.
 
-{{"demo": "BasicFormControl.js"}}
+{{"demo": "BasicFormControl"}}
+
+### Usage with TypeScript
+
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component.
+This way, you can safely provide the custom root's props directly on the component:
+
+```tsx
+<FormControl<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
+```
+
+The same applies for props specific to custom primitive elements:
+
+```tsx
+<FormControl<'button'> slots={{ root: 'button' }} onClick={() => {}} />
+```
 
 ## Hook
 
 ```jsx
-import { useFormControlUnstyledContext } from '@mui/base/FormControlUnstyled';
+import { useFormControlContext } from '@mui/base/FormControl';
 ```
 
-The `useFormControlUnstyledContext` hook reads the context provided by Unstyled Form Control.
+The `useFormControlContext` hook reads the context provided by Form Control.
 This hook lets you work with custom input components inside of the Form Control.
 You can also use it to read the form control's state and react to its changes in a custom component.
 
-Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
+Hooks _do not_ support [slot props](#custom-structure), but they do support [customization props](#customization).
 
 :::info
 Hooks give you the most room for customization, but require more work to implement.
@@ -79,41 +82,29 @@ The demo below shows how to integrate this hook with its component counterpart:
 
 {{"demo": "UseFormControl.js", "defaultCodeOpen": false}}
 
-Note that even though Form Control supports both controlled and uncontrolled-style APIs
-(i.e. it accepts `value` and `defaultValue` props), `useFormControlUnstyledContext` returns only the controlled `value`.
-This way, you don't have to implement both in your custom input—Unstyled Form Control does this for you.
+Note that even though Form Control supports both controlled and uncontrolled-style APIs (that is it accepts `value` and `defaultValue` props), `useFormControlContext` returns only the controlled `value`.
+This way, you don't have to implement both in your custom input—Form Control does this for you.
 
-`useFormControlUnstyledContext` returns an object with the following fields:
+:::info
 
-| Name       | Type    | Description                                                                                                                                                                         |
-| ---------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `disabled` | boolean | Represents the value of the FormControlUnstyled's `disabled` prop.                                                                                                                  |
-| `error`    | boolean | Represents the value of the Unstyled Form Control component's `error` prop. Note that it is not calculated automatically (i.e. it's not set when `required: true` and `value: ''`). |
-| `filled`   | boolean | Set to `true` if `value` is not empty.                                                                                                                                              |
-| `focused`  | boolean | Set to `true` if the wrapped input has received focus.                                                                                                                              |
-| `required` | boolean | Represents the value of the Unstyled Form Control component's `required` prop.                                                                                                      |
-| `value`    | unknown | The current value of the form control.                                                                                                                                              |
+- A component is **controlled** when it's managed by its parent using props.
+- A component is **uncontrolled** when it's managed by its own local state.
 
-The following callbacks are also part of the returned object—they are meant to be used when creating custom inputs:
-
-| Name       | Type                      | Description                                                   |
-| ---------- | ------------------------- | ------------------------------------------------------------- |
-| `onChange` | React.ChangeEvent => void | Value change handler. Should be forwarded to the inner input. |
-| `onBlur`   | () => void                | Focus change handler. Should be forwarded to the inner input. |
-| `onFocus`  | () => void                | Focus change handler. Should be forwarded to the inner input. |
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
+:::
 
 ## Customization
 
 :::info
 The following features can be used with both components and hooks.
-For the sake of simplicity, demos and code snippets primarily feature components.
+For the sake of simplicity, demos, and code snippets primarily feature components.
 :::
 
 ### Accessing the form control state
 
-You can access the state of the form control by providing a function as a child of the Form Control.
+You can access the state of the Form Control by providing a function as a child.
 The state will be provided as a parameter to this function.
 
-The following demo shows how to access the state of the form control in an Unstyled Input component nested inside of the Form Control:
+The following demo shows how to access the state of the Form Control in an Input component nested inside:
 
 {{"demo": "FormControlFunctionChild.js"}}

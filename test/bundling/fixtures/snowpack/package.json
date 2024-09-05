@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "yarn snowpack build && concurrently --success first --kill-others \"yarn server\" \"node testSnowpackIntegration\"",
-    "server": "serve -s build"
+    "start": "pnpm snowpack build && concurrently --success first --kill-others \"pnpm server\" \"node testSnowpackIntegration\"",
+    "server": "serve -p 5001 -s build"
   },
   "dependencies": {
     "@emotion/core": "11.0.0",
@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "concurrently": "7.4.0",
-    "playwright": "1.29.2",
+    "playwright": "1.46.1",
     "serve": "14.0.1"
   }
 }

@@ -2,7 +2,7 @@
 import { createTheme, alpha } from '@mui/material/styles';
 import { Button, Tooltip } from '@mui/material';
 import Alert from '@mui/material/Alert';
-import useAutoComplete from '@mui/material/useAutocomplete';
+import useAutocomplete from '@mui/material/useAutocomplete';
 
 // styles
 import { makeStyles } from '@mui/styles';

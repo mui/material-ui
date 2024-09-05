@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import useClipboardCopy from 'docs/src/modules/utils/useClipboardCopy';
 import { styled, extendTheme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Link from '@mui/joy/Link';
@@ -9,11 +8,12 @@ import Sheet from '@mui/joy/Sheet';
 import LightMode from '@mui/icons-material/LightModeOutlined';
 import DarkMode from '@mui/icons-material/DarkModeOutlined';
 import Check from '@mui/icons-material/CheckCircle';
+import { useClipboardCopy } from '@mui/docs/CodeCopy';
 
 const Table = styled('table')(({ theme }) => ({
   border: '1px solid',
   borderColor: theme.vars.palette.divider,
-  borderRadius: theme.vars.radius.xs,
+  borderRadius: theme.vars.radius.md,
   borderCollapse: 'separate',
   borderSpacing: 0,
   width: '100%',
@@ -56,28 +56,29 @@ export default function ShadowThemeViewer() {
           [],
         ),
     );
-
   return (
     <Box sx={{ width: '100%', overflow: 'hidden', position: 'relative' }}>
       <Sheet
         variant="solid"
         color="success"
-        sx={{
-          position: 'absolute',
-          left: '50%',
-          bottom: 0,
-          transform: `translateX(-50%) translateY(${
-            isCopied ? '-0.5rem' : 'calc(100% + 0.5rem)'
-          })`,
-          transition: '0.3s',
-          p: 0.5,
-          px: 0.75,
-          borderRadius: 'xs',
-          boxShadow: 'sm',
-          zIndex: 1,
-        }}
+        sx={[
+          {
+            position: 'absolute',
+            left: '50%',
+            bottom: 0,
+            transition: '0.3s',
+            p: 0.5,
+            px: 0.75,
+            borderRadius: 'xs',
+            boxShadow: 'sm',
+            zIndex: 1,
+          },
+          isCopied
+            ? { transform: `translateX(-50%) translateY(-0.5rem)` }
+            : { transform: `translateX(-50%) translateY(calc(100% + 0.5rem))` },
+        ]}
       >
-        <Typography level="body3" textColor="inherit" startDecorator={<Check />}>
+        <Typography level="body-xs" textColor="inherit" startDecorator={<Check />}>
           Copied
         </Typography>
       </Sheet>
@@ -85,18 +86,18 @@ export default function ShadowThemeViewer() {
         <thead>
           <tr>
             <th>
-              <Typography fontSize="sm">Token</Typography>
+              <Typography sx={{ fontSize: 'sm' }}>Token</Typography>
             </th>
             <th>
-              <Typography fontSize="sm">Value</Typography>
+              <Typography sx={{ fontSize: 'sm' }}>Value</Typography>
             </th>
             <th>
-              <Typography fontSize="sm" startDecorator={<LightMode />}>
+              <Typography startDecorator={<LightMode />} sx={{ fontSize: 'sm' }}>
                 Light
               </Typography>
             </th>
             <th>
-              <Typography fontSize="sm" startDecorator={<DarkMode />}>
+              <Typography startDecorator={<DarkMode />} sx={{ fontSize: 'sm' }}>
                 Dark
               </Typography>
             </th>
@@ -106,18 +107,15 @@ export default function ShadowThemeViewer() {
           {tokens.map((token) => (
             <tr key={token}>
               <td>
-                <Typography fontSize="sm">{token}</Typography>
+                <Typography sx={{ fontSize: 'sm' }}>{token}</Typography>
               </td>
               <td>
                 <Link
                   component="button"
                   color="neutral"
                   textColor="inherit"
-                  textAlign="left"
-                  fontSize="xs"
-                  fontFamily="code"
-                  letterSpacing="sm"
                   onClick={() => copy(token)}
+                  sx={{ textAlign: 'left', fontSize: 'xs', fontFamily: 'code' }}
                 >
                   {formatShadowLayers(defaultTheme.shadow[token])}
                 </Link>

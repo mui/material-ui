@@ -1,0 +1,2 @@
+<style type="text/css">{css}</style>
+<Switch slotProps={slotProps} />

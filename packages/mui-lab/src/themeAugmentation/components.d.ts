@@ -16,6 +16,11 @@ export interface LabComponents {
     styleOverrides?: ComponentsOverrides<Theme>['MuiLoadingButton'];
     variants?: ComponentsVariants['MuiLoadingButton'];
   };
+  MuiMasonry?: {
+    defaultProps?: ComponentsProps['MuiMasonry'];
+    styleOverrides?: ComponentsOverrides<Theme>['MuiMasonry'];
+    variants?: ComponentsVariants['MuiMasonry'];
+  };
   MuiTabList?: {
     defaultProps?: ComponentsProps['MuiTabList'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiTabList'];
@@ -60,16 +65,6 @@ export interface LabComponents {
     defaultProps?: ComponentsProps['MuiTimelineSeparator'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiTimelineSeparator'];
     variants?: ComponentsVariants['MuiTimelineSeparator'];
-  };
-  MuiTreeItem?: {
-    defaultProps?: ComponentsProps['MuiTreeItem'];
-    styleOverrides?: ComponentsOverrides<Theme>['MuiTreeItem'];
-    variants?: ComponentsVariants['MuiTreeItem'];
-  };
-  MuiTreeView?: {
-    defaultProps?: ComponentsProps['MuiTreeView'];
-    styleOverrides?: ComponentsOverrides<Theme>['MuiTreeView'];
-    variants?: ComponentsVariants['MuiTreeView'];
   };
 }
 

@@ -1,188 +1,284 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import { alpha, styled } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
+import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
-import { shoudHandleLinkClick } from 'docs/src/modules/components/MarkdownLinks';
-import Link from 'docs/src/modules/components/Link';
-import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
-import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
-import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
-import HandymanRoundedIcon from '@mui/icons-material/HandymanRounded';
-import EditRoundedIcon from '@mui/icons-material/EditRounded';
-import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
-import InvertColorsRoundedIcon from '@mui/icons-material/InvertColorsRounded';
-import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
-import BookRoundedIcon from '@mui/icons-material/BookRounded';
-import ChromeReaderModeRoundedIcon from '@mui/icons-material/ChromeReaderModeRounded';
-import TableViewRoundedIcon from '@mui/icons-material/TableViewRounded';
-import ScienceIcon from '@mui/icons-material/Science';
-import DateRangeRounded from '@mui/icons-material/DateRangeRounded';
-
-const iconsMap = {
-  DescriptionIcon: ArticleRoundedIcon,
-  ToggleOnIcon: ToggleOffRoundedIcon,
-  CodeIcon: CodeRoundedIcon,
-  BuildIcon: HandymanRoundedIcon,
-  CreateIcon: EditRoundedIcon,
-  VisibilityIcon: VisibilityRoundedIcon,
-  StyleIcon: InvertColorsRoundedIcon,
-  AddIcon: AddCircleRoundedIcon,
-  BookIcon: BookRoundedIcon,
-  ReaderIcon: ChromeReaderModeRoundedIcon,
-  TableViewIcon: TableViewRoundedIcon,
-  ExperimentIcon: ScienceIcon,
-  DatePickerIcon: DateRangeRounded,
-};
+import { samePageLinkNavigation } from 'docs/src/modules/components/MarkdownLinks';
+import { Link } from '@mui/docs/Link';
+import standardNavIcons from './AppNavIcons';
 
 const Item = styled(
   function Item({ component: Component = 'div', ...props }) {
     return <Component {...props} />;
   },
   {
-    shouldForwardProp: (prop) => prop !== 'depth' && prop !== 'hasIcon' && prop !== 'subheader',
+    shouldForwardProp: (prop) =>
+      prop !== 'depth' && prop !== 'hasIcon' && prop !== 'subheader' && prop !== 'expandable',
   },
-)(({ theme, hasIcon, depth, subheader }) => {
-  const color = {
-    color: theme.palette.text.secondary,
-    ...(depth === 0 && {
-      color: theme.palette.text.primary,
-    }),
-    ...(subheader && {
-      color: theme.palette.grey[600],
-    }),
-  };
-
-  return {
-    ...theme.typography.body2,
-    display: 'flex',
-    alignItems: 'center',
-    borderRadius: 5,
-    outline: 0,
-    width: '100%',
-    paddingTop: 5,
-    paddingBottom: 5,
-    justifyContent: 'flex-start',
-    fontWeight: theme.typography.fontWeightMedium,
-    transition: theme.transitions.create(['color', 'background-color'], {
-      duration: theme.transitions.duration.shortest,
-    }),
-    fontSize: theme.typography.pxToRem(14),
-    textDecoration: 'none',
-    paddingLeft: 31 + (depth > 1 ? (depth - 1) * 10 : 0),
-    ...color,
-    ...(subheader && {
-      marginTop: theme.spacing(1),
-      textTransform: 'uppercase',
-      letterSpacing: '.08rem',
-      fontWeight: theme.typography.fontWeightBold,
-      fontSize: theme.typography.pxToRem(11),
-    }),
-    ...(hasIcon && {
-      paddingLeft: 2,
-    }),
-    '&.app-drawer-active': {
-      color:
-        theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
-      backgroundColor:
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.primary[50],
-      '&:hover': {
-        backgroundColor: alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-        ),
-        '@media (hover: none)': {
-          backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+)(({ theme }) => {
+  return [
+    {
+      ...theme.typography.body2,
+      position: 'relative',
+      display: 'flex',
+      alignItems: 'center',
+      borderRadius: 6,
+      color: `var(--_color, ${(theme.vars || theme).palette.text.secondary})`,
+      outline: 0,
+      width: '100%',
+      padding: 6,
+      justifyContent: 'flex-start',
+      fontWeight: theme.typography.fontWeightSemiBold,
+      transition: theme.transitions.create(['color', 'background-color'], {
+        duration: theme.transitions.duration.shortest,
+      }),
+      fontSize: theme.typography.pxToRem(14),
+      textDecoration: 'none',
+      paddingLeft: `calc(10px + (var(--_depth) + 1) * 13px - (var(--_expandable) * 21px))`,
+      '&::before': {
+        content: '""',
+        display: 'block',
+        position: 'absolute',
+        zIndex: 1,
+        left: 9.5,
+        height: '100%',
+        width: 1,
+        opacity: 0,
+        background: (theme.vars || theme).palette.grey[100],
+      },
+      variants: [
+        {
+          props: ({ depth }) => depth === 0,
+          style: { '--_color': (theme.vars || theme).palette.text.primary },
+        },
+        {
+          props: ({ depth }) => depth !== 0,
+          style: {
+            fontWeight: theme.typography.fontWeightMedium,
+            '&::before': {
+              opacity: 1,
+            },
+          },
+        },
+        {
+          props: ({ subheader }) => !subheader,
+          style: {
+            '&:hover': {
+              color: (theme.vars || theme).palette.common.black,
+              backgroundColor: (theme.vars || theme).palette.grey[50],
+              '@media (hover: none)': {
+                color: 'var(--_color)',
+                backgroundColor: 'transparent',
+              },
+            },
+          },
+        },
+        {
+          props: ({ subheader }) => !!subheader,
+          style: {
+            '--_color': (theme.vars || theme).palette.text.tertiary,
+            marginTop: theme.spacing(1),
+            textTransform: 'uppercase',
+            letterSpacing: '.1rem',
+            fontWeight: theme.typography.fontWeightSemiBold,
+            fontSize: theme.typography.pxToRem(11),
+            '&::before': {
+              content: '""',
+              display: 'block',
+              position: 'absolute',
+              zIndex: 1,
+              left: 9.5,
+              height: '55%',
+              top: 16,
+              width: 1,
+              opacity: 0,
+              background: (theme.vars || theme).palette.grey[100],
+            },
+            '&::after': {
+              content: '""',
+              display: 'block',
+              position: 'absolute',
+              zIndex: 5,
+              left: 6,
+              height: 8,
+              width: 8,
+              borderRadius: 2,
+              opacity: 0,
+              background: alpha(theme.palette.grey[50], 0.5),
+              border: '1px solid',
+              borderColor: (theme.vars || theme).palette.grey[200],
+            },
+          },
+        },
+        {
+          props: ({ depth, subheader }) => depth !== 0 && subheader,
+          style: {
+            '&::after': {
+              opacity: 1,
+            },
+            '&::before': {
+              opacity: 1,
+            },
+          },
+        },
+        {
+          props: ({ hasIcon }) => !!hasIcon,
+          style: {
+            paddingLeft: 0,
+          },
+        },
+      ],
+      '&.app-drawer-active': {
+        // To match browserUrlPreviewMarge
+        scrollMarginBottom: 120,
+        color: (theme.vars || theme).palette.primary[600],
+        backgroundColor: (theme.vars || theme).palette.primary[50],
+        '&:hover': {
+          backgroundColor: alpha(theme.palette.primary[100], 0.8),
+          color: (theme.vars || theme).palette.primary[700],
+          '@media (hover: none)': {
+            backgroundColor: theme.vars
+              ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+              : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+          },
+        },
+        '&::before': {
+          background: (theme.vars || theme).palette.primary[400],
         },
       },
-      '&.Mui-focusVisible': {
-        backgroundColor: alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-        ),
+      '& .MuiChip-root': {
+        marginTop: '2px',
       },
-    },
-    '& .MuiChip-root': {
-      marginTop: '2px',
-    },
-    ...(!subheader && {
-      '&:hover': {
-        color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.common.black,
-        backgroundColor:
-          theme.palette.mode === 'dark'
-            ? alpha(theme.palette.primaryDark[700], 0.4)
-            : theme.palette.grey[50],
+      [theme.breakpoints.up('md')]: {
+        paddingTop: 4,
+        paddingBottom: 4,
+      },
+      '& .ItemButtonIcon': {
+        marginRight: '6px',
+        color: (theme.vars || theme).palette.primary.main,
+      },
+      '&:hover .ItemButtonIcon': {
+        color: (theme.vars || theme).palette.primary.light,
         '@media (hover: none)': {
-          color: color.color,
-          backgroundColor: 'transparent',
+          color: (theme.vars || theme).palette.primary.main,
         },
       },
-    }),
-    '&.Mui-focusVisible': {
-      backgroundColor: theme.palette.action.focus,
     },
-    [theme.breakpoints.up('md')]: {
-      paddingTop: 3,
-      paddingBottom: 3,
-    },
-    '& .ItemButtonIcon': {
-      marginLeft: 'auto !important',
-      marginRight: '5px',
-      color: theme.palette.primary.main,
-    },
-    '&:hover .ItemButtonIcon': {
-      color: theme.palette.text.primary,
-      '@media (hover: none)': {
-        color: theme.palette.primary.main,
+    theme.applyDarkStyles({
+      '&::before': {
+        background: (theme.vars || theme).palette.primaryDark[700],
       },
-    },
-  };
+      '&.app-drawer-active': {
+        color: (theme.vars || theme).palette.primary[300],
+        backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+        '&:hover': {
+          backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+          color: (theme.vars || theme).palette.primary[200],
+        },
+        '&::before': {
+          background: (theme.vars || theme).palette.primary[400],
+        },
+      },
+      variants: [
+        {
+          props: ({ subheader }) => !!subheader,
+          style: {
+            '&::before': {
+              background: (theme.vars || theme).palette.primaryDark[700],
+            },
+            '&::after': {
+              background: alpha(theme.palette.primaryDark[700], 0.8),
+              borderColor: alpha(theme.palette.primaryDark[600], 0.6),
+            },
+          },
+        },
+        {
+          props: ({ subheader }) => !subheader,
+          style: {
+            '&:hover': {
+              color: '#fff',
+              backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+              '@media (hover: none)': {
+                color: 'var(--_color)',
+                backgroundColor: 'transparent',
+              },
+            },
+          },
+        },
+      ],
+    }),
+  ];
 });
 
 const ItemButtonIcon = styled(KeyboardArrowRightRoundedIcon, {
   shouldForwardProp: (prop) => prop !== 'open',
-})(({ open }) => ({
+})({
   fontSize: '1rem',
-  transform: open && 'rotate(90deg)',
+  '&&:last-child': {
+    // overrrides https://github.com/mui/material-ui/blob/ca7c5c63e64b6a7f55255981f1836a565927b56c/docs/src/modules/brandingTheme.ts#L757-L759
+    marginLeft: 0,
+  },
+  variants: [
+    {
+      props: { open: true },
+      style: {
+        transform: 'rotate(90deg)',
+      },
+    },
+  ],
+});
+
+const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })(({ theme }) => ({
+  display: 'block',
+  variants: [
+    {
+      props: {
+        depth: 0,
+      },
+      style: {
+        padding: theme.spacing(1, '10px', 0, '10px'),
+      },
+    },
+    {
+      props: ({ depth }) => depth !== 0,
+      style: {
+        padding: 0,
+      },
+    },
+  ],
 }));
 
-const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })(
-  ({ theme, depth }) => ({
-    display: 'block',
-    padding: depth === 0 ? theme.spacing(1, '10px', 0, '10px') : '2px 0',
+export const sxChip = (color) => [
+  (theme) => ({
+    ml: 1,
+    fontSize: theme.typography.pxToRem(10),
+    fontWeight: 'semiBold',
+    textTransform: 'uppercase',
+    letterSpacing: '.04rem',
+    height: '16px',
+    border: 1,
+    borderColor: (theme.vars || theme).palette[color][300],
+    bgcolor: alpha(theme.palette[color][100], 0.5),
+    color: (theme.vars || theme).palette[color][900],
+    '&:hover': {
+      bgcolor: alpha(theme.palette[color][100], 0.5),
+    },
+    '& .MuiChip-label': {
+      px: '4px',
+    },
   }),
-);
-
-const sxChip = (color) => ({
-  ml: 1,
-  fontSize: (theme) => theme.typography.pxToRem(10),
-  fontWeight: 'semiBold',
-  textTransform: 'uppercase',
-  letterSpacing: '.04rem',
-  height: '16px',
-  border: 1,
-  borderColor: (theme) =>
-    theme.palette.mode === 'dark'
-      ? alpha(theme.palette[color][800], 0.5)
-      : theme.palette[color][300],
-  bgcolor: (theme) =>
-    theme.palette.mode === 'dark'
-      ? alpha(theme.palette[color][900], 0.5)
-      : alpha(theme.palette[color][100], 0.5),
-  color: (theme) =>
-    theme.palette.mode === 'dark' ? theme.palette[color][300] : theme.palette[color][700],
-  '&:hover': {
-    bgcolor: (theme) =>
-      theme.palette.mode === 'dark'
-        ? alpha(theme.palette[color][900], 0.5)
-        : alpha(theme.palette[color][100], 0.5),
-  },
-  '& .MuiChip-label': {
-    px: 0.6,
-  },
-});
+  (theme) =>
+    theme.applyDarkStyles({
+      borderColor: alpha(theme.palette[color][800], 0.5),
+      bgcolor: alpha(theme.palette[color][900], 0.5),
+      color: (theme.vars || theme).palette[color][300],
+      '&:hover': {
+        bgcolor: alpha(theme.palette[color][900], 0.5),
+      },
+    }),
+];
 
 function DeadLink(props) {
   const { activeClassName, href, noLinkStyle, prefetch, ...other } = props;
@@ -198,26 +294,30 @@ DeadLink.propTypes = {
 
 export default function AppNavDrawerItem(props) {
   const {
+    beta,
     children,
+    deprecated,
     depth,
     href,
     icon,
     legacy,
     newFeature,
+    planned,
+    unstable,
     linkProps,
     onClick,
-    openImmediately,
+    initiallyExpanded = false,
+    expandable = false,
     plan = 'community',
     subheader,
     title,
     topLevel = false,
     ...other
   } = props;
-  const expandable = openImmediately != null;
-  const [open, setOpen] = React.useState(openImmediately);
+  const [open, setOpen] = React.useState(initiallyExpanded);
   const handleClick = (event) => {
-    // Ignore the action if opening the link in a new tab
-    if (shoudHandleLinkClick(event)) {
+    // Ignore click events meant for native link handling, for example open in new tab
+    if (samePageLinkNavigation(event)) {
       return;
     }
 
@@ -225,15 +325,14 @@ export default function AppNavDrawerItem(props) {
       onClick(event);
     }
 
-    if (expandable && !subheader) {
+    if (expandable) {
       event.preventDefault();
       setOpen((oldOpen) => !oldOpen);
     }
   };
 
-  const hasIcon = icon && iconsMap[icon];
-  const IconComponent = hasIcon ? iconsMap[icon] : null;
-  const iconProps = hasIcon ? { fontSize: 'small', color: 'primary' } : {};
+  const hasIcon = icon && (typeof icon !== 'string' || !!standardNavIcons[icon]);
+  const IconComponent = typeof icon === 'string' ? standardNavIcons[icon] : icon;
   const iconElement = hasIcon ? (
     <Box
       component="span"
@@ -242,11 +341,10 @@ export default function AppNavDrawerItem(props) {
         display: 'flex',
         alignItems: 'center',
         height: '100%',
-        marginRight: 1.5,
-        py: '2px',
+        marginRight: '6px',
       }}
     >
-      <IconComponent {...iconProps} />
+      <IconComponent fontSize="small" color="primary" />
     </Box>
   ) : null;
 
@@ -260,18 +358,28 @@ export default function AppNavDrawerItem(props) {
         href={href}
         prefetch={false}
         subheader={subheader}
-        activeClassName={expandable ? null : 'app-drawer-active'}
+        expandable={expandable}
+        activeClassName={initiallyExpanded ? null : 'app-drawer-active'}
         className={topLevel ? 'algolia-lvl0' : null}
         onClick={handleClick}
         {...linkProps}
+        style={{
+          ...linkProps?.style,
+          '--_depth': depth,
+          '--_expandable': expandable ? 1 : 0,
+        }}
       >
         {iconElement}
+        {expandable && <ItemButtonIcon className="ItemButtonIcon" open={open} />}
         {title}
         {plan === 'pro' && <span className="plan-pro" title="Pro plan" />}
         {plan === 'premium' && <span className="plan-premium" title="Premium plan" />}
         {legacy && <Chip label="Legacy" sx={sxChip('warning')} />}
         {newFeature && <Chip label="New" sx={sxChip('success')} />}
-        {expandable && !subheader && <ItemButtonIcon className="ItemButtonIcon" open={open} />}
+        {planned && <Chip label="Planned" sx={sxChip('grey')} />}
+        {unstable && <Chip label="Preview" sx={sxChip('primary')} />}
+        {beta && <Chip label="Beta" sx={sxChip('primary')} />}
+        {deprecated && <Chip label="Deprecated" sx={sxChip('warning')} />}
       </Item>
       {expandable ? (
         <Collapse in={open} timeout="auto" unmountOnExit>
@@ -285,17 +393,22 @@ export default function AppNavDrawerItem(props) {
 }
 
 AppNavDrawerItem.propTypes = {
+  beta: PropTypes.bool,
   children: PropTypes.node,
+  deprecated: PropTypes.bool,
   depth: PropTypes.number.isRequired,
-  href: PropTypes.string,
-  icon: PropTypes.string,
+  expandable: PropTypes.bool,
+  href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  icon: PropTypes.elementType,
+  initiallyExpanded: PropTypes.bool,
   legacy: PropTypes.bool,
   linkProps: PropTypes.object,
   newFeature: PropTypes.bool,
   onClick: PropTypes.func,
-  openImmediately: PropTypes.bool,
   plan: PropTypes.oneOf(['community', 'pro', 'premium']),
+  planned: PropTypes.bool,
   subheader: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   topLevel: PropTypes.bool,
+  unstable: PropTypes.bool,
 };

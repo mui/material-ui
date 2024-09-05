@@ -1,18 +1,18 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { useTab } from '@mui/base/TabUnstyled';
-import { useSlotProps } from '@mui/base/utils';
+import { useTab } from '@mui/base/useTab';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { useColorInversion } from '../styles/ColorInversion';
 import { getTabUtilityClass } from './tabClasses';
 import { TabOwnerState, TabTypeMap } from './TabProps';
 import RowListContext from '../List/RowListContext';
 import ListItemButtonOrientationContext from '../ListItemButton/ListItemButtonOrientationContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: TabOwnerState) => {
   const { selected, disabled, focusVisible, variant, color, orientation } = ownerState;
@@ -36,25 +36,92 @@ const TabRoot = styled(StyledListItemButton, {
   name: 'JoyTab',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TabOwnerState }>(({ theme, ownerState }) => {
-  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
-  return {
-    justifyContent: 'center',
-    flexGrow: 1,
-    ...(!ownerState.row &&
-      ownerState.orientation === 'horizontal' && {
-        justifyContent: 'flex-start',
-      }),
-    ...(ownerState.selected && {
-      boxShadow: theme.shadow.sm,
-      fontWeight: 'initial',
-      ...(!variantStyle?.backgroundColor && {
-        backgroundColor: theme.vars.palette.background.surface,
-      }),
-    }),
-  };
-});
-
+})<{ ownerState: TabOwnerState }>(({ ownerState }) => [
+  {
+    flex: 'initial',
+    justifyContent: ownerState.row ? 'center' : 'initial',
+    '--unstable_ListItemDecorator-alignItems': 'center',
+    '--unstable_offset': 'min(calc(-1 * var(--variant-borderWidth, 0px)), -1px)',
+  },
+  !ownerState.disableIndicator && {
+    '&[aria-selected="true"]': {
+      '--Tab-indicatorColor': 'currentColor',
+      zIndex: 1, // to stay above other tab elements
+    },
+    // using pseudo element for showing active indicator is best for controlling the size and customization.
+    // for example, developers can customize the radius, width or background.
+    // (border and box-shadow are not flexible when it comes to customization).
+    '&::after': {
+      content: '""',
+      display: 'block',
+      position: 'absolute',
+      margin: 'auto',
+      background: 'var(--Tab-indicatorColor)',
+      borderRadius: 'var(--Tab-indicatorRadius)',
+    },
+  },
+  // the padding is to account for the indicator's thickness to make the text proportional.
+  !ownerState.disableIndicator &&
+    ownerState.indicatorPlacement === 'bottom' && {
+      paddingBottom:
+        'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px) + var(--Tab-indicatorThickness) - 1px)',
+      '&::after': {
+        height: 'var(--Tab-indicatorThickness)',
+        width: 'var(--Tab-indicatorSize)',
+        left: ownerState.indicatorInset ? 'var(--ListItem-paddingLeft)' : 'var(--unstable_offset)',
+        right: ownerState.indicatorInset
+          ? 'var(--ListItem-paddingRight)'
+          : 'var(--unstable_offset)',
+        bottom: 'calc(-1px - var(--unstable_TabList-underlineBottom, 0px))',
+      },
+    },
+  !ownerState.disableIndicator &&
+    ownerState.indicatorPlacement === 'top' && {
+      paddingTop:
+        'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px) + var(--Tab-indicatorThickness) - 1px)',
+      '&::after': {
+        height: 'var(--Tab-indicatorThickness)',
+        width: 'var(--Tab-indicatorSize)',
+        left: ownerState.indicatorInset ? 'var(--ListItem-paddingLeft)' : 'var(--unstable_offset)',
+        right: ownerState.indicatorInset
+          ? 'var(--ListItem-paddingRight)'
+          : 'var(--unstable_offset)',
+        top: 'calc(-1px - var(--unstable_TabList-underlineTop, 0px))',
+      },
+    },
+  !ownerState.disableIndicator &&
+    ownerState.indicatorPlacement === 'right' && {
+      paddingRight: 'calc(var(--ListItem-paddingRight) + var(--Tab-indicatorThickness) - 1px)',
+      '&::after': {
+        height: 'var(--Tab-indicatorSize)',
+        width: 'var(--Tab-indicatorThickness)',
+        top: ownerState.indicatorInset ? 'var(--ListItem-paddingY)' : 'var(--unstable_offset)',
+        bottom: ownerState.indicatorInset ? 'var(--ListItem-paddingY)' : 'var(--unstable_offset)',
+        right: 'calc(-1px - var(--unstable_TabList-underlineRight, 0px))',
+      },
+    },
+  !ownerState.disableIndicator &&
+    ownerState.indicatorPlacement === 'left' && {
+      paddingLeft: 'calc(var(--ListItem-paddingLeft) + var(--Tab-indicatorThickness) - 1px)',
+      '&::after': {
+        height: 'var(--Tab-indicatorSize)',
+        width: 'var(--Tab-indicatorThickness)',
+        top: ownerState.indicatorInset ? 'var(--ListItem-paddingY)' : 'var(--unstable_offset)',
+        bottom: ownerState.indicatorInset ? 'var(--ListItem-paddingY)' : 'var(--unstable_offset)',
+        left: 'calc(-1px - var(--unstable_TabList-underlineLeft, 0px))',
+      },
+    },
+]);
+/**
+ *
+ * Demos:
+ *
+ * - [Tabs](https://mui.com/joy-ui/react-tabs/)
+ *
+ * API:
+ *
+ * - [Tab API](https://mui.com/joy-ui/api/tab/)
+ */
 const Tab = React.forwardRef(function Tab(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -74,18 +141,21 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     component = 'button',
     orientation = 'horizontal',
     variant = 'plain',
-    color: colorProp = 'neutral',
+    color = 'neutral',
+    disableIndicator = false,
+    indicatorPlacement = row ? 'bottom' : 'right',
+    indicatorInset = false,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
-  const tabRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
-  const handleRef = useForkRef(tabRef, ref);
+  const tabRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement | null>(null);
+  const handleRef = useForkRef(tabRef, ref) as React.RefCallback<Element>;
 
   const { active, focusVisible, setFocusVisible, selected, getRootProps } = useTab({
     ...props,
-    ref: handleRef,
+    rootRef: handleRef,
   });
 
   React.useImperativeHandle(
@@ -101,6 +171,9 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
 
   const ownerState = {
     ...props,
+    disableIndicator,
+    indicatorPlacement,
+    indicatorInset,
     orientation,
     row,
     active,
@@ -112,16 +185,13 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  const tabRootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     elementType: TabRoot,
     getSlotProps: getRootProps,
-    externalSlotProps: {},
-    externalForwardedProps: other,
-    additionalProps: {
-      ref,
-      as: component,
-    },
+    externalForwardedProps,
     ownerState,
     className: classes.root,
   });
@@ -129,16 +199,16 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
   return (
     <ListItemButtonOrientationContext.Provider value={orientation}>
       {/* @ts-ignore ListItemButton base is div which conflict with TabProps 'button' */}
-      <TabRoot {...tabRootProps}>{children}</TabRoot>
+      <SlotRoot {...rootProps}>{children}</SlotRoot>
     </ListItemButtonOrientationContext.Provider>
   );
 }) as OverridableComponent<TabTypeMap>;
 
 Tab.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A ref for imperative actions. It currently only supports `focusVisible()` action.
    */
@@ -159,7 +229,7 @@ Tab.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -172,6 +242,21 @@ Tab.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, the pseudo element indicator is hidden.
+   * @default false
+   */
+  disableIndicator: PropTypes.bool,
+  /**
+   * If `true`, the indicator stay within the padding based on the `Tabs` orientation.
+   * @default false
+   */
+  indicatorInset: PropTypes.bool,
+  /**
+   * The indicator's position when the Tab is selected.
+   * @default row ? 'bottom' : 'right'
+   */
+  indicatorPlacement: PropTypes.oneOf(['bottom', 'left', 'right', 'top']),
   /**
    * Callback invoked when new value is being set.
    */
@@ -190,6 +275,20 @@ Tab.propTypes /* remove-proptypes */ = {
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -198,11 +297,11 @@ Tab.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * You can provide your own value. Otherwise, we fall back to the child position index.
+   * You can provide your own value. Otherwise, it falls back to the child position index.
    */
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

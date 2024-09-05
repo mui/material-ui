@@ -1,6 +1,4 @@
 import * as React from 'react';
-import BrandingProvider from 'docs/src/BrandingProvider';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Box from '@mui/joy/Box';
 import FormLabel from '@mui/joy/FormLabel';
 import List from '@mui/joy/List';
@@ -11,29 +9,30 @@ import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
 import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { BrandingProvider } from '@mui/docs/branding';
 
-export default function ButtonThemes() {
+export default function ListThemes() {
   const [preset, setPreset] = React.useState('');
   const rootPresets = {
     dense: {
-      '--List-item-minHeight': '27px',
-      '--List-decorator-size': '28px',
-      '--List-item-radius': '5px',
+      '--ListItem-minHeight': '27px',
+      '--ListItemDecorator-size': '28px',
+      '--ListItem-radius': '5px',
       '--List-gap': '5px',
       '--List-padding': '10px',
-      '--List-item-paddingLeft': '5px',
-      '--List-item-paddingRight': '5px',
-      '--List-item-paddingY': '0px',
-      '--List-item-fontSize': '14px',
+      '--ListItem-paddingLeft': '5px',
+      '--ListItem-paddingRight': '5px',
+      '--ListItem-paddingY': '0px',
       '--List-nestedInsetStart': '28px',
-      '--List-decorator-color': 'var(--joy-palette-primary-plainColor)',
+      fontSize: '14px',
     },
     cozy: {
       '--List-radius': '20px',
-      '--List-item-minHeight': '48px',
+      '--ListItem-minHeight': '44px',
       '--List-padding': '8px',
       '--List-gap': '8px',
-      '--List-nestedInsetStart': 'var(--List-decorator-size)',
+      '--List-nestedInsetStart': 'var(--ListItemDecorator-size)',
     },
   };
   const nestedPresets = {
@@ -57,14 +56,7 @@ export default function ButtonThemes() {
     >
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mb: 3 }}>
         <Box sx={{ m: 'auto' }}>
-          <List
-            sx={{
-              ...rootPresets[preset],
-              bgcolor: 'background.body',
-              border: '1px solid',
-              borderColor: 'neutral.outlinedBorder',
-            }}
-          >
+          <List variant="outlined" sx={{ ...rootPresets[preset] }}>
             <ListItem>
               <ListItemButton>
                 <ListItemDecorator>
@@ -131,11 +123,10 @@ export default function ButtonThemes() {
 <List${
               preset
                 ? `
-  sx={{
-    ${JSON.stringify(rootPresets[preset], null, 4)
-      .replace('{', '')
-      .replace('}', '')
-      .trim()}
+  sx={{  ${JSON.stringify(rootPresets[preset], null, 4)
+    .replace('{', '')
+    .replace('}', '')
+    .trim()}
   }}
 `
                 : ''
@@ -145,11 +136,10 @@ export default function ButtonThemes() {
     <List${
       nestedPresets[preset]
         ? `
-      sx={{
-        ${JSON.stringify(nestedPresets[preset], null, 8)
-          .replace('{', '')
-          .replace('}', '')
-          .trim()}
+      sx={{      ${JSON.stringify(nestedPresets[preset], null, 8)
+        .replace('{', '')
+        .replace('}', '')
+        .trim()}
       }}
     `
         : ''
@@ -170,10 +160,7 @@ export default function ButtonThemes() {
 `}
             copyButtonHidden
             language="jsx"
-            sx={{
-              display: { xs: 'none', md: 'block' },
-              borderRadius: '7px',
-            }}
+            sx={{ display: { xs: 'none', md: 'block' }, borderRadius: '7px' }}
           />
         </BrandingProvider>
       }

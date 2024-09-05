@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Icon Component
 components: Icon, SvgIcon
 githubLabel: 'components: SvgIcon'
@@ -8,37 +8,44 @@ materialDesign: https://m2.material.io/design/iconography/system-icons.html
 
 # Icons
 
-<p class="description">Guidance and suggestions for using icons with MUI.</p>
+<p class="description">Guidance and suggestions for using icons with Material UI.</p>
 
-MUI provides icons support in three ways:
+Material UI provides icon support in three ways:
 
-1. Standardized [Material Icons](#material-svg-icons) exported as React components (SVG icons).
+1. With [Material Icons](#material-svg-icons) exported as React components (SVG icons).
 1. With the [SvgIcon](#svgicon) component, a React wrapper for custom SVG icons.
 1. With the [Icon](#icon-font-icons) component, a React wrapper for custom font icons.
 
 ## Material SVG icons
 
-Google has created over 2,100 official Material icons, each in five different "themes" (see below).
+Google has created over 2,100 official [Material icons](https://fonts.google.com/icons?icon.set=Material+Icons), each in five different "themes" (see below).
 For each SVG icon, we export the respective React component from the `@mui/icons-material` package.
 You can [search the full list of these icons](/material-ui/material-icons/).
 
 ### Installation
 
-To install and save in your `package.json` dependencies, run the command below using **npm**:
+Run one of the following commands to install it and save it to your `package.json` dependencies:
 
-```sh
+<!-- #default-branch-switch -->
+
+<codeblock storageKey="package-manager">
+```bash npm
 npm install @mui/icons-material
 ```
 
-Or **yarn**:
+```bash pnpm
+pnpm add @mui/icons-material
+```
 
-```sh
+```bash yarn
 yarn add @mui/icons-material
 ```
 
-These components use the MUI `SvgIcon` component to render the SVG path for each icon, and so have a peer-dependency on `@mui/material`.
+</codeblock>
 
-If you aren't already using Material UI in your project, you can add it following the [installation guide](/material-ui/getting-started/installation/).
+These components use the Material UI `SvgIcon` component to render the SVG path for each icon, and so have a peer-dependency on `@mui/material`.
+
+If you aren't already using Material UI in your project, you can add it following the [installation guide](/material-ui/getting-started/installation/).
 
 ### Usage
 
@@ -94,20 +101,13 @@ If you need a custom SVG icon (not available in the [Material Icons](/material-u
 This component extends the native `<svg>` element:
 
 - It comes with built-in accessibility.
-- SVG elements should be scaled for a 24x24px viewport so that the resulting icon can be used as is, or included as a child for other MUI components that use icons.
+- SVG elements should be scaled for a 24x24px viewport so that the resulting icon can be used as is, or included as a child for other Material UI components that use icons.
   This can be customized with the `viewBox` attribute.
   To inherit the `viewBox` value from the original image, the `inheritViewBox` prop can be used.
 - By default, the component inherits the current color. Optionally, you can apply one of the theme colors using the `color` prop.
+- It supports `<svg>` element as a child so you can copy and paste your SVG directly to `SvgIcon` component.
 
-```jsx
-function HomeIcon(props) {
-  return (
-    <SvgIcon {...props}>
-      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-    </SvgIcon>
-  );
-}
-```
+{{"demo": "SvgIconChildren.js"}}
 
 ### Color
 
@@ -120,7 +120,7 @@ function HomeIcon(props) {
 ### Component prop
 
 You can use the `SvgIcon` wrapper even if your icons are saved in the `.svg` format.
-[svgr](https://github.com/gregberge/svgr) has loaders to import SVG files and use them as React components. For example, with webpack:
+[svgr](https://github.com/gregberge/svgr) has loaders to import SVG files and use them as React components. For example, with Webpack:
 
 ```jsx
 // webpack.config.js
@@ -152,12 +152,27 @@ import { ReactComponent as StarIcon } from './star.svg';
 
 ### createSvgIcon
 
-The `createSvgIcon` utility component is used to create the [Material Icons](#material-icons). It can be used to wrap an SVG path with an SvgIcon component.
+The `createSvgIcon` utility component is used to create the [Material Icons](#material-icons). It can be used to wrap an `<svg>` element or an SVG path which is passed as a child to the [`SvgIcon`](#svgicon) component.
 
 ```jsx
 const HomeIcon = createSvgIcon(
   <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />,
   'Home',
+);
+
+// or with custom SVG
+const PlusIcon = createSvgIcon(
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className="h-6 w-6"
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+  </svg>,
+  'Plus',
 );
 ```
 
@@ -173,7 +188,7 @@ Below is a comparison of the `FontAwesomeIcon` component and a wrapped `SvgIcon`
 
 FontAwesomeIcon's `fullWidth` prop can also be used to approximate the correct dimensions, but it isn't perfect.
 
-### Other Libraries
+### Other libraries
 
 #### MDI
 
@@ -282,12 +297,12 @@ const theme = createTheme({
 
 {{"demo": "FontAwesomeIconSize.js"}}
 
-## Font vs SVG. Which approach to use?
+## Font vs. SVGs: Which approach to use?
 
-Both approaches work fine, however there are some subtle differences, especially in terms of performance and rendering quality.
+Both approaches work fine, however, there are some subtle differences, especially in terms of performance and rendering quality.
 Whenever possible SVG is preferred as it allows code splitting, supports more icons, and renders faster and better.
 
-For more details, take a look at [why GitHub migrated from font icons to SVG icons](https://github.blog/2016-02-22-delivering-octicons-with-svg/).
+For more details, take a look at [why GitHub migrated from font icons to SVG icons](https://github.blog/engineering/delivering-octicons-with-svg/).
 
 ## Accessibility
 

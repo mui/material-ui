@@ -1,0 +1,101 @@
+{
+  "parameters": {
+    "children": {
+      "type": {
+        "name": "React.ReactElement&lt;any&gt; | undefined | null",
+        "description": "React.ReactElement&lt;any&gt; | undefined | null"
+      },
+      "required": true
+    },
+    "open": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "rootRef": {
+      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" },
+      "required": true
+    },
+    "aria-hidden": {
+      "type": {
+        "name": "React.AriaAttributes[&#39;aria-hidden&#39;]",
+        "description": "React.AriaAttributes[&#39;aria-hidden&#39;]"
+      }
+    },
+    "closeAfterTransition": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false"
+    },
+    "container": {
+      "type": {
+        "name": "PortalProps[&#39;container&#39;]",
+        "description": "PortalProps[&#39;container&#39;]"
+      }
+    },
+    "disableEscapeKeyDown": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false"
+    },
+    "disableScrollLock": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false"
+    },
+    "onClose": {
+      "type": {
+        "name": "{\n  bivarianceHack(event: {}, reason: &#39;backdropClick&#39; | &#39;escapeKeyDown&#39;): void\n}[&#39;bivarianceHack&#39;]",
+        "description": "{\n  bivarianceHack(event: {}, reason: &#39;backdropClick&#39; | &#39;escapeKeyDown&#39;): void\n}[&#39;bivarianceHack&#39;]"
+      }
+    },
+    "onKeyDown": {
+      "type": { "name": "React.KeyboardEventHandler", "description": "React.KeyboardEventHandler" }
+    },
+    "onTransitionEnter": { "type": { "name": "() =&gt; void", "description": "() =&gt; void" } },
+    "onTransitionExited": { "type": { "name": "() =&gt; void", "description": "() =&gt; void" } }
+  },
+  "returnValue": {
+    "exited": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "getBackdropProps": {
+      "type": {
+        "name": "&lt;TOther extends EventHandlers = {}&gt;(externalProps?: TOther) =&gt; UseModalBackdropSlotProps&lt;TOther&gt;",
+        "description": "&lt;TOther extends EventHandlers = {}&gt;(externalProps?: TOther) =&gt; UseModalBackdropSlotProps&lt;TOther&gt;"
+      },
+      "required": true
+    },
+    "getRootProps": {
+      "type": {
+        "name": "&lt;TOther extends EventHandlers = {}&gt;(externalProps?: TOther) =&gt; UseModalRootSlotProps&lt;TOther&gt;",
+        "description": "&lt;TOther extends EventHandlers = {}&gt;(externalProps?: TOther) =&gt; UseModalRootSlotProps&lt;TOther&gt;"
+      },
+      "required": true
+    },
+    "getTransitionProps": {
+      "type": {
+        "name": "&lt;TOther extends EventHandlers = {}&gt;(externalProps?: TOther) =&gt; { onEnter: () =&gt; void; onExited: () =&gt; void }",
+        "description": "&lt;TOther extends EventHandlers = {}&gt;(externalProps?: TOther) =&gt; { onEnter: () =&gt; void; onExited: () =&gt; void }"
+      },
+      "required": true
+    },
+    "hasTransition": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "isTopModal": {
+      "type": { "name": "() =&gt; boolean", "description": "() =&gt; boolean" },
+      "required": true
+    },
+    "portalRef": {
+      "type": {
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
+      },
+      "required": true
+    },
+    "rootRef": {
+      "type": {
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
+      },
+      "required": true
+    }
+  },
+  "name": "useModal",
+  "filename": "/packages/mui-base/src/unstable_useModal/useModal.ts",
+  "imports": [
+    "import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';",
+    "import { unstable_useModal as useModal } from '@mui/base';"
+  ],
+  "demos": "<ul><li><a href=\"/base-ui/react-modal/#hook\">Modal</a></li></ul>"
+}

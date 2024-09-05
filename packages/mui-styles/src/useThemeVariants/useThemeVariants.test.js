@@ -1,6 +1,10 @@
 import { expect } from 'chai';
 import * as React from 'react';
-import { createRenderer, screen, strictModeDoubleLoggingSupressed } from 'test/utils';
+import {
+  createRenderer,
+  screen,
+  strictModeDoubleLoggingSuppressed,
+} from '@mui/internal-test-utils';
 import { createTheme } from '@mui/material/styles';
 import ThemeProvider from '../ThemeProvider';
 import useThemeVariants from './useThemeVariants';
@@ -103,7 +107,7 @@ describe('useThemeVariants', () => {
 
   it('should warn if the used variant is not defined in the theme', function test() {
     // Warnings are added for whitelisted components, so we need to
-    // test with some name that is in the list, for example MuiButtton
+    // test with some name that is in the list, for example MuiButton
     const Button = withStyles(
       {},
       { name: 'MuiButton' },
@@ -139,7 +143,7 @@ describe('useThemeVariants', () => {
         `MUI: You are using a variant value \`test\` for which you didn't define styles.`,
         `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://mui.com/r/custom-component-variants.`,
       ].join('\n'),
-      !strictModeDoubleLoggingSupressed &&
+      !strictModeDoubleLoggingSuppressed &&
         [
           `MUI: You are using a variant value \`test\` for which you didn't define styles.`,
           `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://mui.com/r/custom-component-variants.`,

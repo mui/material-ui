@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -6,23 +7,19 @@ import {
   unstable_useControlled as useControlled,
   unstable_useEventCallback as useEventCallback,
   unstable_useForkRef as useForkRef,
-  unstable_useIsFocusVisible as useIsFocusVisible,
+  unstable_isFocusVisible as isFocusVisible,
   unstable_useId as useId,
+  unstable_useTimeout as useTimeout,
+  unstable_Timeout as Timeout,
+  unstable_getReactNodeRef as getReactNodeRef,
 } from '@mui/utils';
-import { PopperUnstyled, unstable_composeClasses as composeClasses } from '@mui/base';
+import { Popper, unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useSlot from '../utils/useSlot';
-import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 import { getTooltipUtilityClass } from './tooltipClasses';
 import { TooltipProps, TooltipOwnerState, TooltipTypeMap } from './TooltipProps';
-
-// Create a function to prevent typescript-to-proptypes from generating `slots` and `slotProps` proptypes.
-const excludeSlotsAndSlotProps = <T extends { slots?: any; slotProps?: any }>(props: T) => {
-  const { slots, slotProps, ...otherProps } = props;
-  return otherProps;
-};
 
 const useUtilityClasses = (ownerState: TooltipOwnerState) => {
   const { arrow, variant, color, size, placement, touch } = ownerState;
@@ -51,38 +48,29 @@ const TooltipRoot = styled('div', {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
     ...(ownerState.size === 'sm' && {
-      '--Icon-fontSize': '1rem',
-      '--Tooltip-arrow-size': '8px',
-      padding: theme.spacing(0.5, 0.625),
-      fontSize: theme.vars.fontSize.xs,
+      '--Icon-fontSize': theme.vars.fontSize.md,
+      '--Tooltip-arrowSize': '8px',
+      padding: theme.spacing(0.25, 0.625),
     }),
     ...(ownerState.size === 'md' && {
-      '--Icon-fontSize': '1.125rem',
-      '--Tooltip-arrow-size': '10px',
-      padding: theme.spacing(0.625, 0.75),
-      fontSize: theme.vars.fontSize.sm,
+      '--Icon-fontSize': theme.vars.fontSize.lg,
+      '--Tooltip-arrowSize': '10px',
+      padding: theme.spacing(0.5, 0.75),
     }),
     ...(ownerState.size === 'lg' && {
-      '--Icon-fontSize': '1.25rem',
-      '--Tooltip-arrow-size': '12px',
+      '--Icon-fontSize': theme.vars.fontSize.xl,
+      '--Tooltip-arrowSize': '12px',
       padding: theme.spacing(0.75, 1),
-      fontSize: theme.vars.fontSize.md,
     }),
-    zIndex: 1500,
-    pointerEvents: 'none',
-    borderRadius: theme.vars.radius.xs,
+    zIndex: theme.vars.zIndex.tooltip,
+    borderRadius: theme.vars.radius.sm,
     boxShadow: theme.shadow.sm,
-    fontFamily: theme.vars.fontFamily.body,
-    fontWeight: theme.vars.fontWeight.md,
-    lineHeight: theme.vars.lineHeight.sm,
     wordWrap: 'break-word',
     position: 'relative',
-    ...(!ownerState.disableInteractive && {
-      pointerEvents: 'auto',
-    }),
-    ...(!ownerState.open && {
+    ...(ownerState.disableInteractive && {
       pointerEvents: 'none',
     }),
+    ...theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`],
     ...variantStyle,
     ...(!variantStyle.backgroundColor && {
       backgroundColor: theme.vars.palette.background.surface,
@@ -131,18 +119,18 @@ const TooltipArrow = styled('span', {
 })<{ ownerState: TooltipOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
-    '--unstable_Tooltip-arrow-rotation': 0,
-    width: 'var(--Tooltip-arrow-size)',
-    height: 'var(--Tooltip-arrow-size)',
+    '--unstable_Tooltip-arrowRotation': 0,
+    width: 'var(--Tooltip-arrowSize)',
+    height: 'var(--Tooltip-arrowSize)',
     boxSizing: 'border-box',
-    // use psuedo element because Popper controls the `transform` property of the arrow.
-    '&:before': {
+    // use pseudo element because Popper controls the `transform` property of the arrow.
+    '&::before': {
       content: '""',
       display: 'block',
       position: 'absolute',
       width: 0,
       height: 0,
-      border: 'calc(var(--Tooltip-arrow-size) / 2) solid',
+      border: 'calc(var(--Tooltip-arrowSize) / 2) solid',
       borderLeftColor: 'transparent',
       borderBottomColor: 'transparent',
       borderTopColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
@@ -150,35 +138,33 @@ const TooltipArrow = styled('span', {
       borderRadius: `0px 2px 0px 0px`,
       boxShadow: `var(--variant-borderWidth, 0px) calc(-1 * var(--variant-borderWidth, 0px)) 0px 0px ${variantStyle.borderColor}`,
       transformOrigin: 'center center',
-      transform: 'rotate(calc(-45deg + 90deg * var(--unstable_Tooltip-arrow-rotation)))',
+      transform: 'rotate(calc(-45deg + 90deg * var(--unstable_Tooltip-arrowRotation)))',
     },
     '[data-popper-placement*="bottom"] &': {
-      top: 'calc(0.5px + var(--Tooltip-arrow-size) * -1 / 2)', // 0.5px is for perfect overlap with the Tooltip
+      top: 'calc(0.5px + var(--Tooltip-arrowSize) * -1 / 2)', // 0.5px is for perfect overlap with the Tooltip
     },
     '[data-popper-placement*="top"] &': {
-      '--unstable_Tooltip-arrow-rotation': 2,
-      bottom: 'calc(0.5px + var(--Tooltip-arrow-size) * -1 / 2)',
+      '--unstable_Tooltip-arrowRotation': 2,
+      bottom: 'calc(0.5px + var(--Tooltip-arrowSize) * -1 / 2)',
     },
     '[data-popper-placement*="left"] &': {
-      '--unstable_Tooltip-arrow-rotation': 1,
-      right: 'calc(0.5px + var(--Tooltip-arrow-size) * -1 / 2)',
+      '--unstable_Tooltip-arrowRotation': 1,
+      right: 'calc(0.5px + var(--Tooltip-arrowSize) * -1 / 2)',
     },
     '[data-popper-placement*="right"] &': {
-      '--unstable_Tooltip-arrow-rotation': 3,
-      left: 'calc(0.5px + var(--Tooltip-arrow-size) * -1 / 2)',
+      '--unstable_Tooltip-arrowRotation': 3,
+      left: 'calc(0.5px + var(--Tooltip-arrowSize) * -1 / 2)',
     },
   };
 });
 
 let hystersisOpen = false;
-let hystersisTimer: ReturnType<typeof setTimeout> | null = null;
+const hystersisTimer = new Timeout();
 let cursorPosition = { x: 0, y: 0 };
 
 export function testReset() {
   hystersisOpen = false;
-  if (hystersisTimer) {
-    clearTimeout(hystersisTimer);
-  }
+  hystersisTimer.clear();
 }
 
 function composeMouseEventHandler(
@@ -194,17 +180,26 @@ function composeMouseEventHandler(
 }
 
 function composeFocusEventHandler(
-  handler: (event: React.FocusEvent<HTMLElement>) => void,
-  eventHandler: (event: React.FocusEvent<HTMLElement>) => void,
+  handler: (event: React.FocusEvent<HTMLElement>, ...params: any[]) => void,
+  eventHandler: (event: React.FocusEvent<HTMLElement>, ...params: any[]) => void,
 ) {
-  return (event: React.FocusEvent<HTMLElement>) => {
+  return (event: React.FocusEvent<HTMLElement>, ...params: any[]) => {
     if (eventHandler) {
-      eventHandler(event);
+      eventHandler(event, ...params);
     }
-    handler(event);
+    handler(event, ...params);
   };
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Tooltip](https://mui.com/joy-ui/react-tooltip/)
+ *
+ * API:
+ *
+ * - [Tooltip API](https://mui.com/joy-ui/api/tooltip/)
+ */
 const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const props = useThemeProps<typeof inProps & TooltipProps>({
     props: inProps,
@@ -214,6 +209,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const {
     children,
     className,
+    component,
     arrow = false,
     describeChild = false,
     disableFocusListener = false,
@@ -236,28 +232,24 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     modifiers: modifiersProp,
     placement = 'bottom',
     title,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     variant = 'solid',
     size = 'md',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
-  const [childNode, setChildNode] = React.useState<HTMLElement>();
+  const [childNode, setChildNode] = React.useState<Element>();
   const [arrowRef, setArrowRef] = React.useState<HTMLSpanElement | null>(null);
   const ignoreNonTouchEvents = React.useRef(false);
 
   const disableInteractive = disableInteractiveProp || followCursor;
 
-  const closeTimer: React.MutableRefObject<ReturnType<typeof setTimeout> | undefined> =
-    React.useRef();
-  const enterTimer: React.MutableRefObject<ReturnType<typeof setTimeout> | undefined> =
-    React.useRef();
-  const leaveTimer: React.MutableRefObject<ReturnType<typeof setTimeout> | undefined> =
-    React.useRef();
-  const touchTimer: React.MutableRefObject<ReturnType<typeof setTimeout> | undefined> =
-    React.useRef();
+  const closeTimer = useTimeout();
+  const enterTimer = useTimeout();
+  const leaveTimer = useTimeout();
+  const touchTimer = useTimeout();
 
   const [openState, setOpenState] = useControlled({
     controlled: openProp,
@@ -270,29 +262,21 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const id = useId(idProp);
 
-  const prevUserSelect: React.MutableRefObject<string | undefined> = React.useRef();
-  const stopTouchInteraction = React.useCallback(() => {
+  const prevUserSelect = React.useRef<string | undefined>(undefined);
+  const stopTouchInteraction = useEventCallback(() => {
     if (prevUserSelect.current !== undefined) {
+      // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- WebkitUserSelect is required outside the component
       (document.body.style as unknown as { WebkitUserSelect?: string }).WebkitUserSelect =
         prevUserSelect.current;
       prevUserSelect.current = undefined;
     }
-    clearTimeout(touchTimer.current);
-  }, []);
+    touchTimer.clear();
+  });
 
-  React.useEffect(() => {
-    return () => {
-      clearTimeout(closeTimer.current);
-      clearTimeout(enterTimer.current);
-      clearTimeout(leaveTimer.current);
-      stopTouchInteraction();
-    };
-  }, [stopTouchInteraction]);
+  React.useEffect(() => stopTouchInteraction, [stopTouchInteraction]);
 
-  const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
-    if (hystersisTimer) {
-      clearTimeout(hystersisTimer);
-    }
+  const handleOpen = (event: React.SyntheticEvent<HTMLElement>) => {
+    hystersisTimer.clear();
     hystersisOpen = true;
 
     // The mouseover event will trigger for every nested element in the tooltip.
@@ -306,25 +290,21 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   };
 
   const handleClose = useEventCallback((event: React.SyntheticEvent | Event) => {
-    if (hystersisTimer) {
-      clearTimeout(hystersisTimer);
-    }
-    hystersisTimer = setTimeout(() => {
+    hystersisTimer.start(800 + leaveDelay, () => {
       hystersisOpen = false;
-    }, 800 + leaveDelay);
+    });
     setOpenState(false);
 
     if (onClose && open) {
       onClose(event);
     }
 
-    clearTimeout(closeTimer.current);
-    closeTimer.current = setTimeout(() => {
+    closeTimer.start(150, () => {
       ignoreNonTouchEvents.current = false;
-    }, 150);
+    });
   });
 
-  const handleEnter = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMouseOver = (event: React.SyntheticEvent<HTMLElement>) => {
     if (ignoreNonTouchEvents.current && event.type !== 'touchstart') {
       return;
     }
@@ -336,46 +316,35 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       (childNode as HTMLElement).removeAttribute('title');
     }
 
-    clearTimeout(enterTimer.current);
-    clearTimeout(leaveTimer.current);
+    enterTimer.clear();
+    leaveTimer.clear();
     if (enterDelay || (hystersisOpen && enterNextDelay)) {
-      enterTimer.current = setTimeout(
-        () => {
-          handleOpen(event);
-        },
-        hystersisOpen ? enterNextDelay : enterDelay,
-      );
+      enterTimer.start(hystersisOpen ? enterNextDelay : enterDelay, () => {
+        handleOpen(event);
+      });
     } else {
       handleOpen(event);
     }
   };
 
-  const handleLeave = (event: React.MouseEvent<HTMLElement>) => {
-    clearTimeout(enterTimer.current);
-    clearTimeout(leaveTimer.current);
-    leaveTimer.current = setTimeout(() => {
+  const handleMouseLeave = (event: React.SyntheticEvent<HTMLElement>) => {
+    enterTimer.clear();
+    leaveTimer.start(leaveDelay, () => {
       handleClose(event);
-    }, leaveDelay);
+    });
   };
 
-  const {
-    isFocusVisibleRef,
-    onBlur: handleBlurVisible,
-    onFocus: handleFocusVisible,
-    ref: focusVisibleRef,
-  } = useIsFocusVisible();
   // We don't necessarily care about the focusVisible state (which is safe to access via ref anyway).
   // We just need to re-render the Tooltip if the focus-visible state changes.
   const [, setChildIsFocusVisible] = React.useState(false);
-  const handleBlur = (event: React.FocusEvent<HTMLElement> | React.MouseEvent<HTMLElement>) => {
-    handleBlurVisible(event as React.FocusEvent<HTMLElement>);
-    if (isFocusVisibleRef.current === false) {
+  const handleBlur = (event: React.FocusEvent<HTMLElement>) => {
+    if (!isFocusVisible(event.target)) {
       setChildIsFocusVisible(false);
-      handleLeave(event as React.MouseEvent<HTMLElement>);
+      handleMouseLeave(event);
     }
   };
 
-  const handleFocus = (event: React.FocusEvent<HTMLElement> | React.MouseEvent<HTMLElement>) => {
+  const handleFocus = (event: React.FocusEvent<HTMLElement>) => {
     // Workaround for https://github.com/facebook/react/issues/7769
     // The autoFocus of React might trigger the event before the componentDidMount.
     // We need to account for this eventuality.
@@ -383,10 +352,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       setChildNode(event.currentTarget);
     }
 
-    handleFocusVisible(event as React.FocusEvent<HTMLElement>);
-    if (isFocusVisibleRef.current === true) {
+    if (isFocusVisible(event.target)) {
       setChildIsFocusVisible(true);
-      handleEnter(event as React.MouseEvent<HTMLElement>);
+      handleMouseOver(event);
     }
   };
 
@@ -399,13 +367,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
   };
 
-  const handleMouseOver = handleEnter;
-  const handleMouseLeave = handleLeave;
-
   const handleTouchStart = (event: React.TouchEvent<HTMLElement>) => {
     detectTouchStart(event);
-    clearTimeout(leaveTimer.current);
-    clearTimeout(closeTimer.current);
+    leaveTimer.clear();
+    closeTimer.clear();
     stopTouchInteraction();
 
     prevUserSelect.current = (
@@ -414,11 +379,11 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     // Prevent iOS text selection on long-tap.
     (document.body.style as unknown as { WebkitUserSelect?: string }).WebkitUserSelect = 'none';
 
-    touchTimer.current = setTimeout(() => {
+    touchTimer.start(enterTouchDelay, () => {
       (document.body.style as unknown as { WebkitUserSelect?: string }).WebkitUserSelect =
         prevUserSelect.current;
-      handleEnter(event as unknown as React.MouseEvent<HTMLElement>);
-    }, enterTouchDelay);
+      handleMouseOver(event as unknown as React.MouseEvent<HTMLElement>);
+    });
   };
 
   const handleTouchEnd = (event: React.TouchEvent<HTMLElement>) => {
@@ -427,10 +392,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
 
     stopTouchInteraction();
-    clearTimeout(leaveTimer.current);
-    leaveTimer.current = setTimeout(() => {
+    leaveTimer.start(leaveTouchDelay, () => {
       handleClose(event);
-    }, leaveTouchDelay);
+    });
   };
 
   React.useEffect(() => {
@@ -439,8 +403,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
 
     function handleKeyDown(nativeEvent: KeyboardEvent) {
-      // IE11, Edge (prior to using Bink?) use 'Esc'
-      if (nativeEvent.key === 'Escape' || nativeEvent.key === 'Esc') {
+      if (nativeEvent.key === 'Escape') {
         handleClose(nativeEvent);
       }
     }
@@ -453,11 +416,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   }, [handleClose, open]);
 
   const handleUseRef = useForkRef(setChildNode, ref);
-  const handleFocusRef = useForkRef(focusVisibleRef, handleUseRef);
-  const handleRef = useForkRef(
-    (children as unknown as { ref: React.Ref<HTMLElement> }).ref,
-    handleFocusRef,
-  );
+  const handleRef = useForkRef(getReactNodeRef(children), handleUseRef);
 
   // There is no point in displaying an empty tooltip.
   if (typeof title !== 'number' && !title) {
@@ -496,7 +455,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const childrenProps = {
     ...nameOrDescProps,
-    ...excludeSlotsAndSlotProps(other),
+    ...other,
+    component,
     ...children.props,
     className: clsx(className, children.props.className),
     onTouchStart: detectTouchStart,
@@ -555,48 +515,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-
-  const [SlotRoot, rootProps] = useSlot('root', {
-    additionalProps: {
-      id,
-      popperRef,
-      placement,
-      anchorEl: followCursor
-        ? {
-            getBoundingClientRect: () =>
-              ({
-                top: cursorPosition.y,
-                left: cursorPosition.x,
-                right: cursorPosition.x,
-                bottom: cursorPosition.y,
-                width: 0,
-                height: 0,
-              } as DOMRect),
-          }
-        : childNode,
-      open: childNode ? open : false,
-      disablePortal,
-      keepMounted,
-      direction,
-      ...interactiveWrapperListeners,
-    },
-    ref: null,
-    className: classes.root,
-    elementType: PopperUnstyled,
-    externalForwardedProps: other,
-    ownerState,
-    internalForwardedProps: {
-      component: TooltipRoot,
-    },
-  });
-
-  const [SlotArrow, arrowProps] = useSlot('arrow', {
-    ref: setArrowRef,
-    className: classes.arrow,
-    elementType: TooltipArrow,
-    externalForwardedProps: other,
-    ownerState,
-  });
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const modifiers = React.useMemo(
     () => [
@@ -616,36 +535,75 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
           offset: [0, 10],
         },
       },
-      ...(rootProps.modifiers || []),
+      ...(modifiersProp || []),
     ],
-    [arrowRef, rootProps.modifiers],
+    [arrowRef, modifiersProp],
   );
 
-  const result = (
-    <SlotRoot {...rootProps} modifiers={modifiers}>
-      {title}
-      {arrow ? <SlotArrow {...arrowProps} /> : null}
-    </SlotRoot>
-  );
+  const [SlotRoot, rootProps] = useSlot('root', {
+    additionalProps: {
+      id,
+      popperRef,
+      placement,
+      anchorEl: followCursor
+        ? {
+            getBoundingClientRect: () =>
+              ({
+                top: cursorPosition.y,
+                left: cursorPosition.x,
+                right: cursorPosition.x,
+                bottom: cursorPosition.y,
+                width: 0,
+                height: 0,
+              }) as DOMRect,
+          }
+        : childNode,
+      open: childNode ? open : false,
+      disablePortal,
+      keepMounted,
+      direction,
+      modifiers,
+      ...interactiveWrapperListeners,
+    },
+    ref: null,
+    className: classes.root,
+    elementType: TooltipRoot,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [SlotArrow, arrowProps] = useSlot('arrow', {
+    ref: setArrowRef,
+    className: classes.arrow,
+    elementType: TooltipArrow,
+    externalForwardedProps,
+    ownerState,
+  });
 
   return (
     <React.Fragment>
       {React.isValidElement(children) && React.cloneElement(children, childrenProps)}
-      {disablePortal ? (
-        result
-      ) : (
-        // For portal popup, the children should not inherit color inversion from the upper parent.
-        <ColorInversion.Provider value={undefined}>{result}</ColorInversion.Provider>
-      )}
+      <SlotRoot
+        {...rootProps}
+        {...(!props.slots?.root && {
+          as: Popper,
+          slots: {
+            root: component || 'div',
+          },
+        })}
+      >
+        {title}
+        {arrow ? <SlotArrow {...arrowProps} /> : null}
+      </SlotRoot>
     </React.Fragment>
   );
 }) as OverridableComponent<TooltipTypeMap>;
 
 Tooltip.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, adds an arrow to the tooltip.
    * @default false
@@ -661,9 +619,14 @@ Tooltip.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
+   * @default 'neutral'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * Set to `true` if the `title` acts as an accessible description.
    * By default the `title` acts as an accessible label for the child.
@@ -817,6 +780,22 @@ Tooltip.propTypes /* remove-proptypes */ = {
    */
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    arrow: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    arrow: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -829,8 +808,8 @@ Tooltip.propTypes /* remove-proptypes */ = {
    */
   title: PropTypes.node,
   /**
-   * The variant to use.
-   * @default 'soft'
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+   * @default 'solid'
    */
   variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;

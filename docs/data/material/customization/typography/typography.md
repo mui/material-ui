@@ -31,9 +31,10 @@ const theme = createTheme({
 
 To self-host fonts, download the font files in `ttf`, `woff`, and/or `woff2` formats and import them into your code.
 
-⚠️ This requires that you have a plugin or loader in your build process that can handle loading `ttf`, `woff`, and
-`woff2` files. Fonts will _not_ be embedded within your bundle. They will be loaded from your webserver instead of a
-CDN.
+:::warning
+This requires that you have a plugin or loader in your build process that can handle loading `ttf`, `woff`, and
+`woff2` files. Fonts will _not_ be embedded within your bundle. They will be loaded from your webserver instead of a CDN.
+:::
 
 ```js
 import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
@@ -69,13 +70,7 @@ const theme = createTheme({
 return (
   <ThemeProvider theme={theme}>
     <CssBaseline />
-    <Box
-      sx={{
-        fontFamily: 'Raleway',
-      }}
-    >
-      Raleway
-    </Box>
+    <Box sx={{ fontFamily: 'Raleway' }}>Raleway</Box>
   </ThemeProvider>
 );
 ```
@@ -84,13 +79,13 @@ Note that if you want to add additional `@font-face` declarations, you need to u
 
 ## Font size
 
-MUI uses `rem` units for the font size.
+Material UI uses `rem` units for the font size.
 The browser `<html>` element default font size is `16px`, but browsers have an option to change this value,
 so `rem` units allow us to accommodate the user's settings, resulting in a better accessibility support.
 Users change font size settings for all kinds of reasons, from poor eyesight to choosing optimum settings
 for devices that can be vastly different in size and viewing distance.
 
-To change the font-size of MUI you can provide a `fontSize` property.
+To change the font-size of Material UI you can provide a `fontSize` property.
 The default value is `14px`.
 
 ```js
@@ -106,10 +101,10 @@ const theme = createTheme({
 The computed font size by the browser follows this mathematical equation:
 
 <div class="only-light-mode">
-  <img alt="font size calculation" style="width: 458px;" src="/static/images/font-size.svg" />
+  <img alt="font size calculation" style="width: 550px;" src="/static/images/font-size.svg" width="436" height="48" />
 </div>
 <div class="only-dark-mode">
-  <img alt="font size calculation" style="width: 458px;" src="/static/images/font-size-dark.svg" />
+  <img alt="font size calculation" style="width: 550px;" src="/static/images/font-size-dark.svg" width="436" height="48" />
 </div>
 
 <!-- https://latex.codecogs.com/svg.latex?\dpi{200}&space;\text{computed}&space;=&space;\text{specification}\cdot\frac{\text{typography.fontSize}}{14}\cdot\frac{\text{html&space;fontsize}}{\text{typography.htmlFontSize}} -->
@@ -163,13 +158,13 @@ Changing the font size can harm accessibility ♿️. Most browsers agree on the
 :::
 
 The `theme.typography.htmlFontSize` property is provided for this use case,
-which tells MUI what the font-size on the `<html>` element is.
+which tells Material UI what the font-size on the `<html>` element is.
 This is used to adjust the `rem` value so the calculated font-size always match the specification.
 
 ```js
 const theme = createTheme({
   typography: {
-    // Tell MUI what's the font-size on the html element is.
+    // Tell Material UI what the font-size on the html element is.
     htmlFontSize: 10,
   },
 });
@@ -181,7 +176,7 @@ html {
 }
 ```
 
-_You need to apply the above CSS on the html element of this page to see the below demo rendered correctly_
+You need to apply the above CSS on the HTML element of this page to see the below demo rendered correctly.
 
 {{"demo": "FontSizeTheme.js"}}
 
@@ -229,10 +224,13 @@ In addition to using the default typography variants, you can add custom ones, o
 
 **Step 1. Update the theme's typography object**
 
+The code snippet below adds a custom variant to the theme called `poster`, and removes the default `h3` variant:
+
 ```js
 const theme = createTheme({
   typography: {
     poster: {
+      fontSize: '4rem',
       color: 'red',
     },
     // Disable h3 variant
@@ -241,7 +239,37 @@ const theme = createTheme({
 });
 ```
 
-**Step 2. Update the necessary typings (if you are using TypeScript)**
+**Step 2. (Optional) Set the default semantic element for your new variant**
+
+At this point, you can already use the new `poster` variant, which will render a `<span>` by default with your custom styles.
+Sometimes you may want to default to a different HTML element for semantic purposes, or to replace the inline `<span>` with a block-level element for styling purposes.
+
+To do this, update the `variantMapping` prop of the `Typography` component globally, at the theme level:
+
+```js
+const theme = createTheme({
+  typography: {
+    poster: {
+      fontSize: 64,
+      color: 'red',
+    },
+    // Disable h3 variant
+    h3: undefined,
+  },
+  components: {
+    MuiTypography: {
+      defaultProps: {
+        variantMapping: {
+          // Map the new variant to render a <h1> by default
+          poster: 'h1',
+        },
+      },
+    },
+  },
+});
+```
+
+**Step 3. Update the necessary typings (if you are using TypeScript)**
 
 :::info
 If you aren't using TypeScript you should skip this step.
@@ -272,14 +300,14 @@ declare module '@mui/material/Typography' {
 }
 ```
 
-**Step 3. You can now use the new variant**
+**Step 4. You can now use the new variant**
 
 {{"demo": "TypographyCustomVariant.js", "hideToolbar": true}}
 
 ```jsx
 <Typography variant="poster">poster</Typography>;
 
-/* This variant is no longer supported */
+/* This variant is no longer supported. If you are using TypeScript it will give an error */
 <Typography variant="h3">h3</Typography>;
 ```
 

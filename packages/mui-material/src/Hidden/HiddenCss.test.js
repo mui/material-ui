@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, strictModeDoubleLoggingSupressed } from 'test/utils';
+import { createRenderer, strictModeDoubleLoggingSuppressed } from '@mui/internal-test-utils';
 import HiddenCss from './HiddenCss';
 import { createTheme, ThemeProvider } from '../styles';
 import classes from './hiddenCssClasses';
@@ -71,6 +71,7 @@ describe('<HiddenCss />', () => {
 
       expect(container.firstChild).to.have.class(classes.mdUp);
     });
+
     it('should handle provided className prop', () => {
       const { container } = render(
         <HiddenCss mdUp className="custom">
@@ -145,7 +146,7 @@ describe('<HiddenCss />', () => {
       );
     }).toErrorDev([
       'MUI: Unsupported props received by `<Hidden implementation="css" />`: xxlUp.',
-      !strictModeDoubleLoggingSupressed &&
+      !strictModeDoubleLoggingSuppressed &&
         'MUI: Unsupported props received by `<Hidden implementation="css" />`: xxlUp.',
     ]);
   });

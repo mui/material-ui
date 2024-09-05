@@ -117,10 +117,23 @@ function getRenderBody(componentDefinition: NodePath, importer: Importer): NodeP
   return value.get('body', 'body');
 }
 
-function getPropsPath(functionBody: NodePath): NodePath | undefined {
+/**
+ * Handle the case where `props` is explicitly declared with/without `React.forwardRef(…)`:
+ *
+ * @example
+ * const Component = React.forwardRef((props, ref) => {
+ *   const { className, ...other } = props;
+ * })
+ */
+function getExplicitPropsDeclaration(
+  componentDefinition: NodePath,
+  importer: Importer,
+): NodePath | undefined {
+  const functionNode = getRenderBody(componentDefinition, importer);
+
   let propsPath: NodePath | undefined;
   // visitVariableDeclarator, can't use visit body.node since it looses scope information
-  functionBody
+  functionNode
     .filter((path: NodePath) => {
       return types.VariableDeclaration.check(path.node);
     }, undefined)
@@ -136,15 +149,23 @@ function getPropsPath(functionBody: NodePath): NodePath | undefined {
       }
     });
 
+  if (!propsPath) {
+    console.error(`${functionNode.parent.value.id.name}: could not find props declaration to generate jsdoc table. The component declaration should be in this format:
+
+  function Component(props: ComponentProps) {
+    const { ...spreadAsUsual } = props;
+    ...
+  }
+    `);
+  }
+
   return propsPath;
 }
 
 const defaultPropsHandler: Handler = (documentation, componentDefinition, importer) => {
-  const renderBody = getRenderBody(componentDefinition, importer);
-  const props = getPropsPath(renderBody);
-  if (props !== undefined) {
-    getDefaultValuesFromProps(props.get('properties'), documentation, importer);
-  }
+  const props = getExplicitPropsDeclaration(componentDefinition, importer);
+
+  getDefaultValuesFromProps(props?.get('properties') ?? [], documentation, importer);
 };
 
 export default defaultPropsHandler;

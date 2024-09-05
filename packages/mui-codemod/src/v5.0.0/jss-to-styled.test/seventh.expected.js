@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { withPrefix, navigate } from 'gatsby';
@@ -86,7 +86,7 @@ function Iframe(props) {
   }, []);
 
   return (
-    <Root>
+    (<Root>
       {loaded === false ? (
         <div className={classes.loader}>
           <CircularProgress />
@@ -109,7 +109,7 @@ function Iframe(props) {
         frameBorder="0"
         {...props}
       />
-    </Root>
+    </Root>)
   );
 }
 

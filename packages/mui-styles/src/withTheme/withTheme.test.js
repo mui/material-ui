@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Input from '@mui/material/Input';
 import { isMuiElement } from '@mui/material/utils';
 import PropTypes from 'prop-types';

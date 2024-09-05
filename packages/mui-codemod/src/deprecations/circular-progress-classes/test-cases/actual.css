@@ -1,0 +1,7 @@
+.MuiCircularProgress-root .MuiCircularProgress-circleDeterminate {
+  color: red;
+}
+
+.MuiCircularProgress-root .MuiCircularProgress-circleIndeterminate {
+  color: red;
+}

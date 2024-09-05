@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { fireEvent } from '@testing-library/dom';
 import StepButton, { stepButtonClasses as classes } from '@mui/material/StepButton';
 import Step from '@mui/material/Step';
 import StepLabel, { stepLabelClasses } from '@mui/material/StepLabel';
 import ButtonBase from '@mui/material/ButtonBase';
+import describeConformance from '../../test/describeConformance';
 
 describe('<StepButton />', () => {
   const { render } = createRenderer();
@@ -60,6 +61,26 @@ describe('<StepButton />', () => {
     const { getByRole } = render(<StepButton disabled>Step One</StepButton>);
 
     expect(getByRole('button')).to.have.property('disabled', true);
+  });
+
+  it('should have `aria-current=step` when active', () => {
+    const { getByRole } = render(
+      <Step active>
+        <StepButton>Step One</StepButton>
+      </Step>,
+    );
+
+    expect(getByRole('button')).to.have.attribute('aria-current', 'step');
+  });
+
+  it('should not have `aria-current` when non-active', () => {
+    const { getByRole } = render(
+      <Step active={false}>
+        <StepButton>Step One</StepButton>
+      </Step>,
+    );
+
+    expect(getByRole('button')).not.to.have.attribute('aria-current', 'step');
   });
 
   describe('event handlers', () => {

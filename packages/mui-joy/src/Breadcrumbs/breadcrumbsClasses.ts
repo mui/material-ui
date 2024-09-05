@@ -4,19 +4,19 @@ import {
 } from '@mui/utils';
 
 export interface BreadcrumbsClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
-  /** Styles applied to the ol element. */
+  /** Class name applied to the ol element. */
   ol: string;
-  /** Styles applied to the li element. */
+  /** Class name applied to the li element. */
   li: string;
-  /** Styles applied to the separator element. */
+  /** Class name applied to the separator element. */
   separator: string;
-  /** Styles applied to the root element if `size="sm"`. */
+  /** Class name applied to the root element if `size="sm"`. */
   sizeSm: string;
-  /** Styles applied to the root element if `size="md"`. */
+  /** Class name applied to the root element if `size="md"`. */
   sizeMd: string;
-  /** Styles applied to the root element if `size="lg"`. */
+  /** Class name applied to the root element if `size="lg"`. */
   sizeLg: string;
 }
 

@@ -4,6 +4,7 @@ import * as colors from './colors';
 export { colors };
 export * from './styles';
 
+// TODO remove, import directly from Base UI or create one folder per module
 export * from './utils';
 
 export { default as Accordion } from './Accordion';
@@ -151,10 +152,9 @@ export { default as FormLabel } from './FormLabel';
 export * from './FormLabel';
 
 export { default as Grid } from './Grid';
-export * from './Grid';
 
-export { default as Unstable_Grid2 } from './Unstable_Grid2';
-export * from './Unstable_Grid2';
+export { default as Grid2 } from './Grid2';
+export * from './Grid2';
 
 export { default as Grow } from './Grow';
 export * from './Grow';
@@ -408,9 +408,7 @@ export { default as useAutocomplete } from './useAutocomplete';
 export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
 
-export { StyledEngineProvider } from './styles';
-
-export { default as unstable_composeClasses } from '@mui/base/composeClasses';
+export { unstable_composeClasses } from '@mui/utils';
 
 export { default as generateUtilityClass } from './generateUtilityClass';
 export * from './generateUtilityClass';
@@ -418,3 +416,5 @@ export * from './generateUtilityClass';
 export { default as generateUtilityClasses } from './generateUtilityClasses';
 
 export { default as Unstable_TrapFocus } from './Unstable_TrapFocus';
+
+export * from './version';

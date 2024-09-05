@@ -1,14 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, screen } from 'test/utils';
-import { TabsContext, useTabs, TabsUnstyledProps } from '@mui/base/TabsUnstyled';
+import { createRenderer, screen } from '@mui/internal-test-utils';
+import { TabsProps } from '@mui/base/Tabs';
+import { useTabs, TabsProvider as BaseTabsProvider } from '@mui/base/useTabs';
 import { ThemeProvider } from '@mui/joy/styles';
 import Tabs from '@mui/joy/Tabs';
 import TabPanel, { tabPanelClasses as classes } from '@mui/joy/TabPanel';
+import describeConformance from '../../test/describeConformance';
 
-function TabsProvider({ children, ...props }: TabsUnstyledProps) {
-  const { tabsContextValue } = useTabs(props);
-  return <TabsContext.Provider value={tabsContextValue}>{children}</TabsContext.Provider>;
+function TabsProvider({ children, ...props }: TabsProps) {
+  const { contextValue } = useTabs(props);
+  return <BaseTabsProvider value={contextValue}>{children}</BaseTabsProvider>;
 }
 
 describe('Joy <TabPanel />', () => {
@@ -18,13 +20,17 @@ describe('Joy <TabPanel />', () => {
     classes,
     inheritComponent: 'div',
     render: (node) => render(<TabsProvider defaultValue={0}>{node}</TabsProvider>),
-    wrapMount: (mount) => (node) => mount(<TabsProvider defaultValue={0}>{node}</TabsProvider>),
     ThemeProvider,
     muiName: 'JoyTabPanel',
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { size: 'sm' },
     testCustomVariant: true,
-    skip: ['componentsProp', 'classesRoot', 'reactTestRenderer'],
+    skip: ['componentsProp', 'classesRoot'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   describe('size', () => {

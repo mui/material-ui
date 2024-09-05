@@ -1,48 +1,44 @@
-import { CODE_VARIANTS } from '../constants';
+import { CODE_VARIANTS } from 'docs/src/modules/constants';
+import type { MuiProductId } from 'docs/src/modules/utils/getProductInfoFromUrl';
 
-type RegExpMatchArrayWithGroupsOnly<T> = {
-  groups?: {
-    [key in keyof T]: string;
-  };
-};
-type RegExpMatchArrayWithGroups<T> = (RegExpMatchArray & RegExpMatchArrayWithGroupsOnly<T>) | null;
+const packagesWithBundledTypes = ['date-fns', '@emotion/react', '@emotion/styled', 'dayjs'];
+const muiNpmOrgs = ['@mui', '@base_ui', '@pigment-css', '@toolpad'];
+
+/**
+ * WARNING: Always uses `latest` typings.
+ *
+ * Adds dependencies to @types packages only for packages that are not listed
+ * in packagesWithBundledTypes
+ *
+ * @param deps - list of dependency as `name => version`
+ */
+function addTypeDeps(deps: Record<string, string>): void {
+  const packagesWithDTPackage = Object.keys(deps)
+    .filter((name) => !packagesWithBundledTypes.includes(name))
+    // All the MUI packages come with bundled types
+    .filter((name) => !muiNpmOrgs.some((org) => name.startsWith(org)));
+
+  packagesWithDTPackage.forEach((name) => {
+    let resolvedName = name;
+    // scoped package?
+    if (name.startsWith('@')) {
+      // https://github.com/DefinitelyTyped/DefinitelyTyped#what-about-scoped-packages
+      resolvedName = name.slice(1).replace('/', '__');
+    }
+
+    deps[`@types/${resolvedName}`] = 'latest';
+  });
+}
 
 export default function SandboxDependencies(
   demo: {
     raw: string;
-    product?: 'joy-ui' | 'base';
+    productId?: MuiProductId;
     codeVariant: keyof typeof CODE_VARIANTS;
   },
   options?: { commitRef?: string },
 ) {
   const { commitRef } = options || {};
-
-  /**
-   * WARNING: Always uses `latest` typings.
-   *
-   * Adds dependencies to @types packages only for packages that are not listed
-   * in packagesWithBundledTypes
-   *
-   * @param deps - list of dependency as `name => version`
-   */
-  function addTypeDeps(deps: Record<string, string>): void {
-    const packagesWithBundledTypes = ['date-fns', '@emotion/react', '@emotion/styled', 'dayjs'];
-    const packagesWithDTPackage = Object.keys(deps)
-      .filter((name) => packagesWithBundledTypes.indexOf(name) === -1)
-      // All the MUI packages come with bundled types
-      .filter((name) => name.indexOf('@mui/') !== 0);
-
-    packagesWithDTPackage.forEach((name) => {
-      let resolvedName = name;
-      // scoped package?
-      if (name.startsWith('@')) {
-        // https://github.com/DefinitelyTyped/DefinitelyTyped#what-about-scoped-packages
-        resolvedName = name.slice(1).replace('/', '__');
-      }
-
-      deps[`@types/${resolvedName}`] = 'latest';
-    });
-  }
 
   /**
    * @param packageName - The name of a package living inside this repository.
@@ -61,6 +57,8 @@ export default function SandboxDependencies(
   }
 
   function extractDependencies(raw: string) {
+    const muiDocConfig = (window as any).muiDocConfig;
+
     function includePeerDependencies(
       deps: Record<string, string>,
       versions: Record<string, string>,
@@ -82,8 +80,10 @@ export default function SandboxDependencies(
       }
 
       // TODO: consider if this configuration could be injected in a "cleaner" way.
-      if ((window as any).muiDocConfig) {
-        newDeps = (window as any).muiDocConfig.csbIncludePeerDependencies(newDeps, { versions });
+      if (muiDocConfig && muiDocConfig.csbIncludePeerDependencies) {
+        newDeps = muiDocConfig.csbIncludePeerDependencies(newDeps, {
+          versions,
+        });
       }
 
       return newDeps;
@@ -104,14 +104,13 @@ export default function SandboxDependencies(
       '@mui/private-classnames': getMuiPackageVersion('classnames'),
       '@mui/base': getMuiPackageVersion('base'),
       '@mui/utils': getMuiPackageVersion('utils'),
-      '@mui/material-next': getMuiPackageVersion('material-next'),
+      '@mui/material-nextjs': getMuiPackageVersion('material-nextjs'),
       '@mui/joy': getMuiPackageVersion('joy'),
     };
 
     // TODO: consider if this configuration could be injected in a "cleaner" way.
-    if ((window as any).muiDocConfig) {
-      const muiCommitRef = process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined;
-      versions = (window as any).muiDocConfig.csbGetVersions(versions, { muiCommitRef });
+    if (muiDocConfig && muiDocConfig.csbGetVersions) {
+      versions = muiDocConfig.csbGetVersions(versions, { muiCommitRef: commitRef });
     }
 
     const re = /^import\s'([^']+)'|import\s[\s\S]*?\sfrom\s+'([^']+)/gm;
@@ -123,33 +122,15 @@ export default function SandboxDependencies(
       const name =
         fullName.charAt(0) === '@' ? fullName.split('/', 2).join('/') : fullName.split('/', 1)[0];
 
-      if (!deps[name] && name !== '.') {
-        deps[name] = versions[name] ? versions[name] : 'latest';
+      if (!deps[name] && !name.startsWith('.')) {
+        deps[name] = versions[name] ?? 'latest';
       }
 
-      // e.g date-fns
-      const dateAdapterMatch = fullName.match(
-        /^@mui\/(lab|x-date-pickers)\/(?<adapterName>Adapter.*)/,
-      ) as RegExpMatchArrayWithGroups<{ adapterName: string }>;
-      if (dateAdapterMatch !== null) {
-        /**
-         * Mapping from the date adapter sub-packages to the npm packages they require.
-         * @example `@mui/lab/AdapterDateFns` has a peer dependency on `date-fns`.
-         */
-        const packageName = (
-          {
-            AdapterDateFns: 'date-fns',
-            AdapterDayjs: 'dayjs',
-            AdapterLuxon: 'luxon',
-            AdapterMoment: 'moment',
-          } as Record<string, string>
-        )[dateAdapterMatch.groups?.adapterName || ''];
-        if (packageName === undefined) {
-          throw new TypeError(
-            `Can't determine required npm package for adapter '${dateAdapterMatch[1]}'`,
-          );
+      if (muiDocConfig && muiDocConfig.postProcessImport) {
+        const resolvedDep = muiDocConfig.postProcessImport(fullName);
+        if (resolvedDep) {
+          deps = { ...deps, ...resolvedDep };
         }
-        deps[packageName] = 'latest';
       }
     }
 
@@ -165,7 +146,7 @@ export default function SandboxDependencies(
     dependencies.typescript = 'latest';
   }
 
-  if (!demo.product && !dependencies['@mui/material']) {
+  if (!demo.productId && !dependencies['@mui/material']) {
     // The `index.js` imports StyledEngineProvider from '@mui/material', so we need to make sure we have it as a dependency
     const name = '@mui/material';
     const versions = {

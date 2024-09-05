@@ -116,11 +116,7 @@ export default function BootstrapVariantTokens() {
   }, []);
 
   return (
-    <CssVarsProvider
-      theme={bootstrapTheme}
-      colorSchemeNode={node || null}
-      colorSchemeSelector="#bootstrap-buttons-demo"
-    >
+    <CssVarsProvider theme={bootstrapTheme} colorSchemeNode={node || null}>
       <Box
         id="bootstrap-buttons-demo"
         sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}
@@ -130,7 +126,6 @@ export default function BootstrapVariantTokens() {
         <Button color="success">Success</Button>
         <Button color="danger">Danger</Button>
         <Button color="warning">Warning</Button>
-        <Button color="info">Info</Button>
         <Button variant="soft" color="neutral">
           Light
         </Button>

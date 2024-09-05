@@ -1,5 +1,5 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const webpackBaseConfig = require('../../webpackBaseConfig');
 
@@ -11,6 +11,7 @@ module.exports = {
     // Helps debugging and build perf.
     // Bundle size is irrelevant for local serving
     minimize: false,
+    concatenateModules: false,
   },
   output: {
     path: path.resolve(__dirname, './build'),
@@ -24,19 +25,21 @@ module.exports = {
     // Avoid bundling the whole @mui/icons-material package. x2 the bundling speed.
     new webpack.IgnorePlugin({ resourceRegExp: /material-icons\/SearchIcons\.js/ }),
     new webpack.ProvidePlugin({
-      // required by enzyme > cheerio > parse5 > util
-      process: 'process/browser',
+      // required by code accessing `process.env` in the browser
+      process: 'process/browser.js',
     }),
   ],
   module: {
     rules: [
       {
         test: /\.(js|ts|tsx)$/,
-        exclude: /node_modules/,
+        // prism.js blocks @mui/internal-markdown/prism from being interpreted as ESM in this build.
+        exclude: /node_modules|prism\.js/,
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
           configFile: path.resolve(__dirname, '../../babel.config.js'),
+          envName: 'regressions',
         },
       },
       {
@@ -51,16 +54,13 @@ module.exports = {
   },
   resolve: {
     ...webpackBaseConfig.resolve,
-    alias: {
-      ...webpackBaseConfig.resolve.alias,
-      '@material-ui/core': path.resolve(__dirname, '../../packages/mui-material/src'),
-      '@material-ui/styles': path.resolve(__dirname, '../../packages/mui-styles/src'),
-    },
     fallback: {
-      // needed by enzyme > cheerio
+      // Exclude polyfill and treat 'fs' as an empty module since it is not required. next -> gzip-size relies on it.
+      fs: false,
+      // Exclude polyfill and treat 'stream' as an empty module since it is not required. next -> gzip-size relies on it.
       stream: false,
-      // required by enzyme > cheerio > parse5
-      util: require.resolve('util/'),
+      // Exclude polyfill and treat 'zlib' as an empty module since it is not required. next -> gzip-size relies on it.
+      zlib: false,
     },
   },
   // TODO: 'browserslist:modern'

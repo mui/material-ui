@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -6,6 +7,7 @@ import {
   unstable_ownerDocument as ownerDocument,
   unstable_useForkRef as useForkRef,
   unstable_useEventCallback as useEventCallback,
+  unstable_getReactNodeRef as getReactNodeRef,
 } from '@mui/utils';
 
 // TODO: return `EventHandlerName extends `on${infer EventName}` ? Lowercase<EventName> : never` once generatePropTypes runs with TS 4.1
@@ -34,7 +36,7 @@ export interface ClickAwayListenerProps {
   /**
    * The wrapped element.
    */
-  children: React.ReactElement;
+  children: React.ReactElement<any>;
   /**
    * If `true`, the React tree is ignored and only the DOM tree is considered.
    * This prop changes how portaled elements are handled.
@@ -63,13 +65,13 @@ export interface ClickAwayListenerProps {
  *
  * Demos:
  *
- * - [Click-Away Listener](https://mui.com/base/react-click-away-listener/)
+ * - [Click-Away Listener](https://mui.com/base-ui/react-click-away-listener/)
  *
  * API:
  *
- * - [ClickAwayListener API](https://mui.com/base/api/click-away-listener/)
+ * - [ClickAwayListener API](https://mui.com/base-ui/react-click-away-listener/components-api/#click-away-listener)
  */
-function ClickAwayListener(props: ClickAwayListenerProps): JSX.Element {
+function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
   const {
     children,
     disableReactTree = false,
@@ -93,11 +95,7 @@ function ClickAwayListener(props: ClickAwayListenerProps): JSX.Element {
     };
   }, []);
 
-  const handleRef = useForkRef(
-    // @ts-expect-error TODO upstream fix
-    children.ref,
-    nodeRef,
-  );
+  const handleRef = useForkRef(getReactNodeRef(children), nodeRef);
 
   // The handler doesn't take event.defaultPrevented into account:
   //
@@ -215,10 +213,10 @@ function ClickAwayListener(props: ClickAwayListenerProps): JSX.Element {
 }
 
 ClickAwayListener.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The wrapped element.
    */
@@ -257,4 +255,4 @@ if (process.env.NODE_ENV !== 'production') {
   (ClickAwayListener as any)['propTypes' + ''] = exactProp(ClickAwayListener.propTypes);
 }
 
-export default ClickAwayListener;
+export { ClickAwayListener };

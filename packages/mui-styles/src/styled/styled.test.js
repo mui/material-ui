@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import { SheetsRegistry } from 'jss';
-import { createRenderer, screen } from 'test/utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { createGenerateClassName } from '@mui/styles';
 import styled from './styled';
 import StylesProvider from '../StylesProvider';

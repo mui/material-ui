@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Chip, { ChipOwnerState } from '@mui/joy/Chip';
 import { expectType } from '@mui/types';
+import Chip, { ChipOwnerState } from '@mui/joy/Chip';
 
 <Chip />;
 
@@ -15,7 +15,6 @@ import { expectType } from '@mui/types';
 // `color`
 <Chip color="primary" />;
 <Chip color="danger" />;
-<Chip color="info" />;
 <Chip color="success" />;
 <Chip color="warning" />;
 <Chip color="neutral" />;

@@ -33,20 +33,34 @@ if (
 
 process.env.DEPLOY_ENV = DEPLOY_ENV;
 
+/**
+ * @typedef {import('next').NextConfig} NextConfig
+ * @typedef {NextConfig['env']} NextConfigEnv
+ * @typedef {{env : {
+ *  LIB_VERSION: string;
+ *  SOURCE_CODE_REPO: string;
+ *  SOURCE_GITHUB_BRANCH: string;
+ *  GITHUB_TEMPLATE_DOCS_FEEDBACK: string;
+ * }} & NextConfig} NextConfigInput
+
+ * @param {NextConfigInput} nextConfig
+ * @returns {NextConfig}
+ */
 function withDocsInfra(nextConfig) {
   return {
     trailingSlash: true,
-    // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
+    // TODO: Remove when upgrading to Next.js 15, see https://github.com/vercel/next.js/pull/69137
     optimizeFonts: false,
     reactStrictMode: true,
     ...nextConfig,
     env: {
-      BUILD_ONLY_ENGLISH_LOCALE: true, // disable translations by default
+      BUILD_ONLY_ENGLISH_LOCALE: 'true', // disable translations by default
       // production | staging | pull-request | development
       DEPLOY_ENV,
+      FEEDBACK_URL: process.env.FEEDBACK_URL,
       ...nextConfig.env,
       // https://docs.netlify.com/configure-builds/environment-variables/#git-metadata
-      // reference ID (also known as “SHA” or “hash”) of the commit we’re building.
+      // reference ID (also known as "SHA" or "hash") of the commit we're building.
       COMMIT_REF: process.env.COMMIT_REF,
       // ID of the PR and the Deploy Preview it generated (for example, 1211)
       PULL_REQUEST_ID: process.env.REVIEW_ID,
@@ -60,6 +74,9 @@ function withDocsInfra(nextConfig) {
     },
     experimental: {
       scrollRestoration: true,
+      esmExternals: false,
+      workerThreads: true,
+      cpus: 3,
       ...nextConfig.experimental,
     },
     eslint: {

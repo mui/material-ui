@@ -15,7 +15,6 @@ import Slider, { SliderOwnerState } from '@mui/joy/Slider';
 
 <Slider color="primary" />;
 <Slider color="danger" />;
-<Slider color="info" />;
 <Slider color="success" />;
 <Slider color="warning" />;
 <Slider color="neutral" />;
@@ -26,10 +25,10 @@ import Slider, { SliderOwnerState } from '@mui/joy/Slider';
 
 <Slider
   sx={{
-    '--joy-Slider-track-radius': '8px',
-    '--joy-Slider-track-width': '48px',
-    '--joy-Slider-track-height': '24px',
-    '--joy-Slider-thumb-size': '16px',
+    '--joy-Slider-trackRadius': '8px',
+    '--joy-Slider-trackWidth': '48px',
+    '--joy-Slider-trackHeight': '24px',
+    '--joy-Slider-thumbSize': '16px',
   }}
 />;
 

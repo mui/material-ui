@@ -1,4 +1,7 @@
 import * as React from 'react';
+import Button from '@mui/material/Button';
+import { Theme } from '@mui/material/styles';
+import { expectType } from '@mui/types';
 import {
   createStyles,
   withStyles,
@@ -10,9 +13,6 @@ import {
   CreateCSSProperties,
   PropsFunc,
 } from '@mui/styles';
-import Button from '@mui/material/Button';
-import { Theme } from '@mui/material/styles';
-import { expectType } from '@mui/types';
 
 // Example 1
 const simpleStyles = ({ palette, spacing }: Theme) => ({
@@ -215,7 +215,7 @@ withStyles((theme) =>
     });
 
   interface ListItemContentProps extends WithStyles<typeof styles> {
-    children?: React.ReactElement;
+    children?: React.ReactElement<any>;
     inset?: boolean;
     row?: boolean;
   }

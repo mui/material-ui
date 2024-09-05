@@ -1,5 +1,5 @@
-const playwright = require('playwright');
 const path = require('path');
+const playwright = require('playwright');
 const webpack = require('webpack');
 
 const CI = Boolean(process.env.CI);
@@ -19,7 +19,7 @@ if (process.env.CIRCLECI) {
 
 const browserStack = {
   // |commits in PRs| >> |Merged commits|.
-  // Since we have limited ressources on BrowserStack we often time out on PRs.
+  // Since we have limited resources on BrowserStack we often time out on PRs.
   // However, BrowserStack rarely fails with a true-positive so we use it as a stop gap for release not merge.
   // But always enable it locally since people usually have to explicitly have to expose their BrowserStack access key anyway.
   enabled: !CI || !isPR || process.env.BROWSERSTACK_FORCE === 'true',
@@ -37,7 +37,7 @@ process.env.FIREFOX_BIN = playwright.firefox.executablePath();
 // Per second, https://www.browserstack.com/docs/automate/api-reference/selenium/introduction#rest-api-projects
 const MAX_REQUEST_PER_SECOND_BROWSERSTACK = 1600 / (60 * 5);
 // Estimate the max number of concurrent karma builds
-// For each PR, 6 concurrent builds are used, only one is usng BrowserStack.
+// For each PR, 6 concurrent builds are used, only one is using BrowserStack.
 const AVERAGE_KARMA_BUILD = 1 / 6;
 // CircleCI accepts up to 83 concurrent builds.
 const MAX_CIRCLE_CI_CONCURRENCY = 83;
@@ -119,7 +119,7 @@ module.exports = function setKarmaConfig(config) {
           'process.env.TEST_GATE': JSON.stringify(process.env.TEST_GATE),
         }),
         new webpack.ProvidePlugin({
-          // required by enzyme > cheerio > parse5 > util
+          // required by code accessing `process.env` in the browser
           process: 'process/browser.js',
         }),
       ],
@@ -137,12 +137,12 @@ module.exports = function setKarmaConfig(config) {
           {
             test: /\.(js|mjs|jsx)$/,
             include:
-              /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator|@mui(\/|\\)x-date-pickers-pro|@mui(\/|\\)x-date-pickers)/,
+              /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator|@mui(\/|\\)x-date-pickers-pro|@mui(\/|\\)x-date-pickers|@mui(\/|\\)x-tree-view)/,
             use: {
               loader: 'babel-loader',
               options: {
                 // We have to apply `babel-plugin-module-resolve` to the files in `@mui/x-date-pickers`.
-                // Otherwise we can't import `@mui/material` from `@mui/x-date-pickers` in `yarn test:karma`.
+                // Otherwise we can't import `@mui/material` from `@mui/x-date-pickers` in `pnpm test:karma`.
                 sourceType: 'unambiguous',
                 plugins: [
                   [
@@ -160,7 +160,7 @@ module.exports = function setKarmaConfig(config) {
                         '@mui/private-theming': './packages/mui-private-theming/src',
                         '@mui/utils': './packages/mui-utils/src',
                         '@mui/base': './packages/mui-base/src',
-                        '@mui/material-next': './packages/mui-material-next/src',
+                        '@mui/material-nextjs': './packages/mui-material-nextjs/src',
                         '@mui/joy': './packages/mui-joy/src',
                       },
                       transformFunctions: ['require'],
@@ -189,10 +189,9 @@ module.exports = function setKarmaConfig(config) {
           // needed by sourcemap
           fs: false,
           path: false,
-          // needed by enzyme > cheerio
+          // Exclude polyfill and treat 'stream' as an empty module since it is not required. next -> gzip-size relies on it.
           stream: false,
-          // required by enzyme > cheerio > parse5
-          util: require.resolve('util/'),
+          vm: false,
         },
       },
       // TODO: 'browserslist:modern'
@@ -221,28 +220,24 @@ module.exports = function setKarmaConfig(config) {
         chrome: {
           base: 'BrowserStack',
           os: 'OS X',
-          os_version: 'Catalina',
+          os_version: 'Monterey',
           browser: 'chrome',
-          // We support Chrome 90.x
-          // However, >=88 fails on seemingly all focus-related tests.
-          // TODO: Investigate why.
-          browser_version: '87.0',
+          // We support Chrome 109.x per .browserslistrc
+          browser_version: '109.0',
         },
         safari: {
           base: 'BrowserStack',
           os: 'OS X',
-          os_version: 'Catalina',
+          os_version: 'Monterey',
           browser: 'safari',
-          // We support 12.5 on iOS.
-          // However, 12.x is very flaky on desktop (mobile is always flaky).
-          browser_version: '13.0',
+          browser_version: '15.6',
         },
         edge: {
           base: 'BrowserStack',
           os: 'Windows',
           os_version: '10',
           browser: 'edge',
-          browser_version: '91.0',
+          browser_version: '120.0',
         },
       },
     };

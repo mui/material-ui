@@ -7,12 +7,12 @@ Looking for the v3 docs? You can [find the latest version here](https://mui.com/
 :::info
 This document is a work in progress.
 Have you upgraded your site and run into something that's not covered here?
-[Add your changes on GitHub](https://github.com/mui/material-ui/blob/master/docs/data/material/migration/migration-v3/migration-v3.md).
+[Add your changes on GitHub](https://github.com/mui/material-ui/blob/HEAD/docs/data/material/migration/migration-v3/migration-v3.md).
 :::
 
 ## Introduction
 
-This is a reference for upgrading your site from Material UI v3 to v4.
+This is a reference for upgrading your site from Material UI v3 to v4.
 While there's a lot covered here, you probably won't need to do everything for your site.
 We'll do our best to keep things easy to follow, and as sequential as possible so you can quickly get rocking on v4!
 
@@ -25,9 +25,9 @@ The **why** is covered in the [release blog post on Medium](https://mui.com/blog
 
 The very first thing you will need to do is to update your dependencies.
 
-### Update Material UI version
+### Update Material UI version
 
-You need to update your `package.json` to use the latest version of Material UI.
+You need to update your `package.json` to use the latest version of Material UI.
 
 ```json
 "dependencies": {
@@ -37,7 +37,7 @@ You need to update your `package.json` to use the latest version of Material UI.
 
 Or run
 
-```sh
+```bash
 npm install @material-ui/core
 
 or
@@ -48,11 +48,11 @@ yarn add @material-ui/core
 ### Update React version
 
 The minimum required version of React was increased from `react@^16.3.0` to `react@^16.8.0`.
-This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html) (we no longer use the class API).
+This allows us to rely on [Hooks](https://react.dev/reference/react/hooks) (we no longer use the class API).
 
-### Update Material UI Styles version
+### Update Material UI Styles version
 
-If you were previously using `@material-ui/styles` with v3 you need to update your `package.json` to use the latest version of Material UI Styles.
+If you were previously using `@material-ui/styles` with v3 you need to update your `package.json` to use the latest version of Material UI Styles.
 
 ```json
 "dependencies": {
@@ -62,7 +62,7 @@ If you were previously using `@material-ui/styles` with v3 you need to update yo
 
 Or run
 
-```sh
+```bash
 npm install @material-ui/styles
 
 or
@@ -82,7 +82,7 @@ yarn add @material-ui/styles
 
 ### Styles
 
-- ⚠️ Material UI depends on JSS v10. JSS v10 is not backward compatible with v9.
+- ⚠️ Material UI depends on JSS v10. JSS v10 is not backward compatible with v9.
   Make sure JSS v9 is not installed in your environment.
   (Removing `react-jss` from your `package.json` can help).
   The StylesProvider component replaces the JssProvider one.
@@ -171,7 +171,7 @@ yarn add @material-ui/styles
   +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   ```
 
-  Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://mui.com/system/spacing/#transformation).
+  Going forward, you can use the theme to implement [a custom Grid spacing transformation function](/system/spacing/#transformation).
 
 - [Container] Moved from `@material-ui/lab` to `@material-ui/core`.
 
@@ -459,7 +459,7 @@ This change is explained in more detail in the [TypeScript guide](/material-ui/g
 
 ### UMD
 
-- This change eases the use of Material UI with a CDN:
+- This change eases the use of Material UI with a CDN:
 
   ```diff
    const {

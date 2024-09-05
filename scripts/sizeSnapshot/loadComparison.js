@@ -1,9 +1,8 @@
 /**
  * `snapshots` always refer to size snapshots in this file
  */
-const fse = require('fs-extra');
 const path = require('path');
-const fetch = require('node-fetch');
+const fse = require('fs-extra');
 const lodash = require('lodash');
 
 const ARTIFACT_SERVER = 'https://s3.eu-central-1.amazonaws.com/mui-org-ci';

@@ -9,7 +9,7 @@
     },
     "badgeContent": { "type": { "name": "node" } },
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
@@ -20,14 +20,18 @@
     "component": { "type": { "name": "elementType" } },
     "components": {
       "type": { "name": "shape", "description": "{ Badge?: elementType, Root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "componentsProps": {
       "type": {
         "name": "shape",
         "description": "{ badge?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "invisible": { "type": { "name": "bool" }, "default": "false" },
     "max": { "type": { "name": "number" }, "default": "99" },
@@ -51,7 +55,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "variant": {
       "type": {
@@ -62,41 +67,165 @@
     }
   },
   "name": "Badge",
-  "styles": {
-    "classes": [
-      "root",
-      "badge",
-      "dot",
-      "standard",
-      "anchorOriginTopRight",
-      "anchorOriginBottomRight",
-      "anchorOriginTopLeft",
-      "anchorOriginBottomLeft",
-      "invisible",
-      "colorPrimary",
-      "colorSecondary",
-      "colorError",
-      "colorInfo",
-      "colorSuccess",
-      "colorWarning",
-      "anchorOriginTopRightRectangular",
-      "anchorOriginBottomRightRectangular",
-      "anchorOriginTopLeftRectangular",
-      "anchorOriginBottomLeftRectangular",
-      "anchorOriginTopRightCircular",
-      "anchorOriginBottomRightCircular",
-      "anchorOriginTopLeftCircular",
-      "anchorOriginBottomLeftCircular",
-      "overlapRectangular",
-      "overlapCircular"
-    ],
-    "globalClasses": {},
-    "name": "MuiBadge"
-  },
+  "imports": ["import Badge from '@mui/material/Badge';", "import { Badge } from '@mui/material';"],
+  "classes": [
+    {
+      "key": "anchorOriginBottomLeft",
+      "className": "MuiBadge-anchorOriginBottomLeft",
+      "description": "Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginBottomLeftCircular",
+      "className": "MuiBadge-anchorOriginBottomLeftCircular",
+      "description": "Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap=\"circular\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginBottomLeftRectangular",
+      "className": "MuiBadge-anchorOriginBottomLeftRectangular",
+      "description": "Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap=\"rectangular\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginBottomRight",
+      "className": "MuiBadge-anchorOriginBottomRight",
+      "description": "Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginBottomRightCircular",
+      "className": "MuiBadge-anchorOriginBottomRightCircular",
+      "description": "Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }} overlap=\"circular\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginBottomRightRectangular",
+      "className": "MuiBadge-anchorOriginBottomRightRectangular",
+      "description": "Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }} overlap=\"rectangular\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginTopLeft",
+      "className": "MuiBadge-anchorOriginTopLeft",
+      "description": "Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginTopLeftCircular",
+      "className": "MuiBadge-anchorOriginTopLeftCircular",
+      "description": "Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }} overlap=\"circular\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginTopLeftRectangular",
+      "className": "MuiBadge-anchorOriginTopLeftRectangular",
+      "description": "Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }} overlap=\"rectangular\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginTopRight",
+      "className": "MuiBadge-anchorOriginTopRight",
+      "description": "Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginTopRightCircular",
+      "className": "MuiBadge-anchorOriginTopRightCircular",
+      "description": "Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }} overlap=\"circular\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginTopRightRectangular",
+      "className": "MuiBadge-anchorOriginTopRightRectangular",
+      "description": "Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }} overlap=\"rectangular\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "badge",
+      "className": "MuiBadge-badge",
+      "description": "Styles applied to the badge `span` element.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorError",
+      "className": "MuiBadge-colorError",
+      "description": "Styles applied to the badge `span` element if `color=\"error\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorInfo",
+      "className": "MuiBadge-colorInfo",
+      "description": "Styles applied to the badge `span` element if `color=\"info\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiBadge-colorPrimary",
+      "description": "Styles applied to the badge `span` element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSecondary",
+      "className": "MuiBadge-colorSecondary",
+      "description": "Styles applied to the badge `span` element if `color=\"secondary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSuccess",
+      "className": "MuiBadge-colorSuccess",
+      "description": "Styles applied to the badge `span` element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorWarning",
+      "className": "MuiBadge-colorWarning",
+      "description": "Styles applied to the badge `span` element if `color=\"warning\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "dot",
+      "className": "MuiBadge-dot",
+      "description": "Styles applied to the badge `span` element if `variant=\"dot\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "invisible",
+      "className": "MuiBadge-invisible",
+      "description": "State class applied to the badge `span` element if `invisible={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "overlapCircular",
+      "className": "MuiBadge-overlapCircular",
+      "description": "Styles applied to the badge `span` element if `overlap=\"circular\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "overlapRectangular",
+      "className": "MuiBadge-overlapRectangular",
+      "description": "Styles applied to the badge `span` element if `overlap=\"rectangular\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiBadge-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "standard",
+      "className": "MuiBadge-standard",
+      "description": "Styles applied to the badge `span` element if `variant=\"standard\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiBadge",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/Badge/Badge.js",
-  "inheritance": { "component": "BadgeUnstyled", "pathname": "/base/api/badge-unstyled/" },
+  "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-avatar/\">Avatar</a></li>\n<li><a href=\"/material-ui/react-badge/\">Badge</a></li></ul>",
   "cssComponent": false
 }

@@ -1,8 +1,25 @@
 import * as React from 'react';
+import { Breakpoint } from '@mui/system';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type ModalDialogSlot = 'root';
+
+export interface ModalDialogSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+}
+
+export type ModalDialogSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  ModalDialogSlots,
+  {
+    root: SlotProps<'div', {}, ModalDialogOwnerState>;
+  }
+>;
 
 export interface ModalDialogPropsColorOverrides {}
 export interface ModalDialogPropsVariantOverrides {}
@@ -21,10 +38,34 @@ export interface ModalDialogTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     color?: OverridableStringUnion<ColorPaletteProp, ModalDialogPropsColorOverrides>;
     /**
+     * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
+     * @default false
+     */
+    invertedColors?: boolean;
+    /**
+     * The maximum width of the component.
+     * @example 'md' will use the theme's `md` breakpoint value
+     * @example 360 is the number of pixels
+     * @example '60ch' can be any valid CSS max-width unit
+     */
+    maxWidth?: Breakpoint | number | string;
+    /**
+     * The minimum width of the component.
+     * @example 'md' will use the theme's `md` breakpoint value
+     * @example 360 is the number of pixels
+     * @example '60ch' can be any valid CSS min-width unit
+     */
+    minWidth?: Breakpoint | number | string;
+    /**
      * The layout of the dialog
      * @default 'center'
      */
-    layout?: 'center' | 'fullscreen';
+    layout?: OverridableStringUnion<'center' | 'fullscreen', ModalDialogPropsLayoutOverrides>;
+    /**
+     * The component orientation.
+     * @default 'vertical'
+     */
+    orientation?: 'horizontal' | 'vertical';
     /**
      * The size of the component.
      * @default 'md'
@@ -35,11 +76,11 @@ export interface ModalDialogTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     sx?: SxProps;
     /**
-     * The variant to use.
-     * @default 'plain'
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+     * @default 'outlined'
      */
     variant?: OverridableStringUnion<VariantProp, ModalDialogPropsVariantOverrides>;
-  };
+  } & ModalDialogSlotsAndSlotProps;
   defaultComponent: D;
 }
 

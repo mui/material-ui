@@ -1,0 +1,11 @@
+<Label {...getInputLabelProps()}>Pick a movie</Label>
+<Root {...getRootProps()} className={focused ? 'Mui-focused' : ''}>
+  <Input {...getInputProps()} />
+</Root>
+{groupedOptions.length > 0 && (
+  <Listbox {...getListboxProps()}>
+    {(groupedOptions as typeof top100Films).map((option, index) => (
+      <Option {...getOptionProps({ option, index })}>{option.label}</Option>
+    ))}
+  </Listbox>
+)}

@@ -4,11 +4,12 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 export default function ThemeToggleButton() {
-  const [lang, setLang] = React.useState('javascript');
+  const [lang, setLang] = React.useState('joy');
   return (
     <Fade in timeout={700}>
       <ToggleButtonGroup
         fullWidth
+        // size="small"
         color="primary"
         value={lang}
         exclusive
@@ -19,33 +20,29 @@ export default function ThemeToggleButton() {
             bgcolor: '#fff',
             '& .MuiToggleButton-root': {
               textTransform: 'none',
-              fontWeight: 700,
-              color: 'grey.700',
-              borderColor: 'grey.200',
+              fontWeight: 'medium',
+              color: 'text.secondary',
               '&.Mui-selected': {
-                borderColor: 'primary.500',
-                color: 'primary.500',
-                bgcolor: 'primaryDark.50',
+                color: 'primary.700',
+                bgcolor: 'primary.50',
               },
             },
           },
           (theme) =>
             theme.applyDarkStyles({
-              bgcolor: 'primaryDark.800',
+              bgcolor: 'primaryDark.900',
               '& .MuiToggleButton-root': {
-                color: 'grey.300',
-                borderColor: 'primaryDark.500',
                 '&.Mui-selected': {
-                  color: '#fff',
-                  bgcolor: 'primary.800',
+                  color: 'primary.100',
+                  bgcolor: 'primary.900',
                 },
               },
             }),
         ]}
       >
-        <ToggleButton value="javascript">React</ToggleButton>
-        <ToggleButton value="html">TypeScript</ToggleButton>
-        <ToggleButton value="css">CSS</ToggleButton>
+        <ToggleButton value="joy">Joy UI</ToggleButton>
+        <ToggleButton value="material">Material UI</ToggleButton>
+        <ToggleButton value="base">Base UI</ToggleButton>
       </ToggleButtonGroup>
     </Fade>
   );

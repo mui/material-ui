@@ -3,9 +3,11 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import CircularProgress from '@mui/material/CircularProgress';
 
-function sleep(delay = 0) {
+function sleep(duration) {
   return new Promise((resolve) => {
-    setTimeout(resolve, delay);
+    setTimeout(() => {
+      resolve();
+    }, duration);
   });
 }
 
@@ -42,7 +44,6 @@ export default function Asynchronous() {
 
   return (
     <Autocomplete
-      id="asynchronous-demo"
       sx={{ width: 300 }}
       open={open}
       onOpen={() => {
@@ -59,14 +60,16 @@ export default function Asynchronous() {
         <TextField
           {...params}
           label="Asynchronous"
-          InputProps={{
-            ...params.InputProps,
-            endAdornment: (
-              <React.Fragment>
-                {loading ? <CircularProgress color="inherit" size={20} /> : null}
-                {params.InputProps.endAdornment}
-              </React.Fragment>
-            ),
+          slotProps={{
+            input: {
+              ...params.InputProps,
+              endAdornment: (
+                <React.Fragment>
+                  {loading ? <CircularProgress color="inherit" size={20} /> : null}
+                  {params.InputProps.endAdornment}
+                </React.Fragment>
+              ),
+            },
           }}
         />
       )}

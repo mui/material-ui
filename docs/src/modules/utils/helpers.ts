@@ -1,6 +1,7 @@
 import upperFirst from 'lodash/upperFirst';
 import camelCase from 'lodash/camelCase';
 import { LANGUAGES } from 'docs/config';
+import { Translate } from '@mui/docs/i18n';
 
 function pascalCase(str: string) {
   return upperFirst(camelCase(str));
@@ -12,6 +13,7 @@ function titleize(hyphenedString: string): string {
 
 export interface Page {
   pathname: string;
+  query?: object;
   subheader?: string;
   title?: string | false;
 }
@@ -29,23 +31,23 @@ export function pageToTitle(page: Page): string | null {
   const name = path.replace(/.*\//, '').replace('react-', '').replace(/\..*/, '');
 
   // TODO remove post migration
-  if (path.indexOf('/api-docs/') !== -1) {
+  if (path.includes('/api-docs/')) {
     return pascalCase(name);
   }
 
   // TODO support more than React component API (PascalCase)
-  if (path.indexOf('/api/') !== -1) {
+  if (path.includes('/api/')) {
     return name.startsWith('use') ? camelCase(name) : pascalCase(name);
   }
 
   return titleize(name);
 }
 
-export type Translate = (id: string, options?: Partial<{ ignoreWarning: boolean }>) => string;
-
 export function pageToTitleI18n(page: Page, t: Translate): string | null {
   const path = page.subheader || page.pathname;
-  return t(`pages.${path}`, { ignoreWarning: true }) || pageToTitle(page);
+  return page.query
+    ? pageToTitle(page)
+    : t(`pages.${path}`, { ignoreWarning: true }) || pageToTitle(page);
 }
 
 /**
@@ -85,8 +87,8 @@ export function pathnameToLanguage(pathname: string): {
   const userLanguageCandidate = pathname.substring(1, 3);
 
   if (
-    LANGUAGES.indexOf(userLanguageCandidate) !== -1 &&
-    pathname.indexOf(`/${userLanguageCandidate}/`) === 0
+    [...LANGUAGES, 'zh'].includes(userLanguageCandidate) &&
+    pathname.startsWith(`/${userLanguageCandidate}/`)
   ) {
     userLanguage = userLanguageCandidate;
   } else {
@@ -97,7 +99,14 @@ export function pathnameToLanguage(pathname: string): {
   // Remove hash as it's never sent to the server
   // https://github.com/vercel/next.js/issues/25202
   const canonicalAsServer = canonicalAs.replace(/#(.*)$/, '');
-  const canonicalPathname = canonicalAsServer.replace(/^\/api/, '/api-docs').replace(/\/$/, '');
+
+  let canonicalPathname = canonicalAsServer.replace(/^\/api/, '/api-docs');
+
+  // Remove trailing slash as Next.js doesn't expect it here
+  // https://nextjs.org/docs/pages/api-reference/functions/use-router#router-object
+  if (canonicalPathname !== '/') {
+    canonicalPathname = canonicalPathname.replace(/\/$/, '');
+  }
 
   return {
     userLanguage,

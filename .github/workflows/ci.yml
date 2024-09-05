@@ -9,7 +9,6 @@ on:
   pull_request:
     paths-ignore:
       # should sync with ci-check.yml as a workaround to bypass github checks
-      - 'docs/**'
       - 'examples/**'
 
 permissions: {}
@@ -25,27 +24,26 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-latest]
     steps:
       - run: echo "${{ github.actor }}"
-      - uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
-          # fetch all tags which are required for `yarn release:changelog`
+          # fetch all tags which are required for `pnpm release:changelog`
           fetch-depth: 0
-      - name: Use Node.js 14.x
-        uses: actions/setup-node@8c91899e586c5b171469028077307d293428b516 # v3.5.1
+      - name: Set up pnpm
+        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
         with:
-          node-version: 14
-          cache: 'yarn' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
-      - run: yarn install
+          node-version: 20
+          cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
+      - run: pnpm install
+      - run: pnpm build:ci
         env:
-          # Don't need playwright in this job
-          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
-      - run: yarn release:build
-      # double run to check if cleanup works
-      - run: yarn release:build
-      - run: yarn release:changelog
+          NODE_OPTIONS: --max_old_space_size=4096
+      - run: pnpm release:changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: yarn validate-declarations
-      - name: yarn release:tag
+      - run: pnpm validate-declarations
+      - name: pnpm release:tag
         run: |
           git remote -v
-          yarn release:tag --dryRun
+          pnpm release:tag --dryRun

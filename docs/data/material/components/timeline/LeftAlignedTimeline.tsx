@@ -9,7 +9,7 @@ import TimelineOppositeContent, {
   timelineOppositeContentClasses,
 } from '@mui/lab/TimelineOppositeContent';
 
-export default function OppositeContentTimeline() {
+export default function LeftAlignedTimeline() {
   return (
     <Timeline
       sx={{

@@ -32,6 +32,7 @@ export default function SelectGroupedOptions() {
             maxHeight: 240,
             overflow: 'auto',
             '--List-padding': '0px',
+            '--ListItem-radius': '0px',
           },
         },
       }}
@@ -42,10 +43,10 @@ export default function SelectGroupedOptions() {
           {index !== 0 && <ListDivider role="none" />}
           <List
             aria-labelledby={`select-group-${name}`}
-            sx={{ '--List-decorator-size': '28px' }}
+            sx={{ '--ListItemDecorator-size': '28px' }}
           >
             <ListItem id={`select-group-${name}`} sticky>
-              <Typography level="body3" textTransform="uppercase" letterSpacing="md">
+              <Typography level="body-xs" sx={{ textTransform: 'uppercase' }}>
                 {name} ({animals.length})
               </Typography>
             </ListItem>
@@ -58,7 +59,7 @@ export default function SelectGroupedOptions() {
                     <Chip
                       size="sm"
                       color={colors[name]}
-                      sx={{ borderRadius: 'xs', mr: 1, ml: -0.5 }}
+                      sx={{ borderRadius: 'xs', mr: 1 }}
                     >
                       {name}
                     </Chip>{' '}

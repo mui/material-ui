@@ -1,42 +1,47 @@
 import * as React from 'react';
 import SimpleCodeEditor from 'react-simple-code-editor';
 import Box from '@mui/material/Box';
-import NoSsr from '@mui/base/NoSsr';
-import { styled, useTheme } from '@mui/material/styles';
-import prism from '@mui/markdown/prism';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import CodeCopyButton from 'docs/src/modules/components/CodeCopyButton';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
-import { useCodeCopy } from 'docs/src/modules/utils/CodeCopy';
-import { blue, blueDark } from 'docs/src/modules/brandingTheme';
+import { NoSsr } from '@mui/base/NoSsr';
+import { styled, alpha, useTheme } from '@mui/material/styles';
+import prism from '@mui/internal-markdown/prism';
+import { MarkdownElement } from '@mui/docs/MarkdownElement';
+import { CodeCopyButton, useCodeCopy } from '@mui/docs/CodeCopy';
+import { useTranslate } from '@mui/docs/i18n';
+import { blueDark } from '@mui/docs/branding';
 
-const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => ({
-  '& .scrollContainer': {
-    maxHeight: 'min(68vh, 1000px)',
-    overflow: 'auto',
-    backgroundColor: blueDark[800],
-    colorScheme: 'dark',
-    '&:hover': {
-      boxShadow: `0 0 0 3px ${
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[400] : theme.palette.primary.light
-      }`,
+const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
+  {
+    '& .scrollContainer': {
+      maxHeight: 'min(68vh, 1000px)',
+      overflow: 'auto',
+      marginTop: -1,
+      backgroundColor: 'hsl(210, 25%, 9%)', // a special, one-off, color tailored for the code blocks using MUI's branding theme blue palette as the starting point. It has a less saturaded color but still maintaining a bit of the blue tint.
+      border: 0,
+      colorScheme: 'dark',
+      '&:hover': {
+        boxShadow: `0 0 0 3px ${alpha(theme.palette.primary[500], 0.5)}`,
+      },
+      '&:focus-within': {
+        boxShadow: `0 0 0 3px ${alpha(theme.palette.primary[500], 0.8)}`,
+      },
+      [theme.breakpoints.up('sm')]: {
+        borderRadius: '0 0 12px 12px',
+      },
+      ...theme.applyDarkStyles({
+        border: `1px solid ${(theme.vars || theme).palette.divider}`,
+      }),
     },
-    '&:focus-within': {
-      boxShadow: `0 0 0 2px ${
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark.main : theme.palette.primary.main
-      }`,
+    '& pre': {
+      // The scroll container needs to be the parent of the editor, overriding:
+      // https://github.com/mui/material-ui/blob/269c1d0c7572fcb6ae3b270a2622d16c7e40c848/docs/src/modules/components/MarkdownElement.js#L27-L26
+      maxWidth: 'initial',
+      maxHeight: 'initial',
     },
-    [theme.breakpoints.up('sm')]: {
-      borderRadius: theme.shape.borderRadius,
+    '& .MuiCode-copy': {
+      display: 'none',
     },
   },
-  '& pre': {
-    // The scroll container needs to be the parent of the editor, overriding:
-    // https://github.com/mui/material-ui/blob/269c1d0c7572fcb6ae3b270a2622d16c7e40c848/docs/src/modules/components/MarkdownElement.js#L27-L26
-    maxWidth: 'initial',
-    maxHeight: 'initial',
-  },
-})) as any;
+]) as any;
 
 const StyledSimpleCodeEditor = styled(SimpleCodeEditor)(({ theme }) => ({
   ...theme.typography.body2,
@@ -70,8 +75,8 @@ export default function DemoEditor(props: DemoEditorProps) {
   const { language, value, onChange, copyButtonProps, children, id, ...other } = props;
   const t = useTranslate();
   const contextTheme = useTheme();
-  const wrapperRef = React.useRef<HTMLElement | null>(null);
-  const enterRef = React.useRef<HTMLElement | null>(null);
+  const wrapperRef = React.useRef<HTMLElement>(null);
+  const enterRef = React.useRef<HTMLElement>(null);
   const handlers = useCodeCopy();
 
   React.useEffect(() => {
@@ -104,6 +109,9 @@ export default function DemoEditor(props: DemoEditorProps) {
     >
       <div className="MuiCode-root" {...handlers}>
         <div className="scrollContainer">
+          <NoSsr>
+            <CodeCopyButton {...copyButtonProps} code={value} />
+          </NoSsr>
           <StyledSimpleCodeEditor
             padding={contextTheme.spacing(2)}
             highlight={(code: any) =>
@@ -121,30 +129,36 @@ export default function DemoEditor(props: DemoEditorProps) {
           sx={(theme) => ({
             position: 'absolute',
             top: theme.spacing(1),
-            padding: theme.spacing(0.5, 1),
+            padding: theme.spacing(0.2, 1, 0.5, 1),
             outline: 0,
             left: '50%',
             border: '1px solid',
-            borderColor: blue[400],
-            backgroundColor: blueDark[600],
-            color: blueDark[50],
+            borderColor: blueDark[600],
+            backgroundColor: blueDark[700],
+            color: '#FFF',
             transform: 'translateX(-50%)',
-            borderRadius: '4px',
+            borderRadius: '6px',
             fontSize: theme.typography.pxToRem(13),
             transition: 'all 0.3s',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.5)',
             '&:not(:focus)': {
               top: 0,
               opacity: 0,
               pointerEvents: 'none',
+            },
+            '> kbd': {
+              padding: theme.spacing(0.2, 0.4),
+              backgroundColor: blueDark[500],
+              fontSize: theme.typography.pxToRem(11),
+              borderRadius: '6px',
+              border: '1px solid',
+              borderColor: blueDark[400],
             },
           })}
           dangerouslySetInnerHTML={{
             __html: t('editorHint'),
           }}
         />
-        <NoSsr>
-          <CodeCopyButton {...copyButtonProps} code={value} />
-        </NoSsr>
         {children}
       </div>
     </StyledMarkdownElement>

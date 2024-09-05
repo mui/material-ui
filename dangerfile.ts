@@ -1,4 +1,3 @@
-// inspire by reacts dangerfile
 // danger has to be the first thing required!
 import { danger, markdown } from 'danger';
 import { exec } from 'child_process';
@@ -13,7 +12,7 @@ const parsedSizeChangeThreshold = 300;
 const gzipSizeChangeThreshold = 100;
 
 /**
- * executes a git subcommand
+ * Executes a git subcommand.
  * @param {any} args
  */
 function git(args: any) {
@@ -40,8 +39,8 @@ async function reportBundleSizeCleanup() {
 }
 
 /**
- * creates a callback for Object.entries(comparison).filter that excludes every
- * entry that does not exceed the given threshold values for parsed and gzip size
+ * Creates a callback for Object.entries(comparison).filter that excludes every
+ * entry that does not exceed the given threshold values for parsed and gzip size.
  * @param {number} parsedThreshold
  * @param {number} gzipThreshold
  */
@@ -56,17 +55,7 @@ function createComparisonFilter(parsedThreshold: number, gzipThreshold: number) 
 }
 
 /**
- * checks if the bundle is of a package e.b. `@mui/material` but not
- * `@mui/material/Paper`
- * @param {[string, any]} comparisonEntry
- */
-function isPackageComparison(comparisonEntry: [string, any]) {
-  const [bundleKey] = comparisonEntry;
-  return /^@[\w-]+\/[\w-]+$/.test(bundleKey);
-}
-
-/**
- * Generates a user-readable string from a percentage change
+ * Generates a user-readable string from a percentage change.
  * @param {number} change
  * @param {string} goodEmoji emoji on reduction
  * @param {string} badEmoji emoji on increase
@@ -91,7 +80,7 @@ function generateEmphasizedChange([bundle, { parsed, gzip }]: [
 }
 
 /**
- * Puts results in different buckets wh
+ * Puts results in different buckets.
  * @param {*} results
  */
 function sieveResults<T>(results: Array<[string, T]>) {
@@ -137,8 +126,7 @@ async function loadLastComparison(
 }
 
 async function reportBundleSize() {
-  // Use git locally to grab the commit which represents the place
-  // where the branches differ
+  // Use git locally to grab the commit which represents the place where the branches differ
   const upstreamRepo = danger.github.pr.base.repo.full_name;
   const upstreamRef = danger.github.pr.base.ref;
   try {
@@ -150,7 +138,9 @@ async function reportBundleSize() {
 
   const comparison = await loadLastComparison(upstreamRef);
 
-  const detailedComparisonRoute = `/size-comparison?circleCIBuildNumber=${circleCIBuildNumber}&baseRef=${danger.github.pr.base.ref}&baseCommit=${comparison.previous}&prNumber=${danger.github.pr.number}`;
+  const detailedComparisonQuery = `circleCIBuildNumber=${circleCIBuildNumber}&baseRef=${danger.github.pr.base.ref}&baseCommit=${comparison.previous}&prNumber=${danger.github.pr.number}`;
+  const detailedComparisonToolpadUrl = `https://tools-public.onrender.com/prod/pages/h71gdad?${detailedComparisonQuery}`;
+  const detailedComparisonRoute = `/size-comparison?${detailedComparisonQuery}`;
   const detailedComparisonUrl = `https://mui-dashboard.netlify.app${detailedComparisonRoute}`;
 
   const { all: allResults, main: mainResults } = sieveResults(Object.entries(comparison.bundles));
@@ -159,22 +149,37 @@ async function reportBundleSize() {
   if (anyResultsChanges.length > 0) {
     const importantChanges = mainResults
       .filter(createComparisonFilter(parsedSizeChangeThreshold, gzipSizeChangeThreshold))
-      .filter(isPackageComparison)
+      .sort(([, a], [, b]) => {
+        const aDiff = Math.abs(a.parsed.absoluteDiff) + Math.abs(a.gzip.absoluteDiff);
+        const bDiff = Math.abs(b.parsed.absoluteDiff) + Math.abs(b.gzip.absoluteDiff);
+        return bDiff - aDiff;
+      })
       .map(generateEmphasizedChange);
 
     // have to guard against empty strings
     if (importantChanges.length > 0) {
-      markdown(importantChanges.join('\n'));
+      const maxVisible = 20;
+
+      const lines = importantChanges.slice(0, maxVisible);
+
+      const nrOfHiddenChanges = Math.max(0, importantChanges.length - maxVisible);
+      if (nrOfHiddenChanges > 0) {
+        lines.push(`and [${nrOfHiddenChanges} more changes](${detailedComparisonToolpadUrl})`);
+      }
+
+      markdown(lines.join('\n'));
     }
 
     const details = `## Bundle size report
 
+[Details of bundle changes (Toolpad)](${detailedComparisonToolpadUrl})
 [Details of bundle changes](${detailedComparisonUrl})`;
 
     markdown(details);
   } else {
     markdown(`## Bundle size report
 
+[No bundle size changes (Toolpad)](${detailedComparisonToolpadUrl})
 [No bundle size changes](${detailedComparisonUrl})`);
   }
 }
@@ -185,17 +190,26 @@ function addDeployPreviewUrls() {
    * e.g. ['docs/data/joy/components/button/button.md']
    */
   function formatFileToLink(path: string) {
-    const url = path.replace('docs/data', '').replace(/\/[^/]+\.md$/, '/');
+    let url = path.replace('docs/data', '').replace(/\.md$/, '');
+
+    const fragments = url.split('/').reverse();
+    if (fragments[0] === fragments[1]) {
+      // check if the end of pathname is the same as the one before
+      // for example `/data/material/getting-started/overview/overview.md
+      url = fragments.slice(1).reverse().join('/');
+    }
 
     if (url.startsWith('/material')) {
       // needs to convert to correct material legacy folder structure to the existing url.
-      return replaceUrl(url.replace('/material', ''), '').replace(/^\//, '');
+      url = replaceUrl(url.replace('/material', ''), '/material-ui').replace(/^\//, '');
+    } else {
+      url = url
+        .replace(/^\//, '') // remove initial `/`
+        .replace('joy/', 'joy-ui/')
+        .replace('components/', 'react-');
     }
 
-    return url
-      .replace('joy/', 'joy-ui/')
-      .replace('components/', 'react-')
-      .replace(/\/[^/]+\.md$/, '/');
+    return url;
   }
 
   const netlifyPreview = `https://deploy-preview-${danger.github.pr.number}--material-ui.netlify.app/`;
@@ -218,7 +232,7 @@ ${
           return `- [${path}](${netlifyPreview}${formattedUrl})`;
         })
         .join('\n')
-    : 'No updates.'
+    : netlifyPreview
 }
 `);
 }

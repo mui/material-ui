@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { BadgeUnstyled } from '@mui/base';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Badge, { badgeClasses as classes } from '@mui/material/Badge';
+import describeConformance from '../../test/describeConformance';
 
 function findBadgeRoot(container) {
   return container.firstChild;
@@ -30,7 +30,7 @@ describe('<Badge />', () => {
     </Badge>,
     () => ({
       classes,
-      inheritComponent: BadgeUnstyled,
+      inheritComponent: 'span',
       render,
       refInstanceof: window.HTMLSpanElement,
       muiName: 'MuiBadge',

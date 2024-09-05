@@ -1,121 +1,131 @@
 # Support
 
-<p class="description">From community help to premium critical business support, we're here to help.</p>
+<p class="description">Learn how to get support for Material UI components, including feature requests, bug fixes, and technical support from the team.</p>
 
-## Community help (free)
+## GitHub
 
-The community is your first stop for questions and advice about the framework. Welcome to the community!
+We use GitHub issues as a bug and feature request tracker.
 
-### Stack Overflow
+If you think you've found a bug, or you have a new feature idea:
 
-For crowdsourced answers from expert MUI developers in our community.
-Stack Overflow is also visited from time to time by the maintainers of MUI.
+1. Please start by [making sure it hasn't already been reported or fixed](https://github.com/mui/material-ui/issues?q=is%3Aopen+is%3Aclosed).
+   You can search through existing issues and pull requests to see if someone has reported one similar to yours.
+2. Then, if no duplicates exist, [open an issue](https://github.com/mui/material-ui/issues/new/choose) in the Material UI repository.
 
-[Post a question](https://stackoverflow.com/questions/tagged/mui)
+### New issue guidelines
 
-:::success
-If you're using an older version and use external resources (such as Stack Overflow) for help with it, you may find answers with links that direct you to content that no longer exists in the latest version of the documentation. To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/).
-
-:::
-
-### GitHub
-
-MUI uses GitHub issues as a bug and feature request tracker.
-If you think you have found a bug, or have a new feature idea, please start by making sure it hasn't already been [reported or fixed](https://github.com/mui/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed). You can search through existing issues and pull requests to see if someone has reported one similar to yours.
-
-- [Open an issue on MUI Core](https://github.com/mui/material-ui/issues/new/choose)
-- [Open an issue on MUI X](https://github.com/mui/mui-x/issues/new/choose)
-
-#### New issue guidelines
-
-- Please follow the issue template.
-- Please begin the title with '[ComponentName]' where appropriate, and use a succinct description that helps others find similar issues.
-  - "doesn't work" ❌
-  - "[Button] Add support for <some feature>" ✅
-- Please don't group multiple topics in one issue – each should have its own issue instead.
+- Please follow one the issue templates provided on GitHub.
+- Please begin the title with "[component-name]" (if relevant), and use a succinct description that helps others find similar issues.
+  - ❌ _"It doesn't work"_
+  - ✅ _"[button] Add support for {{new feature}}"_
+- Please don't group multiple topics in one issue.
 - Please don't comment "+1" on an issue. It spams the maintainers and doesn't help move the issue forward. Use GitHub reactions instead (👍).
 
-### Blog 📝
+### Bug reproductions
 
-Stay up to date with the development of the library by following the blog.
+We require bug reports to be accompanied by a **minimal reproduction**.
+It significantly increases the odds of fixing the problem.
+You have a few possible options to provide it:
 
-[Read the latest posts](https://mui.com/blog/)
+#### Use the live editors
 
-### Resources 📖
+You can browse the documentation, find an example close to your use case, and then open it in a live editor:
 
-New to MUI? It's easy to learn if you know where to start!
+<a href="/material-ui/react-button/#basic-button">
+<span class="only-light-mode">
+<img src="/static/docs-infra/forking-an-example.png" alt="Forking an example" loading="lazy" width="1628" height="700" style="display: block; max-width: 774px;">
+</span>
+<span class="only-dark-mode">
+<img src="/static/docs-infra/forking-an-example-dark.png" alt="Forking an example" loading="lazy" width="1628" height="700" style="display: block; max-width: 774px;">
+</span>
+</a>
 
-[Learn MUI](/material-ui/getting-started/learn/)
+#### Use starter templates
 
-### Twitter
+You can use a starter React template to build a reproduction case with [JavaScript](https://stackblitz.com/github/stackblitz/starters/tree/main/react) or [TypeScript](https://stackblitz.com/github/stackblitz/starters/tree/main/react-ts).
 
-Receive the latest news on MUI.
+## Stack Overflow
 
-[Follow us](https://twitter.com/MUI_hq)
+We use Stack Overflow for how-to questions. Answers are crowdsourced from expert developers in the Material UI community as well as Material UI maintainers.
+
+You can search through existing questions and answers to see if someone has asked a similar question using the [material-ui tags](https://stackoverflow.com/questions/tagged/material-ui):
+
+If you can't find your answer, [ask a new question](https://stackoverflow.com/questions/ask?tags=reactjs%20material-ui) using the relevant tags.
+
+:::success
+If you're using an older version of Material UI, you may find answers on SO with links to content that no longer exists in the latest version of the documentation.
+Visit the [Material UI Versions](https://mui.com/versions/) page to find the archived documentation that corresponds to your version.
+:::
+
+## Technical support
+
+We do _not_ offer paid support for Core libraries like Material UI.
+
+But you might want to read the [technical support offered](https://mui.com/x/introduction/support/#technical-support) on MUI X components.
+
+## Long-term support (LTS)
+
+Bug fixes, performance enhancements, and other improvements are delivered in new releases.
+However, we remain committed to providing security updates and addressing regressions for the immediate predecessor of the current major version.
+
+This includes issues introduced by external sources, like browser upgrades or changes to upstream dependencies.
 
 ### Supported versions
 
-Find details on the [supported versions](/versions/#supported-versions).
+| Material UI version | Release    | Supported                                                           |
+| ------------------: | :--------- | :------------------------------------------------------------------ |
+|              ^6.0.0 | 2024-08-26 | ✅ Stable major (Continuous support)                                |
+|              ^5.0.0 | 2021-09-16 | ⚠️ Long-term support (Support for security issues and regressions). |
+|              ^4.0.0 | 2019-06-23 | ❌                                                                  |
+|              ^3.0.0 | 2018-08-27 | ❌                                                                  |
+|              ^2.0.0 | /          | ❌                                                                  |
+|              ^1.0.0 | 2018-06-18 | ❌                                                                  |
+|             <=1.0.0 | 2014-10-05 | ❌                                                                  |
 
-## Paid support
+## Community
 
-### Pro/Premium plans
+### Social media
 
-MUI X comes in [three plans](https://mui.com/pricing/).
-The support available under the Community plan is made possible thanks to people like you: the community.
-This is described in more detail in the section above.
-MUI X maintainers focus on solving root issues rather than offering direct support to the community at large.
+The Material UI community is active on both [X/Twitter](https://x.com/MaterialUI) and [LinkedIn](https://www.linkedin.com/company/mui/).
+These are great platforms to share what you're working on and connect with other developers.
 
-The paid plans offer developers advanced components and extra features that are challenging to find in OSS.
-To provide a similar quality of experience to the one provided by the community for MIT licensed code,
-the developers of MUI X provide support for the advanced components only.
-Technical support for MUI Core components is **not** included.
+### Discord
 
-The Premium plan provides developers with the highest priority for support tickets.
-No SLAs are provided yet; it's coming.
+We have a [Discord Server](https://mui.com/r/discord/) to bring the Material UI community together.
+Our tools are used by thousands of developers and teams all around the world, many of whom actively engage with the community.
 
-Please visit [the MUI X Support page](https://mui.com/x/introduction/support/#technical-support) for more detailed information on technical support.
+You can join Discord to engage in lively discussions, share your projects, and interact with developers just like you from all around the world. We'd love for you to join us!
 
-### Tidelift subscription
+:::warning
+How-to questions are not accepted on Discord, they should be asked on [Stack Overflow](#stack-overflow).
+:::
 
-MUI and the maintainers of thousands of other packages are working with Tidelift to deliver one enterprise subscription that covers all of the open-source you use.
+## Custom work
 
-If you want the flexibility of open-source and the confidence of commercial-grade software, this is worth looking at.
+If your team gets stuck and needs help getting unblocked, Material UI's engineers may be available on a contract basis.
 
-The Tidelift Subscription manages your dependencies for you:
+Keep in mind that the work must be directly related to Material UI's products—we don't accept general web development or React work.
 
-- Get the tools you need to continuously catalog and understand the open-source software that your application depends on.
-- Your subscription helps pay the open-source community maintainers of the packages you use, to ensure they meet the standards you require.
-- Address issues proactively, with tools that scan for new security, licensing, and maintenance issues, and alert participating open-source maintainers so they can resolve them on your behalf.
-- Tidelift helps measure and improve your open-source dependencies' health – which improves your app's health – and gives a shortlist of high-impact steps your team can take to improve them even more.
-- Get commercial assurances that don't come for free with open-source packages, such as intellectual property indemnification and support under a service level agreement. You expect these guarantees from proprietary software, and you can get them when using open-source as well.
+Our contracting price starts at $200/hour or $1,500/day.
 
-The end result? All of the capabilities you expect from commercial-grade software, for the full breadth of open-source you use. That means less time grappling with esoteric open-source trivia, and more time building your own applications – and your business.
+[Send us an email](mailto:custom-work@mui.com) summarizing of your needs, and we'll let you know whether we can help (or else try to suggest alternatives).
+
+## Tidelift subscription
+
+We and the maintainers of thousands of other packages work with Tidelift to deliver one enterprise subscription that covers all of the open-source you use.
+
+If you want the flexibility of open-source and the confidence of commercial-grade software, this is worth looking at. The Tidelift Subscription manages your dependencies for you.
+
+The end result? All of the capabilities you expect from commercial-grade software, for the full breadth of open-source you use.
+That means less time grappling with esoteric open-source trivia, and more time building your own applications—and your business.
 
 <a
   data-ga-event-category="support"
   data-ga-event-action="tidelift"
   href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">
-Get more details
-</a>
-
+Learn more about Tidelift</a>
+and
 <a
   data-ga-event-category="support"
   data-ga-event-action="tidelift"
-  href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">
-Request a demo
-</a>
-
-### Custom work 🛠
-
-Tweak MUI to meet specific requirements. Give us a summary of your needs and we'll help you if we can. We might:
-
-- Give you an estimate of time and price if the work is straightforward
-- Suggest alternatives that might not require MUI
-- Decline the work due to timing or relevancy
-
-Note that work must be MUI related.
-We don't accept general React development work.
-Our contracting price is $200/hour or $1,500/day.
-
-[Send us an email](mailto:custom-work@mui.com)
+  href="https://tidelift.com/solutions/schedule-demo?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">request a demo today</a>.

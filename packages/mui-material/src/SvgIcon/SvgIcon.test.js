@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import SvgIcon, { svgIconClasses as classes } from '@mui/material/SvgIcon';
+import describeConformance from '../../test/describeConformance';
 
 describe('<SvgIcon />', () => {
   const { render } = createRenderer();
@@ -42,6 +43,21 @@ describe('<SvgIcon />', () => {
 
     expect(queryByTestId('test-path')).not.to.equal(null);
     expect(container.firstChild).to.have.attribute('aria-hidden', 'true');
+  });
+
+  it('renders children of provided svg and merge the props', () => {
+    const { container } = render(
+      <SvgIcon>
+        <svg viewBox="0 0 48 48" strokeWidth="1.5">
+          {path}
+        </svg>
+      </SvgIcon>,
+    );
+
+    expect(container.firstChild).to.have.tagName('svg');
+    expect(container.firstChild.firstChild).to.have.tagName('path');
+    expect(container.firstChild).to.have.attribute('viewBox', '0 0 48 48');
+    expect(container.firstChild).to.have.attribute('stroke-width', '1.5');
   });
 
   describe('prop: titleAccess', () => {
@@ -129,5 +145,33 @@ describe('<SvgIcon />', () => {
 
     const { container } = render(<SvgIcon ownerState={{ fontSize: 'large' }}>{path}</SvgIcon>);
     expect(container.firstChild).toHaveComputedStyle({ fontSize: '24px' }); // fontSize: medium -> 1.5rem = 24px
+  });
+
+  it('should have `fill="currentColor"`', function test() {
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+    const { container } = render(
+      <SvgIcon>
+        <path />
+      </SvgIcon>,
+    );
+
+    expect(container.firstChild).toHaveComputedStyle({ fill: 'currentColor' });
+  });
+
+  it('should not add `fill` if svg is a direct child', function test() {
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+    const { container } = render(
+      <SvgIcon>
+        <svg>
+          <path />
+        </svg>
+      </SvgIcon>,
+    );
+
+    expect(container.firstChild).not.toHaveComputedStyle({ fill: 'currentColor' });
   });
 });

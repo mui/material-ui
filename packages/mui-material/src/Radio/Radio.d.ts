@@ -23,7 +23,7 @@ export interface RadioProps
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
   color?: OverridableStringUnion<
@@ -62,4 +62,4 @@ export interface RadioProps
  * - [Radio API](https://mui.com/material-ui/api/radio/)
  * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
-export default function Radio(props: RadioProps): JSX.Element;
+export default function Radio(props: RadioProps): React.JSX.Element;

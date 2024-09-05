@@ -1,8 +1,8 @@
 # Migrating from JSS (optional)
 
-<p class="description">This guide explains how to migrate from JSS to Emotion when updating from Material UI v4 to v5.</p>
+<p class="description">This guide explains how to migrate from JSS to Emotion when updating from Material UI v4 to v5.</p>
 
-## Material UI v5 migration
+## Material UI v5 migration
 
 1. [Getting started](/material-ui/migration/migration-v4/)
 2. [Breaking changes part one: style and theme](/material-ui/migration/v5-style-changes/)
@@ -14,11 +14,11 @@
 
 One of the biggest changes in v5 is the replacement of JSS for [Emotion](https://emotion.sh/docs/introduction) (or [styled-components](https://styled-components.com/) as an alternative) as a default styling solution .
 
-Note that you may continue to use JSS for adding overrides for the components (e.g. `makeStyles`, `withStyles`) even after migrating to v5.
+Note that you may continue to use JSS for adding overrides for the components (for example `makeStyles`, `withStyles`) even after migrating to v5.
 Then, if at any point you want to move over to the new styling engine, you can refactor your components progressively.
 
 :::info
-If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript-v4-migration).
+If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-ts-v4-v5-migration).
 :::
 
 This document reviews all the steps necessary to migrate away from JSS.
@@ -38,8 +38,8 @@ But this is the best transformation that we could create with a codemod.
 If you want to refine them later, you can refer to the examples shown in the sections below.
 :::
 
-```sh
-npx @mui/codemod v5.0.0/jss-to-styled <path>
+```bash
+npx @mui/codemod@latest v5.0.0/jss-to-styled <path>
 ```
 
 Example transformation:
@@ -113,7 +113,6 @@ We recommend `sx` API over `styled` for creating responsive styles or overriding
  import Chip from '@mui/material/Chip';
 -import makeStyles from '@mui/styles/makeStyles';
 +import Box from '@mui/material/Box';
-+import { styled } from '@mui/material/styles';
 
 -const useStyles = makeStyles((theme) => ({
 -  wrapper: {
@@ -128,7 +127,7 @@ We recommend `sx` API over `styled` for creating responsive styles or overriding
  function App() {
 -  const classes = useStyles();
    return (
--    <div>
+-    <div className={classes.wrapper}>
 -      <Chip className={classes.chip} label="Chip" />
 -    </div>
 +    <Box sx={{ display: 'flex' }}>
@@ -192,7 +191,7 @@ This tool is _not_ maintained by MUI.
 ### 2. Use [tss-react](https://github.com/garronej/tss-react)
 
 :::error
-This API will not work if you are [using `styled-components` as the underlying styling engine in place of `@emotion`](/material-ui/guides/interoperability/#styled-components).
+This API will not work if you are [using `styled-components` as the underlying styling engine in place of `@emotion`](/material-ui/integrations/interoperability/#styled-components).
 :::
 
 The API is similar to JSS `makeStyles`, but under the hood, it uses `@emotion/react`.
@@ -202,13 +201,13 @@ In order to use it, you'll need to add it to your project's dependencies:
 
 With npm:
 
-```sh
+```bash
 npm install tss-react
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add tss-react
 ```
 
@@ -216,14 +215,14 @@ yarn add tss-react
 
 We provide [a codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#jss-to-tss-react) to help migrate JSS styles to the `tss-react` API.
 
-```sh
-npx @mui/codemod v5.0.0/jss-to-tss-react <path>
+```bash
+npx @mui/codemod@latest v5.0.0/jss-to-tss-react <path>
 ```
 
 Example transformation:
 
 ```diff
- import React from 'react';
+ import * as React from 'react';
 -import makeStyles from '@material-ui/styles/makeStyles';
 +import { makeStyles } from 'tss-react/mui';
  import Button from '@mui/material/Button';
@@ -393,7 +392,7 @@ See [this tss-react doc](https://docs.tss-react.dev/api/makestyles#naming-the-st
 
 You may end up with eslint warnings [like this one](https://user-images.githubusercontent.com/6702424/148657837-eae48942-fb86-4516-abe4-5dc10f44f0be.png) if you deconstruct more than one item.
 
-Don't hesitate to disable `eslint(prefer-const)`, [like this](https://github.com/thieryw/gitlanding/blob/b2b0c71d95cfd353979c86dfcfa1646ef1665043/.eslintrc.js#L17) in a regular project, or [like this](https://github.com/InseeFrLab/onyxia-web/blob/a264ec6a6a7110cb1a17b2e22cc0605901db6793/package.json#L133) in a CRA.
+Don't hesitate to disable `eslint(prefer-const)`, [like this](https://github.com/thieryw/gitlanding/blob/b2b0c71d95cfd353979c86dfcfa1646ef1665043/.eslintrc.js#L17) in a regular project, or [like this](https://github.com/InseeFrLab/onyxia/blob/a264ec6a6a7110cb1a17b2e22cc0605901db6793/package.json#L133) in a CRA.
 
 #### withStyles()
 
@@ -437,16 +436,16 @@ The equivalent of the `$` syntax is also supported in tss's `withStyles()`.
 
 Follow the instructions in the relevant section of the [Breaking changes](/material-ui/migration/v5-style-changes/#restructure-component-definitions) doc, and [provide a `name` to `makeStyles`](https://docs.tss-react.dev/api/makestyles#naming-the-stylesheets-useful-for-debugging-and-theme-style-overrides).
 
-In Material UI v5, [style overrides also accept callbacks](https://mui.com/material-ui/customization/theme-components/).
+In Material UI v5, [style overrides also accept callbacks](https://mui.com/material-ui/customization/theme-components/).
 
 By default, TSS is only able to provide the theme.
-If you want to provide the props and the `ownerState`, [please refer to this documentation](https://docs.tss-react.dev/mui-theme-styleoverrides).
+If you want to provide the props and the `ownerState`, [please refer to this documentation](https://docs.tss-react.dev/mui-global-styleoverrides).
 
 :::warning
 tss-react is _not_ maintained by MUI.
 
 If you have any question about how to setup SSR (Next.js), or if you are wondering
-how to customize the `theme` object, please refer to the tss-react documentation—particularly the [MUI integration section](https://github.com/garronej/tss-react#mui-integration).
+how to customize the `theme` object, please refer to the [tss-react documentation](https://github.com/garronej/tss-react#mui-integration).
 
 You can also [submit an issue](https://github.com/garronej/tss-react/issues/new) for any bug or feature request, and [start a discussion](https://github.com/garronej/tss-react/discussions) if you need help.
 :::
@@ -457,13 +456,13 @@ Once you migrate all of the styling, remove unnecessary `@mui/styles` by uninsta
 
 With npm:
 
-```sh
+```bash
 npm uninstall @mui/styles
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn remove @mui/styles
 ```
 

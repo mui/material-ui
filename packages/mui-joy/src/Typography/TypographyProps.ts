@@ -13,11 +13,29 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type TypographySlot = 'root' | 'startDecorator' | 'endDecorator';
 
+export interface TypographySlots {
+  /**
+   * The component that renders the root.
+   * @default 'a'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the start decorator.
+   * @default 'span'
+   */
+  startDecorator?: React.ElementType;
+  /**
+   * The component that renders the end decorator.
+   * @default 'span'
+   */
+  endDecorator?: React.ElementType;
+}
+
 export interface TypographyPropsColorOverrides {}
 export interface TypographyPropsVariantOverrides {}
 
 export type TypographySlotsAndSlotProps = CreateSlotsAndSlotProps<
-  TypographySlot,
+  TypographySlots,
   {
     root: SlotProps<'a', {}, TypographyOwnerState>;
     startDecorator: SlotProps<'span', {}, TypographyOwnerState>;
@@ -48,7 +66,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
       gutterBottom?: boolean;
       /**
        * Applies the theme typography styles.
-       * @default 'body1'
+       * @default 'body-md'
        */
       level?: keyof TypographySystem | 'inherit';
       /**
@@ -61,11 +79,13 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
        *   h2: 'h2',
        *   h3: 'h3',
        *   h4: 'h4',
-       *   h5: 'h5',
-       *   h6: 'h6',
-       *   body1: 'p',
-       *   body2: 'p',
-       *   body3: 'p',
+       *   'title-lg': 'p',
+       *   'title-md': 'p',
+       *   'title-sm': 'p',
+       *   'body-lg': 'p',
+       *   'body-md': 'p',
+       *   'body-sm': 'p',
+       *   'body-xs': 'span',
        *   inherit: 'p',
        * }
        */
@@ -91,7 +111,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
        */
       sx?: SxProps;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        */
       variant?: OverridableStringUnion<VariantProp, TypographyPropsVariantOverrides>;
     };
@@ -110,4 +130,9 @@ export interface TypographyOwnerState extends ApplyColorInversion<TypographyProp
    * If `true`, the element is rendered in a Typography.
    */
   nesting: boolean;
+  /**
+   * @internal
+   * If `true`, the Skeleton is a direct child.
+   */
+  unstable_hasSkeleton?: boolean;
 }

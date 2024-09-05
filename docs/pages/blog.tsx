@@ -1,13 +1,10 @@
 import * as React from 'react';
 import { InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
-import { getAllBlogPosts, BlogPost } from 'docs/lib/sourcing';
-import { alpha } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import Section from 'docs/src/layouts/Section';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
@@ -15,6 +12,11 @@ import Pagination from '@mui/material/Pagination';
 import Button from '@mui/material/Button';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import Chip from '@mui/material/Chip';
+import XIcon from '@mui/icons-material/X';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import DiscordIcon from 'docs/src/icons/DiscordIcon';
 import Head from 'docs/src/modules/components/Head';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
@@ -22,8 +24,11 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import { authors as AUTHORS } from 'docs/src/modules/components/TopLayoutBlog';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import generateRssFeed from 'docs/scripts/generateRSSFeed';
+import Section from 'docs/src/layouts/Section';
+import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import { getAllBlogPosts, BlogPost } from 'docs/lib/sourcing';
 
 export const getStaticProps = () => {
   const data = getAllBlogPosts();
@@ -36,46 +41,35 @@ export const getStaticProps = () => {
 function PostPreview(props: BlogPost) {
   return (
     <React.Fragment>
-      <Box sx={{ display: 'flex', gap: 1, mb: 1.5 }}>
+      <Box sx={{ display: 'flex', gap: 0.5, mb: 1.5 }}>
         {props.tags.map((tag) => (
           <Chip
             key={tag}
             label={tag}
             size="small"
-            sx={[
-              (theme) => ({
-                fontWeight: 500,
-                color: (theme.vars || theme).palette.grey[700],
-                background: (theme.vars || theme).palette.grey[100],
-                '&:hover': {
-                  background: (theme.vars || theme).palette.grey[100],
-                },
+            variant="outlined"
+            color="primary"
+            sx={(theme) => ({
+              height: 22,
+              fontWeight: 'medium',
+              fontSize: theme.typography.pxToRem(13),
+              '& .MuiChip-label': {
+                px: '6px',
+              },
+              ...theme.applyDarkStyles({
+                color: (theme.vars || theme).palette.grey[200],
               }),
-              (theme) =>
-                theme.applyDarkStyles({
-                  color: (theme.vars || theme).palette.grey[50],
-                  background: alpha(theme.palette.grey[700], 0.5),
-                  '&:hover': {
-                    background: alpha(theme.palette.grey[700], 0.5),
-                  },
-                }),
-            ]}
+            })}
           />
         ))}
       </Box>
-      <Typography
-        component="h2"
-        fontWeight="bold"
-        variant="subtitle1"
-        sx={{
-          mb: 0.5,
-        }}
-      >
+      <Typography component="h2" variant="subtitle1" gutterBottom sx={{ fontWeight: 'bold' }}>
         <Link
           aria-describedby={`describe-${props.slug}`}
-          href={`/blog/${props.slug}`}
+          href={`/blog/${props.slug}/`}
           sx={{
             color: 'text.primary',
+
             '&:hover': {
               textDecoration: 'underline',
             },
@@ -84,43 +78,40 @@ function PostPreview(props: BlogPost) {
           {props.title}
         </Link>
       </Typography>
-      <Typography color="text.secondary" sx={{ mb: 'auto' }}>
-        {props.description}
-      </Typography>
+      <Typography sx={{ color: 'text.secondary', mb: 'auto' }}>{props.description}</Typography>
       {props.authors && (
         <AvatarGroup
-          sx={[
-            (theme) => ({
-              mt: 2,
-              mb: 1,
-              alignSelf: 'flex-start',
+          sx={(theme) => ({
+            mt: 2,
+            mb: 1,
+            alignSelf: 'flex-start',
+            '& .MuiAvatar-circular': {
+              width: 28,
+              height: 28,
+              fontSize: theme.typography.pxToRem(13),
+              fontWeight: theme.typography.fontWeightSemiBold,
+              color: (theme.vars || theme).palette.text.primary,
+              border: `1px solid ${(theme.vars || theme).palette.divider}`,
+              outline: '3px solid',
+              outlineColor: '#FFF',
+              backgroundColor: (theme.vars || theme).palette.grey[100],
+            },
+            ...theme.applyDarkStyles({
               '& .MuiAvatar-circular': {
-                width: 28,
-                height: 28,
-                border: 3,
-                borderColor: (theme.vars || theme).palette.grey[100],
-                backgroundColor: (theme.vars || theme).palette.grey[100],
-                color: (theme.vars || theme).palette.grey[800],
-                fontSize: theme.typography.pxToRem(13),
-                fontWeight: 500,
+                outlineColor: (theme.vars || theme).palette.primaryDark[900],
+                backgroundColor: (theme.vars || theme).palette.primaryDark[700],
               },
             }),
-            (theme) =>
-              theme.applyDarkStyles({
-                '& .MuiAvatar-circular': {
-                  borderColor: (theme.vars || theme).palette.primaryDark[800],
-                  backgroundColor: (theme.vars || theme).palette.primaryDark[700],
-                  color: (theme.vars || theme).palette.primaryDark[100],
-                },
-              }),
-          ]}
+          })}
         >
           {(props.authors as Array<keyof typeof AUTHORS>).map((author) => (
             <Avatar
               key={author}
               alt=""
               src={`${AUTHORS[author].avatar}?s=${28}`}
-              srcSet={`${AUTHORS[author].avatar}?s=${28 * 2} 2x`}
+              srcSet={`${AUTHORS[author].avatar}?s=${28 * 2} 2x, ${AUTHORS[author].avatar}?s=${
+                28 * 3
+              } 3x`}
             />
           ))}
         </AvatarGroup>
@@ -134,7 +125,7 @@ function PostPreview(props: BlogPost) {
       >
         <Box sx={{ position: 'relative' }}>
           {props.authors && (
-            <Typography variant="body2" fontWeight="500">
+            <Typography variant="body2" sx={{ fontWeight: 'medium' }}>
               {props.authors
                 .slice(0, 3)
                 .map((userId) => {
@@ -153,7 +144,7 @@ function PostPreview(props: BlogPost) {
             </Typography>
           )}
           {props.date && (
-            <Typography variant="caption" fontWeight="400" color="text.secondary">
+            <Typography variant="caption" sx={{ fontWeight: 'regular', color: 'text.tertiary' }}>
               {new Date(props.date).toDateString()}
             </Typography>
           )}
@@ -163,19 +154,9 @@ function PostPreview(props: BlogPost) {
           aria-describedby={`describe-${props.slug}`}
           href={`/blog/${props.slug}`}
           id={`describe-${props.slug}`}
-          size="small"
           endIcon={<KeyboardArrowRightRoundedIcon />}
-          sx={(theme) => ({
-            mt: { xs: 1, md: 0 },
-            mb: { xs: -1, md: 0 },
-            color: (theme.vars || theme).palette.primary[600],
-            '& .MuiButton-endIcon': {
-              ml: 0,
-            },
-            ...theme.applyDarkStyles({
-              color: (theme.vars || theme).palette.primary[300],
-            }),
-          })}
+          size="small"
+          sx={{ mt: { xs: 0.5, md: 0 }, p: { xs: 0, sm: '6px 8px' } }}
         >
           Read more
         </Button>
@@ -184,7 +165,7 @@ function PostPreview(props: BlogPost) {
   );
 }
 
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 7;
 
 export default function Blog(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter();
@@ -247,22 +228,31 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
       { shallow: true },
     );
   };
+
   return (
     <BrandingCssVarsProvider>
       <Head
         title="Blog - MUI"
         description="Follow the MUI blog to learn about new product features, latest advancements in UI development, and business initiatives."
+        card="/static/social-previews/blog-preview.jpg"
         disableAlternateLocale
       />
       <AppHeader />
       <main id="main-content">
-        <Section bg="gradient" sx={{ backgroundSize: '100% 300px', backgroundRepeat: 'no-repeat' }}>
-          <Typography variant="body2" color="primary.600" fontWeight="bold" textAlign="center">
-            Blog
-          </Typography>
-          <Typography component="h1" variant="h2" textAlign="center" sx={{ mb: { xs: 5, md: 10 } }}>
-            The <GradientText>latest</GradientText> about MUI
-          </Typography>
+        <Section cozy bg="gradient">
+          <SectionHeadline
+            alwaysCenter
+            overline="Blog"
+            title={
+              <Typography variant="h2" component="h1">
+                Stay <GradientText>in the loop</GradientText> with
+                <br /> the latest about MUI&apos;s products
+              </Typography>
+            }
+          />
+        </Section>
+        <Divider />
+        <Container sx={{ mt: { xs: 2, sm: -6 } }}>
           <Box
             component="ul"
             sx={{
@@ -278,31 +268,18 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                 key={post.slug}
                 component="li"
                 variant="outlined"
-                sx={[
-                  {
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    position: 'relative',
-                    transition: 'all ease 120ms',
-                    '&:hover, &:focus-within': {
-                      borderColor: 'grey.300',
-                      boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
-                    },
-                    '&:focus-within': {
-                      '& a': {
-                        outline: 0,
-                      },
-                    },
-                  },
-                  (theme) =>
-                    theme.applyDarkStyles({
-                      '&:hover, &:focus-within': {
-                        borderColor: 'primary.600',
-                        boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)',
-                      },
-                    }),
-                ]}
+                sx={(theme) => ({
+                  p: 2,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  backgroundImage: (theme.vars || theme).palette.gradients.radioSubtle,
+                  boxShadow: '0 4px 12px rgba(170, 180, 190, 0.2)',
+                  ...theme.applyDarkStyles({
+                    background: (theme.vars || theme).palette.primaryDark[900],
+                    backgroundImage: (theme.vars || theme).palette.gradients.radioSubtle,
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
+                  }),
+                })}
               >
                 {post.image && (
                   <Box
@@ -321,10 +298,11 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
               </Paper>
             ))}
           </Box>
-        </Section>
+        </Container>
         <Container
           ref={postListRef}
           sx={{
+            py: { xs: 4, sm: 6, md: 8 },
             mt: -6,
             display: 'grid',
             gridTemplateColumns: { md: '1fr 380px' },
@@ -333,10 +311,8 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
         >
           <Typography
             component="h2"
-            color="text.primary"
-            variant="h5"
-            fontWeight="700"
-            sx={{ mb: { xs: 1, sm: 2 }, mt: 8 }} // margin-top makes the title appear when scroll into view
+            variant="h6"
+            sx={{ fontWeight: 'semiBold', mb: { xs: 1, sm: 2 }, mt: 8 }}
           >
             Posts{' '}
             {Object.keys(selectedTags).length ? (
@@ -352,74 +328,118 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
           </Typography>
           <Box sx={{ gridRow: 'span 2' }}>
             <Box
-              sx={(theme) => ({
+              sx={{
                 position: 'sticky',
-                top: 100,
-                alignSelf: 'start',
-                mb: 2,
-                mt: { xs: 3, sm: 2, md: 9 }, // margin-top makes the title appear when scroll into view
-                p: 2,
-                borderRadius: 1,
-                border: '1px solid',
-                background: 'rgba(255, 255, 255, 0.2)',
-                borderColor: (theme.vars || theme).palette.grey[200],
-                ...theme.applyDarkStyles({
-                  background: alpha(theme.palette.primaryDark[700], 0.2),
-                  borderColor: (theme.vars || theme).palette.primaryDark[700],
-                }),
-              })}
+                top: 90,
+                mt: { xs: 0, md: 9 },
+                mb: { xs: 2, md: 0 },
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 2,
+                '& .MuiPaper-root': {
+                  p: 2,
+                  bgcolor: 'transparent',
+                  borderColor: 'divider',
+                },
+              }}
             >
-              <Typography color="text.primary" fontWeight="500" sx={{ mb: 2 }}>
-                Filter by tag
-              </Typography>
-              <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                {Object.keys(tagInfo).map((tag) => {
-                  const selected = !!selectedTags[tag];
-                  return (
-                    <Chip
-                      key={tag}
-                      variant={selected ? 'filled' : 'outlined'}
-                      {...(selected
-                        ? {
-                            label: tag,
-                            onDelete: () => {
-                              postListRef.current?.scrollIntoView();
-                              removeTag(tag);
-                            },
-                          }
-                        : {
-                            label: tag,
-                            onClick: () => {
-                              postListRef.current?.scrollIntoView();
-                              router.push(
-                                {
-                                  query: {
-                                    ...router.query,
-                                    tags: tag,
+              <Paper variant="outlined">
+                <Typography
+                  component="h3"
+                  variant="subtitle2"
+                  sx={{ color: 'text.primary', fontWeight: 'semiBold', mb: 2 }}
+                >
+                  Filter posts by tag
+                </Typography>
+                <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                  {Object.keys(tagInfo).map((tag) => {
+                    const selected = !!selectedTags[tag];
+                    return (
+                      <Chip
+                        key={tag}
+                        variant={selected ? 'filled' : 'outlined'}
+                        color={selected ? 'primary' : undefined}
+                        {...(selected
+                          ? {
+                              label: tag,
+                              onDelete: () => {
+                                postListRef.current?.scrollIntoView();
+                                removeTag(tag);
+                              },
+                            }
+                          : {
+                              label: tag,
+                              onClick: () => {
+                                postListRef.current?.scrollIntoView();
+                                router.push(
+                                  {
+                                    query: {
+                                      ...router.query,
+                                      tags: tag,
+                                    },
                                   },
-                                },
-                                undefined,
-                                { shallow: true },
-                              );
-                            },
-                          })}
-                      size="small"
-                      sx={{
-                        py: 1.2,
-                      }}
-                    />
-                  );
-                })}
-              </Box>
+                                  undefined,
+                                  { shallow: true },
+                                );
+                              },
+                            })}
+                        size="small"
+                      />
+                    );
+                  })}
+                </Box>
+              </Paper>
+              <Paper variant="outlined">
+                <Typography
+                  component="h3"
+                  variant="subtitle2"
+                  gutterBottom
+                  sx={{ color: 'text.primary', fontWeight: 'semiBold' }}
+                >
+                  Want to hear more from us?
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2 }}>
+                  Get up to date with everything MUI-related through our social media:
+                </Typography>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, '* > svg': { mr: 1 } }}>
+                  <Link href="https://github.com/mui" target="_blank" sx={{ fontSize: 14 }}>
+                    <GitHubIcon fontSize="small" />
+                    GitHub
+                  </Link>
+                  <Link href="https://x.com/MUI_hq" target="_blank" sx={{ fontSize: 14 }}>
+                    <XIcon fontSize="small" />X
+                  </Link>
+                  <Link href="https://mui.com/r/discord/" target="_blank" sx={{ fontSize: 14 }}>
+                    <DiscordIcon fontSize="small" />
+                    Discord
+                  </Link>
+                  <Link
+                    href="https://www.linkedin.com/company/mui/"
+                    target="_blank"
+                    sx={{ fontSize: 14 }}
+                  >
+                    <LinkedInIcon fontSize="small" />
+                    LinkedIn
+                  </Link>
+                  <Link
+                    href="https://www.youtube.com/@MUI_hq"
+                    target="_blank"
+                    sx={{ fontSize: 14 }}
+                  >
+                    <YouTubeIcon fontSize="small" />
+                    Youtube
+                  </Link>
+                </Box>
+              </Paper>
             </Box>
           </Box>
-          <Box>
+          <div>
             <Box component="ul" sx={{ p: 0, m: 0 }}>
               {displayedPosts.map((post) => (
                 <Box
                   component="li"
                   key={post.slug}
-                  sx={() => ({
+                  sx={{
                     py: 2.5,
                     display: 'flex',
                     flexDirection: 'column',
@@ -428,7 +448,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                       borderBottom: '1px solid',
                       borderColor: 'divider',
                     },
-                  })}
+                  }}
                 >
                   <PostPreview {...post} />
                 </Box>
@@ -443,11 +463,12 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                 setPage(value - 1);
                 postListRef.current?.scrollIntoView();
               }}
-              sx={{ mt: 1, mb: 8 }}
+              sx={{ mt: 1, mb: 4 }}
             />
-          </Box>
+          </div>
         </Container>
       </main>
+      <Divider />
       <HeroEnd />
       <Divider />
       <AppFooter />

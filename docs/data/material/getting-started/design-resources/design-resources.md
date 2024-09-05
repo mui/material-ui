@@ -1,28 +1,30 @@
 # Design resources
 
-<p class="description">Check out these prebuilt UI kits to help you design with Material UI using your favorite tools.</p>
+<p class="description">Be more efficient designing and developing with the same library.</p>
 
-<a href="https://mui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma" style="margin-left: 8px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-figma.svg" alt="figma" /></a>
-<a href="https://mui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-adobe-xd.svg" alt="adobe-xd" /></a>
-<a href="https://mui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-sketch.svg" alt="sketch" /></a>
+## Design Kits
 
-## MUI resources
+Material UI component designs are available for Figma, Sketch, and Adobe XD, providing accurate representations using shared terminology for all states, variants, and permutations of each component.
 
-### Figma
+The design kits are composed of over 1,500 unique elements built to speed up the development process and ease communication for teams of designers and developers using the library.
 
-[Material UI for Figma](https://mui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma): a comprehensive component inventory for Figma, including over 1,500 unique elements that cover the full range of states and variations of each component.
+{{"component": "modules/components/MaterialUIDesignResources.js"}}
 
-### Adobe XD
+## Material UI Sync Figma plugin
 
-[Material UI for Adobe XD](https://mui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd): a comprehensive component inventory for Adobe XD, including over 1,500 unique elements that cover the full range of states and variations of each component.
+Sync is a Figma plugin to help bridge the gap between designers and developers using Material UI.
 
-### Sketch
+It generates a theme file that you can add to your codebase with all the design tokens and component customizations from Figma.
+You can quickly preview all of the changes through an embedded Storybook panel directly in the plugin interface.
 
-[Material UI for Sketch](https://mui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch): a comprehensive component inventory for Sketch, including over 1,500 unique elements that cover the full range of states and variations of each component, as well as 1,000+ icons in five themes.
+Sync is currently in beta and [available for free](https://www.figma.com/community/plugin/1336346114713490235/material-ui-sync) in the Figma Community.
+You can also head over to [the Sync documentation page](/material-ui/design-resources/material-ui-sync/) to learn more.
+
+<img src="/static/material-ui/design-resources/sync.png" style="width: 814px;" alt="Customizing the Material UI Switch component in Figma with the Sync plugin running." width="1628" height="400" />
 
 ## Third-party resources
 
 ### UXPin
 
-[Material UI for UXPin](https://www.uxpin.com/merge/mui-library): A large UI kit of Material UI components.
+[Material UI for UXPin](https://www.uxpin.com/merge/mui-library): A large UI kit of Material UI components.
 The design tool renders the components in a web runtime. It uses the same React implementation as your production environment.

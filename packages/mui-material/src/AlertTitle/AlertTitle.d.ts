@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { Theme, TypographyProps } from '..';
 import { AlertTitleClasses } from './alertTitleClasses';
 
-export interface AlertTitleProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface AlertTitleProps extends TypographyProps<'div'> {
   /**
    * The content of the component.
    */
@@ -27,5 +27,6 @@ export interface AlertTitleProps extends StandardProps<React.HTMLAttributes<HTML
  * API:
  *
  * - [AlertTitle API](https://mui.com/material-ui/api/alert-title/)
+ * - inherits [Typography API](https://mui.com/material-ui/api/typography/)
  */
-export default function AlertTitle(props: AlertTitleProps): JSX.Element;
+export default function AlertTitle(props: AlertTitleProps): React.JSX.Element;

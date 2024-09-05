@@ -1,10 +1,10 @@
 ---
-title: The MUI X Date and Time Pickers get a stable v5 release
+title: The MUI X Date and Time Pickers get a stable v5 release
 description: Migrate to the latest version for improved DX, customizability, and API consistency.
 date: 2022-09-19T00:00:00.000Z
 authors: ['alexfauquette', 'josefreitas']
-tags: ['MUI X', 'News']
-card: true
+tags: ['MUI X', 'Product']
+manualCard: true
 ---
 
 About four months ago, we moved the date and time pickers from `@mui/lab` and released the first alpha version of the date pickers package.
@@ -16,7 +16,7 @@ We have focused on improving stability and developer experience since then, and 
 - Dozens of bugs have been fixed since the first alpha.
 - DX and overall API consistency have been improved.
 - Improved customizability.
-- Follow the [installation instructions](https://mui.com/x/react-date-pickers/getting-started/) and the [migration guide](https://mui.com/x/react-date-pickers/migration-lab/).
+- Follow the [installation instructions](https://mui.com/x/react-date-pickers/getting-started/) and the [migration guide](https://mui.com/x/migration/migration-pickers-lab/).
 
 ## What's changed?
 
@@ -83,12 +83,13 @@ And the adoption speed across versions is very encouraging.
 Over 40% of users are already using the beta versions.
 
 <img src="/static/blog/date-pickers-stable-v5/date-picker-versions.png" style="width: 796px; margin-top: 16px; aspect-ratio: 168/89;" loading="lazy" alt="Evolution of downloaded version of @mui/x-data-pickers" />
-<p class="blog-description" style="text-align: center;">Relative distribution of `@mui/x-date-pickers` versions between June and August.</p>
+
+<p class="blog-description">Relative distribution of `@mui/x-date-pickers` versions between June and August.</p>
 
 ## Installation and migration from `@mui/lab`
 
 You can find the installation instructions in our [getting started](https://mui.com/x/react-date-pickers/getting-started/) page.
-If you are migrating from the `@mui/lab` package, we've prepared a [migration guide](https://mui.com/x/react-date-pickers/migration-lab/) to support you, including a codemod to replace the date pickers declarations.
+If you are migrating from the `@mui/lab` package, we've prepared a [migration guide](https://mui.com/x/migration/migration-pickers-lab/) to support you, including a codemod to replace the date pickers declarations.
 
 ## What to expect next?
 
@@ -98,4 +99,4 @@ We've been exploring different approaches and implementations for the date field
 
 You can expect support for v5 stable release with patches for critical bugs, but we encourage the community to help us build the next generation of date pickers and migrate whenever possible to the v6 pre-releases.
 
-If you want to help steer the direction of the new components, please consider [contacting us](https://forms.gle/vsBv6CLPz9h57xg8A) to schedule a 30-minute user interview session. We're working on MUI X v6, and we'd love to hear more about your pain points and use cases.
+If you want to help steer the direction of the new components, please consider [contacting us](https://forms.gle/vsBv6CLPz9h57xg8A) to schedule a 30-minute user interview session. We're working on MUI X v6, and we'd love to hear more about your pain points and use cases.

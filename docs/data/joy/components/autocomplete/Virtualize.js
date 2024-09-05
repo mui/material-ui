@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { FixedSizeList } from 'react-window';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
+import { Popper } from '@mui/base/Popper';
 import Autocomplete from '@mui/joy/Autocomplete';
 import AutocompleteListbox from '@mui/joy/AutocompleteListbox';
 import AutocompleteOption from '@mui/joy/AutocompleteOption';
@@ -56,6 +56,7 @@ const OuterElementType = React.forwardRef((props, ref) => {
 });
 
 // Adapter for react-window
+
 const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) {
   const { children, anchorEl, open, modifiers, ...other } = props;
   const itemData = [];
@@ -71,7 +72,7 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
   const itemSize = 40;
 
   return (
-    <PopperUnstyled ref={ref} anchorEl={anchorEl} open={open} modifiers={modifiers}>
+    <Popper ref={ref} anchorEl={anchorEl} open={open} modifiers={modifiers}>
       <OuterElementContext.Provider value={other}>
         <FixedSizeList
           itemData={itemData}
@@ -86,7 +87,7 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
           {renderRow}
         </FixedSizeList>
       </OuterElementContext.Provider>
-    </PopperUnstyled>
+    </Popper>
   );
 });
 

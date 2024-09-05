@@ -1,14 +1,16 @@
+'use client';
 /* eslint-disable jsx-a11y/aria-role */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import composeClasses from '@mui/utils/composeClasses';
+import { useRtl } from '@mui/system/RtlProvider';
+import useSlotProps from '@mui/utils/useSlotProps';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import ButtonBase from '../ButtonBase';
-import useTheme from '../styles/useTheme';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import tabScrollButtonClasses, { getTabScrollButtonUtilityClass } from './tabScrollButtonClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -29,32 +31,67 @@ const TabScrollButtonRoot = styled(ButtonBase, {
 
     return [styles.root, ownerState.orientation && styles[ownerState.orientation]];
   },
-})(({ ownerState }) => ({
+})({
   width: 40,
   flexShrink: 0,
   opacity: 0.8,
   [`&.${tabScrollButtonClasses.disabled}`]: {
     opacity: 0,
   },
-  ...(ownerState.orientation === 'vertical' && {
-    width: '100%',
-    height: 40,
-    '& svg': {
-      transform: `rotate(${ownerState.isRtl ? -90 : 90}deg)`,
+  variants: [
+    {
+      props: {
+        orientation: 'vertical',
+      },
+      style: {
+        width: '100%',
+        height: 40,
+        '& svg': {
+          transform: 'var(--TabScrollButton-svgRotate)',
+        },
+      },
     },
-  }),
-}));
+  ],
+});
 
 const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTabScrollButton' });
-  const { className, direction, orientation, disabled, ...other } = props;
+  const props = useDefaultProps({ props: inProps, name: 'MuiTabScrollButton' });
+  const {
+    className,
+    slots = {},
+    slotProps = {},
+    direction,
+    orientation,
+    disabled,
+    ...other
+  } = props;
 
-  const theme = useTheme();
-  const isRtl = theme.direction === 'rtl';
+  const isRtl = useRtl();
 
   const ownerState = { isRtl, ...props };
 
   const classes = useUtilityClasses(ownerState);
+
+  const StartButtonIcon = slots.StartScrollButtonIcon ?? KeyboardArrowLeft;
+  const EndButtonIcon = slots.EndScrollButtonIcon ?? KeyboardArrowRight;
+
+  const startButtonIconProps = useSlotProps({
+    elementType: StartButtonIcon,
+    externalSlotProps: slotProps.startScrollButtonIcon,
+    additionalProps: {
+      fontSize: 'small',
+    },
+    ownerState,
+  });
+
+  const endButtonIconProps = useSlotProps({
+    elementType: EndButtonIcon,
+    externalSlotProps: slotProps.endScrollButtonIcon,
+    additionalProps: {
+      fontSize: 'small',
+    },
+    ownerState,
+  });
 
   return (
     <TabScrollButtonRoot
@@ -65,21 +102,27 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) 
       ownerState={ownerState}
       tabIndex={null}
       {...other}
+      style={{
+        ...other.style,
+        ...(orientation === 'vertical' && {
+          '--TabScrollButton-svgRotate': `rotate(${isRtl ? -90 : 90}deg)`,
+        }),
+      }}
     >
       {direction === 'left' ? (
-        <KeyboardArrowLeft fontSize="small" />
+        <StartButtonIcon {...startButtonIconProps} />
       ) : (
-        <KeyboardArrowRight fontSize="small" />
+        <EndButtonIcon {...endButtonIconProps} />
       )}
     </TabScrollButtonRoot>
   );
 });
 
 TabScrollButton.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -105,6 +148,27 @@ TabScrollButton.propTypes /* remove-proptypes */ = {
    * The component orientation (layout flow direction).
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']).isRequired,
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    endScrollButtonIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startScrollButtonIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    EndScrollButtonIcon: PropTypes.elementType,
+    StartScrollButtonIcon: PropTypes.elementType,
+  }),
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

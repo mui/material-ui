@@ -1,0 +1,7 @@
+.MuiTableSortLabel-root.MuiTableSortLabel-directionDesc > .MuiTableSortLabel-icon {
+  color: red;
+}
+
+.MuiTableSortLabel-root.MuiTableSortLabel-directionAsc > .MuiTableSortLabel-icon {
+  color: red;
+}

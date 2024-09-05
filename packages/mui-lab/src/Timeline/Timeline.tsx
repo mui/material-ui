@@ -1,50 +1,13 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { SxProps } from '@mui/system';
-// eslint-disable-next-line no-restricted-imports -- importing types
-import { InternalStandardProps as StandardProps } from '@mui/material';
-import { capitalize } from '@mui/material/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { styled, useThemeProps, Theme } from '@mui/material/styles';
+import { styled, useThemeProps } from '@mui/material/styles';
 import TimelineContext from './TimelineContext';
-import { getTimelineUtilityClass } from './timelineClasses';
-
-export type TimelineClassKey = keyof NonNullable<TimelineProps['classes']>;
-
-export interface TimelineProps extends StandardProps<React.HTMLAttributes<HTMLUListElement>> {
-  /**
-   * The position where the TimelineContent should appear relative to the time axis.
-   * @default 'right'
-   */
-  position?: 'left' | 'right' | 'alternate';
-  /**
-   * The content of the component.
-   */
-  children?: React.ReactNode;
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element if `position="left"`. */
-    positionLeft?: string;
-    /** Styles applied to the root element if `position="right"`. */
-    positionRight?: string;
-    /** Styles applied to the root element if `position="alternate"`. */
-    positionAlternate?: string;
-  };
-
-  /**
-   * className applied to the root element.
-   */
-  className?: string;
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx?: SxProps<Theme>;
-}
+import { TimelineClassKey, getTimelineUtilityClass } from './timelineClasses';
+import convertTimelinePositionToClass from '../internal/convertTimelinePositionToClass';
+import { TimelineProps } from './Timeline.types';
 
 type OwnerState = TimelineProps;
 
@@ -52,7 +15,7 @@ const useUtilityClasses = (ownerState: OwnerState) => {
   const { position, classes } = ownerState;
 
   const slots = {
-    root: ['root', position && `position${capitalize(position)}`],
+    root: ['root', position && convertTimelinePositionToClass(position)],
   };
 
   return composeClasses(slots, getTimelineUtilityClass, classes);
@@ -66,7 +29,7 @@ const TimelineRoot = styled('ul' as const, {
     return [
       styles.root,
       ownerState.position &&
-        styles[`position${capitalize(ownerState.position)}` as TimelineClassKey],
+        styles[convertTimelinePositionToClass(ownerState.position) as TimelineClassKey],
     ];
   },
 })<{ ownerState: OwnerState }>({
@@ -108,10 +71,10 @@ const Timeline = React.forwardRef<HTMLUListElement, TimelineProps>(function Time
 }) as React.ForwardRefExoticComponent<TimelineProps & React.RefAttributes<HTMLUListElement>>;
 
 Timeline.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -128,7 +91,7 @@ Timeline.propTypes /* remove-proptypes */ = {
    * The position where the TimelineContent should appear relative to the time axis.
    * @default 'right'
    */
-  position: PropTypes.oneOf(['alternate', 'left', 'right']),
+  position: PropTypes.oneOf(['alternate-reverse', 'alternate', 'left', 'right']),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -1,11 +1,10 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Popper from '@mui/material/Popper';
-// web.cjs is required for IE11 support
-import { useSpring, animated } from 'react-spring/web.cjs';
+import { useSpring, animated } from '@react-spring/web';
 
 interface FadeProps {
-  children?: React.ReactElement;
+  children?: React.ReactElement<any>;
   in?: boolean;
   onEnter?: () => void;
   onExited?: () => void;

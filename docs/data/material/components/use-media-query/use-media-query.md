@@ -1,34 +1,34 @@
 ---
-product: material-ui
+productId: material-ui
 title: Media queries in React for responsive design
 githubLabel: 'hook: useMediaQuery'
+githubSource: packages/mui-material/src/useMediaQuery
 ---
 
 # useMediaQuery
 
-<p class="description">This is a CSS media query hook for React. It listens for matches to a CSS media query. It allows the rendering of components based on whether the query matches or not.</p>
+<p class="description">This React hook listens for matches to a CSS media query. It allows the rendering of components based on whether the query matches or not.</p>
 
 Some of the key features:
 
 - ⚛️ It has an idiomatic React API.
 - 🚀 It's performant, it observes the document to detect when its media queries change, instead of polling the values periodically.
-- 📦 [1 kB gzipped](/size-snapshot/).
 - 🤖 It supports server-side rendering.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 ## Basic media query
 
 You should provide a media query to the first argument of the hook.
-The media query string can be any valid CSS media query, e.g. [`'(prefers-color-scheme: dark)'`](/material-ui/customization/dark-mode/#system-preference).
+The media query string can be any valid CSS media query, for example [`'(prefers-color-scheme: dark)'`](/material-ui/customization/dark-mode/#system-preference).
 
 {{"demo": "SimpleMediaQuery.js", "defaultCodeOpen": true}}
 
-⚠️ You can't use `'print'` per browsers limitation, e.g. [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
+⚠️ You can't use `'print'` per browsers limitation, for example [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
 
-## Using MUI's breakpoint helpers
+## Using breakpoint helpers
 
-You can use MUI's [breakpoint helpers](/material-ui/customization/breakpoints/) as follows:
+You can use Material UI's [breakpoint helpers](/material-ui/customization/breakpoints/) as follows:
 
 ```jsx
 import { useTheme } from '@mui/material/styles';
@@ -79,8 +79,8 @@ function createMatchMedia(width) {
     matches: mediaQuery.match(query, {
       width,
     }),
-    addListener: () => {},
-    removeListener: () => {},
+    addEventListener: () => {},
+    removeEventListener: () => {},
   });
 }
 
@@ -94,9 +94,9 @@ describe('MyTests', () => {
 ## Client-side only rendering
 
 To perform the server-side hydration, the hook needs to render twice.
-A first time with `false`, the value of the server, and a second time with the resolved value.
-This double pass rendering cycle comes with a drawback. It's slower.
-You can set the `noSsr` option to `true` if you are doing **client-side only** rendering.
+A first time with `defaultMatches`, the value of the server, and a second time with the resolved value.
+This double pass rendering cycle comes with a drawback: it's slower.
+You can set the `noSsr` option to `true` if you use the returned value **only** client-side.
 
 ```js
 const matches = useMediaQuery('(min-width:600px)', { noSsr: true });
@@ -115,6 +115,10 @@ const theme = createTheme({
   },
 });
 ```
+
+:::info
+Note that `noSsr` has no effects when using the `createRoot()` API (the client-side only API introduced in React 18).
+:::
 
 ## Server-side rendering
 
@@ -144,7 +148,7 @@ Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate match
 For instance on the server-side:
 
 ```js
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import parser from 'ua-parser-js';
 import mediaQuery from 'css-mediaquery';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -201,16 +205,16 @@ You can reproduce the same behavior with a `useWidth` hook:
 
 - `options.defaultMatches` (_bool_ [optional]):
   As `window.matchMedia()` is unavailable on the server,
-  we return a default matches during the first mount. The default value is `false`.
+  it returns a default matches during the first mount. The default value is `false`.
 - `options.matchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_. This can be used for handling an iframe content window.
 - `options.noSsr` (_bool_ [optional]): Defaults to `false`.
   To perform the server-side hydration, the hook needs to render twice.
-  A first time with `false`, the value of the server, and a second time with the resolved value.
-  This double pass rendering cycle comes with a drawback. It's slower.
-  You can set this option to `true` if you are doing **client-side only** rendering.
-- `options.ssrMatchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_ in a [server-side rendering context](#server-side-rendering).
+  A first time with `defaultMatches`, the value of the server, and a second time with the resolved value.
+  This double pass rendering cycle comes with a drawback: it's slower.
+  You can set this option to `true` if you use the returned value **only** client-side.
+- `options.ssrMatchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_, it's used when rendering server-side.
 
-Note: You can change the default options using the [`default props`](/material-ui/customization/theme-components/#default-props) feature of the theme with the `MuiUseMediaQuery` key.
+Note: You can change the default options using the [`default props`](/material-ui/customization/theme-components/#theme-default-props) feature of the theme with the `MuiUseMediaQuery` key.
 
 #### Returns
 

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 import Avatar from '@mui/joy/Avatar';
 import IconButton from '@mui/joy/IconButton';
 import List from '@mui/joy/List';
@@ -12,6 +11,7 @@ import Sheet from '@mui/joy/Sheet';
 import Home from '@mui/icons-material/Home';
 import Apps from '@mui/icons-material/Apps';
 import MoreVert from '@mui/icons-material/MoreVert';
+import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 
 export default function ListVariables() {
   return (
@@ -22,11 +22,11 @@ export default function ListVariables() {
         { var: '--List-padding', defaultValue: '0px' },
         { var: '--List-radius', defaultValue: '0px' },
         { var: '--List-gap', defaultValue: '0px' },
-        { var: '--List-item-minHeight', defaultValue: '40px' },
-        { var: '--List-item-paddingY', defaultValue: '6px' },
-        { var: '--List-item-paddingX', defaultValue: '12px' },
-        { var: '--List-decorator-size', defaultValue: '40px' },
-        { var: '--List-divider-gap', defaultValue: '6px' },
+        { var: '--ListItem-minHeight', defaultValue: '40px' },
+        { var: '--ListItem-paddingY', defaultValue: '6px' },
+        { var: '--ListItem-paddingX', defaultValue: '12px' },
+        { var: '--ListItemDecorator-size', defaultValue: '40px' },
+        { var: '--ListDivider-gap', defaultValue: '6px' },
       ]}
       renderDemo={(sx) => (
         <List
@@ -34,8 +34,6 @@ export default function ListVariables() {
             ...sx,
             width: 300,
             ...theme.variants.outlined.neutral,
-            bgcolor: 'background.body',
-            borderRadius: 'sm',
           })}
         >
           <ListItem>
@@ -58,8 +56,7 @@ export default function ListVariables() {
           <ListItem nested>
             <ListItem>
               <Typography
-                level="body2"
-                fontWeight="md"
+                level="body-sm"
                 startDecorator={
                   <Sheet
                     component="span"
@@ -71,6 +68,7 @@ export default function ListVariables() {
                     }}
                   />
                 }
+                sx={{ fontWeight: 'md' }}
               >
                 Online people
               </Typography>

@@ -1,0 +1,3 @@
+<Card size="sm">Small card</Card>
+<Card>Medium card (default)</Card>
+<Card size="lg">Large card</Card>

@@ -1,9 +1,10 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Popper component
 components: Popper
 githubLabel: 'component: Popper'
-unstyled: /base/react-popper/
+unstyled: /base-ui/react-popper/
+githubSource: packages/mui-material/src/Popper
 ---
 
 # Popper
@@ -14,7 +15,6 @@ Some important features of the `Popper` component:
 
 - 🕷 Popper relies on the 3rd party library ([Popper.js](https://popper.js.org/)) for perfect positioning.
 - 💄 It's an alternative API to react-popper. It aims for simplicity.
-- 📦 [24.9 kB gzipped](/size-snapshot/).
 - The children is [`Portal`](/material-ui/react-portal/) to the body of the document to avoid rendering problems.
   You can disable this behavior with `disablePortal`.
 - The scroll isn't blocked like with the [`Popover`](/material-ui/react-popover/) component.
@@ -23,7 +23,7 @@ Some important features of the `Popper` component:
   If you need this behavior, you can use [`ClickAwayListener`](/material-ui/react-click-away-listener/) - see the example in the [menu documentation section](/material-ui/react-menu/#menulist-composition).
 - The `anchorEl` is passed as the reference object to create a new `Popper.js` instance.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 ## Basic popper
 
@@ -68,9 +68,11 @@ Highlight part of the text to see the popper:
 
 For more advanced use cases you might be able to take advantage of:
 
-### PopupState helper
+### material-ui-popup-state
 
-There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popper
-state for you in most cases.
+![stars](https://img.shields.io/github/stars/jcoreio/material-ui-popup-state?style=social&label=Star)
+![npm downloads](https://img.shields.io/npm/dm/material-ui-popup-state.svg)
+
+The package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popper state for you in most cases.
 
 {{"demo": "PopperPopupState.js"}}

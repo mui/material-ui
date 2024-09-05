@@ -1,7 +1,7 @@
 import * as React from 'react';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Typography from '@mui/joy/Typography';
-import Sheet from '@mui/joy/Sheet';
+import Card from '@mui/joy/Card';
 import List from '@mui/joy/List';
 import ListDivider from '@mui/joy/ListDivider';
 import ListItem from '@mui/joy/ListItem';
@@ -26,35 +26,24 @@ const data = [
   },
 ];
 
-export default function FlexRowRatio() {
+export default function ListStackRatio() {
   return (
-    <Sheet
-      variant="outlined"
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 1,
-        width: 300,
-        borderRadius: 'sm',
-      }}
-    >
-      <List sx={{ py: 'var(--List-divider-gap)' }}>
+    <Card variant="outlined" sx={{ width: 300, p: 0 }}>
+      <List sx={{ py: 'var(--ListDivider-gap)' }}>
         {data.map((item, index) => (
           <React.Fragment key={item.title}>
             <ListItem>
               <ListItemButton sx={{ gap: 2 }}>
-                <AspectRatio
-                  sx={{ flexBasis: 120, borderRadius: 'sm', overflow: 'auto' }}
-                >
+                <AspectRatio sx={{ flexBasis: 120 }}>
                   <img
-                    src={`${item.src}?w=120&fit=crop&auto=format`}
                     srcSet={`${item.src}?w=120&fit=crop&auto=format&dpr=2 2x`}
+                    src={`${item.src}?w=120&fit=crop&auto=format`}
                     alt={item.title}
                   />
                 </AspectRatio>
                 <ListItemContent>
-                  <Typography fontWeight="md">{item.title}</Typography>
-                  <Typography level="body2">{item.description}</Typography>
+                  <Typography sx={{ fontWeight: 'md' }}>{item.title}</Typography>
+                  <Typography level="body-sm">{item.description}</Typography>
                 </ListItemContent>
               </ListItemButton>
             </ListItem>
@@ -62,6 +51,6 @@ export default function FlexRowRatio() {
           </React.Fragment>
         ))}
       </List>
-    </Sheet>
+    </Card>
   );
 }

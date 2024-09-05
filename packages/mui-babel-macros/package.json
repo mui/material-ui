@@ -1,0 +1,46 @@
+{
+  "name": "@mui/internal-babel-macros",
+  "version": "1.0.8",
+  "author": "MUI Team",
+  "description": "MUI Babel macros. This is an internal package not meant for general use.",
+  "main": "./MuiError.macro.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mui/material-ui.git",
+    "directory": "packages/mui-babel-macros"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mui/material-ui/issues"
+  },
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/mui-org"
+  },
+  "scripts": {
+    "release:publish": "pnpm publish --tag latest",
+    "release:publish:dry-run": "pnpm publish --tag latest --registry=\"http://localhost:4873/\"",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-babel-macros/**/*.test.{js,ts,tsx}'"
+  },
+  "dependencies": {
+    "@babel/helper-module-imports": "^7.24.7",
+    "@babel/runtime": "^7.25.0",
+    "babel-plugin-macros": "^3.1.0"
+  },
+  "devDependencies": {
+    "@mui/internal-babel-macros": "workspace:*",
+    "@types/babel-plugin-macros": "^3.1.3",
+    "babel-plugin-tester": "^11.0.4",
+    "chai": "^4.5.0"
+  },
+  "peerDependencies": {
+    "@mui/utils": "^5.0.0"
+  },
+  "sideEffects": false,
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

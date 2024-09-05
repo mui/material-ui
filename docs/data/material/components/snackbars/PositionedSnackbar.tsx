@@ -1,8 +1,10 @@
 import * as React from 'react';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
 
-export interface State extends SnackbarOrigin {
+interface State extends SnackbarOrigin {
   open: boolean;
 }
 
@@ -15,7 +17,7 @@ export default function PositionedSnackbar() {
   const { vertical, horizontal, open } = state;
 
   const handleClick = (newState: SnackbarOrigin) => () => {
-    setState({ open: true, ...newState });
+    setState({ ...newState, open: true });
   };
 
   const handleClose = () => {
@@ -24,59 +26,43 @@ export default function PositionedSnackbar() {
 
   const buttons = (
     <React.Fragment>
-      <Button
-        onClick={handleClick({
-          vertical: 'top',
-          horizontal: 'center',
-        })}
-      >
-        Top-Center
-      </Button>
-      <Button
-        onClick={handleClick({
-          vertical: 'top',
-          horizontal: 'right',
-        })}
-      >
-        Top-Right
-      </Button>
-      <Button
-        onClick={handleClick({
-          vertical: 'bottom',
-          horizontal: 'right',
-        })}
-      >
-        Bottom-Right
-      </Button>
-      <Button
-        onClick={handleClick({
-          vertical: 'bottom',
-          horizontal: 'center',
-        })}
-      >
-        Bottom-Center
-      </Button>
-      <Button
-        onClick={handleClick({
-          vertical: 'bottom',
-          horizontal: 'left',
-        })}
-      >
-        Bottom-Left
-      </Button>
-      <Button
-        onClick={handleClick({
-          vertical: 'top',
-          horizontal: 'left',
-        })}
-      >
-        Top-Left
-      </Button>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Button onClick={handleClick({ vertical: 'top', horizontal: 'center' })}>
+          Top-Center
+        </Button>
+      </Box>
+      <Grid container sx={{ justifyContent: 'center' }}>
+        <Grid item xs={6}>
+          <Button onClick={handleClick({ vertical: 'top', horizontal: 'left' })}>
+            Top-Left
+          </Button>
+        </Grid>
+        <Grid item xs={6} sx={{ textAlign: 'right' }}>
+          <Button onClick={handleClick({ vertical: 'top', horizontal: 'right' })}>
+            Top-Right
+          </Button>
+        </Grid>
+        <Grid item xs={6}>
+          <Button onClick={handleClick({ vertical: 'bottom', horizontal: 'left' })}>
+            Bottom-Left
+          </Button>
+        </Grid>
+        <Grid item xs={6} sx={{ textAlign: 'right' }}>
+          <Button onClick={handleClick({ vertical: 'bottom', horizontal: 'right' })}>
+            Bottom-Right
+          </Button>
+        </Grid>
+      </Grid>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Button onClick={handleClick({ vertical: 'bottom', horizontal: 'center' })}>
+          Bottom-Center
+        </Button>
+      </Box>
     </React.Fragment>
   );
 
   return (
-    <div>
+    <Box sx={{ width: 500 }}>
       {buttons}
       <Snackbar
         anchorOrigin={{ vertical, horizontal }}
@@ -85,6 +71,6 @@ export default function PositionedSnackbar() {
         message="I love snacks"
         key={vertical + horizontal}
       />
-    </div>
+    </Box>
   );
 }

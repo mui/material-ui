@@ -1,20 +1,21 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Drawer component
 components: Drawer, SwipeableDrawer
 githubLabel: 'component: drawer'
 materialDesign: https://m2.material.io/components/navigation-drawer
+githubSource: packages/mui-material/src/Drawer
 ---
 
 # Drawer
 
-<p class="description">Navigation drawers provide access to destinations in your app. Side sheets are surfaces containing supplementary content that are anchored to the left or right edge of the screen.</p>
+<p class="description">The navigation drawers (or "sidebars") provide ergonomic access to destinations in a site or app functionality such as switching accounts.</p>
 
-Navigation drawers (or "sidebars") provide access to destinations and app functionality, such as switching accounts. They can either be permanently on-screen or controlled by a navigation menu icon.
+A navigation drawer can either be permanently on-screen or controlled by a navigation menu icon.
 
 [Side sheets](https://m2.material.io/components/sheets-side) are supplementary surfaces primarily used on tablet and desktop.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Temporary drawer
 
@@ -24,6 +25,14 @@ The Drawer can be cancelled by clicking the overlay or pressing the Esc key.
 It closes when an item is selected, handled by controlling the `open` prop.
 
 {{"demo": "TemporaryDrawer.js"}}
+
+### Anchor
+
+Use the `anchor` prop to specify which side of the screen the Drawer should originate from.
+
+The default value is `left`.
+
+{{"demo": "AnchorTemporaryDrawer.js"}}
 
 ### Swipeable
 
@@ -126,3 +135,11 @@ Apps focused on information consumption that use a left-to-right hierarchy.
 Apps focused on productivity that require balance across the screen.
 
 {{"demo": "ClippedDrawer.js", "iframe": true}}
+
+## Experimental APIs
+
+### DashboardLayout
+
+The [DashboardLayout](https://mui.com/toolpad/core/react-dashboard-layout/) component from `@toolpad/core` is the starting point for dashboarding applications. It takes care of application layout, theming, navigation, and more. An example usage of this component:
+
+{{"demo": "../app-bar/DashboardLayoutBasic.js", "height": 400, "iframe": true, "hideToolbar": true}}

@@ -1,9 +1,11 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
+import useSlot from '../utils/useSlot';
 import Fade from '../Fade';
 import { getBackdropUtilityClass } from './backdropClasses';
 
@@ -25,7 +27,7 @@ const BackdropRoot = styled('div', {
 
     return [styles.root, ownerState.invisible && styles.invisible];
   },
-})(({ ownerState }) => ({
+})({
   position: 'fixed',
   display: 'flex',
   alignItems: 'center',
@@ -36,26 +38,30 @@ const BackdropRoot = styled('div', {
   left: 0,
   backgroundColor: 'rgba(0, 0, 0, 0.5)',
   WebkitTapHighlightColor: 'transparent',
-  ...(ownerState.invisible && {
-    backgroundColor: 'transparent',
-  }),
-}));
+  variants: [
+    {
+      props: { invisible: true },
+      style: {
+        backgroundColor: 'transparent',
+      },
+    },
+  ],
+});
 
 const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiBackdrop' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiBackdrop' });
   const {
     children,
-    component = 'div',
-    components = {},
-    componentsProps = {},
     className,
+    component = 'div',
     invisible = false,
     open,
+    components = {},
+    componentsProps = {},
     slotProps = {},
     slots = {},
+    TransitionComponent: TransitionComponentProp,
     transitionDuration,
-    // eslint-disable-next-line react/prop-types
-    TransitionComponent = Fade,
     ...other
   } = props;
 
@@ -67,30 +73,46 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootSlotProps = slotProps.root ?? componentsProps.root;
+  const backwardCompatibleSlots = {
+    transition: TransitionComponentProp,
+    root: components.Root,
+    ...slots,
+  };
+  const backwardCompatibleSlotProps = { ...componentsProps, ...slotProps };
+  const externalForwardedProps = {
+    slots: backwardCompatibleSlots,
+    slotProps: backwardCompatibleSlotProps,
+  };
+
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType: BackdropRoot,
+    externalForwardedProps,
+    className: clsx(classes.root, className),
+    ownerState,
+  });
+
+  const [TransitionSlot, transitionProps] = useSlot('transition', {
+    elementType: Fade,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  delete transitionProps.ownerState;
 
   return (
-    <TransitionComponent in={open} timeout={transitionDuration} {...other}>
-      <BackdropRoot
-        aria-hidden
-        {...rootSlotProps}
-        as={slots.root ?? components.Root ?? component}
-        className={clsx(classes.root, className, rootSlotProps?.className)}
-        ownerState={{ ...ownerState, ...rootSlotProps?.ownerState }}
-        classes={classes}
-        ref={ref}
-      >
+    <TransitionSlot in={open} timeout={transitionDuration} {...other} {...transitionProps}>
+      <RootSlot aria-hidden {...rootProps} classes={classes} ref={ref}>
         {children}
-      </BackdropRoot>
-    </TransitionComponent>
+      </RootSlot>
+    </TransitionSlot>
   );
 });
 
 Backdrop.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -111,8 +133,7 @@ Backdrop.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated Use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -123,8 +144,7 @@ Backdrop.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -142,25 +162,20 @@ Backdrop.propTypes /* remove-proptypes */ = {
    */
   open: PropTypes.bool.isRequired,
   /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
+   * The props used for each slot inside.
    * @default {}
    */
   slotProps: PropTypes.shape({
-    root: PropTypes.object,
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
-   *
    * @default {}
    */
   slots: PropTypes.shape({
     root: PropTypes.elementType,
+    transition: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
@@ -170,6 +185,12 @@ Backdrop.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * The component used for the transition.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Fade
+   */
+  TransitionComponent: PropTypes.elementType,
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.

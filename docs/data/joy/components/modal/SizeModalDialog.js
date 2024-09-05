@@ -4,18 +4,19 @@ import Stack from '@mui/joy/Stack';
 import Modal from '@mui/joy/Modal';
 import ModalClose from '@mui/joy/ModalClose';
 import ModalDialog from '@mui/joy/ModalDialog';
-import Typography from '@mui/joy/Typography';
+import DialogTitle from '@mui/joy/DialogTitle';
+import DialogContent from '@mui/joy/DialogContent';
 
 export default function SizeModalDialog() {
-  const [open, setOpen] = React.useState('');
+  const [size, setSize] = React.useState(undefined);
   return (
     <React.Fragment>
-      <Stack direction="row" alignItems="center" spacing={1}>
+      <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
         <Button
           variant="outlined"
           color="neutral"
           size="sm"
-          onClick={() => setOpen('sm')}
+          onClick={() => setSize('sm')}
         >
           Small
         </Button>
@@ -23,7 +24,7 @@ export default function SizeModalDialog() {
           variant="outlined"
           color="neutral"
           size="md"
-          onClick={() => setOpen('md')}
+          onClick={() => setSize('md')}
         >
           Medium
         </Button>
@@ -31,24 +32,16 @@ export default function SizeModalDialog() {
           variant="outlined"
           color="neutral"
           size="lg"
-          onClick={() => setOpen('lg')}
+          onClick={() => setSize('lg')}
         >
           Large
         </Button>
       </Stack>
-      <Modal open={!!open} onClose={() => setOpen('')}>
-        <ModalDialog
-          aria-labelledby="size-modal-title"
-          aria-describedby="size-modal-description"
-          size={open || undefined}
-        >
+      <Modal open={!!size} onClose={() => setSize(undefined)}>
+        <ModalDialog size={size}>
           <ModalClose />
-          <Typography id="size-modal-title" component="h2">
-            Modal Dialog
-          </Typography>
-          <Typography id="size-modal-description" level="inherit">
-            This is a `{open}` modal dialog.
-          </Typography>
+          <DialogTitle>Modal Dialog</DialogTitle>
+          <DialogContent>This is a `{size}` modal dialog.</DialogContent>
         </ModalDialog>
       </Modal>
     </React.Fragment>

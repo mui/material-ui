@@ -1,15 +1,14 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import GradientText from 'docs/src/components/typography/GradientText';
+import Grid from '@mui/material/Grid2';
 import InvertColorsRoundedIcon from '@mui/icons-material/InvertColorsRounded';
 import HandymanRoundedIcon from '@mui/icons-material/HandymanRounded';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
 import AccessibilityNewRounded from '@mui/icons-material/AccessibilityNewRounded';
+import GradientText from 'docs/src/components/typography/GradientText';
+import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import { InfoCard } from '@mui/docs/InfoCard';
 
 const content = [
   {
@@ -28,52 +27,35 @@ const content = [
     icon: <ArticleRoundedIcon fontSize="small" color="primary" />,
     title: 'Unrivaled documentation',
     description:
-      'The answer to your problem can be found in our documentation. How can we be so sure? Because our docs boast over 2,000 contributors.',
+      'The answer to your problem can be found in our docs. How can we be so sure? Because our docs boast over 2,000 contributors.',
   },
   {
     icon: <AccessibilityNewRounded fontSize="small" color="primary" />,
     title: 'Dedicated to accessibility',
     description:
-      "We believe in building for everyone. That's why accessibility is one of our highest priorities with every new feature we ship.",
+      "We believe in building for everyone. That's why accessibility is a high priority with every new feature we ship.",
   },
 ];
 
-function ValueProposition() {
+export default function ValueProposition() {
   return (
-    <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
+    <Section>
       <SectionHeadline
         overline="Why build with MUI?"
         title={
-          <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
-            A <GradientText>delightful</GradientText> experience for you and your users
+          <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 } }}>
+            A <GradientText>delightful experience</GradientText> <br />
+            for you and your users
           </Typography>
         }
       />
-      <Grid container spacing={2}>
+      <Grid container spacing={3}>
         {content.map(({ icon, title, description }) => (
-          <Grid key={title} item xs={12} sm={6} md={3}>
-            <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                {icon}
-                <Typography
-                  fontWeight="bold"
-                  component="h3"
-                  color="text.primary"
-                  variant="body2"
-                  sx={{ ml: 1 }}
-                >
-                  {title}
-                </Typography>
-              </Box>
-              <Typography variant="body2" color="text.secondary">
-                {description}
-              </Typography>
-            </Paper>
+          <Grid key={title} size={{ xs: 12, sm: 6, lg: 3 }}>
+            <InfoCard title={title} icon={icon} description={description} />
           </Grid>
         ))}
       </Grid>
-    </Container>
+    </Section>
   );
 }
-
-export default ValueProposition;

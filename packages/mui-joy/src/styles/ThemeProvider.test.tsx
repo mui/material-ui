@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider, useTheme } from '@mui/joy/styles';
 import defaultTheme from './defaultTheme';
 
 describe('[Joy] ThemeProvider', () => {
   const { render } = createRenderer();
+
   it('can render component without ThemeProvider', () => {
     function Text() {
       const theme = useTheme();
@@ -28,6 +29,6 @@ describe('[Joy] ThemeProvider', () => {
       </ThemeProvider>,
     );
 
-    expect(container.firstChild?.textContent).to.equal('100rem');
+    expect(container.firstChild?.textContent).to.equal('var(--joy-fontSize-md, 100rem)');
   });
 });

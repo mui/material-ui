@@ -4,32 +4,37 @@ import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ImageListItemClasses } from './imageListItemClasses';
 
-export interface ImageListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
-  props: P & {
-    /**
-     * The content of the component, normally an `<img>`.
-     */
-    children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<ImageListItemClasses>;
-    /**
-     * Width of the item in number of grid columns.
-     * @default 1
-     */
-    cols?: number;
-    /**
-     * Height of the item in number of grid rows.
-     * @default 1
-     */
-    rows?: number;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
-  };
-  defaultComponent: D;
+export interface ImageListItemOwnProps {
+  /**
+   * The content of the component, normally an `<img>`.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<ImageListItemClasses>;
+  /**
+   * Width of the item in number of grid columns.
+   * @default 1
+   */
+  cols?: number;
+  /**
+   * Height of the item in number of grid rows.
+   * @default 1
+   */
+  rows?: number;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+}
+
+export interface ImageListItemTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'li',
+> {
+  props: AdditionalProps & ImageListItemOwnProps;
+  defaultComponent: RootComponent;
 }
 /**
  *
@@ -44,8 +49,10 @@ export interface ImageListItemTypeMap<P = {}, D extends React.ElementType = 'li'
 declare const ImageListItem: OverridableComponent<ImageListItemTypeMap>;
 
 export type ImageListItemProps<
-  D extends React.ElementType = ImageListItemTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ImageListItemTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ImageListItemTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<ImageListItemTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default ImageListItem;

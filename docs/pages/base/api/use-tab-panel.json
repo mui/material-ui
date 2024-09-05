@@ -1,7 +1,0 @@
-{
-  "parameters": {},
-  "returnValue": {},
-  "name": "useTabPanel",
-  "filename": "/packages/mui-base/src/TabPanelUnstyled/useTabPanel.ts",
-  "demos": "<ul><li><a href=\"/base/react-tabs/#hooks\">Unstyled Tabs</a></li></ul>"
-}

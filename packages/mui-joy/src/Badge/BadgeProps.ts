@@ -5,6 +5,19 @@ import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type BadgeSlot = 'root' | 'badge';
 
+export interface BadgeSlots {
+  /**
+   * The component that renders the root.
+   * @default 'span'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the badge.
+   * @default 'span'
+   */
+  badge?: React.ElementType;
+}
+
 export interface BadgePropsVariantOverrides {}
 
 export interface BadgePropsColorOverrides {}
@@ -17,7 +30,7 @@ export interface BadgeOrigin {
 }
 
 export type BadgeSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  BadgeSlot,
+  BadgeSlots,
   {
     root: SlotProps<'div', {}, BadgeOwnerState>;
     badge: SlotProps<'div', {}, BadgeOwnerState>;
@@ -37,6 +50,7 @@ export interface BadgeTypeMap<D extends React.ElementType = 'span', P = {}> {
       anchorOrigin?: BadgeOrigin;
       /**
        * The content rendered within the badge.
+       * @default ''
        */
       badgeContent?: React.ReactNode;
       /**
@@ -78,7 +92,7 @@ export interface BadgeTypeMap<D extends React.ElementType = 'span', P = {}> {
        */
       sx?: SxProps;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'solid'
        */
       variant?: OverridableStringUnion<VariantProp, BadgePropsVariantOverrides>;

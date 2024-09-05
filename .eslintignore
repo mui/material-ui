@@ -1,15 +1,16 @@
 /.git
 /.yarn
-/benchmark/**/dist
 /coverage
 /docs/export
 /docs/pages/playground/
-/examples/create-react-app*/src/serviceWorker.js
-/examples/gatsby/public/
-/examples/preact/config
-/examples/preact/scripts
+/examples/material-ui-cra*/src/serviceWorker.js
+/examples/material-ui-gatsby/public/
+/examples/material-ui-preact/config
+/examples/material-ui-preact/scripts
+/examples/material-ui-nextjs/src
 /packages/mui-codemod/lib
 /packages/mui-codemod/src/*/*.test/*
+/packages/mui-codemod/src/**/test-cases/*
 /packages/mui-icons-material/fixtures
 /packages/mui-icons-material/legacy
 /packages/mui-icons-material/lib
@@ -18,7 +19,7 @@
 /packages/mui-icons-material/templateSvgIcon.js
 /packages/mui-utils/macros/__fixtures__/
 # Ignore fixtures
-/packages/typescript-to-proptypes/test/*/*
+/packages-internal/scripts/typescript-to-proptypes/test/*/*
 /test/bundling/fixtures/**/*.fixture.js
 # just an import that reports eslint errors depending on whether the fixture (which is not checked in) exists
 /test/bundling/fixtures/create-react-app/src/index.js
@@ -27,8 +28,10 @@
 /tmp
 .next
 build
+dist
 node_modules
 .nyc_output
+pnpm-lock.yaml
 
 # These come from crowdin.
 # If we would commit changes crowdin would immediately try to revert.

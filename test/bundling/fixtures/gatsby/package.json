@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "yarn gatsby build && concurrently --success first --kill-others \"yarn gatsby serve\" \"node testGatsbyIntegration\""
+    "start": "pnpm gatsby build && concurrently --success first --kill-others \"pnpm gatsby serve\" \"node testGatsbyIntegration\""
   },
   "dependencies": {
     "@emotion/core": "11.0.0",
@@ -16,13 +16,13 @@
     "@mui/styles": "5.10.3",
     "@mui/system": "5.10.5",
     "@mui/utils": "5.10.3",
-    "gatsby": "4.23.0",
+    "gatsby": "4.25.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-is": "18.2.0"
   },
   "devDependencies": {
     "concurrently": "7.4.0",
-    "playwright": "1.29.2"
+    "playwright": "1.46.1"
   }
 }

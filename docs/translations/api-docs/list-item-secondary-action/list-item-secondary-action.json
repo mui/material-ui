@@ -1,16 +1,21 @@
 {
   "componentDescription": "Must be used as the last child of ListItem to function properly.",
+  "deprecationInfo": "Use the <code>secondaryAction</code> prop in the <code>ListItem</code> component instead. This component will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details.",
   "propDescriptions": {
-    "children": "The content of the component, normally an <code>IconButton</code> or selection control.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
+    "children": {
+      "description": "The content of the component, normally an <code>IconButton</code> or selection control."
+    },
+    "classes": { "description": "Override or extend the styles applied to the component." },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
+    }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
     "disableGutters": {
       "description": "Styles applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "the parent <code>ListItem</code> has <code>disableGutters={true}</code>"
-    }
+    },
+    "root": { "description": "Styles applied to the root element." }
   }
 }

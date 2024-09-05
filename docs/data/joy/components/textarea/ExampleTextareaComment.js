@@ -13,7 +13,7 @@ import FormatItalic from '@mui/icons-material/FormatItalic';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import Check from '@mui/icons-material/Check';
 
-export default function TextareaValidator() {
+export default function ExampleTextareaComment() {
   const [italic, setItalic] = React.useState(false);
   const [fontWeight, setFontWeight] = React.useState('normal');
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -48,7 +48,7 @@ export default function TextareaValidator() {
               onClose={() => setAnchorEl(null)}
               size="sm"
               placement="bottom-start"
-              sx={{ '--List-decorator-size': '24px' }}
+              sx={{ '--ListItemDecorator-size': '24px' }}
             >
               {['200', 'normal', 'bold'].map((weight) => (
                 <MenuItem
@@ -78,11 +78,13 @@ export default function TextareaValidator() {
             <Button sx={{ ml: 'auto' }}>Send</Button>
           </Box>
         }
-        sx={{
-          minWidth: 300,
-          fontWeight,
-          fontStyle: italic ? 'italic' : 'initial',
-        }}
+        sx={[
+          {
+            minWidth: 300,
+            fontWeight,
+          },
+          italic ? { fontStyle: 'italic' } : { fontStyle: 'initial' },
+        ]}
       />
     </FormControl>
   );

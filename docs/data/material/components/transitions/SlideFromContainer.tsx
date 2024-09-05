@@ -4,27 +4,26 @@ import Switch from '@mui/material/Switch';
 import Paper from '@mui/material/Paper';
 import Slide from '@mui/material/Slide';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { Theme } from '@mui/material/styles';
 
 const icon = (
   <Paper sx={{ m: 1, width: 100, height: 100 }} elevation={4}>
-    <Box component="svg" sx={{ width: 100, height: 100 }}>
+    <svg>
       <Box
         component="polygon"
-        sx={{
-          fill: (theme: Theme) => theme.palette.common.white,
-          stroke: (theme) => theme.palette.divider,
-          strokeWidth: 1,
-        }}
         points="0,100 50,00, 100,100"
+        sx={(theme) => ({
+          fill: theme.palette.common.white,
+          stroke: theme.palette.divider,
+          strokeWidth: 1,
+        })}
       />
-    </Box>
+    </svg>
   </Paper>
 );
 
 export default function SlideFromContainer() {
   const [checked, setChecked] = React.useState(false);
-  const containerRef = React.useRef(null);
+  const containerRef = React.useRef<HTMLElement>(null);
 
   const handleChange = () => {
     setChecked((prev) => !prev);
@@ -33,23 +32,19 @@ export default function SlideFromContainer() {
   return (
     <Box
       sx={{
-        height: 180,
         width: 240,
-        display: 'flex',
-        padding: 2,
-        borderRadius: 1,
-        bgcolor: (theme) =>
-          theme.palette.mode === 'light' ? 'grey.100' : 'grey.900',
-        overflow: 'hidden',
+        borderRadius: 2,
+        border: '1px solid',
+        borderColor: 'divider',
+        backgroundColor: 'background.default',
       }}
-      ref={containerRef}
     >
-      <Box sx={{ width: 200 }}>
+      <Box sx={{ p: 2, height: 200, overflow: 'hidden' }} ref={containerRef}>
         <FormControlLabel
           control={<Switch checked={checked} onChange={handleChange} />}
           label="Show from target"
         />
-        <Slide direction="up" in={checked} container={containerRef.current}>
+        <Slide in={checked} container={containerRef.current}>
           {icon}
         </Slide>
       </Box>

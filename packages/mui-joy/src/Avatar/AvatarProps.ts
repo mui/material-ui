@@ -5,12 +5,30 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type AvatarSlot = 'root' | 'img' | 'fallback';
 
+export interface AvatarSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the img.
+   * @default 'img'
+   */
+  img?: React.ElementType;
+  /**
+   * The component that renders the fallback.
+   * @default 'svg'
+   */
+  fallback?: React.ElementType;
+}
+
 export interface AvatarPropsColorOverrides {}
 export interface AvatarPropsVariantOverrides {}
 export interface AvatarPropsSizeOverrides {}
 
 export type AvatarSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  AvatarSlot,
+  AvatarSlots,
   {
     root: SlotProps<'div', {}, AvatarOwnerState>;
     img: SlotProps<'img', {}, AvatarOwnerState>;
@@ -56,7 +74,7 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       sx?: SxProps;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'soft'
        */
       variant?: OverridableStringUnion<VariantProp, AvatarPropsVariantOverrides>;

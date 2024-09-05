@@ -2,7 +2,7 @@
   "props": {
     "autoComplete": { "type": { "name": "string" } },
     "autoFocus": { "type": { "name": "bool" }, "default": "false" },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
@@ -13,13 +13,29 @@
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "error": { "type": { "name": "bool" }, "default": "false" },
-    "FormHelperTextProps": { "type": { "name": "object" } },
+    "FormHelperTextProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.formHelperText</code> instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
     "fullWidth": { "type": { "name": "bool" }, "default": "false" },
     "helperText": { "type": { "name": "node" } },
     "id": { "type": { "name": "string" } },
-    "InputLabelProps": { "type": { "name": "object" } },
-    "inputProps": { "type": { "name": "object" } },
-    "InputProps": { "type": { "name": "object" } },
+    "InputLabelProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.inputLabel</code> instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
+    "inputProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.htmlInput</code> instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
+    "InputProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.input</code> instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
     "inputRef": { "type": { "name": "custom", "description": "ref" } },
     "label": { "type": { "name": "node" } },
     "margin": {
@@ -33,23 +49,45 @@
     "minRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "multiline": { "type": { "name": "bool" }, "default": "false" },
     "name": { "type": { "name": "string" } },
-    "onChange": { "type": { "name": "func" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": { "type": "function(event: object) => void", "describedArgs": ["event"] }
+    },
     "placeholder": { "type": { "name": "string" } },
     "required": { "type": { "name": "bool" }, "default": "false" },
     "rows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "select": { "type": { "name": "bool" }, "default": "false" },
-    "SelectProps": { "type": { "name": "object" } },
+    "SelectProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.select</code> instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
     "size": {
       "type": {
         "name": "union",
         "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
       }
     },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ formHelperText?: func<br>&#124;&nbsp;object, htmlInput?: func<br>&#124;&nbsp;object, input?: func<br>&#124;&nbsp;object, inputLabel?: func<br>&#124;&nbsp;object, select?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ formHelperText?: elementType, htmlInput?: elementType, input?: elementType, inputLabel?: elementType, select?: elementType }"
+      },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "type": { "type": { "name": "string" } },
     "value": { "type": { "name": "any" } },
@@ -62,9 +100,53 @@
     }
   },
   "name": "TextField",
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTextField" },
+  "imports": [
+    "import TextField from '@mui/material/TextField';",
+    "import { TextField } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "input",
+      "description": "The component that renders the input.",
+      "default": "OutlinedInput",
+      "class": null
+    },
+    {
+      "name": "inputLabel",
+      "description": "The component that renders the input's label.",
+      "default": "InputLabel",
+      "class": null
+    },
+    {
+      "name": "htmlInput",
+      "description": "The html input element.",
+      "default": "'input'",
+      "class": null
+    },
+    {
+      "name": "formHelperText",
+      "description": "The component that renders the helper text.",
+      "default": "FormHelperText",
+      "class": null
+    },
+    {
+      "name": "select",
+      "description": "The component that renders the select.",
+      "default": "Select",
+      "class": null
+    }
+  ],
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiTextField-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
-  "forwardsRefTo": "HTMLDivElement",
+  "themeDefaultProps": true,
+  "muiName": "MuiTextField",
   "filename": "/packages/mui-material/src/TextField/TextField.js",
   "inheritance": { "component": "FormControl", "pathname": "/material-ui/api/form-control/" },
   "demos": "<ul><li><a href=\"/material-ui/react-autocomplete/\">Autocomplete</a></li>\n<li><a href=\"/material-ui/react-text-field/\">Text Field</a></li></ul>",

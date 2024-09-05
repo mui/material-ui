@@ -1,12 +1,16 @@
 import * as React from 'react';
-import Paper from '@mui/material/Paper';
-import Divider from '@mui/material/Divider';
-import { styled, Stack } from '@mui/system';
+import Box from '@mui/system/Box';
+import Stack from '@mui/system/Stack';
+import { styled } from '@mui/system';
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+const Item = styled('div')(({ theme }) => ({
+  backgroundColor: '#fff',
   padding: theme.spacing(1),
   textAlign: 'center',
+  borderRadius: 4,
+  ...theme.applyStyles('dark', {
+    backgroundColor: '#262B32',
+  }),
 }));
 
 export default function DividerStack() {
@@ -14,7 +18,17 @@ export default function DividerStack() {
     <div>
       <Stack
         direction="row"
-        divider={<Divider orientation="vertical" flexItem />}
+        divider={
+          <Box
+            component="hr"
+            sx={(theme) => ({
+              border: `1px solid ${'#fff'}`,
+              ...theme.applyStyles('dark', {
+                border: `1px solid ${'#262B32'}`,
+              }),
+            })}
+          />
+        }
         spacing={2}
       >
         <Item>Item 1</Item>

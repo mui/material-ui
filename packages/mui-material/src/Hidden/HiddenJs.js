@@ -1,6 +1,7 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { exactProp } from '@mui/utils';
+import exactProp from '@mui/utils/exactProp';
 import withWidth, { isWidthDown, isWidthUp } from './withWidth';
 import useTheme from '../styles/useTheme';
 

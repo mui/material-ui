@@ -6,8 +6,30 @@ import {
   OverrideProps,
 } from '@mui/types';
 import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
-export type IconButtonSlot = 'root';
+export type IconButtonSlot = 'root' | 'loadingIndicator';
+
+export interface IconButtonSlots {
+  /**
+   * The component that renders the root.
+   * @default 'button'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the loading indicator.
+   * @default 'span'
+   */
+  loadingIndicator?: React.ElementType;
+}
+
+export type IconButtonSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  IconButtonSlots,
+  {
+    root: SlotProps<'button', {}, IconButtonOwnerState>;
+    loadingIndicator: SlotProps<'span', {}, IconButtonOwnerState>;
+  }
+>;
 
 export interface IconButtonPropsVariantOverrides {}
 export interface IconButtonPropsColorOverrides {}
@@ -23,7 +45,7 @@ export interface IconButtonTypeMap<P = {}, D extends React.ElementType = 'button
     }>;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
-     * @default 'primary'
+     * @default 'neutral'
      */
     color?: OverridableStringUnion<ColorPaletteProp, IconButtonPropsColorOverrides>;
     /**
@@ -42,6 +64,7 @@ export interface IconButtonTypeMap<P = {}, D extends React.ElementType = 'button
     focusVisibleClassName?: string;
     /**
      * The size of the component.
+     * @default 'md'
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', IconButtonPropsSizeOverrides>;
     /**
@@ -53,11 +76,22 @@ export interface IconButtonTypeMap<P = {}, D extends React.ElementType = 'button
      */
     tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
     /**
-     * The variant to use.
-     * @default 'soft'
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+     * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, IconButtonPropsVariantOverrides>;
-  };
+    /**
+     * If `true`, the loading indicator is shown and the icon button becomes disabled.
+     * @default false
+     */
+    loading?: boolean;
+    /**
+     * The node should contain an element with `role="progressbar"` with an accessible name.
+     * By default we render a `CircularProgress` that is labelled by the button itself.
+     * @default <CircularProgress />
+     */
+    loadingIndicator?: React.ReactNode;
+  } & IconButtonSlotsAndSlotProps;
   defaultComponent: D;
 }
 
@@ -78,9 +112,13 @@ export interface IconButtonOwnerState extends ApplyColorInversion<IconButtonProp
    * If `true`, the element's focus is visible.
    */
   focusVisible?: boolean;
+  /**
+   * The explicit `size` provided to the instance.
+   */
+  instanceSize?: OverridableStringUnion<'sm' | 'md' | 'lg', IconButtonPropsSizeOverrides>;
 }
 
 export type ExtendIconButton<M extends OverridableTypeMap> = ((
   props: OverrideProps<ExtendIconButtonTypeMap<M>, 'a'>,
-) => JSX.Element) &
+) => React.JSX.Element) &
   OverridableComponent<ExtendIconButtonTypeMap<M>>;

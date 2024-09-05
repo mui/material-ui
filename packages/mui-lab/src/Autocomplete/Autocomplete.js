@@ -1,12 +1,10 @@
+'use client';
 import * as React from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 
 let warnedOnce = false;
 
-/**
- * @ignore - do not document.
- */
-export default React.forwardRef(function DeprecatedAutocomplete(props, ref) {
+const warn = () => {
   if (!warnedOnce) {
     console.warn(
       [
@@ -19,6 +17,13 @@ export default React.forwardRef(function DeprecatedAutocomplete(props, ref) {
 
     warnedOnce = true;
   }
+};
+
+/**
+ * @ignore - do not document.
+ */
+export default React.forwardRef(function DeprecatedAutocomplete(props, ref) {
+  warn();
 
   return <Autocomplete ref={ref} {...props} />;
 });

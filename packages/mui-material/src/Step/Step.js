@@ -1,12 +1,13 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { integerPropType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import integerPropType from '@mui/utils/integerPropType';
+import composeClasses from '@mui/utils/composeClasses';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from './StepContext';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getStepUtilityClass } from './stepClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -32,19 +33,27 @@ const StepRoot = styled('div', {
       ownerState.completed && styles.completed,
     ];
   },
-})(({ ownerState }) => ({
-  ...(ownerState.orientation === 'horizontal' && {
-    paddingLeft: 8,
-    paddingRight: 8,
-  }),
-  ...(ownerState.alternativeLabel && {
-    flex: 1,
-    position: 'relative',
-  }),
-}));
+})({
+  variants: [
+    {
+      props: { orientation: 'horizontal' },
+      style: {
+        paddingLeft: 8,
+        paddingRight: 8,
+      },
+    },
+    {
+      props: { alternativeLabel: true },
+      style: {
+        flex: 1,
+        position: 'relative',
+      },
+    },
+  ],
+});
 
 const Step = React.forwardRef(function Step(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiStep' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiStep' });
   const {
     active: activeProp,
     children,
@@ -121,10 +130,10 @@ const Step = React.forwardRef(function Step(inProps, ref) {
 });
 
 Step.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Sets the step as active. Is passed to child components.
    */

@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
@@ -6,7 +7,6 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import useSlot from '../utils/useSlot';
 import styled from '../styles/styled';
-import { useColorInversion } from '../styles/ColorInversion';
 import Person from '../internal/svg-icons/Person';
 import { getAvatarUtilityClass } from './avatarClasses';
 import { AvatarProps, AvatarOwnerState, AvatarTypeMap } from './AvatarProps';
@@ -33,41 +33,40 @@ const AvatarRoot = styled('div', {
   name: 'JoyAvatar',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AvatarOwnerState }>(({ theme, ownerState }) => {
-  return [
-    {
-      ...(ownerState.size === 'sm' && {
-        width: `var(--Avatar-size, 2rem)`,
-        height: `var(--Avatar-size, 2rem)`,
-        fontSize: theme.vars.fontSize.sm,
-      }),
-      ...(ownerState.size === 'md' && {
-        width: `var(--Avatar-size, 2.5rem)`,
-        height: `var(--Avatar-size, 2.5rem)`,
-        fontSize: theme.vars.fontSize.md,
-      }),
-      ...(ownerState.size === 'lg' && {
-        width: `var(--Avatar-size, 3rem)`,
-        height: `var(--Avatar-size, 3rem)`,
-        fontSize: theme.vars.fontSize.lg,
-      }),
-      marginInlineStart: 'var(--Avatar-marginInlineStart)',
-      boxShadow: `var(--Avatar-ring)`,
-      fontFamily: theme.vars.fontFamily.body,
-      fontWeight: theme.vars.fontWeight.md,
-      position: 'relative',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      flexShrink: 0,
-      lineHeight: 1,
-      overflow: 'hidden',
-      borderRadius: 'var(--Avatar-radius, 50%)',
-      userSelect: 'none',
-    },
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
-  ];
-});
+})<{ ownerState: AvatarOwnerState }>(({ theme, ownerState }) => ({
+  '--Icon-color':
+    ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+      ? 'currentColor'
+      : theme.vars.palette.text.icon,
+  ...theme.typography[`title-${ownerState.size!}`],
+  ...(ownerState.size === 'sm' && {
+    width: `var(--Avatar-size, 2rem)`,
+    height: `var(--Avatar-size, 2rem)`,
+    fontSize: `calc(var(--Avatar-size, 2rem) * 0.4375)`, // default as 14px
+  }),
+  ...(ownerState.size === 'md' && {
+    width: `var(--Avatar-size, 2.5rem)`,
+    height: `var(--Avatar-size, 2.5rem)`,
+    fontSize: `calc(var(--Avatar-size, 2.5rem) * 0.4)`, // default as 16px
+  }),
+  ...(ownerState.size === 'lg' && {
+    width: `var(--Avatar-size, 3rem)`,
+    height: `var(--Avatar-size, 3rem)`,
+    fontSize: `calc(var(--Avatar-size, 3rem) * 0.375)`, // default as 18px
+  }),
+  marginInlineStart: 'var(--Avatar-marginInlineStart)',
+  boxShadow: `var(--Avatar-ring)`,
+  position: 'relative',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexShrink: 0,
+  lineHeight: 1,
+  overflow: 'hidden',
+  borderRadius: 'var(--Avatar-radius, 50%)',
+  userSelect: 'none',
+  ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+}));
 
 const AvatarImg = styled('img', {
   name: 'JoyAvatar',
@@ -77,7 +76,7 @@ const AvatarImg = styled('img', {
   width: '100%',
   height: '100%',
   textAlign: 'center',
-  // Handle non-square image. The property isn't supported by IE11.
+  // Handle non-square image.
   objectFit: 'cover',
   // Hide alt text.
   color: 'transparent',
@@ -136,7 +135,17 @@ function useLoaded({ crossOrigin, referrerPolicy, src, srcSet }: UseLoadedProps)
 
   return loaded;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Avatar](https://mui.com/joy-ui/react-avatar/)
+ * - [Skeleton](https://mui.com/joy-ui/react-skeleton/)
+ *
+ * API:
+ *
+ * - [Avatar API](https://mui.com/joy-ui/api/avatar/)
+ */
 const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const props = useThemeProps<typeof inProps & AvatarProps>({
     props: inProps,
@@ -153,11 +162,13 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     src,
     srcSet,
     children: childrenProp,
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const variant = inProps.variant || groupContext?.variant || variantProp;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color || groupContext?.color, colorProp);
+  const color = inProps.color || groupContext?.color || colorProp;
   const size = inProps.size || groupContext?.size || sizeProp;
 
   let children = null;
@@ -171,12 +182,13 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: classes.root,
     elementType: AvatarRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -188,14 +200,14 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     },
     className: classes.img,
     elementType: AvatarImg,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotFallback, fallbackProps] = useSlot('fallback', {
     className: classes.fallback,
     elementType: AvatarFallback,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -213,7 +225,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     children = <SlotImg {...imageProps} />;
   } else if (childrenProp != null) {
     children = childrenProp;
-  } else if (hasImg && alt) {
+  } else if (alt) {
     children = alt[0];
   } else {
     children = <SlotFallback {...fallbackProps} />;
@@ -223,10 +235,10 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
 }) as OverridableComponent<AvatarTypeMap>;
 
 Avatar.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Used in combination with `src` or `srcSet` to
    * provide an alt attribute for the rendered `img` element.
@@ -242,9 +254,14 @@ Avatar.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * The size of the component.
    * It accepts theme values between 'sm' and 'lg'.
@@ -254,6 +271,24 @@ Avatar.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['lg', 'md', 'sm']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    fallback: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    img: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    fallback: PropTypes.elementType,
+    img: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The `src` attribute for the `img` element.
    */
@@ -272,7 +307,7 @@ Avatar.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

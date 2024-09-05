@@ -14,25 +14,20 @@ export default function SizesList() {
         flexGrow: 1,
         display: 'flex',
         justifyContent: 'center',
-        gap: 6,
+        gap: 2,
         flexWrap: 'wrap',
         '& > *': { minWidth: 0, flexBasis: 200 },
       }}
     >
       {['sm', 'md', 'lg'].map((size) => (
-        <Box key={size}>
-          <Typography level="body3" mb={2}>
+        <div key={size}>
+          <Typography level="body-xs" sx={{ mb: 2 }}>
             <code>size=&quot;{size}&quot;</code>
           </Typography>
           <List
             size={size}
             variant="outlined"
-            sx={{
-              borderRadius: 'sm',
-              maxWidth: 300,
-              boxShadow: 'sm',
-              bgcolor: 'background.body',
-            }}
+            sx={{ maxWidth: 300, borderRadius: 'sm' }}
           >
             <ListItem>
               <ListItemButton>
@@ -49,7 +44,7 @@ export default function SizesList() {
               <ListItemButton>Settings</ListItemButton>
             </ListItem>
           </List>
-        </Box>
+        </div>
       ))}
     </Box>
   );

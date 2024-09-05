@@ -1,17 +1,45 @@
 import * as React from 'react';
-import { UseSwitchParameters } from '@mui/base/SwitchUnstyled';
+import { UseSwitchParameters } from '@mui/base/useSwitch';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type CheckboxSlot = 'root' | 'checkbox' | 'action' | 'input' | 'label';
 
+export interface CheckboxSlots {
+  /**
+   * The component that renders the root.
+   * @default 'span'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the checkbox.
+   * @default 'span'
+   */
+  checkbox?: React.ElementType;
+  /**
+   * The component that renders the action.
+   * @default 'span'
+   */
+  action?: React.ElementType;
+  /**
+   * The component that renders the input.
+   * @default 'input'
+   */
+  input?: React.ElementType;
+  /**
+   * The component that renders the label.
+   * @default 'label'
+   */
+  label?: React.ElementType;
+}
+
 export interface CheckboxPropsVariantOverrides {}
 export interface CheckboxPropsColorOverrides {}
 export interface CheckboxPropsSizeOverrides {}
 
 export type CheckboxSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  CheckboxSlot,
+  CheckboxSlots,
   {
     root: SlotProps<'span', {}, CheckboxOwnerState>;
     checkbox: SlotProps<'span', {}, CheckboxOwnerState>;
@@ -54,7 +82,7 @@ export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
       indeterminate?: boolean;
       /**
        * The icon to display when the component is indeterminate.
-       * @default <IndeterminateCheckBoxIcon />
+       * @default <IndeterminateIcon />
        */
       indeterminateIcon?: React.ReactNode;
       /**
@@ -81,7 +109,7 @@ export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
        */
       sx?: SxProps;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'solid'
        */
       variant?: OverridableStringUnion<VariantProp, CheckboxPropsVariantOverrides>;

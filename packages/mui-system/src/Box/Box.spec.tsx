@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Theme } from '@mui/system';
+import { Box, styled } from '@mui/system';
 
 interface TestProps {
   test?: string;
@@ -87,7 +87,7 @@ function CssVariablesWithNestedSelectors() {
   />;
 }
 
-// The fill prop conflicts with the Array's fill functiom.
+// The fill prop conflicts with the Array's fill function.
 // This test ensures that the callback value inside the sx prop
 // can be used without conflicting with the Array's fill function
 function TestFillPropCallback() {
@@ -103,4 +103,21 @@ function TestFillPropCallback() {
       },
     ]}
   />;
+}
+
+// eslint-disable-next-line material-ui/no-styled-box
+const StyledBox = styled(Box)`
+  color: white;
+` as typeof Box;
+
+function StyledBoxWithSx() {
+  return (
+    <StyledBox component="span" sx={{ width: 300 }}>
+      Box
+    </StyledBox>
+  );
+}
+
+function LogicalPropertiesTest() {
+  <Box marginInline={1} paddingBlockEnd="10px" />;
 }

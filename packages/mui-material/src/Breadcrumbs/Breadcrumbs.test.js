@@ -2,19 +2,21 @@ import * as React from 'react';
 import { expect } from 'chai';
 import {
   act,
-  describeConformance,
   createRenderer,
   screen,
-  strictModeDoubleLoggingSupressed,
-} from 'test/utils';
+  strictModeDoubleLoggingSuppressed,
+} from '@mui/internal-test-utils';
 import Breadcrumbs, { breadcrumbsClasses as classes } from '@mui/material/Breadcrumbs';
+import Typography from '@mui/material/Typography';
+import FirstPageIcon from '../internal/svg-icons/FirstPage';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Breadcrumbs />', () => {
   const { render } = createRenderer();
 
   describeConformance(<Breadcrumbs>Conformance?</Breadcrumbs>, () => ({
     classes,
-    inheritComponent: 'nav',
+    inheritComponent: Typography,
     render,
     muiName: 'MuiBreadcrumbs',
     refInstanceof: window.HTMLElement,
@@ -92,10 +94,44 @@ describe('<Breadcrumbs />', () => {
       );
     }).toErrorDev([
       'MUI: You have provided an invalid combination of props to the Breadcrumbs.\nitemsAfterCollapse={2} + itemsBeforeCollapse={2} >= maxItems={3}',
-      !strictModeDoubleLoggingSupressed &&
+      !strictModeDoubleLoggingSuppressed &&
         'MUI: You have provided an invalid combination of props to the Breadcrumbs.\nitemsAfterCollapse={2} + itemsBeforeCollapse={2} >= maxItems={3}',
     ]);
     expect(screen.getAllByRole('listitem', { hidden: false })).to.have.length(4);
     expect(screen.getByRole('list')).to.have.text('first/second/third/fourth');
+  });
+
+  describe('prop: slots and slotProps', () => {
+    it('should show custom collapsed icon', () => {
+      render(
+        <Breadcrumbs
+          slots={{
+            CollapsedIcon: FirstPageIcon,
+          }}
+          maxItems={2}
+        >
+          <span>first</span>
+          <span>second</span>
+          <span>third</span>
+        </Breadcrumbs>,
+      );
+
+      screen.getByTestId('FirstPageIcon');
+    });
+
+    it('should apply slotProps to collapsed icon', () => {
+      render(
+        <Breadcrumbs
+          maxItems={2}
+          slotProps={{ collapsedIcon: { 'data-testid': 'collapsedIcon-test-label' } }}
+        >
+          <span>first</span>
+          <span>second</span>
+          <span>third</span>
+        </Breadcrumbs>,
+      );
+
+      screen.getByTestId('collapsedIcon-test-label');
+    });
   });
 });

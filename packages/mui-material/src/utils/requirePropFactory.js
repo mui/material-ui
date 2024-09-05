@@ -1,3 +1,3 @@
-import { unstable_requirePropFactory as requirePropFactory } from '@mui/utils';
+import requirePropFactory from '@mui/utils/requirePropFactory';
 
 export default requirePropFactory;

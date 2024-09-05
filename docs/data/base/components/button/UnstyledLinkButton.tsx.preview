@@ -1,0 +1,4 @@
+<Button href="https://mui.com/">Standard link</Button>
+<Button href="https://mui.com/" slots={{ root: LinkSlot }}>
+  Next.js link
+</Button>

@@ -1,0 +1,26 @@
+{
+  "name": "@mui-internal/api-docs-builder-core",
+  "version": "1.0.0",
+  "description": "MUI Core-specific settings for API docs generator",
+  "private": "true",
+  "main": "./index.ts",
+  "scripts": {
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/api-docs-builder/**/*.test.{js,ts,tsx}'",
+    "typescript": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@mui-internal/api-docs-builder": "workspace:^",
+    "@mui/internal-markdown": "workspace:^",
+    "docs": "workspace:^",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.19",
+    "@types/mocha": "^10.0.7",
+    "@types/node": "^20.14.8",
+    "@types/sinon": "^17.0.3",
+    "chai": "^4.5.0",
+    "sinon": "^18.0.0",
+    "typescript": "^5.5.4"
+  }
+}

@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import debounce from '../utils/debounce';
-import { ownerWindow } from '../utils';
+import { ownerWindow, unstable_useEnhancedEffect as useEnhancedEffect } from '../utils';
 
 const styles = {
   width: 99,
@@ -25,7 +26,7 @@ export default function ScrollbarSize(props) {
     scrollbarHeight.current = nodeRef.current.offsetHeight - nodeRef.current.clientHeight;
   };
 
-  React.useEffect(() => {
+  useEnhancedEffect(() => {
     const handleResize = debounce(() => {
       const prevHeight = scrollbarHeight.current;
       setMeasurements();

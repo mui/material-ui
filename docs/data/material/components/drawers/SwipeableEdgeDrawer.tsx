@@ -21,22 +21,30 @@ interface Props {
 
 const Root = styled('div')(({ theme }) => ({
   height: '100%',
-  backgroundColor:
-    theme.palette.mode === 'light' ? grey[100] : theme.palette.background.default,
+  backgroundColor: grey[100],
+  ...theme.applyStyles('dark', {
+    backgroundColor: theme.palette.background.default,
+  }),
 }));
 
-const StyledBox = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'light' ? '#fff' : grey[800],
+const StyledBox = styled('div')(({ theme }) => ({
+  backgroundColor: '#fff',
+  ...theme.applyStyles('dark', {
+    backgroundColor: grey[800],
+  }),
 }));
 
-const Puller = styled(Box)(({ theme }) => ({
+const Puller = styled('div')(({ theme }) => ({
   width: 30,
   height: 6,
-  backgroundColor: theme.palette.mode === 'light' ? grey[300] : grey[900],
+  backgroundColor: grey[300],
   borderRadius: 3,
   position: 'absolute',
   top: 8,
   left: 'calc(50% - 15px)',
+  ...theme.applyStyles('dark', {
+    backgroundColor: grey[900],
+  }),
 }));
 
 export default function SwipeableEdgeDrawer(props: Props) {
@@ -90,14 +98,7 @@ export default function SwipeableEdgeDrawer(props: Props) {
           <Puller />
           <Typography sx={{ p: 2, color: 'text.secondary' }}>51 results</Typography>
         </StyledBox>
-        <StyledBox
-          sx={{
-            px: 2,
-            pb: 2,
-            height: '100%',
-            overflow: 'auto',
-          }}
-        >
+        <StyledBox sx={{ px: 2, pb: 2, height: '100%', overflow: 'auto' }}>
           <Skeleton variant="rectangular" height="100%" />
         </StyledBox>
       </SwipeableDrawer>

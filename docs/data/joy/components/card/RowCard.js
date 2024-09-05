@@ -3,16 +3,11 @@ import AspectRatio from '@mui/joy/AspectRatio';
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 import CardOverflow from '@mui/joy/CardOverflow';
-import Divider from '@mui/joy/Divider';
 import Typography from '@mui/joy/Typography';
 
 export default function RowCard() {
   return (
-    <Card
-      orientation="horizontal"
-      variant="outlined"
-      sx={{ width: 260, bgcolor: 'background.body' }}
-    >
+    <Card orientation="horizontal" variant="outlined" sx={{ width: 260 }}>
       <CardOverflow>
         <AspectRatio ratio="1" sx={{ width: 90 }}>
           <img
@@ -23,24 +18,25 @@ export default function RowCard() {
           />
         </AspectRatio>
       </CardOverflow>
-      <CardContent sx={{ px: 2 }}>
-        <Typography fontWeight="md" textColor="success.plainColor" mb={0.5}>
+      <CardContent>
+        <Typography textColor="success.plainColor" sx={{ fontWeight: 'md' }}>
           Yosemite Park
         </Typography>
-        <Typography level="body2">California, USA</Typography>
+        <Typography level="body-sm">California, USA</Typography>
       </CardContent>
-      <Divider />
       <CardOverflow
         variant="soft"
         color="primary"
         sx={{
           px: 0.2,
           writingMode: 'vertical-rl',
-          textAlign: 'center',
-          fontSize: 'xs2',
-          fontWeight: 'xl2',
+          justifyContent: 'center',
+          fontSize: 'xs',
+          fontWeight: 'xl',
           letterSpacing: '1px',
           textTransform: 'uppercase',
+          borderLeft: '1px solid',
+          borderColor: 'divider',
         }}
       >
         Ticket

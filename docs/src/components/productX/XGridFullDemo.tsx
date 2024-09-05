@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { DataGridPro, GridToolbar } from '@mui/x-data-grid-pro';
+import { red, green, yellow, blue } from '@mui/material/colors';
+import { alpha } from '@mui/material/styles';
+import { DataGridPro, GridToolbar, GridPaginationModel } from '@mui/x-data-grid-pro';
 import { useDemoData } from '@mui/x-data-grid-generator';
 import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
@@ -16,7 +18,7 @@ type GridDataType = 'Employee' | 'Commodity';
 interface GridPaginationSettings {
   pagination: boolean;
   autoPageSize: boolean;
-  pageSize: number | undefined;
+  paginationModel: GridPaginationModel | undefined;
 }
 
 interface GridConfigOptions {
@@ -30,6 +32,8 @@ interface GridToolbarContainerProps {
   size: number;
   type: GridDataType;
 }
+
+const pageSizeOptions = [25, 100, 1000];
 
 function SettingsPanel(props: GridToolbarContainerProps) {
   const { onApply, type, size } = props;
@@ -61,8 +65,9 @@ function SettingsPanel(props: GridToolbarContainerProps) {
     <FormGroup
       className="MuiFormGroup-options"
       sx={{
-        flexDirection: { xs: 'column', sm: 'row' },
+        flexDirection: 'row',
         alignContent: { xs: 'start', sm: 'center' },
+        alignItems: { xs: 'start', sm: 'center' },
         '& > *': {
           '&:not(:first-child)': { ml: { xs: 0, sm: 1 } },
           '&:last-child': { ml: 'auto' },
@@ -77,15 +82,20 @@ function SettingsPanel(props: GridToolbarContainerProps) {
       }}
     >
       <FormControl variant="filled" size="small">
-        <InputLabel>Dataset</InputLabel>
-        <Select value={typeState} onChange={handleDatasetChange} disableUnderline>
+        <InputLabel id="Dataset">Dataset</InputLabel>
+        <Select labelId="Dataset" value={typeState} onChange={handleDatasetChange} disableUnderline>
           <MenuItem value="Employee">Employee</MenuItem>
           <MenuItem value="Commodity">Commodity</MenuItem>
         </Select>
       </FormControl>
       <FormControl variant="filled" size="small">
-        <InputLabel>Rows</InputLabel>
-        <Select value={String(sizeState)} onChange={handleSizeChange} disableUnderline>
+        <InputLabel id="Rows">Rows</InputLabel>
+        <Select
+          labelId="Rows"
+          value={String(sizeState)}
+          onChange={handleSizeChange}
+          disableUnderline
+        >
           <MenuItem value={100}>100</MenuItem>
           <MenuItem value={1000}>{Number(1000).toLocaleString()}</MenuItem>
           <MenuItem value={10000}>{Number(10000).toLocaleString()}</MenuItem>
@@ -93,16 +103,28 @@ function SettingsPanel(props: GridToolbarContainerProps) {
         </Select>
       </FormControl>
       <FormControl variant="filled" size="small" sx={{ minWidth: 80 }}>
-        <InputLabel>Page Size</InputLabel>
-        <Select value={selectedPaginationValue} onChange={handlePaginationChange} disableUnderline>
+        <InputLabel id="Page size">Page size</InputLabel>
+        <Select
+          labelId="Page size"
+          value={selectedPaginationValue}
+          onChange={handlePaginationChange}
+          disableUnderline
+        >
           <MenuItem value={-1}>off</MenuItem>
           <MenuItem value={0}>auto</MenuItem>
-          <MenuItem value={25}>25</MenuItem>
-          <MenuItem value={100}>100</MenuItem>
-          <MenuItem value={1000}>{Number(1000).toLocaleString()}</MenuItem>
+          {pageSizeOptions.map((pageSize) => (
+            <MenuItem key={pageSize} value={pageSize}>
+              {Number(pageSize).toLocaleString()}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
-      <Button onClick={handleApplyChanges} sx={{ mt: { xs: 2, sm: 0 } }}>
+      <Button
+        variant="outlined"
+        size="small"
+        onClick={handleApplyChanges}
+        sx={{ mt: { xs: 2, sm: 0 }, width: { xs: '100%', sm: 'fit-content' } }}
+      >
         Apply changes
       </Button>
     </FormGroup>
@@ -115,14 +137,14 @@ export default function XGridFullDemo() {
   const { loading, data, setRowLength, loadNewData } = useDemoData({
     dataSet: type,
     rowLength: size,
-    maxColumns: 40,
+    maxColumns: 20,
     editable: true,
   });
 
   const [pagination, setPagination] = React.useState<GridPaginationSettings>({
     pagination: false,
     autoPageSize: false,
-    pageSize: undefined,
+    paginationModel: undefined,
   });
 
   const handleApplyClick = (settings: GridConfigOptions) => {
@@ -142,20 +164,18 @@ export default function XGridFullDemo() {
     const newPaginationSettings: GridPaginationSettings = {
       pagination: settings.pagesize !== -1,
       autoPageSize: settings.pagesize === 0,
-      pageSize: settings.pagesize > 0 ? settings.pagesize : undefined,
+      paginationModel: settings.pagesize > 0 ? { pageSize: settings.pagesize, page: 0 } : undefined,
     };
 
-    setPagination((currentPaginationSettings: GridPaginationSettings): GridPaginationSettings => {
-      if (
-        currentPaginationSettings.pagination === newPaginationSettings.pagination &&
-        currentPaginationSettings.autoPageSize === newPaginationSettings.autoPageSize &&
-        currentPaginationSettings.pageSize === newPaginationSettings.pageSize
-      ) {
-        return currentPaginationSettings;
-      }
-      return newPaginationSettings;
-    });
+    setPagination(newPaginationSettings);
   };
+
+  const handlePaginationModelChange = React.useCallback((newModel: GridPaginationModel) => {
+    setPagination((prev) => ({
+      ...prev,
+      paginationModel: newModel,
+    }));
+  }, []);
 
   return (
     <Frame>
@@ -166,16 +186,35 @@ export default function XGridFullDemo() {
           variant="outlined"
           sx={[
             {
-              height: 328,
-              overflow: 'auto',
+              overflow: 'hidden',
+              borderRadius: '8px',
+              height: { xs: 320, sm: 500 },
               '& .MuiDataGrid-root': {
                 bgcolor: '#fff',
                 '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
                 '& .MuiButton-root': { marginLeft: 0, marginRight: 1 },
-                '& .MuiDataGrid-renderingZone': {
-                  '& .MuiDataGrid-cell': {
-                    bgcolor: 'grey.50',
-                  },
+                '& .MuiDataGrid-cell': {
+                  bgcolor: 'grey.50',
+                },
+                '& .MuiChip-root.Rejected': {
+                  color: red[800],
+                  backgroundColor: red[50],
+                  borderColor: red[100],
+                },
+                '& .MuiChip-root.Filled': {
+                  color: green[800],
+                  backgroundColor: green[50],
+                  borderColor: green[100],
+                },
+                '& .MuiChip-root.Open': {
+                  color: blue[800],
+                  backgroundColor: blue[50],
+                  borderColor: blue[100],
+                },
+                '& .MuiChip-root.PartiallyFilled': {
+                  color: 'text.secondary',
+                  backgroundColor: yellow[50],
+                  borderColor: yellow[600],
                 },
                 '& .MuiDataGrid-footerContainer': {
                   minHeight: 48,
@@ -197,32 +236,55 @@ export default function XGridFullDemo() {
               theme.applyDarkStyles({
                 '& .MuiDataGrid-root': {
                   bgcolor: 'primaryDark.900',
-                  '& .MuiDataGrid-renderingZone': {
-                    '& .MuiDataGrid-cell': {
-                      bgcolor: 'primaryDark.800',
-                    },
+                  '& .MuiDataGrid-cell': {
+                    bgcolor: 'primaryDark.800',
                   },
                   '& .MuiDataGrid-footerContainer': {
                     borderColor: 'primaryDark.600',
+                  },
+                  '& .MuiChip-root.Rejected': {
+                    color: red[200],
+                    backgroundColor: alpha(red[900], 0.2),
+                    borderColor: alpha(red[700], 0.5),
+                  },
+                  '& .MuiChip-root.Filled': {
+                    color: green[200],
+                    backgroundColor: alpha(green[900], 0.2),
+                    borderColor: alpha(green[700], 0.5),
+                  },
+                  '& .MuiChip-root.Open': {
+                    color: blue[200],
+                    backgroundColor: alpha(blue[900], 0.2),
+                    borderColor: alpha(blue[700], 0.5),
+                  },
+                  '& .MuiChip-root.PartiallyFilled': {
+                    color: yellow[200],
+                    backgroundColor: alpha(yellow[900], 0.2),
+                    borderColor: alpha(yellow[700], 0.2),
                   },
                 },
               }),
           ]}
         >
           <DataGridPro
-            density="compact"
             {...data}
-            components={{
-              Toolbar: GridToolbar,
+            density="compact"
+            slots={{
+              toolbar: GridToolbar,
             }}
             loading={loading}
             checkboxSelection
             disableRowSelectionOnClick
+            pageSizeOptions={pageSizeOptions}
             {...pagination}
+            onPaginationModelChange={handlePaginationModelChange}
           />
         </Paper>
       </Frame.Demo>
-      <Frame.Info data-mui-color-scheme="dark" sx={{ p: 1 }}>
+      <Frame.Info
+        data-mui-color-scheme="dark"
+        sx={{ pl: { xs: 2, sm: 1 }, pr: 2, py: { xs: 2, sm: 1.5 } }}
+      >
         <SettingsPanel onApply={handleApplyClick} size={size} type={type} />
       </Frame.Info>
     </Frame>

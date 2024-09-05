@@ -1,6 +1,7 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Avatar component
+components: Avatar, AvatarGroup, SvgIcon
 githubLabel: 'component: avatar'
 ---
 
@@ -8,13 +9,13 @@ githubLabel: 'component: avatar'
 
 <p class="description">An avatar is a graphical representation of a user's identity.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
 ## Introduction
 
 The Avatar component can be used to display graphical information about a user in places such as menus, tables, and chats.
 
 {{"demo": "AvatarUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Basics
 
@@ -55,7 +56,7 @@ If an error occurs while loading the Avatar's image, it will fall back to the fo
 
 ### Variants
 
-The Avatar component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft` (default), `outlined`, and `plain`.
+The Avatar component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft` (default), `outlined`, and `plain`.
 
 {{"demo": "AvatarVariants.js"}}
 
@@ -130,19 +131,19 @@ Combine the Avatar component with the [Badge](/joy-ui/react-badge/) to visually 
 
 {{"demo": "BadgeAvatars.js"}}
 
-## CSS variable playground
+## CSS variables playground
 
 Play around with the CSS variables available to the Avatar component to see how the design changes.
 You can use these to customize the component with both the `sx` prop and the theme.
 
-{{"demo": "AvatarGroupVariables.js", "hideToolbar": true }}
+{{"demo": "AvatarGroupVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Anatomy
 
 The Avatar component is composed of a root `<div>` that may wrap around an `<svg>`, an `<img>`, or a string:
 
 ```html
-<div class="JoyAvatar-root">
+<div class="MuiAvatar-root">
   <!-- Avatar contents -->
 </div>
 ```

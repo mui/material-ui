@@ -1,10 +1,11 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Dialog component
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 githubLabel: 'component: dialog'
 materialDesign: https://m2.material.io/components/dialogs
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
+githubSource: packages/mui-material/src/Dialog
 ---
 
 # Dialog
@@ -15,19 +16,27 @@ A Dialog is a type of [modal](/material-ui/react-modal/) window that appears in 
 
 Dialogs are purposefully interruptive, so they should be used sparingly.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
-## Basic dialog
+## Introduction
 
-Simple dialogs can provide additional details or actions about a list item.
-For example, they can display avatars, icons, clarifying subtext, or orthogonal actions (such as adding an account).
+Dialogs are implemented using a collection of related components:
 
-Touch mechanics:
+- Dialog: the parent component that renders the modal.
+- Dialog Title: a wrapper used for the title of a Dialog.
+- Dialog Actions: an optional container for a Dialog's Buttons.
+- Dialog Content: an optional container for displaying the Dialog's content.
+- Dialog Content Text: a wrapper for text inside of `<DialogContent />`.
+- Slide: optional [Transition](/material-ui/transitions/#slide) used to slide the Dialog in from the edge of the screen.
 
-- Choosing an option immediately commits the option and closes the menu
-- Touching outside of the dialog, or pressing Back, cancels the action and closes the dialog
+{{"demo": "SimpleDialogDemo.js"}}
 
-{{"demo": "SimpleDialog.js"}}
+## Basics
+
+```jsx
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+```
 
 ## Alerts
 
@@ -36,7 +45,7 @@ Alerts are urgent interruptions, requiring acknowledgement, that inform the user
 Most alerts don't need titles.
 They summarize a decision in a sentence or two by either:
 
-- Asking a question (e.g. "Delete this conversation?")
+- Asking a question (for example "Delete this conversation?")
 - Making a statement related to the action buttons
 
 Use title bar alerts only for high-risk situations, such as the potential loss of connectivity.
@@ -104,9 +113,18 @@ function MyComponent() {
 Confirmation dialogs require users to explicitly confirm their choice before an option is committed.
 For example, users can listen to multiple ringtones but only make a final selection upon touching "OK".
 
-Touching "Cancel" in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
+Touching "Cancel" in a confirmation dialog, cancels the action, discards any changes, and closes the dialog.
 
 {{"demo": "ConfirmationDialog.js"}}
+
+## Non-modal dialog
+
+Dialogs can also be non-modal, meaning they don't interrupt user interaction behind it.
+Visit [the Nielsen Norman Group article](https://www.nngroup.com/articles/modal-nonmodal-dialog/) for more in-depth guidance about modal vs. non-modal dialog usage.
+
+The demo below shows a persistent cookie banner, a common non-modal dialog use case.
+
+{{"demo": "CookiesBanner.js", "iframe": true}}
 
 ## Draggable dialog
 
@@ -137,13 +155,21 @@ Follow the [Modal limitations section](/material-ui/react-modal/#limitations).
 
 ## Complementary projects
 
-### Material UI Confirm
+For more advanced use cases you might be able to take advantage of:
 
-![stars](https://img.shields.io/github/stars/jonatanklosko/material-ui-confirm)
+### material-ui-confirm
+
+![stars](https://img.shields.io/github/stars/jonatanklosko/material-ui-confirm?style=social&label=Star)
 ![npm downloads](https://img.shields.io/npm/dm/material-ui-confirm.svg)
 
-This package provides dialogs for confirming user actions without writing boilerplate code.
+The package [`material-ui-confirm`](https://github.com/jonatanklosko/material-ui-confirm/) provides dialogs for confirming user actions without writing boilerplate code.
 
 ## Accessibility
 
 Follow the [Modal accessibility section](/material-ui/react-modal/#accessibility).
+
+## Experimental APIs
+
+### Imperative API
+
+You can create and manipulate dialogs imperatively with the [`useDialog`](https://mui.com/toolpad/core/react-use-dialogs/) API in `@toolpad/core`. This API provides state management for opening and closing dialogs and for passing data to the dialog and back. It allows for stacking multiple dialogs. It also provides themed alternatives for `window.alert`, `window.confirm` and `window.prompt`.

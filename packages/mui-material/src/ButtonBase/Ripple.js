@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -56,10 +57,9 @@ function Ripple(props) {
   );
 }
 
-Ripple.propTypes = {
+Ripple.propTypes /* remove-proptypes */ = {
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,

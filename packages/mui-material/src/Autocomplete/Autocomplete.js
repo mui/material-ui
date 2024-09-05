@@ -1,13 +1,12 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, integerPropType } from '@mui/utils';
-import {
-  unstable_composeClasses as composeClasses,
-  useAutocomplete,
-  createFilterOptions,
-} from '@mui/base';
-import { alpha } from '@mui/system';
+import integerPropType from '@mui/utils/integerPropType';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import composeClasses from '@mui/utils/composeClasses';
+import { alpha } from '@mui/system/colorManipulator';
+import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';
 import Paper from '../Paper';
@@ -19,15 +18,18 @@ import outlinedInputClasses from '../OutlinedInput/outlinedInputClasses';
 import filledInputClasses from '../FilledInput/filledInputClasses';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import capitalize from '../utils/capitalize';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const {
     classes,
     disablePortal,
+    expanded,
     focused,
     fullWidth,
     hasClearIcon,
@@ -40,6 +42,7 @@ const useUtilityClasses = (ownerState) => {
   const slots = {
     root: [
       'root',
+      expanded && 'expanded',
       focused && 'focused',
       fullWidth && 'fullWidth',
       hasClearIcon && 'hasClearIcon',
@@ -83,7 +86,7 @@ const AutocompleteRoot = styled('div', {
       hasClearIcon && styles.hasClearIcon,
     ];
   },
-})(({ ownerState }) => ({
+})({
   [`&.${autocompleteClasses.focused} .${autocompleteClasses.clearIndicator}`]: {
     visibility: 'visible',
   },
@@ -93,19 +96,11 @@ const AutocompleteRoot = styled('div', {
       visibility: 'visible',
     },
   },
-  ...(ownerState.fullWidth && {
-    width: '100%',
-  }),
   [`& .${autocompleteClasses.tag}`]: {
     margin: 3,
     maxWidth: 'calc(100% - 6px)',
-    ...(ownerState.size === 'small' && {
-      margin: 2,
-      maxWidth: 'calc(100% - 4px)',
-    }),
   },
   [`& .${autocompleteClasses.inputRoot}`]: {
-    flexWrap: 'wrap',
     [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
       paddingRight: 26 + 4,
     },
@@ -137,7 +132,7 @@ const AutocompleteRoot = styled('div', {
       paddingRight: 52 + 4 + 9,
     },
     [`& .${autocompleteClasses.input}`]: {
-      padding: '7.5px 4px 7.5px 6px',
+      padding: '7.5px 4px 7.5px 5px',
     },
     [`& .${autocompleteClasses.endAdornment}`]: {
       right: 9,
@@ -150,7 +145,7 @@ const AutocompleteRoot = styled('div', {
     paddingBottom: 6,
     paddingLeft: 6,
     [`& .${autocompleteClasses.input}`]: {
-      padding: '2.5px 4px 2.5px 6px',
+      padding: '2.5px 4px 2.5px 8px',
     },
   },
   [`& .${filledInputClasses.root}`]: {
@@ -178,15 +173,57 @@ const AutocompleteRoot = styled('div', {
   [`& .${inputBaseClasses.hiddenLabel}`]: {
     paddingTop: 8,
   },
+  [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}`]: {
+    paddingTop: 0,
+    paddingBottom: 0,
+    [`& .${autocompleteClasses.input}`]: {
+      paddingTop: 16,
+      paddingBottom: 17,
+    },
+  },
+  [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}.${inputBaseClasses.sizeSmall}`]: {
+    [`& .${autocompleteClasses.input}`]: {
+      paddingTop: 8,
+      paddingBottom: 9,
+    },
+  },
   [`& .${autocompleteClasses.input}`]: {
     flexGrow: 1,
     textOverflow: 'ellipsis',
     opacity: 0,
-    ...(ownerState.inputFocused && {
-      opacity: 1,
-    }),
   },
-}));
+  variants: [
+    {
+      props: { fullWidth: true },
+      style: { width: '100%' },
+    },
+    {
+      props: { size: 'small' },
+      style: {
+        [`& .${autocompleteClasses.tag}`]: {
+          margin: 2,
+          maxWidth: 'calc(100% - 4px)',
+        },
+      },
+    },
+    {
+      props: { inputFocused: true },
+      style: {
+        [`& .${autocompleteClasses.input}`]: {
+          opacity: 1,
+        },
+      },
+    },
+    {
+      props: { multiple: true },
+      style: {
+        [`& .${autocompleteClasses.inputRoot}`]: {
+          flexWrap: 'wrap',
+        },
+      },
+    },
+  ],
+});
 
 const AutocompleteEndAdornment = styled('div', {
   name: 'MuiAutocomplete',
@@ -196,7 +233,8 @@ const AutocompleteEndAdornment = styled('div', {
   // We use a position absolute to support wrapping tags.
   position: 'absolute',
   right: 0,
-  top: 'calc(50% - 14px)', // Center vertically
+  top: '50%',
+  transform: 'translate(0, -50%)',
 });
 
 const AutocompleteClearIndicator = styled(IconButton, {
@@ -216,13 +254,18 @@ const AutocompletePopupIndicator = styled(IconButton, {
     ...styles.popupIndicator,
     ...(ownerState.popupOpen && styles.popupIndicatorOpen),
   }),
-})(({ ownerState }) => ({
+})({
   padding: 2,
   marginRight: -2,
-  ...(ownerState.popupOpen && {
-    transform: 'rotate(180deg)',
-  }),
-}));
+  variants: [
+    {
+      props: { popupOpen: true },
+      style: {
+        transform: 'rotate(180deg)',
+      },
+    },
+  ],
+});
 
 const AutocompletePopper = styled(Popper, {
   name: 'MuiAutocomplete',
@@ -236,118 +279,135 @@ const AutocompletePopper = styled(Popper, {
       ownerState.disablePortal && styles.popperDisablePortal,
     ];
   },
-})(({ theme, ownerState }) => ({
-  zIndex: (theme.vars || theme).zIndex.modal,
-  ...(ownerState.disablePortal && {
-    position: 'absolute',
-  }),
-}));
+})(
+  memoTheme(({ theme }) => ({
+    zIndex: (theme.vars || theme).zIndex.modal,
+    variants: [
+      {
+        props: { disablePortal: true },
+        style: {
+          position: 'absolute',
+        },
+      },
+    ],
+  })),
+);
 
 const AutocompletePaper = styled(Paper, {
   name: 'MuiAutocomplete',
   slot: 'Paper',
   overridesResolver: (props, styles) => styles.paper,
-})(({ theme }) => ({
-  ...theme.typography.body1,
-  overflow: 'auto',
-}));
+})(
+  memoTheme(({ theme }) => ({
+    ...theme.typography.body1,
+    overflow: 'auto',
+  })),
+);
 
 const AutocompleteLoading = styled('div', {
   name: 'MuiAutocomplete',
   slot: 'Loading',
   overridesResolver: (props, styles) => styles.loading,
-})(({ theme }) => ({
-  color: (theme.vars || theme).palette.text.secondary,
-  padding: '14px 16px',
-}));
+})(
+  memoTheme(({ theme }) => ({
+    color: (theme.vars || theme).palette.text.secondary,
+    padding: '14px 16px',
+  })),
+);
 
 const AutocompleteNoOptions = styled('div', {
   name: 'MuiAutocomplete',
   slot: 'NoOptions',
   overridesResolver: (props, styles) => styles.noOptions,
-})(({ theme }) => ({
-  color: (theme.vars || theme).palette.text.secondary,
-  padding: '14px 16px',
-}));
+})(
+  memoTheme(({ theme }) => ({
+    color: (theme.vars || theme).palette.text.secondary,
+    padding: '14px 16px',
+  })),
+);
 
 const AutocompleteListbox = styled('div', {
   name: 'MuiAutocomplete',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
-})(({ theme }) => ({
-  listStyle: 'none',
-  margin: 0,
-  padding: '8px 0',
-  maxHeight: '40vh',
-  overflow: 'auto',
-  position: 'relative',
-  [`& .${autocompleteClasses.option}`]: {
-    minHeight: 48,
-    display: 'flex',
-    overflow: 'hidden',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    cursor: 'pointer',
-    paddingTop: 6,
-    boxSizing: 'border-box',
-    outline: '0',
-    WebkitTapHighlightColor: 'transparent',
-    paddingBottom: 6,
-    paddingLeft: 16,
-    paddingRight: 16,
-    [theme.breakpoints.up('sm')]: {
-      minHeight: 'auto',
-    },
-    [`&.${autocompleteClasses.focused}`]: {
-      backgroundColor: (theme.vars || theme).palette.action.hover,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
+})(
+  memoTheme(({ theme }) => ({
+    listStyle: 'none',
+    margin: 0,
+    padding: '8px 0',
+    maxHeight: '40vh',
+    overflow: 'auto',
+    position: 'relative',
+    [`& .${autocompleteClasses.option}`]: {
+      minHeight: 48,
+      display: 'flex',
+      overflow: 'hidden',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+      cursor: 'pointer',
+      paddingTop: 6,
+      boxSizing: 'border-box',
+      outline: '0',
+      WebkitTapHighlightColor: 'transparent',
+      paddingBottom: 6,
+      paddingLeft: 16,
+      paddingRight: 16,
+      [theme.breakpoints.up('sm')]: {
+        minHeight: 'auto',
       },
-    },
-    '&[aria-disabled="true"]': {
-      opacity: (theme.vars || theme).palette.action.disabledOpacity,
-      pointerEvents: 'none',
-    },
-    [`&.${autocompleteClasses.focusVisible}`]: {
-      backgroundColor: (theme.vars || theme).palette.action.focus,
-    },
-    '&[aria-selected="true"]': {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-        : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       [`&.${autocompleteClasses.focused}`]: {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-          : alpha(
-              theme.palette.primary.main,
-              theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-            ),
+        backgroundColor: (theme.vars || theme).palette.action.hover,
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
-          backgroundColor: (theme.vars || theme).palette.action.selected,
+          backgroundColor: 'transparent',
         },
       },
+      '&[aria-disabled="true"]': {
+        opacity: (theme.vars || theme).palette.action.disabledOpacity,
+        pointerEvents: 'none',
+      },
       [`&.${autocompleteClasses.focusVisible}`]: {
+        backgroundColor: (theme.vars || theme).palette.action.focus,
+      },
+      '&[aria-selected="true"]': {
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-          : alpha(
-              theme.palette.primary.main,
-              theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-            ),
+          ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+          : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+        [`&.${autocompleteClasses.focused}`]: {
+          backgroundColor: theme.vars
+            ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+            : alpha(
+                theme.palette.primary.main,
+                theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+              ),
+          // Reset on touch devices, it doesn't add specificity
+          '@media (hover: none)': {
+            backgroundColor: (theme.vars || theme).palette.action.selected,
+          },
+        },
+        [`&.${autocompleteClasses.focusVisible}`]: {
+          backgroundColor: theme.vars
+            ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+            : alpha(
+                theme.palette.primary.main,
+                theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+              ),
+        },
       },
     },
-  },
-}));
+  })),
+);
 
 const AutocompleteGroupLabel = styled(ListSubheader, {
   name: 'MuiAutocomplete',
   slot: 'GroupLabel',
   overridesResolver: (props, styles) => styles.groupLabel,
-})(({ theme }) => ({
-  backgroundColor: (theme.vars || theme).palette.background.paper,
-  top: -8,
-}));
+})(
+  memoTheme(({ theme }) => ({
+    backgroundColor: (theme.vars || theme).palette.background.paper,
+    top: -8,
+  })),
+);
 
 const AutocompleteGroupUl = styled('ul', {
   name: 'MuiAutocomplete',
@@ -363,21 +423,22 @@ const AutocompleteGroupUl = styled('ul', {
 export { createFilterOptions };
 
 const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAutocomplete' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiAutocomplete' });
+
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const {
     autoComplete = false,
     autoHighlight = false,
     autoSelect = false,
     blurOnSelect = false,
-    ChipProps,
+    ChipProps: ChipPropsProp,
     className,
     clearIcon = <ClearIcon fontSize="small" />,
     clearOnBlur = !props.freeSolo,
     clearOnEscape = false,
     clearText = 'Clear',
     closeText = 'Close',
-    componentsProps = {},
+    componentsProps,
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
@@ -392,7 +453,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     fullWidth = false,
     getLimitTagsText = (more) => `+${more}`,
     getOptionDisabled,
-    getOptionLabel = (option) => option.label ?? option,
+    getOptionKey,
+    getOptionLabel: getOptionLabelProp,
     isOptionEqualToValue,
     groupBy,
     handleHomeEndKeys = !props.freeSolo,
@@ -400,8 +462,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     includeInputInList = false,
     inputValue: inputValueProp,
     limitTags = -1,
-    ListboxComponent = 'ul',
-    ListboxProps,
+    ListboxComponent: ListboxComponentProp,
+    ListboxProps: ListboxPropsProp,
     loading = false,
     loadingText = 'Loading…',
     multiple = false,
@@ -415,8 +477,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     openOnFocus = false,
     openText = 'Open',
     options,
-    PaperComponent = Paper,
-    PopperComponent = Popper,
+    PaperComponent: PaperComponentProp,
+    PopperComponent: PopperComponentProp,
     popupIcon = <ArrowDropDownIcon />,
     readOnly = false,
     renderGroup: renderGroupProp,
@@ -425,6 +487,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     renderTags,
     selectOnFocus = !props.freeSolo,
     size = 'medium',
+    slots = {},
     slotProps = {},
     value: valueProp,
     ...other
@@ -442,6 +505,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     getOptionProps,
     value,
     dirty,
+    expanded,
     id,
     popupOpen,
     focused,
@@ -455,12 +519,20 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
+  const { onMouseDown: handleInputMouseDown } = getInputProps();
+  const { ref: listboxRef, ...otherListboxProps } = getListboxProps();
+
+  const defaultGetOptionLabel = (option) => option.label ?? option;
+  const getOptionLabel = getOptionLabelProp || defaultGetOptionLabel;
+
   // If you modify this, make sure to keep the `AutocompleteOwnerState` type in sync.
   const ownerState = {
     ...props,
     disablePortal,
+    expanded,
     focused,
     fullWidth,
+    getOptionLabel,
     hasClearIcon,
     hasPopupIcon,
     inputFocused: focusedTag === -1,
@@ -469,6 +541,51 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+
+  const externalForwardedProps = {
+    slots: {
+      listbox: ListboxComponentProp,
+      paper: PaperComponentProp,
+      popper: PopperComponentProp,
+      ...slots,
+    },
+    slotProps: {
+      chip: ChipPropsProp,
+      listbox: ListboxPropsProp,
+      ...componentsProps,
+      ...slotProps,
+    },
+  };
+
+  const [ListboxSlot, listboxProps] = useSlot('listbox', {
+    elementType: 'ul',
+    externalForwardedProps,
+    ownerState,
+    className: classes.listbox,
+    additionalProps: otherListboxProps,
+    ref: listboxRef,
+  });
+
+  const [PaperSlot, paperProps] = useSlot('paper', {
+    elementType: Paper,
+    externalForwardedProps,
+    ownerState,
+    className: classes.paper,
+  });
+
+  const [PopperSlot, popperProps] = useSlot('popper', {
+    elementType: Popper,
+    externalForwardedProps,
+    ownerState,
+    className: classes.popper,
+    additionalProps: {
+      disablePortal,
+      style: { width: anchorEl ? anchorEl.clientWidth : null },
+      role: 'presentation',
+      anchorEl,
+      open: popupOpen,
+    },
+  });
 
   let startAdornment;
 
@@ -482,14 +599,18 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     if (renderTags) {
       startAdornment = renderTags(value, getCustomizedTagProps, ownerState);
     } else {
-      startAdornment = value.map((option, index) => (
-        <Chip
-          label={getOptionLabel(option)}
-          size={size}
-          {...getCustomizedTagProps({ index })}
-          {...ChipProps}
-        />
-      ));
+      startAdornment = value.map((option, index) => {
+        const { key, ...customTagProps } = getCustomizedTagProps({ index });
+        return (
+          <Chip
+            key={key}
+            label={getOptionLabel(option)}
+            size={size}
+            {...customTagProps}
+            {...externalForwardedProps.slotProps.chip}
+          />
+        );
+      });
     }
   }
 
@@ -521,23 +642,82 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   );
 
   const renderGroup = renderGroupProp || defaultRenderGroup;
-  const defaultRenderOption = (props2, option) => <li {...props2}>{getOptionLabel(option)}</li>;
+  const defaultRenderOption = (props2, option) => {
+    // Need to clearly apply key because of https://github.com/vercel/next.js/issues/55642
+    const { key, ...otherProps } = props2;
+    return (
+      <li key={key} {...otherProps}>
+        {getOptionLabel(option)}
+      </li>
+    );
+  };
   const renderOption = renderOptionProp || defaultRenderOption;
 
   const renderListOption = (option, index) => {
     const optionProps = getOptionProps({ option, index });
 
-    return renderOption({ ...optionProps, className: classes.option }, option, {
-      selected: optionProps['aria-selected'],
-      index,
-      inputValue,
-    });
+    return renderOption(
+      { ...optionProps, className: classes.option },
+      option,
+      {
+        selected: optionProps['aria-selected'],
+        index,
+        inputValue,
+      },
+      ownerState,
+    );
   };
 
-  const clearIndicatorSlotProps = slotProps.clearIndicator ?? componentsProps.clearIndicator;
-  const paperSlotProps = slotProps.paper ?? componentsProps.paper;
-  const popperSlotProps = slotProps.popper ?? componentsProps.popper;
-  const popupIndicatorSlotProps = slotProps.popupIndicator ?? componentsProps.popupIndicator;
+  const clearIndicatorSlotProps = externalForwardedProps.slotProps.clearIndicator;
+  const popupIndicatorSlotProps = externalForwardedProps.slotProps.popupIndicator;
+
+  const renderAutocompletePopperChildren = (children) => (
+    <AutocompletePopper as={PopperSlot} {...popperProps}>
+      <AutocompletePaper as={PaperSlot} {...paperProps}>
+        {children}
+      </AutocompletePaper>
+    </AutocompletePopper>
+  );
+
+  let autocompletePopper = null;
+  if (groupedOptions.length > 0) {
+    autocompletePopper = renderAutocompletePopperChildren(
+      <AutocompleteListbox as={ListboxSlot} {...listboxProps}>
+        {groupedOptions.map((option, index) => {
+          if (groupBy) {
+            return renderGroup({
+              key: option.key,
+              group: option.group,
+              children: option.options.map((option2, index2) =>
+                renderListOption(option2, option.index + index2),
+              ),
+            });
+          }
+          return renderListOption(option, index);
+        })}
+      </AutocompleteListbox>,
+    );
+  } else if (loading && groupedOptions.length === 0) {
+    autocompletePopper = renderAutocompletePopperChildren(
+      <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
+        {loadingText}
+      </AutocompleteLoading>,
+    );
+  } else if (groupedOptions.length === 0 && !freeSolo && !loading) {
+    autocompletePopper = renderAutocompletePopperChildren(
+      <AutocompleteNoOptions
+        className={classes.noOptions}
+        ownerState={ownerState}
+        role="presentation"
+        onMouseDown={(event) => {
+          // Prevent input blur when interacting with the "no options" content
+          event.preventDefault();
+        }}
+      >
+        {noOptionsText}
+      </AutocompleteNoOptions>,
+    );
+  }
 
   return (
     <React.Fragment>
@@ -557,6 +737,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
             ref: setAnchorEl,
             className: classes.inputRoot,
             startAdornment,
+            onClick: (event) => {
+              if (event.target === event.currentTarget) {
+                handleInputMouseDown(event);
+              }
+            },
             ...((hasClearIcon || hasPopupIcon) && {
               endAdornment: (
                 <AutocompleteEndAdornment className={classes.endAdornment} ownerState={ownerState}>
@@ -598,80 +783,18 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           },
         })}
       </AutocompleteRoot>
-      {anchorEl ? (
-        <AutocompletePopper
-          as={PopperComponent}
-          disablePortal={disablePortal}
-          style={{
-            width: anchorEl ? anchorEl.clientWidth : null,
-          }}
-          ownerState={ownerState}
-          role="presentation"
-          anchorEl={anchorEl}
-          open={popupOpen}
-          {...popperSlotProps}
-          className={clsx(classes.popper, popperSlotProps?.className)}
-        >
-          <AutocompletePaper
-            ownerState={ownerState}
-            as={PaperComponent}
-            {...paperSlotProps}
-            className={clsx(classes.paper, paperSlotProps?.className)}
-          >
-            {loading && groupedOptions.length === 0 ? (
-              <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
-                {loadingText}
-              </AutocompleteLoading>
-            ) : null}
-            {groupedOptions.length === 0 && !freeSolo && !loading ? (
-              <AutocompleteNoOptions
-                className={classes.noOptions}
-                ownerState={ownerState}
-                role="presentation"
-                onMouseDown={(event) => {
-                  // Prevent input blur when interacting with the "no options" content
-                  event.preventDefault();
-                }}
-              >
-                {noOptionsText}
-              </AutocompleteNoOptions>
-            ) : null}
-            {groupedOptions.length > 0 ? (
-              <AutocompleteListbox
-                as={ListboxComponent}
-                className={classes.listbox}
-                ownerState={ownerState}
-                {...getListboxProps()}
-                {...ListboxProps}
-              >
-                {groupedOptions.map((option, index) => {
-                  if (groupBy) {
-                    return renderGroup({
-                      key: option.key,
-                      group: option.group,
-                      children: option.options.map((option2, index2) =>
-                        renderListOption(option2, option.index + index2),
-                      ),
-                    });
-                  }
-                  return renderListOption(option, index);
-                })}
-              </AutocompleteListbox>
-            ) : null}
-          </AutocompletePaper>
-        </AutocompletePopper>
-      ) : null}
+      {anchorEl ? autocompletePopper : null}
     </React.Fragment>
   );
 });
 
 Autocomplete.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * If `true`, the portion of the selected suggestion that has not been typed by the user,
+   * If `true`, the portion of the selected suggestion that the user hasn't typed,
    * known as the completion string, appears inline after the input cursor in the textbox.
    * The inline completion string is visually highlighted and has a selected state.
    * @default false
@@ -686,6 +809,9 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * If `true`, the selected option becomes the value of the input
    * when the Autocomplete loses focus unless the user chooses
    * a different option or changes the character string in the input.
+   *
+   * When using the `freeSolo` mode, the typed value will be the input value
+   * if the Autocomplete loses focus without highlighting an option.
    * @default false
    */
   autoSelect: PropTypes.bool,
@@ -700,7 +826,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   blurOnSelect: PropTypes.oneOfType([PropTypes.oneOf(['mouse', 'touch']), PropTypes.bool]),
   /**
-   * Props applied to the [`Chip`](/material-ui/api/chip/) element.
+   * Props applied to the [`Chip`](https://mui.com/material-ui/api/chip/) element.
    */
   ChipProps: PropTypes.object,
   /**
@@ -719,8 +845,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the input's text is cleared on blur if no value is selected.
    *
-   * Set to `true` if you want to help the user enter a new value.
-   * Set to `false` if you want to help the user resume their search.
+   * Set it to `true` if you want to help the user enter a new value.
+   * Set it to `false` if you want to help the user resume their search.
    * @default !props.freeSolo
    */
   clearOnBlur: PropTypes.bool,
@@ -732,20 +858,20 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Override the default text for the *clear* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Clear'
    */
   clearText: PropTypes.string,
   /**
    * Override the default text for the *close popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Close'
    */
   closeText: PropTypes.string,
   /**
    * The props used for each slot inside.
-   * @default {}
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps: PropTypes.shape({
     clearIndicator: PropTypes.object,
@@ -801,9 +927,10 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * A function that determines the filtered options to be rendered on search.
    *
-   * @param {T[]} options The options to render.
+   * @default createFilterOptions()
+   * @param {Value[]} options The options to render.
    * @param {object} state The state of the component.
-   * @returns {T[]}
+   * @returns {Value[]}
    */
   filterOptions: PropTypes.func,
   /**
@@ -837,17 +964,25 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Used to determine the disabled state for a given option.
    *
-   * @param {T} option The option to test.
+   * @param {Value} option The option to test.
    * @returns {boolean}
    */
   getOptionDisabled: PropTypes.func,
+  /**
+   * Used to determine the key for a given option.
+   * This can be useful when the labels of options are not unique (since labels are used as keys by default).
+   *
+   * @param {Value} option The option to get the key for.
+   * @returns {string | number}
+   */
+  getOptionKey: PropTypes.func,
   /**
    * Used to determine the string value for a given option.
    * It's used to fill the input (and the list box options if `renderOption` is not provided).
    *
    * If used in free solo mode, it must accept both the type of the options and a string.
    *
-   * @param {T} option
+   * @param {Value} option
    * @returns {string}
    * @default (option) => option.label ?? option
    */
@@ -856,7 +991,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
    *
-   * @param {T} options The options to group.
+   * @param {Value} options The options to group.
    * @returns {string}
    */
   groupBy: PropTypes.func,
@@ -885,8 +1020,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Uses strict equality by default.
    * ⚠️ Both arguments need to be handled, an option can only match with one value.
    *
-   * @param {T} option The option to test.
-   * @param {T} value The value to test against.
+   * @param {Value} option The option to test.
+   * @param {Value} value The value to test against.
    * @returns {boolean}
    */
   isOptionEqualToValue: PropTypes.func,
@@ -907,14 +1042,14 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   ListboxProps: PropTypes.object,
   /**
    * If `true`, the component is in a loading state.
-   * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, e.g. `options` are empty).
+   * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, for example `options` are empty).
    * @default false
    */
   loading: PropTypes.bool,
   /**
    * Text to display when in a loading state.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Loading…'
    */
   loadingText: PropTypes.node,
@@ -926,7 +1061,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Text to display when there are no options.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'No options'
    */
   noOptionsText: PropTypes.node,
@@ -934,7 +1069,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Callback fired when the value changes.
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
-   * @param {T|T[]} value The new value of the component.
+   * @param {Value|Value[]} value The new value of the component.
    * @param {string} reason One of "createOption", "selectOption", "removeOption", "blur" or "clear".
    * @param {string} [details]
    */
@@ -951,8 +1086,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Callback fired when the highlight option changes.
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
-   * @param {T} option The highlighted option.
-   * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`.
+   * @param {Value} option The highlighted option.
+   * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`, `"touch"`.
    */
   onHighlightChange: PropTypes.func,
   /**
@@ -960,9 +1095,13 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {string} value The new value of the text input.
-   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`.
+   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`, `"blur"`, `"selectOption"`, `"removeOption"`
    */
   onInputChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
   /**
    * Callback fired when the popup requests to be opened.
    * Use in controlled mode (see open).
@@ -982,12 +1121,12 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Override the default text for the *open popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Open'
    */
   openText: PropTypes.string,
   /**
-   * Array of options.
+   * A list of options that will be shown in the Autocomplete.
    */
   options: PropTypes.array.isRequired,
   /**
@@ -1028,15 +1167,16 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Render the option, use `getOptionLabel` by default.
    *
    * @param {object} props The props to apply on the li element.
-   * @param {T} option The option to render.
-   * @param {object} state The state of the component.
+   * @param {Value} option The option to render.
+   * @param {object} state The state of each option.
+   * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
    */
   renderOption: PropTypes.func,
   /**
    * Render the selected value.
    *
-   * @param {T[]} value The `value` provided to the component.
+   * @param {Value[]} value The `value` provided to the component.
    * @param {function} getTagProps A tag props getter.
    * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
@@ -1060,11 +1200,22 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    * @default {}
    */
-  slotProps: PropTypes.shape({
-    clearIndicator: PropTypes.object,
-    paper: PropTypes.object,
-    popper: PropTypes.object,
-    popupIndicator: PropTypes.object,
+  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
+    chip: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    clearIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    popupIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    listbox: PropTypes.elementType,
+    paper: PropTypes.elementType,
+    popper: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

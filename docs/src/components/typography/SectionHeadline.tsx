@@ -1,62 +1,103 @@
 import * as React from 'react';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 interface SectionHeadlineProps {
+  alwaysCenter?: boolean;
   description?: React.ReactNode;
   id?: string;
-  overline: React.ReactNode;
-  title: React.ReactNode;
+  /**
+   * For using with dark background.
+   */
+  inverted?: boolean;
+  overline?: React.ReactNode;
+  title: string | React.ReactElement<any>;
 }
 
 export default function SectionHeadline(props: SectionHeadlineProps) {
-  const { description, id, overline, title } = props;
+  const { alwaysCenter = false, description, id, inverted = false, overline, title } = props;
   return (
-    <React.Fragment>
-      <Typography
-        id={id}
-        component="h2"
-        fontWeight="bold"
-        variant="body2"
-        sx={(theme) => ({
-          mb: 1,
-          color: 'primary.600',
-          ...theme.applyDarkStyles({
-            color: 'primary.300',
-          }),
-        })}
-      >
-        {overline}
-      </Typography>
+    <Box sx={{ m: alwaysCenter ? 'auto' : 'none' }}>
+      {overline && (
+        <Typography
+          id={id}
+          component="h2"
+          variant="body2"
+          sx={{
+            fontWeight: 'bold',
+            color: 'primary.main',
+            mb: 1,
+
+            ...(alwaysCenter && {
+              textAlign: 'center',
+            }),
+          }}
+        >
+          {overline}
+        </Typography>
+      )}
       {typeof title === 'string' ? (
         <Typography
           variant="h2"
           sx={(theme) => ({
-            color: 'primaryDark.900',
-            ...theme.applyDarkStyles({
-              color: 'grey.100',
+            maxWidth: 500,
+            ...(inverted
+              ? {
+                  color: '#fff',
+                }
+              : {
+                  color: 'primaryDark.900',
+                  ...theme.applyDarkStyles({
+                    color: 'grey.100',
+                  }),
+                }),
+            ...(alwaysCenter && {
+              textAlign: 'center',
+              maxWidth: '100%',
             }),
           })}
         >
           {title}
         </Typography>
       ) : (
-        title
+        React.cloneElement(title, {
+          style: {
+            maxWidth: 500,
+            ...(alwaysCenter && {
+              maxWidth: '100%',
+              textAlign: 'center',
+            }),
+            ...(inverted && {
+              color: '#fff',
+            }),
+          },
+        })
       )}
       {description && (
         <Typography
           sx={(theme) => ({
             mt: 1,
-            mb: 2,
-            maxWidth: 450,
-            color: 'grey.800',
-            ...theme.applyDarkStyles({
-              color: 'grey.500',
+            mb: 3,
+            maxWidth: 500,
+            ...(inverted
+              ? {
+                  color: 'grey.400',
+                }
+              : {
+                  color: 'grey.800',
+                  ...theme.applyDarkStyles({
+                    color: 'grey.500',
+                  }),
+                }),
+            ...(alwaysCenter && {
+              textAlign: 'center',
+              mx: 'auto',
             }),
           })}
         >
           {description}
         </Typography>
       )}
-    </React.Fragment>
+    </Box>
   );
 }
