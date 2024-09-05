@@ -21,7 +21,7 @@
     "prettier": "^3.3.3",
     "react-docgen": "^5.4.3",
     "recast": "^0.23.9",
-    "remark": "^14.0.2",
+    "remark": "^15.0.1",
     "typescript": "^5.5.4",
     "unist-util-visit": "^5.0.0"
   },
