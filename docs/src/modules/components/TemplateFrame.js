@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable material-ui/no-hardcoded-labels */
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
+import { BrandingProvider } from '@mui/docs/branding';
 import { createTheme, ThemeProvider, styled, useColorScheme } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio, { radioClasses } from '@mui/material/Radio';
@@ -258,10 +259,10 @@ export function ThemeSelector({ value, onChange }) {
   );
 }
 
-ThemeSelector.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
-};
+function ThemeBridge({ children }) {
+  const { mode, systemMode } = useColorScheme();
+  return <BrandingProvider mode={systemMode || mode || 'light'}>{children}</BrandingProvider>;
+}
 
 function TemplateFrame({ children }) {
   const router = useRouter();
@@ -279,91 +280,93 @@ function TemplateFrame({ children }) {
           '& [data-template-mode-trigger]': { display: 'none' },
         }}
       >
-        <StyledAppBar>
-          <Toolbar
-            variant="dense"
-            disableGutters
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              width: '100%',
-              p: '8px 12px',
-              gap: 1,
-            }}
-          >
-            <Box sx={{ width: { xs: 'auto', sm: 0 }, '& > *': { width: 'max-content' } }}>
-              <Button
-                variant="text"
-                size="small"
-                aria-label="Back to templates"
-                startIcon={<ArrowBackRoundedIcon />}
-                component="a"
-                href="/material-ui/getting-started/templates/"
-                sx={{ display: { xs: 'none', sm: 'flex' } }}
-              >
-                Back to templates
-              </Button>
-              <IconButton
-                size="small"
-                aria-label="Back to templates"
-                component="a"
-                href="/material-ui/getting-started/templates/"
-                sx={{ display: { xs: 'auto', sm: 'none' } }}
-              >
-                <ArrowBackRoundedIcon />
-              </IconButton>
-            </Box>
-            <ColorSchemeControls />
-            <Box
+        <ThemeBridge>
+          <StyledAppBar>
+            <Toolbar
+              variant="dense"
+              disableGutters
               sx={{
                 display: 'flex',
-                justifyContent: 'flex-end',
+                justifyContent: 'space-between',
+                width: '100%',
+                p: '8px 12px',
                 gap: 1,
-                width: { xs: 'auto', sm: 0 },
-                '& > *': { flexShrink: 0 },
               }}
             >
-              <Tooltip title="Fork this template">
-                <IconButton
-                  aria-label="CodeSandbox playground"
-                  data-ga-event-category="material-ui-template"
-                  data-ga-event-label="sign-in"
-                  data-ga-event-action="codesandbox"
-                  onClick={() =>
-                    codeSandbox
-                      .createMaterialTemplate({
-                        ...item,
-                        files: { ...item.files, ...materialTemplates.sharedTheme?.files },
-                        title: `${templateName} Template - Material UI`,
-                        githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
-                          process.env.LIB_VERSION
-                        }/docs/data/material/templates/${router.pathname.split('/').pop()}/${templateName}.${
-                          item.codeVariant === 'TS' ? 'tsx' : 'js'
-                        }`,
-                      })
-                      .editFile(
-                        `${templateName}.${item.codeVariant === 'TS' ? 'tsx' : 'js'}`,
-                        (content) => content.replace('../shared-theme/', './theme/'),
-                      )
-                      .editFile(`index.${item.codeVariant === 'TS' ? 'tsx' : 'js'}`, (content) =>
-                        content.replace('./App', `./${templateName}`),
-                      )
-                      .openSandbox(`/${templateName}`, { embed: true })
-                  }
-                  sx={{ alignSelf: 'center' }}
+              <Box sx={{ width: { xs: 'auto', sm: 0 }, '& > *': { width: 'max-content' } }}>
+                <Button
+                  variant="text"
+                  size="small"
+                  aria-label="Back to templates"
+                  startIcon={<ArrowBackRoundedIcon />}
+                  component="a"
+                  href="/material-ui/getting-started/templates/"
+                  sx={{ display: { xs: 'none', sm: 'flex' } }}
                 >
-                  <SvgIcon viewBox="0 0 1080 1080">
-                    <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
-                  </SvgIcon>
+                  Back to templates
+                </Button>
+                <IconButton
+                  size="small"
+                  aria-label="Back to templates"
+                  component="a"
+                  href="/material-ui/getting-started/templates/"
+                  sx={{ display: { xs: 'auto', sm: 'none' } }}
+                >
+                  <ArrowBackRoundedIcon />
                 </IconButton>
-              </Tooltip>
-              <ThemeSelector
-                value={selectedTheme}
-                onChange={(newTheme) => setSelectedTheme(newTheme)}
-              />
-            </Box>
-          </Toolbar>
-        </StyledAppBar>
+              </Box>
+              <ColorSchemeControls />
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'flex-end',
+                  gap: 1,
+                  width: { xs: 'auto', sm: 0 },
+                  '& > *': { flexShrink: 0 },
+                }}
+              >
+                <Tooltip title="Fork this template">
+                  <IconButton
+                    aria-label="CodeSandbox playground"
+                    data-ga-event-category="material-ui-template"
+                    data-ga-event-label="sign-in"
+                    data-ga-event-action="codesandbox"
+                    onClick={() =>
+                      codeSandbox
+                        .createMaterialTemplate({
+                          ...item,
+                          files: { ...item.files, ...materialTemplates.sharedTheme?.files },
+                          title: `${templateName} Template - Material UI`,
+                          githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
+                            process.env.LIB_VERSION
+                          }/docs/data/material/templates/${router.pathname.split('/').pop()}/${templateName}.${
+                            item.codeVariant === 'TS' ? 'tsx' : 'js'
+                          }`,
+                        })
+                        .editFile(
+                          `${templateName}.${item.codeVariant === 'TS' ? 'tsx' : 'js'}`,
+                          (content) => content.replace('../shared-theme/', './theme/'),
+                        )
+                        .editFile(`index.${item.codeVariant === 'TS' ? 'tsx' : 'js'}`, (content) =>
+                          content.replace('./App', `./${templateName}`),
+                        )
+                        .openSandbox(`/${templateName}`, { embed: true })
+                    }
+                    sx={{ alignSelf: 'center' }}
+                  >
+                    <SvgIcon viewBox="0 0 1080 1080">
+                      <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
+                    </SvgIcon>
+                  </IconButton>
+                </Tooltip>
+                <ThemeSelector
+                  value={selectedTheme}
+                  onChange={(newTheme) => setSelectedTheme(newTheme)}
+                />
+              </Box>
+            </Toolbar>
+          </StyledAppBar>
+        </ThemeBridge>
         <Box sx={{ flex: '1 1', overflow: 'auto' }}>
           {React.isValidElement(children)
             ? React.cloneElement(children, { disableCustomTheme: selectedTheme === 'material2' })
@@ -373,9 +376,5 @@ function TemplateFrame({ children }) {
     </ThemeProvider>
   );
 }
-
-TemplateFrame.propTypes = {
-  children: PropTypes.node,
-};
 
 export default TemplateFrame;
