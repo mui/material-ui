@@ -196,7 +196,7 @@ const DialogPaper = styled(Paper, {
           borderRadius: 0,
           [`&.${dialogClasses.paperScrollBody}`]: {
             margin: 0,
-            maxWidth: '100%',   
+            maxWidth: '100%',
           },
         },
       },
