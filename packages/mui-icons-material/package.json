@@ -98,7 +98,6 @@
       "require": "./*.js"
     },
     "./esm/*": "./esm/*.js",
-    "./esm/*.js": "./esm/*.js",
-    "./utils/*": null
+    "./esm/*.js": "./esm/*.js"
   }
 }
