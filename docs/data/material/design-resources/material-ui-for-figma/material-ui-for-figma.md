@@ -105,12 +105,10 @@ If you've got any feedback, we'd love to [hear from you](https://github.com/mui/
 
 ### Quest
 
-MUI works with [Quest](https://www.quest.ai/) to help you convert your Figma designs into Material UI code. Use the Material UI Figma kit to design your components, then Quest.ai automates the process of generating clean, production-ready code.
+[Quest](https://www.quest.ai/) provides a native integration with this design kit.
 
-**How to use it:**
+When you design your components with the kit, you can use [Quest plugin](https://www.figma.com/community/plugin/862039267149408972/figma-to-react-from-quest) to convert your Figma designs into Material UI code. 
 
-1. Design your components using the [Material UI Figma kit](https://mui.com/store/items/figma-react/).
-2. Export your designs to [Quest's Figma plugin](https://www.figma.com/community/plugin/862039267149408972/figma-to-react-from-quest).
-3. Get production-ready Material UI code.
+The code generated should be clean and production-ready.
 
-For more info, check out [Quest's docs](https://docs.quest.ai/quest-docs).
+Visit the [Quest documentation](https://docs.quest.ai/quest-docs) for more details.
