@@ -49,14 +49,14 @@ export const getStaticProps = () => {
   const SelectApiDescriptions = mapApiPageTranslations(SelectApiReq);
 
   const useOptionApiReq = require.context(
-    'docs/translations/api-docs/use-option',
+    'docs/translations/api-docs-base/use-option',
     false,
     /use-option.*.json$/,
   );
   const useOptionApiDescriptions = mapApiPageTranslations(useOptionApiReq);
 
   const useOptionContextStabilizerApiReq = require.context(
-    'docs/translations/api-docs/use-option-context-stabilizer',
+    'docs/translations/api-docs-base/use-option-context-stabilizer',
     false,
     /use-option-context-stabilizer.*.json$/,
   );
@@ -65,7 +65,7 @@ export const getStaticProps = () => {
   );
 
   const useSelectApiReq = require.context(
-    'docs/translations/api-docs/use-select',
+    'docs/translations/api-docs-base/use-select',
     false,
     /use-select.*.json$/,
   );
