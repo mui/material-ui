@@ -515,7 +515,7 @@ function testSlotPropsProp(element: React.ReactElement<any>, getOptions: () => C
         const slotComponent = queryByTestId('custom');
         expect(slotComponent?.getAttribute('data-from-slot-props')).to.equal('true');
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-        expect(slotComponent?.getAttribute('data-from-components-props')).to.be.undefined;
+        expect(slotComponent?.getAttribute('data-from-components-props')).to.be.null;
       });
     }
   });
