@@ -511,7 +511,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
    */
   let prepared = false;
   let profiler: Profiler = null!;
-  beforeEach(function beforeEachHook(t) {
+  beforeEach(function beforeEachHook(t = {}) {
     if (!wasCalledInSuite) {
       const error = new Error(
         'Unable to run `before` hook for `createRenderer`. This usually indicates that `createRenderer` was called in a `before` hook instead of in a `describe()` block.',

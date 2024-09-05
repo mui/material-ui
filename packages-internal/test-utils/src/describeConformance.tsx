@@ -629,7 +629,7 @@ function testThemeStyleOverrides(
   getOptions: () => ConformanceOptions,
 ) {
   describe('theme style overrides:', () => {
-    it("respect theme's styleOverrides custom state", async function test(t) {
+    it("respect theme's styleOverrides custom state", async function test(t = {}) {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // @ts-ignore
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
@@ -686,7 +686,7 @@ function testThemeStyleOverrides(
       expect(container.firstChild).to.toHaveComputedStyle(testStyle);
     });
 
-    it("respect theme's styleOverrides slots", async function test(t) {
+    it("respect theme's styleOverrides slots", async function test(t = {}) {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // @ts-ignore
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
@@ -799,7 +799,7 @@ function testThemeStyleOverrides(
       }
     });
 
-    it('overrideStyles does not replace each other in slots', async function test(t) {
+    it('overrideStyles does not replace each other in slots', async function test(t = {}) {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // @ts-ignore
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
@@ -879,7 +879,7 @@ function testThemeStyleOverrides(
  */
 function testThemeVariants(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
   describe('theme variants:', () => {
-    it("respect theme's variants", async function test(t) {
+    it("respect theme's variants", async function test(t = {}) {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // @ts-ignore
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
@@ -936,7 +936,7 @@ function testThemeVariants(element: React.ReactElement<any>, getOptions: () => C
       expect(getByTestId('without-props')).not.to.toHaveComputedStyle(testStyle);
     });
 
-    it('supports custom variant', async function test(t) {
+    it('supports custom variant', async function test(t = {}) {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // @ts-ignore
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
@@ -991,7 +991,7 @@ function testThemeCustomPalette(
   getOptions: () => ConformanceOptions,
 ) {
   describe('theme extended palette:', () => {
-    it('should render without errors', function test(t) {
+    it('should render without errors', function test(t = {}) {
       const { render, ThemeProvider, createTheme } = getOptions();
       if (!/jsdom/.test(window.navigator.userAgent) || !render || !ThemeProvider || !createTheme) {
         // @ts-ignore
