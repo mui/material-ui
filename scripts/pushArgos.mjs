@@ -5,11 +5,14 @@ import lodashChunk from 'lodash/chunk.js';
 import { upload } from '@argos-ci/core';
 
 const screenshotsBase = 'test/regressions/screenshots/chrome';
+const screenshotsPigmentCSSBase = 'screenshots/chrome';
 const screenshotsTmp = 'test/regressions/screenshots/argos';
 const BATCH_SIZE = 200;
 
 async function run() {
-  const screenshots = await glob(`${screenshotsBase}/**/*`);
+  const emotionScreenshots = await glob(`${screenshotsBase}/**/*`);
+  const pigmentCSSScnreeshots = await glob(`${screenshotsPigmentCSSBase}/**/*`);
+  const screenshots = [...emotionScreenshots, ...pigmentCSSScnreeshots];
   const chunks = lodashChunk(screenshots, BATCH_SIZE);
 
   await Promise.all(
@@ -18,7 +21,7 @@ async function run() {
         chunk.map((screenshot) => {
           return fse.move(
             screenshot,
-            `${screenshotsTmp}/${chunkIndex}/${screenshot.replace(screenshotsBase, '')}`,
+            `${screenshotsTmp}/${chunkIndex}/${screenshot.replace(screenshotsBase, '').replace(screenshotsPigmentCSSBase, '')}`,
           );
         }),
       ),
