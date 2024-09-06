@@ -196,6 +196,9 @@ function createWebpackConfig(entry, environment) {
     ],
     context: __dirname,
     entry: {
+      // This format is a data: url combined with inline matchResource to obtain a virtual entry.
+      // See https://github.com/webpack/webpack/issues/6437#issuecomment-874466638
+      // See https://webpack.js.org/api/loaders/#inline-matchresource
       [entry.id]: `./index.js!=!data:text/javascript,import ${importNames} from '${entry.import}';console.log(foo);`,
     },
     // TODO: 'browserslist:modern'
