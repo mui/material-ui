@@ -23,12 +23,12 @@ export interface TimelineOppositeContentProps extends StandardProps<TypographyPr
  *
  * Demos:
  *
- * - [Timeline](https://next.mui.com/material-ui/react-timeline/)
+ * - [Timeline](https://mui.com/material-ui/react-timeline/)
  *
  * API:
  *
- * - [TimelineOppositeContent API](https://next.mui.com/material-ui/api/timeline-opposite-content/)
- * - inherits [Typography API](https://next.mui.com/material-ui/api/typography/)
+ * - [TimelineOppositeContent API](https://mui.com/material-ui/api/timeline-opposite-content/)
+ * - inherits [Typography API](https://mui.com/material-ui/api/typography/)
  */
 declare const TimelineOppositeContent: ((
   props: TimelineOppositeContentProps,

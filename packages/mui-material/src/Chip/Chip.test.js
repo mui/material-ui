@@ -11,7 +11,7 @@ import {
 } from '@mui/internal-test-utils';
 import Avatar from '@mui/material/Avatar';
 import Chip, { chipClasses as classes } from '@mui/material/Chip';
-import { ThemeProvider, createTheme, hexToRgb, extendTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, hexToRgb } from '@mui/material/styles';
 import CheckBox from '../internal/svg-icons/CheckBox';
 import defaultTheme from '../styles/defaultTheme';
 import describeConformance from '../../test/describeConformance';
@@ -710,7 +710,7 @@ describe('<Chip />', () => {
 
   describe('CSS vars', () => {
     it('should not throw when there is theme value is CSS variable', () => {
-      const theme = extendTheme();
+      const theme = createTheme({ cssVariables: true });
       theme.palette = theme.colorSchemes.light.palette;
       theme.palette.text = {
         ...theme.palette.text,
@@ -718,7 +718,7 @@ describe('<Chip />', () => {
       };
       expect(() =>
         render(
-          <ThemeProvider theme={theme}>
+          <ThemeProvider disableStyleSheetGeneration theme={theme}>
             <Chip label="Test Chip" />
           </ThemeProvider>,
         ),

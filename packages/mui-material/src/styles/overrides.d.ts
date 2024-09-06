@@ -45,7 +45,7 @@ import { FormGroupClassKey } from '../FormGroup';
 import { FormHelperTextClassKey } from '../FormHelperText';
 import { FormLabelClassKey } from '../FormLabel';
 import { GridClassKey } from '../Grid';
-import { Grid2Slot } from '../Unstable_Grid2';
+import { Grid2Slot } from '../Grid2';
 import { IconButtonClassKey } from '../IconButton';
 import { IconClassKey } from '../Icon';
 import { ImageListClassKey } from '../ImageList';

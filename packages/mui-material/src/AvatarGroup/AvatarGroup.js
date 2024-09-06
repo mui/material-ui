@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Avatar, { avatarClasses } from '../Avatar';
 import avatarGroupClasses, { getAvatarGroupUtilityClass } from './avatarGroupClasses';
@@ -34,18 +35,20 @@ const AvatarGroupRoot = styled('div', {
     [`& .${avatarGroupClasses.avatar}`]: styles.avatar,
     ...styles.root,
   }),
-})(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'row-reverse',
-  [`& .${avatarClasses.root}`]: {
-    border: `2px solid ${(theme.vars || theme).palette.background.default}`,
-    boxSizing: 'content-box',
-    marginLeft: 'var(--AvatarGroup-spacing, -8px)',
-    '&:last-child': {
-      marginLeft: 0,
+})(
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    flexDirection: 'row-reverse',
+    [`& .${avatarClasses.root}`]: {
+      border: `2px solid ${(theme.vars || theme).palette.background.default}`,
+      boxSizing: 'content-box',
+      marginLeft: 'var(--AvatarGroup-spacing, -8px)',
+      '&:last-child': {
+        marginLeft: 0,
+      },
     },
-  },
-}));
+  })),
+);
 
 const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   const props = useDefaultProps({
@@ -184,7 +187,7 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    *
    * This prop is an alias for the `slotProps` prop.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps: PropTypes.shape({
     additionalAvatar: PropTypes.object,

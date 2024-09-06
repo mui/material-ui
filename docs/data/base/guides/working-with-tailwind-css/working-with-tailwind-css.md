@@ -31,14 +31,8 @@ We'll use [`create-react-app` with TypeScript](https://create-react-app.dev/docs
 After you have created the project, follow the instructions given on the [Tailwind CSS installation page](https://tailwindcss.com/docs/guides/create-react-app) in order to configure `tailwind`.
 Next, install `@mui/base` in the project:
 
-:::info
-The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Remove it to get the current stable version.
-:::
-
-<!-- #default-branch-switch -->
-
 ```bash
-npm install @mui/base@next
+npm install @mui/base
 ```
 
 ## Adding the player markup

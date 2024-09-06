@@ -20,19 +20,18 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-error-boundary": "^4.0.13",
-    "react-router": "^6.24.1",
-    "react-router-dom": "^6.24.1"
+    "react-router-dom": "^6.26.1"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.24.7",
     "@babel/preset-typescript": "^7.24.7",
-    "@pigment-css/vite-plugin": "0.0.17",
-    "@types/react": "^18.3.3",
+    "@pigment-css/vite-plugin": "0.0.21",
+    "@types/react": "^18.3.4",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
-    "postcss": "^8.4.39",
+    "postcss": "^8.4.44",
     "postcss-combine-media-query": "^1.0.1",
-    "vite": "5.3.2",
+    "vite": "5.4.2",
     "vite-plugin-pages": "^0.32.3"
   },
   "nx": {

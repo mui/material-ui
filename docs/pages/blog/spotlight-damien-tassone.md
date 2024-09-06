@@ -15,6 +15,6 @@ Right from the start, Damien has made fast and significant progress. He has been
 
 <img src="/static/blog/spotlight-damien-tassone/data-grid.png" style="margin-bottom: 3rem;" alt="Data Grid" />
 
-The enterprise team will continue developing the data grid component, and progressively extend to new advanced components as we grow the team. Here's a quick view of [the enterprise roadmap](https://github.com/mui/mui-x/projects/1).
+The enterprise team will continue developing the data grid component, and progressively extend to new advanced components as we grow the team. Here's a quick view of [the enterprise roadmap](https://github.com/orgs/mui/projects/35).
 
 You can follow Damien on [X](https://x.com/madKakoO).

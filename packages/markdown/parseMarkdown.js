@@ -366,7 +366,13 @@ function createRender(context) {
       }
 
       return [
-        `<h${level} id="${hash}"><a href="#${hash}" class="title-link-to-anchor">${headingHtml}<span class="anchor-icon"><svg><use xlink:href="#anchor-link-icon" /></svg></span></a>`,
+        headingHtml.includes('<a ')
+          ? [
+              // Avoid breaking the anchor link button
+              `<h${level} id="${hash}"><a href="#${hash}" class="title-link-to-anchor">${headingHtml}</a>`,
+              `<a href="#${hash}" class="title-link-to-anchor"><span class="anchor-icon"><svg><use xlink:href="#anchor-link-icon" /></svg></span></a>`,
+            ].join('')
+          : `<h${level} id="${hash}"><a href="#${hash}" class="title-link-to-anchor">${headingHtml}<span class="anchor-icon"><svg><use xlink:href="#anchor-link-icon" /></svg></span></a>`,
         `<button title="Post a comment" class="comment-link" data-feedback-hash="${hash}">`,
         '<svg><use xlink:href="#comment-link-icon" /></svg>',
         `</button>`,
@@ -389,7 +395,7 @@ function createRender(context) {
 
       checkUrlHealth(href, linkText, context);
 
-      if (userLanguage !== 'en' && href.indexOf('/') === 0 && !options.ignoreLanguagePages(href)) {
+      if (userLanguage !== 'en' && href.startsWith('/') && !options.ignoreLanguagePages(href)) {
         finalHref = `/${userLanguage}${href}`;
       }
 
@@ -458,22 +464,20 @@ function createRender(context) {
             }
             return undefined;
           },
-
           renderer(token) {
-            return `<aside class="MuiCallout-root MuiCallout-${token.severity}">
-            ${
-              ['info', 'success', 'warning', 'error'].includes(token.severity)
-                ? [
-                    '<div class="MuiCallout-icon-container">',
-                    '<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyRoundedIcon">',
-                    `<use class="MuiCode-copied-icon" xlink:href="#${token.severity}-icon" />`,
-                    '</svg>',
-                    '</div>',
-                  ].join('\n')
-                : ''
+            if (!['info', 'success', 'warning', 'error'].includes(token.severity)) {
+              throw new Error(`docs-infra: Callout :::${token.severity} is not supported`);
             }
-            <div class="MuiCallout-content">
-            ${this.parser.parse(token.tokens)}\n</div></aside>`;
+
+            return `<aside class="MuiCallout-root MuiCallout-${token.severity}">${[
+              '<div class="MuiCallout-icon-container">',
+              '<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyRoundedIcon">',
+              `<use class="MuiCode-copied-icon" xlink:href="#${token.severity}-icon" />`,
+              '</svg>',
+              '</div>',
+            ].join(
+              '\n',
+            )}<div class="MuiCallout-content">${this.parser.parse(token.tokens)}</div></aside>`;
           },
         },
       ],

@@ -17,11 +17,11 @@ import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
  *
  * Demos:
  *
- * - [Button](https://next.mui.com/base-ui/react-button/#hook)
+ * - [Button](https://mui.com/base-ui/react-button/#hook)
  *
  * API:
  *
- * - [useButton API](https://next.mui.com/base-ui/react-button/hooks-api/#use-button)
+ * - [useButton API](https://mui.com/base-ui/react-button/hooks-api/#use-button)
  */
 export function useButton(parameters: UseButtonParameters = {}): UseButtonReturnValue {
   const {
@@ -34,7 +34,7 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
     type,
     rootElementName: rootElementNameProp,
   } = parameters;
-  const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
+  const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement | null>(null);
 
   const [active, setActive] = React.useState<boolean>(false);
 
@@ -200,7 +200,7 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
     }
     if (disabled) {
       buttonProps['aria-disabled'] = disabled as boolean;
-      buttonProps.tabIndex = focusableWhenDisabled ? tabIndex ?? 0 : -1;
+      buttonProps.tabIndex = focusableWhenDisabled ? (tabIndex ?? 0) : -1;
     }
   }
 

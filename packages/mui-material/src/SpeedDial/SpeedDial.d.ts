@@ -13,11 +13,11 @@ export type OpenReason = 'toggle' | 'focus' | 'mouseEnter';
 export interface SpeedDialSlots {
   /**
    * The component that renders the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default {}
    */
-  transition?: React.JSXElementConstructor<
-    TransitionProps & { children: React.ReactElement<any, any> }
+  transition: React.JSXElementConstructor<
+    TransitionProps & { children: React.ReactElement<unknown, any> }
   >;
 }
 
@@ -58,7 +58,7 @@ export interface SpeedDialProps
    */
   hidden?: boolean;
   /**
-   * Props applied to the [`Fab`](/material-ui/api/fab/) element.
+   * Props applied to the [`Fab`](https://mui.com/material-ui/api/fab/) element.
    * @default {}
    */
   FabProps?: Partial<FabProps>;
@@ -95,7 +95,7 @@ export interface SpeedDialProps
   sx?: SxProps<Theme>;
   /**
    * The component used for the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Zoom
    */
   TransitionComponent?: React.JSXElementConstructor<TransitionProps>;
@@ -121,10 +121,10 @@ export interface SpeedDialOwnerState extends SpeedDialProps {}
  *
  * Demos:
  *
- * - [Speed Dial](https://next.mui.com/material-ui/react-speed-dial/)
+ * - [Speed Dial](https://mui.com/material-ui/react-speed-dial/)
  *
  * API:
  *
- * - [SpeedDial API](https://next.mui.com/material-ui/api/speed-dial/)
+ * - [SpeedDial API](https://mui.com/material-ui/api/speed-dial/)
  */
 export default function SpeedDial(props: SpeedDialProps): React.JSX.Element;

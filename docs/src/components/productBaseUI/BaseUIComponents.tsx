@@ -2,7 +2,7 @@ import * as React from 'react';
 import { styled as materialStyled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
 import SmartButtonRoundedIcon from '@mui/icons-material/SmartButtonRounded';
 import TabUnselectedRoundedIcon from '@mui/icons-material/TabUnselectedRounded';
