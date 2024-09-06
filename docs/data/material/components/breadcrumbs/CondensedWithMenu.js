@@ -1,9 +1,10 @@
 import * as React from 'react';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
-import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { IconButton } from '@mui/material';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 export default function CondensedWithMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -33,13 +34,13 @@ export default function CondensedWithMenu() {
         <Link color="primary" href="#condensed-with-menu">
           Breadcrumb 1
         </Link>
-        <Button
+        <IconButton
+          color="primary"
           size="small"
           onClick={handleClick}
-          color="primary"
         >
-          •••
-        </Button>
+          <MoreHorizIcon/>
+        </IconButton>
         <Link color="primary" href="#condensed-with-menu">
           Breadcrumb 5
         </Link>
