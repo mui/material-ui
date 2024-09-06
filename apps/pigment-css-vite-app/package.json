@@ -17,6 +17,7 @@
     "@mui/material": "workspace:^",
     "@mui/system": "workspace:^",
     "clsx": "^2.1.1",
+    "playwright": "^1.46.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-error-boundary": "^4.0.13",
@@ -32,7 +33,8 @@
     "postcss": "^8.4.44",
     "postcss-combine-media-query": "^1.0.1",
     "vite": "5.4.2",
-    "vite-plugin-pages": "^0.32.3"
+    "vite-plugin-pages": "^0.32.3",
+    "vite-plugin-node-polyfills": "0.22.0"
   },
   "nx": {
     "targets": {
