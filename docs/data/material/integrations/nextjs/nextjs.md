@@ -75,8 +75,8 @@ Use the `options` prop to override the default [cache options](https://emotion.s
 
 ### Font optimization
 
-To integrate [Next.js font optimization](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) with Material UI, create a new file with `'use client';` directive.
-Then, create a theme using `var(--font-roboto)` as a value to the `typography.fontFamily` field.
+To integrate [Next.js font optimization](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) with Material UI, create a new file with the `'use client';` directive.
+Then create a theme using `var(--font-roboto)` as a value for the `typography.fontFamily` field.
 
 ```js title="src/theme.ts"
 'use client';
@@ -330,7 +330,7 @@ If you are using TypeScript, add `DocumentHeadTagsProps` to the Document's props
 
 ### Font optimization
 
-To integrate [Next.js font optimization](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) with Material UI, opens `pages/_app.tsx` and create a theme using `var(--font-roboto)` as a value to the `typography.fontFamily` field.
+To integrate [Next.js font optimization](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) with Material UI, open `pages/_app.tsx` and create a theme using `var(--font-roboto)` as a value for the `typography.fontFamily` field.
 
 ```diff title="pages/_app.tsx"
  import * as React from 'react';
