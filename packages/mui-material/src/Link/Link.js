@@ -9,7 +9,7 @@ import isFocusVisible from '@mui/utils/isFocusVisible';
 import capitalize from '../utils/capitalize';
 import { styled, useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
-import checkSimplePaletteColorValues from '../utils/checkSimplePaletteColorValues';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Typography from '../Typography';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
@@ -96,7 +96,7 @@ const LinkRoot = styled(Typography, {
           },
         },
         ...Object.entries(theme.palette)
-          .filter(([, value]) => value && checkSimplePaletteColorValues(value))
+          .filter(createSimplePaletteValueFilter())
           .map(([color]) => ({
             props: { underline: 'always', color },
             style: {

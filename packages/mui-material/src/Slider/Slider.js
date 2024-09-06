@@ -15,7 +15,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import capitalize from '../utils/capitalize';
-import checkSimplePaletteColorValues from '../utils/checkSimplePaletteColorValues';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import BaseSliderValueLabel from './SliderValueLabel';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 
@@ -63,7 +63,7 @@ export const SliderRoot = styled('span', {
     },
     variants: [
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value && checkSimplePaletteColorValues(value))
+        .filter(createSimplePaletteValueFilter())
         .map(([color]) => ({
           props: { color },
           style: {
@@ -207,7 +207,7 @@ export const SliderTrack = styled('span', {
           },
         },
         ...Object.entries(theme.palette)
-          .filter(([, value]) => value && checkSimplePaletteColorValues(value))
+          .filter(createSimplePaletteValueFilter())
           .map(([color]) => ({
             props: { color, track: 'inverted' },
             style: {
@@ -309,7 +309,7 @@ export const SliderThumb = styled('span', {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value && checkSimplePaletteColorValues(value))
+        .filter(createSimplePaletteValueFilter())
         .map(([color]) => ({
           props: { color },
           style: {

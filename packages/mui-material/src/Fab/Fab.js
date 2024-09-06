@@ -9,7 +9,7 @@ import fabClasses, { getFabUtilityClass } from './fabClasses';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
-import checkSimplePaletteColorValues from '../utils/checkSimplePaletteColorValues';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 
 import { useDefaultProps } from '../DefaultPropsProvider';
 
@@ -138,9 +138,7 @@ const FabRoot = styled(ButtonBase, {
   memoTheme(({ theme }) => ({
     variants: [
       ...Object.entries(theme.palette)
-        .filter(
-          ([, value]) => value && checkSimplePaletteColorValues(value, ['dark', 'contrastText']),
-        ) // check all the used fields in the style below
+        .filter(createSimplePaletteValueFilter(['dark', 'contrastText'])) // check all the used fields in the style below
         .map(([color]) => ({
           props: { color },
           style: {

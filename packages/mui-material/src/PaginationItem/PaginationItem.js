@@ -8,7 +8,7 @@ import { useRtl } from '@mui/system/RtlProvider';
 import paginationItemClasses, { getPaginationItemUtilityClass } from './paginationItemClasses';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
-import checkSimplePaletteColorValues from '../utils/checkSimplePaletteColorValues';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import FirstPageIcon from '../internal/svg-icons/FirstPage';
 import LastPageIcon from '../internal/svg-icons/LastPage';
 import NavigateBeforeIcon from '../internal/svg-icons/NavigateBefore';
@@ -219,9 +219,7 @@ const PaginationItemPage = styled(ButtonBase, {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(
-          ([, value]) => value && checkSimplePaletteColorValues(value, ['dark', 'contrastText']),
-        )
+        .filter(createSimplePaletteValueFilter(['dark', 'contrastText']))
         .map(([color]) => ({
           props: { variant: 'text', color },
           style: {
@@ -245,7 +243,7 @@ const PaginationItemPage = styled(ButtonBase, {
           },
         })),
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value && checkSimplePaletteColorValues(value, ['light']))
+        .filter(createSimplePaletteValueFilter(['light']))
         .map(([color]) => ({
           props: { variant: 'outlined', color },
           style: {

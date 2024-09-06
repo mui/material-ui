@@ -8,7 +8,7 @@ import useFormControl from '../FormControl/useFormControl';
 import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
-import checkSimplePaletteColorValues from '../utils/checkSimplePaletteColorValues';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import formLabelClasses, { getFormLabelUtilityClasses } from './formLabelClasses';
 
@@ -49,7 +49,7 @@ export const FormLabelRoot = styled('label', {
     position: 'relative',
     variants: [
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value && checkSimplePaletteColorValues(value))
+        .filter(createSimplePaletteValueFilter())
         .map(([color]) => ({
           props: { color },
           style: {

@@ -7,7 +7,7 @@ import { darken, lighten } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
 import { keyframes, css, styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
-import checkSimplePaletteColorValues from '../utils/checkSimplePaletteColorValues';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import { getLinearProgressUtilityClass } from './linearProgressClasses';
@@ -145,7 +145,7 @@ const LinearProgressRoot = styled('span', {
     },
     variants: [
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value && checkSimplePaletteColorValues(value))
+        .filter(createSimplePaletteValueFilter())
         .map(([color]) => ({
           props: { color },
           style: {
@@ -205,7 +205,7 @@ const LinearProgressDashed = styled('span', {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value && checkSimplePaletteColorValues(value))
+        .filter(createSimplePaletteValueFilter())
         .map(([color]) => {
           const backgroundColor = getColorShade(theme, color);
           return {
@@ -257,7 +257,7 @@ const LinearProgressBar1 = styled('span', {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value && checkSimplePaletteColorValues(value))
+        .filter(createSimplePaletteValueFilter())
         .map(([color]) => ({
           props: { color },
           style: {
@@ -324,7 +324,7 @@ const LinearProgressBar2 = styled('span', {
     transformOrigin: 'left',
     variants: [
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value && checkSimplePaletteColorValues(value))
+        .filter(createSimplePaletteValueFilter())
         .map(([color]) => ({
           props: { color },
           style: {
@@ -347,7 +347,7 @@ const LinearProgressBar2 = styled('span', {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value && checkSimplePaletteColorValues(value))
+        .filter(createSimplePaletteValueFilter())
         .map(([color]) => ({
           props: { color, variant: 'buffer' },
           style: {

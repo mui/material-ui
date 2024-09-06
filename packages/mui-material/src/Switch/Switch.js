@@ -7,7 +7,7 @@ import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha, darken, lighten } from '@mui/system/colorManipulator';
 import capitalize from '../utils/capitalize';
-import checkSimplePaletteColorValues from '../utils/checkSimplePaletteColorValues';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import SwitchBase from '../internal/SwitchBase';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
@@ -151,7 +151,7 @@ const SwitchSwitchBase = styled(SwitchBase, {
     },
     variants: [
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value && checkSimplePaletteColorValues(value, ['light'])) // check all the used fields in the style below
+        .filter(createSimplePaletteValueFilter(['light'])) // check all the used fields in the style below
         .map(([color]) => ({
           props: { color },
           style: {

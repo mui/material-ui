@@ -7,7 +7,7 @@ import { styled, internal_createExtendSxProp } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
-import checkSimplePaletteColorValues from '../utils/checkSimplePaletteColorValues';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { getTypographyUtilityClass } from './typographyClasses';
 
 const v6Colors = {
@@ -78,7 +78,7 @@ export const TypographyRoot = styled('span', {
           style: value,
         })),
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value && checkSimplePaletteColorValues(value))
+        .filter(createSimplePaletteValueFilter())
         .map(([color]) => ({
           props: { color },
           style: {

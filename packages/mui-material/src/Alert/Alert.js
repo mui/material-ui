@@ -9,7 +9,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import useSlot from '../utils/useSlot';
 import capitalize from '../utils/capitalize';
-import checkSimplePaletteColorValues from '../utils/checkSimplePaletteColorValues';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import Paper from '../Paper';
 import alertClasses, { getAlertUtilityClass } from './alertClasses';
 import IconButton from '../IconButton';
@@ -60,7 +60,7 @@ const AlertRoot = styled(Paper, {
       padding: '6px 16px',
       variants: [
         ...Object.entries(theme.palette)
-          .filter(([, value]) => value && checkSimplePaletteColorValues(value, ['light']))
+          .filter(createSimplePaletteValueFilter(['light']))
           .map(([color]) => ({
             props: { colorSeverity: color, variant: 'standard' },
             style: {
@@ -78,7 +78,7 @@ const AlertRoot = styled(Paper, {
             },
           })),
         ...Object.entries(theme.palette)
-          .filter(([, value]) => value && checkSimplePaletteColorValues(value, ['light']))
+          .filter(createSimplePaletteValueFilter(['light']))
           .map(([color]) => ({
             props: { colorSeverity: color, variant: 'outlined' },
             style: {
@@ -94,7 +94,7 @@ const AlertRoot = styled(Paper, {
             },
           })),
         ...Object.entries(theme.palette)
-          .filter(([, value]) => value && checkSimplePaletteColorValues(value, ['dark']))
+          .filter(createSimplePaletteValueFilter(['dark']))
           .map(([color]) => ({
             props: { colorSeverity: color, variant: 'filled' },
             style: {
