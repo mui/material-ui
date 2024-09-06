@@ -14,7 +14,7 @@ req.keys().forEach((key: string) => {
     if (name && filePath?.match(/\.(ts|tsx)$/)) {
       if (name === 'shared-theme') {
         sharedTheme = {
-          files: { ...sharedTheme?.files, [`/theme/${filePath}`]: req(key) },
+          files: { ...sharedTheme?.files, [`theme/${filePath}`]: req(key) },
           codeVariant: 'TS',
         };
       } else {

@@ -19,6 +19,7 @@ import SvgIcon from '@mui/material/SvgIcon';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import PaletteIcon from '@mui/icons-material/Palette';
 import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
+import stackBlitz from 'docs/src/modules/sandbox/StackBlitz';
 import sourceMaterialTemplates from 'docs/src/modules/material/sourceMaterialTemplates';
 
 function pascalCase(str) {
@@ -266,7 +267,8 @@ function ThemeBridge({ children }) {
 
 function TemplateFrame({ children }) {
   const router = useRouter();
-  const templateName = pascalCase(router.pathname.split('/').pop());
+  const templateId = router.pathname.split('/').pop();
+  const templateName = pascalCase(templateId);
   const [selectedTheme, setSelectedTheme] = React.useState('custom');
   const materialTemplates = sourceMaterialTemplates();
   const item = materialTemplates.map.get('sign-in');
@@ -325,11 +327,11 @@ function TemplateFrame({ children }) {
                   '& > *': { flexShrink: 0 },
                 }}
               >
-                <Tooltip title="Fork this template">
+                <Tooltip title="Open Template via CodeSandbox">
                   <IconButton
                     aria-label="CodeSandbox playground"
                     data-ga-event-category="material-ui-template"
-                    data-ga-event-label="sign-in"
+                    data-ga-event-label={templateId}
                     data-ga-event-action="codesandbox"
                     onClick={() =>
                       codeSandbox
@@ -339,7 +341,7 @@ function TemplateFrame({ children }) {
                           title: `${templateName} Template - Material UI`,
                           githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
                             process.env.LIB_VERSION
-                          }/docs/data/material/templates/${router.pathname.split('/').pop()}/${templateName}.${
+                          }/docs/data/material/templates/${templateId}/${templateName}.${
                             item.codeVariant === 'TS' ? 'tsx' : 'js'
                           }`,
                         })
@@ -350,12 +352,46 @@ function TemplateFrame({ children }) {
                         .editFile(`index.${item.codeVariant === 'TS' ? 'tsx' : 'js'}`, (content) =>
                           content.replace('./App', `./${templateName}`),
                         )
-                        .openSandbox(`/${templateName}`, { embed: true })
+                        .openSandbox(`/${templateName}`)
                     }
                     sx={{ alignSelf: 'center' }}
                   >
                     <SvgIcon viewBox="0 0 1080 1080">
                       <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
+                    </SvgIcon>
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title="Open Template via StackBlitz">
+                  <IconButton
+                    aria-label="StackBlitz playground"
+                    data-ga-event-category="material-ui-template"
+                    data-ga-event-label={templateId}
+                    data-ga-event-action="codesandbox"
+                    onClick={() =>
+                      stackBlitz
+                        .createMaterialTemplate({
+                          ...item,
+                          files: { ...item.files, ...materialTemplates.sharedTheme?.files },
+                          title: `${templateName} Template - Material UI`,
+                          githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
+                            process.env.LIB_VERSION
+                          }/docs/data/material/templates/${templateId}/${templateName}.${
+                            item.codeVariant === 'TS' ? 'tsx' : 'js'
+                          }`,
+                        })
+                        .editFile(
+                          `${templateName}.${item.codeVariant === 'TS' ? 'tsx' : 'js'}`,
+                          (content) => content.replace('../shared-theme/', './theme/'),
+                        )
+                        .editFile(`index.${item.codeVariant === 'TS' ? 'tsx' : 'js'}`, (content) =>
+                          content.replace('./App', `./${templateName}`),
+                        )
+                        .openStackBlitz(`/${templateName}`)
+                    }
+                    sx={{ alignSelf: 'center' }}
+                  >
+                    <SvgIcon viewBox="0 0 19 28">
+                      <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
                     </SvgIcon>
                   </IconButton>
                 </Tooltip>

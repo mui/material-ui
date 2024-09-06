@@ -11,13 +11,12 @@ import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
 import MuiCard from '@mui/material/Card';
-import { styled, useColorScheme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import ForgotPassword from './ForgotPassword';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 import AppTheme from '../shared-theme/AppTheme';
+import ToggleColorMode from './ToggleColorMode';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -56,30 +55,6 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
     }),
   },
 }));
-
-function ColorSchemeToggle() {
-  const { mode, setMode } = useColorScheme();
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-  if (!mounted) {
-    return null;
-  }
-  return (
-    <Select
-      data-template-mode-trigger=""
-      size="small"
-      value={mode}
-      onChange={(e) => setMode(e.target.value as 'system' | 'light' | 'dark')}
-      sx={{ position: 'fixed', top: '1rem', right: '1rem' }}
-    >
-      <MenuItem value="system">System</MenuItem>
-      <MenuItem value="light">Light</MenuItem>
-      <MenuItem value="dark">Dark</MenuItem>
-    </Select>
-  );
-}
 
 export default function SignIn(props: { disableCustomTheme?: boolean }) {
   const [emailError, setEmailError] = React.useState(false);
@@ -136,7 +111,7 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
       <SignInContainer direction="column" justifyContent="space-between">
-        <ColorSchemeToggle />
+        <ToggleColorMode />
         <Card variant="outlined">
           <SitemarkIcon />
           <Typography

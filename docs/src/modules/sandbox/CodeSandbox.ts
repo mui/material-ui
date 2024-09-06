@@ -289,8 +289,8 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
       }
       throw new Error(`File ${filePath} not found`);
     },
-    openSandbox: (initialFile: string = '/App', options = {}) =>
-      openSandbox({ files, codeVariant: templateData.codeVariant, initialFile, ...options }),
+    openSandbox: (initialFile: string = '/App') =>
+      openSandbox({ files, codeVariant: templateData.codeVariant, initialFile }),
   };
 }
 
