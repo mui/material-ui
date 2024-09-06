@@ -3,7 +3,7 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { IconButton } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 export default function CondensedWithMenu() {
@@ -34,12 +34,8 @@ export default function CondensedWithMenu() {
         <Link color="primary" href="#condensed-with-menu">
           Breadcrumb 1
         </Link>
-        <IconButton
-          color="primary"
-          size="small"
-          onClick={handleClick}
-        >
-          <MoreHorizIcon/>
+        <IconButton color="primary" size="small" onClick={handleClick}>
+          <MoreHorizIcon />
         </IconButton>
         <Link color="primary" href="#condensed-with-menu">
           Breadcrumb 5
