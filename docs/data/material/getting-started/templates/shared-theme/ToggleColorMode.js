@@ -5,18 +5,14 @@ import Select from '@mui/material/Select';
 
 export default function ToggleColorMode() {
   const { mode, setMode } = useColorScheme();
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-  if (!mounted) {
+  if (!mode) {
     return null;
   }
   return (
     <Select
       data-template-mode-trigger=""
       value={mode}
-      onChange={(e) => setMode(e.target.value as 'system' | 'light' | 'dark')}
+      onChange={(e) => setMode(e.target.value)}
       sx={{ position: 'fixed', top: '1rem', right: '1rem' }}
     >
       <MenuItem value="system">System</MenuItem>

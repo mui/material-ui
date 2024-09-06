@@ -347,7 +347,7 @@ function TemplateFrame({ children }) {
                         })
                         .editFile(
                           `${templateName}.${item.codeVariant === 'TS' ? 'tsx' : 'js'}`,
-                          (content) => content.replace('../shared-theme/', './theme/'),
+                          (content) => content.replace(/\.\.\/shared-theme\//g, './theme/'),
                         )
                         .editFile(`index.${item.codeVariant === 'TS' ? 'tsx' : 'js'}`, (content) =>
                           content.replace('./App', `./${templateName}`),
@@ -381,7 +381,7 @@ function TemplateFrame({ children }) {
                         })
                         .editFile(
                           `${templateName}.${item.codeVariant === 'TS' ? 'tsx' : 'js'}`,
-                          (content) => content.replace('../shared-theme/', './theme/'),
+                          (content) => content.replace(/\.\.\/shared-theme\//g, './theme/'),
                         )
                         .editFile(`index.${item.codeVariant === 'TS' ? 'tsx' : 'js'}`, (content) =>
                           content.replace('./App', `./${templateName}`),

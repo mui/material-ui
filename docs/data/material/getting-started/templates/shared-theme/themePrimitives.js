@@ -215,11 +215,6 @@ export const getDesignTokens = (mode) => {
   };
 };
 
-export const cssVariables = {
-  colorSchemeSelector: 'data',
-  cssVarPrefix: 'template',
-};
-
 export const colorSchemes = {
   light: {
     palette: {

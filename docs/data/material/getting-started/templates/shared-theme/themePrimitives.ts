@@ -238,11 +238,6 @@ export const getDesignTokens = (mode: PaletteMode) => {
   };
 };
 
-export const cssVariables = {
-  colorSchemeSelector: 'data',
-  cssVarPrefix: 'template',
-};
-
 export const colorSchemes = {
   light: {
     palette: {
