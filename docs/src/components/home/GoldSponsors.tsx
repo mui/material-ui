@@ -64,6 +64,13 @@ const GOLDs = [
     description: 'Instagram followers, likes, views, and comments.',
     href: 'https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
+  {
+    src: 'https://images.opencollective.com/copycopterai/e167216/logo/40.png',
+    srcSet: 'https://images.opencollective.com/copycopterai/e167216/logo/120.png 3x',
+    name: 'Copycopter.ai',
+    description: 'Turn prompts into videos at ultra speed.',
+    href: 'https://copycopter.ai/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
 ];
 const BACKLINKs = [
   {
