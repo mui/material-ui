@@ -189,7 +189,6 @@ export default class MyDocument extends Document {
         </Head>
         <body>
           <MuiInitColorSchemeScript defaultMode="system" />
-          <MuiInitColorSchemeScript attribute="data" />
           <JoyInitColorSchemeScript defaultMode="system" />
           <Main />
           <script
