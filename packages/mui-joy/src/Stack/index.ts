@@ -1,4 +1,3 @@
-'use client';
 export { default } from './Stack';
 export * from './StackProps';
 

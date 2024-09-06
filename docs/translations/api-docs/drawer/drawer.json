@@ -7,7 +7,7 @@
     "elevation": { "description": "The elevation of the drawer." },
     "hideBackdrop": { "description": "If <code>true</code>, the backdrop is not rendered." },
     "ModalProps": {
-      "description": "Props applied to the <a href=\"/material-ui/api/modal/\"><code>Modal</code></a> element."
+      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/modal/\"><code>Modal</code></a> element."
     },
     "onClose": {
       "description": "Callback fired when the component requests to be closed. The <code>reason</code> parameter can optionally be used to control the response to <code>onClose</code>.",
@@ -18,10 +18,10 @@
     },
     "open": { "description": "If <code>true</code>, the component is shown." },
     "PaperProps": {
-      "description": "Props applied to the <a href=\"/material-ui/api/paper/\"><code>Paper</code></a> element."
+      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/paper/\"><code>Paper</code></a> element."
     },
     "SlideProps": {
-      "description": "Props applied to the <a href=\"/material-ui/api/slide/\"><code>Slide</code></a> element."
+      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/slide/\"><code>Slide</code></a> element."
     },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."

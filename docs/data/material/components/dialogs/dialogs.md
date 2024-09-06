@@ -27,7 +27,7 @@ Dialogs are implemented using a collection of related components:
 - Dialog Actions: an optional container for a Dialog's Buttons.
 - Dialog Content: an optional container for displaying the Dialog's content.
 - Dialog Content Text: a wrapper for text inside of `<DialogContent />`.
-- Slide: optional [Transition](https://mui.com/material-ui/transitions/#slide) used to slide the Dialog in from the edge of the screen.
+- Slide: optional [Transition](/material-ui/transitions/#slide) used to slide the Dialog in from the edge of the screen.
 
 {{"demo": "SimpleDialogDemo.js"}}
 
@@ -113,7 +113,7 @@ function MyComponent() {
 Confirmation dialogs require users to explicitly confirm their choice before an option is committed.
 For example, users can listen to multiple ringtones but only make a final selection upon touching "OK".
 
-Touching "Cancel" in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
+Touching "Cancel" in a confirmation dialog, cancels the action, discards any changes, and closes the dialog.
 
 {{"demo": "ConfirmationDialog.js"}}
 

@@ -36,11 +36,11 @@ export function getInputValueAsString(v: string): string {
  *
  * Demos:
  *
- * - [Number Input](https://next.mui.com/base-ui/react-number-input/#hook)
+ * - [Number Input](https://mui.com/base-ui/react-number-input/#hook)
  *
  * API:
  *
- * - [useNumberInput API](https://next.mui.com/base-ui/react-number-input/hooks-api/#use-number-input)
+ * - [useNumberInput API](https://mui.com/base-ui/react-number-input/hooks-api/#use-number-input)
  */
 export function useNumberInput(parameters: UseNumberInputParameters): UseNumberInputReturnValue {
   const {

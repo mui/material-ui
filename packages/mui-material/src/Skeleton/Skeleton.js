@@ -192,8 +192,10 @@ const SkeletonRoot = styled('span', {
           props: {
             animation: 'wave',
           },
-          style: waveAnimation || {
-            animation: `${waveKeyframe} 2s linear 0.5s infinite`,
+          style: {
+            '&::after': waveAnimation || {
+              animation: `${waveKeyframe} 2s linear 0.5s infinite`,
+            },
           },
         },
       ],

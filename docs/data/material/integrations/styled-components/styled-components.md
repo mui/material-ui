@@ -35,11 +35,11 @@ If you're using yarn, you can configure it using a package resolution:
 ```diff title="package.json"
  {
    "dependencies": {
--    "@mui/styled-engine": "next"
-+    "@mui/styled-engine": "npm:@mui/styled-engine-sc@next"
+-    "@mui/styled-engine": "latest"
++    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
    },
 +  "resolutions": {
-+    "@mui/styled-engine": "npm:@mui/styled-engine-sc@next"
++    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
 +  },
  }
 ```
@@ -102,8 +102,8 @@ We provide boilerplate examples of Create React App with Material UI and styled
 
 <!-- #default-branch-switch -->
 
-- [Material UI + CRA + styled-components (JavaScript)](https://github.com/mui/material-ui/tree/next/examples/material-ui-cra-styled-components)
-- [Material UI + CRA + styled-components (TypeScript)](https://github.com/mui/material-ui/tree/next/examples/material-ui-cra-styled-components-ts)
+- [Material UI + CRA + styled-components (JavaScript)](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components)
+- [Material UI + CRA + styled-components (TypeScript)](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components-ts)
 
 :::warning
 `@emotion/react`, `@emotion/styled`, and `styled-components` are optional peer dependencies of `@mui/material`, so you need to install them yourself.

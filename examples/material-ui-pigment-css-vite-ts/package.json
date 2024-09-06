@@ -10,8 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@mui/material": "next",
-    "@mui/material-pigment-css": "next",
+    "@mui/material": "latest",
+    "@mui/material-pigment-css": "latest",
     "react": "latest",
     "react-dom": "latest"
   },

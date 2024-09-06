@@ -72,11 +72,11 @@ git remote add upstream https://github.com/mui/material-ui.git
 
 <!-- #default-branch-switch -->
 
-3. Synchronize your local `next` branch with the upstream one:
+3. Synchronize your local `master` branch with the upstream one:
 
 ```bash
-git checkout next
-git pull upstream next
+git checkout master
+git pull upstream master
 ```
 
 4. Install the dependencies with pnpm (yarn or npm aren't supported):
@@ -146,7 +146,7 @@ Make sure the following is true:
 
 <!-- #default-branch-switch -->
 
-- The branch is targeted at `next` for ongoing development. All tests are passing. Code that lands in `next` must be compatible with the latest alpha/beta release. It may contain additional features but no breaking changes. We should be able to release a new minor version from the tip of `next` at any time.
+- The branch is targeted at `master` for ongoing development. All tests are passing. Code that lands in `master` must be compatible with the latest stable release. It may contain additional features but no breaking changes. We should be able to release a new minor version from the tip of `master` at any time.
 - If a feature is being added:
   - If the result was already achievable with the core library, you've explained why this feature needs to be added to the core.
   - If this is a common use case, you've added an example to the documentation.

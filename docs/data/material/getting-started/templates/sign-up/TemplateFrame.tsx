@@ -13,13 +13,12 @@ import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import Container from '@mui/material/Container';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import ToggleColorMode from './ToggleColorMode';
-import getSignInSideTheme from './theme/getSignInSideTheme';
+import getSignUpTheme from './theme/getSignUpTheme';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
-  position: 'fixed',
+  position: 'relative',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
@@ -27,37 +26,45 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
   borderBottom: '1px solid',
   borderColor: theme.palette.divider,
   backgroundColor: theme.palette.background.paper,
-  boxShadow: theme.shadows[1],
+  boxShadow: 'none',
   backgroundImage: 'none',
-  padding: 4,
+  zIndex: theme.zIndex.drawer + 1,
+  flex: '0 0 auto',
 }));
 
-interface NavBarProps {
+interface TemplateFrameProps {
   showCustomTheme: boolean;
   toggleCustomTheme: (theme: boolean) => void;
   mode: PaletteMode;
   toggleColorMode: () => void;
+  children: React.ReactNode;
 }
 
-export default function NavBar({
+export default function TemplateFrame({
   showCustomTheme,
   toggleCustomTheme,
   mode,
   toggleColorMode,
-}: NavBarProps) {
+  children,
+}: TemplateFrameProps) {
   const handleChange = (event: SelectChangeEvent) => {
     toggleCustomTheme(event.target.value === 'custom');
   };
-  const signSideInTheme = createTheme(getSignInSideTheme(mode));
+  const signUpTheme = createTheme(getSignUpTheme(mode));
 
   return (
-    <ThemeProvider theme={signSideInTheme}>
-      <StyledAppBar>
-        <Container maxWidth="lg">
+    <ThemeProvider theme={signUpTheme}>
+      <Box sx={{ height: '100dvh', display: 'flex', flexDirection: 'column' }}>
+        <StyledAppBar>
           <Toolbar
             variant="dense"
             disableGutters
-            sx={{ display: 'flex', justifyContent: 'space-between' }}
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              width: '100%',
+              p: '8px 12px',
+            }}
           >
             <Button
               variant="text"
@@ -100,8 +107,9 @@ export default function NavBar({
               />
             </Box>
           </Toolbar>
-        </Container>
-      </StyledAppBar>
+        </StyledAppBar>
+        <Box sx={{ flex: '1 1', overflow: 'auto' }}>{children}</Box>
+      </Box>
     </ThemeProvider>
   );
 }
