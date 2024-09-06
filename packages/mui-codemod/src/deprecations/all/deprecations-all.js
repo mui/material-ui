@@ -10,7 +10,6 @@ import transformCircularProgressClasses from '../circular-progress-classes';
 import transformDividerProps from '../divider-props';
 import transformFilledInputProps from '../filled-input-props';
 import transformFormControlLabelProps from '../form-control-label-props';
-import transformGridProps from '../grid-props';
 import transformImageListItemBarClasses from '../image-list-item-bar-classes';
 import transformInputBaseProps from '../input-base-props';
 import transformInputProps from '../input-props';
@@ -41,7 +40,6 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformDividerProps(file, api, options);
   file.source = transformFilledInputProps(file, api, options);
   file.source = transformFormControlLabelProps(file, api, options);
-  file.source = transformGridProps(file, api, options);
   file.source = transformImageListItemBarClasses(file, api, options);
   file.source = transformInputBaseProps(file, api, options);
   file.source = transformInputProps(file, api, options);

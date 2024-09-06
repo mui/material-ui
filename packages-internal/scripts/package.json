@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-scripts",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "author": "MUI Team",
   "description": "Utilities supporting MUI libraries build and docs generation. This is an internal package not meant for general use.",
   "main": "build/index.js",
@@ -42,7 +42,7 @@
     "@types/chai": "^4.3.19",
     "@types/doctrine": "^0.0.9",
     "@types/lodash": "^4.17.7",
-    "@types/node": "^18.19.48",
+    "@types/node": "^20.14.8",
     "@types/react": "^18.3.4",
     "@types/uuid": "^9.0.8",
     "chai": "^4.5.0",
