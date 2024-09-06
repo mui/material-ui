@@ -11,7 +11,7 @@ export interface FormControlLabelSlots {
    * This is unused if `disableTypography` is true.
    * @default Typography
    */
-  typography?: React.ElementType;
+  typography: React.ElementType;
 }
 
 export type FormControlLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<

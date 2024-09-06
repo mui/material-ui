@@ -86,7 +86,7 @@ Page.getLayout = (page) => {
             apiTabImportStatements += `import ${hook}ApiJsonPageContent from '../../api/${hookNameKebabCase}.json';`;
             staticProps += `
           const ${hook}ApiReq = require.context(
-            'docs/translations/api-docs/${hookNameKebabCase}',
+            'docs/translations/api-docs-base/${hookNameKebabCase}',
             false,
             /${hookNameKebabCase}.*.json$/,
           );
