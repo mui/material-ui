@@ -11,10 +11,10 @@ title: Overview
 Joy UI is an open-source React component library that follows a lightly opinionated design direction, for a clean and modern UI that gives you plenty of room to customize the look and feel.
 
 :::warning
-Joy UI development is temporarily on hold as the maintainers focus on the next two major releases of Material UI.
+Joy UI is in beta and _development is currently on hold_.
 Read [this blog post](/blog/2023-material-ui-v6-and-beyond/) to learn more.
 
-However, you're welcome to look for the [`package: joy-ui`](https://github.com/mui/material-ui/labels/package%3A%20joy-ui) label on open issues and pull requests in the `mui/material-ui` GitHub repository to see what other community members are working on, and submit your own.
+You're welcome to open new issues and PRs to help improve Joy UI, but please keep in mind that the maintainers are primarily focused on other projects and may not be able to respond in a timely manner.
 :::
 
 ## Why use Joy UI
