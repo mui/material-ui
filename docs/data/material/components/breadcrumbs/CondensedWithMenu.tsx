@@ -9,11 +9,13 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 export default function CondensedWithMenu() {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement> | null) => {
     if (event) {
       setAnchorEl(event.currentTarget);
     }
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
