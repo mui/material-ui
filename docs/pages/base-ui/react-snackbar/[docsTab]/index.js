@@ -31,7 +31,7 @@ export const getStaticProps = () => {
   const SnackbarApiDescriptions = mapApiPageTranslations(SnackbarApiReq);
 
   const useSnackbarApiReq = require.context(
-    'docs/translations/api-docs/use-snackbar',
+    'docs/translations/api-docs-base/use-snackbar',
     false,
     /use-snackbar.*.json$/,
   );

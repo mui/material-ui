@@ -89,17 +89,17 @@ export interface AutocompleteSlots {
    * The component used to render the listbox.
    * @default 'ul'
    */
-  listbox?: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
+  listbox: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
   /**
    * The component used to render the body of the popup.
    * @default Paper
    */
-  paper?: React.JSXElementConstructor<PaperProps>;
+  paper: React.JSXElementConstructor<PaperProps>;
   /**
    * The component used to position the popup.
    * @default Popper
    */
-  popper?: React.JSXElementConstructor<PopperProps>;
+  popper: React.JSXElementConstructor<PopperProps>;
 }
 
 export type AutocompleteSlotsAndSlotProps<
