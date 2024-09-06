@@ -194,6 +194,7 @@ function createWebpackConfig(entry, environment) {
         reportFilename: `${entry.id}.html`,
       }),
     ],
+    // A context to the current dir, which has a node_modules folder with workspace dependencies
     context: __dirname,
     entry: {
       // This format is a data: url combined with inline matchResource to obtain a virtual entry.
