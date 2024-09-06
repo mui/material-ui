@@ -118,7 +118,7 @@ const DialogPaper = styled(Paper, {
   memoTheme(({ theme }) => ({
     margin: 32,
     position: 'relative',
-    overflowY: 'auto', 
+    overflowY: 'auto',
     '@media print': {
       overflowY: 'visible',
       boxShadow: 'none',
