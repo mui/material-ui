@@ -14,7 +14,7 @@ function compress(object: any) {
     .replace(/=+$/, ''); // Remove ending '='
 }
 
-function openSandbox({ files, codeVariant, initialFile, embed }: any) {
+function openSandbox({ files, codeVariant, initialFile }: any) {
   const extension = codeVariant === 'TS' ? '.tsx' : '.js';
   const parameters = compress({ files });
 
@@ -24,9 +24,7 @@ function openSandbox({ files, codeVariant, initialFile, embed }: any) {
   form.target = '_blank';
   form.action = 'https://codesandbox.io/api/v1/sandboxes/define';
   addHiddenInput(form, 'parameters', parameters);
-  if (embed) {
-    addHiddenInput(form, 'embed', '1');
-  }
+  addHiddenInput(form, 'embed', '1');
   addHiddenInput(
     form,
     'query',

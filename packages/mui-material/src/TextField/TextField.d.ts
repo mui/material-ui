@@ -22,27 +22,27 @@ export interface TextFieldSlots {
    * The component that renders the input.
    * @default OutlinedInput
    */
-  input?: React.ElementType;
+  input: React.ElementType;
   /**
    * The component that renders the input's label.
    * @default InputLabel
    */
-  inputLabel?: React.ElementType;
+  inputLabel: React.ElementType;
   /**
    * The html input element.
    * @default 'input'
    */
-  htmlInput?: React.ElementType;
+  htmlInput: React.ElementType;
   /**
    * The component that renders the helper text.
    * @default FormHelperText
    */
-  formHelperText?: React.ElementType;
+  formHelperText: React.ElementType;
   /**
    * The component that renders the select.
    * @default Select
    */
-  select?: React.ElementType;
+  select: React.ElementType;
 }
 
 export type TextFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotProps<
