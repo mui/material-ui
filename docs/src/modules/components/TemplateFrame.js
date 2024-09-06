@@ -2,7 +2,8 @@
 /* eslint-disable material-ui/no-hardcoded-labels */
 import * as React from 'react';
 import { useRouter } from 'next/router';
-import { BrandingProvider } from '@mui/docs/branding';
+import { deepmerge } from '@mui/utils';
+import { getDesignTokens, getThemedComponents } from '@mui/docs/branding';
 import { createTheme, ThemeProvider, styled, useColorScheme } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio, { radioClasses } from '@mui/material/Radio';
@@ -45,7 +46,7 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
 
 const defaultTheme = createTheme({
   cssVariables: {
-    colorSchemeSelector: 'data',
+    colorSchemeSelector: 'data-mui-color-scheme',
   },
   colorSchemes: { light: true, dark: true },
 });
@@ -260,10 +261,42 @@ export function ThemeSelector({ value, onChange }) {
   );
 }
 
-function ThemeBridge({ children }) {
-  const { mode, systemMode } = useColorScheme();
-  return <BrandingProvider mode={systemMode || mode || 'light'}>{children}</BrandingProvider>;
-}
+const { palette: lightPalette, typography, ...designTokens } = getDesignTokens('light');
+const { palette: darkPalette } = getDesignTokens('dark');
+
+const brandingTheme = createTheme({
+  cssVariables: {
+    cssVarPrefix: 'muidocs',
+    colorSchemeSelector: 'data-mui-color-scheme',
+  },
+  colorSchemes: {
+    light: {
+      palette: lightPalette,
+    },
+    dark: {
+      palette: darkPalette,
+    },
+  },
+  ...designTokens,
+  typography: deepmerge(typography, {
+    h1: {
+      ':where([data-mui-color-scheme="dark"]) &': {
+        color: 'var(--muidocs-palette-common-white)',
+      },
+    },
+    h2: {
+      ':where([data-mui-color-scheme="dark"]) &': {
+        color: 'var(--muidocs-palette-grey-100)',
+      },
+    },
+    h5: {
+      ':where([data-mui-color-scheme="dark"]) &': {
+        color: 'var(--muidocs-palette-primary-300)',
+      },
+    },
+  }),
+  ...getThemedComponents(),
+});
 
 function TemplateFrame({ children }) {
   const router = useRouter();
@@ -273,7 +306,8 @@ function TemplateFrame({ children }) {
   const materialTemplates = sourceMaterialTemplates();
   const item = materialTemplates.map.get('sign-in');
   return (
-    <ThemeProvider theme={defaultTheme}>
+    // This ThemeProvider acts as a state provider for the Toolbar and the Template, so no need to generate stylesheet.
+    <ThemeProvider theme={defaultTheme} disableStyleSheetGeneration>
       <Box
         sx={{
           height: '100dvh',
@@ -282,7 +316,7 @@ function TemplateFrame({ children }) {
           '& [data-template-mode-trigger]': { display: 'none' },
         }}
       >
-        <ThemeBridge>
+        <ThemeProvider theme={brandingTheme}>
           <StyledAppBar>
             <Toolbar
               variant="dense"
@@ -402,7 +436,7 @@ function TemplateFrame({ children }) {
               </Box>
             </Toolbar>
           </StyledAppBar>
-        </ThemeBridge>
+        </ThemeProvider>
         <Box sx={{ flex: '1 1', overflow: 'auto' }}>
           {React.isValidElement(children)
             ? React.cloneElement(children, { disableCustomTheme: selectedTheme === 'material2' })
