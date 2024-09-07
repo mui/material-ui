@@ -8,8 +8,8 @@
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
     "@testing-library/user-event": "latest",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "latest",
+    "react-dom": "latest",
     "react-scripts": "^5.0.0",
     "styled-components": "^6.0.0"
   },

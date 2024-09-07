@@ -13,8 +13,8 @@
     "@mui/material": "^5.0.0",
     "gatsby": "latest",
     "gatsby-plugin-react-helmet": "latest",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "latest",
+    "react-dom": "latest",
     "react-helmet": "^6.0.0"
   },
   "scripts": {

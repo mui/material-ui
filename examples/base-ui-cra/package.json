@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "@mui/base": "latest",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "latest",
+    "react-dom": "latest",
     "react-scripts": "^5.0.0"
   },
   "scripts": {

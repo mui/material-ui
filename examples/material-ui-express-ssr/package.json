@@ -21,8 +21,8 @@
     "express": "latest",
     "nodemon": "latest",
     "npm-run-all": "latest",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "latest",
+    "react-dom": "latest",
     "webpack": "latest",
     "webpack-cli": "latest"
   },
