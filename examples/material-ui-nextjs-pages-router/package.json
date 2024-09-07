@@ -19,8 +19,8 @@
     "@mui/material-nextjs": "^5.0.0",
     "next": "^14.0.0",
     "prop-types": "^15.0.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": "latest",
+    "react-dom": "latest"
   },
   "devDependencies": {
     "eslint": "latest",

@@ -22,8 +22,8 @@
     "clean-css": "latest",
     "next": "^14.0.0",
     "postcss": "latest",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": "latest",
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@types/node": "latest",

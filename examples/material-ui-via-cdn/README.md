@@ -23,14 +23,14 @@ The client has to download the entire library, regardless of which components ar
 
 <!-- #default-branch-switch -->
 
-[The live preview.](https://rawcdn.githack.com/mui/material-ui/master/examples/material-ui-via-cdn/index.html)
+[The live preview.](https://rawcdn.githack.com/mui/material-ui/v5.x/examples/material-ui-via-cdn/index.html)
 
 ## UMD releases
 
 We are providing two Universal Module Definition (UMD) files:
 
-- one for development: https://unpkg.com/@mui/material@latest/umd/material-ui.development.js
-- one for production: https://unpkg.com/@mui/material@latest/umd/material-ui.production.min.js
+- one for development: https://unpkg.com/@mui/material@5/umd/material-ui.development.js
+- one for production: https://unpkg.com/@mui/material@5/umd/material-ui.production.min.js
 
 <!-- #default-branch-switch -->
 

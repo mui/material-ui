@@ -19,13 +19,13 @@
     "@remix-run/react": "latest",
     "@remix-run/serve": "latest",
     "@remix-run/server-runtime": "latest",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": "latest",
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@remix-run/dev": "latest",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
     "typescript": "~5.5.0"
   },
   "engines": {

@@ -35,8 +35,8 @@
   "devDependencies": {
     "@craco/craco": "latest",
     "@types/node": "latest",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
     "craco-alias": "^3.0.1",
     "typescript": "~5.5.0"
   }
