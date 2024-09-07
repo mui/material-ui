@@ -212,8 +212,8 @@ function DemoSandbox(props) {
       if (typeof window.getInjectTheme === 'function') {
         if (!globalInjectThemeCache) {
           window.React = React;
-          const jsx = await import('react/jsx-runtime');
-          window.jsx = jsx;
+          const jsxRuntime = await import('react/jsx-runtime');
+          window.jsxRuntime = jsxRuntime;
           globalInjectThemeCache = window.getInjectTheme();
         }
         setInjectTheme(globalInjectThemeCache);
