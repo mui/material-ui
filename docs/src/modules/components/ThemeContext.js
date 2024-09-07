@@ -199,9 +199,13 @@ export function ThemeProvider(props) {
     if (paletteMode === 'dark') {
       document.body.classList.remove('mode-light');
       document.body.classList.add('mode-dark');
+      document.documentElement.classList.remove('light');
+      document.documentElement.classList.add('dark');
     } else {
       document.body.classList.remove('mode-dark');
       document.body.classList.add('mode-light');
+      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('light');
     }
 
     const metas = document.querySelectorAll('meta[name="theme-color"]');
