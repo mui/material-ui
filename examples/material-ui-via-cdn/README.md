@@ -23,7 +23,7 @@ The client has to download the entire library, regardless of which components ar
 
 <!-- #default-branch-switch -->
 
-[The live preview.](https://rawcdn.githack.com/mui/material-ui/v5.x/examples/material-ui-via-cdn/index.html)
+[The live preview.](https://raw.githack.com/mui/material-ui/v5.x/examples/material-ui-via-cdn/index.html)
 
 ## UMD releases
 
