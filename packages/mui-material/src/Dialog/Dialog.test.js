@@ -334,10 +334,7 @@ describe('<Dialog />', () => {
           PaperProps={{ 'data-testid': 'paper', sx: { height: ITEM_HEIGHT } }}
         >
           {Array.from(Array(ITEM_COUNT).keys()).map((item) => (
-            <div
-              key={item}
-              style={{ flexShrink: 0, height: ITEM_HEIGHT }}
-            >
+            <div key={item} style={{ flexShrink: 0, height: ITEM_HEIGHT }}>
               {item}
             </div>
           ))}
