@@ -59,7 +59,7 @@ export default function Head(props: HeadProps) {
       {/* Algolia */}
       <meta name="docsearch:language" content={userLanguage} />
       {/* #major-version-switch */}
-      <meta name="docsearch:version" content="master" />
+      <meta name="docsearch:version" content="v5" />
       {disableAlternateLocale
         ? null
         : LANGUAGES_SSR.map((userLanguage2) => (
