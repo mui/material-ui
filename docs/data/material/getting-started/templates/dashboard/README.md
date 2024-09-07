@@ -12,4 +12,4 @@
 
 <!-- #default-branch-switch -->
 
-View the demo at https://mui.com/material-ui/getting-started/templates/dashboard/.
+View the demo at https://v5.mui.com/material-ui/getting-started/templates/dashboard/.

@@ -1,19 +1,19 @@
 <!-- markdownlint-disable-next-line -->
 <p align="center">
-  <a href="https://mui.com/core/" rel="noopener" target="_blank"><img width="150" height="133" src="https://mui.com/static/logo.svg" alt="MUI Core logo"></a>
+  <a href="https://v5.mui.com/core/" rel="noopener" target="_blank"><img width="150" height="133" src="https://v5.mui.com/static/logo.svg" alt="MUI Core logo"></a>
 </p>
 
 <h1 align="center">MUI Core</h1>
 
 **MUI Core** contains foundational React UI component libraries for shipping new features faster:
 
-- [Material UI](https://mui.com/material-ui/) is a comprehensive library of components that features our implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
+- [Material UI](https://v5.mui.com/material-ui/) is a comprehensive library of components that features our implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
 
-- [Joy UI](https://mui.com/joy-ui/getting-started/) is a library of beautifully designed React UI components built to spark joy.
+- [Joy UI](https://v5.mui.com/joy-ui/getting-started/) is a library of beautifully designed React UI components built to spark joy.
 
-- [Base UI](https://mui.com/base-ui/) is a library of unstyled React UI components and hooks. With Base UI, you gain complete control over your app's CSS and accessibility features.
+- [Base UI](https://v5.mui.com/base-ui/) is a library of unstyled React UI components and hooks. With Base UI, you gain complete control over your app's CSS and accessibility features.
 
-- [MUI System](https://mui.com/system/getting-started/) is a collection of CSS utilities to help you rapidly lay out custom designs.
+- [MUI System](https://v5.mui.com/system/getting-started/) is a collection of CSS utilities to help you rapidly lay out custom designs.
 
 <div align="center">
 
@@ -35,14 +35,14 @@
 
 ### Material UI
 
-Visit [https://mui.com/material-ui/](https://mui.com/material-ui/) to view the full documentation.
+Visit [https://v5.mui.com/material-ui/](https://v5.mui.com/material-ui/) to view the full documentation.
 
 <details>
   <summary>Older versions</summary>
 
-- **[v4.x](https://v4.mui.com/)** ([Migration from v4 to v5](https://mui.com/material-ui/migration/migration-v4/))
-- **[v3.x](https://v3.mui.com/)** ([Migration from v3 to v4](https://mui.com/material-ui/migration/migration-v3/))
-- **[v0.x](https://v0.mui.com/)** ([Migration to v1](https://mui.com/material-ui/migration/migration-v0x/))
+- **[v4.x](https://v4.mui.com/)** ([Migration from v4 to v5](https://v5.mui.com/material-ui/migration/migration-v4/))
+- **[v3.x](https://v3.mui.com/)** ([Migration from v3 to v4](https://v5.mui.com/material-ui/migration/migration-v3/))
+- **[v0.x](https://v0.mui.com/)** ([Migration to v1](https://v5.mui.com/material-ui/migration/migration-v0x/))
 
 </details>
 
@@ -51,30 +51,30 @@ Use `@latest` for the latest stable release.
 
 ### Joy UI
 
-Visit [https://mui.com/joy-ui/getting-started/](https://mui.com/joy-ui/getting-started/) to view the full documentation.
+Visit [https://v5.mui.com/joy-ui/getting-started/](https://v5.mui.com/joy-ui/getting-started/) to view the full documentation.
 
 **Note**: Joy UI is still in beta.
 We are adding new components regularly and you're welcome to contribute!
 
 ### Base UI
 
-Visit [https://mui.com/base-ui/](https://mui.com/base-ui/) to view the full documentation.
+Visit [https://v5.mui.com/base-ui/](https://v5.mui.com/base-ui/) to view the full documentation.
 
 **Note**: Base UI is still in beta.
 We are adding new components regularly and you're welcome to contribute!
 
 ### MUI System
 
-Visit [https://mui.com/system/getting-started/](https://mui.com/system/getting-started/) to view the full documentation.
+Visit [https://v5.mui.com/system/getting-started/](https://v5.mui.com/system/getting-started/) to view the full documentation.
 
 ## Sponsors
 
 ### Diamond 💎
 
 <p>
-  <a href="https://octopus.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://mui.com/static/sponsors/octopus-square.svg" alt="octopus" title="Repeatable, reliable deployments" loading="lazy" /></a>
-  <a href="https://www.doit.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://mui.com/static/sponsors/doit-square.svg" alt="doit" title="Management Platform for Google Cloud and AWS" loading="lazy" /></a>
-<a href="https://www.marblism.com/?utm_source=mui" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://mui.com/static/sponsors/marblism-square.svg" alt="marblism" title="AI web app generation" loading="lazy" /></a>
+  <a href="https://octopus.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://v5.mui.com/static/sponsors/octopus-square.svg" alt="octopus" title="Repeatable, reliable deployments" loading="lazy" /></a>
+  <a href="https://www.doit.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://v5.mui.com/static/sponsors/doit-square.svg" alt="doit" title="Management Platform for Google Cloud and AWS" loading="lazy" /></a>
+<a href="https://www.marblism.com/?utm_source=mui" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://v5.mui.com/static/sponsors/marblism-square.svg" alt="marblism" title="AI web app generation" loading="lazy" /></a>
 </p>
 
 Diamond sponsors are those who have pledged \$1,500/month or more to MUI.
@@ -89,7 +89,7 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
   <a href="https://icons8.com?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/icons8/7fa1641/logo/288.png" alt="Icons8" title="Icons8: API for icons, photos, illustrations, and music." loading="lazy"></a>
   <a href="https://rxdb.info/?utm_source=sponsor&utm_medium=opencollective&utm_campaign=opencollective-mui" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://rxdb.info/files/logo/logo_text.svg" alt="RxDB" title="RxDB: Local-first JavaScript database." loading="lazy" /></a>
   <a href="https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img src="https://avatars.githubusercontent.com/u/1262264?s=288" alt="text-em-all.com" title="Text-em-all: Mass text messaging and automated calling." height="96" width="96" loading="lazy"></a>
-  <a href="https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://mui.com/static/sponsors/megafamous.png" alt="megafamous.com" title="MegaFamous: Buy Instagram followers and likes." loading="lazy" /></a>
+  <a href="https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://v5.mui.com/static/sponsors/megafamous.png" alt="megafamous.com" title="MegaFamous: Buy Instagram followers and likes." loading="lazy" /></a>
   <a href="https://www.dialmycalls.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/288.png" alt="dialmycalls.com" title="DialMyCalls: Send text messages, calls, and emails." loading="lazy" /></a>
   <a href="https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/goread_io/eb6337d/logo/288.png" alt="goread.io" title="Goread.io: Instagram followers, likes, views, and comments." loading="lazy" /></a>
 </p>
@@ -117,7 +117,7 @@ You can find complete templates and themes in the [MUI Store](https://mui.com/s
 Read the [contributing guide](/CONTRIBUTING.md) to learn about our development process, how to propose bug fixes and improvements, and how to build and test your changes.
 
 Contributing is about more than just issues and pull requests!
-There are many other ways to [support Material UI](https://mui.com/material-ui/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project) beyond contributing to the code base.
+There are many other ways to [support Material UI](https://v5.mui.com/material-ui/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project) beyond contributing to the code base.
 
 ## Changelog
 
@@ -142,9 +142,9 @@ These great services sponsor MUI's core infrastructure:
 
 <div>
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mui.com/static/readme/github-darkmode.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://mui.com/static/readme/github-lightmode.svg">
-  <img alt="GitHub logo" src="https://mui.com/static/readme/github-lightmode.svg" width="80" height="43">
+  <source media="(prefers-color-scheme: dark)" srcset="https://v5.mui.com/static/readme/github-darkmode.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://v5.mui.com/static/readme/github-lightmode.svg">
+  <img alt="GitHub logo" src="https://v5.mui.com/static/readme/github-lightmode.svg" width="80" height="43">
 </picture>
 
 [GitHub](https://github.com/) lets us host the Git repository and coordinate contributions.
@@ -153,9 +153,9 @@ These great services sponsor MUI's core infrastructure:
 
 <div>
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mui.com/static/readme/netlify-darkmode.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://mui.com/static/readme/netlify-lightmode.svg">
-  <img alt="Netlify logo" src="https://mui.com/static/readme/netlify-lightmode.svg" width="100" height="27">
+  <source media="(prefers-color-scheme: dark)" srcset="https://v5.mui.com/static/readme/netlify-darkmode.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://v5.mui.com/static/readme/netlify-lightmode.svg">
+  <img alt="Netlify logo" src="https://v5.mui.com/static/readme/netlify-lightmode.svg" width="100" height="27">
 </picture>
 
 [Netlify](https://www.netlify.com/) lets us distribute the documentation.
@@ -164,9 +164,9 @@ These great services sponsor MUI's core infrastructure:
 
 <div>
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mui.com/static/readme/browserstack-darkmode.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://mui.com/static/readme/browserstack-lightmode.svg">
-  <img alt="BrowserStack logo" src="https://mui.com/static/readme/browserstack-lightmode.svg" width="140" height="25">
+  <source media="(prefers-color-scheme: dark)" srcset="https://v5.mui.com/static/readme/browserstack-darkmode.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://v5.mui.com/static/readme/browserstack-lightmode.svg">
+  <img alt="BrowserStack logo" src="https://v5.mui.com/static/readme/browserstack-lightmode.svg" width="140" height="25">
 </picture>
 
 [BrowserStack](https://www.browserstack.com/) lets us test in real browsers.

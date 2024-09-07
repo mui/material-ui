@@ -6,7 +6,7 @@
     "@mui/base": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-scripts": "latest"
+    "react-scripts": "^5.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -25,4 +25,4 @@ npm install @mui/material @emotion/react @emotion/styled
 
 <!-- #default-branch-switch -->
 
-Visit [https://mui.com/material-ui/about-the-lab/](https://mui.com/material-ui/about-the-lab/) to view the full documentation.
+Visit [https://v5.mui.com/material-ui/about-the-lab/](https://v5.mui.com/material-ui/about-the-lab/) to view the full documentation.

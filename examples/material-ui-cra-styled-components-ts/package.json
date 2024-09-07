@@ -3,16 +3,15 @@
   "version": "5.0.0",
   "private": true,
   "dependencies": {
-    "@mui/lab": "latest",
-    "@mui/material": "latest",
+    "@mui/material": "^5.0.0",
     "@mui/styled-engine-sc": "^6.0.0",
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
     "@testing-library/user-event": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-scripts": "latest",
-    "styled-components": "latest"
+    "react-scripts": "^5.0.0",
+    "styled-components": "^6.0.0"
   },
   "scripts": {
     "tsc": "./node_modules/.bin/tsc",
@@ -36,9 +35,9 @@
   "devDependencies": {
     "@craco/craco": "latest",
     "@types/node": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
     "craco-alias": "^3.0.1",
-    "typescript": "latest"
+    "typescript": "~5.5.0"
   }
 }

@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://mui.com/material-ui/integrations/styled-components/",
+  "homepage": "https://v5.mui.com/material-ui/integrations/styled-components/",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mui-org"

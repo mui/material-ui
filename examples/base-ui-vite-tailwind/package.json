@@ -10,16 +10,16 @@
   },
   "dependencies": {
     "@mui/base": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "@vitejs/plugin-react": "latest",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@vitejs/plugin-react": "^4.0.0",
     "autoprefixer": "latest",
     "postcss": "latest",
     "tailwindcss": "latest",
-    "vite": "latest"
+    "vite": "v5.0.0"
   }
 }

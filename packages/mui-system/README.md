@@ -16,4 +16,4 @@ npm install @mui/system @emotion/react @emotion/styled
 
 <!-- #default-branch-switch -->
 
-Visit [https://mui.com/system/getting-started/](https://mui.com/system/getting-started/) to view the full documentation.
+Visit [https://v5.mui.com/system/getting-started/](https://v5.mui.com/system/getting-started/) to view the full documentation.

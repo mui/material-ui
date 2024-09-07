@@ -37,6 +37,6 @@ We are providing two Universal Module Definition (UMD) files:
 ## What's next?
 
 You now have a working example project.
-You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.
+You can head back to the documentation and continue by browsing the [templates](https://v5.mui.com/material-ui/getting-started/templates/) section.
 
 <!-- #default-branch-switch -->
