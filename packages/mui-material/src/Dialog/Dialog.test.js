@@ -337,7 +337,6 @@ describe('<Dialog />', () => {
             <div
               key={item}
               style={{ flexShrink: 0, height: ITEM_HEIGHT }}
-              data-testid={`item-${item}`}
             >
               {item}
             </div>
@@ -348,7 +347,7 @@ describe('<Dialog />', () => {
       expect(paperElement.scrollTop).to.equal(0);
       expect(paperElement.clientHeight).to.equal(ITEM_HEIGHT);
       expect(paperElement.scrollHeight).to.equal(ITEM_HEIGHT * ITEM_COUNT);
-      fireEvent.scroll(getByTestId('paper'), { target: { scrollTop: ITEM_HEIGHT } });
+      fireEvent.scroll(paperElement, { target: { scrollTop: ITEM_HEIGHT } });
       expect(paperElement.scrollTop).to.equal(ITEM_HEIGHT);
     });
   });
