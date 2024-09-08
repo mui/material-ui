@@ -11,7 +11,7 @@
 Download the example [or clone the repo](https://github.com/mui/material-ui):
 
 ```bash
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/base-ui-vite-tailwind
+curl https://codeload.github.com/mui/material-ui/tar.gz/v5.x | tar -xz --strip=2 material-ui-5.x/examples/base-ui-vite-tailwind
 cd base-ui-vite-tailwind
 ```
 
