@@ -2,7 +2,7 @@ import type { MuiPage } from 'docs/src/MuiPage';
 import standardNavIcons from 'docs/src/modules/components/AppNavIcons';
 
 const pages: readonly MuiPage[] = [
-  { pathname: 'https://mui.com/versions/' },
+  { pathname: '/versions' },
   {
     pathname: 'https://mui.com/store/',
     title: 'Templates',
