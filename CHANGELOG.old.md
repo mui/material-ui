@@ -4127,8 +4127,8 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
   ```diff
    import {
-      unstable_createCssVarsProvider as createCssVarsProvider,
-  +   unstable_createCssVarsTheme as createCssVarsTheme,
+     unstable_createCssVarsProvider as createCssVarsProvider,
+  +  unstable_createCssVarsTheme as createCssVarsTheme,
    } from '@mui/system';
 
    const { CssVarsProvider } = createCssVarsProvider({
