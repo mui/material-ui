@@ -5,7 +5,7 @@
 Download the example [or clone the repo](https://github.com/mui-org/material-ui):
 
 ```sh
-curl https://codeload.github.com/mui-org/material-ui/tar.gz/v4.x | tar -xz --strip=2  material-ui-master/examples/gatsby
+curl https://codeload.github.com/mui/material-ui/tar.gz/v4.x | tar -xz --strip=2  material-ui-4.x/examples/gatsby
 cd gatsby
 ```
 
