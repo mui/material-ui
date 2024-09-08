@@ -179,8 +179,6 @@ export default function ExpandableApiItem(props: ExpandableApiItemProps) {
     setIsExtended(displayOption === 'expanded');
   }, [displayOption]);
 
-  const anchorLabelId = React.useId();
-
   return (
     <Root
       ownerState={{ type }}
@@ -192,13 +190,12 @@ export default function ExpandableApiItem(props: ExpandableApiItemProps) {
       )}
     >
       <div className="MuiApi-item-header">
-        <a className="MuiApi-item-link-visual" href={`#${id}`} aria-labelledby={anchorLabelId}>
+        <a className="MuiApi-item-link-visual" href={`#${id}`} aria-labelledby={id}>
           <svg>
             <use xlinkHref="#anchor-link-icon" />
           </svg>
         </a>
         <span
-          id={anchorLabelId}
           className="MuiApi-item-title algolia-lvl3" // This className is used by Algolia
         >
           {title}
