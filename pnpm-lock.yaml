@@ -41,8 +41,8 @@ importers:
         specifier: ^2.8.1
         version: 2.8.1
       '@slack/bolt':
-        specifier: ^3.21.1
-        version: 3.21.1
+        specifier: ^3.21.2
+        version: 3.21.2
       execa:
         specifier: ^9.3.1
         version: 9.3.1
@@ -5141,8 +5141,8 @@ packages:
   '@sinonjs/text-encoding@0.7.2':
     resolution: {integrity: sha512-sXXKG+uL9IrKqViTtao2Ws6dy0znu9sOaP1di/jKGW1M6VssO8vlpXCQcpZ+jisQ1tTFAC5Jo/EOzFbggBagFQ==}
 
-  '@slack/bolt@3.21.1':
-    resolution: {integrity: sha512-cql+f8DypIE96mgFTREslP1DfsTUMyVR76whdepcQ1BpP2vXO1TZJxwJHnDKcnJ+NTg8KNGfPIjDfHZUMETCKw==}
+  '@slack/bolt@3.21.2':
+    resolution: {integrity: sha512-Cft+5dbl+YApK2GVFX9O86k0qIqQXshnBGq9oK4a4rLfklyfw9TcydmOxEd32aR/2HbBwr7o/pwu5UAI2c/bUg==}
     engines: {node: '>=12.13.0', npm: '>=6.12.0'}
 
   '@slack/logger@3.0.0':
@@ -5161,8 +5161,8 @@ packages:
     resolution: {integrity: sha512-G+im7OP7jVqHhiNSdHgv2VVrnN5U7KY845/5EZimZkrD4ZmtV0P3BiWkgeJhPtdLuM7C7i6+M6h6Bh+S4OOalA==}
     engines: {node: '>=12.13.0', npm: '>=6.12.0'}
 
-  '@slack/types@2.11.0':
-    resolution: {integrity: sha512-UlIrDWvuLaDly3QZhCPnwUSI/KYmV1N9LyhuH6EDKCRS1HWZhyTG3Ja46T3D0rYfqdltKYFXbJSSRPwZpwO0cQ==}
+  '@slack/types@2.13.0':
+    resolution: {integrity: sha512-OAQVtKYIgBVNRmgIoiTjorGPTlgfcfstU3XYYCBA+czlB9aGcKb9MQc+6Jovi4gq3S98yP/GPBZsJSI/2mHKDQ==}
     engines: {node: '>= 12.13.0', npm: '>= 6.12.0'}
 
   '@slack/web-api@6.12.1':
@@ -10481,9 +10481,6 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  please-upgrade-node@3.2.0:
-    resolution: {integrity: sha512-gQR3WpIgNIKwBMVLkpMUeR3e1/E1y42bqDQZfql+kDeXd8COYfM8PQA4X6y7a8u9Ua9FHmsrrmirW2vHs45hWg==}
-
   possible-typed-array-names@1.0.0:
     resolution: {integrity: sha512-d7Uw+eZoloe0EHDIYoe+bQ5WXnGMOpmiZFTuMWCwpjzzkL2nTjcKiAk4hh8TjnGye2TwWOk3UXucZ+3rbmBa8Q==}
     engines: {node: '>= 0.4'}
@@ -11368,9 +11365,6 @@ packages:
 
   search-insights@2.13.0:
     resolution: {integrity: sha512-Orrsjf9trHHxFRuo9/rzm0KIWmgzE8RMlZMzuhZOJ01Rnz3D0YBAe+V6473t6/H6c7irs6Lt48brULAiRWb3Vw==}
-
-  semver-compare@1.0.0:
-    resolution: {integrity: sha512-YM3/ITh2MJ5MtzaM429anh+x2jiLVjqILF4m4oyQB18W7Ggea7BfqdH/wGMK7dDiMghv/6WG7znWMwUDzJiXow==}
 
   semver@5.7.2:
     resolution: {integrity: sha512-cBznnQ9KjJqU67B52RMC65CMarK2600WFnbkcaiwWq3xy/5haFJlshgnpjovMVJ+Hff49d8GEn0b87C5pDQ10g==}
@@ -16217,12 +16211,12 @@ snapshots:
 
   '@sinonjs/text-encoding@0.7.2': {}
 
-  '@slack/bolt@3.21.1':
+  '@slack/bolt@3.21.2':
     dependencies:
       '@slack/logger': 4.0.0
       '@slack/oauth': 2.6.3
       '@slack/socket-mode': 1.3.6
-      '@slack/types': 2.11.0
+      '@slack/types': 2.13.0
       '@slack/web-api': 6.12.1
       '@types/express': 4.17.17
       '@types/promise.allsettled': 1.0.3
@@ -16230,7 +16224,6 @@ snapshots:
       axios: 1.7.4(debug@4.3.6)
       express: 4.19.2
       path-to-regexp: 6.2.1
-      please-upgrade-node: 3.2.0
       promise.allsettled: 1.0.6
       raw-body: 2.5.2
       tsscmp: 1.0.6
@@ -16273,12 +16266,12 @@ snapshots:
       - debug
       - utf-8-validate
 
-  '@slack/types@2.11.0': {}
+  '@slack/types@2.13.0': {}
 
   '@slack/web-api@6.12.1':
     dependencies:
       '@slack/logger': 3.0.0
-      '@slack/types': 2.11.0
+      '@slack/types': 2.13.0
       '@types/is-stream': 1.1.0
       '@types/node': 20.16.4
       axios: 1.7.4(debug@4.3.6)
@@ -22915,10 +22908,6 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.2
 
-  please-upgrade-node@3.2.0:
-    dependencies:
-      semver-compare: 1.0.0
-
   possible-typed-array-names@1.0.0: {}
 
   postcss-cli@11.0.0(jiti@1.21.0)(postcss@8.4.45)(tsx@4.17.0):
@@ -23938,8 +23927,6 @@ snapshots:
       ajv-keywords: 5.1.0(ajv@8.12.0)
 
   search-insights@2.13.0: {}
-
-  semver-compare@1.0.0: {}
 
   semver@5.7.2: {}
 
