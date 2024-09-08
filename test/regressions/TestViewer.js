@@ -77,7 +77,7 @@ function TestViewer(props) {
             <JoyBox
               aria-busy={!ready}
               data-testid="testcase"
-              sx={{ bgcolor: 'background.body', display: 'inline-block', p: 1 }}
+              sx={{ bgcolor: 'background.body', p: 1 }}
             >
               {children}
             </JoyBox>
@@ -86,7 +86,7 @@ function TestViewer(props) {
           <Box
             aria-busy={!ready}
             data-testid="testcase"
-            sx={{ bgcolor: 'background.default', display: 'inline-block', p: 1 }}
+            sx={{ bgcolor: 'background.default', p: 1 }}
           >
             {children}
           </Box>
