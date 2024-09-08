@@ -134,7 +134,7 @@ function AppFooter(props) {
                   </Link>
                 </li>
                 <li>
-                  <Link color="inherit" variant="body2" href="https://medium.com/material-ui/">
+                  <Link color="inherit" variant="body2" href="https://mui.com/blog/">
                     {t('blogTitle')}
                   </Link>
                 </li>

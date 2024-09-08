@@ -268,7 +268,7 @@ const pages = [
       { pathname: '/discover-more/languages' },
     ],
   },
-  { pathname: 'https://mui.com/versions/', title: 'Versions', disableNav: true },
+  { pathname: '/versions', disableNav: true },
   { pathname: '/', displayNav: false, disableDrawer: true },
   { pathname: 'https://mui.com/blog/', title: 'Blog' },
 ];
