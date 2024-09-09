@@ -138,7 +138,6 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
     {
       codeVariant: templateData.codeVariant,
       raw: Object.entries(templateData.files).reduce((prev, curr) => `${prev}\n${curr}`, ''),
-      productId: 'material-ui',
     },
     {
       // Waiting for https://github.com/stackblitz/core/issues/437
@@ -151,12 +150,11 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
     files,
     dependencies,
     devDependencies,
-    editFile(filePath: string, editor: (prev: string | Record<string, any>) => string) {
-      if (files[filePath]) {
-        files[filePath] = editor(files[filePath]);
-        return this;
-      }
-      throw new Error(`File ${filePath} not found`);
+    replaceContent(updater: (content: string | Record<string, any>, filePath: string) => string) {
+      Object.keys(files).forEach((filePath) => {
+        files[filePath] = updater(files[filePath], filePath);
+      });
+      return this;
     },
     openStackBlitz: (initialFile: string = '/App') =>
       openStackBlitz({

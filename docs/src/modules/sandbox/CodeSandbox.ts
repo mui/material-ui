@@ -282,12 +282,11 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
     files,
     dependencies,
     devDependencies,
-    editFile(filePath: string, editor: (prev: string | Record<string, any>) => string) {
-      if (files[filePath]) {
-        files[filePath].content = editor(files[filePath].content);
-        return this;
-      }
-      throw new Error(`File ${filePath} not found`);
+    replaceContent(updater: (content: string | Record<string, any>, filePath: string) => string) {
+      Object.keys(files).forEach((filePath) => {
+        files[filePath].content = updater(files[filePath].content, filePath);
+      });
+      return this;
     },
     openSandbox: (initialFile: string = '/App') =>
       openSandbox({ files, codeVariant: templateData.codeVariant, initialFile }),

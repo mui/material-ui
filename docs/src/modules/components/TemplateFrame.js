@@ -199,9 +199,8 @@ function TemplateFrame({ children }) {
   const templateName = pascalCase(templateId);
   const [selectedTheme, setSelectedTheme] = React.useState('custom');
   const materialTemplates = sourceMaterialTemplates();
-  const item = materialTemplates.map.get('sign-in');
+  const item = materialTemplates.map.get(templateId);
   return (
-    // This ThemeProvider acts as a state provider for the Toolbar and the Template, so no need to generate stylesheet.
     <ThemeProvider theme={defaultTheme}>
       <Box
         sx={{
@@ -209,6 +208,7 @@ function TemplateFrame({ children }) {
           display: 'flex',
           flexDirection: 'column',
           '& [data-template-mode-trigger]': { display: 'none' },
+          '--template-frame-height': '52px',
         }}
       >
         <ThemeProvider theme={brandingTheme}>
@@ -222,6 +222,7 @@ function TemplateFrame({ children }) {
                 width: '100%',
                 p: '8px 12px',
                 gap: 1,
+                minHeight: 'var(--template-frame-height)',
               }}
             >
               <Box sx={{ width: { xs: 'auto', sm: 0 }, '& > *': { width: 'max-content' } }}>
@@ -276,13 +277,14 @@ function TemplateFrame({ children }) {
                             item.codeVariant === 'TS' ? 'tsx' : 'js'
                           }`,
                         })
-                        .editFile(
-                          `${templateName}.${item.codeVariant === 'TS' ? 'tsx' : 'js'}`,
-                          (content) => content.replace(/\.\.\/shared-theme\//g, './theme/'),
-                        )
-                        .editFile(`index.${item.codeVariant === 'TS' ? 'tsx' : 'js'}`, (content) =>
-                          content.replace('./App', `./${templateName}`),
-                        )
+                        .replaceContent((content) => {
+                          if (typeof content === 'string') {
+                            return content
+                              .replace(/\.\.\/shared-theme\//g, './theme/')
+                              .replace('./App', `./${templateName}`);
+                          }
+                          return content;
+                        })
                         .openSandbox(`/${templateName}`)
                     }
                     sx={{ alignSelf: 'center', borderRadius: 1 }}
@@ -313,13 +315,14 @@ function TemplateFrame({ children }) {
                             item.codeVariant === 'TS' ? 'tsx' : 'js'
                           }`,
                         })
-                        .editFile(
-                          `${templateName}.${item.codeVariant === 'TS' ? 'tsx' : 'js'}`,
-                          (content) => content.replace(/\.\.\/shared-theme\//g, './theme/'),
-                        )
-                        .editFile(`index.${item.codeVariant === 'TS' ? 'tsx' : 'js'}`, (content) =>
-                          content.replace('./App', `./${templateName}`),
-                        )
+                        .replaceContent((content) => {
+                          if (typeof content === 'string') {
+                            return content
+                              .replace(/\.\.\/shared-theme\//g, './theme/')
+                              .replace('./App', `./${templateName}`);
+                          }
+                          return content;
+                        })
                         .openStackBlitz(`/${templateName}`)
                     }
                     sx={{ alignSelf: 'center', borderRadius: 1 }}
