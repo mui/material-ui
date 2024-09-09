@@ -93,10 +93,10 @@ export interface FormControlTypeMap<
  * consistent across the children of the `FormControl`.
  * This context is used by the following components:
  *
- * *   FormLabel
- * *   FormHelperText
- * *   Input
- * *   InputLabel
+ * * FormLabel
+ * * FormHelperText
+ * * Input
+ * * InputLabel
  *
  * You can find one composition example below and more going to [the demos](https://mui.com/material-ui/react-text-field/#components).
  *
