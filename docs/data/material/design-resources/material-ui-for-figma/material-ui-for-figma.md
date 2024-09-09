@@ -113,6 +113,7 @@ Anima supports both Figma and VS Code, so you can choose the workflow that suits
 - Use the [Anima VS Code Extension (Frontier)](https://marketplace.visualstudio.com/items?itemName=AnimaApp.vscode-anima) to seamlessly generate and edit Material UI code in your development environment.
 
 Visit the [Anima](https://www.animaapp.com/) for more details.
+
 ### Quest
 
 [Quest](https://www.quest.ai/) provides a native integration with this design kit.
