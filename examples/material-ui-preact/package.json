@@ -10,6 +10,7 @@
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
     "@testing-library/user-event": "latest",
+    "material-ui-preact": "file:",
     "preact": "latest",
     "react-scripts": "^5.0.0"
   },

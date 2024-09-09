@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@mui/base": "next",
+    "base-ui-vite-tailwind-ts": "file:",
     "react": "latest",
     "react-dom": "latest"
   },

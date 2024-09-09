@@ -13,6 +13,7 @@
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@mui/joy": "next",
+    "joy-ui-vite-ts": "file:",
     "react": "latest",
     "react-dom": "latest"
   },
