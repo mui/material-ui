@@ -9,6 +9,7 @@
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
     "@testing-library/user-event": "latest",
+    "material-ui-cra-styled-components-ts": "file:",
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest",

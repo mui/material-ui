@@ -13,6 +13,7 @@
     "@mui/material": "latest",
     "gatsby": "latest",
     "gatsby-plugin-react-helmet": "latest",
+    "material-ui-gatsby": "file:",
     "react": "latest",
     "react-dom": "latest",
     "react-helmet": "latest"

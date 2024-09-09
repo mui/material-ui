@@ -14,6 +14,7 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
+    "material-ui-cra-tailwind-ts": "file:",
     "postcss": "latest",
     "react": "latest",
     "react-dom": "latest",

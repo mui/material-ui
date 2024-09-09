@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@mui/base": "next",
+    "base-ui-cra": "file:",
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest"

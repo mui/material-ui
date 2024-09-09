@@ -21,6 +21,7 @@
     "release:publish:dry-run": "pnpm build && pnpm publish --tag latest --registry=\"http://localhost:4873/\""
   },
   "dependencies": {
+    "@mui/internal-docs-utils": "file:",
     "rimraf": "^5.0.10",
     "typescript": "^5.5.4"
   },
