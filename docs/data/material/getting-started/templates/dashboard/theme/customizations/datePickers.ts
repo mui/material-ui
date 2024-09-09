@@ -3,7 +3,7 @@ import type { PickersProComponents } from '@mui/x-date-pickers-pro/themeAugmenta
 import type { PickerComponents } from '@mui/x-date-pickers/themeAugmentation';
 import { pickersYearClasses, pickersMonthClasses, pickersDayClasses } from '@mui/x-date-pickers';
 import { menuItemClasses } from '@mui/material/MenuItem';
-import { gray, brand } from '../themePrimitives';
+import { gray, brand } from '../../../shared-theme/themePrimitives';
 
 /* eslint-disable import/prefer-default-export */
 export const datePickersCustomizations: PickersProComponents<Theme> & PickerComponents<Theme> = {

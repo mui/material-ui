@@ -1,6 +1,6 @@
 import { axisClasses, legendClasses, chartsGridClasses } from '@mui/x-charts';
 
-import { gray } from '../themePrimitives';
+import { gray } from '../../../shared-theme/themePrimitives';
 
 /* eslint-disable import/prefer-default-export */
 export const chartsCustomizations = {

@@ -6,7 +6,7 @@ import {
   pickersDayClasses,
 } from '@mui/x-date-pickers';
 import { menuItemClasses } from '@mui/material/MenuItem';
-import { gray, brand } from '../themePrimitives';
+import { gray, brand } from '../../../shared-theme/themePrimitives';
 
 /* eslint-disable import/prefer-default-export */
 export const datePickersCustomizations = {
