@@ -24,13 +24,10 @@ function CustomPaper({ children, value, ...paperProps }: PaperProps & { value: O
 }
 
 function CustomPopper({ children, value, ...popperProps }: PopperProps & { value: Option[] }) {
-  const { placement = 'bottom', ...restPopperProps } = popperProps;
   return (
-    <Popper {...popperProps} onMouseDown={(event) => event.preventDefault()}>
-      {typeof children === 'function' ? children({ placement, ...restPopperProps }) : children}
-      <Button sx={{ width: '90px' }} variant="contained" disabled={value.length === 0}>
-        Next
-      </Button>
+    <Popper {...popperProps}>
+      {children as React.ReactNode}
+      <Button disabled={value.length === 0}>Next</Button>
     </Popper>
   );
 }
