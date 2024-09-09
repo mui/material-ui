@@ -107,7 +107,7 @@ You can learn more about Toolpad by visiting the [home page](https://mui.com/too
 We plan to continue to iterate on our vision of helping you as a developer to increase the speed and efficiency of your workflow. We want to optimize for the biggest pains that you face when building admin apps.
 Your input is crucial to helping us shape the roadmap from here.
 
-The best places to stay up-to-date about what we're currently working on are [GitHub issues](https://github.com/mui/mui-toolpad) and our [public roadmap](https://github.com/orgs/mui/projects/9/views/1).
+The best places to stay up-to-date about what we're currently working on are [GitHub issues](https://github.com/mui/toolpad) and our [public roadmap](https://github.com/orgs/mui/projects/9/views/1).
 
 If you have any questions or would like to share feedback, you can directly contact the team at toolpad@mui.com or reach us on [X/Twitter](https://x.com/MUI_Toolpad).
 You can also engage in conversation on our [Discord](https://mui.com/r/discord/) server.
