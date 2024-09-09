@@ -101,10 +101,9 @@ If you need to replace a single component that's been updated, there are a coupl
 
 If you've got any feedback, we'd love to [hear from you](https://github.com/mui/mui-design-kits/discussions/84).
 
-
 ## Integrations
 
-### Anima 
+### Anima
 
 With Anima, you can effortlessly transform your Figma designs into Material UI code. The platform intelligently matches your design components to MUI, ensuring that the code generated is clean, reusable, and production-ready. Anima supports both Figma and VS Code, so you can choose the workflow that suits you best.
 
