@@ -5,12 +5,6 @@
 
 <h1 align="center">Material UI</h1>
 
-**Material UI** contains foundational React UI component libraries for shipping new features faster:
-
-- [Material UI](https://mui.com/material-ui/) is a comprehensive library of components that features our implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
-
-- [Joy UI](https://mui.com/joy-ui/getting-started/) is a library of beautifully designed React UI components built to spark joy.
-
 <div align="center">
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mui/material-ui/blob/HEAD/LICENSE)
@@ -27,30 +21,37 @@
 
 </div>
 
+[Material UI](https://mui.com/material-ui/) is a comprehensive library of React components that features our independent implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
+It's trusted by some of the world's greatest product teams because it's been rigorously battle-tested through more than a decade of development by thousands of open-source contributors.
+
+Material UI's core functionality is extended by [MUI X](https://github.com/mui/mui-x), a suite of complex components for advanced use cases.
+
 ## Documentation
 
-### Material UI
-
-Visit [https://mui.com/material-ui/](https://mui.com/material-ui/) to view the full documentation.
+Get started in the [Material UI documentation](https://mui.com/material-ui/getting-started/).
 
 <details>
   <summary>Older versions</summary>
 
-- **[v4.x](https://v4.mui.com/)** ([Migration from v4 to v5](https://mui.com/material-ui/migration/migration-v4/))
-- **[v3.x](https://v3.mui.com/)** ([Migration from v3 to v4](https://mui.com/material-ui/migration/migration-v3/))
-- **[v0.x](https://v0.mui.com/)** ([Migration to v1](https://mui.com/material-ui/migration/migration-v0x/))
+- **[v5.x](https://v5.mui.com/)** ([Upgrading from v5 to v6](https://mui.com/material-ui/migration/upgrade-to-v6/))
+- **[v4.x](https://v4.mui.com/)** ([Upgrading from v4 to v5](https://mui.com/material-ui/migration/migration-v4/))
+- **[v3.x](https://v3.mui.com/)** ([Upgrading from v3 to v4](https://mui.com/material-ui/migration/migration-v3/))
+- **[v0.x](https://v0.mui.com/)** ([Upgrading to v1](https://mui.com/material-ui/migration/migration-v0x/))
 
 </details>
 
-**Note:** `@next` only points to pre-releases.
+**Note:** `@next` points to pre-releases.
 Use `@latest` for the latest stable release.
 
-### Joy UI
+## Joy UI
 
-Visit [https://mui.com/joy-ui/getting-started/](https://mui.com/joy-ui/getting-started/) to view the full documentation.
+This repository also contains Joy UI, an experimental component library that implements our own in-house Joy Design.
+Joy UI is in beta and _development is currently on hold_.
+When starting a new project from scratch, we recommend Material UI over Joy UI because we can guarantee ongoing support.
 
-**Note**: Joy UI is still in beta.
-We are adding new components regularly and you're welcome to contribute!
+You're welcome to open new issues and PRs to help improve Joy UI, but please keep in mind that the maintainers are primarily focused on other projects and may not be able to respond in a timely manner.
+
+View the [Joy UI documentation](https://mui.com/joy-ui/getting-started/).
 
 ## Sponsors
 
@@ -77,6 +78,12 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
   <a href="https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://mui.com/static/sponsors/megafamous.png" alt="megafamous.com" title="MegaFamous: Buy Instagram followers and likes." loading="lazy" /></a>
   <a href="https://www.dialmycalls.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/288.png" alt="dialmycalls.com" title="DialMyCalls: Send text messages, calls, and emails." loading="lazy" /></a>
   <a href="https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/goread_io/eb6337d/logo/288.png" alt="goread.io" title="Goread.io: Instagram followers, likes, views, and comments." loading="lazy" /></a>
+  <a href="https://copycopter.ai/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/copycopterai/e167216/logo/288.png" alt="copycopter.ai" title="CopyCopter: Turn prompts into videos at ultra speed." loading="lazy" /></a>
+</p>
+
+<p>
+  <a href="https://buzzoid.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-right:8px;" ><img height="24" width="26" src="https://images.opencollective.com/buzzoidz/d23d9bb/logo/24.png" srcset="https://images.opencollective.com/buzzoidz/d23d9bb/logo/72.png 3x" alt="buzzoid.com" title="Buzzoid: Instant delivery Instagram followers." loading="lazy" style="margin-right:8px;" />Buzzoid</a>
+  <a href="https://twicsy.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-right:8px;" ><img height="24" width="27" src="https://images.opencollective.com/twicsy/7af290f/logo/24.png" alt="twicsy.com" title="Twicsy: Instant delivery Instagram followers." style="margin-right:8px;" loading="lazy" />Twicsy</a>
 </p>
 
 Gold sponsors are those who have pledged \$500/month or more to MUI.
@@ -102,7 +109,7 @@ You can find complete templates and themes in the [MUI Store](https://mui.com/s
 Read the [contributing guide](/CONTRIBUTING.md) to learn about our development process, how to propose bug fixes and improvements, and how to build and test your changes.
 
 Contributing is about more than just issues and pull requests!
-There are many other ways to [support Material UI](https://mui.com/material-ui/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project) beyond contributing to the code base.
+There are many other ways to [support Material UI](https://mui.com/material-ui/getting-started/faq/#mui-is-an-awesome-organization-how-can-i-support-it) beyond contributing to the code base.
 
 ## Changelog
 
@@ -114,12 +121,11 @@ Future plans and high-priority features and enhancements can be found in the [ro
 
 ## License
 
-This project is licensed under the terms of the
-[MIT license](/LICENSE).
+This project is licensed under the terms of the [MIT license](/LICENSE).
 
 ## Security
 
-For details of supported versions and contact details for reporting security issues, please refer to the [security policy](https://github.com/mui/material-ui/security/policy).
+For details on supported versions and contact information for reporting security issues, please refer to the [security policy](https://github.com/mui/material-ui/security/policy).
 
 ## Sponsoring services
 
