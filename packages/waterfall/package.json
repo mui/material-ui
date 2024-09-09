@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "private": "true",
   "type": "module",
-  "main": "index.mjs"
+  "main": "index.mjs",
+  "dependencies": {
+    "@mui/internal-waterfall": "file:"
+  }
 }

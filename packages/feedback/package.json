@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "claudia-api-builder": "^4.1.2",
+    "feedback": "file:",
     "uuid": "^9.0.1"
   },
   "devDependencies": {

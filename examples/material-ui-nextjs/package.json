@@ -17,6 +17,7 @@
     "@mui/material-nextjs": "latest",
     "eslint": "latest",
     "eslint-config-next": "latest",
+    "material-ui-nextjs": "file:",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"

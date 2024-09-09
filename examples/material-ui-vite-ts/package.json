@@ -13,6 +13,7 @@
     "@emotion/styled": "latest",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
+    "material-ui-vite-ts": "file:",
     "react": "latest",
     "react-dom": "latest"
   },

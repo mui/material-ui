@@ -19,6 +19,7 @@
     "@remix-run/react": "latest",
     "@remix-run/serve": "latest",
     "@remix-run/server-runtime": "latest",
+    "material-ui-remix-ts": "file:",
     "react": "latest",
     "react-dom": "latest"
   },

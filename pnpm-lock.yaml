@@ -908,6 +908,9 @@ importers:
       '@babel/core':
         specifier: ^7.25.2
         version: 7.25.2
+      '@mui/internal-babel-plugin-resolve-imports':
+        specifier: 'file:'
+        version: 'link:'
       resolve:
         specifier: ^1.22.8
         version: 1.22.8
@@ -921,6 +924,9 @@ importers:
 
   packages-internal/docs-utils:
     dependencies:
+      '@mui/internal-docs-utils':
+        specifier: 'file:'
+        version: 'link:'
       rimraf:
         specifier: ^5.0.10
         version: 5.0.10
@@ -1018,6 +1024,9 @@ importers:
       '@emotion/react':
         specifier: ^11.13.3
         version: 11.13.3(@types/react@18.3.4)(react@18.3.1)
+      '@mui/internal-test-utils':
+        specifier: 'file:'
+        version: 'link:'
       '@testing-library/dom':
         specifier: ^10.4.0
         version: 10.4.0
@@ -1219,6 +1228,9 @@ importers:
       emoji-regex:
         specifier: ^10.3.0
         version: 10.3.0
+      eslint-plugin-material-ui:
+        specifier: 'file:'
+        version: 'link:'
     devDependencies:
       '@types/eslint':
         specifier: ^8.56.12
@@ -1235,6 +1247,9 @@ importers:
       claudia-api-builder:
         specifier: ^4.1.2
         version: 4.1.2
+      feedback:
+        specifier: 'file:'
+        version: 'link:'
       uuid:
         specifier: ^9.0.1
         version: 9.0.1
@@ -1252,6 +1267,9 @@ importers:
       '@babel/runtime':
         specifier: ^7.25.0
         version: 7.25.0
+      '@mui/internal-markdown':
+        specifier: 'file:'
+        version: 'link:'
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -1285,7 +1303,7 @@ importers:
         version: 3.1.0
     devDependencies:
       '@mui/internal-babel-macros':
-        specifier: workspace:*
+        specifier: 'file:'
         version: 'link:'
       '@types/babel-plugin-macros':
         specifier: ^3.1.3
@@ -1379,6 +1397,9 @@ importers:
       '@babel/traverse':
         specifier: ^7.25.3
         version: 7.25.3
+      '@mui/codemod':
+        specifier: 'file:'
+        version: 'link:'
       jscodeshift:
         specifier: ^0.16.1
         version: 0.16.1(@babel/preset-env@7.25.3(@babel/core@7.25.2))
@@ -1407,6 +1428,10 @@ importers:
     publishDirectory: build
 
   packages/mui-core-downloads-tracker:
+    dependencies:
+      '@mui/core-downloads-tracker':
+        specifier: 'file:'
+        version: 'link:'
     publishDirectory: build
 
   packages/mui-docs:
@@ -1470,6 +1495,9 @@ importers:
 
   packages/mui-envinfo:
     dependencies:
+      '@mui/envinfo':
+        specifier: 'file:'
+        version: 'link:'
       envinfo:
         specifier: ^7.13.0
         version: 7.13.0
@@ -1501,6 +1529,9 @@ importers:
       '@mui/material':
         specifier: 5.15.4
         version: 5.15.4(@emotion/react@11.13.3(@types/react@18.3.4)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.3.4)(react@18.3.1))(@types/react@18.3.4)(react@18.3.1))(@types/react@18.3.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      envinfo-test-project:
+        specifier: 'file:'
+        version: 'link:'
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -1828,6 +1859,9 @@ importers:
       '@babel/runtime':
         specifier: ^7.25.0
         version: 7.25.0
+      '@mui/material-nextjs':
+        specifier: 'file:'
+        version: 'link:'
     devDependencies:
       '@emotion/cache':
         specifier: ^11.13.1
@@ -2139,8 +2173,8 @@ importers:
   packages/mui-types:
     devDependencies:
       '@mui/types':
-        specifier: workspace:*
-        version: link:build
+        specifier: 'file:'
+        version: 'link:'
       '@types/react':
         specifier: ^18.3.4
         version: 18.3.4
@@ -2213,8 +2247,15 @@ importers:
       fs-extra:
         specifier: ^11.2.0
         version: 11.2.0
+      netlify-plugin-cache-docs:
+        specifier: 'file:'
+        version: 'link:'
 
   packages/react-docgen-types:
+    dependencies:
+      '@types/react-docgen':
+        specifier: 'file:'
+        version: 'link:'
     devDependencies:
       ast-types:
         specifier: 0.14.2
@@ -2225,6 +2266,9 @@ importers:
       fs-extra:
         specifier: ^11.2.0
         version: 11.2.0
+      rsc-builder:
+        specifier: 'file:'
+        version: 'link:'
       yargs:
         specifier: ^17.7.2
         version: 17.7.2
@@ -2236,7 +2280,11 @@ importers:
         specifier: ^20.14.8
         version: 20.16.4
 
-  packages/waterfall: {}
+  packages/waterfall:
+    dependencies:
+      '@mui/internal-waterfall':
+        specifier: 'file:'
+        version: 'link:'
 
   scripts/sizeSnapshot:
     dependencies:

@@ -12,6 +12,7 @@
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@mui/material": "latest",
+    "material-ui-cra": "file:",
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest"

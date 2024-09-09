@@ -15,6 +15,7 @@
   "license": "MIT",
   "scripts": {},
   "dependencies": {
+    "@mui/internal-babel-plugin-resolve-imports": "file:",
     "resolve": "^1.22.8"
   },
   "devDependencies": {

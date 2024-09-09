@@ -14,6 +14,7 @@
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@mui/joy": "next",
+    "joy-ui-nextjs-ts": "file:",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"

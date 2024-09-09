@@ -4,5 +4,8 @@
   "private": true,
   "devDependencies": {
     "ast-types": "0.14.2"
+  },
+  "dependencies": {
+    "@types/react-docgen": "file:"
   }
 }
