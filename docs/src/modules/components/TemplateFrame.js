@@ -9,6 +9,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import Box from '@mui/material/Box';
@@ -332,6 +333,7 @@ function TemplateFrame({ children }) {
                     </SvgIcon>
                   </IconButton>
                 </Tooltip>
+                <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />
                 <ThemeSelector
                   value={selectedTheme}
                   onChange={(newTheme) => setSelectedTheme(newTheme)}
