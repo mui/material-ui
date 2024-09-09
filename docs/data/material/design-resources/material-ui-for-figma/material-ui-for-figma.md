@@ -106,7 +106,7 @@ If you've got any feedback, we'd love to [hear from you](https://github.com/mui/
 ### Anima
 
 With Anima, you can effortlessly transform your Figma designs into Material UI code.
-The platform intelligently matches your design components to MUI, ensuring that the code generated is clean, reusable, and production-ready.
+Anima intelligently matches your design components in Figma to the most relevant code API, ensuring that the code generated is clean, reusable, and production-ready.
 Anima supports both Figma and VS Code, so you can choose the workflow that suits you best.
 
 - Use the [Anima Figma Plugin](https://www.figma.com/community/plugin/857346721138427857/anima-figma-to-code-react-html-vue-css-tailwind-devmode-inspect-react-html-vue-css) to convert your designs directly in Figma.
