@@ -5,20 +5,21 @@ import { useRouter } from 'next/router';
 import { deepmerge } from '@mui/utils';
 import { getDesignTokens, getThemedComponents } from '@mui/docs/branding';
 import { createTheme, ThemeProvider, styled, useColorScheme } from '@mui/material/styles';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Radio, { radioClasses } from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
 import Tooltip from '@mui/material/Tooltip';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
 import Box from '@mui/material/Box';
+import Select from '@mui/material/Select';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import SvgIcon from '@mui/material/SvgIcon';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
-import PaletteIcon from '@mui/icons-material/Palette';
+import LightModeIcon from '@mui/icons-material/LightModeOutlined';
+import DarkModeIcon from '@mui/icons-material/DarkModeOutlined';
+import PaletteIcon from '@mui/icons-material/PaletteOutlined';
 import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
 import stackBlitz from 'docs/src/modules/sandbox/StackBlitz';
 import sourceMaterialTemplates from 'docs/src/modules/material/sourceMaterialTemplates';
@@ -51,163 +52,8 @@ const defaultTheme = createTheme({
   colorSchemes: { light: true, dark: true },
 });
 
-function System() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16" />
-    </svg>
-  );
-}
-
-function DarkMode() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-    </svg>
-  );
-}
-
-function LightMode() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="12" cy="12" r="4" />
-      <path d="M12 3v1" />
-      <path d="M12 20v1" />
-      <path d="M3 12h1" />
-      <path d="M20 12h1" />
-      <path d="m18.364 5.636-.707.707" />
-      <path d="m6.343 17.657-.707.707" />
-      <path d="m5.636 5.636.707.707" />
-      <path d="m17.657 17.657.707.707" />
-    </svg>
-  );
-}
-
-export function ColorSchemeControls() {
-  const { mode, setMode } = useColorScheme();
-  if (!mode) {
-    return (
-      <Box
-        sx={{
-          display: 'grid',
-          alignItems: 'center',
-          height: '40px',
-          gap: 0.5,
-          opacity: 0.5,
-          gridTemplateColumns: 'repeat(3, 40px)',
-          placeItems: 'center',
-          color: 'text.primary',
-          '& > div': { lineHeight: 0 },
-          '& svg': { transform: 'scale(0.8)' },
-        }}
-      >
-        <div>
-          <LightMode />
-        </div>
-        <div>
-          <System />
-        </div>
-        <div>
-          <DarkMode />
-        </div>
-      </Box>
-    );
-  }
-  return (
-    <RadioGroup
-      row
-      aria-label="Color scheme"
-      name="color-scheme-segmented-control"
-      sx={{
-        display: 'flex',
-        gap: 0.5,
-        marginRight: { xs: 'auto', sm: 'initial' },
-        '& svg': { transform: 'scale(0.8)', transition: '0.2s' },
-        [`& .${radioClasses.checked} svg`]: { transform: 'scale(1)' },
-        [`& .${radioClasses.root}`]: {
-          width: 40,
-          height: 40,
-          border: '1px solid transparent',
-          borderRadius: '8px',
-          [`&.${radioClasses.checked}`]: {
-            border: '1px solid',
-            borderColor: 'divider',
-            color: 'text.primary',
-          },
-        },
-        '& label': { margin: 0 },
-      }}
-      value={mode}
-      onChange={(event) => {
-        setMode(event.target.value);
-      }}
-    >
-      <FormControlLabel
-        value="light"
-        control={
-          <Radio
-            color="default"
-            disableTouchRipple
-            checkedIcon={<LightMode />}
-            icon={<LightMode />}
-          />
-        }
-        label=""
-      />
-      <FormControlLabel
-        value="system"
-        control={
-          <Radio color="default" disableTouchRipple checkedIcon={<System />} icon={<System />} />
-        }
-        label=""
-      />
-      <FormControlLabel
-        value="dark"
-        control={
-          <Radio
-            color="default"
-            disableTouchRipple
-            checkedIcon={<DarkMode />}
-            icon={<DarkMode />}
-          />
-        }
-        label=""
-      />
-    </RadioGroup>
-  );
-}
-
-export function ThemeSelector({ value, onChange }) {
+function ColorSchemeControls() {
+  const { mode, systemMode, setMode } = useColorScheme();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -216,23 +62,50 @@ export function ThemeSelector({ value, onChange }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const handleMode = (newValue) => () => {
-    onChange(newValue);
+  const handleMode = (targetMode) => () => {
+    setMode(targetMode);
     handleClose();
   };
+  if (!mode) {
+    return (
+      <Box
+        sx={(theme) => {
+          // copy from OutlinedInput
+          const borderColor =
+            theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
+          return {
+            verticalAlign: 'bottom',
+            display: 'inline-flex',
+            width: 32,
+            height: 32,
+            borderRadius: (theme.vars || theme).shape.borderRadius,
+            border: '1px solid',
+            borderColor: theme.vars
+              ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+              : borderColor,
+          };
+        }}
+      />
+    );
+  }
+  const resolvedMode = systemMode || mode;
+  const icon = {
+    light: <LightModeIcon />,
+    dark: <DarkModeIcon />,
+  }[resolvedMode];
   return (
     <React.Fragment>
-      <Tooltip title="Switch theme">
-        <IconButton
-          onClick={handleClick}
-          sx={{ alignSelf: 'center' }}
-          aria-controls={open ? 'color-scheme-menu' : undefined}
-          aria-haspopup="true"
-          aria-expanded={open ? 'true' : undefined}
-        >
-          <PaletteIcon />
-        </IconButton>
-      </Tooltip>
+      <IconButton
+        onClick={handleClick}
+        color="primary"
+        size="small"
+        disableTouchRipple
+        aria-controls={open ? 'color-scheme-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+      >
+        {icon}
+      </IconButton>
       <Menu
         anchorEl={anchorEl}
         id="account-menu"
@@ -241,7 +114,6 @@ export function ThemeSelector({ value, onChange }) {
         onClick={handleClose}
         slotProps={{
           paper: {
-            variant: 'outlined',
             sx: {
               my: '4px',
             },
@@ -250,14 +122,37 @@ export function ThemeSelector({ value, onChange }) {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem selected={value === 'custom'} onClick={handleMode('custom')}>
-          Custom Theme
+        <MenuItem selected={mode === 'system'} onClick={handleMode('system')}>
+          System
         </MenuItem>
-        <MenuItem selected={value === 'material2'} onClick={handleMode('material2')}>
-          Material Design 2
+        <MenuItem selected={mode === 'light'} onClick={handleMode('light')}>
+          Light
+        </MenuItem>
+        <MenuItem selected={mode === 'dark'} onClick={handleMode('dark')}>
+          Dark
         </MenuItem>
       </Menu>
     </React.Fragment>
+  );
+}
+
+export function ThemeSelector({ value, onChange }) {
+  return (
+    <Select
+      size="small"
+      value={value}
+      onChange={(event) => {
+        onChange(event.target.value);
+      }}
+      startAdornment={
+        <InputAdornment position="start">
+          <PaletteIcon fontSize="small" color="primary" />
+        </InputAdornment>
+      }
+    >
+      <MenuItem value="custom">Custom Theme</MenuItem>
+      <MenuItem value="material2">Material Design 2</MenuItem>
+    </Select>
   );
 }
 
@@ -307,7 +202,7 @@ function TemplateFrame({ children }) {
   const item = materialTemplates.map.get('sign-in');
   return (
     // This ThemeProvider acts as a state provider for the Toolbar and the Template, so no need to generate stylesheet.
-    <ThemeProvider theme={defaultTheme} disableStyleSheetGeneration>
+    <ThemeProvider theme={defaultTheme}>
       <Box
         sx={{
           height: '100dvh',
@@ -351,7 +246,6 @@ function TemplateFrame({ children }) {
                   <ArrowBackRoundedIcon />
                 </IconButton>
               </Box>
-              <ColorSchemeControls />
               <Box
                 sx={{
                   display: 'flex',
@@ -363,6 +257,9 @@ function TemplateFrame({ children }) {
               >
                 <Tooltip title="Open Template via CodeSandbox">
                   <IconButton
+                    color="primary"
+                    size="small"
+                    disableTouchRipple
                     aria-label="CodeSandbox playground"
                     data-ga-event-category="material-ui-template"
                     data-ga-event-label={templateId}
@@ -397,6 +294,9 @@ function TemplateFrame({ children }) {
                 </Tooltip>
                 <Tooltip title="Open Template via StackBlitz">
                   <IconButton
+                    color="primary"
+                    size="small"
+                    disableTouchRipple
                     aria-label="StackBlitz playground"
                     data-ga-event-category="material-ui-template"
                     data-ga-event-label={templateId}
@@ -433,6 +333,7 @@ function TemplateFrame({ children }) {
                   value={selectedTheme}
                   onChange={(newTheme) => setSelectedTheme(newTheme)}
                 />
+                <ColorSchemeControls />
               </Box>
             </Toolbar>
           </StyledAppBar>
