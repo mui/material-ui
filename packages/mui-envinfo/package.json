@@ -20,6 +20,7 @@
     "build": "node scripts/build"
   },
   "dependencies": {
+    "@mui/envinfo": "file:",
     "envinfo": "^7.13.0"
   },
   "devDependencies": {

@@ -11,6 +11,7 @@
   "dependencies": {
     "@mui/material": "latest",
     "@mui/material-pigment-css": "latest",
+    "material-ui-pigment-css-nextjs-ts": "file:",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"

@@ -6,6 +6,7 @@
     "@mui/base": "next",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "base-ui-cra-ts": "file:",
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest",

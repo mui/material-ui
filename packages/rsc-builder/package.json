@@ -5,6 +5,7 @@
   "main": "./buildRsc.ts",
   "dependencies": {
     "fs-extra": "^11.2.0",
+    "rsc-builder": "file:",
     "yargs": "^17.7.2"
   },
   "devDependencies": {

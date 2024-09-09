@@ -11,6 +11,7 @@
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@mui/material": "latest",
+    "material-ui-vite": "file:",
     "react": "latest",
     "react-dom": "latest"
   },

@@ -1018,6 +1018,9 @@ importers:
       '@emotion/react':
         specifier: ^11.13.3
         version: 11.13.3(@types/react@18.3.4)(react@18.3.1)
+      '@mui/internal-test-utils':
+        specifier: 'file:'
+        version: 'link:'
       '@testing-library/dom':
         specifier: ^10.4.0
         version: 10.4.0
@@ -2139,8 +2142,8 @@ importers:
   packages/mui-types:
     devDependencies:
       '@mui/types':
-        specifier: workspace:*
-        version: link:build
+        specifier: 'file:'
+        version: 'link:'
       '@types/react':
         specifier: ^18.3.4
         version: 18.3.4
@@ -2213,8 +2216,15 @@ importers:
       fs-extra:
         specifier: ^11.2.0
         version: 11.2.0
+      netlify-plugin-cache-docs:
+        specifier: 'file:'
+        version: 'link:'
 
   packages/react-docgen-types:
+    dependencies:
+      '@types/react-docgen':
+        specifier: 'file:'
+        version: 'link:'
     devDependencies:
       ast-types:
         specifier: 0.14.2
@@ -2225,6 +2235,9 @@ importers:
       fs-extra:
         specifier: ^11.2.0
         version: 11.2.0
+      rsc-builder:
+        specifier: 'file:'
+        version: 'link:'
       yargs:
         specifier: ^17.7.2
         version: 17.7.2
@@ -2236,7 +2249,11 @@ importers:
         specifier: ^20.14.8
         version: 20.16.4
 
-  packages/waterfall: {}
+  packages/waterfall:
+    dependencies:
+      '@mui/internal-waterfall':
+        specifier: 'file:'
+        version: 'link:'
 
   scripts/sizeSnapshot:
     dependencies:
