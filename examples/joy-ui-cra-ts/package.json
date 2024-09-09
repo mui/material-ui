@@ -8,6 +8,7 @@
     "@mui/joy": "next",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "joy-ui-cra-ts": "file:",
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest",

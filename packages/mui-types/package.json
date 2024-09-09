@@ -39,7 +39,7 @@
     "directory": "build"
   },
   "devDependencies": {
-    "@mui/types": "workspace:*",
+    "@mui/types": "file:",
     "@types/react": "^18.3.4"
   },
   "peerDependencies": {

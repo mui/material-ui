@@ -13,7 +13,8 @@
   "license": "MIT",
   "scripts": {},
   "dependencies": {
-    "fs-extra": "^11.2.0"
+    "fs-extra": "^11.2.0",
+    "netlify-plugin-cache-docs": "file:"
   },
   "engines": {
     "node": ">=14.0.0"

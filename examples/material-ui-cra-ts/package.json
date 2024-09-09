@@ -8,6 +8,7 @@
     "@mui/material": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "material-ui-cra-ts": "file:",
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest",

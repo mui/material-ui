@@ -28,5 +28,8 @@
   "publishConfig": {
     "access": "public",
     "directory": "build"
+  },
+  "dependencies": {
+    "@mui/core-downloads-tracker": "file:"
   }
 }

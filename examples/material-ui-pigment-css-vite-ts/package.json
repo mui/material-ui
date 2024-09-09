@@ -12,6 +12,7 @@
   "dependencies": {
     "@mui/material": "latest",
     "@mui/material-pigment-css": "latest",
+    "material-ui-pigment-css-vite": "file:",
     "react": "latest",
     "react-dom": "latest"
   },
