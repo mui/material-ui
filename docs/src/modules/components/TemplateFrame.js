@@ -150,6 +150,7 @@ export function ThemeSelector({ value, onChange }) {
           <PaletteIcon fontSize="small" color="primary" />
         </InputAdornment>
       }
+      sx={{ minWidth: 200 }}
     >
       <MenuItem value="custom">Custom Theme</MenuItem>
       <MenuItem value="material2">Material Design 2</MenuItem>
