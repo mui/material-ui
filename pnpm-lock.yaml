@@ -449,7 +449,7 @@ importers:
         specifier: ^4.3.1
         version: 4.3.1(vite@5.4.2(@types/node@20.16.5)(terser@5.29.2))
       postcss:
-        specifier: ^8.4.44
+        specifier: ^8.4.45
         version: 8.4.45
       postcss-combine-media-query:
         specifier: ^1.0.1
@@ -746,7 +746,7 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0
       postcss:
-        specifier: ^8.4.44
+        specifier: ^8.4.45
         version: 8.4.45
       postcss-import:
         specifier: ^16.1.0
@@ -1386,7 +1386,7 @@ importers:
         specifier: ^1.0.11
         version: 1.0.11(jscodeshift@0.16.1(@babel/preset-env@7.25.3(@babel/core@7.25.2)))
       postcss:
-        specifier: ^8.4.44
+        specifier: ^8.4.45
         version: 8.4.45
       postcss-cli:
         specifier: ^11.0.0
