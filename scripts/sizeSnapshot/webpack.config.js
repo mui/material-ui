@@ -21,13 +21,13 @@ async function getWebpackEntries() {
 
       return {
         id: entryName,
-        path: path.relative(workspaceRoot, path.dirname(componentPath)),
+        import: `@mui/material/${componentName}`,
       };
     },
   );
 
   const corePackagePath = path.join(workspaceRoot, 'packages/mui-base/build');
-  const coreComponents = (await glob(path.join(corePackagePath, '([A-Z])*/index.js'))).map(
+  const baseComponents = (await glob(path.join(corePackagePath, '([A-Z])*/index.js'))).map(
     (componentPath) => {
       const componentName = path.basename(path.dirname(componentPath));
       let entryName = componentName;
@@ -38,7 +38,7 @@ async function getWebpackEntries() {
 
       return {
         id: entryName,
-        path: path.relative(workspaceRoot, path.dirname(componentPath)),
+        import: `@mui/base/${componentName}`,
       };
     },
   );
@@ -50,7 +50,7 @@ async function getWebpackEntries() {
 
       return {
         id: componentName,
-        path: path.relative(workspaceRoot, path.dirname(componentPath)),
+        import: `@mui/lab/${componentName}`,
       };
     },
   );
@@ -62,7 +62,7 @@ async function getWebpackEntries() {
 
       return {
         id: `@mui/joy/${componentName}`,
-        path: path.relative(workspaceRoot, path.dirname(componentPath)),
+        import: `@mui/joy/${componentName}`,
       };
     },
   );
@@ -72,62 +72,63 @@ async function getWebpackEntries() {
       // WARNING: Changing the name will break tracking of bundle size over time
       // If the name of the package changes, rename its display name in https://github.com/eps1lon/mui-contributor-dashboard/blob/main/src/pages/SizeComparison.tsx
       id: '@material-ui/core',
-      path: path.join(path.relative(workspaceRoot, materialPackagePath), 'index.js'),
+      import: '@mui/material',
     },
     ...materialComponents,
     {
       id: '@material-ui/lab',
-      path: path.join(path.relative(workspaceRoot, labPackagePath), 'index.js'),
+      import: '@mui/lab',
     },
     ...labComponents,
     {
       id: '@material-ui/styles',
-      path: 'packages/mui-styles/build/index.js',
+      import: '@mui/styles',
     },
     {
       id: '@material-ui/private-theming',
-      path: 'packages/mui-private-theming/build/index.js',
+      import: '@mui/private-theming',
     },
     {
       id: '@material-ui/system',
-      path: 'packages/mui-system/build/index.js',
+      import: '@mui/system',
     },
     {
       id: 'createBox',
-      path: 'packages/mui-system/build/createBox/index.js',
+      import: '@mui/system/createBox',
     },
     {
       id: 'createStyled',
-      path: 'packages/mui-system/build/createStyled/index.js',
+      import: '@mui/system/createStyled',
     },
     {
       id: '@material-ui/core/styles/createTheme',
-      path: 'packages/mui-material/build/styles/createTheme.js',
+      importName: 'createTheme',
+      import: '@mui/material/styles',
     },
     {
       id: 'colorManipulator',
-      path: 'packages/mui-system/build/colorManipulator/index.js',
+      import: '@mui/system/colorManipulator',
     },
     {
       id: 'useAutocomplete',
-      path: 'packages/mui-lab/build/useAutocomplete/index.js',
+      import: '@mui/lab/useAutocomplete',
     },
     {
       id: '@material-ui/core/useMediaQuery',
-      path: 'packages/mui-material/build/useMediaQuery/index.js',
+      import: '@mui/material/useMediaQuery',
     },
     {
       id: '@material-ui/core/useScrollTrigger',
-      path: 'packages/mui-material/build/useScrollTrigger/index.js',
+      import: '@mui/material/useScrollTrigger',
     },
     {
       id: '@material-ui/unstyled',
-      path: path.join(path.relative(workspaceRoot, corePackagePath), 'index.js'),
+      import: '@mui/base',
     },
-    ...coreComponents,
+    ...baseComponents,
     {
       id: '@material-ui/utils',
-      path: 'packages/mui-utils/build/esm/index.js',
+      import: '@mui/utils',
     },
     // TODO: Requires webpack v5
     // Resolution of webpack/acorn to 7.x is blocked by nextjs (https://github.com/vercel/next.js/issues/11947)
@@ -138,7 +139,7 @@ async function getWebpackEntries() {
     // },
     {
       id: '@mui/joy',
-      path: path.join(path.relative(workspaceRoot, joyPackagePath), 'index.js'),
+      import: '@mui/joy',
     },
     ...joyComponents,
   ];
@@ -147,6 +148,8 @@ async function getWebpackEntries() {
 function createWebpackConfig(entry, environment) {
   const analyzerMode = environment.analyze ? 'static' : 'disabled';
   const concatenateModules = !environment.accurateBundles;
+
+  const importNames = entry.importName ? `{ ${entry.importName} as foo }` : '* as foo';
 
   /**
    * @type {import('webpack').Configuration}
@@ -160,7 +163,7 @@ function createWebpackConfig(entry, environment) {
       concatenateModules,
       minimizer: [
         new TerserPlugin({
-          test: /\.js(\?.*)?$/i,
+          test: /\.m?js(\?.*)?$/i,
         }),
       ],
     },
@@ -174,6 +177,11 @@ function createWebpackConfig(entry, environment) {
       },
       path: path.join(__dirname, 'build'),
     },
+    resolve: {
+      alias: {
+        '@mui/utils': '@mui/utils/esm',
+      },
+    },
     plugins: [
       new CompressionPlugin(),
       new BundleAnalyzerPlugin({
@@ -186,7 +194,14 @@ function createWebpackConfig(entry, environment) {
         reportFilename: `${entry.id}.html`,
       }),
     ],
-    entry: { [entry.id]: path.join(workspaceRoot, entry.path) },
+    // A context to the current dir, which has a node_modules folder with workspace dependencies
+    context: __dirname,
+    entry: {
+      // This format is a data: url combined with inline matchResource to obtain a virtual entry.
+      // See https://github.com/webpack/webpack/issues/6437#issuecomment-874466638
+      // See https://webpack.js.org/api/loaders/#inline-matchresource
+      [entry.id]: `./index.js!=!data:text/javascript,import ${importNames} from '${entry.import}';console.log(foo);`,
+    },
     // TODO: 'browserslist:modern'
     // See https://github.com/webpack/webpack/issues/14203
     target: 'web',

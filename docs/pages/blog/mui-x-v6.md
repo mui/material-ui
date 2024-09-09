@@ -7,7 +7,7 @@ manualCard: true
 tags: ['MUI X', 'Product']
 ---
 
-<img src="/static/blog/mui-x-v6/card.png" alt="" style="margin-bottom: 16px;" width="2400" height="559" />
+<img src="/static/blog/mui-x-v6/card.png" alt="" style="margin-bottom: 16px;" width="2560" height="1280" />
 
 [MUI X v6.0.0](https://github.com/mui/mui-x/releases/tag/v6.0.0) is finally here with many improvements, new features, customization abilities, and a more robust foundation to accommodate the changes we want to deliver next.
 
