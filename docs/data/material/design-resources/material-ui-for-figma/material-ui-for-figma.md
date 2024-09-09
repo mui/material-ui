@@ -106,6 +106,7 @@ If you've got any feedback, we'd love to [hear from you](https://github.com/mui/
 ### Quest
 
 [Quest](https://www.quest.ai/) provides a native integration with this design kit.
+
 When you design your components with the kit, you can use [Quest plugin](https://www.figma.com/community/plugin/862039267149408972/figma-to-react-from-quest) to convert your Figma designs into Material UI code.
 The code generated should be clean and production-ready.
 
