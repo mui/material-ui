@@ -141,7 +141,8 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
       productId: 'material-ui',
     },
     {
-      commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+      // Waiting for https://github.com/stackblitz/core/issues/437
+      // commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
     },
   );
 
