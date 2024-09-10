@@ -45,7 +45,7 @@ default-job: &default-job
     AWS_REGION_ARTIFACTS: eu-central-1
   working_directory: /tmp/material-ui
   docker:
-    - image: cimg/node:18.20
+    - image: cimg/node:20.17
 
 default-context: &default-context
   context:
@@ -142,7 +142,7 @@ jobs:
                 name: '`pnpm dedupe` was run?'
                 command: |
                   # #default-branch-switch
-                  if [[ $(git diff --name-status next | grep -E 'pnpm-workspace\.yaml|pnpm-lock.yaml|package\.json') == "" ]];
+                  if [[ $(git diff --name-status master | grep -E 'pnpm-workspace\.yaml|pnpm-lock.yaml|package\.json') == "" ]];
                   then
                       echo "No changes to dependencies detected. Skipping..."
                   else
@@ -353,13 +353,13 @@ jobs:
     resource_class: 'medium+'
     steps:
       - checkout
+      - install_js
       - run:
           name: Resolve typescript version
           command: |
-            pnpm add typescript@next -d -w
+            pnpm update -r typescript@next
             # log a patch for maintainers who want to check out this change
             git --no-pager diff HEAD
-      - install_js
       - run:
           name: Tests TypeScript definitions
           command: |
@@ -495,6 +495,12 @@ jobs:
       - run:
           name: Run visual regression tests
           command: xvfb-run pnpm test:regressions
+      - run:
+          name: Build packages for fixtures
+          command: xvfb-run pnpm release:build
+      - run:
+          name: Run visual regression tests using Pigment CSS
+          command: xvfb-run pnpm test:regressions-pigment-css
       - run:
           name: Upload screenshots to Argos CI
           command: pnpm test:argos

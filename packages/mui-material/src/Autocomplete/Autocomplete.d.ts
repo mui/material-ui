@@ -18,6 +18,9 @@ import useAutocomplete, {
 import { AutocompleteClasses } from './autocompleteClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
+export interface AutocompletePaperSlotPropsOverrides {}
+export interface AutocompletePopperSlotPropsOverrides {}
+
 export {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
@@ -89,17 +92,17 @@ export interface AutocompleteSlots {
    * The component used to render the listbox.
    * @default 'ul'
    */
-  listbox?: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
+  listbox: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
   /**
    * The component used to render the body of the popup.
    * @default Paper
    */
-  paper?: React.JSXElementConstructor<PaperProps>;
+  paper: React.JSXElementConstructor<PaperProps & AutocompletePaperSlotPropsOverrides>;
   /**
    * The component used to position the popup.
    * @default Popper
    */
-  popper?: React.JSXElementConstructor<PopperProps>;
+  popper: React.JSXElementConstructor<PopperProps & AutocompletePopperSlotPropsOverrides>;
 }
 
 export type AutocompleteSlotsAndSlotProps<
@@ -134,15 +137,14 @@ export type AutocompleteSlotsAndSlotProps<
       {},
       AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
     >;
-
     paper: SlotProps<
       React.ElementType<Partial<PaperProps>>,
-      {},
+      AutocompletePaperSlotPropsOverrides,
       AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
     >;
     popper: SlotProps<
       React.ElementType<Partial<PopperProps>>,
-      {},
+      AutocompletePopperSlotPropsOverrides,
       AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
     >;
     popupIndicator: SlotProps<
@@ -163,7 +165,7 @@ export interface AutocompleteProps<
     StandardProps<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children'>,
     AutocompleteSlotsAndSlotProps<Value, Multiple, DisableClearable, FreeSolo, ChipComponent> {
   /**
-   * Props applied to the [`Chip`](/material-ui/api/chip/) element.
+   * Props applied to the [`Chip`](https://mui.com/material-ui/api/chip/) element.
    */
   ChipProps?: ChipProps<ChipComponent>;
   /**
@@ -178,20 +180,20 @@ export interface AutocompleteProps<
   /**
    * Override the default text for the *clear* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Clear'
    */
   clearText?: string;
   /**
    * Override the default text for the *close popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Close'
    */
   closeText?: string;
   /**
    * The props used for each slot inside.
-   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps?: {
     clearIndicator?: Partial<IconButtonProps>;
@@ -248,7 +250,7 @@ export interface AutocompleteProps<
   /**
    * Text to display when in a loading state.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Loading…'
    */
   loadingText?: React.ReactNode;
@@ -261,7 +263,7 @@ export interface AutocompleteProps<
   /**
    * Text to display when there are no options.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'No options'
    */
   noOptionsText?: React.ReactNode;
@@ -271,7 +273,7 @@ export interface AutocompleteProps<
   /**
    * Override the default text for the *open popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Open'
    */
   openText?: string;
@@ -352,11 +354,11 @@ export interface AutocompleteProps<
  *
  * Demos:
  *
- * - [Autocomplete](https://next.mui.com/material-ui/react-autocomplete/)
+ * - [Autocomplete](https://mui.com/material-ui/react-autocomplete/)
  *
  * API:
  *
- * - [Autocomplete API](https://next.mui.com/material-ui/api/autocomplete/)
+ * - [Autocomplete API](https://mui.com/material-ui/api/autocomplete/)
  */
 export default function Autocomplete<
   Value,

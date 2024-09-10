@@ -112,11 +112,11 @@ export type Grid2Props<
  *
  * Demos:
  *
- * - [Grid version 2](https://next.mui.com/material-ui/react-grid2/)
+ * - [Grid version 2](https://mui.com/material-ui/react-grid2/)
  *
  * API:
  *
- * - [Grid2 API](https://next.mui.com/material-ui/api/grid-2/)
+ * - [Grid2 API](https://mui.com/material-ui/api/grid-2/)
  */
 const Grid2 = createGrid2({
   createStyledComponent: styled('div', {

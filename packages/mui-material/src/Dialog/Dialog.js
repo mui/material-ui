@@ -118,6 +118,7 @@ const DialogPaper = styled(Paper, {
   memoTheme(({ theme }) => ({
     margin: 32,
     position: 'relative',
+    overflowY: 'auto',
     '@media print': {
       overflowY: 'visible',
       boxShadow: 'none',
@@ -430,7 +431,7 @@ Dialog.propTypes /* remove-proptypes */ = {
    */
   PaperComponent: PropTypes.elementType,
   /**
-   * Props applied to the [`Paper`](/material-ui/api/paper/) element.
+   * Props applied to the [`Paper`](https://mui.com/material-ui/api/paper/) element.
    * @default {}
    */
   PaperProps: PropTypes.object,
@@ -449,7 +450,7 @@ Dialog.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The component used for the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
    */
   TransitionComponent: PropTypes.elementType,

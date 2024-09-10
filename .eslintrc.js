@@ -223,6 +223,11 @@ module.exports = {
         selector:
           'ImportDeclaration[source.value="react-dom/server"] ImportDefaultSpecifier, ImportDeclaration[source.value="react-dom/server"] ImportSpecifier',
       },
+      {
+        message:
+          "The 'use client' pragma can't be used with export * in the same module. This is not supported by Next.js.",
+        selector: 'ExpressionStatement[expression.value="use client"] ~ ExportAllDeclaration',
+      },
     ],
 
     // We re-export default in many places, remove when https://github.com/airbnb/javascript/issues/2500 gets resolved

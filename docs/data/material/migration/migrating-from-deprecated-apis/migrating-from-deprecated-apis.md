@@ -46,7 +46,7 @@ MUI System props (such as `mt={*}`, `bgcolor={*}`, and more) have been deprecat
 Use the codemod below to move all System props to the `sx` prop:
 
 ```bash
-npx @mui/codemod@next v6.0.0/system-props <path/to/folder>
+npx @mui/codemod@latest v6.0.0/system-props <path/to/folder>
 ```
 
 You can also manually update your components as shown in the snippet below:
@@ -63,7 +63,7 @@ Custom component variants defined in the theme are now merged with the theme sty
 Use this codemod to update your project's theme file:
 
 ```bash
-npx @mui/codemod@next v6.0.0/theme-v6 <path/to/theme>
+npx @mui/codemod@latest v6.0.0/theme-v6 <path/to/theme>
 ```
 
 You can also manually update your theme as shown in the snippet below:
@@ -246,7 +246,7 @@ Here's how to migrate:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#autocomplete-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/autocomplete-props <path>
+npx @mui/codemod@latest deprecations/autocomplete-props <path>
 ```
 
 ### componentsProps
@@ -274,7 +274,7 @@ The Autocomplete's `componentsProps` prop was deprecated in favor of `slotProps`
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-group-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/avatar-group-props <path>
+npx @mui/codemod@latest deprecations/avatar-group-props <path>
 ```
 
 ### slotProps.additionalAvatar
@@ -332,7 +332,7 @@ The AvatarGroup's `componentsProps` was deprecated in favor of `slotProps`:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#backdrop-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/backdrop-props <path>
+npx @mui/codemod@latest deprecations/backdrop-props <path>
 ```
 
 ### components
@@ -362,7 +362,7 @@ The Backdrop's `componentsProps` prop was deprecated in favor of `slotProps`:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#badge-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/badge-props <path>
+npx @mui/codemod@latest deprecations/badge-props <path>
 ```
 
 ### components
@@ -941,7 +941,7 @@ Here's how to migrate:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#circular-progress-classes) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/circular-progress-classes <path>
+npx @mui/codemod@latest deprecations/circular-progress-classes <path>
 ```
 
 ### Composed CSS classes
@@ -1000,7 +1000,7 @@ The Divider's `light` prop was deprecated, Use `sx={{ opacity : "0.6" }}` (or an
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#filled-input-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/filled-input-props <path>
+npx @mui/codemod@latest deprecations/filled-input-props <path>
 ```
 
 ### components
@@ -1030,7 +1030,7 @@ The FilledInput's prop `componentsProps` was deprecated in favor of `slotProps`:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#form-control-label-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/form-control-label-props <path>
+npx @mui/codemod@latest deprecations/form-control-label-props <path>
 ```
 
 ### componentsProps
@@ -1049,7 +1049,7 @@ The FormControlLabel's `componentsProps` prop was deprecated in favor of `slotPr
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#input-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/input-props <path>
+npx @mui/codemod@latest deprecations/input-props <path>
 ```
 
 ### components
@@ -1079,7 +1079,7 @@ The Input's prop `componentsProps` was deprecated in favor of `slotProps`:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#input-base-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/input-base-props <path>
+npx @mui/codemod@latest deprecations/input-base-props <path>
 ```
 
 ### components
@@ -1109,7 +1109,7 @@ The InputBase's prop `componentsProps` was deprecated in favor of `slotProps`:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#list-item-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/list-item-props <path>
+npx @mui/codemod@latest deprecations/list-item-props <path>
 ```
 
 ### components
@@ -1166,31 +1166,12 @@ The ListItemSecondaryAction component was deprecated in favor of the `secondaryA
  </ListItem>
 ```
 
-## Grid
-
-Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#grid-props) below to migrate the code as described in the following sections:
-
-```bash
-npx @mui/codemod@next deprecations/grid-props <path>
-```
-
-### wrap prop
-
-The Grid's `wrap` prop was deprecated in favor of `flexWrap` MUI System prop:
-
-```diff
- <Grid
--  wrap="nowrap"
-+  flexWrap="nowrap"
- >
-```
-
 ## ImageListItemBar
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#image-list-item-bar-classes) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/image-list-item-bar-classes <path>
+npx @mui/codemod@latest deprecations/image-list-item-bar-classes <path>
 ```
 
 ### Composed CSS classes
@@ -1246,7 +1227,7 @@ Here's how to migrate:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#modal-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/modal-props <path>
+npx @mui/codemod@latest deprecations/modal-props <path>
 ```
 
 ### components
@@ -1276,7 +1257,7 @@ The Modal's `componentsProps` prop was deprecated in favor of `slotProps`:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#outlined-input-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/outlined-input-props <path>
+npx @mui/codemod@latest deprecations/outlined-input-props <path>
 ```
 
 ### components
@@ -1306,7 +1287,7 @@ The OutlinedInput's prop `componentsProps` was deprecated in favor of `slotProps
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#pagination-item-classes) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/pagination-item-classes <path>
+npx @mui/codemod@latest deprecations/pagination-item-classes <path>
 ```
 
 ### Composed CSS classes
@@ -1369,7 +1350,7 @@ The PaginationItems's `components` prop was deprecated in favor of `slots`:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#popper-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/popper-props <path>
+npx @mui/codemod@latest deprecations/popper-props <path>
 ```
 
 ### components
@@ -1469,7 +1450,7 @@ Here's how to migrate:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tab-classes) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/tab-classes <path>
+npx @mui/codemod@latest deprecations/tab-classes <path>
 ```
 
 ### Composed CSS classes
@@ -1503,7 +1484,7 @@ Here's how to migrate:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#table-sort-label-classes) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/table-sort-label-classes <path>
+npx @mui/codemod@latest deprecations/table-sort-label-classes <path>
 ```
 
 ### Composed CSS classes
@@ -1543,7 +1524,7 @@ Here's how to migrate:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#text-field-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/text-field-props <path>
+npx @mui/codemod@latest deprecations/text-field-props <path>
 ```
 
 ### \*Props props
@@ -1572,7 +1553,7 @@ All of the TextField's slot props (`*Props`) props were deprecated in favor of e
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tooltip-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/tooltip-props <path>
+npx @mui/codemod@latest deprecations/tooltip-props <path>
 ```
 
 ### components
@@ -1647,7 +1628,7 @@ The StepLabel's `componentsProps` prop was deprecated in favor of `slotProps`:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#step-connector-classes) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/step-connector-classes <path>
+npx @mui/codemod@latest deprecations/step-connector-classes <path>
 ```
 
 ### Composed CSS classes

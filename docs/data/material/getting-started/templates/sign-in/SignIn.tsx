@@ -9,8 +9,6 @@ import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import MuiCard from '@mui/material/Card';
@@ -20,59 +18,10 @@ import {
   styled,
   PaletteMode,
 } from '@mui/material/styles';
-
-import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
-import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
-
 import ForgotPassword from './ForgotPassword';
 import getSignInTheme from './theme/getSignInTheme';
-import ToggleColorMode from './ToggleColorMode';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
-
-interface ToggleCustomThemeProps {
-  showCustomTheme: Boolean;
-  toggleCustomTheme: () => void;
-}
-
-function ToggleCustomTheme({
-  showCustomTheme,
-  toggleCustomTheme,
-}: ToggleCustomThemeProps) {
-  return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        width: '100dvw',
-        position: 'fixed',
-        bottom: 24,
-      }}
-    >
-      <ToggleButtonGroup
-        color="primary"
-        exclusive
-        value={showCustomTheme}
-        onChange={toggleCustomTheme}
-        aria-label="Toggle design language"
-        sx={{
-          backgroundColor: 'background.default',
-          '& .Mui-selected': {
-            pointerEvents: 'none',
-          },
-        }}
-      >
-        <ToggleButton value>
-          <AutoAwesomeRoundedIcon sx={{ fontSize: '20px', mr: 1 }} />
-          Custom theme
-        </ToggleButton>
-        <ToggleButton data-screenshot="toggle-default-theme" value={false}>
-          Material Design 2
-        </ToggleButton>
-      </ToggleButtonGroup>
-    </Box>
-  );
-}
+import TemplateFrame from './TemplateFrame';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -81,8 +30,9 @@ const Card = styled(MuiCard)(({ theme }) => ({
   width: '100%',
   padding: theme.spacing(4),
   gap: theme.spacing(2),
+  margin: 'auto',
   [theme.breakpoints.up('sm')]: {
-    width: '450px',
+    maxWidth: '450px',
   },
   boxShadow:
     'hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px',
@@ -93,15 +43,11 @@ const Card = styled(MuiCard)(({ theme }) => ({
 }));
 
 const SignInContainer = styled(Stack)(({ theme }) => ({
-  height: 'auto',
-  paddingBottom: theme.spacing(12),
+  height: '100%',
+  padding: 20,
   backgroundImage:
     'radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))',
   backgroundRepeat: 'no-repeat',
-  [theme.breakpoints.up('sm')]: {
-    paddingBottom: 0,
-    height: '100dvh',
-  },
   ...theme.applyStyles('dark', {
     backgroundImage:
       'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
@@ -189,38 +135,15 @@ export default function SignIn() {
   };
 
   return (
-    <ThemeProvider theme={showCustomTheme ? SignInTheme : defaultTheme}>
-      <CssBaseline />
-      <SignInContainer direction="column" justifyContent="space-between">
-        <Stack
-          direction="row"
-          sx={{
-            justifyContent: 'space-between',
-            position: { xs: 'static', sm: 'fixed' },
-            width: '100%',
-            p: { xs: 2, sm: 4 },
-          }}
-        >
-          <Button
-            startIcon={<ArrowBackRoundedIcon />}
-            component="a"
-            href="/material-ui/getting-started/templates/"
-          >
-            Back
-          </Button>
-          <ToggleColorMode
-            data-screenshot="toggle-mode"
-            mode={mode}
-            toggleColorMode={toggleColorMode}
-          />
-        </Stack>
-        <Stack
-          sx={{
-            justifyContent: 'center',
-            height: { xs: '100%', sm: '100dvh' },
-            p: 2,
-          }}
-        >
+    <TemplateFrame
+      toggleCustomTheme={toggleCustomTheme}
+      showCustomTheme={showCustomTheme}
+      mode={mode}
+      toggleColorMode={toggleColorMode}
+    >
+      <ThemeProvider theme={showCustomTheme ? SignInTheme : defaultTheme}>
+        <CssBaseline enableColorScheme />
+        <SignInContainer direction="column" justifyContent="space-between">
           <Card variant="outlined">
             <SitemarkIcon />
             <Typography
@@ -334,12 +257,8 @@ export default function SignIn() {
               </Button>
             </Box>
           </Card>
-        </Stack>
-      </SignInContainer>
-      <ToggleCustomTheme
-        showCustomTheme={showCustomTheme}
-        toggleCustomTheme={toggleCustomTheme}
-      />
-    </ThemeProvider>
+        </SignInContainer>
+      </ThemeProvider>
+    </TemplateFrame>
   );
 }

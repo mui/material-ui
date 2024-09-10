@@ -46,7 +46,7 @@ export interface SliderOwnProps {
   /**
    * The components used for each slot inside.
    *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -64,7 +64,7 @@ export interface SliderOwnProps {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -306,11 +306,11 @@ export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
  *
  * Demos:
  *
- * - [Slider](https://next.mui.com/material-ui/react-slider/)
+ * - [Slider](https://mui.com/material-ui/react-slider/)
  *
  * API:
  *
- * - [Slider API](https://next.mui.com/material-ui/api/slider/)
+ * - [Slider API](https://mui.com/material-ui/api/slider/)
  */
 declare const Slider: OverridableComponent<SliderTypeMap>;
 

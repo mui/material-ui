@@ -1,4 +1,3 @@
-'use client';
 import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 
 export { default as THEME_ID } from './identifier';

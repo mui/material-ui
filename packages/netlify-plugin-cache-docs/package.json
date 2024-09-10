@@ -1,6 +1,6 @@
 {
   "name": "netlify-plugin-cache-docs",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "private": true,
   "author": "MUI Team",
   "description": "Alternative to netlify-plugin-cache-nextjs",

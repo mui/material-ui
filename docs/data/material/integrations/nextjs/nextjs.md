@@ -11,24 +11,18 @@ This section walks through the Material UI integration with the Next.js [App Ro
 Start by ensuring that you already have `@mui/material` and `next` installed.
 Then, run one of the following commands to install the dependencies:
 
-:::info
-The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Remove it to get the current stable version.
-:::
-
-<!-- #default-branch-switch -->
-
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/material-nextjs@next @emotion/cache
-```
-
-```bash yarn
-yarn add @mui/material-nextjs@next @emotion/cache
+npm install @mui/material-nextjs @emotion/cache
 ```
 
 ```bash pnpm
-pnpm add @mui/material-nextjs@next @emotion/cache
+pnpm add @mui/material-nextjs @emotion/cache
+```
+
+```bash yarn
+yarn add @mui/material-nextjs @emotion/cache
 ```
 
 </codeblock>
@@ -73,42 +67,44 @@ Use the `options` prop to override the default [cache options](https://emotion.s
   </AppRouterCacheProvider>
 ```
 
-### Theming
+### Font optimization
 
-Create a new file and export a custom theme that includes the `'use client';` directive:
+To integrate [Next.js font optimization](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) with Material UI, create a new file with the `'use client';` directive.
+Then create a theme using `var(--font-roboto)` as a value for the `typography.fontFamily` field.
 
 ```js title="src/theme.ts"
 'use client';
-import { Roboto } from 'next/font/google';
 import { createTheme } from '@mui/material/styles';
-
-const roboto = Roboto({
-  weight: ['300', '400', '500', '700'],
-  subsets: ['latin'],
-  display: 'swap',
-});
 
 const theme = createTheme({
   typography: {
-    fontFamily: roboto.style.fontFamily,
+    fontFamily: 'var(--font-roboto)',
   },
 });
 
 export default theme;
 ```
 
-Then in `src/app/layout.tsx`, pass the theme to `ThemeProvider`:
+Finally, in `src/app/layout.tsx`, pass the theme to the `ThemeProvider`:
 
 ```diff title="app/layout.tsx"
  import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
++import { Roboto } from 'next/font/google';
 +import { ThemeProvider } from '@mui/material/styles';
 +import theme from '../theme';
+
++const roboto = Roboto({
++  weight: ['300', '400', '500', '700'],
++  subsets: ['latin'],
++  display: 'swap',
++  variable: '--font-roboto',
++});
 
  export default function RootLayout(props) {
    const { children } = props;
    return (
      <html lang="en">
-       <body>
++      <body className={roboto.variable}>
           <AppRouterCacheProvider>
 +           <ThemeProvider theme={theme}>
               {children}
@@ -124,19 +120,16 @@ To learn more about theming, check out the [theming guide](/material-ui/customiz
 
 #### CSS theme variables
 
-If you want to use [CSS theme variables](/material-ui/customization/css-theme-variables/overview/), use the `extendTheme` and `CssVarsProvider` utilities instead:
+To use [CSS theme variables](/material-ui/customization/css-theme-variables/overview/), enable the `cssVariables` flag:
 
 ```diff title="src/theme.ts"
  'use client';
--import { createTheme } from '@mui/material/styles';
-+import { extendTheme } from '@mui/material/styles';
-
- // app/layout.tsx
--import { ThemeProvider } from '@mui/material/styles';
-+import { CssVarsProvider } from '@mui/material/styles';
+ const theme = createTheme({
++  cssVariables: true,
+ });
 ```
 
-Learn more about [the advantages of CSS theme variables](/material-ui/customization/css-theme-variables/overview/#advantages).
+Learn more about [the advantages of CSS theme variables](/material-ui/customization/css-theme-variables/overview/#advantages) and how to [prevent SSR flickering](/material-ui/customization/css-theme-variables/configuration/#preventing-ssr-flickering).
 
 ### Using other styling solutions
 
@@ -165,12 +158,12 @@ Then, run one of the following commands to install the dependencies:
 npm install @mui/material-nextjs @emotion/cache @emotion/server
 ```
 
-```bash yarn
-yarn add @mui/material-nextjs @emotion/cache @emotion/server
-```
-
 ```bash pnpm
 pnpm add @mui/material-nextjs @emotion/cache @emotion/server
+```
+
+```bash yarn
+yarn add @mui/material-nextjs @emotion/cache @emotion/server
 ```
 
 </codeblock>
@@ -326,9 +319,9 @@ If you are using TypeScript, add `DocumentHeadTagsProps` to the Document's props
  }
 ```
 
-### Theming
+### Font optimization
 
-In `pages/_app.tsx`, create a new theme and pass it to `ThemeProvider`:
+To integrate [Next.js font optimization](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) with Material UI, open `pages/_app.tsx` and create a theme using `var(--font-roboto)` as a value for the `typography.fontFamily` field.
 
 ```diff title="pages/_app.tsx"
  import * as React from 'react';
@@ -342,11 +335,12 @@ In `pages/_app.tsx`, create a new theme and pass it to `ThemeProvider`:
 +  weight: ['300', '400', '500', '700'],
 +  subsets: ['latin'],
 +  display: 'swap',
++  variable: '--font-roboto',
 +});
 
 +const theme = createTheme({
 +  typography: {
-+    fontFamily: roboto.style.fontFamily,
++    fontFamily: var(--font-roboto),
 +  },
 +});
 
@@ -356,7 +350,9 @@ In `pages/_app.tsx`, create a new theme and pass it to `ThemeProvider`:
     <AppCacheProvider {...props}>
       <Head>...</Head>
 +     <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
++       <main className={roboto.variable}>
+          <Component {...pageProps} />
++       </main>
 +     </ThemeProvider>
     </AppCacheProvider>
   );
@@ -367,11 +363,13 @@ To learn more about theming, check out the [Theming guide](/material-ui/customiz
 
 #### CSS theme variables
 
-If you want to use [CSS theme variables](/material-ui/customization/css-theme-variables/overview/), use the `extendTheme` and `CssVarsProvider` instead:
+To use [CSS theme variables](/material-ui/customization/css-theme-variables/overview/), enable the `cssVariables` flag:
 
-```diff title="pages/_app.tsx"
--import { ThemeProvider, createTheme } from '@mui/material/styles';
-+import { CssVarsProvider, extendTheme } from '@mui/material/styles';
+```diff title="src/theme.ts"
+ 'use client';
+ const theme = createTheme({
++  cssVariables: true,
+ });
 ```
 
-Learn more about [the advantages of CSS theme variables](/material-ui/customization/css-theme-variables/overview/#advantages).
+Learn more about [the advantages of CSS theme variables](/material-ui/customization/css-theme-variables/overview/#advantages) and how to [prevent SSR flickering](/material-ui/customization/css-theme-variables/configuration/#preventing-ssr-flickering).

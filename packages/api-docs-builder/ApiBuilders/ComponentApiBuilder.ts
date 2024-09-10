@@ -5,8 +5,8 @@ import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
 import * as _ from 'lodash';
 import kebabCase from 'lodash/kebabCase';
-import remark from 'remark';
-import remarkVisit from 'unist-util-visit';
+import { remark } from 'remark';
+import { visit as remarkVisit } from 'unist-util-visit';
 import type { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import { renderMarkdown } from '@mui/internal-markdown';
@@ -59,7 +59,7 @@ export async function computeApiDescription(
     })
     .process(api.description);
 
-  return file.contents.toString().trim();
+  return file.toString().trim();
 }
 
 /**

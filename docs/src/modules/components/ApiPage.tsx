@@ -47,7 +47,8 @@ type ApiHeaderKeys =
   | 'inheritance'
   | 'slots'
   | 'classes'
-  | 'css';
+  | 'css'
+  | 'source-code';
 
 export function getTranslatedHeader(t: Translate, header: ApiHeaderKeys) {
   const translations = {
@@ -59,6 +60,7 @@ export function getTranslatedHeader(t: Translate, header: ApiHeaderKeys) {
     slots: t('api-docs.slots'),
     classes: t('api-docs.classes'),
     css: t('api-docs.css'),
+    'source-code': t('api-docs.source-code'),
   };
 
   // TODO Drop runtime type-checking once we type-check this file
@@ -202,7 +204,8 @@ export default function ApiPage(props: ApiPageProps) {
     getPropertiesToC({ properties: propertiesDef, hash: 'props', t }),
     ...(componentSlots?.length > 0 ? [createTocEntry('slots')] : []),
     ...getClassesToC({ classes: classesDef, t }),
-  ].filter(Boolean);
+    pageContent.filename ? createTocEntry('source-code') : null,
+  ].filter((item): item is TableOfContentsParams => Boolean(item));
 
   // The `ref` is forwarded to the root element.
   let refHint = t('api-docs.refRootElement');
@@ -359,6 +362,16 @@ export default function ApiPage(props: ApiPageProps) {
           defaultLayout={defaultLayout}
           layoutStorageKey={layoutStorageKey.classes}
           displayClassKeys
+        />
+
+        <Heading hash="source-code" level="h2" />
+        <p
+          dangerouslySetInnerHTML={{
+            __html: t('api-docs.seeSourceCode').replace(
+              '{{href}}',
+              `${process.env.SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}${pageContent.filename}`,
+            ),
+          }}
         />
       </MarkdownElement>
       <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">

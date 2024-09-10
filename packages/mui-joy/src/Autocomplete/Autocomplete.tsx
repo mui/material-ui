@@ -822,14 +822,14 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Override the default text for the *clear* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Clear'
    */
   clearText: PropTypes.string,
   /**
    * Override the default text for the *close popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Close'
    */
   closeText: PropTypes.string,
@@ -999,7 +999,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Text to display when in a loading state.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Loading…'
    */
   loadingText: PropTypes.node,
@@ -1015,7 +1015,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Text to display when there are no options.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'No options'
    */
   noOptionsText: PropTypes.node,
@@ -1075,7 +1075,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Override the default text for the *open popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Open'
    */
   openText: PropTypes.string,

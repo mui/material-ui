@@ -202,6 +202,9 @@ You can view the screenshots in `test/regressions/screenshots/chrome`.
 
 Alternatively, you might want to open `http://localhost:5001` (while `pnpm test:regressions:dev` is running) to view individual views separately.
 
+For testing the components using Pigment CSS, you can run `pnpm test:regressions-pigment-css:dev`.
+You can then open `http://localhost:5001/fixtures` to vide individual views separately.
+
 ### Caveats
 
 #### Accessibility tree exclusion

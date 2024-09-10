@@ -86,7 +86,7 @@ The video below shows how to add new columns by copying cells directly on the ma
 You can export theme tokens and component customizations to code using [the Sync plugin for Figma](/material-ui/design-resources/material-ui-sync/).
 The Design Kit has been built to be as close to the React components as possible, making it for a fluid integration with code.
 
-Learn more about the Material UI theme structure by visiting the [Theming](https://mui.com/material-ui/customization/theming/) and [Default theme viewer](https://mui.com/material-ui/customization/theming/) pages.
+Learn more about the Material UI theme structure by visiting the [Theming](/material-ui/customization/theming/) and [Default theme viewer](/material-ui/customization/theming/) pages.
 
 ## Using new design kit versions
 
@@ -100,3 +100,14 @@ If you need to replace a single component that's been updated, there are a coupl
 ## Feedback and bug reports
 
 If you've got any feedback, we'd love to [hear from you](https://github.com/mui/mui-design-kits/discussions/84).
+
+## Integrations
+
+### Quest
+
+[Quest](https://www.quest.ai/) provides a native integration with this design kit.
+
+When you design your components with the kit, you can use [Quest plugin](https://www.figma.com/community/plugin/862039267149408972/figma-to-react-from-quest) to convert your Figma designs into Material UI code.
+The code generated should be clean and production-ready.
+
+Visit the [Quest documentation](https://docs.quest.ai/quest-docs) for more details.

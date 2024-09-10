@@ -826,7 +826,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   blurOnSelect: PropTypes.oneOfType([PropTypes.oneOf(['mouse', 'touch']), PropTypes.bool]),
   /**
-   * Props applied to the [`Chip`](/material-ui/api/chip/) element.
+   * Props applied to the [`Chip`](https://mui.com/material-ui/api/chip/) element.
    */
   ChipProps: PropTypes.object,
   /**
@@ -858,20 +858,20 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Override the default text for the *clear* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Clear'
    */
   clearText: PropTypes.string,
   /**
    * Override the default text for the *close popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Close'
    */
   closeText: PropTypes.string,
   /**
    * The props used for each slot inside.
-   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps: PropTypes.shape({
     clearIndicator: PropTypes.object,
@@ -1049,7 +1049,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Text to display when in a loading state.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Loading…'
    */
   loadingText: PropTypes.node,
@@ -1061,7 +1061,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Text to display when there are no options.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'No options'
    */
   noOptionsText: PropTypes.node,
@@ -1121,7 +1121,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Override the default text for the *open popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Open'
    */
   openText: PropTypes.string,
