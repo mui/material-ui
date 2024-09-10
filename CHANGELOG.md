@@ -9,7 +9,7 @@ _Sep 10, 2024_
 A big thanks to the 20 contributors who made this release possible. Here are the highlights ✨:
 
 - **Minor version bump**: This release includes a minor version bump as the `exports` field was added to the `@mui/icons-material` package to solve longstanding ESM compatibility issues (#43624). This change is backwards compatible with previously recommended setups. Bundlers which don't support the `exports` field shouldn't be affected. If you have any issues, please reach out by creating a GitHub issue.
-- This release also includes several fixes and documentation improvements to support the Material UI v6 upgrade.
+- This release also includes several fixes and documentation improvements to support the Material UI v6 upgrade.
 
 ### `@mui/icons-material@6.1.0`
 
@@ -38,12 +38,12 @@ A big thanks to the 20 contributors who made this release possible. Here are the
 - Add Integrations section to design resources page (#43612) @zanivan
 - Fix versions URL @oliviertassinari
 - Keep showing next under the subdomain @oliviertassinari
-- Add Next.js font optimization section to Pigment CSS migration (#43631) @siriwatknp
-- Update the Material UI readme post-v6 (#43504) @samuelsycamore
+- Add Next.js font optimization section to Pigment CSS migration (#43631) @siriwatknp
+- Update the Material UI readme post-v6 (#43504) @samuelsycamore
 - Bring back v5 release changelogs (#43460) @oliviertassinari
 - Fix use of absolute URLs (#43567) @oliviertassinari
 - Remove explicit `date-fns` dependency (#40823) @renovate[bot]
-- [pigment-css] Add guide for Pigment CSS quickstart (#43395) @alelthomas
+- [pigment-css] Add guide for Pigment CSS quickstart (#43395) @alelthomas
 - [system] Fix link to createCssVarsProvider (#43661) @oliviertassinari
 
 ### Core
@@ -60,7 +60,7 @@ A big thanks to the 20 contributors who made this release possible. Here are the
 - [docs-infra] Use embed as the default for opening CodeSandbox (#43618) @siriwatknp
 - [docs-infra] Fix broken anchor button when header has a link (#43598) @cherniavskii
 - [examples] Fix CDN live preview demo (#43641) @oliviertassinari
-- Add Pigment CSS screenshot test (#43280) @mnajdova
+- Add Pigment CSS screenshot test (#43280) @mnajdova
 - [website] Polish gold sponsors @oliviertassinari
 - [website] Add CopyCopter as gold sponsor (#43595) @zanivan
 - [website] Add disabled button styles to branding theme (#43577) @zanivan
