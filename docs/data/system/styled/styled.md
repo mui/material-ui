@@ -301,7 +301,7 @@ module.exports = {
 ```
 
 :::info
-Note: if [`babel-plugin-direct-import`](https://github.com/avocadowastaken/babel-plugin-direct-import) used, it must be after `@emotion/babel-plugin`.
+Note: If you use [`babel-plugin-direct-import`](https://github.com/avocadowastaken/babel-plugin-direct-import), place it after `@emotion/babel-plugin` in the Babel config.
 :::
 
 Now you should be able to use components as your selectors!
