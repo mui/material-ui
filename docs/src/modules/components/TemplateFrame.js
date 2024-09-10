@@ -9,6 +9,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import Box from '@mui/material/Box';
@@ -101,7 +102,6 @@ function ColorSchemeControls() {
         color="primary"
         size="small"
         disableTouchRipple
-        data-screenshot="toggle-mode"
         aria-controls={open ? 'color-scheme-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
@@ -151,6 +151,7 @@ export function ThemeSelector({ value, onChange }) {
           <PaletteIcon fontSize="small" color="primary" />
         </InputAdornment>
       }
+      sx={{ minWidth: 200 }}
     >
       <MenuItem value="custom">Custom Theme</MenuItem>
       <MenuItem value="material2">Material Design 2</MenuItem>
@@ -337,6 +338,7 @@ function TemplateFrame({ children }) {
                       </SvgIcon>
                     </IconButton>
                   </Tooltip>
+                  <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />
                   <ThemeSelector
                     value={selectedTheme}
                     onChange={(newTheme) => setSelectedTheme(newTheme)}
