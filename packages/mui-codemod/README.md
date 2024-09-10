@@ -1103,19 +1103,6 @@ npx @mui/codemod@latest deprecations/form-control-label-props <path>
 npx @mui/codemod@latest deprecations/list-item-props <path>
 ```
 
-#### `grid-props`
-
-```diff
- <Grid
--  wrap="nowrap"
-+  flexWrap="nowrap"
- />
-```
-
-```bash
-npx @mui/codemod@latest deprecations/grid-props <path>
-```
-
 #### `image-list-item-bar-classes`
 
 JS transforms:
