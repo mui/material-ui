@@ -7,6 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
@@ -102,7 +103,7 @@ const IconButtonRoot = styled(ButtonBase, {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value && value.main) // check all the used fields in the style below
+        .filter(createSimplePaletteValueFilter()) // check all the used fields in the style below
         .map(([color]) => ({
           props: { color },
           style: {
@@ -110,7 +111,7 @@ const IconButtonRoot = styled(ButtonBase, {
           },
         })),
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value && value.main) // check all the used fields in the style below
+        .filter(createSimplePaletteValueFilter()) // check all the used fields in the style below
         .map(([color]) => ({
           props: { color, disableRipple: false },
           style: {
