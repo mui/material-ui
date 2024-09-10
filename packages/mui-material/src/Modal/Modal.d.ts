@@ -211,10 +211,10 @@ export declare const ModalRoot: React.FC<ModalRootProps>;
 /**
  * Modal is a lower-level construct that is leveraged by the following components:
  *
- * *   [Dialog](https://mui.com/material-ui/api/dialog/)
- * *   [Drawer](https://mui.com/material-ui/api/drawer/)
- * *   [Menu](https://mui.com/material-ui/api/menu/)
- * *   [Popover](https://mui.com/material-ui/api/popover/)
+ * * [Dialog](https://mui.com/material-ui/api/dialog/)
+ * * [Drawer](https://mui.com/material-ui/api/drawer/)
+ * * [Menu](https://mui.com/material-ui/api/menu/)
+ * * [Popover](https://mui.com/material-ui/api/popover/)
  *
  * If you are creating a modal dialog, you probably want to use the [Dialog](https://mui.com/material-ui/api/dialog/) component
  * rather than directly using Modal.
