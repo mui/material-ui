@@ -281,9 +281,9 @@ module.exports = {
             }
           },
           "@mui/material": {
-            "styled": {
-              "canonicalImport": ["@emotion/styled", "default"],
-              "styledBaseImport": ["@mui/material", "styled"]
+            styled: {
+              canonicalImport: ["@emotion/styled", "default"],
+              styledBaseImport: ["@mui/material", "styled"]
             }
           },
           "@mui/material/styles": {
