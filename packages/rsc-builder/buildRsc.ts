@@ -106,53 +106,57 @@ async function findAll(
   return result.flat();
 }
 
+// eslint-disable-next-line import/prefer-default-export
+export async function resolveProject(project: Project, grep: RegExp | null) {
+  const projectSrc = path.join(project.rootPath, 'src');
+
+  let directories = [projectSrc];
+
+  if (Array.isArray(project?.additionalPaths)) {
+    directories = [
+      ...directories,
+      ...project.additionalPaths.map((p) => path.join(project.rootPath, p)),
+    ];
+  }
+
+  const components = await findAll(directories, grep, findComponents);
+
+  components.forEach(async (component) => {
+    try {
+      if (!project.ignorePaths?.some((p) => component.filename.includes(p))) {
+        processFile(component.filename);
+      }
+    } catch (error: any) {
+      error.message = `${path.relative(process.cwd(), component.filename)}: ${error.message}`;
+      throw error;
+    }
+  });
+
+  const hooks = await findAll(directories, grep, findHooks);
+
+  hooks.forEach(async (hook) => {
+    try {
+      processFile(hook.filename);
+    } catch (error: any) {
+      error.message = `${path.relative(process.cwd(), hook.filename)}: ${error.message}`;
+      throw error;
+    }
+  });
+
+  if (Array.isArray(project?.additionalFiles)) {
+    project.additionalFiles.forEach(async (file) => {
+      const fullPath = path.join(project.rootPath, file);
+      processFile(fullPath);
+    });
+  }
+}
 async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
   const grep = argv.grep == null ? null : new RegExp(argv.grep);
 
   await PROJECTS.reduce(async (resolvedPromise, project) => {
     await resolvedPromise;
 
-    const projectSrc = path.join(project.rootPath, 'src');
-
-    let directories = [projectSrc];
-
-    if (Array.isArray(project?.additionalPaths)) {
-      directories = [
-        ...directories,
-        ...project.additionalPaths.map((p) => path.join(project.rootPath, p)),
-      ];
-    }
-
-    const components = await findAll(directories, grep, findComponents);
-
-    components.forEach(async (component) => {
-      try {
-        if (!project.ignorePaths?.some((p) => component.filename.includes(p))) {
-          processFile(component.filename);
-        }
-      } catch (error: any) {
-        error.message = `${path.relative(process.cwd(), component.filename)}: ${error.message}`;
-        throw error;
-      }
-    });
-
-    const hooks = await findAll(directories, grep, findHooks);
-
-    hooks.forEach(async (hook) => {
-      try {
-        processFile(hook.filename);
-      } catch (error: any) {
-        error.message = `${path.relative(process.cwd(), hook.filename)}: ${error.message}`;
-        throw error;
-      }
-    });
-
-    if (Array.isArray(project?.additionalFiles)) {
-      project.additionalFiles.forEach(async (file) => {
-        const fullPath = path.join(project.rootPath, file);
-        processFile(fullPath);
-      });
-    }
+    await resolveProject(project, grep);
 
     return Promise.resolve();
   }, Promise.resolve());
