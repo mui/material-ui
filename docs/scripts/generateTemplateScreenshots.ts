@@ -47,7 +47,7 @@ const names = new Set(process.argv.slice(2));
 (async () => {
   // eslint-disable-next-line no-console
   console.info('Host:', host);
-  const browser = await chromium.launch({ headless: false });
+  const browser = await chromium.launch({ headless: true });
 
   await Promise.all(
     Object.entries(projects)
