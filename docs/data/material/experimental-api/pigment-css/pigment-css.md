@@ -161,7 +161,7 @@ const Heading = styled('div')({
 
 **Styling based on props**
 
-Use the `variants` key to define different styling options based on props. 
+Use the `variants` key to define different styling options based on props.
 This approach is recommended when the value of the prop is known at build time.
 
 Each of the `variants` is an object with `props` and `style` keys:
