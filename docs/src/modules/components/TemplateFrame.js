@@ -96,10 +96,12 @@ function ColorSchemeControls() {
   return (
     <React.Fragment>
       <IconButton
+        id="frame-color-mode-toggle"
         onClick={handleClick}
         color="primary"
         size="small"
         disableTouchRipple
+        data-screenshot="toggle-mode"
         aria-controls={open ? 'color-scheme-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
@@ -108,7 +110,7 @@ function ColorSchemeControls() {
       </IconButton>
       <Menu
         anchorEl={anchorEl}
-        id="account-menu"
+        id="frame-color-mode-toggle"
         open={open}
         onClose={handleClose}
         onClick={handleClose}
@@ -207,140 +209,144 @@ function TemplateFrame({ children }) {
           height: '100dvh',
           display: 'flex',
           flexDirection: 'column',
-          '& [data-template-mode-trigger]': { display: 'none' },
-          '--template-frame-height': '52px',
+          '&:has(.Docs-templateFrame)': {
+            '--template-frame-height': '52px',
+            '& [data-screenshot="toggle-mode"]': { display: 'none' },
+          },
         }}
       >
-        <ThemeProvider theme={brandingTheme}>
-          <StyledAppBar>
-            <Toolbar
-              variant="dense"
-              disableGutters
-              sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                width: '100%',
-                p: '8px 12px',
-                gap: 1,
-                minHeight: 'var(--template-frame-height)',
-              }}
-            >
-              <Box sx={{ width: { xs: 'auto', sm: 0 }, '& > *': { width: 'max-content' } }}>
-                <Button
-                  variant="text"
-                  size="small"
-                  aria-label="Back to templates"
-                  startIcon={<ArrowBackRoundedIcon />}
-                  component="a"
-                  href="/material-ui/getting-started/templates/"
-                  sx={{ display: { xs: 'none', sm: 'flex' } }}
-                >
-                  Back to templates
-                </Button>
-                <IconButton
-                  size="small"
-                  aria-label="Back to templates"
-                  component="a"
-                  href="/material-ui/getting-started/templates/"
-                  sx={{ display: { xs: 'auto', sm: 'none' } }}
-                >
-                  <ArrowBackRoundedIcon />
-                </IconButton>
-              </Box>
-              <Box
+        {router.query?.hideFrame !== 'true' && (
+          <ThemeProvider theme={brandingTheme}>
+            <StyledAppBar className="Docs-templateFrame">
+              <Toolbar
+                variant="dense"
+                disableGutters
                 sx={{
                   display: 'flex',
-                  justifyContent: 'flex-end',
+                  justifyContent: 'space-between',
+                  width: '100%',
+                  p: '8px 12px',
                   gap: 1,
-                  width: { xs: 'auto', sm: 0 },
-                  '& > *': { flexShrink: 0 },
+                  minHeight: 'var(--template-frame-height)',
                 }}
               >
-                <Tooltip title="Open Template via CodeSandbox">
-                  <IconButton
-                    color="primary"
+                <Box sx={{ width: { xs: 'auto', sm: 0 }, '& > *': { width: 'max-content' } }}>
+                  <Button
+                    variant="text"
                     size="small"
-                    disableTouchRipple
-                    aria-label="CodeSandbox playground"
-                    data-ga-event-category="material-ui-template"
-                    data-ga-event-label={templateId}
-                    data-ga-event-action="codesandbox"
-                    onClick={() =>
-                      codeSandbox
-                        .createMaterialTemplate({
-                          ...item,
-                          files: { ...item.files, ...materialTemplates.sharedTheme?.files },
-                          title: `${templateName} Template - Material UI`,
-                          githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
-                            process.env.LIB_VERSION
-                          }/docs/data/material/templates/${templateId}/${templateName}.${
-                            item.codeVariant === 'TS' ? 'tsx' : 'js'
-                          }`,
-                        })
-                        .replaceContent((content) => {
-                          if (typeof content === 'string') {
-                            return content
-                              .replace(/\.\.\/shared-theme\//g, './theme/')
-                              .replace('./App', `./${templateName}`);
-                          }
-                          return content;
-                        })
-                        .openSandbox(`/${templateName}`)
-                    }
-                    sx={{ alignSelf: 'center', borderRadius: 1 }}
+                    aria-label="Back to templates"
+                    startIcon={<ArrowBackRoundedIcon />}
+                    component="a"
+                    href="/material-ui/getting-started/templates/"
+                    sx={{ display: { xs: 'none', sm: 'flex' } }}
                   >
-                    <SvgIcon viewBox="0 0 1080 1080">
-                      <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
-                    </SvgIcon>
-                  </IconButton>
-                </Tooltip>
-                <Tooltip title="Open Template via StackBlitz">
+                    Back to templates
+                  </Button>
                   <IconButton
-                    color="primary"
                     size="small"
-                    disableTouchRipple
-                    aria-label="StackBlitz playground"
-                    data-ga-event-category="material-ui-template"
-                    data-ga-event-label={templateId}
-                    data-ga-event-action="stackblitz"
-                    onClick={() =>
-                      stackBlitz
-                        .createMaterialTemplate({
-                          ...item,
-                          files: { ...item.files, ...materialTemplates.sharedTheme?.files },
-                          title: `${templateName} Template - Material UI`,
-                          githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
-                            process.env.LIB_VERSION
-                          }/docs/data/material/templates/${templateId}/${templateName}.${
-                            item.codeVariant === 'TS' ? 'tsx' : 'js'
-                          }`,
-                        })
-                        .replaceContent((content) => {
-                          if (typeof content === 'string') {
-                            return content
-                              .replace(/\.\.\/shared-theme\//g, './theme/')
-                              .replace('./App', `./${templateName}`);
-                          }
-                          return content;
-                        })
-                        .openStackBlitz(`/${templateName}`)
-                    }
-                    sx={{ alignSelf: 'center', borderRadius: 1 }}
+                    aria-label="Back to templates"
+                    component="a"
+                    href="/material-ui/getting-started/templates/"
+                    sx={{ display: { xs: 'auto', sm: 'none' } }}
                   >
-                    <SvgIcon viewBox="0 0 19 28">
-                      <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
-                    </SvgIcon>
+                    <ArrowBackRoundedIcon />
                   </IconButton>
-                </Tooltip>
-                <ThemeSelector
-                  value={selectedTheme}
-                  onChange={(newTheme) => setSelectedTheme(newTheme)}
-                />
-                <ColorSchemeControls />
-              </Box>
-            </Toolbar>
-          </StyledAppBar>
-        </ThemeProvider>
+                </Box>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    gap: 1,
+                    width: { xs: 'auto', sm: 0 },
+                    '& > *': { flexShrink: 0 },
+                  }}
+                >
+                  <Tooltip title="Open Template via CodeSandbox">
+                    <IconButton
+                      color="primary"
+                      size="small"
+                      disableTouchRipple
+                      aria-label="CodeSandbox playground"
+                      data-ga-event-category="material-ui-template"
+                      data-ga-event-label={templateId}
+                      data-ga-event-action="codesandbox"
+                      onClick={() =>
+                        codeSandbox
+                          .createMaterialTemplate({
+                            ...item,
+                            files: { ...item.files, ...materialTemplates.sharedTheme?.files },
+                            title: `${templateName} Template - Material UI`,
+                            githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
+                              process.env.LIB_VERSION
+                            }/docs/data/material/templates/${templateId}/${templateName}.${
+                              item.codeVariant === 'TS' ? 'tsx' : 'js'
+                            }`,
+                          })
+                          .replaceContent((content) => {
+                            if (typeof content === 'string') {
+                              return content
+                                .replace(/\.\.\/shared-theme\//g, './theme/')
+                                .replace('./App', `./${templateName}`);
+                            }
+                            return content;
+                          })
+                          .openSandbox(`/${templateName}`)
+                      }
+                      sx={{ alignSelf: 'center', borderRadius: 1 }}
+                    >
+                      <SvgIcon viewBox="0 0 1080 1080">
+                        <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
+                      </SvgIcon>
+                    </IconButton>
+                  </Tooltip>
+                  <Tooltip title="Open Template via StackBlitz">
+                    <IconButton
+                      color="primary"
+                      size="small"
+                      disableTouchRipple
+                      aria-label="StackBlitz playground"
+                      data-ga-event-category="material-ui-template"
+                      data-ga-event-label={templateId}
+                      data-ga-event-action="stackblitz"
+                      onClick={() =>
+                        stackBlitz
+                          .createMaterialTemplate({
+                            ...item,
+                            files: { ...item.files, ...materialTemplates.sharedTheme?.files },
+                            title: `${templateName} Template - Material UI`,
+                            githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
+                              process.env.LIB_VERSION
+                            }/docs/data/material/templates/${templateId}/${templateName}.${
+                              item.codeVariant === 'TS' ? 'tsx' : 'js'
+                            }`,
+                          })
+                          .replaceContent((content) => {
+                            if (typeof content === 'string') {
+                              return content
+                                .replace(/\.\.\/shared-theme\//g, './theme/')
+                                .replace('./App', `./${templateName}`);
+                            }
+                            return content;
+                          })
+                          .openStackBlitz(`/${templateName}`)
+                      }
+                      sx={{ alignSelf: 'center', borderRadius: 1 }}
+                    >
+                      <SvgIcon viewBox="0 0 19 28">
+                        <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
+                      </SvgIcon>
+                    </IconButton>
+                  </Tooltip>
+                  <ThemeSelector
+                    value={selectedTheme}
+                    onChange={(newTheme) => setSelectedTheme(newTheme)}
+                  />
+                  <ColorSchemeControls />
+                </Box>
+              </Toolbar>
+            </StyledAppBar>
+          </ThemeProvider>
+        )}
         <Box sx={{ flex: '1 1', overflow: 'auto' }}>
           {React.isValidElement(children)
             ? React.cloneElement(children, { disableCustomTheme: selectedTheme === 'material2' })

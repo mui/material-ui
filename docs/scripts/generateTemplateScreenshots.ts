@@ -6,10 +6,10 @@ import { chromium } from 'playwright';
  * README
  *
  * Usage:
- * - `yarn screenshot` to generate all screenshots
- * - `yarn screenshot material-ui` to generate all screenshots for Material-UI templates
- * - `yarn screenshot order-dashboard` to generate screenshots for file named `order-dashboard.tsx`
- * - `yarn screenshot material-ui dashboard` to generate screenshots for file named `dashboard.tsx` of Material UI templates
+ * - `pnpm template:screenshot` to generate all screenshots
+ * - `pnpm template:screenshot material-ui` to generate all screenshots for Material-UI templates
+ * - `pnpm template:screenshot order-dashboard` to generate screenshots for file named `order-dashboard.tsx`
+ * - `pnpm template:screenshot material-ui dashboard` to generate screenshots for file named `dashboard.tsx` of Material UI templates
  *
  * Note:
  * - The screenshot with `-dark` suffix is generated if the page has a button with id `toggle-mode`
@@ -47,7 +47,7 @@ const names = new Set(process.argv.slice(2));
 (async () => {
   // eslint-disable-next-line no-console
   console.info('Host:', host);
-  const browser = await chromium.launch({ headless: true });
+  const browser = await chromium.launch({ headless: false });
 
   await Promise.all(
     Object.entries(projects)
@@ -74,14 +74,44 @@ const names = new Set(process.argv.slice(2));
         async function captureDarkMode(outputPath: string) {
           const btn = await page.$('[data-screenshot="toggle-mode"]');
           if (btn) {
-            await page.click('[data-screenshot="toggle-mode"]');
-            await page.waitForLoadState('networkidle'); // changing to dark mode might trigger image loading
-            await page.screenshot({
-              path: outputPath,
-              animations: 'disabled',
-            });
+            if ((await btn.getAttribute('aria-haspopup')) === 'true') {
+              await page.click('[data-screenshot="toggle-mode"]');
+              await page.getByRole('menuitem').filter({ hasText: /dark/i }).click();
+              await page.waitForLoadState('networkidle'); // changing to dark mode might trigger image loading
+              await page.screenshot({
+                path: outputPath,
+                animations: 'disabled',
+              });
 
-            await page.click('[data-screenshot="toggle-mode"]'); // switch back to light
+              await page.click('[data-screenshot="toggle-mode"]');
+              await page
+                .getByRole('menuitem')
+                .filter({ hasText: /system/i })
+                .click(); // switch back to light
+            } else if ((await btn.getAttribute('aria-haspopup')) === 'listbox') {
+              await page.click('[data-screenshot="toggle-mode"]');
+              await page.getByRole('option').filter({ hasText: /dark/i }).click();
+              await page.waitForLoadState('networkidle'); // changing to dark mode might trigger image loading
+              await page.screenshot({
+                path: outputPath,
+                animations: 'disabled',
+              });
+
+              await page.click('[data-screenshot="toggle-mode"]');
+              await page
+                .getByRole('option')
+                .filter({ hasText: /system/i })
+                .click(); // switch back to light
+            } else {
+              await page.click('[data-screenshot="toggle-mode"]');
+              await page.waitForLoadState('networkidle'); // changing to dark mode might trigger image loading
+              await page.screenshot({
+                path: outputPath,
+                animations: 'disabled',
+              });
+
+              await page.click('[data-screenshot="toggle-mode"]'); // switch back to light
+            }
           }
         }
 
@@ -89,7 +119,7 @@ const names = new Set(process.argv.slice(2));
           await Promise.resolve().then(() =>
             urls.reduce(async (sequence, aUrl) => {
               await sequence;
-              await page.goto(`${host}${aUrl}`, { waitUntil: 'networkidle' });
+              await page.goto(`${host}${aUrl}?hideFrame=true`, { waitUntil: 'networkidle' });
 
               const filePath = `${output}${aUrl.replace(/\/$/, '')}.jpg`;
               // eslint-disable-next-line no-console
