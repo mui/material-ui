@@ -263,7 +263,7 @@ If you are getting the error: `TypeError: Cannot convert a Symbol value to a str
 
 ## How can I contribute to the free templates?
 
-The templates are built using the shared theme. Below are the structure to create a new template:
+The templates are built using a [shared theme](https://github.com/mui/material-ui/tree/v6.0.2/docs/data/material/getting-started/templates/shared-theme). Below are the structure to create a new template:
 
 ### Template page
 
@@ -294,7 +294,7 @@ Then create a template file at `docs/data/material/getting-started/templates/<na
 
 The template must use `AppTheme` from `../shared-theme/AppTheme` to ensure a consistent look and feel across all templates.
 
-If the template contains custom themed components, for example the dashboard template has MUI X themed components, pass the themed components to the `AppTheme`'s `themedComponents` prop:
+If the template includes custom-themed components, such as the dashboard template with MUI X themed components, pass them to the `AppTheme`'s `themedComponents` prop:
 
 ```js
 import AppTheme from '../shared-theme/AppTheme';
@@ -334,7 +334,7 @@ For example, the dashboard template has a fixed header that needs to be accounte
 >
 ```
 
-This will make the `AppBar` stay below the `TemplateFrame` in a preview mode but stick to the top in the Code Sandbox and Stackblitz.
+This will make the `AppBar` stay below the `TemplateFrame` in a preview mode but stick to the top in the CodeSandbox and Stackblitz.
 
 ## [legacy] I have several instances of styles on the page
 
