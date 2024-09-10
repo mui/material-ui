@@ -338,7 +338,7 @@ const generateApiPage = async (
     demos: `<ul>${reactApi.demos
       .map((item) => `<li><a href="${item.demoPathname}">${item.demoPageTitle}</a></li>`)
       .join('\n')}</ul>`,
-    cssComponent: cssComponents.indexOf(reactApi.name) >= 0,
+    cssComponent: cssComponents.includes(reactApi.name),
     deprecated: reactApi.deprecated,
   };
 
@@ -496,7 +496,7 @@ const attachPropsTable = (
 
       const requiredProp =
         prop.required ||
-        /\.isRequired/.test(prop.type.raw) ||
+        prop.type.raw.includes('.isRequired') ||
         (chainedPropType !== false && chainedPropType.required);
 
       const deprecation = (propDescriptor.description || '').match(/@deprecated(\s+(?<info>.*))?/);
@@ -592,7 +592,7 @@ const defaultGetComponentImports = (name: string, filename: string) => {
   let namedImportName = name;
   const defaultImportName = name;
 
-  if (/Unstable_/.test(githubPath)) {
+  if (githubPath.includes('Unstable_')) {
     namedImportName = `Unstable_${name} as ${name}`;
   }
 
