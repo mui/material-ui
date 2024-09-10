@@ -47,12 +47,4 @@ export default defineConfig({
     splitVendorChunkPlugin(),
     nodePolyfills(),
   ],
-  resolve: {
-    alias: [
-      {
-        find: /^@mui\/icons-material\/(.*)/,
-        replacement: '@mui/icons-material/esm/$1',
-      },
-    ],
-  },
 });
