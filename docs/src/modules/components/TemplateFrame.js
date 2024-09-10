@@ -204,7 +204,7 @@ function TemplateFrame({ children }) {
   const materialTemplates = sourceMaterialTemplates();
   const item = materialTemplates.map.get(templateId);
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={defaultTheme} disableTransitionOnChange>
       <Box
         sx={{
           height: '100dvh',
