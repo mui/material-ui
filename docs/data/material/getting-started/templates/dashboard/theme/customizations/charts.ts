@@ -34,10 +34,10 @@ export const chartsCustomizations: ChartsComponents<Theme> = {
       mark: ({ theme }) => ({
         ry: 6,
         boxShadow: 'none',
-        border: `1px solid ${theme.palette.divider}`,
+        border: `1px solid ${(theme.vars || theme).palette.divider}`,
       }),
       table: ({ theme }) => ({
-        border: `1px solid ${theme.palette.divider}`,
+        border: `1px solid ${(theme.vars || theme).palette.divider}`,
         borderRadius: theme.shape.borderRadius,
         background: 'hsl(0, 0%, 100%)',
         ...theme.applyStyles('dark', {

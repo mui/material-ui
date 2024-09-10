@@ -10,9 +10,11 @@ export default function ColorModeSelect(props) {
   }
   return (
     <Select
-      data-template-mode-trigger=""
       value={mode}
       onChange={(e) => setMode(e.target.value)}
+      SelectDisplayProps={{
+        'data-screenshot': 'toggle-mode',
+      }}
       {...props}
     >
       <MenuItem value="system">System</MenuItem>
