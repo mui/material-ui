@@ -112,7 +112,7 @@ Anima supports both Figma and VS Code, so you can choose the workflow that suits
 - Use the [Anima Figma Plugin](https://www.figma.com/community/plugin/857346721138427857/anima-figma-to-code-react-html-vue-css-tailwind-devmode-inspect-react-html-vue-css) to convert your designs directly in Figma.
 - Use the [Anima VS Code Extension (Frontier)](https://marketplace.visualstudio.com/items?itemName=AnimaApp.vscode-anima) to seamlessly generate and edit Material UI code in your development environment.
 
-Visit the [Anima](https://www.animaapp.com/) for more details.
+Visit [Anima](https://www.animaapp.com/) for more details.
 
 ### Quest
 
