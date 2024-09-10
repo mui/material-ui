@@ -503,6 +503,12 @@ describe('createTheme', () => {
     });
   });
 
+  it('should return the styles directly when using applyStyles if the selector is `&`', function test() {
+    const theme = createTheme({ cssVariables: true, palette: { mode: 'dark' } });
+
+    expect(theme.applyStyles('dark', { color: 'red' })).to.deep.equal({ color: 'red' });
+  });
+
   it('Throw an informative error when the key `vars` is passed as part of `options` passed', () => {
     try {
       createTheme({
