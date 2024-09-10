@@ -13,7 +13,7 @@ interface Props {
    * You won't need it on your project.
    */
   window?: () => Window;
-  children?: React.ReactElement<unknown & { elevation?: number }>;
+  children?: React.ReactElement<{ elevation?: number }>;
 }
 
 function ElevationScroll(props: Props) {
