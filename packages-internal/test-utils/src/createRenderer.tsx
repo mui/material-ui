@@ -285,8 +285,12 @@ export interface MuiRenderToStringResult {
   hydrate(): MuiRenderResult;
 }
 
+interface DataAttributes {
+  [key: `data-${string}`]: string;
+}
+
 function render(
-  element: React.ReactElement<unknown>,
+  element: React.ReactElement<DataAttributes>,
   configuration: ClientRenderConfiguration,
 ): MuiRenderResult {
   const { container, hydrate, wrapper } = configuration;
@@ -306,7 +310,7 @@ function render(
       traceSync('forceUpdate', () =>
         testingLibraryRenderResult.rerender(
           React.cloneElement(element, {
-            ['data-force-update' as string]: String(Math.random()),
+            'data-force-update': String(Math.random()),
           }),
         ),
       );
@@ -322,7 +326,7 @@ function render(
 }
 
 function renderToString(
-  element: React.ReactElement<unknown>,
+  element: React.ReactElement<DataAttributes>,
   configuration: ServerRenderConfiguration,
 ): { container: HTMLElement; hydrate(): MuiRenderResult } {
   const { container, wrapper: Wrapper } = configuration;
@@ -444,9 +448,9 @@ function createClock(defaultMode: 'fake' | 'real', config: ClockConfig): Clock {
 
 export interface Renderer {
   clock: Clock;
-  render(element: React.ReactElement<unknown>, options?: RenderOptions): MuiRenderResult;
+  render(element: React.ReactElement<DataAttributes>, options?: RenderOptions): MuiRenderResult;
   renderToString(
-    element: React.ReactElement<unknown>,
+    element: React.ReactElement<DataAttributes>,
     options?: RenderOptions,
   ): MuiRenderToStringResult;
 }
@@ -586,7 +590,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
 
   return {
     clock,
-    render(element: React.ReactElement<unknown>, options: RenderOptions = {}) {
+    render(element: React.ReactElement<DataAttributes>, options: RenderOptions = {}) {
       if (!prepared) {
         throw new Error(
           'Unable to finish setup before `render()` was called. ' +
@@ -601,7 +605,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
         wrapper: createWrapper(options),
       });
     },
-    renderToString(element: React.ReactElement<unknown>, options: RenderOptions = {}) {
+    renderToString(element: React.ReactElement<DataAttributes>, options: RenderOptions = {}) {
       if (!prepared) {
         throw new Error(
           'Unable to finish setup before `render()` was called. ' +
