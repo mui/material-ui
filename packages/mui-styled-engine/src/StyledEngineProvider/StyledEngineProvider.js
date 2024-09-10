@@ -5,6 +5,8 @@ import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { StyleSheet } from '@emotion/sheet';
 
+// We might be able to remove this when this issue is fixed:
+// https://github.com/emotion-js/emotion/issues/2790
 const createEmotionCache = (options) => {
   const cache = createCache(options);
 
