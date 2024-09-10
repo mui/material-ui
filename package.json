@@ -31,7 +31,7 @@
     "docs:export": "next export -o docs/export && yarn docs:build-sw && cp docs/_headers docs/export/_headers && cp docs/_redirects docs/export/_redirects",
     "docs:size-why": "DOCS_STATS_ENABLED=true yarn docs:build",
     "docs:build-sw": "babel-node ./docs/scripts/buildServiceWorker.js",
-    "docs:deploy": "git push material-ui-docs master:latest",
+    "docs:deploy": "git push material-ui-docs v1.x:v1",
     "lint": "eslint . --cache && echo \"eslint: no lint errors\"",
     "lint:fix": "eslint . --cache --fix && echo \"eslint: no lint errors\"",
     "prettier": "yarn --silent prettier:files | xargs prettier --write",
@@ -177,5 +177,6 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }
