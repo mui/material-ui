@@ -23,7 +23,7 @@ the purpose of each file.
 {{"component": "modules/components/MaterialFreeTemplatesCollection.js"}}
 
 See any room for improvement?
-Please feel free to open an [issue](https://github.com/mui/material-ui/issues/new/choose) or [pull request](https://github.com/mui/material-ui/pulls) on GitHub.
+Please feel free to open an [issue](https://github.com/mui/material-ui/issues/new/choose) or a [pull request](https://github.com/mui/material-ui/pulls) on GitHub, following the [contribution guide](/material-ui/getting-started/faq/#how-can-i-contribute-to-the-free-templates).
 
 ## Premium templates
 
