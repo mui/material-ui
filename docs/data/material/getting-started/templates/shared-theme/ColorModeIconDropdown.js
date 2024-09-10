@@ -45,7 +45,7 @@ export default function ColorModeIconDropdown() {
   return (
     <React.Fragment>
       <IconButton
-        data-template-mode-trigger=""
+        data-screenshot="toggle-mode"
         onClick={handleClick}
         disableRipple
         size="small"
