@@ -218,7 +218,6 @@ function EnhancedTableToolbar(props) {
           Nutrition
         </Typography>
       )}
-
       {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton size="sm" color="danger" variant="solid">
