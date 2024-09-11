@@ -23,7 +23,7 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@pigment-css/nextjs-plugin": "0.0.22",
+    "@pigment-css/nextjs-plugin": "https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/nextjs-plugin",
     "@types/node": "^20.16.5",
     "@types/react": "^18.3.4",
     "@types/react-dom": "^18.3.0",
