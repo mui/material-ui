@@ -142,9 +142,7 @@ jobs:
       - when:
           # Install can be "dirty" when running with non-default versions of React
           condition:
-            or:
-              - equal: [<< parameters.react-version >>, stable]
-              - equal: [<< pipeline.parameters.workflow >>, bundling]
+            equal: [<< parameters.react-version >>, stable]
           steps:
             - run:
                 name: Should not have any git not staged
