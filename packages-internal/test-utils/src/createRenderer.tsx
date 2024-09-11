@@ -415,7 +415,7 @@ function createVitestClock(defaultMode: 'fake' | 'real', config: ClockConfig, vi
     runToLast: () => {
       traceSync('runToLast', () => {
         rtlAct(() => {
-          vi.runAllTimers();
+          vi.runOnlyPendingTimers();
         });
       });
     },
@@ -435,7 +435,7 @@ function createVitestClock(defaultMode: 'fake' | 'real', config: ClockConfig, vi
     runAll() {
       traceSync('runAll', () => {
         rtlAct(() => {
-          vi.runOnlyPendingTimers();
+          vi.runAllTimers();
         });
       });
     },
