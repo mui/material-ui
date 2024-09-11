@@ -10,6 +10,7 @@ import {
   visuallyHidden,
   clamp,
 } from '@mui/utils';
+import extractEventHandlers from '@mui/utils/extractEventHandlers';
 import {
   Mark,
   UseSliderHiddenInputProps,
@@ -18,7 +19,8 @@ import {
   UseSliderRootSlotProps,
   UseSliderThumbSlotProps,
 } from './useSlider.types';
-import { areArraysEqual, EventHandlers, extractEventHandlers } from '../utils';
+import { EventHandlers } from '../utils/types';
+import areArraysEqual from '../utils/areArraysEqual';
 
 const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
 
@@ -413,7 +415,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     const { width, height, bottom, left } = slider!.getBoundingClientRect();
     let percent;
 
-    if (axis.startsWith('vertical')) {
+    if (axis.indexOf('vertical') === 0) {
       percent = (bottom - finger.y) / height;
     } else {
       percent = (finger.x - left) / width;

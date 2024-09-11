@@ -2,13 +2,13 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import getReactNodeRef from '@mui/utils/getReactNodeRef';
 import {
   exactProp,
   HTMLElementType,
   unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_useForkRef as useForkRef,
   unstable_setRef as setRef,
+  unstable_getReactNodeRef as getReactNodeRef,
 } from '@mui/utils';
 import { PortalProps } from './Portal.types';
 
@@ -22,11 +22,11 @@ function getContainer(container: PortalProps['container']) {
  *
  * Demos:
  *
- * - [Portal](https://mui.com/base-ui/react-portal/)
+ * - [Portal](https://mui.com/material-ui/react-portal/)
  *
  * API:
  *
- * - [Portal API](https://mui.com/base-ui/react-portal/components-api/#portal)
+ * - [Portal API](https://mui.com/material-ui/api/portal/)
  */
 const Portal = React.forwardRef(function Portal(
   props: PortalProps,
@@ -105,4 +105,4 @@ if (process.env.NODE_ENV !== 'production') {
   (Portal as any)['propTypes' + ''] = exactProp((Portal as any).propTypes);
 }
 
-export { Portal };
+export default Portal;

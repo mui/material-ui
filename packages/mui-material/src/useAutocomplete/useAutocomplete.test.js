@@ -9,7 +9,7 @@ import {
   reactMajor,
 } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
-import { useAutocomplete, createFilterOptions } from '@mui/base/useAutocomplete';
+import useAutocomplete, { createFilterOptions } from '@mui/material/useAutocomplete';
 
 describe('useAutocomplete', () => {
   const { render } = createRenderer();

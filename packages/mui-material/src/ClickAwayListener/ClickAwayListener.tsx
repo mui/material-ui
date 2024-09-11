@@ -7,8 +7,8 @@ import {
   unstable_ownerDocument as ownerDocument,
   unstable_useForkRef as useForkRef,
   unstable_useEventCallback as useEventCallback,
-  unstable_getReactNodeRef as getReactNodeRef,
 } from '@mui/utils';
+import getReactNodeRef from '@mui/utils/getReactNodeRef';
 
 // TODO: return `EventHandlerName extends `on${infer EventName}` ? Lowercase<EventName> : never` once generatePropTypes runs with TS 4.1
 function mapEventPropToEvent(
@@ -65,11 +65,12 @@ export interface ClickAwayListenerProps {
  *
  * Demos:
  *
- * - [Click-Away Listener](https://mui.com/base-ui/react-click-away-listener/)
+ * - [Click-Away Listener](https://mui.com/material-ui/react-click-away-listener/)
+ * - [Menu](https://mui.com/material-ui/react-menu/)
  *
  * API:
  *
- * - [ClickAwayListener API](https://mui.com/base-ui/react-click-away-listener/components-api/#click-away-listener)
+ * - [ClickAwayListener API](https://mui.com/material-ui/api/click-away-listener/)
  */
 function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
   const {

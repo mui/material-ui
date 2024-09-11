@@ -49,12 +49,11 @@ function isEmpty(obj: TextareaStyles) {
  *
  * Demos:
  *
- * - [Textarea Autosize](https://mui.com/base-ui/react-textarea-autosize/)
  * - [Textarea Autosize](https://mui.com/material-ui/react-textarea-autosize/)
  *
  * API:
  *
- * - [TextareaAutosize API](https://mui.com/base-ui/react-textarea-autosize/components-api/#textarea-autosize)
+ * - [TextareaAutosize API](https://mui.com/material-ui/api/textarea-autosize/)
  */
 const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   props: TextareaAutosizeProps,
@@ -262,4 +261,4 @@ TextareaAutosize.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
-export { TextareaAutosize };
+export default TextareaAutosize;
