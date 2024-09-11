@@ -69,4 +69,16 @@ describe('applyStyles', () => {
     const styles = { background: '#e5e5e5' };
     expect(applyStyles.call(theme, 'dark', styles)).to.deep.equal({});
   });
+
+  it('should return the styles directly if selector is &', () => {
+    const theme = {
+      vars: {},
+      colorSchemes: { light: true },
+      getColorSchemeSelector: () => {
+        return '&';
+      },
+    };
+    const styles = { background: '#e5e5e5' };
+    expect(applyStyles.call(theme, 'light', styles)).to.deep.equal(styles);
+  });
 });

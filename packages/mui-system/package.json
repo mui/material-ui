@@ -39,7 +39,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.25.0",
+    "@babel/runtime": "^7.25.6",
     "@mui/private-theming": "workspace:^",
     "@mui/styled-engine": "workspace:^",
     "@mui/types": "workspace:^",
@@ -63,7 +63,7 @@
     "lodash": "^4.17.21",
     "react": "^18.3.1",
     "sinon": "^18.0.0",
-    "styled-components": "^6.1.12"
+    "styled-components": "^6.1.13"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",

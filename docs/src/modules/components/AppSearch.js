@@ -459,7 +459,6 @@ export default function AppSearch(props) {
                 'hierarchy.lvl3',
                 'hierarchy.lvl4',
                 'hierarchy.lvl5',
-                'hierarchy.lvl6',
                 'content',
                 'type',
                 'url',

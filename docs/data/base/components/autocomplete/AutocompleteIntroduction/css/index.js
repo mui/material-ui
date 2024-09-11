@@ -72,7 +72,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
             <ClearIcon />
           </Button>
         )}
-
         <Button
           {...getPopupIndicatorProps()}
           className={clsx(

@@ -39,9 +39,9 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.25.0",
+    "@babel/runtime": "^7.25.6",
     "@mui/system": "workspace:*",
-    "@pigment-css/react": "0.0.21"
+    "@pigment-css/react": "0.0.22"
   },
   "sideEffects": false,
   "publishConfig": {
