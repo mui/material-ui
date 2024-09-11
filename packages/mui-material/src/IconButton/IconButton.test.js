@@ -157,6 +157,23 @@ describe('<IconButton />', () => {
     });
   });
 
+  it('should apply the colored hover background if color is provided', function test() {
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const { container, getByTestId } = render(
+      <IconButton data-testid="icon-button" color="primary" />,
+    );
+
+    fireEvent.mouseMove(container.firstChild, {
+      clientX: 19,
+    });
+    expect(getByTestId('icon-button')).toHaveComputedStyle({
+      backgroundColor: 'rgba(25, 118, 210, 0.04)',
+    });
+  });
+
   it('should not apply the hover background if disableRipple is true', function test() {
     if (!/jsdom/.test(window.navigator.userAgent)) {
       this.skip();
