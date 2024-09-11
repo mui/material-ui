@@ -509,6 +509,7 @@ jobs:
           command: |
             sed -i 's/# CI:BUNDLING //g' ./pnpm-workspace.yaml
             cat ./pnpm-workspace.yaml
+            pnpm install --no-frozen-lockfile
       - install_js
       - run:
           name: Build packages for fixtures
