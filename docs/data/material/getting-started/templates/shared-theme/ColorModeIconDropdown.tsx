@@ -24,7 +24,7 @@ export default function ColorModeIconDropdown() {
   if (!mode) {
     return (
       <Box
-        data-template-mode-trigger=""
+        data-screenshot="toggle-mode"
         sx={(theme) => ({
           verticalAlign: 'bottom',
           display: 'inline-flex',
