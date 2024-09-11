@@ -525,6 +525,8 @@ jobs:
   test_bundling_node-esm:
     <<: *default-job
     steps:
+      - checkout
+      - install_js
       - run:
           name: Test fixture
           command: |
@@ -539,6 +541,8 @@ jobs:
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
+      - checkout
+      - install_js
       - run:
           name: Test fixture
           command: pnpm --filter next-webpack4 start
@@ -549,6 +553,8 @@ jobs:
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
+      - checkout
+      - install_js
       - run:
           name: Test fixture
           command: pnpm --filter next-webpack4 start
@@ -559,6 +565,8 @@ jobs:
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
+      - checkout
+      - install_js
       - run:
           name: Test fixture
           command: pnpm --filter create-react-app start
@@ -569,6 +577,8 @@ jobs:
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
+      - checkout
+      - install_js
       - run:
           name: Test fixture
           command: pnpm --filter snowpack start
@@ -579,6 +589,8 @@ jobs:
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
+      - checkout
+      - install_js
       - run:
           name: Test fixture
           command: pnpm --filter vite start
@@ -589,6 +601,8 @@ jobs:
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
+      - checkout
+      - install_js
       - run:
           name: Test fixture
           command: |
@@ -603,6 +617,8 @@ jobs:
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
+      - checkout
+      - install_js
       - run:
           name: Test --filter gatsby fixture
           command: pnpm start
