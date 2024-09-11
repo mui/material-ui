@@ -1,5 +1,4 @@
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
-import type { MuiProductId } from 'docs/src/modules/utils/getProductInfoFromUrl';
 import { DemoData } from './types';
 
 const packagesWithBundledTypes = [
