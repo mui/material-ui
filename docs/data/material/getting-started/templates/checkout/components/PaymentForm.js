@@ -282,7 +282,6 @@ export default function PaymentForm() {
           />
         </Box>
       )}
-
       {paymentType === 'bankTransfer' && (
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
           <Alert severity="warning" icon={<WarningRoundedIcon />}>
