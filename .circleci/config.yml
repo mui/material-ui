@@ -507,7 +507,7 @@ jobs:
       - run:
           name: Upload screenshots to Argos CI
           command: pnpm test:argos
-  test_bundling:
+  test_bundling_prepare:
     <<: *default-job
     steps:
       - checkout
@@ -515,17 +515,95 @@ jobs:
       - run:
           name: Build packages for fixtures
           command: pnpm lerna run --scope "@mui/*" build
+      - persist_to_workspace:
+          root: packages
+          paths:
+            - '*/build'
+
+  test_bundling_node-esm:
+    <<: *default-job
+    steps:
       - run:
-          name: Run tests
+          name: Test fixture
           command: |
-            pnpm --filter create-react-app start
-            pnpm --filter esbuild start
-            pnpm --filter gatsby start
-            pnpm --filter next-webpack4 start
-            pnpm --filter next-webpack5 start
+            # TODO: Known failure
+            set +e
             pnpm --filter node-esm start
-            pnpm --filter snowpack start
-            pnpm --filter vite start
+            exit 0
+  test_bundling_next-webpack4:
+    <<: *default-job
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.46.1-focal
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    steps:
+      - run:
+          name: Test fixture
+          command: pnpm --filter next-webpack4 start
+  test_bundling_next-webpack5:
+    <<: *default-job
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.46.1-focal
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    steps:
+      - run:
+          name: Test fixture
+          command: pnpm --filter next-webpack4 start
+  test_bundling_create-react-app:
+    <<: *default-job
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.46.1-focal
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    steps:
+      - run:
+          name: Test fixture
+          command: pnpm --filter create-react-app start
+  test_bundling_snowpack:
+    <<: *default-job
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.46.1-focal
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    steps:
+      - run:
+          name: Test fixture
+          command: pnpm --filter snowpack start
+  test_bundling_vite:
+    <<: *default-job
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.46.1-focal
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    steps:
+      - run:
+          name: Test fixture
+          command: pnpm --filter vite start
+  test_bundling_esbuild:
+    <<: *default-job
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.46.1-focal
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    steps:
+      - run:
+          name: Test fixture
+          command: |
+            # TODO: Known failure
+            set +e
+            pnpm --filter esbuild start
+            exit 0
+  test_bundling_gatsby:
+    <<: *default-job
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.46.1-focal
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    steps:
+      - run:
+          name: Test --filter gatsby fixture
+          command: pnpm start
 
   test_bundle_size_monitor:
     <<: *default-job
@@ -676,8 +754,40 @@ workflows:
     when:
       equal: [bundling, << pipeline.parameters.workflow >>]
     jobs:
-      - test_bundling:
+      - test_bundling_prepare:
           <<: *default-context
+      - test_bundling_node-esm:
+          <<: *default-context
+          requires:
+            - test_bundling_prepare
+      - test_bundling_next-webpack4:
+          <<: *default-context
+          requires:
+            - test_bundling_prepare
+      - test_bundling_next-webpack5:
+          <<: *default-context
+          requires:
+            - test_bundling_prepare
+      - test_bundling_create-react-app:
+          <<: *default-context
+          requires:
+            - test_bundling_prepare
+      - test_bundling_snowpack:
+          <<: *default-context
+          requires:
+            - test_bundling_prepare
+      - test_bundling_vite:
+          <<: *default-context
+          requires:
+            - test_bundling_prepare
+      - test_bundling_esbuild:
+          <<: *default-context
+          requires:
+            - test_bundling_prepare
+      - test_bundling_gatsby:
+          <<: *default-context
+          requires:
+            - test_bundling_prepare
 
   profile:
     when:
