@@ -100,6 +100,15 @@ commands:
             node --version
             pnpm --version
 
+      - when:
+          condition:
+            equal: [<< pipeline.parameters.workflow >>, bundling]
+          steps:
+            - run: |
+                sed -i 's/# CI:BUNDLING //g' ./pnpm-workspace.yaml
+                cat ./pnpm-workspace.yaml
+                pnpm install --no-frozen-lockfile
+
       - run:
           name: Resolve React version
           command: |
@@ -504,12 +513,6 @@ jobs:
     <<: *default-job
     steps:
       - checkout
-      - run:
-          name: Enable bundling workspaces
-          command: |
-            sed -i 's/# CI:BUNDLING //g' ./pnpm-workspace.yaml
-            cat ./pnpm-workspace.yaml
-            pnpm install --no-frozen-lockfile
       - install_js
       - run:
           name: Build packages for fixtures
