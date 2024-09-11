@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { createRenderer, reactMajor } from '@mui/internal-test-utils';
+import { createRenderer, reactMajor, fireEvent } from '@mui/internal-test-utils';
 import capitalize from '@mui/utils/capitalize';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import IconButton, { iconButtonClasses as classes } from '@mui/material/IconButton';
@@ -122,6 +122,56 @@ describe('<IconButton />', () => {
         'MockedName',
       );
     }).toErrorDev(['MUI: You are providing an onClick event listener']);
+  });
+
+  it('should apply the hover background by default', function test() {
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const { container, getByTestId } = render(<IconButton data-testid="icon-button" />);
+
+    fireEvent.mouseMove(container.firstChild, {
+      clientX: 19,
+    });
+    expect(getByTestId('icon-button')).toHaveComputedStyle({
+      backgroundColor: 'rgba(0, 0, 0, 0.04)',
+    });
+  });
+
+  it('should not apply the hover background if disableRipple is true', function test() {
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const { container, getByTestId } = render(
+      <IconButton disableRipple data-testid="icon-button" />,
+    );
+
+    fireEvent.mouseMove(container.firstChild, {
+      clientX: 19,
+    });
+    expect(getByTestId('icon-button')).toHaveComputedStyle({ backgroundColor: 'rgba(0, 0, 0, 0)' });
+  });
+
+  it('should disableRipple if set in MuiButtonBase', async () => {
+    const { container, getByRole } = render(
+      <ThemeProvider
+        theme={createTheme({
+          components: {
+            MuiButtonBase: {
+              defaultProps: {
+                disableRipple: true,
+              },
+            },
+          },
+        })}
+      >
+        <IconButton>book</IconButton>,
+      </ThemeProvider>,
+    );
+    await ripple.startTouch(getByRole('button'));
+    expect(container.querySelector('.touch-ripple')).to.equal(null);
   });
 
   it('should not throw error for a custom color', () => {
