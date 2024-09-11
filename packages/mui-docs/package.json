@@ -1,6 +1,6 @@
 {
   "name": "@mui/docs",
-  "version": "6.0.2",
+  "version": "6.1.0",
   "private": false,
   "author": "MUI Team",
   "description": "MUI Docs - Documentation building blocks.",
@@ -34,7 +34,7 @@
     "test": "exit 0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.25.0",
+    "@babel/runtime": "^7.25.6",
     "@mui/internal-markdown": "workspace:^",
     "clipboard-copy": "^4.0.1",
     "clsx": "^2.1.1",

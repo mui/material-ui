@@ -1,7 +1,14 @@
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import type { MuiProductId } from 'docs/src/modules/utils/getProductInfoFromUrl';
 
-const packagesWithBundledTypes = ['date-fns', '@emotion/react', '@emotion/styled', 'dayjs'];
+const packagesWithBundledTypes = [
+  'date-fns',
+  '@emotion/react',
+  '@emotion/styled',
+  'dayjs',
+  'clsx',
+  '@react-spring/web',
+];
 const muiNpmOrgs = ['@mui', '@base_ui', '@pigment-css', '@toolpad'];
 
 /**

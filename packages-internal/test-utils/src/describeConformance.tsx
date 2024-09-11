@@ -998,6 +998,13 @@ function testThemeCustomPalette(
             main: '#ff5252',
           },
           unknown: null,
+          custom2: {
+            main: {
+              blue: {
+                dark: '#FFCC00',
+              },
+            },
+          },
         },
       });
       // @ts-ignore
