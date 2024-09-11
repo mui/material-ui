@@ -395,7 +395,9 @@ function createVitestClock(defaultMode: 'fake' | 'real', config: ClockConfig, vi
       }
     });
     afterEach(() => {
-      vi.useRealTimers();
+      if (config) {
+        vi.useRealTimers();
+      }
     });
   }
 
