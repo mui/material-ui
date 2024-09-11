@@ -7,3 +7,4 @@ packages:
   - 'test'
   - 'apps/*'
   - 'scripts/sizeSnapshot'
+  # CI:BUNDLING - 'test/bundling/fixtures/*'
