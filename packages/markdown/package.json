@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-markdown",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "author": "MUI Team",
   "description": "MUI markdown parser. This is an internal package not meant for general use.",
   "main": "./index.js",
