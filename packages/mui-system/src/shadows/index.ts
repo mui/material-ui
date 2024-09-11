@@ -1,1 +1,1 @@
-export { default } from './shadows';
+export * from './shadows';
