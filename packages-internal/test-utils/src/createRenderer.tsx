@@ -371,7 +371,80 @@ export interface Clock {
 
 export type ClockConfig = undefined | number | Date;
 
-function createClock(defaultMode: 'fake' | 'real', config: ClockConfig): Clock {
+const isVitest =
+  // VITEST is present on the environment when not in browser mode.
+  process.env.VITEST === 'true' ||
+  // VITEST_BROWSER_DEBUG is present on vitest in browser mode.
+  typeof process.env.VITEST_BROWSER_DEBUG !== 'undefined';
+
+function createVitestClock(defaultMode: 'fake' | 'real', config: ClockConfig, vi: any): Clock {
+  if (defaultMode === 'fake') {
+    beforeEach(() => {
+      vi.useFakeTimers();
+      if (config) {
+        vi.setSystemTime(config);
+      }
+    });
+    afterEach(() => {
+      vi.useRealTimers();
+    });
+  } else {
+    beforeEach(() => {
+      if (config) {
+        vi.setSystemTime(config);
+      }
+    });
+    afterEach(() => {
+      vi.useRealTimers();
+    });
+  }
+
+  return {
+    withFakeTimers: () => {
+      // @ts-ignore
+      beforeAll(() => {
+        vi.useFakeTimers();
+      });
+      // @ts-ignore
+      afterAll(() => {
+        vi.useRealTimers();
+      });
+    },
+    runToLast: () => {
+      traceSync('runToLast', () => {
+        rtlAct(() => {
+          vi.runAllTimers();
+        });
+      });
+    },
+    isReal() {
+      return !vi.isFakeTimers();
+    },
+    restore() {
+      vi.useRealTimers();
+    },
+    tick(timeoutMS: number) {
+      traceSync('tick', () => {
+        rtlAct(() => {
+          vi.advanceTimersByTime(timeoutMS);
+        });
+      });
+    },
+    runAll() {
+      traceSync('runAll', () => {
+        rtlAct(() => {
+          vi.runOnlyPendingTimers();
+        });
+      });
+    },
+  };
+}
+
+function createClock(defaultMode: 'fake' | 'real', config: ClockConfig, vi: any): Clock {
+  if (isVitest) {
+    return createVitestClock(defaultMode, config, vi);
+  }
+
   let clock: ReturnType<typeof useFakeTimers> | null = null;
 
   let mode = defaultMode;
@@ -457,6 +530,11 @@ export interface CreateRendererOptions extends Pick<RenderOptions, 'strict' | 's
    */
   clock?: 'fake' | 'real';
   clockConfig?: ClockConfig;
+  /**
+   * Vitest needs to be injected because this file is transpiled to commonjs and vitest is an esm module.
+   * @default {}
+   */
+  vi?: any;
 }
 
 export function createRenderer(globalOptions: CreateRendererOptions = {}): Renderer {
@@ -465,10 +543,11 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     clockConfig,
     strict: globalStrict = true,
     strictEffects: globalStrictEffects = globalStrict,
+    vi = {},
   } = globalOptions;
   // save stack to re-use in test-hooks
   const { stack: createClientRenderStack } = new Error();
-  const clock = createClock(clockMode, clockConfig);
+  const clock = createClock(clockMode, clockConfig, vi);
 
   /**
    * Flag whether `createRenderer` was called in a suite i.e. describe() block.
@@ -537,7 +616,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
   });
 
   afterEach(() => {
-    if (!clock.isReal()) {
+    if (!isVitest && !clock.isReal()) {
       const error = Error(
         "Can't cleanup before fake timers are restored.\n" +
           'Be sure to:\n' +
