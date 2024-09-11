@@ -91,7 +91,7 @@ const columns = [
       if (!value || typeof value !== 'number') {
         return value;
       }
-      return '$'.concat(value.toLocaleString());
+      return `$${value.toLocaleString()}`;
     },
     editable: true,
   },
