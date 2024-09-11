@@ -30,6 +30,7 @@ If you're using any of these packages, you can also change their version to `"6.
 - `@mui/lab`
 - `@mui/material-nextjs`
 - `@mui/styled-engine-sc`
+- `@mui/styles`
 - `@mui/utils`
 
 Note that MUI X packages _do not_ follow the same versioning strategy as Material UI.
