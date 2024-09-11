@@ -21,9 +21,9 @@ overrides:
   '@types/react-dom': 18.3.0
   cross-fetch: ^4.0.0
   '@pigment-css/react': https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/react
-  '@pigment-css/unplugin': https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/react
+  '@pigment-css/unplugin': https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/unplugin
   '@pigment-css/nextjs-plugin': https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/nextjs-plugin
-  '@pigment-css/vite-plugin': https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/react
+  '@pigment-css/vite-plugin': https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/vite-plugin
 
 importers:
 
@@ -366,7 +366,7 @@ importers:
     devDependencies:
       '@pigment-css/nextjs-plugin':
         specifier: https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/nextjs-plugin
-        version: https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/nextjs-plugin(@types/react@18.3.4)(next@14.2.9(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.46.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+        version: https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/nextjs-plugin(@types/react@18.3.4)(next@14.2.9(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.46.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack-sources@3.2.3)
       '@types/node':
         specifier: ^20.16.5
         version: 20.16.5
@@ -432,8 +432,8 @@ importers:
         specifier: ^7.24.7
         version: 7.24.7(@babel/core@7.25.2)
       '@pigment-css/vite-plugin':
-        specifier: https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/react
-        version: '@pigment-css/react@https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/react(@types/react@18.3.4)(react@18.3.1)'
+        specifier: https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/vite-plugin
+        version: https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/vite-plugin(@types/react@18.3.4)(react@18.3.1)(vite@5.4.2(@types/node@20.16.5)(terser@5.29.2))
       '@types/react':
         specifier: ^18.3.4
         version: 18.3.4
@@ -4832,6 +4832,16 @@ packages:
     peerDependencies:
       react: ^17.0.0 || ^18.0.0
 
+  '@pigment-css/unplugin@https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/unplugin':
+    resolution: {tarball: https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/unplugin}
+    version: 0.0.22
+
+  '@pigment-css/vite-plugin@https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/vite-plugin':
+    resolution: {tarball: https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/vite-plugin}
+    version: 0.0.22
+    peerDependencies:
+      vite: ^4.0.0 || ^5.0.0
+
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
@@ -6159,6 +6169,10 @@ packages:
     deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
     peerDependencies:
       '@babel/core': ^7.25.2
+
+  babel-plugin-define-var@0.1.0:
+    resolution: {integrity: sha512-WcK43U4uz+9G35Wvdnyri4Tcg8Ux9/hSbQC4ckpfrHFQp8Cuz1BIQK5NswuGxT3T8cc3d4e55wDeSO4dViOugg==}
+    engines: {node: '>=10'}
 
   babel-plugin-istanbul@7.0.0:
     resolution: {integrity: sha512-C5OzENSx/A+gt7t4VH1I2XsflxyPUmXRFPKBxt33xncdOmq7oROVM3bZv9Ysjjkv8OJYDMa+tKuKMvqU/H3xdw==}
@@ -12382,6 +12396,15 @@ packages:
     resolution: {integrity: sha512-pjy2bYhSsufwWlKwPc+l3cN7+wuJlK6uz0YdJEOlQDbl6jo/YlPi4mb8agUkVC8BF7V8NuzeyPNqRksA3hztKQ==}
     engines: {node: '>= 0.8'}
 
+  unplugin@1.14.1:
+    resolution: {integrity: sha512-lBlHbfSFPToDYp9pjXlUEFVxYLaue9f9T1HC+4OHlmj+HnMDdz9oZY+erXfoCe/5V/7gKUSY2jpXPb9S7f0f/w==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      webpack-sources: ^3
+    peerDependenciesMeta:
+      webpack-sources:
+        optional: true
+
   unzipper@0.10.11:
     resolution: {integrity: sha512-+BrAq2oFqWod5IESRjL3S8baohbevGcVA+teAIOYWM3pDVdseogqbzhhvvmiyQrUNKFUnDMtELW3X8ykbyDCJw==}
 
@@ -12642,6 +12665,9 @@ packages:
   webpack-sources@3.2.3:
     resolution: {integrity: sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==}
     engines: {node: '>=10.13.0'}
+
+  webpack-virtual-modules@0.6.2:
+    resolution: {integrity: sha512-66/V2i5hQanC51vBQKPH4aI8NMAcBW59FVBs+rC7eGHupMyfn34q7rZIE+ETlJ+XTevqfUhVVBgSUNSW2flEUQ==}
 
   webpack@5.93.0:
     resolution: {integrity: sha512-Y0m5oEY1LRuwly578VqluorkXbvXKh7U3rLoQCEO04M97ScRr44afGVkI0FQFsXzysk5OgFAxjZAb9rsGQVihA==}
@@ -15745,14 +15771,15 @@ snapshots:
   '@opentelemetry/api@1.8.0':
     optional: true
 
-  '@pigment-css/nextjs-plugin@https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/nextjs-plugin(@types/react@18.3.4)(next@14.2.9(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.46.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
+  '@pigment-css/nextjs-plugin@https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/nextjs-plugin(@types/react@18.3.4)(next@14.2.9(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.46.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack-sources@3.2.3)':
     dependencies:
-      '@pigment-css/unplugin': '@pigment-css/react@https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/react(@types/react@18.3.4)(react@18.3.1)'
+      '@pigment-css/unplugin': https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/unplugin(@types/react@18.3.4)(react@18.3.1)(webpack-sources@3.2.3)
       next: 14.2.9(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.46.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     transitivePeerDependencies:
       - '@types/react'
       - react
       - supports-color
+      - webpack-sources
 
   '@pigment-css/react@https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/react(@types/react@18.3.4)(react@18.3.1)':
     dependencies:
@@ -15780,6 +15807,34 @@ snapshots:
       stylis-plugin-rtl: 2.1.1(stylis@4.3.2)
     transitivePeerDependencies:
       - '@types/react'
+      - supports-color
+
+  '@pigment-css/unplugin@https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/unplugin(@types/react@18.3.4)(react@18.3.1)(webpack-sources@3.2.3)':
+    dependencies:
+      '@babel/core': 7.25.2
+      '@pigment-css/react': https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/react(@types/react@18.3.4)(react@18.3.1)
+      '@wyw-in-js/shared': 0.5.4
+      '@wyw-in-js/transform': 0.5.4
+      babel-plugin-define-var: 0.1.0
+      unplugin: 1.14.1(webpack-sources@3.2.3)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react
+      - supports-color
+      - webpack-sources
+
+  '@pigment-css/vite-plugin@https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/vite-plugin(@types/react@18.3.4)(react@18.3.1)(vite@5.4.2(@types/node@20.16.5)(terser@5.29.2))':
+    dependencies:
+      '@babel/core': 7.25.2
+      '@babel/preset-typescript': 7.24.7(@babel/core@7.25.2)
+      '@pigment-css/react': https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/react(@types/react@18.3.4)(react@18.3.1)
+      '@wyw-in-js/shared': 0.5.4
+      '@wyw-in-js/transform': 0.5.4
+      babel-plugin-define-var: 0.1.0
+      vite: 5.4.2(@types/node@20.16.5)(terser@5.29.2)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react
       - supports-color
 
   '@pkgjs/parseargs@0.11.0':
@@ -17543,6 +17598,8 @@ snapshots:
       '@babel/core': 7.25.2
       deepmerge: 2.2.1
       object.omit: 3.0.0
+
+  babel-plugin-define-var@0.1.0: {}
 
   babel-plugin-istanbul@7.0.0:
     dependencies:
@@ -25245,6 +25302,13 @@ snapshots:
 
   unpipe@1.0.0: {}
 
+  unplugin@1.14.1(webpack-sources@3.2.3):
+    dependencies:
+      acorn: 8.12.1
+      webpack-virtual-modules: 0.6.2
+    optionalDependencies:
+      webpack-sources: 3.2.3
+
   unzipper@0.10.11:
     dependencies:
       big-integer: 1.6.51
@@ -25526,6 +25590,8 @@ snapshots:
       wildcard: 2.0.1
 
   webpack-sources@3.2.3: {}
+
+  webpack-virtual-modules@0.6.2: {}
 
   webpack@5.93.0(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.93.0)):
     dependencies:

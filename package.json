@@ -220,9 +220,9 @@
     "@types/react-dom": "18.3.0",
     "cross-fetch": "^4.0.0",
     "@pigment-css/react": "https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/react",
-    "@pigment-css/unplugin": "https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/react",
+    "@pigment-css/unplugin": "https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/unplugin",
     "@pigment-css/nextjs-plugin": "https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/nextjs-plugin",
-    "@pigment-css/vite-plugin": "https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/react"
+    "@pigment-css/vite-plugin": "https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/vite-plugin"
   },
   "nyc": {
     "include": [
