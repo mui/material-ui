@@ -78,7 +78,7 @@ const SyledCard = styled(Card)(({ theme }) => ({
   flexDirection: 'column',
   padding: 0,
   height: '100%',
-  backgroundColor: theme.palette.background.paper,
+  backgroundColor: (theme.vars || theme).palette.background.paper,
   '&:hover': {
     backgroundColor: 'transparent',
     cursor: 'pointer',

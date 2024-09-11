@@ -48,12 +48,12 @@ const Chip = styled(MuiChip)(({ theme }) => ({
         background:
           'linear-gradient(to bottom right, hsl(210, 98%, 48%), hsl(210, 98%, 35%))',
         color: 'hsl(0, 0%, 100%)',
-        borderColor: theme.palette.primary.light,
+        borderColor: (theme.vars || theme).palette.primary.light,
         '& .MuiChip-label': {
           color: 'hsl(0, 0%, 100%)',
         },
         ...theme.applyStyles('dark', {
-          borderColor: theme.palette.primary.dark,
+          borderColor: (theme.vars || theme).palette.primary.dark,
         }),
       },
     },
@@ -191,7 +191,7 @@ export default function Features() {
                     height: '100%',
                     width: '100%',
                     '&:hover': {
-                      backgroundColor: theme.palette.action.hover,
+                      backgroundColor: (theme.vars || theme).palette.action.hover,
                     },
                   }),
                   selectedItemIndex === index && {
