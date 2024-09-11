@@ -164,7 +164,6 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     color = 'default',
     disabled = false,
     disableFocusRipple = false,
-    disableRipple = false,
     size = 'medium',
     ...other
   } = props;
@@ -175,7 +174,6 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     color,
     disabled,
     disableFocusRipple,
-    disableRipple,
     size,
   };
 
@@ -187,7 +185,6 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
       centerRipple
       focusRipple={!disableFocusRipple}
       disabled={disabled}
-      disableRipple={disableRipple}
       ref={ref}
       {...other}
       ownerState={ownerState}
