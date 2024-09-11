@@ -59,7 +59,7 @@ export default function SandboxDependencies(demo: Demo, options?: { commitRef?: 
     return `https://pkg.csb.dev/mui/material-ui/commit/${shortSha}/@mui/${packageName}`;
   }
 
-  function extractDependencies(demo: Demo) {
+  function extractDependencies() {
     const muiDocConfig = (window as any).muiDocConfig;
 
     function includePeerDependencies(
@@ -147,7 +147,7 @@ export default function SandboxDependencies(demo: Demo, options?: { commitRef?: 
     return deps;
   }
 
-  const dependencies = extractDependencies(demo);
+  const dependencies = extractDependencies();
 
   if (demo.codeVariant === CODE_VARIANTS.TS) {
     addTypeDeps(dependencies);
