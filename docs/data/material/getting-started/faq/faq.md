@@ -261,6 +261,81 @@ return (
 
 If you are getting the error: `TypeError: Cannot convert a Symbol value to a string`, take a look at the [styled()](/system/styled/#how-to-use-components-selector-api) docs page for instructions on how you can fix this.
 
+## How can I contribute to the free templates?
+
+The templates are built using a [shared theme](https://github.com/mui/material-ui/tree/v6.0.2/docs/data/material/getting-started/templates/shared-theme). Below are the structure to create a new template:
+
+### Template page
+
+Create a new page in the `docs/pages/material-ui/getting-started/templates/<name>.js` directory with the following code:
+
+```js
+import * as React from 'react';
+import AppTheme from 'docs/src/modules/components/AppTheme';
+import TemplateFrame from 'docs/src/modules/components/TemplateFrame';
+import Template from 'docs/data/material/getting-started/templates/<name>/<Template>';
+
+export default function Page() {
+  return (
+    <AppTheme>
+      <TemplateFrame>
+        <Template />
+      </TemplateFrame>
+    </AppTheme>
+  );
+}
+```
+
+Then create a template file at `docs/data/material/getting-started/templates/<name>/<Template>.tsx` (add more files if needed):
+
+> Note: The `<Template>` must be a pascal case string of the `<name>` folder.
+
+### Shared theme
+
+The template must use `AppTheme` from `../shared-theme/AppTheme` to ensure a consistent look and feel across all templates.
+
+If the template includes custom-themed components, such as the dashboard template with MUI X themed components, pass them to the `AppTheme`'s `themedComponents` prop:
+
+```js
+import AppTheme from '../shared-theme/AppTheme';
+
+const xThemeComponents = {
+  ...chartsCustomizations,
+  ...dataGridCustomizations,
+  ...datePickersCustomizations,
+  ...treeViewCustomizations,
+};
+
+export default function Dashboard(props: { disableCustomTheme?: boolean }) {
+  return (
+    <AppTheme {...props} themeComponents={xThemeComponents}>...</AppTheme>
+  )
+}
+```
+
+### Color mode toggle
+
+The shared theme provides 2 appearance of the color mode toggle, `ColorModeSelect` and `ColorModeIconDropdown`.
+You can use either of them in your template, it will be hidden within the `TemplateFrame` but will be visible in the Code Sandbox and Stackblitz.
+
+### Template frame
+
+If the template has a sidebar or a header that needs to stick to the top, refer to the CSS variable `--template-frame-height` to adjust.
+
+For example, the dashboard template has a fixed header that needs to be accounted for the template frame height:
+
+```js
+<AppBar
+  position="fixed"
+  sx={{
+    top: 'var(--template-frame-height, 0px)',
+    // ...other styles
+  }}
+>
+```
+
+This will make the `AppBar` stay below the `TemplateFrame` in a preview mode but stick to the top in the CodeSandbox and Stackblitz.
+
 ## [legacy] I have several instances of styles on the page
 
 If you are seeing a warning message in the console like the one below, you probably have several instances of `@mui/styles` initialized on the page.
