@@ -55,7 +55,7 @@ const IconButtonRoot = styled(ButtonBase, {
     }),
     variants: [
       {
-        props: (props) => !props.color && !props.disableRipple,
+        props: (props) => !props.disableRipple,
         style: {
           '&:hover': {
             backgroundColor: theme.vars
