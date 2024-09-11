@@ -31,6 +31,7 @@
     "build:babel:watch": "cross-env NODE_ENV=release babel --watch ./src --out-dir ./build --ignore spec.js",
     "build:copy-files": "babel-node ./scripts/copy-files.js",
     "clean:build": "rimraf build",
+    "docs:deploy": "git push -f material-ui v0.x:v0",
     "lint": "eslint src docs/src test --quiet --cache && echo \"eslint: no lint errors\"",
     "lint:find-rules": "eslint-find-rules -u .eslintrc.js",
     "prebuild": "npm run clean:build",
