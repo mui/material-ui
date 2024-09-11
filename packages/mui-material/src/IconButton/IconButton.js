@@ -55,7 +55,7 @@ const IconButtonRoot = styled(ButtonBase, {
     }),
     variants: [
       {
-        props: (props) => !props.disableRipple,
+        props: (props) => !props.color && !props.disableRipple,
         style: {
           '&:hover': {
             backgroundColor: theme.vars
@@ -113,7 +113,7 @@ const IconButtonRoot = styled(ButtonBase, {
       ...Object.entries(theme.palette)
         .filter(createSimplePaletteValueFilter()) // check all the used fields in the style below
         .map(([color]) => ({
-          props: { color, disableRipple: false },
+          props: (props) => props.color === color && !props.disableRipple,
           style: {
             '&:hover': {
               backgroundColor: theme.vars
