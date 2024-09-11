@@ -133,7 +133,9 @@ jobs:
       - when:
           # Install can be "dirty" when running with non-default versions of React
           condition:
-            equal: [<< parameters.react-version >>, stable]
+            or:
+              - equal: [<< parameters.react-version >>, stable]
+              - equal: [<< pipeline.parameters.workflow >>, bundling]
           steps:
             - run:
                 name: Should not have any git not staged
@@ -507,6 +509,7 @@ jobs:
           command: |
             sed -i 's/# CI:BUNDLING //g' ./pnpm-workspace.yaml
             cat ./pnpm-workspace.yaml
+            pnpm install
       - install_js
       - run:
           name: Build packages for fixtures
