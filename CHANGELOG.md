@@ -6,9 +6,9 @@
 
 _Sep 10, 2024_
 
-A big thanks to the 20 contributors who made this release possible. Here are the highlights ✨:
+A big thanks to the 21 contributors who made this release possible. Here are the highlights ✨:
 
-- **Minor version bump**: This release includes a minor version bump as the `exports` field was added to the `@mui/icons-material` package to solve longstanding ESM compatibility issues (#43624). This change is backwards compatible with previously recommended setups. Bundlers which don't support the `exports` field shouldn't be affected. If you have any issues, please reach out by creating a GitHub issue.
+- **Minor version changes**: To solve longstanding ESM compatibility issues we added [package exports](https://nodejs.org/api/packages.html#exports) to `@mui/icons-material` (#43624). This change is backwards compatible with previously recommended setups. Bundlers that don't support the `exports` field won't be affected. If you discover any issues, please reach out by creating a GitHub issue.
 - This release also includes several fixes and documentation improvements to support the Material UI v6 upgrade.
 
 ### `@mui/icons-material@6.1.0`
@@ -25,10 +25,12 @@ A big thanks to the 20 contributors who made this release possible. Here are the
 - [types] Make slots partial in `CreateSlotsAndSlotProp`type (#42077) @lhilgert9
 - [Radio] Fix disabled state styling regression (#43592) @mnajdova
 - Fix wrong import to type (#43584) @mnajdova
+- Simplify version prerelease export (#43699) @DiegoAndai
 
 ### `@mui/system@6.1.0`
 
 - Use a custom sheet to set prepend for `GlobalStyles` (#43632) @siriwatknp
+- Simplify version prerelease export (#43699) @DiegoAndai
 
 ### Docs
 
@@ -37,6 +39,7 @@ A big thanks to the 20 contributors who made this release possible. Here are the
 - [material-ui] Update Next.js font optimization guide (#43196) @siriwatknp
 - [material-ui] Fix getting started with CSS variables in theme example (#43658) @Designer023
 - [material-ui][system] Edit "How to use components selector API" section to add about direct import (#43377) @IAluI
+- [material-ui] Update @mui/material-nextjs import examples to v14 (#43698) @ohmsl
 - Fix typo in Divider doc (#43691) @lokendra-reco
 - Add Anima section to documentation (#43673) @GoOrit-Anima
 - Add Integrations section to design resources page (#43612) @zanivan
@@ -70,7 +73,7 @@ A big thanks to the 20 contributors who made this release possible. Here are the
 - [website] Add CopyCopter as gold sponsor (#43595) @zanivan
 - [website] Add disabled button styles to branding theme (#43577) @zanivan
 
-All contributors of this release in alphabetical order: @alelthomas, @cherniavskii, @Designer023, @DiegoAndai, @GoOrit-Anima, @IAluI, @Janpot, @JCQuintas, @lhilgert9, @lokendra-reco, @LuseBiswas, @Michael-Hutchinson, @michaldudak, @mnajdova, @oliviertassinari, @renovate[bot], @sai6855, @samuelsycamore, @siriwatknp, @zanivan
+All contributors of this release in alphabetical order: @alelthomas, @cherniavskii, @Designer023, @DiegoAndai, @GoOrit-Anima, @IAluI, @Janpot, @JCQuintas, @lhilgert9, @lokendra-reco, @LuseBiswas, @Michael-Hutchinson, @michaldudak, @mnajdova, @ohmsl, @oliviertassinari, @renovate[bot], @sai6855, @samuelsycamore, @siriwatknp, @zanivan
 
 ## v6.0.2
 
