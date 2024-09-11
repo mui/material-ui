@@ -124,6 +124,24 @@ describe('<IconButton />', () => {
     }).toErrorDev(['MUI: You are providing an onClick event listener']);
   });
 
+  it('should not throw error for a custom color', () => {
+    expect(() => (
+      <ThemeProvider
+        theme={createTheme({
+          components: {
+            MuiIconButton: {
+              defaultProps: {
+                color: 'custom',
+              },
+            },
+          },
+        })}
+      >
+        <IconButton />
+      </ThemeProvider>
+    )).not.to.throw();
+  });
+
   it('should apply the hover background by default', function test() {
     if (!/jsdom/.test(window.navigator.userAgent)) {
       this.skip();
@@ -154,7 +172,7 @@ describe('<IconButton />', () => {
     expect(getByTestId('icon-button')).toHaveComputedStyle({ backgroundColor: 'rgba(0, 0, 0, 0)' });
   });
 
-  it('should disableRipple if set in MuiButtonBase', async () => {
+  it('should disable ripple if disableRipple is set in MuiButtonBase', async () => {
     const { container, getByRole } = render(
       <ThemeProvider
         theme={createTheme({
@@ -172,23 +190,5 @@ describe('<IconButton />', () => {
     );
     await ripple.startTouch(getByRole('button'));
     expect(container.querySelector('.touch-ripple')).to.equal(null);
-  });
-
-  it('should not throw error for a custom color', () => {
-    expect(() => (
-      <ThemeProvider
-        theme={createTheme({
-          components: {
-            MuiIconButton: {
-              defaultProps: {
-                color: 'custom',
-              },
-            },
-          },
-        })}
-      >
-        <IconButton />
-      </ThemeProvider>
-    )).not.to.throw();
   });
 });
