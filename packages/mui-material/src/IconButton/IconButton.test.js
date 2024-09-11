@@ -167,7 +167,7 @@ describe('<IconButton />', () => {
           },
         })}
       >
-        <IconButton>book</IconButton>,
+        <IconButton TouchRippleProps={{ className: 'touch-ripple' }}>book</IconButton>,
       </ThemeProvider>,
     );
     await ripple.startTouch(getByRole('button'));
