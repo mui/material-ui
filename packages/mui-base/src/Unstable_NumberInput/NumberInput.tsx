@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { getNumberInputUtilityClass } from './numberInputClasses';
 import { unstable_useNumberInput as useNumberInput } from '../unstable_useNumberInput';

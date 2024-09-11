@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, usePreviousProps } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';

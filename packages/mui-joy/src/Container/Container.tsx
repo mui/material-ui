@@ -1,6 +1,6 @@
 'use client';
 import { createContainer } from '@mui/system';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { Theme } from '../styles/types/theme';
 import styled from '../styles/styled';

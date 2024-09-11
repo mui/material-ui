@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
 import { EventHandlers, useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';

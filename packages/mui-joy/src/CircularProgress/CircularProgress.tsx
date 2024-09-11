@@ -1,5 +1,5 @@
 'use client';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';

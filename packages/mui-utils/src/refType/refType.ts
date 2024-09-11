@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 
 const refType = PropTypes.oneOfType([PropTypes.func, PropTypes.object]);
 

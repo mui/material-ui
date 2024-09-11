@@ -26,7 +26,7 @@ export function getChained(type: PropTypeDescriptor) {
     if (indexStart !== -1) {
       const parsed = docgenParse(
         `
-        import PropTypes from 'prop-types';
+        import * as PropTypes from 'prop-types';
         const Foo = () => <div />
         Foo.propTypes = {
           bar: ${recast.print(recast.parse(type.raw).program.body[0].expression.arguments[0]).code}

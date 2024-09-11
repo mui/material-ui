@@ -1,6 +1,6 @@
 'use client';
 import { createStack } from '@mui/system';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
 import { useThemeProps } from '../styles';

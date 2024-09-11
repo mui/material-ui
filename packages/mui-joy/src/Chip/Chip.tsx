@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useButton } from '@mui/base/useButton';
 import { OverridableComponent } from '@mui/types';

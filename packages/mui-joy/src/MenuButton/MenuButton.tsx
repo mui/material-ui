@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import { useMenuButton } from '@mui/base/useMenuButton';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { OverridableComponent } from '@mui/types';

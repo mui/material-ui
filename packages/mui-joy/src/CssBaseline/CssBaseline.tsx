@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import GlobalStyles from '../GlobalStyles';
 import defaultTheme from '../styles/defaultTheme';
 import { Theme, DefaultColorScheme, ColorSystem } from '../styles/types';

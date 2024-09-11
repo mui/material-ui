@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Interpolation, MUIStyledComponent as StyledComponent } from '@mui/styled-engine';
 import { OverridableComponent } from '@mui/types';

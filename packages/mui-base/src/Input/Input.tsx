@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { isHostComponent } from '../utils/isHostComponent';
 import { getInputUtilityClass } from './inputClasses';
