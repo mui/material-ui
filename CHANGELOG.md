@@ -26,6 +26,10 @@ A big thanks to the 20 contributors who made this release possible. Here are the
 - [Radio] Fix disabled state styling regression (#43592) @mnajdova
 - Fix wrong import to type (#43584) @mnajdova
 
+### `@mui/system@6.1.0`
+
+- Use a custom sheet to set prepend for `GlobalStyles` (#43632) @siriwatknp
+
 ### Docs
 
 - [material-ui][Autocomplete] Refactor asynchronous loading demo (#43630) @sai6855
@@ -59,6 +63,7 @@ A big thanks to the 20 contributors who made this release possible. Here are the
 - [docs-infra] Reduce Algolia index size, no need for lvl6 @oliviertassinari
 - [docs-infra] Use embed as the default for opening CodeSandbox (#43618) @siriwatknp
 - [docs-infra] Fix broken anchor button when header has a link (#43598) @cherniavskii
+- [docs-infra] Open Sign-in and Dashboard template with CodeSandbox/StackBlitz (#43604) @siriwatknp
 - [examples] Fix CDN live preview demo (#43641) @oliviertassinari
 - Add Pigment CSS screenshot test (#43280) @mnajdova
 - [website] Polish gold sponsors @oliviertassinari
