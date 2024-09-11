@@ -172,7 +172,7 @@ describe('<IconButton />', () => {
     expect(getByTestId('icon-button')).toHaveComputedStyle({ backgroundColor: 'rgba(0, 0, 0, 0)' });
   });
 
-  it('should disable ripple if disableRipple is set in MuiButtonBase', async () => {
+  it('should disableRipple if set in MuiButtonBase', async () => {
     const { container, getByRole } = render(
       <ThemeProvider
         theme={createTheme({
