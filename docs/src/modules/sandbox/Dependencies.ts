@@ -1,5 +1,5 @@
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
-import type { MuiProductId } from 'docs/src/modules/utils/getProductInfoFromUrl';
+import { DemoData } from './types';
 
 const packagesWithBundledTypes = [
   'date-fns',
@@ -37,14 +37,9 @@ function addTypeDeps(deps: Record<string, string>): void {
   });
 }
 
-export default function SandboxDependencies(
-  demo: {
-    raw: string;
-    productId?: MuiProductId;
-    codeVariant: keyof typeof CODE_VARIANTS;
-  },
-  options?: { commitRef?: string },
-) {
+type Demo = Pick<DemoData, 'productId' | 'raw' | 'codeVariant' | 'relativeModules'>;
+
+export default function SandboxDependencies(demo: Demo, options?: { commitRef?: string }) {
   const { commitRef } = options || {};
 
   /**
@@ -63,7 +58,7 @@ export default function SandboxDependencies(
     return `https://pkg.csb.dev/mui/material-ui/commit/${shortSha}/@mui/${packageName}`;
   }
 
-  function extractDependencies(raw: string) {
+  function extractDependencies() {
     const muiDocConfig = (window as any).muiDocConfig;
 
     function includePeerDependencies(
@@ -121,32 +116,37 @@ export default function SandboxDependencies(
     }
 
     const re = /^import\s'([^']+)'|import\s[\s\S]*?\sfrom\s+'([^']+)/gm;
-    let m: RegExpExecArray | null = null;
-    // eslint-disable-next-line no-cond-assign
-    while ((m = re.exec(raw))) {
-      const fullName = m[2] ?? m[1];
-      // handle scope names
-      const name =
-        fullName.charAt(0) === '@' ? fullName.split('/', 2).join('/') : fullName.split('/', 1)[0];
+    const extractImportedDependencies = (raw: string) => {
+      let m: RegExpExecArray | null = null;
+      // eslint-disable-next-line no-cond-assign
+      while ((m = re.exec(raw))) {
+        const fullName = m[2] ?? m[1];
+        // handle scope names
+        const name =
+          fullName.charAt(0) === '@' ? fullName.split('/', 2).join('/') : fullName.split('/', 1)[0];
 
-      if (!deps[name] && !name.startsWith('.')) {
-        deps[name] = versions[name] ?? 'latest';
-      }
+        if (!deps[name] && !name.startsWith('.')) {
+          deps[name] = versions[name] ?? 'latest';
+        }
 
-      if (muiDocConfig && muiDocConfig.postProcessImport) {
-        const resolvedDep = muiDocConfig.postProcessImport(fullName);
-        if (resolvedDep) {
-          deps = { ...deps, ...resolvedDep };
+        if (muiDocConfig && muiDocConfig.postProcessImport) {
+          const resolvedDep = muiDocConfig.postProcessImport(fullName);
+          if (resolvedDep) {
+            deps = { ...deps, ...resolvedDep };
+          }
         }
       }
-    }
+    };
+
+    extractImportedDependencies(demo.raw);
+    demo.relativeModules?.forEach(({ raw }) => extractImportedDependencies(raw));
 
     deps = includePeerDependencies(deps, versions);
 
     return deps;
   }
 
-  const dependencies = extractDependencies(demo.raw);
+  const dependencies = extractDependencies();
 
   if (demo.codeVariant === CODE_VARIANTS.TS) {
     addTypeDeps(dependencies);
