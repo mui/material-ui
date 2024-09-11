@@ -294,7 +294,7 @@ Then create a template file at `docs/data/material/getting-started/templates/<na
 
 The template must use `AppTheme` from `../shared-theme/AppTheme` to ensure a consistent look and feel across all templates.
 
-If the template includes custom-themed components, such as the dashboard template with MUI X themed components, pass them to the `AppTheme`'s `themedComponents` prop:
+If the template includes custom-themed components, such as the dashboard template with MUI X themed components, pass them to the `AppTheme`'s `themedComponents` prop:
 
 ```js
 import AppTheme from '../shared-theme/AppTheme';
