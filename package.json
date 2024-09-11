@@ -288,10 +288,5 @@
         ]
       }
     }
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "styled-components@6.1.12": "patches/styled-components@6.1.12.patch"
-    }
   }
 }
