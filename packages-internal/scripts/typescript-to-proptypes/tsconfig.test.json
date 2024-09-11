@@ -4,7 +4,7 @@
     "moduleResolution": "node",
     "types": ["node", "mocha"],
     "strict": true,
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "isolatedModules": true
   },
   "include": ["./src/*.ts", "./test/*.ts"],

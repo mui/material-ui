@@ -10,7 +10,7 @@
 
     "noEmit": true,
     "allowJs": true,
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "noUnusedLocals": false,
     "skipLibCheck": true,
     "strict": true,

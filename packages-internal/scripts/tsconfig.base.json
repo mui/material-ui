@@ -11,7 +11,7 @@
     "sourceMap": true,
     "composite": true,
 
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "isolatedModules": true
   }
 }

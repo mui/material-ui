@@ -6,7 +6,7 @@
     "noUnusedLocals": false,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "types": ["node", "mocha"],
     "target": "ES2020",
     "module": "CommonJS",

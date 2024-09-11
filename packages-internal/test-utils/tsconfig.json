@@ -5,7 +5,7 @@
     "moduleResolution": "node",
     "types": ["node"],
     "strict": true,
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "isolatedModules": true,
     "jsx": "react"
   },

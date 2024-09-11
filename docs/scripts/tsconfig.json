@@ -8,7 +8,7 @@
     "noUnusedLocals": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "types": ["node"]
   }
 }

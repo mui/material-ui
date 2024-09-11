@@ -3,7 +3,7 @@
   "compilerOptions": {
     "allowJs": true,
     "skipLibCheck": true,
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "module": "Node16",
     "moduleResolution": "Node16",
     "types": ["mocha"]
