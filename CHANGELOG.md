@@ -52,6 +52,7 @@ A big thanks to the 21 contributors who made this release possible. Here are the
 - Remove explicit `date-fns` dependency (#40823) @renovate[bot]
 - [pigment-css] Add guide for Pigment CSS quickstart (#43395) @alelthomas
 - [system] Fix link to createCssVarsProvider (#43661) @oliviertassinari
+- Add scrollbar to color picker demo (#43672) @sai6855
 
 ### Core
 
