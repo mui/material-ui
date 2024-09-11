@@ -219,10 +219,10 @@
     "@types/react": "^18.3.4",
     "@types/react-dom": "18.3.0",
     "cross-fetch": "^4.0.0",
-    "@pigment-css/react": "0.0.22",
-    "@pigment-css/unplugin": "0.0.22",
-    "@pigment-css/nextjs-plugin": "0.0.22",
-    "@pigment-css/vite-plugin": "0.0.22"
+    "@pigment-css/react": "https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/react",
+    "@pigment-css/unplugin": "https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/react",
+    "@pigment-css/nextjs-plugin": "https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/nextjs-plugin",
+    "@pigment-css/vite-plugin": "https://pkg.csb.dev/mui/pigment-css/commit/805e39c5/@pigment-css/react"
   },
   "nyc": {
     "include": [
