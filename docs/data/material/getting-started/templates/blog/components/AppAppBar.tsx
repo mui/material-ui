@@ -37,7 +37,12 @@ export default function AppAppBar() {
   return (
     <AppBar
       position="fixed"
-      sx={{ boxShadow: 0, bgcolor: 'transparent', backgroundImage: 'none', mt: 10 }}
+      sx={{
+        boxShadow: 0,
+        bgcolor: 'transparent',
+        backgroundImage: 'none',
+        mt: 'calc(var(--template-frame-height, 0px) + 28px)',
+      }}
     >
       <Container maxWidth="lg">
         <StyledToolbar variant="dense" disableGutters>
