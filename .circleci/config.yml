@@ -504,7 +504,7 @@ jobs:
       - checkout
       - run:
           name: Enable bundling workspaces
-          command: sed -i "" 's/# CI:BUNDLING //g' ./pnpm-workspace.yaml
+          command: sed -i 's/# CI:BUNDLING //g' ./pnpm-workspace.yaml
       - install_js
       - run:
           name: Build packages for fixtures
