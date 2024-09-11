@@ -104,10 +104,12 @@ commands:
           condition:
             equal: [<< pipeline.parameters.workflow >>, bundling]
           steps:
-            - run: |
-                sed -i 's/# CI:BUNDLING //g' ./pnpm-workspace.yaml
-                cat ./pnpm-workspace.yaml
-                pnpm install --no-frozen-lockfile
+            - run:
+                name: Enable bundling fixtures workspaces
+                command: |
+                  sed -i 's/# CI:BUNDLING //g' ./pnpm-workspace.yaml
+                  cat ./pnpm-workspace.yaml
+                  pnpm install --no-frozen-lockfile
 
       - run:
           name: Resolve React version
