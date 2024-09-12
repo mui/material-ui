@@ -9,35 +9,19 @@ interface Props {
   ownerState: GridOwnerState;
 }
 
-function appendLevel(level: number | undefined) {
-  if (!level) {
-    return '';
-  }
-  return `Level${level}`;
+function getSelfSpacing(axis: 'row' | 'column') {
+  return `var(--Grid-${axis}Spacing)`;
 }
 
-function isNestedContainer(ownerState: Props['ownerState']) {
-  return ownerState.unstable_level > 0 && ownerState.container;
+function getParentSpacing(axis: 'row' | 'column') {
+  return `var(--Grid-parent-${axis}Spacing)`;
 }
 
-function createGetSelfSpacing(ownerState: Props['ownerState']) {
-  return function getSelfSpacing(axis: 'row' | 'column') {
-    return `var(--Grid-${axis}Spacing)`;
-  };
-}
-
-function createGetParentSpacing(ownerState: Props['ownerState']) {
-  return function getParentSpacing(axis: 'row' | 'column') {
-    return `var(--Grid-parent-${axis}Spacing)`;
-  };
-}
-
-function getParentColumns(ownerState: Props['ownerState']) {
+function getParentColumns() {
   return `var(--Grid-parent-columns)`;
 }
 
 export const generateGridSizeStyles = ({ theme, ownerState }: Props) => {
-  const getParentSpacing = createGetParentSpacing(ownerState);
   const styles = {};
   traverseBreakpoints<'auto' | 'grow' | number | false>(
     theme.breakpoints,
@@ -64,7 +48,7 @@ export const generateGridSizeStyles = ({ theme, ownerState }: Props) => {
         style = {
           flexGrow: 0,
           flexBasis: 'auto',
-          width: `calc(100% * ${value} / ${getParentColumns(ownerState)} - (${getParentColumns(ownerState)} - ${value}) * (${getParentSpacing('column')} / ${getParentColumns(ownerState)}))`,
+          width: `calc(100% * ${value} / ${getParentColumns()} - (${getParentColumns()} - ${value}) * (${getParentSpacing('column')} / ${getParentColumns()}))`,
         };
       }
       appendStyle(styles, style);
@@ -74,7 +58,6 @@ export const generateGridSizeStyles = ({ theme, ownerState }: Props) => {
 };
 
 export const generateGridOffsetStyles = ({ theme, ownerState }: Props) => {
-  const getParentSpacing = createGetParentSpacing(ownerState);
   const styles = {};
   traverseBreakpoints<number | 'auto'>(
     theme.breakpoints,
@@ -91,7 +74,7 @@ export const generateGridOffsetStyles = ({ theme, ownerState }: Props) => {
           marginLeft:
             value === 0
               ? '0px'
-              : `calc(100% * ${value} / ${getParentColumns(ownerState)} + ${getParentSpacing('column')} * ${value} / ${getParentColumns(ownerState)})`,
+              : `calc(100% * ${value} / ${getParentColumns()} + ${getParentSpacing('column')} * ${value} / ${getParentColumns()})`,
         };
       }
       appendStyle(styles, style);
@@ -142,7 +125,6 @@ export const generateGridColumnSpacingStyles = ({ theme, ownerState }: Props) =>
   if (!ownerState.container) {
     return {};
   }
-  const getParentSpacing = createGetParentSpacing(ownerState);
   const styles = {};
   traverseBreakpoints<number | string>(
     theme.breakpoints,
@@ -176,7 +158,6 @@ export const generateGridDirectionStyles = ({ theme, ownerState }: Props) => {
 };
 
 export const generateGridStyles = ({ ownerState }: Props): {} => {
-  const getSelfSpacing = createGetSelfSpacing(ownerState);
   return {
     minWidth: 0,
     boxSizing: 'border-box',
