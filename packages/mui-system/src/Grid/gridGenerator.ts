@@ -22,7 +22,7 @@ function isNestedContainer(ownerState: Props['ownerState']) {
 
 function createGetSelfSpacing(ownerState: Props['ownerState']) {
   return function getSelfSpacing(axis: 'row' | 'column') {
-    return `var(--Grid-${axis}Spacing${appendLevel(ownerState.unstable_level)})`;
+    return `var(--Grid-${axis}Spacing)`;
   };
 }
 
@@ -149,21 +149,13 @@ export const generateGridColumnSpacingStyles = ({ theme, ownerState }: Props) =>
     return {};
   }
   const getParentSpacing = createGetParentSpacing(ownerState);
-  const styles = isNestedContainer(ownerState)
-    ? {
-        // Set the default spacing as its parent spacing.
-        // It will be overridden if spacing props are provided
-        [`--Grid-columnSpacing${appendLevel(ownerState.unstable_level)}`]:
-          getParentSpacing('column'),
-      }
-    : {};
+  const styles = {};
   traverseBreakpoints<number | string>(
     theme.breakpoints,
     ownerState.columnSpacing,
     (appendStyle, value) => {
       appendStyle(styles, {
-        [`--Grid-columnSpacing${appendLevel(ownerState.unstable_level)}`]:
-          typeof value === 'string' ? value : theme.spacing?.(value),
+        [`--Grid-columnSpacing`]: typeof value === 'string' ? value : theme.spacing?.(value),
       });
     },
   );
