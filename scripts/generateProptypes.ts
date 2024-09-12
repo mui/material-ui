@@ -213,7 +213,7 @@ async function generateProptypes(
     });
   });
 
-  const sourceContent = await fse.readFile(sourceFile, 'utf8');
+  const sourceContent: string = await fse.readFile(sourceFile, 'utf8');
   const isTsFile = /(\.(ts|tsx))/.test(sourceFile);
   // If the component inherits the props from some unstyled components
   // we don't want to add those propTypes again in the Material UI/Joy UI propTypes
@@ -224,6 +224,7 @@ async function generateProptypes(
   const propsFile = tsFile.replace(/(\.d\.ts|\.tsx|\.ts)/g, 'Props.ts');
   const propsFileAlternative = tsFile.replace(/(\.d\.ts|\.tsx|\.ts)/g, '.types.ts');
   const generatedForTypeScriptFile = sourceFile === tsFile;
+
   const result = injectPropTypesInFile({
     components,
     target: sourceContent,
@@ -244,7 +245,7 @@ async function generateProptypes(
       getSortLiteralUnions,
       reconcilePropTypes: (prop, previous, generated) => {
         const usedCustomValidator = previous !== undefined && !previous.startsWith('PropTypes');
-        const ignoreGenerated =
+        const ignoreGenerated: boolean =
           previous !== undefined &&
           previous.startsWith('PropTypes /* @typescript-to-proptypes-ignore */');
 
@@ -313,9 +314,43 @@ async function generateProptypes(
   await fse.writeFile(sourceFile, correctedLineEndings);
 }
 
+
+/**
+ * Generates utils types for a given source file.
+ *
+ * @param {string} sourceFile - The path of the source file to generate utils types for.
+ * @return {Promise<void>} - A Promise that resolves when the utils types are generated and written to the source file.
+ * @throws {Error} - If unable to produce inject optimise TS imports into code.
+ */
+async function optimiseImports(
+  sourceFile: string,
+): Promise<void> {
+
+  const sourceContent: string = await fse.readFile(sourceFile, 'utf8');
+
+
+  const result = sourceContent
+    .replace('import PropTypes from \'prop-types\';', 'import * as PropTypes from \'prop-types\';')
+
+  if (!result) {
+    throw new Error('Unable to produce inject optimise TS imports into code.');
+  }
+
+  const prettierConfig = await prettier.resolveConfig(process.cwd(), {
+    config: path.join(__dirname, '../prettier.config.js'),
+  });
+
+  const prettified = await prettier.format(result, { ...prettierConfig, filepath: sourceFile });
+  const formatted = fixBabelGeneratorIssues(prettified);
+  const correctedLineEndings = fixLineEndings(sourceContent, formatted);
+
+  await fse.writeFile(sourceFile, correctedLineEndings);
+}
+
 interface HandlerArgv {
   pattern: string;
 }
+
 async function run(argv: HandlerArgv) {
   const { pattern } = argv;
 
@@ -376,11 +411,80 @@ async function run(argv: HandlerArgv) {
 
   const results = await Promise.allSettled(promises);
 
-  const fails = results.filter((result): result is PromiseRejectedResult => {
+  const fails: PromiseRejectedResult[] = results.filter((result): result is PromiseRejectedResult => {
     return result.status === 'rejected';
   });
 
-  fails.forEach((result) => {
+  fails.forEach((result: PromiseRejectedResult) => {
+    console.error(result.reason);
+  });
+  if (fails.length > 0) {
+    process.exit(1);
+  }
+}
+
+
+
+/**
+ * Optimises declaration files by removing unnecessary imports.
+ *
+ * @param {HandlerArgv} argv - The arguments object containing the pattern to match declaration files.
+ * @returns {Promise<void>} - A promise that resolves when the optimisation is complete.
+ */
+async function optimise(argv: HandlerArgv) {
+  const { pattern } = argv;
+
+  const filePattern = new RegExp(pattern);
+  if (pattern.length > 0) {
+    console.log(`Only considering declaration files matching ${filePattern}`);
+  }
+
+  const allBuiltFiles = await Promise.all(
+    [
+      path.resolve(__dirname, '../packages/mui-utils/build'),
+    ].map((folderPath) => {
+      return glob('+([a-z])*/+([a-z])*.*@(d.ts)', {
+        absolute: true,
+        cwd: folderPath,
+      });
+    }),
+  );
+
+  const builtFiles = _.flatten(allBuiltFiles)
+    .filter((filePath) => {
+      // Filter out files where the directory name and filename doesn't match
+      // Example: refType/refType.d.ts
+      let folderName = path.basename(path.dirname(filePath));
+      const fileName = path.basename(filePath).replace(/(\.d\.ts)/g, '');
+
+      // An exception is if the folder name starts with Unstable_/unstable_
+      // Example: unstable_refType/refType.tsx
+      // @note: Consider whether it can have no value for utils
+      if (/(u|U)nstable_/g.test(folderName)) {
+        folderName = folderName.slice(9);
+      }
+
+      return fileName === folderName;
+    })
+    .filter((filePath: string) => filePattern.test(filePath));
+
+  const promises = builtFiles
+    .map<Promise<void>>(async (file: string): Promise<void> => {
+      try {
+        await optimiseImports(file);
+      } catch (error: any) {
+        error.message = `${file}: ${error.message}`;
+        throw error;
+      }
+    });
+
+  const results = await Promise.allSettled(promises);
+
+  const fails: PromiseRejectedResult[] = results.filter((result): result is PromiseRejectedResult => {
+    return result.status === 'rejected';
+  });
+
+  fails.forEach((result: PromiseRejectedResult) => {
     console.error(result.reason);
   });
   if (fails.length > 0) {
@@ -399,7 +503,19 @@ yargs
         type: 'string',
       });
     },
-    handler: run,
+    handler: run
+  })
+  .command<HandlerArgv>({
+    command: '$0',
+    describe: 'Optimise Utils PropTypes from TypeScript declarations',
+    builder: (command) => {
+      return command.option('pattern', {
+        default: '',
+        describe: 'Only considers declaration files matching this pattern.',
+        type: 'string',
+      });
+    },
+    handler: optimise,
   })
   .help()
   .strict(true)
