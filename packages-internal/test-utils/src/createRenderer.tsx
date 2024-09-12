@@ -433,6 +433,7 @@ function createClock(defaultMode: 'fake' | 'real', config: ClockConfig): Clock {
       });
 
       after(() => {
+        console.log('DEBUG: Called `withFakeTimers` "after" hook.');
         mode = defaultMode;
         this.restore();
       });
