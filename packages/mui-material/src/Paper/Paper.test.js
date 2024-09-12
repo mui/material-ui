@@ -130,7 +130,7 @@ describe('<Paper />', () => {
 
     render(
       <ThemeProvider theme={theme}>
-        <Paper data-testid="root" elevation={23}>
+        <Paper data-testid="parent" elevation={23}>
           elevation=23
           <Paper data-testid="child" elevation={0} />
         </Paper>
