@@ -57,10 +57,11 @@ const IconButtonRoot = styled(ButtonBase, {
       {
         props: (props) => !props.disableRipple,
         style: {
+          '--IconButton-hoverBg': theme.vars
+            ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
+            : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
           '&:hover': {
-            backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
-              : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+            backgroundColor: 'var(--IconButton-hoverBg)',
             // Reset on touch devices, it doesn't add specificity
             '@media (hover: none)': {
               backgroundColor: 'transparent',
@@ -113,20 +114,11 @@ const IconButtonRoot = styled(ButtonBase, {
       ...Object.entries(theme.palette)
         .filter(createSimplePaletteValueFilter()) // check all the used fields in the style below
         .map(([color]) => ({
-          props: (props) => props.color === color && !props.disableRipple,
+          props: { color },
           style: {
-            '&:hover': {
-              backgroundColor: theme.vars
-                ? `rgba(${(theme.vars || theme).palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                : alpha(
-                    (theme.vars || theme).palette[color].main,
-                    theme.palette.action.hoverOpacity,
-                  ),
-              // Reset on touch devices, it doesn't add specificity
-              '@media (hover: none)': {
-                backgroundColor: 'transparent',
-              },
-            },
+            '--IconButton-hoverBg': theme.vars
+              ? `rgba(${(theme.vars || theme).palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
+              : alpha((theme.vars || theme).palette[color].main, theme.palette.action.hoverOpacity),
           },
         })),
       {
