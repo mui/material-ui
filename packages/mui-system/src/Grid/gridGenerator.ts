@@ -28,10 +28,7 @@ function createGetSelfSpacing(ownerState: Props['ownerState']) {
 
 function createGetParentSpacing(ownerState: Props['ownerState']) {
   return function getParentSpacing(axis: 'row' | 'column') {
-    if (ownerState.unstable_level === 0) {
-      return `var(--Grid-${axis}Spacing)`;
-    }
-    return `var(--Grid-${axis}Spacing${appendLevel(ownerState.unstable_level - 1)})`;
+    return `var(--Grid-${axis}Spacing)`;
   };
 }
 
