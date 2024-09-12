@@ -86,7 +86,9 @@ export const generateGridColumnsStyles = ({ theme, ownerState }: Props) => {
   if (!ownerState.container) {
     return {};
   }
-  const styles = {};
+  const styles = {
+    [selfColumnsVar]: 12,
+  };
   traverseBreakpoints<number>(theme.breakpoints, ownerState.columns, (appendStyle, value) => {
     const columns = value ?? 12;
     appendStyle(styles, {
