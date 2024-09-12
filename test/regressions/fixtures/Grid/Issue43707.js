@@ -1,4 +1,4 @@
-// eslint-disable
+/* eslint-disable */
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -49,8 +49,8 @@ export default function VariableWidthGrid() {
         </Grid>
 
         <Grid size={12}>
-          {/* Container not nested in container. Does not inherit spacing */}
           <Grid container>
+            {/* Container not nested in container. Does not inherit spacing */}
             <Grid size={10}>
               <Item>Incorrectly nested 10 under a 12</Item>
             </Grid>
@@ -62,8 +62,8 @@ export default function VariableWidthGrid() {
 
         <Grid size={12}>
           <>
-            {/* Container not nested in container. Does not inherit spacing */}
             <Grid container>
+              {/* Container not nested in container. Does not inherit spacing */}
               <Grid size={10}>
                 <Item>Nested 10 under a 12 with fragment</Item>
               </Grid>
