@@ -362,7 +362,7 @@ In v6, the `children` prop passed to the Loading Button component is now wrapped
 
 ### Typography
 
-The `color` prop in the `Typography` component doesn't support callbacks anymore. If you need to access the theme in the `color` prop, you can use the `sx` prop instead:
+The `color` prop in the `Typography` component is not a [system prop](https://mui.com/system/properties/) anymore. You can use the `sx` prop instead:
 
 ```diff
 -<Typography color={(theme) => theme.palette.primary.main}>
