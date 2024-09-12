@@ -28,15 +28,12 @@ function createGetSelfSpacing(ownerState: Props['ownerState']) {
 
 function createGetParentSpacing(ownerState: Props['ownerState']) {
   return function getParentSpacing(axis: 'row' | 'column') {
-    return `var(--Grid-${axis}Spacing)`;
+    return `var(--Grid-parent-${axis}Spacing)`;
   };
 }
 
 function getParentColumns(ownerState: Props['ownerState']) {
-  if (ownerState.unstable_level === 0) {
-    return `var(--Grid-columns)`;
-  }
-  return `var(--Grid-columns${appendLevel(ownerState.unstable_level - 1)})`;
+  return `var(--Grid-parent-columns)`;
 }
 
 export const generateGridSizeStyles = ({ theme, ownerState }: Props) => {
@@ -107,27 +104,34 @@ export const generateGridColumnsStyles = ({ theme, ownerState }: Props) => {
   if (!ownerState.container) {
     return {};
   }
-  const styles = isNestedContainer(ownerState)
-    ? { [`--Grid-columns${appendLevel(ownerState.unstable_level)}`]: getParentColumns(ownerState) }
-    : { '--Grid-columns': 12 };
+  const styles = {};
   traverseBreakpoints<number>(theme.breakpoints, ownerState.columns, (appendStyle, value) => {
-    appendStyle(styles, { [`--Grid-columns${appendLevel(ownerState.unstable_level)}`]: value });
+    const columns = value ?? 12;
+    appendStyle(styles, {
+      '--Grid-columns': columns,
+      '> *': {
+        '--Grid-parent-columns': columns,
+      },
+    });
   });
-  return styles as Record<string, string | number | undefined>;
+  return styles;
 };
 
 export const generateGridRowSpacingStyles = ({ theme, ownerState }: Props) => {
   if (!ownerState.container) {
     return {};
   }
-  const getParentSpacing = createGetParentSpacing(ownerState);
   const styles = {};
   traverseBreakpoints<number | string>(
     theme.breakpoints,
     ownerState.rowSpacing,
     (appendStyle, value) => {
+      const spacing = typeof value === 'string' ? value : theme.spacing?.(value);
       appendStyle(styles, {
-        [`--Grid-rowSpacing`]: typeof value === 'string' ? value : theme.spacing?.(value),
+        '--Grid-rowSpacing': spacing,
+        '> *': {
+          '--Grid-parent-rowSpacing': spacing,
+        },
       });
     },
   );
@@ -144,8 +148,12 @@ export const generateGridColumnSpacingStyles = ({ theme, ownerState }: Props) =>
     theme.breakpoints,
     ownerState.columnSpacing,
     (appendStyle, value) => {
+      const spacing = typeof value === 'string' ? value : theme.spacing?.(value);
       appendStyle(styles, {
-        [`--Grid-columnSpacing`]: typeof value === 'string' ? value : theme.spacing?.(value),
+        '--Grid-columnSpacing': spacing,
+        '> *': {
+          '--Grid-parent-columnSpacing': spacing,
+        },
       });
     },
   );
