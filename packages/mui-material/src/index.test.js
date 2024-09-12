@@ -6,14 +6,9 @@
 import { expect } from 'chai';
 import * as MaterialUI from './index';
 
-const versionExports = [
-  'version',
-  'major',
-  'minor',
-  'patch',
-  'preReleaseLabel',
-  'preReleaseNumber',
-];
+// To skip them in the undefined exports test
+// These are checked in the build process (scripts/build.mjs)
+const versionExports = ['version', 'major', 'minor', 'patch', 'prerelease'];
 
 describe('material-ui', () => {
   it('should have exports', () => {
