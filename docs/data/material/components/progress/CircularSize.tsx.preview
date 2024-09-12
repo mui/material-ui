@@ -1,0 +1,3 @@
+<CircularProgress size={30} />
+<CircularProgress size={40} />
+<CircularProgress size={50} />
