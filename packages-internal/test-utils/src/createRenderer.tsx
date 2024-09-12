@@ -434,6 +434,7 @@ function createClock(defaultMode: 'fake' | 'real', config: ClockConfig): Clock {
 
       after(() => {
         mode = defaultMode;
+        this.restore();
       });
     },
     restore() {
