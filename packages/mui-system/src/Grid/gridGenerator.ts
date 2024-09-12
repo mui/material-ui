@@ -9,17 +9,16 @@ interface Props {
   ownerState: GridOwnerState;
 }
 
-function getSelfSpacing(axis: 'row' | 'column') {
-  return `var(--Grid-${axis}Spacing)`;
+function getSelfSpacingVar(axis: 'row' | 'column') {
+  return `--Grid-${axis}Spacing`;
 }
 
-function getParentSpacing(axis: 'row' | 'column') {
-  return `var(--Grid-parent-${axis}Spacing)`;
+function getParentSpacingVar(axis: 'row' | 'column') {
+  return `--Grid-parent-${axis}Spacing`;
 }
 
-function getParentColumns() {
-  return `var(--Grid-parent-columns)`;
-}
+const selfColumnsVar = '--Grid-columns';
+const parentColumnsVar = '--Grid-parent-columns';
 
 export const generateGridSizeStyles = ({ theme, ownerState }: Props) => {
   const styles = {};
@@ -48,7 +47,7 @@ export const generateGridSizeStyles = ({ theme, ownerState }: Props) => {
         style = {
           flexGrow: 0,
           flexBasis: 'auto',
-          width: `calc(100% * ${value} / ${getParentColumns()} - (${getParentColumns()} - ${value}) * (${getParentSpacing('column')} / ${getParentColumns()}))`,
+          width: `calc(100% * ${value} / var(${parentColumnsVar}) - (var(${parentColumnsVar}) - ${value}) * (var(${getParentSpacingVar('column')}) / var(${parentColumnsVar})))`,
         };
       }
       appendStyle(styles, style);
@@ -74,7 +73,7 @@ export const generateGridOffsetStyles = ({ theme, ownerState }: Props) => {
           marginLeft:
             value === 0
               ? '0px'
-              : `calc(100% * ${value} / ${getParentColumns()} + ${getParentSpacing('column')} * ${value} / ${getParentColumns()})`,
+              : `calc(100% * ${value} / var(${parentColumnsVar}) + var(${getParentSpacingVar('column')}) * ${value} / var(${parentColumnsVar}))`,
         };
       }
       appendStyle(styles, style);
@@ -91,9 +90,9 @@ export const generateGridColumnsStyles = ({ theme, ownerState }: Props) => {
   traverseBreakpoints<number>(theme.breakpoints, ownerState.columns, (appendStyle, value) => {
     const columns = value ?? 12;
     appendStyle(styles, {
-      '--Grid-columns': columns,
+      [selfColumnsVar]: columns,
       '> *': {
-        '--Grid-parent-columns': columns,
+        [parentColumnsVar]: columns,
       },
     });
   });
@@ -111,9 +110,9 @@ export const generateGridRowSpacingStyles = ({ theme, ownerState }: Props) => {
     (appendStyle, value) => {
       const spacing = typeof value === 'string' ? value : theme.spacing?.(value);
       appendStyle(styles, {
-        '--Grid-rowSpacing': spacing,
+        [getSelfSpacingVar('row')]: spacing,
         '> *': {
-          '--Grid-parent-rowSpacing': spacing,
+          [getParentSpacingVar('row')]: spacing,
         },
       });
     },
@@ -132,9 +131,9 @@ export const generateGridColumnSpacingStyles = ({ theme, ownerState }: Props) =>
     (appendStyle, value) => {
       const spacing = typeof value === 'string' ? value : theme.spacing?.(value);
       appendStyle(styles, {
-        '--Grid-columnSpacing': spacing,
+        [getSelfSpacingVar('column')]: spacing,
         '> *': {
-          '--Grid-parent-columnSpacing': spacing,
+          [getParentSpacingVar('column')]: spacing,
         },
       });
     },
@@ -168,7 +167,7 @@ export const generateGridStyles = ({ ownerState }: Props): {} => {
         ownerState.wrap !== 'wrap' && {
           flexWrap: ownerState.wrap,
         }),
-      gap: `${getSelfSpacing('row')} ${getSelfSpacing('column')}`,
+      gap: `var(${getSelfSpacingVar('row')}) var(${getSelfSpacingVar('column')})`,
     }),
   };
 };
