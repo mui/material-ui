@@ -378,6 +378,7 @@ function createClock(defaultMode: 'fake' | 'real', config: ClockConfig): Clock {
 
   beforeEach(() => {
     if (mode === 'fake') {
+      console.log('Initializing fake timers in `beforeEach` hook.');
       clock = useFakeTimers({
         now: config,
         // useIsFocusVisible schedules a global timer that needs to persist regardless of whether components are mounted or not.
@@ -389,6 +390,7 @@ function createClock(defaultMode: 'fake' | 'real', config: ClockConfig): Clock {
   });
 
   afterEach(() => {
+    console.log('Restoring fake timers in `afterEach` hook.');
     clock?.restore();
     clock = null;
   });
