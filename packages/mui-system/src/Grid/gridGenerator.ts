@@ -124,20 +124,13 @@ export const generateGridRowSpacingStyles = ({ theme, ownerState }: Props) => {
     return {};
   }
   const getParentSpacing = createGetParentSpacing(ownerState);
-  const styles = isNestedContainer(ownerState)
-    ? {
-        // Set the default spacing as its parent spacing.
-        // It will be overridden if spacing props are provided
-        [`--Grid-rowSpacing${appendLevel(ownerState.unstable_level)}`]: getParentSpacing('row'),
-      }
-    : {};
+  const styles = {};
   traverseBreakpoints<number | string>(
     theme.breakpoints,
     ownerState.rowSpacing,
     (appendStyle, value) => {
       appendStyle(styles, {
-        [`--Grid-rowSpacing${appendLevel(ownerState.unstable_level)}`]:
-          typeof value === 'string' ? value : theme.spacing?.(value),
+        [`--Grid-rowSpacing`]: typeof value === 'string' ? value : theme.spacing?.(value),
       });
     },
   );
