@@ -49,6 +49,13 @@ function TestViewer(props) {
     };
   }, []);
 
+  const viewerBoxSx = {
+    display: 'flex',
+    p: 1,
+    position: 'relative',
+    justifyContent: 'center',
+  };
+
   return (
     <React.Fragment>
       <GlobalStyles
@@ -77,7 +84,7 @@ function TestViewer(props) {
             <JoyBox
               aria-busy={!ready}
               data-testid="testcase"
-              sx={{ bgcolor: 'background.body', display: 'flex', p: 1 }}
+              sx={{ bgcolor: 'background.body', ...viewerBoxSx }}
             >
               {children}
             </JoyBox>
@@ -86,7 +93,7 @@ function TestViewer(props) {
           <Box
             aria-busy={!ready}
             data-testid="testcase"
-            sx={{ bgcolor: 'background.default', display: 'flex', p: 1 }}
+            sx={{ bgcolor: 'background.default', ...viewerBoxSx }}
           >
             {children}
           </Box>
