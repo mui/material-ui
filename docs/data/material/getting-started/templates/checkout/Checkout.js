@@ -19,6 +19,7 @@ import PaymentForm from './components/PaymentForm';
 import Review from './components/Review';
 import SitemarkIcon from './components/SitemarkIcon';
 import AppTheme from '../shared-theme/AppTheme';
+import ColorModeIconDropdown from '../shared-theme/ColorModeIconDropdown';
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 function getStepContent(step) {
@@ -44,7 +45,19 @@ export default function Checkout(props) {
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
-      <Grid container sx={{ height: { xs: '100%', sm: '100dvh' } }}>
+      <Box sx={{ position: 'fixed', top: '1rem', right: '1rem' }}>
+        <ColorModeIconDropdown />
+      </Box>
+
+      <Grid
+        container
+        sx={{
+          height: {
+            xs: '100%',
+            sm: 'calc(100dvh - var(--template-frame-height, 0px))',
+          },
+        }}
+      >
         <Grid
           size={{ xs: 12, sm: 5, lg: 4 }}
           sx={{

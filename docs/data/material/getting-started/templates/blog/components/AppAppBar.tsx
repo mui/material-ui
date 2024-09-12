@@ -12,6 +12,7 @@ import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import Sitemark from './SitemarkIcon';
+import ColorModeIconDropdown from '../../shared-theme/ColorModeIconDropdown';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
@@ -25,7 +26,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   backgroundColor: theme.vars
     ? `rgba(${theme.vars.palette.background.defaultChannel} / 0.4)`
     : alpha(theme.palette.background.default, 0.4),
-  boxShadow: theme.shadows[1],
+  boxShadow: theme.vars.shadows[1],
   padding: '8px 12px',
 }));
 
@@ -85,12 +86,22 @@ export default function AppAppBar() {
             <Button color="primary" variant="contained" size="small">
               Sign up
             </Button>
+            <ColorModeIconDropdown />
           </Box>
           <Box sx={{ display: { sm: 'flex', md: 'none' } }}>
             <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
               <MenuIcon />
             </IconButton>
-            <Drawer anchor="top" open={open} onClose={toggleDrawer(false)}>
+            <Drawer
+              anchor="top"
+              open={open}
+              onClose={toggleDrawer(false)}
+              PaperProps={{
+                sx: {
+                  top: 'var(--template-frame-height, 0px)',
+                },
+              }}
+            >
               <Box sx={{ p: 2, backgroundColor: 'background.default' }}>
                 <Box
                   sx={{
