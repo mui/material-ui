@@ -105,11 +105,11 @@ describe('requirePropFactory', () => {
           });
 
           it('returned error message should have propFullName', () => {
-            expect(result.message.indexOf(propFullName) > -1).to.equal(true);
+            expect(result.message.includes(propFullName)).to.equal(true);
           });
 
           it('returned error message should not have propName', () => {
-            expect(result.message.indexOf(propName)).to.equal(-1);
+            expect(result.message.includes(propName)).to.equal(false);
           });
         });
       });

@@ -38,7 +38,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.25.0",
+    "@babel/runtime": "^7.25.6",
     "@mui/base": "workspace:*",
     "@mui/core-downloads-tracker": "workspace:^",
     "@mui/system": "workspace:^",
@@ -58,7 +58,7 @@
     "chai": "^4.5.0",
     "fast-glob": "^3.3.2",
     "lodash": "^4.17.21",
-    "next": "^14.2.7",
+    "next": "^14.2.8",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "sinon": "^18.0.0"

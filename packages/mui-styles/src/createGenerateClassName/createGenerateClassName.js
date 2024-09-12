@@ -52,7 +52,7 @@ export default function createGenerateClassName(options = {}) {
     // Is a global static MUI style?
     if (name && name.startsWith('Mui') && !styleSheet.options.link && !disableGlobal) {
       // We can use a shorthand class name, we never use the keys to style the components.
-      if (stateClasses.indexOf(rule.key) !== -1) {
+      if (stateClasses.includes(rule.key)) {
         return `Mui-${rule.key}`;
       }
 

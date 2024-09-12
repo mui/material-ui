@@ -79,7 +79,7 @@ function checkUrlHealth(href, linkText, context) {
    * It needs to be:
    * /material-ui/customization/theming/
    */
-  if (url.pathname[url.pathname.length - 1] !== '/') {
+  if (!url.pathname.endsWith('/')) {
     throw new Error(
       [
         'docs-infra: Missing trailing slash. The following link:',
@@ -145,7 +145,7 @@ function getHeaders(markdown) {
     while ((regexMatches = headerKeyValueRegExp.exec(header)) !== null) {
       const key = regexMatches[1];
       let value = regexMatches[2].replace(/(.*)/, '$1');
-      if (value[0] === '[') {
+      if (value.startsWith('[')) {
         // Need double quotes to JSON parse.
         value = value.replace(/'/g, '"');
         // Remove the comma after the last value e.g. ["foo", "bar",] -> ["foo", "bar"].
@@ -366,7 +366,13 @@ function createRender(context) {
       }
 
       return [
-        `<h${level} id="${hash}"><a href="#${hash}" class="title-link-to-anchor">${headingHtml}<span class="anchor-icon"><svg><use xlink:href="#anchor-link-icon" /></svg></span></a>`,
+        headingHtml.includes('<a ')
+          ? [
+              // Avoid breaking the anchor link button
+              `<h${level} id="${hash}"><a href="#${hash}" class="title-link-to-anchor">${headingHtml}</a>`,
+              `<a href="#${hash}" class="title-link-to-anchor"><span class="anchor-icon"><svg><use xlink:href="#anchor-link-icon" /></svg></span></a>`,
+            ].join('')
+          : `<h${level} id="${hash}"><a href="#${hash}" class="title-link-to-anchor">${headingHtml}<span class="anchor-icon"><svg><use xlink:href="#anchor-link-icon" /></svg></span></a>`,
         `<button title="Post a comment" class="comment-link" data-feedback-hash="${hash}">`,
         '<svg><use xlink:href="#comment-link-icon" /></svg>',
         `</button>`,
@@ -381,7 +387,7 @@ function createRender(context) {
         more += ` title="${title}"`;
       }
 
-      if (noSEOadvantage.some((domain) => href.indexOf(domain) !== -1)) {
+      if (noSEOadvantage.some((domain) => href.includes(domain))) {
         more = ' target="_blank" rel="noopener nofollow"';
       }
 

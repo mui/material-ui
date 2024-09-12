@@ -299,12 +299,6 @@ jobs:
           command: |
             pnpm docs:link-check
             git add -A && git diff --exit-code --staged
-      - run:
-          name: Update the templates shared themes
-          command: pnpm template:update-theme
-      - run:
-          name: '`pnpm template:update-theme` changes committed?'
-          command: git add -A && git diff --exit-code --staged
   test_types:
     <<: *default-job
     resource_class: 'medium+'
@@ -495,6 +489,12 @@ jobs:
       - run:
           name: Run visual regression tests
           command: xvfb-run pnpm test:regressions
+      - run:
+          name: Build packages for fixtures
+          command: xvfb-run pnpm release:build
+      - run:
+          name: Run visual regression tests using Pigment CSS
+          command: xvfb-run pnpm test:regressions-pigment-css
       - run:
           name: Upload screenshots to Argos CI
           command: pnpm test:argos
