@@ -50,10 +50,10 @@ export default function VariableWidthGrid() {
         <Grid size={12}>
           <Grid container spacing={1}>
             <Grid size={10}>
-              <Item>Nested 10 under a 12 with fragmanet</Item>
+              <Item>Nested 10 under a 12 with fragment</Item>
             </Grid>
             <Grid size={2}>
-              <Item>Nested 2 under a 12 with fragmanet</Item>
+              <Item>Nested 2 under a 12 with fragment</Item>
             </Grid>
           </Grid>
         </Grid>
@@ -62,10 +62,10 @@ export default function VariableWidthGrid() {
           <>
             <Grid container spacing={1}>
               <Grid size={10}>
-                <Item>Nested 10 under a 12 with fragmanet</Item>
+                <Item>Nested 10 under a 12 with fragment</Item>
               </Grid>
               <Grid size={2}>
-                <Item>Nested 2 under a 12 with fragmanet</Item>
+                <Item>Nested 2 under a 12 with fragment</Item>
               </Grid>
             </Grid>
           </>
