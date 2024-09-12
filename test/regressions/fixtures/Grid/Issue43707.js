@@ -40,20 +40,21 @@ export default function VariableWidthGrid() {
 
         <Grid size={12} container spacing={1}>
           <Grid size={10}>
-            <Item>Nested 10 under a 12</Item>
+            <Item>Nested 10 under a 12 override spacing</Item>
           </Grid>
           <Grid size={2}>
-            <Item>Nested 2 under a 12</Item>
+            <Item>Nested 2 under a 12 override spacing</Item>
           </Grid>
         </Grid>
 
         <Grid size={12}>
-          <Grid container spacing={1}>
+          {/* Container not nested in container. Does not inherit spacing */}
+          <Grid container>
             <Grid size={10}>
-              <Item>Nested 10 under a 12 with fragment</Item>
+              <Item>Incorrectly nested 10 under a 12</Item>
             </Grid>
             <Grid size={2}>
-              <Item>Nested 2 under a 12 with fragment</Item>
+              <Item>Incorrectly nested 2 under a 12</Item>
             </Grid>
           </Grid>
         </Grid>
