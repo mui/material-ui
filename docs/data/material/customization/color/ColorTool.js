@@ -118,7 +118,7 @@ function ColorTool() {
       isValidColor = true;
     } else if (isHex(color)) {
       isValidColor = true;
-      if (color.indexOf('#') === -1) {
+      if (!color.includes('#')) {
         color = `#${color}`;
       }
     }
