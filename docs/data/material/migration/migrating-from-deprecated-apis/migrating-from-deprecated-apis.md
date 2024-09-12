@@ -56,12 +56,7 @@ You can also manually update your components as shown in the snippet below:
 +<Button sx={{ mr: 2 }}>
 ```
 
-The `sx` prop also supports callbacks with access to the theme:
-
-```diff
--<Typography color={(theme) => theme.palette.primary.main}>
-+<Typography sx={{ color: (theme) => theme.palette.primary.main }}>
-```
+The `sx` prop supports all features of system props: callbacks with access to the theme, responsive values, direct access to theme values, shorthands, etc.
 
 ### Theme component variants
 
