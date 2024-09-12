@@ -56,6 +56,13 @@ You can also manually update your components as shown in the snippet below:
 +<Button sx={{ mr: 2 }}>
 ```
 
+The `sx` prop also supports callbacks with access to the theme:
+
+```diff
+-<Typography color={(theme) => theme.palette.primary.main}>
++<Typography sx={{ color: (theme) => theme.palette.primary.main }}>
+```
+
 ### Theme component variants
 
 Custom component variants defined in the theme are now merged with the theme style overrides, defined within the `root` slot of the component.
