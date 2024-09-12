@@ -496,7 +496,7 @@ const attachPropsTable = (
 
       const requiredProp =
         prop.required ||
-        prop.type.raw.includes('.isRequired') ||
+        prop.type.raw?.includes('.isRequired') ||
         (chainedPropType !== false && chainedPropType.required);
 
       const deprecation = (propDescriptor.description || '').match(/@deprecated(\s+(?<info>.*))?/);
