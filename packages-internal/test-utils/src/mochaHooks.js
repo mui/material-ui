@@ -88,7 +88,7 @@ function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher
 
     if (process.env.NODE_ENV === 'production') {
       // TODO: mock scheduler
-      if (message.indexOf('act(...) is not supported in production builds of React') !== -1) {
+      if (message.includes('act(...) is not supported in production builds of React')) {
         return;
       }
     }
@@ -96,13 +96,13 @@ function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher
     // Ignore legacy root deprecation warnings
     // TODO: Remove once we no longer use legacy roots.
     if (
-      message.indexOf('Use createRoot instead.') !== -1 ||
-      message.indexOf('Use hydrateRoot instead.') !== -1
+      message.includes('Use createRoot instead.') ||
+      message.includes('Use hydrateRoot instead.')
     ) {
       return;
     }
 
-    if (message.indexOf('Warning: useLayoutEffect does nothing on the server') !== -1) {
+    if (message.includes('Warning: useLayoutEffect does nothing on the server')) {
       // Controversial warning that is commonly ignored by switching to `useEffect` on the server.
       // https://github.com/facebook/react/issues/14927
       // However, this switch doesn't work since it relies on environment sniffing and we test SSR in a browser environment.
@@ -112,9 +112,9 @@ function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher
     // Unclear why this is an issue for the current occurrences of this warning.
     // TODO: Revisit once https://github.com/facebook/react/issues/22796 is resolved
     if (
-      message.indexOf(
+      message.includes(
         'Detected multiple renderers concurrently rendering the same context provider.',
-      ) !== -1
+      )
     ) {
       return;
     }

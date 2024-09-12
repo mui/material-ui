@@ -847,7 +847,7 @@ const Slider = React.forwardRef<HTMLSpanElement, SliderProps>(function Slider(pr
 
           let markActive;
           if (track === false) {
-            markActive = values.indexOf(mark.value) !== -1;
+            markActive = values.includes(mark.value);
           } else {
             markActive =
               (track === 'normal' &&

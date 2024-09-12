@@ -262,12 +262,7 @@ export default function makeStyles(stylesOrCreator, options = {}) {
         'MuiTimelineDot',
       ];
 
-      if (
-        name &&
-        supportedComponents.indexOf(name) >= 0 &&
-        props.variant &&
-        !classes[props.variant]
-      ) {
+      if (name && supportedComponents.includes(name) && props.variant && !classes[props.variant]) {
         console.error(
           [
             `MUI: You are using a variant value \`${props.variant}\` for which you didn't define styles.`,
