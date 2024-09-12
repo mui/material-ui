@@ -458,8 +458,8 @@ async function optimise(argv: HandlerArgv) {
       const fileName = path.basename(filePath).replace(/(\.d\.ts)/g, '');
 
       // An exception is if the folder name starts with Unstable_/unstable_
-      // Example: unstable_refType/refType.tsx
-      // @note: Consider whether it can have no value for utils
+      // Example: unstable_refType/refType.d.ts
+      // @note: whether utils might not require this value
       if (/(u|U)nstable_/g.test(folderName)) {
         folderName = folderName.slice(9);
       }
