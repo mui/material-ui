@@ -20,7 +20,7 @@ class CreateStaticFolderSymlinkPlugin {
         const target = path.relative(outputPath, docsStaticFolder);
         // eslint-disable-next-line no-console
         console.log(`Creating symlink to static folder at ${staticFolder}`);
-        await fs.unlink(`${outputPath}/static`);
+        await fs.rm(`${outputPath}/static`, { force: true, recursive: true });
         await fs.symlink(target, staticFolder, 'dir');
         callback();
       },
