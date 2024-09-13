@@ -50,10 +50,9 @@ function TestViewer(props) {
   }, []);
 
   const viewerBoxSx = {
-    display: 'flex',
+    display: 'block',
     p: 1,
     position: 'relative',
-    justifyContent: 'center',
   };
 
   return (
