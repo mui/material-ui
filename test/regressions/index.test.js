@@ -18,17 +18,6 @@ async function main() {
     reducedMotion: 'reduce',
   });
 
-  // Block images since they slow down tests (need download).
-  // They're also most likely decorative for documentation demos
-  await page.route(/./, async (route, request) => {
-    const type = await request.resourceType();
-    if (type === 'image') {
-      route.abort();
-    } else {
-      route.continue();
-    }
-  });
-
   // Wait for all requests to finish.
   // This should load shared resources such as fonts.
   await page.goto(`${baseUrl}#no-dev`, { waitUntil: 'networkidle0' });
@@ -50,12 +39,12 @@ async function main() {
   });
   routes = routes.map((route) => route.replace(baseUrl, ''));
 
-  async function renderFixture(index) {
+  async function renderFixture(route) {
     // Use client-side routing which is much faster than full page navigation via page.goto().
     // Could become an issue with test isolation.
     // If tests are flaky due to global pollution switch to page.goto(route);
     // puppeteers built-in click() times out
-    await page.$eval(`#tests li:nth-of-type(${index + 1}) a`, (link) => {
+    await page.$eval(`#tests li a[href="${route}"]`, (link) => {
       link.click();
     });
     // Move cursor offscreen to not trigger unwanted hover effects.
@@ -94,24 +83,21 @@ async function main() {
       await browser.close();
     });
 
-    routes.forEach((route, index) => {
+    routes.forEach((route) => {
       it(`creates screenshots of ${route}`, async function test() {
         // With the playwright inspector we might want to call `page.pause` which would lead to a timeout.
         if (process.env.PWDEBUG) {
           this.timeout(0);
         }
 
-        const testcase = await renderFixture(index);
+        const testcase = await renderFixture(route);
         await takeScreenshot({ testcase, route });
       });
     });
 
     describe('Rating', () => {
       it('should handle focus-visible correctly', async () => {
-        const index = routes.findIndex(
-          (route) => route === '/regression-Rating/FocusVisibleRating',
-        );
-        const testcase = await renderFixture(index);
+        const testcase = await renderFixture('/regression-Rating/FocusVisibleRating');
         await page.keyboard.press('Tab');
         await takeScreenshot({ testcase, route: '/regression-Rating/FocusVisibleRating2' });
         await page.keyboard.press('ArrowLeft');
@@ -119,10 +105,7 @@ async function main() {
       });
 
       it('should handle focus-visible with precise ratings correctly', async () => {
-        const index = routes.findIndex(
-          (route) => route === '/regression-Rating/PreciseFocusVisibleRating',
-        );
-        const testcase = await renderFixture(index);
+        const testcase = await renderFixture('/regression-Rating/PreciseFocusVisibleRating');
         await page.keyboard.press('Tab');
         await takeScreenshot({ testcase, route: '/regression-Rating/PreciseFocusVisibleRating2' });
         await page.keyboard.press('ArrowRight');
