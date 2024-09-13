@@ -124,9 +124,10 @@ export const createGridSpacingStylesGenerator =
     return styles;
   };
 
-export const generateGridRowSpacingStyles = createGridSpacingStylesGenerator('row');
+export const generateGridRowSpacingStyles = /*#__PURE__*/ createGridSpacingStylesGenerator('row');
 
-export const generateGridColumnSpacingStyles = createGridSpacingStylesGenerator('column');
+export const generateGridColumnSpacingStyles =
+  /*#__PURE__*/ createGridSpacingStylesGenerator('column');
 
 export const generateGridDirectionStyles = ({ theme, ownerState }: Props) => {
   if (!ownerState.container) {
