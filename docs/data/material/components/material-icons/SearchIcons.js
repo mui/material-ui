@@ -93,21 +93,20 @@ function selectNode(node) {
   selection.addRange(range);
 }
 
+const iconWidth = 35;
+
 const StyledIcon = styled('span')(({ theme }) => ({
   display: 'inline-flex',
   flexDirection: 'column',
   color: theme.palette.text.secondary,
   margin: '0 4px',
   '& > div': {
-    display: 'flex',
-  },
-  '& > div > *': {
     flexGrow: 1,
     fontSize: '.6rem',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     textAlign: 'center',
-    width: 0,
+    width: `calc(${iconWidth}px + ${theme.spacing(2)} * 2 + 2px)`,
   },
 }));
 
@@ -116,6 +115,7 @@ const StyledSvgIcon = styled(SvgIcon)(({ theme }) => ({
   cursor: 'pointer',
   color: theme.palette.text.primary,
   border: '1px solid transparent',
+  fontSize: iconWidth,
   borderRadius: '12px',
   transition: theme.transitions.create(['background-color', 'box-shadow'], {
     duration: theme.transitions.duration.shortest,
@@ -143,7 +143,9 @@ const handleIconClick = (event) => {
   }
 };
 
-const handleLabelClick = (event) => selectNode(event.currentTarget);
+function handleLabelClick(event) {
+  selectNode(event.currentTarget);
+}
 
 function Icon(props) {
   const { icon, onOpenClick } = props;
@@ -157,15 +159,12 @@ function Icon(props) {
     >
       <StyledSvgIcon
         component={icon.Component}
-        fontSize="large"
         tabIndex={-1}
         onClick={onOpenClick}
         title={icon.importName}
       />
-      <div>
-        {/*  eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
-        <div onClick={handleLabelClick}>{icon.importName}</div>
-      </div>
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
+      <div onClick={handleLabelClick}>{icon.importName}</div>
       {/* eslint-enable jsx-a11y/click-events-have-key-events */}
     </StyledIcon>
   );
