@@ -38,7 +38,6 @@ export default function PortalFocusTrap() {
           </Box>
         </FocusTrap>
       )}
-
       <div ref={setContainer} />
     </Box>
   );

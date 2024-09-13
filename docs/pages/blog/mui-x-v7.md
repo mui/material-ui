@@ -1,5 +1,5 @@
 ---
-title: Introducing MUI X v7.0.0
+title: Introducing MUI X v7
 description: Check out all the newest additions to the next major of the advanced components.
 date: 2024-03-22T08:00:00.000Z
 authors: ['josefreitas']
@@ -13,7 +13,7 @@ manualCard: true
   </a>
 </div>
 
-After a few months in pre-release, we're thrilled to announce the stable release of [MUI X v7](https://github.com/mui/mui-x/releases/tag/v7.0.0), packed with new components, exciting features, improved usability, and developer experience.
+After a few months in pre-release, we're thrilled to announce the stable release of [MUI X v7.0.0](https://github.com/mui/mui-x/releases/tag/v7.0.0), packed with new components, exciting features, improved usability, and developer experience.
 
 ## Table of contents
 

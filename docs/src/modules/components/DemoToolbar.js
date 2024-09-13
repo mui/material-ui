@@ -539,7 +539,7 @@ export default function DemoToolbar(props) {
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="stackblitz"
                   onClick={() => stackBlitz.createReactApp(demoData).openSandbox()}
-                  {...getControlProps(5)}
+                  {...getControlProps(4)}
                   sx={{ borderRadius: 1 }}
                 >
                   <SvgIcon viewBox="0 0 19 28">
@@ -553,7 +553,7 @@ export default function DemoToolbar(props) {
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="codesandbox"
                   onClick={() => codeSandbox.createReactApp(demoData).openSandbox()}
-                  {...getControlProps(4)}
+                  {...getControlProps(5)}
                   sx={{ borderRadius: 1 }}
                 >
                   <SvgIcon viewBox="0 0 1024 1024">

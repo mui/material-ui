@@ -41,17 +41,19 @@ let warnedOnce = false;
 // TODO: remove in v7
 // eslint-disable-next-line @typescript-eslint/naming-convention
 function Experimental_CssVarsProvider(props: any) {
-  if (!warnedOnce) {
-    console.warn(
-      [
-        'MUI: The Experimental_CssVarsProvider component has been ported into ThemeProvider.',
-        '',
-        "You should use `import { ThemeProvider } from '@mui/material/styles'` instead.",
-        'For more details, check out https://mui.com/material-ui/customization/css-theme-variables/usage/',
-      ].join('\n'),
-    );
+  if (process.env.NODE_ENV !== 'production') {
+    if (!warnedOnce) {
+      console.warn(
+        [
+          'MUI: The Experimental_CssVarsProvider component has been ported into ThemeProvider.',
+          '',
+          "You should use `import { ThemeProvider } from '@mui/material/styles'` instead.",
+          'For more details, check out https://mui.com/material-ui/customization/css-theme-variables/usage/',
+        ].join('\n'),
+      );
 
-    warnedOnce = true;
+      warnedOnce = true;
+    }
   }
 
   return <InternalCssVarsProvider {...props} />;

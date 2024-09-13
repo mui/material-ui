@@ -415,13 +415,13 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     const { width, height, bottom, left } = slider!.getBoundingClientRect();
     let percent;
 
-    if (axis.indexOf('vertical') === 0) {
+    if (axis.startsWith('vertical')) {
       percent = (bottom - finger.y) / height;
     } else {
       percent = (finger.x - left) / width;
     }
 
-    if (axis.indexOf('-reverse') !== -1) {
+    if (axis.includes('-reverse')) {
       percent = 1 - percent;
     }
 

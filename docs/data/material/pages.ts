@@ -267,6 +267,7 @@ const pages: MuiPage[] = [
         pathname: '/material-ui/experimental-api/classname-generator',
         title: 'ClassName generator',
       },
+      { pathname: '/material-ui/experimental-api/pigment-css', title: 'Pigment CSS' },
     ],
   },
   {
