@@ -97,7 +97,7 @@ export function parseFile(filename: string) {
   return {
     src,
     shouldSkip:
-      filename.indexOf('internal') !== -1 ||
+      filename.includes('internal') ||
       !!src.match(/@ignore - internal component\./) ||
       !!src.match(/@ignore - internal hook\./) ||
       !!src.match(/@ignore - do not document\./),

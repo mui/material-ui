@@ -74,8 +74,8 @@ export default function ComponentsApiContent(props: ComponentsApiContentProps) {
   // There are legacy links where the the components had the Unstyled suffix
   // This effects makes sure that the anchors will be correct with the renames
   React.useEffect(() => {
-    const anchor = router.asPath.indexOf('#') >= 0 ? router.asPath.split('#')[1] : null;
-    if (router.isReady && anchor && anchor.indexOf('-unstyled') >= 0) {
+    const anchor = router.asPath.includes('#') ? router.asPath.split('#')[1] : null;
+    if (router.isReady && anchor && anchor.includes('-unstyled')) {
       router.replace(
         {
           hash: `${anchor.replace('-unstyled', '')}`,
