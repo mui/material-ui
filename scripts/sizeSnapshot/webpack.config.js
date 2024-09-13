@@ -32,7 +32,7 @@ async function getWebpackEntries() {
       const componentName = path.basename(path.dirname(componentPath));
       let entryName = componentName;
 
-      if (['Popper'].indexOf(componentName) !== -1) {
+      if (['Popper'].includes(componentName)) {
         entryName = `@material-ui/core/${componentName}`;
       }
 
