@@ -18,8 +18,7 @@ export async function generateBaseUIApiPages() {
       // for example base-ui below.
       if (
         productName === 'base' &&
-        (markdown.filename.indexOf('\\components\\') >= 0 ||
-          markdown.filename.indexOf('/components/') >= 0)
+        (markdown.filename.includes('\\components\\') || markdown.filename.includes('/components/'))
       ) {
         const { components, hooks } = markdownHeaders;
 

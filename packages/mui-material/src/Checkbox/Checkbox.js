@@ -14,6 +14,7 @@ import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 
 import { useDefaultProps } from '../DefaultPropsProvider';
 
@@ -66,7 +67,7 @@ const CheckboxRoot = styled(SwitchBase, {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, palette]) => palette && palette.main)
+        .filter(createSimplePaletteValueFilter())
         .map(([color]) => ({
           props: { color, disableRipple: false },
           style: {
@@ -78,7 +79,7 @@ const CheckboxRoot = styled(SwitchBase, {
           },
         })),
       ...Object.entries(theme.palette)
-        .filter(([, palette]) => palette && palette.main)
+        .filter(createSimplePaletteValueFilter())
         .map(([color]) => ({
           props: { color },
           style: {

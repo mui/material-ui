@@ -6,7 +6,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "devDependencies": {
-    "@babel/runtime": "^7.25.0",
+    "@babel/runtime": "^7.25.6",
     "@emotion/cache": "^11.13.1",
     "@emotion/react": "^11.13.3",
     "@mui/base": "workspace:*",
@@ -36,12 +36,12 @@
     "react-is": "^18.3.1",
     "react-router-dom": "^6.26.1",
     "sinon": "^18.0.0",
-    "styled-components": "^6.1.12",
+    "styled-components": "^6.1.13",
     "stylis": "4.2.0",
     "stylis-plugin-rtl": "^2.1.1",
     "stylis-plugin-rtl-sc": "npm:stylis-plugin-rtl@^1.1.0",
     "webfontloader": "^1.6.28",
-    "webpack": "^5.93.0",
+    "webpack": "^5.94.0",
     "yargs": "^17.7.2"
   },
   "dependencies": {

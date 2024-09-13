@@ -2,6 +2,10 @@
 
 <p class="description">This guide helps you integrate Pigment CSS with Material UI v6.</p>
 
+:::warning
+Pigment CSS is currently in the early alpha stage of development. We're actively working on improving its performance and stability. If you find any problem, please open a [GitHub issue](https://github.com/mui/pigment-css/issues).
+:::
+
 Before going through this guide, make sure you have [upgraded to Material UI v6](/material-ui/migration/upgrade-to-v6/).
 
 ## Introduction
@@ -212,6 +216,45 @@ yarn dev
 
 Open the browser and navigate to the localhost URL, you should see the app running with Pigment CSS.
 
+### Next.js font optimization
+
+If you are using `next/font` to optimize font loading, pass a CSS variable name to the `variable` property of the font configuration and use it in the body className:
+
+```diff title="app/layout.tsx"
+ import { Roboto } from 'next/font/google';
+
+ const roboto = Roboto({
+   weight: ['300', '400', '500', '700'],
+   subsets: ['latin'],
+   display: 'swap',
++  variable: '--my-font-family',
+ });
+
+export default function RootLayout(props) {
+   const { children } = props;
+   return (
+     <html lang="en">
++      <body className={roboto.variable}>
+          {children}
+       </body>
+     </html>
+   );
+ }
+```
+
+Finally, update the `typography.fontFamily` value with the variable created in the previous step:
+
+```diff title="next.config.mjs"
+ const pigmentConfig = {
+   transformLibraries: ['@mui/material'],
+   theme: createTheme({
++    typography: {
++      fontFamily: 'var(--my-font-family)',
++    },
+   }),
+ };
+```
+
 ### Typescript
 
 If you are using TypeScript, you need to extend the Pigment CSS theme types with Material UI `Theme`.
@@ -274,7 +317,7 @@ We recommend reading the rest of the guide below to learn about the new styling 
 Since Pigment CSS is a build-time extraction tool, it does not support owner state through callbacks. Here is an example that will throw an error at build time:
 
 ```js
-const theme = extendTheme({
+const theme = createTheme({
   components: {
     MuiCard: {
       styleOverrides: {
@@ -307,7 +350,7 @@ If you have a dynamic color based on the theme palette, you can use the `variant
 <codeblock>
 
 ```js before
-const theme = extendTheme({
+const theme = createTheme({
   components: {
     MuiCard: {
       styleOverrides: {
@@ -321,7 +364,7 @@ const theme = extendTheme({
 ```
 
 ```js after
-const theme = extendTheme({
+const theme = createTheme({
   components: {
     MuiCard: {
       styleOverrides: {
@@ -352,9 +395,9 @@ Use `DefaultPropsProvider` in your main application file and move all the compon
 <codeblock>
 
 ```diff next.config|vite.config
- import { extendTheme } from '@mui/material';
+ import { createTheme } from '@mui/material';
 
- const customTheme = extendTheme({
+ const customTheme = createTheme({
    // ...other tokens.
    components: {
      MuiButtonBase: {
@@ -639,7 +682,7 @@ Update the config file with the following code to enable right-to-left support:
 
 ```diff
  const pigmentConfig = {
-   theme: extendTheme(),
+   theme: createTheme(),
 +  css: {
 +    // Specify your default CSS authoring direction
 +    defaultDirection: 'ltr',

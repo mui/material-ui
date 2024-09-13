@@ -85,7 +85,7 @@ module.exports = async function demoLoader() {
         if (
           filename.startsWith(englishFilename) &&
           matchNotEnglishMarkdown !== null &&
-          options.languagesInProgress.indexOf(matchNotEnglishMarkdown[1]) !== -1
+          options.languagesInProgress.includes(matchNotEnglishMarkdown[1])
         ) {
           return {
             filename,
