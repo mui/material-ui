@@ -8,6 +8,18 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { TableVirtuoso } from 'react-virtuoso';
 
+// Deterministic pseudo random number. See https://stackoverflow.com/a/47593316
+function mulberry32(a) {
+  return () => {
+    /* eslint-disable */
+    let t = (a += 0x6d2b79f5);
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    /* eslint-enable */
+  };
+}
+
 const sample = [
   ['Frozen yoghurt', 159, 6.0, 24, 4.0],
   ['Ice cream sandwich', 237, 9.0, 37, 4.3],
@@ -52,8 +64,9 @@ const columns = [
   },
 ];
 
+const random = mulberry32(1);
 const rows = Array.from({ length: 200 }, (_, index) => {
-  const randomSelection = sample[Math.floor(Math.random() * sample.length)];
+  const randomSelection = sample[Math.floor(random() * sample.length)];
   return createData(index, ...randomSelection);
 });
 
