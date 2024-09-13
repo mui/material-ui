@@ -6,6 +6,9 @@ const webpackBaseConfig = require('../../webpackBaseConfig');
 
 const docsStaticFolder = path.resolve(__dirname, '../../docs/public/static');
 
+// This plugin creates a symlink to the static folder in the build output.
+// This is needed to make images and other static assets work in the regression tests.
+// Serve can't handle requests outside of the build folder.
 class CreateStaticFolderSymlinkPlugin {
   // eslint-disable-next-line class-methods-use-this
   apply(compiler) {
