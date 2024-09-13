@@ -1,6 +1,82 @@
 # [Versions](https://mui.com/versions/)
 
-## 6.0.2
+## v6.1.0
+
+<!-- generated comparing v6.0.2..master -->
+
+_Sep 10, 2024_
+
+A big thanks to the 21 contributors who made this release possible. Here are the highlights ✨:
+
+- **Minor version changes**: To solve longstanding ESM compatibility issues we added [package exports](https://nodejs.org/api/packages.html#exports) to `@mui/icons-material` (#43624). This change is backwards compatible with previously recommended setups. Bundlers that don't support the `exports` field won't be affected. If you discover any issues, please reach out by creating a GitHub issue.
+- This release also includes several fixes and documentation improvements to support the Material UI v6 upgrade.
+
+### `@mui/icons-material@6.1.0`
+
+- Add exports field to package.json (#43624) @Janpot
+
+### `@mui/material@6.1.0`
+
+- [Autocomplete] Add custom props support via `slotProps` (#43613) @Michael-Hutchinson
+- [Dialog] Fix broken scrolling in full screen mode (#43626) @LuseBiswas
+- [Grid] Revert wrap deprecation (#42363) (#43459) @DiegoAndai
+- Improve color map filter on styles (#43579) @DiegoAndai
+- Return styles directly if the selector is `&` when using `applyStyles` (#43633) @siriwatknp
+- [types] Make slots partial in `CreateSlotsAndSlotProp`type (#42077) @lhilgert9
+- [Radio] Fix disabled state styling regression (#43592) @mnajdova
+- Fix wrong import to type (#43584) @mnajdova
+- Simplify version prerelease export (#43699) @DiegoAndai
+
+### `@mui/system@6.1.0`
+
+- Use a custom sheet to set prepend for `GlobalStyles` (#43632) @siriwatknp
+- Simplify version prerelease export (#43699) @DiegoAndai
+
+### Docs
+
+- [material-ui][Autocomplete] Refactor asynchronous loading demo (#43630) @sai6855
+- [material-ui][Autocomplete] Fix GitHubLabel demo input background color (#43599) @sai6855
+- [material-ui] Update Next.js font optimization guide (#43196) @siriwatknp
+- [material-ui] Fix getting started with CSS variables in theme example (#43658) @Designer023
+- [material-ui][system] Edit "How to use components selector API" section to add about direct import (#43377) @IAluI
+- [material-ui] Update @mui/material-nextjs import examples to v14 (#43698) @ohmsl
+- Fix typo in Divider doc (#43691) @lokendra-reco
+- Add Anima section to documentation (#43673) @GoOrit-Anima
+- Add Integrations section to design resources page (#43612) @zanivan
+- Fix versions URL @oliviertassinari
+- Keep showing next under the subdomain @oliviertassinari
+- Add Next.js font optimization section to Pigment CSS migration (#43631) @siriwatknp
+- Update the Material UI readme post-v6 (#43504) @samuelsycamore
+- Bring back v5 release changelogs (#43460) @oliviertassinari
+- Fix use of absolute URLs (#43567) @oliviertassinari
+- Remove explicit `date-fns` dependency (#40823) @renovate[bot]
+- [pigment-css] Add guide for Pigment CSS quickstart (#43395) @alelthomas
+- [system] Fix link to createCssVarsProvider (#43661) @oliviertassinari
+- Add scrollbar to color picker demo (#43672) @sai6855
+
+### Core
+
+- [blog] Uniformalize version between projects @oliviertassinari
+- [blog] Fix page layout shift @oliviertassinari
+- [code-infra] Build size snapshots from installed packages (#43452) @Janpot
+- [code-infra] Recreate lockfile (#43623) @Janpot
+- [code-infra] Make the API docs builder more configurable (#43574) @michaldudak
+- [code-infra] Update runners from node 18 to 20 for GHA (#43593) @JCQuintas
+- [code-infra] Update runners from node 18 to 20 (#43591) @JCQuintas
+- [docs-infra] Fix axe issue scroll-to-top without landmark (#43663) @oliviertassinari
+- [docs-infra] Reduce Algolia index size, no need for lvl6 @oliviertassinari
+- [docs-infra] Use embed as the default for opening CodeSandbox (#43618) @siriwatknp
+- [docs-infra] Fix broken anchor button when header has a link (#43598) @cherniavskii
+- [docs-infra] Open Sign-in and Dashboard template with CodeSandbox/StackBlitz (#43604) @siriwatknp
+- [examples] Fix CDN live preview demo (#43641) @oliviertassinari
+- Add Pigment CSS screenshot test (#43280) @mnajdova
+- [website] Polish gold sponsors @oliviertassinari
+- [website] Add CopyCopter as gold sponsor (#43595) @zanivan
+- [website] Add disabled button styles to branding theme (#43577) @zanivan
+
+All contributors of this release in alphabetical order: @alelthomas, @cherniavskii, @Designer023, @DiegoAndai, @GoOrit-Anima, @IAluI, @Janpot, @JCQuintas, @lhilgert9, @lokendra-reco, @LuseBiswas, @Michael-Hutchinson, @michaldudak, @mnajdova, @ohmsl, @oliviertassinari, @renovate[bot], @sai6855, @samuelsycamore, @siriwatknp, @zanivan
+
+## v6.0.2
 
 <!-- generated comparing v6.0.1..master -->
 

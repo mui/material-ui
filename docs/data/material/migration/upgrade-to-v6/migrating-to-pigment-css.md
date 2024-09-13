@@ -2,6 +2,10 @@
 
 <p class="description">This guide helps you integrate Pigment CSS with Material UI v6.</p>
 
+:::warning
+Pigment CSS is currently in the early alpha stage of development. We're actively working on improving its performance and stability. If you find any problem, please open a [GitHub issue](https://github.com/mui/pigment-css/issues).
+:::
+
 Before going through this guide, make sure you have [upgraded to Material UI v6](/material-ui/migration/upgrade-to-v6/).
 
 ## Introduction

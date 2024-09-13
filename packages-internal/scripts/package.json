@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-scripts",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "author": "MUI Team",
   "description": "Utilities supporting MUI libraries build and docs generation. This is an internal package not meant for general use.",
   "main": "build/index.js",
@@ -28,8 +28,8 @@
     "@babel/core": "^7.25.2",
     "@babel/plugin-syntax-class-properties": "^7.12.13",
     "@babel/plugin-syntax-jsx": "^7.24.7",
-    "@babel/plugin-syntax-typescript": "^7.24.7",
-    "@babel/types": "^7.25.2",
+    "@babel/plugin-syntax-typescript": "^7.25.4",
+    "@babel/types": "^7.25.6",
     "@mui/internal-docs-utils": "workspace:^",
     "doctrine": "^3.0.0",
     "lodash": "^4.17.21",
@@ -48,7 +48,7 @@
     "chai": "^4.5.0",
     "fast-glob": "^3.3.2",
     "prettier": "^3.3.3",
-    "rimraf": "^5.0.10"
+    "rimraf": "^6.0.1"
   },
   "publishConfig": {
     "access": "public"

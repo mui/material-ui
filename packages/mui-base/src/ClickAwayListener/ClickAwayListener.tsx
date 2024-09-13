@@ -132,7 +132,7 @@ function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
 
     // If not enough, can use https://github.com/DieterHolvoet/event-propagation-path/blob/master/propagationPath.js
     if (event.composedPath) {
-      insideDOM = event.composedPath().indexOf(nodeRef.current) > -1;
+      insideDOM = event.composedPath().includes(nodeRef.current);
     } else {
       insideDOM =
         !doc.documentElement.contains(

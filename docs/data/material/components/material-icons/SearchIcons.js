@@ -467,13 +467,13 @@ const allIcons = Object.keys(mui)
   .sort()
   .map((importName) => {
     let theme;
-    if (importName.indexOf('Outlined') !== -1) {
+    if (importName.includes('Outlined')) {
       theme = 'Outlined';
-    } else if (importName.indexOf('TwoTone') !== -1) {
+    } else if (importName.includes('TwoTone')) {
       theme = 'Two tone';
-    } else if (importName.indexOf('Rounded') !== -1) {
+    } else if (importName.includes('Rounded')) {
       theme = 'Rounded';
-    } else if (importName.indexOf('Sharp') !== -1) {
+    } else if (importName.includes('Sharp')) {
       theme = 'Sharp';
     } else {
       theme = 'Filled';
