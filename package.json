@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "6.0.2",
+  "version": "6.1.0",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -102,16 +102,16 @@
     "@netlify/functions": "^2.8.1",
     "@slack/bolt": "^3.21.2",
     "execa": "^9.3.1",
-    "google-auth-library": "^9.13.0"
+    "google-auth-library": "^9.14.1"
   },
   "devDependencies": {
     "@argos-ci/core": "^2.5.0",
-    "@babel/cli": "^7.24.8",
+    "@babel/cli": "^7.25.6",
     "@babel/core": "^7.25.2",
     "@babel/node": "^7.25.0",
     "@babel/plugin-transform-react-constant-elements": "^7.25.1",
-    "@babel/plugin-transform-runtime": "^7.24.7",
-    "@babel/preset-env": "^7.25.3",
+    "@babel/plugin-transform-runtime": "^7.25.4",
+    "@babel/preset-env": "^7.25.4",
     "@babel/preset-react": "^7.24.7",
     "@babel/preset-typescript": "^7.24.7",
     "@babel/register": "^7.24.6",
@@ -162,7 +162,7 @@
     "eslint-plugin-material-ui": "workspace:^",
     "eslint-plugin-mocha": "^10.5.0",
     "eslint-plugin-react": "^7.35.2",
-    "eslint-plugin-react-compiler": "0.0.0-experimental-3f2f4f0-20240826",
+    "eslint-plugin-react-compiler": "0.0.0-experimental-b6997ec-20240910",
     "eslint-plugin-react-hooks": "^4.6.2",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
@@ -186,32 +186,32 @@
     "prettier": "^3.3.3",
     "pretty-quick": "^4.0.0",
     "process": "^0.11.10",
-    "rimraf": "^5.0.10",
+    "rimraf": "^6.0.1",
     "serve": "^14.2.3",
     "stylelint": "^15.11.0",
     "stylelint-config-standard": "^34.0.0",
     "stylelint-processor-styled-components": "^1.10.0",
     "terser-webpack-plugin": "^5.3.10",
-    "tsx": "^4.17.0",
+    "tsx": "^4.19.0",
     "typescript": "^5.5.4",
-    "webpack": "^5.93.0",
+    "webpack": "^5.94.0",
     "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^5.1.4",
     "yargs": "^17.7.2"
   },
-  "packageManager": "pnpm@9.7.1",
+  "packageManager": "pnpm@9.10.0",
   "engines": {
-    "pnpm": "9.7.1"
+    "pnpm": "9.10.0"
   },
   "resolutions": {
     "@babel/core": "^7.25.2",
     "@babel/code-frame": "^7.24.7",
-    "@babel/plugin-transform-runtime": "^7.24.7",
-    "@babel/preset-env": "^7.25.3",
+    "@babel/plugin-transform-runtime": "^7.25.4",
+    "@babel/preset-env": "^7.25.4",
     "@babel/preset-react": "^7.24.7",
     "@babel/preset-typescript": "^7.24.7",
-    "@babel/runtime": "^7.25.0",
-    "@babel/types": "^7.25.2",
+    "@babel/runtime": "^7.25.6",
+    "@babel/types": "^7.25.6",
     "@definitelytyped/header-parser": "^0.2.12",
     "@definitelytyped/typescript-versions": "^0.1.4",
     "@definitelytyped/utils": "^0.1.7",
@@ -287,11 +287,6 @@
           "@mui/internal-test-utils:build"
         ]
       }
-    }
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "styled-components@6.1.12": "patches/styled-components@6.1.12.patch"
     }
   }
 }

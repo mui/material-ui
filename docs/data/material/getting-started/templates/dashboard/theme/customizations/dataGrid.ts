@@ -9,7 +9,7 @@ import { checkboxClasses } from '@mui/material/Checkbox';
 import { listClasses } from '@mui/material/List';
 import { gridClasses } from '@mui/x-data-grid';
 import { tablePaginationClasses } from '@mui/material/TablePagination';
-import { gray } from '../themePrimitives';
+import { gray } from '../../../shared-theme/themePrimitives';
 
 /* eslint-disable import/prefer-default-export */
 export const dataGridCustomizations: DataGridProComponents<Theme> & DataGridComponents<Theme> = {
@@ -18,13 +18,13 @@ export const dataGridCustomizations: DataGridProComponents<Theme> & DataGridComp
       root: ({ theme }) => ({
         '--DataGrid-overlayHeight': '300px',
         overflow: 'clip',
-        borderColor: theme.palette.divider,
-        backgroundColor: theme.palette.background.default,
+        borderColor: (theme.vars || theme).palette.divider,
+        backgroundColor: (theme.vars || theme).palette.background.default,
         [`& .${gridClasses.columnHeader}`]: {
-          backgroundColor: theme.palette.background.paper,
+          backgroundColor: (theme.vars || theme).palette.background.paper,
         },
         [`& .${gridClasses.footerContainer}`]: {
-          backgroundColor: theme.palette.background.paper,
+          backgroundColor: (theme.vars || theme).palette.background.paper,
         },
         [`& .${checkboxClasses.root}`]: {
           padding: theme.spacing(0.5),
@@ -43,12 +43,12 @@ export const dataGridCustomizations: DataGridProComponents<Theme> & DataGridComp
           },
         },
       }),
-      cell: ({ theme }) => ({ borderTopColor: theme.palette.divider }),
+      cell: ({ theme }) => ({ borderTopColor: (theme.vars || theme).palette.divider }),
       menu: ({ theme }) => ({
         borderRadius: theme.shape.borderRadius,
         backgroundImage: 'none',
         [`& .${paperClasses.root}`]: {
-          border: `1px solid ${theme.palette.divider}`,
+          border: `1px solid ${(theme.vars || theme).palette.divider}`,
         },
 
         [`& .${menuItemClasses.root}`]: {
@@ -64,14 +64,14 @@ export const dataGridCustomizations: DataGridProComponents<Theme> & DataGridComp
       }),
 
       row: ({ theme }) => ({
-        '&:last-of-type': { borderBottom: `1px solid ${theme.palette.divider}` },
+        '&:last-of-type': { borderBottom: `1px solid ${(theme.vars || theme).palette.divider}` },
         '&:hover': {
-          backgroundColor: theme.palette.action.hover,
+          backgroundColor: (theme.vars || theme).palette.action.hover,
         },
         '&.Mui-selected': {
-          background: theme.palette.action.selected,
+          background: (theme.vars || theme).palette.action.selected,
           '&:hover': {
-            backgroundColor: theme.palette.action.hover,
+            backgroundColor: (theme.vars || theme).palette.action.hover,
           },
         },
       }),

@@ -345,7 +345,7 @@ export default function AppSearch(props) {
   const facetFilterLanguage = LANGUAGES_SSR.includes(userLanguage)
     ? `language:${userLanguage}`
     : `language:en`;
-  const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+  const macOS = window.navigator.platform.toUpperCase().includes('MAC');
   const onOpen = React.useCallback(() => {
     setIsOpen(true);
   }, [setIsOpen]);
