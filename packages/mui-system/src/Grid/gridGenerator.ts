@@ -101,33 +101,47 @@ export const generateGridColumnsStyles = ({ theme, ownerState }: Props) => {
   return styles;
 };
 
-export const createGridSpacingStylesGenerator =
-  (axis: 'row' | 'column') =>
-  ({ theme, ownerState }: Props) => {
-    if (!ownerState.container) {
-      return {};
-    }
-    const styles = {};
-    traverseBreakpoints<number | string>(
-      theme.breakpoints,
-      ownerState[`${axis}Spacing`],
-      (appendStyle, value) => {
-        const spacing = typeof value === 'string' ? value : theme.spacing?.(value);
-        appendStyle(styles, {
-          [getSelfSpacingVar(axis)]: spacing,
-          '> *': {
-            [getParentSpacingVar(axis)]: spacing,
-          },
-        });
-      },
-    );
-    return styles;
-  };
+export const generateGridRowSpacingStyles = ({ theme, ownerState }: Props) => {
+  if (!ownerState.container) {
+    return {};
+  }
+  const styles = {};
+  traverseBreakpoints<number | string>(
+    theme.breakpoints,
+    ownerState.rowSpacing,
+    (appendStyle, value) => {
+      const spacing = typeof value === 'string' ? value : theme.spacing?.(value);
+      appendStyle(styles, {
+        [getSelfSpacingVar('row')]: spacing,
+        '> *': {
+          [getParentSpacingVar('row')]: spacing,
+        },
+      });
+    },
+  );
+  return styles;
+};
 
-export const generateGridRowSpacingStyles = /*#__PURE__*/ createGridSpacingStylesGenerator('row');
-
-export const generateGridColumnSpacingStyles =
-  /*#__PURE__*/ createGridSpacingStylesGenerator('column');
+export const generateGridColumnSpacingStyles = ({ theme, ownerState }: Props) => {
+  if (!ownerState.container) {
+    return {};
+  }
+  const styles = {};
+  traverseBreakpoints<number | string>(
+    theme.breakpoints,
+    ownerState.columnSpacing,
+    (appendStyle, value) => {
+      const spacing = typeof value === 'string' ? value : theme.spacing?.(value);
+      appendStyle(styles, {
+        [getSelfSpacingVar('column')]: spacing,
+        '> *': {
+          [getParentSpacingVar('column')]: spacing,
+        },
+      });
+    },
+  );
+  return styles;
+};
 
 export const generateGridDirectionStyles = ({ theme, ownerState }: Props) => {
   if (!ownerState.container) {
