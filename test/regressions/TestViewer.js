@@ -52,7 +52,6 @@ function TestViewer(props) {
   const viewerBoxSx = {
     display: 'block',
     p: 1,
-    position: 'relative',
   };
 
   return (
