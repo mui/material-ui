@@ -429,8 +429,8 @@ const chaiPlugin: Parameters<(typeof chai)['use']>[0] = (chaiAPI, utils) => {
           // Ignore legacy root deprecation warnings
           // TODO: Remove once we no longer use legacy roots.
           if (
-            format.indexOf('Use createRoot instead.') !== -1 ||
-            format.indexOf('Use hydrateRoot instead.') !== -1
+            format.includes('Use createRoot instead.') ||
+            format.includes('Use hydrateRoot instead.')
           ) {
             return;
           }

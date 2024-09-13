@@ -37,6 +37,12 @@ In the following examples, we are using two string separators and an SVG icon.
 
 {{"demo": "CollapsedBreadcrumbs.js"}}
 
+## Condensed with menu
+
+As an alternative, consider adding a Menu component to display the condensed links in a dropdown list:
+
+{{"demo": "CondensedWithMenu.js"}}
+
 ## Customization
 
 Here is an example of customizing the component.

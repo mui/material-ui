@@ -377,10 +377,15 @@ const isVitest =
   // VITEST_BROWSER_DEBUG is present on vitest in browser mode.
   typeof process.env.VITEST_BROWSER_DEBUG !== 'undefined';
 
-function createVitestClock(defaultMode: 'fake' | 'real', config: ClockConfig, vi: any): Clock {
+function createVitestClock(
+  defaultMode: 'fake' | 'real',
+  config: ClockConfig,
+  options: Exclude<Parameters<typeof useFakeTimers>[0], number | Date>,
+  vi: any,
+): Clock {
   if (defaultMode === 'fake') {
     beforeEach(() => {
-      vi.useFakeTimers();
+      vi.useFakeTimers(options);
       if (config) {
         vi.setSystemTime(config);
       }
@@ -405,7 +410,7 @@ function createVitestClock(defaultMode: 'fake' | 'real', config: ClockConfig, vi
     withFakeTimers: () => {
       // @ts-ignore
       beforeAll(() => {
-        vi.useFakeTimers();
+        vi.useFakeTimers(options);
       });
       // @ts-ignore
       afterAll(() => {
@@ -442,9 +447,14 @@ function createVitestClock(defaultMode: 'fake' | 'real', config: ClockConfig, vi
   };
 }
 
-function createClock(defaultMode: 'fake' | 'real', config: ClockConfig, vi: any): Clock {
+function createClock(
+  defaultMode: 'fake' | 'real',
+  config: ClockConfig,
+  options: Exclude<Parameters<typeof useFakeTimers>[0], number | Date>,
+  vi: any,
+): Clock {
   if (isVitest) {
-    return createVitestClock(defaultMode, config, vi);
+    return createVitestClock(defaultMode, config, options, vi);
   }
 
   let clock: ReturnType<typeof useFakeTimers> | null = null;
@@ -459,6 +469,7 @@ function createClock(defaultMode: 'fake' | 'real', config: ClockConfig, vi: any)
         // Technically we'd want to reset all modules between tests but we don't have that technology.
         // In the meantime just continue to clear native timers like with did for the past years when using `sinon` < 8.
         shouldClearNativeTimers: true,
+        ...options,
       });
     }
   });
@@ -532,6 +543,7 @@ export interface CreateRendererOptions extends Pick<RenderOptions, 'strict' | 's
    */
   clock?: 'fake' | 'real';
   clockConfig?: ClockConfig;
+  clockOptions?: Parameters<typeof createClock>[2];
   /**
    * Vitest needs to be injected because this file is transpiled to commonjs and vitest is an esm module.
    * @default {}
@@ -546,10 +558,11 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     strict: globalStrict = true,
     strictEffects: globalStrictEffects = globalStrict,
     vi = {},
+    clockOptions,
   } = globalOptions;
   // save stack to re-use in test-hooks
   const { stack: createClientRenderStack } = new Error();
-  const clock = createClock(clockMode, clockConfig, vi);
+  const clock = createClock(clockMode, clockConfig, clockOptions, vi);
 
   /**
    * Flag whether `createRenderer` was called in a suite i.e. describe() block.

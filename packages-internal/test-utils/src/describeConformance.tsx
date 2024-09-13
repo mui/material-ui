@@ -818,7 +818,7 @@ function testThemeStyleOverrides(
       }
 
       // `styleKey` in some tests is `foo` or `bar`, so need to check if it is a valid classKey.
-      const isStyleKeyExists = classKeys.indexOf(testStateOverrides.styleKey) !== -1;
+      const isStyleKeyExists = classKeys.includes(testStateOverrides.styleKey);
 
       if (!isStyleKeyExists) {
         return;
@@ -1071,8 +1071,7 @@ function describeConformance(
   } = getOptions();
 
   let filteredTests = Object.keys(fullSuite).filter(
-    (testKey) =>
-      only.indexOf(testKey) !== -1 && skip.indexOf(testKey as keyof typeof fullSuite) === -1,
+    (testKey) => only.includes(testKey) && !skip.includes(testKey as keyof typeof fullSuite),
   ) as (keyof typeof fullSuite)[];
 
   const slotBasedTests = ['slotsProp', 'slotPropsProp', 'slotPropsCallback'];

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const envinfo = require('envinfo');
 
-const json = process.argv.indexOf('--json') !== -1;
+const json = process.argv.includes('--json');
 envinfo
   .run(
     {

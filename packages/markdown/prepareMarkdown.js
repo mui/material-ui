@@ -36,7 +36,7 @@ function resolveComponentApiUrl(productId, componentPkg, component) {
   if (productId === 'x-tree-view') {
     return `/x/api/tree-view/${kebabCase(component)}/`;
   }
-  if (componentPkg === 'mui-base' || BaseUIReexportedComponents.indexOf(component) >= 0) {
+  if (componentPkg === 'mui-base' || BaseUIReexportedComponents.includes(component)) {
     return `/base-ui/react-${kebabCase(component)}/components-api/#${kebabCase(component)}`;
   }
   if (productId === 'toolpad-core') {
