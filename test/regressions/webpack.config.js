@@ -6,31 +6,6 @@ const webpackBaseConfig = require('../../webpackBaseConfig');
 
 const docsStaticFolder = path.resolve(__dirname, '../../docs/public/static');
 
-// This plugin creates a symlink to the static folder in the build output.
-// This is needed to make images and other static assets work in the regression tests.
-// Serve can't handle requests outside of the build folder.
-class CreateStaticFolderSymlinkPlugin {
-  // eslint-disable-next-line class-methods-use-this
-  apply(compiler) {
-    compiler.hooks.done.tapAsync(
-      {
-        name: 'CreateStaticFolderSymlinkPlugin',
-        context: true,
-      },
-      async (context, compilation, callback) => {
-        const outputPath = compiler.options.output.path;
-        const staticFolder = `${outputPath}/static`;
-        const target = path.relative(outputPath, docsStaticFolder);
-        // eslint-disable-next-line no-console
-        console.log(`Creating symlink to static folder at ${staticFolder}`);
-        await fs.rm(`${outputPath}/static`, { force: true, recursive: true });
-        await fs.symlink(target, staticFolder, 'dir');
-        callback();
-      },
-    );
-  }
-}
-
 module.exports = {
   ...webpackBaseConfig,
   entry: path.resolve(__dirname, 'index.js'),
@@ -56,7 +31,22 @@ module.exports = {
       // required by code accessing `process.env` in the browser
       process: 'process/browser.js',
     }),
-    new CreateStaticFolderSymlinkPlugin(),
+    /** @type {import('webpack').WebpackPluginInstance} */ ({
+      // This plugin creates a symlink to the static folder in the build output.
+      // This is needed to make images and other static assets work in the regression tests.
+      // Serve can't handle requests outside of the build folder.
+      apply(compiler) {
+        compiler.hooks.done.tapPromise('CreateStaticFolderSymlinkPlugin', async () => {
+          const outputPath = compiler.options.output.path;
+          const staticFolder = `${outputPath}/static`;
+          const target = path.relative(outputPath, docsStaticFolder);
+          // eslint-disable-next-line no-console
+          console.log(`Creating symlink to static folder at ${staticFolder}`);
+          await fs.rm(`${outputPath}/static`, { force: true, recursive: true });
+          await fs.symlink(target, staticFolder, 'dir');
+        });
+      },
+    }),
   ],
   module: {
     rules: [
