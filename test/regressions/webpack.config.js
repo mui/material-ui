@@ -1,7 +1,32 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const fs = require('fs/promises');
 const webpackBaseConfig = require('../../webpackBaseConfig');
+
+const docsStaticFolder = path.resolve(__dirname, '../../docs/public/static');
+
+class CreateStaticFolderSymlinkPlugin {
+  // eslint-disable-next-line class-methods-use-this
+  apply(compiler) {
+    compiler.hooks.done.tapAsync(
+      {
+        name: 'CreateStaticFolderSymlinkPlugin',
+        context: true,
+      },
+      async (context, compilation, callback) => {
+        const outputPath = compiler.options.output.path;
+        const staticFolder = `${outputPath}/static`;
+        const target = path.relative(outputPath, docsStaticFolder);
+        // eslint-disable-next-line no-console
+        console.log(`Creating symlink to static folder at ${staticFolder}`);
+        await fs.unlink(`${outputPath}/static`);
+        await fs.symlink(target, staticFolder, 'dir');
+        callback();
+      },
+    );
+  }
+}
 
 module.exports = {
   ...webpackBaseConfig,
@@ -28,6 +53,7 @@ module.exports = {
       // required by code accessing `process.env` in the browser
       process: 'process/browser.js',
     }),
+    new CreateStaticFolderSymlinkPlugin(),
   ],
   module: {
     rules: [
