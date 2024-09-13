@@ -38,7 +38,7 @@ async function rewriteImportPaths(declarationFile, publishDir) {
   if (
     // Only consider React components
     basename[0] === basename[0].toUpperCase() &&
-    code.indexOf("import PropTypes from 'prop-types';") !== -1
+    code.includes("import PropTypes from 'prop-types';")
   ) {
     throw new Error(
       [
