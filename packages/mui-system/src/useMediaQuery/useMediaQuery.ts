@@ -72,7 +72,8 @@ function useMediaQueryOld(
   return match;
 }
 
-// eslint-disable-next-line no-underscore-dangle, @typescript-eslint/naming-convention -- Workaround for https://github.com/webpack/webpack/issues/14814
+// See https://github.com/mui/material-ui/issues/41190#issuecomment-2040873379 for why
+// eslint-disable-next-line no-underscore-dangle, @typescript-eslint/naming-convention
 const safeReact = { ...React };
 const maybeReactUseSyncExternalStore: undefined | any = safeReact.useSyncExternalStore;
 
