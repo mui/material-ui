@@ -9,7 +9,7 @@ Download the example [or clone the repo](https://github.com/mui/material-ui):
 <!-- #default-branch-switch -->
 
 ```bash
-curl https://codeload.github.com/mui/material-ui/tar.gz/v5.x | tar -xz --strip=2  material-ui-master/examples/material-ui-nextjs-ts
+curl https://codeload.github.com/mui/material-ui/tar.gz/v5.x | tar -xz --strip=2  material-ui-5.x/examples/material-ui-nextjs-ts
 cd material-ui-nextjs-ts
 ```
 
