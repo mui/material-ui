@@ -30,6 +30,7 @@ export interface UseMediaQueryOptions {
   ssrMatchMedia?: (query: string) => { matches: boolean };
 }
 
+// TODO React 17: Remove `useMediaQueryOld` once React 17 support is removed
 function useMediaQueryOld(
   query: string,
   defaultMatches: boolean,
@@ -149,7 +150,6 @@ export default function useMediaQuery<Theme = unknown>(
   let query = typeof queryInput === 'function' ? queryInput(theme) : queryInput;
   query = query.replace(/^@media( ?)/m, '');
 
-  // TODO: Drop `useMediaQueryOld` and use  `use-sync-external-store` shim in `useMediaQueryNew` once the package is stable
   const useMediaQueryImplementation =
     maybeReactUseSyncExternalStore !== undefined ? useMediaQueryNew : useMediaQueryOld;
   const match = useMediaQueryImplementation(

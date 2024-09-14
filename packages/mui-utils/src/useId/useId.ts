@@ -2,6 +2,8 @@
 import * as React from 'react';
 
 let globalId = 0;
+
+// TODO React 17: Remove `useGlobalId` once React 17 support is removed
 function useGlobalId(idOverride?: string): string | undefined {
   const [defaultId, setDefaultId] = React.useState(idOverride);
   const id = idOverride || defaultId;
