@@ -229,7 +229,7 @@ function ColorTool() {
         <Box sx={{ display: 'flex', alignItems: 'center', mt: 2, mb: 2 }}>
           <Typography id={`${intent}ShadeSliderLabel`}>Shade:</Typography>
           <Slider
-            sx={{ width: 'calc(100%-80px)', ml: 3, mr: 3 }}
+            sx={{ width: 'calc(100% - 80px)', ml: 3, mr: 3 }}
             value={intentShade}
             min={0}
             max={13}
