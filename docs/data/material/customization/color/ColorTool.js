@@ -210,9 +210,6 @@ function ColorTool() {
     );
   };
 
-  const COLOR_WIDTH = 156;
-  const SLIDER_WIDTH_CALC = 'calc(100% - 80px)';
-
   const colorPicker = (intent) => {
     const intentInput = state[`${intent}Input`];
     const intentShade = state[`${intent}Shade`];
@@ -232,7 +229,7 @@ function ColorTool() {
         <Box sx={{ display: 'flex', alignItems: 'center', mt: 2, mb: 2 }}>
           <Typography id={`${intent}ShadeSliderLabel`}>Shade:</Typography>
           <Slider
-            sx={{ width: SLIDER_WIDTH_CALC, ml: 3, mr: 3 }}
+            sx={{ width: 'calc(100%-80px)', ml: 3, mr: 3 }}
             value={intentShade}
             min={0}
             max={13}
@@ -240,9 +237,7 @@ function ColorTool() {
             onChange={handleChangeShade(intent)}
             aria-labelledby={`${intent}ShadeSliderLabel`}
           />
-          <div style={{ width: `${COLOR_WIDTH}px` }}>
-            <Typography>{shades[intentShade]}</Typography>
-          </div>
+          <Typography minWidth={40}>{shades[intentShade]}</Typography>
         </Box>
         <Box sx={{ width: 192 }}>
           {hues.map((hue) => {
