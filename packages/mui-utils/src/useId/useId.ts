@@ -21,7 +21,6 @@ function useGlobalId(idOverride?: string): string | undefined {
 }
 
 // See https://github.com/mui/material-ui/issues/41190#issuecomment-2040873379 for why
-// eslint-disable-next-line no-underscore-dangle, @typescript-eslint/naming-convention
 const safeReact = { ...React };
 const maybeReactUseId: undefined | (() => string) = safeReact.useId;
 
