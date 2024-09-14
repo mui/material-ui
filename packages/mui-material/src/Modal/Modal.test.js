@@ -880,4 +880,24 @@ describe('<Modal />', () => {
       );
     }).not.toErrorDev();
   });
+
+  it('should not override default onKeyDown', () => {
+    const handleKeyDown = spy();
+    const handleClose = spy();
+    const { getByTestId } = render(
+      <Modal open onKeyDown={handleKeyDown} onClose={handleClose}>
+        <div data-testid="modal" tabIndex={-1} />
+      </Modal>,
+    );
+    act(() => {
+      getByTestId('modal').focus();
+    });
+
+    fireEvent.keyDown(getByTestId('modal'), {
+      key: 'Escape',
+    });
+
+    expect(handleKeyDown).to.have.property('callCount', 1);
+    expect(handleClose).to.have.property('callCount', 1);
+  });
 });
