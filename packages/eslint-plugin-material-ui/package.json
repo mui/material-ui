@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git"
+    "url": "git+https://github.com/mui/material-ui.git"
   },
   "license": "MIT"
 }

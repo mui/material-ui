@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-scripts",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "author": "MUI Team",
   "description": "Utilities supporting MUI libraries build and docs generation. This is an internal package not meant for general use.",
   "main": "build/index.js",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
+    "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages-internal/scripts"
   },
   "license": "MIT",
@@ -28,8 +28,8 @@
     "@babel/core": "^7.25.2",
     "@babel/plugin-syntax-class-properties": "^7.12.13",
     "@babel/plugin-syntax-jsx": "^7.24.7",
-    "@babel/plugin-syntax-typescript": "^7.24.7",
-    "@babel/types": "^7.25.2",
+    "@babel/plugin-syntax-typescript": "^7.25.4",
+    "@babel/types": "^7.25.6",
     "@mui/internal-docs-utils": "workspace:^",
     "doctrine": "^3.0.0",
     "lodash": "^4.17.21",
@@ -42,13 +42,13 @@
     "@types/chai": "^4.3.19",
     "@types/doctrine": "^0.0.9",
     "@types/lodash": "^4.17.7",
-    "@types/node": "^20.14.8",
+    "@types/node": "^20.16.5",
     "@types/react": "^18.3.4",
     "@types/uuid": "^9.0.8",
     "chai": "^4.5.0",
     "fast-glob": "^3.3.2",
     "prettier": "^3.3.3",
-    "rimraf": "^5.0.10"
+    "rimraf": "^6.0.1"
   },
   "publishConfig": {
     "access": "public"
