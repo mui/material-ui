@@ -73,8 +73,8 @@ function useMediaQueryOld(
 }
 
 // eslint-disable-next-line no-underscore-dangle, @typescript-eslint/naming-convention -- Workaround for https://github.com/webpack/webpack/issues/14814
-const _React = { ...React };
-const maybeReactUseSyncExternalStore: undefined | any = _React.useSyncExternalStore;
+const safeReact = { ...React };
+const maybeReactUseSyncExternalStore: undefined | any = safeReact.useSyncExternalStore;
 
 function useMediaQueryNew(
   query: string,

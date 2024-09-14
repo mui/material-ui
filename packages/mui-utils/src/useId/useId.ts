@@ -21,8 +21,8 @@ function useGlobalId(idOverride?: string): string | undefined {
 }
 
 // eslint-disable-next-line no-underscore-dangle, @typescript-eslint/naming-convention -- Workaround for https://github.com/webpack/webpack/issues/14814
-const _React = { ...React };
-const maybeReactUseId: undefined | (() => string) = _React.useId;
+const safeReact = { ...React };
+const maybeReactUseId: undefined | (() => string) = safeReact.useId;
 
 /**
  *
