@@ -18,6 +18,17 @@ async function main() {
     reducedMotion: 'reduce',
   });
 
+  // Block external images since they slow down tests (need download).
+  // They're also most likely decorative for documentation demos
+  await page.route(/./, async (route, request) => {
+    const type = await request.resourceType();
+    if (type === 'image' && !route.request().url().startsWith(baseUrl)) {
+      route.abort();
+    } else {
+      route.continue();
+    }
+  });
+
   // Wait for all requests to finish.
   // This should load shared resources such as fonts.
   await page.goto(`${baseUrl}#no-dev`, { waitUntil: 'networkidle0' });
@@ -39,18 +50,21 @@ async function main() {
   });
   routes = routes.map((route) => route.replace(baseUrl, ''));
 
+  /**
+   * @param {string} route
+   */
   async function renderFixture(route) {
     // Use client-side routing which is much faster than full page navigation via page.goto().
-    // Could become an issue with test isolation.
-    // If tests are flaky due to global pollution switch to page.goto(route);
-    // puppeteers built-in click() times out
-    await page.$eval(`#tests li a[href="${route}"]`, (link) => {
-      link.click();
-    });
-    // Move cursor offscreen to not trigger unwanted hover effects.
-    page.mouse.move(0, 0);
+    await page.evaluate((_route) => {
+      window.muiFixture.navigate(_route);
+    }, route);
 
-    const testcase = await page.waitForSelector('[data-testid="testcase"]:not([aria-busy="true"])');
+    // Move cursor offscreen to not trigger unwanted hover effects.
+    await page.mouse.move(0, 0);
+
+    const testcase = await page.waitForSelector(
+      `[data-testid="testcase"][data-testpath="${route}"]:not([aria-busy="true"])`,
+    );
 
     return testcase;
   }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import * as ReactDOMClient from 'react-dom/client';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import webfontloader from 'webfontloader';
 import { Globals } from '@react-spring/web';
 import TestViewer from './TestViewer';
@@ -10,6 +10,12 @@ import TestViewer from './TestViewer';
 Globals.assign({
   skipAnimation: true,
 });
+
+window.muiFixture = {
+  navigate: () => {
+    throw new Error(`muiFixture.navigate is not ready`);
+  },
+};
 
 // Get all the fixtures specifically written for preventing visual regressions.
 const importRegressionFixtures = require.context('./fixtures', true, /\.(js|ts|tsx)$/, 'lazy');
@@ -296,13 +302,13 @@ if (unusedBlacklistPatterns.size > 0) {
 
 const viewerRoot = document.getElementById('test-viewer');
 
-function FixtureRenderer({ component: FixtureComponent }) {
+function FixtureRenderer({ component: FixtureComponent, path }) {
   const viewerReactRoot = React.useRef(null);
 
   React.useLayoutEffect(() => {
     const renderTimeout = setTimeout(() => {
       const children = (
-        <TestViewer>
+        <TestViewer path={path}>
           <FixtureComponent />
         </TestViewer>
       );
@@ -321,13 +327,14 @@ function FixtureRenderer({ component: FixtureComponent }) {
         viewerReactRoot.current = null;
       });
     };
-  }, [FixtureComponent]);
+  }, [FixtureComponent, path]);
 
   return null;
 }
 
 FixtureRenderer.propTypes = {
   component: PropTypes.elementType,
+  path: PropTypes.string.isRequired,
 };
 
 function App(props) {
@@ -381,8 +388,13 @@ function App(props) {
     return `/${fixture.suite}/${fixture.name}`;
   }
 
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    window.muiFixture.navigate = navigate;
+  }, [navigate]);
+
   return (
-    <Router>
+    <React.Fragment>
       <Routes>
         {fixtures.map((fixture) => {
           const path = computePath(fixture);
@@ -397,7 +409,11 @@ function App(props) {
               key={path}
               exact
               path={path}
-              element={fixturePrepared ? <FixtureRenderer component={FixtureComponent} /> : null}
+              element={
+                fixturePrepared ? (
+                  <FixtureRenderer component={FixtureComponent} path={path} />
+                ) : null
+              }
             />
           );
         })}
@@ -426,7 +442,7 @@ function App(props) {
           </nav>
         </details>
       </div>
-    </Router>
+    </React.Fragment>
   );
 }
 
@@ -435,6 +451,10 @@ App.propTypes = {
 };
 
 const container = document.getElementById('react-root');
-const children = <App fixtures={regressionFixtures.concat(demoFixtures)} />;
+const children = (
+  <Router>
+    <App fixtures={regressionFixtures.concat(demoFixtures)} />{' '}
+  </Router>
+);
 const reactRoot = ReactDOMClient.createRoot(container);
 reactRoot.render(children);
