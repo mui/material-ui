@@ -13,8 +13,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
-    "directory": "packages/mui-pigment-css"
+    "url": "git+https://github.com/mui/material-ui.git",
+    "directory": "packages/mui-material-pigment-css"
   },
   "license": "MIT",
   "bugs": {
