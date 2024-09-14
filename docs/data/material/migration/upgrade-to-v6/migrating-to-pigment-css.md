@@ -255,7 +255,7 @@ Finally, update the `typography.fontFamily` value with the variable created in t
  };
 ```
 
-### Typescript
+### TypeScript
 
 If you are using TypeScript, you need to extend the Pigment CSS theme types with Material UI `Theme`.
 Add the following code to a file that is included in your `tsconfig.json`:
