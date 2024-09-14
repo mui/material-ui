@@ -130,12 +130,12 @@ const mainClass = css({
 
 #### Creating global styles
 
-Use the `globalCSS` API to define global styles to load across an entire app.
+Use the `globalCss` API to define global styles to load across an entire app.
 
 You should define these at the top level of your JavaScript file:
 
 ```js
-import { globalCSS } from '@pigment-css/react';
+import { globalCss } from '@pigment-css/react';
 
 globalCss`
   body {
