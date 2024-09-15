@@ -216,46 +216,6 @@ The packages published on npm are **transpiled** with [Babel](https://github.com
 
 A [modern bundle](#modern-bundle) is also available.
 
-### How to use custom bundles?
-
-:::error
-You are strongly discouraged to:
-
-- Import from any of the custom bundles directly. Do not do this:
-
-  ```js
-  import { Button } from '@mui/material/legacy';
-  ```
-
-  You have no guarantee that the dependencies also use legacy or modern bundles, leading to module duplication in your JavaScript files.
-
-- Import from any of the undocumented files or folders. Do not do this:
-
-  ```js
-  import { Button } from '@mui/material/esm';
-  ```
-
-  You have no guarantee that these imports will continue to work from one version to the next.
-
-  :::
-
-A great way to use these bundles is to configure bundler aliases, for example with [Webpack's `resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias):
-
-```js
-{
-  resolve: {
-    alias: {
-      '@mui/material': '@mui/material/legacy',
-      '@mui/styled-engine': '@mui/styled-engine/legacy',
-      '@mui/system': '@mui/system/legacy',
-      '@mui/base': '@mui/base/legacy',
-      '@mui/utils': '@mui/utils/legacy',
-      '@mui/lab': '@mui/lab/legacy',
-    }
-  }
-}
-```
-
 ### Modern bundle
 
 The modern bundle can be found under the [`/modern` folder](https://unpkg.com/@mui/material/modern/).
