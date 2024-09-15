@@ -214,7 +214,7 @@ It will perform the following diffs:
 
 The packages published on npm are **transpiled** with [Babel](https://github.com/babel/babel), optimized for performance with the [supported platforms](/material-ui/getting-started/supported-platforms/).
 
-A [modern bundle](#modern-bundle) is also available.
+A `modern` bundle is also available.
 
 ### Modern bundle
 
