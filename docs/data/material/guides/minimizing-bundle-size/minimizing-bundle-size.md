@@ -214,7 +214,47 @@ It will perform the following diffs:
 
 The packages published on npm are **transpiled** with [Babel](https://github.com/babel/babel), optimized for performance with the [supported platforms](/material-ui/getting-started/supported-platforms/).
 
-A `modern` bundle is also available.
+A [modern bundle](#modern-bundle) is also available.
+
+### How to use custom bundles?
+
+:::error
+You are strongly discouraged to:
+
+- Import from any of the custom bundles directly. Do not do this:
+
+  ```js
+  import { Button } from '@mui/material/modern';
+  ```
+
+  You have no guarantee that the dependencies use `modern` bundle, leading to module duplication in your JavaScript files.
+
+- Import from any of the undocumented files or folders. Do not do this:
+
+  ```js
+  import { Button } from '@mui/material/esm';
+  ```
+
+  You have no guarantee that these imports will continue to work from one version to the next.
+
+  :::
+
+A great way to use these bundles is to configure bundler aliases, for example with [Webpack's `resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias):
+
+```js
+{
+  resolve: {
+    alias: {
+      '@mui/material': '@mui/material/modern',
+      '@mui/styled-engine': '@mui/styled-engine/modern',
+      '@mui/system': '@mui/system/modern',
+      '@mui/base': '@mui/base/modern',
+      '@mui/utils': '@mui/utils/modern',
+      '@mui/lab': '@mui/lab/modern',
+    }
+  }
+}
+```
 
 ### Modern bundle
 
