@@ -44,10 +44,9 @@ const useUtilityClasses = (ownerState: ModalOwnerState) => {
  *
  * - [Modal API](https://mui.com/base-ui/react-modal/components-api/#modal)
  */
-const Modal = React.forwardRef(function Modal<RootComponentType extends React.ElementType>(
-  props: ModalProps<RootComponentType>,
-  forwardedRef: React.ForwardedRef<HTMLElement>,
-) {
+const Modal = React.forwardRef<HTMLElement, ModalProps>(function Modal<
+  RootComponentType extends React.ElementType,
+>(props: ModalProps<RootComponentType>, forwardedRef: React.ForwardedRef<HTMLElement>) {
   const {
     children,
     closeAfterTransition = false,

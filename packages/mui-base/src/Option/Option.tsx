@@ -21,6 +21,7 @@ function useUtilityClasses<OptionValue>(ownerState: OptionOwnerState<OptionValue
 }
 
 const InnerOption = React.memo(
+  // @ts-ignore TEST
   React.forwardRef(function Option<OptionValue, RootComponentType extends React.ElementType>(
     props: OptionProps<OptionValue, RootComponentType>,
     forwardedRef: React.ForwardedRef<Element>,
