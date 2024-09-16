@@ -217,8 +217,8 @@ importers:
         specifier: ^7.35.2
         version: 7.35.2(eslint@8.57.0)
       eslint-plugin-react-compiler:
-        specifier: 0.0.0-experimental-b6997ec-20240910
-        version: 0.0.0-experimental-b6997ec-20240910(eslint@8.57.0)
+        specifier: 0.0.0-experimental-75b9fd4-20240912
+        version: 0.0.0-experimental-75b9fd4-20240912(eslint@8.57.0)
       eslint-plugin-react-hooks:
         specifier: ^4.6.2
         version: 4.6.2(eslint@8.57.0)
@@ -7589,8 +7589,8 @@ packages:
     peerDependencies:
       eslint: '>=7.0.0'
 
-  eslint-plugin-react-compiler@0.0.0-experimental-b6997ec-20240910:
-    resolution: {integrity: sha512-5VLQr2Lvxo4Ktf7TKC/0cPRJIKg4F34BreQmth5vHOc1aR8I6IZ84hY7T3ci2VlrfTKOHkEDEjGfOJWSoM9aZQ==}
+  eslint-plugin-react-compiler@0.0.0-experimental-75b9fd4-20240912:
+    resolution: {integrity: sha512-RDwZfd3leJZu/mLbFnv2H6991PG1eQLmpCx+6z/TUQxrIxpObplrsw5Bsb0SnxrGNuzkPkaNQDEJXszewF1Ycw==}
     engines: {node: ^14.17.0 || ^16.0.0 || >= 18.0.0}
     peerDependencies:
       eslint: '>=7'
@@ -12936,8 +12936,8 @@ packages:
     resolution: {integrity: sha512-zshzwQW7gG7hjpBlgeQP9RuyPGNxvJdzR8SUM3QhxCnLjWN2E7j3dOvpeDcQoETfHx0urRS7EtmVToql7YpU4A==}
     engines: {node: '>= 10'}
 
-  zod-validation-error@3.3.1:
-    resolution: {integrity: sha512-uFzCZz7FQis256dqw4AhPQgD6f3pzNca/Zh62RNELavlumQB3nDIUFbF5JQfFLcMbO1s02Q7Xg/gpcOBlEnYZA==}
+  zod-validation-error@3.4.0:
+    resolution: {integrity: sha512-ZOPR9SVY6Pb2qqO5XHt+MkkTRxGXb4EVtnjc9JpXUOtUB1T9Ru7mZOT361AN3MsetVe7R0a1KZshJDZdgp9miQ==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       zod: ^3.18.0
@@ -19387,7 +19387,7 @@ snapshots:
       globals: 13.24.0
       rambda: 7.5.0
 
-  eslint-plugin-react-compiler@0.0.0-experimental-b6997ec-20240910(eslint@8.57.0):
+  eslint-plugin-react-compiler@0.0.0-experimental-75b9fd4-20240912(eslint@8.57.0):
     dependencies:
       '@babel/core': 7.25.2
       '@babel/parser': 7.25.6
@@ -19395,7 +19395,7 @@ snapshots:
       eslint: 8.57.0
       hermes-parser: 0.20.1
       zod: 3.23.8
-      zod-validation-error: 3.3.1(zod@3.23.8)
+      zod-validation-error: 3.4.0(zod@3.23.8)
     transitivePeerDependencies:
       - supports-color
 
@@ -25886,7 +25886,7 @@ snapshots:
       compress-commons: 4.1.1
       readable-stream: 3.6.0
 
-  zod-validation-error@3.3.1(zod@3.23.8):
+  zod-validation-error@3.4.0(zod@3.23.8):
     dependencies:
       zod: 3.23.8
 
