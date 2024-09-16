@@ -204,13 +204,13 @@ class Master extends Component {
       <div>
         <Title render="Material UI" />
         <div style={prepareStyles(styles.v1)}>
-          Aww yeah, &nbsp;
+          Aww yeah,&nbsp;
           <a style={prepareStyles(styles.v1Link)} href="https://mui.com/blog/material-ui-v1-is-out/">
             <span>
               Material UI v1
             </span>
           </a>
-          &nbsp; is here! We recommend it for new projects.
+          &nbsp;is here! We recommend it for new projects.
         </div>
         <AppBar
           onLeftIconButtonClick={this.handleClickLeftIconButton}
