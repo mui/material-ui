@@ -38,19 +38,13 @@ Gold Sponsors are those who have pledged $500/month and more to Material-UI.
 via [Patreon](https://www.patreon.com/oliviertassinari)
 
 <p style="display: flex;">
-  <a href="https://www.creative-tim.com/?utm_source=material-ui&utm_medium=docs&utm_campaign=homepage" rel="noopener" target="_blank"><img width="126" src="https://avatars1.githubusercontent.com/u/20172349?s=378" alt="creative-tim" title="Premium Themes"></a>
-  <a href="https://bitsrc.io" rel="noopener" target="_blank"><img width="96" src="https://avatars1.githubusercontent.com/u/24789812?s=192" alt="bitsrc" title="The fastest way to share code"></a>
+  <img width="126" src="https://avatars1.githubusercontent.com/u/20172349?s=378" alt="creative-tim" title="Premium Themes">
+  <img width="96" src="https://avatars1.githubusercontent.com/u/24789812?s=192" alt="bitsrc" title="The fastest way to share code">
 </p>
 
-via [OpenCollective](https://opencollective.com/material-ui)
+via [OpenCollective](https://opencollective.com/mui-org)
 
-${[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-            .map(
-              num =>
-                `<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/${num}/website" rel="noopener" target="_blank" style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/${num}/avatar.svg" alt="${num}" /></a>`,
-            )
-            .join('')}
-
+<object type="image/svg+xml" data="https://opencollective.com/mui-org/tiers/backer.svg?avatarHeight=36&width=600"></object>
 
 ### There is more!
 
