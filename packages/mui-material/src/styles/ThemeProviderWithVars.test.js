@@ -1,8 +1,15 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
 import Box from '@mui/material/Box';
-import { CssVarsProvider, extendTheme, useTheme } from '@mui/material/styles';
+import {
+  CssVarsProvider,
+  extendTheme,
+  useTheme,
+  ThemeProvider,
+  createTheme,
+  useColorScheme,
+} from '@mui/material/styles';
 
 describe('[Material UI] ThemeProviderWithVars', () => {
   let originalMatchmedia;
@@ -359,5 +366,25 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       borderBottomLeftRadius: '16px',
       borderBottomRightRadius: '16px',
     });
+  });
+
+  it('show warning when using `setMode` without configuring `colorSchemeSelector`', () => {
+    function Test() {
+      const { setMode } = useColorScheme();
+      return <button onClick={() => setMode('dark')}>Dark</button>;
+    }
+    render(
+      <ThemeProvider
+        theme={createTheme({ cssVariables: true, colorSchemes: { light: true, dark: true } })}
+      >
+        <Test />
+      </ThemeProvider>,
+    );
+
+    expect(() => {
+      fireEvent.click(screen.getByText('Dark'));
+    }).toErrorDev([
+      'MUI: The `setMode` function has no effect if `colorSchemeSelector` is not configured.\nPlease set `cssVariables.colorSchemeSelector` to `"class"` or `"data"`.\nTo learn more, visit https://mui.com/material-ui/customization/css-theme-variables/configuration/#toggling-dark-mode-manually',
+    ]);
   });
 });
