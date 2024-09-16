@@ -42,7 +42,7 @@ Our mission is to empower as many people as possible to build great UIs, faster.
 The faster and simpler it is, and the broader the audience that can create custom UIs, the better.
 We believe that the best way to improve on these dimensions is to eliminate [80%](https://www.youtube.com/watch?v=GnO7D5UaDig&t=2451s) of the code that has to be written.
 
-A few months back we started to work on [Toolpad](https://github.com/mui/toolpad), an ambitious project to deliver on this objective.
+A few months back work started on [Toolpad](https://github.com/mui/toolpad), an ambitious project to deliver on this objective.
 We have found the beginning of a market fit in this low-code segment.
 We need help to structure & grow the engineering team.
 
