@@ -50,7 +50,7 @@
     "@mui/internal-test-utils": "workspace:^",
     "@mui/types": "workspace:^",
     "@types/chai": "^4.3.19",
-    "@types/mocha": "^10.0.7",
+    "@types/mocha": "^10.0.8",
     "@types/node": "^20.16.5",
     "@types/react": "^18.3.4",
     "@types/react-dom": "^18.3.0",
