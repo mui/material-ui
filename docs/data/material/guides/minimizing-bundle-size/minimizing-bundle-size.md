@@ -153,7 +153,7 @@ Avoid using [babel-plugin-direct-import](https://github.com/avocadowastaken/babe
 import Button from '@mui/material/Button/Button.js';
 ```
 
-Future changes to the library's internal structure could break these paths. `babel-plugin-direct-import` allows for granular control over what gets imported, but it comes with the potential risk of relying on internal library paths. This may fail in future versions if we update our package to use the `exports` field in `package.json`, which could block access to internal paths like this.
+Future changes to the library's internal structure could break these paths. `babel-plugin-direct-import` allows for granular control over what gets imported, but it comes with the potential risk of relying on internal library paths. This may fail in future versions if the package is updated to use the `exports` field in `package.json`, which could block access to internal paths like this.
 :::
 
 If you are using Create React App, you will need to use a couple of projects that let you use `.babelrc` configuration, without ejecting.
