@@ -111,59 +111,50 @@ This option provides the best user experience and developer experience:
 import { Button, TextField } from '@mui/material';
 ```
 
-However, you need to apply the two following steps correctly.
+However, you need to apply the following steps correctly.
 
 #### 1. Configure Babel
 
-Pick one of the following plugins:
+Use the [babel-plugin-import](https://github.com/umijs/babel-plugin-import) with the following configuration:
 
-- [babel-plugin-import](https://github.com/umijs/babel-plugin-import) with the following configuration:
+`yarn add -D babel-plugin-import`
 
-  `yarn add -D babel-plugin-import`
+Create a `.babelrc.js` file in the root directory of your project:
 
-  Create a `.babelrc.js` file in the root directory of your project:
+```js
+const plugins = [
+  [
+    'babel-plugin-import',
+    {
+      libraryName: '@mui/material',
+      libraryDirectory: '',
+      camel2DashComponentName: false,
+    },
+    'core',
+  ],
+  [
+    'babel-plugin-import',
+    {
+      libraryName: '@mui/icons-material',
+      libraryDirectory: '',
+      camel2DashComponentName: false,
+    },
+    'icons',
+  ],
+];
 
-  ```js
-  const plugins = [
-    [
-      'babel-plugin-import',
-      {
-        libraryName: '@mui/material',
-        libraryDirectory: '',
-        camel2DashComponentName: false,
-      },
-      'core',
-    ],
-    [
-      'babel-plugin-import',
-      {
-        libraryName: '@mui/icons-material',
-        libraryDirectory: '',
-        camel2DashComponentName: false,
-      },
-      'icons',
-    ],
-  ];
+module.exports = { plugins };
+```
 
-  module.exports = { plugins };
-  ```
+:::error
+Avoid using [babel-plugin-direct-import](https://github.com/avocadowastaken/babel-plugin-direct-import) which transforms imports to:
 
-- [babel-plugin-direct-import](https://github.com/avocadowastaken/babel-plugin-direct-import) with the following configuration:
+```js
+import Button from '@mui/material/Button/Button.js';
+```
 
-  `yarn add -D babel-plugin-direct-import`
-
-  Create a `.babelrc.js` file in the root directory of your project:
-
-  ```js
-  const plugins = [
-    [
-      'babel-plugin-direct-import',
-      { modules: ['@mui/material', '@mui/icons-material'] },
-    ],
-  ];
-
-  module.exports = { plugins };
-  ```
+Future changes to the library's internal structure could break these paths. `babel-plugin-direct-import` allows for granular control over what gets imported, but it comes with the potential risk of relying on internal library paths. This may fail in future versions if we update our package to use the `exports` field in `package.json`, which could block access to internal paths like this.
+:::
 
 If you are using Create React App, you will need to use a couple of projects that let you use `.babelrc` configuration, without ejecting.
 
