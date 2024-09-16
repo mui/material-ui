@@ -36,8 +36,8 @@ importers:
         specifier: ^2.8.1
         version: 2.8.1
       '@slack/bolt':
-        specifier: ^3.21.2
-        version: 3.21.2
+        specifier: ^3.21.4
+        version: 3.21.4
       execa:
         specifier: ^9.3.1
         version: 9.3.1
@@ -5195,9 +5195,9 @@ packages:
   '@sinonjs/text-encoding@0.7.2':
     resolution: {integrity: sha512-sXXKG+uL9IrKqViTtao2Ws6dy0znu9sOaP1di/jKGW1M6VssO8vlpXCQcpZ+jisQ1tTFAC5Jo/EOzFbggBagFQ==}
 
-  '@slack/bolt@3.21.2':
-    resolution: {integrity: sha512-Cft+5dbl+YApK2GVFX9O86k0qIqQXshnBGq9oK4a4rLfklyfw9TcydmOxEd32aR/2HbBwr7o/pwu5UAI2c/bUg==}
-    engines: {node: '>=12.13.0', npm: '>=6.12.0'}
+  '@slack/bolt@3.21.4':
+    resolution: {integrity: sha512-4PqOuHXcVt8KxjKiLdLIqZp8285zdiYLj7HrrKvVHnUNbkD0l16HZxtMfIEe07REQ+vmM1mrqCiZqe9dPAMucA==}
+    engines: {node: '>=14.21.3', npm: '>=6.14.18'}
 
   '@slack/logger@3.0.0':
     resolution: {integrity: sha512-DTuBFbqu4gGfajREEMrkq5jBhcnskinhr4+AnfJEk48zhVeEv3XnUKGIX98B74kxhYsIMfApGGySTn7V3b5yBA==}
@@ -10505,6 +10505,10 @@ packages:
 
   path-to-regexp@6.2.1:
     resolution: {integrity: sha512-JLyh7xT1kizaEvcaXOQwOc2/Yhw6KZOvPf1S8401UyLk86CU79LN3vl7ztXGm/pZ+YjoyAJ4rxmHwbkBXJX+yw==}
+
+  path-to-regexp@8.1.0:
+    resolution: {integrity: sha512-Bqn3vc8CMHty6zuD+tG23s6v2kwxslHEhTj4eYaVKGIEB+YX/2wd0/rgXLFD9G9id9KCtbVy/3ZgmvZjpa0UdQ==}
+    engines: {node: '>=16'}
 
   path-type@3.0.0:
     resolution: {integrity: sha512-T2ZUsdZFHgA3u4e5PfPbjd7HDDpxPnQb5jN0SrDsjNSuVXHJqtwTnWqG0B1jZrgmJ/7lj1EmVIByWt1gxGkWvg==}
@@ -16366,7 +16370,7 @@ snapshots:
 
   '@sinonjs/text-encoding@0.7.2': {}
 
-  '@slack/bolt@3.21.2':
+  '@slack/bolt@3.21.4':
     dependencies:
       '@slack/logger': 4.0.0
       '@slack/oauth': 2.6.3
@@ -16378,7 +16382,7 @@ snapshots:
       '@types/tsscmp': 1.0.0
       axios: 1.7.4(debug@4.3.6)
       express: 4.19.2
-      path-to-regexp: 6.2.1
+      path-to-regexp: 8.1.0
       promise.allsettled: 1.0.6
       raw-body: 2.5.2
       tsscmp: 1.0.6
@@ -23132,6 +23136,8 @@ snapshots:
   path-to-regexp@2.2.1: {}
 
   path-to-regexp@6.2.1: {}
+
+  path-to-regexp@8.1.0: {}
 
   path-type@3.0.0:
     dependencies:
