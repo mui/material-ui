@@ -227,7 +227,7 @@ You are strongly discouraged to:
   import { Button } from '@mui/material/modern';
   ```
 
-  You have no guarantee that the dependencies use `modern` bundle, leading to module duplication in your JavaScript files.
+  You have no guarantee that the dependencies use the `modern` bundle, leading to module duplication in your JavaScript files.
 
 - Import from any of the undocumented files or folders. Do not do this:
 
