@@ -39,7 +39,6 @@
     "extract-error-codes": "cross-env MUI_EXTRACT_ERROR_CODES=true lerna run --concurrency 8 build:modern",
     "rsc:build": "tsx ./packages/rsc-builder/buildRsc.ts",
     "template:screenshot": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/generateTemplateScreenshots",
-    "template:update-theme": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/updateTemplatesTheme",
     "install:codesandbox": "pnpm install --no-frozen-lockfile",
     "jsonlint": "node ./scripts/jsonlint.mjs",
     "eslint": "eslint . --cache --report-unused-disable-directives --ext .js,.ts,.tsx --max-warnings 0",
