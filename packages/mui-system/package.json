@@ -1,6 +1,6 @@
 {
   "name": "@mui/system",
-  "version": "6.0.2",
+  "version": "6.1.0",
   "private": false,
   "author": "MUI Team",
   "description": "MUI System is a set of CSS utilities to help you build custom designs more efficiently. It makes it possible to rapidly lay out custom designs.",
@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
+    "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-system"
   },
   "license": "MIT",
@@ -39,7 +39,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.25.0",
+    "@babel/runtime": "^7.25.6",
     "@mui/private-theming": "workspace:^",
     "@mui/styled-engine": "workspace:^",
     "@mui/types": "workspace:^",
@@ -62,8 +62,8 @@
     "fast-glob": "^3.3.2",
     "lodash": "^4.17.21",
     "react": "^18.3.1",
-    "sinon": "^18.0.0",
-    "styled-components": "^6.1.12"
+    "sinon": "^18.0.1",
+    "styled-components": "^6.1.13"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",

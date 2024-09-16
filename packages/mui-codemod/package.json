@@ -1,6 +1,6 @@
 {
   "name": "@mui/codemod",
-  "version": "6.0.2",
+  "version": "6.1.0",
   "bin": "./codemod.js",
   "private": false,
   "author": "MUI Team",
@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
+    "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-codemod"
   },
   "license": "MIT",
@@ -31,11 +31,11 @@
   },
   "dependencies": {
     "@babel/core": "^7.25.2",
-    "@babel/runtime": "^7.25.0",
-    "@babel/traverse": "^7.25.3",
+    "@babel/runtime": "^7.25.6",
+    "@babel/traverse": "^7.25.6",
     "jscodeshift": "^0.16.1",
     "jscodeshift-add-imports": "^1.0.11",
-    "postcss": "^8.4.45",
+    "postcss": "^8.4.47",
     "postcss-cli": "^11.0.0",
     "yargs": "^17.7.2"
   },

@@ -1,6 +1,6 @@
 {
   "name": "@mui/docs",
-  "version": "6.0.2",
+  "version": "6.1.0",
   "private": false,
   "author": "MUI Team",
   "description": "MUI Docs - Documentation building blocks.",
@@ -14,7 +14,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
+    "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-docs"
   },
   "license": "MIT",
@@ -34,7 +34,7 @@
     "test": "exit 0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.25.0",
+    "@babel/runtime": "^7.25.6",
     "@mui/internal-markdown": "workspace:^",
     "clipboard-copy": "^4.0.1",
     "clsx": "^2.1.1",
@@ -48,7 +48,7 @@
     "@types/node": "^20.16.5",
     "@types/prop-types": "^15.7.12",
     "@types/react": "^18.3.4",
-    "next": "^14.2.8",
+    "next": "^14.2.11",
     "react": "^18.3.1"
   },
   "peerDependencies": {

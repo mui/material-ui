@@ -21,7 +21,7 @@ export default function Layout() {
   );
 
   const demosRoutes = (materialUIRoute?.route.children ?? []).filter(
-    (item) => !!item.path && item.path.indexOf('react-pagination') < 0,
+    (item) => !!item.path && !item.path.includes('react-pagination'),
   );
 
   return (

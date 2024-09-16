@@ -14,7 +14,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
+    "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-base"
   },
   "license": "MIT",
@@ -40,7 +40,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.25.0",
+    "@babel/runtime": "^7.25.6",
     "@floating-ui/react-dom": "^2.1.1",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",
@@ -64,7 +64,7 @@
     "lodash": "^4.17.21",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sinon": "^18.0.0"
+    "sinon": "^18.0.1"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0",

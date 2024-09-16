@@ -3,6 +3,7 @@ import excludeVariablesFromRoot from './excludeVariablesFromRoot';
 
 describe('excludeVariablesFromRoot', () => {
   it('should return true', () => {
+    expect(excludeVariablesFromRoot('mui').includes(`--mui-overlays-0`)).to.equal(true);
     expect(excludeVariablesFromRoot('mui').includes(`--mui-overlays-1`)).to.equal(true);
     expect(excludeVariablesFromRoot('mui').includes(`--mui-overlays-2`)).to.equal(true);
     expect(excludeVariablesFromRoot('mui').includes(`--mui-overlays-3`)).to.equal(true);
