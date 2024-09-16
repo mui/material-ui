@@ -27,14 +27,9 @@ export default function SponsorCard(props: {
 
   return (
     <Paper
-      component={Link}
-      noLinkStyle
       data-ga-event-category="sponsor"
       data-ga-event-action="homepage"
       data-ga-event-label={new URL(item.href).hostname}
-      href={item.href}
-      target="_blank"
-      rel="sponsored noopener"
       variant="outlined"
       sx={{
         p: 2,
