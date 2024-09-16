@@ -94,7 +94,7 @@ You can learn more about this in the [overrides documentation page](/material-ui
 
 ### Music player
 
-{{"demo": "MusicPlayerSlider.js"}}
+{{"demo": "MusicPlayerSlider.js", "bg": "inline"}}
 
 ## Vertical sliders
 
