@@ -7,7 +7,7 @@
   "files": [],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
+    "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/core-downloads-tracker"
   },
   "license": "MIT",
