@@ -267,13 +267,13 @@ export default function createCssVarsProvider(options) {
 
     const element = (
       <React.Fragment>
-        {shouldGenerateStyleSheet && <GlobalStyles styles={theme.generateStyleSheets?.() || []} />}
         <ThemeProvider
           themeId={scopedTheme ? themeId : undefined}
           theme={resolveTheme ? resolveTheme(theme) : theme}
         >
           {children}
         </ThemeProvider>
+        {shouldGenerateStyleSheet && <GlobalStyles styles={theme.generateStyleSheets?.() || []} />}
       </React.Fragment>
     );
 
