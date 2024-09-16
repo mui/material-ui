@@ -30,6 +30,10 @@ The animations of the components rely on CSS as much as possible to work even be
 
 {{"demo": "CircularColor.js"}}
 
+### Circular size
+
+{{"demo": "CircularSize.js"}}
+
 ### Circular determinate
 
 {{"demo": "CircularDeterminate.js"}}

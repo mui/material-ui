@@ -7,7 +7,7 @@
   "bin": "./envinfo.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui",
+    "url": "git+https://github.com/mui/material-ui",
     "directory": "packages/mui-envinfo"
   },
   "license": "MIT",

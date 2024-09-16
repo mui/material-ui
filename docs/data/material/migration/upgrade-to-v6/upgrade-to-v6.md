@@ -360,6 +360,25 @@ As the `ListItem` no longer supports these props, the class names related to the
 
 In v6, the `children` prop passed to the Loading Button component is now wrapped in a `<span>` tag to avoid [issues](https://github.com/mui/material-ui/issues/27853) when using tools to translate websites.
 
+### Typography
+
+The `color` prop in the `Typography` component is not a [system prop](https://mui.com/system/properties/) anymore. You can use the `sx` prop instead:
+
+```diff
+-<Typography color={(theme) => theme.palette.primary.main}>
++<Typography sx={{ color: (theme) => theme.palette.primary.main }}>
+```
+
+:::info
+System props have been deprecated in favor of the `sx` prop. Check the [migration guide](/material-ui/migration/migrating-from-deprecated-apis/#system-props) for more information.
+:::
+
+You still can access some theme colors directly using the `color` prop. Check the [Typography component API page](/material-ui/api/typography/#typography-prop-color) for the whole list of colors.
+
+```jsx
+<Typography color="textSecondary">Secondary text</Typography>
+```
+
 ### useMediaQuery types
 
 The following deprecated types are removed in v6:
