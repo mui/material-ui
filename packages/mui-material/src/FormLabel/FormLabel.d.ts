@@ -58,7 +58,7 @@ export interface FormLabelOwnProps {
 
 export interface FormLabelTypeMap<
   AdditionalProps = {},
-  RootComponent extends React.ElementType = 'label',
+  RootComponent extends React.ElementType = 'legend',
 > {
   props: AdditionalProps & FormLabelBaseProps & FormLabelOwnProps;
   defaultComponent: RootComponent;

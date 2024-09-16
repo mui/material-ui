@@ -13,7 +13,7 @@ describe('<FormLabel />', () => {
 
   describeConformance(<FormLabel />, () => ({
     classes,
-    inheritComponent: 'label',
+    inheritComponent: 'legend',
     render,
     refInstanceof: window.HTMLLabelElement,
     testComponentPropWith: 'div',
@@ -26,7 +26,7 @@ describe('<FormLabel />', () => {
     it('should visually show an asterisk but not include it in the a11y tree', () => {
       const { container } = render(<FormLabel required>name</FormLabel>);
 
-      expect(container.querySelector('label')).to.have.text('name\u2009*');
+      expect(container.querySelector('legend')).to.have.text('name\u2009*');
       expect(container.querySelectorAll(`.${classes.asterisk}`)).to.have.lengthOf(1);
       expect(container.querySelectorAll(`.${classes.asterisk}`)[0]).toBeAriaHidden();
     });
@@ -34,7 +34,7 @@ describe('<FormLabel />', () => {
     it('should not show an asterisk by default', () => {
       const { container } = render(<FormLabel>name</FormLabel>);
 
-      expect(container.querySelector('label')).to.have.text('name');
+      expect(container.querySelector('legend')).to.have.text('name');
       expect(container.querySelectorAll(`.${classes.asterisk}`)).to.have.lengthOf(0);
     });
   });
@@ -61,7 +61,7 @@ describe('<FormLabel />', () => {
           wrapper: Wrapper,
         });
 
-        expect(container.querySelector('label')).to.have.class(classes.error);
+        expect(container.querySelector('legend')).to.have.class(classes.error);
       });
 
       it('should be overridden by props', () => {
@@ -72,10 +72,10 @@ describe('<FormLabel />', () => {
           },
         );
 
-        expect(container.querySelector('label')).not.to.have.class(classes.error);
+        expect(container.querySelector('legend')).not.to.have.class(classes.error);
 
         setProps({ error: true });
-        expect(container.querySelector('label')).to.have.class(classes.error);
+        expect(container.querySelector('legend')).to.have.class(classes.error);
       });
     });
 
@@ -95,12 +95,12 @@ describe('<FormLabel />', () => {
           </FormControl>,
         );
 
-        expect(container.querySelector('label')).not.to.have.class(classes.focused);
+        expect(container.querySelector('legend')).not.to.have.class(classes.focused);
 
         act(() => {
           formControlRef.current.onFocus();
         });
-        expect(container.querySelector('label')).to.have.class(classes.focused);
+        expect(container.querySelector('legend')).to.have.class(classes.focused);
       });
 
       it('should be overridden by props', () => {
@@ -121,13 +121,13 @@ describe('<FormLabel />', () => {
           formControlRef.current.onFocus();
         });
 
-        expect(container.querySelector('label')).to.have.class(classes.focused);
+        expect(container.querySelector('legend')).to.have.class(classes.focused);
 
         setProps({ focused: false });
-        expect(container.querySelector('label')).not.to.have.class(classes.focused);
+        expect(container.querySelector('legend')).not.to.have.class(classes.focused);
 
         setProps({ focused: true });
-        expect(container.querySelector('label')).to.have.class(classes.focused);
+        expect(container.querySelector('legend')).to.have.class(classes.focused);
       });
     });
 
