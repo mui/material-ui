@@ -104,5 +104,5 @@ Internal apps are often very specific to the needs of the organization, but hope
 - Do you wish you didn't have to do any maintenance on the front ends of your internal tools?
 
 Toolpad handles state management, data fetching, routing, and UI creation, and it can be imported directly into your code base to save you time.
-I encourage you to check out more [examples](https://mui.com/toolpad/studio/examples/) and visit our [GitHub repository](https://github.com/mui/toolpad/) to evaluate the product.
+I encourage you to check out more [examples](https://mui.com/toolpad/studio/examples/) and visit the [GitHub repository](https://github.com/mui/toolpad/) to evaluate the product.
 In case you need any further information, feel free to reach out to the team at toolpad@mui.com.
