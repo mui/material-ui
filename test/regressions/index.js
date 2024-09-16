@@ -149,7 +149,6 @@ const blacklist = [
   'docs-components-grid/InteractiveGrid.png', // Redux isolation
   'docs-components-grid/SpacingGrid.png', // Needs interaction
   'docs-components-hidden', // Need to dynamically resize to test
-  'docs-components-icons/FontAwesomeIconSize.png', // Relies on cascading network requests
   'docs-components-image-list', // Image don't load
   'docs-components-masonry/ImageMasonry.png', // Image don't load
   'docs-components-material-icons/synonyms.png', // No component
@@ -370,7 +369,7 @@ function App(props) {
       },
       custom: {
         families: ['Font Awesome 5 Free:n9'],
-        urls: ['https://use.fontawesome.com/releases/v5.1.0/css/all.css'],
+        urls: ['https://use.fontawesome.com/releases/v5.14.0/css/all.css'],
       },
       timeout: 20000,
       active: () => {
