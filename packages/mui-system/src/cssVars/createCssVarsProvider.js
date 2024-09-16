@@ -249,7 +249,7 @@ export default function createCssVarsProvider(options) {
                   console.error(
                     [
                       'MUI: The `setMode` function has no effect if `colorSchemeSelector` is not configured.',
-                      'Please create a theme with `createTheme({ cssVariables: { colorSchemeSelector: "class" | "data" } })`.',
+                      'To toggle the mode manually, please configure `colorSchemeSelector` to use a class or data attribute.',
                       'To learn more, visit https://mui.com/material-ui/customization/css-theme-variables/configuration/#toggling-dark-mode-manually',
                     ].join('\n'),
                   );
