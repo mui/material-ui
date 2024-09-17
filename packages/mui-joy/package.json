@@ -12,7 +12,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
+    "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-joy"
   },
   "license": "MIT",
@@ -58,10 +58,10 @@
     "chai": "^4.5.0",
     "fast-glob": "^3.3.2",
     "lodash": "^4.17.21",
-    "next": "^14.2.8",
+    "next": "^14.2.11",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sinon": "^18.0.0"
+    "sinon": "^18.0.1"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",

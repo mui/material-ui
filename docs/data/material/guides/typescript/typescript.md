@@ -16,7 +16,8 @@ For types to work, it's recommended that you have at least the following options
     "lib": ["es6", "dom"],
     "noImplicitAny": true,
     "noImplicitThis": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "allowSyntheticDefaultImports": true
   }
 }
 ```

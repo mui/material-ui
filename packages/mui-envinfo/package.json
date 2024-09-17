@@ -7,7 +7,7 @@
   "bin": "./envinfo.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui",
+    "url": "git+https://github.com/mui/material-ui",
     "directory": "packages/mui-envinfo"
   },
   "license": "MIT",
@@ -20,7 +20,7 @@
     "build": "node scripts/build"
   },
   "dependencies": {
-    "envinfo": "^7.13.0"
+    "envinfo": "^7.14.0"
   },
   "devDependencies": {
     "@types/chai": "^4.3.19",
