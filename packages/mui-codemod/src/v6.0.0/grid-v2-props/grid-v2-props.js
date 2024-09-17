@@ -192,6 +192,16 @@ export default function gridV2Props(file, api, options) {
       el.node.openingElement.attributes = el.node.openingElement.attributes.filter(
         (attr) => !attributesToPrune.includes(attr),
       );
+
+      const lightProp = el.node.openingElement.attributes.find(
+        (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'item',
+      );
+
+      if (lightProp) {
+        el.node.openingElement.attributes = el.node.openingElement.attributes.filter(
+          (attr) => attr.type === 'JSXAttribute' && attr.name.name !== 'item',
+        );
+      }
     });
 
   return root.toSource(printOptions);
