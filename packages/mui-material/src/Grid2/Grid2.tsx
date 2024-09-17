@@ -260,13 +260,7 @@ if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react/forbid-foreign-prop-types
     ...Component.propTypes,
     direction: requireProp('container'),
-    lg: requireProp('item'),
-    md: requireProp('item'),
-    sm: requireProp('item'),
     spacing: requireProp('container'),
-    wrap: requireProp('container'),
-    xs: requireProp('item'),
-    zeroMinWidth: requireProp('item'),
   };
 }
 
