@@ -7,18 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { TableVirtuoso } from 'react-virtuoso';
-
-// Deterministic pseudo random number. See https://stackoverflow.com/a/47593316
-function mulberry32(a) {
-  return () => {
-    /* eslint-disable */
-    let t = (a += 0x6d2b79f5);
-    t = Math.imul(t ^ (t >>> 15), t | 1);
-    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-    /* eslint-enable */
-  };
-}
+import Chance from 'chance';
 
 const sample = [
   ['Frozen yoghurt', 159, 6.0, 24, 4.0],
@@ -64,11 +53,10 @@ const columns = [
   },
 ];
 
-const random = mulberry32(1);
-const rows = Array.from({ length: 200 }, (_, index) => {
-  const randomSelection = sample[Math.floor(random() * sample.length)];
-  return createData(index, ...randomSelection);
-});
+const chance = new Chance(42);
+const rows = Array.from({ length: 200 }, (_, index) =>
+  createData(index, ...chance.pickone(sample)),
+);
 
 const VirtuosoTableComponents = {
   Scroller: React.forwardRef((props, ref) => (
