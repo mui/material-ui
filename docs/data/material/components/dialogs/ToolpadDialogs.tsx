@@ -31,7 +31,7 @@ function MyCustomDialog({ open, onClose }: Pick<DialogProps, 'open' | 'onClose'>
 function DemoContent() {
   const dialogs = useDialogs();
   return (
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
       <Button
         onClick={async () => {
           await dialogs.open(MyCustomDialog);
@@ -39,40 +39,42 @@ function DemoContent() {
       >
         Open a custom dialog!
       </Button>
-      <Button
-        onClick={async () => {
-          await dialogs.alert('This is an alert dialog');
-        }}
-      >
-        Alert
-      </Button>
-      <Button
-        onClick={async () => {
-          const confirmed = await dialogs.confirm(
-            'Are you sure you want to delete this?',
-            {
+      <div style={{ display: 'flex', gap: 16 }}>
+        <Button
+          onClick={async () => {
+            await dialogs.alert('This is an alert dialog');
+          }}
+        >
+          Alert
+        </Button>
+        <Button
+          onClick={async () => {
+            const confirmed = await dialogs.confirm(
+              'Are you sure you want to delete this?',
+              {
+                okText: 'Confirm',
+                cancelText: 'Cancel',
+              },
+            );
+            if (confirmed) {
+              dialogs.alert('Deleted!');
+            }
+          }}
+        >
+          Confirm
+        </Button>
+        <Button
+          onClick={async () => {
+            const name = await dialogs.prompt('Enter your name', {
               okText: 'Confirm',
               cancelText: 'Cancel',
-            },
-          );
-          if (confirmed) {
-            dialogs.alert('Deleted!');
-          }
-        }}
-      >
-        Confirm
-      </Button>
-      <Button
-        onClick={async () => {
-          const name = await dialogs.prompt('Enter your name', {
-            okText: 'Confirm',
-            cancelText: 'Cancel',
-          });
-          dialogs.alert(`Hello, ${name}!`);
-        }}
-      >
-        Prompt
-      </Button>
+            });
+            dialogs.alert(`Hello, ${name}!`);
+          }}
+        >
+          Prompt
+        </Button>
+      </div>
     </div>
   );
 }
