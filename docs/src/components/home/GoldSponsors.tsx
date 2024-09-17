@@ -75,7 +75,7 @@ const GOLDs = [
     src: 'https://images.opencollective.com/route4me/71fb6fa/avatar/40.png',
     srcSet: 'https://images.opencollective.com/route4me/71fb6fa/avatar/120.png 3x',
     name: 'Route4Me',
-    description: 'Trusted last mile route planning and route optimization.',
+    description: 'Trusted last mile route planning and optimization.',
     href: 'https://route4me.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
 ];
