@@ -3,7 +3,7 @@ title: MUI Core libraries support the Next.js App Router
 description: Material UI, Base UI, and Joy UI are now compatible with the App Router as Client Components. Get started using the latest Next.js features with MUI!
 date: 2023-07-18T00:00:00.000Z
 authors: ['samuelsycamore']
-card: true
+manualCard: true
 tags: ['Product']
 ---
 
@@ -34,7 +34,7 @@ Additionally, we've created guides to walk you through setting up an app using t
 We also have example repos for each, with everything already set up for you:
 
 - [Material UI example](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-ts)
-- [Base UI with Tailwind CSS example](https://github.com/mui/material-ui/tree/master/examples/base-ui-nextjs-tailwind-ts)
+- [Base UI with Tailwind CSS example](https://github.com/mui/material-ui/tree/master/examples/base-ui-nextjs-tailwind-ts)
 - [Joy UI example](https://github.com/mui/material-ui/tree/master/examples/joy-ui-nextjs-ts)
 
 ## What comes next

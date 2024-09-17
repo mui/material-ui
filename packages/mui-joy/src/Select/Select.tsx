@@ -246,7 +246,7 @@ const SelectListbox = styled(StyledList, {
     outline: 0,
     boxShadow: theme.shadow.md,
     borderRadius: `var(--List-radius, ${theme.vars.radius.sm})`,
-    // `unstable_popup-zIndex` is a private variable that lets other component, e.g. Modal, to override the z-index so that the listbox can be displayed above the Modal.
+    // `unstable_popup-zIndex` is a private variable that lets other component, for example Modal, to override the z-index so that the listbox can be displayed above the Modal.
     zIndex: `var(--unstable_popup-zIndex, ${theme.vars.zIndex.popup})`,
     ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.popup,
@@ -375,6 +375,7 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
 
   if (process.env.NODE_ENV !== 'production') {
     const registerEffect = formControl?.registerEffect;
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- process.env never changes
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (registerEffect) {
@@ -387,7 +388,8 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
 
   const disabledProp = inProps.disabled ?? formControl?.disabled ?? disabledExternalProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const color = inProps.color ?? (formControl?.error ? 'danger' : formControl?.color ?? colorProp);
+  const color =
+    inProps.color ?? (formControl?.error ? 'danger' : (formControl?.color ?? colorProp));
 
   const renderValue: (option: SelectValue<SelectOption<OptionValue>, Multiple>) => React.ReactNode =
     renderValueProp ?? defaultRenderValue;
@@ -626,12 +628,12 @@ interface SelectComponent {
       component: C;
       multiple?: Multiple;
     } & OverrideProps<SelectTypeMap<OptionValue, Multiple>, C>,
-  ): JSX.Element | null;
+  ): React.JSX.Element | null;
   <OptionValue extends {}, Multiple extends boolean = false>(
     props: {
       multiple?: Multiple;
     } & DefaultComponentProps<SelectTypeMap<OptionValue, Multiple>>,
-  ): JSX.Element | null;
+  ): React.JSX.Element | null;
   propTypes?: any;
 }
 

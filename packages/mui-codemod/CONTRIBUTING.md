@@ -4,7 +4,7 @@
 
 The codemod is a tool that helps developers migrate their codebase when we introduce changes in a new version. The changes could be deprecations, enhancements, or breaking changes.
 
-The codemods for JS files are based on [jscodeshift](https://github.com/facebook/jscodeshift) which is a wrapper of [recast](https://github.com/benjamn/recast).
+The codemods for JavaScript files are based on [jscodeshift](https://github.com/facebook/jscodeshift) which is a wrapper of [recast](https://github.com/benjamn/recast).
 
 The codemods for CSS files are based on [postcss](https://github.com/postcss/postcss).
 
@@ -13,6 +13,7 @@ The codemods for CSS files are based on [postcss](https://github.com/postcss/pos
 1. Create a new folder in `packages/mui-codemod/src/*/*` with the name of the codemod.
 2. The folder should include:
    - `<codemod>.js` - the transform implementation
+   - `index.js` - exports the transform function
    - `postcss-plugin.js` - the postcss plugin (optional)
    - `postcss.config.js` - the postcss config file (optional)
    - `<codemod>.test.js` - tests for the codemods (use jscodeshift from the `testUtils` folder)
@@ -22,7 +23,7 @@ The codemods for CSS files are based on [postcss](https://github.com/postcss/pos
      - `actual.css` - the input for the postcss plugin (optional)
      - `expected.css` - the expected output of the postcss plugin (optional)
 3. Use [astexplorer](https://astexplorer.net/) to check the AST types and properties
-   - For JS codemods set </> to @babel/parser because we use [`tsx`](https://github.com/benjamn/recast/blob/master/parsers/babel.ts) as a default parser.
+   - For JavaScript codemods set </> to @babel/parser because we use [`tsx`](https://github.com/benjamn/recast/blob/master/parsers/babel.ts) as a default parser.
    - For CSS codemods set </> to postcss
 4. [Test the codemod locally](#local)
 5. Add the codemod to README.md

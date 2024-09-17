@@ -7,6 +7,7 @@ const {
   getContents,
   getDescription,
   getCodeblock,
+  getFeatureList,
   getHeaders,
   getTitle,
 } = require('./parseMarkdown');
@@ -35,8 +36,11 @@ function resolveComponentApiUrl(productId, componentPkg, component) {
   if (productId === 'x-tree-view') {
     return `/x/api/tree-view/${kebabCase(component)}/`;
   }
-  if (componentPkg === 'mui-base' || BaseUIReexportedComponents.indexOf(component) >= 0) {
+  if (componentPkg === 'mui-base' || BaseUIReexportedComponents.includes(component)) {
     return `/base-ui/react-${kebabCase(component)}/components-api/#${kebabCase(component)}`;
+  }
+  if (productId === 'toolpad-core') {
+    return `/toolpad/core/api/${kebabCase(component)}/`;
   }
   return `/${productId}/api/${kebabCase(component)}/`;
 }
@@ -87,7 +91,7 @@ function prepareMarkdown(config) {
         throw new Error(`docs-infra: Missing description in the page: ${location}\n`);
       }
 
-      if (description.length > 170) {
+      if (description.length > 160) {
         throw new Error(
           [
             `docs-infra: The description "${description}" is too long (${description.length} characters).`,
@@ -109,7 +113,7 @@ This unstyled version of the component is the ideal choice for heavy customizati
         `);
       }
 
-      if (headers.components.length > 0) {
+      if (headers.components.length > 0 && headers.productId !== 'base-ui') {
         contents.push(`
 ## API
 
@@ -155,11 +159,16 @@ ${headers.hooks
             return null;
           }
         }
-
         const codeblock = getCodeblock(content);
 
         if (codeblock) {
           return codeblock;
+        }
+
+        const featureList = getFeatureList(content);
+
+        if (featureList) {
+          return featureList;
         }
 
         return render(content);

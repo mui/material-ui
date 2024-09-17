@@ -1,6 +1,4 @@
 /.git
-/.yarn
-/benchmark/**/dist
 /coverage
 /docs/export
 /docs/pages/playground/
@@ -19,12 +17,6 @@
 /packages/mui-icons-material/src/*.js
 /packages/mui-icons-material/templateSvgIcon.js
 /packages/mui-utils/macros/__fixtures__/
-/packages/pigment-react/utils/
-/packages/pigment-react/processors/
-/packages/pigment-react/exports/
-/packages/pigment-react/theme/
-/packages/pigment-react/tests/**/fixtures
-/packages/pigment-nextjs-plugin/loader.js
 # Ignore fixtures
 /packages-internal/scripts/typescript-to-proptypes/test/*/*
 /test/bundling/fixtures/**/*.fixture.js
@@ -35,6 +27,7 @@
 /tmp
 .next
 build
+dist
 node_modules
 .nyc_output
 pnpm-lock.yaml

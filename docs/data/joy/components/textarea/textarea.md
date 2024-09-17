@@ -10,7 +10,7 @@ unstyled: /base-ui/react-textarea-autosize/
 
 <p class="description">Textarea component gives you a textarea HTML element that automatically adjusts its height to match the length of the content within.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 ## Introduction
 
@@ -50,7 +50,7 @@ Toggle the palette that's being used to color the by text field by using the `co
 
 ### Form props
 
-Standard form attributes are supported e.g. `required`, `disabled`, etc.
+Standard form attributes are supported for example `required`, `disabled`, etc.
 
 {{"demo": "TextareaFormProps.js"}}
 

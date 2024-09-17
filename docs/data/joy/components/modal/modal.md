@@ -10,7 +10,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 
 <p class="description">The modal component provides a solid foundation for creating dialogs, popovers, lightboxes, or whatever else.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -53,7 +53,7 @@ export default function MyApp() {
 ### Basic usage
 
 The Modal accepts only a single React element as a child.
-That can be either a Joy UI component, e.g. [`Sheet`](/joy-ui/react-sheet/), or any other custom element.
+That can be either a Joy UI component, for example [`Sheet`](/joy-ui/react-sheet/), or any other custom element.
 
 Use the Modal Close component to render a close button that inherits the modal's `onClose` function.
 

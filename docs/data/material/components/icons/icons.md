@@ -26,17 +26,19 @@ You can [search the full list of these icons](/material-ui/material-icons/).
 
 Run one of the following commands to install it and save it to your `package.json` dependencies:
 
+<!-- #default-branch-switch -->
+
 <codeblock storageKey="package-manager">
 ```bash npm
 npm install @mui/icons-material
 ```
 
-```bash yarn
-yarn add @mui/icons-material
-```
-
 ```bash pnpm
 pnpm add @mui/icons-material
+```
+
+```bash yarn
+yarn add @mui/icons-material
 ```
 
 </codeblock>
@@ -297,10 +299,10 @@ const theme = createTheme({
 
 ## Font vs. SVGs: Which approach to use?
 
-Both approaches work fine, however there are some subtle differences, especially in terms of performance and rendering quality.
+Both approaches work fine, however, there are some subtle differences, especially in terms of performance and rendering quality.
 Whenever possible SVG is preferred as it allows code splitting, supports more icons, and renders faster and better.
 
-For more details, take a look at [why GitHub migrated from font icons to SVG icons](https://github.blog/2016-02-22-delivering-octicons-with-svg/).
+For more details, take a look at [why GitHub migrated from font icons to SVG icons](https://github.blog/engineering/delivering-octicons-with-svg/).
 
 ## Accessibility
 

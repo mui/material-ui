@@ -4,7 +4,7 @@ description: We are excited to introduce MUI X v5.0.0!
 date: 2021-11-22T00:00:00.000Z
 authors:
   ['oliviertassinari', 'm4theushw', 'flaviendelangle', 'DanailH', 'alexfauquette']
-card: true
+manualCard: true
 tags: ['MUI X', 'Product']
 ---
 
@@ -92,7 +92,7 @@ These changes improved the developer experience when using the `apiRef` methods:
 
 - We removed the `state` structure from the public API. Access to data in the state should always be done through `apiRef` methods (`apiRef.current.getSelectedRows`) or selectors (`selectedGridRowsSelector`).
 - We renamed most selectors to have a consistent naming convention, making it easier to deduce their name or infer purpose.
-- We restructured our state so that each feature has a single sub-state, and the feature hook is the only one to update it (e.g. `state.filter` is only managed by the `useGridFilter` hook, which exposes methods for both internal and 3rd party code to interact with this state).
+- We restructured our state so that each feature has a single sub-state, and the feature hook is the only one to update it (for example `state.filter` is only managed by the `useGridFilter` hook, which exposes methods for both internal and 3rd party code to interact with this state).
 
 The work on this topic isn't over. We have several developments in progress or under discussion to improve the developer experience when using the advanced features of the grid.
 Here are a few that should be release in the following months:
@@ -212,7 +212,7 @@ We plan to focus on it as long as necessary to deliver most of the advanced feat
 
 Once we would have grown the team and made enough progress, we will expand to more components.
 
-You can view our [public roadmap](https://github.com/mui/mui-x/projects/1) on GitHub to learn about what features we're working on, what stage they're at, and when we expect to bring them to you.
+You can view our [public roadmap](https://github.com/orgs/mui/projects/35) on GitHub to learn about what features we're working on, what stage they're at, and when we expect to bring them to you.
 
 ## Thank you
 

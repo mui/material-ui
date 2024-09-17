@@ -5,20 +5,14 @@ import Stack from '@mui/joy/Stack';
 
 export default function TypographyTitleBody() {
   return (
-    <Stack
-      spacing={2}
-      sx={{
-        maxWidth: '60ch',
-      }}
-    >
+    <Stack spacing={2} sx={{ maxWidth: '60ch' }}>
       <Card>
         <Typography level="title-lg">
           Title of the component{' '}
           <Typography
             level="title-lg"
             textColor="var(--joy-palette-success-plainColor)"
-            fontFamily="monospace"
-            sx={{ opacity: '50%' }}
+            sx={{ fontFamily: 'monospace', opacity: '50%' }}
           >
             title-lg
           </Typography>
@@ -29,8 +23,7 @@ export default function TypographyTitleBody() {
           <Typography
             level="body-md"
             textColor="var(--joy-palette-success-plainColor)"
-            fontFamily="monospace"
-            sx={{ opacity: '50%' }}
+            sx={{ fontFamily: 'monospace', opacity: '50%' }}
           >
             body-md
           </Typography>
@@ -42,8 +35,7 @@ export default function TypographyTitleBody() {
           <Typography
             level="title-md"
             textColor="var(--joy-palette-success-plainColor)"
-            fontFamily="monospace"
-            sx={{ opacity: '50%' }}
+            sx={{ fontFamily: 'monospace', opacity: '50%' }}
           >
             title-md
           </Typography>
@@ -54,19 +46,17 @@ export default function TypographyTitleBody() {
           <Typography
             level="body-md"
             textColor="var(--joy-palette-success-plainColor)"
-            fontFamily="monospace"
-            sx={{ opacity: '50%' }}
+            sx={{ fontFamily: 'monospace', opacity: '50%' }}
           >
             body-md
           </Typography>
         </Typography>
         <Typography level="body-sm">
-          Metadata, e.g. a date.{' '}
+          Metadata, for example a date.{' '}
           <Typography
             level="body-sm"
             textColor="var(--joy-palette-success-plainColor)"
-            fontFamily="monospace"
-            sx={{ opacity: '50%' }}
+            sx={{ fontFamily: 'monospace', opacity: '50%' }}
           >
             body-sm
           </Typography>
@@ -78,8 +68,7 @@ export default function TypographyTitleBody() {
           <Typography
             level="title-sm"
             textColor="var(--joy-palette-success-plainColor)"
-            fontFamily="monospace"
-            sx={{ opacity: '50%' }}
+            sx={{ fontFamily: 'monospace', opacity: '50%' }}
           >
             title-sm
           </Typography>
@@ -90,19 +79,17 @@ export default function TypographyTitleBody() {
           <Typography
             level="body-sm"
             textColor="var(--joy-palette-success-plainColor)"
-            fontFamily="monospace"
-            sx={{ opacity: '50%' }}
+            sx={{ fontFamily: 'monospace', opacity: '50%' }}
           >
             body-sm
           </Typography>
         </Typography>
         <Typography level="body-xs">
-          Metadata, e.g. a date.{' '}
+          Metadata, for example a date.{' '}
           <Typography
             level="body-xs"
             textColor="var(--joy-palette-success-plainColor)"
-            fontFamily="monospace"
-            sx={{ opacity: '50%' }}
+            sx={{ fontFamily: 'monospace', opacity: '50%' }}
           >
             body-xs
           </Typography>

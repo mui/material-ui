@@ -13,7 +13,7 @@ import Switch from '@mui/joy/Switch';
 export default function FlexAspectRatio() {
   const [flex, setFlex] = React.useState(false);
   return (
-    <Stack spacing={2} alignItems="center">
+    <Stack spacing={2} sx={{ alignItems: 'center' }}>
       <FormControl orientation="horizontal">
         <FormLabel>Flex</FormLabel>
         <Switch checked={flex} onChange={(event) => setFlex(event.target.checked)} />

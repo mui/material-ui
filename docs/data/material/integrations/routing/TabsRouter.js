@@ -66,7 +66,7 @@ function CurrentRoute() {
   const location = useLocation();
 
   return (
-    <Typography variant="body2" sx={{ pb: 2 }} color="text.secondary">
+    <Typography variant="body2" sx={{ color: 'text.secondary', pb: 2 }}>
       Current route: {location.pathname}
     </Typography>
   );

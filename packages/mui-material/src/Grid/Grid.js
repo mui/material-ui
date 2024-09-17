@@ -25,11 +25,6 @@ import useTheme from '../styles/useTheme';
 import GridContext from './GridContext';
 import gridClasses, { getGridUtilityClass } from './gridClasses';
 
-function getOffset(val) {
-  const parse = parseFloat(val);
-  return `${parse}${String(val).replace(String(parse), '') || 'px'}`;
-}
-
 export function generateGrid({ theme, ownerState }) {
   let size;
 
@@ -78,7 +73,7 @@ export function generateGrid({ theme, ownerState }) {
       if (ownerState.container && ownerState.item && ownerState.columnSpacing !== 0) {
         const themeSpacing = theme.spacing(ownerState.columnSpacing);
         if (themeSpacing !== '0px') {
-          const fullWidth = `calc(${width} + ${getOffset(themeSpacing)})`;
+          const fullWidth = `calc(${width} + ${themeSpacing})`;
           more = {
             flexBasis: fullWidth,
             maxWidth: fullWidth,
@@ -117,7 +112,7 @@ export function generateDirection({ theme, ownerState }) {
       flexDirection: propValue,
     };
 
-    if (propValue.indexOf('column') === 0) {
+    if (propValue.startsWith('column')) {
       output[`& > .${gridClasses.item}`] = {
         maxWidth: 'none',
       };
@@ -175,9 +170,9 @@ export function generateRowGap({ theme, ownerState }) {
 
       if (themeSpacing !== '0px') {
         return {
-          marginTop: `-${getOffset(themeSpacing)}`,
+          marginTop: theme.spacing(-propValue),
           [`& > .${gridClasses.item}`]: {
-            paddingTop: getOffset(themeSpacing),
+            paddingTop: themeSpacing,
           },
         };
       }
@@ -219,11 +214,12 @@ export function generateColumnGap({ theme, ownerState }) {
     styles = handleBreakpoints({ theme }, columnSpacingValues, (propValue, breakpoint) => {
       const themeSpacing = theme.spacing(propValue);
       if (themeSpacing !== '0px') {
+        const negativeValue = theme.spacing(-propValue);
         return {
-          width: `calc(100% + ${getOffset(themeSpacing)})`,
-          marginLeft: `-${getOffset(themeSpacing)}`,
+          width: `calc(100% + ${themeSpacing})`,
+          marginLeft: negativeValue,
           [`& > .${gridClasses.item}`]: {
-            paddingLeft: getOffset(themeSpacing),
+            paddingLeft: themeSpacing,
           },
         };
       }
@@ -313,6 +309,7 @@ const GridRoot = styled('div', {
     ];
   },
 })(
+  // FIXME(romgrk): Can't use memoTheme here
   ({ ownerState }) => ({
     boxSizing: 'border-box',
     ...(ownerState.container && {
@@ -401,6 +398,9 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getGridUtilityClass, classes);
 };
 
+/**
+ * @deprecated Use the [`Grid2`](https://mui.com/material-ui/react-grid2/) component instead.
+ */
 const Grid = React.forwardRef(function Grid(inProps, ref) {
   const themeProps = useThemeProps({ props: inProps, name: 'MuiGrid' });
   const { breakpoints } = useTheme();

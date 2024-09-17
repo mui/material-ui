@@ -1,4 +1,3 @@
-// inspire by reacts dangerfile
 // danger has to be the first thing required!
 import { danger, markdown } from 'danger';
 import { exec } from 'child_process';
@@ -13,7 +12,7 @@ const parsedSizeChangeThreshold = 300;
 const gzipSizeChangeThreshold = 100;
 
 /**
- * executes a git subcommand
+ * Executes a git subcommand.
  * @param {any} args
  */
 function git(args: any) {
@@ -40,8 +39,8 @@ async function reportBundleSizeCleanup() {
 }
 
 /**
- * creates a callback for Object.entries(comparison).filter that excludes every
- * entry that does not exceed the given threshold values for parsed and gzip size
+ * Creates a callback for Object.entries(comparison).filter that excludes every
+ * entry that does not exceed the given threshold values for parsed and gzip size.
  * @param {number} parsedThreshold
  * @param {number} gzipThreshold
  */
@@ -56,17 +55,7 @@ function createComparisonFilter(parsedThreshold: number, gzipThreshold: number) 
 }
 
 /**
- * checks if the bundle is of a package e.b. `@mui/material` but not
- * `@mui/material/Paper`
- * @param {[string, any]} comparisonEntry
- */
-function isPackageComparison(comparisonEntry: [string, any]) {
-  const [bundleKey] = comparisonEntry;
-  return /^@[\w-]+\/[\w-]+$/.test(bundleKey);
-}
-
-/**
- * Generates a user-readable string from a percentage change
+ * Generates a user-readable string from a percentage change.
  * @param {number} change
  * @param {string} goodEmoji emoji on reduction
  * @param {string} badEmoji emoji on increase
@@ -91,7 +80,7 @@ function generateEmphasizedChange([bundle, { parsed, gzip }]: [
 }
 
 /**
- * Puts results in different buckets wh
+ * Puts results in different buckets.
  * @param {*} results
  */
 function sieveResults<T>(results: Array<[string, T]>) {
@@ -137,8 +126,7 @@ async function loadLastComparison(
 }
 
 async function reportBundleSize() {
-  // Use git locally to grab the commit which represents the place
-  // where the branches differ
+  // Use git locally to grab the commit which represents the place where the branches differ
   const upstreamRepo = danger.github.pr.base.repo.full_name;
   const upstreamRef = danger.github.pr.base.ref;
   try {
@@ -161,12 +149,25 @@ async function reportBundleSize() {
   if (anyResultsChanges.length > 0) {
     const importantChanges = mainResults
       .filter(createComparisonFilter(parsedSizeChangeThreshold, gzipSizeChangeThreshold))
-      .filter(isPackageComparison)
+      .sort(([, a], [, b]) => {
+        const aDiff = Math.abs(a.parsed.absoluteDiff) + Math.abs(a.gzip.absoluteDiff);
+        const bDiff = Math.abs(b.parsed.absoluteDiff) + Math.abs(b.gzip.absoluteDiff);
+        return bDiff - aDiff;
+      })
       .map(generateEmphasizedChange);
 
     // have to guard against empty strings
     if (importantChanges.length > 0) {
-      markdown(importantChanges.join('\n'));
+      const maxVisible = 20;
+
+      const lines = importantChanges.slice(0, maxVisible);
+
+      const nrOfHiddenChanges = Math.max(0, importantChanges.length - maxVisible);
+      if (nrOfHiddenChanges > 0) {
+        lines.push(`and [${nrOfHiddenChanges} more changes](${detailedComparisonToolpadUrl})`);
+      }
+
+      markdown(lines.join('\n'));
     }
 
     const details = `## Bundle size report
@@ -194,7 +195,7 @@ function addDeployPreviewUrls() {
     const fragments = url.split('/').reverse();
     if (fragments[0] === fragments[1]) {
       // check if the end of pathname is the same as the one before
-      // e.g. `/data/material/getting-started/overview/overview.md
+      // for example `/data/material/getting-started/overview/overview.md
       url = fragments.slice(1).reverse().join('/');
     }
 

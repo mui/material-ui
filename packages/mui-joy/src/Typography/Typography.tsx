@@ -30,7 +30,7 @@ if (process.env.NODE_ENV !== 'production') {
  * @internal
  * Typography's level will be inherit within this context unless an explicit `level` prop is provided.
  *
- * This is used in components, e.g. Table, to inherit the parent's size by default.
+ * This is used in components, for example Table, to inherit the parent's size by default.
  */
 export const TypographyInheritContext = React.createContext(false);
 
@@ -111,7 +111,7 @@ const TypographyRoot = styled('span', {
     ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
     fontSize: `var(--Typography-fontSize, ${
       ownerState.level && ownerState.level !== 'inherit'
-        ? theme.typography[ownerState.level]?.fontSize ?? 'inherit'
+        ? (theme.typography[ownerState.level]?.fontSize ?? 'inherit')
         : 'inherit'
     })`,
     ...(ownerState.noWrap && {
@@ -194,7 +194,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     ...other
   } = props;
 
-  const color = inProps.color ?? (variant ? colorProp ?? 'neutral' : colorProp);
+  const color = inProps.color ?? (variant ? (colorProp ?? 'neutral') : colorProp);
 
   const level = nesting || inheriting ? inProps.level || 'inherit' : levelProp;
 
@@ -250,8 +250,8 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
         )}
 
         {hasSkeleton
-          ? React.cloneElement(children as React.ReactElement, {
-              variant: (children as React.ReactElement).props.variant || 'inline',
+          ? React.cloneElement(children as React.ReactElement<any>, {
+              variant: (children as React.ReactElement<any>).props.variant || 'inline',
             })
           : children}
         {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}

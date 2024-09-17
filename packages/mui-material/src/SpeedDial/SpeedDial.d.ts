@@ -5,12 +5,35 @@ import { InternalStandardProps as StandardProps } from '..';
 import { FabProps } from '../Fab';
 import { TransitionProps } from '../transitions';
 import { SpeedDialClasses } from './speedDialClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type CloseReason = 'toggle' | 'blur' | 'mouseLeave' | 'escapeKeyDown';
 export type OpenReason = 'toggle' | 'focus' | 'mouseEnter';
 
+export interface SpeedDialSlots {
+  /**
+   * The component that renders the transition.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default {}
+   */
+  transition: React.JSXElementConstructor<
+    TransitionProps & { children: React.ReactElement<unknown, any> }
+  >;
+}
+
+export type SpeedDialSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  SpeedDialSlots,
+  {
+    transition: SlotProps<React.JSXElementConstructor<TransitionProps>, {}, SpeedDialOwnerState>;
+  }
+>;
+
 export interface SpeedDialProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+  extends Omit<
+      StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+      'slots' | 'slotProps'
+    >,
+    SpeedDialSlotsAndSlotProps {
   /**
    * SpeedDialActions to display when the SpeedDial is `open`.
    */
@@ -35,7 +58,7 @@ export interface SpeedDialProps
    */
   hidden?: boolean;
   /**
-   * Props applied to the [`Fab`](/material-ui/api/fab/) element.
+   * Props applied to the [`Fab`](https://mui.com/material-ui/api/fab/) element.
    * @default {}
    */
   FabProps?: Partial<FabProps>;
@@ -72,7 +95,7 @@ export interface SpeedDialProps
   sx?: SxProps<Theme>;
   /**
    * The component used for the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Zoom
    */
   TransitionComponent?: React.JSXElementConstructor<TransitionProps>;
@@ -92,6 +115,8 @@ export interface SpeedDialProps
   TransitionProps?: TransitionProps;
 }
 
+export interface SpeedDialOwnerState extends SpeedDialProps {}
+
 /**
  *
  * Demos:
@@ -102,4 +127,4 @@ export interface SpeedDialProps
  *
  * - [SpeedDial API](https://mui.com/material-ui/api/speed-dial/)
  */
-export default function SpeedDial(props: SpeedDialProps): JSX.Element;
+export default function SpeedDial(props: SpeedDialProps): React.JSX.Element;

@@ -13,28 +13,30 @@ export default function TaskCard() {
     <Fade in timeout={700}>
       <Card
         data-mui-color-scheme="dark"
-        sx={(theme) => ({
+        sx={{
           minWidth: 280,
           maxWidth: 360,
           minHeight: 280,
           display: 'flex',
           flexDirection: 'column',
           p: 3,
-          background: `linear-gradient(to right bottom, ${
-            (theme.vars || theme).palette.primary[500]
-          }, ${(theme.vars || theme).palette.primary[600]} 120%)`,
-          boxShadow: '0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04)',
-        })}
+          background:
+            'linear-gradient(180deg, var(--muidocs-palette-primary-600) 0%, var(--muidocs-palette-primary-700) 100%)',
+          boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.04)',
+        }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.8 }}>
           <ScheduleRounded fontSize="inherit" />
-          <Typography variant="caption" fontWeight="semiBold">
+          <Typography variant="caption" sx={{ fontWeight: 'semiBold' }}>
             March 25th
           </Typography>
         </Box>
         <Box sx={{ my: 'auto' }}>
           <CodeRounded />
-          <Typography fontSize={18} component="div" fontWeight="semiBold" sx={{ lineHeight: 1.4 }}>
+          <Typography
+            component="div"
+            sx={{ fontSize: 18, fontWeight: 'semiBold', lineHeight: 1.4 }}
+          >
             Customize every button and chip instance primary color
           </Typography>
         </Box>
@@ -54,10 +56,14 @@ export default function TaskCard() {
             />
           </Box>
           <div>
-            <Typography color="primary.100" fontWeight="semiBold" fontSize={12}>
+            <Typography sx={{ color: 'primary.100', fontWeight: 'semiBold', fontSize: 12 }}>
               Assigned to
             </Typography>
-            <Typography id="demo-task-card-assignee-name" variant="body2" fontWeight="semiBold">
+            <Typography
+              id="demo-task-card-assignee-name"
+              variant="body2"
+              sx={{ fontWeight: 'semiBold' }}
+            >
               Lucas Smith
             </Typography>
           </div>
@@ -77,7 +83,7 @@ export default function TaskCard() {
               },
             }}
           />
-          <Typography color="primary.50" variant="body2" fontWeight={700} sx={{ ml: 2 }}>
+          <Typography variant="body2" sx={{ color: 'primary.50', fontWeight: 700, ml: 2 }}>
             60%
           </Typography>
         </Box>

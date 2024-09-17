@@ -8,6 +8,8 @@
 
 Download the example [or clone the repo](https://github.com/mui/material-ui):
 
+<!-- #default-branch-switch -->
+
 ```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/joy-ui-vite-ts
 cd joy-ui-vite-ts

@@ -1,15 +1,14 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import { ComponentClassDefinition } from '@mui-internal/docs-utils';
+import { useTranslate } from '@mui/docs/i18n';
 import { styled, alpha } from '@mui/material/styles';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
-} from 'docs/src/modules/brandingTheme';
-import { getHash } from 'docs/src/modules/components/ApiPage/list/ClassesList';
+} from '@mui/docs/branding';
+import { ClassDefinition } from 'docs/src/modules/components/ApiPage/definitions/classes';
 import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
-import { useTranslate } from '@mui/docs/i18n';
-import ApiWarning from 'docs/src/modules/components/ApiPage/ApiWarning';
+import ApiWarningAlert from 'docs/src/modules/components/ApiPage/ApiWarningAlert';
 
 const StyledTable = styled('table')(
   ({ theme }) => ({
@@ -37,9 +36,6 @@ const StyledTable = styled('table')(
       borderColor: alpha(darkTheme.palette.primary[100], 0.8),
       backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
     },
-    '& .classes-table-alert': {
-      marginTop: 12,
-    },
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
@@ -56,13 +52,12 @@ const StyledTable = styled('table')(
 );
 
 interface ClassesTableProps {
-  componentName: string;
-  classes: ComponentClassDefinition[];
+  classes: ClassDefinition[];
   displayClassKeys?: boolean;
 }
 
 export default function ClassesTable(props: ClassesTableProps) {
-  const { classes, componentName, displayClassKeys } = props;
+  const { classes, displayClassKeys } = props;
   const t = useTranslate();
 
   return (
@@ -77,10 +72,11 @@ export default function ClassesTable(props: ClassesTableProps) {
         </thead>
         <tbody>
           {classes.map((params) => {
-            const { className, key, description, isGlobal, isDeprecated, deprecationInfo } = params;
+            const { className, hash, key, description, isGlobal, isDeprecated, deprecationInfo } =
+              params;
 
             return (
-              <tr key={className} id={getHash({ componentName, className: key })}>
+              <tr key={className} id={hash}>
                 <td className="algolia-lvl3">
                   <span className="class-name">.{className}</span>
                 </td>
@@ -94,11 +90,11 @@ export default function ClassesTable(props: ClassesTableProps) {
                     }}
                   />
                   {isDeprecated && (
-                    <ApiWarning className="classes-table-alert">
-                      {t('api-docs.deprecated')}
+                    <ApiWarningAlert>
+                      <b>{t('api-docs.deprecated')}</b>
                       {deprecationInfo && (
                         <React.Fragment>
-                          {' - '}
+                          {'－'}
                           <span
                             dangerouslySetInnerHTML={{
                               __html: deprecationInfo,
@@ -106,7 +102,7 @@ export default function ClassesTable(props: ClassesTableProps) {
                           />
                         </React.Fragment>
                       )}
-                    </ApiWarning>
+                    </ApiWarningAlert>
                   )}
                 </td>
               </tr>

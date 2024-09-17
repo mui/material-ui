@@ -20,11 +20,11 @@ export interface StepContentProps extends StandardProps<React.HTMLAttributes<HTM
   sx?: SxProps<Theme>;
   /**
    * The component used for the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
    */
   TransitionComponent?: React.JSXElementConstructor<
-    TransitionProps & { children: React.ReactElement<any, any> }
+    TransitionProps & { children: React.ReactElement<unknown, any> }
   >;
   /**
    * Adjust the duration of the content expand transition.
@@ -53,4 +53,4 @@ export type StepContentClasskey = keyof NonNullable<StepContentProps['classes']>
  *
  * - [StepContent API](https://mui.com/material-ui/api/step-content/)
  */
-export default function StepContent(props: StepContentProps): JSX.Element;
+export default function StepContent(props: StepContentProps): React.JSX.Element;

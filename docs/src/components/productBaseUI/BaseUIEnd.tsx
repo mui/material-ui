@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { alpha } from '@mui/material/styles';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
 import CompareIcon from '@mui/icons-material/Compare';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
-import { GlowingIconContainer } from 'docs/src/components/action/InfoCard';
+import { GlowingIconContainer } from '@mui/docs/InfoCard';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
@@ -27,7 +27,7 @@ export default function BaseUIEnd() {
       }}
     >
       <Grid container spacing={{ xs: 6, sm: 10 }} alignItems="center">
-        <Grid xs={12} sm={6}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <SectionHeadline
             overline="Community"
             title={
@@ -49,12 +49,12 @@ export default function BaseUIEnd() {
             altInstallation="npm install @mui/base"
           />
         </Grid>
-        <Grid xs={12} sm={6}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <List sx={{ '& > li': { alignItems: 'flex-start' } }}>
             <ListItem sx={{ p: 0, mb: 4, gap: 2.5 }}>
               <GlowingIconContainer icon={<CompareIcon color="primary" />} />
               <div>
-                <Typography color="text.primary" fontWeight="semiBold" gutterBottom>
+                <Typography gutterBottom sx={{ color: 'text.primary', fontWeight: 'semiBold' }}>
                   Base UI vs. Material UI
                 </Typography>
                 <Typography>
@@ -66,7 +66,7 @@ export default function BaseUIEnd() {
             <ListItem sx={{ p: 0, gap: 2.5 }}>
               <GlowingIconContainer icon={<StyleRoundedIcon color="primary" />} />
               <div>
-                <Typography color="text.primary" fontWeight="semiBold" gutterBottom>
+                <Typography gutterBottom sx={{ color: 'text.primary', fontWeight: 'semiBold' }}>
                   Does it come with styles?
                 </Typography>
                 <Typography>

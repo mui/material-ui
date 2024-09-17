@@ -17,11 +17,12 @@ export default function NotificationCard() {
           p: 2,
           gap: 2,
           maxWidth: 283,
+          borderColor: 'grey.200',
           boxShadow: `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
           ...theme.applyDarkStyles({
             bgcolor: 'primaryDark.900',
             borderColor: 'primaryDark.700',
-            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
+            boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
           }),
         })}
       >
@@ -41,7 +42,7 @@ export default function NotificationCard() {
         >
           <Avatar
             slotProps={{ img: { 'aria-labelledby': 'demo-notification-card-messenger-name' } }}
-            src="/static/images/avatar/3-sm.jpeg"
+            src="/static/images/avatar/3.jpg"
             sx={{ width: 40, height: 40 }}
           />
         </Box>
@@ -49,31 +50,30 @@ export default function NotificationCard() {
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Typography
               id="demo-notification-card-messenger-name"
-              color="primary.main"
-              fontWeight="semiBold"
-              fontSize={12}
               gutterBottom
+              sx={{ color: 'primary.main', fontWeight: 'semiBold', fontSize: 12 }}
             >
               Angela Erickson
             </Typography>
-            <Typography color="text.secondary" variant="caption">
+            <Typography variant="caption" sx={{ color: 'text.secondary' }}>
               09:41
             </Typography>
           </Box>
           <Box sx={{ display: 'flex', gap: 2 }}>
             <div>
-              <Typography fontWeight="semiBold" fontSize={14}>
+              <Typography sx={{ fontWeight: 'semiBold', fontSize: 14 }}>
                 Incredible discoveries
               </Typography>
-              <Typography fontSize={14} color="text.secondary">
+              <Typography sx={{ fontSize: 14, color: 'text.secondary' }}>
                 It&apos;s about Material UI & Base UI...
               </Typography>
             </div>
             <Chip
               label="3"
-              color="success"
               size="small"
-              sx={{ ml: 'auto', color: '#fff', fontSize: '0.75rem', height: 18 }}
+              variant="outlined"
+              color="success"
+              sx={{ ml: 'auto', fontSize: '0.75rem', height: 18 }}
             />
           </Box>
         </Box>

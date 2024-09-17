@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Paper from '@mui/material/Paper';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
@@ -8,56 +8,57 @@ import Link from '@mui/material/Link';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import CloudRoundedIcon from '@mui/icons-material/CloudRounded';
 
+// #default-branch-switch
 const examples = [
   {
     name: 'Next.js App Router',
-    label: 'View JS example',
-    tsLabel: 'View TS example',
+    label: 'View JavaScript',
+    tsLabel: 'View TypeScript',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs',
     tsLink: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-ts',
     src: '/static/images/examples/next.svg',
   },
   {
-    name: 'Vite.js',
-    label: 'View JS example',
-    tsLabel: 'View TS example',
-    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-vite',
-    tsLink: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-vite-ts',
-    src: '/static/images/examples/vite.svg',
-  },
-  {
     name: 'Next.js Pages Router',
-    label: 'View JS example',
-    tsLabel: 'View TS example',
+    label: 'View JavaScript',
+    tsLabel: 'View TypeScript',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-pages-router',
     tsLink:
       'https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-pages-router-ts',
     src: '/static/images/examples/next.svg',
   },
   {
+    name: 'Vite.js',
+    label: 'View JavaScript',
+    tsLabel: 'View TypeScript',
+    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-vite',
+    tsLink: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-vite-ts',
+    src: '/static/images/examples/vite.svg',
+  },
+  {
     name: 'Remix',
-    label: 'View TS example',
+    label: 'View TypeScript',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-remix-ts',
     src: '/static/images/examples/remix.svg',
   },
   {
-    name: 'Tailwind CSS + CRA',
-    label: 'View TS example',
-    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-tailwind-ts',
-    src: '/static/images/examples/tailwindcss.svg',
-  },
-  {
     name: 'Create React App',
-    label: 'View JS example',
-    tsLabel: 'View TS example',
+    label: 'View JavaScript',
+    tsLabel: 'View TypeScript',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-cra',
     tsLink: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-ts',
     src: '/static/images/examples/cra.svg',
   },
   {
+    name: 'Tailwind CSS + Create React App',
+    label: 'View TypeScript',
+    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-tailwind-ts',
+    src: '/static/images/examples/tailwindcss.svg',
+  },
+  {
     name: 'styled-components',
-    label: 'View JS example',
-    tsLabel: 'View TS example',
+    label: 'View JavaScript',
+    tsLabel: 'View TypeScript',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components',
     tsLink:
       'https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components-ts',
@@ -65,33 +66,39 @@ const examples = [
   },
   {
     name: 'Preact',
-    label: 'View JS example',
+    label: 'View JavaScript',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-preact',
     src: '/static/images/examples/preact.svg',
   },
   {
     name: 'CDN',
-    label: 'View JS example',
+    label: 'View JavaScript',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-via-cdn',
     src: <CloudRoundedIcon />,
   },
   {
     name: 'Express.js (server-rendered)',
-    label: 'View JS example',
+    label: 'View JavaScript',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-express-ssr',
     src: '/static/images/examples/express.png',
   },
   {
     name: 'Gatsby',
-    label: 'View JS example',
+    label: 'View JavaScript',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-gatsby',
     src: '/static/images/examples/gatsby.svg',
   },
   {
     name: 'React-admin',
-    label: 'View TS example',
+    label: 'View TypeScript',
     link: 'https://github.com/marmelab/material-ui-react-admin',
     src: '/static/images/examples/reactadmin.svg',
+  },
+  {
+    name: 'Refine',
+    label: 'View TypeScript',
+    link: 'https://github.com/refinedev/refine/tree/master/examples/with-material-ui-vite',
+    src: '/static/images/examples/refine.svg',
   },
 ];
 
@@ -99,7 +106,7 @@ export default function MaterialUIExampleCollection() {
   return (
     <Grid container spacing={2}>
       {examples.map((example) => (
-        <Grid key={example.name} xs={12} sm={6}>
+        <Grid key={example.name} size={{ xs: 12, sm: 6 }}>
           <Paper
             variant="outlined"
             sx={(theme) => ({
@@ -107,12 +114,7 @@ export default function MaterialUIExampleCollection() {
               display: 'flex',
               alignItems: 'center',
               gap: 2,
-              background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
-              ...theme.applyDarkStyles({
-                bgcolor: 'primaryDark.900',
-                background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
-                borderColor: 'primaryDark.700',
-              }),
+              background: `${(theme.vars || theme).palette.gradients.radioSubtle}`,
             })}
           >
             <Avatar
@@ -127,20 +129,14 @@ export default function MaterialUIExampleCollection() {
                 : { children: example.src })}
             />
             <div>
-              <Typography fontWeight="medium" className="algolia-lvl3">
+              <Typography className="algolia-lvl3" sx={{ fontWeight: 'medium' }}>
                 {example.name}
               </Typography>
               <Box
                 data-ga-event-category="material-ui-example"
                 data-ga-event-label={example.name}
                 data-ga-event-action="click"
-                sx={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  alignItems: 'center',
-                  mt: 0.5,
-                  gap: 0.2,
-                }}
+                sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', mt: 0.5, gap: 0.2 }}
               >
                 <Link
                   href={example.link}
@@ -157,13 +153,9 @@ export default function MaterialUIExampleCollection() {
                   <React.Fragment>
                     <Typography
                       variant="caption"
-                      sx={{
-                        display: { xs: 'none', sm: 'block' },
-                        opacity: 0.2,
-                        mr: 0.75,
-                      }}
+                      sx={{ display: { xs: 'none', sm: 'block' }, opacity: 0.1, mr: 1 }}
                     >
-                      &bull;
+                      /
                     </Typography>
                     <Link
                       href={example.tsLink}

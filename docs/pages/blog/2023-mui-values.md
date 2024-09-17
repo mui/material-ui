@@ -4,7 +4,7 @@ description: After significant growth, we united as a team to rediscover the val
 date: 2023-09-26T00:00:00.000Z
 authors: ['mikailaread']
 tags: ['Company']
-card: true
+manualCard: true
 ---
 
 ## Why we chose to revise our core values

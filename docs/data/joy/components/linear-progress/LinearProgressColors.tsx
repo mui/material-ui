@@ -12,14 +12,7 @@ export default function LinearProgressColors() {
   const [variant, setVariant] = React.useState<VariantProp>('soft');
 
   return (
-    <Box
-      sx={{
-        width: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        gap: 3,
-      }}
-    >
+    <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', gap: 3 }}>
       <Stack spacing={2} sx={{ flex: 1 }}>
         <LinearProgress color="primary" variant={variant} />
         <LinearProgress color="neutral" variant={variant} />
@@ -37,10 +30,9 @@ export default function LinearProgressColors() {
       >
         <Typography
           level="body-sm"
-          fontWeight="xl"
           id="variant-label"
           textColor="text.primary"
-          mb={1}
+          sx={{ fontWeight: 'xl', mb: 1 }}
         >
           Variant:
         </Typography>

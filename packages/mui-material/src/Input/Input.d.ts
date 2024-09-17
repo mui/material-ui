@@ -10,6 +10,7 @@ export interface InputProps extends StandardProps<InputBaseProps> {
   classes?: Partial<InputClasses>;
   /**
    * If `true`, the `input` will not have an underline.
+   * @default false
    */
   disableUnderline?: boolean;
   /**
@@ -29,6 +30,6 @@ export interface InputProps extends StandardProps<InputBaseProps> {
  * - [Input API](https://mui.com/material-ui/api/input/)
  * - inherits [InputBase API](https://mui.com/material-ui/api/input-base/)
  */
-declare const Input: ((props: InputProps) => JSX.Element) & { muiName: string };
+declare const Input: ((props: InputProps) => React.JSX.Element) & { muiName: string };
 
 export default Input;

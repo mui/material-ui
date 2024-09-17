@@ -1,5 +1,0 @@
-<CssVarsProvider theme={customTheme}>
-  <Button color="primary" variant="filled">
-    Button
-  </Button>
-</CssVarsProvider>

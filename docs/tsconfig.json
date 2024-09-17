@@ -2,6 +2,7 @@
   "extends": "../tsconfig.json",
   "include": ["next-env.d.ts", "types", "src", "pages", "data", "next.config.mjs"],
   "compilerOptions": {
+    "moduleResolution": "Bundler",
     "allowJs": true,
     "isolatedModules": true,
     /* files are emitted by babel */
@@ -10,7 +11,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "types": ["react"],
+    "types": ["react", "mocha"],
     "incremental": true
   },
   "exclude": ["node_modules"]

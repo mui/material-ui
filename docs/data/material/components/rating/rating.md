@@ -4,13 +4,14 @@ title: React Rating component
 components: Rating
 githubLabel: 'component: rating'
 waiAria: https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating
+githubSource: packages/mui-material/src/Rating
 ---
 
 # Rating
 
 <p class="description">Ratings provide insight regarding others' opinions and experiences, and can allow the user to submit a rating of their own.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic rating
 
@@ -58,7 +59,7 @@ The accessibility of this component relies on:
 - A radio group with its fields visually hidden.
   It contains six radio buttons, one for each star, and another for 0 stars that is checked by default. Be sure to provide a value for the `name` prop that is unique to the parent form.
 - Labels for the radio buttons containing actual text ("1 Star", "2 Stars", …).
-  Be sure to provide a suitable function to the `getLabelText` prop when the page is in a language other than English. You can use the [included locales](https://mui.com/material-ui/guides/localization/), or provide your own.
+  Be sure to provide a suitable function to the `getLabelText` prop when the page is in a language other than English. You can use the [included locales](/material-ui/guides/localization/), or provide your own.
 - A visually distinct appearance for the rating icons.
   By default, the rating component uses both a difference of color and shape (filled and empty icons) to indicate the value. In the event that you are using color as the only means to indicate the value, the information should also be also displayed as text, as in this demo. This is important to match [success Criterion 1.4.1](https://www.w3.org/TR/WCAG21/#use-of-color) of WCAG2.1.
 

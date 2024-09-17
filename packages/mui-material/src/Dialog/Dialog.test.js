@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Modal from '@mui/material/Modal';
 import Dialog, { dialogClasses as classes } from '@mui/material/Dialog';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -20,14 +20,14 @@ function userClick(element) {
 }
 
 /**
- * @param {typeof import('@mui-internal/test-utils').screen} view
+ * @param {typeof import('@mui/internal-test-utils').screen} view
  */
 function findBackdrop(view) {
   return view.getByRole('dialog').parentElement;
 }
 
 /**
- * @param {typeof import('@mui-internal/test-utils').screen} view
+ * @param {typeof import('@mui/internal-test-utils').screen} view
  */
 function clickBackdrop(view) {
   userClick(findBackdrop(view));
@@ -48,13 +48,7 @@ describe('<Dialog />', () => {
       testVariantProps: { variant: 'foo' },
       testDeepOverrides: { slotName: 'paper', slotClassName: classes.paper },
       refInstanceof: window.HTMLDivElement,
-      skip: [
-        'componentProp',
-        'componentsProp',
-        'themeVariants',
-        // react-transition-group issue
-        'reactTestRenderer',
-      ],
+      skip: ['componentProp', 'componentsProp', 'themeVariants'],
     }),
   );
 
@@ -187,6 +181,28 @@ describe('<Dialog />', () => {
       expect(onClose.callCount).to.equal(1);
     });
 
+    it('calls onBackdropClick when onClick callback also exists', () => {
+      const onBackdropClick = spy();
+      const onClick = spy();
+      render(
+        <Dialog
+          onClick={onClick}
+          onClose={(event, reason) => {
+            if (reason === 'backdropClick') {
+              onBackdropClick();
+            }
+          }}
+          open
+        >
+          foo
+        </Dialog>,
+      );
+
+      clickBackdrop(screen);
+      expect(onBackdropClick.callCount).to.equal(1);
+      expect(onClick.callCount).to.equal(1);
+    });
+
     it('should ignore the backdrop click if the event did not come from the backdrop', () => {
       const onBackdropClick = spy();
       const { getByRole } = render(
@@ -301,6 +317,35 @@ describe('<Dialog />', () => {
         </Dialog>,
       );
       expect(getByTestId('paper')).not.to.have.class(classes.paperFullScreen);
+    });
+
+    it('scrolls if overflown on the Y axis', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const ITEM_HEIGHT = 100;
+      const ITEM_COUNT = 10;
+
+      const { getByTestId } = render(
+        <Dialog
+          open
+          fullScreen
+          PaperProps={{ 'data-testid': 'paper', sx: { height: ITEM_HEIGHT } }}
+        >
+          {Array.from(Array(ITEM_COUNT).keys()).map((item) => (
+            <div key={item} style={{ flexShrink: 0, height: ITEM_HEIGHT }}>
+              {item}
+            </div>
+          ))}
+        </Dialog>,
+      );
+      const paperElement = getByTestId('paper');
+      expect(paperElement.scrollTop).to.equal(0);
+      expect(paperElement.clientHeight).to.equal(ITEM_HEIGHT);
+      expect(paperElement.scrollHeight).to.equal(ITEM_HEIGHT * ITEM_COUNT);
+      fireEvent.scroll(paperElement, { target: { scrollTop: ITEM_HEIGHT } });
+      expect(paperElement.scrollTop).to.equal(ITEM_HEIGHT);
     });
   });
 

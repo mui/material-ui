@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { act, createRenderer, fireEvent, within, screen } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, within, screen } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Fade from '@mui/material/Fade';
 import Modal, { modalClasses as classes } from '@mui/material/Modal';
@@ -43,8 +43,6 @@ describe('<Modal />', () => {
         'componentsProp', // TODO isRTL is leaking, why do we even have it in the first place?
         'themeDefaultProps', // portal, can't determine the root
         'themeStyleOverrides', // portal, can't determine the root
-        'reactTestRenderer', // portal https://github.com/facebook/react/issues/11565
-        'slotPropsCallback', // not supported yet
       ],
     }),
   );

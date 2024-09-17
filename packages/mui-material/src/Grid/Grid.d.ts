@@ -149,6 +149,9 @@ export interface GridOwnProps extends SystemProps<Theme>, Breakpoints {
   zeroMinWidth?: boolean;
 }
 
+/**
+ * @deprecated Use the [`Grid2`](https://mui.com/material-ui/react-grid2/) component instead.
+ */
 export interface GridTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = 'div',
@@ -166,9 +169,14 @@ export interface GridTypeMap<
  * API:
  *
  * - [Grid API](https://mui.com/material-ui/api/grid/)
+ *
+ * @deprecated Use the [`Grid2`](https://mui.com/material-ui/react-grid2/) component instead.
  */
 declare const Grid: OverridableComponent<GridTypeMap>;
 
+/**
+ * @deprecated Use the [`Grid2`](https://mui.com/material-ui/react-grid2/) component instead.
+ */
 export type GridProps<
   RootComponent extends React.ElementType = GridTypeMap['defaultComponent'],
   AdditionalProps = {},

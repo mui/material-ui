@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { act, createRenderer } from '@mui-internal/test-utils';
+import { act, createRenderer } from '@mui/internal-test-utils';
 import FormLabel, { formLabelClasses as classes } from '@mui/material/FormLabel';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
 import { hexToRgb } from '@mui/material/styles';
@@ -178,6 +178,16 @@ describe('<FormLabel />', () => {
       expect(container.querySelector(`.${classes.colorSecondary}`)).to.have.class(classes.error);
       expect(getByTestId('FormLabel')).toHaveComputedStyle({
         color: hexToRgb(defaultTheme.palette.error.main),
+      });
+    });
+
+    it('should have the disabled class and style, even when focused', () => {
+      const { container, getByTestId } = render(
+        <FormLabel data-testid="FormLabel" color="secondary" focused disabled />,
+      );
+      expect(container.querySelector(`.${classes.colorSecondary}`)).to.have.class(classes.disabled);
+      expect(getByTestId('FormLabel')).toHaveComputedStyle({
+        color: defaultTheme.palette.text.disabled,
       });
     });
   });

@@ -9,11 +9,11 @@ import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 
 function not(a: readonly number[], b: readonly number[]) {
-  return a.filter((value) => b.indexOf(value) === -1);
+  return a.filter((value) => !b.includes(value));
 }
 
 function intersection(a: readonly number[], b: readonly number[]) {
-  return a.filter((value) => b.indexOf(value) !== -1);
+  return a.filter((value) => b.includes(value));
 }
 
 export default function TransferList() {
@@ -73,7 +73,7 @@ export default function TransferList() {
             >
               <ListItemIcon>
                 <Checkbox
-                  checked={checked.indexOf(value) !== -1}
+                  checked={checked.includes(value)}
                   tabIndex={-1}
                   disableRipple
                   inputProps={{
@@ -90,10 +90,14 @@ export default function TransferList() {
   );
 
   return (
-    <Grid container spacing={2} justifyContent="center" alignItems="center">
+    <Grid
+      container
+      spacing={2}
+      sx={{ justifyContent: 'center', alignItems: 'center' }}
+    >
       <Grid item>{customList(left)}</Grid>
       <Grid item>
-        <Grid container direction="column" alignItems="center">
+        <Grid container direction="column" sx={{ alignItems: 'center' }}>
           <Button
             sx={{ my: 0.5 }}
             variant="outlined"

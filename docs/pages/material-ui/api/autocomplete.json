@@ -28,7 +28,8 @@
         "name": "shape",
         "description": "{ clearIndicator?: object, paper?: object, popper?: object, popupIndicator?: object }"
       },
-      "default": "{}"
+      "deprecated": true,
+      "deprecationInfo": "Use the <code>slotProps</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "defaultValue": {
       "type": { "name": "custom", "description": "any" },
@@ -172,7 +173,14 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ clearIndicator?: object, paper?: object, popper?: object, popupIndicator?: object }"
+        "description": "{ chip?: func<br>&#124;&nbsp;object, clearIndicator?: func<br>&#124;&nbsp;object, listbox?: func<br>&#124;&nbsp;object, paper?: func<br>&#124;&nbsp;object, popper?: func<br>&#124;&nbsp;object, popupIndicator?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ listbox?: elementType, paper?: elementType, popper?: elementType }"
       },
       "default": "{}"
     },
@@ -189,6 +197,26 @@
   "imports": [
     "import Autocomplete from '@mui/material/Autocomplete';",
     "import { Autocomplete } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "listbox",
+      "description": "The component used to render the listbox.",
+      "default": "'ul'",
+      "class": "MuiAutocomplete-listbox"
+    },
+    {
+      "name": "paper",
+      "description": "The component used to render the body of the popup.",
+      "default": "Paper",
+      "class": "MuiAutocomplete-paper"
+    },
+    {
+      "name": "popper",
+      "description": "The component used to position the popup.",
+      "default": "Popper",
+      "class": "MuiAutocomplete-popper"
+    }
   ],
   "classes": [
     {
@@ -270,12 +298,6 @@
       "isGlobal": false
     },
     {
-      "key": "listbox",
-      "className": "MuiAutocomplete-listbox",
-      "description": "Styles applied to the listbox component.",
-      "isGlobal": false
-    },
-    {
       "key": "loading",
       "className": "MuiAutocomplete-loading",
       "description": "Styles applied to the loading wrapper.",
@@ -291,18 +313,6 @@
       "key": "option",
       "className": "MuiAutocomplete-option",
       "description": "Styles applied to the option elements.",
-      "isGlobal": false
-    },
-    {
-      "key": "paper",
-      "className": "MuiAutocomplete-paper",
-      "description": "Styles applied to the Paper component.",
-      "isGlobal": false
-    },
-    {
-      "key": "popper",
-      "className": "MuiAutocomplete-popper",
-      "description": "Styles applied to the popper element.",
       "isGlobal": false
     },
     {
@@ -332,26 +342,25 @@
     {
       "key": "tag",
       "className": "MuiAutocomplete-tag",
-      "description": "Styles applied to the tag elements, e.g. the chips.",
+      "description": "Styles applied to the tag elements, for example the chips.",
       "isGlobal": false
     },
     {
       "key": "tagSizeMedium",
       "className": "MuiAutocomplete-tagSizeMedium",
-      "description": "Styles applied to the tag elements, e.g. the chips if `size=\"medium\"`.",
+      "description": "Styles applied to the tag elements, for example the chips if `size=\"medium\"`.",
       "isGlobal": false
     },
     {
       "key": "tagSizeSmall",
       "className": "MuiAutocomplete-tagSizeSmall",
-      "description": "Styles applied to the tag elements, e.g. the chips if `size=\"small\"`.",
+      "description": "Styles applied to the tag elements, for example the chips if `size=\"small\"`.",
       "isGlobal": false
     }
   ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiAutocomplete",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Autocomplete/Autocomplete.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-autocomplete/\">Autocomplete</a></li></ul>",

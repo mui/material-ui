@@ -35,7 +35,7 @@ Our documentation features [a collection of example projects using Base UI](htt
 Read the [contributing guide](/CONTRIBUTING.md) to learn about our development process, how to propose bug fixes and improvements, and how to build and test your changes.
 
 Contributing to Base UI is about more than just issues and pull requests!
-There are many other ways to [support MUI](https://mui.com/material-ui/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project) beyond contributing to the code base.
+There are many other ways to [support Base UI](https://mui.com/material-ui/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project) beyond contributing to the code base.
 
 ## Changelog
 
@@ -43,7 +43,7 @@ The [changelog](https://github.com/mui/material-ui/releases) is regularly update
 
 ## Roadmap
 
-Future plans and high-priority features and enhancements can be found in our [roadmap](https://mui.com/material-ui/discover-more/roadmap/).
+Future plans and high-priority features and enhancements can be found in the [roadmap](https://mui.com/material-ui/discover-more/roadmap/).
 
 ## License
 

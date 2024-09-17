@@ -6,66 +6,89 @@ last 1 safari version
 node 14
 
 # Default/Fallback
-# `npx browserslist --mobile-to-desktop "> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11"` when the last major is released.
-# Manually downgrading to ios_saf 12.4 for iPhone 6 and webpack 4 support.
+# `npx browserslist --mobile-to-desktop "> 0.5%, last 2 versions, Firefox ESR, not dead, safari >= 15.4, iOS >= 15.4"` when the last major is released.
+# Explicit safari versions are here based on the agreed terms in: https://github.com/mui/material-ui/issues/40958#issuecomment-1953215043
+#
+# After you update the version, you might need to run `npx update-browserslist-db@latest` to update caniuse-lite to gather latest browser versions.
+# Otherwise, running `pnpm build` might fail due to unknown browser versions.
+#
 # On update, sync references where "#stable-snapshot" is mentioned in the codebase.
 [stable]
-and_chr 91
-and_ff 89
-and_qq 10.4
-and_uc 12.12
-android 91
-baidu 7.12
-chrome 90
-edge 91
-firefox 78
-# 12.4 but 12.2-12.5 are treated equally in caniuse-lite.
-# Though caniuse-lite does not supporting finding an exact version in a range which is why `12.4` would result in "Unknown version 12.4 of ios_saf"
-ios_saf 12.2
+and_chr 122
+and_chr 121
+and_ff 123
+and_ff 122
+and_qq 14.9
+and_uc 15.5
+android 122
+android 121
+chrome 122
+chrome 121
+chrome 120
+chrome 119
+chrome 109
+edge 122
+edge 121
+firefox 123
+firefox 122
+firefox 115
+ios_saf 17.4
+ios_saf 17.3
+ios_saf 17.2
+ios_saf 17.1
+ios_saf 17.0
+ios_saf 16.6-16.7
+ios_saf 16.5
+ios_saf 16.4
+ios_saf 16.3
+ios_saf 16.2
+ios_saf 16.1
+ios_saf 16.0
+ios_saf 15.6-15.8
+ios_saf 15.5
+ios_saf 15.4
+kaios 3.0-3.1
 kaios 2.5
 op_mini all
-op_mob 73
-opera 76
-safari 14
-samsung 13.0
-
-# Same as `stable` but with IE 11
-[legacy]
-ie 11
-and_chr 91
-and_ff 89
-and_qq 10.4
-and_uc 12.12
-android 91
-baidu 7.12
-chrome 90
-edge 91
-firefox 78
-ios_saf 12.2
-kaios 2.5
-op_mini all
-op_mob 73
-opera 76
-safari 14
-samsung 13.0
+op_mob 80
+opera 108
+opera 107
+opera 106
+safari 17.4
+safari 17.3
+safari 17.2
+safari 17.1
+safari 17.0
+safari 16.6
+safari 16.5
+safari 16.4
+safari 16.3
+safari 16.2
+safari 16.1
+safari 16.0
+safari 15.6
+safari 15.5
+safari 15.4
+samsung 23
+samsung 22
 
 # snapshot of `npx browserslist "maintained node versions"`
 # On update check all #stable-snapshot markers
 [node]
-node 12.0
+node 14.0
 
 # same as `node`
 [coverage]
-node 12.0
+node 14.0
 
 # same as `node`
 [development]
-node 12.0
+node 14.0
 
 # same as `node`
 [test]
-node 12.0
+node 14.0
 
 # same as `node`
 [benchmark]
-node 12.0
+node 14.0

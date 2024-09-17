@@ -1,4 +1,5 @@
 'use client';
+// TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- process.env never changes, dependency arrays are intentionally ignored
 /* eslint-disable react-hooks/rules-of-hooks, react-hooks/exhaustive-deps */
 import * as React from 'react';
 
@@ -29,7 +30,9 @@ export default function useControlled({ controlled, default: defaultProp, name, 
     const { current: defaultValue } = React.useRef(defaultProp);
 
     React.useEffect(() => {
-      if (!isControlled && defaultValue !== defaultProp) {
+      // Object.is() is not equivalent to the === operator.
+      // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is for more details.
+      if (!isControlled && !Object.is(defaultValue, defaultProp)) {
         console.error(
           [
             `MUI: A component is changing the default ${state} state of an uncontrolled ${name} after being initialized. ` +

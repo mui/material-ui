@@ -4,7 +4,7 @@ description: Your feedback helps us to build better products. Here's what we lea
 date: 2019-03-16T00:00:00.000Z
 authors: ['oliviertassinari', 'mbrookes']
 tags: ['Developer Survey']
-card: true
+manualCard: true
 ---
 
 While we are currently working on the upcoming release of Material UI v4, we need to prioritize our
@@ -270,18 +270,18 @@ section.
 
 Multiple options were allowed.
 
-- Web app (e.g. create react app): 92%
+- Web app (for example create react app): 92%
 - Progressive web app (with service worker): 25%
 - Server-side rendering 14%
-- Static web site, hosted on a CDN (e.g. Gatsby): 13%
-- Desktop app (e.g. Electron): 12%
-- Native mobile app (e.g. Cordova): 6%
+- Static web site, hosted on a CDN (for example Gatsby): 13%
+- Desktop app (for example Electron): 12%
+- Native mobile app (for example Cordova): 6%
 
 ### 16. Who are you building it for?
 
 <img src="/static/blog/2019-developer-survey-results/16.png" style="display: block; margin: 0 auto;" alt="Pie chart: 54,3% for my company, 24.9% for a client, 15.2% as a side project, 5.6% more than one of these." />
 
-### 17. Which JS framework are you using, if any?
+### 17. Which JavaScript framework are you using, if any?
 
 Multiple options were allowed.
 
@@ -300,7 +300,7 @@ Multiple options were allowed.
 - @mui/styles: 85%
 - Styled components: 30%
 - Good old CSS (+sass, less, etc): 24%
-- CSS Modules (+sass, less, etc): 16%
+- CSS Modules (+sass, less, etc): 16%
 - Emotion: 4%
 
 Traditional CSS users are still prevalent (24% + 16%).

@@ -53,10 +53,13 @@ function Media(props: MediaProps) {
               <Typography gutterBottom variant="body2">
                 {item.title}
               </Typography>
-              <Typography display="block" variant="caption" color="text.secondary">
+              <Typography
+                variant="caption"
+                sx={{ display: 'block', color: 'text.secondary' }}
+              >
                 {item.channel}
               </Typography>
-              <Typography variant="caption" color="text.secondary">
+              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
                 {`${item.views} • ${item.createdAt}`}
               </Typography>
             </Box>

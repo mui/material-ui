@@ -16,12 +16,12 @@ If you're using Next.js 13.4 or later, check out the [Next.js App Router guide](
 npm install @mui/base
 ```
 
-```bash yarn
-yarn add @mui/base
-```
-
 ```bash pnpm
 pnpm add @mui/base
+```
+
+```bash yarn
+yarn add @mui/base
 ```
 
 </codeblock>
@@ -106,7 +106,7 @@ Pass a `className` prop and use it as a styling hook:
 <Button className="btn">Create Repository</Button>
 ```
 
-Base UI components like the Button come with a classes object (e.g. `buttonClasses`) that provides class hooks for styling a particular state.
+Base UI components like the Button come with a classes object (for example `buttonClasses`) that provides class hooks for styling a particular state.
 
 ```css
 /* To style the disabled state: */
@@ -120,15 +120,15 @@ The demo below shows how to create the Primer button using plain CSS with Base 
 
 {{"demo": "BaseButtonPlainCss.js", "defaultCodeOpen": false}}
 
-### Styling with Tailwind CSS
+### Styling with Tailwind CSS
 
-After installing Tailwind CSS, pass its utility classes to `className`, as shown below:
+After installing Tailwind CSS, pass its utility classes to `className`, as shown below:
 
 ```tsx
 <Button className="bg-green-600 rounded-md py-1 px-4...">Create Repository</Button>
 ```
 
-The demo below shows how to build the Primer button using Tailwind CSS:
+The demo below shows how to build the Primer button using Tailwind CSS:
 
 {{"demo": "BaseButtonTailwind.js", "hideToolbar": true, "bg": "inline"}}
 

@@ -8,7 +8,7 @@ export interface ApplyStyles<K extends string> {
  * A universal utility to style components with multiple color modes. Always use it from the theme object.
  * It works with:
  *  - [Basic theme](https://mui.com/material-ui/customization/dark-mode/)
- *  - [CSS theme variables](https://mui.com/material-ui/experimental-api/css-theme-variables/overview/)
+ *  - [CSS theme variables](https://mui.com/material-ui/customization/css-theme-variables/overview/)
  *  - Zero-runtime engine
  *
  * Tips: Use an array over object spread and place `theme.applyStyles()` last.
@@ -67,12 +67,22 @@ export default function applyStyles<K extends string>(key: K, styles: CSSObject)
   const theme = this as {
     palette: { mode: 'light' | 'dark' };
     vars?: any;
+    colorSchemes?: Record<K, any>;
     getColorSchemeSelector?: (scheme: string) => string;
   };
-  if (theme.vars && typeof theme.getColorSchemeSelector === 'function') {
-    // If CssVarsProvider is used as a provider,
-    // returns '* :where([data-mui-color-scheme="light|dark"]) &'
-    const selector = theme.getColorSchemeSelector(key).replace(/(\[[^\]]+\])/, '*:where($1)');
+  if (theme.vars) {
+    if (!theme.colorSchemes?.[key] || typeof theme.getColorSchemeSelector !== 'function') {
+      return {};
+    }
+    // If CssVarsProvider is used as a provider, returns '*:where({selector}) &'
+    let selector = theme.getColorSchemeSelector(key);
+    if (selector === '&') {
+      return styles;
+    }
+    if (selector.includes('data-') || selector.includes('.')) {
+      // '*' is required as a workaround for Emotion issue (https://github.com/emotion-js/emotion/issues/2836)
+      selector = `*:where(${selector.replace(/\s*&$/, '')}) &`;
+    }
     return {
       [selector]: styles,
     };

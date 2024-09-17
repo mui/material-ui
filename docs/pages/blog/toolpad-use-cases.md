@@ -3,7 +3,7 @@ title: How does MUI use Toolpad?
 description: Explore how we use Toolpad for production use cases at MUI.
 date: 2024-03-04T00:00:00.000Z
 authors: ['prakhargupta']
-card: true
+manualCard: true
 tags: ['Product', 'Toolpad']
 ---
 
@@ -11,7 +11,7 @@ Toolpad helps full-stack engineers build internal tools quickly.
 Internal tools encompass data-intensive CRUD interfaces, analytics dashboards, or custom apps that make teams productive.
 Toolpad offers a low-code, GUI-based, code-friendly way of building apps and comes as an npm package that can be imported into an existing codebase.
 
-We've been dogfooding [Toolpad](https://mui.com/toolpad/) at MUI to build our internal tools, and it has proven beneficial for us to easily assemble well-organized, centrally located KPI dashboards and operations apps.
+We've been dogfooding [Toolpad Studio](https://mui.com/toolpad/studio/) at MUI to build our internal tools, and it has proven beneficial for us to easily assemble well-organized, centrally located KPI dashboards and operations apps.
 In this blog post, we'll discuss four such apps, and explain how we used Toolpad to turn our ideas into reality.
 
 <a href="https://tools-public.mui.com/prod/pages/OverviewPage">
@@ -30,7 +30,7 @@ Let's delve into four scenarios that Toolpad has successfully addressed:
 
 ## 1. Support key validator
 
-We offer a priority support service to our MUI X premium customers: their queries get an expedited response within 24 hours.
+We offer a priority support service to our MUI X Premium customers: their queries get an expedited response within 24 hours.
 They share their issue through a Priority Support template in our repository where they're directed to validate their license key, and once it's validated, the 24-hour countdown starts.
 
 <a href="https://tools-public.mui.com/prod/pages/validateSupport">
@@ -40,16 +40,16 @@ They share their issue through a Priority Support template in our repository whe
 Here's how we built an app for this:
 
 The [`updateMuiPaidSupport.ts`](https://github.com/mui/mui-public/blob/master/tools-public/toolpad/resources/updateMuiPaidSupport.ts) file hosts all functions that are called from Toolpad.
-It uses the [custom function](https://mui.com/toolpad/concepts/custom-functions/) feature and combines GitHub Actions, Google Sheets, and Octokit to read and verify user information.
+It uses the [custom function](https://mui.com/toolpad/studio/concepts/custom-functions/) feature and combines GitHub Actions, Google Sheets, and Octokit to read and verify user information.
 The fetched data is then bound to the UI components.
-It uses Toolpad's [page parameters](https://mui.com/toolpad/concepts/page-properties/#page-parameters), [secrets handling](https://mui.com/toolpad/concepts/custom-functions/#secrets-handling), [shell removal](https://mui.com/toolpad/concepts/page-properties/#display-mode), and custom styling features.
+It uses Toolpad's [page parameters](https://mui.com/toolpad/studio/concepts/page-properties/#page-parameters), [secrets handling](https://mui.com/toolpad/studio/concepts/custom-functions/#secrets-handling), [shell removal](https://mui.com/toolpad/studio/concepts/page-properties/#display-mode), and custom styling features.
 This app took one developer just a few hours to build which otherwise would have taken much longer.
 
 ## 2. Customer support KPI tracker
 
-The read-only page illustrated below uses [HTTP requests](https://mui.com/toolpad/concepts/http-requests/) for its data source.
+The read-only page illustrated below uses [HTTP requests](https://mui.com/toolpad/studio/concepts/http-requests/) for its data source.
 Through the query builder UI we fetch the 100 latest support tickets from Zendesk to calculate the average time it takes us to respond to and resolve customer requests.
-It uses a [custom component](https://mui.com/toolpad/concepts/custom-components/) which we call the "health badge."
+It uses a [custom component](https://mui.com/toolpad/studio/concepts/custom-components/) which we call the "health badge."
 Based on the metric value, the component shows three color-coded states: Problem (red), Warning (yellow), and OK (green).
 Other KPI pages also use this health badge and pre-built Chart components to compare stats, observe trends, and spot anomalies.
 
@@ -61,7 +61,7 @@ Your browser does not support the video tag.
 </video>
 
 We opted for Toolpad since Metabase doesn't support importing data from REST APIs.
-This is possible in Google Sheets but it requires writing a lot of JS code, and since we wanted to embed it in a [Notion page](https://mui-org.notion.site/KPIs-1ce9658b85ce4628a2a2ed2ae74ff69c?pvs=4#3974cb6ed12b4c5a9013bac63113e3bc), Toolpad was the ideal choice.
+This is possible in Google Sheets but it requires writing a lot of JavaScript code, and since we wanted to embed it in a [Notion page](https://mui-org.notion.site/KPIs-1ce9658b85ce4628a2a2ed2ae74ff69c?pvs=4#3974cb6ed12b4c5a9013bac63113e3bc), Toolpad was the ideal choice.
 Toolpad handles state management and routing, and simplifies query building and data binding, removing the need to write glue code.
 
 You can explore both of the aforementioned apps in dev mode on your device by running the underlying [Node application](https://github.com/mui/mui-public/tree/HEAD/tools-public).
@@ -84,7 +84,7 @@ Thanks to Toolpad we've managed to bring it all under one roof, dramatically imp
 
 ## 4. Contributor payout
 
-We have a script to fetch monthly payout data for contributors to the MUI Store.
+We have a script to fetch monthly payout data for contributors to the MUI Store.
 Our operations team is responsible for paying contributors, but the script proved too technically challenging for them to run without help from our engineers.
 We solved this problem by importing the script into Toolpad and creating a UI for it.
 The video below shows how a user can select the dates, run the script, and receive text that's properly formatted to copy and paste directly into Slack communications:
@@ -104,5 +104,5 @@ Internal apps are often very specific to the needs of the organization, but hope
 - Do you wish you didn't have to do any maintenance on the front ends of your internal tools?
 
 Toolpad handles state management, data fetching, routing, and UI creation, and it can be imported directly into your code base to save you time.
-I encourage you to check out more [examples](https://mui.com/toolpad/examples/) and visit our [GitHub repository](https://github.com/mui/mui-toolpad/) to evaluate the product.
+I encourage you to check out more [examples](https://mui.com/toolpad/studio/examples/) and visit our [GitHub repository](https://github.com/mui/mui-toolpad/) to evaluate the product.
 In case you need any further information, feel free to reach out to the team at toolpad@mui.com.

@@ -7,8 +7,8 @@ import DesignKitHero from 'docs/src/components/productDesignKit/DesignKitHero';
 import DesignKitValues from 'docs/src/components/productDesignKit/DesignKitValues';
 import DesignKitDemo from 'docs/src/components/productDesignKit/DesignKitDemo';
 import DesignKitFAQ from 'docs/src/components/productDesignKit/DesignKitFAQ';
-import Testimonials from 'docs/src/components/home/Testimonials';
-import HeroEnd from 'docs/src/components/home/HeroEnd';
+import SyncFeatures from 'docs/src/components/productDesignKit/SyncFeatures';
+import MaterialEnd from 'docs/src/components/productMaterial/MaterialEnd';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import References, { DESIGNKITS_CUSTOMERS } from 'docs/src/components/home/References';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
@@ -31,11 +31,11 @@ export default function DesignKits() {
         <Divider />
         <DesignKitDemo />
         <Divider />
+        <SyncFeatures />
+        <Divider />
         <DesignKitFAQ />
         <Divider />
-        <Testimonials />
-        <Divider />
-        <HeroEnd />
+        <MaterialEnd noFaq />
       </main>
       <Divider />
       <AppFooter />

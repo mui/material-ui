@@ -18,7 +18,7 @@ export type CompoundComponentContextValue<Key, Subitem> = {
   /**
    * Registers an item with the parent.
    * This should be called during the effect phase of the child component.
-   * The `itemMetadata` should be a stable reference (e.g. a memoized object), to avoid unnecessary re-registrations.
+   * The `itemMetadata` should be a stable reference (for example a memoized object), to avoid unnecessary re-registrations.
    *
    * @param id Id of the item or A function that generates a unique id for the item.
    *   It is called with the set of the ids of all the items that have already been registered.
@@ -47,7 +47,10 @@ if (process.env.NODE_ENV !== 'production') {
   CompoundComponentContext.displayName = 'CompoundComponentContext';
 }
 
-export interface UseCompoundParentReturnValue<Key, Subitem extends { ref: React.RefObject<Node> }> {
+export interface UseCompoundParentReturnValue<
+  Key,
+  Subitem extends { ref: React.RefObject<Node | null> },
+> {
   /**
    * The value for the CompoundComponentContext provider.
    */
@@ -63,7 +66,7 @@ export interface UseCompoundParentReturnValue<Key, Subitem extends { ref: React.
 /**
  * Sorts the subitems by their position in the DOM.
  */
-function sortSubitems<Key, Subitem extends { ref: React.RefObject<Node> }>(
+function sortSubitems<Key, Subitem extends { ref: React.RefObject<Node | null> }>(
   subitems: Map<Key, Subitem>,
 ) {
   const subitemsArray = Array.from(subitems.keys()).map((key) => {
@@ -100,7 +103,7 @@ function sortSubitems<Key, Subitem extends { ref: React.RefObject<Node> }>(
  */
 export function useCompoundParent<
   Key,
-  Subitem extends { ref: React.RefObject<Node> },
+  Subitem extends { ref: React.RefObject<Node | null> },
 >(): UseCompoundParentReturnValue<Key, Subitem> {
   const [subitems, setSubitems] = React.useState(new Map<Key, Subitem>());
   const subitemKeys = React.useRef(new Set<Key>());

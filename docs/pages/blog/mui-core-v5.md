@@ -12,7 +12,7 @@ authors:
     'danilo-leal',
     'mbrookes',
   ]
-card: true
+manualCard: true
 tags: ['Product', 'Material UI']
 ---
 
@@ -49,13 +49,13 @@ This release features some major highlights:
   - [Change of the package names](#change-of-the-package-names)
   - [Change of the styling solution](#change-of-the-styling-solution)
   - [Changes to the supported platforms](#changes-to-the-supported-platforms)
-- [Design kits](#design-kits)
+- [Design Kits](#design-kits)
 - [What's next?](#whats-next)
   - [A public roadmap](#a-public-roadmap)
   - [Unstyled components and hooks](#unstyled-components-and-hooks)
   - [Second design system](#second-design-system)
   - [MUI X](#mui-x)
-  - [Design kits](#design-kits-1)
+  - [Design Kits](#design-kits-1)
 - [Thank you](#thank-you)
 
 ## High-level goals for v5
@@ -77,7 +77,7 @@ You can find the initial RFC plan for v5 in [issue #20012](https://github.com/mu
 
 ## A new brand
 
-Material-UI is now **Material UI**! Head to the [dedicated blog post](https://mui.com/blog/material-ui-is-now-mui/) to learn more.
+Material-UI is now **Material UI**! We ditched the hyphen, head to the [dedicated blog post](https://mui.com/blog/material-ui-is-now-mui/) to learn more.
 
 We hope you are going to enjoy the DX improvement of only having to type 3 letters to type to find us on the internet: [mui.com](https://mui.com) and to import us from npm `@mui`!
 
@@ -106,7 +106,7 @@ const StyledDiv = styled.div`
 <p class="blog-description"><a href="https://codesandbox.io/p/sandbox/elastic-yonath-uedfv?file=/src/App.js">CodeSandbox</a></p>
 
 You can find it in [styled-components](https://styled-components.com/), [emotion](https://emotion.sh/docs/styled), [goober](https://goober.js.org/), [stitches](https://stitches.dev/docs/api#styled), or [linaria](https://linaria.dev/).
-While Material UI is compatible with any styling solution (as long as the styles have more specificity, for example, Tailwind CSS), many developers still felt the need to learn something new: the [`makeStyles`](https://mui.com/system/styles/basics/#hook-api) API.
+While Material UI is compatible with any styling solution (as long as the styles have more specificity, for example, Tailwind CSS), many developers still felt the need to learn something new: the [`makeStyles`](https://mui.com/system/styles/basics/#hook-api) API.
 
 2. Our React integration with JSS (`@mui/styles`) is **too slow** to unlock the next layer of customization DX we aim for.
    The static CSS generation using v4 was fast enough, even [faster](https://codesandbox.io/p/sandbox/nb05w?file=/src/App.js) than emotion,
@@ -165,7 +165,7 @@ For instance, you can add one unit of vertical margin with:
 
 <p class="blog-description"><a href="https://codesandbox.io/p/sandbox/nostalgic-williams-zmo5r?file=/src/App.js">CodeSandbox</a></p>
 
-Developers already seem to [love it](https://twitter.com/AnsonLowZF/status/1397034690771443715).
+Developers already seem to [love it](https://x.com/AnsonLowZF/status/1397034690771443715).
 You can find a [side-by-side comparison](https://mui.com/system/getting-started/usage/#why-use-mui-system) of `styled()` vs. `sx` in the documentation to determine when you should use the prop.
 Some developers use `sx` for everything, others only in simple cases.
 
@@ -236,7 +236,7 @@ declare module '@mui/material/Button' {
 
 <p class="blog-description"><a href="https://codesandbox.io/p/sandbox/stupefied-mclaren-ho4zs?file=/src/App.tsx">CodeSandbox</a></p>
 
-**Second**, you can add [custom variants](/material-ui/customization/theme-components/#creating-new-component-variants) to the theme, overriding the CSS for specific component prop combinations.
+**Second**, you can add [custom variants](https://v5.mui.com/material-ui/customization/theme-components/#creating-new-component-variants) to the theme, overriding the CSS for specific component prop combinations.
 
 ```jsx
 import { createTheme, Button } from '@mui/material';
@@ -377,7 +377,7 @@ const CustomButton = React.forwardRef(function CustomButton(
 <p class="blog-description"><a href="https://codesandbox.io/p/sandbox/7lc1r?file=/demo.tsx">CodeSandbox</a></p>
 
 We discuss the effort in [#6218](https://github.com/mui/material-ui/issues/6218).
-You can use [#27170](https://github.com/mui/material-ui/issues/27170) to follow our progress.
+You can use [#27170](https://github.com/mui/base-ui/issues/10) to follow our progress.
 
 ## Improved DX
 
@@ -477,7 +477,7 @@ Although each product has its unique vision and mission statements, they complem
   - Vision: Create the last UI component library developers will ever need. High quality, consistent, feature-rich, and covering the most frequent/challenging use-cases.
   - Mission: Make building rich, data-intensive, dynamic apps a breeze.
 
-MUI Core has a positive cash flow thanks to its paid templates, design assets, ads on the documentation, and backers/sponsors (❤️). The [MIT](https://tldrlegal.com/license/mit-license) license model works great for it.
+MUI Core has a positive cash flow thanks to its paid templates, design assets, ads on the documentation, and backers/sponsors (❤️). The [MIT](https://www.tldrlegal.com/license/mit-license) license model works great for it.
 
 However, none of these revenue sources would scale with the outcome and amount of work required for MUI X.
 It's why we are using an [open core license model](https://en.m.wikipedia.org/wiki/Open-core_model) for this new product.
@@ -651,7 +651,7 @@ This breaking change is an opportunity to drop the support of legacy upstream de
 - We have updated the minimum supported React version from 16.8 to **17.0**.
   The breaking changes released between the two versions are [very limited](https://legacy.reactjs.org/blog/2020/10/20/react-v17.html).
 - We have updated the supported browsers.
-  - IE: **partial**. We have kept the logic added in the past to support IE 11,
+  - Internet Explorer: **partial**. We have kept the logic added in the past to support IE 11,
     however, we have stopped actively working on it. We can't guarantee that it works correctly. It's discontinued.
   - Edge: from 14 to **91**. The minimum version based on Chromium.
   - Firefox: from 52 to **78**.
@@ -660,7 +660,7 @@ This breaking change is an opportunity to drop the support of legacy upstream de
 
 These changes have allowed us to save [6 kB gzipped](https://github.com/mui/material-ui/pull/22814#issuecomment-700995216) on the `@mui/material` package.
 
-## Design kits
+## Design Kits
 
 We now have design kits for the MUI components available in the three main design tools out there: [Figma](https://mui.com/store/items/figma-react/), [Sketch](https://mui.com/store/items/sketch-react/), and [Adobe XD](https://mui.com/store/items/adobe-xd-react/). If you work together with a designer or team of designers, having them use the design kits makes for easier communication, as you'll be speaking the same language around the components. It'll also help designers to understand how the library is structured, especially theming features and each component prop, enabling much faster development.
 
@@ -701,10 +701,10 @@ We hope we can reach 50% of the React community by 2026. This is an ambitious go
 
 ### A public roadmap
 
-You can use our public roadmap on GitHub to learn about what features we're working on, what stage they're at, and when we expect to bring them to you:
+You can use the GitHub projects to learn about what features we're working on, what stage they're at, and when we expect to bring them to you:
 
-- [MUI Core](https://github.com/mui/material-ui/projects/25)
-- [MUI X](https://github.com/mui/mui-x/projects/1)
+- [MUI Core](https://github.com/mui/material-ui/projects?query=is:open)
+- [MUI X](https://github.com/orgs/mui/projects/35)
 
 We offer this transparency into what we plan to work on so that you can plan better and share feedback earlier to influence what we're building.
 
@@ -725,7 +725,7 @@ To continue improving the customization experience, we are doubling down on the 
 These components and hooks contain the main functionalities and accessibility, without being opinionated about how styles are applied nor what styles.
 We still have work to do to have a full set of unstyled components.
 
-You can read more about them in [the docs](/base-ui/getting-started/) and keep track of our progress in [#27170](https://github.com/mui/material-ui/issues/27170).
+You can read more about them in [the docs](/base-ui/getting-started/) and keep track of our progress in [#27170](https://github.com/mui/base-ui/issues/10).
 
 Our high-level plan is to use the unstyled components and hooks as the basis of the Material components and second design system.
 We are aiming to complete this work with the next major release (v6).
@@ -754,11 +754,11 @@ We still have column pinning, tree data, grouping, pivoting, excel export, and m
 
 Once we would have grown the team and made enough progress, we will expand to a second component.
 
-### Design kits
+### Design Kits
 
 We plan to run extended research and surveys.
 We have already identified that accessibility is something leading companies care about.
-We are planning to cover more user interaction states for prototyping, e.g. focus-visible.
+We are planning to cover more user interaction states for prototyping, for example focus-visible.
 
 ## Thank you
 

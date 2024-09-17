@@ -1,14 +1,40 @@
 import * as React from 'react';
-import { OverridableStringUnion } from '@mui/types';
+import {
+  OverridableComponent,
+  OverridableStringUnion,
+  OverrideProps,
+  PartiallyRequired,
+} from '@mui/types';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '@mui/material';
+import { Theme } from '@mui/material';
 import { AvatarGroupClasses } from './avatarGroupClasses';
 import Avatar from '../Avatar';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface AvatarGroupPropsVariantOverrides {}
 
 export interface AvatarGroupComponentsPropsOverrides {}
-export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
+
+export interface AvatarGroupSlots {
+  surplus: React.ElementType;
+}
+
+export type AvatarGroupSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  AvatarGroupSlots,
+  {
+    /**
+     * @deprecated use `slotProps.surplus` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+     *  */
+    additionalAvatar: React.ComponentPropsWithRef<typeof Avatar> &
+      AvatarGroupComponentsPropsOverrides;
+    surplus: SlotProps<
+      React.ElementType<React.ComponentPropsWithRef<typeof Avatar>>,
+      AvatarGroupComponentsPropsOverrides,
+      AvatarGroupOwnerState
+    >;
+  }
+>;
+export interface AvatarGroupOwnProps extends AvatarGroupSlotsAndSlotProps {
   /**
    * The avatars to stack.
    */
@@ -27,9 +53,8 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
    * You can override the existing props or add new ones.
    *
    * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
    *
-   * @default {}
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps?: {
     additionalAvatar?: React.ComponentPropsWithRef<typeof Avatar> &
@@ -46,18 +71,6 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
    * @returns {React.ReactNode} custom element to display
    */
   renderSurplus?: (surplus: number) => React.ReactNode;
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
-   * @default {}
-   */
-  slotProps?: {
-    additionalAvatar?: React.ComponentPropsWithRef<typeof Avatar> &
-      AvatarGroupComponentsPropsOverrides;
-  };
   /**
    * Spacing between avatars.
    * @default 'medium'
@@ -82,6 +95,14 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
   >;
 }
 
+export interface AvatarGroupTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & AvatarGroupOwnProps;
+  defaultComponent: RootComponent;
+}
+
 /**
  *
  * Demos:
@@ -92,4 +113,16 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
  *
  * - [AvatarGroup API](https://mui.com/material-ui/api/avatar-group/)
  */
-export default function AvatarGroup(props: AvatarGroupProps): JSX.Element;
+declare const AvatarGroup: OverridableComponent<AvatarGroupTypeMap>;
+
+export type AvatarGroupProps<
+  RootComponent extends React.ElementType = AvatarGroupTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<AvatarGroupTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
+
+export interface AvatarGroupOwnerState
+  extends PartiallyRequired<AvatarGroupProps, 'max' | 'spacing' | 'component' | 'variant'> {}
+
+export default AvatarGroup;

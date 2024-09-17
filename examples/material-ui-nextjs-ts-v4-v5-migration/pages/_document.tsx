@@ -67,7 +67,7 @@ MyDocument.getInitialProps = async (ctx: DocumentContext) => {
         resolveProps: async (initialProps: DocumentInitialProps) => {
           // Generate the css string for the styles coming from jss
           let css = jssSheets.toString();
-          // It might be undefined, e.g. after an error.
+          // It might be undefined, for example after an error.
           if (css && process.env.NODE_ENV === 'production') {
             const result1 = await prefixer.process(css, { from: undefined });
             css = result1.css;

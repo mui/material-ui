@@ -48,7 +48,7 @@ export default function AboutEnd() {
         alt="A map illustration with pins loosely positioned where team members from MUI are located."
         loading="lazy"
         sx={(theme) => ({
-          mt: -8,
+          mt: -20,
           display: { xs: 'none', sm: 'block' },
           width: '100%',
           aspectRatio: '231/145',

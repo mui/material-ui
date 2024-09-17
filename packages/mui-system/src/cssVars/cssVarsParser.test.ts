@@ -359,6 +359,21 @@ describe('cssVarsParser', () => {
       });
     });
 
+    it('varsWithDefaults are suffixed with px from array', () => {
+      const { varsWithDefaults } = cssVarsParser({
+        spacing: [0, 1, 2, 6, 16],
+      });
+      expect(varsWithDefaults).to.deep.equal({
+        spacing: [
+          'var(--spacing-0, 0px)',
+          'var(--spacing-1, 1px)',
+          'var(--spacing-2, 2px)',
+          'var(--spacing-3, 6px)',
+          'var(--spacing-4, 16px)',
+        ],
+      });
+    });
+
     it('should add a fallback value', () => {
       const { varsWithDefaults } = cssVarsParser({
         palette: {

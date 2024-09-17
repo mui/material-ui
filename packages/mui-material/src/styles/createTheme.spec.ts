@@ -148,6 +148,13 @@ const theme = createTheme();
           },
         },
       },
+      MuiRadioGroup: {
+        styleOverrides: {
+          row: {
+            justifyContent: 'space-between',
+          },
+        },
+      },
     },
   });
 }

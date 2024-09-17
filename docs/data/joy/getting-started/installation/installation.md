@@ -7,16 +7,17 @@
 Run one of the following commands to add Joy UI to your project:
 
 <codeblock storageKey="package-manager">
+
 ```bash npm
 npm install @mui/joy @emotion/react @emotion/styled
 ```
 
-```bash yarn
-yarn add @mui/joy @emotion/react @emotion/styled
-```
-
 ```bash pnpm
 pnpm add @mui/joy @emotion/react @emotion/styled
+```
+
+```bash yarn
+yarn add @mui/joy @emotion/react @emotion/styled
 ```
 
 </codeblock>
@@ -45,16 +46,17 @@ Add it to your project via [Fontsource](https://fontsource.org/), or with the Go
 Run one of the following commands to add Inter through Fontsource to your Joy UI project:
 
 <codeblock storageKey="package-manager">
+
 ```bash npm
 npm install @fontsource/inter
 ```
 
-```bash yarn
-yarn add @fontsource/inter
-```
-
 ```bash pnpm
 pnpm add @fontsource/inter
+```
+
+```bash yarn
+yarn add @fontsource/inter
 ```
 
 </codeblock>

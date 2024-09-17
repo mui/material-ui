@@ -24,18 +24,10 @@ export function getTypeByValue(value) {
   }
 }
 
-// IE 11 support
-function ponyfillIsInteger(x) {
-  // eslint-disable-next-line no-restricted-globals
-  return typeof x === 'number' && isFinite(x) && Math.floor(x) === x;
-}
-
-const isInteger = Number.isInteger || ponyfillIsInteger;
-
 function requiredInteger(props, propName, componentName, location) {
   const propValue = props[propName];
 
-  if (propValue == null || !isInteger(propValue)) {
+  if (propValue == null || !Number.isInteger(propValue)) {
     const propType = getTypeByValue(propValue);
 
     return new RangeError(

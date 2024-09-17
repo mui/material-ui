@@ -8,15 +8,14 @@ export default function CustomInputAutocomplete() {
     <label>
       Value:{' '}
       <Autocomplete
-        sx={{
+        sx={(theme) => ({
           display: 'inline-block',
           '& input': {
             width: 200,
             bgcolor: 'background.paper',
-            color: (theme) =>
-              theme.palette.getContrastText(theme.palette.background.paper),
+            color: theme.palette.getContrastText(theme.palette.background.paper),
           },
-        }}
+        })}
         id="custom-input-demo"
         options={options}
         renderInput={(params) => (

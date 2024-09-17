@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import Paper, { PaperProps } from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
@@ -123,7 +123,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
                 borderRadius: 40,
                 border: '2px solid',
                 borderColor: 'primary.50',
-                boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.15)',
+                boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.1)',
                 transform: 'translateX(50%)',
                 overflow: 'hidden',
                 ...theme.applyDarkStyles({
@@ -157,7 +157,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
             <IconButton
               aria-label={`${props.name} X profile`}
               component="a"
-              href={`https://twitter.com/${props.twitter}`}
+              href={`https://x.com/${props.twitter}`}
               target="_blank"
               rel="noopener"
             >
@@ -177,15 +177,15 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
           )}
         </Box>
       </Box>
-      <Typography variant="body2" fontWeight="bold" sx={{ mt: 2, mb: 0.5 }}>
+      <Typography variant="body2" sx={{ fontWeight: 'bold', mt: 2, mb: 0.5 }}>
         {props.name}
       </Typography>
-      <Typography variant="body2" color="text.secondary">
+      <Typography variant="body2" sx={{ color: 'text.secondary' }}>
         {props.title}
       </Typography>
       {props.about && <Divider sx={{ my: 1.5 }} />}
       {props.about && (
-        <Typography variant="body2" color="grey.600">
+        <Typography variant="body2" sx={{ color: 'text.tertiary' }}>
           {props.about}
         </Typography>
       )}
@@ -197,7 +197,7 @@ const contributors = [
   {
     name: 'Sebastian Silbermann',
     github: 'eps1lon',
-    title: 'MUI Core, everything Open Source',
+    title: 'Material UI, everything Open Source',
     location: 'Berlin, Germany',
     locationCountry: 'de',
     src: 'https://avatars.githubusercontent.com/u/12292047',
@@ -242,7 +242,7 @@ const emeriti = [
     name: 'Hai Nguyen',
     github: 'hai-cea',
     twitter: 'haicea',
-    title: 'MUI Core, v0.x creator',
+    title: 'Material UI, v0.x creator',
     location: 'Dallas, US',
     locationCountry: 'us',
     src: 'https://avatars.githubusercontent.com/u/2007468',
@@ -250,7 +250,7 @@ const emeriti = [
   {
     name: 'Nathan Marks',
     github: 'nathanmarks',
-    title: 'MUI Core, v1.x co-creator',
+    title: 'Material UI, v1.x co-creator',
     location: 'Toronto, CA',
     locationCountry: 'ca',
     src: 'https://avatars.githubusercontent.com/u/4420103',
@@ -259,7 +259,7 @@ const emeriti = [
     name: 'Kevin Ross',
     github: 'rosskevin',
     twitter: 'rosskevin',
-    title: 'MUI Core, flow',
+    title: 'Material UI, flow',
     location: 'Franklin, US',
     locationCountry: 'us',
     src: 'https://avatars.githubusercontent.com/u/136564',
@@ -268,7 +268,7 @@ const emeriti = [
     name: 'Sebastian Sebald',
     github: 'sebald',
     twitter: 'sebastiansebald',
-    title: 'MUI Core',
+    title: 'Material UI',
     location: 'Freiburg, Germany',
     locationCountry: 'de',
     src: 'https://avatars.githubusercontent.com/u/985701',
@@ -276,7 +276,7 @@ const emeriti = [
   {
     name: 'Ken Gregory',
     github: 'kgregory',
-    title: 'MUI Core',
+    title: 'Material UI',
     location: 'New Jersey, US',
     locationCountry: 'us',
     src: 'https://avatars.githubusercontent.com/u/3155127',
@@ -285,7 +285,7 @@ const emeriti = [
     name: 'Tom Crockett',
     github: 'pelotom',
     twitter: 'pelotom',
-    title: 'MUI Core',
+    title: 'Material UI',
     location: 'Los Angeles, US',
     locationCountry: 'us',
     src: 'https://avatars.githubusercontent.com/u/128019',
@@ -294,7 +294,7 @@ const emeriti = [
     name: 'Maik Marschner',
     github: 'leMaik',
     twitter: 'leMaikOfficial',
-    title: 'MUI Core',
+    title: 'Material UI',
     location: 'Hannover, Germany',
     locationCountry: 'de',
     src: 'https://avatars.githubusercontent.com/u/5544859',
@@ -303,7 +303,7 @@ const emeriti = [
     name: 'Oleg Slobodskoi',
     github: 'kof',
     twitter: 'oleg008',
-    title: 'MUI Core, JSS',
+    title: 'Material UI, JSS',
     location: 'Berlin, Germany',
     locationCountry: 'de',
     src: 'https://avatars.githubusercontent.com/u/52824',
@@ -321,7 +321,7 @@ const emeriti = [
     name: 'Josh Wooding',
     github: 'joshwooding',
     twitter: 'JoshWooding_',
-    title: 'MUI Core, J.P. Morgan',
+    title: 'Material UI, J.P. Morgan',
     location: 'London, UK',
     locationCountry: 'gb',
     src: 'https://avatars.githubusercontent.com/u/12938082',
@@ -332,13 +332,7 @@ export default function Team() {
   return (
     <React.Fragment>
       <Section cozy>
-        <Box
-          sx={{
-            my: 4,
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-        >
+        <Box sx={{ my: 4, display: 'flex', flexDirection: 'column' }}>
           <SectionHeadline
             overline="Team"
             title={
@@ -369,7 +363,7 @@ export default function Team() {
               ...profileJson,
             };
             return (
-              <Grid key={profile.name} item xs={12} sm={6} md={3}>
+              <Grid key={profile.name} size={{ xs: 12, sm: 6, md: 3 }}>
                 <Person {...profile} />
               </Grid>
             );
@@ -380,31 +374,39 @@ export default function Team() {
       {/* Community contributors */}
       <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'common.black' }}>
         <Container sx={{ py: { xs: 4, sm: 8 } }}>
-          <Typography component="h3" variant="h4" color="primary.200" fontWeight="semiBold">
+          <Typography
+            component="h3"
+            variant="h4"
+            sx={{ color: 'primary.200', fontWeight: 'semiBold' }}
+          >
             Community contributors
           </Typography>
-          <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
+          <Typography sx={{ color: 'text.secondary', maxWidth: { md: 500 } }}>
             Special members of the community deserve a shout-out for their ever-lasting impact on
             MUI&apos;s products.
           </Typography>
           <Grid container spacing={2} mt={2}>
             {contributors.map((profile) => (
-              <Grid key={profile.name} item xs={12} sm={6} md={3}>
+              <Grid key={profile.name} size={{ xs: 12, sm: 6, md: 3 }}>
                 <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
               </Grid>
             ))}
           </Grid>
           <Divider sx={{ my: { xs: 2, sm: 6 } }} />
-          <Typography component="h3" variant="h4" color="warning.300" fontWeight="semiBold">
+          <Typography
+            component="h3"
+            variant="h4"
+            sx={{ color: 'warning.300', fontWeight: 'semiBold' }}
+          >
             Community emeriti
           </Typography>
-          <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
+          <Typography sx={{ color: 'text.secondary', maxWidth: { md: 500 } }}>
             We honor some no-longer-active core team members who have made valuable contributions in
             the past. They advise us from time to time.
           </Typography>
           <Grid container spacing={2} mt={2}>
             {emeriti.map((profile) => (
-              <Grid key={profile.name} item xs={12} sm={6} md={3}>
+              <Grid key={profile.name} size={{ xs: 12, sm: 6, md: 3 }}>
                 <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
               </Grid>
             ))}

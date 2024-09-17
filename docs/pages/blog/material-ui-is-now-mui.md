@@ -4,15 +4,15 @@ description: Starting today, we are evolving our brand identity. We are clarifyi
 date: 2021-09-16T00:00:00.000Z
 authors: ['oliviertassinari', 'danilo-leal', 'mbrookes']
 tags: ['Material UI']
-card: true
+manualCard: true
 ---
 
 <img src="/static/blog/material-ui-is-now-mui/intro.png" alt="The new Material UI logo" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" />
 
 Starting today we are evolving our brand identity to clarifying the difference between our company and our products.
 
-- Material-UI: the organization is now called **[MUI](https://github.com/mui)**.
 - Material-UI: the Material Design components developed by MUI is now called **[Material UI](https://mui.com/material-ui/getting-started/)**, we ditched the hyphen!
+- Material-UI: the organization is now called **[MUI](https://github.com/mui)**.
 - Material-UI X: the set of advanced React components is now called **[MUI X](https://github.com/mui/mui-x)**.
 - Material-UI: the set of foundational MIT React components is now called **[MUI Core](https://github.com/mui/material-ui)**.
 

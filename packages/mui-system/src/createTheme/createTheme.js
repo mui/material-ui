@@ -1,5 +1,6 @@
 import deepmerge from '@mui/utils/deepmerge';
-import createBreakpoints from './createBreakpoints';
+import createBreakpoints from '../createBreakpoints/createBreakpoints';
+import cssContainerQueries from '../cssContainerQueries';
 import shape from './shape';
 import createSpacing from './createSpacing';
 import styleFunctionSx from '../styleFunctionSx/styleFunctionSx';
@@ -29,6 +30,7 @@ function createTheme(options = {}, ...args) {
     },
     other,
   );
+  muiTheme = cssContainerQueries(muiTheme);
 
   muiTheme.applyStyles = applyStyles;
 

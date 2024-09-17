@@ -6,7 +6,6 @@ import Close from '@mui/icons-material/Close';
 export default function CustomTags() {
   return (
     <Autocomplete
-      id="tags-default"
       multiple
       placeholder="Favorites"
       options={top100Films}

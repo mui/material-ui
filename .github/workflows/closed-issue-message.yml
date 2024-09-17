@@ -1,0 +1,18 @@
+name: Add closing message to issue
+
+on:
+  issues:
+    types:
+      - closed
+  workflow_call:
+
+permissions: {}
+
+jobs:
+  add-comment:
+    name: Add closing message
+    if: github.event.issue.state_reason == 'completed'
+    uses: mui/mui-public/.github/workflows/issues_add-closing-message.yml@master
+    permissions:
+      contents: read
+      issues: write

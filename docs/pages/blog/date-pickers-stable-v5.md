@@ -4,7 +4,7 @@ description: Migrate to the latest version for improved DX, customizability, and
 date: 2022-09-19T00:00:00.000Z
 authors: ['alexfauquette', 'josefreitas']
 tags: ['MUI X', 'Product']
-card: true
+manualCard: true
 ---
 
 About four months ago, we moved the date and time pickers from `@mui/lab` and released the first alpha version of the date pickers package.

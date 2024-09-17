@@ -4,7 +4,7 @@ description: Your feedback helps us to build better products. Here's what we lea
 date: 2022-03-15T00:00:00.000Z
 authors: ['danilo-leal', 'samuelsycamore', 'oliviertassinari']
 tags: ['Developer Survey']
-card: true
+manualCard: true
 ---
 
 Keeping up with tradition, a few months ago we opened the 2021 MUI Developer Survey.
@@ -103,6 +103,8 @@ And what has decreased:
   - Look & feel (x1.17): This is surprising.
     It seems to be a transfer effect: people who previously cared more about Material Design now care more about the outcome than the specification itself.
     <br/>
+
+<!-- vale MUI.CorrectReferenceAllCases = NO -->
 
 <details>
   <summary>Click to see the breakdown of categories.</summary>
@@ -256,7 +258,7 @@ If you are interested in an analysis of the growing and decreasing pain, you can
     <tr><td>36</td><td>system - makeStyles back</td><tr>
     <tr><td>20</td><td>system - docs</td><tr>
     <tr><td>15</td><td>system - SASS</td><tr>
-    <tr><td>11</td><td>system - interoperability with Tailwind CSS</td><tr>
+    <tr><td>11</td><td>system - interoperability with Tailwind CSS</td><tr>
     <tr><td>14</td><td>system - simplify</td><tr>
     <tr><td>8</td><td>system - CSS variables</td><tr>
     <tr><td>7</td><td>system - interoperability</td><tr>
@@ -397,7 +399,7 @@ If you are interested in an analysis of the growing and decreasing pain, you can
     <tr><td>1</td><td>animations - on existing components</td><tr>
     <tr><td>1</td><td>animations - performance</td><tr>
     <tr><th>7</th><th>fix more bugs</th><tr>
-    <tr><th>7</th><th>support other frameworkds (e.g. Vue)</th><tr>
+    <tr><th>7</th><th>support other frameworkds (for example Vue)</th><tr>
     <tr><th>5</th><th>autocomplete</th><tr>
     <tr><td>3</td><td>autocomplete - ?</td><tr>
     <tr><td>1</td><td>autocomplete - abbreviation</td><tr>
@@ -409,6 +411,8 @@ If you are interested in an analysis of the growing and decreasing pain, you can
     <tr><th>2</th><th>class components</th><tr>
   </table>
 </details>
+
+<!-- vale MUI.CorrectReferenceAllCases = YES -->
 
 Have ideas for improvements? Please share them with us! Here's how to make sure that your requests get top priority:
 
@@ -558,7 +562,7 @@ The majority of respondents don't use any paid libraries, but those who do are m
 - **More features:** [Grouping](/x/react-data-grid/row-grouping/) was the most requested feature for the Data Grid Pro, followed by [master detail](/x/react-data-grid/master-detail/), aggregation, search, [tree data](/x/react-data-grid/tree-data/), and [column pinning](/x/react-data-grid/column-pinning/).
   We've already released some of these in the time it took us to analyze the survey results.
   Check the links to see their docs and demos.
-  Alternatively, you can follow [the public roadmap](https://github.com/mui/mui-x/projects/1) to see when the others will land.
+  Alternatively, you can follow [the public roadmap](https://github.com/orgs/mui/projects/35) to see when the others will land.
 - **Customizability:** The majority of requests about customizability were asking for possibilities to tweak data grid interactions, which we need to delve into more deeply to better understand.
   Following next were requests for more style customizability, and more documentation on customization.
 - **Fix features:** Filtering got first place as the most requested feature to fix on Data Grid Pro.
@@ -652,7 +656,7 @@ This year we saw a considerable bump the use of Next.js (compared with 12.4% in 
 
 ### What styling solution are you using?
 
-<img src="/static/blog/2021-developer-survey-results/22.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="MUI Core v4 (JSS): 45%; Styled components: 37.9%; Emotion: 30.2%; SASS: 20.8%; CSS modules: 18.9%; Vanilla CSS: 17.6%; Tailwind CSS: 9.1%; Stitches: 0.4%; Other: 1.2%" />
+<img src="/static/blog/2021-developer-survey-results/22.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="MUI Core v4 (JSS): 45%; Styled components: 37.9%; Emotion: 30.2%; SASS: 20.8%; CSS Modules: 18.9%; Vanilla CSS: 17.6%; Tailwind CSS: 9.1%; Stitches: 0.4%; Other: 1.2%" />
 
 <p class="blog-description">1492 out of 1589 answered.</p>
 
@@ -724,7 +728,7 @@ MUI users are mainly working with low-code tools to build internal tools, landin
 These findings align with what the rest of our users are building as well.
 But it is great to see that there are low-code tools in the market that developers trust.
 
-### If MUI considered building a low-code tool, what primary use-case would match your needs?
+### If MUI considered building a low-code tool, what primary use case would match your needs?
 
 <img src="/static/blog/2021-developer-survey-results/29.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Deliver a React design system: 22.2%; Generate high-quality React codebase after visual building: 19.2%; Building dashboards for rapid data visualization: 18.3%; Higher fidelity prototyping and demoing for accurate design handoff: 13.6%; Building internal apps when pro-code is overkill: 11.4%; Shipping landing pages with my existing React design system: 7.3%; Shipping production simple apps before moving to pro-code: 6.2%; Other: 1.8%" />
 

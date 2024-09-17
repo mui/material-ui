@@ -77,6 +77,7 @@ The [Data Grid and Data Grid Pro](/x/react-data-grid/) components have their own
 | Nepali                  | ne-NP               | `neNP`      |
 | Norwegian (bokmål)      | nb-NO               | `nbNO`      |
 | Norwegian (nynorsk)     | nn-NO               | `nnNO`      |
+| Pashto (Afghanistan)    | ps-AF               | `psAF`      |
 | Persian                 | fa-IR               | `faIR`      |
 | Polish                  | pl-PL               | `plPL`      |
 | Portuguese              | pt-PT               | `ptPT`      |
@@ -106,5 +107,5 @@ However, Material UI aims to support the [100 most common](https://en.wikipedia
 
 ## RTL Support
 
-Right-to-left languages such as Arabic, Persian, or Hebrew are supported.
+Right-to-left languages such as Arabic, Persian, Hebrew, Kurdish, and others are supported.
 Follow [this guide](/material-ui/customization/right-to-left/) to use them.

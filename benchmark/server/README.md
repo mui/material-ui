@@ -12,7 +12,6 @@ HocButton x 166,229 ops/sec ±1.04% (191 runs sampled)
 NakedButton x 228,473 ops/sec ±0.99% (187 runs sampled)
 ButtonBase enable ripple x 56,019 ops/sec ±0.87% (189 runs sampled)
 ButtonBase disable ripple x 61,748 ops/sec ±0.35% (190 runs sampled)
-Markdown x 954 ops/sec ±1.35% (187 runs sampled)
 ```
 
 ## `@mui/docs`
@@ -22,7 +21,6 @@ _Synthetic benchmark_
 ```bash
 pnpm server:docs
 
-Markdown x 946 ops/sec ±4.04% (176 runs sampled)
 MarkdownElement x 3,941 ops/sec ±5.53% (185 runs sampled)
 ```
 

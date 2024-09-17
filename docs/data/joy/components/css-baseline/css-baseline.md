@@ -8,7 +8,7 @@ githubLabel: 'component: CssBaseline'
 
 <p class="description">Joy UI provides a CssBaseline component to kickstart an elegant, consistent, and simple baseline to build upon.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 ## Global reset
 
@@ -135,7 +135,7 @@ function App() {
 
 ### ScopedCssBaseline
 
-You can customize it using the [themed components](https://mui.com/joy-ui/customization/themed-components/) approach. The component identifier is `JoyScopedCssBaseline` which contains only the `root` slot.
+You can customize it using the [themed components](/joy-ui/customization/themed-components/) approach. The component identifier is `JoyScopedCssBaseline` which contains only the `root` slot.
 
 ```js
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';

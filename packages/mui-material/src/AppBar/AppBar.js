@@ -3,9 +3,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import Paper from '../Paper';
 import { getAppBarUtilityClass } from './appBarClasses';
 
@@ -35,110 +37,136 @@ const AppBarRoot = styled(Paper, {
       styles[`color${capitalize(ownerState.color)}`],
     ];
   },
-})(({ theme, ownerState }) => {
-  const backgroundColorDefault =
-    theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[900];
-
-  return {
+})(
+  memoTheme(({ theme }) => ({
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
     boxSizing: 'border-box', // Prevent padding issue with the Modal and fixed positioned AppBar.
     flexShrink: 0,
-    ...(ownerState.position === 'fixed' && {
-      position: 'fixed',
-      zIndex: (theme.vars || theme).zIndex.appBar,
-      top: 0,
-      left: 'auto',
-      right: 0,
-      '@media print': {
-        // Prevent the app bar to be visible on each printed page.
-        position: 'absolute',
+    variants: [
+      {
+        props: { position: 'fixed' },
+        style: {
+          position: 'fixed',
+          zIndex: (theme.vars || theme).zIndex.appBar,
+          top: 0,
+          left: 'auto',
+          right: 0,
+          '@media print': {
+            // Prevent the app bar to be visible on each printed page.
+            position: 'absolute',
+          },
+        },
       },
-    }),
-    ...(ownerState.position === 'absolute' && {
-      position: 'absolute',
-      zIndex: (theme.vars || theme).zIndex.appBar,
-      top: 0,
-      left: 'auto',
-      right: 0,
-    }),
-    ...(ownerState.position === 'sticky' && {
-      // ⚠️ sticky is not supported by IE11.
-      position: 'sticky',
-      zIndex: (theme.vars || theme).zIndex.appBar,
-      top: 0,
-      left: 'auto',
-      right: 0,
-    }),
-    ...(ownerState.position === 'static' && {
-      position: 'static',
-    }),
-    ...(ownerState.position === 'relative' && {
-      position: 'relative',
-    }),
-    ...(!theme.vars && {
-      ...(ownerState.color === 'default' && {
-        backgroundColor: backgroundColorDefault,
-        color: theme.palette.getContrastText(backgroundColorDefault),
-      }),
-      ...(ownerState.color &&
-        ownerState.color !== 'default' &&
-        ownerState.color !== 'inherit' &&
-        ownerState.color !== 'transparent' && {
-          backgroundColor: theme.palette[ownerState.color].main,
-          color: theme.palette[ownerState.color].contrastText,
-        }),
-      ...(ownerState.color === 'inherit' && {
-        color: 'inherit',
-      }),
-      ...(theme.palette.mode === 'dark' &&
-        !ownerState.enableColorOnDark && {
-          backgroundColor: null,
-          color: null,
-        }),
-      ...(ownerState.color === 'transparent' && {
-        backgroundColor: 'transparent',
-        color: 'inherit',
-        ...(theme.palette.mode === 'dark' && {
-          backgroundImage: 'none',
-        }),
-      }),
-    }),
-    ...(theme.vars && {
-      ...(ownerState.color === 'default' && {
-        '--AppBar-background': ownerState.enableColorOnDark
-          ? theme.vars.palette.AppBar.defaultBg
-          : joinVars(theme.vars.palette.AppBar.darkBg, theme.vars.palette.AppBar.defaultBg),
-        '--AppBar-color': ownerState.enableColorOnDark
-          ? theme.vars.palette.text.primary
-          : joinVars(theme.vars.palette.AppBar.darkColor, theme.vars.palette.text.primary),
-      }),
-      ...(ownerState.color &&
-        !ownerState.color.match(/^(default|inherit|transparent)$/) && {
-          '--AppBar-background': ownerState.enableColorOnDark
-            ? theme.vars.palette[ownerState.color].main
-            : joinVars(theme.vars.palette.AppBar.darkBg, theme.vars.palette[ownerState.color].main),
-          '--AppBar-color': ownerState.enableColorOnDark
-            ? theme.vars.palette[ownerState.color].contrastText
-            : joinVars(
-                theme.vars.palette.AppBar.darkColor,
-                theme.vars.palette[ownerState.color].contrastText,
-              ),
-        }),
-      backgroundColor: 'var(--AppBar-background)',
-      color: ownerState.color === 'inherit' ? 'inherit' : 'var(--AppBar-color)',
-      ...(ownerState.color === 'transparent' && {
-        backgroundImage: 'none',
-        backgroundColor: 'transparent',
-        color: 'inherit',
-      }),
-    }),
-  };
-});
+      {
+        props: { position: 'absolute' },
+        style: {
+          position: 'absolute',
+          zIndex: (theme.vars || theme).zIndex.appBar,
+          top: 0,
+          left: 'auto',
+          right: 0,
+        },
+      },
+      {
+        props: { position: 'sticky' },
+        style: {
+          position: 'sticky',
+          zIndex: (theme.vars || theme).zIndex.appBar,
+          top: 0,
+          left: 'auto',
+          right: 0,
+        },
+      },
+      {
+        props: { position: 'static' },
+        style: {
+          position: 'static',
+        },
+      },
+      {
+        props: { position: 'relative' },
+        style: {
+          position: 'relative',
+        },
+      },
+      {
+        props: { color: 'inherit' },
+        style: {
+          '--AppBar-color': 'inherit',
+        },
+      },
+      {
+        props: { color: 'default' },
+        style: {
+          '--AppBar-background': theme.vars
+            ? theme.vars.palette.AppBar.defaultBg
+            : theme.palette.grey[100],
+          '--AppBar-color': theme.vars
+            ? theme.vars.palette.text.primary
+            : theme.palette.getContrastText(theme.palette.grey[100]),
+          ...theme.applyStyles('dark', {
+            '--AppBar-background': theme.vars
+              ? theme.vars.palette.AppBar.defaultBg
+              : theme.palette.grey[900],
+            '--AppBar-color': theme.vars
+              ? theme.vars.palette.text.primary
+              : theme.palette.getContrastText(theme.palette.grey[900]),
+          }),
+        },
+      },
+      ...Object.entries(theme.palette)
+        .filter(createSimplePaletteValueFilter(['contrastText']))
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            '--AppBar-background': (theme.vars ?? theme).palette[color].main,
+            '--AppBar-color': (theme.vars ?? theme).palette[color].contrastText,
+          },
+        })),
+      {
+        props: (props) =>
+          props.enableColorOnDark === true && !['inherit', 'transparent'].includes(props.color),
+        style: {
+          backgroundColor: 'var(--AppBar-background)',
+          color: 'var(--AppBar-color)',
+        },
+      },
+      {
+        props: (props) =>
+          props.enableColorOnDark === false && !['inherit', 'transparent'].includes(props.color),
+        style: {
+          backgroundColor: 'var(--AppBar-background)',
+          color: 'var(--AppBar-color)',
+          ...theme.applyStyles('dark', {
+            backgroundColor: theme.vars
+              ? joinVars(theme.vars.palette.AppBar.darkBg, 'var(--AppBar-background)')
+              : null,
+            color: theme.vars
+              ? joinVars(theme.vars.palette.AppBar.darkColor, 'var(--AppBar-color)')
+              : null,
+          }),
+        },
+      },
+      {
+        props: { color: 'transparent' },
+        style: {
+          '--AppBar-background': 'transparent',
+          '--AppBar-color': 'inherit',
+          backgroundColor: 'var(--AppBar-background)',
+          color: 'var(--AppBar-color)',
+          ...theme.applyStyles('dark', {
+            backgroundImage: 'none',
+          }),
+        },
+      },
+    ],
+  })),
+);
 
 const AppBar = React.forwardRef(function AppBar(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAppBar' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiAppBar' });
   const {
     className,
     color = 'primary',

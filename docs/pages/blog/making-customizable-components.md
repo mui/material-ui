@@ -4,7 +4,7 @@ description: Explore the tradeoffs between different customization techniques, a
 date: 2022-08-22T00:00:00.000Z
 authors: ['alexfauquette']
 tags: ['MUI X', 'Material UI', 'Guide']
-card: true
+manualCard: true
 ---
 
 Material UI's components are used by hundreds of thousands of developers worldwide, encompassing the full range of implementation from minor side projects to massive company websites.
@@ -30,7 +30,7 @@ Usually this means that the selector with more classes applied to it is more spe
 For example, if we look at the Material UI `Switch` component, we have multiple subcomponents that we could expect to modify.
 For each of them, we assign a specific CSS class:
 
-<img src="/static/blog/making-customizable-components/switchHighlighted.png" style="width: 692px; aspect-ratio: 173/80; margin-top: 16px; margin-bottom: 16px;" loading="lazy" alt="Switch component with highlighted sub components" />
+<img src="/static/blog/making-customizable-components/switchHighlighted.png" style="width: 692px; aspect-ratio: 173/80; margin-top: 16px; margin-bottom: 16px;" loading="lazy" alt="Switch component with highlighted subcomponents" />
 
 Notice that each element is styled using only one CSS class—the thumb style, for example, is applied with the `css-jsexje-MuiSwitch-thumb` class, so any CSS selector that includes more than one class will override its style.
 
@@ -59,10 +59,10 @@ you can play around with it in [CodeSandbox](https://codesandbox.io/p/sandbox/fa
 }
 ```
 
-### Let JS generate the CSS
+### Let JavaScript generate the CSS
 
 Maybe you don't want to spend your time switching between CSS and JavaScript files, or writing long, cluttered stylesheets.
-To avoid these problems you can integrate styles directly into your JS code. 🎉
+To avoid these problems you can integrate styles directly into your JavaScript code. 🎉
 
 Because the level of customization varies across projects, Material UI's components can be customized in several different ways.
 For more information on this topic, check out the [Material UI customization documentation](https://mui.com/material-ui/customization/how-to-customize/).

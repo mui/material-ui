@@ -5,6 +5,7 @@ import { OverridableComponent, OverrideProps } from '@mui/material/OverridableCo
 import { Theme } from '../styles';
 import { UsePaginationItem } from '../usePagination/usePagination';
 import { PaginationItemClasses } from './paginationItemClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface PaginationItemPropsVariantOverrides {}
 
@@ -12,7 +13,30 @@ export interface PaginationItemPropsSizeOverrides {}
 
 export interface PaginationItemPropsColorOverrides {}
 
-export interface PaginationItemOwnProps {
+export interface PaginationItemSlots {
+  first: React.ElementType;
+  last: React.ElementType;
+  next: React.ElementType;
+  previous: React.ElementType;
+}
+
+export type PaginationItemSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  PaginationItemSlots,
+  {
+    first: SlotProps<React.ElementType<React.HTMLProps<HTMLElement>>, {}, PaginationItemOwnerState>;
+    last: SlotProps<React.ElementType<React.HTMLProps<HTMLElement>>, {}, PaginationItemOwnerState>;
+    next: SlotProps<React.ElementType<React.HTMLProps<HTMLElement>>, {}, PaginationItemOwnerState>;
+    previous: SlotProps<
+      React.ElementType<React.HTMLProps<HTMLElement>>,
+      {},
+      PaginationItemOwnerState
+    >;
+  }
+>;
+
+export interface PaginationItemOwnerState extends PaginationItemProps {}
+
+export interface PaginationItemOwnProps extends PaginationItemSlotsAndSlotProps {
   /**
    * Override or extend the styles applied to the component.
    */
@@ -34,6 +58,7 @@ export interface PaginationItemOwnProps {
    * It's recommended to use the `slots` prop instead.
    *
    * @default {}
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   components?: {
     first?: React.ElementType;
@@ -65,19 +90,6 @@ export interface PaginationItemOwnProps {
    * @default 'medium'
    */
   size?: OverridableStringUnion<'small' | 'medium' | 'large', PaginationItemPropsSizeOverrides>;
-  /**
-   * The components used for each slot inside.
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
-   *
-   * @default {}
-   */
-  slots?: {
-    first?: React.ElementType;
-    last?: React.ElementType;
-    next?: React.ElementType;
-    previous?: React.ElementType;
-  };
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

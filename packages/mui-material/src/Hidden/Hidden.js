@@ -6,6 +6,8 @@ import HiddenCss from './HiddenCss';
 
 /**
  * Responsively hides children based on the selected implementation.
+ *
+ * @deprecated The Hidden component was deprecated in Material UI v5. To learn more, see [the Hidden section](https://mui.com/material-ui/migration/v5-component-changes/#hidden) of the migration docs.
  */
 function Hidden(props) {
   const {

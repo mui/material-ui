@@ -66,7 +66,7 @@ function removeNoise(input, prevInput = null) {
   let output = input;
 
   noises.forEach(([search, replace]) => {
-    if (output.indexOf(search) !== -1) {
+    if (output.includes(search)) {
       output = output.replace(search, replace);
     }
   });

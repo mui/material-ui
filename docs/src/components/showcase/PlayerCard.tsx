@@ -28,7 +28,7 @@ export default function PlayerCard({ disableTheming }: { disableTheming?: boolea
             alignItems: 'center',
             gap: 2,
             ...(!disableTheming && {
-              borderColor: 'divider',
+              borderColor: 'grey.200',
               boxShadow: (theme) => `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
               [`& .${iconButtonClasses.root}`]: {
                 border: '1px solid',
@@ -52,7 +52,7 @@ export default function PlayerCard({ disableTheming }: { disableTheming?: boolea
             ((theme) =>
               theme.applyDarkStyles({
                 bgcolor: 'primaryDark.900',
-                boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
+                boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
                 [`& .${iconButtonClasses.root}`]: {
                   bgcolor: 'primary.900',
                   color: 'primary.200',
@@ -83,22 +83,24 @@ export default function PlayerCard({ disableTheming }: { disableTheming?: boolea
             }),
           }}
         />
-        <Stack direction="column" alignItems="center" spacing={1} useFlexGap>
+        <Stack direction="column" spacing={1} useFlexGap sx={{ alignItems: 'center' }}>
           <div>
-            <Typography color="text.primary" fontWeight="semiBold">
+            <Typography sx={{ color: 'text.primary', fontWeight: 'semiBold' }}>
               Contemplative Reptile
             </Typography>
             <Typography
               variant="caption"
-              color="text.secondary"
-              fontWeight="medium"
-              textAlign="center"
-              sx={{ width: '100%' }}
+              sx={{
+                color: 'text.secondary',
+                fontWeight: 'medium',
+                textAlign: 'center',
+                width: '100%',
+              }}
             >
               Sounds of Nature
             </Typography>
           </div>
-          <Stack direction="row" alignItems="center" spacing={1} useFlexGap>
+          <Stack direction="row" spacing={1} useFlexGap sx={{ alignItems: 'center' }}>
             <IconButton aria-label="Shuffle" disabled size="small">
               <ShuffleRoundedIcon fontSize="small" />
             </IconButton>

@@ -7,11 +7,14 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  backgroundColor: '#fff',
   ...theme.typography.body2,
   padding: theme.spacing(2),
   maxWidth: 400,
   color: theme.palette.text.primary,
+  ...theme.applyStyles('dark', {
+    backgroundColor: '#1A2027',
+  }),
 }));
 
 const message = `Truncation should be conditionally applicable on this long line of text
@@ -20,14 +23,8 @@ const message = `Truncation should be conditionally applicable on this long line
 export default function AutoGridNoWrap() {
   return (
     <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }}>
-      <StyledPaper
-        sx={{
-          my: 1,
-          mx: 'auto',
-          p: 2,
-        }}
-      >
-        <Grid container wrap="nowrap" spacing={2}>
+      <StyledPaper sx={{ my: 1, mx: 'auto', p: 2 }}>
+        <Grid container spacing={2} wrap="nowrap">
           <Grid item>
             <Avatar>W</Avatar>
           </Grid>
@@ -36,14 +33,8 @@ export default function AutoGridNoWrap() {
           </Grid>
         </Grid>
       </StyledPaper>
-      <StyledPaper
-        sx={{
-          my: 1,
-          mx: 'auto',
-          p: 2,
-        }}
-      >
-        <Grid container wrap="nowrap" spacing={2}>
+      <StyledPaper sx={{ my: 1, mx: 'auto', p: 2 }}>
+        <Grid container spacing={2} wrap="nowrap">
           <Grid item>
             <Avatar>W</Avatar>
           </Grid>
@@ -52,14 +43,8 @@ export default function AutoGridNoWrap() {
           </Grid>
         </Grid>
       </StyledPaper>
-      <StyledPaper
-        sx={{
-          my: 1,
-          mx: 'auto',
-          p: 2,
-        }}
-      >
-        <Grid container wrap="nowrap" spacing={2}>
+      <StyledPaper sx={{ my: 1, mx: 'auto', p: 2 }}>
+        <Grid container spacing={2} wrap="nowrap">
           <Grid item>
             <Avatar>W</Avatar>
           </Grid>

@@ -4,13 +4,14 @@ title: React Divider component
 components: Divider
 githubLabel: 'component: divider'
 materialDesign: https://m2.material.io/components/dividers
+githubSource: packages/mui-material/src/Divider
 ---
 
 # Divider
 
 <p class="description">The Divider component provides a thin, unobtrusive line for grouping elements to reinforce visual hierarchy.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -32,7 +33,7 @@ The Divider component supports three variants: `fullWidth` (default), `inset`, a
 
 ### Orientation
 
-Use the `orientation` prop to change the Divider from horizontal to vertical.
+Use the `orientation` prop to change the Divider from horizontal to vertical. When using vertical orientation, the Divider renders a `<div>` with the corresponding accessibility attributes instead of `<hr>` to adhere to the WAI-ARIA [spec](https://www.w3.org/TR/wai-aria-1.2/#separator).
 
 {{"demo": "VerticalDividers.js", "bg": true}}
 
@@ -77,7 +78,7 @@ This ensures that it's not announced by screen readers while still preserving th
 
 ```js
 <Divider component="div" role="presentation">
-  <Typograph>Text element</Typography>
+  <Typography>Text element</Typography>
 </Divider>
 ```
 
@@ -90,18 +91,3 @@ The Divider component is composed of a root `<hr>`.
   <!-- Divider children goes here -->
 </hr>
 ```
-
-## Experimental APIs
-
-### Material Design 3
-
-The default Material UI Divider component follows the Material Design 2 specs.
-To use the [M3](https://m3.material.io/) version, install the experimental `@mui/material-next` package.
-
-```js
-import Divider from '@mui/material-next/Divider';
-```
-
-{{"demo": "DividerMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}
-
-To learn more about Material UI's M3 implementation, visit the [M3 Components documentation](/material-ui/guides/material-3-components/).

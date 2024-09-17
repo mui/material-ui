@@ -88,7 +88,7 @@ const getCssValue = (keys: string[], value: string | number) => {
       return value;
     }
     const lastKey = keys[keys.length - 1];
-    if (lastKey.toLowerCase().indexOf('opacity') >= 0) {
+    if (lastKey.toLowerCase().includes('opacity')) {
       // opacity values are unitless
       return value;
     }
@@ -138,10 +138,11 @@ export default function cssVarsParser<T extends Record<string, any>>(
         if (!shouldSkipGeneratingVar || !shouldSkipGeneratingVar(keys, value)) {
           // only create css & var if `shouldSkipGeneratingVar` return false
           const cssVar = `--${prefix ? `${prefix}-` : ''}${keys.join('-')}`;
-          Object.assign(css, { [cssVar]: getCssValue(keys, value) });
+          const resolvedValue = getCssValue(keys, value);
+          Object.assign(css, { [cssVar]: resolvedValue });
 
           assignNestedKeys(vars, keys, `var(${cssVar})`, arrayKeys);
-          assignNestedKeys(varsWithDefaults, keys, `var(${cssVar}, ${value})`, arrayKeys);
+          assignNestedKeys(varsWithDefaults, keys, `var(${cssVar}, ${resolvedValue})`, arrayKeys);
         }
       }
     },

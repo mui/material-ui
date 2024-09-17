@@ -4,13 +4,14 @@ title: React Card component
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 githubLabel: 'component: card'
 materialDesign: https://m2.material.io/components/cards
+githubSource: packages/mui-material/src/Card
 ---
 
 # Card
 
 <p class="description">Cards contain content and actions about a single subject.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -20,7 +21,7 @@ The Material UI Card component includes several complementary utility component
 - Card: a surface-level container for grouping related components.
 - Card Content: the wrapper for the Card content.
 - Card Header: an optional wrapper for the Card header.
-- Card Media: an optional container for displaying background images and gradient layers behind the Card Content.
+- Card Media: an optional container for displaying images, videos, etc.
 - Card Actions: an optional wrapper that groups a set of buttons.
 - Card Action Area: an optional wrapper that allows users to interact with the specified area of the Card.
 
@@ -58,10 +59,6 @@ Example of a card using an image to reinforce the content.
 By default, we use the combination of a `<div>` element and a _background image_ to display the media. It can be problematic in some situations, for example, you might want to display a video or a responsive image. Use the `component` prop for these use cases:
 
 {{"demo": "ImgMediaCard.js", "bg": true}}
-
-:::warning
-When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE11.
-:::
 
 ## Primary action
 

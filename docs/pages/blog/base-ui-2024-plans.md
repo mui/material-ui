@@ -4,7 +4,7 @@ description: The unstyled component library will get a stable release, lots of n
 date: 2024-02-13T00:00:00.000Z
 authors: ['danilo-leal', 'michaldudak', 'colmtuite', 'oliviertassinari']
 tags: ['Base UI', 'Product']
-card: true
+manualCard: true
 ---
 
 The [story of Base UI](/blog/introducing-base-ui/) began several years ago—long before headless React component libraries skyrocketed in popularity—when we started to imagine a world in which Material UI could exist without Material Design.
@@ -50,7 +50,7 @@ Currently, Base UI components can be customized to your heart's content using t
 ```
 
 This API, while powerful, has proven to be less than ideal in some instances.
-Most notably, it's too lengthy and complicated to write and read when used with libraries such as Tailwind CSS.
+Most notably, it's too lengthy and complicated to write and read when used with libraries such as Tailwind CSS.
 Additionally, since the `slots` and the corresponding `slotProps` are not related in terms of TypeScript types, it's possible to introduce bugs or have the compiler complain about valid code.
 
 To address these issues, we're considering adopting a new API that would assign a discrete subcomponent to each DOM node—the pattern favored by many other headless component libraries (think: `<Slider.Track />`, `<Slider.Thumb />`, etc.).

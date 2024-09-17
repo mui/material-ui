@@ -75,7 +75,7 @@ Move the component from the lab to the core. The component is now stable.
 
 ### Remove debug prop
 
-Remove `debug` prop. There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://twitter.com/sulco/status/1305841873945272321), or React devtools prop setter.
+Remove `debug` prop. There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://x.com/sulco/status/1305841873945272321), or React devtools prop setter.
 
 ### Update `renderOption`
 
@@ -744,7 +744,7 @@ The props `alignItems`, `alignContent`, and `justifyContent`—along with their 
 
 These props are now considered part of MUI System, not the `Grid` component itself.
 
-If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](/material-ui/customization/theme-components/#overrides-based-on-props).
+If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](https://v5.mui.com/material-ui/customization/theme-components/#overrides-based-on-props).
 
 ```diff
  const theme = createTheme({
@@ -772,10 +772,10 @@ If you need negative margins on all sides, we recommend using the new Grid v2 in
 
 ```diff
 - import Grid from '@mui/material/Grid';
-+ import Grid from '@mui/material/Unstable_Grid2';
++ import Grid from '@mui/material/Grid2';
 ```
 
-To learn more about the Grid v2, check out the [demos](/material-ui/react-grid2/#whats-changed) and the [Grid migration guide](/material-ui/migration/migration-grid-v2/).
+To learn more about the Grid v2, check out the [demos](/material-ui/react-grid2/) and the [Grid migration guide](/material-ui/migration/migration-grid-v2/).
 
 :::info
 Grid v2 was introduced in Material UI v5.9.1 and features negative margins on all sides by default.
@@ -796,7 +796,7 @@ Rename the `GridList` components to `ImageList` to align with the current Materi
 
 ### Use CSS object-fit
 
-Use CSS `object-fit`. For IE11 support either use a polyfill such as
+Use CSS `object-fit`. For IE 11 support either use a polyfill such as
 [this npm package](https://www.npmjs.com/package/object-fit-images), or else continue to use the v4 component.
 
 ```diff
@@ -1862,7 +1862,7 @@ The following classes and style overrides keys were removed:
 
 These props are now considered part of MUISystem rather than the `Typography` component itself.
 
-If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](/material-ui/customization/theme-components/#overrides-based-on-props).
+If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](https://v5.mui.com/material-ui/customization/theme-components/#overrides-based-on-props).
 
 For example:
 

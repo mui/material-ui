@@ -63,14 +63,14 @@ export interface BaseSelectProps<Value = unknown>
   /**
    * An `Input` element; does not have to be a material-ui specific `Input`.
    */
-  input?: React.ReactElement<any, any>;
+  input?: React.ReactElement<unknown, any>;
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
    * When `native` is `true`, the attributes are applied on the `select` element.
    */
   inputProps?: InputProps['inputProps'];
   /**
-   * See [OutlinedInput#label](/material-ui/api/outlined-input/#props)
+   * See [OutlinedInput#label](https://mui.com/material-ui/api/outlined-input/#props)
    */
   label?: React.ReactNode;
   /**
@@ -79,7 +79,7 @@ export interface BaseSelectProps<Value = unknown>
    */
   labelId?: string;
   /**
-   * Props applied to the [`Menu`](/material-ui/api/menu/) element.
+   * Props applied to the [`Menu`](https://mui.com/material-ui/api/menu/) element.
    */
   MenuProps?: Partial<MenuProps>;
   /**
@@ -148,10 +148,11 @@ export interface BaseSelectProps<Value = unknown>
    * The variant to use.
    * @default 'outlined'
    */
-  variant?: 'filled' | 'standard' | 'outlined';
+  variant?: SelectVariants;
 }
 
-export interface FilledSelectProps extends Omit<FilledInputProps, 'value' | 'onChange'> {
+export interface FilledSelectProps
+  extends Omit<FilledInputProps, 'value' | 'onChange' | 'id' | 'classes' | 'inputProps'> {
   /**
    * The variant to use.
    * @default 'outlined'
@@ -159,7 +160,8 @@ export interface FilledSelectProps extends Omit<FilledInputProps, 'value' | 'onC
   variant: 'filled';
 }
 
-export interface StandardSelectProps extends Omit<InputProps, 'value' | 'onChange'> {
+export interface StandardSelectProps
+  extends Omit<InputProps, 'value' | 'onChange' | 'id' | 'classes' | 'inputProps'> {
   /**
    * The variant to use.
    * @default 'outlined'
@@ -167,25 +169,21 @@ export interface StandardSelectProps extends Omit<InputProps, 'value' | 'onChang
   variant: 'standard';
 }
 
-export interface OutlinedSelectProps extends Omit<OutlinedInputProps, 'value' | 'onChange'> {
+export interface OutlinedSelectProps
+  extends Omit<OutlinedInputProps, 'value' | 'onChange' | 'id' | 'classes' | 'inputProps'> {
   /**
    * The variant to use.
    * @default 'outlined'
    */
-  variant: 'outlined';
+  variant?: 'outlined';
 }
 
 export type SelectVariants = 'outlined' | 'standard' | 'filled';
 
-export type SelectProps<
-  Value = unknown,
-  Variant extends SelectVariants = SelectVariants,
-> = BaseSelectProps<Value> &
-  (Variant extends 'filled'
-    ? FilledSelectProps
-    : Variant extends 'standard'
-      ? StandardSelectProps
-      : OutlinedSelectProps);
+export type SelectProps<Value = unknown> =
+  | (FilledSelectProps & BaseSelectProps<Value>)
+  | (StandardSelectProps & BaseSelectProps<Value>)
+  | (OutlinedSelectProps & BaseSelectProps<Value>);
 
 /**
  *
@@ -198,15 +196,8 @@ export type SelectProps<
  * - [Select API](https://mui.com/material-ui/api/select/)
  * - inherits [OutlinedInput API](https://mui.com/material-ui/api/outlined-input/)
  */
-
-export default function Select<Value = unknown, Variant extends SelectVariants = 'outlined'>(
-  props: {
-    /**
-     * The variant to use.
-     * @default 'outlined'
-     */
-    variant?: Variant;
-  } & Omit<SelectProps<Value, Variant>, 'variant'>,
-): JSX.Element & {
+declare const Select: (<Value = unknown>(props: SelectProps<Value>) => React.JSX.Element) & {
   muiName: string;
 };
+
+export default Select;

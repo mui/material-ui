@@ -10,11 +10,11 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radio/
 
 <p class="description">Radio buttons enable the user to select one option from a set.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
-Radio buttons let users make a mutually exclusive choice (e.g., this or that).
+Radio buttons let users make a mutually exclusive choice (for example: "this" or "that").
 Only one selection is allowed from the available set of options.
 
 Radio buttons should have the most commonly used option selected by default.
@@ -37,7 +37,7 @@ When should you use radio buttons rather than checkboxes, switches, or selects?
 import Radio from '@mui/joy/Radio';
 ```
 
-The Joy UI Radio button behaves similar to the native HTML <input type="radio">, so it accepts props like `checked`, `value` and `onChange`.
+The Joy UI Radio button behaves similar to the native HTML `<input type="radio">`, so it accepts props like `checked`, `value` and `onChange`.
 
 {{"demo": "RadioButtons.js"}}
 
@@ -150,7 +150,7 @@ This example demonstrates the composition of the components, and was inspired by
 
 ### Alignment buttons
 
-This example uses icons as labels for a group of Radio buttons to recreate the form and function of [Toggle Buttons](https://mui.com/material-ui/react-toggle-button/).
+This example uses icons as labels for a group of Radio buttons to recreate the form and function of [Toggle Buttons](/material-ui/react-toggle-button/).
 In this case, you must provide an `aria-label` to the input slot for users who rely on screen readers.
 
 {{"demo": "ExampleAlignmentButtons.js"}}

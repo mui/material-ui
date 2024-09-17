@@ -190,7 +190,7 @@ const ChipStartDecorator = styled('span', {
     '0 calc(-1 * var(--Chip-paddingInline) / 3) 0 calc(var(--Chip-decoratorChildOffset) * -1)',
   '--Icon-margin': '0 0 0 calc(var(--Chip-paddingInline) / -4)',
   display: 'inherit',
-  // set zIndex to 1 with order to stay on top of other controls, e.g. Checkbox, Radio
+  // set zIndex to 1 with order to stay on top of other controls, for example Checkbox, Radio
   order: 0,
   zIndex: 1,
   pointerEvents: 'none',
@@ -205,7 +205,7 @@ const ChipEndDecorator = styled('span', {
     '0 calc(var(--Chip-decoratorChildOffset) * -1) 0 calc(-1 * var(--Chip-paddingInline) / 3)',
   '--Icon-margin': '0 calc(var(--Chip-paddingInline) / -4) 0 0',
   display: 'inherit',
-  // set zIndex to 1 with order to stay on top of other controls, e.g. Checkbox, Radio
+  // set zIndex to 1 with order to stay on top of other controls, for example Checkbox, Radio
   order: 2,
   zIndex: 1,
   pointerEvents: 'none',
@@ -318,7 +318,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
         <SlotRoot {...rootProps}>
           {clickable && <SlotAction {...actionProps} />}
 
-          {/* label is always the first element for integrating with other controls, e.g. Checkbox, Radio. Use CSS order to rearrange position */}
+          {/* label is always the first element for integrating with other controls, for example Checkbox, Radio. Use CSS order to rearrange position */}
           <SlotLabel {...labelProps} id={id}>
             {children}
           </SlotLabel>

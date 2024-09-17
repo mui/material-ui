@@ -1,29 +1,33 @@
 import * as React from 'react';
 import Box from '@mui/system/Box';
-import Grid from '@mui/system/Unstable_Grid';
+import Grid from '@mui/system/Grid';
 import styled from '@mui/system/styled';
 
 const Item = styled('div')(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  backgroundColor: '#fff',
   border: '1px solid',
-  borderColor: theme.palette.mode === 'dark' ? '#444d58' : '#ced7e0',
+  borderColor: '#ced7e0',
   padding: theme.spacing(1),
   borderRadius: '4px',
   textAlign: 'center',
+  ...theme.applyStyles('dark', {
+    backgroundColor: '#1A2027',
+    borderColor: '#444d58',
+  }),
 }));
 
 export default function VariableWidthGrid() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={3}>
-        <Grid xs="auto">
-          <Item>Variable width item</Item>
+        <Grid size="auto">
+          <Item>size=auto</Item>
         </Grid>
-        <Grid xs={6}>
-          <Item>xs=6</Item>
+        <Grid size={6}>
+          <Item>size=6</Item>
         </Grid>
-        <Grid xs>
-          <Item>xs</Item>
+        <Grid size="grow">
+          <Item>size=grow</Item>
         </Grid>
       </Grid>
     </Box>

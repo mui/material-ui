@@ -7,11 +7,7 @@ export default function CustomRatio() {
     <AspectRatio
       variant="outlined"
       ratio="4/3"
-      sx={{
-        width: 300,
-        bgcolor: 'background.level2',
-        borderRadius: 'md',
-      }}
+      sx={{ width: 300, bgcolor: 'background.level2', borderRadius: 'md' }}
     >
       <Typography level="h2" component="div">
         4/3

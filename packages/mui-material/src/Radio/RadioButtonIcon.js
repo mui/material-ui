@@ -3,7 +3,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
-import styled, { rootShouldForwardProp } from '../styles/styled';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 
 const RadioButtonIconRoot = styled('span', { shouldForwardProp: rootShouldForwardProp })({
   position: 'relative',
@@ -15,22 +17,29 @@ const RadioButtonIconBackground = styled(RadioButtonUncheckedIcon)({
   transform: 'scale(1)',
 });
 
-const RadioButtonIconDot = styled(RadioButtonCheckedIcon)(({ theme, ownerState }) => ({
-  left: 0,
-  position: 'absolute',
-  transform: 'scale(0)',
-  transition: theme.transitions.create('transform', {
-    easing: theme.transitions.easing.easeIn,
-    duration: theme.transitions.duration.shortest,
-  }),
-  ...(ownerState.checked && {
-    transform: 'scale(1)',
+const RadioButtonIconDot = styled(RadioButtonCheckedIcon)(
+  memoTheme(({ theme }) => ({
+    left: 0,
+    position: 'absolute',
+    transform: 'scale(0)',
     transition: theme.transitions.create('transform', {
-      easing: theme.transitions.easing.easeOut,
+      easing: theme.transitions.easing.easeIn,
       duration: theme.transitions.duration.shortest,
     }),
-  }),
-}));
+    variants: [
+      {
+        props: { checked: true },
+        style: {
+          transform: 'scale(1)',
+          transition: theme.transitions.create('transform', {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.shortest,
+          }),
+        },
+      },
+    ],
+  })),
+);
 
 /**
  * @ignore - internal component.
@@ -52,7 +61,7 @@ function RadioButtonIcon(props) {
   );
 }
 
-RadioButtonIcon.propTypes = {
+RadioButtonIcon.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the component is checked.
    */

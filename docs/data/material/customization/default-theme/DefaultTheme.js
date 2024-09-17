@@ -5,11 +5,11 @@ import { createTheme, styled } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { useTranslate } from '@mui/docs/i18n';
+import CircularProgress from '@mui/material/CircularProgress';
 import ThemeViewer, {
-  useNodeIdsLazy,
+  useItemIdsLazy,
 } from 'docs/src/modules/components/ThemeViewer';
-import { blue, grey } from 'docs/src/modules/brandingTheme';
-import { CircularProgress } from '@mui/material';
+import { blue, grey } from '@mui/docs/branding';
 
 const StyledSwitch = styled(Switch)(({ theme }) => [
   {
@@ -108,7 +108,7 @@ function DefaultTheme() {
     });
   }, [darkTheme]);
 
-  const allNodeIds = useNodeIdsLazy(data);
+  const allNodeIds = useItemIdsLazy(data);
   React.useDebugValue(allNodeIds);
   React.useEffect(() => {
     if (checked) {

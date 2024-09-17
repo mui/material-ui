@@ -62,8 +62,8 @@ In general, you can expect the following release cycle:
 
 | Date           | Version | Status       |
 | :------------- | :------ | :----------- |
-| Q4 2024        | v7.0.0  | Work started |
-| Q2 2024        | v6.0.0  | Work started |
+| 2025           | v7.0.0  | Work started |
+| August 2024    | v6.0.0  | Released     |
 | September 2021 | v5.0.0  | Released     |
 | May 2019       | v4.0.0  | Released     |
 | September 2018 | v3.0.0  | Released     |
@@ -80,7 +80,7 @@ You can follow the [milestones](https://github.com/mui/material-ui/milestones) f
 Sometimes "breaking changes", such as the removal of support for select APIs and features, are necessary.
 To make these transitions as easy as possible:
 
-- The number of breaking changes is minimized, and migration tools are provided when possible (e.g. codemods).
+- The number of breaking changes is minimized, and migration tools are provided when possible (for example codemods).
 - The deprecation policy described below is followed so that you have time to update your apps to the latest APIs and best practices.
 
 ### Deprecation policy

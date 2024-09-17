@@ -3,7 +3,7 @@ title: An introduction to the MUI ecosystem
 description: MUI is more than just Material UI. Consider Joy UI, Base UI, MUI X, and Toolpad for your next project.
 date: 2022-11-01T00:00:00.000Z
 authors: ['samuelsycamore']
-card: true
+manualCard: true
 tags: ['Product']
 ---
 
@@ -21,7 +21,7 @@ Though our roots are in [Material Design](https://material.io/), we're branching
 Our primary offerings fall into two product lines: Core and X.
 MUI Core contains our foundational component libraries (like Material UI), while MUI X offers components that are significantly more complex (like the Data Grid).
 
-We're also in the early stages of developing a low-code internal tool builder called [MUI Toolpad](https://mui.com/toolpad/), which enables you to build with every Core and X component in a drag-and-drop interface.
+We're also in the early stages of developing a low-code internal tool builder called [Toolpad](https://mui.com/toolpad/), which enables you to build with every Core and X component in a drag-and-drop interface.
 
 Read on for more details on each of our products.
 
@@ -93,7 +93,7 @@ Get started in the [Base UI docs](/base-ui/getting-started/).
 #### Key features
 
 - **Total control over styles:** Unlike Material UI and Joy UI, Base UI doesn't ship with any default styles or styling solution.
-  Write CSS however you'd prefer—vanilla, modules, styled-components—or integrate a styling library like Tailwind CSS or Emotion.
+  Write CSS however you'd prefer—vanilla, modules, styled-components—or integrate a styling library like Tailwind CSS or Emotion.
 - **Hooks for fully custom components:** When pre-built components aren't flexible enough, low-level hooks enable you to quickly add sophisticated functionality to your custom components.
 - **Accessibility:** Base UI components are built with accessibility in mind. We do our best to make all components screen reader-friendly, and offer suggestions for optimizing accessibility throughout our documentation.
 - **The core of MUI Core:** Base UI serves as the scaffold for Joy UI components, and future versions Material UI will also be built with Base UI as the foundation.
@@ -174,9 +174,9 @@ Components include the Date Picker, Time Picker, Date Range Picker, and Date Tim
 - Enterprise apps using advanced date and time validation with constraints.
 - Apps built with MUI Core libraries that need date and time functionality.
 
-## MUI Toolpad
+## Toolpad
 
-<img src="/static/blog/mui-product-comparison/mui-toolpad.png" style="width: 692px; margin-bottom: 24px; aspect-ratio: 173/75;" loading="lazy" alt="Small screenshot of MUI Toolpad's interface." />
+<img src="/static/blog/mui-product-comparison/mui-toolpad.png" style="width: 692px; margin-bottom: 24px; aspect-ratio: 173/75;" loading="lazy" alt="Small screenshot of Toolpad's interface." />
 
 Toolpad is a self-hosted low-code admin builder designed to extend MUI's suite of React components.
 It's designed for developers of all trades who want to save time building internal applications.
@@ -184,7 +184,7 @@ Drag and drop pre-built UI components, connect your data sources, and your app i
 
 ### Key features
 
-- **Build faster than ever:** With MUI Toolpad, your development time can be measured in minutes rather than hours or days. Skip the mindless busywork of UI development and get straight to the core business logic.
+- **Build faster than ever:** With Toolpad, your development time can be measured in minutes rather than hours or days. Skip the mindless busywork of UI development and get straight to the core business logic.
 - **Use the components you already know:** Toolpad comes preloaded with both MUI Core and X libraries, giving you the full power of MUI's components in a drag-and-drop interface.
 - **Extensible with code:** Start with only bare-bones JavaScript to get up and running, and then jump from "low code" to "pro code" as needed to add custom features and functionality.
 

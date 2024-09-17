@@ -1,9 +1,0 @@
-packages:
-  - 'local-ui-lib'
-  - 'pigment-*'
-  - '../packages/waterfall'
-  - '../packages/docs-utils'
-  - '../packages/test-utils'
-  - '../packages-internal/*'
-  - '../packages/mui-*'
-  - '../packages/pigment-*'
