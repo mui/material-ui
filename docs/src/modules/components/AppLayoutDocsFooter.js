@@ -341,7 +341,7 @@ export default function AppLayoutDocsFooter(props) {
     processFeedback();
   };
 
-  // See https://github.com/mui/mui-toolpad/issues/1164 for context.
+  // See https://github.com/mui/toolpad/issues/1164 for context.
   const handleKeyDownForm = (event) => {
     const modifierKey = (event.metaKey || event.ctrlKey) && !event.shiftKey;
 
