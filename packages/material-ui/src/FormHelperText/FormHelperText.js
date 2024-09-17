@@ -83,8 +83,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(props, ref) {
       {...other}
     >
       {children === ' ' ? (
-        // eslint-disable-next-line react/no-danger
-        <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
+        <span>&#8203;</span>
       ) : (
         children
       )}
