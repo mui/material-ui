@@ -677,6 +677,9 @@ importers:
       babel-plugin-transform-react-remove-prop-types:
         specifier: ^0.4.24
         version: 0.4.24
+      chance:
+        specifier: ^1.1.12
+        version: 1.1.12
       clean-css:
         specifier: ^5.3.3
         version: 5.3.3
@@ -846,6 +849,9 @@ importers:
       '@types/chai':
         specifier: ^4.3.19
         version: 4.3.19
+      '@types/chance':
+        specifier: ^1.1.6
+        version: 1.1.6
       '@types/css-mediaquery':
         specifier: ^0.1.4
         version: 0.1.4
@@ -5380,6 +5386,9 @@ packages:
 
   '@types/chai@4.3.19':
     resolution: {integrity: sha512-2hHHvQBVE2FiSK4eN0Br6snX9MtolHaTo/batnLjlGRhoQzlCL61iVpxoqO7SfFyOw+P/pwv+0zNHzKoGWz9Cw==}
+
+  '@types/chance@1.1.6':
+    resolution: {integrity: sha512-V+pm3stv1Mvz8fSKJJod6CglNGVqEQ6OyuqitoDkWywEODM/eJd1eSuIp9xt6DrX8BWZ2eDSIzbw1tPCUTvGbQ==}
 
   '@types/connect@3.4.35':
     resolution: {integrity: sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==}
@@ -16678,6 +16687,8 @@ snapshots:
       '@types/chai': 4.3.19
 
   '@types/chai@4.3.19': {}
+
+  '@types/chance@1.1.6': {}
 
   '@types/connect@3.4.35':
     dependencies:
