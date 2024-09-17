@@ -881,21 +881,17 @@ describe('<Modal />', () => {
     }).not.toErrorDev();
   });
 
-  it('should not override default onKeyDown', () => {
+  it('should not override default onKeyDown', async () => {
     const handleKeyDown = spy();
     const handleClose = spy();
-    const { getByTestId } = render(
+
+    const { user } = render(
       <Modal open onKeyDown={handleKeyDown} onClose={handleClose}>
-        <div data-testid="modal" tabIndex={-1} />
+        <div tabIndex={-1} />
       </Modal>,
     );
-    act(() => {
-      getByTestId('modal').focus();
-    });
 
-    fireEvent.keyDown(getByTestId('modal'), {
-      key: 'Escape',
-    });
+    await user.keyboard('{Escape}');
 
     expect(handleKeyDown).to.have.property('callCount', 1);
     expect(handleClose).to.have.property('callCount', 1);
