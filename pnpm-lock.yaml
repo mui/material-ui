@@ -424,6 +424,9 @@ importers:
       react-router-dom:
         specifier: ^6.26.2
         version: 6.26.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      webfontloader:
+        specifier: ^1.6.28
+        version: 1.6.28
     devDependencies:
       '@babel/preset-react':
         specifier: ^7.24.7
@@ -440,6 +443,9 @@ importers:
       '@types/react-dom':
         specifier: 18.3.0
         version: 18.3.0
+      '@types/webfontloader':
+        specifier: ^1.6.38
+        version: 1.6.38
       '@vitejs/plugin-react':
         specifier: ^4.3.1
         version: 4.3.1(vite@5.4.5(@types/node@20.16.5)(terser@5.29.2))
@@ -5584,6 +5590,9 @@ packages:
 
   '@types/uuid@9.0.8':
     resolution: {integrity: sha512-jg+97EGIcY9AGHJJRaaPVgetKDsrTgbRjQ5Msgjh/DQKEFl0DtyRr/VCOyD1T2R1MNeWPK/u7JoGhlDZnKBAfA==}
+
+  '@types/webfontloader@1.6.38':
+    resolution: {integrity: sha512-kUaF72Fv202suFx6yBrwXqeVRMx7hGtJTesyESZgn9sEPCUeDXm2p0SiyS1MTqW74nQP4p7JyrOCwZ7pNFns4w==}
 
   '@types/webxr@0.5.14':
     resolution: {integrity: sha512-UEMMm/Xn3DtEa+gpzUrOcDj+SJS1tk5YodjwOxcqStNhCfPcwgyC5Srg2ToVKyg2Fhq16Ffpb0UWUQHqoT9AMA==}
@@ -16885,6 +16894,8 @@ snapshots:
   '@types/use-sync-external-store@0.0.3': {}
 
   '@types/uuid@9.0.8': {}
+
+  '@types/webfontloader@1.6.38': {}
 
   '@types/webxr@0.5.14': {}
 
