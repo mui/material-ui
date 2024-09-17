@@ -100,7 +100,7 @@ If you're using ESLint you can catch problematic imports with the [`no-restricte
 
 ### Option two: use a Babel plugin
 
-This option provides the best user experience and developer experience:
+This option provides the best user experience and developer experience, except if you're using **Next.js 13.5 or greater**, where this optimization is automatically applied via the `optimizePackageImports` option in Next.js. In that case, using a Babel plugin is unnecessary.
 
 - UX: The Babel plugin enables top-level tree-shaking even if your bundler doesn't support it.
 - DX: The Babel plugin makes startup time in dev mode as fast as Option 1.
