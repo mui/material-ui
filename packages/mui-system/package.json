@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
+    "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-system"
   },
   "license": "MIT",
@@ -62,7 +62,7 @@
     "fast-glob": "^3.3.2",
     "lodash": "^4.17.21",
     "react": "^18.3.1",
-    "sinon": "^18.0.0",
+    "sinon": "^18.0.1",
     "styled-components": "^6.1.13"
   },
   "peerDependencies": {

@@ -5,7 +5,7 @@
   "description": "Custom eslint rules for Material UI.",
   "main": "src/index.js",
   "dependencies": {
-    "emoji-regex": "^10.3.0"
+    "emoji-regex": "^10.4.0"
   },
   "devDependencies": {
     "@types/eslint": "^8.56.12",
@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git"
+    "url": "git+https://github.com/mui/material-ui.git"
   },
   "license": "MIT"
 }

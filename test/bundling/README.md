@@ -12,7 +12,7 @@ The created file might need some manual adjustment since not every edge case is 
 1. Prepare the package.json
    - to test a Pull Request
      1. checkout branch
-     1. `pnpm`
+     1. `pnpm install`
      1. `pnpm lerna run build --scope "@mui/*"`
      1. `cd` to fixture
      1. `pnpm install`

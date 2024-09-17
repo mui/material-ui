@@ -15,7 +15,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
+    "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-lab"
   },
   "license": "MIT",
@@ -59,7 +59,7 @@
     "chai": "^4.5.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sinon": "^18.0.0"
+    "sinon": "^18.0.1"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
