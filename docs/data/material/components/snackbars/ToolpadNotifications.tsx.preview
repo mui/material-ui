@@ -1,0 +1,15 @@
+<NotificationsProvider>
+  <div>
+    <Button
+      onClick={() => {
+        // preview-start
+        notifications.show('Consider yourself notified!', {
+          autoHideDuration: 3000,
+        });
+        // preview-end
+      }}
+    >
+      Notify me
+    </Button>
+  </div>
+</NotificationsProvider>

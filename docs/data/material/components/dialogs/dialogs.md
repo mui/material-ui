@@ -168,8 +168,10 @@ The package [`material-ui-confirm`](https://github.com/jonatanklosko/material-ui
 
 Follow the [Modal accessibility section](/material-ui/react-modal/#accessibility).
 
-## Experimental APIs
+## Toolpad
 
-### Imperative API
+### `useDialogs`
 
-You can create and manipulate dialogs imperatively with the [`useDialog`](https://mui.com/toolpad/core/react-use-dialogs/) API in `@toolpad/core`. This API provides state management for opening and closing dialogs and for passing data to the dialog and back. It allows for stacking multiple dialogs. It also provides themed alternatives for `window.alert`, `window.confirm` and `window.prompt`.
+You can create and manipulate dialogs imperatively with the [`useDialogs`](https://mui.com/toolpad/core/react-use-dialogs/) API in `@toolpad/core`. This API provides state management for opening and closing dialogs and for passing data to the dialog and back. It allows for stacking multiple dialogs. It also provides themed alternatives for `window.alert`, `window.confirm` and `window.prompt`.
+
+{{"demo": "ToolpadDialogs.js", "defaultCodeOpen": false}}
