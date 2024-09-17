@@ -1,5 +1,71 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.1.1
+
+<!-- generated comparing v6.1.0..master -->
+
+_Sep 17, 2024_
+
+A big thanks to the 18 contributors who made this release possible.
+
+### `@mui/material@6.1.1`
+
+- [Grid] Bring back `GridProps` and `GridTypeMap` (#43717) @DiegoAndai
+- [Paper] Fix wrong background-image on Paper when elevation is 0 (#43723) @ZeeshanTamboli
+- [Skeleton] Fix wave animation for styled-components (#43740) @siriwatknp
+
+### `@mui/system@6.1.1`
+
+- Pass the stylesheet directly to `GlobalStyles` (#43739) @siriwatknp
+
+### `@mui/utils@6.1.1`
+
+- Fix "useId" & "useSyncExternalStore" imports to not be statically analysable (#43360) @yash49
+
+### Docs
+
+- [docs][material-ui] Fix slider in color customization playground twitches when sliding (#43671) @Nashyn
+- [docs][material-ui][Breadcrumbs] Document CondensedWithMenu option for Material UI Breadcrumbs (#42973) @Sergio16T
+- [docs][material-ui][CircularProgress] Add Circular size demo (#43734) @sai6855
+- [docs] Fix minor typo (#42899) @xconverge
+- [docs] Revert icon search virtualization (#43569) @Janpot
+- [docs] Fix MUI Treasury Layout broken links (#43752) @oliviertassinari
+- [docs] Fix 301 link to design asset @oliviertassinari
+- [docs] Update release schedule table after v6 stable (#43726) @sahil-ag
+- [docs] Fix bundle size link regression @oliviertassinari
+- [material-ui][docs] Document Typography color prop breaking change (#43735) @aarongarciah
+- [pigment-css][docs] Call out Pigment being in alpha (#43725) @aarongarciah
+- [slider][docs] Polish Music player demo (#43748) @oliviertassinari
+- [test][docs] Improve demos for better regression screenshots (#43742) @aarongarciah
+- [docs][material-ui] Add docs for complementary Table components (#43756) @Juneezee
+
+### Core
+
+- [code-infra] Allow overriding all `options` of `useFakeTimers` function (#43729) @LukasTy
+- [core] Fix 301 link to Next.js and git diff @oliviertassinari
+- [core] Fix package.json repository rule @oliviertassinari
+- [core] Remove redundant window @oliviertassinari
+- [core] Fix some issues reported by eslint-plugin-react-compiler (#43117) @binsmyth
+- [core] Replace more `indexOf` with `includes` (#43694) @Juneezee
+- [core] Include history from the @mui/base components & hooks v5 @oliviertassinari
+- [core] Include history from the @mui/base components & hooks v4 @oliviertassinari
+- [core] Include history from the @mui/base components & hooks v3 @oliviertassinari
+- [core] Include history from the @mui/base components & hooks v2 @oliviertassinari
+- [core] Include history from the @mui/base components & hooks (#43079) @oliviertassinari
+- [core] Remove /.yarn (#43712) @oliviertassinari
+- [docs-infra] Enable synthetic default imports in TypeScript config (#43747) @morozow
+- [docs-infra] Fix Vale config for TypeScript references (#43751) @oliviertassinari
+- [docs-infra] Fix toolbar arrow order (#43627) @oliviertassinari
+- [docs-infra] Fix missing dependencies in multi-tab demos (#43713) @cherniavskii
+- [docs-infra] Fix API search link regression (#43662) @oliviertassinari
+- [test] Update font-awesome CSS file in regression tests fixture (#43745) @Janpot
+- [test] Remove position:relative from regression container (#43743) @aarongarciah
+- [test] Remove top-level inline-block from the regression tests (#43656) @Janpot
+- [blog] Fix broken link to purchase MUI X Pro (#43664) @oliviertassinari
+- [website] Match pricing page with linked page h1 @oliviertassinari
+
+All contributors of this release in alphabetical order: @aarongarciah, @binsmyth, @cherniavskii, @DiegoAndai, @Janpot, @Juneezee, @LukasTy, @mnajdova, @morozow, @Nashyn, @oliviertassinari, @sahil-ag, @sai6855, @Sergio16T, @siriwatknp, @xconverge, @yash49, @ZeeshanTamboli
+
 ## v6.1.0
 
 <!-- generated comparing v6.0.2..master -->
