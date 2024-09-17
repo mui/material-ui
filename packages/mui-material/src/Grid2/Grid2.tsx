@@ -2,8 +2,8 @@
 import PropTypes from 'prop-types';
 import { createGrid as createGrid2 } from '@mui/system/Grid';
 import { SxProps, SystemProps } from '@mui/system';
-import requirePropFactory from '../utils/requirePropFactory';
 import { OverridableComponent, OverrideProps } from '@mui/types';
+import requirePropFactory from '../utils/requirePropFactory';
 import { Theme, styled, useThemeProps, Breakpoint } from '../styles';
 
 export type Grid2Slot = 'root';
