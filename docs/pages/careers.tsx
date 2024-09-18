@@ -71,7 +71,7 @@ const nextRolesData = [
       {
         title: 'React Tech Lead — Core',
         description:
-          'You will lead the development of MUI Core, positioning the library as the industry standard for design teams while doubling its adoption.',
+          'You will lead the development of the core libraries, helping position it as the industry standard for design system teams.',
         url: '/careers/react-tech-lead-core/',
       },
       {
