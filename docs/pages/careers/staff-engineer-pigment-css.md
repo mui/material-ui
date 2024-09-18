@@ -48,6 +48,10 @@ This is just the beginning, though.
 There's so much to do to make Pigment CSS a reliable and mature option for the future of Material UI and for many developers looking for a next-generation CSS-in-JS styling engine.
 We're well-positioned to make this happen, so we're looking for a talented engineer to join the team and help us get further beyond!
 
+### Why this is interesting
+
+If the team is successful, we believe that over 1/3 of the JavaScript community would use Pigment CSS to style their application, making the mission both extreamly challenging and impactful.
+
 ## The role
 
 ### Key responsibilities
