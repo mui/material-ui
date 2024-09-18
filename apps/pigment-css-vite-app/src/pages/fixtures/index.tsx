@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useLocation, matchRoutes, Link } from 'react-router-dom';
+import webfontloader from 'webfontloader';
 import routes from '~react-pages';
 import IndexLayout from '../../Layout';
 
@@ -24,9 +25,31 @@ export default function Layout() {
     (item) => !!item.path && !item.path.includes('react-pagination'),
   );
 
+  const [fontState, setFontState] = React.useState('pending');
+  React.useEffect(() => {
+    webfontloader.load({
+      google: {
+        families: ['Roboto:300,400,500,700', 'Inter:300,400,500,600,700,800,900', 'Material+Icons'],
+      },
+      custom: {
+        families: ['Font Awesome 5 Free:n9'],
+        urls: ['https://use.fontawesome.com/releases/v5.14.0/css/all.css'],
+      },
+      timeout: 20000,
+      active: () => {
+        setFontState('active');
+      },
+      inactive: () => {
+        setFontState('inactive');
+      },
+    });
+  }, []);
+
+  const fixturePrepared = fontState === 'active';
+
   return (
     <IndexLayout>
-      {demo && (
+      {demo && fixturePrepared && (
         <div id="root-demo">
           {fixturesRoutes.find((item) => item.path === demo)?.element}
           {demosRoutes.find((item) => item.path === demo)?.element}

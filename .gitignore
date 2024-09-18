@@ -42,3 +42,4 @@ docs/public/static/blog/feed/*
 .github/styles/
 .nx/cache
 .nx/workspace-data
+screenshots

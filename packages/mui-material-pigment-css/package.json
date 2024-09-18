@@ -41,7 +41,7 @@
   "dependencies": {
     "@babel/runtime": "^7.25.6",
     "@mui/system": "workspace:*",
-    "@pigment-css/react": "0.0.22"
+    "@pigment-css/react": "0.0.23"
   },
   "sideEffects": false,
   "publishConfig": {
