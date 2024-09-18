@@ -20,7 +20,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-is": "18.2.0",
-    "vite": "3.2.10"
+    "vite": "3.2.11"
   },
   "devDependencies": {
     "concurrently": "7.4.0",
