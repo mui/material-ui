@@ -86,12 +86,6 @@ const nextRolesData = [
           'You will become our go-to expert for accessibility, to ensure all products meet or exceed WCAG 2.1 level AA guidelines.',
         url: '/careers/accessibility-engineer/',
       },
-      {
-        title: 'Full-stack Engineer — Toolpad',
-        description:
-          'You will join the Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.',
-        url: '/careers/fullstack-engineer/',
-      },
     ],
   },
   {
