@@ -7,10 +7,10 @@ ignorecase: true
 # for more information: https://vale.sh/docs/topics/styles/#substitution
 swap:
   ' api': API
-  'typescript ': TypeScript
+  typescript: TypeScript
   ' ts': TypeScript
-  ' js': JavaScript
   javascript: JavaScript
+  ' js': JavaScript
   ' css ': CSS
   ' html ': HTML
   NPM: npm # https://css-tricks.com/start-sentence-npm/
