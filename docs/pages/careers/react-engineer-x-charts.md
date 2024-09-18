@@ -41,7 +41,7 @@ The component is off to [a great start](https://npm-stat.com/charts.html?package
 To be more specific in what we are aiming to achieve in the short to mid-term:
 
 - A tighter integration with the rest of the MUI libraries including Material UI and MUI X Data Grid
-- Faster iteration cycles compared to popular open-source alternatives such as chart.js and Recharts
+- Faster iteration cycles compared to popular open-source alternatives such as Recharts and Chart.js.
 
 This should allow us to reach 30% of the downloads of alternative React charting libraries, considering benchmark data in the short term. Developers value having a single touch point, but also one they trust, and one that integrates well into the rest of their application.
 
