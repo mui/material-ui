@@ -59,7 +59,7 @@ Growing the Toolpad engineering team will be full of challenges.
 
 ## The role
 
-### What you'll do on a day-to-day basis
+### Key responsibilities
 
 Depending on the day, you'll:
 

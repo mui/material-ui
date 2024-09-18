@@ -48,7 +48,7 @@ The Toolpad application offers a wide variety of engineering challenges. Includi
 - Interfacing with many different types of backends
 - Databinding and complex state management
 
-### What you'll do on a day-to-day basis
+### Key responsibilities
 
 Depending on the day, you'll:
 

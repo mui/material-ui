@@ -58,7 +58,7 @@ This role is best suited for someone who will be able to handle the dynamic natu
 We're looking for someone who is comfortable in a fast-paced environment and passionate about growing teams remotely.
 The ideal candidate will be able to balance long-term focus with practical day-to-day execution.
 
-### What you'll do on a day-to-day basis
+### Key responsibilities
 
 Depending on the day, you'll:
 

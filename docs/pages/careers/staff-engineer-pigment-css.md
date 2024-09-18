@@ -56,6 +56,8 @@ If the team is successful, we believe that over 1/3 of the JavaScript community 
 
 ### Key responsibilities
 
+Depending on the day, you'll:
+
 - **Build**. You will help Pigment CSS mature by integrating it with various bundlers and frameworks, building new features, and improving DX.
 - **Nurture community contributions**. You will provide guidance and direction to unlock the contributions of the community.
 - **Influence the product strategy.** You will be empowered to help design and shape a roadmap that solves real developer problems.

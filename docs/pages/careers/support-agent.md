@@ -57,7 +57,7 @@ While this is not a technical role, having a basic understanding of what a UI li
 
 Taking initiative, actively documenting, and being comfortable with new challenges are the main keys to success in the role.
 
-### What you'll do on a day-to-day basis
+### Key responsibilities
 
 Depending on the day, you'll:
 

@@ -59,6 +59,8 @@ From the perspective of that framework, you would pioneer the Content layer whil
 
 ### Key responsibilities
 
+Depending on the day, you'll:
+
 - Create inspiring educational materials (demo apps, how-to guides, integration examples, tutorials) for devs of all skill levels
 - Seek out and implement improvements to the documentation
 - Contribute to the docs infrastructure, docs UX, or directly to the product depending on where the problem is best solved (the closer to the root the better).

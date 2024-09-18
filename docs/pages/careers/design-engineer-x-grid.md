@@ -61,7 +61,7 @@ So, by combining top-notch engineering with sleek product design, you'll be pion
 
 ## The role
 
-### What you'll do on a day-to-day basis
+### Key responsibilities
 
 The Design Engineer role sits right at the intersection between product design and software engineering. So, depending on the initiative, your day can be entirely different! Here's what you'll be able to do:
 

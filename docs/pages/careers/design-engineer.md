@@ -54,7 +54,7 @@ It's why we started Base UI, Joy UI, and Toolpad. Design is key to achieving t
 
 ## The role
 
-### What you'll do on a day-to-day basis
+### Key responsibilities
 
 Depending on the day, you'll:
 

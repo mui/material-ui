@@ -55,7 +55,7 @@ You will also be responsible to train the developers using MUI's products to a11
 
 ## The role
 
-### What you'll do on a day-to-day basis
+### Key responsibilities
 
 Depending on the day, you'll:
 

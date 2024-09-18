@@ -59,7 +59,7 @@ At MUI a Community Engineer is considered a developer, it's a person that enjoys
 
 Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
 
-### What you'll do on a day-to-day basis
+### Key responsibilities
 
 You will own the following responsibilities:
 

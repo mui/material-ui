@@ -57,7 +57,7 @@ You will initiate the exploration of a bold new product vertical.
 
 ## The role
 
-### What you'll do on a day-to-day basis
+### Key responsibilities
 
 Depending on the day, you'll:
 
