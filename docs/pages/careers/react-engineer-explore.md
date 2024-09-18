@@ -19,7 +19,7 @@ We're a company of 35+ people as of early 2024, and we're growing.
 
 MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain. Base UI is our headless component library, and Pigment CSS is a zero-runtime CSS-in-JS styling engine. We also host Design Kits and pre-built Templates.
 
-Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
+Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
 
 We're also making ambitious moves to incorporate our full suite of components into Toolpad, a low-code admin builder tool for assembling full-stack apps faster than ever.
 
@@ -35,7 +35,7 @@ For additional details about the culture, you can check our [careers](https://mu
 
 ## Why we're hiring
 
-The eXplore team (part of MUI X) needs your help. The team is currently responsible for the Pickers and Tree View components with plans to expand to others in the future. Initially, we want to double down on our Pickers and work towards providing even greater customizability.
+The eXplore team (part of MUI X) needs your help. The team is currently responsible for the Pickers and Tree View components with plans to expand to others in the future. Initially, we want to double down on our Pickers and work towards providing even greater customizability.
 
 We also need help to continue to improve the health of the open-source product: make the advanced components easier to use, make it support more use cases, improve performance, make it more accessible, increase the contributions by engaging and collaborating with the community, guide developers to answers, and just generally be a positive presence in the open-source community.
 
