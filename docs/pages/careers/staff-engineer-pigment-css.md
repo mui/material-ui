@@ -50,7 +50,7 @@ We're well-positioned to make this happen, so we're looking for a talented engin
 
 ### Why this is interesting
 
-If the team is successful, we believe that over 1/3 of the JavaScript community would use Pigment CSS to style their application, making the mission both extreamly challenging and impactful.
+If the team is successful, we believe that over 1/3 of the JavaScript community would use Pigment CSS to style their application, making the mission both extreamly challenging and impactful.
 
 ## The role
 
