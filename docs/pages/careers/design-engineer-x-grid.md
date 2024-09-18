@@ -45,7 +45,7 @@ It's an even bigger problem when developers work on projects around a single maj
 Up until now, we're solving a subset of these problems by smoothly integrating the MUI X Data Grid with Material UI.
 But the time has come to take a step further and double down on design by expanding the Data Grid capacities to integrate nicely with _any_ React project rather than just a Material UI-based one.
 
-Overall, both our open-source community and our premium products are growing fast (x2 YoY).
+Overall, both our open-source community and our premium products are growing fast.
 We need talented people to keep up with the demands of our exigeant community!
 
 ### Why this is interesting

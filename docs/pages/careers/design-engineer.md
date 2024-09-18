@@ -41,7 +41,7 @@ For additional details about the culture, you can check our [careers](https://mu
 We are aiming to make high-end design accessible to the many, empowering developers that lack access to a designer as well as saving time for designers with a source they can trust.
 [According to our last survey](https://mui.com/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library), the quality of the design execution (UX & UI) is the most important criteria used by developers & designers to pick their next UI library.
 
-Overall, both our open-source community and our premium products are growing fast (x2 YoY).
+Overall, both our open-source community and our premium products are growing fast.
 We need talented people to keep up with the demands of our exigeant community!
 
 ### Why this is interesting

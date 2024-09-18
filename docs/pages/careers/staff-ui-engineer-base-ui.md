@@ -39,7 +39,7 @@ For additional details about the culture, you can check our [careers](https://mu
 
 The Base UI team is just starting to take shape now, and we have big goals for the next few years. We need experienced people to work alongside excellent UI engineers and designers, in an IC capacity, to research, spec, build, document, and ship high-quality, unstyled UI components with a focus on a11y.
 
-Overall, both our open-source community and our premium products are growing fast (x2 YoY).
+Overall, both our open-source community and our premium products are growing fast.
 We need talented people to keep up with the demands of our exigeant community!
 
 ### Why this is interesting

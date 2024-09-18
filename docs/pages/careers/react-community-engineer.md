@@ -46,7 +46,7 @@ We face challenges on multiple fronts:
 - Software engineers at MUI are tasked with doing support, however, they could benefit from the help of a dedicated person in the company, for instance to improve the workflows and tooling.
 - The MUI X Premium plan will offer a technical advisor service, we need a Community Engineer to help deliver it.
 
-Overall, both our open-source community and our premium products are growing fast (x2 YoY).
+Overall, both our open-source community and our premium products are growing fast.
 We need talented people to keep up with the demands of our exigeant community!
 
 ## The role

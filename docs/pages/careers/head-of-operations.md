@@ -43,7 +43,7 @@ There is now a tiny team of two people working to support the operations needs.
 But this isn't enough, the department is increasingly a bottleneck in growing the company.
 We are looking for a Head of Operations to take ownership of designing, implementing, and overseeing most of the business operations to support MUI's growth.
 
-Overall, both our open-source community and our premium products are growing fast (x2 YoY).
+Overall, both our open-source community and our premium products are growing fast.
 We need talented people to keep up with the demands of our exigeant community!
 
 ### Why this is interesting

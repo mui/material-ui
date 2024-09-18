@@ -40,7 +40,7 @@ For additional details about the culture, you can check our [careers](https://mu
 
 We anticipate the need to hire >5 people/month in 2023. This is not an outcome that the managers at MUI can deliver on their own.
 
-Overall, both our open-source community and our premium products are growing fast (x2 YoY).
+Overall, both our open-source community and our premium products are growing fast.
 We need talented people to keep up with the demands of our exigeant community!
 
 ### Why this is interesting

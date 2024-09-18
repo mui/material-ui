@@ -46,7 +46,7 @@ A few months back work started on [Toolpad](https://github.com/mui/toolpad), an 
 We have found the beginning of a market fit in this low-code segment.
 We need help to structure & grow the engineering team.
 
-Overall, both our open-source community and our premium products are growing fast (x2 YoY).
+Overall, both our open-source community and our premium products are growing fast.
 We need talented people to keep up with the demands of our exigeant community!
 
 ### Why this is interesting

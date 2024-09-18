@@ -42,7 +42,7 @@ The development and operations of the store are currently almost exclusively run
 This team doesn't have enough bandwidth, the store doesn't receive the care it deserves.
 You will be responsible to step up and carry forward the development of the store on new fronts.
 
-Overall, both our open-source community and our premium products are growing fast (x2 YoY).
+Overall, both our open-source community and our premium products are growing fast.
 We need talented people to keep up with the demands of our exigeant community!
 
 ### Why this is interesting
