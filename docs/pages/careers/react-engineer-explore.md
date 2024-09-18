@@ -39,8 +39,6 @@ The eXplore team (part of MUI X) needs your help. The team is currently respons
 
 We also need help to continue to improve the health of the open-source product: make the advanced components easier to use, make it support more use cases, improve performance, make it more accessible, increase the contributions by engaging and collaborating with the community, guide developers to answers, and just generally be a positive presence in the open-source community.
 
-Overall, both our open-source community and our premium products are growing fast (x2 YoY). We need talented people to keep that going!
-
 ### Why this is interesting
 
 The advanced components portfolio is still small, with a million interesting and challenging problems to solve.

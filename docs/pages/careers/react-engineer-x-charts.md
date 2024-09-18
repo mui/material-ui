@@ -52,8 +52,6 @@ We will then provide extra paid features so developers can use a single charting
 
 In the long term, we envision using the pro-code charting API as a distribution channel for building more abstract charting primitives, using low-code and AI.
 
-Overall both our open-source community and our premium products are growing fast (x2 YoY). We need talented people to keep that going!
-
 ### Why this is interesting
 
 The advanced components portfolio is still small, with a million interesting and challenging problems to solve.
