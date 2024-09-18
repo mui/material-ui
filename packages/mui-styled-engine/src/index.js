@@ -36,6 +36,7 @@ export function internal_mutateStyles(tag, processor) {
   }
 }
 
+// Emotion only accepts an array, but we want to avoid allocations
 const wrapper = [];
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function internal_serializeStyles(styles) {
