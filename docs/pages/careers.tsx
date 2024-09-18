@@ -34,6 +34,24 @@ const openRolesData = [
           'Research, build, document, and help ship a next-gen zero-runtime CSS-in-JS library with a focus on performance and great developer experience.',
         url: '/careers/staff-engineer-pigment-css/',
       },
+      {
+        title: 'React Engineer — xCharts',
+        description:
+          'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+        url: '/careers/react-engineer-x-charts/',
+      },
+      {
+        title: 'React Engineer — eXplore',
+        description:
+          'You will help form the eXplore team, build ambitious and complex new features, work on strategic problems, and help grow adoption of the Pickers and Tree view components.',
+        url: '/careers/react-engineer-explore/',
+      },
+      {
+        title: 'React Engineer — X',
+        description:
+          'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+        url: '/careers/react-engineer-x/',
+      },
     ],
   },
   {
@@ -55,18 +73,6 @@ const nextRolesData = [
         description:
           'You will lead the development of MUI Core, positioning the library as the industry standard for design teams while doubling its adoption.',
         url: '/careers/react-tech-lead-core/',
-      },
-      {
-        title: 'React Engineer — X',
-        description:
-          'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-        url: '/careers/react-engineer-x/',
-      },
-      {
-        title: 'React Engineer — xCharts',
-        description:
-          'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-        url: '/careers/react-engineer-x-charts/',
       },
       {
         title: 'React Community Engineer — X',
