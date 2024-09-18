@@ -5,23 +5,25 @@ import {
 } from '@toolpad/core/useNotifications';
 import Button from '@mui/material/Button';
 
-export default function ToolpadNotifications() {
+function NotifyButton() {
   const notifications = useNotifications();
   return (
+    <Button
+      onClick={() => {
+        notifications.show('Consider yourself notified!', {
+          autoHideDuration: 3000,
+        });
+      }}
+    >
+      Notify me
+    </Button>
+  );
+}
+
+export default function ToolpadNotifications() {
+  return (
     <NotificationsProvider>
-      <div>
-        <Button
-          onClick={() => {
-            // preview-start
-            notifications.show('Consider yourself notified!', {
-              autoHideDuration: 3000,
-            });
-            // preview-end
-          }}
-        >
-          Notify me
-        </Button>
-      </div>
+      <NotifyButton />
     </NotificationsProvider>
   );
 }
