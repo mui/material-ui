@@ -174,4 +174,33 @@ Follow the [Modal accessibility section](/material-ui/react-modal/#accessibility
 
 You can create and manipulate dialogs imperatively with the [`useDialogs`](https://mui.com/toolpad/core/react-use-dialogs/) API in `@toolpad/core`. This API provides state management for opening and closing dialogs and for passing data to the dialog and back. It allows for stacking multiple dialogs. It also provides themed alternatives for `window.alert`, `window.confirm` and `window.prompt`.
 
-{{"demo": "ToolpadDialogs.js", "defaultCodeOpen": false}}
+The following example demonstrates how the `useDialogs` API can create a dialog that prompts the user to enter an ID and then confirms the deletion of an item with that ID. It waits for the async delete operation to complete before either displaying a success alert or a custom error dialog with an error payload:
+
+{{"demo": "ToolpadDialogs.js", "hideToolbar": "true"}}
+
+```tsx
+const handleDelete = async () => {
+  const id = await dialogs.prompt('Enter the ID to delete', {
+    okText: 'Delete',
+    cancelText: 'Cancel',
+  });
+
+  if (id) {
+    const deleteConfirmed = await dialogs.confirm(
+      `Are you sure you want to delete "${id}"?`,
+    );
+    if (deleteConfirmed) {
+      try {
+        setIsDeleting(true);
+        await mockApiDelete(id);
+        dialogs.alert('Deleted!');
+      } catch (error) {
+        const message = error instanceof Error ? error.message : 'Unknown error';
+        await dialogs.open(MyCustomDialog, { id, error: message });
+      } finally {
+        setIsDeleting(false);
+      }
+    }
+  }
+};
+```
