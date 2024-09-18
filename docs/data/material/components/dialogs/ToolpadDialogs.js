@@ -28,16 +28,25 @@ function MyCustomDialog({ open, onClose, payload }) {
 
 MyCustomDialog.propTypes = {
   /**
-   * Callback fired when the component requests to be closed.
-   *
-   * @param {object} event The event source of the callback.
-   * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
+   * A function to call when the dialog should be closed. If the dialog has a return
+   * value, it should be passed as an argument to this function. You should use the promise
+   * that is returned to show a loading state while the dialog is performing async actions
+   * on close.
+   * @param result The result to return from the dialog.
+   * @returns A promise that resolves when the dialog can be fully closed.
    */
-  onClose: PropTypes.func,
+  onClose: PropTypes.func.isRequired,
   /**
-   * If `true`, the component is shown.
+   * Whether the dialog is open.
    */
   open: PropTypes.bool.isRequired,
+  /**
+   * The payload that was passed when the dialog was opened.
+   */
+  payload: PropTypes.shape({
+    error: PropTypes.string,
+    id: PropTypes.string,
+  }).isRequired,
 };
 
 const mockApiDelete = async (id) => {
