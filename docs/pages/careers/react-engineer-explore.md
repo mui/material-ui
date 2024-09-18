@@ -1,6 +1,6 @@
 # React Engineer — eXplore
 
-<p class="description">You will help eXplore, the team behind the Pickers and Tree View components, build ambitious and complex new features, work on strategic problems, and help grow adoption.</p>
+<p class="description">You will help eXplore, the team behind the Pickers and Tree View components, build the most comprehensive UI library the world has ever seen.</p>
 
 ## Details of the role
 

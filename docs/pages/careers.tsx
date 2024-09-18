@@ -37,7 +37,7 @@ const openRolesData = [
       {
         title: 'React Engineer — eXplore',
         description:
-          'You will help form the eXplore team, build ambitious and complex new features, work on strategic problems, and help grow adoption of the Pickers and Tree view components.',
+          'You will help eXplore, the team behind the Pickers and Tree View components, build the most comprehensive UI library the world has ever seen.',
         url: '/careers/react-engineer-explore/',
       },
       {
