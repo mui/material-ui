@@ -41,7 +41,7 @@ For additional details about the culture, you can check our [careers](https://mu
 XXXXXX
 
 Overall, both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
+We need talented people to keep up with the demands of our exigeant community!
 
 ### Why this is interesting
 

@@ -49,7 +49,7 @@ We need to:
 We also need help to continue to make the components easier to use, make it more customizable, [improve performance](https://www.causal.app/blog/react-perf), make it more accessible, improve the health of the open-source by engaging and collaborating with the community, guide developers to answers, and just generally being a positive presence in the community.
 
 Overall, both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
+We need talented people to keep up with the demands of our exigeant community!
 
 ## The role
 

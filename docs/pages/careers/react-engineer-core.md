@@ -44,7 +44,7 @@ They are working on 4 products (Material UI, Base UI, Joy UI, and MUI System
 We also need help to continue to improve the health of the open-source product: make the core components easier to use, increase the contributions by engaging and collaborating with the community, polish all the details, make the components more accessible, guide developers to answers, and just generally be a positive presence in the open-source community.
 
 Overall, both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
+We need talented people to keep up with the demands of our exigeant community!
 
 ## The role
 

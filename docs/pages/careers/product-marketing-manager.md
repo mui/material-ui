@@ -46,7 +46,7 @@ Up to this point we have operated:
 We believe that we could do a lot better. This is a white canvas opportunity at the company, this role is critical to our growth plans. Product Marketing will be a cross-functional role at MUI, partnering with Design, Product, Developer Experience and Sales.
 
 Overall, both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
+We need talented people to keep up with the demands of our exigeant community!
 
 ### Why this is interesting
 
