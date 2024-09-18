@@ -35,7 +35,7 @@ For additional details about the culture, you can check our [careers](https://mu
 
 ## Why we're hiring
 
-The eXplore team (part of MUI X) needs your help. The team is currently responsible for the Pickers and Tree View components with plans to expand to others in the future. Initially, we want to double down on our Pickers and work towards providing even greater customizability.
+The eXplore team (part of MUI X) needs your help. The team is currently responsible for the Pickers and Tree View components with plans to expand to others in the future. Initially, we want to double down on our Pickers and work towards providing even greater customizability.
 
 We also need help to continue to improve the health of the open-source product: make the advanced components easier to use, make it support more use cases, improve performance, make it more accessible, increase the contributions by engaging and collaborating with the community, guide developers to answers, and just generally be a positive presence in the open-source community.
 
