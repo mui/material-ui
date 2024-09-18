@@ -9,54 +9,49 @@ import Paper from '@mui/material/Paper';
 import { TableVirtuoso } from 'react-virtuoso';
 import Chance from 'chance';
 
-const sample = [
-  ['Frozen yoghurt', 159, 6.0, 24, 4.0],
-  ['Ice cream sandwich', 237, 9.0, 37, 4.3],
-  ['Eclair', 262, 16.0, 24, 6.0],
-  ['Cupcake', 305, 3.7, 67, 4.3],
-  ['Gingerbread', 356, 16.0, 49, 3.9],
-];
+const chance = new Chance(42);
 
-function createData(id, dessert, calories, fat, carbs, protein) {
-  return { id, dessert, calories, fat, carbs, protein };
+function createData(id) {
+  return {
+    id,
+    firstName: chance.first(),
+    lastName: chance.last(),
+    age: chance.age(),
+    phone: chance.phone(),
+    state: chance.state({ full: true }),
+  };
 }
 
 const columns = [
   {
-    width: 200,
-    label: 'Dessert',
-    dataKey: 'dessert',
+    width: 100,
+    label: 'First Name',
+    dataKey: 'firstName',
   },
   {
-    width: 120,
-    label: 'Calories\u00A0(g)',
-    dataKey: 'calories',
+    width: 100,
+    label: 'Last Name',
+    dataKey: 'lastName',
+  },
+  {
+    width: 50,
+    label: 'Age',
+    dataKey: 'age',
     numeric: true,
   },
   {
-    width: 120,
-    label: 'Fat\u00A0(g)',
-    dataKey: 'fat',
-    numeric: true,
+    width: 110,
+    label: 'State',
+    dataKey: 'state',
   },
   {
-    width: 120,
-    label: 'Carbs\u00A0(g)',
-    dataKey: 'carbs',
-    numeric: true,
-  },
-  {
-    width: 120,
-    label: 'Protein\u00A0(g)',
-    dataKey: 'protein',
-    numeric: true,
+    width: 130,
+    label: 'Phone Number',
+    dataKey: 'phone',
   },
 ];
 
-const chance = new Chance(42);
-const rows = Array.from({ length: 200 }, (_, index) =>
-  createData(index, ...chance.pickone(sample)),
-);
+const rows = Array.from({ length: 200 }, (_, index) => createData(index));
 
 const VirtuosoTableComponents = {
   Scroller: React.forwardRef((props, ref) => (
