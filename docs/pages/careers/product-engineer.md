@@ -43,7 +43,7 @@ This team doesn't have enough bandwidth, the store doesn't receive the care it d
 You will be responsible to step up and carry forward the development of the store on new fronts.
 
 Overall, both our open-source community and our premium products are growing fast.
-We need talented people to keep up with the demands of our exigeant community!
+We need talented people to keep up with the demands of our exigent community!
 
 ### Why this is interesting
 

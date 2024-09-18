@@ -44,7 +44,7 @@ Accessibility is a strategic opportunity for MUI, across our products:
 2. Accessibility is mandated by law. For example, in the US, the Americans with Disabilities Act (ADA) is a US law enacted in 1990 to ensure people with disabilities are not discriminated against. In the EU, the European Accessibility Act (AEE) will soon be enacted. Our paid customers are increasingly asking about compliance with WCAG.
 
 Overall, both our open-source community and our premium products are growing fast.
-We need talented people to keep up with the demands of our exigeant community!
+We need talented people to keep up with the demands of our exigent community!
 
 ### Why this is interesting
 
