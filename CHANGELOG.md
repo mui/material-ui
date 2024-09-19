@@ -13,6 +13,7 @@ A big thanks to the 18 contributors who made this release possible.
 - [Grid] Bring back `GridProps` and `GridTypeMap` (#43717) @DiegoAndai
 - [Paper] Fix wrong background-image on Paper when elevation is 0 (#43723) @ZeeshanTamboli
 - [Skeleton] Fix wave animation for styled-components (#43740) @siriwatknp
+- [Modal] Fix event handlers overriding behaviour (#43757) @sai6855
 
 ### `@mui/system@6.1.1`
 
@@ -30,7 +31,9 @@ A big thanks to the 18 contributors who made this release possible.
 - [material-ui][slider] Polish Music player demo (#43748) @oliviertassinari
 - [material-ui] Document Typography color prop breaking change (#43735) @aarongarciah
 - [material-ui] Add docs for complementary Table components (#43756) @Juneezee
+- [material-ui] Improve minimizing bundle docs (#43781) @ZeeshanTamboli
 - [pigment-css] Call out Pigment being in alpha (#43725) @aarongarciah
+- [pigment-css] Fix typo globalCSS -> globalCss (#43754) @hiro0218
 - [test] Improve demos for better regression screenshots (#43742) @aarongarciah
 - Fix minor typo (#42899) @xconverge
 - Revert icon search virtualization (#43569) @Janpot
