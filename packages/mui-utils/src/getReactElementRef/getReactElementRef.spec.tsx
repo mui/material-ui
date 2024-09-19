@@ -1,19 +1,19 @@
-import getReactNodeRef from '@mui/utils/getReactElementRef';
+import getReactElementRef from '@mui/utils/getReactElementRef';
 import * as React from 'react';
 
 // @ts-expect-error
-getReactNodeRef(false);
+getReactElementRef(false);
 
 // @ts-expect-error
-getReactNodeRef(null);
+getReactElementRef(null);
 
 // @ts-expect-error
-getReactNodeRef(undefined);
+getReactElementRef(undefined);
 
 // @ts-expect-error
-getReactNodeRef(1);
+getReactElementRef(1);
 
 // @ts-expect-error
-getReactNodeRef([<div key="1" />, <div key="2" />]);
+getReactElementRef([<div key="1" />, <div key="2" />]);
 
-getReactNodeRef(<div />);
+getReactElementRef(<div />);

@@ -8,7 +8,7 @@ import {
   unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_useForkRef as useForkRef,
   unstable_setRef as setRef,
-  unstable_getReactNodeRef as getReactNodeRef,
+  unstable_getReactElementRef as getReactElementRef,
 } from '@mui/utils';
 import { PortalProps } from './Portal.types';
 
@@ -34,7 +34,7 @@ const Portal = React.forwardRef(function Portal(
 ) {
   const { children, container, disablePortal = false } = props;
   const [mountNode, setMountNode] = React.useState<ReturnType<typeof getContainer>>(null);
-  const handleRef = useForkRef(getReactNodeRef(children), forwardedRef);
+  const handleRef = useForkRef(getReactElementRef(children), forwardedRef);
 
   useEnhancedEffect(() => {
     if (!disablePortal) {

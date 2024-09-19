@@ -8,11 +8,11 @@ import MuiError from '@mui/internal-babel-macros/MuiError.macro';
  * @param element React.ReactElement
  * @returns React.Ref<any> | null
  */
-export default function getReactNodeRef(
+export default function getReactElementRef(
   element: React.ReactElement,
 ): React.Ref<any> | null | undefined {
   if (typeof element !== 'object') {
-    throw new MuiError('MUI: `getReactNodeRef(element)` expects a React element.');
+    throw new MuiError('MUI: `getReactElementRef(element)` expects a React element.');
   }
 
   if (Array.isArray(element)) {

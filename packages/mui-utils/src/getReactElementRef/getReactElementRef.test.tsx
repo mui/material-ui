@@ -1,24 +1,24 @@
 import { expect } from 'chai';
-import getReactNodeRef from '@mui/utils/getReactElementRef';
+import getReactElementRef from '@mui/utils/getReactElementRef';
 import * as React from 'react';
 
-describe('getReactNodeRef', () => {
+describe('getReactElementRef', () => {
   it('should throw when not used correctly', () => {
     expect(() => {
       // @ts-expect-error
-      getReactNodeRef(false);
+      getReactElementRef(false);
       // @ts-expect-error
     }).toThrowMinified(/expects a React element/);
 
     expect(() => {
       // @ts-expect-error
-      getReactNodeRef();
+      getReactElementRef();
       // @ts-expect-error
     }).toThrowMinified(/expects a React element/);
 
     expect(() => {
       // @ts-expect-error
-      getReactNodeRef(1);
+      getReactElementRef(1);
       // @ts-expect-error
     }).toThrowMinified(/expects a React element/);
   });
@@ -26,7 +26,7 @@ describe('getReactNodeRef', () => {
   it('should return the ref of a React element', () => {
     const ref = React.createRef<HTMLDivElement>();
     const element = <div ref={ref} />;
-    expect(getReactNodeRef(element)).to.equal(ref);
+    expect(getReactElementRef(element)).to.equal(ref);
   });
 
   it('should return null for a fragment', () => {
@@ -36,17 +36,17 @@ describe('getReactNodeRef', () => {
         <p>Hello</p>
       </React.Fragment>
     );
-    expect(getReactNodeRef(element)).to.equal(null);
+    expect(getReactElementRef(element)).to.equal(null);
   });
 
   it('should return undefined for an array', () => {
     const element = [<div key="1" />, <div key="2" />];
     // @ts-expect-error
-    expect(getReactNodeRef(element)).to.equal(undefined);
+    expect(getReactElementRef(element)).to.equal(undefined);
   });
 
   it('should return null for element with no ref', () => {
     const element = <div />;
-    expect(getReactNodeRef(element)).to.equal(null);
+    expect(getReactElementRef(element)).to.equal(null);
   });
 });
