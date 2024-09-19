@@ -5,9 +5,11 @@ import * as React from 'react';
  * It will throw runtime error if the element is not a valid React element.
  *
  * @param element React.ReactElement
- * @returns React.Ref<any> | null
+ * @returns React.Ref<any> | null | undefined
  */
-export default function getReactElementRef(element: React.ReactElement): React.Ref<any> | null {
+export default function getReactElementRef(
+  element: React.ReactElement,
+): React.Ref<any> | null | undefined {
   const reactMajorVersion = parseInt(React.version.split('.')[0], 10);
 
   // 'ref' is passed as prop in React 19, whereas 'ref' is directly attached to children in older versions
