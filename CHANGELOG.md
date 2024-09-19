@@ -25,7 +25,7 @@ A big thanks to the 18 contributors who made this release possible.
 
 ### Docs
 
-- [material-ui][Breadcrumbs] Document CondensedWithMenu option for Material UI Breadcrumbs (#42973) @Sergio16T
+- [material-ui][Breadcrumbs] Document CondensedWithMenu option for Breadcrumbs (#42973) @Sergio16T
 - [material-ui][CircularProgress] Add Circular size demo (#43734) @sai6855
 - [material-ui][slider] Fix slider in color customization playground twitches when sliding (#43671) @Nashyn
 - [material-ui][slider] Polish Music player demo (#43748) @oliviertassinari
