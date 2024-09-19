@@ -34,6 +34,10 @@ const ButtonMd3 = styled(ButtonBaseRoot, {
     borderRadius: '20px',
     padding: '10px 16px',
     gap: '0.5rem',
+    '&:focus-visible': {
+      outline: '2px solid #6442d6',
+      outlineOffset: '2px',
+    }
   };
 });
 
