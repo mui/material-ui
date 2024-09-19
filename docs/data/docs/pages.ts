@@ -2,7 +2,7 @@ import type { MuiPage } from 'docs/src/MuiPage';
 import standardNavIcons from 'docs/src/modules/components/AppNavIcons';
 
 const pages: readonly MuiPage[] = [
-  { pathname: '/versions' },
+  { pathname: 'https://mui.com/versions/' },
   {
     pathname: 'https://mui.com/store/',
     title: 'Templates',
@@ -13,7 +13,7 @@ const pages: readonly MuiPage[] = [
       'data-ga-event-label': 'sidenav',
     },
   },
-  { pathname: '/blog', title: 'Blog', icon: standardNavIcons.BookIcon },
+  { pathname: 'https://mui.com/blog/', title: 'Blog', icon: standardNavIcons.BookIcon },
 ];
 
 export default pages;

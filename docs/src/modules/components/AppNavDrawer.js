@@ -261,8 +261,7 @@ function reduceChildRoutes(context) {
 
   const title = pageToTitleI18n(page, t);
   if (page.children && page.children.length >= 1) {
-    const topLevel =
-      activePageParents.map((parentPage) => parentPage.pathname).indexOf(page.pathname) !== -1;
+    const topLevel = activePageParents.some(({ pathname }) => pathname === page.pathname);
 
     let firstChild = page.children[0];
 

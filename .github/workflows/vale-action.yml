@@ -16,6 +16,10 @@ jobs:
       - uses: errata-ai/vale-action@38bf078c328061f59879b347ca344a718a736018 # v2.1.0
         continue-on-error: true # GitHub Action flag needed until https://github.com/errata-ai/vale-action/issues/89 is fixed
         with:
+          # Errors should be more visible
           fail_on_error: true
+          # The other reports don't work, not really https://github.com/reviewdog/reviewdog#reporters
           reporter: github-pr-check
+          # Required, set by GitHub actions automatically:
+          # https://docs.github.com/en/actions/security-guides/automatic-token-authentication#about-the-github_token-secret
           token: ${{secrets.GITHUB_TOKEN}}

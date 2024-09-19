@@ -1,5 +1,5 @@
 interface TableOfContentsEntry {
-  children: TableOfContentsEntry;
+  children: TableOfContentsEntry[];
   hash: string;
   level: number;
   text: string;
@@ -27,6 +27,7 @@ export interface MarkdownHeaders {
   tags?: string[];
   authors?: string[];
   date?: string;
+  githubSource?: string;
 }
 
 export function getHeaders(markdown: string): MarkdownHeaders;

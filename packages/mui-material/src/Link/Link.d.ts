@@ -25,7 +25,7 @@ export interface LinkOwnProps extends DistributiveOmit<LinkBaseProps, 'classes' 
    */
   sx?: SxProps<Theme>;
   /**
-   * `classes` prop applied to the [`Typography`](/material-ui/api/typography/) element.
+   * `classes` prop applied to the [`Typography`](https://mui.com/material-ui/api/typography/) element.
    */
   TypographyClasses?: TypographyOwnProps['classes'];
   /**
@@ -49,13 +49,13 @@ export interface LinkTypeMap<AdditionalProps = {}, RootComponent extends React.E
  *
  * Demos:
  *
- * - [Breadcrumbs](https://next.mui.com/material-ui/react-breadcrumbs/)
- * - [Links](https://next.mui.com/material-ui/react-link/)
+ * - [Breadcrumbs](https://mui.com/material-ui/react-breadcrumbs/)
+ * - [Links](https://mui.com/material-ui/react-link/)
  *
  * API:
  *
- * - [Link API](https://next.mui.com/material-ui/api/link/)
- * - inherits [Typography API](https://next.mui.com/material-ui/api/typography/)
+ * - [Link API](https://mui.com/material-ui/api/link/)
+ * - inherits [Typography API](https://mui.com/material-ui/api/typography/)
  */
 declare const Link: OverridableComponent<LinkTypeMap>;
 

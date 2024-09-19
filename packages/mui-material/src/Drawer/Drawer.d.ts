@@ -27,7 +27,7 @@ export interface DrawerProps extends StandardProps<ModalProps, 'open' | 'childre
    */
   elevation?: number;
   /**
-   * Props applied to the [`Modal`](/material-ui/api/modal/) element.
+   * Props applied to the [`Modal`](https://mui.com/material-ui/api/modal/) element.
    * @default {}
    */
   ModalProps?: Partial<ModalProps>;
@@ -45,12 +45,12 @@ export interface DrawerProps extends StandardProps<ModalProps, 'open' | 'childre
    */
   open?: boolean;
   /**
-   * Props applied to the [`Paper`](/material-ui/api/paper/) element.
+   * Props applied to the [`Paper`](https://mui.com/material-ui/api/paper/) element.
    * @default {}
    */
   PaperProps?: Partial<PaperProps<React.ElementType>>;
   /**
-   * Props applied to the [`Slide`](/material-ui/api/slide/) element.
+   * Props applied to the [`Slide`](https://mui.com/material-ui/api/slide/) element.
    */
   SlideProps?: Partial<SlideProps>;
   /**
@@ -74,15 +74,15 @@ export interface DrawerProps extends StandardProps<ModalProps, 'open' | 'childre
 }
 
 /**
- * The props of the [Modal](https://next.mui.com/material-ui/api/modal/) component are available
+ * The props of the [Modal](https://mui.com/material-ui/api/modal/) component are available
  * when `variant="temporary"` is set.
  *
  * Demos:
  *
- * - [Drawer](https://next.mui.com/material-ui/react-drawer/)
+ * - [Drawer](https://mui.com/material-ui/react-drawer/)
  *
  * API:
  *
- * - [Drawer API](https://next.mui.com/material-ui/api/drawer/)
+ * - [Drawer API](https://mui.com/material-ui/api/drawer/)
  */
 export default function Drawer(props: DrawerProps): React.JSX.Element;

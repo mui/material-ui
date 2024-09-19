@@ -77,7 +77,7 @@ const PRODUCTS = [
   },
   {
     name: 'Toolpad',
-    description: 'Self-hosted, low-code internal tool builder.',
+    description: 'Components and tools for dashboards and internal apps.',
     href: ROUTES.productToolpad,
     chip: 'Beta',
   },
@@ -111,8 +111,8 @@ const DOCS = [
   },
   {
     name: 'Toolpad',
-    description: 'Self-hosted, low-code internal tool builder.',
-    href: ROUTES.toolpadStudioDocs,
+    description: 'Components and tools for dashboards and internal apps.',
+    href: ROUTES.toolpadCoreDocs,
     chip: 'Beta',
   },
 ];
@@ -229,6 +229,16 @@ export default function HeaderNavDropdown() {
                                 label={item.chip}
                                 color="primary"
                                 variant="outlined"
+                                sx={{
+                                  fontSize: '.625rem',
+                                  fontWeight: 'semiBold',
+                                  textTransform: 'uppercase',
+                                  letterSpacing: '.04rem',
+                                  height: '16px',
+                                  '& .MuiChip-label': {
+                                    px: '4px',
+                                  },
+                                }}
                               />
                             ) : null}
                           </Box>
@@ -280,6 +290,16 @@ export default function HeaderNavDropdown() {
                                 label={item.chip}
                                 color="primary"
                                 variant="outlined"
+                                sx={{
+                                  fontSize: '.625rem',
+                                  fontWeight: 'semiBold',
+                                  textTransform: 'uppercase',
+                                  letterSpacing: '.04rem',
+                                  height: '16px',
+                                  '& .MuiChip-label': {
+                                    px: '4px',
+                                  },
+                                }}
                               />
                             ) : null}
                           </Box>

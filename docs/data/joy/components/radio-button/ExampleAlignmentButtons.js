@@ -17,6 +17,7 @@ export default function ExampleAlignmentButtons() {
       variant="outlined"
       value={alignment}
       onChange={(event) => setAlignment(event.target.value)}
+      sx={{ display: 'inline-flex' }}
     >
       {['left', 'center', 'right', 'justify'].map((item) => (
         <Box

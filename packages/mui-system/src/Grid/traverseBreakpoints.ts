@@ -36,7 +36,7 @@ export const traverseBreakpoints = <T = unknown>(
         : filterBreakpointKeys(breakpoints.keys, Object.keys(responsive));
 
     keys.forEach((key) => {
-      if (breakpoints.keys.indexOf(key as Breakpoint) !== -1) {
+      if (breakpoints.keys.includes(key as Breakpoint)) {
         // @ts-ignore already checked that responsive is an object
         const breakpointValue: T = responsive[key];
         if (breakpointValue !== undefined) {

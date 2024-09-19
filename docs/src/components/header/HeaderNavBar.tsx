@@ -111,15 +111,24 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
         {...props}
       >
         <Box sx={{ px: 2 }}>{icon}</Box>
-        <Box sx={{ flexGrow: 1 }}>
-          <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'bold' }}>
-            {name}
-          </Typography>
+        <div style={{ flexGrow: 1 }}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+          >
+            <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'bold' }}>
+              {name}
+            </Typography>
+            {chip}
+          </div>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
             {description}
           </Typography>
-        </Box>
-        {chip}
+        </div>
       </Box>
     );
   },
@@ -303,8 +312,25 @@ export default function HeaderNavBar() {
                         href={ROUTES.productToolpad}
                         icon={<IconImage name="product-toolpad" />}
                         name="Toolpad"
-                        chip={<Chip label="Beta" size="small" color="primary" variant="outlined" />}
-                        description="Self-hosted, low-code internal tool builder."
+                        chip={
+                          <Chip
+                            label="Beta"
+                            size="small"
+                            color="primary"
+                            variant="outlined"
+                            sx={{
+                              fontSize: '.625rem',
+                              fontWeight: 'semiBold',
+                              textTransform: 'uppercase',
+                              letterSpacing: '.04rem',
+                              height: '16px',
+                              '& .MuiChip-label': {
+                                px: '4px',
+                              },
+                            }}
+                          />
+                        }
+                        description="Components and tools for dashboards and internal apps."
                       />
                     </li>
                     <li>

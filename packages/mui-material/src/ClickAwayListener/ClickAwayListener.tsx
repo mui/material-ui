@@ -65,12 +65,12 @@ export interface ClickAwayListenerProps {
  *
  * Demos:
  *
- * - [Click-Away Listener](https://next.mui.com/material-ui/react-click-away-listener/)
- * - [Menu](https://next.mui.com/material-ui/react-menu/)
+ * - [Click-Away Listener](https://mui.com/material-ui/react-click-away-listener/)
+ * - [Menu](https://mui.com/material-ui/react-menu/)
  *
  * API:
  *
- * - [ClickAwayListener API](https://next.mui.com/material-ui/api/click-away-listener/)
+ * - [ClickAwayListener API](https://mui.com/material-ui/api/click-away-listener/)
  */
 function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
   const {
@@ -133,7 +133,7 @@ function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
 
     // If not enough, can use https://github.com/DieterHolvoet/event-propagation-path/blob/master/propagationPath.js
     if (event.composedPath) {
-      insideDOM = event.composedPath().indexOf(nodeRef.current) > -1;
+      insideDOM = event.composedPath().includes(nodeRef.current);
     } else {
       insideDOM =
         !doc.documentElement.contains(

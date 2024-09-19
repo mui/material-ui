@@ -14,11 +14,11 @@ import { extractEventHandlers } from '../utils';
  *
  * Demos:
  *
- * - [Menu](https://next.mui.com/base-ui/react-menu/#hooks)
+ * - [Menu](https://mui.com/base-ui/react-menu/#hooks)
  *
  * API:
  *
- * - [useMenuButton API](https://next.mui.com/base-ui/react-menu/hooks-api/#use-menu-button)
+ * - [useMenuButton API](https://mui.com/base-ui/react-menu/hooks-api/#use-menu-button)
  */
 export function useMenuButton(parameters: UseMenuButtonParameters = {}): UseMenuButtonReturnValue {
   const { disabled = false, focusableWhenDisabled, rootRef: externalRef } = parameters;

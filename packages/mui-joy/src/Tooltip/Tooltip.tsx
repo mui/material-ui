@@ -262,7 +262,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const id = useId(idProp);
 
-  const prevUserSelect: React.MutableRefObject<string | undefined> = React.useRef();
+  const prevUserSelect = React.useRef<string | undefined>(undefined);
   const stopTouchInteraction = useEventCallback(() => {
     if (prevUserSelect.current !== undefined) {
       // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- WebkitUserSelect is required outside the component

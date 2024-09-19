@@ -8,6 +8,7 @@ import Typography from '../Typography';
 import FormControlContext from '../FormControl/FormControlContext';
 import useFormControl from '../FormControl/useFormControl';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import inputAdornmentClasses, { getInputAdornmentUtilityClass } from './inputAdornmentClasses';
 
@@ -42,49 +43,52 @@ const InputAdornmentRoot = styled('div', {
   name: 'MuiInputAdornment',
   slot: 'Root',
   overridesResolver,
-})(({ theme }) => ({
-  display: 'flex',
-  maxHeight: '2em',
-  alignItems: 'center',
-  whiteSpace: 'nowrap',
-  color: (theme.vars || theme).palette.action.active,
-  variants: [
-    {
-      props: {
-        variant: 'filled',
-      },
-      style: {
-        [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]: {
-          marginTop: 16,
+})(
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    maxHeight: '2em',
+    alignItems: 'center',
+    whiteSpace: 'nowrap',
+    color: (theme.vars || theme).palette.action.active,
+    variants: [
+      {
+        props: {
+          variant: 'filled',
+        },
+        style: {
+          [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]:
+            {
+              marginTop: 16,
+            },
         },
       },
-    },
-    {
-      props: {
-        position: 'start',
+      {
+        props: {
+          position: 'start',
+        },
+        style: {
+          marginRight: 8,
+        },
       },
-      style: {
-        marginRight: 8,
+      {
+        props: {
+          position: 'end',
+        },
+        style: {
+          marginLeft: 8,
+        },
       },
-    },
-    {
-      props: {
-        position: 'end',
+      {
+        props: {
+          disablePointerEvents: true,
+        },
+        style: {
+          pointerEvents: 'none',
+        },
       },
-      style: {
-        marginLeft: 8,
-      },
-    },
-    {
-      props: {
-        disablePointerEvents: true,
-      },
-      style: {
-        pointerEvents: 'none',
-      },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiInputAdornment' });
@@ -139,7 +143,7 @@ const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
         {...other}
       >
         {typeof children === 'string' && !disableTypography ? (
-          <Typography color="text.secondary">{children}</Typography>
+          <Typography color="textSecondary">{children}</Typography>
         ) : (
           <React.Fragment>
             {/* To have the correct vertical alignment baseline */}

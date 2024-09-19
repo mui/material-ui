@@ -10,6 +10,8 @@ export interface LoadingButtonOwnProps {
   classes?: Partial<ButtonClasses> & {
     /** Styles applied to the root element. */
     root?: string;
+    /** Styles applied to the span element that wraps the children. */
+    label?: string;
     /** Styles applied to the root element if `loading={true}`. */
     loading?: string;
     /** Styles applied to the loadingIndicator element. */
@@ -60,13 +62,13 @@ export type LoadingButtonTypeMap<
  *
  * Demos:
  *
- * - [Button Group](https://next.mui.com/material-ui/react-button-group/)
- * - [Button](https://next.mui.com/material-ui/react-button/)
+ * - [Button Group](https://mui.com/material-ui/react-button-group/)
+ * - [Button](https://mui.com/material-ui/react-button/)
  *
  * API:
  *
- * - [LoadingButton API](https://next.mui.com/material-ui/api/loading-button/)
- * - inherits [Button API](https://next.mui.com/material-ui/api/button/)
+ * - [LoadingButton API](https://mui.com/material-ui/api/loading-button/)
+ * - inherits [Button API](https://mui.com/material-ui/api/button/)
  */
 declare const LoadingButton: ExtendButton<LoadingButtonTypeMap>;
 

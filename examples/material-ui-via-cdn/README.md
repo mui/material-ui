@@ -4,10 +4,8 @@
 
 Download the example [or clone the repo](https://github.com/mui/material-ui):
 
-<!-- #default-branch-switch -->
-
 ```bash
-curl https://codeload.github.com/mui/material-ui/tar.gz/next | tar -xz --strip=2  material-ui-next/examples/material-ui-via-cdn
+curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/material-ui-via-cdn
 cd material-ui-via-cdn
 ```
 
@@ -25,11 +23,11 @@ The client has to download the entire library, regardless of which components ar
 
 <!-- #default-branch-switch -->
 
-[The live preview.](https://rawcdn.githack.com/mui/material-ui/next/examples/material-ui-via-cdn/index.html)
+[The live preview.](https://raw.githack.com/mui/material-ui/master/examples/material-ui-via-cdn/index.html)
 
 ## What's next?
 
 You now have a working example project.
-You can head back to the documentation and continue by browsing the [templates](https://next.mui.com/material-ui/getting-started/templates/) section.
+You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.
 
 <!-- #default-branch-switch -->

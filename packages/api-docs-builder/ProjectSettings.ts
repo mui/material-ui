@@ -1,7 +1,10 @@
-import { ComponentClassDefinition } from '@mui/internal-docs-utils';
 import { CreateTypeScriptProjectOptions } from './utils/createTypeScriptProject';
 import { CreateDescribeablePropSettings } from './utils/createDescribeableProp';
-import { ComponentReactApi, HookReactApi } from './types/ApiBuilder.types';
+import {
+  ComponentClassDefinition,
+  ComponentReactApi,
+  HookReactApi,
+} from './types/ApiBuilder.types';
 import { Slot, ComponentInfo, HookInfo } from './types/utils.types';
 
 export type SortingStrategiesType = {
@@ -23,6 +26,11 @@ export interface ProjectSettings {
      * The output path of `pagesApi` generated from `input.pageDirectory`
      */
     apiManifestPath: string;
+    /**
+     * Determine if the API manifest file is created.
+     * @default true
+     */
+    writeApiManifest?: boolean;
   };
   /**
    * Component directories to be used to generate API

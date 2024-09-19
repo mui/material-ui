@@ -20,6 +20,17 @@
       },
       "default": "'anchorEl'"
     },
+    "BackdropComponent": {
+      "type": { "name": "elementType" },
+      "default": "styled(Backdrop, {\n  name: 'MuiModal',\n  slot: 'Backdrop',\n  overridesResolver: (props, styles) => {\n    return styles.backdrop;\n  },\n})({\n  zIndex: -1,\n})",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.root.slots.backdrop</code> instead. While this prop currently works, it will be removed in the next major version."
+    },
+    "BackdropProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.root.slotProps.backdrop</code> instead."
+    },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },

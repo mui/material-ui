@@ -24,8 +24,11 @@ describe('extendTheme', () => {
       configurable: true,
     });
     window.matchMedia = () => ({
+      // Keep mocking legacy methods because @mui/material v5 still uses them
       addListener: () => {},
+      addEventListener: () => {},
       removeListener: () => {},
+      removeEventListener: () => {},
     });
   });
 
@@ -74,14 +77,12 @@ describe('extendTheme', () => {
   it('should throw error if the default color scheme is invalid', () => {
     expect(() =>
       extendTheme({ colorSchemes: { dark: false }, defaultColorScheme: 'dark' }),
-    ).to.throw(
-      'MUI: The provided `colorSchemes.dark` to the `extendTheme` function is either missing or invalid.',
-    );
+    ).to.throw('MUI: The `colorSchemes.dark` option is either missing or invalid.');
   });
 
   it('should throw error if the default color scheme is missing', () => {
     expect(() => extendTheme({ defaultColorScheme: 'paper' })).to.throw(
-      'MUI: The provided `colorSchemes.paper` to the `extendTheme` function is either missing or invalid.',
+      'MUI: The `colorSchemes.paper` option is either missing or invalid.',
     );
   });
 
@@ -344,14 +345,14 @@ describe('extendTheme', () => {
       const theme = extendTheme({ defaultColorScheme: 'dark' });
       expect(theme.colorSchemes.dark.overlays).to.have.length(25);
 
-      expect(theme.colorSchemes.dark.overlays[0]).to.equal(undefined);
+      expect(theme.colorSchemes.dark.overlays[0]).to.equal('none');
       expect(theme.colorSchemes.dark.overlays[24]).to.equal(
         'linear-gradient(rgba(255 255 255 / 0.165), rgba(255 255 255 / 0.165))',
       );
     });
 
     it('should override the array as expected', () => {
-      const overlays = Array(24).fill('none');
+      const overlays = Array(25).fill('none');
       const theme = extendTheme({
         defaultColorScheme: 'dark',
         colorSchemes: { dark: { overlays } },
@@ -494,8 +495,16 @@ describe('extendTheme', () => {
 
     it('can be customized as a function', () => {
       const theme = extendTheme({ spacing: (factor) => `${0.25 * factor}rem` });
-      expect(theme.vars.spacing).to.deep.equal('var(--mui-spacing, 0.25rem)');
-      expect(theme.spacing(2)).to.equal('calc(2 * var(--mui-spacing, 0.25rem))');
+      expect('spacing' in theme.vars).to.equal(false);
+      expect(theme.spacing(2)).to.equal('0.5rem');
+    });
+
+    it('a custom function should not be altered', () => {
+      const theme = extendTheme({
+        spacing: (val) => (val === 'xs' ? '100px' : val),
+      });
+      expect('spacing' in theme.vars).to.equal(false);
+      expect(theme.spacing('xs')).to.equal('100px');
     });
   });
 
@@ -723,10 +732,19 @@ describe('extendTheme', () => {
   describe('light and dark color schemes', () => {
     it('should use prefers-color-scheme (`media`) by default', () => {
       const theme = extendTheme({ colorSchemes: { light: true, dark: true } });
-      expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
-        ':root',
-        ':root',
-        '@media (prefers-color-scheme: dark) { :root',
+      const sheets = theme.generateStyleSheets();
+      sinon.assert.match(sheets, [
+        {
+          ':root': sheets[0][':root'], // non-colors related variables
+        },
+        {
+          ':root': sheets[1][':root'], // light palette
+        },
+        {
+          '@media (prefers-color-scheme: dark)': {
+            ':root': sheets[2]['@media (prefers-color-scheme: dark)'][':root'], // dark palette
+          },
+        },
       ]);
     });
 
@@ -744,11 +762,23 @@ describe('extendTheme', () => {
         colorSchemes: { light: true, dark: true },
         defaultColorScheme: 'dark',
       });
-      expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
-        ':root',
-        ':root',
-        '@media (prefers-color-scheme: dark) { :root', // this key targets excluded variables for dark
-        '@media (prefers-color-scheme: light) { :root',
+      const sheets = theme.generateStyleSheets();
+      sinon.assert.match(sheets, [
+        {
+          ':root': sheets[0][':root'], // non-colors related variables
+        },
+        {
+          ':root': sheets[1][':root'], // dark palette
+          '@media (prefers-color-scheme: dark)': {
+            // dark specific variables
+            ':root': sheets[1]['@media (prefers-color-scheme: dark)'][':root'],
+          },
+        },
+        {
+          '@media (prefers-color-scheme: light)': {
+            ':root': sheets[2]['@media (prefers-color-scheme: light)'][':root'], // light palette
+          },
+        },
       ]);
     });
 

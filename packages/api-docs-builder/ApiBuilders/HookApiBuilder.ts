@@ -21,7 +21,7 @@ import {
 } from '../buildApiUtils';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
 import generateApiTranslations from '../utils/generateApiTranslation';
-import { HookReactApi, ParsedProperty } from '../types/ApiBuilder.types';
+import { HookApiContent, HookReactApi, ParsedProperty } from '../types/ApiBuilder.types';
 import { HookInfo } from '../types/utils.types';
 
 const parseProperty = async (
@@ -352,7 +352,7 @@ const generateApiJson = async (outputDirectory: string, reactApi: HookReactApi) 
   /**
    * Gather the metadata needed for the component's API page.
    */
-  const pageContent = {
+  const pageContent: HookApiContent = {
     // Sorted by required DESC, name ASC
     parameters: _.fromPairs(
       Object.entries(reactApi.parametersTable).sort(([aName, aData], [bName, bData]) => {
@@ -510,7 +510,7 @@ export default async function generateHookApi(
     reactApi.description = reactApi.description.slice(0, annotatedDescriptionMatch.index).trim();
   }
 
-  const { getHookImports = defaultGetHookImports } = projectSettings;
+  const { getHookImports = defaultGetHookImports, translationPagesDirectory } = projectSettings;
   reactApi.filename = filename;
   reactApi.name = name;
   reactApi.imports = getHookImports(name, filename);
@@ -545,7 +545,7 @@ export default async function generateHookApi(
   if (!skipApiGeneration) {
     // Generate pages, json and translations
     await generateApiTranslations(
-      path.join(process.cwd(), 'docs/translations/api-docs'),
+      path.join(process.cwd(), translationPagesDirectory),
       reactApi,
       projectSettings.translationLanguages,
     );

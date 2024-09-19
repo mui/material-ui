@@ -1,13 +1,13 @@
 {
   "name": "netlify-plugin-cache-docs",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "private": true,
   "author": "MUI Team",
   "description": "Alternative to netlify-plugin-cache-nextjs",
   "keywords": [],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
+    "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/netlify-plugin-cache-docs"
   },
   "license": "MIT",
