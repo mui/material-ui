@@ -40,87 +40,28 @@ const useUtilityClasses = (ownerState) => {
   };
 };
 
-const commonIconStyles = [
-  {
-    props: { size: 'small' },
-    style: {
-      '& > *:nth-of-type(1)': {
-        fontSize: 18,
-      },
-    },
-  },
-  {
-    props: { size: 'medium' },
-    style: {
-      '& > *:nth-of-type(1)': {
-        fontSize: 20,
-      },
-    },
-  },
-  {
-    props: { size: 'large' },
-    style: {
-      '& > *:nth-of-type(1)': {
-        fontSize: 22,
-      },
-    },
-  },
-];
-
-export const ButtonRoot = styled(ButtonBaseRoot)({
+export const ButtonRoot = styled(ButtonBaseRoot, {
+  name: 'MuiButton',
+  slot: 'root',
+})({
   height: 'min(2.5rem, 100%)',
   padding: '0.5rem 1rem',
   fontSize: '0.875rem',
   lineHeight: '1.25rem',
   fontWeight: 500,
   borderRadius: 'calc(0.5rem - 2px)',
+  gap: '0.5rem',
 });
 
-const ButtonStartIcon = styled('span', {
+export const ButtonStartIcon = styled('span', {
   name: 'MuiButton',
-  slot: 'StartIcon',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [styles.startIcon, styles[`iconSize${capitalize(ownerState.size)}`]];
-  },
-})({
-  display: 'inherit',
-  marginRight: 8,
-  marginLeft: -4,
-  variants: [
-    {
-      props: { size: 'small' },
-      style: {
-        marginLeft: -2,
-      },
-    },
-    ...commonIconStyles,
-  ],
-});
+  slot: 'startIcon',
+})({ display: 'inherit' });
 
 const ButtonEndIcon = styled('span', {
   name: 'MuiButton',
-  slot: 'EndIcon',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [styles.endIcon, styles[`iconSize${capitalize(ownerState.size)}`]];
-  },
-})({
-  display: 'inherit',
-  marginRight: -4,
-  marginLeft: 8,
-  variants: [
-    {
-      props: { size: 'small' },
-      style: {
-        marginRight: -2,
-      },
-    },
-    ...commonIconStyles,
-  ],
-});
+  slot: 'endIcon',
+})({ display: 'inherit' });
 
 const Button = React.forwardRef(function Button(inProps, ref) {
   // props priority: `inProps` > `contextProps` > `themeDefaultProps`
@@ -161,18 +102,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const startIcon = startIconProp && (
-    <ButtonStartIcon className={classes.startIcon} ownerState={ownerState}>
-      {startIconProp}
-    </ButtonStartIcon>
-  );
-
-  const endIcon = endIconProp && (
-    <ButtonEndIcon className={classes.endIcon} ownerState={ownerState}>
-      {endIconProp}
-    </ButtonEndIcon>
-  );
-
   const positionClassName = buttonGroupButtonContextPositionClassName || '';
 
   const [Root, rootProps] = useSlot('root', {
@@ -190,11 +119,25 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     ownerState,
   });
 
+  const [StartIcon, startIconProps] = useSlot('startIcon', {
+    elementType: ButtonStartIcon,
+    className: classes.startIcon,
+    ownerState,
+    externalForwardedProps: other,
+  });
+
+  const [EndIcon, endIconProps] = useSlot('endIcon', {
+    elementType: ButtonEndIcon,
+    className: classes.endIcon,
+    ownerState,
+    externalForwardedProps: other,
+  });
+
   return (
     <Root {...rootProps}>
-      {startIcon}
+      {StartIcon && startIconProp && <StartIcon {...startIconProps}>{startIconProp}</StartIcon>}
       {children}
-      {endIcon}
+      {EndIcon && endIconProp && <EndIcon {...endIconProps}>{endIconProp}</EndIcon>}
     </Root>
   );
 });

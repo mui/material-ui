@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { ButtonBaseRoot } from '../ButtonBase/ButtonBase';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
@@ -32,6 +33,7 @@ const ButtonMd3 = styled(ButtonBaseRoot, {
     border: '1px solid var(--md-sys-color-outline)',
     borderRadius: '20px',
     padding: '10px 16px',
+    gap: '0.5rem',
   };
 });
 
@@ -39,6 +41,8 @@ const slots = {
   MuiButton: {
     slots: {
       root: ButtonMd3,
+      startIcon: React.Fragment,
+      endIcon: React.Fragment,
     },
   },
 };

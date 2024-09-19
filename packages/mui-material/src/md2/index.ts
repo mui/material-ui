@@ -31,7 +31,7 @@ declare module '@mui/material/Button' {
   }
 }
 
-const ButtonMd2 = styled(ButtonBase, {
+const ButtonMd2Root = styled(ButtonBase, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiButton',
   slot: 'Root',
@@ -57,6 +57,7 @@ const ButtonMd2 = styled(ButtonBase, {
     const inheritContainedHoverBackgroundColor =
       theme.palette.mode === 'light' ? theme.palette.grey.A100 : theme.palette.grey[700];
     return {
+      gap: 0,
       minWidth: 64,
       padding: '6px 16px',
       border: 0,
@@ -264,13 +265,87 @@ const ButtonMd2 = styled(ButtonBase, {
   }),
 );
 
+const commonIconStyles = [
+  {
+    props: { size: 'small' },
+    style: {
+      '& > *:nth-of-type(1)': {
+        fontSize: 18,
+      },
+    },
+  },
+  {
+    props: { size: 'medium' },
+    style: {
+      '& > *:nth-of-type(1)': {
+        fontSize: 20,
+      },
+    },
+  },
+  {
+    props: { size: 'large' },
+    style: {
+      '& > *:nth-of-type(1)': {
+        fontSize: 22,
+      },
+    },
+  },
+];
+const ButtonMd2StartIcon = styled('span', {
+  name: 'MuiButton',
+  slot: 'StartIcon',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [styles.startIcon, styles[`iconSize${capitalize(ownerState.size)}`]];
+  },
+})({
+  display: 'inherit',
+  marginRight: 8,
+  marginLeft: -4,
+  variants: [
+    {
+      props: { size: 'small' },
+      style: {
+        marginLeft: -2,
+      },
+    },
+    ...commonIconStyles,
+  ],
+});
+
+const ButtonMd2EndIcon = styled('span', {
+  name: 'MuiButton',
+  slot: 'EndIcon',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [styles.endIcon, styles[`iconSize${capitalize(ownerState.size)}`]];
+  },
+})({
+  display: 'inherit',
+  marginRight: -4,
+  marginLeft: 8,
+  variants: [
+    {
+      props: { size: 'small' },
+      style: {
+        marginRight: -2,
+      },
+    },
+    ...commonIconStyles,
+  ],
+});
+
 const slots = {
   MuiButton: {
-    variant: 'text' as const,
+    variant: 'contained' as const,
     color: 'primary' as const,
     size: 'medium' as const,
     slots: {
-      root: ButtonMd2,
+      root: ButtonMd2Root,
+      startIcon: ButtonMd2StartIcon,
+      endIcon: ButtonMd2EndIcon,
     },
   },
   // MuiTextField: {
