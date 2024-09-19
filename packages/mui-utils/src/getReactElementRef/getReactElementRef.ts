@@ -10,10 +10,8 @@ import * as React from 'react';
 export default function getReactElementRef(
   element: React.ReactElement,
 ): React.Ref<any> | null | undefined {
-  const reactMajorVersion = parseInt(React.version.split('.')[0], 10);
-
   // 'ref' is passed as prop in React 19, whereas 'ref' is directly attached to children in older versions
-  if (reactMajorVersion >= 19) {
+  if (parseInt(React.version, 10) >= 19) {
     return element.props?.ref;
   }
   // @ts-expect-error element.ref is not included in the ReactElement type
