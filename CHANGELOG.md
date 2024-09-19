@@ -4,7 +4,7 @@
 
 <!-- generated comparing v6.1.0..master -->
 
-_Sep 18, 2024_
+_Sep 19, 2024_
 
 A big thanks to the 18 contributors who made this release possible.
 
