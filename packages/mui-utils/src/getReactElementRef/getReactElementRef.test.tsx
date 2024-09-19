@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import getReactNodeRef from '@mui/utils/getReactNodeRef';
+import getReactNodeRef from '@mui/utils/getReactElementRef';
 import * as React from 'react';
 
 describe('getReactNodeRef', () => {

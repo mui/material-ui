@@ -1,4 +1,4 @@
-import getReactNodeRef from '@mui/utils/getReactNodeRef';
+import getReactNodeRef from '@mui/utils/getReactElementRef';
 import * as React from 'react';
 
 // @ts-expect-error

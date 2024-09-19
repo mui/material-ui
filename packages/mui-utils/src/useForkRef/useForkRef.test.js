@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import useForkRef from './useForkRef';
-import getReactNodeRef from '../getReactNodeRef';
+import getReactNodeRef from '../getReactElementRef';
 
 describe('useForkRef', () => {
   const { render } = createRenderer();

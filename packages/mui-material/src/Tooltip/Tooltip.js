@@ -9,7 +9,7 @@ import { alpha } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
 import isFocusVisible from '@mui/utils/isFocusVisible';
 import appendOwnerState from '@mui/utils/appendOwnerState';
-import getReactNodeRef from '@mui/utils/getReactNodeRef';
+import getReactNodeRef from '@mui/utils/getReactElementRef';
 import { styled, useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
