@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import resolveProps from '@mui/utils/resolveProps';
 import composeClasses from '@mui/utils/composeClasses';
-import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { ButtonBaseRoot } from '../ButtonBase/ButtonBase';
@@ -68,25 +67,14 @@ const commonIconStyles = [
   },
 ];
 
-export const ButtonRoot = styled(ButtonBaseRoot, {
-  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
-  name: 'MuiButton',
-  slot: 'Root',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [
-      styles.root,
-      styles[ownerState.variant],
-      styles[`${ownerState.variant}${capitalize(ownerState.color)}`],
-      styles[`size${capitalize(ownerState.size)}`],
-      styles[`${ownerState.variant}Size${capitalize(ownerState.size)}`],
-      ownerState.color === 'inherit' && styles.colorInherit,
-      ownerState.disableElevation && styles.disableElevation,
-      ownerState.fullWidth && styles.fullWidth,
-    ];
-  },
-})({});
+export const ButtonRoot = styled(ButtonBaseRoot)({
+  height: 'min(2.5rem, 100%)',
+  padding: '0.5rem 1rem',
+  fontSize: '0.875rem',
+  lineHeight: '1.25rem',
+  fontWeight: 500,
+  borderRadius: 'calc(0.5rem - 2px)',
+});
 
 const ButtonStartIcon = styled('span', {
   name: 'MuiButton',
@@ -142,17 +130,20 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const props = useDefaultProps({ props: resolvedProps, name: 'MuiButton' });
   const {
     children,
-    color = 'primary',
     disabled = false,
     disableElevation = false,
     disableFocusRipple = false,
     endIcon: endIconProp,
     focusVisibleClassName,
     fullWidth = false,
-    size = 'medium',
     startIcon: startIconProp,
     type,
-    variant = 'text',
+
+    // theme props
+    size = '',
+    color = '',
+    variant = '',
+
     ...other
   } = props;
 

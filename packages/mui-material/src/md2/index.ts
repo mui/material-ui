@@ -3,8 +3,53 @@ import { buttonClasses } from '../Button';
 import ButtonBase from '../ButtonBase';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
+import capitalize from '../utils/capitalize';
 
-const ButtonMd2 = styled(ButtonBase)(
+declare module '@mui/material/Button' {
+  interface ButtonPropsColorOverrides {
+    inherit: true;
+    primary: true;
+    secondary: true;
+    success: true;
+    error: true;
+    info: true;
+    warning: true;
+  }
+
+  interface ButtonPropsSizeOverrides {
+    small: true;
+    medium: true;
+    large: true;
+  }
+
+  interface ButtonPropsVariantOverrides {
+    inherit: true;
+    text: true;
+    outlined: true;
+    contained: true;
+  }
+}
+
+const ButtonMd2 = styled(ButtonBase, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  name: 'MuiButton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [
+      styles.root,
+      styles[ownerState.variant],
+      styles[`${ownerState.variant}${capitalize(ownerState.color)}`],
+      styles[`size${capitalize(ownerState.size)}`],
+      styles[`${ownerState.variant}Size${capitalize(ownerState.size)}`],
+      ownerState.color === 'inherit' && styles.colorInherit,
+      ownerState.disableElevation && styles.disableElevation,
+      ownerState.fullWidth && styles.fullWidth,
+    ];
+  },
+})(
   memoTheme(({ theme }) => {
     const inheritContainedBackgroundColor =
       theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[800];
@@ -221,6 +266,9 @@ const ButtonMd2 = styled(ButtonBase)(
 
 const slots = {
   MuiButton: {
+    variant: 'text' as const,
+    color: 'primary' as const,
+    size: 'medium' as const,
     slots: {
       root: ButtonMd2,
     },

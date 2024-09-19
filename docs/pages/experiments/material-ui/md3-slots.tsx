@@ -10,30 +10,28 @@ const theme = createTheme();
 
 export default function MD3() {
   return (
-    <ThemeProvider theme={() => theme}>
-      <Box
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(400px, 1fr))',
-          placeItems: 'center',
-          gap: 3,
-          p: 3,
-        }}
-      >
-        <div>
-          <Button variant="outlined">Button</Button>
-        </div>
-        <div>
-          <DefaultPropsProvider value={md2Slots}>
-            <Button variant="outlined">Button</Button>
-          </DefaultPropsProvider>
-        </div>
-        <div>
-          <DefaultPropsProvider value={md3Slots}>
-            <Button variant="outlined">Button</Button>
-          </DefaultPropsProvider>
-        </div>
-      </Box>
-    </ThemeProvider>
+    <Box
+      sx={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(400px, 1fr))',
+        placeItems: 'center',
+        gap: 3,
+        p: 3,
+      }}
+    >
+      <div>
+        <Button variant='elevated'>Button</Button>
+      </div>
+      <div>
+        <DefaultPropsProvider value={md2Slots}>
+          <Button>Button</Button>
+        </DefaultPropsProvider>
+      </div>
+      <div>
+        <DefaultPropsProvider value={md3Slots}>
+          <Button >Button</Button>
+        </DefaultPropsProvider>
+      </div>
+    </Box>
   );
 }
