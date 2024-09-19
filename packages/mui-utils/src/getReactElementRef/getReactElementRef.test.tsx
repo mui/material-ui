@@ -3,25 +3,17 @@ import getReactElementRef from '@mui/utils/getReactElementRef';
 import * as React from 'react';
 
 describe('getReactElementRef', () => {
-  it('should throw when not used correctly', () => {
-    expect(() => {
-      // @ts-expect-error
-      getReactElementRef(false);
-    }).to.throw();
-
-    expect(() => {
-      // @ts-expect-error
-      getReactElementRef();
-    }).to.throw();
-
-    expect(() => {
-      // @ts-expect-error
-      getReactElementRef(1);
-    }).to.throw();
+  it('should return undefined when not used correctly', () => {
+    // @ts-expect-error
+    expect(getReactElementRef(false)).to.equal(undefined);
+    // @ts-expect-error
+    expect(getReactElementRef()).to.equal(undefined);
+    // @ts-expect-error
+    expect(getReactElementRef(1)).to.equal(undefined);
 
     const children = [<div key="1" />, <div key="2" />];
     // @ts-expect-error
-    expect(() => getReactElementRef(children)).to.throw();
+    expect(getReactElementRef(children)).to.equal(undefined);
   });
 
   it('should return the ref of a React element', () => {
