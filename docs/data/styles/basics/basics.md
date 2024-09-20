@@ -9,7 +9,6 @@ It is not compatible with [React.StrictMode](https://react.dev/reference/react/S
 This documentation remains here for those working on legacy projects, but we **strongly discourage** you from using `@mui/styles` when creating a new app with Material UI—you _will_ face unresolvable dependency issues.
 
 Please use [`@mui/system`](/system/getting-started/) instead.
-
 See the [v5 migration docs](/material-ui/migration/migration-v4/) for details on how to migrate away from `@mui/styles`.
 :::
 
