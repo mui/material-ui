@@ -429,4 +429,73 @@ describe('<Dialog />', () => {
       });
     });
   });
+
+  describe('focus is handled properly', () => {
+    clock.withFakeTimers();
+
+    it('paper should have focus because it has role=dialog and content', function test() {
+      render(<Dialog open />);
+
+      const container = document.querySelector(`.${classes.paper}`);
+
+      clock.tick(500); // trigger an interval call
+      expect(container).toHaveFocus();
+    });
+
+    it('respects implicit tabindex', () => {
+      const { getByRole } = render(
+        <div>
+          <Dialog open disableInitialContentFocus>
+            <div>
+              <div />
+              {/* This will have the focus */}
+              <input />
+              <button />
+            </div>
+          </Dialog>
+        </div>,
+      );
+
+      clock.tick(500); // trigger an interval call
+      expect(getByRole('textbox')).toHaveFocus();
+    });
+
+    it('respects explicit tabindex', () => {
+      const { getByTestId } = render(
+        <div>
+          <Dialog open disableInitialContentFocus>
+            <div>
+              <div />
+              {/* This will have the focus */}
+              <input />
+              <button />
+              <div data-testid="focused" tabIndex={-1} />
+            </div>
+          </Dialog>
+        </div>,
+      );
+
+      clock.tick(500); // trigger an interval call
+      expect(getByTestId('focused')).toHaveFocus();
+    });
+
+    it('no tabbable elements are handled', () => {
+      expect(() =>
+        render(
+          <div>
+            <Dialog open disableInitialContentFocus>
+              <div data-testid="to-be-focused">
+                <div />
+                <div />
+              </div>
+            </Dialog>
+          </div>,
+        ),
+      ).toErrorDev('MUI: The modal content node does not have focusable elements');
+
+      clock.tick(500); // trigger an interval call
+      const container = document.querySelector(`.${classes.container}`);
+      expect(container).toHaveFocus();
+    });
+  });
 });

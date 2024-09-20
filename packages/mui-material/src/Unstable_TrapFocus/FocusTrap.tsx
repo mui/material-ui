@@ -88,12 +88,31 @@ function isNodeMatchingSelectorFocusable(node: HTMLInputElement): boolean {
   return true;
 }
 
-function defaultGetTabbable(root: HTMLElement): HTMLElement[] {
+function defaultGetTabbable(
+  root: HTMLElement,
+  allowExplicitMinus1: boolean = false,
+  allowRootFocus: boolean = false,
+): HTMLElement[] {
   const regularTabNodes: HTMLElement[] = [];
   const orderedTabNodes: OrderedTabNode[] = [];
 
-  Array.from(root.querySelectorAll(candidatesSelector)).forEach((node, i) => {
+  const focusableNodes = Array.from(root.querySelectorAll(candidatesSelector));
+
+  if (allowRootFocus) {
+    focusableNodes.unshift(root);
+  }
+
+  focusableNodes.forEach((node, i) => {
     const nodeTabIndex = getTabIndex(node as HTMLElement);
+
+    if (allowExplicitMinus1 && node.getAttribute('tabindex') === '-1') {
+      orderedTabNodes.push({
+        documentOrder: i,
+        tabIndex: nodeTabIndex,
+        node: node as HTMLElement,
+      });
+      return;
+    }
 
     if (nodeTabIndex === -1 || !isNodeMatchingSelectorFocusable(node as HTMLInputElement)) {
       return;
@@ -164,23 +183,26 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
     }
 
     const doc = ownerDocument(rootRef.current);
+    const openFocusElement =
+      defaultGetTabbable(rootRef.current, true, true)?.[0] ?? rootRef.current;
 
     if (!rootRef.current.contains(doc.activeElement)) {
-      if (!rootRef.current.hasAttribute('tabIndex')) {
+      // No focusable child was found and rootRef.current cannot be focused
+      if (rootRef.current === openFocusElement && !openFocusElement.hasAttribute('tabIndex')) {
         if (process.env.NODE_ENV !== 'production') {
           console.error(
             [
-              'MUI: The modal content node does not accept focus.',
+              'MUI: The modal content node does not have focusable elements.',
               'For the benefit of assistive technologies, ' +
                 'the tabIndex of the node is being set to "-1".',
             ].join('\n'),
           );
         }
-        rootRef.current.setAttribute('tabIndex', '-1');
+        openFocusElement.setAttribute('tabIndex', '-1');
       }
 
       if (activated.current) {
-        rootRef.current.focus();
+        openFocusElement.focus();
       }
     }
 

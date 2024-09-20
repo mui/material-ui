@@ -64,7 +64,9 @@ describe('<Modal />', () => {
       render(
         <ThemeProvider theme={theme}>
           <Modal open>
-            <p tabIndex={-1} id="content">Hello World</p>
+            <p tabIndex={-1} id="content">
+              Hello World
+            </p>
           </Modal>
         </ThemeProvider>,
       );
@@ -90,7 +92,9 @@ describe('<Modal />', () => {
     it('should not render the children by default', () => {
       const { queryByTestId } = render(
         <Modal open={false}>
-          <p tabIndex={-1} data-testid="content">Hello World</p>
+          <p tabIndex={-1} data-testid="content">
+            Hello World
+          </p>
         </Modal>,
       );
 
@@ -100,7 +104,7 @@ describe('<Modal />', () => {
     it('renders the children inside a div through a portal when open', () => {
       const { getByTestId } = render(
         <Modal data-testid="Portal" open>
-          <p tabIndex={-1} >Hello World</p>
+          <p tabIndex={-1}>Hello World</p>
         </Modal>,
       );
 
@@ -110,7 +114,9 @@ describe('<Modal />', () => {
     it('makes the child focusable without adding a role', () => {
       const { getByTestId } = render(
         <Modal open>
-          <div tabIndex={-1} data-testid="child">Hello World</div>
+          <div tabIndex={-1} data-testid="child">
+            Hello World
+          </div>
         </Modal>,
       );
 
@@ -380,7 +386,9 @@ describe('<Modal />', () => {
       const { getByTestId } = render(
         <Modal keepMounted open={false}>
           <div>
-            <p tabIndex={-1} data-testid="children">Hello World</p>
+            <p tabIndex={-1} data-testid="children">
+              Hello World
+            </p>
           </div>
         </Modal>,
       );
@@ -392,7 +400,7 @@ describe('<Modal />', () => {
       const modalRef = React.createRef();
       const { setProps } = render(
         <Modal keepMounted open={false} ref={modalRef}>
-          <div tabIndex={-1} >ModalContent</div>
+          <div tabIndex={-1}>ModalContent</div>
         </Modal>,
       );
       const modalNode = modalRef.current;
@@ -425,7 +433,7 @@ describe('<Modal />', () => {
               </button>
               <Modal open={this.state.open}>
                 <Fade in={this.state.open}>
-                  <span tabIndex={-1} >
+                  <span tabIndex={-1}>
                     <p data-testid="children">Hello World</p>
                   </span>
                 </Fade>
@@ -464,7 +472,9 @@ describe('<Modal />', () => {
     it('should focus on the modal when it is opened', () => {
       const { getByTestId, setProps } = render(
         <Modal open>
-          <div tabIndex={-1} data-testid="modal">Foo</div>
+          <div tabIndex={-1} data-testid="modal">
+            Foo
+          </div>
         </Modal>,
       );
 
@@ -496,7 +506,9 @@ describe('<Modal />', () => {
     it('should keep focus on the modal when it is closed', () => {
       const { getByTestId, setProps } = render(
         <Modal open disableRestoreFocus>
-          <div tabIndex={-1} data-testid="modal">Foo</div>
+          <div tabIndex={-1} data-testid="modal">
+            Foo
+          </div>
         </Modal>,
       );
 
@@ -510,7 +522,7 @@ describe('<Modal />', () => {
     it('should not focus on the modal when disableAutoFocus is true', () => {
       render(
         <Modal open disableAutoFocus>
-          <div tabIndex={-1} >Foo</div>
+          <div tabIndex={-1}>Foo</div>
         </Modal>,
       );
 
@@ -600,7 +612,9 @@ describe('<Modal />', () => {
           return (
             <Modal open={open}>
               <Fade in={open} timeout={timeout}>
-                <div tabIndex={-1} id="modal-body">hello</div>
+                <div tabIndex={-1} id="modal-body">
+                  hello
+                </div>
               </Fade>
             </Modal>
           );
@@ -621,10 +635,10 @@ describe('<Modal />', () => {
         return (
           <React.Fragment>
             <Modal open={props.open}>
-              <div tabIndex={-1} >Hello</div>
+              <div tabIndex={-1}>Hello</div>
             </Modal>
             <Modal open={props.open}>
-              <div tabIndex={-1} >World</div>
+              <div tabIndex={-1}>World</div>
             </Modal>
           </React.Fragment>
         );
@@ -652,11 +666,11 @@ describe('<Modal />', () => {
           <React.Fragment>
             <Modal open={props.open}>
               <Fade onEntered={props.onEntered} onExited={props.onExited} in={props.open}>
-                <div tabIndex={-1} >Hello</div>
+                <div tabIndex={-1}>Hello</div>
               </Fade>
             </Modal>
             <Modal open={props.open}>
-              <div tabIndex={-1} >World</div>
+              <div tabIndex={-1}>World</div>
             </Modal>
           </React.Fragment>
         );
@@ -701,7 +715,7 @@ describe('<Modal />', () => {
       render() {
         return (
           <Modal open={this.state.open}>
-            <div tabIndex={-1} >Hello</div>
+            <div tabIndex={-1}>Hello</div>
           </Modal>
         );
       }
@@ -722,7 +736,7 @@ describe('<Modal />', () => {
               onExited={props.onExited}
               in={props.open}
             >
-              <div tabIndex={-1} >Hello</div>
+              <div tabIndex={-1}>Hello</div>
             </Fade>
           </Modal>
         );
@@ -780,7 +794,7 @@ describe('<Modal />', () => {
               onExited={props.onExited}
               in={props.open}
             >
-              <div tabIndex={-1} >Hello</div>
+              <div tabIndex={-1}>Hello</div>
             </Fade>
           </Modal>
         );
@@ -834,7 +848,7 @@ describe('<Modal />', () => {
         return (
           <Modal open={Boolean(anchorEl)} container={anchorEl}>
             <Fade in={Boolean(anchorEl)}>
-              <div tabIndex={-1} >Hello</div>
+              <div tabIndex={-1}>Hello</div>
             </Fade>
           </Modal>
         );
