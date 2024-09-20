@@ -1,6 +1,6 @@
 {
   "name": "@mui/codemod",
-  "version": "6.1.0",
+  "version": "6.1.1",
   "bin": "./codemod.js",
   "private": false,
   "author": "MUI Team",
@@ -35,7 +35,7 @@
     "@babel/traverse": "^7.25.6",
     "jscodeshift": "^0.16.1",
     "jscodeshift-add-imports": "^1.0.11",
-    "postcss": "^8.4.45",
+    "postcss": "^8.4.47",
     "postcss-cli": "^11.0.0",
     "yargs": "^17.7.2"
   },

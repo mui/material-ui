@@ -100,7 +100,7 @@ If you're using ESLint you can catch problematic imports with the [`no-restricte
 
 ### Option two: use a Babel plugin
 
-This option provides the best user experience and developer experience:
+This option provides the best user experience and developer experience, except if you're using **Next.js 13.5 or greater**, where this optimization is automatically applied via the `optimizePackageImports` option in Next.js. In that case, using a Babel plugin is unnecessary.
 
 - UX: The Babel plugin enables top-level tree-shaking even if your bundler doesn't support it.
 - DX: The Babel plugin makes startup time in dev mode as fast as Option 1.
@@ -111,59 +111,50 @@ This option provides the best user experience and developer experience:
 import { Button, TextField } from '@mui/material';
 ```
 
-However, you need to apply the two following steps correctly.
+However, you need to apply the following steps correctly.
 
 #### 1. Configure Babel
 
-Pick one of the following plugins:
+Use the [babel-plugin-import](https://github.com/umijs/babel-plugin-import) with the following configuration:
 
-- [babel-plugin-import](https://github.com/umijs/babel-plugin-import) with the following configuration:
+`yarn add -D babel-plugin-import`
 
-  `yarn add -D babel-plugin-import`
+Create a `.babelrc.js` file in the root directory of your project:
 
-  Create a `.babelrc.js` file in the root directory of your project:
+```js
+const plugins = [
+  [
+    'babel-plugin-import',
+    {
+      libraryName: '@mui/material',
+      libraryDirectory: '',
+      camel2DashComponentName: false,
+    },
+    'core',
+  ],
+  [
+    'babel-plugin-import',
+    {
+      libraryName: '@mui/icons-material',
+      libraryDirectory: '',
+      camel2DashComponentName: false,
+    },
+    'icons',
+  ],
+];
 
-  ```js
-  const plugins = [
-    [
-      'babel-plugin-import',
-      {
-        libraryName: '@mui/material',
-        libraryDirectory: '',
-        camel2DashComponentName: false,
-      },
-      'core',
-    ],
-    [
-      'babel-plugin-import',
-      {
-        libraryName: '@mui/icons-material',
-        libraryDirectory: '',
-        camel2DashComponentName: false,
-      },
-      'icons',
-    ],
-  ];
+module.exports = { plugins };
+```
 
-  module.exports = { plugins };
-  ```
+:::error
+Avoid using [babel-plugin-direct-import](https://github.com/avocadowastaken/babel-plugin-direct-import) which transforms imports to:
 
-- [babel-plugin-direct-import](https://github.com/avocadowastaken/babel-plugin-direct-import) with the following configuration:
+```js
+import Button from '@mui/material/Button/Button.js';
+```
 
-  `yarn add -D babel-plugin-direct-import`
-
-  Create a `.babelrc.js` file in the root directory of your project:
-
-  ```js
-  const plugins = [
-    [
-      'babel-plugin-direct-import',
-      { modules: ['@mui/material', '@mui/icons-material'] },
-    ],
-  ];
-
-  module.exports = { plugins };
-  ```
+Future changes to the library's internal structure could break these paths. `babel-plugin-direct-import` allows for granular control over what gets imported, but it comes with the potential risk of relying on internal library paths. This may fail in future versions if the package is updated to use the `exports` field in `package.json`, which could block access to internal paths like this.
+:::
 
 If you are using Create React App, you will need to use a couple of projects that let you use `.babelrc` configuration, without ejecting.
 
@@ -224,10 +215,10 @@ You are strongly discouraged to:
 - Import from any of the custom bundles directly. Do not do this:
 
   ```js
-  import { Button } from '@mui/material/legacy';
+  import { Button } from '@mui/material/modern';
   ```
 
-  You have no guarantee that the dependencies also use legacy or modern bundles, leading to module duplication in your JavaScript files.
+  You have no guarantee that the dependencies use the `modern` bundle, leading to module duplication in your JavaScript files.
 
 - Import from any of the undocumented files or folders. Do not do this:
 
@@ -245,12 +236,12 @@ A great way to use these bundles is to configure bundler aliases, for example wi
 {
   resolve: {
     alias: {
-      '@mui/material': '@mui/material/legacy',
-      '@mui/styled-engine': '@mui/styled-engine/legacy',
-      '@mui/system': '@mui/system/legacy',
-      '@mui/base': '@mui/base/legacy',
-      '@mui/utils': '@mui/utils/legacy',
-      '@mui/lab': '@mui/lab/legacy',
+      '@mui/material': '@mui/material/modern',
+      '@mui/styled-engine': '@mui/styled-engine/modern',
+      '@mui/system': '@mui/system/modern',
+      '@mui/base': '@mui/base/modern',
+      '@mui/utils': '@mui/utils/modern',
+      '@mui/lab': '@mui/lab/modern',
     }
   }
 }

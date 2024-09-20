@@ -1,6 +1,6 @@
 {
   "name": "@mui/styles",
-  "version": "6.1.0",
+  "version": "6.1.1",
   "private": false,
   "author": "MUI Team",
   "description": "MUI Styles - The legacy JSS-based styling solution of Material UI.",
@@ -65,7 +65,7 @@
     "chai": "^4.5.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sinon": "^18.0.0"
+    "sinon": "^18.0.1"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
