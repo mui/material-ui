@@ -56,22 +56,56 @@ function isAriaHiddenForbiddenOnElement(element: Element): boolean {
   return isForbiddenTagName || isInputHidden;
 }
 
-function ariaHiddenSiblings(
+function ariaHiddenElements(
   container: Element,
-  mountElement: Element,
+  mountElement: Element | null,
   currentElement: Element,
   elementsToExclude: readonly Element[],
   show: boolean,
 ): void {
-  const blacklist = [mountElement, currentElement, ...elementsToExclude];
+  let current: Element | null = container;
+  let previousElement: Element =
+    container === mountElement ? currentElement : mountElement ?? currentElement;
+  const html = ownerDocument(container).body.parentElement;
+  const blacklist = [mountElement, ...elementsToExclude];
 
-  [].forEach.call(container.children, (element: Element) => {
-    const isNotExcludedElement = !blacklist.includes(element);
-    const isNotForbiddenElement = !isAriaHiddenForbiddenOnElement(element);
-    if (isNotExcludedElement && isNotForbiddenElement) {
-      ariaHidden(element, show);
+  // In theory this should not happen anymore.
+  // in some cases the container and previous element still
+  // could end up being the same, in this case we just go up 1
+  if (current === previousElement) {
+    current = current.parentElement;
+  }
+
+  while (!!current && html !== current) {
+    for (let i = 0; i < current.children.length; i+=1) {
+      const element = current.children[i];
+      const isNotExcludedElement = blacklist.indexOf(element) === -1;
+      const isNotForbiddenElement = !isAriaHiddenForbiddenOnElement(element);
+      const isPreviousElement = element === previousElement;
+
+      // We came from here
+      if (isPreviousElement) {
+        if (!isNotExcludedElement) {
+          // If any of the ancestors have aria-hidden applied (e.g. by another Modal)
+          // there is a chance that we end up with nothing accessible in the element tree.
+          // So we remove the aria-hidden tag from ancestors so at least the current modal is accessible,
+          // even tho it's probably undesirable when aria-hidden is not coming from another modal.
+          if (show) {
+            ariaHidden(element, !show);
+          }
+          // we restore it if it was originally hidden
+          else {
+            ariaHidden(element, show);
+          }
+        }
+      } else if (isNotExcludedElement && isNotForbiddenElement) {
+        ariaHidden(element, show);
+      }
     }
-  });
+
+    previousElement = current;
+    current = current.parentElement;
+  }
 }
 
 function findIndexOf<T>(items: readonly T[], callback: (item: T) => boolean): number {
@@ -174,18 +208,32 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
   return restore;
 }
 
-function getHiddenSiblings(container: Element) {
+function getHiddenElements(container: Element) {
   const hiddenSiblings: Element[] = [];
-  [].forEach.call(container.children, (element: Element) => {
-    if (element.getAttribute('aria-hidden') === 'true') {
-      hiddenSiblings.push(element);
-    }
-  });
+  const html = ownerDocument(container).body.parentElement;
+  let current: Element | null = container;
+
+  while (current != null && html !== current) {
+    [].forEach.call(current.children, (element: Element) => {
+      if (element.getAttribute('aria-hidden') === 'true') {
+        hiddenSiblings.push(element);
+      }
+    });
+    current = current.parentElement;
+  }
   return hiddenSiblings;
 }
 
 interface Modal {
+  /**
+   * The immediate child of the container argument {@link ModalManager.add}.
+   *
+   * If you pass in {@link modalRef} or the container itself it's also handled
+   */
   mount: Element;
+  /**
+   * The modal element itself.
+   */
   modalRef: Element;
 }
 
@@ -213,6 +261,12 @@ export class ModalManager {
     this.containers = [];
   }
 
+  /**
+   *
+   * @param modal
+   * @param container {@link Modal["mount"]}
+   * @returns
+   */
   add(modal: Modal, container: HTMLElement): number {
     let modalIndex = this.modals.indexOf(modal);
     if (modalIndex !== -1) {
@@ -227,8 +281,8 @@ export class ModalManager {
       ariaHidden(modal.modalRef, false);
     }
 
-    const hiddenSiblings = getHiddenSiblings(container);
-    ariaHiddenSiblings(container, modal.mount, modal.modalRef, hiddenSiblings, true);
+    const hiddenSiblings = getHiddenElements(container);
+    ariaHiddenElements(container, modal.mount, modal.modalRef, hiddenSiblings, true);
 
     const containerIndex = findIndexOf(this.containers, (item) => item.container === container);
     if (containerIndex !== -1) {
@@ -280,7 +334,7 @@ export class ModalManager {
         ariaHidden(modal.modalRef, ariaHiddenState);
       }
 
-      ariaHiddenSiblings(
+      ariaHiddenElements(
         containerInfo.container,
         modal.mount,
         modal.modalRef,

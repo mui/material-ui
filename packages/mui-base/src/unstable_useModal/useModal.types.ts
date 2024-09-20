@@ -40,6 +40,11 @@ export type UseModalParameters = {
    */
   container?: PortalProps['container'];
   /**
+   * The `children` will be under the DOM hierarchy of the parent component.
+   * @default false
+   */
+  disablePortal?: PortalProps['disablePortal'];
+  /**
    * If `true`, hitting escape will not fire the `onClose` callback.
    * @default false
    */

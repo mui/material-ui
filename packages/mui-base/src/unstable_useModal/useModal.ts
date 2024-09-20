@@ -39,6 +39,7 @@ const defaultManager = new ModalManager();
 export function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const {
     container,
+    disablePortal = false,
     disableEscapeKeyDown = false,
     disableScrollLock = false,
     // @ts-ignore internal logic - Base UI supports the manager as a prop too
@@ -82,7 +83,13 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
   };
 
   const handleOpen = useEventCallback(() => {
-    const resolvedContainer = getContainer(container) || getDoc().body;
+    /**
+     * Resolving this could be simplified (mountNodeRef should take priority when it's set)
+     * but this will also work because the logic matches {@link Portal}.
+     */
+    const resolvedContainer = disablePortal
+      ? (mountNodeRef.current ?? modalRef.current)?.parentElement ?? getDoc().body
+      : getContainer(container) || getDoc().body;
 
     manager.add(getModal(), resolvedContainer);
 
@@ -112,7 +119,11 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
     manager.remove(getModal(), ariaHiddenProp);
   }, [ariaHiddenProp, manager]);
 
-  React.useEffect(() => {
+  // We need useLayoutEffect to make sure
+  // aria-hidden tags have time to get cleaned up properly
+  // in handleClose->manager.remove->ariaHiddenElements
+  // in the case someone unmounts the Modal higher up the tree
+  React.useLayoutEffect(() => {
     return () => {
       handleClose();
     };
