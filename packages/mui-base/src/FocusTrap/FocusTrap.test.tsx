@@ -89,7 +89,7 @@ describe('<FocusTrap />', () => {
           <UnfocusableDialog />
         </FocusTrap>,
       );
-    }).toErrorDev('MUI: The modal content node does not accept focus');
+    }).toErrorDev('MUI: The modal content node does not have focusable elements');
   });
 
   it('should not attempt to focus nonexistent children', () => {

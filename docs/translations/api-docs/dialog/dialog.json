@@ -11,6 +11,9 @@
     "disableEscapeKeyDown": {
       "description": "If <code>true</code>, hitting escape will not fire the <code>onClose</code> callback."
     },
+    "disableInitialContentFocus": {
+      "description": "By default the dialog content element is focused when opened.<br>Set the property to <code>true</code> to disable this behavior and focus will be placed on the first focusable element respecting <code>tabIndex</code> order, including elements explicitly marked with <code>tabIndex={-1}</code>."
+    },
     "fullScreen": { "description": "If <code>true</code>, the dialog is full-screen." },
     "fullWidth": {
       "description": "If <code>true</code>, the dialog stretches to <code>maxWidth</code>.<br>Notice that the dialog width grow is limited by the default margin."
