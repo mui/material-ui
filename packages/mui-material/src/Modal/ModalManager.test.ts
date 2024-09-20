@@ -451,11 +451,12 @@ describe('ModalManager', () => {
 
       modalManager.add(modal, container2);
       modalManager.mount(modal, {});
-      expect(container2.children[0]).not.toBeAriaHidden();
+      expect(sibling1).toBeAriaHidden();
+      expect(sibling2).toBeAriaHidden();
+      expect(modalRef1).not.toBeAriaHidden();
       modalManager.remove(modal);
-      expect(container2.children[0]).toBeAriaHidden();
-      expect(container2.children[1]).toBeAriaHidden();
-      expect(container2.children[2]).not.toBeAriaHidden();
+      expect(sibling1).toBeAriaHidden();
+      expect(sibling2).not.toBeAriaHidden();
     });
 
     it('top modal should always be accessible from sublevels', () => {
