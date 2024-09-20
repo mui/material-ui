@@ -77,7 +77,7 @@ export type MenuItemRootSlotProps = Simplify<
   UseMenuItemRootSlotProps & {
     children?: React.ReactNode;
     className: string;
-    ref?: React.Ref<HTMLElement>;
+    ref: React.Ref<HTMLElement>;
     ownerState: MenuItemOwnerState;
   }
 >;

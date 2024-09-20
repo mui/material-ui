@@ -243,7 +243,7 @@ interface UseListRootSlotOwnProps {
   onBlur: MuiCancellableEventHandler<React.FocusEvent<HTMLElement>>;
   onKeyDown: MuiCancellableEventHandler<React.KeyboardEvent<HTMLElement>>;
   tabIndex: number;
-  ref?: React.RefCallback<Element> | null;
+  ref: React.RefCallback<Element> | null;
 }
 
 export type UseListRootSlotProps<ExternalProps = {}> = ExternalProps & UseListRootSlotOwnProps;

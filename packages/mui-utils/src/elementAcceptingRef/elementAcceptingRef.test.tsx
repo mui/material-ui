@@ -84,7 +84,7 @@ describe('elementAcceptingRef', () => {
     it('accepts lazy', async () => {
       const Component = React.lazy(() =>
         Promise.resolve({
-          default: React.forwardRef<HTMLDivElement>((props, ref) => <div {...props} ref={ref} />),
+          default: React.forwardRef((props, ref) => <div {...props} ref={ref} />),
         }),
       );
 

@@ -4,7 +4,7 @@ import { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
 interface UseMenuItemRootSlotOwnProps {
   id: string | undefined;
   role: 'menuitem';
-  ref?: React.RefCallback<Element> | null;
+  ref: React.RefCallback<Element> | null;
 }
 
 export interface MenuItemMetadata {
