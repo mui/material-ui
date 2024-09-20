@@ -242,7 +242,8 @@ function RatingItem(props) {
   const isFocused = itemValue <= focus;
   const isChecked = itemValue === ratingValueRounded;
 
-  const id = useId();
+  const id = `${name ? `${name}-` : ''}${useId()}`;
+
   const container = (
     <RatingIcon
       as={IconContainerComponent}
