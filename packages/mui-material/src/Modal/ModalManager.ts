@@ -65,7 +65,7 @@ function ariaHiddenElements(
 ): void {
   let current: Element | null = container;
   let previousElement: Element =
-    container === mountElement ? currentElement : mountElement ?? currentElement;
+    container === mountElement ? currentElement : (mountElement ?? currentElement);
   const html = ownerDocument(container).body.parentElement;
   const blacklist = [mountElement, ...elementsToExclude];
 
@@ -77,7 +77,7 @@ function ariaHiddenElements(
   }
 
   while (!!current && html !== current) {
-    for (let i = 0; i < current.children.length; i+=1) {
+    for (let i = 0; i < current.children.length; i += 1) {
       const element = current.children[i];
       const isNotExcludedElement = blacklist.indexOf(element) === -1;
       const isNotForbiddenElement = !isAriaHiddenForbiddenOnElement(element);

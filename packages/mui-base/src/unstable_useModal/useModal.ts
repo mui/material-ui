@@ -88,7 +88,7 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
      * but this will also work because the logic matches {@link Portal}.
      */
     const resolvedContainer = disablePortal
-      ? (mountNodeRef.current ?? modalRef.current)?.parentElement ?? getDoc().body
+      ? ((mountNodeRef.current ?? modalRef.current)?.parentElement ?? getDoc().body)
       : getContainer(container) || getDoc().body;
 
     manager.add(getModal(), resolvedContainer);
