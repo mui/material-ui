@@ -4,8 +4,7 @@
 
 :::error
 `@mui/styles` was deprecated with the release of MUI Core v5 in late 2021.
-
-`@mui/styles` is not compatible with [React.StrictMode](https://react.dev/reference/react/StrictMode) or React 18+, and it will not be updated.
+It is not compatible with [React.StrictMode](https://react.dev/reference/react/StrictMode) or React 18+, and it will not be updated.
 
 This documentation remains here for those working on legacy projects, but we **strongly discourage** you from using `@mui/styles` when creating a new app with Material UI—you _will_ face unresolvable dependency issues.
 
