@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-docs-utils",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "author": "MUI Team",
   "description": "Utilities for MUI docs. This is an internal package not meant for general use.",
   "main": "./build/index.js",
