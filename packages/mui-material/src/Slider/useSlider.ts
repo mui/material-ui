@@ -192,11 +192,11 @@ function doesSupportTouchActionNone() {
  *
  * Demos:
  *
- * - [Slider](https://next.mui.com/base-ui/react-slider/#hook)
+ * - [Slider](https://mui.com/base-ui/react-slider/#hook)
  *
  * API:
  *
- * - [useSlider API](https://next.mui.com/base-ui/react-slider/hooks-api/#use-slider)
+ * - [useSlider API](https://mui.com/base-ui/react-slider/hooks-api/#use-slider)
  */
 export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue {
   const {
@@ -415,13 +415,13 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     const { width, height, bottom, left } = slider!.getBoundingClientRect();
     let percent;
 
-    if (axis.indexOf('vertical') === 0) {
+    if (axis.startsWith('vertical')) {
       percent = (bottom - finger.y) / height;
     } else {
       percent = (finger.x - left) / width;
     }
 
-    if (axis.indexOf('-reverse') !== -1) {
+    if (axis.includes('-reverse')) {
       percent = 1 - percent;
     }
 

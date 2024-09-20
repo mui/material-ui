@@ -4,6 +4,7 @@ title: React Breadcrumbs component
 components: Breadcrumbs, Link, Typography
 githubLabel: 'component: breadcrumbs'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/
+githubSource: packages/mui-material/src/Breadcrumbs
 ---
 
 # Breadcrumbs
@@ -35,6 +36,12 @@ In the following examples, we are using two string separators and an SVG icon.
 ## Collapsed breadcrumbs
 
 {{"demo": "CollapsedBreadcrumbs.js"}}
+
+## Condensed with menu
+
+As an alternative, consider adding a Menu component to display the condensed links in a dropdown list:
+
+{{"demo": "CondensedWithMenu.js"}}
 
 ## Customization
 

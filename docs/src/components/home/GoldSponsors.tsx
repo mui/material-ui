@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import AddRounded from '@mui/icons-material/AddRounded';
 import Grid from '@mui/material/Grid2';
 import SponsorCard from 'docs/src/components/home/SponsorCard';
+import BacklinkSponsor from 'docs/src/components/home/BacklinkSponsor';
 import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
 
@@ -62,6 +63,32 @@ const GOLDs = [
     name: 'Goread.io',
     description: 'Instagram followers, likes, views, and comments.',
     href: 'https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    src: 'https://images.opencollective.com/copycopterai/e167216/logo/40.png',
+    srcSet: 'https://images.opencollective.com/copycopterai/e167216/logo/120.png 3x',
+    name: 'Copycopter.ai',
+    description: 'Turn prompts into videos at ultra speed.',
+    href: 'https://copycopter.ai/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    src: 'https://images.opencollective.com/route4me/71fb6fa/avatar/40.png',
+    srcSet: 'https://images.opencollective.com/route4me/71fb6fa/avatar/120.png 3x',
+    name: 'Route4Me',
+    description: 'Trusted last mile route planning and optimization.',
+    href: 'https://route4me.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
+];
+const BACKLINKs = [
+  {
+    name: 'Buzzoid',
+    description: 'Instant delivery Instagram followers.',
+    href: 'https://buzzoid.com/',
+  },
+  {
+    name: 'Twicsy',
+    description: 'Instant delivery Instagram followers.',
+    href: 'https://twicsy.com/',
   },
 ];
 
@@ -142,6 +169,11 @@ export default function GoldSponsors() {
           </Paper>
         </Grid>
       </Grid>
+      <div>
+        {BACKLINKs.map((item) => (
+          <BacklinkSponsor key={item.name} item={item} />
+        ))}
+      </div>
     </div>
   );
 }

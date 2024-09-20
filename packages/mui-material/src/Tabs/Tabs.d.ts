@@ -136,7 +136,7 @@ export interface TabsOwnProps {
     sx?: SxProps<Theme>;
   };
   /**
-   * Props applied to the [`TabScrollButton`](/material-ui/api/tab-scroll-button/) element.
+   * Props applied to the [`TabScrollButton`](https://mui.com/material-ui/api/tab-scroll-button/) element.
    * @default {}
    */
   TabScrollButtonProps?: Partial<TabScrollButtonProps>;
@@ -185,11 +185,11 @@ export interface TabsTypeMap<
  *
  * Demos:
  *
- * - [Tabs](https://next.mui.com/material-ui/react-tabs/)
+ * - [Tabs](https://mui.com/material-ui/react-tabs/)
  *
  * API:
  *
- * - [Tabs API](https://next.mui.com/material-ui/api/tabs/)
+ * - [Tabs API](https://mui.com/material-ui/api/tabs/)
  */
 declare const Tabs: OverridableComponent<TabsTypeMap>;
 

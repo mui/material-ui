@@ -4,6 +4,7 @@ title: React Divider component
 components: Divider
 githubLabel: 'component: divider'
 materialDesign: https://m2.material.io/components/dividers
+githubSource: packages/mui-material/src/Divider
 ---
 
 # Divider
@@ -77,7 +78,7 @@ This ensures that it's not announced by screen readers while still preserving th
 
 ```js
 <Divider component="div" role="presentation">
-  <Typograph>Text element</Typography>
+  <Typography>Text element</Typography>
 </Divider>
 ```
 

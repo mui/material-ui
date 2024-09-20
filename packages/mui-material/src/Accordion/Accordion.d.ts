@@ -12,14 +12,14 @@ export interface AccordionSlots {
    * The component that renders the heading.
    * @default 'h3'
    */
-  heading?: React.ElementType;
+  heading: React.ElementType;
   /**
    * The component that renders the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
    */
-  transition?: React.JSXElementConstructor<
-    TransitionProps & { children?: React.ReactElement<any, any> }
+  transition: React.JSXElementConstructor<
+    TransitionProps & { children?: React.ReactElement<unknown, any> }
   >;
 }
 
@@ -89,10 +89,10 @@ export type AccordionTypeMap<
       sx?: SxProps<Theme>;
       /**
        * The component used for the transition.
-       * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+       * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
        */
       TransitionComponent?: React.JSXElementConstructor<
-        TransitionProps & { children?: React.ReactElement<any, any> }
+        TransitionProps & { children?: React.ReactElement<unknown, any> }
       >;
       /**
        * Props applied to the transition element.
@@ -109,12 +109,12 @@ export type AccordionTypeMap<
  *
  * Demos:
  *
- * - [Accordion](https://next.mui.com/material-ui/react-accordion/)
+ * - [Accordion](https://mui.com/material-ui/react-accordion/)
  *
  * API:
  *
- * - [Accordion API](https://next.mui.com/material-ui/api/accordion/)
- * - inherits [Paper API](https://next.mui.com/material-ui/api/paper/)
+ * - [Accordion API](https://mui.com/material-ui/api/accordion/)
+ * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
  */
 declare const Accordion: OverridableComponent<AccordionTypeMap>;
 

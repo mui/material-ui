@@ -4,6 +4,7 @@ title: React Autocomplete component
 components: TextField, Popper, Autocomplete
 githubLabel: 'component: autocomplete'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
+githubSource: packages/mui-material/src/Autocomplete
 ---
 
 # Autocomplete
@@ -173,6 +174,8 @@ The `useAutocomplete` hook is also reexported from @mui/material for convenience
 ```tsx
 import useAutocomplete from '@mui/material/useAutocomplete';
 ```
+
+- 📦 [4.6 kB gzipped](https://bundlephobia.com/package/@mui/material).
 
 {{"demo": "UseAutocomplete.js", "defaultCodeOpen": false}}
 
@@ -375,7 +378,7 @@ Browsers have heuristics to help the user fill in form inputs.
 However, this can harm the UX of the component.
 
 By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute.
-Google Chrome does not currently support this attribute setting ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)).
+Google Chrome does not currently support this attribute setting ([Issue 41239842](https://issues.chromium.org/issues/41239842)).
 A possible workaround is to remove the `id` to have the component generate a random one.
 
 In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details).

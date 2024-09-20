@@ -54,8 +54,8 @@ export default function XGridGlobalStyles({
               },
               '& .MuiDataGrid-columnSeparator': {
                 color: (theme.vars || theme).palette.grey[200],
-                '&:hover': {
-                  color: (theme.vars || theme).palette.grey[800],
+                '&.MuiDataGrid-columnSeparator--resizable:hover': {
+                  color: (theme.vars || theme).palette.primary.main,
                 },
                 ...(!pro && { display: 'none' }),
               },
@@ -126,9 +126,6 @@ export default function XGridGlobalStyles({
               },
               '& .MuiDataGrid-columnSeparator': {
                 color: (theme.vars || theme).palette.primaryDark[400],
-                '&:hover': {
-                  color: (theme.vars || theme).palette.primaryDark[100],
-                },
               },
               // -------------------------------
               // table body elements

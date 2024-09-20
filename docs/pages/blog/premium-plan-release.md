@@ -110,7 +110,7 @@ Please feel free to read the [license agreement](https://mui.com/legal/mui-x-eul
 ## What can you expect next?
 
 We mentioned the aggregation functions already,
-but there's a [lot more coming](https://github.com/mui/mui-x/projects/1), and certainly not only for Premium users.
+but there's a [lot more coming](https://github.com/orgs/mui/projects/35), and certainly not only for Premium users.
 We're making continuous improvements to all X components, placing more emphasis on the overall experience for both the developer and the user.
 A product designer is soon joining the team, and we aim to keep exploring the most advanced use cases for data-rich applications,
 while working on bringing the best UX and DX in the market.

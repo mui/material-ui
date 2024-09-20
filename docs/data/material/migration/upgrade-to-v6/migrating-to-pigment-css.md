@@ -2,6 +2,10 @@
 
 <p class="description">This guide helps you integrate Pigment CSS with Material UI v6.</p>
 
+:::warning
+Pigment CSS is currently in the early alpha stage of development. We're actively working on improving its performance and stability. If you find any problem, please open a [GitHub issue](https://github.com/mui/pigment-css/issues).
+:::
+
 Before going through this guide, make sure you have [upgraded to Material UI v6](/material-ui/migration/upgrade-to-v6/).
 
 ## Introduction
@@ -30,12 +34,12 @@ First, install the Material UI wrapper package for Pigment CSS:
 npm install @mui/material-pigment-css
 ```
 
-```bash yarn
-yarn add @mui/material-pigment-css
-```
-
 ```bash pnpm
 pnpm add @mui/material-pigment-css
+```
+
+```bash yarn
+yarn add @mui/material-pigment-css
 ```
 
 </codeblock>
@@ -52,12 +56,12 @@ Install the Next.js plugin as a dev dependency:
 npm install --save-dev @pigment-css/nextjs-plugin
 ```
 
-```bash yarn
-yarn add -D @pigment-css/nextjs-plugin
-```
-
 ```bash pnpm
 pnpm add -D @pigment-css/nextjs-plugin
+```
+
+```bash yarn
+yarn add -D @pigment-css/nextjs-plugin
 ```
 
 </codeblock>
@@ -200,19 +204,58 @@ Otherwise you're now ready to start the development server:
 npm run dev
 ```
 
-```bash yarn
-yarn dev
-```
-
 ```bash pnpm
 pnpm dev
+```
+
+```bash yarn
+yarn dev
 ```
 
 </codeblock>
 
 Open the browser and navigate to the localhost URL, you should see the app running with Pigment CSS.
 
-### Typescript
+### Next.js font optimization
+
+If you are using `next/font` to optimize font loading, pass a CSS variable name to the `variable` property of the font configuration and use it in the body className:
+
+```diff title="app/layout.tsx"
+ import { Roboto } from 'next/font/google';
+
+ const roboto = Roboto({
+   weight: ['300', '400', '500', '700'],
+   subsets: ['latin'],
+   display: 'swap',
++  variable: '--my-font-family',
+ });
+
+export default function RootLayout(props) {
+   const { children } = props;
+   return (
+     <html lang="en">
++      <body className={roboto.variable}>
+          {children}
+       </body>
+     </html>
+   );
+ }
+```
+
+Finally, update the `typography.fontFamily` value with the variable created in the previous step:
+
+```diff title="next.config.mjs"
+ const pigmentConfig = {
+   transformLibraries: ['@mui/material'],
+   theme: createTheme({
++    typography: {
++      fontFamily: 'var(--my-font-family)',
++    },
+   }),
+ };
+```
+
+### TypeScript
 
 If you are using TypeScript, you need to extend the Pigment CSS theme types with Material UI `Theme`.
 Add the following code to a file that is included in your `tsconfig.json`:
@@ -274,7 +317,7 @@ We recommend reading the rest of the guide below to learn about the new styling 
 Since Pigment CSS is a build-time extraction tool, it does not support owner state through callbacks. Here is an example that will throw an error at build time:
 
 ```js
-const theme = extendTheme({
+const theme = createTheme({
   components: {
     MuiCard: {
       styleOverrides: {
@@ -295,7 +338,7 @@ const theme = extendTheme({
 Run the following codemod to remove the owner state from the theme:
 
 ```bash
-npx @mui/codemod@next v6.0.0/theme-v6 next.config.mjs
+npx @mui/codemod@latest v6.0.0/theme-v6 next.config.mjs
 ```
 
 There are cases where the codemod is not able to remove the owner state. In such cases, you have to manually replace the owner state with `variants`.
@@ -307,7 +350,7 @@ If you have a dynamic color based on the theme palette, you can use the `variant
 <codeblock>
 
 ```js before
-const theme = extendTheme({
+const theme = createTheme({
   components: {
     MuiCard: {
       styleOverrides: {
@@ -321,7 +364,7 @@ const theme = extendTheme({
 ```
 
 ```js after
-const theme = extendTheme({
+const theme = createTheme({
   components: {
     MuiCard: {
       styleOverrides: {
@@ -352,9 +395,9 @@ Use `DefaultPropsProvider` in your main application file and move all the compon
 <codeblock>
 
 ```diff next.config|vite.config
- import { extendTheme } from '@mui/material';
+ import { createTheme } from '@mui/material';
 
- const customTheme = extendTheme({
+ const customTheme = createTheme({
    // ...other tokens.
    components: {
      MuiButtonBase: {
@@ -399,7 +442,7 @@ Use `DefaultPropsProvider` in your main application file and move all the compon
 Run the following codemod:
 
 ```bash
-npx @mui/codemod@next v6.0.0/sx-prop path/to/folder
+npx @mui/codemod@latest v6.0.0/sx-prop path/to/folder
 ```
 
 The scenarios below are not covered by the codemod, so you have to manually update them:
@@ -485,7 +528,7 @@ If you have custom components that are using `styled` from `@mui/material/styles
 Then, run the following codemod:
 
 ```bash
-npx @mui/codemod@next v6.0.0/styled path/to/folder
+npx @mui/codemod@latest v6.0.0/styled path/to/folder
 ```
 
 The scenarios below are not covered by the codemod, so you have to manually update them:
@@ -639,7 +682,7 @@ Update the config file with the following code to enable right-to-left support:
 
 ```diff
  const pigmentConfig = {
-   theme: extendTheme(),
+   theme: createTheme(),
 +  css: {
 +    // Specify your default CSS authoring direction
 +    defaultDirection: 'ltr',

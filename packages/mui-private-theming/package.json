@@ -1,6 +1,6 @@
 {
   "name": "@mui/private-theming",
-  "version": "6.0.0-beta.6",
+  "version": "6.1.1",
   "private": false,
   "author": "MUI Team",
   "description": "Private - The React theme context to be shared between `@mui/styles` and `@mui/material`.",
@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
+    "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-private-theming"
   },
   "license": "MIT",
@@ -37,15 +37,15 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.25.0",
-    "@mui/utils": "workspace:*",
+    "@babel/runtime": "^7.25.6",
+    "@mui/utils": "workspace:^",
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",
     "@mui/types": "workspace:^",
-    "@types/chai": "^4.3.17",
-    "@types/react": "^18.3.3",
+    "@types/chai": "^4.3.19",
+    "@types/react": "^18.3.4",
     "chai": "^4.5.0",
     "react": "^18.3.1"
   },

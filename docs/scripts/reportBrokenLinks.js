@@ -90,6 +90,8 @@ function getLinksAndAnchors(fileName) {
   };
 }
 
+const markdownImportRegExp = /'(.*)\?(muiMarkdown|@mui\/markdown)'/g;
+
 const getMdFilesImported = (jsPageFile) => {
   // For each JS file extract the markdown rendered if it exists
   const fileContent = fse.readFileSync(jsPageFile, 'utf8');
@@ -99,27 +101,31 @@ const getMdFilesImported = (jsPageFile) => {
    * - 'docs/data/advanced-components/overview.md?muiMarkdown';
    * - './index.md?muiMarkdown';
    */
-  const importPaths = fileContent.match(/'.*\?muiMarkdown'/g);
+  const importPaths = fileContent.match(markdownImportRegExp);
 
   if (importPaths === null) {
     return [];
   }
   return importPaths.map((importPath) => {
-    let cleanImportPath = importPath.slice(1, importPath.length - "?muiMarkdown'".length);
+    let cleanImportPath = importPath.replace(markdownImportRegExp, '$1');
     if (cleanImportPath.startsWith('.')) {
       cleanImportPath = path.join(path.dirname(jsPageFile), cleanImportPath);
-    } else if (cleanImportPath.startsWith('docs/')) {
-      cleanImportPath = path.join(
-        jsPageFile.slice(0, jsPageFile.indexOf('docs/')),
-        cleanImportPath,
-      );
-    } else if (cleanImportPath.startsWith('docsx/')) {
-      cleanImportPath = path.join(
-        jsPageFile.slice(0, jsPageFile.indexOf('docs/')),
-        cleanImportPath.replace('docsx', 'docs'),
-      );
     } else {
-      console.error(`unable to deal with import path: ${cleanImportPath}`);
+      /**
+       * convert /Users/oliviertassinari/base-ui/docs/pages/base-ui/react-switch/index.js
+       * and docs-base/data/base/components/switch/switch.md
+       * into /Users/oliviertassinari/base-ui/docs/data/base/components/switch/switch.md
+       */
+      const cleanImportPathArray = cleanImportPath.split('/');
+      // Assume that the first folder is /docs or an alias that starts with /docs
+      cleanImportPathArray.shift();
+
+      // Truncate jsPageFile at /docs/ and append cleanImportPath
+      cleanImportPath = path.join(
+        jsPageFile.slice(0, jsPageFile.indexOf('/docs/')),
+        'docs',
+        cleanImportPathArray.join('/'),
+      );
     }
 
     return cleanImportPath;

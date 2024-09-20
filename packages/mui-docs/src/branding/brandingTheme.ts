@@ -588,6 +588,9 @@ export function getThemedComponents(): ThemeOptions {
                   '&:active': {
                     backgroundColor: (theme.vars || theme).palette.primaryDark[800],
                   },
+                  '&.Mui-disabled': {
+                    color: theme.palette.grey[500],
+                  },
                 }),
               }),
             ...(ownerState.variant === 'outlined' &&
@@ -615,6 +618,11 @@ export function getThemedComponents(): ThemeOptions {
                   '&:active': {
                     backgroundColor: alpha(theme.palette.primary[900], 0.3),
                   },
+                  '&.Mui-disabled': {
+                    background: 'none',
+                    backgroundColor: alpha(theme.palette.primaryDark[700], 0.2),
+                    color: theme.palette.grey[500],
+                  },
                 }),
               }),
             ...(ownerState.variant === 'contained' &&
@@ -635,6 +643,18 @@ export function getThemedComponents(): ThemeOptions {
                   borderColor: (theme.vars || theme).palette.primary[600],
                   boxShadow: `${alpha(theme.palette.primary[900], 0.7)} 0 1px 0 1px inset`,
                 },
+                '&.Mui-disabled': {
+                  color: theme.palette.grey[700],
+                  textShadow: 'none',
+                  borderColor: theme.palette.grey[400],
+                },
+                ...theme.applyDarkStyles({
+                  '&.Mui-disabled': {
+                    color: theme.palette.grey[400],
+                    textShadow: 'none',
+                    borderColor: theme.palette.grey[800],
+                  },
+                }),
               }),
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'secondary' && {
@@ -654,6 +674,18 @@ export function getThemedComponents(): ThemeOptions {
                   borderColor: (theme.vars || theme).palette.primaryDark[600],
                   boxShadow: `${alpha(theme.palette.primaryDark[900], 0.7)} 0 1px 0 1px inset`,
                 },
+                '&.Mui-disabled': {
+                  color: theme.palette.grey[700],
+                  textShadow: 'none',
+                  borderColor: theme.palette.grey[400],
+                },
+                ...theme.applyDarkStyles({
+                  '&.Mui-disabled': {
+                    color: theme.palette.grey[400],
+                    textShadow: 'none',
+                    borderColor: theme.palette.grey[800],
+                  },
+                }),
               }),
             ...(ownerState.variant === 'text' &&
               ownerState.color === 'secondary' && {
@@ -670,6 +702,9 @@ export function getThemedComponents(): ThemeOptions {
                   },
                   '&:active': {
                     backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                  },
+                  '&.Mui-disabled': {
+                    color: theme.palette.grey[500],
                   },
                 }),
               }),
@@ -689,6 +724,9 @@ export function getThemedComponents(): ThemeOptions {
                   },
                   '&:active': {
                     backgroundColor: alpha(theme.palette.primary[900], 0.1),
+                  },
+                  '&.Mui-disabled': {
+                    color: theme.palette.grey[500],
                   },
                 }),
               }),
@@ -1226,6 +1264,51 @@ export function getThemedComponents(): ThemeOptions {
           iconFilled: {
             top: 'calc(50% - .25em)',
           },
+          root: ({ theme }) => ({
+            variants: [
+              {
+                props: { variant: 'outlined' },
+                style: {
+                  backgroundColor: alpha(theme.palette.primaryDark[50], 0.1),
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    border: `1px solid ${(theme.vars || theme).palette.primaryDark[100]}`,
+                    boxShadow: `#FFF 0 1px 0 inset, ${alpha(theme.palette.grey[200], 0.4)} 0 -1px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
+                  },
+                  '&:not(.Mui-focused):hover': {
+                    background: (theme.vars || theme).palette.grey[50],
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: (theme.vars || theme).palette.grey[300],
+                      boxShadow: `${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
+                    },
+                  },
+                  ...theme.applyDarkStyles({
+                    color: (theme.vars || theme).palette.primary[300],
+                    backgroundColor: alpha(theme.palette.primaryDark[700], 0.2),
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: alpha(theme.palette.primaryDark[600], 0.5),
+                      boxShadow: `${alpha(theme.palette.primaryDark[600], 0.3)} 0 1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
+                    },
+                    '&:not(.Mui-focused):hover': {
+                      background: alpha(theme.palette.primaryDark[700], 0.8),
+                      '& .MuiOutlinedInput-notchedOutline': {
+                        borderColor: (theme.vars || theme).palette.primaryDark[600],
+                        boxShadow: `${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
+                      },
+                    },
+                  }),
+                },
+              },
+              {
+                props: { size: 'small' },
+                style: {
+                  minHeight: 32,
+                  '& [role="combobox"]': {
+                    paddingBlock: 5,
+                  },
+                },
+              },
+            ],
+          }),
         },
       },
       MuiTab: {

@@ -345,14 +345,14 @@ describe('extendTheme', () => {
       const theme = extendTheme({ defaultColorScheme: 'dark' });
       expect(theme.colorSchemes.dark.overlays).to.have.length(25);
 
-      expect(theme.colorSchemes.dark.overlays[0]).to.equal(undefined);
+      expect(theme.colorSchemes.dark.overlays[0]).to.equal('none');
       expect(theme.colorSchemes.dark.overlays[24]).to.equal(
         'linear-gradient(rgba(255 255 255 / 0.165), rgba(255 255 255 / 0.165))',
       );
     });
 
     it('should override the array as expected', () => {
-      const overlays = Array(24).fill('none');
+      const overlays = Array(25).fill('none');
       const theme = extendTheme({
         defaultColorScheme: 'dark',
         colorSchemes: { dark: { overlays } },
@@ -495,8 +495,16 @@ describe('extendTheme', () => {
 
     it('can be customized as a function', () => {
       const theme = extendTheme({ spacing: (factor) => `${0.25 * factor}rem` });
-      expect(theme.vars.spacing).to.deep.equal('var(--mui-spacing, 0.25rem)');
-      expect(theme.spacing(2)).to.equal('calc(2 * var(--mui-spacing, 0.25rem))');
+      expect('spacing' in theme.vars).to.equal(false);
+      expect(theme.spacing(2)).to.equal('0.5rem');
+    });
+
+    it('a custom function should not be altered', () => {
+      const theme = extendTheme({
+        spacing: (val) => (val === 'xs' ? '100px' : val),
+      });
+      expect('spacing' in theme.vars).to.equal(false);
+      expect(theme.spacing('xs')).to.equal('100px');
     });
   });
 
