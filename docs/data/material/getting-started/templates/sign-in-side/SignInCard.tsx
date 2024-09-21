@@ -177,7 +177,6 @@ export default function SignInCard() {
       <Divider>or</Divider>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
         <Button
-          type="submit"
           fullWidth
           variant="outlined"
           onClick={() => alert('Sign in with Google')}
@@ -186,7 +185,6 @@ export default function SignInCard() {
           Sign in with Google
         </Button>
         <Button
-          type="submit"
           fullWidth
           variant="outlined"
           onClick={() => alert('Sign in with Facebook')}

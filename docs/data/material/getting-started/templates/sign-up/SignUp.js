@@ -53,12 +53,12 @@ export default function SignUp() {
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const defaultTheme = createTheme({ palette: { mode } });
   const SignUpTheme = createTheme(getSignUpTheme(mode));
+  const [nameError, setNameError] = React.useState(false);
+  const [nameErrorMessage, setNameErrorMessage] = React.useState('');
   const [emailError, setEmailError] = React.useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
   const [passwordError, setPasswordError] = React.useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
-  const [nameError, setNameError] = React.useState(false);
-  const [nameErrorMessage, setNameErrorMessage] = React.useState('');
   // This code only runs on the client side, to determine the system color preference
   React.useEffect(() => {
     // Check if there is a preferred mode in localStorage
@@ -122,7 +122,10 @@ export default function SignUp() {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    if (nameError || emailError || passwordError) {
+      event.preventDefault();
+      return;
+    }
     const data = new FormData(event.currentTarget);
     console.log({
       name: data.get('name'),
@@ -160,6 +163,7 @@ export default function SignUp() {
               </Typography>
               <Box
                 component="form"
+                method="POST"
                 onSubmit={handleSubmit}
                 sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
               >
@@ -238,7 +242,6 @@ export default function SignUp() {
               </Divider>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                 <Button
-                  type="submit"
                   fullWidth
                   variant="outlined"
                   onClick={() => alert('Sign up with Google')}
@@ -247,7 +250,6 @@ export default function SignUp() {
                   Sign up with Google
                 </Button>
                 <Button
-                  type="submit"
                   fullWidth
                   variant="outlined"
                   onClick={() => alert('Sign up with Facebook')}
