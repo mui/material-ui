@@ -72,7 +72,10 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    if (emailError || passwordError) {
+      event.preventDefault();
+      return;
+    }
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
@@ -123,6 +126,7 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
           </Typography>
           <Box
             component="form"
+            method="POST"
             onSubmit={handleSubmit}
             noValidate
             sx={{
