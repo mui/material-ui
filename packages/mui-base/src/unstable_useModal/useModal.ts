@@ -83,6 +83,7 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
 
   const handleOpen = useEventCallback(() => {
     const resolvedContainer = getContainer(container) || getDoc().body;
+
     manager.add(getModal(), resolvedContainer);
 
     // The element was already mounted.

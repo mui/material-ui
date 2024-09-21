@@ -398,7 +398,6 @@ describe('ModalManager', () => {
       expect(container2.children[1]).not.toBeAriaHidden();
 
       modalManager.add({ ...getDummyModal(), modalRef: modal3 }, container2);
-
       expect(container2.children[0]).toBeAriaHidden();
       expect(container2.children[1]).toBeAriaHidden();
       expect(container2.children[2]).not.toBeAriaHidden();
