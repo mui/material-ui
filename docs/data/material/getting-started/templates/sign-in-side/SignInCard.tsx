@@ -102,7 +102,6 @@ export default function SignInCard() {
       </Typography>
       <Box
         component="form"
-        method="POST"
         onSubmit={handleSubmit}
         noValidate
         sx={{ display: 'flex', flexDirection: 'column', width: '100%', gap: 2 }}

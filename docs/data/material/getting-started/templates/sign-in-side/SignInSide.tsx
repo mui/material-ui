@@ -70,7 +70,7 @@ export default function SignInSide() {
             sx={{
               justifyContent: 'center',
               gap: { xs: 6, sm: 12 },
-              p: '40px',
+              p: { xs: 2, sm: 4 },
               m: 'auto',
             }}
           >
