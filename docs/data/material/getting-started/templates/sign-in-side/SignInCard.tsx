@@ -126,6 +126,7 @@ export default function SignInCard() {
             <FormLabel htmlFor="password">Password</FormLabel>
             <Link
               component="button"
+              type="button"
               onClick={handleClickOpen}
               variant="body2"
               sx={{ alignSelf: 'baseline' }}

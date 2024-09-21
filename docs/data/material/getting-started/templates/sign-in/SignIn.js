@@ -155,6 +155,7 @@ export default function SignIn(props) {
                 <FormLabel htmlFor="password">Password</FormLabel>
                 <Link
                   component="button"
+                  type="button"
                   onClick={handleClickOpen}
                   variant="body2"
                   sx={{ alignSelf: 'baseline' }}
