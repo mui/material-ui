@@ -45,7 +45,7 @@ export type UseModalParameters = {
    */
   disableEscapeKeyDown?: boolean;
   /**
-   * The `children` will be under the DOM hierarchy of the parent component.
+   * If `true`, the `children` will be under the DOM hierarchy of the parent component.
    * @default false
    */
   disablePortal?: PortalProps['disablePortal'];

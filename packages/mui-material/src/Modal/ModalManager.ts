@@ -281,7 +281,7 @@ export class ModalManager {
       ariaHidden(modal.modalRef, false);
     }
 
-    const hiddenSiblings = getHiddenElements(container);
+    const hiddenElements = getHiddenElements(container);
     ariaHiddenElements(container, modal.mount, modal.modalRef, hiddenSiblings, true);
 
     const containerIndex = findIndexOf(this.containers, (item) => item.container === container);

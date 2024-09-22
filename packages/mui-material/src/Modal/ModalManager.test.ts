@@ -389,9 +389,7 @@ describe('ModalManager', () => {
 
     it('should add aria-hidden to previous modals', () => {
       const modal2: Modal = { mount: container2, modalRef: document.createElement('div') };
-      modal2.modalRef.id = 'modal2Ref';
       const modal3: Modal = { mount: container2, modalRef: document.createElement('div') };
-      modal3.modalRef.id = 'modal3Ref';
 
       container2.appendChild(modal2.modalRef);
       container2.appendChild(modal3.modalRef);
