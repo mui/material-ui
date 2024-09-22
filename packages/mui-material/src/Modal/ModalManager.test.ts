@@ -480,7 +480,7 @@ describe('ModalManager', () => {
       expect(mainContentSibling.children[0]).not.toBeAriaHidden();
     });
 
-    it('top modal should always be accessible even if even inside other dialog', () => {
+    it('top modal should always be accessible even if inside other dialog', () => {
       // simulates modal shown in another modal
       const modal1 = { mount: container2, modalRef: modalRef1 };
       const modal2 = { mount: modalRef1, modalRef: document.createElement('div') };
