@@ -420,7 +420,6 @@ describe('ModalManager', () => {
     });
 
     it('should remove aria-hidden on siblings', () => {
-      // Previous implementation was testing sibling state without siblings, wtf
       const modal = { mount: container2, modalRef: modalRef1 };
       const sibling1 = document.createElement('div');
       const sibling2 = document.createElement('div');
