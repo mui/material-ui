@@ -3,5 +3,5 @@
 export default function getScrollbarSize(win: Window = window): number {
   // https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth#usage_notes
   const documentWidth = win.document.documentElement.clientWidth;
-  return Math.abs(win.innerWidth - documentWidth);
+  return win.innerWidth - documentWidth;
 }
