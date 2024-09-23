@@ -69,14 +69,7 @@ function ariaHiddenElements(
   const html = ownerDocument(container).body.parentElement;
   const blacklist = [mountElement, ...elementsToExclude];
 
-  // In theory this should not happen anymore.
-  // in some cases the container and previous element still
-  // could end up being the same, in this case we just go up 1
-  if (current === previousElement) {
-    current = current.parentElement;
-  }
-
-  while (!!current && html !== current) {
+  while (current != null && html !== current) {
     for (let i = 0; i < current.children.length; i += 1) {
       const element = current.children[i];
       const isNotExcludedElement = blacklist.indexOf(element) === -1;
@@ -86,10 +79,8 @@ function ariaHiddenElements(
       // We came from here
       if (isPreviousElement) {
         if (!isNotExcludedElement) {
-          // If any of the ancestors have aria-hidden applied (e.g. by another Modal)
-          // there is a chance that we end up with nothing accessible in the element tree.
-          // So we remove the aria-hidden tag from ancestors so at least the current modal is accessible,
-          // even tho it's probably undesirable when aria-hidden is not coming from another modal.
+          // If any ancestor has aria-hidden applied (e.g. by another modal), the current modal could become inaccessible.
+          // We remove aria-hidden from ancestors to ensure the current modal is accessible, even though this might not be ideal if aria-hidden wasn't added by another modal (For example, if a developer manually applied aria-hidden to hide certain content, removing it could lead to unintended accessibility issues.).
           if (show) {
             ariaHidden(element, !show);
           }
