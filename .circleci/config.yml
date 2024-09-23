@@ -407,7 +407,7 @@ jobs:
     <<: *default-job
     resource_class: 'medium+'
     docker:
-      - image: mcr.microsoft.com/playwright:v1.46.1-focal
+      - image: mcr.microsoft.com/playwright:v1.47.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -437,7 +437,7 @@ jobs:
   test_e2e:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.46.1-focal
+      - image: mcr.microsoft.com/playwright:v1.47.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -451,7 +451,7 @@ jobs:
     # NOTE: This workflow runs after successful docs deploy. See /test/e2e-website/README.md#ci
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.46.1-focal
+      - image: mcr.microsoft.com/playwright:v1.47.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -466,7 +466,7 @@ jobs:
   test_profile:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.46.1-focal
+      - image: mcr.microsoft.com/playwright:v1.47.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -493,7 +493,7 @@ jobs:
   test_regressions:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.46.1-focal
+      - image: mcr.microsoft.com/playwright:v1.47.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -541,7 +541,7 @@ jobs:
   test_bundling_browsers:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.46.1-focal
+      - image: mcr.microsoft.com/playwright:v1.47.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -657,7 +657,7 @@ jobs:
   test_benchmark:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.46.1-focal
+      - image: mcr.microsoft.com/playwright:v1.47.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
