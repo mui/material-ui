@@ -63,7 +63,7 @@ describe('<MenuList />', () => {
   });
 
   describe('actions: adjustStyleForScrollbar', () => {
-    const expectedPadding = `${getScrollbarSize(document.defaultView)}px`;
+    const expectedPadding = `${getScrollbarSize(window)}px`;
 
     it('should not adjust style when container element height is greater', () => {
       const menuListActionsRef = React.createRef();

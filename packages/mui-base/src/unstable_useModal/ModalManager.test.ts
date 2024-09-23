@@ -135,12 +135,8 @@ describe('ModalManager', () => {
       modalManager.add(modal, container1);
       modalManager.mount(modal, {});
       expect(container1.style.overflow).to.equal('hidden');
-      expect(container1.style.paddingRight).to.equal(
-        `${20 + getScrollbarSize(document.defaultView)}px`,
-      );
-      expect(fixedNode.style.paddingRight).to.equal(
-        `${14 + getScrollbarSize(document.defaultView)}px`,
-      );
+      expect(container1.style.paddingRight).to.equal(`${20 + getScrollbarSize(window)}px`);
+      expect(fixedNode.style.paddingRight).to.equal(`${14 + getScrollbarSize(window)}px`);
       modalManager.remove(modal);
       expect(container1.style.overflow).to.equal('');
       expect(container1.style.paddingRight).to.equal('20px');
@@ -175,10 +171,8 @@ describe('ModalManager', () => {
       modalManager.add(modal, container1);
       modalManager.mount(modal, {});
       expect(container1.style.overflow).to.equal('hidden');
-      expect(container1.style.paddingRight).to.equal(
-        `${20 + getScrollbarSize(document.defaultView)}px`,
-      );
-      expect(fixedNode.style.paddingRight).to.equal(`${getScrollbarSize(document.defaultView)}px`);
+      expect(container1.style.paddingRight).to.equal(`${20 + getScrollbarSize(window)}px`);
+      expect(fixedNode.style.paddingRight).to.equal(`${getScrollbarSize(window)}px`);
       modalManager.remove(modal);
       expect(container1.style.overflow).to.equal('');
       expect(container1.style.paddingRight).to.equal('20px');
