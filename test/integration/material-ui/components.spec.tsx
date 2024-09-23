@@ -339,7 +339,7 @@ function DialogTest() {
               expectType<HTMLLIElement | null, typeof elem>(elem);
             }}
             onClick={(event) => {
-              expectType<React.MouseEvent<HTMLLIElement, MouseEvent>, typeof e>(event);
+              expectType<React.MouseEvent<HTMLLIElement, MouseEvent>, typeof event>(event);
               log(event);
             }}
           >
@@ -353,7 +353,7 @@ function DialogTest() {
               expectType<HTMLDivElement | null, typeof elem>(elem);
             }}
             onClick={(event) => {
-              expectType<React.MouseEvent<HTMLDivElement, MouseEvent>, typeof e>(event);
+              expectType<React.MouseEvent<HTMLDivElement, MouseEvent>, typeof event>(event);
               log(event);
             }}
           >
@@ -370,7 +370,7 @@ function DialogTest() {
               expectType<HTMLAnchorElement | null, typeof elem>(elem);
             }}
             onClick={(event) => {
-              expectType<React.MouseEvent<HTMLAnchorElement, MouseEvent>, typeof e>(event);
+              expectType<React.MouseEvent<HTMLAnchorElement, MouseEvent>, typeof event>(event);
               log(event);
             }}
           >
@@ -606,7 +606,7 @@ function MenuTest() {
             expectType<HTMLLIElement | null, typeof elem>(elem);
           }}
           onClick={(event) => {
-            expectType<React.MouseEvent<HTMLLIElement, MouseEvent>, typeof e>(event);
+            expectType<React.MouseEvent<HTMLLIElement, MouseEvent>, typeof event>(event);
             log(event);
           }}
         >
@@ -622,7 +622,7 @@ function MenuTest() {
           expectType<HTMLAnchorElement | null, typeof elem>(elem);
         }}
         onClick={(event) => {
-          expectType<React.MouseEvent<HTMLAnchorElement, MouseEvent>, typeof e>(event);
+          expectType<React.MouseEvent<HTMLAnchorElement, MouseEvent>, typeof event>(event);
           log(event);
         }}
       >
@@ -915,7 +915,7 @@ function TextFieldTest() {
 
 function SelectTest() {
   return (
-    <Select input={<Input />} value={10} onChange={(event) => log(e.target.value)}>
+    <Select input={<Input />} value={10} onChange={(event) => log(event.target.value)}>
       <MenuItem value="">
         <em>None</em>
       </MenuItem>
