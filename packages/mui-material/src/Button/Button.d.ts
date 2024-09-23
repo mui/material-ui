@@ -1,10 +1,14 @@
 import * as React from 'react';
-import { DistributiveOmit, OverridableStringUnion } from '@mui/types';
+import { DistributiveOmit, OverridableStringUnion, ExtendableUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
 import { ButtonClasses } from './buttonClasses';
+
+declare const ButtonRoot = 'button';
+
+export { ButtonRoot };
 
 export interface ButtonPropsVariantOverrides {}
 
@@ -27,10 +31,7 @@ export interface ButtonOwnProps {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
-  color?: OverridableStringUnion<
-    'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning',
-    ButtonPropsColorOverrides
-  >;
+  color?: ExtendableUnion<ButtonPropsColorOverrides>;
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -65,7 +66,10 @@ export interface ButtonOwnProps {
    * `small` is equivalent to the dense button styling.
    * @default 'medium'
    */
-  size?: OverridableStringUnion<'small' | 'medium' | 'large', ButtonPropsSizeOverrides>;
+  size?: ExtendableUnion<ButtonPropsSizeOverrides>;
+  slots?: {
+    root?: React.ElementType;
+  };
   /**
    * Element placed before the children.
    */
@@ -78,7 +82,7 @@ export interface ButtonOwnProps {
    * The variant to use.
    * @default 'text'
    */
-  variant?: OverridableStringUnion<'text' | 'outlined' | 'contained', ButtonPropsVariantOverrides>;
+  variant?: ExtendableUnion<ButtonPropsVariantOverrides>;
 }
 
 export type ButtonTypeMap<

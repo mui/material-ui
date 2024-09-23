@@ -55,6 +55,8 @@ export type OverridableStringUnion<T extends string | number, U = {}> = Generate
   Overwrite<Record<T, true>, U>
 >;
 
+export type ExtendableUnion<U = {}> = GenerateStringUnion<U>;
+
 /**
  * Like `T & U`, but using the value types from `U` where their properties overlap.
  *
