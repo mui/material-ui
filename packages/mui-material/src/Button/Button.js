@@ -162,7 +162,7 @@ const ButtonRoot = styled(ButtonBase, {
           },
         },
         ...Object.entries(theme.palette)
-          .filter(createSimplePaletteValueFilter(['dark', 'contrastText']))
+          .filter(createSimplePaletteValueFilter())
           .map(([color]) => ({
             props: { color },
             style: {
