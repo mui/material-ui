@@ -516,8 +516,8 @@ describe('createTheme', () => {
           primary: '#EF14E2',
         },
       });
-    } catch (e) {
-      expect(e.message).to.equal(
+    } catch (event) {
+      expect(event.message).to.equal(
         'MUI: `vars` is a private field used for CSS variables support.\n' +
           'Please use another name.',
       );
