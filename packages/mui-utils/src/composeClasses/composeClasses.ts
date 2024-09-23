@@ -13,14 +13,16 @@ export default function composeClasses<ClassKey extends string>(
   for (const slotName in slots) {
     const slot = slots[slotName];
     let buffer = '';
+    let start = true;
 
     for (let i = 0; i < slot.length; i += 1) {
       const value = slot[i];
       if (value) {
-        buffer += getUtilityClass(value) + ' ';
+        buffer += (start === true ? '' : ' ') + getUtilityClass(value);
+        start = false;
 
         if (classes && classes[value]) {
-          buffer += classes[value] + ' ';
+          buffer += ' ' + classes[value];
         }
       }
     }

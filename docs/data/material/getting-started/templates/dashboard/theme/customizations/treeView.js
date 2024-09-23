@@ -1,6 +1,6 @@
 import { alpha } from '@mui/material/styles';
 
-import { gray, brand } from '../themePrimitives';
+import { gray, brand } from '../../../shared-theme/themePrimitives';
 
 /* eslint-disable import/prefer-default-export */
 export const treeViewCustomizations = {
@@ -14,7 +14,7 @@ export const treeViewCustomizations = {
           marginLeft: theme.spacing(2),
           padding: theme.spacing(0),
           borderLeft: '1px solid',
-          borderColor: theme.palette.divider,
+          borderColor: (theme.vars || theme).palette.divider,
         },
         '&:focus-visible .focused': {
           outline: `3px solid ${alpha(brand[500], 0.5)}`,

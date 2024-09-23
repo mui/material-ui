@@ -10,7 +10,7 @@ import Tab from '@mui/material/Tab';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import { Link } from '@mui/docs/Link';
 import PricingTable, { PlanName, PlanPrice } from 'docs/src/components/pricing/PricingTable';
-import { useLicensingModel } from 'docs/src/components/pricing/LicensingModelContext';
+import { useLicenseModel } from 'docs/src/components/pricing/LicenseModelContext';
 
 const Plan = React.forwardRef<
   HTMLDivElement,
@@ -22,7 +22,7 @@ const Plan = React.forwardRef<
 >(function Plan({ plan, benefits, unavailable, sx, ...props }, ref) {
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
-  const { licensingModel } = useLicensingModel();
+  const { licenseModel } = useLicenseModel();
 
   return (
     <Paper
@@ -54,11 +54,11 @@ const Plan = React.forwardRef<
             {
               community: '/material-ui/getting-started/usage/',
               pro:
-                licensingModel === 'annual'
+                licenseModel === 'annual'
                   ? 'https://mui.com/store/items/mui-x-pro/'
                   : 'https://mui.com/store/items/mui-x-pro-perpetual/',
               premium:
-                licensingModel === 'annual'
+                licenseModel === 'annual'
                   ? 'https://mui.com/store/items/mui-x-premium/'
                   : 'https://mui.com/store/items/mui-x-premium-perpetual/',
             }[plan]

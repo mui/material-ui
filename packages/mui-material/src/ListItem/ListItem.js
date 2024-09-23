@@ -7,6 +7,7 @@ import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import isHostComponent from '../utils/isHostComponent';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import isMuiElement from '../utils/isMuiElement';
 import useForkRef from '../utils/useForkRef';
@@ -60,94 +61,96 @@ export const ListItemRoot = styled('div', {
   name: 'MuiListItem',
   slot: 'Root',
   overridesResolver,
-})(({ theme }) => ({
-  display: 'flex',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-  position: 'relative',
-  textDecoration: 'none',
-  width: '100%',
-  boxSizing: 'border-box',
-  textAlign: 'left',
-  variants: [
-    {
-      props: ({ ownerState }) => !ownerState.disablePadding,
-      style: {
-        paddingTop: 8,
-        paddingBottom: 8,
+})(
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    position: 'relative',
+    textDecoration: 'none',
+    width: '100%',
+    boxSizing: 'border-box',
+    textAlign: 'left',
+    variants: [
+      {
+        props: ({ ownerState }) => !ownerState.disablePadding,
+        style: {
+          paddingTop: 8,
+          paddingBottom: 8,
+        },
       },
-    },
-    {
-      props: ({ ownerState }) => !ownerState.disablePadding && ownerState.dense,
-      style: {
-        paddingTop: 4,
-        paddingBottom: 4,
+      {
+        props: ({ ownerState }) => !ownerState.disablePadding && ownerState.dense,
+        style: {
+          paddingTop: 4,
+          paddingBottom: 4,
+        },
       },
-    },
-    {
-      props: ({ ownerState }) => !ownerState.disablePadding && !ownerState.disableGutters,
-      style: {
-        paddingLeft: 16,
-        paddingRight: 16,
+      {
+        props: ({ ownerState }) => !ownerState.disablePadding && !ownerState.disableGutters,
+        style: {
+          paddingLeft: 16,
+          paddingRight: 16,
+        },
       },
-    },
-    {
-      props: ({ ownerState }) => !ownerState.disablePadding && !!ownerState.secondaryAction,
-      style: {
-        // Add some space to avoid collision as `ListItemSecondaryAction`
-        // is absolutely positioned.
-        paddingRight: 48,
-      },
-    },
-    {
-      props: ({ ownerState }) => !!ownerState.secondaryAction,
-      style: {
-        [`& > .${listItemButtonClasses.root}`]: {
+      {
+        props: ({ ownerState }) => !ownerState.disablePadding && !!ownerState.secondaryAction,
+        style: {
+          // Add some space to avoid collision as `ListItemSecondaryAction`
+          // is absolutely positioned.
           paddingRight: 48,
         },
       },
-    },
-    {
-      props: {
-        alignItems: 'flex-start',
-      },
-      style: {
-        alignItems: 'flex-start',
-      },
-    },
-    {
-      props: ({ ownerState }) => ownerState.divider,
-      style: {
-        borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
-        backgroundClip: 'padding-box',
-      },
-    },
-    {
-      props: ({ ownerState }) => ownerState.button,
-      style: {
-        transition: theme.transitions.create('background-color', {
-          duration: theme.transitions.duration.shortest,
-        }),
-        '&:hover': {
-          textDecoration: 'none',
-          backgroundColor: (theme.vars || theme).palette.action.hover,
-          // Reset on touch devices, it doesn't add specificity
-          '@media (hover: none)': {
-            backgroundColor: 'transparent',
+      {
+        props: ({ ownerState }) => !!ownerState.secondaryAction,
+        style: {
+          [`& > .${listItemButtonClasses.root}`]: {
+            paddingRight: 48,
           },
         },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.hasSecondaryAction,
-      style: {
-        // Add some space to avoid collision as `ListItemSecondaryAction`
-        // is absolutely positioned.
-        paddingRight: 48,
+      {
+        props: {
+          alignItems: 'flex-start',
+        },
+        style: {
+          alignItems: 'flex-start',
+        },
       },
-    },
-  ],
-}));
+      {
+        props: ({ ownerState }) => ownerState.divider,
+        style: {
+          borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
+          backgroundClip: 'padding-box',
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.button,
+        style: {
+          transition: theme.transitions.create('background-color', {
+            duration: theme.transitions.duration.shortest,
+          }),
+          '&:hover': {
+            textDecoration: 'none',
+            backgroundColor: (theme.vars || theme).palette.action.hover,
+            // Reset on touch devices, it doesn't add specificity
+            '@media (hover: none)': {
+              backgroundColor: 'transparent',
+            },
+          },
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.hasSecondaryAction,
+        style: {
+          // Add some space to avoid collision as `ListItemSecondaryAction`
+          // is absolutely positioned.
+          paddingRight: 48,
+        },
+      },
+    ],
+  })),
+);
 
 const ListItemContainer = styled('li', {
   name: 'MuiListItem',
@@ -334,7 +337,7 @@ ListItem.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * @deprecated Use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   components: PropTypes.shape({
@@ -344,7 +347,7 @@ ListItem.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   componentsProps: PropTypes.shape({
@@ -353,13 +356,13 @@ ListItem.propTypes /* remove-proptypes */ = {
   /**
    * The container component used when a `ListItemSecondaryAction` is the last child.
    * @default 'li'
-   * @deprecated Use the `component` or `slots.root` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `component` or `slots.root` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ContainerComponent: elementTypeAcceptingRef,
   /**
    * Props applied to the container component if used.
    * @default {}
-   * @deprecated Use the `slotProps.root` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slotProps.root` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ContainerProps: PropTypes.object,
   /**

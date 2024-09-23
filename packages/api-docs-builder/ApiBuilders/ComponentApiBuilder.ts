@@ -5,8 +5,8 @@ import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
 import * as _ from 'lodash';
 import kebabCase from 'lodash/kebabCase';
-import remark from 'remark';
-import remarkVisit from 'unist-util-visit';
+import { remark } from 'remark';
+import { visit as remarkVisit } from 'unist-util-visit';
 import type { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import { renderMarkdown } from '@mui/internal-markdown';
@@ -59,7 +59,7 @@ export async function computeApiDescription(
     })
     .process(api.description);
 
-  return file.contents.toString().trim();
+  return file.toString().trim();
 }
 
 /**
@@ -338,7 +338,7 @@ const generateApiPage = async (
     demos: `<ul>${reactApi.demos
       .map((item) => `<li><a href="${item.demoPathname}">${item.demoPageTitle}</a></li>`)
       .join('\n')}</ul>`,
-    cssComponent: cssComponents.indexOf(reactApi.name) >= 0,
+    cssComponent: cssComponents.includes(reactApi.name),
     deprecated: reactApi.deprecated,
   };
 
@@ -496,7 +496,7 @@ const attachPropsTable = (
 
       const requiredProp =
         prop.required ||
-        /\.isRequired/.test(prop.type.raw) ||
+        prop.type.raw?.includes('.isRequired') ||
         (chainedPropType !== false && chainedPropType.required);
 
       const deprecation = (propDescriptor.description || '').match(/@deprecated(\s+(?<info>.*))?/);
@@ -592,7 +592,7 @@ const defaultGetComponentImports = (name: string, filename: string) => {
   let namedImportName = name;
   const defaultImportName = name;
 
-  if (/Unstable_/.test(githubPath)) {
+  if (githubPath.includes('Unstable_')) {
     namedImportName = `Unstable_${name} as ${name}`;
   }
 

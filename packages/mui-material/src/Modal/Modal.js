@@ -8,6 +8,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import FocusTrap from '../Unstable_TrapFocus';
 import Portal from '../Portal';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Backdrop from '../Backdrop';
 import useModal from './useModal';
@@ -34,22 +35,24 @@ const ModalRoot = styled('div', {
 
     return [styles.root, !ownerState.open && ownerState.exited && styles.hidden];
   },
-})(({ theme }) => ({
-  position: 'fixed',
-  zIndex: (theme.vars || theme).zIndex.modal,
-  right: 0,
-  bottom: 0,
-  top: 0,
-  left: 0,
-  variants: [
-    {
-      props: ({ ownerState }) => !ownerState.open && ownerState.exited,
-      style: {
-        visibility: 'hidden',
+})(
+  memoTheme(({ theme }) => ({
+    position: 'fixed',
+    zIndex: (theme.vars || theme).zIndex.modal,
+    right: 0,
+    bottom: 0,
+    top: 0,
+    left: 0,
+    variants: [
+      {
+        props: ({ ownerState }) => !ownerState.open && ownerState.exited,
+        style: {
+          visibility: 'hidden',
+        },
       },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 const ModalBackdrop = styled(Backdrop, {
   name: 'MuiModal',
@@ -153,6 +156,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   }
 
   const externalForwardedProps = {
+    ...other,
     slots: {
       root: components.Root,
       backdrop: components.Backdrop,
@@ -215,7 +219,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
        * is not meant for humans to interact with directly.
        * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
        */}
-      <RootSlot {...rootProps} {...other}>
+      <RootSlot {...rootProps}>
         {!hideBackdrop && BackdropComponent ? (
           <BackdropSlot {...backdropProps} ref={backdropRef} />
         ) : null}
@@ -254,7 +258,7 @@ Modal.propTypes /* remove-proptypes */ = {
    */
   BackdropComponent: PropTypes.elementType,
   /**
-   * Props applied to the [`Backdrop`](/material-ui/api/backdrop/) element.
+   * Props applied to the [`Backdrop`](https://mui.com/material-ui/api/backdrop/) element.
    * @deprecated Use `slotProps.backdrop` instead.
    */
   BackdropProps: PropTypes.object,
@@ -283,7 +287,7 @@ Modal.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * @deprecated Use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -295,7 +299,7 @@ Modal.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */

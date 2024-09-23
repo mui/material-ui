@@ -25,7 +25,7 @@
   "devDependencies": {
     "concurrently": "8.2.2",
     "cross-env": "7.0.3",
-    "playwright": "1.46.1",
+    "playwright": "1.47.1",
     "serve": "14.0.1"
   },
   "browserslist": {

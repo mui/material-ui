@@ -14,11 +14,11 @@ import { EventHandlers } from '../utils/types';
  *
  * Demos:
  *
- * - [Select](https://next.mui.com/base-ui/react-select/#hooks)
+ * - [Select](https://mui.com/base-ui/react-select/#hooks)
  *
  * API:
  *
- * - [useOption API](https://next.mui.com/base-ui/react-select/hooks-api/#use-option)
+ * - [useOption API](https://mui.com/base-ui/react-select/hooks-api/#use-option)
  */
 export function useOption<Value>(params: UseOptionParameters<Value>): UseOptionReturnValue {
   const { value, label, disabled, rootRef: optionRefParam, id: idParam } = params;

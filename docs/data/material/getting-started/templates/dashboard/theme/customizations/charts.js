@@ -1,6 +1,6 @@
 import { axisClasses, legendClasses, chartsGridClasses } from '@mui/x-charts';
 
-import { gray } from '../themePrimitives';
+import { gray } from '../../../shared-theme/themePrimitives';
 
 /* eslint-disable import/prefer-default-export */
 export const chartsCustomizations = {
@@ -33,10 +33,10 @@ export const chartsCustomizations = {
       mark: ({ theme }) => ({
         ry: 6,
         boxShadow: 'none',
-        border: `1px solid ${theme.palette.divider}`,
+        border: `1px solid ${(theme.vars || theme).palette.divider}`,
       }),
       table: ({ theme }) => ({
-        border: `1px solid ${theme.palette.divider}`,
+        border: `1px solid ${(theme.vars || theme).palette.divider}`,
         borderRadius: theme.shape.borderRadius,
         background: 'hsl(0, 0%, 100%)',
         ...theme.applyStyles('dark', {

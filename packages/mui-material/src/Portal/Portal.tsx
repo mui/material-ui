@@ -8,7 +8,7 @@ import {
   unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_useForkRef as useForkRef,
   unstable_setRef as setRef,
-  unstable_getReactNodeRef as getReactNodeRef,
+  unstable_getReactElementRef as getReactElementRef,
 } from '@mui/utils';
 import { PortalProps } from './Portal.types';
 
@@ -22,11 +22,11 @@ function getContainer(container: PortalProps['container']) {
  *
  * Demos:
  *
- * - [Portal](https://next.mui.com/material-ui/react-portal/)
+ * - [Portal](https://mui.com/material-ui/react-portal/)
  *
  * API:
  *
- * - [Portal API](https://next.mui.com/material-ui/api/portal/)
+ * - [Portal API](https://mui.com/material-ui/api/portal/)
  */
 const Portal = React.forwardRef(function Portal(
   props: PortalProps,
@@ -34,7 +34,11 @@ const Portal = React.forwardRef(function Portal(
 ) {
   const { children, container, disablePortal = false } = props;
   const [mountNode, setMountNode] = React.useState<ReturnType<typeof getContainer>>(null);
-  const handleRef = useForkRef(getReactNodeRef(children), forwardedRef);
+
+  const handleRef = useForkRef(
+    React.isValidElement(children) ? getReactElementRef(children) : null,
+    forwardedRef,
+  );
 
   useEnhancedEffect(() => {
     if (!disablePortal) {

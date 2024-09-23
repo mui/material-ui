@@ -18,8 +18,7 @@ export async function generateBaseUIApiPages() {
       // for example base-ui below.
       if (
         productName === 'base' &&
-        (markdown.filename.indexOf('\\components\\') >= 0 ||
-          markdown.filename.indexOf('/components/') >= 0)
+        (markdown.filename.includes('\\components\\') || markdown.filename.includes('/components/'))
       ) {
         const { components, hooks } = markdownHeaders;
 
@@ -86,7 +85,7 @@ Page.getLayout = (page) => {
             apiTabImportStatements += `import ${hook}ApiJsonPageContent from '../../api/${hookNameKebabCase}.json';`;
             staticProps += `
           const ${hook}ApiReq = require.context(
-            'docs/translations/api-docs/${hookNameKebabCase}',
+            'docs/translations/api-docs-base/${hookNameKebabCase}',
             false,
             /${hookNameKebabCase}.*.json$/,
           );
