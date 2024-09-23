@@ -1310,8 +1310,8 @@ importers:
         specifier: ^7.25.6
         version: 7.25.6
       '@floating-ui/react-dom':
-        specifier: ^2.1.1
-        version: 2.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^2.1.2
+        version: 2.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build
@@ -3781,8 +3781,8 @@ packages:
   '@floating-ui/dom@1.6.8':
     resolution: {integrity: sha512-kx62rP19VZ767Q653wsP1XZCGIirkE09E0QUGNYTM/ttbbQHqcGPdSfWFxUyyNLc/W6aoJRBajOSXhP6GXjC0Q==}
 
-  '@floating-ui/react-dom@2.1.1':
-    resolution: {integrity: sha512-4h84MJt3CHrtG18mGsXuLCHMrug49d7DFkU0RMIyshRveBeyV2hmV/pDaF2Uxtu8kgq5r46llp5E5FQiR0K2Yg==}
+  '@floating-ui/react-dom@2.1.2':
+    resolution: {integrity: sha512-06okr5cgPzMNBy+Ycse2A6udMi4bqwW/zgBF/rwjcNqWkyr82Mcg8b0vjX8OJpZFy/FKjJmw6wV7t44kK6kW7A==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -14631,7 +14631,7 @@ snapshots:
       '@floating-ui/core': 1.6.5
       '@floating-ui/utils': 0.2.5
 
-  '@floating-ui/react-dom@2.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@floating-ui/react-dom@2.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@floating-ui/dom': 1.6.8
       react: 18.3.1
@@ -14944,7 +14944,7 @@ snapshots:
   '@mui/base@5.0.0-beta.30(@types/react@18.3.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.25.6
-      '@floating-ui/react-dom': 2.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@floating-ui/react-dom': 2.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mui/types': 7.2.17(@types/react@18.3.4)
       '@mui/utils': 5.16.6(@types/react@18.3.4)(react@18.3.1)
       '@popperjs/core': 2.11.8
@@ -14958,7 +14958,7 @@ snapshots:
   '@mui/base@5.0.0-beta.31(@types/react@18.3.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.25.6
-      '@floating-ui/react-dom': 2.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@floating-ui/react-dom': 2.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mui/types': 7.2.17(@types/react@18.3.4)
       '@mui/utils': 5.16.6(@types/react@18.3.4)(react@18.3.1)
       '@popperjs/core': 2.11.8
@@ -14972,7 +14972,7 @@ snapshots:
   '@mui/base@5.0.0-beta.58(@types/react@18.3.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.25.6
-      '@floating-ui/react-dom': 2.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@floating-ui/react-dom': 2.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mui/types': 7.2.17(@types/react@18.3.4)
       '@mui/utils': 6.0.0-rc.0(@types/react@18.3.4)(react@18.3.1)
       '@popperjs/core': 2.11.8
