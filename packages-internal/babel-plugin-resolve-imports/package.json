@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-babel-plugin-resolve-imports",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "author": "MUI Team",
   "description": "babel plugin that resolves import specifiers to their actual output file.",
   "main": "./index.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
+    "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages-internal/babel-plugin-resolve-imports"
   },
   "license": "MIT",

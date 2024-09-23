@@ -510,7 +510,7 @@ export default async function generateHookApi(
     reactApi.description = reactApi.description.slice(0, annotatedDescriptionMatch.index).trim();
   }
 
-  const { getHookImports = defaultGetHookImports } = projectSettings;
+  const { getHookImports = defaultGetHookImports, translationPagesDirectory } = projectSettings;
   reactApi.filename = filename;
   reactApi.name = name;
   reactApi.imports = getHookImports(name, filename);
@@ -545,7 +545,7 @@ export default async function generateHookApi(
   if (!skipApiGeneration) {
     // Generate pages, json and translations
     await generateApiTranslations(
-      path.join(process.cwd(), 'docs/translations/api-docs'),
+      path.join(process.cwd(), translationPagesDirectory),
       reactApi,
       projectSettings.translationLanguages,
     );

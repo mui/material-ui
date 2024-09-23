@@ -28,7 +28,7 @@ const validBundles = [
 async function run(argv) {
   const { bundle, largeFiles, outDir: outDirBase, verbose } = argv;
 
-  if (validBundles.indexOf(bundle) === -1) {
+  if (!validBundles.includes(bundle)) {
     throw new TypeError(
       `Unrecognized bundle '${bundle}'. Did you mean one of "${validBundles.join('", "')}"?`,
     );

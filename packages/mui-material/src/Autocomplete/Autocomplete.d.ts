@@ -18,6 +18,9 @@ import useAutocomplete, {
 import { AutocompleteClasses } from './autocompleteClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
+export interface AutocompletePaperSlotPropsOverrides {}
+export interface AutocompletePopperSlotPropsOverrides {}
+
 export {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
@@ -89,17 +92,17 @@ export interface AutocompleteSlots {
    * The component used to render the listbox.
    * @default 'ul'
    */
-  listbox?: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
+  listbox: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
   /**
    * The component used to render the body of the popup.
    * @default Paper
    */
-  paper?: React.JSXElementConstructor<PaperProps>;
+  paper: React.JSXElementConstructor<PaperProps & AutocompletePaperSlotPropsOverrides>;
   /**
    * The component used to position the popup.
    * @default Popper
    */
-  popper?: React.JSXElementConstructor<PopperProps>;
+  popper: React.JSXElementConstructor<PopperProps & AutocompletePopperSlotPropsOverrides>;
 }
 
 export type AutocompleteSlotsAndSlotProps<
@@ -134,15 +137,14 @@ export type AutocompleteSlotsAndSlotProps<
       {},
       AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
     >;
-
     paper: SlotProps<
       React.ElementType<Partial<PaperProps>>,
-      {},
+      AutocompletePaperSlotPropsOverrides,
       AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
     >;
     popper: SlotProps<
       React.ElementType<Partial<PopperProps>>,
-      {},
+      AutocompletePopperSlotPropsOverrides,
       AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
     >;
     popupIndicator: SlotProps<

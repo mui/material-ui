@@ -32,7 +32,7 @@ async function getWebpackEntries() {
       const componentName = path.basename(path.dirname(componentPath));
       let entryName = componentName;
 
-      if (['Popper'].indexOf(componentName) !== -1) {
+      if (['Popper'].includes(componentName)) {
         entryName = `@material-ui/core/${componentName}`;
       }
 
@@ -177,6 +177,11 @@ function createWebpackConfig(entry, environment) {
       },
       path: path.join(__dirname, 'build'),
     },
+    resolve: {
+      alias: {
+        '@mui/utils': '@mui/utils/esm',
+      },
+    },
     plugins: [
       new CompressionPlugin(),
       new BundleAnalyzerPlugin({
@@ -189,8 +194,12 @@ function createWebpackConfig(entry, environment) {
         reportFilename: `${entry.id}.html`,
       }),
     ],
+    // A context to the current dir, which has a node_modules folder with workspace dependencies
     context: __dirname,
     entry: {
+      // This format is a data: url combined with inline matchResource to obtain a virtual entry.
+      // See https://github.com/webpack/webpack/issues/6437#issuecomment-874466638
+      // See https://webpack.js.org/api/loaders/#inline-matchresource
       [entry.id]: `./index.js!=!data:text/javascript,import ${importNames} from '${entry.import}';console.log(foo);`,
     },
     // TODO: 'browserslist:modern'

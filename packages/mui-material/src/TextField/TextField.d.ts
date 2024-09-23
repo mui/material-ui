@@ -22,27 +22,27 @@ export interface TextFieldSlots {
    * The component that renders the input.
    * @default OutlinedInput
    */
-  input?: React.ElementType;
+  input: React.ElementType;
   /**
    * The component that renders the input's label.
    * @default InputLabel
    */
-  inputLabel?: React.ElementType;
+  inputLabel: React.ElementType;
   /**
    * The html input element.
    * @default 'input'
    */
-  htmlInput?: React.ElementType;
+  htmlInput: React.ElementType;
   /**
    * The component that renders the helper text.
    * @default FormHelperText
    */
-  formHelperText?: React.ElementType;
+  formHelperText: React.ElementType;
   /**
    * The component that renders the select.
    * @default Select
    */
-  select?: React.ElementType;
+  select: React.ElementType;
 }
 
 export type TextFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotProps<
@@ -299,12 +299,12 @@ export type TextFieldOwnerState = BaseTextFieldProps;
  * It's important to understand that the text field is a simple abstraction
  * on top of the following components:
  *
- * *   [FormControl](https://mui.com/material-ui/api/form-control/)
- * *   [InputLabel](https://mui.com/material-ui/api/input-label/)
- * *   [FilledInput](https://mui.com/material-ui/api/filled-input/)
- * *   [OutlinedInput](https://mui.com/material-ui/api/outlined-input/)
- * *   [Input](https://mui.com/material-ui/api/input/)
- * *   [FormHelperText](https://mui.com/material-ui/api/form-helper-text/)
+ * * [FormControl](https://mui.com/material-ui/api/form-control/)
+ * * [InputLabel](https://mui.com/material-ui/api/input-label/)
+ * * [FilledInput](https://mui.com/material-ui/api/filled-input/)
+ * * [OutlinedInput](https://mui.com/material-ui/api/outlined-input/)
+ * * [Input](https://mui.com/material-ui/api/input/)
+ * * [FormHelperText](https://mui.com/material-ui/api/form-helper-text/)
  *
  * If you wish to alter the props applied to the `input` element, you can do so as follows:
  *
@@ -319,8 +319,8 @@ export type TextFieldOwnerState = BaseTextFieldProps;
  * For advanced cases, please look at the source of TextField by clicking on the
  * "Edit this page" button above. Consider either:
  *
- * *   using the upper case props for passing values directly to the components
- * *   using the underlying components directly as shown in the demos
+ * * using the upper case props for passing values directly to the components
+ * * using the underlying components directly as shown in the demos
  *
  * Demos:
  *

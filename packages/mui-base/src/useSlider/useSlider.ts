@@ -419,7 +419,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
       percent = (finger.x - left) / width;
     }
 
-    if (axis.indexOf('-reverse') !== -1) {
+    if (axis.includes('-reverse')) {
       percent = 1 - percent;
     }
 

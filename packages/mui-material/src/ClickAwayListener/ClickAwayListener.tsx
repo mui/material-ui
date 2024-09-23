@@ -8,7 +8,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useEventCallback as useEventCallback,
 } from '@mui/utils';
-import getReactNodeRef from '@mui/utils/getReactNodeRef';
+import getReactElementRef from '@mui/utils/getReactElementRef';
 
 // TODO: return `EventHandlerName extends `on${infer EventName}` ? Lowercase<EventName> : never` once generatePropTypes runs with TS 4.1
 function mapEventPropToEvent(
@@ -96,7 +96,7 @@ function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
     };
   }, []);
 
-  const handleRef = useForkRef(getReactNodeRef(children), nodeRef);
+  const handleRef = useForkRef(getReactElementRef(children), nodeRef);
 
   // The handler doesn't take event.defaultPrevented into account:
   //
@@ -133,7 +133,7 @@ function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
 
     // If not enough, can use https://github.com/DieterHolvoet/event-propagation-path/blob/master/propagationPath.js
     if (event.composedPath) {
-      insideDOM = event.composedPath().indexOf(nodeRef.current) > -1;
+      insideDOM = event.composedPath().includes(nodeRef.current);
     } else {
       insideDOM =
         !doc.documentElement.contains(
