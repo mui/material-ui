@@ -291,7 +291,7 @@ describe('ModalManager', () => {
       container4.appendChild(document.createElement('div'));
     });
 
-    it('should work will multiple containers', () => {
+    it('should work with multiple containers', () => {
       modalManager = new ModalManager();
       const modal1 = getDummyModal();
       const modal2 = getDummyModal();
