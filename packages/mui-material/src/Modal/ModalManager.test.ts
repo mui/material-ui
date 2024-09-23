@@ -416,7 +416,6 @@ describe('ModalManager', () => {
       expect(modal2.modalRef).toBeAriaHidden();
       expect(modal3.modalRef).toBeAriaHidden();
       expect(modal4.modalRef).not.toBeAriaHidden();
-
     });
 
     it('should remove aria-hidden on siblings', () => {
