@@ -112,7 +112,7 @@ commands:
                 command: |
                   sed -i 's/# CI:BUNDLING //g' ./pnpm-workspace.yaml
                   cat ./pnpm-workspace.yaml
-                  pnpm install --no-frozen-lockfile
+                  pnpm install --no-frozen-lockfile --child-concurrency 1
 
       - run:
           name: Resolve React version
