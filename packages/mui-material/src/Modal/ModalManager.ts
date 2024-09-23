@@ -209,19 +209,19 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
 }
 
 function getHiddenElements(container: Element) {
-  const hiddenSiblings: Element[] = [];
+  const hiddenElements: Element[] = [];
   const html = ownerDocument(container).body.parentElement;
   let current: Element | null = container;
 
   while (current != null && html !== current) {
     [].forEach.call(current.children, (element: Element) => {
       if (element.getAttribute('aria-hidden') === 'true') {
-        hiddenSiblings.push(element);
+        hiddenElements.push(element);
       }
     });
     current = current.parentElement;
   }
-  return hiddenSiblings;
+  return hiddenElements;
 }
 
 interface Modal {
@@ -239,7 +239,7 @@ interface Modal {
 
 interface Container {
   container: HTMLElement;
-  hiddenSiblings: Element[];
+  hiddenElements: Element[];
   modals: Modal[];
   restore: null | (() => void);
 }
@@ -282,7 +282,7 @@ export class ModalManager {
     }
 
     const hiddenElements = getHiddenElements(container);
-    ariaHiddenElements(container, modal.mount, modal.modalRef, hiddenSiblings, true);
+    ariaHiddenElements(container, modal.mount, modal.modalRef, hiddenElements, true);
 
     const containerIndex = findIndexOf(this.containers, (item) => item.container === container);
     if (containerIndex !== -1) {
@@ -294,7 +294,7 @@ export class ModalManager {
       modals: [modal],
       container,
       restore: null,
-      hiddenSiblings,
+      hiddenElements,
     });
 
     return modalIndex;
@@ -338,7 +338,7 @@ export class ModalManager {
         containerInfo.container,
         modal.mount,
         modal.modalRef,
-        containerInfo.hiddenSiblings,
+        containerInfo.hiddenElements,
         false,
       );
       this.containers.splice(containerIndex, 1);

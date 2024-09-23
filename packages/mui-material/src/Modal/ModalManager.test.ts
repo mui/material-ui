@@ -322,11 +322,9 @@ describe('ModalManager', () => {
 
     beforeEach(() => {
       container2 = document.createElement('div');
-      container2.id = 'container2';
       document.body.appendChild(container2);
 
       modalRef1 = document.createElement('div');
-      modalRef1.id = 'modal1';
       container2.appendChild(modalRef1);
 
       modalManager = new ModalManager();
@@ -482,7 +480,6 @@ describe('ModalManager', () => {
       // simulates modal shown in another modal
       const modal1 = { mount: container2, modalRef: modalRef1 };
       const modal2 = { mount: modalRef1, modalRef: document.createElement('div') };
-      modal2.modalRef.id = 'modal2';
 
       const modal2Sibling = document.createElement('div');
       modal1.modalRef.appendChild(modal2Sibling);
