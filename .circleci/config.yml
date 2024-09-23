@@ -726,35 +726,11 @@ workflows:
     jobs:
       - test_bundling_prepare:
           <<: *default-context
-      - test_bundling_node-esm:
+      - test_bundling_node:
           <<: *default-context
           requires:
             - test_bundling_prepare
-      - test_bundling_next-webpack4:
-          <<: *default-context
-          requires:
-            - test_bundling_prepare
-      - test_bundling_next-webpack5:
-          <<: *default-context
-          requires:
-            - test_bundling_prepare
-      - test_bundling_create-react-app:
-          <<: *default-context
-          requires:
-            - test_bundling_prepare
-      - test_bundling_snowpack:
-          <<: *default-context
-          requires:
-            - test_bundling_prepare
-      - test_bundling_vite:
-          <<: *default-context
-          requires:
-            - test_bundling_prepare
-      - test_bundling_esbuild:
-          <<: *default-context
-          requires:
-            - test_bundling_prepare
-      - test_bundling_gatsby:
+      - test_bundling_browsers:
           <<: *default-context
           requires:
             - test_bundling_prepare
