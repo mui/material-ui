@@ -197,8 +197,6 @@ const ButtonRoot = styled(ButtonBase, {
             '--variant-containedBg': theme.vars
               ? theme.vars.palette.Button.inheritContainedBg
               : inheritContainedBackgroundColor,
-            '--variant-textBg': 'transparent',
-            '--variant-outlinedBg': 'transparent',
             '@media (hover: hover)': {
               '&:hover': {
                 '--variant-containedBg': theme.vars
