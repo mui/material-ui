@@ -67,6 +67,10 @@ commands:
         type: boolean
         default: false
         description: 'Set to true if you intend to any browser (for example with playwright).'
+      bundling:
+        type: boolean
+        default: false
+        description: 'Set to true if you intend to run bundling tests.'
 
     steps:
       - when:
@@ -101,8 +105,7 @@ commands:
             pnpm --version
 
       - when:
-          condition:
-            equal: [<< pipeline.parameters.workflow >>, bundling]
+          condition: << parameters.bundling >>
           steps:
             - run:
                 name: Enable bundling fixtures workspaces
@@ -522,11 +525,12 @@ jobs:
           paths:
             - '*/build'
 
-  test_bundling_node-esm:
+  test_bundling_node:
     <<: *default-job
     steps:
       - checkout
-      - install_js
+      - install_js:
+          bundling: true
       - run:
           name: Test fixture
           command: |
@@ -534,7 +538,7 @@ jobs:
             set +e
             pnpm --filter node-esm start
             exit 0
-  test_bundling_next-webpack4:
+  test_bundling_browsers:
     <<: *default-job
     docker:
       - image: mcr.microsoft.com/playwright:v1.46.1-focal
@@ -544,91 +548,32 @@ jobs:
       - checkout
       - install_js:
           browsers: true
+          bundling: true
       - run:
-          name: Test fixture
+          name: Test fixture next-webpack4
           command: pnpm --filter next-webpack4 start
-  test_bundling_next-webpack5:
-    <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.46.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
-    steps:
-      - checkout
-      - install_js:
-          browsers: true
       - run:
-          name: Test fixture
-          command: pnpm --filter next-webpack4 start
-  test_bundling_create-react-app:
-    <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.46.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
-    steps:
-      - checkout
-      - install_js:
-          browsers: true
+          name: Test fixture next-webpack5
+          command: pnpm --filter next-webpack5 start
       - run:
-          name: Test fixture
+          name: Test fixture create-react-app
           command: pnpm --filter create-react-app start
-  test_bundling_snowpack:
-    <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.46.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
-    steps:
-      - checkout
-      - install_js:
-          browsers: true
       - run:
-          name: Test fixture
+          name: Test fixture snowpack
           command: pnpm --filter snowpack start
-  test_bundling_vite:
-    <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.46.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
-    steps:
-      - checkout
-      - install_js:
-          browsers: true
       - run:
-          name: Test fixture
+          name: Test fixture vite
           command: pnpm --filter vite start
-  test_bundling_esbuild:
-    <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.46.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
-    steps:
-      - checkout
-      - install_js:
-          browsers: true
       - run:
-          name: Test fixture
+          name: Test fixture esbuild
           command: |
             # TODO: Known failure
             set +e
             pnpm --filter esbuild start
             exit 0
-  test_bundling_gatsby:
-    <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.46.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
-    steps:
-      - checkout
-      - install_js:
-          browsers: true
       - run:
-          name: Test --filter gatsby fixture
-          command: pnpm start
+          name: Test fixture gatsby
+          command: Test --filter gatsby fixture
 
   test_bundle_size_monitor:
     <<: *default-job
