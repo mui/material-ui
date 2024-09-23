@@ -42,4 +42,4 @@ This aims to match the policy of [DefinitelyTyped](https://github.com/Definitely
 
 ## Webpack
 
-The minimium required version of webpack to bundle applications that use Material UI is v5. Webpack <= v4 can't bundle Material UI untranspiled as it uses features such as the [null coalscing operator (`??`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing) and [optional chaining (`?.`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining).
+The minimium required version of webpack to bundle applications that use Material UI is v5. Webpack <= v4 can't bundle Material UI untranspiled as it uses features such as the [null coalscing operator (`??`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing) and [optional chaining (`?.`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining).
