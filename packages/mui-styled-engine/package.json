@@ -1,6 +1,6 @@
 {
   "name": "@mui/styled-engine",
-  "version": "6.0.2",
+  "version": "6.1.1",
   "private": false,
   "author": "MUI Team",
   "description": "styled() API wrapper package for emotion.",
@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
+    "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-styled-engine"
   },
   "license": "MIT",

@@ -56,6 +56,8 @@ You can also manually update your components as shown in the snippet below:
 +<Button sx={{ mr: 2 }}>
 ```
 
+The `sx` prop supports all features of system props: callbacks with access to the theme, responsive values, direct access to theme values, shorthands, etc.
+
 ### Theme component variants
 
 Custom component variants defined in the theme are now merged with the theme style overrides, defined within the `root` slot of the component.

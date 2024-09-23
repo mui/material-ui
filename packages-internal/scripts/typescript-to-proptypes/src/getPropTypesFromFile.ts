@@ -155,6 +155,12 @@ function checkType({
       case 'RegExp': {
         return createInstanceOfType({ jsDoc, instance: 'RegExp' });
       }
+      case 'URL': {
+        return createInstanceOfType({ jsDoc, instance: 'URL' });
+      }
+      case 'URLSearchParams': {
+        return createInstanceOfType({ jsDoc, instance: 'URLSearchParams' });
+      }
       case 'Date': {
         if (!project.shouldUseObjectForDate?.({ name })) {
           return createInstanceOfType({ jsDoc, instance: 'Date' });

@@ -1,6 +1,6 @@
 {
   "name": "@mui/icons-material",
-  "version": "6.0.2",
+  "version": "6.1.1",
   "private": false,
   "author": "MUI Team",
   "description": "Material Design icons distributed as SVG React components.",
@@ -15,7 +15,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
+    "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-icons-material"
   },
   "license": "MIT",
@@ -61,7 +61,7 @@
     "lodash": "^4.17.21",
     "mustache": "^4.2.0",
     "react": "^18.3.1",
-    "rimraf": "^5.0.10",
+    "rimraf": "^6.0.1",
     "shx": "^0.3.4",
     "svgo": "^3.3.2",
     "yargs": "^17.7.2"

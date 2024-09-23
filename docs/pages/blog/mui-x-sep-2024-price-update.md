@@ -68,7 +68,7 @@ You'll receive the discount per email, or by reaching out to our [sales team](ma
 
 ## Effective date
 
-The new pricing updates will take effect on September 1st, 2024. However, you can already purchase the new Pro plan today by visiting our [store](https://mui.com/store/items/mui-x-pro-q3-2024/).
+The new pricing updates will take effect on September 1st, 2024.
 
 ## We value your feedback
 

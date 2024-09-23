@@ -1,6 +1,6 @@
 {
   "name": "@mui/types",
-  "version": "7.2.16",
+  "version": "7.2.17",
   "private": false,
   "author": "MUI Team",
   "description": "Utility types for MUI.",
@@ -17,7 +17,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
+    "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-types"
   },
   "license": "MIT",

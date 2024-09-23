@@ -9,7 +9,7 @@ import { alpha } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
 import isFocusVisible from '@mui/utils/isFocusVisible';
 import appendOwnerState from '@mui/utils/appendOwnerState';
-import getReactNodeRef from '@mui/utils/getReactNodeRef';
+import getReactElementRef from '@mui/utils/getReactElementRef';
 import { styled, useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -372,10 +372,12 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   let open = openState;
 
   if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
+    // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
     const { current: isControlled } = React.useRef(openProp !== undefined);
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
+    // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
     React.useEffect(() => {
       if (
         childNode &&
@@ -553,7 +555,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     };
   }, [handleClose, open]);
 
-  const handleRef = useForkRef(getReactNodeRef(children), setChildNode, ref);
+  const handleRef = useForkRef(getReactElementRef(children), setChildNode, ref);
 
   // There is no point in displaying an empty tooltip.
   // So we exclude all falsy values, except 0, which is valid.
@@ -599,7 +601,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   if (process.env.NODE_ENV !== 'production') {
     childrenProps['data-mui-internal-clone-element'] = true;
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
+    // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
     React.useEffect(() => {
       if (childNode && !childNode.getAttribute('data-mui-internal-clone-element')) {
         console.error(

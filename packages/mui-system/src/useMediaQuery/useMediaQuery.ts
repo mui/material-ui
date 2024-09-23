@@ -30,6 +30,7 @@ export interface UseMediaQueryOptions {
   ssrMatchMedia?: (query: string) => { matches: boolean };
 }
 
+// TODO React 17: Remove `useMediaQueryOld` once React 17 support is removed
 function useMediaQueryOld(
   query: string,
   defaultMatches: boolean,
@@ -71,8 +72,9 @@ function useMediaQueryOld(
   return match;
 }
 
-// eslint-disable-next-line no-useless-concat -- Workaround for https://github.com/webpack/webpack/issues/14814
-const maybeReactUseSyncExternalStore: undefined | any = (React as any)['useSyncExternalStore' + ''];
+// See https://github.com/mui/material-ui/issues/41190#issuecomment-2040873379 for why
+const safeReact = { ...React };
+const maybeReactUseSyncExternalStore: undefined | any = safeReact.useSyncExternalStore;
 
 function useMediaQueryNew(
   query: string,
@@ -148,7 +150,6 @@ export default function useMediaQuery<Theme = unknown>(
   let query = typeof queryInput === 'function' ? queryInput(theme) : queryInput;
   query = query.replace(/^@media( ?)/m, '');
 
-  // TODO: Drop `useMediaQueryOld` and use  `use-sync-external-store` shim in `useMediaQueryNew` once the package is stable
   const useMediaQueryImplementation =
     maybeReactUseSyncExternalStore !== undefined ? useMediaQueryNew : useMediaQueryOld;
   const match = useMediaQueryImplementation(

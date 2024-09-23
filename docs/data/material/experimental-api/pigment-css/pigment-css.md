@@ -2,6 +2,10 @@
 
 <p class="description">Learn how to get started customizing your components using Pigment CSS.</p>
 
+:::warning
+Pigment CSS is currently in the early alpha stage of development. We're actively working on improving its performance and stability. If you find any problem, please open a [GitHub issue](https://github.com/mui/pigment-css/issues).
+:::
+
 <iframe width="100%" height="400" src="https://www.youtube.com/embed/UVeDpUey5Es?si=w8OtdStXHtWWIODa" title="YouTube video player: Getting Started with Pigment CSS" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 [Pigment CSS](https://github.com/mui/pigment-css) is a zero-runtime CSS-in-JS library that pre-compiles at build time, making it compatible with React Server Components and providing you with significant performance improvements over other styling engines.
@@ -126,12 +130,12 @@ const mainClass = css({
 
 #### Creating global styles
 
-Use the `globalCSS` API to define global styles to load across an entire app.
+Use the `globalCss` API to define global styles to load across an entire app.
 
 You should define these at the top level of your JavaScript file:
 
 ```js
-import { globalCSS } from '@pigment-css/react';
+import { globalCss } from '@pigment-css/react';
 
 globalCss`
   body {
