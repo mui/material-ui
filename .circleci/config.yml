@@ -542,7 +542,8 @@ jobs:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
-      - install_js
+      - install_js:
+          browsers: true
       - run:
           name: Test fixture
           command: pnpm --filter next-webpack4 start
@@ -554,7 +555,8 @@ jobs:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
-      - install_js
+      - install_js:
+          browsers: true
       - run:
           name: Test fixture
           command: pnpm --filter next-webpack4 start
@@ -566,7 +568,8 @@ jobs:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
-      - install_js
+      - install_js:
+          browsers: true
       - run:
           name: Test fixture
           command: pnpm --filter create-react-app start
@@ -578,7 +581,8 @@ jobs:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
-      - install_js
+      - install_js:
+          browsers: true
       - run:
           name: Test fixture
           command: pnpm --filter snowpack start
@@ -590,7 +594,8 @@ jobs:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
-      - install_js
+      - install_js:
+          browsers: true
       - run:
           name: Test fixture
           command: pnpm --filter vite start
@@ -602,7 +607,8 @@ jobs:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
-      - install_js
+      - install_js:
+          browsers: true
       - run:
           name: Test fixture
           command: |
@@ -618,7 +624,8 @@ jobs:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
-      - install_js
+      - install_js:
+          browsers: true
       - run:
           name: Test --filter gatsby fixture
           command: pnpm start
