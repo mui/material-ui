@@ -865,8 +865,8 @@ importers:
         specifier: ^20.16.5
         version: 20.16.5
       '@types/prop-types':
-        specifier: ^15.7.12
-        version: 15.7.12
+        specifier: ^15.7.13
+        version: 15.7.13
       '@types/react':
         specifier: ^18.3.4
         version: 18.3.4
@@ -1084,8 +1084,8 @@ importers:
         specifier: ^1.0.4
         version: 1.0.4
       '@types/prop-types':
-        specifier: ^15.7.12
-        version: 15.7.12
+        specifier: ^15.7.13
+        version: 15.7.13
       '@types/react':
         specifier: ^18.3.4
         version: 18.3.4
@@ -1344,8 +1344,8 @@ importers:
         specifier: ^4.3.19
         version: 4.3.19
       '@types/prop-types':
-        specifier: ^15.7.12
-        version: 15.7.12
+        specifier: ^15.7.13
+        version: 15.7.13
       '@types/react':
         specifier: ^18.3.4
         version: 18.3.4
@@ -1462,8 +1462,8 @@ importers:
         specifier: ^20.16.5
         version: 20.16.5
       '@types/prop-types':
-        specifier: ^15.7.12
-        version: 15.7.12
+        specifier: ^15.7.13
+        version: 15.7.13
       '@types/react':
         specifier: ^18.3.4
         version: 18.3.4
@@ -1621,8 +1621,8 @@ importers:
         specifier: ^4.3.19
         version: 4.3.19
       '@types/prop-types':
-        specifier: ^15.7.12
-        version: 15.7.12
+        specifier: ^15.7.13
+        version: 15.7.13
       '@types/react':
         specifier: ^18.3.4
         version: 18.3.4
@@ -1698,8 +1698,8 @@ importers:
         specifier: ^4.3.19
         version: 4.3.19
       '@types/prop-types':
-        specifier: ^15.7.12
-        version: 15.7.12
+        specifier: ^15.7.13
+        version: 15.7.13
       '@types/react':
         specifier: ^18.3.4
         version: 18.3.4
@@ -1787,8 +1787,8 @@ importers:
         specifier: ^4.3.19
         version: 4.3.19
       '@types/prop-types':
-        specifier: ^15.7.12
-        version: 15.7.12
+        specifier: ^15.7.13
+        version: 15.7.13
       '@types/react':
         specifier: ^18.3.4
         version: 18.3.4
@@ -2118,8 +2118,8 @@ importers:
         specifier: ^4.3.19
         version: 4.3.19
       '@types/prop-types':
-        specifier: ^15.7.12
-        version: 15.7.12
+        specifier: ^15.7.13
+        version: 15.7.13
       '@types/react':
         specifier: ^18.3.4
         version: 18.3.4
@@ -2165,8 +2165,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-types/build
       '@types/prop-types':
-        specifier: ^15.7.12
-        version: 15.7.12
+        specifier: ^15.7.13
+        version: 15.7.13
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -5584,8 +5584,8 @@ packages:
   '@types/promise.allsettled@1.0.3':
     resolution: {integrity: sha512-b/IFHHTkYkTqu41IH9UtpICwqrpKj2oNlb4KHPzFQDMiz+h1BgAeATeO0/XTph4+UkH9W2U0E4B4j64KWOovag==}
 
-  '@types/prop-types@15.7.12':
-    resolution: {integrity: sha512-5zvhXYtRNRluoE/jAp4GVsSduVUzNWKkOZrCDBWYtE7biZywwdC2AcEzg+cSMLFRfVgeAFqpfNabiPjxFddV1Q==}
+  '@types/prop-types@15.7.13':
+    resolution: {integrity: sha512-hCZTSvwbzWGvhqxp/RqVqwU999pBf2vp7hzIjiYOsl8wqOmUxkQ6ddw1cV3l8811+kdUFus/q4d1Y3E3SyEifA==}
 
   '@types/qs@6.9.7':
     resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
@@ -15135,7 +15135,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.25.6
       '@mui/types': 7.2.17(@types/react@18.3.4)
-      '@types/prop-types': 15.7.12
+      '@types/prop-types': 15.7.13
       clsx: 2.1.1
       prop-types: 15.8.1
       react: 18.3.1
@@ -15147,7 +15147,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.25.6
       '@mui/types': 7.2.17(@types/react@18.3.4)
-      '@types/prop-types': 15.7.12
+      '@types/prop-types': 15.7.13
       clsx: 2.1.1
       prop-types: 15.8.1
       react: 18.3.1
@@ -15159,7 +15159,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.25.6
       '@mui/types': 7.2.17(@types/react@18.3.4)
-      '@types/prop-types': 15.7.12
+      '@types/prop-types': 15.7.13
       clsx: 2.1.1
       prop-types: 15.8.1
       react: 18.3.1
@@ -15171,7 +15171,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.25.6
       '@mui/types': 7.2.17(@types/react@18.3.4)
-      '@types/prop-types': 15.7.12
+      '@types/prop-types': 15.7.13
       clsx: 2.1.1
       prop-types: 15.8.1
       react: 18.3.1
@@ -16939,7 +16939,7 @@ snapshots:
 
   '@types/promise.allsettled@1.0.3': {}
 
-  '@types/prop-types@15.7.12': {}
+  '@types/prop-types@15.7.13': {}
 
   '@types/qs@6.9.7': {}
 
@@ -16975,7 +16975,7 @@ snapshots:
 
   '@types/react@18.3.4':
     dependencies:
-      '@types/prop-types': 15.7.12
+      '@types/prop-types': 15.7.13
       csstype: 3.1.3
 
   '@types/resolve@1.20.6': {}
@@ -21896,7 +21896,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.25.6
       '@mui/material': link:packages/mui-material/build
-      '@types/prop-types': 15.7.12
+      '@types/prop-types': 15.7.13
       '@types/react': 18.3.4
       classnames: 2.3.2
       prop-types: 15.8.1
