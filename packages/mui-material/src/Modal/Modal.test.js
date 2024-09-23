@@ -896,4 +896,31 @@ describe('<Modal />', () => {
     expect(handleKeyDown).to.have.property('callCount', 1);
     expect(handleClose).to.have.property('callCount', 1);
   });
+
+  it('aria-hidden state should be restored even if the ancestor is removed', () => {
+    const { rerender, getByTestId } = render(
+      <div>
+        <div data-testid="originally-not-hidden-sibling" />
+        <div data-testid="to-be-unmounted">
+          <div>
+            <Modal open disablePortal>
+              <div tabIndex={-1} />
+            </Modal>
+          </div>
+        </div>
+      </div>,
+    );
+
+    // Modal is open, the sibling should be hidden
+    expect(getByTestId('originally-not-hidden-sibling')).toBeAriaHidden();
+
+    rerender(
+      <div>
+        <div data-testid="originally-not-hidden-sibling" />
+      </div>,
+    );
+
+    // Unmounted the ancestor of the modal, the sibling aria-hidden state should be restored
+    expect(getByTestId('originally-not-hidden-sibling')).not.toBeAriaHidden();
+  });
 });
