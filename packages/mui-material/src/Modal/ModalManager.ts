@@ -221,7 +221,7 @@ interface Modal {
    *
    * If you pass in {@link modalRef} or the container itself it's also handled
    */
-  mount: Element;
+  mount: Element | null;
   /**
    * The modal element itself.
    */

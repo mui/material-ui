@@ -3,7 +3,7 @@ import { unstable_getScrollbarSize as getScrollbarSize } from '@mui/utils';
 import { ModalManager } from './ModalManager';
 
 interface Modal {
-  mount: Element;
+  mount: Element | null;
   modalRef: Element;
 }
 
@@ -386,21 +386,37 @@ describe('ModalManager', () => {
     });
 
     it('should add aria-hidden to previous modals', () => {
-      const modal2 = document.createElement('div');
-      const modal3 = document.createElement('div');
+      // Mount can be null on the first render
+      const modal2: Modal = { mount: null, modalRef: document.createElement('div') };
+      // Mount can be the container itself
+      const modal3: Modal = { mount: container2, modalRef: document.createElement('div') };
+      // Mount can be the modalRef itself
+      const modal4Ref = document.createElement('div');
+      const modal4: Modal = { mount: modal4Ref, modalRef: modal4Ref };
 
-      container2.appendChild(modal2);
-      container2.appendChild(modal3);
+      container2.appendChild(modal2.modalRef);
+      container2.appendChild(modal3.modalRef);
+      container2.appendChild(modal4.modalRef);
 
-      modalManager.add({ ...getDummyModal(), modalRef: modal2 }, container2);
+      modalManager.add(modal2, container2);
       // Simulate the main React DOM true.
       expect(modalRef1).toBeAriaHidden();
-      expect(modal2).not.toBeAriaHidden();
+      expect(modal2.modalRef).not.toBeAriaHidden();
+      expect(modal3.modalRef).toBeAriaHidden();
+      expect(modal4.modalRef).toBeAriaHidden();
 
-      modalManager.add({ ...getDummyModal(), modalRef: modal3 }, container2);
+      modalManager.add(modal3, container2);
       expect(modalRef1).toBeAriaHidden();
-      expect(modal2).toBeAriaHidden();
-      expect(modal3).not.toBeAriaHidden();
+      expect(modal2.modalRef).toBeAriaHidden();
+      expect(modal3.modalRef).not.toBeAriaHidden();
+      expect(modal4.modalRef).toBeAriaHidden();
+
+      modalManager.add(modal4, container2);
+      expect(modalRef1).toBeAriaHidden();
+      expect(modal2.modalRef).toBeAriaHidden();
+      expect(modal3.modalRef).toBeAriaHidden();
+      expect(modal4.modalRef).not.toBeAriaHidden();
+
     });
 
     it('should remove aria-hidden on siblings', () => {
