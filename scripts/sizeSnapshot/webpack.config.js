@@ -177,11 +177,6 @@ function createWebpackConfig(entry, environment) {
       },
       path: path.join(__dirname, 'build'),
     },
-    resolve: {
-      alias: {
-        '@mui/utils': '@mui/utils/esm',
-      },
-    },
     plugins: [
       new CompressionPlugin(),
       new BundleAnalyzerPlugin({
