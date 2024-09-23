@@ -250,7 +250,7 @@ describe('<Modal />', () => {
           open
           slotProps={{ backdrop: { 'data-testid': 'backdrop' } }}
         >
-          <div />
+          <div tabIndex={-1}/>
         </Modal>,
       );
 
