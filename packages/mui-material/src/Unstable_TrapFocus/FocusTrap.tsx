@@ -183,8 +183,7 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
     }
 
     const doc = ownerDocument(rootRef.current);
-    const openFocusElement =
-      getTabbable(rootRef.current, true, true)?.[0] ?? rootRef.current;
+    const openFocusElement = getTabbable(rootRef.current, true, true)?.[0] ?? rootRef.current;
 
     if (!rootRef.current.contains(doc.activeElement)) {
       // No focusable child was found and rootRef.current cannot be focused
