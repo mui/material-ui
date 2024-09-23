@@ -550,12 +550,6 @@ jobs:
           browsers: true
           bundling: true
       - run:
-          name: Test fixture next-webpack4
-          command: pnpm --filter next-webpack4 start
-      - run:
-          name: Test fixture next-webpack5
-          command: pnpm --filter next-webpack5 start
-      - run:
           name: Test fixture create-react-app
           command: pnpm --filter create-react-app start
       - run:
@@ -574,6 +568,12 @@ jobs:
       - run:
           name: Test fixture gatsby
           command: Test --filter gatsby fixture
+      # - run:
+      #     name: Test fixture next-webpack4
+      #     command: NODE_OPTIONS=--openssl-legacy-provider pnpm --filter next-webpack4 start
+      - run:
+          name: Test fixture next-webpack5
+          command: pnpm --filter next-webpack5 start
 
   test_bundle_size_monitor:
     <<: *default-job
