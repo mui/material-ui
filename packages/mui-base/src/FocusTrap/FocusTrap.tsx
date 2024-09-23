@@ -88,30 +88,12 @@ function isNodeMatchingSelectorFocusable(node: HTMLInputElement): boolean {
   return true;
 }
 
-function defaultGetTabbable(
-  root: HTMLElement,
-  allowExplicitMinus1: boolean = false,
-  allowRootFocus: boolean = false,
-): HTMLElement[] {
+function defaultGetTabbable(root: HTMLElement): HTMLElement[] {
   const regularTabNodes: HTMLElement[] = [];
   const orderedTabNodes: OrderedTabNode[] = [];
-  const focusableNodes = Array.from(root.querySelectorAll(candidatesSelector));
 
-  if (allowRootFocus) {
-    focusableNodes.unshift(root);
-  }
-
-  focusableNodes.forEach((node, i) => {
+  Array.from(root.querySelectorAll(candidatesSelector)).forEach((node, i) => {
     const nodeTabIndex = getTabIndex(node as HTMLElement);
-
-    if (allowExplicitMinus1 && node.getAttribute('tabindex') === '-1') {
-      orderedTabNodes.push({
-        documentOrder: i,
-        tabIndex: nodeTabIndex,
-        node: node as HTMLElement,
-      });
-      return;
-    }
 
     if (nodeTabIndex === -1 || !isNodeMatchingSelectorFocusable(node as HTMLInputElement)) {
       return;
@@ -190,15 +172,13 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
     }
 
     const doc = ownerDocument(rootRef.current);
-    const openFocusElement = getTabbable(rootRef.current, true, true)?.[0] ?? rootRef.current;
 
     if (!rootRef.current.contains(doc.activeElement)) {
-      // No focusable child was found and rootRef.current cannot be focused
-      if (rootRef.current === openFocusElement && !openFocusElement.hasAttribute('tabIndex')) {
+      if (!rootRef.current.hasAttribute('tabIndex')) {
         if (process.env.NODE_ENV !== 'production') {
           console.error(
             [
-              'MUI: The modal content node does not have focusable elements.',
+              'MUI: The modal content node does not accept focus.',
               'For the benefit of assistive technologies, ' +
                 'the tabIndex of the node is being set to "-1".',
             ].join('\n'),
