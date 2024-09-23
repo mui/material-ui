@@ -192,10 +192,8 @@ const ButtonRoot = styled(ButtonBase, {
             color: 'inherit',
           },
           style: {
-            '--variant-containedColor': theme.vars
-              ? // this is safe because grey does not change between default light/dark mode
-                theme.vars.palette.text.primary
-              : theme.palette.getContrastText?.(inheritContainedBackgroundColor),
+            color: 'inherit',
+            borderColor: 'currentColor',
             '--variant-containedBg': theme.vars
               ? theme.vars.palette.Button.inheritContainedBg
               : inheritContainedBackgroundColor,
