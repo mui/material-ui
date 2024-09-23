@@ -20,11 +20,11 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-is": "18.2.0",
-    "vite": "3.2.10"
+    "vite": "3.2.11"
   },
   "devDependencies": {
     "concurrently": "7.4.0",
-    "playwright": "1.46.1",
+    "playwright": "1.47.1",
     "serve": "14.0.1"
   }
 }

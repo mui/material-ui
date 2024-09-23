@@ -14,7 +14,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
+    "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-base"
   },
   "license": "MIT",
@@ -64,7 +64,7 @@
     "lodash": "^4.17.21",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sinon": "^18.0.0"
+    "sinon": "^18.0.1"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0",
