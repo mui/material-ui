@@ -87,15 +87,15 @@
   "exports": {
     ".": {
       "types": "./index.d.ts",
-      "import": "./esm/index.mjs",
+      "import": "./esm/index.js",
       "require": "./index.js"
     },
     "./*": {
       "types": "./*.d.ts",
-      "import": "./esm/*.mjs",
+      "import": "./esm/*.js",
       "require": "./*.js"
     },
-    "./esm/*": "./esm/*.mjs",
-    "./esm/*.js": "./esm/*.mjs"
+    "./esm/*": "./esm/*.js",
+    "./esm/*.js": "./esm/*.js"
   }
 }
