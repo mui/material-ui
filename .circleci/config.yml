@@ -62,6 +62,11 @@ default-context: &default-context
 
 commands:
   setup_corepack:
+    parameters:
+      browsers:
+        type: boolean
+        default: false
+        description: 'Set to true if you intend to any browser (for example with playwright).'
     steps:
       - when:
           condition: << parameters.browsers >>
@@ -89,7 +94,8 @@ commands:
         description: 'Set to true if you intend to run bundling tests.'
 
     steps:
-      - setup_corepack
+      - setup_corepack:
+          browsers: << parameters.browsers >>
       - when:
           condition: << parameters.browsers >>
           steps:
