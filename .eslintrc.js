@@ -240,7 +240,7 @@ module.exports = {
     'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
     'lines-around-directive': 'off',
     ...(ENABLE_REACT_COMPILER_PLUGIN ? { 'react-compiler/react-compiler': 'error' } : {}),
-    // Prevent the use of `e` as a shorthand for `event`
+    // Prevent the use of `e` as a shorthand for `event`, `error`, etc.
     'id-denylist': ['error', 'e'],
   },
   overrides: [
