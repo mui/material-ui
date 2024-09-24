@@ -28,5 +28,17 @@
     "concurrently": "7.4.0",
     "playwright": "1.47.1",
     "serve": "14.0.1"
+  },
+  "pnpm": {
+    "overrides": {
+      "@mui/base": "file:../../../../packed/@mui/base.tgz",
+      "@mui/material": "file:../../../../packed/@mui/material.tgz",
+      "@mui/icons-material": "file:../../../../packed/@mui/icons-material.tgz",
+      "@mui/lab": "file:../../../../packed/@mui/lab.tgz",
+      "@mui/styled-engine": "file:../../../../packed/@mui/styled-engine.tgz",
+      "@mui/styles": "file:../../../../packed/@mui/styles.tgz",
+      "@mui/system": "file:../../../../packed/@mui/system.tgz",
+      "@mui/utils": "file:../../../../packed/@mui/utils.tgz"
+    }
   }
 }
