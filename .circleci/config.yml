@@ -526,7 +526,7 @@ jobs:
       - persist_to_workspace:
           root: packed
           paths:
-            - './packed'
+            - '*'
 
   test_bundling_node_cjs:
     <<: *default-job
