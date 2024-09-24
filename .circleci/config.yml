@@ -520,19 +520,41 @@ jobs:
       - run:
           name: Build packages for fixtures
           command: pnpm lerna run --scope "@mui/*" build
-      - persist_to_workspace:
-          root: packages
-          paths:
-            - '*/build'
-
-  test_bundling_node:
-    <<: *default-job
-    steps:
-      - checkout
-      - install_js:
-          bundling: true
       - run:
-          name: Test fixture
+          name: Pack packages
+          command: pnpm release:pack
+      - persist_to_workspace:
+          root: packed
+          paths:
+            - './packed'
+
+  test_bundling_node_cjs:
+    <<: *default-job
+    working_directory: /tmp/material-ui/test/bundling/fixtures/node-cjs/
+    steps:
+      - checkout:
+          path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packed
+      - run:
+          name: Install dependencies
+          command: pnpm install --ignore-workspace
+      - run:
+          name: Test fixture node-cjs
+          command: pnpm start
+  test_bundling_node_esm:
+    <<: *default-job
+    working_directory: /tmp/material-ui/test/bundling/fixtures/node-cjs/
+    steps:
+      - checkout:
+          path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packed
+      - run:
+          name: Install dependencies
+          command: pnpm install --ignore-workspace
+      - run:
+          name: Test fixture node-esm
           command: |
             # TODO: Known failure
             set +e
@@ -726,11 +748,11 @@ workflows:
     jobs:
       - test_bundling_prepare:
           <<: *default-context
-      - test_bundling_node:
+      - test_bundling_node_cjs:
           <<: *default-context
           requires:
             - test_bundling_prepare
-      - test_bundling_browsers:
+      - test_bundling_node_esm:
           <<: *default-context
           requires:
             - test_bundling_prepare

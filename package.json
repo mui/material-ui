@@ -18,6 +18,7 @@
     "release:publish": "pnpm publish --recursive --tag latest",
     "release:publish:dry-run": "pnpm publish --recursive --tag latest --registry=\"http://localhost:4873/\"",
     "release:tag": "node scripts/releaseTag.mjs",
+    "release:pack": "tsx scripts/releasePack.mts",
     "docs:api": "rimraf --glob ./docs/pages/**/api-docs ./docs/pages/**/api && pnpm docs:api:build",
     "docs:api:build": "tsx ./scripts/buidApiDocs/index.ts",
     "docs:build": "pnpm --filter docs build",

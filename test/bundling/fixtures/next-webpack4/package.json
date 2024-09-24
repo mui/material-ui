@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "prestart": "node ../../scripts/createFixture.js next-webpack4",
-    "start": "pnpm next build && concurrently --success first --kill-others \"pnpm next start\" \"node testNextWebpack4Integration\""
+    "start": "NODE_OPTIONS=--openssl-legacy-provider pnpm next build && concurrently --success first --kill-others \"pnpm next start\" \"node testNextWebpack4Integration\""
   },
   "dependencies": {
     "@emotion/core": "11.0.0",
@@ -25,5 +25,17 @@
   "devDependencies": {
     "concurrently": "7.4.0",
     "playwright": "1.47.1"
+  },
+  "pnpm": {
+    "overrides": {
+      "@mui/base": "file:../../../../packed/@mui/base.tgz",
+      "@mui/material": "file:../../../../packed/@mui/material.tgz",
+      "@mui/icons-material": "file:../../../../packed/@mui/icons-material.tgz",
+      "@mui/lab": "file:../../../../packed/@mui/lab.tgz",
+      "@mui/styled-engine": "file:../../../../packed/@mui/styled-engine.tgz",
+      "@mui/styles": "file:../../../../packed/@mui/styles.tgz",
+      "@mui/system": "file:../../../../packed/@mui/system.tgz",
+      "@mui/utils": "file:../../../../packed/@mui/utils.tgz"
+    }
   }
 }
