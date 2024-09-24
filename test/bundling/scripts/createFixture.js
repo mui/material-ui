@@ -148,8 +148,6 @@ async function readFixtureTemplateValues(fileUrl) {
     })
     .join('\n');
 
-  console.log(requires);
-
   const usageMatch = code.match(/\/\/ #region usage(.+?)\/\/ #endregion/s);
   const [usage] = usageMatch;
 
