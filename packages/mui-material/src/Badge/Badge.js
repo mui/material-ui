@@ -245,10 +245,7 @@ const BadgeBadge = styled('span', {
 const Badge = React.forwardRef(function Badge(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiBadge' });
   const {
-    anchorOrigin: anchorOriginProp = {
-      vertical: 'top',
-      horizontal: 'right',
-    },
+    anchorOrigin: anchorOriginPropProp,
     className,
     classes: classesProp,
     component,
@@ -278,6 +275,11 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     badgeContent: badgeContentProp,
     showZero,
   });
+
+  const anchorOriginProp = {
+    vertical: anchorOriginPropProp?.vertical ?? 'top',
+    horizontal: anchorOriginPropProp?.horizontal ?? 'right',
+  };
 
   const prevProps = usePreviousProps({
     anchorOrigin: anchorOriginProp,
