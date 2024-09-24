@@ -61,17 +61,12 @@ default-context: &default-context
 #     key: v1-repo-{{ .Branch }}-{{ .Revision }}
 
 commands:
-  install_js:
+  setup_corepack:
     parameters:
       browsers:
         type: boolean
         default: false
         description: 'Set to true if you intend to any browser (for example with playwright).'
-      bundling:
-        type: boolean
-        default: false
-        description: 'Set to true if you intend to run bundling tests.'
-
     steps:
       - when:
           condition: << parameters.browsers >>
@@ -87,6 +82,20 @@ commands:
                 name: Install pnpm package manager
                 # See https://stackoverflow.com/a/73411601
                 command: corepack enable --install-directory ~/bin
+  install_js:
+    parameters:
+      browsers:
+        type: boolean
+        default: false
+        description: 'Set to true if you intend to any browser (for example with playwright).'
+      bundling:
+        type: boolean
+        default: false
+        description: 'Set to true if you intend to run bundling tests.'
+
+    steps:
+      - setup_corepack:
+          browsers: << parameters.browsers >>
       - when:
           condition: << parameters.browsers >>
           steps:
@@ -106,6 +115,16 @@ commands:
           command: |
             node --version
             pnpm --version
+
+      - when:
+          condition: << parameters.bundling >>
+          steps:
+            - run:
+                name: Enable bundling fixtures workspaces
+                command: |
+                  sed -i 's/# CI:BUNDLING //g' ./pnpm-workspace.yaml
+                  cat ./pnpm-workspace.yaml
+                  pnpm install --no-frozen-lockfile --child-concurrency 1
 
       - run:
           name: Resolve React version
@@ -529,7 +548,7 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - install_js
+      - setup_corepack
       - run:
           name: Install dependencies
           command: pnpm install --ignore-workspace
@@ -544,7 +563,7 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - install_js
+      - setup_corepack
       - run:
           name: Install dependencies
           command: pnpm install --ignore-workspace
@@ -567,11 +586,12 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - install_js:
+      - setup_corepack:
           browsers: true
       - run:
           name: Install dependencies
           command: pnpm install --ignore-workspace
+      - run: pnpm exec playwright install
       - run:
           name: Test fixture
           command: pnpm start
@@ -587,11 +607,12 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - install_js:
+      - setup_corepack:
           browsers: true
       - run:
           name: Install dependencies
           command: pnpm install --ignore-workspace
+      - run: pnpm exec playwright install
       - run:
           name: Test fixture
           command: pnpm start
@@ -607,11 +628,12 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - install_js:
+      - setup_corepack:
           browsers: true
       - run:
           name: Install dependencies
           command: pnpm install --ignore-workspace
+      - run: pnpm exec playwright install
       - run:
           name: Test fixture
           command: pnpm start
@@ -627,11 +649,12 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - install_js:
+      - setup_corepack:
           browsers: true
       - run:
           name: Install dependencies
           command: pnpm install --ignore-workspace
+      - run: pnpm exec playwright install
       - run:
           name: Test fixture
           command: pnpm start
@@ -647,11 +670,12 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - install_js:
+      - setup_corepack:
           browsers: true
       - run:
           name: Install dependencies
           command: pnpm install --ignore-workspace
+      - run: pnpm exec playwright install
       - run:
           name: Test fixture
           command: pnpm start
@@ -667,11 +691,12 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - install_js:
+      - setup_corepack:
           browsers: true
       - run:
           name: Install dependencies
           command: pnpm install --ignore-workspace
+      - run: pnpm exec playwright install
       - run:
           name: Test fixture
           command: pnpm start
@@ -687,11 +712,12 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - install_js:
+      - setup_corepack:
           browsers: true
       - run:
           name: Install dependencies
           command: pnpm install --ignore-workspace
+      - run: pnpm exec playwright install
       - run:
           name: Test fixture
           command: pnpm start
@@ -706,7 +732,7 @@ jobs:
           command: pnpm danger ci
           environment:
             DANGER_COMMAND: prepareBundleSizeReport
-      - install_js
+      - setup_corepack
       - run:
           name: build @mui packages
           command: pnpm lerna run --ignore @mui/icons-material --concurrency 6 --scope "@mui/*" build
