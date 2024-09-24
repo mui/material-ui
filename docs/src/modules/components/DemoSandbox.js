@@ -172,7 +172,7 @@ function getTheme(outerTheme, injectTheme) {
   if (injectTheme && Object.prototype.toString.call(injectTheme) === '[object Object]') {
     try {
       return deepmerge(resultTheme, injectTheme);
-    } catch (event) {
+    } catch (error) {
       return resultTheme;
     }
   }

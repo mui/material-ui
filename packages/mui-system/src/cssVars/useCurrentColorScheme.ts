@@ -106,7 +106,7 @@ function initializeValue(key: string, defaultValue: string) {
       // the first time that user enters the site.
       localStorage.setItem(key, defaultValue);
     }
-  } catch (event) {
+  } catch {
     // Unsupported
   }
   return value || defaultValue;
@@ -177,7 +177,7 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
         const newMode = mode ?? defaultMode;
         try {
           localStorage.setItem(modeStorageKey, newMode);
-        } catch (event) {
+        } catch {
           // Unsupported
         }
         return {
@@ -197,7 +197,7 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
           try {
             localStorage.setItem(`${colorSchemeStorageKey}-light`, defaultLightColorScheme);
             localStorage.setItem(`${colorSchemeStorageKey}-dark`, defaultDarkColorScheme);
-          } catch (event) {
+          } catch {
             // Unsupported
           }
           return {
@@ -215,7 +215,7 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
             processState(currentState, (mode) => {
               try {
                 localStorage.setItem(`${colorSchemeStorageKey}-${mode}`, value);
-              } catch (event) {
+              } catch {
                 // Unsupported
               }
               if (mode === 'light') {
