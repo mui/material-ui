@@ -54,6 +54,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     MenuProps,
     multiple = false,
     native = false,
+    nativeLike,
     onClose,
     onOpen,
     open,
@@ -109,6 +110,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
                 displayEmpty,
                 labelId,
                 MenuProps,
+                nativeLike,
                 onClose,
                 onOpen,
                 open,
@@ -221,6 +223,12 @@ Select.propTypes /* remove-proptypes */ = {
    * @default false
    */
   native: PropTypes.bool,
+  /**
+   * If `true`, multiple selection is available only when ctrl key is pressed.
+   * Only applicable when `multiple` is `true` and `native` is `false`.
+   * @default false
+   */
+  nativeLike: PropTypes.bool,
   /**
    * Callback fired when a menu item is selected.
    *

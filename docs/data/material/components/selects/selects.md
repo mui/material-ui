@@ -110,6 +110,12 @@ Like with the single selection, you can pull out the new value by accessing `eve
 
 {{"demo": "MultipleSelectNative.js"}}
 
+### Native-Like
+
+Use click or <kbd>Enter</kbd> with the combination of <kbd>Ctrl</kbd> key to select multiple items.
+
+{{"demo": "MultipleSelectNativeLike.js"}}
+
 ## Controlling the open state
 
 You can control the open state of the select with the `open` prop. Alternatively, it is also possible to set the initial (uncontrolled) open state of the component with the `defaultOpen` prop.

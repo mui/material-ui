@@ -42,6 +42,9 @@
     "native": {
       "description": "If <code>true</code>, the component uses a native <code>select</code> element."
     },
+    "nativeLike": {
+      "description": "If <code>true</code>, multiple selection is available only when ctrl key is pressed. Only applicable when <code>multiple</code> is <code>true</code> and <code>native</code> is <code>false</code>."
+    },
     "onChange": {
       "description": "Callback fired when a menu item is selected.",
       "typeDescriptions": {

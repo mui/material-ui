@@ -26,6 +26,7 @@ export interface SelectInputProps<Value = unknown> {
   multiple: boolean;
   name?: string;
   native: boolean;
+  nativeLike: boolean;
   onBlur?: React.FocusEventHandler<any>;
   onChange?: (event: SelectChangeEvent<Value>, child: React.ReactNode) => void;
   onClose?: (event: React.SyntheticEvent) => void;

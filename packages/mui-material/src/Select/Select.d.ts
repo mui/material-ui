@@ -93,6 +93,12 @@ export interface BaseSelectProps<Value = unknown>
    */
   native?: boolean;
   /**
+   * If `true`, multiple selection is available only when ctrl key is pressed.
+   * Only applicable when `multiple` is `true` and `native` is `false`.
+   * @default false
+   */
+  nativeLike?: boolean;
+  /**
    * Callback fired when a menu item is selected.
    *
    * @param {SelectChangeEvent<Value>} event The event source of the callback.

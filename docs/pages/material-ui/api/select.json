@@ -19,6 +19,7 @@
     "MenuProps": { "type": { "name": "object" } },
     "multiple": { "type": { "name": "bool" }, "default": "false" },
     "native": { "type": { "name": "bool" }, "default": "false" },
+    "nativeLike": { "type": { "name": "bool" }, "default": "false" },
     "onChange": {
       "type": { "name": "func" },
       "signature": {
