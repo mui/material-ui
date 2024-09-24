@@ -553,7 +553,7 @@ jobs:
           name: Install dependencies
           command: pnpm install --ignore-workspace
       - run:
-          name: Test fixture node-cjs
+          name: Test fixture
           command: pnpm start
   test_bundling_node_esm:
     <<: *default-job
@@ -568,48 +568,152 @@ jobs:
           name: Install dependencies
           command: pnpm install --ignore-workspace
       - run:
-          name: Test fixture node-esm
+          name: Test fixture
           command: |
             # TODO: Known failure
             set +e
-            pnpm --filter node-esm start
+            pnpm start
             exit 0
-  test_bundling_browsers:
+  test_bundling_create_react_app:
     <<: *default-job
     docker:
       - image: mcr.microsoft.com/playwright:v1.47.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
+    working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     steps:
-      - checkout
-      - install_js:
+      - checkout:
+          path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packed
+      - setup_corepack:
           browsers: true
-          bundling: true
       - run:
-          name: Test fixture create-react-app
-          command: pnpm --filter create-react-app start
+          name: Install dependencies
+          command: pnpm install --ignore-workspace
       - run:
-          name: Test fixture snowpack
-          command: pnpm --filter snowpack start
+          name: Test fixture
+          command: pnpm start
+  test_bundling_snowpack:
+    <<: *default-job
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.47.1-focal
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
+    steps:
+      - checkout:
+          path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packed
+      - setup_corepack:
+          browsers: true
       - run:
-          name: Test fixture vite
-          command: pnpm --filter vite start
+          name: Install dependencies
+          command: pnpm install --ignore-workspace
       - run:
-          name: Test fixture esbuild
-          command: |
-            # TODO: Known failure
-            set +e
-            pnpm --filter esbuild start
-            exit 0
+          name: Test fixture
+          command: pnpm start
+  test_bundling_vite:
+    <<: *default-job
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.47.1-focal
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
+    steps:
+      - checkout:
+          path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packed
+      - setup_corepack:
+          browsers: true
       - run:
-          name: Test fixture gatsby
-          command: Test --filter gatsby fixture
-      # - run:
-      #     name: Test fixture next-webpack4
-      #     command: NODE_OPTIONS=--openssl-legacy-provider pnpm --filter next-webpack4 start
+          name: Install dependencies
+          command: pnpm install --ignore-workspace
       - run:
-          name: Test fixture next-webpack5
-          command: pnpm --filter next-webpack5 start
+          name: Test fixture
+          command: pnpm start
+  test_bundling_esbuild:
+    <<: *default-job
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.47.1-focal
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
+    steps:
+      - checkout:
+          path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packed
+      - setup_corepack:
+          browsers: true
+      - run:
+          name: Install dependencies
+          command: pnpm install --ignore-workspace
+      - run:
+          name: Test fixture
+          command: pnpm start
+  test_bundling_gatsby:
+    <<: *default-job
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.47.1-focal
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
+    steps:
+      - checkout:
+          path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packed
+      - setup_corepack:
+          browsers: true
+      - run:
+          name: Install dependencies
+          command: pnpm install --ignore-workspace
+      - run:
+          name: Test fixture
+          command: pnpm start
+  test_bundling_next_webpack4:
+    <<: *default-job
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.47.1-focal
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
+    steps:
+      - checkout:
+          path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packed
+      - setup_corepack:
+          browsers: true
+      - run:
+          name: Install dependencies
+          command: pnpm install --ignore-workspace
+      - run:
+          name: Test fixture
+          command: pnpm start
+  test_bundling_next_webpack5:
+    <<: *default-job
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.47.1-focal
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
+    steps:
+      - checkout:
+          path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packed
+      - setup_corepack:
+          browsers: true
+      - run:
+          name: Install dependencies
+          command: pnpm install --ignore-workspace
+      - run:
+          name: Test fixture
+          command: pnpm start
 
   test_bundle_size_monitor:
     <<: *default-job
@@ -768,6 +872,34 @@ workflows:
           requires:
             - test_bundling_prepare
       - test_bundling_node_esm:
+          <<: *default-context
+          requires:
+            - test_bundling_prepare
+      - test_bundling_create_react_app:
+          <<: *default-context
+          requires:
+            - test_bundling_prepare
+      - test_bundling_snowpack:
+          <<: *default-context
+          requires:
+            - test_bundling_prepare
+      - test_bundling_vite:
+          <<: *default-context
+          requires:
+            - test_bundling_prepare
+      - test_bundling_esbuild:
+          <<: *default-context
+          requires:
+            - test_bundling_prepare
+      - test_bundling_gatsby:
+          <<: *default-context
+          requires:
+            - test_bundling_prepare
+      - test_bundling_next_webpack4:
+          <<: *default-context
+          requires:
+            - test_bundling_prepare
+      - test_bundling_next_webpack5:
           <<: *default-context
           requires:
             - test_bundling_prepare
