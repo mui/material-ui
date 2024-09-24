@@ -240,6 +240,7 @@ module.exports = {
     'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
     'lines-around-directive': 'off',
     ...(ENABLE_REACT_COMPILER_PLUGIN ? { 'react-compiler/react-compiler': 'error' } : {}),
+    'id-denylist': ['error', 'e'],
   },
   overrides: [
     {
