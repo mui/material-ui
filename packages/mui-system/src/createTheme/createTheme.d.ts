@@ -45,7 +45,7 @@ export interface Theme extends CssContainerQueries {
   components?: Record<string, any>;
   mixins?: Mixins;
   typography?: Typography;
-  zIndex?: unknown;
+  zIndex?: Record<string, number>;
   applyStyles: ApplyStyles<'light' | 'dark'>;
   unstable_sxConfig: SxConfig;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
