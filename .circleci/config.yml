@@ -79,7 +79,7 @@ commands:
                   corepack prepare pnpm@latest-8 --activate
             - run:
                 name: Prepare playwright hash
-                command: pnpm list --json --filter playwright > /tmp/playwright_info.json
+                command: pnpm list --recursive --no-color playwright > /tmp/playwright_info.json
             - store_artifacts:
                 name: Debug playwright hash
                 path: /tmp/playwright_info.json
@@ -121,7 +121,7 @@ commands:
                 key: v6-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
                 paths:
                   # Keep path in sync with "PLAYWRIGHT_BROWSERS_PATH"
-                  # Can't use environment variables for `save_cache` paths (tested in https://app.circleci.com/pipelines/github/mui/material-ui/37813/workflows/5b1e207f-ac8b-44e7-9ba4-d0f9a01f5c55/jobs/223370)
+                  # Can't use environment variables for `save_cache` paths
                   - /tmp/pw-browsers
 
 jobs:
