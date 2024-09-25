@@ -119,7 +119,7 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
         },
       ],
     };
-  })
+  }),
 );
 
 const NotchedOutlineRoot = styled(NotchedOutline, {
