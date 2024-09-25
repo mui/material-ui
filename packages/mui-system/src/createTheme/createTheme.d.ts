@@ -18,7 +18,7 @@ export interface Typography {}
 export interface Mixins {}
 export interface Shadows {}
 export interface Transitions {}
-export interface zIndex {}
+export interface ZIndex {}
 
 export interface ThemeOptions {
   shape?: ShapeOptions;
@@ -31,7 +31,7 @@ export interface ThemeOptions {
   transitions?: Transitions;
   components?: Record<string, any>;
   typography?: Typography;
-  zIndex?: zIndex;
+  zIndex?: ZIndex;
   unstable_sxConfig?: SxConfig;
 }
 
