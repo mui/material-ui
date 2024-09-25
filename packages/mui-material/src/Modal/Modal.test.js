@@ -906,7 +906,7 @@ describe('<Modal />', () => {
           <div>
             <div data-testid="hidden-sibling" />
             <Modal open disablePortal>
-              <div tabIndex={-1} />
+              <div data-testid="modal-content" tabIndex={-1} />
             </Modal>
           </div>
         </div>
@@ -916,6 +916,7 @@ describe('<Modal />', () => {
     expect(getByTestId('hidden-ancestor')).toBeAriaHidden();
     expect(getByTestId('originally-hidden-ancestor')).toBeAriaHidden();
     expect(getByTestId('hidden-sibling')).toBeAriaHidden();
+    expect(getByTestId('modal-content')).not.toBeAriaHidden();
 
     rerender(
       <div>
@@ -925,7 +926,7 @@ describe('<Modal />', () => {
           <div>
             <div data-testid="hidden-sibling" />
             <Modal open={false} disablePortal>
-              <div tabIndex={-1} />
+              <div data-testid="modal-content" tabIndex={-1} />
             </Modal>
           </div>
         </div>
@@ -944,7 +945,7 @@ describe('<Modal />', () => {
         <div data-testid="to-be-unmounted">
           <div>
             <Modal open disablePortal>
-              <div tabIndex={-1} />
+              <div data-testid="modal-content" tabIndex={-1} />
             </Modal>
           </div>
         </div>
@@ -953,6 +954,7 @@ describe('<Modal />', () => {
 
     // Modal is open, the sibling should be hidden
     expect(getByTestId('originally-not-hidden-sibling')).toBeAriaHidden();
+    expect(getByTestId('modal-content')).not.toBeAriaHidden();
 
     rerender(
       <div>
