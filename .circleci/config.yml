@@ -44,7 +44,7 @@ default-job: &default-job
     COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
   working_directory: /tmp/material-ui
   docker:
-    - image: cimg/node:20.17
+    - image: cimg/node:20.17-browsers
 
 default-context: &default-context
   context:
