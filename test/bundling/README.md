@@ -7,7 +7,7 @@ The created file might need some manual adjustment since not every edge case is 
 
 ## Run a fixture
 
-### to test a Pull Request
+### To test a Pull Request
 
 1. checkout branch
 1. `pnpm install`
@@ -17,7 +17,7 @@ The created file might need some manual adjustment since not every edge case is 
 1. `pnpm install --ignore-workspace`
 1. `pnpm start`
 
-### to test a published npm dist tag
+### To test a published npm dist tag
 
 _for example `latest` or `next` on npm or a codesandboxci published version_
 
