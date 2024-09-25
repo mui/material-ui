@@ -81,9 +81,9 @@ commands:
             - run:
                 name: Prepare playwright hash
                 command: pnpm list --recursive --no-color playwright > /tmp/playwright_info.json
-            - store_artifacts:
+            - run:
                 name: Debug playwright hash
-                path: /tmp/playwright_info.json
+                command: cat /tmp/playwright_info.json
             - restore_cache:
                 name: Restore playwright cache
                 keys:
