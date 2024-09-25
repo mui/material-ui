@@ -48,12 +48,29 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
     return {
       position: 'relative',
       borderRadius: (theme.vars || theme).shape.borderRadius,
-      [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
-        borderColor: (theme.vars || theme).palette.text.primary,
-      },
+
+      // Universal focus handling (across all devices)
       [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]: {
         borderWidth: 2,
+        borderColor: (theme.vars || theme).palette.primary.main,
       },
+
+      // Hover behavior only for devices that support hover (non-mobile)
+      '@media (hover: hover) and (pointer: fine)': {
+        [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+          borderColor: (theme.vars || theme).palette.text.primary,
+        },
+      },
+
+      // Reset hover styles on mobile devices
+      '@media (hover: none)': {
+        [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+          borderColor: theme.vars
+            ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+            : borderColor,
+        },
+      },
+
       variants: [
         ...Object.entries(theme.palette)
           .filter(createSimplePaletteValueFilter())
@@ -66,16 +83,8 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
             },
           })),
         {
-          props: {}, // to overide the above style
+          props: {}, // to override the above style
           style: {
-            // Reset on touch devices, it doesn't add specificity
-            '@media (hover: none)': {
-              [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
-                borderColor: theme.vars
-                  ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
-                  : borderColor,
-              },
-            },
             [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]: {
               borderColor: (theme.vars || theme).palette.error.main,
             },
@@ -110,7 +119,7 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
         },
       ],
     };
-  }),
+  })
 );
 
 const NotchedOutlineRoot = styled(NotchedOutline, {
