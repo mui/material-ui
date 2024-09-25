@@ -380,8 +380,6 @@ jobs:
     resource_class: 'medium+'
     docker:
       - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
       - install_js:
@@ -410,8 +408,6 @@ jobs:
     <<: *default-job
     docker:
       - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
       - install_js:
@@ -424,8 +420,6 @@ jobs:
     <<: *default-job
     docker:
       - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
       - install_js:
@@ -439,8 +433,6 @@ jobs:
     <<: *default-job
     docker:
       - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
       - install_js:
@@ -466,8 +458,6 @@ jobs:
     <<: *default-job
     docker:
       - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
       - install_js:
@@ -538,8 +528,6 @@ jobs:
     <<: *default-job
     docker:
       - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
     steps:
       - checkout:
@@ -558,8 +546,6 @@ jobs:
     <<: *default-job
     docker:
       - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
     steps:
       - checkout:
@@ -578,8 +564,6 @@ jobs:
     <<: *default-job
     docker:
       - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     steps:
       - checkout:
@@ -598,8 +582,6 @@ jobs:
     <<: *default-job
     docker:
       - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     steps:
       - checkout:
@@ -618,8 +600,6 @@ jobs:
     <<: *default-job
     docker:
       - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     steps:
       - checkout:
@@ -638,8 +618,6 @@ jobs:
     <<: *default-job
     docker:
       - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
     steps:
       - checkout:
@@ -659,7 +637,7 @@ jobs:
     docker:
       - image: mcr.microsoft.com/playwright:v1.47.1-focal
         environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
+          GATSBY_CPU_COUNT: '1'
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
     steps:
       - checkout:
@@ -759,8 +737,6 @@ jobs:
     <<: *default-job
     docker:
       - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
       - install_js:
