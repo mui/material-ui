@@ -17,7 +17,7 @@
     "@mui/styles": "workspace:*",
     "@mui/system": "workspace:*",
     "@mui/utils": "workspace:*",
-    "gatsby": "4.25.7",
+    "gatsby": "5.13.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-is": "18.2.0"
