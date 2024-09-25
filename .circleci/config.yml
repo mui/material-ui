@@ -576,10 +576,6 @@ jobs:
           command: pnpm start
   test_bundling_create_react_app:
     <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     steps:
       - checkout:
@@ -591,6 +587,9 @@ jobs:
       - run:
           name: Install dependencies
           command: pnpm install --ignore-workspace
+      - run:
+          name: Install playwright
+          command: pnpm exec playwright install --with-deps
       - run:
           name: Test fixture
           command: pnpm start
