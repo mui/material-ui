@@ -75,22 +75,7 @@ commands:
           steps:
             - run:
                 name: Install pnpm package manager
-                command: |
-                  corepack enable
-                  corepack prepare pnpm@latest-8 --activate
-            - run:
-                name: Debug playwright hash generation
-                command: pnpm list --recursive --no-color playwright
-            - run:
-                name: Prepare playwright hash
-                command: pnpm list --recursive --no-color playwright > /tmp/playwright_info.json
-            - run:
-                name: Debug playwright hash
-                command: cat /tmp/playwright_info.json
-            - restore_cache:
-                name: Restore playwright cache
-                keys:
-                  - v6-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
+                command: corepack enable
       - when:
           condition:
             not: << parameters.browsers >>
@@ -117,6 +102,16 @@ commands:
       - when:
           condition: << parameters.browsers >>
           steps:
+            - run:
+                name: Prepare playwright hash
+                command: pnpm list --recursive --no-color playwright > /tmp/playwright_info.json
+            - run:
+                name: Debug playwright hash
+                command: cat /tmp/playwright_info.json
+            - restore_cache:
+                name: Restore playwright cache
+                keys:
+                  - v6-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
             - run:
                 name: Install playwright browsers
                 command: pnpm playwright install --with-deps
