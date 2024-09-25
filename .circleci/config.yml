@@ -68,20 +68,9 @@ commands:
         description: 'Set to true if you intend to any browser (for example with playwright).'
 
     steps:
-      - when:
-          condition: << parameters.browsers >>
-          steps:
-            - run:
-                name: Install pnpm package manager
-                command: corepack enable
-      - when:
-          condition:
-            not: << parameters.browsers >>
-          steps:
-            - run:
-                name: Install pnpm package manager
-                # See https://stackoverflow.com/a/73411601
-                command: corepack enable --install-directory ~/bin
+      - run:
+          name: Install pnpm package manager
+          command: corepack enable
 
       - run:
           name: View install environment
@@ -100,6 +89,12 @@ commands:
           name: Install js dependencies
           command: pnpm install
 
+      - when:
+          condition: << parameters.browsers >>
+          steps:
+            - run:
+                name: Install playwright
+                command: pnpm exec playwright install --with-deps
 jobs:
   checkout:
     <<: *default-job
@@ -368,10 +363,6 @@ jobs:
   test_browser:
     <<: *default-job
     resource_class: 'medium+'
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
       - install_js:
@@ -398,10 +389,6 @@ jobs:
           destination: artifact-file
   test_e2e:
     <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
       - install_js:
@@ -412,10 +399,6 @@ jobs:
   test_e2e_website:
     # NOTE: This workflow runs after successful docs deploy. See /test/e2e-website/README.md#ci
     <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
       - install_js:
@@ -427,10 +410,6 @@ jobs:
             PLAYWRIGHT_TEST_BASE_URL: << parameters.e2e-base-url >>
   test_profile:
     <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
       - install_js:
@@ -454,10 +433,6 @@ jobs:
           destination: react-profiler-report/karma
   test_regressions:
     <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
       - install_js:
@@ -514,10 +489,6 @@ jobs:
   test_bundling_next-webpack4:
     <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout:
           path: /tmp/material-ui
@@ -538,10 +509,6 @@ jobs:
   test_bundling_next-webpack5:
     <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout:
           path: /tmp/material-ui
@@ -562,10 +529,6 @@ jobs:
   test_bundling_create-react-app:
     <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout:
           path: /tmp/material-ui
@@ -586,10 +549,6 @@ jobs:
   test_bundling_snowpack:
     <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout:
           path: /tmp/material-ui
@@ -610,10 +569,6 @@ jobs:
   test_bundling_vite:
     <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout:
           path: /tmp/material-ui
@@ -634,10 +589,6 @@ jobs:
   test_bundling_esbuild:
     <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout:
           path: /tmp/material-ui
@@ -662,10 +613,6 @@ jobs:
   test_bundling_gatsby:
     <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout:
           path: /tmp/material-ui
@@ -763,10 +710,6 @@ jobs:
             DANGER_COMMAND: reportBundleSize
   test_benchmark:
     <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
       - install_js:
