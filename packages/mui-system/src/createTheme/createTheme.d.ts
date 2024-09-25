@@ -18,6 +18,7 @@ export interface Typography {}
 export interface Mixins {}
 export interface Shadows {}
 export interface Transitions {}
+export interface zIndex {}
 
 export interface ThemeOptions {
   shape?: ShapeOptions;
@@ -30,7 +31,7 @@ export interface ThemeOptions {
   transitions?: Transitions;
   components?: Record<string, any>;
   typography?: Typography;
-  zIndex?: Record<string, number>;
+  zIndex?: zIndex;
   unstable_sxConfig?: SxConfig;
 }
 
@@ -45,7 +46,7 @@ export interface Theme extends CssContainerQueries {
   components?: Record<string, any>;
   mixins?: Mixins;
   typography?: Typography;
-  zIndex?: Record<string, number>;
+  zIndex?: zIndex;
   applyStyles: ApplyStyles<'light' | 'dark'>;
   unstable_sxConfig: SxConfig;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
