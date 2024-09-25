@@ -100,13 +100,6 @@ commands:
           name: Install js dependencies
           command: pnpm install
 
-      - when:
-          condition: << parameters.browsers >>
-          steps:
-            - run:
-                name: Install playwright browsers
-                command: pnpm playwright install --with-deps
-
 jobs:
   checkout:
     <<: *default-job
