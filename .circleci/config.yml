@@ -637,7 +637,7 @@ jobs:
     docker:
       - image: mcr.microsoft.com/playwright:v1.47.1-focal
         environment:
-          GATSBY_CPU_COUNT: '2'
+          GATSBY_CPU_COUNT: '3'
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
     steps:
       - checkout:
