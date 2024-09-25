@@ -70,7 +70,8 @@ commands:
     steps:
       - run:
           name: Install pnpm package manager
-          command: corepack enable
+          # See https://stackoverflow.com/a/73411601
+          command: corepack enable --install-directory ~/bin
 
       - run:
           name: View install environment
