@@ -469,44 +469,47 @@ describe('ModalManager', () => {
 
       modalManager.add(modal1, container2);
 
-      expect(container2.children[0]).not.toBeAriaHidden();
-      expect(container2.children[1]).toBeAriaHidden();
+      expect(modal1.modalRef).not.toBeAriaHidden();
+      expect(mainContentSibling).toBeAriaHidden();
 
       modalManager.add({ mount: mainContentSibling, modalRef: modal2 }, mainContentSibling);
-      expect(container2.children[0]).toBeAriaHidden();
+      expect(modal1.modalRef).toBeAriaHidden();
       // main content sibling should not be hidden
-      expect(container2.children[1]).not.toBeAriaHidden();
-      expect(mainContentSibling.children[0]).not.toBeAriaHidden();
+      expect(mainContentSibling).not.toBeAriaHidden();
+      expect(modal2).not.toBeAriaHidden();
     });
 
-    it('top modal should always be accessible even if inside other dialog', () => {
+    it('top modal should always be accessible even if inside other modal', () => {
       // simulates modal shown in another modal
       const modal1 = { mount: container2, modalRef: modalRef1 };
-      const modal2 = { mount: modalRef1, modalRef: document.createElement('div') };
+      // top modal
+      const innerModal = { mount: modalRef1, modalRef: document.createElement('div') };
 
-      const modal2Sibling = document.createElement('div');
-      modal1.modalRef.appendChild(modal2Sibling);
+      const innerModalSibling = document.createElement('div');
+      modal1.modalRef.appendChild(innerModalSibling);
 
       const modal1Sibling = document.createElement('div');
       container2.appendChild(modal1Sibling);
 
       modalManager.add(modal1, container2);
 
-      expect(container2.children[0]).not.toBeAriaHidden();
-      expect(container2.children[0].children[0]).not.toBeAriaHidden();
-      expect(container2.children[1]).toBeAriaHidden();
+      expect(modal1.modalRef).not.toBeAriaHidden();
+      expect(innerModalSibling).not.toBeAriaHidden();
+      expect(modal1Sibling).toBeAriaHidden();
 
-      modal1.modalRef.appendChild(modal2.modalRef);
-      modalManager.add(modal2, modal1.modalRef);
+      modal1.modalRef.appendChild(innerModal.modalRef);
+
+      // add inner modal
+      modalManager.add(innerModal, modal1.modalRef);
 
       // modal1
-      expect(container2.children[0]).not.toBeAriaHidden();
+      expect(modal1.modalRef).not.toBeAriaHidden();
       // modal1 sibling
-      expect(container2.children[1]).toBeAriaHidden();
-      // modal2 sibling
-      expect(container2.children[0].children[0]).toBeAriaHidden();
-      // modal2
-      expect(container2.children[0].children[1]).not.toBeAriaHidden();
+      expect(modal1Sibling).toBeAriaHidden();
+      // inner modal sibling
+      expect(innerModalSibling).toBeAriaHidden();
+      // inner modal (top modal is accessible)
+      expect(innerModal.modalRef).not.toBeAriaHidden();
     });
   });
 });
