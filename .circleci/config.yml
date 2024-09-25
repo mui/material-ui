@@ -79,6 +79,9 @@ commands:
                   corepack enable
                   corepack prepare pnpm@latest-8 --activate
             - run:
+                name: Debug playwright hash generation
+                command: pnpm list --recursive --no-color playwright
+            - run:
                 name: Prepare playwright hash
                 command: pnpm list --recursive --no-color playwright > /tmp/playwright_info.json
             - run:
