@@ -5,6 +5,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useEventCallback as useEventCallback,
   unstable_createChainedFunction as createChainedFunction,
+  unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@mui/utils';
 import extractEventHandlers from '@mui/utils/extractEventHandlers';
 import { EventHandlers } from '../utils/types';
@@ -120,11 +121,12 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
     manager.remove(getModal(), ariaHiddenProp);
   }, [ariaHiddenProp, manager]);
 
-  // We need useLayoutEffect to make sure
-  // aria-hidden tags have time to get cleaned up properly
-  // in handleClose->manager.remove->ariaHiddenElements
-  // in the case someone unmounts the Modal higher up the tree
-  React.useLayoutEffect(() => {
+  // We use useLayoutEffect (via useEnhancedEffect) to ensure
+  // aria-hidden attributes are properly cleaned up in the
+  // handleClose -> manager.remove -> ariaHiddenElements chain.
+  // This is important in cases where the Modal gets unmounted
+  // higher up the tree, so cleanup happens before any DOM changes.
+  useEnhancedEffect(() => {
     return () => {
       handleClose();
     };
