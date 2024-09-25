@@ -80,8 +80,19 @@ export default function applyStyles<K extends string>(key: K, styles: CSSObject)
       return styles;
     }
     if (selector.includes('data-') || selector.includes('.')) {
+      // Filter out child elements that might be forcing another theme
+      let excludeOtherThemesSelector = '';
+      const otherThemes = Object.keys(theme.colorSchemes).filter((n) => n !== key);
+      if (otherThemes.length > 0) {
+        const otherThemesSelector = otherThemes
+          // Optional chaining is to make TS happy, but it's actually not optional because of line 74
+          .map((s) => `* ${theme.getColorSchemeSelector?.(s).replace(/\s*&$/, '')}`)
+          .join(', ');
+
+        excludeOtherThemesSelector = `:not(:has(${otherThemesSelector}))`;
+      }
       // '*' is required as a workaround for Emotion issue (https://github.com/emotion-js/emotion/issues/2836)
-      selector = `*:where(${selector.replace(/\s*&$/, '')}) &`;
+      selector = `*:where(${selector.replace(/\s*&$/, '')})${excludeOtherThemesSelector} &`;
     }
     return {
       [selector]: styles,
