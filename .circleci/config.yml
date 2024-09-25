@@ -36,8 +36,6 @@ default-job: &default-job
       type: string
       default: << pipeline.parameters.e2e-base-url >>
   environment:
-    # Keep in sync with "Save playwright cache"
-    PLAYWRIGHT_BROWSERS_PATH: /tmp/pw-browsers
     # expose it globally otherwise we have to thread it from each job to the install command
     BROWSERSTACK_FORCE: << pipeline.parameters.browserstack-force >>
     REACT_VERSION: << parameters.react-version >>
@@ -80,8 +78,10 @@ commands:
           condition:
             not: << parameters.browsers >>
           steps:
-            # See https://stackoverflow.com/a/73411601
-            - run: corepack enable --install-directory ~/bin
+            - run:
+                name: Install pnpm package manager
+                # See https://stackoverflow.com/a/73411601
+                command: corepack enable --install-directory ~/bin
 
       - run:
           name: View install environment
@@ -99,29 +99,13 @@ commands:
       - run:
           name: Install js dependencies
           command: pnpm install
+
       - when:
           condition: << parameters.browsers >>
           steps:
             - run:
-                name: Prepare playwright hash
-                command: pnpm list --recursive --no-color playwright > /tmp/playwright_info.json
-            - run:
-                name: Debug playwright hash
-                command: cat /tmp/playwright_info.json
-            - restore_cache:
-                name: Restore playwright cache
-                keys:
-                  - v6-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
-            - run:
                 name: Install playwright browsers
                 command: pnpm playwright install --with-deps
-            - save_cache:
-                name: Save playwright cache
-                key: v6-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
-                paths:
-                  # Keep path in sync with "PLAYWRIGHT_BROWSERS_PATH"
-                  # Can't use environment variables for `save_cache` paths
-                  - /tmp/pw-browsers
 
 jobs:
   checkout:
