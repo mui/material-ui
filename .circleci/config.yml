@@ -574,6 +574,48 @@ jobs:
             set +e
             pnpm start
             exit 0
+  test_bundling_next_webpack4:
+    <<: *default-job
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.47.1-focal
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
+    steps:
+      - checkout:
+          path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packed
+      - setup_corepack:
+          browsers: true
+      - run:
+          name: Install dependencies
+          command: pnpm install --ignore-workspace
+      - run: pnpm exec playwright install
+      - run:
+          name: Test fixture
+          command: pnpm start
+  test_bundling_next_webpack5:
+    <<: *default-job
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.47.1-focal
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
+    steps:
+      - checkout:
+          path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packed
+      - setup_corepack:
+          browsers: true
+      - run:
+          name: Install dependencies
+          command: pnpm install --ignore-workspace
+      - run: pnpm exec playwright install
+      - run:
+          name: Test fixture
+          command: pnpm start
   test_bundling_create_react_app:
     <<: *default-job
     docker:
@@ -665,48 +707,6 @@ jobs:
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
-    steps:
-      - checkout:
-          path: /tmp/material-ui
-      - attach_workspace:
-          at: /tmp/material-ui/packed
-      - setup_corepack:
-          browsers: true
-      - run:
-          name: Install dependencies
-          command: pnpm install --ignore-workspace
-      - run: pnpm exec playwright install
-      - run:
-          name: Test fixture
-          command: pnpm start
-  test_bundling_next_webpack4:
-    <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
-    working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
-    steps:
-      - checkout:
-          path: /tmp/material-ui
-      - attach_workspace:
-          at: /tmp/material-ui/packed
-      - setup_corepack:
-          browsers: true
-      - run:
-          name: Install dependencies
-          command: pnpm install --ignore-workspace
-      - run: pnpm exec playwright install
-      - run:
-          name: Test fixture
-          command: pnpm start
-  test_bundling_next_webpack5:
-    <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
-    working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
     steps:
       - checkout:
           path: /tmp/material-ui
