@@ -507,7 +507,7 @@ jobs:
           command: pnpm start
   test_bundling_node_esm:
     <<: *default-job
-    working_directory: /tmp/material-ui/test/bundling/fixtures/node-cjs/
+    working_directory: /tmp/material-ui/test/bundling/fixtures/node-esm/
     steps:
       - checkout:
           path: /tmp/material-ui
