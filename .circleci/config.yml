@@ -94,10 +94,6 @@ commands:
         type: boolean
         default: false
         description: 'Set to true if you intend to any browser (for example with playwright).'
-      bundling:
-        type: boolean
-        default: false
-        description: 'Set to true if you intend to run bundling tests.'
 
     steps:
       - setup_corepack:
