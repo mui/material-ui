@@ -9,7 +9,7 @@ The created file might need some manual adjustment since not every edge case is 
 
 ### To test a Pull Request
 
-1. checkout branch
+1. Checkout branch
 1. `pnpm install`
 1. `pnpm lerna run build --scope "@mui/*"`
 1. `pnpm release:pack`
@@ -22,7 +22,7 @@ The created file might need some manual adjustment since not every edge case is 
 _For example: `latest` or `next` on npm or a codesandboxci published version_
 
 1. Navigate into the fixture you want to test (where the `package.json` is located)
-1. adjust `pnpm.overrides` of the `package.json` file to point to the desired version
+1. Adjust `pnpm.overrides` of the `package.json` file to point to the desired version
 1. `pnpm install --ignore-workspace`
 1. `pnpm start`
 
