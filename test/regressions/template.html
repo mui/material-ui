@@ -7,6 +7,15 @@
     <style>
       body {
         background-color: white;
+        /* 
+        Hide scrollbars but keep scrollable. Playwright hides scrollbar when capturing a screenshot on an element
+        or with fullPage: true. When the body has a scrollbar, this causes a brief layout shift.
+        */
+        -ms-overflow-style: none; /* Internet Explorer 10+ */
+        scrollbar-width: none; /* Firefox */
+      }
+      body::-webkit-scrollbar {
+        display: none; /* Safari and Chrome */
       }
     </style>
   </head>
