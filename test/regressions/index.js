@@ -423,7 +423,7 @@ function App(props) {
       </Routes>
 
       {isDev ? (
-        <div hidden={!isDev}>
+        <div>
           <div data-webfontloader={fontState}>webfontloader: {fontState}</div>
           <p>
             Devtools can be enabled by appending <code>#dev</code> in the addressbar or disabled by
