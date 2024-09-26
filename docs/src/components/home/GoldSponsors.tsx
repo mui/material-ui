@@ -90,6 +90,11 @@ const BACKLINKs = [
     description: 'Instant delivery Instagram followers.',
     href: 'https://twicsy.com/',
   },
+  {
+    name: 'Quickbooks Tool Hub',
+    description: 'An efficient accounting software package.',
+    href: 'https://qbtoolhub.com/',
+  },
 ];
 
 export default function GoldSponsors() {
