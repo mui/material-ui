@@ -102,8 +102,7 @@
     "@netlify/functions": "^2.8.1",
     "@slack/bolt": "^3.21.4",
     "execa": "^9.4.0",
-    "google-auth-library": "^9.14.1",
-    "mocha-junit-reporter": "^2.2.1"
+    "google-auth-library": "^9.14.1"
   },
   "devDependencies": {
     "@argos-ci/core": "^2.8.1",
@@ -181,6 +180,7 @@
     "lodash": "^4.17.21",
     "markdownlint-cli2": "^0.13.0",
     "mocha": "^10.7.3",
+    "mocha-junit-reporter": "^2.2.1",
     "nx": "^19.7.3",
     "nyc": "^17.0.0",
     "piscina": "^4.6.1",
