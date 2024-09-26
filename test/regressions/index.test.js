@@ -31,7 +31,7 @@ async function main() {
 
   // Wait for all requests to finish.
   // This should load shared resources such as fonts.
-  await page.goto(`${baseUrl}#no-dev`, { waitUntil: 'networkidle0' });
+  await page.goto(`${baseUrl}#dev`, { waitUntil: 'networkidle0' });
   // If we still get flaky fonts after awaiting this try `document.fonts.ready`
   await page.waitForSelector('[data-webfontloader="active"]', { state: 'attached' });
 
@@ -56,7 +56,7 @@ async function main() {
   async function renderFixture(route) {
     // Use client-side routing which is much faster than full page navigation via page.goto().
     await page.evaluate((_route) => {
-      window.muiFixture.navigate(_route);
+      window.muiFixture.navigate(`${_route}#no-dev`);
     }, route);
 
     // Move cursor offscreen to not trigger unwanted hover effects.

@@ -336,29 +336,33 @@ FixtureRenderer.propTypes = {
   path: PropTypes.string.isRequired,
 };
 
+function useHash() {
+  const subscribe = React.useCallback((callback) => {
+    window.addEventListener('hashchange', callback);
+    return () => {
+      window.removeEventListener('hashchange', callback);
+    };
+  }, []);
+  const getSnapshot = React.useCallback(() => window.location.hash, []);
+  const getServerSnapshot = React.useCallback(() => '', []);
+  return React.useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+}
+
+function computeIsDev(hash) {
+  if (hash === '#dev') {
+    return true;
+  }
+  if (hash === '#no-dev') {
+    return false;
+  }
+  return process.env.NODE_ENV === 'development';
+}
+
 function App(props) {
   const { fixtures } = props;
 
-  function computeIsDev() {
-    if (window.location.hash === '#dev') {
-      return true;
-    }
-    if (window.location.hash === '#no-dev') {
-      return false;
-    }
-    return process.env.NODE_ENV === 'development';
-  }
-  const [isDev, setDev] = React.useState(computeIsDev);
-  React.useEffect(() => {
-    function handleHashChange() {
-      setDev(computeIsDev());
-    }
-    window.addEventListener('hashchange', handleHashChange);
-
-    return () => {
-      window.removeEventListener('hashchange', handleHashChange);
-    };
-  }, []);
+  const hash = useHash();
+  const isDev = computeIsDev(hash);
 
   // Using <link rel="stylesheet" /> does not apply the google Roboto font in chromium headless/headfull.
   const [fontState, setFontState] = React.useState('pending');
@@ -418,29 +422,32 @@ function App(props) {
         })}
       </Routes>
 
-      <div hidden={!isDev}>
-        <div data-webfontloader={fontState}>webfontloader: {fontState}</div>
-        <p>
-          Devtools can be enabled by appending <code>#dev</code> in the addressbar or disabled by
-          appending <code>#no-dev</code>.
-        </p>
-        <a href="#no-dev">Hide devtools</a>
-        <details>
-          <summary id="my-test-summary">nav for all tests</summary>
-          <nav id="tests">
-            <ol>
-              {fixtures.map((fixture) => {
-                const path = computePath(fixture);
-                return (
-                  <li key={path}>
-                    <Link to={path}>{path}</Link>
-                  </li>
-                );
-              })}
-            </ol>
-          </nav>
-        </details>
-      </div>
+      {isDev ? (
+        <div hidden={!isDev}>
+          <div data-webfontloader={fontState}>webfontloader: {fontState}</div>
+          <p>
+            Devtools can be enabled by appending <code>#dev</code> in the addressbar or disabled by
+            appending <code>#no-dev</code>.
+          </p>
+          <a href="#no-dev">Hide devtools</a>
+          <details>
+            <summary id="my-test-summary">nav for all tests</summary>
+
+            <nav id="tests">
+              <ol>
+                {fixtures.map((fixture) => {
+                  const path = computePath(fixture);
+                  return (
+                    <li key={path}>
+                      <Link to={path}>{path}</Link>
+                    </li>
+                  );
+                })}
+              </ol>
+            </nav>
+          </details>
+        </div>
+      ) : null}
     </React.Fragment>
   );
 }
