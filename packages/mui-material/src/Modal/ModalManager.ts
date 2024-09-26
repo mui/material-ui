@@ -100,7 +100,7 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
   if (!props.disableScrollLock) {
     if (isOverflowing(container)) {
       // Compute the size before applying overflow hidden to avoid any scroll jumps.
-      const scrollbarSize = getScrollbarSize(ownerDocument(container));
+      const scrollbarSize = getScrollbarSize(ownerWindow(container));
 
       restoreStyle.push({
         value: container.style.paddingRight,

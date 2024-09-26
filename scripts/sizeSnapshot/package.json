@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "Size snapshot of MUI packages",
   "dependencies": {
-    "@mui/lab": "workspace:^",
     "@mui/base": "workspace:^",
     "@mui/joy": "workspace:^",
+    "@mui/lab": "workspace:^",
     "@mui/material": "workspace:^",
-    "@mui/styles": "workspace:^",
     "@mui/private-theming": "workspace:^",
-    "@mui/utils": "workspace:^",
-    "@mui/system": "workspace:^"
+    "@mui/styles": "workspace:^",
+    "@mui/system": "workspace:^",
+    "@mui/utils": "workspace:^"
   }
 }
