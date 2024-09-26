@@ -163,6 +163,8 @@ jobs:
             then
               exit 1
             fi
+      - store_test_results:
+          path: test-reports
       - run:
           name: material-ui-icons
           command: |

@@ -86,7 +86,7 @@
     "generate-codeowners": "node scripts/generateCodeowners.mjs",
     "canary:release": "tsx ./scripts/canaryRelease.mts",
     "nx_test_tc": "node test/cli.js",
-    "nx_test_coverage_ci": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov mocha 'packages/**/*.test.{js,ts,tsx}' 'packages-internal/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
+    "nx_test_coverage_ci": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov mocha --reporter-options mochaFile=./test-reports/unit/results.xml 'packages/**/*.test.{js,ts,tsx}' 'packages-internal/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
     "nx_test_coverage_html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=html mocha 'packages/**/*.test.{js,ts,tsx}' 'packages-internal/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
     "nx_test_coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=text mocha 'packages/**/*.test.{js,ts,tsx}' 'packages-internal/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
     "nx_test_e2e_build": "webpack --config test/e2e/webpack.config.js",
@@ -102,7 +102,8 @@
     "@netlify/functions": "^2.8.1",
     "@slack/bolt": "^3.21.4",
     "execa": "^9.4.0",
-    "google-auth-library": "^9.14.1"
+    "google-auth-library": "^9.14.1",
+    "mocha-junit-reporter": "^2.2.1"
   },
   "devDependencies": {
     "@argos-ci/core": "^2.8.1",
