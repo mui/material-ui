@@ -37,8 +37,11 @@ const Card = styled(MuiCard)(({ theme }) => ({
 }));
 
 const SignUpContainer = styled(Stack)(({ theme }) => ({
-  padding: 20,
   marginTop: '10vh',
+  padding: theme.spacing(2),
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(4),
+  },
   '&::before': {
     content: '""',
     display: 'block',
@@ -101,7 +104,10 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    if (nameError || emailError || passwordError) {
+      event.preventDefault();
+      return;
+    }
     const data = new FormData(event.currentTarget);
     console.log({
       name: data.get('name'),
@@ -205,7 +211,6 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
           </Divider>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             <Button
-              type="submit"
               fullWidth
               variant="outlined"
               onClick={() => alert('Sign up with Google')}
@@ -214,7 +219,6 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
               Sign up with Google
             </Button>
             <Button
-              type="submit"
               fullWidth
               variant="outlined"
               onClick={() => alert('Sign up with Facebook')}

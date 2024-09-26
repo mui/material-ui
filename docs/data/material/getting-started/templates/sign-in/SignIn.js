@@ -38,8 +38,11 @@ const Card = styled(MuiCard)(({ theme }) => ({
 }));
 
 const SignInContainer = styled(Stack)(({ theme }) => ({
-  padding: 20,
-  marginTop: '10vh',
+  minHeight: '100%',
+  padding: theme.spacing(2),
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(4),
+  },
   '&::before': {
     content: '""',
     display: 'block',
@@ -72,7 +75,10 @@ export default function SignIn(props) {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    if (emailError || passwordError) {
+      event.preventDefault();
+      return;
+    }
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
@@ -155,6 +161,7 @@ export default function SignIn(props) {
                 <FormLabel htmlFor="password">Password</FormLabel>
                 <Link
                   component="button"
+                  type="button"
                   onClick={handleClickOpen}
                   variant="body2"
                   sx={{ alignSelf: 'baseline' }}
@@ -206,7 +213,6 @@ export default function SignIn(props) {
           <Divider>or</Divider>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             <Button
-              type="submit"
               fullWidth
               variant="outlined"
               onClick={() => alert('Sign in with Google')}
@@ -215,7 +221,6 @@ export default function SignIn(props) {
               Sign in with Google
             </Button>
             <Button
-              type="submit"
               fullWidth
               variant="outlined"
               onClick={() => alert('Sign in with Facebook')}
