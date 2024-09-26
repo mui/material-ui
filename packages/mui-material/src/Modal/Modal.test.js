@@ -880,4 +880,20 @@ describe('<Modal />', () => {
       );
     }).not.toErrorDev();
   });
+
+  it('should not override default onKeyDown', async () => {
+    const handleKeyDown = spy();
+    const handleClose = spy();
+
+    const { user } = render(
+      <Modal open onKeyDown={handleKeyDown} onClose={handleClose}>
+        <div tabIndex={-1} />
+      </Modal>,
+    );
+
+    await user.keyboard('{Escape}');
+
+    expect(handleKeyDown).to.have.property('callCount', 1);
+    expect(handleClose).to.have.property('callCount', 1);
+  });
 });

@@ -62,7 +62,7 @@ Next, head over to your config file and import the `withPigment` plugin:
 // next.config.js
 import { withPigment } from '@pigment-css/nextjs-plugin';
 
-export default withPigment({ nextConfig });
+export default withPigment(nextConfig);
 ```
 
 ```ts Vite
@@ -130,12 +130,12 @@ const mainClass = css({
 
 #### Creating global styles
 
-Use the `globalCSS` API to define global styles to load across an entire app.
+Use the `globalCss` API to define global styles to load across an entire app.
 
 You should define these at the top level of your JavaScript file:
 
 ```js
-import { globalCSS } from '@pigment-css/react';
+import { globalCss } from '@pigment-css/react';
 
 globalCss`
   body {
