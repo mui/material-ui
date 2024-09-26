@@ -7346,8 +7346,8 @@ packages:
   ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
-  ejs@3.1.8:
-    resolution: {integrity: sha512-/sXZeMlhS0ArkfX2Aw780gJzXSMPnKjtspYZv+f3NiKLlubezAHDU5+9xz6gd3/NhG3txQCo6xlglmTS+oTGEQ==}
+  ejs@3.1.10:
+    resolution: {integrity: sha512-UeJmFfOrAQS8OJWPZ4qtgHyWExa088/MtK5UEyoJGFH67cDEXkZSviOiKRCZ4Xij0zxI3JECgYs3oKx+AizQBA==}
     engines: {node: '>=0.10.0'}
     hasBin: true
 
@@ -11503,10 +11503,6 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  send@0.18.0:
-    resolution: {integrity: sha512-qqWzuOjSFOuqPjFe4NOsMLafToQQwBSOEpS+FwEt3A2V3vKubTquT3vmLTQpFgMXp8AlFWFuP1qKaJZOtPpVXg==}
-    engines: {node: '>= 0.8.0'}
-
   send@0.19.0:
     resolution: {integrity: sha512-dW41u5VfLXu8SJh5bwRmyYUbAoSB3c9uQh6L8h/KtsFREPWpbX1lrljJo186Jc4nmci/sGUZ9a0a0J2zgfq2hw==}
     engines: {node: '>= 0.8.0'}
@@ -11523,10 +11519,6 @@ packages:
 
   serve-handler@6.1.5:
     resolution: {integrity: sha512-ijPFle6Hwe8zfmBxJdE+5fta53fdIY0lHISJvuikXB3VYFafRjMRpOffSPvCYsbKyBA7pvy9oYr/BT1O3EArlg==}
-
-  serve-static@1.15.0:
-    resolution: {integrity: sha512-XGuRDNjXUijsUL0vl6nSD7cwURuzEgglbOaFuZM9g3kwDXOWVTck0jLzjPzGD+TazWbboZYu52/9/XPdUgne9g==}
-    engines: {node: '>= 0.8.0'}
 
   serve-static@1.16.2:
     resolution: {integrity: sha512-VqpjJZKadQB/PEbEwvFdO43Ax5dFBZ2UECszz8bQ7pi7wt//PWe1P6MN7eCnjsatYtBT6EuiClbjSWP2WrIoTw==}
@@ -15525,7 +15517,7 @@ snapshots:
   '@nx/devkit@17.2.8(nx@19.7.3)':
     dependencies:
       '@nrwl/devkit': 17.2.8(nx@19.7.3)
-      ejs: 3.1.8
+      ejs: 3.1.10
       enquirer: 2.3.6
       ignore: 5.3.1
       nx: 19.7.3
@@ -15891,7 +15883,7 @@ snapshots:
 
   '@react-native-community/cli-debugger-ui@12.3.6':
     dependencies:
-      serve-static: 1.15.0
+      serve-static: 1.16.2
     transitivePeerDependencies:
       - supports-color
 
@@ -15958,7 +15950,7 @@ snapshots:
       errorhandler: 1.5.1
       nocache: 3.0.4
       pretty-format: 26.6.2
-      serve-static: 1.15.0
+      serve-static: 1.16.2
       ws: 7.5.9
     transitivePeerDependencies:
       - bufferutil
@@ -16114,7 +16106,7 @@ snapshots:
       debug: 2.6.9
       node-fetch: 2.7.0(encoding@0.1.13)
       open: 7.4.2
-      serve-static: 1.15.0
+      serve-static: 1.16.2
       temp-dir: 2.0.0
       ws: 6.2.2
     transitivePeerDependencies:
@@ -19019,7 +19011,7 @@ snapshots:
 
   ee-first@1.1.1: {}
 
-  ejs@3.1.8:
+  ejs@3.1.10:
     dependencies:
       jake: 10.8.5
 
@@ -24261,24 +24253,6 @@ snapshots:
 
   semver@7.6.3: {}
 
-  send@0.18.0:
-    dependencies:
-      debug: 2.6.9
-      depd: 2.0.0
-      destroy: 1.2.0
-      encodeurl: 1.0.2
-      escape-html: 1.0.3
-      etag: 1.8.1
-      fresh: 0.5.2
-      http-errors: 2.0.0
-      mime: 1.6.0
-      ms: 2.1.3
-      on-finished: 2.4.1
-      range-parser: 1.2.1
-      statuses: 2.0.1
-    transitivePeerDependencies:
-      - supports-color
-
   send@0.19.0:
     dependencies:
       debug: 2.6.9
@@ -24315,15 +24289,6 @@ snapshots:
       path-is-inside: 1.0.2
       path-to-regexp: 2.2.1
       range-parser: 1.2.0
-
-  serve-static@1.15.0:
-    dependencies:
-      encodeurl: 1.0.2
-      escape-html: 1.0.3
-      parseurl: 1.3.3
-      send: 0.18.0
-    transitivePeerDependencies:
-      - supports-color
 
   serve-static@1.16.2:
     dependencies:
