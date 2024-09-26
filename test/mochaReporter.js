@@ -8,7 +8,7 @@ class CiReporter extends Base {
   constructor(runner, options) {
     super(runner, options);
     this.dotReporter = new Dot(runner, options);
-    if (options.mochaFile) {
+    if (options.reporterOption.mochaFile) {
       this.junitReporter = new Junit(runner, options);
     }
   }
