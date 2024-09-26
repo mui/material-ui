@@ -151,12 +151,16 @@ export function ThemeSelector({ value, onChange }) {
         onChange(event.target.value);
       }}
       startAdornment={
-        <InputAdornment position="start">
+        <InputAdornment position="start" sx={{ display: { sm: 'none' } }}>
           <PaletteIcon fontSize="small" color="primary" />
         </InputAdornment>
       }
       sx={(theme) => ({
-        minWidth: { xs: 64, sm: 200 },
+        pl: { sm: 0 },
+        minWidth: { xs: 64 },
+        '& .MuiSelect-select': {
+          pl: { sm: 1.5 },
+        },
         [theme.breakpoints.only('xs')]: {
           '& .MuiSelect-select': {
             width: 'auto',
