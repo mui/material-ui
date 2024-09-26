@@ -106,7 +106,7 @@ module.exports = function setKarmaConfig(config) {
     },
     // The CI branch fixes double log issue
     // https://github.com/karma-runner/karma/issues/2342
-    reporters: ['dots', ...(CI ? ['coverage-istanbul', 'junit'] : ['junit'])],
+    reporters: ['dots', ...(CI ? ['coverage-istanbul', 'junit'] : [])],
     junitReporter: {
       outputDir: './test-reports',
       outputFile: 'results.xml',
