@@ -190,7 +190,6 @@
     "serve": "^14.2.3",
     "stylelint": "^15.11.0",
     "stylelint-config-standard": "^34.0.0",
-    "stylelint-processor-styled-components": "^1.10.0",
     "terser-webpack-plugin": "^5.3.10",
     "tsx": "^4.19.1",
     "typescript": "^5.5.4",

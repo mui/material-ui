@@ -300,9 +300,6 @@ importers:
       stylelint-config-standard:
         specifier: ^34.0.0
         version: 34.0.0(stylelint@15.11.0)
-      stylelint-processor-styled-components:
-        specifier: ^1.10.0
-        version: 1.10.0
       terser-webpack-plugin:
         specifier: ^5.3.10
         version: 5.3.10(webpack@5.94.0(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.94.0)))
@@ -11875,9 +11872,6 @@ packages:
     engines: {node: ^14.13.1 || >=16.0.0}
     peerDependencies:
       stylelint: ^15.10.0
-
-  stylelint-processor-styled-components@1.10.0:
-    resolution: {integrity: sha512-g4HpN9rm0JD0LoHuIOcd/FIjTZCJ0ErQ+dC3VTxp+dSvnkV+MklKCCmCQEdz5K5WxF4vPuzfVgdbSDuPYGZhoA==}
 
   stylelint@15.11.0:
     resolution: {integrity: sha512-78O4c6IswZ9TzpcIiQJIN49K3qNoXTM8zEJzhaTE/xRTCZswaovSEVIa/uwbOltZrk16X4jAxjaOhzz/hTm1Kw==}
@@ -24696,15 +24690,6 @@ snapshots:
     dependencies:
       stylelint: 15.11.0
       stylelint-config-recommended: 13.0.0(stylelint@15.11.0)
-
-  stylelint-processor-styled-components@1.10.0:
-    dependencies:
-      '@babel/parser': 7.25.6
-      '@babel/traverse': 7.25.6
-      micromatch: 4.0.8
-      postcss: 7.0.39
-    transitivePeerDependencies:
-      - supports-color
 
   stylelint@15.11.0:
     dependencies:
