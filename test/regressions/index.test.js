@@ -7,15 +7,7 @@ async function main() {
   const screenshotDir = path.resolve(__dirname, './screenshots/chrome');
 
   const browser = await playwright.chromium.launch({
-    args: [
-      '--font-render-hinting=none',
-      // Playwright hides scrollbars when taking screenshots, this causes the width to slightly change
-      // for a brief moment. Some UI, such as responsive charts measure DOM elements in effects and
-      // update the UI based on the width. This causes a race condition where the screenshot is taken
-      // before the UI is updated. This makes the screenshot flaky. We can just always hide the scrollbar
-      // to prevent this.
-      '--hide-scrollbars',
-    ],
+    args: ['--font-render-hinting=none'],
     // otherwise the loaded google Roboto font isn't applied
     headless: false,
   });
