@@ -19,8 +19,8 @@ function isOverflowing(container: Element): boolean {
   return container.scrollHeight > container.clientHeight;
 }
 
-export function ariaHidden(element: Element, show: boolean): void {
-  if (show) {
+export function ariaHidden(element: Element, hide: boolean): void {
+  if (hide) {
     element.setAttribute('aria-hidden', 'true');
   } else {
     element.removeAttribute('aria-hidden');
@@ -61,7 +61,7 @@ function ariaHiddenElements(
   mountElement: Element | null,
   currentElement: Element,
   elementsToExclude: readonly Element[],
-  show: boolean,
+  hide: boolean,
 ): void {
   let current: Element | null = container;
   let previousElement: Element =
@@ -81,16 +81,16 @@ function ariaHiddenElements(
         if (!isNotExcludedElement) {
           // If any ancestor has aria-hidden applied (e.g. by another modal), the current modal could become inaccessible.
           // We remove aria-hidden from ancestors to ensure the current modal is accessible, even though this might not be ideal if aria-hidden wasn't added by another modal (For example, if a developer manually applied aria-hidden to hide certain content, removing it could lead to unintended accessibility issues.).
-          if (show) {
-            ariaHidden(element, !show);
+          if (hide) {
+            ariaHidden(element, !hide);
           }
           // we restore it if it was originally hidden
           else {
-            ariaHidden(element, show);
+            ariaHidden(element, hide);
           }
         }
       } else if (isNotExcludedElement && isNotForbiddenElement) {
-        ariaHidden(element, show);
+        ariaHidden(element, hide);
       }
     }
 
@@ -125,7 +125,7 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
   if (!props.disableScrollLock) {
     if (isOverflowing(container)) {
       // Compute the size before applying overflow hidden to avoid any scroll jumps.
-      const scrollbarSize = getScrollbarSize(ownerDocument(container));
+      const scrollbarSize = getScrollbarSize(ownerWindow(container));
 
       restoreStyle.push({
         value: container.style.paddingRight,

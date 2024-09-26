@@ -1,12 +1,12 @@
-# React Tech Lead — xGrid
+# React Engineer — eXplore
 
-<p class="description">You will lead the development of the MUI X Data Grid, positioning the component as the next industry standard.</p>
+<p class="description">You will help eXplore, the team behind the Pickers and Tree View components, build the most comprehensive UI library the world has ever seen.</p>
 
 ## Details of the role
 
-- **Location**: Remote (preference for UTC-6 to UTC+5).
+- **Location**: Remote (strong preference for UTC-6 to UTC+5).
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
-- **Level**: [IC6 or above](https://mui-org.notion.site/Engineering-levels-25b2fba9dd1f4b43a1b28f47f0170f23).
+- **Level**: [IC4 or above](https://mui-org.notion.site/Leveling-at-MUI-5c30f9bfe65149d697f346447cef9db1).
 - We're a **remote** company, we prefer asynchronous communication over meetings.
 
 ## The company
@@ -17,9 +17,7 @@ We're a company of 35+ people as of early 2024, and we're growing.
 
 ## The products
 
-MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
-Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
-We also host Design Kits and pre-built Templates.
+MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain. Base UI is our headless component library, and Pigment CSS is a zero-runtime CSS-in-JS styling engine. We also host Design Kits and pre-built Templates.
 
 Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
 
@@ -30,28 +28,18 @@ Learn more about MUI's products in this blog post: [An introduction to the MUI e
 ## The culture
 
 MUI is a fully remote company with a team that spans the globe.
-The majority of our work is asynchronous, and we rely on written communication to collaborate.
-We're radically transparent: nearly all of our work happens in public.
+The majority of our work is asynchronous, and we rely on written communication to collaborate. We're radically transparent: nearly all of our work happens in public.
 Each contributor has the freedom to decide how and when they work, and that work is primarily self-directed: it's your responsibility to define and complete your own tasks in a timely manner.
 
 For additional details about the culture, you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
 ## Why we're hiring
 
-The data grid team (part of MUI X) needs your help.
-The component is off [a great start](https://npm-stat.com/charts.html?package=%40mui%2Fx-data-grid&package=react-table&package=ag-grid-community&from=2021-06-01), however we have only started to scratch the surface for the potential of this component. There is x10 more to build.
-We need to:
+The eXplore team (part of MUI X) needs your help. The team is currently responsible for the Pickers and Tree View components with plans to expand to others in the future. Initially, we want to double down on our Pickers and work towards providing even greater customizability.
 
-- build an headless version for Base UI.
-- build advanced, in browsers, data analysis features like pivoting and charts integration.
-- build a strong integration with backend APIs, for example to handle >100M rows.
+We also need help to continue to improve the health of the open-source product: make the advanced components easier to use, make it support more use cases, improve performance, make it more accessible, increase the contributions by engaging and collaborating with the community, guide developers to answers, and just generally be a positive presence in the open-source community.
 
-We also need help to continue to make the components easier to use, make it more customizable, [improve performance](https://www.causal.app/blog/react-perf), make it more accessible, improve the health of the open-source by engaging and collaborating with the community, guide developers to answers, and just generally being a positive presence in the community.
-
-Overall, both our open-source community and our premium products are growing fast.
-We need talented people to keep up with the demands of our exigent community!
-
-## The role
+The mission of the eXplore team is to help deliver the most comprehensive UI library the world has ever seen.
 
 ### Why this is interesting
 
@@ -59,22 +47,28 @@ The advanced components portfolio is still small, with a million interesting and
 
 Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
 
+## The role
+
 ### Key responsibilities
 
-You will extend the [React Engineer](https://mui-org.notion.site/Software-Engineer-fe310cfb22e34fc7881318f9cb1cf023#5f2967e6c60d411ea09ab8a108d95702) responsibilities. Depending on the day, you'll:
+Depending on the day, you'll:
 
-- **Lead**. You will lead by inspiring and setting the bar for code quality for the engineering team, and cracking the hard problems:
-  - Guide the approach and execution.
-  - Guide people in making the right technical decisions themselves over imposing them.
-  - Be aware of the current technical landscape and knows where the wind blows.
-- **Nurture community contributions**. You will provide guidance and direction to unlock the contributions of the community. Your time will often be way better spent doing this than fixing the problems yourself.
-- **Shape the product**. You will be laser-focused on the end goal. It's not about solving technical challenges but about the problems solved for the users.
-- **Enable quality work**. You will:
-  - Embody and foster the engineering culture, for example rigorousness, push for small single-purpose PRs, encourage peer reviews, create strong feedback loops between decision and outcome.
-  - Empower the team to aim for high-quality outputs. By doing such it aims for the success of delivered solutions.
-  - Push for consistency, follow what's going on in the other teams.
-- **Keep technical debt in check**. You will make sure we can keep shipping features at a reasonable pace, align the team on "one way" of doing things and make sure engineers follow the conventions.
-- **Be a solver**. You will dig deep into arbitrarily complex problems and find an appropriate path forward. Some focus on a given area for long periods, others bounce from hotspot to hotspot as guided by organizational leadership.
+- **Help guide architectural decisions**.
+  The future of MUI is discussed and planned in our public RFCs and issues.
+  You'll be helping drive these conversations and guiding MUI toward the best possible solutions.
+- **Contribute to deep, meaningful refactors and feature releases**.
+  MUI is a complex codebase. Components we've shipped recently, such as the data grid and date pickers have required months of dedicated, careful work.
+- **Reduce friction**.
+  A large amount of the work on MUI is reducing friction and making it easier to use.
+  This might involve careful API design, identifying and fixing top bugs, creating easier-to-understand error messages, and writing documentation and blog posts about features you ship.
+- **Collaborate with the community**.
+  Many small, as well as meaningful fixes and features, have been contributed by the community. Your role is to draw the best out of the community — to inspire those across the world to create and contribute through your reviews of their issues and pull requests.
+- **Experiment and play**. Great, unexpected features and heisenbug fixes have come from a number of sources — relentlessly methodical processes of elimination, free-flowing team collaboration, inspiration by adjacent libraries and projects, and difficult-to-explain individual strokes of brilliance. Whatever your preferred style is for creating new things that others might not have thought of, you'll find a welcome home on the team.
+- **Take ownership of features from idea/mockup to live deployment**.
+  You'll shape and guide the direction of crucial new features, including new components.
+- **Ship. Early and often**. You'll iterate and ship frequently.
+  You'll have a real impact on the end-user experience and you'll love working on a team that builds stunning UIs and prioritizes delivering real user value as often as possible.
+- **You'll be interacting with the users** on a regular basis, handling inbound support and feature requests (every developer helps with developer requests).
 
 ### The best parts of this job
 
@@ -88,7 +82,7 @@ You will extend the [React Engineer](https://mui-org.notion.site/Software-Engine
   You will necessarily have to shift context and dive into a different feature before the current one is done.
   It may even be in an area of the codebase you're unfamiliar with or don't have a ton of understanding about.
   It's fun, rewarding work, but it can be very challenging.
-- **We move quickly, but don't sacrifice quality**.
+- **We move quickly but don't sacrifice quality**.
   We ship early, often, and quickly. You may not be initially comfortable with the cadence with which we ship high-quality features and improvements to end-users. By doing so, we sacrifice on solving each problem 100% in exchange for fast feedback. Solving 50-70% of the issue with quality should be enough for any given iteration. Our users quickly tell us when we haven't pushed a solution far enough.
 - **MUI has a large codebase**. You may bang your head against the wall at times, and then write tests to assist future you 😌.
   The work you will be doing is somewhat unique and idiosyncratic. You probably have not had a similar role before.
@@ -128,13 +122,11 @@ We're looking for someone with strong front-end skills. More important than spec
 
 ## Benefits and compensation
 
-Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person who can clearly exceed the role's expectations.
-You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
+We offer competitive compensation commensurate with your experience level and location and are prepared to pay top market rates for someone who can clearly exceed the role's expectations. You can find the other perks and benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply
 
-[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/dffc8ead-fab1-4a07-8b44-a932e2838e0e/application?utm_source=ZNRrPGBkqO)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/f7b1b8cd-b8b7-4565-92de-34c5f49581c6/application?utm_source=ZNRrPGBkqO)
 
 Don't meet every requirement?
 Apply anyway!
