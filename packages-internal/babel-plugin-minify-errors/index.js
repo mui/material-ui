@@ -1,7 +1,7 @@
 // @ts-check
 
-import * as helperModuleImports from '@babel/helper-module-imports';
-import * as fs from 'fs';
+const helperModuleImports = require('@babel/helper-module-imports');
+const fs = require('fs');
 
 /**
  * @typedef {import('@babel/core')} babel
@@ -131,7 +131,7 @@ function replaceTaggedTemplates(
  * @param {Options} options
  * @returns {babel.PluginObj<PluginState>}
  */
-export default function plugin({ types: t }, { errorCodesPath, missingError = 'annotate' }) {
+module.exports = function plugin({ types: t }, { errorCodesPath, missingError = 'annotate' }) {
   if (!errorCodesPath) {
     throw new Error('errorCodesPath is required.');
   }
@@ -199,4 +199,4 @@ export default function plugin({ types: t }, { errorCodesPath, missingError = 'a
       }
     },
   };
-}
+};

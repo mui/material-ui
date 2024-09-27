@@ -24,9 +24,9 @@
     "@types/babel__helper-module-imports": "^7.18.3"
   },
   "sideEffects": false,
-  "type": "module",
+  "type": "commonjs",
   "exports": {
-    ".": "./index.mjs"
+    ".": "./index.js"
   },
   "engines": {
     "node": ">=14.0.0"
