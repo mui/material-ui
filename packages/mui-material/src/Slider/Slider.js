@@ -40,7 +40,17 @@ export const SliderRoot = styled('span', {
     ];
   },
 })(
-  memoTheme(({ theme }) => ({
+  ({ theme, ownerState }) => ({
+    '--md-comp-slider-root-size': '4px',
+    '--md-comp-slider-root-span': '100%',
+    '--md-comp-slider-root-padding': '13px',
+    '--md-comp-slider-root-padding-touch': '20px',
+    '--md-comp-slider-root-mark-margin': '0',
+    '--md-comp-slider-thumb-size': '20px',
+    '--md-comp-slider-thumb-target-size': '42px',
+    '--md-comp-slider-value-padding': '0.25rem 0.75rem',
+    '--md-comp-slider-value-arrow-size': '8px',
+    '--md-comp-slider-mark-size': '2px',
     borderRadius: 12,
     boxSizing: 'content-box',
     display: 'inline-block',
@@ -61,6 +71,17 @@ export const SliderRoot = styled('span', {
         transition: 'none',
       },
     },
+    ...(ownerState.size === 'small' && {
+      '--md-comp-slider-root-size': '2px',
+      '--md-comp-slider-thumb-size': '12px',
+      '--md-comp-slider-value-padding': '0.25rem 0.5rem',
+    }),
+    ...(ownerState.marked && ownerState.orientation === 'horizontal' && {
+      '--md-comp-slider-root-mark-margin': '20px',
+    }),
+    ...(ownerState.marked && ownerState.orientation === 'vertical' && {
+      '--md-comp-slider-root-mark-margin': '44px',
+    }),
     variants: [
       ...Object.entries(theme.palette)
         .filter(createSimplePaletteValueFilter())
@@ -73,55 +94,33 @@ export const SliderRoot = styled('span', {
       {
         props: { orientation: 'horizontal' },
         style: {
-          height: 4,
-          width: '100%',
-          padding: '13px 0',
+          height: 'var(--md-comp-slider-root-size)',
+          width: 'var(--md-comp-slider-root-span)',
+          padding: 'var(--md-comp-slider-root-padding) 0',
+          marginBottom: 'var(--md-comp-slider-root-mark-margin)',
           // The primary input mechanism of the device includes a pointing device of limited accuracy.
           '@media (pointer: coarse)': {
             // Reach 42px touch target, about ~8mm on screen.
-            padding: '20px 0',
+            padding: 'var(--md-comp-slider-root-padding-touch) 0',
           },
-        },
-      },
-      {
-        props: { orientation: 'horizontal', size: 'small' },
-        style: {
-          height: 2,
-        },
-      },
-      {
-        props: { orientation: 'horizontal', marked: true },
-        style: {
-          marginBottom: 20,
         },
       },
       {
         props: { orientation: 'vertical' },
         style: {
-          height: '100%',
-          width: 4,
-          padding: '0 13px',
+          height: 'var(--md-comp-slider-root-span)',
+          width: 'var(--md-comp-slider-root-size)',
+          padding: '0 var(--md-comp-slider-root-padding)',
+          marginRight: 'var(--md-comp-slider-root-mark-margin)',
           // The primary input mechanism of the device includes a pointing device of limited accuracy.
           '@media (pointer: coarse)': {
             // Reach 42px touch target, about ~8mm on screen.
-            padding: '0 20px',
+            padding: '0 var(--md-comp-slider-root-padding-touch)',
           },
         },
       },
-      {
-        props: { orientation: 'vertical', size: 'small' },
-        style: {
-          width: 2,
-        },
-      },
-      {
-        props: { orientation: 'vertical', marked: true },
-        style: {
-          marginRight: 44,
-        },
-      },
     ],
-  })),
+  }),
 );
 
 export const SliderRail = styled('span', {
@@ -247,8 +246,8 @@ export const SliderThumb = styled('span', {
 })(
   memoTheme(({ theme }) => ({
     position: 'absolute',
-    width: 20,
-    height: 20,
+    width: 'var(--md-comp-slider-thumb-size)',
+    height: 'var(--md-comp-slider-thumb-size)',
     boxSizing: 'border-box',
     borderRadius: '50%',
     outline: 0,
@@ -272,8 +271,8 @@ export const SliderThumb = styled('span', {
       content: '""',
       borderRadius: '50%',
       // 42px is the hit target
-      width: 42,
-      height: 42,
+      width: 'var(--md-comp-slider-thumb-target-size)',
+      height: 'var(--md-comp-slider-thumb-target-size)',
       top: '50%',
       left: '50%',
       transform: 'translate(-50%, -50%)',
@@ -287,8 +286,6 @@ export const SliderThumb = styled('span', {
       {
         props: { size: 'small' },
         style: {
-          width: 12,
-          height: 12,
           '&::before': {
             boxShadow: 'none',
           },
@@ -360,21 +357,23 @@ export const SliderValueLabel = styled(BaseSliderValueLabel, {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '0.25rem 0.75rem',
+    padding: 'var(--md-comp-slider-value-padding)',
+    '&::before': {
+      position: 'absolute',
+      content: '""',
+      width: 'var(--md-comp-slider-value-arrow-size)',
+      height: 'var(--md-comp-slider-value-arrow-size)',
+      backgroundColor: 'inherit',
+    },
     variants: [
       {
         props: { orientation: 'horizontal' },
         style: {
           transform: 'translateY(-100%) scale(0)',
-          top: '-10px',
+          top: 'calc(-2px - var(--md-comp-slider-value-arrow-size))',
           transformOrigin: 'bottom center',
           '&::before': {
-            position: 'absolute',
-            content: '""',
-            width: 8,
-            height: 8,
             transform: 'translate(-50%, 50%) rotate(45deg)',
-            backgroundColor: 'inherit',
             bottom: 0,
             left: '50%',
           },
@@ -391,13 +390,8 @@ export const SliderValueLabel = styled(BaseSliderValueLabel, {
           top: '50%',
           transformOrigin: 'right center',
           '&::before': {
-            position: 'absolute',
-            content: '""',
-            width: 8,
-            height: 8,
             transform: 'translate(-50%, -50%) rotate(45deg)',
-            backgroundColor: 'inherit',
-            right: -8,
+            right: 'calc(-1 * var(--md-comp-slider-value-arrow-size))',
             top: '50%',
           },
           [`&.${sliderClasses.valueLabelOpen}`]: {
@@ -409,7 +403,6 @@ export const SliderValueLabel = styled(BaseSliderValueLabel, {
         props: { size: 'small' },
         style: {
           fontSize: theme.typography.pxToRem(12),
-          padding: '0.25rem 0.5rem',
         },
       },
       {
@@ -434,8 +427,8 @@ export const SliderMark = styled('span', {
 })(
   memoTheme(({ theme }) => ({
     position: 'absolute',
-    width: 2,
-    height: 2,
+    width: 'var(--md-comp-slider-mark-size)',
+    height: 'var(--md-comp-slider-mark-size)',
     borderRadius: 1,
     backgroundColor: 'currentColor',
     variants: [
