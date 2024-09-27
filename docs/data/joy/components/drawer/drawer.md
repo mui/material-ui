@@ -9,6 +9,8 @@ githubLabel: 'component: drawer'
 
 <p class="description">Navigation drawers provide quick access to other areas of an app without taking the user away from their current location.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
 ## Introduction
 
 Drawers are commonly used as menus for desktop navigation, and as dialogs on mobile devices (similar to [Apple's sheets](https://developer.apple.com/design/human-interface-guidelines/sheets)).

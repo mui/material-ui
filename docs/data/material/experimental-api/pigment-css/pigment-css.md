@@ -62,7 +62,7 @@ Next, head over to your config file and import the `withPigment` plugin:
 // next.config.js
 import { withPigment } from '@pigment-css/nextjs-plugin';
 
-export default withPigment({ nextConfig });
+export default withPigment(nextConfig);
 ```
 
 ```ts Vite

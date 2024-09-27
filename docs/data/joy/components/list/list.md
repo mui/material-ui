@@ -9,6 +9,8 @@ githubLabel: 'component: list'
 
 <p class="description">Lists are organizational tools that enhance the readability and organization of content.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
 ## Introduction
 
 Lists present information in a concise, easy-to-follow format through a continuous, vertical index of text or images.
