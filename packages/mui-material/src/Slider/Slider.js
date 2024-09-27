@@ -39,89 +39,98 @@ export const SliderRoot = styled('span', {
       ownerState.track === false && styles.trackFalse,
     ];
   },
-})(({ theme, ownerState }) => ({
-  '--md-comp-slider-root-size': '4px',
-  '--md-comp-slider-root-span': '100%',
-  '--md-comp-slider-root-padding': '13px',
-  '--md-comp-slider-root-padding-touch': '20px',
-  '--md-comp-slider-root-mark-margin': '0',
-  '--md-comp-slider-thumb-size': '20px',
-  '--md-comp-slider-thumb-target-size': '42px',
-  '--md-comp-slider-value-padding': '0.25rem 0.75rem',
-  '--md-comp-slider-value-arrow-size': '8px',
-  '--md-comp-slider-mark-size': '2px',
-  borderRadius: 12,
-  boxSizing: 'content-box',
-  display: 'inline-block',
-  position: 'relative',
-  cursor: 'pointer',
-  touchAction: 'none',
-  WebkitTapHighlightColor: 'transparent',
-  '@media print': {
-    colorAdjust: 'exact',
-  },
-  [`&.${sliderClasses.disabled}`]: {
-    pointerEvents: 'none',
-    cursor: 'default',
-    color: (theme.vars || theme).palette.grey[400],
-  },
-  [`&.${sliderClasses.dragging}`]: {
-    [`& .${sliderClasses.thumb}, & .${sliderClasses.track}`]: {
-      transition: 'none',
+})(
+  memoTheme(({ theme }) => ({
+    '--md-comp-slider-root-size': '4px',
+    '--md-comp-slider-root-span': '100%',
+    '--md-comp-slider-root-padding': '13px',
+    '--md-comp-slider-root-padding-touch': '20px',
+    '--md-comp-slider-root-mark-margin': '0',
+    '--md-comp-slider-thumb-size': '20px',
+    '--md-comp-slider-thumb-target-size': '42px',
+    '--md-comp-slider-value-padding': '0.25rem 0.75rem',
+    '--md-comp-slider-value-arrow-size': '8px',
+    '--md-comp-slider-mark-size': '2px',
+    borderRadius: 12,
+    boxSizing: 'content-box',
+    display: 'inline-block',
+    position: 'relative',
+    cursor: 'pointer',
+    touchAction: 'none',
+    WebkitTapHighlightColor: 'transparent',
+    '@media print': {
+      colorAdjust: 'exact',
     },
-  },
-  ...(ownerState.size === 'small' && {
-    '--md-comp-slider-root-size': '2px',
-    '--md-comp-slider-thumb-size': '12px',
-    '--md-comp-slider-value-padding': '0.25rem 0.5rem',
-  }),
-  ...(ownerState.marked &&
-    ownerState.orientation === 'horizontal' && {
-      '--md-comp-slider-root-mark-margin': '20px',
-    }),
-  ...(ownerState.marked &&
-    ownerState.orientation === 'vertical' && {
-      '--md-comp-slider-root-mark-margin': '44px',
-    }),
-  variants: [
-    ...Object.entries(theme.palette)
-      .filter(createSimplePaletteValueFilter())
-      .map(([color]) => ({
-        props: { color },
+    [`&.${sliderClasses.disabled}`]: {
+      pointerEvents: 'none',
+      cursor: 'default',
+      color: (theme.vars || theme).palette.grey[400],
+    },
+    [`&.${sliderClasses.dragging}`]: {
+      [`& .${sliderClasses.thumb}, & .${sliderClasses.track}`]: {
+        transition: 'none',
+      },
+    },
+    variants: [
+      ...Object.entries(theme.palette)
+        .filter(createSimplePaletteValueFilter())
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            color: (theme.vars || theme).palette[color].main,
+          },
+        })),
+      {
+        props: { size: 'small' },
         style: {
-          color: (theme.vars || theme).palette[color].main,
-        },
-      })),
-    {
-      props: { orientation: 'horizontal' },
-      style: {
-        height: 'var(--md-comp-slider-root-size)',
-        width: 'var(--md-comp-slider-root-span)',
-        padding: 'var(--md-comp-slider-root-padding) 0',
-        marginBottom: 'var(--md-comp-slider-root-mark-margin)',
-        // The primary input mechanism of the device includes a pointing device of limited accuracy.
-        '@media (pointer: coarse)': {
-          // Reach 42px touch target, about ~8mm on screen.
-          padding: 'var(--md-comp-slider-root-padding-touch) 0',
+          '--md-comp-slider-root-size': '2px',
+          '--md-comp-slider-thumb-size': '12px',
+          '--md-comp-slider-value-padding': '0.25rem 0.5rem',
         },
       },
-    },
-    {
-      props: { orientation: 'vertical' },
-      style: {
-        height: 'var(--md-comp-slider-root-span)',
-        width: 'var(--md-comp-slider-root-size)',
-        padding: '0 var(--md-comp-slider-root-padding)',
-        marginRight: 'var(--md-comp-slider-root-mark-margin)',
-        // The primary input mechanism of the device includes a pointing device of limited accuracy.
-        '@media (pointer: coarse)': {
-          // Reach 42px touch target, about ~8mm on screen.
-          padding: '0 var(--md-comp-slider-root-padding-touch)',
+      {
+        props: { orientation: 'horizontal' },
+        style: {
+          height: 'var(--md-comp-slider-root-size)',
+          width: 'var(--md-comp-slider-root-span)',
+          padding: 'var(--md-comp-slider-root-padding) 0',
+          marginBottom: 'var(--md-comp-slider-root-mark-margin)',
+          // The primary input mechanism of the device includes a pointing device of limited accuracy.
+          '@media (pointer: coarse)': {
+            // Reach 42px touch target, about ~8mm on screen.
+            padding: 'var(--md-comp-slider-root-padding-touch) 0',
+          },
         },
       },
-    },
-  ],
-}));
+      {
+        props: { orientation: 'horizontal', marked: true },
+        style: {
+          '--md-comp-slider-root-mark-margin': '20px',
+        },
+      },
+      {
+        props: { orientation: 'vertical' },
+        style: {
+          height: 'var(--md-comp-slider-root-span)',
+          width: 'var(--md-comp-slider-root-size)',
+          padding: '0 var(--md-comp-slider-root-padding)',
+          marginRight: 'var(--md-comp-slider-root-mark-margin)',
+          // The primary input mechanism of the device includes a pointing device of limited accuracy.
+          '@media (pointer: coarse)': {
+            // Reach 42px touch target, about ~8mm on screen.
+            padding: '0 var(--md-comp-slider-root-padding-touch)',
+          },
+        },
+      },
+      {
+        props: { orientation: 'vertical', marked: true },
+        style: {
+          '--md-comp-slider-root-mark-margin': '44px',
+        },
+      },
+    ],
+  })),
+);
 
 export const SliderRail = styled('span', {
   name: 'MuiSlider',
