@@ -297,17 +297,17 @@ describe('ModalManager', () => {
       const modal2 = getDummyModal();
       modalManager.add(modal1, container3);
       modalManager.mount(modal1, {});
-      expect(container3.children[0]).toBeAriaHidden();
+      expect(container3.children[0]).toBeInaccessible();
 
       modalManager.add(modal2, container4);
       modalManager.mount(modal2, {});
-      expect(container4.children[0]).toBeAriaHidden();
+      expect(container4.children[0]).toBeInaccessible();
 
       modalManager.remove(modal2);
-      expect(container4.children[0]).not.toBeAriaHidden();
+      expect(container4.children[0]).not.toBeInaccessible();
 
       modalManager.remove(modal1);
-      expect(container3.children[0]).not.toBeAriaHidden();
+      expect(container3.children[0]).not.toBeInaccessible();
     });
 
     afterEach(() => {
@@ -338,17 +338,17 @@ describe('ModalManager', () => {
       const modal2 = document.createElement('div');
       modal2.setAttribute('aria-hidden', 'true');
 
-      expect(modal2).toBeAriaHidden();
+      expect(modal2).toBeInaccessible();
       modalManager.add({ ...getDummyModal(), modalRef: modal2 }, container2);
-      expect(modal2).not.toBeAriaHidden();
+      expect(modal2).not.toBeInaccessible();
     });
 
     it('should add aria-hidden to container siblings', () => {
       const secondSibling = document.createElement('input');
       container2.appendChild(secondSibling);
       modalManager.add(getDummyModal(), container2);
-      expect(container2.children[0]).toBeAriaHidden();
-      expect(container2.children[1]).toBeAriaHidden();
+      expect(container2.children[0]).toBeInaccessible();
+      expect(container2.children[1]).toBeInaccessible();
     });
 
     it('should not add aria-hidden to forbidden container siblings', () => {
@@ -379,9 +379,9 @@ describe('ModalManager', () => {
       expect(container2.children.length).equal(numberOfChildren);
 
       modalManager.add(getDummyModal(), container2);
-      expect(container2.children[0]).toBeAriaHidden();
+      expect(container2.children[0]).toBeInaccessible();
       for (let i = 1; i < numberOfChildren; i += 1) {
-        expect(container2.children[i]).not.toBeAriaHidden();
+        expect(container2.children[i].getAttribute('aria-hidden')).to.equal(null);
       }
     });
 
@@ -400,22 +400,22 @@ describe('ModalManager', () => {
 
       modalManager.add(modal2, container2);
       // Simulate the main React DOM true.
-      expect(modalRef1).toBeAriaHidden();
-      expect(modal2.modalRef).not.toBeAriaHidden();
-      expect(modal3.modalRef).toBeAriaHidden();
-      expect(modal4.modalRef).toBeAriaHidden();
+      expect(modalRef1).toBeInaccessible();
+      expect(modal2.modalRef).not.toBeInaccessible();
+      expect(modal3.modalRef).toBeInaccessible();
+      expect(modal4.modalRef).toBeInaccessible();
 
       modalManager.add(modal3, container2);
-      expect(modalRef1).toBeAriaHidden();
-      expect(modal2.modalRef).toBeAriaHidden();
-      expect(modal3.modalRef).not.toBeAriaHidden();
-      expect(modal4.modalRef).toBeAriaHidden();
+      expect(modalRef1).toBeInaccessible();
+      expect(modal2.modalRef).toBeInaccessible();
+      expect(modal3.modalRef).not.toBeInaccessible();
+      expect(modal4.modalRef).toBeInaccessible();
 
       modalManager.add(modal4, container2);
-      expect(modalRef1).toBeAriaHidden();
-      expect(modal2.modalRef).toBeAriaHidden();
-      expect(modal3.modalRef).toBeAriaHidden();
-      expect(modal4.modalRef).not.toBeAriaHidden();
+      expect(modalRef1).toBeInaccessible();
+      expect(modal2.modalRef).toBeInaccessible();
+      expect(modal3.modalRef).toBeInaccessible();
+      expect(modal4.modalRef).not.toBeInaccessible();
     });
 
     it('should remove aria-hidden on siblings', () => {
@@ -428,13 +428,13 @@ describe('ModalManager', () => {
 
       modalManager.add(modal, container2);
       modalManager.mount(modal, {});
-      expect(modalRef1).not.toBeAriaHidden();
-      expect(sibling1).toBeAriaHidden();
-      expect(sibling2).toBeAriaHidden();
+      expect(modalRef1).not.toBeInaccessible();
+      expect(sibling1).toBeInaccessible();
+      expect(sibling2).toBeInaccessible();
       modalManager.remove(modal);
-      expect(modalRef1).toBeAriaHidden();
-      expect(sibling1).not.toBeAriaHidden();
-      expect(sibling2).not.toBeAriaHidden();
+      expect(modalRef1).toBeInaccessible();
+      expect(sibling1).not.toBeInaccessible();
+      expect(sibling2).not.toBeInaccessible();
     });
 
     it('should keep previous aria-hidden siblings hidden', () => {
@@ -449,12 +449,12 @@ describe('ModalManager', () => {
 
       modalManager.add(modal, container2);
       modalManager.mount(modal, {});
-      expect(sibling1).toBeAriaHidden();
-      expect(sibling2).toBeAriaHidden();
-      expect(modalRef1).not.toBeAriaHidden();
+      expect(sibling1).toBeInaccessible();
+      expect(sibling2).toBeInaccessible();
+      expect(modalRef1).not.toBeInaccessible();
       modalManager.remove(modal);
-      expect(sibling1).toBeAriaHidden();
-      expect(sibling2).not.toBeAriaHidden();
+      expect(sibling1).toBeInaccessible();
+      expect(sibling2).not.toBeInaccessible();
     });
 
     it('top modal should always be accessible from sublevels', () => {
@@ -469,14 +469,14 @@ describe('ModalManager', () => {
 
       modalManager.add(modal1, container2);
 
-      expect(modal1.modalRef).not.toBeAriaHidden();
-      expect(mainContentSibling).toBeAriaHidden();
+      expect(modal1.modalRef).not.toBeInaccessible();
+      expect(mainContentSibling).toBeInaccessible();
 
       modalManager.add({ mount: mainContentSibling, modalRef: modal2 }, mainContentSibling);
-      expect(modal1.modalRef).toBeAriaHidden();
+      expect(modal1.modalRef).toBeInaccessible();
       // main content sibling should not be hidden
-      expect(mainContentSibling).not.toBeAriaHidden();
-      expect(modal2).not.toBeAriaHidden();
+      expect(mainContentSibling).not.toBeInaccessible();
+      expect(modal2).not.toBeInaccessible();
     });
 
     it('top modal should always be accessible even if inside other modal', () => {
@@ -493,9 +493,9 @@ describe('ModalManager', () => {
 
       modalManager.add(modal1, container2);
 
-      expect(modal1.modalRef).not.toBeAriaHidden();
-      expect(innerModalSibling).not.toBeAriaHidden();
-      expect(modal1Sibling).toBeAriaHidden();
+      expect(modal1.modalRef).not.toBeInaccessible();
+      expect(innerModalSibling).not.toBeInaccessible();
+      expect(modal1Sibling).toBeInaccessible();
 
       modal1.modalRef.appendChild(innerModal.modalRef);
 
@@ -503,13 +503,13 @@ describe('ModalManager', () => {
       modalManager.add(innerModal, modal1.modalRef);
 
       // modal1
-      expect(modal1.modalRef).not.toBeAriaHidden();
+      expect(modal1.modalRef).not.toBeInaccessible();
       // modal1 sibling
-      expect(modal1Sibling).toBeAriaHidden();
+      expect(modal1Sibling).toBeInaccessible();
       // inner modal sibling
-      expect(innerModalSibling).toBeAriaHidden();
+      expect(innerModalSibling).toBeInaccessible();
       // inner modal (top modal is accessible)
-      expect(innerModal.modalRef).not.toBeAriaHidden();
+      expect(innerModal.modalRef).not.toBeInaccessible();
     });
   });
 });

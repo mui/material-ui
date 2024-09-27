@@ -396,10 +396,10 @@ describe('<Modal />', () => {
         </Modal>,
       );
       const modalNode = modalRef.current;
-      expect(modalNode).toBeAriaHidden();
+      expect(modalNode).toBeInaccessible();
 
       setProps({ open: true });
-      expect(modalNode).not.toBeAriaHidden();
+      expect(modalNode).not.toBeInaccessible();
     });
 
     // Test case for https://github.com/mui/material-ui/issues/15180
@@ -879,16 +879,16 @@ describe('<Modal />', () => {
 
       const { getByTestId, setProps } = render(<TestComponent open />);
 
-      expect(getByTestId('hidden-ancestor')).toBeAriaHidden();
-      expect(getByTestId('originally-hidden-ancestor')).toBeAriaHidden();
-      expect(getByTestId('hidden-sibling')).toBeAriaHidden();
-      expect(getByTestId('modal-content')).not.toBeAriaHidden();
+      expect(getByTestId('hidden-ancestor')).toBeInaccessible();
+      expect(getByTestId('originally-hidden-ancestor')).toBeInaccessible();
+      expect(getByTestId('hidden-sibling')).toBeInaccessible();
+      expect(getByTestId('modal-content')).not.toBeInaccessible();
 
       setProps({ open: false });
 
-      expect(getByTestId('hidden-ancestor')).not.toBeAriaHidden();
-      expect(getByTestId('originally-hidden-ancestor')).toBeAriaHidden();
-      expect(getByTestId('hidden-sibling')).not.toBeAriaHidden();
+      expect(getByTestId('hidden-ancestor')).not.toBeInaccessible();
+      expect(getByTestId('originally-hidden-ancestor')).toBeInaccessible();
+      expect(getByTestId('hidden-sibling')).not.toBeInaccessible();
     });
 
     it('aria-hidden state should be restored even if the ancestor is removed', () => {
@@ -906,8 +906,8 @@ describe('<Modal />', () => {
       );
 
       // Modal is open, the sibling should be hidden
-      expect(getByTestId('originally-not-hidden-sibling')).toBeAriaHidden();
-      expect(getByTestId('modal-content')).not.toBeAriaHidden();
+      expect(getByTestId('originally-not-hidden-sibling')).toBeInaccessible();
+      expect(getByTestId('modal-content')).not.toBeInaccessible();
 
       rerender(
         <div>
@@ -916,7 +916,7 @@ describe('<Modal />', () => {
       );
 
       // Unmounted the ancestor of the modal, the sibling aria-hidden state should be restored
-      expect(getByTestId('originally-not-hidden-sibling')).not.toBeAriaHidden();
+      expect(getByTestId('originally-not-hidden-sibling')).not.toBeInaccessible();
     });
   });
 
