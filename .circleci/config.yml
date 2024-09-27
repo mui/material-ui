@@ -457,7 +457,7 @@ jobs:
           command: xvfb-run pnpm test:regressions
       - run:
           name: Build packages for fixtures
-          command: xvfb-run pnpm release:build
+          command: pnpm release:build
       - run:
           name: Run visual regression tests using Pigment CSS
           command: xvfb-run pnpm test:regressions-pigment-css
@@ -667,6 +667,7 @@ jobs:
           name: prepare danger on PRs
           command: pnpm danger ci
           environment:
+            DANGER: '1'
             DANGER_COMMAND: prepareBundleSizeReport
       - run:
           name: build @mui packages
@@ -736,6 +737,7 @@ jobs:
           name: Run danger on PRs
           command: pnpm danger ci --fail-on-errors
           environment:
+            DANGER: '1'
             DANGER_COMMAND: reportBundleSize
   test_benchmark:
     <<: *default-job
