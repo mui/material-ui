@@ -92,7 +92,7 @@ const BACKLINKs = [
   },
   {
     name: 'Quickbooks Tool Hub',
-    description: 'An efficient accounting software package.',
+    description: 'QuickBook diagnostic and correction tools',
     href: 'https://qbtoolhub.com/',
   },
 ];
