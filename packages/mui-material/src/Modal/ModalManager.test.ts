@@ -381,7 +381,7 @@ describe('ModalManager', () => {
       modalManager.add(getDummyModal(), container2);
       expect(container2.children[0]).toBeInaccessible();
       for (let i = 1; i < numberOfChildren; i += 1) {
-        expect(container2.children[i]).not.toBeInaccessible();
+        expect(container2.children[i].getAttribute('aria-hidden')).to.equal(null);
       }
     });
 
