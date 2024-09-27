@@ -114,6 +114,13 @@ module.exports = function getBabelConfig(api) {
         ],
       },
     ],
+    [
+      '@mui/internal-babel-plugin-minify-errors',
+      {
+        missingError,
+        errorCodesPath,
+      },
+    ],
     ...(useESModules
       ? [
           [
