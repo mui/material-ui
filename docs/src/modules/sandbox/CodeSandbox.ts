@@ -28,7 +28,7 @@ function openSandbox({ files, codeVariant, initialFile }: any) {
   addHiddenInput(
     form,
     'query',
-    `module=${initialFile}${initialFile.match(/(\.tsx|\.ts|\.js)$/) ? '' : extension}`,
+    `module=${initialFile}${initialFile.match(/(\.tsx|\.ts|\.js)$/) ? '' : extension}&fontsize=12`,
   );
   document.body.appendChild(form);
   form.submit();
