@@ -239,7 +239,7 @@ ${
 `);
 }
 
-export default async function run() {
+async function run() {
   addDeployPreviewUrls();
 
   switch (dangerCommand) {
