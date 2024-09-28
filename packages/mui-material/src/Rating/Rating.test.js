@@ -218,7 +218,7 @@ describe('<Rating />', () => {
     const radios = document.querySelectorAll('input[type="radio"]');
 
     for (let i = 0; i < radios.length; i += 1) {
-      expect(radios[i].getAttribute('id')).to.match(/^rating-test/);
+      expect(radios[i].getAttribute('id')).to.match(/^rating-test-/);
     }
   });
 
