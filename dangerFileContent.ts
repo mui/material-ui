@@ -257,3 +257,8 @@ export default async function run() {
       throw new TypeError(`Unrecognized danger command '${dangerCommand}'`);
   }
 }
+
+run().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});

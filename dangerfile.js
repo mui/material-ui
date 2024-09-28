@@ -1,12 +1,7 @@
 // danger uses babelify under the hood. The implementation is buggy and fails on our
-// custom plugins in our codebase. We just disable it and do our own compilation
+// custom plugins in our codebase. We'll just disable it and do our own compilation.
+// Danger must always be run with envirnonent variable `DANGER_DISABLE_TRANSPILATION="true"`.
 require('@babel/register')({
   extensions: ['.js', '.ts', '.tsx'],
 });
-
-const run = require('./dangerFileContent');
-
-run.default().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+require('./dangerFileContent');
