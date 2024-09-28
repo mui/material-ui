@@ -1,8 +1,10 @@
-// danger has to be the first thing required!
-import { danger, markdown } from 'danger';
 import { exec } from 'child_process';
+import type { DangerDSLType, MarkdownString } from 'danger';
 import { loadComparison } from './scripts/sizeSnapshot';
 import replaceUrl from './packages/api-docs-builder/utils/replaceUrl';
+
+declare const danger: DangerDSLType;
+declare function markdown(message: MarkdownString, file?: string, line?: number): void;
 
 const circleCIBuildNumber = process.env.CIRCLE_BUILD_NUM;
 const circleCIBuildUrl = `https://app.circleci.com/pipelines/github/mui/material-ui/jobs/${circleCIBuildNumber}`;
@@ -237,7 +239,7 @@ ${
 `);
 }
 
-async function run() {
+export default async function run() {
   addDeployPreviewUrls();
 
   switch (dangerCommand) {
@@ -255,8 +257,3 @@ async function run() {
       throw new TypeError(`Unrecognized danger command '${dangerCommand}'`);
   }
 }
-
-run().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
