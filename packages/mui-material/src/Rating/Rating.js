@@ -706,7 +706,7 @@ Rating.propTypes /* remove-proptypes */ = {
   /**
    * The name attribute of the radio `input` elements.
    * This input `name` should be unique within the page.
-   * Being unique within a form is insufficient since the `name` is used to generated IDs.
+   * Being unique within a form is insufficient since the `name` is used to generate IDs.
    */
   name: PropTypes.string,
   /**
