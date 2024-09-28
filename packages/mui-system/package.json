@@ -55,7 +55,7 @@
     "@mui/internal-test-utils": "workspace:^",
     "@mui/system": "workspace:*",
     "@types/chai": "^4.3.19",
-    "@types/prop-types": "^15.7.12",
+    "@types/prop-types": "^15.7.13",
     "@types/react": "^18.3.4",
     "@types/sinon": "^17.0.3",
     "chai": "^4.5.0",
