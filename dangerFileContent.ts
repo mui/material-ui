@@ -1,10 +1,10 @@
 import { exec } from 'child_process';
-import type { DangerDSLType, MarkdownString } from 'danger';
+import type * as dangerModule from 'danger';
 import { loadComparison } from './scripts/sizeSnapshot';
 import replaceUrl from './packages/api-docs-builder/utils/replaceUrl';
 
-declare const danger: DangerDSLType;
-declare function markdown(message: MarkdownString, file?: string, line?: number): void;
+declare const danger: (typeof dangerModule)['danger'];
+declare const markdown: (typeof dangerModule)['markdown'];
 
 const circleCIBuildNumber = process.env.CIRCLE_BUILD_NUM;
 const circleCIBuildUrl = `https://app.circleci.com/pipelines/github/mui/material-ui/jobs/${circleCIBuildNumber}`;
