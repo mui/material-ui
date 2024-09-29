@@ -165,6 +165,32 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
 
     const doc = ownerDocument(rootRef.current);
 
+    const findScrollableElement = (element: HTMLElement): HTMLElement | null => {
+      if (element.scrollHeight > element.clientHeight) {
+        return element;
+      }
+
+      for (const child of Array.from(element.children) as HTMLElement[]) {
+        const scrollable = findScrollableElement(child);
+        if (scrollable) {
+          return scrollable;
+        }
+      }
+
+      return null;
+    };
+
+    const focusScrollableElement = () => {
+      const scrollableElement = findScrollableElement(rootRef.current!);
+
+      if (scrollableElement) {
+        scrollableElement.tabIndex = -1;
+        scrollableElement.focus();
+      } else {
+        rootRef.current.focus();
+      }
+    };
+
     if (!rootRef.current.contains(doc.activeElement)) {
       if (!rootRef.current.hasAttribute('tabIndex')) {
         if (process.env.NODE_ENV !== 'production') {
@@ -180,7 +206,7 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
       }
 
       if (activated.current) {
-        rootRef.current.focus();
+        focusScrollableElement();
       }
     }
 
