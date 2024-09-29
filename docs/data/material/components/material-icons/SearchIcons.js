@@ -160,11 +160,17 @@ function Icon(props) {
   const [isVisible, setIsVisible] = React.useState(false);
 
   React.useEffect(() => {
+    const margin = 200;
     const observer = new IntersectionObserver(
       (entries) => {
-        setIsVisible(entries[0].isIntersecting);
+        // `isIntersecting` is not working correctly on Chrome
+        const clientRect = entries[0].target.getBoundingClientRect();
+        const isIntersecting =
+          clientRect.top < window.innerHeight + margin &&
+          clientRect.bottom > -margin;
+        setIsVisible(isIntersecting);
       },
-      { rootMargin: `200px 0px` },
+      { rootMargin: `${margin}px 0px` },
     );
     observer.observe(rootRef.current);
     return () => {
