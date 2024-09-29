@@ -58,6 +58,14 @@ async function main() {
     await page.$eval(`#tests li:nth-of-type(${index + 1}) a`, (link) => {
       link.click();
     });
+
+    // Playwright hides scrollbar when capturing a screenshot on an element or with fullPage: true.
+    // When the body has a scrollbar, this causes a brief layout shift. Disable the body overflow
+    // altogether to prevent this
+    await page.evaluate(() => {
+      window.document.body.style.overflow = 'hidden';
+    });
+
     // Move cursor offscreen to not trigger unwanted hover effects.
     page.mouse.move(0, 0);
 
