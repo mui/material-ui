@@ -32,7 +32,7 @@ export function createFilterOptions(config = {}) {
     if (ignoreAccents) {
       input = stripDiacritics(input);
     }
-
+    options = typeof limit === 'number' ? options.slice(0, limit) : options;
     const filteredOptions = !input
       ? options
       : options.filter((option) => {
@@ -47,7 +47,7 @@ export function createFilterOptions(config = {}) {
           return matchFrom === 'start' ? candidate.startsWith(input) : candidate.includes(input);
         });
 
-    return typeof limit === 'number' ? filteredOptions.slice(0, limit) : filteredOptions;
+    return filteredOptions;
   };
 }
 

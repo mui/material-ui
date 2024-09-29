@@ -124,6 +124,35 @@ describe('useAutocomplete', () => {
           options[1],
         ]);
       });
+
+      it('filters only from the limited set of options', () => {
+        const filterOptions = createFilterOptions({ limit: 2 });
+
+        const getOptionLabel = (option) => option.name;
+        const options = [
+          {
+            id: '1234',
+            name: 'a1',
+          },
+          {
+            id: '5678',
+            name: 'a2',
+          },
+          {
+            id: '9abc',
+            name: 'a3',
+          },
+          {
+            id: '9abc',
+            name: 'a4',
+          },
+        ];
+        // can only search from the first two options
+        expect(filterOptions(options, { inputValue: 'a1', getOptionLabel })).to.deep.equal([
+          options[0],
+        ]);
+        expect(filterOptions(options, { inputValue: 'a3', getOptionLabel })).to.deep.equal([]);
+      });
     });
 
     describe('option: matchFrom', () => {
