@@ -110,6 +110,12 @@ const StyledIcon = styled('span')(({ theme }) => ({
   },
 }));
 
+const PlaceholderIcon = styled('div')({
+  width: 69,
+  height: 69,
+  margin: '4px 0',
+});
+
 const StyledSvgIcon = styled(SvgIcon)(({ theme }) => ({
   boxSizing: 'content-box',
   cursor: 'pointer',
@@ -149,22 +155,46 @@ function handleLabelClick(event) {
 
 function Icon(props) {
   const { icon, onOpenClick } = props;
+
+  const rootRef = React.useRef(null);
+  const [isVisible, setIsVisible] = React.useState(false);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        setIsVisible(entries[0].isIntersecting);
+      },
+      { rootMargin: `200px 0px` },
+    );
+    observer.observe(rootRef.current);
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   /* eslint-disable jsx-a11y/click-events-have-key-events */
   return (
     <StyledIcon
       key={icon.importName}
+      ref={rootRef}
       onClick={handleIconClick}
       data-icon-theme={icon.theme}
       data-icon-name={icon.name}
     >
-      <StyledSvgIcon
-        component={icon.Component}
-        tabIndex={-1}
-        onClick={onOpenClick}
-        title={icon.importName}
-      />
-      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
-      <div onClick={handleLabelClick}>{icon.importName}</div>
+      {isVisible ? (
+        <StyledSvgIcon
+          component={icon.Component}
+          tabIndex={-1}
+          onClick={onOpenClick}
+          title={icon.importName}
+        />
+      ) : (
+        <PlaceholderIcon />
+      )}
+      <div>
+        {/*  eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
+        <div onClick={handleLabelClick}>{icon.importName}</div>
+      </div>
       {/* eslint-enable jsx-a11y/click-events-have-key-events */}
     </StyledIcon>
   );
