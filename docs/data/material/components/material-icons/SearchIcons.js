@@ -191,10 +191,8 @@ function Icon(props) {
       ) : (
         <PlaceholderIcon />
       )}
-      <div>
-        {/*  eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
-        <div onClick={handleLabelClick}>{icon.importName}</div>
-      </div>
+      {/*  eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
+      <div onClick={handleLabelClick}>{icon.importName}</div>
       {/* eslint-enable jsx-a11y/click-events-have-key-events */}
     </StyledIcon>
   );
