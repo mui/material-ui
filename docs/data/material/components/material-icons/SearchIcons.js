@@ -161,7 +161,7 @@ function isElmVisible(elm, margin = 0) {
     document.documentElement.clientHeight,
     window.innerHeight,
   );
-  return !(rect.bottom >= -margin && rect.top <= viewHeight + margin);
+  return rect.bottom >= -margin && rect.top <= viewHeight + margin;
 }
 
 function Icon(props) {
@@ -176,11 +176,13 @@ function Icon(props) {
       throw new Error('missing ref');
     }
     if (isElmVisible(rootRef.current, margin)) {
+      console.log('jow');
       setIsVisible(true);
     }
     const observer = new IntersectionObserver(
       (entries) => {
         if (isElmVisible(entries[0].target, margin)) {
+          console.log('jow');
           setIsVisible(true);
         }
       },
