@@ -636,23 +636,23 @@ describe('<Modal />', () => {
       const { setProps, queryByTestId } = render(<TestCase open={false} />);
 
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      expect(queryByTestId("hello")).to.be.null;
+      expect(queryByTestId('hello')).to.be.null;
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      expect(queryByTestId("world")).to.be.null;
+      expect(queryByTestId('world')).to.be.null;
 
       setProps({ open: true });
 
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      expect(queryByTestId("hello")).to.exist;
+      expect(queryByTestId('hello')).to.exist;
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      expect(queryByTestId("world")).to.exist;
+      expect(queryByTestId('world')).to.exist;
 
       setProps({ open: false });
 
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      expect(queryByTestId("hello")).to.be.null;
+      expect(queryByTestId('hello')).to.be.null;
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      expect(queryByTestId("world")).to.be.null;
+      expect(queryByTestId('world')).to.be.null;
     });
 
     it('should open and close with Transitions', () => {
@@ -678,9 +678,9 @@ describe('<Modal />', () => {
       );
 
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      expect(queryByTestId("hello")).to.be.null;
+      expect(queryByTestId('hello')).to.be.null;
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      expect(queryByTestId("world")).to.be.null;
+      expect(queryByTestId('world')).to.be.null;
 
       setProps({ open: true });
       clock.runToLast();
@@ -688,9 +688,9 @@ describe('<Modal />', () => {
       expect(handleEntered.callCount).to.equal(1);
       expect(handleExited.callCount).to.equal(0);
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      expect(queryByTestId("hello")).to.exist;
+      expect(queryByTestId('hello')).to.exist;
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      expect(queryByTestId("world")).to.exist;
+      expect(queryByTestId('world')).to.exist;
 
       setProps({ open: false });
       clock.runToLast();
@@ -698,9 +698,9 @@ describe('<Modal />', () => {
       expect(handleEntered.callCount).to.equal(1);
       expect(handleExited.callCount).to.equal(1);
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      expect(queryByTestId("hello")).to.be.null;
+      expect(queryByTestId('hello')).to.be.null;
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      expect(queryByTestId("world")).to.be.null;
+      expect(queryByTestId('world')).to.be.null;
     });
   });
 
@@ -762,7 +762,7 @@ describe('<Modal />', () => {
       expect(handleExiting.callCount).to.equal(0);
       expect(handleExited.callCount).to.equal(0);
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      expect(queryByTestId("hello")).to.be.null;
+      expect(queryByTestId('hello')).to.be.null;
 
       setProps({ open: true });
       clock.runToLast();
@@ -771,7 +771,7 @@ describe('<Modal />', () => {
       expect(handleExiting.callCount).to.equal(0);
       expect(handleExited.callCount).to.equal(0);
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      expect(queryByTestId("hello")).to.exist;
+      expect(queryByTestId('hello')).to.exist;
 
       setProps({ open: false });
 
@@ -779,7 +779,7 @@ describe('<Modal />', () => {
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExited.callCount).to.equal(0);
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      expect(queryByTestId("hello")).to.exist;
+      expect(queryByTestId('hello')).to.exist;
 
       act(() => {
         clock.runToLast();
@@ -789,7 +789,7 @@ describe('<Modal />', () => {
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExited.callCount).to.equal(1);
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      expect(queryByTestId("hello")).to.be.null;
+      expect(queryByTestId('hello')).to.be.null;
     });
 
     it('when false it should close before Transition has finished', () => {
@@ -824,7 +824,7 @@ describe('<Modal />', () => {
       expect(handleExiting.callCount).to.equal(0);
       expect(handleExited.callCount).to.equal(0);
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      expect(queryByTestId("hello")).to.be.null;
+      expect(queryByTestId('hello')).to.be.null;
 
       setProps({ open: true });
       clock.runToLast();
@@ -833,7 +833,7 @@ describe('<Modal />', () => {
       expect(handleExiting.callCount).to.equal(0);
       expect(handleExited.callCount).to.equal(0);
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      expect(queryByTestId("hello")).to.exist;
+      expect(queryByTestId('hello')).to.exist;
 
       setProps({ open: false });
 
@@ -841,7 +841,7 @@ describe('<Modal />', () => {
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExited.callCount).to.equal(0);
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      expect(queryByTestId("hello")).to.exist;
+      expect(queryByTestId('hello')).to.exist;
 
       clock.runToLast();
 
@@ -849,7 +849,7 @@ describe('<Modal />', () => {
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExited.callCount).to.equal(1);
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      expect(queryByTestId("hello")).to.be.null;
+      expect(queryByTestId('hello')).to.be.null;
     });
   });
 
