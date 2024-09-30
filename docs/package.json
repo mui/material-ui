@@ -22,7 +22,7 @@
     "@babel/core": "^7.25.2",
     "@babel/runtime": "^7.25.6",
     "@babel/runtime-corejs2": "^7.25.6",
-    "@docsearch/react": "^3.6.1",
+    "@docsearch/react": "^3.6.2",
     "@emotion/cache": "^11.13.1",
     "@emotion/react": "^11.13.3",
     "@emotion/server": "^11.11.0",
@@ -136,7 +136,7 @@
     "cross-fetch": "^4.0.0",
     "gm": "^1.25.0",
     "marked": "^13.0.3",
-    "playwright": "^1.47.1",
+    "playwright": "^1.47.2",
     "prettier": "^3.3.3",
     "tailwindcss": "^3.4.12",
     "yargs": "^17.7.2"
