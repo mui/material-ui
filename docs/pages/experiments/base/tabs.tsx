@@ -145,7 +145,7 @@ export default function UnstyledTabsIntroduction() {
         <input
           type="checkbox"
           checked={selectionFollowsFocus}
-          onChange={(e) => setSelectionFollowsFocus(e.target.checked)}
+          onChange={(event) => setSelectionFollowsFocus(event.target.checked)}
         />{' '}
         Selection follows focus
       </label>
