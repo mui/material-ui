@@ -4,7 +4,6 @@
   "node": "20",
   "packages": [
     "packages/markdown",
-    "packages/mui-babel-macros",
     "packages/mui-base",
     "packages/mui-codemod",
     "packages/mui-core-downloads-tracker",
@@ -33,7 +32,6 @@
     "@mui/docs": "packages/mui-docs/build",
     "@mui/icons-material": "packages/mui-icons-material/build",
     "@mui/internal-test-utils": "packages-internal/test-utils",
-    "@mui/internal-babel-macros": "packages/mui-babel-macros",
     "@mui/internal-docs-utils": "packages-internal/docs-utils",
     "@mui/internal-markdown": "packages/markdown",
     "@mui/internal-scripts": "packages-internal/scripts",

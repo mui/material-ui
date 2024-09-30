@@ -49,7 +49,6 @@
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@mui/internal-babel-macros": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",
     "@mui/types": "workspace:^",
     "@testing-library/react": "^16.0.1",

@@ -1,6 +1,5 @@
 'use client';
 import * as React from 'react';
-import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { FormControlState, useFormControlContext } from '../FormControl';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
@@ -140,7 +139,7 @@ export function useInput(parameters: UseInputParameters = {}): UseInputReturnVal
       if (!isControlled) {
         const element = event.target || inputRef.current;
         if (element == null) {
-          throw new MuiError(
+          throw new Error(
             'MUI: Expected valid input target. ' +
               'Did you use a custom `slots.input` and forget to forward refs? ' +
               'See https://mui.com/r/input-component-ref-interface for more info.',

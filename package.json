@@ -138,7 +138,6 @@
     "@typescript-eslint/parser": "^7.18.0",
     "babel-loader": "^9.2.1",
     "babel-plugin-istanbul": "^7.0.0",
-    "babel-plugin-macros": "^3.1.0",
     "babel-plugin-module-resolver": "^5.0.2",
     "babel-plugin-optimize-clsx": "^2.6.2",
     "babel-plugin-react-remove-properties": "^0.3.0",

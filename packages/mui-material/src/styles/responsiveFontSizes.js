@@ -1,4 +1,3 @@
-import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import { isUnitless, convertLength, responsiveProperty, alignProperty, fontGrid } from './cssUtils';
 
 export default function responsiveFontSizes(themeInput, options = {}) {
@@ -51,7 +50,7 @@ export default function responsiveFontSizes(themeInput, options = {}) {
     let { lineHeight } = style;
 
     if (!isUnitless(lineHeight) && !disableAlign) {
-      throw new MuiError(
+      throw new Error(
         'MUI: Unsupported non-unitless line height with grid alignment.\n' +
           'Use unitless line heights instead.',
       );

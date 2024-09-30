@@ -78,15 +78,6 @@ module.exports = function getBabelConfig(api) {
 
   /** @type {babel.PluginItem[]} */
   const plugins = [
-    [
-      'babel-plugin-macros',
-      {
-        muiError: {
-          errorCodesPath,
-          missingError,
-        },
-      },
-    ],
     'babel-plugin-optimize-clsx',
     [
       '@babel/plugin-transform-runtime',

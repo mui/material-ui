@@ -1,6 +1,5 @@
 'use client';
 import * as React from 'react';
-import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
 import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
@@ -185,7 +184,7 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     (otherHandlers: Partial<EventHandlers>) =>
     (event: React.ChangeEvent<HTMLInputElement> & MuiCancellableEvent) => {
       if (!isControlled && event.target === null) {
-        throw new MuiError(
+        throw new Error(
           'MUI: Expected valid input target. ' +
             'Did you use a custom `slots.input` and forget to forward refs? ' +
             'See https://mui.com/r/input-component-ref-interface for more info.',
