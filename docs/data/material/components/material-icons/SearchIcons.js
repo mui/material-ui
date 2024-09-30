@@ -128,19 +128,15 @@ const StyledSvgIcon = styled(SvgIcon)(({ theme }) => ({
   },
 }));
 
-const handleIconClick = (event) => {
-  const { iconName, iconTheme } = event.currentTarget.dataset;
-
-  if (Math.random() < 0.1) {
-    window.gtag('event', 'material-icons', {
-      eventAction: 'click',
-      eventLabel: iconName,
-    });
-    window.gtag('event', 'material-icons-theme', {
-      eventAction: 'click',
-      eventLabel: iconTheme,
-    });
-  }
+const handleIconClick = (icon) => () => {
+  window.gtag('event', 'material-icons', {
+    eventAction: 'click',
+    eventLabel: icon.name,
+  });
+  window.gtag('event', 'material-icons-theme', {
+    eventAction: 'click',
+    eventLabel: icon.theme,
+  });
 };
 
 function handleLabelClick(event) {
@@ -153,9 +149,7 @@ function Icon(props) {
   return (
     <StyledIcon
       key={icon.importName}
-      onClick={handleIconClick}
-      data-icon-theme={icon.theme}
-      data-icon-name={icon.name}
+      onClick={Math.random() < 0.1 ? handleIconClick(icon) : null}
     >
       <StyledSvgIcon
         component={icon.Component}
