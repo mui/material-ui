@@ -1,3 +1,8 @@
+import {
+  alpha as systemAlpha,
+  lighten as systemLighten,
+  darken as systemDarken,
+} from '@mui/system/colorManipulator';
 import createPalette from './createPalette';
 import createThemeWithVars, {
   CssVarsThemeOptions,
@@ -27,6 +32,38 @@ function attachColorScheme(
       } as any), // cast type to skip module augmentation test
     };
   }
+}
+
+function attachColorManipulators(theme: Theme) {
+  Object.assign(theme, {
+    alpha(color: string, coefficient: number) {
+      if (theme.experimentalColorMix) {
+        return `color-mix(in ${theme.experimentalColorMix}, ${color}, transparent ${((1 - coefficient) * 100).toFixed(0)}%)`;
+      }
+      if (theme.vars || color.startsWith('var')) {
+        return `rgba(${color.slice(0, -1)}Channel) / ${coefficient})`;
+      }
+      return systemAlpha(color, coefficient);
+    },
+    lighten(color: string, coefficient: number) {
+      if (theme.experimentalColorMix) {
+        return `color-mix(in ${theme.experimentalColorMix}, ${color}, #fff ${(coefficient * 100).toFixed(0)}%)`;
+      }
+      if (color.startsWith('var')) {
+        return color;
+      }
+      return systemLighten(color, coefficient);
+    },
+    darken(color: string, coefficient: number) {
+      if (theme.experimentalColorMix) {
+        return `color-mix(in ${theme.experimentalColorMix}, ${color}, #000 ${(coefficient * 100).toFixed(0)}%)`;
+      }
+      if (color.startsWith('var')) {
+        return color;
+      }
+      return systemDarken(color, coefficient);
+    },
+  });
 }
 
 /**
@@ -74,7 +111,9 @@ export default function createTheme(
   if (cssVariables === false) {
     if (!('colorSchemes' in options)) {
       // Behaves exactly as v5
-      return createThemeNoVars(options as ThemeOptions, ...args);
+      const theme = createThemeNoVars(options as ThemeOptions, ...args);
+      attachColorManipulators(theme);
+      return theme;
     }
 
     let paletteOptions = palette;
@@ -115,6 +154,7 @@ export default function createTheme(
       attachColorScheme(theme, 'light', colorSchemesInput.light);
     }
 
+    attachColorManipulators(theme);
     return theme;
   }
 
@@ -122,7 +162,7 @@ export default function createTheme(
     colorSchemesInput.light = true;
   }
 
-  return createThemeWithVars(
+  const theme = createThemeWithVars(
     {
       ...rest,
       colorSchemes: colorSchemesInput,
@@ -131,4 +171,7 @@ export default function createTheme(
     },
     ...args,
   );
+
+  attachColorManipulators(theme);
+  return theme;
 }
