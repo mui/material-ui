@@ -157,11 +157,7 @@ function handleLabelClick(event) {
 
 function isElmVisible(elm, margin = 0) {
   const rect = elm.getBoundingClientRect();
-  const viewHeight = Math.max(
-    document.documentElement.clientHeight,
-    window.innerHeight,
-  );
-  return rect.bottom >= -margin && rect.top <= viewHeight + margin;
+  return rect.bottom >= -margin && rect.top <= window.innerHeight + margin;
 }
 
 function Icon(props) {
