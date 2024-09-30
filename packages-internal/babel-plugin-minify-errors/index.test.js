@@ -28,6 +28,14 @@ pluginTester({
       output: readOutputFixtureSync('literal', 'output.js'),
     },
     {
+      title: 'interpolation',
+      pluginOptions: {
+        errorCodesPath: path.join(fixturePath, 'interpolation', 'error-codes.json'),
+      },
+      fixture: path.join(fixturePath, 'interpolation', 'input.js'),
+      output: readOutputFixtureSync('interpolation', 'output.js'),
+    },
+    {
       title: 'annotates missing error codes',
       pluginOptions: {
         errorCodesPath: path.join(fixturePath, 'no-error-code-annotation', 'error-codes.json'),
@@ -44,6 +52,26 @@ pluginTester({
       fixture: path.join(fixturePath, 'no-error-code-throw', 'input.js'),
       pluginOptions: {
         errorCodesPath: path.join(fixturePath, 'no-error-code-throw', 'error-codes.json'),
+        missingError: 'throw',
+      },
+    },
+    {
+      title: 'annotates unminifyable errors',
+      pluginOptions: {
+        errorCodesPath: path.join(fixturePath, 'unminifyable-annotation', 'error-codes.json'),
+      },
+      fixture: path.join(fixturePath, 'unminifyable-annotation', 'input.js'),
+      output: readOutputFixtureSync('unminifyable-annotation', 'output.js'),
+    },
+    {
+      title: 'can throw on unminifyable errors',
+      // babel prefixes with filename.
+      // We're only interested in the message.
+      error:
+        /: Unminifyable error. You can only use literal strings and template strings as error messages.?/,
+      fixture: path.join(fixturePath, 'unminifyable-throw', 'input.js'),
+      pluginOptions: {
+        errorCodesPath: path.join(fixturePath, 'unminifyable-throw', 'error-codes.json'),
         missingError: 'throw',
       },
     },

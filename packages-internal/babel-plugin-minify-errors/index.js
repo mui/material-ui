@@ -71,7 +71,9 @@ function handleUnminifyable(missingError, path) {
       return;
     }
     case 'throw': {
-      throw new Error(`Unminifyable error.`);
+      throw new Error(
+        `Unminifyable error. You can only use literal strings and template strings as error messages.`,
+      );
     }
     case 'write': {
       return;
