@@ -32,8 +32,8 @@ async function packWorkspace(workspace: WorkspaceDefinition, outDir: string): Pr
 }
 
 async function run({ packages, outDir, concurrency }: RunOptions) {
-  const allWorkspaces: WorkspaceDefinition[] = await $`pnpm m ls --depth -1 --json`.then((result) =>
-    JSON.parse(result.stdout),
+  const allWorkspaces: WorkspaceDefinition[] = await $`pnpm -r ls --depth -1 --json`.then(
+    (result) => JSON.parse(result.stdout),
   );
   const workspacesMap = new Map(allWorkspaces.map((workspace) => [workspace.name, workspace]));
 
