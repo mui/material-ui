@@ -41,7 +41,7 @@
     "@types/babel__core": "^7.20.5",
     "@types/chai": "^4.3.19",
     "@types/doctrine": "^0.0.9",
-    "@types/lodash": "^4.17.7",
+    "@types/lodash": "^4.17.9",
     "@types/node": "^20.16.5",
     "@types/react": "^18.3.4",
     "@types/uuid": "^9.0.8",
