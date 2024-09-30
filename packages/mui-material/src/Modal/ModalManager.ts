@@ -9,8 +9,13 @@ export interface ManagedModalProps {
 }
 
 // Is a vertical scrollbar displayed?
-function isOverflowing(container: Element): boolean {
-  return container.scrollHeight > container.clientHeight;
+function isOverflowing(window: Window, container: Element): boolean {
+  return (
+    window.getComputedStyle(container).overflow === 'scroll' ||
+    window.getComputedStyle(container).overflowY === 'scroll' ||
+    window.getComputedStyle(container).overflowX === 'scroll' ||
+    container.scrollHeight > container.clientHeight
+  );
 }
 
 export function ariaHidden(element: Element, hide: boolean): void {
@@ -121,7 +126,8 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
     // we need to adjust the parent containers padding for them.
     let containerToTest: HTMLElement | null = container;
     while (containerToTest != null) {
-      if (!isOverflowing(containerToTest)) {
+      const containerWindow = ownerWindow(container);
+      if (!isOverflowing(containerWindow, containerToTest)) {
         containerToTest = containerToTest.parentElement;
         continue;
       }
@@ -138,9 +144,7 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
       containerToTest.style.paddingRight = `${getPaddingRight(containerToTest) + scrollbarSize}px`;
 
       // .mui-fixed is a global helper.
-      // TODO: This will break if we have multiple scrollbars,
-      // how do we work out how much padding we need to add to each fixed element?
-      const fixedElements = ownerDocument(containerToTest).querySelectorAll('.mui-fixed');
+      const fixedElements = containerToTest.querySelectorAll('.mui-fixed');
       [].forEach.call(fixedElements, (element: HTMLElement | SVGElement) => {
         restoreStyle.push({
           value: element.style.paddingRight,
@@ -157,20 +161,17 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
     if (container.parentNode instanceof DocumentFragment) {
       scrollContainers.push(ownerDocument(container).body);
     } else {
+      // We always want to apply overflow:hidden on the container (according to existing tests)
+      scrollContainers.push(container);
       // Support html overflow-y: auto for scroll stability between pages
       // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
-      let parent: HTMLElement | null = container;
+      let parent: HTMLElement | null = container.parentElement;
       const containerWindow = ownerWindow(container);
       // We need to find all the scrollable ancestors to
       // prevent scrolling the modal window
       while (parent != null) {
-        if (
-          containerWindow.getComputedStyle(parent).overflowY === 'scroll' ||
-          containerWindow.getComputedStyle(parent).overflow === 'scroll' ||
-          containerWindow.getComputedStyle(parent).overflowX === 'scroll'
-        ) {
+        if (isOverflowing(containerWindow, parent)) {
           scrollContainers.push(parent);
-          break;
         }
 
         parent = parent.parentElement;
