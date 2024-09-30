@@ -32,7 +32,9 @@ const polymorphicComponentTest = () => {
 
       <TabsList<'button'>
         slots={{ root: 'button' }}
-        onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
+        onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
+          event.currentTarget.checkValidity()
+        }
       />
 
       <TabsList<'button'>
@@ -40,9 +42,9 @@ const polymorphicComponentTest = () => {
         ref={(elem) => {
           expectType<HTMLButtonElement | null, typeof elem>(elem);
         }}
-        onMouseDown={(e) => {
-          expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof e>(e);
-          e.currentTarget.checkValidity();
+        onMouseDown={(event) => {
+          expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof event>(event);
+          event.currentTarget.checkValidity();
         }}
       />
     </div>

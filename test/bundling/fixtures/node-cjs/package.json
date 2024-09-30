@@ -1,0 +1,35 @@
+{
+  "name": "node-esm",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "commonjs",
+  "license": "MIT",
+  "scripts": {
+    "prestart": "node ../../scripts/createFixture.js node-cjs",
+    "start": "node node-cjs.fixture.js"
+  },
+  "dependencies": {
+    "@emotion/core": "11.0.0",
+    "@emotion/styled": "11.10.4",
+    "@mui/material": "workspace:*",
+    "@mui/icons-material": "workspace:*",
+    "@mui/lab": "workspace:*",
+    "@mui/styled-engine": "workspace:*",
+    "@mui/styles": "workspace:*",
+    "@mui/system": "workspace:*",
+    "@mui/utils": "workspace:*",
+    "react-is": "18.2.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "@mui/base": "file:../../../../packed/@mui/base.tgz",
+      "@mui/material": "file:../../../../packed/@mui/material.tgz",
+      "@mui/icons-material": "file:../../../../packed/@mui/icons-material.tgz",
+      "@mui/lab": "file:../../../../packed/@mui/lab.tgz",
+      "@mui/styled-engine": "file:../../../../packed/@mui/styled-engine.tgz",
+      "@mui/styles": "file:../../../../packed/@mui/styles.tgz",
+      "@mui/system": "file:../../../../packed/@mui/system.tgz",
+      "@mui/utils": "file:../../../../packed/@mui/utils.tgz"
+    }
+  }
+}
