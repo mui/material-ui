@@ -628,11 +628,7 @@ jobs:
           command: pnpm install --ignore-workspace
       - run:
           name: Test fixture
-          command: |
-            # TODO: Known failure
-            set +e
-            pnpm start
-            exit 0
+          command: pnpm start
   test_bundling_gatsby:
     <<: *default-job
     docker:
