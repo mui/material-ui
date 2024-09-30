@@ -125,7 +125,7 @@
     "@mui/utils": "workspace:^",
     "@next/eslint-plugin-next": "^14.2.13",
     "@octokit/rest": "^21.0.2",
-    "@pigment-css/react": "0.0.23",
+    "@pigment-css/react": "0.0.24",
     "@playwright/test": "1.47.2",
     "@types/babel__core": "^7.20.5",
     "@types/fs-extra": "^11.0.4",
@@ -218,10 +218,10 @@
     "@types/react": "^18.3.4",
     "@types/react-dom": "18.3.0",
     "cross-fetch": "^4.0.0",
-    "@pigment-css/react": "0.0.23",
-    "@pigment-css/unplugin": "0.0.23",
-    "@pigment-css/nextjs-plugin": "0.0.23",
-    "@pigment-css/vite-plugin": "0.0.23"
+    "@pigment-css/react": "0.0.24",
+    "@pigment-css/unplugin": "0.0.24",
+    "@pigment-css/nextjs-plugin": "0.0.24",
+    "@pigment-css/vite-plugin": "0.0.24"
   },
   "nyc": {
     "include": [
