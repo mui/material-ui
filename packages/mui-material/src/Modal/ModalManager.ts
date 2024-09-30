@@ -159,12 +159,16 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
     } else {
       // Support html overflow-y: auto for scroll stability between pages
       // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
-      let parent = container.parentElement;
+      let parent: HTMLElement | null = container;
       const containerWindow = ownerWindow(container);
       // We need to find all the scrollable ancestors to
       // prevent scrolling the modal window
       while (parent != null) {
-        if (containerWindow.getComputedStyle(parent).overflowY === 'scroll') {
+        if (
+          containerWindow.getComputedStyle(parent).overflowY === 'scroll' ||
+          containerWindow.getComputedStyle(parent).overflow === 'scroll' ||
+          containerWindow.getComputedStyle(parent).overflowX === 'scroll'
+        ) {
           scrollContainers.push(parent);
           break;
         }

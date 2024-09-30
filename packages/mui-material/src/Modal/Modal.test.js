@@ -621,10 +621,10 @@ describe('<Modal />', () => {
         return (
           <React.Fragment>
             <Modal open={props.open}>
-              <div>Hello</div>
+              <div data-testid="hello">Hello</div>
             </Modal>
             <Modal open={props.open}>
-              <div>World</div>
+              <div data-testid="world">World</div>
             </Modal>
           </React.Fragment>
         );
@@ -633,17 +633,26 @@ describe('<Modal />', () => {
         open: PropTypes.bool,
       };
 
-      const { setProps } = render(<TestCase open={false} />);
+      const { setProps, queryByTestId } = render(<TestCase open={false} />);
 
-      expect(document.body.style).to.have.property('overflow', '');
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      expect(queryByTestId("hello")).to.be.null;
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      expect(queryByTestId("world")).to.be.null;
 
       setProps({ open: true });
 
-      expect(document.body.style).to.have.property('overflow', 'hidden');
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      expect(queryByTestId("hello")).to.exist;
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      expect(queryByTestId("world")).to.exist;
 
       setProps({ open: false });
 
-      expect(document.body.style).to.have.property('overflow', '');
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      expect(queryByTestId("hello")).to.be.null;
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      expect(queryByTestId("world")).to.be.null;
     });
 
     it('should open and close with Transitions', () => {
@@ -652,11 +661,11 @@ describe('<Modal />', () => {
           <React.Fragment>
             <Modal open={props.open}>
               <Fade onEntered={props.onEntered} onExited={props.onExited} in={props.open}>
-                <div>Hello</div>
+                <div data-testid="hello">Hello</div>
               </Fade>
             </Modal>
             <Modal open={props.open}>
-              <div>World</div>
+              <div data-testid="world">World</div>
             </Modal>
           </React.Fragment>
         );
@@ -664,25 +673,34 @@ describe('<Modal />', () => {
 
       const handleEntered = spy();
       const handleExited = spy();
-      const { setProps } = render(
+      const { setProps, queryByTestId } = render(
         <TestCase onEntered={handleEntered} onExited={handleExited} open={false} />,
       );
 
-      expect(document.body.style).to.have.property('overflow', '');
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      expect(queryByTestId("hello")).to.be.null;
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      expect(queryByTestId("world")).to.be.null;
 
       setProps({ open: true });
       clock.runToLast();
 
       expect(handleEntered.callCount).to.equal(1);
       expect(handleExited.callCount).to.equal(0);
-      expect(document.body.style).to.have.property('overflow', 'hidden');
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      expect(queryByTestId("hello")).to.exist;
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      expect(queryByTestId("world")).to.exist;
 
       setProps({ open: false });
       clock.runToLast();
 
       expect(handleEntered.callCount).to.equal(1);
       expect(handleExited.callCount).to.equal(1);
-      expect(document.body.style).to.have.property('overflow', '');
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      expect(queryByTestId("hello")).to.be.null;
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      expect(queryByTestId("world")).to.be.null;
     });
   });
 
@@ -722,7 +740,7 @@ describe('<Modal />', () => {
               onExited={props.onExited}
               in={props.open}
             >
-              <div>Hello</div>
+              <div data-testid="hello">Hello</div>
             </Fade>
           </Modal>
         );
@@ -731,7 +749,7 @@ describe('<Modal />', () => {
       const handleExiting = spy();
       const handleExited = spy();
 
-      const { setProps } = render(
+      const { setProps, queryByTestId } = render(
         <TestCase
           onEntered={handleEntered}
           onExiting={handleExiting}
@@ -743,7 +761,8 @@ describe('<Modal />', () => {
       expect(handleEntered.callCount).to.equal(0);
       expect(handleExiting.callCount).to.equal(0);
       expect(handleExited.callCount).to.equal(0);
-      expect(document.body.style).to.have.property('overflow', '');
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      expect(queryByTestId("hello")).to.be.null;
 
       setProps({ open: true });
       clock.runToLast();
@@ -751,14 +770,16 @@ describe('<Modal />', () => {
       expect(handleEntered.callCount).to.equal(1);
       expect(handleExiting.callCount).to.equal(0);
       expect(handleExited.callCount).to.equal(0);
-      expect(document.body.style).to.have.property('overflow', 'hidden');
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      expect(queryByTestId("hello")).to.exist;
 
       setProps({ open: false });
 
       expect(handleEntered.callCount).to.equal(1);
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExited.callCount).to.equal(0);
-      expect(document.body.style).to.have.property('overflow', 'hidden');
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      expect(queryByTestId("hello")).to.exist;
 
       act(() => {
         clock.runToLast();
@@ -767,7 +788,8 @@ describe('<Modal />', () => {
       expect(handleEntered.callCount).to.equal(1);
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExited.callCount).to.equal(1);
-      expect(document.body.style).to.have.property('overflow', '');
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      expect(queryByTestId("hello")).to.be.null;
     });
 
     it('when false it should close before Transition has finished', () => {
@@ -780,7 +802,7 @@ describe('<Modal />', () => {
               onExited={props.onExited}
               in={props.open}
             >
-              <div>Hello</div>
+              <div data-testid="hello">Hello</div>
             </Fade>
           </Modal>
         );
@@ -789,7 +811,7 @@ describe('<Modal />', () => {
       const handleExiting = spy();
       const handleExited = spy();
 
-      const { setProps } = render(
+      const { setProps, queryByTestId } = render(
         <TestCase
           onEntered={handleEntered}
           onExiting={handleExiting}
@@ -801,7 +823,8 @@ describe('<Modal />', () => {
       expect(handleEntered.callCount).to.equal(0);
       expect(handleExiting.callCount).to.equal(0);
       expect(handleExited.callCount).to.equal(0);
-      expect(document.body.style).to.have.property('overflow', '');
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      expect(queryByTestId("hello")).to.be.null;
 
       setProps({ open: true });
       clock.runToLast();
@@ -809,21 +832,24 @@ describe('<Modal />', () => {
       expect(handleEntered.callCount).to.equal(1);
       expect(handleExiting.callCount).to.equal(0);
       expect(handleExited.callCount).to.equal(0);
-      expect(document.body.style).to.have.property('overflow', 'hidden');
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      expect(queryByTestId("hello")).to.exist;
 
       setProps({ open: false });
 
       expect(handleEntered.callCount).to.equal(1);
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExited.callCount).to.equal(0);
-      expect(document.body.style).to.have.property('overflow', '');
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      expect(queryByTestId("hello")).to.exist;
 
       clock.runToLast();
 
       expect(handleEntered.callCount).to.equal(1);
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExited.callCount).to.equal(1);
-      expect(document.body.style).to.have.property('overflow', '');
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      expect(queryByTestId("hello")).to.be.null;
     });
   });
 
