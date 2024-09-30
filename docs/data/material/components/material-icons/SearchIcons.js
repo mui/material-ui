@@ -176,13 +176,11 @@ function Icon(props) {
       throw new Error('missing ref');
     }
     if (isElmVisible(rootRef.current, margin)) {
-      console.log('jow');
       setIsVisible(true);
     }
     const observer = new IntersectionObserver(
       (entries) => {
         if (isElmVisible(entries[0].target, margin)) {
-          console.log('jow');
           setIsVisible(true);
         }
       },
