@@ -498,7 +498,7 @@ importers:
         specifier: workspace:^
         version: link:../docs
       express:
-        specifier: ^4.19.2
+        specifier: ^4.21.0
         version: 4.21.0
       fs-extra:
         specifier: ^11.2.0
