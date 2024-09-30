@@ -8,7 +8,7 @@ const fs = require('fs');
  */
 
 /**
- * @typedef {{updatedErrorCodes?: boolean}} PluginState
+ * @typedef {{updatedErrorCodes?: boolean, formatMuiErrorMessageIdentifier?: babel.types.Identifier}} PluginState
  * @typedef {'annotate' | 'throw' | 'write'} MissingError
  * @typedef {{ errorCodesPath: string, missingError: MissingError }} Options
  */
@@ -16,114 +16,70 @@ const fs = require('fs');
 /**
  *
  * @param {babel.types} t
- * @param {babel.NodePath} path
- * @param {PluginState} state
- * @param {{
- *   localName: string,
- *   missingError: MissingError,
- *   errorCodesLookup: Map<string, number>
- *   formatMuiErrorMessageIdentifier: babel.types.Identifier
- * }} config
+ * @param {babel.types.Node} node
+ * @returns {{ message: string, expressions: babel.types.Expression[] } | null}
  */
-function replaceTaggedTemplates(
-  t,
-  path,
-  state,
-  { localName, missingError, errorCodesLookup, formatMuiErrorMessageIdentifier },
-) {
-  path.traverse({
-    TaggedTemplateExpression(taggedTemplatePath) {
-      if (!taggedTemplatePath.get('tag').isIdentifier({ name: localName })) {
-        return;
-      }
-
-      // Input:
-      //   `A message with ${interpolation}`
-      // Output:
-      //   'A message with %s',
-      const msg = taggedTemplatePath.node.quasi.quasis
-        .map((quasi) => quasi.value.cooked)
-        .join('%s');
-      const expressions = taggedTemplatePath.node.quasi.expressions.map((expression) => {
+function extractMessageFromExpression(t, node) {
+  if (t.isTemplateLiteral(node)) {
+    return {
+      message: node.quasis.map((quasi) => quasi.value.cooked).join('%s'),
+      expressions: node.expressions.map((expression) => {
         if (t.isExpression(expression)) {
           return expression;
         }
-        throw new Error('Can only evaluate expressions.');
-      });
+        throw new Error('Can only evaluate javascript template literals.');
+      }),
+    };
+  }
+  if (t.isStringLiteral(node)) {
+    return { message: node.value, expressions: [] };
+  }
+  if (t.isBinaryExpression(node) && node.operator === '+') {
+    if (t.isPrivateName(node.left)) {
+      // This is only psossible with `in` expressions, e.g. `#foo in {}`
+      throw new Error('Unreachable');
+    }
+    const left = extractMessageFromExpression(t, node.left);
+    const right = extractMessageFromExpression(t, node.right);
+    if (!left || !right) {
+      return null;
+    }
+    return {
+      message: left.message + right.message,
+      expressions: [...left.expressions, ...right.expressions],
+    };
+  }
+  return null;
+}
 
-      let errorCode = errorCodesLookup.get(msg);
-      if (errorCode === undefined) {
-        switch (missingError) {
-          case 'annotate': {
-            // Outputs:
-            // /* FIXME (minify-errors-in-prod): Unminified error message in production build! */
-            // throw new Error(muiErrorMsg`A message with ${interpolation}`)
-            taggedTemplatePath.addComment(
-              'leading',
-              ' FIXME (minify-errors-in-prod): Unminified error message in production build! ',
-            );
-            return;
-          }
-          case 'throw': {
-            throw new Error(
-              `Missing error code for message '${msg}'. Did you forget to run \`pnpm extract-error-codes\` first?`,
-            );
-          }
-          case 'write': {
-            errorCode = errorCodesLookup.size + 1;
-            errorCodesLookup.set(msg, errorCode);
-            state.updatedErrorCodes = true;
-            break;
-          }
-          default: {
-            throw new Error(`Unknown missingError option: ${missingError}`);
-          }
-        }
-      }
-
-      if (!formatMuiErrorMessageIdentifier) {
-        // Outputs:
-        // import { formatMuiErrorMessage } from '@mui/utils';
-        formatMuiErrorMessageIdentifier = helperModuleImports.addDefault(
-          taggedTemplatePath,
-          '@mui/utils/formatMuiErrorMessage',
-          { nameHint: '_formatMuiErrorMessage' },
-        );
-      }
-
+/**
+ *
+ * @param {MissingError} missingError
+ * @param {babel.NodePath} path
+ * @returns
+ */
+function handleUnminifyable(missingError, path) {
+  switch (missingError) {
+    case 'annotate': {
       // Outputs:
-      //   `A ${adj} message that contains ${noun}`;
-      const devMessage = taggedTemplatePath.get('quasi').node;
-
-      // Outputs:
-      // formatMuiErrorMessage(ERROR_CODE, adj, noun)
-      const prodMessage = t.callExpression(t.cloneNode(formatMuiErrorMessageIdentifier, true), [
-        t.numericLiteral(errorCode),
-        ...expressions,
-      ]);
-
-      // Outputs:
-      // new Error(
-      //   process.env.NODE_ENV !== "production"
-      //     ? `A message with ${interpolation}`
-      //     : formatProdError('A message with %s', interpolation)
-      // )
-      taggedTemplatePath.replaceWith(
-        t.conditionalExpression(
-          t.binaryExpression(
-            '!==',
-            t.memberExpression(
-              t.memberExpression(t.identifier('process'), t.identifier('env')),
-              t.identifier('NODE_ENV'),
-            ),
-            t.stringLiteral('production'),
-          ),
-          devMessage,
-          prodMessage,
-        ),
+      // /* FIXME (minify-errors-in-prod): Unminified error message in production build! */
+      // throw new Error(foo)
+      path.addComment(
+        'leading',
+        ' FIXME (minify-errors-in-prod): Unminifyable error in production! ',
       );
-    },
-  });
+      return;
+    }
+    case 'throw': {
+      throw new Error(`Unminifyable error.`);
+    }
+    case 'write': {
+      return;
+    }
+    default: {
+      throw new Error(`Unknown missingError option: ${missingError}`);
+    }
+  }
 }
 
 /**
@@ -145,49 +101,99 @@ module.exports = function plugin({ types: t }, { errorCodesPath, missingError = 
 
   return {
     visitor: {
-      Program(path, state) {
-        for (const statement of path.get('body')) {
-          if (!statement.isImportDeclaration()) {
-            continue;
+      NewExpression(newExpressionPath, state) {
+        if (!newExpressionPath.get('callee').isIdentifier({ name: 'Error' })) {
+          return;
+        }
+        const messagePath = newExpressionPath.get('arguments')[0];
+        if (!messagePath) {
+          return;
+        }
+
+        const messageNode = messagePath.node;
+        if (t.isSpreadElement(messageNode) || t.isArgumentPlaceholder(messageNode)) {
+          handleUnminifyable(missingError, newExpressionPath);
+          return;
+        }
+
+        const message = extractMessageFromExpression(t, messageNode);
+
+        if (!message) {
+          handleUnminifyable(missingError, newExpressionPath);
+          return;
+        }
+
+        let errorCode = errorCodesLookup.get(message.message);
+        if (errorCode === undefined) {
+          switch (missingError) {
+            case 'annotate': {
+              // Outputs:
+              // /* FIXME (minify-errors-in-prod): Unminified error message in production build! */
+              // throw new Error(`A message with ${interpolation}`)
+              newExpressionPath.addComment(
+                'leading',
+                ' FIXME (minify-errors-in-prod): Unminified error message in production build! ',
+              );
+              return;
+            }
+            case 'throw': {
+              throw new Error(
+                `Missing error code for message '${message.message}'. Did you forget to run \`pnpm extract-error-codes\` first?`,
+              );
+            }
+            case 'write': {
+              errorCode = errorCodesLookup.size + 1;
+              errorCodesLookup.set(message.message, errorCode);
+              state.updatedErrorCodes = true;
+              break;
+            }
+            default: {
+              throw new Error(`Unknown missingError option: ${missingError}`);
+            }
           }
+        }
 
-          if (statement.node.source.value !== '@mui/utils/muiErrorMsg') {
-            continue;
-          }
-
-          const importSpecifiers = statement.get('specifiers');
-          const defaultSpecifier = importSpecifiers.find((specifier) =>
-            specifier.isImportDefaultSpecifier(),
-          );
-
-          if (!defaultSpecifier) {
-            return;
-          }
-
-          const localName = defaultSpecifier.node.local.name;
-
-          // TODO: safer to just keep this around and let minifiers remove it?
-          if (importSpecifiers.length === 1) {
-            statement.remove();
-          } else {
-            defaultSpecifier.remove();
-          }
-
+        if (!state.formatMuiErrorMessageIdentifier) {
           // Outputs:
           // import { formatMuiErrorMessage } from '@mui/utils';
-          const formatMuiErrorMessageIdentifier = helperModuleImports.addDefault(
-            path,
+          state.formatMuiErrorMessageIdentifier = helperModuleImports.addDefault(
+            newExpressionPath,
             '@mui/utils/formatMuiErrorMessage',
             { nameHint: '_formatMuiErrorMessage' },
           );
-
-          replaceTaggedTemplates(t, path, state, {
-            localName,
-            errorCodesLookup,
-            missingError,
-            formatMuiErrorMessageIdentifier,
-          });
         }
+
+        // Outputs:
+        //   `A ${adj} message that contains ${noun}`;
+        const devMessage = messageNode;
+
+        // Outputs:
+        // formatMuiErrorMessage(ERROR_CODE, adj, noun)
+        const prodMessage = t.callExpression(
+          t.cloneNode(state.formatMuiErrorMessageIdentifier, true),
+          [t.numericLiteral(errorCode), ...message.expressions],
+        );
+
+        // Outputs:
+        // new Error(
+        //   process.env.NODE_ENV !== "production"
+        //     ? `A message with ${interpolation}`
+        //     : formatProdError('A message with %s', interpolation)
+        // )
+        messagePath.replaceWith(
+          t.conditionalExpression(
+            t.binaryExpression(
+              '!==',
+              t.memberExpression(
+                t.memberExpression(t.identifier('process'), t.identifier('env')),
+                t.identifier('NODE_ENV'),
+              ),
+              t.stringLiteral('production'),
+            ),
+            devMessage,
+            prodMessage,
+          ),
+        );
       },
     },
     post() {
