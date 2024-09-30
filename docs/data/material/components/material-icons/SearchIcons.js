@@ -25,6 +25,8 @@ import * as mui from '@mui/icons-material';
 import { Link } from '@mui/docs/Link';
 import { useTranslate } from '@mui/docs/i18n';
 import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterState';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
+
 // For Debugging
 // import Menu from '@mui/icons-material/Menu';
 // import MenuOutlined from '@mui/icons-material/MenuOutlined';
@@ -153,22 +155,34 @@ function handleLabelClick(event) {
   selectNode(event.currentTarget);
 }
 
+function isElmVisible(elm, margin = 0) {
+  const rect = elm.getBoundingClientRect();
+  const viewHeight = Math.max(
+    document.documentElement.clientHeight,
+    window.innerHeight,
+  );
+  return !(rect.bottom >= -margin && rect.top <= viewHeight + margin);
+}
+
 function Icon(props) {
   const { icon, onOpenClick } = props;
 
   const rootRef = React.useRef(null);
   const [isVisible, setIsVisible] = React.useState(false);
 
-  React.useEffect(() => {
+  useEnhancedEffect(() => {
     const margin = 200;
+    if (!rootRef.current) {
+      throw new Error('missing ref');
+    }
+    if (isElmVisible(rootRef.current, margin)) {
+      setIsVisible(true);
+    }
     const observer = new IntersectionObserver(
       (entries) => {
-        // `isIntersecting` is not working correctly on Chrome
-        const clientRect = entries[0].target.getBoundingClientRect();
-        const isIntersecting =
-          clientRect.top < window.innerHeight + margin &&
-          clientRect.bottom > -margin;
-        setIsVisible(isIntersecting);
+        if (isElmVisible(entries[0].target, margin)) {
+          setIsVisible(true);
+        }
       },
       { rootMargin: `${margin}px 0px` },
     );
