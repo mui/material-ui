@@ -11,9 +11,7 @@ export interface ManagedModalProps {
 // Is a vertical scrollbar displayed?
 function isOverflowing(window: Window, container: Element): boolean {
   return (
-    window.getComputedStyle(container).overflow === 'scroll' ||
     window.getComputedStyle(container).overflowY === 'scroll' ||
-    window.getComputedStyle(container).overflowX === 'scroll' ||
     container.scrollHeight > container.clientHeight
   );
 }
