@@ -92,7 +92,7 @@ function DemoContent() {
   );
 }
 
-export default function ToolpadDialogs() {
+export default function ToolpadDialogsNoSnap() {
   return (
     <DialogsProvider>
       <DemoContent />

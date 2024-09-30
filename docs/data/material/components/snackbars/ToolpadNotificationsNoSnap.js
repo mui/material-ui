@@ -3,10 +3,9 @@ import {
   useNotifications,
   NotificationsProvider,
 } from '@toolpad/core/useNotifications';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
+import Button from '@mui/material/Button';
 
-function NotifyRadioButton() {
+function NotifyButton() {
   const notifications = useNotifications();
   const [online, setOnline] = React.useState(true);
   const prevOnline = React.useRef(online);
@@ -32,22 +31,13 @@ function NotifyRadioButton() {
     // preview-end
   }, [notifications, online]);
 
-  return (
-    <div>
-      <FormControlLabel
-        control={
-          <Switch checked={online} onChange={() => setOnline((prev) => !prev)} />
-        }
-        label="Online"
-      />
-    </div>
-  );
+  return <Button onClick={() => setOnline((prev) => !prev)}>Notify</Button>;
 }
 
-export default function ToolpadNotifications() {
+export default function ToolpadNotificationsNoSnap() {
   return (
     <NotificationsProvider>
-      <NotifyRadioButton />
+      <NotifyButton />
     </NotificationsProvider>
   );
 }

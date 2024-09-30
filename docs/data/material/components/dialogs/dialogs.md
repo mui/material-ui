@@ -168,15 +168,20 @@ The package [`material-ui-confirm`](https://github.com/jonatanklosko/material-ui
 
 Follow the [Modal accessibility section](/material-ui/react-modal/#accessibility).
 
-## Toolpad
+## Toolpad (Beta)
 
-### `useDialogs`
+### useDialogs
 
-You can create and manipulate dialogs imperatively with the [`useDialogs`](https://mui.com/toolpad/core/react-use-dialogs/) API in `@toolpad/core`. This API provides state management for opening and closing dialogs and for passing data to the dialog and back. It allows for stacking multiple dialogs. It also provides themed alternatives for `window.alert`, `window.confirm` and `window.prompt`.
+You can create and manipulate dialogs imperatively with the [`useDialogs()`](https://mui.com/toolpad/core/react-use-dialogs/) API in `@toolpad/core`. This API provides the following features:
 
-The following example demonstrates how the `useDialogs` API can create a dialog that prompts the user to enter an ID and then confirms the deletion of an item with that ID. It waits for the async delete operation to complete before either displaying a success alert or a custom error dialog with an error payload:
+- state management for opening and closing dialogs
+- reading data from and passing data to dialogs
+- stacking multiple dialogs
+- themed alternatives for `window.alert()`, `window.confirm`() and `window.prompt()`
 
-{{"demo": "ToolpadDialogs.js", "hideToolbar": "true"}}
+The following example demonstrates these features:
+
+{{"demo": "ToolpadDialogsNoSnap.js", "defaultCodeOpen": false}}
 
 ```tsx
 const handleDelete = async () => {
