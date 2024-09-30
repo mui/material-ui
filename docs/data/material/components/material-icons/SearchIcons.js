@@ -25,7 +25,6 @@ import * as mui from '@mui/icons-material';
 import { Link } from '@mui/docs/Link';
 import { useTranslate } from '@mui/docs/i18n';
 import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterState';
-import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 
 // For Debugging
 // import Menu from '@mui/icons-material/Menu';
@@ -166,7 +165,7 @@ function Icon(props) {
   const rootRef = React.useRef(null);
   const [isVisible, setIsVisible] = React.useState(initiallyVisible);
 
-  useEnhancedEffect(() => {
+  React.useEffect(() => {
     const margin = 200;
     if (!rootRef.current) {
       throw new Error('missing ref');
