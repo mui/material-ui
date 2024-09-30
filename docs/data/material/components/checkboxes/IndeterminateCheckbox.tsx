@@ -4,7 +4,6 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import IndeterminateCheckBox from '@mui/icons-material/IndeterminateCheckBox';
 
-
 export default function IndeterminateCheckbox() {
   const [checked, setChecked] = React.useState([true, false]);
 
