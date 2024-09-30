@@ -161,10 +161,10 @@ function isElmVisible(elm, margin = 0) {
 }
 
 function Icon(props) {
-  const { icon, onOpenClick } = props;
+  const { icon, onOpenClick, initiallyVisible = false } = props;
 
   const rootRef = React.useRef(null);
-  const [isVisible, setIsVisible] = React.useState(false);
+  const [isVisible, setIsVisible] = React.useState(initiallyVisible);
 
   useEnhancedEffect(() => {
     const margin = 200;
@@ -219,8 +219,14 @@ const Icons = React.memo(function Icons(props) {
 
   return (
     <div>
-      {icons.map((icon) => (
-        <Icon key={icon.importName} icon={icon} onOpenClick={handleOpenClick} />
+      {icons.map((icon, i) => (
+        <Icon
+          key={icon.importName}
+          icon={icon}
+          onOpenClick={handleOpenClick}
+          // Render the first 50 icons immediately as they would be visible on page load
+          initiallyVisible={i < 50}
+        />
       ))}
     </div>
   );
