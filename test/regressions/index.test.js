@@ -57,7 +57,7 @@ async function main() {
     await page.evaluate((_route) => {
       // Use client-side routing which is much faster than full page navigation via page.goto().
       window.muiFixture.navigate(`${_route}#no-dev`);
-  
+
       // Playwright hides scrollbar when capturing a screenshot on an element or with fullPage: true.
       // When the body has a scrollbar, this causes a brief layout shift. Disable the body overflow
       // altogether to prevent this
