@@ -165,6 +165,8 @@ function Icon(props) {
   const rootRef = React.useRef(null);
   const [isVisible, setIsVisible] = React.useState(initiallyVisible);
 
+  // Virtualize the icons to reduce page size and React rendering time.
+  // Only render the icons after they become visible in the viewport.
   React.useEffect(() => {
     const margin = 200;
     if (!rootRef.current) {
