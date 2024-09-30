@@ -13,7 +13,7 @@
 
 MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
 Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
-We're a company of 31+ people as of late 2023, and we're growing.
+We're a company of 35+ people as of early 2024, and we're growing.
 
 ## The products
 
@@ -48,8 +48,8 @@ We are looking for someone that can contribute to the following outcomes:
 - Improve the overall developer experience, resulting in better NPS & CSAT scores.
 - Create momentum in the React community and drive adoption of the library.
 
-Overall, both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
+Overall, both our open-source community and our premium products are growing fast.
+We need talented people to keep up with the demands of our exigent community!
 
 ### Why this is interesting
 
@@ -59,7 +59,7 @@ Our products empower React developers to build awesome applications faster – w
 
 ## The role
 
-### What you'll do on a day-to-day basis
+### Key responsibilities
 
 Depending on the day, you'll:
 

@@ -13,7 +13,7 @@
 
 MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
 Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
-We're a company of 31+ people as of late 2023, and we're growing.
+We're a company of 35+ people as of early 2024, and we're growing.
 
 ## The products
 
@@ -43,8 +43,8 @@ Accessibility is a strategic opportunity for MUI, across our products:
 1. We are building Base UI for the developers that are looking for a relatively lower-level API while keeping a strong baseline to build on top of that saves them time. For them, it's about having a better customizability experience (style & behavior). The most exigent users of Base UI, the ones that are spreading the viral growth of the product in the community, have strong a11y requirements. So we have to meet them for Base UI to be successful.
 2. Accessibility is mandated by law. For example, in the US, the Americans with Disabilities Act (ADA) is a US law enacted in 1990 to ensure people with disabilities are not discriminated against. In the EU, the European Accessibility Act (AEE) will soon be enacted. Our paid customers are increasingly asking about compliance with WCAG.
 
-Overall, both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
+Overall, both our open-source community and our premium products are growing fast.
+We need talented people to keep up with the demands of our exigent community!
 
 ### Why this is interesting
 
@@ -55,7 +55,7 @@ You will also be responsible to train the developers using MUI's products to a11
 
 ## The role
 
-### What you'll do on a day-to-day basis
+### Key responsibilities
 
 Depending on the day, you'll:
 
