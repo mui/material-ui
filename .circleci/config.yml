@@ -457,7 +457,7 @@ jobs:
           command: xvfb-run pnpm test:regressions
       - run:
           name: Build packages for fixtures
-          command: xvfb-run pnpm release:build
+          command: pnpm release:build
       - run:
           name: Run visual regression tests using Pigment CSS
           command: xvfb-run pnpm test:regressions-pigment-css
