@@ -11,7 +11,7 @@ export default function ColorModeSelect(props) {
   return (
     <Select
       value={mode}
-      onChange={(e) => setMode(e.target.value)}
+      onChange={(event) => setMode(event.target.value)}
       SelectDisplayProps={{
         'data-screenshot': 'toggle-mode',
       }}

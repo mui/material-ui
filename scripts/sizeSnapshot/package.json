@@ -1,6 +1,7 @@
 {
   "name": "size-snapshot",
   "version": "1.0.0",
+  "private": true,
   "description": "Size snapshot of MUI packages",
   "dependencies": {
     "@mui/base": "workspace:^",

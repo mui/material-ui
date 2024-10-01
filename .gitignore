@@ -43,3 +43,4 @@ docs/public/static/blog/feed/*
 .nx/cache
 .nx/workspace-data
 screenshots
+packed
