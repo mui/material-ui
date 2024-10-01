@@ -96,7 +96,7 @@ describe('ThemeProvider', () => {
       expect(getByTestId('mode-switcher')).to.have.property('value', 'dark');
     });
 
-    it('should be dark by default', () => {
+    it('allows default mode to be changed', () => {
       const theme = createTheme({
         colorSchemes: { dark: true },
       });

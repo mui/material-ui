@@ -37,8 +37,8 @@ export interface ThemeProviderProps<Theme = DefaultTheme> extends ThemeProviderC
    */
   documentNode?: Document | null;
   /**
-   * The default mode when the storage is empty,
-   * require the theme to have `colorSchemes` with light and dark.
+   * The default mode when the local storage has no mode yet,
+   * requires the theme to have `colorSchemes` with light and dark.
    * @default 'system'
    */
   defaultMode?: 'light' | 'dark' | 'system';
