@@ -1,1 +1,1 @@
-throw new Error('missing');
+throw /* mui-minify-error */ new Error('missing');

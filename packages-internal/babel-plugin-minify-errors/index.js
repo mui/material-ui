@@ -3,6 +3,8 @@
 const helperModuleImports = require('@babel/helper-module-imports');
 const fs = require('fs');
 
+const COMMENT_MARKER = 'mui-minify-error';
+
 /**
  * @typedef {import('@babel/core')} babel
  */
@@ -110,11 +112,15 @@ module.exports = function plugin({ types: t }, { errorCodesPath, missingError = 
 
         if (
           !newExpressionPath.node.leadingComments?.some((comment) =>
-            comment.value.includes('mui-minify-error'),
+            comment.value.includes(COMMENT_MARKER),
           )
         ) {
           return;
         }
+
+        newExpressionPath.node.leadingComments = newExpressionPath.node.leadingComments.filter(
+          (comment) => !comment.value.includes(COMMENT_MARKER),
+        );
 
         const messagePath = newExpressionPath.get('arguments')[0];
         if (!messagePath) {
