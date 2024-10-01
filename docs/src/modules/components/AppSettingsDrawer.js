@@ -5,6 +5,8 @@ import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -162,6 +164,23 @@ export default function AppSettingsDrawer(props) {
             {t('settings.rtl')}
           </IconToggleButton>
         </ToggleButtonGroup>
+        <Heading gutterBottom>Color space</Heading>
+        <Select
+          value={upperTheme.experimentalColorMix || 'none'}
+          onChange={(event) =>
+            changeTheme({
+              experimentalColorMix: event.target.value === 'none' ? undefined : event.target.value,
+            })
+          }
+          fullWidth
+        >
+          <MenuItem value="none">None</MenuItem>
+          <MenuItem value="srgb">srgb</MenuItem>
+          <MenuItem value="hsl">hsl</MenuItem>
+          <MenuItem value="oklab">oklab</MenuItem>
+          <MenuItem value="oklch">oklch</MenuItem>
+          <MenuItem value="display-p3">display-p3</MenuItem>
+        </Select>
         <Heading gutterBottom>{t('settings.color')}</Heading>
         <Button
           component="a"

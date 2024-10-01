@@ -149,7 +149,8 @@ export function ThemeProvider(props) {
         if (
           (!action.payload.paletteMode || action.payload.paletteMode === state.paletteMode) &&
           (!action.payload.direction || action.payload.direction === state.direction) &&
-          (!action.payload.paletteColors || action.payload.paletteColors === state.paletteColors)
+          (!action.payload.paletteColors || action.payload.paletteColors === state.paletteColors) &&
+          action.payload.experimentalColorMix === state.experimentalColorMix
         ) {
           return state;
         }
@@ -159,6 +160,7 @@ export function ThemeProvider(props) {
           paletteMode: action.payload.paletteMode || state.paletteMode,
           direction: action.payload.direction || state.direction,
           paletteColors: action.payload.paletteColors || state.paletteColors,
+          experimentalColorMix: action.payload.experimentalColorMix,
         };
       default:
         throw new Error(`Unrecognized type ${action.type}`);
@@ -166,7 +168,8 @@ export function ThemeProvider(props) {
   }, themeInitialOptions);
 
   const userLanguage = useUserLanguage();
-  const { dense, direction, paletteColors, paletteMode, spacing } = themeOptions;
+  const { dense, direction, paletteColors, paletteMode, spacing, experimentalColorMix } =
+    themeOptions;
 
   useLazyCSS('/static/styles/prism-okaidia.css', '#prismjs');
 
@@ -215,6 +218,7 @@ export function ThemeProvider(props) {
     const nextPalette = deepmerge(brandingDesignTokens.palette, paletteColors);
     let nextTheme = createMdTheme(
       {
+        experimentalColorMix,
         direction,
         ...brandingDesignTokens,
         palette: {
@@ -246,7 +250,7 @@ export function ThemeProvider(props) {
     nextTheme = deepmerge(nextTheme, getThemedComponents(nextTheme));
 
     return nextTheme;
-  }, [dense, direction, paletteColors, paletteMode, spacing, userLanguage]);
+  }, [dense, direction, paletteColors, paletteMode, spacing, userLanguage, experimentalColorMix]);
 
   React.useEffect(() => {
     // Expose the theme as a global variable so people can play with it.
