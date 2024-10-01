@@ -252,7 +252,7 @@ function getAnchorOrigin(anchorOrigin) {
 const Badge = React.forwardRef(function Badge(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiBadge' });
   const {
-    anchorOrigin: anchorOriginPropProp,
+    anchorOrigin: anchorOriginProp,
     className,
     classes: classesProp,
     component,
@@ -284,7 +284,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   });
 
   const prevProps = usePreviousProps({
-    anchorOrigin: getAnchorOrigin(anchorOriginPropProp),
+    anchorOrigin: getAnchorOrigin(anchorOriginProp),
     color: colorProp,
     overlap: overlapProp,
     variant: variantProp,
@@ -296,11 +296,11 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   const {
     color = colorProp,
     overlap = overlapProp,
-    anchorOrigin: anchorOriginProp,
+    anchorOrigin: anchorOriginPropProp,
     variant = variantProp,
   } = invisible ? prevProps : props;
 
-  const anchorOrigin = getAnchorOrigin(anchorOriginProp);
+  const anchorOrigin = getAnchorOrigin(anchorOriginPropProp);
   const displayValue = variant !== 'dot' ? displayValueFromHook : undefined;
 
   const ownerState = {
