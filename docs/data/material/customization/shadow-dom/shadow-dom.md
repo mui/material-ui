@@ -66,7 +66,11 @@ const theme = createTheme({
 
 ### 3. CSS theme variables (optional)
 
-If you want to use [CSS theme variables](/material-ui/customization/css-theme-variables/overview/) inside of the shadow DOM, you need to set the selectors for generating the CSS variables:
+:::info
+If you use **TypeScript**, you need to [extend the interface of the theme](/material-ui/customization/css-theme-variables/usage/#typescript) first.
+:::
+
+To use [CSS theme variables](/material-ui/customization/css-theme-variables/overview/) inside of the shadow DOM, you need to set the selectors for generating the CSS variables:
 
 ```diff
  const theme = createTheme({
@@ -80,7 +84,7 @@ If you want to use [CSS theme variables](/material-ui/customization/css-theme-va
  })
 ```
 
-Next, use the `shadowRootElement` as the color scheme node for attaching the class:
+Finally, set the `colorSchemeNode` prop using `shadowRootElement`, from step 1, as the value:
 
 ```diff
  <ThemeProvider
