@@ -20,7 +20,7 @@ A big thanks to the 13 contributors who made this release possible.
 - [Rating] Use Rating `name` as prefix of input element ids (#43829) @yash49
 - [Drawer] Refactor getScrollbarSize usages (#43828) @BrianWoolfolk
 - [Drawer] Fix issue with main window being used instead of iframe's window (#43818) @albarv340
-- [ThemeProvider] Support setting default mode (#43951) @siriwatknp 
+- [ThemeProvider] Support setting default mode (#43951) @siriwatknp
 
 ### Docs
 
