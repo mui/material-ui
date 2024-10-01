@@ -31,5 +31,15 @@
   "30": "MUI: You need to use the `getAriaValueText` prop instead of `aria-valuetext` when using a range slider.",
   "31": "MUI: The page prop of a TablePagination is out of range (0 to %s, but page is %s).",
   "32": "Animation cancelled",
-  "33": "Element already at target position"
+  "33": "Element already at target position",
+  "34": "No TabsContext provided",
+  "35": "useCompoundItem must be used within a useCompoundParent",
+  "36": "Unhandled action",
+  "37": "useList: The `getItemDomElement` prop is required when using the `DOM` focus management.",
+  "38": "useList: The `getItemId` prop is required when using the `activeDescendant` focus management.",
+  "39": "useListItem must be used within a ListProvider",
+  "40": "useMenuButton: no menu context available.",
+  "41": "MenuItem: ListContext was not found.",
+  "42": "Option: ListContext was not found.",
+  "43": "You can not use the clone and component prop at the same time."
 }

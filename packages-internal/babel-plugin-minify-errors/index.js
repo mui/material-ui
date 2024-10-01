@@ -203,7 +203,7 @@ module.exports = function plugin({ types: t }, { errorCodesPath, missingError = 
         const invertedErrorCodes = Object.fromEntries(
           Array.from(errorCodesLookup, ([key, value]) => [value, key]),
         );
-        fs.writeFileSync(errorCodesPath, JSON.stringify(invertedErrorCodes, null, 2));
+        fs.writeFileSync(errorCodesPath, `${JSON.stringify(invertedErrorCodes, null, 2)}\n`);
       }
     },
   };
