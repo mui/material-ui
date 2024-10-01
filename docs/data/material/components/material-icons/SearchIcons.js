@@ -96,6 +96,8 @@ function selectNode(node) {
 
 const iconWidth = 35;
 
+const SVG_ICON_CLASS = 'svg-icon';
+
 const StyledIcon = styled('span')(({ theme }) => ({
   display: 'inline-flex',
   flexDirection: 'column',
@@ -109,29 +111,24 @@ const StyledIcon = styled('span')(({ theme }) => ({
     textAlign: 'center',
     width: `calc(${iconWidth}px + ${theme.spacing(2)} * 2 + 2px)`,
   },
-}));
-
-const PlaceholderIcon = styled('div')({
-  width: 69,
-  height: 69,
-  margin: '4px 0',
-});
-
-const StyledSvgIcon = styled(SvgIcon)(({ theme }) => ({
-  boxSizing: 'content-box',
-  cursor: 'pointer',
-  color: theme.palette.text.primary,
-  border: '1px solid transparent',
-  fontSize: iconWidth,
-  borderRadius: '12px',
-  transition: theme.transitions.create(['background-color', 'box-shadow'], {
-    duration: theme.transitions.duration.shortest,
-  }),
-  padding: theme.spacing(2),
-  margin: theme.spacing(0.5, 0),
-  '&:hover': {
-    backgroundColor: theme.palette.background.default,
-    borderColor: theme.palette.primary.light,
+  [`& .${SVG_ICON_CLASS}`]: {
+    width: iconWidth,
+    height: iconWidth,
+    boxSizing: 'content-box',
+    cursor: 'pointer',
+    color: theme.palette.text.primary,
+    border: '1px solid transparent',
+    fontSize: iconWidth,
+    borderRadius: '12px',
+    transition: theme.transitions.create(['background-color', 'box-shadow'], {
+      duration: theme.transitions.duration.shortest,
+    }),
+    padding: theme.spacing(2),
+    margin: theme.spacing(0.5, 0),
+    '&:hover': {
+      backgroundColor: theme.palette.background.default,
+      borderColor: theme.palette.primary.light,
+    },
   },
 }));
 
@@ -165,10 +162,8 @@ function Icon(props) {
   // Only render the icons after they become visible in the viewport.
   React.useEffect(() => {
     const margin = 200;
-    if (!rootRef.current) {
-      throw new Error('missing ref');
-    }
-    if (isElmVisible(rootRef.current, margin)) {
+    const root = /** @type {SVGElement} */ (rootRef.current);
+    if (isElmVisible(root, margin)) {
       setIsVisible(true);
     }
     const observer = new IntersectionObserver(
@@ -179,7 +174,7 @@ function Icon(props) {
       },
       { rootMargin: `${margin}px 0px` },
     );
-    observer.observe(rootRef.current);
+    observer.observe(root);
     return () => {
       observer.disconnect();
     };
@@ -193,16 +188,17 @@ function Icon(props) {
       onClick={Math.random() < 0.1 ? handleIconClick(icon) : null}
     >
       {isVisible ? (
-        <StyledSvgIcon
+        <SvgIcon
           component={icon.Component}
+          className={SVG_ICON_CLASS}
           tabIndex={-1}
           onClick={onOpenClick}
           title={icon.importName}
         />
       ) : (
-        <PlaceholderIcon />
+        <div className={SVG_ICON_CLASS} />
       )}
-      {/*  eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
       <div onClick={handleLabelClick}>{icon.importName}</div>
       {/* eslint-enable jsx-a11y/click-events-have-key-events */}
     </StyledIcon>
@@ -220,7 +216,7 @@ const Icons = React.memo(function Icons(props) {
           icon={icon}
           onOpenClick={handleOpenClick}
           // Render the first 50 icons immediately as they would be visible on page load
-          initiallyVisible={i < 50}
+          initiallyVisible={i % 2 === 0}
         />
       ))}
     </div>
