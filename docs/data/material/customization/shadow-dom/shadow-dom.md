@@ -64,6 +64,31 @@ const theme = createTheme({
 </ThemeProvider>;
 ```
 
+### 3. CSS theme variables (optional)
+
+If you want to use [CSS theme variables](/material-ui/customization/css-theme-variables/overview/) inside of the shadow DOM, you need to set the selectors for generating the CSS variables:
+
+```diff
+ const theme = createTheme({
++  cssVariables: {
++    rootSelector: ':host',
++    colorSchemeSelector: 'class',
++  },
+   components: {
+     // ...same as above steps
+   }
+ })
+```
+
+Next, use the `shadowRootElement` as the color scheme node for attaching the class:
+
+```diff
+ <ThemeProvider
+   theme={theme}
++  colorSchemeNode={shadowRootElement}
+ >
+```
+
 ## Demo
 
 In the example below you can see that the component outside of the shadow DOM is affected by global styles, while the component inside of the shadow DOM is not:
