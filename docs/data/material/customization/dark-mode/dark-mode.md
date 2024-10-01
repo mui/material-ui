@@ -134,7 +134,7 @@ To instantly switch between color schemes with no transition, apply the `disable
 
 ## Setting the default mode
 
-When `colorSchemes` is provided, the default mode is `system`, which means the app will use the system preference when users first visit the site.
+When `colorSchemes` is provided, the default mode is `system`, which means the app uses the system preference when users first visit the site.
 
 To set a different default mode, pass the `defaultMode` prop to the ThemeProvider component:
 
