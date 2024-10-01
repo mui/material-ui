@@ -1,5 +1,61 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.1.2
+
+<!-- generated comparing v6.1.1..master -->
+
+_Oct 1, 2024_
+
+A big thanks to the 13 contributors who made this release possible.
+
+### `@mui/material@6.1.2`
+
+- [Autocomplete] Fix listbox opens and closes on click when used with `limitTags` (#42494) @appleSimple
+- [Button] ignore `dark` and `contrastText` if not provided in the theme (#43861) @siriwatknp
+- [Button] Fix regression for color `inherit` (#43862) @siriwatknp
+- [LinearProgress] Fix background color (#43949) @sai6855
+- Support CSS variables with shadow DOM (#43948) @siriwatknp
+- Improve getReactElementRef() utils (#43022) @sai6855
+- [Modal] Replace `show` parameter name with `hide` in modal manager (#43868) @ZeeshanTamboli
+- [Rating] Use Rating `name` as prefix of input element ids (#43829) @yash49
+- [Drawer] Refactor getScrollbarSize usages (#43828) @BrianWoolfolk
+- [Drawer] Fix issue with main window being used instead of iframe's window (#43818) @albarv340
+
+### Docs
+
+- Format Pigment CSS docs (#43812) @oliviertassinari
+- Fix visual bug on dashboard template (#43836) @oliviertassinari
+- Fix pigment-css.md syntax error (#43837) @kdichev
+- Fix Sign-in template form experience (#43838) @oliviertassinari
+- Remove "To be continued" section from v0 –> v1 migration guide (#43832) @samuelsycamore
+- Fix 301 to chromium (#43809) @oliviertassinari
+- [joy-ui] Add missing ComponentLinkHeader components (#43865) @samuelsycamore
+- [Modal] Remove unnecessary type assertion (#43825) @ZeeshanTamboli
+- [table] Stabilize random series in virtualized table demo (#43744) @Janpot
+- [system] Add migration guide link to `@mui/styles` pages (#43833) @samuelsycamore
+
+### Core
+
+- [code-infra] Fix flaky dashboard screenshot - take 2 (#43937) @Janpot
+- [code-infra] Replace all instances of `e` with `event` and add eslint rule (#43866) @samuelsycamore
+- [code-infra] Fix and update bundling fixtures (#43709) @Janpot
+- [code-infra] Update transitive dependencies with vulnerabilties (#43895) @Janpot
+- [code-infra] Optimize regression tests (#43889) @Janpot
+- [code-infra] Remove custom playwright installation steps (#43881) @Janpot
+- [code-infra] Fix flaky dashboard screenshot (#43890) @Janpot
+- [code-infra] Add new instanceof proptypes for toolpad (#43814) @Janpot
+- Fix eslint-plugin-react-compiler issues in usePagination tests (#43946) @wilhelmlofsten
+- Uniformity in version range @oliviertassinari
+- Replace `toBeAriaHidden` matcher with `toBeInaccessible` in tests (#43870) @ZeeshanTamboli
+- [docs-infra] Strengthen CSP (#43711) @oliviertassinari
+- [docs-infra] Open Codesandbox demo with fontsize=12 (#43860) @siriwatknp
+- [icons] Reduce Material Icon page size (#43911) @oliviertassinari
+- [test] Point Istanbul to correct URL (#43935) @sai6855
+- [test] Sync React.version parse logic with codebase (#43820) @oliviertassinari
+- [website] Add 'Row spanning' (#43831) @oliviertassinari
+
+All contributors of this release in alphabetical order: @albarv340, @appleSimple, @BrianWoolfolk, @DanailH, @Janpot, @kdichev, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @wilhelmlofsten, @yash49, @ZeeshanTamboli
+
 ## v6.1.1
 
 <!-- generated comparing v6.1.0..master -->
