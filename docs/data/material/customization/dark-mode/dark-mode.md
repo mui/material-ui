@@ -132,6 +132,20 @@ To instantly switch between color schemes with no transition, apply the `disable
 </ThemeProvider>
 ```
 
+## Setting the default mode
+
+When `colorSchemes` is provided, the default mode is `system`, which means the app will use the system preference when users first visit the site.
+
+To set a different default mode, pass the `defaultMode` prop to the ThemeProvider component:
+
+```js
+<ThemeProvider theme={theme} defaultMode="dark">
+```
+
+:::info
+The `defaultMode` value can be `'light'`, `'dark'`, or `'system'`.
+:::
+
 ## Styling in dark mode
 
 Use the `theme.applyStyles` utility to apply styles for a specific mode.
