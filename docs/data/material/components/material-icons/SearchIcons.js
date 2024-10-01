@@ -165,6 +165,7 @@ function Icon(props) {
     const root = /** @type {SVGElement} */ (rootRef.current);
     if (isElmVisible(root, margin)) {
       setIsVisible(true);
+      return () => {};
     }
     const observer = new IntersectionObserver(
       (entries) => {
@@ -216,7 +217,7 @@ const Icons = React.memo(function Icons(props) {
           icon={icon}
           onOpenClick={handleOpenClick}
           // Render the first 50 icons immediately as they would be visible on page load
-          initiallyVisible={i % 2 === 0}
+          initiallyVisible={i < 50}
         />
       ))}
     </div>
