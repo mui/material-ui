@@ -107,6 +107,15 @@ module.exports = function plugin({ types: t }, { errorCodesPath, missingError = 
         if (!newExpressionPath.get('callee').isIdentifier({ name: 'Error' })) {
           return;
         }
+
+        if (
+          !newExpressionPath.node.leadingComments?.some((comment) =>
+            comment.value.includes('mui-minify-error'),
+          )
+        ) {
+          return;
+        }
+
         const messagePath = newExpressionPath.get('arguments')[0];
         if (!messagePath) {
           return;

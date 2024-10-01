@@ -4,7 +4,7 @@
 // We only handle the first word.
 export default function capitalize(string: string): string {
   if (typeof string !== 'string') {
-    throw new Error('MUI: `capitalize(string)` expects a string argument.');
+    throw /* mui-minify-error */ new Error('MUI: `capitalize(string)` expects a string argument.');
   }
 
   return string.charAt(0).toUpperCase() + string.slice(1);

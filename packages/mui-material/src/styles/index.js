@@ -19,7 +19,7 @@ export { unstable_createBreakpoints } from '@mui/system/createBreakpoints';
 // TODO: Remove this function in v6.
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function experimental_sx() {
-  throw new Error(
+  throw /* mui-minify-error */ new Error(
     'MUI: The `experimental_sx` has been moved to `theme.unstable_sx`.' +
       'For more details, see https://github.com/mui/material-ui/pull/35150.',
   );

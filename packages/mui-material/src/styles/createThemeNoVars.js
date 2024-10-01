@@ -24,7 +24,7 @@ function createThemeNoVars(options = {}, ...args) {
   } = options;
 
   if (options.vars) {
-    throw new Error(
+    throw /* mui-minify-error */ new Error(
       'MUI: `vars` is a private field used for CSS variables support.\n' +
         'Please use another name.',
     );
