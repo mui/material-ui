@@ -283,10 +283,8 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     showZero,
   });
 
-  const anchorOriginProp = getAnchorOrigin(anchorOriginPropProp);
-
   const prevProps = usePreviousProps({
-    anchorOrigin: anchorOriginProp,
+    anchorOrigin: getAnchorOrigin(anchorOriginPropProp),
     color: colorProp,
     overlap: overlapProp,
     variant: variantProp,
@@ -298,10 +296,11 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   const {
     color = colorProp,
     overlap = overlapProp,
-    anchorOrigin = anchorOriginProp,
+    anchorOrigin: anchorOriginProp,
     variant = variantProp,
   } = invisible ? prevProps : props;
 
+  const anchorOrigin = getAnchorOrigin(anchorOriginProp);
   const displayValue = variant !== 'dot' ? displayValueFromHook : undefined;
 
   const ownerState = {
@@ -311,7 +310,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     max,
     displayValue,
     showZero,
-    anchorOrigin: getAnchorOrigin(anchorOrigin),
+    anchorOrigin,
     color,
     overlap,
     variant,
