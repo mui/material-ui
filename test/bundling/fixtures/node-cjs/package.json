@@ -1,14 +1,15 @@
 {
-  "name": "next-webpack4",
+  "name": "node-esm",
   "version": "1.0.0",
+  "main": "index.js",
+  "type": "commonjs",
   "license": "MIT",
   "scripts": {
-    "prestart": "node ../../scripts/createFixture.js next-webpack4",
-    "start": "NODE_OPTIONS=--openssl-legacy-provider pnpm next build && concurrently --success first --kill-others \"pnpm next start\" \"node testNextWebpack4Integration\""
+    "prestart": "node ../../scripts/createFixture.js node-cjs",
+    "start": "node node-cjs.fixture.js"
   },
   "dependencies": {
     "@emotion/core": "11.0.0",
-    "@emotion/react": "11.10.4",
     "@emotion/styled": "11.10.4",
     "@mui/material": "workspace:*",
     "@mui/icons-material": "workspace:*",
@@ -17,14 +18,7 @@
     "@mui/styles": "workspace:*",
     "@mui/system": "workspace:*",
     "@mui/utils": "workspace:*",
-    "next": "11.1.4",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-is": "^17.0.2"
-  },
-  "devDependencies": {
-    "concurrently": "7.4.0",
-    "playwright": "1.47.2"
+    "react-is": "18.2.0"
   },
   "pnpm": {
     "overrides": {
