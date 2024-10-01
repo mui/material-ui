@@ -24,6 +24,7 @@ A big thanks to the 13 contributors who made this release possible.
 
 ### Docs
 
+- Add note about minimum required webpack version (#43864) @Janpot
 - Format Pigment CSS docs (#43812) @oliviertassinari
 - Fix visual bug on dashboard template (#43836) @oliviertassinari
 - Fix pigment-css.md syntax error (#43837) @kdichev
