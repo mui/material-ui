@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
-import { darken, lighten } from '@mui/system/colorManipulator';
 import capitalize from '../utils/capitalize';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import SwitchBase from '../internal/SwitchBase';
@@ -172,8 +171,8 @@ const SwitchSwitchBase = styled(SwitchBase, {
                   ? theme.vars.palette.Switch[`${color}DisabledColor`]
                   : `${
                       theme.palette.mode === 'light'
-                        ? lighten(theme.palette[color].main, 0.62)
-                        : darken(theme.palette[color].main, 0.55)
+                        ? theme.lighten(theme.palette[color].main, 0.62)
+                        : theme.darken(theme.palette[color].main, 0.55)
                     }`,
               },
             },
