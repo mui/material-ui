@@ -138,12 +138,12 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
     getSlotProps: (otherHandlers: EventHandlers) => {
       return getBackdropProps({
         ...otherHandlers,
-        onClick: (e: React.MouseEvent) => {
+        onClick: (event: React.MouseEvent) => {
           if (onBackdropClick) {
-            onBackdropClick(e);
+            onBackdropClick(event);
           }
           if (otherHandlers?.onClick) {
-            otherHandlers.onClick(e);
+            otherHandlers.onClick(event);
           }
         },
       });
