@@ -162,12 +162,12 @@ function CustomListboxRef() {
 <Autocomplete
   renderInput={(params) => <TextField {...params} />}
   options={['one', 'two', 'three']}
-  onKeyDown={(e) => {
+  onKeyDown={(event) => {
     expectType<
       React.KeyboardEvent<HTMLDivElement> & {
         defaultMuiPrevented?: boolean;
       },
-      typeof e
-    >(e);
+      typeof event
+    >(event);
   }}
 />;

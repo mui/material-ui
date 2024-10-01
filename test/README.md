@@ -142,7 +142,7 @@ Here is an [example](https://github.com/mui/material-ui/blob/814fb60bbd8e500517b
 
 `pnpm test:coverage:html`
 
-When running this command you should get under `coverage/index.html` a full coverage report in HTML format. This is created using [Istanbul](https://istanbul-js.org)'s HTML reporter and gives good data such as line, branch and function coverage.
+When running this command you should get under `coverage/index.html` a full coverage report in HTML format. This is created using [Istanbul](https://istanbul.js.org)'s HTML reporter and gives good data such as line, branch and function coverage.
 
 ### DOM API level
 
