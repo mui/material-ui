@@ -5,7 +5,6 @@ import clsx from 'clsx';
 import integerPropType from '@mui/utils/integerPropType';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
 import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';
@@ -370,28 +369,25 @@ const AutocompleteListbox = styled('div', {
         backgroundColor: (theme.vars || theme).palette.action.focus,
       },
       '&[aria-selected="true"]': {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-          : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+        backgroundColor: theme.alpha(
+          (theme.vars || theme).palette.primary.main,
+          theme.palette.action.selectedOpacity,
+        ),
         [`&.${autocompleteClasses.focused}`]: {
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-            : alpha(
-                theme.palette.primary.main,
-                theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-              ),
+          backgroundColor: theme.alpha(
+            (theme.vars || theme).palette.primary.main,
+            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+          ),
           // Reset on touch devices, it doesn't add specificity
           '@media (hover: none)': {
             backgroundColor: (theme.vars || theme).palette.action.selected,
           },
         },
         [`&.${autocompleteClasses.focusVisible}`]: {
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-            : alpha(
-                theme.palette.primary.main,
-                theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-              ),
+          backgroundColor: theme.alpha(
+            (theme.vars || theme).palette.primary.main,
+            theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+          ),
         },
       },
     },

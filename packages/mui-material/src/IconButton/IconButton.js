@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
@@ -58,9 +57,10 @@ const IconButtonRoot = styled(ButtonBase, {
         props: { disableRipple: false },
         style: {
           '&:hover': {
-            backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
-              : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+            backgroundColor: theme.alpha(
+              (theme.vars || theme).palette.action.active,
+              theme.palette.action.hoverOpacity,
+            ),
             // Reset on touch devices, it doesn't add specificity
             '@media (hover: none)': {
               backgroundColor: 'transparent',
@@ -116,12 +116,10 @@ const IconButtonRoot = styled(ButtonBase, {
           props: { color, disableRipple: false },
           style: {
             '&:hover': {
-              backgroundColor: theme.vars
-                ? `rgba(${(theme.vars || theme).palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                : alpha(
-                    (theme.vars || theme).palette[color].main,
-                    theme.palette.action.hoverOpacity,
-                  ),
+              backgroundColor: theme.alpha(
+                (theme.vars || theme).palette[color].main,
+                theme.palette.action.hoverOpacity,
+              ),
               // Reset on touch devices, it doesn't add specificity
               '@media (hover: none)': {
                 backgroundColor: 'transparent',

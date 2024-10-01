@@ -31,7 +31,8 @@ export default function transformer(file, api, options) {
       if (path.node.test.object.name === 'theme' && path.node.test.property.name === 'vars') {
         if (
           path.node.alternate.type === 'CallExpression' &&
-          path.node.alternate.callee.name === 'alpha'
+          path.node.alternate.callee.name === 'alpha' &&
+          path.node.consequent.type === 'TemplateLiteral'
         ) {
           path.replace(
             j.callExpression(j.memberExpression(j.identifier('theme'), j.identifier('alpha')), [

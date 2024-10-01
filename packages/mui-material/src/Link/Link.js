@@ -2,7 +2,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { alpha } from '@mui/system/colorManipulator';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
 import isFocusVisible from '@mui/utils/isFocusVisible';
@@ -100,25 +99,19 @@ const LinkRoot = styled(Typography, {
           .map(([color]) => ({
             props: { underline: 'always', color },
             style: {
-              '--Link-underlineColor': theme.vars
-                ? `rgba(${theme.vars.palette[color].mainChannel} / 0.4)`
-                : alpha(theme.palette[color].main, 0.4),
+              '--Link-underlineColor': theme.alpha((theme.vars || theme).palette[color].main, 0.4),
             },
           })),
         {
           props: { underline: 'always', color: 'textPrimary' },
           style: {
-            '--Link-underlineColor': theme.vars
-              ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.4)`
-              : alpha(theme.palette.text.primary, 0.4),
+            '--Link-underlineColor': theme.alpha((theme.vars || theme).palette.text.primary, 0.4),
           },
         },
         {
           props: { underline: 'always', color: 'textSecondary' },
           style: {
-            '--Link-underlineColor': theme.vars
-              ? `rgba(${theme.vars.palette.text.secondaryChannel} / 0.4)`
-              : alpha(theme.palette.text.secondary, 0.4),
+            '--Link-underlineColor': theme.alpha((theme.vars || theme).palette.text.secondary, 0.4),
           },
         },
         {

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
 import SwitchBase from '../internal/SwitchBase';
 import RadioButtonIcon from './RadioButtonIcon';
 import capitalize from '../utils/capitalize';
@@ -56,9 +55,10 @@ const RadioRoot = styled(SwitchBase, {
         props: { color: 'default', disabled: false, disableRipple: false },
         style: {
           '&:hover': {
-            backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
-              : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+            backgroundColor: theme.alpha(
+              (theme.vars || theme).palette.action.active,
+              theme.palette.action.hoverOpacity,
+            ),
           },
         },
       },
@@ -68,9 +68,10 @@ const RadioRoot = styled(SwitchBase, {
           props: { color, disabled: false, disableRipple: false },
           style: {
             '&:hover': {
-              backgroundColor: theme.vars
-                ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
+              backgroundColor: theme.alpha(
+                (theme.vars || theme).palette[color].main,
+                theme.palette.action.hoverOpacity,
+              ),
             },
           },
         })),
