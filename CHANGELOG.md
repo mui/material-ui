@@ -31,7 +31,7 @@ A big thanks to the 13 contributors who made this release possible.
 - Fix 301 to chromium (#43809) @oliviertassinari
 - [joy-ui] Add missing ComponentLinkHeader components (#43865) @samuelsycamore
 - [Modal] Remove unnecessary type assertion (#43825) @ZeeshanTamboli
-- [table] Stabilize random series in virtualized table demo (#43744) @Janpot
+- [Table] Stabilize random series in virtualized table demo (#43744) @Janpot
 - [system] Add migration guide link to `@mui/styles` pages (#43833) @samuelsycamore
 
 ### Core
