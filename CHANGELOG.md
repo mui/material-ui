@@ -53,6 +53,8 @@ A big thanks to the 13 contributors who made this release possible.
 - [test] Point Istanbul to correct URL (#43935) @sai6855
 - [test] Sync React.version parse logic with codebase (#43820) @oliviertassinari
 - [website] Add 'Row spanning' (#43831) @oliviertassinari
+- [website] Improve Next roles section (#43822) @oliviertassinari
+- [website] Open the xCharts, eXplore and X general react engineer roles (#43805) @DanailH
 
 All contributors of this release in alphabetical order: @albarv340, @appleSimple, @BrianWoolfolk, @DanailH, @Janpot, @kdichev, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @wilhelmlofsten, @yash49, @ZeeshanTamboli
 
