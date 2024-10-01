@@ -362,8 +362,8 @@ Badge.propTypes /* remove-proptypes */ = {
    * }
    */
   anchorOrigin: PropTypes.shape({
-    horizontal: PropTypes.oneOf(['left', 'right']).isRequired,
-    vertical: PropTypes.oneOf(['bottom', 'top']).isRequired,
+    horizontal: PropTypes.oneOf(['left', 'right']),
+    vertical: PropTypes.oneOf(['bottom', 'top']),
   }),
   /**
    * The content rendered within the badge.
