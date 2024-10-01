@@ -43,8 +43,10 @@ export default defineConfig({
       sourceMap: true,
       displayName: true,
     }),
-    Pages(),
     splitVendorChunkPlugin(),
+    Pages({
+      exclude: ['**/*.test.*'],
+    }),
     nodePolyfills(),
   ],
 });
