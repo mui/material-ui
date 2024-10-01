@@ -309,7 +309,7 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
   /**
    * The selector to generate the global CSS variables (non-color-scheme related)
    * @default ':root'
-   * @example ':host' // (for shadow DOM) 
+   * @example ':host' // (for shadow DOM)
    * @see https://mui.com/material-ui/customization/shadow-dom/#3-css-theme-variables-optional
    */
   rootSelector?: string;
