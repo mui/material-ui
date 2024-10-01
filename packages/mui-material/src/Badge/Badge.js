@@ -242,6 +242,13 @@ const BadgeBadge = styled('span', {
   })),
 );
 
+function getAnchorOrigin(anchorOrigin) {
+  return {
+    vertical: anchorOrigin?.vertical ?? 'top',
+    horizontal: anchorOrigin?.horizontal ?? 'right',
+  };
+}
+
 const Badge = React.forwardRef(function Badge(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiBadge' });
   const {
@@ -276,10 +283,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     showZero,
   });
 
-  const anchorOriginProp = {
-    vertical: anchorOriginPropProp?.vertical ?? 'top',
-    horizontal: anchorOriginPropProp?.horizontal ?? 'right',
-  };
+  const anchorOriginProp = getAnchorOrigin(anchorOriginPropProp);
 
   const prevProps = usePreviousProps({
     anchorOrigin: anchorOriginProp,
@@ -307,7 +311,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     max,
     displayValue,
     showZero,
-    anchorOrigin,
+    anchorOrigin: getAnchorOrigin(anchorOrigin),
     color,
     overlap,
     variant,
