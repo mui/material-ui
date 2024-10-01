@@ -19,5 +19,17 @@
   "18": "MUI: The provided shorthand %s is invalid. The format should be `@<breakpoint | number>` or `@<breakpoint | number>/<container>`.\nFor example, `@sm` or `@600` or `@40rem/sidebar`.",
   "19": "MUI: The `experimental_sx` has been moved to `theme.unstable_sx`.For more details, see https://github.com/mui/material-ui/pull/35150.",
   "20": "MUI: `vars` is a private field used for CSS variables support.\nPlease use another name.",
-  "21": "MUI: The `colorSchemes.%s` option is either missing or invalid."
+  "21": "MUI: The `colorSchemes.%s` option is either missing or invalid.",
+  "22": "MUI: The Accordion doesn't accept a Fragment as a child. Consider providing an array instead.",
+  "23": "MUI: Expected the first child of Accordion to be a valid element.",
+  "24": "MUI: Combining `raised={true}` with `variant=\"outlined\"` has no effect.",
+  "25": "MUI: Either `children`, `image`, `src` or `component` prop must be specified.",
+  "26": "MUI: You have provided the `disableShrink` prop with a variant other than `indeterminate`. This will have no effect.",
+  "27": "MUI: You used an element after ListItemSecondaryAction. For ListItem to detect that it has a secondary action you must pass it as the last child to ListItem.",
+  "28": "MUI: Combining `elevation={%s}` with `variant=\"%s\"` has no effect. Either use `elevation={0}` or use a different `variant`.",
+  "29": "MUI: You need to use the `getAriaLabel` prop instead of `aria-label` when using a range slider.",
+  "30": "MUI: You need to use the `getAriaValueText` prop instead of `aria-valuetext` when using a range slider.",
+  "31": "MUI: The page prop of a TablePagination is out of range (0 to %s, but page is %s).",
+  "32": "Animation cancelled",
+  "33": "Element already at target position"
 }
