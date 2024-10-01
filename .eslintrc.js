@@ -229,8 +229,8 @@ module.exports = {
         selector: 'ExpressionStatement[expression.value="use client"] ~ ExportAllDeclaration',
       },
       {
-        selector: "CallExpression[callee.name='Error']",
         message: 'Calling Error without new is forbidden. Use new Error() instead.',
+        selector: "CallExpression[callee.name='Error']",
       },
     ],
 
