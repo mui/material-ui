@@ -22,7 +22,7 @@
     "@styled-system/css": "^5.1.5",
     "benchmark": "^2.1.4",
     "docs": "workspace:^",
-    "express": "^4.19.2",
+    "express": "^4.21.0",
     "fs-extra": "^11.2.0",
     "jss": "^10.10.0",
     "playwright": "^1.47.2",
