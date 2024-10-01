@@ -4,13 +4,12 @@
 
 :::error
 `@mui/styles` was deprecated with the release of MUI Core v5 in late 2021.
-It depended on [JSS](https://cssinjs.org/) as a styling solution, which is no longer used in `@mui/material`.
-
-`@mui/styles` is not compatible with [React.StrictMode](https://react.dev/reference/react/StrictMode) or React 18, and it will not be updated.
+It is not compatible with [React.StrictMode](https://react.dev/reference/react/StrictMode) or React 18+, and it will not be updated.
 
 This documentation remains here for those working on legacy projects, but we **strongly discourage** you from using `@mui/styles` when creating a new app with Material UI—you _will_ face unresolvable dependency issues.
 
 Please use [`@mui/system`](/system/getting-started/) instead.
+See the [v5 migration docs](/material-ui/migration/migrating-from-jss/) for details on how to migrate away from `@mui/styles`.
 :::
 
 ## Theming

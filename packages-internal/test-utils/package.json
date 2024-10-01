@@ -48,15 +48,15 @@
     "jsdom": "^24.0.0",
     "lodash": "^4.17.21",
     "mocha": "^10.7.3",
-    "playwright": "^1.47.1",
+    "playwright": "^1.47.2",
     "prop-types": "^15.8.1",
     "sinon": "^18.0.1"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.19",
+    "@types/chai": "^4.3.20",
     "@types/chai-dom": "^1.11.3",
     "@types/format-util": "^1.0.4",
-    "@types/prop-types": "^15.7.12",
+    "@types/prop-types": "^15.7.13",
     "@types/react": "^18.3.4",
     "@types/react-dom": "^18.3.0",
     "@types/sinon": "^17.0.3",
