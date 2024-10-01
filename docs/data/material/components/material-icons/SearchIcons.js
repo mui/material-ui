@@ -163,8 +163,9 @@ function Icon(props) {
   React.useEffect(() => {
     const margin = 200;
     const root = /** @type {SVGElement} */ (rootRef.current);
-    if (isElmVisible(root, margin)) {
+    if (initiallyVisible || isElmVisible(root, margin)) {
       setIsVisible(true);
+      return () => {};
     }
     const observer = new IntersectionObserver(
       (entries) => {
@@ -178,7 +179,7 @@ function Icon(props) {
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [initiallyVisible]);
 
   /* eslint-disable jsx-a11y/click-events-have-key-events */
   return (
