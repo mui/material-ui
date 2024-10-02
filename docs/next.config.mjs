@@ -56,7 +56,8 @@ export default withDocsInfra({
       // We only care about Node runtime at this point.
       (options.nextRuntime === undefined || options.nextRuntime === 'nodejs')
     ) {
-      const [nextExternals, ...externals] = config.externals;
+      const externals = config.externals.slice(0, config.externals.length - 2);
+      const nextExternals = config.externals.at(-1);
 
       config.externals = [
         // @ts-ignore
