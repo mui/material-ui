@@ -120,6 +120,10 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
     el: HTMLElement | SVGElement;
     value: string;
   }> = [];
+
+  // We always try to apply the scrollLock to body in case disablePortal was used
+  // on the modal and container is deeply nested. This method seems to block
+  // scrolling on all containers so it still works with disablePortal
   const container = ownerDocument(containerInfo.container).body;
 
   if (!props.disableScrollLock) {
