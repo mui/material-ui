@@ -235,7 +235,7 @@ module.exports = /** @type {Config} */ ({
         selector: 'ExpressionStatement[expression.value="use client"] ~ ExportAllDeclaration',
       },
       {
-        message: 'Do not call Error without `new`. Use `new Error()` instead.',
+        message: 'Do not call `Error(...)` without `new`. Use `new Error(...)` instead.',
         selector: "CallExpression[callee.name='Error']",
       },
     ],
