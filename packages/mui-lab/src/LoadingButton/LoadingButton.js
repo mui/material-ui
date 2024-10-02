@@ -8,7 +8,7 @@ const warn = () => {
   if (!warnedOnce) {
     console.warn(
       [
-        'MUI: The Button component was moved from the lab to the core.',
+        'MUI: The LoadingButton component functionality is now part of the Button component from core.',
         '',
         "You should use `import { Button } from '@mui/material'`",
         "or `import Button from '@mui/material/Button'`",
