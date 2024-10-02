@@ -120,7 +120,7 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
     el: HTMLElement | SVGElement;
     value: string;
   }> = [];
-  const container = containerInfo.container;
+  const container = ownerDocument(containerInfo.container).body;
 
   if (!props.disableScrollLock) {
     if (isOverflowing(container)) {
