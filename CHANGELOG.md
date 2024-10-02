@@ -24,6 +24,7 @@ A big thanks to the 13 contributors who made this release possible.
 
 ### Docs
 
+- Update theme toggle demo (#43956) @Janpot
 - Add note about minimum required webpack version (#43864) @Janpot
 - Format Pigment CSS docs (#43812) @oliviertassinari
 - Fix visual bug on dashboard template (#43836) @oliviertassinari
