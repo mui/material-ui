@@ -168,8 +168,44 @@ The package [`material-ui-confirm`](https://github.com/jonatanklosko/material-ui
 
 Follow the [Modal accessibility section](/material-ui/react-modal/#accessibility).
 
-## Experimental APIs
+## Toolpad (Beta)
 
-### Imperative API
+### useDialogs
 
-You can create and manipulate dialogs imperatively with the [`useDialog`](https://mui.com/toolpad/core/react-use-dialogs/) API in `@toolpad/core`. This API provides state management for opening and closing dialogs and for passing data to the dialog and back. It allows for stacking multiple dialogs. It also provides themed alternatives for `window.alert`, `window.confirm` and `window.prompt`.
+You can create and manipulate dialogs imperatively with the [`useDialogs()`](https://mui.com/toolpad/core/react-use-dialogs/) API in `@toolpad/core`. This API provides the following features:
+
+- state management for opening and closing dialogs
+- reading data from and passing data to dialogs
+- stacking multiple dialogs
+- themed alternatives for `window.alert()`, `window.confirm`() and `window.prompt()`
+
+The following example demonstrates these features:
+
+{{"demo": "ToolpadDialogsNoSnap.js", "defaultCodeOpen": false}}
+
+```tsx
+const handleDelete = async () => {
+  const id = await dialogs.prompt('Enter the ID to delete', {
+    okText: 'Delete',
+    cancelText: 'Cancel',
+  });
+
+  if (id) {
+    const deleteConfirmed = await dialogs.confirm(
+      `Are you sure you want to delete "${id}"?`,
+    );
+    if (deleteConfirmed) {
+      try {
+        setIsDeleting(true);
+        await mockApiDelete(id);
+        dialogs.alert('Deleted!');
+      } catch (error) {
+        const message = error instanceof Error ? error.message : 'Unknown error';
+        await dialogs.open(MyCustomDialog, { id, error: message });
+      } finally {
+        setIsDeleting(false);
+      }
+    }
+  }
+};
+```
