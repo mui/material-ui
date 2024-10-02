@@ -82,7 +82,7 @@ export type OptionRootSlotProps<OptionValue> = Simplify<
   UseOptionRootSlotProps & {
     children?: React.ReactNode;
     className: string;
-    ref: React.Ref<HTMLElement>;
+    ref?: React.Ref<HTMLElement>;
     ownerState: OptionOwnerState<OptionValue>;
   }
 >;
