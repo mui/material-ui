@@ -24,11 +24,32 @@
     "import Toolbar from '@mui/material/Toolbar';",
     "import { Toolbar } from '@mui/material';"
   ],
-  "styles": {
-    "classes": ["root", "gutters", "regular", "dense"],
-    "globalClasses": {},
-    "name": "MuiToolbar"
-  },
+  "classes": [
+    {
+      "key": "dense",
+      "className": "MuiToolbar-dense",
+      "description": "Styles applied to the root element if `variant=\"dense\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "gutters",
+      "className": "MuiToolbar-gutters",
+      "description": "Styles applied to the root element unless `disableGutters={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "regular",
+      "className": "MuiToolbar-regular",
+      "description": "Styles applied to the root element if `variant=\"regular\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiToolbar-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiToolbar",

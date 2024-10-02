@@ -28,21 +28,62 @@
   },
   "name": "Icon",
   "imports": ["import Icon from '@mui/material/Icon';", "import { Icon } from '@mui/material';"],
-  "styles": {
-    "classes": [
-      "root",
-      "colorPrimary",
-      "colorSecondary",
-      "colorAction",
-      "colorError",
-      "colorDisabled",
-      "fontSizeInherit",
-      "fontSizeSmall",
-      "fontSizeLarge"
-    ],
-    "globalClasses": {},
-    "name": "MuiIcon"
-  },
+  "classes": [
+    {
+      "key": "colorAction",
+      "className": "MuiIcon-colorAction",
+      "description": "Styles applied to the root element if `color=\"action\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorDisabled",
+      "className": "MuiIcon-colorDisabled",
+      "description": "Styles applied to the root element if `color=\"disabled\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorError",
+      "className": "MuiIcon-colorError",
+      "description": "Styles applied to the root element if `color=\"error\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiIcon-colorPrimary",
+      "description": "Styles applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSecondary",
+      "className": "MuiIcon-colorSecondary",
+      "description": "Styles applied to the root element if `color=\"secondary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "fontSizeInherit",
+      "className": "MuiIcon-fontSizeInherit",
+      "description": "Styles applied to the root element if `fontSize=\"inherit\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "fontSizeLarge",
+      "className": "MuiIcon-fontSizeLarge",
+      "description": "Styles applied to the root element if `fontSize=\"large\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "fontSizeSmall",
+      "className": "MuiIcon-fontSizeSmall",
+      "description": "Styles applied to the root element if `fontSize=\"small\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiIcon-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiIcon",

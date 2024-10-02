@@ -22,11 +22,52 @@
     "import TableSortLabel from '@mui/material/TableSortLabel';",
     "import { TableSortLabel } from '@mui/material';"
   ],
-  "styles": {
-    "classes": ["root", "active", "icon", "iconDirectionDesc", "iconDirectionAsc"],
-    "globalClasses": { "active": "Mui-active" },
-    "name": "MuiTableSortLabel"
-  },
+  "classes": [
+    {
+      "key": "active",
+      "className": "Mui-active",
+      "description": "State class applied to the root element if `active={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "directionAsc",
+      "className": "MuiTableSortLabel-directionAsc",
+      "description": "Styles applied to the root element if `direction=\"asc\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "directionDesc",
+      "className": "MuiTableSortLabel-directionDesc",
+      "description": "Styles applied to the root element if `direction=\"desc\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "icon",
+      "className": "MuiTableSortLabel-icon",
+      "description": "Styles applied to the icon component.",
+      "isGlobal": false
+    },
+    {
+      "key": "iconDirectionAsc",
+      "className": "MuiTableSortLabel-iconDirectionAsc",
+      "description": "Styles applied to the icon component if `direction=\"asc\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "iconDirectionDesc",
+      "className": "MuiTableSortLabel-iconDirectionDesc",
+      "description": "Styles applied to the icon component if `direction=\"desc\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "root",
+      "className": "MuiTableSortLabel-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiTableSortLabel",

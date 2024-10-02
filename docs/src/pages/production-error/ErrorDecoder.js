@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import { renderInline as renderInlineMarkdown } from '@mui/markdown';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { renderMarkdown } from '@mui/internal-markdown';
+import { MarkdownElement } from '@mui/docs/MarkdownElement';
 
 const ErrorMessageSection = styled('div')({
   // reset display: block from Demo
@@ -86,7 +86,7 @@ export default function ErrorDecoder() {
       return div.innerHTML;
     });
 
-    return renderInlineMarkdown(readableMessage);
+    return renderMarkdown(readableMessage);
   }, [args, code, data.errorCodes]);
 
   if (data.state === 'loading') {

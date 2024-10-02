@@ -2,6 +2,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import getReactElementRef from '@mui/utils/getReactElementRef';
 import {
   exactProp,
   HTMLElementType,
@@ -33,8 +34,11 @@ const Portal = React.forwardRef(function Portal(
 ) {
   const { children, container, disablePortal = false } = props;
   const [mountNode, setMountNode] = React.useState<ReturnType<typeof getContainer>>(null);
-  // @ts-expect-error TODO upstream fix
-  const handleRef = useForkRef(React.isValidElement(children) ? children.ref : null, forwardedRef);
+
+  const handleRef = useForkRef(
+    React.isValidElement(children) ? getReactElementRef(children) : null,
+    forwardedRef,
+  );
 
   useEnhancedEffect(() => {
     if (!disablePortal) {
@@ -71,10 +75,10 @@ const Portal = React.forwardRef(function Portal(
 }) as React.ForwardRefExoticComponent<PortalProps & React.RefAttributes<Element>>;
 
 Portal.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The children to render into the `container`.
    */
@@ -82,6 +86,9 @@ Portal.propTypes /* remove-proptypes */ = {
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
+   *
+   * You can also provide a callback, which is called in a React layout effect.
+   * This lets you set the container from a ref, and also makes server-side rendering possible.
    *
    * By default, it uses the body of the top-level document object,
    * so it's simply `document.body` most of the time.

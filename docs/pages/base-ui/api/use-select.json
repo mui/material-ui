@@ -9,6 +9,10 @@
     "buttonRef": {
       "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
     },
+    "componentName": {
+      "type": { "name": "string", "description": "string" },
+      "default": "'useSelect'"
+    },
     "defaultOpen": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
     "defaultValue": {
       "type": {
@@ -24,11 +28,18 @@
       },
       "default": "defaultOptionStringifier"
     },
+    "getSerializedValue": {
+      "type": {
+        "name": "(option: SelectValue&lt;SelectOption&lt;OptionValue&gt;, Multiple&gt;) =&gt; React.InputHTMLAttributes&lt;HTMLInputElement&gt;[&#39;value&#39;]",
+        "description": "(option: SelectValue&lt;SelectOption&lt;OptionValue&gt;, Multiple&gt;) =&gt; React.InputHTMLAttributes&lt;HTMLInputElement&gt;[&#39;value&#39;]"
+      }
+    },
     "listboxId": { "type": { "name": "string", "description": "string" } },
     "listboxRef": {
       "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
     },
     "multiple": { "type": { "name": "Multiple", "description": "Multiple" }, "default": "false" },
+    "name": { "type": { "name": "string", "description": "string" } },
     "onChange": {
       "type": {
         "name": "(event: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null, value: SelectValue&lt;OptionValue, Multiple&gt;) =&gt; void",
@@ -47,10 +58,11 @@
     "open": { "type": { "name": "boolean", "description": "boolean" } },
     "options": {
       "type": {
-        "name": "SelectOptionDefinition&lt;OptionValue&gt;[]",
-        "description": "SelectOptionDefinition&lt;OptionValue&gt;[]"
+        "name": "ReadonlyArray&lt;SelectOptionDefinition&lt;OptionValue&gt;&gt;",
+        "description": "ReadonlyArray&lt;SelectOptionDefinition&lt;OptionValue&gt;&gt;"
       }
     },
+    "required": { "type": { "name": "boolean", "description": "boolean" } },
     "value": {
       "type": {
         "name": "SelectValue&lt;OptionValue, Multiple&gt;",
@@ -81,22 +93,29 @@
     "disabled": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "dispatch": {
       "type": {
-        "name": "(action: ListAction&lt;Value&gt; | SelectAction) =&gt; void",
-        "description": "(action: ListAction&lt;Value&gt; | SelectAction) =&gt; void"
+        "name": "(action: ListAction&lt;Value&gt; | SelectAction&lt;Value&gt;) =&gt; void",
+        "description": "(action: ListAction&lt;Value&gt; | SelectAction&lt;Value&gt;) =&gt; void"
       },
       "required": true
     },
     "getButtonProps": {
       "type": {
-        "name": "&lt;OtherHandlers extends EventHandlers = {}&gt;(otherHandlers?: OtherHandlers) =&gt; UseSelectButtonSlotProps&lt;OtherHandlers&gt;",
-        "description": "&lt;OtherHandlers extends EventHandlers = {}&gt;(otherHandlers?: OtherHandlers) =&gt; UseSelectButtonSlotProps&lt;OtherHandlers&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSelectButtonSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSelectButtonSlotProps&lt;ExternalProps&gt;"
+      },
+      "required": true
+    },
+    "getHiddenInputProps": {
+      "type": {
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSelectHiddenInputSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSelectHiddenInputSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },
     "getListboxProps": {
       "type": {
-        "name": "&lt;OtherHandlers extends EventHandlers = {}&gt;(otherHandlers?: OtherHandlers) =&gt; UseSelectListboxSlotProps&lt;OtherHandlers&gt;",
-        "description": "&lt;OtherHandlers extends EventHandlers = {}&gt;(otherHandlers?: OtherHandlers) =&gt; UseSelectListboxSlotProps&lt;OtherHandlers&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSelectListboxSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSelectListboxSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },

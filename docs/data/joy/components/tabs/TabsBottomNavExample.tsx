@@ -4,7 +4,7 @@ import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Tabs from '@mui/joy/Tabs';
 import TabList from '@mui/joy/TabList';
 import Tab, { tabClasses } from '@mui/joy/Tab';
-import HomeOutlined from '@mui/icons-material/HomeOutlined';
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Search from '@mui/icons-material/Search';
 import Person from '@mui/icons-material/Person';
@@ -17,12 +17,12 @@ export default function TabsBottomNavExample() {
       sx={{
         flexGrow: 1,
         m: -3,
-        p: 3,
-        py: 5,
+        p: 4,
         borderTopLeftRadius: '12px',
         borderTopRightRadius: '12px',
-        bgcolor: `${colors[index]}.500`,
+        bgcolor: `${'var(--colors-index)'}.500`,
       }}
+      style={{ '--colors-index': colors[index] } as any}
     >
       <Tabs
         size="lg"
@@ -31,30 +31,36 @@ export default function TabsBottomNavExample() {
         onChange={(event, value) => setIndex(value as number)}
         sx={(theme) => ({
           p: 1,
-          borderRadius: '24px',
+          borderRadius: 16,
           maxWidth: 400,
           mx: 'auto',
           boxShadow: theme.shadow.sm,
           '--joy-shadowChannel': theme.vars.palette[colors[index]].darkChannel,
           [`& .${tabClasses.root}`]: {
-            whiteSpace: 'nowrap',
+            py: 1,
+            flex: 1,
             transition: '0.3s',
             fontWeight: 'md',
-            flex: 1,
+            fontSize: 'md',
             [`&:not(.${tabClasses.selected}):not(:hover)`]: {
-              opacity: 0.72,
+              opacity: 0.7,
             },
           },
         })}
       >
-        <TabList variant="plain" disableUnderline sx={{ borderRadius: 'xl', p: 0 }}>
+        <TabList
+          variant="plain"
+          size="sm"
+          disableUnderline
+          sx={{ borderRadius: 'lg', p: 0 }}
+        >
           <Tab
             disableIndicator
             orientation="vertical"
             {...(index === 0 && { color: colors[0] })}
           >
             <ListItemDecorator>
-              <HomeOutlined />
+              <HomeRoundedIcon />
             </ListItemDecorator>
             Home
           </Tab>

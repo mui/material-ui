@@ -28,25 +28,56 @@
     "import FormHelperText from '@mui/material/FormHelperText';",
     "import { FormHelperText } from '@mui/material';"
   ],
-  "styles": {
-    "classes": [
-      "root",
-      "error",
-      "disabled",
-      "sizeSmall",
-      "contained",
-      "focused",
-      "filled",
-      "required"
-    ],
-    "globalClasses": {
-      "error": "Mui-error",
-      "disabled": "Mui-disabled",
-      "focused": "Mui-focused",
-      "required": "Mui-required"
+  "classes": [
+    {
+      "key": "contained",
+      "className": "MuiFormHelperText-contained",
+      "description": "Styles applied to the root element if `variant=\"filled\"` or `variant=\"outlined\"`.",
+      "isGlobal": false
     },
-    "name": "MuiFormHelperText"
-  },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "error",
+      "className": "Mui-error",
+      "description": "State class applied to the root element if `error={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "filled",
+      "className": "MuiFormHelperText-filled",
+      "description": "State class applied to the root element if `filled={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "focused",
+      "className": "Mui-focused",
+      "description": "State class applied to the root element if `focused={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "required",
+      "className": "Mui-required",
+      "description": "State class applied to the root element if `required={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "root",
+      "className": "MuiFormHelperText-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSmall",
+      "className": "MuiFormHelperText-sizeSmall",
+      "description": "Styles applied to the root element if `size=\"small\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiFormHelperText",

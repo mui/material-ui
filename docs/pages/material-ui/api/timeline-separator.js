@@ -12,7 +12,7 @@ Page.getInitialProps = () => {
   const req = require.context(
     'docs/translations/api-docs/timeline-separator',
     false,
-    /timeline-separator.*.json$/,
+    /\.\/timeline-separator.*.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 

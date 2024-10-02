@@ -4,7 +4,7 @@
     "boundaryCount": { "description": "Number of always visible pages at the beginning and end." },
     "classes": { "description": "Override or extend the styles applied to the component." },
     "color": {
-      "description": "The active color. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#adding-new-colors\">palette customization guide</a>."
+      "description": "The active color. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#custom-colors\">palette customization guide</a>."
     },
     "count": { "description": "The total number of pages." },
     "defaultPage": {
@@ -12,9 +12,9 @@
     },
     "disabled": { "description": "If <code>true</code>, the component is disabled." },
     "getItemAriaLabel": {
-      "description": "Accepts a function which returns a string value that provides a user-friendly name for the current page. This is important for screen reader users.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
+      "description": "Accepts a function which returns a string value that provides a user-friendly name for the current page. This is important for screen reader users.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>.",
       "typeDescriptions": {
-        "type": "The link or button type to format (&#39;page&#39; | &#39;first&#39; | &#39;last&#39; | &#39;next&#39; | &#39;previous&#39;). Defaults to &#39;page&#39;.",
+        "type": "The link or button type to format (&#39;page&#39; | &#39;first&#39; | &#39;last&#39; | &#39;next&#39; | &#39;previous&#39; | &#39;start-ellipsis&#39; | &#39;end-ellipsis&#39;). Defaults to &#39;page&#39;.",
         "page": "The page number to format.",
         "selected": "If true, the current page is selected."
       }
@@ -28,7 +28,9 @@
         "page": "The page selected."
       }
     },
-    "page": { "description": "The current page." },
+    "page": {
+      "description": "The current page. Unlike <code>TablePagination</code>, which starts numbering from <code>0</code>, this pagination starts from <code>1</code>."
+    },
     "renderItem": {
       "description": "Render the item.",
       "typeDescriptions": { "params": "The props to spread on a PaginationItem." }
@@ -46,17 +48,17 @@
     "variant": { "description": "The variant to use." }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "ul": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the ul element" },
     "outlined": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code>"
     },
+    "root": { "description": "Styles applied to the root element." },
     "text": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"text\"</code>"
-    }
+    },
+    "ul": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the ul element" }
   }
 }

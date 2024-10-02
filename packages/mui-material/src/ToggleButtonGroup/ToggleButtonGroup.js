@@ -3,21 +3,28 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import getValidReactChildren from '@mui/utils/getValidReactChildren';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
-import isValueSelected from './isValueSelected';
 import toggleButtonGroupClasses, {
   getToggleButtonGroupUtilityClass,
 } from './toggleButtonGroupClasses';
+import ToggleButtonGroupContext from './ToggleButtonGroupContext';
+import ToggleButtonGroupButtonContext from './ToggleButtonGroupButtonContext';
+import toggleButtonClasses from '../ToggleButton/toggleButtonClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, orientation, fullWidth, disabled } = ownerState;
 
   const slots = {
-    root: ['root', orientation === 'vertical' && 'vertical', fullWidth && 'fullWidth'],
+    root: ['root', orientation, fullWidth && 'fullWidth'],
     grouped: ['grouped', `grouped${capitalize(orientation)}`, disabled && 'disabled'],
+    firstButton: ['firstButton'],
+    lastButton: ['lastButton'],
+    middleButton: ['middleButton'],
   };
 
   return composeClasses(slots, getToggleButtonGroupUtilityClass, classes);
@@ -35,61 +42,94 @@ const ToggleButtonGroupRoot = styled('div', {
         [`& .${toggleButtonGroupClasses.grouped}`]:
           styles[`grouped${capitalize(ownerState.orientation)}`],
       },
+      {
+        [`& .${toggleButtonGroupClasses.firstButton}`]: styles.firstButton,
+      },
+      {
+        [`& .${toggleButtonGroupClasses.lastButton}`]: styles.lastButton,
+      },
+      {
+        [`& .${toggleButtonGroupClasses.middleButton}`]: styles.middleButton,
+      },
       styles.root,
       ownerState.orientation === 'vertical' && styles.vertical,
       ownerState.fullWidth && styles.fullWidth,
     ];
   },
-})(({ ownerState, theme }) => ({
-  display: 'inline-flex',
-  borderRadius: (theme.vars || theme).shape.borderRadius,
-  ...(ownerState.orientation === 'vertical' && {
-    flexDirection: 'column',
-  }),
-  ...(ownerState.fullWidth && {
-    width: '100%',
-  }),
-  [`& .${toggleButtonGroupClasses.grouped}`]: {
-    ...(ownerState.orientation === 'horizontal'
-      ? {
-          '&:not(:first-of-type)': {
-            marginLeft: -1,
-            borderLeft: '1px solid transparent',
-            borderTopLeftRadius: 0,
-            borderBottomLeftRadius: 0,
+})(
+  memoTheme(({ theme }) => ({
+    display: 'inline-flex',
+    borderRadius: (theme.vars || theme).shape.borderRadius,
+    variants: [
+      {
+        props: { orientation: 'vertical' },
+        style: {
+          flexDirection: 'column',
+          [`& .${toggleButtonGroupClasses.grouped}`]: {
+            [`&.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]:
+              {
+                borderTop: 0,
+                marginTop: 0,
+              },
           },
-          '&:not(:last-of-type)': {
-            borderTopRightRadius: 0,
-            borderBottomRightRadius: 0,
-          },
-          [`&.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]:
+          [`& .${toggleButtonGroupClasses.firstButton},& .${toggleButtonGroupClasses.middleButton}`]:
             {
-              borderLeft: 0,
-              marginLeft: 0,
+              borderBottomLeftRadius: 0,
+              borderBottomRightRadius: 0,
             },
-        }
-      : {
-          '&:not(:first-of-type)': {
-            marginTop: -1,
-            borderTop: '1px solid transparent',
-            borderTopLeftRadius: 0,
-            borderTopRightRadius: 0,
-          },
-          '&:not(:last-of-type)': {
-            borderBottomLeftRadius: 0,
-            borderBottomRightRadius: 0,
-          },
-          [`&.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]:
+          [`& .${toggleButtonGroupClasses.lastButton},& .${toggleButtonGroupClasses.middleButton}`]:
             {
-              borderTop: 0,
-              marginTop: 0,
+              marginTop: -1,
+              borderTop: '1px solid transparent',
+              borderTopLeftRadius: 0,
+              borderTopRightRadius: 0,
             },
-        }),
-  },
-}));
+          [`& .${toggleButtonGroupClasses.lastButton}.${toggleButtonClasses.disabled},& .${toggleButtonGroupClasses.middleButton}.${toggleButtonClasses.disabled}`]:
+            {
+              borderTop: '1px solid transparent',
+            },
+        },
+      },
+      {
+        props: { fullWidth: true },
+        style: {
+          width: '100%',
+        },
+      },
+      {
+        props: { orientation: 'horizontal' },
+        style: {
+          [`& .${toggleButtonGroupClasses.grouped}`]: {
+            [`&.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]:
+              {
+                borderLeft: 0,
+                marginLeft: 0,
+              },
+          },
+          [`& .${toggleButtonGroupClasses.firstButton},& .${toggleButtonGroupClasses.middleButton}`]:
+            {
+              borderTopRightRadius: 0,
+              borderBottomRightRadius: 0,
+            },
+          [`& .${toggleButtonGroupClasses.lastButton},& .${toggleButtonGroupClasses.middleButton}`]:
+            {
+              marginLeft: -1,
+              borderLeft: '1px solid transparent',
+              borderTopLeftRadius: 0,
+              borderBottomLeftRadius: 0,
+            },
+          [`& .${toggleButtonGroupClasses.lastButton}.${toggleButtonClasses.disabled},& .${toggleButtonGroupClasses.middleButton}.${toggleButtonClasses.disabled}`]:
+            {
+              borderLeft: '1px solid transparent',
+            },
+        },
+      },
+    ],
+  })),
+);
 
 const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiToggleButtonGroup' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiToggleButtonGroup' });
   const {
     children,
     className,
@@ -106,30 +146,78 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
   const ownerState = { ...props, disabled, fullWidth, orientation, size };
   const classes = useUtilityClasses(ownerState);
 
-  const handleChange = (event, buttonValue) => {
-    if (!onChange) {
-      return;
+  const handleChange = React.useCallback(
+    (event, buttonValue) => {
+      if (!onChange) {
+        return;
+      }
+
+      const index = value && value.indexOf(buttonValue);
+      let newValue;
+
+      if (value && index >= 0) {
+        newValue = value.slice();
+        newValue.splice(index, 1);
+      } else {
+        newValue = value ? value.concat(buttonValue) : [buttonValue];
+      }
+
+      onChange(event, newValue);
+    },
+    [onChange, value],
+  );
+
+  const handleExclusiveChange = React.useCallback(
+    (event, buttonValue) => {
+      if (!onChange) {
+        return;
+      }
+
+      onChange(event, value === buttonValue ? null : buttonValue);
+    },
+    [onChange, value],
+  );
+
+  const context = React.useMemo(
+    () => ({
+      className: classes.grouped,
+      onChange: exclusive ? handleExclusiveChange : handleChange,
+      value,
+      size,
+      fullWidth,
+      color,
+      disabled,
+    }),
+    [
+      classes.grouped,
+      exclusive,
+      handleExclusiveChange,
+      handleChange,
+      value,
+      size,
+      fullWidth,
+      color,
+      disabled,
+    ],
+  );
+
+  const validChildren = getValidReactChildren(children);
+  const childrenCount = validChildren.length;
+
+  const getButtonPositionClassName = (index) => {
+    const isFirstButton = index === 0;
+    const isLastButton = index === childrenCount - 1;
+
+    if (isFirstButton && isLastButton) {
+      return '';
     }
-
-    const index = value && value.indexOf(buttonValue);
-    let newValue;
-
-    if (value && index >= 0) {
-      newValue = value.slice();
-      newValue.splice(index, 1);
-    } else {
-      newValue = value ? value.concat(buttonValue) : [buttonValue];
+    if (isFirstButton) {
+      return classes.firstButton;
     }
-
-    onChange(event, newValue);
-  };
-
-  const handleExclusiveChange = (event, buttonValue) => {
-    if (!onChange) {
-      return;
+    if (isLastButton) {
+      return classes.lastButton;
     }
-
-    onChange(event, value === buttonValue ? null : buttonValue);
+    return classes.middleButton;
   };
 
   return (
@@ -140,44 +228,38 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
       ownerState={ownerState}
       {...other}
     >
-      {React.Children.map(children, (child) => {
-        if (!React.isValidElement(child)) {
-          return null;
-        }
-
-        if (process.env.NODE_ENV !== 'production') {
-          if (isFragment(child)) {
-            console.error(
-              [
-                "MUI: The ToggleButtonGroup component doesn't accept a Fragment as a child.",
-                'Consider providing an array instead.',
-              ].join('\n'),
-            );
+      <ToggleButtonGroupContext.Provider value={context}>
+        {validChildren.map((child, index) => {
+          if (process.env.NODE_ENV !== 'production') {
+            if (isFragment(child)) {
+              console.error(
+                [
+                  "MUI: The ToggleButtonGroup component doesn't accept a Fragment as a child.",
+                  'Consider providing an array instead.',
+                ].join('\n'),
+              );
+            }
           }
-        }
 
-        return React.cloneElement(child, {
-          className: clsx(classes.grouped, child.props.className),
-          onChange: exclusive ? handleExclusiveChange : handleChange,
-          selected:
-            child.props.selected === undefined
-              ? isValueSelected(child.props.value, value)
-              : child.props.selected,
-          size: child.props.size || size,
-          fullWidth,
-          color: child.props.color || color,
-          disabled: child.props.disabled || disabled,
-        });
-      })}
+          return (
+            <ToggleButtonGroupButtonContext.Provider
+              key={index}
+              value={getButtonPositionClassName(index)}
+            >
+              {child}
+            </ToggleButtonGroupButtonContext.Provider>
+          );
+        })}
+      </ToggleButtonGroupContext.Provider>
     </ToggleButtonGroupRoot>
   );
 });
 
 ToggleButtonGroup.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -193,7 +275,7 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
   /**
    * The color of the button when it is selected.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'standard'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

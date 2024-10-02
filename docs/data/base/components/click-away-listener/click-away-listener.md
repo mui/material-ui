@@ -9,7 +9,7 @@ githubLabel: 'component: ClickAwayListener'
 
 <p class="description">The Click-Away Listener component detects when a click event happens outside of its child element.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
@@ -24,25 +24,11 @@ Click-Away Listener also supports the [Portal](/base-ui/react-portal/) component
 
 ## Component
 
-### Usage
-
-After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
-
 ```jsx
 import { ClickAwayListener } from '@mui/base/ClickAwayListener';
-
-export default function MyApp() {
-  return (
-    <ClickAwayListener>
-      {/* the child listening for a click outside of its container */}
-    </ClickAwayListener>
-  );
-}
 ```
 
-### Basics
-
-The following demo shows how to hide a menu dropdown when users click anywhere else on the page:
+The demo below shows how to hide a menu dropdown when users click anywhere else on the page:
 
 {{"demo": "ClickAway.js"}}
 

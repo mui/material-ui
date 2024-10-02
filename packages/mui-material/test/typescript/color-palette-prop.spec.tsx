@@ -1,5 +1,4 @@
 import * as React from 'react';
-import TimelineDot from '@mui/lab/TimelineDot';
 import {
   Badge,
   Button,
@@ -39,7 +38,6 @@ function TestBaseColorPaletteProp() {
           <Input color={color} />
           <InputLabel color={color} />
           <LinearProgress color={color} />
-          <TimelineDot color={color} />
           <TextField color={color} />
           <Radio color={color} />
           <SvgIcon color={color} />

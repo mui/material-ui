@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, describeConformance, createRenderer, fireEvent, screen } from 'test/utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import MenuItem, { menuItemClasses as classes } from '@mui/material/MenuItem';
 import ButtonBase from '@mui/material/ButtonBase';
 import ListContext from '../List/ListContext';
+import describeConformance from '../../test/describeConformance';
+import * as ripple from '../../test/ripple';
 
 describe('<MenuItem />', () => {
   const { render } = createRenderer();
@@ -27,12 +29,11 @@ describe('<MenuItem />', () => {
     expect(menuitem).to.have.property('tabIndex', -1);
   });
 
-  it('has a ripple when clicked', () => {
+  it('has a ripple when clicked', async () => {
     render(<MenuItem TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }} />);
     const menuitem = screen.getByRole('menuitem');
 
-    // ripple starts on mousedown
-    fireEvent.mouseDown(menuitem);
+    await ripple.startTouch(menuitem);
 
     expect(menuitem.querySelectorAll('.ripple-visible')).to.have.length(1);
   });
@@ -58,18 +59,18 @@ describe('<MenuItem />', () => {
     const events = ['click', 'mouseDown', 'mouseEnter', 'mouseLeave', 'mouseUp', 'touchEnd'];
 
     events.forEach((eventName) => {
-      it(`should fire ${eventName}`, () => {
+      it(`should fire ${eventName}`, async () => {
         const handlerName = `on${eventName[0].toUpperCase()}${eventName.slice(1)}`;
         const handler = spy();
         render(<MenuItem {...{ [handlerName]: handler }} />);
 
-        fireEvent[eventName](screen.getByRole('menuitem'));
+        await act(async () => fireEvent[eventName](screen.getByRole('menuitem')));
 
         expect(handler.callCount).to.equal(1);
       });
     });
 
-    it(`should fire focus, keydown, keyup and blur`, () => {
+    it(`should fire focus, keydown, keyup and blur`, async () => {
       const handleFocus = spy();
       const handleKeyDown = spy();
       const handleKeyUp = spy();
@@ -84,7 +85,7 @@ describe('<MenuItem />', () => {
       );
       const menuitem = screen.getByRole('menuitem');
 
-      act(() => {
+      await act(async () => {
         menuitem.focus();
       });
 
@@ -98,7 +99,7 @@ describe('<MenuItem />', () => {
 
       expect(handleKeyUp.callCount).to.equal(1);
 
-      menuitem.blur();
+      await act(async () => menuitem.blur());
 
       expect(handleKeyDown.callCount).to.equal(1);
     });

@@ -18,12 +18,12 @@ const css = `
     background: #007FFF;
   }
 
-  .my-switch.focused .thumb {
+  .my-switch.focused .base-Switch-thumb {
     background-color: rgba(255, 255, 255, 1);
     box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
   }
 
-  .my-switch .thumb {
+  .my-switch .base-Switch-thumb {
     display: block;
     width: 14px;
     height: 14px;
@@ -35,13 +35,13 @@ const css = `
     transition: all 200ms ease;
   }
 
-  .my-switch.on .thumb {
+  .my-switch.on .base-Switch-thumb {
     left: 14px;
     top: 3px;
     background-color: #FFF;
   }
 
-  .my-switch .input {
+  .my-switch .base-Switch-input {
     cursor: inherit;
     position: absolute;
     width: 100%;
@@ -60,14 +60,11 @@ export default function SlotPropsCallback() {
         ownerState.focusVisible ? 'focused' : ''
       }`,
     }),
-    thumb: { className: 'thumb' },
-    input: { className: 'input' },
   };
 
   return (
     <div>
       <style type="text/css">{css}</style>
-
       <Switch slotProps={slotProps} />
     </div>
   );

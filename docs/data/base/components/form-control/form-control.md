@@ -10,7 +10,7 @@ githubLabel: 'component: FormControl'
 
 <p class="description">The Form Control component is a utility that lets you associate a form input with auxiliary components, such as labels, error indicators, or helper text.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
@@ -22,21 +22,9 @@ For instance, you may want to show an additional element asking the user to ente
 
 ## Component
 
-### Usage
-
-After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
-
 ```jsx
 import { FormControl } from '@mui/base/FormControl';
-
-export default function MyApp() {
-  return (
-    <FormControl>{/* <input> and/or other contents of the form */}</FormControl>
-  );
-}
 ```
-
-### Basics
 
 Form Control wraps around the elements of a form that need access to the state of an `<input>`.
 For instance, if the form's **Submit** button needs to change states after the user enters information, then the component will be structured like this:
@@ -53,9 +41,10 @@ Note that it also uses the `useFormControlContext` hook in order to pass props t
 
 {{"demo": "BasicFormControl"}}
 
-#### Usage with TypeScript
+### Usage with TypeScript
 
-In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component.
+This way, you can safely provide the custom root's props directly on the component:
 
 ```tsx
 <FormControl<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
@@ -77,7 +66,7 @@ The `useFormControlContext` hook reads the context provided by Form Control.
 This hook lets you work with custom input components inside of the Form Control.
 You can also use it to read the form control's state and react to its changes in a custom component.
 
-Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
+Hooks _do not_ support [slot props](#custom-structure), but they do support [customization props](#customization).
 
 :::info
 Hooks give you the most room for customization, but require more work to implement.
@@ -93,7 +82,7 @@ The demo below shows how to integrate this hook with its component counterpart:
 
 {{"demo": "UseFormControl.js", "defaultCodeOpen": false}}
 
-Note that even though Form Control supports both controlled and uncontrolled-style APIs (i.e. it accepts `value` and `defaultValue` props), `useFormControlContext` returns only the controlled `value`.
+Note that even though Form Control supports both controlled and uncontrolled-style APIs (that is it accepts `value` and `defaultValue` props), `useFormControlContext` returns only the controlled `value`.
 This way, you don't have to implement both in your custom input—Form Control does this for you.
 
 :::info
@@ -108,14 +97,14 @@ Learn more about controlled and uncontrolled components in the [React documentat
 
 :::info
 The following features can be used with both components and hooks.
-For the sake of simplicity, demos and code snippets primarily feature components.
+For the sake of simplicity, demos, and code snippets primarily feature components.
 :::
 
 ### Accessing the form control state
 
-You can access the state of the form control by providing a function as a child of the Form Control.
+You can access the state of the Form Control by providing a function as a child.
 The state will be provided as a parameter to this function.
 
-The following demo shows how to access the state of the form control in an Input component nested inside of the Form Control:
+The following demo shows how to access the state of the Form Control in an Input component nested inside:
 
 {{"demo": "FormControlFunctionChild.js"}}

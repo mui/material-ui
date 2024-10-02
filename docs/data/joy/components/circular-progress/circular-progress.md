@@ -9,7 +9,7 @@ githubLabel: 'component: CircularProgress'
 
 <p class="description">The Circular Progress component showcases the duration of a process or an indefinite wait period.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -36,7 +36,7 @@ The Circular Progress component provides users with updates on the status of ong
 
 ### Variants
 
-The Circular Progress component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined`, and `plain`.
+The Circular Progress component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined`, and `plain`.
 
 {{"demo": "CircularProgressVariants.js"}}
 
@@ -86,12 +86,20 @@ The size of the Circular Progress is controlled by a button, an icon button, or 
 
 {{"demo": "CircularProgressButton.js"}}
 
-## CSS variable playground
+## Third-party integrations
+
+### use-count-up
+
+Use the `useCountUp` hook from the [use-count-up](https://www.npmjs.com/package/use-count-up) package to create a counting animation by providing `start`, `end`, and `duration` values.
+
+{{"demo": "CircularProgressCountUp.js"}}
+
+## CSS variables playground
 
 Play around with all the CSS variables available on the component to see how the design changes.
 You can use these to customize the component with both the `sx` prop and the theme.
 
-{{"demo": "CircularProgressVariables.js", "hideToolbar": true}}
+{{"demo": "CircularProgressVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Accessibility
 

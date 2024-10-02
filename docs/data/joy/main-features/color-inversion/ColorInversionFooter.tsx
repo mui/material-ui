@@ -5,13 +5,11 @@ import Box from '@mui/joy/Box';
 import IconButton from '@mui/joy/IconButton';
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
-import Chip from '@mui/joy/Chip';
 import Divider from '@mui/joy/Divider';
 import Input from '@mui/joy/Input';
 import List from '@mui/joy/List';
 import ListSubheader from '@mui/joy/ListSubheader';
 import ListItem from '@mui/joy/ListItem';
-import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemButton from '@mui/joy/ListItemButton';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
@@ -27,14 +25,16 @@ export default function ColorInversionFooter() {
       variant="solid"
       color={color}
       invertedColors
-      sx={{
-        ...(color !== 'neutral' && {
+      sx={[
+        {
+          flexGrow: 1,
+          p: 2,
+          borderRadius: { xs: 0, sm: 'sm' },
+        },
+        color !== 'neutral' && {
           bgcolor: `${color}.800`,
-        }),
-        flexGrow: 1,
-        p: 2,
-        borderRadius: { xs: 0, sm: 'sm' },
-      }}
+        },
+      ]}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
         <IconButton
@@ -48,8 +48,8 @@ export default function ColorInversionFooter() {
               'success',
               'warning',
             ];
-            const nextColor = colors.indexOf(color);
-            setColor(colors[nextColor + 1] ?? colors[0]);
+            const nextColorIndex = colors.indexOf(color) + 1;
+            setColor(colors[nextColorIndex] ?? colors[0]);
           }}
         >
           <ColorLensRoundedIcon fontSize="small" />
@@ -103,9 +103,7 @@ export default function ColorInversionFooter() {
           </AspectRatio>
           <CardContent>
             <Typography level="body-sm">Intro to the MUI ecosystem</Typography>
-            <Typography level="body-xs" sx={{ mb: 0.5 }}>
-              MUI blog
-            </Typography>
+            <Typography level="body-xs">Blog post</Typography>
           </CardContent>
         </Card>
         <List
@@ -115,7 +113,7 @@ export default function ColorInversionFooter() {
           sx={{ flexGrow: 0, '--ListItem-radius': '8px' }}
         >
           <ListItem nested sx={{ width: { xs: '50%', md: 140 } }}>
-            <ListSubheader>Sitemap</ListSubheader>
+            <ListSubheader sx={{ fontWeight: 'xl' }}>Sitemap</ListSubheader>
             <List>
               <ListItem>
                 <ListItemButton>Services</ListItemButton>
@@ -124,79 +122,21 @@ export default function ColorInversionFooter() {
                 <ListItemButton>Blog</ListItemButton>
               </ListItem>
               <ListItem>
-                <ListItemButton>Contact us</ListItemButton>
+                <ListItemButton>About</ListItemButton>
               </ListItem>
             </List>
           </ListItem>
           <ListItem nested sx={{ width: { xs: '50%', md: 180 } }}>
-            <ListSubheader>Product</ListSubheader>
-            <List sx={{ '--ListItemDecorator-size': '32px' }}>
+            <ListSubheader sx={{ fontWeight: 'xl' }}>Products</ListSubheader>
+            <List>
               <ListItem>
-                <ListItemButton>
-                  <ListItemDecorator>
-                    <img
-                      alt=""
-                      src="/static/branding/product-core-dark.svg"
-                      width="24"
-                    />
-                  </ListItemDecorator>
-                  MUI Core
-                </ListItemButton>
+                <ListItemButton>Joy UI</ListItemButton>
               </ListItem>
               <ListItem>
-                <ListItemButton>
-                  <ListItemDecorator>
-                    <img
-                      alt=""
-                      src="/static/branding/product-advanced-dark.svg"
-                      width="24"
-                    />
-                  </ListItemDecorator>
-                  MUI X
-                </ListItemButton>
+                <ListItemButton>Base UI</ListItemButton>
               </ListItem>
               <ListItem>
-                <ListItemButton>
-                  <ListItemDecorator>
-                    <img
-                      alt=""
-                      src="/static/branding/product-toolpad-dark.svg"
-                      width="24"
-                    />
-                  </ListItemDecorator>
-                  MUI Toolpad
-                  <Chip
-                    variant="soft"
-                    size="sm"
-                    sx={{ minHeight: 20, fontSize: 'xs2', ml: 'auto' }}
-                  >
-                    BETA
-                  </Chip>
-                </ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton>
-                  <ListItemDecorator>
-                    <img
-                      alt=""
-                      src="/static/branding/product-designkits-dark.svg"
-                      width="24"
-                    />
-                  </ListItemDecorator>
-                  Design kits
-                </ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton>
-                  <ListItemDecorator>
-                    <img
-                      alt=""
-                      src="/static/branding/product-templates-dark.svg"
-                      width="24"
-                    />
-                  </ListItemDecorator>
-                  Templates
-                </ListItemButton>
+                <ListItemButton>Material UI</ListItemButton>
               </ListItem>
             </List>
           </ListItem>

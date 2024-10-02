@@ -111,10 +111,10 @@ export interface ToggleButtonGroupTypeMap<
 }
 
 export type ToggleButtonGroupProps<
-  TValue extends SupportedValue,
+  TValue extends SupportedValue = SupportedValue,
   D extends React.ElementType = ToggleButtonGroupTypeMap<TValue>['defaultComponent'],
   P = { component?: React.ElementType },
 > = OverrideProps<ToggleButtonGroupTypeMap<TValue, P, D>, D>;
 
-export interface ToggleButtonGroupOwnerState<TValue extends SupportedValue>
+export interface ToggleButtonGroupOwnerState<TValue extends SupportedValue = SupportedValue>
   extends ApplyColorInversion<ToggleButtonGroupProps<TValue>> {}

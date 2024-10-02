@@ -28,6 +28,7 @@ const Image = styled('img')(({ theme }) => ({
   borderColor: (theme.vars || theme).palette.grey[400],
   borderRadius: (theme.vars || theme).shape.borderRadius,
   objectFit: 'cover',
+  objectPosition: 'top',
   boxShadow: '0px 4px 20px rgba(61, 71, 82, 0.25)',
   ...theme.applyDarkStyles({
     borderColor: (theme.vars || theme).palette.grey[800],
@@ -90,7 +91,7 @@ const StoreTemplateLink = React.forwardRef<
           justifyContent: 'center',
         }}
       >
-        <Typography fontWeight="bold">Go to store</Typography>
+        <Typography sx={{ fontWeight: 'bold' }}>Go to store</Typography>
         <LaunchRounded fontSize="small" sx={{ ml: 1 }} />
       </Box>
     </Anchor>
@@ -99,7 +100,7 @@ const StoreTemplateLink = React.forwardRef<
 
 const StoreTemplateImage = React.forwardRef<
   HTMLImageElement,
-  { brand: TemplateBrand } & Omit<JSX.IntrinsicElements['img'], 'ref'>
+  { brand: TemplateBrand } & Omit<React.JSX.IntrinsicElements['img'], 'ref'>
 >(function StoreTemplateImage({ brand, ...props }, ref) {
   return (
     <Image
@@ -108,6 +109,7 @@ const StoreTemplateImage = React.forwardRef<
         Object.keys(linkMapping).indexOf(brand) + 1
       }light.jpg`}
       alt=""
+      loading="lazy"
       sx={(theme) =>
         theme.applyDarkStyles({
           content: `url(/static/branding/store-templates/template-${

@@ -2,6 +2,7 @@
 productId: material-ui
 title: Media queries in React for responsive design
 githubLabel: 'hook: useMediaQuery'
+githubSource: packages/mui-material/src/useMediaQuery
 ---
 
 # useMediaQuery
@@ -12,23 +13,23 @@ Some of the key features:
 
 - ⚛️ It has an idiomatic React API.
 - 🚀 It's performant, it observes the document to detect when its media queries change, instead of polling the values periodically.
-- 📦 [1 kB gzipped](/size-snapshot/).
+- 📦 [1.1 kB gzipped](https://bundlephobia.com/package/@mui/material).
 - 🤖 It supports server-side rendering.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 ## Basic media query
 
 You should provide a media query to the first argument of the hook.
-The media query string can be any valid CSS media query, e.g. [`'(prefers-color-scheme: dark)'`](/material-ui/customization/dark-mode/#system-preference).
+The media query string can be any valid CSS media query, for example [`'(prefers-color-scheme: dark)'`](/material-ui/customization/dark-mode/#system-preference).
 
 {{"demo": "SimpleMediaQuery.js", "defaultCodeOpen": true}}
 
-⚠️ You can't use `'print'` per browsers limitation, e.g. [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
+⚠️ You can't use `'print'` per browsers limitation, for example [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
 
-## Using Material UI's breakpoint helpers
+## Using breakpoint helpers
 
-You can use Material UI's [breakpoint helpers](/material-ui/customization/breakpoints/) as follows:
+You can use Material UI's [breakpoint helpers](/material-ui/customization/breakpoints/) as follows:
 
 ```jsx
 import { useTheme } from '@mui/material/styles';
@@ -79,8 +80,8 @@ function createMatchMedia(width) {
     matches: mediaQuery.match(query, {
       width,
     }),
-    addListener: () => {},
-    removeListener: () => {},
+    addEventListener: () => {},
+    removeEventListener: () => {},
   });
 }
 
@@ -117,7 +118,7 @@ const theme = createTheme({
 ```
 
 :::info
-Note that `noSsr` has no effects when using the `createRoot()` API (the client side only API introduced in React 18).
+Note that `noSsr` has no effects when using the `createRoot()` API (the client-side only API introduced in React 18).
 :::
 
 ## Server-side rendering

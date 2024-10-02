@@ -38,22 +38,68 @@
   },
   "name": "Fab",
   "imports": ["import Fab from '@mui/material/Fab';", "import { Fab } from '@mui/material';"],
-  "styles": {
-    "classes": [
-      "root",
-      "primary",
-      "secondary",
-      "extended",
-      "circular",
-      "focusVisible",
-      "disabled",
-      "colorInherit",
-      "sizeSmall",
-      "sizeMedium"
-    ],
-    "globalClasses": { "focusVisible": "Mui-focusVisible", "disabled": "Mui-disabled" },
-    "name": "MuiFab"
-  },
+  "classes": [
+    {
+      "key": "circular",
+      "className": "MuiFab-circular",
+      "description": "Styles applied to the root element if `variant=\"circular\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorInherit",
+      "className": "MuiFab-colorInherit",
+      "description": "Styles applied to the root element if `color=\"inherit\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "extended",
+      "className": "MuiFab-extended",
+      "description": "Styles applied to the root element if `variant=\"extended\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "focusVisible",
+      "className": "Mui-focusVisible",
+      "description": "State class applied to the ButtonBase root element if the button is keyboard focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "primary",
+      "className": "MuiFab-primary",
+      "description": "Styles applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiFab-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "secondary",
+      "className": "MuiFab-secondary",
+      "description": "Styles applied to the root element if `color=\"secondary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeMedium",
+      "className": "MuiFab-sizeMedium",
+      "description": "Styles applied to the root element if `size=\"medium\"``.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSmall",
+      "className": "MuiFab-sizeSmall",
+      "description": "Styles applied to the root element if `size=\"small\"``.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiFab",

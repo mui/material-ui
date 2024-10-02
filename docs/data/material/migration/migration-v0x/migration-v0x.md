@@ -12,9 +12,9 @@ lower-level components that abstract less complexity.
 
 ### What motivated such a large change?
 
-Material UI was started [4 years ago](https://github.com/mui/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46).
+Material UI was started [4 years ago](https://github.com/mui/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46).
 The ecosystem has evolved a lot since then, we have also learned a lot.
-[@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding Material UI from the **ground-up**
+[@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding Material UI from the **ground-up**
 taking advantage of this knowledge to address long-standing issues. To name some of the major changes:
 
 - New styling solution using CSS-in-JS (better [customization](/material-ui/customization/how-to-customize/) power, better performance)
@@ -26,7 +26,7 @@ taking advantage of this knowledge to address long-standing issues. To name some
 
 ### Where should I start in a migration?
 
-1. Start by installing the v1.x version of Material UI along side the v0.x version.
+1. Start by installing the v1.x version of Material UI along side the v0.x version.
 
 With yarn:
 
@@ -82,7 +82,7 @@ export default App;
 
 ### Autocomplete
 
-Material UI doesn't provide a high-level API for solving this problem.
+Material UI doesn't provide a high-level API for solving this problem.
 You're encouraged you to explore [the solutions the React community has built](/material-ui/react-autocomplete/).
 
 In the future, we will look into providing a simple component to solve the simple use cases: [#9997](https://github.com/mui/material-ui/issues/9997).
@@ -187,8 +187,3 @@ RaisedButton upgrade path:
 -<DropDownMenu></DropDownMenu>
 +<Select value={this.state.value}></Select>
 ```
-
-### To be continued…
-
-Have you successfully migrated your app, and wish to help the community?
-There is an open issue in order to finish this migration guide [#7195](https://github.com/mui/material-ui/issues/7195). Any pull request is welcomed 😊.

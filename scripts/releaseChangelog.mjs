@@ -1,8 +1,8 @@
 /* eslint-disable no-restricted-syntax */
-import { Octokit } from '@octokit/rest';
-import chalk from 'chalk';
 import childProcess from 'child_process';
 import { promisify } from 'util';
+import { Octokit } from '@octokit/rest';
+import chalk from 'chalk';
 import yargs from 'yargs';
 
 const exec = promisify(childProcess.exec);
@@ -64,6 +64,9 @@ async function main(argv) {
   }
   const octokit = new Octokit({
     auth: githubToken,
+    request: {
+      fetch,
+    },
   });
 
   const latestTaggedVersion = await findLatestTaggedVersion();
@@ -108,7 +111,18 @@ async function main(argv) {
       return chalk.red("TODO INSERT AUTHOR'S USERNAME");
     }
 
-    return commit.author?.login;
+    const authorLogin = commit.author.login;
+
+    if (authorLogin === 'github-actions[bot]') {
+      const authorFromMessage = /\(@(?<author>[a-zA-Z0-9-_]+)\) \(#[\d]+\)/.exec(
+        commit.commit.message.split('\n')[0],
+      );
+      if (authorFromMessage.groups?.author) {
+        return authorFromMessage.groups.author;
+      }
+    }
+
+    return authorLogin;
   };
 
   const authors = Array.from(

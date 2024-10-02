@@ -11,7 +11,6 @@
 *.tsbuildinfo
 /.eslintcache
 /.nyc_output
-/benchmark/**/dist
 /coverage
 /docs/.env.local
 /docs/export
@@ -22,6 +21,7 @@
 /packages/mui-envinfo/*.tgz
 /packages/mui-icons-material/src/*.js
 /test/bundling/fixtures/*/yarn.lock
+/test/bundling/fixtures/*/pnpm-lock.yaml
 # created by test/bundling/scripts/createFixture
 /test/bundling/fixtures/**/*.fixture.js
 # created by test/bundling/fixtures/gatsby gatsby build
@@ -30,8 +30,17 @@
 /test/regressions/screenshots
 /tmp
 .next
+# created by netlify dev (to perform local debug)
+.netlify
 build
+dist
 node_modules
 package-lock.json
 size-snapshot.json
 docs/public/static/blog/feed/*
+# vale downloaded config
+.github/styles/
+.nx/cache
+.nx/workspace-data
+screenshots
+packed

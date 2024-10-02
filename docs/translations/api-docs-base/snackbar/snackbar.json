@@ -26,6 +26,6 @@
       "description": "The components used for each slot inside the Snackbar. Either a string to use a HTML element or a component."
     }
   },
-  "classDescriptions": { "root": { "description": "Class name applied to the root element." } },
+  "classDescriptions": {},
   "slotDescriptions": { "root": "The component that renders the root." }
 }

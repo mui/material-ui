@@ -51,15 +51,15 @@ const useRovingIndex = (options) => {
       }
     },
     tabIndex: activeIndex === index ? 0 : -1,
-    onKeyDown: (e) => {
+    onKeyDown: (event) => {
       if (Number.isInteger(activeIndex)) {
-        if (e.key === (vertical ? 'ArrowDown' : 'ArrowRight')) {
+        if (event.key === (vertical ? 'ArrowDown' : 'ArrowRight')) {
           focusNext();
         }
-        if (e.key === (vertical ? 'ArrowUp' : 'ArrowLeft')) {
+        if (event.key === (vertical ? 'ArrowUp' : 'ArrowLeft')) {
           focusPrevious();
         }
-        handlers.onKeyDown?.(e, { setActiveIndex });
+        handlers.onKeyDown?.(event, { setActiveIndex });
       }
     },
     onClick: () => {
@@ -106,7 +106,7 @@ const AboutMenu = React.forwardRef(({ focusNext, focusPrevious, ...props }, ref)
   const id = open ? 'about-popper' : undefined;
   return (
     <ClickAwayListener onClickAway={() => setAnchorEl(null)}>
-      <Box onMouseLeave={() => setAnchorEl(null)}>
+      <div onMouseLeave={() => setAnchorEl(null)}>
         <ListItemButton
           aria-haspopup
           aria-expanded={open ? 'true' : 'false'}
@@ -129,9 +129,7 @@ const AboutMenu = React.forwardRef(({ focusNext, focusPrevious, ...props }, ref)
             props.onMouseEnter?.(event);
             setAnchorEl(event.currentTarget);
           }}
-          sx={(theme) => ({
-            ...(open && theme.variants.plainHover.neutral),
-          })}
+          sx={[open && ((theme) => theme.variants.plainHover.neutral)]}
         >
           About <KeyboardArrowDown />
         </ListItemButton>
@@ -176,7 +174,7 @@ const AboutMenu = React.forwardRef(({ focusNext, focusPrevious, ...props }, ref)
             </ListItem>
           </List>
         </Popper>
-      </Box>
+      </div>
     </ClickAwayListener>
   );
 });
@@ -212,7 +210,7 @@ const AdmissionsMenu = React.forwardRef(
     const id = open ? 'admissions-popper' : undefined;
     return (
       <ClickAwayListener onClickAway={() => setAnchorEl(null)}>
-        <Box onMouseLeave={() => setAnchorEl(null)}>
+        <div onMouseLeave={() => setAnchorEl(null)}>
           <ListItemButton
             aria-haspopup
             aria-expanded={open ? 'true' : 'false'}
@@ -235,9 +233,7 @@ const AdmissionsMenu = React.forwardRef(
               props.onMouseEnter?.(event);
               setAnchorEl(event.currentTarget);
             }}
-            sx={(theme) => ({
-              ...(open && theme.variants.plainHover.neutral),
-            })}
+            sx={[open && ((theme) => theme.variants.plainHover.neutral)]}
           >
             Admissions <KeyboardArrowDown />
           </ListItemButton>
@@ -284,7 +280,7 @@ const AdmissionsMenu = React.forwardRef(
               </ListItem>
             </List>
           </Popper>
-        </Box>
+        </div>
       </ClickAwayListener>
     );
   },
@@ -302,6 +298,7 @@ export default function ExampleNavigationMenu() {
           '--List-radius': '8px',
           '--List-padding': '4px',
           '--List-gap': '8px',
+          '--ListItem-gap': '0px',
         }}
       >
         <ListItem role="none">

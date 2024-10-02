@@ -7,6 +7,7 @@ const pages: readonly MuiPage[] = [
     children: [
       { pathname: '/experiments/docs/headers' },
       { pathname: '/experiments/docs/markdown' },
+      { pathname: '/experiments/docs/og-card', title: 'OG Image' },
     ],
   },
   {
@@ -14,12 +15,14 @@ const pages: readonly MuiPage[] = [
     children: [
       { pathname: '/experiments/docs/callouts' },
       { pathname: '/experiments/docs/codeblock' },
+      { pathname: '/experiments/docs/custom-components' },
       { pathname: '/experiments/docs/demos' },
+      { pathname: '/experiments/docs/data-grid-premium', title: 'API DataGridPremium' },
     ],
   },
   {
     pathname: '/experiments/docs/main-parent',
-    title: 'Main parent',
+    title: 'Test: pages.js',
     children: [
       {
         pathname: '/experiments/docs/first-level-child-1',
@@ -50,11 +53,46 @@ const pages: readonly MuiPage[] = [
           },
         ],
       },
+      {
+        pathname: '/experiments/docs/first-level-child-3',
+        title: 'Pro plan',
+        plan: 'pro',
+      },
+      {
+        pathname: '/experiments/docs/first-level-child-4',
+        title: 'New feature',
+        newFeature: true,
+      },
+      {
+        pathname: '/experiments/docs/first-level-child-5',
+        title: 'Planned feature',
+        planned: true,
+      },
+      {
+        pathname: '/experiments/docs/first-level-child-6',
+        title: 'Unstable feature',
+        unstable: true,
+      },
+      {
+        pathname: '/experiments/docs/first-level-child-7',
+        title: 'Beta feature',
+        beta: true,
+      },
+      {
+        pathname: '/experiments/docs/first-level-child-8',
+        title: 'Legacy feature',
+        legacy: true,
+      },
+      {
+        pathname: '/experiments/docs/first-level-child-9',
+        title: 'OverflowWithLongApiComponent',
+        plan: 'pro',
+      },
     ],
   },
   {
     pathname: '/x/react-data-grid-group',
-    title: 'Data Grid',
+    title: 'Test: Data Grid e2e',
     children: [
       { pathname: '/x/react-data-grid', title: 'Overview' },
       { pathname: '/x/react-data-grid/demo' },
@@ -166,7 +204,7 @@ const pages: readonly MuiPage[] = [
   },
   {
     pathname: '/x/migration-group',
-    title: 'Migration',
+    title: 'Test: Migration',
     children: [
       {
         pathname: '/x/migration-v6',

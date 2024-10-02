@@ -157,3 +157,17 @@ function CustomListboxRef() {
     />
   );
 }
+
+// Tests presence of defaultMuiPrevented in event
+<Autocomplete
+  renderInput={(params) => <TextField {...params} />}
+  options={['one', 'two', 'three']}
+  onKeyDown={(event) => {
+    expectType<
+      React.KeyboardEvent<HTMLDivElement> & {
+        defaultMuiPrevented?: boolean;
+      },
+      typeof event
+    >(event);
+  }}
+/>;

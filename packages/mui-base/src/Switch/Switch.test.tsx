@@ -1,19 +1,17 @@
 import * as React from 'react';
-import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { expect } from 'chai';
 import { Switch, SwitchOwnerState, switchClasses } from '@mui/base/Switch';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 describe('<Switch />', () => {
-  const mount = createMount();
   const { render } = createRenderer();
 
   describeConformanceUnstyled(<Switch />, () => ({
     inheritComponent: 'span',
     render,
-    mount,
     refInstanceof: window.HTMLSpanElement,
     testComponentPropWith: 'span',
-    muiName: 'MuiSwitch',
     slots: {
       root: {
         expectedClassName: switchClasses.root,

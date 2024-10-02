@@ -20,17 +20,14 @@ export default function SizesList() {
       }}
     >
       {(['sm', 'md', 'lg'] as const).map((size) => (
-        <Box key={size}>
-          <Typography level="body-xs" mb={2}>
+        <div key={size}>
+          <Typography level="body-xs" sx={{ mb: 2 }}>
             <code>size=&quot;{size}&quot;</code>
           </Typography>
           <List
             size={size}
             variant="outlined"
-            sx={{
-              maxWidth: 300,
-              borderRadius: 'sm',
-            }}
+            sx={{ maxWidth: 300, borderRadius: 'sm' }}
           >
             <ListItem>
               <ListItemButton>
@@ -47,7 +44,7 @@ export default function SizesList() {
               <ListItemButton>Settings</ListItemButton>
             </ListItem>
           </List>
-        </Box>
+        </div>
       ))}
     </Box>
   );

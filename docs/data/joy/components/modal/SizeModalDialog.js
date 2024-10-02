@@ -4,13 +4,14 @@ import Stack from '@mui/joy/Stack';
 import Modal from '@mui/joy/Modal';
 import ModalClose from '@mui/joy/ModalClose';
 import ModalDialog from '@mui/joy/ModalDialog';
-import Typography from '@mui/joy/Typography';
+import DialogTitle from '@mui/joy/DialogTitle';
+import DialogContent from '@mui/joy/DialogContent';
 
 export default function SizeModalDialog() {
   const [size, setSize] = React.useState(undefined);
   return (
     <React.Fragment>
-      <Stack direction="row" alignItems="center" spacing={1}>
+      <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
         <Button
           variant="outlined"
           color="neutral"
@@ -37,18 +38,10 @@ export default function SizeModalDialog() {
         </Button>
       </Stack>
       <Modal open={!!size} onClose={() => setSize(undefined)}>
-        <ModalDialog
-          aria-labelledby="size-modal-title"
-          aria-describedby="size-modal-description"
-          size={size}
-        >
+        <ModalDialog size={size}>
           <ModalClose />
-          <Typography id="size-modal-title" level="h2">
-            Modal Dialog
-          </Typography>
-          <Typography id="size-modal-description">
-            This is a `{size}` modal dialog.
-          </Typography>
+          <DialogTitle>Modal Dialog</DialogTitle>
+          <DialogContent>This is a `{size}` modal dialog.</DialogContent>
         </ModalDialog>
       </Modal>
     </React.Fragment>

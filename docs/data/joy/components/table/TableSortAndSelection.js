@@ -65,22 +65,6 @@ function getComparator(order, orderBy) {
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-// Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
-// stableSort() brings sort stability to non-modern browsers (notably IE11). If you
-// only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
-// with exampleArray.slice().sort(exampleComparator)
-function stableSort(array, comparator) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) {
-      return order;
-    }
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map((el) => el[0]);
-}
-
 const headCells = [
   {
     id: 'name',
@@ -153,18 +137,22 @@ function EnhancedTableHead(props) {
                 textColor={active ? 'primary.plainColor' : undefined}
                 component="button"
                 onClick={createSortHandler(headCell.id)}
-                fontWeight="lg"
                 startDecorator={
                   headCell.numeric ? (
-                    <ArrowDownwardIcon sx={{ opacity: active ? 1 : 0 }} />
+                    <ArrowDownwardIcon
+                      sx={[active ? { opacity: 1 } : { opacity: 0 }]}
+                    />
                   ) : null
                 }
                 endDecorator={
                   !headCell.numeric ? (
-                    <ArrowDownwardIcon sx={{ opacity: active ? 1 : 0 }} />
+                    <ArrowDownwardIcon
+                      sx={[active ? { opacity: 1 } : { opacity: 0 }]}
+                    />
                   ) : null
                 }
                 sx={{
+                  fontWeight: 'lg',
                   '& svg': {
                     transition: '0.2s',
                     transform:
@@ -199,21 +187,22 @@ EnhancedTableHead.propTypes = {
 
 function EnhancedTableToolbar(props) {
   const { numSelected } = props;
-
   return (
     <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        py: 1,
-        pl: { sm: 2 },
-        pr: { xs: 1, sm: 1 },
-        ...(numSelected > 0 && {
+      sx={[
+        {
+          display: 'flex',
+          alignItems: 'center',
+          py: 1,
+          pl: { sm: 2 },
+          pr: { xs: 1, sm: 1 },
+          borderTopLeftRadius: 'var(--unstable_actionRadius)',
+          borderTopRightRadius: 'var(--unstable_actionRadius)',
+        },
+        numSelected > 0 && {
           bgcolor: 'background.level1',
-        }),
-        borderTopLeftRadius: 'var(--unstable_actionRadius)',
-        borderTopRightRadius: 'var(--unstable_actionRadius)',
-      }}
+        },
+      ]}
     >
       {numSelected > 0 ? (
         <Typography sx={{ flex: '1 1 100%' }} component="div">
@@ -229,7 +218,6 @@ function EnhancedTableToolbar(props) {
           Nutrition
         </Typography>
       )}
-
       {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton size="sm" color="danger" variant="solid">
@@ -257,13 +245,11 @@ export default function TableSortAndSelection() {
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
-
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
       const newSelected = rows.map((n) => n.name);
@@ -272,11 +258,9 @@ export default function TableSortAndSelection() {
     }
     setSelected([]);
   };
-
   const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);
     let newSelected = [];
-
     if (selectedIndex === -1) {
       newSelected = newSelected.concat(selected, name);
     } else if (selectedIndex === 0) {
@@ -289,19 +273,15 @@ export default function TableSortAndSelection() {
         selected.slice(selectedIndex + 1),
       );
     }
-
     setSelected(newSelected);
   };
-
   const handleChangePage = (newPage) => {
     setPage(newPage);
   };
-
   const handleChangeRowsPerPage = (event, newValue) => {
     setRowsPerPage(parseInt(newValue.toString(), 10));
     setPage(0);
   };
-
   const getLabelDisplayedRowsTo = () => {
     if (rows.length === -1) {
       return (page + 1) * rowsPerPage;
@@ -310,13 +290,9 @@ export default function TableSortAndSelection() {
       ? rows.length
       : Math.min(rows.length, (page + 1) * rowsPerPage);
   };
-
-  const isSelected = (name) => selected.indexOf(name) !== -1;
-
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
   return (
     <Sheet
       variant="outlined"
@@ -348,10 +324,11 @@ export default function TableSortAndSelection() {
           rowCount={rows.length}
         />
         <tbody>
-          {stableSort(rows, getComparator(order, orderBy))
+          {[...rows]
+            .sort(getComparator(order, orderBy))
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .map((row, index) => {
-              const isItemSelected = isSelected(row.name);
+              const isItemSelected = selected.includes(row.name);
               const labelId = `enhanced-table-checkbox-${index}`;
 
               return (
@@ -401,7 +378,7 @@ export default function TableSortAndSelection() {
                 '--TableRow-hoverBackground': 'transparent',
               }}
             >
-              <td colSpan={6} />
+              <td colSpan={6} aria-hidden />
             </tr>
           )}
         </tbody>
@@ -424,7 +401,7 @@ export default function TableSortAndSelection() {
                     <Option value={25}>25</Option>
                   </Select>
                 </FormControl>
-                <Typography textAlign="center" sx={{ minWidth: 80 }}>
+                <Typography sx={{ textAlign: 'center', minWidth: 80 }}>
                   {labelDisplayedRows({
                     from: rows.length === 0 ? 0 : page * rowsPerPage + 1,
                     to: getLabelDisplayedRowsTo(),

@@ -12,7 +12,8 @@ type MessagesPaneProps = {
   chat: ChatProps;
 };
 
-export default function MessagesPane({ chat }: MessagesPaneProps) {
+export default function MessagesPane(props: MessagesPaneProps) {
+  const { chat } = props;
   const [chatMessages, setChatMessages] = React.useState(chat.messages);
   const [textAreaValue, setTextAreaValue] = React.useState('');
 
@@ -23,25 +24,25 @@ export default function MessagesPane({ chat }: MessagesPaneProps) {
   return (
     <Sheet
       sx={{
-        height: { xs: 'calc(100dvh - var(--Header-height))', lg: '100dvh' },
+        height: { xs: 'calc(100dvh - var(--Header-height))', md: '100dvh' },
         display: 'flex',
         flexDirection: 'column',
+        backgroundColor: 'background.level1',
       }}
     >
       <MessagesPaneHeader sender={chat.sender} />
-
       <Box
         sx={{
           display: 'flex',
           flex: 1,
           minHeight: 0,
           px: 2,
-          py: 2.5,
+          py: 3,
           overflowY: 'scroll',
           flexDirection: 'column-reverse',
         }}
       >
-        <Stack spacing={2} justifyContent="flex-end">
+        <Stack spacing={2} sx={{ justifyContent: 'flex-end' }}>
           {chatMessages.map((message: MessageProps, index: number) => {
             const isYou = message.sender === 'You';
             return (
@@ -49,7 +50,7 @@ export default function MessagesPane({ chat }: MessagesPaneProps) {
                 key={index}
                 direction="row"
                 spacing={2}
-                flexDirection={isYou ? 'row-reverse' : 'row'}
+                sx={{ flexDirection: isYou ? 'row-reverse' : 'row' }}
               >
                 {message.sender !== 'You' && (
                   <AvatarWithStatus
@@ -63,7 +64,6 @@ export default function MessagesPane({ chat }: MessagesPaneProps) {
           })}
         </Stack>
       </Box>
-
       <MessageInput
         textAreaValue={textAreaValue}
         setTextAreaValue={setTextAreaValue}

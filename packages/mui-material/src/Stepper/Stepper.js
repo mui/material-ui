@@ -2,18 +2,18 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { integerPropType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import integerPropType from '@mui/utils/integerPropType';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getStepperUtilityClass } from './stepperClasses';
 import StepConnector from '../StepConnector';
 import StepperContext from './StepperContext';
 
 const useUtilityClasses = (ownerState) => {
-  const { orientation, alternativeLabel, classes } = ownerState;
+  const { orientation, nonLinear, alternativeLabel, classes } = ownerState;
   const slots = {
-    root: ['root', orientation, alternativeLabel && 'alternativeLabel'],
+    root: ['root', orientation, nonLinear && 'nonLinear', alternativeLabel && 'alternativeLabel'],
   };
 
   return composeClasses(slots, getStepperUtilityClass, classes);
@@ -28,26 +28,38 @@ const StepperRoot = styled('div', {
       styles.root,
       styles[ownerState.orientation],
       ownerState.alternativeLabel && styles.alternativeLabel,
+      ownerState.nonLinear && styles.nonLinear,
     ];
   },
-})(({ ownerState }) => ({
+})({
   display: 'flex',
-  ...(ownerState.orientation === 'horizontal' && {
-    flexDirection: 'row',
-    alignItems: 'center',
-  }),
-  ...(ownerState.orientation === 'vertical' && {
-    flexDirection: 'column',
-  }),
-  ...(ownerState.alternativeLabel && {
-    alignItems: 'flex-start',
-  }),
-}));
+  variants: [
+    {
+      props: { orientation: 'horizontal' },
+      style: {
+        flexDirection: 'row',
+        alignItems: 'center',
+      },
+    },
+    {
+      props: { orientation: 'vertical' },
+      style: {
+        flexDirection: 'column',
+      },
+    },
+    {
+      props: { alternativeLabel: true },
+      style: {
+        alignItems: 'flex-start',
+      },
+    },
+  ],
+});
 
 const defaultConnector = <StepConnector />;
 
 const Stepper = React.forwardRef(function Stepper(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiStepper' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiStepper' });
   const {
     activeStep = 0,
     alternativeLabel = false,
@@ -62,6 +74,7 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
 
   const ownerState = {
     ...props,
+    nonLinear,
     alternativeLabel,
     orientation,
     component,
@@ -98,10 +111,10 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
 });
 
 Stepper.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Set the active step (zero based index).
    * Set to -1 to disable all the steps.

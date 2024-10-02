@@ -10,9 +10,7 @@
     },
     "padding": { "description": "Allows TableCells to inherit padding of the Table." },
     "size": { "description": "Allows TableCells to inherit size of the Table." },
-    "stickyHeader": {
-      "description": "Set the header sticky.<br>⚠️ It doesn&#39;t work with IE11."
-    },
+    "stickyHeader": { "description": "Set the header sticky." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     }

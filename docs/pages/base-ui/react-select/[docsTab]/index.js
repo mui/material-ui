@@ -1,12 +1,13 @@
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
-import * as pageProps from 'docs/data/base/components/select/select.md?@mui/markdown';
+import * as pageProps from 'docs/data/base/components/select/select.md?muiMarkdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
 import OptionApiJsonPageContent from '../../api/option.json';
 import OptionGroupApiJsonPageContent from '../../api/option-group.json';
 import SelectApiJsonPageContent from '../../api/select.json';
 import useOptionApiJsonPageContent from '../../api/use-option.json';
+import useOptionContextStabilizerApiJsonPageContent from '../../api/use-option-context-stabilizer.json';
 import useSelectApiJsonPageContent from '../../api/use-select.json';
 
 export default function Page(props) {
@@ -48,14 +49,23 @@ export const getStaticProps = () => {
   const SelectApiDescriptions = mapApiPageTranslations(SelectApiReq);
 
   const useOptionApiReq = require.context(
-    'docs/translations/api-docs/use-option',
+    'docs/translations/api-docs-base/use-option',
     false,
     /use-option.*.json$/,
   );
   const useOptionApiDescriptions = mapApiPageTranslations(useOptionApiReq);
 
+  const useOptionContextStabilizerApiReq = require.context(
+    'docs/translations/api-docs-base/use-option-context-stabilizer',
+    false,
+    /use-option-context-stabilizer.*.json$/,
+  );
+  const useOptionContextStabilizerApiDescriptions = mapApiPageTranslations(
+    useOptionContextStabilizerApiReq,
+  );
+
   const useSelectApiReq = require.context(
-    'docs/translations/api-docs/use-select',
+    'docs/translations/api-docs-base/use-select',
     false,
     /use-select.*.json$/,
   );
@@ -75,10 +85,12 @@ export const getStaticProps = () => {
       },
       hooksApiDescriptions: {
         useOption: useOptionApiDescriptions,
+        useOptionContextStabilizer: useOptionContextStabilizerApiDescriptions,
         useSelect: useSelectApiDescriptions,
       },
       hooksApiPageContents: {
         useOption: useOptionApiJsonPageContent,
+        useOptionContextStabilizer: useOptionContextStabilizerApiJsonPageContent,
         useSelect: useSelectApiJsonPageContent,
       },
     },

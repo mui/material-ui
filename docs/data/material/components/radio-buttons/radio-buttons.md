@@ -5,6 +5,7 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 githubLabel: 'component: radio'
 materialDesign: https://m2.material.io/components/selection-controls#radio-buttons
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radio/
+githubSource: packages/mui-material/src/RadioGroup
 ---
 
 # Radio Group
@@ -16,7 +17,7 @@ If available options can be collapsed, consider using a [Select component](/mate
 
 Radio buttons should have the most commonly used option selected by default.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Radio group
 
@@ -106,7 +107,7 @@ import { useRadioGroup } from '@mui/material/RadioGroup';
 - All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/material-ui/api/form-control-label/)).
 
 - When a label can't be used, it's necessary to add an attribute directly to the input component.
-  In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-labelledby`, `title`) via the `inputProps` property.
+  In this case, you can apply the additional attribute (for example `aria-label`, `aria-labelledby`, `title`) via the `inputProps` property.
 
 ```jsx
 <Radio

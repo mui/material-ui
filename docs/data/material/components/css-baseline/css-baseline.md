@@ -2,13 +2,14 @@
 productId: material-ui
 components: CssBaseline, ScopedCssBaseline
 githubLabel: 'component: CssBaseline'
+githubSource: packages/mui-material/src/CssBaseline
 ---
 
 # CSS Baseline
 
 <p class="description">The CssBaseline component helps to kickstart an elegant, consistent, and simple baseline to build upon.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 ## Global reset
 
@@ -30,7 +31,7 @@ export default function MyApp() {
 
 ## Scoping on children
 
-However, you might be progressively migrating a website to Material UI, using a global reset might not be an option.
+However, you might be progressively migrating a website to Material UI, using a global reset might not be an option.
 It's possible to apply the baseline only to the children by using the `ScopedCssBaseline` component.
 
 ```jsx
@@ -59,7 +60,7 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 - The margin in all browsers is removed.
 - The default Material Design background color is applied.
   It's using [`theme.palette.background.default`](/material-ui/customization/default-theme/?expand-path=$.palette.background) for standard devices and a white background for print devices.
-- If `enableColorScheme` is provided to `CssBaseline`, native components color will be set by applying [`color-scheme`](https://web.dev/color-scheme/) on `<html>`.
+- If `enableColorScheme` is provided to `CssBaseline`, native components color will be set by applying [`color-scheme`](https://web.dev/articles/color-scheme) on `<html>`.
   The value used is provided by the theme property `theme.palette.mode`.
 
 ### Layout

@@ -6,10 +6,9 @@ import {
   GridRenderEditCellParams,
 } from '@mui/x-data-grid-pro';
 import { useDemoData } from '@mui/x-data-grid-generator';
-import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
+import { CssVarsProvider } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Section from 'docs/src/layouts/Section';
@@ -41,7 +40,7 @@ export default function XTheming() {
     const columns: Array<GridColDef> = [
       {
         field: 'desk',
-        headerName: 'desk',
+        headerName: 'Desk',
         width: customized ? 72 : 100,
         sortable: false,
         editable: true,
@@ -66,6 +65,7 @@ export default function XTheming() {
         sortable: false,
         editable: true,
         ...(customized && {
+          display: 'flex',
           renderCell: (params: GridCellParams) => {
             return <ProgressBar value={Number(params.value)!} />;
           },
@@ -82,6 +82,7 @@ export default function XTheming() {
         sortable: false,
         editable: true,
         ...(customized && {
+          display: 'flex',
           renderCell: (params: GridCellParams) => {
             return <Status status={(params.value || '').toString()} />;
           },
@@ -96,23 +97,21 @@ export default function XTheming() {
   return (
     <Section bg="gradient">
       <Grid container spacing={2}>
-        <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box maxWidth={500}>
-            <SectionHeadline
-              overline="Theming"
-              title={
-                <Typography variant="h2">
-                  Advanced and <GradientText>beautiful</GradientText>
-                </Typography>
-              }
-              description="Use the sophisticated theming features to make the MUI X components look exactly as you want. "
-            />
-          </Box>
-          <Group sx={{ mt: 4 }}>
+        <Grid sx={{ minWidth: 0 }} size={{ md: 6 }}>
+          <SectionHeadline
+            overline="Theming"
+            title={
+              <Typography variant="h2">
+                Advanced and <GradientText>beautiful</GradientText>
+              </Typography>
+            }
+            description="Use sophisticated theming features to make the MUI X components look exactly how you want. Take this Data Grid as an example."
+          />
+          <Group sx={{ m: -2, p: 2 }}>
             <Highlighter disableBorder selected={customized} onClick={() => setCustomized(true)}>
               <Item
                 icon={<SvgTwinkle />}
-                title="Custom Theme"
+                title="Custom theme"
                 description="Theming allows you to use your brand's design tokens, easily making the components reflect its look and feel."
               />
             </Highlighter>
@@ -120,23 +119,17 @@ export default function XTheming() {
               <Item
                 icon={<SvgMaterialDesign />}
                 title="Material Design"
-                description="Every component comes with Google's tried and tested design system ready for use."
+                description="Every component comes with Google's tried-and-tested design system, built-in and ready for use."
               />
             </Highlighter>
           </Group>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           {customized ? (
             <Paper
               id="data-grid-theming"
               variant="outlined"
-              sx={(theme) => ({
-                height: 418,
-                borderColor: 'grey.200',
-                ...theme.applyDarkStyles({
-                  borderColor: 'primaryDark.600',
-                }),
-              })}
+              sx={{ height: 418, borderColor: 'divider' }}
             >
               {dataGridStyleOverrides}
               <DataGridPro

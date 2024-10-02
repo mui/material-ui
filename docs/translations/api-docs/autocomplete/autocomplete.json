@@ -2,33 +2,33 @@
   "componentDescription": "",
   "propDescriptions": {
     "autoComplete": {
-      "description": "If <code>true</code>, the portion of the selected suggestion that has not been typed by the user, known as the completion string, appears inline after the input cursor in the textbox. The inline completion string is visually highlighted and has a selected state."
+      "description": "If <code>true</code>, the portion of the selected suggestion that the user hasn&#39;t typed, known as the completion string, appears inline after the input cursor in the textbox. The inline completion string is visually highlighted and has a selected state."
     },
     "autoHighlight": {
       "description": "If <code>true</code>, the first option is automatically highlighted."
     },
     "autoSelect": {
-      "description": "If <code>true</code>, the selected option becomes the value of the input when the Autocomplete loses focus unless the user chooses a different option or changes the character string in the input.<br>When using <code>freeSolo</code> mode, the typed value will be the input value if the Autocomplete loses focus without highlighting an option."
+      "description": "If <code>true</code>, the selected option becomes the value of the input when the Autocomplete loses focus unless the user chooses a different option or changes the character string in the input.<br>When using the <code>freeSolo</code> mode, the typed value will be the input value if the Autocomplete loses focus without highlighting an option."
     },
     "blurOnSelect": {
-      "description": "Control if the input should be blurred when an option is selected:<br>- <code>false</code> the input is not blurred. - <code>true</code> the input is always blurred. - <code>touch</code> the input is blurred after a touch event. - <code>mouse</code> the input is blurred after a mouse event."
+      "description": "<p>Control if the input should be blurred when an option is selected:</p>\n<ul>\n<li><code>false</code> the input is not blurred.</li>\n<li><code>true</code> the input is always blurred.</li>\n<li><code>touch</code> the input is blurred after a touch event.</li>\n<li><code>mouse</code> the input is blurred after a mouse event.</li>\n</ul>\n"
     },
     "ChipProps": {
-      "description": "Props applied to the <a href=\"/material-ui/api/chip/\"><code>Chip</code></a> element."
+      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/chip/\"><code>Chip</code></a> element."
     },
     "classes": { "description": "Override or extend the styles applied to the component." },
     "clearIcon": { "description": "The icon to display in place of the default clear icon." },
     "clearOnBlur": {
-      "description": "If <code>true</code>, the input&#39;s text is cleared on blur if no value is selected.<br>Set to <code>true</code> if you want to help the user enter a new value. Set to <code>false</code> if you want to help the user resume their search."
+      "description": "If <code>true</code>, the input&#39;s text is cleared on blur if no value is selected.<br>Set it to <code>true</code> if you want to help the user enter a new value. Set it to <code>false</code> if you want to help the user resume their search."
     },
     "clearOnEscape": {
       "description": "If <code>true</code>, clear all values when the user presses escape and the popup is closed."
     },
     "clearText": {
-      "description": "Override the default text for the <em>clear</em> icon button.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>."
+      "description": "Override the default text for the <em>clear</em> icon button.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>."
     },
     "closeText": {
-      "description": "Override the default text for the <em>close popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>."
+      "description": "Override the default text for the <em>close popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>."
     },
     "componentsProps": { "description": "The props used for each slot inside." },
     "defaultValue": {
@@ -73,6 +73,10 @@
       "description": "Used to determine the disabled state for a given option.",
       "typeDescriptions": { "option": "The option to test." }
     },
+    "getOptionKey": {
+      "description": "Used to determine the key for a given option. This can be useful when the labels of options are not unique (since labels are used as keys by default).",
+      "typeDescriptions": { "option": "The option to get the key for." }
+    },
     "getOptionLabel": {
       "description": "Used to determine the string value for a given option. It&#39;s used to fill the input (and the list box options if <code>renderOption</code> is not provided).<br>If used in free solo mode, it must accept both the type of the options and a string."
     },
@@ -100,16 +104,16 @@
     "ListboxComponent": { "description": "The component used to render the listbox." },
     "ListboxProps": { "description": "Props applied to the Listbox element." },
     "loading": {
-      "description": "If <code>true</code>, the component is in a loading state. This shows the <code>loadingText</code> in place of suggestions (only if there are no suggestions to show, e.g. <code>options</code> are empty)."
+      "description": "If <code>true</code>, the component is in a loading state. This shows the <code>loadingText</code> in place of suggestions (only if there are no suggestions to show, for example <code>options</code> are empty)."
     },
     "loadingText": {
-      "description": "Text to display when in a loading state.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>."
+      "description": "Text to display when in a loading state.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>."
     },
     "multiple": {
       "description": "If <code>true</code>, <code>value</code> must be an array and the menu will support multiple selections."
     },
     "noOptionsText": {
-      "description": "Text to display when there are no options.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>."
+      "description": "Text to display when there are no options.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>."
     },
     "onChange": {
       "description": "Callback fired when the value changes.",
@@ -139,7 +143,7 @@
       "typeDescriptions": {
         "event": "The event source of the callback.",
         "value": "The new value of the text input.",
-        "reason": "Can be: <code>&quot;input&quot;</code> (user input), <code>&quot;reset&quot;</code> (programmatic change), <code>&quot;clear&quot;</code>."
+        "reason": "Can be: <code>&quot;input&quot;</code> (user input), <code>&quot;reset&quot;</code> (programmatic change), <code>&quot;clear&quot;</code>, <code>&quot;blur&quot;</code>, <code>&quot;selectOption&quot;</code>, <code>&quot;removeOption&quot;</code>"
       }
     },
     "onOpen": {
@@ -149,9 +153,9 @@
     "open": { "description": "If <code>true</code>, the component is shown." },
     "openOnFocus": { "description": "If <code>true</code>, the popup will open on input focus." },
     "openText": {
-      "description": "Override the default text for the <em>open popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>."
+      "description": "Override the default text for the <em>open popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>."
     },
-    "options": { "description": "Array of options." },
+    "options": { "description": "A list of options that will be shown in the Autocomplete." },
     "PaperComponent": { "description": "The component used to render the body of the popup." },
     "PopperComponent": { "description": "The component used to position the popup." },
     "popupIcon": { "description": "The icon to display in place of the default popup icon." },
@@ -185,6 +189,7 @@
     },
     "size": { "description": "The size of the component." },
     "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
@@ -193,11 +198,13 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "fullWidth": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>fullWidth={true}</code>"
+    "clearIndicator": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the clear indicator"
+    },
+    "endAdornment": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the endAdornment element"
     },
     "expanded": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
@@ -214,66 +221,30 @@
       "nodeName": "the option elements",
       "conditions": "they are keyboard focused"
     },
-    "tag": {
-      "description": "Styles applied to {{nodeName}}, {{conditions}}.",
-      "nodeName": "the tag elements",
-      "conditions": "e.g. the chips"
+    "fullWidth": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>fullWidth={true}</code>"
     },
-    "tagSizeSmall": {
-      "description": "Styles applied to {{nodeName}}, {{conditions}}.",
-      "nodeName": "the tag elements",
-      "conditions": "e.g. the chips if <code>size=\"small\"</code>"
-    },
-    "tagSizeMedium": {
-      "description": "Styles applied to {{nodeName}}, {{conditions}}.",
-      "nodeName": "the tag elements",
-      "conditions": "e.g. the chips if <code>size=\"medium\"</code>"
-    },
-    "hasPopupIcon": { "description": "Styles applied when the popup icon is rendered." },
-    "hasClearIcon": { "description": "Styles applied when the clear icon is rendered." },
-    "inputRoot": {
+    "groupLabel": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Input element"
+      "nodeName": "the group&#39;s label elements"
     },
+    "groupUl": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the group&#39;s ul elements"
+    },
+    "hasClearIcon": { "description": "Styles applied when the clear icon is rendered." },
+    "hasPopupIcon": { "description": "Styles applied when the popup icon is rendered." },
     "input": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the input element" },
     "inputFocused": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the input element",
       "conditions": "the input is focused"
     },
-    "endAdornment": {
+    "inputRoot": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the endAdornment element"
-    },
-    "clearIndicator": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the clear indicator"
-    },
-    "popupIndicator": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the popup indicator"
-    },
-    "popupIndicatorOpen": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the popup indicator",
-      "conditions": "the popup is open"
-    },
-    "popper": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the popper element"
-    },
-    "popperDisablePortal": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the popper element",
-      "conditions": "<code>disablePortal={true}</code>"
-    },
-    "paper": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Paper component"
-    },
-    "listbox": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the listbox component"
+      "nodeName": "the Input element"
     },
     "loading": {
       "description": "Styles applied to {{nodeName}}.",
@@ -287,13 +258,40 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the option elements"
     },
-    "groupLabel": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the group&#39;s label elements"
+    "popperDisablePortal": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the popper element",
+      "conditions": "<code>disablePortal={true}</code>"
     },
-    "groupUl": {
+    "popupIndicator": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the group&#39;s ul elements"
+      "nodeName": "the popup indicator"
+    },
+    "popupIndicatorOpen": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the popup indicator",
+      "conditions": "the popup is open"
+    },
+    "root": { "description": "Styles applied to the root element." },
+    "tag": {
+      "description": "Styles applied to {{nodeName}}, {{conditions}}.",
+      "nodeName": "the tag elements",
+      "conditions": "for example the chips"
+    },
+    "tagSizeMedium": {
+      "description": "Styles applied to {{nodeName}}, {{conditions}}.",
+      "nodeName": "the tag elements",
+      "conditions": "for example the chips if <code>size=\"medium\"</code>"
+    },
+    "tagSizeSmall": {
+      "description": "Styles applied to {{nodeName}}, {{conditions}}.",
+      "nodeName": "the tag elements",
+      "conditions": "for example the chips if <code>size=\"small\"</code>"
     }
+  },
+  "slotDescriptions": {
+    "listbox": "The component used to render the listbox.",
+    "paper": "The component used to render the body of the popup.",
+    "popper": "The component used to position the popup."
   }
 }

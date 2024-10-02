@@ -29,34 +29,23 @@
     "open": { "description": "If <code>true</code>, the component is shown." },
     "PaperComponent": { "description": "The component used to render the body of the dialog." },
     "PaperProps": {
-      "description": "Props applied to the <a href=\"/material-ui/api/paper/\"><code>Paper</code></a> element."
+      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/paper/\"><code>Paper</code></a> element."
     },
     "scroll": { "description": "Determine the container for scrolling the dialog." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
     "TransitionComponent": {
-      "description": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
+      "description": "The component used for the transition. <a href=\"https://mui.com/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
     },
     "transitionDuration": {
       "description": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object."
     },
     "TransitionProps": {
-      "description": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
+      "description": "Props applied to the transition element. By default, the element is based on this <a href=\"https://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "scrollPaper": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the container element",
-      "conditions": "<code>scroll=\"paper\"</code>"
-    },
-    "scrollBody": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the container element",
-      "conditions": "<code>scroll=\"body\"</code>"
-    },
     "container": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the container element"
@@ -65,55 +54,66 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Paper component"
     },
-    "paperScrollPaper": {
+    "paperFullScreen": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
-      "conditions": "<code>scroll=\"paper\"</code>"
-    },
-    "paperScrollBody": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the Paper component",
-      "conditions": "<code>scroll=\"body\"</code>"
-    },
-    "paperWidthFalse": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the Paper component",
-      "conditions": "<code>maxWidth=false</code>"
-    },
-    "paperWidthXs": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the Paper component",
-      "conditions": "<code>maxWidth=\"xs\"</code>"
-    },
-    "paperWidthSm": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the Paper component",
-      "conditions": "<code>maxWidth=\"sm\"</code>"
-    },
-    "paperWidthMd": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the Paper component",
-      "conditions": "<code>maxWidth=\"md\"</code>"
-    },
-    "paperWidthLg": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the Paper component",
-      "conditions": "<code>maxWidth=\"lg\"</code>"
-    },
-    "paperWidthXl": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the Paper component",
-      "conditions": "<code>maxWidth=\"xl\"</code>"
+      "conditions": "<code>fullScreen={true}</code>"
     },
     "paperFullWidth": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
       "conditions": "<code>fullWidth={true}</code>"
     },
-    "paperFullScreen": {
+    "paperScrollBody": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
-      "conditions": "<code>fullScreen={true}</code>"
+      "conditions": "<code>scroll=\"body\"</code>"
+    },
+    "paperScrollPaper": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Paper component",
+      "conditions": "<code>scroll=\"paper\"</code>"
+    },
+    "paperWidthFalse": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Paper component",
+      "conditions": "<code>maxWidth=false</code>"
+    },
+    "paperWidthLg": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Paper component",
+      "conditions": "<code>maxWidth=\"lg\"</code>"
+    },
+    "paperWidthMd": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Paper component",
+      "conditions": "<code>maxWidth=\"md\"</code>"
+    },
+    "paperWidthSm": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Paper component",
+      "conditions": "<code>maxWidth=\"sm\"</code>"
+    },
+    "paperWidthXl": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Paper component",
+      "conditions": "<code>maxWidth=\"xl\"</code>"
+    },
+    "paperWidthXs": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Paper component",
+      "conditions": "<code>maxWidth=\"xs\"</code>"
+    },
+    "root": { "description": "Styles applied to the root element." },
+    "scrollBody": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the container element",
+      "conditions": "<code>scroll=\"body\"</code>"
+    },
+    "scrollPaper": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the container element",
+      "conditions": "<code>scroll=\"paper\"</code>"
     }
   }
 }

@@ -15,11 +15,20 @@
     "import ListItemAvatar from '@mui/material/ListItemAvatar';",
     "import { ListItemAvatar } from '@mui/material';"
   ],
-  "styles": {
-    "classes": ["root", "alignItemsFlexStart"],
-    "globalClasses": {},
-    "name": "MuiListItemAvatar"
-  },
+  "classes": [
+    {
+      "key": "alignItemsFlexStart",
+      "className": "MuiListItemAvatar-alignItemsFlexStart",
+      "description": "Styles applied to the root element when the parent `ListItem` uses `alignItems=\"flex-start\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiListItemAvatar-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiListItemAvatar",

@@ -1,76 +1,125 @@
 ---
 productId: joy-ui
 title: React Snackbar component
+components: Snackbar
 githubLabel: 'component: snackbar'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 ---
 
 # Snackbar
 
 <p class="description">The Snackbar, also commonly referred to as Toast, component informs users that an action has been or will be performed by the app.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
+## Introduction
+
+Snackbars are designed to provide brief, non-intrusive notifications to users, informing them about processes an app has performed or will perform.
+
+By default, the snackbar is displayed in the lower-right corner of the screen. They are designed not to disrupt the user's workflow and can be dismissed automatically without the need of any user interaction.
+
+Snackbars contain a single line of text directly related to the operation performed. They can contain text actions, but no icons.
+
+{{"demo": "SnackbarUsage.js", "hideToolbar": true, "bg": "gradient"}}
+
+## Basics
+
+```jsx
+import Snackbar from '@mui/joy/Snackbar';
+```
+
+### Position
+
+The position of the snackbar can be controlled by specifying the `anchorOrigin` prop.
+
+In wider layouts, snackbars can be aligned to the left or centered, especially if they are consistently positioned in a specific location at the bottom of the screen. However, in some cases, you may need more flexible positioning.
+
+{{"demo": "PositionedSnackbar.js"}}
+
+## Customization
+
+### Variants
+
+The Snackbar component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `plain`, `outlined` (default), `soft`, and `solid`.
+
+{{"demo": "SnackbarVariants.js"}}
+
 :::info
-💡 The Joy UI Snackbar component is still in development.
-If you're in need of it, please upvote [**this GitHub issue**](https://github.com/mui/material-ui/issues/36603) to help us prioritize the next batch of new components.
+To learn how to add your own variants, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+Note that you lose the global variants when you add custom variants.
 :::
 
-## Integration with headless UI libraries
+### Sizes
 
-In the meantime, you can still adopt Joy UI today for building a snackbar!
+The Snackbar component comes in three sizes: `sm`, `md` (default), and `lg`.
 
-This document shows how to construct it with existing Joy UI components combined with popular headless UI libraries.
+{{"demo": "SnackbarSizes.js"}}
 
-### Parting from the Alert component
+:::info
+To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
+:::
 
-Joy UI's [`Alert`](/joy-ui/react-alert/) component is perfect for building a snackbar (or toast) because of the default role—`alert` and support for decorators.
+### Colors
 
-### With Radix UI
+Every palette included in the theme is available via the `color` prop.
+Play around combining different colors with different variants.
 
-Using Joy UI's Alert component as a starting point, pass Radix UI's Toast to component prop.
-Radix will enhance the functionalities by preserving the styles of Joy UI components.
+{{"demo": "SnackbarColors.js"}}
 
-Animation is created by targeting `data-*` attributes injected by Radix UI's `Toast.Root` component.
-In this demo, it uses `@mui/system` keyframes API, same as emotion's keyframes, to build the animation stylesheet.
+### Hide duration
 
-- [Install Radix UI's Toast](https://www.radix-ui.com/primitives/docs/components/toast#installation)
-- [Toast component documentation](https://www.radix-ui.com/primitives/docs/components/toast)
+Use `autoHideDuration` prop to control how long the Snackbar is displayed. If it is not provided, the Snackbar will be displayed until the user dismisses it.
 
-<iframe src="https://codesandbox.io/embed/snackbar-joy-ui-feat-radix-v8e7qw?module=%2Fdemo.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:360px; border:2; border-radius: 8px; overflow:hidden;"
-     title="Snackbar - Joy UI feat. Radix UI"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+{{"demo": "SnackbarHideDuration.js"}}
 
-### With React Aria
+### Close reason
 
-React Aria provides the `useToast` hook that can be used with Joy UI's `Alert` component.
+There are three reasons for the Snackbar to close:
 
-- [Install React Aria's Toast](https://react-spectrum.adobe.com/react-aria/useToast.html)
-- [Toast component documentation](https://react-spectrum.adobe.com/react-aria/useToast.html#features)
+- `timeout`: The Snackbar is closed after the `autoHideDuration` prop timer expires.
+- `clickaway`: The Snackbar is closed when the user interacts outside of the Snackbar.
+- `escapeKeyDown`: The Snackbar is closed when the user presses the escape key.
 
-<iframe src="https://codesandbox.io/embed/snackbar-joy-ui-feat-react-aria-gme1rg?module=%2Fdemo.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:360px; border:2; border-radius: 8px; overflow:hidden;"
-     title="Snackbar - Joy UI feat. React Aria"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+You can access the value from the second argument of the `onClose` callback.
 
-### With Sonner
+```js
+<Snackbar onClose={(event, reason) => {
+  // reason will be one of: timeout, clickaway, escapeKeyDown
+}}>
+```
 
-[Sonner](https://sonner.emilkowal.ski/), an opinionated toast component for React, comes with features like stackable toasts and swipe-to-dismiss animation.
+{{"demo": "SnackbarCloseReason.js"}}
 
-To use Sonner with Joy UI, override Sonner's CSS variables with Joy UI color tokens by targeting `[data-sonner-toaster][data-theme]` selector.
+#### Ignore clickaway
 
-You can also pass Joy UI's Alert component to [`toast.custom()`](https://github.com/emilkowalski/sonner#headless) to fully control the structure of the notification.
+This pattern is useful when you don't want the Snackbar to close when the user clicks outside of it.
 
-Lastly, it is also possible to enhance Sonner's `toast` function with a new method
-that closely resemble Joy UI's semantics (i.e.: adding a `warning` toast).
+```js
+<Snackbar
+  onClose={(event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+  }}
+>
+```
 
-- [Sonner documentation](https://github.com/emilkowalski/sonner#introduction)
+### Decorators
 
-<iframe src="https://codesandbox.io/embed/snackbar-joy-ui-feat-sonner-cs244m?fontsize=14&hidenavigation=1&theme=dark"
-     style="width:100%; height:500px; border:2; border-radius: 4px; overflow:hidden;"
-     title="Snackbar - Joy UI feat. Sonner"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+Use the `startDecorator` and `endDecorator` props to append icons and/or actions to either side of the Snackbar.
+
+{{"demo": "SnackbarWithDecorators.js"}}
+
+### Inverted colors
+
+When the Snackbar's variant is `soft` or `solid`, you can set `invertedColors` prop to `true` to invert the colors of the children for increasing the contrast.
+
+To learn more about this, check out [Color Inversion](/joy-ui/main-features/color-inversion/) feature.
+
+{{"demo": "SnackbarInvertedColors.js"}}
+
+### Animation
+
+To apply a custom animation, provide the `animationDuration` prop, which we'll use to match the component's unmount animation accurately.
+
+{{"demo": "CustomAnimatedSnackbar.js"}}

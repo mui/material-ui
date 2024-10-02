@@ -4,6 +4,7 @@
     "actions": {
       "description": "A ref with imperative actions that can be performed on the menu."
     },
+    "anchor": { "description": "The element based on which the menu is positioned." },
     "onItemsChange": {
       "description": "Function called when the items displayed in the menu change."
     },
@@ -13,11 +14,6 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "listbox": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the listbox element"
-    },
     "expanded": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -25,7 +21,7 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the popup element.",
-    "listbox": "The component that renders the listbox."
+    "listbox": "The component that renders the listbox.",
+    "root": "The component that renders the popup element."
   }
 }

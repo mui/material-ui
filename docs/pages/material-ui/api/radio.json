@@ -43,11 +43,44 @@
   },
   "name": "Radio",
   "imports": ["import Radio from '@mui/material/Radio';", "import { Radio } from '@mui/material';"],
-  "styles": {
-    "classes": ["root", "checked", "disabled", "colorPrimary", "colorSecondary"],
-    "globalClasses": { "checked": "Mui-checked", "disabled": "Mui-disabled" },
-    "name": "MuiRadio"
-  },
+  "classes": [
+    {
+      "key": "checked",
+      "className": "Mui-checked",
+      "description": "State class applied to the root element if `checked={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiRadio-colorPrimary",
+      "description": "Styles applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSecondary",
+      "className": "MuiRadio-colorSecondary",
+      "description": "Styles applied to the root element if `color=\"secondary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "root",
+      "className": "MuiRadio-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSmall",
+      "className": "MuiRadio-sizeSmall",
+      "description": "Styles applied to the root element if `size=\"small\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiRadio",

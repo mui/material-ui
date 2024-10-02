@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import ListContext from '../List/ListContext';
 import { getListItemSecondaryActionClassesUtilityClass } from './listItemSecondaryActionClasses';
 
@@ -26,21 +26,28 @@ const ListItemSecondaryActionRoot = styled('div', {
 
     return [styles.root, ownerState.disableGutters && styles.disableGutters];
   },
-})(({ ownerState }) => ({
+})({
   position: 'absolute',
   right: 16,
   top: '50%',
   transform: 'translateY(-50%)',
-  ...(ownerState.disableGutters && {
-    right: 0,
-  }),
-}));
+  variants: [
+    {
+      props: ({ ownerState }) => ownerState.disableGutters,
+      style: {
+        right: 0,
+      },
+    },
+  ],
+});
 
 /**
  * Must be used as the last child of ListItem to function properly.
+ *
+ * @deprecated Use the `secondaryAction` prop in the `ListItem` component instead. This component will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
  */
 const ListItemSecondaryAction = React.forwardRef(function ListItemSecondaryAction(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiListItemSecondaryAction' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiListItemSecondaryAction' });
   const { className, ...other } = props;
   const context = React.useContext(ListContext);
   const ownerState = { ...props, disableGutters: context.disableGutters };
@@ -57,10 +64,10 @@ const ListItemSecondaryAction = React.forwardRef(function ListItemSecondaryActio
 });
 
 ListItemSecondaryAction.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component, normally an `IconButton` or selection control.
    */

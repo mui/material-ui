@@ -9,8 +9,8 @@ import Sheet from '@mui/joy/Sheet';
 import LightMode from '@mui/icons-material/LightModeOutlined';
 import DarkMode from '@mui/icons-material/DarkModeOutlined';
 import InfoOutlined from '@mui/icons-material/InfoOutlined';
-import Check from '@mui/icons-material/Check';
-import useClipboardCopy from 'docs/src/modules/utils/useClipboardCopy';
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
+import { useClipboardCopy } from '@mui/docs/CodeCopy';
 
 const defaultTheme = extendTheme();
 
@@ -18,7 +18,6 @@ const traverseObject = (palette) => {
   const result = {};
   const traverse = (object, parts = []) => {
     if (object && typeof object === 'object') {
-      // eslint-disable-next-line no-restricted-syntax
       for (const key of Object.keys(object)) {
         traverse(object[key], [...parts, key]);
       }
@@ -37,9 +36,6 @@ const collator = new Intl.Collator(undefined, {
 });
 
 const Table = styled('table')(({ theme }) => ({
-  border: '1px solid',
-  borderColor: theme.vars.palette.divider,
-  borderRadius: theme.vars.radius.md,
   borderCollapse: 'separate',
   borderSpacing: 0,
   display: 'block',
@@ -47,7 +43,7 @@ const Table = styled('table')(({ theme }) => ({
   overflowY: 'scroll',
   th: {
     textAlign: 'left',
-    padding: '8px 6px',
+    padding: 8,
     position: 'sticky',
     top: 0,
     zIndex: 1,
@@ -102,26 +98,44 @@ export default function PaletteThemeViewer() {
   );
 
   return (
-    <Box sx={{ width: '100%', overflow: 'hidden', position: 'relative' }}>
+    <Box
+      sx={{
+        marginBottom: '-9px',
+        width: '100%',
+        overflow: 'hidden',
+        position: 'relative',
+        border: '1px solid',
+        borderColor: 'divider',
+        borderTopLeftRadius: '12px',
+        borderTopRightRadius: '12px',
+      }}
+    >
       <Sheet
         variant="solid"
         color="success"
-        sx={{
-          position: 'absolute',
-          left: '50%',
-          bottom: 0,
-          transform: `translateX(-50%) translateY(${
-            isCopied ? '-0.5rem' : 'calc(100% + 0.5rem)'
-          })`,
-          transition: '0.3s',
-          p: 0.5,
-          px: 0.75,
-          borderRadius: 'xs',
-          boxShadow: 'sm',
-          zIndex: 1,
-        }}
+        sx={[
+          {
+            position: 'absolute',
+            left: '50%',
+            bottom: 0,
+            transition: '0.3s',
+            p: 0.5,
+            pl: 0.5,
+            pr: 1,
+            borderRadius: 'xl',
+            boxShadow: 'md',
+            zIndex: 1,
+          },
+          isCopied
+            ? { transform: `translateX(-50%) translateY(-0.5rem)` }
+            : { transform: `translateX(-50%) translateY(calc(100% + 0.5rem))` },
+        ]}
       >
-        <Typography level="body-xs" textColor="inherit" startDecorator={<Check />}>
+        <Typography
+          level="body-xs"
+          textColor="inherit"
+          startDecorator={<CheckCircleRoundedIcon fontSize="small" />}
+        >
           Copied
         </Typography>
       </Sheet>
@@ -129,24 +143,24 @@ export default function PaletteThemeViewer() {
         <thead>
           <tr>
             <th>
-              <Typography fontSize="sm" textColor="inherit">
+              <Typography textColor="inherit" sx={{ fontSize: 'sm' }}>
                 Token
               </Typography>
             </th>
             <th>
               <Typography
-                fontSize="sm"
                 startDecorator={<LightMode />}
                 textColor="inherit"
+                sx={{ fontSize: 'sm' }}
               >
                 Light
               </Typography>
             </th>
             <th>
               <Typography
-                fontSize="sm"
                 startDecorator={<DarkMode />}
                 textColor="inherit"
+                sx={{ fontSize: 'sm' }}
               >
                 Dark
               </Typography>
@@ -163,8 +177,6 @@ export default function PaletteThemeViewer() {
                     component="button"
                     color="neutral"
                     textColor="inherit"
-                    fontSize="sm"
-                    textAlign="left"
                     onClick={() => copy(token)}
                     endDecorator={
                       light[token].match(/^[0-9]+\s[0-9]+\s[0-9]+$/) ? (
@@ -175,9 +187,8 @@ export default function PaletteThemeViewer() {
                             <Typography>
                               Translucent color usage: <br />
                               <Typography
-                                fontFamily="code"
                                 component="code"
-                                sx={{ py: 1, display: 'block' }}
+                                sx={{ fontFamily: 'code', py: 1, display: 'block' }}
                               >
                                 rgba(var(--joy-palette-{token.replace('.', '-')}) /
                                 0.6)
@@ -190,7 +201,12 @@ export default function PaletteThemeViewer() {
                         </Tooltip>
                       ) : null
                     }
-                    sx={{ cursor: 'copy' }}
+                    sx={{
+                      fontSize: 'sm',
+                      fontWeight: 'md',
+                      textAlign: 'left',
+                      cursor: 'copy',
+                    }}
                   >
                     {token}
                   </Link>
@@ -200,12 +216,15 @@ export default function PaletteThemeViewer() {
                     component="button"
                     color="neutral"
                     textColor="inherit"
-                    fontSize="xs"
                     startDecorator={renderSwatch('light', token)}
-                    fontFamily="code"
-                    textAlign="left"
-                    sx={{ alignItems: 'flex-start', cursor: 'copy' }}
                     onClick={() => copy(light[token])}
+                    sx={{
+                      fontSize: 'xs',
+                      fontFamily: 'code',
+                      textAlign: 'left',
+                      alignItems: 'flex-start',
+                      cursor: 'copy',
+                    }}
                   >
                     {light[token]}
                   </Link>
@@ -215,12 +234,15 @@ export default function PaletteThemeViewer() {
                     component="button"
                     color="neutral"
                     textColor="inherit"
-                    fontSize="xs"
                     startDecorator={renderSwatch('dark', token)}
-                    fontFamily="code"
-                    textAlign="left"
-                    sx={{ alignItems: 'flex-start', cursor: 'copy' }}
                     onClick={() => copy(dark[token])}
+                    sx={{
+                      fontSize: 'xs',
+                      fontFamily: 'code',
+                      textAlign: 'left',
+                      alignItems: 'flex-start',
+                      cursor: 'copy',
+                    }}
                   >
                     {dark[token]}
                   </Link>

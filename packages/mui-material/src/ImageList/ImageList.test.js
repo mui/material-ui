@@ -1,7 +1,8 @@
 import { expect } from 'chai';
 import * as React from 'react';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import ImageList, { imageListClasses as classes } from '@mui/material/ImageList';
+import describeConformance from '../../test/describeConformance';
 
 const itemsData = [
   {

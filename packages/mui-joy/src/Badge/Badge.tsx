@@ -6,7 +6,6 @@ import { unstable_capitalize as capitalize, usePreviousProps } from '@mui/utils'
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
 import { BadgeProps, BadgeOwnerState, BadgeTypeMap } from './BadgeProps';
@@ -106,7 +105,7 @@ const BadgeBadge = styled('span', {
     theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`];
   return {
     '--Icon-color': 'currentColor',
-    '--Icon-fontSize': `calc(1em * ${typography.lineHeight ?? '1'})`,
+    '--Icon-fontSize': `calc(1em * ${typography?.lineHeight ?? '1'})`,
     display: 'inline-flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
@@ -184,17 +183,22 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   }
 
   const {
-    color: internalColor = colorProp,
+    color = colorProp,
     size = sizeProp,
     anchorOrigin = anchorOriginProp,
     variant = variantProp,
     badgeInset = badgeInsetProp,
   } = invisible ? prevProps : props;
 
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, internalColor);
-
-  const ownerState = { ...props, anchorOrigin, badgeInset, variant, invisible, color, size };
+  const ownerState = {
+    ...props,
+    anchorOrigin,
+    badgeInset,
+    variant,
+    invisible,
+    color,
+    size,
+  };
   const classes = useUtilityClasses(ownerState);
   const externalForwardedProps = { ...other, component, slots, slotProps };
   let displayValue =
@@ -228,10 +232,10 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
 }) as OverridableComponent<BadgeTypeMap>;
 
 Badge.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The anchor of the badge.
    * @default {

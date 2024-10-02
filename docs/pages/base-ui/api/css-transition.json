@@ -1,0 +1,20 @@
+{
+  "props": {
+    "enterClassName": { "type": { "name": "string" } },
+    "exitClassName": { "type": { "name": "string" } },
+    "lastTransitionedPropertyOnExit": { "type": { "name": "string" } }
+  },
+  "name": "CssTransition",
+  "imports": [
+    "import { CssTransition } from '@mui/base/Transitions';",
+    "import { CssTransition } from '@mui/base';"
+  ],
+  "classes": [],
+  "spread": true,
+  "themeDefaultProps": null,
+  "muiName": "CssTransition",
+  "filename": "/packages/mui-base/src/Transitions/CssTransition.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-transitions/\">Transitions</a></li></ul>",
+  "cssComponent": false
+}

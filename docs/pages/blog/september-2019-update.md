@@ -4,6 +4,7 @@ description: Here are the most significant improvements in September.
 date: 2019-10-12T00:00:00.000Z
 authors: ['oliviertassinari']
 tags: ['Company']
+manualCard: true
 ---
 
 Here are the most significant improvements in September:
@@ -22,7 +23,7 @@ Here are the most significant improvements in September:
 
   ![Autofill](/static/blog/september-2019-update/autofill.png)
 
-- 📊 Launch a [developer survey](https://www.surveymonkey.com/) as a precursor to a major Date Picker enhancement effort. We plan a new investment batch of between 100 and 500 hours.
+- 📊 Launch a Developer Survey as a precursor to a major DatePicker enhancement effort.We plan a new investment batch of between 100 and 500 hours.
 
 - 📚 Change imports from `@mui/styles` to `@mui/material/styles`
 

@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import TableFooter, { tableFooterClasses as classes } from '@mui/material/TableFooter';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
+import describeConformance from '../../test/describeConformance';
 
 describe('<TableFooter />', () => {
   const { render } = createRenderer();
@@ -17,10 +18,6 @@ describe('<TableFooter />', () => {
     render: (node) => {
       const { container, ...other } = render(<table>{node}</table>);
       return { container: container.firstChild, ...other };
-    },
-    wrapMount: (mount) => (node) => {
-      const wrapper = mount(<table>{node}</table>);
-      return wrapper.find('table').childAt(0);
     },
     muiName: 'MuiTableFooter',
     testVariantProps: { variant: 'foo' },

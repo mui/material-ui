@@ -43,19 +43,18 @@
   },
   "name": "Input",
   "imports": ["import { Input } from '@mui/base/Input';", "import { Input } from '@mui/base';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiInput-root"
+      "class": "base-Input-root"
     },
     {
       "name": "input",
       "description": "The component that renders the input.",
       "default": "'input'",
-      "class": ".MuiInput-input"
+      "class": "base-Input-input"
     },
     {
       "name": "textarea",
@@ -64,22 +63,64 @@
       "class": null
     }
   ],
-  "classes": {
-    "classes": [
-      "adornedEnd",
-      "adornedStart",
-      "disabled",
-      "error",
-      "focused",
-      "formControl",
-      "inputMultiline",
-      "inputTypeSearch",
-      "multiline"
-    ],
-    "globalClasses": { "focused": "Mui-focused", "disabled": "Mui-disabled", "error": "Mui-error" }
-  },
+  "classes": [
+    {
+      "key": "adornedEnd",
+      "className": "base-Input-adornedEnd",
+      "description": "Class name applied to the root element if `endAdornment` is provided.",
+      "isGlobal": false
+    },
+    {
+      "key": "adornedStart",
+      "className": "base-Input-adornedStart",
+      "description": "Class name applied to the root element if `startAdornment` is provided.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "base--disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "error",
+      "className": "base--error",
+      "description": "State class applied to the root element if `error={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "focused",
+      "className": "base--focused",
+      "description": "State class applied to the root element if the component is focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "formControl",
+      "className": "base-Input-formControl",
+      "description": "Class name applied to the root element if the component is a descendant of `FormControl`.",
+      "isGlobal": false
+    },
+    {
+      "key": "inputMultiline",
+      "className": "base-Input-inputMultiline",
+      "description": "Class name applied to the input element if `multiline={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "inputTypeSearch",
+      "className": "base-Input-inputTypeSearch",
+      "description": "Class name applied to the input element if `type=\"search\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "multiline",
+      "className": "base-Input-multiline",
+      "description": "Class name applied to the root element if `multiline={true}`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
-  "muiName": "MuiInput",
+  "muiName": "Input",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/Input/Input.tsx",
   "inheritance": null,

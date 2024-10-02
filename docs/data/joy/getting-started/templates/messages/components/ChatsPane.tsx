@@ -4,6 +4,9 @@ import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import { Box, Chip, IconButton, Input } from '@mui/joy';
 import List from '@mui/joy/List';
+import EditNoteRoundedIcon from '@mui/icons-material/EditNoteRounded';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import ChatListItem from './ChatListItem';
 import { ChatProps } from '../types';
 import { toggleMessagesPane } from '../utils';
@@ -14,46 +17,49 @@ type ChatsPaneProps = {
   selectedChatId: string;
 };
 
-export default function ChatsPane({
-  chats,
-  setSelectedChat,
-  selectedChatId,
-}: ChatsPaneProps) {
+export default function ChatsPane(props: ChatsPaneProps) {
+  const { chats, setSelectedChat, selectedChatId } = props;
   return (
     <Sheet
       sx={{
         borderRight: '1px solid',
         borderColor: 'divider',
-        height: 'calc(100dvh - var(--Header-height))',
+        height: { sm: 'calc(100dvh - var(--Header-height))', md: '100dvh' },
         overflowY: 'auto',
       }}
     >
-      <Stack direction="row" spacing={1} alignItems="center" p={2} pb={1.5}>
+      <Stack
+        direction="row"
+        spacing={1}
+        sx={{ alignItems: 'center', justifyContent: 'space-between', p: 2, pb: 1.5 }}
+      >
         <Typography
-          fontSize={{ xs: 'md', md: 'lg' }}
           component="h1"
-          fontWeight="lg"
           endDecorator={
             <Chip
-              variant="outlined"
-              color="neutral"
-              size="sm"
+              variant="soft"
+              color="primary"
+              size="md"
               slotProps={{ root: { component: 'span' } }}
             >
-              40
+              4
             </Chip>
           }
-          sx={{ mr: 'auto' }}
+          sx={{ fontSize: { xs: 'md', md: 'lg' }, fontWeight: 'lg', mr: 'auto' }}
         >
           Messages
         </Typography>
-
-        <IconButton variant="outlined" aria-label="edit" color="neutral" size="sm">
-          <i data-feather="edit" />
-        </IconButton>
-
         <IconButton
-          variant="outlined"
+          variant="plain"
+          aria-label="edit"
+          color="neutral"
+          size="sm"
+          sx={{ display: { xs: 'none', sm: 'unset' } }}
+        >
+          <EditNoteRoundedIcon />
+        </IconButton>
+        <IconButton
+          variant="plain"
           aria-label="edit"
           color="neutral"
           size="sm"
@@ -62,14 +68,13 @@ export default function ChatsPane({
           }}
           sx={{ display: { sm: 'none' } }}
         >
-          <i data-feather="x" />
+          <CloseRoundedIcon />
         </IconButton>
       </Stack>
-
-      <Box px={2} pb={1.5}>
+      <Box sx={{ px: 2, pb: 1.5 }}>
         <Input
           size="sm"
-          startDecorator={<i data-feather="search" />}
+          startDecorator={<SearchRoundedIcon />}
           placeholder="Search"
           aria-label="Search"
         />

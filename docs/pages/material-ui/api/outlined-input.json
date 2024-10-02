@@ -11,7 +11,9 @@
     },
     "components": {
       "type": { "name": "shape", "description": "{ Input?: elementType, Root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
@@ -60,28 +62,104 @@
     "import OutlinedInput from '@mui/material/OutlinedInput';",
     "import { OutlinedInput } from '@mui/material';"
   ],
-  "styles": {
-    "classes": [
-      "root",
-      "colorSecondary",
-      "focused",
-      "disabled",
-      "adornedStart",
-      "adornedEnd",
-      "error",
-      "sizeSmall",
-      "multiline",
-      "notchedOutline",
-      "input",
-      "inputSizeSmall",
-      "inputMultiline",
-      "inputAdornedStart",
-      "inputAdornedEnd",
-      "inputTypeSearch"
-    ],
-    "globalClasses": { "focused": "Mui-focused", "disabled": "Mui-disabled", "error": "Mui-error" },
-    "name": "MuiOutlinedInput"
-  },
+  "classes": [
+    {
+      "key": "adornedEnd",
+      "className": "MuiOutlinedInput-adornedEnd",
+      "description": "Styles applied to the root element if `endAdornment` is provided.",
+      "isGlobal": false
+    },
+    {
+      "key": "adornedStart",
+      "className": "MuiOutlinedInput-adornedStart",
+      "description": "Styles applied to the root element if `startAdornment` is provided.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSecondary",
+      "className": "MuiOutlinedInput-colorSecondary",
+      "description": "Styles applied to the root element if the color is secondary.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "Styles applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "error",
+      "className": "Mui-error",
+      "description": "State class applied to the root element if `error={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "focused",
+      "className": "Mui-focused",
+      "description": "Styles applied to the root element if the component is focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "input",
+      "className": "MuiOutlinedInput-input",
+      "description": "Styles applied to the input element.",
+      "isGlobal": false
+    },
+    {
+      "key": "inputAdornedEnd",
+      "className": "MuiOutlinedInput-inputAdornedEnd",
+      "description": "Styles applied to the input element if `endAdornment` is provided.",
+      "isGlobal": false
+    },
+    {
+      "key": "inputAdornedStart",
+      "className": "MuiOutlinedInput-inputAdornedStart",
+      "description": "Styles applied to the input element if `startAdornment` is provided.",
+      "isGlobal": false
+    },
+    {
+      "key": "inputMultiline",
+      "className": "MuiOutlinedInput-inputMultiline",
+      "description": "Styles applied to the input element if `multiline={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "inputSizeSmall",
+      "className": "MuiOutlinedInput-inputSizeSmall",
+      "description": "Styles applied to the input element if `size=\"small\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "inputTypeSearch",
+      "className": "MuiOutlinedInput-inputTypeSearch",
+      "description": "Styles applied to the input element if `type=\"search\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "multiline",
+      "className": "MuiOutlinedInput-multiline",
+      "description": "Styles applied to the root element if `multiline={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "notchedOutline",
+      "className": "MuiOutlinedInput-notchedOutline",
+      "description": "Styles applied to the NotchedOutline element.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiOutlinedInput-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSmall",
+      "className": "MuiOutlinedInput-sizeSmall",
+      "description": "Styles applied to the input element if `size=\"small\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiOutlinedInput",

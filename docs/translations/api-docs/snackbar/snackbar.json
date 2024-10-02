@@ -16,13 +16,13 @@
       "description": "Props applied to the <code>ClickAwayListener</code> element."
     },
     "ContentProps": {
-      "description": "Props applied to the <a href=\"/material-ui/api/snackbar-content/\"><code>SnackbarContent</code></a> element."
+      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/snackbar-content/\"><code>SnackbarContent</code></a> element."
     },
     "disableWindowBlurListener": {
       "description": "If <code>true</code>, the <code>autoHideDuration</code> timer will expire even if the window is not focused."
     },
     "key": {
-      "description": "When displaying multiple consecutive Snackbars from a parent rendering a single &lt;Snackbar/&gt;, add the key prop to ensure independent treatment of each message. e.g. &lt;Snackbar key={message} /&gt;, otherwise, the message may update-in-place and features such as autoHideDuration may be canceled."
+      "description": "When displaying multiple consecutive snackbars using a single parent-rendered <code>&lt;Snackbar/&gt;</code>, add the <code>key</code> prop to ensure independent treatment of each message. For instance, use <code>&lt;Snackbar key={message} /&gt;</code>. Otherwise, messages might update in place, and features like <code>autoHideDuration</code> could be affected."
     },
     "message": { "description": "The message to display." },
     "onClose": {
@@ -40,46 +40,46 @@
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
     "TransitionComponent": {
-      "description": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
+      "description": "The component used for the transition. <a href=\"https://mui.com/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
     },
     "transitionDuration": {
       "description": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object."
     },
     "TransitionProps": {
-      "description": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
+      "description": "Props applied to the transition element. By default, the element is based on this <a href=\"https://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "anchorOriginTopCenter": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>anchorOrigin={{ 'top', 'center' }}</code>"
-    },
     "anchorOriginBottomCenter": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>anchorOrigin={{ 'bottom', 'center' }}</code>"
     },
-    "anchorOriginTopRight": {
+    "anchorOriginBottomLeft": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>anchorOrigin={{ 'top', 'right' }}</code>"
+      "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }}</code>"
     },
     "anchorOriginBottomRight": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>anchorOrigin={{ 'bottom', 'right' }}</code>"
     },
+    "anchorOriginTopCenter": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>anchorOrigin={{ 'top', 'center' }}</code>"
+    },
     "anchorOriginTopLeft": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>anchorOrigin={{ 'top', 'left' }}</code>"
     },
-    "anchorOriginBottomLeft": {
+    "anchorOriginTopRight": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }}</code>"
-    }
+      "conditions": "<code>anchorOrigin={{ 'top', 'right' }}</code>"
+    },
+    "root": { "description": "Styles applied to the root element." }
   }
 }

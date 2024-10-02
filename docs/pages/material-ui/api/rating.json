@@ -7,7 +7,7 @@
     "emptyLabelText": { "type": { "name": "node" }, "default": "'Empty'" },
     "getLabelText": {
       "type": { "name": "func" },
-      "default": "function defaultLabelText(value) {\n  return `${value} Star${value !== 1 ? 's' : ''}`;\n}",
+      "default": "function defaultLabelText(value) {\n  return `${value || '0'} Star${value !== 1 ? 's' : ''}`;\n}",
       "signature": { "type": "function(value: number) => string", "describedArgs": ["value"] }
     },
     "highlightSelectedOnly": { "type": { "name": "bool" }, "default": "false" },
@@ -55,33 +55,110 @@
     "import Rating from '@mui/material/Rating';",
     "import { Rating } from '@mui/material';"
   ],
-  "styles": {
-    "classes": [
-      "root",
-      "sizeSmall",
-      "sizeMedium",
-      "sizeLarge",
-      "readOnly",
-      "disabled",
-      "focusVisible",
-      "visuallyHidden",
-      "label",
-      "labelEmptyValueActive",
-      "icon",
-      "iconEmpty",
-      "iconFilled",
-      "iconHover",
-      "iconFocus",
-      "iconActive",
-      "decimal"
-    ],
-    "globalClasses": {
-      "readOnly": "Mui-readOnly",
-      "disabled": "Mui-disabled",
-      "focusVisible": "Mui-focusVisible"
+  "classes": [
+    {
+      "key": "decimal",
+      "className": "MuiRating-decimal",
+      "description": "Styles applied to the icon wrapping elements when decimals are necessary.",
+      "isGlobal": false
     },
-    "name": "MuiRating"
-  },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "focusVisible",
+      "className": "Mui-focusVisible",
+      "description": "State class applied to the root element if keyboard focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "icon",
+      "className": "MuiRating-icon",
+      "description": "Styles applied to the icon wrapping elements.",
+      "isGlobal": false
+    },
+    {
+      "key": "iconActive",
+      "className": "MuiRating-iconActive",
+      "description": "Styles applied to the icon wrapping elements when active.",
+      "isGlobal": false
+    },
+    {
+      "key": "iconEmpty",
+      "className": "MuiRating-iconEmpty",
+      "description": "Styles applied to the icon wrapping elements when empty.",
+      "isGlobal": false
+    },
+    {
+      "key": "iconFilled",
+      "className": "MuiRating-iconFilled",
+      "description": "Styles applied to the icon wrapping elements when filled.",
+      "isGlobal": false
+    },
+    {
+      "key": "iconFocus",
+      "className": "MuiRating-iconFocus",
+      "description": "Styles applied to the icon wrapping elements when focus.",
+      "isGlobal": false
+    },
+    {
+      "key": "iconHover",
+      "className": "MuiRating-iconHover",
+      "description": "Styles applied to the icon wrapping elements when hover.",
+      "isGlobal": false
+    },
+    {
+      "key": "label",
+      "className": "MuiRating-label",
+      "description": "Styles applied to the label elements.",
+      "isGlobal": false
+    },
+    {
+      "key": "labelEmptyValueActive",
+      "className": "MuiRating-labelEmptyValueActive",
+      "description": "Styles applied to the label of the \"no value\" input when it is active.",
+      "isGlobal": false
+    },
+    {
+      "key": "readOnly",
+      "className": "Mui-readOnly",
+      "description": "Styles applied to the root element if `readOnly={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "root",
+      "className": "MuiRating-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeLarge",
+      "className": "MuiRating-sizeLarge",
+      "description": "Styles applied to the root element if `size=\"large\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeMedium",
+      "className": "MuiRating-sizeMedium",
+      "description": "Styles applied to the root element if `size=\"medium\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSmall",
+      "className": "MuiRating-sizeSmall",
+      "description": "Styles applied to the root element if `size=\"small\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "visuallyHidden",
+      "className": "MuiRating-visuallyHidden",
+      "description": "Visually hide an element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiRating",

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import { CssVarsProvider } from '@mui/joy/styles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Avatar from '@mui/joy/Avatar';
@@ -11,63 +11,39 @@ import CardOverflow from '@mui/joy/CardOverflow';
 import CardCover from '@mui/joy/CardCover';
 import CardContent from '@mui/joy/CardContent';
 import Typography from '@mui/joy/Typography';
-import Input from '@mui/joy/Input';
 import IconButton from '@mui/joy/IconButton';
 import Divider from '@mui/joy/Divider';
 import Sheet from '@mui/joy/Sheet';
-import Table from '@mui/joy/Table';
 import Tabs from '@mui/joy/Tabs';
 import TabList from '@mui/joy/TabList';
 import Tab from '@mui/joy/Tab';
+import TabPanel from '@mui/joy/TabPanel';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
+import ListDivider from '@mui/joy/ListDivider';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemContent from '@mui/joy/ListItemContent';
+import Stack from '@mui/joy/Stack';
+import Chip from '@mui/joy/Chip';
+import Dropdown from '@mui/joy/Dropdown';
+import Menu from '@mui/joy/Menu';
+import MenuButton from '@mui/joy/MenuButton';
+import MenuItem from '@mui/joy/MenuItem';
 
-// Icons import
-import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
-import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
-import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
-import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
-import FindInPageRoundedIcon from '@mui/icons-material/FindInPageRounded';
-import MenuIcon from '@mui/icons-material/Menu';
-import FolderOpenIcon from '@mui/icons-material/FolderOpen';
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import CloseIcon from '@mui/icons-material/Close';
-import BookRoundedIcon from '@mui/icons-material/BookRounded';
+import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
+import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
+import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
+import InsertDriveFileRoundedIcon from '@mui/icons-material/InsertDriveFileRounded';
+import ShareRoundedIcon from '@mui/icons-material/ShareRounded';
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
-// custom
-import Menu from './components/Menu';
 import Layout from './components/Layout';
 import Navigation from './components/Navigation';
-
-function ColorSchemeToggle() {
-  const { mode, setMode } = useColorScheme();
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-  if (!mounted) {
-    return <IconButton size="sm" variant="soft" color="neutral" />;
-  }
-  return (
-    <IconButton
-      id="toggle-mode"
-      size="sm"
-      variant="soft"
-      color="neutral"
-      onClick={() => {
-        if (mode === 'light') {
-          setMode('dark');
-        } else {
-          setMode('light');
-        }
-      }}
-    >
-      {mode === 'light' ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
-    </IconButton>
-  );
-}
+import Header from './components/Header';
+import TableFiles from './components/TableFiles';
 
 export default function FilesExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
@@ -79,118 +55,75 @@ export default function FilesExample() {
           <Navigation />
         </Layout.SideDrawer>
       )}
-      <Layout.Root
+      <Stack
+        id="tab-bar"
+        direction="row"
+        spacing={1}
         sx={{
-          gridTemplateColumns: {
-            xs: '1fr',
-            sm: 'minmax(64px, 200px) minmax(450px, 1fr)',
-            md: 'minmax(160px, 300px) minmax(600px, 1fr) minmax(300px, 420px)',
-          },
-          ...(drawerOpen && {
-            height: '100vh',
-            overflow: 'hidden',
-          }),
+          justifyContent: 'space-around',
+          display: { xs: 'flex', sm: 'none' },
+          zIndex: '999',
+          bottom: 0,
+          position: 'fixed',
+          width: '100dvw',
+          py: 2,
+          backgroundColor: 'background.body',
+          borderTop: '1px solid',
+          borderColor: 'divider',
         }}
       >
+        <Button
+          variant="plain"
+          color="neutral"
+          component="a"
+          href="/joy-ui/getting-started/templates/email/"
+          size="sm"
+          startDecorator={<EmailRoundedIcon />}
+          sx={{ flexDirection: 'column', '--Button-gap': 0 }}
+        >
+          Email
+        </Button>
+        <Button
+          variant="plain"
+          color="neutral"
+          component="a"
+          href="/joy-ui/getting-started/templates/team/"
+          size="sm"
+          startDecorator={<PeopleAltRoundedIcon />}
+          sx={{ flexDirection: 'column', '--Button-gap': 0 }}
+        >
+          Team
+        </Button>
+        <Button
+          variant="plain"
+          color="neutral"
+          aria-pressed="true"
+          component="a"
+          href="/joy-ui/getting-started/templates/files/"
+          size="sm"
+          startDecorator={<FolderRoundedIcon />}
+          sx={{ flexDirection: 'column', '--Button-gap': 0 }}
+        >
+          Files
+        </Button>
+      </Stack>
+      <Layout.Root
+        sx={[
+          {
+            gridTemplateColumns: {
+              xs: '1fr',
+              sm: 'minmax(64px, 200px) minmax(450px, 1fr)',
+              md: 'minmax(160px, 300px) minmax(600px, 1fr) minmax(300px, 420px)',
+            },
+          },
+          drawerOpen && {
+            height: '100vh',
+            overflow: 'hidden',
+          },
+        ]}
+      >
         <Layout.Header>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 1.5,
-            }}
-          >
-            <IconButton
-              variant="outlined"
-              size="sm"
-              onClick={() => setDrawerOpen(true)}
-              sx={{ display: { sm: 'none' } }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <IconButton
-              size="sm"
-              variant="soft"
-              sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
-            >
-              <FindInPageRoundedIcon />
-            </IconButton>
-            <Typography component="h1" fontWeight="xl">
-              Files
-            </Typography>
-          </Box>
-          <Input
-            size="sm"
-            variant="outlined"
-            placeholder="Search anything…"
-            startDecorator={<SearchRoundedIcon color="primary" />}
-            endDecorator={
-              <IconButton variant="outlined" color="neutral">
-                <Typography fontWeight="lg" fontSize="sm" textColor="text.icon">
-                  ⌘ + k
-                </Typography>
-              </IconButton>
-            }
-            sx={{
-              flexBasis: '500px',
-              display: {
-                xs: 'none',
-                sm: 'flex',
-              },
-              boxShadow: 'sm',
-            }}
-          />
-          <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1.5 }}>
-            <IconButton
-              size="sm"
-              variant="outlined"
-              color="neutral"
-              sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
-            >
-              <SearchRoundedIcon />
-            </IconButton>
-
-            <IconButton
-              size="sm"
-              variant="soft"
-              color="neutral"
-              component="a"
-              href="/blog/first-look-at-joy/"
-            >
-              <BookRoundedIcon />
-            </IconButton>
-            <Menu
-              id="app-selector"
-              control={
-                <IconButton
-                  size="sm"
-                  variant="soft"
-                  color="neutral"
-                  aria-label="Apps"
-                >
-                  <GridViewRoundedIcon />
-                </IconButton>
-              }
-              menus={[
-                {
-                  label: 'Email',
-                  href: '/joy-ui/getting-started/templates/email/',
-                },
-                {
-                  label: 'Team',
-                  href: '/joy-ui/getting-started/templates/team/',
-                },
-                {
-                  label: 'Files',
-                  active: true,
-                  'aria-current': 'page',
-                  href: '/joy-ui/getting-started/templates/files/',
-                },
-              ]}
-            />
-            <ColorSchemeToggle />
-          </Box>
+          <Header />
         </Layout.Header>
         <Layout.SideNav>
           <Navigation />
@@ -203,115 +136,24 @@ export default function FilesExample() {
               gap: 2,
             }}
           >
+            {' '}
             <Sheet
               variant="outlined"
-              sx={{ borderRadius: 'sm', gridColumn: '1/-1' }}
+              sx={{
+                borderRadius: 'sm',
+                gridColumn: '1/-1',
+                display: { xs: 'none', md: 'flex' },
+              }}
             >
-              <Table
-                sx={{
-                  '--TableCell-paddingX': '1rem',
-                  '--TableCell-paddingY': '1rem',
-                }}
-              >
-                <thead>
-                  <tr>
-                    <th>Folder name</th>
-                    <th>Date modified</th>
-                    <th>Size</th>
-                    <th>Users</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <Typography
-                        level="body-sm"
-                        startDecorator={<FolderOpenIcon color="primary" />}
-                        sx={{ alignItems: 'flex-start' }}
-                      >
-                        Travel pictures
-                      </Typography>
-                    </td>
-                    <td>21 October 2011, 3PM</td>
-                    <td>
-                      <Typography level="body-sm" color="success">
-                        987.5MB
-                      </Typography>
-                    </td>
-                    <td>
-                      <AvatarGroup
-                        size="sm"
-                        sx={{ '--AvatarGroup-gap': '-8px', '--Avatar-size': '24px' }}
-                      >
-                        <Avatar
-                          src="https://i.pravatar.cc/24?img=6"
-                          srcSet="https://i.pravatar.cc/48?img=6 2x"
-                        />
-                        <Avatar
-                          src="https://i.pravatar.cc/24?img=7"
-                          srcSet="https://i.pravatar.cc/48?img=7 2x"
-                        />
-                        <Avatar
-                          src="https://i.pravatar.cc/24?img=8"
-                          srcSet="https://i.pravatar.cc/48?img=8 2x"
-                        />
-                        <Avatar
-                          src="https://i.pravatar.cc/24?img=9"
-                          srcSet="https://i.pravatar.cc/48?img=9 2x"
-                        />
-                      </AvatarGroup>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Typography
-                        level="body-sm"
-                        startDecorator={<FolderOpenIcon color="primary" />}
-                        sx={{ alignItems: 'flex-start' }}
-                      >
-                        Important documents
-                      </Typography>
-                    </td>
-                    <td>26 May 2010, 7PM</td>
-                    <td>
-                      <Typography level="body-sm" color="success">
-                        123.3KB
-                      </Typography>
-                    </td>
-                    <td>
-                      <AvatarGroup
-                        size="sm"
-                        sx={{ '--AvatarGroup-gap': '-8px', '--Avatar-size': '24px' }}
-                      >
-                        <Avatar
-                          src="https://i.pravatar.cc/24?img=6"
-                          srcSet="https://i.pravatar.cc/48?img=6 2x"
-                        />
-                        <Avatar
-                          src="https://i.pravatar.cc/24?img=7"
-                          srcSet="https://i.pravatar.cc/48?img=7 2x"
-                        />
-                        <Avatar
-                          src="https://i.pravatar.cc/24?img=8"
-                          srcSet="https://i.pravatar.cc/48?img=8 2x"
-                        />
-                        <Avatar
-                          src="https://i.pravatar.cc/24?img=9"
-                          srcSet="https://i.pravatar.cc/48?img=9 2x"
-                        />
-                      </AvatarGroup>
-                    </td>
-                  </tr>
-                </tbody>
-              </Table>
+              <TableFiles />
             </Sheet>
-
             <Sheet
               variant="outlined"
               sx={{
                 display: { xs: 'inherit', sm: 'none' },
                 borderRadius: 'sm',
                 overflow: 'auto',
+                backgroundColor: 'background.surface',
                 '& > *': {
                   '&:nth-child(n):not(:nth-last-child(-n+4))': {
                     borderBottom: '1px solid',
@@ -320,32 +162,42 @@ export default function FilesExample() {
                 },
               }}
             >
-              <List
-                aria-labelledby="table-in-list"
-                sx={{
-                  '& .JoyListItemButton-root': { p: '0px' },
-                }}
-              >
+              <List size="sm" aria-labelledby="table-in-list">
                 <ListItem>
                   <ListItemButton variant="soft" sx={{ bgcolor: 'transparent' }}>
-                    <ListItemContent sx={{ p: 2 }}>
-                      <Box
-                        sx={{
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                          mb: 1,
-                        }}
-                      >
+                    <ListItemContent sx={{ p: 1 }}>
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                         <Typography
-                          level="body-sm"
-                          startDecorator={<FolderOpenIcon color="primary" />}
+                          level="title-sm"
+                          startDecorator={<FolderRoundedIcon color="primary" />}
                           sx={{ alignItems: 'flex-start' }}
                         >
                           Travel pictures
                         </Typography>
-                        <Typography level="body-sm" sx={{ color: 'success.600' }}>
-                          987.5MB
-                        </Typography>
+                        <AvatarGroup
+                          size="sm"
+                          sx={{
+                            '--AvatarGroup-gap': '-8px',
+                            '--Avatar-size': '24px',
+                          }}
+                        >
+                          <Avatar
+                            src="https://i.pravatar.cc/24?img=6"
+                            srcSet="https://i.pravatar.cc/48?img=6 2x"
+                          />
+                          <Avatar
+                            src="https://i.pravatar.cc/24?img=7"
+                            srcSet="https://i.pravatar.cc/48?img=7 2x"
+                          />
+                          <Avatar
+                            src="https://i.pravatar.cc/24?img=8"
+                            srcSet="https://i.pravatar.cc/48?img=8 2x"
+                          />
+                          <Avatar
+                            src="https://i.pravatar.cc/24?img=9"
+                            srcSet="https://i.pravatar.cc/48?img=9 2x"
+                          />
+                        </AvatarGroup>
                       </Box>
                       <Box
                         sx={{
@@ -354,41 +206,116 @@ export default function FilesExample() {
                           mt: 2,
                         }}
                       >
-                        <Box>
-                          <AvatarGroup
-                            size="sm"
-                            sx={{
-                              '--AvatarGroup-gap': '-8px',
-                              '--Avatar-size': '24px',
-                            }}
-                          >
-                            <Avatar
-                              src="https://i.pravatar.cc/24?img=6"
-                              srcSet="https://i.pravatar.cc/48?img=6 2x"
-                            />
-                            <Avatar
-                              src="https://i.pravatar.cc/24?img=7"
-                              srcSet="https://i.pravatar.cc/48?img=7 2x"
-                            />
-                            <Avatar
-                              src="https://i.pravatar.cc/24?img=8"
-                              srcSet="https://i.pravatar.cc/48?img=8 2x"
-                            />
-                            <Avatar
-                              src="https://i.pravatar.cc/24?img=9"
-                              srcSet="https://i.pravatar.cc/48?img=9 2x"
-                            />
-                          </AvatarGroup>
-                        </Box>
-                        <Typography level="body-sm">21 October 2011, 3PM</Typography>
+                        <Typography level="body-sm">987.5MB</Typography>
+
+                        <Typography level="body-sm">21 Oct 2023, 3PM</Typography>
                       </Box>
                     </ListItemContent>
                   </ListItemButton>
                 </ListItem>
-                <Divider />
+                <ListDivider />
                 <ListItem>
                   <ListItemButton variant="soft" sx={{ bgcolor: 'transparent' }}>
-                    <ListItemContent sx={{ p: 2 }}>
+                    <ListItemContent sx={{ p: 1 }}>
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <Typography
+                          level="title-sm"
+                          startDecorator={<FolderRoundedIcon color="primary" />}
+                          sx={{ alignItems: 'flex-start' }}
+                        >
+                          Important documents
+                        </Typography>
+                        <AvatarGroup
+                          size="sm"
+                          sx={{
+                            '--AvatarGroup-gap': '-8px',
+                            '--Avatar-size': '24px',
+                          }}
+                        >
+                          <Avatar
+                            src="https://i.pravatar.cc/24?img=1"
+                            srcSet="https://i.pravatar.cc/48?img=1 2x"
+                          />
+                          <Avatar
+                            src="https://i.pravatar.cc/24?img=9"
+                            srcSet="https://i.pravatar.cc/48?img=9 2x"
+                          />
+                          <Avatar
+                            src="https://i.pravatar.cc/24?img=2"
+                            srcSet="https://i.pravatar.cc/48?img=2 2x"
+                          />
+                          <Avatar
+                            src="https://i.pravatar.cc/24?img=3"
+                            srcSet="https://i.pravatar.cc/48?img=3 2x"
+                          />
+                          <Avatar>+3</Avatar>
+                        </AvatarGroup>
+                      </Box>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          mt: 2,
+                        }}
+                      >
+                        <Typography level="body-sm">232.3MB</Typography>
+
+                        <Typography level="body-sm">26 Sep 2023, 7PM</Typography>
+                      </Box>
+                    </ListItemContent>
+                  </ListItemButton>
+                </ListItem>
+                <ListDivider />
+                <ListItem>
+                  <ListItemButton variant="soft" sx={{ bgcolor: 'transparent' }}>
+                    <ListItemContent sx={{ p: 1 }}>
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <Typography
+                          level="title-sm"
+                          startDecorator={<FolderRoundedIcon color="primary" />}
+                          sx={{ alignItems: 'flex-start' }}
+                        >
+                          Projects
+                        </Typography>
+                        <AvatarGroup
+                          size="sm"
+                          sx={{
+                            '--AvatarGroup-gap': '-8px',
+                            '--Avatar-size': '24px',
+                          }}
+                        >
+                          <Avatar
+                            src="https://i.pravatar.cc/24?img=4"
+                            srcSet="https://i.pravatar.cc/48?img=4 2x"
+                          />
+                          <Avatar
+                            src="https://i.pravatar.cc/24?img=8"
+                            srcSet="https://i.pravatar.cc/48?img=8 2x"
+                          />
+                          <Avatar
+                            src="https://i.pravatar.cc/24?img=5"
+                            srcSet="https://i.pravatar.cc/48?img=5 2x"
+                          />
+                        </AvatarGroup>
+                      </Box>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          mt: 2,
+                        }}
+                      >
+                        <Typography level="body-sm">1.6GB</Typography>
+
+                        <Typography level="body-sm">12 Aug 2021, 7PM</Typography>
+                      </Box>
+                    </ListItemContent>
+                  </ListItemButton>
+                </ListItem>
+                <ListDivider />
+                <ListItem>
+                  <ListItemButton variant="soft" sx={{ bgcolor: 'transparent' }}>
+                    <ListItemContent sx={{ p: 1 }}>
                       <Box
                         sx={{
                           display: 'flex',
@@ -397,15 +324,18 @@ export default function FilesExample() {
                         }}
                       >
                         <Typography
-                          level="body-sm"
-                          startDecorator={<FolderOpenIcon color="primary" />}
+                          level="title-sm"
+                          startDecorator={<FolderRoundedIcon color="primary" />}
                           sx={{ alignItems: 'flex-start' }}
                         >
-                          Important documents
+                          Invoices
                         </Typography>
-                        <Typography level="body-sm" sx={{ color: 'success.600' }}>
-                          123.3KB
-                        </Typography>
+                        <Avatar
+                          size="sm"
+                          src="https://i.pravatar.cc/24?img=2"
+                          srcSet="https://i.pravatar.cc/48?img=2 2x"
+                          sx={{ '--Avatar-size': '24px' }}
+                        />
                       </Box>
                       <Box
                         sx={{
@@ -414,153 +344,450 @@ export default function FilesExample() {
                           mt: 2,
                         }}
                       >
-                        <Box>
-                          <AvatarGroup
-                            size="sm"
-                            sx={{
-                              '--AvatarGroup-gap': '-8px',
-                              '--Avatar-size': '24px',
-                            }}
-                          >
-                            <Avatar
-                              src="https://i.pravatar.cc/24?img=6"
-                              srcSet="https://i.pravatar.cc/48?img=6 2x"
-                            />
-                            <Avatar
-                              src="https://i.pravatar.cc/24?img=7"
-                              srcSet="https://i.pravatar.cc/48?img=7 2x"
-                            />
-                            <Avatar
-                              src="https://i.pravatar.cc/24?img=8"
-                              srcSet="https://i.pravatar.cc/48?img=8 2x"
-                            />
-                            <Avatar
-                              src="https://i.pravatar.cc/24?img=9"
-                              srcSet="https://i.pravatar.cc/48?img=9 2x"
-                            />
-                          </AvatarGroup>
-                        </Box>
-                        <Typography level="body-sm">26 May 2010, 7PM</Typography>
+                        <Typography level="body-sm">123.3KB</Typography>
+
+                        <Typography level="body-sm">14 Mar 2021, 7PM</Typography>
                       </Box>
                     </ListItemContent>
                   </ListItemButton>
                 </ListItem>
               </List>
             </Sheet>
-            <Card
-              variant="outlined"
-              sx={{
-                '--Card-radius': (theme) => theme.vars.radius.sm,
-                boxShadow: 'none',
-              }}
-            >
+            <Card variant="outlined" size="sm">
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Box sx={{ flex: 1 }}>
+                  <Typography level="title-md">lotr-two-towers.pdf</Typography>
+                  <Typography level="body-sm">132.2MB</Typography>
+                </Box>
+                <Dropdown>
+                  <MenuButton
+                    variant="plain"
+                    size="sm"
+                    sx={{
+                      maxWidth: '32px',
+                      maxHeight: '32px',
+                      borderRadius: '9999999px',
+                    }}
+                  >
+                    <IconButton
+                      component="span"
+                      variant="plain"
+                      color="neutral"
+                      size="sm"
+                    >
+                      <MoreVertRoundedIcon />
+                    </IconButton>
+                  </MenuButton>
+                  <Menu
+                    placement="bottom-end"
+                    size="sm"
+                    sx={{
+                      zIndex: '99999',
+                      p: 1,
+                      gap: 1,
+                      '--ListItem-radius': 'var(--joy-radius-sm)',
+                    }}
+                  >
+                    <MenuItem>
+                      <EditRoundedIcon />
+                      Rename file
+                    </MenuItem>
+                    <MenuItem>
+                      <ShareRoundedIcon />
+                      Share file
+                    </MenuItem>
+                    <MenuItem sx={{ textColor: 'danger.500' }}>
+                      <DeleteRoundedIcon color="danger" />
+                      Delete file
+                    </MenuItem>
+                  </Menu>
+                </Dropdown>
+              </Box>
               <CardOverflow
                 sx={{
                   borderBottom: '1px solid',
+                  borderTop: '1px solid',
                   borderColor: 'neutral.outlinedBorder',
                 }}
               >
-                <AspectRatio ratio="16/9" color="primary">
-                  <Typography
+                <AspectRatio ratio="16/9" color="primary" sx={{ borderRadius: 0 }}>
+                  <img
+                    alt=""
+                    src="https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?w=400&h=400&auto=format"
+                    srcSet="https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?w=400&h=400&auto=format&dpr=2 2x"
+                  />
+                </AspectRatio>
+              </CardOverflow>
+              <Typography level="body-xs">Added 27 Jun 2023</Typography>
+            </Card>
+            <Card variant="outlined" size="sm">
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Box sx={{ flex: 1 }}>
+                  <Typography level="title-md">photos-travel.zip</Typography>
+                  <Typography level="body-sm">2.4GB</Typography>
+                </Box>
+                <Dropdown>
+                  <MenuButton
+                    variant="plain"
+                    size="sm"
+                    sx={{ maxWidth: '32px', maxHeight: '32px' }}
+                  >
+                    <IconButton
+                      component="span"
+                      variant="plain"
+                      color="neutral"
+                      size="sm"
+                    >
+                      <MoreVertRoundedIcon />
+                    </IconButton>
+                  </MenuButton>
+                  <Menu
+                    placement="bottom-end"
+                    size="sm"
+                    sx={{
+                      zIndex: '99999',
+                      p: 1,
+                      gap: 1,
+                      '--ListItem-radius': 'var(--joy-radius-sm)',
+                    }}
+                  >
+                    <MenuItem>
+                      <EditRoundedIcon />
+                      Rename file
+                    </MenuItem>
+                    <MenuItem>
+                      <ShareRoundedIcon />
+                      Share file
+                    </MenuItem>
+                    <MenuItem sx={{ textColor: 'danger.500' }}>
+                      <DeleteRoundedIcon color="danger" />
+                      Delete file
+                    </MenuItem>
+                  </Menu>
+                </Dropdown>
+              </Box>
+              <CardOverflow
+                sx={{
+                  borderBottom: '1px solid',
+                  borderTop: '1px solid',
+                  borderColor: 'neutral.outlinedBorder',
+                }}
+              >
+                <AspectRatio
+                  ratio="16/9"
+                  color="primary"
+                  sx={{ borderRadius: 0, color: 'primary.plainColor' }}
+                >
+                  <Box
                     sx={{
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: 'primary.plainColor',
                     }}
                   >
-                    .zip
-                  </Typography>
+                    <InsertDriveFileRoundedIcon />
+                  </Box>
                 </AspectRatio>
               </CardOverflow>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <Box sx={{ flex: 1 }}>
-                  <Typography>photos-travel.zip</Typography>
-                  <Typography level="body-xs" mt={0.5}>
-                    Added 25 May 2011
-                  </Typography>
-                </Box>
-                <IconButton variant="plain" color="neutral">
-                  <EditOutlinedIcon />
-                </IconButton>
-              </Box>
+              <Typography level="body-xs">Added 16 May 2021</Typography>
             </Card>
             <Card
               variant="solid"
               invertedColors
+              size="sm"
               sx={{
-                '--Card-radius': (theme) => theme.vars.radius.sm,
-                boxShadow: 'none',
+                border: '1px solid',
+                borderColor: 'var(--joy-palette-neutral-outlinedBorder)',
+                minHeight: { xs: 250, md: '100%' },
               }}
             >
-              <CardCover>
-                <img
-                  alt=""
-                  src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?auto=format&fit=crop&w=774"
-                />
-              </CardCover>
-              <CardCover
-                sx={{
-                  background:
-                    'linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.12))',
-                }}
-              />
               <CardContent
                 sx={{
-                  mt: 'auto',
+                  mb: 'auto',
                   flexGrow: 0,
                   flexDirection: 'row',
                   alignItems: 'center',
                 }}
               >
                 <Box sx={{ flex: 1 }}>
-                  <Typography>torres-del-paine.png</Typography>
-                  <Typography level="body-xs" mt={0.5}>
-                    Added 5 Aug 2016
+                  <Typography level="title-md">torres-del-paine.png</Typography>
+                  <Typography level="body-xs" sx={{ mt: 0.5 }}>
+                    Added 5 Apr 2021
                   </Typography>
                 </Box>
-                <IconButton variant="plain">
-                  <EditOutlinedIcon />
-                </IconButton>
+                <Dropdown>
+                  <MenuButton
+                    variant="plain"
+                    size="sm"
+                    sx={{ maxWidth: '32px', maxHeight: '32px' }}
+                  >
+                    <IconButton
+                      component="span"
+                      variant="plain"
+                      color="neutral"
+                      size="sm"
+                    >
+                      <MoreVertRoundedIcon />
+                    </IconButton>
+                  </MenuButton>
+                  <Menu
+                    placement="bottom-end"
+                    size="sm"
+                    sx={{
+                      zIndex: '99999',
+                      p: 1,
+                      gap: 1,
+                      '--ListItem-radius': 'var(--joy-radius-sm)',
+                    }}
+                  >
+                    <MenuItem>
+                      <EditRoundedIcon />
+                      Rename file
+                    </MenuItem>
+                    <MenuItem>
+                      <ShareRoundedIcon />
+                      Share file
+                    </MenuItem>
+                    <MenuItem sx={{ textColor: 'danger.500' }}>
+                      <DeleteRoundedIcon color="danger" />
+                      Delete file
+                    </MenuItem>
+                  </Menu>
+                </Dropdown>
               </CardContent>
+              <CardCover>
+                <img
+                  alt=""
+                  src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?w=400&h=400&auto=format"
+                  srcSet="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?w=400&h=400&auto=format&dpr=2 2x"
+                />
+              </CardCover>
+              <CardCover
+                sx={{
+                  background:
+                    'linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.12))',
+                }}
+              />
             </Card>
             <Card
-              variant="outlined"
+              variant="solid"
+              size="sm"
+              invertedColors
               sx={{
-                '--Card-radius': (theme) => theme.vars.radius.sm,
-                boxShadow: 'none',
+                minHeight: { xs: 250, md: '100%' },
+                border: '1px solid',
+                borderColor: 'var(--joy-palette-neutral-outlinedBorder)',
               }}
             >
+              <CardContent
+                sx={{
+                  mb: 'auto',
+                  flexGrow: 0,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}
+              >
+                <Box sx={{ flex: 1 }}>
+                  <Typography level="title-md">serra-das-araras.png</Typography>
+                  <Typography level="body-xs" sx={{ mt: 0.5 }}>
+                    Added 2 Mar 2021
+                  </Typography>
+                </Box>
+                <Dropdown>
+                  <MenuButton
+                    variant="plain"
+                    size="sm"
+                    sx={{ maxWidth: '32px', maxHeight: '32px' }}
+                  >
+                    <IconButton
+                      component="span"
+                      variant="plain"
+                      color="neutral"
+                      size="sm"
+                    >
+                      <MoreVertRoundedIcon />
+                    </IconButton>
+                  </MenuButton>
+                  <Menu
+                    placement="bottom-end"
+                    size="sm"
+                    sx={{
+                      zIndex: '99999',
+                      p: 1,
+                      gap: 1,
+                      '--ListItem-radius': 'var(--joy-radius-sm)',
+                    }}
+                  >
+                    <MenuItem>
+                      <EditRoundedIcon />
+                      Rename file
+                    </MenuItem>
+                    <MenuItem>
+                      <ShareRoundedIcon />
+                      Share file
+                    </MenuItem>
+                    <MenuItem sx={{ textColor: 'danger.500' }}>
+                      <DeleteRoundedIcon color="danger" />
+                      Delete file
+                    </MenuItem>
+                  </Menu>
+                </Dropdown>
+              </CardContent>
+              <CardCover>
+                <img
+                  alt=""
+                  src="https://images.unsplash.com/photo-1599593752325-ffa41031056e?w=400&h=400&auto=format"
+                  srcSet="https://images.unsplash.com/photo-1599593752325-ffa41031056e?w=400&h=400&auto=format&dpr=2 2x"
+                />
+              </CardCover>
+              <CardCover
+                sx={{
+                  background:
+                    'linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.12))',
+                }}
+              />
+            </Card>
+            <Card variant="outlined" size="sm">
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Box sx={{ flex: 1 }}>
+                  <Typography level="title-md">translated-docs.txt</Typography>
+                  <Typography level="body-sm">12.2KB</Typography>
+                </Box>
+                <Dropdown>
+                  <MenuButton
+                    variant="plain"
+                    size="sm"
+                    sx={{
+                      maxWidth: '32px',
+                      maxHeight: '32px',
+                      borderRadius: '9999999px',
+                    }}
+                  >
+                    <IconButton
+                      component="span"
+                      variant="plain"
+                      color="neutral"
+                      size="sm"
+                    >
+                      <MoreVertRoundedIcon />
+                    </IconButton>
+                  </MenuButton>
+                  <Menu
+                    placement="bottom-end"
+                    size="sm"
+                    sx={{
+                      zIndex: '99999',
+                      p: 1,
+                      gap: 1,
+                      '--ListItem-radius': 'var(--joy-radius-sm)',
+                    }}
+                  >
+                    <MenuItem>
+                      <EditRoundedIcon />
+                      Rename file
+                    </MenuItem>
+                    <MenuItem>
+                      <ShareRoundedIcon />
+                      Share file
+                    </MenuItem>
+                    <MenuItem sx={{ textColor: 'danger.500' }}>
+                      <DeleteRoundedIcon color="danger" />
+                      Delete file
+                    </MenuItem>
+                  </Menu>
+                </Dropdown>
+              </Box>
               <CardOverflow
                 sx={{
                   borderBottom: '1px solid',
+                  borderTop: '1px solid',
                   borderColor: 'neutral.outlinedBorder',
                 }}
               >
-                <AspectRatio ratio="16/9" color="primary">
-                  <Typography
+                <AspectRatio ratio="16/9" color="primary" sx={{ borderRadius: 0 }}>
+                  <img
+                    alt=""
+                    src="https://images.unsplash.com/photo-1572445271230-a78b5944a659?w=400&h=400&auto=format"
+                    srcSet="https://images.unsplash.com/photo-1572445271230-a78b5944a659?w=400&h=400&auto=format&dpr=2 2x"
+                  />
+                </AspectRatio>
+              </CardOverflow>
+              <Typography level="body-xs">Added 25 May 2019</Typography>
+            </Card>
+            <Card variant="outlined" size="sm">
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Box sx={{ flex: 1 }}>
+                  <Typography level="title-md">final-version-v3.fig</Typography>
+                  <Typography level="body-sm">1.1GB</Typography>
+                </Box>
+                <Dropdown>
+                  <MenuButton
+                    variant="plain"
+                    size="sm"
+                    sx={{
+                      maxWidth: '32px',
+                      maxHeight: '32px',
+                      borderRadius: '9999999px',
+                    }}
+                  >
+                    <IconButton
+                      component="span"
+                      variant="plain"
+                      color="neutral"
+                      size="sm"
+                    >
+                      <MoreVertRoundedIcon />
+                    </IconButton>
+                  </MenuButton>
+                  <Menu
+                    placement="bottom-end"
+                    size="sm"
+                    sx={{
+                      zIndex: '99999',
+                      p: 1,
+                      gap: 1,
+                      '--ListItem-radius': 'var(--joy-radius-sm)',
+                    }}
+                  >
+                    <MenuItem>
+                      <EditRoundedIcon />
+                      Rename file
+                    </MenuItem>
+                    <MenuItem>
+                      <ShareRoundedIcon />
+                      Share file
+                    </MenuItem>
+                    <MenuItem sx={{ textColor: 'danger.500' }}>
+                      <DeleteRoundedIcon color="danger" />
+                      Delete file
+                    </MenuItem>
+                  </Menu>
+                </Dropdown>
+              </Box>
+              <CardOverflow
+                sx={{
+                  borderBottom: '1px solid',
+                  borderTop: '1px solid',
+                  borderColor: 'neutral.outlinedBorder',
+                }}
+              >
+                <AspectRatio
+                  ratio="16/9"
+                  color="primary"
+                  sx={{ borderRadius: 0, color: 'primary.plainColor' }}
+                >
+                  <Box
                     sx={{
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: 'primary.plainColor',
                     }}
                   >
-                    .zip
-                  </Typography>
+                    <InsertDriveFileRoundedIcon />
+                  </Box>
                 </AspectRatio>
               </CardOverflow>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <Box sx={{ flex: 1 }}>
-                  <Typography>platform_ios.zip</Typography>
-                  <Typography level="body-xs" mt={0.5}>
-                    Added 26 May 2011
-                  </Typography>
-                </Box>
-                <IconButton variant="plain" color="neutral">
-                  <EditOutlinedIcon />
-                </IconButton>
-              </Box>
+              <Typography level="body-xs">Added 12 May 2019</Typography>
             </Card>
           </Box>
         </Layout.Main>
@@ -568,106 +795,180 @@ export default function FilesExample() {
           sx={{
             display: { xs: 'none', sm: 'initial' },
             borderLeft: '1px solid',
-            borderColor: 'neutral.outlinedBorder',
+            borderColor: 'divider',
           }}
         >
           <Box sx={{ p: 2, display: 'flex', alignItems: 'center' }}>
-            <Typography sx={{ flex: 1 }}>torres-del-paine.png</Typography>
-            <IconButton variant="outlined" color="neutral" size="sm">
-              <CloseIcon />
+            <Typography level="title-md" sx={{ flex: 1 }}>
+              torres-del-paine.png
+            </Typography>
+            <IconButton component="span" variant="plain" color="neutral" size="sm">
+              <CloseRoundedIcon />
             </IconButton>
           </Box>
           <Divider />
           <Tabs>
-            <TabList color="primary">
-              <Tab color="primary" sx={{ flexGrow: 1 }}>
-                Details
+            <TabList>
+              <Tab sx={{ flexGrow: 1 }}>
+                <Typography level="title-sm">Details</Typography>
               </Tab>
-              <Tab color="primary" sx={{ flexGrow: 1 }}>
-                Activity
+              <Tab sx={{ flexGrow: 1 }}>
+                <Typography level="title-sm">Activity</Typography>
               </Tab>
             </TabList>
+            <TabPanel value={0} sx={{ p: 0 }}>
+              <AspectRatio ratio="21/9">
+                <img
+                  alt=""
+                  src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?w=400&h=400&auto=format"
+                  srcSet="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?w=400&h=400&auto=format&dpr=2 2x"
+                />
+              </AspectRatio>
+              <Box sx={{ p: 2, display: 'flex', gap: 1, alignItems: 'center' }}>
+                <Typography level="title-sm" sx={{ mr: 1 }}>
+                  Shared with
+                </Typography>
+                <AvatarGroup size="sm" sx={{ '--Avatar-size': '24px' }}>
+                  <Avatar
+                    src="https://i.pravatar.cc/24?img=6"
+                    srcSet="https://i.pravatar.cc/48?img=6 2x"
+                  />
+                  <Avatar
+                    src="https://i.pravatar.cc/24?img=7"
+                    srcSet="https://i.pravatar.cc/48?img=7 2x"
+                  />
+                  <Avatar
+                    src="https://i.pravatar.cc/24?img=8"
+                    srcSet="https://i.pravatar.cc/48?img=8 2x"
+                  />
+                  <Avatar
+                    src="https://i.pravatar.cc/24?img=9"
+                    srcSet="https://i.pravatar.cc/48?img=9 2x"
+                  />
+                </AvatarGroup>
+              </Box>
+              <Divider />
+              <Box
+                sx={{
+                  gap: 2,
+                  p: 2,
+                  display: 'grid',
+                  gridTemplateColumns: 'auto 1fr',
+                  '& > *:nth-child(odd)': { color: 'text.secondary' },
+                }}
+              >
+                <Typography level="title-sm">Type</Typography>
+                <Typography level="body-sm" textColor="text.primary">
+                  Image
+                </Typography>
+                <Typography level="title-sm">Size</Typography>
+                <Typography level="body-sm" textColor="text.primary">
+                  3,6 MB (3,258,385 bytes)
+                </Typography>
+                <Typography level="title-sm">Location</Typography>
+                <Typography level="body-sm" textColor="text.primary">
+                  Travel pictures
+                </Typography>
+                <Typography level="title-sm">Owner</Typography>
+                <Typography level="body-sm" textColor="text.primary">
+                  Michael Scott
+                </Typography>
+                <Typography level="title-sm">Modified</Typography>
+                <Typography level="body-sm" textColor="text.primary">
+                  26 October 2016
+                </Typography>
+                <Typography level="title-sm">Created</Typography>
+                <Typography level="body-sm" textColor="text.primary">
+                  5 August 2016
+                </Typography>
+              </Box>
+              <Divider />
+              <Box sx={{ py: 2, px: 1 }}>
+                <Button variant="plain" size="sm" endDecorator={<EditRoundedIcon />}>
+                  Add a description
+                </Button>
+              </Box>
+            </TabPanel>
+            <TabPanel
+              value={1}
+              sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}
+            >
+              <Typography level="title-md">This week</Typography>
+              <Box sx={{ display: 'flex', gap: 1 }}>
+                <Avatar
+                  size="sm"
+                  src="https://i.pravatar.cc/24?img=2"
+                  srcSet="https://i.pravatar.cc/48?img=2 2x"
+                />
+                <div>
+                  <Box
+                    sx={{ display: 'flex', gap: 0.5, alignItems: 'center', mb: 1 }}
+                  >
+                    <Typography level="title-sm" sx={{ alignItems: 'center' }}>
+                      You
+                    </Typography>
+                    <Typography level="body-sm">shared</Typography>
+                    <Typography level="title-sm">torres-del-paine.png</Typography>
+                  </Box>
+                  <Chip variant="outlined" startDecorator={<ShareRoundedIcon />}>
+                    Shared with 3 users
+                  </Chip>
+                  <Typography level="body-xs" sx={{ mt: 1 }}>
+                    3 Nov 2023
+                  </Typography>
+                </div>
+              </Box>
+              <Typography level="title-md">Older</Typography>
+              <Box sx={{ display: 'flex', gap: 1 }}>
+                <Avatar
+                  size="sm"
+                  src="https://i.pravatar.cc/24?img=2"
+                  srcSet="https://i.pravatar.cc/48?img=2 2x"
+                />
+                <div>
+                  <Box
+                    sx={{ display: 'flex', gap: 0.5, alignItems: 'center', mb: 1 }}
+                  >
+                    <Typography level="title-sm" sx={{ alignItems: 'center' }}>
+                      You
+                    </Typography>
+                    <Typography level="body-sm">edited</Typography>
+                    <Typography level="title-sm">torres-del-paine.png</Typography>
+                  </Box>
+                  <Chip variant="outlined" startDecorator={<EditRoundedIcon />}>
+                    Changed name
+                  </Chip>
+                  <Typography level="body-xs" sx={{ mt: 1 }}>
+                    12 Apr 2021
+                  </Typography>
+                </div>
+              </Box>
+              <Box sx={{ display: 'flex', gap: 1 }}>
+                <Avatar
+                  size="sm"
+                  src="https://i.pravatar.cc/24?img=2"
+                  srcSet="https://i.pravatar.cc/48?img=2 2x"
+                />
+                <div>
+                  <Box
+                    sx={{ display: 'flex', gap: 0.5, alignItems: 'center', mb: 1 }}
+                  >
+                    <Typography level="title-sm" sx={{ alignItems: 'center' }}>
+                      You
+                    </Typography>
+                    <Typography level="body-sm">created</Typography>
+                    <Typography level="title-sm">torres-del-paine.png</Typography>
+                  </Box>
+                  <Chip variant="outlined" startDecorator={<EditRoundedIcon />}>
+                    Added 5 Apr 2021
+                  </Chip>
+                  <Typography level="body-xs" sx={{ mt: 1 }}>
+                    12 Apr 2021
+                  </Typography>
+                </div>
+              </Box>
+            </TabPanel>
           </Tabs>
-          <AspectRatio ratio="21/9">
-            <img
-              alt=""
-              src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?auto=format&fit=crop&w=774"
-            />
-          </AspectRatio>
-          <Box sx={{ p: 2, display: 'flex', gap: 1, alignItems: 'center' }}>
-            <Typography level="body-sm" mr={1}>
-              Shared with
-            </Typography>
-            <AvatarGroup size="sm" sx={{ '--Avatar-size': '24px' }}>
-              <Avatar
-                src="https://i.pravatar.cc/24?img=6"
-                srcSet="https://i.pravatar.cc/48?img=6 2x"
-              />
-              <Avatar
-                src="https://i.pravatar.cc/24?img=7"
-                srcSet="https://i.pravatar.cc/48?img=7 2x"
-              />
-              <Avatar
-                src="https://i.pravatar.cc/24?img=8"
-                srcSet="https://i.pravatar.cc/48?img=8 2x"
-              />
-              <Avatar
-                src="https://i.pravatar.cc/24?img=9"
-                srcSet="https://i.pravatar.cc/48?img=9 2x"
-              />
-            </AvatarGroup>
-          </Box>
-          <Divider />
-          <Box
-            sx={{
-              gap: 2,
-              p: 2,
-              display: 'grid',
-              gridTemplateColumns: 'auto 1fr',
-              '& > *:nth-child(odd)': { color: 'text.secondary' },
-            }}
-          >
-            <Typography level="body-sm">Type</Typography>
-            <Typography level="body-sm" textColor="text.primary">
-              Image
-            </Typography>
-
-            <Typography level="body-sm">Size</Typography>
-            <Typography level="body-sm" textColor="text.primary">
-              3,6 MB (3,258,385 bytes)
-            </Typography>
-
-            <Typography level="body-sm">Storage used</Typography>
-            <Typography level="body-sm" textColor="text.primary">
-              3,6 MB (3,258,385 bytes)
-            </Typography>
-
-            <Typography level="body-sm">Location</Typography>
-            <Typography level="body-sm" textColor="text.primary">
-              Travel pictures
-            </Typography>
-
-            <Typography level="body-sm">Owner</Typography>
-            <Typography level="body-sm" textColor="text.primary">
-              Michael Scott
-            </Typography>
-
-            <Typography level="body-sm">Modified</Typography>
-            <Typography level="body-sm" textColor="text.primary">
-              26 October 2016
-            </Typography>
-
-            <Typography level="body-sm">Created</Typography>
-            <Typography level="body-sm" textColor="text.primary">
-              5 August 2016
-            </Typography>
-          </Box>
-          <Divider />
-          <Box sx={{ py: 2, px: 1 }}>
-            <Button variant="plain" size="sm" endDecorator={<EditOutlinedIcon />}>
-              Add a description
-            </Button>
-          </Box>
         </Sheet>
       </Layout.Root>
     </CssVarsProvider>

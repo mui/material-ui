@@ -8,7 +8,6 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { css, keyframes } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
 import {
@@ -55,7 +54,7 @@ const CircularProgressRoot = styled('span', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: CircularProgressOwnerState }>(({ ownerState, theme }) => {
-  const { color, backgroundColor, ...rest } =
+  const { color, backgroundColor, ...other } =
     theme.variants[ownerState.variant!]?.[ownerState.color!] || {};
   return {
     // integration with icon
@@ -115,9 +114,9 @@ const CircularProgressRoot = styled('span', {
       fontWeight: theme.vars.fontWeight.md,
       fontSize: 'calc(0.2 * var(--_root-size))',
     }),
-    ...rest,
+    ...other,
     ...(ownerState.variant === 'outlined' && {
-      '&:before': {
+      '&::before': {
         content: '""',
         display: 'block',
         position: 'absolute',
@@ -126,8 +125,17 @@ const CircularProgressRoot = styled('span', {
         left: 'var(--_outlined-inset)',
         right: 'var(--_outlined-inset)',
         bottom: 'var(--_outlined-inset)',
-        ...rest,
+        ...other,
       },
+    }),
+    ...(ownerState.variant === 'soft' && {
+      '--CircularProgress-trackColor': theme.variants.soft.neutral.backgroundColor,
+      '--CircularProgress-progressColor': theme.variants.solid?.[ownerState.color!].backgroundColor,
+    }),
+    ...(ownerState.variant === 'solid' && {
+      '--CircularProgress-trackColor':
+        theme.variants.softHover?.[ownerState.color!].backgroundColor,
+      '--CircularProgress-progressColor': theme.variants.solid?.[ownerState.color!].backgroundColor,
     }),
   };
 });
@@ -213,7 +221,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
   const {
     children,
     className,
-    color: colorProp = 'primary',
+    color = 'primary',
     size = 'md',
     variant = 'soft',
     thickness,
@@ -224,8 +232,6 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
@@ -296,10 +302,10 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
 }) as OverridableComponent<CircularProgressTypeMap>;
 
 CircularProgress.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */

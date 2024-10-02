@@ -8,7 +8,7 @@
     "import CssBaseline from '@mui/joy/CssBaseline';",
     "import { CssBaseline } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "classes": [],
   "spread": true,
   "themeDefaultProps": null,
   "muiName": "JoyCssBaseline",

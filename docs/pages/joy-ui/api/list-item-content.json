@@ -24,15 +24,15 @@
     "import ListItemContent from '@mui/joy/ListItemContent';",
     "import { ListItemContent } from '@mui/joy';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiListItemContent" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiListItemContent-root"
+      "class": "MuiListItemContent-root"
     }
   ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyListItemContent",

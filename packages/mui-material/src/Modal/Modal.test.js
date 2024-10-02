@@ -3,10 +3,11 @@ import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { act, createRenderer, fireEvent, within, describeConformance, screen } from 'test/utils';
+import { act, createRenderer, fireEvent, within, screen } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Fade from '@mui/material/Fade';
 import Modal, { modalClasses as classes } from '@mui/material/Modal';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Modal />', () => {
   const { clock, render } = createRenderer();
@@ -42,8 +43,6 @@ describe('<Modal />', () => {
         'componentsProp', // TODO isRTL is leaking, why do we even have it in the first place?
         'themeDefaultProps', // portal, can't determine the root
         'themeStyleOverrides', // portal, can't determine the root
-        'reactTestRenderer', // portal https://github.com/facebook/react/issues/11565
-        'slotPropsCallback', // not supported yet
       ],
     }),
   );
@@ -397,10 +396,10 @@ describe('<Modal />', () => {
         </Modal>,
       );
       const modalNode = modalRef.current;
-      expect(modalNode).toBeAriaHidden();
+      expect(modalNode).toBeInaccessible();
 
       setProps({ open: true });
-      expect(modalNode).not.toBeAriaHidden();
+      expect(modalNode).not.toBeInaccessible();
     });
 
     // Test case for https://github.com/mui/material-ui/issues/15180
@@ -870,5 +869,31 @@ describe('<Modal />', () => {
       );
       expect(getByTestId('backdrop')).to.have.class('custom-backdrop');
     });
+  });
+
+  it('should not warn when onTransitionEnter and onTransitionExited are provided', () => {
+    expect(() => {
+      render(
+        <Modal open onTransitionEnter={() => {}} onTransitionExited={() => {}}>
+          <div />
+        </Modal>,
+      );
+    }).not.toErrorDev();
+  });
+
+  it('should not override default onKeyDown', async () => {
+    const handleKeyDown = spy();
+    const handleClose = spy();
+
+    const { user } = render(
+      <Modal open onKeyDown={handleKeyDown} onClose={handleClose}>
+        <div tabIndex={-1} />
+      </Modal>,
+    );
+
+    await user.keyboard('{Escape}');
+
+    expect(handleKeyDown).to.have.property('callCount', 1);
+    expect(handleClose).to.have.property('callCount', 1);
   });
 });

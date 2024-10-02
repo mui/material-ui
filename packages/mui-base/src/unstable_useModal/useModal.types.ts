@@ -22,7 +22,7 @@ export type UseModalParameters = {
   /**
    * A single child content element.
    */
-  children: React.ReactElement;
+  children: React.ReactElement<any> | undefined | null;
   /**
    * When set to true the Modal waits until a nested Transition is completed before closing.
    * @default false
@@ -31,6 +31,9 @@ export type UseModalParameters = {
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
+   *
+   * You can also provide a callback, which is called in a React layout effect.
+   * This lets you set the container from a ref, and also makes server-side rendering possible.
    *
    * By default, it uses the body of the top-level document object,
    * so it's simply `document.body` most of the time.

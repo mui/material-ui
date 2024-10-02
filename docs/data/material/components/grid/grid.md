@@ -4,6 +4,7 @@ title: React Grid component
 components: Grid
 githubLabel: 'component: Grid'
 materialDesign: https://m2.material.io/design/layout/understanding-layout.html
+githubSource: packages/mui-material/src/Grid
 ---
 
 # Grid
@@ -13,10 +14,14 @@ materialDesign: https://m2.material.io/design/layout/understanding-layout.html
 The [grid](https://m2.material.io/design/layout/responsive-layout-grid.html) creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
 Material Design's responsive UI is based on a 12-column grid layout.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 :::warning
 The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/x/react-data-grid/).
+:::
+
+:::warning
+The `Grid` component has been deprecated. Please use [Grid v2](/material-ui/react-grid2/) instead. See how to migrate in the [Grid v2 migration guide](/material-ui/migration/migration-grid-v2/) and [Material UI v6 upgrade guide](/material-ui/migration/upgrade-to-v6/).
 :::
 
 ## How it works
@@ -40,7 +45,8 @@ Fluid grids use columns that scale and resize content. A fluid grid's layout can
 
 Column widths are integer values between 1 and 12; they apply at any breakpoint and indicate how many columns are occupied by the component.
 
-A value given to a breakpoint applies to all the other breakpoints wider than it (unless overridden, as you can read later in this page). For example, `xs={12}` sizes a component to occupy the whole viewport width regardless of its size.
+A value passed to any given breakpoint also applies to all wider breakpoints (if they have no values explicitly defined).
+For example, `xs={12}` sizes a component to occupy the full width of its parent container, regardless of the viewport size.
 
 {{"demo": "BasicGrid.js", "bg": true}}
 
@@ -81,7 +87,7 @@ Responsive values is supported by:
 - `direction`
 - `rowSpacing`
 - `spacing`
-- all the [other props](#system-props) of the system
+- all the [other props](#system-props) of MUI System
 
 :::warning
 When using a responsive `columns` prop, each grid item needs its corresponding breakpoint.
@@ -184,15 +190,18 @@ If used, these props may have undesirable effects on the height of the `Grid` it
 ## CSS Grid Layout
 
 The `Grid` component is using CSS flexbox internally.
-But as seen below, you can easily use [the system](/system/grid/) and CSS Grid to layout your pages.
+But as seen below, you can easily use [MUI System](/system/grid/) and CSS Grid to layout your pages.
 
 {{"demo": "CSSGrid.js", "bg": true}}
 
 ## System props
 
-As a CSS utility component, the `Grid` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component.
-For instance, a padding:
+:::info
+System props are deprecated and will be removed in the next major release. Please use the `sx` prop instead.
 
-```jsx
-<Grid item p={2}>
+```diff
+- <Grid item p={2} />
++ <Grid item sx={{ p: 2 }} />
 ```
+
+:::

@@ -1,9 +1,9 @@
 # API design approach
 
-<p class="description">We have learned a great deal regarding how Material UI is used, and the v1 rewrite allowed us to completely rethink the component API.</p>
+<p class="description">We have learned a great deal regarding how Material UI is used, and the v1 rewrite allowed us to completely rethink the component API.</p>
 
 > API design is hard because you can make it seem simple but it's actually deceptively complex, or make it actually simple but seem complex.
-> [@sebmarkbage](https://twitter.com/sebmarkbage/status/728433349337841665)
+> [@sebmarkbage](https://x.com/sebmarkbage/status/728433349337841665)
 
 As Sebastian Markbage [pointed out](https://2014.jsconf.eu/speakers/sebastian-markbage-minimal-api-surface-area-learning-patterns-instead-of-frameworks.html), no abstraction is superior to wrong abstractions.
 We are providing low-level components to maximize composition capabilities.
@@ -48,10 +48,10 @@ to make the classes structure as simple as possible, while sufficient to impleme
 
 - The class applied to the root element is always called `root`.
 - All the default styles are grouped in a single class.
-- The classes applied to non-root elements are prefixed with the name of the element, e.g. `paperWidthXs` in the Dialog component.
-- The variants applied by a boolean prop **aren't** prefixed, e.g. the `rounded` class
+- The classes applied to non-root elements are prefixed with the name of the element, for example `paperWidthXs` in the Dialog component.
+- The variants applied by a boolean prop **aren't** prefixed, for example the `rounded` class
   applied by the `rounded` prop.
-- The variants applied by an enum prop **are** prefixed, e.g. the `colorPrimary` class
+- The variants applied by an enum prop **are** prefixed, for example the `colorPrimary` class
   applied by the `color="primary"` prop.
 - A variant has **one level of specificity**.
   The `color` and `variant` props are considered a variant.
@@ -79,7 +79,7 @@ Nested components inside a component have:
 
 - their own flattened props when these are key to the top level component abstraction,
   for instance an `id` prop for the `Input` component.
-- their own `xxxProps` prop when users might need to tweak the internal render method's sub-components,
+- their own `xxxProps` prop when users might need to tweak the internal render method's subcomponents,
   for instance, exposing the `inputProps` and `InputProps` props on components that use `Input` internally.
 - their own `xxxComponent` prop for performing component injection.
 - their own `xxxRef` prop when you might need to perform imperative actions,
@@ -152,7 +152,7 @@ For example, let's take a button that has different types. Each option has its p
   bounds the number of props exposed,
   and can easily support new values in the future.
 
-The Material UI components use a combination of the two approaches according to the following rules:
+The Material UI components use a combination of the two approaches according to the following rules:
 
 - A _boolean_ is used when **2** possible values are required.
 - An _enum_ is used when **> 2** possible values are required, or if there is the possibility that additional possible values may be required in the future.
@@ -168,8 +168,8 @@ to that component instead.
 
 ## Glossary
 
-- **host component**: a DOM node type in the context of `react-dom`, e.g. a `'div'`. See also [React Implementation Notes](https://legacy.reactjs.org/docs/implementation-notes.html#mounting-host-elements).
-- **host element**: a DOM node in the context of `react-dom`, e.g. an instance of `window.HTMLDivElement`.
-- **outermost**: The first component when reading the component tree from top to bottom i.e. breadth-first search.
+- **host component**: a DOM node type in the context of `react-dom`, for example a `'div'`. See also [React Implementation Notes](https://legacy.reactjs.org/docs/implementation-notes.html#mounting-host-elements).
+- **host element**: a DOM node in the context of `react-dom`, for example an instance of `window.HTMLDivElement`.
+- **outermost**: The first component when reading the component tree from top to bottom, that is breadth-first search.
 - **root component**: the outermost component that renders a host component.
 - **root element**: the outermost element that renders a host component.

@@ -21,7 +21,7 @@ export default function UnstyledSliderIntroduction() {
           track: { className: 'CustomSlider-track' },
           thumb: { className: 'CustomSlider-thumb' },
         }}
-        defaultValue={10}
+        defaultValue={30}
         disabled
       />
       <Styles />
@@ -43,16 +43,16 @@ const cyan = {
 };
 
 const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
 function useIsDarkMode() {
@@ -67,25 +67,23 @@ function Styles() {
     <style>{`
     .CustomSlider {
       color: ${isDarkMode ? cyan[300] : cyan[500]};
-      height: 6px;
+      height: 4px;
       width: 100%;
       padding: 16px 0;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       position: relative;
       cursor: pointer;
       touch-action: none;
       -webkit-tap-highlight-color: transparent;
     }
 
-    .CustomSlider:hover {
-      opacity: 1;
-    }
-
     .CustomSlider.${sliderClasses.disabled} { 
       pointer-events: none;
       cursor: default;
       color: ${isDarkMode ? grey[600] : grey[300]};
-      opacity: 0.5;
+      opacity: 0.4;
+      outline: none;
     }
 
     .CustomSlider-rail {
@@ -93,38 +91,54 @@ function Styles() {
       position: absolute;
       width: 100%;
       height: 4px;
-      border-radius: 2px;
+      border-radius: 6px;
       background-color: currentColor;
-      opacity: 0.4;
+      opacity: 0.3;
     }
 
     .CustomSlider-track {
       display: block;
       position: absolute;
       height: 4px;
-      border-radius: 2px;
+      border-radius: 6px;
       background-color: currentColor;
     }
 
     .CustomSlider-thumb {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: absolute;
-      width: 16px;
-      height: 16px;
+      width: 20px;
+      height: 20px;
       margin-left: -6px;
-      margin-top: -6px;
       box-sizing: border-box;
       border-radius: 50%;
       outline: 0;
-      border: 3px solid currentColor;
-      background-color: #fff;
+      background-color: ${isDarkMode ? cyan[300] : cyan[500]};
+      transition-property: box-shadow, transform;
+      transition-timing-function: ease;
+      transition-duration: 120ms;
+      transform-origin: center;
     }
 
-    .CustomSlider-thumb:hover,&.${sliderClasses.focusVisible} {
-      box-shadow: 0 0 0 0.25rem ${alpha(isDarkMode ? cyan[300] : cyan[400], 0.15)};
+    .CustomSlider-thumb:hover {
+      box-shadow: 0 0 0 6px ${alpha(isDarkMode ? cyan[300] : cyan[200], 0.3)};
+    }
+
+    .CustomSlider-thumb.${sliderClasses.focusVisible} {
+      box-shadow: 0 0 0 8px ${alpha(isDarkMode ? cyan[400] : cyan[200], 0.5)};
+      outline: none;
     }
 
     .CustomSlider-thumb.${sliderClasses.active} {
-      box-shadow: 0 0 0 0.25rem ${alpha(isDarkMode ? cyan[300] : cyan[200], 0.3)};
+      box-shadow: 0 0 0 8px ${alpha(isDarkMode ? cyan[400] : cyan[200], 0.5)};
+      outline: none;
+      transform: scale(1.2);
+    }
+
+    .CustomSlider-thumb.${sliderClasses.disabled} {
+      background-color: ${isDarkMode ? grey[600] : grey[300]};
     }
     `}</style>
   );

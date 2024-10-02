@@ -5,11 +5,27 @@
     "component": { "type": { "name": "elementType" } },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ additionalAvatar?: object }" },
-      "default": "{}"
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "max": { "type": { "name": "custom", "description": "number" }, "default": "5" },
+    "renderSurplus": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(surplus: number) => React.ReactNode",
+        "describedArgs": ["surplus"],
+        "returned": "React.ReactNode"
+      }
+    },
     "slotProps": {
-      "type": { "name": "shape", "description": "{ additionalAvatar?: object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ additionalAvatar?: object, surplus?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ surplus?: elementType }" },
       "default": "{}"
     },
     "spacing": {
@@ -40,11 +56,24 @@
     "import AvatarGroup from '@mui/material/AvatarGroup';",
     "import { AvatarGroup } from '@mui/material';"
   ],
-  "styles": { "classes": ["root", "avatar"], "globalClasses": {}, "name": "MuiAvatarGroup" },
+  "slots": [{ "name": "surplus", "description": "", "class": null }],
+  "classes": [
+    {
+      "key": "avatar",
+      "className": "MuiAvatarGroup-avatar",
+      "description": "Styles applied to the avatar elements.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiAvatarGroup-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiAvatarGroup",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/AvatarGroup/AvatarGroup.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-avatar/\">Avatar</a></li></ul>",

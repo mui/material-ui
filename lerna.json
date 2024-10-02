@@ -1,5 +1,5 @@
 {
-  "npmClient": "yarn",
-  "version": "independent",
-  "$schema": "node_modules/lerna/schemas/lerna-schema.json"
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "npmClient": "pnpm",
+  "version": "independent"
 }

@@ -1,12 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { describeConformance, act, createRenderer } from 'test/utils';
+import { act, createRenderer } from '@mui/internal-test-utils';
 import { ClassNames } from '@emotion/react';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import FormControl from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
 import FormLabel from '@mui/material/FormLabel';
 import InputLabel, { inputLabelClasses as classes } from '@mui/material/InputLabel';
+import describeConformance from '../../test/describeConformance';
 
 describe('<InputLabel />', () => {
   const { render } = createRenderer();
@@ -117,6 +119,38 @@ describe('<InputLabel />', () => {
 
         setProps({ shrink: true });
         expect(getByTestId('root')).to.have.class(classes.shrink);
+      });
+
+      it('provides ownerState.focused in styleOverrides', () => {
+        const theme = createTheme({
+          components: {
+            MuiInputLabel: {
+              styleOverrides: {
+                root: (props) => {
+                  return {
+                    ...(props.ownerState.focused === true && {
+                      mixBlendMode: 'darken',
+                    }),
+                  };
+                },
+              },
+            },
+          },
+        });
+
+        const { getByText } = render(
+          <ThemeProvider theme={theme}>
+            <FormControl focused>
+              <InputLabel>Test Label</InputLabel>
+            </FormControl>
+          </ThemeProvider>,
+        );
+
+        const label = getByText('Test Label');
+
+        expect(label).to.toHaveComputedStyle({
+          mixBlendMode: 'darken',
+        });
       });
     });
   });

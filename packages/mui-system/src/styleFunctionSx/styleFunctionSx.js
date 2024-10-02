@@ -1,4 +1,4 @@
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
 import merge from '../merge';
 import { getPath, getStyleValue as getValue } from '../style';
 import {
@@ -6,6 +6,7 @@ import {
   createEmptyBreakpointObject,
   removeUnusedBreakpoints,
 } from '../breakpoints';
+import { sortContainerQueries } from '../cssContainerQueries';
 import defaultSxConfig from './defaultSxConfig';
 
 function objectsHaveSameKeys(...objects) {
@@ -127,7 +128,7 @@ export function unstable_createStyleFunctionSx() {
         }
       });
 
-      return removeUnusedBreakpoints(breakpointsKeys, css);
+      return sortContainerQueries(theme, removeUnusedBreakpoints(breakpointsKeys, css));
     }
 
     return Array.isArray(sx) ? sx.map(traverse) : traverse(sx);

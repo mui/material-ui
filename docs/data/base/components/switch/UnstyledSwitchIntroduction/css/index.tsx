@@ -62,9 +62,16 @@ const cyan = {
 };
 
 const grey = {
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
 function useIsDarkMode() {
@@ -80,10 +87,11 @@ function Styles() {
     <style>
       {`
       .CustomSwitchIntroduction {
+        box-sizing: border-box;
         font-size: 0;
         position: relative;
         display: inline-block;
-        width: 40px;
+        width: 38px;
         height: 24px;
         margin: 10px;
         cursor: pointer;
@@ -95,24 +103,35 @@ function Styles() {
       }
 
       .CustomSwitchIntroduction-track {
-        background: ${isDarkMode ? grey[600] : grey[400]};
-        border-radius: 16px;
+        box-sizing: border-box;
+        background: ${isDarkMode ? grey[900] : grey[50]};
+        border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
+        border-radius: 24px;
         display: block;
         height: 100%;
         width: 100%;
         position: absolute;
+        box-shadow: inset 0px 1px 1px ${
+          isDarkMode ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.05)'
+        };
+      }
+
+      .CustomSwitchIntroduction:hover .CustomSwitchIntroduction-track {
+        background: ${isDarkMode ? grey[800] : grey[100]};
+        border-color: ${isDarkMode ? grey[600] : grey[300]};
       }
 
       .CustomSwitchIntroduction-thumb {
+        box-sizing: border-box;
+        border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
         display: block;
         width: 16px;
         height: 16px;
         top: 4px;
         left: 4px;
         border-radius: 16px;
-        background-color: #fff;
+        background-color: #FFF;
         position: relative;
-        
         transition-property: all;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 120ms;
@@ -120,22 +139,22 @@ function Styles() {
 
       .CustomSwitchIntroduction.${
         switchClasses.focusVisible
-      } .CustomSwitchIntroduction-thumb {
-        background-color: ${grey[500]};
-        box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
+      } .CustomSwitchIntroduction-track {
+        box-shadow: 0 0 0 3px ${isDarkMode ? cyan[400] : cyan[200]};
       }
 
       .CustomSwitchIntroduction.${
         switchClasses.checked
       } .CustomSwitchIntroduction-thumb {
-        left: 20px;
-        top: 4px;
+        left: 18px;
         background-color: #fff;
+        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
       }
 
       .CustomSwitchIntroduction.${
         switchClasses.checked
       } .CustomSwitchIntroduction-track {
+        border: none;
         background: ${cyan[500]};
       }
 
@@ -150,7 +169,7 @@ function Styles() {
         z-index: 1;
         margin: 0;
       }
-    
+
     `}
     </style>
   );

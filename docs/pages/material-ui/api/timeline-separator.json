@@ -15,7 +15,14 @@
     "import TimelineSeparator from '@mui/lab/TimelineSeparator';",
     "import { TimelineSeparator } from '@mui/lab';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTimelineSeparator" },
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiTimelineSeparator-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiTimelineSeparator",

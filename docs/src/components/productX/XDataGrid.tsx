@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { DataGridPro, useGridApiRef } from '@mui/x-data-grid-pro';
 import { useDemoData } from '@mui/x-data-grid-generator';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
@@ -10,6 +9,8 @@ import LibraryAddCheckRounded from '@mui/icons-material/LibraryAddCheckRounded';
 import SortByAlphaRounded from '@mui/icons-material/SortByAlphaRounded';
 import AutoStoriesOutlined from '@mui/icons-material/AutoStoriesOutlined';
 import FilterAltRounded from '@mui/icons-material/FilterAltRounded';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { Link } from '@mui/docs/Link';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
@@ -17,12 +18,10 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import FlashCode from 'docs/src/components/animation/FlashCode';
+import { ShowcaseCodeWrapper } from 'docs/src/components/home/ShowcaseContainer';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
-import StylingInfo from 'docs/src/components/action/StylingInfo';
-import Link from 'docs/src/modules/components/Link';
+import { AppearingInfoBox } from 'docs/src/components/action/MoreInfoBox';
 import ROUTES from 'docs/src/route';
 
 const DEMOS = ['Editing', 'Selection', 'Sorting', 'Pagination', 'Filtering'] as const;
@@ -43,11 +42,11 @@ const code = `<DataGrid
 />`;
 
 const startLine = {
-  [DEMOS[0]]: 5,
-  [DEMOS[1]]: 10,
-  [DEMOS[2]]: 6,
-  [DEMOS[3]]: 12,
-  [DEMOS[4]]: 7,
+  [DEMOS[0]]: 6,
+  [DEMOS[1]]: 11,
+  [DEMOS[2]]: 7,
+  [DEMOS[3]]: 13,
+  [DEMOS[4]]: 8,
 };
 
 const dataGridStyleOverrides = <XGridGlobalStyles selector="#data-grid-demo" pro />;
@@ -117,37 +116,31 @@ export default function XDataGrid() {
       }
     }
   }, [demo, loading, firstRowId, gridApiRef]);
+
   return (
-    <Section>
+    <Section cozy>
       <Grid container spacing={2}>
-        <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box maxWidth={500}>
-            <SectionHeadline
-              overline="Data Grid"
-              title={
-                <Typography variant="h2">
-                  A level of <GradientText>performance and quality</GradientText> that hasn&apos;t
-                  been seen before
-                </Typography>
-              }
-              description="The MUI Data Grid is a data table powerhouse. It is packed with exclusive features that will enrich the experience of dealing with and maintaining lots of data."
-            />
-          </Box>
-          <Group desktopColumns={2} sx={{ mt: 4 }}>
+        <Grid sx={{ minWidth: 0 }} size={{ md: 6 }}>
+          <SectionHeadline
+            overline="Data Grid"
+            title={
+              <Typography variant="h2">
+                A level of <GradientText>performance and quality</GradientText> that hasn&apos;t
+                been seen before
+              </Typography>
+            }
+            description="The MUI X Data Grid is a data table powerhouse. It is packed with exclusive features that will enrich the experience of dealing with and maintaining lots of data."
+          />
+          <Group desktopColumns={2} sx={{ m: -2, p: 2 }}>
             {DEMOS.map((name) => (
-              <Highlighter
-                selectedBg="comfort"
-                key={name}
-                selected={name === demo}
-                onClick={() => setDemo(name)}
-              >
+              <Highlighter key={name} selected={name === demo} onClick={() => setDemo(name)}>
                 <Item icon={icons[name]} title={name} />
               </Highlighter>
             ))}
             <More href={ROUTES.dataGridFeatures} />
           </Group>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Paper
             id="data-grid-demo"
             variant="outlined"
@@ -157,7 +150,7 @@ export default function XDataGrid() {
                 zIndex: 1,
                 height: 240,
                 borderRadius: '10px 10px 0 0',
-                borderColor: 'grey.200',
+                borderColor: 'divider',
                 '& .MuiDataGrid-root': {
                   '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
                   '& .MuiDataGrid-footerContainer': {
@@ -178,7 +171,7 @@ export default function XDataGrid() {
               },
               (theme) =>
                 theme.applyDarkStyles({
-                  borderColor: 'primaryDark.600',
+                  borderColor: 'divider',
                   '& .MuiDataGrid-root': {
                     '& .MuiDataGrid-footerContainer': {
                       borderColor: 'primaryDark.600',
@@ -198,55 +191,27 @@ export default function XDataGrid() {
               pagination
             />
           </Paper>
-          <Frame.Info
-            sx={{
-              borderBottomLeftRadius: 10,
-              borderBottomRightRadius: 10,
-              mt: -1,
-              pb: 1,
-              '&::-webkit-scrollbar': {
-                display: 'none',
-              },
-              '&& pre': {
-                bgcolor: 'transparent',
-                '&::-webkit-scrollbar': {
-                  display: 'none',
-                },
-              },
-              overflow: 'hidden',
-            }}
-          >
-            <Box sx={{ position: 'relative' }}>
-              <Box sx={{ position: 'relative', zIndex: 1 }}>
-                <HighlightedCode
-                  copyButtonHidden
-                  component={MarkdownElement}
-                  code={code}
-                  language="jsx"
-                />
-              </Box>
-              {demo && <FlashCode startLine={startLine[demo]} sx={{ mx: -2 }} />}
-              <StylingInfo
-                appeared={demo === DEMOS[3] || demo === DEMOS[4]}
-                stylingContent={
-                  <React.Fragment>
-                    <Typography fontWeight="bold" color="#fff" variant="body2">
-                      {demo === DEMOS[3] && 'Pagination > 100 rows per page is a paid feature!'}
-                      {demo === DEMOS[4] && 'Multi-column filtering is a paid feature!'}
-                    </Typography>
-                    <Typography color="grey.400" variant="body2">
-                      The Data Grid and all other MUI X components are available on free and paid
-                      versions. More details about each plan and its features are on{' '}
-                      <Link href={ROUTES.pricing} sx={{ color: 'primary.300' }}>
-                        the pricing page
-                      </Link>
-                      .
-                    </Typography>
-                  </React.Fragment>
-                }
-                sx={{ mx: -2, mb: -1 }}
-              />
-            </Box>
+          <Frame.Info sx={{ p: 0 }}>
+            <ShowcaseCodeWrapper maxHeight="100%" clip>
+              <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
+              {demo && <FlashCode startLine={startLine[demo]} sx={{ mx: 1 }} />}
+              <AppearingInfoBox appeared={demo === DEMOS[3] || demo === DEMOS[4]}>
+                <React.Fragment>
+                  <Typography
+                    variant="body2"
+                    sx={{ color: 'grey.50', fontWeight: 'medium', mb: '4px' }}
+                  >
+                    {demo === DEMOS[3] && 'Pagination > 100 rows per page is a paid feature!'}
+                    {demo === DEMOS[4] && 'Multi-column filtering is a paid feature!'}
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: 'grey.300' }}>
+                    The Data Grid and all other MUI X components are available on free and paid
+                    plans. Find more details about each plan and its features are on{' '}
+                    <Link href={ROUTES.pricing}>the pricing page</Link>.
+                  </Typography>
+                </React.Fragment>
+              </AppearingInfoBox>
+            </ShowcaseCodeWrapper>
           </Frame.Info>
         </Grid>
       </Grid>

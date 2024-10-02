@@ -1,93 +1,39 @@
-import { mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
-import * as ts from 'typescript';
+import { Symbol, isPropertySignature } from 'typescript';
 import * as astTypes from 'ast-types';
 import * as _ from 'lodash';
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
-import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
+import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import kebabCase from 'lodash/kebabCase';
 import upperFirst from 'lodash/upperFirst';
-import { renderInline as renderMarkdownInline } from '@mui/markdown';
-import { LANGUAGES } from 'docs/config';
-import { toGitHubPath, computeApiDescription } from './ComponentApiBuilder';
+import { parse as parseDoctrine, Annotation } from 'doctrine';
+import { renderMarkdown } from '@mui/internal-markdown';
+import { ProjectSettings } from '../ProjectSettings';
+import { computeApiDescription } from './ComponentApiBuilder';
 import {
   getSymbolDescription,
   getSymbolJSDocTags,
-  HookInfo,
   stringifySymbol,
+  toGitHubPath,
   writePrettifiedFile,
 } from '../buildApiUtils';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
-import muiDefaultParamsHandler from '../utils/defaultParamsHandler';
+import generateApiTranslations from '../utils/generateApiTranslation';
+import { HookApiContent, HookReactApi, ParsedProperty } from '../types/ApiBuilder.types';
+import { HookInfo } from '../types/utils.types';
 
-interface ParsedProperty {
-  name: string;
-  description: string;
-  tags: { [tagName: string]: ts.JSDocTagInfo };
-  required: boolean;
-  typeStr: string;
-}
-
-const parseProperty = (propertySymbol: ts.Symbol, project: TypeScriptProject): ParsedProperty => ({
+const parseProperty = async (
+  propertySymbol: Symbol,
+  project: TypeScriptProject,
+): Promise<ParsedProperty> => ({
   name: propertySymbol.name,
   description: getSymbolDescription(propertySymbol, project),
   tags: getSymbolJSDocTags(propertySymbol),
-  required: !propertySymbol.declarations?.find(ts.isPropertySignature)?.questionToken,
-  typeStr: stringifySymbol(propertySymbol, project),
+  required: !propertySymbol.declarations?.find(isPropertySignature)?.questionToken,
+  typeStr: await stringifySymbol(propertySymbol, project),
 });
-
-export interface ReactApi extends ReactDocgenApi {
-  demos: ReturnType<HookInfo['getDemos']>;
-  EOL: string;
-  filename: string;
-  apiPathname: string;
-  parameters?: ParsedProperty[];
-  returnValue?: ParsedProperty[];
-  /**
-   * hook name
-   * @example 'useButton'
-   */
-  name: string;
-  description: string;
-  /**
-   * Different ways to import components
-   */
-  imports: string[];
-  /**
-   * result of path.readFileSync from the `filename` in utf-8
-   */
-  src: string;
-  parametersTable: _.Dictionary<{
-    default: string | undefined;
-    required: boolean | undefined;
-    type: { name: string | undefined; description: string | undefined };
-    deprecated: true | undefined;
-    deprecationInfo: string | undefined;
-  }>;
-  returnValueTable: _.Dictionary<{
-    default: string | undefined;
-    required: boolean | undefined;
-    type: { name: string | undefined; description: string | undefined };
-    deprecated: true | undefined;
-    deprecationInfo: string | undefined;
-  }>;
-  translations: {
-    hookDescription: string;
-    parametersDescriptions: {
-      [key: string]: {
-        description: string;
-        deprecated?: string;
-      };
-    };
-    returnValueDescriptions: {
-      [key: string]: {
-        description: string;
-        deprecated?: string;
-      };
-    };
-  };
-}
 
 /**
  * Add demos & API comment block to type definitions, e.g.:
@@ -100,8 +46,12 @@ export interface ReactApi extends ReactDocgenApi {
  * *
  * * - [useButton API](https://mui.com/base-ui/api/use-button/)
  */
-async function annotateHookDefinition(api: ReactApi) {
-  const HOST = 'https://mui.com';
+async function annotateHookDefinition(
+  api: HookReactApi,
+  hookJsdoc: Annotation,
+  projectSettings: ProjectSettings,
+) {
+  const HOST = projectSettings.baseApiUrl ?? 'https://mui.com';
 
   const typesFilename = api.filename.replace(/\.js$/, '.d.ts');
   const fileName = path.parse(api.filename).name;
@@ -277,6 +227,14 @@ async function annotateHookDefinition(api: ReactApi) {
     })`,
   );
 
+  if (hookJsdoc.tags.length > 0) {
+    markdownLines.push('');
+  }
+
+  hookJsdoc.tags.forEach((tag) => {
+    markdownLines.push(`@${tag.title}${tag.name ? ` ${tag.name} -` : ''} ${tag.description}`);
+  });
+
   const jsdoc = `/**\n${markdownLines
     .map((line) => (line.length > 0 ? ` * ${line}` : ` *`))
     .join('\n')}\n */`;
@@ -285,12 +243,12 @@ async function annotateHookDefinition(api: ReactApi) {
 }
 
 const attachTable = (
-  reactApi: ReactApi,
+  reactApi: HookReactApi,
   params: ParsedProperty[],
   tableName: 'parametersTable' | 'returnValueTable',
 ) => {
   const propErrors: Array<[propName: string, error: Error]> = [];
-  const parameters: ReactApi[typeof tableName] = params
+  const parameters: HookReactApi[typeof tableName] = params
     .map((p) => {
       const { name: propName, ...propDescriptor } = p;
       let prop: Omit<ParsedProperty, 'name'> | null;
@@ -328,12 +286,11 @@ const attachTable = (
           // undefined values are not serialized => saving some bytes
           required: requiredProp || undefined,
           deprecated: !!deprecation || undefined,
-          deprecationInfo:
-            renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined,
+          deprecationInfo: renderMarkdown(deprecation?.groups?.info || '').trim() || undefined,
         },
       };
     })
-    .reduce((acc, curr) => ({ ...acc, ...curr }), {}) as unknown as ReactApi['parametersTable'];
+    .reduce((acc, curr) => ({ ...acc, ...curr }), {}) as unknown as HookReactApi['parametersTable'];
   if (propErrors.length > 0) {
     throw new Error(
       `There were errors creating prop descriptions:\n${propErrors
@@ -351,12 +308,13 @@ const attachTable = (
 };
 
 const generateTranslationDescription = (description: string) => {
-  return renderMarkdownInline(description.replace(/\n@default.*$/, ''));
+  return renderMarkdown(description.replace(/\n@default.*$/, ''));
 };
 
-const attachTranslations = (reactApi: ReactApi) => {
-  const translations: ReactApi['translations'] = {
+const attachTranslations = (reactApi: HookReactApi, deprecationInfo: string | undefined) => {
+  const translations: HookReactApi['translations'] = {
     hookDescription: reactApi.description,
+    deprecationInfo: deprecationInfo ? renderMarkdown(deprecationInfo).trim() : undefined,
     parametersDescriptions: {},
     returnValueDescriptions: {},
   };
@@ -369,7 +327,7 @@ const attachTranslations = (reactApi: ReactApi) => {
       const deprecation = (description || '').match(/@deprecated(\s+(?<info>.*))?/);
       if (deprecation !== null) {
         translations.parametersDescriptions[propName].deprecated =
-          renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined;
+          renderMarkdown(deprecation?.groups?.info || '').trim() || undefined;
       }
     }
   });
@@ -382,7 +340,7 @@ const attachTranslations = (reactApi: ReactApi) => {
       const deprecation = (description || '').match(/@deprecated(\s+(?<info>.*))?/);
       if (deprecation !== null) {
         translations.parametersDescriptions[propName].deprecated =
-          renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined;
+          renderMarkdown(deprecation?.groups?.info || '').trim() || undefined;
       }
     }
   });
@@ -390,11 +348,11 @@ const attachTranslations = (reactApi: ReactApi) => {
   reactApi.translations = translations;
 };
 
-const generateApiJson = (outputDirectory: string, reactApi: ReactApi) => {
+const generateApiJson = async (outputDirectory: string, reactApi: HookReactApi) => {
   /**
    * Gather the metadata needed for the component's API page.
    */
-  const pageContent = {
+  const pageContent: HookApiContent = {
     // Sorted by required DESC, name ASC
     parameters: _.fromPairs(
       Object.entries(reactApi.parametersTable).sort(([aName, aData], [bName, bData]) => {
@@ -424,52 +382,19 @@ const generateApiJson = (outputDirectory: string, reactApi: ReactApi) => {
     demos: `<ul>${reactApi.demos
       .map((item) => `<li><a href="${item.demoPathname}">${item.demoPageTitle}</a></li>`)
       .join('\n')}</ul>`,
+    deprecated: reactApi.deprecated,
   };
 
-  writePrettifiedFile(
+  await writePrettifiedFile(
     path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.json`),
     JSON.stringify(pageContent),
   );
 };
 
-const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) => {
-  const hookName = reactApi.name;
-  const apiDocsTranslationPath = path.resolve(outputDirectory, kebabCase(hookName));
-  function resolveApiDocsTranslationsComponentLanguagePath(
-    language: (typeof LANGUAGES)[0],
-  ): string {
-    const languageSuffix = language === 'en' ? '' : `-${language}`;
-
-    return path.join(apiDocsTranslationPath, `${kebabCase(hookName)}${languageSuffix}.json`);
-  }
-
-  mkdirSync(apiDocsTranslationPath, {
-    mode: 0o777,
-    recursive: true,
-  });
-
-  writePrettifiedFile(
-    resolveApiDocsTranslationsComponentLanguagePath('en'),
-    JSON.stringify(reactApi.translations),
-  );
-
-  LANGUAGES.forEach((language) => {
-    if (language !== 'en') {
-      try {
-        writePrettifiedFile(
-          resolveApiDocsTranslationsComponentLanguagePath(language),
-          JSON.stringify(reactApi.translations),
-          undefined,
-          { flag: 'wx' },
-        );
-      } catch (error) {
-        // File exists
-      }
-    }
-  });
-};
-
-const extractInfoFromType = (typeName: string, project: TypeScriptProject): ParsedProperty[] => {
+const extractInfoFromType = async (
+  typeName: string,
+  project: TypeScriptProject,
+): Promise<ParsedProperty[]> => {
   // Generate the params
   let result: ParsedProperty[] = [];
 
@@ -487,14 +412,16 @@ const extractInfoFromType = (typeName: string, project: TypeScriptProject): Pars
     const propertiesOnProject = type.getProperties();
 
     // @ts-ignore
-    propertiesOnProject.forEach((propertySymbol) => {
-      properties[propertySymbol.name] = parseProperty(propertySymbol, project);
-    });
+    await Promise.all(
+      propertiesOnProject.map(async (propertySymbol) => {
+        properties[propertySymbol.name] = await parseProperty(propertySymbol, project);
+      }),
+    );
 
     result = Object.values(properties)
       .filter((property) => !property.tags.ignore)
       .sort((a, b) => a.name.localeCompare(b.name));
-  } catch (e) {
+  } catch {
     console.error(`No declaration for ${typeName}`);
   }
 
@@ -507,7 +434,7 @@ const extractInfoFromType = (typeName: string, project: TypeScriptProject): Pars
  * @param filename The filename where its defined (to infer the package)
  * @returns an array of import command
  */
-const getHookImports = (name: string, filename: string) => {
+const defaultGetHookImports = (name: string, filename: string) => {
   const githubPath = toGitHubPath(filename);
   const rootImportPath = githubPath.replace(
     /\/packages\/mui(?:-(.+?))?\/src\/.*/,
@@ -537,7 +464,11 @@ const getHookImports = (name: string, filename: string) => {
   return [subpathImport, rootImport];
 };
 
-export default async function generateHookApi(hooksInfo: HookInfo, project: TypeScriptProject) {
+export default async function generateHookApi(
+  hooksInfo: HookInfo,
+  project: TypeScriptProject,
+  projectSettings: ProjectSettings,
+) {
   const { filename, name, apiPathname, apiPagesDirectory, getDemos, readFile, skipApiGeneration } =
     hooksInfo;
 
@@ -547,7 +478,7 @@ export default async function generateHookApi(hooksInfo: HookInfo, project: Type
     return null;
   }
 
-  const reactApi: ReactApi = docgenParse(
+  const reactApi: HookReactApi = docgenParse(
     src,
     (ast) => {
       let node;
@@ -561,18 +492,25 @@ export default async function generateHookApi(hooksInfo: HookInfo, project: Type
       });
       return node;
     },
-    defaultHandlers.concat(muiDefaultParamsHandler),
+    defaultHandlers,
     { filename },
   );
 
-  const parameters = extractInfoFromType(`${upperFirst(name)}Parameters`, project);
-  const returnValue = extractInfoFromType(`${upperFirst(name)}ReturnValue`, project);
+  const parameters = await extractInfoFromType(`${upperFirst(name)}Parameters`, project);
+  const returnValue = await extractInfoFromType(`${upperFirst(name)}ReturnValue`, project);
+  const hookJsdoc = parseDoctrine(reactApi.description);
+
+  // We override `reactApi.description` with `hookJsdoc.description` because
+  // the former can include JSDoc tags that we don't want to render in the docs.
+  reactApi.description = hookJsdoc.description;
 
   // Ignore what we might have generated in `annotateHookDefinition`
   const annotatedDescriptionMatch = reactApi.description.match(/(Demos|API):\r?\n\r?\n/);
   if (annotatedDescriptionMatch !== null) {
     reactApi.description = reactApi.description.slice(0, annotatedDescriptionMatch.index).trim();
   }
+
+  const { getHookImports = defaultGetHookImports, translationPagesDirectory } = projectSettings;
   reactApi.filename = filename;
   reactApi.name = name;
   reactApi.imports = getHookImports(name, filename);
@@ -594,18 +532,27 @@ export default async function generateHookApi(hooksInfo: HookInfo, project: Type
   attachTable(reactApi, returnValue, 'returnValueTable');
   reactApi.returnValue = returnValue;
 
-  attachTranslations(reactApi);
+  const deprecation = hookJsdoc.tags.find((tag) => tag.title === 'deprecated');
+  const deprecationInfo = deprecation?.description || undefined;
+
+  reactApi.deprecated = !!deprecation || undefined;
+
+  attachTranslations(reactApi, deprecationInfo);
 
   // eslint-disable-next-line no-console
   console.log('Built API docs for', reactApi.name);
 
   if (!skipApiGeneration) {
     // Generate pages, json and translations
-    generateApiTranslations(path.join(process.cwd(), 'docs/translations/api-docs'), reactApi);
-    generateApiJson(apiPagesDirectory, reactApi);
+    await generateApiTranslations(
+      path.join(process.cwd(), translationPagesDirectory),
+      reactApi,
+      projectSettings.translationLanguages,
+    );
+    await generateApiJson(apiPagesDirectory, reactApi);
 
     // Add comment about demo & api links to the component hook file
-    await annotateHookDefinition(reactApi);
+    await annotateHookDefinition(reactApi, hookJsdoc, projectSettings);
   }
 
   return reactApi;

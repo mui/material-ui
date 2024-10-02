@@ -6,6 +6,7 @@ githubLabel: 'component: menu'
 materialDesign: https://m2.material.io/components/menus
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 unstyled: /base-ui/react-menu/
+githubSource: packages/mui-material/src/Menu
 ---
 
 # Menu
@@ -14,7 +15,7 @@ unstyled: /base-ui/react-menu/
 
 A menu displays a list of choices on a temporary surface. It appears when the user interacts with a button, or other control.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic menu
 
@@ -79,7 +80,7 @@ You can learn more about this in the [overrides documentation page](/material-ui
 The `MenuItem` is a wrapper around `ListItem` with some additional styles.
 You can use the same list composition features with the `MenuItem` component:
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/menu/).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/menu-introduction--docs).
 
 ## Max height menu
 
@@ -89,7 +90,7 @@ If the height of a menu prevents all menu items from being displayed, the menu c
 
 ## Limitations
 
-There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipsis` from working in a flexbox layout.
+There is [a flexbox bug](https://issues.chromium.org/issues/40344463) that prevents `text-overflow: ellipsis` from working in a flexbox layout.
 You can use the `Typography` component with `noWrap` to workaround this issue:
 
 {{"demo": "TypographyMenu.js", "bg": true}}

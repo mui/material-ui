@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Grid, { gridClasses as classes } from '@mui/joy/Grid';
+import describeConformance from '../../test/describeConformance';
 
 describe('Joy UI <Grid />', () => {
   const { render } = createRenderer();

@@ -17,7 +17,14 @@
     "import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';",
     "import { ScopedCssBaseline } from '@mui/material';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiScopedCssBaseline" },
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiScopedCssBaseline-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiScopedCssBaseline",

@@ -48,8 +48,7 @@ export default function App() {
         variant="solid"
         color="primary"
         invertedColors
-        sx={{
-          borderRadius: "sm",
+        sx={{        borderRadius: "sm",
           m: 1,
           fontSize: "lg",
           background: (theme) =>
@@ -74,7 +73,7 @@ export default function App() {
               component="a"
               href="https://mui.com/joy-ui/main-features/global-variants/"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
             >
               Main features &nbsp; <span role="img">↗</span>️
             </ListItemButton>
@@ -84,7 +83,7 @@ export default function App() {
               component="a"
               href="https://mui.com/joy-ui/react-autocomplete/"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
             >
               Browse components &nbsp; <span role="img">↗</span>️
             </ListItemButton>
@@ -94,7 +93,7 @@ export default function App() {
               component="a"
               href="https://mui.com/joy-ui/customization/approaches/"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
             >
               Check out theming and customization &nbsp;{" "}
               <span role="img">↗</span>️
@@ -108,7 +107,7 @@ export default function App() {
           underline="always"
           href="https://mui.com/about"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
         >
           MUI
         </Link>{" "}

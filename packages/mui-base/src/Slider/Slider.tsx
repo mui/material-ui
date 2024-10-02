@@ -77,6 +77,7 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
     onChange,
     onChangeCommitted,
     orientation = 'horizontal',
+    shiftStep = 10,
     scale = Identity,
     step = 1,
     tabIndex,
@@ -107,6 +108,7 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
     orientation,
     scale,
     step,
+    shiftStep,
     track,
     valueLabelFormat,
   };
@@ -221,7 +223,7 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
 
           let markActive;
           if (track === false) {
-            markActive = values.indexOf(mark.value) !== -1;
+            markActive = values.includes(mark.value);
           } else {
             markActive =
               (track === 'normal' &&
@@ -324,10 +326,10 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
 }) as PolymorphicComponent<SliderTypeMap>;
 
 Slider.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The label of the slider.
    */
@@ -456,6 +458,11 @@ Slider.propTypes /* remove-proptypes */ = {
    * }
    */
   scale: PropTypes.func,
+  /**
+   * The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down.
+   * @default 10
+   */
+  shiftStep: PropTypes.number,
   /**
    * The props used for each slot inside the Slider.
    * @default {}

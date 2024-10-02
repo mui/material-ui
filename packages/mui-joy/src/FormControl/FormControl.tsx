@@ -60,23 +60,19 @@ export const FormControlRoot = styled('div', {
     '--FormHelperText-fontSize': theme.vars.fontSize.sm,
     '--FormHelperText-lineHeight': theme.vars.lineHeight.sm,
   }),
-  ...(ownerState.color &&
-    ownerState.color !== 'context' && {
-      '--FormHelperText-color': theme.vars.palette[ownerState.color]?.[500],
-    }),
+  ...(ownerState.color && {
+    '--FormHelperText-color': theme.vars.palette[ownerState.color]?.[500],
+  }),
   '--FormHelperText-margin': '0.375rem 0 0 0',
   [`&.${formControlClasses.error}`]: {
     '--FormHelperText-color': theme.vars.palette.danger[500],
   },
   [`&.${formControlClasses.disabled}`]: {
-    ...(ownerState.color !== 'context' && {
-      '--FormLabel-color': theme.vars.palette[ownerState.color || 'neutral']?.plainDisabledColor,
-      '--FormHelperText-color':
-        theme.vars.palette[ownerState.color || 'neutral']?.plainDisabledColor,
-    }),
+    '--FormLabel-color': theme.variants.plainDisabled?.[ownerState.color || 'neutral']?.color,
+    '--FormHelperText-color': theme.variants.plainDisabled?.[ownerState.color || 'neutral']?.color,
   },
   display: 'flex',
-  position: 'relative', // for keeping the control action area, e.g. Switch
+  position: 'relative', // for keeping the control action area, for example Switch
   flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
   ...(ownerState.orientation === 'horizontal' && {
     [`& > label ~ .${switchClasses.root}`]: {
@@ -132,6 +128,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
 
   let registerEffect: undefined | (() => () => void);
   if (process.env.NODE_ENV !== 'production') {
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- process.env never changes
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const registeredInput = React.useRef(false);
     registerEffect = () => {
@@ -185,10 +182,10 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
 }) as OverridableComponent<FormControlTypeMap>;
 
 FormControl.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

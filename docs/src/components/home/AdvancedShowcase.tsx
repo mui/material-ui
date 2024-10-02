@@ -1,16 +1,19 @@
 import * as React from 'react';
 import { DataGrid, GridCellParams, GridRenderEditCellParams, GridColDef } from '@mui/x-data-grid';
+import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
+import Divider from '@mui/material/Divider';
+import ShowcaseContainer, { ShowcaseCodeWrapper } from 'docs/src/components/home/ShowcaseContainer';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
+import MoreInfoBox from 'docs/src/components/action/MoreInfoBox';
 import ProgressBar from 'docs/src/components/x-grid/ProgressBar';
 import EditProgress from 'docs/src/components/x-grid/EditProgress';
 import Status from 'docs/src/components/x-grid/Status';
 import EditStatus from 'docs/src/components/x-grid/EditStatus';
+import ROUTES from 'docs/src/route';
 
 const columns: Array<GridColDef> = [
   {
@@ -1680,72 +1683,53 @@ const rows = [
 export default function DataTable() {
   return (
     <ShowcaseContainer
-      sx={{ mt: { md: 2 } }}
-      previewSx={{
-        py: 2,
-      }}
       preview={
         <Paper
           variant="outlined"
           sx={(theme) => ({
             overflow: 'hidden',
             width: '100%',
-            boxShadow: '0px 4px 16px rgba(61, 71, 82, 0.15)',
+            boxShadow: `0 4px 8px ${alpha(theme.palette.primaryDark[300], 0.3)}`,
             bgcolor: '#fff',
             border: '1px solid',
             borderColor: 'grey.200',
             ...theme.applyDarkStyles({
               bgcolor: 'primaryDark.800',
-              boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.4)',
+              boxShadow: `0 4px 8px ${alpha(theme.palette.common.black, 0.3)}`,
             }),
           })}
         >
           <XGridGlobalStyles />
-          <Box
-            sx={(theme) => ({
-              textAlign: 'center',
-              py: 1,
+          <Typography
+            variant="body2"
+            sx={{
+              color: 'text.primary',
+              fontWeight: 'semiBold',
               position: 'relative',
-              borderBottom: '1px solid',
-              borderColor: 'grey.100',
-              ...theme.applyDarkStyles({
-                borderColor: 'primaryDark.600',
-              }),
-            })}
+              textAlign: 'center',
+              py: 1.5,
+            }}
           >
-            <Typography color="primary.main" fontWeight={700}>
-              Trades, October 2020
-            </Typography>
-          </Box>
+            Trades, October 2020
+          </Typography>
+          <Divider />
           <Box sx={{ height: 200 }}>
             <DataGrid rows={rows} columns={columns} hideFooter density="compact" />
           </Box>
         </Paper>
       }
       code={
-        <Box
-          sx={{
-            p: 2,
-            overflow: 'auto',
-            flexGrow: 1,
-            '&::-webkit-scrollbar': {
-              display: 'none',
-            },
-            '& pre': {
-              bgcolor: 'transparent !important',
-              '&::-webkit-scrollbar': {
-                display: 'none',
-              },
-            },
-          }}
-        >
-          <HighlightedCode
-            copyButtonHidden
-            component={MarkdownElement}
-            code={code}
-            language="jsx"
+        <React.Fragment>
+          <ShowcaseCodeWrapper maxHeight={280}>
+            <HighlightedCode copyButtonHidden code={code} language="jsx" plainStyle />
+          </ShowcaseCodeWrapper>
+          <MoreInfoBox
+            primaryBtnLabel="Start with the Data Grid"
+            primaryBtnHref={ROUTES.dataGridOverview}
+            secondaryBtnLabel="Learn more about MUI X"
+            secondaryBtnHref={ROUTES.productAdvanced}
           />
-        </Box>
+        </React.Fragment>
       }
     />
   );

@@ -2,33 +2,59 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import styled from '../styles/styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import capitalize from '../utils/capitalize';
 import { isHorizontal } from '../Drawer/Drawer';
 
-const SwipeAreaRoot = styled('div')(({ theme, ownerState }) => ({
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  bottom: 0,
-  zIndex: theme.zIndex.drawer - 1,
-  ...(ownerState.anchor === 'left' && {
-    right: 'auto',
-  }),
-  ...(ownerState.anchor === 'right' && {
-    left: 'auto',
-    right: 0,
-  }),
-  ...(ownerState.anchor === 'top' && {
-    bottom: 'auto',
-    right: 0,
-  }),
-  ...(ownerState.anchor === 'bottom' && {
-    top: 'auto',
+const SwipeAreaRoot = styled('div', { shouldForwardProp: rootShouldForwardProp })(
+  memoTheme(({ theme }) => ({
+    position: 'fixed',
+    top: 0,
+    left: 0,
     bottom: 0,
-    right: 0,
-  }),
-}));
+    zIndex: theme.zIndex.drawer - 1,
+    variants: [
+      {
+        props: {
+          anchor: 'left',
+        },
+        style: {
+          right: 'auto',
+        },
+      },
+      {
+        props: {
+          anchor: 'right',
+        },
+        style: {
+          left: 'auto',
+          right: 0,
+        },
+      },
+      {
+        props: {
+          anchor: 'top',
+        },
+        style: {
+          bottom: 'auto',
+          right: 0,
+        },
+      },
+      {
+        props: {
+          anchor: 'bottom',
+        },
+        style: {
+          top: 'auto',
+          bottom: 0,
+          right: 0,
+        },
+      },
+    ],
+  })),
+);
 
 /**
  * @ignore - internal component.

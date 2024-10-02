@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import CardCover, { cardCoverClasses as classes } from '@mui/joy/CardCover';
+import describeConformance from '../../test/describeConformance';
 
 describe('<CardCover />', () => {
   const { render } = createRenderer();

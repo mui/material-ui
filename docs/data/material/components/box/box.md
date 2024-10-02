@@ -3,64 +3,65 @@ productId: material-ui
 title: React Box
 components: Box
 githubLabel: 'component: Box'
+githubSource: packages/mui-material/src/Box
 ---
+
+<!-- This page's content is duplicated (with some product-specific details) across the Material UI, Joy UI, and MUI System docs. Any changes should be applied to all three pages at the same time. -->
 
 # Box
 
-<p class="description">The Box component serves as a wrapper component for most of the CSS utility needs.</p>
+<p class="description">The Box component is a generic, theme-aware container with access to CSS utilities from MUI System.</p>
 
-The Box component packages [all the style functions](/system/properties/) that are exposed in `@mui/system`.
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+## Introduction
 
-## Example
+The Box component is a generic container for grouping other components.
+It's a fundamental building block when working with Material UI—you can think of it as a `<div>` with extra built-in features, like access to your app's theme and the [`sx` prop](/system/getting-started/the-sx-prop/).
 
-[The palette](/system/palette/) style function.
+### Usage
 
-## The `sx` prop
+The Box component differs from other containers available in Material UI in that its usage is intended to be multipurpose and open-ended, just like a `<div>`.
+Components like [Container](/material-ui/react-container/), [Stack](/material-ui/react-stack/) and [Paper](/material-ui/react-paper/), by contrast, feature usage-specific props that make them ideal for certain use cases: Container for main layout orientation, Stack for one-dimensional layouts, and Paper for elevated surfaces.
 
-All system properties are available via the [`sx` prop](/system/getting-started/the-sx-prop/).
-In addition, the `sx` prop allows you to specify any other CSS rules you may need. Here's an example of how you can use it:
+## Basics
+
+```jsx
+import Box from '@mui/material/Box';
+```
+
+The Box component renders as a `<div>` by default, but you can swap in any other valid HTML tag or React component using the `component` prop.
+The demo below replaces the `<div>` with a `<section>` element:
+
+{{"demo": "BoxBasic.js", "defaultCodeOpen": true }}
+
+## Customization
+
+### With the sx prop
+
+Use the [`sx` prop](/system/getting-started/the-sx-prop/) to quickly customize any Box instance using a superset of CSS that has access to all the style functions and theme-aware properties exposed in the MUI System package.
+The demo below shows how to apply colors from the theme using this prop:
 
 {{"demo": "BoxSx.js", "defaultCodeOpen": true }}
 
-## Overriding Material UI components
+### With MUI System props
 
-The Box component wraps your component.
-It creates a new DOM element, a `<div>` that by default can be changed with the `component` prop.
-Let's say you want to use a `<span>` instead:
-
-{{"demo": "BoxComponent.js", "defaultCodeOpen": true }}
-
-This works great when the changes can be isolated to a new DOM element.
-For instance, you can change the margin this way.
-
-However, sometimes you have to target the underlying DOM element.
-As an example, you may want to change the border of the Button.
-The Button component defines its own styles. CSS inheritance doesn't help.
-To workaround the problem, you can use the [`sx`](/system/getting-started/the-sx-prop/) prop directly on the child if it is a Material UI component.
+:::info
+System props are deprecated and will be removed in the next major release. Please use the `sx` prop instead.
 
 ```diff
--<Box sx={{ border: '1px dashed grey' }}>
--  <Button>Save</Button>
--</Box>
-+<Button sx={{ border: '1px dashed grey' }}>Save</Button>
+- <Box mt={2} />
++ <Box sx={{ mt: 2 }} />
 ```
 
-For non-Material UI components, use the `component` prop.
+:::
 
-```diff
--<Box sx={{ border: '1px dashed grey' }}>
--  <button>Save</button>
--</Box>
-+<Box component="button" sx={{ border: '1px dashed grey' }}>Save</Box>
-```
+## Anatomy
 
-## System props
+The Box component is composed of a single root `<div>` element:
 
-As a CSS utility component, the `Box` also supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component.
-For instance, a margin-top:
-
-```jsx
-<Box mt={2}>
+```html
+<div className="MuiBox-root">
+  <!-- contents of the Box -->
+</div>
 ```

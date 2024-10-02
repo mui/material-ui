@@ -1,5 +1,5 @@
 {
-  "name": "material-next-ts-v4-v5-migration",
+  "name": "material-ui-nextjs-ts-v4-v5-migration",
   "version": "5.0.0",
   "private": true,
   "scripts": {
@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
+    "post-update": "echo \"codesandbox preview only, need an update\" && pnpm update --latest"
   },
   "dependencies": {
     "@emotion/cache": "latest",
@@ -16,17 +16,18 @@
     "@emotion/styled": "latest",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
+    "@mui/material-nextjs": "latest",
     "@mui/styles": "latest",
     "autoprefixer": "latest",
     "clean-css": "latest",
-    "next": "^12.0.0",
+    "next": "latest",
     "postcss": "latest",
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0"
+    "react": "latest",
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@types/node": "latest",
-    "@types/react": "^17.0.0",
+    "@types/react": "latest",
     "eslint": "latest",
     "eslint-config-next": "latest",
     "typescript": "latest"

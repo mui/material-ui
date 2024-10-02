@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getCardActionsUtilityClass } from './cardActionsClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -25,19 +25,24 @@ const CardActionsRoot = styled('div', {
 
     return [styles.root, !ownerState.disableSpacing && styles.spacing];
   },
-})(({ ownerState }) => ({
+})({
   display: 'flex',
   alignItems: 'center',
   padding: 8,
-  ...(!ownerState.disableSpacing && {
-    '& > :not(:first-of-type)': {
-      marginLeft: 8,
+  variants: [
+    {
+      props: { disableSpacing: false },
+      style: {
+        '& > :not(style) ~ :not(style)': {
+          marginLeft: 8,
+        },
+      },
     },
-  }),
-}));
+  ],
+});
 
 const CardActions = React.forwardRef(function CardActions(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiCardActions',
   });
@@ -59,10 +64,10 @@ const CardActions = React.forwardRef(function CardActions(inProps, ref) {
 });
 
 CardActions.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

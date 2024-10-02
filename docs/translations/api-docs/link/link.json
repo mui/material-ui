@@ -12,28 +12,12 @@
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
     "TypographyClasses": {
-      "description": "<code>classes</code> prop applied to the <a href=\"/material-ui/api/typography/\"><code>Typography</code></a> element."
+      "description": "<code>classes</code> prop applied to the <a href=\"https://mui.com/material-ui/api/typography/\"><code>Typography</code></a> element."
     },
     "underline": { "description": "Controls when the link should have an underline." },
     "variant": { "description": "Applies the theme typography styles." }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "underlineNone": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>underline=\"none\"</code>"
-    },
-    "underlineHover": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>underline=\"hover\"</code>"
-    },
-    "underlineAlways": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>underline=\"always\"</code>"
-    },
     "button": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -43,6 +27,22 @@
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "the link is keyboard focused"
+    },
+    "root": { "description": "Styles applied to the root element." },
+    "underlineAlways": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>underline=\"always\"</code>"
+    },
+    "underlineHover": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>underline=\"hover\"</code>"
+    },
+    "underlineNone": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>underline=\"none\"</code>"
     }
   }
 }

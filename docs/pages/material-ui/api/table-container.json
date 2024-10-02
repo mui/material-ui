@@ -16,7 +16,14 @@
     "import TableContainer from '@mui/material/TableContainer';",
     "import { TableContainer } from '@mui/material';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTableContainer" },
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiTableContainer-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiTableContainer",

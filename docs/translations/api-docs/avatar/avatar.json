@@ -17,6 +17,8 @@
     "sizes": {
       "description": "The <code>sizes</code> attribute for the <code>img</code> element."
     },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "src": { "description": "The <code>src</code> attribute for the <code>img</code> element." },
     "srcSet": {
       "description": "The <code>srcSet</code> attribute for the <code>img</code> element. Use this attribute for responsive image display."
@@ -27,17 +29,18 @@
     "variant": { "description": "The shape of the avatar." }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "colorDefault": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "not <code>src</code> or <code>srcSet</code>"
-    },
     "circular": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"circular\"</code>"
     },
+    "colorDefault": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "not <code>src</code> or <code>srcSet</code>"
+    },
+    "fallback": { "description": "Styles applied to the fallback icon" },
+    "root": { "description": "Styles applied to the root element." },
     "rounded": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -47,12 +50,9 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"square\"</code>"
-    },
-    "img": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the img element",
-      "conditions": "either <code>src</code> or <code>srcSet</code> is defined"
-    },
-    "fallback": { "description": "Styles applied to the fallback icon" }
+    }
+  },
+  "slotDescriptions": {
+    "img": "The component that renders the transition. <a href=\"https://mui.com/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
   }
 }

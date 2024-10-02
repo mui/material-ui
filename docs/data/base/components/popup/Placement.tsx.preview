@@ -1,0 +1,15 @@
+<PlacementForm setPlacement={setPlacement} />
+<div style={{ padding: '4rem 0', textAlign: 'center' }}>
+  <Anchor ref={setAnchor} aria-describedby="placement-popper">
+    Anchor
+  </Anchor>
+  <BasePopup
+    id="placement-popper"
+    open={Boolean(anchor)}
+    anchor={anchor}
+    placement={placement}
+    offset={4}
+  >
+    <PopupBody>The content of the Popup.</PopupBody>
+  </BasePopup>
+</div>

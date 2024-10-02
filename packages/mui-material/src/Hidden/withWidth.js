@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { getDisplayName } from '@mui/utils';
-import { getThemeProps } from '@mui/system';
+import getDisplayName from '@mui/utils/getDisplayName';
+import { getThemeProps } from '@mui/system/useThemeProps';
 import useTheme from '../styles/useTheme';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import useMediaQuery from '../useMediaQuery';
@@ -54,6 +54,7 @@ const withWidth =
        */
       const keys = theme.breakpoints.keys.slice().reverse();
       const widthComputed = keys.reduce((output, key) => {
+        // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const matches = useMediaQuery(theme.breakpoints.up(key));
         return !output && matches ? key : output;

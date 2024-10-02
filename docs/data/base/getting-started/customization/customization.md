@@ -1,8 +1,8 @@
-# Customizing Base UI components
+# Customizing Base UI components
 
-<p class="description">There are several ways to customize Base UI components, from applying custom CSS rules to building fully custom components using hooks.</p>
+<p class="description">There are several ways to customize Base UI components, from applying custom CSS rules to building fully custom components using hooks.</p>
 
-With Base UI, you have the freedom to decide how much you want to customize a component's structure and style.
+With Base UI, you have the freedom to decide how much you want to customize a component's structure and style.
 
 ## Styling the components
 
@@ -10,13 +10,13 @@ This section reviews several methods of customization that are available: applyi
 
 ### Which option to choose?
 
-The multitude of options can be overwhelming, especially if you're new to Base UI.
+The multitude of options can be overwhelming, especially if you're new to Base UI.
 How to decide which one to use, then?
 
 The first decision to make is whether to use unstyled components or hooks.
 Hooks are better suited for making component libraries that can be further customized.
-For example, our own Joy UI is implemented using hooks from Base UI.
-Hooks also serve as the basis for several Material UI components, and future versions of the library will use them even more extensively.
+For example, our own Joy UI is implemented using hooks from Base UI.
+Hooks also serve as the basis for several Material UI components, and future versions of the library will use them even more extensively.
 
 If you don't need to make your component library customizable (for instance, by exposing `slotProps`), then the unstyled components may be a better option thanks to their simplicity.
 
@@ -29,12 +29,13 @@ The answer depends on the styling solution used in the project:
 
 You can either [style the components using the built-in classes](#applying-custom-css-rules) or [specify your own classes](#customizing-slot-props) and reference them in your stylesheets.
 
-#### CSS Modules
+#### CSS Modules
 
-When working with [CSS Modules](https://github.com/css-modules/css-modules), the simplest approach is to [specify custom classes using `slotProps`](#customizing-slot-props), as shown below:
+When working with [CSS Modules](https://github.com/css-modules/css-modules), the simplest approach is to [specify custom classes using `slotProps`](#customizing-slot-props), as shown below:
 
 ```tsx
 import clsx from 'clsx';
+import { Switch as BaseSwitch, SwitchOwnerState } from '@mui/base/Switch';
 import classes from './styles.module.css';
 
 export default function Switch(props) {
@@ -50,17 +51,19 @@ export default function Switch(props) {
     input: { className: classes.input },
   };
 
-  return <Switch {...props} slotProps={slotProps} />;
+  return <BaseSwitch {...props} slotProps={slotProps} />;
 }
 ```
 
 In this example we're using the [clsx](https://www.npmjs.com/package/clsx) utility to reduce the effort needed to apply class names conditionally.
 
-#### Tailwind CSS
+#### Tailwind CSS
 
-Use [`slotProps`](#customizing-slot-props) to apply custom styles using [Tailwind CSS](https://tailwindcss.com/), as shown below:
+Use [`slotProps`](#customizing-slot-props) to apply custom styles using [Tailwind CSS](https://tailwindcss.com/), as shown below:
 
 ```tsx
+import { Switch as BaseSwitch, SwitchOwnerState } from '@mui/base/Switch';
+
 export default function Switch(props) {
   const slotProps = {
     root: (ownerState: SwitchOwnerState) => ({
@@ -76,15 +79,15 @@ export default function Switch(props) {
     input: { className: 'absolute w-full h-full inset-0 opacity-0 z-10 m-0' },
   };
 
-  return <Switch {...props} slotProps={slotProps} />;
+  return <BaseSwitch {...props} slotProps={slotProps} />;
 }
 ```
 
-See our [Working with Tailwind CSS guide](/base-ui/guides/working-with-tailwind-css/) for more information about integrating Base UI and Tailwind CSS.
+See our [Working with Tailwind CSS guide](/base-ui/guides/working-with-tailwind-css/) for more information about integrating Base UI and Tailwind CSS.
 
 #### Styled components
 
-If you use a CSS-in-JS solution with a styled-components-like API (such as [MUI System](/system/getting-started/) or [Emotion](https://emotion.sh/docs/introduction)), the best method is to provide the styled subcomponents using the [`slots` prop](#overriding-subcomponent-slots), as shown in the [demo below](#overriding-subcomponent-slots).
+If you use a CSS-in-JS solution with a styled-components-like API (such as [MUI System](/system/getting-started/) or [Emotion](https://emotion.sh/docs/introduction)), the best method is to provide the styled subcomponents using the [`slots` prop](#overriding-subcomponent-slots), as shown in the [demo below](#overriding-subcomponent-slots).
 
 Alternatively, you can wrap the whole unstyled component in a `styled` utility and target the individual subcomponents using CSS classes:
 
@@ -98,7 +101,7 @@ If you're happy with the default structure of a component's rendered HTML, you c
 
 Each component has its own set of classes.
 Some classes are **static**, which is to say that they are always present on the component.
-Others are applied **conditionally**—like `Mui-disabled`, for example, which is only present when a component is disabled.
+Others are applied **conditionally**—like `base--disabled`, for example, which is only present when a component is disabled.
 
 Each component's API documentation lists all classes that the component uses.
 Additionally, you can import a `[componentName]Classes` object that describes all the classes a given component uses, as the following demo illustrates:
@@ -114,7 +117,7 @@ If you want to make changes to a component's rendered HTML structure, you can ov
 
 The following demo uses [Switch](/base-ui/react-switch/) to show how to create a styled component by applying styles to three of its subcomponent slots: `root`, `thumb`, and `input`.
 
-Note that although this demo uses [MUI System](/system/styled/) as a styling solution, you are free to choose any alternative.
+Note that although this demo uses [MUI System](/system/styled/) as a styling solution, you are free to choose any alternative.
 
 {{"demo": "StylingSlots.js"}}
 
@@ -192,7 +195,7 @@ If you need complete control over a component's rendered HTML structure, you can
 Hooks give you access to the _logic_ that a component uses, but without any default structure.
 See ["Components vs. hooks" on the Base Usage page](/base-ui/getting-started/usage/#components-vs-hooks) for more details.
 
-Hooks return the current state of the component (e.g. `checked`, `disabled`, `open`, etc.) and provide functions that return props you can apply to your fully custom components.
+Hooks return the current state of the component (for example `checked`, `disabled`, `open`, etc.) and provide functions that return props you can apply to your fully custom components.
 
 In the case of [Switch](/base-ui/react-switch/), the component is accompanied by the `useSwitch` hook which gives you all of the functionality without any structure.
 

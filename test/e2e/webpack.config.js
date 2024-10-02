@@ -31,6 +31,7 @@ module.exports = {
         options: {
           cacheDirectory: true,
           configFile: path.resolve(__dirname, '../../babel.config.js'),
+          envName: 'regressions',
         },
       },
       {

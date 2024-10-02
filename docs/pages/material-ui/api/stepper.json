@@ -24,11 +24,38 @@
     "import Stepper from '@mui/material/Stepper';",
     "import { Stepper } from '@mui/material';"
   ],
-  "styles": {
-    "classes": ["root", "horizontal", "vertical", "alternativeLabel"],
-    "globalClasses": {},
-    "name": "MuiStepper"
-  },
+  "classes": [
+    {
+      "key": "alternativeLabel",
+      "className": "MuiStepper-alternativeLabel",
+      "description": "Styles applied to the root element if `alternativeLabel={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "horizontal",
+      "className": "MuiStepper-horizontal",
+      "description": "Styles applied to the root element if `orientation=\"horizontal\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "nonLinear",
+      "className": "MuiStepper-nonLinear",
+      "description": "Styles applied to the root element if `nonLinear={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiStepper-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "vertical",
+      "className": "MuiStepper-vertical",
+      "description": "Styles applied to the root element if `orientation=\"vertical\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiStepper",

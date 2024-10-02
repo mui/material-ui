@@ -6,6 +6,9 @@ import IconButton from '@mui/joy/IconButton';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import CircleIcon from '@mui/icons-material/Circle';
+import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
+import PhoneInTalkRoundedIcon from '@mui/icons-material/PhoneInTalkRounded';
+import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import { UserProps } from '../types';
 import { toggleMessagesPane } from '../utils';
 
@@ -13,35 +16,37 @@ type MessagesPaneHeaderProps = {
   sender: UserProps;
 };
 
-export default function MessagesPaneHeader({ sender }: MessagesPaneHeaderProps) {
+export default function MessagesPaneHeader(props: MessagesPaneHeaderProps) {
+  const { sender } = props;
   return (
     <Stack
       direction="row"
-      justifyContent="space-between"
       sx={{
+        justifyContent: 'space-between',
+        py: { xs: 2, md: 2 },
+        px: { xs: 1, md: 2 },
         borderBottom: '1px solid',
         borderColor: 'divider',
+        backgroundColor: 'background.body',
       }}
-      py={{ xs: 2, md: 2 }}
-      px={{ xs: 1, md: 2 }}
     >
-      <Stack direction="row" spacing={{ xs: 1, md: 2 }} alignItems="center">
+      <Stack
+        direction="row"
+        spacing={{ xs: 1, md: 2 }}
+        sx={{ alignItems: 'center' }}
+      >
         <IconButton
           variant="plain"
           color="neutral"
           size="sm"
-          sx={{
-            display: { xs: 'inline-flex', sm: 'none' },
-          }}
+          sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
           onClick={() => toggleMessagesPane()}
         >
-          <i data-feather="chevron-left" />
+          <ArrowBackIosNewRoundedIcon />
         </IconButton>
         <Avatar size="lg" src={sender.avatar} />
         <div>
           <Typography
-            fontWeight="lg"
-            fontSize="lg"
             component="h2"
             noWrap
             endDecorator={
@@ -50,9 +55,7 @@ export default function MessagesPaneHeader({ sender }: MessagesPaneHeaderProps) 
                   variant="outlined"
                   size="sm"
                   color="neutral"
-                  sx={{
-                    '--Chip-radius': '6px',
-                  }}
+                  sx={{ borderRadius: 'sm' }}
                   startDecorator={
                     <CircleIcon sx={{ fontSize: 8 }} color="success" />
                   }
@@ -62,34 +65,33 @@ export default function MessagesPaneHeader({ sender }: MessagesPaneHeaderProps) 
                 </Chip>
               ) : undefined
             }
+            sx={{ fontWeight: 'lg', fontSize: 'lg' }}
           >
             {sender.name}
           </Typography>
-
           <Typography level="body-sm">{sender.username}</Typography>
         </div>
       </Stack>
-      <Stack spacing={1} direction="row" alignItems="center">
+      <Stack spacing={1} direction="row" sx={{ alignItems: 'center' }}>
         <Button
-          startDecorator={<i data-feather="phone-call" />}
+          startDecorator={<PhoneInTalkRoundedIcon />}
           color="neutral"
           variant="outlined"
-          sx={{
-            display: { xs: 'none', md: 'inline-flex' },
-          }}
+          size="sm"
+          sx={{ display: { xs: 'none', md: 'inline-flex' } }}
         >
           Call
         </Button>
         <Button
-          sx={{
-            display: { xs: 'none', md: 'inline-flex' },
-          }}
+          color="neutral"
+          variant="outlined"
+          size="sm"
+          sx={{ display: { xs: 'none', md: 'inline-flex' } }}
         >
           View profile
         </Button>
-
-        <IconButton variant="plain" color="neutral">
-          <i data-feather="more-vertical" />
+        <IconButton size="sm" variant="plain" color="neutral">
+          <MoreVertRoundedIcon />
         </IconButton>
       </Stack>
     </Stack>

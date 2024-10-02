@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { alpha } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -16,46 +17,63 @@ export default function NotificationCard() {
           p: 2,
           gap: 2,
           maxWidth: 283,
+          borderColor: 'grey.200',
+          boxShadow: `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
           ...theme.applyDarkStyles({
             bgcolor: 'primaryDark.900',
             borderColor: 'primaryDark.700',
+            boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
           }),
         })}
       >
-        <Avatar
-          imgProps={{ 'aria-labelledby': 'demo-notification-card-messenger-name' }}
-          src="/static/images/avatar/3-sm.jpeg"
-          sx={{ width: 40, height: 40 }}
-        />
+        <Box
+          sx={(theme) => ({
+            height: 'fit-content',
+            p: 0.5,
+            bgcolor: 'primary.50',
+            border: '1px solid',
+            borderColor: 'primary.200',
+            borderRadius: 99,
+            ...theme.applyDarkStyles({
+              borderColor: 'primary.800',
+              bgcolor: alpha(theme.palette.primary[900], 0.5),
+            }),
+          })}
+        >
+          <Avatar
+            slotProps={{ img: { 'aria-labelledby': 'demo-notification-card-messenger-name' } }}
+            src="/static/images/avatar/3.jpg"
+            sx={{ width: 40, height: 40 }}
+          />
+        </Box>
         <Box sx={{ flexGrow: 1 }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Typography
               id="demo-notification-card-messenger-name"
-              color="primary.400"
-              fontWeight={500}
-              fontSize={12}
               gutterBottom
+              sx={{ color: 'primary.main', fontWeight: 'semiBold', fontSize: 12 }}
             >
-              From: Angela Erickson
+              Angela Erickson
             </Typography>
-            <Typography color="text.secondary" variant="caption">
+            <Typography variant="caption" sx={{ color: 'text.secondary' }}>
               09:41
             </Typography>
           </Box>
-          <Box sx={{ display: 'flex' }}>
-            <Box sx={{ flexGrow: 1, minWidth: '0px' }}>
-              <Typography fontWeight={600} fontSize={14} gutterBottom>
-                Incredible discoveries!
+          <Box sx={{ display: 'flex', gap: 2 }}>
+            <div>
+              <Typography sx={{ fontWeight: 'semiBold', fontSize: 14 }}>
+                Incredible discoveries
               </Typography>
-              <Typography fontSize={14} color="text.secondary" noWrap>
-                Just found out Material UI & Joy UI and wow...
+              <Typography sx={{ fontSize: 14, color: 'text.secondary' }}>
+                It&apos;s about Material UI & Base UI...
               </Typography>
-            </Box>
+            </div>
             <Chip
               label="3"
-              color="success"
               size="small"
-              sx={{ mt: '3px', color: '#fff', fontSize: '0.75rem', height: 18 }}
+              variant="outlined"
+              color="success"
+              sx={{ ml: 'auto', fontSize: '0.75rem', height: 18 }}
             />
           </Box>
         </Box>

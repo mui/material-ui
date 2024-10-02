@@ -53,26 +53,87 @@
     "import Switch from '@mui/material/Switch';",
     "import { Switch } from '@mui/material';"
   ],
-  "styles": {
-    "classes": [
-      "root",
-      "edgeStart",
-      "edgeEnd",
-      "switchBase",
-      "colorPrimary",
-      "colorSecondary",
-      "sizeSmall",
-      "sizeMedium",
-      "checked",
-      "disabled",
-      "input",
-      "thumb",
-      "track"
-    ],
-    "globalClasses": { "checked": "Mui-checked", "disabled": "Mui-disabled" },
-    "name": "MuiSwitch"
-  },
-  "spread": false,
+  "classes": [
+    {
+      "key": "checked",
+      "className": "Mui-checked",
+      "description": "State class applied to the internal `SwitchBase` component's `checked` class.",
+      "isGlobal": true
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiSwitch-colorPrimary",
+      "description": "Styles applied to the internal SwitchBase component's root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSecondary",
+      "className": "MuiSwitch-colorSecondary",
+      "description": "Styles applied to the internal SwitchBase component's root element if `color=\"secondary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the internal SwitchBase component's disabled class.",
+      "isGlobal": true
+    },
+    {
+      "key": "edgeEnd",
+      "className": "MuiSwitch-edgeEnd",
+      "description": "Styles applied to the root element if `edge=\"end\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "edgeStart",
+      "className": "MuiSwitch-edgeStart",
+      "description": "Styles applied to the root element if `edge=\"start\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "input",
+      "className": "MuiSwitch-input",
+      "description": "Styles applied to the internal SwitchBase component's input element.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiSwitch-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeMedium",
+      "className": "MuiSwitch-sizeMedium",
+      "description": "Styles applied to the root element if `size=\"medium\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSmall",
+      "className": "MuiSwitch-sizeSmall",
+      "description": "Styles applied to the root element if `size=\"small\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "switchBase",
+      "className": "MuiSwitch-switchBase",
+      "description": "Styles applied to the internal `SwitchBase` component's `root` class.",
+      "isGlobal": false
+    },
+    {
+      "key": "thumb",
+      "className": "MuiSwitch-thumb",
+      "description": "Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop.",
+      "isGlobal": false
+    },
+    {
+      "key": "track",
+      "className": "MuiSwitch-track",
+      "description": "Styles applied to the track element.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
   "themeDefaultProps": false,
   "muiName": "MuiSwitch",
   "forwardsRefTo": "HTMLSpanElement",

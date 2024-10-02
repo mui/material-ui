@@ -14,28 +14,28 @@ export default function MenuSimple() {
 
   return (
     <Dropdown>
-      <MenuButton className="TriggerButton">Dashboard</MenuButton>
+      <MenuButton className="TriggerButtonSimple">My account</MenuButton>
 
       <Menu
-        className="CustomMenu"
+        className="CustomMenuSimple"
         slotProps={{
-          listbox: { className: 'CustomMenu--listbox' },
+          listbox: { className: 'CustomMenuSimple--listbox' },
         }}
       >
         <MenuItem
-          className="CustomMenu--item"
+          className="CustomMenuSimple--item"
           onClick={createHandleMenuClick('Profile')}
         >
           Profile
         </MenuItem>
         <MenuItem
-          className="CustomMenu--item"
-          onClick={createHandleMenuClick('My account')}
+          className="CustomMenuSimple--item"
+          onClick={createHandleMenuClick('Language settings')}
         >
-          My account
+          Language settings
         </MenuItem>
         <MenuItem
-          className="CustomMenu--item"
+          className="CustomMenuSimple--item"
           onClick={createHandleMenuClick('Log out')}
         >
           Log out
@@ -60,16 +60,16 @@ const cyan = {
 };
 
 const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
 function useIsDarkMode() {
@@ -83,8 +83,8 @@ function Styles() {
 
   return (
     <style>{`
-    .CustomMenu--listbox {
-      font-family: IBM Plex Sans, sans-serif;
+    .CustomMenuSimple--listbox {
+      font-family: 'IBM Plex Sans', sans-serif;
       font-size: 0.875rem;
       box-sizing: border-box;
       padding: 6px;
@@ -92,7 +92,7 @@ function Styles() {
       min-width: 200px;
       border-radius: 12px;
       overflow: auto;
-      outline: 0px;
+      outline: 0;
       background: ${isDarkMode ? grey[900] : '#fff'};
       border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
       color: ${isDarkMode ? grey[300] : grey[900]};
@@ -101,62 +101,60 @@ function Styles() {
       };
     }
 
-    .CustomMenu--item {
+    .CustomMenuSimple--item {
       list-style: none;
       padding: 8px;
       border-radius: 8px;
       cursor: default;
-      user-select: none;s
+      user-select: none;
     }
 
-    .CustomMenu--item:last-of-type {
+    .CustomMenuSimple--item:last-of-type {
       border-bottom: none;
     }
 
-    .CustomMenu--item.${menuItemClasses.focusVisible} {
+    .CustomMenuSimple--item:focus {
       outline: 3px solid ${isDarkMode ? cyan[600] : cyan[200]};
       background-color: ${isDarkMode ? grey[800] : grey[100]};
       color: ${isDarkMode ? grey[300] : grey[900]};
     }
 
-    .CustomMenu--item.${menuItemClasses.disabled} {
+    .CustomMenuSimple--item.${menuItemClasses.disabled} {
       color: ${isDarkMode ? grey[700] : grey[400]};
     }
 
-    .CustomMenu--item:hover:not(.${menuItemClasses.disabled}) {
-      background-color: ${isDarkMode ? cyan[700] : cyan[50]};
-      color: ${isDarkMode ? grey[300] : grey[900]};
-    }
-
-    .TriggerButton {
-      font-family: IBM Plex Sans, sans-serif;
-      font-size: 0.875rem;
+    .TriggerButtonSimple {
+      font-family: 'IBM Plex Sans', sans-serif;
       font-weight: 600;
-      box-sizing: border-box;
-      border-radius: 8px;
-      padding: 8px 16px;
+      font-size: 0.875rem;
       line-height: 1.5;
-      background: transparent;
+      padding: 8px 16px;
+      border-radius: 8px;
+      color: white;
+      transition: all 150ms ease;
       cursor: pointer;
-      border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
-      color: ${isDarkMode ? cyan[300] : cyan[400]};
-    
-      transition-property: all;
-      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-      transition-duration: 120ms;
+      background: ${isDarkMode ? grey[900] : '#fff'};
+      border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
+      color: ${isDarkMode ? grey[200] : grey[900]};
+      box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+
+      &:hover {
+        background: ${isDarkMode ? grey[800] : grey[50]};
+        border-color: ${isDarkMode ? grey[600] : grey[300]};
+      }
+
+      &:active {
+        background: ${isDarkMode ? grey[700] : grey[100]};
+      }
+
+      &:focus-visible {
+        box-shadow: 0 0 0 4px ${isDarkMode ? cyan[300] : cyan[200]};
+        outline: none;
+      }
     }
 
-    .TriggerButton:hover {
-      background: ${isDarkMode ? grey[800] : grey[50]};
-      border-color: ${isDarkMode ? grey[600] : grey[300]};
-    }
-  
-    .TriggerButton:focus-visible {
-      border-color: ${cyan[400]};
-      outline: 3px solid ${isDarkMode ? cyan[500] : cyan[200]};
-    }
 
-    .CustomMenu {
+    .CustomMenuSimple {
       z-index: 1;
     }
     `}</style>

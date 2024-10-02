@@ -1,20 +1,18 @@
 name: Bug report 🐛
-description: Create a bug report for MUI Core.
-labels: ['status: needs triage']
+description: Create a bug report for Material UI, MUI System, or Joy UI.
+labels: ['status: waiting for maintainer']
 body:
   - type: markdown
     attributes:
-      value: |
-        Please provide a searchable summary of the issue in the title above ⬆️.
-
-        Thanks for contributing by creating an issue! ❤️
-  - type: checkboxes
+      value: Thanks for contributing by creating an issue! ❤️ Please provide a searchable summary of the issue in the title above ⬆️.
+  - type: input
     attributes:
-      label: Duplicates
-      description: Please [search the history](https://github.com/mui/material-ui/issues) to see if an issue already exists for the same problem.
-      options:
-        - label: I have searched the existing issues
-          required: true
+      label: Search keywords
+      description: |
+        Your issue may have already been reported! First search for duplicates among the [existing issues](https://github.com/mui/material-ui/issues?q=is%3Aopen+is%3Aclosed).
+        If your issue isn't a duplicate, great! Please list the keywords you used so people in the future can find this one more easily:
+    validations:
+      required: true
   - type: checkboxes
     attributes:
       label: Latest version
@@ -24,34 +22,33 @@ body:
           required: true
   - type: textarea
     attributes:
-      label: Steps to reproduce 🕹
+      label: Steps to reproduce
       description: |
-        **⚠️ Issues that we can't reproduce will be closed.**
+        **⚠️ Issues that we can't reproduce can't be fixed.**
 
-        Please provide a link to a live example and an unambiguous set of steps to reproduce this bug. As a starting point, we recommend you browse our [documentation](https://mui.com/material-ui/getting-started/installation/), and [select](https://mui.com/static/docs/forking-an-example.png) the closest example to your use case. Or you can use the [official template](https://mui.com/r/issue-template) to build a reproduction case.
+        Please provide a link to a live example and an unambiguous set of steps to reproduce this bug. See our [documentation](https://mui.com/material-ui/getting-started/support/#bug-reproductions) on how to build a reproduction case.
       value: |
-        Link to live example:
+        Link to live example: (required)
 
         Steps:
-
         1.
         2.
         3.
   - type: textarea
     attributes:
-      label: Current behavior 😯
+      label: Current behavior
       description: Describe what happens instead of the expected behavior.
   - type: textarea
     attributes:
-      label: Expected behavior 🤔
+      label: Expected behavior
       description: Describe what should happen.
   - type: textarea
     attributes:
-      label: Context 🔦
-      description: What are you trying to accomplish? How has this issue affected you? Providing context helps us come up with a solution that is more useful in the real world.
+      label: Context
+      description: What are you trying to accomplish? Providing context helps us come up with a solution that is more useful in the real world.
   - type: textarea
     attributes:
-      label: Your environment 🌎
+      label: Your environment
       description: Run `npx @mui/envinfo` and post the results. If you encounter issues with TypeScript please include the used tsconfig.
       value: |
         <details>
@@ -62,3 +59,9 @@ body:
           Output from `npx @mui/envinfo` goes here.
         ```
         </details>
+  - type: markdown
+    attributes:
+      value: |
+        ## :heart: Love Material UI?
+
+        Consider donating $10 to sustain our open-source work: [https://opencollective.com/mui-org](https://opencollective.com/mui-org).

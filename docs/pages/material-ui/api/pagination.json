@@ -15,7 +15,7 @@
     "getItemAriaLabel": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(type: string, page: number, selected: bool) => string",
+        "type": "function(type: string, page: number | null, selected: boolean) => string",
         "describedArgs": ["type", "page", "selected"]
       }
     },
@@ -71,11 +71,32 @@
     "import Pagination from '@mui/material/Pagination';",
     "import { Pagination } from '@mui/material';"
   ],
-  "styles": {
-    "classes": ["root", "ul", "outlined", "text"],
-    "globalClasses": {},
-    "name": "MuiPagination"
-  },
+  "classes": [
+    {
+      "key": "outlined",
+      "className": "MuiPagination-outlined",
+      "description": "Styles applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiPagination-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "text",
+      "className": "MuiPagination-text",
+      "description": "Styles applied to the root element if `variant=\"text\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "ul",
+      "className": "MuiPagination-ul",
+      "description": "Styles applied to the ul element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiPagination",

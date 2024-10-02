@@ -1,12 +1,10 @@
+'use client';
 import * as React from 'react';
 import Pagination from '@mui/material/Pagination';
 
 let warnedOnce = false;
 
-/**
- * @ignore - do not document.
- */
-export default React.forwardRef(function DeprecatedPagination(props, ref) {
+const warn = () => {
   if (!warnedOnce) {
     console.warn(
       [
@@ -19,6 +17,13 @@ export default React.forwardRef(function DeprecatedPagination(props, ref) {
 
     warnedOnce = true;
   }
+};
+
+/**
+ * @ignore - do not document.
+ */
+export default React.forwardRef(function DeprecatedPagination(props, ref) {
+  warn();
 
   return <Pagination ref={ref} {...props} />;
 });

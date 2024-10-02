@@ -17,14 +17,13 @@ export default function BadgeVisibility() {
       }}
     >
       <Badge badgeContent={12} invisible={invisible}>
-        <Typography fontSize="xl">🛍</Typography>
+        <Typography sx={{ fontSize: 'xl' }}>🛍</Typography>
       </Badge>
       <Switch
         startDecorator="invisible"
         checked={invisible}
         onChange={(event) => setInvisible(event.target.checked)}
         variant={invisible ? 'solid' : 'outlined'}
-        sx={{ '--Switch-trackWidth': '40px' }}
       />
     </Box>
   );

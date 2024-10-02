@@ -41,7 +41,6 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
     "disabled": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -51,6 +50,7 @@
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "keyboard focused"
-    }
+    },
+    "root": { "description": "Styles applied to the root element." }
   }
 }

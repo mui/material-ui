@@ -5,17 +5,17 @@
       "description": "The total number of rows.<br>To enable server side pagination for an unknown number of items, provide -1."
     },
     "getItemAriaLabel": {
-      "description": "Accepts a function which returns a string value that provides a user-friendly name for the current page. This is important for screen reader users.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
+      "description": "Accepts a function which returns a string value that provides a user-friendly name for the current page. This is important for screen reader users.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>.",
       "typeDescriptions": {
         "type": "The link or button type to format (&#39;first&#39; | &#39;last&#39; | &#39;next&#39; | &#39;previous&#39;)."
       }
     },
     "labelDisplayedRows": {
-      "description": "Customize the displayed rows label. Invoked with a <code>{ from, to, count, page }</code> object.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>."
+      "description": "Customize the displayed rows label. Invoked with a <code>{ from, to, count, page }</code> object.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>."
     },
     "labelId": { "description": "Id of the label element within the pagination." },
     "labelRowsPerPage": {
-      "description": "Customize the rows per page label.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>."
+      "description": "Customize the rows per page label.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>."
     },
     "onPageChange": {
       "description": "Callback fired when the page is changed.",
@@ -42,56 +42,27 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "toolbar": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the Toolbar component"
-    },
-    "spacer": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the spacer element"
-    },
-    "selectLabel": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the select label Typography element"
-    },
-    "selectRoot": {
+    "input": {
       "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the Select component <code>root</code> element"
-    },
-    "select": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the Select component <code>select</code> class"
     },
     "selectIcon": {
       "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the Select component <code>icon</code> class"
     },
-    "input": {
+    "selectRoot": {
       "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the Select component <code>root</code> element"
-    },
-    "menuItem": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the MenuItem component"
-    },
-    "displayedRows": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the displayed rows Typography element"
-    },
-    "actions": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the internal <code>TablePaginationActions</code> component"
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
     "actions": "The component that renders the actions.",
+    "displayedRows": "The component that renders the displayed rows.",
+    "menuItem": "The component that renders the menu item.",
+    "root": "The component that renders the root.",
     "select": "The component that renders the select.",
     "selectLabel": "The component that renders the select label.",
-    "menuItem": "The component that renders the menu item.",
-    "displayedRows": "The component that renders the displayed rows.",
-    "toolbar": "The component that renders the toolbar.",
-    "spacer": "The component that renders the spacer."
+    "spacer": "The component that renders the spacer.",
+    "toolbar": "The component that renders the toolbar."
   }
 }

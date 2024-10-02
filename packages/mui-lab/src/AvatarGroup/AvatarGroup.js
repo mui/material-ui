@@ -1,12 +1,10 @@
+'use client';
 import * as React from 'react';
 import AvatarGroup from '@mui/material/AvatarGroup';
 
 let warnedOnce = false;
 
-/**
- * @ignore - do not document.
- */
-export default React.forwardRef(function DeprecatedAvatarGroup(props, ref) {
+const warn = () => {
   if (!warnedOnce) {
     console.warn(
       [
@@ -19,6 +17,13 @@ export default React.forwardRef(function DeprecatedAvatarGroup(props, ref) {
 
     warnedOnce = true;
   }
+};
+
+/**
+ * @ignore - do not document.
+ */
+export default React.forwardRef(function DeprecatedAvatarGroup(props, ref) {
+  warn();
 
   return <AvatarGroup ref={ref} {...props} />;
 });

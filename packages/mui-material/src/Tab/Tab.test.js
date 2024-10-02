@@ -1,9 +1,12 @@
 import { expect } from 'chai';
 import * as React from 'react';
 import { spy } from 'sinon';
-import { act, createRenderer, describeConformance, fireEvent } from 'test/utils';
+import { createRenderer, simulatePointerDevice } from '@mui/internal-test-utils';
 import Tab, { tabClasses as classes } from '@mui/material/Tab';
 import ButtonBase from '@mui/material/ButtonBase';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import describeConformance from '../../test/describeConformance';
+import * as ripple from '../../test/ripple';
 
 describe('<Tab />', () => {
   const { render } = createRenderer();
@@ -18,48 +21,44 @@ describe('<Tab />', () => {
     skip: ['componentProp', 'componentsProp'],
   }));
 
-  it('should have a ripple by default', () => {
+  it('should have a ripple', async () => {
     const { container } = render(<Tab TouchRippleProps={{ className: 'touch-ripple' }} />);
-
+    await ripple.startTouch(container.querySelector('button'));
     expect(container.querySelector('.touch-ripple')).not.to.equal(null);
   });
 
-  it('can disable the ripple', () => {
+  it('can disable the ripple', async () => {
     const { container } = render(
       <Tab disableRipple TouchRippleProps={{ className: 'touch-ripple' }} />,
     );
 
+    await ripple.startTouch(container.querySelector('button'));
     expect(container.querySelector('.touch-ripple')).to.equal(null);
   });
 
-  it('should have a focusRipple by default', () => {
-    const { container, getByRole } = render(
+  it('should have a focusRipple', async function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // JSDOM doesn't support :focus-visible
+      this.skip();
+    }
+
+    const { container } = render(
       <Tab TouchRippleProps={{ classes: { ripplePulsate: 'focus-ripple' } }} />,
     );
-    // simulate pointer device
-    fireEvent.pointerDown(document.body);
+    simulatePointerDevice();
 
-    act(() => {
-      fireEvent.keyDown(document.body, { key: 'Tab' });
-      // jsdom doesn't actually support tab focus, we need to do it manually
-      getByRole('tab').focus();
-    });
+    await ripple.startFocus(container.querySelector('button'));
 
     expect(container.querySelector('.focus-ripple')).not.to.equal(null);
   });
 
-  it('can disable the focusRipple', () => {
-    const { container, getByRole } = render(
+  it('can disable the focusRipple', async () => {
+    const { container } = render(
       <Tab disableFocusRipple TouchRippleProps={{ classes: { ripplePulsate: 'focus-ripple' } }} />,
     );
-    // simulate pointer device
-    fireEvent.pointerDown(document.body);
+    simulatePointerDevice();
 
-    act(() => {
-      fireEvent.keyDown(document.body, { key: 'Tab' });
-      // jsdom doesn't actually support tab focus, we need to do it manually
-      getByRole('tab').focus();
-    });
+    await ripple.startFocus(container.querySelector('button'));
 
     expect(container.querySelector('.focus-ripple')).to.equal(null);
   });
@@ -125,6 +124,7 @@ describe('<Tab />', () => {
       const { getByRole } = render(<Tab icon={<div className="test-icon" />} label="foo" />);
       const wrapper = getByRole('tab').children[0];
       expect(wrapper).to.have.class(classes.iconWrapper);
+      expect(wrapper).to.have.class(classes.icon);
       expect(wrapper).to.have.class('test-icon');
     });
 
@@ -164,6 +164,97 @@ describe('<Tab />', () => {
       expect(style).to.have.property('width', '80%');
       expect(style).to.have.property('color', 'red');
       expect(style).to.have.property('alignText', 'center');
+    });
+  });
+
+  it('should apply iconWrapper styles from theme', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const theme = createTheme({
+      components: {
+        MuiTab: {
+          styleOverrides: {
+            iconWrapper: {
+              backgroundColor: 'rgb(0, 0, 255)',
+            },
+          },
+        },
+      },
+    });
+
+    const { getByRole } = render(
+      <ThemeProvider theme={theme}>
+        <Tab icon={<div>hello</div>} label="icon" />
+      </ThemeProvider>,
+    );
+    const icon = getByRole('tab').querySelector(`.${classes.iconWrapper}`);
+    expect(icon).toHaveComputedStyle({
+      backgroundColor: 'rgb(0, 0, 255)',
+    });
+  });
+
+  it('should apply icon styles from theme', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const theme = createTheme({
+      components: {
+        MuiTab: {
+          styleOverrides: {
+            icon: {
+              backgroundColor: 'rgb(0, 0, 255)',
+            },
+          },
+        },
+      },
+    });
+
+    const { getByRole } = render(
+      <ThemeProvider theme={theme}>
+        <Tab icon={<div>hello</div>} label="icon" />
+      </ThemeProvider>,
+    );
+    const icon = getByRole('tab').querySelector(`.${classes.icon}`);
+    expect(icon).toHaveComputedStyle({
+      backgroundColor: 'rgb(0, 0, 255)',
+    });
+  });
+
+  it('icon styles should override iconWrapper styles from theme', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const theme = createTheme({
+      components: {
+        MuiTab: {
+          styleOverrides: {
+            iconWrapper: {
+              backgroundColor: 'rgb(255, 0, 0)',
+            },
+            icon: {
+              backgroundColor: 'rgb(0, 0, 255)',
+            },
+          },
+        },
+      },
+    });
+
+    const { getByRole } = render(
+      <ThemeProvider theme={theme}>
+        <Tab icon={<div>hello</div>} label="icon" />
+      </ThemeProvider>,
+    );
+    const icon = getByRole('tab').querySelector(`.${classes.icon}`);
+    const iconWrapper = getByRole('tab').querySelector(`.${classes.iconWrapper}`);
+    expect(iconWrapper).toHaveComputedStyle({
+      backgroundColor: 'rgb(0, 0, 255)',
+    });
+    expect(icon).toHaveComputedStyle({
+      backgroundColor: 'rgb(0, 0, 255)',
     });
   });
 });

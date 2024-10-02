@@ -1,9 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { createRenderer, describeConformance, strictModeDoubleLoggingSuppressed } from 'test/utils';
+import {
+  createRenderer,
+  strictModeDoubleLoggingSuppressed,
+  screen,
+} from '@mui/internal-test-utils';
 import Paper, { paperClasses as classes } from '@mui/material/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Paper />', () => {
   const { render } = createRenderer();
@@ -107,6 +112,35 @@ describe('<Paper />', () => {
       }).toErrorDev([
         'MUI: Combining `elevation={5}` with `variant="outlined"` has no effect. Either use `elevation={0}` or use a different `variant`.',
       ]);
+    });
+  });
+
+  it('should have no boxShadow or background-image on Paper with elevation 0 in dark mode using CSS variables', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const theme = createTheme({
+      cssVariables: true,
+      colorSchemes: {
+        dark: true,
+      },
+      defaultColorScheme: 'dark',
+    });
+
+    render(
+      <ThemeProvider theme={theme}>
+        <Paper data-testid="parent" elevation={23}>
+          elevation=23
+          <Paper data-testid="child" elevation={0} />
+        </Paper>
+      </ThemeProvider>,
+    );
+
+    const childPaper = screen.getByTestId('child');
+    expect(childPaper).toHaveComputedStyle({
+      boxShadow: 'none',
+      backgroundImage: 'none',
     });
   });
 });

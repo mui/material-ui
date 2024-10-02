@@ -2,10 +2,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, createRenderer, fireEvent } from 'test/utils';
+import { createRenderer, fireEvent, reactMajor } from '@mui/internal-test-utils';
 import Accordion, { accordionClasses as classes } from '@mui/material/Accordion';
 import Paper from '@mui/material/Paper';
 import AccordionSummary from '@mui/material/AccordionSummary';
+import describeConformance from '../../test/describeConformance';
 
 function NoTransition(props) {
   const { children, in: inProp } = props;
@@ -28,6 +29,15 @@ describe('<Accordion />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiAccordion',
     testVariantProps: { variant: 'rounded' },
+    slots: {
+      transition: {
+        testWithElement: null,
+      },
+      heading: {
+        testWithElement: 'h4',
+        expectedClassName: classes.heading,
+      },
+    },
     skip: ['componentProp', 'componentsProp'],
   }));
 
@@ -148,7 +158,12 @@ describe('<Accordion />', () => {
 
   describe('prop: children', () => {
     describe('first child', () => {
-      beforeEach(() => {
+      beforeEach(function beforeEachCallback() {
+        if (reactMajor >= 19) {
+          // React 19 removed prop types support
+          this.skip();
+        }
+
         PropTypes.resetWarningCache();
       });
 
@@ -209,5 +224,41 @@ describe('<Accordion />', () => {
     expect(() => setProps({ expanded: true })).toErrorDev(
       'MUI: A component is changing the uncontrolled expanded state of Accordion to be controlled.',
     );
+  });
+
+  describe('prop: TransitionProps', () => {
+    it('should apply properties to the Transition component', () => {
+      const { getByTestId } = render(
+        <Accordion TransitionProps={{ 'data-testid': 'transition-testid' }}>
+          {minimalChildren}
+        </Accordion>,
+      );
+
+      expect(getByTestId('transition-testid')).not.to.equal(null);
+    });
+  });
+
+  describe('details unmounting behavior', () => {
+    it('does not unmount by default', () => {
+      const { queryByTestId } = render(
+        <Accordion expanded={false}>
+          <AccordionSummary>Summary</AccordionSummary>
+          <div data-testid="details">Details</div>
+        </Accordion>,
+      );
+
+      expect(queryByTestId('details')).not.to.equal(null);
+    });
+
+    it('unmounts if opted in via slotProps.transition', () => {
+      const { queryByTestId } = render(
+        <Accordion expanded={false} slotProps={{ transition: { unmountOnExit: true } }}>
+          <AccordionSummary>Summary</AccordionSummary>
+          <div data-testid="details">Details</div>
+        </Accordion>,
+      );
+
+      expect(queryByTestId('details')).to.equal(null);
+    });
   });
 });

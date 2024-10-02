@@ -5,53 +5,59 @@ export default function SpacingDemo() {
   return (
     <div>
       <Box
-        sx={{
+        sx={(theme) => ({
           p: 1,
-          bgcolor: (theme) =>
-            theme.palette.mode === 'dark' ? '#101010' : 'grey.50',
-          color: (theme) =>
-            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+          bgcolor: 'grey.50',
+          color: 'grey.800',
           border: '1px solid',
-          borderColor: (theme) =>
-            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+          borderColor: 'grey.300',
           borderRadius: 2,
           fontSize: '0.875rem',
           fontWeight: '700',
-        }}
+          ...theme.applyStyles('dark', {
+            bgcolor: '#101010',
+            color: 'grey.300',
+            borderColor: 'grey.800',
+          }),
+        })}
       >
         p: 1
       </Box>
       <Box
-        sx={{
+        sx={(theme) => ({
           m: 1,
-          bgcolor: (theme) =>
-            theme.palette.mode === 'dark' ? '#101010' : 'grey.50',
-          color: (theme) =>
-            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+          bgcolor: 'grey.50',
+          color: 'grey.800',
           border: '1px solid',
-          borderColor: (theme) =>
-            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+          borderColor: 'grey.300',
           borderRadius: 2,
           fontSize: '0.875rem',
           fontWeight: '700',
-        }}
+          ...theme.applyStyles('dark', {
+            bgcolor: '#101010',
+            color: 'grey.300',
+            borderColor: 'grey.800',
+          }),
+        })}
       >
         m: 1
       </Box>
       <Box
-        sx={{
+        sx={(theme) => ({
           p: 2,
-          bgcolor: (theme) =>
-            theme.palette.mode === 'dark' ? '#101010' : 'grey.50',
-          color: (theme) =>
-            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+          bgcolor: 'grey.50',
+          color: 'grey.800',
           border: '1px solid',
-          borderColor: (theme) =>
-            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+          borderColor: 'grey.300',
           borderRadius: 2,
           fontSize: '0.875rem',
           fontWeight: '700',
-        }}
+          ...theme.applyStyles('dark', {
+            bgcolor: '#101010',
+            color: 'grey.300',
+            borderColor: 'grey.800',
+          }),
+        })}
       >
         p: 2
       </Box>

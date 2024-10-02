@@ -30,7 +30,7 @@
     "orientation": { "description": "The component orientation (layout flow direction)." },
     "ScrollButtonComponent": { "description": "The component used to render the scroll buttons." },
     "scrollButtons": {
-      "description": "Determine behavior of scroll buttons when tabs are set to scroll:<br>- <code>auto</code> will only present them when not all the items are visible. - <code>true</code> will always present them. - <code>false</code> will never present them.<br>By default the scroll buttons are hidden on mobile. This behavior can be disabled with <code>allowScrollButtonsMobile</code>."
+      "description": "<p>Determine behavior of scroll buttons when tabs are set to scroll:</p>\n<ul>\n<li><code>auto</code> will only present them when not all the items are visible.</li>\n<li><code>true</code> will always present them.</li>\n<li><code>false</code> will never present them.</li>\n</ul>\n<p>By default the scroll buttons are hidden on mobile.\nThis behavior can be disabled with <code>allowScrollButtonsMobile</code>.</p>\n"
     },
     "selectionFollowsFocus": {
       "description": "If <code>true</code> the selected tab changes on focus. Otherwise it only changes on activation."
@@ -44,25 +44,29 @@
     },
     "TabIndicatorProps": { "description": "Props applied to the tab indicator element." },
     "TabScrollButtonProps": {
-      "description": "Props applied to the <a href=\"/material-ui/api/tab-scroll-button/\"><code>TabScrollButton</code></a> element."
+      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/tab-scroll-button/\"><code>TabScrollButton</code></a> element."
     },
     "textColor": { "description": "Determines the color of the <code>Tab</code>." },
     "value": {
       "description": "The value of the currently selected <code>Tab</code>. If you don&#39;t want any selected <code>Tab</code>, you can set this prop to <code>false</code>."
     },
     "variant": {
-      "description": "Determines additional display behavior of the tabs:<br> - <code>scrollable</code> will invoke scrolling properties and allow for horizontally  scrolling (or swiping) of the tab bar.  -<code>fullWidth</code> will make the tabs grow to use all the available space,  which should be used for small views, like on mobile.  - <code>standard</code> will render the default state."
+      "description": "<p>Determines additional display behavior of the tabs:</p>\n<ul>\n<li><code>scrollable</code> will invoke scrolling properties and allow for horizontally\n scrolling (or swiping) of the tab bar.</li>\n<li><code>fullWidth</code> will make the tabs grow to use all the available space,\n which should be used for small views, like on mobile.</li>\n<li><code>standard</code> will render the default state.</li>\n</ul>\n"
     },
     "visibleScrollbar": {
       "description": "If <code>true</code>, the scrollbar is visible. It can be useful when displaying a long vertical list of tabs."
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "vertical": {
+    "centered": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>orientation=\"vertical\"</code>"
+      "nodeName": "the flex container element",
+      "conditions": "<code>centered={true}</code> &amp; <code>!variant=\"scrollable\"</code>"
+    },
+    "fixed": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the tablist element",
+      "conditions": "<code>!variant=\"scrollable\"</code>\b\b\b"
     },
     "flexContainer": {
       "description": "Styles applied to {{nodeName}}.",
@@ -73,20 +77,16 @@
       "nodeName": "the flex container element",
       "conditions": "<code>orientation=\"vertical\"</code>"
     },
-    "centered": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the flex container element",
-      "conditions": "<code>centered={true}</code> &amp; <code>!variant=\"scrollable\"</code>"
-    },
-    "scroller": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the tablist element"
-    },
-    "fixed": {
+    "hideScrollbar": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the tablist element",
-      "conditions": "<code>!variant=\"scrollable\"</code>\b\b\b"
+      "conditions": "<code>variant=\"scrollable\"</code> and <code>visibleScrollbar={false}</code>"
     },
+    "indicator": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the TabIndicator component"
+    },
+    "root": { "description": "Styles applied to the root element." },
     "scrollableX": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the tablist element",
@@ -97,11 +97,6 @@
       "nodeName": "the tablist element",
       "conditions": "<code>variant=\"scrollable\"</code> and <code>orientation=\"vertical\"</code>"
     },
-    "hideScrollbar": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the tablist element",
-      "conditions": "<code>variant=\"scrollable\"</code> and <code>visibleScrollbar={false}</code>"
-    },
     "scrollButtons": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the ScrollButtonComponent component"
@@ -111,9 +106,14 @@
       "nodeName": "the ScrollButtonComponent component",
       "conditions": "<code>allowScrollButtonsMobile={true}</code>"
     },
-    "indicator": {
+    "scroller": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the TabIndicator component"
+      "nodeName": "the tablist element"
+    },
+    "vertical": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>orientation=\"vertical\"</code>"
     }
   }
 }

@@ -72,7 +72,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
             <ClearIcon />
           </Button>
         )}
-
         <Button
           {...getPopupIndicatorProps()}
           className={clsx(
@@ -163,16 +162,16 @@ const cyan = {
 };
 
 const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
 function useIsDarkMode() {
@@ -188,14 +187,14 @@ function Styles() {
     <style>
       {`
       .Autocomplete__root {
-        font-family: IBM Plex Sans, sans-serif;
+        font-family: 'IBM Plex Sans', sans-serif;
         font-weight: 400;
         border-radius: 8px;
         background: ${isDarkMode ? grey[900] : '#fff'};
         border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
         color: ${isDarkMode ? grey[300] : grey[900]};
-        box-shadow: 0px 4px 6px ${
-          isDarkMode ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+        box-shadow: 0px 2px 4px ${
+          isDarkMode ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
         };
         display: flex;
         gap: 5px;
@@ -270,7 +269,7 @@ function Styles() {
       }
 
       .Autocomplete__listbox {
-        font-family: IBM Plex Sans, sans-serif;
+        font-family: 'IBM Plex Sans', sans-serif;
         font-size: 0.875rem;
         box-sizing: border-box;
         padding: 6px;
@@ -278,7 +277,7 @@ function Styles() {
         width: 100%;
         border-radius: 12px;
         overflow: auto;
-        outline: 0px;
+        outline: 0;
         max-height: 300px;
         z-index: 1;
         position: absolute;

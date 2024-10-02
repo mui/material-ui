@@ -172,4 +172,13 @@ function Component() {
     },
     freeSolo: true,
   });
+
+  useAutocomplete({
+    options: persons,
+    getOptionKey(option) {
+      expectType<string | Person, typeof option>(option);
+      return '';
+    },
+    freeSolo: true,
+  });
 }

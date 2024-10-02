@@ -1,9 +1,9 @@
 {
   "name": "@mui/base",
-  "version": "5.0.0-beta.11",
+  "version": "5.0.0-beta.58",
   "private": false,
   "author": "MUI Team",
-  "description": "A library of headless ('unstyled') React UI components and low-level hooks.",
+  "description": "Base UI is a library of headless ('unstyled') React components and low-level hooks. You gain complete control over your app's CSS and accessibility features.",
   "main": "./src/index.js",
   "keywords": [
     "react",
@@ -14,31 +14,57 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
+    "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-base"
   },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://mui.com/base-ui/getting-started/",
+  "homepage": "https://mui.com/base-ui/",
   "funding": {
     "type": "opencollective",
-    "url": "https://opencollective.com/mui"
+    "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:types && yarn build:copy-files",
-    "build:legacy": "node ../../scripts/build.mjs legacy",
+    "build": "pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
     "build:modern": "node ../../scripts/build.mjs modern",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "build:types": "node ../../scripts/buildTypes.mjs",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
-    "release": "yarn build && npm publish build",
+    "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-base/**/*.test.{js,ts,tsx}'",
-    "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json",
+    "typescript": "tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.25.6",
+    "@floating-ui/react-dom": "^2.1.1",
+    "@mui/types": "workspace:^",
+    "@mui/utils": "workspace:^",
+    "@popperjs/core": "^2.11.8",
+    "clsx": "^2.1.1",
+    "prop-types": "^15.8.1"
+  },
+  "devDependencies": {
+    "@mui/internal-babel-macros": "workspace:^",
+    "@mui/internal-test-utils": "workspace:^",
+    "@mui/types": "workspace:^",
+    "@testing-library/react": "^16.0.1",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/chai": "^4.3.20",
+    "@types/prop-types": "^15.7.13",
+    "@types/react": "18.3.4",
+    "@types/react-dom": "18.3.0",
+    "@types/sinon": "^17.0.3",
+    "chai": "^4.5.0",
+    "fast-glob": "^3.3.2",
+    "lodash": "^4.17.21",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sinon": "^18.0.1"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0",
@@ -50,21 +76,12 @@
       "optional": true
     }
   },
-  "dependencies": {
-    "@babel/runtime": "^7.22.10",
-    "@emotion/is-prop-valid": "^1.2.1",
-    "@mui/types": "^7.2.4",
-    "@mui/utils": "^5.14.5",
-    "@popperjs/core": "^2.11.8",
-    "clsx": "^2.0.0",
-    "prop-types": "^15.8.1",
-    "react-is": "^18.2.0"
-  },
   "sideEffects": false,
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "build"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=14.0.0"
   }
 }

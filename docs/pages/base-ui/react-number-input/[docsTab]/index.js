@@ -1,7 +1,7 @@
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
-import * as pageProps from 'docs/data/base/components/number-input/number-input.md?@mui/markdown';
+import * as pageProps from 'docs/data/base/components/number-input/number-input.md?muiMarkdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
 import NumberInputApiJsonPageContent from '../../api/number-input.json';
 import useNumberInputApiJsonPageContent from '../../api/use-number-input.json';
@@ -31,7 +31,7 @@ export const getStaticProps = () => {
   const NumberInputApiDescriptions = mapApiPageTranslations(NumberInputApiReq);
 
   const useNumberInputApiReq = require.context(
-    'docs/translations/api-docs/use-number-input',
+    'docs/translations/api-docs-base/use-number-input',
     false,
     /use-number-input.*.json$/,
   );

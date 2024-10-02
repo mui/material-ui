@@ -11,7 +11,7 @@ export default function DividerInCard() {
   const [orientation, setOrientation] =
     React.useState<CardProps['orientation']>('vertical');
   return (
-    <Box>
+    <div>
       <Checkbox
         label="horizontal"
         checked={orientation === 'horizontal'}
@@ -25,11 +25,15 @@ export default function DividerInCard() {
         variant="outlined"
         sx={{ width: 400, maxWidth: '100%', gap: 1.5 }}
       >
-        <Typography fontSize="lg" fontWeight="md">
-          Headline
-        </Typography>
+        <Typography sx={{ fontSize: 'lg', fontWeight: 'md' }}>Headline</Typography>
         <Divider />
-        <Box sx={{ display: orientation === 'horizontal' ? 'block' : 'contents' }}>
+        <Box
+          sx={[
+            orientation === 'horizontal'
+              ? { display: 'block' }
+              : { display: 'contents' },
+          ]}
+        >
           <Typography level="body-sm">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry standard dummy text ever
@@ -40,12 +44,15 @@ export default function DividerInCard() {
             variant="soft"
             color="neutral"
             endDecorator={<ArrowForward />}
-            sx={{ width: '100%', mt: orientation === 'horizontal' ? 2 : 0 }}
+            sx={[
+              { width: '100%' },
+              orientation === 'horizontal' ? { mt: 2 } : { mt: 0 },
+            ]}
           >
             See more
           </Button>
         </Box>
       </Card>
-    </Box>
+    </div>
   );
 }

@@ -9,6 +9,8 @@ components: Skeleton, AspectRatio, Avatar, Typography
 
 <p class="description">Skeletons are preview placeholders for components that haven't loaded yet, reducing load-time frustration.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
 ## Introduction
 
 Skeletons provide users an expectation of what the UI looks like while data loads.
@@ -25,7 +27,7 @@ import Skeleton from '@mui/joy/Skeleton';
 There are two methods of using the Skeleton component:
 
 1. **Masking a component**: see the [Avatar](#avatar), [Image](#image) and [Typography](#inline-with-typography) examples. The Skeleton component will inherit their dimension which makes for a more predictable UI while also preventing layout shift when the loading is done.
-2. **Setting a custom width and height**: see the [Geometry](#geometry) and [Text block](#text-block) examples. Use this for full control of the Skeleton size, ignoring its parent dimensions entirely. Be aware that this option _can_ generate layout shift if the actual component the Skeleton is mimicing has a different size.
+2. **Setting a custom width and height**: see the [Geometry](#geometry) and [Text block](#text-block) examples. Use this for full control of the Skeleton size, ignoring its parent dimensions entirely. Be aware that this option _can_ generate layout shift if the actual component the Skeleton is mimicking has a different size.
 
 ## Customization
 

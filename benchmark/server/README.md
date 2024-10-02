@@ -1,18 +1,17 @@
-# MUI benchmark
+# Benchmark
 
 ## `@mui/material`
 
 _Synthetic benchmark_
 
 ```bash
-yarn server:core
+pnpm server:core
 
 ButtonBase x 40,724 ops/sec ±1.58% (189 runs sampled)
 HocButton x 166,229 ops/sec ±1.04% (191 runs sampled)
 NakedButton x 228,473 ops/sec ±0.99% (187 runs sampled)
 ButtonBase enable ripple x 56,019 ops/sec ±0.87% (189 runs sampled)
 ButtonBase disable ripple x 61,748 ops/sec ±0.35% (190 runs sampled)
-Markdown x 954 ops/sec ±1.35% (187 runs sampled)
 ```
 
 ## `@mui/docs`
@@ -20,9 +19,8 @@ Markdown x 954 ops/sec ±1.35% (187 runs sampled)
 _Synthetic benchmark_
 
 ```bash
-yarn server:docs
+pnpm server:docs
 
-Markdown x 946 ops/sec ±4.04% (176 runs sampled)
 MarkdownElement x 3,941 ops/sec ±5.53% (185 runs sampled)
 ```
 
@@ -31,7 +29,7 @@ MarkdownElement x 3,941 ops/sec ±5.53% (185 runs sampled)
 _Synthetic benchmark_
 
 ```bash
-yarn server:styles
+pnpm server:styles
 
 Box x 3,850 ops/sec ±3.58% (178 runs sampled)
 JSS naked x 35,493 ops/sec ±2.29% (183 runs sampled)
@@ -49,7 +47,7 @@ Naked x 58,694 ops/sec ±0.86% (188 runs sampled)
 _Synthetic benchmark_
 
 ```bash
-yarn server:system
+pnpm server:system
 
 @styled-system/css x 64,606 ops/sec ±0.45% (188 runs sampled)
 @chakra-ui/system/css x 126,272 ops/sec ±0.21% (191 runs sampled)
@@ -59,7 +57,7 @@ yarn server:system
 ## Real-world benchmark
 
 ```bash
-yarn server:server
+pnpm server:server
 
 bombardier \
   -c 100 \

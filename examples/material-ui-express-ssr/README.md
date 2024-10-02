@@ -1,4 +1,4 @@
-# Material UI - Server-side-rendered example
+# Material UI - Server-side-rendered example
 
 ## How to use
 
@@ -18,12 +18,20 @@ npm install
 npm run start
 ```
 
+or:
+
+<!-- #default-branch-switch -->
+
+[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/material-ui-express-ssr)
+
+[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/github/mui/material-ui/tree/master/examples/material-ui-express-ssr)
+
 ## The idea behind the example
 
 This is the reference implementation of the [Server Rendering tutorial](https://mui.com/material-ui/guides/server-rendering/).
 
-The example project includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI v5.
-If you prefer, you can [use styled-components instead](https://mui.com/material-ui/guides/interoperability/#styled-components).
+The example project includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI v6.
+If you prefer, you can [use styled-components instead](https://mui.com/material-ui/integrations/interoperability/#styled-components).
 
 ## What's next?
 

@@ -12,7 +12,7 @@ Page.getInitialProps = () => {
   const req = require.context(
     'docs/translations/api-docs-joy/avatar-group',
     false,
-    /avatar-group.*.json$/,
+    /\.\/avatar-group.*.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 

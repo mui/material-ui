@@ -2,10 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import capitalize from '../utils/capitalize';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getSvgIconUtilityClass } from './svgIconClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -34,36 +35,66 @@ const SvgIconRoot = styled('svg', {
       styles[`fontSize${capitalize(ownerState.fontSize)}`],
     ];
   },
-})(({ theme, ownerState }) => ({
-  userSelect: 'none',
-  width: '1em',
-  height: '1em',
-  display: 'inline-block',
-  // the <svg> will define the property that has `currentColor`
-  // e.g. heroicons uses fill="none" and stroke="currentColor"
-  fill: ownerState.hasSvgAsChild ? undefined : 'currentColor',
-  flexShrink: 0,
-  transition: theme.transitions?.create?.('fill', {
-    duration: theme.transitions?.duration?.shorter,
-  }),
-  fontSize: {
-    inherit: 'inherit',
-    small: theme.typography?.pxToRem?.(20) || '1.25rem',
-    medium: theme.typography?.pxToRem?.(24) || '1.5rem',
-    large: theme.typography?.pxToRem?.(35) || '2.1875rem',
-  }[ownerState.fontSize],
-  // TODO v5 deprecate, v6 remove for sx
-  color:
-    (theme.vars || theme).palette?.[ownerState.color]?.main ??
-    {
-      action: (theme.vars || theme).palette?.action?.active,
-      disabled: (theme.vars || theme).palette?.action?.disabled,
-      inherit: undefined,
-    }[ownerState.color],
-}));
+})(
+  memoTheme(({ theme }) => ({
+    userSelect: 'none',
+    width: '1em',
+    height: '1em',
+    display: 'inline-block',
+    flexShrink: 0,
+    transition: theme.transitions?.create?.('fill', {
+      duration: (theme.vars ?? theme).transitions?.duration?.shorter,
+    }),
+    variants: [
+      {
+        props: (props) => !props.hasSvgAsChild,
+        style: {
+          // the <svg> will define the property that has `currentColor`
+          // for example heroicons uses fill="none" and stroke="currentColor"
+          fill: 'currentColor',
+        },
+      },
+      {
+        props: { fontSize: 'inherit' },
+        style: { fontSize: 'inherit' },
+      },
+      {
+        props: { fontSize: 'small' },
+        style: { fontSize: theme.typography?.pxToRem?.(20) || '1.25rem' },
+      },
+      {
+        props: { fontSize: 'medium' },
+        style: { fontSize: theme.typography?.pxToRem?.(24) || '1.5rem' },
+      },
+      {
+        props: { fontSize: 'large' },
+        style: { fontSize: theme.typography?.pxToRem?.(35) || '2.1875rem' },
+      },
+      // TODO v5 deprecate color prop, v6 remove for sx
+      ...Object.entries((theme.vars ?? theme).palette)
+        .filter(([, value]) => value && value.main)
+        .map(([color]) => ({
+          props: { color },
+          style: { color: (theme.vars ?? theme).palette?.[color]?.main },
+        })),
+      {
+        props: { color: 'action' },
+        style: { color: (theme.vars ?? theme).palette?.action?.active },
+      },
+      {
+        props: { color: 'disabled' },
+        style: { color: (theme.vars ?? theme).palette?.action?.disabled },
+      },
+      {
+        props: { color: 'inherit' },
+        style: { color: undefined },
+      },
+    ],
+  })),
+);
 
 const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSvgIcon' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiSvgIcon' });
   const {
     children,
     className,
@@ -119,10 +150,10 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
 });
 
 SvgIcon.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Node passed into the SVG element.
    */
@@ -138,7 +169,7 @@ SvgIcon.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
    * @default 'inherit'
    */
@@ -211,6 +242,8 @@ SvgIcon.propTypes /* remove-proptypes */ = {
   viewBox: PropTypes.string,
 };
 
-SvgIcon.muiName = 'SvgIcon';
+if (SvgIcon) {
+  SvgIcon.muiName = 'SvgIcon';
+}
 
 export default SvgIcon;

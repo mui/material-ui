@@ -14,13 +14,15 @@ export const getHtml = ({
   return `<!DOCTYPE html>
 <html lang="${language}">
   <head>
+    <meta charset="utf-8" />
     <title>${title}</title>
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
     <!-- Fonts to support Material Design -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
     />
     <!-- Icons to support Material Design -->
     <link
@@ -47,7 +49,7 @@ export const getHtml = ({
               'outline-purple': '0 0 0 4px rgba(192, 132, 252, 0.25)',
               'outline-purple-light': '0 0 0 4px rgba(245, 208, 254, 0.25)',
               'outline-purple-xs': '0 0 0 1px rgba(192, 132, 252, 0.25)',
-              'outline-switch': '0 0 1px 8px rgba(168, 85, 247, 0.35)',
+              'outline-switch': '0 0 1px 3px rgba(168, 85, 247, 0.35)',
             },
             cursor: {
               inherit: 'inherit',

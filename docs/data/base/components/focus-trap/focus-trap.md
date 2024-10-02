@@ -9,7 +9,7 @@ githubLabel: 'component: FocusTrap'
 
 <p class="description">The Focus Trap component prevents the user's focus from escaping its children components.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
@@ -19,19 +19,9 @@ Focus Trap is a utility component that's useful when implementing an overlay suc
 
 ## Component
 
-### Usage
-
-After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
-
 ```jsx
 import { FocusTrap } from '@mui/base/FocusTrap';
-
-export default function MyApp() {
-  return <FocusTrap>{/* children where the focus will be trapped */}</FocusTrap>;
-}
 ```
-
-### Basics
 
 Focus Trap wraps around the UI elements that should hold the user's focus.
 For instance, if the focus needs to stay inside of an [Menu](/base-ui/react-menu/), then the component will be structured like this:
@@ -67,7 +57,7 @@ By default, clicks outside of the Focus Trap component are blocked.
 
 You can disable this behavior with the `disableEnforceFocus` prop.
 
-Compare the following demo with the demo from the [Basics](#basics) section—notice how that demo prevents you from clicking outside of it, while this one allows it:
+Compare the following demo with the demo from the [Component](#component) section—notice how that demo prevents you from clicking outside of it, while this one allows it:
 
 {{"demo": "DisableEnforceFocus.js"}}
 

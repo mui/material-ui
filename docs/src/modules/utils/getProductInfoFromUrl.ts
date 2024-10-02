@@ -10,7 +10,10 @@ export type MuiProductId =
   | 'docs'
   | 'x-data-grid'
   | 'x-date-pickers'
-  | 'x-charts';
+  | 'x-charts'
+  | 'x-tree-view'
+  | 'toolpad-studio'
+  | 'toolpad-core';
 
 type MuiProductCategoryId = 'null' | 'core' | 'x';
 
@@ -51,7 +54,17 @@ export default function getProductInfoFromUrl(asPath: string): MuiProductInfo {
     }
   }
 
-  if (firstFolder === 'toolpad' || firstFolder === 'docs') {
+  if (firstFolder === 'toolpad') {
+    productCategoryId = 'toolpad';
+    const secondFolder = asPathWithoutLang.replace(/^\/+[^/]+\/([^/]+)\/.*/, '$1');
+    if (secondFolder === 'studio') {
+      productId = 'toolpad-studio';
+    } else {
+      productId = 'toolpad-core';
+    }
+  }
+
+  if (firstFolder === 'docs') {
     productId = firstFolder;
   }
 

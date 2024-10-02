@@ -1,83 +1,72 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
-import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
-import Frame from 'docs/src/components/action/Frame';
+import { InfoCard } from '@mui/docs/InfoCard';
+import IconImage from 'docs/src/components/icon/IconImage';
+import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 
-const Image = styled('img')(({ theme }) => ({
-  filter: 'drop-shadow(-8px 4px 20px rgba(61, 71, 82, 0.1))',
-  transition: '0.3s',
-  display: 'block',
-  height: 'auto',
-  borderRadius: '8px',
-  ...theme.applyDarkStyles({
-    filter: 'drop-shadow(-8px 4px 20px rgba(0, 0, 0, 0.4))',
-  }),
-}));
+const content = [
+  {
+    icon: <IconImage name="pricing/x-plan-community" mode="" loading="eager" />,
+    title: 'Community version',
+    description:
+      'Free forever. This version contains features that we believe are maintainable by contributions from the open-source community.',
+    link: '/x/introduction/licensing/#community-plan',
+  },
+  {
+    icon: <IconImage name="pricing/x-plan-pro" mode="" loading="eager" />,
+    title: 'Pro plan',
+    description:
+      'More advanced capabilities such as multi-filtering, multi-sorting, and more for the Data Grid; as well as the other components.',
+    link: '/x/introduction/licensing/#pro-plan',
+  },
+  {
+    icon: <IconImage name="pricing/x-plan-premium" mode="" loading="eager" />,
+    title: 'Premium plan',
+    description:
+      'The most advanced features for every component, including row grouping and Excel export for the Data Grid, plus everything included in the Pro plan.',
+    link: '/x/introduction/licensing/#premium-plan',
+  },
+];
 
-export default function XPlans() {
+export default function XPlans2() {
   return (
     <Section cozy>
       <Grid container spacing={2} alignItems="center">
-        <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box maxWidth={500} sx={{ mb: { xs: 2, sm: 0 } }}>
-            <SectionHeadline
-              overline="Plans"
-              title={
-                <Typography variant="h2">
-                  Available with <GradientText>MIT and commercial licenses</GradientText>
-                </Typography>
-              }
-              description="MUI X components are available under two licenses: MIT for the free community version, and commercial for Pro and Premium plans."
-            />
-            <Button
-              component={Link}
-              href={ROUTES.pricing}
-              noLinkStyle
-              size="large"
-              variant="contained"
-              endIcon={<KeyboardArrowRightRounded />}
-              sx={{ width: { xs: '100%', sm: 'auto' } }}
-            >
-              Compare plans
-            </Button>
-          </Box>
+        <Grid size={{ md: 6 }}>
+          <SectionHeadline
+            overline="Plans"
+            title={
+              <Typography variant="h2">
+                Available with <GradientText>MIT and commercial</GradientText> licenses
+              </Typography>
+            }
+            description="MUI X components are available under two licenses: MIT for the free community version, and commercial for Pro and Premium plans."
+          />
+          <GetStartedButtons
+            primaryLabel="Compare plans"
+            primaryUrl={ROUTES.pricing}
+            secondaryLabel="Learn about licensing"
+            secondaryUrl={ROUTES.xLicensing}
+          />
         </Grid>
-        <Grid item xs={12} md={6}>
-          <Frame>
-            <Frame.Demo
-              sx={{
-                overflow: 'hidden',
-                height: { xs: 240, sm: 390 },
-                perspective: '1000px',
-              }}
-            >
-              <Image
-                src={`/static/branding/mui-x/Mocktable-light.png`}
-                alt="Illustration of MUI's pricing page."
-                loading="lazy"
-                width="300"
-                sx={(theme) => ({
-                  width: { sm: 480 },
-                  position: 'absolute',
-                  left: '50%',
-                  top: '50%',
-                  transform: 'translate(-50%, -50%)',
-                  ...theme.applyDarkStyles({
-                    content: 'url(/static/branding/mui-x/Mocktable-dark.png)',
-                  }),
-                })}
+        <Grid size={{ xs: 12, md: 6 }}>
+          <Stack spacing={2} useFlexGap>
+            {content.map(({ icon, title, description, link }) => (
+              <InfoCard
+                key={title}
+                title={title}
+                icon={icon}
+                description={description}
+                link={link}
               />
-            </Frame.Demo>
-          </Frame>
+            ))}
+          </Stack>
         </Grid>
       </Grid>
     </Section>

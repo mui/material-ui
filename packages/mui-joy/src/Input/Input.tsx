@@ -5,11 +5,11 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import { InputTypeMap, InputProps, InputOwnerState } from './InputProps';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 import useForwardedInput from './useForwardedInput';
+import { INVERTED_COLORS_ATTR } from '../colorInversion/colorInversionUtils';
 
 const useUtilityClasses = (ownerState: InputOwnerState) => {
   const { disabled, fullWidth, variant, color, size } = ownerState;
@@ -31,100 +31,106 @@ const useUtilityClasses = (ownerState: InputOwnerState) => {
   return composeClasses(slots, getInputUtilityClass, {});
 };
 
-export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
-  ({ theme, ownerState }) => {
-    const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
-    return [
-      {
-        '--Input-radius': theme.vars.radius.sm,
-        '--Input-gap': '0.5rem',
-        '--Input-placeholderColor': 'inherit',
-        '--Input-placeholderOpacity': 0.64,
-        '--Input-decoratorColor': theme.vars.palette.text.icon,
-        '--Input-focused': '0',
-        '--Input-focusedThickness': theme.vars.focus.thickness,
-        ...(ownerState.color === 'context'
-          ? {
-              '--Input-focusedHighlight': theme.vars.palette.focusVisible,
-            }
-          : {
-              '--Input-focusedHighlight':
-                theme.vars.palette[
-                  ownerState.color === 'neutral' ? 'primary' : ownerState.color!
-                ]?.[500],
-            }),
-        ...(ownerState.size === 'sm' && {
-          '--Input-minHeight': '2rem',
-          '--Input-paddingInline': '0.5rem',
-          '--Input-decoratorChildHeight': 'min(1.5rem, var(--Input-minHeight))',
-          '--Icon-fontSize': theme.vars.fontSize.xl,
+export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(({
+  theme,
+  ownerState,
+}) => {
+  const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
+  return [
+    {
+      '--Input-radius': theme.vars.radius.sm,
+      '--Input-gap': '0.5rem',
+      '--Input-placeholderColor': 'inherit',
+      '--Input-placeholderOpacity': 0.64,
+      '--Input-decoratorColor': theme.vars.palette.text.icon,
+      '--Input-focused': '0',
+      '--Input-focusedThickness': theme.vars.focus.thickness,
+      '--Input-focusedHighlight':
+        theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
+      [`&:not([${INVERTED_COLORS_ATTR}])`]: {
+        ...(ownerState.instanceColor && {
+          '--_Input-focusedHighlight':
+            theme.vars.palette[
+              ownerState.instanceColor === 'neutral' ? 'primary' : ownerState.instanceColor
+            ]?.[500],
         }),
-        ...(ownerState.size === 'md' && {
-          '--Input-minHeight': '2.5rem',
-          '--Input-paddingInline': '0.75rem',
-          '--Input-decoratorChildHeight': 'min(2rem, var(--Input-minHeight))',
-          '--Icon-fontSize': theme.vars.fontSize.xl2,
-        }),
-        ...(ownerState.size === 'lg' && {
-          '--Input-minHeight': '3rem',
-          '--Input-paddingInline': '1rem',
-          '--Input-gap': '0.75rem',
-          '--Input-decoratorChildHeight': 'min(2.375rem, var(--Input-minHeight))',
-          '--Icon-fontSize': theme.vars.fontSize.xl2,
-        }),
-        // variables for controlling child components
-        '--Input-decoratorChildOffset':
-          'min(calc(var(--Input-paddingInline) - (var(--Input-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Input-decoratorChildHeight)) / 2), var(--Input-paddingInline))',
-        '--_Input-paddingBlock':
-          'max((var(--Input-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Input-decoratorChildHeight)) / 2, 0px)',
-        '--Input-decoratorChildRadius':
-          'max(var(--Input-radius) - var(--variant-borderWidth, 0px) - var(--_Input-paddingBlock), min(var(--_Input-paddingBlock) + var(--variant-borderWidth, 0px), var(--Input-radius) / 2))',
-        '--Button-minHeight': 'var(--Input-decoratorChildHeight)',
-        '--IconButton-size': 'var(--Input-decoratorChildHeight)',
-        '--Button-radius': 'var(--Input-decoratorChildRadius)',
-        '--IconButton-radius': 'var(--Input-decoratorChildRadius)',
-        boxSizing: 'border-box',
-        minWidth: 0,
-        minHeight: 'var(--Input-minHeight)',
-        ...(ownerState.fullWidth && {
-          width: '100%',
-        }),
-        cursor: 'text',
-        position: 'relative',
-        display: 'flex',
-        paddingInline: `var(--Input-paddingInline)`,
-        borderRadius: 'var(--Input-radius)',
-        ...theme.typography[`body-${ownerState.size!}`],
-        ...variantStyle,
-        backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
-        '&:before': {
-          boxSizing: 'border-box',
-          content: '""',
-          display: 'block',
-          position: 'absolute',
-          pointerEvents: 'none',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          zIndex: 1,
-          borderRadius: 'inherit',
-          margin: 'calc(var(--variant-borderWidth, 0px) * -1)', // for outlined variant
-          boxShadow: `var(--Input-focusedInset, inset) 0 0 0 calc(var(--Input-focused) * var(--Input-focusedThickness)) var(--Input-focusedHighlight)`,
-        },
-      } as const,
-      {
-        '&:hover': {
-          ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-          backgroundColor: null, // it is not common to change background on hover for Input
-        },
-        [`&.${inputClasses.disabled}`]:
-          theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-        '&:focus-within::before': { '--Input-focused': '1' },
+        '--Input-focusedHighlight': `var(--_Input-focusedHighlight, ${theme.vars.palette.focusVisible})`,
       },
-    ];
-  },
-);
+      ...(ownerState.size === 'sm' && {
+        '--Input-minHeight': '2rem',
+        '--Input-paddingInline': '0.5rem',
+        '--Input-decoratorChildHeight': 'min(1.5rem, var(--Input-minHeight))',
+        '--Icon-fontSize': theme.vars.fontSize.xl,
+      }),
+      ...(ownerState.size === 'md' && {
+        '--Input-minHeight': '2.25rem',
+        '--Input-paddingInline': '0.75rem',
+        '--Input-decoratorChildHeight': 'min(1.75rem, var(--Input-minHeight))',
+        '--Icon-fontSize': theme.vars.fontSize.xl2,
+      }),
+      ...(ownerState.size === 'lg' && {
+        '--Input-minHeight': '2.75rem',
+        '--Input-paddingInline': '1rem',
+        '--Input-gap': '0.75rem',
+        '--Input-decoratorChildHeight': 'min(2.25rem, var(--Input-minHeight))',
+        '--Icon-fontSize': theme.vars.fontSize.xl2,
+      }),
+      // variables for controlling child components
+      '--Input-decoratorChildOffset':
+        'min(calc(var(--Input-paddingInline) - (var(--Input-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Input-decoratorChildHeight)) / 2), var(--Input-paddingInline))',
+      '--_Input-paddingBlock':
+        'max((var(--Input-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Input-decoratorChildHeight)) / 2, 0px)',
+      '--Input-decoratorChildRadius':
+        'max(var(--Input-radius) - var(--variant-borderWidth, 0px) - var(--_Input-paddingBlock), min(var(--_Input-paddingBlock) + var(--variant-borderWidth, 0px), var(--Input-radius) / 2))',
+      '--Button-minHeight': 'var(--Input-decoratorChildHeight)',
+      '--Button-paddingBlock': '0px', // to ensure that the height of the button is equal to --Button-minHeight
+      '--IconButton-size': 'var(--Input-decoratorChildHeight)',
+      '--Button-radius': 'var(--Input-decoratorChildRadius)',
+      '--IconButton-radius': 'var(--Input-decoratorChildRadius)',
+      boxSizing: 'border-box',
+      ...(ownerState.variant !== 'plain' && {
+        boxShadow: theme.shadow.xs,
+      }),
+      minWidth: 0,
+      minHeight: 'var(--Input-minHeight)',
+      ...(ownerState.fullWidth && {
+        width: '100%',
+      }),
+      cursor: 'text',
+      position: 'relative',
+      display: 'flex',
+      paddingInline: `var(--Input-paddingInline)`,
+      borderRadius: 'var(--Input-radius)',
+      ...theme.typography[`body-${ownerState.size!}`],
+      ...variantStyle,
+      backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
+      '&::before': {
+        boxSizing: 'border-box',
+        content: '""',
+        display: 'block',
+        position: 'absolute',
+        pointerEvents: 'none',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 1,
+        borderRadius: 'inherit',
+        margin: 'calc(var(--variant-borderWidth, 0px) * -1)', // for outlined variant
+        boxShadow: `var(--Input-focusedInset, inset) 0 0 0 calc(var(--Input-focused) * var(--Input-focusedThickness)) var(--Input-focusedHighlight)`,
+      },
+    } as const,
+    {
+      '&:hover': {
+        ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+        backgroundColor: null, // it is not common to change background on hover for Input
+      },
+      [`&.${inputClasses.disabled}`]:
+        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+      '&:focus-within::before': { '--Input-focused': '1' },
+    },
+  ];
+});
 
 export const StyledInputHtml = styled('input')<{ ownerState: InputOwnerState }>(
   ({ ownerState }) => ({
@@ -261,10 +267,11 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     slots = {},
     slotProps = {},
     ...other
-  } = useForwardedInput<InputProps>(props, inputClasses);
+  } = useForwardedInput<InputProps>({ ...props, disabledInProp: inProps.disabled }, inputClasses);
 
   if (process.env.NODE_ENV !== 'production') {
     const registerEffect = formControl?.registerEffect;
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- process.env never changes
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (registerEffect) {
@@ -277,10 +284,10 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, error ? 'danger' : formControl?.color ?? colorProp);
+  const color = inProps.color ?? (error ? 'danger' : (formControl?.color ?? colorProp));
 
   const ownerState = {
+    instanceColor: error ? 'danger' : inProps.color,
     ...props,
     fullWidth,
     color,
@@ -345,14 +352,14 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 }) as OverridableComponent<InputTypeMap>;
 
 Input.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */
-  autoComplete: PropTypes.string,
+  autoComplete: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * @ignore
    */
@@ -396,7 +403,7 @@ Input.propTypes /* remove-proptypes */ = {
    */
   error: PropTypes.bool,
   /**
-   * If `true`, the button will take up the full width of its container.
+   * If `true`, the input will take up the full width of its container.
    * @default false
    */
   fullWidth: PropTypes.bool,

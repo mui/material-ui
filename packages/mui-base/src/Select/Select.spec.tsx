@@ -1,12 +1,6 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
-import {
-  Select,
-  SelectRootSlotProps,
-  SelectPopperSlotProps,
-  Popper,
-  WithOptionalOwnerState,
-} from '@mui/base';
+import { Select, SelectPopupSlotProps, SelectRootSlotProps } from '@mui/base/Select';
 
 const SelectSlotPropsOverridesTest = (
   <Select
@@ -16,8 +10,8 @@ const SelectSlotPropsOverridesTest = (
         size: 'red',
         className: 'test',
       },
-      popper: {
-        className: 'popper',
+      popup: {
+        className: 'popup',
         disablePortal: true,
       },
       listbox: {
@@ -35,49 +29,25 @@ function CustomRoot<OptionValue extends {}, Multiple extends boolean>(
   return <div {...other} />;
 }
 
-function CustomPopper<OptionValue extends {}, Multiple extends boolean>(
-  props: WithOptionalOwnerState<SelectPopperSlotProps<OptionValue, Multiple>>,
+function CustomPopup<OptionValue extends {}, Multiple extends boolean>(
+  props: SelectPopupSlotProps<OptionValue, Multiple>,
 ) {
   const { ownerState, ...other } = props;
-  return <Popper {...other} />;
+  return <div {...other} />;
 }
 
 const SelectRootComponentOverridesTest = (
   <Select
     slots={{
       root: CustomRoot,
-      listbox: 'ul',
-      popper: Popper,
     }}
   />
 );
 
-const SelectPopperComponentOverridesTest = (
+const SelectPopupComponentOverridesTest = (
   <Select
     slots={{
-      popper: CustomPopper,
-    }}
-  />
-);
-
-function InvalidPopper({ requiredProp }: { requiredProp: string }) {
-  return <div />;
-}
-
-const SelectSlotsOverridesUsingInvalidComponentTest = (
-  <Select
-    slots={{
-      // @ts-expect-error - provided a component that requires a prop Select does not provide
-      popper: InvalidPopper,
-    }}
-  />
-);
-
-const SelectSlotsOverridesUsingHostComponentTest = (
-  <Select
-    slots={{
-      // @ts-expect-error - provided a host element instead of a component
-      popper: 'div',
+      popup: CustomPopup,
     }}
   />
 );
@@ -119,7 +89,9 @@ const polymorphicComponentTest = () => {
         slots={{
           root: 'button',
         }}
-        onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
+        onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
+          event.currentTarget.checkValidity()
+        }
       />
 
       <Select<string, false, 'button'>
@@ -129,9 +101,9 @@ const polymorphicComponentTest = () => {
         ref={(elem) => {
           expectType<HTMLButtonElement | null, typeof elem>(elem);
         }}
-        onMouseDown={(e) => {
-          expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof e>(e);
-          e.currentTarget.checkValidity();
+        onMouseDown={(event) => {
+          expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof event>(event);
+          event.currentTarget.checkValidity();
         }}
       />
     </div>

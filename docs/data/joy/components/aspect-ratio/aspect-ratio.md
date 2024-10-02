@@ -8,15 +8,15 @@ components: AspectRatio
 
 <p class="description">The Aspect Ratio component resizes its contents to match the desired ratio.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
 ## Introduction
 
 Aspect Ratio is a wrapper component for quickly resizing content to conform to your preferred ratio of width to height.
 Media content like images can be stretched, resized, and cropped based on the CSS `object-fit` property.
 
 :::info
-A [native CSS `aspect-ratio` property](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) does exist, but MUI does not plan to implement it in Joy UI until browser compatibility increases to at least 94%.
-As of Q4 2022, compatibility is at 90%.
-Source: [Can I use…](https://caniuse.com/?search=aspect-ratio)
+A [native CSS `aspect-ratio` property](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) does exist, and we plan to implement it in Joy UI soon.
 :::
 
 ## Basics
@@ -35,7 +35,7 @@ The default ratio is `16/9`.
 
 ### Variants
 
-The Aspect Ratio component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft` (default), `outlined`, and `plain`.
+The Aspect Ratio component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft` (default), `outlined`, and `plain`.
 
 {{"demo": "VariantsRatio.js"}}
 
@@ -46,7 +46,7 @@ Note that you lose the global variants when you add custom variants.
 
 ### Ratio
 
-Use the `ratio` prop to change the aspect ratio, following the pattern `height/width`.
+Use the `ratio` prop to change the aspect ratio, following the pattern `width/height`.
 For example, the demo below uses a ratio of `4/3`, which is a common alternative to the default `16/9`:
 
 {{"demo": "CustomRatio.js"}}
@@ -110,17 +110,13 @@ function App() {
 
 The Aspect Ratio component can be a handy tool for creating a square container for an icon.
 
-The example below show
-
 {{"demo": "IconWrapper.js"}}
 
 ## Common examples
 
 ### Mobile carousel
 
-:::warning
-In designs like this, make sure to assign a `minWidth` value to prevent the Aspect Ratio component from shrinking.
-:::
+In designs like this, ensure to assign a `minWidth` value to prevent the Aspect Ratio component from shrinking.
 
 {{"demo": "CarouselRatio.js"}}
 

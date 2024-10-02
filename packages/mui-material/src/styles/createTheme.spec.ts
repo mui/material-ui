@@ -66,6 +66,13 @@ const theme = createTheme();
 {
   createTheme({
     components: {
+      MuiPopper: {
+        styleOverrides: {
+          root: {
+            backgroundColor: 'red',
+          },
+        },
+      },
       MuiFormControlLabel: {
         styleOverrides: {
           root: {
@@ -141,6 +148,13 @@ const theme = createTheme();
           },
         },
       },
+      MuiRadioGroup: {
+        styleOverrides: {
+          row: {
+            justifyContent: 'space-between',
+          },
+        },
+      },
     },
   });
 }
@@ -178,6 +192,44 @@ const theme = createTheme();
             },
           },
         ],
+        styleOverrides: {
+          root: {
+            variants: [
+              {
+                props: { variant: 'contained' },
+                style: {
+                  backdropFilter: 'none',
+                },
+              },
+            ],
+          },
+          endIcon: ({ theme: t }) => ({
+            backgroundColor: t.vars.palette.primary.main,
+            variants: [
+              {
+                props: ({ ownerState }) => ownerState.color === 'primary',
+              },
+            ],
+          }),
+        },
+      },
+    },
+  });
+}
+
+// props callback in variants
+{
+  createTheme({
+    components: {
+      MuiButton: {
+        variants: [
+          {
+            props: (props) => props.color !== 'secondary',
+            style: ({ theme: { palette } }) => ({
+              backgroundColor: palette.grey[500],
+            }),
+          },
+        ],
       },
     },
   });
@@ -188,6 +240,16 @@ const theme = createTheme();
     shape: {
       // @ts-expect-error invalid borderRadius string value in theme
       borderRadius: '5px',
+    },
+  });
+}
+
+// CSS variables for shadow DOM
+{
+  createTheme({
+    cssVariables: {
+      rootSelector: ':host',
+      colorSchemeSelector: 'class',
     },
   });
 }

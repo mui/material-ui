@@ -16,8 +16,8 @@
     "active": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "getRootProps": {
       "type": {
-        "name": "(otherHandlers?: EventHandlers) =&gt; UseMenuButtonRootSlotProps",
-        "description": "(otherHandlers?: EventHandlers) =&gt; UseMenuButtonRootSlotProps"
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseMenuButtonRootSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseMenuButtonRootSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },

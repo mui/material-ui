@@ -28,7 +28,7 @@ export default function ControlledOpenSelect() {
           setOpen((bool) => !bool);
         }}
       >
-        Open the select
+        Toggle the select
       </Button>
       <div>
         <Select

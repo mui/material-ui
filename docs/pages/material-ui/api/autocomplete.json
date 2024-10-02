@@ -28,7 +28,8 @@
         "name": "shape",
         "description": "{ clearIndicator?: object, paper?: object, popper?: object, popupIndicator?: object }"
       },
-      "default": "{}"
+      "deprecated": true,
+      "deprecationInfo": "Use the <code>slotProps</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "defaultValue": {
       "type": { "name": "custom", "description": "any" },
@@ -63,6 +64,13 @@
     "getOptionDisabled": {
       "type": { "name": "func" },
       "signature": { "type": "function(option: Value) => boolean", "describedArgs": ["option"] }
+    },
+    "getOptionKey": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(option: Value) => string | number",
+        "describedArgs": ["option"]
+      }
     },
     "getOptionLabel": {
       "type": { "name": "func" },
@@ -165,7 +173,14 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ clearIndicator?: object, paper?: object, popper?: object, popupIndicator?: object }"
+        "description": "{ chip?: func<br>&#124;&nbsp;object, clearIndicator?: func<br>&#124;&nbsp;object, listbox?: func<br>&#124;&nbsp;object, paper?: func<br>&#124;&nbsp;object, popper?: func<br>&#124;&nbsp;object, popupIndicator?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ listbox?: elementType, paper?: elementType, popper?: elementType }"
       },
       "default": "{}"
     },
@@ -183,46 +198,169 @@
     "import Autocomplete from '@mui/material/Autocomplete';",
     "import { Autocomplete } from '@mui/material';"
   ],
-  "styles": {
-    "classes": [
-      "root",
-      "fullWidth",
-      "expanded",
-      "focused",
-      "focusVisible",
-      "tag",
-      "tagSizeSmall",
-      "tagSizeMedium",
-      "hasPopupIcon",
-      "hasClearIcon",
-      "inputRoot",
-      "input",
-      "inputFocused",
-      "endAdornment",
-      "clearIndicator",
-      "popupIndicator",
-      "popupIndicatorOpen",
-      "popper",
-      "popperDisablePortal",
-      "paper",
-      "listbox",
-      "loading",
-      "noOptions",
-      "option",
-      "groupLabel",
-      "groupUl"
-    ],
-    "globalClasses": {
-      "expanded": "Mui-expanded",
-      "focused": "Mui-focused",
-      "focusVisible": "Mui-focusVisible"
+  "slots": [
+    {
+      "name": "listbox",
+      "description": "The component used to render the listbox.",
+      "default": "'ul'",
+      "class": "MuiAutocomplete-listbox"
     },
-    "name": "MuiAutocomplete"
-  },
+    {
+      "name": "paper",
+      "description": "The component used to render the body of the popup.",
+      "default": "Paper",
+      "class": "MuiAutocomplete-paper"
+    },
+    {
+      "name": "popper",
+      "description": "The component used to position the popup.",
+      "default": "Popper",
+      "class": "MuiAutocomplete-popper"
+    }
+  ],
+  "classes": [
+    {
+      "key": "clearIndicator",
+      "className": "MuiAutocomplete-clearIndicator",
+      "description": "Styles applied to the clear indicator.",
+      "isGlobal": false
+    },
+    {
+      "key": "endAdornment",
+      "className": "MuiAutocomplete-endAdornment",
+      "description": "Styles applied to the endAdornment element.",
+      "isGlobal": false
+    },
+    {
+      "key": "expanded",
+      "className": "Mui-expanded",
+      "description": "State class applied to the root element if the listbox is displayed.",
+      "isGlobal": true
+    },
+    {
+      "key": "focused",
+      "className": "Mui-focused",
+      "description": "State class applied to the root element if focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "focusVisible",
+      "className": "Mui-focusVisible",
+      "description": "Styles applied to the option elements if they are keyboard focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "fullWidth",
+      "className": "MuiAutocomplete-fullWidth",
+      "description": "Styles applied to the root element if `fullWidth={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "groupLabel",
+      "className": "MuiAutocomplete-groupLabel",
+      "description": "Styles applied to the group's label elements.",
+      "isGlobal": false
+    },
+    {
+      "key": "groupUl",
+      "className": "MuiAutocomplete-groupUl",
+      "description": "Styles applied to the group's ul elements.",
+      "isGlobal": false
+    },
+    {
+      "key": "hasClearIcon",
+      "className": "MuiAutocomplete-hasClearIcon",
+      "description": "Styles applied when the clear icon is rendered.",
+      "isGlobal": false
+    },
+    {
+      "key": "hasPopupIcon",
+      "className": "MuiAutocomplete-hasPopupIcon",
+      "description": "Styles applied when the popup icon is rendered.",
+      "isGlobal": false
+    },
+    {
+      "key": "input",
+      "className": "MuiAutocomplete-input",
+      "description": "Styles applied to the input element.",
+      "isGlobal": false
+    },
+    {
+      "key": "inputFocused",
+      "className": "MuiAutocomplete-inputFocused",
+      "description": "Styles applied to the input element if the input is focused.",
+      "isGlobal": false
+    },
+    {
+      "key": "inputRoot",
+      "className": "MuiAutocomplete-inputRoot",
+      "description": "Styles applied to the Input element.",
+      "isGlobal": false
+    },
+    {
+      "key": "loading",
+      "className": "MuiAutocomplete-loading",
+      "description": "Styles applied to the loading wrapper.",
+      "isGlobal": false
+    },
+    {
+      "key": "noOptions",
+      "className": "MuiAutocomplete-noOptions",
+      "description": "Styles applied to the no option wrapper.",
+      "isGlobal": false
+    },
+    {
+      "key": "option",
+      "className": "MuiAutocomplete-option",
+      "description": "Styles applied to the option elements.",
+      "isGlobal": false
+    },
+    {
+      "key": "popperDisablePortal",
+      "className": "MuiAutocomplete-popperDisablePortal",
+      "description": "Styles applied to the popper element if `disablePortal={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "popupIndicator",
+      "className": "MuiAutocomplete-popupIndicator",
+      "description": "Styles applied to the popup indicator.",
+      "isGlobal": false
+    },
+    {
+      "key": "popupIndicatorOpen",
+      "className": "MuiAutocomplete-popupIndicatorOpen",
+      "description": "Styles applied to the popup indicator if the popup is open.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiAutocomplete-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "tag",
+      "className": "MuiAutocomplete-tag",
+      "description": "Styles applied to the tag elements, for example the chips.",
+      "isGlobal": false
+    },
+    {
+      "key": "tagSizeMedium",
+      "className": "MuiAutocomplete-tagSizeMedium",
+      "description": "Styles applied to the tag elements, for example the chips if `size=\"medium\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "tagSizeSmall",
+      "className": "MuiAutocomplete-tagSizeSmall",
+      "description": "Styles applied to the tag elements, for example the chips if `size=\"small\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiAutocomplete",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Autocomplete/Autocomplete.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-autocomplete/\">Autocomplete</a></li></ul>",

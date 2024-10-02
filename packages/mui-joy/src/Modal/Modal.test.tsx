@@ -2,9 +2,10 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { spy } from 'sinon';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, act, fireEvent, within } from 'test/utils';
+import { createRenderer, act, fireEvent, within } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Modal, { modalClasses as classes, ModalProps } from '@mui/joy/Modal';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Modal />', () => {
   const { clock, render } = createRenderer();
@@ -32,7 +33,6 @@ describe('<Modal />', () => {
         'componentsProp', // TODO isRTL is leaking, why do we even have it in the first place?
         'themeDefaultProps', // portal, can't determine the root
         'themeStyleOverrides', // portal, can't determine the root
-        'reactTestRenderer', // portal https://github.com/facebook/react/issues/11565
       ],
     }),
   );
@@ -275,10 +275,10 @@ describe('<Modal />', () => {
         </Modal>,
       );
       const modalNode = modalRef.current;
-      expect(modalNode).toBeAriaHidden();
+      expect(modalNode).toBeInaccessible();
 
       setProps({ open: true });
-      expect(modalNode).not.toBeAriaHidden();
+      expect(modalNode).not.toBeInaccessible();
     });
   });
 
@@ -376,11 +376,11 @@ describe('<Modal />', () => {
         // see "DemoFrame" in our docs for a documented implementation
         function IFrame(props: React.PropsWithChildren<{}>) {
           const { children } = props;
-          const frameRef = React.useRef<null | HTMLIFrameElement>(null);
+          const frameRef = React.useRef<HTMLIFrameElement>(null);
           const [iframeLoaded, onLoad] = React.useReducer(() => true, false);
 
           React.useEffect(() => {
-            const document = frameRef.current?.contentDocument;
+            const document = frameRef.current!.contentDocument;
 
             if (document != null && document.readyState === 'complete' && !iframeLoaded) {
               onLoad();

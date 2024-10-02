@@ -1,5 +1,5 @@
 {
-  "name": "material-preact",
+  "name": "material-ui-preact",
   "version": "5.0.0",
   "private": true,
   "dependencies": {

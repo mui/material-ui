@@ -14,7 +14,7 @@ export default function CardUsage() {
         {
           propName: 'variant',
           knob: 'radio',
-          defaultValue: 'plain',
+          defaultValue: 'outlined',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
         {
@@ -37,14 +37,7 @@ export default function CardUsage() {
         { propName: 'invertedColors', knob: 'switch' },
       ]}
       renderDemo={(props) => (
-        <Card
-          {...props}
-          sx={{
-            m: 1,
-            mb: 4,
-            maxWidth: 350,
-          }}
-        >
+        <Card {...props} sx={{ m: 1, mb: 4, maxWidth: 350 }}>
           <AspectRatio ratio="16/9">
             <img
               src="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286"
@@ -63,13 +56,15 @@ export default function CardUsage() {
               Yosemite - Your Next Adventure
             </Typography>
             <Typography>
-              Yosemite National Park is in California’s Sierra Nevada mountains.
+              {"Yosemite National Park is in California's Sierra Nevada mountains."}
             </Typography>
             <CardActions>
-              <Button variant="outlined" size="sm">
+              <Button fullWidth variant="outlined" size="sm">
                 Add to list
               </Button>
-              <Button size="sm">Explore</Button>
+              <Button fullWidth size="sm">
+                Explore
+              </Button>
             </CardActions>
           </CardContent>
         </Card>

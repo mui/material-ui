@@ -1,15 +1,16 @@
 ---
 productId: material-ui
 title: React Pagination component
-components: Pagination, PaginationItem
+components: Pagination, PaginationItem, TablePagination
 githubLabel: 'component: pagination'
+githubSource: packages/mui-material/src/Pagination
 ---
 
 # Pagination
 
 <p class="description">The Pagination component enables the user to select a specific page from a range of pages.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic pagination
 
@@ -76,7 +77,7 @@ For the pagination of a large set of tabular data, you should use the `TablePagi
 {{"demo": "TablePaginationDemo.js"}}
 
 :::warning
-Note that the `Pagination` page prop starts at 1 to match the requirement of including the value in the URL, while the `TablePagination` page prop starts at 0 to match the requirement of zero-based JavaScript arrays that comes with rendering a lot of tabular data.
+Note that the `Pagination` page prop starts at 1 to match the requirement of including the value in the URL, while the `TablePagination` page prop starts at 0 to match the requirement of zero-based JavaScript arrays that come with rendering a lot of tabular data.
 :::
 
 You can learn more about this use case in the [table section](/material-ui/react-table/#custom-pagination-options) of the documentation.
@@ -85,7 +86,8 @@ You can learn more about this use case in the [table section](/material-ui/react
 
 ### ARIA
 
-The root node has a role of "navigation" and aria-label "pagination navigation" by default. The page items have an aria-label that identifies the purpose of the item ("go to first page", "go to previous page", "go to page 1" etc.). You can override these using the `getItemAriaLabel` prop.
+The root node has a role of "navigation" and aria-label "pagination navigation" by default. The page items have an aria-label that identifies the purpose of the item ("go to first page", "go to previous page", "go to page 1" etc.).
+You can override these using the `getItemAriaLabel` prop.
 
 ### Keyboard
 

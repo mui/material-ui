@@ -1,56 +1,48 @@
 import * as React from 'react';
-import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePicker';
 import { PickersShortcutsItem, PickersShortcutsProps, DateRange } from '@mui/x-date-pickers-pro';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { startOfWeek, endOfWeek, subDays } from 'date-fns';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import dayjs, { Dayjs } from 'dayjs';
 import Frame from 'docs/src/components/action/Frame';
 
-const startDate = new Date();
-startDate.setDate(10);
-const endDate = new Date();
-endDate.setDate(endDate.getDate() + 28);
+const startDate = dayjs();
+startDate.date(10);
+const endDate = dayjs();
+endDate.date(endDate.date() + 28);
 
-function CustomRangeShortcuts(props: PickersShortcutsProps<DateRange<Date>>) {
-  const { items, onChange, isValid } = props;
+function CustomRangeShortcuts(props: PickersShortcutsProps<DateRange<Dayjs>>) {
+  const { items, onChange, isValid, changeImportance = 'accept' } = props;
 
   if (items == null || items.length === 0) {
     return null;
   }
 
-  const resolvedItems = items.map((item: PickersShortcutsItem<DateRange<Date>>) => {
+  const resolvedItems = items.map((item: PickersShortcutsItem<DateRange<Dayjs>>) => {
     const newValue = item.getValue({ isValid });
 
     return {
       label: item.label,
       onClick: () => {
-        onChange(newValue);
+        onChange(newValue, changeImportance, item);
       },
       disabled: !isValid(newValue),
     };
   });
 
   return (
-    <Box
-      sx={{
-        gridRow: 1,
-        gridColumn: 2,
-      }}
-    >
+    <Box sx={{ gridRow: 1, gridColumn: 2 }}>
       <List
         sx={{
           display: 'flex',
-          py: 1.5,
-          px: 1.5,
+          p: 1.5,
           gap: 1.5,
           '& .MuiListItem-root': {
             p: 0,
@@ -71,26 +63,42 @@ function CustomRangeShortcuts(props: PickersShortcutsProps<DateRange<Date>>) {
   );
 }
 
+const code = `
+<LocalizationProvider dateAdapter={AdapterDateFns}>
+  <StaticDateRangePicker
+    displayStaticWrapperAs="desktop"
+    value={[startDate, endDate]}
+    slots={{
+      shortcuts: CustomRangeShortcuts,
+    }}
+    slotProps={{
+      shortcuts: {
+        items: shortcutsItems,
+      },
+    }}
+  />
+</LocalizationProvider>`;
+
 export default function XDateRangeDemo() {
-  const today = new Date();
-  const shortcutsItems: PickersShortcutsItem<DateRange<Date>>[] = [
+  const today = dayjs();
+  const shortcutsItems: PickersShortcutsItem<DateRange<Dayjs>>[] = [
     {
       label: 'This Week',
       getValue: () => {
-        return [startOfWeek(today), endOfWeek(today)];
+        return [today.startOf('week'), today.endOf('week')];
       },
     },
     {
       label: 'Last Week',
       getValue: () => {
-        const prevWeek = subDays(today, 7);
-        return [startOfWeek(prevWeek), endOfWeek(prevWeek)];
+        const prevWeek = today.add(-7, 'days');
+        return [prevWeek.startOf('week'), prevWeek.endOf('week')];
       },
     },
     {
       label: 'Last 7 Days',
       getValue: () => {
-        return [subDays(today, 7), today];
+        return [today.add(-7, 'days'), today];
       },
     },
     { label: 'Reset', getValue: () => [null, null] },
@@ -106,7 +114,7 @@ export default function XDateRangeDemo() {
               '& > div': {
                 borderRadius: 1,
                 overflow: 'auto',
-                bgcolor: '#fff',
+                bgcolor: '#FFF',
               },
               '& > div > div > div > div': {
                 flexGrow: 1,
@@ -136,7 +144,13 @@ export default function XDateRangeDemo() {
               '& .MuiPickersDay-root': {
                 width: 28,
                 height: 28,
-                fontWeight: 400,
+                fontWeight: 'regular',
+              },
+              '& .MuiDateRangePickerDay-day.Mui-selected': {
+                fontWeight: 'semiBold',
+              },
+              '& .MuiDateRangePickerDay-day:not(.Mui-selected)': {
+                borderColor: 'primary.300',
               },
             },
             (theme) =>
@@ -144,10 +158,13 @@ export default function XDateRangeDemo() {
                 '& > div': {
                   bgcolor: 'primaryDark.900',
                 },
+                '& .MuiDateRangePickerDay-day.Mui-selected': {
+                  color: '#FFF',
+                },
               }),
           ]}
         >
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
             <StaticDateRangePicker
               displayStaticWrapperAs="desktop"
               value={[startDate, endDate]}
@@ -163,43 +180,8 @@ export default function XDateRangeDemo() {
           </LocalizationProvider>
         </Paper>
       </Frame.Demo>
-      <Frame.Info data-mui-color-scheme="dark">
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            lineHeight: 1,
-            mb: 0.5,
-          }}
-        >
-          <Typography variant="body2" fontWeight="bold" sx={{ mr: 1 }}>
-            Date Range Picker now available for your project!
-          </Typography>
-          <Chip
-            variant="outlined"
-            label="Available now"
-            color="success"
-            size="small"
-            sx={(theme) => ({
-              pb: 0.2,
-              fontWeight: theme.typography.fontWeightSemiBold,
-              color: (theme.vars || theme).palette.success[300],
-              borderColor: alpha(theme.palette.success[300], 0.3),
-              background: alpha(theme.palette.success[800], 0.3),
-            })}
-          />
-        </Box>
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-          A thorough and advanced stable implementation of a long-requested component!
-        </Typography>
-        <Button
-          variant="outlined"
-          href="/x/react-date-pickers/date-range-picker/"
-          component="a"
-          sx={{ mt: { xs: 2, sm: 0 }, color: 'primary.300' }}
-        >
-          View the documentation
-        </Button>
+      <Frame.Info data-mui-color-scheme="dark" sx={{ maxHeight: 300, overflow: 'auto' }}>
+        <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
       </Frame.Info>
     </Frame>
   );

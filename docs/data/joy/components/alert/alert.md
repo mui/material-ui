@@ -10,7 +10,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 
 <p class="description">Alerts display brief messages for the user without interrupting their use of the app.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -20,7 +20,7 @@ The Alert component can be used to provide important and potentially time-sensit
 
 :::info
 Alerts should not be confused with alert _dialogs_ ([ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/)), which _are_ intended to interrupt the user to obtain a response.
-Use the Joy UI [Modal](https://mui.com/joy-ui/react-modal/) if you need the behavior of a dialog.
+Use the Joy UI [Modal](/joy-ui/react-modal/) if you need the behavior of a dialog.
 :::
 
 ## Basics
@@ -37,7 +37,7 @@ The Alert component wraps around its content, and stretches to fill its enclosin
 
 ### Variants
 
-The Alert component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft` (default), `outlined`, and `plain`.
+The Alert component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft` (default), `outlined`, and `plain`.
 
 {{"demo": "AlertVariants.js"}}
 
@@ -71,7 +71,7 @@ Use the `startDecorator` and `endDecorator` props to append actions and icons to
 
 ### Inverted colors
 
-The Alert component supports Joy UI's [color inversion](/joy-ui/main-features/color-inversion/) by using `invertedColors` prop.
+The Alert component supports Joy UI's [color inversion](/joy-ui/main-features/color-inversion/) by using `invertedColors` prop.
 
 {{"demo": "AlertInvertedColors.js"}}
 

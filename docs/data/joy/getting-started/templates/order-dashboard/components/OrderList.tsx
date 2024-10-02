@@ -17,7 +17,7 @@ import Menu from '@mui/joy/Menu';
 import MenuButton from '@mui/joy/MenuButton';
 import MenuItem from '@mui/joy/MenuItem';
 import Dropdown from '@mui/joy/Dropdown';
-// icons
+
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import BlockIcon from '@mui/icons-material/Block';
@@ -112,13 +112,7 @@ export default function OrderList() {
   return (
     <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
       {listItems.map((listItem) => (
-        <List
-          key={listItem.id}
-          size="sm"
-          sx={{
-            '--ListItem-paddingX': 0,
-          }}
-        >
+        <List key={listItem.id} size="sm" sx={{ '--ListItem-paddingX': 0 }}>
           <ListItem
             sx={{
               display: 'flex',
@@ -131,7 +125,7 @@ export default function OrderList() {
                 <Avatar size="sm">{listItem.customer.initial}</Avatar>
               </ListItemDecorator>
               <div>
-                <Typography fontWeight={600} gutterBottom>
+                <Typography gutterBottom sx={{ fontWeight: 600 }}>
                   {listItem.customer.name}
                 </Typography>
                 <Typography level="body-xs" gutterBottom>
@@ -194,7 +188,7 @@ export default function OrderList() {
         >
           <KeyboardArrowLeftIcon />
         </IconButton>
-        <Typography level="body-sm" mx="auto">
+        <Typography level="body-sm" sx={{ mx: 'auto' }}>
           Page 1 of 10
         </Typography>
         <IconButton

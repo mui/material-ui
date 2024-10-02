@@ -9,10 +9,21 @@
     },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;'textPrimary'<br>&#124;&nbsp;'textSecondary'<br>&#124;&nbsp;'textDisabled'<br>&#124;&nbsp;string"
+      }
+    },
     "component": { "type": { "name": "elementType" } },
     "gutterBottom": { "type": { "name": "bool" }, "default": "false" },
     "noWrap": { "type": { "name": "bool" }, "default": "false" },
-    "paragraph": { "type": { "name": "bool" }, "default": "false" },
+    "paragraph": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "deprecated": true,
+      "deprecationInfo": "Use the <code>component</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -37,34 +48,141 @@
     "import Typography from '@mui/material/Typography';",
     "import { Typography } from '@mui/material';"
   ],
-  "styles": {
-    "classes": [
-      "root",
-      "body2",
-      "body1",
-      "caption",
-      "button",
-      "h1",
-      "h2",
-      "h3",
-      "h4",
-      "h5",
-      "h6",
-      "subtitle1",
-      "subtitle2",
-      "overline",
-      "inherit",
-      "alignLeft",
-      "alignCenter",
-      "alignRight",
-      "alignJustify",
-      "noWrap",
-      "gutterBottom",
-      "paragraph"
-    ],
-    "globalClasses": {},
-    "name": "MuiTypography"
-  },
+  "classes": [
+    {
+      "key": "alignCenter",
+      "className": "MuiTypography-alignCenter",
+      "description": "Styles applied to the root element if `align=\"center\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "alignJustify",
+      "className": "MuiTypography-alignJustify",
+      "description": "Styles applied to the root element if `align=\"justify\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "alignLeft",
+      "className": "MuiTypography-alignLeft",
+      "description": "Styles applied to the root element if `align=\"left\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "alignRight",
+      "className": "MuiTypography-alignRight",
+      "description": "Styles applied to the root element if `align=\"right\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "body1",
+      "className": "MuiTypography-body1",
+      "description": "Styles applied to the root element if `variant=\"body1\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "body2",
+      "className": "MuiTypography-body2",
+      "description": "Styles applied to the root element if `variant=\"body2\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "button",
+      "className": "MuiTypography-button",
+      "description": "Styles applied to the root element if `variant=\"button\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "caption",
+      "className": "MuiTypography-caption",
+      "description": "Styles applied to the root element if `variant=\"caption\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "gutterBottom",
+      "className": "MuiTypography-gutterBottom",
+      "description": "Styles applied to the root element if `gutterBottom={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "h1",
+      "className": "MuiTypography-h1",
+      "description": "Styles applied to the root element if `variant=\"h1\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "h2",
+      "className": "MuiTypography-h2",
+      "description": "Styles applied to the root element if `variant=\"h2\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "h3",
+      "className": "MuiTypography-h3",
+      "description": "Styles applied to the root element if `variant=\"h3\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "h4",
+      "className": "MuiTypography-h4",
+      "description": "Styles applied to the root element if `variant=\"h4\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "h5",
+      "className": "MuiTypography-h5",
+      "description": "Styles applied to the root element if `variant=\"h5\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "h6",
+      "className": "MuiTypography-h6",
+      "description": "Styles applied to the root element if `variant=\"h6\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "inherit",
+      "className": "MuiTypography-inherit",
+      "description": "Styles applied to the root element if `variant=\"inherit\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "noWrap",
+      "className": "MuiTypography-noWrap",
+      "description": "Styles applied to the root element if `nowrap={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "overline",
+      "className": "MuiTypography-overline",
+      "description": "Styles applied to the root element if `variant=\"overline\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "paragraph",
+      "className": "MuiTypography-paragraph",
+      "description": "Styles applied to the root element if `paragraph={true}`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "root",
+      "className": "MuiTypography-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "subtitle1",
+      "className": "MuiTypography-subtitle1",
+      "description": "Styles applied to the root element if `variant=\"subtitle1\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "subtitle2",
+      "className": "MuiTypography-subtitle2",
+      "description": "Styles applied to the root element if `variant=\"subtitle2\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiTypography",

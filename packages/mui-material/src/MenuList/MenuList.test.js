@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { stub } from 'sinon';
-import { describeConformance, createRenderer } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Divider from '@mui/material/Divider';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import List from '@mui/material/List';
 import getScrollbarSize from '../utils/getScrollbarSize';
+import describeConformance from '../../test/describeConformance';
 
 function setStyleWidthForJsdomOrBrowser(style, width) {
   style.width = '';
@@ -22,6 +23,7 @@ describe('<MenuList />', () => {
   const { render } = createRenderer();
 
   describeConformance(<MenuList />, () => ({
+    render,
     classes: {},
     inheritComponent: List,
     refInstanceof: window.HTMLUListElement,
@@ -61,7 +63,7 @@ describe('<MenuList />', () => {
   });
 
   describe('actions: adjustStyleForScrollbar', () => {
-    const expectedPadding = `${getScrollbarSize(document)}px`;
+    const expectedPadding = `${getScrollbarSize(window)}px`;
 
     it('should not adjust style when container element height is greater', () => {
       const menuListActionsRef = React.createRef();

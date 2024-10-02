@@ -14,26 +14,70 @@
     "import StepConnector from '@mui/material/StepConnector';",
     "import { StepConnector } from '@mui/material';"
   ],
-  "styles": {
-    "classes": [
-      "root",
-      "horizontal",
-      "vertical",
-      "alternativeLabel",
-      "active",
-      "completed",
-      "disabled",
-      "line",
-      "lineHorizontal",
-      "lineVertical"
-    ],
-    "globalClasses": {
-      "active": "Mui-active",
-      "completed": "Mui-completed",
-      "disabled": "Mui-disabled"
+  "classes": [
+    {
+      "key": "active",
+      "className": "Mui-active",
+      "description": "State class applied to the root element if `active={true}`.",
+      "isGlobal": true
     },
-    "name": "MuiStepConnector"
-  },
+    {
+      "key": "alternativeLabel",
+      "className": "MuiStepConnector-alternativeLabel",
+      "description": "Styles applied to the root element if `alternativeLabel={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "completed",
+      "className": "Mui-completed",
+      "description": "State class applied to the root element if `completed={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "horizontal",
+      "className": "MuiStepConnector-horizontal",
+      "description": "Styles applied to the root element if `orientation=\"horizontal\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "line",
+      "className": "MuiStepConnector-line",
+      "description": "Styles applied to the line element.",
+      "isGlobal": false
+    },
+    {
+      "key": "lineHorizontal",
+      "className": "MuiStepConnector-lineHorizontal",
+      "description": "Styles applied to the line element if `orientation=\"horizontal\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "lineVertical",
+      "className": "MuiStepConnector-lineVertical",
+      "description": "Styles applied to the line element if `orientation=\"vertical\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "root",
+      "className": "MuiStepConnector-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "vertical",
+      "className": "MuiStepConnector-vertical",
+      "description": "Styles applied to the root element if `orientation=\"vertical\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiStepConnector",

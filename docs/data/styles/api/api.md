@@ -4,13 +4,17 @@ title: Styles API
 
 # API (LEGACY)
 
-<p class="description">The API reference of @mui/styles.</p>
+<p class="description">The API reference for @mui/styles.</p>
 
-> ⚠️ `@mui/styles` is the _**legacy**_ styling solution for Material UI.
-> It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore, deprecated in v5.
-> If you don't want to have both Emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/getting-started/) documentation which is the recommended alternative.
+:::error
+`@mui/styles` was deprecated with the release of MUI Core v5 in late 2021.
+It is not compatible with [React.StrictMode](https://react.dev/reference/react/StrictMode) or React 18+, and it will not be updated.
 
-> ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://react.dev/reference/react/StrictMode) or React 18.
+This documentation remains here for those working on legacy projects, but we **strongly discourage** you from using `@mui/styles` when creating a new app with Material UI—you _will_ face unresolvable dependency issues.
+
+Please use [`@mui/system`](/system/getting-started/) instead.
+See the [v5 migration docs](/material-ui/migration/migrating-from-jss/) for details on how to migrate away from `@mui/styles`.
+:::
 
 ## `createGenerateClassName([options]) => class name generator`
 
@@ -234,7 +238,7 @@ It should preferably be used at **the root of your component tree**.
 | children&nbsp;\*  | node   |         | Your component tree.                                                                                                                                                                                                                                                                                                             |
 | disableGeneration | bool   | false   | You can disable the generation of the styles with this option. It can be useful when traversing the React tree outside of the HTML rendering step on the server. Let's say you are using react-apollo to extract all the queries made by the interface server-side. You can significantly speed up the traversal with this prop. |
 | generateClassName | func   |         | JSS's class name generator.                                                                                                                                                                                                                                                                                                      |
-| injectFirst       | bool   | false   | By default, the styles are injected last in the `<head>` element of the page. As a result, they gain more specificity than any other style sheet. If you want to override Material UI's styles, set this prop.                                                                                                                   |
+| injectFirst       | bool   | false   | By default, the styles are injected last in the `<head>` element of the page. As a result, they gain more specificity than any other style sheet. If you want to override Material UI's styles, set this prop.                                                                                                                   |
 | jss               | object |         | JSS's instance.                                                                                                                                                                                                                                                                                                                  |
 
 ### Examples

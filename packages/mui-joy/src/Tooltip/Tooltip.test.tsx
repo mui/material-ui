@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
+import { spy } from 'sinon';
+import { createRenderer, act } from '@mui/internal-test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { PopperProps } from '@mui/base';
 import { ThemeProvider } from '@mui/joy/styles';
 import Tooltip, { tooltipClasses as classes, TooltipClassKey } from '@mui/joy/Tooltip';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Tooltip />', () => {
   const { render } = createRenderer();
@@ -48,22 +50,14 @@ describe('<Tooltip />', () => {
         'componentProp',
         'componentsProp',
         'themeVariants',
-        // react-transition-group issue
-        'reactTestRenderer',
+        // Props are spread to root and children
+        // We cannot use the standard propsSpread test which relies on data-testid only on the root
+        'propsSpread',
+        // Props are spread to root and children
+        // We cannot use the standard mergeClassName test which relies on data-testid only on the root
+        'mergeClassName',
       ],
     }),
-  );
-
-  describeJoyColorInversion(
-    <Tooltip
-      title="Hello world"
-      open
-      disablePortal
-      slotProps={{ root: { 'data-testid': 'test-element' } as any }}
-    >
-      <button>Hello World</button>
-    </Tooltip>,
-    { muiName: 'JoyTooltip', classes, portalSlot: 'root' },
   );
 
   describe('prop: variant', () => {
@@ -139,6 +133,53 @@ describe('<Tooltip />', () => {
           classes[`size${capitalize(size)}` as TooltipClassKey],
         );
       });
+    });
+  });
+
+  describe('focus', () => {
+    // https://github.com/mui/mui-x/issues/12248
+    it('should support event handlers with extra parameters', () => {
+      const handleFocus = spy((event, extra) => extra);
+      const handleBlur = spy((event, ...params) => params);
+
+      const TextField = React.forwardRef<
+        HTMLDivElement,
+        {
+          onFocus: (event: React.FocusEvent, ...params: any[]) => void;
+          onBlur: (event: React.FocusEvent, ...params: any[]) => void;
+        }
+      >(function TextField(props, ref) {
+        const { onFocus, onBlur, ...other } = props;
+        return (
+          <div ref={ref} {...other}>
+            <input
+              type="text"
+              onFocus={(event) => onFocus(event, 'focus')}
+              onBlur={(event) => onBlur(event, 'blur', 1)}
+            />
+          </div>
+        );
+      });
+      const { getByRole } = render(
+        <Tooltip open title="test">
+          <TextField onFocus={handleFocus} onBlur={handleBlur} />
+        </Tooltip>,
+      );
+      const input = getByRole('textbox');
+
+      act(() => {
+        input.focus();
+      });
+
+      expect(handleFocus.callCount).to.equal(1);
+      expect(handleFocus.returnValues[0]).to.equal('focus');
+
+      act(() => {
+        input.blur();
+      });
+
+      expect(handleBlur.callCount).to.equal(1);
+      expect(handleBlur.returnValues[0]).to.deep.equal(['blur', 1]);
     });
   });
 });

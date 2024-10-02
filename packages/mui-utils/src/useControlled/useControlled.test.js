@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { act, createRenderer } from 'test/utils';
+import { act, createRenderer } from '@mui/internal-test-utils';
 import useControlled from './useControlled';
 
 const TestComponent = ({ value: valueProp, defaultValue, children }) => {
@@ -103,6 +103,12 @@ describe('useControlled', () => {
 
     expect(() => {
       setProps({ defaultValue: 1 });
+    }).not.toErrorDev();
+  });
+
+  it('should not raise a warning if setting NaN as the defaultValue when uncontrolled', () => {
+    expect(() => {
+      render(<TestComponent defaultValue={NaN}>{() => null}</TestComponent>);
     }).not.toErrorDev();
   });
 });

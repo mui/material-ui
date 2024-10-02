@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import StepLabel from '../StepLabel';
 import isMuiElement from '../utils/isMuiElement';
@@ -35,23 +35,28 @@ const StepButtonRoot = styled(ButtonBase, {
       styles[ownerState.orientation],
     ];
   },
-})(({ ownerState }) => ({
+})({
   width: '100%',
   padding: '24px 16px',
   margin: '-24px -16px',
   boxSizing: 'content-box',
-  ...(ownerState.orientation === 'vertical' && {
-    justifyContent: 'flex-start',
-    padding: '8px',
-    margin: '-8px',
-  }),
   [`& .${stepButtonClasses.touchRipple}`]: {
     color: 'rgba(0, 0, 0, 0.3)',
   },
-}));
+  variants: [
+    {
+      props: { orientation: 'vertical' },
+      style: {
+        justifyContent: 'flex-start',
+        padding: '8px',
+        margin: '-8px',
+      },
+    },
+  ],
+});
 
 const StepButton = React.forwardRef(function StepButton(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiStepButton' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiStepButton' });
   const { children, className, icon, optional, ...other } = props;
 
   const { disabled, active } = React.useContext(StepContext);
@@ -89,10 +94,10 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
 });
 
 StepButton.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Can be a `StepLabel` or a node to place inside `StepLabel` as children.
    */

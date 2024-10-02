@@ -15,7 +15,7 @@ export default function IconButtonVariables() {
       data={[
         {
           var: '--IconButton-size',
-          defaultValue: '40px',
+          defaultValue: '36px',
         },
       ]}
       renderDemo={(sx) => (

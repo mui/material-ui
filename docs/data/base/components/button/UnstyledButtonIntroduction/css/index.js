@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { Button, buttonClasses } from '@mui/base/Button';
+import { Button } from '@mui/base/Button';
+import { useTheme } from '@mui/system';
 import Stack from '@mui/material/Stack';
 
 export default function UnstyledButtonsIntroduction() {
   return (
     <React.Fragment>
       <Stack spacing={2} direction="row">
-        <Button className="CustomButton">Button</Button>
-        <Button className="CustomButton" disabled>
+        <Button className="IntroductionButton">Button</Button>
+        <Button className="IntroductionButton" disabled>
           Disabled
         </Button>
       </Stack>
@@ -29,11 +30,32 @@ const cyan = {
   900: '#022127',
 };
 
+const grey = {
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
+};
+
+function useIsDarkMode() {
+  const theme = useTheme();
+  return theme.palette.mode === 'dark';
+}
+
 function Styles() {
+  // Replace this with your app logic for determining dark mode
+  const isDarkMode = useIsDarkMode();
+
   return (
     <style>{`
-  .CustomButton {
-    font-family: IBM Plex Sans,sans-serif;
+  .IntroductionButton {
+    font-family: 'IBM Plex Sans', sans-serif;
     font-weight: 600;
     font-size: 0.875rem;
     line-height: 1.5;
@@ -41,18 +63,32 @@ function Styles() {
     padding: 8px 16px;
     border-radius: 8px;
     color: white;
+    transition: all 150ms ease;
     cursor: pointer;
-    border: none;
+    border: 1px solid ${cyan[500]};
+    box-shadow: 0 2px 1px ${
+      isDarkMode ? 'rgba(0, 0, 0, 0.5)' : 'rgba(45, 45, 60, 0.2)'
+    }, inset 0 1.5px 1px ${cyan[400]}, inset 0 -2px 1px ${cyan[600]};
   }
-  .CustomButton:hover {
+  .IntroductionButton:hover {
     background-color: ${cyan[600]};
   }
-  .${buttonClasses.active} {
+  .IntroductionButton.base--active {
     background-color: ${cyan[700]};
+    box-shadow: none;
+    transform: scale(0.99);
   }
-  .${buttonClasses.disabled} {
-    opacity: 0.5;
-    cursor: not-allowed;
+  .IntroductionButton.base--focusVisible {
+    box-shadow: 0 0 0 4px ${isDarkMode ? cyan[300] : cyan[200]};
+    outline: none;
+  }
+  .IntroductionButton.base--disabled {
+    background-color: ${isDarkMode ? grey[700] : grey[200]};
+    color: ${isDarkMode ? grey[200] : grey[700]};
+    border: 0;
+    cursor: default;
+    box-shadow: none;
+    transform: scale(1);
   }
   `}</style>
   );

@@ -6,7 +6,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
+
 import useSlot from '../utils/useSlot';
 import { TextareaTypeMap, TextareaProps, TextareaOwnerState } from './TextareaProps';
 import textareaClasses, { getTextareaUtilityClass } from './textareaClasses';
@@ -46,28 +46,29 @@ const TextareaRoot = styled('div', {
       '--Textarea-decoratorColor': theme.vars.palette.text.icon,
       '--Textarea-focused': '0',
       '--Textarea-focusedThickness': theme.vars.focus.thickness,
-      ...(ownerState.color === 'context'
-        ? {
-            '--Textarea-focusedHighlight': theme.vars.palette.focusVisible,
-          }
-        : {
-            '--Textarea-focusedHighlight':
-              theme.vars.palette[
-                ownerState.color === 'neutral' ? 'primary' : ownerState.color!
-              ]?.[500],
-          }),
+      '--Textarea-focusedHighlight':
+        theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
+      '&:not([data-inverted-colors="false"])': {
+        ...(ownerState.instanceColor && {
+          '--_Textarea-focusedHighlight':
+            theme.vars.palette[
+              ownerState.instanceColor === 'neutral' ? 'primary' : ownerState.instanceColor
+            ]?.[500],
+        }),
+        '--Textarea-focusedHighlight': `var(--_Textarea-focusedHighlight, ${theme.vars.palette.focusVisible})`,
+      },
       ...(ownerState.size === 'sm' && {
         '--Textarea-minHeight': '2rem',
-        '--Textarea-paddingBlock': 'calc(0.5rem - var(--variant-borderWidth, 0px))', // to match Input because <textarea> does not center the text at the middle like <input>
+        '--Textarea-paddingBlock': 'calc(0.375rem - 0.5px - var(--variant-borderWidth, 0px))', // to match Input because <textarea> does not center the text at the middle like <input>
         '--Textarea-paddingInline': '0.5rem',
         '--Textarea-decoratorChildHeight': 'min(1.5rem, var(--Textarea-minHeight))',
         '--Icon-fontSize': theme.vars.fontSize.xl,
       }),
       ...(ownerState.size === 'md' && {
-        '--Textarea-minHeight': '2.5rem',
-        '--Textarea-paddingBlock': 'calc(0.5rem - var(--variant-borderWidth, 0px))',
+        '--Textarea-minHeight': '2.25rem',
+        '--Textarea-paddingBlock': 'calc(0.375rem - var(--variant-borderWidth, 0px))',
         '--Textarea-paddingInline': '0.75rem',
-        '--Textarea-decoratorChildHeight': 'min(2rem, var(--Textarea-minHeight))',
+        '--Textarea-decoratorChildHeight': 'min(1.75rem, var(--Textarea-minHeight))',
         '--Icon-fontSize': theme.vars.fontSize.xl2,
       }),
       ...(ownerState.size === 'lg' && {
@@ -84,10 +85,14 @@ const TextareaRoot = styled('div', {
       '--Textarea-decoratorChildRadius':
         'max(var(--Textarea-radius) - var(--variant-borderWidth, 0px) - var(--_Textarea-paddingBlock), min(var(--_Textarea-paddingBlock) + var(--variant-borderWidth, 0px), var(--Textarea-radius) / 2))',
       '--Button-minHeight': 'var(--Textarea-decoratorChildHeight)',
+      '--Button-paddingBlock': '0px', // to ensure that the height of the button is equal to --Button-minHeight
       '--IconButton-size': 'var(--Textarea-decoratorChildHeight)',
       '--Button-radius': 'var(--Textarea-decoratorChildRadius)',
       '--IconButton-radius': 'var(--Textarea-decoratorChildRadius)',
       boxSizing: 'border-box',
+      ...(ownerState.variant !== 'plain' && {
+        boxShadow: theme.shadow.xs,
+      }),
       minWidth: 0,
       minHeight: 'var(--Textarea-minHeight)',
       cursor: 'text',
@@ -100,7 +105,7 @@ const TextareaRoot = styled('div', {
       ...theme.typography[`body-${ownerState.size!}`],
       ...variantStyle,
       backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
-      '&:before': {
+      '&::before': {
         boxSizing: 'border-box',
         content: '""',
         display: 'block',
@@ -236,6 +241,7 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
 
   if (process.env.NODE_ENV !== 'production') {
     const registerEffect = formControl?.registerEffect;
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- process.env never changes
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (registerEffect) {
@@ -249,10 +255,10 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
   const disabled = inProps.disabled ?? formControl?.disabled ?? disabledProp;
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, error ? 'danger' : formControl?.color ?? colorProp);
+  const color = inProps.color ?? (error ? 'danger' : (formControl?.color ?? colorProp));
 
   const ownerState = {
+    instanceColor: error ? 'danger' : inProps.color,
     ...props,
     color,
     disabled,
@@ -319,10 +325,10 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
 }) as OverridableComponent<TextareaTypeMap>;
 
 Textarea.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */

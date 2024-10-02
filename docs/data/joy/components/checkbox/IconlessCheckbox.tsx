@@ -8,17 +8,14 @@ import Typography from '@mui/joy/Typography';
 export default function IconlessCheckbox() {
   return (
     <Box sx={{ width: 343 }}>
-      <Typography id="topping" level="body-sm" fontWeight="lg" mb={2}>
+      <Typography id="topping" level="body-sm" sx={{ fontWeight: 'lg', mb: 2 }}>
         Pizza toppings
       </Typography>
-      <Box role="group" aria-labelledby="topping">
+      <div role="group" aria-labelledby="topping">
         <List
           orientation="horizontal"
           wrap
-          sx={{
-            '--List-gap': '8px',
-            '--ListItem-radius': '20px',
-          }}
+          sx={{ '--List-gap': '8px', '--ListItem-radius': '20px' }}
         >
           {[
             'Pepperoni',
@@ -39,7 +36,7 @@ export default function IconlessCheckbox() {
             </ListItem>
           ))}
         </List>
-      </Box>
+      </div>
     </Box>
   );
 }

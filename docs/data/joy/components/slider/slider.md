@@ -10,7 +10,7 @@ unstyled: /base-ui/react-slider/
 
 <p class="description">Slider generates a background element that can be used for various purposes.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -33,6 +33,7 @@ export default function MyApp() {
 ### Steps
 
 Change the default step increments by setting a desired value to the `step` prop.
+Make sure to adjust the `shiftStep` prop (the granularity with which the slider can step when using Page Up/Down or Shift + Arrow Up/Down) to a value divadable with the `step`.
 
 {{"demo": "StepsSlider.js"}}
 
@@ -75,10 +76,10 @@ You can either invert it by assigning `inverted` to the `track` prop or remove i
 
 {{"demo": "TrackFalseSlider.js"}}
 
-## CSS variables
+## CSS variables playground
 
 Play around with all the CSS variables available in the slider component to see how the design changes.
 
 You can use those to customize the component on both the `sx` prop and the theme.
 
-{{"demo": "SliderVariables.js", "hideToolbar": true}}
+{{"demo": "SliderVariables.js", "hideToolbar": true, "bg": "gradient"}}

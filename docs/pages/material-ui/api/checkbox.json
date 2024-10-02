@@ -48,20 +48,56 @@
     "import Checkbox from '@mui/material/Checkbox';",
     "import { Checkbox } from '@mui/material';"
   ],
-  "styles": {
-    "classes": [
-      "root",
-      "checked",
-      "disabled",
-      "indeterminate",
-      "colorPrimary",
-      "colorSecondary",
-      "sizeSmall",
-      "sizeMedium"
-    ],
-    "globalClasses": { "checked": "Mui-checked", "disabled": "Mui-disabled" },
-    "name": "MuiCheckbox"
-  },
+  "classes": [
+    {
+      "key": "checked",
+      "className": "Mui-checked",
+      "description": "State class applied to the root element if `checked={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiCheckbox-colorPrimary",
+      "description": "State class applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSecondary",
+      "className": "MuiCheckbox-colorSecondary",
+      "description": "State class applied to the root element if `color=\"secondary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "indeterminate",
+      "className": "MuiCheckbox-indeterminate",
+      "description": "State class applied to the root element if `indeterminate={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiCheckbox-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeMedium",
+      "className": "MuiCheckbox-sizeMedium",
+      "description": "State class applied to the root element if `size=\"medium\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSmall",
+      "className": "MuiCheckbox-sizeSmall",
+      "description": "State class applied to the root element if `size=\"small\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiCheckbox",

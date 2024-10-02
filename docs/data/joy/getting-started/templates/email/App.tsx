@@ -1,58 +1,28 @@
 import * as React from 'react';
-import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import { CssVarsProvider } from '@mui/joy/styles';
+import { FocusTrap } from '@mui/base/FocusTrap';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
-import Input from '@mui/joy/Input';
-import IconButton from '@mui/joy/IconButton';
+import Button from '@mui/joy/Button';
+import Stack from '@mui/joy/Stack';
 
-// Icons import
-import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
-import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
-import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
-import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
-import MailRoundedIcon from '@mui/icons-material/MailRounded';
-import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
-import MenuIcon from '@mui/icons-material/Menu';
-import BookRoundedIcon from '@mui/icons-material/BookRounded';
+import CreateRoundedIcon from '@mui/icons-material/CreateRounded';
+import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
+import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
+import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
 
-// custom
-import Menu from './components/Menu';
 import Layout from './components/Layout';
 import Navigation from './components/Navigation';
 import Mails from './components/Mails';
 import EmailContent from './components/EmailContent';
-
-function ColorSchemeToggle() {
-  const { mode, setMode } = useColorScheme();
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-  if (!mounted) {
-    return <IconButton size="sm" variant="outlined" color="primary" />;
-  }
-  return (
-    <IconButton
-      id="toggle-mode"
-      size="sm"
-      variant="soft"
-      color="neutral"
-      onClick={() => {
-        if (mode === 'light') {
-          setMode('dark');
-        } else {
-          setMode('light');
-        }
-      }}
-    >
-      {mode === 'light' ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
-    </IconButton>
-  );
-}
+import WriteEmail from './components/WriteEmail';
+import Header from './components/Header';
 
 export default function EmailExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+
   return (
     <CssVarsProvider disableTransitionOnChange>
       <CssBaseline />
@@ -61,113 +31,68 @@ export default function EmailExample() {
           <Navigation />
         </Layout.SideDrawer>
       )}
-      <Layout.Root
+      <Stack
+        id="tab-bar"
+        direction="row"
+        spacing={1}
         sx={{
-          ...(drawerOpen && {
-            height: '100vh',
-            overflow: 'hidden',
-          }),
+          justifyContent: 'space-around',
+          display: { xs: 'flex', sm: 'none' },
+          zIndex: '999',
+          bottom: 0,
+          position: 'fixed',
+          width: '100dvw',
+          py: 2,
+          backgroundColor: 'background.body',
+          borderTop: '1px solid',
+          borderColor: 'divider',
         }}
       >
+        <Button
+          variant="plain"
+          color="neutral"
+          aria-pressed="true"
+          component="a"
+          href="/joy-ui/getting-started/templates/email/"
+          size="sm"
+          startDecorator={<EmailRoundedIcon />}
+          sx={{ flexDirection: 'column', '--Button-gap': 0 }}
+        >
+          Email
+        </Button>
+        <Button
+          variant="plain"
+          color="neutral"
+          component="a"
+          href="/joy-ui/getting-started/templates/team/"
+          size="sm"
+          startDecorator={<PeopleAltRoundedIcon />}
+          sx={{ flexDirection: 'column', '--Button-gap': 0 }}
+        >
+          Team
+        </Button>
+        <Button
+          variant="plain"
+          color="neutral"
+          component="a"
+          href="/joy-ui/getting-started/templates/files/"
+          size="sm"
+          startDecorator={<FolderRoundedIcon />}
+          sx={{ flexDirection: 'column', '--Button-gap': 0 }}
+        >
+          Files
+        </Button>
+      </Stack>
+      <Layout.Root
+        sx={[
+          drawerOpen && {
+            height: '100vh',
+            overflow: 'hidden',
+          },
+        ]}
+      >
         <Layout.Header>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 1.5,
-            }}
-          >
-            <IconButton
-              variant="outlined"
-              size="sm"
-              onClick={() => setDrawerOpen(true)}
-              sx={{ display: { sm: 'none' } }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <IconButton
-              size="sm"
-              variant="soft"
-              sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
-            >
-              <MailRoundedIcon />
-            </IconButton>
-            <Typography component="h1" fontWeight="xl">
-              Email
-            </Typography>
-          </Box>
-          <Input
-            size="sm"
-            variant="outlined"
-            placeholder="Search anything…"
-            startDecorator={<SearchRoundedIcon color="primary" />}
-            endDecorator={
-              <IconButton variant="outlined" color="neutral">
-                <Typography fontWeight="lg" fontSize="sm" textColor="text.icon">
-                  ⌘ + k
-                </Typography>
-              </IconButton>
-            }
-            sx={{
-              flexBasis: '500px',
-              display: {
-                xs: 'none',
-                sm: 'flex',
-              },
-              boxShadow: 'sm',
-            }}
-          />
-          <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1.5 }}>
-            <IconButton
-              size="sm"
-              variant="outlined"
-              color="neutral"
-              sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
-            >
-              <SearchRoundedIcon />
-            </IconButton>
-
-            <IconButton
-              size="sm"
-              variant="soft"
-              color="neutral"
-              component="a"
-              href="/blog/first-look-at-joy/"
-            >
-              <BookRoundedIcon />
-            </IconButton>
-            <Menu
-              id="app-selector"
-              control={
-                <IconButton
-                  size="sm"
-                  variant="soft"
-                  color="neutral"
-                  aria-label="Apps"
-                >
-                  <GridViewRoundedIcon />
-                </IconButton>
-              }
-              menus={[
-                {
-                  label: 'Email',
-                  active: true,
-                  href: '/joy-ui/getting-started/templates/email/',
-                  'aria-current': 'page',
-                },
-                {
-                  label: 'Team',
-                  href: '/joy-ui/getting-started/templates/team/',
-                },
-                {
-                  label: 'Files',
-                  href: '/joy-ui/getting-started/templates/files/',
-                },
-              ]}
-            />
-            <ColorSchemeToggle />
-          </Box>
+          <Header />
         </Layout.Header>
         <Layout.SideNav>
           <Navigation />
@@ -176,42 +101,30 @@ export default function EmailExample() {
           <Box
             sx={{
               p: 2,
-              mb: 1,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
             }}
           >
-            <Typography level="title-sm" textColor="text.tertiary">
-              Unread
-            </Typography>
-            <IconButton size="sm" variant="plain" color="primary">
-              <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
-            </IconButton>
-          </Box>
-          <Box sx={{ py: 10 }}>
-            <Typography
-              textColor="text.tertiary"
-              level="body-sm"
-              sx={{ textAlign: 'center' }}
+            <Box sx={{ alignItems: 'center', gap: 1 }}>
+              <Typography level="title-lg" textColor="text.secondary" component="h1">
+                My inbox
+              </Typography>
+              <Typography level="title-sm" textColor="text.tertiary">
+                5 emails
+              </Typography>
+            </Box>
+            <Button
+              size="sm"
+              startDecorator={<CreateRoundedIcon />}
+              onClick={() => setOpen(true)}
+              sx={{ ml: 'auto' }}
             >
-              You&apos;ve read all messages in your inbox.
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              p: 2,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Typography level="title-sm" textColor="text.tertiary">
-              Everything else
-            </Typography>
-            <IconButton size="sm" variant="plain" color="primary">
-              <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
-            </IconButton>
+              Compose email
+            </Button>
+            <FocusTrap open={open} disableAutoFocus disableEnforceFocus>
+              <WriteEmail open={open} onClose={() => setOpen(false)} />
+            </FocusTrap>
           </Box>
           <Mails />
         </Layout.SidePane>

@@ -11,11 +11,15 @@
     },
     "components": {
       "type": { "name": "shape", "description": "{ Input?: elementType, Root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ input?: object, root?: object }" },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
@@ -78,37 +82,128 @@
     "import InputBase from '@mui/material/InputBase';",
     "import { InputBase } from '@mui/material';"
   ],
-  "styles": {
-    "classes": [
-      "root",
-      "formControl",
-      "focused",
-      "disabled",
-      "adornedStart",
-      "adornedEnd",
-      "error",
-      "sizeSmall",
-      "multiline",
-      "colorSecondary",
-      "fullWidth",
-      "hiddenLabel",
-      "readOnly",
-      "input",
-      "inputSizeSmall",
-      "inputMultiline",
-      "inputTypeSearch",
-      "inputAdornedStart",
-      "inputAdornedEnd",
-      "inputHiddenLabel"
-    ],
-    "globalClasses": {
-      "focused": "Mui-focused",
-      "disabled": "Mui-disabled",
-      "error": "Mui-error",
-      "readOnly": "Mui-readOnly"
+  "classes": [
+    {
+      "key": "adornedEnd",
+      "className": "MuiInputBase-adornedEnd",
+      "description": "Styles applied to the root element if `endAdornment` is provided.",
+      "isGlobal": false
     },
-    "name": "MuiInputBase"
-  },
+    {
+      "key": "adornedStart",
+      "className": "MuiInputBase-adornedStart",
+      "description": "Styles applied to the root element if `startAdornment` is provided.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSecondary",
+      "className": "MuiInputBase-colorSecondary",
+      "description": "Styles applied to the root element if the color is secondary.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "Styles applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "error",
+      "className": "Mui-error",
+      "description": "State class applied to the root element if `error={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "focused",
+      "className": "Mui-focused",
+      "description": "Styles applied to the root element if the component is focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "formControl",
+      "className": "MuiInputBase-formControl",
+      "description": "Styles applied to the root element if the component is a descendant of `FormControl`.",
+      "isGlobal": false
+    },
+    {
+      "key": "fullWidth",
+      "className": "MuiInputBase-fullWidth",
+      "description": "Styles applied to the root element if `fullWidth={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "hiddenLabel",
+      "className": "MuiInputBase-hiddenLabel",
+      "description": "Styles applied to the root element if `hiddenLabel={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "input",
+      "className": "MuiInputBase-input",
+      "description": "Styles applied to the input element.",
+      "isGlobal": false
+    },
+    {
+      "key": "inputAdornedEnd",
+      "className": "MuiInputBase-inputAdornedEnd",
+      "description": "Styles applied to the input element if `endAdornment` is provided.",
+      "isGlobal": false
+    },
+    {
+      "key": "inputAdornedStart",
+      "className": "MuiInputBase-inputAdornedStart",
+      "description": "Styles applied to the input element if `startAdornment` is provided.",
+      "isGlobal": false
+    },
+    {
+      "key": "inputHiddenLabel",
+      "className": "MuiInputBase-inputHiddenLabel",
+      "description": "Styles applied to the input element if `hiddenLabel={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "inputMultiline",
+      "className": "MuiInputBase-inputMultiline",
+      "description": "Styles applied to the input element if `multiline={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "inputSizeSmall",
+      "className": "MuiInputBase-inputSizeSmall",
+      "description": "Styles applied to the input element if `size=\"small\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "inputTypeSearch",
+      "className": "MuiInputBase-inputTypeSearch",
+      "description": "Styles applied to the input element if `type=\"search\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "multiline",
+      "className": "MuiInputBase-multiline",
+      "description": "Styles applied to the root element if `multiline={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "readOnly",
+      "className": "Mui-readOnly",
+      "description": "State class applied to the root element if `readOnly={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "root",
+      "className": "MuiInputBase-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSmall",
+      "className": "MuiInputBase-sizeSmall",
+      "description": "Styles applied to the input element if `size=\"small\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiInputBase",

@@ -1,12 +1,11 @@
 import chalk from 'chalk';
-import childProcess from 'child_process';
 import glob from 'fast-glob';
 import fse from 'fs-extra';
 import path from 'path';
-import { promisify } from 'util';
 import yargs from 'yargs';
+import { $ } from 'execa';
 
-const exec = promisify(childProcess.exec);
+const $$ = $({ stdio: 'inherit' });
 
 /**
  * Fixes a wrong import path caused by https://github.com/microsoft/TypeScript/issues/39117
@@ -32,6 +31,73 @@ function rewriteImportPath(importPath) {
   throw new Error(`Don't know where to rewrite '${importPath}' to`);
 }
 
+async function rewriteImportPaths(declarationFile, publishDir) {
+  const code = await fse.readFile(declarationFile, { encoding: 'utf8' });
+  const basename = path.basename(declarationFile);
+
+  if (
+    // Only consider React components
+    basename[0] === basename[0].toUpperCase() &&
+    code.includes("import PropTypes from 'prop-types';")
+  ) {
+    throw new Error(
+      [
+        `${declarationFile} imports from 'prop-types', this is wrong.`,
+        "It's likely missing a cast to any on the propTypes declaration:",
+        'ComponentName.propTypes = { /* prop */ } as any;',
+      ].join('\n'),
+    );
+  }
+
+  let fixedCode = code;
+  const changes = [];
+
+  // find all type `import()`
+  // not to be confused with `import type`
+  const importTypeRegExp = /import\(([^)]+)\)/g;
+
+  let importTypeMatch;
+  // eslint-disable-next-line no-cond-assign -- Waiting for RegExp.prototype.matchAll
+  while ((importTypeMatch = importTypeRegExp.exec(code)) !== null) {
+    // First and last character are quotes.
+    // TypeScript mixes single and double quotes.
+    const importPath = importTypeMatch[1].slice(1, -1);
+    // In filesystem semantics `@mui/material` is a relative path.
+    // But when resolving imports these specifiers are considered "bare specifiers" and work differently.
+    // We're only interested in imports that are considered "relative path imports".
+    const isBareImportSpecifier = !importPath.startsWith('.');
+    if (!isBareImportSpecifier) {
+      const resolvedImport = path.resolve(declarationFile, importPath);
+      const importPathFromPublishDir = path.relative(publishDir, resolvedImport);
+      const isImportReachableWhenPublished = !importPathFromPublishDir.startsWith('.');
+
+      if (!isImportReachableWhenPublished) {
+        try {
+          const fixedImportPath = rewriteImportPath(
+            // ensure relative POSIX path
+            importPathFromPublishDir.replace(/\\/g, '/'),
+          );
+          const originalImportType = importTypeMatch[0];
+          const fixedImportType = importTypeMatch[0].replace(importPath, fixedImportPath);
+
+          // Make it easy to visually scan for the created lines.
+          changes.push(`-${chalk.bgRed(originalImportType)}\n+${chalk.bgGreen(fixedImportType)}`);
+          fixedCode = fixedCode.replace(originalImportType, fixedImportType);
+        } catch (error) {
+          throw new Error(`${declarationFile}: ${error}`);
+        }
+      }
+    }
+  }
+
+  const changed = changes.length > 0;
+  if (changed) {
+    await fse.writeFile(declarationFile, fixedCode);
+  }
+
+  return changes;
+}
+
 async function main() {
   const packageRoot = process.cwd();
 
@@ -44,79 +110,12 @@ async function main() {
     );
   }
 
-  await exec(['yarn', 'tsc', '-b', tsconfigPath].join(' '));
+  await $$`pnpm tsc -b ${tsconfigPath}`;
 
   const publishDir = path.join(packageRoot, 'build');
   const declarationFiles = await glob('**/*.d.ts', { absolute: true, cwd: publishDir });
   if (declarationFiles.length === 0) {
     throw new Error(`Unable to find declaration files in '${publishDir}'`);
-  }
-
-  async function rewriteImportPaths(declarationFile) {
-    const code = await fse.readFile(declarationFile, { encoding: 'utf8' });
-    const basename = path.basename(declarationFile);
-
-    if (
-      // Only consider React components
-      basename[0] === basename[0].toUpperCase() &&
-      code.indexOf("import PropTypes from 'prop-types';") !== -1
-    ) {
-      throw new Error(
-        [
-          `${declarationFile} imports from 'prop-types', this is wrong.`,
-          "It's likely missing a cast to any on the propTypes declaration:",
-          'ComponentName.propTypes = { /* prop */ } as any;',
-        ].join('\n'),
-      );
-    }
-
-    let fixedCode = code;
-    const changes = [];
-
-    // find all type `import()`
-    // not to be confused with `import type`
-    const importTypeRegExp = /import\(([^)]+)\)/g;
-
-    let importTypeMatch;
-    // eslint-disable-next-line no-cond-assign -- Waiting for RegExp.prototype.matchAll
-    while ((importTypeMatch = importTypeRegExp.exec(code)) !== null) {
-      // First and last character are quotes.
-      // TypeScript mixes single and double quotes.
-      const importPath = importTypeMatch[1].slice(1, -1);
-      // In filesystem semantics `@mui/material` is a relative path.
-      // But when resolving imports these specifiers are considered "bare specifiers" and work differently.
-      // We're only interested in imports that are considered "relative path imports".
-      const isBareImportSpecifier = !importPath.startsWith('.');
-      if (!isBareImportSpecifier) {
-        const resolvedImport = path.resolve(declarationFile, importPath);
-        const importPathFromPublishDir = path.relative(publishDir, resolvedImport);
-        const isImportReachableWhenPublished = !importPathFromPublishDir.startsWith('.');
-
-        if (!isImportReachableWhenPublished) {
-          try {
-            const fixedImportPath = rewriteImportPath(
-              // ensure relative POSIX path
-              importPathFromPublishDir.replace(/\\/g, '/'),
-            );
-            const originalImportType = importTypeMatch[0];
-            const fixedImportType = importTypeMatch[0].replace(importPath, fixedImportPath);
-
-            // Make it easy to visually scan for the created lines.
-            changes.push(`-${chalk.bgRed(originalImportType)}\n+${chalk.bgGreen(fixedImportType)}`);
-            fixedCode = fixedCode.replace(originalImportType, fixedImportType);
-          } catch (error) {
-            throw new Error(`${declarationFile}: ${error}`);
-          }
-        }
-      }
-    }
-
-    const changed = changes.length > 0;
-    if (changed) {
-      await fse.writeFile(declarationFile, fixedCode);
-    }
-
-    return changes;
   }
 
   let rewrittenTally = 0;

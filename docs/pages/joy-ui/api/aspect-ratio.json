@@ -57,36 +57,82 @@
     "import AspectRatio from '@mui/joy/AspectRatio';",
     "import { AspectRatio } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiAspectRatio" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiAspectRatio-root"
+      "class": "MuiAspectRatio-root"
     },
     {
       "name": "content",
       "description": "The component that renders the content.",
       "default": "'div'",
-      "class": ".MuiAspectRatio-content"
+      "class": "MuiAspectRatio-content"
     }
   ],
-  "classes": {
-    "classes": [
-      "colorContext",
-      "colorDanger",
-      "colorNeutral",
-      "colorPrimary",
-      "colorSuccess",
-      "colorWarning",
-      "variantOutlined",
-      "variantPlain",
-      "variantSoft",
-      "variantSolid"
-    ],
-    "globalClasses": {}
-  },
+  "classes": [
+    {
+      "key": "colorContext",
+      "className": "MuiAspectRatio-colorContext",
+      "description": "Class name applied to the root element when color inversion is triggered.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorDanger",
+      "className": "MuiAspectRatio-colorDanger",
+      "description": "Class name applied to the content element if `color=\"danger\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorNeutral",
+      "className": "MuiAspectRatio-colorNeutral",
+      "description": "Class name applied to the content element if `color=\"neutral\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiAspectRatio-colorPrimary",
+      "description": "Class name applied to the content element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSuccess",
+      "className": "MuiAspectRatio-colorSuccess",
+      "description": "Class name applied to the content element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorWarning",
+      "className": "MuiAspectRatio-colorWarning",
+      "description": "Class name applied to the content element if `color=\"warning\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantOutlined",
+      "className": "MuiAspectRatio-variantOutlined",
+      "description": "Class name applied to the content element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantPlain",
+      "className": "MuiAspectRatio-variantPlain",
+      "description": "Class name applied to the content element if `variant=\"plain\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSoft",
+      "className": "MuiAspectRatio-variantSoft",
+      "description": "Class name applied to the content element if `variant=\"soft\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSolid",
+      "className": "MuiAspectRatio-variantSolid",
+      "description": "Class name applied to the content element if `variant=\"solid\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyAspectRatio",

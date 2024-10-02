@@ -5,6 +5,7 @@ components: Modal
 githubLabel: 'component: modal'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 unstyled: /base-ui/react-modal/
+githubSource: packages/mui-material/src/Modal
 ---
 
 # Modal
@@ -21,7 +22,7 @@ The `Modal` offers important features:
   and keeping it there until the modal is closed.
 - ♿️ Adds the appropriate ARIA roles automatically.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 :::info
 The term "modal" is sometimes used to mean "dialog", but this is a misnomer.
@@ -97,7 +98,7 @@ In order to display the modal, you need to disable the portal feature with the `
 The modal moves the focus back to the body of the component if the focus tries to escape it.
 
 This is done for accessibility purposes. However, it might create issues.
-In the event the users need to interact with another part of the page, e.g. with a chatbot window, you can disable the behavior:
+In the event the users need to interact with another part of the page, for example with a chatbot window, you can disable the behavior:
 
 ```jsx
 <Modal disableEnforceFocus />
@@ -117,5 +118,5 @@ In the event the users need to interact with another part of the page, e.g. with
   </Modal>
   ```
 
-- The [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/dialog/) can help you set the initial focus on the most relevant element, based on your modal content.
+- The [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/dialog/) can help you set the initial focus on the most relevant element, based on your modal content.
 - Keep in mind that a "modal window" overlays on either the primary window or another modal window. Windows under a modal are **inert**. That is, users cannot interact with content outside an active modal window. This might create [conflicting behaviors](#focus-trap).

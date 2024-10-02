@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import SvgIcon, {
   svgIconClasses as classes,
@@ -8,6 +8,7 @@ import SvgIcon, {
   SvgIconProps,
 } from '@mui/joy/SvgIcon';
 import { ThemeProvider } from '@mui/joy/styles';
+import describeConformance from '../../test/describeConformance';
 
 describe('<SvgIcon />', () => {
   const { render } = createRenderer();

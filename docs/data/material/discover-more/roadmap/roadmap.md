@@ -1,88 +1,31 @@
 # Roadmap
 
-<p class="description">The roadmap is a living document, the priorities will likely change, but the list below should give some indication of our plans for the next releases.</p>
+<p class="description">Keep up with ongoing projects and help shape the future of Material UI.</p>
 
-## Methodology
+## How we prioritize
 
-MUI is community-driven—issues that resonate most with the community get the most attention.
-Please **upvote** (👍) on GitHub the issues you are most interested in.
-Thank you for participating [in the developer survey](/blog/2021-developer-survey-results/).
+Material UI is a community-driven project, meaning we usually pick the issues and suggestions that resonate the most with the community.
+Therefore, make sure to leave an upvote 👍 on [the GitHub issues](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:%22package:+material-ui%22) you are most interested in.
 
-## Quarterly roadmap
+Additionally, we conduct annual [developer surveys](/blog/?tags=Developer+survey/) which also serve as key inputs for Material UI's roadmap.
+Your participation is invaluable—keep an eye on MUI's social media to catch the next survey and help shape the future of the library!
 
-Our GitHub project's roadmap is where you can learn about what features we're working on, what stage they're at, and when we expect to bring them to you:
+## Keeping track of the roadmap
 
-- [MUI Core](https://github.com/orgs/mui/projects/18/views/1).
-  This repository focuses on empowering the creation of great design systems with React, as well as providing two ready to use themes (Material Design so far, another one coming in the near future).
-- [MUI X](https://github.com/mui/mui-x/projects/1).
-  This repository focuses on providing advanced React components.
-  Some of the features are MIT licensed, others are available under a commercial license.
-- [MUI Design kits](https://github.com/mui/mui-design-kits/projects/1)
-  This repository focuses on providing the components for designers on Figma and other design tools.
-  It's a great place to leave feedback, feature requests, and ask questions.
+### GitHub project
 
-## Priorities
+The Material UI GitHub project is where you can see the ongoing priorities for the library.
+We typically add umbrella issues to the project board after discussing them internally.
 
-Here are the top priorities:
+**[Visit the Material UI project board 👉](https://github.com/orgs/mui/projects/23/views/12)**
 
-- **More components**. 🧰 We have to strictly prioritize as developing a fully-fledged component takes a considerable amount of time.
-  We apply the following strategy:
-  - Identify frequently needed components. There are many resources we leverage for this: the developer survey answers, GitHub issue upvotes, Algolia search volume, Google search volume, documentation usage, npm downloads, etc.
-  - Prioritize the creation of frequently needed components.
-  - Encourage the usage of third-party components if they already exist and are well maintained.
-- **Design.** 🎀 We are relatively up-to-date, but the Material Design guidelines [are evolving](https://material.io/blog/). So should we. We also plan to implement [a second design](https://github.com/mui/material-ui/issues/22485).
-- **Better customization.** 💅 We want to make component customization intuitive, no matter if you are using global CSS or styled-components:
-- **Better documentation.** 📚 No solution is complete without great documentation.
-- **Performance.** 🚀 React abstraction has a cost. The more components you render, the slower your page will be. You will notice stark differences when rendering a large table or list.
-- **Bundle size.** 📦 You can follow our progress [with bundlephobia.com report](https://bundlephobia.com/package/@mui/material). Please pay special attention to the cost of the individual modules under "Exports Analysis".
-- **TypeScript.** 📏 We are continuously improving the definitions. The codebase is mostly written in JavaScript with manually authored `.d.ts` definitions. While we do not plan a migration effort as a standalone effort, new modules are written in TypeScript.
-- **Accessibility.** ♿️ We have relatively [few accessibility issues](https://darekkay.com/blog/accessible-ui-frameworks/), but we are eager to address them all. We would appreciate the help of accessibility experts.
+<img src="/static/material-ui/roadmap/github-project.png" style="width: 814px;" alt="A screenshot of the public Material UI GitHub project." width="1628" height="400" />
 
-## New components
+### Milestones
 
-Here are the components we will work on being supported in the MUI ecosystem:
+We also create milestones within the Material UI repository to keep track of larger cycles.
+Check it out to keep up with ongoing changes and updates to the library.
 
-- ✅ Released as stable
-- 🧪 Not too far from becoming stable, already released as unstable
-- 🛠 Work in progress, will be or already released as unstable
-- ⏳ Planning to build
+**[Visit the Material UI milestones page 👉](https://github.com/mui/material-ui/milestones/)**
 
-| Name                                                                     | Product  | Status |
-| :----------------------------------------------------------------------- | :------- | :----- |
-| Advanced Layout                                                          | MUI X    | ⏳     |
-| Carousel                                                                 | MUI X    | ⏳     |
-| [Charts](https://mui.com/x/react-charts/)                                | MUI X    | 🧪     |
-| [Data Grid](/x/react-data-grid/)                                         | MUI X    | ✅     |
-| [Date Picker](/x/react-date-pickers/date-picker/)                        | MUI X    | ✅     |
-| [Time Picker](/x/react-date-pickers/time-picker/)                        | MUI X    | ✅     |
-| [Date Time Picker](/x/react-date-pickers/date-time-picker/)              | MUI X    | ✅     |
-| [Date Range Picker](/x/react-date-pickers/date-range-picker/)            | MUI X    | ✅     |
-| Time Range Picker                                                        | MUI X    | ⏳     |
-| Date Time Range Picker                                                   | MUI X    | ⏳     |
-| Dropdown                                                                 | MUI Core | ⏳     |
-| Dropzone                                                                 | MUI X    | ⏳     |
-| File Upload                                                              | MUI X    | ⏳     |
-| Gantt Chart                                                              | MUI X    | ⏳     |
-| Gauge                                                                    | MUI X    | ⏳     |
-| Image                                                                    | MUI Core | ⏳     |
-| [Masonry](/material-ui/react-masonry/)                                   | MUI Core | 🧪     |
-| Navbar                                                                   | MUI Core | ⏳     |
-| Nested Menu                                                              | MUI X    | ⏳     |
-| NProgress                                                                | MUI Core | ⏳     |
-| Numeric Input                                                            | MUI Core | ⏳     |
-| Rich Text Editor                                                         | MUI X    | ⏳     |
-| Scheduler                                                                | MUI X    | ⏳     |
-| Scrollspy                                                                | MUI Core | ⏳     |
-| Sparkline                                                                | MUI X    | ⏳     |
-| [Timeline](/material-ui/react-timeline/)                                 | MUI Core | 🧪     |
-| Tree select                                                              | MUI X    | ⏳     |
-| [Tree View](/material-ui/react-tree-view/)                               | MUI X    | 🧪     |
-| Tree View - Checkbox                                                     | MUI X    | ⏳     |
-| Tree View - Drag & Drop                                                  | MUI X    | ⏳     |
-| [Tree View - Multiselect](/material-ui/react-tree-view/#multi-selection) | MUI X    | 🧪     |
-| Tree View - Virtualization                                               | MUI X    | ⏳     |
-| Window Splitter                                                          | MUI X    | ⏳     |
-
-:::warning
-**Disclaimer**: We operate in a dynamic environment, and things are subject to change. The information provided is intended to outline the general framework direction, for informational purposes only. We may decide to add or remove new items at any time, depending on our capability to deliver while meeting our quality standards. The development, releases, and timing of any features or functionality remains at the sole discretion of MUI. The roadmap does not represent a commitment, obligation, or promise to deliver at any time.
-:::
+<img src="/static/material-ui/roadmap/milestone.png" style="width: 814px;" alt="A screenshot from GitHub of the Material UI v6 milestone." width="1628" height="400" />

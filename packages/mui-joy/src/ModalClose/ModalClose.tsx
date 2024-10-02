@@ -7,7 +7,6 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useButton } from '@mui/base/useButton';
 import useSlot from '../utils/useSlot';
 import { useThemeProps, styled } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
 import { StyledIconButton } from '../IconButton/IconButton';
 import { getModalCloseUtilityClass } from './modalCloseClasses';
 import { ModalCloseProps, ModalCloseOwnerState, ModalCloseTypeMap } from './ModalCloseProps';
@@ -39,18 +38,18 @@ export const ModalCloseRoot = styled(StyledIconButton, {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ModalCloseOwnerState }>(({ ownerState, theme }) => ({
   ...(ownerState.size === 'sm' && {
-    '--IconButton-size': '28px',
+    '--IconButton-size': '1.75rem',
   }),
   ...(ownerState.size === 'md' && {
-    '--IconButton-size': '36px',
+    '--IconButton-size': '2rem',
   }),
   ...(ownerState.size === 'lg' && {
-    '--IconButton-size': '40px',
+    '--IconButton-size': '2.25rem',
   }),
   position: 'absolute',
   zIndex: 1, // stay on top of the title in case it is positioned relatively
-  top: `var(--ModalClose-inset, ${theme.spacing(1)})`,
-  right: `var(--ModalClose-inset, ${theme.spacing(1)})`,
+  top: `var(--ModalClose-inset, 0.625rem)`,
+  right: `var(--ModalClose-inset, 0.625rem)`,
   borderRadius: `var(--ModalClose-radius, ${theme.vars.radius.sm})`,
   // for variant without a background, use `tertiary` text color to reduce the importance of the close icon.
   ...(!theme.variants[ownerState.variant!]?.[ownerState.color!]?.backgroundColor && {
@@ -68,6 +67,7 @@ const modalDialogVariantMapping = {
  *
  * Demos:
  *
+ * - [Drawer](https://mui.com/joy-ui/react-drawer/)
  * - [Modal](https://mui.com/joy-ui/react-modal/)
  *
  * API:
@@ -95,8 +95,7 @@ const ModalClose = React.forwardRef(function ModalClose(inProps, ref) {
   const modalDialogVariantColor = React.useContext(ModalDialogVariantColorContext);
   const variant =
     inProps.variant ?? modalDialogVariantMapping[modalDialogVariantColor?.variant!] ?? variantProp;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, modalDialogVariantColor?.color ?? colorProp);
+  const color = inProps.color ?? modalDialogVariantColor?.color ?? colorProp;
 
   const modalDialogSize = React.useContext(ModalDialogSizeContext);
   const size = inProps.size ?? modalDialogSize ?? sizeProp;
@@ -143,10 +142,10 @@ const ModalClose = React.forwardRef(function ModalClose(inProps, ref) {
 }) as OverridableComponent<ModalCloseTypeMap>;
 
 ModalClose.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */

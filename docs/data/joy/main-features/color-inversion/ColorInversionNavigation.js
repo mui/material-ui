@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import Avatar from '@mui/joy/Avatar';
-import Badge, { badgeClasses } from '@mui/joy/Badge';
+import Badge from '@mui/joy/Badge';
 import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
@@ -15,6 +15,7 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Typography from '@mui/joy/Typography';
 import Select from '@mui/joy/Select';
+import Tooltip from '@mui/joy/Tooltip';
 import Option from '@mui/joy/Option';
 import Sheet from '@mui/joy/Sheet';
 import PieChart from '@mui/icons-material/PieChart';
@@ -30,25 +31,19 @@ export default function ColorInversionNavigation() {
     <Box sx={{ display: 'flex', borderRadius: 'sm', overflow: 'auto' }}>
       <Sheet
         variant="solid"
-        color="neutral"
         invertedColors
-        sx={{
-          p: 2,
-          ...(color !== 'neutral' && {
-            bgcolor: `${color}.800`,
-          }),
-        }}
+        sx={[
+          { p: 2 },
+          color !== 'neutral' && {
+            bgcolor: `${color}.700`,
+          },
+        ]}
       >
         <Select
-          variant="outlined"
+          variant="soft"
           defaultValue="1"
           size="sm"
-          placeholder={
-            <Box>
-              <Typography level="inherit">Saleshouse</Typography>
-              <Typography level="body-md">general team</Typography>
-            </Box>
-          }
+          color={color}
           startDecorator={
             <Sheet
               variant="solid"
@@ -59,10 +54,15 @@ export default function ColorInversionNavigation() {
                 alignSelf: 'center',
               }}
             >
-              <BubbleChartIcon sx={{ m: 0 }} />
+              <BubbleChartIcon fontSize="small" sx={{ m: 0 }} />
             </Sheet>
           }
-          sx={{ py: 1 }}
+          sx={{
+            py: 1,
+            bgcolor: 'transparent',
+            border: '1px solid',
+            borderColor: 'divider',
+          }}
         >
           <Option value="1">General team</Option>
           <Option value="2">Engineering team</Option>
@@ -86,7 +86,13 @@ export default function ColorInversionNavigation() {
               <SmsIcon />
             </ListItemDecorator>
             Chat
-            <Chip size="sm" color="warning" variant="soft" sx={{ ml: 'auto' }}>
+            <Chip
+              data-skip-inverted-colors
+              size="sm"
+              variant="soft"
+              color={color}
+              sx={{ ml: 'auto' }}
+            >
               5
             </Chip>
           </ListItemButton>
@@ -120,32 +126,30 @@ export default function ColorInversionNavigation() {
             >
               Active
             </Chip>
-            <Typography fontSize="xs">Last update: 22/12/22</Typography>
+            <Typography sx={{ fontSize: 'xs' }}>Last update: 22/12/22</Typography>
           </CardContent>
         </Card>
       </Sheet>
       <Sheet
-        variant="soft"
-        color="neutral"
+        variant="solid"
         invertedColors
-        sx={(theme) => ({
+        sx={{
           p: 2,
           display: 'flex',
           flexDirection: 'column',
+          alignItems: 'center',
           gap: 2,
-          ...(color !== 'neutral' && {
-            bgcolor: `${color}.900`,
-          }),
+          bgcolor: `${color}.800`,
+          '& .MuiBadge-root': { '--Badge-ringColor': '#FFF' },
+          '& .MuiBadge-colorSuccess': { bgcolor: 'success.400' },
           '& button': {
             borderRadius: '50%',
             padding: 0,
-            '&:hover': {
-              boxShadow: theme.shadow.md,
-            },
+            '--IconButton-size': '3rem',
           },
-        })}
+        }}
       >
-        <Badge badgeContent="7" size="sm">
+        <Badge badgeContent="7" badgeInset="10%" size="sm">
           <IconButton>
             <Avatar src="/static/images/avatar/3.jpg" />
           </IconButton>
@@ -155,28 +159,28 @@ export default function ColorInversionNavigation() {
             vertical: 'bottom',
             horizontal: 'right',
           }}
-          badgeInset="14%"
-          sx={{ [`& .${badgeClasses.badge}`]: { bgcolor: 'success.300' } }}
+          badgeInset="15%"
+          color="success"
         >
           <IconButton>
             <Avatar src="/static/images/avatar/4.jpg" />
           </IconButton>
         </Badge>
-        <IconButton variant="soft" aria-label="Add another chat">
-          <AddIcon />
-        </IconButton>
+        <Tooltip title="Add another chat" variant="soft">
+          <IconButton sx={{ color: 'text.tertiary' }}>
+            <AddIcon />
+          </IconButton>
+        </Tooltip>
         <IconButton
-          variant="plain"
-          size="sm"
           onClick={() => {
             const colors = ['primary', 'neutral', 'danger', 'success', 'warning'];
 
-            const nextColor = colors.indexOf(color);
-            setColor(colors[nextColor + 1] ?? colors[0]);
+            const nextColorIndex = colors.indexOf(color) + 1;
+            setColor(colors[nextColorIndex] ?? colors[0]);
           }}
-          sx={{ mt: 'auto', height: '40px' }}
+          sx={{ mt: 'auto', color: 'text.tertiary' }}
         >
-          <ColorLensRoundedIcon fontSize="small" />
+          <ColorLensRoundedIcon />
         </IconButton>
       </Sheet>
     </Box>

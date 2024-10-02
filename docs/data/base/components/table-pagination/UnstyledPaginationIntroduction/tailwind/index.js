@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useTheme } from '@mui/system';
 import { TablePagination } from '@mui/base/TablePagination';
+import FirstPageRoundedIcon from '@mui/icons-material/FirstPageRounded';
+import LastPageRoundedIcon from '@mui/icons-material/LastPageRounded';
+import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
+import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 
 function useIsDarkMode() {
   const theme = useTheme();
@@ -32,7 +36,7 @@ export default function UnstyledPaginationIntroduction() {
     >
       <table
         aria-label="custom pagination table"
-        className="text-sm font-sans [&>th]:p-4 [&>td]:p-4 border border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 rounded-xl shadow-md w-full"
+        className="text-sm font-sans [&>th]:p-4 [&>td]:p-4 border border-solid border-zinc-200 dark:border-[#303740] bg-white dark:bg-[#1C2025] rounded-xl shadow-md dark:shadow-[0_4px_16px_rgba(0,0,0,0.3)] w-full"
       >
         <tfoot>
           <tr>
@@ -49,6 +53,12 @@ export default function UnstyledPaginationIntroduction() {
                 actions: {
                   showFirstButton: true,
                   showLastButton: true,
+                  slots: {
+                    firstPageIcon: FirstPageRoundedIcon,
+                    lastPageIcon: LastPageRoundedIcon,
+                    nextPageIcon: ChevronRightRoundedIcon,
+                    backPageIcon: ChevronLeftRoundedIcon,
+                  },
                 },
               }}
               onPageChange={handleChangePage}
@@ -79,7 +89,7 @@ const CustomTablePagination = React.forwardRef((props, ref) => {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              'py-0.5 px-1.5 border border-solid border-slate-200 dark:border-slate-800 rounded-3xl bg-transparent hover:bg-slate-20 hover:dark:bg-slate-800 focus:outline-0 focus:shadow-outline-purple-xs',
+              'font-sans py-[2px] pl-[4px] pr-[2px] border border-solid border-zinc-200 dark:border-[#303740] rounded-[6px] bg-transparent hover:bg-zinc-20 hover:dark:bg-zinc-800 focus:outline-0 [&>button:focus]:ring-[3px] focus:border-purple-400 focus:dark:border-purple-400 focus:hover:border-purple-400 focus:hover:dark:border-purple-400 transition',
               resolvedSlotProps?.className,
             ),
           };
@@ -92,7 +102,7 @@ const CustomTablePagination = React.forwardRef((props, ref) => {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              'p-0.5 border border-solid border-slate-200 dark:border-slate-800 rounded-3xl text-center [&>button]:my-0 [&>button]:mx-2 [&>button]:border-none [&>button]:rounded-sm [&>button]:bg-transparent [&>button:hover]:bg-slate-50 [&>button:hover]:dark:bg-slate-800 [&>button:focus]:outline-0 [&>button:focus]:shadow-outline-purple-xs',
+              'flex gap-[6px] text-center [&>button]:my-0 [&>button]:p-0 [&>button]:flex [&>button]:items-center [&>button]:rounded-full [&>button]:bg-transparent [&>button]:border [&>button]:border-solid [&>button]:border-zinc-300 [&>button]:dark:border-[#303740] [&>button:hover]:dark:border-zinc-700 [&>button:hover]:bg-zinc-100 [&>button:hover]:border-zinc-400 [&>button:hover]:dark:bg-zinc-800 [&>button:focus]:outline-0 [&>button:focus]:ring-[2px] [&>button:focus]:border-purple-400 [&>button:focus]:dark:border-purple-400 [&>button:focus:hover]:border-purple-400 [&>button:focus:hover]:dark:border-purple-400 [&>button>svg]:text-[22px] [&>button:disabled]:opacity-[0.3] [&>button:disabled:hover]:bg-transparent [&>button:disabled:hover]:border-zinc-300 [&>button:disabled:hover]:dark:border-zinc-700',
               resolvedSlotProps?.className,
             ),
           };
@@ -116,7 +126,7 @@ const CustomTablePagination = React.forwardRef((props, ref) => {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              'flex flex-col items-start gap-2.5 md:flex-row md:items-center',
+              'flex flex-col items-start gap-[8px] md:flex-row md:items-center',
               resolvedSlotProps?.className,
             ),
           };

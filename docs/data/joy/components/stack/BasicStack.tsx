@@ -5,13 +5,14 @@ import Box from '@mui/joy/Box';
 import { styled } from '@mui/joy/styles';
 
 const Item = styled(Sheet)(({ theme }) => ({
-  backgroundColor:
-    theme.palette.mode === 'dark' ? theme.palette.background.level1 : '#fff',
   ...theme.typography['body-sm'],
-  padding: theme.spacing(1),
   textAlign: 'center',
-  borderRadius: 4,
+  fontWeight: theme.fontWeight.md,
   color: theme.vars.palette.text.secondary,
+  border: '1px solid',
+  borderColor: theme.palette.divider,
+  padding: theme.spacing(1),
+  borderRadius: theme.radius.md,
 }));
 
 export default function BasicStack() {

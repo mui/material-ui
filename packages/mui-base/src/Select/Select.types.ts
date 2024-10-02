@@ -2,12 +2,12 @@ import * as React from 'react';
 import { Simplify } from '@mui/types';
 import { SelectValue, UseSelectButtonSlotProps, UseSelectListboxSlotProps } from '../useSelect';
 import { SelectOption } from '../useOption';
-import { Popper, PopperProps } from '../Popper';
-import { PolymorphicProps, SlotComponentProps, WithOptionalOwnerState } from '../utils';
+import { PopupProps } from '../Unstable_Popup';
+import { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export interface SelectRootSlotPropsOverrides {}
 export interface SelectListboxSlotPropsOverrides {}
-export interface SelectPopperSlotPropsOverrides {}
+export interface SelectPopupSlotPropsOverrides {}
 
 export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean> {
   /**
@@ -18,6 +18,12 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
    * Therefore, it's recommented to use the default reference equality comparison whenever possible.
    */
   areOptionsEqual?: (a: OptionValue, b: OptionValue) => boolean;
+  /**
+   * This prop helps users to fill forms faster, especially on mobile devices.
+   * The name can be confusing, as it's more like an autofill.
+   * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
+   */
+  autoComplete?: string;
   /**
    * If `true`, the select element is focused during the first mount
    * @default false
@@ -65,7 +71,6 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
   multiple?: Multiple;
   /**
    * Name of the element. For example used by the server to identify the fields in form submits.
-   * If the name is provided, the component will render a hidden input element that can be submitted to a server.
    */
   name?: string;
   /**
@@ -93,6 +98,10 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
    */
   renderValue?: (option: SelectValue<SelectOption<OptionValue>, Multiple>) => React.ReactNode;
   /**
+   * Text to show when there is no selected value.
+   */
+  placeholder?: React.ReactNode;
+  /**
    * The props used for each slot inside the Input.
    * @default {}
    */
@@ -107,18 +116,23 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
       SelectListboxSlotPropsOverrides,
       SelectOwnerState<OptionValue, Multiple>
     >;
-    popper?: SlotComponentProps<
-      typeof Popper,
-      SelectPopperSlotPropsOverrides,
+    popup?: SlotComponentProps<
+      'div',
+      SelectPopupSlotPropsOverrides & PopupProps,
       SelectOwnerState<OptionValue, Multiple>
     >;
   };
+  /**
+   * If `true`, the Select cannot be empty when submitting form.
+   * @default false
+   */
+  required?: boolean;
   /**
    * The components used for each slot inside the Select.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: SelectSlots<OptionValue, Multiple>;
+  slots?: SelectSlots;
   /**
    * The selected value.
    * Set to `null` to deselect all options.
@@ -126,7 +140,7 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
   value?: SelectValue<OptionValue, Multiple>;
 }
 
-export interface SelectSlots<OptionValue extends {}, Multiple extends boolean> {
+export interface SelectSlots {
   /**
    * The component that renders the root.
    * @default 'button'
@@ -138,12 +152,10 @@ export interface SelectSlots<OptionValue extends {}, Multiple extends boolean> {
    */
   listbox?: React.ElementType;
   /**
-   * The component that renders the popper.
-   * @default Popper
+   * The component that wraps the popup.
+   * @default 'div'
    */
-  popper?: React.ComponentType<
-    WithOptionalOwnerState<SelectPopperSlotProps<OptionValue, Multiple>>
-  >;
+  popup?: React.ElementType;
 }
 
 export interface SelectTypeMap<
@@ -179,7 +191,7 @@ export interface SelectType {
     >['defaultComponent'],
   >(
     props: PolymorphicProps<SelectTypeMap<OptionValue, Multiple>, RootComponentType>,
-  ): JSX.Element | null;
+  ): React.JSX.Element | null;
   propTypes?: any;
   displayName?: string | undefined;
 }
@@ -209,12 +221,12 @@ export type SelectListboxSlotProps<OptionValue extends {}, Multiple extends bool
   }
 >;
 
-export type SelectPopperSlotProps<OptionValue extends {}, Multiple extends boolean> = {
-  anchorEl: PopperProps['anchorEl'];
-  children?: PopperProps['children'];
+export type SelectPopupSlotProps<OptionValue extends {}, Multiple extends boolean> = {
+  anchor: PopupProps['anchor'];
+  children?: React.ReactNode;
   className?: string;
-  keepMounted: PopperProps['keepMounted'];
-  open: boolean;
+  keepMounted: PopupProps['keepMounted'];
+  open: PopupProps['open'];
   ownerState: SelectOwnerState<OptionValue, Multiple>;
-  placement: PopperProps['placement'];
+  placement: PopupProps['placement'];
 };

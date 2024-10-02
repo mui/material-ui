@@ -14,10 +14,11 @@
     "@emotion/styled": "latest",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
+    "@mui/material-nextjs": "latest",
     "eslint": "latest",
     "eslint-config-next": "latest",
-    "next": "13.x",
-    "react": "18.x",
-    "react-dom": "18.x"
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
   }
 }

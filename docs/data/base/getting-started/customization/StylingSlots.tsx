@@ -2,7 +2,7 @@ import * as React from 'react';
 import { styled } from '@mui/system';
 import { Switch, switchClasses } from '@mui/base/Switch';
 
-const Root = styled('span')`
+const SwitchRoot = styled('span')`
   font-size: 0;
   position: relative;
   display: inline-block;
@@ -23,7 +23,7 @@ const Root = styled('span')`
   }
 `;
 
-const Thumb = styled('span')`
+const SwitchThumb = styled('span')`
   display: block;
   width: 14px;
   height: 14px;
@@ -46,7 +46,7 @@ const Thumb = styled('span')`
   }
 `;
 
-const Input = styled('input')`
+const SwitchInput = styled('input')`
   cursor: inherit;
   position: absolute;
   width: 100%;
@@ -59,5 +59,7 @@ const Input = styled('input')`
 `;
 
 export default function StylingSlots() {
-  return <Switch slots={{ root: Root, thumb: Thumb, input: Input }} />;
+  return (
+    <Switch slots={{ root: SwitchRoot, thumb: SwitchThumb, input: SwitchInput }} />
+  );
 }

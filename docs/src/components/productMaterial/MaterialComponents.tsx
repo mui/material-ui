@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Experimental_CssVarsProvider as CssVarsProvider, styled } from '@mui/material/styles';
+import { CssVarsProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -28,57 +28,30 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
+import { ShowcaseCodeWrapper } from 'docs/src/components/home/ShowcaseContainer';
 import { customTheme } from 'docs/src/components/home/MaterialDesignComponents';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
-import StylingInfo from 'docs/src/components/action/StylingInfo';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import MaterialVsCustomToggle from 'docs/src/components/action/MaterialVsCustomToggle';
 import ROUTES from 'docs/src/route';
 
-const DEMOS = ['Button', 'Text field', 'Table', 'Alert', 'Tooltip'] as const;
-
-const StyledButton = styled(Button)(({ theme }) => ({
-  borderRadius: 40,
-  padding: theme.spacing('2px', 1),
-  fontSize: theme.typography.pxToRem(12),
-  lineHeight: 18 / 12,
-  '&.MuiButton-text': {
-    color: theme.palette.grey[500],
-    border: '1px solid',
-    borderColor: theme.palette.primaryDark[700],
-    '&:hover': {
-      backgroundColor: theme.palette.primaryDark[700],
-    },
-  },
-  '&.MuiButton-outlined': {
-    color: '#fff',
-    backgroundColor: theme.palette.primary[800],
-    borderColor: theme.palette.primary[700],
-    '&:hover': {
-      backgroundColor: theme.palette.primary[700],
-    },
-  },
-}));
+const DEMOS = ['Button', 'Text Field', 'Table', 'Alert', 'Tooltip'] as const;
 
 const CODES = {
   Button: `
-<div>
   <Button variant="text" startIcon={<ShoppingCartRounded />}>
-    Add to Cart
-  </Button>
-  <Button variant="contained" startIcon={<ShoppingCartRounded />}>
-    Add to Cart
-  </Button>
-  <Button variant="outlined" startIcon={<ShoppingCartRounded />}>
-    Add to Cart
-  </Button>
-</div>
+  Add item
+</Button>
+<Button variant="contained" startIcon={<ShoppingCartRounded />}>
+  Add item
+</Button>
+<Button variant="outlined" startIcon={<ShoppingCartRounded />}>
+  Add item
+</Button>
 `,
-  'Text field': `
-<div>
+  'Text Field': `
   <TextField variant="standard" label="Username" />
-  <TextField variant="outlined" label="Email" type="email" />
-  <TextField variant="filled" label="Password" type="password" />
-</div>
+<TextField variant="outlined" label="Email" type="email" />
+<TextField variant="filled" label="Password" type="password" />
 `,
   Table: `
 <TableContainer
@@ -106,33 +79,29 @@ const CODES = {
 </TableContainer>
 `,
   Alert: `
-<div>
   <Alert variant="standard" color="info">
-    Check out this alert!
-  </Alert>
-  <Alert variant="outlined" color="info">
-    Check out this alert!
-  </Alert>
-  <Alert variant="filled" color="info">
-    Check out this alert!
-  </Alert>
-</div>
+  This is an alert!
+</Alert>
+<Alert variant="outlined" color="info">
+  This is an alert!
+</Alert>
+<Alert variant="filled" color="info">
+  This is an alert!
+</Alert>
 `,
   Tooltip: `
-<div>
   <Tooltip title="This is a tooltip" arrow placement="top">
-    <Typography>Top</Typography>
-  </Tooltip>
-  <Tooltip title="This is a tooltip" arrow placement="right">
-    <Typography>Right</Typography>
-  </Tooltip>
-  <Tooltip title="This is a tooltip" arrow placement="left">
-    <Typography>Left</Typography>
-  </Tooltip>
-  <Tooltip title="This is a tooltip" arrow placement="bottom">
-    <Typography>Bottom</Typography>
-  </Tooltip>
-</div>
+  <Typography>Top</Typography>
+</Tooltip>
+<Tooltip title="This is a tooltip" arrow placement="right">
+  <Typography>Right</Typography>
+</Tooltip>
+<Tooltip title="This is a tooltip" arrow placement="left">
+  <Typography>Left</Typography>
+</Tooltip>
+<Tooltip title="This is a tooltip" arrow placement="bottom">
+  <Typography>Bottom</Typography>
+</Tooltip>
 `,
 };
 
@@ -149,19 +118,17 @@ export default function MaterialComponents() {
   return (
     <Section bg="gradient">
       <Grid container spacing={2}>
-        <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box maxWidth={500}>
-            <SectionHeadline
-              overline="Component library"
-              title={
-                <Typography variant="h2">
-                  <GradientText>40+</GradientText> building block components
-                </Typography>
-              }
-              description="A meticulous implementation of Material Design; every Material UI component meets the highest standards of form and function."
-            />
-          </Box>
-          <Group desktopColumns={2} sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
+        <Grid sx={{ minWidth: 0 }} size={{ md: 6 }}>
+          <SectionHeadline
+            overline="Component library"
+            title={
+              <Typography variant="h2">
+                <GradientText>40+</GradientText> building block components
+              </Typography>
+            }
+            description="A meticulous implementation of Material Design; every Material UI component meets the highest standards of form and function."
+          />
+          <Group desktopColumns={2} sx={{ m: -2, p: 2 }}>
             {DEMOS.map((name) => (
               <Highlighter key={name} selected={name === demo} onClick={() => setDemo(name)}>
                 <Item icon={React.cloneElement(icons[name])} title={name} />
@@ -170,7 +137,7 @@ export default function MaterialComponents() {
             <More href={ROUTES.components} />
           </Group>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo className="mui-default-theme" sx={{ flexGrow: 1 }}>
               <CssVarsProvider theme={customized ? customTheme : undefined}>
@@ -187,22 +154,21 @@ export default function MaterialComponents() {
                     }}
                   >
                     <Button variant="text" startIcon={<ShoppingCartRounded />}>
-                      Add to Cart
+                      Add item
                     </Button>
                     <Button variant="contained" startIcon={<ShoppingCartRounded />}>
-                      Add to Cart
+                      Add item
                     </Button>
                     <Button variant="outlined" startIcon={<ShoppingCartRounded />}>
-                      Add to Cart
+                      Add item
                     </Button>
                   </Box>
                 )}
-                {demo === 'Text field' && (
+                {demo === 'Text Field' && (
                   <Stack
-                    alignItems="center"
                     justifyContent="center"
                     spacing={2}
-                    sx={{ height: '100%', py: 2 }}
+                    sx={{ p: 2, width: '50%', margin: 'auto' }}
                   >
                     <TextField variant="standard" label="Username" />
                     <TextField variant="outlined" label="Email" type="email" />
@@ -221,7 +187,7 @@ export default function MaterialComponents() {
                     sx={{
                       mx: 'auto',
                       my: 4,
-                      maxWidth: 320,
+                      maxWidth: '90%',
                       '& .MuiTableBody-root > .MuiTableRow-root:last-of-type > .MuiTableCell-root':
                         {
                           borderBottomWidth: 0,
@@ -257,17 +223,17 @@ export default function MaterialComponents() {
                       justifyContent: 'center',
                       alignItems: 'center',
                       flexWrap: 'wrap',
-                      gap: 1,
+                      gap: 2,
                     }}
                   >
                     <Alert variant="standard" color="info">
-                      Check out this alert!
+                      This is an alert!
                     </Alert>
                     <Alert variant="outlined" color="info">
-                      Check out this alert!
+                      This is an alert!
                     </Alert>
                     <Alert variant="filled" color="info">
-                      Check out this alert!
+                      This is an alert!
                     </Alert>
                   </Box>
                 )}
@@ -318,68 +284,11 @@ export default function MaterialComponents() {
                 )}
               </CssVarsProvider>
             </Frame.Demo>
-            <Frame.Info
-              sx={{
-                minHeight: 180,
-                maxHeight: demo === 'Table' ? 260 : 'none',
-                position: 'relative',
-                overflow: 'hidden',
-                p: 0,
-                pt: 5,
-              }}
-            >
-              <Box
-                sx={{
-                  overflow: 'auto',
-                  pt: 2,
-                  pb: 1,
-                  px: 2,
-                  height: '100%',
-                }}
-              >
-                <HighlightedCode
-                  copyButtonHidden
-                  component={MarkdownElement}
-                  code={CODES[demo]}
-                  language="jsx"
-                />
-              </Box>
-              <Box
-                sx={(theme) => ({
-                  pb: 3,
-                  display: 'flex',
-                  alignItems: 'center',
-                  position: 'absolute',
-                  top: 12,
-                  left: 16,
-                  right: 0,
-                  zIndex: 10,
-                  background: `linear-gradient(to bottom, ${
-                    (theme.vars || theme).palette.common.black
-                  } 30%, transparent)`,
-                })}
-              >
-                <StyledButton
-                  size="small"
-                  variant={customized ? 'text' : 'outlined'}
-                  onClick={() => {
-                    setCustomized(false);
-                  }}
-                >
-                  Material Design
-                </StyledButton>
-                <StyledButton
-                  size="small"
-                  variant={customized ? 'outlined' : 'text'}
-                  onClick={() => {
-                    setCustomized(true);
-                  }}
-                  sx={{ ml: 1 }}
-                >
-                  Custom theme
-                </StyledButton>
-              </Box>
-              <StylingInfo appeared={customized} />
+            <Frame.Info data-mui-color-scheme="dark" sx={{ p: 0 }}>
+              <MaterialVsCustomToggle customized={customized} setCustomized={setCustomized} />
+              <ShowcaseCodeWrapper maxHeight={demo === 'Table' ? 220 : 350} hasDesignToggle>
+                <HighlightedCode copyButtonHidden plainStyle code={CODES[demo]} language="jsx" />
+              </ShowcaseCodeWrapper>
             </Frame.Info>
           </Frame>
         </Grid>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import { CssVarsProvider } from '@mui/joy/styles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Autocomplete from '@mui/joy/Autocomplete';
 import Avatar from '@mui/joy/Avatar';
@@ -7,431 +7,383 @@ import Box from '@mui/joy/Box';
 import Chip from '@mui/joy/Chip';
 import ChipDelete from '@mui/joy/ChipDelete';
 import Typography from '@mui/joy/Typography';
-import Input from '@mui/joy/Input';
-import IconButton from '@mui/joy/IconButton';
 import Button from '@mui/joy/Button';
 import List from '@mui/joy/List';
-import ListSubheader from '@mui/joy/ListSubheader';
+import Stack from '@mui/joy/Stack';
 import Divider from '@mui/joy/Divider';
 import ListItem from '@mui/joy/ListItem';
-import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
 import Slider from '@mui/joy/Slider';
 import Sheet from '@mui/joy/Sheet';
+import AccordionGroup from '@mui/joy/AccordionGroup';
+import Accordion from '@mui/joy/Accordion';
+import AccordionDetails, {
+  accordionDetailsClasses,
+} from '@mui/joy/AccordionDetails';
+import AccordionSummary, {
+  accordionSummaryClasses,
+} from '@mui/joy/AccordionSummary';
 
-// Icons import
-import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
-import AssignmentIndRoundedIcon from '@mui/icons-material/AssignmentIndRounded';
-import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
-import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
-import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
-import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
-import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
-import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
-import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
-import MenuIcon from '@mui/icons-material/Menu';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
-import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
-import BookRoundedIcon from '@mui/icons-material/BookRounded';
+import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
+import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
+import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
+import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 
-// custom
-import Menu from './components/Menu';
 import Layout from './components/Layout';
-
-function ColorSchemeToggle() {
-  const { mode, setMode } = useColorScheme();
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-  if (!mounted) {
-    return <IconButton size="sm" variant="soft" color="neutral" />;
-  }
-  return (
-    <IconButton
-      id="toggle-mode"
-      size="sm"
-      variant="soft"
-      color="neutral"
-      onClick={() => {
-        if (mode === 'light') {
-          setMode('dark');
-        } else {
-          setMode('light');
-        }
-      }}
-    >
-      {mode === 'light' ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
-    </IconButton>
-  );
-}
-
-function TeamNav() {
-  return (
-    <List size="sm" sx={{ '--ListItem-radius': '8px', '--List-gap': '4px' }}>
-      <ListItem nested>
-        <ListSubheader>
-          Browse
-          <IconButton
-            size="sm"
-            variant="plain"
-            color="primary"
-            sx={{ '--IconButton-size': '24px', ml: 'auto' }}
-          >
-            <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
-          </IconButton>
-        </ListSubheader>
-        <List
-          aria-labelledby="nav-list-browse"
-          sx={{
-            '& .JoyListItemButton-root': { p: '8px' },
-          }}
-        >
-          <ListItem>
-            <ListItemButton selected>
-              <ListItemDecorator>
-                <PeopleRoundedIcon fontSize="small" />
-              </ListItemDecorator>
-              <ListItemContent>People</ListItemContent>
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator sx={{ color: 'neutral.500' }}>
-                <AssignmentIndRoundedIcon fontSize="small" />
-              </ListItemDecorator>
-              <ListItemContent>Managing accounts</ListItemContent>
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator sx={{ color: 'neutral.500' }}>
-                <ArticleRoundedIcon fontSize="small" />
-              </ListItemDecorator>
-              <ListItemContent>Policies</ListItemContent>
-              <Chip
-                variant="soft"
-                color="neutral"
-                size="sm"
-                sx={{ borderRadius: 'sm' }}
-              >
-                Beta
-              </Chip>
-            </ListItemButton>
-          </ListItem>
-        </List>
-      </ListItem>
-    </List>
-  );
-}
+import Header from './components/Header';
+import Navigation from './components/Navigation';
 
 export default function TeamExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
+
+  const peopleData = [
+    {
+      name: 'Andrew Smith',
+      position: 'UI Designer',
+      avatar2x: 'https://i.pravatar.cc/80?img=7',
+      companyData: [
+        {
+          role: 'Senior designer',
+          name: 'Dribbble',
+          logo: 'https://www.vectorlogo.zone/logos/dribbble/dribbble-icon.svg',
+          years: '2015-now',
+        },
+        {
+          role: 'Designer',
+          name: 'Pinterest',
+          logo: 'https://www.vectorlogo.zone/logos/pinterest/pinterest-icon.svg',
+          years: '2012-2015',
+        },
+      ],
+      skills: ['UI design', 'Illustration'],
+    },
+    {
+      name: 'John Doe',
+      position: 'Frontend Developer',
+      avatar2x: 'https://i.pravatar.cc/80?img=8',
+      companyData: [
+        {
+          role: 'UI Engineer',
+          name: 'Google',
+          logo: 'https://www.vectorlogo.zone/logos/google/google-icon.svg',
+          years: '2018-now',
+        },
+        {
+          role: 'Frontend Developer',
+          name: 'Amazon',
+          logo: 'https://www.vectorlogo.zone/logos/amazon/amazon-icon.svg',
+          years: '2015-2018',
+        },
+      ],
+      skills: ['HTML', 'CSS', 'JavaScript'],
+    },
+    {
+      name: 'Alice Johnson',
+      position: 'Product Manager',
+      avatar2x: 'https://i.pravatar.cc/80?img=9',
+      companyData: [
+        {
+          role: 'Product Manager',
+          name: 'Microsoft',
+          logo: 'https://www.vectorlogo.zone/logos/microsoft/microsoft-icon.svg',
+          years: '2016-now',
+        },
+        {
+          role: 'Product Analyst',
+          name: 'IBM',
+          logo: 'https://www.vectorlogo.zone/logos/ibm/ibm-icon.svg',
+          years: '2013-2016',
+        },
+      ],
+      skills: ['Product Management', 'Market Analysis'],
+    },
+    {
+      name: 'Eva Brown',
+      position: 'Graphic Designer',
+      avatar2x: 'https://i.pravatar.cc/80?img=10',
+      companyData: [
+        {
+          role: 'Art Director',
+          name: 'Adobe',
+          logo: 'https://www.vectorlogo.zone/logos/adobe/adobe-icon.svg',
+          years: '2019-now',
+        },
+        {
+          role: 'Graphic Designer',
+          name: 'Apple',
+          logo: 'https://www.vectorlogo.zone/logos/apple/apple-icon.svg',
+          years: '2016-2019',
+        },
+      ],
+      skills: ['Graphic Design', 'Illustration'],
+    },
+  ];
+
   return (
     <CssVarsProvider disableTransitionOnChange>
       <CssBaseline />
       {drawerOpen && (
         <Layout.SideDrawer onClose={() => setDrawerOpen(false)}>
-          <TeamNav />
+          <Navigation />
         </Layout.SideDrawer>
       )}
-      <Layout.Root
+      <Stack
+        id="tab-bar"
+        direction="row"
+        spacing={1}
         sx={{
-          ...(drawerOpen && {
-            height: '100vh',
-            overflow: 'hidden',
-          }),
+          justifyContent: 'space-around',
+          display: { xs: 'flex', sm: 'none' },
+          zIndex: '999',
+          bottom: 0,
+          position: 'fixed',
+          width: '100dvw',
+          py: 2,
+          backgroundColor: 'background.body',
+          borderTop: '1px solid',
+          borderColor: 'divider',
         }}
       >
+        <Button
+          variant="plain"
+          color="neutral"
+          component="a"
+          href="/joy-ui/getting-started/templates/email/"
+          size="sm"
+          startDecorator={<EmailRoundedIcon />}
+          sx={{ flexDirection: 'column', '--Button-gap': 0 }}
+        >
+          Email
+        </Button>
+        <Button
+          variant="plain"
+          color="neutral"
+          aria-pressed="true"
+          component="a"
+          href="/joy-ui/getting-started/templates/team/"
+          size="sm"
+          startDecorator={<PeopleAltRoundedIcon />}
+          sx={{ flexDirection: 'column', '--Button-gap': 0 }}
+        >
+          Team
+        </Button>
+        <Button
+          variant="plain"
+          color="neutral"
+          component="a"
+          href="/joy-ui/getting-started/templates/files/"
+          size="sm"
+          startDecorator={<FolderRoundedIcon />}
+          sx={{ flexDirection: 'column', '--Button-gap': 0 }}
+        >
+          Files
+        </Button>
+      </Stack>
+      <Layout.Root
+        sx={[
+          drawerOpen && {
+            height: '100vh',
+            overflow: 'hidden',
+          },
+        ]}
+      >
         <Layout.Header>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 1.5,
-            }}
-          >
-            <IconButton
-              variant="outlined"
-              size="sm"
-              onClick={() => setDrawerOpen(true)}
-              sx={{ display: { sm: 'none' } }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <IconButton
-              size="sm"
-              variant="soft"
-              sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
-            >
-              <GroupRoundedIcon />
-            </IconButton>
-            <Typography component="h1" fontWeight="xl">
-              Team
-            </Typography>
-          </Box>
-          <Input
-            size="sm"
-            variant="outlined"
-            placeholder="Search anything…"
-            startDecorator={<SearchRoundedIcon color="primary" />}
-            endDecorator={
-              <IconButton variant="outlined" color="neutral">
-                <Typography fontWeight="lg" fontSize="sm" textColor="text.icon">
-                  ⌘ + k
-                </Typography>
-              </IconButton>
-            }
-            sx={{
-              flexBasis: '500px',
-              display: {
-                xs: 'none',
-                sm: 'flex',
-              },
-              boxShadow: 'sm',
-            }}
-          />
-          <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1.5 }}>
-            <IconButton
-              size="sm"
-              variant="outlined"
-              color="neutral"
-              sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
-            >
-              <SearchRoundedIcon />
-            </IconButton>
-
-            <IconButton
-              size="sm"
-              variant="soft"
-              color="neutral"
-              component="a"
-              href="/blog/first-look-at-joy/"
-            >
-              <BookRoundedIcon />
-            </IconButton>
-            <Menu
-              id="app-selector"
-              control={
-                <IconButton
-                  size="sm"
-                  variant="soft"
-                  color="neutral"
-                  aria-label="Apps"
-                >
-                  <GridViewRoundedIcon />
-                </IconButton>
-              }
-              menus={[
-                {
-                  label: 'Email',
-                  href: '/joy-ui/getting-started/templates/email/',
-                },
-                {
-                  label: 'Team',
-                  active: true,
-                  href: '/joy-ui/getting-started/templates/team/',
-                  'aria-current': 'page',
-                },
-                {
-                  label: 'Files',
-                  href: '/joy-ui/getting-started/templates/files/',
-                },
-              ]}
-            />
-            <ColorSchemeToggle />
-          </Box>
+          <Header />
         </Layout.Header>
         <Layout.SideNav>
-          <TeamNav />
+          <Navigation />
         </Layout.SideNav>
         <Layout.SidePane>
           <Box
             sx={{
               p: 2,
-              pb: 1,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
             }}
           >
-            <Typography level="title-sm">Filter by</Typography>
-            <Button size="sm" variant="plain" sx={{ fontSize: 'xs', px: 1 }}>
-              Clear filters
+            <Typography level="title-lg" textColor="text.secondary" component="h1">
+              People
+            </Typography>
+            <Button startDecorator={<PersonRoundedIcon />} size="sm">
+              Add new
             </Button>
           </Box>
-          <Box sx={{ p: 2 }}>
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Typography level="body-sm" textColor="text.primary">
-                Keywords
-              </Typography>
-              <IconButton
-                size="sm"
-                variant="plain"
-                color="primary"
-                sx={{ '--IconButton-size': '24px' }}
-              >
-                <KeyboardArrowUpRoundedIcon fontSize="small" color="primary" />
-              </IconButton>
-            </Box>
-            <Box sx={{ mt: 2 }}>
-              <Autocomplete
-                placeholder="Position, skills, etc…"
-                options={[
-                  {
-                    category: 'Position',
-                    title: 'Frontend engineer',
-                  },
-                  {
-                    category: 'Position',
-                    title: 'Backend engineer',
-                  },
-                  {
-                    category: 'Position',
-                    title: 'Product manager',
-                  },
-                  {
-                    category: 'Skill',
-                    title: 'JavaScript',
-                  },
-                  {
-                    category: 'Skill',
-                    title: 'TypeScript',
-                  },
-                  {
-                    category: 'Skill',
-                    title: 'Project management',
-                  },
-                ]}
-                groupBy={(option) => option.category}
-                getOptionLabel={(option) => option.title}
-              />
-              <Box sx={{ mt: 2, display: 'flex', gap: 1 }}>
-                <Chip
-                  variant="soft"
-                  size="sm"
-                  endDecorator={<ChipDelete variant="soft" />}
-                  sx={{ '--Chip-radius': (theme) => theme.vars.radius.sm }}
-                >
-                  UI designer
-                </Chip>
-              </Box>
-            </Box>
+          <Box
+            sx={{
+              p: 2,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            <Typography level="title-md">Filters</Typography>
+            <Button size="sm" variant="plain">
+              Clear
+            </Button>
           </Box>
-          <Divider />
-          <Box sx={{ p: 2 }}>
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Typography level="body-sm" textColor="text.primary">
-                Location
-              </Typography>
-              <IconButton
-                size="sm"
-                variant="plain"
-                color="primary"
-                sx={{ '--IconButton-size': '24px' }}
-              >
-                <KeyboardArrowUpRoundedIcon fontSize="small" color="primary" />
-              </IconButton>
-            </Box>
-            <Box sx={{ mt: 2 }}>
-              <Autocomplete
-                placeholder="Position, skills, etc…"
-                options={[
-                  // some of Thailand provinces
-                  'Bangkok',
-                  'Amnat Charoen',
-                  'Ang Thong',
-                  'Bueng Kan',
-                  'Buriram',
-                  'Chachoengsao',
-                  'Chai Nat',
-                  'Chaiyaphum',
-                  'Chanthaburi',
-                  'Chiang Mai',
-                  'Chiang Rai',
-                  'Chonburi',
-                ]}
-              />
-              <Box sx={{ mt: 3, display: 'flex', gap: 1 }}>
-                <Slider
-                  valueLabelFormat={(value) => `${value} km`}
-                  defaultValue={6}
-                  step={1}
-                  min={0}
-                  max={20}
-                  valueLabelDisplay="on"
-                />
-              </Box>
-            </Box>
-          </Box>
-          <Divider />
-          <Box sx={{ p: 2 }}>
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Typography level="body-sm" textColor="text.primary">
-                Education
-              </Typography>
-              <IconButton
-                size="sm"
-                variant="plain"
-                color="primary"
-                sx={{ '--IconButton-size': '24px' }}
-              >
-                <KeyboardArrowUpRoundedIcon fontSize="small" color="primary" />
-              </IconButton>
-            </Box>
-            <Box sx={{ mt: 2 }}>
-              <RadioGroup name="education" defaultValue="any">
-                <Radio label="Any" value="any" size="sm" />
-                <Radio label="High School" value="high-school" size="sm" />
-                <Radio label="College" value="college" size="sm" />
-                <Radio label="Post-graduate" value="post-graduate" size="sm" />
-              </RadioGroup>
-            </Box>
-          </Box>
-          <Divider />
-          <Box sx={{ p: 2 }}>
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Typography level="body-sm" textColor="text.primary">
-                Previous experience
-              </Typography>
-              <IconButton
-                size="sm"
-                variant="plain"
-                color="primary"
-                sx={{ '--IconButton-size': '24px' }}
-              >
-                <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
-              </IconButton>
-            </Box>
-          </Box>
+          <AccordionGroup
+            sx={{
+              [`& .${accordionDetailsClasses.content}`]: {
+                px: 2,
+              },
+              [`& .${accordionSummaryClasses.button}`]: {
+                px: 2,
+              },
+            }}
+          >
+            <Accordion defaultExpanded>
+              <AccordionSummary>
+                <Typography level="title-sm">Keywords</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Box sx={{ my: 2 }}>
+                  <Autocomplete
+                    size="sm"
+                    placeholder="Position, skills, etc…"
+                    options={[
+                      {
+                        category: 'Position',
+                        title: 'Frontend engineer',
+                      },
+                      {
+                        category: 'Position',
+                        title: 'Backend engineer',
+                      },
+                      {
+                        category: 'Position',
+                        title: 'Product manager',
+                      },
+                      {
+                        category: 'Skill',
+                        title: 'JavaScript',
+                      },
+                      {
+                        category: 'Skill',
+                        title: 'TypeScript',
+                      },
+                      {
+                        category: 'Skill',
+                        title: 'Project management',
+                      },
+                    ]}
+                    groupBy={(option) => option.category}
+                    getOptionLabel={(option) => option.title}
+                  />
+                  <Box sx={{ my: 2, display: 'flex', gap: 1 }}>
+                    <Chip
+                      variant="soft"
+                      size="sm"
+                      endDecorator={<ChipDelete variant="soft" />}
+                    >
+                      UI designer
+                    </Chip>
+                  </Box>
+                </Box>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion defaultExpanded>
+              <AccordionSummary>
+                <Typography level="title-sm">Location</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Box sx={{ my: 2 }}>
+                  <Autocomplete
+                    size="sm"
+                    placeholder="Country, city, etc…"
+                    options={[
+                      // some of Thailand provinces
+                      'Bangkok',
+                      'Amnat Charoen',
+                      'Ang Thong',
+                      'Bueng Kan',
+                      'Buriram',
+                      'Chachoengsao',
+                      'Chai Nat',
+                      'Chaiyaphum',
+                      'Chanthaburi',
+                      'Chiang Mai',
+                      'Chiang Rai',
+                      'Chonburi',
+                    ]}
+                  />
+                  <Box sx={{ mt: 3, display: 'flex', flexDirection: 'column' }}>
+                    <Typography level="title-sm">Range</Typography>
+                    <Slider
+                      size="sm"
+                      variant="solid"
+                      valueLabelFormat={(value) => `${value} km`}
+                      defaultValue={6}
+                      step={1}
+                      min={0}
+                      max={20}
+                      valueLabelDisplay="on"
+                    />
+                  </Box>
+                </Box>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion defaultExpanded>
+              <AccordionSummary>
+                <Typography level="title-sm">Education</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Box sx={{ my: 2 }}>
+                  <RadioGroup name="education" defaultValue="any">
+                    <Radio label="Any" value="any" size="sm" />
+                    <Radio label="High School" value="high-school" size="sm" />
+                    <Radio label="College" value="college" size="sm" />
+                    <Radio label="Post-graduate" value="post-graduate" size="sm" />
+                  </RadioGroup>
+                </Box>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion defaultExpanded>
+              <AccordionSummary>
+                <Typography level="title-sm">Years of Experience</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Box sx={{ my: 2 }}>
+                  <Slider
+                    size="sm"
+                    valueLabelFormat={(value) => `${value} years`}
+                    defaultValue={[5, 10]}
+                    step={1}
+                    min={0}
+                    max={30}
+                    valueLabelDisplay="on"
+                  />
+                </Box>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion defaultExpanded>
+              <AccordionSummary>
+                <Typography level="title-sm">Languages Spoken</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Box sx={{ my: 2 }}>
+                  <Autocomplete
+                    size="sm"
+                    multiple
+                    placeholder="Select languages"
+                    options={[
+                      'English',
+                      'French',
+                      'German',
+                      'Portuguese',
+                      'Spanish',
+                    ]}
+                    getOptionLabel={(option) => option}
+                    filterSelectedOptions
+                  />
+                </Box>
+              </AccordionDetails>
+            </Accordion>
+          </AccordionGroup>
         </Layout.SidePane>
         <Layout.Main>
           <List
@@ -441,69 +393,54 @@ export default function TeamExample() {
               gap: 2,
             }}
           >
-            {[...Array(3)].map((_, index) => (
+            {peopleData.map((person, index) => (
               <Sheet
                 key={index}
                 component="li"
                 variant="outlined"
-                sx={{
-                  borderRadius: 'sm',
-                  p: 2,
-                  listStyle: 'none',
-                }}
+                sx={{ borderRadius: 'sm', p: 2, listStyle: 'none' }}
               >
                 <Box sx={{ display: 'flex', gap: 2 }}>
                   <Avatar
-                    src="https://i.pravatar.cc/40?img=6"
-                    srcSet="https://i.pravatar.cc/80?img=6 2x"
-                    sx={{ borderRadius: 'sm' }}
+                    variant="outlined"
+                    src={person.avatar2x}
+                    srcSet={`${person.avatar2x} 2x`}
+                    sx={{ borderRadius: '50%' }}
                   />
-                  <Box>
-                    <Typography>Andrew Smith</Typography>
-                    <Typography level="body-xs">UI Designer</Typography>
-                  </Box>
+                  <div>
+                    <Typography level="title-md">{person.name}</Typography>
+                    <Typography level="body-xs">{person.position}</Typography>
+                  </div>
                 </Box>
                 <Divider component="div" sx={{ my: 2 }} />
-                <List sx={{ '--ListItemDecorator-size': '48px' }}>
-                  <ListItem sx={{ alignItems: 'flex-start' }}>
-                    <ListItemDecorator
-                      sx={{
-                        '&:before': {
-                          content: '""',
-                          position: 'absolute',
-                          height: '100%',
-                          width: '2px',
-                          bgcolor: 'divider',
-                          left: 'calc(var(--ListItem-paddingLeft) + 15px)',
-                          top: '50%',
-                        },
-                      }}
-                    >
-                      <Avatar
-                        size="sm"
-                        src="https://www.vectorlogo.zone/logos/dribbble/dribbble-icon.svg"
-                      />
-                    </ListItemDecorator>
-                    <ListItemContent>
-                      <Typography fontSize="sm">Senior designer</Typography>
-                      <Typography level="body-xs">Dribbble</Typography>
-                    </ListItemContent>
-                    <Typography level="body-sm">2015-now</Typography>
-                  </ListItem>
-                  <ListItem sx={{ alignItems: 'flex-start' }}>
-                    <ListItemDecorator>
-                      <Avatar
-                        size="sm"
-                        src="https://www.vectorlogo.zone/logos/pinterest/pinterest-icon.svg"
-                        sx={{ backgroundColor: 'background.body' }}
-                      />
-                    </ListItemDecorator>
-                    <ListItemContent>
-                      <Typography fontSize="sm">Designer</Typography>
-                      <Typography level="body-xs">Pinterest</Typography>
-                    </ListItemContent>
-                    <Typography level="body-sm">2012-2015</Typography>
-                  </ListItem>
+                <List sx={{ '--ListItemDecorator-size': '40px', gap: 2 }}>
+                  {person.companyData.map((company, companyIndex) => (
+                    <ListItem key={companyIndex} sx={{ alignItems: 'flex-start' }}>
+                      <ListItemDecorator
+                        sx={{
+                          '&::before': {
+                            content: '""',
+                            position: 'absolute',
+                            height: '100%',
+                            width: '1px',
+                            bgcolor: 'divider',
+                            left: 'calc(var(--ListItem-paddingLeft) + 12px)',
+                            top: '50%',
+                          },
+                        }}
+                      >
+                        <Avatar
+                          src={company.logo}
+                          sx={{ '--Avatar-size': '24px' }}
+                        />
+                      </ListItemDecorator>
+                      <ListItemContent>
+                        <Typography level="title-sm">{company.role}</Typography>
+                        <Typography level="body-xs">{company.name}</Typography>
+                      </ListItemContent>
+                      <Typography level="body-xs">{company.years}</Typography>
+                    </ListItem>
+                  ))}
                 </List>
                 <Button
                   size="sm"
@@ -514,24 +451,18 @@ export default function TeamExample() {
                   Expand
                 </Button>
                 <Divider component="div" sx={{ my: 2 }} />
-                <Typography fontSize="sm">Skills tags:</Typography>
+                <Typography level="title-sm">Skills tags:</Typography>
                 <Box sx={{ mt: 1.5, display: 'flex', gap: 1 }}>
-                  <Chip
-                    variant="outlined"
-                    color="neutral"
-                    size="sm"
-                    sx={{ borderRadius: 'sm' }}
-                  >
-                    UI design
-                  </Chip>
-                  <Chip
-                    variant="outlined"
-                    color="neutral"
-                    size="sm"
-                    sx={{ borderRadius: 'sm' }}
-                  >
-                    Illustration
-                  </Chip>
+                  {person.skills.map((skill, skillIndex) => (
+                    <Chip
+                      key={skillIndex}
+                      variant="outlined"
+                      color="neutral"
+                      size="sm"
+                    >
+                      {skill}
+                    </Chip>
+                  ))}
                 </Box>
               </Sheet>
             ))}

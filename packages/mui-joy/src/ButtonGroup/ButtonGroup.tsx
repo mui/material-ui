@@ -3,7 +3,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { unstable_traverseBreakpoints as traverseBreakpoints } from '@mui/system/Unstable_Grid';
+import { unstable_traverseBreakpoints as traverseBreakpoints } from '@mui/system/Grid';
 import { OverridableComponent } from '@mui/types';
 import {
   unstable_capitalize as capitalize,
@@ -18,6 +18,7 @@ import ButtonGroupContext from './ButtonGroupContext';
 import useSlot from '../utils/useSlot';
 import buttonClasses from '../Button/buttonClasses';
 import iconButtonClasses from '../IconButton/iconButtonClasses';
+import { DividerProps } from '../Divider';
 
 const useUtilityClasses = (ownerState: ButtonGroupOwnerState) => {
   const { size, variant, color, orientation } = ownerState;
@@ -35,134 +36,129 @@ const useUtilityClasses = (ownerState: ButtonGroupOwnerState) => {
   return composeClasses(slots, getButtonGroupUtilityClass, {});
 };
 
-export const StyledButtonGroup = styled('div')<{ ownerState: ButtonGroupOwnerState }>(
-  ({ theme, ownerState }) => {
-    const { borderRadius: radius } = resolveSxValue({ theme, ownerState }, ['borderRadius']);
-    const firstChildRadius =
-      ownerState.orientation === 'vertical'
-        ? 'var(--ButtonGroup-radius) var(--ButtonGroup-radius) var(--unstable_childRadius) var(--unstable_childRadius)'
-        : 'var(--ButtonGroup-radius) var(--unstable_childRadius) var(--unstable_childRadius) var(--ButtonGroup-radius)';
-    const lastChildRadius =
-      ownerState.orientation === 'vertical'
-        ? 'var(--unstable_childRadius) var(--unstable_childRadius) var(--ButtonGroup-radius) var(--ButtonGroup-radius)'
-        : 'var(--unstable_childRadius) var(--ButtonGroup-radius) var(--ButtonGroup-radius) var(--unstable_childRadius)';
-    const margin =
-      ownerState.orientation === 'vertical'
-        ? 'calc(var(--ButtonGroup-separatorSize) * -1) 0 0 0'
-        : '0 0 0 calc(var(--ButtonGroup-separatorSize) * -1)';
-    const styles = {};
-    traverseBreakpoints<string | number | null>(
-      theme.breakpoints,
-      ownerState.spacing,
-      (appendStyle, value) => {
-        if (value !== null) {
-          appendStyle(styles, {
-            // the buttons should be connected if the value is more than 0
-            '--ButtonGroup-connected': value.toString().match(/^0(?!\.)/) ? '1' : '0',
-            gap: typeof value === 'string' ? value : theme.spacing?.(value),
-          });
-        }
-      },
-    );
+export const StyledButtonGroup = styled('div')<{ ownerState: ButtonGroupOwnerState }>(({
+  theme,
+  ownerState,
+}) => {
+  const { borderRadius: radius } = resolveSxValue({ theme, ownerState }, ['borderRadius']);
+  const firstChildRadius =
+    ownerState.orientation === 'vertical'
+      ? 'var(--ButtonGroup-radius) var(--ButtonGroup-radius) var(--unstable_childRadius) var(--unstable_childRadius)'
+      : 'var(--ButtonGroup-radius) var(--unstable_childRadius) var(--unstable_childRadius) var(--ButtonGroup-radius)';
+  const lastChildRadius =
+    ownerState.orientation === 'vertical'
+      ? 'var(--unstable_childRadius) var(--unstable_childRadius) var(--ButtonGroup-radius) var(--ButtonGroup-radius)'
+      : 'var(--unstable_childRadius) var(--ButtonGroup-radius) var(--ButtonGroup-radius) var(--unstable_childRadius)';
+  const margin =
+    ownerState.orientation === 'vertical'
+      ? 'calc(var(--ButtonGroup-separatorSize) * -1) 0 0 0'
+      : '0 0 0 calc(var(--ButtonGroup-separatorSize) * -1)';
+  const styles = {};
+  traverseBreakpoints<string | number | null>(
+    theme.breakpoints,
+    ownerState.spacing,
+    (appendStyle, value) => {
+      if (value !== null) {
+        appendStyle(styles, {
+          // the buttons should be connected if the value is more than 0
+          '--ButtonGroup-connected': value.toString().match(/^0(?!\.)/) ? '1' : '0',
+          gap: typeof value === 'string' ? value : theme.spacing?.(value),
+        });
+      }
+    },
+  );
+  const outlinedStyle = theme.variants.outlined?.[ownerState.color!];
+  const outlinedDisabledStyle = theme.variants.outlinedDisabled?.[ownerState.color!];
+  const outlinedHoverStyle = theme.variants.outlinedHover?.[ownerState.color!];
 
-    return [
-      {
-        '--ButtonGroup-separatorSize':
-          ownerState.variant === 'outlined' ? '1px' : 'calc(var(--ButtonGroup-connected) * 1px)',
-        ...(ownerState.color !== 'context' && {
-          '--ButtonGroup-separatorColor': theme.vars.palette[ownerState.color!]?.outlinedBorder,
+  return [
+    {
+      '--ButtonGroup-separatorSize':
+        ownerState.variant === 'outlined' ? '1px' : 'calc(var(--ButtonGroup-connected) * 1px)',
+      '--ButtonGroup-separatorColor': outlinedStyle?.borderColor,
+      '--ButtonGroup-radius': theme.vars.radius.sm,
+      '--Divider-inset': '0.5rem',
+      '--unstable_childRadius':
+        'calc((1 - var(--ButtonGroup-connected)) * var(--ButtonGroup-radius) - var(--variant-borderWidth, 0px))', // for internal usage
+      ...styles,
+      display: 'flex',
+      borderRadius: 'var(--ButtonGroup-radius)',
+      flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
+      // first Button or IconButton
+      [`& > [data-first-child]`]: {
+        '--Button-radius': firstChildRadius,
+        '--IconButton-radius': firstChildRadius,
+        ...(ownerState.orientation === 'horizontal' && {
+          borderRight: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
         }),
-        '--ButtonGroup-radius': theme.vars.radius.sm,
-        '--Divider-inset': '0.5rem',
-        '--unstable_childRadius':
-          'calc((1 - var(--ButtonGroup-connected)) * var(--ButtonGroup-radius) - var(--variant-borderWidth, 0px))', // for internal usage
-        ...styles,
-        display: 'flex',
-        borderRadius: 'var(--ButtonGroup-radius)',
-        flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
-        // first Button or IconButton
-        [`& > [data-first-child]`]: {
-          '--Button-radius': firstChildRadius,
-          '--IconButton-radius': firstChildRadius,
-          ...(ownerState.orientation === 'horizontal' && {
-            borderRight: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
-          }),
-          ...(ownerState.orientation === 'vertical' && {
-            borderBottom:
-              'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
-          }),
-        },
-        // middle Buttons or IconButtons
-        [`& > :not([data-first-child]):not([data-last-child]):not(:only-child)`]: {
-          '--Button-radius': 'var(--unstable_childRadius)',
-          '--IconButton-radius': 'var(--unstable_childRadius)',
-          borderRadius: 'var(--unstable_childRadius)',
-          ...(ownerState.orientation === 'horizontal' && {
-            borderLeft: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
-            borderRight: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
-          }),
-          ...(ownerState.orientation === 'vertical' && {
-            borderTop: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
-            borderBottom:
-              'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
-          }),
-        },
-        // last Button or IconButton
-        [`& > [data-last-child]`]: {
-          '--Button-radius': lastChildRadius,
-          '--IconButton-radius': lastChildRadius,
-          ...(ownerState.orientation === 'horizontal' && {
-            borderLeft: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
-          }),
-          ...(ownerState.orientation === 'vertical' && {
-            borderTop: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
-          }),
-        },
-        // single Button or IconButton
-        [`& > :only-child`]: {
-          '--Button-radius': 'var(--ButtonGroup-radius)',
-          '--IconButton-radius': 'var(--ButtonGroup-radius)',
-        },
-        [`& > :not([data-first-child]):not(:only-child)`]: {
-          '--Button-margin': margin,
-          '--IconButton-margin': margin,
-        },
-        [`& .${buttonClasses.root}, & .${iconButtonClasses.root}`]: {
-          '&:not(:disabled)': {
-            zIndex: 1, // to make borders appear above disabled buttons.
-          },
-          ...(ownerState.color !== 'context' && {
-            '&:disabled': {
-              '--ButtonGroup-separatorColor':
-                theme.vars.palette[ownerState.color!]?.outlinedDisabledBorder,
-            },
-          }),
-          ...(ownerState.variant === 'outlined' &&
-            ownerState.color !== 'context' && {
-              '&:hover': {
-                '--ButtonGroup-separatorColor':
-                  theme.vars.palette[ownerState.color!]?.outlinedHoverBorder,
-              },
-            }),
-          [`&:hover, ${theme.focus.selector}`]: {
-            zIndex: 2, // to make borders appear above sibling.
-          },
-        },
-        ...(ownerState.buttonFlex && {
-          [`& > *:not(.${iconButtonClasses.root})`]: {
-            flex: ownerState.buttonFlex,
-          },
-          [`& > :not(button) > .${buttonClasses.root}`]: {
-            width: '100%', // for button to fill its wrapper.
-          },
+        ...(ownerState.orientation === 'vertical' && {
+          borderBottom: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
         }),
-      } as const,
-      radius !== undefined && {
-        '--ButtonGroup-radius': radius,
       },
-    ];
-  },
-);
+      // middle Buttons or IconButtons
+      [`& > :not([data-first-child]):not([data-last-child]):not(:only-child)`]: {
+        '--Button-radius': 'var(--unstable_childRadius)',
+        '--IconButton-radius': 'var(--unstable_childRadius)',
+        borderRadius: 'var(--unstable_childRadius)',
+        ...(ownerState.orientation === 'horizontal' && {
+          borderLeft: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
+          borderRight: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
+        }),
+        ...(ownerState.orientation === 'vertical' && {
+          borderTop: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
+          borderBottom: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
+        }),
+      },
+      // last Button or IconButton
+      [`& > [data-last-child]`]: {
+        '--Button-radius': lastChildRadius,
+        '--IconButton-radius': lastChildRadius,
+        ...(ownerState.orientation === 'horizontal' && {
+          borderLeft: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
+        }),
+        ...(ownerState.orientation === 'vertical' && {
+          borderTop: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
+        }),
+      },
+      // single Button or IconButton
+      [`& > :only-child`]: {
+        '--Button-radius': 'var(--ButtonGroup-radius)',
+        '--IconButton-radius': 'var(--ButtonGroup-radius)',
+      },
+      [`& > :not([data-first-child]):not(:only-child)`]: {
+        '--Button-margin': margin,
+        '--IconButton-margin': margin,
+      },
+      [`& .${buttonClasses.root}, & .${iconButtonClasses.root}`]: {
+        '&:not(:disabled)': {
+          zIndex: 1, // to make borders appear above disabled buttons.
+        },
+        '&:disabled': {
+          '--ButtonGroup-separatorColor': outlinedDisabledStyle?.borderColor,
+        },
+        ...(ownerState.variant === 'outlined' && {
+          '&:hover': {
+            '--ButtonGroup-separatorColor': outlinedHoverStyle?.borderColor,
+          },
+        }),
+        [`&:hover, ${theme.focus.selector}`]: {
+          zIndex: 2, // to make borders appear above sibling.
+        },
+      },
+      ...(ownerState.buttonFlex && {
+        [`& > *:not(.${iconButtonClasses.root})`]: {
+          flex: ownerState.buttonFlex,
+        },
+        [`& > :not(button) > .${buttonClasses.root}`]: {
+          width: '100%', // for button to fill its wrapper.
+        },
+      }),
+    } as const,
+    radius !== undefined && {
+      '--ButtonGroup-radius': radius,
+    },
+  ];
+});
 
 const ButtonGroupRoot = styled(StyledButtonGroup, {
   name: 'JoyButtonGroup',
@@ -241,11 +237,11 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
           }
           const extraProps: Record<string, any> = {};
           if (isMuiElement(child, ['Divider'])) {
-            extraProps.inset = 'inset' in child.props ? child.props.inset : 'context';
+            const childProps = child.props as DividerProps;
+            extraProps.inset = childProps?.inset ?? 'context';
 
             const dividerOrientation = orientation === 'vertical' ? 'horizontal' : 'vertical';
-            extraProps.orientation =
-              'orientation' in child.props ? child.props.orientation : dividerOrientation;
+            extraProps.orientation = childProps?.orientation ?? dividerOrientation;
             extraProps.role = 'presentation';
             extraProps.component = 'span';
           }
@@ -265,10 +261,10 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
 }) as OverridableComponent<ButtonGroupTypeMap>;
 
 ButtonGroup.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The flex value of the button.
    * @example buttonFlex={1} will set flex: '1 1 auto' on each button (stretch the button to equally fill the available space).

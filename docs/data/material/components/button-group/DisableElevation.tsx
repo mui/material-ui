@@ -7,7 +7,7 @@ export default function DisableElevation() {
     <ButtonGroup
       disableElevation
       variant="contained"
-      aria-label="Disabled elevation buttons"
+      aria-label="Disabled button group"
     >
       <Button>One</Button>
       <Button>Two</Button>

@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
+import Box from '@mui/material/Box';
 import clsx from 'clsx';
 import { Switch as SwitchUnstyled } from '@mui/base/Switch';
 import { useSwitch, UseSwitchParameters } from '@mui/base/useSwitch';
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import SvgTwinkle from 'docs/src/icons/SvgTwinkle';
 import Section from 'docs/src/layouts/Section';
 import Highlighter from 'docs/src/components/action/Highlighter';
@@ -14,8 +15,6 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 import Frame from 'docs/src/components/action/Frame';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 
 const code = `
 import clsx from 'clsx';
@@ -122,10 +121,10 @@ function App() {
 `;
 
 const startLine = [6, 89, 64];
-const endLine = [26, 93, 84];
-const scrollTo = [0, 1400, 1140];
+const endLine = [31, 93, 84];
+const scrollTo = [0, 89, 62];
 
-const StyledSwitchRoot = styled('span')(`
+const StyledSwitchRoot = styled('span')`
   font-size: 0;
   position: relative;
   display: inline-block;
@@ -134,7 +133,20 @@ const StyledSwitchRoot = styled('span')(`
   margin: 10px;
   cursor: pointer;
   border-radius: 16px;
-  background: #A0AAB4;
+  background: #b0b8c4;
+  transition: all ease 120ms;
+
+  :where([data-mui-color-scheme='dark']) & {
+    background: #6b7a90;
+
+    &:hover {
+      background: #434d5b;
+    }
+  }
+
+  &:hover {
+    background: #9da8b7;
+  }
 
   &.Mui-disabled {
     opacity: 0.4;
@@ -142,17 +154,21 @@ const StyledSwitchRoot = styled('span')(`
   }
 
   &.Mui-checked {
-    background: #007FFF;
+    background: #007fff;
+
+    &:hover {
+      background: #0072e5;
+    }
+
     & .MuiSwitch-thumb {
       left: 20px;
     }
   }
 
   &.Mui-focusVisible {
-    outline: 2px solid #007FFF;
-    outline-offset: 2px;
+    outline: 4px solid rgb(0 127 255 / 0.4);
   }
-`);
+`;
 
 const StyledSwitchInput = styled('input')`
   cursor: inherit;
@@ -211,26 +227,25 @@ export default function BaseUICustomization() {
     };
   }
   React.useEffect(() => {
-    if (infoRef.current) {
-      infoRef.current.scroll({ top: scrollTo[index], behavior: 'smooth' });
-    }
+    // 18px line-height
+    // 16px margin-top
+    // 1px border-width
+    infoRef.current!.scroll({ top: scrollTo[index] * 18 + 16 - 1, behavior: 'smooth' });
   }, [index]);
   return (
     <Section>
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box maxWidth={500} sx={{ mb: 4 }}>
-            <SectionHeadline
-              overline="Customization"
-              title={
-                <Typography variant="h2">
-                  <GradientText>Endless possibilities </GradientText>
-                  <br /> with a lightweight API
-                </Typography>
-              }
-              description="With Base UI, you have the freedom to decide how much you want to customize a component's structure and style."
-            />
-          </Box>
+          <SectionHeadline
+            overline="Customization"
+            title={
+              <Typography variant="h2">
+                <GradientText>Endless possibilities </GradientText>
+                <br /> with a lightweight API
+              </Typography>
+            }
+            description="With Base UI, you have the freedom to decide how much you want to customize a component's structure and style."
+          />
           <Group sx={{ m: -2, p: 2 }}>
             <Highlighter disableBorder {...getSelectedProps(0)} onClick={() => setIndex(0)}>
               <Item
@@ -292,16 +307,9 @@ export default function BaseUICustomization() {
                 overflow: 'auto',
               }}
             >
-              <Box sx={{ position: 'relative', '&& pre': { bgcolor: 'transparent' } }}>
-                <Box sx={{ position: 'relative', zIndex: 1 }}>
-                  <HighlightedCode
-                    copyButtonHidden
-                    component={MarkdownElement}
-                    code={code}
-                    language="jsx"
-                  />
-                </Box>
-                <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: -1 }} />
+              <Box sx={{ position: 'relative' }}>
+                <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
+                <FlashCode startLine={startLine[index]} endLine={endLine[index]} />
               </Box>
             </Frame.Info>
           </Frame>

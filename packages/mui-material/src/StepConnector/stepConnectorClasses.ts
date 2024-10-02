@@ -1,5 +1,5 @@
-import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
-import generateUtilityClass from '../generateUtilityClass';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
 
 export interface StepConnectorClasses {
   /** Styles applied to the root element. */
@@ -18,9 +18,13 @@ export interface StepConnectorClasses {
   disabled: string;
   /** Styles applied to the line element. */
   line: string;
-  /** Styles applied to the root element if `orientation="horizontal"`. */
+  /** Styles applied to the line element if `orientation="horizontal"`.
+   * @deprecated Combine the [.MuiStepConnector-horizontal](/material-ui/api/step-connector/#step-connector-classes-horizontal) and [.MuiStepConnector-line](/material-ui/api/step-connector/#step-connector-classes-line) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   */
   lineHorizontal: string;
-  /** Styles applied to the root element if `orientation="vertical"`. */
+  /** Styles applied to the line element if `orientation="vertical"`.
+   * @deprecated Combine the [.MuiStepConnector-vertical](/material-ui/api/step-connector/#step-connector-classes-vertical) and [.MuiStepConnector-line](/material-ui/api/step-connector/#step-connector-classes-line) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   */
   lineVertical: string;
 }
 

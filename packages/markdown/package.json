@@ -1,7 +1,8 @@
 {
-  "name": "@mui/markdown",
-  "version": "5.0.0",
-  "private": true,
+  "name": "@mui/internal-markdown",
+  "version": "1.0.14",
+  "author": "MUI Team",
+  "description": "MUI markdown parser. This is an internal package not meant for general use.",
   "main": "./index.js",
   "types": "./index.d.ts",
   "exports": {
@@ -9,9 +10,26 @@
     "./loader": "./loader.js",
     "./prism": "./prism.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mui/material-ui.git",
+    "directory": "packages/markdown"
+  },
+  "scripts": {
+    "release:publish": "pnpm publish --tag latest",
+    "release:publish:dry-run": "pnpm publish --tag latest --registry=\"http://localhost:4873/\""
+  },
   "dependencies": {
+    "@babel/runtime": "^7.25.6",
     "lodash": "^4.17.21",
-    "marked": "^5.1.2",
+    "marked": "^13.0.3",
     "prismjs": "^1.29.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.20",
+    "chai": "^4.5.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

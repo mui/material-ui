@@ -3,10 +3,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { emphasize } from '@mui/system';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { emphasize } from '@mui/system/colorManipulator';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Fab from '../Fab';
 import Tooltip from '../Tooltip';
 import capitalize from '../utils/capitalize';
@@ -37,24 +38,31 @@ const SpeedDialActionFab = styled(Fab, {
 
     return [styles.fab, !ownerState.open && styles.fabClosed];
   },
-})(({ theme, ownerState }) => ({
-  margin: 8,
-  color: (theme.vars || theme).palette.text.secondary,
-  backgroundColor: (theme.vars || theme).palette.background.paper,
-  '&:hover': {
-    backgroundColor: theme.vars
-      ? theme.vars.palette.SpeedDialAction.fabHoverBg
-      : emphasize(theme.palette.background.paper, 0.15),
-  },
-  transition: `${theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shorter,
-  })}, opacity 0.8s`,
-  opacity: 1,
-  ...(!ownerState.open && {
-    opacity: 0,
-    transform: 'scale(0)',
-  }),
-}));
+})(
+  memoTheme(({ theme }) => ({
+    margin: 8,
+    color: (theme.vars || theme).palette.text.secondary,
+    backgroundColor: (theme.vars || theme).palette.background.paper,
+    '&:hover': {
+      backgroundColor: theme.vars
+        ? theme.vars.palette.SpeedDialAction.fabHoverBg
+        : emphasize(theme.palette.background.paper, 0.15),
+    },
+    transition: `${theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shorter,
+    })}, opacity 0.8s`,
+    opacity: 1,
+    variants: [
+      {
+        props: ({ ownerState }) => !ownerState.open,
+        style: {
+          opacity: 0,
+          transform: 'scale(0)',
+        },
+      },
+    ],
+  })),
+);
 
 const SpeedDialActionStaticTooltip = styled('span', {
   name: 'MuiSpeedDialAction',
@@ -68,49 +76,74 @@ const SpeedDialActionStaticTooltip = styled('span', {
       styles[`tooltipPlacement${capitalize(ownerState.tooltipPlacement)}`],
     ];
   },
-})(({ theme, ownerState }) => ({
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-  [`& .${speedDialActionClasses.staticTooltipLabel}`]: {
-    transition: theme.transitions.create(['transform', 'opacity'], {
-      duration: theme.transitions.duration.shorter,
-    }),
-    opacity: 1,
-    ...(!ownerState.open && {
-      opacity: 0,
-      transform: 'scale(0.5)',
-    }),
-    ...(ownerState.tooltipPlacement === 'left' && {
-      transformOrigin: '100% 50%',
-      right: '100%',
-      marginRight: 8,
-    }),
-    ...(ownerState.tooltipPlacement === 'right' && {
-      transformOrigin: '0% 50%',
-      left: '100%',
-      marginLeft: 8,
-    }),
-  },
-}));
+})(
+  memoTheme(({ theme }) => ({
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    [`& .${speedDialActionClasses.staticTooltipLabel}`]: {
+      transition: theme.transitions.create(['transform', 'opacity'], {
+        duration: theme.transitions.duration.shorter,
+      }),
+      opacity: 1,
+    },
+    variants: [
+      {
+        props: ({ ownerState }) => !ownerState.open,
+        style: {
+          [`& .${speedDialActionClasses.staticTooltipLabel}`]: {
+            opacity: 0,
+            transform: 'scale(0.5)',
+          },
+        },
+      },
+      {
+        props: {
+          tooltipPlacement: 'left',
+        },
+        style: {
+          [`& .${speedDialActionClasses.staticTooltipLabel}`]: {
+            transformOrigin: '100% 50%',
+            right: '100%',
+            marginRight: 8,
+          },
+        },
+      },
+      {
+        props: {
+          tooltipPlacement: 'right',
+        },
+        style: {
+          [`& .${speedDialActionClasses.staticTooltipLabel}`]: {
+            transformOrigin: '0% 50%',
+            left: '100%',
+            marginLeft: 8,
+          },
+        },
+      },
+    ],
+  })),
+);
 
 const SpeedDialActionStaticTooltipLabel = styled('span', {
   name: 'MuiSpeedDialAction',
   slot: 'StaticTooltipLabel',
   overridesResolver: (props, styles) => styles.staticTooltipLabel,
-})(({ theme }) => ({
-  position: 'absolute',
-  ...theme.typography.body1,
-  backgroundColor: (theme.vars || theme).palette.background.paper,
-  borderRadius: (theme.vars || theme).shape.borderRadius,
-  boxShadow: (theme.vars || theme).shadows[1],
-  color: (theme.vars || theme).palette.text.secondary,
-  padding: '4px 16px',
-  wordBreak: 'keep-all',
-}));
+})(
+  memoTheme(({ theme }) => ({
+    position: 'absolute',
+    ...theme.typography.body1,
+    backgroundColor: (theme.vars || theme).palette.background.paper,
+    borderRadius: (theme.vars || theme).shape.borderRadius,
+    boxShadow: (theme.vars || theme).shadows[1],
+    color: (theme.vars || theme).palette.text.secondary,
+    padding: '4px 16px',
+    wordBreak: 'keep-all',
+  })),
+);
 
 const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSpeedDialAction' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiSpeedDialAction' });
   const {
     className,
     delay = 0,
@@ -203,10 +236,10 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
 });
 
 SpeedDialAction.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Override or extend the styles applied to the component.
    */
@@ -221,7 +254,7 @@ SpeedDialAction.propTypes /* remove-proptypes */ = {
    */
   delay: PropTypes.number,
   /**
-   * Props applied to the [`Fab`](/material-ui/api/fab/) component.
+   * Props applied to the [`Fab`](https://mui.com/material-ui/api/fab/) component.
    * @default {}
    */
   FabProps: PropTypes.object,
@@ -247,7 +280,7 @@ SpeedDialAction.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * `classes` prop applied to the [`Tooltip`](/material-ui/api/tooltip/) element.
+   * `classes` prop applied to the [`Tooltip`](https://mui.com/material-ui/api/tooltip/) element.
    */
   TooltipClasses: PropTypes.object,
   /**

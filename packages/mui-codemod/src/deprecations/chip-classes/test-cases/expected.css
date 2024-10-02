@@ -1,0 +1,103 @@
+.MuiChip-clickable.MuiChip-colorPrimary {
+  color: red;
+}
+
+.MuiChip-clickable.MuiChip-colorSecondary {
+  color: red;
+}
+
+.MuiChip-deletable.MuiChip-colorPrimary {
+  color: red;
+}
+
+.MuiChip-deletable.MuiChip-colorSecondary {
+  color: red;
+}
+
+.MuiChip-outlined.MuiChip-colorPrimary {
+  color: red;
+}
+
+.MuiChip-outlined.MuiChip-colorSecondary {
+  color: red;
+}
+
+.MuiChip-filled.MuiChip-colorPrimary {
+  color: red;
+}
+
+.MuiChip-filled.MuiChip-colorSecondary {
+  color: red;
+}
+
+.MuiChip-root.MuiChip-sizeSmall > .MuiChip-avatar {
+  color: red;
+}
+
+.MuiChip-root.MuiChip-sizeMedium > .MuiChip-avatar {
+  color: red;
+}
+
+.MuiChip-root.MuiChip-colorPrimary > .MuiChip-avatar {
+  color: red;
+}
+
+.MuiChip-root.MuiChip-colorSecondary > .MuiChip-avatar {
+  color: red;
+}
+
+.MuiChip-root.MuiChip-sizeSmall > .MuiChip-icon {
+  color: red;
+}
+
+.MuiChip-root.MuiChip-sizeMedium > .MuiChip-icon {
+  color: red;
+}
+
+.MuiChip-root.MuiChip-colorPrimary > .MuiChip-icon {
+  color: red;
+}
+
+.MuiChip-root.MuiChip-colorSecondary > .MuiChip-icon {
+  color: red;
+}
+
+.MuiChip-root.MuiChip-sizeSmall > .MuiChip-label {
+  color: red;
+}
+
+.MuiChip-root.MuiChip-sizeMedium > .MuiChip-label {
+  color: red;
+}
+
+.MuiChip-root.MuiChip-sizeSmall > .MuiChip-deleteIcon {
+  color: red;
+}
+
+.MuiChip-root.MuiChip-sizeMedium > .MuiChip-deleteIcon {
+  color: red;
+}
+
+.MuiChip-root.MuiChip-colorPrimary > .MuiChip-deleteIcon {
+  color: red;
+}
+
+.MuiChip-root.MuiChip-colorSecondary > .MuiChip-deleteIcon {
+  color: red;
+}
+
+.MuiChip-root.MuiChip-filled.MuiChip-colorPrimary > .MuiChip-deleteIcon {
+  color: red;
+}
+
+.MuiChip-root.MuiChip-filled.MuiChip-colorSecondary > .MuiChip-deleteIcon {
+  color: red;
+}
+
+.MuiChip-root.MuiChip-outlined.MuiChip-colorPrimary > .MuiChip-deleteIcon {
+  color: red;
+}
+
+.MuiChip-root.MuiChip-outlined.MuiChip-colorSecondary > .MuiChip-deleteIcon {
+  color: red;
+}

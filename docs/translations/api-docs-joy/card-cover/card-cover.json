@@ -13,6 +13,6 @@
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     }
   },
-  "classDescriptions": { "root": { "description": "Class name applied to the root element." } },
+  "classDescriptions": {},
   "slotDescriptions": { "root": "The component that renders the root." }
 }

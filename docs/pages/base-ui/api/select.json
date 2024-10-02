@@ -1,6 +1,7 @@
 {
   "props": {
     "areOptionsEqual": { "type": { "name": "func" } },
+    "autoComplete": { "type": { "name": "string" } },
     "autoFocus": { "type": { "name": "bool" }, "default": "false" },
     "defaultListboxOpen": { "type": { "name": "bool" }, "default": "false" },
     "defaultValue": { "type": { "name": "any" } },
@@ -13,18 +14,20 @@
     "name": { "type": { "name": "string" } },
     "onChange": { "type": { "name": "func" } },
     "onListboxOpenChange": { "type": { "name": "func" } },
+    "placeholder": { "type": { "name": "node" } },
     "renderValue": { "type": { "name": "func" } },
+    "required": { "type": { "name": "bool" }, "default": "false" },
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ listbox?: func<br>&#124;&nbsp;object, popper?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+        "description": "{ listbox?: func<br>&#124;&nbsp;object, popup?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ listbox?: elementType, popper?: elementType, root?: elementType }"
+        "description": "{ listbox?: elementType, popup?: elementType, root?: elementType }"
       },
       "default": "{}",
       "additionalInfo": { "slotsApi": true }
@@ -33,38 +36,54 @@
   },
   "name": "Select",
   "imports": ["import { Select } from '@mui/base/Select';", "import { Select } from '@mui/base';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'button'",
-      "class": ".MuiSelect-root"
+      "class": "base-Select-root"
     },
     {
       "name": "listbox",
       "description": "The component that renders the listbox.",
       "default": "'ul'",
-      "class": ".MuiSelect-listbox"
+      "class": "base-Select-listbox"
     },
     {
-      "name": "popper",
-      "description": "The component that renders the popper.",
-      "default": "Popper",
-      "class": ".MuiSelect-popper"
+      "name": "popup",
+      "description": "The component that wraps the popup.",
+      "default": "'div'",
+      "class": "base-Select-popup"
     }
   ],
-  "classes": {
-    "classes": ["active", "disabled", "expanded", "focusVisible"],
-    "globalClasses": {
-      "active": "Mui-active",
-      "expanded": "Mui-expanded",
-      "disabled": "Mui-disabled",
-      "focusVisible": "Mui-focusVisible"
+  "classes": [
+    {
+      "key": "active",
+      "className": "base--active",
+      "description": "State class applied to the root `button` element if `active={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "disabled",
+      "className": "base--disabled",
+      "description": "State class applied to the root `button` element and the listbox 'ul' element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "expanded",
+      "className": "base--expanded",
+      "description": "State class applied to the root `button` element if `expanded={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "focusVisible",
+      "className": "base--focusVisible",
+      "description": "State class applied to the root `button` element if `focusVisible={true}`.",
+      "isGlobal": true
     }
-  },
+  ],
   "spread": true,
-  "muiName": "MuiSelect",
+  "muiName": "Select",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-base/src/Select/Select.tsx",
   "inheritance": null,

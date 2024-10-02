@@ -1,6 +1,7 @@
 ---
 productId: joy-ui
 title: React Grid component
+components: Grid
 githubLabel: 'component: Grid'
 ---
 
@@ -8,12 +9,14 @@ githubLabel: 'component: Grid'
 
 <p class="description">Grid acts as a generic container, wrapping around the elements to be arranged.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
 ## Introduction
 
 The Grid component, based on a 12-column grid layout, creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
 
 :::warning
-⚠️ The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to the [`DataGrid`](/x/react-data-grid/) component.
+The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to the [MUI X Data Grid](/x/react-data-grid/) component.
 :::
 
 ## Basics
@@ -22,11 +25,8 @@ The Grid component, based on a 12-column grid layout, creates visual consistency
 import Grid from '@mui/joy/Grid';
 ```
 
-Column widths are integer values between 1 and 12. They apply at any breakpoint and indicate how many columns are occupied by the component.
-
-By default, the value given to a breakpoint is applied to all the other **wider** breakpoints.
-
-For example, `xs={12}` sizes a component to occupy the whole viewport width regardless of its size, even if you do not pass any value for wider breakpoints like `sm` or `md`.
+Column widths are integer values between 1 and 12.
+For example, an item with `size={6}` occupies half of the grid container's width.
 
 {{"demo": "BasicGrid.js", "bg": true}}
 
@@ -36,7 +36,7 @@ For example, `xs={12}` sizes a component to occupy the whole viewport width rega
 
 Components may have multiple widths defined, causing the layout to change at the defined breakpoint. Width values given to larger breakpoints override those given to smaller breakpoints.
 
-For example, `xs={12} sm={6}` sizes a component to occupy half of the viewport width (6 columns) when viewport width is 600 or more pixels. For smaller viewports, the component fills all 12 available columns.
+For example, `size={{ xs: 12, sm: 6 }}` sizes a component to occupy half of the viewport width (6 columns) when viewport width is 600 or more pixels. For smaller viewports, the component fills all 12 available columns.
 
 {{"demo": "FullWidthGrid.js", "bg": true}}
 
@@ -63,20 +63,22 @@ You can switch the props' value based on the active breakpoint.
 
 Responsive values is supported by:
 
+- `size`
 - `columns`
 - `columnSpacing`
 - `direction`
 - `rowSpacing`
 - `spacing`
-- all the [other props](#system-props) of the system
+- `offset`
+- all the [other props](#system-props) of MUI System
 
 :::warning
-⚠️ When using a responsive `columns` prop, each grid item needs its corresponding breakpoint.
+When using a responsive `columns` prop, each grid item needs its corresponding breakpoint.
 For instance, this is not working. The grid item misses the value for `md`:
 
 ```jsx
 <Grid container columns={{ xs: 4, md: 12 }}>
-  <Grid xs={2} />
+  <Grid size={{ xs: 2 }} />
 </Grid>
 ```
 
@@ -91,7 +93,7 @@ This also means that you can set the width of one grid item, and the others will
 
 ### Variable width content
 
-Set one of the size breakpoint props to `"auto"` instead of `true` or a `number` to render a column based on the natural width of its content.
+Set one of the size breakpoint props to `"auto"` to render a column based on the natural width of its content.
 
 {{"demo": "VariableWidthGrid.js", "bg": true}}
 
@@ -103,13 +105,15 @@ You can change the default number of columns (12) with the `columns` prop.
 
 ### System props
 
-As a CSS utility component, Grid supports all [MUI System properties](/system/properties/).
-You can use them as props directly on the component.
-For instance, a margin-top:
+:::info
+System props are deprecated and will be removed in the next major release. Please use the `sx` prop instead.
 
-```jsx
-<Grid mt={2}>
+```diff
+- <Grid mt={2} />
++ <Grid sx={{ mt: 2 }} />
 ```
+
+:::
 
 ## Interactive demo
 
@@ -125,7 +129,7 @@ The spacing between items is implemented with a negative margin. This might lead
 
 ### direction: column | column-reverse
 
-The `xs`, `sm`, `md`, `lg`, and `xl` props are **not supported** within `direction="column"` and `direction="column-reverse"` containers.
+The `size` and `offset` props are **not supported** within `direction="column"` and `direction="column-reverse"` containers.
 
 They define the number of grids the component will use for a given breakpoint. They are intended to control **width** using `flex-basis` in `row` containers but they will impact height in `column` containers.
 If used, these props may have undesirable effects on the height of the `Grid` item elements.
@@ -133,7 +137,7 @@ If used, these props may have undesirable effects on the height of the `Grid` it
 ## CSS Grid Layout
 
 The `Grid` component is using CSS flexbox internally.
-But as seen below, you can easily use [the system](/system/grid/) and CSS Grid to layout your pages.
+But as seen below, you can easily use [MUI System](/system/grid/) and CSS Grid to layout your pages.
 
 {{"demo": "CSSGrid.js", "bg": true}}
 

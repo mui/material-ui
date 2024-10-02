@@ -40,36 +40,65 @@ describe('mergeSlotProps', () => {
     expect(merged.props.prop4).to.equal('internal');
   });
 
-  it('joins all the class names in order from internal to external', () => {
-    const getSlotProps = () => ({
-      className: 'internal',
+  describe('it joins all class names in order from least to most important', () => {
+    it('when internal classNames from getSlotProps are included', () => {
+      const getSlotProps = () => ({
+        className: 'internal',
+      });
+
+      const additionalProps = {
+        className: 'additional',
+      };
+
+      const externalForwardedProps = {
+        className: 'externalForwarded',
+      };
+
+      const externalSlotProps = {
+        className: 'externalSlot',
+      };
+
+      const className = ['class1', 'class2'];
+
+      const merged = mergeSlotProps({
+        getSlotProps,
+        additionalProps,
+        externalForwardedProps,
+        externalSlotProps,
+        className,
+      });
+
+      expect(merged.props.className).to.equal(
+        'internal additional class1 class2 externalForwarded externalSlot',
+      );
     });
 
-    const additionalProps = {
-      className: 'additional',
-    };
+    it('when getSlotProps is not present', () => {
+      const additionalProps = {
+        className: 'additional',
+      };
 
-    const externalForwardedProps = {
-      className: 'externalForwarded',
-    };
+      const externalForwardedProps = {
+        className: 'externalForwarded',
+      };
 
-    const externalSlotProps = {
-      className: 'externalSlot',
-    };
+      const externalSlotProps = {
+        className: 'externalSlot',
+      };
 
-    const className = ['class1', 'class2'];
+      const className = ['class1', 'class2'];
 
-    const merged = mergeSlotProps({
-      getSlotProps,
-      additionalProps,
-      externalForwardedProps,
-      externalSlotProps,
-      className,
+      const merged = mergeSlotProps({
+        additionalProps,
+        externalForwardedProps,
+        externalSlotProps,
+        className,
+      });
+
+      expect(merged.props.className).to.equal(
+        'additional class1 class2 externalForwarded externalSlot',
+      );
     });
-
-    expect(merged.props.className).to.equal(
-      'internal additional class1 class2 externalForwarded externalSlot',
-    );
   });
 
   it('merges the style props', () => {

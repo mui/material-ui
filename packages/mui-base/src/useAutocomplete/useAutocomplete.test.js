@@ -1,6 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen, ErrorBoundary, act, fireEvent } from 'test/utils';
+import {
+  createRenderer,
+  screen,
+  ErrorBoundary,
+  act,
+  fireEvent,
+  reactMajor,
+} from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import { useAutocomplete, createFilterOptions } from '@mui/base/useAutocomplete';
 
@@ -31,7 +38,12 @@ describe('useAutocomplete', () => {
           {groupedOptions.length > 0 ? (
             <ul {...getListboxProps()}>
               {groupedOptions.map((option, index) => {
-                return <li {...getOptionProps({ option, index })}>{option}</li>;
+                const { key, ...optionProps } = getOptionProps({ option, index });
+                return (
+                  <li key={key} {...optionProps}>
+                    {option}
+                  </li>
+                );
               })}
             </ul>
           ) : null}
@@ -118,6 +130,7 @@ describe('useAutocomplete', () => {
       let filterOptions;
       let getOptionLabel;
       let options;
+
       beforeEach(() => {
         filterOptions = createFilterOptions({ matchFrom: 'any' });
         getOptionLabel = (option) => option.name;
@@ -257,7 +270,12 @@ describe('useAutocomplete', () => {
           {groupedOptions.length > 0 ? (
             <ul {...getListboxProps()}>
               {groupedOptions.map((option, index) => {
-                return <li {...getOptionProps({ option, index })}>{option}</li>;
+                const { key, ...optionProps } = getOptionProps({ option, index });
+                return (
+                  <li key={key} {...optionProps}>
+                    {option}
+                  </li>
+                );
               })}
             </ul>
           ) : null}
@@ -265,28 +283,39 @@ describe('useAutocomplete', () => {
       );
     }
 
+    const muiErrorMessage = 'MUI: Unable to find the input element.';
+    const aboveErrorUlElementMessage = 'The above error occurred in the <ul> component';
+    const aboveErrorTestComponentMessage = 'The above error occurred in the <Test> component';
     const node16ErrorMessage =
-      "Error: Uncaught [TypeError: Cannot read properties of null (reading 'removeAttribute')]";
-    const olderNodeErrorMessage =
-      "Error: Uncaught [TypeError: Cannot read property 'removeAttribute' of null]";
+      "TypeError: Cannot read properties of null (reading 'removeAttribute')";
+    const olderNodeErrorMessage = "TypeError: Cannot read property 'removeAttribute' of null";
 
     const nodeVersion = Number(process.versions.node.split('.')[0]);
-    const errorMessage = nodeVersion >= 16 ? node16ErrorMessage : olderNodeErrorMessage;
+    const nodeErrorMessage = nodeVersion >= 16 ? node16ErrorMessage : olderNodeErrorMessage;
 
-    const devErrorMessages = [
-      errorMessage,
-      'MUI: Unable to find the input element.',
-      errorMessage,
-      // strict effects runs effects twice
-      React.version.startsWith('18') && 'MUI: Unable to find the input element.',
-      React.version.startsWith('18') && errorMessage,
-      'The above error occurred in the <ul> component',
-      React.version.startsWith('16') && 'The above error occurred in the <ul> component',
-      'The above error occurred in the <Test> component',
-      // strict effects runs effects twice
-      React.version.startsWith('18') && 'The above error occurred in the <Test> component',
-      React.version.startsWith('16') && 'The above error occurred in the <Test> component',
-    ];
+    const defaultErrorMessages = [muiErrorMessage, nodeErrorMessage, nodeErrorMessage];
+
+    const errorMessagesByReactMajor = {
+      17: [
+        nodeErrorMessage,
+        muiErrorMessage,
+        nodeErrorMessage,
+        aboveErrorUlElementMessage,
+        aboveErrorTestComponentMessage,
+      ],
+      18: [
+        nodeErrorMessage,
+        muiErrorMessage,
+        nodeErrorMessage,
+        muiErrorMessage,
+        nodeErrorMessage,
+        aboveErrorUlElementMessage,
+        aboveErrorTestComponentMessage,
+        aboveErrorTestComponentMessage,
+      ],
+    };
+
+    const devErrorMessages = errorMessagesByReactMajor[reactMajor] || defaultErrorMessages;
 
     expect(() => {
       render(
@@ -333,9 +362,9 @@ describe('useAutocomplete', () => {
   });
 
   it('should allow tuples or arrays as value when multiple=false', () => {
-    function Test() {
-      const defaultValue = ['bar'];
+    const defaultValue = ['bar'];
 
+    function Test() {
       const { getClearProps, getInputProps } = useAutocomplete({
         defaultValue,
         disableClearable: false,

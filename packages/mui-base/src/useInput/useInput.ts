@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import MuiError from '@mui/utils/macros/MuiError.macro';
+import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { FormControlState, useFormControlContext } from '../FormControl';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
@@ -20,7 +20,7 @@ import {
  *
  * - [useInput API](https://mui.com/base-ui/react-input/hooks-api/#use-input)
  */
-export function useInput(parameters: UseInputParameters): UseInputReturnValue {
+export function useInput(parameters: UseInputParameters = {}): UseInputReturnValue {
   const {
     defaultValue: defaultValueProp,
     disabled: disabledProp = false,
@@ -164,9 +164,9 @@ export function useInput(parameters: UseInputParameters): UseInputReturnValue {
       otherHandlers.onClick?.(event);
     };
 
-  const getRootProps = <TOther extends Record<string, any> = {}>(
-    externalProps: TOther = {} as TOther,
-  ): UseInputRootSlotProps<TOther> => {
+  const getRootProps = <ExternalProps extends Record<string, any> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseInputRootSlotProps<ExternalProps> => {
     // onBlur, onChange and onFocus are forwarded to the input slot.
     const propsEventHandlers = extractEventHandlers(parameters, ['onBlur', 'onChange', 'onFocus']);
     const externalEventHandlers = { ...propsEventHandlers, ...extractEventHandlers(externalProps) };
@@ -178,9 +178,9 @@ export function useInput(parameters: UseInputParameters): UseInputReturnValue {
     };
   };
 
-  const getInputProps = <TOther extends Record<string, any> = {}>(
-    externalProps: TOther = {} as TOther,
-  ): UseInputInputSlotProps<TOther> => {
+  const getInputProps = <ExternalProps extends Record<string, any> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseInputInputSlotProps<ExternalProps> => {
     const propsEventHandlers: Record<string, React.EventHandler<any> | undefined> = {
       onBlur,
       onChange,
@@ -190,7 +190,6 @@ export function useInput(parameters: UseInputParameters): UseInputReturnValue {
     const externalEventHandlers = { ...propsEventHandlers, ...extractEventHandlers(externalProps) };
 
     const mergedEventHandlers = {
-      ...externalProps,
       ...externalEventHandlers,
       onBlur: handleBlur(externalEventHandlers),
       onChange: handleChange(externalEventHandlers),
@@ -201,10 +200,12 @@ export function useInput(parameters: UseInputParameters): UseInputReturnValue {
       ...mergedEventHandlers,
       'aria-invalid': error || undefined,
       defaultValue: defaultValue as string | number | readonly string[] | undefined,
-      ref: handleInputRef,
       value: value as string | number | readonly string[] | undefined,
       required,
       disabled,
+      ...externalProps,
+      ref: handleInputRef,
+      ...mergedEventHandlers,
     };
   };
 

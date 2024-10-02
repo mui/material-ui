@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
-import { act, createRenderer, screen } from 'test/utils';
+import { act, createRenderer, screen } from '@mui/internal-test-utils';
 import { FocusTrap } from '@mui/base/FocusTrap';
 import { Portal } from '@mui/base/Portal';
 
@@ -152,19 +152,18 @@ describe('<FocusTrap />', () => {
 
   it('undesired: lazy root does not get autofocus', () => {
     let mountDeferredComponent: React.DispatchWithoutAction;
-    const DeferredComponent = React.forwardRef<HTMLDivElement>(function DeferredComponent(
-      props,
-      ref,
-    ) {
-      const [mounted, setMounted] = React.useReducer(() => true, false);
+    const DeferredComponent = React.forwardRef<HTMLDivElement>(
+      function DeferredComponent(props, ref) {
+        const [mounted, setMounted] = React.useReducer(() => true, false);
 
-      mountDeferredComponent = setMounted;
+        mountDeferredComponent = setMounted;
 
-      if (mounted) {
-        return <div ref={ref} {...props} />;
-      }
-      return null;
-    });
+        if (mounted) {
+          return <div ref={ref} {...props} />;
+        }
+        return null;
+      },
+    );
     render(
       <FocusTrap open>
         <DeferredComponent data-testid="deferred-component" />

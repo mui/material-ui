@@ -2,23 +2,33 @@
 
 <p class="description">Learn about the default theme's color palette and how to customize it.</p>
 
-## Default tokens
+## Default color tokens
 
-The table below lists all the default tokens and their values in light and dark color schemes.
-Some tokens reuse values from other tokens using the [`var(--*)`](https://developer.mozilla.org/en-US/docs/Web/CSS/var) syntax.
+Joy UI's default theme includes 5 built-in semantic color palettes, with light and dark mapping, to help you build great looking UIs quickly.
 
 {{"demo": "PaletteThemeViewer.js", "bg": "inline"}}
 
+:::info
+Some tokens reuse color values from others using the [`var(--*)`](https://developer.mozilla.org/en-US/docs/Web/CSS/var) syntax.
+:::
+
+### Global variant tokens
+
+One of Joy UI's main features is the four [global variants](/joy-ui/main-features/global-variants/) that are available in every component. They use the built-in color palettes following the format of **variant type | state | CSS property**. For example:
+
+- `solidBg` refers to the solid variant's background color in its initial state.
+- `outlinedHoverBorder` refers to the outlined variant's border color in its hover state.
+
 ### Channel tokens
 
-The default tokens ending with `Channel` are automatically generated for each palette.
-These tokens are useful for creating translucent colors (`rgba`).
+The channel tokens helps creating translucent colors using (`rgba`).
+The ones ending with `Channel` are automatically generated for each palette.
 
 - `lightChannel`: is generated from the palette's `200` token.
 - `mainChannel`: is generated from the palette's `500` token.
 - `darkChannel`: is generated from the palette's `800` token.
 
-The example usage is:
+The code snippet below shows how to use them:
 
 ```js
 import Typography from '@mui/joy/Typography';
@@ -30,24 +40,11 @@ import Typography from '@mui/joy/Typography';
 >
 ```
 
-### Global variant tokens
+## Customizations
 
-By default, Joy UI has four built-in [global variants](/joy-ui/main-features/global-variants/) tokens: `plain`, `outlined`, `soft`, and `solid`.
+### Changing the default values
 
-The global variant token is composed of three parts, in the format of **variant type | state | CSS property**.
-
-For example:
-
-- `solidBg` refers to the solid variant's background color in its initial state.
-- `outlinedHoverBorder` refers to the outlined variant's border color in its hover state.
-
-There are six palettes (`primary`, `neutral`, `danger`, `info`, `success`, and `warning`) that contain the global variant tokens as listed in the [table above](#default-tokens).
-
-## Customizing the default palette
-
-For each color scheme, the default colors are grouped within the `palette` node.
-
-For example, the snippet below customizes the primary palette in dark mode:
+To change the HEX code for each color while still following the palette pattern, extend the theme by accessing them through the `palette` node on the target mode (light or dark):
 
 ```js
 import { extendTheme } from '@mui/joy/styles';
@@ -76,68 +73,30 @@ const theme = extendTheme({
 // Then, pass it to `<CssVarsProvider theme={theme}>`.
 ```
 
-## Customizing global variant tokens
+### Changing the global variant tokens
 
-We recommend using the [Button](/joy-ui/react-button/) component as a jumping-off point when customizing the global variants, because it gives you access to more of the interactive variants available than some other components.
-
-As an example, let's customize Joy UI's Button so to match the style of [Bootstrap](https://getbootstrap.com/docs/5.2/components/buttons/#examples):
-
-- Bootstrap's default buttons are comparable to Joy UI's `solid` variant.
-- Bootstrap's `secondary` variant uses a grey color, similar to Joy UI's `neutral`.
-- Bootstrap's `btn-light` is similar to Joy UI's button using the `soft` variant and `neutral` color palette.
-- Joy UI's defaults don't include anything similar to Bootstrap's `btn-dark`.
-  - We can recreate it using one of the three main customization approaches.
+A good way to start changing how color looks like with the built-in variants is by using the Button component as a jumping-off point.
+For example, here's how you'd make the Joy UI Button match the colors of another system, such as [Bootstrap](https://getbootstrap.com/docs/5.2/components/buttons/#examples):
 
 {{"demo": "BootstrapVariantTokens.js"}}
 
-:::info
-Customizing the global variant tokens affects all Joy UI components that support the `variant` prop.
-:::
+- Bootstrap's default buttons are comparable to Joy UI's `solid` variant.
+- Bootstrap's `secondary` variant uses a gray color, similar to Joy UI's `neutral`.
+- Bootstrap's `btn-light` is similar to Joy UI's button using the `soft` variant and `neutral` color palette.
+- Joy UI's defaults don't include anything similar to Bootstrap's `btn-dark`.
+  - We can recreate it using one of the three main customization approaches.
 
-## Removing the default tokens
+### Adding color tokens
 
-To remove any default token, use `undefined` as a value.
-This removes it from the `theme` object and prevents the corresponding CSS variable from being generated.
-
-For example, all default global variant tokens comes with styles for the `:active` pseudo class.
-Here's how you'd remove it from the solid variant.
-
-```jsx
-// ⚠️ If the value is `undefined`, it should be `undefined` for all color schemes.
-const theme = extendTheme({
-  colorSchemes: {
-    light: {
-      palette: {
-        primary: {
-          solidActiveBg: undefined,
-        },
-      },
-    },
-    dark: {
-      palette: {
-        primary: {
-          solidActiveBg: undefined,
-        },
-      },
-    },
-  },
-});
-```
-
-{{"demo": "RemoveActiveTokens.js"}}
-
-## Adding more colors
-
-Any custom tokens that you add to theme are available for use with both the `styled` and `sx` APIs.
+To make any new color available through the `color` prop, insert them in the `colorSchemes` key of the extended theme.
+You'll also be able to access them with both the `styled` and `sx` APIs.
 
 ```js
 extendTheme({
   colorSchemes: {
     light: {
       palette: {
-        // Example of new color tokens.
-        // We recommend to limit them to 3 levels deep－in this case:
-        // `palette.gradient.primary`.
+        // `gradient` is a new color token
         gradient: {
           primary: 'linear-gradient(to top, var(--joy-palette-primary-main), #000)',
         },
@@ -150,9 +109,13 @@ extendTheme({
 <Button sx={{ background: (theme) => theme.vars.palette.gradient.primary }} />;
 ```
 
-### TypeScript
+:::success
+We recommend to limit them to 3 levels deep－in this case: `palette.gradient.primary`.
+:::
 
-When working in TypeScript, you must augment the theme's `Palette` interface to include the new tokens.
+#### TypeScript
+
+Augment the theme's `Palette` interface, when working in TypeScript, to include the new tokens.
 
 ```ts
 // You can put this to any file that's included in your tsconfig
@@ -169,16 +132,12 @@ declare module '@mui/joy/styles' {
 Adding custom tokens increases your stylesheet's bundle size, and adds an extra set of maintenance costs to your app.
 These tradeoffs mean that adding new tokens is usually only worthwhile when you know that they'll be used by many components.
 
-As an alternative, consider using [the `sx` prop](/joy-ui/customization/approaches/#sx-prop) for one-off customizations.
+As an alternative, consider using [the `sx` prop](/joy-ui/customization/approaches/#the-sx-prop) for one-off customizations.
 :::
 
-## Adding more palettes
+### Adding new palettes
 
-You can add your own palettes to your app's theme to pass custom color schemes to any components that accept the `color` prop.
-
-:::warning
-Adding a new palette increases the HTML bundle size. The more tokens you added to the palette, the bigger the bundle size.
-:::
+To add entirely new color palettes, with any type of scale, and make them available through the `color` prop, insert them in the `colorSchemes` key of the extended theme.
 
 The snippet below adds a custom `secondary` palette to the theme.
 
@@ -253,7 +212,7 @@ const theme = extendTheme({
 // Then, pass it to `<CssVarsProvider theme={theme}>`.
 ```
 
-Then, you will be able to use `secondary` color on Joy UI components:
+Then, you will be able to use `secondary` color on Joy UI components:
 
 ```js
 <Button color="secondary">
@@ -261,7 +220,7 @@ Then, you will be able to use `secondary` color on Joy UI components:
 <Chip variant="soft" color="secondary">
 ```
 
-### TypeScript
+#### TypeScript
 
 When working in TypeScript, you must augment the theme's interfaces to include the new palette.
 
@@ -271,7 +230,7 @@ import type { PaletteRange } from '@mui/joy/styles';
 
 declare module '@mui/joy/styles' {
   interface ColorPalettePropOverrides {
-    // apply to all Joy UI components that support `color` prop
+    // apply to all Joy UI components that support `color` prop
     secondary: true;
   }
 
@@ -282,3 +241,17 @@ declare module '@mui/joy/styles' {
   }
 }
 ```
+
+:::warning
+Note that adding new palettes increases the HTML bundle size.
+:::
+
+### Removing the default tokens
+
+To remove any default token, use `undefined` as a value within the extended theme.
+This removes them from the `theme` object and prevents the corresponding CSS variable from being generated.
+
+For example, all default global variant color tokens comes with styles for the `:active` pseudo class.
+Here's how you'd remove it from the solid variant.
+
+{{"demo": "RemoveActiveTokens.js", "defaultCodeOpen": true}}

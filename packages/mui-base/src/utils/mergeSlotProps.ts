@@ -90,10 +90,10 @@ export function mergeSlotProps<
     // The simpler case - getSlotProps is not defined, so no internal event handlers are defined,
     // so we can simply merge all the props without having to worry about extracting event handlers.
     const joinedClasses = clsx(
+      additionalProps?.className,
+      className,
       externalForwardedProps?.className,
       externalSlotProps?.className,
-      className,
-      additionalProps?.className,
     );
 
     const mergedStyle = {

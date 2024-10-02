@@ -91,45 +91,161 @@
   },
   "name": "Grid",
   "imports": ["import Grid from '@mui/material/Grid';", "import { Grid } from '@mui/material';"],
-  "styles": {
-    "classes": [
-      "root",
-      "container",
-      "item",
-      "zeroMinWidth",
-      "direction-xs-column",
-      "direction-xs-column-reverse",
-      "direction-xs-row-reverse",
-      "wrap-xs-nowrap",
-      "wrap-xs-wrap-reverse",
-      "spacing-xs-1",
-      "spacing-xs-2",
-      "spacing-xs-3",
-      "spacing-xs-4",
-      "spacing-xs-5",
-      "spacing-xs-6",
-      "spacing-xs-7",
-      "spacing-xs-8",
-      "spacing-xs-9",
-      "spacing-xs-10",
-      "grid-xs-auto",
-      "grid-xs-true",
-      "grid-xs-1",
-      "grid-xs-2",
-      "grid-xs-3",
-      "grid-xs-4",
-      "grid-xs-5",
-      "grid-xs-6",
-      "grid-xs-7",
-      "grid-xs-8",
-      "grid-xs-9",
-      "grid-xs-10",
-      "grid-xs-11",
-      "grid-xs-12"
-    ],
-    "globalClasses": {},
-    "name": "MuiGrid"
-  },
+  "classes": [
+    {
+      "key": "container",
+      "className": "MuiGrid-container",
+      "description": "Styles applied to the root element if `container={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "direction-xs-column",
+      "className": "MuiGrid-direction-xs-column",
+      "description": "Styles applied to the root element if `direction=\"column\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "direction-xs-column-reverse",
+      "className": "MuiGrid-direction-xs-column-reverse",
+      "description": "Styles applied to the root element if `direction=\"column-reverse\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "direction-xs-row-reverse",
+      "className": "MuiGrid-direction-xs-row-reverse",
+      "description": "Styles applied to the root element if `direction=\"row-reverse\"`.",
+      "isGlobal": false
+    },
+    { "key": "grid-xs-1", "className": "MuiGrid-grid-xs-1", "description": "", "isGlobal": false },
+    {
+      "key": "grid-xs-10",
+      "className": "MuiGrid-grid-xs-10",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "grid-xs-11",
+      "className": "MuiGrid-grid-xs-11",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "grid-xs-12",
+      "className": "MuiGrid-grid-xs-12",
+      "description": "",
+      "isGlobal": false
+    },
+    { "key": "grid-xs-2", "className": "MuiGrid-grid-xs-2", "description": "", "isGlobal": false },
+    { "key": "grid-xs-3", "className": "MuiGrid-grid-xs-3", "description": "", "isGlobal": false },
+    { "key": "grid-xs-4", "className": "MuiGrid-grid-xs-4", "description": "", "isGlobal": false },
+    { "key": "grid-xs-5", "className": "MuiGrid-grid-xs-5", "description": "", "isGlobal": false },
+    { "key": "grid-xs-6", "className": "MuiGrid-grid-xs-6", "description": "", "isGlobal": false },
+    { "key": "grid-xs-7", "className": "MuiGrid-grid-xs-7", "description": "", "isGlobal": false },
+    { "key": "grid-xs-8", "className": "MuiGrid-grid-xs-8", "description": "", "isGlobal": false },
+    { "key": "grid-xs-9", "className": "MuiGrid-grid-xs-9", "description": "", "isGlobal": false },
+    {
+      "key": "grid-xs-auto",
+      "className": "MuiGrid-grid-xs-auto",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "grid-xs-true",
+      "className": "MuiGrid-grid-xs-true",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "item",
+      "className": "MuiGrid-item",
+      "description": "Styles applied to the root element if `item={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiGrid-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "spacing-xs-1",
+      "className": "MuiGrid-spacing-xs-1",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "spacing-xs-10",
+      "className": "MuiGrid-spacing-xs-10",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "spacing-xs-2",
+      "className": "MuiGrid-spacing-xs-2",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "spacing-xs-3",
+      "className": "MuiGrid-spacing-xs-3",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "spacing-xs-4",
+      "className": "MuiGrid-spacing-xs-4",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "spacing-xs-5",
+      "className": "MuiGrid-spacing-xs-5",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "spacing-xs-6",
+      "className": "MuiGrid-spacing-xs-6",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "spacing-xs-7",
+      "className": "MuiGrid-spacing-xs-7",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "spacing-xs-8",
+      "className": "MuiGrid-spacing-xs-8",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "spacing-xs-9",
+      "className": "MuiGrid-spacing-xs-9",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "wrap-xs-nowrap",
+      "className": "MuiGrid-wrap-xs-nowrap",
+      "description": "Styles applied to the root element if `wrap=\"nowrap\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "wrap-xs-wrap-reverse",
+      "className": "MuiGrid-wrap-xs-wrap-reverse",
+      "description": "Styles applied to the root element if `wrap=\"reverse\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "zeroMinWidth",
+      "className": "MuiGrid-zeroMinWidth",
+      "description": "Styles applied to the root element if `zeroMinWidth={true}`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiGrid",
@@ -137,5 +253,6 @@
   "filename": "/packages/mui-material/src/Grid/Grid.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-grid/\">Grid</a></li></ul>",
-  "cssComponent": true
+  "cssComponent": true,
+  "deprecated": true
 }

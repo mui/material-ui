@@ -4,6 +4,7 @@ title: React Autocomplete component
 components: TextField, Popper, Autocomplete
 githubLabel: 'component: autocomplete'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
+githubSource: packages/mui-material/src/Autocomplete
 ---
 
 # Autocomplete
@@ -12,12 +13,12 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 
 The widget is useful for setting the value of a single-line textbox in one of two types of scenarios:
 
-1. The value for the textbox must be chosen from a predefined set of allowed values, e.g., a location field must contain a valid location name: [combo box](#combo-box).
-2. The textbox may contain any arbitrary value, but it is advantageous to suggest possible values to the user, e.g., a search field may suggest similar or previous searches to save the user time: [free solo](#free-solo).
+1. The value for the textbox must be chosen from a predefined set of allowed values, for example a location field must contain a valid location name: [combo box](#combo-box).
+2. The textbox may contain any arbitrary value, but it is advantageous to suggest possible values to the user, for example a search field may suggest similar or previous searches to save the user time: [free solo](#free-solo).
 
 It's meant to be an improved version of the "react-select" and "downshift" packages.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Combo box
 
@@ -50,6 +51,8 @@ const options = ['The Godfather', 'Pulp Fiction'];
 
 However, you can use different structures by providing a `getOptionLabel` prop.
 
+If your options are objects, you must provide the `isOptionEqualToValue` prop to ensure correct selection and highlighting. By default, it uses strict equality to compare options with the current value.
+
 ### Playground
 
 Each of the following examples demonstrates one feature of the Autocomplete component.
@@ -81,13 +84,34 @@ Learn more about controlled and uncontrolled components in the [React documentat
 
 {{"demo": "ControllableStates.js"}}
 
+:::warning
+
+If you control the `value`, make sure it's referentially stable between renders.
+In other words, the reference to the value shouldn't change if the value itself doesn't change.
+
+```tsx
+// ⚠️ BAD
+return <Autocomplete multiple value={allValues.filter((v) => v.selected)} />;
+
+// 👍 GOOD
+const selectedValues = React.useMemo(
+  () => allValues.filter((v) => v.selected),
+  [allValues],
+);
+return <Autocomplete multiple value={selectedValues} />;
+```
+
+In the first example, `allValues.filter` is called and returns **a new array** every render.
+The fix includes memoizing the value, so it changes only when needed.
+:::
+
 ## Free solo
 
 Set `freeSolo` to true so the textbox can contain any arbitrary value.
 
 ### Search input
 
-The prop is designed to cover the primary use case of a **search input** with suggestions, e.g. Google search or react-autowhatever.
+The prop is designed to cover the primary use case of a **search input** with suggestions, for example Google search or react-autowhatever.
 
 {{"demo": "FreeSolo.js"}}
 
@@ -151,7 +175,7 @@ The `useAutocomplete` hook is also reexported from @mui/material for convenience
 import useAutocomplete from '@mui/material/useAutocomplete';
 ```
 
-- 📦 [4.5 kB gzipped](/size-snapshot/).
+- 📦 [4.6 kB gzipped](https://bundlephobia.com/package/@mui/material).
 
 {{"demo": "UseAutocomplete.js", "defaultCodeOpen": false}}
 
@@ -190,6 +214,10 @@ overriding the `filterOptions` prop:
 
 A customized UI for Google Maps Places Autocomplete.
 For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/overview) and [Google Places](https://developers.google.com/maps/documentation/places/web-service/overview) API.
+
+:::info
+The following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
+:::
 
 {{"demo": "GoogleMaps.js"}}
 
@@ -259,7 +287,7 @@ Head to the [Customized hook](#customized-hook) section for a customization exam
 
 ### Hint
 
-The following demo shows how to add a hint feature to the Autocomplete using the `renderInput` and `filterOptions` props:
+The following demo shows how to add a hint feature to the Autocomplete:
 
 {{"demo": "AutocompleteHint.js"}}
 
@@ -350,13 +378,13 @@ Browsers have heuristics to help the user fill in form inputs.
 However, this can harm the UX of the component.
 
 By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute.
-Google Chrome does not currently support this attribute setting ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)).
+Google Chrome does not currently support this attribute setting ([Issue 41239842](https://issues.chromium.org/issues/41239842)).
 A possible workaround is to remove the `id` to have the component generate a random one.
 
 In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details).
 In the event you want the avoid autofill, you can try the following:
 
-- Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
+- Name the input without leaking any information the browser can use. For example `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
 - Set `autoComplete="new-password"` (some browsers will suggest a strong password for inputs with this attribute setting):
 
   ```jsx
@@ -369,7 +397,7 @@ In the event you want the avoid autofill, you can try the following:
   />
   ```
 
-Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) for more details.
+Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Practical_implementation_guides/Turning_off_form_autocompletion) for more details.
 
 ### iOS VoiceOver
 

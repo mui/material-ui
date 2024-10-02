@@ -1,5 +1,5 @@
 {
-  "name": "material-cra-styled-components-ts",
+  "name": "material-ui-cra-styled-components-ts",
   "version": "5.0.0",
   "private": true,
   "dependencies": {
@@ -38,7 +38,6 @@
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
-    "@types/styled-components": "latest",
     "craco-alias": "^3.0.1",
     "typescript": "latest"
   }

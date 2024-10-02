@@ -4,13 +4,14 @@ import Stack from '@mui/joy/Stack';
 import Modal from '@mui/joy/Modal';
 import ModalClose from '@mui/joy/ModalClose';
 import ModalDialog from '@mui/joy/ModalDialog';
-import Typography from '@mui/joy/Typography';
+import DialogTitle from '@mui/joy/DialogTitle';
+import DialogContent from '@mui/joy/DialogContent';
 
 export default function VariantModalDialog() {
   const [variant, setVariant] = React.useState(undefined);
   return (
     <React.Fragment>
-      <Stack direction="row" alignItems="center" spacing={1}>
+      <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
         <Button
           variant="plain"
           color="neutral"
@@ -49,18 +50,10 @@ export default function VariantModalDialog() {
         </Button>
       </Stack>
       <Modal open={!!variant} onClose={() => setVariant(undefined)}>
-        <ModalDialog
-          aria-labelledby="variant-modal-title"
-          aria-describedby="variant-modal-description"
-          variant={variant}
-        >
+        <ModalDialog variant={variant}>
           <ModalClose />
-          <Typography id="variant-modal-title" level="h2" textColor="inherit">
-            Modal Dialog
-          </Typography>
-          <Typography id="variant-modal-description" textColor="inherit">
-            This is a `{variant}` modal dialog.
-          </Typography>
+          <DialogTitle>Modal Dialog</DialogTitle>
+          <DialogContent>This is a `{variant}` modal dialog.</DialogContent>
         </ModalDialog>
       </Modal>
     </React.Fragment>

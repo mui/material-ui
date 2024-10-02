@@ -2,10 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Paper from '../Paper';
 import { getCardUtilityClass } from './cardClasses';
 
@@ -23,14 +23,12 @@ const CardRoot = styled(Paper, {
   name: 'MuiCard',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(() => {
-  return {
-    overflow: 'hidden',
-  };
+})({
+  overflow: 'hidden',
 });
 
 const Card = React.forwardRef(function Card(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiCard',
   });
@@ -53,10 +51,10 @@ const Card = React.forwardRef(function Card(inProps, ref) {
 });
 
 Card.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

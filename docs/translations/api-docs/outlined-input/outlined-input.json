@@ -9,11 +9,9 @@
     },
     "classes": { "description": "Override or extend the styles applied to the component." },
     "color": {
-      "description": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#adding-new-colors\">palette customization guide</a>. The prop defaults to the value (<code>&#39;primary&#39;</code>) inherited from the parent FormControl component."
+      "description": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#custom-colors\">palette customization guide</a>. The prop defaults to the value (<code>&#39;primary&#39;</code>) inherited from the parent FormControl component."
     },
-    "components": {
-      "description": "The components used for each slot inside.<br>This prop is an alias for the <code>slots</code> prop. It&#39;s recommended to use the <code>slots</code> prop instead."
-    },
+    "components": { "description": "The components used for each slot inside." },
     "defaultValue": {
       "description": "The default value. Use when the component is not controlled."
     },
@@ -48,7 +46,7 @@
       "description": "Minimum number of rows to display when multiline option is set to true."
     },
     "multiline": {
-      "description": "If <code>true</code>, a <a href=\"/material-ui/react-textarea-autosize/\">TextareaAutosize</a> element is rendered."
+      "description": "If <code>true</code>, a <a href=\"https://mui.com/material-ui/react-textarea-autosize/\">TextareaAutosize</a> element is rendered."
     },
     "name": { "description": "Name attribute of the <code>input</code> element." },
     "notched": {
@@ -85,41 +83,61 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "colorSecondary": {
+    "adornedEnd": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "the color is secondary"
-    },
-    "focused": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "the component is focused"
-    },
-    "disabled": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>disabled={true}</code>"
+      "conditions": "<code>endAdornment</code> is provided"
     },
     "adornedStart": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>startAdornment</code> is provided"
     },
-    "adornedEnd": {
+    "colorSecondary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>endAdornment</code> is provided"
+      "conditions": "the color is secondary"
+    },
+    "disabled": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>disabled={true}</code>"
     },
     "error": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>error={true}</code>"
     },
-    "sizeSmall": {
+    "focused": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "the component is focused"
+    },
+    "input": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the input element" },
+    "inputAdornedEnd": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the input element",
+      "conditions": "<code>endAdornment</code> is provided"
+    },
+    "inputAdornedStart": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the input element",
+      "conditions": "<code>startAdornment</code> is provided"
+    },
+    "inputMultiline": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the input element",
+      "conditions": "<code>multiline={true}</code>"
+    },
+    "inputSizeSmall": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the input element",
       "conditions": "<code>size=\"small\"</code>"
+    },
+    "inputTypeSearch": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the input element",
+      "conditions": "<code>type=\"search\"</code>"
     },
     "multiline": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -130,31 +148,11 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the NotchedOutline element"
     },
-    "input": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the input element" },
-    "inputSizeSmall": {
+    "root": { "description": "Styles applied to the root element." },
+    "sizeSmall": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the input element",
       "conditions": "<code>size=\"small\"</code>"
-    },
-    "inputMultiline": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the input element",
-      "conditions": "<code>multiline={true}</code>"
-    },
-    "inputAdornedStart": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the input element",
-      "conditions": "<code>startAdornment</code> is provided"
-    },
-    "inputAdornedEnd": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the input element",
-      "conditions": "<code>endAdornment</code> is provided"
-    },
-    "inputTypeSearch": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the input element",
-      "conditions": "<code>type=\"search\"</code>"
     }
   }
 }

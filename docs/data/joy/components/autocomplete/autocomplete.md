@@ -10,7 +10,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 
 <p class="description">The autocomplete is a text input enhanced by a panel of suggested options when users start typing.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -147,7 +147,7 @@ It displays a progress state as long as the network request is pending.
 
 ### Search input
 
-Use `freeSolo` to create a **search input** with suggestions experience, e.g. Google search or [react-autowhatever](https://github.com/moroshko/react-autowhatever).
+Use `freeSolo` to create a **search input** with suggestions experience, for example Google search or [react-autowhatever](https://github.com/moroshko/react-autowhatever).
 
 {{"demo": "FreeSolo.js"}}
 
@@ -173,7 +173,7 @@ You could also display a dialog when the user wants to add a new value.
 {{"demo": "FreeSoloCreateOptionDialog.js"}}
 
 :::info
-The `AutocompleteOption` uses the same styles and variables as [`ListItemButton`](/joy-ui/react-list/#actionable), so that you get the same customization experience.
+The `AutocompleteOption` uses the same styles and variables as [`ListItemButton`](/joy-ui/react-list/#interactive-list-items), so that you get the same customization experience.
 :::
 
 ### Validation
@@ -265,6 +265,12 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 <Autocomplete filterOptions={filterOptions} />;
 ```
 
+## CSS variables playground
+
+The Autocomplete component reuses CSS variables from the Input component to give you the consistent customization experience.
+
+{{"demo": "AutocompleteVariables.js", "hideToolbar": true, "bg": "gradient"}}
+
 ## Common examples
 
 ### Hint
@@ -281,7 +287,7 @@ The following demo relies on [autosuggest-highlight](https://github.com/moroshko
 
 ### GitHub's picker
 
-To reproduce GitHub's label picker, the `Autocomplete` is rendered inside a Base UI [`Popper`](/base-ui/react-popper/). To remove the popup behavior from the autocomplete, replace the listbox slot with the `AutocompleteListbox` component.
+To reproduce GitHub's label picker, the `Autocomplete` is rendered inside a Base UI [`Popper`](/base-ui/react-popper/). To remove the popup behavior from the autocomplete, replace the listbox slot with the `AutocompleteListbox` component.
 
 {{"demo": "GitHubLabel.js"}}
 
@@ -307,24 +313,18 @@ If you would like to prevent the default key handler behavior, you can set the e
 />
 ```
 
-## CSS Variables
-
-The Autocomplete component reuses CSS variables from the Input component to give you the consistent customization experience.
-
-{{"demo": "AutocompleteVariables.js", "hideToolbar": true}}
-
 ## Limitations
 
 ### autocomplete/autofill
 
 By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute.
-Google Chrome does not currently support this attribute setting ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)).
+Google Chrome does not currently support this attribute setting ([Issue 41239842](https://issues.chromium.org/issues/41239842)).
 A possible workaround is to remove the `id` to have the component generate a random one.
 
 In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details).
 In the event you want the avoid autofill, you can try the following:
 
-- Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
+- Name the input without leaking any information the browser can use. For example `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
 - Set `autoComplete="new-password"` (some browsers will suggest a strong password for inputs with this attribute setting):
 
   ```jsx
@@ -337,7 +337,7 @@ In the event you want the avoid autofill, you can try the following:
   />
   ```
 
-Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) for more details.
+Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Practical_implementation_guides/Turning_off_form_autocompletion) for more details.
 
 ### iOS VoiceOver
 

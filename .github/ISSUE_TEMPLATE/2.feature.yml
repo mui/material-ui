@@ -1,20 +1,18 @@
 name: Feature request 💄
-description: Suggest a new idea for MUI Core.
-labels: ['status: needs triage']
+description: Suggest a new idea for Material UI, MUI System, or Joy UI.
+labels: ['status: waiting for maintainer']
 body:
   - type: markdown
     attributes:
-      value: |
-        Please provide a searchable summary of the issue in the title above ⬆️.
-
-        Thanks for contributing by creating an issue! ❤️
-  - type: checkboxes
+      value: Thanks for contributing by creating an issue! ❤️ Please provide a searchable summary of the issue in the title above ⬆️.
+  - type: input
     attributes:
-      label: Duplicates
-      description: Please [search the history](https://github.com/mui/material-ui/issues) to see if an issue already exists for the same problem.
-      options:
-        - label: I have searched the existing issues
-          required: true
+      label: Search keywords
+      description: |
+        Your issue may have already been reported! First search for duplicates among the [existing issues](https://github.com/mui/material-ui/issues?q=is%3Aopen+is%3Aclosed).
+        If your issue isn't a duplicate, great! Please list the keywords you used so people in the future can find this one more easily:
+    validations:
+      required: true
   - type: checkboxes
     attributes:
       label: Latest version
@@ -24,13 +22,19 @@ body:
           required: true
   - type: textarea
     attributes:
-      label: Summary 💡
+      label: Summary
       description: Describe how it should work.
   - type: textarea
     attributes:
-      label: Examples 🌈
+      label: Examples
       description: Provide a link to the Material Design specification, other implementations, or screenshots of the expected behavior.
   - type: textarea
     attributes:
-      label: Motivation 🔦
-      description: What are you trying to accomplish? How has the lack of this feature affected you? Providing context helps us come up with a solution that is more useful in the real world.
+      label: Motivation
+      description: What are you trying to accomplish? Providing context helps us come up with a solution that is more useful in the real world.
+  - type: markdown
+    attributes:
+      value: |
+        ## :heart: Love Material UI?
+
+        Consider donating $10 to sustain our open-source work: [https://opencollective.com/mui-org](https://opencollective.com/mui-org).

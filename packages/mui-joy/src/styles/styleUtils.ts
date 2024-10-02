@@ -4,7 +4,7 @@ import { Theme, SxProps } from './types';
  * internal utility
  *
  * Why? to read `sx` values and attach component's CSS variables
- *      eg. <Card sx={{ borderRadius: 0 }} /> should attach
+ *      e.g. <Card sx={{ borderRadius: 0 }} /> should attach
  *          `--Card-radius: 0px` so that developers don't have to remember
  *
  * Why not reuse `styleFunctionSx`?
@@ -41,10 +41,7 @@ export const resolveSxValue = <K extends string>(
           } else {
             sxObject[key] = theme.vars?.radius[value as keyof typeof theme.vars.radius] || value;
           }
-        } else if (
-          ['p', 'padding', 'm', 'margin'].indexOf(key) !== -1 &&
-          typeof value === 'number'
-        ) {
+        } else if (['p', 'padding', 'm', 'margin'].includes(key) && typeof value === 'number') {
           sxObject[key] = theme.spacing(value);
         } else {
           sxObject[key] = value;

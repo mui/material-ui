@@ -1,12 +1,10 @@
+'use client';
 import * as React from 'react';
 import Skeleton from '@mui/material/Skeleton';
 
 let warnedOnce = false;
 
-/**
- * @ignore - do not document.
- */
-export default React.forwardRef(function DeprecatedSkeleton(props, ref) {
+const warn = () => {
   if (!warnedOnce) {
     console.warn(
       [
@@ -19,6 +17,13 @@ export default React.forwardRef(function DeprecatedSkeleton(props, ref) {
 
     warnedOnce = true;
   }
+};
+
+/**
+ * @ignore - do not document.
+ */
+export default React.forwardRef(function DeprecatedSkeleton(props, ref) {
+  warn();
 
   return <Skeleton ref={ref} {...props} />;
 });

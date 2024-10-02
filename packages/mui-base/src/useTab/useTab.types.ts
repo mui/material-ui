@@ -9,7 +9,7 @@ export interface UseTabParameters {
    */
   value?: number | string;
   /**
-   * If `true`, the tab will be disabled.
+   * Callback invoked when new value is being set.
    */
   onChange?: (event: React.SyntheticEvent, value: number | string) => void;
   /**
@@ -31,7 +31,7 @@ export interface UseTabParameters {
   rootRef?: React.Ref<Element>;
 }
 
-export type UseTabRootSlotProps<TOther = {}> = UseButtonRootSlotProps<TOther> & {
+export type UseTabRootSlotProps<ExternalProps = {}> = UseButtonRootSlotProps<ExternalProps> & {
   'aria-controls': React.AriaAttributes['aria-controls'];
   'aria-selected': React.AriaAttributes['aria-selected'];
   id: string | undefined;
@@ -45,9 +45,9 @@ export interface UseTabReturnValue {
    * @param externalProps props for the root slot
    * @returns props that should be spread on the root slot
    */
-  getRootProps: <TOther extends Record<string, any> = {}>(
-    externalProps?: TOther,
-  ) => UseTabRootSlotProps<TOther>;
+  getRootProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseTabRootSlotProps<ExternalProps>;
   /**
    * If `true`, the tab is active (as in `:active` pseudo-class; in other words, pressed).
    */

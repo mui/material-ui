@@ -2,24 +2,19 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import {
-  describeConformance,
   act,
   createRenderer,
   fireEvent,
   focusVisible,
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
-} from 'test/utils';
+} from '@mui/internal-test-utils';
 import Avatar from '@mui/material/Avatar';
 import Chip, { chipClasses as classes } from '@mui/material/Chip';
-import {
-  ThemeProvider,
-  createTheme,
-  hexToRgb,
-  experimental_extendTheme as extendTheme,
-} from '@mui/material/styles';
+import { ThemeProvider, createTheme, hexToRgb } from '@mui/material/styles';
 import CheckBox from '../internal/svg-icons/CheckBox';
 import defaultTheme from '../styles/defaultTheme';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Chip />', () => {
   const { render } = createRenderer();
@@ -54,6 +49,7 @@ describe('<Chip />', () => {
       expect(label).to.have.text('My text Chip');
 
       expect(chip).to.have.class(classes.root);
+      expect(chip).to.have.class(classes.colorDefault);
       expect(chip).not.to.have.class(classes.colorPrimary);
       expect(chip).not.to.have.class(classes.colorSecondary);
       expect(chip).not.to.have.class(classes.clickable);
@@ -89,7 +85,6 @@ describe('<Chip />', () => {
 
       expect(container.firstChild).to.have.class('MuiButtonBase-root');
       expect(container.firstChild).to.have.tagName('a');
-      expect(container.firstChild.querySelector('.MuiTouchRipple-root')).not.to.equal(null);
     });
 
     it('should disable ripple when MuiButtonBase has disableRipple in theme', () => {
@@ -450,20 +445,6 @@ describe('<Chip />', () => {
       expect(handleKeydown.firstCall.returnValue).to.equal('p');
     });
 
-    it('should unfocus when a esc key is pressed', () => {
-      const handleBlur = spy();
-      const { getByRole } = render(<Chip onBlur={handleBlur} onClick={() => {}} />);
-      const chip = getByRole('button');
-      act(() => {
-        chip.focus();
-      });
-
-      fireEvent.keyUp(chip, { key: 'Escape' });
-
-      expect(handleBlur.callCount).to.equal(1);
-      expect(chip).not.toHaveFocus();
-    });
-
     it('should call onClick when `space` is released ', () => {
       const handleClick = spy();
       const { getByRole } = render(<Chip onClick={handleClick} />);
@@ -683,6 +664,13 @@ describe('<Chip />', () => {
   });
 
   describe('event: focus', () => {
+    before(function beforeCallback() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+    });
+
     it('has a focus-visible polyfill', () => {
       const { container } = render(<Chip label="Test Chip" onClick={() => {}} />);
       const chip = container.querySelector(`.${classes.root}`);
@@ -722,7 +710,7 @@ describe('<Chip />', () => {
 
   describe('CSS vars', () => {
     it('should not throw when there is theme value is CSS variable', () => {
-      const theme = extendTheme();
+      const theme = createTheme({ cssVariables: true });
       theme.palette = theme.colorSchemes.light.palette;
       theme.palette.text = {
         ...theme.palette.text,
@@ -730,7 +718,7 @@ describe('<Chip />', () => {
       };
       expect(() =>
         render(
-          <ThemeProvider theme={theme}>
+          <ThemeProvider disableStyleSheetGeneration theme={theme}>
             <Chip label="Test Chip" />
           </ThemeProvider>,
         ),

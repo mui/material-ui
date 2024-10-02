@@ -6,7 +6,8 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useCatch,
+  useRouteError,
+  isRouteErrorResponse,
 } from '@remix-run/react';
 import { withEmotionCache } from '@emotion/react';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material';
@@ -30,7 +31,6 @@ const Document = withEmotionCache(({ children, title }: DocumentProps, emotionCa
     const tags = emotionCache.sheet.tags;
     emotionCache.sheet.flush();
     tags.forEach((tag) => {
-      // eslint-disable-next-line no-underscore-dangle
       (emotionCache.sheet as any)._insertTag(tag);
     });
     // reset cache to reapply global styles
@@ -51,7 +51,7 @@ const Document = withEmotionCache(({ children, title }: DocumentProps, emotionCa
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
         />
         <meta name="emotion-insertion-point" content="emotion-insertion-point" />
       </head>
@@ -65,8 +65,8 @@ const Document = withEmotionCache(({ children, title }: DocumentProps, emotionCa
   );
 });
 
-// https://remix.run/api/conventions#default-export
-// https://remix.run/api/conventions#route-filenames
+// https://remix.run/docs/en/main/route/component
+// https://remix.run/docs/en/main/file-conventions/routes
 export default function App() {
   return (
     <Document>
@@ -77,49 +77,51 @@ export default function App() {
   );
 }
 
-// https://remix.run/docs/en/v1/api/conventions#errorboundary
-export function ErrorBoundary({ error }: { error: Error }) {
-  console.error(error);
+// https://remix.run/docs/en/main/route/error-boundary
+export function ErrorBoundary() {
+  const error = useRouteError();
 
-  return (
-    <Document title="Error!">
-      <Layout>
-        <div>
-          <h1>There was an error</h1>
-          <p>{error.message}</p>
-          <hr />
-          <p>Hey, developer, you should replace this with what you want your users to see.</p>
-        </div>
-      </Layout>
-    </Document>
-  );
-}
+  if (isRouteErrorResponse(error)) {
+    let message;
+    switch (error.status) {
+      case 401:
+        message = <p>Oops! Looks like you tried to visit a page that you do not have access to.</p>;
+        break;
+      case 404:
+        message = <p>Oops! Looks like you tried to visit a page that does not exist.</p>;
+        break;
 
-// https://remix.run/docs/en/v1/api/conventions#catchboundary
-export function CatchBoundary() {
-  const caught = useCatch();
+      default:
+        throw new Error(error.data || error.statusText);
+    }
 
-  let message;
-  switch (caught.status) {
-    case 401:
-      message = <p>Oops! Looks like you tried to visit a page that you do not have access to.</p>;
-      break;
-    case 404:
-      message = <p>Oops! Looks like you tried to visit a page that does not exist.</p>;
-      break;
-
-    default:
-      throw new Error(caught.data || caught.statusText);
+    return (
+      <Document title={`${error.status} ${error.statusText}`}>
+        <Layout>
+          <h1>
+            {error.status}: {error.statusText}
+          </h1>
+          {message}
+        </Layout>
+      </Document>
+    );
   }
 
-  return (
-    <Document title={`${caught.status} ${caught.statusText}`}>
-      <Layout>
-        <h1>
-          {caught.status}: {caught.statusText}
-        </h1>
-        {message}
-      </Layout>
-    </Document>
-  );
+  if (error instanceof Error) {
+    console.error(error);
+    return (
+      <Document title="Error!">
+        <Layout>
+          <div>
+            <h1>There was an error</h1>
+            <p>{error.message}</p>
+            <hr />
+            <p>Hey, developer, you should replace this with what you want your users to see.</p>
+          </div>
+        </Layout>
+      </Document>
+    );
+  }
+
+  return <h1>Unknown Error</h1>;
 }

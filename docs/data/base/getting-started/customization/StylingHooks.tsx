@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { useSwitch, UseSwitchParameters } from '@mui/base/useSwitch';
 import { styled } from '@mui/system';
 
-const BasicSwitchRoot = styled('span')`
+const SwitchRoot = styled('span')`
   font-size: 0;
   position: relative;
   display: inline-block;
@@ -24,7 +24,7 @@ const BasicSwitchRoot = styled('span')`
   }
 `;
 
-const BasicSwitchInput = styled('input')`
+const SwitchInput = styled('input')`
   cursor: inherit;
   position: absolute;
   width: 100%;
@@ -36,7 +36,7 @@ const BasicSwitchInput = styled('input')`
   margin: 0;
 `;
 
-const BasicSwitchThumb = styled('span')`
+const SwitchThumb = styled('span')`
   display: block;
   width: 14px;
   height: 14px;
@@ -59,7 +59,7 @@ const BasicSwitchThumb = styled('span')`
   }
 `;
 
-function BasicSwitch(props: UseSwitchParameters) {
+function Switch(props: UseSwitchParameters & { 'aria-label'?: string }) {
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);
 
   const stateClasses = {
@@ -69,13 +69,13 @@ function BasicSwitch(props: UseSwitchParameters) {
   };
 
   return (
-    <BasicSwitchRoot className={clsx(stateClasses)}>
-      <BasicSwitchThumb className={clsx(stateClasses)} />
-      <BasicSwitchInput {...getInputProps()} aria-label="Demo switch" />
-    </BasicSwitchRoot>
+    <SwitchRoot className={clsx(stateClasses)}>
+      <SwitchThumb className={clsx(stateClasses)} />
+      <SwitchInput {...getInputProps()} aria-label={props['aria-label']} />
+    </SwitchRoot>
   );
 }
 
 export default function StylingHooks() {
-  return <BasicSwitch />;
+  return <Switch aria-label="Demo switch" />;
 }

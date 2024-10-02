@@ -4,6 +4,7 @@ title: React Stepper component
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
 githubLabel: 'component: stepper'
 materialDesign: https://m1.material.io/components/steppers.html
+githubSource: packages/mui-material/src/Stepper
 ---
 
 # Stepper
@@ -16,11 +17,34 @@ Steppers may display a transient feedback message after a step is saved.
 - **Types of Steps**: Editable, Non-editable, Mobile, Optional
 - **Types of Steppers**: Horizontal, Vertical, Linear, Non-linear
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 :::info
-This component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.
+This component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.
 :::
+
+## Introduction
+
+The Stepper component displays progress through a sequence of logical and numbered steps.
+It supports horizontal and vertical orientation for desktop and mobile viewports.
+
+Steppers are implemented using a collection of related components:
+
+- Stepper: the container for the steps.
+- Step: an individual step in the sequence.
+- Step Label: a label for a Step.
+- Step Content: optional content for a Step.
+- Step Button: optional button for a Step.
+- Step Icon: optional icon for a Step.
+- Step Connector: optional customized connector between Steps.
+
+## Basics
+
+```jsx
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+```
 
 ## Horizontal stepper
 
@@ -93,13 +117,6 @@ The mobile stepper supports three variants to display progress through the avail
 The current step and total number of steps are displayed as text.
 
 {{"demo": "TextMobileStepper.js", "bg": true}}
-
-### Text with carousel effect
-
-This demo uses
-[react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) to create a carousel.
-
-{{"demo": "SwipeableTextMobileStepper.js", "bg": true}}
 
 ### Dots
 

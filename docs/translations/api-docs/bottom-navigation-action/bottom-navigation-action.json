@@ -18,12 +18,6 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "selected": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "selected"
-    },
     "iconOnly": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -32,6 +26,12 @@
     "label": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the label&#39;s span element"
+    },
+    "root": { "description": "Styles applied to the root element." },
+    "selected": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "selected"
     }
   }
 }

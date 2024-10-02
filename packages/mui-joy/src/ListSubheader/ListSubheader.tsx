@@ -6,11 +6,11 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
 import { ListSubheaderOwnerState, ListSubheaderTypeMap } from './ListSubheaderProps';
 import { getListSubheaderUtilityClass } from './listSubheaderClasses';
-import ListSubheaderDispatch from './ListSubheaderContext';
+import ListSubheaderContext from './ListSubheaderContext';
 import useSlot from '../utils/useSlot';
+import { INVERTED_COLORS_ATTR } from '../colorInversion/colorInversionUtils';
 
 const useUtilityClasses = (ownerState: ListSubheaderOwnerState) => {
   const { variant, color, sticky } = ownerState;
@@ -49,10 +49,14 @@ const ListSubheaderRoot = styled('div', {
     zIndex: 1,
     background: 'var(--ListItem-stickyBackground)',
   }),
-  color:
-    ownerState.color && ownerState.color !== 'context'
-      ? `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`
-      : theme.vars.palette.text.tertiary,
+  color: ownerState.color
+    ? `var(--_Link-color, rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1))`
+    : theme.vars.palette.text.tertiary,
+  ...(ownerState.instanceColor && {
+    [`&:not([${INVERTED_COLORS_ATTR}])`]: {
+      '--_Link-color': theme.vars.palette.text.secondary,
+    },
+  }),
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
 }));
 /**
@@ -78,15 +82,13 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
     id: idOverride,
     sticky = false,
     variant,
-    color: colorProp,
+    color,
     slots = {},
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
   const id = useId(idOverride);
-  const setSubheaderId = React.useContext(ListSubheaderDispatch);
+  const setSubheaderId = React.useContext(ListSubheaderContext);
 
   React.useEffect(() => {
     if (setSubheaderId) {
@@ -95,11 +97,12 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
   }, [setSubheaderId, id]);
 
   const ownerState = {
+    instanceColor: inProps.color,
     ...props,
     id,
     sticky,
     variant,
-    color: variant ? color ?? 'neutral' : color,
+    color: variant ? (color ?? 'neutral') : color,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -121,10 +124,10 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
 }) as OverridableComponent<ListSubheaderTypeMap>;
 
 ListSubheader.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

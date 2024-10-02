@@ -1,26 +1,26 @@
 /* eslint-disable no-console */
 const path = require('path');
 const fse = require('fs-extra');
-const { createRender } = require('@mui/markdown');
+const { createRender } = require('@mui/internal-markdown');
 const { marked } = require('marked');
 const { LANGUAGES_IGNORE_PAGES } = require('../config');
 
 // Use renderer to extract all links into a markdown document
-const getPageLinks = (markdown) => {
+function getPageLinks(markdown) {
   const hrefs = [];
 
   const renderer = new marked.Renderer();
-  renderer.link = (href) => {
-    if (href[0] === '/') {
+  renderer.link = ({ href }) => {
+    if (href.startsWith('/')) {
       hrefs.push(href);
     }
   };
   marked(markdown, { mangle: false, headerIds: false, renderer });
   return hrefs;
-};
+}
 
 // List all .js files in a folder
-const getJsFilesInFolder = (folderPath) => {
+function getJsFilesInFolder(folderPath) {
   const files = fse.readdirSync(folderPath, { withFileTypes: true });
   return files.reduce((acc, file) => {
     if (file.isDirectory()) {
@@ -32,7 +32,7 @@ const getJsFilesInFolder = (folderPath) => {
     }
     return acc;
   }, []);
-};
+}
 
 // Returns url assuming it's "./docs/pages/x/..." becomes  "mui.com/x/..."
 const jsFilePathToUrl = (jsFilePath) => {
@@ -41,10 +41,10 @@ const jsFilePathToUrl = (jsFilePath) => {
 
   const root = folder.slice(jsFilePath.indexOf('/pages') + '/pages'.length);
   const suffix = path.extname(file);
-  let page = `/${file.slice(0, file.length - suffix.length)}`;
+  let page = `/${file.slice(0, file.length - suffix.length)}/`;
 
-  if (page === '/index') {
-    page = '';
+  if (page === '/index/') {
+    page = '/';
   }
 
   return `${root}${page}`;
@@ -90,36 +90,42 @@ function getLinksAndAnchors(fileName) {
   };
 }
 
+const markdownImportRegExp = /'(.*)\?(muiMarkdown|@mui\/markdown)'/g;
+
 const getMdFilesImported = (jsPageFile) => {
   // For each JS file extract the markdown rendered if it exists
   const fileContent = fse.readFileSync(jsPageFile, 'utf8');
   /**
    * Content files can be represented by either:
-   * - 'docsx/data/advanced-components/overview.md?@mui/markdown'; (for mui-x)
-   * - 'docs/data/advanced-components/overview.md?@mui/markdown';
-   * - './index.md?@mui/markdown';
+   * - 'docsx/data/advanced-components/overview.md?muiMarkdown'; (for mui-x)
+   * - 'docs/data/advanced-components/overview.md?muiMarkdown';
+   * - './index.md?muiMarkdown';
    */
-  const importPaths = fileContent.match(/'.*\?@mui\/markdown'/g);
+  const importPaths = fileContent.match(markdownImportRegExp);
 
   if (importPaths === null) {
     return [];
   }
   return importPaths.map((importPath) => {
-    let cleanImportPath = importPath.slice(1, importPath.length - "?@mui/markdown'".length);
+    let cleanImportPath = importPath.replace(markdownImportRegExp, '$1');
     if (cleanImportPath.startsWith('.')) {
       cleanImportPath = path.join(path.dirname(jsPageFile), cleanImportPath);
-    } else if (cleanImportPath.startsWith('docs/')) {
-      cleanImportPath = path.join(
-        jsPageFile.slice(0, jsPageFile.indexOf('docs/')),
-        cleanImportPath,
-      );
-    } else if (cleanImportPath.startsWith('docsx/')) {
-      cleanImportPath = path.join(
-        jsPageFile.slice(0, jsPageFile.indexOf('docs/')),
-        cleanImportPath.replace('docsx', 'docs'),
-      );
     } else {
-      console.error(`unable to deal with import path: ${cleanImportPath}`);
+      /**
+       * convert /Users/oliviertassinari/base-ui/docs/pages/base-ui/react-switch/index.js
+       * and docs-base/data/base/components/switch/switch.md
+       * into /Users/oliviertassinari/base-ui/docs/data/base/components/switch/switch.md
+       */
+      const cleanImportPathArray = cleanImportPath.split('/');
+      // Assume that the first folder is /docs or an alias that starts with /docs
+      cleanImportPathArray.shift();
+
+      // Truncate jsPageFile at /docs/ and append cleanImportPath
+      cleanImportPath = path.join(
+        jsPageFile.slice(0, jsPageFile.indexOf('/docs/')),
+        'docs',
+        cleanImportPathArray.join('/'),
+      );
     }
 
     return cleanImportPath;
@@ -146,18 +152,16 @@ const parseDocFolder = (folderPath, availableLinks = {}, usedLinks = {}) => {
   mdFiles.forEach(({ fileName, url }) => {
     const { hashes, links } = getLinksAndAnchors(fileName);
 
-    links
-      .map((link) => (link[link.length - 1] === '/' ? link.slice(0, link.length - 1) : link))
-      .forEach((link) => {
-        if (usedLinks[link] === undefined) {
-          usedLinks[link] = [fileName];
-        } else {
-          usedLinks[link].push(fileName);
-        }
-      });
+    links.forEach((link) => {
+      if (usedLinks[link] === undefined) {
+        usedLinks[link] = [fileName];
+      } else {
+        usedLinks[link].push(fileName);
+      }
+    });
 
     hashes.forEach((hash) => {
-      availableLinks[`${url}/#${hash}`] = true;
+      availableLinks[`${url}#${hash}`] = true;
     });
   });
 };
@@ -202,7 +206,7 @@ if (require.main === module) {
 
   parseDocFolder(path.join(docsSpaceRoot, './pages/'), availableLinks, usedLinks);
 
-  write('Broken links found by `yarn docs:link-check` that exist:\n');
+  write('Broken links found by `pnpm docs:link-check` that exist:\n');
   Object.keys(usedLinks)
     .filter((link) => link.startsWith('/'))
     .filter((link) => !availableLinks[link])
@@ -213,8 +217,12 @@ if (require.main === module) {
     .filter((link) => UNSUPPORTED_PATHS.every((unsupportedPath) => !link.includes(unsupportedPath)))
     .sort()
     .forEach((linkKey) => {
+      //
+      // <!-- #default-branch-switch -->
+      //
       write(`- https://mui.com${linkKey}`);
       console.log(`https://mui.com${linkKey}`);
+
       console.log(`used in`);
       usedLinks[linkKey].forEach((f) => console.log(`- ${path.relative(docsSpaceRoot, f)}`));
       console.log('available anchors on the same page:');

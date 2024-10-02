@@ -5,6 +5,7 @@ components: Tooltip
 githubLabel: 'component: tooltip'
 materialDesign: https://m2.material.io/components/tooltips
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
+githubSource: packages/mui-material/src/Tooltip
 ---
 
 # Tooltip
@@ -13,7 +14,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 
 When activated, Tooltips display a text label identifying an element, such as a description of its function.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic tooltip
 
@@ -39,6 +40,16 @@ You can use the `arrow` prop to give your tooltip an arrow indicating which elem
 
 {{"demo": "ArrowTooltips.js"}}
 
+## Distance from anchor
+
+To adjust the distance between the tooltip and its anchor, you can use the `slotProps` prop to modify the [offset](https://popper.js.org/docs/v2/modifiers/offset/) of the popper.
+
+{{"demo": "TooltipOffset.js"}}
+
+Alternatively, you can use the `slotProps` prop to customize the margin of the popper.
+
+{{"demo": "TooltipMargin.js"}}
+
 ## Custom child element
 
 The tooltip needs to apply DOM event listeners to its child element.
@@ -60,8 +71,6 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
   <MyComponent />
 </Tooltip>;
 ```
-
-You can find a similar concept in the [wrapping components](/material-ui/guides/composition/#wrapping-components) guide.
 
 If using a class component as a child, you'll also need to ensure that the ref is forwarded to the underlying DOM element. (A ref to the class component itself will not work.)
 
@@ -129,7 +138,7 @@ In order to work with Safari, you need at least one display block or flex item b
 {{"demo": "DisabledTooltips.js"}}
 
 :::warning
-If you're not wrapping a Material UI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property _pointer-events: none;_ to your element when disabled:
+If you're not wrapping a Material UI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property _pointer-events: none;_ to your element when disabled:
 :::
 
 ```jsx
@@ -164,7 +173,7 @@ You need to create an object shaped like the [`VirtualElement`](https://popper.j
 
 ## Showing and hiding
 
-The tooltip is normally shown immediately when the user's mouse hovers over the element, and hides immediately when the user's mouse leaves. A delay in showing or hiding the tooltip can be added through the `enterDelay` and `leaveDelay` props, as shown in the Controlled Tooltips demo above.
+The tooltip is normally shown immediately when the user's mouse hovers over the element, and hides immediately when the user's mouse leaves. A delay in showing or hiding the tooltip can be added through the `enterDelay` and `leaveDelay` props.
 
 On mobile, the tooltip is displayed when the user longpresses the element and hides after a delay of 1500ms. You can disable this feature with the `disableTouchListener` prop.
 

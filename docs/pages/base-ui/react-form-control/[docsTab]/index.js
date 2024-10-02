@@ -1,7 +1,7 @@
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
-import * as pageProps from 'docs/data/base/components/form-control/form-control.md?@mui/markdown';
+import * as pageProps from 'docs/data/base/components/form-control/form-control.md?muiMarkdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
 import FormControlApiJsonPageContent from '../../api/form-control.json';
 import useFormControlContextApiJsonPageContent from '../../api/use-form-control-context.json';
@@ -31,7 +31,7 @@ export const getStaticProps = () => {
   const FormControlApiDescriptions = mapApiPageTranslations(FormControlApiReq);
 
   const useFormControlContextApiReq = require.context(
-    'docs/translations/api-docs/use-form-control-context',
+    'docs/translations/api-docs-base/use-form-control-context',
     false,
     /use-form-control-context.*.json$/,
   );

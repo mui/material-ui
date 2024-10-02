@@ -14,21 +14,25 @@ const customTheme = (outerTheme: Theme) =>
     components: {
       MuiAutocomplete: {
         defaultProps: {
-          renderOption: (props, option, state, ownerState) => (
-            <Box
-              sx={{
-                borderRadius: '8px',
-                margin: '5px',
-                [`&.${autocompleteClasses.option}`]: {
-                  padding: '8px',
-                },
-              }}
-              component="li"
-              {...props}
-            >
-              {ownerState.getOptionLabel(option)}
-            </Box>
-          ),
+          renderOption: (props, option, state, ownerState) => {
+            const { key, ...optionProps } = props;
+            return (
+              <Box
+                key={key}
+                sx={{
+                  borderRadius: '8px',
+                  margin: '5px',
+                  [`&.${autocompleteClasses.option}`]: {
+                    padding: '8px',
+                  },
+                }}
+                component="li"
+                {...optionProps}
+              >
+                {ownerState.getOptionLabel(option)}
+              </Box>
+            );
+          },
         },
       },
     },
@@ -65,7 +69,6 @@ function MovieSelect() {
 function CountrySelect() {
   return (
     <Autocomplete
-      id="country-customized-option-demo"
       options={countries}
       disableCloseOnSelect
       getOptionLabel={(option: CountryType) =>
@@ -458,7 +461,7 @@ const countries: readonly CountryType[] = [
   { code: 'TV', label: 'Tuvalu', phone: '688' },
   {
     code: 'TW',
-    label: 'Taiwan, Republic of China',
+    label: 'Taiwan',
     phone: '886',
   },
   {

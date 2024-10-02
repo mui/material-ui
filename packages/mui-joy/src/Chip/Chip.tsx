@@ -9,7 +9,6 @@ import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { VariantColorProvider } from '../styles/variantColorInheritance';
-import { useColorInversion } from '../styles/ColorInversion';
 import { resolveSxValue } from '../styles/styleUtils';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 import { ChipProps, ChipOwnerState, ChipTypeMap } from './ChipProps';
@@ -59,26 +58,28 @@ const ChipRoot = styled('div', {
       '--Icon-color': 'currentColor',
       '--unstable_actionRadius': 'var(--_Chip-radius)', // to be used with Radio or Checkbox
       ...(ownerState.size === 'sm' && {
-        '--Chip-paddingInline': '0.5rem',
+        '--Chip-paddingInline': '0.375rem',
         '--Chip-decoratorChildHeight':
-          'calc(min(1.125rem, var(--_Chip-minHeight)) - 2 * var(--variant-borderWidth, 0px))',
+          'calc(var(--_Chip-minHeight) - 2 * var(--variant-borderWidth))',
         '--Icon-fontSize': theme.vars.fontSize.sm,
-        '--_Chip-minHeight': 'var(--Chip-minHeight, 1.5rem)',
-        gap: '0.25rem',
+        '--_Chip-minHeight': 'var(--Chip-minHeight, 1.25rem)', // 20px
+        gap: '3px',
       }),
       ...(ownerState.size === 'md' && {
-        '--Chip-paddingInline': '0.75rem',
-        '--Chip-decoratorChildHeight': 'min(1.375rem, var(--_Chip-minHeight))',
-        '--Icon-fontSize': theme.vars.fontSize.lg,
-        '--_Chip-minHeight': 'var(--Chip-minHeight, 2rem)',
-        gap: '0.375rem',
+        '--Chip-paddingInline': '0.5rem',
+        '--Chip-decoratorChildHeight':
+          'calc(var(--_Chip-minHeight) - 0.25rem - 2 * var(--variant-borderWidth))',
+        '--Icon-fontSize': theme.vars.fontSize.md,
+        '--_Chip-minHeight': 'var(--Chip-minHeight, 1.5rem)', // 26px
+        gap: '0.25rem',
       }),
       ...(ownerState.size === 'lg' && {
-        '--Chip-paddingInline': '1rem',
-        '--Chip-decoratorChildHeight': 'min(1.75rem, var(--_Chip-minHeight))',
-        '--Icon-fontSize': theme.vars.fontSize.xl,
-        '--_Chip-minHeight': 'var(--Chip-minHeight, 2.5rem)',
-        gap: '0.5rem',
+        '--Chip-paddingInline': '0.75rem',
+        '--Chip-decoratorChildHeight':
+          'calc(var(--_Chip-minHeight) - 0.375rem - 2 * var(--variant-borderWidth))',
+        '--Icon-fontSize': theme.vars.fontSize.lg,
+        '--_Chip-minHeight': 'var(--Chip-minHeight, 1.75rem)', // 28px
+        gap: '0.375rem',
       }),
       '--_Chip-radius': 'var(--Chip-radius, 1.5rem)',
       '--_Chip-paddingBlock':
@@ -167,7 +168,11 @@ const ChipAction = styled('button', {
     backgroundColor: theme.vars.palette.background.surface,
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
   },
-  { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+  {
+    '&:hover': {
+      '@media (hover: hover)': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+    },
+  },
   { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
   {
     [`&.${chipClasses.disabled}`]:
@@ -181,10 +186,11 @@ const ChipStartDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: ChipOwnerState }>({
   '--Avatar-marginInlineStart': 'calc(var(--Chip-decoratorChildOffset) * -1)',
-  '--IconButton-margin': '0 0 0 calc(var(--Chip-decoratorChildOffset) * -1)',
+  '--IconButton-margin':
+    '0 calc(-1 * var(--Chip-paddingInline) / 3) 0 calc(var(--Chip-decoratorChildOffset) * -1)',
   '--Icon-margin': '0 0 0 calc(var(--Chip-paddingInline) / -4)',
   display: 'inherit',
-  // set zIndex to 1 with order to stay on top of other controls, eg. Checkbox, Radio
+  // set zIndex to 1 with order to stay on top of other controls, for example Checkbox, Radio
   order: 0,
   zIndex: 1,
   pointerEvents: 'none',
@@ -195,10 +201,11 @@ const ChipEndDecorator = styled('span', {
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: ChipOwnerState }>({
-  '--IconButton-margin': '0 calc(var(--Chip-decoratorChildOffset) * -1) 0 0',
+  '--IconButton-margin':
+    '0 calc(var(--Chip-decoratorChildOffset) * -1) 0 calc(-1 * var(--Chip-paddingInline) / 3)',
   '--Icon-margin': '0 calc(var(--Chip-paddingInline) / -4) 0 0',
   display: 'inherit',
-  // set zIndex to 1 with order to stay on top of other controls, eg. Checkbox, Radio
+  // set zIndex to 1 with order to stay on top of other controls, for example Checkbox, Radio
   order: 2,
   zIndex: 1,
   pointerEvents: 'none',
@@ -220,7 +227,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const {
     children,
     className,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     onClick,
     disabled = false,
     size = 'md',
@@ -232,8 +239,6 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const clickable = !!onClick || !!slotProps.action;
   const ownerState: ChipOwnerState = {
@@ -248,7 +253,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
 
   const resolvedActionProps =
     typeof slotProps.action === 'function' ? slotProps.action(ownerState) : slotProps.action;
-  const actionRef = React.useRef<HTMLElement | null>(null);
+  const actionRef = React.useRef<HTMLElement>(null);
   const { focusVisible, getRootProps } = useButton({
     ...resolvedActionProps,
     disabled,
@@ -309,11 +314,11 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
 
   return (
     <ChipContext.Provider value={chipContextValue}>
-      <VariantColorProvider variant={variant} color={colorProp}>
+      <VariantColorProvider variant={variant} color={color}>
         <SlotRoot {...rootProps}>
           {clickable && <SlotAction {...actionProps} />}
 
-          {/* label is always the first element for integrating with other controls, eg. Checkbox, Radio. Use CSS order to rearrange position */}
+          {/* label is always the first element for integrating with other controls, for example Checkbox, Radio. Use CSS order to rearrange position */}
           <SlotLabel {...labelProps} id={id}>
             {children}
           </SlotLabel>
@@ -331,10 +336,10 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
 }) as OverridableComponent<ChipTypeMap>;
 
 Chip.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

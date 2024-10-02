@@ -14,7 +14,9 @@
         "name": "shape",
         "description": "{ first?: elementType, last?: elementType, next?: elementType, previous?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "page": { "type": { "name": "node" } },
@@ -29,6 +31,13 @@
         "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;string"
       },
       "default": "'medium'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ first?: func<br>&#124;&nbsp;object, last?: func<br>&#124;&nbsp;object, next?: func<br>&#124;&nbsp;object, previous?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
     },
     "slots": {
       "type": {
@@ -64,34 +73,138 @@
     "import PaginationItem from '@mui/material/PaginationItem';",
     "import { PaginationItem } from '@mui/material';"
   ],
-  "styles": {
-    "classes": [
-      "root",
-      "page",
-      "sizeSmall",
-      "sizeLarge",
-      "text",
-      "textPrimary",
-      "textSecondary",
-      "outlined",
-      "outlinedPrimary",
-      "outlinedSecondary",
-      "rounded",
-      "ellipsis",
-      "firstLast",
-      "previousNext",
-      "focusVisible",
-      "disabled",
-      "selected",
-      "icon"
-    ],
-    "globalClasses": {
-      "focusVisible": "Mui-focusVisible",
-      "disabled": "Mui-disabled",
-      "selected": "Mui-selected"
+  "slots": [
+    { "name": "first", "description": "", "class": null },
+    { "name": "last", "description": "", "class": null },
+    { "name": "next", "description": "", "class": null },
+    { "name": "previous", "description": "", "class": null }
+  ],
+  "classes": [
+    {
+      "key": "colorPrimary",
+      "className": "MuiPaginationItem-colorPrimary",
+      "description": "Styles applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
     },
-    "name": "MuiPaginationItem"
-  },
+    {
+      "key": "colorSecondary",
+      "className": "MuiPaginationItem-colorSecondary",
+      "description": "Styles applied to the root element if `color=\"secondary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "ellipsis",
+      "className": "MuiPaginationItem-ellipsis",
+      "description": "Styles applied to the root element if `type=\"start-ellipsis\"` or `type=\"end-ellipsis\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "firstLast",
+      "className": "MuiPaginationItem-firstLast",
+      "description": "Styles applied to the root element if `type=\"first\"` or type=\"last\".",
+      "isGlobal": false
+    },
+    {
+      "key": "focusVisible",
+      "className": "Mui-focusVisible",
+      "description": "State class applied to the root element if keyboard focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "icon",
+      "className": "MuiPaginationItem-icon",
+      "description": "Styles applied to the icon to display.",
+      "isGlobal": false
+    },
+    {
+      "key": "outlined",
+      "className": "MuiPaginationItem-outlined",
+      "description": "Styles applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "outlinedPrimary",
+      "className": "MuiPaginationItem-outlinedPrimary",
+      "description": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"primary\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "outlinedSecondary",
+      "className": "MuiPaginationItem-outlinedSecondary",
+      "description": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"secondary\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "page",
+      "className": "MuiPaginationItem-page",
+      "description": "Styles applied to the root element if `type=\"page\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "previousNext",
+      "className": "MuiPaginationItem-previousNext",
+      "description": "Styles applied to the root element if `type=\"previous\"` or type=\"next\".",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiPaginationItem-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "rounded",
+      "className": "MuiPaginationItem-rounded",
+      "description": "Styles applied to the root element if `rounded=\"true\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "selected",
+      "className": "Mui-selected",
+      "description": "State class applied to the root element if `selected={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "sizeLarge",
+      "className": "MuiPaginationItem-sizeLarge",
+      "description": "Styles applied to the root element if `size=\"large\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSmall",
+      "className": "MuiPaginationItem-sizeSmall",
+      "description": "Styles applied to the root element if `size=\"small\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "text",
+      "className": "MuiPaginationItem-text",
+      "description": "Styles applied to the root element if `variant=\"text\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "textPrimary",
+      "className": "MuiPaginationItem-textPrimary",
+      "description": "Styles applied to the root element if `variant=\"text\"` and `color=\"primary\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "textSecondary",
+      "className": "MuiPaginationItem-textSecondary",
+      "description": "Styles applied to the root element if `variant=\"text\"` and `color=\"secondary\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiPaginationItem",

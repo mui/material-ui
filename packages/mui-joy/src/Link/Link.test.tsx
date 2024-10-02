@@ -1,17 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { SinonSpy, spy } from 'sinon';
-import {
-  act,
-  createRenderer,
-  fireEvent,
-  describeConformance,
-  describeJoyColorInversion,
-} from 'test/utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import Link, { LinkClassKey, linkClasses as classes } from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 import { ThemeProvider, TypographySystem } from '@mui/joy/styles';
+import describeConformance from '../../test/describeConformance';
 
 function focusVisible(element: HTMLAnchorElement | null) {
   act(() => {
@@ -46,8 +41,6 @@ describe('<Link />', () => {
     }),
   );
 
-  describeJoyColorInversion(<Link href="/" variant="soft" />, { muiName: 'JoyLink', classes });
-
   it('should render children', () => {
     const { queryByText } = render(<Link href="/">Home</Link>);
 
@@ -58,10 +51,13 @@ describe('<Link />', () => {
     it('should fire event callbacks', () => {
       const events = ['onBlur', 'onFocus'];
 
-      const handlers = events.reduce((result, n) => {
-        result[n] = spy();
-        return result;
-      }, {} as Record<string, SinonSpy>);
+      const handlers = events.reduce(
+        (result, n) => {
+          result[n] = spy();
+          return result;
+        },
+        {} as Record<string, SinonSpy>,
+      );
 
       const { container } = render(
         <Link href="/" {...handlers}>
@@ -79,7 +75,12 @@ describe('<Link />', () => {
   });
 
   describe('keyboard focus', () => {
-    it('should add the focusVisible class when focused', () => {
+    it('should add the focusVisible class when focused', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+
       const { container } = render(<Link href="/">Home</Link>);
       const anchor = container.querySelector('a');
 

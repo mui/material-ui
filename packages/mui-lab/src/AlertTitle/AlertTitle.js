@@ -1,12 +1,10 @@
+'use client';
 import * as React from 'react';
 import AlertTitle from '@mui/material/AlertTitle';
 
 let warnedOnce = false;
 
-/**
- * @ignore - do not document.
- */
-export default React.forwardRef(function DeprecatedAlertTitle(props, ref) {
+const warn = () => {
   if (!warnedOnce) {
     console.warn(
       [
@@ -19,6 +17,13 @@ export default React.forwardRef(function DeprecatedAlertTitle(props, ref) {
 
     warnedOnce = true;
   }
+};
+
+/**
+ * @ignore - do not document.
+ */
+export default React.forwardRef(function DeprecatedAlertTitle(props, ref) {
+  warn();
 
   return <AlertTitle ref={ref} {...props} />;
 });

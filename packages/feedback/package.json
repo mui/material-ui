@@ -19,12 +19,12 @@
   },
   "dependencies": {
     "claudia-api-builder": "^4.1.2",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "claudia": "^5.14.1"
   },
   "optionalDependencies": {
-    "aws-sdk": "^2.1436.0"
+    "aws-sdk": "^2.1691.0"
   }
 }

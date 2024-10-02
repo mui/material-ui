@@ -32,3 +32,10 @@ expectType<typeof Box, typeof CustomBox>(CustomBox);
 
 // @ts-expect-error System's Box has different type than Material UI's Box
 expectType<typeof SystemBox, typeof CustomBox>(CustomBox);
+
+function ColorTest() {
+  <Box
+    color={(theme) => theme.vars.palette.common.black}
+    sx={(theme) => ({ backgroundColor: theme.vars.palette.background.default })}
+  />;
+}

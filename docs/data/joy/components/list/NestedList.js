@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/joy/Box';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListSubheader from '@mui/joy/ListSubheader';
@@ -10,7 +9,7 @@ import Switch from '@mui/joy/Switch';
 export default function NestedList() {
   const [small, setSmall] = React.useState(false);
   return (
-    <Box>
+    <div>
       <Switch
         size="sm"
         checked={small}
@@ -23,10 +22,7 @@ export default function NestedList() {
       <List
         variant="outlined"
         size={small ? 'sm' : undefined}
-        sx={{
-          width: 200,
-          borderRadius: 'sm',
-        }}
+        sx={{ width: 200, borderRadius: 'sm' }}
       >
         <ListItem nested>
           <ListSubheader>Category 1</ListSubheader>
@@ -51,6 +47,6 @@ export default function NestedList() {
           </List>
         </ListItem>
       </List>
-    </Box>
+    </div>
   );
 }

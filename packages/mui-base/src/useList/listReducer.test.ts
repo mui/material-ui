@@ -63,6 +63,35 @@ describe('listReducer', () => {
       expect(result.selectedValues).to.deep.equal(['two']);
     });
 
+    it('does not select a disabled item', () => {
+      const state: ListState<string> = {
+        highlightedValue: null,
+        selectedValues: [],
+      };
+
+      const action: ListReducerAction<string> = {
+        type: ListActionTypes.itemClick,
+        event: {} as any, // not relevant
+        context: {
+          items: ['one', 'two', 'three'],
+          disableListWrap: false,
+          disabledItemsFocusable: false,
+          focusManagement: 'activeDescendant',
+          isItemDisabled: (item) => item === 'two',
+          itemComparer: (o, v) => o === v,
+          getItemAsString: (option) => option,
+          orientation: 'vertical',
+          pageSize: 5,
+          selectionMode: 'single',
+        },
+        item: 'two',
+      };
+
+      const result = listReducer(state, action);
+      expect(result.highlightedValue).to.equal(null);
+      expect(result.selectedValues).to.deep.equal([]);
+    });
+
     it('replaces the selectedValues with the clicked value if selectionMode = "single"', () => {
       const state: ListState<string> = {
         highlightedValue: 'a',
@@ -919,6 +948,7 @@ describe('listReducer', () => {
 
     describe('using custom item comparer', () => {
       type ItemType = { v: string };
+
       it('keeps the highlighted value if it is present among the new items', () => {
         const state: ListState<ItemType> = {
           highlightedValue: { v: '1' },
@@ -1111,6 +1141,90 @@ describe('listReducer', () => {
 
       const result = listReducer(state, action);
       expect(result.highlightedValue).to.equal('two');
+    });
+  });
+
+  describe('action: highlightLast', () => {
+    it('highlights the last item', () => {
+      const state: ListState<string> = {
+        highlightedValue: 'one',
+        selectedValues: [],
+      };
+
+      const action: ListReducerAction<string> = {
+        type: ListActionTypes.highlightLast,
+        event: null,
+        context: {
+          items: ['one', 'two', 'three'],
+          disableListWrap: false,
+          disabledItemsFocusable: false,
+          focusManagement: 'DOM',
+          isItemDisabled: () => false,
+          itemComparer: (o, v) => o === v,
+          getItemAsString: (option) => option,
+          orientation: 'vertical',
+          pageSize: 5,
+          selectionMode: 'none',
+        },
+      };
+
+      const result = listReducer(state, action);
+      expect(result.highlightedValue).to.equal('three');
+    });
+
+    it('highlights the last non-disabled item', () => {
+      const state: ListState<string> = {
+        highlightedValue: 'one',
+        selectedValues: [],
+      };
+
+      const action: ListReducerAction<string> = {
+        type: ListActionTypes.highlightLast,
+        event: null,
+        context: {
+          items: ['one', 'two', 'three'],
+          disableListWrap: false,
+          disabledItemsFocusable: false,
+          focusManagement: 'DOM',
+          isItemDisabled: (item) => item === 'three',
+          itemComparer: (o, v) => o === v,
+          getItemAsString: (option) => option,
+          orientation: 'vertical',
+          pageSize: 5,
+          selectionMode: 'none',
+        },
+      };
+
+      const result = listReducer(state, action);
+      expect(result.highlightedValue).to.equal('two');
+    });
+  });
+
+  describe('action: clearSelection', () => {
+    it('clears the selection', () => {
+      const state: ListState<string> = {
+        highlightedValue: null,
+        selectedValues: ['one', 'two'],
+      };
+
+      const action: ListReducerAction<string> = {
+        type: ListActionTypes.clearSelection,
+        context: {
+          items: ['one', 'two', 'three'],
+          disableListWrap: false,
+          disabledItemsFocusable: false,
+          focusManagement: 'DOM',
+          isItemDisabled: () => false,
+          itemComparer: (o, v) => o === v,
+          getItemAsString: (option) => option,
+          orientation: 'vertical',
+          pageSize: 5,
+          selectionMode: 'none',
+        },
+      };
+
+      const result = listReducer(state, action);
+      expect(result.selectedValues).to.deep.equal([]);
     });
   });
 });

@@ -4,7 +4,7 @@
     "children": { "description": "Node passed into the SVG element." },
     "classes": { "description": "Override or extend the styles applied to the component." },
     "color": {
-      "description": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#adding-new-colors\">palette customization guide</a>. You can use the <code>htmlColor</code> prop to apply a color attribute to the SVG element."
+      "description": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#custom-colors\">palette customization guide</a>. You can use the <code>htmlColor</code> prop to apply a color attribute to the SVG element."
     },
     "component": {
       "description": "The component used for the root node. Either a string to use a HTML element or a component."
@@ -30,7 +30,21 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "colorAction": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"action\"</code>"
+    },
+    "colorDisabled": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"disabled\"</code>"
+    },
+    "colorError": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"error\"</code>"
+    },
     "colorPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -41,40 +55,26 @@
       "nodeName": "the root element",
       "conditions": "<code>color=\"secondary\"</code>"
     },
-    "colorAction": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"action\"</code>"
-    },
-    "colorError": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"error\"</code>"
-    },
-    "colorDisabled": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"disabled\"</code>"
-    },
     "fontSizeInherit": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>fontSize=\"inherit\"</code>"
     },
-    "fontSizeSmall": {
+    "fontSizeLarge": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>fontSize=\"small\"</code>"
+      "conditions": "<code>fontSize=\"large\"</code>"
     },
     "fontSizeMedium": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>fontSize=\"medium\"</code>"
     },
-    "fontSizeLarge": {
+    "fontSizeSmall": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>fontSize=\"large\"</code>"
-    }
+      "conditions": "<code>fontSize=\"small\"</code>"
+    },
+    "root": { "description": "Styles applied to the root element." }
   }
 }

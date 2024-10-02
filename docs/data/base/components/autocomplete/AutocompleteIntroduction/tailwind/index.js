@@ -47,7 +47,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
         {...getRootProps(other)}
         ref={rootRef}
         className={clsx(
-          'flex gap-[5px] pr-[5px] overflow-hidden w-80 rounded-lg bg-white dark:bg-gray-800 border border-solid border-gray-200 dark:border-gray-700 hover:border-violet-400 dark:hover:border-violet-400 focus-visible:outline-0',
+          'flex gap-[5px] pr-[5px] overflow-hidden w-80 rounded-lg bg-white dark:bg-gray-800 border border-solid border-gray-200 dark:border-gray-700 hover:border-violet-400 dark:hover:border-violet-400 focus-visible:outline-0 shadow-[0_2px_4px_rgb(0_0_0_/_0.05)] dark:shadow-[0_2px_4px_rgb(0_0_0_/_0.5)]',
           !focused &&
             'shadow-[0_2px_2px_transparent] shadow-gray-50 dark:shadow-gray-900',
           focused &&
@@ -56,7 +56,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
       >
         <input
           id={id}
-          ref={setAnchorEl}
           disabled={disabled}
           readOnly={readOnly}
           {...getInputProps()}
@@ -70,7 +69,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
             <ClearIcon className="translate-y-[2px] scale-90" />
           </Button>
         )}
-
         <Button
           {...getPopupIndicatorProps()}
           className="self-center outline-0 shadow-none border-0 py-0 px-0.5 rounded-[4px] bg-transparent hover:bg-violet-100 dark:hover:bg-gray-700 hover:cursor-pointer"
@@ -80,7 +78,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
           />
         </Button>
       </div>
-      {anchorEl ? (
+      {anchorEl && (
         <Popper
           open={popupOpen}
           anchorEl={anchorEl}
@@ -116,7 +114,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
             )}
           </ul>
         </Popper>
-      ) : null}
+      )}
     </React.Fragment>
   );
 });

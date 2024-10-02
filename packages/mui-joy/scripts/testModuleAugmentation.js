@@ -1,15 +1,15 @@
 const childProcess = require('child_process');
 const path = require('path');
+const { promisify } = require('util');
 const { chunk } = require('lodash');
 const glob = require('fast-glob');
-const { promisify } = require('util');
 
 const exec = promisify(childProcess.exec);
 const packageRoot = path.resolve(__dirname, '../');
 
 async function test(tsconfigPath) {
   try {
-    await exec(['yarn', 'tsc', '--project', tsconfigPath].join(' '), { cwd: packageRoot });
+    await exec(['pnpm', 'tsc', '--project', tsconfigPath].join(' '), { cwd: packageRoot });
   } catch (error) {
     if (error.stdout !== undefined) {
       // `exec` error
@@ -35,10 +35,9 @@ async function main() {
     cwd: packageRoot,
   });
   // Need to process in chunks or we might run out-of-memory
-  // approximate yarn lerna --concurrency 7
+  // approximate pnpm lerna --concurrency 7
   const tsconfigPathsChunks = chunk(tsconfigPaths, 7);
 
-  // eslint-disable-next-line no-restricted-syntax
   for await (const tsconfigPathsChunk of tsconfigPathsChunks) {
     await Promise.all(
       tsconfigPathsChunk.map(async (tsconfigPath) => {

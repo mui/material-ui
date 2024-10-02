@@ -1,4 +1,4 @@
-# Joy UI - Create React App example in TypeScript
+# Joy UI - Create React App example in TypeScript
 
 `@mui/joy` is still in early development and is not recommended for use in production.
 
@@ -26,4 +26,11 @@ or:
 
 [![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/joy-ui-cra-ts)
 
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui/material-ui/tree/master/examples/joy-ui-cra-ts)
+[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/github/mui/material-ui/tree/master/examples/joy-ui-cra-ts)
+
+## What's next?
+
+<!-- #default-branch-switch -->
+
+You now have a working example project.
+You can head back to the documentation and continue by browsing the [templates](https://mui.com/joy-ui/getting-started/templates/) section.

@@ -2,10 +2,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { alpha } from '@mui/system';
-import styled, { rootShouldForwardProp } from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { alpha } from '@mui/system/colorManipulator';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import ButtonBase from '../ButtonBase';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import useForkRef from '../utils/useForkRef';
@@ -52,81 +54,99 @@ const ListItemButtonRoot = styled(ButtonBase, {
   name: 'MuiListItemButton',
   slot: 'Root',
   overridesResolver,
-})(({ theme, ownerState }) => ({
-  display: 'flex',
-  flexGrow: 1,
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-  position: 'relative',
-  textDecoration: 'none',
-  minWidth: 0,
-  boxSizing: 'border-box',
-  textAlign: 'left',
-  paddingTop: 8,
-  paddingBottom: 8,
-  transition: theme.transitions.create('background-color', {
-    duration: theme.transitions.duration.shortest,
-  }),
-  '&:hover': {
+})(
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    flexGrow: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    position: 'relative',
     textDecoration: 'none',
-    backgroundColor: (theme.vars || theme).palette.action.hover,
-    // Reset on touch devices, it doesn't add specificity
-    '@media (hover: none)': {
-      backgroundColor: 'transparent',
+    minWidth: 0,
+    boxSizing: 'border-box',
+    textAlign: 'left',
+    paddingTop: 8,
+    paddingBottom: 8,
+    transition: theme.transitions.create('background-color', {
+      duration: theme.transitions.duration.shortest,
+    }),
+    '&:hover': {
+      textDecoration: 'none',
+      backgroundColor: (theme.vars || theme).palette.action.hover,
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
     },
-  },
-  [`&.${listItemButtonClasses.selected}`]: {
-    backgroundColor: theme.vars
-      ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-      : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-    [`&.${listItemButtonClasses.focusVisible}`]: {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-        : alpha(
-            theme.palette.primary.main,
-            theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-          ),
-    },
-  },
-  [`&.${listItemButtonClasses.selected}:hover`]: {
-    backgroundColor: theme.vars
-      ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-      : alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-        ),
-    // Reset on touch devices, it doesn't add specificity
-    '@media (hover: none)': {
+    [`&.${listItemButtonClasses.selected}`]: {
       backgroundColor: theme.vars
         ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
         : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      [`&.${listItemButtonClasses.focusVisible}`]: {
+        backgroundColor: theme.vars
+          ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+          : alpha(
+              theme.palette.primary.main,
+              theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+            ),
+      },
     },
-  },
-  [`&.${listItemButtonClasses.focusVisible}`]: {
-    backgroundColor: (theme.vars || theme).palette.action.focus,
-  },
-  [`&.${listItemButtonClasses.disabled}`]: {
-    opacity: (theme.vars || theme).palette.action.disabledOpacity,
-  },
-  ...(ownerState.divider && {
-    borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
-    backgroundClip: 'padding-box',
-  }),
-  ...(ownerState.alignItems === 'flex-start' && {
-    alignItems: 'flex-start',
-  }),
-  ...(!ownerState.disableGutters && {
-    paddingLeft: 16,
-    paddingRight: 16,
-  }),
-  ...(ownerState.dense && {
-    paddingTop: 4,
-    paddingBottom: 4,
-  }),
-}));
+    [`&.${listItemButtonClasses.selected}:hover`]: {
+      backgroundColor: theme.vars
+        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+        : alpha(
+            theme.palette.primary.main,
+            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+          ),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: theme.vars
+          ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+          : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      },
+    },
+    [`&.${listItemButtonClasses.focusVisible}`]: {
+      backgroundColor: (theme.vars || theme).palette.action.focus,
+    },
+    [`&.${listItemButtonClasses.disabled}`]: {
+      opacity: (theme.vars || theme).palette.action.disabledOpacity,
+    },
+    variants: [
+      {
+        props: ({ ownerState }) => ownerState.divider,
+        style: {
+          borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
+          backgroundClip: 'padding-box',
+        },
+      },
+      {
+        props: {
+          alignItems: 'flex-start',
+        },
+        style: {
+          alignItems: 'flex-start',
+        },
+      },
+      {
+        props: ({ ownerState }) => !ownerState.disableGutters,
+        style: {
+          paddingLeft: 16,
+          paddingRight: 16,
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.dense,
+        style: {
+          paddingTop: 4,
+          paddingBottom: 4,
+        },
+      },
+    ],
+  })),
+);
 
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiListItemButton' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiListItemButton' });
   const {
     alignItems = 'center',
     autoFocus = false,
@@ -197,10 +217,10 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
 });
 
 ListItemButton.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Defines the `align-items` style property.
    * @default 'center'

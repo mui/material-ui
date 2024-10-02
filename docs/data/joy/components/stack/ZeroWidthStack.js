@@ -21,26 +21,14 @@ const message = `Truncation should be conditionally applicable on this long line
 export default function ZeroWidthStack() {
   return (
     <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }}>
-      <Item
-        sx={{
-          my: 1,
-          mx: 'auto',
-          p: 2,
-        }}
-      >
-        <Stack spacing={2} direction="row" alignItems="center">
+      <Item variant="outlined" sx={{ my: 1, mx: 'auto', p: 2 }}>
+        <Stack spacing={2} direction="row" sx={{ alignItems: 'center' }}>
           <Avatar>W</Avatar>
           <Typography noWrap>{message}</Typography>
         </Stack>
       </Item>
-      <Item
-        sx={{
-          my: 1,
-          mx: 'auto',
-          p: 2,
-        }}
-      >
-        <Stack spacing={2} direction="row" alignItems="center">
+      <Item variant="outlined" sx={{ my: 1, mx: 'auto', p: 2 }}>
+        <Stack spacing={2} direction="row" sx={{ alignItems: 'center' }}>
           <Stack>
             <Avatar>W</Avatar>
           </Stack>

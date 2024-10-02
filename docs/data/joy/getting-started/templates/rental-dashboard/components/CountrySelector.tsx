@@ -3,20 +3,19 @@ import Autocomplete from '@mui/joy/Autocomplete';
 import AutocompleteOption from '@mui/joy/AutocompleteOption';
 import AspectRatio from '@mui/joy/AspectRatio';
 import FormControl, { FormControlProps } from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Typography from '@mui/joy/Typography';
 
-export default function ContrySelector({ sx, ...props }: FormControlProps) {
+export default function ContrySelector(props: FormControlProps) {
+  const { sx, ...other } = props;
   return (
-    <FormControl
-      {...props}
-      sx={[{ display: { sm: 'contents' } }, ...(Array.isArray(sx) ? sx : [sx])]}
-    >
+    <FormControl {...other} sx={sx}>
+      <FormLabel>Country</FormLabel>
       <Autocomplete
-        aria-label="Country"
         autoHighlight
         isOptionEqualToValue={(option, value) => option.code === value.code}
-        defaultValue={{ code: 'US', label: 'United States', phone: '1' }}
+        defaultValue={{ code: 'AU', label: 'Australia', phone: '61' }}
         options={countries}
         renderOption={(optionProps, option) => (
           <AutocompleteOption {...optionProps}>
@@ -25,14 +24,14 @@ export default function ContrySelector({ sx, ...props }: FormControlProps) {
                 <img
                   loading="lazy"
                   width="20"
-                  src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
                   srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+                  src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
                   alt=""
                 />
               </AspectRatio>
             </ListItemDecorator>
             {option.label}
-            <Typography component="span" textColor="text.tertiary" ml={0.5}>
+            <Typography component="span" textColor="text.tertiary" sx={{ ml: 0.5 }}>
               (+{option.phone})
             </Typography>
           </AutocompleteOption>
@@ -429,7 +428,7 @@ const countries: readonly CountryType[] = [
   { code: 'TV', label: 'Tuvalu', phone: '688' },
   {
     code: 'TW',
-    label: 'Taiwan, Republic of China',
+    label: 'Taiwan',
     phone: '886',
   },
   {

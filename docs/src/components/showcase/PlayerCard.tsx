@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { alpha } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
@@ -20,16 +21,23 @@ export default function PlayerCard({ disableTheming }: { disableTheming?: boolea
         variant="outlined"
         sx={[
           {
+            width: { xs: '100%', sm: 'auto' },
             p: 2,
             display: 'flex',
-            flexDirection: 'column',
-            borderColor: 'grey.100',
+            flexDirection: { xs: 'column', sm: 'row' },
+            alignItems: 'center',
+            gap: 2,
             ...(!disableTheming && {
+              borderColor: 'grey.200',
+              boxShadow: (theme) => `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
               [`& .${iconButtonClasses.root}`]: {
                 border: '1px solid',
                 bgcolor: 'primary.50',
                 color: 'primary.500',
                 borderColor: 'primary.200',
+                '&:hover': {
+                  bgcolor: 'primary.100',
+                },
               },
               [`& .${iconButtonClasses.disabled}`]: {
                 height: 'fit-content',
@@ -44,11 +52,14 @@ export default function PlayerCard({ disableTheming }: { disableTheming?: boolea
             ((theme) =>
               theme.applyDarkStyles({
                 bgcolor: 'primaryDark.900',
-                borderColor: 'primaryDark.700',
+                boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
                 [`& .${iconButtonClasses.root}`]: {
                   bgcolor: 'primary.900',
                   color: 'primary.200',
                   borderColor: 'primary.600',
+                  '&:hover': {
+                    bgcolor: 'primary.800',
+                  },
                 },
                 [`& .${iconButtonClasses.disabled}`]: {
                   bgcolor: 'transparent',
@@ -61,44 +72,52 @@ export default function PlayerCard({ disableTheming }: { disableTheming?: boolea
       >
         <CardMedia
           component="img"
-          width="214"
-          height="187"
-          alt="Beside Myself album cover"
-          src="/static/images/cards/birds-of-tokyo.jpg"
+          width="100"
+          height="100"
+          alt="Contemplative Reptile album cover"
+          src="/static/images/cards/contemplative-reptile.jpg"
           sx={{
-            borderRadius: 0.6,
-            height: 100,
-            width: '100%',
-            mb: 2,
+            width: { xs: '100%', sm: 100 },
+            ...(!disableTheming && {
+              borderRadius: '6px',
+            }),
           }}
         />
-        <Stack direction="column" spacing={2} alignItems="center">
-          <Stack direction="column" spacing={0.2} alignItems="center">
-            <Typography color="text.primary" fontWeight={600} fontSize={15} mb={0}>
-              If This Ship Sinks (I Give In)
+        <Stack direction="column" spacing={1} useFlexGap sx={{ alignItems: 'center' }}>
+          <div>
+            <Typography sx={{ color: 'text.primary', fontWeight: 'semiBold' }}>
+              Contemplative Reptile
             </Typography>
-            <Typography component="div" variant="caption" color="text.secondary" fontWeight={500}>
-              Birds Of Tokyo
+            <Typography
+              variant="caption"
+              sx={{
+                color: 'text.secondary',
+                fontWeight: 'medium',
+                textAlign: 'center',
+                width: '100%',
+              }}
+            >
+              Sounds of Nature
             </Typography>
-          </Stack>
-          <Stack direction="row" alignItems="center" spacing={1.5}>
-            <IconButton aria-label="shuffle" disabled size="small" sx={{ flexGrow: 0 }}>
+          </div>
+          <Stack direction="row" spacing={1} useFlexGap sx={{ alignItems: 'center' }}>
+            <IconButton aria-label="Shuffle" disabled size="small">
               <ShuffleRoundedIcon fontSize="small" />
             </IconButton>
-            <IconButton aria-label="fast rewind" disabled size="small">
+            <IconButton aria-label="Fast rewind" disabled size="small">
               <FastRewindRounded fontSize="small" />
             </IconButton>
             <IconButton
-              aria-label={paused ? 'play' : 'pause'}
-              sx={{ mx: 1 }}
+              aria-label={paused ? 'Play music' : 'Pause music'}
               onClick={() => setPaused((val) => !val)}
+              sx={{ mx: 1 }}
             >
               {paused ? <PlayArrowRounded /> : <PauseRounded />}
             </IconButton>
-            <IconButton aria-label="fast forward" disabled size="small">
+            <IconButton aria-label="Fast forward" disabled size="small">
               <FastForwardRounded fontSize="small" />
             </IconButton>
-            <IconButton aria-label="loop" disabled size="small">
+            <IconButton aria-label="Loop music" disabled size="small">
               <LoopRoundedIcon fontSize="small" />
             </IconButton>
           </Stack>

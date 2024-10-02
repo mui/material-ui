@@ -9,6 +9,13 @@
     "onFocusVisible": {
       "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
     },
+    "rootElementName": {
+      "type": {
+        "name": "keyof HTMLElementTagNameMap",
+        "description": "keyof HTMLElementTagNameMap"
+      },
+      "default": "''"
+    },
     "rootRef": {
       "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
     },
@@ -32,8 +39,8 @@
     "focusVisible": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "getRootProps": {
       "type": {
-        "name": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseButtonRootSlotProps&lt;TOther&gt;",
-        "description": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseButtonRootSlotProps&lt;TOther&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseButtonRootSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseButtonRootSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },

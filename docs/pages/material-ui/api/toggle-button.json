@@ -49,21 +49,68 @@
     "import ToggleButton from '@mui/material/ToggleButton';",
     "import { ToggleButton } from '@mui/material';"
   ],
-  "styles": {
-    "classes": [
-      "root",
-      "disabled",
-      "selected",
-      "standard",
-      "primary",
-      "secondary",
-      "sizeSmall",
-      "sizeMedium",
-      "sizeLarge"
-    ],
-    "globalClasses": { "disabled": "Mui-disabled", "selected": "Mui-selected" },
-    "name": "MuiToggleButton"
-  },
+  "classes": [
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "fullWidth",
+      "className": "MuiToggleButton-fullWidth",
+      "description": "Styles applied to the root element if `fullWidth={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "primary",
+      "className": "MuiToggleButton-primary",
+      "description": "State class applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiToggleButton-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "secondary",
+      "className": "MuiToggleButton-secondary",
+      "description": "State class applied to the root element if `color=\"secondary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "selected",
+      "className": "Mui-selected",
+      "description": "State class applied to the root element if `selected={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "sizeLarge",
+      "className": "MuiToggleButton-sizeLarge",
+      "description": "Styles applied to the root element if `size=\"large\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeMedium",
+      "className": "MuiToggleButton-sizeMedium",
+      "description": "Styles applied to the root element if `size=\"medium\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSmall",
+      "className": "MuiToggleButton-sizeSmall",
+      "description": "Styles applied to the root element if `size=\"small\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "standard",
+      "className": "MuiToggleButton-standard",
+      "description": "State class applied to the root element if `color=\"standard\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiToggleButton",

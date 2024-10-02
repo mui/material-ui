@@ -1,15 +1,20 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import Box from '@mui/joy/Box';
 import Card, { CardProps } from '@mui/joy/Card';
 import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
+import AspectRatio from '@mui/joy/AspectRatio';
 
-export default function DropZone({ sx, ...props }: CardProps) {
+import FileUploadRoundedIcon from '@mui/icons-material/FileUploadRounded';
+
+export default function DropZone(
+  props: CardProps & { icon?: React.ReactElement<any> },
+) {
+  const { icon, sx, ...other } = props;
   return (
     <Card
-      variant="outlined"
-      {...props}
+      variant="soft"
+      {...other}
       sx={[
         {
           borderRadius: 'sm',
@@ -19,26 +24,20 @@ export default function DropZone({ sx, ...props }: CardProps) {
           alignItems: 'center',
           px: 3,
           flexGrow: 1,
+          boxShadow: 'none',
         },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <Box sx={{ p: 1, bgcolor: 'background.level1', borderRadius: '50%' }}>
-        <Box
-          sx={{
-            width: 32,
-            height: 32,
-            borderRadius: '50%',
-            bgcolor: 'background.level2',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <i data-feather="upload-cloud" />
-        </Box>
-      </Box>
-      <Typography level="body-sm" textAlign="center">
+      <AspectRatio
+        ratio="1"
+        variant="solid"
+        color="primary"
+        sx={{ minWidth: 32, borderRadius: '50%', '--Icon-fontSize': '16px' }}
+      >
+        <div>{icon ?? <FileUploadRoundedIcon />}</div>
+      </AspectRatio>
+      <Typography level="body-sm" sx={{ textAlign: 'center' }}>
         <Link component="button" overlay>
           Click to upload
         </Link>{' '}

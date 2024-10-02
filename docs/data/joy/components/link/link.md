@@ -10,11 +10,11 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 
 <p class="description">The Link component lets you customize anchor tags with theme colors and typography styles.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
-The Joy UI Link component replaces the native HTML `<a>` element, and accepts the same props as the [Typography](/joy-ui/react-typography/) component, as well as MUI System props.
+The Joy UI Link component replaces the native HTML `<a>` element and accepts the same props as the [Typography](/joy-ui/react-typography/) component, as well as MUI System props.
 
 {{"demo": "LinkUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
@@ -24,7 +24,7 @@ The Joy UI Link component replaces the native HTML `<a>` element, and accepts th
 import Link from '@mui/joy/Link';
 ```
 
-The Joy UI Link behaves similar to the native HTML `<a>`, so it renders with an underline by default and has no background color on hover.
+The Joy UI Link behaves similar to the native HTML `<a>`, so it renders with an underline by default and has no background color on hover.
 
 The demo below shows the two basic states available to the Link: default and disabled.
 Don't forget to always assign an `href` value:
@@ -35,7 +35,7 @@ Don't forget to always assign an `href` value:
 
 ### Variants
 
-The Link component supports Joy UI's four global variants: `plain` (default), `soft`, `outlined`, and `solid`.
+The Link component supports Joy UI's four global variants: `plain` (default), `soft`, `outlined`, and `solid`.
 
 :::warning
 Although the component is technically set to `plain` by default, it will actually render without any variant if you don't customize it.
@@ -112,9 +112,9 @@ In this situation, the Link will inherit the typographic level scale from its Ty
 
 The sections below explain how to integrate the Link component with third-party tools that have their own comparable component.
 
-### Next.js
+### Next.js Pages Router
 
-Here is an example with the [Link component](https://nextjs.org/docs/api-reference/next/link) of Next.js:
+Here is an example with the [Link component](https://nextjs.org/docs/pages/api-reference/components/link) of Next.js:
 
 ```js
 import NextLink from 'next/link';
@@ -149,7 +149,7 @@ When using `target="_blank"` with links to pages on another site, the [Google Ch
 
 ## Accessibility
 
-Here are a few tips for ensuring an accessible link component, based on [WAI-ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/link/).
+Here are a few tips for ensuring an accessible link component, based on [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/link/).
 
 - **Copywriting:** Avoid generic words as calls to action, such as "click here" or "go to".
   Instead, use [descriptive text](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text) to inform the user about what they'll find when they click the link.

@@ -18,14 +18,18 @@
     "component": { "type": { "name": "elementType" } },
     "components": {
       "type": { "name": "shape", "description": "{ Backdrop?: elementType, Root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "Use the <code>slots</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "componentsProps": {
       "type": {
         "name": "shape",
         "description": "{ backdrop?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "Use the <code>slotProps</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
     "disableAutoFocus": { "type": { "name": "bool" }, "default": "false" },
@@ -71,7 +75,27 @@
   },
   "name": "Modal",
   "imports": ["import Modal from '@mui/material/Modal';", "import { Modal } from '@mui/material';"],
-  "styles": { "classes": ["root", "hidden", "backdrop"], "globalClasses": {}, "name": "MuiModal" },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "MuiModal-root"
+    },
+    {
+      "name": "backdrop",
+      "description": "The component that renders the backdrop.",
+      "class": "MuiModal-backdrop"
+    }
+  ],
+  "classes": [
+    {
+      "key": "hidden",
+      "className": "MuiModal-hidden",
+      "description": "Class name applied to the root element if the `Modal` has exited.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "MuiModal",

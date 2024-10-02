@@ -2,12 +2,10 @@ import * as React from 'react';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import GradientText from 'docs/src/components/typography/GradientText';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
-import Link from 'docs/src/modules/components/Link';
+import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import {
   DesignKitImagesSet1,
   DesignKitImagesSet2,
@@ -21,41 +19,41 @@ export default function TemplateHero() {
       left={
         <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
           <Typography
-            fontWeight="bold"
             variant="body2"
-            sx={(theme) => ({
-              color: 'primary.600',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: { xs: 'center', md: 'start' },
-              '& > *': { mr: 1 },
-              ...theme.applyDarkStyles({
-                color: 'primary.400',
+            sx={[
+              {
+                fontWeight: 'bold',
+              },
+              (theme) => ({
+                color: 'primary.600',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: { xs: 'center', md: 'start' },
+                '& > *': { mr: 1 },
+                ...theme.applyDarkStyles({
+                  color: 'primary.400',
+                }),
               }),
-            })}
+            ]}
           >
-            <IconImage width={28} height={28} name="product-designkits" /> Design kits
+            <IconImage width={28} height={28} loading="eager" name="product-designkits" /> Design
+            Kits
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
             Material UI
             <br /> in your favorite
             <br /> <GradientText>design tool</GradientText>
           </Typography>
-          <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 450 }}>
+          <Typography sx={{ color: 'text.secondary', mb: 3, maxWidth: 450 }}>
             Pick your favorite design tool to enjoy and use Material UI components. Boost
             consistency and facilitate communication when working with developers.
           </Typography>
-          <Button
-            component={Link}
-            noLinkStyle
-            href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=design-cta#design"
-            size="large"
-            variant="contained"
-            endIcon={<KeyboardArrowRightRounded />}
-            sx={{ width: { xs: '100%', sm: 'auto' } }}
-          >
-            Buy now
-          </Button>
+          <GetStartedButtons
+            primaryLabel="Buy now"
+            primaryUrl="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=design-cta#design"
+            secondaryLabel="Figma Preview"
+            secondaryUrl="https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x"
+          />
         </Box>
       }
       right={
@@ -69,9 +67,10 @@ export default function TemplateHero() {
               width: '100%',
               height: '100%',
               zIndex: 1,
-              background: `linear-gradient(90deg, ${
-                (theme.vars || theme).palette.primaryDark[900]
-              } 1%, ${alpha(theme.palette.primaryDark[900], 0.5)})`,
+              background: `linear-gradient(90deg, ${alpha(
+                theme.palette.primaryDark[900],
+                0.8,
+              )} 1%, ${alpha(theme.palette.primaryDark[900], 0.1)})`,
               opacity: 0,
               ...theme.applyDarkStyles({
                 opacity: 1,

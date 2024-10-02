@@ -2,7 +2,7 @@
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import { expect } from 'chai';
-import { createRenderer } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import TabContext, { getPanelId, getTabId, useTabContext } from './TabContext';
 
 describe('<TabContext />', () => {
@@ -11,6 +11,7 @@ describe('<TabContext />', () => {
   it('is null by default', () => {
     let value;
     function Tabs() {
+      // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- value is used outside of component
       value = useTabContext();
       return null;
     }

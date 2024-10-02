@@ -66,7 +66,7 @@ const buttonTest = () => (
       Title
     </Button>
     <Button component="a">Simple Link</Button>
-    <Button component={(props) => <a {...props} />}>Complex Link</Button>
+    <Button component={(props: any) => <a {...props} />}>Complex Link</Button>
     <Button component={ReactRouterLink} to="/open-collective">
       Link
     </Button>
@@ -83,9 +83,9 @@ const buttonTest = () => (
       ref={(elem) => {
         expectType<HTMLButtonElement | null, typeof elem>(elem);
       }}
-      onClick={(e) => {
-        expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof e>(e);
-        log(e);
+      onClick={(event) => {
+        expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof event>(event);
+        log(event);
       }}
     >
       Button
@@ -96,9 +96,9 @@ const buttonTest = () => (
       ref={(elem) => {
         expectType<HTMLAnchorElement | null, typeof elem>(elem);
       }}
-      onClick={(e) => {
-        expectType<React.MouseEvent<HTMLAnchorElement, MouseEvent>, typeof e>(e);
-        log(e);
+      onClick={(event) => {
+        expectType<React.MouseEvent<HTMLAnchorElement, MouseEvent>, typeof event>(event);
+        log(event);
       }}
     >
       Link
@@ -109,9 +109,9 @@ const buttonTest = () => (
       ref={(elem) => {
         expectType<HTMLDivElement | null, typeof elem>(elem);
       }}
-      onClick={(e) => {
-        expectType<React.MouseEvent<HTMLDivElement, MouseEvent>, typeof e>(e);
-        log(e);
+      onClick={(event) => {
+        expectType<React.MouseEvent<HTMLDivElement, MouseEvent>, typeof event>(event);
+        log(event);
       }}
     >
       Div

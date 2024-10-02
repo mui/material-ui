@@ -1,6 +1,8 @@
 import { generateUtilityClass } from '../generateUtilityClass';
 import { generateUtilityClasses } from '../generateUtilityClasses';
 
+const COMPONENT_NAME = 'Option';
+
 export interface OptionClasses {
   /** Class name applied to the root element. */
   root: string;
@@ -15,10 +17,10 @@ export interface OptionClasses {
 export type OptionClassKey = keyof OptionClasses;
 
 export function getOptionUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiOption', slot);
+  return generateUtilityClass(COMPONENT_NAME, slot);
 }
 
-export const optionClasses: OptionClasses = generateUtilityClasses('MuiOption', [
+export const optionClasses: OptionClasses = generateUtilityClasses(COMPONENT_NAME, [
   'root',
   'disabled',
   'selected',

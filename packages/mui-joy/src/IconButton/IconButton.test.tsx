@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, describeJoyColorInversion } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import IconButton, { iconButtonClasses as classes } from '@mui/joy/IconButton';
 import { ThemeProvider } from '@mui/joy/styles';
+import describeConformance from '../../test/describeConformance';
 
 describe('Joy <IconButton />', () => {
   const { render } = createRenderer();
@@ -20,8 +21,6 @@ describe('Joy <IconButton />', () => {
     },
     skip: ['propsSpread', 'componentsProp', 'classesRoot'],
   }));
-
-  describeJoyColorInversion(<IconButton />, { muiName: 'JoyIconButton', classes });
 
   it('by default, should render with the root, variantPlain, sizeMd and colorNeutral classes', () => {
     const { getByRole } = render(<IconButton>Hello World</IconButton>);
@@ -79,5 +78,39 @@ describe('Joy <IconButton />', () => {
 
     expect(button).to.have.property('disabled', true);
     expect(button).to.have.class(classes.disabled);
+  });
+
+  describe('prop: loadingIndicator', () => {
+    const content = 'Test';
+    const loadingText = 'loading...';
+
+    it('is not rendered by default', () => {
+      const { queryByRole } = render(
+        <IconButton loadingIndicator={<span role="progressbar">{loadingText}</span>}>
+          {content}
+        </IconButton>,
+      );
+
+      const button = queryByRole('button');
+      const progressbar = queryByRole('progressbar');
+
+      expect(progressbar).to.equal(null);
+      expect(button).to.have.text(content);
+    });
+
+    it('is rendered properly when `loading` and children should not be visible', function test() {
+      const { getByRole } = render(
+        <IconButton loadingIndicator={<span role="progressbar">{loadingText}</span>} loading>
+          {content}
+        </IconButton>,
+      );
+
+      const button = getByRole('button');
+      const progressbar = getByRole('progressbar');
+
+      expect(progressbar).to.have.text(loadingText);
+      expect(button).to.have.class(classes.disabled);
+      expect(button).not.to.have.text(content);
+    });
   });
 });

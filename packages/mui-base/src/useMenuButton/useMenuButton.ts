@@ -8,6 +8,7 @@ import { useButton } from '../useButton/useButton';
 import { EventHandlers } from '../utils/types';
 import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
+import { extractEventHandlers } from '../utils';
 
 /**
  *
@@ -75,14 +76,20 @@ export function useMenuButton(parameters: UseMenuButtonParameters = {}): UseMenu
     onKeyDown: createHandleKeyDown(otherHandlers),
   });
 
-  const getRootProps = (otherHandlers: EventHandlers = {}) => {
-    const getCombinedProps = combineHooksSlotProps(getButtonRootProps, getOwnRootProps);
+  const getRootProps = <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ) => {
+    const externalEventHandlers = extractEventHandlers(externalProps);
+    const getCombinedProps = combineHooksSlotProps(getOwnRootProps, getButtonRootProps);
 
     return {
-      ...getCombinedProps(otherHandlers),
       'aria-haspopup': 'menu' as const,
       'aria-expanded': state.open,
       'aria-controls': popupId,
+      ...externalProps,
+      ...externalEventHandlers,
+      ...getCombinedProps(externalEventHandlers),
+      tabIndex: 0, // this is needed to make the button focused after click in Safari
       ref: handleRef,
     };
   };

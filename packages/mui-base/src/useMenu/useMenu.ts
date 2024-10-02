@@ -8,20 +8,21 @@ import {
 import { UseMenuListboxSlotProps, UseMenuParameters, UseMenuReturnValue } from './useMenu.types';
 import { menuReducer } from './menuReducer';
 import { DropdownContext, DropdownContextValue } from '../useDropdown/DropdownContext';
-import { useList } from '../useList';
+import { ListActionTypes, useList } from '../useList';
 import { MenuItemMetadata } from '../useMenuItem';
 import { DropdownActionTypes } from '../useDropdown';
-import { EventHandlers } from '../utils';
-import { useCompoundParent } from '../utils/useCompound';
+import { EventHandlers } from '../utils/types';
+import { useCompoundParent } from '../useCompound';
 import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
 
 const FALLBACK_MENU_CONTEXT: DropdownContextValue = {
   dispatch: () => {},
   popupId: '',
   registerPopup: () => {},
   registerTrigger: () => {},
-  state: { open: true },
+  state: { open: true, changeReason: null },
   triggerElement: null,
 };
 
@@ -36,15 +37,23 @@ const FALLBACK_MENU_CONTEXT: DropdownContextValue = {
  * - [useMenu API](https://mui.com/base-ui/react-menu/hooks-api/#use-menu)
  */
 export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue {
-  const { listboxRef: listboxRefProp, onItemsChange, id: idParam } = parameters;
+  const {
+    listboxRef: listboxRefProp,
+    onItemsChange,
+    id: idParam,
+    disabledItemsFocusable = true,
+    disableListWrap = false,
+    autoFocus = true,
+    componentName = 'useMenu',
+  } = parameters;
 
-  const rootRef = React.useRef<HTMLElement | null>(null);
+  const rootRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(rootRef, listboxRefProp);
 
   const listboxId = useId(idParam) ?? '';
 
   const {
-    state: { open },
+    state: { open, changeReason },
     dispatch: menuDispatch,
     triggerElement,
     registerPopup,
@@ -72,6 +81,18 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
     [subitems],
   );
 
+  const isItemDisabled = React.useCallback(
+    (id: string) => subitems?.get(id)?.disabled || false,
+    [subitems],
+  );
+
+  const getItemAsString = React.useCallback(
+    (id: string) => subitems.get(id)?.label || subitems.get(id)?.ref.current?.innerText,
+    [subitems],
+  );
+
+  const reducerActionContext = React.useMemo(() => ({ listboxRef: rootRef }), [rootRef]);
+
   const {
     dispatch: listDispatch,
     getRootProps: getListRootProps,
@@ -79,33 +100,47 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
     state: { highlightedValue },
     rootRef: mergedListRef,
   } = useList({
-    disabledItemsFocusable: true,
+    disabledItemsFocusable,
+    disableListWrap,
     focusManagement: 'DOM',
     getItemDomElement,
     getInitialState: () => ({
       selectedValues: [],
       highlightedValue: null,
     }),
-    isItemDisabled: (id) => subitems?.get(id)?.disabled || false,
+    isItemDisabled,
     items: subitemKeys,
-    getItemAsString: (id: string) =>
-      subitems.get(id)?.label || subitems.get(id)?.ref.current?.innerText,
+    getItemAsString,
     rootRef: handleRef,
     onItemsChange,
-    reducerActionContext: { listboxRef: rootRef },
+    reducerActionContext,
     selectionMode: 'none',
     stateReducer: menuReducer,
+    componentName,
   });
 
   useEnhancedEffect(() => {
     registerPopup(listboxId);
   }, [listboxId, registerPopup]);
 
-  React.useEffect(() => {
-    if (open && highlightedValue === subitemKeys[0] && !isInitiallyOpen.current) {
-      subitems.get(subitemKeys[0])?.ref?.current?.focus();
+  useEnhancedEffect(() => {
+    if (
+      open &&
+      changeReason?.type === 'keydown' &&
+      (changeReason as React.KeyboardEvent).key === 'ArrowUp'
+    ) {
+      listDispatch({
+        type: ListActionTypes.highlightLast,
+        event: changeReason as React.KeyboardEvent,
+      });
     }
-  }, [open, highlightedValue, subitems, subitemKeys]);
+  }, [open, changeReason, listDispatch]);
+
+  React.useEffect(() => {
+    if (open && autoFocus && highlightedValue && !isInitiallyOpen.current) {
+      subitems.get(highlightedValue)?.ref?.current?.focus();
+    }
+  }, [open, autoFocus, highlightedValue, subitems, subitemKeys]);
 
   React.useEffect(() => {
     // set focus to the highlighted item (but prevent stealing focus from other elements on the page)
@@ -154,12 +189,15 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
     onKeyDown: createHandleKeyDown(otherHandlers),
   });
 
-  const getListboxProps = <TOther extends EventHandlers>(
-    otherHandlers: TOther = {} as TOther,
+  const getListboxProps = <ExternalProps extends Record<string, unknown>>(
+    externalProps: ExternalProps = {} as ExternalProps,
   ): UseMenuListboxSlotProps => {
     const getCombinedRootProps = combineHooksSlotProps(getOwnListboxHandlers, getListRootProps);
+    const externalEventHandlers = extractEventHandlers(externalProps);
     return {
-      ...getCombinedRootProps(otherHandlers),
+      ...externalProps,
+      ...externalEventHandlers,
+      ...getCombinedRootProps(externalEventHandlers),
       id: listboxId,
       role: 'menu',
     };

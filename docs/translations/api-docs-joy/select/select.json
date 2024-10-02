@@ -31,8 +31,11 @@
       "description": "<code>id</code> attribute of the listbox element. Also used to derive the <code>id</code> attributes of options."
     },
     "listboxOpen": { "description": "Controls the open state of the select&#39;s listbox." },
+    "multiple": {
+      "description": "If <code>true</code>, selecting multiple values is allowed. This affects the type of the <code>value</code>, <code>defaultValue</code>, and <code>onChange</code> props."
+    },
     "name": {
-      "description": "Name of the element. For example used by the server to identify the fields in form submits. If the name is provided, the component will render a hidden input element that can be submitted to a server."
+      "description": "Name of the element. For example used by the server to identify the fields in form submits."
     },
     "onChange": { "description": "Callback fired when an option is selected." },
     "onClose": { "description": "Triggered when focus leaves the menu and the menu should close." },
@@ -42,6 +45,9 @@
     "placeholder": { "description": "Text to show when there is no selected value." },
     "renderValue": {
       "description": "Function that customizes the rendering of the selected value."
+    },
+    "required": {
+      "description": "If <code>true</code>, the Select cannot be empty when submitting form."
     },
     "size": { "description": "The size of the component." },
     "slots": { "description": "The components used for each slot inside." },
@@ -57,45 +63,25 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to {{nodeName}}.", "nodeName": "the root slot" },
-    "button": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the button slot"
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "color inversion is triggered"
     },
-    "indicator": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the indicator slot"
-    },
-    "startDecorator": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the startDecorator slot"
-    },
-    "endDecorator": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the endDecorator slot"
-    },
-    "popper": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the popper slot"
-    },
-    "listbox": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the listbox slot"
-    },
-    "colorPrimary": {
+    "colorDanger": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root slot",
-      "conditions": "<code>color=\"primary\"</code>"
+      "conditions": "<code>color=\"danger\"</code>"
     },
     "colorNeutral": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root slot",
       "conditions": "<code>color=\"neutral\"</code>"
     },
-    "colorDanger": {
+    "colorPrimary": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root slot",
-      "conditions": "<code>color=\"danger\"</code>"
+      "conditions": "<code>color=\"primary\"</code>"
     },
     "colorSuccess": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -107,20 +93,52 @@
       "nodeName": "the root slot",
       "conditions": "<code>color=\"warning\"</code>"
     },
-    "colorContext": {
-      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "color inversion is triggered"
+    "disabled": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root slot",
+      "conditions": "<code>disabled={true}</code>"
     },
-    "variantPlain": {
+    "expanded": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root slot",
+      "conditions": "listbox open"
+    },
+    "focusVisible": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the SelectBase root slot",
+      "conditions": "the button is keyboard focused"
+    },
+    "multiple": {
+      "description": "Class name applied to the root slot if <code>multiple=true</code>"
+    },
+    "popper": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the popper slot"
+    },
+    "sizeLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root slot",
-      "conditions": "<code>variant=\"plain\"</code>"
+      "conditions": "<code>size=\"lg\"</code>"
+    },
+    "sizeMd": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root slot",
+      "conditions": "<code>size=\"md\"</code>"
+    },
+    "sizeSm": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root slot",
+      "conditions": "<code>size=\"sm\"</code>"
     },
     "variantOutlined": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root slot",
       "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "variantPlain": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root slot",
+      "conditions": "<code>variant=\"plain\"</code>"
     },
     "variantSoft": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -131,44 +149,14 @@
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root slot",
       "conditions": "<code>variant=\"solid\"</code>"
-    },
-    "sizeSm": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root slot",
-      "conditions": "<code>size=\"sm\"</code>"
-    },
-    "sizeMd": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root slot",
-      "conditions": "<code>size=\"md\"</code>"
-    },
-    "sizeLg": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root slot",
-      "conditions": "<code>size=\"lg\"</code>"
-    },
-    "focusVisible": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the SelectBase root slot",
-      "conditions": "the button is keyboard focused"
-    },
-    "disabled": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root slot",
-      "conditions": "<code>disabled={true}</code>"
-    },
-    "expanded": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root slot",
-      "conditions": "listbox open"
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
     "button": "The component that renders the button.",
-    "startDecorator": "The component that renders the start decorator.",
     "endDecorator": "The component that renders the end decorator.",
     "indicator": "The component that renders the indicator.",
-    "listbox": "The component that renders the listbox."
+    "listbox": "The component that renders the listbox.",
+    "root": "The component that renders the root.",
+    "startDecorator": "The component that renders the start decorator."
   }
 }

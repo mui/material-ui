@@ -10,26 +10,15 @@ import Typography from '@mui/joy/Typography';
 export default function DividedList() {
   return (
     <Box
-      sx={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        gap: 4,
-      }}
+      sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 4 }}
     >
       {([undefined, 'gutter', 'startDecorator', 'startContent'] as const).map(
         (inset) => (
-          <Box key={inset || 'default'}>
-            <Typography level="body-xs" mb={2}>
+          <div key={inset || 'default'}>
+            <Typography level="body-xs" sx={{ mb: 2 }}>
               <code>{inset ? `inset="${inset}"` : '(default)'}</code>
             </Typography>
-            <List
-              variant="outlined"
-              sx={{
-                minWidth: 240,
-                borderRadius: 'sm',
-              }}
-            >
+            <List variant="outlined" sx={{ minWidth: 240, borderRadius: 'sm' }}>
               <ListItem>
                 <ListItemDecorator>
                   <Avatar size="sm" src="/static/images/avatar/1.jpg" />
@@ -44,7 +33,7 @@ export default function DividedList() {
                 Boyd Burt
               </ListItem>
             </List>
-          </Box>
+          </div>
         ),
       )}
     </Box>

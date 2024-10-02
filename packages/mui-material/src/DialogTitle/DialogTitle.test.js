@@ -1,15 +1,17 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
+import Typography from '@mui/material/Typography';
 import DialogTitle, { dialogTitleClasses as classes } from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
+import describeConformance from '../../test/describeConformance';
 
 describe('<DialogTitle />', () => {
   const { render } = createRenderer();
 
   describeConformance(<DialogTitle>foo</DialogTitle>, () => ({
     classes,
-    inheritComponent: 'h2',
+    inheritComponent: Typography,
     render,
     muiName: 'MuiDialogTitle',
     refInstanceof: window.HTMLHeadingElement,

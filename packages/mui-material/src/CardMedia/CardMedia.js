@@ -2,10 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getCardMediaUtilityClass } from './cardMediaClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -27,28 +27,35 @@ const CardMediaRoot = styled('div', {
 
     return [styles.root, isMediaComponent && styles.media, isImageComponent && styles.img];
   },
-})(({ ownerState }) => ({
+})({
   display: 'block',
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'center',
-  ...(ownerState.isMediaComponent && {
-    width: '100%',
-  }),
-  ...(ownerState.isImageComponent && {
-    // ⚠️ object-fit is not supported by IE11.
-    objectFit: 'cover',
-  }),
-}));
+  variants: [
+    {
+      props: { isMediaComponent: true },
+      style: {
+        width: '100%',
+      },
+    },
+    {
+      props: { isImageComponent: true },
+      style: {
+        objectFit: 'cover',
+      },
+    },
+  ],
+});
 
 const MEDIA_COMPONENTS = ['video', 'audio', 'picture', 'iframe', 'img'];
 const IMAGE_COMPONENTS = ['picture', 'img'];
 
 const CardMedia = React.forwardRef(function CardMedia(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiCardMedia' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiCardMedia' });
   const { children, className, component = 'div', image, src, style, ...other } = props;
 
-  const isMediaComponent = MEDIA_COMPONENTS.indexOf(component) !== -1;
+  const isMediaComponent = MEDIA_COMPONENTS.includes(component);
   const composedStyle =
     !isMediaComponent && image ? { backgroundImage: `url("${image}")`, ...style } : style;
 
@@ -56,7 +63,7 @@ const CardMedia = React.forwardRef(function CardMedia(inProps, ref) {
     ...props,
     component,
     isMediaComponent,
-    isImageComponent: IMAGE_COMPONENTS.indexOf(component) !== -1,
+    isImageComponent: IMAGE_COMPONENTS.includes(component),
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -78,10 +85,10 @@ const CardMedia = React.forwardRef(function CardMedia(inProps, ref) {
 });
 
 CardMedia.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

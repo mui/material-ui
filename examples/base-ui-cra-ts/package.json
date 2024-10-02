@@ -1,9 +1,9 @@
 {
-  "name": "base-cra-ts",
+  "name": "base-ui-cra-ts",
   "version": "5.0.0",
   "private": true,
   "dependencies": {
-    "@mui/base": "latest",
+    "@mui/base": "next",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "react": "latest",

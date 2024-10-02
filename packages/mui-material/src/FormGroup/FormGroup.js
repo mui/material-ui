@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getFormGroupUtilityClass } from './formGroupClasses';
 import useFormControl from '../FormControl/useFormControl';
 import formControlState from '../FormControl/formControlState';
@@ -27,14 +27,19 @@ const FormGroupRoot = styled('div', {
 
     return [styles.root, ownerState.row && styles.row];
   },
-})(({ ownerState }) => ({
+})({
   display: 'flex',
   flexDirection: 'column',
   flexWrap: 'wrap',
-  ...(ownerState.row && {
-    flexDirection: 'row',
-  }),
-}));
+  variants: [
+    {
+      props: { row: true },
+      style: {
+        flexDirection: 'row',
+      },
+    },
+  ],
+});
 
 /**
  * `FormGroup` wraps controls such as `Checkbox` and `Switch`.
@@ -42,7 +47,7 @@ const FormGroupRoot = styled('div', {
  * For the `Radio`, you should be using the `RadioGroup` component instead of this one.
  */
 const FormGroup = React.forwardRef(function FormGroup(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiFormGroup',
   });
@@ -69,10 +74,10 @@ const FormGroup = React.forwardRef(function FormGroup(inProps, ref) {
 });
 
 FormGroup.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

@@ -10,11 +10,11 @@ unstyled: /base-ui/react-textarea-autosize/
 
 <p class="description">Textarea component gives you a textarea HTML element that automatically adjusts its height to match the length of the content within.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 ## Introduction
 
-Joy UI's textarea component is built on top of the Base UI [`TextareaAutoSize`](/base-ui/react-textarea-autosize/) component.
+Joy UI's textarea component is built on top of the Base UI [`TextareaAutoSize`](/base-ui/react-textarea-autosize/) component.
 
 {{"demo": "TextareaUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
@@ -50,7 +50,7 @@ Toggle the palette that's being used to color the by text field by using the `co
 
 ### Form props
 
-Standard form attributes are supported e.g. `required`, `disabled`, etc.
+Standard form attributes are supported for example `required`, `disabled`, etc.
 
 {{"demo": "TextareaFormProps.js"}}
 
@@ -87,7 +87,7 @@ To trigger the focus ring programmatically, set the CSS variable `--Textarea-foc
 {{"demo": "TriggerFocusTextarea.js"}}
 
 :::info
-💡 The focus ring still appear on focus even though you set `--Textarea-focused: 0`.
+The focus ring still appear on focus even though you set `--Textarea-focused: 0`.
 :::
 
 ### Validation
@@ -114,6 +114,12 @@ Use the `startDecorator` and/or `endDecorator` props to add supporting icons or 
 It's usually more common to see textarea components using decorators at the top and bottom.
 
 {{"demo": "TextareaDecorators.js"}}
+
+### HTML textarea ref
+
+Use the `slotProps.textarea` attribute to pass props to the `ref` and other [supported HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attributes) to the textarea element.
+
+{{"demo": "TextareaRef.js"}}
 
 ## Accessibility
 

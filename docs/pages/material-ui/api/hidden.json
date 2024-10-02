@@ -33,12 +33,13 @@
     "import Hidden from '@mui/material/Hidden';",
     "import { Hidden } from '@mui/material';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "classes": [],
   "spread": true,
   "themeDefaultProps": null,
   "muiName": "MuiHidden",
   "filename": "/packages/mui-material/src/Hidden/Hidden.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-hidden/\">Hidden</a></li></ul>",
-  "cssComponent": false
+  "cssComponent": false,
+  "deprecated": true
 }

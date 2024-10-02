@@ -2,7 +2,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
 import useTheme from '../styles/useTheme';
@@ -25,6 +25,7 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getHiddenCssUtilityClass, classes);
 };
 
+// FIXME(romgrk): Can't use memoTheme here, should we memo also on ownerState?
 const HiddenCssRoot = styled('div', {
   name: 'PrivateHiddenCss',
   slot: 'Root',

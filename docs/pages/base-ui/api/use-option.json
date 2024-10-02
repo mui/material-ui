@@ -14,8 +14,8 @@
   "returnValue": {
     "getRootProps": {
       "type": {
-        "name": "&lt;Other extends EventHandlers&gt;(otherHandlers?: Other) =&gt; UseOptionRootSlotProps&lt;Other&gt;",
-        "description": "&lt;Other extends EventHandlers&gt;(otherHandlers?: Other) =&gt; UseOptionRootSlotProps&lt;Other&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt;&gt;(externalProps?: ExternalProps) =&gt; UseOptionRootSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt;&gt;(externalProps?: ExternalProps) =&gt; UseOptionRootSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },

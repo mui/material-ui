@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "module": "esnext",
-    "target": "es5",
+    // aligning with Node18 recommendation: https://www.npmjs.com/package/@tsconfig/node18
+    "target": "es2022",
     "lib": ["es2020", "dom"],
     "jsx": "preserve",
     "moduleResolution": "node",
@@ -18,7 +19,8 @@
       "@mui/material/*": ["./packages/mui-material/src/*"],
       "@mui/lab": ["./packages/mui-lab/src"],
       "@mui/lab/*": ["./packages/mui-lab/src/*"],
-      "@mui/markdown": ["./packages/markdown"],
+      "@mui/internal-markdown": ["./packages/markdown"],
+      "@mui/internal-markdown/*": ["./packages/markdown/*"],
       "@mui/styled-engine": ["./packages/mui-styled-engine/src"],
       "@mui/styled-engine/*": ["./packages/mui-styled-engine/src/*"],
       "@mui/styled-engine-sc": ["./packages/mui-styled-engine-sc/src"],
@@ -27,19 +29,27 @@
       "@mui/styles/*": ["./packages/mui-styles/src/*"],
       "@mui/system": ["./packages/mui-system/src"],
       "@mui/system/*": ["./packages/mui-system/src/*"],
+      "@mui/types": ["./packages/mui-types"],
       "@mui/private-theming": ["./packages/mui-private-theming/src"],
       "@mui/private-theming/*": ["./packages/mui-private-theming/src/*"],
-      "@mui/types": ["./packages/mui-types"],
       "@mui/base": ["./packages/mui-base/src"],
       "@mui/base/*": ["./packages/mui-base/src/*"],
+      "@mui/utils": ["./packages/mui-utils/src"],
+      "@mui/utils/*": ["./packages/mui-utils/src/*"],
       "@mui/docs": ["./packages/mui-docs/src"],
       "@mui/docs/*": ["./packages/mui-docs/src/*"],
-      "@mui/material-next": ["./packages/mui-material-next/src"],
-      "@mui/material-next/*": ["./packages/mui-material-next/src/*"],
+      "@mui/material-nextjs": ["./packages/mui-material-nextjs/src"],
+      "@mui/material-nextjs/*": ["./packages/mui-material-nextjs/src/*"],
       "@mui/joy": ["./packages/mui-joy/src"],
       "@mui/joy/*": ["./packages/mui-joy/src/*"],
-      "test/*": ["./test/*"],
-      "typescript-to-proptypes": ["./packages/typescript-to-proptypes/src"]
+      "@mui/icons-material": ["./packages/mui-icons-material/lib/esm/index.js"],
+      "@mui/icons-material/*": ["./packages/mui-icons-material/src/icon.d.ts"],
+      "@mui/internal-docs-utils": ["./packages-internal/docs-utils/src"],
+      "@mui/internal-scripts/typescript-to-proptypes": [
+        "./packages-internal/scripts/typescript-to-proptypes/src"
+      ],
+      "@mui/internal-test-utils": ["./packages-internal/test-utils/src"],
+      "@mui/internal-test-utils/*": ["./packages-internal/test-utils/src/*"]
     },
     // Otherwise we get react-native typings which conflict with dom.lib.
     "types": ["node", "react"]

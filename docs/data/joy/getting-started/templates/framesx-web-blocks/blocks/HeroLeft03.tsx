@@ -10,17 +10,22 @@ import TwoSidedLayout from '../components/TwoSidedLayout';
 export default function HeroLeft03() {
   return (
     <TwoSidedLayout>
-      <Typography color="primary" fontSize="lg" fontWeight="lg">
+      <Typography color="primary" sx={{ fontSize: 'lg', fontWeight: 'lg' }}>
         The power to do more
       </Typography>
       <Typography
         level="h1"
-        fontWeight="xl"
-        fontSize="clamp(1.875rem, 1.3636rem + 2.1818vw, 3rem)"
+        sx={{
+          fontWeight: 'xl',
+          fontSize: 'clamp(1.875rem, 1.3636rem + 2.1818vw, 3rem)',
+        }}
       >
         A large headlinerer about our product features & services
       </Typography>
-      <Typography fontSize="lg" textColor="text.secondary" lineHeight="lg">
+      <Typography
+        textColor="text.secondary"
+        sx={{ fontSize: 'lg', lineHeight: 'lg' }}
+      >
         A descriptive secondary text placeholder. Use it to explain your business
         offer better.
       </Typography>
@@ -62,7 +67,6 @@ export default function HeroLeft03() {
           designers and developers.
         </Typography>
       </Box>
-
       <Typography
         level="body-xs"
         sx={{

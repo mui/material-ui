@@ -22,21 +22,26 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "alternativeLabel": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>alternativeLabel={true}</code>"
+    },
     "horizontal": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>orientation=\"horizontal\"</code>"
     },
+    "nonLinear": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>nonLinear={true}</code>"
+    },
+    "root": { "description": "Styles applied to the root element." },
     "vertical": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>orientation=\"vertical\"</code>"
-    },
-    "alternativeLabel": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>alternativeLabel={true}</code>"
     }
   }
 }

@@ -16,7 +16,14 @@
     "import TableBody from '@mui/material/TableBody';",
     "import { TableBody } from '@mui/material';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTableBody" },
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiTableBody-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiTableBody",

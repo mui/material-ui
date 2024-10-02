@@ -4,7 +4,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { alpha } from '@mui/material/styles';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 
 function components() {
   return [
@@ -69,6 +69,12 @@ function components() {
       href: '/base-ui/react-no-ssr/',
     },
     {
+      title: 'Number Input',
+      srcLight: '/static/base-ui/react-components/number-input-light.png',
+      srcDark: '/static/base-ui/react-components/number-input-dark.png',
+      href: '/base-ui/react-number-input/',
+    },
+    {
       title: 'Popper',
       srcLight: '/static/base-ui/react-components/popper-light.png',
       srcDark: '/static/base-ui/react-components/popper-dark.png',
@@ -126,13 +132,15 @@ function components() {
 }
 
 export default function BaseUIComponents() {
+  // Fix overloading with prefetch={false}, only prefetch on hover.
   return (
     <Grid container spacing={2} sx={{ pt: 2, pb: 4 }}>
-      {components().map((component) => (
+      {components().map((component, index) => (
         <Grid item xs={12} sm={4} sx={{ flexGrow: 1 }} key={component.title}>
           <Card
             component={Link}
             noLinkStyle
+            prefetch={false}
             variant="outlined"
             href={component.href}
             sx={(theme) => ({
@@ -150,21 +158,16 @@ export default function BaseUIComponents() {
             <CardMedia
               component="img"
               alt=""
+              loading={index <= 5 ? 'eager' : 'lazy'}
               image={component.srcLight}
               sx={(theme) => ({
                 aspectRatio: '16 / 9',
-                background: `linear-gradient(180deg, ${alpha(
-                  theme.palette.grey[50],
-                  0.5,
-                )} 20%, #FFF 100%)`,
+                background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
                 borderBottom: '1px solid',
                 borderColor: 'divider',
                 ...theme.applyDarkStyles({
                   content: `url(${component.srcDark})`,
-                  background: `linear-gradient(180deg, ${alpha(
-                    theme.palette.primaryDark[800],
-                    0.5,
-                  )} 20%, ${theme.palette.primaryDark[900]} 100%)`,
+                  background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
                   borderColor: 'divider',
                 }),
               })}
@@ -172,8 +175,7 @@ export default function BaseUIComponents() {
             <Typography
               component="h2"
               variant="body2"
-              fontWeight="semiBold"
-              sx={{ px: 2, py: 1.5 }}
+              sx={{ fontWeight: 'semiBold', px: 2, py: 1.5 }}
             >
               {component.title}
             </Typography>

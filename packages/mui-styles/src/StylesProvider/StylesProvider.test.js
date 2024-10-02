@@ -1,56 +1,65 @@
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import { expect } from 'chai';
+import { spy, match } from 'sinon';
 import { create, SheetsRegistry } from 'jss';
-import { createMount, strictModeDoubleLoggingSuppressed } from 'test/utils';
+import { createRenderer, strictModeDoubleLoggingSuppressed } from '@mui/internal-test-utils';
 import StylesProvider, { StylesContext } from './StylesProvider';
 import makeStyles from '../makeStyles';
 import createGenerateClassName from '../createGenerateClassName';
 
-function Test() {
-  const options = React.useContext(StylesContext);
-  return <span data-options={options} />;
-}
-
-function getOptions(wrapper) {
-  return wrapper.find('span').props()['data-options'];
-}
-
 describe('StylesProvider', () => {
-  const mount = createMount();
+  const { render } = createRenderer();
   let generateClassName;
+  let getContext;
+
+  function Test() {
+    const context = React.useContext(StylesContext);
+
+    React.useEffect(() => {
+      getContext(context);
+    }, [context]);
+
+    return null;
+  }
 
   beforeEach(() => {
     generateClassName = createGenerateClassName();
+    getContext = spy();
   });
 
-  it('should provide the options', () => {
-    const wrapper = mount(
+  it('should provide the context', () => {
+    render(
       <StylesProvider disableGeneration>
         <Test />
       </StylesProvider>,
     );
-    expect(getOptions(wrapper).disableGeneration).to.equal(true);
+
+    expect(getContext.alwaysCalledWith(match({ disableGeneration: true }))).to.equal(true);
   });
 
   it('should merge the themes', () => {
-    const wrapper = mount(
+    render(
       <StylesProvider>
         <StylesProvider disableGeneration>
           <Test />
         </StylesProvider>
       </StylesProvider>,
     );
-    expect(getOptions(wrapper).disableGeneration).to.equal(true);
+
+    expect(getContext.alwaysCalledWith(match({ disableGeneration: true }))).to.equal(true);
   });
 
   it('should handle injectFirst', () => {
-    const wrapper = mount(
+    render(
       <StylesProvider injectFirst>
         <Test />
       </StylesProvider>,
     );
-    expect(getOptions(wrapper).jss.options.insertionPoint.nodeType).to.equal(8);
+
+    expect(
+      getContext.alwaysCalledWith(match({ jss: { options: { insertionPoint: { nodeType: 8 } } } })),
+    ).to.equal(true);
   });
 
   describe('server-side', () => {
@@ -128,20 +137,20 @@ describe('StylesProvider', () => {
 
   it('should accept a custom JSS instance', () => {
     const jss = create();
-    const wrapper = mount(
+    render(
       <StylesProvider jss={jss}>
         <Test />
       </StylesProvider>,
     );
-    expect(getOptions(wrapper).jss).to.equal(jss);
+
+    expect(getContext.alwaysCalledWith(match({ jss }))).to.equal(true);
   });
 
   describe('warnings', () => {
     it('should support invalid input', () => {
       const jss = create();
-
       expect(() => {
-        mount(
+        render(
           <StylesProvider injectFirst jss={jss}>
             <Test />
           </StylesProvider>,

@@ -1,6 +1,6 @@
 {
   "name": "@mui/utils",
-  "version": "5.14.5",
+  "version": "6.1.1",
   "private": false,
   "author": "MUI Team",
   "description": "Utility functions for React components.",
@@ -13,52 +13,69 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
+    "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-utils"
   },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-utils",
+  "homepage": "private package",
   "funding": {
     "type": "opencollective",
-    "url": "https://opencollective.com/mui"
+    "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:types && yarn build:copy-files",
-    "build:legacy": "node ../../scripts/build.mjs legacy",
+    "build": "pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
     "build:modern": "node ../../scripts/build.mjs modern",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "build:types": "node ../../scripts/buildTypes.mjs",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
-    "release": "yarn build && npm publish build",
+    "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-utils/**/*.test.{js,ts,tsx}'",
-    "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
-  },
-  "peerDependencies": {
-    "react": "^17.0.0 || ^18.0.0"
+    "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.22.10",
-    "@types/prop-types": "^15.7.5",
-    "@types/react-is": "^18.2.1",
+    "@babel/runtime": "^7.25.6",
+    "@mui/types": "workspace:^",
+    "@types/prop-types": "^15.7.13",
+    "clsx": "^2.1.1",
     "prop-types": "^15.8.1",
-    "react-is": "^18.2.0"
+    "react-is": "^18.3.1"
   },
   "devDependencies": {
-    "@babel/helper-module-imports": "^7.22.5",
-    "@types/babel-plugin-macros": "^3.1.0",
-    "babel-plugin-macros": "^3.1.0",
-    "babel-plugin-tester": "^11.0.4"
+    "@mui/internal-babel-macros": "workspace:^",
+    "@mui/internal-test-utils": "workspace:^",
+    "@mui/types": "workspace:^",
+    "@types/chai": "^4.3.20",
+    "@types/mocha": "^10.0.8",
+    "@types/node": "^20.16.5",
+    "@types/react": "^18.3.4",
+    "@types/react-dom": "^18.3.0",
+    "@types/react-is": "^18.3.0",
+    "@types/sinon": "^17.0.3",
+    "chai": "^4.5.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sinon": "^18.0.1"
+  },
+  "peerDependencies": {
+    "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
   },
   "sideEffects": false,
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "build"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=14.0.0"
   }
 }

@@ -11,7 +11,6 @@ import { unstable_composeClasses as composeClasses } from '@mui/base/composeClas
 import { TypographyTypeMap, TypographyProps, TypographyOwnerState } from './TypographyProps';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import { getTypographyUtilityClass } from './typographyClasses';
 import { TypographySystem } from '../styles/types';
@@ -23,13 +22,21 @@ import { TypographySystem } from '../styles/types';
  */
 export const TypographyNestedContext = React.createContext(false);
 
+if (process.env.NODE_ENV !== 'production') {
+  TypographyNestedContext.displayName = 'TypographyNestedContext';
+}
+
 /**
  * @internal
  * Typography's level will be inherit within this context unless an explicit `level` prop is provided.
  *
- * This is used in components, e.g. Table, to inherit the parent's size by default.
+ * This is used in components, for example Table, to inherit the parent's size by default.
  */
 export const TypographyInheritContext = React.createContext(false);
+
+if (process.env.NODE_ENV !== 'production') {
+  TypographyInheritContext.displayName = 'TypographyInheritContext';
+}
 
 const useUtilityClasses = (ownerState: TypographyOwnerState) => {
   const { gutterBottom, noWrap, level, color, variant } = ownerState;
@@ -87,7 +94,9 @@ const TypographyRoot = styled('span', {
         }
       : {
           display: 'block', // don't rely on user agent, always `block`.
-          position: 'relative',
+          ...(ownerState.unstable_hasSkeleton && {
+            position: 'relative',
+          }),
         }),
     ...((ownerState.startDecorator || ownerState.endDecorator) && {
       display: 'flex',
@@ -102,7 +111,7 @@ const TypographyRoot = styled('span', {
     ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
     fontSize: `var(--Typography-fontSize, ${
       ownerState.level && ownerState.level !== 'inherit'
-        ? theme.typography[ownerState.level]?.fontSize ?? 'inherit'
+        ? (theme.typography[ownerState.level]?.fontSize ?? 'inherit')
         : 'inherit'
     })`,
     ...(ownerState.noWrap && {
@@ -113,10 +122,11 @@ const TypographyRoot = styled('span', {
     ...(ownerState.gutterBottom && {
       marginBottom: '0.35em',
     }),
-    ...(ownerState.color &&
-      ownerState.color !== 'context' && {
-        color: `rgba(${theme.vars.palette[ownerState.color]?.mainChannel} / 1)`,
-      }),
+    ...(ownerState.color && {
+      color: `var(--variant-plainColor, rgba(${
+        theme.vars.palette[ownerState.color]?.mainChannel
+      } / 1))`,
+    }),
     ...(ownerState.variant && {
       borderRadius: theme.vars.radius.xs,
       paddingBlock: 'min(0.1em, 4px)',
@@ -184,11 +194,11 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     ...other
   } = props;
 
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, variant ? colorProp ?? 'neutral' : colorProp);
+  const color = inProps.color ?? (variant ? (colorProp ?? 'neutral') : colorProp);
 
   const level = nesting || inheriting ? inProps.level || 'inherit' : levelProp;
 
+  const hasSkeleton = isMuiElement(children, ['Skeleton']);
   const component =
     componentProp ||
     ((nesting
@@ -204,6 +214,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     noWrap,
     nesting,
     variant,
+    unstable_hasSkeleton: hasSkeleton,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -238,9 +249,9 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
           <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
         )}
 
-        {isMuiElement(children, ['Skeleton'])
-          ? React.cloneElement(children as React.ReactElement, {
-              variant: (children as React.ReactElement).props.variant || 'inline',
+        {hasSkeleton
+          ? React.cloneElement(children as React.ReactElement<any>, {
+              variant: (children as React.ReactElement<any>).props.variant || 'inline',
             })
           : children}
         {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
@@ -250,10 +261,10 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
 }) as OverridableComponent<TypographyTypeMap>;
 
 Typography.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

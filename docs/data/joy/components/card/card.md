@@ -9,12 +9,14 @@ githubLabel: 'component: card'
 
 <p class="description">A card is a generic container for grouping related UI elements and content.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
 ## Introduction
 
-The Joy UI Card component includes several complementary utility components to handle various use cases:
+The Joy UI Card component includes several complementary utility components to handle various use cases:
 
 - [Card](#basics): a surface-level container for grouping related components.
-- [Card Overflow](#overflow): a supplemental wrapper that expands a Card's contents to fill all edges.
+- [Card Overflow](#expand-to-fill): a supplemental wrapper that expands a Card's contents to fill all edges.
 - [Card Cover](#card-layers): an optional container for displaying background images and gradient layers behind the Card Content.
 - [Card Content](#card-layers): an optional wrapper that brings content to the front (commonly but not always used with the Card Cover).
 - [Card Actions](#actions): an optional wrapper that groups a set of buttons.
@@ -36,7 +38,7 @@ The demo below shows a typical Card that groups together Typography, Aspect Rati
 
 ### Variants
 
-The Card component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `plain` (default), `outlined`, `soft`, and `solid`.
+The Card component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `plain`, `outlined` (default), `soft`, and `solid`.
 
 {{"demo": "CardVariants.js"}}
 
@@ -158,19 +160,23 @@ Learn more about this and other best practices for accessible cards in the [Incl
 
 {{"demo": "InteractiveCard.js"}}
 
-## CSS variable playground
+## CSS variables playground
 
 Play around with the CSS variables available to the Card component to see how the design changes.
 You can use these to customize the component with both the `sx` prop and the theme.
+
+{{"demo": "CardVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 :::success
 If you need to adjust a Card's padding or border radius, it's preferable to do so using these variables rather than plain CSS properties.
 This is because the variables are also used to calculate a proper radius for the Card's children, to prevent a mismatch between their relative proportions.
 :::
 
-{{"demo": "CardVariables.js" , "hideToolbar": true}}
-
 ## Common examples
+
+### Nested cards
+
+{{"demo": "NestedCard.js"}}
 
 ### Bio card
 
@@ -211,7 +217,8 @@ The example below shows a user card that stacks when the card's width is equal o
 {{"demo": "UserCard.js"}}
 
 :::info
-Alternatively, you can use [CSS Container Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_container_queries) to achieve the similar result. You should check the [browser support](https://caniuse.com/css-container-queries) before using CSS Container Queries.
+Alternatively, you can use [CSS Container Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries) to achieve the similar result.
+You should check the [browser support](https://caniuse.com/css-container-queries) before using CSS Container Queries.
 :::
 
 ### Instagram post

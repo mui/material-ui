@@ -2,10 +2,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { alpha } from '@mui/system';
-import styled, { rootShouldForwardProp } from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { alpha } from '@mui/system/colorManipulator';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import ListContext from '../List/ListContext';
 import ButtonBase from '../ButtonBase';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
@@ -52,102 +54,118 @@ const MenuItemRoot = styled(ButtonBase, {
   name: 'MuiMenuItem',
   slot: 'Root',
   overridesResolver,
-})(({ theme, ownerState }) => ({
-  ...theme.typography.body1,
-  display: 'flex',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-  position: 'relative',
-  textDecoration: 'none',
-  minHeight: 48,
-  paddingTop: 6,
-  paddingBottom: 6,
-  boxSizing: 'border-box',
-  whiteSpace: 'nowrap',
-  ...(!ownerState.disableGutters && {
-    paddingLeft: 16,
-    paddingRight: 16,
-  }),
-  ...(ownerState.divider && {
-    borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
-    backgroundClip: 'padding-box',
-  }),
-  '&:hover': {
+})(
+  memoTheme(({ theme }) => ({
+    ...theme.typography.body1,
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    position: 'relative',
     textDecoration: 'none',
-    backgroundColor: (theme.vars || theme).palette.action.hover,
-    // Reset on touch devices, it doesn't add specificity
-    '@media (hover: none)': {
-      backgroundColor: 'transparent',
+    minHeight: 48,
+    paddingTop: 6,
+    paddingBottom: 6,
+    boxSizing: 'border-box',
+    whiteSpace: 'nowrap',
+    '&:hover': {
+      textDecoration: 'none',
+      backgroundColor: (theme.vars || theme).palette.action.hover,
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
     },
-  },
-  [`&.${menuItemClasses.selected}`]: {
-    backgroundColor: theme.vars
-      ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-      : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-    [`&.${menuItemClasses.focusVisible}`]: {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-        : alpha(
-            theme.palette.primary.main,
-            theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-          ),
-    },
-  },
-  [`&.${menuItemClasses.selected}:hover`]: {
-    backgroundColor: theme.vars
-      ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-      : alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-        ),
-    // Reset on touch devices, it doesn't add specificity
-    '@media (hover: none)': {
+    [`&.${menuItemClasses.selected}`]: {
       backgroundColor: theme.vars
         ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
         : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      [`&.${menuItemClasses.focusVisible}`]: {
+        backgroundColor: theme.vars
+          ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+          : alpha(
+              theme.palette.primary.main,
+              theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+            ),
+      },
     },
-  },
-  [`&.${menuItemClasses.focusVisible}`]: {
-    backgroundColor: (theme.vars || theme).palette.action.focus,
-  },
-  [`&.${menuItemClasses.disabled}`]: {
-    opacity: (theme.vars || theme).palette.action.disabledOpacity,
-  },
-  [`& + .${dividerClasses.root}`]: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-  },
-  [`& + .${dividerClasses.inset}`]: {
-    marginLeft: 52,
-  },
-  [`& .${listItemTextClasses.root}`]: {
-    marginTop: 0,
-    marginBottom: 0,
-  },
-  [`& .${listItemTextClasses.inset}`]: {
-    paddingLeft: 36,
-  },
-  [`& .${listItemIconClasses.root}`]: {
-    minWidth: 36,
-  },
-  ...(!ownerState.dense && {
-    [theme.breakpoints.up('sm')]: {
-      minHeight: 'auto',
+    [`&.${menuItemClasses.selected}:hover`]: {
+      backgroundColor: theme.vars
+        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+        : alpha(
+            theme.palette.primary.main,
+            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+          ),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: theme.vars
+          ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+          : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      },
     },
-  }),
-  ...(ownerState.dense && {
-    minHeight: 32, // https://m2.material.io/components/menus#specs > Dense
-    paddingTop: 4,
-    paddingBottom: 4,
-    ...theme.typography.body2,
-    [`& .${listItemIconClasses.root} svg`]: {
-      fontSize: '1.25rem',
+    [`&.${menuItemClasses.focusVisible}`]: {
+      backgroundColor: (theme.vars || theme).palette.action.focus,
     },
-  }),
-}));
+    [`&.${menuItemClasses.disabled}`]: {
+      opacity: (theme.vars || theme).palette.action.disabledOpacity,
+    },
+    [`& + .${dividerClasses.root}`]: {
+      marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(1),
+    },
+    [`& + .${dividerClasses.inset}`]: {
+      marginLeft: 52,
+    },
+    [`& .${listItemTextClasses.root}`]: {
+      marginTop: 0,
+      marginBottom: 0,
+    },
+    [`& .${listItemTextClasses.inset}`]: {
+      paddingLeft: 36,
+    },
+    [`& .${listItemIconClasses.root}`]: {
+      minWidth: 36,
+    },
+    variants: [
+      {
+        props: ({ ownerState }) => !ownerState.disableGutters,
+        style: {
+          paddingLeft: 16,
+          paddingRight: 16,
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.divider,
+        style: {
+          borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
+          backgroundClip: 'padding-box',
+        },
+      },
+      {
+        props: ({ ownerState }) => !ownerState.dense,
+        style: {
+          [theme.breakpoints.up('sm')]: {
+            minHeight: 'auto',
+          },
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.dense,
+        style: {
+          minHeight: 32, // https://m2.material.io/components/menus#specs > Dense
+          paddingTop: 4,
+          paddingBottom: 4,
+          ...theme.typography.body2,
+          [`& .${listItemIconClasses.root} svg`]: {
+            fontSize: '1.25rem',
+          },
+        },
+      },
+    ],
+  })),
+);
 
 const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiMenuItem' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiMenuItem' });
   const {
     autoFocus = false,
     component = 'li',
@@ -217,10 +235,10 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
 });
 
 MenuItem.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the list item is focused during the first mount.
    * Focus will also be triggered if the value changes from false to true.

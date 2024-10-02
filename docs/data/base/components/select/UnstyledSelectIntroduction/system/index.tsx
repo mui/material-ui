@@ -1,37 +1,39 @@
 import * as React from 'react';
 import {
-  Select,
+  Select as BaseSelect,
   selectClasses,
+  SelectListboxSlotProps,
   SelectProps,
   SelectRootSlotProps,
 } from '@mui/base/Select';
-import { Option, optionClasses } from '@mui/base/Option';
-import { Popper } from '@mui/base/Popper';
+import { Option as BaseOption, optionClasses } from '@mui/base/Option';
 import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
+import { CssTransition } from '@mui/base/Transitions';
+import { PopupContext } from '@mui/base/Unstable_Popup';
 
 export default function UnstyledSelectIntroduction() {
   return (
-    <CustomSelect defaultValue={10}>
-      <StyledOption value={10}>Documentation</StyledOption>
-      <StyledOption value={20}>Components</StyledOption>
-      <StyledOption value={30}>Features</StyledOption>
-    </CustomSelect>
+    <Select defaultValue={10}>
+      <Option value={10}>Documentation</Option>
+      <Option value={20}>Components</Option>
+      <Option value={30}>Features</Option>
+    </Select>
   );
 }
 
-const CustomSelect = React.forwardRef(function CustomSelect<
+const Select = React.forwardRef(function CustomSelect<
   TValue extends {},
   Multiple extends boolean,
 >(props: SelectProps<TValue, Multiple>, ref: React.ForwardedRef<HTMLButtonElement>) {
   const slots = {
     root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
+    listbox: AnimatedListbox,
+    popup: Popup,
     ...props.slots,
   };
 
-  return <Select {...props} ref={ref} slots={slots} />;
+  return <BaseSelect {...props} ref={ref} slots={slots} />;
 });
 
 const blue = {
@@ -40,20 +42,21 @@ const blue = {
   400: '#3399FF',
   500: '#007FFF',
   600: '#0072E5',
+  700: '#0059B2',
   900: '#003A75',
 };
 
 const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
 const Button = React.forwardRef(function Button<
@@ -74,7 +77,7 @@ const Button = React.forwardRef(function Button<
 
 const StyledButton = styled(Button, { shouldForwardProp: () => true })(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   min-width: 320px;
@@ -86,7 +89,9 @@ const StyledButton = styled(Button, { shouldForwardProp: () => true })(
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   position: relative;
-  box-shadow: 0px 2px 24px ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
+  box-shadow: 0px 2px 4px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
+  };
 
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -98,8 +103,9 @@ const StyledButton = styled(Button, { shouldForwardProp: () => true })(
   }
 
   &.${selectClasses.focusVisible} {
+    outline: 0;
     border-color: ${blue[400]};
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
   }
 
   & > svg {
@@ -112,9 +118,9 @@ const StyledButton = styled(Button, { shouldForwardProp: () => true })(
   `,
 );
 
-const StyledListbox = styled('ul')(
+const Listbox = styled('ul')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 6px;
@@ -122,17 +128,66 @@ const StyledListbox = styled('ul')(
   min-width: 320px;
   border-radius: 12px;
   overflow: auto;
-  outline: 0px;
+  outline: 0;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 2px 6px ${
-    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  box-shadow: 0px 2px 4px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
   };
+  
+  .closed & {
+    opacity: 0;
+    transform: scale(0.95, 0.8);
+    transition: opacity 200ms ease-in, transform 200ms ease-in;
+  }
+  
+  .open & {
+    opacity: 1;
+    transform: scale(1, 1);
+    transition: opacity 100ms ease-out, transform 100ms cubic-bezier(0.43, 0.29, 0.37, 1.48);
+  }
+
+  .placement-top & {
+    transform-origin: bottom;
+  }
+
+  .placement-bottom & {
+    transform-origin: top;
+  }
   `,
 );
 
-const StyledOption = styled(Option)(
+const AnimatedListbox = React.forwardRef(function AnimatedListbox<
+  Value extends {},
+  Multiple extends boolean,
+>(
+  props: SelectListboxSlotProps<Value, Multiple>,
+  ref: React.ForwardedRef<HTMLUListElement>,
+) {
+  const { ownerState, ...other } = props;
+  const popupContext = React.useContext(PopupContext);
+
+  if (popupContext == null) {
+    throw new Error(
+      'The `AnimatedListbox` component cannot be rendered outside a `Popup` component',
+    );
+  }
+
+  const verticalPlacement = popupContext.placement.split('-')[0];
+
+  return (
+    <CssTransition
+      className={`placement-${verticalPlacement}`}
+      enterClassName="open"
+      exitClassName="closed"
+    >
+      <Listbox {...other} ref={ref} />
+    </CssTransition>
+  );
+});
+
+const Option = styled(BaseOption)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
@@ -153,6 +208,10 @@ const StyledOption = styled(Option)(
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
 
+  &:focus-visible {
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
+  }
+  
   &.${optionClasses.highlighted}.${optionClasses.selected} {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
@@ -169,6 +228,6 @@ const StyledOption = styled(Option)(
   `,
 );
 
-const StyledPopper = styled(Popper)`
+const Popup = styled('div')`
   z-index: 1;
 `;

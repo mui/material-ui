@@ -2,9 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import cardActionAreaClasses, { getCardActionAreaUtilityClass } from './cardActionAreaClasses';
 import ButtonBase from '../ButtonBase';
 
@@ -23,44 +24,48 @@ const CardActionAreaRoot = styled(ButtonBase, {
   name: 'MuiCardActionArea',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme }) => ({
-  display: 'block',
-  textAlign: 'inherit',
-  borderRadius: 'inherit', // for Safari to work https://github.com/mui/material-ui/issues/36285.
-  width: '100%',
-  [`&:hover .${cardActionAreaClasses.focusHighlight}`]: {
-    opacity: (theme.vars || theme).palette.action.hoverOpacity,
-    '@media (hover: none)': {
-      opacity: 0,
+})(
+  memoTheme(({ theme }) => ({
+    display: 'block',
+    textAlign: 'inherit',
+    borderRadius: 'inherit', // for Safari to work https://github.com/mui/material-ui/issues/36285.
+    width: '100%',
+    [`&:hover .${cardActionAreaClasses.focusHighlight}`]: {
+      opacity: (theme.vars || theme).palette.action.hoverOpacity,
+      '@media (hover: none)': {
+        opacity: 0,
+      },
     },
-  },
-  [`&.${cardActionAreaClasses.focusVisible} .${cardActionAreaClasses.focusHighlight}`]: {
-    opacity: (theme.vars || theme).palette.action.focusOpacity,
-  },
-}));
+    [`&.${cardActionAreaClasses.focusVisible} .${cardActionAreaClasses.focusHighlight}`]: {
+      opacity: (theme.vars || theme).palette.action.focusOpacity,
+    },
+  })),
+);
 
 const CardActionAreaFocusHighlight = styled('span', {
   name: 'MuiCardActionArea',
   slot: 'FocusHighlight',
   overridesResolver: (props, styles) => styles.focusHighlight,
-})(({ theme }) => ({
-  overflow: 'hidden',
-  pointerEvents: 'none',
-  position: 'absolute',
-  top: 0,
-  right: 0,
-  bottom: 0,
-  left: 0,
-  borderRadius: 'inherit',
-  opacity: 0,
-  backgroundColor: 'currentcolor',
-  transition: theme.transitions.create('opacity', {
-    duration: theme.transitions.duration.short,
-  }),
-}));
+})(
+  memoTheme(({ theme }) => ({
+    overflow: 'hidden',
+    pointerEvents: 'none',
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    borderRadius: 'inherit',
+    opacity: 0,
+    backgroundColor: 'currentcolor',
+    transition: theme.transitions.create('opacity', {
+      duration: theme.transitions.duration.short,
+    }),
+  })),
+);
 
 const CardActionArea = React.forwardRef(function CardActionArea(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiCardActionArea' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiCardActionArea' });
   const { children, className, focusVisibleClassName, ...other } = props;
 
   const ownerState = props;
@@ -81,10 +86,10 @@ const CardActionArea = React.forwardRef(function CardActionArea(inProps, ref) {
 });
 
 CardActionArea.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

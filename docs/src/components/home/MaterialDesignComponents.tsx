@@ -4,8 +4,8 @@ import {
   Theme,
   ThemeOptions,
   alpha,
-  experimental_extendTheme as extendTheme,
-  Experimental_CssVarsProvider as CssVarsProvider,
+  extendTheme,
+  CssVarsProvider,
 } from '@mui/material/styles';
 import { capitalize } from '@mui/material/utils';
 import Alert from '@mui/material/Alert';
@@ -33,8 +33,8 @@ import MailRounded from '@mui/icons-material/MailRounded';
 import VerifiedUserRounded from '@mui/icons-material/VerifiedUserRounded';
 import HelpCenterRounded from '@mui/icons-material/HelpCenterRounded';
 import ROUTES from 'docs/src/route';
-import Link from 'docs/src/modules/components/Link';
-import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
+import { Link } from '@mui/docs/Link';
+import { getDesignTokens, getThemedComponents } from '@mui/docs/branding';
 
 const Grid = styled('div')(({ theme }) => [
   {
@@ -125,7 +125,7 @@ function Demo({
 }: {
   name: string;
   theme: Theme | undefined;
-  children: React.ReactElement;
+  children: React.ReactElement<any>;
   control?: { prop: string; values: Array<string>; defaultValue?: string };
 }) {
   const [propValue, setPropValue] = React.useState(
@@ -142,7 +142,7 @@ function Demo({
               minHeight: 'initial',
               '& .MuiTabs-indicator': {
                 bgcolor: 'transparent',
-                '&:before': {
+                '&::before': {
                   height: '100%',
                   content: '""',
                   display: 'block',
@@ -180,7 +180,7 @@ function Demo({
           })}
         </CssVarsProvider>
       </Box>
-      <Typography fontWeight="semiBold" variant="body2">
+      <Typography variant="body2" sx={{ fontWeight: 'semiBold' }}>
         {name}
       </Typography>
     </Box>
@@ -190,24 +190,20 @@ function Demo({
 const StyledChip = styled(Chip)(({ theme }) => [
   {
     fontWeight: 700,
-    transition: 'none',
     '&.MuiChip-outlined': {
-      border: 'none',
       color: (theme.vars || theme).palette.text.secondary,
     },
-    '&.MuiChip-clickable:active': {
-      boxShadow: 'none',
-    },
     '&.MuiChip-filled': {
-      border: '1px solid',
       borderColor: (theme.vars || theme).palette.primary[300],
-      backgroundColor: (theme.vars || theme).palette.primary[500],
-      color: '#fff',
+      backgroundColor: alpha(theme.palette.primary[100], 0.5),
+      color: (theme.vars || theme).palette.primary[600],
     },
   },
   theme.applyDarkStyles({
     '&.MuiChip-filled': {
-      backgroundColor: (theme.vars || theme).palette.primary[700],
+      borderColor: (theme.vars || theme).palette.primary[500],
+      backgroundColor: (theme.vars || theme).palette.primary[800],
+      color: (theme.vars || theme).palette.primary[100],
     },
   }),
 ]);
@@ -226,18 +222,12 @@ export function buildTheme(): ThemeOptions {
           disableElevation: true,
         },
         styleOverrides: {
-          text: ({ theme }) =>
-            theme.applyDarkStyles({
-              color: 'rgba(255 255 255 / 0.72)',
-              '&:hover': {
-                color: '#fff',
-              },
-            }),
           root: {
             borderRadius: '99px',
             fontWeight: 500,
             fontSize: '0.875rem',
             lineHeight: 24 / 16,
+            textTransform: 'none',
           },
           sizeSmall: ({ theme }) => ({
             padding: theme.spacing(0.5, 1),
@@ -249,11 +239,29 @@ export function buildTheme(): ThemeOptions {
             padding: theme.spacing(1, 2),
             fontSize: '1rem',
           }),
+          text: ({ theme }) => ({
+            color: (theme.vars || theme).palette.primary[600],
+            ...theme.applyDarkStyles({
+              color: (theme.vars || theme).palette.primary[300],
+            }),
+          }),
           contained: ({ theme }) => ({
             color: (theme.vars || theme).palette.primaryDark[50],
-            backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+            backgroundColor: (theme.vars || theme).palette.primary[600],
+            boxShadow: '0 2px 0 rgba(255,255,255,0.1) inset, 0 -1px 0 rgba(0,0,0,0.1) inset',
+            border: '1px solid',
+            borderColor: (theme.vars || theme).palette.primary[600],
             ...theme.applyDarkStyles({
-              backgroundColor: (theme.vars || theme).palette.primaryDark[400],
+              backgroundColor: (theme.vars || theme).palette.primary[600],
+              borderColor: (theme.vars || theme).palette.primary[800],
+            }),
+          }),
+          outlined: ({ theme }) => ({
+            borderColor: (theme.vars || theme).palette.primary[300],
+            ...theme.applyDarkStyles({
+              color: (theme.vars || theme).palette.primary[300],
+              backgroundColor: alpha(theme.palette.primary[900], 0.1),
+              borderColor: alpha(theme.palette.primary[300], 0.5),
             }),
           }),
           iconSizeSmall: {
@@ -280,7 +288,7 @@ export function buildTheme(): ThemeOptions {
         styleOverrides: {
           root: ({ theme }) => [
             {
-              padding: theme.spacing(2),
+              padding: theme.spacing(1.5),
               '& .MuiAlert-icon': {
                 color: (theme.vars || theme).palette.primaryDark[800],
               },
@@ -292,28 +300,28 @@ export function buildTheme(): ThemeOptions {
             }),
           ],
           filled: ({ theme }) => ({
-            color: (theme.vars || theme).palette.primaryDark[50],
-            backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+            color: (theme.vars || theme).palette.primary[50],
+            backgroundColor: (theme.vars || theme).palette.primary[600],
             '& .MuiAlert-icon': {
-              color: (theme.vars || theme).palette.primary[50],
+              color: '#fff',
             },
             ...theme.applyDarkStyles({
-              backgroundColor: (theme.vars || theme).palette.primaryDark[500],
+              backgroundColor: (theme.vars || theme).palette.primary[600],
             }),
           }),
           outlined: ({ theme }) => [
             {
               color: (theme.vars || theme).palette.primaryDark[700],
-              backgroundColor: alpha(theme.palette.primaryDark[50], 0.5),
-              borderColor: (theme.vars || theme).palette.primaryDark[300],
+              backgroundColor: '#fff',
+              borderColor: (theme.vars || theme).palette.primary[100],
               '& .MuiAlert-icon': {
-                color: (theme.vars || theme).palette.primaryDark[800],
+                color: (theme.vars || theme).palette.primary[500],
               },
             },
             theme.applyDarkStyles({
               color: (theme.vars || theme).palette.primaryDark[50],
-              backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
-              borderColor: (theme.vars || theme).palette.primaryDark[500],
+              backgroundColor: 'transparent',
+              borderColor: (theme.vars || theme).palette.primaryDark[600],
               '& .MuiAlert-icon': {
                 color: (theme.vars || theme).palette.primaryDark[100],
               },
@@ -325,18 +333,18 @@ export function buildTheme(): ThemeOptions {
           },
           standardInfo: ({ theme }) => [
             {
-              backgroundColor: (theme.vars || theme).palette.primaryDark[50],
-              color: (theme.vars || theme).palette.primaryDark[700],
+              backgroundColor: (theme.vars || theme).palette.primary[50],
+              color: (theme.vars || theme).palette.primary[600],
               border: '1px solid',
-              borderColor: (theme.vars || theme).palette.primaryDark[100],
+              borderColor: alpha(theme.palette.primaryDark[100], 0.5),
               '& .MuiAlert-icon': {
-                color: (theme.vars || theme).palette.primaryDark[700],
+                color: (theme.vars || theme).palette.primary[500],
               },
             },
             theme.applyDarkStyles({
-              backgroundColor: (theme.vars || theme).palette.primaryDark[900],
+              backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
               color: (theme.vars || theme).palette.primaryDark[50],
-              borderColor: alpha(theme.palette.primaryDark[500], 0.5),
+              borderColor: alpha(theme.palette.primaryDark[500], 0.2),
               '& .MuiAlert-icon': {
                 color: (theme.vars || theme).palette.primaryDark[50],
               },
@@ -359,31 +367,39 @@ export function buildTheme(): ThemeOptions {
                 color: (theme.vars || theme).palette.grey[800],
               },
               '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                borderColor: (theme.vars || theme).palette.primaryDark[800],
+                background: 'transparent',
+                borderColor: (theme.vars || theme).palette.primary[400],
               },
-              '& .MuiOutlinedInput-input': {
-                backgroundColor: '#fff',
-                borderRadius: theme.spacing(1),
-                borderColor: (theme.vars || theme).palette.grey[300],
+              '& .MuiOutlinedInput-root': {
+                backgroundColor: 'transparent',
+                borderColor: (theme.vars || theme).palette.grey[50],
               },
-              '& .MuiInputBase-input': {
+              '& .MuiInputBase-root': {
                 fontWeight: 700,
+                '&::before': {
+                  borderColor: (theme.vars || theme).palette.grey[300],
+                },
               },
               '& .MuiFilledInput-root': {
                 backgroundColor: '#fff',
-                '&:after': {
-                  borderColor: (theme.vars || theme).palette.primaryDark[800],
+                border: '1px solid',
+                borderColor: (theme.vars || theme).palette.grey[100],
+                '&::before': {
+                  borderColor: (theme.vars || theme).palette.grey[300],
+                },
+                '&::after': {
+                  borderColor: (theme.vars || theme).palette.primary[400],
                 },
                 '&:hover': {
-                  backgroundColor: '#fff',
+                  borderColor: (theme.vars || theme).palette.grey[200],
                 },
               },
               '& .MuiInputLabel-filled.Mui-focused': {
                 color: (theme.vars || theme).palette.grey[800],
               },
               '& .MuiInput-root.Mui-focused': {
-                '&:after': {
-                  borderColor: (theme.vars || theme).palette.primaryDark[800],
+                '&::after': {
+                  borderColor: (theme.vars || theme).palette.primary[400],
                 },
               },
               '& .MuiInputLabel-root.Mui-focused': {
@@ -391,31 +407,38 @@ export function buildTheme(): ThemeOptions {
               },
             },
             theme.applyDarkStyles({
+              '& .MuiInputBase-root': {
+                '&::before': {
+                  borderColor: (theme.vars || theme).palette.primaryDark[500],
+                },
+              },
               '& .MuiInputLabel-outlined.Mui-focused': {
-                color: (theme.vars || theme).palette.grey[500],
+                color: (theme.vars || theme).palette.primary[300],
               },
               '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                borderColor: (theme.vars || theme).palette.primary[500],
+                borderColor: (theme.vars || theme).palette.primary[300],
               },
               '& .MuiOutlinedInput-input': {
-                backgroundColor: (theme.vars || theme).palette.primaryDark[700],
-                borderColor: (theme.vars || theme).palette.primaryDark[400],
+                borderRadius: 'inherit',
+                backgroundColor: (theme.vars || theme).palette.primaryDark[800],
               },
               '& .MuiFilledInput-root': {
-                backgroundColor: (theme.vars || theme).palette.primaryDark[600],
-                '&:after': {
-                  borderColor: (theme.vars || theme).palette.primary[500],
+                borderColor: (theme.vars || theme).palette.primaryDark[700],
+                backgroundColor: alpha(theme.palette.primaryDark[900], 0.5),
+                '&::after': {
+                  borderColor: (theme.vars || theme).palette.primary[300],
                 },
                 '&:hover': {
-                  backgroundColor: (theme.vars || theme).palette.primaryDark[500],
+                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.8),
+                  borderColor: (theme.vars || theme).palette.primaryDark[600],
                 },
               },
               '& .MuiInputLabel-filled.Mui-focused': {
                 color: (theme.vars || theme).palette.grey[500],
               },
               '& .MuiInput-root.Mui-focused': {
-                '&:after': {
-                  borderColor: (theme.vars || theme).palette.primaryDark[500],
+                '&::after': {
+                  borderColor: (theme.vars || theme).palette.primaryDark[400],
                 },
               },
               '& .MuiInputLabel-root.Mui-focused': {
@@ -427,13 +450,23 @@ export function buildTheme(): ThemeOptions {
       },
       MuiTooltip: themedComponents.components?.MuiTooltip,
       MuiPaper: themedComponents.components?.MuiPaper,
+      MuiTableHead: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            padding: 8,
+            backgroundColor: alpha(theme.palette.grey[50], 0.5),
+            borderColor: (theme.vars || theme).palette.divider,
+            ...theme.applyDarkStyles({
+              backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
+            }),
+          }),
+        },
+      },
       MuiTableCell: {
         styleOverrides: {
           root: ({ theme }) => ({
+            padding: 8,
             borderColor: (theme.vars || theme).palette.divider,
-            ...theme.applyDarkStyles({
-              borderColor: (theme.vars || theme).palette.primaryDark[400],
-            }),
           }),
         },
       },
@@ -442,31 +475,36 @@ export function buildTheme(): ThemeOptions {
           paper: ({ theme }) => ({
             boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
             ...theme.applyDarkStyles({
-              boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)',
+              boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.2)',
             }),
           }),
         },
       },
       MuiMenu: {
         styleOverrides: {
-          list: ({ theme }) => ({
-            padding: theme.spacing(1, 0),
-          }),
+          list: {
+            padding: 0,
+          },
         },
       },
       MuiMenuItem: {
         styleOverrides: {
           root: ({ theme }) => [
             {
-              padding: theme.spacing(1, 2),
+              margin: theme.spacing(1),
+              padding: '4px 8px',
+              borderRadius: '8px',
+              '& .MuiListItemIcon-root': {
+                minWidth: '24px',
+              },
               '& svg': {
-                fontSize: '1.125rem',
-                color: (theme.vars || theme).palette.primaryDark[400],
+                fontSize: '1rem',
+                color: (theme.vars || theme).palette.grey[500],
               },
             },
             theme.applyDarkStyles({
               '& svg': {
-                color: (theme.vars || theme).palette.primary[300],
+                color: (theme.vars || theme).palette.grey[400],
               },
             }),
           ],
@@ -478,8 +516,13 @@ export function buildTheme(): ThemeOptions {
 
 const { palette: lightPalette, typography, ...designTokens } = getDesignTokens('light');
 const { palette: darkPalette } = getDesignTokens('dark');
+const defaultTheme = extendTheme({
+  colorSchemes: { light: true, dark: true },
+  colorSchemeSelector: 'data-mui-color-scheme',
+});
 export const customTheme = extendTheme({
   cssVarPrefix: 'muidocs',
+  colorSchemeSelector: 'data-mui-color-scheme',
   colorSchemes: {
     light: {
       palette: lightPalette,
@@ -495,31 +538,24 @@ export const customTheme = extendTheme({
 export default function MaterialDesignComponents() {
   const [anchor, setAnchor] = React.useState<HTMLElement | null>(null);
   const [customized, setCustomized] = React.useState(false);
-  const theme = customized ? customTheme : undefined;
+  const theme = customized ? customTheme : defaultTheme;
   return (
     <div>
-      <Box
-        sx={{
-          mt: { xs: 2, md: 4 },
-          mb: 2,
-          display: 'flex',
-          justifyContent: { sm: 'flex-start', md: 'flex-end' },
-        }}
-      >
+      <Box sx={{ mt: { xs: 2, md: 2 }, mb: 4, display: 'flex', justifyContent: 'center' }}>
         <StyledChip
-          color="primary"
-          label="Material Design"
           size="small"
-          variant={!customized ? 'filled' : 'outlined'}
-          onClick={() => setCustomized(false)}
+          label="Custom theme"
+          variant={customized ? 'filled' : 'outlined'}
+          color={customized ? 'primary' : 'secondary'}
+          onClick={() => setCustomized(true)}
+          sx={{ mr: 1 }}
         />
         <StyledChip
-          color="primary"
-          label="Custom Theme"
           size="small"
-          variant={customized ? 'filled' : 'outlined'}
-          onClick={() => setCustomized(true)}
-          sx={{ ml: 1 }}
+          label="Material Design"
+          variant={!customized ? 'filled' : 'outlined'}
+          color={!customized ? 'primary' : 'secondary'}
+          onClick={() => setCustomized(false)}
         />
       </Box>
       <Grid>
@@ -627,13 +663,12 @@ export default function MaterialDesignComponents() {
             alignItems: 'center',
           }}
         >
-          <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
+          <Typography variant="body2" sx={{ fontWeight: 'bold', mb: 0.5 }}>
             Want to see more?
           </Typography>
           <Typography
             variant="body2"
-            color="text.secondary"
-            sx={{ mb: 0.5, maxWidth: 250, mx: 'auto' }}
+            sx={{ color: 'text.secondary', mb: 0.5, maxWidth: 250, mx: 'auto' }}
           >
             Check out the docs for details of the complete library.
           </Typography>

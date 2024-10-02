@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  describeConformance,
   createRenderer,
   screen,
   act,
   fireEvent,
   strictModeDoubleLoggingSuppressed,
-  describeJoyColorInversion,
-} from 'test/utils';
+  reactMajor,
+} from '@mui/internal-test-utils';
 import Autocomplete, {
   autocompleteClasses as classes,
   createFilterOptions,
@@ -21,6 +20,7 @@ import ChipDelete from '@mui/joy/ChipDelete';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import { ThemeProvider, styled } from '@mui/joy/styles';
+import describeConformance from '../../test/describeConformance';
 
 function checkHighlightIs(listbox: HTMLElement, expected: string | null) {
   const focused = listbox.querySelector(`.${classes.focused}`);
@@ -51,12 +51,7 @@ describe('Joy <Autocomplete />', () => {
     muiName: 'JoyAutocomplete',
     testDeepOverrides: { slotName: 'popupIndicator', slotClassName: classes.popupIndicator },
     testVariantProps: { size: 'lg' },
-    skip: [
-      'componentsProp',
-      'classesRoot',
-      // https://github.com/facebook/react/issues/11565
-      'reactTestRenderer',
-    ],
+    skip: ['componentsProp', 'classesRoot'],
     slots: {
       root: {
         expectedClassName: classes.root,
@@ -77,12 +72,6 @@ describe('Joy <Autocomplete />', () => {
       },
     },
   }));
-
-  describeJoyColorInversion(<Autocomplete options={[]} open />, {
-    muiName: 'JoyAutocomplete',
-    classes,
-    portalSlot: 'listbox',
-  });
 
   it('should be customizable in the theme', () => {
     render(
@@ -487,11 +476,14 @@ describe('Joy <Autocomplete />', () => {
           renderTags={(value, getTagProps) =>
             value
               .filter((x, index) => index === 1)
-              .map((option, index) => (
-                <Chip key={index} endDecorator={<ChipDelete {...getTagProps({ index })} />}>
-                  {option.title}
-                </Chip>
-              ))
+              .map((option, index) => {
+                const { key, ...tagProps } = getTagProps({ index });
+                return (
+                  <Chip key={index} endDecorator={<ChipDelete key={key} {...tagProps} />}>
+                    {option.title}
+                  </Chip>
+                );
+              })
           }
           onChange={handleChange}
           autoFocus
@@ -1218,19 +1210,19 @@ describe('Joy <Autocomplete />', () => {
       const value = 'not a good value';
       const options = ['first option', 'second option'];
 
+      const errorMessage = 'None of the options match with `"not a good value"`';
+
+      let expectedOccurrences = 4;
+
+      if (reactMajor === 18) {
+        expectedOccurrences = 6;
+      } else if (reactMajor === 17) {
+        expectedOccurrences = 2;
+      }
+
       expect(() => {
         render(<Autocomplete value={value} options={options} />);
-      }).toWarnDev([
-        'None of the options match with `"not a good value"`',
-        !strictModeDoubleLoggingSuppressed && 'None of the options match with `"not a good value"`',
-        'None of the options match with `"not a good value"`',
-        !strictModeDoubleLoggingSuppressed && 'None of the options match with `"not a good value"`',
-        // React 18 Strict Effects run mount effects twice which lead to a cascading update
-        React.version.startsWith('18') && 'None of the options match with `"not a good value"`',
-        React.version.startsWith('18') &&
-          !strictModeDoubleLoggingSuppressed &&
-          'None of the options match with `"not a good value"`',
-      ]);
+      }).toWarnDev(Array(expectedOccurrences).fill(errorMessage));
     });
 
     it('warn if groups options are not sorted', () => {
@@ -1330,6 +1322,7 @@ describe('Joy <Autocomplete />', () => {
       checkHighlightIs(autocompleteListbox, 'six');
       expect(autocompleteListbox.scrollTop).to.greaterThan(0);
     });
+
     it('should keep focus on selected option and not reset to top option when options updated', () => {
       const { setProps } = render(<Autocomplete open options={['one', 'two']} autoFocus />);
       const textbox = screen.getByRole('combobox');
@@ -1408,9 +1401,15 @@ describe('Joy <Autocomplete />', () => {
 
       checkHighlightIs(listbox, 'two');
 
-      // three option is added and autocomplete re-renders, restore the highlight
-      setProps({ options: [{ label: 'one' }, { label: 'two' }, { label: 'three' }] });
+      // zero and three options are added and autocomplete re-renders, restore the highlight
+      setProps({
+        options: [{ label: 'zero' }, { label: 'one' }, { label: 'two' }, { label: 'three' }],
+      });
       checkHighlightIs(listbox, 'two');
+
+      // check that the highlighted option is still in sync with the internal highlighted index
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // goes to 'three'
+      checkHighlightIs(listbox, 'three');
     });
 
     it("should reset the highlight when previously highlighted option doesn't exists in new options", () => {
@@ -1891,10 +1890,10 @@ describe('Joy <Autocomplete />', () => {
   });
 
   describe('prop: onInputChange', () => {
-    it('provides a reason on input change', () => {
+    it('provides a reason on input change', async () => {
       const handleInputChange = spy();
       const options = [{ name: 'foo' }];
-      render(
+      const { user } = render(
         <Autocomplete
           onInputChange={handleInputChange}
           options={options}
@@ -1902,32 +1901,118 @@ describe('Joy <Autocomplete />', () => {
           autoFocus
         />,
       );
-      fireEvent.change(document.activeElement as HTMLInputElement, { target: { value: 'a' } });
+
+      await user.type(document.activeElement as HTMLInputElement, 'a');
+
       expect(handleInputChange.callCount).to.equal(1);
       expect(handleInputChange.args[0][1]).to.equal('a');
       expect(handleInputChange.args[0][2]).to.equal('input');
     });
 
-    it('provides a reason on select reset', () => {
+    it('provides a reason on select reset', async () => {
+      const handleInputChange = spy();
+      const options = [{ name: 'foo' }, { name: 'bar' }];
+      function MyComponent() {
+        const [value, setValue] = React.useState(options[0]);
+        return (
+          <React.Fragment>
+            <Autocomplete
+              onInputChange={handleInputChange}
+              openOnFocus
+              options={options}
+              getOptionLabel={(option) => option.name}
+              value={value}
+            />
+            <button onClick={() => setValue(options[1])}>Reset</button>
+          </React.Fragment>
+        );
+      }
+      const { user } = render(<MyComponent />);
+
+      await user.click(screen.getByText('Reset'));
+
+      const expectedCallCount = reactMajor === 18 ? 4 : 2;
+
+      expect(handleInputChange.callCount).to.equal(expectedCallCount);
+      expect(handleInputChange.args[expectedCallCount - 1][1]).to.equal(options[1].name);
+      expect(handleInputChange.args[expectedCallCount - 1][2]).to.equal('reset');
+    });
+
+    it('provides a reason on clear', async () => {
       const handleInputChange = spy();
       const options = [{ name: 'foo' }];
-      render(
+      const { user } = render(
         <Autocomplete
           onInputChange={handleInputChange}
-          openOnFocus
+          options={options}
+          getOptionLabel={(option) => option.name}
+          defaultValue={options[0]}
+          autoFocus
+        />,
+      );
+
+      await user.click(screen.getByLabelText('Clear'));
+
+      expect(handleInputChange.lastCall.args[1]).to.equal('');
+      expect(handleInputChange.lastCall.args[2]).to.equal('clear');
+    });
+
+    it('provides a reason on blur', async () => {
+      const handleInputChange = spy();
+      const options = [{ name: 'foo' }];
+      const { user } = render(
+        <Autocomplete
+          onInputChange={handleInputChange}
+          options={options}
+          getOptionLabel={(option) => option.name}
+          autoFocus
+          clearOnBlur
+        />,
+      );
+      await user.type(screen.getByRole('combobox'), options[0].name);
+      await user.tab();
+
+      expect(handleInputChange.lastCall.args[1]).to.equal('');
+      expect(handleInputChange.lastCall.args[2]).to.equal('blur');
+    });
+
+    it('provides a reason on select option', async () => {
+      const handleInputChange = spy();
+      const options = [{ name: 'foo' }];
+      const { user } = render(
+        <Autocomplete
+          onInputChange={handleInputChange}
           options={options}
           getOptionLabel={(option) => option.name}
           autoFocus
         />,
       );
-      const textbox = screen.getByRole('combobox');
 
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'Enter' });
+      await user.click(screen.getByLabelText('Open'));
+      await user.click(screen.getByRole('option', { name: options[0].name }));
 
-      expect(handleInputChange.callCount).to.equal(1);
-      expect(handleInputChange.args[0][1]).to.equal(options[0].name);
-      expect(handleInputChange.args[0][2]).to.equal('reset');
+      expect(handleInputChange.lastCall.args[1]).to.equal(options[0].name);
+      expect(handleInputChange.lastCall.args[2]).to.equal('selectOption');
+    });
+
+    it('provides a reason on remove option', async () => {
+      const handleInputChange = spy();
+      const options = [{ name: 'foo' }];
+      const { user } = render(
+        <Autocomplete
+          onInputChange={handleInputChange}
+          options={options}
+          getOptionLabel={(option) => option.name}
+          defaultValue={options}
+          autoFocus
+          multiple
+        />,
+      );
+
+      await user.type(screen.getByRole('combobox'), `${options[0].name}{Enter}`);
+
+      expect(handleInputChange.lastCall.args[1]).to.equal('');
+      expect(handleInputChange.lastCall.args[2]).to.equal('removeOption');
     });
   });
 
@@ -2104,10 +2189,10 @@ describe('Joy <Autocomplete />', () => {
       );
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        React.version.startsWith('18') ? 2 : 1,
+        reactMajor >= 18 ? 2 : 1,
       );
       expect(handleHighlightChange.args[0]).to.deep.equal([undefined, options[0], 'auto']);
-      if (React.version.startsWith('18')) {
+      if (reactMajor >= 18) {
         expect(handleHighlightChange.args[1]).to.deep.equal([undefined, options[0], 'auto']);
       }
     });
@@ -2124,9 +2209,9 @@ describe('Joy <Autocomplete />', () => {
 
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        React.version.startsWith('18') ? 4 : 3,
+        reactMajor >= 18 ? 4 : 3,
       );
-      if (React.version.startsWith('18')) {
+      if (reactMajor >= 18) {
         expect(handleHighlightChange.args[2][0]).to.equal(undefined);
         expect(handleHighlightChange.args[2][1]).to.equal(null);
         expect(handleHighlightChange.args[2][2]).to.equal('auto');
@@ -2138,7 +2223,7 @@ describe('Joy <Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        React.version.startsWith('18') ? 5 : 4,
+        reactMajor >= 18 ? 5 : 4,
       );
       expect(handleHighlightChange.lastCall.args[0]).not.to.equal(undefined);
       expect(handleHighlightChange.lastCall.args[1]).to.equal(options[1]);
@@ -2155,9 +2240,9 @@ describe('Joy <Autocomplete />', () => {
       fireEvent.mouseMove(firstOption);
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        React.version.startsWith('18') ? 4 : 3,
+        reactMajor >= 18 ? 4 : 3,
       );
-      if (React.version.startsWith('18')) {
+      if (reactMajor >= 18) {
         expect(handleHighlightChange.args[2][0]).to.equal(undefined);
         expect(handleHighlightChange.args[2][1]).to.equal(null);
         expect(handleHighlightChange.args[2][2]).to.equal('auto');
@@ -2202,7 +2287,11 @@ describe('Joy <Autocomplete />', () => {
       checkHighlightIs(getByRole('listbox'), 'one');
       setProps({ options: ['four', 'five'] });
       checkHighlightIs(getByRole('listbox'), 'four');
-      expect(handleHighlightChange).to.deep.equal([null, 'one', 'four']);
+
+      const expectedCallHistory =
+        reactMajor >= 19 ? [null, 'one', 'one', 'four'] : [null, 'one', 'four'];
+
+      expect(handleHighlightChange).to.deep.equal(expectedCallHistory);
     });
   });
 

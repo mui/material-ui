@@ -130,4 +130,9 @@ export interface TypographyOwnerState extends ApplyColorInversion<TypographyProp
    * If `true`, the element is rendered in a Typography.
    */
   nesting: boolean;
+  /**
+   * @internal
+   * If `true`, the Skeleton is a direct child.
+   */
+  unstable_hasSkeleton?: boolean;
 }

@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { ListContext, ListContextValue } from '../useList/ListContext';
 import { MenuItemMetadata } from '../useMenuItem';
-import { CompoundComponentContext, CompoundComponentContextValue } from '../utils/useCompound';
+import { CompoundComponentContext, CompoundComponentContextValue } from '../useCompound';
 
 export type MenuProviderValue = CompoundComponentContextValue<string, MenuItemMetadata> &
   ListContextValue<string>;
@@ -19,32 +19,15 @@ export interface MenuProviderProps {
  */
 export function MenuProvider(props: MenuProviderProps) {
   const { value, children } = props;
-
-  const {
-    dispatch,
-    getItemIndex,
-    getItemState,
-    registerHighlightChangeHandler,
-    registerSelectionChangeHandler,
-    registerItem,
-    totalSubitemCount,
-  } = value;
+  const { dispatch, getItemIndex, getItemState, registerItem, totalSubitemCount } = value;
 
   const listContextValue: ListContextValue<string> = React.useMemo(
     () => ({
       dispatch,
       getItemState,
       getItemIndex,
-      registerHighlightChangeHandler,
-      registerSelectionChangeHandler,
     }),
-    [
-      dispatch,
-      getItemIndex,
-      getItemState,
-      registerHighlightChangeHandler,
-      registerSelectionChangeHandler,
-    ],
+    [dispatch, getItemIndex, getItemState],
   );
 
   const compoundComponentContextValue: CompoundComponentContextValue<string, MenuItemMetadata> =

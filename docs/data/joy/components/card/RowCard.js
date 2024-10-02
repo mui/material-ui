@@ -19,7 +19,7 @@ export default function RowCard() {
         </AspectRatio>
       </CardOverflow>
       <CardContent>
-        <Typography fontWeight="md" textColor="success.plainColor">
+        <Typography textColor="success.plainColor" sx={{ fontWeight: 'md' }}>
           Yosemite Park
         </Typography>
         <Typography level="body-sm">California, USA</Typography>
@@ -30,7 +30,7 @@ export default function RowCard() {
         sx={{
           px: 0.2,
           writingMode: 'vertical-rl',
-          textAlign: 'center',
+          justifyContent: 'center',
           fontSize: 'xs',
           fontWeight: 'xl',
           letterSpacing: '1px',

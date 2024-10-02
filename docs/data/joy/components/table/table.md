@@ -10,17 +10,17 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/table/
 
 <p class="description">Tables display sets of data organized in rows and columns.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
-The Joy UI Table component lets you use plain HTML structure to assemble a table in JSX.
+The Joy UI Table component lets you use plain HTML structure to assemble a table in JSX.
 
 {{"demo": "TableUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Basics
 
-Joy UI Table will apply the styles based on a table structure using `<thead>`, `<tbody>`, and `<tfoot>` elements.
+Joy UI Table will apply the styles based on a table structure using `<thead>`, `<tbody>`, and `<tfoot>` elements.
 
 ```jsx
 import Table from '@mui/joy/Table';
@@ -74,7 +74,7 @@ Use the `sx` prop to target columns with the appropriate CSS selector and apply 
 
 ### Variants
 
-Table supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `plain` (default), `outlined`, `soft`, and `solid`.
+Table supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `plain` (default), `outlined`, `soft`, and `solid`.
 
 {{"demo": "TableVariants.js"}}
 
@@ -113,7 +113,7 @@ For example, you can use `3n` as a value to create stripes on row numbers three,
 
 ### Hover
 
-To highlight a row of the table body when hovering over it, set the `hoverAxis` prop to true.
+To highlight a row of the table body when hovering over it, set the `hoverRow` prop to true.
 
 {{"demo": "TableHover.js"}}
 
@@ -239,12 +239,12 @@ The header cells always truncate the text to keep the header's height predictabl
 
 {{"demo": "TableTextEllipsis.js"}}
 
-## CSS variable playground
+## CSS variables playground
 
 Play around with the CSS variables available to the Table component to see how the design changes.
 You can use these to customize the components with both the `sx` prop and the theme.
 
-{{"demo": "TableVariables.js"}}
+{{"demo": "TableVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Usage with Sheet
 

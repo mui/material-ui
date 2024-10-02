@@ -34,7 +34,7 @@ with:
   --billing-mode PAY_PER_REQUEST \
 ```
 
-The project includes an IAM access policy that will grant the lambda function access to the tables. You can edit the [policies/access-dynamodb.json](policies/access-dynamodb.json) file to change the access permissions. These are only applied on create (`yarn setup`). Alternatively, to avoid inadvertently pushing changes, use the `--policies` flag with `yarn setup` to refer to a copy of this directory, and exclude it in your `~/.gitignore`.
+The project includes an IAM access policy that will grant the lambda function access to the tables. You can edit the [policies/access-dynamodb.json](policies/access-dynamodb.json) file to change the access permissions. These are only applied on create (`pnpm setup`). Alternatively, to avoid inadvertently pushing changes, use the `--policies` flag with `pnpm setup` to refer to a copy of this directory, and exclude it in your `~/.gitignore`.
 
 > ⚠️ You will need to update the "Resource" key in this file with the value returned after creating each table.
 
@@ -44,9 +44,9 @@ The project includes an IAM access policy that will grant the lambda function ac
 
 To set this up, first [set up the credentials](https://claudiajs.com/tutorials/installing.html#configuring-access-credentials), then:
 
-1. run `yarn install` (from the root workspace) to install the dependencies
-1. Navigate into the directory of this README, e.g. `cd docs/packages/feedback`
-1. run `yarn setup` to create the lambda function on AWS under the default name.
+1. run `pnpm install` (from the root workspace) to install the dependencies
+1. Navigate into the directory of this README, for example `cd docs/packages/feedback`
+1. run `pnpm setup` to create the lambda function on AWS under the default name.
    This will also ask you for table names for development and production.
    If you used the above AWS command, they will be `feedback-dev` and `feedback-dev` respectively.
 1. Test the API using the [example requests below](#testing)

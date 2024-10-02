@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 
 export default function MultilineChips() {
   return (
-    <Box width={100}>
+    <Box sx={{ width: 100 }}>
       <Chip
         sx={{
           height: 'auto',

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { act, createRenderer, fireEvent } from 'test/utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { useButton } from '@mui/base/useButton';
@@ -170,7 +170,12 @@ describe('useButton', () => {
         expect(handleClickExternal.callCount).to.equal(0);
       });
 
-      it('handles onFocusVisible and does not include it in the root props', () => {
+      it('handles onFocusVisible and does not include it in the root props', function test() {
+        if (/jsdom/.test(window.navigator.userAgent)) {
+          // JSDOM doesn't support :focus-visible
+          this.skip();
+        }
+
         interface WithFocusVisibleHandler {
           onFocusVisible: React.FocusEventHandler;
         }
@@ -237,6 +242,19 @@ describe('useButton', () => {
 
       const { getByRole } = render(<TestComponent />);
       expect(getByRole('button')).to.have.property('tabIndex', customTabIndex);
+    });
+  });
+
+  describe('arbitrary props', () => {
+    it('are passed to the host component', () => {
+      const buttonTestId = 'button-test-id';
+      function TestComponent() {
+        const { getRootProps } = useButton({});
+        return <button {...getRootProps({ 'data-testid': buttonTestId })} />;
+      }
+
+      const { getByRole } = render(<TestComponent />);
+      expect(getByRole('button')).to.have.attribute('data-testid', buttonTestId);
     });
   });
 });

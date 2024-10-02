@@ -68,6 +68,12 @@
         "description": "(option: Value) =&gt; boolean"
       }
     },
+    "getOptionKey": {
+      "type": {
+        "name": "(option: Value | AutocompleteFreeSoloValueMapping&lt;FreeSolo&gt;) =&gt; string | number",
+        "description": "(option: Value | AutocompleteFreeSoloValueMapping&lt;FreeSolo&gt;) =&gt; string | number"
+      }
+    },
     "getOptionLabel": {
       "type": {
         "name": "(option: Value | AutocompleteFreeSoloValueMapping&lt;FreeSolo&gt;) =&gt; string",
@@ -141,8 +147,8 @@
     },
     "unstable_isActiveElementInListbox": {
       "type": {
-        "name": "(listbox: React.RefObject&lt;HTMLElement&gt;) =&gt; boolean",
-        "description": "(listbox: React.RefObject&lt;HTMLElement&gt;) =&gt; boolean"
+        "name": "(listbox: React.RefObject&lt;HTMLElement | null&gt;) =&gt; boolean",
+        "description": "(listbox: React.RefObject&lt;HTMLElement | null&gt;) =&gt; boolean"
       }
     },
     "value": {
@@ -177,8 +183,8 @@
     },
     "getInputProps": {
       "type": {
-        "name": "() =&gt; React.InputHTMLAttributes&lt;HTMLInputElement&gt;",
-        "description": "() =&gt; React.InputHTMLAttributes&lt;HTMLInputElement&gt;"
+        "name": "() =&gt; React.InputHTMLAttributes&lt;HTMLInputElement&gt; &amp; {\n  ref: React.Ref&lt;HTMLInputElement&gt;\n}",
+        "description": "() =&gt; React.InputHTMLAttributes&lt;HTMLInputElement&gt; &amp; {\n  ref: React.Ref&lt;HTMLInputElement&gt;\n}"
       },
       "required": true
     },
@@ -191,8 +197,8 @@
     },
     "getOptionProps": {
       "type": {
-        "name": "(renderedOption: UseAutocompleteRenderedOption&lt;Value&gt;) =&gt; React.HTMLAttributes&lt;HTMLLIElement&gt;",
-        "description": "(renderedOption: UseAutocompleteRenderedOption&lt;Value&gt;) =&gt; React.HTMLAttributes&lt;HTMLLIElement&gt;"
+        "name": "(renderedOption: UseAutocompleteRenderedOption&lt;Value&gt;) =&gt; React.HTMLAttributes&lt;HTMLLIElement&gt; &amp; { key: any }",
+        "description": "(renderedOption: UseAutocompleteRenderedOption&lt;Value&gt;) =&gt; React.HTMLAttributes&lt;HTMLLIElement&gt; &amp; { key: any }"
       },
       "required": true
     },

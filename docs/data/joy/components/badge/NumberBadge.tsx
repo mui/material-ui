@@ -21,7 +21,9 @@ export default function NumberBadge() {
       }}
     >
       <Badge badgeContent={count} showZero={showZero}>
-        <Typography level="h1">🛍</Typography>
+        <Typography level="h1" component="h2">
+          🛍
+        </Typography>
       </Badge>
       <Box
         sx={{
@@ -41,7 +43,7 @@ export default function NumberBadge() {
         >
           <Remove />
         </IconButton>
-        <Typography fontWeight="md" textColor="text.secondary">
+        <Typography textColor="text.secondary" sx={{ fontWeight: 'md' }}>
           {count}
         </Typography>
         <IconButton

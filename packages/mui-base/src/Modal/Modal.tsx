@@ -138,12 +138,12 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
     getSlotProps: (otherHandlers: EventHandlers) => {
       return getBackdropProps({
         ...otherHandlers,
-        onClick: (e: React.MouseEvent) => {
+        onClick: (event: React.MouseEvent) => {
           if (onBackdropClick) {
-            onBackdropClick(e);
+            onBackdropClick(event);
           }
           if (otherHandlers?.onClick) {
-            otherHandlers.onClick(e);
+            otherHandlers.onClick(event);
           }
         },
       });
@@ -181,10 +181,10 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
 }) as PolymorphicComponent<ModalTypeMap>;
 
 Modal.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A single child content element.
    */
@@ -197,6 +197,9 @@ Modal.propTypes /* remove-proptypes */ = {
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
+   *
+   * You can also provide a callback, which is called in a React layout effect.
+   * This lets you set the container from a ref, and also makes server-side rendering possible.
    *
    * By default, it uses the body of the top-level document object,
    * so it's simply `document.body` most of the time.

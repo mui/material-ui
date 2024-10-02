@@ -9,7 +9,7 @@ githubLabel: 'component: ButtonGroup'
 
 <p class="description">The Button Group combines a set of related buttons.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -27,7 +27,7 @@ The Button Group component can wrap [`Button`](/joy-ui/react-button/) and [`Icon
 
 ### Variants
 
-The Button Group component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `outlined` (default), `solid`, `soft`, and `plain`.
+The Button Group component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `outlined` (default), `solid`, `soft`, and `plain`.
 
 The `variant` prop is passed to the buttons, not the Button Group itself.
 
@@ -71,7 +71,7 @@ Use `spacing` prop to control the gap between buttons. If the `spacing` is set t
 :::success
 The type of value can be:
 
-- `string`: any valid CSS length unit, e.g. `px`, `rem`, `em`, etc.
+- `string`: any valid CSS length unit, for example `px`, `rem`, `em`, etc.
 - `number`: will be calculated by `theme.spacing` function.
 - `array`: the responsive values based on the breakpoints defined in the theme.
 - `object`: the key must be one of the breakpoints defined in the theme (the defaults are `"xs" | "sm" | "md" | "lg" | "xl")`, and the value is the spacing of type `string` or `number`.
@@ -84,7 +84,7 @@ The type of value can be:
 
 ### Vertical group
 
-The Button Group component can be displayed vertically using the `orientation="horizontal"` prop.
+The Button Group component can be displayed vertically using the `orientation="vertical"` prop.
 Note that this prop has no effect on `IconButton` component.
 
 {{"demo": "GroupOrientation.js"}}

@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getTableContainerUtilityClass } from './tableContainerClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -27,7 +27,7 @@ const TableContainerRoot = styled('div', {
 });
 
 const TableContainer = React.forwardRef(function TableContainer(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTableContainer' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTableContainer' });
   const { className, component = 'div', ...other } = props;
 
   const ownerState = {
@@ -49,10 +49,10 @@ const TableContainer = React.forwardRef(function TableContainer(inProps, ref) {
 });
 
 TableContainer.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component, normally `Table`.
    */

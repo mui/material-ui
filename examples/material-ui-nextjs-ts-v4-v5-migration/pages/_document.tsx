@@ -1,32 +1,30 @@
 import * as React from 'react';
-import Document, {
+import {
   Html,
   Head,
   Main,
   NextScript,
   DocumentProps,
+  DocumentInitialProps,
   DocumentContext,
 } from 'next/document';
-import createEmotionServer from '@emotion/server/create-instance';
-import { AppType } from 'next/app';
+import { AppProps } from 'next/app';
+import {
+  DocumentHeadTags,
+  DocumentHeadTagsProps,
+  documentGetInitialProps,
+} from '@mui/material-nextjs/v14-pagesRouter';
 import { ServerStyleSheets as JSSServerStyleSheets } from '@mui/styles';
 import theme from '../src/theme';
-import createEmotionCache from '../src/createEmotionCache';
-import { MyAppProps } from './_app';
 
-interface MyDocumentProps extends DocumentProps {
-  emotionStyleTags: JSX.Element[];
-}
-
-export default function MyDocument({ emotionStyleTags }: MyDocumentProps) {
+export default function MyDocument(props: DocumentProps & DocumentHeadTagsProps) {
   return (
     <Html lang="en">
       <Head>
         {/* PWA primary color */}
         <meta name="theme-color" content={theme.palette.primary.main} />
         <link rel="shortcut icon" href="/favicon.ico" />
-        {/* Inject MUI styles first to match with the prepend: true configuration. */}
-        {emotionStyleTags}
+        <DocumentHeadTags {...props} />
       </Head>
       <body>
         <Main />
@@ -56,82 +54,43 @@ if (process.env.NODE_ENV === 'production') {
   cleanCSS = new CleanCSS();
 }
 
-// `getInitialProps` belongs to `_document` (instead of `_app`),
-// it's compatible with static-site generation (SSG).
 MyDocument.getInitialProps = async (ctx: DocumentContext) => {
-  // Resolution order
-  //
-  // On the server:
-  // 1. app.getInitialProps
-  // 2. page.getInitialProps
-  // 3. document.getInitialProps
-  // 4. app.render
-  // 5. page.render
-  // 6. document.render
-  //
-  // On the server with error:
-  // 1. document.getInitialProps
-  // 2. app.render
-  // 3. page.render
-  // 4. document.render
-  //
-  // On the client
-  // 1. app.getInitialProps
-  // 2. page.getInitialProps
-  // 3. app.render
-  // 4. page.render
-
-  const originalRenderPage = ctx.renderPage;
-
-  // You can consider sharing the same emotion cache between all the SSR requests to speed up performance.
-  // However, be aware that it can have global side effects.
-  const cache = createEmotionCache();
-  const { extractCriticalToChunks } = createEmotionServer(cache);
   const jssSheets = new JSSServerStyleSheets();
 
-  ctx.renderPage = () =>
-    originalRenderPage({
-      enhanceApp: (App: React.ComponentType<React.ComponentProps<AppType> & MyAppProps>) =>
-        function EnhanceApp(props) {
-          return jssSheets.collect(<App emotionCache={cache} {...props} />);
+  const finalProps = await documentGetInitialProps(ctx, {
+    plugins: [
+      {
+        enhanceApp: (App: React.ComponentType<AppProps>) =>
+          function EnhanceApp(props: AppProps) {
+            return jssSheets.collect(<App {...props} />);
+          },
+        resolveProps: async (initialProps: DocumentInitialProps) => {
+          // Generate the css string for the styles coming from jss
+          let css = jssSheets.toString();
+          // It might be undefined, for example after an error.
+          if (css && process.env.NODE_ENV === 'production') {
+            const result1 = await prefixer.process(css, { from: undefined });
+            css = result1.css;
+            css = cleanCSS.minify(css).styles;
+          }
+
+          return {
+            ...initialProps,
+            styles: [
+              ...(Array.isArray(initialProps.styles) ? initialProps.styles : [initialProps.styles]),
+              <style
+                id="jss-server-side"
+                key="jss-server-side"
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={{ __html: css }}
+              />,
+              ...React.Children.toArray(initialProps.styles),
+            ],
+          };
         },
-    });
-
-  const initialProps = await Document.getInitialProps(ctx);
-
-  // Generate style tags for the styles coming from Emotion
-  // This is important. It prevents Emotion from rendering invalid HTML.
-  // See https://github.com/mui/material-ui/issues/26561#issuecomment-855286153
-  const emotionStyles = extractCriticalToChunks(initialProps.html);
-  const emotionStyleTags = emotionStyles.styles.map((style) => (
-    <style
-      data-emotion={`${style.key} ${style.ids.join(' ')}`}
-      key={style.key}
-      // eslint-disable-next-line react/no-danger
-      dangerouslySetInnerHTML={{ __html: style.css }}
-    />
-  ));
-
-  // Generate the css string for the styles coming from jss
-  let css = jssSheets.toString();
-  // It might be undefined, e.g. after an error.
-  if (css && process.env.NODE_ENV === 'production') {
-    const result1 = await prefixer.process(css, { from: undefined });
-    css = result1.css;
-    css = cleanCSS.minify(css).styles;
-  }
-
-  return {
-    ...initialProps,
-    styles: [
-      ...emotionStyleTags,
-      <style
-        id="jss-server-side"
-        key="jss-server-side"
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: css }}
-      />,
-      ...React.Children.toArray(initialProps.styles),
+      },
     ],
-  };
+  });
+
+  return finalProps;
 };

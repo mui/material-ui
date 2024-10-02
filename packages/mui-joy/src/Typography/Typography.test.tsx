@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Typography, { typographyClasses as classes, TypographyProps } from '@mui/joy/Typography';
 import { ThemeProvider } from '@mui/joy/styles';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Typography />', () => {
   const { render } = createRenderer();
@@ -23,8 +24,6 @@ describe('<Typography />', () => {
     },
     skip: ['componentsProp', 'classesRoot'],
   }));
-
-  describeJoyColorInversion(<Typography variant="soft" />, { muiName: 'JoyTypography', classes });
 
   it('should render the text', () => {
     const { container } = render(<Typography>Hello</Typography>);
@@ -99,7 +98,10 @@ describe('<Typography />', () => {
     });
   });
 
-  it('combines system properties with the sx prop', () => {
+  it('combines system properties with the sx prop', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
     const { container } = render(<Typography mt={2} mr={1} sx={{ marginRight: 5, mb: 2 }} />);
 
     expect(container.firstChild).toHaveComputedStyle({

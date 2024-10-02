@@ -1,21 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  describeConformanceUnstyled,
-  act,
-  createRenderer,
-  fireEvent,
-  screen,
-  createMount,
-} from 'test/utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import { Tab } from '@mui/base/Tab';
 import { Tabs, tabsClasses as classes, TabsProps } from '@mui/base/Tabs';
 import { TabsList } from '@mui/base/TabsList';
 import { TabPanel } from '@mui/base/TabPanel';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 describe('<Tabs />', () => {
-  const mount = createMount();
   const { render } = createRenderer();
 
   before(function beforeHook() {
@@ -34,8 +27,6 @@ describe('<Tabs />', () => {
     classes,
     inheritComponent: 'div',
     render,
-    mount,
-    muiName: 'MuiTabs',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'header',
     slots: {

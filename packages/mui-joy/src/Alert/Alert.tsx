@@ -5,9 +5,9 @@ import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
+import { applySolidInversion, applySoftInversion } from '../colorInversion';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { ColorInversionProvider, useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import { getAlertUtilityClass } from './alertClasses';
 import { AlertProps, AlertOwnerState, AlertTypeMap } from './AlertProps';
@@ -74,14 +74,18 @@ const AlertRoot = styled('div', {
       alignItems: 'center',
       padding: `var(--Alert-padding)`,
       borderRadius: 'var(--Alert-radius)',
-      boxShadow: theme.vars.shadow.xs,
       ...theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`],
       fontWeight: theme.vars.fontWeight.md,
+      ...(ownerState.variant === 'solid' &&
+        ownerState.color &&
+        ownerState.invertedColors &&
+        applySolidInversion(ownerState.color)(theme)),
+      ...(ownerState.variant === 'soft' &&
+        ownerState.color &&
+        ownerState.invertedColors &&
+        applySoftInversion(ownerState.color)(theme)),
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
     } as const,
-    ownerState.color !== 'context' &&
-      ownerState.invertedColors &&
-      theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
     p !== undefined && { '--Alert-padding': p },
     padding !== undefined && { '--Alert-padding': padding },
     borderRadius !== undefined && { '--Alert-radius': borderRadius },
@@ -125,10 +129,10 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   const {
     children,
     className,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     invertedColors = false,
     role = 'alert',
-    variant = 'outlined',
+    variant = 'soft',
     size = 'md',
     startDecorator,
     endDecorator,
@@ -137,12 +141,11 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
     color,
+    invertedColors,
     variant,
     size,
   };
@@ -175,33 +178,23 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     ownerState,
   });
 
-  const result = (
-    <React.Fragment>
+  return (
+    <SlotRoot {...rootProps}>
       {startDecorator && (
         <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
       )}
 
       {children}
       {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
-    </React.Fragment>
-  );
-
-  return (
-    <SlotRoot {...rootProps}>
-      {invertedColors ? (
-        <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>
-      ) : (
-        result
-      )}
     </SlotRoot>
   );
 }) as OverridableComponent<AlertTypeMap>;
 
 Alert.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */
@@ -277,7 +270,7 @@ Alert.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
-   * @default 'outlined'
+   * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

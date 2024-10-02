@@ -9,15 +9,15 @@ import {
 import { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
+
 import useSlot from '../utils/useSlot';
-import { ListItemOwnerState, ListItemTypeMap } from './ListItemProps';
-import { getListItemUtilityClass } from './listItemClasses';
+import { ListItemOwnerState, ListItemProps, ListItemTypeMap } from './ListItemProps';
+import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
 import NestedListContext from '../List/NestedListContext';
 import RowListContext from '../List/RowListContext';
 import WrapListContext from '../List/WrapListContext';
 import ComponentListContext from '../List/ComponentListContext';
-import ListSubheaderDispatch from '../ListSubheader/ListSubheaderContext';
+import ListSubheaderContext from '../ListSubheader/ListSubheaderContext';
 import GroupListContext from '../List/GroupListContext';
 
 const useUtilityClasses = (ownerState: ListItemOwnerState) => {
@@ -38,78 +38,88 @@ const useUtilityClasses = (ownerState: ListItemOwnerState) => {
   return composeClasses(slots, getListItemUtilityClass, {});
 };
 
-const ListItemRoot = styled('li', {
+export const StyledListItem = styled('li')<{ ownerState: ListItemOwnerState }>(
+  ({ theme, ownerState }) => [
+    !ownerState.nested &&
+      ({
+        // add negative margin to ListItemButton equal to this ListItem padding
+        '--ListItemButton-marginInline': `calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))`,
+        '--ListItemButton-marginBlock': 'calc(-1 * var(--ListItem-paddingY))',
+        alignItems: 'center',
+        gap: 'var(--ListItem-gap)',
+        marginInline: 'var(--ListItem-marginInline)',
+      } as const),
+    ownerState.nested &&
+      ({
+        // add negative margin to NestedList equal to this ListItem padding
+        '--NestedList-marginRight': 'calc(-1 * var(--ListItem-paddingRight))',
+        '--NestedList-marginLeft': 'calc(-1 * var(--ListItem-paddingLeft))',
+        '--NestedListItem-paddingLeft': `calc(var(--ListItem-paddingLeft) + var(--List-nestedInsetStart))`,
+        // add negative margin to ListItem, ListItemButton to make them start from the edge.
+        '--ListItemButton-marginBlock': '0px',
+        '--ListItemButton-marginInline':
+          'calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))',
+        '--ListItem-marginInline':
+          'calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))',
+        flexDirection: 'column',
+      } as const),
+    // Base styles
+    {
+      // Integration with control elements, for example Checkbox, Radio.
+      '--unstable_actionRadius': 'calc(var(--ListItem-radius) - var(--variant-borderWidth, 0px))',
+      ...(ownerState.startAction && {
+        '--unstable_startActionWidth': '2rem', // to add sufficient padding-left on ListItemButton
+      }),
+      ...(ownerState.endAction && {
+        '--unstable_endActionWidth': '2.5rem', // to add sufficient padding-right on ListItemButton
+      }),
+      boxSizing: 'border-box',
+      borderRadius: 'var(--ListItem-radius)',
+      display: 'var(--_ListItem-display)',
+      '&:not([hidden])': { '--_ListItem-display': 'var(--_List-markerDisplay, flex)' },
+      flex: 'none', // prevent children from shrinking when the List's height is limited.
+      listStyleType: 'var(--_List-markerType, disc)',
+      position: 'relative',
+      paddingBlockStart: ownerState.nested ? 0 : 'var(--ListItem-paddingY)',
+      paddingBlockEnd: ownerState.nested ? 0 : 'var(--ListItem-paddingY)',
+      paddingInlineStart: 'var(--ListItem-paddingLeft)',
+      paddingInlineEnd: 'var(--ListItem-paddingRight)',
+      ...(ownerState['data-first-child'] === undefined && {
+        ...(ownerState.row
+          ? {
+              marginInlineStart: 'var(--List-gap)',
+            }
+          : {
+              marginBlockStart: 'var(--List-gap)',
+            }),
+      }),
+      ...(ownerState.row &&
+        ownerState.wrap && {
+          marginInlineStart: 'var(--List-gap)',
+          marginBlockStart: 'var(--List-gap)',
+        }),
+      minBlockSize: 'var(--ListItem-minHeight)',
+      ...(ownerState.sticky &&
+        ({
+          // sticky in list item can be found in grouped options
+          position: 'sticky',
+          top: 'var(--ListItem-stickyTop, 0px)', // integration with Menu and Select.
+          zIndex: 1,
+          background: `var(--ListItem-stickyBackground, ${theme.vars.palette.background.body})`,
+        } as const)),
+      [`.${listItemClasses.nested} > &`]: {
+        '--_ListItem-display': 'flex',
+      },
+    } as const,
+    theme.variants[ownerState.variant!]?.[ownerState.color!],
+  ],
+);
+
+const ListItemRoot = styled(StyledListItem, {
   name: 'JoyListItem',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListItemOwnerState }>(({ theme, ownerState }) => [
-  !ownerState.nested &&
-    ({
-      // add negative margin to ListItemButton equal to this ListItem padding
-      '--ListItemButton-marginInline': `calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))`,
-      '--ListItemButton-marginBlock': 'calc(-1 * var(--ListItem-paddingY))',
-      alignItems: 'center',
-      marginInline: 'var(--ListItem-marginInline)',
-    } as const),
-  ownerState.nested &&
-    ({
-      // add negative margin to NestedList equal to this ListItem padding
-      '--NestedList-marginRight': 'calc(-1 * var(--ListItem-paddingRight))',
-      '--NestedList-marginLeft': 'calc(-1 * var(--ListItem-paddingLeft))',
-      '--NestedListItem-paddingLeft': `calc(var(--ListItem-paddingLeft) + var(--List-nestedInsetStart))`,
-      // add negative margin to ListItem, ListItemButton to make them start from the edge.
-      '--ListItemButton-marginBlock': '0px',
-      '--ListItemButton-marginInline':
-        'calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))',
-      '--ListItem-marginInline':
-        'calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))',
-      flexDirection: 'column',
-    } as const),
-  // Base styles
-  {
-    // Integration with control elements, eg. Checkbox, Radio.
-    '--unstable_actionRadius': 'calc(var(--ListItem-radius) - var(--variant-borderWidth, 0px))',
-    ...(ownerState.startAction && {
-      '--unstable_startActionWidth': '2rem', // to add sufficient padding-left on ListItemButton
-    }),
-    ...(ownerState.endAction && {
-      '--unstable_endActionWidth': '2.5rem', // to add sufficient padding-right on ListItemButton
-    }),
-    boxSizing: 'border-box',
-    borderRadius: 'var(--ListItem-radius)',
-    display: 'flex',
-    flex: 'none', // prevent children from shrinking when the List's height is limited.
-    position: 'relative',
-    paddingBlockStart: ownerState.nested ? 0 : 'var(--ListItem-paddingY)',
-    paddingBlockEnd: ownerState.nested ? 0 : 'var(--ListItem-paddingY)',
-    paddingInlineStart: 'var(--ListItem-paddingLeft)',
-    paddingInlineEnd: 'var(--ListItem-paddingRight)',
-    ...(ownerState['data-first-child'] === undefined && {
-      ...(ownerState.row
-        ? {
-            marginInlineStart: 'var(--List-gap)',
-          }
-        : {
-            marginBlockStart: 'var(--List-gap)',
-          }),
-    }),
-    ...(ownerState.row &&
-      ownerState.wrap && {
-        marginInlineStart: 'var(--List-gap)',
-        marginBlockStart: 'var(--List-gap)',
-      }),
-    minBlockSize: 'var(--ListItem-minHeight)',
-    ...(ownerState.sticky &&
-      ({
-        // sticky in list item can be found in grouped options
-        position: 'sticky',
-        top: 'var(--ListItem-stickyTop, 0px)', // integration with Menu and Select.
-        zIndex: 1,
-        background: `var(--ListItem-stickyBackground, ${theme.vars.palette.background.body})`,
-      } as const)),
-  } as const,
-  theme.variants[ownerState.variant!]?.[ownerState.color!],
-]);
+})<{ ownerState: ListItemOwnerState }>({});
 
 const ListItemStartAction = styled('div', {
   name: 'JoyListItem',
@@ -164,7 +174,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     nested = false,
     sticky = false,
     variant = 'plain',
-    color: colorProp = 'neutral',
+    color = 'neutral',
     startAction,
     endAction,
     role: roleProp,
@@ -172,8 +182,6 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const [subheaderId, setSubheaderId] = React.useState('');
 
@@ -236,7 +244,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   });
 
   return (
-    <ListSubheaderDispatch.Provider value={setSubheaderId}>
+    <ListSubheaderContext.Provider value={setSubheaderId}>
       <NestedListContext.Provider value={nested ? subheaderId || true : false}>
         <SlotRoot {...rootProps}>
           {startAction && <SlotStartAction {...startActionProps}>{startAction}</SlotStartAction>}
@@ -248,7 +256,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
                   ...(index === 0 && { 'data-first-child': '' }),
                   ...(isMuiElement(child, ['ListItem']) && {
                     // The ListItem of ListItem should not be 'li'
-                    component: child.props.component || 'div',
+                    component: (child.props as ListItemProps)?.component || 'div',
                   }),
                 })
               : child,
@@ -257,15 +265,15 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
           {endAction && <SlotEndAction {...endActionProps}>{endAction}</SlotEndAction>}
         </SlotRoot>
       </NestedListContext.Provider>
-    </ListSubheaderDispatch.Provider>
+    </ListSubheaderContext.Provider>
   );
 }) as OverridableComponent<ListItemTypeMap>;
 
 ListItem.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

@@ -19,13 +19,8 @@ type ChatListItemProps = ListItemButtonProps & {
   setSelectedChat: (chat: ChatProps) => void;
 };
 
-export default function ChatListItem({
-  id,
-  sender,
-  messages,
-  selectedChatId,
-  setSelectedChat,
-}: ChatListItemProps) {
+export default function ChatListItem(props: ChatListItemProps) {
+  const { id, sender, messages, selectedChatId, setSelectedChat } = props;
   const selected = selectedChatId === id;
   return (
     <React.Fragment>
@@ -37,32 +32,25 @@ export default function ChatListItem({
           }}
           selected={selected}
           color="neutral"
-          sx={{
-            flexDirection: 'column',
-            alignItems: 'initial',
-            gap: 1,
-            fontWeight: 'normal',
-          }}
+          sx={{ flexDirection: 'column', alignItems: 'initial', gap: 1 }}
         >
           <Stack direction="row" spacing={1.5}>
             <AvatarWithStatus online={sender.online} src={sender.avatar} />
             <Box sx={{ flex: 1 }}>
-              <Typography fontSize="sm" fontWeight="lg">
-                {sender.name}
-              </Typography>
+              <Typography level="title-sm">{sender.name}</Typography>
               <Typography level="body-sm">{sender.username}</Typography>
             </Box>
-            <Box sx={{ lineHeight: 1, textAlign: 'right' }}>
+            <Box sx={{ lineHeight: 1.5, textAlign: 'right' }}>
+              {messages[0].unread && (
+                <CircleIcon sx={{ fontSize: 12 }} color="primary" />
+              )}
               <Typography
-                level="body-sm"
-                display={{ xs: 'none', md: 'block' }}
+                level="body-xs"
                 noWrap
+                sx={{ display: { xs: 'none', md: 'block' } }}
               >
                 5 mins ago
               </Typography>
-              {messages[0].unread && (
-                <CircleIcon sx={{ fontSize: 10 }} color="primary" />
-              )}
             </Box>
           </Stack>
           <Typography

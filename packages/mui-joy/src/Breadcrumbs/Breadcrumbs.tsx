@@ -34,18 +34,18 @@ const BreadcrumbsRoot = styled('nav', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: BreadcrumbsOwnerState }>(({ theme, ownerState }) => ({
   ...(ownerState.size === 'sm' && {
-    '--Breadcrumbs-gap': '0.25rem',
     '--Icon-fontSize': theme.vars.fontSize.lg,
+    gap: 'var(--Breadcrumbs-gap, 0.25rem)',
     padding: '0.5rem',
   }),
   ...(ownerState.size === 'md' && {
-    '--Breadcrumbs-gap': '0.375rem',
     '--Icon-fontSize': theme.vars.fontSize.xl,
+    gap: 'var(--Breadcrumbs-gap, 0.375rem)',
     padding: '0.75rem',
   }),
   ...(ownerState.size === 'lg' && {
-    '--Breadcrumbs-gap': '0.5rem',
     '--Icon-fontSize': theme.vars.fontSize.xl2,
+    gap: 'var(--Breadcrumbs-gap, 0.5rem)',
     padding: '1rem',
   }),
   ...theme.typography[`body-${ownerState.size!}`],
@@ -59,6 +59,7 @@ const BreadcrumbsOl = styled('ol', {
   display: 'flex',
   flexWrap: 'wrap',
   alignItems: 'center',
+  gap: 'inherit',
   // reset user-agent style
   padding: 0,
   margin: 0,
@@ -81,7 +82,6 @@ const BreadcrumbsSeparator = styled('li', {
 })<{ ownerState: BreadcrumbsOwnerState }>({
   display: 'flex',
   userSelect: 'none',
-  marginInline: 'var(--Breadcrumbs-gap)',
 });
 /**
  *
@@ -154,7 +154,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
   const allItems = (
     React.Children.toArray(children).filter((child) => {
       return React.isValidElement(child);
-    }) as Array<React.ReactElement>
+    }) as Array<React.ReactElement<any>>
   ).map((child, index) => (
     <SlotLi key={`child-${index}`} {...liProps}>
       {isMuiElement(child, ['Typography'])
@@ -187,10 +187,10 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
 }) as OverridableComponent<BreadcrumbsTypeMap>;
 
 Breadcrumbs.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

@@ -102,7 +102,6 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
       '@emotion/styled': 'latest',
       '@mui/material': 'latest',
       '@mui/lab': 'latest',
-      'date-fns': 'latest',
     });
   });
 
@@ -130,7 +129,6 @@ import 'exceljs';
       '@emotion/styled': 'latest',
       '@mui/material': 'latest',
       '@mui/lab': 'latest',
-      'date-fns': 'latest',
       exceljs: 'latest',
     });
   });
@@ -199,7 +197,6 @@ import {
       '@emotion/styled': 'latest',
       '@mui/material': 'latest',
       '@mui/lab': 'latest',
-      'date-fns': 'latest',
     });
   });
 
@@ -255,70 +252,6 @@ import * as Utils from '@mui/utils';
       '@mui/system': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/system',
       '@mui/utils': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/utils',
       '@mui/base': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/base',
-    });
-  });
-
-  it('should handle date adapters', () => {
-    const source = `
-import * as React from 'react';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import AdapterDayjs from '@mui/lab/AdapterDayjs';
-import AdapterLuxon from '@mui/lab/AdapterLuxon';
-import AdapterMoment from '@mui/lab/AdapterMoment';
-    `;
-
-    const { dependencies } = SandboxDependencies({
-      raw: source,
-      codeVariant: 'JS',
-    });
-
-    expect(dependencies).to.deep.equal({
-      react: 'latest',
-      'react-dom': 'latest',
-      '@emotion/react': 'latest',
-      '@emotion/styled': 'latest',
-      '@mui/material': 'latest',
-      '@mui/lab': 'latest',
-      'date-fns': 'latest',
-      dayjs: 'latest',
-      luxon: 'latest',
-      moment: 'latest',
-    });
-  });
-
-  it('should handle dependencies for @mui/x-date-pickers', () => {
-    const source = `
-import * as React from 'react';
-import TextField from '@mui/material/TextField';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { AdapterDateFnsJalali } from '@mui/x-date-pickers/AdapterDateFnsJalali';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { AdapterLuxon } from '@mui/x-date-pickers/AdapterLuxon';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import { AdapterMomentHijri } from '@mui/x-date-pickers/AdapterMomentHijri';
-import { AdapterMomentJalaali } from '@mui/x-date-pickers/AdapterMomentJalaali';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';`;
-
-    const { dependencies } = SandboxDependencies({
-      raw: source,
-      codeVariant: 'JS',
-    });
-
-    expect(dependencies).to.deep.equal({
-      react: 'latest',
-      'react-dom': 'latest',
-      '@emotion/react': 'latest',
-      '@emotion/styled': 'latest',
-      '@mui/material': 'latest',
-      '@mui/x-date-pickers': 'latest',
-      'date-fns': 'latest',
-      'date-fns-jalali': 'latest',
-      dayjs: 'latest',
-      luxon: 'latest',
-      moment: 'latest',
-      'moment-hijri': 'latest',
-      'moment-jalaali': 'latest',
     });
   });
 

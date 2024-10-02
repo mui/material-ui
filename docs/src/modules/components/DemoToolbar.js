@@ -8,7 +8,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import Fade from '@mui/material/Fade';
 import MDButton from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import MDToggleButton, { toggleButtonClasses } from '@mui/material/ToggleButton';
+import MDToggleButton from '@mui/material/ToggleButton';
 import MDToggleButtonGroup, { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
 import SvgIcon from '@mui/material/SvgIcon';
 import Snackbar from '@mui/material/Snackbar';
@@ -19,12 +19,11 @@ import Tooltip from '@mui/material/Tooltip';
 import Divider from '@mui/material/Divider';
 import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak';
-import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import { useRouter } from 'next/router';
 import { CODE_VARIANTS, CODE_STYLING } from 'docs/src/modules/constants';
 import { useSetCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { useSetCodeStyling, useCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
 import codeSandbox from '../sandbox/CodeSandbox';
 import stackBlitz from '../sandbox/StackBlitz';
@@ -32,16 +31,26 @@ import stackBlitz from '../sandbox/StackBlitz';
 const Root = styled('div')(({ theme }) => [
   {
     [theme.breakpoints.up('sm')]: {
-      justifyContent: 'space-between',
-      alignItems: 'center',
       display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+    },
+    '& .MuiIconButton-root': {
+      '&:hover': {
+        backgroundColor: (theme.vars || theme).palette.grey[100],
+      },
     },
     '& .MuiSvgIcon-root': {
       fontSize: 16,
-      color: (theme.vars || theme).palette.grey[800],
+      color: (theme.vars || theme).palette.grey[900],
     },
   },
   theme.applyDarkStyles({
+    '& .MuiIconButton-root': {
+      '&:hover': {
+        backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+      },
+    },
     '& .MuiSvgIcon-root': {
       color: (theme.vars || theme).palette.grey[400],
     },
@@ -51,7 +60,7 @@ const Root = styled('div')(({ theme }) => [
 function DemoTooltip(props) {
   return (
     <Tooltip
-      componentsProps={{
+      slotProps={{
         popper: {
           sx: {
             zIndex: (theme) => theme.zIndex.appBar - 1,
@@ -69,38 +78,45 @@ const ToggleButtonGroup = styled(MDToggleButtonGroup)(({ theme }) => [
   theme.unstable_sx({
     [`& .${toggleButtonGroupClasses.grouped}`]: {
       '&:not(:first-of-type)': {
-        marginLeft: 0.8,
-        borderLeft: '1px solid',
-        borderLeftColor: 'divider',
-        borderTopLeftRadius: 999,
-        borderBottomLeftRadius: 999,
+        pr: '2px', // a nudge for optical alignment
       },
       '&:not(:last-of-type)': {
-        borderTopRightRadius: 999,
-        borderBottomRightRadius: 999,
+        pl: '2px', // a nudge for optical alignment
       },
     },
   }),
 ]);
 
 const Button = styled(MDButton)(({ theme }) => ({
-  height: 24,
+  height: 26,
+  padding: '7px 8px 8px 8px', // 7px for optical alignment
   flexShrink: 0,
   borderRadius: 999,
-  border: 'none',
+  border: '1px solid',
+  borderColor: alpha(theme.palette.grey[200], 0.8),
   fontSize: theme.typography.pxToRem(13),
   fontWeight: theme.typography.fontWeightMedium,
-  color: theme.palette.text.secondary,
+  color: theme.palette.primary[600],
+  '& .MuiSvgIcon-root': {
+    color: theme.palette.primary.main,
+  },
   '&:hover': {
-    backgroundColor: theme.palette.grey[50],
+    backgroundColor: theme.palette.primary[50],
+    borderColor: theme.palette.primary[200],
     // Reset on touch devices, it doesn't add specificity
     '@media (hover: none)': {
       backgroundColor: 'transparent',
     },
   },
   ...theme.applyDarkStyles({
+    color: theme.palette.primary[300],
+    borderColor: alpha(theme.palette.primary[300], 0.2),
+    '& .MuiSvgIcon-root': {
+      color: theme.palette.primary[300],
+    },
     '&:hover': {
-      backgroundColor: theme.palette.primaryDark[700],
+      borderColor: alpha(theme.palette.primary[300], 0.5),
+      backgroundColor: alpha(theme.palette.primary[500], 0.2),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -118,29 +134,15 @@ const MenuItem = styled(MDMenuItem)(({ theme }) => ({
 
 const ToggleButton = styled(MDToggleButton)(({ theme }) => [
   theme.unstable_sx({
-    padding: theme.spacing(0, 1, 0.1, 1),
+    height: 26,
+    width: 38,
+    p: 0,
     fontSize: theme.typography.pxToRem(13),
-    borderColor: 'grey.200',
     borderRadius: '999px',
     '&.Mui-disabled': {
-      opacity: 0.5,
+      opacity: 0.8,
+      cursor: 'not-allowed',
     },
-    [`&.${toggleButtonClasses.selected}:hover`]: {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-        : alpha(
-            theme.palette.primary.main,
-            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-          ),
-      '@media (hover: none)': {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-          : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-      },
-    },
-  }),
-  theme.applyDarkStyles({
-    borderColor: theme.palette.primaryDark[700],
   }),
 ]);
 
@@ -273,6 +275,8 @@ export default function DemoToolbar(props) {
   const {
     codeOpen,
     codeVariant,
+    copyButtonOnClick,
+    copyIcon,
     hasNonSystemDemos,
     demo,
     demoData,
@@ -319,15 +323,6 @@ export default function DemoToolbar(props) {
 
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
-  };
-  const handleCopyClick = async () => {
-    try {
-      await copy(demoData.raw);
-      setSnackbarMessage(t('copiedSource'));
-      setSnackbarOpen(true);
-    } finally {
-      handleMoreClose();
-    }
   };
 
   const createHandleCodeSourceLink = (anchor, codeVariantParam, stylingSolution) => async () => {
@@ -380,6 +375,7 @@ export default function DemoToolbar(props) {
   const devMenuItems = [];
   if (process.env.DEPLOY_ENV === 'staging' || process.env.DEPLOY_ENV === 'pull-request') {
     /* eslint-disable material-ui/no-hardcoded-labels -- staging only */
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- valid reason to disable rules of hooks
     // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
     const router = useRouter();
 
@@ -487,7 +483,7 @@ export default function DemoToolbar(props) {
           </Button>
         )}
         <Fade in={codeOpen}>
-          <Box sx={{ display: 'flex', height: 40 }}>
+          <Box sx={{ display: 'flex' }}>
             {hasNonSystemDemos && (
               <Divider orientation="vertical" variant="middle" sx={{ mx: 1, height: '24px' }} />
             )}
@@ -531,36 +527,37 @@ export default function DemoToolbar(props) {
             data-ga-event-action="expand"
             onClick={onCodeOpenChange}
             {...getControlProps(3)}
+            sx={{ mr: 0.5 }}
           >
             {showCodeLabel}
           </Button>
           {demoOptions.hideEditButton ? null : (
             <React.Fragment>
-              <DemoTooltip title={t('codesandbox')} placement="bottom">
-                <IconButton
-                  data-ga-event-category="demo"
-                  data-ga-event-label={demo.gaLabel}
-                  data-ga-event-action="codesandbox"
-                  onClick={() => codeSandbox.createReactApp(demoData).openSandbox()}
-                  {...getControlProps(4)}
-                  sx={{ borderRadius: 1 }}
-                >
-                  <SvgIcon viewBox="0 0 1024 1024">
-                    <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
-                  </SvgIcon>
-                </IconButton>
-              </DemoTooltip>
               <DemoTooltip title={t('stackblitz')} placement="bottom">
                 <IconButton
                   data-ga-event-category="demo"
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="stackblitz"
                   onClick={() => stackBlitz.createReactApp(demoData).openSandbox()}
-                  {...getControlProps(5)}
+                  {...getControlProps(4)}
                   sx={{ borderRadius: 1 }}
                 >
                   <SvgIcon viewBox="0 0 19 28">
                     <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
+                  </SvgIcon>
+                </IconButton>
+              </DemoTooltip>
+              <DemoTooltip title={t('codesandbox')} placement="bottom">
+                <IconButton
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demo.gaLabel}
+                  data-ga-event-action="codesandbox"
+                  onClick={() => codeSandbox.createReactApp(demoData).openSandbox()}
+                  {...getControlProps(5)}
+                  sx={{ borderRadius: 1 }}
+                >
+                  <SvgIcon viewBox="0 0 1024 1024">
+                    <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
                   </SvgIcon>
                 </IconButton>
               </DemoTooltip>
@@ -571,11 +568,11 @@ export default function DemoToolbar(props) {
               data-ga-event-category="demo"
               data-ga-event-label={demo.gaLabel}
               data-ga-event-action="copy"
-              onClick={handleCopyClick}
+              onClick={copyButtonOnClick}
               {...getControlProps(6)}
               sx={{ borderRadius: 1 }}
             >
-              <ContentCopyRoundedIcon />
+              {copyIcon}
             </IconButton>
           </DemoTooltip>
           <DemoTooltip title={t('resetFocus')} placement="bottom">
@@ -715,13 +712,14 @@ export default function DemoToolbar(props) {
         message={snackbarMessage}
       />
     </React.Fragment>
-    /* eslint-enable material-ui/no-hardcoded-labels */
   );
 }
 
 DemoToolbar.propTypes = {
   codeOpen: PropTypes.bool.isRequired,
   codeVariant: PropTypes.string.isRequired,
+  copyButtonOnClick: PropTypes.func.isRequired,
+  copyIcon: PropTypes.object.isRequired,
   demo: PropTypes.object.isRequired,
   demoData: PropTypes.object.isRequired,
   demoId: PropTypes.string,

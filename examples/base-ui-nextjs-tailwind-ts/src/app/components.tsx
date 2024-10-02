@@ -34,14 +34,14 @@ const SelectButton = React.forwardRef(function SelectButton<
 
 // the components exported from this file have function props which are non-serializable
 // therefore they are additionally wrapped with 'use client' here
-// https://nextjs.org/docs/getting-started/react-essentials#passing-props-from-server-to-client-components-serialization
+// https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#passing-props-from-server-to-client-components-serialization
 
 export function SelectOption(props: OptionProps<string>) {
   const {
     slotProps = {
       root: {},
     },
-    ...rest
+    ...other
   } = props;
   return (
     <Option
@@ -57,7 +57,7 @@ export function SelectOption(props: OptionProps<string>) {
           ),
         }),
       }}
-      {...rest}
+      {...other}
     />
   );
 }
@@ -72,11 +72,11 @@ export const Select = React.forwardRef(function Select<TValue extends {}, Multip
       listbox: {},
       popper: {},
     },
-    ...rest
+    ...other
   } = props;
   return (
     <BaseSelect
-      {...rest}
+      {...other}
       ref={ref}
       slots={{
         root: SelectButton,
@@ -119,11 +119,11 @@ export const Slider = React.forwardRef(function Slider(
       markLabel: {},
       valueLabel: {},
     },
-    ...rest
+    ...other
   } = props;
   return (
     <BaseSlider
-      {...rest}
+      {...other}
       slotProps={{
         root: (ownerState: SliderOwnerState) => ({
           ...slotProps.root,

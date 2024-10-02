@@ -5,7 +5,9 @@
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ typography?: object }" },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "disabled": { "type": { "name": "bool" } },
     "disableTypography": { "type": { "name": "bool" } },
@@ -27,7 +29,11 @@
     },
     "required": { "type": { "name": "bool" } },
     "slotProps": {
-      "type": { "name": "shape", "description": "{ typography?: object }" },
+      "type": { "name": "shape", "description": "{ typography?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ typography?: elementType }" },
       "default": "{}"
     },
     "sx": {
@@ -44,25 +50,70 @@
     "import FormControlLabel from '@mui/material/FormControlLabel';",
     "import { FormControlLabel } from '@mui/material';"
   ],
-  "styles": {
-    "classes": [
-      "root",
-      "labelPlacementStart",
-      "labelPlacementTop",
-      "labelPlacementBottom",
-      "disabled",
-      "label",
-      "error",
-      "required",
-      "asterisk"
-    ],
-    "globalClasses": {
-      "disabled": "Mui-disabled",
-      "error": "Mui-error",
-      "required": "Mui-required"
+  "slots": [
+    {
+      "name": "typography",
+      "description": "The component that renders the label.\nThis is unused if `disableTypography` is true.",
+      "default": "Typography",
+      "class": null
+    }
+  ],
+  "classes": [
+    {
+      "key": "asterisk",
+      "className": "MuiFormControlLabel-asterisk",
+      "description": "Styles applied to the asterisk element.",
+      "isGlobal": false
     },
-    "name": "MuiFormControlLabel"
-  },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "error",
+      "className": "Mui-error",
+      "description": "State class applied to the root element if `error={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "label",
+      "className": "MuiFormControlLabel-label",
+      "description": "Styles applied to the label's Typography component.",
+      "isGlobal": false
+    },
+    {
+      "key": "labelPlacementBottom",
+      "className": "MuiFormControlLabel-labelPlacementBottom",
+      "description": "Styles applied to the root element if `labelPlacement=\"bottom\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "labelPlacementStart",
+      "className": "MuiFormControlLabel-labelPlacementStart",
+      "description": "Styles applied to the root element if `labelPlacement=\"start\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "labelPlacementTop",
+      "className": "MuiFormControlLabel-labelPlacementTop",
+      "description": "Styles applied to the root element if `labelPlacement=\"top\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "required",
+      "className": "Mui-required",
+      "description": "State class applied to the root element if `required={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "root",
+      "className": "MuiFormControlLabel-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiFormControlLabel",

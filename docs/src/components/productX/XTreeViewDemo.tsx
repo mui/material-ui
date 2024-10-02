@@ -1,330 +1,297 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { styled, alpha } from '@mui/material/styles';
+import { animated, useSpring } from '@react-spring/web';
+import { styled } from '@mui/material/styles';
+import { TransitionProps } from '@mui/material/transitions';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import Frame from 'docs/src/components/action/Frame';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Chip from '@mui/material/Chip';
-import TreeView from '@mui/lab/TreeView';
-import MuiTreeItem, { useTreeItem, TreeItemProps, TreeItemContentProps } from '@mui/lab/TreeItem';
+import Collapse from '@mui/material/Collapse';
 import Typography from '@mui/material/Typography';
-import AddBoxOutlined from '@mui/icons-material/AddBoxOutlined';
-import IndeterminateCheckBoxOutlined from '@mui/icons-material/IndeterminateCheckBoxOutlined';
+import Paper from '@mui/material/Paper';
 import FolderRounded from '@mui/icons-material/FolderRounded';
 import FolderOpenRounded from '@mui/icons-material/FolderOpenRounded';
-import PhotoOutlined from '@mui/icons-material/PhotoOutlined';
-import PictureAsPdfOutlined from '@mui/icons-material/PictureAsPdfOutlined';
-import VideocamOutlined from '@mui/icons-material/VideocamOutlined';
-import FourKOutlined from '@mui/icons-material/FourKOutlined';
-import Button from '@mui/material/Button';
-import Frame from 'docs/src/components/action/Frame';
+import ImageIcon from '@mui/icons-material/Image';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import VideoCameraBackIcon from '@mui/icons-material/VideoCameraBack';
+import { RichTreeView } from '@mui/x-tree-view/RichTreeView';
+import { treeItemClasses } from '@mui/x-tree-view/TreeItem';
+import {
+  unstable_useTreeItem2 as useTreeItem2,
+  UseTreeItem2Parameters,
+} from '@mui/x-tree-view/useTreeItem2';
+import {
+  TreeItem2Content,
+  TreeItem2IconContainer,
+  TreeItem2Label,
+  TreeItem2Root,
+} from '@mui/x-tree-view/TreeItem2';
+import { TreeItem2Icon } from '@mui/x-tree-view/TreeItem2Icon';
+import { TreeItem2Provider } from '@mui/x-tree-view/TreeItem2Provider';
+import { TreeViewBaseItem } from '@mui/x-tree-view/models';
 
-const CustomContent = React.forwardRef(function CustomContent(
-  props: TreeItemContentProps & { lastNestedChild?: boolean },
-  ref,
+type FileType = 'image' | 'pdf' | 'video' | 'folder';
+
+type ExtendedTreeItemProps = {
+  fileType?: FileType;
+  id: string;
+  label: string;
+};
+
+const ITEMS: TreeViewBaseItem<ExtendedTreeItemProps>[] = [
+  {
+    id: '1',
+    label: 'Drive',
+    children: [
+      {
+        id: '1.1',
+        label: 'Backup',
+        children: [
+          { id: '1.1.1', label: 'Jan 2023.pdf', fileType: 'pdf' },
+          { id: '1.1.2', label: 'Feb 2023.pdf', fileType: 'pdf' },
+          { id: '1.1.3', label: 'Mar 2023.pdf', fileType: 'pdf' },
+        ],
+      },
+      {
+        id: '1.2',
+        label: 'Photos',
+        children: [
+          { id: '1.2.1', label: 'family.jpeg', fileType: 'image' },
+          { id: '1.2.2', label: 'my_dog.png', fileType: 'image' },
+        ],
+      },
+    ],
+  },
+  {
+    id: '2',
+    label: 'Favorites',
+    children: [
+      {
+        id: '2.1',
+        label: 'MUI_retreat_photo.jpg',
+        fileType: 'image',
+      },
+      {
+        id: '2.2',
+        label: 'v7_secrets.mkv',
+        fileType: 'video',
+      },
+      {
+        id: '2.3',
+        label: 'Other pictures',
+        children: [{ id: '2.3.1', label: 'my_avatar.jpeg', fileType: 'image' }],
+      },
+    ],
+  },
+];
+
+declare module 'react' {
+  interface CSSProperties {
+    '--tree-view-color'?: string;
+    '--tree-view-bg-color'?: string;
+  }
+}
+
+const StyledTreeItemRoot = styled(TreeItem2Root)(({ theme }) => ({
+  color: theme.palette.grey[800],
+  position: 'relative',
+  [`& .${treeItemClasses.groupTransition}`]: {
+    marginLeft: theme.spacing(3.5),
+  },
+  ...theme.applyStyles('dark', {
+    color: theme.palette.grey[400],
+  }),
+})) as unknown as typeof TreeItem2Root;
+const CustomTreeItemContent = styled(TreeItem2Content)(({ theme }) => ({
+  borderRadius: theme.spacing(0.5),
+  marginBottom: theme.spacing(0.2),
+  marginTop: theme.spacing(0.2),
+  padding: `${theme.spacing(0.3)} ${theme.spacing(0.5)}`,
+  '&.Mui-expanded&::before': {
+    content: '""',
+    display: 'block',
+    position: 'absolute',
+    left: '16px',
+    top: '30px',
+    height: 'calc(100% - 32px)',
+    width: '1.5px',
+    backgroundColor: (theme.vars || theme).palette.grey[100],
+    ...theme.applyStyles('dark', {
+      backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+    }),
+  },
+}));
+
+const AnimatedCollapse = animated(Collapse);
+
+function TransitionComponent(props: TransitionProps) {
+  const style = useSpring({
+    to: {
+      opacity: props.in ? 1 : 0,
+      transform: `translate3d(0,${props.in ? 0 : 20}px,0)`,
+      paddingLeft: 24,
+    },
+  });
+
+  return <AnimatedCollapse style={style} {...props} />;
+}
+
+interface CustomLabelProps {
+  children: React.ReactNode;
+  icon?: React.ElementType;
+  expandable?: boolean;
+}
+
+function CustomLabel({ icon: Icon, expandable, children, ...other }: CustomLabelProps) {
+  return (
+    <TreeItem2Label {...other} sx={{ display: 'flex', alignItems: 'center' }}>
+      {Icon && (
+        <Box
+          component={Icon}
+          className="labelIcon"
+          sx={(theme) => ({
+            mr: 1,
+            fontSize: '1rem',
+            color: expandable ? theme.palette.primary.main : theme.palette.grey[600],
+          })}
+        />
+      )}
+
+      <Typography
+        sx={(theme) => ({
+          fontWeight: expandable
+            ? theme.typography.fontWeightMedium
+            : theme.typography.fontWeightRegular,
+          color: expandable ? theme.palette.text.primary : theme.palette.text.secondary,
+        })}
+        variant="body2"
+      >
+        {children}
+      </Typography>
+    </TreeItem2Label>
+  );
+}
+
+const isExpandable = (reactChildren: React.ReactNode) => {
+  if (Array.isArray(reactChildren)) {
+    return reactChildren.length > 0 && reactChildren.some(isExpandable);
+  }
+  return Boolean(reactChildren);
+};
+
+const getIconFromFileType = (fileType: FileType) => {
+  switch (fileType) {
+    case 'image':
+      return ImageIcon;
+    case 'pdf':
+      return PictureAsPdfIcon;
+    case 'video':
+      return VideoCameraBackIcon;
+    case 'folder':
+      return FolderRounded;
+    default:
+      return FolderRounded;
+  }
+};
+
+interface CustomTreeItemProps
+  extends Omit<UseTreeItem2Parameters, 'rootRef'>,
+    Omit<React.HTMLAttributes<HTMLLIElement>, 'onFocus'> {}
+
+const CustomTreeItem = React.forwardRef(function CustomTreeItem(
+  props: CustomTreeItemProps,
+  ref: React.Ref<HTMLLIElement>,
 ) {
-  const {
-    lastNestedChild,
-    classes,
-    className,
-    label,
-    nodeId,
-    icon: iconProp,
-    expansionIcon,
-    displayIcon,
-  } = props;
+  const { id, itemId, label, disabled, children, ...other } = props;
 
   const {
-    disabled,
-    expanded,
-    selected,
-    focused,
-    handleExpansion,
-    handleSelection,
-    preventSelection,
-  } = useTreeItem(nodeId);
+    getRootProps,
+    getContentProps,
+    getIconContainerProps,
+    getLabelProps,
+    getGroupTransitionProps,
+    status,
+    publicAPI,
+  } = useTreeItem2({ id, itemId, children, label, disabled, rootRef: ref });
 
-  const icon = iconProp || expansionIcon || displayIcon;
-
-  const handleMouseDown = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    preventSelection(event);
-  };
-
-  const handleExpansionClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    handleExpansion(event);
-    handleSelection(event);
-  };
-
-  const handleSelectionClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    handleSelection(event);
-  };
-
-  const renderExtension = () => {
-    if (typeof label !== 'string') {
-      return label;
+  const item = publicAPI.getItem(itemId);
+  const expandable = isExpandable(children);
+  let icon;
+  if (expandable) {
+    if (status.expanded) {
+      icon = FolderOpenRounded;
+    } else {
+      icon = FolderRounded;
     }
-    const extension = (label || '').split('.').slice(-1)[0];
-    if (extension.match(/(jpg|jpeg|png)/)) {
-      return <PhotoOutlined />;
-    }
-    if (extension === 'pdf') {
-      return <PictureAsPdfOutlined />;
-    }
-    if (extension === 'mp4') {
-      return <VideocamOutlined />;
-    }
-    if (extension === 'mkv') {
-      return <FourKOutlined />;
-    }
-    return (
-      <Box
-        sx={{
-          width: 6,
-          height: 6,
-          borderRadius: '50%',
-          bgcolor: 'warning.main',
-          display: 'inline-block',
-          verticalAlign: 'middle',
-          zIndex: 1,
-        }}
-      />
-    );
-  };
+  } else if (item.fileType) {
+    icon = getIconFromFileType(item.fileType);
+  }
 
   return (
-    /* @ts-ignore -- Key event is handled by the TreeView */
-    <Box
-      className={clsx(className, classes.root, {
-        [classes.expanded]: expanded,
-        [classes.selected]: selected,
-        [classes.focused]: focused,
-        [classes.disabled]: disabled,
-        'CustomContent-last': lastNestedChild,
-      })}
-      onClick={handleExpansionClick}
-      onMouseDown={handleMouseDown}
-      ref={ref as React.Ref<HTMLButtonElement>}
-      sx={{
-        border: 'none',
-        borderRadius: '5px',
-        textAlign: 'left',
-        position: 'relative',
-        zIndex: 1,
-        '& svg': {
-          fontSize: 18,
-          color: nodeId.startsWith('root') ? 'primary.main' : 'grey.600',
-        },
-        '&:not(.CustomContent-last)': {
-          '& svg': {
-            '&:first-of-type': {
-              fontSize: 14,
-              color: 'primary.main',
-            },
-          },
-        },
-      }}
-    >
-      {icon}
-      {lastNestedChild && renderExtension()}
-      {!lastNestedChild && (expanded ? <FolderOpenRounded /> : <FolderRounded />)}
-      <Typography
-        onClick={handleSelectionClick}
-        component="div"
-        className={classes.label}
-        noWrap
-        sx={{
-          '&&': {
-            color: lastNestedChild ? 'text.secondary' : 'text.primary',
-            fontWeight: lastNestedChild ? 400 : 500,
-          },
-        }}
-      >
-        {label}
-      </Typography>
-    </Box>
+    <TreeItem2Provider itemId={itemId}>
+      <StyledTreeItemRoot {...getRootProps(other)}>
+        <CustomTreeItemContent
+          {...getContentProps({
+            className: clsx('content', {
+              'Mui-expanded': status.expanded,
+              'Mui-selected': status.selected,
+              'Mui-focused': status.focused,
+              'Mui-disabled': status.disabled,
+            }),
+          })}
+        >
+          {expandable && (
+            <TreeItem2IconContainer {...getIconContainerProps()}>
+              <TreeItem2Icon status={status} />
+            </TreeItem2IconContainer>
+          )}
+
+          <CustomLabel {...getLabelProps({ icon, expandable })} />
+        </CustomTreeItemContent>
+        {children && <TransitionComponent {...getGroupTransitionProps()} />}
+      </StyledTreeItemRoot>
+    </TreeItem2Provider>
   );
 });
 
-const StyledTreeItem = styled(MuiTreeItem)(({ theme }) => [
-  {
-    paddingTop: 5,
-    '& .MuiTreeItem-content .MuiTreeItem-label': {
-      paddingLeft: theme.spacing(0.75),
-    },
-    '& .MuiTreeItem-root': {
-      position: 'relative',
-      '&:last-of-type': {
-        '&:before': {
-          height: 30 / 2,
-        },
-      },
-      '&:before': {
-        content: '""',
-        display: 'block',
-        position: 'absolute',
-        left: -18,
-        height: '100%',
-        width: 2,
-        backgroundColor: (theme.vars || theme).palette.grey[200],
-      },
-    },
-    '& .MuiTreeItem-content': {
-      padding: theme.spacing('2px', 0.5),
-    },
-    '& .MuiTreeItem-group': {
-      marginLeft: 0,
-      paddingLeft: theme.spacing(3),
-      '& .MuiTreeItem-content': {
-        '&:before': {
-          content: '""',
-          position: 'absolute',
-          display: 'block',
-          width: 24,
-          height: 2,
-          backgroundColor: (theme.vars || theme).palette.grey[200],
-          top: '50%',
-          left: 6,
-          transform: 'translate(-100%, -50%)',
-        },
-      },
-    },
-  },
-  theme.applyDarkStyles({
-    '& .MuiTreeItem-root': {
-      '&:before': {
-        backgroundColor: (theme.vars || theme).palette.primaryDark[500],
-      },
-    },
-    '& .MuiTreeItem-group': {
-      '& .MuiTreeItem-content': {
-        '&:before': {
-          backgroundColor: (theme.vars || theme).palette.primaryDark[500],
-        },
-      },
-    },
-  }),
-]);
+const code = `
+<RichTreeView
+  items={ITEMS}
+  aria-label="File explorer"
+  defaultExpandedItems={['1', '1.1', '1.2', '2']}
+  defaultSelectedItems="1.1"
+  sx={{ height: 'fit-content', flexGrow: 1 }}
+  slots={{ item: CustomTreeItem }}
+/>`;
 
-function TreeItem(
-  props: TreeItemProps & {
-    ContentProps?: { lastNestedChild?: boolean };
-  },
-) {
-  return <StyledTreeItem ContentComponent={CustomContent} {...props} />;
-}
-
-export default function XDateRangeDemo() {
+export default function XTreeViewDemo() {
   return (
     <Frame>
-      <Frame.Demo sx={{ p: 2, flexGrow: 1 }}>
+      <Frame.Demo sx={{ p: 2 }}>
         <Paper
           variant="outlined"
           sx={(theme) => ({
             maxWidth: '100%',
-            mx: 'auto',
-            bgcolor: '#fff',
+            bgcolor: '#FFF',
+            borderRadius: '8px',
+            padding: 2,
             ...theme.applyDarkStyles({
               bgcolor: 'primaryDark.900',
             }),
           })}
         >
-          <TreeView
-            aria-label="file system navigator"
-            defaultExpanded={['2', '2.3', '3']}
-            defaultCollapseIcon={<IndeterminateCheckBoxOutlined fontSize="small" />}
-            defaultExpandIcon={<AddBoxOutlined fontSize="small" />}
-            sx={{ height: { xs: 260, sm: 300 }, overflowY: 'auto', p: 1 }}
-          >
-            <TreeItem nodeId="1" label="Drive">
-              <TreeItem nodeId="1.1" label="Backup">
-                <TreeItem
-                  nodeId="1.1.1"
-                  label="Jan 2021.pdf"
-                  ContentProps={{ lastNestedChild: true }}
-                />
-                <TreeItem
-                  nodeId="1.1.2"
-                  label="Feb 2021.pdf"
-                  ContentProps={{ lastNestedChild: true }}
-                />
-                <TreeItem
-                  nodeId="1.1.3"
-                  label="Mar 2021.pdf"
-                  ContentProps={{ lastNestedChild: true }}
-                />
-              </TreeItem>
-              <TreeItem nodeId="1.2" label="Photos">
-                <TreeItem
-                  nodeId="1.2.1"
-                  label="Family.jpeg"
-                  ContentProps={{ lastNestedChild: true }}
-                />
-                <TreeItem
-                  nodeId="1.2.2"
-                  label="My Dog.png"
-                  ContentProps={{ lastNestedChild: true }}
-                />
-              </TreeItem>
-            </TreeItem>
-            <TreeItem nodeId="2" label="Favorite">
-              <TreeItem
-                nodeId="2.1"
-                label="MUI Retreat Picture.jpg"
-                ContentProps={{ lastNestedChild: true }}
-              />
-              <TreeItem
-                nodeId="2.2"
-                label="v5 launch video.mkv"
-                ContentProps={{ lastNestedChild: true }}
-              />
-              <TreeItem nodeId="2.3" label="images">
-                <TreeItem
-                  nodeId="2.3.1"
-                  label="my_avatar.jpg"
-                  ContentProps={{ lastNestedChild: true }}
-                />
-              </TreeItem>
-            </TreeItem>
-          </TreeView>
+          <RichTreeView
+            items={ITEMS}
+            aria-label="File explorer"
+            defaultExpandedItems={['1', '1.1', '1.2', '2']}
+            defaultSelectedItems="1.1"
+            sx={{ height: 'fit-content', flexGrow: 1 }}
+            slots={{ item: CustomTreeItem }}
+          />
         </Paper>
       </Frame.Demo>
-
-      <Frame.Info data-mui-color-scheme="dark">
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            lineHeight: 1,
-            mb: 0.5,
-          }}
-        >
-          <Typography variant="body2" fontWeight="bold" sx={{ mr: 1 }}>
-            Experiment with the Tree View now!
-          </Typography>
-          <Chip
-            variant="outlined"
-            label="Labs"
-            color="primary"
-            size="small"
-            sx={(theme) => ({
-              pb: 0.2,
-              fontWeight: theme.typography.fontWeightSemiBold,
-              color: (theme.vars || theme).palette.primary[300],
-              borderColor: alpha(theme.palette.primary[300], 0.3),
-              background: alpha(theme.palette.primary[800], 0.3),
-            })}
-          />
-        </Box>
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-          Play with the component and let us know what you think!
-        </Typography>
-        <Button
-          variant="outlined"
-          href="/material-ui/react-tree-view"
-          component="a"
-          sx={{ mt: { xs: 2, sm: 0 }, color: 'primary.300' }}
-        >
-          View the documentation
-        </Button>
+      <Frame.Info data-mui-color-scheme="dark" sx={{ maxHeight: 300, overflow: 'auto' }}>
+        <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
       </Frame.Info>
     </Frame>
   );

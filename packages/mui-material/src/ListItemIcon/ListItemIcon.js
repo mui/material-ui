@@ -2,9 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getListItemIconUtilityClass } from './listItemIconClasses';
 import ListContext from '../List/ListContext';
 
@@ -26,21 +27,30 @@ const ListItemIconRoot = styled('div', {
 
     return [styles.root, ownerState.alignItems === 'flex-start' && styles.alignItemsFlexStart];
   },
-})(({ theme, ownerState }) => ({
-  minWidth: 56,
-  color: (theme.vars || theme).palette.action.active,
-  flexShrink: 0,
-  display: 'inline-flex',
-  ...(ownerState.alignItems === 'flex-start' && {
-    marginTop: 8,
-  }),
-}));
+})(
+  memoTheme(({ theme }) => ({
+    minWidth: 56,
+    color: (theme.vars || theme).palette.action.active,
+    flexShrink: 0,
+    display: 'inline-flex',
+    variants: [
+      {
+        props: {
+          alignItems: 'flex-start',
+        },
+        style: {
+          marginTop: 8,
+        },
+      },
+    ],
+  })),
+);
 
 /**
  * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
  */
 const ListItemIcon = React.forwardRef(function ListItemIcon(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiListItemIcon',
   });
@@ -61,10 +71,10 @@ const ListItemIcon = React.forwardRef(function ListItemIcon(inProps, ref) {
 });
 
 ListItemIcon.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component, normally `Icon`, `SvgIcon`,
    * or a `@mui/icons-material` SVG icon element.

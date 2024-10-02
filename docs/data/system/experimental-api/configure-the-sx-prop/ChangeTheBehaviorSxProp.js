@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Box, Stack } from '@mui/system';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // Retain type safety.
@@ -21,7 +22,7 @@ const theme = createTheme({
 
 export default function ChangeTheBehaviorSxProp() {
   return (
-    <Stack direction="row" gap={1}>
+    <Stack direction="row" sx={{ gap: 1 }}>
       <ThemeProvider theme={theme}>
         <Box sx={{ borderRadius: 'sm', border: 1, p: 4 }} />
         <Box sx={{ borderRadius: 'md', border: 1, p: 4 }} />

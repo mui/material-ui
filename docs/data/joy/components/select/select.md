@@ -9,9 +9,9 @@ unstyled: /base-ui/react-select/
 
 # Select
 
-<p class="description">Select components are used for collecting user provided information from a list of options.</p>
+<p class="description">Select components are used for collecting user-provided information from a list of options.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -42,6 +42,12 @@ export default function SelectBasic() {
 The `Select` component is similar to the native HTML's `<select>` and `<option>` tags.
 
 {{"demo": "SelectBasic.js"}}
+
+### Form submission
+
+The `Select` component supports `name` and `required` props that will be used when submitting the form.
+
+{{"demo": "SelectFormSubmission.js"}}
 
 ### Variants
 
@@ -116,6 +122,27 @@ const App = () => (
   </CssVarsProvider>
 );
 ```
+
+### Multiple selections
+
+Set the `multiple` prop to let your users select multiple options from the list.
+In contrast with single-selection mode, the options popup doesn't close after an item is selected, which enables users to continue choosing more options.
+
+Note that in multiple selection mode, the `value` prop (and `defaultValue`) is an array.
+
+{{"demo": "SelectMultiple.js"}}
+
+#### Selected value appearance
+
+Use the `renderValue` prop to customize the display of the selected options.
+
+{{"demo": "SelectMultipleAppearance.js"}}
+
+#### Form submission
+
+The `Select` component supports `name` and `required` props that will be used when submitting the form.
+
+{{"demo": "SelectMultipleFormSubmission.js"}}
 
 ### Listbox
 

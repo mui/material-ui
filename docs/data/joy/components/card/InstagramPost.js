@@ -21,16 +21,13 @@ export default function InstagramPost() {
   return (
     <Card
       variant="outlined"
-      sx={{
-        minWidth: 300,
-        '--Card-radius': (theme) => theme.vars.radius.xs,
-      }}
+      sx={{ minWidth: 300, '--Card-radius': (theme) => theme.vars.radius.xs }}
     >
       <CardContent orientation="horizontal" sx={{ alignItems: 'center', gap: 1 }}>
         <Box
           sx={{
             position: 'relative',
-            '&:before': {
+            '&::before': {
               content: '""',
               position: 'absolute',
               top: 0,
@@ -50,7 +47,7 @@ export default function InstagramPost() {
             sx={{ p: 0.5, border: '2px solid', borderColor: 'background.body' }}
           />
         </Box>
-        <Typography fontWeight="lg">MUI</Typography>
+        <Typography sx={{ fontWeight: 'lg' }}>MUI</Typography>
         <IconButton variant="plain" color="neutral" size="sm" sx={{ ml: 'auto' }}>
           <MoreHoriz />
         </IconButton>
@@ -76,12 +73,16 @@ export default function InstagramPost() {
           {[...Array(5)].map((_, index) => (
             <Box
               key={index}
-              sx={{
-                borderRadius: '50%',
-                width: `max(${6 - index}px, 3px)`,
-                height: `max(${6 - index}px, 3px)`,
-                bgcolor: index === 0 ? 'primary.solidBg' : 'background.level3',
-              }}
+              sx={[
+                {
+                  borderRadius: '50%',
+                  width: `max(${6 - index}px, 3px)`,
+                  height: `max(${6 - index}px, 3px)`,
+                },
+                index === 0
+                  ? { bgcolor: 'primary.solidBg' }
+                  : { bgcolor: 'background.level3' },
+              ]}
             />
           ))}
         </Box>
@@ -95,18 +96,17 @@ export default function InstagramPost() {
         <Link
           component="button"
           underline="none"
-          fontSize="sm"
-          fontWeight="lg"
           textColor="text.primary"
+          sx={{ fontSize: 'sm', fontWeight: 'lg' }}
         >
           8.1M Likes
         </Link>
-        <Typography fontSize="sm">
+        <Typography sx={{ fontSize: 'sm' }}>
           <Link
             component="button"
             color="neutral"
-            fontWeight="lg"
             textColor="text.primary"
+            sx={{ fontWeight: 'lg' }}
           >
             MUI
           </Link>{' '}
@@ -115,17 +115,15 @@ export default function InstagramPost() {
         <Link
           component="button"
           underline="none"
-          fontSize="sm"
           startDecorator="…"
-          sx={{ color: 'text.tertiary' }}
+          sx={{ fontSize: 'sm', color: 'text.tertiary' }}
         >
           more
         </Link>
         <Link
           component="button"
           underline="none"
-          fontSize="10px"
-          sx={{ color: 'text.tertiary', my: 0.5 }}
+          sx={{ fontSize: '10px', color: 'text.tertiary', my: 0.5 }}
         >
           2 DAYS AGO
         </Link>

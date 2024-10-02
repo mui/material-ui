@@ -1,11 +1,11 @@
 {
-  "name": "joy-cra-ts",
+  "name": "joy-ui-cra-ts",
   "version": "5.0.0",
   "private": true,
   "dependencies": {
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
-    "@mui/joy": "latest",
+    "@mui/joy": "next",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "react": "latest",

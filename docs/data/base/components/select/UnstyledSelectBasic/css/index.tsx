@@ -1,16 +1,20 @@
 import * as React from 'react';
-import { Select, selectClasses } from '@mui/base/Select';
+import { Select, selectClasses, SelectRootSlotProps } from '@mui/base/Select';
 import { Option, optionClasses } from '@mui/base/Option';
 import { useTheme } from '@mui/system';
+import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
 export default function UnstyledSelectBasic() {
   return (
     <React.Fragment>
       <Select
         className="CustomSelect"
+        slots={{
+          root: Button,
+        }}
         slotProps={{
           listbox: { className: 'CustomSelect-listbox' },
-          popper: { className: 'CustomSelect-popper' },
+          popup: { className: 'CustomSelect-popup' },
         }}
         defaultValue={10}
       >
@@ -43,17 +47,33 @@ const cyan = {
 };
 
 const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
+
+const Button = React.forwardRef(function Button<
+  TValue extends {},
+  Multiple extends boolean,
+>(
+  props: SelectRootSlotProps<TValue, Multiple>,
+  ref: React.ForwardedRef<HTMLButtonElement>,
+) {
+  const { ownerState, ...other } = props;
+  return (
+    <button type="button" {...other} ref={ref}>
+      {other.children}
+      <UnfoldMoreRoundedIcon />
+    </button>
+  );
+});
 
 function useIsDarkMode() {
   const theme = useTheme();
@@ -68,7 +88,8 @@ function Styles() {
     <style>
       {`
       .CustomSelect {
-        font-family: IBM Plex Sans, sans-serif;
+        position: relative;
+        font-family: 'IBM Plex Sans', sans-serif;
         font-size: 0.875rem;
         box-sizing: border-box;
         min-width: 320px;
@@ -79,11 +100,9 @@ function Styles() {
         background: ${isDarkMode ? grey[900] : '#fff'};
         border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
         color: ${isDarkMode ? grey[300] : grey[900]};
-        box-shadow: 0px 4px 6px ${
-          isDarkMode ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+        box-shadow: 0px 2px 4px ${
+          isDarkMode ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
         };
-
-
         transition-property: all;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 120ms;
@@ -94,23 +113,21 @@ function Styles() {
         }
 
         &.${selectClasses.focusVisible} {
+          outline: 0;
           border-color: ${cyan[400]};
-          outline: 3px solid ${isDarkMode ? cyan[500] : cyan[200]};
+          box-shadow: 0 0 0 3px ${isDarkMode ? cyan[600] : cyan[200]};
         }
 
-        &.${selectClasses.expanded} {
-          &::after {
-            content: '▴';
-          }
-        }
-
-        &::after {
-          content: '▾';
-          float: right;
+        & > svg {
+          font-size: 1rem;
+          position: absolute;
+          height: 100%;
+          top: 0;
+          right: 10px;
         }
       }
       .CustomSelect-listbox {
-        font-family: IBM Plex Sans, sans-serif;
+        font-family: 'IBM Plex Sans', sans-serif;
         font-size: 0.875rem;
         box-sizing: border-box;
         padding: 6px;
@@ -118,7 +135,7 @@ function Styles() {
         min-width: 320px;
         border-radius: 12px;
         overflow: auto;
-        outline: 0px;
+        outline: 0;
         background: ${isDarkMode ? grey[900] : '#fff'};
         border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
         color: ${isDarkMode ? grey[300] : grey[900]};
@@ -126,7 +143,7 @@ function Styles() {
           isDarkMode ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
         };
       }
-      .CustomSelect-popper {
+      .CustomSelect-popup {
         z-index: 1;
       }
       .CustomSelect-option {
@@ -152,6 +169,10 @@ function Styles() {
         &.${optionClasses.highlighted}.${optionClasses.selected} {
           background-color: ${isDarkMode ? cyan[700] : cyan[100]};
           color: ${isDarkMode ? cyan[50] : cyan[900]};
+        }
+
+        &:focus-visible {
+          outline: 3px solid ${isDarkMode ? cyan[400] : cyan[300]};
         }
 
         &.${optionClasses.disabled} {

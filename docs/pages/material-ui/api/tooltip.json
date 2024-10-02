@@ -8,14 +8,18 @@
         "name": "shape",
         "description": "{ Arrow?: elementType, Popper?: elementType, Tooltip?: elementType, Transition?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in v7. <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
     },
     "componentsProps": {
       "type": {
         "name": "shape",
         "description": "{ arrow?: object, popper?: object, tooltip?: object, transition?: object }"
       },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in v7. <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
     },
     "describeChild": { "type": { "name": "bool" }, "default": "false" },
     "disableFocusListener": { "type": { "name": "bool" }, "default": "false" },
@@ -83,24 +87,80 @@
     "import Tooltip from '@mui/material/Tooltip';",
     "import { Tooltip } from '@mui/material';"
   ],
-  "styles": {
-    "classes": [
-      "popper",
-      "popperInteractive",
-      "popperArrow",
-      "popperClose",
-      "tooltip",
-      "tooltipArrow",
-      "arrow",
-      "touch",
-      "tooltipPlacementLeft",
-      "tooltipPlacementRight",
-      "tooltipPlacementTop",
-      "tooltipPlacementBottom"
-    ],
-    "globalClasses": {},
-    "name": "MuiTooltip"
-  },
+  "classes": [
+    {
+      "key": "arrow",
+      "className": "MuiTooltip-arrow",
+      "description": "Styles applied to the arrow element.",
+      "isGlobal": false
+    },
+    {
+      "key": "popper",
+      "className": "MuiTooltip-popper",
+      "description": "Styles applied to the Popper component.",
+      "isGlobal": false
+    },
+    {
+      "key": "popperArrow",
+      "className": "MuiTooltip-popperArrow",
+      "description": "Styles applied to the Popper component if `arrow={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "popperClose",
+      "className": "MuiTooltip-popperClose",
+      "description": "Styles applied to the Popper component unless the tooltip is open.",
+      "isGlobal": false
+    },
+    {
+      "key": "popperInteractive",
+      "className": "MuiTooltip-popperInteractive",
+      "description": "Styles applied to the Popper component unless `disableInteractive={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "tooltip",
+      "className": "MuiTooltip-tooltip",
+      "description": "Styles applied to the tooltip (label wrapper) element.",
+      "isGlobal": false
+    },
+    {
+      "key": "tooltipArrow",
+      "className": "MuiTooltip-tooltipArrow",
+      "description": "Styles applied to the tooltip (label wrapper) element if `arrow={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "tooltipPlacementBottom",
+      "className": "MuiTooltip-tooltipPlacementBottom",
+      "description": "Styles applied to the tooltip (label wrapper) element if `placement` contains \"bottom\".",
+      "isGlobal": false
+    },
+    {
+      "key": "tooltipPlacementLeft",
+      "className": "MuiTooltip-tooltipPlacementLeft",
+      "description": "Styles applied to the tooltip (label wrapper) element if `placement` contains \"left\".",
+      "isGlobal": false
+    },
+    {
+      "key": "tooltipPlacementRight",
+      "className": "MuiTooltip-tooltipPlacementRight",
+      "description": "Styles applied to the tooltip (label wrapper) element if `placement` contains \"right\".",
+      "isGlobal": false
+    },
+    {
+      "key": "tooltipPlacementTop",
+      "className": "MuiTooltip-tooltipPlacementTop",
+      "description": "Styles applied to the tooltip (label wrapper) element if `placement` contains \"top\".",
+      "isGlobal": false
+    },
+    {
+      "key": "touch",
+      "className": "MuiTooltip-touch",
+      "description": "Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiTooltip",

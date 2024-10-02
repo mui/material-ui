@@ -4,8 +4,8 @@ import { Theme } from '@material-ui/core/styles';
 
 /*
 Sandboxes for verifying correct behavior:
-JSS - https://codesandbox.io/s/typescript-case-bt065c?file=/demo.tsx
-TSS - https://codesandbox.io/s/typescript-case-7jwpms?file=/demo.tsx
+JSS - https://codesandbox.io/p/sandbox/typescript-case-bt065c?file=/demo.tsx
+TSS - https://codesandbox.io/p/sandbox/typescript-case-7jwpms?file=/demo.tsx
  */
 
 const useStyles = makeStyles<void, 'test2'>()((theme: Theme, _params, classes) => ({

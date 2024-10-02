@@ -34,7 +34,7 @@ const TaskCard = dynamic(() => import('../showcase/TaskCard'), {
 });
 const PlayerCard = dynamic(() => import('../showcase/PlayerCard'), {
   ssr: false,
-  loading: createLoading({ width: 400, height: 240 }),
+  loading: createLoading({ width: 400, height: 134 }),
 });
 const ThemeToggleButton = dynamic(() => import('../showcase/ThemeToggleButton'), {
   ssr: false,
@@ -42,19 +42,19 @@ const ThemeToggleButton = dynamic(() => import('../showcase/ThemeToggleButton'),
 });
 const ThemeChip = dynamic(() => import('../showcase/ThemeChip'), {
   ssr: false,
-  loading: createLoading({ width: 400, height: 24 }),
+  loading: createLoading({ width: 360, height: 24 }),
 });
 const ThemeTimeline = dynamic(() => import('../showcase/ThemeTimeline'), {
   ssr: false,
-  loading: createLoading({ width: 400, height: 180 }),
+  loading: createLoading({ width: 400, height: 175 }),
 });
 const FolderTable = dynamic(() => import('../showcase/FolderTable'), {
   ssr: false,
-  loading: createLoading({ width: 360, height: 210 }),
+  loading: createLoading({ width: 400, height: 294 }),
 });
 const ThemeDatePicker = dynamic(() => import('../showcase/ThemeDatePicker'), {
   ssr: false,
-  loading: createLoading({ width: 360, height: 260 }),
+  loading: createLoading({ width: 360, height: 245 }),
 });
 const ThemeTabs = dynamic(() => import('../showcase/ThemeTabs'), {
   ssr: false,
@@ -64,17 +64,13 @@ const ThemeSlider = dynamic(() => import('../showcase/ThemeSlider'), {
   ssr: false,
   loading: createLoading({ width: 400, height: 104 }),
 });
-const ThemeButton = dynamic(() => import('../showcase/ThemeButton'), {
-  ssr: false,
-  loading: createLoading({ width: 360, height: 38 }),
-});
 const ThemeAccordion = dynamic(() => import('../showcase/ThemeAccordion'), {
   ssr: false,
-  loading: createLoading({ width: { md: 360, xl: 400 }, height: 231 }),
+  loading: createLoading({ width: 360, height: 252 }),
 });
 const NotificationCard = dynamic(() => import('../showcase/NotificationCard'), {
   ssr: false,
-  loading: createLoading({ width: { md: 360, xl: 400 }, height: 103 }),
+  loading: createLoading({ width: 360, height: 98 }),
 });
 
 export default function Hero() {
@@ -84,12 +80,12 @@ export default function Hero() {
     <HeroContainer
       linearGradient
       left={
-        <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
-          <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
+        <Box sx={{ textAlign: { xs: 'center', md: 'left' }, maxWidth: 500 }}>
+          <Typography variant="h1" sx={{ mb: 1 }}>
             <GradientText>Move faster</GradientText> <br />
             with intuitive React UI tools
           </Typography>
-          <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
+          <Typography sx={{ color: 'text.secondary', mb: 3 }}>
             MUI offers a comprehensive suite of free UI tools to help you ship new features faster.
             Start with Material UI, our fully-loaded component library, or bring your own design
             system to our production-ready components.
@@ -98,7 +94,7 @@ export default function Hero() {
         </Box>
       }
       rightSx={{
-        p: 3,
+        p: 4,
         ml: 2,
         minWidth: 2000,
         overflow: 'hidden', // the components in the Hero section are mostly illustrative, even though they're interactive. That's why scrolling is disabled.
@@ -119,23 +115,26 @@ export default function Hero() {
       right={
         <React.Fragment>
           {isMdUp && (
-            <Stack spacing={3} sx={{ '& > .MuiPaper-root': { maxWidth: 'none' } }}>
+            <Stack spacing={3} useFlexGap sx={{ '& > .MuiPaper-root': { maxWidth: 'none' } }}>
               <TaskCard />
-              <ThemeToggleButton />
+              <ThemeChip />
               <ThemeDatePicker />
-              <ThemeButton />
-              <FolderTable />
+              <NotificationCard />
+              <ThemeAccordion />
             </Stack>
           )}
           {isMdUp && (
-            <Stack spacing={3} sx={{ ml: 3, '& > .MuiPaper-root': { maxWidth: 'none' } }}>
-              <NotificationCard />
-              <ThemeChip />
+            <Stack
+              spacing={3}
+              useFlexGap
+              sx={{ ml: 3, '& > .MuiPaper-root': { maxWidth: 'none' } }}
+            >
               <ThemeTimeline />
+              <ThemeToggleButton />
               <ThemeSlider />
               <ThemeTabs />
               <PlayerCard />
-              <ThemeAccordion />
+              <FolderTable />
             </Stack>
           )}
         </React.Fragment>

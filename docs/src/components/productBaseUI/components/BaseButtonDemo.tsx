@@ -4,37 +4,48 @@ import { Button } from '@mui/base/Button';
 import { styled, GlobalStyles } from '@mui/system';
 
 const buttonStyles = `
-  font-family: IBM Plex Sans, sans-serif;
-  font-weight: bold;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 600;
   font-size: 0.875rem;
-  background-color: var(--palette-primary);
-  padding: 10px 16px;
+  line-height: 1.5;
+  background: var(--primary);
+  padding: 6px 12px;
   border-radius: 8px;
   color: white;
   transition: all 150ms ease;
   cursor: pointer;
   border: none;
-  box-shadow: var(--shadow);
+  box-shadow: var(--solid-btn-shadow);
+  user-select: none;
 
   &:hover {
-    background-color: var(--palette-primary-hover);
+    background: var(--primary-hover);
+    box-shadow: none;
   }
 
-  &.Mui-active {
-    background-color: var(--palette-primary-dark);
+  &.base--active {
+    background: var(--primary-active);
   }
 
-  &.Mui-focusVisible {
-    outline: 4px solid var(--focus-ring);
+  &.base--focusVisible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
   }
 
-  &.Mui-disabled {
+  &.base--disabled {
     opacity: 0.5;
     cursor: not-allowed;
+
+    &:hover {
+      background: var(--primary);
+      box-shadow: var(--solid-btn-shadow);
+    }
   }
 `;
 
 const StyledButton = styled('button')(buttonStyles);
+
+const buttonStylesTailwind = `cursor-pointer select-none rounded-[8px] border-none bg-[--primary] p-[6px_12px] text-[0.875rem] leading-[1.5] font-bold text-white [font-family:IBM_Plex_sans] hover:bg-[--primary-hover] ui-active:bg-[--primary-active] ui-disabled:cursor-not-allowed ui-disabled:opacity-50 ui-disabled:hover:bg-[--primary] ui-disabled:[box-shadow:var(--solid-btn-shadow)] ui-focus-visible:[outline:3px_solid_var(--focus-ring)] outline-offset-2 transition [box-shadow:var(--solid-btn-shadow)] hover:[box-shadow:none]`;
 
 export default function BaseButtonDemo({
   styling,
@@ -62,20 +73,15 @@ export default function BaseButtonDemo({
       )}
       {styling === 'css' && (
         <React.Fragment>
-          <GlobalStyles styles={`.MuiButton-root {${buttonStyles}}`} />
+          <GlobalStyles styles={`.base-Button-root {${buttonStyles}}`} />
           <Button>Button</Button>
           <Button disabled>Disabled</Button>
         </React.Fragment>
       )}
       {styling === 'tailwindcss' && (
         <React.Fragment>
-          <Button className="transition-all-[150ms_ease] shaodw-[--shadow] cursor-pointer rounded-[8px] border-none bg-[--palette-primary] p-[10px_16px] text-[0.875rem] font-bold text-white transition [font-family:IBM_Plex_sans] hover:bg-[--palette-primary-hover] ui-active:bg-[--palette-primary-dark] ui-disabled:cursor-not-allowed ui-disabled:opacity-50 ui-focus-visible:[outline:4px_solid_var(--focus-ring)]">
-            Button
-          </Button>
-          <Button
-            disabled
-            className="transition-all-[150ms_ease] cursor-pointer rounded-[8px] border-none bg-[--palette-primary] p-[10px_16px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] ui-active:bg-[--palette-primary-dark] ui-disabled:cursor-not-allowed ui-disabled:opacity-50 ui-focus-visible:[outline:4px_solid_var(--focus-ring)]"
-          >
+          <Button className={buttonStylesTailwind}>Button</Button>
+          <Button className={buttonStylesTailwind} disabled>
             Disabled
           </Button>
         </React.Fragment>
@@ -102,32 +108,30 @@ import './styles.css';
 <Button disabled>Disabled</Button>
 
 /* styles.css */
-.MuiButton-root {${buttonStyles}}
+.base-Button-root {${buttonStyles}}
 `;
   }
   if (styling === 'tailwindcss') {
     return `import { Button } from '@mui/base/Button';
 
 <Button
-  className="transition-all-[150ms_ease] cursor-pointer
-    rounded-[8px] border-none bg-[--palette-primary]
-    p-[10px_16px] text-[0.875rem] font-bold 
-    text-white [font-family:IBM_Plex_sans] 
-    hover:bg-[--palette-primary-hover]
-    shadow-[--shadow]
-    ui-active:bg-[--palette-primary-dark] 
-    ui-disabled:cursor-not-allowed ui-disabled:opacity-50 
-    ui-focus-visible:[outline:4px_solid_var(--focus-ring) transition">
+  className="cursor-pointer select-none rounded-[8px] 
+  border-none bg-indigo-600 p-[6px_12px] text-[0.875rem] leading-[1.5] font-bold 
+  text-white [font-family:IBM_Plex_sans] hover:bg-indigo-500 
+  ui-active:bg-indigo-800 ui-disabled:cursor-not-allowed ui-disabled:opacity-50 
+  ui-focus-visible:[outline:4px_solid_var(--focus-ring)] outline-offset-2 
+  transition [box-shadow:var(--solid-btn-shadow)] hover:[box-shadow:none]
+  ui-disabled:hover:bg-[--primary] ui-disabled:[box-shadow:var(--solid-btn-shadow)]">
   Button
 </Button>
 <Button
-  className="transition-all-[150ms_ease] cursor-pointer
-    rounded-[8px] border-none bg-[--palette-primary]
-    p-[10px_16px] text-[0.875rem] font-bold 
-    text-white [font-family:IBM_Plex_sans] 
-    ui-active:bg-[--palette-primary-dark] 
-    ui-disabled:cursor-not-allowed ui-disabled:opacity-50 
-    ui-focus-visible:[outline:4px_solid_var(--focus-ring)]">
+  className="cursor-pointer select-none rounded-[8px] 
+  border-none bg-indigo-600 p-[6px_12px] text-[0.875rem] leading-[1.5] font-bold 
+  text-white [font-family:IBM_Plex_sans] hover:bg-indigo-500 
+  ui-active:bg-indigo-800 ui-disabled:cursor-not-allowed ui-disabled:opacity-50 
+  ui-focus-visible:[outline:4px_solid_var(--focus-ring)] outline-offset-2 
+  transition [box-shadow:var(--solid-btn-shadow)] hover:[box-shadow:none]
+  ui-disabled:hover:bg-[--primary] ui-disabled:[box-shadow:var(--solid-btn-shadow)]">
   Disabled
 </Button>`;
   }

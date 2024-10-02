@@ -1,10 +1,10 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { GlobalStyles } from '@mui/system';
+import GlobalStyles from '../GlobalStyles';
+import defaultTheme from '../styles/defaultTheme';
 import { Theme, DefaultColorScheme, ColorSystem } from '../styles/types';
 import { Components } from '../styles/components';
-import defaultTheme from '../styles/defaultTheme';
 import { CssBaselineProps } from './CssBaselineProps';
 
 /**
@@ -81,10 +81,10 @@ function CssBaseline(props: CssBaselineProps) {
 }
 
 CssBaseline.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * You can wrap a node.
    */

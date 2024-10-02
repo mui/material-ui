@@ -12,7 +12,7 @@ Page.getInitialProps = () => {
   const req = require.context(
     'docs/translations/api-docs-joy/circular-progress',
     false,
-    /circular-progress.*.json$/,
+    /\.\/circular-progress.*.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 

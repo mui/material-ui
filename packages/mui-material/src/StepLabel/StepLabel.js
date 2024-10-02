@@ -1,14 +1,16 @@
 'use client';
-import * as React from 'react';
-import PropTypes from 'prop-types';
+import composeClasses from '@mui/utils/composeClasses';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import PropTypes from 'prop-types';
+import * as React from 'react';
+import StepContext from '../Step/StepContext';
 import StepIcon from '../StepIcon';
 import StepperContext from '../Stepper/StepperContext';
-import StepContext from '../Step/StepContext';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import stepLabelClasses, { getStepLabelUtilityClass } from './stepLabelClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, orientation, active, completed, error, disabled, alternativeLabel } = ownerState;
@@ -51,7 +53,7 @@ const StepLabelRoot = styled('span', {
 
     return [styles.root, styles[ownerState.orientation]];
   },
-})(({ ownerState }) => ({
+})({
   display: 'flex',
   alignItems: 'center',
   [`&.${stepLabelClasses.alternativeLabel}`]: {
@@ -60,65 +62,74 @@ const StepLabelRoot = styled('span', {
   [`&.${stepLabelClasses.disabled}`]: {
     cursor: 'default',
   },
-  ...(ownerState.orientation === 'vertical' && {
-    textAlign: 'left',
-    padding: '8px 0',
-  }),
-}));
+  variants: [
+    {
+      props: { orientation: 'vertical' },
+      style: {
+        textAlign: 'left',
+        padding: '8px 0',
+      },
+    },
+  ],
+});
 
 const StepLabelLabel = styled('span', {
   name: 'MuiStepLabel',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
-})(({ theme }) => ({
-  ...theme.typography.body2,
-  display: 'block',
-  transition: theme.transitions.create('color', {
-    duration: theme.transitions.duration.shortest,
-  }),
-  [`&.${stepLabelClasses.active}`]: {
-    color: (theme.vars || theme).palette.text.primary,
-    fontWeight: 500,
-  },
-  [`&.${stepLabelClasses.completed}`]: {
-    color: (theme.vars || theme).palette.text.primary,
-    fontWeight: 500,
-  },
-  [`&.${stepLabelClasses.alternativeLabel}`]: {
-    marginTop: 16,
-  },
-  [`&.${stepLabelClasses.error}`]: {
-    color: (theme.vars || theme).palette.error.main,
-  },
-}));
+})(
+  memoTheme(({ theme }) => ({
+    ...theme.typography.body2,
+    display: 'block',
+    transition: theme.transitions.create('color', {
+      duration: theme.transitions.duration.shortest,
+    }),
+    [`&.${stepLabelClasses.active}`]: {
+      color: (theme.vars || theme).palette.text.primary,
+      fontWeight: 500,
+    },
+    [`&.${stepLabelClasses.completed}`]: {
+      color: (theme.vars || theme).palette.text.primary,
+      fontWeight: 500,
+    },
+    [`&.${stepLabelClasses.alternativeLabel}`]: {
+      marginTop: 16,
+    },
+    [`&.${stepLabelClasses.error}`]: {
+      color: (theme.vars || theme).palette.error.main,
+    },
+  })),
+);
 
 const StepLabelIconContainer = styled('span', {
   name: 'MuiStepLabel',
   slot: 'IconContainer',
   overridesResolver: (props, styles) => styles.iconContainer,
-})(() => ({
-  flexShrink: 0, // Fix IE11 issue
+})({
+  flexShrink: 0,
   display: 'flex',
   paddingRight: 8,
   [`&.${stepLabelClasses.alternativeLabel}`]: {
     paddingRight: 0,
   },
-}));
+});
 
 const StepLabelLabelContainer = styled('span', {
   name: 'MuiStepLabel',
   slot: 'LabelContainer',
   overridesResolver: (props, styles) => styles.labelContainer,
-})(({ theme }) => ({
-  width: '100%',
-  color: (theme.vars || theme).palette.text.secondary,
-  [`&.${stepLabelClasses.alternativeLabel}`]: {
-    textAlign: 'center',
-  },
-}));
+})(
+  memoTheme(({ theme }) => ({
+    width: '100%',
+    color: (theme.vars || theme).palette.text.secondary,
+    [`&.${stepLabelClasses.alternativeLabel}`]: {
+      textAlign: 'center',
+    },
+  })),
+);
 
 const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiStepLabel' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiStepLabel' });
   const {
     children,
     className,
@@ -126,6 +137,7 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
     error = false,
     icon: iconProp,
     optional,
+    slots = {},
     slotProps = {},
     StepIconComponent: StepIconComponentProp,
     StepIconProps,
@@ -154,7 +166,26 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const labelSlotProps = slotProps.label ?? componentsProps.label;
+  const externalForwardedProps = {
+    slots,
+    slotProps: {
+      stepIcon: StepIconProps,
+      ...componentsProps,
+      ...slotProps,
+    },
+  };
+
+  const [LabelSlot, labelProps] = useSlot('label', {
+    elementType: StepLabelLabel,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [StepIconSlot, stepIconProps] = useSlot('stepIcon', {
+    elementType: StepIconComponent,
+    externalForwardedProps,
+    ownerState,
+  });
 
   return (
     <StepLabelRoot
@@ -163,26 +194,22 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
       ownerState={ownerState}
       {...other}
     >
-      {icon || StepIconComponent ? (
+      {icon || StepIconSlot ? (
         <StepLabelIconContainer className={classes.iconContainer} ownerState={ownerState}>
-          <StepIconComponent
+          <StepIconSlot
             completed={completed}
             active={active}
             error={error}
             icon={icon}
-            {...StepIconProps}
+            {...stepIconProps}
           />
         </StepLabelIconContainer>
       ) : null}
       <StepLabelLabelContainer className={classes.labelContainer} ownerState={ownerState}>
         {children ? (
-          <StepLabelLabel
-            ownerState={ownerState}
-            {...labelSlotProps}
-            className={clsx(classes.label, labelSlotProps?.className)}
-          >
+          <LabelSlot {...labelProps} className={clsx(classes.label, labelProps?.className)}>
             {children}
-          </StepLabelLabel>
+          </LabelSlot>
         ) : null}
         {optional}
       </StepLabelLabelContainer>
@@ -191,10 +218,10 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
 });
 
 StepLabel.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * In most cases will simply be a string containing a title for the label.
    */
@@ -210,6 +237,7 @@ StepLabel.propTypes /* remove-proptypes */ = {
   /**
    * The props used for each slot inside.
    * @default {}
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps: PropTypes.shape({
     label: PropTypes.object,
@@ -232,14 +260,23 @@ StepLabel.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    label: PropTypes.object,
+    label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    stepIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The component to render in place of the [`StepIcon`](/material-ui/api/step-icon/).
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    label: PropTypes.elementType,
+    stepIcon: PropTypes.elementType,
+  }),
+  /**
+   * The component to render in place of the [`StepIcon`](https://mui.com/material-ui/api/step-icon/).
    */
   StepIconComponent: PropTypes.elementType,
   /**
-   * Props applied to the [`StepIcon`](/material-ui/api/step-icon/) element.
+   * Props applied to the [`StepIcon`](https://mui.com/material-ui/api/step-icon/) element.
    */
   StepIconProps: PropTypes.object,
   /**
@@ -252,6 +289,8 @@ StepLabel.propTypes /* remove-proptypes */ = {
   ]),
 };
 
-StepLabel.muiName = 'StepLabel';
+if (StepLabel) {
+  StepLabel.muiName = 'StepLabel';
+}
 
 export default StepLabel;

@@ -4,6 +4,7 @@ title: Bottom Navigation React component
 components: BottomNavigation, BottomNavigationAction
 githubLabel: 'component: bottom navigation'
 materialDesign: https://m2.material.io/components/bottom-navigation
+githubSource: packages/mui-material/src/BottomNavigation
 ---
 
 # Bottom Navigation
@@ -12,7 +13,7 @@ materialDesign: https://m2.material.io/components/bottom-navigation
 
 Bottom navigation bars display three to five destinations at the bottom of a screen. Each destination is represented by an icon and an optional text label. When a bottom navigation icon is tapped, the user is taken to the top-level navigation destination associated with that icon.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Bottom navigation
 
@@ -36,4 +37,4 @@ This demo keeps bottom navigation fixed to the bottom, no matter the amount of c
 
 One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.
 The `BottomNavigationAction` component provides the `component` prop to handle this use case.
-Here is a [more detailed guide](/material-ui/guides/routing/).
+Here is a [more detailed guide](/material-ui/integrations/routing/).

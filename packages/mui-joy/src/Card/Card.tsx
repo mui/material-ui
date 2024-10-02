@@ -9,12 +9,13 @@ import {
   unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
 import { useThemeProps } from '../styles';
+import { applySolidInversion, applySoftInversion } from '../colorInversion';
 import styled from '../styles/styled';
-import { ColorInversionProvider, useColorInversion } from '../styles/ColorInversion';
 import { getCardUtilityClass } from './cardClasses';
 import { CardProps, CardOwnerState, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
 import useSlot from '../utils/useSlot';
+import { DividerProps } from '../Divider';
 
 const useUtilityClasses = (ownerState: CardOwnerState) => {
   const { size, variant, color, orientation } = ownerState;
@@ -32,11 +33,10 @@ const useUtilityClasses = (ownerState: CardOwnerState) => {
   return composeClasses(slots, getCardUtilityClass, {});
 };
 
-const CardRoot = styled('div', {
-  name: 'JoyCard',
-  slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CardOwnerState }>(({ theme, ownerState }) => {
+export const StyledCardRoot = styled('div')<{ ownerState: CardOwnerState }>(({
+  theme,
+  ownerState,
+}) => {
   const { p, padding, borderRadius } = resolveSxValue({ theme, ownerState }, [
     'p',
     'padding',
@@ -81,22 +81,32 @@ const CardRoot = styled('div', {
       }),
       padding: 'var(--Card-padding)',
       borderRadius: 'var(--Card-radius)',
-      boxShadow: theme.shadow.sm,
       backgroundColor: theme.vars.palette.background.surface,
       position: 'relative',
       display: 'flex',
       flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
       ...theme.typography[`body-${ownerState.size!}`],
+      ...(ownerState.variant === 'solid' &&
+        ownerState.color &&
+        ownerState.invertedColors &&
+        applySolidInversion(ownerState.color)(theme)),
+      ...(ownerState.variant === 'soft' &&
+        ownerState.color &&
+        ownerState.invertedColors &&
+        applySoftInversion(ownerState.color)(theme)),
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
     } as const,
-    ownerState.color !== 'context' &&
-      ownerState.invertedColors &&
-      theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
     p !== undefined && { '--Card-padding': p },
     padding !== undefined && { '--Card-padding': padding },
     borderRadius !== undefined && { '--Card-radius': borderRadius },
   ];
 });
+
+const CardRoot = styled(StyledCardRoot, {
+  name: 'JoyCard',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})<{ ownerState: CardOwnerState }>({});
 
 /**
  *
@@ -116,19 +126,17 @@ const Card = React.forwardRef(function Card(inProps, ref) {
 
   const {
     className,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     component = 'div',
     invertedColors = false,
     size = 'md',
-    variant = 'plain',
+    variant = 'outlined',
     children,
     orientation = 'vertical',
     slots = {},
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
@@ -137,6 +145,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     orientation,
     size,
     variant,
+    invertedColors,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -150,7 +159,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     ownerState,
   });
 
-  const result = (
+  return (
     <SlotRoot {...rootProps}>
       {React.Children.map(children, (child, index) => {
         if (!React.isValidElement(child)) {
@@ -158,19 +167,11 @@ const Card = React.forwardRef(function Card(inProps, ref) {
         }
         const extraProps: Record<string, any> = {};
         if (isMuiElement(child, ['Divider'])) {
-          extraProps.inset = 'inset' in child.props ? child.props.inset : 'context';
+          const childProps = child.props as DividerProps;
+          extraProps.inset = childProps?.inset ?? 'context';
 
           const dividerOrientation = orientation === 'vertical' ? 'horizontal' : 'vertical';
-          extraProps.orientation =
-            'orientation' in child.props ? child.props.orientation : dividerOrientation;
-        }
-        if (isMuiElement(child, ['CardOverflow'])) {
-          if (orientation === 'horizontal') {
-            extraProps['data-parent'] = 'Card-horizontal';
-          }
-          if (orientation === 'vertical') {
-            extraProps['data-parent'] = 'Card-vertical';
-          }
+          extraProps.orientation = childProps?.orientation ?? dividerOrientation;
         }
         if (index === 0) {
           extraProps['data-first-child'] = '';
@@ -182,18 +183,13 @@ const Card = React.forwardRef(function Card(inProps, ref) {
       })}
     </SlotRoot>
   );
-
-  if (invertedColors) {
-    return <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;
-  }
-  return result;
 }) as OverridableComponent<CardTypeMap>;
 
 Card.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Used to render icon or text elements inside the Card if `src` is not set.
    * This can be an element, or just a string.
@@ -259,7 +255,7 @@ Card.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
-   * @default 'plain'
+   * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

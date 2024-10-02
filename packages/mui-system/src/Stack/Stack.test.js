@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Stack from '@mui/system/Stack';
-import { createTheme } from '@mui/system';
+import createTheme from '@mui/system/createTheme';
 import { style } from './createStack';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Stack />', () => {
   const { render } = createRenderer();

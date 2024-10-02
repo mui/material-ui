@@ -4,52 +4,38 @@
       "type": { "name": "enum", "description": "'center'<br>&#124;&nbsp;'flex-start'" },
       "default": "'center'"
     },
-    "autoFocus": {
-      "type": { "name": "bool" },
-      "default": "false",
-      "deprecated": true,
-      "deprecationInfo": "checkout <a href=\"/material-ui/api/list-item-button/\">ListItemButton</a> instead"
-    },
-    "button": {
-      "type": { "name": "bool" },
-      "default": "false",
-      "deprecated": true,
-      "deprecationInfo": "checkout <a href=\"/material-ui/api/list-item-button/\">ListItemButton</a> instead"
-    },
     "children": { "type": { "name": "custom", "description": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "component": { "type": { "name": "elementType" } },
     "components": {
       "type": { "name": "shape", "description": "{ Root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "Use the <code>slots</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ root?: object }" },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "Use the <code>slotProps</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "ContainerComponent": {
       "type": { "name": "custom", "description": "element type" },
       "default": "'li'",
-      "deprecated": true
-    },
-    "ContainerProps": { "type": { "name": "object" }, "default": "{}", "deprecated": true },
-    "dense": { "type": { "name": "bool" }, "default": "false" },
-    "disabled": {
-      "type": { "name": "bool" },
-      "default": "false",
       "deprecated": true,
-      "deprecationInfo": "checkout <a href=\"/material-ui/api/list-item-button/\">ListItemButton</a> instead"
+      "deprecationInfo": "Use the <code>component</code> or <code>slots.root</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
+    "ContainerProps": {
+      "type": { "name": "object" },
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "Use the <code>slotProps.root</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
+    "dense": { "type": { "name": "bool" }, "default": "false" },
     "disableGutters": { "type": { "name": "bool" }, "default": "false" },
     "disablePadding": { "type": { "name": "bool" }, "default": "false" },
     "divider": { "type": { "name": "bool" }, "default": "false" },
     "secondaryAction": { "type": { "name": "node" } },
-    "selected": {
-      "type": { "name": "bool" },
-      "default": "false",
-      "deprecated": true,
-      "deprecationInfo": "checkout <a href=\"/material-ui/api/list-item-button/\">ListItemButton</a> instead"
-    },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: object }" },
       "default": "{}"
@@ -71,28 +57,56 @@
     "import ListItem from '@mui/material/ListItem';",
     "import { ListItem } from '@mui/material';"
   ],
-  "styles": {
-    "classes": [
-      "root",
-      "container",
-      "focusVisible",
-      "dense",
-      "alignItemsFlexStart",
-      "disabled",
-      "divider",
-      "gutters",
-      "padding",
-      "button",
-      "secondaryAction",
-      "selected"
-    ],
-    "globalClasses": {
-      "focusVisible": "Mui-focusVisible",
-      "disabled": "Mui-disabled",
-      "selected": "Mui-selected"
+  "classes": [
+    {
+      "key": "alignItemsFlexStart",
+      "className": "MuiListItem-alignItemsFlexStart",
+      "description": "Styles applied to the component element if `alignItems=\"flex-start\"`.",
+      "isGlobal": false
     },
-    "name": "MuiListItem"
-  },
+    {
+      "key": "container",
+      "className": "MuiListItem-container",
+      "description": "Styles applied to the container element if `children` includes `ListItemSecondaryAction`.",
+      "isGlobal": false
+    },
+    {
+      "key": "dense",
+      "className": "MuiListItem-dense",
+      "description": "Styles applied to the component element if dense.",
+      "isGlobal": false
+    },
+    {
+      "key": "divider",
+      "className": "MuiListItem-divider",
+      "description": "Styles applied to the inner `component` element if `divider={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "gutters",
+      "className": "MuiListItem-gutters",
+      "description": "Styles applied to the inner `component` element unless `disableGutters={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "padding",
+      "className": "MuiListItem-padding",
+      "description": "Styles applied to the root element unless `disablePadding={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiListItem-root",
+      "description": "Styles applied to the (normally root) `component` element. May be wrapped by a `container`.",
+      "isGlobal": false
+    },
+    {
+      "key": "secondaryAction",
+      "className": "MuiListItem-secondaryAction",
+      "description": "Styles applied to the component element if `children` includes `ListItemSecondaryAction`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiListItem",

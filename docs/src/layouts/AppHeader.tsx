@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -8,14 +7,12 @@ import Container from '@mui/material/Container';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
+import LogoWithCopyMenu from 'docs/src/components/action/LogoWithCopyMenu';
 import HeaderNavBar from 'docs/src/components/header/HeaderNavBar';
 import HeaderNavDropdown from 'docs/src/components/header/HeaderNavDropdown';
 import ThemeModeToggle from 'docs/src/components/header/ThemeModeToggle';
-import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
-import Link from 'docs/src/modules/components/Link';
 import { DeferredAppSearch } from 'docs/src/modules/components/AppFrame';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 
 const Header = styled('header')(({ theme }) => [
   {
@@ -23,12 +20,11 @@ const Header = styled('header')(({ theme }) => [
     top: 0,
     transition: theme.transitions.create('top'),
     zIndex: theme.zIndex.appBar,
-    backdropFilter: 'blur(8px)',
-    boxShadow: `inset 0px -1px 1px ${(theme.vars || theme).palette.grey[100]}`,
     backgroundColor: 'rgba(255,255,255,0.8)',
+    backdropFilter: 'blur(8px)',
+    borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
   } as const,
   theme.applyDarkStyles({
-    boxShadow: `inset 0px -1px 1px ${(theme.vars || theme).palette.primaryDark[700]}`,
     backgroundColor: alpha(theme.palette.primaryDark[900], 0.7),
   }),
 ]);
@@ -41,33 +37,7 @@ interface AppHeaderProps {
 
 export default function AppHeader(props: AppHeaderProps) {
   const { gitHubRepository = 'https://github.com/mui' } = props;
-  const changeTheme = useChangeTheme();
-  const [mode, setMode] = React.useState<string | null>(null);
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-
   const t = useTranslate();
-
-  React.useEffect(() => {
-    let initialMode = 'system';
-    try {
-      initialMode = localStorage.getItem('mui-mode') || initialMode;
-    } catch (error) {
-      // do nothing
-    }
-    setMode(initialMode);
-  }, []);
-
-  const handleChangeThemeMode = (checked: boolean) => {
-    const paletteMode = checked ? 'dark' : 'light';
-    setMode(paletteMode);
-
-    try {
-      localStorage.setItem('mui-mode', paletteMode); // syncing with homepage, can be removed once all pages are migrated to CSS variables
-    } catch (error) {
-      // do nothing
-    }
-    changeTheme({ paletteMode });
-  };
 
   return (
     <Header>
@@ -79,9 +49,7 @@ export default function AppHeader(props: AppHeaderProps) {
         }}
       />
       <Container sx={{ display: 'flex', alignItems: 'center', minHeight: HEIGHT }}>
-        <Box component={Link} href="/" aria-label="Go to homepage" sx={{ lineHeight: 0, mr: 2 }}>
-          <SvgMuiLogomark width={30} />
-        </Box>
+        <LogoWithCopyMenu />
         <Box sx={{ display: { xs: 'none', md: 'initial' } }}>
           <HeaderNavBar />
         </Box>
@@ -92,6 +60,7 @@ export default function AppHeader(props: AppHeaderProps) {
             <IconButton
               component="a"
               color="primary"
+              size="small"
               href={gitHubRepository}
               target="_blank"
               rel="noopener"
@@ -101,12 +70,7 @@ export default function AppHeader(props: AppHeaderProps) {
               <GitHubIcon fontSize="small" />
             </IconButton>
           </Tooltip>
-          {mode !== null ? (
-            <ThemeModeToggle
-              checked={mode === 'system' ? prefersDarkMode : mode === 'dark'}
-              onChange={handleChangeThemeMode}
-            />
-          ) : null}
+          <ThemeModeToggle />
         </Stack>
         <Box sx={{ display: { md: 'none' }, ml: 1 }}>
           <HeaderNavDropdown />

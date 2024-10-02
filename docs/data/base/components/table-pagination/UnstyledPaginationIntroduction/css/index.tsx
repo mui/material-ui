@@ -4,6 +4,10 @@ import {
   TablePagination,
   tablePaginationClasses as classes,
 } from '@mui/base/TablePagination';
+import FirstPageRoundedIcon from '@mui/icons-material/FirstPageRounded';
+import LastPageRoundedIcon from '@mui/icons-material/LastPageRounded';
+import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
+import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 
 export default function UnstyledPaginationIntroduction() {
   const [page, setPage] = React.useState(0);
@@ -38,11 +42,17 @@ export default function UnstyledPaginationIntroduction() {
                 page={page}
                 slotProps={{
                   select: {
-                    'aria-label': 'rows per page',
+                    'aria-label': 'Rows per page',
                   },
                   actions: {
                     showFirstButton: true,
                     showLastButton: true,
+                    slots: {
+                      firstPageIcon: FirstPageRoundedIcon,
+                      lastPageIcon: LastPageRoundedIcon,
+                      nextPageIcon: ChevronRightRoundedIcon,
+                      backPageIcon: ChevronLeftRoundedIcon,
+                    },
                   },
                 }}
                 onPageChange={handleChangePage}
@@ -72,15 +82,15 @@ const cyan = {
 
 const grey = {
   50: '#F3F6F9',
-  100: '#E7EBF0',
-  200: '#E0E3E7',
-  300: '#CDD2D7',
-  400: '#B2BAC2',
-  500: '#A0AAB4',
-  600: '#6F7E8C',
-  700: '#3E5060',
-  800: '#2D3843',
-  900: '#1A2027',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
 function useIsDarkMode() {
@@ -98,19 +108,21 @@ function Styles() {
       .TablePaginationIntroductionDemo {
         width: 500px;
         max-width: 100%;
-      }  
+      }
+
       th {
         background-color: ${isDarkMode ? grey[900] : '#fff'};
       }
+
       .TablePaginationIntroductionDemo table {
-        font-family: IBM Plex Sans, sans-serif;
+        font-family: 'IBM Plex Sans', sans-serif;
         font-size: 0.875rem;
         width: 100%;
+        box-shadow: 0px 4px 16px ${isDarkMode ? 'rgba(0, 0, 0, 0.3)' : grey[200]};
         background-color: ${isDarkMode ? grey[900] : '#fff'};
-        box-shadow: 0px 2px 16px ${isDarkMode ? grey[900] : grey[200]};
+        border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
         border-radius: 12px;
         overflow: hidden;
-        border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
       }
 
       .TablePaginationIntroductionDemo td,
@@ -121,7 +133,7 @@ function Styles() {
       .TablePaginationIntroductionDemo th {
         background-color: ${isDarkMode ? grey[900] : '#fff'};
       }
-      
+
       .CustomTablePagination .${classes.spacer} {
         display: none;
       }
@@ -130,7 +142,7 @@ function Styles() {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
+        gap: 8px;
 
         @media (min-width: 768px) {
           flex-direction: row;
@@ -143,18 +155,23 @@ function Styles() {
       }
 
       .CustomTablePagination .${classes.select} {
-        padding: 2px 6px;
+        font-family: 'IBM Plex Sans', sans-serif;
+        padding: 2px 0 2px 4px;
         border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
-        border-radius: 50px;
+        border-radius: 6px;
         background-color: transparent;
+        color: ${isDarkMode ? grey[300] : grey[900]};
+        transition: all 100ms ease;
       }
 
       .CustomTablePagination .${classes.select}:hover {
         background-color: ${isDarkMode ? grey[800] : grey[50]};
+        border-color: ${isDarkMode ? grey[600] : grey[300]};
       }
 
       .CustomTablePagination .${classes.select}:focus {
-        outline: 1px solid ${isDarkMode ? cyan[400] : cyan[200]};
+        outline: 3px solid ${isDarkMode ? cyan[400] : cyan[200]};
+        border-color: ${cyan[500]};
       }
 
       .CustomTablePagination .${classes.displayedRows} {
@@ -166,29 +183,45 @@ function Styles() {
       }
 
       .CustomTablePagination .${classes.actions} {
-        padding: 2px 6px;
-        border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
-        border-radius: 50px;
+        display: flex;
+        gap: 6px;
+        border: transparent;
         text-align: center;
       }
 
       .CustomTablePagination .${classes.actions} > button {
-        margin: 0 8px;
+        display: flex;
+        align-items: center;
+        padding: 0;
         border: transparent;
-        border-radius: 2px;
+        border-radius: 50%;
         background-color: transparent;
+        border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
+        color: ${isDarkMode ? grey[300] : grey[900]};
+        transition: all 120ms ease;
+
+        > svg {
+          font-size: 22px;
+        }
       }
 
       .CustomTablePagination .${classes.actions} > button:hover {
         background-color: ${isDarkMode ? grey[800] : grey[50]};
+        border-color: ${isDarkMode ? grey[600] : grey[300]};
       }
 
       .CustomTablePagination .${classes.actions} > button:focus {
-        outline: 1px solid ${isDarkMode ? cyan[400] : cyan[200]};
+        outline: 3px solid ${isDarkMode ? cyan[400] : cyan[200]};
+        border-color: ${cyan[500]};
       }
 
       .CustomTablePagination .${classes.actions} > button:disabled {
-        opacity: 0.7;
+        opacity: 0.3;
+      }
+
+      .CustomTablePagination .${classes.actions} > button:disabled:hover {
+        border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
+        background-color: transparent;
       }
       `}
     </style>

@@ -6,7 +6,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
+
 import styled from '../styles/styled';
 import { getTableUtilityClass } from './tableClasses';
 import { TableProps, TableOwnerState, TableTypeMap } from './TableProps';
@@ -305,7 +305,7 @@ const Table = React.forwardRef(function Table(inProps, ref) {
     noWrap = false,
     size = 'md',
     variant = 'plain',
-    color: colorProp = 'neutral',
+    color = 'neutral',
     stripe,
     stickyHeader = false,
     stickyFooter = false,
@@ -313,8 +313,6 @@ const Table = React.forwardRef(function Table(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
@@ -349,10 +347,10 @@ const Table = React.forwardRef(function Table(inProps, ref) {
 }) as OverridableComponent<TableTypeMap>;
 
 Table.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The axis to display a border on the table cell.
    * @default 'xBetween'
@@ -420,15 +418,11 @@ Table.propTypes /* remove-proptypes */ = {
   }),
   /**
    * If `true`, the footer always appear at the bottom of the overflow table.
-   *
-   * ⚠️ It doesn't work with IE11.
    * @default false
    */
   stickyFooter: PropTypes.bool,
   /**
    * If `true`, the header always appear at the top of the overflow table.
-   *
-   * ⚠️ It doesn't work with IE11.
    * @default false
    */
   stickyHeader: PropTypes.bool,

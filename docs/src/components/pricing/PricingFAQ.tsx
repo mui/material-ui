@@ -1,8 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -79,17 +79,6 @@ const faqData = [
         license key, you need to follow the{' '}
         <Link href="/x/introduction/licensing/#license-key-installation">instructions</Link>{' '}
         necessary to set it up.
-      </React.Fragment>
-    ),
-  },
-  {
-    summary: 'Why are you calling it "early access"?',
-    detail: (
-      <React.Fragment>
-        We think you'll love the features we've built so far, but we're planning to release more. We
-        opened it up as soon as we had something useful so that you can start getting value from it
-        right away, and we'll be adding new features and components based on our own ideas, and on
-        suggestions from early access customers.
       </React.Fragment>
     ),
   },
@@ -200,17 +189,24 @@ const Accordion = styled(MuiAccordion)(({ theme }) => ({
     borderRadius: theme.shape.borderRadius,
   },
   '&:hover': {
-    boxShadow: '1px 1px 20px 0 rgb(90 105 120 / 20%)',
+    borderColor: theme.palette.primary[300],
+    boxShadow: `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
   },
   '&:not(:last-of-type)': {
     marginBottom: theme.spacing(2),
   },
-  '&:before': {
+  '&::before': {
     display: 'none',
   },
-  '&:after': {
+  '&::after': {
     display: 'none',
   },
+  ...theme.applyDarkStyles({
+    '&:hover': {
+      borderColor: alpha(theme.palette.primary[600], 0.6),
+      boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.8)',
+    },
+  }),
 }));
 
 const AccordionSummary = styled(MuiAccordionSummary)(({ theme }) => ({
@@ -242,7 +238,7 @@ export default function PricingFAQ() {
         <AccordionSummary
           expandIcon={<KeyboardArrowDownRounded sx={{ fontSize: 20, color: 'primary.main' }} />}
         >
-          <Typography variant="body2" fontWeight="bold" component="h3">
+          <Typography variant="body2" component="h3" sx={{ fontWeight: 'bold' }}>
             {faq.summary}
           </Typography>
         </AccordionSummary>
@@ -250,8 +246,7 @@ export default function PricingFAQ() {
           <Typography
             component="div"
             variant="body2"
-            color="text.secondary"
-            sx={{ '& ul': { pl: 2 } }}
+            sx={{ color: 'text.secondary', '& ul': { pl: 2 } }}
           >
             {faq.detail}
           </Typography>
@@ -265,19 +260,19 @@ export default function PricingFAQ() {
         Frequently asked questions
       </Typography>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           {renderItem(0)}
           {renderItem(1)}
           {renderItem(2)}
           {renderItem(3)}
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           {renderItem(4)}
           {renderItem(5)}
           {renderItem(6)}
           {renderItem(7)}
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <Paper
             variant="outlined"
             sx={(theme) => ({
@@ -287,21 +282,25 @@ export default function PricingFAQ() {
               borderColor: 'grey.300',
               bgcolor: 'white',
               ...theme.applyDarkStyles({
-                borderColor: 'primaryDark.400',
+                borderColor: 'divider',
                 bgcolor: 'primaryDark.800',
               }),
             })}
           >
             <Box sx={{ textAlign: 'left' }}>
-              <Typography variant="body2" color="text.primary" fontWeight="bold" component="h3">
+              <Typography
+                variant="body2"
+                component="h3"
+                sx={{ color: 'text.primary', fontWeight: 'bold' }}
+              >
                 Got any questions unanswered or need help?
               </Typography>
             </Box>
-            <Typography variant="body2" color="text.secondary" sx={{ my: 1, textAlign: 'left' }}>
+            <Typography variant="body2" sx={{ color: 'text.secondary', my: 1, textAlign: 'left' }}>
               Email us at <Link href="mailto:sales@mui.com">sales@mui.com</Link> for sales-related
               questions.
             </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{ my: 1, textAlign: 'left' }}>
+            <Typography variant="body2" sx={{ color: 'text.secondary', my: 1, textAlign: 'left' }}>
               For product-related problems, please open
               <Link href="https://github.com/mui/mui-x/issues/new/choose">a new GitHub issue</Link>.
               (If you need to share private information, you can{' '}

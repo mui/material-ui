@@ -2,9 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import { getListSubheaderUtilityClass } from './listSubheaderClasses';
 
@@ -38,37 +39,60 @@ const ListSubheaderRoot = styled('li', {
       !ownerState.disableSticky && styles.sticky,
     ];
   },
-})(({ theme, ownerState }) => ({
-  boxSizing: 'border-box',
-  lineHeight: '48px',
-  listStyle: 'none',
-  color: (theme.vars || theme).palette.text.secondary,
-  fontFamily: theme.typography.fontFamily,
-  fontWeight: theme.typography.fontWeightMedium,
-  fontSize: theme.typography.pxToRem(14),
-  ...(ownerState.color === 'primary' && {
-    color: (theme.vars || theme).palette.primary.main,
-  }),
-  ...(ownerState.color === 'inherit' && {
-    color: 'inherit',
-  }),
-  ...(!ownerState.disableGutters && {
-    paddingLeft: 16,
-    paddingRight: 16,
-  }),
-  ...(ownerState.inset && {
-    paddingLeft: 72,
-  }),
-  ...(!ownerState.disableSticky && {
-    position: 'sticky',
-    top: 0,
-    zIndex: 1,
-    backgroundColor: (theme.vars || theme).palette.background.paper,
-  }),
-}));
+})(
+  memoTheme(({ theme }) => ({
+    boxSizing: 'border-box',
+    lineHeight: '48px',
+    listStyle: 'none',
+    color: (theme.vars || theme).palette.text.secondary,
+    fontFamily: theme.typography.fontFamily,
+    fontWeight: theme.typography.fontWeightMedium,
+    fontSize: theme.typography.pxToRem(14),
+    variants: [
+      {
+        props: {
+          color: 'primary',
+        },
+        style: {
+          color: (theme.vars || theme).palette.primary.main,
+        },
+      },
+      {
+        props: {
+          color: 'inherit',
+        },
+        style: {
+          color: 'inherit',
+        },
+      },
+      {
+        props: ({ ownerState }) => !ownerState.disableGutters,
+        style: {
+          paddingLeft: 16,
+          paddingRight: 16,
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.inset,
+        style: {
+          paddingLeft: 72,
+        },
+      },
+      {
+        props: ({ ownerState }) => !ownerState.disableSticky,
+        style: {
+          position: 'sticky',
+          top: 0,
+          zIndex: 1,
+          backgroundColor: (theme.vars || theme).palette.background.paper,
+        },
+      },
+    ],
+  })),
+);
 
 const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiListSubheader' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiListSubheader' });
   const {
     className,
     color = 'default',
@@ -101,13 +125,15 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
   );
 });
 
-ListSubheader.muiSkipListHighlight = true;
+if (ListSubheader) {
+  ListSubheader.muiSkipListHighlight = true;
+}
 
 ListSubheader.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

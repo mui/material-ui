@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from 'test/utils';
-import { CssVarsProvider, extendTheme, useTheme, shouldSkipGeneratingVar } from '@mui/joy/styles';
+import { createRenderer, screen } from '@mui/internal-test-utils';
+import { CssVarsProvider, useTheme, shouldSkipGeneratingVar } from '@mui/joy/styles';
 
 describe('[Joy] CssVarsProvider', () => {
   let originalMatchmedia: typeof window.matchMedia;
   const { render } = createRenderer();
   const storage: Record<string, string> = {};
+
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
     // Create mocks of localStorage getItem and setItem functions
@@ -21,19 +22,19 @@ describe('[Joy] CssVarsProvider', () => {
     });
     window.matchMedia = () =>
       ({
+        // Keep mocking legacy methods because @mui/material v5 still uses them
         addListener: () => {},
+        addEventListener: () => {},
         removeListener: () => {},
-      } as unknown as MediaQueryList);
+        removeEventListener: () => {},
+      }) as unknown as MediaQueryList;
   });
+
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
   });
 
   describe('shouldSkipGeneratingVar', () => {
-    it('skip typography', () => {
-      expect(shouldSkipGeneratingVar(['typography'])).to.equal(true);
-    });
-
     it('skip variants', () => {
       expect(shouldSkipGeneratingVar(['variants'])).to.equal(true);
     });
@@ -152,6 +153,7 @@ describe('[Joy] CssVarsProvider', () => {
           solidActiveBg: 'var(--joy-palette-neutral-solidActiveBg)',
           solidDisabledColor: 'var(--joy-palette-neutral-solidDisabledColor)',
           solidDisabledBg: 'var(--joy-palette-neutral-solidDisabledBg)',
+          plainHoverColor: 'var(--joy-palette-neutral-plainHoverColor)',
           mainChannel: 'var(--joy-palette-neutral-mainChannel)',
           lightChannel: 'var(--joy-palette-neutral-lightChannel)',
           darkChannel: 'var(--joy-palette-neutral-darkChannel)',
@@ -438,68 +440,6 @@ describe('[Joy] CssVarsProvider', () => {
     });
   });
 
-  describe('Color Inversion', () => {
-    it('should be customizable', () => {
-      function Text() {
-        const theme = useTheme();
-        return <div>{theme.colorInversion.solid.primary['--variant-plain'] as string}</div>;
-      }
-
-      const { container } = render(
-        <CssVarsProvider
-          theme={extendTheme({
-            colorInversion: {
-              solid: {
-                primary: {
-                  '--variant-plain': 'black',
-                },
-              },
-            },
-          })}
-        >
-          <Text />
-        </CssVarsProvider>,
-      );
-
-      expect(container.firstChild?.textContent).to.equal('black');
-    });
-
-    it('should be customizable with a callback', () => {
-      function Text() {
-        const theme = useTheme();
-        return (
-          <div>
-            {
-              (theme.colorInversion.soft.primary['[data-joy-color-scheme="dark"] &'] as any)[
-                '--variant-plain'
-              ]
-            }
-          </div>
-        );
-      }
-
-      const { container } = render(
-        <CssVarsProvider
-          theme={extendTheme({
-            colorInversion: (theme) => ({
-              soft: {
-                primary: {
-                  [theme.getColorSchemeSelector('dark')]: {
-                    '--variant-plain': 'red',
-                  },
-                },
-              },
-            }),
-          })}
-        >
-          <Text />
-        </CssVarsProvider>,
-      );
-
-      expect(container.firstChild?.textContent).to.equal('red');
-    });
-  });
-
   describe('Focus', () => {
     it('contain expected focus', function test() {
       function Text() {
@@ -570,21 +510,6 @@ describe('[Joy] CssVarsProvider', () => {
         ].join(','),
       );
     });
-
-    it('contain expected colorInversion', function test() {
-      function Text() {
-        const theme = useTheme();
-        return <div>{Object.keys(theme.colorInversion).join(',')}</div>;
-      }
-
-      const { container } = render(
-        <CssVarsProvider>
-          <Text />
-        </CssVarsProvider>,
-      );
-
-      expect(container.firstChild?.textContent).to.equal(['soft', 'solid'].join(','));
-    });
   });
 
   describe('Spacing', () => {
@@ -600,7 +525,7 @@ describe('[Joy] CssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(container.firstChild?.textContent).to.equal('16px');
+      expect(container.firstChild?.textContent).to.equal('calc(2 * var(--joy-spacing))');
     });
   });
 
@@ -636,22 +561,6 @@ describe('[Joy] CssVarsProvider', () => {
       );
 
       expect(container.firstChild?.textContent).not.to.equal('variants');
-    });
-
-    it('should not contain `typography` in theme.vars', () => {
-      function Consumer() {
-        const theme = useTheme();
-        // @ts-expect-error
-        return <div>{theme.vars.typography ? 'typography' : ''}</div>;
-      }
-
-      const { container } = render(
-        <CssVarsProvider>
-          <Consumer />
-        </CssVarsProvider>,
-      );
-
-      expect(container.firstChild?.textContent).not.to.equal('typography');
     });
 
     it('should contain only `focus.thickness` in theme.vars', () => {

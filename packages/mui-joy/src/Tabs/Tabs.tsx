@@ -8,7 +8,7 @@ import { useTabs, TabsProvider } from '@mui/base/useTabs';
 import { getPath } from '@mui/system';
 import { styled, useThemeProps } from '../styles';
 import { resolveSxValue } from '../styles/styleUtils';
-import { useColorInversion } from '../styles/ColorInversion';
+
 import SizeTabsContext from './SizeTabsContext';
 import { getTabsUtilityClass } from './tabsClasses';
 import { TabsOwnerState, TabsTypeMap } from './TabsProps';
@@ -104,14 +104,12 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     onChange,
     selectionFollowsFocus,
     variant = 'plain',
-    color: colorProp = 'neutral',
+    color = 'neutral',
     size = 'md',
     slots = {},
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
   const defaultValue = defaultValueProp || (valueProp === undefined ? 0 : undefined);
   const { contextValue } = useTabs({ ...props, orientation, defaultValue });
 
@@ -150,10 +148,10 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 }) as OverridableComponent<TabsTypeMap>;
 
 Tabs.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

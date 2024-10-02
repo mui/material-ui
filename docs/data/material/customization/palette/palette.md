@@ -11,7 +11,7 @@ Palette colors are represented by four tokens:
 - `dark`: A darker shade of `main`
 - `contrastText`: Text color, intended to contrast with `main`
 
-Here's how Material UI's default theme defines the primary color tokens:
+Here's how Material UI's default theme defines the primary color tokens:
 
 ```js
 const primary = {
@@ -303,12 +303,80 @@ const theme = createTheme({
 
 :::warning
 The `contrastThreshold` parameter can produce counterproductive results.\
-Please verify that the [APCA](https://contrast.tools/?tab=apca) color contrast is improved (WCAG 3 [will use](https://typefully.com/u/DanHollick/t/sle13GMW2Brp) this new algorithm).
+Please verify that the [APCA](https://contrast.tools/?tab=apca) color contrast is improved (WCAG 3 [will use](https://typefully.com/DanHollick/sle13GMW2Brp) this new algorithm).
 :::
 
 ## Picking colors
 
 Need inspiration? The Material Design team has built an [palette configuration tool](/material-ui/customization/color/#picking-colors) to help you.
+
+## Color schemes
+
+To add both built-in light and dark color schemes without creating separate themes, use the `colorSchemes: { light: true, dark: true }`.
+This generates the default tokens for both color schemes:
+
+```js
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  colorSchemes: {
+    light: true,
+    dark: true,
+  },
+});
+```
+
+To override the default tokens for each color scheme, use the same [palette object](#customization) as shown below:
+
+```js
+const theme = createTheme({
+  colorSchemes: {
+    light: {
+      palette: {
+        primary: {
+          main: '#FF5733',
+        },
+        // ...other tokens
+      },
+    },
+    dark: {
+      palette: {
+        primary: {
+          main: '#E0C2FF',
+        },
+        // ...other tokens
+      },
+    },
+  },
+});
+```
+
+:::warning
+The `colorSchemes` API is an enhanced version of the `palette` API, and is the preferred API for this purpose starting from Material UI v6.
+If you provide both `colorSchemes` and `palette`, the latter will override any styles defined in the former.
+
+```js
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '...',
+    },
+  },
+  colorSchemes: {
+    light: {
+      // This will be replaced by the palette defined above
+      palette: {
+        primary: {
+          main: '...',
+        },
+      },
+    },
+    dark: { ... },
+  },
+});
+```
+
+:::
 
 ## Dark mode
 

@@ -7,7 +7,7 @@ import {
   fireEvent,
   screen,
   programmaticFocusTriggersFocusVisible,
-} from 'test/utils';
+} from '@mui/internal-test-utils';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
@@ -179,6 +179,49 @@ describe('<MenuList> integration', () => {
       expect(menuitems[0]).to.have.property('tabIndex', 0);
       expect(menuitems[1]).to.have.property('tabIndex', -1);
       expect(menuitems[2]).to.have.property('tabIndex', -1);
+    });
+
+    describe('when a modifier key is pressed', () => {
+      it('should not move the focus', () => {
+        const { getAllByRole } = render(
+          <MenuList autoFocusItem>
+            <MenuItem selected>Menu Item 1</MenuItem>
+            <MenuItem>Menu Item 2</MenuItem>
+            <MenuItem>Menu Item 3</MenuItem>
+          </MenuList>,
+        );
+
+        const menuitems = getAllByRole('menuitem');
+        fireEvent.keyDown(menuitems[0], { key: 'ArrowDown', ctrlKey: true });
+        expect(menuitems[0]).toHaveFocus();
+        expect(menuitems[1]).not.toHaveFocus();
+
+        fireEvent.keyDown(menuitems[0], { key: 'ArrowDown', altKey: true });
+        expect(menuitems[0]).toHaveFocus();
+        expect(menuitems[1]).not.toHaveFocus();
+
+        fireEvent.keyDown(menuitems[0], { key: 'ArrowDown', metaKey: true });
+        expect(menuitems[0]).toHaveFocus();
+        expect(menuitems[1]).not.toHaveFocus();
+      });
+
+      it('should call the onKeyDown and not prevent default on the event', () => {
+        const onKeyDown = spy();
+        const { getAllByRole } = render(
+          <MenuList autoFocusItem onKeyDown={onKeyDown}>
+            <MenuItem selected>Menu Item 1</MenuItem>
+            <MenuItem>Menu Item 2</MenuItem>
+            <MenuItem>Menu Item 3</MenuItem>
+          </MenuList>,
+        );
+
+        const menuitems = getAllByRole('menuitem');
+        fireEvent.keyDown(menuitems[0], { key: 'ArrowDown', ctrlKey: true });
+
+        expect(onKeyDown.callCount).to.equal(1);
+        expect(onKeyDown.firstCall.args[0]).to.have.property('ctrlKey', true);
+        expect(onKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', false);
+      });
     });
   });
 
@@ -485,20 +528,16 @@ describe('<MenuList> integration', () => {
       expect(getByText('Arcansas')).toHaveFocus();
     });
 
-    it('should not get focusVisible class on click', () => {
-      const { getByText } = render(
+    it('should not get focusVisible class on click', async () => {
+      const { user, getByText } = render(
         <MenuList>
           <MenuItem focusVisibleClassName="focus-visible">Arizona</MenuItem>
         </MenuList>,
       );
 
       const menuitem = getByText('Arizona');
-      // user click
-      act(() => {
-        fireEvent.mouseDown(menuitem);
-        menuitem.focus();
-      });
-      fireEvent.click(menuitem);
+
+      await user.click(menuitem);
 
       expect(menuitem).toHaveFocus();
       if (programmaticFocusTriggersFocusVisible()) {

@@ -1,16 +1,14 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { MenuOwnerState, SlotComponentProps } from '@mui/base';
 import { InternalStandardProps as StandardProps } from '..';
-import Paper, { PaperProps } from '../Paper';
+import { PaperProps } from '../Paper';
 import { PopoverProps } from '../Popover';
 import { MenuListProps } from '../MenuList';
 import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
 import { MenuClasses } from './menuClasses';
 
-export interface MenuProps
-  extends StandardProps<Omit<PopoverProps, 'slots' | 'slotProps'>, 'children'> {
+export interface MenuProps extends StandardProps<PopoverProps> {
   /**
    * An HTML element, or a function that returns one.
    * It's used to set the position of the menu.
@@ -41,7 +39,7 @@ export interface MenuProps
    */
   disableAutoFocusItem?: boolean;
   /**
-   * Props applied to the [`MenuList`](/material-ui/api/menu-list/) element.
+   * Props applied to the [`MenuList`](https://mui.com/material-ui/api/menu-list/) element.
    * @default {}
    */
   MenuListProps?: Partial<MenuListProps>;
@@ -57,28 +55,9 @@ export interface MenuProps
    */
   open: boolean;
   /**
-   * `classes` prop applied to the [`Popover`](/material-ui/api/popover/) element.
+   * `classes` prop applied to the [`Popover`](https://mui.com/material-ui/api/popover/) element.
    */
   PopoverClasses?: PopoverProps['classes'];
-  /**
-   * The components used for each slot inside.
-   *
-   * @default {}
-   */
-  slots?: {
-    root?: React.ElementType;
-    paper?: React.ElementType;
-  };
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * @default {}
-   */
-  slotProps?: {
-    root?: SlotComponentProps<typeof Menu, {}, MenuOwnerState>;
-    paper?: SlotComponentProps<typeof Paper, {}, {}>;
-  };
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -90,7 +69,7 @@ export interface MenuProps
   transitionDuration?: TransitionProps['timeout'] | 'auto';
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    * @default {}
    */
   TransitionProps?: TransitionProps;
@@ -115,4 +94,4 @@ export declare const MenuPaper: React.FC<PaperProps>;
  * - [Menu API](https://mui.com/material-ui/api/menu/)
  * - inherits [Popover API](https://mui.com/material-ui/api/popover/)
  */
-export default function Menu(props: MenuProps): JSX.Element;
+export default function Menu(props: MenuProps): React.JSX.Element;

@@ -22,12 +22,6 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "multiline": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the Typography component",
-      "conditions": "primary and secondary are set"
-    },
     "dense": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Typography component",
@@ -38,10 +32,16 @@
       "nodeName": "the root element",
       "conditions": "<code>inset={true}</code>"
     },
+    "multiline": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Typography component",
+      "conditions": "primary and secondary are set"
+    },
     "primary": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the primary <code>Typography</code> component"
     },
+    "root": { "description": "Styles applied to the root element." },
     "secondary": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the secondary <code>Typography</code> component"

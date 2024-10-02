@@ -1,7 +1,7 @@
 ---
 productId: joy-ui
 title: React Modal component
-components: Modal, ModalClose, ModalDialog, ModalOverflow
+components: Modal, ModalClose, ModalDialog, ModalOverflow, DialogTitle, DialogContent, DialogActions
 githubLabel: 'component: modal'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 ---
@@ -10,11 +10,11 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 
 <p class="description">The modal component provides a solid foundation for creating dialogs, popovers, lightboxes, or whatever else.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
-Joy UI provides three modal-related components:
+Joy UI provides three modal-related components:
 
 - [`Modal`](#basic-usage): A container that renders its `children` node in front of a backdrop component.
 - [`ModalClose`](#dialog): A button for closing the modal.
@@ -53,7 +53,7 @@ export default function MyApp() {
 ### Basic usage
 
 The Modal accepts only a single React element as a child.
-That can be either a Joy UI component, e.g. [`Sheet`](/joy-ui/react-sheet/), or any other custom element.
+That can be either a Joy UI component, for example [`Sheet`](/joy-ui/react-sheet/), or any other custom element.
 
 Use the Modal Close component to render a close button that inherits the modal's `onClose` function.
 
@@ -226,7 +226,7 @@ Use `sx` prop with `theme.breakpoints.only('xs')` to customize the styles of the
 
 ### Focus trap
 
-Base UI `Modal` moves the focus back to the body of the component if the focus tries to escape it.
+Base UI `Modal` moves the focus back to the body of the component if the focus tries to escape it.
 
 This is done for accessibility purposes, but it can potentially create issues for your users.
 
@@ -246,7 +246,7 @@ See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/AR
   </Modal>
   ```
 
-- Follow the [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/dialog/) to help you set the initial focus on the most relevant element based on the content of the modal.
+- Follow the [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/dialog/) to help you set the initial focus on the most relevant element based on the content of the modal.
   :::warning
   A modal window can sit on top of either the parent application, or another modal window.
   _All_ windows under the topmost modal are **inert**, meaning the user cannot interact with them.

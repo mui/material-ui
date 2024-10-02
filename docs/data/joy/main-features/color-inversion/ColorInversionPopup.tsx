@@ -28,10 +28,10 @@ export default function ColorInversionPopup() {
   const [color, setColor] = React.useState<ColorPaletteProp>('danger');
   const [menuButton, setMenuButton] = React.useState<HTMLElement | null>(null);
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, py: 4 }}>
+    <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 2 }}>
       <Button
-        startDecorator={<PaletteIcon />}
         variant="outlined"
+        startDecorator={<PaletteIcon />}
         onClick={() => {
           const colors: ColorPaletteProp[] = [
             'primary',
@@ -40,8 +40,8 @@ export default function ColorInversionPopup() {
             'success',
             'warning',
           ];
-          const nextColor = colors.indexOf(color);
-          setColor(colors[nextColor + 1] ?? colors[0]);
+          const nextColorIndex = colors.indexOf(color) + 1;
+          setColor(colors[nextColorIndex] ?? colors[0]);
         }}
       >
         Change the color
@@ -52,21 +52,23 @@ export default function ColorInversionPopup() {
         color={color}
         invertedColors
         sx={{
-          gap: 4,
           minHeight: 240,
+          zIndex: 0,
+          p: 4,
+          width: '100%',
+          flexDirection: { xs: 'column', sm: 'row' },
           alignItems: 'flex-start',
           justifyContent: 'center',
           flexGrow: 1,
-          zIndex: 0,
+          gap: 6,
           borderRadius: 'sm',
-          p: 4,
         }}
       >
         <Autocomplete
+          open
           placeholder="Combobox"
           options={films}
-          sx={{ width: 240 }}
-          open
+          sx={{ width: { xs: '100%', sm: 240 } }}
           slotProps={{
             listbox: { disablePortal: true, modifiers, sx: { maxHeight: 140 } },
           }}
@@ -91,11 +93,11 @@ export default function ColorInversionPopup() {
           <MenuItem>Delete</MenuItem>
         </Menu>
         <Tooltip
+          open
+          variant="solid"
           title="Bookmark"
           disablePortal
           modifiers={modifiers}
-          open
-          variant="solid"
         >
           <IconButton>
             <BookmarkOutlinedIcon />

@@ -2,8 +2,12 @@
 import * as React from 'react';
 import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { useTabsContext } from '../Tabs';
-import { useCompoundItem } from '../utils/useCompoundItem';
-import { UseTabPanelParameters, UseTabPanelReturnValue } from './useTabPanel.types';
+import { useCompoundItem } from '../useCompound';
+import {
+  UseTabPanelParameters,
+  UseTabPanelReturnValue,
+  UseTabPanelRootSlotProps,
+} from './useTabPanel.types';
 
 function tabPanelValueGenerator(otherTabPanelValues: Set<string | number>) {
   return otherTabPanelValues.size;
@@ -40,11 +44,14 @@ function useTabPanel(parameters: UseTabPanelParameters): UseTabPanelReturnValue 
 
   const correspondingTabId = value !== undefined ? getTabId(value) : undefined;
 
-  const getRootProps = () => {
+  const getRootProps = <ExternalProps extends Record<string, any> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseTabPanelRootSlotProps<ExternalProps> => {
     return {
       'aria-labelledby': correspondingTabId ?? undefined,
       hidden,
       id: id ?? undefined,
+      ...externalProps,
       ref: handleRef,
     };
   };

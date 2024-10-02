@@ -51,7 +51,7 @@ function isAriaHiddenForbiddenOnElement(element: Element): boolean {
     'SOURCE',
     'TRACK',
   ];
-  const isForbiddenTagName = forbiddenTagNames.indexOf(element.tagName) !== -1;
+  const isForbiddenTagName = forbiddenTagNames.includes(element.tagName);
   const isInputHidden = element.tagName === 'INPUT' && element.getAttribute('type') === 'hidden';
   return isForbiddenTagName || isInputHidden;
 }
@@ -66,7 +66,7 @@ function ariaHiddenSiblings(
   const blacklist = [mountElement, currentElement, ...elementsToExclude];
 
   [].forEach.call(container.children, (element: Element) => {
-    const isNotExcludedElement = blacklist.indexOf(element) === -1;
+    const isNotExcludedElement = !blacklist.includes(element);
     const isNotForbiddenElement = !isAriaHiddenForbiddenOnElement(element);
     if (isNotExcludedElement && isNotForbiddenElement) {
       ariaHidden(element, show);
@@ -100,7 +100,7 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
   if (!props.disableScrollLock) {
     if (isOverflowing(container)) {
       // Compute the size before applying overflow hidden to avoid any scroll jumps.
-      const scrollbarSize = getScrollbarSize(ownerDocument(container));
+      const scrollbarSize = getScrollbarSize(ownerWindow(container));
 
       restoreStyle.push({
         value: container.style.paddingRight,
@@ -127,7 +127,7 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
     if (container.parentNode instanceof DocumentFragment) {
       scrollContainer = ownerDocument(container).body;
     } else {
-      // Improve Gatsby support
+      // Support html overflow-y: auto for scroll stability between pages
       // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
       const parent = container.parentElement;
       const containerWindow = ownerWindow(container);
@@ -247,10 +247,7 @@ export class ModalManager {
   }
 
   mount(modal: Modal, props: ManagedModalProps): void {
-    const containerIndex = findIndexOf(
-      this.containers,
-      (item) => item.modals.indexOf(modal) !== -1,
-    );
+    const containerIndex = findIndexOf(this.containers, (item) => item.modals.includes(modal));
     const containerInfo = this.containers[containerIndex];
 
     if (!containerInfo.restore) {
@@ -265,10 +262,7 @@ export class ModalManager {
       return modalIndex;
     }
 
-    const containerIndex = findIndexOf(
-      this.containers,
-      (item) => item.modals.indexOf(modal) !== -1,
-    );
+    const containerIndex = findIndexOf(this.containers, (item) => item.modals.includes(modal));
     const containerInfo = this.containers[containerIndex];
 
     containerInfo.modals.splice(containerInfo.modals.indexOf(modal), 1);

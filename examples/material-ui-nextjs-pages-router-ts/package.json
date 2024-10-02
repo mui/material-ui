@@ -1,5 +1,5 @@
 {
-  "name": "material-next-ts",
+  "name": "material-ui-nextjs-pages-router-ts",
   "version": "5.0.0",
   "private": true,
   "scripts": {
@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
+    "post-update": "echo \"codesandbox preview only, need an update\" && pnpm update --latest"
   },
   "dependencies": {
     "@emotion/cache": "latest",
@@ -16,6 +16,7 @@
     "@emotion/styled": "latest",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
+    "@mui/material-nextjs": "latest",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"

@@ -3,13 +3,14 @@ productId: material-ui
 title: React Avatar component
 components: Avatar, AvatarGroup, Badge
 githubLabel: 'component: avatar'
+githubSource: packages/mui-material/src/Avatar
 ---
 
 # Avatar
 
 <p class="description">Avatars are found throughout material design with uses in everything from tables to dialog menus.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Image avatars
 
@@ -67,6 +68,14 @@ If there is an error loading the avatar image, the component falls back to an al
 If you need to control the total number of avatars not shown, you can use the `total` prop.
 
 {{"demo": "TotalAvatars.js"}}
+
+### Custom surplus
+
+Set the `renderSurplus` prop as a callback to customize the surplus avatar. The callback will receive the surplus number as an argument based on the children and the `max` prop, and should return a `React.ReactNode`.
+
+The `renderSurplus` prop is useful when you need to render the surplus based on the data sent from the server.
+
+{{"demo": "CustomSurplusAvatars.js"}}
 
 ## With badge
 

@@ -10,7 +10,7 @@ githubLabel: 'component: input'
 
 <p class="description">The Input component provides users with a field to enter and edit text.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
@@ -24,19 +24,9 @@ It can also be transformed into a `<textarea>` as needed.
 
 ## Component
 
-### Usage
-
-After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
-
 ```jsx
 import { Input } from '@mui/base/Input';
-
-export default function MyApp() {
-  return <Input />;
-}
 ```
-
-### Basics
 
 Input behaves similarly to the native HTML `<input>`, except that it's nested inside of a root `<div>`—see [Anatomy](#anatomy) for details.
 
@@ -49,8 +39,8 @@ The following demo shows how to create and style an input component, including `
 The Input component is composed of a root `<div>` slot that houses one interior `<input>` slot:
 
 ```html
-<div class="MuiInput-root">
-  <input class="MuiInput-input" />
+<div class="base-Input-root">
+  <input class="base-Input-input" />
 </div>
 ```
 
@@ -74,9 +64,10 @@ The following code snippet applies a CSS class called `my-input` to the input sl
 <Input slotProps={{ input: { className: 'my-input' } }} />
 ```
 
-#### Usage with TypeScript
+### Usage with TypeScript
 
-In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component.
+This way, you can safely provide the custom root's props directly on the component:
 
 ```tsx
 <Input<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
@@ -94,10 +85,10 @@ The same applies for props specific to custom primitive elements:
 import { useInput } from '@mui/base/useInput';
 ```
 
-The `useInput` hook lets you apply the functionality of an input to a fully custom component.
+The `useInput` hook lets you apply the functionality of an Input to a fully custom component.
 It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
-Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
+Hooks _do not_ support [slot props](#custom-structure), but they do support [customization props](#customization).
 
 :::info
 Hooks give you the most room for customization, but require more work to implement.
@@ -112,12 +103,17 @@ The demo below shows how to use the `useInput` hook to create a custom input com
 
 ## Customization
 
+:::info
+The following features can be used with both components and hooks.
+For the sake of simplicity, demos, and code snippets primarily feature components.
+:::
+
 ### Adornments
 
-You can use the `startAdornment` and `endAdornment` props to add a prefix, suffix, or an action to an input.
+You can use the `startAdornment` and `endAdornment` props to add a prefix, suffix, or an action to an Input.
 Common use cases of adornments include:
 
-- when an input receives a specific unit of measure (like weight or currency)
+- when an Input receives a specific unit of measure (like weight or currency)
 - when an icon button toggles hiding/showing a password
 
 The following demo shows examples of both of these use cases:
@@ -138,3 +134,11 @@ To set minimum and maximum sizes, add the `minRows` and `maxRows` props.
 The following demo shows how to insert a Textarea Autosize component into an Input so that its height grows with the length of the content:
 
 {{"demo": "InputMultilineAutosize.js"}}
+
+## Common examples
+
+### OTP Input
+
+The following demo shows how to build a one-time password component using `Input`.
+
+{{"demo": "OTPInput.js"}}

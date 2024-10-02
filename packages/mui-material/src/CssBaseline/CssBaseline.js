@@ -1,8 +1,11 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import useThemeProps from '../styles/useThemeProps';
-import GlobalStyles from '../GlobalStyles';
+import { globalCss } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
+
+// to determine if the global styles are static or dynamic
+const isDynamicSupport = typeof globalCss({}) === 'function';
 
 export const html = (theme, enableColorScheme) => ({
   WebkitFontSmoothing: 'antialiased', // Antialiasing.
@@ -28,11 +31,26 @@ export const body = (theme) => ({
 
 export const styles = (theme, enableColorScheme = false) => {
   const colorSchemeStyles = {};
-  if (enableColorScheme && theme.colorSchemes) {
+  if (
+    enableColorScheme &&
+    theme.colorSchemes &&
+    typeof theme.getColorSchemeSelector === 'function'
+  ) {
     Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
-      colorSchemeStyles[theme.getColorSchemeSelector(key).replace(/\s*&/, '')] = {
-        colorScheme: scheme.palette?.mode,
-      };
+      const selector = theme.getColorSchemeSelector(key);
+      if (selector.startsWith('@')) {
+        // for @media (prefers-color-scheme), we need to target :root
+        colorSchemeStyles[selector] = {
+          ':root': {
+            colorScheme: scheme.palette?.mode,
+          },
+        };
+      } else {
+        // else, it's likely that the selector already target an element with a class or data attribute
+        colorSchemeStyles[selector.replace(/\s*&/, '')] = {
+          colorScheme: scheme.palette?.mode,
+        };
+      }
     });
   }
   let defaultStyles = {
@@ -63,25 +81,69 @@ export const styles = (theme, enableColorScheme = false) => {
   return defaultStyles;
 };
 
+// `ecs` stands for enableColorScheme. This is internal logic to make it work with Pigment CSS, so shorter is better.
+const SELECTOR = 'mui-ecs';
+const staticStyles = (theme) => {
+  const result = styles(theme, false);
+  const baseStyles = Array.isArray(result) ? result[0] : result;
+  if (!theme.vars && baseStyles) {
+    baseStyles.html[`:root:has(${SELECTOR})`] = { colorScheme: theme.palette.mode };
+  }
+  if (theme.colorSchemes) {
+    Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
+      const selector = theme.getColorSchemeSelector(key);
+      if (selector.startsWith('@')) {
+        // for @media (prefers-color-scheme), we need to target :root
+        baseStyles[selector] = {
+          [`:root:not(:has(.${SELECTOR}))`]: {
+            colorScheme: scheme.palette?.mode,
+          },
+        };
+      } else {
+        // else, it's likely that the selector already target an element with a class or data attribute
+        baseStyles[selector.replace(/\s*&/, '')] = {
+          [`&:not(:has(.${SELECTOR}))`]: {
+            colorScheme: scheme.palette?.mode,
+          },
+        };
+      }
+    });
+  }
+  return result;
+};
+
+const GlobalStyles = globalCss(
+  isDynamicSupport
+    ? ({ theme, enableColorScheme }) => styles(theme, enableColorScheme)
+    : ({ theme }) => staticStyles(theme),
+);
+
 /**
  * Kickstart an elegant, consistent, and simple baseline to build upon.
  */
 function CssBaseline(inProps) {
-  const props = useThemeProps({ props: inProps, name: 'MuiCssBaseline' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiCssBaseline' });
   const { children, enableColorScheme = false } = props;
   return (
     <React.Fragment>
-      <GlobalStyles styles={(theme) => styles(theme, enableColorScheme)} />
+      {/* Emotion */}
+      {isDynamicSupport && <GlobalStyles enableColorScheme={enableColorScheme} />}
+
+      {/* Pigment CSS */}
+      {!isDynamicSupport && !enableColorScheme && (
+        <span className={SELECTOR} style={{ display: 'none' }} />
+      )}
+
       {children}
     </React.Fragment>
   );
 }
 
 CssBaseline.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * You can wrap a node.
    */

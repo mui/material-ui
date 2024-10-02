@@ -17,30 +17,25 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "focused": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "focused"
+      "conditions": "color inversion is triggered"
     },
-    "focusVisible": {
-      "description": "State class applied to {{nodeName}}.",
-      "nodeName": "the <code>component</code>&#39;s <code>focusVisibleClassName</code> prop"
-    },
-    "colorPrimary": {
+    "colorDanger": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"primary\"</code>"
+      "conditions": "<code>color=\"danger\"</code>"
     },
     "colorNeutral": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>color=\"neutral\"</code>"
     },
-    "colorDanger": {
+    "colorPrimary": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"danger\"</code>"
+      "conditions": "<code>color=\"primary\"</code>"
     },
     "colorSuccess": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -52,10 +47,19 @@
       "nodeName": "the root element",
       "conditions": "<code>color=\"warning\"</code>"
     },
-    "colorContext": {
-      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+    "focused": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "color inversion is triggered"
+      "conditions": "focused"
+    },
+    "focusVisible": {
+      "description": "State class applied to {{nodeName}}.",
+      "nodeName": "the <code>component</code>&#39;s <code>focusVisibleClassName</code> prop"
+    },
+    "variantOutlined": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code>"
     },
     "variantPlain": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
@@ -66,11 +70,6 @@
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"soft\"</code>"
-    },
-    "variantOutlined": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code>"
     },
     "variantSolid": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",

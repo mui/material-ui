@@ -70,21 +70,14 @@ function ColorToken({ name, value }: { name: string; value: string }) {
     }
   }, []);
   return (
-    <Box>
+    <div>
       <Box
         ref={ref}
-        sx={{
-          borderRadius: 'sm',
-          bgcolor: value,
-          width: 64,
-          height: 64,
-          mb: 1,
-          boxShadow: 'sm',
-        }}
+        sx={{ borderRadius: 'sm', bgcolor: value, width: 64, height: 64, mb: 1, boxShadow: 'sm' }}
       />
       <Typography level="body-xs">{name}</Typography>
       <Typography level="body-xs">{color}</Typography>
-    </Box>
+    </div>
   );
 }
 
@@ -102,7 +95,7 @@ function PaletteTokens() {
           Palette ({colorScheme})
         </Typography>
       )}
-      <Box>
+      <div>
         {Object.entries(palette).map(([key, nestedObj]) => {
           if (typeof nestedObj === 'string' && mounted) {
             return <ColorToken key={key} name={key} value={nestedObj} />;
@@ -135,7 +128,7 @@ function PaletteTokens() {
             </details>
           );
         })}
-      </Box>
+      </div>
     </React.Fragment>
   );
 }
@@ -161,7 +154,7 @@ function TypographyScale() {
 
 export default function JoyStyleGuide() {
   return (
-    <CssVarsProvider defaultMode="system">
+    <CssVarsProvider>
       <Container>
         <Box
           sx={{
@@ -185,16 +178,16 @@ export default function JoyStyleGuide() {
           <Box sx={{ minWidth: 300 }}>
             <TypographyScale />
           </Box>
-          <Box>
+          <div>
             <Typography level="title-md" sx={{ mb: 1 }}>
               UI Patterns
             </Typography>
             <Box sx={{ display: 'flex', gap: 2 }}>
               <Box sx={{ width: 48, height: 48, bgcolor: 'background.level2' }} />
-              <Box>
+              <div>
                 <Typography>List item title</Typography>
                 <Typography level="body-sm">Secondary text.</Typography>
-              </Box>
+              </div>
             </Box>
             <hr />
             <Box sx={{ display: 'flex', gap: 2, minWidth: 300 }}>
@@ -214,7 +207,7 @@ export default function JoyStyleGuide() {
                 <Typography level="body-xs">metadata</Typography>
               </Box>
             </Box>
-          </Box>
+          </div>
         </Box>
       </Container>
     </CssVarsProvider>

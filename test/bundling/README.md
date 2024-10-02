@@ -7,21 +7,24 @@ The created file might need some manual adjustment since not every edge case is 
 
 ## Run a fixture
 
+### To test a Pull Request
+
+1. Checkout branch
+1. `pnpm install`
+1. `pnpm lerna run build --scope "@mui/*"`
+1. `pnpm release:pack`
 1. Navigate into the fixture you want to test (where the `package.json` is located)
-1. Use the node version you want to use (e.g. `nvm use 14.0.0`)
-1. Prepare the package.json
-   - to test a Pull Request
-     1. checkout branch
-     1. `yarn`
-     1. `yarn lerna run build --scope "@mui/*"`
-     1. `cd` to fixture
-     1. `yarn install`
-     1. `node ../../scripts/useBuildFromSource.js .`
-   - to test a published npm dist tag (e.g. `latest` or `next`) on npm
-     1. `cd` to fixture
-     1. adjust the dependencies in the package.json accordingly
-     1. `yarn install`
-1. `yarn start` should exit with 0
+1. `pnpm install --ignore-workspace`
+1. `pnpm start`
+
+### To test a published npm dist tag
+
+_For example: `latest` or `next` on npm or a codesandboxci published version_
+
+1. Navigate into the fixture you want to test (where the `package.json` is located)
+1. Adjust `pnpm.overrides` of the `package.json` file to point to the desired version
+1. `pnpm install --ignore-workspace`
+1. `pnpm start`
 
 ### In CI
 
@@ -44,7 +47,7 @@ curl --request POST \
 
 1. Create a folder in `test/fixtures/bundling`
 1. Add the necessary dependencies
-1. Re-use the entries for `dependencies` and `resolutions` for `@mui/*` packages from the other fixtures
+1. Re-use the entries for `dependencies` and `pnpm.overrides` for `@mui/*` packages from the other fixtures
 1. Create a template
 1. Write a factory that fills the template in `test/bundling/scripts/createFixture`
 1. Add an entry into the `bundling` CircleCI pipeline (`.circleci/config.yml`)

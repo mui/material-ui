@@ -24,7 +24,7 @@ import Menu from '@mui/joy/Menu';
 import MenuButton from '@mui/joy/MenuButton';
 import MenuItem from '@mui/joy/MenuItem';
 import Dropdown from '@mui/joy/Dropdown';
-// icons
+
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import SearchIcon from '@mui/icons-material/Search';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -127,7 +127,7 @@ const rows = [
     },
   },
   {
-    id: 'INV-1234',
+    id: 'INV-1225',
     date: 'Feb 3, 2023',
     status: 'Paid',
     customer: {
@@ -137,7 +137,7 @@ const rows = [
     },
   },
   {
-    id: 'INV-1233',
+    id: 'INV-1224',
     date: 'Feb 3, 2023',
     status: 'Cancelled',
     customer: {
@@ -147,7 +147,7 @@ const rows = [
     },
   },
   {
-    id: 'INV-1232',
+    id: 'INV-1223',
     date: 'Feb 3, 2023',
     status: 'Paid',
     customer: {
@@ -157,7 +157,7 @@ const rows = [
     },
   },
   {
-    id: 'INV-1231',
+    id: 'INV-1221',
     date: 'Feb 3, 2023',
     status: 'Refunded',
     customer: {
@@ -167,7 +167,7 @@ const rows = [
     },
   },
   {
-    id: 'INV-1230',
+    id: 'INV-1220',
     date: 'Feb 3, 2023',
     status: 'Paid',
     customer: {
@@ -177,7 +177,7 @@ const rows = [
     },
   },
   {
-    id: 'INV-1229',
+    id: 'INV-1219',
     date: 'Feb 3, 2023',
     status: 'Cancelled',
     customer: {
@@ -187,7 +187,7 @@ const rows = [
     },
   },
   {
-    id: 'INV-1228',
+    id: 'INV-1218',
     date: 'Feb 3, 2023',
     status: 'Cancelled',
     customer: {
@@ -197,7 +197,7 @@ const rows = [
     },
   },
   {
-    id: 'INV-1227',
+    id: 'INV-1217',
     date: 'Feb 3, 2023',
     status: 'Paid',
     customer: {
@@ -207,7 +207,7 @@ const rows = [
     },
   },
   {
-    id: 'INV-1226',
+    id: 'INV-1216',
     date: 'Feb 3, 2023',
     status: 'Cancelled',
     customer: {
@@ -242,22 +242,6 @@ function getComparator<Key extends keyof any>(
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-// Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
-// stableSort() brings sort stability to non-modern browsers (notably IE11). If you
-// only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
-// with exampleArray.slice().sort(exampleComparator)
-function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
-  const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) {
-      return order;
-    }
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map((el) => el[0]);
-}
-
 function RowMenu() {
   return (
     <Dropdown>
@@ -277,7 +261,6 @@ function RowMenu() {
     </Dropdown>
   );
 }
-
 export default function OrderTable() {
   const [order, setOrder] = React.useState<Order>('desc');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
@@ -297,7 +280,6 @@ export default function OrderTable() {
           <Option value="cancelled">Cancelled</Option>
         </Select>
       </FormControl>
-
       <FormControl size="sm">
         <FormLabel>Category</FormLabel>
         <Select size="sm" placeholder="All">
@@ -307,7 +289,6 @@ export default function OrderTable() {
           <Option value="debit">Debit</Option>
         </Select>
       </FormControl>
-
       <FormControl size="sm">
         <FormLabel>Customer</FormLabel>
         <Select size="sm" placeholder="All">
@@ -326,14 +307,7 @@ export default function OrderTable() {
     <React.Fragment>
       <Sheet
         className="SearchAndFilters-mobile"
-        sx={{
-          display: {
-            xs: 'flex',
-            sm: 'none',
-          },
-          my: 1,
-          gap: 1,
-        }}
+        sx={{ display: { xs: 'flex', sm: 'none' }, my: 1, gap: 1 }}
       >
         <Input
           size="sm"
@@ -370,17 +344,11 @@ export default function OrderTable() {
         sx={{
           borderRadius: 'sm',
           py: 2,
-          display: {
-            xs: 'none',
-            sm: 'flex',
-          },
+          display: { xs: 'none', sm: 'flex' },
           flexWrap: 'wrap',
           gap: 1.5,
           '& > *': {
-            minWidth: {
-              xs: '120px',
-              md: '160px',
-            },
+            minWidth: { xs: '120px', md: '160px' },
           },
         }}
       >
@@ -442,15 +410,20 @@ export default function OrderTable() {
                   color="primary"
                   component="button"
                   onClick={() => setOrder(order === 'asc' ? 'desc' : 'asc')}
-                  fontWeight="lg"
                   endDecorator={<ArrowDropDownIcon />}
-                  sx={{
-                    '& svg': {
-                      transition: '0.2s',
-                      transform:
-                        order === 'desc' ? 'rotate(0deg)' : 'rotate(180deg)',
+                  sx={[
+                    {
+                      fontWeight: 'lg',
+                      '& svg': {
+                        transition: '0.2s',
+                        transform:
+                          order === 'desc' ? 'rotate(0deg)' : 'rotate(180deg)',
+                      },
                     },
-                  }}
+                    order === 'desc'
+                      ? { '& svg': { transform: 'rotate(0deg)' } }
+                      : { '& svg': { transform: 'rotate(180deg)' } },
+                  ]}
                 >
                   Invoice
                 </Link>
@@ -462,7 +435,7 @@ export default function OrderTable() {
             </tr>
           </thead>
           <tbody>
-            {stableSort(rows, getComparator(order, 'id')).map((row) => (
+            {[...rows].sort(getComparator(order, 'id')).map((row) => (
               <tr key={row.id}>
                 <td style={{ textAlign: 'center', width: 120 }}>
                   <Checkbox
@@ -563,7 +536,6 @@ export default function OrderTable() {
           </IconButton>
         ))}
         <Box sx={{ flex: 1 }} />
-
         <Button
           size="sm"
           variant="outlined"

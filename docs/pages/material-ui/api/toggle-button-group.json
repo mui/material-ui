@@ -44,11 +44,82 @@
     "import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';",
     "import { ToggleButtonGroup } from '@mui/material';"
   ],
-  "styles": {
-    "classes": ["root", "vertical", "disabled", "grouped", "groupedHorizontal", "groupedVertical"],
-    "globalClasses": { "disabled": "Mui-disabled" },
-    "name": "MuiToggleButtonGroup"
-  },
+  "classes": [
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "firstButton",
+      "className": "MuiToggleButtonGroup-firstButton",
+      "description": "Styles applied to the first button in the toggle button group.",
+      "isGlobal": false
+    },
+    {
+      "key": "fullWidth",
+      "className": "MuiToggleButtonGroup-fullWidth",
+      "description": "Styles applied to the root element if `fullWidth={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "grouped",
+      "className": "MuiToggleButtonGroup-grouped",
+      "description": "Styles applied to the children.",
+      "isGlobal": false
+    },
+    {
+      "key": "groupedHorizontal",
+      "className": "MuiToggleButtonGroup-groupedHorizontal",
+      "description": "Styles applied to the children if `orientation=\"horizontal\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "groupedVertical",
+      "className": "MuiToggleButtonGroup-groupedVertical",
+      "description": "Styles applied to the children if `orientation=\"vertical\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "horizontal",
+      "className": "MuiToggleButtonGroup-horizontal",
+      "description": "Styles applied to the root element if `orientation=\"horizontal\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "lastButton",
+      "className": "MuiToggleButtonGroup-lastButton",
+      "description": "Styles applied to the last button in the toggle button group.",
+      "isGlobal": false
+    },
+    {
+      "key": "middleButton",
+      "className": "MuiToggleButtonGroup-middleButton",
+      "description": "Styles applied to buttons in the middle of the toggle button group.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiToggleButtonGroup-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "selected",
+      "className": "Mui-selected",
+      "description": "State class applied to the root element if `selected={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "vertical",
+      "className": "MuiToggleButtonGroup-vertical",
+      "description": "Styles applied to the root element if `orientation=\"vertical\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiToggleButtonGroup",

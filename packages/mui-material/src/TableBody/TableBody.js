@@ -2,10 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getTableBodyUtilityClass } from './tableBodyClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -33,7 +33,7 @@ const tablelvl2 = {
 const defaultComponent = 'tbody';
 
 const TableBody = React.forwardRef(function TableBody(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTableBody' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTableBody' });
   const { className, component = defaultComponent, ...other } = props;
 
   const ownerState = {
@@ -58,10 +58,10 @@ const TableBody = React.forwardRef(function TableBody(inProps, ref) {
 });
 
 TableBody.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component, normally `TableRow`.
    */

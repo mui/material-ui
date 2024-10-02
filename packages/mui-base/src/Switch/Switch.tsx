@@ -66,18 +66,7 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
     ...other
   } = props;
 
-  const useSwitchProps = {
-    checked: checkedProp,
-    defaultChecked,
-    disabled: disabledProp,
-    onBlur,
-    onChange,
-    onFocus,
-    onFocusVisible,
-    readOnly: readOnlyProp,
-  };
-
-  const { getInputProps, checked, disabled, focusVisible, readOnly } = useSwitch(useSwitchProps);
+  const { getInputProps, checked, disabled, focusVisible, readOnly } = useSwitch(props);
 
   const ownerState: SwitchOwnerState = {
     ...props,
@@ -118,7 +107,7 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
     className: classes.input,
   });
 
-  const Track: React.ElementType = slots.track === null ? () => null : slots.track ?? 'span';
+  const Track: React.ElementType = slots.track === null ? () => null : (slots.track ?? 'span');
   const trackProps: WithOptionalOwnerState<SwitchTrackSlotProps> = useSlotProps({
     elementType: Track,
     externalSlotProps: slotProps.track,
@@ -136,10 +125,10 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
 }) as PolymorphicComponent<SwitchTypeMap>;
 
 Switch.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the component is checked.
    */

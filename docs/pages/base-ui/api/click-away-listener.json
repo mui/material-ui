@@ -23,10 +23,10 @@
     "import { ClickAwayListener } from '@mui/base/ClickAwayListener';",
     "import { ClickAwayListener } from '@mui/base';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "classes": [],
   "spread": false,
   "themeDefaultProps": null,
-  "muiName": "MuiClickAwayListener",
+  "muiName": "ClickAwayListener",
   "filename": "/packages/mui-base/src/ClickAwayListener/ClickAwayListener.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base-ui/react-click-away-listener/\">Click-Away Listener</a></li></ul>",

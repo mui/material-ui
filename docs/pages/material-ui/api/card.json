@@ -13,7 +13,14 @@
   },
   "name": "Card",
   "imports": ["import Card from '@mui/material/Card';", "import { Card } from '@mui/material';"],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiCard" },
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiCard-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiCard",

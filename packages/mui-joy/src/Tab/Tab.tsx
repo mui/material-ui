@@ -8,7 +8,6 @@ import { useTab } from '@mui/base/useTab';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { useColorInversion } from '../styles/ColorInversion';
 import { getTabUtilityClass } from './tabClasses';
 import { TabOwnerState, TabTypeMap } from './TabProps';
 import RowListContext from '../List/RowListContext';
@@ -142,7 +141,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     component = 'button',
     orientation = 'horizontal',
     variant = 'plain',
-    color: colorProp = 'neutral',
+    color = 'neutral',
     disableIndicator = false,
     indicatorPlacement = row ? 'bottom' : 'right',
     indicatorInset = false,
@@ -150,10 +149,8 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
-  const tabRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
+  const tabRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement | null>(null);
   const handleRef = useForkRef(tabRef, ref) as React.RefCallback<Element>;
 
   const { active, focusVisible, setFocusVisible, selected, getRootProps } = useTab({
@@ -208,10 +205,10 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
 }) as OverridableComponent<TabTypeMap>;
 
 Tab.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A ref for imperative actions. It currently only supports `focusVisible()` action.
    */

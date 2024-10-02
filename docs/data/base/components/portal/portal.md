@@ -9,7 +9,7 @@ githubLabel: 'component: Portal'
 
 <p class="description">The Portal component lets you render its children into a DOM node that exists outside of the Portal's own DOM hierarchy.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
@@ -22,21 +22,9 @@ The Portal component is used internally by the [Modal](/base-ui/react-modal/) an
 
 ## Component
 
-### Usage
-
-After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
-
 ```jsx
 import { Portal } from '@mui/base/Portal';
-
-export default function MyApp() {
-  return (
-    <Portal>{/* children to be rendered outside of the current DOM node */}</Portal>
-  );
-}
 ```
-
-### Basics
 
 Normally, children of a component are rendered within that component's DOM tree.
 But sometimes it's necessary to mount a child at a different location in the DOM.
@@ -53,9 +41,18 @@ The following demo shows how a `<span>` nested within a Portal can be appended t
 
 ### Server-side
 
+The DOM API isn't available on the server, so you need to use the `container` prop callback.
+This callback is called during a React layout effect:
+
+```jsx
+<Portal container={() => document.getElementById('filter-panel')!}>
+  <Child />
+</Portal>
+```
+
 :::error
-React doesn't support the [`createPortal()` API](https://react.dev/reference/react-dom/createPortal) on the server.
+The Portal component cannot be used to render child elements on the server—client-side hydration is necessary.
+
+This is because React doesn't support the [`createPortal()` API](https://react.dev/reference/react-dom/createPortal) on the server.
 See [this GitHub issue](https://github.com/facebook/react/issues/13097) for details.
 :::
-
-The Portal component cannot be used to render child elements on the server—client-side hydration is necessary.

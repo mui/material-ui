@@ -11,12 +11,12 @@ unstyled: /base-ui/react-button/
 
 <p class="description">Buttons let users take actions and make choices with a single tap.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
 Buttons communicate actions that users can take.
-The Joy UI Button component replaces the native HTML `<button>` element, and offers expanded options for styling and accessibility.
+The Joy UI Button component replaces the native HTML `<button>` element and offers expanded options for styling and accessibility.
 
 {{"demo": "ButtonUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
@@ -26,7 +26,7 @@ The Joy UI Button component replaces the native HTML `<button>` element, and off
 import Button from '@mui/joy/Button';
 ```
 
-The Joy UI Button behaves similar to the native HTML `<button>`, so it wraps around the text that will be displayed on its surface.
+The Joy UI Button behaves similarly to the native HTML `<button>`, so it wraps around the text displayed on its surface.
 
 The demo below shows the three basic states available to the Button: default, disabled, and loading.
 
@@ -50,7 +50,7 @@ See [Loading indicator](#loading-indicator) and [Loading position](#loading-posi
 
 ### Variants
 
-The Button component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined`, and `plain`.
+The Button component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined`, and `plain`.
 
 {{"demo": "ButtonVariants.js"}}
 
@@ -124,18 +124,18 @@ Use the Icon Button component for a square button to house an icon with no text 
 
 {{"demo": "IconButtons.js"}}
 
-## CSS variable playground
+## CSS variables playground
 
 Play around with the CSS variables available to the Button and Icon Button components to see how the design changes.
 You can use these to customize the components with both the `sx` prop and the theme.
 
 ### Button
 
-{{"demo": "ButtonVariables.js", "hideToolbar": true}}
+{{"demo": "ButtonVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ### Icon Button
 
-{{"demo": "IconButtonVariables.js", "hideToolbar": true}}
+{{"demo": "IconButtonVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Accessibility
 

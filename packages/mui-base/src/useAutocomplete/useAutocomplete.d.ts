@@ -30,8 +30,8 @@ export type AutocompleteFreeSoloValueMapping<FreeSolo> = FreeSolo extends true ?
 export type AutocompleteValue<Value, Multiple, DisableClearable, FreeSolo> = Multiple extends true
   ? Array<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
   : DisableClearable extends true
-  ? NonNullable<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
-  : Value | null | AutocompleteFreeSoloValueMapping<FreeSolo>;
+    ? NonNullable<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
+    : Value | null | AutocompleteFreeSoloValueMapping<FreeSolo>;
 
 export interface UseAutocompleteProps<
   Value,
@@ -49,9 +49,9 @@ export interface UseAutocompleteProps<
    * Temporary for Joy UI because the parent listbox is the document object
    * TODO v6: Normalize the logic and remove this param.
    */
-  unstable_isActiveElementInListbox?: (listbox: React.RefObject<HTMLElement>) => boolean;
+  unstable_isActiveElementInListbox?: (listbox: React.RefObject<HTMLElement | null>) => boolean;
   /**
-   * If `true`, the portion of the selected suggestion that has not been typed by the user,
+   * If `true`, the portion of the selected suggestion that the user hasn't typed,
    * known as the completion string, appears inline after the input cursor in the textbox.
    * The inline completion string is visually highlighted and has a selected state.
    * @default false
@@ -67,7 +67,7 @@ export interface UseAutocompleteProps<
    * when the Autocomplete loses focus unless the user chooses
    * a different option or changes the character string in the input.
    *
-   * When using `freeSolo` mode, the typed value will be the input value
+   * When using the `freeSolo` mode, the typed value will be the input value
    * if the Autocomplete loses focus without highlighting an option.
    * @default false
    */
@@ -85,8 +85,8 @@ export interface UseAutocompleteProps<
   /**
    * If `true`, the input's text is cleared on blur if no value is selected.
    *
-   * Set to `true` if you want to help the user enter a new value.
-   * Set to `false` if you want to help the user resume their search.
+   * Set it to `true` if you want to help the user enter a new value.
+   * Set it to `false` if you want to help the user resume their search.
    * @default !props.freeSolo
    */
   clearOnBlur?: boolean;
@@ -155,6 +155,14 @@ export interface UseAutocompleteProps<
    * @returns {boolean}
    */
   getOptionDisabled?: (option: Value) => boolean;
+  /**
+   * Used to determine the key for a given option.
+   * This can be useful when the labels of options are not unique (since labels are used as keys by default).
+   *
+   * @param {Value} option The option to get the key for.
+   * @returns {string | number}
+   */
+  getOptionKey?: (option: Value | AutocompleteFreeSoloValueMapping<FreeSolo>) => string | number;
   /**
    * Used to determine the string value for a given option.
    * It's used to fill the input (and the list box options if `renderOption` is not provided).
@@ -249,7 +257,7 @@ export interface UseAutocompleteProps<
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {string} value The new value of the text input.
-   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`.
+   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`, `"blur"`, `"selectOption"`, `"removeOption"`
    */
   onInputChange?: (
     event: React.SyntheticEvent,
@@ -321,7 +329,13 @@ export type AutocompleteCloseReason =
   | 'selectOption'
   | 'removeOption'
   | 'blur';
-export type AutocompleteInputChangeReason = 'input' | 'reset' | 'clear';
+export type AutocompleteInputChangeReason =
+  | 'input'
+  | 'reset'
+  | 'clear'
+  | 'blur'
+  | 'selectOption'
+  | 'removeOption';
 
 export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
   key: number;
@@ -369,7 +383,9 @@ export interface UseAutocompleteReturnValue<
    * Resolver for the input element's props.
    * @returns props that should be spread on the input element
    */
-  getInputProps: () => React.InputHTMLAttributes<HTMLInputElement>;
+  getInputProps: () => React.InputHTMLAttributes<HTMLInputElement> & {
+    ref: React.Ref<HTMLInputElement>;
+  };
   /**
    * Resolver for the input label element's props.
    * @returns props that should be spread on the input label element
@@ -401,7 +417,7 @@ export interface UseAutocompleteReturnValue<
    */
   getOptionProps: (
     renderedOption: UseAutocompleteRenderedOption<Value>,
-  ) => React.HTMLAttributes<HTMLLIElement>;
+  ) => React.HTMLAttributes<HTMLLIElement> & { key: any };
   /**
    * Id for the Autocomplete.
    */

@@ -68,7 +68,7 @@ const StyledTab = styled(Tab)`
 const StyledTabPanel = styled(TabPanel)(
   ({ theme }) => `
   width: 100%;
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   padding: 20px 12px;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
@@ -145,7 +145,7 @@ export default function UnstyledTabsIntroduction() {
         <input
           type="checkbox"
           checked={selectionFollowsFocus}
-          onChange={(e) => setSelectionFollowsFocus(e.target.checked)}
+          onChange={(event) => setSelectionFollowsFocus(event.target.checked)}
         />{' '}
         Selection follows focus
       </label>

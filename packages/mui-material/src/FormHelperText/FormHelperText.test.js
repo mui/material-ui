@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import FormHelperText, { formHelperTextClasses as classes } from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
+import describeConformance from '../../test/describeConformance';
 
 describe('<FormHelperText />', () => {
   const { render } = createRenderer();

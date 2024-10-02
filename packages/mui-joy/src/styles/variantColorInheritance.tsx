@@ -3,6 +3,10 @@ import { ColorPaletteProp, VariantProp } from '@mui/joy/styles/types';
 
 const VariantColorContext = React.createContext<string | undefined>(undefined);
 
+if (process.env.NODE_ENV !== 'production') {
+  VariantColorContext.displayName = 'VariantColorContext';
+}
+
 /**
  * @internal For internal usage only.
  *
@@ -35,13 +39,14 @@ export function getChildVariantAndColor(
 export function useVariantColor(
   instanceVariant: VariantProp | undefined,
   instanceColor: ColorPaletteProp | undefined,
+  alwaysInheritColor: boolean = false,
 ) {
   const value = React.useContext(VariantColorContext);
   const [variant, color] =
     typeof value === 'string' ? (value.split(':') as [VariantProp, ColorPaletteProp]) : [];
   const result = getChildVariantAndColor(variant || undefined, color || undefined);
   result.variant = instanceVariant || result.variant;
-  result.color = instanceColor || result.color;
+  result.color = instanceColor || (alwaysInheritColor ? color : result.color);
   return result;
 }
 

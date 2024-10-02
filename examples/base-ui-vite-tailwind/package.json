@@ -1,5 +1,5 @@
 {
-  "name": "base-vite-tailwind",
+  "name": "base-ui-vite-tailwind",
   "private": true,
   "version": "5.0.0",
   "type": "module",
@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@mui/base": "latest",
+    "@mui/base": "next",
     "react": "latest",
     "react-dom": "latest"
   },

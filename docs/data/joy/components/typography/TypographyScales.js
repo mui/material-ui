@@ -1,10 +1,9 @@
 import * as React from 'react';
-import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
 
 export default function TypographyScales() {
   return (
-    <Box>
+    <div>
       <Typography level="h1">h1</Typography>
       <Typography level="h2">h2</Typography>
       <Typography level="h3">h3</Typography>
@@ -16,6 +15,6 @@ export default function TypographyScales() {
       <Typography level="body-md">body-md</Typography>
       <Typography level="body-sm">body-sm</Typography>
       <Typography level="body-xs">body-xs</Typography>
-    </Box>
+    </div>
   );
 }

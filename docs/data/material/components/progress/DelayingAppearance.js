@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 export default function DelayingAppearance() {
   const [loading, setLoading] = React.useState(false);
   const [query, setQuery] = React.useState('idle');
-  const timerRef = React.useRef();
+  const timerRef = React.useRef(undefined);
 
   React.useEffect(
     () => () => {
@@ -32,7 +32,7 @@ export default function DelayingAppearance() {
     }
 
     setQuery('progress');
-    timerRef.current = window.setTimeout(() => {
+    timerRef.current = setTimeout(() => {
       setQuery('success');
     }, 2000);
   };

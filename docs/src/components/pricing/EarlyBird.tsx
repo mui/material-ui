@@ -1,12 +1,11 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import { alpha } from '@mui/material/styles';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 
 export default function EarlyBird() {
   return (
@@ -46,16 +45,16 @@ export default function EarlyBird() {
           }),
         })}
       >
-        <Box>
-          <Typography fontWeight="bold" sx={{ mb: 0.5 }}>
+        <div>
+          <Typography sx={{ fontWeight: 'bold', mb: 0.5 }}>
             🐦&nbsp;&nbsp;Early bird special!
           </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ maxWidth: 700 }}>
+          <Typography variant="body2" sx={{ color: 'text.secondary', maxWidth: 700 }}>
             Buy now at a reduced price (~25% off), and get early access to MUI X Premium, with the
             added opportunity to influence its development. The early bird special is available for
             a limited time, so don&apos;t miss this opportunity!
           </Typography>
-        </Box>
+        </div>
         <Button
           component={Link}
           noLinkStyle

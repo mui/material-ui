@@ -16,7 +16,14 @@
     "import TableFooter from '@mui/material/TableFooter';",
     "import { TableFooter } from '@mui/material';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTableFooter" },
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiTableFooter-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiTableFooter",

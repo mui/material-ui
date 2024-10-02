@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
@@ -9,11 +9,11 @@ import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 
 function not(a, b) {
-  return a.filter((value) => b.indexOf(value) === -1);
+  return a.filter((value) => !b.includes(value));
 }
 
 function intersection(a, b) {
-  return a.filter((value) => b.indexOf(value) !== -1);
+  return a.filter((value) => b.includes(value));
 }
 
 export default function TransferList() {
@@ -66,15 +66,14 @@ export default function TransferList() {
           const labelId = `transfer-list-item-${value}-label`;
 
           return (
-            <ListItem
+            <ListItemButton
               key={value}
               role="listitem"
-              button
               onClick={handleToggle(value)}
             >
               <ListItemIcon>
                 <Checkbox
-                  checked={checked.indexOf(value) !== -1}
+                  checked={checked.includes(value)}
                   tabIndex={-1}
                   disableRipple
                   inputProps={{
@@ -83,7 +82,7 @@ export default function TransferList() {
                 />
               </ListItemIcon>
               <ListItemText id={labelId} primary={`List item ${value + 1}`} />
-            </ListItem>
+            </ListItemButton>
           );
         })}
       </List>
@@ -91,10 +90,14 @@ export default function TransferList() {
   );
 
   return (
-    <Grid container spacing={2} justifyContent="center" alignItems="center">
+    <Grid
+      container
+      spacing={2}
+      sx={{ justifyContent: 'center', alignItems: 'center' }}
+    >
       <Grid item>{customList(left)}</Grid>
       <Grid item>
-        <Grid container direction="column" alignItems="center">
+        <Grid container direction="column" sx={{ alignItems: 'center' }}>
           <Button
             sx={{ my: 0.5 }}
             variant="outlined"

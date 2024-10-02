@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled, useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -16,16 +15,16 @@ import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
 import FormatTextdirectionLToRIcon from '@mui/icons-material/FormatTextdirectionLToR';
 import FormatTextdirectionRToLIcon from '@mui/icons-material/FormatTextdirectionRToL';
-import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useColorSchemeShim, useChangeTheme } from 'docs/src/modules/components/ThemeContext';
+import { useTranslate } from '@mui/docs/i18n';
 
 const Heading = styled(Typography)(({ theme }) => ({
-  margin: '20px 0 10px',
-  color: theme.palette.grey[600],
-  fontWeight: 700,
+  margin: '16px 0 8px',
+  fontWeight: theme.typography.fontWeightSemiBold,
   fontSize: theme.typography.pxToRem(11),
   textTransform: 'uppercase',
-  letterSpacing: '.08rem',
+  letterSpacing: '.1rem',
+  color: (theme.vars || theme).palette.text.tertiary,
 }));
 
 const IconToggleButton = styled(ToggleButton)({
@@ -37,55 +36,26 @@ const IconToggleButton = styled(ToggleButton)({
   },
 });
 
-function AppSettingsDrawer(props) {
+export default function AppSettingsDrawer(props) {
   const { onClose, open = false, ...other } = props;
   const t = useTranslate();
   const upperTheme = useTheme();
   const changeTheme = useChangeTheme();
-  const [mode, setMode] = React.useState(null);
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const preferredMode = prefersDarkMode ? 'dark' : 'light';
 
-  React.useEffect(() => {
-    // syncing with homepage, can be removed once all pages are migrated to CSS variables
-    let initialMode = 'system';
-    try {
-      initialMode = localStorage.getItem('mui-mode') || initialMode;
-    } catch (error) {
-      // do nothing
-    }
-    setMode(initialMode);
-  }, [preferredMode]);
+  // TODO replace with useColorScheme once all pages support css vars
+  const { mode, setMode } = useColorSchemeShim();
 
   const handleChangeThemeMode = (event, paletteMode) => {
     if (paletteMode === null) {
       return;
     }
-
     setMode(paletteMode);
-
-    if (paletteMode === 'system') {
-      try {
-        localStorage.setItem('mui-mode', 'system'); // syncing with homepage, can be removed once all pages are migrated to CSS variables
-      } catch (error) {
-        // thrown when cookies are disabled.
-      }
-      changeTheme({ paletteMode: preferredMode });
-    } else {
-      try {
-        localStorage.setItem('mui-mode', paletteMode); // syncing with homepage, can be removed once all pages are migrated to CSS variables
-      } catch (error) {
-        // thrown when cookies are disabled.
-      }
-      changeTheme({ paletteMode });
-    }
   };
 
   const handleChangeDirection = (event, direction) => {
     if (direction === null) {
       direction = upperTheme.direction;
     }
-
     changeTheme({ direction });
   };
 
@@ -96,15 +66,28 @@ function AppSettingsDrawer(props) {
       open={open}
       PaperProps={{
         elevation: 0,
-        sx: { width: { xs: 310, sm: 360 }, borderRadius: '10px 0px 0px 10px' },
+        sx: {
+          width: { xs: 310, sm: 360 },
+          borderRadius: '10px 0px 0px 10px',
+          border: '1px solid',
+          borderColor: 'divider',
+        },
       }}
       {...other}
     >
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 2 }}>
-        <Typography variant="body1" fontWeight="500">
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          px: 2,
+          py: 1,
+        }}
+      >
+        <Typography variant="body1" sx={{ fontWeight: 'medium' }}>
           {t('settings.settings')}
         </Typography>
-        <IconButton color="inherit" onClick={onClose} edge="end">
+        <IconButton color="inherit" onClick={onClose} edge="end" aria-label={t('close')}>
           <CloseIcon color="primary" fontSize="small" />
         </IconButton>
       </Box>
@@ -162,7 +145,7 @@ function AppSettingsDrawer(props) {
         >
           <IconToggleButton
             value="ltr"
-            aria-label={t('settings.light')}
+            aria-label={t('settings.ltr')}
             data-ga-event-category="settings"
             data-ga-event-action="ltr"
           >
@@ -171,7 +154,7 @@ function AppSettingsDrawer(props) {
           </IconToggleButton>
           <IconToggleButton
             value="rtl"
-            aria-label={t('settings.system')}
+            aria-label={t('settings.rtl')}
             data-ga-event-category="settings"
             data-ga-event-action="rtl"
           >
@@ -185,11 +168,11 @@ function AppSettingsDrawer(props) {
           href="/material-ui/customization/color/#playground"
           data-ga-event-category="settings"
           data-ga-event-action="colors"
-          size="medium"
           variant="outlined"
+          size="small"
           fullWidth
         >
-          {t('settings.editWebsiteColors')}
+          {t('settings.editDocsColors')}
         </Button>
       </Box>
     </Drawer>
@@ -200,5 +183,3 @@ AppSettingsDrawer.propTypes = {
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool,
 };
-
-export default AppSettingsDrawer;

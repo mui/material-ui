@@ -6,13 +6,13 @@ import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 import CardOverflow from '@mui/joy/CardOverflow';
-import Chip from '@mui/joy/Chip';
 import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
-import IconButton from '@mui/joy/IconButton';
+import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';
 import SvgIcon from '@mui/joy/SvgIcon';
 import Visibility from '@mui/icons-material/Visibility';
+import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
 import sourceJoyTemplates from 'docs/src/modules/joy/sourceJoyTemplates';
 
@@ -23,122 +23,97 @@ import sourceJoyTemplates from 'docs/src/modules/joy/sourceJoyTemplates';
  * - The name of the folder will be used as the url and title
  */
 
-/**
- * @typedef {Object} Author
- * @property {string} name name of the author
- * @property {string} github github username
- */
+const authors = {
+  MUI: {
+    name: 'MUI',
+    link: 'https://x.com/MUI_hq',
+  },
+  SteveEberger: {
+    name: 'Steve Ernstberger',
+    link: 'https://x.com/SteveEberger',
+  },
+};
 
-/**
- * @type {Object.<string, Author | undefined>}
- */
-const AUTHORS = {
-  team: {
-    name: 'MUI',
-    link: 'https://twitter.com/MUI_hq',
+const templates = [
+  {
+    name: 'order-dashboard',
+    author: authors.MUI,
+    design: {
+      name: 'Untitled UI',
+      link: 'https://www.figma.com/community/file/1020079203222518115/untitled-ui-free-figma-ui-kit-and-design-system-v2-0',
+    },
   },
-  files: {
-    name: 'MUI',
-    link: 'https://twitter.com/MUI_hq',
+  {
+    name: 'profile-dashboard',
+    author: authors.MUI,
+    design: {
+      name: 'Untitled UI',
+      link: 'https://www.figma.com/community/file/1020079203222518115/untitled-ui-free-figma-ui-kit-and-design-system-v2-0',
+    },
   },
-  email: {
-    name: 'MUI',
-    link: 'https://twitter.com/MUI_hq',
+  {
+    name: 'messages',
+    author: authors.SteveEberger,
+    design: {
+      name: 'Untitled UI',
+      link: 'https://www.figma.com/community/file/1020079203222518115/untitled-ui-free-figma-ui-kit-and-design-system-v2-0',
+    },
   },
-  messages: {
-    name: 'Steve Ernstberger',
-    link: 'https://twitter.com/SteveEberger',
+  {
+    name: 'sign-in-side',
+    author: authors.MUI,
   },
-  'sign-in-side': {
-    name: 'MUI',
-    link: 'https://twitter.com/MUI_hq',
+  {
+    name: 'rental-dashboard',
+    author: authors.SteveEberger,
+    design: {
+      name: 'Untitled UI',
+      link: 'https://www.figma.com/community/file/1020079203222518115/untitled-ui-free-figma-ui-kit-and-design-system-v2-0',
+    },
   },
-  'order-dashboard': {
-    name: 'MUI',
-    link: 'https://twitter.com/MUI_hq',
+  {
+    name: 'team',
+    author: authors.MUI,
   },
-  'profile-dashboard': {
-    name: 'MUI',
-    link: 'https://twitter.com/MUI_hq',
+  {
+    name: 'files',
+    author: authors.MUI,
   },
-  'framesx-web-blocks': {
-    name: 'MUI',
-    link: 'https://twitter.com/MUI_hq',
+  {
+    name: 'email',
+    author: authors.MUI,
   },
-  'rental-dashboard': {
-    name: 'Steve Ernstberger',
-    link: 'https://twitter.com/steveeberger',
+  {
+    name: 'framesx-web-blocks',
+    author: authors.MUI,
+    design: {
+      name: 'Frames X',
+      link: 'https://framesxdesign.com/',
+    },
   },
-};
-const DESIGNS = {
-  'order-dashboard': {
-    name: 'Untitled UI',
-    link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
-  },
-  'profile-dashboard': {
-    name: 'Untitled UI',
-    link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
-  },
-  'framesx-web-blocks': {
-    name: 'Frames X',
-    link: 'https://framesxfigma.buninux.com/',
-  },
-  'rental-dashboard': {
-    name: 'Untitled UI',
-    link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
-  },
-  messages: {
-    name: 'Untitled UI',
-    link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
-  },
-};
+];
 
 export default function TemplateCollection() {
-  const newTemplates = [
-    'messages',
-    'rental-dashboard',
-    'framesx-web-blocks',
-    'profile-dashboard',
-  ]; // Stay at the top of the page with `new` badge
-  const { names: templateNames, map: templateMap } = sourceJoyTemplates();
-  const names = [
-    ...newTemplates,
-    ...templateNames.filter((name) => !newTemplates.includes(name)),
-  ];
+  const joyTemplates = sourceJoyTemplates();
+
   return (
     <List
       sx={{
         px: { xs: 2, sm: 0 },
         flexGrow: 1,
-        gap: 4,
+        gap: 3,
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
       }}
     >
-      {names.map((name) => {
-        const item = templateMap.get(name);
-        const author = AUTHORS[name];
-        const design = DESIGNS[name];
+      {templates.map((template) => {
+        const item = joyTemplates.map.get(template.name);
         return (
           <Card
             component="li"
             variant="outlined"
-            key={name}
-            sx={(theme) => ({
-              bgcolor: 'initial',
-              boxShadow: 'none',
-              overflow: 'auto',
-              transition: 'border-color 0.3s, transform 0.2s, box-shadow 0.4s',
-              '&:hover': {
-                '--joy-shadowChannel': 'var(--joy-palette-primary-lightChannel)',
-                boxShadow: theme.shadow.md,
-                borderColor: 'primary.500',
-                transform: 'translateY(-2px)',
-                [theme.getColorSchemeSelector('dark')]: {
-                  '--joy-shadowChannel': 'var(--joy-palette-primary-darkChannel)',
-                },
-              },
-            })}
+            key={template.name}
+            sx={{ bgcolor: 'initial', overflow: 'auto', borderRadius: 12 }}
           >
             <CardOverflow>
               <AspectRatio
@@ -152,15 +127,18 @@ export default function TemplateCollection() {
               >
                 <Box
                   sx={(theme) => ({
-                    background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${name}.jpg)`,
-                    transition: '0.3s',
+                    background: 'var(--template-name)',
                     [theme.getColorSchemeSelector('dark')]: {
-                      background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${name}-dark.jpg)`,
+                      background: 'var(--template-name-dark)',
                     },
                   })}
+                  style={{
+                    '--template-name': `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${template.name}.jpg)`,
+                    '--template-name-dark': `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${template.name}-dark.jpg)`,
+                  }}
                 />
                 <NextLink
-                  href={`/joy-ui/getting-started/templates/${name}/`}
+                  href={`/joy-ui/getting-started/templates/${template.name}/`}
                   passHref
                   legacyBehavior
                 >
@@ -170,127 +148,163 @@ export default function TemplateCollection() {
                     overlay
                     aria-hidden
                     data-ga-event-category="joy-template"
-                    data-ga-event-label={name}
+                    data-ga-event-label={template.name}
                     data-ga-event-action="preview-img"
-                  />
+                    sx={[
+                      (theme) => ({
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexDirection: 'column',
+                        gap: 1,
+                        transition: '0.15s',
+                        position: 'absolute',
+                        width: '100%',
+                        height: '100%',
+                        opacity: 0,
+                        top: 0,
+                        left: 0,
+                        bgcolor: `rgba(${theme.vars.palette.primary.lightChannel} / 0.3)`,
+                        backdropFilter: 'blur(4px)',
+                        '&:hover, &:focus': {
+                          opacity: 1,
+                        },
+                        [theme.getColorSchemeSelector('dark')]: {
+                          bgcolor: `rgba(${theme.vars.palette.primary.darkChannel} / 0.3)`,
+                        },
+                      }),
+                    ]}
+                  >
+                    <Visibility />
+                    <Typography
+                      textColor="text.primary"
+                      sx={{ fontWeight: 'bold', fontFamily: 'IBM Plex Sans' }}
+                    >
+                      View live preview
+                    </Typography>
+                  </Link>
                 </NextLink>
               </AspectRatio>
             </CardOverflow>
-            <CardContent>
-              <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', mb: 1 }}>
-                <Typography
-                  component="h3"
-                  fontSize="lg"
-                  fontWeight="xl"
-                  endDecorator={
-                    newTemplates.includes(name) ? (
-                      <Chip
-                        size="sm"
-                        color="success"
-                        variant="outlined"
-                        sx={{
-                          ml: 1,
-                          bgcolor: 'success.softBg',
-                          borderRadius: 'xs',
-                          textTransform: 'uppercase',
-                          fontWeight: 'xl',
-                          letterSpacing: 'md',
-                          fontSize: '0.625rem',
-                          '--Chip-paddingInline': '0.2rem',
-                          '--Chip-minHeight': '1.3rem',
-                        }}
-                      >
-                        New
-                      </Chip>
-                    ) : null
-                  }
-                  slotProps={{ endDecorator: { sx: { ml: 'auto' } } }}
-                  sx={{ mr: 'auto' }}
-                >
-                  {startCase(name)}
-                </Typography>
-                <NextLink
-                  href={`/joy-ui/getting-started/templates/${name}/`}
-                  passHref
-                  legacyBehavior
-                >
-                  <IconButton
-                    component="a"
-                    variant="outlined"
-                    color="neutral"
-                    size="sm"
-                    aria-label="See live preview"
-                    data-ga-event-category="joy-template"
-                    data-ga-event-label={name}
-                    data-ga-event-action="preview"
-                  >
-                    <Visibility />
-                  </IconButton>
-                </NextLink>
-                <IconButton
-                  variant="outlined"
-                  color="neutral"
-                  size="sm"
-                  aria-label="Code sandbox playground"
-                  data-ga-event-category="joy-template"
-                  data-ga-event-label={name}
-                  data-ga-event-action="codesandbox"
-                  onClick={() =>
-                    codeSandbox
-                      .createJoyTemplate({
-                        ...item,
-                        title: `${startCase(name)} Template - Joy UI`,
-                        githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
-                          process.env.LIB_VERSION
-                        }/docs/data/joy/templates/${name}/App.${
-                          item.codeVariant === 'TS' ? 'tsx' : 'js'
-                        }`,
-                      })
-                      .openSandbox()
-                  }
-                >
-                  <SvgIcon viewBox="0 0 1080 1080">
-                    <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
-                  </SvgIcon>
-                </IconButton>
-              </Box>
+            <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
+              <Typography
+                component="h3"
+                sx={{
+                  fontFamily: 'IBM Plex Sans',
+                  fontSize: 'lg',
+                  fontWeight: 'xl',
+                }}
+              >
+                {startCase(template.name)}
+              </Typography>
               <Box
                 sx={{
                   width: '100%',
                   display: 'flex',
                   alignItems: 'center',
                   flexWrap: 'wrap',
+                  mb: 2,
                 }}
               >
-                {author && (
-                  <Typography level="body-sm" fontWeight="md">
+                {template.author && (
+                  <Typography
+                    level="body-sm"
+                    sx={{ fontWeight: 'md', fontFamily: 'IBM Plex Sans' }}
+                  >
                     Built by{' '}
                     <Link
-                      href={author.link}
+                      href={template.author.link}
                       target="_blank"
-                      rel="noopener noreferrer"
+                      rel="noopener nofollow"
                     >
-                      <b>{author.name}</b>
+                      <b>{template.author.name}</b>
                     </Link>
                   </Typography>
                 )}
-                {design && (
+                {template.design && (
                   <React.Fragment>
-                    <Typography level="caption" fontWeight="md" sx={{ mx: 0.5 }}>
+                    <Typography
+                      level="caption"
+                      textColor="text.tertiary"
+                      sx={{ fontWeight: 'md', mx: 0.5 }}
+                    >
                       •
                     </Typography>
-                    <Typography level="body-sm" fontWeight="md">
+                    <Typography
+                      level="body-sm"
+                      sx={{ fontWeight: 'md', fontFamily: 'IBM Plex Sans' }}
+                    >
                       Designed by{' '}
                       <Link
-                        href={design.link}
+                        href={template.design.link}
                         target="_blank"
-                        rel="noopener noreferrer"
+                        rel="noopener nofollow"
                       >
-                        <b>{design.name}</b>
+                        <b>{template.design.name}</b>
                       </Link>
                     </Typography>
                   </React.Fragment>
                 )}
+              </Box>
+              <Box
+                sx={{
+                  mt: 'auto',
+                  width: '100%',
+                  display: 'flex',
+                  flexDirection: { xs: 'column', sm: 'row' },
+                  gap: 1.5,
+                }}
+              >
+                <NextLink
+                  href={`https://github.com/mui/material-ui/tree/master/docs/data/joy/getting-started/templates/${template.name}`}
+                  passHref
+                  legacyBehavior
+                >
+                  <Button
+                    component="a"
+                    variant="outlined"
+                    color="neutral"
+                    fullWidth
+                    startDecorator={<CodeRoundedIcon />}
+                    aria-label="Source code"
+                    data-ga-event-category="joy-template"
+                    data-ga-event-label={template.name}
+                    data-ga-event-action="preview"
+                    sx={{ fontFamily: 'IBM Plex Sans' }}
+                  >
+                    Source
+                  </Button>
+                </NextLink>
+                <Button
+                  variant="outlined"
+                  color="neutral"
+                  fullWidth
+                  startDecorator={
+                    <SvgIcon viewBox="0 0 1080 1080">
+                      <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
+                    </SvgIcon>
+                  }
+                  aria-label="CodeSandbox playground"
+                  data-ga-event-category="joy-template"
+                  data-ga-event-label={template.name}
+                  data-ga-event-action="codesandbox"
+                  onClick={() =>
+                    codeSandbox
+                      .createJoyTemplate({
+                        ...item,
+                        title: `${startCase(template.name)} Template - Joy UI`,
+                        githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
+                          process.env.LIB_VERSION
+                        }/docs/data/joy/templates/${template.name}/App.${
+                          item.codeVariant === 'TS' ? 'tsx' : 'js'
+                        }`,
+                      })
+                      .openSandbox()
+                  }
+                  sx={{ fontFamily: 'IBM Plex Sans' }}
+                >
+                  CodeSandbox
+                </Button>
               </Box>
             </CardContent>
           </Card>

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
-import * as pageProps from 'docs/data/base/components/tabs/tabs.md?@mui/markdown';
+import * as pageProps from 'docs/data/base/components/tabs/tabs.md?muiMarkdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
 import TabApiJsonPageContent from '../../api/tab.json';
 import TabPanelApiJsonPageContent from '../../api/tab-panel.json';
@@ -50,28 +50,28 @@ export const getStaticProps = () => {
   const TabsListApiDescriptions = mapApiPageTranslations(TabsListApiReq);
 
   const useTabApiReq = require.context(
-    'docs/translations/api-docs/use-tab',
+    'docs/translations/api-docs-base/use-tab',
     false,
     /use-tab.*.json$/,
   );
   const useTabApiDescriptions = mapApiPageTranslations(useTabApiReq);
 
   const useTabPanelApiReq = require.context(
-    'docs/translations/api-docs/use-tab-panel',
+    'docs/translations/api-docs-base/use-tab-panel',
     false,
     /use-tab-panel.*.json$/,
   );
   const useTabPanelApiDescriptions = mapApiPageTranslations(useTabPanelApiReq);
 
   const useTabsApiReq = require.context(
-    'docs/translations/api-docs/use-tabs',
+    'docs/translations/api-docs-base/use-tabs',
     false,
     /use-tabs.*.json$/,
   );
   const useTabsApiDescriptions = mapApiPageTranslations(useTabsApiReq);
 
   const useTabsListApiReq = require.context(
-    'docs/translations/api-docs/use-tabs-list',
+    'docs/translations/api-docs-base/use-tabs-list',
     false,
     /use-tabs-list.*.json$/,
   );

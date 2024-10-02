@@ -74,64 +74,136 @@
   },
   "name": "Checkbox",
   "imports": ["import Checkbox from '@mui/joy/Checkbox';", "import { Checkbox } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiCheckbox" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'span'",
-      "class": ".MuiCheckbox-root"
+      "class": "MuiCheckbox-root"
     },
     {
       "name": "checkbox",
       "description": "The component that renders the checkbox.",
       "default": "'span'",
-      "class": ".MuiCheckbox-checkbox"
+      "class": "MuiCheckbox-checkbox"
     },
     {
       "name": "action",
       "description": "The component that renders the action.",
       "default": "'span'",
-      "class": ".MuiCheckbox-action"
+      "class": "MuiCheckbox-action"
     },
     {
       "name": "input",
       "description": "The component that renders the input.",
       "default": "'input'",
-      "class": ".MuiCheckbox-input"
+      "class": "MuiCheckbox-input"
     },
     {
       "name": "label",
       "description": "The component that renders the label.",
       "default": "'label'",
-      "class": ".MuiCheckbox-label"
+      "class": "MuiCheckbox-label"
     }
   ],
-  "classes": {
-    "classes": [
-      "checked",
-      "colorContext",
-      "colorDanger",
-      "colorNeutral",
-      "colorPrimary",
-      "colorSuccess",
-      "colorWarning",
-      "disabled",
-      "focusVisible",
-      "indeterminate",
-      "sizeLg",
-      "sizeMd",
-      "sizeSm",
-      "variantOutlined",
-      "variantSoft",
-      "variantSolid"
-    ],
-    "globalClasses": {
-      "checked": "Mui-checked",
-      "disabled": "Mui-disabled",
-      "focusVisible": "Mui-focusVisible"
+  "classes": [
+    {
+      "key": "checked",
+      "className": "Mui-checked",
+      "description": "State class applied to the input component's `checked` class.",
+      "isGlobal": true
+    },
+    {
+      "key": "colorContext",
+      "className": "MuiCheckbox-colorContext",
+      "description": "Class name applied to the root element when color inversion is triggered.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorDanger",
+      "className": "MuiCheckbox-colorDanger",
+      "description": "Class name applied to the root element if `color=\"danger\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorNeutral",
+      "className": "MuiCheckbox-colorNeutral",
+      "description": "Class name applied to the root element if `color=\"neutral\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiCheckbox-colorPrimary",
+      "description": "Class name applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSuccess",
+      "className": "MuiCheckbox-colorSuccess",
+      "description": "Class name applied to the root element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorWarning",
+      "className": "MuiCheckbox-colorWarning",
+      "description": "Class name applied to the root element if `color=\"warning\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the input component's disabled class.",
+      "isGlobal": true
+    },
+    {
+      "key": "focusVisible",
+      "className": "Mui-focusVisible",
+      "description": "Class name applied to the root element if the switch has visible focus",
+      "isGlobal": true
+    },
+    {
+      "key": "indeterminate",
+      "className": "MuiCheckbox-indeterminate",
+      "description": "State class applied to the root element if `indeterminate={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeLg",
+      "className": "MuiCheckbox-sizeLg",
+      "description": "Class name applied to the root element if `size=\"lg\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeMd",
+      "className": "MuiCheckbox-sizeMd",
+      "description": "Class name applied to the root element if `size=\"md\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSm",
+      "className": "MuiCheckbox-sizeSm",
+      "description": "Class name applied to the root element if `size=\"sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantOutlined",
+      "className": "MuiCheckbox-variantOutlined",
+      "description": "Class name applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSoft",
+      "className": "MuiCheckbox-variantSoft",
+      "description": "Class name applied to the root element if `variant=\"soft\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSolid",
+      "className": "MuiCheckbox-variantSolid",
+      "description": "Class name applied to the root element if `variant=\"solid\"`.",
+      "isGlobal": false
     }
-  },
+  ],
   "spread": false,
   "themeDefaultProps": true,
   "muiName": "JoyCheckbox",

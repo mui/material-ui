@@ -19,24 +19,27 @@ const useUtilityClasses = () => {
   return composeClasses(slots, getCardContentUtilityClass, {});
 };
 
-const CardContentRoot = styled('div', {
+export const StyledCardContentRoot = styled('div')<{ ownerState: CardContentProps }>(
+  ({ ownerState }) => ({
+    display: 'flex',
+    flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
+    flex: 9999, // fill the available space in the Card and also shrink if needed
+    zIndex: 1,
+    columnGap: 'var(--Card-padding)',
+    rowGap: 'max(2px, calc(0.1875 * var(--Card-padding)))',
+    padding: 'var(--unstable_padding)',
+    [`.${cardOverflowClasses.root} > &`]: {
+      '--unstable_padding': 'calc(var(--Card-padding) * 0.75) 0px',
+    },
+  }),
+);
+
+const CardContentRoot = styled(StyledCardContentRoot, {
   name: 'JoyCardContent',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CardContentProps }>(({ ownerState }) => ({
-  display: 'flex',
-  flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
-  flex: 9999, // fill the available space in the Card and also shrink if needed
-  zIndex: 1,
-  columnGap: 'var(--Card-padding)',
-  rowGap: 'max(2px, calc(0.1875 * var(--Card-padding)))',
-  padding: 'var(--unstable_padding)',
-  [`.${cardOverflowClasses.root} > &`]: {
-    '--unstable_padding': 'calc(var(--Card-padding) * 0.75) 0px',
-  },
-}));
+})<{ ownerState: CardContentProps }>({});
 /**
- * ⚠️ CardContent must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.
  *
  * Demos:
  *
@@ -83,10 +86,10 @@ const CardContent = React.forwardRef(function CardContent(inProps, ref) {
 }) as OverridableComponent<CardContentTypeMap>;
 
 CardContent.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Used to render icon or text elements inside the CardContent if `src` is not set.
    * This can be an element, or just a string.

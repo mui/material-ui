@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import CircularProgress, { circularProgressClasses as classes } from '@mui/joy/CircularProgress';
+import describeConformance from '../../test/describeConformance';
 
 describe('<CircularProgress />', () => {
   const { render } = createRenderer();
@@ -33,8 +34,6 @@ describe('<CircularProgress />', () => {
     },
     skip: ['classesRoot', 'componentsProp'],
   }));
-
-  describeJoyColorInversion(<CircularProgress />, { muiName: 'JoyCircularProgress', classes });
 
   describe('prop: determinate', () => {
     it('should render a determinate circular progress', () => {

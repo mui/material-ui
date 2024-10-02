@@ -8,37 +8,44 @@ materialDesign: https://m2.material.io/design/iconography/system-icons.html
 
 # Icons
 
-<p class="description">Guidance and suggestions for using icons with Material UI.</p>
+<p class="description">Guidance and suggestions for using icons with Material UI.</p>
 
-Material UI provides icon support in three ways:
+Material UI provides icon support in three ways:
 
-1. Standardized [Material Icons](#material-svg-icons) exported as React components (SVG icons).
+1. With [Material Icons](#material-svg-icons) exported as React components (SVG icons).
 1. With the [SvgIcon](#svgicon) component, a React wrapper for custom SVG icons.
 1. With the [Icon](#icon-font-icons) component, a React wrapper for custom font icons.
 
 ## Material SVG icons
 
-Google has created over 2,100 official Material icons, each in five different "themes" (see below).
+Google has created over 2,100 official [Material icons](https://fonts.google.com/icons?icon.set=Material+Icons), each in five different "themes" (see below).
 For each SVG icon, we export the respective React component from the `@mui/icons-material` package.
 You can [search the full list of these icons](/material-ui/material-icons/).
 
 ### Installation
 
-To install and save in your `package.json` dependencies, run the command below using **npm**:
+Run one of the following commands to install it and save it to your `package.json` dependencies:
 
-```bash
+<!-- #default-branch-switch -->
+
+<codeblock storageKey="package-manager">
+```bash npm
 npm install @mui/icons-material
 ```
 
-Or **yarn**:
+```bash pnpm
+pnpm add @mui/icons-material
+```
 
-```bash
+```bash yarn
 yarn add @mui/icons-material
 ```
 
-These components use the Material UI `SvgIcon` component to render the SVG path for each icon, and so have a peer-dependency on `@mui/material`.
+</codeblock>
 
-If you aren't already using Material UI in your project, you can add it following the [installation guide](/material-ui/getting-started/installation/).
+These components use the Material UI `SvgIcon` component to render the SVG path for each icon, and so have a peer-dependency on `@mui/material`.
+
+If you aren't already using Material UI in your project, you can add it following the [installation guide](/material-ui/getting-started/installation/).
 
 ### Usage
 
@@ -94,7 +101,7 @@ If you need a custom SVG icon (not available in the [Material Icons](/material-u
 This component extends the native `<svg>` element:
 
 - It comes with built-in accessibility.
-- SVG elements should be scaled for a 24x24px viewport so that the resulting icon can be used as is, or included as a child for other Material UI components that use icons.
+- SVG elements should be scaled for a 24x24px viewport so that the resulting icon can be used as is, or included as a child for other Material UI components that use icons.
   This can be customized with the `viewBox` attribute.
   To inherit the `viewBox` value from the original image, the `inheritViewBox` prop can be used.
 - By default, the component inherits the current color. Optionally, you can apply one of the theme colors using the `color` prop.
@@ -113,7 +120,7 @@ This component extends the native `<svg>` element:
 ### Component prop
 
 You can use the `SvgIcon` wrapper even if your icons are saved in the `.svg` format.
-[svgr](https://github.com/gregberge/svgr) has loaders to import SVG files and use them as React components. For example, with webpack:
+[svgr](https://github.com/gregberge/svgr) has loaders to import SVG files and use them as React components. For example, with Webpack:
 
 ```jsx
 // webpack.config.js
@@ -181,7 +188,7 @@ Below is a comparison of the `FontAwesomeIcon` component and a wrapped `SvgIcon`
 
 FontAwesomeIcon's `fullWidth` prop can also be used to approximate the correct dimensions, but it isn't perfect.
 
-### Other Libraries
+### Other libraries
 
 #### MDI
 
@@ -290,12 +297,12 @@ const theme = createTheme({
 
 {{"demo": "FontAwesomeIconSize.js"}}
 
-## Font vs SVG. Which approach to use?
+## Font vs. SVGs: Which approach to use?
 
-Both approaches work fine, however there are some subtle differences, especially in terms of performance and rendering quality.
+Both approaches work fine, however, there are some subtle differences, especially in terms of performance and rendering quality.
 Whenever possible SVG is preferred as it allows code splitting, supports more icons, and renders faster and better.
 
-For more details, take a look at [why GitHub migrated from font icons to SVG icons](https://github.blog/2016-02-22-delivering-octicons-with-svg/).
+For more details, take a look at [why GitHub migrated from font icons to SVG icons](https://github.blog/engineering/delivering-octicons-with-svg/).
 
 ## Accessibility
 

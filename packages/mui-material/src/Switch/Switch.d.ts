@@ -22,7 +22,7 @@ export interface SwitchProps
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
   color?: OverridableStringUnion<
@@ -66,4 +66,4 @@ export interface SwitchProps
  * - [Switch API](https://mui.com/material-ui/api/switch/)
  * - inherits [IconButton API](https://mui.com/material-ui/api/icon-button/)
  */
-export default function Switch(props: SwitchProps): JSX.Element;
+export default function Switch(props: SwitchProps): React.JSX.Element;

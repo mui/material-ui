@@ -1,12 +1,69 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { createTheme } from '@mui/material/styles';
+import Divider from '@mui/material/Divider';
+import { createTheme, styled } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 import ThemeViewer, {
-  useNodeIdsLazy,
+  useItemIdsLazy,
 } from 'docs/src/modules/components/ThemeViewer';
+import { blue, grey } from '@mui/docs/branding';
+
+const StyledSwitch = styled(Switch)(({ theme }) => [
+  {
+    display: 'flex',
+    padding: 0,
+    width: 32,
+    height: 20,
+    borderRadius: 99,
+    '&:active': {
+      '& .MuiSwitch-thumb': {
+        width: 16,
+      },
+      '& .MuiSwitch-switchBase.Mui-checked': {
+        transform: 'translateX(9px)',
+      },
+    },
+    '& .MuiSwitch-switchBase': {
+      padding: 2,
+      '&.Mui-checked': {
+        transform: 'translateX(12px)',
+        color: '#FFF',
+        '& + .MuiSwitch-track': {
+          opacity: 1,
+          backgroundColor: blue[500],
+        },
+      },
+    },
+    '& .MuiSwitch-thumb': {
+      width: 16,
+      height: 16,
+      borderRadius: 99,
+      transition: theme.transitions.create(['width'], {
+        duration: 200,
+      }),
+    },
+    '& .MuiSwitch-track': {
+      borderRadius: 16 / 2,
+      opacity: 1,
+      backgroundColor: grey[400],
+      boxSizing: 'border-box',
+    },
+    [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
+      '& .MuiSwitch-switchBase': {
+        '&.Mui-checked': {
+          '& + .MuiSwitch-track': {
+            backgroundColor: blue[500],
+          },
+        },
+      },
+      '& .MuiSwitch-track': {
+        backgroundColor: grey[700],
+      },
+    },
+  },
+]);
 
 function DefaultTheme() {
   const [checked, setChecked] = React.useState(false);
@@ -47,7 +104,7 @@ function DefaultTheme() {
     });
   }, [darkTheme]);
 
-  const allNodeIds = useNodeIdsLazy(data);
+  const allNodeIds = useItemIdsLazy(data);
   React.useDebugValue(allNodeIds);
   React.useEffect(() => {
     if (checked) {
@@ -58,31 +115,52 @@ function DefaultTheme() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <FormControlLabel
-        sx={{ pb: 1 }}
-        control={
-          <Switch
-            checked={checked}
-            onChange={(event) => {
-              setChecked(event.target.checked);
-              setExpandPaths(event.target.checked ? allNodeIds : []);
-            }}
-          />
-        }
-        label={t('expandAll')}
-      />
-      <FormControlLabel
-        sx={{ pb: 1 }}
-        control={
-          <Switch
-            checked={darkTheme}
-            onChange={(event) => {
-              setDarkTheme(event.target.checked);
-            }}
-          />
-        }
-        label={t('useDarkTheme')}
-      />
+      <Box sx={{ display: 'flex', gap: 2, mb: 3 }}>
+        <FormControlLabel
+          label={t('expandAll')}
+          sx={{
+            m: 0,
+            flexDirection: 'row-reverse',
+            gap: 1,
+            '& .MuiFormControlLabel-label': {
+              fontFamily: 'IBM Plex Sans',
+              color: 'text.secondary',
+            },
+          }}
+          control={
+            <StyledSwitch
+              size="small"
+              checked={checked}
+              onChange={(event) => {
+                setChecked(event.target.checked);
+                setExpandPaths(event.target.checked ? allNodeIds : []);
+              }}
+            />
+          }
+        />
+        <Divider orientation="vertical" flexItem />
+        <FormControlLabel
+          label={t('useDarkTheme')}
+          sx={{
+            m: 0,
+            flexDirection: 'row-reverse',
+            gap: 1,
+            '& .MuiFormControlLabel-label': {
+              fontFamily: 'IBM Plex Sans',
+              color: 'text.secondary',
+            },
+          }}
+          control={
+            <StyledSwitch
+              size="small"
+              checked={darkTheme}
+              onChange={(event) => {
+                setDarkTheme(event.target.checked);
+              }}
+            />
+          }
+        />
+      </Box>
       <ThemeViewer data={data} expandPaths={expandPaths} />
     </Box>
   );

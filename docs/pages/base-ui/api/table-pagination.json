@@ -58,60 +58,78 @@
     "import { TablePagination } from '@mui/base/TablePagination';",
     "import { TablePagination } from '@mui/base';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'td'",
-      "class": ".MuiTablePagination-root"
+      "class": "base-TablePagination-root"
     },
     {
       "name": "actions",
       "description": "The component that renders the actions.",
       "default": "TablePaginationActions",
-      "class": ".MuiTablePagination-actions"
+      "class": "base-TablePagination-actions"
     },
     {
       "name": "select",
       "description": "The component that renders the select.",
       "default": "'select'",
-      "class": ".MuiTablePagination-select"
+      "class": "base-TablePagination-select"
     },
     {
       "name": "selectLabel",
       "description": "The component that renders the select label.",
       "default": "'p'",
-      "class": ".MuiTablePagination-selectLabel"
+      "class": "base-TablePagination-selectLabel"
     },
     {
       "name": "menuItem",
       "description": "The component that renders the menu item.",
       "default": "'option'",
-      "class": ".MuiTablePagination-menuItem"
+      "class": "base-TablePagination-menuItem"
     },
     {
       "name": "displayedRows",
       "description": "The component that renders the displayed rows.",
       "default": "'p'",
-      "class": ".MuiTablePagination-displayedRows"
+      "class": "base-TablePagination-displayedRows"
     },
     {
       "name": "toolbar",
       "description": "The component that renders the toolbar.",
       "default": "'div'",
-      "class": ".MuiTablePagination-toolbar"
+      "class": "base-TablePagination-toolbar"
     },
     {
       "name": "spacer",
       "description": "The component that renders the spacer.",
       "default": "'div'",
-      "class": ".MuiTablePagination-spacer"
+      "class": "base-TablePagination-spacer"
     }
   ],
-  "classes": { "classes": ["input", "selectIcon", "selectRoot"], "globalClasses": {} },
+  "classes": [
+    {
+      "key": "input",
+      "className": "base-TablePagination-input",
+      "description": "Class name applied to the Select component `root` element.",
+      "isGlobal": false
+    },
+    {
+      "key": "selectIcon",
+      "className": "base-TablePagination-selectIcon",
+      "description": "Class name applied to the Select component `icon` class.",
+      "isGlobal": false
+    },
+    {
+      "key": "selectRoot",
+      "className": "base-TablePagination-selectRoot",
+      "description": "Class name applied to the Select component `root` element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
-  "muiName": "MuiTablePagination",
+  "muiName": "TablePagination",
   "forwardsRefTo": "HTMLTableCellElement",
   "filename": "/packages/mui-base/src/TablePagination/TablePagination.tsx",
   "inheritance": null,

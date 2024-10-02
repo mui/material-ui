@@ -1,17 +1,22 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from 'test/utils';
-import { extendTheme, useTheme, CssVarsProvider } from '@mui/joy/styles';
+import { createRenderer } from '@mui/internal-test-utils';
+import { extendTheme, useTheme, CssVarsProvider, styled } from '@mui/joy/styles';
 
 describe('extendTheme', () => {
   it('the output contains required fields', () => {
     const result = extendTheme();
     Object.keys(result).forEach((field) => {
       expect([
+        'attribute',
         'breakpoints',
+        'containerQueries',
+        'colorSchemeSelector',
         'components',
         'colorSchemes',
+        'defaultColorScheme',
         'focus',
+        'font',
         'fontSize',
         'fontFamily',
         'fontWeight',
@@ -20,19 +25,23 @@ describe('extendTheme', () => {
         'spacing',
         'radius',
         'shadow',
+        'shadowRing',
+        'shadowChannel',
+        'shadowOpacity',
         'zIndex',
         'typography',
-        'colorInversionConfig',
         'variants',
         'cssVarPrefix',
         'palette',
         'vars',
         'getColorSchemeSelector',
-        'colorInversion',
         'unstable_sxConfig',
         'unstable_sx',
         'shouldSkipGeneratingVar',
-        'generateCssVars',
+        'generateStyleSheets',
+        'generateThemeVars',
+        'generateSpacing',
+        'applyStyles',
       ]).to.includes(field);
     });
   });
@@ -43,6 +52,7 @@ describe('extendTheme', () => {
       'radius',
       'shadow',
       'focus',
+      'font',
       'fontFamily',
       'fontSize',
       'fontWeight',
@@ -100,11 +110,98 @@ describe('extendTheme', () => {
     });
   });
 
+  describe('spacing', () => {
+    it('produce spacing token by default', () => {
+      const theme = extendTheme();
+      expect(theme.vars.spacing).to.equal('var(--joy-spacing, 8px)');
+      expect(theme.spacing(2)).to.equal('calc(2 * var(--joy-spacing, 8px))');
+    });
+
+    it('turn number to pixel', () => {
+      const theme = extendTheme({ spacing: 4 });
+      expect(theme.vars.spacing).to.equal('var(--joy-spacing, 4px)');
+      expect(theme.spacing(2)).to.equal('calc(2 * var(--joy-spacing, 4px))');
+    });
+
+    it('can be customized as a string', () => {
+      const theme = extendTheme({ spacing: '0.5rem' });
+      expect(theme.vars.spacing).to.equal('var(--joy-spacing, 0.5rem)');
+      expect(theme.spacing(2)).to.equal('calc(2 * var(--joy-spacing, 0.5rem))');
+    });
+
+    it('uses the provided value if it is a string', () => {
+      const theme = extendTheme({ spacing: '0.5rem' });
+      expect(theme.spacing('1rem')).to.equal('1rem');
+    });
+
+    it('can be customized as an array', () => {
+      const theme = extendTheme({ spacing: [0, 1, 2, 4, 8, 16, 32] });
+      expect(theme.vars.spacing).to.deep.equal([
+        'var(--joy-spacing-0, 0px)',
+        'var(--joy-spacing-1, 1px)',
+        'var(--joy-spacing-2, 2px)',
+        'var(--joy-spacing-3, 4px)',
+        'var(--joy-spacing-4, 8px)',
+        'var(--joy-spacing-5, 16px)',
+        'var(--joy-spacing-6, 32px)',
+      ]);
+      expect(theme.spacing(2)).to.equal('var(--joy-spacing-2, 2px)');
+    });
+
+    it('can be customized as a function', () => {
+      const theme = extendTheme({ spacing: (factor) => `${0.25 * factor}rem` });
+      expect(theme.vars.spacing).to.deep.equal('var(--joy-spacing, 0.25rem)');
+      expect(theme.spacing(2)).to.equal('calc(2 * var(--joy-spacing, 0.25rem))');
+    });
+  });
+
+  describe('typography', () => {
+    it('produce typography token by default', () => {
+      const theme = extendTheme();
+      expect(Object.keys(theme.vars.font)).to.deep.equal([
+        'h1',
+        'h2',
+        'h3',
+        'h4',
+        'title-lg',
+        'title-md',
+        'title-sm',
+        'body-lg',
+        'body-md',
+        'body-sm',
+        'body-xs',
+      ]);
+    });
+
+    it('access font vars', () => {
+      const theme = extendTheme();
+      expect(
+        theme.unstable_sx({
+          font: 'h1',
+        }),
+      ).to.deep.equal({
+        font: 'var(--joy-font-h1, var(--joy-fontWeight-xl, 700) var(--joy-fontSize-xl4, 2.25rem)/var(--joy-lineHeight-xs, 1.33334) var(--joy-fontFamily-display, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol")))',
+      });
+    });
+
+    it('use provided value if no font', () => {
+      const theme = extendTheme();
+      expect(
+        theme.unstable_sx({
+          font: 'var(--custom-font)',
+        }),
+      ).to.deep.equal({
+        font: 'var(--custom-font)',
+      });
+    });
+  });
+
   describe('theme.unstable_sx', () => {
     const { render } = createRenderer();
 
     let originalMatchmedia;
     const storage = {};
+
     beforeEach(() => {
       originalMatchmedia = window.matchMedia;
       // Create mocks of localStorage getItem and setItem functions
@@ -118,10 +215,14 @@ describe('extendTheme', () => {
         configurable: true,
       });
       window.matchMedia = () => ({
+        // Keep mocking legacy methods because older code might still use them
         addListener: () => {},
+        addEventListener: () => {},
         removeListener: () => {},
+        removeEventListener: () => {},
       });
     });
+
     afterEach(() => {
       window.matchMedia = originalMatchmedia;
     });
@@ -143,6 +244,7 @@ describe('extendTheme', () => {
 
       function Test() {
         const theme = useTheme();
+        // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- styles is required outside the component
         styles = theme.unstable_sx({ bgcolor: 'primary.500' });
         return null;
       }
@@ -176,6 +278,32 @@ describe('extendTheme', () => {
       expect(styles).to.deep.equal({
         // No default value as the CssVarsProvider is used
         borderRadius: 'var(--joy-radius-md)',
+      });
+    });
+
+    it('applyStyles', () => {
+      const attribute = 'data-custom-color-scheme';
+      const customTheme2 = extendTheme({
+        colorSchemeSelector: attribute,
+      });
+      let darkStyles = {};
+      const Test = styled('div')(({ theme }) => {
+        darkStyles = theme.applyStyles('dark', {
+          backgroundColor: 'rgba(0, 0, 0, 0)',
+        });
+        return null;
+      });
+
+      render(
+        <CssVarsProvider theme={customTheme2}>
+          <Test />
+        </CssVarsProvider>,
+      );
+
+      expect(darkStyles).to.deep.equal({
+        [`*:where([${attribute}="dark"]) &`]: {
+          backgroundColor: 'rgba(0, 0, 0, 0)',
+        },
       });
     });
   });

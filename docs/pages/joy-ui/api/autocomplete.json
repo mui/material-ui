@@ -4,8 +4,20 @@
     "aria-describedby": { "type": { "name": "string" } },
     "aria-label": { "type": { "name": "string" } },
     "aria-labelledby": { "type": { "name": "string" } },
+    "autoComplete": { "type": { "name": "bool" }, "default": "false" },
     "autoFocus": { "type": { "name": "bool" } },
+    "autoHighlight": { "type": { "name": "bool" }, "default": "false" },
+    "autoSelect": { "type": { "name": "bool" }, "default": "false" },
+    "blurOnSelect": {
+      "type": {
+        "name": "union",
+        "description": "'mouse'<br>&#124;&nbsp;'touch'<br>&#124;&nbsp;bool"
+      },
+      "default": "false"
+    },
     "clearIcon": { "type": { "name": "node" }, "default": "<ClearIcon fontSize=\"md\" />" },
+    "clearOnBlur": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
+    "clearOnEscape": { "type": { "name": "bool" }, "default": "false" },
     "clearText": { "type": { "name": "string" }, "default": "'Clear'" },
     "closeText": { "type": { "name": "string" }, "default": "'Close'" },
     "color": {
@@ -21,7 +33,10 @@
       "default": "props.multiple ? [] : null"
     },
     "disableClearable": { "type": { "name": "bool" }, "default": "false" },
+    "disableCloseOnSelect": { "type": { "name": "bool" }, "default": "false" },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disabledItemsFocusable": { "type": { "name": "bool" }, "default": "false" },
+    "disableListWrap": { "type": { "name": "bool" }, "default": "false" },
     "endDecorator": { "type": { "name": "node" } },
     "error": { "type": { "name": "bool" }, "default": "false" },
     "filterOptions": {
@@ -32,6 +47,7 @@
         "describedArgs": ["options", "state"]
       }
     },
+    "filterSelectedOptions": { "type": { "name": "bool" }, "default": "false" },
     "forcePopupIcon": {
       "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;bool" },
       "default": "'auto'"
@@ -49,6 +65,13 @@
       "type": { "name": "func" },
       "signature": { "type": "function(option: Value) => boolean", "describedArgs": ["option"] }
     },
+    "getOptionKey": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(option: Value) => string | number",
+        "describedArgs": ["option"]
+      }
+    },
     "getOptionLabel": {
       "type": { "name": "func" },
       "default": "(option) => option.label ?? option",
@@ -58,7 +81,9 @@
       "type": { "name": "func" },
       "signature": { "type": "function(options: Value) => string", "describedArgs": ["options"] }
     },
+    "handleHomeEndKeys": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
     "id": { "type": { "name": "string" } },
+    "includeInputInList": { "type": { "name": "bool" }, "default": "false" },
     "inputValue": { "type": { "name": "string" } },
     "isOptionEqualToValue": {
       "type": { "name": "func" },
@@ -109,6 +134,7 @@
       }
     },
     "open": { "type": { "name": "bool" } },
+    "openOnFocus": { "type": { "name": "bool" }, "default": "false" },
     "openText": { "type": { "name": "string" }, "default": "'Open'" },
     "placeholder": { "type": { "name": "string" } },
     "popupIcon": { "type": { "name": "node" }, "default": "<ArrowDropDownIcon />" },
@@ -135,6 +161,7 @@
       }
     },
     "required": { "type": { "name": "bool" } },
+    "selectOnFocus": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
     "size": {
       "type": {
         "name": "union",
@@ -182,107 +209,208 @@
     "import Autocomplete from '@mui/joy/Autocomplete';",
     "import { Autocomplete } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiAutocomplete" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiAutocomplete-root"
+      "class": "MuiAutocomplete-root"
     },
     {
       "name": "wrapper",
       "description": "The component that renders the wrapper.",
       "default": "'div'",
-      "class": ".MuiAutocomplete-wrapper"
+      "class": "MuiAutocomplete-wrapper"
     },
     {
       "name": "input",
       "description": "The component that renders the input.",
       "default": "'input'",
-      "class": ".MuiAutocomplete-input"
+      "class": "MuiAutocomplete-input"
     },
     {
       "name": "startDecorator",
       "description": "The component that renders the start decorator.",
       "default": "'div'",
-      "class": ".MuiAutocomplete-startDecorator"
+      "class": "MuiAutocomplete-startDecorator"
     },
     {
       "name": "endDecorator",
       "description": "The component that renders the end decorator.",
       "default": "'div'",
-      "class": ".MuiAutocomplete-endDecorator"
+      "class": "MuiAutocomplete-endDecorator"
     },
     {
       "name": "clearIndicator",
       "description": "The component that renders the clear indicator.",
       "default": "'button'",
-      "class": ".MuiAutocomplete-clearIndicator"
+      "class": "MuiAutocomplete-clearIndicator"
     },
     {
       "name": "popupIndicator",
       "description": "The component that renders the popup indicator.",
       "default": "'button'",
-      "class": ".MuiAutocomplete-popupIndicator"
+      "class": "MuiAutocomplete-popupIndicator"
     },
     {
       "name": "listbox",
       "description": "The component that renders the listbox.",
       "default": "'ul'",
-      "class": ".MuiAutocomplete-listbox"
+      "class": "MuiAutocomplete-listbox"
     },
     {
       "name": "option",
       "description": "The component that renders the option.",
       "default": "'li'",
-      "class": ".MuiAutocomplete-option"
+      "class": "MuiAutocomplete-option"
     },
     {
       "name": "loading",
       "description": "The component that renders the loading.",
       "default": "'li'",
-      "class": ".MuiAutocomplete-loading"
+      "class": "MuiAutocomplete-loading"
     },
     {
       "name": "noOptions",
       "description": "The component that renders the no-options.",
       "default": "'li'",
-      "class": ".MuiAutocomplete-noOptions"
+      "class": "MuiAutocomplete-noOptions"
     },
     {
       "name": "limitTag",
       "description": "The component that renders the limit tag.",
       "default": "'div'",
-      "class": ".MuiAutocomplete-limitTag"
+      "class": "MuiAutocomplete-limitTag"
     }
   ],
-  "classes": {
-    "classes": [
-      "colorContext",
-      "colorDanger",
-      "colorNeutral",
-      "colorPrimary",
-      "colorSuccess",
-      "colorWarning",
-      "disabled",
-      "error",
-      "focused",
-      "formControl",
-      "hasClearIcon",
-      "hasPopupIcon",
-      "multiple",
-      "popupIndicatorOpen",
-      "sizeLg",
-      "sizeMd",
-      "sizeSm",
-      "variantOutlined",
-      "variantPlain",
-      "variantSoft",
-      "variantSolid"
-    ],
-    "globalClasses": { "focused": "Mui-focused", "disabled": "Mui-disabled", "error": "Mui-error" }
-  },
+  "classes": [
+    {
+      "key": "colorContext",
+      "className": "MuiAutocomplete-colorContext",
+      "description": "Class name applied to the root element when color inversion is triggered.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorDanger",
+      "className": "MuiAutocomplete-colorDanger",
+      "description": "Class name applied to the root element if `color=\"danger\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorNeutral",
+      "className": "MuiAutocomplete-colorNeutral",
+      "description": "Class name applied to the root element if `color=\"neutral\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiAutocomplete-colorPrimary",
+      "description": "Class name applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSuccess",
+      "className": "MuiAutocomplete-colorSuccess",
+      "description": "Class name applied to the root element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorWarning",
+      "className": "MuiAutocomplete-colorWarning",
+      "description": "Class name applied to the root element if `color=\"warning\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "Class name applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "error",
+      "className": "Mui-error",
+      "description": "State class applied to the root element if `error={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "focused",
+      "className": "Mui-focused",
+      "description": "Class name applied to the root element if the component is focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "formControl",
+      "className": "MuiAutocomplete-formControl",
+      "description": "Class name applied to the root element if the component is a descendant of `FormControl`.",
+      "isGlobal": false
+    },
+    {
+      "key": "hasClearIcon",
+      "className": "MuiAutocomplete-hasClearIcon",
+      "description": "Class name applied when the clear icon is rendered.",
+      "isGlobal": false
+    },
+    {
+      "key": "hasPopupIcon",
+      "className": "MuiAutocomplete-hasPopupIcon",
+      "description": "Class name applied when the popup icon is rendered.",
+      "isGlobal": false
+    },
+    {
+      "key": "multiple",
+      "className": "MuiAutocomplete-multiple",
+      "description": "Class name applied to the wrapper element if `multiple={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "popupIndicatorOpen",
+      "className": "MuiAutocomplete-popupIndicatorOpen",
+      "description": "Class name applied to the popup indicator if the popup is open.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeLg",
+      "className": "MuiAutocomplete-sizeLg",
+      "description": "Class name applied to the root element if `size=\"lg\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeMd",
+      "className": "MuiAutocomplete-sizeMd",
+      "description": "Class name applied to the root element if `size=\"md\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSm",
+      "className": "MuiAutocomplete-sizeSm",
+      "description": "Class name applied to the root element if `size=\"sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantOutlined",
+      "className": "MuiAutocomplete-variantOutlined",
+      "description": "Class name applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantPlain",
+      "className": "MuiAutocomplete-variantPlain",
+      "description": "Class name applied to the root element if `variant=\"plain\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSoft",
+      "className": "MuiAutocomplete-variantSoft",
+      "description": "Class name applied to the root element if `variant=\"soft\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSolid",
+      "className": "MuiAutocomplete-variantSolid",
+      "description": "Class name applied to the root element if `variant=\"solid\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyAutocomplete",

@@ -11,11 +11,15 @@
     "component": { "type": { "name": "elementType" } },
     "components": {
       "type": { "name": "shape", "description": "{ Root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
     },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
     },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
     "disablePortal": { "type": { "name": "bool" }, "default": "false" },
@@ -63,7 +67,14 @@
     "import Popper from '@mui/material/Popper';",
     "import { Popper } from '@mui/material';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiPopper-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "MuiPopper",

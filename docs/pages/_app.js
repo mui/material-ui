@@ -5,7 +5,7 @@ import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import NextHead from 'next/head';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import { LicenseInfo } from '@mui/x-data-grid-pro';
+import { LicenseInfo } from '@mui/x-license';
 import materialPkgJson from 'packages/mui-material/package.json';
 import joyPkgJson from 'packages/mui-joy/package.json';
 import systemPkgJson from 'packages/mui-system/package.json';
@@ -18,17 +18,28 @@ import joyPages from 'docs/data/joy/pages';
 import systemPages from 'docs/data/system/pages';
 import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
-import { CodeCopyProvider } from 'docs/src/modules/utils/CodeCopy';
+import { CodeCopyProvider } from '@mui/docs/CodeCopy';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { CodeVariantProvider } from 'docs/src/modules/utils/codeVariant';
 import { CodeStylingProvider } from 'docs/src/modules/utils/codeStylingSolution';
-import { UserLanguageProvider } from 'docs/src/modules/utils/i18n';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
+import { DocsProvider } from '@mui/docs/DocsProvider';
+import { mapTranslations } from '@mui/docs/i18n';
+import SvgMuiLogomark, {
+  muiSvgLogoString,
+  muiSvgWordmarkString,
+} from 'docs/src/icons/SvgMuiLogomark';
+import SvgBaseUiLogo, {
+  baseSvgLogoString,
+  baseSvgWordmarkString,
+} from 'docs/src/icons/SvgBaseUiLogo';
 import './global.css';
+import '../public/static/components-gallery/base-theme.css';
+import config from '../config';
 
 // Remove the license warning from demonstration purposes
 LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);
@@ -94,7 +105,7 @@ async function registerServiceWorker() {
   if (
     'serviceWorker' in navigator &&
     process.env.NODE_ENV === 'production' &&
-    window.location.host.indexOf('mui.com') !== -1
+    window.location.host.includes('mui.com')
   ) {
     // register() automatically attempts to refresh the sw.js.
     const registration = await navigator.serviceWorker.register('/sw.js');
@@ -160,10 +171,17 @@ function AppWrapper(props) {
 
     if (productId === 'material-ui') {
       return {
-        metadata: 'MUI Core',
-        name: 'Material UI',
+        metadata: '',
+        name: 'Material UI',
+        logo: SvgMuiLogomark,
+        logoSvg: muiSvgLogoString,
+        wordmarkSvg: muiSvgWordmarkString,
         versions: [
           { text: `v${materialPkgJson.version}`, current: true },
+          {
+            text: 'v5',
+            href: `https://v5.mui.com${languagePrefix}/getting-started/installation/`,
+          },
           {
             text: 'v4',
             href: `https://v4.mui.com${languagePrefix}/getting-started/installation/`,
@@ -178,16 +196,22 @@ function AppWrapper(props) {
 
     if (productId === 'joy-ui') {
       return {
-        metadata: 'MUI Core',
-        name: 'Joy UI',
+        metadata: '',
+        name: 'Joy UI',
+        logo: SvgMuiLogomark,
+        logoSvg: muiSvgLogoString,
+        wordmarkSvg: muiSvgWordmarkString,
         versions: [{ text: `v${joyPkgJson.version}`, current: true }],
       };
     }
 
     if (productId === 'system') {
       return {
-        metadata: 'MUI Core',
-        name: 'MUI System',
+        metadata: '',
+        name: 'MUI System',
+        logo: SvgMuiLogomark,
+        logoSvg: muiSvgLogoString,
+        wordmarkSvg: muiSvgWordmarkString,
         versions: [
           { text: `v${systemPkgJson.version}`, current: true },
           { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
@@ -201,8 +225,11 @@ function AppWrapper(props) {
 
     if (productId === 'base-ui') {
       return {
-        metadata: 'MUI Core',
+        metadata: '',
         name: 'Base UI',
+        logo: SvgBaseUiLogo,
+        logoSvg: baseSvgLogoString,
+        wordmarkSvg: baseSvgWordmarkString,
         versions: [{ text: `v${basePkgJson.version}`, current: true }],
       };
     }
@@ -210,7 +237,10 @@ function AppWrapper(props) {
     if (productId === 'core') {
       return {
         metadata: '',
-        name: 'MUI Core',
+        name: 'MUI Core',
+        logo: SvgMuiLogomark,
+        logoSvg: muiSvgLogoString,
+        wordmarkSvg: muiSvgWordmarkString,
         versions: [
           { text: `v${materialPkgJson.version}`, current: true },
           {
@@ -225,6 +255,9 @@ function AppWrapper(props) {
       return {
         metadata: '',
         name: 'Docs-infra',
+        logo: SvgMuiLogomark,
+        logoSvg: muiSvgLogoString,
+        wordmarkSvg: muiSvgWordmarkString,
         versions: [
           {
             text: 'v0.0.0',
@@ -238,6 +271,9 @@ function AppWrapper(props) {
       return {
         metadata: '',
         name: 'Home docs',
+        logo: SvgMuiLogomark,
+        logoSvg: muiSvgLogoString,
+        wordmarkSvg: muiSvgWordmarkString,
         versions: [
           {
             text: 'v0.0.0',
@@ -279,7 +315,7 @@ function AppWrapper(props) {
   let fonts = [];
   if (pathnameToLanguage(router.asPath).canonicalAs.match(/onepirate/)) {
     fonts = [
-      'https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400&display=swap',
+      'https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&family=Work+Sans:wght@300;400&display=swap',
     ];
   }
 
@@ -293,7 +329,12 @@ function AppWrapper(props) {
         <meta name="mui:productId" content={productId} />
         <meta name="mui:productCategoryId" content={productCategoryId} />
       </NextHead>
-      <UserLanguageProvider defaultUserLanguage={pageProps.userLanguage}>
+      <DocsProvider
+        config={config}
+        adConfig={{ GADisplayRatio: 0.1 }}
+        defaultUserLanguage={pageProps.userLanguage}
+        translations={pageProps.translations}
+      >
         <CodeCopyProvider>
           <CodeStylingProvider>
             <CodeVariantProvider>
@@ -308,7 +349,7 @@ function AppWrapper(props) {
             </CodeVariantProvider>
           </CodeStylingProvider>
         </CodeCopyProvider>
-      </UserLanguageProvider>
+      </DocsProvider>
     </React.Fragment>
   );
 }
@@ -338,6 +379,9 @@ MyApp.propTypes = {
 MyApp.getInitialProps = async ({ ctx, Component }) => {
   let pageProps = {};
 
+  const req = require.context('docs/translations', false, /\.\/translations.*\.json$/);
+  const translations = mapTranslations(req);
+
   if (Component.getInitialProps) {
     pageProps = await Component.getInitialProps(ctx);
   }
@@ -345,6 +389,7 @@ MyApp.getInitialProps = async ({ ctx, Component }) => {
   return {
     pageProps: {
       userLanguage: ctx.query.userLanguage || 'en',
+      translations,
       ...pageProps,
     },
   };
@@ -359,13 +404,6 @@ export function reportWebVitals({ id, name, label, delta, value }) {
     return;
   }
 
-  window.ga('send', 'event', {
-    eventCategory: label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric',
-    eventAction: name,
-    eventValue: Math.round(name === 'CLS' ? value * 1000 : value), // values must be integers
-    eventLabel: id, // id unique to current page load
-    nonInteraction: true, // avoids affecting bounce rate.
-  });
   window.gtag('event', name, {
     value: delta,
     metric_label: label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric',

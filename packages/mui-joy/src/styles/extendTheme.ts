@@ -10,6 +10,10 @@ import {
   unstable_styleFunctionSx as styleFunctionSx,
   SxConfig,
 } from '@mui/system';
+import cssContainerQueries from '@mui/system/cssContainerQueries';
+import { unstable_applyStyles as applyStyles } from '@mui/system/createTheme';
+import { prepareTypographyVars, createGetColorSchemeSelector } from '@mui/system/cssVars';
+import { createUnarySpacing } from '@mui/system/spacing';
 import defaultSxConfig from './sxConfig';
 import colors from '../colors';
 import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
@@ -17,11 +21,11 @@ import { DefaultColorScheme, ExtendedColorScheme, SupportedColorScheme } from '.
 import { ColorSystem, ColorPaletteProp, Palette, PaletteOptions } from './types/colorSystem';
 import { Focus } from './types/focus';
 import { TypographySystemOptions, FontSize } from './types/typography';
-import { Variants, ColorInversion, ColorInversionConfig } from './types/variants';
+import { Variants } from './types/variants';
 import { Theme, ThemeCssVar, ThemeScalesOptions, SxProps, ThemeVars } from './types';
 import { Components } from './components';
 import { generateUtilityClass } from '../className';
-import { createSoftInversion, createSolidInversion, createVariant } from './variantUtils';
+import { createVariant } from './variantUtils';
 import { MergeDefault } from './types/utils';
 
 type Partial2Level<T> = {
@@ -41,6 +45,22 @@ type Partial3Level<T> = {
       : T[K][J];
   };
 };
+
+function getSpacingVal(spacingInput: SpacingOptions | string | undefined) {
+  if (typeof spacingInput === 'number') {
+    return `${spacingInput}px`;
+  }
+  if (typeof spacingInput === 'string') {
+    return spacingInput;
+  }
+  if (typeof spacingInput === 'function') {
+    return getSpacingVal(spacingInput(1));
+  }
+  if (Array.isArray(spacingInput)) {
+    return spacingInput;
+  }
+  return '8px';
+}
 
 export type ColorSystemOptions = Partial3Level<
   MergeDefault<ColorSystem, { palette: PaletteOptions }>
@@ -63,13 +83,27 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScalesOptions> {
    * // { ..., typography: { body1: { fontSize: 'var(--fontSize-md)' } }, ... }
    */
   cssVarPrefix?: string;
+  /**
+   * The strategy to generate CSS variables
+   *
+   * @example 'media'
+   * Generate CSS variables using [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme)
+   *
+   * @example '.mode-%s'
+   * Generate CSS variables within a class .mode-light, .mode-dark
+   *
+   * @example '[data-mode-%s]'
+   * Generate CSS variables within a data attribute [data-mode-light], [data-mode-dark]
+   */
+  colorSchemeSelector?: 'media' | 'class' | 'data' | string;
+  /**
+   * @default 'light'
+   */
+  defaultColorScheme?: DefaultColorScheme | ExtendedColorScheme;
+  direction?: 'ltr' | 'rtl';
   focus?: Partial<Focus>;
   typography?: Partial<TypographySystemOptions>;
   variants?: Partial2Level<Variants>;
-  colorInversion?:
-    | Partial2Level<ColorInversion>
-    | ((theme: Theme) => Partial2Level<ColorInversion>);
-  colorInversionConfig?: ColorInversionConfig;
   breakpoints?: BreakpointsOptions;
   spacing?: SpacingOptions;
   components?: Components<Theme>;
@@ -95,8 +129,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     spacing,
     components: componentsInput,
     variants: variantsInput,
-    colorInversion: colorInversionInput,
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
+    colorSchemeSelector = 'data-joy-color-scheme',
     ...scalesInput
   } = themeOptions || {};
   const getCssVar = createGetCssVar(cssVarPrefix);
@@ -108,8 +142,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     success: colors.green,
     warning: colors.yellow,
     common: {
-      white: '#FCFCFD',
-      black: '#09090B',
+      white: '#FFF',
+      black: '#000',
     },
   };
 
@@ -124,8 +158,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
   const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
     plainColor: getCssVarColor(`palette-${color}-500`),
-    plainHoverBg: getCssVarColor(`palette-${color}-50`),
-    plainActiveBg: getCssVarColor(`palette-${color}-100`),
+    plainHoverBg: getCssVarColor(`palette-${color}-100`),
+    plainActiveBg: getCssVarColor(`palette-${color}-200`),
     plainDisabledColor: getCssVarColor(`palette-neutral-400`),
 
     outlinedColor: getCssVarColor(`palette-${color}-500`),
@@ -141,14 +175,14 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     softActiveColor: getCssVarColor(`palette-${color}-800`),
     softActiveBg: getCssVarColor(`palette-${color}-300`),
     softDisabledColor: getCssVarColor(`palette-neutral-400`),
-    softDisabledBg: getCssVarColor(`palette-${color}-50`),
+    softDisabledBg: getCssVarColor(`palette-neutral-50`),
 
     solidColor: getCssVarColor(`palette-common-white`),
     solidBg: getCssVarColor(`palette-${color}-500`),
     solidHoverBg: getCssVarColor(`palette-${color}-600`),
     solidActiveBg: getCssVarColor(`palette-${color}-700`),
     solidDisabledColor: getCssVarColor(`palette-neutral-400`),
-    solidDisabledBg: getCssVarColor(`palette-${color}-100`),
+    solidDisabledBg: getCssVarColor(`palette-neutral-100`),
   });
 
   const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
@@ -170,14 +204,14 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     softActiveColor: getCssVarColor(`palette-${color}-100`),
     softActiveBg: getCssVarColor(`palette-${color}-600`),
     softDisabledColor: getCssVarColor(`palette-neutral-500`),
-    softDisabledBg: getCssVarColor(`palette-${color}-900`),
+    softDisabledBg: getCssVarColor(`palette-neutral-800`),
 
     solidColor: getCssVarColor(`palette-common-white`),
     solidBg: getCssVarColor(`palette-${color}-500`),
     solidHoverBg: getCssVarColor(`palette-${color}-600`),
     solidActiveBg: getCssVarColor(`palette-${color}-700`),
     solidDisabledColor: getCssVarColor(`palette-neutral-500`),
-    solidDisabledBg: getCssVarColor(`palette-${color}-800`),
+    solidDisabledBg: getCssVarColor(`palette-neutral-800`),
   });
 
   const lightColorSystem = {
@@ -191,6 +225,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         ...defaultColors.neutral,
         ...createLightModeVariantVariables('neutral'),
         plainColor: getCssVarColor('palette-neutral-700'),
+        plainHoverColor: getCssVarColor(`palette-neutral-900`),
         outlinedColor: getCssVarColor('palette-neutral-700'),
       },
       danger: {
@@ -206,8 +241,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         ...createLightModeVariantVariables('warning'),
       },
       common: {
-        white: '#FBFCFD',
-        black: '#0E0E10',
+        white: '#FFF',
+        black: '#000',
       },
       text: {
         primary: getCssVarColor('palette-neutral-800'),
@@ -216,8 +251,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         icon: getCssVarColor('palette-neutral-500'),
       },
       background: {
-        body: getCssVarColor('palette-neutral-50'),
-        surface: getCssVarColor('palette-common-white'),
+        body: getCssVarColor('palette-common-white'),
+        surface: getCssVarColor('palette-neutral-50'),
         popup: getCssVarColor('palette-common-white'),
         level1: getCssVarColor('palette-neutral-100'),
         level2: getCssVarColor('palette-neutral-200'),
@@ -231,7 +266,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       divider: `rgba(${getCssVar(
         'palette-neutral-mainChannel',
         colorChannel(defaultColors.neutral[500]), // should be the same index as in `attachColorChannels`
-      )} / 0.3)`,
+      )} / 0.2)`,
       focusVisible: getCssVarColor('palette-primary-500'),
     },
     shadowRing: '0 0 #000',
@@ -248,6 +283,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       neutral: {
         ...defaultColors.neutral,
         ...createDarkModeVariantVariables('neutral'),
+        plainColor: getCssVarColor('palette-neutral-300'),
+        plainHoverColor: getCssVarColor(`palette-neutral-300`),
       },
       danger: {
         ...defaultColors.danger,
@@ -262,8 +299,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         ...createDarkModeVariantVariables('warning'),
       },
       common: {
-        white: '#FBFCFD',
-        black: '#0E0E10',
+        white: '#FFF',
+        black: '#000',
       },
       text: {
         primary: getCssVarColor('palette-neutral-100'),
@@ -345,6 +382,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       light: lightColorSystem,
       dark: darkColorSystem,
     },
+    font: {},
     fontSize,
     fontFamily,
     fontWeight,
@@ -421,6 +459,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       table: 10,
       popup: 1000,
       modal: 1300,
+      snackbar: 1400,
       tooltip: 1500,
     },
 
@@ -520,8 +559,10 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     ? deepmerge(defaultScales, scalesInput)
     : defaultScales;
 
-  const theme = {
+  let theme = {
+    colorSchemeSelector,
     colorSchemes,
+    defaultColorScheme: 'light',
     ...mergedScales,
     breakpoints: createBreakpoints(breakpoints ?? {}),
     components: deepmerge(
@@ -546,13 +587,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
                   color: `var(--Icon-color, ${theme.vars.palette.text.icon})`,
                   ...(ownerState.color &&
                     ownerState.color !== 'inherit' &&
-                    ownerState.color !== 'context' &&
                     themeProp.vars.palette[ownerState.color!] && {
                       color: `rgba(${themeProp.vars.palette[ownerState.color]?.mainChannel} / 1)`,
                     }),
-                  ...(ownerState.color === 'context' && {
-                    color: themeProp.vars.palette.text.secondary,
-                  }),
                 }),
                 ...(instanceFontSize &&
                   instanceFontSize !== 'inherit' && {
@@ -567,12 +604,10 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     ),
     cssVarPrefix,
     getCssVar,
-    spacing: createSpacing(spacing),
-    colorInversionConfig: {
-      soft: ['plain', 'outlined', 'soft', 'solid'],
-      solid: ['plain', 'outlined', 'soft', 'solid'],
-    },
-  } as unknown as Theme; // Need type casting due to module augmentation inside the repo
+    spacing: getSpacingVal(spacing),
+    font: { ...prepareTypographyVars(mergedScales.typography), ...mergedScales.font },
+  } as unknown as Theme & { colorSchemeSelector: string }; // Need type casting due to module augmentation inside the repo
+  theme = cssContainerQueries(theme);
 
   /**
    Color channels generation
@@ -614,18 +649,25 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   // ===============================================================
   // Create `theme.vars` that contain `var(--*)` as values
   // ===============================================================
-  const parserConfig = {
+  const parserConfig: Parameters<typeof prepareCssVars<Theme, ThemeVars>>[1] = {
     prefix: cssVarPrefix,
+    colorSchemeSelector,
+    disableCssColorScheme: true,
     shouldSkipGeneratingVar,
   };
 
-  const { vars: themeVars, generateCssVars } = prepareCssVars<Theme, ThemeVars>(
-    // @ts-ignore property truDark is missing from colorSchemes
-    { colorSchemes, ...mergedScales },
+  const { vars, generateThemeVars, generateStyleSheets } = prepareCssVars<Theme, ThemeVars>(
+    theme,
     parserConfig,
   );
-  theme.vars = themeVars;
-  theme.generateCssVars = generateCssVars;
+  theme.vars = vars;
+  theme.generateThemeVars = generateThemeVars;
+  theme.generateStyleSheets = generateStyleSheets;
+  theme.generateSpacing = function generateSpacing() {
+    return createSpacing(spacing, createUnarySpacing(this));
+  };
+  theme.spacing = theme.generateSpacing();
+  theme.typography = mergedScales.typography as any; // cast to `any` to avoid internal module augmentation in the repo.
   theme.unstable_sxConfig = {
     ...defaultSxConfig,
     ...themeOptions?.unstable_sxConfig,
@@ -636,10 +678,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       theme: this,
     });
   };
-  theme.getColorSchemeSelector = (colorScheme: SupportedColorScheme) =>
-    colorScheme === 'light'
-      ? '&'
-      : `&[data-joy-color-scheme="${colorScheme}"], [data-joy-color-scheme="${colorScheme}"] &`;
+  theme.getColorSchemeSelector = createGetColorSchemeSelector(colorSchemeSelector);
 
   const createVariantInput = { getCssVar, palette: theme.colorSchemes.light.palette };
   theme.variants = deepmerge(
@@ -664,25 +703,17 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     variantsInput,
   );
 
+  Object.entries(theme.colorSchemes[theme.defaultColorScheme]).forEach(([key, value]) => {
+    // @ts-ignore
+    theme[key] = value;
+  });
   theme.palette = {
     ...theme.colorSchemes.light.palette,
     colorScheme: 'light',
   };
 
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
-
-  // @ts-ignore if the colorInversion is provided as callbacks, it needs to be resolved in the CssVarsProvider
-  theme.colorInversion =
-    typeof colorInversionInput === 'function'
-      ? colorInversionInput
-      : deepmerge(
-          {
-            soft: createSoftInversion(theme, true),
-            solid: createSolidInversion(theme, true),
-          },
-          colorInversionInput || {},
-          { clone: false },
-        );
+  theme.applyStyles = applyStyles;
 
   return theme;
 }

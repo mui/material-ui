@@ -8,7 +8,6 @@ import { useButton } from '@mui/base/useButton';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { useVariantColor } from '../styles/variantColorInheritance';
-import { useColorInversion } from '../styles/ColorInversion';
 import Cancel from '../internal/svg-icons/Cancel';
 import { getChipDeleteUtilityClass } from './chipDeleteClasses';
 import { ChipDeleteProps, ChipDeleteOwnerState, ChipDeleteTypeMap } from './ChipDeleteProps';
@@ -35,14 +34,18 @@ const ChipDeleteRoot = styled(StyledIconButton as unknown as 'button', {
   name: 'JoyChipDelete',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ChipDeleteOwnerState }>({
+})<{ ownerState: ChipDeleteOwnerState }>(({ theme }) => ({
   '--IconButton-size': 'var(--Chip-deleteSize, 2rem)',
   '--Icon-fontSize': 'calc(var(--IconButton-size, 2rem) / 1.3)',
+  minWidth: 'var(--IconButton-size, 2rem)', // use min-width instead of height to make the button resilient to its content
+  minHeight: 'var(--IconButton-size, 2rem)', // use min-height instead of height to make the button resilient to its content
+  fontSize: theme.vars.fontSize.sm,
+  paddingInline: '2px', // add a gap, in case the content is long, for example multiple icons
   pointerEvents: 'visible', // force the ChipDelete to be hoverable because the decorator can have pointerEvents 'none'
   borderRadius: 'var(--Chip-deleteRadius, 50%)',
   zIndex: 1, // overflow above sibling button or anchor
   padding: 0, // reset user agent stylesheet
-});
+}));
 
 /**
  *
@@ -77,12 +80,12 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
   const { variant = variantProp, color: inheritedColor = colorProp } = useVariantColor(
     inProps.variant,
     inProps.color,
+    true,
   );
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, inheritedColor);
+  const color = inProps.color || inheritedColor;
   const disabled = disabledProp ?? chipContext.disabled;
 
-  const buttonRef = React.useRef<HTMLElement | null>(null);
+  const buttonRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);
 
   const { focusVisible, getRootProps } = useButton({
@@ -142,10 +145,10 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
 }) as OverridableComponent<ChipDeleteTypeMap>;
 
 ChipDelete.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If provided, it will replace the default icon.
    */

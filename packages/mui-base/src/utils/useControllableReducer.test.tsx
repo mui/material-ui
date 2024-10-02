@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import * as React from 'react';
 import { spy } from 'sinon';
-import { createRenderer } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { useControllableReducer } from './useControllableReducer';
 import { ControllableReducerParameters } from './useControllableReducer.types';
 
@@ -130,6 +130,68 @@ describe('useControllableReducer', () => {
 
       setProps({ make: 'Mazda' });
       expect(container.firstChild).to.have.text('Mazda 3 (2022)');
+    });
+
+    it('warns when a controlled prop becomes uncontrolled', () => {
+      const reducerParameters: ControllableReducerParameters<TestState, SetMakeAction> = {
+        reducer: (state) => state,
+        initialState: { make: 'Mazda', model: '3', productionYear: 2022 },
+      };
+
+      function TestComponent(props: { make: string }) {
+        const [state] = useControllableReducer({
+          ...reducerParameters,
+          controlledProps: {
+            make: props.make,
+          },
+          componentName: 'TestComponent',
+        });
+        return (
+          <p>
+            {state.make} {state.model} ({state.productionYear})
+          </p>
+        );
+      }
+
+      const { container, setProps } = render(<TestComponent make="Tesla" />);
+      expect(container.firstChild).to.have.text('Tesla 3 (2022)');
+
+      expect(() => {
+        setProps({ make: undefined });
+      }).to.toErrorDev(
+        'useControllableReducer: The TestComponent component is changing a controlled prop to be uncontrolled: make',
+      );
+    });
+
+    it('warns when an uncontrolled prop becomes controlled', () => {
+      const reducerParameters: ControllableReducerParameters<TestState, SetMakeAction> = {
+        reducer: (state) => state,
+        initialState: { make: 'Mazda', model: '3', productionYear: 2022 },
+      };
+
+      function TestComponent(props: { make?: string }) {
+        const [state] = useControllableReducer({
+          ...reducerParameters,
+          controlledProps: {
+            make: props.make,
+          },
+          componentName: 'TestComponent',
+        });
+        return (
+          <p>
+            {state.make} {state.model} ({state.productionYear})
+          </p>
+        );
+      }
+
+      const { container, setProps } = render(<TestComponent />);
+      expect(container.firstChild).to.have.text('Mazda 3 (2022)');
+
+      expect(() => {
+        setProps({ make: 'Tesla' });
+      }).to.toErrorDev(
+        'useControllableReducer: The TestComponent component is changing an uncontrolled prop to be controlled: make',
+      );
     });
   });
 

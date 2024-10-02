@@ -6,7 +6,6 @@ import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSwitch } from '@mui/base/useSwitch';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import radioClasses, { getRadioUtilityClass } from './radioClasses';
 import { RadioOwnerState, RadioTypeMap } from './RadioProps';
@@ -62,22 +61,22 @@ const RadioRoot = styled('span', {
       '--Icon-color': 'currentColor',
       ...(ownerState.size === 'sm' && {
         '--Radio-size': '1rem',
-        '--Radio-gap': '0.5rem',
         // --FormHelperText-margin is equal to --Radio-size + --Radio-gap but we can't use calc() with CSS variables because the FormHelperText is a sibling element
         '& ~ *': { '--FormHelperText-margin': '0 0 0 1.5rem' },
         fontSize: theme.vars.fontSize.sm,
+        gap: 'var(--Radio-gap, 0.5rem)',
       }),
       ...(ownerState.size === 'md' && {
         '--Radio-size': '1.25rem',
-        '--Radio-gap': '0.625rem',
         '& ~ *': { '--FormHelperText-margin': '0.25rem 0 0 1.875rem' },
         fontSize: theme.vars.fontSize.md,
+        gap: 'var(--Radio-gap, 0.625rem)',
       }),
       ...(ownerState.size === 'lg' && {
         '--Radio-size': '1.5rem',
-        '--Radio-gap': '0.75rem',
         '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 2.25rem' },
         fontSize: theme.vars.fontSize.lg,
+        gap: 'var(--Radio-gap, 0.75rem)',
       }),
       position: ownerState.overlay ? 'initial' : 'relative',
       display: 'inline-flex',
@@ -140,7 +139,12 @@ const RadioRadio = styled('span', {
             ...variantStyle,
             backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
           },
-          { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+          {
+            '&:hover': {
+              '@media (hover: hover)':
+                theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+            },
+          },
           { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
           {
             [`&.${radioClasses.disabled}`]:
@@ -173,7 +177,12 @@ const RadioAction = styled('span', {
   ...(ownerState.disableIcon
     ? [
         theme.variants[ownerState.variant!]?.[ownerState.color!],
-        { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+        {
+          '&:hover': {
+            '@media (hover: hover)':
+              theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+          },
+        },
         { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
         {
           [`&.${radioClasses.disabled}`]:
@@ -203,14 +212,10 @@ const RadioLabel = styled('label', {
 })<{ ownerState: RadioOwnerState }>(({ ownerState }) => ({
   flex: 1,
   minWidth: 0,
-  ...(ownerState.disableIcon
-    ? {
-        zIndex: 1, // label should stay on top of the action.
-        pointerEvents: 'none', // makes hover ineffect.
-      }
-    : {
-        marginInlineStart: 'var(--Radio-gap)',
-      }),
+  ...(ownerState.disableIcon && {
+    zIndex: 1, // label should stay on top of the action.
+    pointerEvents: 'none', // makes hover ineffect.
+  }),
 }));
 
 /**
@@ -270,12 +275,12 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
 
   const formControl = React.useContext(FormControlContext);
 
   if (process.env.NODE_ENV !== 'production') {
     const registerEffect = formControl?.registerEffect;
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- process.env never changes
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (registerEffect) {
@@ -290,23 +295,23 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   const radioGroup = React.useContext(RadioGroupContext);
   const activeColor = formControl?.error
     ? 'danger'
-    : inProps.color ?? formControl?.color ?? colorProp ?? 'primary';
+    : (inProps.color ?? formControl?.color ?? colorProp ?? 'primary');
   const inactiveColor = formControl?.error
     ? 'danger'
-    : inProps.color ?? formControl?.color ?? colorProp ?? 'neutral';
+    : (inProps.color ?? formControl?.color ?? colorProp ?? 'neutral');
   const size = inProps.size || formControl?.size || radioGroup?.size || sizeProp;
   const name = inProps.name || radioGroup?.name || nameProp;
   const disableIcon = inProps.disableIcon || radioGroup?.disableIcon || disableIconProp;
   const overlay = inProps.overlay || radioGroup?.overlay || overlayProp;
 
   const radioChecked =
-    typeof checkedProp === 'undefined' && !!value
+    typeof checkedProp === 'undefined' && value != null
       ? areEqualValues(radioGroup?.value, value)
       : checkedProp;
   const useRadioProps = {
     checked: radioChecked,
     defaultChecked,
-    disabled: disabledProp ?? formControl?.disabled,
+    disabled: inProps.disabled || formControl?.disabled || disabledProp,
     onBlur,
     onChange,
     onFocus,
@@ -315,7 +320,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
 
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(useRadioProps);
 
-  const color = getColor(inProps.color, checked ? activeColor : inactiveColor);
+  const color = inProps.color ?? (checked ? activeColor : inactiveColor);
 
   const ownerState = {
     ...props,
@@ -365,6 +370,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   const [SlotInput, inputProps] = useSlot('input', {
     additionalProps: {
       type: 'radio',
+      role: undefined,
       id,
       name,
       readOnly,
@@ -410,10 +416,10 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
 }) as OverridableComponent<RadioTypeMap>;
 
 Radio.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the component is checked.
    */

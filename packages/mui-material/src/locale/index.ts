@@ -163,7 +163,7 @@ export const arEG: Localization = {
             return 'انتقل إلى الصفحة التالية';
           }
           // if (type === 'previous') {
-          return 'انتقل  إلى الصفحة السابقة';
+          return 'انتقل إلى الصفحة السابقة';
         },
       },
     },
@@ -1007,7 +1007,7 @@ export const enUS: Localization = {
       },
       labelRowsPerPage: 'Rows per page:',
       labelDisplayedRows: ({ from, to, count }) =>
-  `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`,
+  `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`, 
     }},
     MuiRating: { defaultProps: {
       getLabelText: value => `${value} Star${value !== 1 ? 's' : ''}`,
@@ -1842,34 +1842,34 @@ export const idID: Localization = {
 
 export const isIS: Localization = {
   components: {
-    // MuiBreadcrumbs: {
-    //   defaultProps: {
-    //    expandText: 'Show path',
-    //   },
-    // },
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'Sýna slóð',
+      },
+    },
     MuiTablePagination: {
       defaultProps: {
-        // getItemAriaLabel: (type) => {
-        //   if (type === 'first') {
-        //     return 'Go to first page';
-        //   }
-        //   if (type === 'last') {
-        //     return 'Go to last page';
-        //   }
-        //   if (type === 'next') {
-        //     return 'Go to next page';
-        //   }
-        //   // if (type === 'previous') {
-        //   return 'Go to previous page';
-        // },
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'Fara á fyrstu síðu';
+          }
+          if (type === 'last') {
+            return 'Fara á síðustu síðu';
+          }
+          if (type === 'next') {
+            return 'Fara á næstu síðu';
+          }
+          // if (type === 'previous') {
+          return 'Fara á fyrri síðu';
+        },
         labelRowsPerPage: 'Raðir á síðu:',
-        // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}–${to} af ${count !== -1 ? count : `more than ${to}`}`,
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} af ${count !== -1 ? count : `fleiri en ${to}`}`,
       },
     },
     MuiRating: {
       defaultProps: {
-        getLabelText: (value) => `${value} ${value === 1 ? 'Stjarna' : 'Stjörnur'}`,
+        getLabelText: (value) => `${value} ${value === 1 ? 'stjarna' : 'stjörnur'}`,
         emptyLabelText: 'Tómt',
       },
     },
@@ -1887,27 +1887,27 @@ export const isIS: Localization = {
         closeText: 'Loka',
       },
     },
-    // MuiPagination: {
-    //   defaultProps: {
-    //     'aria-label': 'Pagination navigation',
-    //     getItemAriaLabel: (type, page, selected) => {
-    //       if (type === 'page') {
-    //         return `${selected ? '' : 'Go to '}page ${page}`;
-    //       }
-    //       if (type === 'first') {
-    //         return 'Go to first page';
-    //       }
-    //       if (type === 'last') {
-    //         return 'Go to last page';
-    //       }
-    //       if (type === 'next') {
-    //         return 'Go to next page';
-    //       }
-    //       // if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     },
-    //   },
-    // },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'Síðuflakk',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? 'Síða' : 'Fara á síðu'} ${page}`;
+          }
+          if (type === 'first') {
+            return 'Fara á fyrstu síðu';
+          }
+          if (type === 'last') {
+            return 'Fara á síðustu síðu';
+          }
+          if (type === 'next') {
+            return 'Fara á næstu síðu';
+          }
+          // if (type === 'previous') {
+          return 'Fara á fyrri síðu';
+        },
+      },
+    },
   },
 };
 
@@ -2782,6 +2782,77 @@ export const nbNO: Localization = {
   },
 };
 
+export const nnNO: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'Vis sti',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'Gå til første side';
+          }
+          if (type === 'last') {
+            return 'Gå til siste side';
+          }
+          if (type === 'next') {
+            return 'Gå til neste side';
+          }
+          // if (type === 'previous') {
+          return 'Gå til førre side';
+        },
+        labelRowsPerPage: 'Rader per side:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} av ${count !== -1 ? count : `fleire enn ${to}`}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => `${value} stjerne${value !== 1 ? 'r' : ''}`,
+        emptyLabelText: 'Tom',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'Tøm',
+        closeText: 'Lukk',
+        loadingText: 'Lastar inn…',
+        noOptionsText: 'Ingen alternativ',
+        openText: 'Opna',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'Lukk',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'Navigasjon for paginering',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'Gå til '}side ${page}`;
+          }
+          if (type === 'first') {
+            return 'Gå til første side';
+          }
+          if (type === 'last') {
+            return 'Gå til siste side';
+          }
+          if (type === 'next') {
+            return 'Gå til neste side';
+          }
+          // if (type === 'previous') {
+          return 'Gå til førre side';
+        },
+      },
+    },
+  },
+};
+
 export const nlNL: Localization = {
   components: {
     MuiBreadcrumbs: {
@@ -2929,6 +3000,77 @@ export const plPL: Localization = {
           }
           // if (type === 'previous') {
           return 'Przejdź do poprzedniej strony';
+        },
+      },
+    },
+  },
+};
+
+export const psAF: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'لاره ښکاره کړه',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'لومړۍ پاڼې ته لاړ شه';
+          }
+          if (type === 'last') {
+            return 'ورستۍ پاڼې ته لاړ شه';
+          }
+          if (type === 'next') {
+            return 'بلی پاڼې ته لاړ شه';
+          }
+          // if (type === 'previous') {
+          return 'مخکینۍ پاڼې ته لاړ شه';
+        },
+        labelRowsPerPage: 'په پاڼه کی د کرښو شمیر',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${count !== -1 ? count : `${to} زیات له`} ${to}- ${from} د`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => `${value} ستوری`,
+        emptyLabelText: 'خالی',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'پاک کول',
+        closeText: 'تړل',
+        loadingText: '... لوډ کیږی',
+        noOptionsText: 'بی پایلی',
+        openText: 'خلاصول',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'تړل',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'د پاڼو ترتیب',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : ' ته لاړ شه'}پاڼې ${page}`;
+          }
+          if (type === 'first') {
+            return 'لومړۍ پاڼی ته لاړ شه';
+          }
+          if (type === 'last') {
+            return 'وروستۍ پاڼې ته لاړه شه';
+          }
+          if (type === 'next') {
+            return 'بلې پاڼې ته لاړ شه';
+          }
+          // if (type === 'previous') {
+          return 'مخکنۍ پاڼې ته لاړ شه';
         },
       },
     },
@@ -3627,8 +3769,8 @@ export const trTR: Localization = {
           return 'Önceki sayfaya git';
         },
         labelRowsPerPage: 'Sayfa başına satır:',
-        // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}–${to} tanesinden ${count !== -1 ? count : `more than ${to}`}`,
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}-${to} / ${count !== -1 ? count : `${to}'den fazla`}`,
       },
     },
     MuiRating: {

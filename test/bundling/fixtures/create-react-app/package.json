@@ -3,20 +3,21 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "yarn cross-env DISABLE_ESLINT_PLUGIN=true SKIP_PREFLIGHT_CHECK=true react-scripts build && concurrently --success first --kill-others \"yarn server\" \"node testCreateReactAppIntegration\"",
+    "prestart": "node ../../scripts/createFixture.js create-react-app",
+    "start": "pnpm cross-env DISABLE_ESLINT_PLUGIN=true SKIP_PREFLIGHT_CHECK=true react-scripts build && concurrently --success first --kill-others \"pnpm server\" \"node testCreateReactAppIntegration\"",
     "server": "serve -p 5001 -s build"
   },
   "dependencies": {
     "@emotion/core": "11.0.0",
     "@emotion/react": "11.10.4",
     "@emotion/styled": "11.10.4",
-    "@mui/material": "5.10.5",
-    "@mui/icons-material": "5.10.3",
-    "@mui/lab": "5.0.0-alpha.99",
-    "@mui/styled-engine": "5.10.5",
-    "@mui/styles": "5.10.3",
-    "@mui/system": "5.10.5",
-    "@mui/utils": "5.10.3",
+    "@mui/material": "workspace:*",
+    "@mui/icons-material": "workspace:*",
+    "@mui/lab": "workspace:*",
+    "@mui/styled-engine": "workspace:*",
+    "@mui/styles": "workspace:*",
+    "@mui/system": "workspace:*",
+    "@mui/utils": "workspace:*",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-scripts": "5.0.1",
@@ -25,7 +26,7 @@
   "devDependencies": {
     "concurrently": "7.4.0",
     "cross-env": "7.0.3",
-    "playwright": "1.37.0",
+    "playwright": "1.47.2",
     "serve": "14.0.1"
   },
   "browserslist": {
@@ -39,5 +40,17 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "pnpm": {
+    "overrides": {
+      "@mui/base": "file:../../../../packed/@mui/base.tgz",
+      "@mui/material": "file:../../../../packed/@mui/material.tgz",
+      "@mui/icons-material": "file:../../../../packed/@mui/icons-material.tgz",
+      "@mui/lab": "file:../../../../packed/@mui/lab.tgz",
+      "@mui/styled-engine": "file:../../../../packed/@mui/styled-engine.tgz",
+      "@mui/styles": "file:../../../../packed/@mui/styles.tgz",
+      "@mui/system": "file:../../../../packed/@mui/system.tgz",
+      "@mui/utils": "file:../../../../packed/@mui/utils.tgz"
+    }
   }
 }

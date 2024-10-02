@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import ModalOverflow, { modalOverflowClasses as classes } from '@mui/joy/ModalOverflow';
+import describeConformance from '../../test/describeConformance';
 
 describe('<ModalOverflow />', () => {
   const { render } = createRenderer();

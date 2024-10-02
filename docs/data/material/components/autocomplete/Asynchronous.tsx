@@ -8,54 +8,41 @@ interface Film {
   year: number;
 }
 
-function sleep(delay = 0) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, delay);
+function sleep(duration: number): Promise<void> {
+  return new Promise<void>((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, duration);
   });
 }
 
 export default function Asynchronous() {
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState<readonly Film[]>([]);
-  const loading = open && options.length === 0;
+  const [loading, setLoading] = React.useState(false);
 
-  React.useEffect(() => {
-    let active = true;
-
-    if (!loading) {
-      return undefined;
-    }
-
+  const handleOpen = () => {
+    setOpen(true);
     (async () => {
+      setLoading(true);
       await sleep(1e3); // For demo purposes.
+      setLoading(false);
 
-      if (active) {
-        setOptions([...topFilms]);
-      }
+      setOptions([...topFilms]);
     })();
+  };
 
-    return () => {
-      active = false;
-    };
-  }, [loading]);
-
-  React.useEffect(() => {
-    if (!open) {
-      setOptions([]);
-    }
-  }, [open]);
+  const handleClose = () => {
+    setOpen(false);
+    setOptions([]);
+  };
 
   return (
     <Autocomplete
-      id="asynchronous-demo"
       sx={{ width: 300 }}
       open={open}
-      onOpen={() => {
-        setOpen(true);
-      }}
-      onClose={() => {
-        setOpen(false);
-      }}
+      onOpen={handleOpen}
+      onClose={handleClose}
       isOptionEqualToValue={(option, value) => option.title === value.title}
       getOptionLabel={(option) => option.title}
       options={options}
@@ -64,14 +51,16 @@ export default function Asynchronous() {
         <TextField
           {...params}
           label="Asynchronous"
-          InputProps={{
-            ...params.InputProps,
-            endAdornment: (
-              <React.Fragment>
-                {loading ? <CircularProgress color="inherit" size={20} /> : null}
-                {params.InputProps.endAdornment}
-              </React.Fragment>
-            ),
+          slotProps={{
+            input: {
+              ...params.InputProps,
+              endAdornment: (
+                <React.Fragment>
+                  {loading ? <CircularProgress color="inherit" size={20} /> : null}
+                  {params.InputProps.endAdornment}
+                </React.Fragment>
+              ),
+            },
           }}
         />
       )}

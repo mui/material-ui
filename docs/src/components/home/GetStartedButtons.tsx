@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import ContentCopyRounded from '@mui/icons-material/ContentCopyRounded';
 import CheckRounded from '@mui/icons-material/CheckRounded';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import NpmCopyButton from 'docs/src/components/action/NpmCopyButton';
 
 interface GetStartedButtonsProps extends BoxProps {
@@ -47,6 +47,7 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
         sx={{
           display: 'flex',
           flexWrap: { xs: 'wrap', md: 'nowrap' },
+          gap: 1.5,
           '&& > *': {
             minWidth: { xs: '100%', md: '0%' },
           },
@@ -59,20 +60,14 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
           target={primaryUrlTarget}
           rel={primaryUrlTarget ? 'noopener' : ''}
           noLinkStyle
-          size="large"
           variant="contained"
           endIcon={<KeyboardArrowRightRounded />}
-          sx={{
-            flexShrink: 0,
-            mr: { xs: 0, md: 1.5 },
-            mb: { xs: 2, md: 0 },
-          }}
+          sx={{ flexShrink: 0 }}
         >
           {primaryLabel}
         </Button>
         {installation ? (
           <Button
-            size="large"
             // @ts-expect-error
             variant="codeOutlined"
             endIcon={copied ? <CheckRounded color="primary" /> : <ContentCopyRounded />}
@@ -99,7 +94,6 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
             rel={secondaryUrlTarget ? 'noopener' : ''}
             noLinkStyle
             variant="outlined"
-            size="large"
             color="secondary"
             endIcon={<KeyboardArrowRightRounded />}
           >
@@ -107,7 +101,7 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
           </Button>
         ) : null}
       </Box>
-      {altInstallation ? <NpmCopyButton installation={altInstallation} sx={{ mt: 2 }} /> : null}
+      {altInstallation && <NpmCopyButton installation={altInstallation} sx={{ mt: 2 }} />}
     </React.Fragment>
   );
 }

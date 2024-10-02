@@ -5,6 +5,10 @@ import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { ListItemButtonClasses } from './listItemButtonClasses';
 
+/**
+ * This interface is kept for backward compatibility. To extend `LitItemButton`
+ * props through module augmentation, use `ListItemButtonOwnProps`.
+ */
 export interface ListItemButtonBaseProps {
   /**
    * Defines the `align-items` style property.
@@ -58,12 +62,14 @@ export interface ListItemButtonBaseProps {
   sx?: SxProps<Theme>;
 }
 
+export interface ListItemButtonOwnProps extends ListItemButtonBaseProps {}
+
 export type ListItemButtonTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'div',
+  RootComponent extends React.ElementType = 'div',
 > = ExtendButtonBaseTypeMap<{
-  props: AdditionalProps & ListItemButtonBaseProps;
-  defaultComponent: DefaultComponent;
+  props: AdditionalProps & ListItemButtonOwnProps;
+  defaultComponent: RootComponent;
 }>;
 
 /**

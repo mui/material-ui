@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import userEvent from '@testing-library/user-event';
-import { createRenderer, screen } from 'test/utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import {
   unstable_useNumberInput as useNumberInput,
   UseNumberInputParameters,
@@ -114,14 +114,14 @@ describe('useNumberInput', () => {
   });
 
   describe('prop: onChange', () => {
-    it('should call onChange when the input is blurred', async () => {
+    it('should call onChange when the input is blurred and the value has changed', async () => {
       const handleChange = spy();
-      function NumberInput() {
-        const { getInputProps } = useNumberInput({ onChange: handleChange });
+      function NumberInput(props: { defaultValue: number }) {
+        const { getInputProps } = useNumberInput({ ...props, onChange: handleChange });
 
         return <input data-testid="test-input" {...getInputProps()} />;
       }
-      render(<NumberInput />);
+      render(<NumberInput defaultValue={0} />);
 
       const input = screen.getByTestId('test-input');
 
@@ -135,6 +135,30 @@ describe('useNumberInput', () => {
       expect(document.activeElement).to.equal(document.body);
 
       expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal(34);
+    });
+
+    it('should not call onChange when the input is blurred if the value did not change', async () => {
+      const handleChange = spy();
+      function NumberInput(props: { defaultValue: number }) {
+        const { getInputProps } = useNumberInput({ ...props, onChange: handleChange });
+
+        return <input data-testid="test-input" {...getInputProps()} />;
+      }
+
+      render(<NumberInput defaultValue={10} />);
+
+      const input = screen.getByTestId('test-input') as HTMLInputElement;
+
+      await userEvent.click(input);
+      await userEvent.keyboard('1');
+      expect(input.value).to.equal('101');
+
+      await userEvent.keyboard('[Backspace]');
+      expect(input.value).to.equal('10');
+
+      await userEvent.keyboard('[Tab]');
+      expect(handleChange.callCount).to.equal(0);
     });
 
     it('should call onChange with a value within max', async () => {
@@ -210,11 +234,12 @@ describe('useNumberInput', () => {
       expect(handleChange.args[0][1]).to.equal(5);
     });
 
-    it('should call onChange with undefined when the value is cleared', async () => {
+    it('should call onChange with null when the value is cleared', async () => {
       const handleChange = spy();
       function NumberInput() {
         const { getInputProps } = useNumberInput({
           onChange: handleChange,
+          defaultValue: 9,
         });
 
         return <input data-testid="test-input" {...getInputProps()} />;
@@ -224,11 +249,6 @@ describe('useNumberInput', () => {
       const input = screen.getByTestId('test-input') as HTMLInputElement;
 
       await userEvent.click(input);
-
-      await userEvent.keyboard('9');
-
-      expect(input.value).to.equal('9');
-
       await userEvent.keyboard('[Backspace]');
 
       expect(input.value).to.equal('');
@@ -237,14 +257,15 @@ describe('useNumberInput', () => {
       expect(document.activeElement).to.equal(document.body);
 
       expect(handleChange.callCount).to.equal(1);
-      expect(handleChange.args[0][1]).to.equal(undefined);
+      expect(handleChange.args[0][1]).to.equal(null);
     });
 
-    it('should call onChange with undefined when input value is -', async () => {
+    it('should call onChange with null when input value is -', async () => {
       const handleChange = spy();
       function NumberInput() {
         const { getInputProps } = useNumberInput({
           onChange: handleChange,
+          defaultValue: -5,
         });
 
         return <input data-testid="test-input" {...getInputProps()} />;
@@ -254,11 +275,6 @@ describe('useNumberInput', () => {
       const input = screen.getByTestId('test-input') as HTMLInputElement;
 
       await userEvent.click(input);
-
-      await userEvent.keyboard('-5');
-
-      expect(input.value).to.equal('-5');
-
       await userEvent.keyboard('[Backspace]');
 
       expect(input.value).to.equal('-');
@@ -267,7 +283,47 @@ describe('useNumberInput', () => {
       expect(document.activeElement).to.equal(document.body);
 
       expect(handleChange.callCount).to.equal(1);
-      expect(handleChange.args[0][1]).to.equal(undefined);
+      expect(handleChange.args[0][1]).to.equal(null);
+    });
+  });
+
+  describe('warnings', () => {
+    it('should warn when switching from uncontrolled to controlled', () => {
+      const handleChange = spy();
+      function NumberInput({ value }: { value?: number }) {
+        const { getInputProps } = useNumberInput({
+          onChange: handleChange,
+          value,
+          componentName: 'TestNumberInput',
+        });
+
+        return <input {...getInputProps()} />;
+      }
+      const { setProps } = render(<NumberInput />);
+      expect(() => {
+        setProps({ value: 5 });
+      }).to.toErrorDev(
+        'useControllableReducer: The TestNumberInput component is changing an uncontrolled prop to be controlled: value',
+      );
+    });
+
+    it('should warn when switching from controlled to uncontrolled', () => {
+      const handleChange = spy();
+      function NumberInput({ value }: { value?: number }) {
+        const { getInputProps } = useNumberInput({
+          onChange: handleChange,
+          value,
+          componentName: 'TestNumberInput',
+        });
+
+        return <input {...getInputProps()} />;
+      }
+      const { setProps } = render(<NumberInput value={5} />);
+      expect(() => {
+        setProps({ value: undefined });
+      }).to.toErrorDev(
+        'useControllableReducer: The TestNumberInput component is changing a controlled prop to be uncontrolled: value',
+      );
     });
   });
 });

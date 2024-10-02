@@ -9,7 +9,7 @@
     },
     "classes": { "description": "Override or extend the styles applied to the component." },
     "color": {
-      "description": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#adding-new-colors\">palette customization guide</a>."
+      "description": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#custom-colors\">palette customization guide</a>."
     },
     "defaultValue": {
       "description": "The default value. Use when the component is not controlled."
@@ -17,7 +17,7 @@
     "disabled": { "description": "If <code>true</code>, the component is disabled." },
     "error": { "description": "If <code>true</code>, the label is displayed in an error state." },
     "FormHelperTextProps": {
-      "description": "Props applied to the <a href=\"/material-ui/api/form-helper-text/\"><code>FormHelperText</code></a> element."
+      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/form-helper-text/\"><code>FormHelperText</code></a> element."
     },
     "fullWidth": {
       "description": "If <code>true</code>, the input will take up the full width of its container."
@@ -27,13 +27,13 @@
       "description": "The id of the <code>input</code> element. Use this prop to make <code>label</code> and <code>helperText</code> accessible for screen readers."
     },
     "InputLabelProps": {
-      "description": "Props applied to the <a href=\"/material-ui/api/input-label/\"><code>InputLabel</code></a> element. Pointer events like <code>onClick</code> are enabled if and only if <code>shrink</code> is <code>true</code>."
+      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/input-label/\"><code>InputLabel</code></a> element. Pointer events like <code>onClick</code> are enabled if and only if <code>shrink</code> is <code>true</code>."
     },
     "inputProps": {
       "description": "<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes\">Attributes</a> applied to the <code>input</code> element."
     },
     "InputProps": {
-      "description": "Props applied to the Input element. It will be a <a href=\"/material-ui/api/filled-input/\"><code>FilledInput</code></a>, <a href=\"/material-ui/api/outlined-input/\"><code>OutlinedInput</code></a> or <a href=\"/material-ui/api/input/\"><code>Input</code></a> component depending on the <code>variant</code> prop value."
+      "description": "Props applied to the Input element. It will be a <a href=\"https://mui.com/material-ui/api/filled-input/\"><code>FilledInput</code></a>, <a href=\"https://mui.com/material-ui/api/outlined-input/\"><code>OutlinedInput</code></a> or <a href=\"https://mui.com/material-ui/api/input/\"><code>Input</code></a> component depending on the <code>variant</code> prop value."
     },
     "inputRef": { "description": "Pass a ref to the <code>input</code> element." },
     "label": { "description": "The label content." },
@@ -64,12 +64,14 @@
     },
     "rows": { "description": "Number of rows to display when multiline option is set to true." },
     "select": {
-      "description": "Render a <a href=\"/material-ui/api/select/\"><code>Select</code></a> element while passing the Input element to <code>Select</code> as <code>input</code> parameter. If this option is set you must pass the options of the select as children."
+      "description": "Render a <a href=\"https://mui.com/material-ui/api/select/\"><code>Select</code></a> element while passing the Input element to <code>Select</code> as <code>input</code> parameter. If this option is set you must pass the options of the select as children."
     },
     "SelectProps": {
-      "description": "Props applied to the <a href=\"/material-ui/api/select/\"><code>Select</code></a> element."
+      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/select/\"><code>Select</code></a> element."
     },
     "size": { "description": "The size of the component." },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
@@ -81,5 +83,12 @@
     },
     "variant": { "description": "The variant to use." }
   },
-  "classDescriptions": { "root": { "description": "Styles applied to the root element." } }
+  "classDescriptions": { "root": { "description": "Styles applied to the root element." } },
+  "slotDescriptions": {
+    "formHelperText": "The component that renders the helper text.",
+    "htmlInput": "The html input element.",
+    "input": "The component that renders the input.",
+    "inputLabel": "The component that renders the input&#39;s label.",
+    "select": "The component that renders the select."
+  }
 }

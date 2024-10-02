@@ -3,9 +3,11 @@ import Check from '@mui/icons-material/Check';
 import CheckRounded from '@mui/icons-material/CheckRounded';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import Box from '@mui/joy/Box';
+import Divider from '@mui/joy/Divider';
 import Chip from '@mui/joy/Chip';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel, { formLabelClasses } from '@mui/joy/FormLabel';
+import FormHelperText from '@mui/joy/FormHelperText';
 import IconButton from '@mui/joy/IconButton';
 import Input, { inputClasses } from '@mui/joy/Input';
 import ListItemDecorator, { listItemDecoratorClasses } from '@mui/joy/ListItemDecorator';
@@ -16,8 +18,8 @@ import Select from '@mui/joy/Select';
 import Sheet from '@mui/joy/Sheet';
 import Switch from '@mui/joy/Switch';
 import Typography from '@mui/joy/Typography';
-import BrandingProvider from 'docs/src/BrandingProvider';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { BrandingProvider } from '@mui/docs/branding';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 
 const shallowEqual = (item1: { [k: string]: any }, item2: { [k: string]: any }) => {
   let equal = true;
@@ -107,7 +109,7 @@ interface JoyUsageDemoProps<ComponentProps> {
    */
   data: Array<{
     /**
-     * Name of the prop, e.g. 'children'
+     * Name of the prop, for example 'children'
      */
     propName: Extract<keyof ComponentProps, string>;
     /**
@@ -154,12 +156,16 @@ interface JoyUsageDemoProps<ComponentProps> {
      * If not provided, the `propName` is displayed as Pascal case.
      */
     formLabel?: string;
+    /**
+     * The helper text to be displayed for the knob.
+     */
+    helperText?: string;
   }>;
   /**
    * A function to override the code block result.
    */
   getCodeBlock?: (code: string, props: ComponentProps) => string;
-  renderDemo: (props: ComponentProps) => React.ReactElement;
+  renderDemo: (props: ComponentProps) => React.ReactElement<any>;
 }
 
 export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
@@ -203,23 +209,19 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
       }}
     >
       <Box
-        sx={{
+        sx={(theme) => ({
           display: 'flex',
           flexDirection: 'column',
           flexGrow: 999,
           minWidth: 0,
           p: 3,
-          bgcolor: 'var(--joy-palette-background-surface)',
-        }}
+          bgcolor: '#FFF',
+          [theme.getColorSchemeSelector('dark')]: {
+            backgroundColor: theme.palette.neutral[900],
+          },
+        })}
       >
-        <Box
-          sx={{
-            flexGrow: 1,
-            m: 'auto',
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
+        <Box sx={{ flexGrow: 1, m: 'auto', display: 'flex', alignItems: 'center' }}>
           {renderDemo(demoProps)}
         </Box>
         <BrandingProvider mode="dark">
@@ -238,31 +240,35 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
         </BrandingProvider>
       </Box>
       <Sheet
-        sx={{
+        sx={(theme) => ({
           flexShrink: 0,
           gap: 2,
-          p: 3,
           borderLeft: '1px solid',
-          borderColor: (theme) => `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
-          background: (theme) => `rgba(${theme.vars.palette.primary.mainChannel} / 0.02)`,
+          borderColor: `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
+          background: `rgba(${theme.vars.palette.primary.mainChannel} / 0.02)`,
           backdropFilter: 'blur(8px)',
           minWidth: '280px',
-        }}
+        })}
       >
         <Box
           sx={{
-            mb: 2,
+            px: 3,
+            py: 2,
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
           }}
         >
-          <Typography id="usage-props" component="h3" fontWeight="lg" sx={{ scrollMarginTop: 160 }}>
+          <Typography
+            id="usage-props"
+            component="h3"
+            sx={{ fontWeight: 'lg', scrollMarginTop: 160, fontFamily: 'General Sans' }}
+          >
             Playground
           </Typography>
           <IconButton
             aria-label="Reset all"
-            variant="soft"
+            variant="outlined"
             color="primary"
             size="sm"
             onClick={() => setProps(initialProps as T)}
@@ -274,18 +280,28 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             <ReplayRoundedIcon />
           </IconButton>
         </Box>
+        <Divider sx={{ opacity: 0.5 }} />
         <Box
           sx={{
+            p: 3,
             display: 'flex',
             flexDirection: 'column',
-            gap: 2.5,
+            gap: 3,
             [`& .${formLabelClasses.root}`]: {
               fontWeight: 'lg',
             },
           }}
         >
           {data.map(
-            ({ propName, formLabel = propName, knob, options = [], defaultValue, labels }) => {
+            ({
+              propName,
+              formLabel = propName,
+              knob,
+              options = [],
+              defaultValue,
+              labels,
+              helperText,
+            }) => {
               const resolvedValue = props[propName] ?? defaultValue;
               if (!knob) {
                 return null;
@@ -295,10 +311,9 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                   <FormControl
                     key={propName}
                     size="sm"
-                    orientation="horizontal"
-                    sx={{ justifyContent: 'space-between' }}
+                    sx={{ display: 'grid', gridTemplateColumns: '1fr auto', alignItems: 'center' }}
                   >
-                    <FormLabel sx={{ textTransform: 'capitalize' }}>{formLabel}</FormLabel>
+                    <FormLabel sx={{ textTransform: 'capitalize', mb: 0 }}>{formLabel}</FormLabel>
                     <Switch
                       checked={Boolean(resolvedValue)}
                       onChange={(event) =>
@@ -317,6 +332,11 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                         },
                       }}
                     />
+                    {helperText && (
+                      <FormHelperText sx={{ gridColumn: 'span 2', m: 0 }}>
+                        {helperText}
+                      </FormHelperText>
+                    )}
                   </FormControl>
                 );
               }
@@ -343,7 +363,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                           [propName]: value,
                         }));
                       }}
-                      sx={{ flexWrap: 'wrap', gap: 1 }}
+                      sx={{ flexWrap: 'wrap', gap: 1, '--unstable_RadioGroup-margin': 0 }}
                     >
                       {options.map((value: string, index: number) => {
                         const checked = String(resolvedValue) === value;
@@ -368,6 +388,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                         );
                       })}
                     </RadioGroup>
+                    {helperText && <FormHelperText>{helperText}</FormHelperText>}
                   </FormControl>
                 );
               }
@@ -421,6 +442,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                         );
                       })}
                     </RadioGroup>
+                    {helperText && <FormHelperText>{helperText}</FormHelperText>}
                   </FormControl>
                 );
               }
@@ -438,7 +460,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                           [propName || 'color']: event.target.value,
                         }))
                       }
-                      sx={{ flexWrap: 'wrap', gap: 1.5 }}
+                      sx={{ flexWrap: 'wrap', gap: 1.5, '--unstable_RadioGroup-margin': 0 }}
                     >
                       {(['primary', 'neutral', 'danger', 'success', 'warning'] as const).map(
                         (value) => {
@@ -449,8 +471,8 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                               variant="solid"
                               color={value}
                               sx={{
-                                width: 28,
-                                height: 28,
+                                width: 26,
+                                height: 26,
                                 borderRadius: 'xl',
                                 textTransform: 'capitalize',
                               }}
@@ -502,6 +524,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                         },
                       )}
                     </RadioGroup>
+                    {helperText && <FormHelperText>{helperText}</FormHelperText>}
                   </FormControl>
                 );
               }
@@ -546,6 +569,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                         </Option>
                       ))}
                     </Select>
+                    {helperText && <FormHelperText>{helperText}</FormHelperText>}
                   </FormControl>
                 );
               }
@@ -569,6 +593,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                         },
                       }}
                     />
+                    {helperText && <FormHelperText>{helperText}</FormHelperText>}
                   </FormControl>
                 );
               }
@@ -599,6 +624,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                         },
                       }}
                     />
+                    {helperText && <FormHelperText>{helperText}</FormHelperText>}
                   </FormControl>
                 );
               }
@@ -644,7 +670,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                           {resolvedValue}
                         </Box>
                         {/* void */}
-                        <Box />
+                        <div />
                         <Box sx={{ gridColumn: '-1 / -2', gridRow: '1' }} />
                         <Box sx={{ gridRow: '-1 / -2', gridColumn: '1' }} />
                         {/* void */}
@@ -699,6 +725,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                         ))}
                       </Box>
                     </RadioGroup>
+                    {helperText && <FormHelperText>{helperText}</FormHelperText>}
                   </FormControl>
                 );
               }

@@ -13,7 +13,7 @@ import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
-import { LicensingModelProvider } from 'docs/src/components/pricing/LicensingModelContext';
+import { LicenseModelProvider } from 'docs/src/components/pricing/LicenseModelContext';
 
 export default function Pricing() {
   return (
@@ -21,13 +21,14 @@ export default function Pricing() {
       <Head
         title="Pricing - MUI"
         description="The community edition lets you get going right away. Switch to a commercial plan for more components & technical support."
+        card="/static/social-previews/pricing-preview.jpg"
       />
       <AppHeaderBanner />
       <AppHeader />
       <main id="main-content">
         <HeroPricing />
         <Divider />
-        <LicensingModelProvider>
+        <LicenseModelProvider>
           {/* Mobile, Tablet */}
           <Container sx={{ display: { xs: 'block', md: 'none' }, pb: 3, mt: '-1px' }}>
             <PricingList />
@@ -36,7 +37,7 @@ export default function Pricing() {
           <Container sx={{ display: { xs: 'none', md: 'block' } }}>
             <PricingTable />
           </Container>
-        </LicensingModelProvider>
+        </LicenseModelProvider>
         <PricingWhatToExpect />
         <Divider />
         <PricingFAQ />

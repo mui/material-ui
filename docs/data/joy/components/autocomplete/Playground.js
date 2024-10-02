@@ -24,7 +24,7 @@ export default function Playground() {
   });
 
   return (
-    <Box>
+    <div>
       <Box
         sx={{
           mt: 3,
@@ -277,7 +277,7 @@ export default function Playground() {
           </ListItem>
         </List>
       </Box>
-    </Box>
+    </div>
   );
 }
 

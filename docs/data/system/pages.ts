@@ -11,6 +11,7 @@ const pages: readonly MuiPage[] = [
       { pathname: '/system/getting-started/usage' },
       { pathname: '/system/getting-started/the-sx-prop' },
       { pathname: '/system/getting-started/custom-components' },
+      { pathname: '/system/getting-started/support' },
     ],
   },
   {
@@ -39,6 +40,16 @@ const pages: readonly MuiPage[] = [
       { pathname: '/system/react-container', title: 'Container' },
       { pathname: '/system/react-grid', title: 'Grid' },
       { pathname: '/system/react-stack', title: 'Stack' },
+    ],
+  },
+  {
+    pathname: '/system/migration',
+    title: 'Migration',
+    children: [
+      {
+        pathname: '/system/migration/migrating-to-v6',
+        title: 'Migrating to v6',
+      },
     ],
   },
   {

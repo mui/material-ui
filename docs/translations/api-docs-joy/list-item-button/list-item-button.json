@@ -30,31 +30,25 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "vertical": {
-      "description": "Class name applied to {{nodeName}}, {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "if <code>orientation=\"vertical\"</code>"
-    },
-    "horizontal": {
-      "description": "Class name applied to {{nodeName}}, {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "if <code>orientation=\"horizontal\"</code>"
-    },
-    "colorPrimary": {
+    "colorContext": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"primary\"</code>"
+      "conditions": "<code>color=\"context\"</code>"
+    },
+    "colorDanger": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"danger\"</code>"
     },
     "colorNeutral": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>color=\"neutral\"</code>"
     },
-    "colorDanger": {
+    "colorPrimary": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"danger\"</code>"
+      "conditions": "<code>color=\"primary\"</code>"
     },
     "colorSuccess": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -66,24 +60,29 @@
       "nodeName": "the root element",
       "conditions": "<code>color=\"warning\"</code>"
     },
-    "colorContext": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"context\"</code>"
-    },
-    "focusVisible": {
-      "description": "State class applied to {{nodeName}}.",
-      "nodeName": "the <code>component</code>&#39;s <code>focusVisibleClassName</code> prop"
-    },
     "disabled": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the inner <code>component</code> element",
       "conditions": "<code>disabled={true}</code>"
     },
+    "focusVisible": {
+      "description": "State class applied to {{nodeName}}.",
+      "nodeName": "the <code>component</code>&#39;s <code>focusVisibleClassName</code> prop"
+    },
+    "horizontal": {
+      "description": "Class name applied to {{nodeName}}, {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "if <code>orientation=\"horizontal\"</code>"
+    },
     "selected": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>selected={true}</code>"
+    },
+    "variantOutlined": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code>"
     },
     "variantPlain": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
@@ -95,15 +94,15 @@
       "nodeName": "the root element",
       "conditions": "<code>variant=\"soft\"</code>"
     },
-    "variantOutlined": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code>"
-    },
     "variantSolid": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"solid\"</code>"
+    },
+    "vertical": {
+      "description": "Class name applied to {{nodeName}}, {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "if <code>orientation=\"vertical\"</code>"
     }
   },
   "slotDescriptions": { "root": "The component that renders the root." }

@@ -1,1 +1,1 @@
-<StyledSlider orientation="vertical" defaultValue={30} />
+<Slider orientation="vertical" defaultValue={30} />

@@ -1,4 +1,4 @@
-# Material UI - Create React App example with styled-components in TypeScript
+# Material UI - Create React App example with styled-components in TypeScript
 
 The main difference between this and the non-TypeScript example is that you need to add the following path config to your `tsconfig.json`:
 
@@ -38,15 +38,19 @@ npm start
 
 <!-- #default-branch-switch -->
 
-Note that CodeSandbox is not supporting react-app-rewired, yet you can [still see the code](https://codesandbox.io/s/github/mui/material-ui/tree/master/examples/material-ui-cra-styled-components-ts).
+Note that CodeSandbox is not supporting react-app-rewired, yet you can [still see the code](https://codesandbox.io/p/sandbox/github/mui/material-ui/tree/master/examples/material-ui-cra-styled-components-ts).
 
-The following link leverages this demo: https://mui.com/guides/interoperability/#change-the-default-styled-engine with Parcel's alias feature within the `package.json`
+The following link leverages this demo: https://mui.com/material-ui/integrations/interoperability/#change-the-default-styled-engine with Parcel's alias feature within the `package.json`.
 
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/styled-components-interoperability-w9z9d)
+[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/styled-components-interoperability-w9z9d)
 
 ## The idea behind the example
 
-This example demonstrates how to set up Material UI with [Create React App](https://github.com/facebookincubator/create-react-app) with [styled-components](https://styled-components.com/) as a style engine for your application using TypeScript.
+This example demonstrates how to set up Material UI with [Create React App](https://github.com/facebookincubator/create-react-app) with [styled-components](https://styled-components.com/) as a style engine for your application using TypeScript.
+
+## Versions compatibility
+
+Note, the version 5 of `@mui/styled-engine-sc` is compatible with version 5 of `styled-components`, while the version 6 of `@mui/styled-engine-sc` (currently in alpha), is compatible with v6 of `styled-components`. When incorporating these dependencies into your project, consider this compatibility requirement. In this example application, both libraries are using version 6.
 
 ## What's next?
 

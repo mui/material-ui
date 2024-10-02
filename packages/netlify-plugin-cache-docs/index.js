@@ -10,41 +10,46 @@ function generateAbsolutePaths(context) {
   const workspaceRoot = path.dirname(constants.CONFIG_PATH);
   const docsWorkspacePath = path.join(workspaceRoot, 'docs');
 
-  const nextjsBuildDir = path.join(docsWorkspacePath, '.next');
-  const digests = [path.join(workspaceRoot, 'yarn.lock')];
+  const nextjsCacheDir = path.join(docsWorkspacePath, '.next', 'cache');
 
-  return { digests, nextjsBuildDir };
+  return { nextjsCacheDir };
 }
 
 module.exports = {
+  // Restore the `.next/cache` folder
+  // based on: https://github.com/netlify/next-runtime/blob/733a0219e5413aa1eea790af48c745322dbce917/src/index.ts
   async onPreBuild(context) {
     const { constants, utils } = context;
-    const { nextjsBuildDir } = generateAbsolutePaths({ constants });
-    const success = await utils.cache.restore(nextjsBuildDir);
+    const { nextjsCacheDir } = generateAbsolutePaths({ constants });
 
-    console.log("'%s' exists: %s", nextjsBuildDir, String(fse.existsSync(nextjsBuildDir)));
+    const cacheDirExists = fse.existsSync(nextjsCacheDir);
+    console.log("'%s' exists: %s", nextjsCacheDir, String(cacheDirExists));
 
-    console.log(
-      "Restored the cached 'docs/.next' folder at the location '%s': %s",
-      nextjsBuildDir,
-      String(success),
-    );
+    const success = await utils.cache.restore(nextjsCacheDir);
+
+    console.log("Restored the cached '%s' folder: %s", nextjsCacheDir, String(success));
+
+    const restoredCacheDir = fse.existsSync(nextjsCacheDir);
+    console.log("'%s' exists: %s", nextjsCacheDir, String(restoredCacheDir));
   },
-  async onPostBuild(context) {
+  // On build, cache the `.next/cache` folder
+  // based on: https://github.com/netlify/next-runtime/blob/733a0219e5413aa1eea790af48c745322dbce917/src/index.ts
+  // This hook is called immediately after the build command is executed.
+  async onBuild(context) {
     const { constants, utils } = context;
-    const { digests, nextjsBuildDir } = generateAbsolutePaths({ constants });
+    const { nextjsCacheDir } = generateAbsolutePaths({ constants });
 
-    console.log("'%s' exists: %s", nextjsBuildDir, String(fse.existsSync(nextjsBuildDir)));
+    const cacheExists = fse.existsSync(nextjsCacheDir);
 
-    const success = await utils.cache.save(nextjsBuildDir, {
-      digests,
-    });
+    if (cacheExists) {
+      console.log("'%s' exists: %s", nextjsCacheDir, String(cacheExists));
 
-    console.log(
-      "Cached 'docs/.next' folder at the location '%s': %s",
-      nextjsBuildDir,
-      String(success),
-    );
+      const success = await utils.cache.save(nextjsCacheDir);
+
+      console.log("Cached '%s' folder: %s", nextjsCacheDir, String(success));
+    } else {
+      console.log("'%s' does not exist", nextjsCacheDir);
+    }
   },
   // debug
   // based on: https://github.com/netlify-labs/netlify-plugin-debug-cache/blob/v1.0.3/index.js

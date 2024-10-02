@@ -7,48 +7,50 @@ import { ImageListClasses } from './imageListClasses';
 
 export interface ImageListPropsVariantOverrides {}
 
+export interface ImageListOwnProps {
+  /**
+   * The content of the component, normally `ImageListItem`s.
+   */
+  children: NonNullable<React.ReactNode>;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<ImageListClasses>;
+  /**
+   * Number of columns.
+   * @default 2
+   */
+  cols?: number;
+  /**
+   * The gap between items in px.
+   * @default 4
+   */
+  gap?: number;
+  /**
+   * The height of one row in px.
+   * @default 'auto'
+   */
+  rowHeight?: number | 'auto';
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+  /**
+   * The variant to use.
+   * @default 'standard'
+   */
+  variant?: OverridableStringUnion<
+    'masonry' | 'quilted' | 'standard' | 'woven',
+    ImageListPropsVariantOverrides
+  >;
+}
+
 export interface ImageListTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'ul',
+  RootComponent extends React.ElementType = 'ul',
 > {
-  props: AdditionalProps & {
-    /**
-     * The content of the component, normally `ImageListItem`s.
-     */
-    children: NonNullable<React.ReactNode>;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<ImageListClasses>;
-    /**
-     * Number of columns.
-     * @default 2
-     */
-    cols?: number;
-    /**
-     * The gap between items in px.
-     * @default 4
-     */
-    gap?: number;
-    /**
-     * The height of one row in px.
-     * @default 'auto'
-     */
-    rowHeight?: number | 'auto';
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
-    /**
-     * The variant to use.
-     * @default 'standard'
-     */
-    variant?: OverridableStringUnion<
-      'masonry' | 'quilted' | 'standard' | 'woven',
-      ImageListPropsVariantOverrides
-    >;
-  };
-  defaultComponent: DefaultComponent;
+  props: AdditionalProps & ImageListOwnProps;
+  defaultComponent: RootComponent;
 }
 /**
  *

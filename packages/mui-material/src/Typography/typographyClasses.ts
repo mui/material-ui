@@ -1,5 +1,5 @@
-import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
-import generateUtilityClass from '../generateUtilityClass';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
 
 export interface TypographyClasses {
   /** Styles applied to the root element. */
@@ -44,7 +44,10 @@ export interface TypographyClasses {
   noWrap: string;
   /** Styles applied to the root element if `gutterBottom={true}`. */
   gutterBottom: string;
-  /** Styles applied to the root element if `paragraph={true}`. */
+  /**
+   * Styles applied to the root element if `paragraph={true}`.
+   * @deprecated
+   */
   paragraph: string;
 }
 

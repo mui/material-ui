@@ -38,11 +38,26 @@
     "import TabScrollButton from '@mui/material/TabScrollButton';",
     "import { TabScrollButton } from '@mui/material';"
   ],
-  "styles": {
-    "classes": ["root", "vertical", "disabled"],
-    "globalClasses": { "disabled": "Mui-disabled" },
-    "name": "MuiTabScrollButton"
-  },
+  "classes": [
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "root",
+      "className": "MuiTabScrollButton-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "vertical",
+      "className": "MuiTabScrollButton-vertical",
+      "description": "Styles applied to the root element if `orientation=\"vertical\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiTabScrollButton",

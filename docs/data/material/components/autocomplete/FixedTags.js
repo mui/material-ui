@@ -15,19 +15,23 @@ export default function FixedTags() {
       onChange={(event, newValue) => {
         setValue([
           ...fixedOptions,
-          ...newValue.filter((option) => fixedOptions.indexOf(option) === -1),
+          ...newValue.filter((option) => !fixedOptions.includes(option)),
         ]);
       }}
       options={top100Films}
       getOptionLabel={(option) => option.title}
       renderTags={(tagValue, getTagProps) =>
-        tagValue.map((option, index) => (
-          <Chip
-            label={option.title}
-            {...getTagProps({ index })}
-            disabled={fixedOptions.indexOf(option) !== -1}
-          />
-        ))
+        tagValue.map((option, index) => {
+          const { key, ...tagProps } = getTagProps({ index });
+          return (
+            <Chip
+              key={key}
+              label={option.title}
+              {...tagProps}
+              disabled={fixedOptions.includes(option)}
+            />
+          );
+        })
       }
       style={{ width: 500 }}
       renderInput={(params) => (

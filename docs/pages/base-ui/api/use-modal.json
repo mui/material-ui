@@ -1,7 +1,10 @@
 {
   "parameters": {
     "children": {
-      "type": { "name": "React.ReactElement", "description": "React.ReactElement" },
+      "type": {
+        "name": "React.ReactElement&lt;any&gt; | undefined | null",
+        "description": "React.ReactElement&lt;any&gt; | undefined | null"
+      },
       "required": true
     },
     "open": { "type": { "name": "boolean", "description": "boolean" }, "required": true },

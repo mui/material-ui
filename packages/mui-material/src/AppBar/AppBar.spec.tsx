@@ -26,3 +26,14 @@ function AppBarTest() {
     </div>
   );
 }
+
+// `color`
+<AppBar color="inherit" />;
+<AppBar color="primary" />;
+<AppBar color="secondary" />;
+<AppBar color="default" />;
+<AppBar color="transparent" />;
+<AppBar color="error" />;
+<AppBar color="success" />;
+<AppBar color="info" />;
+<AppBar color="warning" />;

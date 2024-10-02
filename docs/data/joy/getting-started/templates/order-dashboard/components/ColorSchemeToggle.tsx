@@ -5,11 +5,8 @@ import IconButton, { IconButtonProps } from '@mui/joy/IconButton';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeIcon from '@mui/icons-material/LightMode';
 
-export default function ColorSchemeToggle({
-  onClick,
-  sx,
-  ...props
-}: IconButtonProps) {
+export default function ColorSchemeToggle(props: IconButtonProps) {
+  const { onClick, sx, ...other } = props;
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
@@ -21,7 +18,7 @@ export default function ColorSchemeToggle({
         size="sm"
         variant="outlined"
         color="neutral"
-        {...props}
+        {...other}
         sx={sx}
         disabled
       />
@@ -29,11 +26,11 @@ export default function ColorSchemeToggle({
   }
   return (
     <IconButton
-      id="toggle-mode"
+      data-screenshot="toggle-mode"
       size="sm"
       variant="outlined"
       color="neutral"
-      {...props}
+      {...other}
       onClick={(event) => {
         if (mode === 'light') {
           setMode('dark');
@@ -43,14 +40,12 @@ export default function ColorSchemeToggle({
         onClick?.(event);
       }}
       sx={[
-        {
-          '& > *:first-child': {
-            display: mode === 'dark' ? 'none' : 'initial',
-          },
-          '& > *:last-child': {
-            display: mode === 'light' ? 'none' : 'initial',
-          },
-        },
+        mode === 'dark'
+          ? { '& > *:first-child': { display: 'none' } }
+          : { '& > *:first-child': { display: 'initial' } },
+        mode === 'light'
+          ? { '& > *:last-child': { display: 'none' } }
+          : { '& > *:last-child': { display: 'initial' } },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >

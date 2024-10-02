@@ -31,9 +31,10 @@ const theme = createTheme({
 
 To self-host fonts, download the font files in `ttf`, `woff`, and/or `woff2` formats and import them into your code.
 
-⚠️ This requires that you have a plugin or loader in your build process that can handle loading `ttf`, `woff`, and
-`woff2` files. Fonts will _not_ be embedded within your bundle. They will be loaded from your webserver instead of a
-CDN.
+:::warning
+This requires that you have a plugin or loader in your build process that can handle loading `ttf`, `woff`, and
+`woff2` files. Fonts will _not_ be embedded within your bundle. They will be loaded from your webserver instead of a CDN.
+:::
 
 ```js
 import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
@@ -69,13 +70,7 @@ const theme = createTheme({
 return (
   <ThemeProvider theme={theme}>
     <CssBaseline />
-    <Box
-      sx={{
-        fontFamily: 'Raleway',
-      }}
-    >
-      Raleway
-    </Box>
+    <Box sx={{ fontFamily: 'Raleway' }}>Raleway</Box>
   </ThemeProvider>
 );
 ```
@@ -84,13 +79,13 @@ Note that if you want to add additional `@font-face` declarations, you need to u
 
 ## Font size
 
-Material UI uses `rem` units for the font size.
+Material UI uses `rem` units for the font size.
 The browser `<html>` element default font size is `16px`, but browsers have an option to change this value,
 so `rem` units allow us to accommodate the user's settings, resulting in a better accessibility support.
 Users change font size settings for all kinds of reasons, from poor eyesight to choosing optimum settings
 for devices that can be vastly different in size and viewing distance.
 
-To change the font-size of Material UI you can provide a `fontSize` property.
+To change the font-size of Material UI you can provide a `fontSize` property.
 The default value is `14px`.
 
 ```js
@@ -163,13 +158,13 @@ Changing the font size can harm accessibility ♿️. Most browsers agree on the
 :::
 
 The `theme.typography.htmlFontSize` property is provided for this use case,
-which tells Material UI what the font-size on the `<html>` element is.
+which tells Material UI what the font-size on the `<html>` element is.
 This is used to adjust the `rem` value so the calculated font-size always match the specification.
 
 ```js
 const theme = createTheme({
   typography: {
-    // Tell Material UI what the font-size on the html element is.
+    // Tell Material UI what the font-size on the html element is.
     htmlFontSize: 10,
   },
 });
@@ -181,7 +176,7 @@ html {
 }
 ```
 
-_You need to apply the above CSS on the html element of this page to see the below demo rendered correctly_
+You need to apply the above CSS on the HTML element of this page to see the below demo rendered correctly.
 
 {{"demo": "FontSizeTheme.js"}}
 

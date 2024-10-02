@@ -1,8 +1,8 @@
 # Breaking changes in v5, part two: core components
 
-<p class="description">This is a reference guide to the breaking changes introduced in Material UI v5, and how to migrating from v4. This part covers changes to components.</p>
+<p class="description">This is a reference guide to the breaking changes introduced in Material UI v5, and how to migrating from v4. This part covers changes to components.</p>
 
-## Material UI v5 migration
+## Material UI v5 migration
 
 1. [Getting started](/material-ui/migration/migration-v4/)
 2. [Breaking changes part one: style and theme](/material-ui/migration/v5-style-changes/)
@@ -12,7 +12,7 @@
 
 ## Breaking changes, part two
 
-Material UI v5 introduces a number of breaking changes from v4.
+Material UI v5 introduces a number of breaking changes from v4.
 Many of these changes can be resolved automatically using [the codemods](/material-ui/migration/migration-v4/#run-codemods) described in the [main migration guide](/material-ui/migration/migration-v4/).
 
 The following document lists all breaking changes related to components in v5 and how to address them.
@@ -75,7 +75,7 @@ Move the component from the lab to the core. The component is now stable.
 
 ### Remove debug prop
 
-Remove `debug` prop. There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://twitter.com/sulco/status/1305841873945272321), or React devtools prop setter.
+Remove `debug` prop. There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://x.com/sulco/status/1305841873945272321), or React devtools prop setter.
 
 ### Update `renderOption`
 
@@ -251,7 +251,7 @@ Use a string to provide an explicit px value.
 
 The Box system props have an optional alternative API in v5, using the `sx` prop.
 
-Check out the System docs to learn more about [the tradeoffs of this API](/system/getting-started/usage/#api-tradeoff).
+Check out MUI System docs to learn more about [the tradeoffs of this API](/system/getting-started/usage/#api-tradeoff).
 
 ```jsx
 <Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
@@ -281,7 +281,7 @@ The system grid function was not documented in v4.
 
 ### Remove clone prop
 
-The `clone` prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a Material UI component.
+The `clone` prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a Material UI component.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }} clone>
@@ -292,7 +292,7 @@ The `clone` prop was removed because its behavior can be obtained by applying th
 
 ### Replace render prop with `sx`
 
-The ability to pass a render prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a Material UI component.
+The ability to pass a render prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a Material UI component.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
@@ -301,7 +301,7 @@ The ability to pass a render prop was removed because its behavior can be obtain
 +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
 ```
 
-For non-Material UI components, use the `component` prop.
+For non-Material UI components, use the `component` prop.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
@@ -323,7 +323,7 @@ This makes the button closer to the Material Design guidelines and simplifies th
 ```
 
 :::info
-If you prefer to use the `default` color in v4, take a look at this [CodeSandbox demo](https://codesandbox.io/s/mimic-v4-button-default-color-bklx8?file=/src/Demo.tsx) to see how to make it work in v5.
+If you prefer to use the `default` color in v4, take a look at this [CodeSandbox demo](https://codesandbox.io/p/sandbox/mimic-v4-button-default-color-bklx8?file=/src/Demo.tsx) to see how to make it work in v5.
 :::
 
 ### Remove span and label
@@ -573,7 +573,7 @@ In v4, using `orientation="vertical"` and `variant="middle"` was adding a left a
 In the v5, to avoid fixed spacing on the component, this margin was removed.
 
 :::info
-If you want to use the previous margin values, this change can be made in your theme with the following code. See the example on [CodeSandbox demo](https://codesandbox.io/s/v5-migration-vertical-alignment-middle-divider-45vepj?file=/src/index.tsx).
+If you want to use the previous margin values, this change can be made in your theme with the following code. See the example on [CodeSandbox demo](https://codesandbox.io/p/sandbox/v5-migration-vertical-alignment-middle-divider-45vepj?file=/src/index.tsx).
 :::
 
 ```diff
@@ -702,8 +702,8 @@ Change the default variant from `standard` to `outlined`.
 
 `standard` has been removed from the Material Design guidelines.
 
-:::warning
-✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
+:::success
+This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
 :::
 
 ```diff
@@ -742,9 +742,9 @@ The props `alignItems`, `alignContent`, and `justifyContent`—along with their 
 
 "align-items-xs-center", "align-items-xs-flex-start", "align-items-xs-flex-end", "align-items-xs-baseline", "align-content-xs-center", "align-content-xs-flex-start", "align-content-xs-flex-end", "align-content-xs-space-between", "align-content-xs-space-around", "justify-content-xs-center", "justify-content-xs-flex-end", "justify-content-xs-space-between", "justify-content-xs-space-around" and "justify-content-xs-space-evenly".
 
-These props are now considered part of the System, not the `Grid` component itself.
+These props are now considered part of MUI System, not the `Grid` component itself.
 
-If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](/material-ui/customization/theme-components/#overrides-based-on-props).
+If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](https://v5.mui.com/material-ui/customization/theme-components/#overrides-based-on-props).
 
 ```diff
  const theme = createTheme({
@@ -772,13 +772,13 @@ If you need negative margins on all sides, we recommend using the new Grid v2 in
 
 ```diff
 - import Grid from '@mui/material/Grid';
-+ import Grid from '@mui/material/Unstable_Grid2';
++ import Grid from '@mui/material/Grid2';
 ```
 
-To learn more about the Grid v2, check out the [demos](/material-ui/react-grid2/#whats-changed) and the [Grid migration guide](/material-ui/migration/migration-grid-v2/).
+To learn more about the Grid v2, check out the [demos](/material-ui/react-grid2/) and the [Grid migration guide](/material-ui/migration/migration-grid-v2/).
 
 :::info
-Grid v2 was introduced in Material UI v5.9.1 and features negative margins on all sides by default.
+Grid v2 was introduced in Material UI v5.9.1 and features negative margins on all sides by default.
 :::
 
 ## GridList
@@ -796,7 +796,7 @@ Rename the `GridList` components to `ImageList` to align with the current Materi
 
 ### Use CSS object-fit
 
-Use CSS `object-fit`. For IE11 support either use a polyfill such as
+Use CSS `object-fit`. For IE 11 support either use a polyfill such as
 [this npm package](https://www.npmjs.com/package/object-fit-images), or else continue to use the v4 component.
 
 ```diff
@@ -829,7 +829,7 @@ Use CSS `object-fit`. For IE11 support either use a polyfill such as
 
 This component is deprecated because its functionality can be created with the [`sx`](/system/getting-started/the-sx-prop/) prop or the [`useMediaQuery`](/material-ui/react-use-media-query/) hook.
 
-:::warning
+:::success
 This is handled in the [preset-safe codemod](#preset-safe) by applying fake `Hidden` component to prevent application crash, but further fixes are required.
 :::
 
@@ -907,8 +907,8 @@ The default `underline` prop is changed from `"hover"` to `"always"`.
 
 To recreate the behavior from v4, apply `defaultProps` in the theme.
 
-:::warning
-✅ This is handled in [link-underline-hover codemod](#link-underline-hover)—read the details before running this codemod.
+:::success
+This is handled in [link-underline-hover codemod](#link-underline-hover)—read the details before running this codemod.
 :::
 
 ```js
@@ -991,7 +991,7 @@ prop `listItemClasses` is removed, use `classes` instead.
 +<MenuItem classes={{...}}>
 ```
 
-Read more about the [MenuItem CSS API](/material-ui/api/menu-item/#css).
+Read more about the [MenuItem CSS API](/material-ui/api/menu-item/#classes).
 
 ## Modal
 
@@ -1034,7 +1034,7 @@ Use `onClose` with `reason === "escapeKeyDown"` instead.
 
 Remove the `onRendered` prop.
 
-Depending on your use case, you can either use a [callback ref](https://legacy.reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element, or an effect hook in the child component.
+Depending on your use case, you can either use a [callback ref](https://react.dev/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback) on the child element, or an effect hook in the child component.
 
 ## NativeSelect
 
@@ -1177,7 +1177,7 @@ Read the [Popper.js migration guide](https://popper.js.org/docs/v2/migration-gui
 
 Remove the `onRendered` prop.
 
-Depending on your use case, you can either use a [callback ref](https://legacy.reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element, or an effect hook in the child component.
+Depending on your use case, you can either use a [callback ref](https://react.dev/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback) on the child element, or an effect hook in the child component.
 
 ## Radio
 
@@ -1257,7 +1257,7 @@ You can get a reference to the underlying DOM node of our components via `ref` p
 
 The component relied on [`ReactDOM.findDOMNode`](https://react.dev/reference/react-dom/findDOMNode) which is [deprecated in `React.StrictMode`](https://react.dev/reference/react/StrictMode#warning-about-deprecated-finddomnode-usage).
 
-:::warning
+:::success
 This is handled in the [preset-safe codemod](#preset-safe) by applying fake `RootRef` component to prevent application crash, but further fixes are required.
 :::
 
@@ -1279,7 +1279,7 @@ Change the default variant from `standard` to `outlined`.
 If you are composing the `Select` with a form control component, you only need to update `FormControl`—the select inherits the variant from its context.
 
 :::success
-✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
+This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
 :::
 
 ```diff
@@ -1682,7 +1682,7 @@ Change the default variant from `standard` to `outlined`.
 `standard` has been removed from the Material Design guidelines.
 
 :::success
-✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
+This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
 :::
 
 ```diff
@@ -1860,9 +1860,9 @@ The following classes and style overrides keys were removed:
 
 "colorInherit", "colorPrimary", "colorSecondary", "colorTextPrimary", "colorTextSecondary", "colorError", "displayInline", and "displayBlock".
 
-These props are now considered part of the System rather than the `Typography` component itself.
+These props are now considered part of MUISystem rather than the `Typography` component itself.
 
-If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](/material-ui/customization/theme-components/#overrides-based-on-props).
+If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](https://v5.mui.com/material-ui/customization/theme-components/#overrides-based-on-props).
 
 For example:
 
@@ -2008,7 +2008,7 @@ This change removes the confusion with the built-in `Omit` helper introduced in 
 
 The built-in `Omit`, while similar, is non-distributive.
 This leads to differences when applied to union types.
-[See this Stack Overflow answer for further details](https://stackoverflow.com/a/57103940/1009797).
+[See this Stack Overflow answer for further details](https://stackoverflow.com/questions/57103834/typescript-omit-a-property-from-all-interfaces-in-a-union-but-keep-the-union-s/57103940#57103940).
 
 ```diff
 -import { Omit } from '@mui/types';

@@ -2,7 +2,13 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
-    "color": { "type": { "name": "any" }, "default": "'primary'" },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;'textPrimary'<br>&#124;&nbsp;'textSecondary'<br>&#124;&nbsp;'textDisabled'<br>&#124;&nbsp;string"
+      },
+      "default": "'primary'"
+    },
     "component": { "type": { "name": "custom", "description": "element type" } },
     "sx": {
       "type": {
@@ -29,18 +35,44 @@
   },
   "name": "Link",
   "imports": ["import Link from '@mui/material/Link';", "import { Link } from '@mui/material';"],
-  "styles": {
-    "classes": [
-      "root",
-      "underlineNone",
-      "underlineHover",
-      "underlineAlways",
-      "button",
-      "focusVisible"
-    ],
-    "globalClasses": { "focusVisible": "Mui-focusVisible" },
-    "name": "MuiLink"
-  },
+  "classes": [
+    {
+      "key": "button",
+      "className": "MuiLink-button",
+      "description": "Styles applied to the root element if `component=\"button\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "focusVisible",
+      "className": "Mui-focusVisible",
+      "description": "State class applied to the root element if the link is keyboard focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "root",
+      "className": "MuiLink-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "underlineAlways",
+      "className": "MuiLink-underlineAlways",
+      "description": "Styles applied to the root element if `underline=\"always\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "underlineHover",
+      "className": "MuiLink-underlineHover",
+      "description": "Styles applied to the root element if `underline=\"hover\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "underlineNone",
+      "className": "MuiLink-underlineNone",
+      "description": "Styles applied to the root element if `underline=\"none\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiLink",

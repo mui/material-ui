@@ -5,20 +5,19 @@ import kebabCase from 'lodash/kebabCase';
 import { useTheme } from '@mui/system';
 import { exactProp } from '@mui/utils';
 import { CssVarsProvider as JoyCssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import { Ad, AdGuest } from '@mui/docs/Ad';
 import ComponentsApiContent from 'docs/src/modules/components/ComponentsApiContent';
 import HooksApiContent from 'docs/src/modules/components/HooksApiContent';
 import { getTranslatedHeader as getComponentTranslatedHeader } from 'docs/src/modules/components/ApiPage';
 import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
-import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
-import BrandingProvider from 'docs/src/BrandingProvider';
-import Ad from 'docs/src/modules/components/Ad';
+import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
+import { BrandingProvider } from '@mui/docs/branding';
 import { HEIGHT as AppFrameHeight } from 'docs/src/modules/components/AppFrame';
 import { HEIGHT as TabsHeight } from 'docs/src/modules/components/ComponentPageTabs';
-import AdGuest from 'docs/src/modules/components/AdGuest';
-import { getPropsToC } from 'docs/src/modules/components/PropertiesTable';
-import { getCssToC } from 'docs/src/modules/components/ApiPage/CSSList';
+import { getPropsToC } from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
+import { getClassesToC } from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 
 function JoyModeObserver({ mode }) {
   const { setMode } = useColorScheme();
@@ -81,30 +80,36 @@ export default function MarkdownDocsV2(props) {
 
   const localizedDoc = docs[userLanguage] || docs.en;
   // Generate the TOC based on the tab
-  const { description, location, rendered, title, toc, headers } = localizedDoc;
-  const demosToc = toc.filter((item) => item.text !== 'API');
+  const demosToc = localizedDoc.toc;
 
-  function createHookTocEntry(hookName, sectionName) {
+  function createHookTocEntry(hookName, sectionName, hookProps = {}) {
+    const hookPropToc = [];
+    Object.keys(hookProps).forEach((propName) => {
+      hookPropToc.push({
+        text: propName,
+        hash: `${hookName}-${sectionName}-${propName}`,
+        children: [],
+      });
+    });
+
     return {
       text: getHookTranslatedHeader(t, sectionName),
       hash: `${hookName}-${sectionName}`,
-      children: [],
+      children: hookPropToc,
     };
   }
 
   const hooksToc = [];
   if (hooksApiPageContents) {
     Object.keys(hooksApiPageContents).forEach((key) => {
-      const { hookDescriptionToc = [] } = hooksApiDescriptions[key][userLanguage];
-      const { name: hookName } = hooksApiPageContents[key];
+      const { name: hookName, parameters = {}, returnValue = {} } = hooksApiPageContents[key];
 
       const hookNameKebabCase = kebabCase(hookName);
 
       const hookToc = [
         createHookTocEntry(hookNameKebabCase, 'import'),
-        ...hookDescriptionToc,
-        createHookTocEntry(hookNameKebabCase, 'parameters'),
-        createHookTocEntry(hookNameKebabCase, 'return-value'),
+        createHookTocEntry(hookNameKebabCase, 'parameters', parameters),
+        createHookTocEntry(hookNameKebabCase, 'return-value', returnValue),
       ].filter(Boolean);
 
       hooksToc.push({
@@ -141,9 +146,8 @@ export default function MarkdownDocsV2(props) {
       const { componentDescriptionToc = [] } = componentsApiDescriptions[key][userLanguage];
       const {
         name: componentName,
-        styles,
-        inheritance,
         slots,
+        inheritance,
         themeDefaultProps,
         classes,
         props: componentProps,
@@ -153,7 +157,6 @@ export default function MarkdownDocsV2(props) {
       const componentApiToc = [
         createComponentTocEntry(componentNameKebabCase, 'import'),
         ...componentDescriptionToc,
-        styles.name && createComponentTocEntry(componentNameKebabCase, 'component-name'),
         getPropsToC({
           t,
           componentName: componentNameKebabCase,
@@ -162,16 +165,13 @@ export default function MarkdownDocsV2(props) {
           themeDefaultProps,
           hash: `${componentNameKebabCase}-props`,
         }),
-        ...getCssToC({
+        slots?.length > 0 && createComponentTocEntry(componentNameKebabCase, 'slots'),
+        ...getClassesToC({
           t,
           componentName: componentNameKebabCase,
-          componentStyles: styles,
-          hash: `${componentNameKebabCase}-css`,
+          componentClasses: classes,
+          hash: `${componentNameKebabCase}-classes`,
         }),
-
-        slots?.length > 0 && createComponentTocEntry(componentNameKebabCase, 'slots'),
-        (classes?.classes?.length || Object.keys(classes?.classes?.globalClasses || {}).length) &&
-          createComponentTocEntry(componentNameKebabCase, 'classes'),
       ].filter(Boolean);
 
       componentsApiToc.push({
@@ -196,9 +196,9 @@ export default function MarkdownDocsV2(props) {
   let done = false;
 
   // process the elements before the tabs component
-  while (i < rendered.length && !done) {
-    const renderedMarkdownOrDemo = rendered[i];
-    if (renderedMarkdownOrDemo.component && renderedMarkdownOrDemo.component.indexOf('Tabs') >= 0) {
+  while (i < localizedDoc.rendered.length && !done) {
+    const renderedMarkdownOrDemo = localizedDoc.rendered[i];
+    if (renderedMarkdownOrDemo.component && renderedMarkdownOrDemo.component.includes('Tabs')) {
       done = true;
     }
     commonElements.push(
@@ -209,7 +209,6 @@ export default function MarkdownDocsV2(props) {
         demos={demos}
         disableAd={disableAd}
         localizedDoc={localizedDoc}
-        location={location}
         renderedMarkdownOrDemo={renderedMarkdownOrDemo}
         srcComponents={srcComponents}
         theme={theme}
@@ -230,7 +229,7 @@ export default function MarkdownDocsV2(props) {
     activeToc = componentsApiToc;
   }
 
-  const hasTabs = rendered.some((renderedMarkdownOrDemo) => {
+  const hasTabs = localizedDoc.rendered.some((renderedMarkdownOrDemo) => {
     if (
       typeof renderedMarkdownOrDemo === 'object' &&
       renderedMarkdownOrDemo.component &&
@@ -243,18 +242,24 @@ export default function MarkdownDocsV2(props) {
 
   return (
     <AppLayoutDocs
-      description={description}
+      cardOptions={{
+        description: localizedDoc.headers.cardDescription,
+        title: localizedDoc.headers.cardTitle,
+      }}
+      description={localizedDoc.description}
       disableAd={disableAd}
       disableToc={disableToc}
-      location={location}
-      title={title}
-      disableLayout
+      location={localizedDoc.location}
+      title={localizedDoc.title}
       toc={activeToc}
+      disableLayout
       hasTabs={hasTabs}
     >
       <div
         style={{
-          '--MuiDocs-header-height': `${AppFrameHeight + TabsHeight}px`,
+          '--MuiDocs-header-height': hasTabs
+            ? `${AppFrameHeight + TabsHeight}px`
+            : `${AppFrameHeight}px`,
         }}
       >
         {disableAd ? null : (
@@ -268,9 +273,8 @@ export default function MarkdownDocsV2(props) {
           {isJoy && <JoyModeObserver mode={theme.palette.mode} />}
           {commonElements}
           {activeTab === '' &&
-            rendered
-              // for the "hook only" edge case, e.g. Base UI autocomplete
-              .slice(i, rendered.length - (headers.components.length > 0 ? 1 : 0))
+            localizedDoc.rendered
+              .slice(i)
               .map((renderedMarkdownOrDemo, index) => (
                 <RichMarkdownElement
                   key={`demos-section-${index}`}
@@ -279,7 +283,6 @@ export default function MarkdownDocsV2(props) {
                   demos={demos}
                   disableAd={disableAd}
                   localizedDoc={localizedDoc}
-                  location={location}
                   renderedMarkdownOrDemo={renderedMarkdownOrDemo}
                   srcComponents={srcComponents}
                   theme={theme}

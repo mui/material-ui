@@ -4,6 +4,9 @@
     "areOptionsEqual": {
       "description": "A function used to determine if two options&#39; values are equal. By default, reference equality is used.<br>There is a performance impact when using the <code>areOptionsEqual</code> prop (proportional to the number of options). Therefore, it&#39;s recommented to use the default reference equality comparison whenever possible."
     },
+    "autoComplete": {
+      "description": "This prop helps users to fill forms faster, especially on mobile devices. The name can be confusing, as it&#39;s more like an autofill. You can learn more about it <a href=\"https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill\">following the specification</a>."
+    },
     "autoFocus": {
       "description": "If <code>true</code>, the select element is focused during the first mount"
     },
@@ -26,14 +29,18 @@
       "description": "If <code>true</code>, selecting multiple values is allowed. This affects the type of the <code>value</code>, <code>defaultValue</code>, and <code>onChange</code> props."
     },
     "name": {
-      "description": "Name of the element. For example used by the server to identify the fields in form submits. If the name is provided, the component will render a hidden input element that can be submitted to a server."
+      "description": "Name of the element. For example used by the server to identify the fields in form submits."
     },
     "onChange": { "description": "Callback fired when an option is selected." },
     "onListboxOpenChange": {
       "description": "Callback fired when the component requests to be opened. Use in controlled mode (see listboxOpen)."
     },
+    "placeholder": { "description": "Text to show when there is no selected value." },
     "renderValue": {
       "description": "Function that customizes the rendering of the selected value."
+    },
+    "required": {
+      "description": "If <code>true</code>, the Select cannot be empty when submitting form."
     },
     "slotProps": { "description": "The props used for each slot inside the Input." },
     "slots": {
@@ -44,29 +51,20 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "listbox": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the listbox element"
-    },
-    "popper": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the popper element"
-    },
     "active": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root <code>button</code> element",
       "conditions": "<code>active={true}</code>"
     },
-    "expanded": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root <code>button</code> element",
-      "conditions": "<code>expanded={true}</code>"
-    },
     "disabled": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root <code>button</code> element and the listbox &#39;ul&#39; element",
       "conditions": "<code>disabled={true}</code>"
+    },
+    "expanded": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root <code>button</code> element",
+      "conditions": "<code>expanded={true}</code>"
     },
     "focusVisible": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
@@ -75,8 +73,8 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
     "listbox": "The component that renders the listbox.",
-    "popper": "The component that renders the popper."
+    "popup": "The component that wraps the popup.",
+    "root": "The component that renders the root."
   }
 }

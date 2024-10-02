@@ -8,7 +8,14 @@ export default function PortalFocusTrap() {
   const [container, setContainer] = React.useState(null);
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'column',
+        '& [tabindex]:focus': { outline: '1px solid green' },
+      }}
+    >
       <button type="button" onClick={() => setOpen(true)}>
         Open
       </button>
@@ -31,7 +38,6 @@ export default function PortalFocusTrap() {
           </Box>
         </FocusTrap>
       )}
-
       <div ref={setContainer} />
     </Box>
   );

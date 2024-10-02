@@ -1,18 +1,28 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import Head from 'docs/src/modules/components/Head';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import Link from 'docs/src/modules/components/Link';
+import { MarkdownElement } from '@mui/docs/MarkdownElement';
+import { Link } from '@mui/docs/Link';
+import { useTranslate } from '@mui/docs/i18n';
 
-const StyledDiv = styled('div')({
+const StyledDiv = styled('div')(({ theme }) => ({
   flex: '1 0 100%',
-});
+  background: `linear-gradient(180deg, ${(theme.vars || theme).palette.grey[50]} 0%, #FFFFFF 100%)`,
+  backgroundSize: '100% 500px',
+  backgroundRepeat: 'no-repeat',
+  ...theme.applyDarkStyles({
+    background: `linear-gradient(180deg, ${alpha(theme.palette.primary[900], 0.15)} 0%, ${(theme.vars || theme).palette.primaryDark[900]} 100%)`,
+    backgroundSize: '100% 500px',
+    backgroundRepeat: 'no-repeat',
+  }),
+}));
 
 const StyledAppContainer = styled(AppContainer)(({ theme }) => ({
   '& .markdownElement': {
@@ -25,11 +35,16 @@ const StyledAppContainer = styled(AppContainer)(({ theme }) => ({
 export default function TopLayoutCareers(props) {
   const { docs } = props;
   const { description, rendered, title } = docs.en;
+  const t = useTranslate();
 
   return (
     <BrandingCssVarsProvider>
       <AppHeader />
-      <Head title={`${title} - MUI`} description={description}>
+      <Head
+        title={`${title} - MUI`}
+        description={description}
+        card="/static/social-previews/careers-preview.jpg"
+      >
         <meta name="robots" content="noindex,nofollow" />
       </Head>
       <StyledDiv>
@@ -38,10 +53,10 @@ export default function TopLayoutCareers(props) {
             href="/careers/#open-roles"
             rel="nofollow"
             variant="body2"
-            sx={{ display: 'block', mb: 2 }}
+            sx={{ display: 'flex', gap: 0.5, alignItems: 'center', mb: 4 }}
           >
-            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-            {'< Back to open roles'}
+            <KeyboardArrowLeftIcon fontSize="small" />
+            {t('backToOpenRoles')}
           </Link>
           {rendered.map((chunk, index) => {
             return <MarkdownElement key={index} renderedMarkdown={chunk} />;

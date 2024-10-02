@@ -1,5 +1,4 @@
 const { marked } = require('marked');
-const kebabCase = require('lodash/kebabCase');
 const textToHash = require('./textToHash');
 const prism = require('./prism');
 
@@ -56,6 +55,18 @@ function escape(html, encode) {
 function checkUrlHealth(href, linkText, context) {
   const url = new URL(href, 'https://mui.com/');
 
+  if (/\/{2,}$/.test(url.pathname)) {
+    throw new Error(
+      [
+        'docs-infra: Duplicated trailing slashes. The following link:',
+        `[${linkText}](${href}) in ${context.location} has duplicated trailing slashes, please only add one.`,
+        '',
+        'See https://ahrefs.com/blog/trailing-slash/ for more details.',
+        '',
+      ].join('\n'),
+    );
+  }
+
   // External links to MUI, ignore
   if (url.host !== 'mui.com') {
     return;
@@ -68,7 +79,7 @@ function checkUrlHealth(href, linkText, context) {
    * It needs to be:
    * /material-ui/customization/theming/
    */
-  if (url.pathname[url.pathname.length - 1] !== '/') {
+  if (!url.pathname.endsWith('/')) {
     throw new Error(
       [
         'docs-infra: Missing trailing slash. The following link:',
@@ -134,7 +145,7 @@ function getHeaders(markdown) {
     while ((regexMatches = headerKeyValueRegExp.exec(header)) !== null) {
       const key = regexMatches[1];
       let value = regexMatches[2].replace(/(.*)/, '$1');
-      if (value[0] === '[') {
+      if (value.startsWith('[')) {
         // Need double quotes to JSON parse.
         value = value.replace(/'/g, '"');
         // Remove the comma after the last value e.g. ["foo", "bar",] -> ["foo", "bar"].
@@ -177,6 +188,7 @@ function getContents(markdown) {
     .replace(headerRegExp, '') // Remove header information
     .split(/^{{("(?:demo|component)":.*)}}$/gm) // Split markdown into an array, separating demos
     .flatMap((text) => text.split(/^(<codeblock.*?<\/codeblock>)$/gmsu))
+    .flatMap((text) => text.split(/^(<featureList.*?<\/featureList>)$/gmsu))
     .filter((content) => !emptyRegExp.test(content)); // Remove empty lines
   return rep;
 }
@@ -201,30 +213,53 @@ function getDescription(markdown) {
 }
 
 function getCodeblock(content) {
-  if (content.startsWith('<codeblock')) {
-    const storageKey = content.match(/^<codeblock [^>]*storageKey=["|'](\S*)["|'].*>/m)?.[1];
-    const blocks = [...content.matchAll(/^```(\S*) (\S*)\n(.*?)\n```/gmsu)].map(
-      ([, language, tab, code]) => ({ language, tab, code }),
-    );
-
-    const blocksData = blocks.filter(
-      (block) => block.tab !== undefined && !emptyRegExp.test(block.code),
-    );
-
-    return {
-      type: 'codeblock',
-      data: blocksData,
-      storageKey,
-    };
+  if (!content.startsWith('<codeblock')) {
+    return undefined;
   }
-  return undefined;
+  const storageKey = content.match(/^<codeblock [^>]*storageKey=["|'](\S*)["|'].*>/m)?.[1];
+  const blocks = [...content.matchAll(/^```(\S*) (\S*)\n(.*?)\n```/gmsu)].map(
+    ([, language, tab, code]) => ({ language, tab, code }),
+  );
+
+  const blocksData = blocks.filter(
+    (block) => block.tab !== undefined && !emptyRegExp.test(block.code),
+  );
+
+  return {
+    type: 'codeblock',
+    data: blocksData,
+    storageKey,
+  };
+}
+
+function getFeatureList(content) {
+  if (!content.startsWith('<featureList')) {
+    return undefined;
+  }
+  const lines = content
+    .split('\n')
+    .filter((line) => line.startsWith('- '))
+    .map((line) => line.slice(2));
+
+  return ['<ul class="feature-list">', ...lines.map((line) => `<li>${line}</li>`), '</ul>'].join(
+    '',
+  );
 }
 
 /**
  * @param {string} markdown
  */
-function renderInline(markdown) {
-  return marked.parseInline(markdown, markedOptions);
+function renderMarkdown(markdown) {
+  // Check if the markdown contains an inline list. Unordered lists are block elements and cannot be parsed inline.
+  if (/[-*+] `([A-Za-z]+)`/g.test(markdown)) {
+    return marked.parse(markdown, markedOptions);
+  }
+  // Two new lines result in a newline in the table.
+  // All other new lines must be eliminated to prevent markdown mayhem.
+  return marked
+    .parseInline(markdown, markedOptions)
+    .replace(/(\r?\n){2}/g, '<br>')
+    .replace(/\r?\n/g, ' ');
 }
 
 // Help rank mui.com on component searches first.
@@ -240,9 +275,12 @@ const noSEOadvantage = [
   'https://heroicons.com/',
   'https://react-icons.github.io/',
   'https://fontawesome.com/',
-  'https://www.radix-ui.com/',
   'https://react-spectrum.adobe.com/',
   'https://headlessui.com/',
+  'https://refine.dev/',
+  'https://scaffoldhub.io/',
+  'https://marmelab.com/',
+  'https://framesxdesign.com/',
 ];
 
 /**
@@ -271,20 +309,21 @@ function createRender(context) {
    */
   function render(markdown) {
     const renderer = new marked.Renderer();
-    renderer.heading = (headingHtml, level) => {
+    renderer.heading = function heading({ tokens, depth: level }) {
       // Main title, no need for an anchor.
       // It adds noises to the URL.
       //
       // Small title, no need for an anchor.
       // It reduces the risk of duplicated id and it's fewer elements in the DOM.
+      const headingHtml = this.parser.parseInline(tokens);
       if (level === 1 || level >= 4) {
         return `<h${level}>${headingHtml}</h${level}>`;
       }
 
       // Remove links to avoid nested links in the TOCs
-      let headingText = headingHtml.replace(/<a\b[^>]*>/i, '').replace(/<\/a>/i, '');
+      let headingText = headingHtml.replace(/<a\b[^>]*>/gi, '').replace(/<\/a>/gi, '');
       // Remove `code` tags
-      headingText = headingText.replace(/<code\b[^>]*>/i, '').replace(/<\/code>/i, '');
+      headingText = headingText.replace(/<code\b[^>]*>/gi, '').replace(/<\/code>/gi, '');
 
       // Standardizes the hash from the default location (en) to different locations
       // Need english.md file parsed first
@@ -327,21 +366,28 @@ function createRender(context) {
       }
 
       return [
-        `<h${level} id="${hash}">`,
-        headingHtml,
-        `<a aria-labelledby="${hash}" class="anchor-link" href="#${hash}" tabindex="-1">`,
-        '<svg><use xlink:href="#anchor-link-icon" /></svg>',
-        '</a>',
+        headingHtml.includes('<a ')
+          ? [
+              // Avoid breaking the anchor link button
+              `<h${level} id="${hash}"><a href="#${hash}" class="title-link-to-anchor">${headingHtml}</a>`,
+              `<a href="#${hash}" class="title-link-to-anchor"><span class="anchor-icon"><svg><use xlink:href="#anchor-link-icon" /></svg></span></a>`,
+            ].join('')
+          : `<h${level} id="${hash}"><a href="#${hash}" class="title-link-to-anchor">${headingHtml}<span class="anchor-icon"><svg><use xlink:href="#anchor-link-icon" /></svg></span></a>`,
         `<button title="Post a comment" class="comment-link" data-feedback-hash="${hash}">`,
         '<svg><use xlink:href="#comment-link-icon" /></svg>',
         `</button>`,
         `</h${level}>`,
       ].join('');
     };
-    renderer.link = (href, linkTitle, linkText) => {
+    renderer.link = function link({ href, title, tokens }) {
+      const linkText = this.parser.parseInline(tokens);
       let more = '';
 
-      if (noSEOadvantage.some((domain) => href.indexOf(domain) !== -1)) {
+      if (title) {
+        more += ` title="${title}"`;
+      }
+
+      if (noSEOadvantage.some((domain) => href.includes(domain))) {
         more = ' target="_blank" rel="noopener nofollow"';
       }
 
@@ -349,7 +395,7 @@ function createRender(context) {
 
       checkUrlHealth(href, linkText, context);
 
-      if (userLanguage !== 'en' && href.indexOf('/') === 0 && !options.ignoreLanguagePages(href)) {
+      if (userLanguage !== 'en' && href.startsWith('/') && !options.ignoreLanguagePages(href)) {
         finalHref = `/${userLanguage}${href}`;
       }
 
@@ -366,29 +412,28 @@ function createRender(context) {
 
       return `<a href="${finalHref}"${more}>${linkText}</a>`;
     };
-    renderer.code = (code, infostring, escaped) => {
+    renderer.code = ({ lang, text, escaped }) => {
       // https://github.com/markedjs/marked/blob/30e90e5175700890e6feb1836c57b9404c854466/src/Renderer.js#L15
-      const lang = (infostring || '').match(/\S*/)[0];
-      const out = prism(code, lang);
-      if (out != null && out !== code) {
+      const langString = (lang || '').match(/\S*/)[0];
+      const title = (lang || '').match(/title="([^"]*)"/)?.[1];
+      const out = prism(text, langString);
+      if (out != null && out !== text) {
         escaped = true;
-        code = out;
+        text = out;
       }
 
-      code = `${code.replace(/\n$/, '')}\n`;
+      const code = `${text.replace(/\n$/, '')}\n`;
 
       if (!lang) {
         return `<pre><code>${escaped ? code : escape(code, true)}</code></pre>\n`;
       }
 
-      return `<div class="MuiCode-root"><pre><code class="language-${escape(lang, true)}">${
+      return `<div class="MuiCode-root">${title ? `<div class="MuiCode-title">${title}</div>` : ''}<pre><code class="language-${escape(lang, true)}">${
         escaped ? code : escape(code, true)
       }</code></pre>${[
         '<button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">',
-        '<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyRoundedIcon">',
-        '<use class="MuiCode-copy-icon" xlink:href="#copy-icon" />',
-        '<use class="MuiCode-copied-icon" xlink:href="#copied-icon" />',
-        '</svg>',
+        '<span class="MuiCode-copy-label">Copy</span>',
+        '<span class="MuiCode-copied-label">Copied</span>',
         '<span class="MuiCode-copyKeypress"><span>(or</span> $keyC<span>)</span></span></button></div>',
       ].join('')}\n`;
     };
@@ -420,9 +465,19 @@ function createRender(context) {
             return undefined;
           },
           renderer(token) {
-            return `<aside class="MuiCallout-root MuiCallout-${token.severity}">${this.parser.parse(
-              token.tokens,
-            )}\n</aside>`;
+            if (!['info', 'success', 'warning', 'error'].includes(token.severity)) {
+              throw new Error(`docs-infra: Callout :::${token.severity} is not supported`);
+            }
+
+            return `<aside class="MuiCallout-root MuiCallout-${token.severity}">${[
+              '<div class="MuiCallout-icon-container">',
+              '<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyRoundedIcon">',
+              `<use class="MuiCode-copied-icon" xlink:href="#${token.severity}-icon" />`,
+              '</svg>',
+              '</div>',
+            ].join(
+              '\n',
+            )}<div class="MuiCallout-content">${this.parser.parse(token.tokens)}</div></aside>`;
           },
         },
       ],
@@ -434,213 +489,13 @@ function createRender(context) {
   return render;
 }
 
-const BaseUIReexportedComponents = ['ClickAwayListener', 'NoSsr', 'Portal', 'TextareaAutosize'];
-
-/**
- * @param {string} productId
- * @example 'material'
- * @param {string} componentPkg
- * @example 'mui-base'
- * @param {string} component
- * @example 'Button'
- * @returns {string}
- */
-function resolveComponentApiUrl(productId, componentPkg, component) {
-  if (!productId) {
-    return `/api/${kebabCase(component)}/`;
-  }
-  if (productId === 'x-date-pickers') {
-    return `/x/api/date-pickers/${kebabCase(component)}/`;
-  }
-  if (productId === 'x-charts') {
-    return `/x/api/charts/${kebabCase(component)}/`;
-  }
-  if (productId === 'x-tree-view') {
-    return `/x/api/tree-view/${kebabCase(component)}/`;
-  }
-  if (componentPkg === 'mui-base' || BaseUIReexportedComponents.indexOf(component) >= 0) {
-    return `/base-ui/react-${kebabCase(component)}/components-api/#${kebabCase(component)}`;
-  }
-  return `/${productId}/api/${kebabCase(component)}/`;
-}
-
-/**
- * @param {object} config
- * @param {Array<{ markdown: string, filename: string, userLanguage: string }>} config.translations - Mapping of locale to its markdown
- * @param {string} config.fileRelativeContext - posix filename relative to repository root directory
- * @param {object} config.options - provided to the webpack loader
- */
-function prepareMarkdown(config) {
-  const { fileRelativeContext, translations, componentPackageMapping = {}, options } = config;
-
-  const demos = {};
-  /**
-   * @type {Record<string, { rendered: Array<string | { component: string } | { demo:string }> }>}
-   */
-  const docs = {};
-  const headingHashes = {};
-
-  translations
-    // Process the English markdown before the other locales.
-    // English ToC anchor links are used in all languages
-    .sort((a) => (a.userLanguage === 'en' ? -1 : 1))
-    .forEach((translation) => {
-      const { filename, markdown, userLanguage } = translation;
-      const headers = getHeaders(markdown);
-      const location = headers.filename || `/${fileRelativeContext}/${filename}`;
-      const title = headers.title || getTitle(markdown);
-      const description = headers.description || getDescription(markdown);
-
-      if (title == null || title === '') {
-        throw new Error(`docs-infra: Missing title in the page: ${location}\n`);
-      }
-
-      if (title.length > 70) {
-        throw new Error(
-          [
-            `docs-infra: The title "${title}" is too long (${title.length} characters).`,
-            'It needs to have fewer than 70 characters—ideally less than 60. For more details, see:',
-            'https://developers.google.com/search/docs/advanced/appearance/title-link',
-            '',
-          ].join('\n'),
-        );
-      }
-
-      if (description == null || description === '') {
-        throw new Error(`docs-infra: Missing description in the page: ${location}\n`);
-      }
-
-      if (description.length > 170) {
-        throw new Error(
-          [
-            `docs-infra: The description "${description}" is too long (${description.length} characters).`,
-            'It needs to have fewer than 170 characters—ideally less than 160. For more details, see:',
-            'https://ahrefs.com/blog/meta-description/#4-be-concise',
-            '',
-          ].join('\n'),
-        );
-      }
-
-      const contents = getContents(markdown);
-
-      if (headers.unstyled) {
-        contents.push(`
-## Unstyled
-
-:::success
-[Base UI](/base-ui/getting-started/) provides a headless ("unstyled") version of this [${title}](${headers.unstyled}). Try it if you need more flexibility in customization and a smaller bundle size.
-:::
-        `);
-      }
-
-      if (headers.components.length > 0) {
-        contents.push(`
-## API
-
-See the documentation below for a complete reference to all of the props and classes available to the components mentioned here.
-
-${headers.components
-  .map((component) => {
-    const componentPkgMap = componentPackageMapping[headers.productId];
-    const componentPkg = componentPkgMap ? componentPkgMap[component] : null;
-    return `- [\`<${component} />\`](${resolveComponentApiUrl(
-      headers.productId,
-      componentPkg,
-      component,
-    )})`;
-  })
-  .join('\n')}
-${headers.hooks
-  .map((hook) => {
-    const componentPkgMap = componentPackageMapping[headers.productId];
-    const componentPkg = componentPkgMap ? componentPkgMap[hook] : null;
-    return `- [\`${hook}\`](${resolveComponentApiUrl(headers.productId, componentPkg, hook)})`;
-  })
-  .join('\n')}
-  `);
-      }
-
-      const toc = [];
-      const render = createRender({
-        headingHashes,
-        toc,
-        userLanguage,
-        location,
-        options,
-      });
-
-      const rendered = contents.map((content) => {
-        if (/^"(demo|component)": "(.*)"/.test(content)) {
-          try {
-            return JSON.parse(`{${content}}`);
-          } catch (err) {
-            console.error('JSON.parse fails with: ', `{${content}}`);
-            console.error(err);
-            return null;
-          }
-        }
-
-        const codeblock = getCodeblock(content);
-
-        if (codeblock) {
-          return codeblock;
-        }
-
-        return render(content);
-      });
-
-      // fragment link symbol
-      rendered.unshift(
-        `<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
-      <symbol id="comment-link-icon" viewBox="0 0 24 24">
-      <path d="M5.025 14H6.95c.183 0 .35-.029.5-.087a1.24 1.24 0 0 0 .425-.288L13.65 7.9a.622.622 0 0 0 .2-.45.622.622 0 0 0-.2-.45l-2.3-2.3a.622.622 0 0 0-.45-.2.622.622 0 0 0-.45.2l-5.725 5.775a1.24 1.24 0 0 0-.287.425 1.37 1.37 0 0 0-.088.5v1.925c0 .184.067.342.2.475a.65.65 0 0 0 .475.2Zm5.325 0h5.725c.367 0 .68-.129.938-.387.258-.258.387-.57.387-.938 0-.366-.13-.679-.387-.937a1.277 1.277 0 0 0-.938-.388H13L10.35 14Zm-5.5 4.4-2.4 2.4c-.417.417-.896.509-1.437.275C.47 20.842.2 20.434.2 19.85V3.55c0-.733.258-1.358.775-1.875A2.554 2.554 0 0 1 2.85.9h16.3c.733 0 1.358.259 1.875.775.517.517.775 1.142.775 1.875v12.2c0 .734-.258 1.359-.775 1.875a2.554 2.554 0 0 1-1.875.775H4.85Z"/>
-      </symbol>
-      </svg>`,
-      );
-
-      rendered.unshift(
-        `<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
-        <symbol id="anchor-link-icon" viewBox="0 0 12 6">
-          <path d="M8.9176 0.083252H7.1676C6.84677 0.083252 6.58427 0.345752 6.58427 0.666585C6.58427 0.987419 6.84677 1.24992 7.1676 1.24992H8.9176C9.8801 1.24992 10.6676 2.03742 10.6676 2.99992C10.6676 3.96242 9.8801 4.74992 8.9176 4.74992H7.1676C6.84677 4.74992 6.58427 5.01242 6.58427 5.33325C6.58427 5.65409 6.84677 5.91659 7.1676 5.91659H8.9176C10.5276 5.91659 11.8343 4.60992 11.8343 2.99992C11.8343 1.38992 10.5276 0.083252 8.9176 0.083252ZM3.6676 2.99992C3.6676 3.32075 3.9301 3.58325 4.25094 3.58325H7.75094C8.07177 3.58325 8.33427 3.32075 8.33427 2.99992C8.33427 2.67909 8.07177 2.41659 7.75094 2.41659H4.25094C3.9301 2.41659 3.6676 2.67909 3.6676 2.99992ZM4.83427 4.74992H3.08427C2.12177 4.74992 1.33427 3.96242 1.33427 2.99992C1.33427 2.03742 2.12177 1.24992 3.08427 1.24992H4.83427C5.1551 1.24992 5.4176 0.987419 5.4176 0.666585C5.4176 0.345752 5.1551 0.083252 4.83427 0.083252H3.08427C1.47427 0.083252 0.167603 1.38992 0.167603 2.99992C0.167603 4.60992 1.47427 5.91659 3.08427 5.91659H4.83427C5.1551 5.91659 5.4176 5.65409 5.4176 5.33325C5.4176 5.01242 5.1551 4.74992 4.83427 4.74992Z" />
-        </symbol>
-    </svg>`,
-      );
-
-      rendered.unshift(
-        `<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
-      <symbol id="copy-icon" viewBox="0 0 24 24">
-      <path d="M15 20H5V7c0-.55-.45-1-1-1s-1 .45-1 1v13c0 1.1.9 2 2 2h10c.55 0 1-.45 1-1s-.45-1-1-1zm5-4V4c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h9c1.1 0 2-.9 2-2zm-2 0H9V4h9v12z" />
-      +</symbol>
-      </svg>`,
-      );
-
-      rendered.unshift(`
-      <svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
-      <symbol id="copied-icon" viewBox="0 0 24 24">
-        <path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.24 11.28L9.69 11.2c-.38-.39-.38-1.01 0-1.4.39-.39 1.02-.39 1.41 0l1.36 1.37 4.42-4.46c.39-.39 1.02-.39 1.41 0 .38.39.38 1.01 0 1.4l-5.13 5.17c-.37.4-1.01.4-1.4 0zM3 6c-.55 0-1 .45-1 1v13c0 1.1.9 2 2 2h13c.55 0 1-.45 1-1s-.45-1-1-1H5c-.55 0-1-.45-1-1V7c0-.55-.45-1-1-1z" />
-      </symbol>
-      </svg>`);
-
-      docs[userLanguage] = {
-        description,
-        location,
-        rendered,
-        toc,
-        title,
-        headers,
-      };
-    });
-
-  return { demos, docs };
-}
-
 module.exports = {
   createRender,
   getContents,
   getDescription,
   getCodeblock,
+  getFeatureList,
   getHeaders,
   getTitle,
-  prepareMarkdown,
-  renderInline,
+  renderMarkdown,
 };

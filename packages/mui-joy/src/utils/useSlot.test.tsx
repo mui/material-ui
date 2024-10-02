@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { Popper } from '@mui/base/Popper';
-import { ColorPaletteProp, styled, VariantProp } from '../styles';
-import { CreateSlotsAndSlotProps, SlotProps } from './types';
+import { styled } from '../styles';
+import { SlotProps } from './types';
 import useSlot from './useSlot';
-import { ApplyColorInversion } from '../styles/types';
-import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 
 describe('useSlot', () => {
   const { render } = createRenderer();
@@ -287,107 +285,6 @@ describe('useSlot', () => {
     it('the option leaf component can be changed', () => {
       const { getByRole } = render(<Item slotProps={{ option: { component: 'div' } }} />);
       expect(getByRole('menuitem')).to.have.tagName('div');
-    });
-  });
-
-  describe('color inversion', () => {
-    const ItemRoot = styled('button')({});
-    const ItemDecorator = styled('span')({});
-    type Props = {
-      className?: string;
-      component?: React.ElementType;
-      href?: string;
-      variant?: VariantProp;
-      color?: ColorPaletteProp;
-    };
-    type OwnerState = Partial<ApplyColorInversion<Props>>;
-    const Item = React.forwardRef<
-      HTMLButtonElement,
-      Props &
-        CreateSlotsAndSlotProps<
-          {
-            root: React.ElementType;
-            decorator: React.ElementType;
-          },
-          {
-            root: SlotProps<'button', {}, OwnerState>;
-            decorator: SlotProps<'span', {}, OwnerState>;
-          }
-        >
-    >(({ variant = 'plain', color: colorProp, ...other }, ref) => {
-      const { getColor } = useColorInversion(variant);
-      const color = getColor(colorProp, 'neutral');
-      const [SlotRoot, rootProps] = useSlot('root', {
-        ref,
-        className: 'root',
-        elementType: ItemRoot,
-        externalForwardedProps: other,
-        ownerState: {
-          variant,
-          color,
-        },
-      });
-      const [SlotDecorator, decoratorProps] = useSlot('decorator', {
-        className: 'decorator',
-        elementType: ItemDecorator,
-        externalForwardedProps: other,
-        ownerState: {
-          variant,
-          color,
-        },
-        getSlotOwnerState: (mergedProps) => ({
-          color: mergedProps.color ?? 'neutral',
-        }),
-      });
-      return (
-        <SlotRoot
-          {...rootProps}
-          className={`${rootProps.className} color-${rootProps.ownerState.color}`}
-        >
-          <SlotDecorator
-            {...decoratorProps}
-            className={`${decoratorProps.className} color-${decoratorProps.ownerState.color}`}
-          />
-        </SlotRoot>
-      );
-    });
-
-    it('should have `context` color if the feature is enabled', () => {
-      const { getByRole } = render(
-        <ColorInversion.Provider value={['plain', 'outlined', 'soft', 'solid']}>
-          <Item />
-        </ColorInversion.Provider>,
-      );
-      expect(getByRole('button')).to.have.class('color-context');
-      expect(getByRole('button').firstChild).to.have.class('color-context');
-    });
-
-    it('should use color from prop even if the feature is enabled', () => {
-      const { getByRole } = render(
-        <ColorInversion.Provider value={['plain', 'outlined', 'soft', 'solid']}>
-          <Item color="danger" />
-        </ColorInversion.Provider>,
-      );
-      expect(getByRole('button')).to.have.class('color-danger');
-    });
-
-    it('should use color from slotProps even if the feature is enabled', () => {
-      const { getByRole } = render(
-        <ColorInversion.Provider value={['plain', 'outlined', 'soft', 'solid']}>
-          <Item
-            slotProps={{
-              root: {
-                color: 'danger',
-              },
-              decorator: {
-                color: 'success',
-              },
-            }}
-          />
-        </ColorInversion.Provider>,
-      );
-      expect(getByRole('button')).to.have.class('color-danger');
-      expect(getByRole('button').firstChild).to.have.class('color-success');
     });
   });
 });

@@ -44,16 +44,16 @@ const cyan = {
 };
 
 const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
 function useIsDarkMode() {
@@ -66,40 +66,46 @@ function Styles() {
   const isDarkMode = useIsDarkMode();
   return (
     <style>{`
-
       .Button {
-        font-family: IBM Plex Sans, sans-serif;
-        font-size: 0.875rem;
+        font-family: 'IBM Plex Sans', sans-serif;
         font-weight: 600;
-        box-sizing: border-box;
-        border-radius: 8px;
-        padding: 8px 16px;
+        font-size: 0.875rem;
         line-height: 1.5;
-        background: transparent;
+        background-color: ${cyan[500]};
+        padding: 8px 16px;
+        border-radius: 8px;
+        color: white;
+        transition: all 150ms ease;
         cursor: pointer;
-        border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
-        color: ${isDarkMode ? cyan[300] : cyan[400]};
-  
+        border: 1px solid ${cyan[500]};
+        box-shadow: 0 2px 1px ${
+          isDarkMode ? 'rgba(0, 0, 0, 0.5)' : 'rgba(45, 45, 60, 0.2)'
+        }, inset 0 1.5px 1px ${cyan[400]}, inset 0 -2px 1px ${cyan[600]};
+
         &:hover {
-          background: ${isDarkMode ? grey[900] : grey[100]};
-          border-color: ${isDarkMode ? cyan[200] : cyan[400]};
+          background-color: ${cyan[600]};
         }
-  
+
+        &:active {
+          background-color: ${cyan[700]};
+          box-shadow: none;
+        }
+
         &:focus-visible {
-          border-color: ${cyan[400]};
-          outline: 3px solid ${isDarkMode ? cyan[500] : cyan[200]};
+          box-shadow: 0 0 0 4px ${isDarkMode ? cyan[300] : cyan[200]};
+          outline: none;
+          }
         }
-      }
 
       .CustomPopper{
-        background-color: ${isDarkMode ? grey[900] : grey[50]};
+        background-color: ${isDarkMode ? grey[900] : '#FFF'};
         border-radius: 8px;
         border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
         box-shadow: ${
           isDarkMode ? `0 4px 8px rgb(0 0 0 / 0.7)` : `0 4px 8px rgb(0 0 0 / 0.1)`
         };
         padding: 0.75rem;
-        color: ${isDarkMode ? cyan[100] : cyan[700]};
+        color: ${isDarkMode ? grey[100] : grey[700]};
         font-size: 0.875rem;
         font-family: 'IBM Plex Sans', sans-serif;
         font-weight: 500;

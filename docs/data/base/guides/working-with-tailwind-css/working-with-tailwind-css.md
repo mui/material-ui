@@ -1,16 +1,16 @@
-# Working with Tailwind CSS
+# Working with Tailwind CSS
 
-<p class="description">Learn how to style Base UI components with Tailwind CSS.</p>
+<p class="description">Learn how to style Base UI components with Tailwind CSS.</p>
 
 ## Getting started
 
-The goal of this guide is to teach you how to style Base UI components using Tailwind CSS while building an interactive and accessible app.
+The goal of this guide is to teach you how to style Base UI components using Tailwind CSS while building an interactive and accessible app.
 
 ### Prerequisites
 
 This guide assumes that you have a basic working knowledge of the following:
 
-- Tailwind CSS
+- Tailwind CSS
 - TypeScript in React
 - building React UI components
 
@@ -22,13 +22,13 @@ Here's what it will look like in the end:
 {{"demo": "PlayerFinal.js", "hideToolbar": true, "bg": true}}
 
 :::info
-All credits go to the Tailwind Labs team for designing this component, found on the [Tailwind CSS website](https://tailwindcss.com/).
+All credits go to the Tailwind Labs team for designing this component, found on the [Tailwind CSS website](https://tailwindcss.com/).
 :::
 
 ## Setting up the project
 
-We'll use [`create-react-app` with typescript](https://create-react-app.dev/docs/adding-typescript/#installation) for this guide.
-After you have created the project, follow the instructions given on the [Tailwind CSS installation page](https://tailwindcss.com/docs/guides/create-react-app) in order to configure `tailwind`.
+We'll use [`create-react-app` with TypeScript](https://create-react-app.dev/docs/adding-typescript/#installation) for this guide.
+After you have created the project, follow the instructions given on the [Tailwind CSS installation page](https://tailwindcss.com/docs/guides/create-react-app) in order to configure `tailwind`.
 Next, install `@mui/base` in the project:
 
 ```bash
@@ -37,7 +37,7 @@ npm install @mui/base
 
 ## Adding the player markup
 
-Now, create a file called `Player.tsx` and add the markup below, which includes Tailwind CSS classes:
+Now, create a file called `Player.tsx` and add the markup below, which includes Tailwind CSS classes:
 
 **Player.tsx**
 
@@ -58,7 +58,7 @@ const Player = React.forwardRef(function Player(
       <div className="bg-white border-slate-100 dark:bg-slate-800 dark:border-slate-500 border-b rounded-t-xl p-4 pb-6 sm:p-10 sm:pb-8 lg:p-6 xl:p-10 xl:pb-8 space-y-6 sm:space-y-8 lg:space-y-6 xl:space-y-8">
         <div className="flex items-center space-x-4">
           <img
-            src="https://tailwindcss.com/_next/static/media/full-stack-radio.485d0b2c6e3aa1cacc6b50e462cd3675.png"
+            src="https://mui.com/static/base-ui/with-tailwind-css/full-stack-radio.png"
             alt=""
             width="88"
             height="88"
@@ -243,7 +243,7 @@ You should now see the player rendered on the page, but the component is not yet
 
 ### Create the Slider component
 
-Let's start by giving life to the slider with the Slider component from Base UI.
+Let's start by giving life to the slider with the Slider component from Base UI.
 First, create a new file called `Slider.tsx`.
 Copy and paste the code below into the file:
 
@@ -251,14 +251,18 @@ Copy and paste the code below into the file:
 
 ```tsx
 import * as React from 'react';
-import { Slider, SliderThumbSlotProps, SliderProps } from '@mui/base/Slider';
+import {
+  Slider as BaseSlider,
+  SliderThumbSlotProps,
+  SliderProps,
+} from '@mui/base/Slider';
 
 const Slider = React.forwardRef(function Slider(
   props: SliderProps,
   ref: React.ForwardedRef<HTMLSpanElement>,
 ) {
   return (
-    <Slider
+    <BaseSlider
       {...props}
       ref={ref}
       slotProps={{
@@ -282,7 +286,7 @@ const Slider = React.forwardRef(function Slider(
 export default Slider;
 ```
 
-To assign specific Tailwind CSS utility classes for each part of the component, we're using `slotProps`.
+To assign specific Tailwind CSS utility classes for each part of the component, we're using `slotProps`.
 Most of them were copied from the original markup with small adjustments now that it is interactive.
 
 ### Add the slider to the player
@@ -334,7 +338,7 @@ To do this, it's not enough to just use classes for the thumb—we need also to 
 +++ b/src/Slider.tsx
 @@ -1,6 +1,17 @@
  import * as React from 'react';
- import { Slider, SliderThumbSlotProps, SliderProps } from '@mui/base/Slider';
+ import { Slider as BaseSlider, SliderThumbSlotProps, SliderProps } from '@mui/base/Slider';
 
 +const Thumb = React.forwardRef(function Thumb(
 +  props: SliderThumbSlotProps,
@@ -351,11 +355,11 @@ To do this, it's not enough to just use classes for the thumb—we need also to 
    props: SliderProps,
    ref: React.ForwardedRef<HTMLSpanElement>,
 @@ -8,9 +19,11 @@ const Slider = React.forwardRef(function Slider(
-   return (<Slider
+   return (<BaseSlider
      {...props}
      ref={ref}
 +    slots={{
-+      thumb,
++      thumb: Thumb,
 +    }}
      slotProps={{
        root: { className: 'w-full relative inline-block h-2 cursor-pointer' },
@@ -372,7 +376,7 @@ Since we want to have an additional dot inside the thumb, we need to add new ele
 Note that after the thumb, we are still rendering the `children` passed via props.
 This is important because the `children` in this case contain a hidden `<input>` element which makes the thumb accessible.
 
-This is just one example, but this pattern of building custom components for each slot is possible with all Base UI components.
+This is just one example, but this pattern of building custom components for each slot is possible with all Base UI components.
 
 :::warning
 When building custom components for the slots, always propagate the props sent from the owner component on the root element.
@@ -385,7 +389,7 @@ This is useful if you want to style the component based on some internal state.
 ## Adding a custom focus selector to the buttons
 
 To finish this guide off, let's see how you can add custom styles based on a component's internal state.
-We'll create a custom Button component that uses the `focusVisible` state from the Base UI Button to apply a cyan ring around it.
+We'll create a custom Button component that uses the `focusVisible` state from the Base UI Button to apply a cyan ring around it.
 
 This is what it'll look like:
 
@@ -397,14 +401,18 @@ Create a `Button.tsx` file and copy the following code:
 
 ```tsx
 import * as React from 'react';
-import { Button, ButtonOwnerState, ButtonProps } from '@mui/base/Button';
+import {
+  Button as BaseButton,
+  ButtonOwnerState,
+  ButtonProps,
+} from '@mui/base/Button';
 
 const Button = React.forwardRef(function Button(
   props: ButtonProps,
   ref: React.ForwardedRef<HTMLButtonElement>,
 ) {
   return (
-    <Button
+    <BaseButton
       {...props}
       slotProps={{
         root: (state: ButtonOwnerState) => ({
@@ -505,9 +513,9 @@ Some classes were slightly changed on some buttons so we have a consistent focus
 
 These are the things we covered in this guide:
 
-✅ How to use Tailwind CSS utility classes to style Base UI components, using the `slotProps` prop for targeting specific slots within the component.\
+✅ How to use Tailwind CSS utility classes to style Base UI components, using the `slotProps` prop for targeting specific slots within the component.\
 ✅ How to create custom components for specific slots in more complex customization scenarios.
 We used the `component` prop to pass them into the parent component.\
 ✅ How to apply conditional styling based on the owner component's state using a callback as value for the `slotProps` prop.
 
-Get all the code used in this guide in the [Base UI with Tailwind CSS](https://codesandbox.io/s/working-with-tailwind-css-dhmf8w) example project.
+Get all the code used in this guide in the [Base UI with Tailwind CSS](https://codesandbox.io/p/sandbox/working-with-tailwind-css-dhmf8w) example project.

@@ -2,16 +2,30 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { elementTypeAcceptingRef } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { alpha } from '@mui/system/colorManipulator';
+import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
+import composeClasses from '@mui/utils/composeClasses';
+import isFocusVisible from '@mui/utils/isFocusVisible';
 import capitalize from '../utils/capitalize';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
-import useIsFocusVisible from '../utils/useIsFocusVisible';
-import useForkRef from '../utils/useForkRef';
+import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Typography from '../Typography';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
-import getTextDecoration, { colorTransformations } from './getTextDecoration';
+import getTextDecoration from './getTextDecoration';
+
+const v6Colors = {
+  primary: true,
+  secondary: true,
+  error: true,
+  info: true,
+  success: true,
+  warning: true,
+  textPrimary: true,
+  textSecondary: true,
+  textDisabled: true,
+};
 
 const useUtilityClasses = (ownerState) => {
   const { classes, component, focusVisible, underline } = ownerState;
@@ -40,57 +54,117 @@ const LinkRoot = styled(Typography, {
       ownerState.component === 'button' && styles.button,
     ];
   },
-})(({ theme, ownerState }) => {
-  return {
-    ...(ownerState.underline === 'none' && {
-      textDecoration: 'none',
-    }),
-    ...(ownerState.underline === 'hover' && {
-      textDecoration: 'none',
-      '&:hover': {
-        textDecoration: 'underline',
-      },
-    }),
-    ...(ownerState.underline === 'always' && {
-      textDecoration: 'underline',
-      ...(ownerState.color !== 'inherit' && {
-        textDecorationColor: getTextDecoration({ theme, ownerState }),
-      }),
-      '&:hover': {
-        textDecorationColor: 'inherit',
-      },
-    }),
-    // Same reset as ButtonBase.root
-    ...(ownerState.component === 'button' && {
-      position: 'relative',
-      WebkitTapHighlightColor: 'transparent',
-      backgroundColor: 'transparent', // Reset default value
-      // We disable the focus ring for mouse, touch and keyboard users.
-      outline: 0,
-      border: 0,
-      margin: 0, // Remove the margin in Safari
-      borderRadius: 0,
-      padding: 0, // Remove the padding in Firefox
-      cursor: 'pointer',
-      userSelect: 'none',
-      verticalAlign: 'middle',
-      MozAppearance: 'none', // Reset
-      WebkitAppearance: 'none', // Reset
-      '&::-moz-focus-inner': {
-        borderStyle: 'none', // Remove Firefox dotted outline.
-      },
-      [`&.${linkClasses.focusVisible}`]: {
-        outline: 'auto',
-      },
-    }),
-  };
-});
+})(
+  memoTheme(({ theme }) => {
+    return {
+      variants: [
+        {
+          props: {
+            underline: 'none',
+          },
+          style: {
+            textDecoration: 'none',
+          },
+        },
+        {
+          props: {
+            underline: 'hover',
+          },
+          style: {
+            textDecoration: 'none',
+            '&:hover': {
+              textDecoration: 'underline',
+            },
+          },
+        },
+        {
+          props: {
+            underline: 'always',
+          },
+          style: {
+            textDecoration: 'underline',
+            '&:hover': {
+              textDecorationColor: 'inherit',
+            },
+          },
+        },
+        {
+          props: ({ underline, ownerState }) =>
+            underline === 'always' && ownerState.color !== 'inherit',
+          style: {
+            textDecorationColor: 'var(--Link-underlineColor)',
+          },
+        },
+        ...Object.entries(theme.palette)
+          .filter(createSimplePaletteValueFilter())
+          .map(([color]) => ({
+            props: { underline: 'always', color },
+            style: {
+              '--Link-underlineColor': theme.vars
+                ? `rgba(${theme.vars.palette[color].mainChannel} / 0.4)`
+                : alpha(theme.palette[color].main, 0.4),
+            },
+          })),
+        {
+          props: { underline: 'always', color: 'textPrimary' },
+          style: {
+            '--Link-underlineColor': theme.vars
+              ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.4)`
+              : alpha(theme.palette.text.primary, 0.4),
+          },
+        },
+        {
+          props: { underline: 'always', color: 'textSecondary' },
+          style: {
+            '--Link-underlineColor': theme.vars
+              ? `rgba(${theme.vars.palette.text.secondaryChannel} / 0.4)`
+              : alpha(theme.palette.text.secondary, 0.4),
+          },
+        },
+        {
+          props: { underline: 'always', color: 'textDisabled' },
+          style: {
+            '--Link-underlineColor': (theme.vars || theme).palette.text.disabled,
+          },
+        },
+        {
+          props: {
+            component: 'button',
+          },
+          style: {
+            position: 'relative',
+            WebkitTapHighlightColor: 'transparent',
+            backgroundColor: 'transparent', // Reset default value
+            // We disable the focus ring for mouse, touch and keyboard users.
+            outline: 0,
+            border: 0,
+            margin: 0, // Remove the margin in Safari
+            borderRadius: 0,
+            padding: 0, // Remove the padding in Firefox
+            cursor: 'pointer',
+            userSelect: 'none',
+            verticalAlign: 'middle',
+            MozAppearance: 'none', // Reset
+            WebkitAppearance: 'none', // Reset
+            '&::-moz-focus-inner': {
+              borderStyle: 'none', // Remove Firefox dotted outline.
+            },
+            [`&.${linkClasses.focusVisible}`]: {
+              outline: 'auto',
+            },
+          },
+        },
+      ],
+    };
+  }),
+);
 
 const Link = React.forwardRef(function Link(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiLink',
   });
+  const theme = useTheme();
 
   const {
     className,
@@ -105,17 +179,9 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     ...other
   } = props;
 
-  const {
-    isFocusVisibleRef,
-    onBlur: handleBlurVisible,
-    onFocus: handleFocusVisible,
-    ref: focusVisibleRef,
-  } = useIsFocusVisible();
   const [focusVisible, setFocusVisible] = React.useState(false);
-  const handlerRef = useForkRef(ref, focusVisibleRef);
   const handleBlur = (event) => {
-    handleBlurVisible(event);
-    if (isFocusVisibleRef.current === false) {
+    if (!isFocusVisible(event.target)) {
       setFocusVisible(false);
     }
     if (onBlur) {
@@ -123,8 +189,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     }
   };
   const handleFocus = (event) => {
-    handleFocusVisible(event);
-    if (isFocusVisibleRef.current === true) {
+    if (isFocusVisible(event.target)) {
       setFocusVisible(true);
     }
     if (onFocus) {
@@ -151,23 +216,31 @@ const Link = React.forwardRef(function Link(inProps, ref) {
       component={component}
       onBlur={handleBlur}
       onFocus={handleFocus}
-      ref={handlerRef}
+      ref={ref}
       ownerState={ownerState}
       variant={variant}
+      {...other}
       sx={[
-        ...(!Object.keys(colorTransformations).includes(color) ? [{ color }] : []),
+        ...(v6Colors[color] === undefined ? [{ color }] : []),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
-      {...other}
+      style={{
+        ...other.style,
+        ...(underline === 'always' &&
+          color !== 'inherit' &&
+          !v6Colors[color] && {
+            '--Link-underlineColor': getTextDecoration({ theme, ownerState }),
+          }),
+      }}
     />
   );
 });
 
 Link.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -184,7 +257,20 @@ Link.propTypes /* remove-proptypes */ = {
    * The color of the link.
    * @default 'primary'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.any,
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf([
+      'primary',
+      'secondary',
+      'success',
+      'error',
+      'info',
+      'warning',
+      'textPrimary',
+      'textSecondary',
+      'textDisabled',
+    ]),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -199,6 +285,10 @@ Link.propTypes /* remove-proptypes */ = {
    */
   onFocus: PropTypes.func,
   /**
+   * @ignore
+   */
+  style: PropTypes.object,
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -207,7 +297,7 @@ Link.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * `classes` prop applied to the [`Typography`](/material-ui/api/typography/) element.
+   * `classes` prop applied to the [`Typography`](https://mui.com/material-ui/api/typography/) element.
    */
   TypographyClasses: PropTypes.object,
   /**

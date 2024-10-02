@@ -9,7 +9,7 @@
     "emptyIcon": { "description": "The icon to display when empty." },
     "emptyLabelText": { "description": "The label read when the rating input is empty." },
     "getLabelText": {
-      "description": "Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating. This is important for screen reader users.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
+      "description": "Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating. This is important for screen reader users.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>.",
       "typeDescriptions": { "value": "The rating label&#39;s value to format." }
     },
     "highlightSelectedOnly": {
@@ -19,7 +19,7 @@
     "IconContainerComponent": { "description": "The component containing the icon." },
     "max": { "description": "Maximum rating." },
     "name": {
-      "description": "The name attribute of the radio <code>input</code> elements. This input <code>name</code> should be unique within the page. Being unique within a form is insufficient since the <code>name</code> is used to generated IDs."
+      "description": "The name attribute of the radio <code>input</code> elements. This input <code>name</code> should be unique within the page. Being unique within a form is insufficient since the <code>name</code> is used to generate IDs."
     },
     "onChange": {
       "description": "Callback fired when the value changes.",
@@ -44,26 +44,10 @@
     "value": { "description": "The rating value." }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "sizeSmall": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"small\"</code>"
-    },
-    "sizeMedium": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"medium\"</code>"
-    },
-    "sizeLarge": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"large\"</code>"
-    },
-    "readOnly": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>readOnly={true}</code>"
+    "decimal": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the icon wrapping elements",
+      "conditions": "decimals are necessary"
     },
     "disabled": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
@@ -75,16 +59,14 @@
       "nodeName": "the root element",
       "conditions": "keyboard focused"
     },
-    "visuallyHidden": { "description": "Visually hide an element." },
-    "label": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the label elements" },
-    "labelEmptyValueActive": {
-      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the label of the &quot;no value&quot; input",
-      "conditions": "it is active"
-    },
     "icon": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the icon wrapping elements"
+    },
+    "iconActive": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the icon wrapping elements",
+      "conditions": "active"
     },
     "iconEmpty": {
       "description": "Styles applied to {{nodeName}} when {{conditions}}.",
@@ -96,25 +78,43 @@
       "nodeName": "the icon wrapping elements",
       "conditions": "filled"
     },
-    "iconHover": {
-      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the icon wrapping elements",
-      "conditions": "hover"
-    },
     "iconFocus": {
       "description": "Styles applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the icon wrapping elements",
       "conditions": "focus"
     },
-    "iconActive": {
+    "iconHover": {
       "description": "Styles applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the icon wrapping elements",
-      "conditions": "active"
+      "conditions": "hover"
     },
-    "decimal": {
+    "label": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the label elements" },
+    "labelEmptyValueActive": {
       "description": "Styles applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the icon wrapping elements",
-      "conditions": "decimals are necessary"
-    }
+      "nodeName": "the label of the &quot;no value&quot; input",
+      "conditions": "it is active"
+    },
+    "readOnly": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>readOnly={true}</code>"
+    },
+    "root": { "description": "Styles applied to the root element." },
+    "sizeLarge": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"large\"</code>"
+    },
+    "sizeMedium": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"medium\"</code>"
+    },
+    "sizeSmall": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"small\"</code>"
+    },
+    "visuallyHidden": { "description": "Visually hide an element." }
   }
 }

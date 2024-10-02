@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { OverrideProps, DefaultComponentProps } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { Popper, PopperProps } from '@mui/base/Popper';
-import { useSelect, SelectProvider } from '@mui/base/useSelect';
+import { useSelect, SelectProvider, SelectValue } from '@mui/base/useSelect';
 import { SelectOption } from '@mui/base/useOption';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { StyledList } from '../List/List';
@@ -13,8 +13,12 @@ import ListProvider, { scopedVariables } from '../List/ListProvider';
 import GroupListContext from '../List/GroupListContext';
 import Unfold from '../internal/svg-icons/Unfold';
 import { styled, useThemeProps } from '../styles';
-import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
-import { SelectOwnProps, SelectOwnerState, SelectTypeMap } from './SelectProps';
+import {
+  SelectOwnProps,
+  SelectOwnerState,
+  SelectSlotsAndSlotProps,
+  SelectTypeMap,
+} from './SelectProps';
 import { resolveSxValue } from '../styles/styleUtils';
 import useSlot from '../utils/useSlot';
 import selectClasses, { getSelectUtilityClass } from './selectClasses';
@@ -22,22 +26,15 @@ import { ListOwnerState } from '../List';
 import FormControlContext from '../FormControl/FormControlContext';
 import { VariantColorProvider } from '../styles/variantColorInheritance';
 
-function defaultRenderSingleValue<TValue>(selectedOption: SelectOption<TValue> | null) {
-  return selectedOption?.label ?? '';
-}
-
-function defaultFormValueProvider<TValue>(selectedOption: SelectOption<TValue> | null) {
-  if (selectedOption?.value == null) {
-    return '';
+function defaultRenderValue<OptionValue>(
+  selectedOptions: SelectOption<OptionValue> | SelectOption<OptionValue>[] | null,
+) {
+  if (Array.isArray(selectedOptions)) {
+    return <React.Fragment>{selectedOptions.map((o) => o.label).join(', ')}</React.Fragment>;
   }
 
-  if (typeof selectedOption.value === 'string' || typeof selectedOption.value === 'number') {
-    return selectedOption.value;
-  }
-
-  return JSON.stringify(selectedOption.value);
+  return selectedOptions?.label ?? '';
 }
-
 const defaultModifiers: PopperProps['modifiers'] = [
   {
     name: 'offset',
@@ -57,8 +54,8 @@ const defaultModifiers: PopperProps['modifiers'] = [
   },
 ];
 
-const useUtilityClasses = (ownerState: SelectOwnerState<any>) => {
-  const { color, disabled, focusVisible, size, variant, open } = ownerState;
+const useUtilityClasses = (ownerState: SelectOwnerState<any, boolean>) => {
+  const { color, disabled, focusVisible, size, variant, open, multiple } = ownerState;
 
   const slots = {
     root: [
@@ -69,6 +66,7 @@ const useUtilityClasses = (ownerState: SelectOwnerState<any>) => {
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
+      multiple && 'multiple',
     ],
     button: ['button'],
     startDecorator: ['startDecorator'],
@@ -84,7 +82,7 @@ const SelectRoot = styled('div', {
   name: 'JoySelect',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => {
+})<{ ownerState: SelectOwnerState<any, any> }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
   const { borderRadius } = resolveSxValue({ theme, ownerState }, ['borderRadius']);
   return [
@@ -94,16 +92,17 @@ const SelectRoot = styled('div', {
       '--Select-placeholderOpacity': 0.64,
       '--Select-decoratorColor': theme.vars.palette.text.icon,
       '--Select-focusedThickness': theme.vars.focus.thickness,
-      ...(ownerState.color === 'context'
-        ? {
-            '--Select-focusedHighlight': theme.vars.palette.focusVisible,
-          }
-        : {
-            '--Select-focusedHighlight':
-              theme.vars.palette[
-                ownerState.color === 'neutral' ? 'primary' : ownerState.color!
-              ]?.[500],
-          }),
+      '--Select-focusedHighlight':
+        theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
+      '&:not([data-inverted-colors="false"])': {
+        ...(ownerState.instanceColor && {
+          '--_Select-focusedHighlight':
+            theme.vars.palette[
+              ownerState.instanceColor === 'neutral' ? 'primary' : ownerState.instanceColor
+            ]?.[500],
+        }),
+        '--Select-focusedHighlight': theme.vars.palette.focusVisible,
+      },
       '--Select-indicatorColor': variantStyle?.backgroundColor
         ? variantStyle?.color
         : theme.vars.palette.text.tertiary,
@@ -114,13 +113,13 @@ const SelectRoot = styled('div', {
         '--Icon-fontSize': theme.vars.fontSize.xl,
       }),
       ...(ownerState.size === 'md' && {
-        '--Select-minHeight': '2.5rem',
+        '--Select-minHeight': '2.25rem',
         '--Select-paddingInline': '0.75rem',
-        '--Select-decoratorChildHeight': 'min(2rem, var(--Select-minHeight))',
+        '--Select-decoratorChildHeight': 'min(1.75rem, var(--Select-minHeight))',
         '--Icon-fontSize': theme.vars.fontSize.xl2,
       }),
       ...(ownerState.size === 'lg' && {
-        '--Select-minHeight': '3rem',
+        '--Select-minHeight': '2.75rem',
         '--Select-paddingInline': '1rem',
         '--Select-decoratorChildHeight': 'min(2.375rem, var(--Select-minHeight))',
         '--Icon-fontSize': theme.vars.fontSize.xl2,
@@ -133,10 +132,14 @@ const SelectRoot = styled('div', {
       '--Select-decoratorChildRadius':
         'max(var(--Select-radius) - var(--variant-borderWidth, 0px) - var(--_Select-paddingBlock), min(var(--_Select-paddingBlock) + var(--variant-borderWidth, 0px), var(--Select-radius) / 2))',
       '--Button-minHeight': 'var(--Select-decoratorChildHeight)',
+      '--Button-paddingBlock': '0px', // to ensure that the height of the button is equal to --Button-minHeight
       '--IconButton-size': 'var(--Select-decoratorChildHeight)',
       '--Button-radius': 'var(--Select-decoratorChildRadius)',
       '--IconButton-radius': 'var(--Select-decoratorChildRadius)',
       boxSizing: 'border-box',
+      ...(ownerState.variant !== 'plain' && {
+        boxShadow: theme.shadow.xs,
+      }),
       minWidth: 0,
       minHeight: 'var(--Select-minHeight)',
       position: 'relative',
@@ -190,7 +193,7 @@ const SelectButton = styled('button', {
   name: 'JoySelect',
   slot: 'Button',
   overridesResolver: (props, styles) => styles.button,
-})<{ ownerState: SelectOwnerState<any> }>(({ ownerState }) => ({
+})<{ ownerState: SelectOwnerState<any, any> }>(({ ownerState }) => ({
   // reset user-agent button style
   border: 0,
   outline: 0,
@@ -227,11 +230,8 @@ const SelectListbox = styled(StyledList, {
   name: 'JoySelect',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
-})<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => {
-  const variantStyle =
-    ownerState.color === 'context'
-      ? undefined
-      : theme.variants[ownerState.variant!]?.[ownerState.color!];
+})<{ ownerState: SelectOwnerState<any, any> }>(({ theme, ownerState }) => {
+  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
     '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
     '--ListItem-stickyBackground':
@@ -246,7 +246,7 @@ const SelectListbox = styled(StyledList, {
     outline: 0,
     boxShadow: theme.shadow.md,
     borderRadius: `var(--List-radius, ${theme.vars.radius.sm})`,
-    // `unstable_popup-zIndex` is a private variable that lets other component, e.g. Modal, to override the z-index so that the listbox can be displayed above the Modal.
+    // `unstable_popup-zIndex` is a private variable that lets other component, for example Modal, to override the z-index so that the listbox can be displayed above the Modal.
     zIndex: `var(--unstable_popup-zIndex, ${theme.vars.zIndex.popup})`,
     ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.popup,
@@ -258,7 +258,7 @@ const SelectStartDecorator = styled('span', {
   name: 'JoySelect',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: SelectOwnerState<any> }>({
+})<{ ownerState: SelectOwnerState<any, any> }>({
   '--Button-margin': '0 0 0 calc(var(--Select-decoratorChildOffset) * -1)',
   '--IconButton-margin': '0 0 0 calc(var(--Select-decoratorChildOffset) * -1)',
   '--Icon-margin': '0 0 0 calc(var(--Select-paddingInline) / -4)',
@@ -272,7 +272,7 @@ const SelectEndDecorator = styled('span', {
   name: 'JoySelect',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: SelectOwnerState<any> }>({
+})<{ ownerState: SelectOwnerState<any, any> }>({
   '--Button-margin': '0 calc(var(--Select-decoratorChildOffset) * -1) 0 0',
   '--IconButton-margin': '0 calc(var(--Select-decoratorChildOffset) * -1) 0 0',
   '--Icon-margin': '0 calc(var(--Select-paddingInline) / -4) 0 0',
@@ -285,7 +285,7 @@ const SelectEndDecorator = styled('span', {
 const SelectIndicator = styled('span', {
   name: 'JoySelect',
   slot: 'Indicator',
-})<{ ownerState: SelectOwnerState<any> }>(({ ownerState, theme }) => ({
+})<{ ownerState: SelectOwnerState<any, any> }>(({ ownerState, theme }) => ({
   ...(ownerState.size === 'sm' && {
     '--Icon-fontSize': theme.vars.fontSize.lg,
   }),
@@ -320,8 +320,8 @@ const SelectIndicator = styled('span', {
  *
  * - [Select API](https://mui.com/joy-ui/api/select/)
  */
-const Select = React.forwardRef(function Select<TValue extends {}>(
-  inProps: SelectOwnProps<TValue>,
+const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple extends boolean>(
+  inProps: SelectOwnProps<OptionValue, Multiple>,
   ref: React.ForwardedRef<any>,
 ) {
   const props = useThemeProps({
@@ -336,7 +336,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     defaultValue,
     defaultListboxOpen = false,
     disabled: disabledExternalProp,
-    getSerializedValue = defaultFormValueProvider,
+    getSerializedValue,
     placeholder,
     listboxId,
     listboxOpen: listboxOpenProp,
@@ -344,6 +344,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     onListboxOpenChange,
     onClose,
     renderValue: renderValueProp,
+    required = false,
     value: valueProp,
     size: sizeProp = 'md',
     variant = 'outlined',
@@ -357,6 +358,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     'aria-labelledby': ariaLabelledby,
     id,
     name,
+    multiple = false as Multiple,
     slots = {},
     slotProps = {},
     ...other
@@ -373,6 +375,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
 
   if (process.env.NODE_ENV !== 'production') {
     const registerEffect = formControl?.registerEffect;
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- process.env never changes
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (registerEffect) {
@@ -385,18 +388,16 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
 
   const disabledProp = inProps.disabled ?? formControl?.disabled ?? disabledExternalProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(
-    inProps.color,
-    formControl?.error ? 'danger' : formControl?.color ?? colorProp,
-  );
+  const color =
+    inProps.color ?? (formControl?.error ? 'danger' : (formControl?.color ?? colorProp));
 
-  const renderValue = renderValueProp ?? defaultRenderSingleValue;
+  const renderValue: (option: SelectValue<SelectOption<OptionValue>, Multiple>) => React.ReactNode =
+    renderValueProp ?? defaultRenderValue;
+
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
-  const rootRef = React.useRef<HTMLElement | null>(null);
-  const buttonRef = React.useRef<HTMLElement | null>(null);
-  const listboxRef = React.useRef<HTMLElement | null>(null);
+  const rootRef = React.useRef<HTMLElement>(null);
+  const buttonRef = React.useRef<HTMLElement>(null);
 
   const handleRef = useForkRef(ref, rootRef);
 
@@ -437,6 +438,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     disabled,
     getButtonProps,
     getListboxProps,
+    getHiddenInputProps,
     getOptionMetadata,
     open: listboxOpen,
     value,
@@ -445,15 +447,18 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     defaultOpen: defaultListboxOpen,
     defaultValue,
     disabled: disabledProp,
+    getSerializedValue,
     listboxId,
-    multiple: false,
+    multiple,
+    name,
+    required,
     onChange,
     onOpenChange: handleOpenChange,
     open: listboxOpenProp,
     value: valueProp,
   });
 
-  const ownerState = {
+  const ownerState: SelectOwnerState<OptionValue, Multiple> = {
     ...props,
     active: buttonActive,
     defaultListboxOpen,
@@ -468,19 +473,34 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
   };
 
   const classes = useUtilityClasses(ownerState);
-  const externalForwardedProps = { ...other, slots, slotProps };
+  const externalForwardedProps = {
+    ...other,
+    slots,
+    slotProps,
+  } as SelectSlotsAndSlotProps<boolean> & typeof other;
 
-  const selectedOption = React.useMemo(
-    () => getOptionMetadata(value as TValue) ?? null,
-    [getOptionMetadata, value],
-  );
+  const selectedOption = React.useMemo(() => {
+    let selectedOptionsMetadata: SelectValue<SelectOption<OptionValue>, Multiple>;
+    if (multiple) {
+      selectedOptionsMetadata = (value as OptionValue[])
+        .map((v) => getOptionMetadata(v))
+        .filter((o) => o !== undefined) as SelectValue<SelectOption<OptionValue>, Multiple>;
+    } else {
+      selectedOptionsMetadata = (getOptionMetadata(value as OptionValue) ?? null) as SelectValue<
+        SelectOption<OptionValue>,
+        Multiple
+      >;
+    }
+
+    return selectedOptionsMetadata;
+  }, [getOptionMetadata, value, multiple]);
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref: handleRef,
     className: classes.root,
     elementType: SelectRoot,
     externalForwardedProps,
-    ownerState,
+    ownerState: ownerState as SelectOwnerState<any, boolean>,
   });
 
   const [SlotButton, buttonProps] = useSlot('button', {
@@ -488,6 +508,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
       'aria-describedby': ariaDescribedby ?? formControl?.['aria-describedby'],
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledby ?? formControl?.labelId,
+      'aria-required': required ? 'true' : undefined,
       id: id ?? formControl?.htmlFor,
       name,
     },
@@ -495,12 +516,11 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     elementType: SelectButton,
     externalForwardedProps,
     getSlotProps: getButtonProps,
-    ownerState,
+    ownerState: ownerState as SelectOwnerState<any, boolean>,
   });
 
   const [SlotListbox, listboxProps] = useSlot('listbox', {
     additionalProps: {
-      ref: listboxRef,
       anchorEl,
       open: listboxOpen,
       placement: 'bottom' as const,
@@ -515,7 +535,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
       nesting: false,
       row: false,
       wrap: false,
-    } as SelectOwnerState<any> & ListOwnerState,
+    } as SelectOwnerState<any, boolean> & ListOwnerState,
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
       variant: mergedProps.variant || variant,
@@ -528,21 +548,21 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     className: classes.startDecorator,
     elementType: SelectStartDecorator,
     externalForwardedProps,
-    ownerState,
+    ownerState: ownerState as SelectOwnerState<any, boolean>,
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
     elementType: SelectEndDecorator,
     externalForwardedProps,
-    ownerState,
+    ownerState: ownerState as SelectOwnerState<any, boolean>,
   });
 
   const [SlotIndicator, indicatorProps] = useSlot('indicator', {
     className: classes.indicator,
     elementType: SelectIndicator,
     externalForwardedProps,
-    ownerState,
+    ownerState: ownerState as SelectOwnerState<any, boolean>,
   });
 
   // Wait for `listboxProps` because `slotProps.listbox` could be a function.
@@ -551,39 +571,13 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     [listboxProps.modifiers],
   );
 
-  let result = null;
-  if (anchorEl) {
-    result = (
-      <SlotListbox
-        {...listboxProps}
-        className={clsx(
-          listboxProps.className,
-          listboxProps.ownerState?.color === 'context' && selectClasses.colorContext,
-        )}
-        // @ts-ignore internal logic (too complex to typed PopperOwnProps to SlotListbox but this should be removed when we have `usePopper`)
-        modifiers={modifiers}
-        {...(!props.slots?.listbox && {
-          as: Popper,
-          slots: { root: listboxProps.as || 'ul' },
-        })}
-      >
-        <SelectProvider value={contextValue}>
-          <VariantColorProvider variant={variant} color={colorProp}>
-            <GroupListContext.Provider value="select">
-              {/* for building grouped options */}
-              <ListProvider nested>{children}</ListProvider>
-            </GroupListContext.Provider>
-          </VariantColorProvider>
-        </SelectProvider>
-      </SlotListbox>
-    );
+  let displayValue = placeholder;
 
-    if (!listboxProps.disablePortal) {
-      result = (
-        // For portal popup, the children should not inherit color inversion from the upper parent.
-        <ColorInversion.Provider value={undefined}>{result}</ColorInversion.Provider>
-      );
-    }
+  if (
+    (Array.isArray(selectedOption) && selectedOption.length > 0) ||
+    (!Array.isArray(selectedOption) && !!selectedOption)
+  ) {
+    displayValue = renderValue(selectedOption);
   }
 
   return (
@@ -593,39 +587,61 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
           <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
         )}
 
-        <SlotButton {...buttonProps}>
-          {selectedOption ? renderValue(selectedOption) : placeholder}
-        </SlotButton>
+        <SlotButton {...buttonProps}>{displayValue}</SlotButton>
         {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
 
         {indicator && <SlotIndicator {...indicatorProps}>{indicator}</SlotIndicator>}
+        <input {...getHiddenInputProps()} />
       </SlotRoot>
-      {result}
-
-      {name && <input type="hidden" name={name} value={getSerializedValue(selectedOption)} />}
+      {anchorEl && (
+        <SlotListbox
+          {...listboxProps}
+          className={clsx(listboxProps.className)}
+          // @ts-ignore internal logic (too complex to typed PopperOwnProps to SlotListbox but this should be removed when we have `usePopper`)
+          modifiers={modifiers}
+          {...(!props.slots?.listbox && {
+            as: Popper,
+            slots: { root: listboxProps.as || 'ul' },
+          })}
+        >
+          <SelectProvider value={contextValue}>
+            <VariantColorProvider variant={variant} color={colorProp}>
+              <GroupListContext.Provider value="select">
+                {/* for building grouped options */}
+                <ListProvider nested>{children}</ListProvider>
+              </GroupListContext.Provider>
+            </VariantColorProvider>
+          </SelectProvider>
+        </SlotListbox>
+      )}
     </React.Fragment>
   );
 }) as SelectComponent;
 
 interface SelectComponent {
-  <TValue extends {}, C extends React.ElementType>(
+  <OptionValue extends {}, C extends React.ElementType, Multiple extends boolean = false>(
     props: {
       /**
        * The component used for the root node.
        * Either a string to use a HTML element or a component.
        */
       component: C;
-    } & OverrideProps<SelectTypeMap<TValue>, C>,
-  ): JSX.Element | null;
-  <TValue extends {}>(props: DefaultComponentProps<SelectTypeMap<TValue>>): JSX.Element | null;
+      multiple?: Multiple;
+    } & OverrideProps<SelectTypeMap<OptionValue, Multiple>, C>,
+  ): React.JSX.Element | null;
+  <OptionValue extends {}, Multiple extends boolean = false>(
+    props: {
+      multiple?: Multiple;
+    } & DefaultComponentProps<SelectTypeMap<OptionValue, Multiple>>,
+  ): React.JSX.Element | null;
   propTypes?: any;
 }
 
 Select.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A ref for imperative actions. It currently only supports `focusVisible()` action.
    */
@@ -705,8 +721,12 @@ Select.propTypes /* remove-proptypes */ = {
    */
   listboxOpen: PropTypes.bool,
   /**
+   * If `true`, selecting multiple values is allowed.
+   * This affects the type of the `value`, `defaultValue`, and `onChange` props.
+   */
+  multiple: PropTypes.bool,
+  /**
    * Name of the element. For example used by the server to identify the fields in form submits.
-   * If the name is provided, the component will render a hidden input element that can be submitted to a server.
    */
   name: PropTypes.string,
   /**
@@ -730,6 +750,11 @@ Select.propTypes /* remove-proptypes */ = {
    * Function that customizes the rendering of the selected value.
    */
   renderValue: PropTypes.func,
+  /**
+   * If `true`, the Select cannot be empty when submitting form.
+   * @default false
+   */
+  required: PropTypes.bool,
   /**
    * The size of the component.
    */

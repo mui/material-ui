@@ -20,10 +20,8 @@ export default function ExampleIOSList() {
     <Sheet variant="soft" sx={{ width: 343, p: 2, borderRadius: 'sm' }}>
       <Typography
         level="h3"
-        fontSize="xl2"
-        fontWeight="xl"
         id="ios-example-demo"
-        mb={1}
+        sx={{ fontSize: 'xl2', fontWeight: 'xl', mb: 1 }}
       >
         Settings
       </Typography>
@@ -70,8 +68,8 @@ export default function ExampleIOSList() {
                 </Avatar>
               </ListItemDecorator>
               <div>
-                <Typography fontSize="xl">Murphy Bates</Typography>
-                <Typography fontSize="xs">
+                <Typography sx={{ fontSize: 'xl' }}>Murphy Bates</Typography>
+                <Typography sx={{ fontSize: 'xs' }}>
                   Apple ID, iCloud, Media & Purchase
                 </Typography>
               </div>
@@ -162,7 +160,12 @@ export default function ExampleIOSList() {
                   </Sheet>
                 </ListItemDecorator>
                 <ListItemContent>Wi-Fi</ListItemContent>
-                <Typography textColor="text.tertiary">Mars</Typography>
+                <Typography
+                  textColor="text.tertiary"
+                  sx={{ mr: 'calc(-1 * var(--ListItem-gap))' }}
+                >
+                  Mars
+                </Typography>
                 <KeyboardArrowRight fontSize="xl3" />
               </ListItemButton>
             </ListItem>
@@ -175,7 +178,12 @@ export default function ExampleIOSList() {
                   </Sheet>
                 </ListItemDecorator>
                 <ListItemContent>Bluetooth</ListItemContent>
-                <Typography textColor="text.tertiary">On</Typography>
+                <Typography
+                  textColor="text.tertiary"
+                  sx={{ mr: 'calc(-1 * var(--ListItem-gap))' }}
+                >
+                  On
+                </Typography>
                 <KeyboardArrowRight fontSize="xl3" />
               </ListItemButton>
             </ListItem>

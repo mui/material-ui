@@ -30,20 +30,20 @@
     "import { Snackbar } from '@mui/base/Snackbar';",
     "import { Snackbar } from '@mui/base';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": null },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiSnackbar-root"
+      "class": "base-Snackbar-root"
     }
   ],
+  "classes": [],
   "spread": true,
-  "muiName": "MuiSnackbar",
+  "muiName": "Snackbar",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/Snackbar/Snackbar.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base-ui/react-snackbar/\">Snackbar</a></li>\n<li><a href=\"/material-ui/react-snackbar/\">Snackbar</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base-ui/react-snackbar/\">Snackbar</a></li>\n<li><a href=\"/joy-ui/react-snackbar/\">Snackbar</a></li>\n<li><a href=\"/material-ui/react-snackbar/\">Snackbar</a></li></ul>",
   "cssComponent": false
 }

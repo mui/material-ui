@@ -1,12 +1,13 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
-import { ClickAwayListener } from '@mui/base/ClickAwayListener';
-import { useSnackbar } from '@mui/base/useSnackbar';
-import styled from '../styles/styled';
-import useTheme from '../styles/useTheme';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import useSlotProps from '@mui/utils/useSlotProps';
+import useSnackbar from './useSnackbar';
+import ClickAwayListener from '../ClickAwayListener';
+import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import SnackbarContent from '../SnackbarContent';
@@ -40,14 +41,8 @@ const SnackbarRoot = styled('div', {
       ],
     ];
   },
-})(({ theme, ownerState }) => {
-  const center = {
-    left: '50%',
-    right: 'auto',
-    transform: 'translateX(-50%)',
-  };
-
-  return {
+})(
+  memoTheme(({ theme }) => ({
     zIndex: (theme.vars || theme).zIndex.snackbar,
     position: 'fixed',
     display: 'flex',
@@ -55,26 +50,51 @@ const SnackbarRoot = styled('div', {
     right: 8,
     justifyContent: 'center',
     alignItems: 'center',
-    ...(ownerState.anchorOrigin.vertical === 'top' ? { top: 8 } : { bottom: 8 }),
-    ...(ownerState.anchorOrigin.horizontal === 'left' && { justifyContent: 'flex-start' }),
-    ...(ownerState.anchorOrigin.horizontal === 'right' && { justifyContent: 'flex-end' }),
-    [theme.breakpoints.up('sm')]: {
-      ...(ownerState.anchorOrigin.vertical === 'top' ? { top: 24 } : { bottom: 24 }),
-      ...(ownerState.anchorOrigin.horizontal === 'center' && center),
-      ...(ownerState.anchorOrigin.horizontal === 'left' && {
-        left: 24,
-        right: 'auto',
-      }),
-      ...(ownerState.anchorOrigin.horizontal === 'right' && {
-        right: 24,
-        left: 'auto',
-      }),
-    },
-  };
-});
+    variants: [
+      {
+        props: ({ ownerState }) => ownerState.anchorOrigin.vertical === 'top',
+        style: { top: 8, [theme.breakpoints.up('sm')]: { top: 24 } },
+      },
+      {
+        props: ({ ownerState }) => ownerState.anchorOrigin.vertical !== 'top',
+        style: { bottom: 8, [theme.breakpoints.up('sm')]: { bottom: 24 } },
+      },
+      {
+        props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'left',
+        style: {
+          justifyContent: 'flex-start',
+          [theme.breakpoints.up('sm')]: {
+            left: 24,
+            right: 'auto',
+          },
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'right',
+        style: {
+          justifyContent: 'flex-end',
+          [theme.breakpoints.up('sm')]: {
+            right: 24,
+            left: 'auto',
+          },
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'center',
+        style: {
+          [theme.breakpoints.up('sm')]: {
+            left: '50%',
+            right: 'auto',
+            transform: 'translateX(-50%)',
+          },
+        },
+      },
+    ],
+  })),
+);
 
 const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSnackbar' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiSnackbar' });
   const theme = useTheme();
   const defaultTransitionDuration = {
     enter: theme.transitions.duration.enteringScreen,
@@ -171,10 +191,10 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
 });
 
 Snackbar.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The action to display. It renders after the message, at the end of the snackbar.
    */
@@ -214,7 +234,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
    */
   ClickAwayListenerProps: PropTypes.object,
   /**
-   * Props applied to the [`SnackbarContent`](/material-ui/api/snackbar-content/) element.
+   * Props applied to the [`SnackbarContent`](https://mui.com/material-ui/api/snackbar-content/) element.
    */
   ContentProps: PropTypes.object,
   /**
@@ -223,10 +243,10 @@ Snackbar.propTypes /* remove-proptypes */ = {
    */
   disableWindowBlurListener: PropTypes.bool,
   /**
-   * When displaying multiple consecutive Snackbars from a parent rendering a single
-   * <Snackbar/>, add the key prop to ensure independent treatment of each message.
-   * e.g. <Snackbar key={message} />, otherwise, the message may update-in-place and
-   * features such as autoHideDuration may be canceled.
+   * When displaying multiple consecutive snackbars using a single parent-rendered
+   * `<Snackbar/>`, add the `key` prop to ensure independent treatment of each message.
+   * For instance, use `<Snackbar key={message} />`. Otherwise, messages might update
+   * in place, and features like `autoHideDuration` could be affected.
    */
   key: () => null,
   /**
@@ -281,7 +301,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The component used for the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Grow
    */
   TransitionComponent: PropTypes.elementType,
@@ -303,7 +323,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    * @default {}
    */
   TransitionProps: PropTypes.object,

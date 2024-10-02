@@ -6,7 +6,14 @@ export default function BasicFocusTrap() {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'column',
+        '& [tabindex]:focus': { outline: '1px solid green' },
+      }}
+    >
       <button type="button" onClick={() => setOpen(true)}>
         Open
       </button>

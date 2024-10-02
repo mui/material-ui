@@ -31,20 +31,20 @@ function createElementBasePropMixedTest() {
   React.createElement<CardHeaderProps>(CardHeader, {
     disableTypography: true,
   });
-  // @ts-expect-error CardHeader does not accept unknownProp
   React.createElement<CardHeaderProps<DefaultComponent, {}, React.ElementType>>(CardHeader, {
+    // @ts-expect-error CardHeader does not accept unknownProp
     unknownProp: 'shouldNotWork',
   });
-  // @ts-expect-error disableTypography does not accept strings
   React.createElement<CardHeaderProps>(CardHeader, {
+    // @ts-expect-error disableTypography does not accept strings
     disableTypography: 'hello',
   });
-  // @ts-expect-error disableTypography does not accept numbers
   React.createElement<CardHeaderProps>(CardHeader, {
+    // @ts-expect-error disableTypography does not accept numbers
     disableTypography: 1,
   });
-  // @ts-expect-error `component` is not a valid element
   React.createElement<CardHeaderProps<any, ComponentProp>>(CardHeader, {
+    // @ts-expect-error `component` is not a valid element
     component: 'incorrectElement',
   });
 }
@@ -55,9 +55,9 @@ function createElementTypographyTest() {
       align: 'center',
     },
   });
-  // @ts-expect-error
   React.createElement<CardHeaderProps>(CardHeader, {
     titleTypographyProps: {
+      // @ts-expect-error
       align: 'incorrectAlign',
     },
   });
@@ -66,9 +66,9 @@ function createElementTypographyTest() {
       variant: 'body1',
     },
   });
-  // @ts-expect-error
   React.createElement<CardHeaderProps>(CardHeader, {
     titleTypographyProps: {
+      // @ts-expect-error
       variant: 123,
     },
   });
@@ -105,14 +105,14 @@ function createElementTypographyTest() {
       unknownProp: 'shouldNotWork',
     },
   });
-  // @ts-expect-error
   React.createElement<CardHeaderProps<DefaultComponent, {}, React.ElementType>>(CardHeader, {
     titleTypographyProps: {
+      // @ts-expect-error
       component: 'incorrectComponent',
     },
   });
-  // @ts-expect-error
   React.createElement<CardHeaderProps>(CardHeader, {
+    // @ts-expect-error
     titleTypographyProps: true,
   });
 }

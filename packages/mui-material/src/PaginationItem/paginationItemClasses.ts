@@ -1,5 +1,5 @@
-import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
-import generateUtilityClass from '../generateUtilityClass';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
 
 export interface PaginationItemClasses {
   /** Styles applied to the root element. */
@@ -12,15 +12,23 @@ export interface PaginationItemClasses {
   sizeLarge: string;
   /** Styles applied to the root element if `variant="text"`. */
   text: string;
-  /** Styles applied to the root element if `variant="text"` and `color="primary"`. */
+  /** Styles applied to the root element if `variant="text"` and `color="primary"`.
+   *  @deprecated Combine the [.MuiPaginationItem-text](/material-ui/api/pagination-item/#pagination-item-classes-text) and [.MuiPaginationItem-colorPrimary](/material-ui/api/pagination-item/#pagination-item-classes-colorPrimary) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   */
   textPrimary: string;
-  /** Styles applied to the root element if `variant="text"` and `color="secondary"`. */
+  /** Styles applied to the root element if `variant="text"` and `color="secondary"`.
+   *  @deprecated Combine the [.MuiPaginationItem-text](/material-ui/api/pagination-item/#pagination-item-classes-text) and [.MuiPaginationItem-colorSecondary](/material-ui/api/pagination-item/#pagination-item-classes-colorSecondary) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   */
   textSecondary: string;
   /** Styles applied to the root element if `variant="outlined"`. */
   outlined: string;
-  /** Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
+  /** Styles applied to the root element if `variant="outlined"` and `color="primary"`.
+   * @deprecated Combine the [.MuiPaginationItem-outlined](/material-ui/api/pagination-item/#pagination-item-classes-outlined) and [.MuiPaginationItem-colorPrimary](/material-ui/api/pagination-item/#pagination-item-classes-colorPrimary) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   */
   outlinedPrimary: string;
-  /** Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
+  /** Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
+   * @deprecated Combine the [.MuiPaginationItem-outlined](/material-ui/api/pagination-item/#pagination-item-classes-outlined) and [.MuiPaginationItem-colorSecondary](/material-ui/api/pagination-item/#pagination-item-classes-colorSecondary) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   */
   outlinedSecondary: string;
   /** Styles applied to the root element if `rounded="true"`. */
   rounded: string;
@@ -38,6 +46,10 @@ export interface PaginationItemClasses {
   selected: string;
   /** Styles applied to the icon to display. */
   icon: string;
+  /** Styles applied to the root element if `color="primary"`. */
+  colorPrimary: string;
+  /** Styles applied to the root element if `color="secondary"`. */
+  colorSecondary: string;
 }
 
 export type PaginationItemClassKey = keyof PaginationItemClasses;
@@ -65,6 +77,8 @@ const paginationItemClasses: PaginationItemClasses = generateUtilityClasses('Mui
   'disabled',
   'selected',
   'icon',
+  'colorPrimary',
+  'colorSecondary',
 ]);
 
 export default paginationItemClasses;

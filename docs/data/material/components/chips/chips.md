@@ -4,6 +4,7 @@ title: React Chip component
 components: Chip
 githubLabel: 'component: chip'
 materialDesign: https://m2.material.io/components/chips
+githubSource: packages/mui-material/src/Chip
 ---
 
 # Chip
@@ -16,7 +17,7 @@ While included here as a standalone component, the most common use will
 be in some form of input, so some of the behavior demonstrated here is
 not shown in context.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic chip
 
@@ -99,4 +100,4 @@ gain depth while clicked or touched.
 
 ## Accessibility
 
-If the Chip is deletable or clickable then it is a button in tab order. When the Chip is focused (e.g. when tabbing) releasing (`keyup` event) `Backspace` or `Delete` will call the `onDelete` handler while releasing `Escape` will blur the Chip.
+If the Chip is deletable or clickable then it is a button in tab order. When the Chip is focused (for example when tabbing) releasing (`keyup` event) `Backspace` or `Delete` will call the `onDelete` handler while releasing `Escape` will blur the Chip.

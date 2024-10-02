@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import FormControlLabel, {
   formControlLabelClasses as classes,
 } from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
 import Typography from '@mui/material/Typography';
+import describeConformance from '../../test/describeConformance';
 
 describe('<FormControlLabel />', () => {
   const { render } = createRenderer();
@@ -17,17 +18,11 @@ describe('<FormControlLabel />', () => {
     render,
     muiName: 'MuiFormControlLabel',
     testVariantProps: { disabled: true },
-    testLegacyComponentsProp: true,
     refInstanceof: window.HTMLLabelElement,
     slots: {
       typography: { expectedClassName: classes.label },
     },
-    skip: [
-      'componentProp',
-      'componentsProp',
-      'slotsProp',
-      'slotPropsCallback', // not supported yet
-    ],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   describe('prop: label', () => {

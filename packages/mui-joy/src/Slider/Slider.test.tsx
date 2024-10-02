@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, describeJoyColorInversion } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Slider, { sliderClasses as classes } from '@mui/joy/Slider';
 import { ThemeProvider } from '@mui/joy/styles';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Slider />', () => {
   const { render } = createRenderer();
@@ -35,8 +36,6 @@ describe('<Slider />', () => {
       skip: ['componentsProp', 'classesRoot', 'propsSpread'],
     }),
   );
-
-  describeJoyColorInversion(<Slider />, { muiName: 'JoySlider', classes });
 
   it('should render the rail as the first child of the Slider', () => {
     const { container } = render(<Slider />);

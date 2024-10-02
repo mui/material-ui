@@ -21,30 +21,15 @@ export default function BasicModal() {
       >
         <Sheet
           variant="outlined"
-          sx={{
-            maxWidth: 500,
-            borderRadius: 'md',
-            p: 3,
-            boxShadow: 'lg',
-          }}
+          sx={{ maxWidth: 500, borderRadius: 'md', p: 3, boxShadow: 'lg' }}
         >
-          <ModalClose
-            variant="outlined"
-            sx={{
-              top: 'calc(-1/4 * var(--IconButton-size))',
-              right: 'calc(-1/4 * var(--IconButton-size))',
-              boxShadow: '0 2px 12px 0 rgba(0 0 0 / 0.2)',
-              borderRadius: '50%',
-              bgcolor: 'background.surface',
-            }}
-          />
+          <ModalClose variant="plain" sx={{ m: 1 }} />
           <Typography
             component="h2"
             id="modal-title"
             level="h4"
             textColor="inherit"
-            fontWeight="lg"
-            mb={1}
+            sx={{ fontWeight: 'lg', mb: 1 }}
           >
             This is the modal title
           </Typography>

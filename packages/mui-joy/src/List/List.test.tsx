@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, screen, describeJoyColorInversion } from 'test/utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import List, { listClasses as classes } from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -8,6 +8,7 @@ import MenuList from '@mui/joy/MenuList';
 import Menu from '@mui/joy/Menu';
 import Select from '@mui/joy/Select';
 import RadioGroup from '@mui/joy/RadioGroup';
+import describeConformance from '../../test/describeConformance';
 
 describe('Joy <List />', () => {
   const { render } = createRenderer();
@@ -28,8 +29,6 @@ describe('Joy <List />', () => {
       },
     },
   }));
-
-  describeJoyColorInversion(<List />, { muiName: 'JoyList', classes });
 
   it('should have root className', () => {
     const { container } = render(<List />);
@@ -103,6 +102,7 @@ describe('Joy <List />', () => {
   describe('Menu - integration', () => {
     const element = document.createElement('div');
     element.setAttribute('aria-controls', 'test');
+
     it('should have role="group" inside Menu', () => {
       render(
         <Menu open anchorEl={() => element}>

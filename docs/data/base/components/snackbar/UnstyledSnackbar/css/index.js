@@ -51,16 +51,16 @@ const cyan = {
 };
 
 const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
 function useIsDarkMode() {
@@ -77,33 +77,39 @@ function Styles() {
       from {
         transform: translateX(100%);
       }
-    
+
       to {
         transform: translateX(0);
       }
     }
 
     .TriggerButton {
-      font-family: IBM Plex Sans, sans-serif;
-      font-size: 0.875rem;
+      font-family: 'IBM Plex Sans', sans-serif;
       font-weight: 600;
-      box-sizing: border-box;
-      border-radius: 8px;
-      padding: 8px 16px;
+      font-size: 0.875rem;
       line-height: 1.5;
-      background: transparent;
+      padding: 8px 16px;
+      border-radius: 8px;
+      color: white;
+      transition: all 150ms ease;
       cursor: pointer;
-      border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
-      color: ${isDarkMode ? cyan[300] : cyan[400]};
+      background: ${isDarkMode ? grey[900] : '#fff'};
+      border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
+      color: ${isDarkMode ? grey[200] : grey[900]};
+      box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 
       &:hover {
-        background: ${isDarkMode ? grey[900] : grey[100]};
-        border-color: ${isDarkMode ? cyan[200] : cyan[400]};
+        background: ${isDarkMode ? grey[800] : grey[50]};
+        border-color: ${isDarkMode ? grey[600] : grey[300]};
+      }
+
+      &:active {
+        background: ${isDarkMode ? grey[700] : grey[100]};
       }
 
       &:focus-visible {
-        border-color: ${cyan[400]};
-        outline: 3px solid ${isDarkMode ? cyan[500] : cyan[200]};
+        box-shadow: 0 0 0 4px ${isDarkMode ? cyan[300] : cyan[200]};
+        outline: none;
       }
     }
 
@@ -117,7 +123,7 @@ function Styles() {
       justify-content: start;
       max-width: 560px;
       min-width: 300px;
-      background-color: ${isDarkMode ? grey[900] : grey[50]};
+      background-color: ${isDarkMode ? grey[900] : '#FFF'};
       border-radius: 8px;
       border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
       box-shadow: ${

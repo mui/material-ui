@@ -24,10 +24,10 @@ export default function About() {
   return (
     <Container maxWidth="lg">
       <div className={classes.main}>
-        <Typography variant="h4" component="h1" gutterBottom>
+        <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
           Material UI - Next.js example in TypeScript with legacy @mui/styles
         </Typography>
-        <Box maxWidth="sm">
+        <Box sx={{ maxWidth: 'sm' }}>
           <Button variant="contained" component={Link} noLinkStyle href="/">
             Go to the home page
           </Button>

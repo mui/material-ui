@@ -7,36 +7,38 @@ import { ToolbarClasses } from './toolbarClasses';
 
 export interface ToolbarPropsVariantOverrides {}
 
+export interface ToolbarOwnProps {
+  /**
+   * The Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
+   * The Toolbar is a flex container, allowing flex item properties to be used to lay out the children.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<ToolbarClasses>;
+  /**
+   * If `true`, disables gutter padding.
+   * @default false
+   */
+  disableGutters?: boolean;
+  /**
+   * The variant to use.
+   * @default 'regular'
+   */
+  variant?: OverridableStringUnion<'regular' | 'dense', ToolbarPropsVariantOverrides>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+}
+
 export interface ToolbarTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'div',
+  RootComponent extends React.ElementType = 'div',
 > {
-  props: AdditionalProps & {
-    /**
-     * The Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
-     * The Toolbar is a flex container, allowing flex item properties to be used to lay out the children.
-     */
-    children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<ToolbarClasses>;
-    /**
-     * If `true`, disables gutter padding.
-     * @default false
-     */
-    disableGutters?: boolean;
-    /**
-     * The variant to use.
-     * @default 'regular'
-     */
-    variant?: OverridableStringUnion<'regular' | 'dense', ToolbarPropsVariantOverrides>;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
-  };
-  defaultComponent: DefaultComponent;
+  props: AdditionalProps & ToolbarOwnProps;
+  defaultComponent: RootComponent;
 }
 /**
  *

@@ -35,46 +35,24 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
     "checked": {
       "description": "State class applied to {{nodeName}}.",
       "nodeName": "the root <code>checked</code> class"
     },
-    "disabled": {
-      "description": "State class applied to {{nodeName}}.",
-      "nodeName": "the root disabled class"
-    },
-    "action": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the action element"
-    },
-    "input": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the input element"
-    },
-    "thumb": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the input element"
-    },
-    "track": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the track element"
-    },
-    "focusVisible": {
-      "description": "State class applied to the root element if the switch has visible focus"
-    },
-    "readOnly": {
-      "description": "Class name applied to the root element if the switch is read-only"
-    },
-    "colorPrimary": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"primary\"</code>"
+      "conditions": "color inversion is triggered"
     },
     "colorDanger": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>color=\"danger\"</code>"
+    },
+    "colorPrimary": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"primary\"</code>"
     },
     "colorSuccess": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -86,25 +64,30 @@
       "nodeName": "the root element",
       "conditions": "<code>color=\"warning\"</code>"
     },
-    "colorContext": {
-      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "color inversion is triggered"
+    "disabled": {
+      "description": "State class applied to {{nodeName}}.",
+      "nodeName": "the root disabled class"
     },
-    "sizeSm": {
+    "focusVisible": {
+      "description": "State class applied to the root element if the switch has visible focus"
+    },
+    "readOnly": {
+      "description": "Class name applied to the root element if the switch is read-only"
+    },
+    "sizeLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"sm\"</code>"
+      "conditions": "<code>size=\"lg\"</code>"
     },
     "sizeMd": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>size=\"md\"</code>"
     },
-    "sizeLg": {
+    "sizeSm": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"lg\"</code>"
+      "conditions": "<code>size=\"sm\"</code>"
     },
     "variantOutlined": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -120,23 +103,15 @@
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"solid\"</code>"
-    },
-    "startDecorator": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the startDecorator element"
-    },
-    "endDecorator": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the endDecorator element"
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
-    "thumb": "The component that renders the thumb.",
     "action": "The component that renders the action.",
+    "endDecorator": "The component that renders the end decorator.",
     "input": "The component that renders the input.",
-    "track": "The component that renders the track.",
+    "root": "The component that renders the root.",
     "startDecorator": "The component that renders the start decorator.",
-    "endDecorator": "The component that renders the end decorator."
+    "thumb": "The component that renders the thumb.",
+    "track": "The component that renders the track."
   }
 }

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import SvgIcon, { svgIconClasses as classes } from '@mui/material/SvgIcon';
+import describeConformance from '../../test/describeConformance';
 
 describe('<SvgIcon />', () => {
   const { render } = createRenderer();

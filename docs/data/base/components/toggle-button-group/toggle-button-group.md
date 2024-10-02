@@ -9,5 +9,5 @@ githubLabel: 'component: toggle button'
 <p class="description">Toggle Button Groups house sets of buttons with mutually exclusive actions.</p>
 
 :::warning
-The Base UI Toggle Button Group component isn't available yet, but you can upvote [this GitHub issue](https://github.com/mui/material-ui/issues/38044) to see it arrive sooner.
+The Base UI Toggle Button Group component isn't available yet, but you can upvote [this GitHub issue](https://github.com/mui/base-ui/issues/31) to see it arrive sooner.
 :::

@@ -7,15 +7,18 @@ import { OverridableComponent } from '@mui/types';
 import {
   unstable_capitalize as capitalize,
   unstable_isMuiElement as isMuiElement,
+  unstable_useId as useId,
 } from '@mui/utils';
+import { Breakpoint } from '@mui/system';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
-import { SheetRoot } from '../Sheet/Sheet';
+import { Theme } from '../styles/types/theme';
 import { getModalDialogUtilityClass } from './modalDialogClasses';
 import { ModalDialogProps, ModalDialogOwnerState, ModalDialogTypeMap } from './ModalDialogProps';
 import ModalDialogSizeContext from './ModalDialogSizeContext';
 import ModalDialogVariantColorContext from './ModalDialogVariantColorContext';
 import useSlot from '../utils/useSlot';
+import { StyledCardRoot } from '../Card/Card';
+import { DividerProps } from '../Divider';
 
 const useUtilityClasses = (ownerState: ModalDialogOwnerState) => {
   const { variant, color, size, layout } = ownerState;
@@ -33,50 +36,53 @@ const useUtilityClasses = (ownerState: ModalDialogOwnerState) => {
   return composeClasses(slots, getModalDialogUtilityClass, {});
 };
 
-const ModalDialogRoot = styled(SheetRoot, {
+function getBreakpointValue(theme: Theme, breakpoint: string | undefined) {
+  return breakpoint && theme.breakpoints?.values[breakpoint as Breakpoint]
+    ? `${theme.breakpoints?.values[breakpoint as Breakpoint]}px`
+    : breakpoint;
+}
+
+const ModalDialogRoot = styled(StyledCardRoot, {
   name: 'JoyModalDialog',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ModalDialogOwnerState }>(({ theme, ownerState }) => ({
-  // Divider integration
-  '--Divider-inset': 'calc(-1 * var(--ModalDialog-padding))',
+  '--ModalDialog-minWidth':
+    typeof ownerState.minWidth === 'number'
+      ? `${ownerState.minWidth}px`
+      : getBreakpointValue(theme, ownerState.minWidth),
+  '--ModalDialog-maxWidth':
+    typeof ownerState.maxWidth === 'number'
+      ? `${ownerState.maxWidth}px`
+      : getBreakpointValue(theme, ownerState.maxWidth),
   '--ModalClose-radius':
-    'max((var(--ModalDialog-radius) - var(--variant-borderWidth, 0px)) - var(--ModalClose-inset), min(var(--ModalClose-inset) / 2, (var(--ModalDialog-radius) - var(--variant-borderWidth, 0px)) / 2))',
+    'max((var(--Card-radius) - var(--variant-borderWidth, 0px)) - var(--ModalClose-inset), min(var(--ModalClose-inset) / 2, (var(--Card-radius) - var(--variant-borderWidth, 0px)) / 2))',
+  ...(ownerState.variant === 'solid' && {
+    '--DialogContent-color': 'currentColor',
+  }),
   ...(ownerState.size === 'sm' && {
-    '--ModalDialog-padding': theme.spacing(2),
-    '--ModalDialog-radius': theme.vars.radius.sm,
-    '--ModalDialog-gap': theme.spacing(0.75),
+    '--Card-padding': '1rem',
     '--ModalDialog-titleOffset': theme.spacing(0.25),
     '--ModalDialog-descriptionOffset': theme.spacing(0.25),
-    '--ModalClose-inset': theme.spacing(1.25),
+    '--ModalClose-inset': '0.375rem',
   }),
   ...(ownerState.size === 'md' && {
-    '--ModalDialog-padding': theme.spacing(2.5),
-    '--ModalDialog-radius': theme.vars.radius.md,
-    '--ModalDialog-gap': theme.spacing(1.5),
+    '--Card-padding': '1.25rem',
     '--ModalDialog-titleOffset': theme.spacing(0.25),
     '--ModalDialog-descriptionOffset': theme.spacing(0.75),
-    '--ModalClose-inset': theme.spacing(1.5),
+    '--ModalClose-inset': '0.5rem',
   }),
   ...(ownerState.size === 'lg' && {
-    '--ModalDialog-padding': theme.spacing(3),
-    '--ModalDialog-radius': theme.vars.radius.md,
-    '--ModalDialog-gap': theme.spacing(2),
+    '--Card-padding': '1.5rem',
     '--ModalDialog-titleOffset': theme.spacing(0.5),
     '--ModalDialog-descriptionOffset': theme.spacing(1),
-    '--ModalClose-inset': theme.spacing(1.5),
+    '--ModalClose-inset': '0.625rem',
   }),
   boxSizing: 'border-box',
   boxShadow: theme.shadow.md,
-  borderRadius: 'var(--ModalDialog-radius)',
-  fontFamily: theme.vars.fontFamily.body,
-  lineHeight: theme.vars.lineHeight.md,
-  padding: 'var(--ModalDialog-padding)',
-  minWidth: 'min(calc(100vw - 2 * var(--ModalDialog-padding)), var(--ModalDialog-minWidth, 300px))',
+  minWidth: 'min(calc(100vw - 2 * var(--Card-padding)), var(--ModalDialog-minWidth, 300px))',
   outline: 0,
   position: 'absolute',
-  display: 'flex',
-  flexDirection: 'column',
   ...(ownerState.layout === 'fullscreen' && {
     top: 0,
     left: 0,
@@ -89,9 +95,8 @@ const ModalDialogRoot = styled(SheetRoot, {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    maxWidth:
-      'min(calc(100vw - 2 * var(--ModalDialog-padding)), var(--ModalDialog-maxWidth, 100vw))',
-    maxHeight: 'calc(100% - 2 * var(--ModalDialog-padding))',
+    maxWidth: 'min(calc(100vw - 2 * var(--Card-padding)), var(--ModalDialog-maxWidth, 100vw))',
+    maxHeight: 'calc(100% - 2 * var(--Card-padding))',
   }),
   [`& [id="${ownerState['aria-labelledby']}"]`]: {
     '--Typography-margin': 'calc(-1 * var(--ModalDialog-titleOffset)) 0 var(--ModalDialog-gap) 0',
@@ -130,33 +135,40 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
   const {
     className,
     children,
-    color: colorProp = 'neutral',
+    invertedColors = false,
+    orientation = 'vertical',
+    color = 'neutral',
     component = 'div',
     variant = 'outlined',
     size = 'md',
     layout = 'center',
+    maxWidth,
+    minWidth,
     slots = {},
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
     color,
     component,
+    maxWidth,
+    minWidth,
     layout,
     size,
     variant,
+    invertedColors,
   };
 
   const classes = useUtilityClasses(ownerState);
   const externalForwardedProps = { ...other, component, slots, slotProps };
 
+  const labelledBy = useId();
+  const describedBy = useId();
   const contextValue = React.useMemo(
-    () => ({ variant, color: color === 'context' ? undefined : color }),
-    [color, variant],
+    () => ({ variant, color, labelledBy, describedBy }),
+    [color, variant, labelledBy, describedBy],
   );
 
   const [SlotRoot, rootProps] = useSlot('root', {
@@ -169,6 +181,8 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
       as: component,
       role: 'dialog',
       'aria-modal': 'true',
+      'aria-labelledby': labelledBy,
+      'aria-describedby': describedBy,
     },
   });
 
@@ -176,16 +190,25 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
     <ModalDialogSizeContext.Provider value={size}>
       <ModalDialogVariantColorContext.Provider value={contextValue}>
         <SlotRoot {...rootProps}>
-          {React.Children.map(children, (child) => {
+          {React.Children.map(children, (child, index) => {
             if (!React.isValidElement(child)) {
               return child;
             }
+            const extraProps: Record<string, any> = {};
             if (isMuiElement(child, ['Divider'])) {
-              const extraProps: Record<string, any> = {};
-              extraProps.inset = 'inset' in child.props ? child.props.inset : 'context';
-              return React.cloneElement(child, extraProps);
+              const childProps = child.props as DividerProps;
+              extraProps.inset = childProps?.inset ?? 'context';
+
+              const dividerOrientation = orientation === 'vertical' ? 'horizontal' : 'vertical';
+              extraProps.orientation = childProps?.orientation ?? dividerOrientation;
             }
-            return child;
+            if (index === 0) {
+              extraProps['data-first-child'] = '';
+            }
+            if (index === React.Children.count(children) - 1) {
+              extraProps['data-last-child'] = '';
+            }
+            return React.cloneElement(child, extraProps);
           })}
         </SlotRoot>
       </ModalDialogVariantColorContext.Provider>
@@ -194,10 +217,10 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
 }) as OverridableComponent<ModalDialogTypeMap>;
 
 ModalDialog.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -220,6 +243,11 @@ ModalDialog.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
+   * @default false
+   */
+  invertedColors: PropTypes.bool,
+  /**
    * The layout of the dialog
    * @default 'center'
    */
@@ -227,6 +255,25 @@ ModalDialog.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['center', 'fullscreen']),
     PropTypes.string,
   ]),
+  /**
+   * The maximum width of the component.
+   * @example 'md' will use the theme's `md` breakpoint value
+   * @example 360 is the number of pixels
+   * @example '60ch' can be any valid CSS max-width unit
+   */
+  maxWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * The minimum width of the component.
+   * @example 'md' will use the theme's `md` breakpoint value
+   * @example 360 is the number of pixels
+   * @example '60ch' can be any valid CSS min-width unit
+   */
+  minWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * The component orientation.
+   * @default 'vertical'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * The size of the component.
    * @default 'md'

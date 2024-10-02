@@ -2,9 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import CheckCircle from '../internal/svg-icons/CheckCircle';
 import Warning from '../internal/svg-icons/Warning';
 import SvgIcon from '../SvgIcon';
@@ -25,35 +26,39 @@ const StepIconRoot = styled(SvgIcon, {
   name: 'MuiStepIcon',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme }) => ({
-  display: 'block',
-  transition: theme.transitions.create('color', {
-    duration: theme.transitions.duration.shortest,
-  }),
-  color: (theme.vars || theme).palette.text.disabled,
-  [`&.${stepIconClasses.completed}`]: {
-    color: (theme.vars || theme).palette.primary.main,
-  },
-  [`&.${stepIconClasses.active}`]: {
-    color: (theme.vars || theme).palette.primary.main,
-  },
-  [`&.${stepIconClasses.error}`]: {
-    color: (theme.vars || theme).palette.error.main,
-  },
-}));
+})(
+  memoTheme(({ theme }) => ({
+    display: 'block',
+    transition: theme.transitions.create('color', {
+      duration: theme.transitions.duration.shortest,
+    }),
+    color: (theme.vars || theme).palette.text.disabled,
+    [`&.${stepIconClasses.completed}`]: {
+      color: (theme.vars || theme).palette.primary.main,
+    },
+    [`&.${stepIconClasses.active}`]: {
+      color: (theme.vars || theme).palette.primary.main,
+    },
+    [`&.${stepIconClasses.error}`]: {
+      color: (theme.vars || theme).palette.error.main,
+    },
+  })),
+);
 
 const StepIconText = styled('text', {
   name: 'MuiStepIcon',
   slot: 'Text',
   overridesResolver: (props, styles) => styles.text,
-})(({ theme }) => ({
-  fill: (theme.vars || theme).palette.primary.contrastText,
-  fontSize: theme.typography.caption.fontSize,
-  fontFamily: theme.typography.fontFamily,
-}));
+})(
+  memoTheme(({ theme }) => ({
+    fill: (theme.vars || theme).palette.primary.contrastText,
+    fontSize: theme.typography.caption.fontSize,
+    fontFamily: theme.typography.fontFamily,
+  })),
+);
 
 const StepIcon = React.forwardRef(function StepIcon(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiStepIcon' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiStepIcon' });
   const {
     active = false,
     className: classNameProp,
@@ -114,10 +119,10 @@ const StepIcon = React.forwardRef(function StepIcon(inProps, ref) {
 });
 
 StepIcon.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Whether this step is active.
    * @default false

@@ -32,22 +32,70 @@
     "import CircularProgress from '@mui/material/CircularProgress';",
     "import { CircularProgress } from '@mui/material';"
   ],
-  "styles": {
-    "classes": [
-      "root",
-      "determinate",
-      "indeterminate",
-      "colorPrimary",
-      "colorSecondary",
-      "svg",
-      "circle",
-      "circleDeterminate",
-      "circleIndeterminate",
-      "circleDisableShrink"
-    ],
-    "globalClasses": {},
-    "name": "MuiCircularProgress"
-  },
+  "classes": [
+    {
+      "key": "circle",
+      "className": "MuiCircularProgress-circle",
+      "description": "Styles applied to the `circle` svg path.",
+      "isGlobal": false
+    },
+    {
+      "key": "circleDeterminate",
+      "className": "MuiCircularProgress-circleDeterminate",
+      "description": "Styles applied to the `circle` svg path if `variant=\"determinate\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "circleDisableShrink",
+      "className": "MuiCircularProgress-circleDisableShrink",
+      "description": "Styles applied to the `circle` svg path if `disableShrink={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "circleIndeterminate",
+      "className": "MuiCircularProgress-circleIndeterminate",
+      "description": "Styles applied to the `circle` svg path if `variant=\"indeterminate\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiCircularProgress-colorPrimary",
+      "description": "Styles applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSecondary",
+      "className": "MuiCircularProgress-colorSecondary",
+      "description": "Styles applied to the root element if `color=\"secondary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "determinate",
+      "className": "MuiCircularProgress-determinate",
+      "description": "Styles applied to the root element if `variant=\"determinate\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "indeterminate",
+      "className": "MuiCircularProgress-indeterminate",
+      "description": "Styles applied to the root element if `variant=\"indeterminate\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiCircularProgress-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "svg",
+      "className": "MuiCircularProgress-svg",
+      "description": "Styles applied to the svg element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiCircularProgress",

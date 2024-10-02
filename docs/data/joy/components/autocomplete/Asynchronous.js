@@ -4,9 +4,11 @@ import FormLabel from '@mui/joy/FormLabel';
 import Autocomplete from '@mui/joy/Autocomplete';
 import CircularProgress from '@mui/joy/CircularProgress';
 
-function sleep(delay = 0) {
+function sleep(duration) {
   return new Promise((resolve) => {
-    setTimeout(resolve, delay);
+    setTimeout(() => {
+      resolve();
+    }, duration);
   });
 }
 

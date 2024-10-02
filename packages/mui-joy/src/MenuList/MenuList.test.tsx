@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, screen, describeJoyColorInversion } from 'test/utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import MenuList, { menuListClasses as classes } from '@mui/joy/MenuList';
+import describeConformance from '../../test/describeConformance';
 
 describe('Joy <MenuList />', () => {
   const { render } = createRenderer();
@@ -23,8 +24,6 @@ describe('Joy <MenuList />', () => {
       },
     },
   }));
-
-  describeJoyColorInversion(<MenuList />, { muiName: 'JoyMenuList', classes });
 
   it('should have root className', () => {
     const { container } = render(<MenuList />);

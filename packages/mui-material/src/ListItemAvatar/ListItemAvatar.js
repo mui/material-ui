@@ -2,10 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import ListContext from '../List/ListContext';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getListItemAvatarUtilityClass } from './listItemAvatarClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -26,19 +26,26 @@ const ListItemAvatarRoot = styled('div', {
 
     return [styles.root, ownerState.alignItems === 'flex-start' && styles.alignItemsFlexStart];
   },
-})(({ ownerState }) => ({
+})({
   minWidth: 56,
   flexShrink: 0,
-  ...(ownerState.alignItems === 'flex-start' && {
-    marginTop: 8,
-  }),
-}));
+  variants: [
+    {
+      props: {
+        alignItems: 'flex-start',
+      },
+      style: {
+        marginTop: 8,
+      },
+    },
+  ],
+});
 
 /**
  * A simple wrapper to apply `List` styles to an `Avatar`.
  */
 const ListItemAvatar = React.forwardRef(function ListItemAvatar(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiListItemAvatar',
   });
@@ -59,10 +66,10 @@ const ListItemAvatar = React.forwardRef(function ListItemAvatar(inProps, ref) {
 });
 
 ListItemAvatar.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component, normally an `Avatar`.
    */

@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { red, green, yellow, blue } from '@mui/material/colors';
+import { alpha } from '@mui/material/styles';
 import { DataGridPro, GridToolbar, GridPaginationModel } from '@mui/x-data-grid-pro';
 import { useDemoData } from '@mui/x-data-grid-generator';
 import FormControl from '@mui/material/FormControl';
@@ -63,7 +65,7 @@ function SettingsPanel(props: GridToolbarContainerProps) {
     <FormGroup
       className="MuiFormGroup-options"
       sx={{
-        flexDirection: { xs: 'column', sm: 'row' },
+        flexDirection: 'row',
         alignContent: { xs: 'start', sm: 'center' },
         alignItems: { xs: 'start', sm: 'center' },
         '& > *': {
@@ -80,15 +82,20 @@ function SettingsPanel(props: GridToolbarContainerProps) {
       }}
     >
       <FormControl variant="filled" size="small">
-        <InputLabel>Dataset</InputLabel>
-        <Select value={typeState} onChange={handleDatasetChange} disableUnderline>
+        <InputLabel id="Dataset">Dataset</InputLabel>
+        <Select labelId="Dataset" value={typeState} onChange={handleDatasetChange} disableUnderline>
           <MenuItem value="Employee">Employee</MenuItem>
           <MenuItem value="Commodity">Commodity</MenuItem>
         </Select>
       </FormControl>
       <FormControl variant="filled" size="small">
-        <InputLabel>Rows</InputLabel>
-        <Select value={String(sizeState)} onChange={handleSizeChange} disableUnderline>
+        <InputLabel id="Rows">Rows</InputLabel>
+        <Select
+          labelId="Rows"
+          value={String(sizeState)}
+          onChange={handleSizeChange}
+          disableUnderline
+        >
           <MenuItem value={100}>100</MenuItem>
           <MenuItem value={1000}>{Number(1000).toLocaleString()}</MenuItem>
           <MenuItem value={10000}>{Number(10000).toLocaleString()}</MenuItem>
@@ -96,8 +103,13 @@ function SettingsPanel(props: GridToolbarContainerProps) {
         </Select>
       </FormControl>
       <FormControl variant="filled" size="small" sx={{ minWidth: 80 }}>
-        <InputLabel>Page Size</InputLabel>
-        <Select value={selectedPaginationValue} onChange={handlePaginationChange} disableUnderline>
+        <InputLabel id="Page size">Page size</InputLabel>
+        <Select
+          labelId="Page size"
+          value={selectedPaginationValue}
+          onChange={handlePaginationChange}
+          disableUnderline
+        >
           <MenuItem value={-1}>off</MenuItem>
           <MenuItem value={0}>auto</MenuItem>
           {pageSizeOptions.map((pageSize) => (
@@ -109,8 +121,9 @@ function SettingsPanel(props: GridToolbarContainerProps) {
       </FormControl>
       <Button
         variant="outlined"
+        size="small"
         onClick={handleApplyChanges}
-        sx={{ mt: { xs: 2, sm: 0 }, color: 'primary.300', height: 'fit-content' }}
+        sx={{ mt: { xs: 2, sm: 0 }, width: { xs: '100%', sm: 'fit-content' } }}
       >
         Apply changes
       </Button>
@@ -124,7 +137,7 @@ export default function XGridFullDemo() {
   const { loading, data, setRowLength, loadNewData } = useDemoData({
     dataSet: type,
     rowLength: size,
-    maxColumns: 40,
+    maxColumns: 20,
     editable: true,
   });
 
@@ -173,15 +186,35 @@ export default function XGridFullDemo() {
           variant="outlined"
           sx={[
             {
-              overflow: 'auto',
+              overflow: 'hidden',
               borderRadius: '8px',
-              height: 328,
+              height: { xs: 320, sm: 500 },
               '& .MuiDataGrid-root': {
                 bgcolor: '#fff',
                 '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
                 '& .MuiButton-root': { marginLeft: 0, marginRight: 1 },
                 '& .MuiDataGrid-cell': {
                   bgcolor: 'grey.50',
+                },
+                '& .MuiChip-root.Rejected': {
+                  color: red[800],
+                  backgroundColor: red[50],
+                  borderColor: red[100],
+                },
+                '& .MuiChip-root.Filled': {
+                  color: green[800],
+                  backgroundColor: green[50],
+                  borderColor: green[100],
+                },
+                '& .MuiChip-root.Open': {
+                  color: blue[800],
+                  backgroundColor: blue[50],
+                  borderColor: blue[100],
+                },
+                '& .MuiChip-root.PartiallyFilled': {
+                  color: 'text.secondary',
+                  backgroundColor: yellow[50],
+                  borderColor: yellow[600],
                 },
                 '& .MuiDataGrid-footerContainer': {
                   minHeight: 48,
@@ -209,15 +242,35 @@ export default function XGridFullDemo() {
                   '& .MuiDataGrid-footerContainer': {
                     borderColor: 'primaryDark.600',
                   },
+                  '& .MuiChip-root.Rejected': {
+                    color: red[200],
+                    backgroundColor: alpha(red[900], 0.2),
+                    borderColor: alpha(red[700], 0.5),
+                  },
+                  '& .MuiChip-root.Filled': {
+                    color: green[200],
+                    backgroundColor: alpha(green[900], 0.2),
+                    borderColor: alpha(green[700], 0.5),
+                  },
+                  '& .MuiChip-root.Open': {
+                    color: blue[200],
+                    backgroundColor: alpha(blue[900], 0.2),
+                    borderColor: alpha(blue[700], 0.5),
+                  },
+                  '& .MuiChip-root.PartiallyFilled': {
+                    color: yellow[200],
+                    backgroundColor: alpha(yellow[900], 0.2),
+                    borderColor: alpha(yellow[700], 0.2),
+                  },
                 },
               }),
           ]}
         >
           <DataGridPro
-            density="compact"
             {...data}
-            components={{
-              Toolbar: GridToolbar,
+            density="compact"
+            slots={{
+              toolbar: GridToolbar,
             }}
             loading={loading}
             checkboxSelection
@@ -228,7 +281,10 @@ export default function XGridFullDemo() {
           />
         </Paper>
       </Frame.Demo>
-      <Frame.Info data-mui-color-scheme="dark" sx={{ pl: 1, pr: 2, py: 1.5 }}>
+      <Frame.Info
+        data-mui-color-scheme="dark"
+        sx={{ pl: { xs: 2, sm: 1 }, pr: 2, py: { xs: 2, sm: 1.5 } }}
+      >
         <SettingsPanel onApply={handleApplyClick} size={size} type={type} />
       </Frame.Info>
     </Frame>

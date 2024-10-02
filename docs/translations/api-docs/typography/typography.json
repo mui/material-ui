@@ -4,6 +4,9 @@
     "align": { "description": "Set the text-align on the component." },
     "children": { "description": "The content of the component." },
     "classes": { "description": "Override or extend the styles applied to the component." },
+    "color": {
+      "description": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#custom-colors\">palette customization guide</a>."
+    },
     "component": {
       "description": "The component used for the root node. Either a string to use a HTML element or a component."
     },
@@ -23,26 +26,50 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "body2": {
+    "alignCenter": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"body2\"</code>"
+      "conditions": "<code>align=\"center\"</code>"
+    },
+    "alignJustify": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>align=\"justify\"</code>"
+    },
+    "alignLeft": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>align=\"left\"</code>"
+    },
+    "alignRight": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>align=\"right\"</code>"
     },
     "body1": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"body1\"</code>"
     },
-    "caption": {
+    "body2": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"caption\"</code>"
+      "conditions": "<code>variant=\"body2\"</code>"
     },
     "button": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"button\"</code>"
+    },
+    "caption": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"caption\"</code>"
+    },
+    "gutterBottom": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>gutterBottom={true}</code>"
     },
     "h1": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -74,6 +101,27 @@
       "nodeName": "the root element",
       "conditions": "<code>variant=\"h6\"</code>"
     },
+    "inherit": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"inherit\"</code>"
+    },
+    "noWrap": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>nowrap={true}</code>"
+    },
+    "overline": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"overline\"</code>"
+    },
+    "paragraph": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>paragraph={true}</code>"
+    },
+    "root": { "description": "Styles applied to the root element." },
     "subtitle1": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -83,51 +131,6 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"subtitle2\"</code>"
-    },
-    "overline": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"overline\"</code>"
-    },
-    "inherit": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"inherit\"</code>"
-    },
-    "alignLeft": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>align=\"left\"</code>"
-    },
-    "alignCenter": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>align=\"center\"</code>"
-    },
-    "alignRight": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>align=\"right\"</code>"
-    },
-    "alignJustify": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>align=\"justify\"</code>"
-    },
-    "noWrap": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>nowrap={true}</code>"
-    },
-    "gutterBottom": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>gutterBottom={true}</code>"
-    },
-    "paragraph": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>paragraph={true}</code>"
     }
   }
 }

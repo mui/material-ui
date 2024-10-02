@@ -9,6 +9,8 @@ githubLabel: 'component: Typography'
 
 <p class="description">The Typography component helps present design and content clearly and efficiently.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
 ## Introduction
 
 The Typography component helps maintain a consistent design by providing a limited set of values to choose from and convenient props for building common designs faster.
@@ -37,11 +39,9 @@ The `h5` and `h6` levels are not provided by default given that they are not com
 
 ### Title and body
 
-The `title-*` and `body-*` are commonly used in components.
+Aside from the heading typographic levels, the Typography component also provides the `title-*` and `body-*` type levels.
 
-We recommend to combine the title and body with the same or lower size when using them together. For example, `title-lg` and `body-lg` or `title-md` and `body-sm`.
-
-Each level are designed to fit perfectly with the same size of the `SvgIcon` component.
+To ensure proper information hierarchy, we recommend combining them using either the same size or a lower one. For example, using `title-lg` with `body-lg` or `title-md` with `body-sm`.
 
 {{"demo": "TypographyTitleBody.js"}}
 
@@ -56,7 +56,7 @@ Nested Typography components are rendered as `<span>` elements (unless customize
 
 ### System props
 
-As a CSS utility component, Typography supports every [MUI System](/system/properties/) property.
+As a CSS utility component, Typography supports every [MUI System](/system/properties/) property.
 These properties can be used to customize the styling of the component and make it fit seamlessly with the overall design.
 
 :::warning
@@ -80,7 +80,7 @@ These values include various heading levels (h1, h2, h3, etc.) as well as body t
 Additionally, you can also use the level prop to control the font size, weight, line height, and other typographic properties.
 
 :::warning
-Keep in mind that each level renders a specific HTML tag (e.g. "h1" renders as an `<h1>` element, "body-md" renders as a `<p>`, etc.)
+Keep in mind that each level renders a specific HTML tag (for example "h1" renders as an `<h1>` element, "body-md" renders as a `<p>`, etc.)
 :::
 
 {{"demo": "TypographyScales.js"}}

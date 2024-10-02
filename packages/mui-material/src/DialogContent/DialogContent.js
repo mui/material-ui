@@ -2,9 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getDialogContentUtilityClass } from './dialogContentClasses';
 import dialogTitleClasses from '../DialogTitle/dialogTitleClasses';
 
@@ -26,27 +27,36 @@ const DialogContentRoot = styled('div', {
 
     return [styles.root, ownerState.dividers && styles.dividers];
   },
-})(({ theme, ownerState }) => ({
-  flex: '1 1 auto',
-  // Add iOS momentum scrolling for iOS < 13.0
-  WebkitOverflowScrolling: 'touch',
-  overflowY: 'auto',
-  padding: '20px 24px',
-  ...(ownerState.dividers
-    ? {
-        padding: '16px 24px',
-        borderTop: `1px solid ${(theme.vars || theme).palette.divider}`,
-        borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
-      }
-    : {
-        [`.${dialogTitleClasses.root} + &`]: {
-          paddingTop: 0,
+})(
+  memoTheme(({ theme }) => ({
+    flex: '1 1 auto',
+    // Add iOS momentum scrolling for iOS < 13.0
+    WebkitOverflowScrolling: 'touch',
+    overflowY: 'auto',
+    padding: '20px 24px',
+    variants: [
+      {
+        props: ({ ownerState }) => ownerState.dividers,
+        style: {
+          padding: '16px 24px',
+          borderTop: `1px solid ${(theme.vars || theme).palette.divider}`,
+          borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
         },
-      }),
-}));
+      },
+      {
+        props: ({ ownerState }) => !ownerState.dividers,
+        style: {
+          [`.${dialogTitleClasses.root} + &`]: {
+            paddingTop: 0,
+          },
+        },
+      },
+    ],
+  })),
+);
 
 const DialogContent = React.forwardRef(function DialogContent(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiDialogContent',
   });
@@ -66,10 +76,10 @@ const DialogContent = React.forwardRef(function DialogContent(inProps, ref) {
 });
 
 DialogContent.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

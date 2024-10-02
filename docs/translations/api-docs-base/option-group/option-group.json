@@ -11,21 +11,15 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
     "disabled": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root <code>li</code> element",
       "conditions": "<code>disabled={true}</code>"
-    },
-    "label": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the label element"
-    },
-    "list": { "description": "Class name applied to {{nodeName}}.", "nodeName": "the list element" }
+    }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
     "label": "The component that renders the label.",
-    "list": "The component that renders the list."
+    "list": "The component that renders the list.",
+    "root": "The component that renders the root."
   }
 }
