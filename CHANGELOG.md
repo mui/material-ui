@@ -10,16 +10,12 @@ A big thanks to the 13 contributors who made this release possible.
 
 ### `@mui/material@6.1.2`
 
-- [Modal] Remove unnecessary `manager` prop handling (#43867) @ZeeshanTamboli
 - [Autocomplete] Fix listbox opens and closes on click when used with `limitTags` (#42494) @appleSimple
 - [Button] Ignore `dark` and `contrastText` if not provided in the theme (#43861) @siriwatknp
 - [Button] Fix regression for color `inherit` (#43862) @siriwatknp
 - [LinearProgress] Fix background color (#43949) @sai6855
 - Support CSS variables with shadow DOM (#43948) @siriwatknp
-- Improve getReactElementRef() utils (#43022) @sai6855
-- [Modal] Replace `show` parameter name with `hide` in modal manager (#43868) @ZeeshanTamboli
 - [Rating] Use Rating `name` as prefix of input element ids (#43829) @yash49
-- [Drawer] Refactor getScrollbarSize usages (#43828) @BrianWoolfolk
 - [Drawer] Fix issue with main window being used instead of iframe's window (#43818) @albarv340
 - [ThemeProvider] Support setting default mode (#43951) @siriwatknp
 
@@ -56,9 +52,10 @@ A big thanks to the 13 contributors who made this release possible.
 - [icons] Reduce Material Icon page size (#43911) @oliviertassinari
 - [test] Point Istanbul to correct URL (#43935) @sai6855
 - [test] Sync React.version parse logic with codebase (#43820) @oliviertassinari
-- [website] Add 'Row spanning' (#43831) @oliviertassinari
-- [website] Improve Next roles section (#43822) @oliviertassinari
-- [website] Open the xCharts, eXplore and X general react engineer roles (#43805) @DanailH
+- Improve getReactElementRef() utils (#43022) @sai6855
+- [Drawer] Refactor getScrollbarSize usages (#43828) @BrianWoolfolk
+- [Modal] Replace `show` parameter name with `hide` in modal manager (#43868) @ZeeshanTamboli
+- [Modal] Remove unnecessary `manager` prop handling (#43867) @ZeeshanTamboli
 
 All contributors of this release in alphabetical order: @albarv340, @appleSimple, @BrianWoolfolk, @DanailH, @Janpot, @kdichev, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @wilhelmlofsten, @yash49, @ZeeshanTamboli
 
