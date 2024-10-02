@@ -52,9 +52,6 @@ A big thanks to the 13 contributors who made this release possible.
 - [icons] Reduce Material Icon page size (#43911) @oliviertassinari
 - [test] Point Istanbul to correct URL (#43935) @sai6855
 - [test] Sync React.version parse logic with codebase (#43820) @oliviertassinari
-- [website] Add 'Row spanning' (#43831) @oliviertassinari
-- [website] Improve Next roles section (#43822) @oliviertassinari
-- [website] Open the xCharts, eXplore and X general react engineer roles (#43805) @DanailH
 - Improve getReactElementRef() utils (#43022) @sai6855
 - [Drawer] Refactor getScrollbarSize usages (#43828) @BrianWoolfolk
 - [Modal] Replace `show` parameter name with `hide` in modal manager (#43868) @ZeeshanTamboli
