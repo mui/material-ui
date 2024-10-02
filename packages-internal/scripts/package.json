@@ -42,7 +42,7 @@
     "@types/chai": "^4.3.20",
     "@types/doctrine": "^0.0.9",
     "@types/lodash": "^4.17.9",
-    "@types/node": "^20.16.5",
+    "@types/node": "^20.16.10",
     "@types/react": "^18.3.6",
     "@types/uuid": "^9.0.8",
     "chai": "^4.5.0",
