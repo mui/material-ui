@@ -11,7 +11,7 @@ A big thanks to the 13 contributors who made this release possible.
 ### `@mui/material@6.1.2`
 
 - [Autocomplete] Fix listbox opens and closes on click when used with `limitTags` (#42494) @appleSimple
-- [Button] ignore `dark` and `contrastText` if not provided in the theme (#43861) @siriwatknp
+- [Button] Ignore `dark` and `contrastText` if not provided in the theme (#43861) @siriwatknp
 - [Button] Fix regression for color `inherit` (#43862) @siriwatknp
 - [LinearProgress] Fix background color (#43949) @sai6855
 - Support CSS variables with shadow DOM (#43948) @siriwatknp
