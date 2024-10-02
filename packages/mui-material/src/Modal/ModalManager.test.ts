@@ -113,9 +113,15 @@ describe('ModalManager', () => {
 
   describe('overflow', () => {
     let fixedNode: HTMLDivElement;
+    let originalBody: HTMLElement;
 
     beforeEach(() => {
-      container1.style.paddingRight = '20px';
+      // backup old body so we can restore it at the end
+      originalBody = document.body;
+      // we add a new body so scrollHeight and clientHeight can be
+      // modified conveniently
+      document.body = document.createElement('body');
+      document.body.style.paddingRight = '20px';
 
       fixedNode = document.createElement('div');
       fixedNode.classList.add('mui-fixed');
@@ -126,31 +132,36 @@ describe('ModalManager', () => {
     afterEach(() => {
       document.body.removeChild(fixedNode);
       window.innerWidth -= 1;
+      document.body.style.paddingRight = '';
+      document.body.style.overflow = '';
+      document.body = originalBody;
     });
 
     it('should handle the scroll', () => {
       fixedNode.style.paddingRight = '14px';
 
       const modal = getDummyModal();
+      const body = document.body;
       modalManager.add(modal, container1);
       modalManager.mount(modal, {});
-      expect(container1.style.overflow).to.equal('hidden');
-      expect(container1.style.paddingRight).to.equal(`${20 + getScrollbarSize(window)}px`);
+      expect(body.style.overflow).to.equal('hidden');
+      expect(body.style.paddingRight).to.equal(`${20 + getScrollbarSize(window)}px`);
       expect(fixedNode.style.paddingRight).to.equal(`${14 + getScrollbarSize(window)}px`);
       modalManager.remove(modal);
-      expect(container1.style.overflow).to.equal('');
-      expect(container1.style.paddingRight).to.equal('20px');
+      expect(body.style.overflow).to.equal('');
+      expect(body.style.paddingRight).to.equal('20px');
       expect(fixedNode.style.paddingRight).to.equal('14px');
     });
 
     it('should disable the scroll even when not overflowing', () => {
       // simulate non-overflowing container
       const container2 = document.createElement('div');
-      Object.defineProperty(container2, 'scrollHeight', {
+      const body = document.body;
+      Object.defineProperty(body, 'scrollHeight', {
         value: 100,
         writable: false,
       });
-      Object.defineProperty(container2, 'clientHeight', {
+      Object.defineProperty(body, 'clientHeight', {
         value: 100,
         writable: false,
       });
@@ -159,9 +170,9 @@ describe('ModalManager', () => {
       const modal = getDummyModal();
       modalManager.add(modal, container2);
       modalManager.mount(modal, {});
-      expect(container2.style.overflow).to.equal('hidden');
+      expect(body.style.overflow).to.equal('hidden');
       modalManager.remove(modal);
-      expect(container2.style.overflow).to.equal('');
+      expect(body.style.overflow).to.equal('');
 
       document.body.removeChild(container2);
     });
@@ -170,12 +181,14 @@ describe('ModalManager', () => {
       const modal = getDummyModal();
       modalManager.add(modal, container1);
       modalManager.mount(modal, {});
-      expect(container1.style.overflow).to.equal('hidden');
-      expect(container1.style.paddingRight).to.equal(`${20 + getScrollbarSize(window)}px`);
+
+      const body = document.body;
+      expect(body.style.overflow).to.equal('hidden');
+      expect(body.style.paddingRight).to.equal(`${20 + getScrollbarSize(window)}px`);
       expect(fixedNode.style.paddingRight).to.equal(`${getScrollbarSize(window)}px`);
       modalManager.remove(modal);
-      expect(container1.style.overflow).to.equal('');
-      expect(container1.style.paddingRight).to.equal('20px');
+      expect(body.style.overflow).to.equal('');
+      expect(body.style.paddingRight).to.equal('20px');
       expect(fixedNode.style.paddingRight).to.equal('');
     });
 
@@ -226,13 +239,14 @@ describe('ModalManager', () => {
       it('should restore styles correctly if overflow existed before', () => {
         const modal = getDummyModal();
 
-        container2.style.overflow = 'scroll';
+        const body = document.body;
+        body.style.overflow = 'scroll';
 
-        Object.defineProperty(container2, 'scrollHeight', {
+        Object.defineProperty(body, 'scrollHeight', {
           value: 100,
           writable: false,
         });
-        Object.defineProperty(container2, 'clientHeight', {
+        Object.defineProperty(body, 'clientHeight', {
           value: 90,
           writable: false,
         });
@@ -241,23 +255,24 @@ describe('ModalManager', () => {
         modalManager.add(modal, container2);
         modalManager.mount(modal, {});
 
-        expect(container2.style.overflow).to.equal('hidden');
+        expect(body.style.overflow).to.equal('hidden');
         modalManager.remove(modal);
 
-        expect(container2.style.overflow).to.equal('scroll');
+        expect(body.style.overflow).to.equal('scroll');
         expect(fixedNode.style.paddingRight).to.equal('');
       });
 
       it('should restore styles correctly if overflow-x existed before', () => {
         const modal = getDummyModal();
 
-        container2.style.overflowX = 'hidden';
+        const body = document.body;
+        body.style.overflowX = 'hidden';
 
-        Object.defineProperty(container2, 'scrollHeight', {
+        Object.defineProperty(body, 'scrollHeight', {
           value: 100,
           writable: false,
         });
-        Object.defineProperty(container2, 'clientHeight', {
+        Object.defineProperty(body, 'clientHeight', {
           value: 90,
           writable: false,
         });
@@ -267,12 +282,12 @@ describe('ModalManager', () => {
         modalManager.add(modal, container2);
         modalManager.mount(modal, {});
 
-        expect(container2.style.overflow).to.equal('hidden');
+        expect(body.style.overflow).to.equal('hidden');
 
         modalManager.remove(modal);
 
-        expect(container2.style.overflow).to.equal('');
-        expect(container2.style.overflowX).to.equal('hidden');
+        expect(body.style.overflow).to.equal('');
+        expect(body.style.overflowX).to.equal('hidden');
       });
     });
   });
