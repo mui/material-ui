@@ -70,16 +70,16 @@ export const SliderRoot = styled('span', {
       transition: 'none',
     },
   },
-  ...(ownerState.size === 'small' && {
+  ...(ownerState?.size === 'small' && {
     '--md-comp-slider-root-size': '2px',
     '--md-comp-slider-thumb-size': '12px',
     '--md-comp-slider-value-padding': '0.25rem 0.5rem',
   }),
-  ...(ownerState.marked &&
+  ...(ownerState?.marked &&
     ownerState.orientation === 'horizontal' && {
       '--md-comp-slider-root-mark-margin': '20px',
     }),
-  ...(ownerState.marked &&
+  ...(ownerState?.marked &&
     ownerState.orientation === 'vertical' && {
       '--md-comp-slider-root-mark-margin': '44px',
     }),
