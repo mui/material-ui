@@ -10,6 +10,7 @@ A big thanks to the 13 contributors who made this release possible.
 
 ### `@mui/material@6.1.2`
 
+- [Modal] Remove unnecessary `manager` prop handling (#43867) @ZeeshanTamboli
 - [Autocomplete] Fix listbox opens and closes on click when used with `limitTags` (#42494) @appleSimple
 - [Button] Ignore `dark` and `contrastText` if not provided in the theme (#43861) @siriwatknp
 - [Button] Fix regression for color `inherit` (#43862) @siriwatknp
