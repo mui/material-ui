@@ -9,11 +9,14 @@ export interface ManagedModalProps {
 }
 
 // Is a vertical scrollbar displayed?
-function isOverflowing(window: Window, container: Element): boolean {
-  return (
-    window.getComputedStyle(container).overflowY === 'scroll' ||
-    container.scrollHeight > container.clientHeight
-  );
+function isOverflowing(container: Element): boolean {
+  const doc = ownerDocument(container);
+
+  if (doc.body === container) {
+    return ownerWindow(container).innerWidth > doc.documentElement.clientWidth;
+  }
+
+  return container.scrollHeight > container.clientHeight;
 }
 
 export function ariaHidden(element: Element, hide: boolean): void {
@@ -120,29 +123,20 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
   const container = containerInfo.container;
 
   if (!props.disableScrollLock) {
-    // In case there are multiple scrollbars exist above the mountpoint
-    // we need to adjust the parent containers padding for them.
-    let containerToTest: HTMLElement | null = container;
-    while (containerToTest != null) {
-      const containerWindow = ownerWindow(container);
-      if (!isOverflowing(containerWindow, containerToTest)) {
-        containerToTest = containerToTest.parentElement;
-        continue;
-      }
-
+    if (isOverflowing(container)) {
       // Compute the size before applying overflow hidden to avoid any scroll jumps.
-      const scrollbarSize = getScrollbarSize(ownerWindow(containerToTest));
+      const scrollbarSize = getScrollbarSize(ownerWindow(container));
 
       restoreStyle.push({
-        value: containerToTest.style.paddingRight,
+        value: container.style.paddingRight,
         property: 'padding-right',
-        el: containerToTest,
+        el: container,
       });
       // Use computed style, here to get the real padding to add our scrollbar width.
-      containerToTest.style.paddingRight = `${getPaddingRight(containerToTest) + scrollbarSize}px`;
+      container.style.paddingRight = `${getPaddingRight(container) + scrollbarSize}px`;
 
       // .mui-fixed is a global helper.
-      const fixedElements = containerToTest.querySelectorAll('.mui-fixed');
+      const fixedElements = ownerDocument(container).querySelectorAll('.mui-fixed');
       [].forEach.call(fixedElements, (element: HTMLElement | SVGElement) => {
         restoreStyle.push({
           value: element.style.paddingRight,
@@ -151,54 +145,45 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
         });
         element.style.paddingRight = `${getPaddingRight(element) + scrollbarSize}px`;
       });
-
-      containerToTest = containerToTest.parentElement;
     }
 
-    const scrollContainers: HTMLElement[] = [];
+    let scrollContainer: HTMLElement;
+
     if (container.parentNode instanceof DocumentFragment) {
-      scrollContainers.push(ownerDocument(container).body);
+      scrollContainer = ownerDocument(container).body;
     } else {
-      // We always want to apply overflow:hidden on the container (according to existing tests)
-      scrollContainers.push(container);
       // Support html overflow-y: auto for scroll stability between pages
       // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
-      let parent: HTMLElement | null = container.parentElement;
+      const parent = container.parentElement;
       const containerWindow = ownerWindow(container);
-      // We need to find all the scrollable ancestors to
-      // prevent scrolling the modal window
-      while (parent != null) {
-        if (isOverflowing(containerWindow, parent)) {
-          scrollContainers.push(parent);
-        }
-
-        parent = parent.parentElement;
-      }
+      scrollContainer =
+        parent?.nodeName === 'HTML' &&
+        containerWindow.getComputedStyle(parent).overflowY === 'scroll'
+          ? parent
+          : container;
     }
 
-    for (const scrollContainer of scrollContainers) {
-      // Block the scroll even if no scrollbar is visible to account for mobile keyboard
-      // screensize shrink.
-      restoreStyle.push(
-        {
-          value: scrollContainer.style.overflow,
-          property: 'overflow',
-          el: scrollContainer,
-        },
-        {
-          value: scrollContainer.style.overflowX,
-          property: 'overflow-x',
-          el: scrollContainer,
-        },
-        {
-          value: scrollContainer.style.overflowY,
-          property: 'overflow-y',
-          el: scrollContainer,
-        },
-      );
+    // Block the scroll even if no scrollbar is visible to account for mobile keyboard
+    // screensize shrink.
+    restoreStyle.push(
+      {
+        value: scrollContainer.style.overflow,
+        property: 'overflow',
+        el: scrollContainer,
+      },
+      {
+        value: scrollContainer.style.overflowX,
+        property: 'overflow-x',
+        el: scrollContainer,
+      },
+      {
+        value: scrollContainer.style.overflowY,
+        property: 'overflow-y',
+        el: scrollContainer,
+      },
+    );
 
-      scrollContainer.style.overflow = 'hidden';
-    }
+    scrollContainer.style.overflow = 'hidden';
   }
 
   const restore = () => {
