@@ -62,7 +62,7 @@ Next, head over to your config file and import the `withPigment` plugin:
 // next.config.js
 import { withPigment } from '@pigment-css/nextjs-plugin';
 
-export default withPigment({ nextConfig });
+export default withPigment(nextConfig);
 ```
 
 ```ts Vite
@@ -287,7 +287,6 @@ Pigment CSS uses the `prefers-color-scheme` media query by default to switch be
 ```js
 const colorScheme = css`
   background-color: ${({ theme }) => theme.colorSchemes.dark.colors.background};
-
   color: ${({ theme }) => theme.colorSchemes.dark.colors.foreground};
 
   @media (prefers-color-scheme: light) {
@@ -299,14 +298,14 @@ const colorScheme = css`
 
 You can also customize the behavior by providing a `getSelector` function:
 
-```js
-  extendTheme({
-    colorSchemes: {
-      light: { ... },
-      dark: { ... },
-    },
-+   getSelector: (colorScheme) => colorScheme ? `.theme-${colorScheme}` : ':root',
-  });
+```diff
+ extendTheme({
+   colorSchemes: {
+     light: { ... },
+     dark: { ... },
+   },
++  getSelector: (colorScheme) => colorScheme ? `.theme-${colorScheme}` : ':root',
+ });
 ```
 
 ### The sx prop
@@ -324,7 +323,7 @@ The `sx` prop works with all Material UI components as well as HTML elements an
 
 If you use the `sx` prop on an HTML element, you'll need to augment the `HTMLAttributes` interface:
 
-```js
+```ts
 type Theme = {
   // your theme type
 };
@@ -335,7 +334,9 @@ declare global {
       sx?:
         | React.CSSProperties
         | ((theme: Theme) => React.CSSProperties)
-        | ReadonlyArray<React.CSSProperties | ((theme: Theme) => React.CSSProperties)>;
+        | ReadonlyArray<
+            React.CSSProperties | ((theme: Theme) => React.CSSProperties)
+          >;
     }
   }
 }
