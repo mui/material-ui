@@ -328,16 +328,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   };
 
-  const handleItemKeyDown = (event) => {
+  const handleItemKeyDown = (child) => (event) => {
     if (event.key === ' ') {
-      const child = childrenArray.find(
-        (childItem) => childItem.props.value === event.target.dataset.value,
-      );
-
-      if (child === undefined) {
-        return;
-      }
-
       if (child.props.onKeyDown) {
         child.props.onKeyDown(event);
       }
@@ -438,7 +430,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
           child.props.onKeyUp(event);
         }
       },
-      onKeyDown: handleItemKeyDown,
+      onKeyDown: handleItemKeyDown(child),
       role: 'option',
       selected,
       value: undefined, // The value is most likely not a valid HTML attribute.
