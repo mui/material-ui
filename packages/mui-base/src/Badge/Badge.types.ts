@@ -83,7 +83,7 @@ export type BadgeRootSlotProps = {
   children?: React.ReactNode;
   className?: string;
   ownerState: BadgeOwnerState;
-  ref: React.Ref<HTMLSpanElement>;
+  ref?: React.Ref<HTMLSpanElement>;
 };
 
 export type BadgeBadgeSlotProps = {
