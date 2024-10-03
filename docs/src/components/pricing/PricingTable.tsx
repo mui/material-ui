@@ -424,7 +424,7 @@ function RowHead({
   children,
   startIcon,
   ...props
-}: BoxProps & { startIcon?: React.ReactElement<any> }) {
+}: BoxProps & { startIcon?: React.ReactElement<unknown> }) {
   return (
     <Box
       {...props}

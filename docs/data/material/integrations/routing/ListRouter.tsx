@@ -34,7 +34,7 @@ function Router(props: { children?: React.ReactNode }) {
 }
 
 interface ListItemLinkProps {
-  icon?: React.ReactElement<any>;
+  icon?: React.ReactElement<unknown>;
   primary: string;
   to: string;
 }
