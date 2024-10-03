@@ -152,6 +152,26 @@ describe('<Select />', () => {
     expect(options[1]).to.have.attribute('data-value', '20');
   });
 
+  it('shoulad get selected element from arguments', async () => {
+    const onChangeHandler = spy();
+    const { getAllByRole, getByRole } = render(
+      <Select onChange={onChangeHandler} value="0">
+        <MenuItem value="0" />
+        <MenuItem value="1" />
+        <MenuItem value="2" />
+      </Select>,
+    );
+    fireEvent.mouseDown(getByRole('combobox'));
+    const options = getAllByRole('option');
+    await act(async () => {
+      fireEvent.keyDown(options[0], { key: 'ArrowDown' });
+      fireEvent.keyDown(options[1], { key: 'ArrowDown' });
+      fireEvent.keyDown(options[2], { key: ' ' });
+    });
+
+    expect(onChangeHandler.args[0][0].target.value).to.equal('2');
+  });
+
   [' ', 'ArrowUp', 'ArrowDown', 'Enter'].forEach((key) => {
     it(`should open menu when pressed ${key} key on select`, async () => {
       render(
