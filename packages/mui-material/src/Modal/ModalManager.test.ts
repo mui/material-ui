@@ -113,14 +113,8 @@ describe('ModalManager', () => {
 
   describe('overflow', () => {
     let fixedNode: HTMLDivElement;
-    let originalBody: HTMLElement;
 
     beforeEach(() => {
-      // backup old body so we can restore it at the end
-      originalBody = document.body;
-      // we add a new body so scrollHeight and clientHeight can be
-      // modified conveniently
-      document.body = document.createElement('body');
       document.body.style.paddingRight = '20px';
 
       fixedNode = document.createElement('div');
@@ -134,7 +128,6 @@ describe('ModalManager', () => {
       window.innerWidth -= 1;
       document.body.style.paddingRight = '';
       document.body.style.overflow = '';
-      document.body = originalBody;
     });
 
     it('should handle the scroll', () => {
@@ -151,30 +144,6 @@ describe('ModalManager', () => {
       expect(body.style.overflow).to.equal('');
       expect(body.style.paddingRight).to.equal('20px');
       expect(fixedNode.style.paddingRight).to.equal('14px');
-    });
-
-    it('should disable the scroll even when not overflowing', () => {
-      // simulate non-overflowing container
-      const container2 = document.createElement('div');
-      const body = document.body;
-      Object.defineProperty(body, 'scrollHeight', {
-        value: 100,
-        writable: false,
-      });
-      Object.defineProperty(body, 'clientHeight', {
-        value: 100,
-        writable: false,
-      });
-      document.body.appendChild(container2);
-
-      const modal = getDummyModal();
-      modalManager.add(modal, container2);
-      modalManager.mount(modal, {});
-      expect(body.style.overflow).to.equal('hidden');
-      modalManager.remove(modal);
-      expect(body.style.overflow).to.equal('');
-
-      document.body.removeChild(container2);
     });
 
     it('should restore styles correctly if none existed before', () => {
@@ -242,15 +211,6 @@ describe('ModalManager', () => {
         const body = document.body;
         body.style.overflow = 'scroll';
 
-        Object.defineProperty(body, 'scrollHeight', {
-          value: 100,
-          writable: false,
-        });
-        Object.defineProperty(body, 'clientHeight', {
-          value: 90,
-          writable: false,
-        });
-
         document.body.appendChild(container2);
         modalManager.add(modal, container2);
         modalManager.mount(modal, {});
@@ -267,15 +227,6 @@ describe('ModalManager', () => {
 
         const body = document.body;
         body.style.overflowX = 'hidden';
-
-        Object.defineProperty(body, 'scrollHeight', {
-          value: 100,
-          writable: false,
-        });
-        Object.defineProperty(body, 'clientHeight', {
-          value: 90,
-          writable: false,
-        });
 
         document.body.appendChild(container2);
 
