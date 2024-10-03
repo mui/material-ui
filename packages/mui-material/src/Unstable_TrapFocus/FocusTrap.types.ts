@@ -12,7 +12,11 @@ export interface FocusTrapProps {
    * @param {boolean} allowExplicitMinusOne default `false`. allows the minus one index to be considered tabbable
    * @param {boolean} allowRootFocus default `false`. allows the root node to be focused
    */
-  getTabbable?: (root: HTMLElement, allowExplicitMinusOne?: boolean, allowRootFocus?: boolean) => ReadonlyArray<HTMLElement>;
+  getTabbable?: (
+    root: HTMLElement,
+    allowExplicitMinusOne?: boolean,
+    allowRootFocus?: boolean,
+  ) => ReadonlyArray<HTMLElement>;
   /**
    * This prop extends the `open` prop.
    * It allows to toggle the open state without having to wait for a rerender when changing the `open` prop.
