@@ -330,10 +330,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const handleItemKeyDown = (child) => (event) => {
     if (event.key === ' ') {
-      if (child.props.onKeyDown) {
-        child.props.onKeyDown(event);
-      }
-
       const newValue = child.props.value;
       if (newValue !== value) {
         setValueState(newValue);
@@ -343,6 +339,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         }
       }
       update(false, event);
+    }
+
+    if (child.props.onKeyDown) {
+      child.props.onKeyDown(event);
     }
   };
 
