@@ -545,7 +545,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
 
   afterEach(() => {
     if (!clock.isReal()) {
-      const error = Error(
+      const error = new Error(
         "Can't cleanup before fake timers are restored.\n" +
           'Be sure to:\n' +
           '  1. Only use `clock` from `createRenderer`.\n' +
