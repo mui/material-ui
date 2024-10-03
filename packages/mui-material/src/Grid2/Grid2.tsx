@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { createGrid as createGrid2 } from '@mui/system/Grid';
 import { SxProps, SystemProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '@mui/types';
+import requirePropFactory from '../utils/requirePropFactory';
 import { Theme, styled, useThemeProps, Breakpoint } from '../styles';
 
 export type Grid2Slot = 'root';
@@ -250,5 +251,19 @@ Grid2.propTypes /* remove-proptypes */ = {
    */
   wrap: PropTypes.oneOf(['nowrap', 'wrap-reverse', 'wrap']),
 } as any;
+
+if (process.env.NODE_ENV !== 'production') {
+  const Component = Grid2 as any;
+  const requireProp = requirePropFactory('Grid2', Component);
+  // eslint-disable-next-line no-useless-concat
+  Component['propTypes' + ''] = {
+    // eslint-disable-next-line react/forbid-foreign-prop-types
+    ...Component.propTypes,
+    direction: requireProp('container'),
+    size: requireProp('item'),
+    spacing: requireProp('container'),
+    wrap: requireProp('container'),
+  };
+}
 
 export default Grid2;
