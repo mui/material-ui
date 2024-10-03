@@ -154,11 +154,14 @@ describe('<Select />', () => {
 
   it('should select an option when the space key is pressed', () => {
     const handleChange = spy();
+    const handleKeyDown = spy();
     const { getAllByRole, getByRole } = render(
       <Select value="0" onChange={handleChange}>
         <MenuItem value="0">Zero</MenuItem>
         <MenuItem value="1">One</MenuItem>
-        <MenuItem value="2">Two</MenuItem>
+        <MenuItem value="2" onKeyDown={handleKeyDown}>
+          Two
+        </MenuItem>
       </Select>,
     );
 
@@ -171,6 +174,7 @@ describe('<Select />', () => {
     fireEvent.keyDown(options[2], { key: ' ' });
 
     expect(handleChange.callCount).to.equal(1);
+    expect(handleKeyDown.callCount).to.equal(1);
     expect(handleChange.firstCall.args[0].target.value).to.equal('2');
   });
 
