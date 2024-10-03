@@ -481,7 +481,7 @@ describe('<FocusTrap />', () => {
               {/* This will have the starting focus, but cannot be focused afterwards
                 as https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 
-                If yoy would want this to remain focusable you should use a positive tabindex
+                If you would want this to remain focusable you should use a positive tabindex
               */}
               <button data-testid="third" tabIndex={-1} />
             </div>
