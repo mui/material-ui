@@ -243,3 +243,13 @@ const theme = createTheme();
     },
   });
 }
+
+// CSS variables for shadow DOM
+{
+  createTheme({
+    cssVariables: {
+      rootSelector: ':host',
+      colorSchemeSelector: 'class',
+    },
+  });
+}

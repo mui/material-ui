@@ -131,6 +131,7 @@ export default function createThemeWithVars(options = {}, ...args) {
     colorSchemeSelector: selector = colorSchemesInput.light && colorSchemesInput.dark
       ? 'media'
       : undefined,
+    rootSelector = ':root',
     ...input
   } = options;
   const firstColorScheme = Object.keys(colorSchemesInput)[0];
@@ -177,6 +178,7 @@ export default function createThemeWithVars(options = {}, ...args) {
     ...muiTheme,
     cssVarPrefix,
     colorSchemeSelector: selector,
+    rootSelector,
     getCssVar,
     colorSchemes,
     font: { ...prepareTypographyVars(muiTheme.typography), ...muiTheme.font },

@@ -126,7 +126,7 @@
     "@types/json2mq": "^0.2.2",
     "@types/node": "^20.16.5",
     "@types/prop-types": "^15.7.13",
-    "@types/react": "^18.3.4",
+    "@types/react": "^18.3.6",
     "@types/react-dom": "^18.3.0",
     "@types/react-swipeable-views": "^0.13.5",
     "@types/react-transition-group": "^4.4.11",
@@ -138,7 +138,7 @@
     "marked": "^13.0.3",
     "playwright": "^1.47.2",
     "prettier": "^3.3.3",
-    "tailwindcss": "^3.4.12",
+    "tailwindcss": "^3.4.13",
     "yargs": "^17.7.2"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "6.1.1",
+  "version": "6.1.2",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -126,14 +126,14 @@
     "@mui/utils": "workspace:^",
     "@next/eslint-plugin-next": "^14.2.13",
     "@octokit/rest": "^21.0.2",
-    "@pigment-css/react": "0.0.23",
+    "@pigment-css/react": "0.0.24",
     "@playwright/test": "1.47.2",
     "@types/babel__core": "^7.20.5",
     "@types/fs-extra": "^11.0.4",
     "@types/lodash": "^4.17.9",
     "@types/mocha": "^10.0.8",
     "@types/node": "^20.16.5",
-    "@types/react": "^18.3.4",
+    "@types/react": "^18.3.6",
     "@types/yargs": "^17.0.33",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
@@ -215,13 +215,13 @@
     "@definitelytyped/typescript-versions": "^0.1.4",
     "@definitelytyped/utils": "^0.1.7",
     "@types/node": "^20.16.5",
-    "@types/react": "^18.3.4",
+    "@types/react": "^18.3.6",
     "@types/react-dom": "18.3.0",
     "cross-fetch": "^4.0.0",
-    "@pigment-css/react": "0.0.23",
-    "@pigment-css/unplugin": "0.0.23",
-    "@pigment-css/nextjs-plugin": "0.0.23",
-    "@pigment-css/vite-plugin": "0.0.23"
+    "@pigment-css/react": "0.0.24",
+    "@pigment-css/unplugin": "0.0.24",
+    "@pigment-css/nextjs-plugin": "0.0.24",
+    "@pigment-css/vite-plugin": "0.0.24"
   },
   "nyc": {
     "include": [

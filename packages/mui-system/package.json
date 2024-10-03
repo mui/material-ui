@@ -1,6 +1,6 @@
 {
   "name": "@mui/system",
-  "version": "6.1.1",
+  "version": "6.1.2",
   "private": false,
   "author": "MUI Team",
   "description": "MUI System is a set of CSS utilities to help you build custom designs more efficiently. It makes it possible to rapidly lay out custom designs.",
@@ -55,7 +55,7 @@
     "@mui/system": "workspace:*",
     "@types/chai": "^4.3.20",
     "@types/prop-types": "^15.7.13",
-    "@types/react": "^18.3.4",
+    "@types/react": "^18.3.6",
     "@types/sinon": "^17.0.3",
     "chai": "^4.5.0",
     "fast-glob": "^3.3.2",
