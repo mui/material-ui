@@ -593,8 +593,8 @@ describe('<InputBase />', () => {
       const MyInputBase = React.forwardRef(function MyInputBase(props, ref) {
         const { onChange, ...other } = props;
 
-        const handleChange = (e) => {
-          onChange(e.target.value, OUTPUT_VALUE);
+        const handleChange = (event) => {
+          onChange(event.target.value, OUTPUT_VALUE);
         };
 
         return <input ref={ref} onChange={handleChange} {...other} />;

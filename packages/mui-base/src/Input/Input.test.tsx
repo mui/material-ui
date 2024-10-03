@@ -147,8 +147,8 @@ describe('<Input />', () => {
       ) {
         const { onChange, ownerState, ...other } = props;
 
-        const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-          onChange(e.target.value, OUTPUT_VALUE);
+        const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+          onChange(event.target.value, OUTPUT_VALUE);
         };
 
         return <input ref={ref} onChange={handleChange} {...other} />;

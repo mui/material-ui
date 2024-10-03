@@ -1,6 +1,6 @@
 {
   "name": "@mui/docs",
-  "version": "6.1.0",
+  "version": "6.1.2",
   "private": false,
   "author": "MUI Team",
   "description": "MUI Docs - Documentation building blocks.",
@@ -46,9 +46,9 @@
     "@mui/material": "workspace:*",
     "@types/gtag.js": "^0.0.20",
     "@types/node": "^20.16.5",
-    "@types/prop-types": "^15.7.12",
-    "@types/react": "^18.3.4",
-    "next": "^14.2.11",
+    "@types/prop-types": "^15.7.13",
+    "@types/react": "^18.3.6",
+    "next": "^14.2.13",
     "react": "^18.3.1"
   },
   "peerDependencies": {
