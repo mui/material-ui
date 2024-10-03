@@ -152,24 +152,26 @@ describe('<Select />', () => {
     expect(options[1]).to.have.attribute('data-value', '20');
   });
 
-  it('shoulad get selected element from arguments', async () => {
-    const onChangeHandler = spy();
+  it('should select an option when the space key is pressed', () => {
+    const handleChange = spy();
     const { getAllByRole, getByRole } = render(
-      <Select onChange={onChangeHandler} value="0">
-        <MenuItem value="0" />
-        <MenuItem value="1" />
-        <MenuItem value="2" />
+      <Select value="0" onChange={handleChange}>
+        <MenuItem value="0">Zero</MenuItem>
+        <MenuItem value="1">One</MenuItem>
+        <MenuItem value="2">Two</MenuItem>
       </Select>,
     );
-    fireEvent.mouseDown(getByRole('combobox'));
-    const options = getAllByRole('option');
-    await act(async () => {
-      fireEvent.keyDown(options[0], { key: 'ArrowDown' });
-      fireEvent.keyDown(options[1], { key: 'ArrowDown' });
-      fireEvent.keyDown(options[2], { key: ' ' });
-    });
 
-    expect(onChangeHandler.args[0][0].target.value).to.equal('2');
+    const trigger = getByRole('combobox');
+    fireEvent.mouseDown(trigger);
+
+    const options = getAllByRole('option');
+    fireEvent.keyDown(options[0], { key: 'ArrowDown' });
+    fireEvent.keyDown(options[1], { key: 'ArrowDown' });
+    fireEvent.keyDown(options[2], { key: ' ' });
+
+    expect(handleChange.callCount).to.equal(1);
+    expect(handleChange.firstCall.args[0].target.value).to.equal('2');
   });
 
   [' ', 'ArrowUp', 'ArrowDown', 'Enter'].forEach((key) => {
