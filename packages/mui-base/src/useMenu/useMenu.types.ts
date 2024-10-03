@@ -89,7 +89,7 @@ interface UseMenuListboxSlotEventHandlers {
 export type UseMenuListboxSlotProps<ExternalProps = {}> = UseListRootSlotProps<
   Omit<ExternalProps, keyof UseMenuListboxSlotEventHandlers> & UseMenuListboxSlotEventHandlers
 > & {
-  ref: React.RefCallback<Element> | null;
+  ref?: React.RefCallback<Element> | null;
   role: React.AriaRole;
 };
 

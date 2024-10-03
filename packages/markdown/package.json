@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-markdown",
-  "version": "1.0.13",
+  "version": "1.0.15",
   "author": "MUI Team",
   "description": "MUI markdown parser. This is an internal package not meant for general use.",
   "main": "./index.js",
@@ -26,7 +26,7 @@
     "prismjs": "^1.29.0"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.19",
+    "@types/chai": "^4.3.20",
     "chai": "^4.5.0"
   },
   "publishConfig": {

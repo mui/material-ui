@@ -39,8 +39,8 @@ const polymorphicComponentTest = () => {
         ref={(elem) => {
           expectType<HTMLButtonElement | null, typeof elem>(elem);
         }}
-        onClick={(e) => {
-          expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof e>(e);
+        onClick={(event) => {
+          expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof event>(event);
         }}
         type="submit"
       />
@@ -60,7 +60,9 @@ const polymorphicComponentTest = () => {
       <Button<'svg'> viewBox="" />
 
       <Button
-        onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
+        onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
+          event.currentTarget.checkValidity()
+        }
       />
 
       <Button<'div'>
@@ -68,8 +70,8 @@ const polymorphicComponentTest = () => {
         ref={(elem) => {
           expectType<HTMLDivElement | null, typeof elem>(elem);
         }}
-        onClick={(e) => {
-          expectType<React.MouseEvent<HTMLDivElement, MouseEvent>, typeof e>(e);
+        onClick={(event) => {
+          expectType<React.MouseEvent<HTMLDivElement, MouseEvent>, typeof event>(event);
         }}
       />
     </div>

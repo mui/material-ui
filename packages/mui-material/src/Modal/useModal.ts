@@ -26,7 +26,7 @@ function getHasTransition(children: UseModalParameters['children']) {
 
 // A modal manager used to track and manage the state of open Modals.
 // Modals don't open on the server so this won't conflict with concurrent requests.
-const defaultManager = new ModalManager();
+const manager = new ModalManager();
 /**
  *
  * Demos:
@@ -42,8 +42,6 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
     container,
     disableEscapeKeyDown = false,
     disableScrollLock = false,
-    // @ts-ignore internal logic - Base UI supports the manager as a prop too
-    manager = defaultManager,
     closeAfterTransition = false,
     onTransitionEnter,
     onTransitionExited,
@@ -85,7 +83,7 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const handleOpen = useEventCallback(() => {
     const resolvedContainer = getContainer(container) || getDoc().body;
 
-    manager.add(getModal(), resolvedContainer);
+    manager.add(getModal(), resolvedContainer as HTMLElement);
 
     // The element was already mounted.
     if (modalRef.current) {
@@ -93,7 +91,7 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
     }
   });
 
-  const isTopModal = React.useCallback(() => manager.isTopModal(getModal()), [manager]);
+  const isTopModal = () => manager.isTopModal(getModal());
 
   const handlePortalRef = useEventCallback((node: HTMLElement) => {
     mountNodeRef.current = node;
@@ -111,7 +109,7 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
 
   const handleClose = React.useCallback(() => {
     manager.remove(getModal(), ariaHiddenProp);
-  }, [ariaHiddenProp, manager]);
+  }, [ariaHiddenProp]);
 
   React.useEffect(() => {
     return () => {

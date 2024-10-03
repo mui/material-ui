@@ -19,7 +19,7 @@
     "IconContainerComponent": { "description": "The component containing the icon." },
     "max": { "description": "Maximum rating." },
     "name": {
-      "description": "The name attribute of the radio <code>input</code> elements. This input <code>name</code> should be unique within the page. Being unique within a form is insufficient since the <code>name</code> is used to generated IDs."
+      "description": "The name attribute of the radio <code>input</code> elements. This input <code>name</code> should be unique within the page. Being unique within a form is insufficient since the <code>name</code> is used to generate IDs."
     },
     "onChange": {
       "description": "Callback fired when the value changes.",

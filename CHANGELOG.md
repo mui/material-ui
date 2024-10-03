@@ -1,5 +1,127 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.1.2
+
+<!-- generated comparing v6.1.1..master -->
+
+_Oct 2, 2024_
+
+A big thanks to the 13 contributors who made this release possible.
+
+### `@mui/material@6.1.2`
+
+- [Autocomplete] Fix listbox opens and closes on click when used with `limitTags` (#42494) @appleSimple
+- [Button] Ignore `dark` and `contrastText` if not provided in the theme (#43861) @siriwatknp
+- [Button] Fix regression for color `inherit` (#43862) @siriwatknp
+- [LinearProgress] Fix background color (#43949) @sai6855
+- Support CSS variables with shadow DOM (#43948) @siriwatknp
+- [Rating] Use Rating `name` as prefix of input element ids (#43829) @yash49
+- [Drawer] Fix issue with main window being used instead of iframe's window (#43818) @albarv340
+- [ThemeProvider] Support setting default mode (#43951) @siriwatknp
+
+### Docs
+
+- Update theme toggle demo (#43956) @Janpot
+- Add note about minimum required webpack version (#43864) @Janpot
+- Format Pigment CSS docs (#43812) @oliviertassinari
+- Fix visual bug on dashboard template (#43836) @oliviertassinari
+- Fix pigment-css.md syntax error (#43837) @kdichev
+- Fix Sign-in template form experience (#43838) @oliviertassinari
+- Remove "To be continued" section from v0 –> v1 migration guide (#43832) @samuelsycamore
+- Fix 301 to chromium (#43809) @oliviertassinari
+- [joy-ui] Add missing ComponentLinkHeader components (#43865) @samuelsycamore
+- [Modal] Remove unnecessary type assertion (#43825) @ZeeshanTamboli
+- [Table] Stabilize random series in virtualized table demo (#43744) @Janpot
+- [system] Add migration guide link to `@mui/styles` pages (#43833) @samuelsycamore
+
+### Core
+
+- [code-infra] Fix flaky dashboard screenshot - take 2 (#43937) @Janpot
+- [code-infra] Replace all instances of `e` with `event` and add eslint rule (#43866) @samuelsycamore
+- [code-infra] Fix and update bundling fixtures (#43709) @Janpot
+- [code-infra] Update transitive dependencies with vulnerabilties (#43895) @Janpot
+- [code-infra] Optimize regression tests (#43889) @Janpot
+- [code-infra] Remove custom playwright installation steps (#43881) @Janpot
+- [code-infra] Fix flaky dashboard screenshot (#43890) @Janpot
+- [code-infra] Add new instanceof proptypes for toolpad (#43814) @Janpot
+- Fix eslint-plugin-react-compiler issues in usePagination tests (#43946) @wilhelmlofsten
+- Uniformity in version range @oliviertassinari
+- Replace `toBeAriaHidden` matcher with `toBeInaccessible` in tests (#43870) @ZeeshanTamboli
+- [docs-infra] Strengthen CSP (#43711) @oliviertassinari
+- [docs-infra] Open Codesandbox demo with fontsize=12 (#43860) @siriwatknp
+- [icons] Reduce Material Icon page size (#43911) @oliviertassinari
+- [test] Point Istanbul to correct URL (#43935) @sai6855
+- [test] Sync React.version parse logic with codebase (#43820) @oliviertassinari
+- Improve getReactElementRef() utils (#43022) @sai6855
+- [Drawer] Refactor getScrollbarSize usages (#43828) @BrianWoolfolk
+- [Modal] Replace `show` parameter name with `hide` in modal manager (#43868) @ZeeshanTamboli
+- [Modal] Remove unnecessary `manager` prop handling (#43867) @ZeeshanTamboli
+
+All contributors of this release in alphabetical order: @albarv340, @appleSimple, @BrianWoolfolk, @DanailH, @Janpot, @kdichev, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @wilhelmlofsten, @yash49, @ZeeshanTamboli
+
+## v6.1.1
+
+<!-- generated comparing v6.1.0..master -->
+
+_Sep 19, 2024_
+
+A big thanks to the 18 contributors who made this release possible.
+
+### `@mui/material@6.1.1`
+
+- [Grid] Bring back `GridProps` and `GridTypeMap` (#43717) @DiegoAndai
+- [Paper] Fix wrong background-image on Paper when elevation is 0 (#43723) @ZeeshanTamboli
+- [Skeleton] Fix wave animation for styled-components (#43740) @siriwatknp
+- [Modal] Fix event handlers overriding behavior (#43757) @sai6855
+
+### `@mui/system@6.1.1`
+
+- Pass the stylesheet directly to `GlobalStyles` (#43739) @siriwatknp
+
+### `@mui/utils@6.1.1`
+
+- Fix "useId" & "useSyncExternalStore" imports to not be statically analyzable (#43360) @yash49
+
+### Docs
+
+- [material-ui][Breadcrumbs] Document CondensedWithMenu option for Breadcrumbs (#42973) @Sergio16T
+- [material-ui][CircularProgress] Add Circular size demo (#43734) @sai6855
+- [material-ui][slider] Fix slider in color customization playground twitches when sliding (#43671) @Nashyn
+- [material-ui][slider] Polish Music player demo (#43748) @oliviertassinari
+- [material-ui] Document Typography color prop breaking change (#43735) @aarongarciah
+- [material-ui] Add docs for complementary Table components (#43756) @Juneezee
+- [material-ui] Improve minimizing bundle docs (#43781) @ZeeshanTamboli
+- [pigment-css] Call out Pigment being in alpha (#43725) @aarongarciah
+- [pigment-css] Fix typo globalCSS -> globalCss (#43754) @hiro0218
+- [test] Improve demos for better regression screenshots (#43742) @aarongarciah
+- Fix minor typo (#42899) @xconverge
+- Revert icon search virtualization (#43569) @Janpot
+- Fix MUI Treasury Layout broken links (#43752) @oliviertassinari
+- Fix 301 link to design asset @oliviertassinari
+- Update release schedule table after v6 stable (#43726) @sahil-ag
+- Fix bundle size link regression @oliviertassinari
+
+### Core
+
+- [code-infra] Allow overriding all `options` of `useFakeTimers` function (#43729) @LukasTy
+- [core] Fix 301 link to Next.js and git diff @oliviertassinari
+- [core] Fix package.json repository rule @oliviertassinari
+- [core] Remove redundant window @oliviertassinari
+- [core] Fix some issues reported by eslint-plugin-react-compiler (#43117) @binsmyth
+- [core] Replace more `indexOf` with `includes` (#43694) @Juneezee
+- [core] Remove /.yarn (#43712) @oliviertassinari
+- [docs-infra] Enable synthetic default imports in TypeScript config (#43747) @morozow
+- [docs-infra] Fix Vale config for TypeScript references (#43751) @oliviertassinari
+- [docs-infra] Fix toolbar arrow order (#43627) @oliviertassinari
+- [docs-infra] Fix missing dependencies in multi-tab demos (#43713) @cherniavskii
+- [docs-infra] Fix API search link regression (#43662) @oliviertassinari
+- [test] Update font-awesome CSS file in regression tests fixture (#43745) @Janpot
+- [test] Remove position:relative from regression container (#43743) @aarongarciah
+- [test] Remove top-level inline-block from the regression tests (#43656) @Janpot
+- [website] Match pricing page with linked page h1 @oliviertassinari
+
+All contributors of this release in alphabetical order: @aarongarciah, @binsmyth, @cherniavskii, @DiegoAndai, @Janpot, @Juneezee, @LukasTy, @mnajdova, @morozow, @Nashyn, @oliviertassinari, @sahil-ag, @sai6855, @Sergio16T, @siriwatknp, @xconverge, @yash49, @ZeeshanTamboli
+
 ## v6.1.0
 
 <!-- generated comparing v6.0.2..master -->
