@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import useForkRef from './useForkRef';
-import getReactNodeRef from '../getReactNodeRef';
+import getReactElementRef from '../getReactElementRef';
 
 describe('useForkRef', () => {
   const { render } = createRenderer();
@@ -48,7 +48,7 @@ describe('useForkRef', () => {
   it('does nothing if none of the forked branches requires a ref', () => {
     const Outer = React.forwardRef(function Outer(props, ref) {
       const { children } = props;
-      const handleRef = useForkRef(getReactNodeRef(children), ref);
+      const handleRef = useForkRef(getReactElementRef(children), ref);
 
       return React.cloneElement(children, { ref: handleRef });
     });

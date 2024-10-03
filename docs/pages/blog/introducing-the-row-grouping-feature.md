@@ -29,7 +29,9 @@ With the new row grouping feature, you can click on the **Director** column menu
 
 When you're ready to return to the default view, click on **Stop Grouping by Director** in the same column menu.
 
-<img src="/static/blog/introducing-the-row-grouping-feature/blog1.gif" alt="grouping and un-grouping by director" style="width: 100%; margin-bottom: 16px;" />
+<video preload="metadata" autoplay muted loop playsinline controls width="767" height="509">
+  <source src="/static/blog/introducing-the-row-grouping-feature/blog1.mp4" type="video/mp4" />
+</video>
 
 ## How to unlock this feature 🔓🎁
 
@@ -97,7 +99,9 @@ To group our movies by decade, we could use the following:
 groupingValueGetter: ({ value }) => `${Math.floor(value.getFullYear() / 10)}0's`;
 ```
 
-<img src="/static/blog/introducing-the-row-grouping-feature/blog2.gif" alt="grouping by release decade" style="width: 100%; margin-bottom: 16px;" />
+<video preload="metadata" autoplay muted loop playsinline controls width="767" height="509">
+  <source src="/static/blog/introducing-the-row-grouping-feature/blog2.mp4" type="video/mp4" />
+</video>
 
 ## Share your feedback 🗣
 

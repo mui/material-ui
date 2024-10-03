@@ -375,7 +375,11 @@ export interface Clock {
 
 export type ClockConfig = undefined | number | Date;
 
-function createClock(defaultMode: 'fake' | 'real', config: ClockConfig): Clock {
+function createClock(
+  defaultMode: 'fake' | 'real',
+  config: ClockConfig,
+  options?: Exclude<Parameters<typeof useFakeTimers>[0], number | Date>,
+): Clock {
   let clock: ReturnType<typeof useFakeTimers> | null = null;
 
   let mode = defaultMode;
@@ -388,6 +392,7 @@ function createClock(defaultMode: 'fake' | 'real', config: ClockConfig): Clock {
         // Technically we'd want to reset all modules between tests but we don't have that technology.
         // In the meantime just continue to clear native timers like with did for the past years when using `sinon` < 8.
         shouldClearNativeTimers: true,
+        ...options,
       });
     }
   });
@@ -461,6 +466,7 @@ export interface CreateRendererOptions extends Pick<RenderOptions, 'strict' | 's
    */
   clock?: 'fake' | 'real';
   clockConfig?: ClockConfig;
+  clockOptions?: Parameters<typeof createClock>[2];
 }
 
 export function createRenderer(globalOptions: CreateRendererOptions = {}): Renderer {
@@ -469,10 +475,11 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     clockConfig,
     strict: globalStrict = true,
     strictEffects: globalStrictEffects = globalStrict,
+    clockOptions,
   } = globalOptions;
   // save stack to re-use in test-hooks
   const { stack: createClientRenderStack } = new Error();
-  const clock = createClock(clockMode, clockConfig);
+  const clock = createClock(clockMode, clockConfig, clockOptions);
 
   /**
    * Flag whether `createRenderer` was called in a suite i.e. describe() block.
@@ -542,7 +549,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
 
   afterEach(() => {
     if (!clock.isReal()) {
-      const error = Error(
+      const error = new Error(
         "Can't cleanup before fake timers are restored.\n" +
           'Be sure to:\n' +
           '  1. Only use `clock` from `createRenderer`.\n' +

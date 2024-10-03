@@ -588,7 +588,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
   // charts - features
   'charts/legend': <ColumnHead label="Legend" href="/x/react-charts/legend/" />,
   'charts/tooltip': <ColumnHead label="Tooltip" href="/x/react-charts/tooltip/" />,
-  'charts/zoom-and-pan': <ColumnHead label="Zoom and Pan" href="/x/react-charts/zoom-and-pan/" />,
+  'charts/zoom-and-pan': <ColumnHead label="Zoom & Pan" href="/x/react-charts/zoom-and-pan/" />,
   'charts/export': <ColumnHead label="Export" />,
   // charts - datagrid
   'charts/cell-with-charts': (
@@ -733,7 +733,7 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/column-pinning': no,
   // data grid - rows
   'data-grid/row-height': yes,
-  'data-grid/row-spanning': pending,
+  'data-grid/row-spanning': yes,
   'data-grid/row-reordering': no,
   'data-grid/row-pinning': no,
   'data-grid/row-selection': yes,
@@ -836,7 +836,7 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/column-pinning': yes,
   // data grid - rows
   'data-grid/row-height': yes,
-  'data-grid/row-spanning': pending,
+  'data-grid/row-spanning': yes,
   'data-grid/row-reordering': yes,
   'data-grid/row-pinning': yes,
   'data-grid/row-selection': yes,
@@ -940,7 +940,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/column-pinning': yes,
   // data grid - rows
   'data-grid/row-height': yes,
-  'data-grid/row-spanning': pending,
+  'data-grid/row-spanning': yes,
   'data-grid/row-reordering': yes,
   'data-grid/row-pinning': yes,
   'data-grid/row-selection': yes,

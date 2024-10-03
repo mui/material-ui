@@ -32,7 +32,7 @@ yarn add @mui/material-nextjs @emotion/cache
 Inside `app/layout.tsx`, import the `AppRouterCacheProvider` and wrap all elements under the `<body>` with it:
 
 ```diff title="app/layout.tsx"
-+import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
++import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
  // or `v1X-appRouter` if you are using Next.js v1X
 
  export default function RootLayout(props) {
@@ -88,7 +88,7 @@ export default theme;
 Finally, in `src/app/layout.tsx`, pass the theme to the `ThemeProvider`:
 
 ```diff title="app/layout.tsx"
- import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
+ import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 +import { Roboto } from 'next/font/google';
 +import { ThemeProvider } from '@mui/material/styles';
 +import theme from '../theme';
@@ -179,7 +179,7 @@ Inside the `pages/_document.tsx` file:
 +import {
 +  DocumentHeadTags,
 +  documentGetInitialProps,
-+} from '@mui/material-nextjs/v13-pagesRouter';
++} from '@mui/material-nextjs/v14-pagesRouter';
  // or `v1X-pagesRouter` if you are using Next.js v1X
 
  export default function MyDocument(props) {
@@ -206,7 +206,7 @@ Inside the `pages/_document.tsx` file:
 Then, inside `pages/_app.tsx`, import the `AppCacheProvider` component and render it as the root element:
 
 ```diff title="pages/_app.tsx"
-+import { AppCacheProvider } from '@mui/material-nextjs/v13-pagesRouter';
++import { AppCacheProvider } from '@mui/material-nextjs/v14-pagesRouter';
  // Or `v1X-pages` if you are using Next.js v1X
 
  export default function MyApp(props) {
@@ -311,7 +311,7 @@ MyDocument.getInitialProps = async (ctx) => {
 If you are using TypeScript, add `DocumentHeadTagsProps` to the Document's props interface:
 
 ```diff
-+import type { DocumentHeadTagsProps } from '@mui/material-nextjs/v13-pagesRouter';
++import type { DocumentHeadTagsProps } from '@mui/material-nextjs/v14-pagesRouter';
  // or `v1X-pagesRouter` if you are using Next.js v1X
 
 +export default function MyDocument(props: DocumentProps & DocumentHeadTagsProps) {
@@ -327,7 +327,7 @@ To integrate [Next.js font optimization](https://nextjs.org/docs/pages/building-
  import * as React from 'react';
  import Head from 'next/head';
  import { AppProps } from 'next/app';
- import { AppCacheProvider } from '@mui/material-nextjs/v13-pagesRouter';
+ import { AppCacheProvider } from '@mui/material-nextjs/v14-pagesRouter';
 +import { ThemeProvider, createTheme } from '@mui/material/styles';
 +import { Roboto } from 'next/font/google';
 

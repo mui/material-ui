@@ -28,6 +28,6 @@ describe('getScrollbarSize', () => {
     document.head.appendChild(styleElement);
     divElement.style.height = '2000px';
     document.body.appendChild(divElement);
-    expect(getScrollbarSize(document)).to.equal(5);
+    expect(getScrollbarSize(window)).to.equal(5);
   });
 });

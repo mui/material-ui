@@ -156,6 +156,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   }
 
   const externalForwardedProps = {
+    ...other,
     slots: {
       root: components.Root,
       backdrop: components.Backdrop,
@@ -190,12 +191,12 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     getSlotProps: (otherHandlers) => {
       return getBackdropProps({
         ...otherHandlers,
-        onClick: (e) => {
+        onClick: (event) => {
           if (onBackdropClick) {
-            onBackdropClick(e);
+            onBackdropClick(event);
           }
           if (otherHandlers?.onClick) {
-            otherHandlers.onClick(e);
+            otherHandlers.onClick(event);
           }
         },
       });
@@ -218,7 +219,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
        * is not meant for humans to interact with directly.
        * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
        */}
-      <RootSlot {...rootProps} {...other}>
+      <RootSlot {...rootProps}>
         {!hideBackdrop && BackdropComponent ? (
           <BackdropSlot {...backdropProps} ref={backdropRef} />
         ) : null}

@@ -5,23 +5,29 @@ import Select, { SelectOwnerState } from '@mui/joy/Select';
 <Select defaultListboxOpen />;
 <Select
   value=""
-  onChange={(e, val) => {
-    expectType<React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null, typeof e>(e);
+  onChange={(event, val) => {
+    expectType<React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null, typeof event>(
+      event,
+    );
     expectType<string | null, typeof val>(val);
   }}
 />;
 <Select
   value={2}
-  onChange={(e, val) => {
-    expectType<React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null, typeof e>(e);
+  onChange={(event, val) => {
+    expectType<React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null, typeof event>(
+      event,
+    );
     expectType<number | null, typeof val>(val);
   }}
 />;
 // any object
 <Select
   value={{ name: '' }}
-  onChange={(e, val) => {
-    expectType<React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null, typeof e>(e);
+  onChange={(event, val) => {
+    expectType<React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null, typeof event>(
+      event,
+    );
     expectType<{ name: string } | null, typeof val>(val);
   }}
 />;
@@ -33,7 +39,7 @@ interface Value {
 <Select<Value>
   // @ts-expect-error the provided value type does not match the Value
   value={{ name: '' }}
-  onChange={(e, val) => {
+  onChange={(event, val) => {
     expectType<Value | null, typeof val>(val);
   }}
 />;
@@ -144,12 +150,12 @@ interface Value {
 />;
 
 const handleChange = (
-  e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+  event: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
   val: number | null,
 ) => {};
 
 const handleMultiChange = (
-  e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+  event: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
   val: number[] | null,
 ) => {};
 

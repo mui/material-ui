@@ -8,6 +8,7 @@ import InputBase from '../InputBase';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 import {
@@ -114,7 +115,7 @@ const InputRoot = styled(InputBaseRoot, {
           },
         },
         ...Object.entries(theme.palette)
-          .filter(([, value]) => value && value.main)
+          .filter(createSimplePaletteValueFilter())
           .map(([color]) => ({
             props: { color, disableUnderline: false },
             style: {

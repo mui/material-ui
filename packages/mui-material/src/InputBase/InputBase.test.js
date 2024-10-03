@@ -190,10 +190,10 @@ describe('<InputBase />', () => {
     it('should inject onBlur and onFocus', () => {
       let injectedProps;
       const MyInputBase = React.forwardRef(function MyInputBase(props, ref) {
+        // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
         injectedProps = props;
         return <input ref={ref} {...props} />;
       });
-
       render(<InputBase inputComponent={MyInputBase} />);
       expect(typeof injectedProps.onBlur).to.equal('function');
       expect(typeof injectedProps.onFocus).to.equal('function');
@@ -593,8 +593,8 @@ describe('<InputBase />', () => {
       const MyInputBase = React.forwardRef(function MyInputBase(props, ref) {
         const { onChange, ...other } = props;
 
-        const handleChange = (e) => {
-          onChange(e.target.value, OUTPUT_VALUE);
+        const handleChange = (event) => {
+          onChange(event.target.value, OUTPUT_VALUE);
         };
 
         return <input ref={ref} onChange={handleChange} {...other} />;

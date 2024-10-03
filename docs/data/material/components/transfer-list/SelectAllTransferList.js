@@ -11,11 +11,11 @@ import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 
 function not(a, b) {
-  return a.filter((value) => b.indexOf(value) === -1);
+  return a.filter((value) => !b.includes(value));
 }
 
 function intersection(a, b) {
-  return a.filter((value) => b.indexOf(value) !== -1);
+  return a.filter((value) => b.includes(value));
 }
 
 function union(a, b) {
@@ -108,7 +108,7 @@ export default function SelectAllTransferList() {
             >
               <ListItemIcon>
                 <Checkbox
-                  checked={checked.indexOf(value) !== -1}
+                  checked={checked.includes(value)}
                   tabIndex={-1}
                   disableRipple
                   inputProps={{

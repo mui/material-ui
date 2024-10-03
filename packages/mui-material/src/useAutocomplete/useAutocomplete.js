@@ -44,9 +44,7 @@ export function createFilterOptions(config = {}) {
             candidate = stripDiacritics(candidate);
           }
 
-          return matchFrom === 'start'
-            ? candidate.indexOf(input) === 0
-            : candidate.indexOf(input) > -1;
+          return matchFrom === 'start' ? candidate.startsWith(input) : candidate.includes(input);
         });
 
     return typeof limit === 'number' ? filteredOptions.slice(0, limit) : filteredOptions;
@@ -762,7 +760,7 @@ function useAutocomplete(props) {
       return;
     }
 
-    if (focusedTag !== -1 && ['ArrowLeft', 'ArrowRight'].indexOf(event.key) === -1) {
+    if (focusedTag !== -1 && !['ArrowLeft', 'ArrowRight'].includes(event.key)) {
       setFocusedTag(-1);
       focusTag(-1);
     }
@@ -1022,6 +1020,7 @@ function useAutocomplete(props) {
   const handleInputMouseDown = (event) => {
     if (!disabledProp && (inputValue === '' || !open)) {
       handlePopupIndicator(event);
+      event.stopPropagation();
     }
   };
 
@@ -1110,6 +1109,7 @@ function useAutocomplete(props) {
       tabIndex: -1,
       type: 'button',
       onClick: handlePopupIndicator,
+      onMouseDown: (event) => event.stopPropagation(),
     }),
     getTagProps: ({ index }) => ({
       key: index,

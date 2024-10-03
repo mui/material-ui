@@ -345,14 +345,14 @@ describe('extendTheme', () => {
       const theme = extendTheme({ defaultColorScheme: 'dark' });
       expect(theme.colorSchemes.dark.overlays).to.have.length(25);
 
-      expect(theme.colorSchemes.dark.overlays[0]).to.equal(undefined);
+      expect(theme.colorSchemes.dark.overlays[0]).to.equal('none');
       expect(theme.colorSchemes.dark.overlays[24]).to.equal(
         'linear-gradient(rgba(255 255 255 / 0.165), rgba(255 255 255 / 0.165))',
       );
     });
 
     it('should override the array as expected', () => {
-      const overlays = Array(24).fill('none');
+      const overlays = Array(25).fill('none');
       const theme = extendTheme({
         defaultColorScheme: 'dark',
         colorSchemes: { dark: { overlays } },
@@ -849,6 +849,19 @@ describe('extendTheme', () => {
         '.mode-dark', // specific variables for dark
         ':root, .mode-dark',
         '.mode-light',
+      ]);
+    });
+
+    it('should use a custom root selector', () => {
+      const theme = extendTheme({
+        colorSchemes: { light: true, dark: true },
+        colorSchemeSelector: 'class',
+        rootSelector: ':host',
+      });
+      expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
+        ':host',
+        ':host, .light',
+        '.dark',
       ]);
     });
   });

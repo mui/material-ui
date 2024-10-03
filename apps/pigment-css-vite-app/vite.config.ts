@@ -43,16 +43,10 @@ export default defineConfig({
       sourceMap: true,
       displayName: true,
     }),
-    Pages(),
     splitVendorChunkPlugin(),
+    Pages({
+      exclude: ['**/*.test.*'],
+    }),
     nodePolyfills(),
   ],
-  resolve: {
-    alias: [
-      {
-        find: /^@mui\/icons-material\/(.*)/,
-        replacement: '@mui/icons-material/esm/$1',
-      },
-    ],
-  },
 });
