@@ -864,6 +864,38 @@ describe('<Autocomplete />', () => {
     expect(handleSubmit.callCount).to.equal(4);
   });
 
+  it('should not open the autocomplete popup when deleting chips', () => {
+    const { queryByRole, container } = render(
+      <Autocomplete
+        multiple
+        options={['one', 'two', 'three']}
+        defaultValue={['one', 'two', 'three']}
+        renderInput={(params) => <TextField {...params} autoFocus />}
+      />,
+    );
+
+    // Initially, the Autocomplete popup should not be open
+    expect(queryByRole('listbox')).to.equal(null);
+
+    for (let index = 0; index < 3; index += 1) {
+      const chips = container.querySelectorAll(`.${chipClasses.root}`);
+      expect(chips.length).to.equal(3 - index);
+
+      const chip = chips[0]; // Always delete the first chip
+
+      const deleteIcon = chip.querySelector(`.${chipClasses.deleteIcon}`);
+      expect(deleteIcon).not.to.equal(null);
+      fireEvent.click(deleteIcon);
+
+      // After deleting, the Autocomplete popup should still not be open
+      expect(queryByRole('listbox')).to.equal(null);
+
+      // Check that the chip has been removed
+      const remainingChips = container.querySelectorAll(`.${chipClasses.root}`);
+      expect(remainingChips.length).to.equal(3 - (index + 1));
+    }
+  });
+
   describe('prop: getOptionDisabled', () => {
     it('should prevent the disabled option to trigger actions but allow focus with disabledItemsFocusable', () => {
       const handleSubmit = spy();
