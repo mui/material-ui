@@ -341,9 +341,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       update(false, event);
     }
 
-    if (child.props.onKeyDown) {
-      child.props.onKeyDown(event);
-    }
+    child?.props?.onKeyDown?.(event);
   };
 
   const open = displayNode !== null && openState;
