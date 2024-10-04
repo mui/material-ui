@@ -2,7 +2,6 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import IndeterminateCheckBox from '@mui/icons-material/IndeterminateCheckBox';
 
 export default function IndeterminateCheckbox() {
   const [checked, setChecked] = React.useState([true, false]);
@@ -41,7 +40,6 @@ export default function IndeterminateCheckbox() {
             checked={checked[0] && checked[1]}
             indeterminate={checked[0] !== checked[1]}
             onChange={handleChange1}
-            indeterminateIcon={<IndeterminateCheckBox />}
           />
         }
       />
