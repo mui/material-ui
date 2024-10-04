@@ -301,7 +301,7 @@ describe('extendTheme', () => {
       );
 
       expect(darkStyles).to.deep.equal({
-        [`*:where([${attribute}="dark"]) &`]: {
+        [`@scope ([${attribute}="dark"])`]: {
           backgroundColor: 'rgba(0, 0, 0, 0)',
         },
       });

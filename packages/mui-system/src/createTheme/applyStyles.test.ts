@@ -26,7 +26,7 @@ describe('applyStyles', () => {
     };
     const styles = { background: '#e5e5e5' };
     expect(applyStyles.call(theme, 'light', styles)).to.deep.equal({
-      '*:where(.light) &': styles,
+      '@scope (.light)': styles,
     });
   });
 
@@ -40,7 +40,7 @@ describe('applyStyles', () => {
     };
     const styles = { background: '#e5e5e5' };
     expect(applyStyles.call(theme, 'light', styles)).to.deep.equal({
-      '*:where([data-color-scheme-light]) &': styles,
+      '@scope ([data-color-scheme-light])': styles,
     });
   });
 
@@ -54,7 +54,7 @@ describe('applyStyles', () => {
     };
     const styles = { background: '#e5e5e5' };
     expect(applyStyles.call(theme, 'light', styles)).to.deep.equal({
-      '*:where([data-color-scheme="light"]) &': styles,
+      '@scope ([data-color-scheme="light"])': styles,
     });
   });
 

@@ -74,14 +74,14 @@ export default function applyStyles<K extends string>(key: K, styles: CSSObject)
     if (!theme.colorSchemes?.[key] || typeof theme.getColorSchemeSelector !== 'function') {
       return {};
     }
-    // If CssVarsProvider is used as a provider, returns '*:where({selector}) &'
+    // If CssVarsProvider is used as a provider, returns '@scope ({selector}) &'
     let selector = theme.getColorSchemeSelector(key);
     if (selector === '&') {
       return styles;
     }
     if (selector.includes('data-') || selector.includes('.')) {
       // '*' is required as a workaround for Emotion issue (https://github.com/emotion-js/emotion/issues/2836)
-      selector = `*:where(${selector.replace(/\s*&$/, '')}) &`;
+      selector = `@scope (${selector.replace(/\s*&$/, '')})`;
     }
     return {
       [selector]: styles,
