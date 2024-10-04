@@ -682,7 +682,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   let autocompletePopper = null;
   if (groupedOptions.length > 0) {
     autocompletePopper = renderAutocompletePopperChildren(
-      <AutocompleteListbox as={ListboxSlot} {...listboxProps}>
+      <AutocompleteListbox as={ListboxSlot} ownerState={ownerState} {...listboxProps}>
         {groupedOptions.map((option, index) => {
           if (groupBy) {
             return renderGroup({
