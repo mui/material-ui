@@ -7,7 +7,7 @@ import JoyBox from '@mui/joy/Box';
 import { CssVarsProvider } from '@mui/joy/styles';
 
 function TestViewer(props) {
-  const { children } = props;
+  const { children, path } = props;
 
   // We're simulating `act(() => ReactDOM.render(children))`
   // In the end children passive effects should've been flushed.
@@ -52,7 +52,6 @@ function TestViewer(props) {
   const viewerBoxSx = {
     display: 'block',
     p: 1,
-    position: 'relative',
   };
 
   return (
@@ -83,6 +82,7 @@ function TestViewer(props) {
             <JoyBox
               aria-busy={!ready}
               data-testid="testcase"
+              data-testpath={path}
               sx={{ bgcolor: 'background.body', ...viewerBoxSx }}
             >
               {children}
@@ -92,6 +92,7 @@ function TestViewer(props) {
           <Box
             aria-busy={!ready}
             data-testid="testcase"
+            data-testpath={path}
             sx={{ bgcolor: 'background.default', ...viewerBoxSx }}
           >
             {children}
@@ -104,6 +105,7 @@ function TestViewer(props) {
 
 TestViewer.propTypes = {
   children: PropTypes.node.isRequired,
+  path: PropTypes.string.isRequired,
 };
 
 export default TestViewer;

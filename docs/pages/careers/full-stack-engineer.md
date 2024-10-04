@@ -33,8 +33,8 @@ We believe that the best way to improve on these dimensions is to eliminate [80%
 
 We're in the early stages of exploring what our role could be in the currently emerging low-code space. We've assembled a team to work on a new product and plan to bring it to market in 2022. We have made our initial research and need help to accelerate the development of our MVP.
 
-Overall, both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
+Overall, both our open-source community and our premium products are growing fast.
+We need talented people to keep up with the demands of our exigent community!
 
 ## The role
 
@@ -48,7 +48,7 @@ The Toolpad application offers a wide variety of engineering challenges. Includi
 - Interfacing with many different types of backends
 - Databinding and complex state management
 
-### What you'll do on a day-to-day basis
+### Key responsibilities
 
 Depending on the day, you'll:
 

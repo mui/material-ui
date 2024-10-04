@@ -5,12 +5,6 @@ declare global {
   namespace Chai {
     interface Assertion {
       /**
-       * Checks if the element in question is considered `aria-hidden`.
-       * Does not replace accessibility check as that requires display/visibility/layout
-       * @deprecated Use `inaccessible` + `visible` instead
-       */
-      toBeAriaHidden(): void;
-      /**
        * Checks `expectedStyle` is a subset of the elements inline style i.e. `element.style`.
        * @example expect(element).toHaveInlineStyle({ width: '200px' })
        */

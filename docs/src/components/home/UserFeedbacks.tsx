@@ -95,7 +95,7 @@ function Feedback({
     avatarSrcSet: string;
     name: string;
     role: string;
-    company?: React.ReactElement<any>;
+    company?: React.ReactElement<unknown>;
   };
 }) {
   return (

@@ -134,7 +134,7 @@ describe('<Slider />', () => {
       expect(slider).to.have.property('tagName', 'INPUT');
       expect(slider).to.have.property('type', 'range');
       // Only relevant if we implement `[role="slider"]` with `input[type="range"]`
-      // We're not setting this by default because it changes horizontal keyboard navigation in WebKit: https://bugs.chromium.org/p/chromium/issues/detail?id=1162640
+      // We're not setting this by default because it changes horizontal keyboard navigation in WebKit: https://issues.chromium.org/issues/40739626
       expect(slider).not.toHaveComputedStyle({ webkitAppearance: 'slider-vertical' });
     });
   });

@@ -285,8 +285,12 @@ export interface MuiRenderToStringResult {
   hydrate(): MuiRenderResult;
 }
 
+interface DataAttributes {
+  [key: `data-${string}`]: string;
+}
+
 function render(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<DataAttributes>,
   configuration: ClientRenderConfiguration,
 ): MuiRenderResult {
   const { container, hydrate, wrapper } = configuration;
@@ -322,7 +326,7 @@ function render(
 }
 
 function renderToString(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<DataAttributes>,
   configuration: ServerRenderConfiguration,
 ): { container: HTMLElement; hydrate(): MuiRenderResult } {
   const { container, wrapper: Wrapper } = configuration;
@@ -530,9 +534,9 @@ function createClock(
 
 export interface Renderer {
   clock: Clock;
-  render(element: React.ReactElement<any>, options?: RenderOptions): MuiRenderResult;
+  render(element: React.ReactElement<DataAttributes>, options?: RenderOptions): MuiRenderResult;
   renderToString(
-    element: React.ReactElement<any>,
+    element: React.ReactElement<DataAttributes>,
     options?: RenderOptions,
   ): MuiRenderToStringResult;
 }
@@ -632,7 +636,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
 
   afterEach(() => {
     if (!isVitest && !clock.isReal()) {
-      const error = Error(
+      const error = new Error(
         "Can't cleanup before fake timers are restored.\n" +
           'Be sure to:\n' +
           '  1. Only use `clock` from `createRenderer`.\n' +
@@ -680,7 +684,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
 
   return {
     clock,
-    render(element: React.ReactElement<any>, options: RenderOptions = {}) {
+    render(element: React.ReactElement<DataAttributes>, options: RenderOptions = {}) {
       if (!prepared) {
         throw new Error(
           'Unable to finish setup before `render()` was called. ' +
@@ -695,7 +699,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
         wrapper: createWrapper(options),
       });
     },
-    renderToString(element: React.ReactElement<any>, options: RenderOptions = {}) {
+    renderToString(element: React.ReactElement<DataAttributes>, options: RenderOptions = {}) {
       if (!prepared) {
         throw new Error(
           'Unable to finish setup before `render()` was called. ' +

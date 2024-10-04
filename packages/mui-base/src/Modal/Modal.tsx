@@ -44,10 +44,9 @@ const useUtilityClasses = (ownerState: ModalOwnerState) => {
  *
  * - [Modal API](https://mui.com/base-ui/react-modal/components-api/#modal)
  */
-const Modal = React.forwardRef(function Modal<RootComponentType extends React.ElementType>(
-  props: ModalProps<RootComponentType>,
-  forwardedRef: React.ForwardedRef<HTMLElement>,
-) {
+const Modal = React.forwardRef<HTMLElement, ModalProps>(function Modal<
+  RootComponentType extends React.ElementType,
+>(props: ModalProps<RootComponentType>, forwardedRef: React.ForwardedRef<HTMLElement>) {
   const {
     children,
     closeAfterTransition = false,
@@ -138,12 +137,12 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
     getSlotProps: (otherHandlers: EventHandlers) => {
       return getBackdropProps({
         ...otherHandlers,
-        onClick: (e: React.MouseEvent) => {
+        onClick: (event: React.MouseEvent) => {
           if (onBackdropClick) {
-            onBackdropClick(e);
+            onBackdropClick(event);
           }
           if (otherHandlers?.onClick) {
-            otherHandlers.onClick(e);
+            otherHandlers.onClick(event);
           }
         },
       });

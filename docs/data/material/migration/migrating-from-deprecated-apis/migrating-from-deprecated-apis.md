@@ -56,6 +56,8 @@ You can also manually update your components as shown in the snippet below:
 +<Button sx={{ mr: 2 }}>
 ```
 
+The `sx` prop supports all features of system props: callbacks with access to the theme, responsive values, direct access to theme values, shorthands, etc.
+
 ### Theme component variants
 
 Custom component variants defined in the theme are now merged with the theme style overrides, defined within the `root` slot of the component.
@@ -1537,13 +1539,13 @@ All of the TextField's slot props (`*Props`) props were deprecated in favor of e
 -  inputProps={CustomHtmlInputProps}
 -  SelectProps={CustomSelectProps}
 -  InputLabelProps={CustomInputLabelProps}
--  FormHelperTextProps={CustomFormHelperProps}
+-  FormHelperTextProps={CustomFormHelperTextProps}
 +  slotProps={{
 +    input: CustomInputProps
 +    htmlInput: CustomHtmlInputProps
 +    select: CustomSelectProps
 +    inputLabel: CustomInputLabelProps
-+    formHelper: CustomFormHelperProps
++    formHelperText: CustomFormHelperTextProps
 +  }}
  />
 ```

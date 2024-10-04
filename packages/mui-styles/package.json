@@ -1,6 +1,6 @@
 {
   "name": "@mui/styles",
-  "version": "6.1.0",
+  "version": "6.1.2",
   "private": false,
   "author": "MUI Team",
   "description": "MUI Styles - The legacy JSS-based styling solution of Material UI.",
@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
+    "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-styles"
   },
   "license": "MIT",
@@ -58,14 +58,14 @@
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",
     "@mui/material": "workspace:^",
-    "@types/chai": "^4.3.19",
-    "@types/react": "^18.3.4",
+    "@types/chai": "^4.3.20",
+    "@types/react": "^18.3.6",
     "@types/react-dom": "^18.3.0",
     "@types/sinon": "^17.0.3",
     "chai": "^4.5.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sinon": "^18.0.0"
+    "sinon": "^18.0.1"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
