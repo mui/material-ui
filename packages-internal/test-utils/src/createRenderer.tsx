@@ -114,8 +114,8 @@ class DispatchingProfiler implements Profiler {
 
   private renders: RenderMark[] = [];
 
-  constructor(test: any) {
-    this.id = test?.fullTitle?.() || test?.task?.name || test?.task?.id;
+  constructor(id: string) {
+    this.id = id;
   }
 
   onRender: Profiler['onRender'] = (
@@ -561,7 +561,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     clockConfig,
     strict: globalStrict = true,
     strictEffects: globalStrictEffects = globalStrict,
-    vi = {},
+    vi = (globalThis as any).vi || {},
     clockOptions,
   } = globalOptions;
   // save stack to re-use in test-hooks
@@ -609,7 +609,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
    */
   let prepared = false;
   let profiler: Profiler = null!;
-  beforeEach(function beforeEachHook(t = {}) {
+  beforeEach(function beforeEachHook() {
     if (!wasCalledInSuite) {
       const error = new Error(
         'Unable to run `before` hook for `createRenderer`. This usually indicates that `createRenderer` was called in a `before` hook instead of in a `describe()` block.',
@@ -618,13 +618,22 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
       throw error;
     }
 
-    const test = this?.currentTest || t;
-    if (test === undefined) {
+    let id: string | null = null;
+
+    if (isVitest) {
+      // @ts-expect-error
+      id = expect.getState().currentTestName;
+    } else {
+      id = this.currentTest?.fullTitle() ?? null;
+    }
+
+    if (!id) {
       throw new Error(
         'Unable to find the currently running test. This is a bug with the client-renderer. Please report this issue to a maintainer.',
       );
     }
-    profiler = new UsedProfiler(test);
+
+    profiler = new UsedProfiler(id);
 
     emotionCache = createEmotionCache({ key: 'emotion-client-render' });
 
