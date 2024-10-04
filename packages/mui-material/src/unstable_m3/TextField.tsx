@@ -9,18 +9,26 @@ interface TextFieldProps {
   placeholder?: string;
   startAdornment?: React.ReactNode;
   endAdornment?: React.ReactNode;
+  disabled?: boolean;
+  value?: string;
 }
 
-export const FormControl = styled('div')({
+export const FormControl = styled('div')(({ theme }) => ({
+  '--Input-padding-x': '1rem',
   display: 'flex',
   flexDirection: 'column',
   gap: '0.25rem',
-});
+  '&:has(input:disabled)': {
+    '--Input-opacity': 0.38,
+    '--Input-disabled-color': `color-mix(in srgb, ${theme.vars.sys['color-on-surface']} calc(100% * var(--Input-opacity)), transparent)`,
+  },
+}));
 
 export const FormLabel = styled('label')(({ theme }) => ({
   fontSize: '0.875rem',
   paddingInline: 'var(--Input-padding-x)',
   color: theme.vars.sys['color-on-surface-variant'],
+  opacity: 'var(--Input-opacity)',
   ...theme.typography['label-large'],
 }));
 
@@ -36,7 +44,7 @@ export const FloatingLabel = styled('label')(({ theme }) => ({
   ...theme.typography['body-large'],
   fontSize: `var(--_font-size)`,
   lineHeight: `var(--_line-height)`,
-  color: 'var(--_color)',
+  color: 'var(--Input-disabled-color, var(--_color))',
 }));
 
 const InputContainer = styled('div')(({ theme }) => ({
@@ -55,13 +63,10 @@ const InputContainer = styled('div')(({ theme }) => ({
   '--border-radius': theme.vars.sys['shape-corner-extra-small'],
   '--start-adornment-size': '1.5rem',
   '--_background': 'transparent',
-
-  'div:has(> &)': {
-    '--Input-padding-x': '1rem',
-  },
+  '--_color': theme.vars.sys['color-on-surface'],
 
   ...theme.typography['body-large'],
-  color: theme.vars.sys['color-on-surface'],
+  color: 'var(--_color)',
   display: 'flex',
   gap: 'var(--gap)',
   boxSizing: 'border-box',
@@ -78,6 +83,13 @@ const InputContainer = styled('div')(({ theme }) => ({
   outlineOffset: 'calc(-1 * var(--focused-border-width))',
   '&:has(input:focus)': {
     '--_outline': `var(--focused-border-width) solid ${theme.vars.sys['color-primary']}`,
+  },
+  '&:has(input:disabled)': {
+    '--_background': `color-mix(in srgb, ${theme.vars.sys['color-on-surface']} 4%, transparent)`,
+    '--_color': 'var(--Input-disabled-color)',
+    '& label': {
+      '--_color': 'var(--Input-disabled-color)',
+    },
   },
   // floating label
   '&:has(label)': {
@@ -153,17 +165,18 @@ export const InputAdornment = styled('div')({
   alignItems: 'center',
   marginTop: 'var(--_margin-top)',
   minWidth: 'var(--_min-width)',
+  opacity: 'var(--Input-opacity)',
   '&:has(> &)': {
     display: 'contents',
   },
-  '&:first-child': {
+  '&[data-first-child]': {
     '--_min-width': 'var(--start-adornment-size)',
   },
-  'div:has(> &:first-child)': {
+  'div:has(> &[data-first-child])': {
     '--padding-l': 'calc(0.75rem - var(--border-width))',
     '--_start-adornment-inset': 'calc(var(--start-adornment-size, 1.5rem) + var(--gap))',
   },
-  'div:has(> &:last-child)': {
+  'div:has(> &[data-last-child])': {
     '--padding-r': 'calc(0.75rem - var(--border-width))',
   },
 });
@@ -176,6 +189,7 @@ export const FormHelperText = styled('span')(({ theme }) => ({
   justifyContent: 'space-between',
   ...theme.typography['body-small'],
   color: theme.vars.sys['color-on-surface-variant'],
+  opacity: 'var(--Input-opacity)',
 }));
 
 export const ActiveIndicator = styled('div')(({ theme }) => ({
@@ -186,7 +200,7 @@ export const ActiveIndicator = styled('div')(({ theme }) => ({
   left: 0,
   right: 0,
   height: 'var(--_height)',
-  background: 'var(--_background)',
+  background: 'var(--Input-disabled-color, var(--_background))',
   transition: 'height 0.1s',
   'input:focus ~ &': {
     '--_height': 'var(--focused-border-width)',
@@ -206,6 +220,9 @@ const Fieldset = styled('fieldset')(({ theme }) => ({
   'input:focus ~ &': {
     '--border-width': 'var(--focused-border-width)',
     '--border-color': 'var(--focused-border-color)',
+  },
+  'input:disabled ~ &': {
+    '--border-color': `color-mix(in srgb, ${theme.vars.sys['color-on-surface']} 12%, transparent)`,
   },
 }));
 
@@ -251,10 +268,12 @@ export function Input({
   placeholder,
   startAdornment,
   endAdornment,
+  disabled,
   ...props
 }: React.InputHTMLAttributes<HTMLInputElement> & {
   startAdornment?: React.ReactNode;
   endAdornment?: React.ReactNode;
+  disabled?: boolean;
 }) {
   const id = useId();
   const wrapperRef = React.useRef(null);
@@ -267,9 +286,9 @@ export function Input({
   };
   return (
     <InputContainer ref={wrapperRef} onClick={handleWrapperClick} {...props}>
-      {startAdornment && <InputAdornment>{startAdornment}</InputAdornment>}
-      <HtmlInput id={id} ref={inputRef} placeholder={placeholder} />
-      {endAdornment && <InputAdornment>{endAdornment}</InputAdornment>}
+      {startAdornment && <InputAdornment data-first-child>{startAdornment}</InputAdornment>}
+      <HtmlInput id={id} ref={inputRef} disabled={disabled} placeholder={placeholder} />
+      {endAdornment && <InputAdornment data-last-child>{endAdornment}</InputAdornment>}
     </InputContainer>
   );
 }
@@ -279,11 +298,13 @@ export function FilledInput({
   label,
   startAdornment,
   endAdornment,
+  disabled,
   ...props
 }: React.InputHTMLAttributes<HTMLInputElement> & {
   label: string;
   startAdornment?: React.ReactNode;
   endAdornment?: React.ReactNode;
+  disabled?: boolean;
 }) {
   const id = useId();
   const wrapperRef = React.useRef(null);
@@ -296,11 +317,11 @@ export function FilledInput({
   };
   return (
     <InputContainer ref={wrapperRef} onClick={handleWrapperClick} {...props}>
-      {startAdornment && <InputAdornment>{startAdornment}</InputAdornment>}
+      {startAdornment && <InputAdornment data-first-child>{startAdornment}</InputAdornment>}
       {label && <FloatingLabel htmlFor={id}>{label}</FloatingLabel>}
-      <HtmlInput id={id} ref={inputRef} placeholder={placeholder} />
+      <HtmlInput id={id} ref={inputRef} disabled={disabled} placeholder={placeholder} />
       <ActiveIndicator />
-      {endAdornment && <InputAdornment>{endAdornment}</InputAdornment>}
+      {endAdornment && <InputAdornment data-last-child>{endAdornment}</InputAdornment>}
     </InputContainer>
   );
 }
@@ -310,11 +331,13 @@ export function OutlinedInput({
   label,
   startAdornment,
   endAdornment,
+  disabled,
   ...props
 }: React.InputHTMLAttributes<HTMLInputElement> & {
   label: string;
   startAdornment?: React.ReactNode;
   endAdornment?: React.ReactNode;
+  disabled?: boolean;
 }) {
   const id = useId();
   const wrapperRef = React.useRef(null);
@@ -327,11 +350,11 @@ export function OutlinedInput({
   };
   return (
     <InputContainer ref={wrapperRef} onClick={handleWrapperClick} {...props}>
-      {startAdornment && <InputAdornment>{startAdornment}</InputAdornment>}
+      {startAdornment && <InputAdornment data-first-child>{startAdornment}</InputAdornment>}
       {label && <FloatingLabel htmlFor={id}>{label}</FloatingLabel>}
-      <HtmlInput id={id} ref={inputRef} placeholder={placeholder} />
+      <HtmlInput id={id} ref={inputRef} disabled={disabled} placeholder={placeholder} />
       <Outline label={label} />
-      {endAdornment && <InputAdornment>{endAdornment}</InputAdornment>}
+      {endAdornment && <InputAdornment data-last-child>{endAdornment}</InputAdornment>}
     </InputContainer>
   );
 }
@@ -345,8 +368,10 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
       label,
       helperText,
       placeholder = '',
+      disabled,
       startAdornment,
       endAdornment,
+      value,
       ...other
     } = props;
     const wrapperRef = React.useRef(null);
@@ -360,18 +385,30 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
 
     return (
       <FormControl ref={ref} {...other}>
-        {!variant && label && <FormLabel htmlFor={id}>{label}</FormLabel>}
+        {!variant && label && (
+          <FormLabel className="MuiFormLabel-root" htmlFor={id}>
+            {label}
+          </FormLabel>
+        )}
         <InputContainer ref={wrapperRef} onClick={handleWrapperClick}>
-          {startAdornment && <InputAdornment>{startAdornment}</InputAdornment>}
+          {startAdornment && <InputAdornment data-first-child>{startAdornment}</InputAdornment>}
           {(variant === 'outlined' || variant === 'filled') && label && (
             <FloatingLabel htmlFor={id}>{label}</FloatingLabel>
           )}
-          <HtmlInput id={id} ref={inputRef} placeholder={placeholder} />
+          <HtmlInput
+            id={id}
+            disabled={disabled}
+            ref={inputRef}
+            placeholder={placeholder}
+            value={value}
+          />
           {variant === 'outlined' && label && <Outline label={label} />}
           {variant === 'filled' && <ActiveIndicator />}
-          {endAdornment && <InputAdornment>{endAdornment}</InputAdornment>}
+          {endAdornment && <InputAdornment data-last-child>{endAdornment}</InputAdornment>}
         </InputContainer>
-        {helperText && <FormHelperText>{helperText}</FormHelperText>}
+        {helperText && (
+          <FormHelperText className="FormHelperText-root">{helperText}</FormHelperText>
+        )}
       </FormControl>
     );
   },

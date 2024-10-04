@@ -529,6 +529,7 @@ export function createM3Theme(options: any = {}): ThemeM3 {
         'var(--md-sys-shape-corner-extra-small) var(--md-sys-shape-corner-extra-small) 0 0',
       'shape-corner-extra-small': '4px',
       'shape-corner-none': '0px',
+      'state-hover-state-layer-opacity': 0.08,
     },
     ref: {
       'typeface-brand': 'Roboto',

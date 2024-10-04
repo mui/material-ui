@@ -41,6 +41,28 @@ export default function M3ThemePage() {
           }
         />
         <TextField variant="outlined" label="Label" helperText="Helper Text" />
+
+        <TextField
+          disabled
+          value="Hello World"
+          variant="filled"
+          label="Label"
+          helperText={
+            <React.Fragment>
+              <span>Helper Text</span>
+              <span>5 / 20</span>
+            </React.Fragment>
+          }
+          startAdornment="$"
+        />
+        <TextField
+          disabled
+          variant="outlined"
+          label="Label"
+          helperText="Helper Text"
+          endAdornment="0.00"
+        />
+
         <FormControl>
           <Box sx={{ display: 'flex' }}>
             <FormLabel>Label</FormLabel>
@@ -83,7 +105,7 @@ export default function M3ThemePage() {
               </svg>
             }
             endAdornment={
-              <InputAdornment position="end">
+              <InputAdornment>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -151,6 +173,9 @@ export default function M3ThemePage() {
                 </svg>
               </InputAdornment>
             }
+            sx={{
+              '--start-adornment-size': '16px',
+            }}
           />
 
           <FormLabel>Address:</FormLabel>
