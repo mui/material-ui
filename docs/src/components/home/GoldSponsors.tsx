@@ -83,12 +83,12 @@ const BACKLINKs = [
   {
     name: 'Buzzoid',
     description: 'Instant delivery Instagram followers.',
-    href: 'https://buzzoid.com/',
+    href: 'https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
   {
     name: 'Twicsy',
     description: 'Instant delivery Instagram followers.',
-    href: 'https://twicsy.com/',
+    href: 'https://twicsy.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
 ];
 
