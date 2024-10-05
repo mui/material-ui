@@ -21,7 +21,7 @@ function Widget({
 }: {
   children: React.ReactNode;
   title: string;
-  icon: React.ReactElement<any>;
+  icon: React.ReactElement<unknown>;
 }) {
   return (
     <Paper

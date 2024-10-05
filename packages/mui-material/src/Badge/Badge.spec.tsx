@@ -8,3 +8,6 @@ function classesTest() {
     </Badge>
   );
 }
+
+<Badge anchorOrigin={{ vertical: 'bottom' }} />;
+<Badge anchorOrigin={{ horizontal: 'left' }} />;
