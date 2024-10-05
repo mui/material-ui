@@ -93,7 +93,7 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
 </p>
 
 <p>
-  <a href="https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="26" width="26" src="https://images.opencollective.com/buzzoidz/d23d9bb/logo/26.png" srcset="https://images.opencollective.com/buzzoidz/d23d9bb/logo/72.png 3x" alt="buzzoid.com" title="Buzzoid: Instant delivery Instagram followers." loading="lazy" />Buzzoid</a>
+  <a href="https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="26" width="26" src="https://images.opencollective.com/buzzoidz/d23d9bb/logo/72.png" alt="buzzoid.com" title="Buzzoid: Instant delivery Instagram followers." loading="lazy" />Buzzoid</a>
   &nbsp;
   <a href="https://twicsy.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="26" width="30" src="https://images.opencollective.com/twicsy/7af290f/logo/26.png" alt="twicsy.com" title="Twicsy: Instant delivery Instagram followers." loading="lazy" />Twicsy</a>
   &nbsp;
