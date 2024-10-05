@@ -503,6 +503,12 @@ describe('createTheme', () => {
     });
   });
 
+  it('should return the styles directly when using applyStyles if the selector is `&`', function test() {
+    const theme = createTheme({ cssVariables: true, palette: { mode: 'dark' } });
+
+    expect(theme.applyStyles('dark', { color: 'red' })).to.deep.equal({ color: 'red' });
+  });
+
   it('Throw an informative error when the key `vars` is passed as part of `options` passed', () => {
     try {
       createTheme({
@@ -510,8 +516,8 @@ describe('createTheme', () => {
           primary: '#EF14E2',
         },
       });
-    } catch (e) {
-      expect(e.message).to.equal(
+    } catch (error) {
+      expect(error.message).to.equal(
         'MUI: `vars` is a private field used for CSS variables support.\n' +
           'Please use another name.',
       );

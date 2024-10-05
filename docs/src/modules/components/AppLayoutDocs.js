@@ -167,9 +167,9 @@ export default function AppLayoutDocs(props) {
             <AppLayoutDocsFooter tableOfContents={toc} location={location} />
           </StyledAppContainer>
           {disableToc ? null : <AppTableOfContents toc={toc} />}
+          <BackToTop />
         </Main>
       </AdManager>
-      <BackToTop />
     </Layout>
   );
 }

@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-pigment-css",
-  "version": "6.0.2",
+  "version": "6.1.2",
   "author": "MUI Team",
   "description": "A wrapper over Pigment CSS that provides the same styled and theming APIs as Material UI.",
   "main": "./src/index.ts",
@@ -13,8 +13,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
-    "directory": "packages/mui-pigment-css"
+    "url": "git+https://github.com/mui/material-ui.git",
+    "directory": "packages/mui-material-pigment-css"
   },
   "license": "MIT",
   "bugs": {
@@ -39,9 +39,9 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.25.0",
+    "@babel/runtime": "^7.25.6",
     "@mui/system": "workspace:*",
-    "@pigment-css/react": "0.0.21"
+    "@pigment-css/react": "0.0.24"
   },
   "sideEffects": false,
   "publishConfig": {

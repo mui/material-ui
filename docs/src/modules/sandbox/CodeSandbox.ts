@@ -28,7 +28,7 @@ function openSandbox({ files, codeVariant, initialFile }: any) {
   addHiddenInput(
     form,
     'query',
-    `module=${initialFile}${initialFile.match(/(\.tsx|\.ts|\.js)$/) ? '' : extension}`,
+    `module=${initialFile}${initialFile.match(/(\.tsx|\.ts|\.js)$/) ? '' : extension}&fontsize=12`,
   );
   document.body.appendChild(form);
   form.submit();
@@ -198,7 +198,103 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
   };
 }
 
+function createMaterialTemplate(templateData: {
+  title: string;
+  files: Record<string, string>;
+  githubLocation: string;
+  codeVariant: CodeVariant;
+  codeStyling?: CodeStyling;
+}) {
+  const ext = getFileExtension(templateData.codeVariant);
+  const { title, githubLocation: description } = templateData;
+
+  // document.querySelector returns 'Element | null' but createRoot expects 'Element | DocumentFragment'.
+  const type = templateData.codeVariant === 'TS' ? '!' : '';
+
+  const files: Record<string, { content: string | Record<string, any> }> = {
+    'public/index.html': {
+      content: CRA.getHtml({
+        title: templateData.title,
+        language: 'en',
+        codeStyling: templateData.codeStyling ?? 'MUI System',
+      }),
+    },
+    [`index.${ext}`]: {
+      content: `import * as React from 'react';
+import * as ReactDOM from 'react-dom/client';
+import { StyledEngineProvider } from '@mui/material/styles';
+import App from './App';
+
+ReactDOM.createRoot(document.querySelector("#root")${type}).render(
+  <React.StrictMode>
+    <StyledEngineProvider injectFirst>
+      <App />
+    </StyledEngineProvider>
+  </React.StrictMode>
+);`,
+    },
+    ...Object.entries(templateData.files).reduce(
+      (prev, curr) => ({
+        ...prev,
+        [curr[0]]: {
+          content: curr[1],
+        },
+      }),
+      {},
+    ),
+    ...(templateData.codeVariant === 'TS' && {
+      'tsconfig.json': {
+        content: CRA.getTsconfig(),
+      },
+    }),
+  };
+
+  const { dependencies, devDependencies } = SandboxDependencies(
+    {
+      codeVariant: templateData.codeVariant,
+      raw: Object.entries(templateData.files).reduce((prev, curr) => `${prev}\n${curr}`, ''),
+      productId: 'material-ui',
+    },
+    {
+      commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+    },
+  );
+
+  files['package.json'] = {
+    content: {
+      description,
+      dependencies,
+      devDependencies,
+      scripts: {
+        start: 'react-scripts start',
+        build: 'react-scripts build',
+        test: 'react-scripts test',
+        eject: 'react-scripts eject',
+      },
+      ...(templateData.codeVariant === 'TS' && {
+        main: 'index.tsx',
+      }),
+    },
+  };
+
+  return {
+    title,
+    files,
+    dependencies,
+    devDependencies,
+    replaceContent(updater: (content: string | Record<string, any>, filePath: string) => string) {
+      Object.keys(files).forEach((filePath) => {
+        files[filePath].content = updater(files[filePath].content, filePath);
+      });
+      return this;
+    },
+    openSandbox: (initialFile: string = '/App') =>
+      openSandbox({ files, codeVariant: templateData.codeVariant, initialFile }),
+  };
+}
+
 export default {
   createReactApp,
   createJoyTemplate,
+  createMaterialTemplate,
 };

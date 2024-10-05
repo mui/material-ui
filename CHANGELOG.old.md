@@ -823,7 +823,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [blog] Add post about upcoming plans for Base UI (#40882) @danilo-leal
 - [core] Simplify CodeSandbox reproduction @oliviertassinari
 - [core] Missing redirection @oliviertassinari
-- [core] Export functions from `copyFiles` script to reuse in MUI X repo (#40970) @cherniavskii
+- [core] Export functions from `copyFiles` script to reuse in MUI X repo (#40970) @cherniavskii
 - [core] Avoid variable shorthands @oliviertassinari
 - [docs-infra] Fix search icon issue (#40957) @oliviertassinari
 - [docs-infra] Ignore classes tagged with `@ignore` (#41009) @cherniavskii
@@ -1013,7 +1013,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - &#8203;<!-- 54 -->[website] Move `React Engineer - X` into the future roles section (#40867) @DanailH
 - &#8203;<!-- 52 -->[material-ui][test][Alert] Add action, icon, and iconMapping tests (#40682) @DiegoAndai
 - &#8203;<!-- 45 -->[blog] Lint duplicate h1 on the page (#40835) @oliviertassinari
-- &#8203;<!-- 44 -->[blog] MUI X v7 beta announcement blogpost (#40784) @joserodolfofreitas
+- &#8203;<!-- 44 -->[blog] MUI X v7 beta announcement blogpost (#40784) @joserodolfofreitas
 - &#8203;<!-- 43 -->[code-infra] Remove custom TS installation script (#40636) @michaldudak
 - &#8203;<!-- 42 -->[code-infra] Correct API Docs Builder dependencies (#40775) @michaldudak
 - &#8203;<!-- 41 -->[code-infra] Migrate to prettier async APIs (#40668) @Janpot
@@ -4127,8 +4127,8 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
   ```diff
    import {
-      unstable_createCssVarsProvider as createCssVarsProvider,
-  +   unstable_createCssVarsTheme as createCssVarsTheme,
+     unstable_createCssVarsProvider as createCssVarsProvider,
+  +  unstable_createCssVarsTheme as createCssVarsTheme,
    } from '@mui/system';
 
    const { CssVarsProvider } = createCssVarsProvider({

@@ -142,7 +142,7 @@ Here is an [example](https://github.com/mui/material-ui/blob/814fb60bbd8e500517b
 
 `pnpm test:coverage:html`
 
-When running this command you should get under `coverage/index.html` a full coverage report in HTML format. This is created using [Istanbul](https://istanbul-js.org)'s HTML reporter and gives good data such as line, branch and function coverage.
+When running this command you should get under `coverage/index.html` a full coverage report in HTML format. This is created using [Istanbul](https://istanbul.js.org)'s HTML reporter and gives good data such as line, branch and function coverage.
 
 ### DOM API level
 
@@ -201,6 +201,9 @@ For example, `pnpm test:regressions:run --watch --grep "docs-system-basic"` to t
 You can view the screenshots in `test/regressions/screenshots/chrome`.
 
 Alternatively, you might want to open `http://localhost:5001` (while `pnpm test:regressions:dev` is running) to view individual views separately.
+
+For testing the components using Pigment CSS, you can run `pnpm test:regressions-pigment-css:dev`.
+You can then open `http://localhost:5001/fixtures` to vide individual views separately.
 
 ### Caveats
 

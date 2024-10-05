@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import * as ReactDOMClient from 'react-dom/client';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import webfontloader from 'webfontloader';
 import { Globals } from '@react-spring/web';
 import TestViewer from './TestViewer';
@@ -10,6 +10,12 @@ import TestViewer from './TestViewer';
 Globals.assign({
   skipAnimation: true,
 });
+
+window.muiFixture = {
+  navigate: () => {
+    throw new Error(`muiFixture.navigate is not ready`);
+  },
+};
 
 // Get all the fixtures specifically written for preventing visual regressions.
 const importRegressionFixtures = require.context('./fixtures', true, /\.(js|ts|tsx)$/, 'lazy');
@@ -143,7 +149,6 @@ const blacklist = [
   'docs-components-grid/InteractiveGrid.png', // Redux isolation
   'docs-components-grid/SpacingGrid.png', // Needs interaction
   'docs-components-hidden', // Need to dynamically resize to test
-  'docs-components-icons/FontAwesomeIconSize.png', // Relies on cascading network requests
   'docs-components-image-list', // Image don't load
   'docs-components-masonry/ImageMasonry.png', // Image don't load
   'docs-components-material-icons/synonyms.png', // No component
@@ -296,13 +301,13 @@ if (unusedBlacklistPatterns.size > 0) {
 
 const viewerRoot = document.getElementById('test-viewer');
 
-function FixtureRenderer({ component: FixtureComponent }) {
+function FixtureRenderer({ component: FixtureComponent, path }) {
   const viewerReactRoot = React.useRef(null);
 
   React.useLayoutEffect(() => {
     const renderTimeout = setTimeout(() => {
       const children = (
-        <TestViewer>
+        <TestViewer path={path}>
           <FixtureComponent />
         </TestViewer>
       );
@@ -321,38 +326,43 @@ function FixtureRenderer({ component: FixtureComponent }) {
         viewerReactRoot.current = null;
       });
     };
-  }, [FixtureComponent]);
+  }, [FixtureComponent, path]);
 
   return null;
 }
 
 FixtureRenderer.propTypes = {
   component: PropTypes.elementType,
+  path: PropTypes.string.isRequired,
 };
+
+function useHash() {
+  const subscribe = React.useCallback((callback) => {
+    window.addEventListener('hashchange', callback);
+    return () => {
+      window.removeEventListener('hashchange', callback);
+    };
+  }, []);
+  const getSnapshot = React.useCallback(() => window.location.hash, []);
+  const getServerSnapshot = React.useCallback(() => '', []);
+  return React.useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+}
+
+function computeIsDev(hash) {
+  if (hash === '#dev') {
+    return true;
+  }
+  if (hash === '#no-dev') {
+    return false;
+  }
+  return process.env.NODE_ENV === 'development';
+}
 
 function App(props) {
   const { fixtures } = props;
 
-  function computeIsDev() {
-    if (window.location.hash === '#dev') {
-      return true;
-    }
-    if (window.location.hash === '#no-dev') {
-      return false;
-    }
-    return process.env.NODE_ENV === 'development';
-  }
-  const [isDev, setDev] = React.useState(computeIsDev);
-  React.useEffect(() => {
-    function handleHashChange() {
-      setDev(computeIsDev());
-    }
-    window.addEventListener('hashchange', handleHashChange);
-
-    return () => {
-      window.removeEventListener('hashchange', handleHashChange);
-    };
-  }, []);
+  const hash = useHash();
+  const isDev = computeIsDev(hash);
 
   // Using <link rel="stylesheet" /> does not apply the google Roboto font in chromium headless/headfull.
   const [fontState, setFontState] = React.useState('pending');
@@ -363,7 +373,7 @@ function App(props) {
       },
       custom: {
         families: ['Font Awesome 5 Free:n9'],
-        urls: ['https://use.fontawesome.com/releases/v5.1.0/css/all.css'],
+        urls: ['https://use.fontawesome.com/releases/v5.14.0/css/all.css'],
       },
       timeout: 20000,
       active: () => {
@@ -381,8 +391,13 @@ function App(props) {
     return `/${fixture.suite}/${fixture.name}`;
   }
 
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    window.muiFixture.navigate = navigate;
+  }, [navigate]);
+
   return (
-    <Router>
+    <React.Fragment>
       <Routes>
         {fixtures.map((fixture) => {
           const path = computePath(fixture);
@@ -397,36 +412,43 @@ function App(props) {
               key={path}
               exact
               path={path}
-              element={fixturePrepared ? <FixtureRenderer component={FixtureComponent} /> : null}
+              element={
+                fixturePrepared ? (
+                  <FixtureRenderer component={FixtureComponent} path={path} />
+                ) : null
+              }
             />
           );
         })}
       </Routes>
 
-      <div hidden={!isDev}>
-        <div data-webfontloader={fontState}>webfontloader: {fontState}</div>
-        <p>
-          Devtools can be enabled by appending <code>#dev</code> in the addressbar or disabled by
-          appending <code>#no-dev</code>.
-        </p>
-        <a href="#no-dev">Hide devtools</a>
-        <details>
-          <summary id="my-test-summary">nav for all tests</summary>
-          <nav id="tests">
-            <ol>
-              {fixtures.map((fixture) => {
-                const path = computePath(fixture);
-                return (
-                  <li key={path}>
-                    <Link to={path}>{path}</Link>
-                  </li>
-                );
-              })}
-            </ol>
-          </nav>
-        </details>
-      </div>
-    </Router>
+      {isDev ? (
+        <div>
+          <div data-webfontloader={fontState}>webfontloader: {fontState}</div>
+          <p>
+            Devtools can be enabled by appending <code>#dev</code> in the addressbar or disabled by
+            appending <code>#no-dev</code>.
+          </p>
+          <a href="#no-dev">Hide devtools</a>
+          <details>
+            <summary id="my-test-summary">nav for all tests</summary>
+
+            <nav id="tests">
+              <ol>
+                {fixtures.map((fixture) => {
+                  const path = computePath(fixture);
+                  return (
+                    <li key={path}>
+                      <Link to={path}>{path}</Link>
+                    </li>
+                  );
+                })}
+              </ol>
+            </nav>
+          </details>
+        </div>
+      ) : null}
+    </React.Fragment>
   );
 }
 
@@ -435,6 +457,10 @@ App.propTypes = {
 };
 
 const container = document.getElementById('react-root');
-const children = <App fixtures={regressionFixtures.concat(demoFixtures)} />;
+const children = (
+  <Router>
+    <App fixtures={regressionFixtures.concat(demoFixtures)} />{' '}
+  </Router>
+);
 const reactRoot = ReactDOMClient.createRoot(container);
 reactRoot.render(children);

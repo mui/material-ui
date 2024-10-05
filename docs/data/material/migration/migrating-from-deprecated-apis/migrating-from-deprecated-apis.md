@@ -56,6 +56,8 @@ You can also manually update your components as shown in the snippet below:
 +<Button sx={{ mr: 2 }}>
 ```
 
+The `sx` prop supports all features of system props: callbacks with access to the theme, responsive values, direct access to theme values, shorthands, etc.
+
 ### Theme component variants
 
 Custom component variants defined in the theme are now merged with the theme style overrides, defined within the `root` slot of the component.
@@ -1164,25 +1166,6 @@ The ListItemSecondaryAction component was deprecated in favor of the `secondaryA
 -    </IconButton>
 -  </ListItemSecondaryAction>
  </ListItem>
-```
-
-## Grid
-
-Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#grid-props) below to migrate the code as described in the following sections:
-
-```bash
-npx @mui/codemod@latest deprecations/grid-props <path>
-```
-
-### wrap prop
-
-The Grid's `wrap` prop was deprecated in favor of `flexWrap` MUI System prop:
-
-```diff
- <Grid
--  wrap="nowrap"
-+  flexWrap="nowrap"
- >
 ```
 
 ## ImageListItemBar

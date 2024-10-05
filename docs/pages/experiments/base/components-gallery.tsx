@@ -233,7 +233,7 @@ export default function ComponentsGallery() {
   const settingsOpen = Boolean(settingsAnchor);
   const settingsId = settingsOpen ? 'settings-popup' : undefined;
 
-  const colorPickerSliderChangeHandler = (e: Event, value: number | number[]) => {
+  const colorPickerSliderChangeHandler = (event: Event, value: number | number[]) => {
     setRootStyles(`
 :root {
   --primary-50: ${value}, 90%, 97%;

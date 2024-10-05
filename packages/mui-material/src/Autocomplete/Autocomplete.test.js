@@ -434,6 +434,39 @@ describe('<Autocomplete />', () => {
         expect(getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
       }
     });
+
+    // Test for https://github.com/mui/material-ui/issues/42432
+    it('when the input box needs to expand downward, the listbox should remain open.', () => {
+      const options = [
+        'The Lord of the Rings: The Return of the King',
+        'The Good, the Bad and the Ugly',
+        'The Shawshank Redemption',
+        'Star Wars: Episode V - The Empire Strikes Back',
+      ];
+      const defaultValue = [
+        'The Lord of the Rings: The Return of the King',
+        'The Good, the Bad and the Ugly',
+        'The Shawshank Redemption',
+      ];
+
+      render(
+        <Autocomplete
+          multiple
+          limitTags={2}
+          options={options}
+          defaultValue={defaultValue}
+          renderInput={(params) => <TextField {...params} />}
+          sx={{ width: 500 }}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+
+      fireEvent.mouseDown(textbox);
+
+      const listbox = screen.getByRole('listbox');
+      expect(listbox).toBeVisible();
+    });
   });
 
   describe('prop: filterSelectedOptions', () => {
@@ -1130,7 +1163,7 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      fireEvent.click(ref.current);
+      fireEvent.mouseDown(ref.current);
       expect(handleOpen.callCount).to.equal(1);
     });
 

@@ -59,6 +59,7 @@ export { default as useThemeWithoutDefault } from './useThemeWithoutDefault';
 export { default as useMediaQuery } from './useMediaQuery';
 export * from './colorManipulator';
 export { default as ThemeProvider } from './ThemeProvider';
+export { default as unstable_memoTheme } from './memoTheme';
 export { default as unstable_createCssVarsProvider } from './cssVars/createCssVarsProvider';
 export { default as unstable_createGetCssVar } from './cssVars/createGetCssVar';
 export { default as unstable_cssVarsParser } from './cssVars/cssVarsParser';
