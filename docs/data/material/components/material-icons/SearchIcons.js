@@ -25,6 +25,7 @@ import * as mui from '@mui/icons-material';
 import { Link } from '@mui/docs/Link';
 import { useTranslate } from '@mui/docs/i18n';
 import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterState';
+
 // For Debugging
 // import Menu from '@mui/icons-material/Menu';
 // import MenuOutlined from '@mui/icons-material/MenuOutlined';
@@ -95,6 +96,8 @@ function selectNode(node) {
 
 const iconWidth = 35;
 
+const SVG_ICON_CLASS = 'svg-icon';
+
 const StyledIcon = styled('span')(({ theme }) => ({
   display: 'inline-flex',
   flexDirection: 'column',
@@ -108,61 +111,94 @@ const StyledIcon = styled('span')(({ theme }) => ({
     textAlign: 'center',
     width: `calc(${iconWidth}px + ${theme.spacing(2)} * 2 + 2px)`,
   },
-}));
-
-const StyledSvgIcon = styled(SvgIcon)(({ theme }) => ({
-  boxSizing: 'content-box',
-  cursor: 'pointer',
-  color: theme.palette.text.primary,
-  border: '1px solid transparent',
-  fontSize: iconWidth,
-  borderRadius: '12px',
-  transition: theme.transitions.create(['background-color', 'box-shadow'], {
-    duration: theme.transitions.duration.shortest,
-  }),
-  padding: theme.spacing(2),
-  margin: theme.spacing(0.5, 0),
-  '&:hover': {
-    backgroundColor: theme.palette.background.default,
-    borderColor: theme.palette.primary.light,
+  [`& .${SVG_ICON_CLASS}`]: {
+    width: iconWidth,
+    height: iconWidth,
+    boxSizing: 'content-box',
+    cursor: 'pointer',
+    color: theme.palette.text.primary,
+    border: '1px solid transparent',
+    fontSize: iconWidth,
+    borderRadius: '12px',
+    transition: theme.transitions.create(['background-color', 'box-shadow'], {
+      duration: theme.transitions.duration.shortest,
+    }),
+    padding: theme.spacing(2),
+    margin: theme.spacing(0.5, 0),
+    '&:hover': {
+      backgroundColor: theme.palette.background.default,
+      borderColor: theme.palette.primary.light,
+    },
   },
 }));
 
-const handleIconClick = (event) => {
-  const { iconName, iconTheme } = event.currentTarget.dataset;
-
-  if (Math.random() < 0.1) {
-    window.gtag('event', 'material-icons', {
-      eventAction: 'click',
-      eventLabel: iconName,
-    });
-    window.gtag('event', 'material-icons-theme', {
-      eventAction: 'click',
-      eventLabel: iconTheme,
-    });
-  }
+const handleIconClick = (icon) => () => {
+  window.gtag('event', 'material-icons', {
+    eventAction: 'click',
+    eventLabel: icon.name,
+  });
+  window.gtag('event', 'material-icons-theme', {
+    eventAction: 'click',
+    eventLabel: icon.theme,
+  });
 };
 
 function handleLabelClick(event) {
   selectNode(event.currentTarget);
 }
 
+function isElmVisible(elm, margin = 0) {
+  const rect = elm.getBoundingClientRect();
+  return rect.bottom >= -margin && rect.top <= window.innerHeight + margin;
+}
+
 function Icon(props) {
-  const { icon, onOpenClick } = props;
+  const { icon, onOpenClick, initiallyVisible = false } = props;
+
+  const rootRef = React.useRef(null);
+  const [isVisible, setIsVisible] = React.useState(initiallyVisible);
+
+  // Virtualize the icons to reduce page size and React rendering time.
+  // Only render the icons after they become visible in the viewport.
+  React.useEffect(() => {
+    const margin = 200;
+    const root = /** @type {SVGElement} */ (rootRef.current);
+    if (initiallyVisible || isElmVisible(root, margin)) {
+      setIsVisible(true);
+      return () => {};
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (isElmVisible(entries[0].target, margin)) {
+          setIsVisible(true);
+        }
+      },
+      { rootMargin: `${margin}px 0px` },
+    );
+    observer.observe(root);
+    return () => {
+      observer.disconnect();
+    };
+  }, [initiallyVisible]);
+
   /* eslint-disable jsx-a11y/click-events-have-key-events */
   return (
     <StyledIcon
       key={icon.importName}
-      onClick={handleIconClick}
-      data-icon-theme={icon.theme}
-      data-icon-name={icon.name}
+      ref={rootRef}
+      onClick={Math.random() < 0.1 ? handleIconClick(icon) : null}
     >
-      <StyledSvgIcon
-        component={icon.Component}
-        tabIndex={-1}
-        onClick={onOpenClick}
-        title={icon.importName}
-      />
+      {isVisible ? (
+        <SvgIcon
+          component={icon.Component}
+          className={SVG_ICON_CLASS}
+          tabIndex={-1}
+          onClick={onOpenClick}
+          title={icon.importName}
+        />
+      ) : (
+        <div className={SVG_ICON_CLASS} />
+      )}
       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
       <div onClick={handleLabelClick}>{icon.importName}</div>
       {/* eslint-enable jsx-a11y/click-events-have-key-events */}
@@ -175,8 +211,14 @@ const Icons = React.memo(function Icons(props) {
 
   return (
     <div>
-      {icons.map((icon) => (
-        <Icon key={icon.importName} icon={icon} onOpenClick={handleOpenClick} />
+      {icons.map((icon, i) => (
+        <Icon
+          key={icon.importName}
+          icon={icon}
+          onOpenClick={handleOpenClick}
+          // Render the first 50 icons immediately as they would be visible on page load
+          initiallyVisible={i < 50}
+        />
       ))}
     </div>
   );

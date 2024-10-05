@@ -23,16 +23,28 @@ const openRolesData = [
     title: 'Engineering',
     roles: [
       {
-        title: 'React Engineer — Docs-infra',
-        description:
-          'You will drive the development and maintenance of the documentation platform that powers all MUI products.',
-        url: '/careers/react-engineer-docs-infra/',
-      },
-      {
         title: 'Staff Engineer — Pigment CSS',
         description:
           'Research, build, document, and help ship a next-gen zero-runtime CSS-in-JS library with a focus on performance and great developer experience.',
         url: '/careers/staff-engineer-pigment-css/',
+      },
+      {
+        title: 'React Engineer — xCharts',
+        description:
+          'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+        url: '/careers/react-engineer-x-charts/',
+      },
+      {
+        title: 'React Engineer — eXplore',
+        description:
+          'You will help eXplore, the team behind the Pickers and Tree View components, build the most comprehensive UI library the world has ever seen.',
+        url: '/careers/react-engineer-explore/',
+      },
+      {
+        title: 'React Engineer — X',
+        description:
+          'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+        url: '/careers/react-engineer-x/',
       },
     ],
   },
@@ -51,22 +63,16 @@ const nextRolesData = [
     title: 'Engineering',
     roles: [
       {
+        title: 'React Engineer — Docs-infra',
+        description:
+          'You will drive the development and maintenance of the documentation platform that powers all MUI products.',
+        url: '/careers/react-engineer-docs-infra/',
+      },
+      {
         title: 'React Tech Lead — Core',
         description:
-          'You will lead the development of MUI Core, positioning the library as the industry standard for design teams while doubling its adoption.',
+          'You will lead the development of the core libraries, helping position it as the industry standard for design system teams.',
         url: '/careers/react-tech-lead-core/',
-      },
-      {
-        title: 'React Engineer — X',
-        description:
-          'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-        url: '/careers/react-engineer-x/',
-      },
-      {
-        title: 'React Engineer — xCharts',
-        description:
-          'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-        url: '/careers/react-engineer-x-charts/',
       },
       {
         title: 'React Community Engineer — X',
@@ -80,32 +86,26 @@ const nextRolesData = [
           'You will become our go-to expert for accessibility, to ensure all products meet or exceed WCAG 2.1 level AA guidelines.',
         url: '/careers/accessibility-engineer/',
       },
-      {
-        title: 'Full-stack Engineer — Toolpad',
-        description:
-          'You will join the Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.',
-        url: '/careers/fullstack-engineer/',
-      },
     ],
   },
   {
     title: 'People',
     roles: [
-      {
-        title: 'Technical Recruiter',
-        description: 'You will hire the next engineers, among other roles, joining the team.',
-        url: '/careers/technical-recruiter/',
-      },
+      // {
+      //   title: 'Technical Recruiter',
+      //   description: 'You will hire the next engineers, among other roles, joining the team.',
+      //   url: '/careers/technical-recruiter/',
+      // },
     ],
   },
   {
     title: 'Sales',
     roles: [
-      {
-        title: 'Account Executive',
-        description:
-          'You will build client relationships and manage the sales process from start to finish.',
-      },
+      // {
+      //   title: 'Account Executive',
+      //   description:
+      //     'You will build client relationships and manage the sales process from start to finish.',
+      // },
     ],
   },
   {
@@ -196,6 +196,12 @@ export default function Careers() {
                 }
                 description={
                   <React.Fragment>
+                    {
+                      'We are not actively hiring for these roles but we will likely focus on them next. '
+                    }
+                    {"If you are passively looking, don't hesitate to apply!"}
+                    <br />
+                    <br />
                     If none of the roles below fit with what you are looking for, apply to{' '}
                     <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
                       the Dream job role

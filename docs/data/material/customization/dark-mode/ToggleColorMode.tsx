@@ -1,7 +1,10 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
+import RadioGroup from '@mui/material/RadioGroup';
+import Radio from '@mui/material/Radio';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormLabel from '@mui/material/FormLabel';
 import { ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
 
 function MyApp() {
@@ -23,16 +26,22 @@ function MyApp() {
         minHeight: '56px',
       }}
     >
-      <Select
-        value={mode}
-        onChange={(event) =>
-          setMode(event.target.value as 'system' | 'light' | 'dark')
-        }
-      >
-        <MenuItem value="system">System</MenuItem>
-        <MenuItem value="light">Light</MenuItem>
-        <MenuItem value="dark">Dark</MenuItem>
-      </Select>
+      <FormControl>
+        <FormLabel id="demo-theme-toggle">Theme</FormLabel>
+        <RadioGroup
+          aria-labelledby="demo-theme-toggle"
+          name="theme-toggle"
+          row
+          value={mode}
+          onChange={(event) =>
+            setMode(event.target.value as 'system' | 'light' | 'dark')
+          }
+        >
+          <FormControlLabel value="system" control={<Radio />} label="System" />
+          <FormControlLabel value="light" control={<Radio />} label="Light" />
+          <FormControlLabel value="dark" control={<Radio />} label="Dark" />
+        </RadioGroup>
+      </FormControl>
     </Box>
   );
 }

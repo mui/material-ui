@@ -1,4 +1,4 @@
-# React Engineer — Docs-infra
+# React Engineer — Docs-infra (future role)
 
 <p class="description">You will drive the development and maintenance of the documentation platform that powers all MUI products.</p>
 
@@ -6,7 +6,7 @@
 
 - **Location**: Remote (preference for UTC-5 to UTC+2).
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
-- **Level**: [confirmed IC3 or above](https://mui-org.notion.site/Leveling-at-MUI-5c30f9bfe65149d697f346447cef9db1).
+- **Level**: [IC3 (with high growth potential) or above](https://mui-org.notion.site/Leveling-at-MUI-5c30f9bfe65149d697f346447cef9db1).
 - We're a **remote** company, we prefer asynchronous communication over meetings.
 
 ## The company

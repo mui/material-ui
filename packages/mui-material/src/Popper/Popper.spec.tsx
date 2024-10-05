@@ -3,7 +3,7 @@ import { Instance } from '@popperjs/core';
 import Tooltip from '@mui/material/Tooltip';
 
 interface Props {
-  children: React.ReactElement<any>;
+  children: React.ReactElement<unknown>;
   value: number;
 }
 
