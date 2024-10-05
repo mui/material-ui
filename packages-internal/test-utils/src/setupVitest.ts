@@ -1,6 +1,12 @@
 import { beforeAll, afterAll, it } from 'vitest';
+import * as testingLibrary from '@testing-library/dom';
 import failOnConsole from 'vitest-fail-on-console';
 import './initMatchers';
+
+testingLibrary.configure({
+  // JSDOM logs errors otherwise on `getComputedStyle(element, pseudoElement)` calls.
+  computedStyleSupportsPseudoElements: false,
+});
 
 failOnConsole({
   silenceMessage: (message) => {
@@ -41,11 +47,17 @@ failOnConsole({
   },
 });
 
-function wrappedIt(name: string, fn: Function) {
-  return it(name, (context) => {
-    return fn?.call(context);
-  });
+function wrapIt(itFn: typeof it.only) {
+  return function wrapper(name: string, fn: Function) {
+    return itFn(name, (context) => {
+      return fn?.call(context);
+    });
+  };
 }
+
+const wrappedIt: any = wrapIt(it);
+wrappedIt.skip = wrapIt(it.skip);
+wrappedIt.only = wrapIt(it.only);
 
 (globalThis as any).it = wrappedIt;
 
@@ -59,10 +71,10 @@ if (!globalThis.specify) {
   (globalThis as any).specify = wrappedIt;
 }
 
-const isVitestJsdom = process.env.MUI_JSDOM === 'true';
+const isJsdom = typeof window !== 'undefined' && window.navigator.userAgent.includes('jsdom');
 
 // Only necessary when not in browser mode.
-if (isVitestJsdom) {
+if (isJsdom) {
   class Touch {
     instance: any;
 
