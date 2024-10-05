@@ -66,7 +66,7 @@ export default function LogoWithCopyMenu({
         aria-label="Go to homepage"
         onContextMenu={handleContextMenu}
         sx={{
-          cursor: 'default',
+          cursor: 'pointer',
           mr: 1,
           ml: marginLeft ? 1.5 : undefined,
           '& > svg': { m: '0 !important' }, // override the 2px margin-left coming from the Link component
