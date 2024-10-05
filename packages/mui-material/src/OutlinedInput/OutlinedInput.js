@@ -48,21 +48,10 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
     return {
       position: 'relative',
       borderRadius: (theme.vars || theme).shape.borderRadius,
-
-      // Universal focus handling (across all devices)
-      [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]: {
-        borderWidth: 2,
-        borderColor: (theme.vars || theme).palette.primary.main,
+      [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+        borderColor: (theme.vars || theme).palette.text.primary,
       },
-
-      // Hover behavior only for devices that support hover (non-mobile)
-      '@media (hover: hover) and (pointer: fine)': {
-        [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
-          borderColor: (theme.vars || theme).palette.text.primary,
-        },
-      },
-
-      // Reset hover styles on mobile devices
+      // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
           borderColor: theme.vars
@@ -70,7 +59,9 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
             : borderColor,
         },
       },
-
+      [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]: {
+        borderWidth: 2,
+      },
       variants: [
         ...Object.entries(theme.palette)
           .filter(createSimplePaletteValueFilter())
@@ -83,7 +74,7 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
             },
           })),
         {
-          props: {}, // to override the above style
+          props: {}, // to overide the above style
           style: {
             [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]: {
               borderColor: (theme.vars || theme).palette.error.main,
