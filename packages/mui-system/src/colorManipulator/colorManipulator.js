@@ -68,7 +68,7 @@ export function decomposeColor(color) {
   const type = color.substring(0, marker);
 
   if (!['rgb', 'rgba', 'hsl', 'hsla', 'color'].includes(type)) {
-    throw /* mui-minify-error */ new Error(
+    throw /* minify-error */ new Error(
       `MUI: Unsupported \`${color}\` color.\n` +
         'The following formats are supported: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
     );
@@ -84,7 +84,7 @@ export function decomposeColor(color) {
       values[3] = values[3].slice(1);
     }
     if (!['srgb', 'display-p3', 'a98-rgb', 'prophoto-rgb', 'rec-2020'].includes(colorSpace)) {
-      throw /* mui-minify-error */ new Error(
+      throw /* minify-error */ new Error(
         `MUI: unsupported \`${colorSpace}\` color space.\n` +
           'The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rgb, rec-2020.',
       );

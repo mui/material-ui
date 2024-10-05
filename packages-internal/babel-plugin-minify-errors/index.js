@@ -3,7 +3,7 @@
 const helperModuleImports = require('@babel/helper-module-imports');
 const fs = require('fs');
 
-const COMMENT_MARKER = 'mui-minify-error';
+const COMMENT_MARKER = 'minify-error';
 
 /**
  * @typedef {import('@babel/core')} babel

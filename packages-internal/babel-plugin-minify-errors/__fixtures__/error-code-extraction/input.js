@@ -1,2 +1,2 @@
-throw /* mui-minify-error */ new Error('exists');
-throw /* mui-minify-error */ new Error('will be created');
+throw /* minify-error */ new Error('exists');
+throw /* minify-error */ new Error('will be created');

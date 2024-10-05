@@ -184,7 +184,7 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     (otherHandlers: Partial<EventHandlers>) =>
     (event: React.ChangeEvent<HTMLInputElement> & MuiCancellableEvent) => {
       if (!isControlled && event.target === null) {
-        throw /* mui-minify-error */ new Error(
+        throw /* minify-error */ new Error(
           'MUI: Expected valid input target. ' +
             'Did you use a custom `slots.input` and forget to forward refs? ' +
             'See https://mui.com/r/input-component-ref-interface for more info.',

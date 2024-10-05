@@ -36,7 +36,7 @@ export {
 // TODO: Remove this function in v6
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function experimental_sx() {
-  throw /* mui-minify-error */ new Error(
+  throw /* minify-error */ new Error(
     'MUI: The `experimental_sx` has been moved to `theme.unstable_sx`.' +
       'For more details, see https://github.com/mui/material-ui/pull/35150.',
   );

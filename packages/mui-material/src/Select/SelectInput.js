@@ -371,7 +371,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
     if (multiple) {
       if (!Array.isArray(value)) {
-        throw /* mui-minify-error */ new Error(
+        throw /* minify-error */ new Error(
           'MUI: The `value` prop must be an array ' +
             'when using the `Select` component with `multiple`.',
         );

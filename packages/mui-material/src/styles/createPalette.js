@@ -222,14 +222,14 @@ export default function createPalette(palette) {
     }
 
     if (!color.hasOwnProperty('main')) {
-      throw /* mui-minify-error */ new Error(
+      throw /* minify-error */ new Error(
         `MUI: The color${name ? ` (${name})` : ''} provided to augmentColor(color) is invalid.\n` +
           `The color object needs to have a \`main\` property or a \`${mainShade}\` property.`,
       );
     }
 
     if (typeof color.main !== 'string') {
-      throw /* mui-minify-error */ new Error(
+      throw /* minify-error */ new Error(
         `MUI: The color${name ? ` (${name})` : ''} provided to augmentColor(color) is invalid.\n` +
           `\`color.main\` should be a string, but \`${JSON.stringify(color.main)}\` was provided instead.\n` +
           '\n' +

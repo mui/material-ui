@@ -157,7 +157,7 @@ export default function createThemeWithVars(options = {}, ...args) {
   }
 
   if (!defaultScheme) {
-    throw /* mui-minify-error */ new Error(
+    throw /* minify-error */ new Error(
       `MUI: The \`colorSchemes.${defaultColorScheme}\` option is either missing or invalid.`,
     );
   }
