@@ -9,3 +9,10 @@ const defaultHidden = !process.env.CI;
 // adds verbosity for something that might be confusing
 console.warn(`${defaultHidden ? 'including' : 'excluding'} inaccessible elements by default`);
 testingLibrary.configure({ defaultHidden });
+
+globalThis.describeSkipIf =
+  (condition) =>
+  (...args) => {
+    // eslint-disable-next-line no-undef
+    return (condition ? describe.skip : describe)(...args);
+  };

@@ -412,12 +412,10 @@ function createVitestClock(
 
   return {
     withFakeTimers: () => {
-      // @ts-ignore
-      beforeAll(() => {
+      beforeEach(() => {
         vi.useFakeTimers(options);
       });
-      // @ts-ignore
-      afterAll(() => {
+      afterEach(() => {
         vi.useRealTimers();
       });
     },

@@ -54,14 +54,7 @@ describe('<ListItemButton />', () => {
     });
   });
 
-  describe('prop: focusVisibleClassName', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-    });
-
+  describeSkipIf(/jsdom/.test(window.navigator.userAgent))('prop: focusVisibleClassName', () => {
     it('should merge the class names', async () => {
       const { getByRole } = render(
         <ListItemButton focusVisibleClassName="focusVisibleClassName" />,

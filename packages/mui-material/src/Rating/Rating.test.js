@@ -248,15 +248,7 @@ describe('<Rating />', () => {
     });
   });
 
-  describe('<form> integration', () => {
-    before(function beforeHook() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM has issues with form validation for certain elements.
-        // We could address them individually but that doesn't add much value if we already have a working environment.
-        this.skip();
-      }
-    });
-
+  describeSkipIf(/jsdom/.test(window.navigator.userAgent))('<form> integration', () => {
     [
       {
         ratingProps: { name: 'rating', defaultValue: 2 },

@@ -1,4 +1,4 @@
-import { beforeAll, afterAll, it } from 'vitest';
+import { beforeAll, afterAll, it, describe } from 'vitest';
 import * as testingLibrary from '@testing-library/dom';
 import failOnConsole from 'vitest-fail-on-console';
 import './initMatchers';
@@ -105,3 +105,5 @@ if (isJsdom) {
   // @ts-expect-error
   globalThis.window.Touch = Touch;
 }
+
+(globalThis as any).describeSkipIf = describe.skipIf;

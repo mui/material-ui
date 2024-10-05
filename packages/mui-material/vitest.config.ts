@@ -31,8 +31,6 @@ export default defineConfig({
   esbuild: {
     loader: 'tsx',
     include: /.*\.[jt]sx?$/,
-    // loader: "tsx",
-    // include: /src\/.*\.[tj]sx?$/,
     exclude: [],
   },
 });

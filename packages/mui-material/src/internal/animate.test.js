@@ -1,22 +1,13 @@
 import { expect } from 'chai';
 import animate from './animate';
 
-describe('animate', () => {
+const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+
+describeSkipIf(isJSDOM || isSafari)('animate', () => {
   let container;
 
   before(function beforeHook() {
-    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
-    if (isJSDOM || isSafari) {
-      // The test fails on Safari with just:
-      //
-      // container.scrollLeft = 200;
-      // expect(container.scrollLeft).to.equal(200); 💥
-
-      // in JSDOM the test prevents mocha from exiting
-      this.skip();
-    }
-
     container = document.createElement('div');
     container.style.cssText = [
       'height: 100px',

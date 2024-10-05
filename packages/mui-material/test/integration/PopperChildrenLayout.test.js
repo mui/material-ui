@@ -9,18 +9,10 @@ import Slide from '@mui/material/Slide';
 import Zoom from '@mui/material/Zoom';
 import Popper from '@mui/material/Popper';
 
-describe('<Popper />', () => {
-  let isSafari;
+const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+describeSkipIf(/jsdom/.test(window.navigator.userAgent))('<Popper />', () => {
   const { render } = createRenderer();
-
-  before(function beforeHook() {
-    // JSDOM has neither layout nor window.scrollTo
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
-
-    isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-  });
 
   let originalScrollX;
   let originalScrollY;

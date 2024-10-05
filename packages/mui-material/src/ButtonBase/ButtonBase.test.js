@@ -247,14 +247,7 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describe('ripple', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-    });
-
+  describeSkipIf(/jsdom/.test(window.navigator.userAgent))('ripple', () => {
     describe('interactions', () => {
       it('should not have a focus ripple by default', () => {
         const { getByRole } = render(
@@ -611,14 +604,7 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describe('focusRipple', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-    });
-
+  describeSkipIf(/jsdom/.test(window.navigator.userAgent))('focusRipple', () => {
     it('should pulsate the ripple when focusVisible', async () => {
       const { getByRole } = render(
         <ButtonBase
@@ -923,14 +909,7 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describe('event: keydown', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-    });
-
+  describeSkipIf(/jsdom/.test(window.navigator.userAgent))('event: keydown', () => {
     it('ripples on repeated keydowns', async () => {
       const { container, getByText } = render(
         <ButtonBase focusRipple TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }}>
@@ -1177,14 +1156,7 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describe('prop: action', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-    });
-
+  describeSkipIf(/jsdom/.test(window.navigator.userAgent))('prop: action', () => {
     it('should be able to focus visible the button', async () => {
       /**
        * @type {React.RefObject<import('./ButtonBase').ButtonBaseActions>}
