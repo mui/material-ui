@@ -663,6 +663,7 @@ describe('<Chip />', () => {
     });
   });
 
+  // eslint-disable-next-line no-undef
   describeSkipIf(/jsdom/.test(window.navigator.userAgent))('event: focus', () => {
     it('has a focus-visible polyfill', () => {
       const { container } = render(<Chip label="Test Chip" onClick={() => {}} />);

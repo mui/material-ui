@@ -505,6 +505,7 @@ describe('<Tooltip />', () => {
     });
   });
 
+  // eslint-disable-next-line no-undef
   describeSkipIf(/jsdom/.test(window.navigator.userAgent))('prop: delay', () => {
     it('should take the enterDelay into account', async () => {
       const { queryByRole } = render(
@@ -876,6 +877,7 @@ describe('<Tooltip />', () => {
     });
   });
 
+  // eslint-disable-next-line no-undef
   describeSkipIf(/jsdom/.test(window.navigator.userAgent))('focus', () => {
     it('ignores base focus', async () => {
       render(

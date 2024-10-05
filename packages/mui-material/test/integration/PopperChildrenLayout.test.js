@@ -11,17 +11,20 @@ import Popper from '@mui/material/Popper';
 
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
+// eslint-disable-next-line no-undef
 describeSkipIf(/jsdom/.test(window.navigator.userAgent))('<Popper />', () => {
   const { render } = createRenderer();
 
   let originalScrollX;
   let originalScrollY;
 
+  // eslint-disable-next-line mocha/no-top-level-hooks
   beforeEach(() => {
     originalScrollX = window.screenX;
     originalScrollY = window.scrollY;
   });
 
+  // eslint-disable-next-line mocha/no-top-level-hooks
   afterEach(() => {
     window.scrollTo(originalScrollX, originalScrollY);
   });

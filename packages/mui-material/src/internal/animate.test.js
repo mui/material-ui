@@ -4,9 +4,11 @@ import animate from './animate';
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 const isJSDOM = /jsdom/.test(window.navigator.userAgent);
 
+// eslint-disable-next-line no-undef
 describeSkipIf(isJSDOM || isSafari)('animate', () => {
   let container;
 
+  // eslint-disable-next-line mocha/no-top-level-hooks
   before(function beforeHook() {
     container = document.createElement('div');
     container.style.cssText = [
@@ -21,6 +23,7 @@ describeSkipIf(isJSDOM || isSafari)('animate', () => {
     document.body.appendChild(container);
   });
 
+  // eslint-disable-next-line mocha/no-top-level-hooks
   after(() => {
     if (container !== undefined) {
       document.body.removeChild(container);

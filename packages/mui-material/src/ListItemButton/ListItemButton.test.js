@@ -54,6 +54,7 @@ describe('<ListItemButton />', () => {
     });
   });
 
+  // eslint-disable-next-line no-undef
   describeSkipIf(/jsdom/.test(window.navigator.userAgent))('prop: focusVisibleClassName', () => {
     it('should merge the class names', async () => {
       const { getByRole } = render(

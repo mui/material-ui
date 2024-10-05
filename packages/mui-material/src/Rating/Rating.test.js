@@ -248,6 +248,7 @@ describe('<Rating />', () => {
     });
   });
 
+  // eslint-disable-next-line no-undef
   describeSkipIf(/jsdom/.test(window.navigator.userAgent))('<form> integration', () => {
     [
       {

@@ -85,6 +85,7 @@ describe('<Divider />', () => {
       });
     });
 
+    // eslint-disable-next-line no-undef
     describeSkipIf(/jsdom/.test(window.navigator.userAgent))(
       'custom border style',
       function test() {
