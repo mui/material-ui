@@ -892,8 +892,8 @@ importers:
         specifier: ^1.25.0
         version: 1.25.0
       marked:
-        specifier: ^13.0.3
-        version: 13.0.3
+        specifier: ^14.1.2
+        version: 14.1.2
       playwright:
         specifier: ^1.47.2
         version: 1.47.2
@@ -1260,8 +1260,8 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       marked:
-        specifier: ^13.0.3
-        version: 13.0.3
+        specifier: ^14.1.2
+        version: 14.1.2
       prismjs:
         specifier: ^1.29.0
         version: 1.29.0
@@ -7829,6 +7829,7 @@ packages:
   eslint@8.57.1:
     resolution: {integrity: sha512-ypowyDxpVSYpkXr9WPv2PAZCtNip1Mv5KTW0SCurXv/9iOpcrH9PaqUElksqEB6pChqHGDRCFTyrZlGhnLNGiA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
 
   espree@9.6.1:
@@ -9653,8 +9654,8 @@ packages:
     resolution: {integrity: sha512-wgp8yesWjFBL7bycA3hxwHRdsZGJhjhyP1dSxKVKrza0EPFYtn+mHtkVy6dvP1kGSjovyG5B8yNP6Frj0UFUJg==}
     engines: {node: '>=18'}
 
-  marked@13.0.3:
-    resolution: {integrity: sha512-rqRix3/TWzE9rIoFGIn8JmsVfhiuC8VIQ8IdX5TfzmeBucdY05/0UlzKaw0eVtpcN/OdVFpBk7CjKGo9iHJ/zA==}
+  marked@14.1.2:
+    resolution: {integrity: sha512-f3r0yqpz31VXiDB/wj9GaOB0a2PRLQl6vJmXiFrniNwjkKdvakqJRULhjFKJpxOchlCRiG5fcacoUZY5Xa6PEQ==}
     engines: {node: '>= 18'}
     hasBin: true
 
@@ -22012,7 +22013,7 @@ snapshots:
       markdown-it: 14.1.0
       markdownlint-micromark: 0.1.10
 
-  marked@13.0.3: {}
+  marked@14.1.2: {}
 
   marky@1.2.5: {}
 
