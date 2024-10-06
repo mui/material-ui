@@ -554,10 +554,22 @@ const allIcons = Object.keys(mui)
     return icon;
   });
 
+async function indexAll() {
+  let start = Date.now();
+  for (const icon of allIcons) {
+    if (Date.now() > start + 60) {
+      start = Date.now();
+      // eslint-disable-next-line no-await-in-loop
+      await new Promise((resolve) => {
+        setTimeout(resolve, 0);
+      });
+    }
+    searchIndex.add(icon.importName, icon.searchable);
+  }
+}
+
 setTimeout(() => {
-  allIcons.forEach(({ importName, searchable }) => {
-    searchIndex.add(importName, searchable);
-  });
+  indexAll();
 }, 0);
 
 /**
