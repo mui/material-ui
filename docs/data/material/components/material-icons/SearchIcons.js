@@ -514,10 +514,6 @@ const Input = styled(InputBase)({
   flex: 1,
 });
 
-const searchIndex = new FlexSearchIndex({
-  tokenize: 'full',
-});
-
 const nameCleanRegex = /(Outlined|TwoTone|Rounded|Sharp)$/;
 
 const allIconsMap = {};
@@ -554,24 +550,16 @@ const allIcons = Object.keys(mui)
     return icon;
   });
 
-async function indexAll() {
-  let start = Date.now();
-  for (const icon of allIcons) {
-    if (Date.now() > start + 60) {
-      // Avoid blocking main thread for longer than 60ms
-      start = Date.now();
-      // eslint-disable-next-line no-await-in-loop
-      await new Promise((resolve) => {
-        setTimeout(resolve, 0);
-      });
+let searchIndex;
+function getIndex() {
+  if (!searchIndex) {
+    searchIndex = new FlexSearchIndex({ tokenize: 'full' });
+    for (const icon of allIcons) {
+      searchIndex.add(icon.importName, icon.searchable);
     }
-    searchIndex.add(icon.importName, icon.searchable);
   }
+  return searchIndex;
 }
-
-setTimeout(() => {
-  indexAll();
-}, 0);
 
 /**
  * Returns the last defined value that has been passed in [value]
@@ -603,7 +591,7 @@ export default function SearchIcons() {
   }, [setSelectedIcon]);
 
   const icons = React.useMemo(() => {
-    const keys = query === '' ? null : searchIndex.search(query, { limit: 3000 });
+    const keys = query === '' ? null : getIndex().search(query, { limit: 3000 });
     return (keys === null ? allIcons : keys.map((key) => allIconsMap[key])).filter(
       (icon) => theme === icon.theme,
     );
