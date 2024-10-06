@@ -558,6 +558,7 @@ async function indexAll() {
   let start = Date.now();
   for (const icon of allIcons) {
     if (Date.now() > start + 60) {
+      // Avoid blocking main thread for longer than 60ms
       start = Date.now();
       // eslint-disable-next-line no-await-in-loop
       await new Promise((resolve) => {
