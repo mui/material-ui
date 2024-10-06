@@ -528,7 +528,6 @@ const allIcons = Object.keys(mui)
         break;
       }
     }
-
     let searchable = name;
     if (synonyms[searchable]) {
       searchable += ` ${synonyms[searchable]}`;
