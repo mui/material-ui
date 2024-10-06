@@ -522,25 +522,21 @@ const allIconsMap = {};
 const allIcons = Object.keys(mui)
   .sort()
   .map((importName) => {
-    let theme;
-    if (importName.includes('Outlined')) {
-      theme = 'Outlined';
-    } else if (importName.includes('TwoTone')) {
-      theme = 'Two tone';
-    } else if (importName.includes('Rounded')) {
-      theme = 'Rounded';
-    } else if (importName.includes('Sharp')) {
-      theme = 'Sharp';
-    } else {
-      theme = 'Filled';
-    }
+    let theme = 'Filled';
+    let name = importName;
 
-    const name = importName.replace(/(Outlined|TwoTone|Rounded|Sharp)$/, '');
+    for (const currentTheme of ['Outlined', 'Rounded', 'TwoTone', 'Sharp']) {
+      if (importName.endsWith(currentTheme)) {
+        theme = currentTheme === 'TwoTone' ? 'Two tone' : currentTheme;
+        name = importName.slice(0, -currentTheme.length);
+        break;
+      }
+    }
     let searchable = name;
     if (synonyms[searchable]) {
       searchable += ` ${synonyms[searchable]}`;
     }
-    searchIndex.addAsync(importName, searchable);
+    searchIndex.add(importName, searchable);
 
     const icon = {
       importName,
