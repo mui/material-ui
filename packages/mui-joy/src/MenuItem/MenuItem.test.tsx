@@ -119,7 +119,7 @@ describe('Joy <MenuItem />', () => {
       );
       const menuitem = screen.getByRole('menuitem');
 
-      await act(async () => {
+      await act(() => {
         menuitem.focus();
       });
 
@@ -133,7 +133,7 @@ describe('Joy <MenuItem />', () => {
 
       expect(handleKeyUp.callCount).to.equal(1);
 
-      await act(async () => {
+      await act(() => {
         menuitem.blur();
       });
 
