@@ -518,26 +518,20 @@ const searchIndex = new FlexSearchIndex({
   tokenize: 'full',
 });
 
-const nameCleanRegex = /(Outlined|TwoTone|Rounded|Sharp)$/;
-
 const allIconsMap = {};
 const allIcons = Object.keys(mui)
   .sort()
   .map((importName) => {
-    let theme;
-    if (importName.endsWith('Outlined')) {
-      theme = 'Outlined';
-    } else if (importName.endsWith('TwoTone')) {
-      theme = 'Two tone';
-    } else if (importName.endsWith('Rounded')) {
-      theme = 'Rounded';
-    } else if (importName.endsWith('Sharp')) {
-      theme = 'Sharp';
-    } else {
-      theme = 'Filled';
-    }
+    let theme = 'Filled';
+    let name = importName;
 
-    const name = importName.replace(nameCleanRegex, '');
+    for (const currentTheme of ['Outlined', 'Rounded', 'TwoTone', 'Sharp']) {
+      if (importName.endsWith(currentTheme)) {
+        theme = currentTheme === 'TwoTone' ? 'Two tone' : currentTheme;
+        name = importName.slice(0, -currentTheme.length);
+        break;
+      }
+    }
     let searchable = name;
     if (synonyms[searchable]) {
       searchable += ` ${synonyms[searchable]}`;
