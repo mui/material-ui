@@ -542,17 +542,23 @@ const allIcons = Object.keys(mui)
     if (synonyms[searchable]) {
       searchable += ` ${synonyms[searchable]}`;
     }
-    searchIndex.add(importName, searchable);
 
     const icon = {
       importName,
       name,
       theme,
       Component: mui[importName],
+      searchable,
     };
     allIconsMap[importName] = icon;
     return icon;
   });
+
+setTimeout(() => {
+  allIcons.forEach(({ importName, searchable }) => {
+    searchIndex.add(importName, searchable);
+  });
+}, 0);
 
 /**
  * Returns the last defined value that has been passed in [value]
