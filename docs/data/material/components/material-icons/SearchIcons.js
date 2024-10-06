@@ -565,7 +565,7 @@ function getSearchIndex() {
 setTimeout(() => {
   // preload the search index
   getSearchIndex();
-}, 0);
+}, 500);
 
 /**
  * Returns the last defined value that has been passed in [value]
