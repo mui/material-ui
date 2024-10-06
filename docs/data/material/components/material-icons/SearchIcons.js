@@ -551,7 +551,8 @@ const allIcons = Object.keys(mui)
   });
 
 let searchIndex;
-function getIndex() {
+function getSearchIndex() {
+  // Lazy load the search index as it's not needed on every code path.
   if (!searchIndex) {
     searchIndex = new FlexSearchIndex({ tokenize: 'full' });
     for (const icon of allIcons) {
@@ -560,6 +561,11 @@ function getIndex() {
   }
   return searchIndex;
 }
+
+setTimeout(() => {
+  // preload the search index
+  getSearchIndex();
+}, 0);
 
 /**
  * Returns the last defined value that has been passed in [value]
@@ -591,7 +597,8 @@ export default function SearchIcons() {
   }, [setSelectedIcon]);
 
   const icons = React.useMemo(() => {
-    const keys = query === '' ? null : getIndex().search(query, { limit: 3000 });
+    const keys =
+      query === '' ? null : getSearchIndex().search(query, { limit: 3000 });
     return (keys === null ? allIcons : keys.map((key) => allIconsMap[key])).filter(
       (icon) => theme === icon.theme,
     );
