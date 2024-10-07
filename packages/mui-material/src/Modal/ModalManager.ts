@@ -19,8 +19,8 @@ function isOverflowing(container: Element): boolean {
   return container.scrollHeight > container.clientHeight;
 }
 
-export function ariaHidden(element: Element, show: boolean): void {
-  if (show) {
+export function ariaHidden(element: Element, hide: boolean): void {
+  if (hide) {
     element.setAttribute('aria-hidden', 'true');
   } else {
     element.removeAttribute('aria-hidden');
@@ -61,7 +61,7 @@ function ariaHiddenSiblings(
   mountElement: Element,
   currentElement: Element,
   elementsToExclude: readonly Element[],
-  show: boolean,
+  hide: boolean,
 ): void {
   const blacklist = [mountElement, currentElement, ...elementsToExclude];
 
@@ -69,7 +69,7 @@ function ariaHiddenSiblings(
     const isNotExcludedElement = !blacklist.includes(element);
     const isNotForbiddenElement = !isAriaHiddenForbiddenOnElement(element);
     if (isNotExcludedElement && isNotForbiddenElement) {
-      ariaHidden(element, show);
+      ariaHidden(element, hide);
     }
   });
 }
@@ -100,7 +100,7 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
   if (!props.disableScrollLock) {
     if (isOverflowing(container)) {
       // Compute the size before applying overflow hidden to avoid any scroll jumps.
-      const scrollbarSize = getScrollbarSize(ownerDocument(container));
+      const scrollbarSize = getScrollbarSize(ownerWindow(container));
 
       restoreStyle.push({
         value: container.style.paddingRight,
