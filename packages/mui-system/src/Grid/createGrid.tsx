@@ -173,7 +173,7 @@ export default function createGrid(
             React.isValidElement(child) &&
             isMuiElement(child, ['Grid']) &&
             container &&
-            child.props.container
+            (child.props as any).container
           ) {
             return React.cloneElement(child, {
               unstable_level: (child.props as GridProps)?.unstable_level ?? level + 1,
