@@ -22,14 +22,14 @@ const GOLDs = [
     srcSet: 'https://avatars.githubusercontent.com/u/251374?s=120 3x',
     name: 'Spotify',
     description: 'Music service for accessing millions of songs.',
-    href: 'https://open.spotify.com?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+    href: 'https://open.spotify.com?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
   {
     src: 'https://images.opencollective.com/icons8/7fa1641/logo/40.png',
     srcSet: 'https://images.opencollective.com/icons8/7fa1641/logo/120.png 3x',
     name: 'Icons8',
     description: 'API for icons, photos, illustrations, and music.',
-    href: 'https://icons8.com?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+    href: 'https://icons8.com?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
   {
     src: 'https://rxdb.info/files/logo/logo_text.svg',
@@ -42,53 +42,53 @@ const GOLDs = [
     srcSet: 'https://avatars.githubusercontent.com/u/1262264?s=120 3x',
     name: 'Text-em-all',
     description: 'Mass text messaging and automated calling.',
-    href: 'https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+    href: 'https://www.text-em-all.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
   {
     src: '/static/sponsors/megafamous.png',
     name: 'MegaFamous',
     description: 'Buy Instagram followers and likes.',
-    href: 'https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+    href: 'https://megafamous.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
   {
     src: 'https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/40.png',
     srcSet: 'https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/120.png 3x',
     name: 'DialMyCalls',
     description: 'Send text messages, calls, and emails.',
-    href: 'https://www.dialmycalls.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+    href: 'https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
   {
     src: 'https://images.opencollective.com/goread_io/eb6337d/logo/40.png',
     srcSet: 'https://images.opencollective.com/goread_io/eb6337d/logo/120.png 3x',
     name: 'Goread.io',
     description: 'Instagram followers, likes, views, and comments.',
-    href: 'https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+    href: 'https://goread.io/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
   {
     src: 'https://images.opencollective.com/copycopterai/e167216/logo/40.png',
     srcSet: 'https://images.opencollective.com/copycopterai/e167216/logo/120.png 3x',
     name: 'Copycopter.ai',
     description: 'Turn prompts into videos at ultra speed.',
-    href: 'https://copycopter.ai/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+    href: 'https://copycopter.ai/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
   {
     src: 'https://images.opencollective.com/route4me/71fb6fa/avatar/40.png',
     srcSet: 'https://images.opencollective.com/route4me/71fb6fa/avatar/120.png 3x',
     name: 'Route4Me',
     description: 'Trusted last mile route planning and optimization.',
-    href: 'https://route4me.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+    href: 'https://route4me.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
 ];
 const BACKLINKs = [
   {
     name: 'Buzzoid',
     description: 'Instant delivery Instagram followers.',
-    href: 'https://buzzoid.com/',
+    href: 'https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
   {
     name: 'Twicsy',
     description: 'Instant delivery Instagram followers.',
-    href: 'https://twicsy.com/',
+    href: 'https://twicsy.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
 ];
 
