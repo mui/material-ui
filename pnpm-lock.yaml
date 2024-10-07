@@ -144,9 +144,6 @@ importers:
       babel-plugin-istanbul:
         specifier: ^7.0.0
         version: 7.0.0
-      babel-plugin-macros:
-        specifier: ^3.1.0
-        version: 3.1.0
       babel-plugin-module-resolver:
         specifier: ^5.0.2
         version: 5.0.2
@@ -907,6 +904,22 @@ importers:
         specifier: ^17.7.2
         version: 17.7.2
 
+  packages-internal/babel-plugin-minify-errors:
+    dependencies:
+      '@babel/helper-module-imports':
+        specifier: ^7.24.7
+        version: 7.24.7
+    devDependencies:
+      '@types/babel__helper-module-imports':
+        specifier: ^7.18.3
+        version: 7.18.3
+      babel-plugin-tester:
+        specifier: ^11.0.4
+        version: 11.0.4(@babel/core@7.25.2)
+      chai:
+        specifier: ^4.5.0
+        version: 4.5.0
+
   packages-internal/babel-plugin-resolve-imports:
     dependencies:
       '@babel/core':
@@ -1273,34 +1286,6 @@ importers:
         specifier: ^4.5.0
         version: 4.5.0
 
-  packages/mui-babel-macros:
-    dependencies:
-      '@babel/helper-module-imports':
-        specifier: ^7.24.7
-        version: 7.24.7
-      '@babel/runtime':
-        specifier: ^7.25.6
-        version: 7.25.6
-      '@mui/utils':
-        specifier: ^5.0.0 || ^6.0.0
-        version: 6.1.2(@types/react@18.3.10)(react@18.3.1)
-      babel-plugin-macros:
-        specifier: ^3.1.0
-        version: 3.1.0
-    devDependencies:
-      '@mui/internal-babel-macros':
-        specifier: workspace:*
-        version: 'link:'
-      '@types/babel-plugin-macros':
-        specifier: ^3.1.3
-        version: 3.1.3
-      babel-plugin-tester:
-        specifier: ^11.0.4
-        version: 11.0.4(@babel/core@7.25.2)
-      chai:
-        specifier: ^4.5.0
-        version: 4.5.0
-
   packages/mui-base:
     dependencies:
       '@babel/runtime':
@@ -1325,9 +1310,6 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
     devDependencies:
-      '@mui/internal-babel-macros':
-        specifier: workspace:^
-        version: link:../mui-babel-macros
       '@mui/internal-test-utils':
         specifier: workspace:^
         version: link:../../packages-internal/test-utils
@@ -1768,9 +1750,6 @@ importers:
         specifier: ^4.4.5
         version: 4.4.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     devDependencies:
-      '@mui/internal-babel-macros':
-        specifier: workspace:^
-        version: link:../mui-babel-macros
       '@mui/internal-test-utils':
         specifier: workspace:^
         version: link:../../packages-internal/test-utils
@@ -1846,7 +1825,7 @@ importers:
         specifier: ^18.3.6
         version: 18.3.10
       next:
-        specifier: 14.2.14
+        specifier: ^14.2.14
         version: 14.2.14(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(@playwright/test@1.47.2)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.3.1
@@ -2105,9 +2084,6 @@ importers:
       '@emotion/styled':
         specifier: ^11.13.0
         version: 11.13.0(@emotion/react@11.13.3(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react@18.3.1)
-      '@mui/internal-babel-macros':
-        specifier: workspace:^
-        version: link:../mui-babel-macros
       '@mui/internal-test-utils':
         specifier: workspace:^
         version: link:../../packages-internal/test-utils
@@ -2177,9 +2153,6 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1
     devDependencies:
-      '@mui/internal-babel-macros':
-        specifier: workspace:^
-        version: link:../mui-babel-macros
       '@mui/internal-test-utils':
         specifier: workspace:^
         version: link:../../packages-internal/test-utils
@@ -5465,14 +5438,14 @@ packages:
   '@types/autosuggest-highlight@3.2.3':
     resolution: {integrity: sha512-8Mb21KWtpn6PvRQXjsKhrXIcxbSloGqNH50RntwGeJsGPW4xvNhfml+3kKulaKpO/7pgZfOmzsJz7VbepArlGQ==}
 
-  '@types/babel-plugin-macros@3.1.3':
-    resolution: {integrity: sha512-JU+MgpsHK3taY18mBETy5XlwY6LVngte7QXYzUuXEaaX0CN8dBqbjXtADe+gJmkSQE1FJHufzPj++OWZlhRmGw==}
-
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
 
   '@types/babel__generator@7.6.4':
     resolution: {integrity: sha512-tFkciB9j2K755yrTALxD44McOrk+gfpIpvC3sxHjRawj6PfnQxrse4Clq5y/Rq+G3mrBurMax/lG8Qn2t9mSsg==}
+
+  '@types/babel__helper-module-imports@7.18.3':
+    resolution: {integrity: sha512-2pyr9Vlriessj2KI85SEF7qma8vA3vzquQMw3wn6kL5lsfjH/YxJ1Noytk4/FJElpYybUbyaC37CVfEgfyme9A==}
 
   '@types/babel__template@7.4.1':
     resolution: {integrity: sha512-azBFKemX6kMg5Io+/rdGT0dkGreboUVR0Cdm3fz9QJWpaQGJRQXl7C+6hOTCZcMll7KFyEQpgbYI2lHdsS4U7g==}
@@ -16804,10 +16777,6 @@ snapshots:
 
   '@types/autosuggest-highlight@3.2.3': {}
 
-  '@types/babel-plugin-macros@3.1.3':
-    dependencies:
-      '@types/babel__core': 7.20.5
-
   '@types/babel__core@7.20.5':
     dependencies:
       '@babel/parser': 7.25.6
@@ -16819,6 +16788,11 @@ snapshots:
   '@types/babel__generator@7.6.4':
     dependencies:
       '@babel/types': 7.25.6
+
+  '@types/babel__helper-module-imports@7.18.3':
+    dependencies:
+      '@types/babel__core': 7.20.5
+      '@types/babel__traverse': 7.20.6
 
   '@types/babel__template@7.4.1':
     dependencies:
