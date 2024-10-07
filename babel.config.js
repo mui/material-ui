@@ -78,15 +78,6 @@ module.exports = function getBabelConfig(api) {
 
   /** @type {babel.PluginItem[]} */
   const plugins = [
-    [
-      'babel-plugin-macros',
-      {
-        muiError: {
-          errorCodesPath,
-          missingError,
-        },
-      },
-    ],
     'babel-plugin-optimize-clsx',
     [
       '@babel/plugin-transform-runtime',
@@ -112,6 +103,13 @@ module.exports = function getBabelConfig(api) {
           'MUI_PATCH_VERSION',
           'MUI_PRERELEASE',
         ],
+      },
+    ],
+    [
+      '@mui/internal-babel-plugin-minify-errors',
+      {
+        missingError,
+        errorCodesPath,
       },
     ],
     ...(useESModules
