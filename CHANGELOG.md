@@ -56,7 +56,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - &#8203;<!-- 39 -->[code-infra] Move MuiError babel macro to babel plugin (#43904) @Janpot
 - &#8203;<!-- 38 -->[code-infra] Forbid calling `Error` without `new` (#43963) @Janpot
 - &#8203;<!-- 29 -->[docs-infra] Fix link in header regression (#43834) @oliviertassinari
-- &#8203;<!-- 19 -->[infra] Fix line break in Stack Overflow message @oliviertassinari
+- &#8203;<!-- 19 -->[infra] Fix line break in Stack Overflow message @oliviertassinari
 - &#8203;<!-- 12 -->[test] Add missing async (#44028) @oliviertassinari
 - &#8203;<!-- 11 -->[test] Fix Escape event firing event (#43961) @oliviertassinari
 - &#8203;<!-- 10 -->[test] Fix flaky pigment-css screenshot (#43959) @Janpot
