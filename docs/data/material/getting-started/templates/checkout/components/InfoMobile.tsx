@@ -49,6 +49,8 @@ export default function InfoMobile({ totalPrice }: InfoProps) {
         PaperProps={{
           sx: {
             top: 'var(--template-frame-height, 0px)',
+            backgroundImage: 'none',
+            backgroundColor: 'background.paper',
           },
         }}
       >
