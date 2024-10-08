@@ -290,5 +290,10 @@
         ]
       }
     }
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "styled-components@6.1.13": "patches/styled-components@6.1.13.patch"
+    }
   }
 }

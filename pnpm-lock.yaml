@@ -28,6 +28,11 @@ overrides:
   '@pigment-css/nextjs-plugin': 0.0.24
   '@pigment-css/vite-plugin': 0.0.24
 
+patchedDependencies:
+  styled-components@6.1.13:
+    hash: edvr6tup7ehm6qsu6ry7453gva
+    path: patches/styled-components@6.1.13.patch
+
 importers:
 
   .:
@@ -535,7 +540,7 @@ importers:
         version: 6.1.5
       styled-components:
         specifier: ^6.1.13
-        version: 6.1.13(react-dom@19.0.0-rc-0751fac7-20241002(react@19.0.0-rc-0751fac7-20241002))(react@19.0.0-rc-0751fac7-20241002)
+        version: 6.1.13(patch_hash=edvr6tup7ehm6qsu6ry7453gva)(react-dom@19.0.0-rc-0751fac7-20241002(react@19.0.0-rc-0751fac7-20241002))(react@19.0.0-rc-0751fac7-20241002)
       styled-system:
         specifier: ^5.1.5
         version: 5.1.5
@@ -808,7 +813,7 @@ importers:
         version: 6.0.1
       styled-components:
         specifier: ^6.1.13
-        version: 6.1.13(react-dom@19.0.0-rc-0751fac7-20241002(react@19.0.0-rc-0751fac7-20241002))(react@19.0.0-rc-0751fac7-20241002)
+        version: 6.1.13(patch_hash=edvr6tup7ehm6qsu6ry7453gva)(react-dom@19.0.0-rc-0751fac7-20241002(react@19.0.0-rc-0751fac7-20241002))(react@19.0.0-rc-0751fac7-20241002)
       stylis:
         specifier: 4.2.0
         version: 4.2.0
@@ -1965,7 +1970,7 @@ importers:
         version: 19.0.0-rc-0751fac7-20241002
       styled-components:
         specifier: ^6.1.13
-        version: 6.1.13(react-dom@19.0.0-rc-d025ddd3-20240722(react@19.0.0-rc-0751fac7-20241002))(react@19.0.0-rc-0751fac7-20241002)
+        version: 6.1.13(patch_hash=edvr6tup7ehm6qsu6ry7453gva)(react-dom@19.0.0-rc-d025ddd3-20240722(react@19.0.0-rc-0751fac7-20241002))(react@19.0.0-rc-0751fac7-20241002)
     publishDirectory: build
 
   packages/mui-styles:
@@ -2122,7 +2127,7 @@ importers:
         version: 18.0.1
       styled-components:
         specifier: ^6.1.13
-        version: 6.1.13(react-dom@19.0.0-rc-d025ddd3-20240722(react@19.0.0-rc-0751fac7-20241002))(react@19.0.0-rc-0751fac7-20241002)
+        version: 6.1.13(patch_hash=edvr6tup7ehm6qsu6ry7453gva)(react-dom@19.0.0-rc-d025ddd3-20240722(react@19.0.0-rc-0751fac7-20241002))(react@19.0.0-rc-0751fac7-20241002)
     publishDirectory: build
 
   packages/mui-types:
@@ -2349,7 +2354,7 @@ importers:
         version: 18.0.1
       styled-components:
         specifier: ^6.1.13
-        version: 6.1.13(react-dom@19.0.0-rc-0751fac7-20241002(react@19.0.0-rc-0751fac7-20241002))(react@19.0.0-rc-0751fac7-20241002)
+        version: 6.1.13(patch_hash=edvr6tup7ehm6qsu6ry7453gva)(react-dom@19.0.0-rc-0751fac7-20241002(react@19.0.0-rc-0751fac7-20241002))(react@19.0.0-rc-0751fac7-20241002)
       stylis:
         specifier: 4.2.0
         version: 4.2.0
@@ -25338,7 +25343,7 @@ snapshots:
 
   style-search@0.1.0: {}
 
-  styled-components@6.1.13(react-dom@19.0.0-rc-0751fac7-20241002(react@19.0.0-rc-0751fac7-20241002))(react@19.0.0-rc-0751fac7-20241002):
+  styled-components@6.1.13(patch_hash=edvr6tup7ehm6qsu6ry7453gva)(react-dom@19.0.0-rc-0751fac7-20241002(react@19.0.0-rc-0751fac7-20241002))(react@19.0.0-rc-0751fac7-20241002):
     dependencies:
       '@emotion/is-prop-valid': 1.2.2
       '@emotion/unitless': 0.8.1
@@ -25352,7 +25357,7 @@ snapshots:
       stylis: 4.3.2
       tslib: 2.6.2
 
-  styled-components@6.1.13(react-dom@19.0.0-rc-d025ddd3-20240722(react@19.0.0-rc-0751fac7-20241002))(react@19.0.0-rc-0751fac7-20241002):
+  styled-components@6.1.13(patch_hash=edvr6tup7ehm6qsu6ry7453gva)(react-dom@19.0.0-rc-d025ddd3-20240722(react@19.0.0-rc-0751fac7-20241002))(react@19.0.0-rc-0751fac7-20241002):
     dependencies:
       '@emotion/is-prop-valid': 1.2.2
       '@emotion/unitless': 0.8.1
