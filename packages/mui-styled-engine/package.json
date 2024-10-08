@@ -50,7 +50,7 @@
     "@mui/internal-test-utils": "workspace:^",
     "@mui/styled-engine": "workspace:*",
     "@types/chai": "^4.3.20",
-    "@types/react": "^18.3.6",
+    "@types/react": "^18.3.11",
     "chai": "^4.5.0",
     "react": "^18.3.1"
   },
