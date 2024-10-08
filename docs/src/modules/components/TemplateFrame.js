@@ -157,7 +157,7 @@ export function ThemeSelector({ value, onChange }) {
       }
       sx={(theme) => ({
         pl: { sm: 0 },
-        minWidth: { xs: 64 },
+        minWidth: { xs: 64, sm: 176 },
         '& .MuiSelect-select': {
           pl: { sm: 1.5 },
         },

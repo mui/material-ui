@@ -46,6 +46,8 @@ function InfoMobile({ totalPrice }) {
         PaperProps={{
           sx: {
             top: 'var(--template-frame-height, 0px)',
+            backgroundImage: 'none',
+            backgroundColor: 'background.paper',
           },
         }}
       >

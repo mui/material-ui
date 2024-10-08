@@ -106,21 +106,21 @@ export default function AppAppBar() {
                 <Box
                   sx={{
                     display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
+                    justifyContent: 'flex-end',
                   }}
                 >
                   <IconButton onClick={toggleDrawer(false)}>
                     <CloseRoundedIcon />
                   </IconButton>
                 </Box>
-                <Divider sx={{ my: 3 }} />
+
                 <MenuItem>Features</MenuItem>
                 <MenuItem>Testimonials</MenuItem>
                 <MenuItem>Highlights</MenuItem>
                 <MenuItem>Pricing</MenuItem>
                 <MenuItem>FAQ</MenuItem>
                 <MenuItem>Blog</MenuItem>
+                <Divider sx={{ my: 3 }} />
                 <MenuItem>
                   <Button color="primary" variant="contained" fullWidth>
                     Sign up

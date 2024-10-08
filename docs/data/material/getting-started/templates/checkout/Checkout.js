@@ -94,7 +94,7 @@ export default function Checkout(props) {
             width: '100%',
             backgroundColor: { xs: 'transparent', sm: 'background.default' },
             alignItems: 'start',
-            pt: { xs: 6, sm: 16 },
+            pt: { xs: 0, sm: 16 },
             px: { xs: 2, sm: 10 },
             gap: { xs: 4, md: 8 },
           }}

@@ -17,7 +17,7 @@ export default function SignInSide(props) {
         sx={[
           {
             justifyContent: 'space-between',
-            marginTop: 'max(0px, calc(50vh - 360px))',
+            marginTop: { xs: 0, md: 'max(0px, calc(50vh - 360px))' },
             height: { xs: 'auto', md: '100%' },
           },
           (theme) => ({
