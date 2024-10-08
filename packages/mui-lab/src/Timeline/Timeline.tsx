@@ -21,8 +21,8 @@ const useUtilityClasses = (ownerState: OwnerState) => {
   return composeClasses(slots, getTimelineUtilityClass, classes);
 };
 
-const TimelineRoot = styled('ul' as const, {
-  name: 'MuiTimeline' as const,
+const TimelineRoot = styled('ul', {
+  name: 'MuiTimeline',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
