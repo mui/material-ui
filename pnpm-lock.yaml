@@ -302,7 +302,7 @@ importers:
         version: 34.0.0(stylelint@15.11.0)
       terser-webpack-plugin:
         specifier: ^5.3.10
-        version: 5.3.10(webpack@5.95.0)
+        version: 5.3.10(webpack@5.95.0(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0)))
       tsx:
         specifier: ^4.19.1
         version: 4.19.1
@@ -317,7 +317,7 @@ importers:
         version: 0.7.1(vite@5.4.8(@types/node@20.16.10)(terser@5.29.2))(vitest@2.1.2(@types/node@20.16.10)(happy-dom@12.10.3)(jsdom@24.0.0)(terser@5.29.2))
       webpack:
         specifier: ^5.95.0
-        version: 5.95.0(webpack-cli@5.1.4)
+        version: 5.95.0(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))
       webpack-bundle-analyzer:
         specifier: ^4.10.2
         version: 4.10.2
@@ -550,7 +550,7 @@ importers:
         version: 0.16.2(@emotion/react@11.13.3(@types/react@18.3.10)(react@18.3.1))(react@18.3.1)
       webpack:
         specifier: ^5.95.0
-        version: 5.95.0(webpack-cli@5.1.4)
+        version: 5.95.0(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))
 
   docs:
     dependencies:
@@ -2328,7 +2328,7 @@ importers:
         version: 11.2.0
       html-webpack-plugin:
         specifier: ^5.6.0
-        version: 5.6.0(webpack@5.95.0(webpack-cli@5.1.4))
+        version: 5.6.0(webpack@5.95.0(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0)))
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -2370,7 +2370,7 @@ importers:
         version: 1.6.28
       webpack:
         specifier: ^5.95.0
-        version: 5.95.0(webpack-cli@5.1.4)
+        version: 5.95.0(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))
       yargs:
         specifier: ^17.7.2
         version: 17.7.2
@@ -8959,10 +8959,6 @@ packages:
     resolution: {integrity: sha512-8aXznuEPCJvGnMSRft4udDRDtb1V3pkQkMMI5LI+6HuQz5oQ4J2UFn1H82raA3qJtyOLkkwVqICBQkjnGtn5mA==}
     engines: {node: '>=6'}
 
-  istanbul-lib-coverage@3.2.0:
-    resolution: {integrity: sha512-eOeJ5BHCmHYvQK7xt9GkdHuzuCGS1Y6g9Gvnx3Ym33fz/HpLRYxiS0wHNr+m/MBC8B647Xt608vCDEvhl9c6Mw==}
-    engines: {node: '>=8'}
-
   istanbul-lib-coverage@3.2.2:
     resolution: {integrity: sha512-O8dpsF+r0WV/8MNRKfnmrtCWhuKjxrq2w+jpzBL5UZKTi2LeVWnWOmWRxFlesJONmc+wLAGvKQZEOanko0LFTg==}
     engines: {node: '>=8'}
@@ -8977,10 +8973,6 @@ packages:
 
   istanbul-lib-processinfo@2.0.3:
     resolution: {integrity: sha512-NkwHbo3E00oybX6NGJi6ar0B29vxyvNwoC7eJ4G4Yq28UfY758Hgn/heV8VRFhevPED4LXfFz0DQ8z/0kw9zMg==}
-    engines: {node: '>=8'}
-
-  istanbul-lib-report@3.0.0:
-    resolution: {integrity: sha512-wcdi+uAKzfiGT2abPpKZ0hSU1rGQjUQnLvtY5MpQ7QCTahD3VODhcu4wcfY1YtkGaDD5yuydOLINXsfbus9ROw==}
     engines: {node: '>=8'}
 
   istanbul-lib-report@3.0.1:
@@ -8998,10 +8990,6 @@ packages:
   istanbul-lib-source-maps@5.0.6:
     resolution: {integrity: sha512-yg2d+Em4KizZC5niWhQaIomgf5WlL4vOOjZ5xGCmF8SnPE/mDWWXgvRExdcpCgh9lLRRa1/fSYp2ymmbJ1pI+A==}
     engines: {node: '>=10'}
-
-  istanbul-reports@3.1.5:
-    resolution: {integrity: sha512-nUsEMa9pBt/NOHqbcbeJEgqIlY/K7rVWUX6Lql2orY5e9roQOthbR3vtY4zzf2orPELg80fnxxk9zUyPlgwD1w==}
-    engines: {node: '>=8'}
 
   istanbul-reports@3.1.7:
     resolution: {integrity: sha512-BewmUXImeuRk2YY0PVbxgKAysvhRPUQE0h5QRM++nVWyubKGV0l8qQ5op8+B2DOmwSe63Jivj0BjkPQVf8fP5g==}
@@ -10593,10 +10581,6 @@ packages:
 
   path-parse@1.0.7:
     resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==}
-
-  path-scurry@1.10.1:
-    resolution: {integrity: sha512-MkhCqzzBEpPvxxQ71Md0b1Kk51W01lrYvlMzSUaIzNsODdd7mqhiimSZlr+VegAz5Z6Vzt9Xg2ttE//XBhH3EQ==}
-    engines: {node: '>=16 || 14 >=14.17'}
 
   path-scurry@1.11.1:
     resolution: {integrity: sha512-Xa4Nw17FS9ApQFJ9umLiJS4orGjm7ZzwUrwamcGQuHSzDyth9boKDaycYdDcZDuqYATXw4HFXgaqWTctW/v1HA==}
@@ -15673,7 +15657,7 @@ snapshots:
   '@npmcli/map-workspaces@3.0.6':
     dependencies:
       '@npmcli/name-from-folder': 2.0.0
-      glob: 10.3.10
+      glob: 10.4.5
       minimatch: 9.0.5
       read-package-json-fast: 3.0.2
 
@@ -15695,7 +15679,7 @@ snapshots:
   '@npmcli/package-json@5.2.0':
     dependencies:
       '@npmcli/git': 5.0.3
-      glob: 10.3.10
+      glob: 10.4.5
       hosted-git-info: 7.0.2
       json-parse-even-better-errors: 3.0.2
       normalize-package-data: 6.0.2
@@ -17447,19 +17431,19 @@ snapshots:
       '@webassemblyjs/ast': 1.12.1
       '@xtuc/long': 4.2.2
 
-  '@webpack-cli/configtest@2.1.1(webpack-cli@5.1.4)(webpack@5.95.0)':
+  '@webpack-cli/configtest@2.1.1(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))(webpack@5.95.0)':
     dependencies:
-      webpack: 5.95.0(webpack-cli@5.1.4)
+      webpack: 5.95.0(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))
       webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0)
 
-  '@webpack-cli/info@2.0.2(webpack-cli@5.1.4)(webpack@5.95.0)':
+  '@webpack-cli/info@2.0.2(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))(webpack@5.95.0)':
     dependencies:
-      webpack: 5.95.0(webpack-cli@5.1.4)
+      webpack: 5.95.0(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))
       webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0)
 
-  '@webpack-cli/serve@2.0.5(webpack-cli@5.1.4)(webpack@5.95.0)':
+  '@webpack-cli/serve@2.0.5(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))(webpack@5.95.0)':
     dependencies:
-      webpack: 5.95.0(webpack-cli@5.1.4)
+      webpack: 5.95.0(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))
       webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0)
 
   '@wyw-in-js/processor-utils@0.5.4':
@@ -17921,7 +17905,7 @@ snapshots:
       '@babel/core': 7.25.2
       find-cache-dir: 4.0.0
       schema-utils: 4.2.0
-      webpack: 5.95.0(webpack-cli@5.1.4)
+      webpack: 5.95.0(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))
 
   babel-merge@3.0.0(@babel/core@7.25.2):
     dependencies:
@@ -18234,9 +18218,9 @@ snapshots:
       '@istanbuljs/schema': 0.1.3
       find-up: 5.0.0
       foreground-child: 2.0.0
-      istanbul-lib-coverage: 3.2.0
-      istanbul-lib-report: 3.0.0
-      istanbul-reports: 3.1.5
+      istanbul-lib-coverage: 3.2.2
+      istanbul-lib-report: 3.0.1
+      istanbul-reports: 3.1.7
       rimraf: 3.0.2
       test-exclude: 6.0.0
       v8-to-istanbul: 9.0.1
@@ -18249,7 +18233,7 @@ snapshots:
     dependencies:
       '@npmcli/fs': 3.1.1
       fs-minipass: 3.0.2
-      glob: 10.3.10
+      glob: 10.4.5
       lru-cache: 10.4.3
       minipass: 7.1.2
       minipass-collect: 2.0.1
@@ -18617,7 +18601,7 @@ snapshots:
     dependencies:
       schema-utils: 4.2.0
       serialize-javascript: 6.0.2
-      webpack: 5.95.0(webpack-cli@5.1.4)
+      webpack: 5.95.0(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))
 
   compression@1.7.4:
     dependencies:
@@ -19650,7 +19634,7 @@ snapshots:
       lodash: 4.17.21
       resolve: 2.0.0-next.5
       semver: 5.7.2
-      webpack: 5.95.0(webpack-cli@5.1.4)
+      webpack: 5.95.0(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))
     transitivePeerDependencies:
       - supports-color
 
@@ -20413,7 +20397,7 @@ snapshots:
       jackspeak: 2.3.6
       minimatch: 9.0.5
       minipass: 7.1.2
-      path-scurry: 1.10.1
+      path-scurry: 1.11.1
 
   glob@10.4.5:
     dependencies:
@@ -20464,7 +20448,7 @@ snapshots:
       fs.realpath: 1.0.0
       minimatch: 8.0.4
       minipass: 4.2.8
-      path-scurry: 1.10.1
+      path-scurry: 1.11.1
 
   global-modules@2.0.0:
     dependencies:
@@ -20719,7 +20703,7 @@ snapshots:
       readable-stream: 1.0.34
       through2: 0.4.2
 
-  html-webpack-plugin@5.6.0(webpack@5.95.0(webpack-cli@5.1.4)):
+  html-webpack-plugin@5.6.0(webpack@5.95.0(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))):
     dependencies:
       '@types/html-minifier-terser': 6.1.0
       html-minifier-terser: 6.1.0
@@ -20727,7 +20711,7 @@ snapshots:
       pretty-error: 4.0.0
       tapable: 2.2.1
     optionalDependencies:
-      webpack: 5.95.0(webpack-cli@5.1.4)
+      webpack: 5.95.0(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))
 
   htmlparser2@6.1.0:
     dependencies:
@@ -21118,8 +21102,6 @@ snapshots:
 
   istanbul-lib-coverage@2.0.5: {}
 
-  istanbul-lib-coverage@3.2.0: {}
-
   istanbul-lib-coverage@3.2.2: {}
 
   istanbul-lib-hook@3.0.0:
@@ -21131,7 +21113,7 @@ snapshots:
       '@babel/core': 7.25.2
       '@babel/parser': 7.25.6
       '@istanbuljs/schema': 0.1.3
-      istanbul-lib-coverage: 3.2.0
+      istanbul-lib-coverage: 3.2.2
       semver: 7.6.3
     transitivePeerDependencies:
       - supports-color
@@ -21140,16 +21122,10 @@ snapshots:
     dependencies:
       archy: 1.0.0
       cross-spawn: 7.0.3
-      istanbul-lib-coverage: 3.2.0
+      istanbul-lib-coverage: 3.2.2
       p-map: 3.0.0
       rimraf: 3.0.2
       uuid: 8.3.2
-
-  istanbul-lib-report@3.0.0:
-    dependencies:
-      istanbul-lib-coverage: 3.2.0
-      make-dir: 3.1.0
-      supports-color: 7.2.0
 
   istanbul-lib-report@3.0.1:
     dependencies:
@@ -21170,7 +21146,7 @@ snapshots:
   istanbul-lib-source-maps@4.0.1:
     dependencies:
       debug: 4.3.6(supports-color@8.1.1)
-      istanbul-lib-coverage: 3.2.0
+      istanbul-lib-coverage: 3.2.2
       source-map: 0.6.1
     transitivePeerDependencies:
       - supports-color
@@ -21182,11 +21158,6 @@ snapshots:
       istanbul-lib-coverage: 3.2.2
     transitivePeerDependencies:
       - supports-color
-
-  istanbul-reports@3.1.5:
-    dependencies:
-      html-escaper: 2.0.2
-      istanbul-lib-report: 3.0.0
 
   istanbul-reports@3.1.7:
     dependencies:
@@ -21638,10 +21609,10 @@ snapshots:
 
   karma-coverage-istanbul-reporter@3.0.3:
     dependencies:
-      istanbul-lib-coverage: 3.2.0
-      istanbul-lib-report: 3.0.0
+      istanbul-lib-coverage: 3.2.2
+      istanbul-lib-report: 3.0.1
       istanbul-lib-source-maps: 3.0.6
-      istanbul-reports: 3.1.5
+      istanbul-reports: 3.1.7
       minimatch: 3.1.2
     transitivePeerDependencies:
       - supports-color
@@ -21663,7 +21634,7 @@ snapshots:
     dependencies:
       glob: 7.2.3
       minimatch: 3.1.2
-      webpack: 5.95.0(webpack-cli@5.1.4)
+      webpack: 5.95.0(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))
       webpack-merge: 4.2.2
 
   karma@6.4.4:
@@ -22801,7 +22772,7 @@ snapshots:
     dependencies:
       env-paths: 2.2.1
       exponential-backoff: 3.1.1
-      glob: 10.3.10
+      glob: 10.4.5
       graceful-fs: 4.2.11
       make-fetch-happen: 13.0.1
       nopt: 7.2.1
@@ -23017,13 +22988,13 @@ snapshots:
       foreground-child: 3.3.0
       get-package-type: 0.1.0
       glob: 7.2.3
-      istanbul-lib-coverage: 3.2.0
+      istanbul-lib-coverage: 3.2.2
       istanbul-lib-hook: 3.0.0
       istanbul-lib-instrument: 6.0.2
       istanbul-lib-processinfo: 2.0.3
-      istanbul-lib-report: 3.0.0
+      istanbul-lib-report: 3.0.1
       istanbul-lib-source-maps: 4.0.1
-      istanbul-reports: 3.1.5
+      istanbul-reports: 3.1.7
       make-dir: 3.1.0
       node-preload: 0.2.1
       p-map: 3.0.0
@@ -23404,11 +23375,6 @@ snapshots:
   path-key@4.0.0: {}
 
   path-parse@1.0.7: {}
-
-  path-scurry@1.10.1:
-    dependencies:
-      lru-cache: 10.4.3
-      minipass: 7.1.2
 
   path-scurry@1.11.1:
     dependencies:
@@ -25279,14 +25245,14 @@ snapshots:
       mkdirp: 0.5.6
       rimraf: 2.6.3
 
-  terser-webpack-plugin@5.3.10(webpack@5.95.0):
+  terser-webpack-plugin@5.3.10(webpack@5.95.0(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
       jest-worker: 27.5.1
       schema-utils: 3.3.0
       serialize-javascript: 6.0.2
       terser: 5.29.2
-      webpack: 5.95.0(webpack-cli@5.1.4)
+      webpack: 5.95.0(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))
 
   terser@5.29.2:
     dependencies:
@@ -25946,9 +25912,9 @@ snapshots:
   webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0):
     dependencies:
       '@discoveryjs/json-ext': 0.5.7
-      '@webpack-cli/configtest': 2.1.1(webpack-cli@5.1.4)(webpack@5.95.0)
-      '@webpack-cli/info': 2.0.2(webpack-cli@5.1.4)(webpack@5.95.0)
-      '@webpack-cli/serve': 2.0.5(webpack-cli@5.1.4)(webpack@5.95.0)
+      '@webpack-cli/configtest': 2.1.1(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))(webpack@5.95.0)
+      '@webpack-cli/info': 2.0.2(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))(webpack@5.95.0)
+      '@webpack-cli/serve': 2.0.5(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))(webpack@5.95.0)
       colorette: 2.0.20
       commander: 10.0.1
       cross-spawn: 7.0.3
@@ -25957,7 +25923,7 @@ snapshots:
       import-local: 3.1.0
       interpret: 3.1.1
       rechoir: 0.8.0
-      webpack: 5.95.0(webpack-cli@5.1.4)
+      webpack: 5.95.0(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))
       webpack-merge: 5.9.0
     optionalDependencies:
       webpack-bundle-analyzer: 4.10.2
@@ -25975,7 +25941,7 @@ snapshots:
 
   webpack-virtual-modules@0.6.1: {}
 
-  webpack@5.95.0(webpack-cli@5.1.4):
+  webpack@5.95.0(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0)):
     dependencies:
       '@types/estree': 1.0.5
       '@webassemblyjs/ast': 1.12.1
@@ -25997,7 +25963,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 3.3.0
       tapable: 2.2.1
-      terser-webpack-plugin: 5.3.10(webpack@5.95.0)
+      terser-webpack-plugin: 5.3.10(webpack@5.95.0(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0)))
       watchpack: 2.4.1
       webpack-sources: 3.2.3
     optionalDependencies:
