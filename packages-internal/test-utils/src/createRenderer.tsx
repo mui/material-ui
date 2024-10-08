@@ -6,7 +6,6 @@ import {
   cleanup,
   prettyDOM,
   queries,
-  queryHelpers,
   RenderResult,
   act as rtlAct,
   fireEvent as rtlFireEvent,
@@ -193,18 +192,6 @@ const [
   },
 );
 
-const queryAllByMuiTest = queryHelpers.queryAllByAttribute.bind(null, 'data-mui-test');
-const [queryByMuiTest, getAllByMuiTest, getByMuiTest, findAllByMuiTest, findByMuiTest] =
-  buildQueries(
-    queryAllByMuiTest,
-    function getMultipleError(container, dataMuiTest) {
-      return `Found multiple elements with the data-mui-test attribute of: ${dataMuiTest}`;
-    },
-    function getMissingError(container, dataMuiTest) {
-      return `Found no element with the data-mui-test attribute of: ${dataMuiTest}`;
-    },
-  );
-
 const customQueries = {
   queryDescriptionOf,
   queryAllDescriptionsOf,
@@ -212,30 +199,6 @@ const customQueries = {
   getAllDescriptionsOf,
   findDescriptionOf,
   findAllDescriptionsOf,
-  /**
-   * @deprecated Use `queryAllByTestId` instead
-   */
-  queryAllByMuiTest,
-  /**
-   * @deprecated Use `queryByTestId` instead
-   */
-  queryByMuiTest,
-  /**
-   * @deprecated Use `getAllByTestId` instead
-   */
-  getAllByMuiTest,
-  /**
-   * @deprecated Use `getByTestId` instead
-   */
-  getByMuiTest,
-  /**
-   * @deprecated Use `findAllByTestId` instead
-   */
-  findAllByMuiTest,
-  /**
-   * @deprecated Use `findByTestId` instead
-   */
-  findByMuiTest,
 };
 
 interface RenderConfiguration {
