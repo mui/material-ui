@@ -1,5 +1,4 @@
 import deepmerge from '@mui/utils/deepmerge';
-import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import { darken, getContrastRatio, lighten } from '@mui/system/colorManipulator';
 import common from '../colors/common';
 import grey from '../colors/grey';
@@ -223,18 +222,16 @@ export default function createPalette(palette) {
     }
 
     if (!color.hasOwnProperty('main')) {
-      throw new MuiError(
-        'MUI: The color%s provided to augmentColor(color) is invalid.\n' +
-          'The color object needs to have a `main` property or a `%s` property.',
-        name ? ` (${name})` : '',
-        mainShade,
+      throw /* minify-error */ new Error(
+        `MUI: The color${name ? ` (${name})` : ''} provided to augmentColor(color) is invalid.\n` +
+          `The color object needs to have a \`main\` property or a \`${mainShade}\` property.`,
       );
     }
 
     if (typeof color.main !== 'string') {
-      throw new MuiError(
-        'MUI: The color%s provided to augmentColor(color) is invalid.\n' +
-          '`color.main` should be a string, but `%s` was provided instead.\n' +
+      throw /* minify-error */ new Error(
+        `MUI: The color${name ? ` (${name})` : ''} provided to augmentColor(color) is invalid.\n` +
+          `\`color.main\` should be a string, but \`${JSON.stringify(color.main)}\` was provided instead.\n` +
           '\n' +
           'Did you intend to use one of the following approaches?\n' +
           '\n' +
@@ -247,8 +244,6 @@ export default function createPalette(palette) {
           'const theme2 = createTheme({ palette: {\n' +
           '  primary: { main: green[500] },\n' +
           '} });',
-        name ? ` (${name})` : '',
-        JSON.stringify(color.main),
       );
     }
 
