@@ -8,6 +8,10 @@ testingLibrary.configure({
   computedStyleSupportsPseudoElements: false,
 });
 
+// Enable missing act warnings: https://github.com/reactwg/react-18/discussions/102
+(globalThis as any).jest = null;
+(globalThis as any).IS_REACT_ACT_ENVIRONMENT = true;
+
 failOnConsole({
   silenceMessage: (message) => {
     if (process.env.NODE_ENV === 'production') {
