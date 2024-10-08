@@ -62,12 +62,12 @@ const nextRolesData = [
   {
     title: 'Engineering',
     roles: [
-      {
-        title: 'React Engineer — Docs-infra',
-        description:
-          'You will drive the development and maintenance of the documentation platform that powers all MUI products.',
-        url: '/careers/react-engineer-docs-infra/',
-      },
+      // {
+      //   title: 'React Engineer — Docs-infra',
+      //   description:
+      //     'You will drive the development and maintenance of the documentation platform that powers all MUI products.',
+      //   url: '/careers/react-engineer-docs-infra/',
+      // },
       {
         title: 'React Tech Lead — Core',
         description:
@@ -91,21 +91,21 @@ const nextRolesData = [
   {
     title: 'People',
     roles: [
-      {
-        title: 'Technical Recruiter',
-        description: 'You will hire the next engineers, among other roles, joining the team.',
-        url: '/careers/technical-recruiter/',
-      },
+      // {
+      //   title: 'Technical Recruiter',
+      //   description: 'You will hire the next engineers, among other roles, joining the team.',
+      //   url: '/careers/technical-recruiter/',
+      // },
     ],
   },
   {
     title: 'Sales',
     roles: [
-      {
-        title: 'Account Executive',
-        description:
-          'You will build client relationships and manage the sales process from start to finish.',
-      },
+      // {
+      //   title: 'Account Executive',
+      //   description:
+      //     'You will build client relationships and manage the sales process from start to finish.',
+      // },
     ],
   },
   {
@@ -196,6 +196,12 @@ export default function Careers() {
                 }
                 description={
                   <React.Fragment>
+                    {
+                      'We are not actively hiring for these roles but we will likely focus on them next. '
+                    }
+                    {"If you are passively looking, don't hesitate to apply!"}
+                    <br />
+                    <br />
                     If none of the roles below fit with what you are looking for, apply to{' '}
                     <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
                       the Dream job role

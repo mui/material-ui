@@ -50,15 +50,15 @@
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",
     "@mui/material": "workspace:^",
-    "@types/chai": "^4.3.19",
+    "@types/chai": "^4.3.20",
     "@types/prop-types": "^15.7.13",
-    "@types/react": "^18.3.4",
+    "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
     "@types/sinon": "^17.0.3",
     "chai": "^4.5.0",
     "fast-glob": "^3.3.2",
     "lodash": "^4.17.21",
-    "next": "^14.2.13",
+    "next": "^14.2.14",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "sinon": "^18.0.1"

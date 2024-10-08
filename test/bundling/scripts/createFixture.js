@@ -36,6 +36,19 @@ async function writeNodeESMFixture(context) {
 /**
  * @param {FixtureContext} context
  */
+async function writeNodeCJSFixture(context) {
+  const { fixtureUrl, fixtureTemplateValues } = context;
+  const destinationPath = new URL('./node-cjs.fixture.js', fixtureUrl);
+  const templateSource = await fs.readFile(new URL('node-cjs.template', fixtureUrl), {
+    encoding: 'utf8',
+  });
+
+  await writeFromTemplate(destinationPath, templateSource, fixtureTemplateValues);
+}
+
+/**
+ * @param {FixtureContext} context
+ */
 async function writeNextWebpackFixture(context) {
   const { fixtureUrl, fixtureTemplateValues } = context;
   const destinationUrl = new URL('./pages/next-webpack.fixture.js', fixtureUrl);
@@ -118,10 +131,27 @@ async function readFixtureTemplateValues(fileUrl) {
   const importsMatch = code.match(/\/\/ #region imports(.+?)\/\/ #endregion/s);
   const [imports] = importsMatch;
 
+  const lines = imports.split(/\n+/).filter((line) => {
+    const trimmed = line.trim();
+    return trimmed && !trimmed.startsWith('//') && !trimmed.startsWith('/*');
+  });
+  const requires = lines
+    .map((line) => {
+      const [, specifier, module] = /import (.*) from ['"](.*)['"]/.exec(line);
+      if (specifier.startsWith('*')) {
+        return `const ${specifier.replace('* as ', '')} = require('${module}')`;
+      }
+      if (specifier.startsWith('{')) {
+        return `const ${specifier.replace(' as ', ': ')} = require('${module}')`;
+      }
+      return `const { default: ${specifier} } = require('${module}')`;
+    })
+    .join('\n');
+
   const usageMatch = code.match(/\/\/ #region usage(.+?)\/\/ #endregion/s);
   const [usage] = usageMatch;
 
-  return { imports, usage };
+  return { imports, usage, requires };
 }
 
 function resolveFixtureUrl(fixtureName) {
@@ -144,6 +174,12 @@ async function run(context) {
   );
 
   switch (fixture) {
+    case 'node-cjs':
+      await writeNodeCJSFixture({
+        fixtureUrl: resolveFixtureUrl('node-cjs'),
+        fixtureTemplateValues,
+      });
+      break;
     case 'node-esm':
       await writeNodeESMFixture({
         fixtureUrl: resolveFixtureUrl('node-esm'),

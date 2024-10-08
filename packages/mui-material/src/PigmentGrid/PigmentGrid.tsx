@@ -56,29 +56,6 @@ export interface GridBaseProps {
    */
   offset?: ResponsiveStyleValue<number> | undefined;
   /**
-   * @internal
-   * The level of the grid starts from `0`
-   * and increases when the grid nests inside another grid regardless of container or item.
-   *
-   * ```js
-   * <Grid> // level 0
-   *   <Grid> // level 1
-   *     <Grid> // level 2
-   *   <Grid> // level 1
-   * ```
-   *
-   * Only consecutive grid is considered nesting.
-   * A grid container will start at `0` if there are non-Grid element above it.
-   *
-   * ```js
-   * <Grid> // level 0
-   *   <div>
-   *     <Grid> // level 0
-   *       <Grid> // level 1
-   * ```
-   */
-  unstable_level?: number;
-  /**
    * Defines the vertical space between the type `item` components.
    * It overrides the value of the `spacing` prop.
    */
@@ -252,29 +229,6 @@ PigmentGrid.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-  /**
-   * @internal
-   * The level of the grid starts from `0`
-   * and increases when the grid nests inside another grid regardless of container or item.
-   *
-   * ```js
-   * <Grid> // level 0
-   *   <Grid> // level 1
-   *     <Grid> // level 2
-   *   <Grid> // level 1
-   * ```
-   *
-   * Only consecutive grid is considered nesting.
-   * A grid container will start at `0` if there are non-Grid element above it.
-   *
-   * ```js
-   * <Grid> // level 0
-   *   <div>
-   *     <Grid> // level 0
-   *       <Grid> // level 1
-   * ```
-   */
-  unstable_level: PropTypes.number,
   /**
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.

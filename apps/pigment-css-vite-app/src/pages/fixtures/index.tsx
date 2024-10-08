@@ -17,9 +17,7 @@ export default function Layout() {
   );
 
   const demo = new URLSearchParams(location.search).get('demo');
-  const fixturesRoutes = (matchedRoute?.route.children ?? []).filter(
-    (item) => !!item.path && item.path !== 'index.test',
-  );
+  const fixturesRoutes = (matchedRoute?.route.children ?? []).filter((item) => !!item.path);
 
   const demosRoutes = (materialUIRoute?.route.children ?? []).filter(
     (item) => !!item.path && !item.path.includes('react-pagination'),

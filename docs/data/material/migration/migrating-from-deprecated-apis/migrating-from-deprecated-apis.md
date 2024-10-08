@@ -1539,13 +1539,13 @@ All of the TextField's slot props (`*Props`) props were deprecated in favor of e
 -  inputProps={CustomHtmlInputProps}
 -  SelectProps={CustomSelectProps}
 -  InputLabelProps={CustomInputLabelProps}
--  FormHelperTextProps={CustomFormHelperProps}
+-  FormHelperTextProps={CustomFormHelperTextProps}
 +  slotProps={{
 +    input: CustomInputProps
 +    htmlInput: CustomHtmlInputProps
 +    select: CustomSelectProps
 +    inputLabel: CustomInputLabelProps
-+    formHelper: CustomFormHelperProps
++    formHelperText: CustomFormHelperTextProps
 +  }}
  />
 ```

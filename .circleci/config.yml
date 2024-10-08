@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  aws-cli: circleci/aws-cli@4.2.3
+  aws-cli: circleci/aws-cli@5.1.0
   aws-s3: circleci/aws-s3@4.0
 
 parameters:
@@ -42,6 +42,7 @@ default-job: &default-job
     TEST_GATE: << parameters.test-gate >>
     AWS_REGION_ARTIFACTS: eu-central-1
     COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
+    DANGER_DISABLE_TRANSPILATION: 'true'
   working_directory: /tmp/material-ui
   docker:
     - image: cimg/node:20.17
@@ -60,13 +61,12 @@ default-context: &default-context
 #     key: v1-repo-{{ .Branch }}-{{ .Revision }}
 
 commands:
-  install_js:
+  setup_corepack:
     parameters:
       browsers:
         type: boolean
         default: false
         description: 'Set to true if you intend to any browser (for example with playwright).'
-
     steps:
       - when:
           condition: << parameters.browsers >>
@@ -88,6 +88,17 @@ commands:
           command: |
             node --version
             pnpm --version
+
+  install_js:
+    parameters:
+      browsers:
+        type: boolean
+        default: false
+        description: 'Set to true if you intend to any browser (for example with playwright).'
+
+    steps:
+      - setup_corepack:
+          browsers: << parameters.browsers >>
 
       - run:
           name: Resolve React version
@@ -369,7 +380,7 @@ jobs:
     <<: *default-job
     resource_class: 'medium+'
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
+      - image: mcr.microsoft.com/playwright:v1.47.2-focal
     steps:
       - checkout
       - install_js:
@@ -397,7 +408,7 @@ jobs:
   test_e2e:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
+      - image: mcr.microsoft.com/playwright:v1.47.2-focal
     steps:
       - checkout
       - install_js:
@@ -409,7 +420,7 @@ jobs:
     # NOTE: This workflow runs after successful docs deploy. See /test/e2e-website/README.md#ci
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
+      - image: mcr.microsoft.com/playwright:v1.47.2-focal
     steps:
       - checkout
       - install_js:
@@ -422,7 +433,7 @@ jobs:
   test_profile:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
+      - image: mcr.microsoft.com/playwright:v1.47.2-focal
     steps:
       - checkout
       - install_js:
@@ -447,7 +458,7 @@ jobs:
   test_regressions:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
+      - image: mcr.microsoft.com/playwright:v1.47.2-focal
     steps:
       - checkout
       - install_js:
@@ -457,7 +468,7 @@ jobs:
           command: xvfb-run pnpm test:regressions
       - run:
           name: Build packages for fixtures
-          command: xvfb-run pnpm release:build
+          command: pnpm release:build
       - run:
           name: Run visual regression tests using Pigment CSS
           command: xvfb-run pnpm test:regressions-pigment-css
@@ -472,192 +483,174 @@ jobs:
       - run:
           name: Build packages for fixtures
           command: pnpm lerna run --scope "@mui/*" build
+      - run:
+          name: Pack packages
+          command: pnpm release:pack
       - persist_to_workspace:
-          root: packages
+          root: packed
           paths:
-            - '*/build'
+            - '*'
 
-  test_bundling_node-esm:
+  test_bundling_node_cjs:
+    <<: *default-job
+    working_directory: /tmp/material-ui/test/bundling/fixtures/node-cjs/
+    steps:
+      - checkout:
+          path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packed
+      - setup_corepack
+      - run:
+          name: Install dependencies
+          command: pnpm install --ignore-workspace
+      - run:
+          name: Test fixture
+          command: pnpm start
+  test_bundling_node_esm:
     <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/node-esm/
     steps:
       - checkout:
           path: /tmp/material-ui
       - attach_workspace:
-          at: /tmp/material-ui/packages
-      - run:
-          name: Prepare fixture
-          command: |
-            node ../../scripts/createFixture node-esm
+          at: /tmp/material-ui/packed
+      - setup_corepack
       - run:
           name: Install dependencies
-          command: |
-            pnpm
-            node ../../scripts/useBuildFromSource.js .
+          command: pnpm install --ignore-workspace
       - run:
           name: Test fixture
-          command: |
-            # TODO: Known failure
-            set +e
-            pnpm start
-            exit 0
-  test_bundling_next-webpack4:
+          # TODO: Known failure
+          command: pnpm start
+  test_bundling_next_webpack4:
     <<: *default-job
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.47.2-focal
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
     steps:
       - checkout:
           path: /tmp/material-ui
       - attach_workspace:
-          at: /tmp/material-ui/packages
-      - run:
-          name: Prepare fixture
-          command: |
-            node ../../scripts/createFixture next-webpack4
+          at: /tmp/material-ui/packed
+      - setup_corepack:
+          browsers: true
       - run:
           name: Install dependencies
-          command: |
-            pnpm
-            node ../../scripts/useBuildFromSource.js .
+          command: pnpm install --ignore-workspace
       - run:
           name: Test fixture
           command: pnpm start
-  test_bundling_next-webpack5:
+  test_bundling_next_webpack5:
     <<: *default-job
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.47.2-focal
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
     steps:
       - checkout:
           path: /tmp/material-ui
       - attach_workspace:
-          at: /tmp/material-ui/packages
-      - run:
-          name: Prepare fixture
-          command: |
-            node ../../scripts/createFixture next-webpack5
+          at: /tmp/material-ui/packed
+      - setup_corepack:
+          browsers: true
       - run:
           name: Install dependencies
-          command: |
-            pnpm
-            node ../../scripts/useBuildFromSource.js .
+          command: pnpm install --ignore-workspace
       - run:
           name: Test fixture
           command: pnpm start
-  test_bundling_create-react-app:
+  test_bundling_create_react_app:
     <<: *default-job
-    working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
+      - image: mcr.microsoft.com/playwright:v1.47.2-focal
+    working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     steps:
       - checkout:
           path: /tmp/material-ui
       - attach_workspace:
-          at: /tmp/material-ui/packages
-      - run:
-          name: Prepare fixture
-          command: |
-            node ../../scripts/createFixture create-react-app
+          at: /tmp/material-ui/packed
+      - setup_corepack:
+          browsers: true
       - run:
           name: Install dependencies
-          command: |
-            pnpm
-            node ../../scripts/useBuildFromSource.js .
+          command: pnpm install --ignore-workspace
       - run:
           name: Test fixture
           command: pnpm start
   test_bundling_snowpack:
     <<: *default-job
-    working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
+      - image: mcr.microsoft.com/playwright:v1.47.2-focal
+    working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     steps:
       - checkout:
           path: /tmp/material-ui
       - attach_workspace:
-          at: /tmp/material-ui/packages
-      - run:
-          name: Prepare fixture
-          command: |
-            node ../../scripts/createFixture snowpack
+          at: /tmp/material-ui/packed
+      - setup_corepack:
+          browsers: true
       - run:
           name: Install dependencies
-          command: |
-            pnpm
-            node ../../scripts/useBuildFromSource.js .
+          command: pnpm install --ignore-workspace
       - run:
           name: Test fixture
           command: pnpm start
   test_bundling_vite:
     <<: *default-job
-    working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
+      - image: mcr.microsoft.com/playwright:v1.47.2-focal
+    working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     steps:
       - checkout:
           path: /tmp/material-ui
       - attach_workspace:
-          at: /tmp/material-ui/packages
-      - run:
-          name: Prepare fixture
-          command: |
-            node ../../scripts/createFixture vite
+          at: /tmp/material-ui/packed
+      - setup_corepack:
+          browsers: true
       - run:
           name: Install dependencies
-          command: |
-            pnpm
-            node ../../scripts/useBuildFromSource.js .
+          command: pnpm install --ignore-workspace
       - run:
           name: Test fixture
           command: pnpm start
   test_bundling_esbuild:
     <<: *default-job
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.47.2-focal
     working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
     steps:
       - checkout:
           path: /tmp/material-ui
       - attach_workspace:
-          at: /tmp/material-ui/packages
-      - run:
-          name: Prepare fixture
-          command: |
-            node ../../scripts/createFixture esbuild
+          at: /tmp/material-ui/packed
+      - setup_corepack:
+          browsers: true
       - run:
           name: Install dependencies
-          command: |
-            pnpm
-            node ../../scripts/useBuildFromSource.js .
-      - run:
-          name: Test fixture
-          command: |
-            # TODO: Known failure
-            set +e
-            pnpm start
-            exit 0
-  test_bundling_gatsby:
-    <<: *default-job
-    working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-    steps:
-      - checkout:
-          path: /tmp/material-ui
-      - attach_workspace:
-          at: /tmp/material-ui/packages
-      - run:
-          name: Prepare fixture
-          command: |
-            node ../../scripts/useBuildFromSource.js .
-            node ../../scripts/createFixture gatsby
-      - run:
-          name: Install dependencies
-          command: pnpm
+          command: pnpm install --ignore-workspace
       - run:
           name: Test fixture
           command: pnpm start
+  test_bundling_gatsby:
+    <<: *default-job
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.47.2-focal
+        environment:
+          GATSBY_CPU_COUNT: '3'
+    working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
+    steps:
+      - checkout:
+          path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packed
+      - setup_corepack:
+          browsers: true
+      - run:
+          name: Install dependencies
+          command: pnpm install --ignore-workspace
+      - run:
+          name: Test fixture
+          command: pnpm start
+
   test_bundle_size_monitor:
     <<: *default-job
     steps:
@@ -668,6 +661,7 @@ jobs:
           command: pnpm danger ci
           environment:
             DANGER_COMMAND: prepareBundleSizeReport
+      - setup_corepack
       - run:
           name: build @mui packages
           command: pnpm lerna run --ignore @mui/icons-material --concurrency 6 --scope "@mui/*" build
@@ -740,7 +734,7 @@ jobs:
   test_benchmark:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
+      - image: mcr.microsoft.com/playwright:v1.47.2-focal
     steps:
       - checkout
       - install_js:
@@ -807,19 +801,15 @@ workflows:
     jobs:
       - test_bundling_prepare:
           <<: *default-context
-      - test_bundling_node-esm:
+      - test_bundling_node_cjs:
           <<: *default-context
           requires:
             - test_bundling_prepare
-      - test_bundling_next-webpack4:
+      - test_bundling_node_esm:
           <<: *default-context
           requires:
             - test_bundling_prepare
-      - test_bundling_next-webpack5:
-          <<: *default-context
-          requires:
-            - test_bundling_prepare
-      - test_bundling_create-react-app:
+      - test_bundling_create_react_app:
           <<: *default-context
           requires:
             - test_bundling_prepare
@@ -839,6 +829,15 @@ workflows:
           <<: *default-context
           requires:
             - test_bundling_prepare
+      - test_bundling_next_webpack4:
+          <<: *default-context
+          requires:
+            - test_bundling_prepare
+      - test_bundling_next_webpack5:
+          <<: *default-context
+          requires:
+            - test_bundling_prepare
+
   profile:
     when:
       equal: [profile, << pipeline.parameters.workflow >>]
