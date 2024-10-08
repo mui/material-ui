@@ -88,7 +88,7 @@ describe('<Dialog />', () => {
 
     // keyDown not targetted at anything specific
     // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
-    fireEvent.keyDown(document.activeElement, { key: 'Esc' });
+    fireEvent.keyDown(document.activeElement, { key: 'Escape' });
     expect(onClose.calledOnce).to.equal(true);
 
     clock.tick(100);
@@ -107,10 +107,10 @@ describe('<Dialog />', () => {
 
     // Actual Behavior when "あ" (Japanese) is entered and press the Esc for IME cancellation.
     fireEvent.change(textbox, { target: { value: 'あ' } });
-    fireEvent.keyDown(textbox, { key: 'Esc', keyCode: 229 });
+    fireEvent.keyDown(textbox, { key: 'Escape', keyCode: 229 });
     expect(onClose.callCount).to.equal(0);
 
-    fireEvent.keyDown(textbox, { key: 'Esc' });
+    fireEvent.keyDown(textbox, { key: 'Escape' });
     expect(onClose.callCount).to.equal(1);
   });
 
@@ -143,7 +143,7 @@ describe('<Dialog />', () => {
       dialog.click();
       // keyDown is not targetted at anything specific.
       // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
-      fireEvent.keyDown(document.activeElement, { key: 'Esc' });
+      fireEvent.keyDown(document.activeElement, { key: 'Escape' });
     });
 
     expect(onClose.callCount).to.equal(0);

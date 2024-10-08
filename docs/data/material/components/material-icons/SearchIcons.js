@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { VirtuosoGrid } from 'react-virtuoso';
 import { styled } from '@mui/material/styles';
 import MuiPaper from '@mui/material/Paper';
 import copy from 'clipboard-copy';
@@ -26,6 +25,7 @@ import * as mui from '@mui/icons-material';
 import { Link } from '@mui/docs/Link';
 import { useTranslate } from '@mui/docs/i18n';
 import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterState';
+
 // For Debugging
 // import Menu from '@mui/icons-material/Menu';
 // import MenuOutlined from '@mui/icons-material/MenuOutlined';
@@ -94,91 +94,140 @@ function selectNode(node) {
   selection.addRange(range);
 }
 
+const iconWidth = 35;
+
+const SVG_ICON_CLASS = 'svg-icon';
+
 const StyledIcon = styled('span')(({ theme }) => ({
   display: 'inline-flex',
   flexDirection: 'column',
   color: theme.palette.text.secondary,
   margin: '0 4px',
   '& > div': {
-    display: 'flex',
-  },
-  '& > div > *': {
     flexGrow: 1,
     fontSize: '.6rem',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     textAlign: 'center',
-    width: 0,
+    width: `calc(${iconWidth}px + ${theme.spacing(2)} * 2 + 2px)`,
+  },
+  [`& .${SVG_ICON_CLASS}`]: {
+    width: iconWidth,
+    height: iconWidth,
+    boxSizing: 'content-box',
+    cursor: 'pointer',
+    color: theme.palette.text.primary,
+    border: '1px solid transparent',
+    fontSize: iconWidth,
+    borderRadius: '12px',
+    transition: theme.transitions.create(['background-color', 'box-shadow'], {
+      duration: theme.transitions.duration.shortest,
+    }),
+    padding: theme.spacing(2),
+    margin: theme.spacing(0.5, 0),
+    '&:hover': {
+      backgroundColor: theme.palette.background.default,
+      borderColor: theme.palette.primary.light,
+    },
   },
 }));
 
-const StyledSvgIcon = styled(SvgIcon)(({ theme }) => ({
-  boxSizing: 'content-box',
-  cursor: 'pointer',
-  color: theme.palette.text.primary,
-  border: '1px solid transparent',
-  borderRadius: '12px',
-  transition: theme.transitions.create(['background-color', 'box-shadow'], {
-    duration: theme.transitions.duration.shortest,
-  }),
-  padding: theme.spacing(2),
-  margin: theme.spacing(0.5, 0),
-  '&:hover': {
-    backgroundColor: theme.palette.background.default,
-    borderColor: theme.palette.primary.light,
-  },
-}));
+const handleIconClick = (icon) => () => {
+  window.gtag('event', 'material-icons', {
+    eventAction: 'click',
+    eventLabel: icon.name,
+  });
+  window.gtag('event', 'material-icons-theme', {
+    eventAction: 'click',
+    eventLabel: icon.theme,
+  });
+};
 
-const ListWrapper = React.forwardRef(({ style, children, ...props }, ref) => {
+function handleLabelClick(event) {
+  selectNode(event.currentTarget);
+}
+
+function isElmVisible(elm, margin = 0) {
+  const rect = elm.getBoundingClientRect();
+  return rect.bottom >= -margin && rect.top <= window.innerHeight + margin;
+}
+
+function Icon(props) {
+  const { icon, onOpenClick, initiallyVisible = false } = props;
+
+  const rootRef = React.useRef(null);
+  const [isVisible, setIsVisible] = React.useState(initiallyVisible);
+
+  // Virtualize the icons to reduce page size and React rendering time.
+  // Only render the icons after they become visible in the viewport.
+  React.useEffect(() => {
+    const margin = 200;
+    const root = /** @type {SVGElement} */ (rootRef.current);
+    if (initiallyVisible || isElmVisible(root, margin)) {
+      setIsVisible(true);
+      return () => {};
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (isElmVisible(entries[0].target, margin)) {
+          setIsVisible(true);
+        }
+      },
+      { rootMargin: `${margin}px 0px` },
+    );
+    observer.observe(root);
+    return () => {
+      observer.disconnect();
+    };
+  }, [initiallyVisible]);
+
+  /* eslint-disable jsx-a11y/click-events-have-key-events */
   return (
-    <div
-      ref={ref}
-      {...props}
-      style={{ display: 'flex', flexWrap: 'wrap', ...style }}
+    <StyledIcon
+      key={icon.importName}
+      ref={rootRef}
+      onClick={Math.random() < 0.1 ? handleIconClick(icon) : null}
     >
-      {children}
+      {isVisible ? (
+        <SvgIcon
+          component={icon.Component}
+          className={SVG_ICON_CLASS}
+          tabIndex={-1}
+          onClick={onOpenClick}
+          title={icon.importName}
+        />
+      ) : (
+        <div className={SVG_ICON_CLASS} />
+      )}
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
+      <div onClick={handleLabelClick}>{icon.importName}</div>
+      {/* eslint-enable jsx-a11y/click-events-have-key-events */}
+    </StyledIcon>
+  );
+}
+
+const Icons = React.memo(function Icons(props) {
+  const { icons, handleOpenClick } = props;
+
+  return (
+    <div>
+      {icons.map((icon, i) => (
+        <Icon
+          key={icon.importName}
+          icon={icon}
+          onOpenClick={handleOpenClick}
+          // Render the first 50 icons immediately as they would be visible on page load
+          initiallyVisible={i < 50}
+        />
+      ))}
     </div>
   );
 });
 
-function Icon(handleOpenClick) {
-  return function itemContent(_, icon) {
-    const handleIconClick = () => {
-      if (Math.random() < 0.1) {
-        window.gtag('event', 'material-icons', {
-          eventAction: 'click',
-          eventLabel: icon.name,
-        });
-        window.gtag('event', 'material-icons-theme', {
-          eventAction: 'click',
-          eventLabel: icon.theme,
-        });
-      }
-    };
-
-    const handleLabelClick = (event) => {
-      selectNode(event.currentTarget);
-    };
-
-    return (
-      /* eslint-disable jsx-a11y/click-events-have-key-events */
-      <StyledIcon key={icon.importName} onClick={handleIconClick}>
-        <StyledSvgIcon
-          component={icon.Component}
-          fontSize="large"
-          tabIndex={-1}
-          onClick={handleOpenClick}
-          title={icon.importName}
-        />
-        <div>
-          {/*  eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
-          <div onClick={handleLabelClick}>{icon.importName}</div>
-        </div>
-        {/* eslint-enable jsx-a11y/click-events-have-key-events */}
-      </StyledIcon>
-    );
-  };
-}
+Icons.propTypes = {
+  handleOpenClick: PropTypes.func.isRequired,
+  icons: PropTypes.array.isRequired,
+};
 
 const ImportLink = styled(Link)(({ theme }) => ({
   textAlign: 'right',
@@ -439,7 +488,14 @@ DialogDetails.propTypes = {
   selectedIcon: PropTypes.object,
 };
 
+const Form = styled('form')({
+  position: 'sticky',
+  top: 80,
+});
+
 const Paper = styled(MuiPaper)(({ theme }) => ({
+  position: 'sticky',
+  top: 80,
   display: 'flex',
   alignItems: 'center',
   marginBottom: theme.spacing(2),
@@ -466,25 +522,21 @@ const allIconsMap = {};
 const allIcons = Object.keys(mui)
   .sort()
   .map((importName) => {
-    let theme;
-    if (importName.includes('Outlined')) {
-      theme = 'Outlined';
-    } else if (importName.includes('TwoTone')) {
-      theme = 'Two tone';
-    } else if (importName.includes('Rounded')) {
-      theme = 'Rounded';
-    } else if (importName.includes('Sharp')) {
-      theme = 'Sharp';
-    } else {
-      theme = 'Filled';
-    }
+    let theme = 'Filled';
+    let name = importName;
 
-    const name = importName.replace(/(Outlined|TwoTone|Rounded|Sharp)$/, '');
+    for (const currentTheme of ['Outlined', 'Rounded', 'TwoTone', 'Sharp']) {
+      if (importName.endsWith(currentTheme)) {
+        theme = currentTheme === 'TwoTone' ? 'Two tone' : currentTheme;
+        name = importName.slice(0, -currentTheme.length);
+        break;
+      }
+    }
     let searchable = name;
     if (synonyms[searchable]) {
       searchable += ` ${synonyms[searchable]}`;
     }
-    searchIndex.addAsync(importName, searchable);
+    searchIndex.add(importName, searchable);
 
     const icon = {
       importName,
@@ -525,30 +577,26 @@ export default function SearchIcons() {
     setSelectedIcon('');
   }, [setSelectedIcon]);
 
-  const deferredQuery = React.useDeferredValue(query);
-  const deferredTheme = React.useDeferredValue(theme);
-
-  const isPending = query !== deferredQuery || theme !== deferredTheme;
-
   const icons = React.useMemo(() => {
-    const keys =
-      deferredQuery === ''
-        ? null
-        : searchIndex.search(deferredQuery, { limit: 3000 });
+    const keys = query === '' ? null : searchIndex.search(query, { limit: 3000 });
     return (keys === null ? allIcons : keys.map((key) => allIconsMap[key])).filter(
-      (icon) => deferredTheme === icon.theme,
+      (icon) => theme === icon.theme,
     );
-  }, [deferredQuery, deferredTheme]);
+  }, [query, theme]);
+
+  const deferredIcons = React.useDeferredValue(icons);
+
+  const isPending = deferredIcons !== icons;
 
   React.useEffect(() => {
     // Keep track of the no results so we can add synonyms in the future.
-    if (deferredQuery.length >= 4 && icons.length === 0) {
+    if (query.length >= 4 && icons.length === 0) {
       window.gtag('event', 'material-icons', {
         eventAction: 'no-results',
-        eventLabel: deferredQuery,
+        eventLabel: query,
       });
     }
-  }, [deferredQuery, icons.length]);
+  }, [query, icons.length]);
 
   const dialogSelectedIcon = useLatest(
     selectedIcon ? allIconsMap[selectedIcon] : null,
@@ -557,7 +605,7 @@ export default function SearchIcons() {
   return (
     <Grid container sx={{ minHeight: 500 }}>
       <Grid item xs={12} sm={3}>
-        <form>
+        <Form>
           <Typography fontWeight={500} sx={{ mb: 1 }}>
             Filter the style
           </Typography>
@@ -578,7 +626,7 @@ export default function SearchIcons() {
               },
             )}
           </RadioGroup>
-        </form>
+        </Form>
       </Grid>
       <Grid item xs={12} sm={9}>
         <Paper>
@@ -603,21 +651,13 @@ export default function SearchIcons() {
         <Typography sx={{ mb: 1 }}>{`${formatNumber(
           icons.length,
         )} matching results`}</Typography>
-        <VirtuosoGrid
-          style={{ height: 500 }}
-          data={icons}
-          components={{ List: ListWrapper }}
-          itemContent={Icon(handleOpenClick)}
-        />
+        <Icons icons={deferredIcons} handleOpenClick={handleOpenClick} />
       </Grid>
-      {/* Temporary fix for Dialog not closing sometimes and Backdrop stuck at opacity 0 (see issue https://github.com/mui/material-ui/issues/32286). One disadvantage is that the closing animation is not applied. */}
-      {selectedIcon ? (
-        <DialogDetails
-          open={!!selectedIcon}
-          selectedIcon={dialogSelectedIcon}
-          handleClose={handleClose}
-        />
-      ) : null}
+      <DialogDetails
+        open={!!selectedIcon}
+        selectedIcon={dialogSelectedIcon}
+        handleClose={handleClose}
+      />
     </Grid>
   );
 }

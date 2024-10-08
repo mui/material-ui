@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-test-utils",
-  "version": "1.0.13",
+  "version": "1.0.15",
   "author": "MUI Team",
   "description": "Utilities for MUI tests. This is an internal package not meant for general use.",
   "main": "./build/index.js",
@@ -48,19 +48,19 @@
     "jsdom": "^24.0.0",
     "lodash": "^4.17.21",
     "mocha": "^10.7.3",
-    "playwright": "^1.46.1",
+    "playwright": "^1.47.2",
     "prop-types": "^15.8.1",
-    "sinon": "^18.0.0"
+    "sinon": "^18.0.1"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.19",
+    "@types/chai": "^4.3.20",
     "@types/chai-dom": "^1.11.3",
     "@types/format-util": "^1.0.4",
-    "@types/prop-types": "^15.7.12",
-    "@types/react": "^18.3.4",
+    "@types/prop-types": "^15.7.13",
+    "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
     "@types/sinon": "^17.0.3",
-    "typescript": "^5.5.4"
+    "typescript": "^5.6.2"
   },
   "peerDependencies": {
     "react": "^18.2.0",

@@ -9,6 +9,7 @@ const roboto = Roboto({
 });
 
 const theme = createTheme({
+  cssVariables: true,
   palette: {
     mode: 'light',
   },
@@ -18,11 +19,16 @@ const theme = createTheme({
   components: {
     MuiAlert: {
       styleOverrides: {
-        root: ({ ownerState }) => ({
-          ...(ownerState.severity === 'info' && {
-            backgroundColor: '#60a5fa',
-          }),
-        }),
+        root: {
+          variants: [
+            {
+              props: { severity: 'info' },
+              style: {
+                backgroundColor: '#60a5fa',
+              },
+            }
+          ],
+        },
       },
     },
   },

@@ -851,5 +851,18 @@ describe('extendTheme', () => {
         '.mode-light',
       ]);
     });
+
+    it('should use a custom root selector', () => {
+      const theme = extendTheme({
+        colorSchemes: { light: true, dark: true },
+        colorSchemeSelector: 'class',
+        rootSelector: ':host',
+      });
+      expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
+        ':host',
+        ':host, .light',
+        '.dark',
+      ]);
+    });
   });
 });

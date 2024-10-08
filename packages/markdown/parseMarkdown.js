@@ -275,12 +275,12 @@ const noSEOadvantage = [
   'https://heroicons.com/',
   'https://react-icons.github.io/',
   'https://fontawesome.com/',
-  'https://www.radix-ui.com/',
   'https://react-spectrum.adobe.com/',
   'https://headlessui.com/',
   'https://refine.dev/',
   'https://scaffoldhub.io/',
   'https://marmelab.com/',
+  'https://framesxdesign.com/',
 ];
 
 /**
@@ -369,8 +369,8 @@ function createRender(context) {
         headingHtml.includes('<a ')
           ? [
               // Avoid breaking the anchor link button
-              `<h${level} id="${hash}"><a href="#${hash}" class="title-link-to-anchor">${headingHtml}</a>`,
-              `<a href="#${hash}" class="title-link-to-anchor"><span class="anchor-icon"><svg><use xlink:href="#anchor-link-icon" /></svg></span></a>`,
+              `<h${level} id="${hash}">${headingHtml}`,
+              `<a href="#${hash}" class="title-link-to-anchor" aria-labelledby="${hash}"><span class="anchor-icon"><svg><use xlink:href="#anchor-link-icon" /></svg></span></a>`,
             ].join('')
           : `<h${level} id="${hash}"><a href="#${hash}" class="title-link-to-anchor">${headingHtml}<span class="anchor-icon"><svg><use xlink:href="#anchor-link-icon" /></svg></span></a>`,
         `<button title="Post a comment" class="comment-link" data-feedback-hash="${hash}">`,
