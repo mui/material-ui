@@ -119,6 +119,64 @@ const MenuItem = React.memo(
  * - [MenuItem API](https://mui.com/joy-ui/api/menu-item/)
  * - inherits [ListItemButton API](https://mui.com/joy-ui/api/list-item-button/)
  */
+
+MenuItem.propTypes /* remove-proptypes */ = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
+   */
+  color: PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
+  /**
+   * @ignore
+   */
+  component: PropTypes.elementType,
+  /**
+   * @ignore
+   */
+  disabled: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  id: PropTypes.string,
+  /**
+   * The content direction flow.
+   * @default 'horizontal'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
+   * If `true`, the component is selected.
+   * @default false
+   */
+  selected: PropTypes.bool,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+   * @default 'plain'
+   */
+  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+} as any;
+
 const StableMenuItem = React.forwardRef(function StableMenuItem(
   props: MenuItemProps,
   ref: React.ForwardedRef<Element>,

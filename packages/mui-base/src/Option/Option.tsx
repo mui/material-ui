@@ -86,6 +86,45 @@ const InnerOption = React.memo(
  *
  * - [Option API](https://mui.com/base-ui/react-select/components-api/#option)
  */
+
+InnerOption.propTypes /* remove-proptypes */ = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
+  children: PropTypes.node,
+  className: PropTypes.string,
+  /**
+   * If `true`, the option will be disabled.
+   * @default false
+   */
+  disabled: PropTypes.bool,
+  /**
+   * A text representation of the option's content.
+   * Used for keyboard text navigation matching.
+   */
+  label: PropTypes.string,
+  /**
+   * The props used for each slot inside the Option.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the Option.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
+   * The value of the option.
+   */
+  value: PropTypes.any.isRequired,
+} as any;
+
 const Option = React.forwardRef(function Option<OptionValue>(
   props: OptionProps<OptionValue>,
   ref: React.ForwardedRef<Element>,
