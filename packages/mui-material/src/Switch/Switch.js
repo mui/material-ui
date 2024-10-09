@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha, darken, lighten } from '@mui/system/colorManipulator';
 import capitalize from '../utils/capitalize';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import SwitchBase from '../internal/SwitchBase';
@@ -141,9 +140,10 @@ const SwitchSwitchBase = styled(SwitchBase, {
   })),
   memoTheme(({ theme }) => ({
     '&:hover': {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
-        : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+      backgroundColor: theme.alpha(
+        (theme.vars || theme).palette.action.active,
+        theme.palette.action.hoverOpacity,
+      ),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -158,9 +158,10 @@ const SwitchSwitchBase = styled(SwitchBase, {
             [`&.${switchClasses.checked}`]: {
               color: (theme.vars || theme).palette[color].main,
               '&:hover': {
-                backgroundColor: theme.vars
-                  ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                  : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
+                backgroundColor: theme.alpha(
+                  (theme.vars || theme).palette[color].main,
+                  theme.palette.action.hoverOpacity,
+                ),
                 '@media (hover: none)': {
                   backgroundColor: 'transparent',
                 },
@@ -170,8 +171,8 @@ const SwitchSwitchBase = styled(SwitchBase, {
                   ? theme.vars.palette.Switch[`${color}DisabledColor`]
                   : `${
                       theme.palette.mode === 'light'
-                        ? lighten(theme.palette[color].main, 0.62)
-                        : darken(theme.palette[color].main, 0.55)
+                        ? theme.lighten(theme.palette[color].main, 0.62)
+                        : theme.darken(theme.palette[color].main, 0.55)
                     }`,
               },
             },
