@@ -45,24 +45,11 @@ const GOLDs = [
     href: 'https://www.text-em-all.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: '/static/sponsors/megafamous.png',
-    name: 'MegaFamous',
-    description: 'Buy Instagram followers and likes.',
-    href: 'https://megafamous.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
-  {
     src: 'https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/40.png',
     srcSet: 'https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/120.png 3x',
     name: 'DialMyCalls',
     description: 'Send text messages, calls, and emails.',
     href: 'https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    src: 'https://images.opencollective.com/goread_io/eb6337d/logo/40.png',
-    srcSet: 'https://images.opencollective.com/goread_io/eb6337d/logo/120.png 3x',
-    name: 'Goread.io',
-    description: 'Instagram followers, likes, views, and comments.',
-    href: 'https://goread.io/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
   {
     src: 'https://images.opencollective.com/copycopterai/e167216/logo/40.png',
@@ -80,6 +67,16 @@ const GOLDs = [
   },
 ];
 const BACKLINKs = [
+  {
+    name: 'MegaFamous',
+    description: 'Buy Instagram followers and likes.',
+    href: 'https://megafamous.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    name: 'Goread.io',
+    description: 'Instagram followers, likes, views, and comments.',
+    href: 'https://goread.io/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
   {
     name: 'Buzzoid',
     description: 'Instant delivery Instagram followers.',
