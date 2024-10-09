@@ -6,7 +6,7 @@
 
 _Oct 8, 2024_
 
-A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
 - 🚀 Improved performance on styled components by pre-serializing and caching the styles (#43412) @romgrk
 
@@ -27,9 +27,13 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - &#8203;<!-- 13 -->Pre-serialize & cache styles to improve performance (#43412) @romgrk
 - &#8203;<!-- 09 -->[typescript] `SystemCSSProperties` should not have `SystemStyleObject` as value (#44029) @siriwatknp
 
-### `@mui/utils@6.1.3`
+### `@mui/utils@6.0.0-beta.11`
 
 - &#8203;<!-- 08 -->[utils] Make getReactElementRef React 19 compatible (#44034) @aarongarciah
+
+### `@mui/lab@6.1.3`
+
+- &#8203;<!-- 20 -->[lab][Timeline] Fix types for React 19 (#44043) @aarongarciah
 
 ### Docs
 
@@ -45,6 +49,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - &#8203;<!-- 25 -->[material-ui] Add theme setting for pigment-css migration (#43993) @effektsvk
 - &#8203;<!-- 24 -->[material-ui] Fix incorrect `slotProp` name in the `TextField` deprecation note. (#43985) @Chee7ah
 - &#8203;<!-- 23 -->[examples] Use CSS Variables (#43856) @Juneezee
+- &#8203;<!-- 29 -->[material-ui] Improved documentation for indeterminateIcon prop (#43791) @marctaylor01
 
 ### Core
 
@@ -67,6 +72,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - &#8203;<!-- 03 -->[website] Standardize utm tags @oliviertassinari
 - &#8203;<!-- 02 -->[website] Improve utm_source strategy @oliviertassinari
 - &#8203;<!-- 01 -->[website] Clarify min-level docs-infra @oliviertassinari
+- &#8203;<!-- 08 -->[website] Update backlink sponsors (#43995) @rluzists1
 
 All contributors of this release in alphabetical order: @aarongarciah, @Asin-Junior-Honore, @barrownicholas, @Chee7ah, @effektsvk, @hieunguyenduc696, @Janpot, @Juneezee, @k-rajat19, @mnajdova, @oliviertassinari, @romgrk, @sai6855, @siriwatknp, @wojtek35, @yonatan0
 
