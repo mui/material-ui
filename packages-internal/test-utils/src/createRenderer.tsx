@@ -367,9 +367,7 @@ function createVitestClock(
       }
     });
     afterEach(() => {
-      if (config) {
-        vi.useRealTimers();
-      }
+      vi.useRealTimers();
     });
   }
 
@@ -605,7 +603,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
   });
 
   afterEach(() => {
-    if (!isVitest && !clock.isReal()) {
+    if (!clock.isReal()) {
       const error = new Error(
         "Can't cleanup before fake timers are restored.\n" +
           'Be sure to:\n' +
