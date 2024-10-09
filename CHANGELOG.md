@@ -55,6 +55,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
 - &#8203;<!-- 37 -->Fix typo in useLocalStorageState (#44024) @hieunguyenduc696
 - &#8203;<!-- 36 -->Amend changelog (#43968) @aarongarciah
+- &#8203;<!-- 41 -->Remove `@mui/styled-engine-sc` dev dependency from `@mui/styled-engine-sc` (#44050) @Janpot
 - &#8203;<!-- 43 -->[docs-infra] Add pointer cursor on hover for logo to improve UX (#43999) @Asin-Junior-Honore
 - &#8203;<!-- 41 -->[blog] Migrate some .gif to <video> (#43945) @oliviertassinari
 - &#8203;<!-- 40 -->[code-infra] Align `next` dependency specifier across project (#44036) @Janpot
