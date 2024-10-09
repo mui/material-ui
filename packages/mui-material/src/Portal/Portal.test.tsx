@@ -7,14 +7,9 @@ import Portal, { PortalProps } from '@mui/material/Portal';
 describe('<Portal />', () => {
   const { render, renderToString } = createRenderer();
 
-  describe('server-side', () => {
-    before(function beforeHook() {
-      // Only run the test on node.
-      if (!/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-    });
-
+  // @ts-expect-error
+  // eslint-disable-next-line no-undef
+  describeSkipIf(!/jsdom/.test(window.navigator.userAgent))('server-side', () => {
     it('render nothing on the server', () => {
       const { container } = renderToString(
         <Portal>

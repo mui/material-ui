@@ -137,6 +137,7 @@
     "@types/yargs": "^17.0.33",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
+    "@vitest/browser": "^2.1.2",
     "@vitest/coverage-v8": "^2.1.2",
     "babel-loader": "^9.2.1",
     "babel-plugin-istanbul": "^7.0.0",

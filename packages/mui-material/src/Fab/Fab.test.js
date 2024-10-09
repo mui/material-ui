@@ -160,14 +160,8 @@ describe('<Fab />', () => {
     expect(renderedIconChild).to.have.class(childClassName);
   });
 
-  describe('server-side', () => {
-    before(function beforeHook() {
-      // Only run the test on node.
-      if (!/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-    });
-
+  // eslint-disable-next-line no-undef
+  describeSkipIf(!/jsdom/.test(window.navigator.userAgent))('server-side', () => {
     it('should server-side render', () => {
       const { container } = renderToString(<Fab>Fab</Fab>);
       expect(container.firstChild).to.have.text('Fab');

@@ -368,15 +368,11 @@ describe('<Tabs />', () => {
         ]);
       });
 
-      describe('hidden tab / tabs', () => {
+      // eslint-disable-next-line no-undef
+      describeSkipIf(!/jsdom/.test(window.navigator.userAgent))('hidden tab / tabs', () => {
         let nodeEnv;
 
         before(function test() {
-          if (!/jsdom/.test(window.navigator.userAgent)) {
-            this.skip();
-            return;
-          }
-
           nodeEnv = process.env.NODE_ENV;
           // We can't use a regular assignment, because it causes a syntax error in Karma
           Object.defineProperty(process.env, 'NODE_ENV', {

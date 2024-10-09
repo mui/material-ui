@@ -25,7 +25,18 @@ export default defineConfig({
       // We use performance.now in the codebase
       toFake: [...configDefaults.fakeTimers.toFake, 'performance'],
     },
+    browser: {
+      enabled: false, // enabled through CLI
+      name: 'chromium',
+      provider: 'playwright',
+      headless: !!process.env.CI,
+      viewport: {
+        width: 1024,
+        height: 896,
+      },
+    },
   },
+
   resolve: {
     alias: {
       '@mui/internal-test-utils': path.resolve(MONOREPO_ROOT, './packages-internal/test-utils/src'),

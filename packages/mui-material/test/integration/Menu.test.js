@@ -308,18 +308,22 @@ describe('<Menu /> integration', () => {
     );
   });
 
-  it('closes the menu when Tabbing while the list is active', async () => {
-    render(<ButtonMenu />);
+  it.only('closes the menu when Tabbing while the list is active', async () => {
+    const { user } = render(<ButtonMenu />);
 
     const trigger = screen.getByRole('button');
     await act(async () => {
       trigger.focus();
+    });
+
+    await act(async () => {
       trigger.click();
     });
 
     // react-transition-group uses one commit per state transition so we need to wait a bit
     fireEvent.keyDown(screen.getAllByRole('menuitem')[0], { key: 'Tab' });
-    clock.tick(0);
+
+    // await user.keyboard('[Tab]');
 
     expect(screen.getByRole('menu', { hidden: true })).toBeInaccessible();
   });

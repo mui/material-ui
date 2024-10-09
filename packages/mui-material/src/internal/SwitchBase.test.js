@@ -395,7 +395,7 @@ describe('<SwitchBase />', () => {
 
   describe('check transitioning between controlled states throws errors', () => {
     it('should error when uncontrolled and changed to controlled', function test() {
-      if (global.didWarnControlledToUncontrolled) {
+      if (globalThis.didWarnControlledToUncontrolled) {
         this.skip();
       }
 
@@ -421,7 +421,7 @@ describe('<SwitchBase />', () => {
     });
 
     it('should error when controlled and changed to uncontrolled', function test() {
-      if (global.didWarnControlledToUncontrolled) {
+      if (globalThis.didWarnControlledToUncontrolled) {
         this.skip();
       }
 

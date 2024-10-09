@@ -48,7 +48,8 @@ describe('useScrollTrigger', () => {
     });
   });
 
-  describe('scroll', () => {
+  // eslint-disable-next-line no-undef
+  describeSkipIf(!/jsdom/.test(window.navigator.userAgent))('scroll', () => {
     const triggerRef = React.createRef();
     const containerRef = React.createRef(); // Get the scroll container's parent
     const getContainer = () => containerRef.current.children[0]; // Get the scroll container
@@ -74,13 +75,6 @@ describe('useScrollTrigger', () => {
     Test.propTypes = {
       customContainer: PropTypes.bool,
     };
-
-    before(function beforeHook() {
-      // Only run the test on node.
-      if (!/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-    });
 
     function dispatchScroll(offset, element = window) {
       act(() => {

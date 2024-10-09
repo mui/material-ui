@@ -137,7 +137,9 @@ describe('<TextareaAutosize />', () => {
     expect(parseInt(input.style.height, 10)).to.be.within(15, 17);
   });
 
-  describe('layout', () => {
+  // @ts-expect-error
+  // eslint-disable-next-line no-undef
+  describeSkipIf(!/jsdom/.test(window.navigator.userAgent))('layout', () => {
     const getComputedStyleStub = new Map<Element, Partial<CSSStyleDeclaration>>();
     function setLayout(
       input: HTMLTextAreaElement,
@@ -166,11 +168,6 @@ describe('<TextareaAutosize />', () => {
     }
 
     before(function beforeHook() {
-      // Only run the test on node.
-      if (!/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-
       stub(window, 'getComputedStyle').value(
         (node: Element) => getComputedStyleStub.get(node) || {},
       );
