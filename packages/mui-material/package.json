@@ -50,7 +50,7 @@
     "clsx": "^2.1.1",
     "csstype": "^3.1.3",
     "prop-types": "^15.8.1",
-    "react-is": "^18.3.1",
+    "react-is": "19.0.0-rc-0751fac7-20241002",
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
@@ -59,8 +59,8 @@
     "@testing-library/user-event": "^14.5.2",
     "@types/chai": "^4.3.20",
     "@types/prop-types": "^15.7.13",
-    "@types/react": "^18.3.11",
-    "@types/react-dom": "^18.3.0",
+    "@types/react": "npm:types-react@19.0.0-rc.1",
+    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
     "@types/sinon": "^17.0.3",
     "chai": "^4.5.0",
     "css-mediaquery": "^0.1.2",
@@ -68,8 +68,8 @@
     "fs-extra": "^11.2.0",
     "lodash": "^4.17.21",
     "playwright": "^1.47.2",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "19.0.0-rc-0751fac7-20241002",
+    "react-dom": "19.0.0-rc-0751fac7-20241002",
     "react-router-dom": "^6.26.2",
     "sinon": "^18.0.1"
   },
