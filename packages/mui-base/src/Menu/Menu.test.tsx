@@ -206,7 +206,7 @@ describe('<Menu />', () => {
       const item2 = getByTestId('item-2');
       const item3 = getByTestId('item-3');
 
-      await act(() => {
+      await act(async () => {
         item1.focus();
       });
 
@@ -234,7 +234,7 @@ describe('<Menu />', () => {
       const item1 = getByTestId('item-1');
       const item3 = getByTestId('item-3');
 
-      await act(() => {
+      await act(async () => {
         item1.focus();
       });
 
@@ -260,7 +260,7 @@ describe('<Menu />', () => {
       const item1 = getByTestId('item-1');
       const item2 = getByTestId('item-2');
 
-      await act(() => {
+      await act(async () => {
         item1.focus();
       });
 
@@ -293,7 +293,7 @@ describe('<Menu />', () => {
 
         const items = getAllByRole('menuitem');
 
-        await act(() => {
+        await act(async () => {
           items[0].focus();
         });
 
@@ -326,7 +326,7 @@ describe('<Menu />', () => {
 
         const items = getAllByRole('menuitem');
 
-        await act(() => {
+        await act(async () => {
           items[0].focus();
         });
 
@@ -357,7 +357,7 @@ describe('<Menu />', () => {
 
         const items = getAllByRole('menuitem');
 
-        await act(() => {
+        await act(async () => {
           items[0].focus();
         });
 
@@ -399,7 +399,7 @@ describe('<Menu />', () => {
 
         const items = getAllByRole('menuitem');
 
-        await act(() => {
+        await act(async () => {
           items[0].focus();
         });
 
@@ -436,7 +436,7 @@ describe('<Menu />', () => {
 
         const items = getAllByRole('menuitem');
 
-        await act(() => {
+        await act(async () => {
           items[0].focus();
         });
 
@@ -471,7 +471,7 @@ describe('<Menu />', () => {
 
         const items = getAllByRole('menuitem');
 
-        await act(() => {
+        await act(async () => {
           items[0].focus();
         });
 
@@ -666,7 +666,7 @@ describe('<Menu />', () => {
     );
 
     const menuItems = getAllByRole('menuitem');
-    await act(() => {
+    await act(async () => {
       menuItems[0].focus();
     });
 
