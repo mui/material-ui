@@ -1954,6 +1954,9 @@ importers:
       '@mui/internal-test-utils':
         specifier: workspace:^
         version: link:../../packages-internal/test-utils
+      '@mui/styled-engine-sc':
+        specifier: workspace:*
+        version: link:build
       '@types/chai':
         specifier: ^4.3.20
         version: 4.3.20
