@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer } from '@mui/internal-test-utils';
+import { describeSkipIf, createRenderer } from '@mui/internal-test-utils';
 import ToggleButton, { toggleButtonClasses as classes } from '@mui/material/ToggleButton';
 import ButtonBase from '@mui/material/ButtonBase';
 import describeConformance from '../../test/describeConformance';
@@ -125,7 +125,6 @@ describe('<ToggleButton />', () => {
     });
   });
 
-  // eslint-disable-next-line no-undef
   describeSkipIf(!/jsdom/.test(window.navigator.userAgent))('server-side', () => {
     it('should server-side render', () => {
       const { container } = renderToString(<ToggleButton value="hello">Hello World</ToggleButton>);

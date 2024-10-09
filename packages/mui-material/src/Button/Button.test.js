@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen, simulateKeyboardDevice } from '@mui/internal-test-utils';
+import {
+  createRenderer,
+  screen,
+  simulateKeyboardDevice,
+  describeSkipIf,
+} from '@mui/internal-test-utils';
 import { ClassNames } from '@emotion/react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button, { buttonClasses as classes } from '@mui/material/Button';
@@ -624,7 +629,6 @@ describe('<Button />', () => {
     expect(button.querySelector('.pulsate-focus-visible')).to.equal(null);
   });
 
-  // eslint-disable-next-line no-undef
   describeSkipIf(!/jsdom/.test(window.navigator.userAgent))('server-side', () => {
     it('should server-side render', () => {
       const { container } = renderToString(<Button>Hello World</Button>);

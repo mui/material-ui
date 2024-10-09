@@ -8,6 +8,7 @@ import {
   focusVisible,
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
+  describeSkipIf,
 } from '@mui/internal-test-utils';
 import Avatar from '@mui/material/Avatar';
 import Chip, { chipClasses as classes } from '@mui/material/Chip';
@@ -663,7 +664,6 @@ describe('<Chip />', () => {
     });
   });
 
-  // eslint-disable-next-line no-undef
   describeSkipIf(/jsdom/.test(window.navigator.userAgent))('event: focus', () => {
     it('has a focus-visible polyfill', () => {
       const { container } = render(<Chip label="Test Chip" onClick={() => {}} />);

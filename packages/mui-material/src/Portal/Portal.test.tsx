@@ -1,14 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, describeSkipIf } from '@mui/internal-test-utils';
 import Portal, { PortalProps } from '@mui/material/Portal';
 
 describe('<Portal />', () => {
   const { render, renderToString } = createRenderer();
 
-  // @ts-expect-error
-  // eslint-disable-next-line no-undef
   describeSkipIf(!/jsdom/.test(window.navigator.userAgent))('server-side', () => {
     it('render nothing on the server', () => {
       const { container } = renderToString(

@@ -9,6 +9,7 @@ import {
   screen,
   strictModeDoubleLoggingSuppressed,
   waitFor,
+  describeSkipIf,
 } from '@mui/internal-test-utils';
 import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
@@ -368,7 +369,6 @@ describe('<Tabs />', () => {
         ]);
       });
 
-      // eslint-disable-next-line no-undef
       describeSkipIf(!/jsdom/.test(window.navigator.userAgent))('hidden tab / tabs', () => {
         let nodeEnv;
 

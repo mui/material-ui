@@ -1,10 +1,10 @@
 import { expect } from 'chai';
+import { describeSkipIf } from '@mui/internal-test-utils';
 import animate from './animate';
 
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 const isJSDOM = /jsdom/.test(window.navigator.userAgent);
 
-// eslint-disable-next-line no-undef
 describeSkipIf(isJSDOM || isSafari)('animate', () => {
   let container;
 

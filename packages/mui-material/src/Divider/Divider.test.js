@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, describeSkipIf } from '@mui/internal-test-utils';
 import { styled } from '@mui/material/styles';
 import Divider, { dividerClasses as classes } from '@mui/material/Divider';
 import describeConformance from '../../test/describeConformance';
@@ -85,7 +85,6 @@ describe('<Divider />', () => {
       });
     });
 
-    // eslint-disable-next-line no-undef
     describeSkipIf(/jsdom/.test(window.navigator.userAgent))(
       'custom border style',
       function test() {

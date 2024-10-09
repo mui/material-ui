@@ -10,6 +10,7 @@ import {
   focusVisible,
   programmaticFocusTriggersFocusVisible,
   reactMajor,
+  describeSkipIf,
 } from '@mui/internal-test-utils';
 import { camelCase } from 'lodash/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
@@ -505,7 +506,6 @@ describe('<Tooltip />', () => {
     });
   });
 
-  // eslint-disable-next-line no-undef
   describeSkipIf(/jsdom/.test(window.navigator.userAgent))('prop: delay', () => {
     it('should take the enterDelay into account', async () => {
       const { queryByRole } = render(
@@ -877,7 +877,6 @@ describe('<Tooltip />', () => {
     });
   });
 
-  // eslint-disable-next-line no-undef
   describeSkipIf(/jsdom/.test(window.navigator.userAgent))('focus', () => {
     it('ignores base focus', async () => {
       render(

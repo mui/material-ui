@@ -10,6 +10,7 @@ import {
   focusVisible,
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
+  describeSkipIf,
 } from '@mui/internal-test-utils';
 import PropTypes from 'prop-types';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -247,8 +248,6 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  // @ts-expect-error Temporary shim while migrating to vitest
-  // eslint-disable-next-line no-undef
   describeSkipIf(/jsdom/.test(window.navigator.userAgent))('ripple', () => {
     describe('interactions', () => {
       it('should not have a focus ripple by default', () => {
@@ -606,8 +605,6 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  // @ts-expect-error Temporary shim while migrating to vitest
-  // eslint-disable-next-line no-undef
   describeSkipIf(/jsdom/.test(window.navigator.userAgent))('focusRipple', () => {
     it('should pulsate the ripple when focusVisible', async () => {
       const { getByRole } = render(
@@ -913,8 +910,6 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  // @ts-expect-error Temporary shim while migrating to vitest
-  // eslint-disable-next-line no-undef
   describeSkipIf(/jsdom/.test(window.navigator.userAgent))('event: keydown', () => {
     it('ripples on repeated keydowns', async () => {
       const { container, getByText } = render(
@@ -1162,8 +1157,6 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  // @ts-expect-error Temporary shim while migrating to vitest
-  // eslint-disable-next-line no-undef
   describeSkipIf(/jsdom/.test(window.navigator.userAgent))('prop: action', () => {
     it('should be able to focus visible the button', async () => {
       /**

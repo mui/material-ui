@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, describeSkipIf } from '@mui/internal-test-utils';
 import Collapse from '@mui/material/Collapse';
 import Fade from '@mui/material/Fade';
 import Grow from '@mui/material/Grow';
@@ -11,7 +11,6 @@ import Popper from '@mui/material/Popper';
 
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
-// eslint-disable-next-line no-undef
 describeSkipIf(/jsdom/.test(window.navigator.userAgent))('<Popper />', () => {
   const { render } = createRenderer();
 
