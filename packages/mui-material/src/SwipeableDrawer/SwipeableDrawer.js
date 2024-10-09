@@ -456,19 +456,19 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
 
     if (swipeInstance.current.lastTranslate === null) {
       swipeInstance.current.lastTranslate = translate;
-      swipeInstance.current.lastTime = performance.now() + 1;
+      swipeInstance.current.lastTime = Date.now() + 1;
     }
 
     const velocity =
       ((translate - swipeInstance.current.lastTranslate) /
-        (performance.now() - swipeInstance.current.lastTime)) *
+        (Date.now() - swipeInstance.current.lastTime)) *
       1e3;
 
     // Low Pass filter.
     swipeInstance.current.velocity = swipeInstance.current.velocity * 0.4 + velocity * 0.6;
 
     swipeInstance.current.lastTranslate = translate;
-    swipeInstance.current.lastTime = performance.now();
+    swipeInstance.current.lastTime = Date.now();
 
     // We are swiping, let's prevent the scroll event on iOS.
     if (nativeEvent.cancelable) {

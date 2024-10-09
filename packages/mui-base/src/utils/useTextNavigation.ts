@@ -28,7 +28,7 @@ export function useTextNavigation(
       if (event.key.length === 1 && event.key !== ' ') {
         const textCriteria = textCriteriaRef.current;
         const lowerKey = event.key.toLowerCase();
-        const currentTime = performance.now();
+        const currentTime = Date.now();
         if (
           textCriteria.searchString.length > 0 &&
           textCriteria.lastTime &&

@@ -179,7 +179,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     } else if (key.length === 1) {
       const criteria = textCriteriaRef.current;
       const lowerKey = key.toLowerCase();
-      const currTime = performance.now();
+      const currTime = Date.now();
       if (criteria.keys.length > 0) {
         // Reset
         if (currTime - criteria.lastTime > 500) {
