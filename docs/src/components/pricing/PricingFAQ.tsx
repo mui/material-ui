@@ -127,9 +127,9 @@ const faqData = [
           </li>
           <li>
             Modules/components that DO NOT add significant primary functionality. Example: a theme
-            for a set of components that is sold as a separate product and includes the XGrid
-            components. In such cases, we offer reseller arrangements so that everyone has an
-            incentive to enter into a relationship.
+            for a set of components that is sold as a separate product and includes the MUI X Data
+            Grid Pro components. In such cases, we offer reseller arrangements so that everyone has
+            an incentive to enter into a relationship.
           </li>
         </ul>
         If your desired use falls under any of the three categories listed above, please{' '}
