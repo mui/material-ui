@@ -579,7 +579,7 @@ You can import it from the deprecated `@mui/styles` package if you need to conti
 
 ### ✅ Update `makeStyles` import
 
-Since Material UI v5 doesn't use JSS, the JSS-based `makeStyles` utility is no longer exported by `@mui/material/styles`.
+Since Material UI v5 doesn't use JSS, the JSS-based `makeStyles` utility is no longer exported by `@mui/material/styles`.
 While migrating your app away from JSS, you can temporarily import this deprecated utility from `@mui/styles/makeStyles` before refactoring your components further.
 
 Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available.
@@ -619,7 +619,7 @@ You can import it from the deprecated `@mui/styles` package if you need to conti
 
 ### styled
 
-Since Material UI v5 doesn't use JSS, the JSS-based `styled` utility exported by `@mui/material/styles` has been replaced with an equivalent Emotion-based utility that's not backwards compatible.
+Since Material UI v5 doesn't use JSS, the JSS-based `styled` utility exported by `@mui/material/styles` has been replaced with an equivalent Emotion-based utility that's not backwards compatible.
 While migrating your app away from JSS, you can temporarily import the JSS-based utility from the deprecated `@mui/styles` package before refactoring your components further.
 
 Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available.
@@ -662,7 +662,7 @@ You can import it from the deprecated `@mui/styles` package if you need to conti
 
 ### ✅ Update withStyles import
 
-Since Material UI v5 doesn't use JSS, the JSS-based `withStyles` utility is no longer exported by `@mui/material/styles`.
+Since Material UI v5 doesn't use JSS, the JSS-based `withStyles` utility is no longer exported by `@mui/material/styles`.
 While migrating your app away from JSS, you can temporarily import this deprecated utility from `@mui/styles/withStyles` before refactoring your components further.
 
 Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available.

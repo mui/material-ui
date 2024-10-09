@@ -1,6 +1,6 @@
 # @mui/styles
 
-The legacy styling solution for Material UI, now deprecated and not recommended for use.
+The legacy styling solution for Material UI, now deprecated and not recommended for use.
 
 ## Installation
 
