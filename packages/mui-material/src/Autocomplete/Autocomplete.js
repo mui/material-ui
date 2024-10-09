@@ -544,7 +544,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   const externalForwardedProps = {
     slots: {
-      listbox: ListboxComponentProp,
       paper: PaperComponentProp,
       popper: PopperComponentProp,
       ...slots,
@@ -682,7 +681,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   let autocompletePopper = null;
   if (groupedOptions.length > 0) {
     autocompletePopper = renderAutocompletePopperChildren(
-      <ListboxSlot {...listboxProps}>
+      // TODO v7: remove `as` prop and move ListboxComponentProp to externalForwardedProps or remove ListboxComponentProp entirely
+      // https://github.com/mui/material-ui/pull/43994#issuecomment-2401945800
+      <ListboxSlot as={ListboxComponentProp} {...listboxProps}>
         {groupedOptions.map((option, index) => {
           if (groupBy) {
             return renderGroup({
