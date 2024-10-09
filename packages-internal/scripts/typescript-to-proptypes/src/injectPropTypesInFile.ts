@@ -258,9 +258,9 @@ function createBabelPlugin({
               babelTypes.isExpressionStatement(node) &&
               babelTypes.isAssignmentExpression(node.expression, { operator: '=' }) &&
               babelTypes.isMemberExpression(node.expression.left) &&
-              babelTypes.isIdentifier(node.expression.left.object) &&
               babelTypes.isIdentifier(node.expression.left.property, { name: 'propTypes' })
             ) {
+              babelTypes.assertIdentifier(node.expression.left.object);
               const componentName = node.expression.left.object.name;
               originalPropTypesPaths.set(componentName, nodePath);
 
