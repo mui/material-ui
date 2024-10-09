@@ -1,5 +1,82 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.1.3
+
+<!-- generated comparing v6.1.2..master -->
+
+_Oct 9, 2024_
+
+A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 Improved performance on styled components by pre-serializing and caching the styles (#43412) @romgrk
+
+### `@mui/material@6.1.3`
+
+- &#8203;<!-- 18 -->Change React.ReactElement<any> to React.ReactElement<unknown> (#43402) @sai6855
+- &#8203;<!-- 42 -->[Badge] Make keys in anchor origin partial (#43950) @sai6855
+- &#8203;<!-- 22 -->[Grid2] Fix column spacing for nested containers (#43733) @Janpot
+- &#8203;<!-- 21 -->[Grid2] Remove required `item` prop for `size` prop (#44027) @Janpot
+- &#8203;<!-- 20 -->[Grid2] Add compatible props warning (#43801) @k-rajat19
+- &#8203;<!-- 17 -->[Modal] Fix comment location (#44026) @oliviertassinari
+- &#8203;<!-- 16 -->[OutlinedInput] Resolve border color issue on mobile (#43797) (#43879) @wojtek35
+
+### `@mui/system@6.1.3`
+
+- &#8203;<!-- 15 -->Make createGrid compatible with React 19 types (#44035) @aarongarciah
+- &#8203;<!-- 14 -->Add empty interfaces to fix issue with typescript module augmentation (#43873) @yonatan0
+- &#8203;<!-- 13 -->Pre-serialize & cache styles to improve performance (#43412) @romgrk
+- &#8203;<!-- 09 -->[typescript] `SystemCSSProperties` should not have `SystemStyleObject` as value (#44029) @siriwatknp
+
+### `@mui/utils@6.0.0-beta.11`
+
+- &#8203;<!-- 08 -->[utils] Make getReactElementRef React 19 compatible (#44034) @aarongarciah
+
+### `@mui/lab@6.1.3`
+
+- &#8203;<!-- 20 -->[lab][Timeline] Fix types for React 19 (#44043) @aarongarciah
+
+### Docs
+
+- &#8203;<!-- 35 -->Update docs-infra role (#44032) @mnajdova
+- &#8203;<!-- 34 -->Update Material Symbols plan to reflect Google development (#44000) @oliviertassinari
+- &#8203;<!-- 33 -->Fix 301 redirections in docs @oliviertassinari
+- &#8203;<!-- 32 -->Fix indentation @oliviertassinari
+- &#8203;<!-- 31 -->Fix Live edit copies (#43835) @oliviertassinari
+- &#8203;<!-- 30 -->Virtualize icons svg (#43939) @Janpot
+- &#8203;<!-- 28 -->[Grid] Fix Grid2 gap description (#43967) @aarongarciah
+- &#8203;<!-- 27 -->[icons] Index search synchronously (#44001) @oliviertassinari
+- &#8203;<!-- 26 -->[material-ui] Incorrect React useState Example on Toggle Button (#43987) @barrownicholas
+- &#8203;<!-- 25 -->[material-ui] Add theme setting for pigment-css migration (#43993) @effektsvk
+- &#8203;<!-- 24 -->[material-ui] Fix incorrect `slotProp` name in the `TextField` deprecation note. (#43985) @Chee7ah
+- &#8203;<!-- 23 -->[examples] Use CSS Variables (#43856) @Juneezee
+- &#8203;<!-- 29 -->[material-ui] Improved documentation for indeterminateIcon prop (#43791) @marctaylor01
+
+### Core
+
+- &#8203;<!-- 37 -->Fix typo in useLocalStorageState (#44024) @hieunguyenduc696
+- &#8203;<!-- 36 -->Amend changelog (#43968) @aarongarciah
+- &#8203;<!-- 41 -->Remove `@mui/styled-engine-sc` dev dependency from `@mui/styled-engine-sc` (#44050) @Janpot
+- &#8203;<!-- 43 -->[docs-infra] Add pointer cursor on hover for logo to improve UX (#43999) @Asin-Junior-Honore
+- &#8203;<!-- 41 -->[blog] Migrate some .gif to <video> (#43945) @oliviertassinari
+- &#8203;<!-- 40 -->[code-infra] Align `next` dependency specifier across project (#44036) @Janpot
+- &#8203;<!-- 39 -->[code-infra] Move MuiError babel macro to babel plugin (#43904) @Janpot
+- &#8203;<!-- 38 -->[code-infra] Forbid calling `Error` without `new` (#43963) @Janpot
+- &#8203;<!-- 29 -->[docs-infra] Fix link in header regression (#43834) @oliviertassinari
+- &#8203;<!-- 19 -->[infra] Fix line break in Stack Overflow message @oliviertassinari
+- &#8203;<!-- 12 -->[test] Add missing async (#44028) @oliviertassinari
+- &#8203;<!-- 11 -->[test] Fix Escape event firing event (#43961) @oliviertassinari
+- &#8203;<!-- 10 -->[test] Fix flaky pigment-css screenshot (#43959) @Janpot
+- &#8203;<!-- 07 -->[website] Add missing \_redirects HTTP status @oliviertassinari
+- &#8203;<!-- 06 -->[website] Fix sponsor image height @oliviertassinari
+- &#8203;<!-- 05 -->[website] Remove srcset, does nothing in README @oliviertassinari
+- &#8203;<!-- 04 -->[website] Polish display of sponsors @oliviertassinari
+- &#8203;<!-- 03 -->[website] Standardize utm tags @oliviertassinari
+- &#8203;<!-- 02 -->[website] Improve utm_source strategy @oliviertassinari
+- &#8203;<!-- 01 -->[website] Clarify min-level docs-infra @oliviertassinari
+- &#8203;<!-- 08 -->[website] Update backlink sponsors (#43995) @rluzists1
+
+All contributors of this release in alphabetical order: @aarongarciah, @Asin-Junior-Honore, @barrownicholas, @Chee7ah, @effektsvk, @hieunguyenduc696, @Janpot, @Juneezee, @k-rajat19, @mnajdova, @oliviertassinari, @romgrk, @sai6855, @siriwatknp, @wojtek35, @yonatan0
+
 ## v6.1.2
 
 <!-- generated comparing v6.1.1..master -->
