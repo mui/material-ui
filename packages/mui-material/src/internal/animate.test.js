@@ -1,22 +1,15 @@
 import { expect } from 'chai';
+import { describeSkipIf } from '@mui/internal-test-utils';
 import animate from './animate';
 
-describe('animate', () => {
+const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+
+describeSkipIf(isJSDOM || isSafari)('animate', () => {
   let container;
 
+  // eslint-disable-next-line mocha/no-top-level-hooks
   before(function beforeHook() {
-    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
-    if (isJSDOM || isSafari) {
-      // The test fails on Safari with just:
-      //
-      // container.scrollLeft = 200;
-      // expect(container.scrollLeft).to.equal(200); 💥
-
-      // in JSDOM the test prevents mocha from exiting
-      this.skip();
-    }
-
     container = document.createElement('div');
     container.style.cssText = [
       'height: 100px',
@@ -30,6 +23,7 @@ describe('animate', () => {
     document.body.appendChild(container);
   });
 
+  // eslint-disable-next-line mocha/no-top-level-hooks
   after(() => {
     if (container !== undefined) {
       document.body.removeChild(container);
