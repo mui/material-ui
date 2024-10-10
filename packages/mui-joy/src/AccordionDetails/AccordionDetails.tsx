@@ -104,23 +104,10 @@ const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref
       );
 
       elements.forEach((elm) => {
-        const currentTabIndex = elm.getAttribute('tabindex');
-        const prevTabIndex = elm.getAttribute('data-prev-tabindex');
-
         if (expanded) {
-          // Restore the previous tabindex if it exists, or remove it if it was "unset"
-          if (prevTabIndex === 'unset') {
-            elm.removeAttribute('tabindex');
-          } else if (prevTabIndex !== null) {
-            elm.setAttribute('tabindex', prevTabIndex);
-          }
-          elm.removeAttribute('data-prev-tabindex');
+          elm.removeAttribute('hidden');
         } else {
-          // If element has no data-prev-tabindex, store the current tabindex or "unset"
-          if (prevTabIndex === null) {
-            elm.setAttribute('data-prev-tabindex', currentTabIndex || 'unset');
-          }
-          elm.setAttribute('tabindex', '-1');
+          elm.setAttribute('hidden', '');
         }
       });
     }
