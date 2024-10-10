@@ -179,7 +179,16 @@ InnerOption.propTypes /* remove-proptypes */ = {
 } as any;
 
 const Option = React.memo(InnerOption);
-
+/**
+ *
+ * Demos:
+ *
+ * - [Select](https://mui.com/joy-ui/react-select/)
+ *
+ * API:
+ *
+ * - [Option API](https://mui.com/joy-ui/api/option/)
+ */
 const StableOption = React.forwardRef(function StableOption(
   props: OptionProps,
   ref: React.ForwardedRef<HTMLLIElement>,

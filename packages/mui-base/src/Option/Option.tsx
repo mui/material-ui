@@ -65,18 +65,6 @@ const InnerOption = React.forwardRef<Element, OptionProps<unknown>>(function Inn
   return <Root {...rootProps}>{children}</Root>;
 });
 
-/**
- * An unstyled option to be used within a Select.
- *
- * Demos:
- *
- * - [Select](https://mui.com/base-ui/react-select/)
- *
- * API:
- *
- * - [Option API](https://mui.com/base-ui/react-select/components-api/#option)
- */
-
 InnerOption.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
@@ -116,6 +104,18 @@ InnerOption.propTypes /* remove-proptypes */ = {
 } as any;
 
 const InnerOptionMemo = React.memo(InnerOption);
+
+/**
+ * An unstyled option to be used within a Select.
+ *
+ * Demos:
+ *
+ * - [Select](https://mui.com/base-ui/react-select/)
+ *
+ * API:
+ *
+ * - [Option API](https://mui.com/base-ui/react-select/components-api/#option)
+ */
 
 const Option = React.forwardRef(function Option<OptionValue>(
   props: OptionProps<OptionValue>,

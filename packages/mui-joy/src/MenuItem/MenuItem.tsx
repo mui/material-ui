@@ -162,7 +162,17 @@ InnerMenuItem.propTypes /* remove-proptypes */ = {
 } as any;
 
 const MenuItem = React.memo(InnerMenuItem);
-
+/**
+ *
+ * Demos:
+ *
+ * - [Menu](https://mui.com/joy-ui/react-menu/)
+ *
+ * API:
+ *
+ * - [MenuItem API](https://mui.com/joy-ui/api/menu-item/)
+ * - inherits [ListItemButton API](https://mui.com/joy-ui/api/list-item-button/)
+ */
 const StableMenuItem = React.forwardRef(function StableMenuItem(
   props: MenuItemProps,
   ref: React.ForwardedRef<Element>,

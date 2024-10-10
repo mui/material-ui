@@ -174,7 +174,7 @@ function createBabelPlugin({
   let needImport = false;
   let alreadyImported = false;
   const originalPropTypesPaths = new Map<string, babel.NodePath>();
-  const previousPropTypesSource = new Map<string, string>();
+  const previousPropTypesSources = new Map<string, Map<string, string>>();
 
   function injectPropTypes(injectOptions: {
     path: babel.NodePath;
@@ -183,6 +183,9 @@ function createBabelPlugin({
     nodeName: string;
   }) {
     const { path, props, usedProps, nodeName } = injectOptions;
+
+    const previousPropTypesSource =
+      previousPropTypesSources.get(nodeName) || new Map<string, string>();
 
     const source = generatePropTypes(props, {
       ...otherOptions,
@@ -263,6 +266,9 @@ function createBabelPlugin({
               babelTypes.assertIdentifier(node.expression.left.object);
               const componentName = node.expression.left.object.name;
               originalPropTypesPaths.set(componentName, nodePath);
+
+              const previousPropTypesSource = new Map<string, string>();
+              previousPropTypesSources.set(componentName, previousPropTypesSource);
 
               let maybeObjectExpression = node.expression.right;
               // Component.propTypes = {} as any;

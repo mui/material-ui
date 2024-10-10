@@ -234,18 +234,6 @@ const PopperTooltip = React.forwardRef<HTMLDivElement, PopperTooltipProps>(funct
   );
 }) as PolymorphicComponent<PopperTooltipTypeMap>;
 
-/**
- * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.
- *
- * Demos:
- *
- * - [Popper](https://mui.com/base-ui/react-popper/)
- *
- * API:
- *
- * - [Popper API](https://mui.com/base-ui/react-popper/components-api/#popper)
- */
-
 PopperTooltip.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
@@ -426,6 +414,18 @@ PopperTooltip.propTypes /* remove-proptypes */ = {
   }),
   TransitionProps: PropTypes.object,
 } as any;
+
+/**
+ * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.
+ *
+ * Demos:
+ *
+ * - [Popper](https://mui.com/base-ui/react-popper/)
+ *
+ * API:
+ *
+ * - [Popper API](https://mui.com/base-ui/react-popper/components-api/#popper)
+ */
 
 const Popper = React.forwardRef<HTMLDivElement, PopperProps>(function Popper<
   RootComponentType extends React.ElementType,
