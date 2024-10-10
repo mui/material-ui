@@ -12,10 +12,6 @@ Feel free to submit a pull request!
 
 - [UXPin](https://www.uxpin.com/merge/mui-library): A large UI kit of Material UI components. It renders the components in a web runtime and uses the same React implementation as your production environment.
 
-## IDE tools
-
-- [eslint-plugin-material-ui-unused-classes](https://github.com/jens-ox/eslint-plugin-material-ui-unused-classes): ESLint plugin to detect unused styling classes with `@mui/styles`.
-
 ## Theming
 
 - [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your Material UI applications that features live previewing.
