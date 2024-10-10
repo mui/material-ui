@@ -6,14 +6,14 @@
 
 - **Location**: Remote (preference for UTC-6 to UTC+5).
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
-- **Level**: [3 or above](https://mui-org.notion.site/Design-levels-aa01996ca7e0481e80479ad47c8f28a4).
+- **Level**: [IC3 or above](https://mui-org.notion.site/Design-levels-aa01996ca7e0481e80479ad47c8f28a4).
 - We're a **remote** company, operating mostly asynchronously (written communication over meetings).
 
 ## The company
 
 MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
 Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
-We're a company of 31+ people as of late 2023, and we're growing.
+We're a company of 35+ people as of early 2024, and we're growing.
 
 ## The products
 
@@ -41,8 +41,8 @@ For additional details about the culture, you can check our [careers](https://mu
 We are aiming to make high-end design accessible to the many, empowering developers that lack access to a designer as well as saving time for designers with a source they can trust.
 [According to our last survey](https://mui.com/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library), the quality of the design execution (UX & UI) is the most important criteria used by developers & designers to pick their next UI library.
 
-Overall, both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
+Overall, both our open-source community and our premium products are growing fast.
+We need talented people to keep up with the demands of our exigent community!
 
 ### Why this is interesting
 

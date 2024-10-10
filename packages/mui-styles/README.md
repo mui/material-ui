@@ -1,6 +1,6 @@
 # @mui/styles
 
-You can leverage our styling solution, even if you are not using our components.
+The legacy styling solution for Material UI, now deprecated and not recommended for use.
 
 ## Installation
 

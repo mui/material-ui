@@ -102,6 +102,8 @@ export * from './colorManipulator';
 export { default as ThemeProvider } from './ThemeProvider';
 export * from './ThemeProvider';
 
+export { default as unstable_memoTheme } from './memoTheme';
+
 export { default as unstable_createCssVarsProvider, CreateCssVarsProviderResult } from './cssVars';
 export { default as unstable_createGetCssVar } from './cssVars/createGetCssVar';
 export { default as unstable_cssVarsParser } from './cssVars/cssVarsParser';

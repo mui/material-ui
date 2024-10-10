@@ -516,11 +516,49 @@ describe('createTheme', () => {
           primary: '#EF14E2',
         },
       });
-    } catch (e) {
-      expect(e.message).to.equal(
+    } catch (error) {
+      expect(error.message).to.equal(
         'MUI: `vars` is a private field used for CSS variables support.\n' +
           'Please use another name.',
       );
     }
+  });
+
+  it('should create a new object', () => {
+    const defaultTheme = createTheme({
+      cssVariables: {
+        colorSchemeSelector: 'data-mui-color-scheme',
+      },
+      colorSchemes: { dark: true },
+    });
+
+    expect(
+      defaultTheme.generateStyleSheets()[2]['[data-mui-color-scheme="dark"]'][
+        '--mui-palette-background-defaultChannel'
+      ],
+    ).to.equal('18 18 18');
+
+    const theme = createTheme({
+      cssVariables: {
+        colorSchemeSelector: 'data-mui-color-scheme',
+        cssVarPrefix: 'template',
+      },
+      colorSchemes: {
+        dark: {
+          palette: {
+            background: {
+              default: 'hsl(220, 35%, 3%)',
+              paper: 'hsl(220, 30%, 7%)',
+            },
+          },
+        },
+      },
+    });
+
+    expect(
+      theme.generateStyleSheets()[2]['[data-mui-color-scheme="dark"]'][
+        '--template-palette-background-defaultChannel'
+      ],
+    ).to.equal('5 7 10');
   });
 });

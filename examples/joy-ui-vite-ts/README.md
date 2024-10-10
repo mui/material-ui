@@ -2,7 +2,7 @@
 
 [Joy UI](https://mui.com/joy-ui/getting-started/) is a library of beautifully designed React UI components built to spark joy in the development process.
 
-[Vite](https://vitejs.dev/) is a build tool that aims to provide a faster and leaner development experience for modern web projects, consisting of a dev server and a build command.
+[Vite](https://vite.dev/) is a build tool that aims to provide a faster and leaner development experience for modern web projects, consisting of a dev server and a build command.
 
 ## How to use
 
