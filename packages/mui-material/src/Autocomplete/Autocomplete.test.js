@@ -130,6 +130,34 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  it('should not throw error when accessing ownerState in styleOverrides', () => {
+    const theme = createTheme({
+      components: {
+        MuiAutocomplete: {
+          styleOverrides: {
+            root: ({ ownerState }) => {
+              return {
+                outlineColor: ownerState.size === 'small' ? 'magenta' : 'crimson',
+              };
+            },
+          },
+        },
+      },
+    });
+
+    expect(() => {
+      render(
+        <ThemeProvider theme={theme}>
+          <Autocomplete
+            open
+            options={['one', 'two', 'three']}
+            renderInput={(params) => <TextField {...params} />}
+          />
+        </ThemeProvider>,
+      );
+    }).not.to.throw();
+  });
+
   describe('combobox', () => {
     it('should clear the input when blur', () => {
       const { getByRole } = render(
