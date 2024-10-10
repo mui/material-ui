@@ -134,7 +134,7 @@ describe('<Badge />', () => {
     it('should render with invisible class when invisible and showZero are set to false and content is 0', () => {
       const { container } = render(<Badge badgeContent={0} showZero={false} invisible={false} />);
       expect(findBadge(container)).to.have.class(classes.invisible);
-      expect(findBadge(container)).to.have.text('');
+      expect(findBadge(container)).to.have.text('0');
     });
 
     it('should not render with invisible class when invisible and showZero are set to false and content is not 0', () => {
