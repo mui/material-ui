@@ -16,9 +16,10 @@ export default function SignInSide(props: { disableCustomTheme?: boolean }) {
         component="main"
         sx={[
           {
-            justifyContent: 'space-between',
-            marginTop: { xs: 0, md: 'max(0px, calc(50vh - 360px))' },
-            height: { xs: 'auto', md: '100%' },
+            justifyContent: 'center',
+            height: 'calc((1 - var(--template-frame-height, 0)) * 100%)',
+            marginTop: 'max(40px - var(--template-frame-height, 0px), 0px)',
+            minHeight: '100%',
           },
           (theme) => ({
             '&::before': {

@@ -288,8 +288,8 @@ export default function MainContent() {
               component="img"
               alt="green iguana"
               image={cardData[0].img}
-              aspect-ratio="16 / 9"
               sx={{
+                aspectRatio: '16 / 9',
                 borderBottom: '1px solid',
                 borderColor: 'divider',
               }}
