@@ -10,10 +10,6 @@ const Pre = styled('pre')(({ theme }) => ({
   margin: 0,
   color: 'hsl(60deg 30% 96.08%)', // fallback color until Prism's theme is loaded
   WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
-  maxWidth: 'calc(100vw - 32px)',
-  [theme.breakpoints.up('md')]: {
-    maxWidth: 'calc(100vw - 32px - 16px)',
-  },
   '& code': {
     // Avoid layout jump after hydration (style injected by Prism)
     ...theme.typography.caption,
