@@ -42,7 +42,18 @@ export default function InfoMobile({ totalPrice }: InfoProps) {
       >
         View details
       </Button>
-      <Drawer open={open} anchor="top" onClose={toggleDrawer(false)}>
+      <Drawer
+        open={open}
+        anchor="top"
+        onClose={toggleDrawer(false)}
+        PaperProps={{
+          sx: {
+            top: 'var(--template-frame-height, 0px)',
+            backgroundImage: 'none',
+            backgroundColor: 'background.paper',
+          },
+        }}
+      >
         {DrawerList}
       </Drawer>
     </div>
