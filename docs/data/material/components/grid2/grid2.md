@@ -126,13 +126,13 @@ Note that a nested grid container should be a direct child of another grid conta
 
 ### Inheriting spacing
 
-A nested grid container will inherits the row and column spacing from its parent unless the `spacing` prop is specified to the instance.
+A nested grid container will inherit the row and column spacing from its parent unless the `spacing` prop is specified to the instance.
 
 {{"demo": "NestedGrid.js", "bg": true}}
 
 ### Inheriting columns
 
-A nested grid container will inherits the columns from its parent unless the `columns` prop is specified to the instance.
+A nested grid container will inherit the columns from its parent unless the `columns` prop is specified to the instance.
 
 {{"demo": "NestedGridColumns.js", "bg": true}}
 
