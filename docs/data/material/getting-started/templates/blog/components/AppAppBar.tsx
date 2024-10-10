@@ -88,7 +88,8 @@ export default function AppAppBar() {
             </Button>
             <ColorModeIconDropdown />
           </Box>
-          <Box sx={{ display: { sm: 'flex', md: 'none' } }}>
+          <Box sx={{ display: { xs: 'flex', md: 'none' }, gap: 1 }}>
+            <ColorModeIconDropdown size="medium" />
             <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
               <MenuIcon />
             </IconButton>
