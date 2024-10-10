@@ -29,107 +29,69 @@ describe('<AccordionDetails />', () => {
     },
   }));
 
-  describe('tab index', () => {
-    it('[initial] interactive content should have tab index -1', () => {
+  describe('hidden attribute', () => {
+    it('[initial] content should be hidden when accordion is closed', () => {
       render(
         <Accordion>
-          <AccordionDetails>
-            <a href="/foo" data-testid="link">
-              Hello
-            </a>
-            <input data-testid="textbox" />
+          <AccordionDetails data-testid="details">
+            <a href="/foo">Hello</a>
+            <input />
           </AccordionDetails>
         </Accordion>,
       );
 
-      expect(screen.getByTestId('link')).to.have.property('tabIndex', -1);
-      expect(screen.getByTestId('textbox')).to.have.property('tabIndex', -1);
+      expect(screen.getByTestId('details')).to.have.attribute('hidden');
     });
 
-    it('[expanded] interactive content should not have tab index 0', () => {
+    it('[expanded] content should be visible when accordion is open', () => {
       render(
         <Accordion expanded>
-          <AccordionDetails>
-            <a href="/foo" data-testid="link">
-              Hello
-            </a>
-            <input data-testid="textbox" />
+          <AccordionDetails data-testid="details">
+            <a href="/foo">Hello</a>
+            <input />
           </AccordionDetails>
         </Accordion>,
       );
 
-      expect(screen.getByTestId('link')).to.have.property('tabIndex', 0);
-      expect(screen.getByTestId('textbox')).to.have.property('tabIndex', 0);
+      expect(screen.getByTestId('details')).to.not.have.attribute('hidden');
     });
 
-    it('interactive content should preserve the tab index when closed', () => {
+    it('content should toggle visibility when accordion is expanded/collapsed', () => {
       render(
         <Accordion defaultExpanded>
           <AccordionSummary>title</AccordionSummary>
-          <AccordionDetails>
-            <input tabIndex={2} data-testid="textbox" />
+          <AccordionDetails data-testid="details">
+            <input />
           </AccordionDetails>
         </Accordion>,
       );
 
-      expect(screen.getByRole('button')).to.have.attribute('aria-expanded', 'true');
-      expect(screen.getByTestId('textbox')).to.have.property('tabIndex', 2);
+      expect(screen.getByTestId('details')).to.not.have.attribute('hidden'); // expanded by default
 
-      fireEvent.click(screen.getByRole('button')); // close
+      fireEvent.click(screen.getByRole('button')); // collapse
+      expect(screen.getByTestId('details')).to.have.attribute('hidden');
 
-      expect(screen.getByRole('button')).to.have.attribute('aria-expanded', 'false');
-      expect(screen.getByTestId('textbox')).to.have.property('tabIndex', -1);
-
-      fireEvent.click(screen.getByRole('button')); // reopen
-
-      expect(screen.getByRole('button')).to.have.attribute('aria-expanded', 'true');
-      expect(screen.getByTestId('textbox')).to.have.property('tabIndex', 2);
+      fireEvent.click(screen.getByRole('button')); // expand
+      expect(screen.getByTestId('details')).to.not.have.attribute('hidden');
     });
 
-    it('should retain the default tab index if not explicitly set', () => {
+    it('content should remain visible after explicit toggle', () => {
       render(
         <Accordion>
           <AccordionSummary>title</AccordionSummary>
-          <AccordionDetails>
-            <input data-testid="textbox" />
+          <AccordionDetails data-testid="details">
+            <input />
           </AccordionDetails>
         </Accordion>,
       );
 
-      expect(screen.getByTestId('textbox')).to.have.property('tabIndex', -1);
+      expect(screen.getByTestId('details')).to.have.attribute('hidden'); // initially hidden
 
       fireEvent.click(screen.getByRole('button')); // open
-
-      expect(screen.getByTestId('textbox')).to.have.property('tabIndex', 0);
-
-      fireEvent.click(screen.getByRole('button')); // close
-
-      expect(screen.getByTestId('textbox')).to.have.property('tabIndex', -1);
-
-      fireEvent.click(screen.getByRole('button')); // reopen
-
-      expect(screen.getByTestId('textbox')).to.have.property('tabIndex', 0);
-    });
-
-    it('should retain the -1 tab index when explicitly set', () => {
-      render(
-        <Accordion>
-          <AccordionSummary>title</AccordionSummary>
-          <AccordionDetails>
-            <input data-testid="textbox" tabIndex={-1} />
-          </AccordionDetails>
-        </Accordion>,
-      );
-
-      expect(screen.getByTestId('textbox')).to.have.property('tabIndex', -1);
-
-      fireEvent.click(screen.getByRole('button')); // open
-
-      expect(screen.getByTestId('textbox')).to.have.property('tabIndex', -1);
+      expect(screen.getByTestId('details')).to.not.have.attribute('hidden'); // now visible
 
       fireEvent.click(screen.getByRole('button')); // close
-
-      expect(screen.getByTestId('textbox')).to.have.property('tabIndex', -1);
+      expect(screen.getByTestId('details')).to.have.attribute('hidden'); // hidden again
     });
   });
 });
