@@ -1,5 +1,3 @@
-import MuiError from '@mui/internal-babel-macros/MuiError.macro';
-
 export { css, keyframes, StyledEngineProvider } from '@mui/styled-engine';
 export { default as GlobalStyles } from './GlobalStyles';
 export { default as borders } from './borders';
@@ -38,7 +36,7 @@ export {
 // TODO: Remove this function in v6
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function experimental_sx() {
-  throw new MuiError(
+  throw /* minify-error */ new Error(
     'MUI: The `experimental_sx` has been moved to `theme.unstable_sx`.' +
       'For more details, see https://github.com/mui/material-ui/pull/35150.',
   );
@@ -59,6 +57,7 @@ export { default as useThemeWithoutDefault } from './useThemeWithoutDefault';
 export { default as useMediaQuery } from './useMediaQuery';
 export * from './colorManipulator';
 export { default as ThemeProvider } from './ThemeProvider';
+export { default as unstable_memoTheme } from './memoTheme';
 export { default as unstable_createCssVarsProvider } from './cssVars/createCssVarsProvider';
 export { default as unstable_createGetCssVar } from './cssVars/createGetCssVar';
 export { default as unstable_cssVarsParser } from './cssVars/cssVarsParser';

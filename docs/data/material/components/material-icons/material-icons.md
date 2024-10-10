@@ -39,7 +39,7 @@ yarn add @mui/icons-material @mui/material @emotion/styled @emotion/react
 See the [Installation](/material-ui/getting-started/installation/) page for additional docs about how to make sure everything is set up correctly.
 
 :::info
-Google also offers [Material Symbols](https://fonts.google.com/icons?icon.set=Material+Symbols) as an alternative to Material Icons. `@mui/icons-material` only covers Icons, and there are no plans to support Symbols at this time.
+Google also offers [Material Symbols](https://fonts.google.com/icons?icon.set=Material+Symbols) as the successor of Material Icons. `@mui/icons-material` only covers Icons at this time, there are no support for Symbols yet.
 :::
 
 <hr/>

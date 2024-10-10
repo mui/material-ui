@@ -1,6 +1,6 @@
 {
   "name": "@mui/private-theming",
-  "version": "6.1.1",
+  "version": "6.1.3",
   "private": false,
   "author": "MUI Team",
   "description": "Private - The React theme context to be shared between `@mui/styles` and `@mui/material`.",
@@ -44,8 +44,8 @@
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",
     "@mui/types": "workspace:^",
-    "@types/chai": "^4.3.19",
-    "@types/react": "^18.3.4",
+    "@types/chai": "^4.3.20",
+    "@types/react": "^18.3.11",
     "chai": "^4.5.0",
     "react": "^18.3.1"
   },
