@@ -122,7 +122,10 @@ InnerMenuItem.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   component: PropTypes.elementType,
   /**
    * If `true`, the component is disabled.
@@ -158,7 +161,10 @@ InnerMenuItem.propTypes /* remove-proptypes */ = {
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
-  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+    PropTypes.string,
+  ]),
 } as any;
 
 const MenuItem = React.memo(InnerMenuItem);
