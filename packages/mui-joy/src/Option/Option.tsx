@@ -36,71 +36,72 @@ const OptionRoot = styled(StyledListItemButton as unknown as 'li', {
   };
 });
 
-const Option = React.memo(
-  React.forwardRef(function Option(inProps: OptionProps, ref: React.ForwardedRef<HTMLLIElement>) {
-    const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
-      props: inProps,
-      name: 'JoyOption',
-    });
+const InnerOption = React.forwardRef(function InnerOption(
+  inProps: OptionProps,
+  ref: React.ForwardedRef<HTMLLIElement>,
+) {
+  const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
+    props: inProps,
+    name: 'JoyOption',
+  });
 
-    const {
-      component = 'li',
-      children,
-      disabled = false,
-      value,
-      label,
-      variant: variantProp = 'plain',
-      color: colorProp = 'neutral',
-      slots = {},
-      slotProps = {},
-      ...other
-    } = props;
+  const {
+    component = 'li',
+    children,
+    disabled = false,
+    value,
+    label,
+    variant: variantProp = 'plain',
+    color: colorProp = 'neutral',
+    slots = {},
+    slotProps = {},
+    ...other
+  } = props;
 
-    const row = React.useContext(RowListContext);
-    const { variant = variantProp, color = colorProp } = useVariantColor(
-      inProps.variant,
-      inProps.color,
-    );
-    const optionRef = React.useRef<HTMLLIElement>(null);
-    const combinedRef = useForkRef(optionRef, ref);
+  const row = React.useContext(RowListContext);
+  const { variant = variantProp, color = colorProp } = useVariantColor(
+    inProps.variant,
+    inProps.color,
+  );
+  const optionRef = React.useRef<HTMLLIElement>(null);
+  const combinedRef = useForkRef(optionRef, ref);
 
-    const computedLabel =
-      label ?? (typeof children === 'string' ? children : optionRef.current?.innerText);
+  const computedLabel =
+    label ?? (typeof children === 'string' ? children : optionRef.current?.innerText);
 
-    const { getRootProps, selected, highlighted, index } = useOption({
-      disabled,
-      label: computedLabel,
-      value,
-      rootRef: combinedRef,
-    });
+  const { getRootProps, selected, highlighted, index } = useOption({
+    disabled,
+    label: computedLabel,
+    value,
+    rootRef: combinedRef,
+  });
 
-    const ownerState: OptionOwnerState = {
-      ...props,
-      disabled,
-      selected,
-      highlighted,
-      index,
-      component,
-      variant,
-      color,
-      row,
-    };
+  const ownerState: OptionOwnerState = {
+    ...props,
+    disabled,
+    selected,
+    highlighted,
+    index,
+    component,
+    variant,
+    color,
+    row,
+  };
 
-    const classes = useUtilityClasses(ownerState);
-    const externalForwardedProps = { ...other, component, slots, slotProps };
+  const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-    const [SlotRoot, rootProps] = useSlot('root', {
-      ref,
-      getSlotProps: getRootProps,
-      elementType: OptionRoot,
-      externalForwardedProps,
-      className: classes.root,
-      ownerState,
-    });
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    getSlotProps: getRootProps,
+    elementType: OptionRoot,
+    externalForwardedProps,
+    className: classes.root,
+    ownerState,
+  });
 
-    return <SlotRoot {...rootProps}>{children}</SlotRoot>;
-  }),
-);
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
+});
 
 /**
  *
@@ -113,7 +114,7 @@ const Option = React.memo(
  * - [Option API](https://mui.com/joy-ui/api/option/)
  */
 
-Option.propTypes /* remove-proptypes */ = {
+InnerOption.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
@@ -130,9 +131,6 @@ Option.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
-  /**
-   * @ignore
-   */
   component: PropTypes.elementType,
   /**
    * If `true`, the component is disabled.
@@ -179,6 +177,8 @@ Option.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
 } as any;
+
+const Option = React.memo(InnerOption);
 
 const StableOption = React.forwardRef(function StableOption(
   props: OptionProps,

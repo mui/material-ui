@@ -43,84 +43,73 @@ const MenuItemRoot = styled(StyledListItemButton, {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: MenuItemOwnerState }>({});
 
-const MenuItem = React.memo(
-  React.forwardRef(function MenuItem(inProps: MenuItemProps, ref: React.ForwardedRef<Element>) {
-    const props = useThemeProps({
-      props: inProps,
-      name: 'JoyMenuItem',
-    });
+const InnerMenuItem = React.forwardRef(function InnerMenuItem(
+  inProps: MenuItemProps,
+  ref: React.ForwardedRef<Element>,
+) {
+  const props = useThemeProps({
+    props: inProps,
+    name: 'JoyMenuItem',
+  });
 
-    const row = React.useContext(RowListContext);
+  const row = React.useContext(RowListContext);
 
-    const {
-      children,
-      disabled: disabledProp = false,
-      component = 'li',
-      selected = false,
-      color: colorProp = 'neutral',
-      orientation = 'horizontal',
-      variant: variantProp = 'plain',
-      slots = {},
-      slotProps = {},
-      id,
-      ...other
-    } = props;
-    const { variant = variantProp, color = colorProp } = useVariantColor(
-      inProps.variant,
-      inProps.color,
-    );
+  const {
+    children,
+    disabled: disabledProp = false,
+    component = 'li',
+    selected = false,
+    color: colorProp = 'neutral',
+    orientation = 'horizontal',
+    variant: variantProp = 'plain',
+    slots = {},
+    slotProps = {},
+    id,
+    ...other
+  } = props;
+  const { variant = variantProp, color = colorProp } = useVariantColor(
+    inProps.variant,
+    inProps.color,
+  );
 
-    const { getRootProps, disabled, focusVisible } = useMenuItem({
-      id,
-      disabled: disabledProp,
-      rootRef: ref,
-    });
+  const { getRootProps, disabled, focusVisible } = useMenuItem({
+    id,
+    disabled: disabledProp,
+    rootRef: ref,
+  });
 
-    const ownerState = {
-      ...props,
-      component,
-      color,
-      disabled,
-      focusVisible,
-      orientation,
-      selected,
-      row,
-      variant,
-    };
+  const ownerState = {
+    ...props,
+    component,
+    color,
+    disabled,
+    focusVisible,
+    orientation,
+    selected,
+    row,
+    variant,
+  };
 
-    const classes = useUtilityClasses(ownerState);
-    const externalForwardedProps = { ...other, component, slots, slotProps };
+  const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-    const [SlotRoot, rootProps] = useSlot('root', {
-      ref,
-      elementType: MenuItemRoot,
-      getSlotProps: getRootProps,
-      externalForwardedProps,
-      className: classes.root,
-      ownerState,
-    });
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    elementType: MenuItemRoot,
+    getSlotProps: getRootProps,
+    externalForwardedProps,
+    className: classes.root,
+    ownerState,
+  });
 
-    return (
-      <ListItemButtonOrientationContext.Provider value={orientation}>
-        <SlotRoot {...rootProps}>{children}</SlotRoot>
-      </ListItemButtonOrientationContext.Provider>
-    );
-  }),
-);
+  return (
+    <ListItemButtonOrientationContext.Provider value={orientation}>
+      <SlotRoot {...rootProps}>{children}</SlotRoot>
+    </ListItemButtonOrientationContext.Provider>
+  );
+});
 
-/**
- *
- * Demos:
- *
- * - [Menu](https://mui.com/joy-ui/react-menu/)
- *
- * API:
- *
- * - [MenuItem API](https://mui.com/joy-ui/api/menu-item/)
- * - inherits [ListItemButton API](https://mui.com/joy-ui/api/list-item-button/)
- */
-
-MenuItem.propTypes /* remove-proptypes */ = {
+InnerMenuItem.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
@@ -134,17 +123,12 @@ MenuItem.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
-  /**
-   * @ignore
-   */
   component: PropTypes.elementType,
   /**
-   * @ignore
+   * If `true`, the component is disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
-  /**
-   * @ignore
-   */
   id: PropTypes.string,
   /**
    * The content direction flow.
@@ -176,6 +160,8 @@ MenuItem.propTypes /* remove-proptypes */ = {
    */
   variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
+
+const MenuItem = React.memo(InnerMenuItem);
 
 const StableMenuItem = React.forwardRef(function StableMenuItem(
   props: MenuItemProps,
