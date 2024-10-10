@@ -77,6 +77,7 @@ const InnerMenuItem = React.memo(
  *
  * - [MenuItem API](https://mui.com/base-ui/react-menu/components-api/#menu-item)
  */
+
 const MenuItem = React.forwardRef(function MenuItem(
   props: MenuItemProps,
   ref: React.ForwardedRef<Element>,
