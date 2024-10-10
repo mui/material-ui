@@ -61,7 +61,7 @@ Container.propTypes /* remove-proptypes */ = {
    * @default 'lg'
    */
   maxWidth: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', false]),
+    PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', 'uw', false]),
     PropTypes.string,
   ]),
   /**

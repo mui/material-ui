@@ -66,6 +66,13 @@
       },
       "additionalInfo": { "sx": true }
     },
+    "uw": {
+      "type": {
+        "name": "union",
+        "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool"
+      },
+      "default": "false"
+    },
     "wrap": {
       "type": {
         "name": "enum",

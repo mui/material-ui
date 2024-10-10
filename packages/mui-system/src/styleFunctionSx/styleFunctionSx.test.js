@@ -9,6 +9,7 @@ describe('styleFunctionSx', () => {
     md: 960,
     lg: 1280,
     xl: 1920,
+    uw: 2560,
   };
 
   const round = (value) => Math.round(value * 1e5) / 1e5;
@@ -16,7 +17,7 @@ describe('styleFunctionSx', () => {
   const theme = cssContainerQueries({
     spacing: (val) => `${val * 10}px`,
     breakpoints: {
-      keys: ['xs', 'sm', 'md', 'lg', 'xl'],
+      keys: ['xs', 'sm', 'md', 'lg', 'xl', 'uw'],
       values: breakpointsValues,
       unit: 'px',
       up: (key) => {

@@ -8,7 +8,7 @@
     "initialWidth": {
       "type": {
         "name": "enum",
-        "description": "'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;'xs'"
+        "description": "'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'uw'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;'xs'"
       }
     },
     "lgDown": { "type": { "name": "bool" }, "default": "false" },
@@ -18,11 +18,13 @@
     "only": {
       "type": {
         "name": "union",
-        "description": "'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;'xs'<br>&#124;&nbsp;Array&lt;'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;'xs'&gt;"
+        "description": "'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'uw'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;'xs'<br>&#124;&nbsp;Array&lt;'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'uw'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;'xs'&gt;"
       }
     },
     "smDown": { "type": { "name": "bool" }, "default": "false" },
     "smUp": { "type": { "name": "bool" }, "default": "false" },
+    "uwDown": { "type": { "name": "bool" }, "default": "false" },
+    "uwUp": { "type": { "name": "bool" }, "default": "false" },
     "xlDown": { "type": { "name": "bool" }, "default": "false" },
     "xlUp": { "type": { "name": "bool" }, "default": "false" },
     "xsDown": { "type": { "name": "bool" }, "default": "false" },
