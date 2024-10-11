@@ -456,9 +456,9 @@ Skeleton.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
 } as any;
+Skeleton.displayName = 'Skeleton';
 
 // @ts-ignore internal usage only with Typography and Link
-Skeleton.displayName = 'Skeleton';
 Skeleton.muiName = 'Skeleton';
 
 export default Skeleton;

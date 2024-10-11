@@ -213,9 +213,9 @@ CardOverflow.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
 } as any;
+CardOverflow.displayName = 'CardOverflow';
 
 // @ts-ignore
-CardOverflow.displayName = 'CardOverflow';
 CardOverflow.muiName = 'CardOverflow';
 
 export default CardOverflow;

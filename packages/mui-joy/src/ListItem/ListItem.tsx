@@ -352,9 +352,9 @@ ListItem.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
 } as any;
+ListItem.displayName = 'ListItem';
 
 // @ts-ignore internal logic to prevent <li> in <li>
-ListItem.displayName = 'ListItem';
 ListItem.muiName = 'ListItem';
 
 export default ListItem;
