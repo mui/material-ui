@@ -295,6 +295,7 @@ async function generateProptypes(
 
         return shouldDocument;
       },
+      includeDisplayName: true,
     },
   });
 

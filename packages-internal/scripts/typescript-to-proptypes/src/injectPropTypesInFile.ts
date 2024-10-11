@@ -48,6 +48,10 @@ export interface InjectPropTypesInFileOptions
    * Options passed to babel.transformSync
    */
   babelOptions?: babel.TransformOptions;
+  /**
+   * Inject display name into the component
+   */
+  includeDisplayName?: boolean;
 }
 
 /**
@@ -175,6 +179,7 @@ function createBabelPlugin({
   let alreadyImported = false;
   const originalPropTypesPaths = new Map<string, babel.NodePath>();
   const previousPropTypesSources = new Map<string, Map<string, string>>();
+  const originalDisplayNamePaths = new Map<string, babel.NodePath>();
 
   function injectPropTypes(injectOptions: {
     path: babel.NodePath;
@@ -206,9 +211,13 @@ function createBabelPlugin({
 
     const originalPropTypesPath = originalPropTypesPaths.get(nodeName);
 
+    let newPropTypesPath;
+
     // `Component.propTypes` already exists
     if (originalPropTypesPath) {
-      originalPropTypesPath.replaceWith(babel.template.ast(placeholder) as babel.Node);
+      [newPropTypesPath] = originalPropTypesPath.replaceWith(
+        babel.template.ast(placeholder) as babel.Node,
+      );
     } else if (!emptyPropTypes && babelTypes.isExportNamedDeclaration(path.parent)) {
       // in:
       // export function Component() {}
@@ -217,7 +226,7 @@ function createBabelPlugin({
       // Component.propTypes = {}
       // export { Component }
       path.insertAfter(babel.template.ast(`export { ${nodeName} };`));
-      path.insertAfter(babel.template.ast(placeholder));
+      [newPropTypesPath] = path.insertAfter(babel.template.ast(placeholder));
       path.parentPath!.replaceWith(path.node);
     } else if (!emptyPropTypes && babelTypes.isExportDefaultDeclaration(path.parent)) {
       // in:
@@ -227,10 +236,23 @@ function createBabelPlugin({
       // Component.propTypes = {}
       // export default Component
       path.insertAfter(babel.template.ast(`export default ${nodeName};`));
-      path.insertAfter(babel.template.ast(placeholder));
+      [newPropTypesPath] = path.insertAfter(babel.template.ast(placeholder));
       path.parentPath!.replaceWith(path.node);
     } else {
-      path.insertAfter(babel.template.ast(placeholder));
+      [newPropTypesPath] = path.insertAfter(babel.template.ast(placeholder));
+    }
+
+    if (options.includeDisplayName) {
+      const originalDisplayNamePath = originalDisplayNamePaths.get(nodeName);
+      if (originalDisplayNamePath) {
+        originalDisplayNamePath.replaceWith(
+          babel.template.ast(`${nodeName}.displayName = '${nodeName}';`) as babel.Node,
+        );
+      } else {
+        (newPropTypesPath || path).insertAfter(
+          babel.template.ast(`${nodeName}.displayName = '${nodeName}';`),
+        );
+      }
     }
   }
 
@@ -299,6 +321,18 @@ function createBabelPlugin({
                   }
                 });
               }
+            }
+
+            // detect displayName assignments
+            if (
+              babelTypes.isExpressionStatement(node) &&
+              babelTypes.isAssignmentExpression(node.expression) &&
+              babelTypes.isMemberExpression(node.expression.left) &&
+              babelTypes.isIdentifier(node.expression.left.property, { name: 'displayName' }) &&
+              babelTypes.isIdentifier(node.expression.left.object)
+            ) {
+              const componentName = node.expression.left.object.name;
+              originalDisplayNamePaths.set(componentName, nodePath);
             }
           });
         },

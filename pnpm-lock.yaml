@@ -156,6 +156,9 @@ importers:
       babel-plugin-transform-inline-environment-variables:
         specifier: ^0.4.4
         version: 0.4.4
+      babel-plugin-transform-react-remove-display-name:
+        specifier: ^1.1.0
+        version: 1.1.0
       babel-plugin-transform-react-remove-prop-types:
         specifier: ^0.4.24
         version: 0.4.24
@@ -6253,6 +6256,10 @@ packages:
 
   babel-plugin-transform-inline-environment-variables@0.4.4:
     resolution: {integrity: sha512-bJILBtn5a11SmtR2j/3mBOjX4K3weC6cq+NNZ7hG22wCAqpc3qtj/iN7dSe9HDiS46lgp1nHsQgeYrea/RUe+g==}
+
+  babel-plugin-transform-react-remove-display-name@1.1.0:
+    resolution: {integrity: sha512-ngDgchoHRH8WCWRgmLgsYKlFQ5SSlcljc9ben1Ugn0HSfRcnnogQE1HwhNC8ijFwSQ1VZ2NfNd+w9RAEp7pysA==}
+    engines: {node: '>=14'}
 
   babel-plugin-transform-react-remove-prop-types@0.4.24:
     resolution: {integrity: sha512-eqj0hVcJUR57/Ug2zE1Yswsw4LhuqqHhD+8v120T1cl3kjg76QwtyBrdIk4WVwK+lAhBJVYCd/v+4nc4y+8JsA==}
@@ -17713,6 +17720,8 @@ snapshots:
       - '@babel/core'
 
   babel-plugin-transform-inline-environment-variables@0.4.4: {}
+
+  babel-plugin-transform-react-remove-display-name@1.1.0: {}
 
   babel-plugin-transform-react-remove-prop-types@0.4.24: {}
 
