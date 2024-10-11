@@ -387,6 +387,7 @@ IconButton.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
 } as any;
+
 IconButton.displayName = 'IconButton';
 
 // @ts-ignore internal logic for ToggleButtonGroup

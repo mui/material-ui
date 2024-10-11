@@ -238,6 +238,7 @@ PigmentGrid.propTypes /* remove-proptypes */ = {
 } as any;
 
 PigmentGrid.displayName = 'PigmentGrid';
+
 // @ts-ignore internal logic for nested grid
 PigmentGrid.muiName = 'Grid';
 

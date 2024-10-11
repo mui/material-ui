@@ -456,6 +456,7 @@ Skeleton.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
 } as any;
+
 Skeleton.displayName = 'Skeleton';
 
 // @ts-ignore internal usage only with Typography and Link

@@ -205,6 +205,7 @@ Divider.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
 } as any;
+
 Divider.displayName = 'Divider';
 
 // @ts-ignore internal logic

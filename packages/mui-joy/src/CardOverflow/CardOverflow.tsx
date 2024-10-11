@@ -213,6 +213,7 @@ CardOverflow.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
 } as any;
+
 CardOverflow.displayName = 'CardOverflow';
 
 // @ts-ignore

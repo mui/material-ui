@@ -352,6 +352,7 @@ ListItem.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
 } as any;
+
 ListItem.displayName = 'ListItem';
 
 // @ts-ignore internal logic to prevent <li> in <li>

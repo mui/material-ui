@@ -382,6 +382,7 @@ Typography.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
 } as any;
+
 Typography.displayName = 'Typography';
 
 // @ts-ignore internal logic to let communicate with Breadcrumbs
