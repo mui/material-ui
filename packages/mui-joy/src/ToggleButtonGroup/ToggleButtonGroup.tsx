@@ -199,6 +199,7 @@ interface ToggleButtonGroupComponent {
     props: DefaultComponentProps<ToggleButtonGroupTypeMap<TValue>>,
   ): React.JSX.Element | null;
   propTypes?: any;
+  displayName?: string;
 }
 
 ToggleButtonGroup.propTypes /* remove-proptypes */ = {

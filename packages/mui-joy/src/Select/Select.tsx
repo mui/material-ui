@@ -635,6 +635,7 @@ interface SelectComponent {
     } & DefaultComponentProps<SelectTypeMap<OptionValue, Multiple>>,
   ): React.JSX.Element | null;
   propTypes?: any;
+  displayName?: string;
 }
 
 Select.propTypes /* remove-proptypes */ = {
