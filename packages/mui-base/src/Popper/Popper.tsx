@@ -415,6 +415,8 @@ PopperTooltip.propTypes /* remove-proptypes */ = {
   TransitionProps: PropTypes.object,
 } as any;
 
+PopperTooltip.displayName = 'PopperTooltip';
+
 /**
  * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.
  *
@@ -425,7 +427,7 @@ PopperTooltip.propTypes /* remove-proptypes */ = {
  * API:
  *
  * - [Popper API](https://mui.com/base-ui/react-popper/components-api/#popper)
- */ PopperTooltip.displayName = 'PopperTooltip';
+ */
 
 const Popper = React.forwardRef<HTMLDivElement, PopperProps>(function Popper<
   RootComponentType extends React.ElementType,
