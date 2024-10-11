@@ -22,7 +22,7 @@ const warn = () => {
 
 type TreeItemComponent = ((
   props: TreeItemProps & React.RefAttributes<HTMLDivElement>,
-) => React.JSX.Element) & { propTypes?: any };
+) => React.JSX.Element) & { propTypes?: any; displayName?: string };
 
 /**
  * @deprecated The TreeItem component was moved from `@mui/lab` to `@mui/x-tree-view`. More information about this migration on our blog: https://mui.com/blog/lab-tree-view-to-mui-x/.

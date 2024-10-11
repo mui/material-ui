@@ -23,7 +23,7 @@ const warn = () => {
 
 type DatePickerComponent = (<TDate>(
   props: DatePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
-) => React.JSX.Element) & { propTypes?: any };
+) => React.JSX.Element) & { propTypes?: any; displayName?: string };
 
 /**
  * @ignore - do not document.

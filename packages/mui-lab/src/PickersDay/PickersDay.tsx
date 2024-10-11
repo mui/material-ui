@@ -23,7 +23,7 @@ const warn = () => {
 
 type PickersDayComponent = (<TDate>(
   props: PickersDayProps<TDate> & React.RefAttributes<HTMLDivElement>,
-) => React.JSX.Element) & { propTypes?: any };
+) => React.JSX.Element) & { propTypes?: any; displayName?: string };
 
 /**
  * @deprecated The PickersDay component was moved from `@mui/lab` to `@mui/x-date-pickers`. More information about this migration on our blog: https://mui.com/blog/lab-date-pickers-to-mui-x/.

@@ -107,6 +107,7 @@ export interface OverridableComponent<M extends OverridableTypeMap> {
   ): React.JSX.Element | null;
   (props: DefaultComponentProps<M>): React.JSX.Element | null;
   propTypes?: any;
+  displayName?: string;
 }
 
 /**
