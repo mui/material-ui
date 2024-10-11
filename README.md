@@ -80,11 +80,7 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
   &nbsp;
   <a href="https://www.text-em-all.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img src="https://avatars.githubusercontent.com/u/1262264?s=288" alt="text-em-all.com" title="Text-em-all: Mass text messaging and automated calling." height="96" width="96" loading="lazy"></a>
   &nbsp;
-  <a href="https://megafamous.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://mui.com/static/sponsors/megafamous.png" alt="megafamous.com" title="MegaFamous: Buy Instagram followers and likes." loading="lazy" /></a>
-  &nbsp;
   <a href="https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/288.png" alt="dialmycalls.com" title="DialMyCalls: Send text messages, calls, and emails." loading="lazy" /></a>
-  &nbsp;
-  <a href="https://goread.io/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/goread_io/eb6337d/logo/288.png" alt="goread.io" title="Goread.io: Instagram followers, likes, views, and comments." loading="lazy" /></a>
   &nbsp;
   <a href="https://copycopter.ai/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/copycopterai/e167216/logo/288.png" alt="copycopter.ai" title="CopyCopter: Turn prompts into videos at ultra speed." loading="lazy" /></a>
   &nbsp;
@@ -93,9 +89,15 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
 </p>
 
 <p>
+  <a href="https://megafamous.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="26" width="26" src="https://mui.com/static/sponsors/megafamous.png" alt="megafamous.com" title="MegaFamous: Buy Instagram followers and likes." loading="lazy" />MegaFamous</a>
+  &nbsp;
+  <a href="https://goread.io/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="26" width="23" src="https://images.opencollective.com/goread_io/eb6337d/logo/78.png" alt="goread.io" title="Goread.io: Instagram followers, likes, views, and comments." loading="lazy" />Goread.io</a>
+  &nbsp;
   <a href="https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="26" width="26" src="https://images.opencollective.com/buzzoidz/d23d9bb/logo/78.png" alt="buzzoid.com" title="Buzzoid: Instant delivery Instagram followers." loading="lazy" />Buzzoid</a>
   &nbsp;
   <a href="https://twicsy.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="26" width="30" src="https://images.opencollective.com/twicsy/7af290f/logo/78.png" alt="twicsy.com" title="Twicsy: Instant delivery Instagram followers." loading="lazy" />Twicsy</a>
+  &nbsp;
+  <a href="https://views4you.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="26" width="26" src="https://images.opencollective.com/buy-instagram-followers-v4y/6364714/logo/78.png" alt="views4you.com" title="Views4you: Social media growth services." loading="lazy" />Views4You</a>
   &nbsp;
 </p>
 
