@@ -237,6 +237,7 @@ PigmentGrid.propTypes /* remove-proptypes */ = {
   wrap: PropTypes.oneOf(['nowrap', 'wrap-reverse', 'wrap']),
 } as any;
 
+PigmentGrid.displayName = 'PigmentGrid';
 // @ts-ignore internal logic for nested grid
 PigmentGrid.muiName = 'Grid';
 

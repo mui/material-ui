@@ -35,6 +35,8 @@ const CalendarPicker = React.forwardRef(function DeprecatedCalendarPicker() {
   return null;
 }) as CalendarPickerComponent;
 
+CalendarPicker.displayName = 'CalendarPicker';
+
 export default CalendarPicker;
 
 export const calendarPickerClasses = {};

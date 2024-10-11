@@ -469,4 +469,6 @@ Input.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+Input.displayName = 'Input';
+
 export default Input;

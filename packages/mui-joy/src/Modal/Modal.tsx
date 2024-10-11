@@ -289,4 +289,6 @@ Modal.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+Modal.displayName = 'Modal';
+
 export default Modal;

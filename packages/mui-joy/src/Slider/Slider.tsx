@@ -905,4 +905,6 @@ Slider.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+Slider.displayName = 'Slider';
+
 export default Slider;

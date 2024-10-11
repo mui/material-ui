@@ -35,6 +35,8 @@ const StaticDatePicker = React.forwardRef(function DeprecatedStaticDatePicker() 
   return null;
 }) as StaticDatePickerComponent;
 
+StaticDatePicker.displayName = 'StaticDatePicker';
+
 export default StaticDatePicker;
 
 export type StaticDatePickerProps<TDate> = Record<any, any>;

@@ -52,4 +52,6 @@ GlobalStyles.propTypes /* remove-proptypes */ = {
   themeId: PropTypes.string,
 } as any;
 
+GlobalStyles.displayName = 'GlobalStyles';
+
 export default GlobalStyles;

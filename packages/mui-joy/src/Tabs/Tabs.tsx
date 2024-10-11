@@ -237,4 +237,6 @@ Tabs.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+Tabs.displayName = 'Tabs';
+
 export default Tabs;

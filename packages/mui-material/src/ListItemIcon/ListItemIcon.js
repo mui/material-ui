@@ -98,4 +98,6 @@ ListItemIcon.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+ListItemIcon.displayName = 'ListItemIcon';
+
 export default ListItemIcon;

@@ -451,4 +451,6 @@ Table.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+Table.displayName = 'Table';
+
 export default Table;

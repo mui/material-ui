@@ -225,4 +225,6 @@ Accordion.propTypes /* remove-proptypes */ = {
   variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
+Accordion.displayName = 'Accordion';
+
 export default Accordion;

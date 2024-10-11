@@ -278,4 +278,6 @@ Breadcrumbs.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+Breadcrumbs.displayName = 'Breadcrumbs';
+
 export default Breadcrumbs;

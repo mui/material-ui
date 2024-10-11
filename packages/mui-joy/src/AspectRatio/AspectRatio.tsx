@@ -252,4 +252,6 @@ AspectRatio.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+AspectRatio.displayName = 'AspectRatio';
+
 export default AspectRatio;

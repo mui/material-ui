@@ -35,6 +35,8 @@ const DateTimePicker = React.forwardRef(function DeprecatedDateTimePicker() {
   return null;
 }) as DateTimePickerComponent;
 
+DateTimePicker.displayName = 'DateTimePicker';
+
 export default DateTimePicker;
 
 export type DateTimePickerProps<TDate> = Record<any, any>;

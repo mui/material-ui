@@ -35,6 +35,8 @@ const DesktopDateTimePicker = React.forwardRef(function DeprecatedDesktopDateTim
   return null;
 }) as DesktopDateTimePickerComponent;
 
+DesktopDateTimePicker.displayName = 'DesktopDateTimePicker';
+
 export default DesktopDateTimePicker;
 
 export type DesktopDateTimePickerProps<TDate> = Record<any, any>;

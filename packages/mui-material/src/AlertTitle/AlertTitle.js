@@ -82,4 +82,6 @@ AlertTitle.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+AlertTitle.displayName = 'AlertTitle';
+
 export default AlertTitle;

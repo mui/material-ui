@@ -100,6 +100,7 @@ Timeline.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
 } as any;
+Timeline.displayName = 'Timeline';
 
 /**
  *

@@ -151,4 +151,6 @@ ImageList.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+ImageList.displayName = 'ImageList';
+
 export default ImageList;

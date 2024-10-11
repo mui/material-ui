@@ -103,6 +103,8 @@ InnerOption.propTypes /* remove-proptypes */ = {
   value: PropTypes.any.isRequired,
 } as any;
 
+InnerOption.displayName = 'InnerOption';
+
 const InnerOptionMemo = React.memo(InnerOption);
 
 /**
@@ -179,5 +181,7 @@ Option.propTypes /* remove-proptypes */ = {
    */
   value: PropTypes.any.isRequired,
 } as any;
+
+Option.displayName = 'Option';
 
 export { Option };

@@ -347,4 +347,6 @@ LoadingButton.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+LoadingButton.displayName = 'LoadingButton';
+
 export default LoadingButton;

@@ -54,6 +54,8 @@ const ModalRoot = styled('div', {
   })),
 );
 
+ModalRoot.displayName = 'ModalRoot';
+
 const ModalBackdrop = styled(Backdrop, {
   name: 'MuiModal',
   slot: 'Backdrop',
@@ -417,5 +419,7 @@ Modal.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
 };
+
+Modal.displayName = 'Modal';
 
 export default Modal;

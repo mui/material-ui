@@ -171,4 +171,6 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+AvatarGroup.displayName = 'AvatarGroup';
+
 export default AvatarGroup;

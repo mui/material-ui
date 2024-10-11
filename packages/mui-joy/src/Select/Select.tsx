@@ -801,4 +801,6 @@ Select.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+Select.displayName = 'Select';
+
 export default Select;

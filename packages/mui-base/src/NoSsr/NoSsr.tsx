@@ -64,6 +64,8 @@ NoSsr.propTypes /* remove-proptypes */ = {
   fallback: PropTypes.node,
 } as any;
 
+NoSsr.displayName = 'NoSsr';
+
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line
   (NoSsr as any)['propTypes' + ''] = exactProp(NoSsr.propTypes);

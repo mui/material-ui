@@ -473,4 +473,6 @@ TablePagination.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+TablePagination.displayName = 'TablePagination';
+
 export default TablePagination;

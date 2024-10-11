@@ -389,6 +389,7 @@ IconButton.propTypes /* remove-proptypes */ = {
 } as any;
 
 // @ts-ignore internal logic for ToggleButtonGroup
+IconButton.displayName = 'IconButton';
 IconButton.muiName = 'IconButton';
 
 export default IconButton;

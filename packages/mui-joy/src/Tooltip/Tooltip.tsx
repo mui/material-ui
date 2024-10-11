@@ -814,4 +814,6 @@ Tooltip.propTypes /* remove-proptypes */ = {
   variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
+Tooltip.displayName = 'Tooltip';
+
 export default Tooltip;

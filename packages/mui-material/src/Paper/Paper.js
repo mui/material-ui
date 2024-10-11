@@ -198,4 +198,6 @@ Paper.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+Paper.displayName = 'Paper';
+
 export default Paper;

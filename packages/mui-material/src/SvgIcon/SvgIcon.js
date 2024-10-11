@@ -242,6 +242,8 @@ SvgIcon.propTypes /* remove-proptypes */ = {
   viewBox: PropTypes.string,
 };
 
+SvgIcon.displayName = 'SvgIcon';
+
 if (SvgIcon) {
   SvgIcon.muiName = 'SvgIcon';
 }

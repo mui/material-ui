@@ -92,4 +92,6 @@ ListItemAvatar.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+ListItemAvatar.displayName = 'ListItemAvatar';
+
 export default ListItemAvatar;

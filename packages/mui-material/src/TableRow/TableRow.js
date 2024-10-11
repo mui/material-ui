@@ -135,4 +135,6 @@ TableRow.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+TableRow.displayName = 'TableRow';
+
 export default TableRow;

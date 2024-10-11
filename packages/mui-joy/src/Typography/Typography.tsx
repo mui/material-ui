@@ -384,6 +384,7 @@ Typography.propTypes /* remove-proptypes */ = {
 } as any;
 
 // @ts-ignore internal logic to let communicate with Breadcrumbs
+Typography.displayName = 'Typography';
 Typography.muiName = 'Typography';
 
 export default Typography;

@@ -1217,4 +1217,6 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
+Autocomplete.displayName = 'Autocomplete';
+
 export default Autocomplete;

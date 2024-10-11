@@ -35,6 +35,8 @@ const DateRangePicker = React.forwardRef(function DeprecatedDateRangePicker() {
   return null;
 }) as DateRangePickerComponent;
 
+DateRangePicker.displayName = 'DateRangePicker';
+
 export default DateRangePicker;
 
 export type DateRangePickerProps = Record<any, any>;

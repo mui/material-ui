@@ -143,4 +143,6 @@ TimelineDot.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+TimelineDot.displayName = 'TimelineDot';
+
 export default TimelineDot;

@@ -35,6 +35,8 @@ const DesktopTimePicker = React.forwardRef(function DeprecatedDesktopTimePicker(
   return null;
 }) as DesktopTimePickerComponent;
 
+DesktopTimePicker.displayName = 'DesktopTimePicker';
+
 export default DesktopTimePicker;
 
 export type DesktopTimePickerProps<TDate> = Record<any, any>;

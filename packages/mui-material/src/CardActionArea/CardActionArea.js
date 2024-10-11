@@ -116,4 +116,6 @@ CardActionArea.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+CardActionArea.displayName = 'CardActionArea';
+
 export default CardActionArea;

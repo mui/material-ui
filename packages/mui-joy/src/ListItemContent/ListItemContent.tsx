@@ -103,4 +103,6 @@ ListItemContent.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+ListItemContent.displayName = 'ListItemContent';
+
 export default ListItemContent;

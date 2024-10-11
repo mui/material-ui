@@ -207,4 +207,6 @@ ModalClose.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+ModalClose.displayName = 'ModalClose';
+
 export default ModalClose;

@@ -78,6 +78,8 @@ const InnerMenuItem = React.memo(
  * - [MenuItem API](https://mui.com/base-ui/react-menu/components-api/#menu-item)
  */
 
+InnerMenuItem.displayName = 'InnerMenuItem';
+
 const MenuItem = React.forwardRef(function MenuItem(
   props: MenuItemProps,
   ref: React.ForwardedRef<Element>,
@@ -146,5 +148,7 @@ MenuItem.propTypes /* remove-proptypes */ = {
     root: PropTypes.elementType,
   }),
 } as any;
+
+MenuItem.displayName = 'MenuItem';
 
 export { MenuItem };

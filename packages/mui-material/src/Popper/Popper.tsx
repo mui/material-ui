@@ -303,4 +303,6 @@ Popper.propTypes /* remove-proptypes */ = {
   transition: PropTypes.bool,
 } as any;
 
+Popper.displayName = 'Popper';
+
 export default Popper;

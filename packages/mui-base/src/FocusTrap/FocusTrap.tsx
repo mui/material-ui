@@ -426,6 +426,8 @@ FocusTrap.propTypes /* remove-proptypes */ = {
   open: PropTypes.bool.isRequired,
 } as any;
 
+FocusTrap.displayName = 'FocusTrap';
+
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line
   (FocusTrap as any)['propTypes' + ''] = exactProp(FocusTrap.propTypes);

@@ -347,4 +347,6 @@ List.propTypes /* remove-proptypes */ = {
   wrap: PropTypes.bool,
 } as any;
 
+List.displayName = 'List';
+
 export default List;

@@ -95,4 +95,6 @@ CardActions.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+CardActions.displayName = 'CardActions';
+
 export default CardActions;

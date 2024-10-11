@@ -341,4 +341,6 @@ MenuList.propTypes /* remove-proptypes */ = {
   variant: PropTypes.oneOf(['menu', 'selectedMenu']),
 };
 
+MenuList.displayName = 'MenuList';
+
 export default MenuList;

@@ -315,4 +315,6 @@ LinearProgress.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+LinearProgress.displayName = 'LinearProgress';
+
 export default LinearProgress;

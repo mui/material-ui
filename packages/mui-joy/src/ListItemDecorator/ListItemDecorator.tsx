@@ -118,4 +118,6 @@ ListItemDecorator.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+ListItemDecorator.displayName = 'ListItemDecorator';
+
 export default ListItemDecorator;

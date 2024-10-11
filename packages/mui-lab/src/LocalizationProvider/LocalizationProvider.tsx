@@ -34,6 +34,8 @@ const LocalizationProvider = React.forwardRef(function DeprecatedLocalizationPro
   return null;
 }) as LocalizationProviderComponent;
 
+LocalizationProvider.displayName = 'LocalizationProvider';
+
 export default LocalizationProvider;
 
 export type LocalizationProviderProps = Record<any, any>;

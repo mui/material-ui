@@ -360,4 +360,6 @@ Select.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 } as any;
 
+Select.displayName = 'Select';
+
 export { Select };

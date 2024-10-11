@@ -438,6 +438,8 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 };
 
+OutlinedInput.displayName = 'OutlinedInput';
+
 if (OutlinedInput) {
   OutlinedInput.muiName = 'Input';
 }

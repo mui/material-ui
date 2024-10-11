@@ -261,4 +261,6 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+AvatarGroup.displayName = 'AvatarGroup';
+
 export default AvatarGroup;

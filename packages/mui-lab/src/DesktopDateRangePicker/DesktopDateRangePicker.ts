@@ -35,6 +35,8 @@ const DesktopDateRangePicker = React.forwardRef(function DeprecatedDesktopDateRa
   return null;
 }) as DesktopDateRangePickerComponent;
 
+DesktopDateRangePicker.displayName = 'DesktopDateRangePicker';
+
 export default DesktopDateRangePicker;
 
 export type DesktopDateRangePickerProps = Record<any, any>;

@@ -86,4 +86,6 @@ TimelineContent.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+TimelineContent.displayName = 'TimelineContent';
+
 export default TimelineContent;

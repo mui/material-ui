@@ -355,4 +355,6 @@ Divider.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+Divider.displayName = 'Divider';
+
 export default Divider;

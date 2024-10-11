@@ -130,6 +130,8 @@ NativeSelect.propTypes /* remove-proptypes */ = {
   variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
 };
 
+NativeSelect.displayName = 'NativeSelect';
+
 NativeSelect.muiName = 'Select';
 
 export default NativeSelect;

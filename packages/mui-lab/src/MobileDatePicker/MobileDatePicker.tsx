@@ -38,6 +38,8 @@ const MobileDatePicker = React.forwardRef(function DeprecatedMobileDatePicker<TD
   return null;
 }) as MobileDatePickerComponent;
 
+MobileDatePicker.displayName = 'MobileDatePicker';
+
 export default MobileDatePicker;
 
 export type MobileDatePickerProps<TDate> = Record<any, any>;

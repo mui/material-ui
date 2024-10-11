@@ -282,4 +282,6 @@ Radio.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 };
 
+Radio.displayName = 'Radio';
+
 export default Radio;

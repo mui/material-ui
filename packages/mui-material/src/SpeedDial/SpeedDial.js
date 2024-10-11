@@ -580,4 +580,6 @@ SpeedDial.propTypes /* remove-proptypes */ = {
   TransitionProps: PropTypes.object,
 };
 
+SpeedDial.displayName = 'SpeedDial';
+
 export default SpeedDial;

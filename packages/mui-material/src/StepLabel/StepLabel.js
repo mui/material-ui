@@ -289,6 +289,8 @@ StepLabel.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+StepLabel.displayName = 'StepLabel';
+
 if (StepLabel) {
   StepLabel.muiName = 'StepLabel';
 }

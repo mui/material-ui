@@ -99,4 +99,6 @@ TabsList.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
+TabsList.displayName = 'TabsList';
+
 export { TabsList };

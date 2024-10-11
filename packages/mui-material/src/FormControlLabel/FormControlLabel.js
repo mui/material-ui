@@ -305,4 +305,6 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 };
 
+FormControlLabel.displayName = 'FormControlLabel';
+
 export default FormControlLabel;

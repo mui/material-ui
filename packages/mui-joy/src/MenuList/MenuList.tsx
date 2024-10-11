@@ -205,4 +205,6 @@ MenuList.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+MenuList.displayName = 'MenuList';
+
 export default MenuList;

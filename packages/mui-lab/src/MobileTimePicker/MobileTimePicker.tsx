@@ -35,6 +35,8 @@ const MobileTimePicker = React.forwardRef(function DeprecatedMobileTimePicker() 
   return null;
 }) as MobileTimePickerComponent;
 
+MobileTimePicker.displayName = 'MobileTimePicker';
+
 export default MobileTimePicker;
 
 export type MobileTimePickerProps<TDate> = Record<any, any>;

@@ -35,6 +35,8 @@ const TimePicker = React.forwardRef(function DeprecatedTimePicker() {
   return null;
 }) as TimePickerComponent;
 
+TimePicker.displayName = 'TimePicker';
+
 export default TimePicker;
 
 export type TimePickerProps<TDate> = Record<any, any>;

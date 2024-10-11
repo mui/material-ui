@@ -278,4 +278,6 @@ Alert.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+Alert.displayName = 'Alert';
+
 export default Alert;

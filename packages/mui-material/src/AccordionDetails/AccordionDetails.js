@@ -71,4 +71,6 @@ AccordionDetails.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+AccordionDetails.displayName = 'AccordionDetails';
+
 export default AccordionDetails;

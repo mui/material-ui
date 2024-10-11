@@ -262,4 +262,6 @@ MobileStepper.propTypes /* remove-proptypes */ = {
   variant: PropTypes.oneOf(['dots', 'progress', 'text']),
 };
 
+MobileStepper.displayName = 'MobileStepper';
+
 export default MobileStepper;

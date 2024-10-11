@@ -188,4 +188,6 @@ TableSortLabel.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+TableSortLabel.displayName = 'TableSortLabel';
+
 export default TableSortLabel;

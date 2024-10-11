@@ -566,4 +566,6 @@ Radio.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+Radio.displayName = 'Radio';
+
 export default Radio;

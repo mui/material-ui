@@ -218,4 +218,6 @@ CardHeader.propTypes /* remove-proptypes */ = {
   titleTypographyProps: PropTypes.object,
 };
 
+CardHeader.displayName = 'CardHeader';
+
 export default CardHeader;

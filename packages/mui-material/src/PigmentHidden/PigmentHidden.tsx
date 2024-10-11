@@ -260,7 +260,7 @@ HiddenCss.propTypes /* remove-proptypes */ = {
  * API:
  *
  * - [PigmentHidden API](https://mui.com/material-ui/api/pigment-hidden/)
- */
+ */ HiddenCss.displayName = 'HiddenCss';
 function PigmentHidden({ implementation = 'js', ...props }: HiddenProps & { className?: string }) {
   if (implementation === 'js') {
     return <HiddenJs {...props} />;
@@ -357,5 +357,7 @@ PigmentHidden.propTypes /* remove-proptypes */ = {
    */
   xsUp: PropTypes.bool,
 } as any;
+
+PigmentHidden.displayName = 'PigmentHidden';
 
 export default PigmentHidden;

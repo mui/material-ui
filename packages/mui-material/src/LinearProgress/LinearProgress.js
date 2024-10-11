@@ -518,4 +518,6 @@ LinearProgress.propTypes /* remove-proptypes */ = {
   variant: PropTypes.oneOf(['buffer', 'determinate', 'indeterminate', 'query']),
 };
 
+LinearProgress.displayName = 'LinearProgress';
+
 export default LinearProgress;

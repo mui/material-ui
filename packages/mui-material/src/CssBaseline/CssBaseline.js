@@ -157,4 +157,6 @@ CssBaseline.propTypes /* remove-proptypes */ = {
   enableColorScheme: PropTypes.bool,
 };
 
+CssBaseline.displayName = 'CssBaseline';
+
 export default CssBaseline;

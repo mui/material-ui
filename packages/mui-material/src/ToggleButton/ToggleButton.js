@@ -302,4 +302,6 @@ ToggleButton.propTypes /* remove-proptypes */ = {
   value: PropTypes /* @typescript-to-proptypes-ignore */.any.isRequired,
 };
 
+ToggleButton.displayName = 'ToggleButton';
+
 export default ToggleButton;

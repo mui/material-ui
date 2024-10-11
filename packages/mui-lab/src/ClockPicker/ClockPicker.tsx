@@ -35,6 +35,8 @@ const ClockPicker = React.forwardRef(function DeprecatedClockPicker() {
   return null;
 }) as ClockPickerComponent;
 
+ClockPicker.displayName = 'ClockPicker';
+
 export default ClockPicker;
 
 export const clockPickerClasses = {};

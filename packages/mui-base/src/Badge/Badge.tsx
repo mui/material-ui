@@ -140,4 +140,6 @@ Badge.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
+Badge.displayName = 'Badge';
+
 export { Badge };

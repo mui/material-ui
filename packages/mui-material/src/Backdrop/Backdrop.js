@@ -209,4 +209,6 @@ Backdrop.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+Backdrop.displayName = 'Backdrop';
+
 export default Backdrop;

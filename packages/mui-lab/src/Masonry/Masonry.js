@@ -414,4 +414,6 @@ Masonry.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+Masonry.displayName = 'Masonry';
+
 export default Masonry;

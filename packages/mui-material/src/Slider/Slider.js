@@ -124,6 +124,8 @@ export const SliderRoot = styled('span', {
   })),
 );
 
+SliderRoot.displayName = 'SliderRoot';
+
 export const SliderRail = styled('span', {
   name: 'MuiSlider',
   slot: 'Rail',
@@ -233,6 +235,8 @@ export const SliderTrack = styled('span', {
   }),
 );
 
+SliderTrack.displayName = 'SliderTrack';
+
 export const SliderThumb = styled('span', {
   name: 'MuiSlider',
   slot: 'Thumb',
@@ -340,6 +344,8 @@ export const SliderThumb = styled('span', {
   })),
 );
 
+SliderThumb.displayName = 'SliderThumb';
+
 const SliderValueLabel = styled(BaseSliderValueLabel, {
   name: 'MuiSlider',
   slot: 'ValueLabel',
@@ -445,6 +451,8 @@ SliderValueLabel.propTypes /* remove-proptypes */ = {
   value: PropTypes.number.isRequired,
 };
 
+SliderValueLabel.displayName = 'SliderValueLabel';
+
 export { SliderValueLabel };
 
 export const SliderMark = styled('span', {
@@ -489,6 +497,8 @@ export const SliderMark = styled('span', {
   })),
 );
 
+SliderMark.displayName = 'SliderMark';
+
 export const SliderMarkLabel = styled('span', {
   name: 'MuiSlider',
   slot: 'MarkLabel',
@@ -530,6 +540,8 @@ export const SliderMarkLabel = styled('span', {
     ],
   })),
 );
+
+SliderMarkLabel.displayName = 'SliderMarkLabel';
 
 const useUtilityClasses = (ownerState) => {
   const { disabled, dragging, marked, orientation, track, classes, color, size } = ownerState;
@@ -1173,5 +1185,7 @@ Slider.propTypes /* remove-proptypes */ = {
    */
   valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
+
+Slider.displayName = 'Slider';
 
 export default Slider;

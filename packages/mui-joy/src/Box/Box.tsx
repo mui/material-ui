@@ -47,4 +47,6 @@ Box.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+Box.displayName = 'Box';
+
 export default Box;

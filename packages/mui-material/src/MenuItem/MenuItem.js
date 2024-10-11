@@ -314,4 +314,6 @@ MenuItem.propTypes /* remove-proptypes */ = {
   tabIndex: PropTypes.number,
 };
 
+MenuItem.displayName = 'MenuItem';
+
 export default MenuItem;

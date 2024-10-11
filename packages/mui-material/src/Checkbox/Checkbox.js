@@ -273,4 +273,6 @@ Checkbox.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 };
 
+Checkbox.displayName = 'Checkbox';
+
 export default Checkbox;

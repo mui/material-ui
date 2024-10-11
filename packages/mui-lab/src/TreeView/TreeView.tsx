@@ -35,6 +35,8 @@ const TreeView = React.forwardRef(function DeprecatedTreeView() {
   return null;
 }) as TreeViewComponent;
 
+TreeView.displayName = 'TreeView';
+
 export default TreeView;
 
 export type TreeViewProps<Multiple> = Record<any, any>;

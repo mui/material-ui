@@ -180,4 +180,6 @@ DialogTitle.propTypes /* remove-proptypes */ = {
   variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
+DialogTitle.displayName = 'DialogTitle';
+
 export default DialogTitle;

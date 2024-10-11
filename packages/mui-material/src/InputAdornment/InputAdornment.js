@@ -212,4 +212,6 @@ InputAdornment.propTypes /* remove-proptypes */ = {
   variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
 };
 
+InputAdornment.displayName = 'InputAdornment';
+
 export default InputAdornment;

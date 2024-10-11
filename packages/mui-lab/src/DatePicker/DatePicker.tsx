@@ -34,6 +34,8 @@ const DatePicker = React.forwardRef(function DeprecatedDatePicker() {
   return null;
 }) as DatePickerComponent;
 
+DatePicker.displayName = 'DatePicker';
+
 export default DatePicker;
 
 export type DatePickerProps<TDate> = Record<any, any>;

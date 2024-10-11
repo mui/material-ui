@@ -34,6 +34,8 @@ const TreeItem = React.forwardRef(function DeprecatedTreeItem() {
   return null;
 }) as TreeItemComponent;
 
+TreeItem.displayName = 'TreeItem';
+
 export default TreeItem;
 
 export type TreeItemProps = Record<any, any>;

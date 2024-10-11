@@ -366,4 +366,6 @@ Tab.propTypes /* remove-proptypes */ = {
   wrapped: PropTypes.bool,
 };
 
+Tab.displayName = 'Tab';
+
 export default Tab;

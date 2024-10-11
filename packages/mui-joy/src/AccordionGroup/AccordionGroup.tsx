@@ -202,4 +202,6 @@ AccordionGroup.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+AccordionGroup.displayName = 'AccordionGroup';
+
 export default AccordionGroup;

@@ -104,6 +104,8 @@ Portal.propTypes /* remove-proptypes */ = {
   disablePortal: PropTypes.bool,
 } as any;
 
+Portal.displayName = 'Portal';
+
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line
   (Portal as any)['propTypes' + ''] = exactProp((Portal as any).propTypes);

@@ -227,4 +227,6 @@ Zoom.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+Zoom.displayName = 'Zoom';
+
 export default Zoom;

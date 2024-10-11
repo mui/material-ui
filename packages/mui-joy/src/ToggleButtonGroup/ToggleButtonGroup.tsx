@@ -313,4 +313,6 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+ToggleButtonGroup.displayName = 'ToggleButtonGroup';
+
 export default ToggleButtonGroup;

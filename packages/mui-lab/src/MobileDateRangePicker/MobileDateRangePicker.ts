@@ -35,6 +35,8 @@ const MobileDateRangePicker = React.forwardRef(function DeprecatedMobileDateRang
   return null;
 }) as MobileDateRangePickerComponent;
 
+MobileDateRangePicker.displayName = 'MobileDateRangePicker';
+
 export default MobileDateRangePicker;
 
 export type MobileDateRangePickerProps = Record<any, any>;

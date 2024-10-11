@@ -625,6 +625,8 @@ Grid.propTypes /* remove-proptypes */ = {
   zeroMinWidth: PropTypes.bool,
 };
 
+Grid.displayName = 'Grid';
+
 if (process.env.NODE_ENV !== 'production') {
   const requireProp = requirePropFactory('Grid', Grid);
   // eslint-disable-next-line no-useless-concat

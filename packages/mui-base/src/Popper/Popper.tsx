@@ -425,7 +425,7 @@ PopperTooltip.propTypes /* remove-proptypes */ = {
  * API:
  *
  * - [Popper API](https://mui.com/base-ui/react-popper/components-api/#popper)
- */
+ */ PopperTooltip.displayName = 'PopperTooltip';
 
 const Popper = React.forwardRef<HTMLDivElement, PopperProps>(function Popper<
   RootComponentType extends React.ElementType,
@@ -722,5 +722,7 @@ Popper.propTypes /* remove-proptypes */ = {
    */
   transition: PropTypes.bool,
 } as any;
+
+Popper.displayName = 'Popper';
 
 export { Popper };

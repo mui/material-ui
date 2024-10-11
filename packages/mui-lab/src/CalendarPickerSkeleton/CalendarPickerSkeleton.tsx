@@ -29,7 +29,9 @@ const CalendarPickerSkeleton = React.forwardRef(function DeprecatedCalendarPicke
   warn();
 
   return null;
-}) as CalendarPickerSkeletonComponent;
+});
+
+CalendarPickerSkeleton.displayName = 'CalendarPickerSkeleton';
 
 export default CalendarPickerSkeleton;
 

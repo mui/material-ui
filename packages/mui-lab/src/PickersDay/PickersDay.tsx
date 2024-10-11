@@ -35,6 +35,8 @@ const PickersDay = React.forwardRef(function DeprecatedPickersDay<TDate>() {
   return null;
 }) as PickersDayComponent;
 
+PickersDay.displayName = 'PickersDay';
+
 export default PickersDay;
 
 export const pickersDayClasses = {};

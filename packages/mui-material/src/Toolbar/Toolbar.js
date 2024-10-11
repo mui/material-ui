@@ -137,4 +137,6 @@ Toolbar.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+Toolbar.displayName = 'Toolbar';
+
 export default Toolbar;

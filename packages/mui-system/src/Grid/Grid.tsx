@@ -142,4 +142,6 @@ Grid.propTypes /* remove-proptypes */ = {
   wrap: PropTypes.oneOf(['nowrap', 'wrap-reverse', 'wrap']),
 } as any;
 
+Grid.displayName = 'Grid';
+
 export default Grid;
