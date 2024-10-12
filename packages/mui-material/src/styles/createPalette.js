@@ -188,6 +188,8 @@ function getDefaultWarning(mode = 'light') {
   };
 }
 
+const getModeBasePalette = { dark: getDark, light: getLight };
+
 export default function createPalette(palette) {
   const { mode = 'light', contrastThreshold = 3, tonalOffset = 0.2, ...other } = palette;
 
@@ -264,15 +266,8 @@ export default function createPalette(palette) {
     return color;
   };
 
-  let modeHydrated;
-  if (mode === 'light') {
-    modeHydrated = getLight();
-  } else if (mode === 'dark') {
-    modeHydrated = getDark();
-  }
-
   if (process.env.NODE_ENV !== 'production') {
-    if (!modeHydrated) {
+    if (!getModeBasePalette[mode]) {
       console.error(`MUI: The palette mode \`${mode}\` is not supported.`);
     }
   }
@@ -315,7 +310,7 @@ export default function createPalette(palette) {
       // E.g., shift from Red 500 to Red 300 or Red 700.
       tonalOffset,
       // The light and dark mode object.
-      ...modeHydrated,
+      ...getModeBasePalette[mode](),
     },
     other,
   );
