@@ -45,7 +45,7 @@ export interface InjectPropTypesInFileOptions
     propType: PropTypeDefinition,
   ) => ((a: LiteralType, b: LiteralType) => number) | undefined;
   /**
-   * Options passed to babel.transformSync
+   * Options passed to babel.transformSync.
    */
   babelOptions?: babel.TransformOptions;
   /**
