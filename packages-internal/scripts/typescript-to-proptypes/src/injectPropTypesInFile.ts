@@ -49,7 +49,7 @@ export interface InjectPropTypesInFileOptions
    */
   babelOptions?: babel.TransformOptions;
   /**
-   * Inject display name into the component
+   * Inject display name into the component.
    */
   includeDisplayName?: boolean;
 }
