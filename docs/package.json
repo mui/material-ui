@@ -53,7 +53,7 @@
     "@mui/x-license": "7.18.0",
     "@mui/x-tree-view": "7.19.0",
     "@popperjs/core": "^2.11.8",
-    "@react-spring/web": "^9.7.4",
+    "@react-spring/web": "^9.7.5",
     "@toolpad/core": "^0.7.0",
     "autoprefixer": "^10.4.20",
     "autosuggest-highlight": "^3.3.4",
