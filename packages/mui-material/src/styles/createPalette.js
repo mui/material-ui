@@ -264,10 +264,15 @@ export default function createPalette(palette) {
     return color;
   };
 
-  const modes = { dark: getDark(), light: getLight() };
+  let modeHydrated;
+  if (mode === 'light') {
+    modeHydrated = getLight();
+  } else if (mode === 'dark') {
+    modeHydrated = getDark();
+  }
 
   if (process.env.NODE_ENV !== 'production') {
-    if (!modes[mode]) {
+    if (!modeHydrated) {
       console.error(`MUI: The palette mode \`${mode}\` is not supported.`);
     }
   }
@@ -310,7 +315,7 @@ export default function createPalette(palette) {
       // E.g., shift from Red 500 to Red 300 or Red 700.
       tonalOffset,
       // The light and dark mode object.
-      ...modes[mode],
+      ...modeHydrated,
     },
     other,
   );
