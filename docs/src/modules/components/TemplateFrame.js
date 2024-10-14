@@ -42,6 +42,7 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
   'html:has(&)': {
     '--template-frame-height': '52px',
     '& [data-screenshot="toggle-mode"]': { display: 'none' },
+    '& .MuiInputBase-root:has(> [data-screenshot="toggle-mode"])': { display: 'none' },
   },
 }));
 
