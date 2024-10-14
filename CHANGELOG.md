@@ -25,6 +25,7 @@ A big thanks to the 8 contributors who made this release possible.
 
 ### Core
 
+- [code-infra] Link to production app for bundle size (#44076) @oliviertassinari
 - [code-infra] Disable cron job for React 17 tests (#44065) @Janpot
 - Remove [website] from changelog (#44069) @oliviertassinari
 - Apply #44052 to the latest release as well @oliviertassinari
