@@ -172,14 +172,14 @@ Follow the [Modal accessibility section](/material-ui/react-modal/#accessibility
 
 ### useDialogs
 
-You can create and manipulate dialogs imperatively with the [`useDialogs()`](https://mui.com/toolpad/core/react-use-dialogs/) API in `@toolpad/core`. This API provides the following features:
+You can create and manipulate dialogs imperatively with the useDialogs() API in @toolpad/core. This hook handles
 
 - state management for opening and closing dialogs
-- reading data from and passing data to dialogs
+- passing data to dialogs and receiving results back from them
 - stacking multiple dialogs
-- themed alternatives for `window.alert()`, `window.confirm`() and `window.prompt()`
+- themed, asynchronous versions of `window.alert()`, `window.confirm()` and `window.prompt()`
 
-The following example demonstrates these features:
+The following example demonstrates some of these features:
 
 {{"demo": "ToolpadDialogsNoSnap.js", "defaultCodeOpen": false}}
 
