@@ -32,9 +32,14 @@ function parseTags(commitMessage) {
  * @param {Octokit.ReposCompareCommitsResponseCommitsItem} commitsItem
  */
 function filterCommit(commitsItem) {
+  const commitMessage = commitsItem.commit.message;
   // TODO: Use labels
-  // Filter dependency updates
-  return !commitsItem.commit.message.startsWith('Bump');
+  return (
+    // Filter renovate dependencies updates
+    !commitMessage.startsWith('Bump') &&
+    // Filter website changes, no implications for library users
+    !commitMessage.startsWith('[website]')
+  );
 }
 
 async function findLatestTaggedVersion() {

@@ -16,9 +16,6 @@ A big thanks to the 3 contributors who made this release possible.
 
 ### Core
 
-- [website] Fix wrong link in pricing table (@zanivan) (#43143) @zanivan
-- [website] Add blog link to pricing table (@zanivan) (#43140) @zanivan
-
 All contributors of this release in alphabetical order: @DiegoAndai, @oliviertassinari, @zanivan
 
 ## 5.16.6
@@ -112,8 +109,6 @@ A big thanks to the 2 contributors who made this release possible.
 
 ### Core
 
-- [website] Sync /about page @oliviertassinari
-
 All contributors of this release in alphabetical order: @mnajdova, @oliviertassinari
 
 ## 5.16.1
@@ -199,13 +194,10 @@ A big thanks to the 7 contributors who made this release possible.
 - [material-ui][Select] Fix the `SelectAutoWidth` demo menu item value (@Danielkhakbaz) (#42696) @Danielkhakbaz
 - [material-ui][Autocomplete] Fix more React 18.3 key spread warnings in demos (#42766) @wbt
 - [material-ui] Fix sign in side image (#42708) @zanivan
-- [website] Add Ale to team (#42769) @alelthomas
 
 ### Core
 
 - [core] Cherry pick pnpm updates (#42763) @DiegoAndai
-- [website] Add Armin to the team members (@arminmeh) (#42681) @arminmeh
-- [website] Open Staff Engineer role for Pigment CSS (@mnajdova) (#42669) @mnajdova
 
 All contributors of this release in alphabetical order: @alexfauquette, @alexismo, @arminmeh, @Danielkhakbaz, @DiegoAndai, @mnajdova, @oliviertassinari
 
@@ -240,13 +232,7 @@ A big thanks to the 9 contributors who made this release possible.
 
 ### Core
 
-- [website] Move the `React Engineer - X` role to future roles (#42532) @DanailH
 - [examples] Remove Pigment CSS examples (#42538) @sai6855
-- [website] Close Developer Advocate / Content Engineer role @oliviertassinari
-- [website] Update DoiT description and link in Sponsors section (@erezstmn-doit) (#42511) @erezstmn-doit
-- [website] Clean up the docs-infra job ad (@danilo-leal) (#42509) @danilo-leal
-- [website] Open the Docs-infra engineer role (@danilo-leal) (#42496) @danilo-leal
-- [website] Fix locationCountry in about page @oliviertassinari
 
 All contributors of this release in alphabetical order: @aarongarciah, @anle9650, @DanailH, @danilo-leal, @erezstmn-doit, @iammminzzy, @oliviertassinari, @sai6855, @ZeeshanTamboli
 
@@ -282,10 +268,6 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [core] Fix React 18.3 warnings about spreading keys in the Material UI `Autocomplete` component (#42099) (#42241) @DiegoAndai
 - [core] Fix a few more key spread issues (@oliviertassinari) (#42318) @github-actions[bot]
 - [docs-infra] Allow JSDoc tags (#42327) @aarongarciah
-- [website] Add Nikita to the about page (@nikitaa24) (#42421) @github-actions[bot]
-- [website] Fix hero spacing changes applying at the wrong breakpoint (@KenanYusuf) (#42357) @github-actions[bot]
-- [website] Adds Kenan Yusuf to about page (@KenanYusuf) (#42330) @github-actions[bot]
-- [website] Improve about page @oliviertassinari
 
 All contributors of this release in alphabetical order: @aarongarciah, @brijeshb42, @danilo-leal, @DiegoAndai, @KenanYusuf, @lucasgmelo, @Mandar-Pandya, @MatheusEli, @mnajdova, @nikitaa24, @oliviertassinari, @ZeeshanTamboli
 
@@ -309,8 +291,6 @@ A big thanks to the 5 contributors who made this release possible. Here are some
 ### Core
 
 - [blog] Introducing Pigment CSS blog post (#42198) (#42255) @samuelsycamore
-- [website] Add redirection for talk @oliviertassinari
-- [website] Adds Arthur Balduini team info (@arthurbalduini) (#42226) @github-actions[bot]
 
 All contributors of this release in alphabetical order: @arthurbalduini, @oliviertassinari, @samuelsycamore, @TahaRhidouani, @tarunrajput
 
@@ -339,9 +319,6 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [blog] Update Sync post OG image (@danilo-leal) (#42117) @github-actions[bot]
 - [blog] A few tweaks in introducing-sync-plugin (@oliviertassinari) (#42094) @github-actions[bot]
 - [docs-infra] Fix code block layout shift (#41917) @oliviertassinari
-- [website] Fix home page slider's track position (@aarongarciah) (#42144) @github-actions[bot]
-- [website] Closing the survey @oliviertassinari
-- [website] Remove Survey banner from website and Core docs (#42104) @joserodolfofreitas
 
 All contributors of this release in alphabetical order: @github-actions[bot], @joserodolfofreitas, @oliviertassinari, @siriwatknp
 
@@ -388,12 +365,6 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [docs-infra] Use edge function for card generation (#41188) @alexfauquette
 - [docs-infra] Fix drawer performances (#41807) (#41820) @alexfauquette
 - [docs-infra] Fix analytics about inline ads (#41474) @alexfauquette
-- [website] Sync career roles (@oliviertassinari) (#42059) @github-actions[bot]
-- [website] Add content about the Sync plugin in the Material UI page (@danilo-leal) (#42074) @github-actions[bot]
-- [website] Add Nadja on the about page (#42054) @mnajdova
-- [website] Close the `Design Engineer - X` role (#42014) @DanailH
-- [website] Remove customer support agent role from website (@rluzists1) (#41996) @github-actions[bot]
-- [website] Add Jose to About Us (#41759) @JCQuintas
 
 All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @DanailH, @DiegoAndai, @github-actions[bot], @JCQuintas, @mnajdova, @oliviertassinari
 
@@ -431,9 +402,6 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [blog] Add post about remote (#41565) @danilo-leal
 - [core] Continue rename of Toolpad @oliviertassinari
 - [docs-infra] Add Toolpad product/category IDs to types (#41551) @bharatkashyap
-- [website] Add Aarón to About Us (#41747) @aarongarciah
-- [website] Add stray design adjustments throughout the site (#41642) @mnajdova
-- [website] Update pricing table (#41606) @cherniavskii
 
 All contributors of this release in alphabetical order: @aarongarciah, @bharatkashyap, @cherniavskii, @danilo-leal, @mnajdova, @oliviertassinari, @ZeeshanTamboli
 
@@ -487,9 +455,6 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [docs-infra] Add a feature list "component" (#41484) @danilo-leal
 - [docs-infra] Add code block header classes (#41487) @danilo-leal
 - [docs-infra] Make the Algolia search input label invisible (#41542) @danilo-leal
-- [website] Improve navbar's items hover state (#41535) @EyaOuenniche
-- [website] Split Toolpad documentation (#41316) @bharatkashyap
-- [website] Use MUI X Data Grid v7-beta (#41276) @cherniavskii
 
 All contributors of this release in alphabetical order: @bharatkashyap, @brijeshb42, @cherniavskii, @cipherlogs, @danilo-leal, @DiegoAndai, @EyaOuenniche, @Janpot, @jherr, @michaldudak, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp, @zanivan
 
@@ -577,9 +542,6 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [docs-infra] Simplify Algolia crawler config (#41312) @oliviertassinari
 - [docs-infra] Adjust the tabs and layout selection design (#41084) @danilo-leal
 - [blog] Update the Base UI post with links to dedicated repo (#41358) @danilo-leal
-- [website] Update the Careers page role (#41384) @danilo-leal
-- [website] Compress about images @oliviertassinari
-- [website] Improve color contrast on the homepage (#41465) @danilo-leal
 - [examples] Add pigment-css-vite-ts starter example (#41196) @siriwatknp
 - [examples] Add pigment-css-nextjs-ts starter project (#41105) @siriwatknp
 
@@ -660,10 +622,6 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [docs-infra] Improve fix blank links ad @oliviertassinari
 - [docs-infra] Support interfaces for X docs (#41069) @alexfauquette
 - [infra] Adjust the links to search for issues (#41008) @michelengelen
-- [website] Move the `React Engineer - xCharts` to `Next roles` section (#41368) @DanailH
-- [website] Add James to About Us (#41362) @atomiks
-- [website] Polish Button outline primary medium (#41298) @oliviertassinari
-- [website] Remove Heatmap chart from community plan on pricing table (#41081) @alexfauquette
 
 All contributors of this release in alphabetical order: @alexfauquette, @atomiks, @brijeshb42, @DanailH, @danilo-leal, @DiegoAndai, @divyammadhok, @Janpot, @lhilgert9, @matystroia, @michaldudak, @michelengelen, @mj12albert, @oliviertassinari, @prakhargupta1, @PunitSoniME, @sai6855, @siriwatknp, @smox, @zanivan, @ZeeshanTamboli
 
@@ -770,12 +728,6 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [docs-infra] Share vale-config (#41176) @alexfauquette
 - [test] Generalize test utils (#41175) @michaldudak
 - [typescript-to-proptypes] Support using `Omit` on types with conditional properties (#41033) @flaviendelangle
-- [website] Match chart component names @oliviertassinari
-- [website] Add Marblism diamond sponsor (#41097) @rluzists1
-- [website] Add overall improvements to the Material UI page (#41075) @danilo-leal
-- [website] Fix responsive breakpoints @oliviertassinari
-- [website] Fix overloading of footer JS files @oliviertassinari
-- [website] Improve the footer's chip contrast (#41209) @danilo-leal
 - [zero] Update to latest version of wyw-in-js (#41182) @brijeshb42
 - [zero] Setup basic testing framework (#40986) @brijeshb42
 - [zero] Fix wrong CSS order by moving import to last (#41002) @siriwatknp
@@ -828,7 +780,6 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [docs-infra] Fix search icon issue (#40957) @oliviertassinari
 - [docs-infra] Ignore classes tagged with `@ignore` (#41009) @cherniavskii
 - [docs-infra] Fix selected tab on codeblocks (#41036) @danilo-leal
-- [website] Polish Customer Support Agent role @oliviertassinari
 
 All contributors of this release in alphabetical order: @cherniavskii, @danilo-leal, @joserodolfofreitas, @millerized, @oliviertassinari, @sai6855, @siriwatknp, @Smileek
 
@@ -940,12 +891,6 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [docs-infra] Improve support for absolute locale URL (#40940) @oliviertassinari
 - [Menu][base-ui] Fix improperly merged tests (#40896) @michaldudak
 - [utils] Use consistent build approach (#40837) @siriwatknp
-- [website] Fix React missing key console error @oliviertassinari
-- [website] Fix broken link @oliviertassinari
-- [website] Fix heading structure (#40912) @oliviertassinari
-- [website] Add Customer Support Agent role to careers page (#40890) @rluzists1
-- [website] Refine the Material UI homepage demo (#40881) @danilo-leal
-- [website] Use em-dash when relevant over hyphen @oliviertassinari
 - [zero] Fix build for demo next.js app (#40854) @brijeshb42
 
 All contributors of this release in alphabetical order: @adebiyial, @brijeshb42, @danilo-leal, @DiegoAndai, @hsmtkk, @Janpot, @michaldudak, @mj12albert, @mnajdova, @oliviertassinari, @rluzists1, @romgrk, @sai6855, @siriwatknp, @Smileek, @xuhdev, @zanivan
@@ -1010,7 +955,6 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### Core
 
-- [website] Move `React Engineer - X` into the future roles section (#40867) @DanailH
 - [material-ui][test][Alert] Add action, icon, and iconMapping tests (#40682) @DiegoAndai
 - [blog] Lint duplicate h1 on the page (#40835) @oliviertassinari
 - [blog] MUI X v7 beta announcement blogpost (#40784) @joserodolfofreitas
@@ -1030,18 +974,6 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [examples] Fix build on Next.js Pages Router examples (#40665) @oliviertassinari
 - [test] Speed up the envinfo test (#40669) @michaldudak
 - [typescript-to-proptypes] Allow to represent dates as `PropTypes.object` (#40774) @flaviendelangle
-- [website] Add new Base UI role (#40773) @colmtuite
-- [website] Fix a couple of rough edges (#40849) @danilo-leal
-- [website] Small polishing after latest changes to the theme (#40846) @zanivan
-- [website] Polish some pages and stray components (#40797) @danilo-leal
-- [website] Refine the careers page slightly (#40793) @danilo-leal
-- [website] Fix missing key on the Testimonials section (#40791) @Janpot
-- [website] Fix Footer layout shift (#40786) @oliviertassinari
-- [website] Revamp the testimonial section in the homepage (#40752) @danilo-leal
-- [website] Fix pricing license model toggle style (#40747) @oliviertassinari
-- [website] Fine-tune colors and styles on the branding theme (#40751) @danilo-leal
-- [website] Fix Toggle Button styles in the homepage demos (#40744) @mohamedsaiedd
-- [website] Update stats on the testimonials section (#40769) @EyaOuenniche
 
 All contributors of this release in alphabetical order: @alexfauquette, @colmtuite, @danilo-leal, @DiegoAndai, @EyaOuenniche, @flaviendelangle, @Janpot, @Jaswanth-Sriram-Veturi, @joserodolfofreitas, @michaldudak, @mirus-ua, @mnajdova, @mohamedsaiedd, @Nikhilh26, @oliviertassinari, @romgrk, @sai6855, @siriwatknp, @srinidhi9831, @zanivan, @ZeeshanTamboli
 
@@ -1100,7 +1032,6 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [core] Polish issue templates @oliviertassinari
 - [docs-infra] Support markdown link in slots descriptions (#40679) @alexfauquette
 - [examples] Simplify Next.js example (#40661) @oliviertassinari
-- [website] Fix broken styles on Base UI page (#40683) @michaldudak
 
 All contributors of this release in alphabetical order: @alexfauquette, @anle9650, @ANUGLYPLUGIN, @brijeshb42, @danilo-leal, @devhik0, @DiegoAndai, @DonikaV, @joserodolfofreitas, @michaldudak, @mj12albert, @mnajdova, @mohamedsaiedd, @oliviertassinari, @pcorpet, @sai6855, @zanivan
 
@@ -1181,7 +1112,6 @@ To adapt your code to the new pattern:
 - [material-ui] Fix typo on Next.js integration guide (#40538) @zanivan
 - [material-ui][Snackbar] Remove unused `State` interface from Consecutive Snackbars demo (#40410)
   @zinoroman
-- [website] Resolve broken links reported by `docs:link-check` (#40547) @samuelsycamore
 
 ### Core
 
@@ -1198,7 +1128,6 @@ To adapt your code to the new pattern:
 - [docs-infra] Remove old tocs banners (#40537) @oliviertassinari
 - [docs-infra] Remove dead code aria-label sponsors (#40526) @oliviertassinari
 - [utils] Centralize clamp implementation in utils (#40267) @Kamino0
-- [website] Polish the Base UI page demos (#40504) @danilo-leal
 
 All contributors of this release in alphabetical order: @2metres, @aacevski, @brijeshb42, @danilo-leal, @DiegoAndai, @josh-feldman, @Kamino0, @lhilgert9, @maakcode, @michaldudak, @oliviertassinari, @petrovmiroslav, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli, @zinoroman
 
@@ -1281,8 +1210,6 @@ A big thanks to the 22 contributors who made this release possible. Here are som
 - [core] Move prefetch at the core, will propagate to MUI X @oliviertassinari
 - [core] Change package manager to pnpm (#36287) @Janpot
 - [core][docs] Remove the "Understand MUI packages" page (#39835) @savalaram-redkar
-- [website] Evolve the Developer Advocate role (#40337) @oliviertassinari
-- [website] Fix default social card @oliviertassinari
 - [test] Restore the `t` command (#40430) @michaldudak
 
 All contributors of this release in alphabetical order: @aacevski, @alexfauquette, @anle9650, @brijeshb42, @danilo-leal, @DiegoAndai, @iamsaumya, @illume, @Janpot, @LukasTy, @Methuselah96, @michaldudak, @mj12albert, @nicegamer7, @oliviertassinari, @renovate[bot], @RiceCrisp, @sai6855, @samuelsycamore, @savalaram-redkar, @siriwatknp, @zanivan
@@ -1350,10 +1277,6 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [docs-infra] Prefetch pages on hover (#40314) @oliviertassinari
 - [docs-infra] Fix footer links to link to the main domain (#40373) @oliviertassinari
 - [docs-infra] Add stray design adjustments (#40347) @danilo-leal
-- [website] Fix Base UI page's component section imports & styles (#40231) @danilo-leal
-- [website] Fix outdated Nhost image link @oliviertassinari
-- [website] Shorten Joy UI description, 7 chars too long @oliviertassinari
-- [website] Update some social preview images (#40282) @danilo-leal
 
 All contributors of this release in alphabetical order: @aacevski, @anle9650, @danilo-leal, @DiegoAndai, @Kamino0, @lhilgert9, @michaldudak, @oliviertassinari, @sai6855, @siriwatknp, @Super-Kenil
 
@@ -1414,8 +1337,6 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 - [docs] Fix docs redirections @oliviertassinari
 - [docs] Update the Contributing guide to give more guidance on documentation (#40274) @samuelsycamore
 - [docs-infra] Add polish to the inline code block (#40260) @danilo-leal
-- [website] Update Gold sponsors: add RxDB, standardize formatting (#40273) @samuelsycamore
-- [website] Revert change to homepage SEO attributes @oliviertassinari
 
 All contributors of this release in alphabetical order: @adamhylander, @anle9650, @danilo-leal, @DiegoAndai, @Kimzify, @michaldudak, @mnajdova, @muazaqdas, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
 
@@ -1457,7 +1378,6 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [core] Update workflows and issue templates to reflect the updated label (#40197) @MBilalShafi
 - [docs] Replace Twitter with X (#40193) @mbrookes
 - [docs-infra] Uplift the Algolia search modal design (#40186) @danilo-leal
-- [website] Update product descriptions and social preview images (#32181) @danilo-leal
 
 All contributors of this release in alphabetical order: @danilo-leal, @gitstart, @MBilalShafi, @mbrookes, @mnajdova, @oliviertassinari, @possibilities, @pratikkarad, @qiweiii, @ReaZzy, @s8990, @sai6855, @sjdemartini, @zanivan, @ZeeshanTamboli
 
@@ -1549,10 +1469,6 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [blog] Fix scrollbar on mobile (#40057) @oliviertassinari
 - [blog] Fix link to charts getting started page (#40043) @alexfauquette
 - [docs-infra] Simplify CSS classes extraction in API docs generator (#39808) @michaldudak
-- [website] Polish dark mode colors (#40052) @danilo-leal
-- [website] Add why Design Engineer for data grid (#40016) @oliviertassinari
-- [website] Add stray fixes to the Base UI page (#40051) @danilo-leal
-- [website] Revise the Developer Advocate job posting (#39210) @samuelsycamore
 
 All contributors of this release in alphabetical order: @alexfauquette, @anle9650, @caweidmann, @danilo-leal, @DiegoAndai, @fzaninotto, @Janpot, @lhilgert9, @michaldudak, @mnajdova, @oliviertassinari, @REX500, @samuelsycamore, @zanivan
 
@@ -1632,15 +1548,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - Rename OpenCollective @oliviertassinari
 - [docs-infra] Env variables should be string (#39991) @oliviertassinari
 - [Portal] Improve docs for container prop (#39180) @oliviertassinari
-- [website] Update pricing table (#40023) @cherniavskii
 - [website][docs] Update the product identifier menu and X page (#39832) @danilo-leal
-- [website] Mark TreeView and Charts as stable (#39975) @flaviendelangle
-- [website] Update career page (#40015) @oliviertassinari
-- [website] Sync about dataset @oliviertassinari
-- [website] Fix 301 redirection to X tree-view @oliviertassinari
-- [website] Change redirection prefixes @oliviertassinari
-- [website] Fix 301 link @oliviertassinari
-- [website] Fix modal not being closed with the escape key on the Base UI page (#39880) @ZeeshanTamboli
 
 All contributors of this release in alphabetical order: @avikalpg, @brijeshb42, @cherniavskii, @danilo-leal, @DarhkVoyd, @dhaub-exelixis, @DiegoAndai, @flaviendelangle, @islandryu, @joserodolfofreitas, @lhilgert9, @mj12albert, @mnajdova, @oliviertassinari, @sadik-malik, @sai6855, @zanivan, @ZeeshanTamboli
 
@@ -1700,7 +1608,6 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [docs-infra] Fix hydration api (#39706) @oliviertassinari
 - [docs-infra] Adjust the website & docs footer (#39810) @danilo-leal
 - [docs-infra] Fix bug on API prop copy experience (#39707) @oliviertassinari
-- [website] Change roadmap link destination (#39639) @danilo-leal
 
 All contributors of this release in alphabetical order: @anle9650, @axelbostrom, @danilo-leal, @joserodolfofreitas, @lhilgert9, @michaldudak, @mj12albert, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp, @swillianc, @zanivan, @ZeeshanTamboli
 
@@ -1760,8 +1667,6 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [docs–infra] Small polish on API toggle (#39704) @oliviertassinari
 - [core] Speed up the CI by removing the second build (#39684) @michaldudak
 - [core][docs] Fix broken MUI System link in README.md (#39734) @samuelsycamore
-- [website] List benefits for sponsors (#39640) @oliviertassinari
-- [website] Add Vadym teamMember card to 'About' (#39701) @hasdfa
 - [test] Fix flaky screenshot (#39711) @oliviertassinari
 
 All contributors of this release in alphabetical order: @alexfauquette, @brijeshb42, @chiahao, @danilo-leal, @hasdfa, @megos, @michaldudak, @mj12albert, @oliviertassinari, @sai6855, @samuelsycamore, @ZeeshanTamboli
@@ -1822,8 +1727,6 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [core] Remove not used `@types/loader-utils` package from `zero-next-plugin` (#39609) @ZeeshanTamboli
 - [docs-infra] Add meta charset in codesandbox examples (#39424) @Janpot
 - [docs-infra] Fix settings drawer accessibility issues (#39589) @emamoah
-- [website] Add stray adjustments and clean-ups (#39673) @danilo-leal
-- [website] Open the `Design Engineer - xGrid` role (#39375) @DanailH
 
 All contributors of this release in alphabetical order: @alexfauquette, @Best-Sardar, @DanailH, @danilo-leal, @DiegoAndai, @emamoah, @gitstart, @Janpot, @jcoyle37, @mj12albert, @mnajdova, @Nkzn, @oliviertassinari, @Popppins, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli
 
@@ -1893,10 +1796,6 @@ A big thanks to the 17 contributors who made this release possible.
 - [docs-infra] Fix no-op autoprefixer warning (#39385) @oliviertassinari
 - [docs-infra] Refine the API page design (#39520) @alexfauquette
 - [docs-infra] Fix cut-off sponsors (#39572) @oliviertassinari
-- [website] Add missing h1 on page @oliviertassinari
-- [website] Fix unrecognized prop warning @oliviertassinari
-- [website] Store Engineer role filled @oliviertassinari
-- [website] Add stray design adjustments (#39496) @danilo-leal
 
 All contributors of this release in alphabetical order: @alexfauquette, @Best-Sardar, @brijeshb42, @danilo-leal, @DiegoAndai, @Evan151, @gitstart, @hjalti-lifekeys, @mj12albert, @mnajdova, @mwskwong, @oliviertassinari, @romgrk, @Semigradsky, @siriwatknp, @VadimZvf, @zanivan
 
@@ -1966,10 +1865,6 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [docs-infra] Add a collapsible list & table views to the API content display (#38265) @alexfauquette
 - [docs-infra] Adjust the `kbd` tag styles (#39397) @danilo-leal
 - [docs-infra] Fix strong style regression (#39384) @oliviertassinari
-- [website] Add the LinkedIn profile to the contributors section on the About page (#39455) @chhawinder
-- [website] Update new role template (#39386) @oliviertassinari
-- [website] Add stray design fine-tunning to the Pricing page (#39472) @danilo-leal
-- [website] Fix career anchor link to perks & benefits @oliviertassinari
 
 All contributors of this release in alphabetical order: @adrienbrault, @alexfauquette, @Best-Sardar, @BreakBB, @brijeshb42, @chhawinder, @christophermorin, @codewithrabeeh, @danilo-leal, @DarhkVoyd, @devuser200, @michaldudak, @mnajdova, @oliviertassinari, @parikshitadhikari, @samuelsycamore, @Semigradsky, @Simer13, @siriwatknp, @TheNatkat, @uuxxx, @vineetjk, @zanivan, @ZeeshanTamboli
 
@@ -2033,8 +1928,6 @@ A big thanks to the 22 contributors who made this release possible. Here are som
 - [docs-infra] Improve the open diamond sponsor spot callout (#39332) @danilo-leal
 - [docs-infra] Fix Code Sandbox download issue (#39317) @ARJ2160
 - [docs-infra] Remove overflow: hidden for demo gradient bg (#39225) @oliviertassinari
-- [website] Fix footer responsiveness (#39355) @danilo-leal
-- [website] Host Figma redirections in the store for now @oliviertassinari
 
 All contributors of this release in alphabetical order: @3xp10it3r, @alexfauquette, @ARJ2160, @atharva3333, @axelbostrom, @Bestwebdesign, @brijeshb42, @chirag3003, @danilo-leal, @DarhkVoyd, @DiegoAndai, @gugudwt, @mbrookes, @michaldudak, @mj12albert, @mnajdova, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @ValkonX33, @ZeeshanTamboli
 
@@ -2112,11 +2005,6 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [core] Update eslint rules (#39178) @romgrk
 - [core] Fix Greg GitHub slug @oliviertassinari
 - [core] Priority Support casing normalization @oliviertassinari
-- [website] Add Heatmap in pricing page (#39269) @oliviertassinari
-- [website] Update `React Engineer - xCharts` Ashby link (#39172) @DanailH
-- [website] Add Charts to the pricing table (#38680) @alexfauquette
-- [website] Polish career experience @oliviertassinari
-- [website] Simplify the Core products file (#39194) @danilo-leal
 
 All contributors of this release in alphabetical order: @alexfauquette, @brijeshb42, @DanailH, @danilo-leal, @DiegoAndai, @Erik-McKelvey, @Janpot, @mj12albert, @mnajdova, @oliviertassinari, @romgrk, @sai6855, @Semigradsky, @siriwatknp, @xulingzhihou, @zanivan, @ZeeshanTamboli
 
@@ -2187,14 +2075,6 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [docs-infra] Fix error when redirecting to the root page (#38451) @maheshguntur
 - [docs-infra] Open demo crash in the right repository (#39006) @oliviertassinari
 - [test] Split the test package (#39061) @michaldudak
-- [website] React Engineer - xCharts role (#38976) @DanailH
-- [website] Improve the highlighter component colors (#39087) @danilo-leal
-- [website] Fix Pricing page row hover (#39097) @danilo-leal
-- [website] Fix typo with straight quote @oliviertassinari
-- [website] Sync about page @oliviertassinari
-- [website] Update the about page (#38733) @danilo-leal
-- [website] Small fixes on the X marketing page (#38975) @flaviendelangle
-- [website] Add stray design tweaks to the X page (#38589) @danilo-leal
 
 All contributors of this release in alphabetical order: @alexfauquette, @alisasanib, @anle9650, @anon-phantom, @DanailH, @danilo-leal, @DiegoAndai, @flaviendelangle, @gitstart, @Janpot, @jergason, @maheshguntur, @michaldudak, @mikailaread, @mj12albert, @mnajdova, @oliviertassinari, @sai6855, @Studio384, @tebersefa, @vadimka123, @zanivan, @ZeeshanTamboli
 
@@ -2245,10 +2125,6 @@ A big thanks to the 16 contributors who made this release possible. This release
 - [core] Fix bundle size upload to S3 job (#38956) @Janpot
 - [core] Move eslint to peer dependencies of eslint-plugin-material-ui (#39033) @michaldudak
 - [docs-infra] Display markdown lists correctly in docs for props description (#38973) @ZeeshanTamboli
-- [website] Improve lighthouse score (#39011) @oliviertassinari
-- [website] Fix lighthouse issues @oliviertassinari
-- [website] Create the `InfoCard` component (#38987) @danilo-leal
-- [website] Small tweaks for performance @oliviertassinari
 - [zero][next] Setup nextjs plugin package (#38852) @brijeshb42
 
 All contributors of this release in alphabetical order: @alisasanib, @brijeshb42, @danilo-leal, @DarhkVoyd, @DiegoAndai, @Janpot, @mateuseap, @Methuselah96, @michaldudak, @mj12albert, @mnajdova, @MonstraG, @oliviertassinari, @sai6855, @siriwatknp, @ZeeshanTamboli
@@ -2353,8 +2229,6 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [docs-infra] Improve show code button affordance (#38824) @danilo-leal
 - [docs–infra] Fix callout container width (#38880) @oliviertassinari
 - [docs-infra] Catch duplicated trailing splashes in links (#38758) @oliviertassinari
-- [website] add Michel Engelen to the about us page (#38818) @michelengelen
-- [website] Add a templates & design kits section to the Material UI page (#38617) @danilo-leal
 
 All contributors of this release in alphabetical order: @brentertz, @brijeshb42, @danilo-leal, @DiegoAndai, @dvkam, @flaviendelangle, @Janpot, @LadyBluenotes, @michaldudak, @michelengelen, @mj12albert, @mnajdova, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli
 
@@ -2442,11 +2316,6 @@ A big thanks to the 25 contributors who made this release possible.
 - [docs-infra] Fix leaking callout content (#38712) @danilo-leal
 - [docs-infra] Remove emoji from callouts (#38694) @danilo-leal
 
-- [website] Fix out of date discount value @oliviertassinari
-- [website] Fix out-of-date label on Toolpad (#38744) @bharatkashyap
-- [website] Fine-tune branding buttons box shadows (#38731) @danilo-leal
-- [website] Fix pricing table style (#38681) @alexfauquette
-
 All contributors of this release in alphabetical order: @alexfauquette, @alisasanib, @amal-qb, @anle9650, @anon-phantom, @bharatkashyap, @brijeshb42, @christophermorin, @danilo-leal, @flaviendelangle, @imevanc, @jyash97, @mbrookes, @michaldudak, @mj12albert, @oliviertassinari, @omriklein, @pcorpet, @rajgop1, @ruflair, @sai6855, @siriwatknp, @szalonna, @zanivan, @ZeeshanTamboli
 
 ## 5.14.7
@@ -2488,7 +2357,6 @@ A big thanks to the 11 contributors who made this release possible. This release
 - [docs-infra] Mark unstable components with a chip in the nav drawer (#38573) @michaldudak
 - [docs-infra] Adjust the Material You playground demo design (#38636) @danilo-leal
 - [docs-infra] Hide the SkipLink button if user prefers reduced motion (#38632) @DerTimonius
-- [website] Add tiny fixes the homepage Sponsors section (#38635) @danilo-leal
 
 All contributors of this release in alphabetical order: @brijeshb42, @danilo-leal, @DerTimonius, @DiegoAndai, @Janpot, @jaydenseric, @mj12albert, @oliviertassinari, @renovate[bot], @sai6855, @VishruthR
 
@@ -2600,13 +2468,6 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [docs-infra] Improve the alert before a negative feedback (#38500) @danilo-leal
 - [docs-infra] Fix GoogleAnalytics missing event for code copy (#38469) @alexfauquette
 - [docs-infra] Improve affordance on the code block expansion (#38421) @danilo-leal
-- [website] Fine-tune the branding theme buttons (#38588) @danilo-leal
-- [website] Improve the Base UI hero section demo (#38585) @danilo-leal
-- [website] Add stray design improvements to the Material UI page (#38590) @danilo-leal
-- [website] Fix mobile view Material UI page (#38568) @oliviertassinari
-- [website] Fix reference to the data grid @oliviertassinari
-- [website] Configure Apple Pay @oliviertassinari
-- [website] Fix template link on the homepage (#38471) @danilo-leal
 
 All contributors of this release in alphabetical order: @0xturner, @alexfauquette, @alisasanib, @brijeshb42, @codersjj, @cristianmacedo, @danilo-leal, @DiegoAndai, @GresilleSiffle, @homerchen19, @johnmatthiggins, @michaldudak, @mj12albert, @mnajdova, @mwskwong, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli
 
@@ -2672,11 +2533,6 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [docs-infra] Move imports into page data (#38297) @alexfauquette
 - [docs-infra] Adjust heading styles (#38365) @danilo-leal
 - [docs-infra] Fix info callout border color (#38370) @danilo-leal
-- [website] Upgrade the homepage hero demos design (#38388) @danilo-leal
-- [website] Improve Base UI hero section demo (#38255) @danilo-leal
-- [website] Fix EmailSubscribe look (#38429) @oliviertassinari
-- [website] Link Discord in footer (#38369) @richbustos
-- [website] Clean up the `GetStartedButtons` component (#38256) @danilo-leal
 
 All contributors of this release in alphabetical order: @alexfauquette, @ashleykolodziej, @danilo-leal, @decadef20, @DiegoAndai, @flaviendelangle, @LukasTy, @michaldudak, @mj12albert, @mnajdova, @nithins1, @oliviertassinari, @richbustos, @sai6855, @samuelsycamore, @TheNatkat, @zanivan
 
@@ -2758,10 +2614,6 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [examples][material-ui] Add Material UI + Next.js (App Router) example in JS (#38323) @samuelsycamore
 - [blog] Discord announcement blog (#38258) @richbustos
 - [blog] Fix 301 links to Toolpad @oliviertassinari
-- [website] Updating Charts demo with real charts usage for MUI X marketing page (#38317) @richbustos
-- [website] Adjust styles of the Product section on the homepage (#38366) @danilo-leal
-- [website] Add Nora teamMember card to 'About' (#38358) @noraleonte
-- [website] Fix image layout shift (#38326) @oliviertassinari
 
 ### Core
 
@@ -2862,9 +2714,6 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [core] Polish Stack test to closer CSS injection order @oliviertassinari
 - [core] Remove unnecessary `Required` utility type from Typography font style type (#38203) @ZeeshanTamboli
 - [core] Fix generate Proptypes script skipping unstable items (#38198) @mj12albert
-- [website] Adding Rich Bustos Twitter handle in bio (#38213) @richbustos
-- [website] Prepare importing data from HiBob (#38238) @oliviertassinari
-- [website] Sync team member with HiBob, add Raffaella (#38201) @rluzists1
 
 All contributors of this release in alphabetical order: @cherniavskii, @DiegoAndai, @divyammadhok, @DSK9012, @flaviendelangle, @gitstart, @michaldudak, @mj12albert, @mnajdova, @oliviertassinari, @prakhargupta1, @richbustos, @rluzists1, @sai6855, @siriwatknp, @zanivan, @ZeeshanTamboli
 
@@ -2915,15 +2764,6 @@ A big thanks to the 23 contributors who made this release possible.
 - [blog] Update discord server link (#38131) @prakhargupta1
 - [core] Fix rsc-builder removing the first line (#38134) @michaldudak
 - [core] Remove the deprecation rule in tslint (#38087) @michaldudak
-- [website] Mobile navigation: Toolpad to Beta (#38146) @bharatkashyap
-- [website] Fix typo on pricing page @oliviertassinari
-- [website] Fix a few regression (#38050) @oliviertassinari
-- [website] Update Demo footers on MUI X landing page (#38027) @richbustos
-- [website] Fix 301 redirection to base index page @oliviertassinari
-- [website] Fix Cell selection feature name (#38029) @oliviertassinari
-- [website] Improve button look (#38052) @oliviertassinari
-- [website] Link new core page to new Base UI landing page (#38030) @mj12albert
-- [website] Polish pricing page (#37975) @oliviertassinari
 - [test] Fail the CI when new unexpected files are created (#38039) @oliviertassinari
 - [test] Fix linting error by matching main component demo name to filename (#38122) @ZeeshanTamboli
 
@@ -3012,11 +2852,6 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 - [docs-infra] Remove icons and tweak the design of the side nav (#37860) @danilo-leal
 - [docs-infra] Fix TypeScrit error in demo export (#37830) @oliviertassinari
 - [notifications] Add notification for first Charts release (#37679) @joserodolfofreitas
-- [website] Add Base UI marketing page (#36622) @siriwatknp
-- [website] Update MUI X landing page (#37966) @cherniavskii
-- [website] Fix a11y issues (#37999) @oliviertassinari
-- [website] Make the Core page refer to group of products (#37608) @danilo-leal
-- [website] Add perpetual option to pricing page (#35504) @joserodolfofreitas
 
 All contributors of this release in alphabetical order: @alexfauquette, @brijeshb42, @cherniavskii, @DanailH, @danilo-leal, @DiegoAndai, @divyammadhok, @ericbrian, @Janpot, @joserodolfofreitas, @Methuselah96, @michaldudak, @mj12albert, @mnajdova, @officialrajdeepsingh, @oliviertassinari, @OmPr366, @OndrejHj04, @prakhargupta1, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli
 
@@ -3082,7 +2917,6 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [core] Disambiguate eslint plugin name @oliviertassinari
 - [core] Sync the lint script name with the other repositories @oliviertassinari
 - [core] Point to Crowdin directly @oliviertassinari
-- [website] Sync career page (#37847) @oliviertassinari
 
 All contributors of this release in alphabetical order: @alexfauquette, @cherniavskii, @danilo-leal, @DiegoAndai, @enrique-ramirez, @gitstart, @LukasTy, @MaybePixem, @mj12albert, @mnajdova, @nicolas-ot, @oliviertassinari, @samuelsycamore, @siriwatknp, @Studio384
 
@@ -3164,11 +2998,6 @@ This release focuses primarily on 🐛 bug fixes, 📚 documentation, and ⚙️
 - [docs-infra] Adjust demo component container design (#37659) @danilo-leal
 - [test] Fix test:e2e local run (#37719) @oliviertassinari
 - [test] Remove failing test in dev @oliviertassinari
-- [website] Add no-op service worker to fix stale cache issue (#37607) @cherniavskii
-- [website] Transition the Core page to be Material UI instead (#37583) @danilo-leal
-- [website] Update the pricing page to reflect sales (#37751) @oliviertassinari
-- [website] Match Copyright with the rest of the website @oliviertassinari
-- [website] Support deep linking to pricing FAQ @oliviertassinari
 
 All contributors of this release in alphabetical order: @AdamSundberg, @alexfauquette, @bigteech, @cherniavskii, @cmd-johnson, @DanailH, @danilo-leal, @Dlouxgit, @gateremark, @Janpot, @michaldudak, @mnajdova, @MUK-Dev, @oliviertassinari, @sai6855, @saikathalderr, @siriwatknp, @vonagam, @zanivan, @ZeeshanTamboli, @zephyrus21
 
@@ -3247,9 +3076,6 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 
 - [core] Update to Node.js v18 for `test-dev` CI (#37604) @ZeeshanTamboli
 - [core] Add priority support issue template (#37671) @DanailH
-- [website] Update roadmap page (#37587) @cherniavskii
-- [website] Add CSP to limit iframes to self @oliviertassinari
-- [website] Link mui-x Stack Overflow in footer link (#37509) @richbustos
 
 All contributors of this release in alphabetical order: @abhinavkmrru, @alexfauquette, @bencevoros, @cherniavskii, @danilo-leal, @DiegoAndai, @DIWAKARKASHYAP, @flaviendelangle, @gitstart, @hbjORbj, @ivp-dev, @Janpot, @michaldudak, @mnajdova, @oliviertassinari, @Primajin, @PunitSoniME, @richbustos, @romgrk, @sai6855, @sernstberger, @siriwatknp, @SuperKXT, @vinayr, @ZeeshanTamboli
 
@@ -3292,8 +3118,6 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 
 - Move the React Community Engineer - X in Open Roles (#37552) @DanailH
 - [core] Update Node.js version to v18 on CircleCI, CodeSandbox, and Netlify (#37173) @ZeeshanTamboli
-- [website] RIDI gold sponsorship end (#37517) @oliviertassinari
-- [website] Update X landing page (#37387) @cherniavskii
 
 All contributors of this release in alphabetical order: @brijeshb42, @cherniavskii, @DanailH, @DiegoAndai, @musama619, @oliviertassinari, @sernstberger, @siriwatknp, @ZeeshanTamboli
 
@@ -3338,7 +3162,6 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 ### Core
 
 - [core] Do not let Renovate handle `examples` packages updates (#37386) @ZeeshanTamboli
-- [website] Add header filters to the pricing table (#37455) @MBilalShafi
 
 All contributors of this release in alphabetical order: @brijeshb42, @danielplewes, @danilo-leal, @DiegoAndai, @gitstart, @MBilalShafi, @mj12albert, @oliviertassinari, @sai6855, @siriwatknp, @vishalthatipamula0219, @ZeeshanTamboli
 
@@ -3389,8 +3212,6 @@ This release focuses primarily on 🐛 bug fixes and 📚 documentation improvem
 
 - [core] Include scoped JSX namespace when resolving props (#37404) @LukasTy
 - [test][useMediaQuery] Change SSR test description (#37403) @zignis
-- [website] Sync with Ashby @oliviertassinari
-- [website] Add David to about page (#37379) @DavidCnoops
 
 All contributors of this release in alphabetical order: @akash191095, @brijeshb42, @canac, @DavidCnoops, @gitstart, @hbjORbj, @JhonnK08, @LukasTy, @michaldudak, @necatiozmen, @nicolas-ot, @oliviertassinari, @sai6855, @ZeeshanTamboli, @zignis
 
@@ -3425,8 +3246,6 @@ A big thanks to the 12 contributors who made this release possible.
 - [docs][Transitions] Fix typo in code sample (#37300) @alexfauquette
 - [examples] Remove `@babel/plugin-proposal-class-properties` from Material-Express-SSR example (#37305) @ZeeshanTamboli
 - [Website] Add Brijesh to About page (#37318) @brijeshb42
-- [website] Update pricing table (#37290) @cherniavskii
-- [website] Update core open roles (#37224) @mnajdova
 
 ### Core
 
@@ -3491,9 +3310,6 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 - [core] Remove `toEqualDateTime` chai matcher (#37073) @flaviendelangle
 - [core] Check dependency cycles inside packages directory only (#37223) @michaldudak
 - [core] Remove outdated babel proposal plugins (#36795) @kkocdko
-- [website] Add Diego to About Us page (#37284) @DiegoAndai
-- [website] Add Victor teamMember card to 'About' (#37283) @zanivan
-- [website] Add Rich to the 'About' page (#37221) @richbustos
 
 All contributors of this release in alphabetical order: @Bastian, @binh1298, @cccEric, @cherniavskii, @DerTimonius, @DiegoAndai, @flaviendelangle, @hbjORbj, @jguddas, @kkocdko, @kriskw1999, @mauwaz, @michaldudak, @mnajdova, @nickiaconis, @nicolas-ot, @oliviertassinari, @PunitSoniME, @richbustos, @safeamiiir, @sai6855, @siriwatknp, @uuxxx, @zanivan, @ZeeshanTamboli
 
@@ -3553,9 +3369,6 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [blog] Fix images using "MUI Base" instead of "Base UI" (#37044) @danilo-leal
 - [core] Add VSCode extensions recommendations (#37166) @michaldudak
 - [test] `e2e-website` related minor fixes (#37204) @ZeeshanTamboli
-- [website] Update the active positions (#37075) @DanailH
-- [website] Add Romain to the About page (#37124) @romgrk
-- [website] Make Toolpad alpha labels consistent (#37125) @gerdadesign
 
 All contributors of this release in alphabetical order: @akash191095, @DanailH, @danilo-leal, @DerTimonius, @gerdadesign, @hbjORbj, @kriskw1999, @michaldudak, @mnajdova, @oliviertassinari, @PunitSoniME, @romgrk, @sai6855, @ulrichstark, @uuxxx, @wewakekumar, @ZeeshanTamboli, @zignis
 
@@ -3669,8 +3482,6 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [docs][base] Move styles to the bottom of demos code for `Snackbar` (#36719) @varunmulay22
 - [docs][base] Move styles to the bottom of demos code for `SelectUnstyled` (#36718) @varunmulay22
 - [templates] Image not displayed in blog layout of React template. (#36991) @navedqb
-- [website] Take the design role offline @oliviertassinari
-- [website] Fix URL convention @oliviertassinari
 - [docs] Turn off job banner on docs (#36080) @joserodolfofreitas
 
 ### Core
@@ -3740,10 +3551,6 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 
 - [core] Fix CI failure on `master` (#37016) @hbjORbj
 - [typescript] Add the missing explicit component return types (#36924) @michaldudak
-- [website] Update main data grid demo on X landing page (#37001) @cherniavskii
-- [website] Design role updates (#36997) @danilo-leal
-- [website] X component section improvements (#36598) @danilo-leal
-- [website] Developer Advocate role filled @oliviertassinari
 
 All contributors of this release in alphabetical order: @alexfauquette, @cherniavskii, @danilo-leal, @gitstart, @hbjORbj, @michaldudak, @mj12albert, @mnajdova, @oliviertassinari, @PupoSDC, @sai6855, @siriwatknp, @TakhyunKim, @tomaskebrle
 
@@ -3817,7 +3624,6 @@ A big thanks to the 16 contributors who made this release possible. This release
 
 - [core] Use glob to find the test files in parseTest (#36305) @flaviendelangle
 - [core] Fix minor SEO issues @oliviertassinari
-- [website] Fix visual bug appbar (#36875) @oliviertassinari
 
 All contributors of this release in alphabetical order: @emlai, @flaviendelangle, @gitstart, @hbjORbj, @jesrodri, @keyvanm, @michaldudak, @mj12albert, @navedqb, @oliviertassinari, @rkdrnf, @sai6855, @samuelsycamore, @siriwatknp, @varunmulay22, @ZeeshanTamboli
 
@@ -3866,9 +3672,6 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 
 - [core] Increase margin to scroll @oliviertassinari
 - [core] Replace MUI Base with Base UI (#36716) @mnajdova
-- [website] Fix broken career website links @oliviertassinari
-- [website] Fix backlinks to homepage (#36801) @oliviertassinari
-- [website] Tweaks to the Designer position ad (#36771) @danilo-leal
 
 All contributors of this release in alphabetical order: @alirezahekmati, @danilo-leal, @hbjORbj, @Lioness100, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp, @ZeeshanTamboli
 
@@ -4041,15 +3844,11 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [docs][joy] Build TS versions for Switch component demos (#36379) @varunmulay22
 - [docs] Remove `shouldSkipGeneratingVar` usage (#36581) @siriwatknp
 - [docs][material] Update Table's demo to show pointer cursor on clickable rows (#36546) @varunmulay22
-- [website] Designer role changes (#36528) @danilo-leal
-- [website] Open Head of Operations role (#36501) @oliviertassinari
-- [website] Limit sponsors description to two rows @oliviertassinari
 
 ### Core
 
 - [core] Fix CI @oliviertassinari
 - [core] Fix blank line @oliviertassinari
-- [website] Simplify internal ops @oliviertassinari
 
 All contributors of this release in alphabetical order: @danilo-leal, @dav1app, @gabrielnafuzi, @hbjORbj, @HediMuhamad, @michalak111, @mikailaread, @mnajdova, @oliviertassinari, @pratikkarad, @RomanHotsiy, @sai6855, @siriwatknp, @varunmulay22, @zaverden
 
@@ -4089,8 +3888,6 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 - [docs] Fix 404 in the API page links (#36419) @oliviertassinari
 - [docs][joy] Error in the exemplary Codesandbox of using Material UI and Joy UI together (#36462) @hbjORbj
 - [examples] Refactor to have better types in the Next.js + TypeScript examples (#36355) @erikian
-- [website] Fix layout shift when loading /blog/mui-x-v6/ @oliviertassinari
-- [website] Update stats (#36477) @hrutik7
 
 All contributors of this release in alphabetical order: @erikian, @hbjORbj, @HeVictor, @hrutik7, @joserodolfofreitas, @m4theushw, @michaldudak, @oliviertassinari, @oyar99, @rayrw, @sai6855, @siriwatknp, @skevprog
 
@@ -4233,8 +4030,6 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - Revert "Bump rimraf to ^4.1.3" (#36420) @mnajdova
 - [core] Fix test utils types and external `buildApiUtils` usage issues (#36310) @LukasTy
 - [test] Remove duplicate `combobox` role queries in Autocomplete tests (#36394) @ZeeshanTamboli
-- [website] Clarify redistribution @oliviertassinari
-- [website] Sync /about page (#36334) @oliviertassinari
 
 All contributors of this release in alphabetical order: @cherniavskii, @hbjORbj, @joserodolfofreitas, @Kuba429, @Kundan28, @LukasTy, @MBilalShafi, @michaldudak, @mnajdova, @NoFr1ends, @oliviertassinari, @Osman-Sodefa, @Paatus, @sai6855, @SaidMarar, @varunmulay22, @ZeeshanTamboli
 
@@ -4322,8 +4117,6 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 ### Core
 
 - [Rating] Add a comment in Rating component to use `readOnly` state class (#36357) @ZeeshanTamboli
-- [website] Fix broken links to role levels (#36333) @oliviertassinari
-- [website] Sync gold sponsors (#36312) @oliviertassinari
 
 All contributors of this release in alphabetical order: @hbjORbj, @HeVictor, @ivp-dev, @jrparish, @Juneezee, @LukasTy, @MBilalShafi, @michaldudak, @mnajdova, @oliviertassinari, @ossan-engineer, @sai6855, @siriwatknp, @Vivek-Prajapatii, @ZeeshanTamboli
 
@@ -4439,8 +4232,6 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [core] Add default preview url (#36118) @siriwatknp
 - [core] Migrate all the internals exported by `tests/utils/index.js` to TypeScript (#35382) @flaviendelangle
 - [core] Convert the waterfall module to an internal package (#35323) @michaldudak
-- [website] Fix homepage MD theme demo (#36027) @oliviertassinari
-- [website] Revise the Lead Designer role job ad (#35912) @danilo-leal
 - [POC] Add deploy preview to PR body (#35995) @siriwatknp
 
 All contributors of this release in alphabetical order: @danilo-leal, @donaldnevermore, @flaviendelangle, @hbjORbj, @LadyBluenotes, @LukasTy, @m4theushw, @michaldudak, @mj12albert, @mnajdova, @oliv37, @oliviertassinari, @petyosi, @rangoo94, @sai6855, @Shorifpatwary, @siriwatknp
@@ -4493,9 +4284,6 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [core] Fix SEO redirections issues (#36041) @oliviertassinari
 - [core] Fix a typo in the comment in setup test files (#36014) @ZeeshanTamboli
 - [typescript] Explicitly define the component return types (#36013) @michaldudak
-- [website] Fix layout shift (#36070) @oliviertassinari
-- [website] Revise the Lead Designer role job ad (v1) (#36068) @oliviertassinari
-- [website] Add Albert to the about page (#35954) @mj12albert
 
 All contributors of this release in alphabetical order: @alexownejazayeri, @ArthurPedroti, @badalsaibo, @chuanyu0201, @joserodolfofreitas, @m4theushw, @michaldudak, @mj12albert, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp, @yoskeoka, @ZeeshanTamboli
 
@@ -4579,9 +4367,6 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 - [core] Boolean props always have a default value of `false` in API docs (#35913) @hbjORbj
 - [core] Improve types for usePreviousProps (#35833) @sai6855
-- [website] Fix 404 link to store (#35973) @oliviertassinari
-- [website] Fix 302 of diamond sponsor link @oliviertassinari
-- [website] Fix outdated YouTube link @oliviertassinari
 
 All contributors of this release in alphabetical order: @ArthurPedroti, @badalsaibo, @gorjiali, @hbjORbj, @HeVictor, @idebeijer, @joserodolfofreitas, @marktoman, @oliviertassinari, @sai6855, @SaidMarar, @samuelsycamore, @siriwatknp, @Vivek-Prajapatii, @ZeeshanTamboli
 
@@ -4654,8 +4439,6 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 - [core] Fix release changelog to handle commits with empty author field (#35921) @mnajdova
 - [core] Revert `docs-utilities` migration to TypeScript and fix type (#35881) @ZeeshanTamboli
 - [core] Migrate internal `docs-utilities` package to TypeScript (#35846) @ZeeshanTamboli
-- [website] Designer don't spend their time writing code @oliviertassinari
-- [website] Emphasis the technical background need for this role @oliviertassinari
 
 All contributors of this release in alphabetical order: @HeVictor, @hbjORbj, @joserodolfofreitas, @mj12albert, @mnajdova, @oliv37, @oliviertassinari, @petyosi, @rosita-dmello, @sai6855, @SaidMarar, @tech-meppem, @ZeeshanTamboli
 
@@ -4710,11 +4493,6 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### Core
 
-- [website] Improve pricing page (#35767) @oliviertassinari
-- [website] Add Greg in about page (#35816) @oliviertassinari
-- [website] Update the Accessibility Engineer role (#35751) @oliviertassinari
-- [website] Add docs for MUI for Figma @oliviertassinari
-
 All contributors of this release in alphabetical order: @alexfauquette, @atrefonas, @fenghan34, @hbjORbj, @HeVictor, @Juneezee, @LukasTy, @mnajdova, @msoyka, @nnmax, @oliviertassinari, @pupudu, @sai6855, @samuelsycamore, @siriwatknp, @volhalink, @ZeeshanTamboli
 
 ## 5.11.4
@@ -4761,7 +4539,6 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [core] Fix the product license reference name (#35703) @oliviertassinari
 - [core] Use TypeScript AST instead of TTP for component doc building (#35379) @flaviendelangle
 - [test] Always use & for nesting styles (#35702) @oliviertassinari
-- [website] Improve Lead Designer role description (#35684) @oliviertassinari
 
 All contributors of this release in alphabetical order: @CowDotDev, @flaviendelangle, @hamirmahal, @hbjORbj, @koolskateguy89, @michaldudak, @miha53cevic, @mnajdova, @oliviertassinari, @Ryczko, @sai6855, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
 
@@ -4857,7 +4634,6 @@ A big thanks to the 20 contributors who made this release possible. Here are som
 - [docs] Remove empty tags on the TransferList demos (#33127) @ekusiadadus
 - [docs][joy] Add documentation for `Stack` component (#35373) @hbjORbj
 - [docs][joy] Add documentation for `Grid` component (#35374) @hbjORbj
-- [website] Update sponsor grid (#35452) @danilo-leal
 
 ### Core
 
@@ -4919,8 +4695,6 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [docs] Add `CardMedia` example without `component="img"` prop (#35470) @lucasmfredmark
 - [docs] Fix `unstable_sxConfig` typo (#35478) @siriwatknp
 - [docs] List component introduction example default code is missing ListItemContent component (#35492) @Miigaarino
-- [website] Close our first people role @oliviertassinari
-- [website] Update product icons (#35413) @danilo-leal
 
 ### Core
 
@@ -4990,16 +4764,12 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [docs] Direct users from Material UI to Base UI for duplicated components (#35293) @samuelsycamore
 - [docs] Fix typo in FormControl API docs (#35449) @Spanishiwa
 - [docs] Update callouts design (#35390) @danilo-leal
-- [website] New wave of open roles (#35240) @mnajdova
-- [website] Developer Survey 2022 (#35407) @joserodolfofreitas
 
 ### Core
 
 - [core] Fix @mui/material package building (#35324) @timbset
 - [core] Fix leaking theme color override (#35444) @oliviertassinari
 - [typescript] Add null to return type of OverridableComponent (#35311) @tsollbach
-- [website] Migrate X page to use CSS theme variables (#34922) @jesrodri
-- [website] Migrate `/core` page to use CSS variables (#35366) @siriwatknp
 
 All contributors of this release in alphabetical order: @alexfauquette, @Armanio, @danilo-leal, @EduardoSCosta, @flaviendelangle, @jesrodri, @joserodolfofreitas, @kraftware, @michaldudak, @mnajdova, @oliviertassinari, @PratikDev, @samuelsycamore, @siriwatknp, @Spanishiwa, @timbset, @tsollbach, @vitorfrs-dev, @ZeeshanTamboli
 
@@ -5064,7 +4834,6 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [docs] Revise and expand the Joy UI "Badge" page (#35199) @samuelsycamore
 - [docs] Update Base UI docs with latest style conventions (#35034) @samuelsycamore
 - [l10n] Improve Chinese (Taiwan) zh-TW locale (#35328) @happyincent
-- [website] Update stats: GitHub stars, Twitter followers, etc. (#35318) @nomandhoni-cs
 
 ### Core
 
@@ -5073,7 +4842,6 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [core] Move the internal packages from docs/packages (#35305) @michaldudak
 - [core] Clean up the API docs generation scripts (#35244) @michaldudak
 - [test] Scope the tests to just Material UI components (#35219) @siriwatknp
-- [website] Remove BlackFriday notification @oliviertassinari
 
 All contributors of this release in alphabetical order: @flaviendelangle, @guotie, @happyincent, @hbjORbj, @Juneezee, @michaldudak, @mnajdova, @nomandhoni-cs, @oliviertassinari, @Pandey-utkarsh, @sai6855, @samuelsycamore, @siriwatknp, @Uzwername, @zignis
 
@@ -5171,10 +4939,6 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 - [docs] Make navbar backdrop filter consistent with website (#35157) @danilo-leal
 - [docs] Host CodeSandbox on MUI org (#35110) @oliviertassinari
 - [docs] Uplift introduction demos & make consistent with Base (#34316) @danilo-leal
-- [website] Add Security questionnaire in pricing (#35172) @oliviertassinari
-- [website] Fix theme mode toggle state (#35216) @siriwatknp
-- [website] Exclude experiment pages in production (#35180) @siriwatknp
-- [website] Disable SEO for performance pages (#35173) @oliviertassinari
 
 ### Core
 
@@ -5231,12 +4995,6 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [docs] Upgrade to Next.js 13 (#35001) @mnajdova
 - [docs] Fix typo in changelog @oliviertassinari
 - [docs] Update Joy UI templates to use latest components (#35058) @siriwatknp
-- [website] Fix design kits showcase throwing an error (#35093) @cherniavskii
-- [website] Fix margin bug on CTA @oliviertassinari
-- [website] Link respective repositories in product pages (#35046) @sidtohan
-- [website] Migrate blog pages to use CSS theme variables (#34976) @siriwatknp
-- [website] Update DoiT International logo and links with new brand (#35030) @ofir5300
-- [website] Improve visual design app bar (#35111) @oliviertassinari
 
 ### Core
 
@@ -5296,10 +5054,6 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 - [docs] Add author and published_time meta tags (#34382) @alexfauquette
 - [examples] Next.js examples v13 - fonts (#34971) @PetroSilenius
 - [examples] Next.js examples v13 - links (#34970) @PetroSilenius
-- [website] Update IPinfo.AI name @oliviertassinari
-- [website] Remove date-io from the docs dependencies (#34748) @michaldudak
-- [website] Migrate Design-kits page to use CSS theme variables (#34920) @jesrodri
-- [website] Migrate Pricing page to use CSS theme variables (#34917) @trizotti
 
 ### Core
 
@@ -5355,13 +5109,6 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [docs] Update templates' readme files to include required dependencies (#34757) @michaldudak
 - [docs] Fix inconsistent theme colors when applying custom colors in playground (#34866) @cherniavskii
 - [docs] Fix typo in bottom-navigation.md (#34884) @RoodyCode
-- [website] Migrate about-us page to use CSS theme variables (#34919) @brianlu2610
-- [website] Migrate Product-Templates page to use CSS theme variables (#34913) @EduardoSCosta
-- [website] Migrate career page to use CSS theme variables (#34908) @the-mgi
-- [website] Update MUI X open and future roles + about page (#34894) @DanailH
-- [website] Remove one DOM node (#34960) @oliviertassinari
-- [website] Use `span` for icon image (#34914) @siriwatknp
-- [website] Fix subscribe input with Safari (#34869) @oliviertassinari
 
 ### Core
 
@@ -5454,8 +5201,6 @@ A big thanks to the 10 contributors who made this release possible. Here are som
 - [docs] Fix search icons in other languages (#34823) @siriwatknp
 - [docs] Fix JavaScript capitalization @oliviertassinari
 - [docs] Update new links to MD2 (#34848) @oliviertassinari
-- [website] Update future work items on X landing page (#34810) @joserodolfofreitas
-- [website] Add Toolpad docs to navigation (#34749) @bharatkashyap
 
 ### Core
 
@@ -5518,9 +5263,6 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [docs] Revise the Joy UI "Global variants" page (#34595) @samuelsycamore
 - [docs] Basic link verification at PR level (#34588) @alexfauquette
 - [docs] Add a missing comma in the customization example (#34617) @AbayKinayat
-- [website] Clarify Pro/Premium support (#34607) @oliviertassinari
-- [website] Fix home page dark mode flicker (#33545)
-- [website] Update the state of the date pickers on the landing page (#34750) @joserodolfofreitas
 
 ### Core
 
@@ -5643,8 +5385,6 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [docs] Capitalize Material Design on the Breakpoints page (#34481) @Dustin-Digitar
 - [docs] Able to load doc components inside markdown files (#34243) @flaviendelangle
 - [docs] Use mouse pointer on esc button in the search modal (#34485) @minkyngkm
-- [website] Fix typo in pricing FAQ @oliviertassinari
-- [website] Move the React Engineer role from open to next (#34494) @mnajdova
 
 ### Core
 
@@ -5724,8 +5464,6 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [docs] Improve social sharing of docs pages (#34346) @oliviertassinari
 - [docs] Refine the use of MUI vs. Material UI (#34345) @oliviertassinari
 - [docs] Send feedback directly to a dedicated slack channel (#34196) @alexfauquette
-- [website] Adds Bilal to about page (#34412) @MBilalShafi
-- [website] Add date range picker to pricing table (#34399) @joserodolfofreitas
 
 ### Core
 
@@ -5797,8 +5535,6 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [docs] Move 12 component names to Title Case (#34188) @oliviertassinari
 - [docs] Fix broken links (#34320) @alexfauquette
 - [docs] Add notification for Base UI announcement post (#34295) @samuelsycamore
-- [website] Fix MUI X subscribe email border style (#34330) @oliviertassinari
-- [website] Improve security header @oliviertassinari
 
 ### Core
 
@@ -5844,8 +5580,6 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 - [docs] Fix spelling error (#34209) @ChrystianDeMatos
 - [docs] Improve link to the security policy (#34219) @oliviertassinari
 - [docs] Fix typo in Joy UI's `Usage` docs (#34200) @zillion504
-- [website] Add Lukas to the about page (#34284) @LukasTy
-- [website] Update diamond sponsor URL (#34256) @oliviertassinari
 
 ### Core
 
@@ -5892,9 +5626,6 @@ A big thanks to the 11 contributors who made this release possible. Here are som
 - [docs] Fix a few Base typos (#33986) @ropereraLK
 - [docs] Revise Joy UI "Overview" page copy (#34087) @samuelsycamore
 - [blog] Fix social cards (#34160) @oliviertassinari
-- [website] Allow deep linking to sponsors @oliviertassinari
-- [website] Update job descriptions (#34134) @DanailH
-- [website] Link Toolpad landing page @oliviertassinari
 
 ### Core
 
@@ -5954,10 +5685,6 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [docs] Fix 301 links to tss's docs @oliviertassinari
 - [docs] Fixing Joy UI usage snippet (#34049) @JonathanAsbury-SPS
 - [docs] Fix missing JSX closing tag in Tooltip docs (#34064) @hoangph271
-- [website] Add Toolpad to Navigation (#33937) @bharatkashyap
-- [website] Improve SEO meta description for MUI X @oliviertassinari
-- [website] Improve visual look of code demos (#34070) @oliviertassinari
-- [website] Fix `DatePicker` component demo on the home page (#34054) @NaveenPantra
 
 ### Core
 
@@ -6013,10 +5740,7 @@ A big thanks to the 11 contributors who made this release possible. Here are som
 
 ### Core
 
-- [website] Optimize meta description length (#34006) @oliviertassinari
 - Revert "[core] Replace `getInitialProps` with `getStaticProps`" (#33991) @mnajdova
-- [website] Move the React Engineer - X to next roles (#34030) @mnajdova
-- [website] Add Icons8 gold sponsor (#33978) @michaldudak
 
 All contributors of this release in alphabetical order: @AjeetSingh2016, @alirezahekmati, @Cerebro92, @danilo-leal, @djohalo2, @jsakas, @michaldudak, @mnajdova, @oliviertassinari, @ropereraLK, @samuelsycamore, @TheUnlocked, @tomasz-sodzawiczny, @ZeeshanTamboli
 
@@ -6066,8 +5790,6 @@ A big thanks to the 18 contributors who made this release possible. This release
 - [docs] Fix `/system/getting-started/advanced/` does not exist (#33867) @MonstraG
 - [docs] New Crowdin updates (#32213) @l10nbot
 - [examples] Fix broken path to favicon.ico (#33906) @mmostafavi
-- [website] Add new FAQ to pricing page (#33553) @oliviertassinari
-- [website] Miscellaneous improvements to the marketing pages (#33897) @danilo-leal
 
 ### Core
 
@@ -6078,7 +5800,6 @@ A big thanks to the 18 contributors who made this release possible. This release
 - [core] Bump yarn to 1.22.19 (#33656) @michaldudak
 - [core] Remove outdated Next.js options (#33845) @oliviertassinari
 - [core] Add the download tracker build script (#33941) @michaldudak
-- [website] Allow /r/store- redirection pattern @oliviertassinari
 
 All contributors of this release in alphabetical order: @arjunvijayanathakurup, @bugzpodder, @cherewaty, @cherniavskii, @cmdcolin, @danilo-leal, @EthanStandel, @hayawata3626, @IsaacInsoll, @l10nbot, @michaldudak, @mmostafavi, @MonstraG, @oliviertassinari, @PunitSoniME, @samuelsycamore, @TKrishnasamy, @ZeeshanTamboli
 
@@ -6139,7 +5860,6 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [core] Remove unnecessary packageName attribute from pages (#33488) @cherniavskii
 - [core] Remove duplicated CODE_OF_CONDUCT (#33702) @oliviertassinari
 - [core] Update Playwright packages together (#33737) @michaldudak
-- [website] Fix notifications not being marked as read in production (#33756) @cherniavskii
 
 All contributors of this release in alphabetical order: @adham618, @brentertz, @cherniavskii, @Dsalazar1685, @hbjORbj, @iamxukai, @joserodolfofreitas, @michaldudak, @mnajdova, @oliviertassinari, @pawelsmigielski, @pratikkarad, @PunitSoniME, @siriwatknp, @TimoWilhelm, @ZeeshanTamboli
 
@@ -6190,11 +5910,6 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [docs] Update module reference for `usePagination` (#33675) @fullstackzach
 - [docs] Fix code examples in `styled` API vs `sx` prop docs (#33665) @ZeeshanTamboli
 - [docs][system] Throw an informative error when `theme.vars` is used in `createTheme` and mention this in the theming docs (#33619) @hbjORbj
-- [website] Remove legacy redirect @oliviertassinari
-- [website] Add new legal pages (#33650) @oliviertassinari
-- [website] Clarify when a license in development is required (#33668) @oliviertassinari
-- [website] Update links to rows pages (#33739) @cherniavskii
-- [website] Update pricing table to add aggregation and row pinning (#33659) @joserodolfofreitas
 
 ### Core
 
@@ -6259,11 +5974,6 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [docs] Fix Toolpad docs redirection (#33524) @bharatkashyap
 - [docs] Fix link to Snackbar customization section in Alert docs (#33586) @ZeeshanTamboli
 - [docs] Fix `placement choices` typo in Tooltip docs (#33571) @MonstraG
-- [website] Update home page's sponsor grid (#33528) @danilo-leal
-- [website] Add Vytautas to the about page (#33567) @bytasv
-- [website] Improve newsletter input design (#33585) @danilo-leal
-- [website] Add YouTube link to footer (#33580) @gerdadesign
-- [website] Clarify scope of technical support (#33435) @joserodolfofreitas
 
 ### Core
 
@@ -6402,8 +6112,6 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 
 - [core] Fix @mui/monorepo regression for the import of the docs infra (#33390) @Janpot
 - [core] Remove old babel resolve rule (#33432) @oliviertassinari
-- [website] Shorten the plan descriptions on the pricing page (#32984) @joserodolfofreitas
-- [website] Link EULA in the license quantity section (#33292) @oliviertassinari
 
 All contributors of this release in alphabetical order: @baharalidurrani, @cherniavskii, @danilo-leal, @davidgarciab, @flaviendelangle, @hbjORbj, @ivan-ngchakming, @Janpot, @jgbae, @joebingham-wk, @joserodolfofreitas, @michaldudak, @mnajdova, @oliviertassinari, @omeraplak, @robyyo, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
 
@@ -6454,7 +6162,6 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 - [docs] Add caveat about class components with Tooltip (#33325) @joshkel
 - [docs] Fix SEO issues (#33288) @oliviertassinari
 - [docs] Fix Slider's "player" demo (#33267) @xlianghang
-- [website] Link Toolpad in mui.com (#33287) @oliviertassinari
 
 All contributors of this release in alphabetical order: @aaarichter, @aaronlademann-wf, @danilo-leal, @henriqueholtz, @jake-collibra, @joshkel, @MattiasMartens, @Methuselah96, @michaldudak, @oliviertassinari, @siriwatknp, @TimoWilhelm, @xlianghang
 
@@ -6517,9 +6224,6 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 ### Core
 
 - [core] Remove dead code (#33243) @oliviertassinari
-- [website] Fix the scroll-top for all the website (#33215) @oliviertassinari
-- [website] List new core role @oliviertassinari
-- [website] Fix navigation menu close behavior (#33203) @oliviertassinari
 
 All contributors of this release in alphabetical order: @davidgarciab, @Fafruch, @haneenmahd, @hbjORbj, @howlettt, @jacobweberbowery, @michaldudak, @mnajdova, @oliviertassinari, @SamoraMabuya, @siriwatknp, @WinmezzZ, @ZeeshanTamboli
 
@@ -6576,7 +6280,6 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [docs] Add job ad in table of content (#33143) @mnajdova
 - [docs] Add customization as a value proposition (#33014) @oliviertassinari
 - [examples] Add example using nextjs & @mui/styles as a starter for the migration to v5 (#33005) @mnajdova
-- [website] Replace Airtable with Ashby links for applying to a opened position (#33193) @DanailH
 
 ### Core
 
@@ -6656,8 +6359,6 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 - [docs] Fix typo in Autocomplete CSS API (#32838) @KeaghanKennedy
 - [docs] Improvements for Radio Group Rating Docs (#32843) @Kai-W
 - [docs] Enable Joy pages (#33064) @siriwatknp
-- [website] Add Joy UI to the pricing page (#33099) @danilo-leal
-- [website] Clarify the pricing a bit (#33069) @oliviertassinari
 
 ### Core
 
@@ -6726,9 +6427,6 @@ This release is mostly about 🐛 bug fixes and 📚 documentation improvements.
 - [docs] Remove pickers page from the Lab section (#32961) @DanailH
 - [docs] Show product identifier on updated MUI X Introduction pages (#32966) @samuelsycamore
 - [docs] Throw on 301 links (#32939) @oliviertassinari
-- [website] Add Gerda to the about page (#33038) @danilo-leal
-- [website] Polish the pricing page (#32811) @oliviertassinari
-- [website] Remove unnecessary `address` dependency (#32957) @michaldudak
 
 ### Core
 
@@ -6787,7 +6485,6 @@ A big thanks to the 8 contributors who made this release possible. Here are some
 - [docs] Fix navigation links (#32851) @oliviertassinari
 - [docs] Document the `size` prop for InputLabel (#32936) @romelperez
 - [docs] Add note about transparent background on the outlined Alert variant (#32810) @aaarichter
-- [website] Update the careers's page with the new roles (#32535) @oliviertassinari
 
 ### Core
 
@@ -6856,7 +6553,6 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [docs] Mention the ESLint plugin for detecting unused classes in tss-react (#32666) @garronej
 - [docs] Update `useAutocomplete` demos to use `Mui-focused` class (#32757) @ZeeshanTamboli
 - [examples] Fix `NextLinkComposedProps` gives a TypeScript error (#32655) @ZeeshanTamboli
-- [website] Add Pedro to About Us page (#32803) @apedroferreira
 
 ### Core
 
@@ -6923,10 +6619,6 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [examples] Update remix example's tsconfig with required values (#32723) @michaldudak
 - [examples] Update to use React 18's createRoot (#32506) @mnajdova
 - [l10n] Fix typos and translations on arSD and arEG locales (#31848) @shadigaafar
-- [website] Improve communication about MUI X components that are still wip (#32708) @danilo-leal
-- [website] Remove scrollbar on x-axis (#32291) @MrHBS
-- [website] Update the pricing page for the MUI X premium plan release (#32458) @joserodolfofreitas
-- [website] Update sponsors (#32725) @oliviertassinari
 
 ### Core
 
@@ -7025,10 +6717,6 @@ Kudos to all contributors!
 - [Joy] Add principles page (#32648) @siriwatknp
 - [Joy] Add Button page (#32576) @siriwatknp
 - [Joy] Add "Quick start" and "Tutorial" pages (#32383) @siriwatknp
-- [website] Add store to the footer and "hiring" chip adjustment (#32650) @danilo-leal
-- [website] Optimize conversion to store (#32646) @oliviertassinari
-- [website] Remove copy button on marketing pages (#32649) @siriwatknp
-- [website] Add missing space in copy label (#32638) @flaviendelangle
 
 ### Core
 
@@ -7150,9 +6838,6 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [docs] Improve the propTypes generation and API demos' links (#32295) @mnajdova
 - [docs] Add ability to display a plan icon next to a page link in nav bar (#32393) @flaviendelangle
 - [docs] Change label on `FormControlLabelPlacement` (#32322) @ainatenhi
-- [website] Update Diamond sponsors list (#32433) @oliviertassinari
-- [website] Add privacy policy link to website's footer (#32080) @danilo-leal
-- [website] Remove the designer role (#32384) @danilo-leal
 
 ### Core
 
@@ -7210,9 +6895,6 @@ This release is mostly about 🐛 bug fixes and 📚 documentation improvements.
 - [docs] Add note in the Contributing guide about linking issues to a PR (#32174) @danilo-leal
 - [docs] Update RTL guide (#32242) @michaldudak
 - [docs] Uniformize capitalization (#32238) @oliviertassinari
-- [website] Improve new role template @oliviertassinari
-- [website] Remove a gold sponsor (#32261) @hbjORbj
-- [website] Mark DataGrid Column spanning done on Pricing page (#32305) @cherniavskii
 
 ### Core
 
@@ -7255,10 +6937,6 @@ This release is mostly about 🐛 bug fixes and 📚 documentation improvements.
 - [docs] Remove notifications temporary (#32192) @siriwatknp
 - [docs] Redirect to new urls (#32048) @siriwatknp
 - [docs] Update Learn page copy and resource list (#31989) @samuelsycamore
-- [website] Fix wrong MUI X installation instruction link @oliviertassinari
-- [website] Revise homepage copy below the hero section (#31283) @samuelsycamore
-- [website] Revise homepage Hero copy for more clarity (#31212) @samuelsycamore
-- [website] Give up on promoting roles in our docs @oliviertassinari
 
 ### Core
 
@@ -7330,8 +7008,6 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [docs] Create TablePaginationUnstyled docs (#32018) @michaldudak
 - [docs] Move SelectUnstyled docs to the Base space (#31816) @michaldudak
 - [docs] Create the TabsUnstyled docs (#32023) @michaldudak
-- [website] The studio finally has a name, use it (#32105) @oliviertassinari
-- [website] Disable job ad @oliviertassinari
 
 ### Core
 
@@ -7427,7 +7103,6 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [examples] Update remix example to not use NODE_ENV guard for `LiveReload` (#31269) @eswarclynn
 - [NoSsr] Copy docs to the Base space (#31956) @michaldudak
 - [Portal] Copy Portal docs to the Base space (#31959) @michaldudak
-- [website] Remove X-Frame-Options @oliviertassinari
 - Revert "[website] Remove X-Frame-Options" @oliviertassinari
 
 ### Core
@@ -7474,7 +7149,6 @@ A big thanks to the 7 contributors who made this release possible. This is a sma
 - [docs] New search experience for multiple products (#31811) @siriwatknp
 - [docs] Make LTS searchable (#31804) @oliviertassinari
 - [docs] Fix demo filename on zh markdown (#31790) @nnmax
-- [website] Highlight the date picker (#31889) @oliviertassinari
 
 ### Core
 
@@ -7535,8 +7209,6 @@ A big thanks to the 23 contributors who made this release possible. Here are som
 - [docs] Fix GitHub source links in the demo toolbar (#31339) @PunitSoniME
 - [docs] Add Algolia verification code to robot.txt (#31356) @siriwatknp
 - [examples] Ignore tsbuildinfo with Next.js (#31460) @B0und
-- [website] Add new gold sponsor (#31354) @hbjORbj
-- [website] Update Ukraine support link (#31378) @samuelsycamore
 
 ### Core
 
@@ -7680,9 +7352,6 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [docs] Fix typo in Stack documentation (#31176) @adriancampos
 - [docs] Update interoperability.md broken tailwind links (#31182) @robertwt7
 - [docs] Add missing import into tss-react migration guide (#31162) @sviande
-- [website] The role is filled (#31216) @oliviertassinari
-- [website] Revise the row grouping blog post (#31101) @samuelsycamore
-- [website] Fix a few SEO issues (#31150) @oliviertassinari
 
 ### Core
 
@@ -7723,15 +7392,11 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 
 ### Docs
 
-- [website] Improve full-stack role job description (#31160) @Janpot
 - [docs] Fix typo of migration guides v4 (#31136) @pppp606
 - [docs] Update on the support page to account for v4 LTS support (#31029) @danilo-leal
 - [docs] Fix small typo in chips.md (#31092) @cameliaben
 - [l10n] Add it-IT translation for labelDisplayedRows (#31131) @frab90
 - [l10n] Add pl-PL translation for labelDisplayedRows (#31088) @ThomasTheHuman
-- [website] Sync MUI X table feature (#30913) @alexfauquette
-- [website] Prefill source in job application links (#31036) @oliviertassinari
-- [website] Fix a grammar mistake (#31099) @huyenltnguyen
 
 ### Core
 
@@ -7788,12 +7453,6 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [docs] Prefer useEnhancedEffect to avoid server side warnings (#30977) @mnajdova
 - [docs] Fix force redirection to a different locale (#30967) @oliviertassinari
 - [docs] Add live Tailwind CSS demo (#30966) @oliviertassinari
-- [website] Add banner for promoting priority open roles (#31076) @danilo-leal
-- [website] Open Full-stack Engineer role for studio (#31038) @prakhargupta1
-- [website] Minor security improvements (#31062) @oliviertassinari
-- [website] Improve title of open roles (#30963) @DanailH
-- [website] Add BIMI avatar (#30444) @oliviertassinari
-- [website] Add Sycamore to About page (#31000) @samuelsycamore
 
 ### Core
 
@@ -7862,10 +7521,6 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 - [docs] Remove migration from the releases page (#30863) @mnajdova
 - [docs] Update Instructions for Google Maps Autocomplete (#30849) @kjschabra
 - [docs] Hotfix notification (#30862) @siriwatknp
-- [website] Sample GA to avoid hit limit (#30919) @oliviertassinari
-- [website] Hide scrollbars of hero containers (#29474) @theiliad
-- [website] Polishing spacing and other small things (#30828) @danilo-leal
-- [website] Close the Developer Advocate role (#30867) @oliviertassinari
 
 ### Core
 
@@ -7956,9 +7611,6 @@ A big thanks to the 22 contributors who made this release possible. Here are som
 - [test] Fix tests on Node 16 (#30819) @michaldudak
 - [test] Add explicit types to support noImplicityAny=false (#30798) @m4theushw
 - [test] Support React.useId format in \*DescriptionOf (#30657) @eps1lon
-- [website] Fix SEO issues (#30829) @oliviertassinari
-- [website] Add designer position page (#30708) @danilo-leal
-- [website] Polish /about page (#30747) @oliviertassinari
 
 All contributors of this release in alphabetical order: @aefox, @alisasanib, @atakanzen, @austinewuncler, @boutahlilsoufiane, @cherniavskii, @danilo-leal, @DiegoYungh, @dryrainbow, @eps1lon, @garronej, @goncalovf, @Hubbz, @Jack-Works, @m4theushw, @michaldudak, @mnajdova, @oliviertassinari, @ryancogswell, @siriwatknp, @tanyabouman, @ZeeshanTamboli
 
@@ -8070,10 +7722,6 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [docs] Add missing quote in migration docs (#30587) @Atralbus
 - [docs] Update link to Doit sponsor (#30586) @oliviertassinari
 - [docs] Add products identifier and drawer (#30283) @siriwatknp
-- [website] Fix code button with installation command (#30622) @danilo-leal
-- [website] Add a Blog index page (#30121) @danilo-leal
-- [website] Migrate Twitter from @MaterialUI to @MUI_hq @oliviertassinari
-- [website] Add Andrii to the About Us page (#30581) @cherniavskii
 
 ### Core
 
@@ -8121,7 +7769,6 @@ A big thanks to the 10 contributors who made this release possible. Here are som
 - [docs] Move @eps1lon to community (#30473) @oliviertassinari
 - [docs] Fix typo and spelling in the-sx-prop.md (#30482) @aefox
 - [docs] More general docs polishing (#30371) @danilo-leal
-- [website] Add José on the /about page (#30492) @danilo-leal
 
 All contributors of this release in alphabetical order: @aefox, @alexandre-lelain, @danilo-leal, @eps1lon, @garronej, @hbjORbj, @noam-honig, @oliviertassinari, @siriwatknp, @ZeeshanTamboli
 
@@ -8155,8 +7802,6 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [example] Avoid double rendering in the Remix example (#30366) @mnajdova
 - [i18n] improve viVN locale (#30426) @hckhanh
 - [l10n] Improve fiFI locale (#30442) @Certificate
-- [website] Add new batch of open roles (#30282) @oliviertassinari
-- [website] Refactor page context with next router (#30020) @siriwatknp
 
 ### Core
 
@@ -8211,8 +7856,6 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [docs] Update outdated links (#30260) @oliviertassinari
 - [docs] Support redirects from old urls to /material/\* (#30286) @siriwatknp
 - [examples] Fix CSS Modules integration (#30381) @oliviertassinari
-- [website] Fix SEO issues (#30372) @oliviertassinari
-- [website] Sync sponsors (#30259) @oliviertassinari
 
 ### Core
 
@@ -8265,8 +7908,6 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [docs] Base components demos design polish (#30149) @danilo-leal
 - [docs] General documentation polish (#29994) @danilo-leal
 - [examples] Fix typo in the remix example's README (#30289) @lemol
-- [website] Remove expired gold sponsor (#30222) @oliviertassinari
-- [website] Remove broken showcase links (#30217) @mnajdova
 
 ### Core
 
@@ -8340,7 +7981,6 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [docs] Fix justifyContent option in the Grid interactive demo (#30117) @danilo-leal
 - [docs] Add tip to help access the docs of a previous version when finding answers in Stack Overflow (#30101) @danilo-leal
 - [docs] Fix import example inside Unstyled Backdrop section (#30098) @TheodosiouTh
-- [website] Column pinning and Tree data are out (#30136) @oliviertassinari
 - [survey] Remove survey promotion items (#30122) @danilo-leal
 
 ### Core
@@ -8426,8 +8066,6 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 - [examples] Fix lint issue for displayName missing in the Next.js examples (#29985) @ZeeshanTamboli
 - [Stack] Document system props in Stack API (#30069) @ThewBear
 - [survey] Add a banner and card for promoting the 2021 survey (#29950) @danilo-leal
-- [website] Correct the Careers page description (#30073) @michaldudak
-- [website] Fix 301 links (#30040) @oliviertassinari
 
 ### Core
 
@@ -8486,9 +8124,6 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 - [docs] Add how to pass `sx` prop (#29905) @siriwatknp
 - [docs] Fix typo in notifications @mbrookes
 - [docs] Black Friday sale notification @mbrookes
-- [website] Fix canonical links (#29938) @oliviertassinari
-- [website] Fix SEO issues (#29939) @oliviertassinari
-- [website] Improvements to the /x product page (#28964) @danilo-leal
 
 ### Core
 
@@ -8588,10 +8223,6 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [docs] Add a note that ToggleButton exclusive does not enforce selection (#29812) @mmacu
 - [docs] Update the list of supported locales (#29831) @michaldudak
 - [docs] Update tooltip doc to better define touch action (#29717) @gnowland
-- [website] Standardize the background color from the MUI team photos (#29738) @danilo-leal
-- [website] Add Bharat to the About Us Page (#29714) @bharatkashyap
-- [website] Add about page entry for jan (#29701) @Janpot
-- [website] Adding Prakhar to the about page (#29737) @danilo-leal
 
 ### Core
 
@@ -8660,8 +8291,6 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [docs] Link UXPin integration (#29422) @oliviertassinari
 - [docs] Link to the new public roadmap for the design kits (#29433) @oliviertassinari
 - [docs] correct bundler configuration for using legacy Material UI build (#29146) @petermikitsh
-- [website] Fix premium plan release date (#29430) @oliviertassinari
-- [website] Add GitHub icon button to the navbar (#29640) @danilo-leal
 - [blog] Support many authors in markdown pages (#29633) @m4theushw
 
 ### Core
@@ -8760,12 +8389,6 @@ A big thanks to the 33 contributors who made this release possible. Here are som
 - [docs] Fix "clickable" and "deletable" typos (#28702) @jacklaurencegaray
 - [docs] Update migration-v4 docs for wrong import path (#29042) @busches
 - [docs] Add GitHub icon change to "Migration from v4 to v5" guide (#29182) @dan-mba
-- [website] Benny Joo joining MUI (#29499) @mnajdova
-- [website] Update the `Print export` feature info on the pricing page (#29484) @DanailH
-- [website] Improve the dev rel role description (#29477) @oliviertassinari
-- [website] Add customers section on Design Kits and Templates marketing pages (#29168) @danilo-leal
-- [website] Improvements to the /core product page @danilo-leal
-- [website] Fix typo on the About Page (#29286) @gssakash
 
 ### Core
 
@@ -8880,8 +8503,6 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [docs] Update module augmentation reference url (#29064) @gnowland
 - [pricing] Add tooltip to pricing icon (#28959) @siriwatknp
 - [Team] Add Alexandre in the about page (#29289)
-- [website] Fix status label overflow in AdvancedShowcase (#29143) @LorenzHenk
-- [website] Update legacy logos (#28908) @michaldudak
 
 ### Core
 
@@ -9025,11 +8646,6 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [docs] Fix typo in chip documentation (#28641) @avranju94
 - [docs] Fix versions page (#28682) @mnajdova
 - [docs] Remove legacy team page (#28646) @mnajdova
-- [website] add "React" to the hero description (#28830) @danilo-leal
-- [website] Fix constantly reloading when Russian language is set (#28869) @mnajdova
-- [website] Compress one avatar image on about us page (#28823) @hbjORbj
-- [website] Hide 'become a diamond sponsor' box on landing page (#28814) @hbjORbj
-- [website] Update Benny's profile on about us page (#28816) @hbjORbj
 
 ### Core
 
@@ -9085,8 +8701,6 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [docs] Push the fixes on Next.js's Link to the examples (#28178) @oliviertassinari
 - [docs] Fix wrong name for zIndex's property example in /system/ (#28541) @chetrit
 - [examples] Nextjs Link missing passHref #28588 (#28661) @Brlaney
-- [website] Iteration on the pricing page (#28406) @danilo-leal
-- [website] Batch fixes (#28564) @siriwatknp
 
 ### Core
 
@@ -9141,18 +8755,6 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [docs] Fix the notification display logic (#28389) @oliviertassinari
 - [docs] Add notification for v5 @oliviertassinari
 - [docs] Fix typo (#28521) @valse
-- [website] Implement algolia redesign (#28252) @hbjORbj
-- [website] Update data-grid dependencies #28531 @siriwatknp
-- [website] Cleanup unused files after rebranding (#28505) @siriwatknp
-- [website] Update /company pages to use marketing website Header and Footer (#28498) @danilo-leal
-- [website] Optimize images (#28486) @michaldudak
-- [website] Add components index page (#28485) @siriwatknp
-- [website] Fix typo (#28478) @oliviertassinari
-- [website] Fix crash (#28474) @oliviertassinari
-- [website] Close the open engineering roles (#28428) @oliviertassinari
-- [website] Fix 40x links (#28401) @mnajdova
-- [website] Fix SEO issues reported by moz.com (#28402) @mnajdova
-- [website] Fix production issues (#28384) @siriwatknp
 
 ### Core
 
@@ -9228,11 +8830,6 @@ These are the changes done from the last release candidate version (5.0.0-rc.1):
 - [docs] Compress images with ImageOptim @oliviertassinari
 - [docs] Replace remaining unstyled package reference (#28351) @michaldudak
 - [docs] No import from react-router (#28329) @eps1lon
-- [website] Refine website before go-live (#28081) @siriwatknp
-- [website] Update manifest to new logo (#28355) @siriwatknp
-- [website] Add product-x page (#28106) @siriwatknp
-- [website] Revert store URL to material-ui.com/store (#28365) @michaldudak
-- [website] Rename domain to mui.com (#28332) @mnajdova
 
 ### Core
 
@@ -9309,10 +8906,6 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 - [docs] Support Material design theme in MarkdownElement (#28109) @eps1lon
 - [docs] Improve diamond sponsors in the navigation (#28090) @mnajdova
 - [docs] Remove unnecessary comma (#28072) @michaldudak
-- [website] Add new careers page (#28184) @hbjORbj
-- [website] Disable Next.js font optimization (#28128) @michaldudak
-- [website] Polish design-kits & templates (#28131) @siriwatknp
-- [website] Update utm referral params #28040 @siriwatknp
 
 ### Core
 
@@ -9415,10 +9008,6 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [docs] Update correct variable name (#27960) @bene-we
 - [docs] Fix Performance typo (#27965) @tdmiller1
 - [docs] Add GridExportCSVOptions page to documentation pages (#27951) @flaviendelangle
-- [website] Add product core page (#27952) @siriwatknp
-- [website] Make AppBar height and border consistent with nav header (#28085) @michaldudak
-- [website] Fix typos in the rebranding (#28069) @oliviertassinari
-- [website] Refine home, pricing and about pages (#27927) @siriwatknp
 
 ### Core
 
@@ -9562,12 +9151,6 @@ A big thanks to the 26 contributors who made this release possible. Here are som
 - Revert "[examples] Fix nextjs with styled-components example (#27583)" (#27921) @mnajdova
 - Revert "[examples] Update create-react-app examples with styled-components to use package aliases (#27591)" (#27917) @mnajdova
 - [I10n] Add Khmer (kh-KH) locale support (#27915) @teachhay
-- [website] Add templates & design-kits page (#27811) @siriwatknp
-- [website] Improve rebranding homepage performance (#27838) @siriwatknp
-- [website] Honest a11y value proposition (#27826) @eps1lon
-- [website] Improve homepage rebranding (#27663) @siriwatknp
-- [website] A few polish (#27741) @oliviertassinari
-- [website] Polish homepage (#27930) @oliviertassinari
 
 ### Core
 
@@ -9635,8 +9218,6 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [docs] Remove unused code (#27711) @eps1lon
 - [docs] Improve virtualization demo (#27340) @vedadeepta
 - [examples] Include a follow-up on the example (#27620) @matiasherranz
-- [website] Add about page (#27599) @siriwatknp
-- [website] Add pricing page (#27598) @siriwatknp
 
 ### Core
 
@@ -9705,11 +9286,6 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [examples] Fix nextjs with styled-components example (#27583) @mnajdova
 - [examples] Update create-react-app examples with styled-components to use package aliases (#27591) @mnajdova
 - [examples] Improve integration examples with Next.js (#27331) @Harshita-Kanal
-- [website] Add spicefactory as gold sponsor @oliviertassinari
-- [website] Homepage rebranding (#27488) @siriwatknp
-- [website] Add Flavien to team and about pages (#27575) @flaviendelangle
-- [website] Add Ryan to Community contributors for Stack Overflow contributions (#27529) @ryancogswell
-- [website] Add references section to home (#27444) @siriwatknp
 
 ### Core
 
@@ -9815,7 +9391,6 @@ A big thanks to the 20 contributors who made this release possible. Here are som
 - [test] Include coverage report of browser tests (#27389) @eps1lon
 - [test] Add current behavior for getDisplayName with context components (#27402) @eps1lon
 - [test] Enable skipped picker tests (#27268) @eps1lon
-- [website] Add hero section to homepage (#27364) @siriwatknp
 
 All contributors of this release in alphabetical order: @AlvesJorge, @Aubrey-Li, @eps1lon, @faan234, @florianbepunkt, @g
 etsnoopy, @Goodiec, @hboylan, @KLubin1, @michaldudak, @mnajdova, @newsiberian, @oliviertassinari, @Patil2099, @ruppysupp
@@ -9927,7 +9502,6 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [test] Run React 18 integration tests with new createRoot API (#26672) @eps1lon
 - [test] Update tests with latest state of StrictMode compatibility (#27042) @eps1lon
 - [test] Use DOM events instead of mocked, partial events (#27198) @eps1lon
-- [website] Open 4 new roles (#27123) @oliviertassinari
 - [blog] Danilo Leal joins Material UI (#27231) @oliviertassinari
 
 All contributors of this release in alphabetical order: @eps1lon, @mbrookes, @michal-perlakowski, @michaldudak, @mnajdova, @moshfeu, @oliviertassinari, @rajzik, @renovate[bot], @sahil-blulabs, @ShirasawaSama, @siriwatknp, @vimutti77
@@ -10492,7 +10066,6 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [core] Ignore latest prettier run in git-blame @eps1lon
 - [core] Format @eps1lon
 - [test] Add bundle fixtures (#23166) @eps1lon
-- [website] Add Michał to the About Us page (#26557) @michaldudak
 
 All contributors of this release in alphabetical order: @coder-freestyle, @eps1lon, @garfunkelvila, @itsnorbertkalacska, @likitarai1, @m4theushw, @michaldudak, @mnajdova, @onpaws, @sakura90, @sarahannnicholson, @siriwatknp, @vedadeepta, @vicasas
 
@@ -10653,9 +10226,6 @@ We are progressively moving all modules that are relevant to styling custom desi
 - [test] Move ClockPicker tests to ClockPicker.test (#26407) @eps1lon
 - [test] setProps from createPickerRender should set props on the rendered element (#26405) @eps1lon
 - [utils] Convert useId to TypeScript (#26491) @eps1lon
-- [website] Add Material UI X page (#25794) @DanailH
-- [website] Add open application section (#26501) @oliviertassinari
-- [website] Add Siriwat to team page (#26406) @siriwatknp
 
 All contributors of this release in alphabetical order: @akshitsuri, @DanailH, @Dru89, @eps1lon, @Gautam-Arora24, @jeferson-sb, @m4theushw, @mbrookes, @mnajdova, @oliviertassinari, @pasDamola, @siriwatknp, @wolfykey
 
@@ -11453,7 +11023,6 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [examples] Add TypeScript for styled-components engine (#25675) @jqrun
 - [l10n] zhTW refinement (#25786) @shakatoday
 - [Tabs] Add demo for routing with Tabs (#25827) @ahmed-28
-- [website] Add Matheus Wichman (#25801) @m4theushw
 
 ### Core
 
@@ -11527,8 +11096,6 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [docs] Fix typo in switches and checkboxes doc (#25639) @dimitropoulos
 - [docs] Add interoperability section for Portal (#25575) @mnajdova
 - [docs] Fix side nav scroll position (#25619) @misaka3
-- [website] Q1 2021 Update (#25591) @oliviertassinari
-- [website] Matheus Wichman joins Material UI (#25590) @oliviertassinari
 
 ### Core
 
@@ -12402,11 +11969,6 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [docs] Update CONTRIBUTING being accepted (#24306) @vicasas
 - [docs] Update right to left compatibility plugin version (#24370) @mnajdova
 - [docs] Widen example datetime-local picker so it's not clipped (#24324) @ramdog
-- [website] Add BrandingFooter (#24095) @mnajdova
-- [website] Add Discover more (#24327) @oliviertassinari
-- [website] Add newsletter (#24322) @oliviertassinari
-- [website] Fix regressions @oliviertassinari
-- [website] Improve typography theme (#24386) @oliviertassinari
 
 ### Core
 
@@ -15303,8 +14865,6 @@ A big thanks to the 12 contributors who made this release possible. It includes 
 - [docs] Fix 404 link (Evergreen Box) (#26430) @k-utsumi
 - [docs] Prepare for data grid auto-generated docs (#26477) @m4theushw
 - [docs] Update typography.md to non-deprecated fontsource (#26082) @kiwimahk
-- [website] Add careers page for intern (#26280) @mnajdova
-- [website] Add open application section (#26501) @oliviertassinari
 
 ### Core
 
