@@ -56,6 +56,10 @@ export default function Checkout(props) {
             xs: '100%',
             sm: 'calc(100dvh - var(--template-frame-height, 0px))',
           },
+          mt: {
+            xs: 4,
+            sm: 0,
+          },
         }}
       >
         <Grid
