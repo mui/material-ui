@@ -1,6 +1,6 @@
 {
   "name": "@mui/styles",
-  "version": "6.1.1",
+  "version": "6.1.2",
   "private": false,
   "author": "MUI Team",
   "description": "MUI Styles - The legacy JSS-based styling solution of Material UI.",
@@ -59,7 +59,7 @@
     "@mui/internal-test-utils": "workspace:^",
     "@mui/material": "workspace:^",
     "@types/chai": "^4.3.20",
-    "@types/react": "^18.3.4",
+    "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
     "@types/sinon": "^17.0.3",
     "chai": "^4.5.0",

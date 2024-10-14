@@ -238,6 +238,20 @@ describe('<Badge />', () => {
       expect(findBadge(container)).to.have.class(classes.anchorOriginBottomRightRectangular);
     });
 
+    it('should apply style for bottom right rectangular when only vertical is specified', () => {
+      const { container } = render(
+        <Badge {...defaultProps} anchorOrigin={{ vertical: 'bottom' }} />,
+      );
+      expect(findBadge(container)).to.have.class(classes.anchorOriginBottomRightRectangular);
+    });
+
+    it('should apply style for top left rectangular when only horizontal is specified', () => {
+      const { container } = render(
+        <Badge {...defaultProps} anchorOrigin={{ horizontal: 'left' }} />,
+      );
+      expect(findBadge(container)).to.have.class(classes.anchorOriginTopLeftRectangular);
+    });
+
     it('should apply style for top left circular', () => {
       const { container } = render(
         <Badge

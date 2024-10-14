@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  aws-cli: circleci/aws-cli@4.2.3
+  aws-cli: circleci/aws-cli@5.1.0
   aws-s3: circleci/aws-s3@4.0
 
 parameters:
@@ -42,6 +42,7 @@ default-job: &default-job
     TEST_GATE: << parameters.test-gate >>
     AWS_REGION_ARTIFACTS: eu-central-1
     COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
+    DANGER_DISABLE_TRANSPILATION: 'true'
   working_directory: /tmp/material-ui
   docker:
     - image: cimg/node:20.17
