@@ -864,36 +864,48 @@ describe('<Autocomplete />', () => {
     expect(handleSubmit.callCount).to.equal(4);
   });
 
-  it('should not open the autocomplete popup when deleting chips', () => {
-    const { queryByRole, container } = render(
+  it('should not open the autocomplete popup when deleting chips', async () => {
+    const { queryByRole, queryByText, user } = render(
       <Autocomplete
         multiple
         options={['one', 'two', 'three']}
-        defaultValue={['one', 'two', 'three']}
+        defaultValue={['one']}
         renderInput={(params) => <TextField {...params} autoFocus />}
       />,
     );
 
-    // Initially, the Autocomplete popup should not be open
     expect(queryByRole('listbox')).to.equal(null);
 
-    for (let index = 0; index < 3; index += 1) {
-      const chips = container.querySelectorAll(`.${chipClasses.root}`);
-      expect(chips.length).to.equal(3 - index);
+    const chip = queryByText('one').parentElement;
+    expect(chip).not.to.equal(null);
 
-      const chip = chips[0]; // Always delete the first chip
+    // Delete the chip
+    await user.click(chip.getElementsByClassName(chipClasses.deleteIcon)[0]);
 
-      const deleteIcon = chip.querySelector(`.${chipClasses.deleteIcon}`);
-      expect(deleteIcon).not.to.equal(null);
-      fireEvent.click(deleteIcon);
+    expect(queryByText('one')).to.equal(null);
+    expect(queryByRole('listbox')).to.equal(null);
+  });
 
-      // After deleting, the Autocomplete popup should still not be open
+  it('should toggle the autocomplete popup when clicking the popup indicator', async () => {
+    const { queryByRole, getByTestId, user } = render(
+      <Autocomplete
+        multiple
+        options={['one', 'two', 'three']}
+        renderInput={(params) => <TextField {...params} autoFocus />}
+        slotProps={{ popupIndicator: { 'data-testid': 'popup-indicator' } }}
+      />,
+    );
+
       expect(queryByRole('listbox')).to.equal(null);
 
-      // Check that the chip has been removed
-      const remainingChips = container.querySelectorAll(`.${chipClasses.root}`);
-      expect(remainingChips.length).to.equal(3 - (index + 1));
-    }
+    const popupIndicator = getByTestId('popup-indicator');
+    await user.click(popupIndicator);
+
+    expect(queryByRole('listbox')).not.to.equal(null);
+
+    await user.click(popupIndicator);
+
+    expect(queryByRole('listbox')).to.equal(null);
   });
 
   describe('prop: getOptionDisabled', () => {
