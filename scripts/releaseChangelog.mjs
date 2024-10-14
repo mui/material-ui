@@ -32,9 +32,14 @@ function parseTags(commitMessage) {
  * @param {Octokit.ReposCompareCommitsResponseCommitsItem} commitsItem
  */
 function filterCommit(commitsItem) {
+  const commitMessage = commitsItem.commit.message;
   // TODO: Use labels
-  // Filter dependency updates
-  return !commitsItem.commit.message.startsWith('Bump');
+  return (
+    // Filter renovate dependencies updates
+    !commitMessage.startsWith('Bump') &&
+    // Filter website changes, no implications for library users
+    !commitMessage.startsWith('[website]')
+  );
 }
 
 async function findLatestTaggedVersion() {
@@ -151,15 +156,8 @@ async function main(argv) {
     return aTags.localeCompare(bTags);
   });
   const changes = commitsItems.map((commitsItem) => {
-    // Helps changelog author keeping track of order when grouping commits under headings.
-    // &#8203; is a zero-width-space that ensures that the content of the listitem is formatted properly
-    const dateSortMarker = `&#8203;<!-- ${(commitsItems.length - commitsItems.indexOf(commitsItem))
-      .toString()
-      // Padding them with a zero means we can just feed a list into online sorting tools like https://www.online-utility.org/text/sort.jsp
-      // i.e. we can sort the lines alphanumerically
-      .padStart(Math.floor(Math.log10(commitsItemsByDateDesc.length)) + 1, '0')} -->`;
     const shortMessage = commitsItem.commit.message.split('\n')[0];
-    return `- ${dateSortMarker}${shortMessage} @${getAuthor(commitsItem)}`;
+    return `- ${shortMessage} @${getAuthor(commitsItem)}`;
   });
   const nowFormatted = new Date().toLocaleDateString('en-US', {
     month: 'short',

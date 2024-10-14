@@ -5,16 +5,14 @@ import * as React from 'react';
  * It will throw runtime error if the element is not a valid React element.
  *
  * @param element React.ReactElement
- * @returns React.Ref<any> | null | undefined
+ * @returns React.Ref<any> | null
  */
-export default function getReactElementRef(
-  element: React.ReactElement,
-): React.Ref<any> | null | undefined {
+export default function getReactElementRef(element: React.ReactElement): React.Ref<any> | null {
   // 'ref' is passed as prop in React 19, whereas 'ref' is directly attached to children in older versions
   if (parseInt(React.version, 10) >= 19) {
-    return element.props?.ref;
+    return (element?.props as any)?.ref || null;
   }
   // @ts-expect-error element.ref is not included in the ReactElement type
   // https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/70189
-  return element?.ref;
+  return element?.ref || null;
 }

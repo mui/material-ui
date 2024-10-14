@@ -250,6 +250,7 @@ HiddenCss.propTypes /* remove-proptypes */ = {
    */
   xsUp: PropTypes.bool,
 } as any;
+
 /**
  *
  * Demos:
