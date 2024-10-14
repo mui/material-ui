@@ -49,7 +49,7 @@ This repository also contains Joy UI, an experimental component library that imp
 Joy UI is in beta and _development is currently on hold_.
 When starting a new project from scratch, we recommend Material UI over Joy UI because we can guarantee ongoing support.
 
-You're welcome to open new issues and PRs to help improve Joy UI, but please keep in mind that the maintainers are primarily focused on other projects and may not be able to respond in a timely manner.
+Keep in mind that the maintainers are primarily focused on other projects and may not be able to respond in a timely manner to issues or pull requests related to Joy UI.
 
 View the [Joy UI documentation](https://mui.com/joy-ui/getting-started/).
 
