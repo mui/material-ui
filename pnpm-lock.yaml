@@ -100,7 +100,7 @@ importers:
         specifier: workspace:^
         version: link:packages/mui-utils/build
       '@next/eslint-plugin-next':
-        specifier: ^14.2.14
+        specifier: ^14.2.15
         version: 14.2.15
       '@octokit/rest':
         specifier: ^21.0.2
