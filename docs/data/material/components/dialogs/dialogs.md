@@ -172,7 +172,7 @@ Follow the [Modal accessibility section](/material-ui/react-modal/#accessibility
 
 ### useDialogs
 
-You can create and manipulate dialogs imperatively with the useDialogs() API in @toolpad/core. This hook handles
+You can create and manipulate dialogs imperatively with the [`useDialogs()`](https://mui.com/toolpad/core/react-use-dialogs/) API in `@toolpad/core`. This hook handles
 
 - state management for opening and closing dialogs
 - passing data to dialogs and receiving results back from them
