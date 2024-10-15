@@ -82,7 +82,7 @@ function DashboardLayoutBasic(props: DemoProps) {
     };
   }, [pathname]);
 
-  const demoWindow = window !== undefined ? window() : undefined;
+  const demoWindow = window ? window() : undefined;
 
   return (
     <AppProvider navigation={NAVIGATION} router={router} window={demoWindow}>
