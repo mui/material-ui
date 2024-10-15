@@ -162,7 +162,7 @@ async function main(argv) {
   const changes = commitsItems.map((commitsItem) => {
     let shortMessage = commitsItem.commit.message.split('\n')[0];
 
-    // If the commit message doesn't have an associated PR, add the commit reference.
+    // If the commit message doesn't have an associated PR, add the commit sha for reference.
     if (!prLinkRegEx.test(shortMessage)) {
       shortMessage += ` (${commitsItem.sha.substring(0, 7)})`;
     }
