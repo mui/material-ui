@@ -4,9 +4,9 @@
 
 <!-- generated comparing v6.1.3..master -->
 
-_Oct 14, 2024_
+_Oct 15, 2024_
 
-A big thanks to the 8 contributors who made this release possible.
+A big thanks to the 9 contributors who made this release possible.
 
 ### `@mui/material@6.1.4`
 
@@ -17,6 +17,7 @@ A big thanks to the 8 contributors who made this release possible.
 
 ### Docs
 
+- Improve Toolpad Core docs (#43796) @bharatkashyap
 - Tweak Joy UI section in README (#44103) @aarongarciah
 - Fix 404 link to Next.js @oliviertassinari
 - [toolpad core] In the sidebar, move 'new' label to the components (#44070) @prakhargupta1
@@ -34,7 +35,7 @@ A big thanks to the 8 contributors who made this release possible.
 - [examples] Avoid git diff when playing with examples @oliviertassinari
 - [test] Remove dead code (#44056) @Janpot
 
-All contributors of this release in alphabetical order: @aarongarciah, @Janpot, @oliviertassinari, @prakhargupta1, @sai6855, @samuelsycamore, @siriwatknp, @zanivan
+All contributors of this release in alphabetical order: @aarongarciah, @bharatkashyap, @Janpot, @oliviertassinari, @prakhargupta1, @sai6855, @samuelsycamore, @siriwatknp, @zanivan
 
 ## v6.1.3
 
