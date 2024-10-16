@@ -31,7 +31,7 @@
     "@types/chai": "^4.3.20",
     "@types/doctrine": "^0.0.9",
     "@types/mdast": "4.0.4",
-    "@types/mocha": "^10.0.8",
+    "@types/mocha": "^10.0.9",
     "@types/node": "^20.16.11",
     "@types/react-docgen": "workspace:*",
     "@types/sinon": "^17.0.3",
