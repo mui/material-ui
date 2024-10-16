@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-babel-plugin-minify-errors",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "author": "MUI Team",
   "description": "This is an internal package not meant for general use.",
   "repository": {

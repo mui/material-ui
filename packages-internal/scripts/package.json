@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-scripts",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "author": "MUI Team",
   "description": "Utilities supporting MUI libraries build and docs generation. This is an internal package not meant for general use.",
   "main": "build/index.js",
@@ -33,7 +33,7 @@
     "@mui/internal-docs-utils": "workspace:^",
     "doctrine": "^3.0.0",
     "lodash": "^4.17.21",
-    "typescript": "^5.6.2",
+    "typescript": "^5.6.3",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
@@ -42,7 +42,7 @@
     "@types/chai": "^4.3.20",
     "@types/doctrine": "^0.0.9",
     "@types/lodash": "^4.17.10",
-    "@types/node": "^20.16.10",
+    "@types/node": "^20.16.11",
     "@types/react": "^18.3.11",
     "@types/uuid": "^9.0.8",
     "chai": "^4.5.0",
