@@ -16,7 +16,7 @@ overrides:
   '@definitelytyped/header-parser': ^0.2.12
   '@definitelytyped/typescript-versions': ^0.1.4
   '@definitelytyped/utils': ^0.1.7
-  '@types/node': ^20.16.10
+  '@types/node': ^20.16.11
   '@types/react': ^18.3.11
   '@types/react-dom': 18.3.0
   cross-fetch: ^4.0.0
@@ -124,7 +124,7 @@ importers:
         specifier: ^10.0.8
         version: 10.0.8
       '@types/node':
-        specifier: ^20.16.10
+        specifier: ^20.16.11
         version: 20.16.11
       '@types/react':
         specifier: ^18.3.11
@@ -362,7 +362,7 @@ importers:
         specifier: 0.0.24
         version: 0.0.24(@types/react@18.3.11)(next@14.2.15(@babel/core@7.25.8)(@opentelemetry/api@1.8.0)(@playwright/test@1.47.2)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       '@types/node':
-        specifier: ^20.16.10
+        specifier: ^20.16.11
         version: 20.16.11
       '@types/react':
         specifier: ^18.3.11
@@ -856,7 +856,7 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2
       '@types/node':
-        specifier: ^20.16.10
+        specifier: ^20.16.11
         version: 20.16.11
       '@types/prop-types':
         specifier: ^15.7.13
@@ -994,7 +994,7 @@ importers:
         specifier: ^4.17.10
         version: 4.17.10
       '@types/node':
-        specifier: ^20.16.10
+        specifier: ^20.16.11
         version: 20.16.11
       '@types/react':
         specifier: ^18.3.11
@@ -1179,7 +1179,7 @@ importers:
         specifier: ^10.0.8
         version: 10.0.8
       '@types/node':
-        specifier: ^20.16.10
+        specifier: ^20.16.11
         version: 20.16.11
       '@types/react-docgen':
         specifier: workspace:*
@@ -1216,7 +1216,7 @@ importers:
         specifier: ^10.0.8
         version: 10.0.8
       '@types/node':
-        specifier: ^20.16.10
+        specifier: ^20.16.11
         version: 20.16.11
       '@types/sinon':
         specifier: ^17.0.3
@@ -1438,7 +1438,7 @@ importers:
         specifier: ^0.0.20
         version: 0.0.20
       '@types/node':
-        specifier: ^20.16.10
+        specifier: ^20.16.11
         version: 20.16.11
       '@types/prop-types':
         specifier: ^15.7.13
@@ -2160,7 +2160,7 @@ importers:
         specifier: ^10.0.8
         version: 10.0.8
       '@types/node':
-        specifier: ^20.16.10
+        specifier: ^20.16.11
         version: 20.16.11
       '@types/react':
         specifier: ^18.3.11
@@ -2213,7 +2213,7 @@ importers:
         specifier: ^10.0.8
         version: 10.0.8
       '@types/node':
-        specifier: ^20.16.10
+        specifier: ^20.16.11
         version: 20.16.11
 
   packages/waterfall: {}
@@ -12535,7 +12535,7 @@ packages:
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
-      '@types/node': ^20.16.10
+      '@types/node': ^20.16.11
       less: '*'
       lightningcss: ^1.21.0
       sass: '*'
@@ -12567,7 +12567,7 @@ packages:
     hasBin: true
     peerDependencies:
       '@edge-runtime/vm': '*'
-      '@types/node': ^20.16.10
+      '@types/node': ^20.16.11
       '@vitest/browser': 2.1.1
       '@vitest/ui': 2.1.1
       happy-dom: '*'
