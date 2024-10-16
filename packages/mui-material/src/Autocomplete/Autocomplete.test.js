@@ -854,18 +854,17 @@ describe('<Autocomplete />', () => {
   });
 
   it('should toggle the autocomplete popup when clicking the popup indicator', async () => {
-    const { queryByRole, getByTestId, user } = render(
+    const { queryByRole, getByRole, user } = render(
       <Autocomplete
         multiple
-        options={['one', 'two', 'three']}
+        options={['One', 'Two', 'Three']}
         renderInput={(params) => <TextField {...params} autoFocus />}
-        slotProps={{ popupIndicator: { 'data-testid': 'popup-indicator' } }}
       />,
     );
 
     expect(queryByRole('listbox')).to.equal(null);
 
-    const popupIndicator = getByTestId('popup-indicator');
+    const popupIndicator = getByRole('button', { name: 'Open' });
     await user.click(popupIndicator);
 
     expect(queryByRole('listbox')).not.to.equal(null);
