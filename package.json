@@ -187,7 +187,7 @@
     "pretty-quick": "^4.0.0",
     "process": "^0.11.10",
     "rimraf": "^6.0.1",
-    "serve": "^14.2.3",
+    "serve": "^14.2.4",
     "stylelint": "^15.11.0",
     "stylelint-config-standard": "^34.0.0",
     "terser-webpack-plugin": "^5.3.10",
