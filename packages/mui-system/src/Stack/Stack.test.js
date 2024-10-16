@@ -21,7 +21,7 @@ describe('<Stack />', () => {
 
   it('should handle 0 as a child', () => {
     const { container } = render(
-      <Stack divider={<div></div>}>
+      <Stack divider={<div />}>
         <div>1</div>
         {0}
         <div>2</div>
