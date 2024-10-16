@@ -58,7 +58,7 @@ export default function InputAdornments() {
               <InputAdornment position="end">
                 <IconButton
                   aria-label={
-                    showPassword ? 'display the password' : 'hide the password'
+                    showPassword ? 'hide the password' : 'display the password'
                   }
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
@@ -113,7 +113,7 @@ export default function InputAdornments() {
               <InputAdornment position="end">
                 <IconButton
                   aria-label={
-                    showPassword ? 'display the password' : 'hide the password'
+                    showPassword ? 'hide the password' : 'display the password'
                   }
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
@@ -166,7 +166,7 @@ export default function InputAdornments() {
               <InputAdornment position="end">
                 <IconButton
                   aria-label={
-                    showPassword ? 'display the password' : 'hide the password'
+                    showPassword ? 'hide the password' : 'display the password'
                   }
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
