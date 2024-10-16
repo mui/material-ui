@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "esnext",
-    "target": "es5",
+    "target": "es2022",
     "lib": ["es2020", "dom", "dom.iterable"],
     "jsx": "preserve",
     "moduleResolution": "node",

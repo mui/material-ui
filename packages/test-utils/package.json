@@ -46,7 +46,7 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@types/sinon": "^10.0.20",
-    "typescript": "^5.3.3"
+    "typescript": "^5.6.3"
   },
   "peerDependencies": {
     "react": "^19.0.0",
