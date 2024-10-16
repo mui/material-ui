@@ -18,7 +18,7 @@ overrides:
   '@definitelytyped/utils': ^0.1.7
   '@types/node': ^20.16.11
   '@types/react': ^18.3.11
-  '@types/react-dom': 18.3.0
+  '@types/react-dom': 18.3.1
   cross-fetch: ^4.0.0
   '@pigment-css/react': 0.0.24
   '@pigment-css/unplugin': 0.0.24
@@ -368,8 +368,8 @@ importers:
         specifier: ^18.3.11
         version: 18.3.11
       '@types/react-dom':
-        specifier: 18.3.0
-        version: 18.3.0
+        specifier: 18.3.1
+        version: 18.3.1
       eslint:
         specifier: ^8.57.1
         version: 8.57.1
@@ -435,8 +435,8 @@ importers:
         specifier: ^18.3.11
         version: 18.3.11
       '@types/react-dom':
-        specifier: 18.3.0
-        version: 18.3.0
+        specifier: 18.3.1
+        version: 18.3.1
       '@types/webfontloader':
         specifier: ^1.6.38
         version: 1.6.38
@@ -865,8 +865,8 @@ importers:
         specifier: ^18.3.11
         version: 18.3.11
       '@types/react-dom':
-        specifier: 18.3.0
-        version: 18.3.0
+        specifier: 18.3.1
+        version: 18.3.1
       '@types/react-swipeable-views':
         specifier: ^0.13.5
         version: 0.13.5
@@ -1040,7 +1040,7 @@ importers:
         version: 10.4.0
       '@testing-library/react':
         specifier: ^16.0.1
-        version: 16.0.1(@testing-library/dom@10.4.0)(@types/react-dom@18.3.0)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 16.0.1(@testing-library/dom@10.4.0)(@types/react-dom@18.3.1)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@testing-library/user-event':
         specifier: ^14.5.2
         version: 14.5.2(@testing-library/dom@10.4.0)
@@ -1100,8 +1100,8 @@ importers:
         specifier: ^18.3.11
         version: 18.3.11
       '@types/react-dom':
-        specifier: 18.3.0
-        version: 18.3.0
+        specifier: 18.3.1
+        version: 18.3.1
       '@types/sinon':
         specifier: ^17.0.3
         version: 17.0.3
@@ -1315,7 +1315,7 @@ importers:
         version: link:../../packages-internal/test-utils
       '@testing-library/react':
         specifier: ^16.0.1
-        version: 16.0.1(@testing-library/dom@10.4.0)(@types/react-dom@18.3.0)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 16.0.1(@testing-library/dom@10.4.0)(@types/react-dom@18.3.1)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@testing-library/user-event':
         specifier: ^14.5.2
         version: 14.5.2(@testing-library/dom@10.4.0)
@@ -1329,8 +1329,8 @@ importers:
         specifier: ^18.3.11
         version: 18.3.11
       '@types/react-dom':
-        specifier: 18.3.0
-        version: 18.3.0
+        specifier: 18.3.1
+        version: 18.3.1
       '@types/sinon':
         specifier: ^17.0.3
         version: 17.0.3
@@ -1606,8 +1606,8 @@ importers:
         specifier: ^18.3.11
         version: 18.3.11
       '@types/react-dom':
-        specifier: 18.3.0
-        version: 18.3.0
+        specifier: 18.3.1
+        version: 18.3.1
       '@types/sinon':
         specifier: ^17.0.3
         version: 17.0.3
@@ -1683,8 +1683,8 @@ importers:
         specifier: ^18.3.11
         version: 18.3.11
       '@types/react-dom':
-        specifier: 18.3.0
-        version: 18.3.0
+        specifier: 18.3.1
+        version: 18.3.1
       '@types/sinon':
         specifier: ^17.0.3
         version: 17.0.3
@@ -1769,8 +1769,8 @@ importers:
         specifier: ^18.3.11
         version: 18.3.11
       '@types/react-dom':
-        specifier: 18.3.0
-        version: 18.3.0
+        specifier: 18.3.1
+        version: 18.3.1
       '@types/sinon':
         specifier: ^17.0.3
         version: 17.0.3
@@ -2029,8 +2029,8 @@ importers:
         specifier: ^18.3.11
         version: 18.3.11
       '@types/react-dom':
-        specifier: 18.3.0
-        version: 18.3.0
+        specifier: 18.3.1
+        version: 18.3.1
       '@types/sinon':
         specifier: ^17.0.3
         version: 17.0.3
@@ -2166,8 +2166,8 @@ importers:
         specifier: ^18.3.11
         version: 18.3.11
       '@types/react-dom':
-        specifier: 18.3.0
-        version: 18.3.0
+        specifier: 18.3.1
+        version: 18.3.1
       '@types/react-is':
         specifier: ^18.3.0
         version: 18.3.0
@@ -5297,7 +5297,7 @@ packages:
     peerDependencies:
       '@testing-library/dom': ^10.0.0
       '@types/react': ^18.3.11
-      '@types/react-dom': 18.3.0
+      '@types/react-dom': 18.3.1
       react: ^18.0.0
       react-dom: ^18.0.0
     peerDependenciesMeta:
@@ -5564,8 +5564,8 @@ packages:
   '@types/range-parser@1.2.4':
     resolution: {integrity: sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==}
 
-  '@types/react-dom@18.3.0':
-    resolution: {integrity: sha512-EhwApuTmMBmXuFOikhQLIBUn6uFg81SwLMOAUgodJF14SOBOCMdU04gDoYi0WOJJHD144TL32z4yDqCW3dnkQg==}
+  '@types/react-dom@18.3.1':
+    resolution: {integrity: sha512-qW1Mfv8taImTthu4KoXgDfLuk4bydU6Q/TkADnDWWHwi4NX4BR+LWfTp2sVmTqRrsHvyDDTelgelxJ+SsejKKQ==}
 
   '@types/react-is@18.3.0':
     resolution: {integrity: sha512-KZJpHUkAdzyKj/kUHJDc6N7KyidftICufJfOFpiG6haL/BDQNQt5i4n1XDUL/nDZAtGLHDSWRYpLzKTAKSvX6w==}
@@ -16497,7 +16497,7 @@ snapshots:
       lz-string: 1.5.0
       pretty-format: 27.5.1
 
-  '@testing-library/react@16.0.1(@testing-library/dom@10.4.0)(@types/react-dom@18.3.0)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@testing-library/react@16.0.1(@testing-library/dom@10.4.0)(@types/react-dom@18.3.1)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.25.7
       '@testing-library/dom': 10.4.0
@@ -16505,7 +16505,7 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
     optionalDependencies:
       '@types/react': 18.3.11
-      '@types/react-dom': 18.3.0
+      '@types/react-dom': 18.3.1
 
   '@testing-library/user-event@14.5.2(@testing-library/dom@10.4.0)':
     dependencies:
@@ -16828,7 +16828,7 @@ snapshots:
 
   '@types/range-parser@1.2.4': {}
 
-  '@types/react-dom@18.3.0':
+  '@types/react-dom@18.3.1':
     dependencies:
       '@types/react': 18.3.11
 
