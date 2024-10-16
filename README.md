@@ -24,8 +24,8 @@
 [Material UI](https://mui.com/material-ui/) is a comprehensive library of React components that features our independent implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
 It's trusted by some of the world's greatest product teams because it's been rigorously battle-tested through more than a decade of development by thousands of open-source contributors.
 
-Material UI's core functionality is extended by [MUI X](https://github.com/mui/mui-x), a suite of complex components for advanced use cases. 
-[Toolpad](https://github.com/mui/toolpad) builds on top of Material UI to provide full-stack components and a low-code internal tool builder.
+Material UI's core functionality is extended by [MUI X](https://github.com/mui/mui-x), a suite of complex components for advanced use cases.
+[Toolpad](https://github.com/mui/toolpad) builds on top of Material UI to provide full-stack components and a low-code internal tool builder.
 
 ## Documentation
 
