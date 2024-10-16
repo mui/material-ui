@@ -182,30 +182,3 @@ You can create and manipulate dialogs imperatively with the [`useDialogs()`](htt
 The following example demonstrates some of these features:
 
 {{"demo": "ToolpadDialogsNoSnap.js", "defaultCodeOpen": false}}
-
-```tsx
-const handleDelete = async () => {
-  const id = await dialogs.prompt('Enter the ID to delete', {
-    okText: 'Delete',
-    cancelText: 'Cancel',
-  });
-
-  if (id) {
-    const deleteConfirmed = await dialogs.confirm(
-      `Are you sure you want to delete "${id}"?`,
-    );
-    if (deleteConfirmed) {
-      try {
-        setIsDeleting(true);
-        await mockApiDelete(id);
-        dialogs.alert('Deleted!');
-      } catch (error) {
-        const message = error instanceof Error ? error.message : 'Unknown error';
-        await dialogs.open(MyCustomDialog, { id, error: message });
-      } finally {
-        setIsDeleting(false);
-      }
-    }
-  }
-};
-```
