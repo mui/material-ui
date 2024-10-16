@@ -19,7 +19,7 @@ describe('<Stack />', () => {
 
   const theme = createTheme();
 
-  it.only('should handle 0 as a child', () => {
+  it('should handle 0 as a child', () => {
     const { container } = render(
       <Stack divider={<></>}>
         <div>1</div>
