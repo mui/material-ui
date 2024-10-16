@@ -32,9 +32,14 @@ function parseTags(commitMessage) {
  * @param {Octokit.ReposCompareCommitsResponseCommitsItem} commitsItem
  */
 function filterCommit(commitsItem) {
+  const commitMessage = commitsItem.commit.message;
   // TODO: Use labels
-  // Filter dependency updates
-  return !commitsItem.commit.message.startsWith('Bump');
+  return (
+    // Filter renovate dependencies updates
+    !commitMessage.startsWith('Bump') &&
+    // Filter website changes, no implications for library users
+    !commitMessage.startsWith('[website]')
+  );
 }
 
 async function findLatestTaggedVersion() {
@@ -53,6 +58,10 @@ async function findLatestTaggedVersion() {
 
   return stdout.trim();
 }
+
+// Match commit messages like:
+// "[docs] Fix small typo on Grid2 page (#44062)"
+const prLinkRegEx = /\(#[0-9]+\)$/;
 
 async function main(argv) {
   const { githubToken, lastRelease: lastReleaseInput, release, repo } = argv;
@@ -151,7 +160,13 @@ async function main(argv) {
     return aTags.localeCompare(bTags);
   });
   const changes = commitsItems.map((commitsItem) => {
-    const shortMessage = commitsItem.commit.message.split('\n')[0];
+    let shortMessage = commitsItem.commit.message.split('\n')[0];
+
+    // If the commit message doesn't have an associated PR, add the commit sha for reference.
+    if (!prLinkRegEx.test(shortMessage)) {
+      shortMessage += ` (${commitsItem.sha.substring(0, 7)})`;
+    }
+
     return `- ${shortMessage} @${getAuthor(commitsItem)}`;
   });
   const nowFormatted = new Date().toLocaleDateString('en-US', {

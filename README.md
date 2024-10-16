@@ -25,6 +25,7 @@
 It's trusted by some of the world's greatest product teams because it's been rigorously battle-tested through more than a decade of development by thousands of open-source contributors.
 
 Material UI's core functionality is extended by [MUI X](https://github.com/mui/mui-x), a suite of complex components for advanced use cases.
+[Toolpad](https://github.com/mui/toolpad) builds on top of Material UI to provide full-stack components and a low-code internal tool builder.
 
 ## Documentation
 
@@ -49,7 +50,7 @@ This repository also contains Joy UI, an experimental component library that imp
 Joy UI is in beta and _development is currently on hold_.
 When starting a new project from scratch, we recommend Material UI over Joy UI because we can guarantee ongoing support.
 
-You're welcome to open new issues and PRs to help improve Joy UI, but please keep in mind that the maintainers are primarily focused on other projects and may not be able to respond in a timely manner.
+Keep in mind that the maintainers are primarily focused on other projects and may not be able to respond in a timely manner to issues or pull requests related to Joy UI.
 
 View the [Joy UI documentation](https://mui.com/joy-ui/getting-started/).
 
