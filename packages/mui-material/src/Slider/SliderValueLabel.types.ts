@@ -10,7 +10,7 @@ export interface SliderValueLabelProps {
    * The value of the slider.
    * For ranged sliders, provide an array with two values.
    */
-  value: number;
+  value: React.ReactNode;
   /**
    * Controls when the value label is displayed:
    *
