@@ -146,6 +146,14 @@ To set a different default mode, pass the `defaultMode` prop to the ThemeProvide
 The `defaultMode` value can be `'light'`, `'dark'`, or `'system'`.
 :::
 
+### InitColorSchemeScript component
+
+If you are using the `InitColorSchemeScript` component to [prevent SSR flicker](/material-ui/customization/css-theme-variables/configuration/#preventing-ssr-flickering), you have to set the `defaultMode` with the same value you passed to the `ThemeProvider` component:
+
+```js
+<InitColorSchemeScript defaultMode="dark">
+```
+
 ## Styling in dark mode
 
 Use the `theme.applyStyles` utility to apply styles for a specific mode.
