@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url';
 import fse from 'fs-extra';
 import { RENAME_FILTER_MUI, RENAME_FILTER_DEFAULT, getComponentName, handler } from './builder.mjs';
 
-const currentDirectory = fileURLToPath(new URL('.', import.meta.url));
+const currentDirectory = path.dirname(fileURLToPath(new URL(import.meta.url)));
 
 const DISABLE_LOG = true;
 
@@ -43,12 +43,13 @@ describe('builder', () => {
       outputDir: null,
     };
 
-    beforeEach(async function beforeEachHook() {
+    // eslint-disable-next-line mocha/handle-done-callback
+    beforeEach(async function beforeEachHook(ctx) {
       // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
       options.outputDir = path.join(
         os.tmpdir(),
         'material-ui-icons-builder-test',
-        this.currentTest.fullTitle(),
+        process.env.VITEST ? ctx.task.name : this.currentTest.fullTitle(),
       );
       await fse.emptyDir(options.outputDir);
     });
@@ -70,12 +71,13 @@ describe('builder', () => {
       outputDir: null,
     };
 
-    beforeEach(async function beforeEachHook() {
+    // eslint-disable-next-line mocha/handle-done-callback
+    beforeEach(async function beforeEachHook(ctx) {
       // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
       options.outputDir = path.join(
         os.tmpdir(),
         'material-ui-icons-builder-test',
-        this.currentTest.fullTitle(),
+        process.env.VITEST ? ctx.task.name : this.currentTest.fullTitle(),
       );
       await fse.emptyDir(options.outputDir);
     });
@@ -111,12 +113,13 @@ describe('builder', () => {
       outputDir: null,
     };
 
-    beforeEach(async function beforeEachHook() {
+    // eslint-disable-next-line mocha/handle-done-callback
+    beforeEach(async function beforeEachHook(ctx) {
       // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
       options.outputDir = path.join(
         os.tmpdir(),
         'material-ui-icons-builder-test',
-        this.currentTest.fullTitle(),
+        process.env.VITEST ? ctx.task.name : this.currentTest.fullTitle(),
       );
       await fse.emptyDir(options.outputDir);
     });

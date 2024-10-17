@@ -55,7 +55,12 @@ failOnConsole({
 function wrapIt(itFn: typeof it.only) {
   return function wrapper(name: string, fn: Function) {
     return itFn(name, (context) => {
-      return fn?.call(context);
+      return fn?.call({
+        ...context,
+        currentTest: {
+          fullTitle: () => context.task.name,
+        },
+      });
     });
   };
 }
