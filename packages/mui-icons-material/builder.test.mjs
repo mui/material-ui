@@ -72,15 +72,27 @@ describe('builder', () => {
     };
 
     // eslint-disable-next-line mocha/handle-done-callback
-    beforeEach(async function beforeEachHook(ctx) {
-      // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
-      options.outputDir = path.join(
-        os.tmpdir(),
-        'material-ui-icons-builder-test',
-        process.env.VITEST ? ctx.task.name : this.currentTest.fullTitle(),
-      );
-      await fse.emptyDir(options.outputDir);
-    });
+    beforeEach(
+      process.env.VITEST
+        ? async function beforeEachHook(ctx) {
+            // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
+            options.outputDir = path.join(
+              os.tmpdir(),
+              'material-ui-icons-builder-test',
+              ctx.task.name,
+            );
+            await fse.emptyDir(options.outputDir);
+          }
+        : async function beforeEachHook() {
+            // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
+            options.outputDir = path.join(
+              os.tmpdir(),
+              'material-ui-icons-builder-test',
+              this.currentTest.fullTitle(),
+            );
+            await fse.emptyDir(options.outputDir);
+          },
+    );
 
     it('script outputs to directory', async () => {
       await handler(options);
@@ -114,18 +126,29 @@ describe('builder', () => {
     };
 
     // eslint-disable-next-line mocha/handle-done-callback
-    beforeEach(async function beforeEachHook(ctx) {
-      // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
-      options.outputDir = path.join(
-        os.tmpdir(),
-        'material-ui-icons-builder-test',
-        process.env.VITEST ? ctx.task.name : this.currentTest.fullTitle(),
-      );
-      await fse.emptyDir(options.outputDir);
-    });
+    beforeEach(
+      process.env.VITEST
+        ? async function beforeEachHook(ctx) {
+            // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
+            options.outputDir = path.join(
+              os.tmpdir(),
+              'material-ui-icons-builder-test',
+              ctx.task.name,
+            );
+            await fse.emptyDir(options.outputDir);
+          }
+        : async function beforeEachHook() {
+            // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
+            options.outputDir = path.join(
+              os.tmpdir(),
+              'material-ui-icons-builder-test',
+              this.currentTest.fullTitle(),
+            );
+            await fse.emptyDir(options.outputDir);
+          },
+    );
 
-    it.only('should produce the expected output', async () => {
-      console.log(options);
+    it('should produce the expected output', async () => {
       await handler(options);
       expect(fs.lstatSync(options.outputDir).isDirectory()).to.equal(true);
 
