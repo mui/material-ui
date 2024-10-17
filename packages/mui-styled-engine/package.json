@@ -33,7 +33,7 @@
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "prebuild": "rimraf build",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-styled-engine/**/*.test.{js,ts,tsx}'",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-styled-engine/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {

@@ -245,7 +245,7 @@ export async function handler(options) {
     renameFilter = renameFilterModule.default;
   }
   if (typeof renameFilter !== 'function') {
-    throw Error('renameFilter must be a function');
+    throw new Error('renameFilter must be a function');
   }
   await fse.ensureDir(options.outputDir);
 

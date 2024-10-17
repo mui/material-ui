@@ -35,7 +35,7 @@
     "build:types": "node ../../scripts/buildTypes.mjs",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-base/**/*.test.{js,ts,tsx}'",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-base/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
