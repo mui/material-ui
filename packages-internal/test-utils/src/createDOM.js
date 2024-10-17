@@ -25,7 +25,7 @@ function createDOM() {
     pretendToBeVisual: true,
     url: 'http://localhost',
   });
-  global.window = dom.window;
+  globalThis.window = dom.window;
   // Not yet supported: https://github.com/jsdom/jsdom/issues/2152
   class Touch {
     constructor(instance) {
@@ -52,14 +52,14 @@ function createDOM() {
       return this.instance.clientY;
     }
   }
-  global.window.Touch = Touch;
+  globalThis.window.Touch = Touch;
 
   Object.keys(dom.window)
     .filter((key) => !blacklist.includes(key))
     .concat(whitelist)
     .forEach((key) => {
-      if (typeof global[key] === 'undefined') {
-        global[key] = dom.window[key];
+      if (typeof globalThis[key] === 'undefined') {
+        globalThis[key] = dom.window[key];
       }
     });
 }

@@ -14,7 +14,7 @@ describe('extendTheme', () => {
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
     // Create mocks of localStorage getItem and setItem functions
-    Object.defineProperty(global, 'localStorage', {
+    Object.defineProperty(globalThis, 'localStorage', {
       value: {
         getItem: (key) => storage[key],
         setItem: (key, value) => {
