@@ -408,7 +408,7 @@ describe('<SwitchBase />', () => {
 
       expect(() => {
         setProps({ checked: true });
-        global.didWarnControlledToUncontrolled = true;
+        globalThis.didWarnControlledToUncontrolled = true;
       }).toErrorDev([
         reactMajor === 16 &&
           'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.',
@@ -434,7 +434,7 @@ describe('<SwitchBase />', () => {
 
       expect(() => {
         setProps({ checked: undefined });
-        global.didWarnControlledToUncontrolled = true;
+        globalThis.didWarnControlledToUncontrolled = true;
       }).toErrorDev([
         reactMajor === 16 &&
           'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.',

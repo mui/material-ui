@@ -1,9 +1,9 @@
-import { defineProject, configDefaults } from 'vitest/config';
+import { configDefaults, UserWorkspaceConfig } from 'vitest/config';
 import * as path from 'path';
 
 const MONOREPO_ROOT = path.resolve(__dirname, '.');
 
-export default defineProject({
+export default {
   test: {
     exclude: ['build', '**/*.spec.*'],
     globals: true,
@@ -57,4 +57,4 @@ export default defineProject({
     include: /.*\.[jt]sx?$/,
     exclude: [],
   },
-});
+} satisfies UserWorkspaceConfig;
