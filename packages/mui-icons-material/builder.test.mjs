@@ -124,7 +124,8 @@ describe('builder', () => {
       await fse.emptyDir(options.outputDir);
     });
 
-    it('should produce the expected output', async () => {
+    it.only('should produce the expected output', async () => {
+      console.log(options);
       await handler(options);
       expect(fs.lstatSync(options.outputDir).isDirectory()).to.equal(true);
 
