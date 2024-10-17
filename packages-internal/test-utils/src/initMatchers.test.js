@@ -43,15 +43,12 @@ describe('custom matchers', () => {
       expect(caughtError.stack).to.include(
         'Could not match the following console.error calls. ' +
           "Make sure previous actions didn't call console.error by wrapping them in expect(() => {}).not.toErrorDev(): \n\n" +
-          '  - "expected message"\n' +
-          `    at ${process.env.VITEST ? 'Function' : 'Context'}.<anonymous>`,
+          '  - "expected message"\n',
       );
       // check that the top stackframe points to this test
       // if this test is moved to another file the next assertion fails
       expect(caughtError.stack).to.match(
-        process.env.VITEST
-          ? /- "expected message"\s+at Function\.<anonymous> \(.+\/initMatchers\.test\.js:\d+:\d+\)/
-          : /- "expected message"\s+at Context\.<anonymous> \(.+\/initMatchers\.test\.js:\d+:\d+\)/,
+        /- "expected message"\s+at .*\/initMatchers\.test\.js:\d+:\d+/,
       );
     });
 
@@ -67,15 +64,12 @@ describe('custom matchers', () => {
       expect(caughtError.stack).to.include(
         'Recorded unexpected console.error calls: \n\n' +
           '  - Expected #1 "expected message" to be included in \n' +
-          '"expected Message"\n' +
-          '    at ',
+          '"expected Message"\n',
       );
       // check that the top stackframe points to this test
       // if this test is moved to another file the next assertion fails
       expect(caughtError.stack).to.match(
-        process.env.VITEST
-          ? /"expected Message"\s+at .+\/initMatchers\.test\.js:\d+:\d+/
-          : /"expected Message"\s+at callback \(.+\/initMatchers\.test\.js:\d+:\d+\)/,
+        /"expected Message"\s+at .*\/initMatchers\.test\.js:\d+:\d+/,
       );
     });
 
