@@ -1,6 +1,10 @@
 /* eslint-env node */
 // eslint-ignore-next-line import/no-unresolved
-const { withPigment } = require('@pigment-css/nextjs-plugin');
+import { withPigment } from '@pigment-css/nextjs-plugin';
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
+
 const { extendTheme } = require('@mui/material/styles');
 
 /**
@@ -119,4 +123,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withPigment(nextConfig, pigmentOptions);
+export default withPigment(nextConfig, pigmentOptions);
