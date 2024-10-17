@@ -12,6 +12,7 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "disableEscapeKeyDown": { "type": { "name": "bool" }, "default": "false" },
+    "disableInitialContentFocus": { "type": { "name": "bool" }, "default": "false" },
     "fullScreen": { "type": { "name": "bool" }, "default": "false" },
     "fullWidth": { "type": { "name": "bool" }, "default": "false" },
     "maxWidth": {

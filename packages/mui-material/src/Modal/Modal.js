@@ -144,9 +144,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const childProps = {};
-  if (children.props.tabIndex === undefined) {
-    childProps.tabIndex = '-1';
-  }
 
   // It's a Transition like component
   if (hasTransition) {
