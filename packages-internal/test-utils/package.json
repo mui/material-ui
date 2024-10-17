@@ -48,7 +48,7 @@
     "jsdom": "^24.0.0",
     "lodash": "^4.17.21",
     "mocha": "^10.7.3",
-    "playwright": "^1.47.2",
+    "playwright": "^1.48.1",
     "prop-types": "^15.8.1",
     "sinon": "^18.0.1"
   },
