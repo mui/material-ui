@@ -34,7 +34,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-is": "^18.3.1",
-    "react-router-dom": "^6.26.2",
+    "react-router-dom": "^6.27.0",
     "sinon": "^18.0.1",
     "styled-components": "^6.1.13",
     "stylis": "4.2.0",
@@ -45,6 +45,6 @@
     "yargs": "^17.7.2"
   },
   "dependencies": {
-    "@react-spring/web": "^9.7.4"
+    "@react-spring/web": "^9.7.5"
   }
 }

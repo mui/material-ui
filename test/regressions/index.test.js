@@ -131,6 +131,20 @@ async function main() {
         await takeScreenshot({ testcase, route: '/regression-Rating/PreciseFocusVisibleRating3' });
       });
     });
+
+    describe('Autocomplete', () => {
+      it('should not close immediately when textbox expands', async () => {
+        const testcase = await renderFixture(
+          '/regression-Autocomplete/TextboxExpandsOnListboxOpen',
+        );
+        await page.getByRole('combobox').click();
+        await page.waitForTimeout(10);
+        await takeScreenshot({
+          testcase,
+          route: '/regression-Autocomplete/TextboxExpandsOnListboxOpen2',
+        });
+      });
+    });
   });
 
   run();

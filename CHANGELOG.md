@@ -1,5 +1,42 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.1.4
+
+<!-- generated comparing v6.1.3..master -->
+
+_Oct 15, 2024_
+
+A big thanks to the 9 contributors who made this release possible.
+
+### `@mui/material@6.1.4`
+
+- [Checkbox] Fix disableRipple regression (#44099) @siriwatknp
+- [IconButton] Fix disableRipple behavior when disableRipple is set in MuiButtonBase theme (#43714) @sai6855
+- Make the palette always return new light and dark object (#44059) @siriwatknp
+- Simplify createPalette (#44075) @oliviertassinari
+
+### Docs
+
+- Improve Toolpad Core docs (#43796) @bharatkashyap
+- Tweak Joy UI section in README (#44103) @aarongarciah
+- Fix 404 link to Next.js @oliviertassinari
+- [toolpad core] In the sidebar, move 'new' label to the components (#44070) @prakhargupta1
+- Fix small typo on Grid2 page (#44062) @zanivan
+- Clarify suggestions to use `@mui/styles` in v5 migration docs (#44049) @samuelsycamore
+
+### Core
+
+- [code-infra] Link to production app for bundle size (#44076) @oliviertassinari
+- [code-infra] Disable cron job for React 17 tests (#44065) @Janpot
+- Remove [website] from changelog (#44069) @oliviertassinari
+- Apply #44052 to the latest release as well @oliviertassinari
+- Fix proptypes generation when multiple components per file (#44058) @Janpot
+- Remove <-- from changelog (#44052) @oliviertassinari
+- [examples] Avoid git diff when playing with examples @oliviertassinari
+- [test] Remove dead code (#44056) @Janpot
+
+All contributors of this release in alphabetical order: @aarongarciah, @bharatkashyap, @Janpot, @oliviertassinari, @prakhargupta1, @sai6855, @samuelsycamore, @siriwatknp, @zanivan
+
 ## v6.1.3
 
 <!-- generated comparing v6.1.2..master -->

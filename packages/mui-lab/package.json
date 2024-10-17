@@ -1,6 +1,6 @@
 {
   "name": "@mui/lab",
-  "version": "6.0.0-beta.11",
+  "version": "6.0.0-beta.12",
   "private": false,
   "author": "MUI Team",
   "description": "Laboratory for new MUI modules.",
@@ -54,7 +54,7 @@
     "@types/chai": "^4.3.20",
     "@types/prop-types": "^15.7.13",
     "@types/react": "^18.3.11",
-    "@types/react-dom": "^18.3.0",
+    "@types/react-dom": "^18.3.1",
     "@types/sinon": "^17.0.3",
     "chai": "^4.5.0",
     "react": "^18.3.1",
