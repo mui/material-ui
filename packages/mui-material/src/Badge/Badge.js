@@ -477,4 +477,6 @@ Badge.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+Badge.displayName = 'Badge';
+
 export default Badge;

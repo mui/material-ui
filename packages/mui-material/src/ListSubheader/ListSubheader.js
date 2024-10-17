@@ -181,4 +181,6 @@ ListSubheader.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+ListSubheader.displayName = 'ListSubheader';
+
 export default ListSubheader;

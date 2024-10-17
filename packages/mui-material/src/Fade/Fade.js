@@ -227,4 +227,6 @@ Fade.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+Fade.displayName = 'Fade';
+
 export default Fade;

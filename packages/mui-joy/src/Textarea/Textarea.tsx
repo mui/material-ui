@@ -394,4 +394,6 @@ Textarea.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+Textarea.displayName = 'Textarea';
+
 export default Textarea;

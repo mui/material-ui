@@ -230,4 +230,6 @@ AccordionSummary.propTypes /* remove-proptypes */ = {
   variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
+AccordionSummary.displayName = 'AccordionSummary';
+
 export default AccordionSummary;

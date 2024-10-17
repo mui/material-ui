@@ -844,4 +844,6 @@ InputBase.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 };
 
+InputBase.displayName = 'InputBase';
+
 export default InputBase;

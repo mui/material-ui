@@ -80,4 +80,6 @@ TableContainer.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+TableContainer.displayName = 'TableContainer';
+
 export default TableContainer;

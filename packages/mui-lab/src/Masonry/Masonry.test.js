@@ -105,7 +105,7 @@ describe('<Masonry />', () => {
         this.skip();
       }
       expect(() => render(<Masonry columns={3} spacing={1} />)).toErrorDev(
-        'Warning: Failed prop type: The prop `children` is marked as required in `ForwardRef(Masonry)`, but its value is `undefined`.',
+        'Warning: Failed prop type: The prop `children` is marked as required in `Masonry`, but its value is `undefined`.',
       );
     });
 
@@ -117,7 +117,7 @@ describe('<Masonry />', () => {
       // React 19 removed prop types support
       if (reactMajor < 19) {
         expect(() => render(<Masonry columns={3} spacing={1} />)).toErrorDev(
-          'Warning: Failed prop type: The prop `children` is marked as required in `ForwardRef(Masonry)`, but its value is `undefined`.',
+          'Warning: Failed prop type: The prop `children` is marked as required in `Masonry`, but its value is `undefined`.',
         );
       }
 

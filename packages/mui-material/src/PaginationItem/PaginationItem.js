@@ -549,4 +549,6 @@ PaginationItem.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+PaginationItem.displayName = 'PaginationItem';
+
 export default PaginationItem;

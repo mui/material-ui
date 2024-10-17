@@ -492,4 +492,6 @@ ButtonBase.propTypes /* remove-proptypes */ = {
   type: PropTypes.oneOfType([PropTypes.oneOf(['button', 'reset', 'submit']), PropTypes.string]),
 };
 
+ButtonBase.displayName = 'ButtonBase';
+
 export default ButtonBase;

@@ -131,4 +131,6 @@ DialogContent.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+DialogContent.displayName = 'DialogContent';
+
 export default DialogContent;

@@ -315,4 +315,6 @@ Typography.propTypes /* remove-proptypes */ = {
   variantMapping: PropTypes /* @typescript-to-proptypes-ignore */.object,
 };
 
+Typography.displayName = 'Typography';
+
 export default Typography;

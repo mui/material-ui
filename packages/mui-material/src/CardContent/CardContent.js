@@ -83,4 +83,6 @@ CardContent.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+CardContent.displayName = 'CardContent';
+
 export default CardContent;

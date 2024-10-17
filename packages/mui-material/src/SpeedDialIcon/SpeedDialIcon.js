@@ -149,6 +149,8 @@ SpeedDialIcon.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+SpeedDialIcon.displayName = 'SpeedDialIcon';
+
 SpeedDialIcon.muiName = 'SpeedDialIcon';
 
 export default SpeedDialIcon;

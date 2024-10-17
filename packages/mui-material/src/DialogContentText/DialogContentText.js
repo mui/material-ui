@@ -77,4 +77,6 @@ DialogContentText.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+DialogContentText.displayName = 'DialogContentText';
+
 export default DialogContentText;

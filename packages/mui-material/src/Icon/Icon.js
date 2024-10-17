@@ -222,6 +222,8 @@ Icon.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+Icon.displayName = 'Icon';
+
 if (Icon) {
   Icon.muiName = 'Icon';
 }

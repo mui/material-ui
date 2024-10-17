@@ -283,4 +283,6 @@ IconButton.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+IconButton.displayName = 'IconButton';
+
 export default IconButton;

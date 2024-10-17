@@ -388,6 +388,8 @@ IconButton.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+IconButton.displayName = 'IconButton';
+
 // @ts-ignore internal logic for ToggleButtonGroup
 IconButton.muiName = 'IconButton';
 

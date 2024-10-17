@@ -63,4 +63,6 @@ Container.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+Container.displayName = 'Container';
+
 export default Container;

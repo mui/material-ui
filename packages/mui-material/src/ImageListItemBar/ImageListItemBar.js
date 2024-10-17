@@ -277,4 +277,6 @@ ImageListItemBar.propTypes /* remove-proptypes */ = {
   title: PropTypes.node,
 };
 
+ImageListItemBar.displayName = 'ImageListItemBar';
+
 export default ImageListItemBar;

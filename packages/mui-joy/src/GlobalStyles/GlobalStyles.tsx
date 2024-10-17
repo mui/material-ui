@@ -9,4 +9,6 @@ function GlobalStyles(props: GlobalStylesProps<Theme>) {
   return <SystemGlobalStyles {...props} defaultTheme={defaultTheme} themeId={THEME_ID} />;
 }
 
+GlobalStyles.displayName = 'GlobalStyles';
+
 export default GlobalStyles;
