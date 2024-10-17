@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@types/chai": "^4.3.20",
-    "@types/jscodeshift": "0.11.11",
+    "@types/jscodeshift": "0.12.0",
     "chai": "^4.5.0"
   },
   "sideEffects": false,
