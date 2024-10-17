@@ -71,6 +71,8 @@ function withDocsInfra(nextConfig) {
       NETLIFY_DEPLOY_URL: process.env.DEPLOY_URL,
       // Name of the site, its Netlify subdomain; for example, material-ui-docs
       NETLIFY_SITE_NAME: process.env.SITE_NAME,
+      // For template images
+      TEMPLATE_IMAGE_URL: '',
     },
     experimental: {
       scrollRestoration: true,

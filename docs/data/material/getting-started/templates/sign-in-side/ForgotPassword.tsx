@@ -23,6 +23,7 @@ export default function ForgotPassword({ open, handleClose }: ForgotPasswordProp
           event.preventDefault();
           handleClose();
         },
+        sx: { backgroundImage: 'none' },
       }}
     >
       <DialogTitle>Reset password</DialogTitle>
