@@ -1,6 +1,6 @@
 // Sorted ASC by size. That's important.
 // It can't be configured as it's used statically for propTypes.
-export const breakpointKeys = ['xs', 'sm', 'md', 'lg', 'xl'];
+export const breakpointKeys = ['xs', 'sm', 'md', 'lg', 'xl', 'uw'];
 
 const sortBreakpointsValues = (values) => {
   const breakpointsAsArray = Object.keys(values).map((key) => ({ key, val: values[key] })) || [];
@@ -22,6 +22,7 @@ export default function createBreakpoints(breakpoints) {
       md: 900, // small laptop
       lg: 1200, // desktop
       xl: 1536, // large screen
+      uw: 2560, // ultra wide
     },
     unit = 'px',
     step = 5,

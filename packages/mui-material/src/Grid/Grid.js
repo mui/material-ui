@@ -124,7 +124,7 @@ export function generateDirection({ theme, ownerState }) {
 
 /**
  * Extracts zero value breakpoint keys before a non-zero value breakpoint key.
- * @example { xs: 0, sm: 0, md: 2, lg: 0, xl: 0 } or [0, 0, 2, 0, 0]
+ * @example { xs: 0, sm: 0, md: 2, lg: 0, xl: 0, uw: 0 } or [0, 0, 2, 0, 0, 0]
  * @returns [xs, sm]
  */
 function extractZeroValueBreakpointKeys({ breakpoints, values }) {
@@ -591,6 +591,16 @@ Grid.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * If a number, it sets the number of columns the grid item uses.
+   * It can't be greater than the total number of columns of the container (12 by default).
+   * If 'auto', the grid item's width matches its content.
+   * If false, the prop is ignored.
+   * If true, the grid item's width grows to use the space available in the grid container.
+   * The value is applied for the `uw` breakpoint and wider screens if not overridden.
+   * @default false
+   */
+  uw: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
   /**
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.

@@ -19,14 +19,16 @@ const theme = {
       "sm",
       "md",
       "lg",
-      "xl"
+      "xl",
+      "uw"
     ],
     "values": {
       "xs": 0,
       "sm": 600,
       "md": 900,
       "lg": 1200,
-      "xl": 1536
+      "xl": 1536,
+      "uw": 2560
     },
     "unit": "px"
   },
