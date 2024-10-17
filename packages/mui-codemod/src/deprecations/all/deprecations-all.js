@@ -22,6 +22,7 @@ import transformStepLabelProps from '../step-label-props';
 import transformTextFieldProps from '../text-field-props';
 import transformTabClasses from '../tab-classes';
 import transformToggleButtonGroupClasses from '../toggle-button-group-classes';
+import transformSelectClasses from '../select-classes';
 
 /**
  * @param {import('jscodeshift').FileInfo} file
@@ -52,6 +53,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformTextFieldProps(file, api, options);
   file.source = transformTabClasses(file, api, options);
   file.source = transformToggleButtonGroupClasses(file, api, options);
+  file.source = transformSelectClasses(file, api, options);
 
   return file.source;
 }
