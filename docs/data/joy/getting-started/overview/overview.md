@@ -12,9 +12,9 @@ Joy UI is an open-source React component library that follows a lightly opinion
 
 :::warning
 Joy UI is in beta and _development is currently on hold_.
-When starting a new project from scratch, we recommend Material UI over Joy UI because we can guarantee ongoing support.
+When starting a new project from scratch, we recommend Material UI over Joy UI because we can guarantee ongoing support.
 
-Keep in mind that the maintainers are primarily focused on other projects and may not be able to respond in a timely manner to issues or pull requests related to Joy UI.
+Keep in mind that the maintainers are primarily focused on other projects and may not be able to respond in a timely manner to issues or pull requests related to Joy UI.
 :::
 
 ## Why use Joy UI
