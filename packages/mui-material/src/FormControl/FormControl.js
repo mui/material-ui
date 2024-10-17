@@ -191,6 +191,14 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     };
   }
 
+  const onFilled = React.useCallback(() => {
+    setFilled(true);
+  }, []);
+
+  const onEmpty = React.useCallback(() => {
+    setFilled(false);
+  }, []);
+
   const childContext = React.useMemo(() => {
     return {
       adornedStart,
@@ -206,15 +214,11 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
       onBlur: () => {
         setFocused(false);
       },
-      onEmpty: () => {
-        setFilled(false);
-      },
-      onFilled: () => {
-        setFilled(true);
-      },
       onFocus: () => {
         setFocused(true);
       },
+      onEmpty,
+      onFilled,
       registerEffect,
       required,
       variant,
@@ -229,6 +233,8 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     fullWidth,
     hiddenLabel,
     registerEffect,
+    onEmpty,
+    onFilled,
     required,
     size,
     variant,
