@@ -5,7 +5,7 @@ const MONOREPO_ROOT = path.resolve(__dirname, '.');
 
 export default defineProject({
   test: {
-    exclude: ['**/*.spec.*'],
+    exclude: ['build', '**/*.spec.*'],
     globals: true,
     setupFiles: [path.resolve(MONOREPO_ROOT, './packages-internal/test-utils/src/setupVitest')],
     environment: 'jsdom',

@@ -6,6 +6,11 @@ import { createMochaHooks } from './mochaHooks';
 import { createRenderer, act } from './createRenderer';
 
 describe('mochaHooks', () => {
+  if (process.env.VITEST) {
+    it('TODO:Remove this file once we migrate to mocha', () => {});
+    return;
+  }
+
   // one block per hook.
   describe('afterEach', () => {
     describe('on unexpected console.(warn|error) in afterEach', function suite() {
