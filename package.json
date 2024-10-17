@@ -45,7 +45,7 @@
     "jsonlint": "node ./scripts/jsonlint.mjs",
     "eslint": "eslint . --cache --report-unused-disable-directives --ext .js,.ts,.tsx --max-warnings 0",
     "eslint:ci": "eslint . --report-unused-disable-directives --ext .js,.ts,.tsx --max-warnings 0",
-    "stylelint": "stylelint --reportInvalidScopeDisables --reportNeedlessDisables \"docs/**/*.{js,ts,tsx}\" --ignore-path .gitignore",
+    "stylelint": "stylelint --reportInvalidScopeDisables --reportNeedlessDisables \"docs/**/*.?(c|m)[jt]s?(x)\" --ignore-path .gitignore",
     "markdownlint": "markdownlint-cli2 \"**/*.md\"",
     "valelint": "git ls-files | grep -h \".md$\" | xargs vale --filter='.Level==\"error\"'",
     "prettier": "pretty-quick --ignore-path .eslintignore --branch master",
@@ -87,16 +87,16 @@
     "generate-codeowners": "node scripts/generateCodeowners.mjs",
     "canary:release": "tsx ./scripts/canaryRelease.mts",
     "nx_test_tc": "node test/cli.js",
-    "nx_test_coverage_ci": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov mocha 'packages/**/*.test.{js,ts,tsx}' 'packages-internal/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
-    "nx_test_coverage_html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=html mocha 'packages/**/*.test.{js,ts,tsx}' 'packages-internal/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
-    "nx_test_coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=text mocha 'packages/**/*.test.{js,ts,tsx}' 'packages-internal/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
+    "nx_test_coverage_ci": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov mocha 'packages/**/*.test.?(c|m)[jt]s?(x)' 'packages-internal/**/*.test.?(c|m)[jt]s?(x)' 'docs/**/*.test.?(c|m)[jt]s?(x)'",
+    "nx_test_coverage_html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=html mocha 'packages/**/*.test.?(c|m)[jt]s?(x)' 'packages-internal/**/*.test.?(c|m)[jt]s?(x)' 'docs/**/*.test.?(c|m)[jt]s?(x)'",
+    "nx_test_coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=text mocha 'packages/**/*.test.?(c|m)[jt]s?(x)' 'packages-internal/**/*.test.?(c|m)[jt]s?(x)' 'docs/**/*.test.?(c|m)[jt]s?(x)'",
     "nx_test_e2e_build": "webpack --config test/e2e/webpack.config.js",
-    "nx_test_e2e_run": "mocha --config test/e2e/.mocharc.js 'test/e2e/**/*.test.{js,ts,tsx}'",
+    "nx_test_e2e_run": "mocha --config test/e2e/.mocharc.js 'test/e2e/**/*.test.?(c|m)[jt]s?(x)'",
     "nx_test_karma_profile": "cross-env NODE_ENV=test karma start test/karma.conf.profile.js",
     "nx_test_karma": "cross-env NODE_ENV=test karma start test/karma.conf.js",
     "nx_test_regressions_run": "mocha --config test/regressions/.mocharc.js --delay 'test/regressions/**/*.test.js'",
     "nx_test_regressions_pigment_css_run": "mocha --config apps/pigment-css-vite-app/.mocharc.cjs --delay 'apps/pigment-css-vite-app/**/*.test.js'",
-    "nx_test_unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'packages-internal/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'"
+    "nx_test_unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.?(c|m)[jt]s?(x)' 'packages-internal/**/*.test.?(c|m)[jt]s?(x)' 'docs/**/*.test.?(c|m)[jt]s?(x)'"
   },
   "dependencies": {
     "@googleapis/sheets": "^9.3.1",
@@ -225,10 +225,10 @@
   },
   "nyc": {
     "include": [
-      "packages/mui*/src/**/*.{js,ts,tsx}"
+      "packages/mui*/src/**/*.?(c|m)[jt]s?(x)"
     ],
     "exclude": [
-      "**/*.test.{js,ts,tsx}",
+      "**/*.test.?(c|m)[jt]s?(x)",
       "**/*.test/*"
     ],
     "sourceMap": false,
