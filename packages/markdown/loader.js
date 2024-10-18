@@ -200,6 +200,29 @@ module.exports = async function demoLoader() {
     }
   }
 
+  /**
+   * @param { module: './top100Films.js', raw: '...' } moduleData
+   * @param string demoName
+   * @param ['JS' | 'TS'] variants
+   * Adds the relative module to the demo's relativeModules object for each of the variants
+   */
+  function addToRelativeModules(moduleData, demoName, variants) {
+    variants.forEach((variant) => {
+      if (demos[demoName].relativeModules[variant]) {
+        // Avoid duplicates
+        if (
+          !demos[demoName].relativeModules[variant].some(
+            (elem) => elem.module === moduleData.module,
+          )
+        ) {
+          demos[demoName].relativeModules[variant].push(moduleData);
+        }
+      } else {
+        demos[demoName].relativeModules[variant] = [moduleData];
+      }
+    });
+  }
+
   await Promise.all(
     demoNames.map(async (demoName) => {
       const multipleDemoVersionsUsed = !demoName.endsWith('.js');
@@ -441,29 +464,64 @@ module.exports = async function demoLoader() {
         await Promise.all(
           Array.from(relativeModules.get(demoName)).map(async ([relativeModuleID, variants]) => {
             let raw = '';
+            const relativeModuleFilePath = path.join(
+              path.dirname(moduleFilepath),
+              relativeModuleID,
+            );
+
             try {
-              raw = await fs.readFile(path.join(path.dirname(moduleFilepath), relativeModuleID), {
+              raw = await fs.readFile(relativeModuleFilePath, {
                 encoding: 'utf8',
               });
+
+              const importedProcessedModuleIDs = new Set();
+              // Find the relative paths in the relative module
+              if (relativeModuleID.startsWith('.')) {
+                extractImports(raw).forEach((importModuleID) => {
+                  // detect relative import
+                  detectRelativeImports(
+                    importModuleID,
+                    relativeModuleFilePath,
+                    'JS',
+                    importModuleID,
+                  );
+                  if (importModuleID.startsWith('.')) {
+                    importedProcessedModuleIDs.add(importModuleID);
+                  }
+                });
+
+                const moduleData = { module: relativeModuleID, raw };
+                addToRelativeModules(moduleData, demoName, variants);
+              }
+
+              // iterate recursively over the relative imports
+              while (importedProcessedModuleIDs.size > 0) {
+                for (const entry of importedProcessedModuleIDs) {
+                  if (entry.startsWith('.')) {
+                    const entryModuleFilePath = path.join(
+                      path.dirname(moduleFilepath),
+                      entry + '.js',
+                    );
+                    const raw = await fs.readFile(entryModuleFilePath, { encoding: 'utf8' });
+
+                    extractImports(raw).forEach((importModuleID) => {
+                      // detect relative import
+                      detectRelativeImports(entry, entryModuleFilePath, 'JS', importModuleID);
+                      if (importModuleID.startsWith('.')) {
+                        importedProcessedModuleIDs.add(importModuleID);
+                      }
+                    });
+                    const moduleData = { module: entry + '.js', raw };
+                    addToRelativeModules(moduleData, demoName, variants);
+                  }
+                  importedProcessedModuleIDs.delete(entry);
+                }
+              }
             } catch {
               throw new Error(
                 `Could not find a module for the relative import "${relativeModuleID}" in the demo "${demoName}"`,
               );
             }
-
-            const moduleData = { module: relativeModuleID, raw };
-            const modules = demos[demoName].relativeModules;
-
-            variants.forEach((variant) => {
-              if (modules[variant]) {
-                // Avoid duplicates
-                if (!modules[variant].some((elem) => elem.module === relativeModuleID)) {
-                  modules[variant].push(moduleData);
-                }
-              } else {
-                modules[variant] = [moduleData];
-              }
-            });
           }),
         );
       }
