@@ -1,0 +1,15 @@
+export const FILE_TYPES = [
+  'pdf',
+  'docx',
+  'txt',
+  'mp4',
+  'mov',
+  'webm',
+  'jpg',
+  'jpeg',
+  'png',
+  'gif',
+  'tiff',
+  'webp',
+  'zip',
+];

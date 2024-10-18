@@ -1,5 +1,3 @@
-import movies from './testFile';
-
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const top100Films = [
   { label: 'The Shawshank Redemption', year: 1994 },
@@ -125,7 +123,7 @@ const top100Films = [
   { label: 'Inglourious Basterds', year: 2009 },
   { label: 'Snatch', year: 2000 },
   { label: '3 Idiots', year: 2009 },
-  ...movies,
+  { label: 'Monty Python and the Holy Grail', year: 1975 },
 ];
 
 export default top100Films;

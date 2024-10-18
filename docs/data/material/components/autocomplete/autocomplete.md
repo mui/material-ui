@@ -354,6 +354,12 @@ Search within 10,000 randomly generated options. The list is virtualized thanks 
 
 {{"demo": "Virtualize.js"}}
 
+## Advanced usage
+
+The list view feature can be combined with [custom subcomponents](/x/react-data-grid/components/) to provide an improved user experience on small screens.
+
+{{"demo": "ListViewAdvanced.js", "bg": "inline", "maxWidth": 360, "height": 600}}
+
 ## Events
 
 If you would like to prevent the default key handler behavior, you can set the event's `defaultMuiPrevented` property to `true`:

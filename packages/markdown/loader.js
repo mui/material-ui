@@ -461,6 +461,7 @@ module.exports = async function demoLoader() {
           demos[demoName].relativeModules = {};
         }
 
+        const addedModulesRelativeToModulePath = new Set();
         await Promise.all(
           Array.from(relativeModules.get(demoName)).map(async ([relativeModuleID, variants]) => {
             let raw = '';
@@ -475,6 +476,7 @@ module.exports = async function demoLoader() {
               });
 
               const importedProcessedModuleIDs = new Set();
+              const importedProcessedModulesIDsParents = new Map();
               // Find the relative paths in the relative module
               if (relativeModuleID.startsWith('.')) {
                 extractImports(raw).forEach((importModuleID) => {
@@ -487,32 +489,59 @@ module.exports = async function demoLoader() {
                   );
                   if (importModuleID.startsWith('.')) {
                     importedProcessedModuleIDs.add(importModuleID);
+                    importedProcessedModulesIDsParents.set(importModuleID, relativeModuleFilePath);
                   }
                 });
 
-                const moduleData = { module: relativeModuleID, raw };
-                addToRelativeModules(moduleData, demoName, variants);
+                if (!addedModulesRelativeToModulePath.has(relativeModuleFilePath)) {
+                  const moduleData = { module: relativeModuleID, raw };
+                  addToRelativeModules(moduleData, demoName, variants);
+                  addedModulesRelativeToModulePath.add(relativeModuleFilePath);
+                }
               }
 
               // iterate recursively over the relative imports
               while (importedProcessedModuleIDs.size > 0) {
                 for (const entry of importedProcessedModuleIDs) {
                   if (entry.startsWith('.')) {
-                    const entryModuleFilePath = path.join(
-                      path.dirname(moduleFilepath),
+                    const jsEntryModuleFilePath = path.join(
+                      path.dirname(importedProcessedModulesIDsParents.get(entry)),
                       entry + '.js',
                     );
-                    const raw = await fs.readFile(entryModuleFilePath, { encoding: 'utf8' });
+                    const tsEntryModuleFilePath = path.join(
+                      path.dirname(importedProcessedModulesIDsParents.get(entry)),
+                      entry + '.ts',
+                    );
+
+                    let entryModuleFilePath = jsEntryModuleFilePath;
+                    let raw = '';
+                    let module = entry + '.js';
+                    try {
+                      raw = await fs.readFile(jsEntryModuleFilePath, { encoding: 'utf8' });
+                    } catch {
+                      raw = await fs.readFile(tsEntryModuleFilePath, { encoding: 'utf8' });
+                      module = entry + '.ts';
+                      entryModuleFilePath = tsEntryModuleFilePath;
+                    }
 
                     extractImports(raw).forEach((importModuleID) => {
                       // detect relative import
                       detectRelativeImports(entry, entryModuleFilePath, 'JS', importModuleID);
                       if (importModuleID.startsWith('.')) {
                         importedProcessedModuleIDs.add(importModuleID);
+                        importedProcessedModulesIDsParents.set(importModuleID, entryModuleFilePath);
                       }
                     });
-                    const moduleData = { module: entry + '.js', raw };
-                    addToRelativeModules(moduleData, demoName, variants);
+
+                    if (!addedModulesRelativeToModulePath.has(entryModuleFilePath)) {
+                      const modulePathDirectory = moduleFilepath.split('/').slice(0, -1).join('/');
+                      const moduleData = {
+                        module: '.' + entryModuleFilePath.replace(modulePathDirectory, ''),
+                        raw,
+                      };
+                      addToRelativeModules(moduleData, demoName, variants);
+                      addedModulesRelativeToModulePath.add(entryModuleFilePath);
+                    }
                   }
                   importedProcessedModuleIDs.delete(entry);
                 }
