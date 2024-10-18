@@ -1,6 +1,4 @@
-/* eslint-disable no-else-return */
-/* eslint-disable prefer-template */
-/* eslint-disable consistent-return, func-names */
+/* eslint-disable consistent-return, func-names, prefer-template, no-else-return */
 
 'use client';
 import * as React from 'react';
