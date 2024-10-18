@@ -12,6 +12,7 @@ declare module '@mui/material/styles' {
     md: false;
     lg: false;
     xl: false;
+    uw: false;
     mobile: true; // adds the `mobile` breakpoint
     tablet: true;
     laptop: true;

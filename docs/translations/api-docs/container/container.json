@@ -44,6 +44,11 @@
       "nodeName": "the root element",
       "conditions": "<code>maxWidth=\"sm\"</code>"
     },
+    "maxWidthUw": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>maxWidth=\"uw\"</code>"
+    },
     "maxWidthXl": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
