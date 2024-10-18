@@ -48,6 +48,10 @@ export * from './useTabPanel';
 export * from './useTabs';
 export * from './useTabsList';
 export * from './unstable_useModal';
+export * from './unstable_useDeferredValueCompat';
+export * from './unstable_useStateCompat';
+export * from './unstable_useReducerCompat';
+export * from './unstable_useTransitionCompat';
 
 export {
   generateUtilityClass as unstable_generateUtilityClass,
