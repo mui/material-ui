@@ -1,6 +1,6 @@
 "use client";
 
-import createSvgIcon from './utils/createSvgIcon';
+import createSvgIcon from "./utils/createSvgIcon.js";
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 export default createSvgIcon([/*#__PURE__*/_jsxs("g", {
   opacity: ".3",
