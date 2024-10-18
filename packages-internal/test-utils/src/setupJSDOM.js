@@ -4,8 +4,8 @@ const createDOM = require('./createDOM');
 const { createMochaHooks } = require('./mochaHooks');
 
 // Enable missing act warnings: https://github.com/reactwg/react-18/discussions/102
-global.jest = null;
-global.IS_REACT_ACT_ENVIRONMENT = true;
+globalThis.jest = null;
+globalThis.IS_REACT_ACT_ENVIRONMENT = true;
 
 createDOM();
 require('./init');
