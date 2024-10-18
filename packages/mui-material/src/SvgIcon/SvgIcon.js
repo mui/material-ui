@@ -242,8 +242,6 @@ SvgIcon.propTypes /* remove-proptypes */ = {
   viewBox: PropTypes.string,
 };
 
-if (SvgIcon) {
-  SvgIcon.muiName = 'SvgIcon';
-}
+SvgIcon.muiName = 'SvgIcon';
 
 export default SvgIcon;
