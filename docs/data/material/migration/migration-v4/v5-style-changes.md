@@ -536,7 +536,8 @@ The `createStyles` function from `@mui/material/styles` was moved to the one exp
 
 ### ✅ Update createGenerateClassName import
 
-The `createGenerateClassName` function is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
+The `createGenerateClassName` function is no longer exported from `@mui/material/styles`.
+You can import it from the deprecated `@mui/styles` package if you need to continue using it.
 
 ```diff
 -import { createGenerateClassName } from '@mui/material/styles';
@@ -568,7 +569,8 @@ The `MuiThemeProvider` component is no longer exported from `@mui/material/style
 
 ### ✅ Update jssPreset import
 
-The `jssPreset` object is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
+The `jssPreset` object is no longer exported from `@mui/material/styles`.
+You can import it from the deprecated `@mui/styles` package if you need to continue using it.
 
 ```diff
 -import { jssPreset } from '@mui/material/styles';
@@ -577,8 +579,8 @@ The `jssPreset` object is no longer exported from `@mui/material/styles`. You sh
 
 ### ✅ Update `makeStyles` import
 
-The `makeStyles` JSS utility is no longer exported from `@mui/material/styles`.
-You can use `@mui/styles/makeStyles` instead.
+Since Material UI v5 doesn't use JSS, the JSS-based `makeStyles` utility is no longer exported by `@mui/material/styles`.
+While migrating your app away from JSS, you can temporarily import this deprecated utility from `@mui/styles/makeStyles` before refactoring your components further.
 
 Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available.
 
@@ -607,7 +609,8 @@ If you are using this utility together with `@mui/material`, it's recommended th
 
 ### ✅ Update ServerStyleSheets import
 
-The `ServerStyleSheets` component is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
+The `ServerStyleSheets` component is no longer exported from `@mui/material/styles`.
+You can import it from the deprecated `@mui/styles` package if you need to continue using it.
 
 ```diff
 -import { ServerStyleSheets } from '@mui/material/styles';
@@ -616,7 +619,8 @@ The `ServerStyleSheets` component is no longer exported from `@mui/material/styl
 
 ### styled
 
-The `styled` JSS utility is no longer exported from `@mui/material/styles`. You can use the one exported from `@mui/styles` instead.
+Since Material UI v5 doesn't use JSS, the JSS-based `styled` utility exported by `@mui/material/styles` has been replaced with an equivalent Emotion-based utility that's not backwards compatible.
+While migrating your app away from JSS, you can temporarily import the JSS-based utility from the deprecated `@mui/styles` package before refactoring your components further.
 
 Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available.
 
@@ -638,7 +642,8 @@ If you are using this utility together with `@mui/material`, it's recommended yo
 
 ### ✅ Update StylesProvider import
 
-The `StylesProvider` component is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
+The `StylesProvider` component is no longer exported from `@mui/material/styles`.
+You can import it from the deprecated `@mui/styles` package if you need to continue using it.
 
 ```diff
 -import { StylesProvider } from '@mui/material/styles';
@@ -648,7 +653,7 @@ The `StylesProvider` component is no longer exported from `@mui/material/styles`
 ### ✅ Update useThemeVariants import
 
 The `useThemeVariants` hook is no longer exported from `@mui/material/styles`.
-You should import it directly from `@mui/styles`.
+You can import it from the deprecated `@mui/styles` package if you need to continue using it.
 
 ```diff
 -import { useThemeVariants } from '@mui/material/styles';
@@ -657,8 +662,8 @@ You should import it directly from `@mui/styles`.
 
 ### ✅ Update withStyles import
 
-The `withStyles` JSS utility is no longer exported from `@mui/material/styles`.
-You can use `@mui/styles/withStyles` instead.
+Since Material UI v5 doesn't use JSS, the JSS-based `withStyles` utility is no longer exported by `@mui/material/styles`.
+While migrating your app away from JSS, you can temporarily import this deprecated utility from `@mui/styles/withStyles` before refactoring your components further.
 
 Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available.
 
