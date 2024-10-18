@@ -1,5 +1,3 @@
-/* eslint-disable consistent-return, func-names, prefer-template, no-else-return */
-
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
@@ -140,15 +138,14 @@ Modal.propTypes = {
   children: PropTypes.element.isRequired,
   closeAfterTransition: PropTypes.bool,
   container: PropTypes.oneOfType([
-    function (props, propName) {
+    (props, propName) => {
       if (props[propName] == null) {
-        return new Error("Prop '" + propName + "' is required but wasn't specified");
-      } else if (
-        typeof props[propName] !== 'object' ||
-        props[propName].nodeType !== 1
-      ) {
-        return new Error("Expected prop '" + propName + "' to be of type Element");
+        return new Error(`Prop '${propName}' is required but wasn't specified`);
       }
+      if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {
+        return new Error(`Expected prop '${propName}' to be of type Element`);
+      }
+      return null;
     },
     PropTypes.func,
   ]),
