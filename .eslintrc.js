@@ -1,3 +1,9 @@
+// @ts-check
+
+/**
+ * @typedef {import('eslint').Linter.Config} Config
+ */
+
 const path = require('path');
 
 const OneLevelImportMessage = [
@@ -39,7 +45,7 @@ const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
   },
 ];
 
-module.exports = {
+module.exports = /** @type {Config} */ ({
   root: true, // So parent files don't get applied
   env: {
     es6: true,
@@ -227,6 +233,10 @@ module.exports = {
         message:
           "The 'use client' pragma can't be used with export * in the same module. This is not supported by Next.js.",
         selector: 'ExpressionStatement[expression.value="use client"] ~ ExportAllDeclaration',
+      },
+      {
+        message: 'Do not call `Error(...)` without `new`. Use `new Error(...)` instead.',
+        selector: "CallExpression[callee.name='Error']",
       },
     ],
 
@@ -526,4 +536,4 @@ module.exports = {
       },
     },
   ],
-};
+});

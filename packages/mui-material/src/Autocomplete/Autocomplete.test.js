@@ -130,6 +130,34 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  it('should not throw error when accessing ownerState in styleOverrides', () => {
+    const theme = createTheme({
+      components: {
+        MuiAutocomplete: {
+          styleOverrides: {
+            root: ({ ownerState }) => {
+              return {
+                outlineColor: ownerState.size === 'small' ? 'magenta' : 'crimson',
+              };
+            },
+          },
+        },
+      },
+    });
+
+    expect(() => {
+      render(
+        <ThemeProvider theme={theme}>
+          <Autocomplete
+            open
+            options={['one', 'two', 'three']}
+            renderInput={(params) => <TextField {...params} />}
+          />
+        </ThemeProvider>,
+      );
+    }).not.to.throw();
+  });
+
   describe('combobox', () => {
     it('should clear the input when blur', () => {
       const { getByRole } = render(
@@ -413,39 +441,6 @@ describe('<Autocomplete />', () => {
       if (!/jsdom/.test(window.navigator.userAgent)) {
         expect(getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
       }
-    });
-
-    // Test for https://github.com/mui/material-ui/issues/42432
-    it('when the input box needs to expand downward, the listbox should remain open.', () => {
-      const options = [
-        'The Lord of the Rings: The Return of the King',
-        'The Good, the Bad and the Ugly',
-        'The Shawshank Redemption',
-        'Star Wars: Episode V - The Empire Strikes Back',
-      ];
-      const defaultValue = [
-        'The Lord of the Rings: The Return of the King',
-        'The Good, the Bad and the Ugly',
-        'The Shawshank Redemption',
-      ];
-
-      render(
-        <Autocomplete
-          multiple
-          limitTags={2}
-          options={options}
-          defaultValue={defaultValue}
-          renderInput={(params) => <TextField {...params} />}
-          sx={{ width: 500 }}
-        />,
-      );
-
-      const textbox = screen.getByRole('combobox');
-
-      fireEvent.mouseDown(textbox);
-
-      const listbox = screen.getByRole('listbox');
-      expect(listbox).toBeVisible();
     });
   });
 
@@ -862,6 +857,49 @@ describe('<Autocomplete />', () => {
     fireEvent.change(textbox, { target: { value: 'o' } });
     fireEvent.keyDown(textbox, { key: 'Enter' });
     expect(handleSubmit.callCount).to.equal(4);
+  });
+
+  it('should not open the autocomplete popup when deleting chips', async () => {
+    const { queryByRole, queryByText, user } = render(
+      <Autocomplete
+        multiple
+        options={['one', 'two', 'three']}
+        defaultValue={['one']}
+        renderInput={(params) => <TextField {...params} autoFocus />}
+      />,
+    );
+
+    expect(queryByRole('listbox')).to.equal(null);
+
+    const chip = queryByText('one').parentElement;
+    expect(chip).not.to.equal(null);
+
+    // Delete the chip
+    await user.click(chip.getElementsByClassName(chipClasses.deleteIcon)[0]);
+
+    expect(queryByText('one')).to.equal(null);
+    expect(queryByRole('listbox')).to.equal(null);
+  });
+
+  it('should toggle the autocomplete popup when clicking the popup indicator', async () => {
+    const { queryByRole, getByRole, user } = render(
+      <Autocomplete
+        multiple
+        options={['One', 'Two', 'Three']}
+        renderInput={(params) => <TextField {...params} autoFocus />}
+      />,
+    );
+
+    expect(queryByRole('listbox')).to.equal(null);
+
+    const popupIndicator = getByRole('button', { name: 'Open' });
+    await user.click(popupIndicator);
+
+    expect(queryByRole('listbox')).not.to.equal(null);
+
+    await user.click(popupIndicator);
+
+    expect(queryByRole('listbox')).to.equal(null);
   });
 
   describe('prop: getOptionDisabled', () => {
