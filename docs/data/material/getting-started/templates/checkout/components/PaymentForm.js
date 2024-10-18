@@ -23,7 +23,7 @@ import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   border: '1px solid',
-  borderColor: theme.palette.divider,
+  borderColor: (theme.vars || theme).palette.divider,
   width: '100%',
   '&:hover': {
     background:
@@ -45,9 +45,9 @@ const Card = styled(MuiCard)(({ theme }) => ({
     {
       props: ({ selected }) => selected,
       style: {
-        borderColor: theme.palette.primary.light,
+        borderColor: (theme.vars || theme).palette.primary.light,
         ...theme.applyStyles('dark', {
-          borderColor: theme.palette.primary.dark,
+          borderColor: (theme.vars || theme).palette.primary.dark,
         }),
       },
     },
@@ -63,7 +63,7 @@ const PaymentContainer = styled('div')(({ theme }) => ({
   padding: theme.spacing(3),
   borderRadius: `calc(${theme.shape.borderRadius}px + 4px)`,
   border: '1px solid ',
-  borderColor: theme.palette.divider,
+  borderColor: (theme.vars || theme).palette.divider,
   background:
     'linear-gradient(to bottom right, hsla(220, 35%, 97%, 0.3) 25%, hsla(220, 20%, 88%, 0.3) 100%)',
   boxShadow: '0px 4px 8px hsla(210, 0%, 0%, 0.05)',
