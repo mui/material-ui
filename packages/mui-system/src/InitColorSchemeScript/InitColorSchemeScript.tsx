@@ -9,6 +9,11 @@ export const DEFAULT_ATTRIBUTE = 'data-color-scheme';
 
 export interface InitColorSchemeScriptProps {
   /**
+   * The default mode when the storage is empty (user's first visit)
+   * @default 'system'
+   */
+  defaultMode?: 'system' | 'light' | 'dark';
+  /**
    * The default color scheme to be used on the light mode
    * @default 'light'
    */
@@ -49,6 +54,7 @@ export interface InitColorSchemeScriptProps {
 
 export default function InitColorSchemeScript(options?: InitColorSchemeScriptProps) {
   const {
+    defaultMode = 'system',
     defaultLightColorScheme = 'light',
     defaultDarkColorScheme = 'dark',
     modeStorageKey = DEFAULT_MODE_STORAGE_KEY,
@@ -93,7 +99,7 @@ export default function InitColorSchemeScript(options?: InitColorSchemeScriptPro
         __html: `(function() {
 try {
   let colorScheme = '';
-  const mode = localStorage.getItem('${modeStorageKey}') || 'system';
+  const mode = localStorage.getItem('${modeStorageKey}') || '${defaultMode}';
   const dark = localStorage.getItem('${colorSchemeStorageKey}-dark') || '${defaultDarkColorScheme}';
   const light = localStorage.getItem('${colorSchemeStorageKey}-light') || '${defaultLightColorScheme}';
   if (mode === 'system') {
