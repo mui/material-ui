@@ -329,4 +329,6 @@ Snackbar.propTypes /* remove-proptypes */ = {
   TransitionProps: PropTypes.object,
 };
 
+Snackbar.displayName = 'Snackbar';
+
 export default Snackbar;

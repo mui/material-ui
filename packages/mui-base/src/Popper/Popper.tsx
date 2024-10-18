@@ -415,6 +415,8 @@ PopperTooltip.propTypes /* remove-proptypes */ = {
   TransitionProps: PropTypes.object,
 } as any;
 
+PopperTooltip.displayName = 'PopperTooltip';
+
 /**
  * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.
  *
@@ -722,5 +724,7 @@ Popper.propTypes /* remove-proptypes */ = {
    */
   transition: PropTypes.bool,
 } as any;
+
+Popper.displayName = 'Popper';
 
 export { Popper };

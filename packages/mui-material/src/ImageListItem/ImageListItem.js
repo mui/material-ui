@@ -200,4 +200,6 @@ ImageListItem.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+ImageListItem.displayName = 'ImageListItem';
+
 export default ImageListItem;

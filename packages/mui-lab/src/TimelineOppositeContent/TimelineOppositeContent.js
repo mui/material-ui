@@ -87,6 +87,8 @@ TimelineOppositeContent.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+TimelineOppositeContent.displayName = 'TimelineOppositeContent';
+
 TimelineOppositeContent.muiName = 'TimelineOppositeContent';
 
 export default TimelineOppositeContent;

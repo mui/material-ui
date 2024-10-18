@@ -371,6 +371,8 @@ Input.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 };
 
+Input.displayName = 'Input';
+
 if (Input) {
   Input.muiName = 'Input';
 }

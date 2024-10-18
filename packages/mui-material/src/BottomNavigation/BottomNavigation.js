@@ -138,4 +138,6 @@ BottomNavigation.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 };
 
+BottomNavigation.displayName = 'BottomNavigation';
+
 export default BottomNavigation;

@@ -140,4 +140,6 @@ List.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+List.displayName = 'List';
+
 export default List;

@@ -642,4 +642,6 @@ Chip.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+Chip.displayName = 'Chip';
+
 export default Chip;

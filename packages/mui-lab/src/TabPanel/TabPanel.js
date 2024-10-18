@@ -96,4 +96,6 @@ TabPanel.propTypes /* remove-proptypes */ = {
   value: PropTypes.string.isRequired,
 };
 
+TabPanel.displayName = 'TabPanel';
+
 export default TabPanel;

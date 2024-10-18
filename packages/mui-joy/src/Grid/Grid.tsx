@@ -42,4 +42,6 @@ Grid.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+Grid.displayName = 'Grid';
+
 export default Grid;
