@@ -2315,8 +2315,8 @@ importers:
         specifier: ^11.2.0
         version: 11.2.0
       html-webpack-plugin:
-        specifier: ^5.6.0
-        version: 5.6.0(webpack@5.95.0(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0)))
+        specifier: ^5.6.2
+        version: 5.6.2(webpack@5.95.0(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0)))
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -8379,8 +8379,8 @@ packages:
     resolution: {integrity: sha512-QY6S+hZ0f5m1WT8WffYN+Hg+xm/w5I8XeUcAq/ZYP5wVC8xbKi4Whhru3FtrAebD5EhBW8rmFzkDI6eCAuFe2w==}
     hasBin: true
 
-  html-webpack-plugin@5.6.0:
-    resolution: {integrity: sha512-iwaY4wzbe48AfKLZ/Cc8k0L+FKG6oSNRaZ8x5A/T/IVDGyXcbHncM9TdDa93wn0FsSm82FhTKW7f3vS61thXAw==}
+  html-webpack-plugin@5.6.2:
+    resolution: {integrity: sha512-q7xp/FO9RGBVoTKNItkdX1jKLscLFkgn/dLVFNYbHVbfHLBk6DYW5nsQ8kCzIWcgKP/kUBocetjvav6lD8YfCQ==}
     engines: {node: '>=10.13.0'}
     peerDependencies:
       '@rspack/core': 0.x || 1.x
@@ -20320,7 +20320,7 @@ snapshots:
       readable-stream: 1.0.34
       through2: 0.4.2
 
-  html-webpack-plugin@5.6.0(webpack@5.95.0(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))):
+  html-webpack-plugin@5.6.2(webpack@5.95.0(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))):
     dependencies:
       '@types/html-minifier-terser': 6.1.0
       html-minifier-terser: 6.1.0
