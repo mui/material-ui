@@ -1,6 +1,6 @@
 {
   "name": "@mui/styles",
-  "version": "6.1.2",
+  "version": "6.1.4",
   "private": false,
   "author": "MUI Team",
   "description": "MUI Styles - The legacy JSS-based styling solution of Material UI.",
@@ -33,11 +33,11 @@
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "prebuild": "rimraf build",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-styles/**/*.test.{js,ts,tsx}'",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-styles/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.25.6",
+    "@babel/runtime": "^7.25.7",
     "@emotion/hash": "^0.9.2",
     "@mui/private-theming": "workspace:^",
     "@mui/types": "workspace:^",
@@ -60,7 +60,7 @@
     "@mui/material": "workspace:^",
     "@types/chai": "^4.3.20",
     "@types/react": "^18.3.11",
-    "@types/react-dom": "^18.3.0",
+    "@types/react-dom": "^18.3.1",
     "@types/sinon": "^17.0.3",
     "chai": "^4.5.0",
     "react": "^18.3.1",

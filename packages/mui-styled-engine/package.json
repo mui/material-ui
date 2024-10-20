@@ -1,6 +1,6 @@
 {
   "name": "@mui/styled-engine",
-  "version": "6.1.2",
+  "version": "6.1.4",
   "private": false,
   "author": "MUI Team",
   "description": "styled() API wrapper package for emotion.",
@@ -33,11 +33,11 @@
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "prebuild": "rimraf build",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-styled-engine/**/*.test.{js,ts,tsx}'",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-styled-engine/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.25.6",
+    "@babel/runtime": "^7.25.7",
     "@emotion/cache": "^11.13.1",
     "@emotion/serialize": "^1.3.2",
     "@emotion/sheet": "^1.4.0",

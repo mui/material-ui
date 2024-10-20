@@ -1,6 +1,6 @@
 {
   "name": "@mui/codemod",
-  "version": "6.1.2",
+  "version": "6.1.4",
   "bin": "./codemod.js",
   "private": false,
   "author": "MUI Team",
@@ -13,7 +13,7 @@
     "jscodeshift"
   ],
   "scripts": {
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-codemod/**/*.test.js'",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-codemod/**/*.test.?(c|m)[jt]s?(x)'",
     "prebuild": "rimraf build",
     "build": "node ../../scripts/build.mjs node --out-dir ./build && cpy README.md build && cpy package.json build && cpy codemod.js build",
     "release": "pnpm build && pnpm publish"
@@ -30,9 +30,9 @@
     "url": "https://opencollective.com/mui-org"
   },
   "dependencies": {
-    "@babel/core": "^7.25.2",
-    "@babel/runtime": "^7.25.6",
-    "@babel/traverse": "^7.25.6",
+    "@babel/core": "^7.25.8",
+    "@babel/runtime": "^7.25.7",
+    "@babel/traverse": "^7.25.7",
     "jscodeshift": "^0.16.1",
     "jscodeshift-add-imports": "^1.0.11",
     "postcss": "^8.4.47",

@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  aws-cli: circleci/aws-cli@5.1.0
+  aws-cli: circleci/aws-cli@5.1.1
   aws-s3: circleci/aws-s3@4.0
 
 parameters:
@@ -868,32 +868,34 @@ workflows:
           name: test_e2e-react@17
 
   # This workflow is identical to react-17, but scheduled
-  react-17-cron:
-    triggers:
-      - schedule:
-          cron: '0 0 * * *'
-          filters:
-            branches:
-              only:
-                - master
-                - next
-    jobs:
-      - test_unit:
-          <<: *default-context
-          react-version: ^17.0.0
-          name: test_unit-react@17
-      - test_browser:
-          <<: *default-context
-          react-version: ^17.0.0
-          name: test_browser-react@17
-      - test_regressions:
-          <<: *default-context
-          react-version: ^17.0.0
-          name: test_regressions-react@17
-      - test_e2e:
-          <<: *default-context
-          react-version: ^17.0.0
-          name: test_e2e-react@17
+  # TODO: The v17 tests have deteriorated to the point of no return. Fix for v18 once we
+  #       deprecate v17, and reenable this workflow.
+  # react-17-cron:
+  #   triggers:
+  #     - schedule:
+  #         cron: '0 0 * * *'
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
+  #               - next
+  #   jobs:
+  #     - test_unit:
+  #         <<: *default-context
+  #         react-version: ^17.0.0
+  #         name: test_unit-react@17
+  #     - test_browser:
+  #         <<: *default-context
+  #         react-version: ^17.0.0
+  #         name: test_browser-react@17
+  #     - test_regressions:
+  #         <<: *default-context
+  #         react-version: ^17.0.0
+  #         name: test_regressions-react@17
+  #     - test_e2e:
+  #         <<: *default-context
+  #         react-version: ^17.0.0
+  #         name: test_e2e-react@17
 
   # This workflow can be triggered manually on the PR
   react-next:
