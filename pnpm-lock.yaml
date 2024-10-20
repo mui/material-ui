@@ -528,7 +528,7 @@ importers:
         specifier: ^4.2.1
         version: 4.2.1
       serve-handler:
-        specifier: ^6.1.5
+        specifier: ^6.1.6
         version: 6.1.6
       styled-components:
         specifier: ^6.1.13
