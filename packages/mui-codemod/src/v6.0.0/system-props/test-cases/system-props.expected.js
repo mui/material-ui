@@ -1,4 +1,5 @@
 import { Box as Boxxx, Grid as Griddd, Grid2 as Griddd2 } from '@mui/material';
+import Typography from '@mui/material/Typography';
 import Typographyyy from '@mui/material/Typography';
 import Stackkk from '@mui/material/Stack';
 
@@ -20,6 +21,13 @@ import Stackkk from '@mui/material/Stack';
 
 const sx = { display: 'flex' };
 const ml = 2;
+<Typography
+  sx={{
+    color: "#fff",
+    mb: 5
+  }}>
+  Test
+</Typography>;
 <Typographyyy
   variant="body1"
   sx={[{
