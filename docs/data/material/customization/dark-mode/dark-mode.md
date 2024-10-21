@@ -132,6 +132,28 @@ To instantly switch between color schemes with no transition, apply the `disable
 </ThemeProvider>
 ```
 
+## Setting the default mode
+
+When `colorSchemes` is provided, the default mode is `system`, which means the app uses the system preference when users first visit the site.
+
+To set a different default mode, pass the `defaultMode` prop to the ThemeProvider component:
+
+```js
+<ThemeProvider theme={theme} defaultMode="dark">
+```
+
+:::info
+The `defaultMode` value can be `'light'`, `'dark'`, or `'system'`.
+:::
+
+### InitColorSchemeScript component
+
+If you are using the `InitColorSchemeScript` component to [prevent SSR flicker](/material-ui/customization/css-theme-variables/configuration/#preventing-ssr-flickering), you have to set the `defaultMode` with the same value you passed to the `ThemeProvider` component:
+
+```js
+<InitColorSchemeScript defaultMode="dark">
+```
+
 ## Styling in dark mode
 
 Use the `theme.applyStyles` utility to apply styles for a specific mode.

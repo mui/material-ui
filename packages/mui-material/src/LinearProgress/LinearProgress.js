@@ -338,6 +338,13 @@ const LinearProgressBar2 = styled('span', {
         },
       },
       {
+        props: ({ ownerState }) =>
+          ownerState.variant !== 'buffer' && ownerState.color === 'inherit',
+        style: {
+          backgroundColor: 'currentColor',
+        },
+      },
+      {
         props: {
           color: 'inherit',
         },

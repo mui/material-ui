@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-markdown",
-  "version": "1.0.14",
+  "version": "1.0.17",
   "author": "MUI Team",
   "description": "MUI markdown parser. This is an internal package not meant for general use.",
   "main": "./index.js",
@@ -20,9 +20,9 @@
     "release:publish:dry-run": "pnpm publish --tag latest --registry=\"http://localhost:4873/\""
   },
   "dependencies": {
-    "@babel/runtime": "^7.25.6",
+    "@babel/runtime": "^7.25.7",
     "lodash": "^4.17.21",
-    "marked": "^13.0.3",
+    "marked": "^14.1.2",
     "prismjs": "^1.29.0"
   },
   "devDependencies": {

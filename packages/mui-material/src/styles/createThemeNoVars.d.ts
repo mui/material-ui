@@ -83,6 +83,7 @@ type CssVarsProperties = CssThemeVariables extends { enabled: true }
       | 'applyStyles'
       | 'colorSchemes'
       | 'colorSchemeSelector'
+      | 'rootSelector'
       | 'cssVarPrefix'
       | 'defaultColorScheme'
       | 'getCssVar'

@@ -16,18 +16,6 @@ export default function FormControlLabelPlacement() {
         defaultValue="top"
       >
         <FormControlLabel
-          value="top"
-          control={<Radio />}
-          label="Top"
-          labelPlacement="top"
-        />
-        <FormControlLabel
-          value="start"
-          control={<Radio />}
-          label="Start"
-          labelPlacement="start"
-        />
-        <FormControlLabel
           value="bottom"
           control={<Radio />}
           label="Bottom"

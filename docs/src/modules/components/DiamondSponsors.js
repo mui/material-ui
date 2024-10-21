@@ -49,7 +49,7 @@ export default function DiamondSponsors() {
         data-ga-event-category="sponsor"
         data-ga-event-action="docs-premium"
         data-ga-event-label="octopus.com"
-        href="https://octopus.com/?utm_source=materialui&utm_medium=referral"
+        href="https://octopus.com/?utm_source=mui.com&utm_medium=referral"
         rel="noopener sponsored"
         target="_blank"
       >
@@ -76,7 +76,7 @@ export default function DiamondSponsors() {
         data-ga-event-category="sponsor"
         data-ga-event-action="docs-premium"
         data-ga-event-label="doit.com"
-        href="https://www.doit.com/?utm_source=materialui&utm_medium=referral"
+        href="https://www.doit.com/?utm_source=mui.com&utm_medium=referral"
         rel="noopener sponsored"
         target="_blank"
       >
@@ -103,7 +103,7 @@ export default function DiamondSponsors() {
         data-ga-event-category="sponsor"
         data-ga-event-action="docs-premium"
         data-ga-event-label="marblism.com"
-        href="https://www.marblism.com/?utm_source=mui"
+        href="https://www.marblism.com/?utm_source=mui.com&utm_medium=referral"
         rel="noopener sponsored"
         target="_blank"
       >

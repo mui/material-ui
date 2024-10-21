@@ -4,13 +4,13 @@
   "private": "true",
   "main": "./index.ts",
   "scripts": {
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/api-docs-builder/**/*.test.{js,ts,tsx}'",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/api-docs-builder/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/core": "^7.25.2",
-    "@babel/preset-typescript": "^7.24.7",
-    "@babel/traverse": "^7.25.6",
+    "@babel/core": "^7.25.8",
+    "@babel/preset-typescript": "^7.25.7",
+    "@babel/traverse": "^7.25.7",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-markdown": "workspace:^",
     "ast-types": "^0.14.2",
@@ -22,7 +22,7 @@
     "react-docgen": "^5.4.3",
     "recast": "^0.23.9",
     "remark": "^15.0.1",
-    "typescript": "^5.6.2",
+    "typescript": "^5.6.3",
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
@@ -31,8 +31,8 @@
     "@types/chai": "^4.3.20",
     "@types/doctrine": "^0.0.9",
     "@types/mdast": "4.0.4",
-    "@types/mocha": "^10.0.8",
-    "@types/node": "^20.16.5",
+    "@types/mocha": "^10.0.9",
+    "@types/node": "^20.16.11",
     "@types/react-docgen": "workspace:*",
     "@types/sinon": "^17.0.3",
     "chai": "^4.5.0",

@@ -156,6 +156,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
       ownerState={ownerState}
       ref={ref}
       className={clsx(classes.root, className)}
+      disableRipple={disableRipple}
       {...other}
       classes={classes}
     />

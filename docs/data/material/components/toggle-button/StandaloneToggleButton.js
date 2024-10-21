@@ -9,9 +9,7 @@ export default function StandaloneToggleButton() {
     <ToggleButton
       value="check"
       selected={selected}
-      onChange={() => {
-        setSelected(!selected);
-      }}
+      onChange={() => setSelected((prevSelected) => !prevSelected)}
     >
       <CheckIcon />
     </ToggleButton>
