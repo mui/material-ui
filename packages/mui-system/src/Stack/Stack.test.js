@@ -19,6 +19,19 @@ describe('<Stack />', () => {
 
   const theme = createTheme();
 
+  it('should handle 0 as a child', () => {
+    const { container } = render(
+      <Stack divider={<div />}>
+        <div>1</div>
+        {0}
+        <div>2</div>
+        <div>3</div>
+      </Stack>,
+    );
+
+    expect(container.firstChild.childNodes.length).to.equal(7);
+  });
+
   it('should handle breakpoints with a missing key', () => {
     expect(
       style({
