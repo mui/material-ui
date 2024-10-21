@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import {
   GridColumnIcon,
   useGridApiContext,
@@ -17,7 +18,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { ToolbarButton } from './ToolbarButton';
 import { Drawer, DrawerHeader } from './Drawer';
 
-export function ToolbarColumnsItem(props) {
+function ToolbarColumnsItem(props) {
   const { listView, container } = props;
   const [open, setOpen] = React.useState(false);
   const apiRef = useGridApiContext();
@@ -76,3 +77,10 @@ export function ToolbarColumnsItem(props) {
     </React.Fragment>
   );
 }
+
+ToolbarColumnsItem.propTypes = {
+  container: PropTypes.func,
+  listView: PropTypes.bool.isRequired,
+};
+
+export { ToolbarColumnsItem };

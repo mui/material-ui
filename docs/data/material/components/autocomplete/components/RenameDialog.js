@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -7,7 +8,7 @@ import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
-export function RenameDialog(props) {
+function RenameDialog(props) {
   const { params, open, container, onSave, onClose } = props;
 
   const handleSave = (event) => {
@@ -56,3 +57,39 @@ export function RenameDialog(props) {
     </Dialog>
   );
 }
+
+RenameDialog.propTypes = {
+  container: PropTypes.func,
+  onClose: PropTypes.func.isRequired,
+  onSave: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  params: PropTypes.shape({
+    row: PropTypes.shape({
+      createdAt: PropTypes.string.isRequired,
+      createdBy: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+      name: PropTypes.string.isRequired,
+      size: PropTypes.number.isRequired,
+      state: PropTypes.oneOf(['pending', 'uploaded']).isRequired,
+      type: PropTypes.oneOf([
+        'docx',
+        'gif',
+        'jpeg',
+        'jpg',
+        'mov',
+        'mp4',
+        'pdf',
+        'png',
+        'tiff',
+        'txt',
+        'webm',
+        'webp',
+        'zip',
+      ]).isRequired,
+      updatedAt: PropTypes.string.isRequired,
+    }).isRequired,
+  }),
+};
+
+export { RenameDialog };

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -71,7 +72,40 @@ function DrawerContent(props) {
   );
 }
 
-export function ActionDrawer(props) {
+DrawerContent.propTypes = {
+  onDelete: PropTypes.func.isRequired,
+  onPreview: PropTypes.func.isRequired,
+  onRename: PropTypes.func.isRequired,
+  params: PropTypes.shape({
+    row: PropTypes.shape({
+      createdAt: PropTypes.string.isRequired,
+      createdBy: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+      name: PropTypes.string.isRequired,
+      size: PropTypes.number.isRequired,
+      state: PropTypes.oneOf(['pending', 'uploaded']).isRequired,
+      type: PropTypes.oneOf([
+        'docx',
+        'gif',
+        'jpeg',
+        'jpg',
+        'mov',
+        'mp4',
+        'pdf',
+        'png',
+        'tiff',
+        'txt',
+        'webm',
+        'webp',
+        'zip',
+      ]).isRequired,
+      updatedAt: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
+
+function ActionDrawer(props) {
   const { params, onPreview, onRename, onDelete, ...other } = props;
   return (
     <Drawer anchor="bottom" {...other}>
@@ -86,3 +120,38 @@ export function ActionDrawer(props) {
     </Drawer>
   );
 }
+
+ActionDrawer.propTypes = {
+  onDelete: PropTypes.func.isRequired,
+  onPreview: PropTypes.func.isRequired,
+  onRename: PropTypes.func.isRequired,
+  params: PropTypes.shape({
+    row: PropTypes.shape({
+      createdAt: PropTypes.string.isRequired,
+      createdBy: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+      name: PropTypes.string.isRequired,
+      size: PropTypes.number.isRequired,
+      state: PropTypes.oneOf(['pending', 'uploaded']).isRequired,
+      type: PropTypes.oneOf([
+        'docx',
+        'gif',
+        'jpeg',
+        'jpg',
+        'mov',
+        'mp4',
+        'pdf',
+        'png',
+        'tiff',
+        'txt',
+        'webm',
+        'webp',
+        'zip',
+      ]).isRequired,
+      updatedAt: PropTypes.string.isRequired,
+    }).isRequired,
+  }),
+};
+
+export { ActionDrawer };

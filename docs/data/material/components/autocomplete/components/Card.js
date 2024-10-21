@@ -1,8 +1,9 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-export function Card(props) {
+function Card(props) {
   const { children, ...other } = props;
   return (
     <Stack
@@ -21,7 +22,26 @@ export function Card(props) {
   );
 }
 
-export function CardMedia(props) {
+Card.propTypes = {
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * The system prop, which allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
+    ),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+};
+
+export { Card };
+
+function CardMedia(props) {
   const { children, ...other } = props;
   return (
     <Stack
@@ -33,7 +53,26 @@ export function CardMedia(props) {
   );
 }
 
-export function CardContent(props) {
+CardMedia.propTypes = {
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * The system prop, which allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
+    ),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+};
+
+export { CardMedia };
+
+function CardContent(props) {
   const { children, ...other } = props;
   return (
     <Stack gap={0.25} sx={{ flexGrow: 1, ...(other.sx || {}) }} {...other}>
@@ -42,7 +81,26 @@ export function CardContent(props) {
   );
 }
 
-export function CardTitle(props) {
+CardContent.propTypes = {
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * The system prop, which allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
+    ),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+};
+
+export { CardContent };
+
+function CardTitle(props) {
   const { children, ...other } = props;
   return (
     <Typography variant="body2" {...other}>
@@ -51,7 +109,16 @@ export function CardTitle(props) {
   );
 }
 
-export function CardDetailList(props) {
+CardTitle.propTypes = {
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+};
+
+export { CardTitle };
+
+function CardDetailList(props) {
   const { children, ...other } = props;
   return (
     <Stack direction="row" flexWrap="wrap" gap={1} {...other}>
@@ -60,7 +127,16 @@ export function CardDetailList(props) {
   );
 }
 
-export function CardDetail(props) {
+CardDetailList.propTypes = {
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+};
+
+export { CardDetailList };
+
+function CardDetail(props) {
   const { children, ...other } = props;
   return (
     <Typography variant="caption" color="text.secondary" {...other}>
@@ -68,3 +144,12 @@ export function CardDetail(props) {
     </Typography>
   );
 }
+
+CardDetail.propTypes = {
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+};
+
+export { CardDetail };

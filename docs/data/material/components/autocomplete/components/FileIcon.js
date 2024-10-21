@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import SvgIcon from '@mui/material/SvgIcon';
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import VideocamIcon from '@mui/icons-material/Videocam';
@@ -40,8 +41,28 @@ const FILE_ICON = {
   zip: FILE_TYPE_ICONS.archive,
 };
 
-export function FileIcon(props) {
+function FileIcon(props) {
   const { type } = props;
   const iconProps = FILE_ICON[type];
   return <SvgIcon {...iconProps} {...props} />;
 }
+
+FileIcon.propTypes = {
+  type: PropTypes.oneOf([
+    'docx',
+    'gif',
+    'jpeg',
+    'jpg',
+    'mov',
+    'mp4',
+    'pdf',
+    'png',
+    'tiff',
+    'txt',
+    'webm',
+    'webp',
+    'zip',
+  ]).isRequired,
+};
+
+export { FileIcon };

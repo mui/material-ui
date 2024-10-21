@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import {
   GridClearIcon,
   GridDeleteIcon,
@@ -19,7 +20,7 @@ import { ToolbarDensityItem } from './ToolbarDensityItem';
 import { ToolbarFilterItem } from './ToolbarFilterItem';
 import { ToolbarButton } from './ToolbarButton';
 
-export function Toolbar(props) {
+function Toolbar(props) {
   const { listView = false, container, handleUpload, handleDelete } = props;
   const apiRef = useGridApiContext();
   const selectedRows = useGridSelector(apiRef, selectedGridRowsSelector);
@@ -103,3 +104,12 @@ export function Toolbar(props) {
     </GridToolbarContainer>
   );
 }
+
+Toolbar.propTypes = {
+  container: PropTypes.func,
+  handleDelete: PropTypes.func,
+  handleUpload: PropTypes.func,
+  listView: PropTypes.bool,
+};
+
+export { Toolbar };

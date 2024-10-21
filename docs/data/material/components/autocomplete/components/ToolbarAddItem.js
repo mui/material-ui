@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import AddIcon from '@mui/icons-material/Add';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import NewFolderIcon from '@mui/icons-material/CreateNewFolder';
@@ -23,7 +24,14 @@ const ListItemUploadButton = React.forwardRef(
   },
 );
 
-export function ToolbarAddItem(props) {
+ListItemUploadButton.propTypes = {
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+};
+
+function ToolbarAddItem(props) {
   const { container } = props;
   const [open, setOpen] = React.useState(false);
   const { handleUpload, listView } = props;
@@ -73,3 +81,11 @@ export function ToolbarAddItem(props) {
     </React.Fragment>
   );
 }
+
+ToolbarAddItem.propTypes = {
+  container: PropTypes.func,
+  handleUpload: PropTypes.func,
+  listView: PropTypes.bool.isRequired,
+};
+
+export { ToolbarAddItem };

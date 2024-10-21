@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import {
   GridFilterListIcon,
   useGridApiContext,
@@ -60,7 +61,7 @@ const DATE_MODIFIED_FILTERS = [
   },
 ];
 
-export function ToolbarFilterItem(props) {
+function ToolbarFilterItem(props) {
   const { listView, container } = props;
   const [open, setOpen] = React.useState(false);
   const apiRef = useGridApiContext();
@@ -215,3 +216,10 @@ export function ToolbarFilterItem(props) {
     </React.Fragment>
   );
 }
+
+ToolbarFilterItem.propTypes = {
+  container: PropTypes.func,
+  listView: PropTypes.bool.isRequired,
+};
+
+export { ToolbarFilterItem };

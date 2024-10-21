@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import MUISwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -28,7 +29,7 @@ function SwipeIndicator() {
   );
 }
 
-export function DrawerHeader(props) {
+function DrawerHeader(props) {
   const { children, ...other } = props;
 
   return (
@@ -60,7 +61,16 @@ export function DrawerHeader(props) {
   );
 }
 
-export function Drawer(props) {
+DrawerHeader.propTypes = {
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+};
+
+export { DrawerHeader };
+
+function Drawer(props) {
   const { children, anchor, width = 320, container, ...other } = props;
   const isBottomDrawer = anchor === 'bottom';
   const isTouch = useMediaQuery('(hover: none)');
@@ -86,3 +96,29 @@ export function Drawer(props) {
     </MUISwipeableDrawer>
   );
 }
+
+Drawer.propTypes = {
+  /**
+   * Side from which the drawer will appear.
+   * @default 'left'
+   */
+  anchor: PropTypes.oneOf(['bottom', 'left', 'right', 'top']),
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * An HTML element or function that returns one.
+   * The `container` will have the portal children appended to it.
+   *
+   * You can also provide a callback, which is called in a React layout effect.
+   * This lets you set the container from a ref, and also makes server-side rendering possible.
+   *
+   * By default, it uses the body of the top-level document object,
+   * so it's simply `document.body` most of the time.
+   */
+  container: PropTypes.func,
+  width: PropTypes.number,
+};
+
+export { Drawer };

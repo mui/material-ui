@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import {
   useGridApiContext,
   GridArrowUpwardIcon,
@@ -18,7 +19,7 @@ import Badge from '@mui/material/Badge';
 import { Drawer, DrawerHeader } from './Drawer';
 import { ToolbarButton } from './ToolbarButton';
 
-export function ToolbarSortItem(props) {
+function ToolbarSortItem(props) {
   const { listView, container } = props;
   const [open, setOpen] = React.useState(false);
   const apiRef = useGridApiContext();
@@ -91,3 +92,10 @@ export function ToolbarSortItem(props) {
     </React.Fragment>
   );
 }
+
+ToolbarSortItem.propTypes = {
+  container: PropTypes.func,
+  listView: PropTypes.bool.isRequired,
+};
+
+export { ToolbarSortItem };

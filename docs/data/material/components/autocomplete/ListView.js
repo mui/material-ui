@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { DataGridPro } from '@mui/x-data-grid-pro';
 import Box from '@mui/material/Box';
 import { useDemoData } from '@mui/x-data-grid-generator';
@@ -20,6 +21,13 @@ function MessageAction(params) {
     </IconButton>
   );
 }
+
+MessageAction.propTypes = {
+  /**
+   * The row model of the row that the current cell belongs to.
+   */
+  row: PropTypes.any.isRequired,
+};
 
 function ListViewCell(params) {
   return (
@@ -44,6 +52,13 @@ function ListViewCell(params) {
     </Stack>
   );
 }
+
+ListViewCell.propTypes = {
+  /**
+   * The row model of the row that the current cell belongs to.
+   */
+  row: PropTypes.any.isRequired,
+};
 
 const listColDef = {
   field: 'listColumn',

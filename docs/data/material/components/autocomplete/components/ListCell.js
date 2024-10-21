@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import {
   gridColumnVisibilityModelSelector,
   gridDensitySelector,
@@ -55,7 +56,11 @@ function Thumbnail(props) {
   );
 }
 
-export function ListCell(props) {
+Thumbnail.propTypes = {
+  fileIcon: PropTypes.node,
+};
+
+function ListCell(props) {
   const { onOpenActions, ...params } = props;
   const apiRef = useGridApiContext();
   const density = useGridSelector(apiRef, gridDensitySelector);
@@ -108,3 +113,37 @@ export function ListCell(props) {
     </Card>
   );
 }
+
+ListCell.propTypes = {
+  onOpenActions: PropTypes.func.isRequired,
+  /**
+   * The row model of the row that the current cell belongs to.
+   */
+  row: PropTypes.shape({
+    createdAt: PropTypes.string.isRequired,
+    createdBy: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    name: PropTypes.string.isRequired,
+    size: PropTypes.number.isRequired,
+    state: PropTypes.oneOf(['pending', 'uploaded']).isRequired,
+    type: PropTypes.oneOf([
+      'docx',
+      'gif',
+      'jpeg',
+      'jpg',
+      'mov',
+      'mp4',
+      'pdf',
+      'png',
+      'tiff',
+      'txt',
+      'webm',
+      'webp',
+      'zip',
+    ]).isRequired,
+    updatedAt: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
+export { ListCell };

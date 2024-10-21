@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import {
   GridViewStreamIcon,
   useGridApiContext,
@@ -38,7 +39,7 @@ const DENSITY_OPTIONS = [
   },
 ];
 
-export function ToolbarDensityItem(props) {
+function ToolbarDensityItem(props) {
   const { listView, container } = props;
   const [open, setOpen] = React.useState(false);
   const apiRef = useGridApiContext();
@@ -85,3 +86,10 @@ export function ToolbarDensityItem(props) {
     </React.Fragment>
   );
 }
+
+ToolbarDensityItem.propTypes = {
+  container: PropTypes.func,
+  listView: PropTypes.bool.isRequired,
+};
+
+export { ToolbarDensityItem };
