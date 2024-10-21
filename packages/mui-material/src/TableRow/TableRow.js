@@ -3,7 +3,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
@@ -39,16 +38,15 @@ const TableRowRoot = styled('tr', {
       backgroundColor: (theme.vars || theme).palette.action.hover,
     },
     [`&.${tableRowClasses.selected}`]: {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-        : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      backgroundColor: theme.alpha(
+        (theme.vars || theme).palette.primary.main,
+        theme.palette.action.selectedOpacity,
+      ),
       '&:hover': {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-          : alpha(
-              theme.palette.primary.main,
-              theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-            ),
+        backgroundColor: theme.alpha(
+          (theme.vars || theme).palette.primary.main,
+          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+        ),
       },
     },
   })),

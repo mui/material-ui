@@ -3,7 +3,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -79,30 +78,28 @@ const ListItemButtonRoot = styled(ButtonBase, {
       },
     },
     [`&.${listItemButtonClasses.selected}`]: {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-        : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      backgroundColor: theme.alpha(
+        (theme.vars || theme).palette.primary.main,
+        theme.palette.action.selectedOpacity,
+      ),
       [`&.${listItemButtonClasses.focusVisible}`]: {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-          : alpha(
-              theme.palette.primary.main,
-              theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-            ),
+        backgroundColor: theme.alpha(
+          (theme.vars || theme).palette.primary.main,
+          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+        ),
       },
     },
     [`&.${listItemButtonClasses.selected}:hover`]: {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-        : alpha(
-            theme.palette.primary.main,
-            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-          ),
+      backgroundColor: theme.alpha(
+        (theme.vars || theme).palette.primary.main,
+        theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+      ),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-          : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+        backgroundColor: theme.alpha(
+          (theme.vars || theme).palette.primary.main,
+          theme.palette.action.selectedOpacity,
+        ),
       },
     },
     [`&.${listItemButtonClasses.focusVisible}`]: {
