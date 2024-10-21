@@ -19,7 +19,7 @@
     "fs-extra": "^11.2.0",
     "lodash": "^4.17.21",
     "prettier": "^3.3.3",
-    "react-docgen": "^5.4.3",
+    "react-docgen": "^7.1.0",
     "recast": "^0.23.9",
     "remark": "^15.0.1",
     "typescript": "^5.6.3",
