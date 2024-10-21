@@ -383,14 +383,14 @@ export default function createPalette(palette: PaletteOptions): Palette {
     }
 
     if (!colorInput.hasOwnProperty('main')) {
-      throw new Error(
+      throw /* minify-error */ new Error(
         `MUI: The color${name ? ` (${name})` : ''} provided to augmentColor(color) is invalid.\n` +
           `The color object needs to have a \`main\` property or a \`${mainShade}\` property.`,
       );
     }
 
     if (typeof colorInput.main !== 'string') {
-      throw new Error(
+      throw /* minify-error */ new Error(
         `MUI: The color${name ? ` (${name})` : ''} provided to augmentColor(color) is invalid.\n` +
           `\`color.main\` should be a string, but \`${JSON.stringify(
             colorInput.main,
