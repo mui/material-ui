@@ -11,9 +11,8 @@ import Stackkk from '@mui/material/Stack';
 
 const sx = { display: 'flex' };
 const ml = 2;
-<Typography color="#fff" mb={5}>
-  Test
-</Typography>;
+<Typography color="#fff" mb={5} />;
+<Typography color="hsl(200 30% 30%)" mb={5} />;
 <Typographyyy variant="body1" color="primary.main" ml={ml} sx={sx} />;
 <Typographyyy variant="body1" color="divider" ml={ml} sx={sx} />;
 <Typographyyy variant="body1" color="inherit" ml={ml} sx={sx} />;

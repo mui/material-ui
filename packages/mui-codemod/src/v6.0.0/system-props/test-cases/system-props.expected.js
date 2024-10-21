@@ -25,9 +25,12 @@ const ml = 2;
   sx={{
     color: "#fff",
     mb: 5
-  }}>
-  Test
-</Typography>;
+  }} />;
+<Typography
+  sx={{
+    color: "hsl(200 30% 30%)",
+    mb: 5
+  }} />;
 <Typographyyy
   variant="body1"
   sx={[{
