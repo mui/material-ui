@@ -226,7 +226,7 @@ export const dark = getDark();
 
 function addLightOrDark(
   intent: PaletteColor,
-  direction: 'light' | 'dark',
+  direction: PaletteMode,
   shade: number | string,
   tonalOffset: PaletteTonalOffset,
 ) {
