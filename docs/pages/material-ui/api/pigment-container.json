@@ -6,7 +6,7 @@
     "maxWidth": {
       "type": {
         "name": "enum",
-        "description": "'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;'xs'<br>&#124;&nbsp;false"
+        "description": "'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'uw'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;'xs'<br>&#124;&nbsp;false"
       },
       "default": "'lg'"
     },
