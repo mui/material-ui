@@ -86,7 +86,7 @@ describe('styleFunctionSx', () => {
         '@media print': {
           display: 'block',
         },
-        '@media (min-width:0px)': { border: '1px solid' },
+        border: '1px solid',
         '@media (min-width:600px)': { border: '2px solid' },
         '@media (min-width:960px)': { border: '3px solid' },
         '@media (min-width:1280px)': { border: '4px solid' },
@@ -101,13 +101,11 @@ describe('styleFunctionSx', () => {
       });
 
       expect(result).to.deep.equal({
-        '@media (min-width:0px)': {
-          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-          fontSize: `${14 / 16}rem`,
-          letterSpacing: `${round(0.15 / 14)}em`,
-          fontWeight: 400,
-          lineHeight: 1.43,
-        },
+        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+        fontSize: `${14 / 16}rem`,
+        letterSpacing: `${round(0.15 / 14)}em`,
+        fontWeight: 400,
+        lineHeight: 1.43,
         '@media (min-width:600px)': {
           fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
           fontSize: '1rem',
@@ -154,12 +152,10 @@ describe('styleFunctionSx', () => {
       background: 'rgb(0, 0, 255)',
       '&:hover': {
         backgroundColor: 'rgb(0, 0, 255)',
-        '@media (min-width:0px)': {
-          opacity: 0.1,
-          border: '1px solid',
-          borderColor: 'rgb(0, 255, 0)',
-          translate: 'transform(10px)',
-        },
+        opacity: 0.1,
+        border: '1px solid',
+        borderColor: 'rgb(0, 255, 0)',
+        translate: 'transform(10px)',
         '@media (min-width:600px)': {
           opacity: 0.2,
           border: '2px solid',
@@ -175,7 +171,7 @@ describe('styleFunctionSx', () => {
 
   describe('breakpoints', () => {
     const breakpointsExpectedResult = {
-      '@media (min-width:0px)': { border: '1px solid' },
+      border: '1px solid',
       '@media (min-width:600px)': { border: '2px solid' },
       '@media (min-width:960px)': { border: '3px solid' },
       '@media (min-width:1280px)': { border: '4px solid' },
@@ -215,7 +211,8 @@ describe('styleFunctionSx', () => {
       });
 
       expect(result).to.deep.equal({
-        '@media (min-width:0px)': { padding: '50px', margin: '10px' },
+        padding: '50px',
+        margin: '10px',
         '@media (min-width:600px)': { padding: '60px', margin: '20px' },
         '@media (min-width:960px)': { padding: '70px', margin: '30px' },
       });
@@ -229,14 +226,14 @@ describe('styleFunctionSx', () => {
 
       // Test the order
       expect(Object.keys(result)).to.deep.equal([
-        '@media (min-width:0px)',
+        'padding',
         '@media (min-width:600px)',
         '@media (min-width:960px)',
         '@media (min-width:1280px)',
       ]);
 
       expect(result).to.deep.equal({
-        '@media (min-width:0px)': { padding: '0px' },
+        padding: '0px',
         '@media (min-width:600px)': { padding: '10px' },
         '@media (min-width:960px)': { padding: '20px', margin: '10px' },
         '@media (min-width:1280px)': { margin: '20px' },
@@ -454,14 +451,15 @@ describe('styleFunctionSx', () => {
 
       expect(result).to.deep.equal([
         {
-          '@media (min-width:0px)': { border: '1px solid' },
+          border: '1px solid',
           '@media (min-width:600px)': { border: '2px solid' },
           '@media (min-width:960px)': { border: '3px solid' },
           '@media (min-width:1280px)': { border: '4px solid' },
           '@media (min-width:1920px)': { border: '5px solid' },
         },
         {
-          '@media (min-width:0px)': { padding: '50px', margin: '10px' },
+          padding: '50px',
+          margin: '10px',
           '@media (min-width:600px)': { padding: '60px', margin: '20px' },
           '@media (min-width:960px)': { padding: '70px', margin: '30px' },
         },
