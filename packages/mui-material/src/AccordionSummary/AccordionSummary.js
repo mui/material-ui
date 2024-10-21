@@ -202,4 +202,6 @@ AccordionSummary.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+AccordionSummary.displayName = 'AccordionSummary';
+
 export default AccordionSummary;

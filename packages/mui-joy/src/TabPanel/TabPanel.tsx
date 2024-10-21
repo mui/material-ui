@@ -183,4 +183,6 @@ TabPanel.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+TabPanel.displayName = 'TabPanel';
+
 export default TabPanel;

@@ -84,4 +84,6 @@ DialogTitle.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+DialogTitle.displayName = 'DialogTitle';
+
 export default DialogTitle;

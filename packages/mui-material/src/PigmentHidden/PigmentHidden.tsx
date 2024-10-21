@@ -251,6 +251,8 @@ HiddenCss.propTypes /* remove-proptypes */ = {
   xsUp: PropTypes.bool,
 } as any;
 
+HiddenCss.displayName = 'HiddenCss';
+
 /**
  *
  * Demos:
@@ -357,5 +359,7 @@ PigmentHidden.propTypes /* remove-proptypes */ = {
    */
   xsUp: PropTypes.bool,
 } as any;
+
+PigmentHidden.displayName = 'PigmentHidden';
 
 export default PigmentHidden;

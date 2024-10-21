@@ -135,4 +135,6 @@ SnackbarContent.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+SnackbarContent.displayName = 'SnackbarContent';
+
 export default SnackbarContent;

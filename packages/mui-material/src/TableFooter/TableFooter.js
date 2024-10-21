@@ -89,4 +89,6 @@ TableFooter.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+TableFooter.displayName = 'TableFooter';
+
 export default TableFooter;

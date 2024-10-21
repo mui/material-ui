@@ -125,3 +125,5 @@ try {
     />
   );
 }
+
+InitColorSchemeScript.displayName = 'InitColorSchemeScript';

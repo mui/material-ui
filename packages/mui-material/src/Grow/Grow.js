@@ -289,6 +289,8 @@ Grow.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+Grow.displayName = 'Grow';
+
 if (Grow) {
   Grow.muiSupportAuto = true;
 }

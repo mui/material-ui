@@ -397,4 +397,6 @@ Drawer.propTypes /* remove-proptypes */ = {
   variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
+Drawer.displayName = 'Drawer';
+
 export default Drawer;

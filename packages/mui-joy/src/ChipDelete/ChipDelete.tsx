@@ -217,4 +217,6 @@ ChipDelete.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+ChipDelete.displayName = 'ChipDelete';
+
 export default ChipDelete;

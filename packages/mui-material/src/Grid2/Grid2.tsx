@@ -262,6 +262,8 @@ Grid2.propTypes /* remove-proptypes */ = {
   wrap: PropTypes.oneOf(['nowrap', 'wrap-reverse', 'wrap']),
 } as any;
 
+Grid2.displayName = 'Grid2';
+
 if (process.env.NODE_ENV !== 'production') {
   const Component = Grid2 as any;
   const requireProp = requirePropFactory('Grid2', Component);

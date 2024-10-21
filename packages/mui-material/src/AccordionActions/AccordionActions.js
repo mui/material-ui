@@ -91,4 +91,6 @@ AccordionActions.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+AccordionActions.displayName = 'AccordionActions';
+
 export default AccordionActions;

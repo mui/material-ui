@@ -304,4 +304,6 @@ Skeleton.propTypes /* remove-proptypes */ = {
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
+Skeleton.displayName = 'Skeleton';
+
 export default Skeleton;

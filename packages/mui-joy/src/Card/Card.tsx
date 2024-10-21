@@ -263,4 +263,6 @@ Card.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+Card.displayName = 'Card';
+
 export default Card;

@@ -528,6 +528,8 @@ FilledInput.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 };
 
+FilledInput.displayName = 'FilledInput';
+
 if (FilledInput) {
   FilledInput.muiName = 'Input';
 }

@@ -130,4 +130,6 @@ TimelineItem.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+TimelineItem.displayName = 'TimelineItem';
+
 export default TimelineItem;

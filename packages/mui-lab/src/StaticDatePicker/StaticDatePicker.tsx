@@ -23,7 +23,7 @@ const warn = () => {
 
 type StaticDatePickerComponent = (<TDate>(
   props: StaticDatePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
-) => React.JSX.Element) & { propTypes?: any };
+) => React.JSX.Element) & { propTypes?: any; displayName?: string };
 
 /**
  * @deprecated The StaticDatePicker component was moved from `@mui/lab` to `@mui/x-date-pickers`. More information about this migration on our blog: https://mui.com/blog/lab-date-pickers-to-mui-x/.
@@ -34,6 +34,8 @@ const StaticDatePicker = React.forwardRef(function DeprecatedStaticDatePicker() 
 
   return null;
 }) as StaticDatePickerComponent;
+
+StaticDatePicker.displayName = 'StaticDatePicker';
 
 export default StaticDatePicker;
 

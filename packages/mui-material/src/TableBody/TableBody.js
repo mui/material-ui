@@ -89,4 +89,6 @@ TableBody.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+TableBody.displayName = 'TableBody';
+
 export default TableBody;

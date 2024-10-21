@@ -309,4 +309,6 @@ TableCell.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+TableCell.displayName = 'TableCell';
+
 export default TableCell;

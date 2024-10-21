@@ -95,6 +95,8 @@ ThemeProvider.propTypes /* remove-proptypes */ = {
   themeId: PropTypes.string,
 };
 
+ThemeProvider.displayName = 'ThemeProvider';
+
 if (process.env.NODE_ENV !== 'production') {
   ThemeProvider.propTypes = exactProp(ThemeProvider.propTypes);
 }

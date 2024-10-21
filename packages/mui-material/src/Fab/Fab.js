@@ -299,4 +299,6 @@ Fab.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+Fab.displayName = 'Fab';
+
 export default Fab;

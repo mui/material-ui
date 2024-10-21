@@ -23,7 +23,7 @@ const warn = () => {
 
 type TreeViewComponent<Multiple extends boolean | undefined = undefined> = ((
   props: TreeViewProps<Multiple> & React.RefAttributes<HTMLDivElement>,
-) => React.JSX.Element) & { propTypes?: any };
+) => React.JSX.Element) & { propTypes?: any; displayName?: string };
 
 /**
  * @deprecated The TreeView component was moved from `@mui/lab` to `@mui/x-tree-view`. More information about this migration on our blog: https://mui.com/blog/lab-tree-view-to-mui-x/.
@@ -34,6 +34,8 @@ const TreeView = React.forwardRef(function DeprecatedTreeView() {
 
   return null;
 }) as TreeViewComponent;
+
+TreeView.displayName = 'TreeView';
 
 export default TreeView;
 

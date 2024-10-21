@@ -77,4 +77,6 @@ TimelineConnector.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+TimelineConnector.displayName = 'TimelineConnector';
+
 export default TimelineConnector;

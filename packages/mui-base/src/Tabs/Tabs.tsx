@@ -133,4 +133,6 @@ Tabs.propTypes /* remove-proptypes */ = {
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 } as any;
 
+Tabs.displayName = 'Tabs';
+
 export { Tabs };

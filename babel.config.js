@@ -93,6 +93,7 @@ module.exports = function getBabelConfig(api) {
         mode: 'unsafe-wrap',
       },
     ],
+    ['babel-plugin-transform-react-remove-display-name'],
     [
       'transform-inline-environment-variables',
       {

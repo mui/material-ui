@@ -255,4 +255,6 @@ Pagination.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+Pagination.displayName = 'Pagination';
+
 export default Pagination;
