@@ -218,7 +218,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
   const {
     'aria-describedby': ariaDescribedby,
     'aria-labelledby': ariaLabelledbyProp,
-    'aria-modal': ariaModal,
+    'aria-modal': ariaModal = true,
     BackdropComponent,
     BackdropProps,
     children,
@@ -323,7 +323,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
             role="dialog"
             aria-describedby={ariaDescribedby}
             aria-labelledby={ariaLabelledby}
-            aria-modal={ariaModal ?? true}
+            aria-modal={ariaModal}
             {...PaperProps}
             className={clsx(classes.paper, PaperProps.className)}
             ownerState={ownerState}
@@ -350,7 +350,9 @@ Dialog.propTypes /* remove-proptypes */ = {
    */
   'aria-labelledby': PropTypes.string,
   /**
-   * Indicates whether an element is modal when displayed.
+   * Informs assistive technologies that the element is modal.
+   * It's added on the element with role="dialog".
+   * @default true
    */
   'aria-modal': PropTypes.oneOfType([PropTypes.oneOf(['false', 'true']), PropTypes.bool]),
   /**

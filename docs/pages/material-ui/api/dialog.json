@@ -7,7 +7,8 @@
       "type": {
         "name": "union",
         "description": "'false'<br>&#124;&nbsp;'true'<br>&#124;&nbsp;bool"
-      }
+      },
+      "default": "true"
     },
     "BackdropComponent": {
       "type": { "name": "elementType" },

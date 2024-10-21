@@ -3,7 +3,9 @@
   "propDescriptions": {
     "aria-describedby": { "description": "The id(s) of the element(s) that describe the dialog." },
     "aria-labelledby": { "description": "The id(s) of the element(s) that label the dialog." },
-    "aria-modal": { "description": "Indicates whether an element is modal when displayed." },
+    "aria-modal": {
+      "description": "Informs assistive technologies that the element is modal. It&#39;s added on the element with role=&quot;dialog&quot;."
+    },
     "BackdropComponent": {
       "description": "A backdrop component. This prop enables custom backdrop rendering."
     },
