@@ -10,6 +10,7 @@ import {
   focusVisible,
   programmaticFocusTriggersFocusVisible,
   reactMajor,
+  describeSkipIf,
 } from '@mui/internal-test-utils';
 import { camelCase } from 'lodash/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
@@ -505,14 +506,7 @@ describe('<Tooltip />', () => {
     });
   });
 
-  describe('prop: delay', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-    });
-
+  describeSkipIf(/jsdom/.test(window.navigator.userAgent))('prop: delay', () => {
     it('should take the enterDelay into account', async () => {
       const { queryByRole } = render(
         <Tooltip title="Hello World" enterDelay={111}>
@@ -883,14 +877,7 @@ describe('<Tooltip />', () => {
     });
   });
 
-  describe('focus', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-    });
-
+  describeSkipIf(/jsdom/.test(window.navigator.userAgent))('focus', () => {
     it('ignores base focus', async () => {
       render(
         <Tooltip enterDelay={0} title="Some information">

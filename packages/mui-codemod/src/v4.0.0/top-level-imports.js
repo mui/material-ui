@@ -8,7 +8,10 @@ export default function transformer(fileInfo, api, options) {
   let requirePath = importModule;
 
   if (process.env.NODE_ENV === 'test') {
-    requirePath = requirePath.replace(/^@material-ui\/core/, '../../../mui-material/src');
+    requirePath = requirePath.replace(
+      /^@material-ui\/core/,
+      process.env.VITEST ? '@mui/material' : '../../../mui-material/src',
+    );
   }
 
   // eslint-disable-next-line global-require, import/no-dynamic-require

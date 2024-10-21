@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, describeSkipIf } from '@mui/internal-test-utils';
 import Fab, { fabClasses as classes } from '@mui/material/Fab';
 import ButtonBase, { touchRippleClasses } from '@mui/material/ButtonBase';
 import Icon from '@mui/material/Icon';
@@ -160,14 +160,7 @@ describe('<Fab />', () => {
     expect(renderedIconChild).to.have.class(childClassName);
   });
 
-  describe('server-side', () => {
-    before(function beforeHook() {
-      // Only run the test on node.
-      if (!/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-    });
-
+  describeSkipIf(!/jsdom/.test(window.navigator.userAgent))('server-side', () => {
     it('should server-side render', () => {
       const { container } = renderToString(<Fab>Fab</Fab>);
       expect(container.firstChild).to.have.text('Fab');
