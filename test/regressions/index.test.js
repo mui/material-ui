@@ -18,11 +18,11 @@ async function main() {
     reducedMotion: 'reduce',
   });
 
-  // Block images since they slow down tests (need download).
+  // Block external images since they slow down tests (need download).
   // They're also most likely decorative for documentation demos
   await page.route(/./, async (route, request) => {
     const type = await request.resourceType();
-    if (type === 'image') {
+    if (type === 'image' && !route.request().url().startsWith(baseUrl)) {
       route.abort();
     } else {
       route.continue();

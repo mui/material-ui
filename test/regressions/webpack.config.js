@@ -1,7 +1,10 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const fs = require('fs/promises');
 const webpackBaseConfig = require('../../webpackBaseConfig');
+
+const docsStaticFolder = path.resolve(__dirname, '../../docs/public/static');
 
 module.exports = {
   ...webpackBaseConfig,
@@ -27,6 +30,22 @@ module.exports = {
     new webpack.ProvidePlugin({
       // required by code accessing `process.env` in the browser
       process: 'process/browser.js',
+    }),
+    /** @type {import('webpack').WebpackPluginInstance} */ ({
+      // This plugin creates a symlink to the static folder in the build output.
+      // This is needed to make images and other static assets work in the regression tests.
+      // Serve can't handle requests outside of the build folder.
+      apply(compiler) {
+        compiler.hooks.done.tapPromise('CreateStaticFolderSymlinkPlugin', async () => {
+          const outputPath = compiler.options.output.path;
+          const staticFolder = `${outputPath}/static`;
+          const target = path.relative(outputPath, docsStaticFolder);
+          // eslint-disable-next-line no-console
+          console.log(`Creating symlink to static folder at ${staticFolder}`);
+          await fs.rm(`${outputPath}/static`, { force: true, recursive: true });
+          await fs.symlink(target, staticFolder, 'dir');
+        });
+      },
     }),
   ],
   module: {
