@@ -9,6 +9,147 @@ import blue from '../colors/blue';
 import lightBlue from '../colors/lightBlue';
 import green from '../colors/green';
 
+export type PaletteMode = 'light' | 'dark';
+export interface Color {
+  50: string;
+  100: string;
+  200: string;
+  300: string;
+  400: string;
+  500: string;
+  600: string;
+  700: string;
+  800: string;
+  900: string;
+  A100: string;
+  A200: string;
+  A400: string;
+  A700: string;
+}
+
+export {};
+// use standalone interface over typeof colors/commons
+// to enable module augmentation
+export interface CommonColors {
+  black: string;
+  white: string;
+}
+
+export type ColorPartial = Partial<Color>;
+
+export interface TypeText {
+  primary: string;
+  secondary: string;
+  disabled: string;
+}
+
+export interface TypeAction {
+  active: string;
+  hover: string;
+  hoverOpacity: number;
+  selected: string;
+  selectedOpacity: number;
+  disabled: string;
+  disabledOpacity: number;
+  disabledBackground: string;
+  focus: string;
+  focusOpacity: number;
+  activatedOpacity: number;
+}
+
+export interface TypeBackground {
+  default: string;
+  paper: string;
+}
+
+export type TypeDivider = string;
+
+export type PaletteColorOptions = SimplePaletteColorOptions | ColorPartial;
+
+export interface SimplePaletteColorOptions {
+  light?: string;
+  main: string;
+  dark?: string;
+  contrastText?: string;
+}
+
+export interface PaletteColor {
+  light: string;
+  main: string;
+  dark: string;
+  contrastText: string;
+}
+
+export interface TypeObject {
+  text: TypeText;
+  action: TypeAction;
+  divider: TypeDivider;
+  background: TypeBackground;
+}
+
+export type PaletteTonalOffset =
+  | number
+  | {
+      light: number;
+      dark: number;
+    };
+
+export interface PaletteAugmentColorOptions {
+  color: PaletteColorOptions;
+  mainShade?: number | string;
+  lightShade?: number | string;
+  darkShade?: number | string;
+  name?: number | string;
+}
+
+export interface Palette {
+  common: CommonColors;
+  mode: PaletteMode;
+  contrastThreshold: number;
+  tonalOffset: PaletteTonalOffset;
+  primary: PaletteColor;
+  secondary: PaletteColor;
+  error: PaletteColor;
+  warning: PaletteColor;
+  info: PaletteColor;
+  success: PaletteColor;
+  grey: Color;
+  text: TypeText;
+  divider: TypeDivider;
+  action: TypeAction;
+  background: TypeBackground;
+  getContrastText: (background: string) => string;
+  augmentColor: (options: PaletteAugmentColorOptions) => PaletteColor;
+}
+
+export interface Channels {
+  mainChannel: string;
+  lightChannel: string;
+  darkChannel: string;
+  contrastTextChannel: string;
+}
+
+export type PartialTypeObject = { [P in keyof TypeObject]?: Partial<TypeObject[P]> };
+
+export interface PaletteOptions {
+  primary?: PaletteColorOptions;
+  secondary?: PaletteColorOptions;
+  error?: PaletteColorOptions;
+  warning?: PaletteColorOptions;
+  info?: PaletteColorOptions;
+  success?: PaletteColorOptions;
+  mode?: PaletteMode;
+  tonalOffset?: PaletteTonalOffset;
+  contrastThreshold?: number;
+  common?: Partial<CommonColors>;
+  grey?: ColorPartial;
+  text?: Partial<TypeText>;
+  divider?: string;
+  action?: Partial<TypeAction>;
+  background?: Partial<TypeBackground>;
+  getContrastText?: (background: string) => string;
+}
+
 function getLight() {
   return {
     // The colors used to style the text.
@@ -83,8 +224,13 @@ function getDark() {
 
 export const dark = getDark();
 
-function addLightOrDark(intent, direction, shade, tonalOffset) {
-  const tonalOffsetLight = tonalOffset.light || tonalOffset;
+function addLightOrDark(
+  intent: PaletteColor,
+  direction: 'light' | 'dark',
+  shade: number | string,
+  tonalOffset: PaletteTonalOffset,
+) {
+  const tonalOffsetLight =  tonalOffset.light || tonalOffset;
   const tonalOffsetDark = tonalOffset.dark || tonalOffset * 1.5;
 
   if (!intent[direction]) {
@@ -188,7 +334,7 @@ function getDefaultWarning(mode = 'light') {
   };
 }
 
-export default function createPalette(palette) {
+export default function createPalette(palette: PaletteOptions): Palette {
   const { mode = 'light', contrastThreshold = 3, tonalOffset = 0.2, ...other } = palette;
 
   const primary = palette.primary || getDefaultPrimary(mode);
@@ -201,7 +347,7 @@ export default function createPalette(palette) {
   // Use the same logic as
   // Bootstrap: https://github.com/twbs/bootstrap/blob/1d6e3710dd447de1a200f29e8fa521f8a0908f70/scss/_functions.scss#L59
   // and material-components-web https://github.com/material-components/material-components-web/blob/ac46b8863c4dab9fc22c4c662dc6bd1b65dd652f/packages/mdc-theme/_functions.scss#L54
-  function getContrastText(background) {
+  function getContrastText(background: string) {
     const contrastText =
       getContrastRatio(background, dark.text.primary) >= contrastThreshold
         ? dark.text.primary
@@ -223,7 +369,13 @@ export default function createPalette(palette) {
     return contrastText;
   }
 
-  const augmentColor = ({ color, name, mainShade = 500, lightShade = 300, darkShade = 700 }) => {
+  const augmentColor = ({
+    color,
+    name,
+    mainShade = 500,
+    lightShade = 300,
+    darkShade = 700,
+  }: PaletteAugmentColorOptions) => {
     color = { ...color };
     if (!color.main && color[mainShade]) {
       color.main = color[mainShade];
