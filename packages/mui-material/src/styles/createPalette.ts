@@ -87,10 +87,12 @@ export interface TypeObject {
   background: TypeBackground;
 }
 
-export type PaletteTonalOffset = number | {
-  light: number;
-  dark: number;
-};
+export type PaletteTonalOffset =
+  | number
+  | {
+      light: number;
+      dark: number;
+    };
 
 export interface PaletteAugmentColorOptions {
   color: PaletteColorOptions;
