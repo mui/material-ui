@@ -87,12 +87,10 @@ export interface TypeObject {
   background: TypeBackground;
 }
 
-export type PaletteTonalOffset =
-  | number
-  | {
-      light: number;
-      dark: number;
-    };
+export type PaletteTonalOffset = number | {
+  light: number;
+  dark: number;
+};
 
 export interface PaletteAugmentColorOptions {
   color: PaletteColorOptions;
@@ -230,12 +228,12 @@ function addLightOrDark(
   shade: number | string,
   tonalOffset: PaletteTonalOffset,
 ) {
-  const tonalOffsetLight =  tonalOffset.light || tonalOffset;
-  const tonalOffsetDark = tonalOffset.dark || tonalOffset * 1.5;
+  const tonalOffsetLight = typeof tonalOffset === 'number' ? tonalOffset : tonalOffset.light;
+  const tonalOffsetDark = typeof tonalOffset === 'number' ? tonalOffset * 1.5 : tonalOffset.dark;
 
   if (!intent[direction]) {
-    if (intent.hasOwnProperty(shade)) {
-      intent[direction] = intent[shade];
+    if (intent.hasOwnProperty(shade as keyof typeof intent)) {
+      intent[direction] = intent[shade as keyof typeof intent];
     } else if (direction === 'light') {
       intent.light = lighten(intent.main, tonalOffsetLight);
     } else if (direction === 'dark') {
@@ -375,23 +373,26 @@ export default function createPalette(palette: PaletteOptions): Palette {
     mainShade = 500,
     lightShade = 300,
     darkShade = 700,
-  }: PaletteAugmentColorOptions) => {
-    color = { ...color };
-    if (!color.main && color[mainShade]) {
-      color.main = color[mainShade];
+  }: PaletteAugmentColorOptions): PaletteColor => {
+    const colorInput = { ...color } as PaletteColor;
+
+    if (!colorInput.main && colorInput[mainShade as keyof typeof colorInput]) {
+      colorInput.main = colorInput[mainShade as keyof typeof colorInput] as string;
     }
 
-    if (!color.hasOwnProperty('main')) {
-      throw /* minify-error */ new Error(
+    if (!colorInput.hasOwnProperty('main')) {
+      throw new Error(
         `MUI: The color${name ? ` (${name})` : ''} provided to augmentColor(color) is invalid.\n` +
           `The color object needs to have a \`main\` property or a \`${mainShade}\` property.`,
       );
     }
 
-    if (typeof color.main !== 'string') {
-      throw /* minify-error */ new Error(
+    if (typeof colorInput.main !== 'string') {
+      throw new Error(
         `MUI: The color${name ? ` (${name})` : ''} provided to augmentColor(color) is invalid.\n` +
-          `\`color.main\` should be a string, but \`${JSON.stringify(color.main)}\` was provided instead.\n` +
+          `\`color.main\` should be a string, but \`${JSON.stringify(
+            colorInput.main,
+          )}\` was provided instead.\n` +
           '\n' +
           'Did you intend to use one of the following approaches?\n' +
           '\n' +
@@ -407,13 +408,13 @@ export default function createPalette(palette: PaletteOptions): Palette {
       );
     }
 
-    addLightOrDark(color, 'light', lightShade, tonalOffset);
-    addLightOrDark(color, 'dark', darkShade, tonalOffset);
-    if (!color.contrastText) {
-      color.contrastText = getContrastText(color.main);
+    addLightOrDark(colorInput, 'light', lightShade, tonalOffset);
+    addLightOrDark(colorInput, 'dark', darkShade, tonalOffset);
+    if (!colorInput.contrastText) {
+      colorInput.contrastText = getContrastText(colorInput.main);
     }
 
-    return color;
+    return colorInput;
   };
 
   let modeHydrated;
@@ -429,7 +430,7 @@ export default function createPalette(palette: PaletteOptions): Palette {
     }
   }
 
-  const paletteOutput = deepmerge(
+  const paletteOutput: Palette = deepmerge(
     {
       // A collection of common colors.
       common: { ...common }, // prevent mutable object.
@@ -470,7 +471,7 @@ export default function createPalette(palette: PaletteOptions): Palette {
       ...modeHydrated,
     },
     other,
-  );
+  ) as Palette;
 
   return paletteOutput;
 }
