@@ -226,7 +226,7 @@ export const dark = getDark();
 
 function addLightOrDark(
   intent: PaletteColor,
-  direction: PaletteMode,
+  direction: 'light' | 'dark',
   shade: number | string,
   tonalOffset: PaletteTonalOffset,
 ) {
@@ -234,8 +234,8 @@ function addLightOrDark(
   const tonalOffsetDark = typeof tonalOffset === 'number' ? tonalOffset * 1.5 : tonalOffset.dark;
 
   if (!intent[direction]) {
-    if (intent.hasOwnProperty(shade as keyof typeof intent)) {
-      intent[direction] = intent[shade as keyof typeof intent];
+    if (intent.hasOwnProperty(shade)) {
+      intent[direction] = intent[shade as keyof typeof intent] as string;
     } else if (direction === 'light') {
       intent.light = lighten(intent.main, tonalOffsetLight);
     } else if (direction === 'dark') {
