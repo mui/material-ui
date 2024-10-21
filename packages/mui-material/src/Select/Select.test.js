@@ -152,6 +152,36 @@ describe('<Select />', () => {
     expect(options[1]).to.have.attribute('data-value', '20');
   });
 
+  it('should select an option when the space key is pressed', () => {
+    const handleChange = spy();
+    const handleKeyDown = spy();
+    const { getAllByRole, getByRole } = render(
+      <Select value="0" onChange={handleChange}>
+        <MenuItem value="0" onKeyDown={handleKeyDown}>
+          Zero
+        </MenuItem>
+        <MenuItem value="1" onKeyDown={handleKeyDown}>
+          One
+        </MenuItem>
+        <MenuItem value="2" onKeyDown={handleKeyDown}>
+          Two
+        </MenuItem>
+      </Select>,
+    );
+
+    const trigger = getByRole('combobox');
+    fireEvent.mouseDown(trigger);
+
+    const options = getAllByRole('option');
+    fireEvent.keyDown(options[0], { key: 'ArrowDown' });
+    fireEvent.keyDown(options[1], { key: 'ArrowDown' });
+    fireEvent.keyDown(options[2], { key: ' ' });
+
+    expect(handleChange.callCount).to.equal(1);
+    expect(handleKeyDown.callCount).to.equal(3);
+    expect(handleChange.firstCall.args[0].target.value).to.equal('2');
+  });
+
   [' ', 'ArrowUp', 'ArrowDown', 'Enter'].forEach((key) => {
     it(`should open menu when pressed ${key} key on select`, async () => {
       render(
