@@ -16,6 +16,12 @@ export interface DialogProps extends StandardProps<ModalProps, 'children'> {
    */
   'aria-labelledby'?: string;
   /**
+   * Informs assistive technologies that the element is modal.
+   * It's added on the element with role="dialog".
+   * @default true
+   */
+  'aria-modal'?: boolean | 'true' | 'false';
+  /**
    * Dialog children, usually the included sub-components.
    */
   children?: React.ReactNode;
