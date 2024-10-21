@@ -430,7 +430,7 @@ importers:
         version: 7.25.7(@babel/core@7.25.8)
       '@pigment-css/vite-plugin':
         specifier: 0.0.24
-        version: 0.0.24(@types/react@18.3.11)(react@18.3.1)(vite@5.4.8(@types/node@20.16.13)(terser@5.29.2))
+        version: 0.0.24(@types/react@18.3.11)(react@18.3.1)(vite@5.4.9(@types/node@20.16.13)(terser@5.29.2))
       '@types/react':
         specifier: ^18.3.11
         version: 18.3.11
@@ -442,7 +442,7 @@ importers:
         version: 1.6.38
       '@vitejs/plugin-react':
         specifier: ^4.3.3
-        version: 4.3.3(vite@5.4.8(@types/node@20.16.13)(terser@5.29.2))
+        version: 4.3.3(vite@5.4.9(@types/node@20.16.13)(terser@5.29.2))
       postcss:
         specifier: ^8.4.47
         version: 8.4.47
@@ -450,14 +450,14 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       vite:
-        specifier: 5.4.8
-        version: 5.4.8(@types/node@20.16.13)(terser@5.29.2)
+        specifier: 5.4.9
+        version: 5.4.9(@types/node@20.16.13)(terser@5.29.2)
       vite-plugin-node-polyfills:
         specifier: 0.22.0
-        version: 0.22.0(rollup@4.21.1)(vite@5.4.8(@types/node@20.16.13)(terser@5.29.2))
+        version: 0.22.0(rollup@4.21.1)(vite@5.4.9(@types/node@20.16.13)(terser@5.29.2))
       vite-plugin-pages:
         specifier: ^0.32.3
-        version: 0.32.3(vite@5.4.8(@types/node@20.16.13)(terser@5.29.2))
+        version: 0.32.3(vite@5.4.9(@types/node@20.16.13)(terser@5.29.2))
 
   benchmark:
     dependencies:
@@ -652,7 +652,7 @@ importers:
         version: 9.7.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@toolpad/core':
         specifier: ^0.7.0
-        version: 0.7.0(@emotion/react@11.13.3(@types/react@18.3.11)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.3.11)(react@18.3.1))(@types/react@18.3.11)(react@18.3.1))(@mui/icons-material@packages+mui-icons-material+build)(@mui/material-pigment-css@6.1.4(@emotion/react@11.13.3(@types/react@18.3.11)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.3.11)(react@18.3.1))(@types/react@18.3.11)(react@18.3.1))(@types/react@18.3.11)(react@18.3.1))(@mui/material@packages+mui-material+build)(@types/node@20.16.13)(@types/react@18.3.11)(happy-dom@12.10.3)(jsdom@24.0.0)(next@14.2.15(@babel/core@7.25.8)(@opentelemetry/api@1.8.0)(@playwright/test@1.47.2)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(terser@5.29.2)(vite@5.4.8(@types/node@20.16.13)(terser@5.29.2))
+        version: 0.7.0(@emotion/react@11.13.3(@types/react@18.3.11)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.3.11)(react@18.3.1))(@types/react@18.3.11)(react@18.3.1))(@mui/icons-material@packages+mui-icons-material+build)(@mui/material-pigment-css@6.1.4(@emotion/react@11.13.3(@types/react@18.3.11)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.3.11)(react@18.3.1))(@types/react@18.3.11)(react@18.3.1))(@types/react@18.3.11)(react@18.3.1))(@mui/material@packages+mui-material+build)(@types/node@20.16.13)(@types/react@18.3.11)(happy-dom@12.10.3)(jsdom@24.0.0)(next@14.2.15(@babel/core@7.25.8)(@opentelemetry/api@1.8.0)(@playwright/test@1.47.2)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(terser@5.29.2)(vite@5.4.9(@types/node@20.16.13)(terser@5.29.2))
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.47)
@@ -12499,8 +12499,8 @@ packages:
       vue-router:
         optional: true
 
-  vite@5.4.8:
-    resolution: {integrity: sha512-FqrItQ4DT1NC4zCUqMB4c4AZORMKIa0m8/URVCZ77OZ/QSNeJ54bU1vrFADbDsuwfIPcgknRkmqakQcgnL4GiQ==}
+  vite@5.4.9:
+    resolution: {integrity: sha512-20OVpJHh0PAM0oSOELa5GaZNWeDjcAvQjGXy2Uyr+Tp+/D2/Hdz6NLgpJLsarPTA2QJ6v8mX2P1ZfbsSKvdMkg==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
@@ -15742,7 +15742,7 @@ snapshots:
       - react
       - supports-color
 
-  '@pigment-css/vite-plugin@0.0.24(@types/react@18.3.11)(react@18.3.1)(vite@5.4.8(@types/node@20.16.13)(terser@5.29.2))':
+  '@pigment-css/vite-plugin@0.0.24(@types/react@18.3.11)(react@18.3.1)(vite@5.4.9(@types/node@20.16.13)(terser@5.29.2))':
     dependencies:
       '@babel/core': 7.25.8
       '@babel/preset-typescript': 7.25.7(@babel/core@7.25.8)
@@ -15750,7 +15750,7 @@ snapshots:
       '@wyw-in-js/shared': 0.5.4
       '@wyw-in-js/transform': 0.5.4
       babel-plugin-define-var: 0.1.0
-      vite: 5.4.8(@types/node@20.16.13)(terser@5.29.2)
+      vite: 5.4.9(@types/node@20.16.13)(terser@5.29.2)
     transitivePeerDependencies:
       - '@types/react'
       - react
@@ -16479,7 +16479,7 @@ snapshots:
       '@theme-ui/css': 0.16.2(@emotion/react@11.13.3(@types/react@18.3.11)(react@18.3.1))
       react: 18.3.1
 
-  '@toolpad/core@0.7.0(@emotion/react@11.13.3(@types/react@18.3.11)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.3.11)(react@18.3.1))(@types/react@18.3.11)(react@18.3.1))(@mui/icons-material@packages+mui-icons-material+build)(@mui/material-pigment-css@6.1.4(@emotion/react@11.13.3(@types/react@18.3.11)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.3.11)(react@18.3.1))(@types/react@18.3.11)(react@18.3.1))(@types/react@18.3.11)(react@18.3.1))(@mui/material@packages+mui-material+build)(@types/node@20.16.13)(@types/react@18.3.11)(happy-dom@12.10.3)(jsdom@24.0.0)(next@14.2.15(@babel/core@7.25.8)(@opentelemetry/api@1.8.0)(@playwright/test@1.47.2)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(terser@5.29.2)(vite@5.4.8(@types/node@20.16.13)(terser@5.29.2))':
+  '@toolpad/core@0.7.0(@emotion/react@11.13.3(@types/react@18.3.11)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.3.11)(react@18.3.1))(@types/react@18.3.11)(react@18.3.1))(@mui/icons-material@packages+mui-icons-material+build)(@mui/material-pigment-css@6.1.4(@emotion/react@11.13.3(@types/react@18.3.11)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.3.11)(react@18.3.1))(@types/react@18.3.11)(react@18.3.1))(@types/react@18.3.11)(react@18.3.1))(@mui/material@packages+mui-material+build)(@types/node@20.16.13)(@types/react@18.3.11)(happy-dom@12.10.3)(jsdom@24.0.0)(next@14.2.15(@babel/core@7.25.8)(@opentelemetry/api@1.8.0)(@playwright/test@1.47.2)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(terser@5.29.2)(vite@5.4.9(@types/node@20.16.13)(terser@5.29.2))':
     dependencies:
       '@babel/runtime': 7.25.7
       '@mui/icons-material': link:packages/mui-icons-material/build
@@ -16487,7 +16487,7 @@ snapshots:
       '@mui/material': link:packages/mui-material/build
       '@mui/utils': 6.1.1(@types/react@18.3.11)(react@18.3.1)
       '@toolpad/utils': 0.7.0(@types/node@20.16.13)(happy-dom@12.10.3)(jsdom@24.0.0)(react@18.3.1)(terser@5.29.2)
-      '@vitejs/plugin-react': 4.3.1(vite@5.4.8(@types/node@20.16.13)(terser@5.29.2))
+      '@vitejs/plugin-react': 4.3.1(vite@5.4.9(@types/node@20.16.13)(terser@5.29.2))
       client-only: 0.0.1
       invariant: 2.2.4
       path-to-regexp: 6.3.0
@@ -16924,25 +16924,25 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@vitejs/plugin-react@4.3.1(vite@5.4.8(@types/node@20.16.13)(terser@5.29.2))':
+  '@vitejs/plugin-react@4.3.1(vite@5.4.9(@types/node@20.16.13)(terser@5.29.2))':
     dependencies:
       '@babel/core': 7.25.8
       '@babel/plugin-transform-react-jsx-self': 7.25.7(@babel/core@7.25.8)
       '@babel/plugin-transform-react-jsx-source': 7.25.7(@babel/core@7.25.8)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.2
-      vite: 5.4.8(@types/node@20.16.13)(terser@5.29.2)
+      vite: 5.4.9(@types/node@20.16.13)(terser@5.29.2)
     transitivePeerDependencies:
       - supports-color
 
-  '@vitejs/plugin-react@4.3.3(vite@5.4.8(@types/node@20.16.13)(terser@5.29.2))':
+  '@vitejs/plugin-react@4.3.3(vite@5.4.9(@types/node@20.16.13)(terser@5.29.2))':
     dependencies:
       '@babel/core': 7.25.8
       '@babel/plugin-transform-react-jsx-self': 7.25.7(@babel/core@7.25.8)
       '@babel/plugin-transform-react-jsx-source': 7.25.7(@babel/core@7.25.8)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.2
-      vite: 5.4.8(@types/node@20.16.13)(terser@5.29.2)
+      vite: 5.4.9(@types/node@20.16.13)(terser@5.29.2)
     transitivePeerDependencies:
       - supports-color
 
@@ -16953,13 +16953,13 @@ snapshots:
       chai: 5.1.1
       tinyrainbow: 1.2.0
 
-  '@vitest/mocker@2.1.1(@vitest/spy@2.1.1)(vite@5.4.8(@types/node@20.16.13)(terser@5.29.2))':
+  '@vitest/mocker@2.1.1(@vitest/spy@2.1.1)(vite@5.4.9(@types/node@20.16.13)(terser@5.29.2))':
     dependencies:
       '@vitest/spy': 2.1.1
       estree-walker: 3.0.3
       magic-string: 0.30.11
     optionalDependencies:
-      vite: 5.4.8(@types/node@20.16.13)(terser@5.29.2)
+      vite: 5.4.9(@types/node@20.16.13)(terser@5.29.2)
 
   '@vitest/pretty-format@2.1.1':
     dependencies:
@@ -25300,7 +25300,7 @@ snapshots:
       cac: 6.7.14
       debug: 4.3.6(supports-color@8.1.1)
       pathe: 1.1.2
-      vite: 5.4.8(@types/node@20.16.13)(terser@5.29.2)
+      vite: 5.4.9(@types/node@20.16.13)(terser@5.29.2)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -25312,15 +25312,15 @@ snapshots:
       - supports-color
       - terser
 
-  vite-plugin-node-polyfills@0.22.0(rollup@4.21.1)(vite@5.4.8(@types/node@20.16.13)(terser@5.29.2)):
+  vite-plugin-node-polyfills@0.22.0(rollup@4.21.1)(vite@5.4.9(@types/node@20.16.13)(terser@5.29.2)):
     dependencies:
       '@rollup/plugin-inject': 5.0.5(rollup@4.21.1)
       node-stdlib-browser: 1.2.0
-      vite: 5.4.8(@types/node@20.16.13)(terser@5.29.2)
+      vite: 5.4.9(@types/node@20.16.13)(terser@5.29.2)
     transitivePeerDependencies:
       - rollup
 
-  vite-plugin-pages@0.32.3(vite@5.4.8(@types/node@20.16.13)(terser@5.29.2)):
+  vite-plugin-pages@0.32.3(vite@5.4.9(@types/node@20.16.13)(terser@5.29.2)):
     dependencies:
       '@types/debug': 4.1.12
       debug: 4.3.6(supports-color@8.1.1)
@@ -25330,12 +25330,12 @@ snapshots:
       json5: 2.2.3
       local-pkg: 0.5.0
       picocolors: 1.1.0
-      vite: 5.4.8(@types/node@20.16.13)(terser@5.29.2)
+      vite: 5.4.9(@types/node@20.16.13)(terser@5.29.2)
       yaml: 2.5.1
     transitivePeerDependencies:
       - supports-color
 
-  vite@5.4.8(@types/node@20.16.13)(terser@5.29.2):
+  vite@5.4.9(@types/node@20.16.13)(terser@5.29.2):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.4.47
@@ -25348,7 +25348,7 @@ snapshots:
   vitest@2.1.1(@types/node@20.16.13)(happy-dom@12.10.3)(jsdom@24.0.0)(terser@5.29.2):
     dependencies:
       '@vitest/expect': 2.1.1
-      '@vitest/mocker': 2.1.1(@vitest/spy@2.1.1)(vite@5.4.8(@types/node@20.16.13)(terser@5.29.2))
+      '@vitest/mocker': 2.1.1(@vitest/spy@2.1.1)(vite@5.4.9(@types/node@20.16.13)(terser@5.29.2))
       '@vitest/pretty-format': 2.1.1
       '@vitest/runner': 2.1.1
       '@vitest/snapshot': 2.1.1
@@ -25363,7 +25363,7 @@ snapshots:
       tinyexec: 0.3.0
       tinypool: 1.0.0
       tinyrainbow: 1.2.0
-      vite: 5.4.8(@types/node@20.16.13)(terser@5.29.2)
+      vite: 5.4.9(@types/node@20.16.13)(terser@5.29.2)
       vite-node: 2.1.1(@types/node@20.16.13)(terser@5.29.2)
       why-is-node-running: 2.3.0
     optionalDependencies:
