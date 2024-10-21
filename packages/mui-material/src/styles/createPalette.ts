@@ -432,7 +432,7 @@ export default function createPalette(palette: PaletteOptions): Palette {
     }
   }
 
-  const paletteOutput: Palette = deepmerge(
+  const paletteOutput = deepmerge(
     {
       // A collection of common colors.
       common: { ...common }, // prevent mutable object.
