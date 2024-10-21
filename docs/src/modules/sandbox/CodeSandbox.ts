@@ -60,7 +60,10 @@ function createReactApp(demoData: DemoData) {
           ...acc,
           // Remove the path and keep the filename
           [`src/${curr.module.replace(/^.*[\\/]/g, '')}`]: {
-            content: curr.raw,
+            content: flattenRelativeImports(
+              curr.raw,
+              demoData.relativeModules?.map((file) => file.module),
+            ),
           },
         }),
         {},
