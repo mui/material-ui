@@ -1100,7 +1100,7 @@ A big thanks to the 18 contributors who made this release possible.
 
 ### Docs
 
-- Add `theme.applyStyles` and migrate docs (#42498) @siriwatknp
+- Add `theme.applyStyles()` and migrate docs (#42498) @siriwatknp
 - Fix dashboard template console error (#42594) @oliviertassinari
 - Migrate system props to `sx` prop (#42475) @siriwatknp
 - [material-ui]Fix duplicated sentence (#42521) @alexfauquette

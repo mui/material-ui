@@ -918,7 +918,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 - [zero-runtime] Use lodash instead of its subpackages (#40868) @michaldudak
 - Add `applyStyles()` to theme (#40667) @siriwatknp
-- [zero] Use `theme.applyStyles` in the demo app (#40787) @siriwatknp
+- [zero] Use `theme.applyStyles()` in the demo app (#40787) @siriwatknp
 - [zero] Add `useThemeProps` processor (#40648) @siriwatknp
 
 ### `@mui/utils@5.15.7`

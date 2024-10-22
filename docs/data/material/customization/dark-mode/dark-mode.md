@@ -156,7 +156,7 @@ If you are using the `InitColorSchemeScript` component to [prevent SSR flicker](
 
 ## Styling in dark mode
 
-Use the `theme.applyStyles` utility to apply styles for a specific mode.
+Use the `theme.applyStyles()` utility to apply styles for a specific mode.
 
 We recommend using this function over checking `theme.palette.mode` to switch between styles as it has more benefits:
 
