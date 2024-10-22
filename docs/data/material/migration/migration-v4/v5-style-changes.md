@@ -511,7 +511,7 @@ Nested imports of more than one level are private. For example, you can no longe
 
 ### ✅ Rename fade to alpha
 
-`fade` was renamed to `alpha` to better describe its functionality.
+`fade()` was renamed to `alpha()` to better describe its functionality.
 
 The previous name caused confusion when the input color already had an alpha value. The helper overrides the alpha value of the color.
 

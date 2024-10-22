@@ -2503,7 +2503,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `fade-rename-alpha`
 
-Renames the `fade` style utility import and calls to `alpha`.
+Renames the `fade` style utility import and calls to `alpha()`.
 
 ```diff
 -import { fade, lighten } from '@material-ui/core/styles';

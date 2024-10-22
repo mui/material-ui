@@ -3301,7 +3301,7 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 - [docs] Add summary and improve `test_static` CI doc in CONTRIBUTING readme file (#36711) @kriskw1999
 - [docs] Update theme customization TypeScript (#35551) @siriwatknp
 - [docs] Add Joy Frames X web blocks template (#37203) @siriwatknp
-- [docs] Change Base UI `alpha` to `beta` in README (#37228) @ZeeshanTamboli
+- [docs] Change Base UI `alpha()` to `beta()` in README (#37228) @ZeeshanTamboli
 - [docs] Improve Base UI overview page (#37227) @mnajdova
 - [docs] Update Joy + Material guide (#36911) @cherniavskii
 
@@ -13019,7 +13019,7 @@ Here are some highlights ✨:
 ### `@material-ui/lab@v5.0.0-alpha.13`
 
 - [TreeView] Fix bundle size link and refactor array spreads (#22992) @joshwooding
-- [TreeView] Fix `alpha` color utility instead of deprecated `fade` (#22978) @joshwooding
+- [TreeView] Fix `alpha()` color utility instead of deprecated `fade()` (#22978) @joshwooding
 - [core] Ship modern bundle (#22814) @eps1lon
 
 ### `@material-ui/utils@v5.0.0-alpha.13`
@@ -14927,7 +14927,7 @@ You can expect similar releases like this one in the coming months.
 
 #### Deprecations
 
-- [theme] Deprecate `fade` color utility in favor of `alpha` (#22837) @mnajdova
+- [theme] Deprecate `fade()` color utility in favor of `alpha()` (#22837) @mnajdova
 - [theme] Deprecate theme.mixins.gutters (#22245) @joshwooding
 - [Avatar] Add circular variant (#22090) @eps1lon
 - [Badge] Add overlap circular and rectangular (#22076) @eps1lon
