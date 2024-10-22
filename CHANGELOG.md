@@ -43,7 +43,7 @@ A big thanks to the 9 contributors who made this release possible.
 - [code-infra] Fix icon builder tests (#44143) @Janpot
 - [code-infra] Fix dependabot vulnerabilities (#44124) @Janpot
 - [core] Reference commits in changelog when no PR (#44115) @oliviertassinari
-- [examples] Fix Pigment CSS Vite example (#44074) @oliviertassinari
+- [examples] Fix Pigment CSS Vite example (#44074) @oliviertassinari
 - Fix fast-xml-parser vulnerability (#44121) @Janpot
 
 All contributors of this release in alphabetical order: @ChinoUkaegbu, @Janpot, @mnajdova, @oliviertassinari, @prakhargupta1, @sai6855, @samuelsycamore, @siriwatknp, @snapwich
