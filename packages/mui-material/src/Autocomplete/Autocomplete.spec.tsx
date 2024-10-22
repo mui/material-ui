@@ -66,6 +66,15 @@ function MyAutocomplete<
   renderInput={() => null}
 />;
 
+// Tests presence of onMouseDown prop in InputProps
+<Autocomplete
+  options={['1', '2', '3']}
+  renderInput={(params) => {
+    console.log(params.InputProps.onMouseDown);
+    return <TextField {...params} />;
+  }}
+/>;
+
 <MyAutocomplete
   options={['1', '2', '3']}
   onChange={(event, value) => {
