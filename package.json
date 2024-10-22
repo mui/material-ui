@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "6.1.4",
+  "version": "6.1.5",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -178,7 +178,7 @@
     "lodash": "^4.17.21",
     "markdownlint-cli2": "^0.14.0",
     "mocha": "^10.7.3",
-    "nx": "^19.8.4",
+    "nx": "^19.8.6",
     "nyc": "^17.1.0",
     "piscina": "^4.7.0",
     "postcss-styled-syntax": "^0.6.4",
