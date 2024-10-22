@@ -20,7 +20,7 @@ A big thanks to the 9 contributors who made this release possible.
 
 ### `@mui/system@6.1.5`
 
-- [system] Add `defaultMode` to `InitColorSchemeScript` (#44139) @siriwatknp
+- Add `defaultMode` to `InitColorSchemeScript` (#44139) @siriwatknp
 
 ### `@mui/codemod@6.1.5`
 
