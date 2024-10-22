@@ -1,3 +1,3 @@
 <DialogsProvider>
-  <DemoContent />
+  <DeleteDialogTrigger name="demo" />
 </DialogsProvider>

@@ -181,4 +181,4 @@ You can create and manipulate dialogs imperatively with the [`useDialogs()`](htt
 
 The following example demonstrates some of these features:
 
-{{"demo": "ToolpadDialogsNoSnap.js", "defaultCodeOpen": false}}
+{{"demo": "ToolpadDialogsNoSnap.js"}}
