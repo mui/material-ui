@@ -1,5 +1,53 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.1.5
+
+<!-- generated comparing v6.1.4..master -->
+
+_Oct 22, 2024_
+
+A big thanks to the 9 contributors who made this release possible.
+
+### `@mui/material@6.1.5`
+
+- [Autocomplete] Fix bug with child chip button events propagating to parent (#43982) @snapwich
+- [Autocomplete] Fix Autocomplete crashing if ownerState is used in styleOverrides (#43994) @sai6855
+- [Checkbox] Fix disableRipple regression (#44099) @siriwatknp
+- [Dialog] Add the aria-modal="true" by default (#44118) @mnajdova
+- [IconButton] Fix disableRipple behavior when disableRipple is set in MuiButtonBase theme (#43714) @sai6855
+- [pigment-css] Support project without enabling CSS variables (#44171) @siriwatknp
+- Make the palette always return new light and dark object (#44059) @siriwatknp
+
+### `@mui/system@6.1.5`
+
+- Add `defaultMode` to `InitColorSchemeScript` (#44139) @siriwatknp
+
+### `@mui/codemod@6.1.5`
+
+- [Grid2] Add removal `zeroMinWidth` prop to codemod (#44178) @sai6855
+
+### Docs
+
+- [material-ui][FormControlLabel] Don't use unintuitive label position on chec… (#44119) @mnajdova
+- [material-ui][TextField] Dynamically modify the eye password button aria-label (#44122) @ChinoUkaegbu
+- [icons] Run pnpm docs:mdicons:synonyms (#44098) @oliviertassinari
+- [joy-ui] Update Overview copy to match Readme (#44136) @samuelsycamore
+- Add CodeSandbox/Stackblitz to the rest of the templates (#43708) @siriwatknp
+- Update Figma link to fix 301 (a7b7d9c) @oliviertassinari
+- Link Toolpad from Core repo (#44111) @prakhargupta1
+- Remove HighlightedCode max-width (#43731) @Janpot
+
+### Core
+
+- [code-infra] Widen eslint file patterns (#44148) @Janpot
+- [code-infra] Fix icon builder tests (#44143) @Janpot
+- [code-infra] Fix dependabot vulnerabilities (#44124) @Janpot
+- [core] Reference commits in changelog when no PR (#44115) @oliviertassinari
+- [examples] Fix Pigment CSS Vite example (#44074) @oliviertassinari
+- Fix fast-xml-parser vulnerability (#44121) @Janpot
+
+All contributors of this release in alphabetical order: @ChinoUkaegbu, @Janpot, @mnajdova, @oliviertassinari, @prakhargupta1, @sai6855, @samuelsycamore, @siriwatknp, @snapwich
+
 ## v6.1.4
 
 <!-- generated comparing v6.1.3..master -->
