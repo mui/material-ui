@@ -14,7 +14,7 @@ A big thanks to the 9 contributors who made this release possible.
 - [Autocomplete] Fix Autocomplete crashing if ownerState is used in styleOverrides (#43994) @sai6855
 - [Checkbox] Fix disableRipple regression (#44099) @siriwatknp
 - [Dialog] Add the aria-modal="true" by default (#44118) @mnajdova
-- [IconButton] Fix disableRipple behaviour when disableRipple is set in MuiButtonBase theme (#43714) @sai6855
+- [IconButton] Fix disableRipple behavior when disableRipple is set in MuiButtonBase theme (#43714) @sai6855
 - [pigment-css] Support project without enabling CSS variables (#44171) @siriwatknp
 - Make the palette always return new light and dark object (#44059) @siriwatknp
 
