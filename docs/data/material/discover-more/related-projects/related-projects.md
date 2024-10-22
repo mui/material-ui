@@ -2,11 +2,32 @@
 
 <p class="description">A carefully curated list of third-party tools that expand or build on top of Material UI's component library.</p>
 
-Developers from the community have built some excellent supplemental tools for working with Material UI—this page gathers the best that we've seen.
+Developers from the community have built some excellent supplemental tools for working with Material UI—this page gathers some of the best that we've seen.
 
 Do you have a project that you think should be featured here?
-We'd love to see it.
-Feel free to submit a pull request!
+We'd love to see it—feel free to submit a pull request.
+The maintainers will work with you to write the description.
+
+## Community projects
+
+The following projects are maintained by the community and curated by Material UI's team.
+They're great resources for learning more about real-world usage of Material UI alongside other popular libraries and tools.
+
+### Paid
+
+- [ScaffoldHub](https://v2.scaffoldhub.io/scaffolds/react-material-ui?partner=1):
+
+  - Tool for building web applications.
+  - Choose your framework and library (React with Material UI).
+  - Choose your database (SQL, MongoDB or Firestore).
+  - Model your database and application with the intuitive GUI.
+  - Generate your application, including a complete scaffolded backend.
+  - Preview your application online, and download the generated code.
+
+- [Divjoy](https://divjoy.com?via=material-ui):
+
+  - Create a Material UI app in minutes.
+  - Templates, authentication, database integration, subscription payments, and more.
 
 ## Design resources
 

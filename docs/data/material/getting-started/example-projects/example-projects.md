@@ -22,24 +22,3 @@ See [Start a New React Project](https://react.dev/learn/start-a-new-react-projec
 Once you've chosen your preferred scaffold above, you could move on to the [Templates](/material-ui/getting-started/templates/) doc and choose a readymade user interface to plug in.
 
 For more complex prebuilt UIs, check out our [premium themes and templates](https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=example-projects-store) in the MUI Store.
-
-## Community project
-
-The following projects are maintained by the community and curated by Material UI's team.
-They're great resources for learning more about real-world usage of Material UI alongside other popular libraries and tools.
-
-### Paid
-
-- [ScaffoldHub](https://v2.scaffoldhub.io/scaffolds/react-material-ui?partner=1):
-
-  - Tool for building web applications.
-  - Choose your framework and library (React with Material UI).
-  - Choose your database (SQL, MongoDB or Firestore).
-  - Model your database and application with the intuitive GUI.
-  - Generate your application, including a complete scaffolded backend.
-  - Preview your application online, and download the generated code.
-
-- [Divjoy](https://divjoy.com?via=material-ui):
-
-  - Create a Material UI app in minutes.
-  - Templates, authentication, database integration, subscription payments, and more.
