@@ -11,7 +11,7 @@ describe('<Rating />', () => {
 
   describeConformance(<Rating />, () => ({
     classes,
-    inheritComponent: 'span',
+    inheritComponent: 'fieldset',
     render,
     muiName: 'MuiRating',
     testVariantProps: { variant: 'foo' },
