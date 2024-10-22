@@ -4,7 +4,7 @@
 
 ## Dark mode only
 
-You can make your application use the dark theme as the default—regardless of the user's preference—by adding `mode: 'dark'` to the `createTheme` helper:
+You can make your application use the dark theme as the default—regardless of the user's preference—by adding `mode: 'dark'` to the `createTheme()` helper:
 
 ```js
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -26,7 +26,7 @@ export default function App() {
 }
 ```
 
-Adding `mode: 'dark'` to the `createTheme` helper modifies several palette values, as shown in the following demo:
+Adding `mode: 'dark'` to the `createTheme()` helper modifies several palette values, as shown in the following demo:
 
 {{"demo": "DarkTheme.js", "bg": "inline", "hideToolbar": true}}
 

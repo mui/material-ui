@@ -308,7 +308,7 @@ For a smoother transition, the `adaptV4Theme` helper allows you to iteratively u
 ```
 
 :::warning
-This adapter only handles the input arguments of `createTheme`.
+This adapter only handles the input arguments of `createTheme()`.
 If you modify the shape of the theme after its creation, you need to migrate the structure manually.
 :::
 
@@ -548,7 +548,7 @@ To generate custom class names without using `@mui/styles`, check out [ClassName
 
 ### ✅ Rename createMuiTheme
 
-The function `createMuiTheme` was renamed to `createTheme` to make it more intuitive to use with `ThemeProvider`.
+The function `createMuiTheme` was renamed to `createTheme()` to make it more intuitive to use with `ThemeProvider`.
 
 ```diff
 -import { createMuiTheme } from '@mui/material/styles';

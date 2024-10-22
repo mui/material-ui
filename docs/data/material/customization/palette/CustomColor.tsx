@@ -18,7 +18,7 @@ declare module '@mui/material/styles' {
     neutral: Palette['primary'];
   }
 
-  // allow configuration using `createTheme`
+  // allow configuration using `createTheme()`
   interface PaletteOptions {
     neutral?: PaletteOptions['primary'];
   }

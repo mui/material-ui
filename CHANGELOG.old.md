@@ -5909,7 +5909,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [docs] Fix en-US format in the Skeleton demo (#33699) @husseinsaad98
 - [docs] Update module reference for `usePagination` (#33675) @fullstackzach
 - [docs] Fix code examples in `styled` API vs `sx` prop docs (#33665) @ZeeshanTamboli
-- [docs][system] Throw an informative error when `theme.vars` is used in `createTheme` and mention this in the theming docs (#33619) @hbjORbj
+- [docs][system] Throw an informative error when `theme.vars` is used in `createTheme()` and mention this in the theming docs (#33619) @hbjORbj
 
 ### Core
 
@@ -10448,7 +10448,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
    }
   ```
 
-- [theme] Rename `createMuiTheme` to `createTheme` (#25992) @m4theushw
+- [theme] Rename `createMuiTheme()` to `createTheme()` (#25992) @m4theushw
 
   Developers only need one theme in their application. A prefix would suggest a second theme is needed. It's not the case. `createMuiTheme` will be removed in v6.
 
