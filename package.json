@@ -101,7 +101,7 @@
     "@googleapis/sheets": "^9.3.1",
     "@netlify/functions": "^2.8.2",
     "@slack/bolt": "^3.22.0",
-    "execa": "^9.4.0",
+    "execa": "^9.4.1",
     "google-auth-library": "^9.14.2"
   },
   "devDependencies": {
@@ -129,9 +129,9 @@
     "@playwright/test": "1.47.2",
     "@types/babel__core": "^7.20.5",
     "@types/fs-extra": "^11.0.4",
-    "@types/lodash": "^4.17.10",
+    "@types/lodash": "^4.17.12",
     "@types/mocha": "^10.0.9",
-    "@types/node": "^20.16.11",
+    "@types/node": "^20.16.13",
     "@types/react": "^18.3.11",
     "@types/yargs": "^17.0.33",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
@@ -197,9 +197,9 @@
     "webpack-cli": "^5.1.4",
     "yargs": "^17.7.2"
   },
-  "packageManager": "pnpm@9.12.1",
+  "packageManager": "pnpm@9.12.2",
   "engines": {
-    "pnpm": "9.12.1"
+    "pnpm": "9.12.2"
   },
   "resolutions": {
     "@babel/core": "^7.25.8",
@@ -213,7 +213,7 @@
     "@definitelytyped/header-parser": "^0.2.12",
     "@definitelytyped/typescript-versions": "^0.1.4",
     "@definitelytyped/utils": "^0.1.7",
-    "@types/node": "^20.16.11",
+    "@types/node": "^20.16.13",
     "@types/react": "^18.3.11",
     "@types/react-dom": "18.3.1",
     "cross-fetch": "^4.0.0",
