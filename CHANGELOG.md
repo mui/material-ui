@@ -358,7 +358,7 @@ A big thanks to the 11 contributors who made this release possible.
 
 ### `@mui/material@6.0.2`
 
-- Fix `createTheme` with just color schemes (#43518) @siriwatknp
+- Fix `createTheme()` with just color schemes (#43518) @siriwatknp
 - [Menu,Popover] Fix Backdrop props descriptions (#43503) @Michael-Hutchinson
 - [MenuList] Do not react to an event with modifier key pressed (#43505) @MateuszGroth
 
@@ -1100,7 +1100,7 @@ A big thanks to the 18 contributors who made this release possible.
 
 ### Docs
 
-- Add `theme.applyStyles` and migrate docs (#42498) @siriwatknp
+- Add `theme.applyStyles()` and migrate docs (#42498) @siriwatknp
 - Fix dashboard template console error (#42594) @oliviertassinari
 - Migrate system props to `sx` prop (#42475) @siriwatknp
 - [material-ui]Fix duplicated sentence (#42521) @alexfauquette

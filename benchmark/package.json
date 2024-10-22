@@ -25,7 +25,7 @@
     "express": "^4.21.1",
     "fs-extra": "^11.2.0",
     "jss": "^10.10.0",
-    "playwright": "^1.47.2",
+    "playwright": "^1.48.1",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

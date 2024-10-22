@@ -243,7 +243,7 @@ It also works with the `sx` prop:
 
 ### New method of applying styles
 
-The new API `theme.applyStyles` has been added for creating specific mode styles.
+The new API `theme.applyStyles()` has been added for creating specific mode styles.
 It's designed to replace the `theme.palette.mode === 'dark'` condition to fix the SSR flickering issue when combined with the CSS theme variables feature.
 
 <codeblock>
