@@ -8,7 +8,6 @@ export interface SliderValueLabelProps {
   open: boolean;
   /**
    * The value of the slider.
-   * For ranged sliders, provide an array with two values.
    */
   value: React.ReactNode;
   /**
