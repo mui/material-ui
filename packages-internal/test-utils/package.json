@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-test-utils",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "author": "MUI Team",
   "description": "Utilities for MUI tests. This is an internal package not meant for general use.",
   "main": "./build/index.js",
@@ -48,7 +48,7 @@
     "jsdom": "^24.0.0",
     "lodash": "^4.17.21",
     "mocha": "^10.7.3",
-    "playwright": "^1.47.2",
+    "playwright": "^1.48.1",
     "prop-types": "^15.8.1",
     "sinon": "^18.0.1"
   },

@@ -1,6 +1,6 @@
 {
   "name": "@mui/styles",
-  "version": "6.1.4",
+  "version": "6.1.5",
   "private": false,
   "author": "MUI Team",
   "description": "MUI Styles - The legacy JSS-based styling solution of Material UI.",
@@ -33,7 +33,7 @@
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "prebuild": "rimraf build",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-styles/**/*.test.{js,ts,tsx}'",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-styles/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
