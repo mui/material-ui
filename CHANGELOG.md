@@ -2,17 +2,18 @@
 
 ## 6.1.5
 
-<!-- generated comparing v6.1.3..master -->
+<!-- generated comparing v6.1.4..master -->
 
-_Oct 21, 2024_
+_Oct 22, 2024_
 
-A big thanks to the 13 contributors who made this release possible.
+A big thanks to the 9 contributors who made this release possible.
 
 ### `@mui/material@6.1.5`
 
 - [Autocomplete] Fix bug with child chip button events propagating to parent (#43982) @snapwich
 - [Autocomplete] Fix Autocomplete crashing if ownerState is used in styleOverrides (#43994) @sai6855
 - [Checkbox] Fix disableRipple regression (#44099) @siriwatknp
+- [Dialog] Add the aria-modal="true" by default (#44118) @mnajdova
 - [IconButton] Fix disableRipple behaviour when disableRipple is set in MuiButtonBase theme (#43714) @sai6855
 - [pigment-css] Support project without enabling CSS variables (#44171) @siriwatknp
 - Make the palette always return new light and dark object (#44059) @siriwatknp
@@ -21,40 +22,30 @@ A big thanks to the 13 contributors who made this release possible.
 
 - [system] Add `defaultMode` to `InitColorSchemeScript` (#44139) @siriwatknp
 
+### `@mui/codemod@6.1.5`
+
+- [Grid2] Add removal `zeroMinWidth` prop to codemod (#44178) @sai6855
+
 ### Docs
 
+- [material-ui][FormControlLabel] Don't use unintuitive label position on chec… (#44119) @mnajdova
+- [material-ui][TextField] Dynamically modify the eye password button aria-label (#44122) @ChinoUkaegbu
+- [icons] Run pnpm docs:mdicons:synonyms (#44098) @oliviertassinari
+- [joy-ui] Update Overview copy to match Readme (#44136) @samuelsycamore
 - Add CodeSandbox/Stackblitz to the rest of the templates (#43708) @siriwatknp
 - Update Figma link to fix 301 (a7b7d9c) @oliviertassinari
 - Link Toolpad from Core repo (#44111) @prakhargupta1
 - Remove HighlightedCode max-width (#43731) @Janpot
-- Improve Toolpad Core docs (#43796) @bharatkashyap
-- Tweak Joy UI section in README (#44103) @aarongarciah
-- Fix 404 link to Next.js (a25a365) @oliviertassinari
-- [toolpad core] In the sidebar, move 'new' label to the components (#44070) @prakhargupta1
-- Fix small typo on Grid2 page (#44062) @zanivan
-- Clarify suggestions to use `@mui/styles` in v5 migration docs (#44049) @samuelsycamore
-- [material-ui][TextField] Dynamically modify the eye password button aria-label (#44122) @ChinoUkaegbu
-- [material-ui][FormControlLabel] Don't use unintuitive label position on chec… (#44119) @mnajdova
-- [icons] Run pnpm docs:mdicons:synonyms (#44098) @oliviertassinari
-- [joy-ui] Update Overview copy to match Readme (#44136) @samuelsycamore
 
 ### Core
 
+- [code-infra] Widen eslint file patterns (#44148) @Janpot
 - [code-infra] Fix icon builder tests (#44143) @Janpot
 - [code-infra] Fix dependabot vulnerabilities (#44124) @Janpot
-- [code-infra] Link to production app for bundle size (#44076) @oliviertassinari
-- [code-infra] Disable cron job for React 17 tests (#44065) @Janpot
 - [core] Reference commits in changelog when no PR (#44115) @oliviertassinari
-- [core] Remove [website] from changelog (#44069) @oliviertassinari
-- [core] Simplify createPalette (#44075) @oliviertassinari
-- [core] Apply #44052 to the latest release as well (82a8253) @oliviertassinari
-- [core] Fix proptypes generation when multiple components per file (#44058) @Janpot
-- [core] Remove <-- from changelog (#44052) @oliviertassinari
-- [examples] Avoid git diff when playing with examples (bfe28ad) @oliviertassinari
-- [test] Remove dead code (#44056) @Janpot
 - Fix fast-xml-parser vulnerability (#44121) @Janpot
 
-All contributors of this release in alphabetical order: @aarongarciah, @bharatkashyap, @ChinoUkaegbu, @DiegoAndai, @Janpot, @mnajdova, @oliviertassinari, @prakhargupta1, @sai6855, @samuelsycamore, @siriwatknp, @snapwich, @zanivan
+All contributors of this release in alphabetical order: @ChinoUkaegbu, @Janpot, @mnajdova, @oliviertassinari, @prakhargupta1, @sai6855, @samuelsycamore, @siriwatknp, @snapwich
 
 ## v6.1.4
 
