@@ -81,7 +81,7 @@ export interface AutocompleteRenderInputParams {
     className: string;
     startAdornment: React.ReactNode;
     endAdornment: React.ReactNode;
-    onMouseDown: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+    onMouseDown: React.MouseEventHandler;
   };
   inputProps: ReturnType<ReturnType<typeof useAutocomplete>['getInputProps']>;
 }

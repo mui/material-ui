@@ -70,7 +70,9 @@ function MyAutocomplete<
 <Autocomplete
   options={['1', '2', '3']}
   renderInput={(params) => {
-    console.log(params.InputProps.onMouseDown);
+    expectType<React.MouseEventHandler, typeof params.InputProps.onMouseDown>(
+      params.InputProps.onMouseDown,
+    );
     return <TextField {...params} />;
   }}
 />;
