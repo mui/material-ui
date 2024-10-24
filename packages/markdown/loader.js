@@ -450,6 +450,9 @@ module.exports = async function demoLoader() {
               );
 
               try {
+                // We are only iterating trough an array that looks
+                // like this: ['JS', 'TS'], so  it is safe to await
+                // eslint-disable-next-line no-await-in-loop
                 raw = await fs.readFile(relativeModuleFilePath, {
                   encoding: 'utf8',
                 });
@@ -501,9 +504,12 @@ module.exports = async function demoLoader() {
                         entry,
                       );
 
-                      const raw = await fs.readFile(entryModuleFilePath, { encoding: 'utf8' });
+                      // We are only iterating trough an array that looks
+                      // like this: ['JS', 'TS'], so  it is safe to await
+                      // eslint-disable-next-line no-await-in-loop
+                      const rawEntry = await fs.readFile(entryModuleFilePath, { encoding: 'utf8' });
 
-                      extractImports(raw).forEach((importModuleID) => {
+                      extractImports(rawEntry).forEach((importModuleID) => {
                         // detect relative import
                         const importModuleIdWithExtension = detectRelativeImports(
                           entry,
@@ -526,8 +532,8 @@ module.exports = async function demoLoader() {
                           .slice(0, -1)
                           .join('/');
                         const moduleData = {
-                          module: '.' + entryModuleFilePath.replace(modulePathDirectory, ''),
-                          raw,
+                          module: `.${entryModuleFilePath.replace(modulePathDirectory, '')}`,
+                          raw: rawEntry,
                         };
                         if (demos[demoName].relativeModules[variant]) {
                           // Avoid duplicates

@@ -3,7 +3,7 @@ export default function flattenRelativeImports(rawCode: string, modulePaths: str
   modulePaths.forEach((path: string) => {
     const pathWithoutExtension = path.replace(/\.[a-z]*$/g, '');
     // Move the relative import to the current directory
-    let newPath = `./${pathWithoutExtension.replace(/^.*[\\/]/g, '')}`;
+    const newPath = `./${pathWithoutExtension.replace(/^.*[\\/]/g, '')}`;
     newCode = newCode.replace(pathWithoutExtension, newPath);
 
     // Replace the relative import towards parent directory
