@@ -15,7 +15,7 @@ function RatingTest() {
       <Rating />
       <Rating precision={0.5} />
 
-      <Rating children={children} />
+      <Rating>{children}</Rating>
       <Rating
         onChange={(event, value) => {
           expectType<number | null, typeof value>(value);
