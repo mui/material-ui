@@ -337,6 +337,7 @@ function defaultLabelText(value) {
 const Rating = React.forwardRef(function Rating(inProps, ref) {
   const props = useDefaultProps({ name: 'MuiRating', props: inProps });
   const {
+    component = 'span',
     className,
     defaultValue = null,
     disabled = false,
@@ -505,6 +506,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
   const ownerState = {
     ...props,
+    component,
     defaultValue,
     disabled,
     emptyIcon,
@@ -524,6 +526,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
   return (
     <RatingRoot
+      as={component}
       ref={handleRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
