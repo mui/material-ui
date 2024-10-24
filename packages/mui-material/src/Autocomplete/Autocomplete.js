@@ -24,6 +24,8 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import capitalize from '../utils/capitalize';
 import useSlot from '../utils/useSlot';
+import { useDeferredValue } from '@mui/utils';
+import Fade from '../Fade';
 
 const useUtilityClasses = (ownerState) => {
   const {
@@ -422,6 +424,7 @@ const AutocompleteGroupUl = styled('ul', {
 
 export { createFilterOptions };
 
+const EMPTY_ARRAY = [];
 const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiAutocomplete' });
 
@@ -572,6 +575,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     className: classes.paper,
   });
 
+  const groupedOptionsDeferred = useDeferredValue(popupOpen ? groupedOptions : EMPTY_ARRAY);
+  const isLoading = loading || groupedOptionsDeferred !== groupedOptions;
+
   const [PopperSlot, popperProps] = useSlot('popper', {
     elementType: Popper,
     externalForwardedProps,
@@ -672,19 +678,25 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   const renderAutocompletePopperChildren = (children) => (
     <AutocompletePopper as={PopperSlot} {...popperProps}>
-      <AutocompletePaper as={PaperSlot} {...paperProps}>
-        {children}
-      </AutocompletePaper>
+      <Fade
+        in={popupOpen}
+        timeout={{ appear: 0, enter: isLoading ? 200 : 0, exit: 0 }}
+        easing="step-end"
+      >
+        <AutocompletePaper as={PaperSlot} {...paperProps}>
+          {children}
+        </AutocompletePaper>
+      </Fade>
     </AutocompletePopper>
   );
 
   let autocompletePopper = null;
-  if (groupedOptions.length > 0) {
+  if (groupedOptionsDeferred.length > 0) {
     autocompletePopper = renderAutocompletePopperChildren(
       // TODO v7: remove `as` prop and move ListboxComponentProp to externalForwardedProps or remove ListboxComponentProp entirely
       // https://github.com/mui/material-ui/pull/43994#issuecomment-2401945800
       <ListboxSlot as={ListboxComponentProp} {...listboxProps}>
-        {groupedOptions.map((option, index) => {
+        {groupedOptionsDeferred.map((option, index) => {
           if (groupBy) {
             return renderGroup({
               key: option.key,
@@ -698,13 +710,13 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
         })}
       </ListboxSlot>,
     );
-  } else if (loading && groupedOptions.length === 0) {
+  } else if (isLoading && groupedOptionsDeferred.length === 0) {
     autocompletePopper = renderAutocompletePopperChildren(
       <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
         {loadingText}
       </AutocompleteLoading>,
     );
-  } else if (groupedOptions.length === 0 && !freeSolo && !loading) {
+  } else if (groupedOptionsDeferred.length === 0 && !freeSolo && !isLoading) {
     autocompletePopper = renderAutocompletePopperChildren(
       <AutocompleteNoOptions
         className={classes.noOptions}
