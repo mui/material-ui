@@ -28,7 +28,11 @@ const useUtilityClasses = (ownerState) => {
 const AccordionSummaryRoot = styled(ButtonBase, {
   name: 'MuiAccordionSummary',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [styles.root, !ownerState.disableGutters && styles.gutters];
+  },
 })(
   memoTheme(({ theme }) => {
     const transition = {
@@ -66,7 +70,10 @@ const AccordionSummaryRoot = styled(ButtonBase, {
 const AccordionSummaryContent = styled('div', {
   name: 'MuiAccordionSummary',
   slot: 'Content',
-  overridesResolver: (props, styles) => styles.content,
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+    return [styles.content, !ownerState.disableGutters && styles.contentGutters];
+  },
 })(
   memoTheme(({ theme }) => ({
     display: 'flex',
