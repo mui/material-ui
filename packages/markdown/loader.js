@@ -151,8 +151,8 @@ module.exports = async function demoLoader() {
    * @example detectRelativeImports('ComboBox.js', '', JS', './top100Films') => relativeModules.set('ComboBox.js', new Map([['./top100Films.js', ['JS']]]))
    */
   function detectRelativeImports(demoName, moduleFilepath, variant, importModuleID) {
+    let relativeModuleFilename = importModuleID;
     if (importModuleID.startsWith('.')) {
-      let relativeModuleFilename = importModuleID;
       const demoMap = relativeModules.get(demoName);
       // If the moduleID does not end with an extension, or ends with an unsupported extension (e.g. ".styling") we need to resolve it
       // Fastest way to get a file extension, see: https://stackoverflow.com/a/12900504/
@@ -198,29 +198,7 @@ module.exports = async function demoLoader() {
         }
       }
     }
-  }
-
-  /**
-   * @param { module: './top100Films.js', raw: '...' } moduleData
-   * @param string demoName
-   * @param ['JS' | 'TS'] variants
-   * Adds the relative module to the demo's relativeModules object for each of the variants
-   */
-  function addToRelativeModules(moduleData, demoName, variants) {
-    variants.forEach((variant) => {
-      if (demos[demoName].relativeModules[variant]) {
-        // Avoid duplicates
-        if (
-          !demos[demoName].relativeModules[variant].some(
-            (elem) => elem.module === moduleData.module,
-          )
-        ) {
-          demos[demoName].relativeModules[variant].push(moduleData);
-        }
-      } else {
-        demos[demoName].relativeModules[variant] = [moduleData];
-      }
-    });
+    return relativeModuleFilename;
   }
 
   await Promise.all(
@@ -464,92 +442,116 @@ module.exports = async function demoLoader() {
         const addedModulesRelativeToModulePath = new Set();
         await Promise.all(
           Array.from(relativeModules.get(demoName)).map(async ([relativeModuleID, variants]) => {
-            let raw = '';
-            const relativeModuleFilePath = path.join(
-              path.dirname(moduleFilepath),
-              relativeModuleID,
-            );
+            for (const variant of variants) {
+              let raw = '';
+              const relativeModuleFilePath = path.join(
+                path.dirname(moduleFilepath),
+                relativeModuleID,
+              );
 
-            try {
-              raw = await fs.readFile(relativeModuleFilePath, {
-                encoding: 'utf8',
-              });
-
-              const importedProcessedModuleIDs = new Set();
-              const importedProcessedModulesIDsParents = new Map();
-              // Find the relative paths in the relative module
-              if (relativeModuleID.startsWith('.')) {
-                extractImports(raw).forEach((importModuleID) => {
-                  // detect relative import
-                  detectRelativeImports(
-                    importModuleID,
-                    relativeModuleFilePath,
-                    'JS',
-                    importModuleID,
-                  );
-                  if (importModuleID.startsWith('.')) {
-                    importedProcessedModuleIDs.add(importModuleID);
-                    importedProcessedModulesIDsParents.set(importModuleID, relativeModuleFilePath);
-                  }
+              try {
+                raw = await fs.readFile(relativeModuleFilePath, {
+                  encoding: 'utf8',
                 });
 
-                if (!addedModulesRelativeToModulePath.has(relativeModuleFilePath)) {
-                  const moduleData = { module: relativeModuleID, raw };
-                  addToRelativeModules(moduleData, demoName, variants);
-                  addedModulesRelativeToModulePath.add(relativeModuleFilePath);
-                }
-              }
-
-              // iterate recursively over the relative imports
-              while (importedProcessedModuleIDs.size > 0) {
-                for (const entry of importedProcessedModuleIDs) {
-                  if (entry.startsWith('.')) {
-                    const jsEntryModuleFilePath = path.join(
-                      path.dirname(importedProcessedModulesIDsParents.get(entry)),
-                      entry + '.js',
+                const importedProcessedModuleIDs = new Set();
+                const importedProcessedModulesIDsParents = new Map();
+                // Find the relative paths in the relative module
+                if (relativeModuleID.startsWith('.')) {
+                  extractImports(raw).forEach((importModuleID) => {
+                    // detect relative import
+                    const importModuleIdWithExtension = detectRelativeImports(
+                      importModuleID,
+                      relativeModuleFilePath,
+                      variant,
+                      importModuleID,
                     );
-                    const tsEntryModuleFilePath = path.join(
-                      path.dirname(importedProcessedModulesIDsParents.get(entry)),
-                      entry + '.ts',
-                    );
-
-                    let entryModuleFilePath = jsEntryModuleFilePath;
-                    let raw = '';
-                    let module = entry + '.js';
-                    try {
-                      raw = await fs.readFile(jsEntryModuleFilePath, { encoding: 'utf8' });
-                    } catch {
-                      raw = await fs.readFile(tsEntryModuleFilePath, { encoding: 'utf8' });
-                      module = entry + '.ts';
-                      entryModuleFilePath = tsEntryModuleFilePath;
+                    if (importModuleID.startsWith('.')) {
+                      importedProcessedModuleIDs.add(importModuleIdWithExtension);
+                      importedProcessedModulesIDsParents.set(
+                        importModuleIdWithExtension,
+                        relativeModuleFilePath,
+                      );
                     }
+                  });
 
-                    extractImports(raw).forEach((importModuleID) => {
-                      // detect relative import
-                      detectRelativeImports(entry, entryModuleFilePath, 'JS', importModuleID);
-                      if (importModuleID.startsWith('.')) {
-                        importedProcessedModuleIDs.add(importModuleID);
-                        importedProcessedModulesIDsParents.set(importModuleID, entryModuleFilePath);
+                  if (!addedModulesRelativeToModulePath.has(relativeModuleFilePath)) {
+                    const moduleData = { module: relativeModuleID, raw };
+                    if (demos[demoName].relativeModules[variant]) {
+                      // Avoid duplicates
+                      if (
+                        !demos[demoName].relativeModules[variant].some(
+                          (elem) => elem.module === moduleData.module,
+                        )
+                      ) {
+                        demos[demoName].relativeModules[variant].push(moduleData);
                       }
-                    });
-
-                    if (!addedModulesRelativeToModulePath.has(entryModuleFilePath)) {
-                      const modulePathDirectory = moduleFilepath.split('/').slice(0, -1).join('/');
-                      const moduleData = {
-                        module: '.' + entryModuleFilePath.replace(modulePathDirectory, ''),
-                        raw,
-                      };
-                      addToRelativeModules(moduleData, demoName, variants);
-                      addedModulesRelativeToModulePath.add(entryModuleFilePath);
+                    } else {
+                      demos[demoName].relativeModules[variant] = [moduleData];
                     }
+                    addedModulesRelativeToModulePath.add(relativeModuleFilePath);
                   }
-                  importedProcessedModuleIDs.delete(entry);
                 }
+                // iterate recursively over the relative imports
+                while (importedProcessedModuleIDs.size > 0) {
+                  for (const entry of importedProcessedModuleIDs) {
+                    if (entry.startsWith('.')) {
+                      const entryModuleFilePath = path.join(
+                        path.dirname(importedProcessedModulesIDsParents.get(entry)),
+                        entry,
+                      );
+
+                      const raw = await fs.readFile(entryModuleFilePath, { encoding: 'utf8' });
+
+                      extractImports(raw).forEach((importModuleID) => {
+                        // detect relative import
+                        const importModuleIdWithExtension = detectRelativeImports(
+                          entry,
+                          entryModuleFilePath,
+                          variant,
+                          importModuleID,
+                        );
+                        if (importModuleID.startsWith('.')) {
+                          importedProcessedModuleIDs.add(importModuleIdWithExtension);
+                          importedProcessedModulesIDsParents.set(
+                            importModuleIdWithExtension,
+                            entryModuleFilePath,
+                          );
+                        }
+                      });
+
+                      if (!addedModulesRelativeToModulePath.has(entryModuleFilePath)) {
+                        const modulePathDirectory = moduleFilepath
+                          .split('/')
+                          .slice(0, -1)
+                          .join('/');
+                        const moduleData = {
+                          module: '.' + entryModuleFilePath.replace(modulePathDirectory, ''),
+                          raw,
+                        };
+                        if (demos[demoName].relativeModules[variant]) {
+                          // Avoid duplicates
+                          if (
+                            !demos[demoName].relativeModules[variant].some(
+                              (elem) => elem.module === moduleData.module,
+                            )
+                          ) {
+                            demos[demoName].relativeModules[variant].push(moduleData);
+                          }
+                        } else {
+                          demos[demoName].relativeModules[variant] = [moduleData];
+                        }
+                        addedModulesRelativeToModulePath.add(entryModuleFilePath);
+                      }
+                    }
+                    importedProcessedModuleIDs.delete(entry);
+                  }
+                }
+              } catch {
+                throw new Error(
+                  `Could not find a module for the relative import "${relativeModuleID}" in the demo "${demoName}"`,
+                );
               }
-            } catch {
-              throw new Error(
-                `Could not find a module for the relative import "${relativeModuleID}" in the demo "${demoName}"`,
-              );
             }
           }),
         );

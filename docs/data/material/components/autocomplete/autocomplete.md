@@ -358,7 +358,7 @@ Search within 10,000 randomly generated options. The list is virtualized thanks 
 
 The list view feature can be combined with [custom subcomponents](/x/react-data-grid/components/) to provide an improved user experience on small screens.
 
-{{"demo": "ListViewAdvanced.js", "bg": "inline", "maxWidth": 360, "height": 600}}
+{{"demo": "ListViewAdvanced.js", "iframe": true, "bg": "inline", "maxWidth": 360, "height": 600}}
 
 ## Events
 
