@@ -3,7 +3,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
 import getValidReactChildren from '@mui/utils/getValidReactChildren';
 import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
@@ -172,9 +171,7 @@ const ButtonGroupRoot = styled('div', {
             props: { variant: 'text', color },
             style: {
               [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
-                borderColor: theme.vars
-                  ? `rgba(${theme.vars.palette[color].mainChannel} / 0.5)`
-                  : alpha(theme.palette[color].main, 0.5),
+                borderColor: theme.alpha((theme.vars || theme).palette[color].main, 0.5),
               },
             },
           },

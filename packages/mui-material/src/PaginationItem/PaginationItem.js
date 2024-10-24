@@ -3,7 +3,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
 import paginationItemClasses, { getPaginationItemUtilityClass } from './paginationItemClasses';
 import ButtonBase from '../ButtonBase';
@@ -140,24 +139,20 @@ const PaginationItemPage = styled(ButtonBase, {
     [`&.${paginationItemClasses.selected}`]: {
       backgroundColor: (theme.vars || theme).palette.action.selected,
       '&:hover': {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-          : alpha(
-              theme.palette.action.selected,
-              theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-            ),
+        backgroundColor: theme.alpha(
+          (theme.vars || theme).palette.action.selected,
+          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+        ),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: (theme.vars || theme).palette.action.selected,
         },
       },
       [`&.${paginationItemClasses.focusVisible}`]: {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-          : alpha(
-              theme.palette.action.selected,
-              theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-            ),
+        backgroundColor: theme.alpha(
+          (theme.vars || theme).palette.action.selected,
+          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+        ),
       },
       [`&.${paginationItemClasses.disabled}`]: {
         opacity: 1,
@@ -249,33 +244,26 @@ const PaginationItemPage = styled(ButtonBase, {
           style: {
             [`&.${paginationItemClasses.selected}`]: {
               color: (theme.vars || theme).palette[color].main,
-              border: `1px solid ${
-                theme.vars
-                  ? `rgba(${theme.vars.palette[color].mainChannel} / 0.5)`
-                  : alpha(theme.palette[color].main, 0.5)
-              }`,
-              backgroundColor: theme.vars
-                ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.activatedOpacity})`
-                : alpha(theme.palette[color].main, theme.palette.action.activatedOpacity),
+              border: `1px solid ${theme.alpha((theme.vars || theme).palette[color].main, 0.5)}`,
+              backgroundColor: theme.alpha(
+                (theme.vars || theme).palette[color].main,
+                theme.palette.action.activatedOpacity,
+              ),
               '&:hover': {
-                backgroundColor: theme.vars
-                  ? `rgba(${theme.vars.palette[color].mainChannel} / calc(${theme.vars.palette.action.activatedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-                  : alpha(
-                      theme.palette[color].main,
-                      theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
-                    ),
+                backgroundColor: theme.alpha(
+                  (theme.vars || theme).palette[color].main,
+                  theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
+                ),
                 // Reset on touch devices, it doesn't add specificity
                 '@media (hover: none)': {
                   backgroundColor: 'transparent',
                 },
               },
               [`&.${paginationItemClasses.focusVisible}`]: {
-                backgroundColor: theme.vars
-                  ? `rgba(${theme.vars.palette[color].mainChannel} / calc(${theme.vars.palette.action.activatedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-                  : alpha(
-                      theme.palette[color].main,
-                      theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
-                    ),
+                backgroundColor: theme.alpha(
+                  (theme.vars || theme).palette[color].main,
+                  theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
+                ),
               },
             },
           },

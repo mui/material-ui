@@ -3,7 +3,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { darken, lighten } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -51,8 +50,8 @@ const AlertRoot = styled(Paper, {
   },
 })(
   memoTheme(({ theme }) => {
-    const getColor = theme.palette.mode === 'light' ? darken : lighten;
-    const getBackgroundColor = theme.palette.mode === 'light' ? lighten : darken;
+    const getColor = theme.palette.mode === 'light' ? theme.darken : theme.lighten;
+    const getBackgroundColor = theme.palette.mode === 'light' ? theme.lighten : theme.darken;
     return {
       ...theme.typography.body2,
       backgroundColor: 'transparent',
