@@ -3,6 +3,7 @@ import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { RatingClasses } from './ratingClasses';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface IconContainerProps extends React.HTMLAttributes<HTMLSpanElement> {
   value: number;
@@ -10,7 +11,7 @@ export interface IconContainerProps extends React.HTMLAttributes<HTMLSpanElement
 
 export interface RatingPropsSizeOverrides {}
 
-export interface RatingProps
+export interface RatingOwnProps
   extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children' | 'onChange'> {
   /**
    * Override or extend the styles applied to the component.
@@ -114,6 +115,14 @@ export interface RatingProps
   value?: number | null;
 }
 
+export type RatingTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'span',
+> = {
+  props: AdditionalProps & RatingOwnProps;
+  defaultComponent: RootComponent;
+};
+
 /**
  *
  * Demos:
@@ -124,4 +133,13 @@ export interface RatingProps
  *
  * - [Rating API](https://mui.com/material-ui/api/rating/)
  */
-export default function Rating(props: RatingProps): React.JSX.Element;
+declare const Rating: OverridableComponent<RatingTypeMap>;
+
+export type RatingProps<
+  RootComponent extends React.ElementType = RatingTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<RatingTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
+
+export default Rating;
