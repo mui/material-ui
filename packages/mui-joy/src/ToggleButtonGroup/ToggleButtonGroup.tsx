@@ -284,6 +284,7 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
       lg: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
       md: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
       sm: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      uw: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
       xl: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
       xs: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     }),

@@ -42,7 +42,10 @@ describe('cssContainerQueries', () => {
       '@container (min-width:600px) and (max-width:899.95px)',
     );
     expect(theme.containerQueries.not('xs')).to.equal('@container (min-width:600px)');
-    expect(theme.containerQueries.not('xl')).to.equal('@container (max-width:1535.95px)');
+    expect(theme.containerQueries.not('uw')).to.equal('@container (max-width:2559.95px)');
+    expect(theme.containerQueries.not('xl')).to.equal(
+      '@container (width<1536px) or (width>2559.95px)',
+    );
     expect(theme.containerQueries.not('md')).to.equal(
       '@container (width<900px) or (width>1199.95px)',
     );
@@ -67,7 +70,10 @@ describe('cssContainerQueries', () => {
       '@container sidebar (min-width:600px)',
     );
     expect(theme.containerQueries('sidebar').not('xl')).to.equal(
-      '@container sidebar (max-width:1535.95px)',
+      '@container sidebar (width<1536px) or (width>2559.95px)',
+    );
+    expect(theme.containerQueries('sidebar').not('uw')).to.equal(
+      '@container sidebar (max-width:2559.95px)',
     );
     expect(theme.containerQueries('sidebar').not('sm')).to.equal(
       '@container sidebar (width<600px) or (width>899.95px)',
