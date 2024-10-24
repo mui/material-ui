@@ -63,6 +63,10 @@ export interface ConformanceOptions {
   testLegacyComponentsProp?: boolean;
   slots?: Record<string, SlotTestingOptions>;
   ThemeProvider?: React.ElementType;
+  /**
+   * If provided, the component will be tested by the `DefaultPropsProvider` (in addition to the ThemeProvider).
+   */
+  DefaultPropsProvider?: React.ElementType;
   createTheme?: (arg: any) => any;
 }
 
@@ -607,6 +611,41 @@ function testThemeDefaultProps(
       });
 
       const { container } = await render(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
+
+      expect(container.firstChild).to.have.attribute(testProp, 'testProp');
+    });
+  });
+
+  describe('default props provider:', () => {
+    it('respect custom default props', async function test() {
+      const testProp = 'data-id';
+      const { muiName, render, DefaultPropsProvider } = getOptions();
+
+      if (!DefaultPropsProvider) {
+        this.skip();
+      }
+
+      if (!muiName) {
+        throwMissingPropError('muiName');
+      }
+
+      if (!render) {
+        throwMissingPropError('render');
+      }
+
+      const { container } = await render(
+        <DefaultPropsProvider
+          value={{
+            [muiName]: {
+              defaultProps: {
+                [testProp]: 'testProp',
+              },
+            },
+          }}
+        >
+          {element}
+        </DefaultPropsProvider>,
+      );
 
       expect(container.firstChild).to.have.attribute(testProp, 'testProp');
     });

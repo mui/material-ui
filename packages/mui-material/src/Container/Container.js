@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { createContainer } from '@mui/system';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const Container = createContainer({
   createStyledComponent: styled('div', {
@@ -20,7 +20,7 @@ const Container = createContainer({
       ];
     },
   }),
-  useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'MuiContainer' }),
+  useThemeProps: (inProps) => useDefaultProps({ props: inProps, name: 'MuiContainer' }),
 });
 
 Container.propTypes /* remove-proptypes */ = {
