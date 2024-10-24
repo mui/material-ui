@@ -7,11 +7,21 @@ const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
     return <div />;
   };
 
+const children: React.ReactNode = <div />;
+
 function RatingTest() {
   return (
     <div>
       <Rating />
       <Rating precision={0.5} />
+
+      <Rating children={children} />
+      <Rating
+        onChange={(event, value) => {
+          expectType<number | null, typeof value>(value);
+          expectType<React.SyntheticEvent, typeof event>(event);
+        }}
+      />
 
       <Rating
         component="a"

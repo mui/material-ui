@@ -11,8 +11,7 @@ export interface IconContainerProps extends React.HTMLAttributes<HTMLSpanElement
 
 export interface RatingPropsSizeOverrides {}
 
-export interface RatingOwnProps
-  extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children' | 'onChange'> {
+export interface RatingOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
