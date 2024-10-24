@@ -57,7 +57,7 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getRatingUtilityClass, classes);
 };
 
-const RatingRoot = styled('span', {
+const RatingRoot = styled('fieldset', {
   name: 'MuiRating',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -75,6 +75,9 @@ const RatingRoot = styled('span', {
     display: 'inline-flex',
     // Required to position the pristine input absolutely
     position: 'relative',
+    border: 'none',
+    padding: 0,
+    margin: 0,
     fontSize: theme.typography.pxToRem(24),
     color: '#faaf00',
     cursor: 'pointer',

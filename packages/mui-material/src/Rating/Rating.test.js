@@ -11,13 +11,13 @@ describe('<Rating />', () => {
 
   describeConformance(<Rating />, () => ({
     classes,
-    inheritComponent: 'span',
+    inheritComponent: 'fieldset',
     render,
     muiName: 'MuiRating',
     testVariantProps: { variant: 'foo' },
     testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
     testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
-    refInstanceof: window.HTMLSpanElement,
+    refInstanceof: window.HTMLFieldSetElement,
     skip: ['componentProp', 'componentsProp'],
   }));
 
