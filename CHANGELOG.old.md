@@ -918,7 +918,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 - [zero-runtime] Use lodash instead of its subpackages (#40868) @michaldudak
 - Add `applyStyles()` to theme (#40667) @siriwatknp
-- [zero] Use `theme.applyStyles` in the demo app (#40787) @siriwatknp
+- [zero] Use `theme.applyStyles()` in the demo app (#40787) @siriwatknp
 - [zero] Add `useThemeProps` processor (#40648) @siriwatknp
 
 ### `@mui/utils@5.15.7`
@@ -3301,7 +3301,7 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 - [docs] Add summary and improve `test_static` CI doc in CONTRIBUTING readme file (#36711) @kriskw1999
 - [docs] Update theme customization TypeScript (#35551) @siriwatknp
 - [docs] Add Joy Frames X web blocks template (#37203) @siriwatknp
-- [docs] Change Base UI `alpha` to `beta` in README (#37228) @ZeeshanTamboli
+- [docs] Change Base UI `alpha()` to `beta()` in README (#37228) @ZeeshanTamboli
 - [docs] Improve Base UI overview page (#37227) @mnajdova
 - [docs] Update Joy + Material guide (#36911) @cherniavskii
 
@@ -5909,7 +5909,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [docs] Fix en-US format in the Skeleton demo (#33699) @husseinsaad98
 - [docs] Update module reference for `usePagination` (#33675) @fullstackzach
 - [docs] Fix code examples in `styled` API vs `sx` prop docs (#33665) @ZeeshanTamboli
-- [docs][system] Throw an informative error when `theme.vars` is used in `createTheme` and mention this in the theming docs (#33619) @hbjORbj
+- [docs][system] Throw an informative error when `theme.vars` is used in `createTheme()` and mention this in the theming docs (#33619) @hbjORbj
 
 ### Core
 
@@ -10448,7 +10448,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
    }
   ```
 
-- [theme] Rename `createMuiTheme` to `createTheme` (#25992) @m4theushw
+- [theme] Rename `createMuiTheme()` to `createTheme()` (#25992) @m4theushw
 
   Developers only need one theme in their application. A prefix would suggest a second theme is needed. It's not the case. `createMuiTheme` will be removed in v6.
 
@@ -13019,7 +13019,7 @@ Here are some highlights ✨:
 ### `@material-ui/lab@v5.0.0-alpha.13`
 
 - [TreeView] Fix bundle size link and refactor array spreads (#22992) @joshwooding
-- [TreeView] Fix `alpha` color utility instead of deprecated `fade` (#22978) @joshwooding
+- [TreeView] Fix `alpha()` color utility instead of deprecated `fade()` (#22978) @joshwooding
 - [core] Ship modern bundle (#22814) @eps1lon
 
 ### `@material-ui/utils@v5.0.0-alpha.13`
@@ -14927,7 +14927,7 @@ You can expect similar releases like this one in the coming months.
 
 #### Deprecations
 
-- [theme] Deprecate `fade` color utility in favor of `alpha` (#22837) @mnajdova
+- [theme] Deprecate `fade()` color utility in favor of `alpha()` (#22837) @mnajdova
 - [theme] Deprecate theme.mixins.gutters (#22245) @joshwooding
 - [Avatar] Add circular variant (#22090) @eps1lon
 - [Badge] Add overlap circular and rectangular (#22076) @eps1lon
