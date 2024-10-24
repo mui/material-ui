@@ -25,6 +25,12 @@ import { Typography as MyTypography } from '@mui/material';
 <MyTypography className="my-class" sx={{
   marginBottom: "16px"
 }} />;
+<Typography className="my-class" sx={paragraph ? {
+  marginBottom: "16px"
+} : undefined} />;
+<MyTypography className="my-class" sx={paragraph ? {
+  marginBottom: "16px"
+} : undefined} />;
 <Typography sx={{ marginBottom: "32px" }} />;
 <MyTypography sx={{ marginBottom: "32px" }} />;
 <Typography sx={{ mb: "32px" }} />;

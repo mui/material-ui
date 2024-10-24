@@ -29,11 +29,22 @@ export default function transformer(file, api, options) {
       },
     );
 
-    const isParagraphPropTruthy = paragraphProp.value?.expression.value !== false;
+    const isParagraphPropPresent = paragraphProp.value?.expression.value !== false;
 
-    if (!isParagraphPropTruthy) {
+    if (!isParagraphPropPresent) {
       return;
     }
+
+    const isParagraphPropTrue =
+      paragraphProp.value == null || paragraphProp.value.expression.value === true;
+    const paragraphExpression = (expression) =>
+      isParagraphPropTrue
+        ? expression
+        : j.conditionalExpression(
+            paragraphProp.value.expression,
+            expression,
+            j.identifier('undefined'),
+          );
 
     const sxIndex = elementPath.node.openingElement.attributes.findIndex(
       (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'sx',
@@ -42,9 +53,9 @@ export default function transformer(file, api, options) {
       appendAttribute(j, {
         target: elementPath.node,
         attributeName: 'sx',
-        expression: j.objectExpression([
-          j.objectProperty(j.identifier('marginBottom'), j.literal('16px')),
-        ]),
+        expression: paragraphExpression(
+          j.objectExpression([j.objectProperty(j.identifier('marginBottom'), j.literal('16px'))]),
+        ),
       });
     } else {
       const hasMarginBottom = elementPath.node.openingElement.attributes[
@@ -57,7 +68,7 @@ export default function transformer(file, api, options) {
         assignObject(j, {
           target: elementPath.node.openingElement.attributes[sxIndex],
           key: 'marginBottom',
-          expression: j.literal('16px'),
+          expression: paragraphExpression(j.literal('16px')),
         });
       }
     }
