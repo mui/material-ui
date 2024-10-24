@@ -1,6 +1,6 @@
 # Example projects
 
-<p class="description">A collection of examples and scaffolds integrating Material UI with popular libraries and frameworks.</p>
+<p class="description">A collection of examples and scaffolds integrating Material UI with popular libraries and frameworks.</p>
 
 ## Official integrations
 
