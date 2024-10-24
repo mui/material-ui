@@ -350,7 +350,7 @@ importers:
         version: link:../../packages/mui-utils/build
       next:
         specifier: latest
-        version: 15.0.0(@babel/core@7.25.8)(@opentelemetry/api@1.8.0)(@playwright/test@1.48.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 15.0.1(@babel/core@7.25.8)(@opentelemetry/api@1.8.0)(@playwright/test@1.48.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -360,7 +360,7 @@ importers:
     devDependencies:
       '@pigment-css/nextjs-plugin':
         specifier: 0.0.24
-        version: 0.0.24(@types/react@18.3.11)(next@15.0.0(@babel/core@7.25.8)(@opentelemetry/api@1.8.0)(@playwright/test@1.48.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+        version: 0.0.24(@types/react@18.3.11)(next@15.0.1(@babel/core@7.25.8)(@opentelemetry/api@1.8.0)(@playwright/test@1.48.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       '@types/node':
         specifier: ^20.16.13
         version: 20.16.13
@@ -841,8 +841,8 @@ importers:
         specifier: ^3.2.3
         version: 3.2.3
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.0
+        version: 5.0.0
       '@types/chance':
         specifier: ^1.1.6
         version: 1.1.6
@@ -880,8 +880,8 @@ importers:
         specifier: ^4.2.0
         version: 4.2.5
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       cross-fetch:
         specifier: ^4.0.0
         version: 4.0.0(encoding@0.1.13)
@@ -917,8 +917,8 @@ importers:
         specifier: ^11.0.4
         version: 11.0.4(@babel/core@7.25.8)
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
 
   packages-internal/babel-plugin-resolve-imports:
     dependencies:
@@ -985,8 +985,8 @@ importers:
         specifier: ^7.20.5
         version: 7.20.5
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.0
+        version: 5.0.0
       '@types/doctrine':
         specifier: ^0.0.9
         version: 0.0.9
@@ -1003,8 +1003,8 @@ importers:
         specifier: ^9.0.8
         version: 9.0.8
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       fast-glob:
         specifier: ^3.3.2
         version: 3.3.2
@@ -1045,11 +1045,11 @@ importers:
         specifier: ^14.5.2
         version: 14.5.2(@testing-library/dom@10.4.0)
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       chai-dom:
         specifier: ^1.12.0
-        version: 1.12.0(chai@4.5.0)
+        version: 1.12.0(chai@5.1.2)
       dom-accessibility-api:
         specifier: ^0.7.0
         version: 0.7.0
@@ -1085,8 +1085,8 @@ importers:
         version: 18.0.1
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.0
+        version: 5.0.0
       '@types/chai-dom':
         specifier: ^1.11.3
         version: 1.11.3
@@ -1167,8 +1167,8 @@ importers:
         specifier: ^7.20.6
         version: 7.20.6
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.0
+        version: 5.0.0
       '@types/doctrine':
         specifier: ^0.0.9
         version: 0.0.9
@@ -1188,8 +1188,8 @@ importers:
         specifier: ^17.0.3
         version: 17.0.3
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       sinon:
         specifier: ^18.0.1
         version: 18.0.1
@@ -1210,8 +1210,8 @@ importers:
         version: 4.17.21
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.0
+        version: 5.0.0
       '@types/mocha':
         specifier: ^10.0.9
         version: 10.0.9
@@ -1222,8 +1222,8 @@ importers:
         specifier: ^17.0.3
         version: 17.0.3
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       sinon:
         specifier: ^18.0.1
         version: 18.0.1
@@ -1280,11 +1280,11 @@ importers:
         version: 1.29.0
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.0
+        version: 5.0.0
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
 
   packages/mui-base:
     dependencies:
@@ -1320,8 +1320,8 @@ importers:
         specifier: ^14.5.2
         version: 14.5.2(@testing-library/dom@10.4.0)
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.0
+        version: 5.0.0
       '@types/prop-types':
         specifier: ^15.7.13
         version: 15.7.13
@@ -1335,8 +1335,8 @@ importers:
         specifier: ^17.0.3
         version: 17.0.3
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       fast-glob:
         specifier: ^3.3.2
         version: 3.3.2
@@ -1382,14 +1382,14 @@ importers:
         version: 17.7.2
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.0
+        version: 5.0.0
       '@types/jscodeshift':
         specifier: 0.12.0
         version: 0.12.0
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
     publishDirectory: build
 
   packages/mui-core-downloads-tracker:
@@ -1410,8 +1410,8 @@ importers:
         specifier: ^5.0.0 || ^6.0.0
         version: 6.1.5(@emotion/react@11.13.3(@types/react@18.3.11)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.3.11)(react@18.3.1))(@types/react@18.3.11)(react@18.3.1))(@types/react@18.3.11)(react@18.3.1)
       chai:
-        specifier: ^4.4.1
-        version: 4.5.0
+        specifier: ^4.4.1 || ^5.0.0
+        version: 5.1.2
       clipboard-copy:
         specifier: ^4.0.1
         version: 4.0.1
@@ -1461,11 +1461,11 @@ importers:
         version: 7.14.0
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.0
+        version: 5.0.0
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       fs-extra:
         specifier: ^11.2.0
         version: 11.2.0
@@ -1514,14 +1514,14 @@ importers:
         specifier: workspace:^
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.0
+        version: 5.0.0
       '@types/react':
         specifier: ^18.3.11
         version: 18.3.11
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       chalk:
         specifier: ^5.3.0
         version: 5.3.0
@@ -1597,8 +1597,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.0
+        version: 5.0.0
       '@types/prop-types':
         specifier: ^15.7.13
         version: 15.7.13
@@ -1612,8 +1612,8 @@ importers:
         specifier: ^17.0.3
         version: 17.0.3
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       fast-glob:
         specifier: ^3.3.2
         version: 3.3.2
@@ -1674,8 +1674,8 @@ importers:
         specifier: workspace:*
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.0
+        version: 5.0.0
       '@types/prop-types':
         specifier: ^15.7.13
         version: 15.7.13
@@ -1689,8 +1689,8 @@ importers:
         specifier: ^17.0.3
         version: 17.0.3
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -1760,8 +1760,8 @@ importers:
         specifier: ^14.5.2
         version: 14.5.2(@testing-library/dom@10.4.0)
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.0
+        version: 5.0.0
       '@types/prop-types':
         specifier: ^15.7.13
         version: 15.7.13
@@ -1775,8 +1775,8 @@ importers:
         specifier: ^17.0.3
         version: 17.0.3
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       css-mediaquery:
         specifier: ^0.1.2
         version: 0.1.2
@@ -1864,14 +1864,14 @@ importers:
         specifier: workspace:^
         version: link:../mui-types/build
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.0
+        version: 5.0.0
       '@types/react':
         specifier: ^18.3.11
         version: 18.3.11
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -1911,14 +1911,14 @@ importers:
         specifier: workspace:*
         version: link:build
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.0
+        version: 5.0.0
       '@types/react':
         specifier: ^18.3.11
         version: 18.3.11
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -1943,8 +1943,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages-internal/test-utils
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.0
+        version: 5.0.0
       '@types/hoist-non-react-statics':
         specifier: ^3.3.5
         version: 3.3.5
@@ -1952,8 +1952,8 @@ importers:
         specifier: ^18.3.11
         version: 18.3.11
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -2023,8 +2023,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.0
+        version: 5.0.0
       '@types/react':
         specifier: ^18.3.11
         version: 18.3.11
@@ -2035,8 +2035,8 @@ importers:
         specifier: ^17.0.3
         version: 17.0.3
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -2088,8 +2088,8 @@ importers:
         specifier: workspace:*
         version: link:build
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.0
+        version: 5.0.0
       '@types/prop-types':
         specifier: ^15.7.13
         version: 15.7.13
@@ -2100,8 +2100,8 @@ importers:
         specifier: ^17.0.3
         version: 17.0.3
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       fast-glob:
         specifier: ^3.3.2
         version: 3.3.2
@@ -2154,8 +2154,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages-internal/test-utils
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.0
+        version: 5.0.0
       '@types/mocha':
         specifier: ^10.0.9
         version: 10.0.9
@@ -2175,8 +2175,8 @@ importers:
         specifier: ^17.0.3
         version: 17.0.3
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -2291,8 +2291,8 @@ importers:
         specifier: ^10.4.0
         version: 10.4.0
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.0
+        version: 5.0.0
       '@types/react':
         specifier: ^18.3.11
         version: 18.3.11
@@ -2303,8 +2303,8 @@ importers:
         specifier: ^17.0.3
         version: 17.0.3
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       docs:
         specifier: workspace:^
         version: link:../docs
@@ -4421,8 +4421,8 @@ packages:
   '@next/env@14.2.15':
     resolution: {integrity: sha512-S1qaj25Wru2dUpcIZMjxeMVSwkt8BK4dmWHHiBuRstcIyOsMapqT4A4jSB6onvqeygkSSmOkyny9VVx8JIGamQ==}
 
-  '@next/env@15.0.0':
-    resolution: {integrity: sha512-Mcv8ZVmEgTO3bePiH/eJ7zHqQEs2gCqZ0UId2RxHmDDc7Pw6ngfSrOFlxG8XDpaex+n2G+TKPsQAf28MO+88Gw==}
+  '@next/env@15.0.1':
+    resolution: {integrity: sha512-lc4HeDUKO9gxxlM5G2knTRifqhsY6yYpwuHspBZdboZe0Gp+rZHBNNSIjmQKDJIdRXiXGyVnSD6gafrbQPvILQ==}
 
   '@next/eslint-plugin-next@14.2.15':
     resolution: {integrity: sha512-pKU0iqKRBlFB/ocOI1Ip2CkKePZpYpnw5bEItEkuZ/Nr9FQP1+p7VDWr4VfOdff4i9bFmrOaeaU1bFEyAcxiMQ==}
@@ -4433,8 +4433,8 @@ packages:
     cpu: [arm64]
     os: [darwin]
 
-  '@next/swc-darwin-arm64@15.0.0':
-    resolution: {integrity: sha512-Gjgs3N7cFa40a9QT9AEHnuGKq69/bvIOn0SLGDV+ordq07QOP4k1GDOVedMHEjVeqy1HBLkL8rXnNTuMZIv79A==}
+  '@next/swc-darwin-arm64@15.0.1':
+    resolution: {integrity: sha512-C9k/Xv4sxkQRTA37Z6MzNq3Yb1BJMmSqjmwowoWEpbXTkAdfOwnoKOpAb71ItSzoA26yUTIo6ZhN8rKGu4ExQw==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
@@ -4445,8 +4445,8 @@ packages:
     cpu: [x64]
     os: [darwin]
 
-  '@next/swc-darwin-x64@15.0.0':
-    resolution: {integrity: sha512-BUtTvY5u9s5berAuOEydAUlVMjnl6ZjXS+xVrMt317mglYZ2XXjY8YRDCaz9vYMjBNPXH8Gh75Cew5CMdVbWTw==}
+  '@next/swc-darwin-x64@15.0.1':
+    resolution: {integrity: sha512-uHl13HXOuq1G7ovWFxCACDJHTSDVbn/sbLv8V1p+7KIvTrYQ5HNoSmKBdYeEKRRCbEmd+OohOgg9YOp8Ux3MBg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
@@ -4457,8 +4457,8 @@ packages:
     cpu: [arm64]
     os: [linux]
 
-  '@next/swc-linux-arm64-gnu@15.0.0':
-    resolution: {integrity: sha512-sbCoEpuWUBpYoLSgYrk0CkBv8RFv4ZlPxbwqRHr/BWDBJppTBtF53EvsntlfzQJ9fosYX12xnS6ltxYYwsMBjg==}
+  '@next/swc-linux-arm64-gnu@15.0.1':
+    resolution: {integrity: sha512-LvyhvxHOihFTEIbb35KxOc3q8w8G4xAAAH/AQnsYDEnOvwawjL2eawsB59AX02ki6LJdgDaHoTEnC54Gw+82xw==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
@@ -4469,8 +4469,8 @@ packages:
     cpu: [arm64]
     os: [linux]
 
-  '@next/swc-linux-arm64-musl@15.0.0':
-    resolution: {integrity: sha512-JAw84qfL81aQCirXKP4VkgmhiDpXJupGjt8ITUkHrOVlBd+3h5kjfPva5M0tH2F9KKSgJQHEo3F5S5tDH9h2ww==}
+  '@next/swc-linux-arm64-musl@15.0.1':
+    resolution: {integrity: sha512-vFmCGUFNyk/A5/BYcQNhAQqPIw01RJaK6dRO+ZEhz0DncoW+hJW1kZ8aH2UvTX27zPq3m85zN5waMSbZEmANcQ==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
@@ -4481,8 +4481,8 @@ packages:
     cpu: [x64]
     os: [linux]
 
-  '@next/swc-linux-x64-gnu@15.0.0':
-    resolution: {integrity: sha512-r5Smd03PfxrGKMewdRf2RVNA1CU5l2rRlvZLQYZSv7FUsXD5bKEcOZ/6/98aqRwL7diXOwD8TCWJk1NbhATQHg==}
+  '@next/swc-linux-x64-gnu@15.0.1':
+    resolution: {integrity: sha512-5by7IYq0NCF8rouz6Qg9T97jYU68kaClHPfGpQG2lCZpSYHtSPQF1kjnqBTd34RIqPKMbCa4DqCufirgr8HM5w==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
@@ -4493,8 +4493,8 @@ packages:
     cpu: [x64]
     os: [linux]
 
-  '@next/swc-linux-x64-musl@15.0.0':
-    resolution: {integrity: sha512-fM6qocafz4Xjhh79CuoQNeGPhDHGBBUbdVtgNFJOUM8Ih5ZpaDZlTvqvqsh5IoO06CGomxurEGqGz/4eR/FaMQ==}
+  '@next/swc-linux-x64-musl@15.0.1':
+    resolution: {integrity: sha512-lmYr6H3JyDNBJLzklGXLfbehU3ay78a+b6UmBGlHls4xhDXBNZfgb0aI67sflrX+cGBnv1LgmWzFlYrAYxS1Qw==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
@@ -4505,8 +4505,8 @@ packages:
     cpu: [arm64]
     os: [win32]
 
-  '@next/swc-win32-arm64-msvc@15.0.0':
-    resolution: {integrity: sha512-ZOd7c/Lz1lv7qP/KzR513XEa7QzW5/P0AH3A5eR1+Z/KmDOvMucht0AozccPc0TqhdV1xaXmC0Fdx0hoNzk6ng==}
+  '@next/swc-win32-arm64-msvc@15.0.1':
+    resolution: {integrity: sha512-DS8wQtl6diAj0eZTdH0sefykm4iXMbHT4MOvLwqZiIkeezKpkgPFcEdFlz3vKvXa2R/2UEgMh48z1nEpNhjeOQ==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
@@ -4523,8 +4523,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@next/swc-win32-x64-msvc@15.0.0':
-    resolution: {integrity: sha512-2RVWcLtsqg4LtaoJ3j7RoKpnWHgcrz5XvuUGE7vBYU2i6M2XeD9Y8RlLaF770LEIScrrl8MdWsp6odtC6sZccg==}
+  '@next/swc-win32-x64-msvc@15.0.1':
+    resolution: {integrity: sha512-4Ho2ggvDdMKlZ/0e9HNdZ9ngeaBwtc+2VS5oCeqrbXqOgutX6I4U2X/42VBw0o+M5evn4/7v3zKgGHo+9v/VjA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -5423,8 +5423,8 @@ packages:
   '@types/chai-dom@1.11.3':
     resolution: {integrity: sha512-EUEZI7uID4ewzxnU7DJXtyvykhQuwe+etJ1wwOiJyQRTH/ifMWKX+ghiXkxCUvNJ6IQDodf0JXhuP6zZcy2qXQ==}
 
-  '@types/chai@4.3.20':
-    resolution: {integrity: sha512-/pC9HAB5I/xMlc5FP77qjCnI16ChlJfW0tGa0IUcFn38VJrTV6DeZ60NU5KZBtaOZqjdpwTWohz5HU1RrhiYxQ==}
+  '@types/chai@5.0.0':
+    resolution: {integrity: sha512-+DwhEHAaFPPdJ2ral3kNHFQXnTfscEEFsUxzD+d7nlcLrFK23JtNjH71RGasTcHb88b4vVi4mTyfpf8u2L8bdA==}
 
   '@types/chance@1.1.6':
     resolution: {integrity: sha512-V+pm3stv1Mvz8fSKJJod6CglNGVqEQ6OyuqitoDkWywEODM/eJd1eSuIp9xt6DrX8BWZ2eDSIzbw1tPCUTvGbQ==}
@@ -6096,8 +6096,9 @@ packages:
   assert@2.1.0:
     resolution: {integrity: sha512-eLHpSK/Y4nhMJ07gDaAzoX/XAKS8PSaojml3M0DM4JpV1LAi5JOJ/p6H/XWrl8L+DzVEvVCW1z3vWAaB9oTsQw==}
 
-  assertion-error@1.1.0:
-    resolution: {integrity: sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==}
+  assertion-error@2.0.1:
+    resolution: {integrity: sha512-Izi8RQcffqCeNVgFigKli1ssklIbpHnCYc6AknXGYoB6grJqyeby7jv12JUQgmTAnIDnbck1uxksT4dzN3PWBA==}
+    engines: {node: '>=12'}
 
   ast-types-flow@0.0.7:
     resolution: {integrity: sha512-eBvWn1lvIApYMhzQMsu9ciLfkBY499mFZlNqG+/9WR7PVlroQw0vG30cOQQbaKz3sCEc44TAOu2ykzqXSNnwag==}
@@ -6478,9 +6479,9 @@ packages:
     peerDependencies:
       chai: '>= 3'
 
-  chai@4.5.0:
-    resolution: {integrity: sha512-RITGBfijLkBddZvnn8jdqoTypxvqbOLYQkGGxXzeFjVHvudaPw0HNFD9x928/eUwYWd2dPCugVqspGALTZZQKw==}
-    engines: {node: '>=4'}
+  chai@5.1.2:
+    resolution: {integrity: sha512-aGtmf24DW6MLHHG5gCx4zaI3uBq3KRtxeVs0DjFH6Z0rDNbsvTxFASFvdj79pxjxZ8/5u3PIiN3IwEIQkiiuPw==}
+    engines: {node: '>=12'}
 
   chainsaw@0.1.0:
     resolution: {integrity: sha512-75kWfWt6MEKNC8xYXIdRpDehRYY/tNSgwKaJq+dbbDcxORuVrrQ+SEHoWsniVn9XPYfP4gmdWIeDk/4YNp1rNQ==}
@@ -6522,8 +6523,9 @@ packages:
   chardet@0.7.0:
     resolution: {integrity: sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==}
 
-  check-error@1.0.3:
-    resolution: {integrity: sha512-iKEoDYaRmd1mxM90a2OEfWhjsjPpYPuQ+lMYsoxB126+t8fw7ySEO48nmDg5COTjxDI65/Y2OWpeEHk3ZOe8zg==}
+  check-error@2.1.1:
+    resolution: {integrity: sha512-OAlb+T7V4Op9OwdkjmguYRqncdlx5JiofwOAUkmTF+jNdHwzTaTs4sRAGpzLF3oOz5xAyDGrPgeIDFQmDOTiJw==}
+    engines: {node: '>= 16'}
 
   chokidar@3.6.0:
     resolution: {integrity: sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==}
@@ -7171,8 +7173,8 @@ packages:
       babel-plugin-macros:
         optional: true
 
-  deep-eql@4.1.4:
-    resolution: {integrity: sha512-SUwdGfqdKOwxCPeVYjwSyRpJ7Z+fhpwIAtmCUdZIWZ/YP5R9WAsyuSgpLVDi9bjWoN2LXHNss/dk3urXtdQxGg==}
+  deep-eql@5.0.2:
+    resolution: {integrity: sha512-h5k/5U50IJJFpzfL6nO9jaaumfjO/f2NjK/oYB2Djzm4p9L+3T9qWpZqZ2hAbLPuuYq9wrU08WQyBTL5GbPk5Q==}
     engines: {node: '>=6'}
 
   deep-extend@0.6.0:
@@ -8058,9 +8060,6 @@ packages:
   get-caller-file@2.0.5:
     resolution: {integrity: sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==}
     engines: {node: 6.* || 8.* || >= 10.*}
-
-  get-func-name@2.0.2:
-    resolution: {integrity: sha512-8vXOvuE167CtIc3OyItco7N/dpRtBbYOsPsXCz7X/PMnlGjYjSGuZJgM1Y7mmew7BKf9BqvLX2tnOVy1BBUsxQ==}
 
   get-intrinsic@1.2.4:
     resolution: {integrity: sha512-5uYhsJH8VJBTv7oslg4BznJYhDoRI6waYCxMmCdnTrcCrHA/fCFKoTFz2JKKE0HdDFUF7/oQuhzumXJK7paBRQ==}
@@ -9394,8 +9393,8 @@ packages:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
     hasBin: true
 
-  loupe@2.3.7:
-    resolution: {integrity: sha512-zSMINGVYkdpYSOBmLi0D1Uo7JU9nVdQKrHxC8eYlV+9YKK9WePqAlL7lSlorG/U2Fw1w0hTBmaa/jrQ3UbPHtA==}
+  loupe@3.1.2:
+    resolution: {integrity: sha512-23I4pFZHmAemUnz8WZXbYRSKYj801VDaNv9ETuMh7IrMc7VuVVSo+Z9iLE3ni30+U48iDWfi30d3twAXBYmnCg==}
 
   lower-case@2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
@@ -9906,16 +9905,16 @@ packages:
       sass:
         optional: true
 
-  next@15.0.0:
-    resolution: {integrity: sha512-/ivqF6gCShXpKwY9hfrIQYh8YMge8L3W+w1oRLv/POmK4MOQnh+FscZ8a0fRFTSQWE+2z9ctNYvELD9vP2FV+A==}
+  next@15.0.1:
+    resolution: {integrity: sha512-PSkFkr/w7UnFWm+EP8y/QpHrJXMqpZzAXpergB/EqLPOh4SGPJXv1wj4mslr2hUZBAS9pX7/9YLIdxTv6fwytw==}
     engines: {node: '>=18.18.0'}
     hasBin: true
     peerDependencies:
       '@opentelemetry/api': ^1.1.0
       '@playwright/test': ^1.41.2
       babel-plugin-react-compiler: '*'
-      react: ^18.2.0 || 19.0.0-rc-65a56d0e-20241020
-      react-dom: ^18.2.0 || 19.0.0-rc-65a56d0e-20241020
+      react: ^18.2.0 || 19.0.0-rc-69d4b800-20241021
+      react-dom: ^18.2.0 || 19.0.0-rc-69d4b800-20241021
       sass: ^1.3.0
     peerDependenciesMeta:
       '@opentelemetry/api':
@@ -10487,8 +10486,9 @@ packages:
   pathe@1.1.2:
     resolution: {integrity: sha512-whLdWMYL2TwI08hn8/ZqAbrVemu0LNaNNJZX73O6qaIdCTfXutsLhMkjdENX0qhsQ9uIimo4/aQOmXkoon2nDQ==}
 
-  pathval@1.1.1:
-    resolution: {integrity: sha512-Dp6zGqpTdETdR63lehJYPeIOqpiNBNtc7BpWSLrOje7UaIsE5aY92r/AunQA7rsXvet3lrJ3JnZX29UPTKXyKQ==}
+  pathval@2.0.0:
+    resolution: {integrity: sha512-vE7JKRyES09KiunauX7nd2Q9/L7lhok4smP9RZTDeD4MVs72Dp2qNFVz39Nz5a0FVEW0BJR6C0DYrq6unoziZA==}
+    engines: {node: '>= 14.16'}
 
   pause-stream@0.0.11:
     resolution: {integrity: sha512-e3FBlXLmN/D1S+zHzanP4E/4Z60oFAa3O051qt1pxa7DEJWKAyil6upYVXCWadEnuoqa4Pkc9oUx9zsxYeRv8A==}
@@ -15177,7 +15177,7 @@ snapshots:
 
   '@next/env@14.2.15': {}
 
-  '@next/env@15.0.0': {}
+  '@next/env@15.0.1': {}
 
   '@next/eslint-plugin-next@14.2.15':
     dependencies:
@@ -15186,43 +15186,43 @@ snapshots:
   '@next/swc-darwin-arm64@14.2.15':
     optional: true
 
-  '@next/swc-darwin-arm64@15.0.0':
+  '@next/swc-darwin-arm64@15.0.1':
     optional: true
 
   '@next/swc-darwin-x64@14.2.15':
     optional: true
 
-  '@next/swc-darwin-x64@15.0.0':
+  '@next/swc-darwin-x64@15.0.1':
     optional: true
 
   '@next/swc-linux-arm64-gnu@14.2.15':
     optional: true
 
-  '@next/swc-linux-arm64-gnu@15.0.0':
+  '@next/swc-linux-arm64-gnu@15.0.1':
     optional: true
 
   '@next/swc-linux-arm64-musl@14.2.15':
     optional: true
 
-  '@next/swc-linux-arm64-musl@15.0.0':
+  '@next/swc-linux-arm64-musl@15.0.1':
     optional: true
 
   '@next/swc-linux-x64-gnu@14.2.15':
     optional: true
 
-  '@next/swc-linux-x64-gnu@15.0.0':
+  '@next/swc-linux-x64-gnu@15.0.1':
     optional: true
 
   '@next/swc-linux-x64-musl@14.2.15':
     optional: true
 
-  '@next/swc-linux-x64-musl@15.0.0':
+  '@next/swc-linux-x64-musl@15.0.1':
     optional: true
 
   '@next/swc-win32-arm64-msvc@14.2.15':
     optional: true
 
-  '@next/swc-win32-arm64-msvc@15.0.0':
+  '@next/swc-win32-arm64-msvc@15.0.1':
     optional: true
 
   '@next/swc-win32-ia32-msvc@14.2.15':
@@ -15231,7 +15231,7 @@ snapshots:
   '@next/swc-win32-x64-msvc@14.2.15':
     optional: true
 
-  '@next/swc-win32-x64-msvc@15.0.0':
+  '@next/swc-win32-x64-msvc@15.0.1':
     optional: true
 
   '@nicolo-ribaudo/chokidar-2@2.1.8-no-fsevents.3':
@@ -15666,10 +15666,10 @@ snapshots:
   '@opentelemetry/api@1.8.0':
     optional: true
 
-  '@pigment-css/nextjs-plugin@0.0.24(@types/react@18.3.11)(next@15.0.0(@babel/core@7.25.8)(@opentelemetry/api@1.8.0)(@playwright/test@1.48.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
+  '@pigment-css/nextjs-plugin@0.0.24(@types/react@18.3.11)(next@15.0.1(@babel/core@7.25.8)(@opentelemetry/api@1.8.0)(@playwright/test@1.48.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@pigment-css/unplugin': 0.0.24(@types/react@18.3.11)(react@18.3.1)
-      next: 15.0.0(@babel/core@7.25.8)(@opentelemetry/api@1.8.0)(@playwright/test@1.48.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      next: 15.0.1(@babel/core@7.25.8)(@opentelemetry/api@1.8.0)(@playwright/test@1.48.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     transitivePeerDependencies:
       - '@types/react'
       - react
@@ -16545,9 +16545,9 @@ snapshots:
 
   '@types/chai-dom@1.11.3':
     dependencies:
-      '@types/chai': 4.3.20
+      '@types/chai': 5.0.0
 
-  '@types/chai@4.3.20': {}
+  '@types/chai@5.0.0': {}
 
   '@types/chance@1.1.6': {}
 
@@ -17354,7 +17354,7 @@ snapshots:
       object.assign: 4.1.5
       util: 0.12.5
 
-  assertion-error@1.1.0: {}
+  assertion-error@2.0.1: {}
 
   ast-types-flow@0.0.7: {}
 
@@ -17836,19 +17836,17 @@ snapshots:
 
   caniuse-lite@1.0.30001667: {}
 
-  chai-dom@1.12.0(chai@4.5.0):
+  chai-dom@1.12.0(chai@5.1.2):
     dependencies:
-      chai: 4.5.0
+      chai: 5.1.2
 
-  chai@4.5.0:
+  chai@5.1.2:
     dependencies:
-      assertion-error: 1.1.0
-      check-error: 1.0.3
-      deep-eql: 4.1.4
-      get-func-name: 2.0.2
-      loupe: 2.3.7
-      pathval: 1.1.1
-      type-detect: 4.1.0
+      assertion-error: 2.0.1
+      check-error: 2.1.1
+      deep-eql: 5.0.2
+      loupe: 3.1.2
+      pathval: 2.0.0
 
   chainsaw@0.1.0:
     dependencies:
@@ -17890,9 +17888,7 @@ snapshots:
 
   chardet@0.7.0: {}
 
-  check-error@1.0.3:
-    dependencies:
-      get-func-name: 2.0.2
+  check-error@2.1.1: {}
 
   chokidar@3.6.0:
     dependencies:
@@ -18643,9 +18639,7 @@ snapshots:
     optionalDependencies:
       babel-plugin-macros: 3.1.0
 
-  deep-eql@4.1.4:
-    dependencies:
-      type-detect: 4.1.0
+  deep-eql@5.0.2: {}
 
   deep-extend@0.6.0: {}
 
@@ -19817,8 +19811,6 @@ snapshots:
   gensync@1.0.0-beta.2: {}
 
   get-caller-file@2.0.5: {}
-
-  get-func-name@2.0.2: {}
 
   get-intrinsic@1.2.4:
     dependencies:
@@ -21463,9 +21455,7 @@ snapshots:
     dependencies:
       js-tokens: 4.0.0
 
-  loupe@2.3.7:
-    dependencies:
-      get-func-name: 2.0.2
+  loupe@3.1.2: {}
 
   lower-case@2.0.2:
     dependencies:
@@ -22206,9 +22196,9 @@ snapshots:
       - '@babel/core'
       - babel-plugin-macros
 
-  next@15.0.0(@babel/core@7.25.8)(@opentelemetry/api@1.8.0)(@playwright/test@1.48.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  next@15.0.1(@babel/core@7.25.8)(@opentelemetry/api@1.8.0)(@playwright/test@1.48.1)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
-      '@next/env': 15.0.0
+      '@next/env': 15.0.1
       '@swc/counter': 0.1.3
       '@swc/helpers': 0.5.13
       busboy: 1.6.0
@@ -22218,14 +22208,14 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       styled-jsx: 5.1.6(@babel/core@7.25.8)(babel-plugin-macros@3.1.0)(react@18.3.1)
     optionalDependencies:
-      '@next/swc-darwin-arm64': 15.0.0
-      '@next/swc-darwin-x64': 15.0.0
-      '@next/swc-linux-arm64-gnu': 15.0.0
-      '@next/swc-linux-arm64-musl': 15.0.0
-      '@next/swc-linux-x64-gnu': 15.0.0
-      '@next/swc-linux-x64-musl': 15.0.0
-      '@next/swc-win32-arm64-msvc': 15.0.0
-      '@next/swc-win32-x64-msvc': 15.0.0
+      '@next/swc-darwin-arm64': 15.0.1
+      '@next/swc-darwin-x64': 15.0.1
+      '@next/swc-linux-arm64-gnu': 15.0.1
+      '@next/swc-linux-arm64-musl': 15.0.1
+      '@next/swc-linux-x64-gnu': 15.0.1
+      '@next/swc-linux-x64-musl': 15.0.1
+      '@next/swc-win32-arm64-msvc': 15.0.1
+      '@next/swc-win32-x64-msvc': 15.0.1
       '@opentelemetry/api': 1.8.0
       '@playwright/test': 1.48.1
       sharp: 0.33.5
@@ -22911,7 +22901,7 @@ snapshots:
 
   pathe@1.1.2: {}
 
-  pathval@1.1.1: {}
+  pathval@2.0.0: {}
 
   pause-stream@0.0.11:
     dependencies:
