@@ -305,7 +305,7 @@ function render(
   );
   const result: MuiRenderResult = {
     ...testingLibraryRenderResult,
-    user: userEvent.setup(),
+    user: userEvent.setup({ delay: null }),
     forceUpdate() {
       traceSync('forceUpdate', () =>
         testingLibraryRenderResult.rerender(
