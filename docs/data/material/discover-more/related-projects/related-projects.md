@@ -30,7 +30,7 @@ Feel free to submit a pull request and the maintainers will work with you to wri
 - [React-admin](https://github.com/marmelab/react-admin): A front-end framework for building data-driven applications running in the browser on top of REST/GraphQL APIs.
 - [Refine](https://github.com/refinedev/refine): An open source, headless React meta-framework for the rapid development of web applications.
 
-### Theming
+### Theming tools
 
 - [Material palette generator](https://m2.material.io/inline-tools/color/): The official Material Design 2 palette generator tool.
 
@@ -56,7 +56,7 @@ Feel free to submit a pull request and the maintainers will work with you to wri
 
 - [mui-otp-input](https://github.com/viclafouch/mui-otp-input): A one-time password input designed for use with Material UI.
 
-### File input
+#### File input
 
 - [mui-file-input](https://github.com/viclafouch/mui-file-input): A file input designed for use with Material UI.
 
@@ -64,6 +64,6 @@ Feel free to submit a pull request and the maintainers will work with you to wri
 
 - [mui-color-input](https://github.com/viclafouch/mui-color-input): A color input designed for use with Material UI, built with [TinyColor](https://tinycolor.vercel.app/).
 
-### Rich text editor
+#### Rich text editor
 
 - [mui-tiptap](https://github.com/sjdemartini/mui-tiptap): A customizable Material UI-styled WYSIWYG rich text editor, built with [Tiptap](https://tiptap.dev/).
