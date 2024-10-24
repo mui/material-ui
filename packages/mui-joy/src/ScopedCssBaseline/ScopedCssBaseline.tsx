@@ -155,4 +155,6 @@ ScopedCssBaseline.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+ScopedCssBaseline.displayName = 'ScopedCssBaseline';
+
 export default ScopedCssBaseline;

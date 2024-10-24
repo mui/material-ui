@@ -139,4 +139,6 @@ CardMedia.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+CardMedia.displayName = 'CardMedia';
+
 export default CardMedia;

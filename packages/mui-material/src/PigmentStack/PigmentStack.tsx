@@ -133,4 +133,6 @@ PigmentStack.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+PigmentStack.displayName = 'PigmentStack';
+
 export default PigmentStack;

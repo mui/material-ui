@@ -1018,4 +1018,6 @@ Tabs.propTypes /* remove-proptypes */ = {
   visibleScrollbar: PropTypes.bool,
 };
 
+Tabs.displayName = 'Tabs';
+
 export default Tabs;

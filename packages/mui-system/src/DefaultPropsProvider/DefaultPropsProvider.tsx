@@ -27,6 +27,8 @@ DefaultPropsProvider.propTypes /* remove-proptypes */ = {
   value: PropTypes.object,
 } as any;
 
+DefaultPropsProvider.displayName = 'DefaultPropsProvider';
+
 function getThemeProps<
   Theme extends {
     components?: Record<string, { defaultProps?: any; styleOverrides?: any; variants?: any }>;

@@ -194,4 +194,6 @@ Stepper.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+Stepper.displayName = 'Stepper';
+
 export default Stepper;

@@ -401,4 +401,6 @@ Drawer.propTypes /* remove-proptypes */ = {
   variant: PropTypes.oneOf(['permanent', 'persistent', 'temporary']),
 };
 
+Drawer.displayName = 'Drawer';
+
 export default Drawer;

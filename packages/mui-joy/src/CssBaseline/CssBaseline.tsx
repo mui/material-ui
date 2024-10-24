@@ -99,4 +99,6 @@ CssBaseline.propTypes /* remove-proptypes */ = {
   disableColorScheme: PropTypes.bool,
 } as any;
 
+CssBaseline.displayName = 'CssBaseline';
+
 export default CssBaseline;

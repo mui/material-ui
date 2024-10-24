@@ -29,6 +29,8 @@ DefaultPropsProvider.propTypes /* remove-proptypes */ = {
   value: PropTypes.object.isRequired,
 } as any;
 
+DefaultPropsProvider.displayName = 'DefaultPropsProvider';
+
 export default DefaultPropsProvider;
 
 export function useDefaultProps<Props extends Record<string, any>>(params: {

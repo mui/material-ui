@@ -122,4 +122,6 @@ OptionGroup.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
+OptionGroup.displayName = 'OptionGroup';
+
 export { OptionGroup };

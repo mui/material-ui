@@ -179,4 +179,6 @@ TabScrollButton.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+TabScrollButton.displayName = 'TabScrollButton';
+
 export default TabScrollButton;

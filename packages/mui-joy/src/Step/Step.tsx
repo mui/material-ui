@@ -288,4 +288,6 @@ Step.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+Step.displayName = 'Step';
+
 export default Step;

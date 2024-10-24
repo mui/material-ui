@@ -167,6 +167,8 @@ InnerMenuItem.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+InnerMenuItem.displayName = 'InnerMenuItem';
+
 const MenuItem = React.memo(InnerMenuItem);
 /**
  *
@@ -207,5 +209,7 @@ StableMenuItem.propTypes /* remove-proptypes */ = {
   children: PropTypes.node,
   id: PropTypes.string,
 } as any;
+
+StableMenuItem.displayName = 'StableMenuItem';
 
 export default StableMenuItem;

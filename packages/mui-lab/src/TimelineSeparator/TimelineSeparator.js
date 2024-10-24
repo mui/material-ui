@@ -76,4 +76,6 @@ TimelineSeparator.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+TimelineSeparator.displayName = 'TimelineSeparator';
+
 export default TimelineSeparator;

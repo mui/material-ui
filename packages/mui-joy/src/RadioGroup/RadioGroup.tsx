@@ -284,4 +284,6 @@ RadioGroup.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+RadioGroup.displayName = 'RadioGroup';
+
 export default RadioGroup;

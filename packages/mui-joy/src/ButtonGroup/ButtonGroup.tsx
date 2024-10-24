@@ -360,4 +360,6 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+ButtonGroup.displayName = 'ButtonGroup';
+
 export default ButtonGroup;

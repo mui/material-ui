@@ -189,4 +189,6 @@ BottomNavigationAction.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 };
 
+BottomNavigationAction.displayName = 'BottomNavigationAction';
+
 export default BottomNavigationAction;

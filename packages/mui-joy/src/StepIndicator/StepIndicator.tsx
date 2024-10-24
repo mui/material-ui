@@ -156,4 +156,6 @@ StepIndicator.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+StepIndicator.displayName = 'StepIndicator';
+
 export default StepIndicator;

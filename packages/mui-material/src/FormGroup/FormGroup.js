@@ -105,4 +105,6 @@ FormGroup.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+FormGroup.displayName = 'FormGroup';
+
 export default FormGroup;

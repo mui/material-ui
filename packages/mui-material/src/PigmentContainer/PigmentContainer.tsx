@@ -153,4 +153,6 @@ PigmentContainer.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+PigmentContainer.displayName = 'PigmentContainer';
+
 export default PigmentContainer;

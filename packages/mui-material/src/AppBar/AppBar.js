@@ -262,4 +262,6 @@ AppBar.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+AppBar.displayName = 'AppBar';
+
 export default AppBar;

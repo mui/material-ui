@@ -178,6 +178,8 @@ InnerOption.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+InnerOption.displayName = 'InnerOption';
+
 const Option = React.memo(InnerOption);
 /**
  *
@@ -254,5 +256,7 @@ StableOption.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
 } as any;
+
+StableOption.displayName = 'StableOption';
 
 export default StableOption;

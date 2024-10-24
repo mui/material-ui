@@ -445,4 +445,6 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+ButtonGroup.displayName = 'ButtonGroup';
+
 export default ButtonGroup;

@@ -155,4 +155,6 @@ AutocompleteOption.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+AutocompleteOption.displayName = 'AutocompleteOption';
+
 export default AutocompleteOption;

@@ -261,4 +261,6 @@ TextareaAutosize.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+TextareaAutosize.displayName = 'TextareaAutosize';
+
 export default TextareaAutosize;
