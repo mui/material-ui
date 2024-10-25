@@ -13,13 +13,17 @@ import {
  * @param {import('jscodeshift').MemberExpression | import('jscodeshift').Identifier} node
  */
 function getCssVarName(node) {
-  if (node.type === 'MemberExpression') {
-    return `--${getObjectKey(node)?.name}-${node.property.name}`;
+  let varName = '-';
+  while (node.type === 'MemberExpression') {
+    varName += `-${node.object?.name || node.property?.name || 'unknown'}`;
+    if (node.object.type === 'MemberExpression') {
+      node = node.object;
+    } else {
+      node = node.property;
+    }
   }
-  if (node.type === 'Identifier') {
-    return `--${node.name}`;
-  }
-  return '';
+  varName += `-${node.name || 'unknown'}`;
+  return varName;
 }
 
 /**
@@ -157,6 +161,18 @@ export default function sxV6(file, api, options) {
         }
       }
 
+      function rootThemeCallback(data) {
+        if (data.root.type === 'ObjectExpression') {
+          data.replaceRoot?.(buildArrowFunctionAST([j.identifier('theme')], data.root));
+        } else if (data.root.type === 'ArrayExpression') {
+          data.root.elements.forEach((item, index) => {
+            if (item === data.node) {
+              data.root.elements[index] = buildArrowFunctionAST([j.identifier('theme')], data.root);
+            }
+          });
+        }
+      }
+
       /**
        *
        * @param {{ node: import('jscodeshift').Expression }} data
@@ -165,10 +181,64 @@ export default function sxV6(file, api, options) {
         if (data.node.type === 'ArrowFunctionExpression') {
           const returnExpression = getReturnExpression(data.node);
           if (returnExpression) {
-            recurseObjectExpression({
-              ...data,
-              node: returnExpression,
-            });
+            if (
+              returnExpression.type === 'MemberExpression' &&
+              returnExpression.property?.type === 'ConditionalExpression'
+            ) {
+              recurseObjectExpression({
+                ...data,
+                node: j.conditionalExpression(
+                  returnExpression.property.test,
+                  { ...returnExpression, property: returnExpression.property.consequent },
+                  { ...returnExpression, property: returnExpression.property.alternate },
+                ),
+              });
+            } else if (returnExpression.type === 'TemplateLiteral') {
+              const firstExpression = returnExpression.expressions[0];
+              if (firstExpression?.type === 'ConditionalExpression') {
+                recurseObjectExpression({
+                  ...data,
+                  node: j.conditionalExpression(
+                    firstExpression.test,
+                    {
+                      ...returnExpression,
+                      expressions: [
+                        firstExpression.consequent,
+                        ...(returnExpression.expressions || []).slice(1),
+                      ],
+                    },
+                    {
+                      ...returnExpression,
+                      expressions: [
+                        firstExpression.alternate,
+                        ...(returnExpression.expressions || []).slice(1),
+                      ],
+                    },
+                  ),
+                });
+              } else {
+                recurseObjectExpression({
+                  ...data,
+                  node: returnExpression,
+                });
+              }
+            } else if (
+              (returnExpression.type === 'CallExpression' &&
+                getObjectKey(returnExpression.callee)?.name === 'theme') ||
+              (returnExpression.type === 'MemberExpression' &&
+                getObjectKey(returnExpression)?.name === 'theme') ||
+              (returnExpression.type === 'BinaryExpression' &&
+                (getObjectKey(returnExpression.left)?.name === 'theme' ||
+                  getObjectKey(returnExpression.right)?.name === 'theme'))
+            ) {
+              data.replaceValue?.(returnExpression);
+              rootThemeCallback(data);
+            } else {
+              recurseObjectExpression({
+                ...data,
+                node: returnExpression,
+              });
+            }
           }
         }
         if (data.node.type === 'ObjectExpression') {
@@ -259,7 +329,7 @@ export default function sxV6(file, api, options) {
               j.logicalExpression(
                 data.node.argument.operator,
                 data.node.argument.left,
-                data.node.argument.right,
+                data.buildStyle(data.node.argument.right),
               ),
             );
             if (data.deleteSelf) {
@@ -269,15 +339,50 @@ export default function sxV6(file, api, options) {
             }
           }
           if (data.node.argument.type === 'ConditionalExpression') {
-            recurseObjectExpression({
-              ...data,
-              node: data.node.argument,
-              parentNode: data.node,
-            });
-            if (data.deleteSelf) {
-              data.deleteSelf();
-            } else {
-              removeProperty(data.parentNode, data.node);
+            const isSxSpread =
+              (data.node.argument.test.type === 'CallExpression' &&
+                data.node.argument.test.callee.type === 'MemberExpression' &&
+                data.node.argument.test.callee.object.name === 'Array' &&
+                data.node.argument.test.callee.property.name === 'isArray') ||
+              (data.node.argument.consequent.type === 'Identifier' &&
+                data.node.argument.consequent.name === 'sx') ||
+              (data.node.argument.alternate.type === 'Identifier' &&
+                data.node.argument.alternate.name === 'sx');
+
+            if (!isSxSpread) {
+              recurseObjectExpression({
+                ...data,
+                node: data.node.argument,
+                parentNode: data.node,
+              });
+              wrapSxInArray(data.node.argument);
+              if (data.deleteSelf) {
+                data.deleteSelf();
+              } else {
+                removeProperty(data.parentNode, data.node);
+              }
+            }
+          }
+          if (data.node.argument.type === 'CallExpression') {
+            if (
+              getObjectKey(data.node.argument.callee)?.name === 'theme' &&
+              data.node.argument.callee.property?.name?.startsWith('apply')
+            ) {
+              const objIndex = data.node.argument.arguments.findIndex(
+                (arg) => arg.type === 'ObjectExpression',
+              );
+              recurseObjectExpression({
+                ...data,
+                node: data.node.argument.arguments[objIndex],
+                buildStyle: (styleExpression) => {
+                  const newArguments = [...data.node.argument.arguments];
+                  newArguments[objIndex] = styleExpression;
+                  return j.arrowFunctionExpression([j.identifier('theme')], {
+                    ...data.node.argument,
+                    arguments: newArguments,
+                  });
+                },
+              });
             }
           }
         }
@@ -319,19 +424,7 @@ export default function sxV6(file, api, options) {
                     );
                   }
                   data.replaceValue?.(replaceUndefined(data.node.alternate));
-
-                  if (data.root.type === 'ObjectExpression') {
-                    data.replaceRoot?.(buildArrowFunctionAST([j.identifier('theme')], data.root));
-                  } else if (data.root.type === 'ArrayExpression') {
-                    data.root.elements.forEach((item, index) => {
-                      if (item === data.node) {
-                        data.root.elements[index] = buildArrowFunctionAST(
-                          [j.identifier('theme')],
-                          data.root,
-                        );
-                      }
-                    });
-                  }
+                  rootThemeCallback(data);
                 } else {
                   wrapSxInArray(
                     j.conditionalExpression(
@@ -392,6 +485,16 @@ export default function sxV6(file, api, options) {
               }
             }
           }
+          if (
+            data.node.expressions?.some(
+              (expression) =>
+                getObjectKey(expression)?.name === 'theme' ||
+                (expression.type === 'CallExpression' &&
+                  getObjectKey(expression.callee)?.name === 'theme'),
+            )
+          ) {
+            rootThemeCallback(data);
+          }
         }
       }
     });
@@ -414,7 +517,7 @@ export default function sxV6(file, api, options) {
         }
         lines.push(line);
       }
-      if (line.includes('sx=')) {
+      if (line.includes('sx=') && !line.match(/sx=\{\{[^}]+\}\}/)) {
         isInStyled = true;
         spaceMatch = line.match(/^\s+/);
       }

@@ -1,11 +1,11 @@
 import {
   describeConformance as baseDescribeConformance,
   ConformanceOptions,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 export default function describeConformance(
-  minimalElement: React.ReactElement<any>,
+  minimalElement: React.ReactElement<unknown>,
   getOptions: () => ConformanceOptions,
 ) {
   function getOptionsWithDefaults() {

@@ -6,6 +6,7 @@ githubLabel: 'component: slider'
 materialDesign: https://m2.material.io/components/sliders
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/
 unstyled: /base-ui/react-slider/
+githubSource: packages/mui-material/src/Slider
 ---
 
 # Slider
@@ -93,16 +94,16 @@ You can learn more about this in the [overrides documentation page](/material-ui
 
 ### Music player
 
-{{"demo": "MusicPlayerSlider.js"}}
+{{"demo": "MusicPlayerSlider.js", "bg": "inline"}}
 
 ## Vertical sliders
 
 {{"demo": "VerticalSlider.js"}}
 
-**WARNING**: Chrome, Safari and newer Edge versions that is any browser based on WebKit exposes `<Slider orientation="vertical" />` as horizontal ([chromium issue #1158217](https://bugs.chromium.org/p/chromium/issues/detail?id=1158217)).
+**WARNING**: Chrome, Safari and newer Edge versions that is any browser based on WebKit exposes `<Slider orientation="vertical" />` as horizontal ([chromium issue #40736841](https://issues.chromium.org/issues/40736841)).
 By applying `-webkit-appearance: slider-vertical;` the slider is exposed as vertical.
 
-However, by applying `-webkit-appearance: slider-vertical;` keyboard navigation for horizontal keys (<kbd class="key">Arrow Left</kbd>, <kbd class="key">Arrow Right</kbd>) is reversed ([chromium issue #1162640](https://bugs.chromium.org/p/chromium/issues/detail?id=1162640)).
+However, by applying `-webkit-appearance: slider-vertical;` keyboard navigation for horizontal keys (<kbd class="key">Arrow Left</kbd>, <kbd class="key">Arrow Right</kbd>) is reversed ([chromium issue #40739626](https://issues.chromium.org/issues/40739626)).
 Usually, up and right should increase and left and down should decrease the value.
 If you apply `-webkit-appearance` you could prevent keyboard navigation for horizontal arrow keys for a truly vertical slider.
 This might be less confusing to users compared to a change in direction.

@@ -7,7 +7,7 @@ export interface BrandingProviderProps {
   /**
    * If not `undefined`, the provider is considered nesting and does not render NextNProgressBar & CssBaseline
    */
-  mode: 'light' | 'dark';
+  mode?: 'light' | 'dark';
 }
 
 export function BrandingProvider(props: BrandingProviderProps) {

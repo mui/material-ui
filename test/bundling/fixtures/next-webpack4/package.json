@@ -3,26 +3,39 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "pnpm next build && concurrently --success first --kill-others \"pnpm next start\" \"node testNextWebpack4Integration\""
+    "prestart": "node ../../scripts/createFixture.js next-webpack4",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider pnpm next build && concurrently --success first --kill-others \"pnpm next start\" \"node testNextWebpack4Integration\""
   },
   "dependencies": {
     "@emotion/core": "11.0.0",
     "@emotion/react": "11.10.4",
     "@emotion/styled": "11.10.4",
-    "@mui/material": "5.10.5",
-    "@mui/icons-material": "5.10.3",
-    "@mui/lab": "5.0.0-alpha.99",
-    "@mui/styled-engine": "5.10.5",
-    "@mui/styles": "5.10.3",
-    "@mui/system": "5.10.5",
-    "@mui/utils": "5.10.3",
-    "next": "11.1.4",
+    "@mui/material": "workspace:*",
+    "@mui/icons-material": "workspace:*",
+    "@mui/lab": "workspace:*",
+    "@mui/styled-engine": "workspace:*",
+    "@mui/styles": "workspace:*",
+    "@mui/system": "workspace:*",
+    "@mui/utils": "workspace:*",
+    "next": "14.2.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2"
   },
   "devDependencies": {
     "concurrently": "7.4.0",
-    "playwright": "1.44.0"
+    "playwright": "1.48.1"
+  },
+  "pnpm": {
+    "overrides": {
+      "@mui/base": "file:../../../../packed/@mui/base.tgz",
+      "@mui/material": "file:../../../../packed/@mui/material.tgz",
+      "@mui/icons-material": "file:../../../../packed/@mui/icons-material.tgz",
+      "@mui/lab": "file:../../../../packed/@mui/lab.tgz",
+      "@mui/styled-engine": "file:../../../../packed/@mui/styled-engine.tgz",
+      "@mui/styles": "file:../../../../packed/@mui/styles.tgz",
+      "@mui/system": "file:../../../../packed/@mui/system.tgz",
+      "@mui/utils": "file:../../../../packed/@mui/utils.tgz"
+    }
   }
 }

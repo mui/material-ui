@@ -69,7 +69,7 @@ Check out all the possibilities in the [Date Pickers—Digital clock documentati
 ### Filter on column headers [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 Filtering on column headers gives users the ability to quickly filter data without any additional menu.
-Use the the `unstable_headerFilters` prop to activate this feature.
+Use the `unstable_headerFilters` prop to activate this feature.
 
 The new filter fields are displayed below the headers, and are synchronized with the filter panel.
 If you prefer more simplicity, you can disable the default filter panel using the `disableColumnFilter` prop, and set filters to use only the default operator.
@@ -112,7 +112,7 @@ Check out the video below, highlighting some of our Charts:
 
 As we progress toward the stable version, we're committed to enhancing the overall experience for developers and users, so your feedback is fundamental!
 
-We will also steadily expand our portfolio with new chart types such as [Heatmap](https://mui.com/x/react-charts/heat-map/), [Funnel](https://mui.com/x/react-charts/funnel/), [Gantt](https://mui.com/x/react-charts/gantt/), and more.
+We will also steadily expand our portfolio with new chart types such as [Heatmap](https://mui.com/x/react-charts/heatmap/), [Funnel](https://mui.com/x/react-charts/funnel/), [Gantt](https://mui.com/x/react-charts/gantt/), and more.
 If there's a specific chart visualization you'd like us to prioritize, we encourage you to upvote the respective [issue on GitHub](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+label%3A%22component%3A+charts%22+label%3A%22waiting+for+%F0%9F%91%8D%22).
 Your input can directly influence our development schedule, so don't hesitate to let us know what matters most to you!
 

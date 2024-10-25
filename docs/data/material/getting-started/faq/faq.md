@@ -9,7 +9,7 @@ If you still can't find what you're looking for, you can refer to our [support p
 There are many ways to support us:
 
 - **Spread the word**. Evangelize MUI's products by [linking to mui.com](https://mui.com/) on your website—every backlink matters.
-  Follow us on [X](https://twitter.com/MUI_hq), like and retweet the important news. Or just talk about us with your friends.
+  Follow us on [X](https://x.com/MUI_hq), like and retweet the important news. Or just talk about us with your friends.
 - **Give us feedback**. Tell us what is going well or where there is improvement opportunities. Please upvote (👍) the issues that you are the most interested in seeing solved.
 - **Help new users**. You can answer questions on
   [Stack Overflow](https://stackoverflow.com/questions/tagged/material-ui).
@@ -260,6 +260,81 @@ return (
 ## I cannot use components as selectors in the styled() utility. What should I do?
 
 If you are getting the error: `TypeError: Cannot convert a Symbol value to a string`, take a look at the [styled()](/system/styled/#how-to-use-components-selector-api) docs page for instructions on how you can fix this.
+
+## How can I contribute to the free templates?
+
+The templates are built using a [shared theme](https://github.com/mui/material-ui/tree/v6.0.2/docs/data/material/getting-started/templates/shared-theme). Below are the structure to create a new template:
+
+### Template page
+
+Create a new page in the `docs/pages/material-ui/getting-started/templates/<name>.js` directory with the following code:
+
+```js
+import * as React from 'react';
+import AppTheme from 'docs/src/modules/components/AppTheme';
+import TemplateFrame from 'docs/src/modules/components/TemplateFrame';
+import Template from 'docs/data/material/getting-started/templates/<name>/<Template>';
+
+export default function Page() {
+  return (
+    <AppTheme>
+      <TemplateFrame>
+        <Template />
+      </TemplateFrame>
+    </AppTheme>
+  );
+}
+```
+
+Then create a template file at `docs/data/material/getting-started/templates/<name>/<Template>.tsx` (add more files if needed):
+
+> Note: The `<Template>` must be a pascal case string of the `<name>` folder.
+
+### Shared theme
+
+The template must use `AppTheme` from `../shared-theme/AppTheme` to ensure a consistent look and feel across all templates.
+
+If the template includes custom-themed components, such as the dashboard template with MUI X themed components, pass them to the `AppTheme`'s `themedComponents` prop:
+
+```js
+import AppTheme from '../shared-theme/AppTheme';
+
+const xThemeComponents = {
+  ...chartsCustomizations,
+  ...dataGridCustomizations,
+  ...datePickersCustomizations,
+  ...treeViewCustomizations,
+};
+
+export default function Dashboard(props: { disableCustomTheme?: boolean }) {
+  return (
+    <AppTheme {...props} themeComponents={xThemeComponents}>...</AppTheme>
+  )
+}
+```
+
+### Color mode toggle
+
+The shared theme provides 2 appearance of the color mode toggle, `ColorModeSelect` and `ColorModeIconDropdown`.
+You can use either of them in your template, it will be hidden within the `TemplateFrame` but will be visible in the Code Sandbox and Stackblitz.
+
+### Template frame
+
+If the template has a sidebar or a header that needs to stick to the top, refer to the CSS variable `--template-frame-height` to adjust.
+
+For example, the dashboard template has a fixed header that needs to be accounted for the template frame height:
+
+```js
+<AppBar
+  position="fixed"
+  sx={{
+    top: 'var(--template-frame-height, 0px)',
+    // ...other styles
+  }}
+>
+```
+
+This will make the `AppBar` stay below the `TemplateFrame` in a preview mode but stick to the top in the CodeSandbox and Stackblitz.
 
 ## [legacy] I have several instances of styles on the page
 

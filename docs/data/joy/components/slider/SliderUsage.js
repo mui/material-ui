@@ -42,16 +42,18 @@ export default function SliderUsage() {
       ]}
       renderDemo={(props) => (
         <Box
-          sx={{
-            ...(props.orientation === 'horizontal' && {
+          sx={[
+            {
+              p: 2,
+              lineHeight: 0,
+              borderRadius: 'sm',
+            },
+            props.orientation === 'horizontal' && {
               width: 240,
               maxWidth: '100%',
-            }),
-            ...(props.orientation === 'vertical' && { height: 200 }),
-            p: 2,
-            lineHeight: 0,
-            borderRadius: 'sm',
-          }}
+            },
+            props.orientation === 'vertical' && { height: 200 },
+          ]}
         >
           <Slider defaultValue={3} max={10} {...props} />
         </Box>

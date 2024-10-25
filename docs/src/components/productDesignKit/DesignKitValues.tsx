@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Palette from '@mui/icons-material/Palette';
 import LibraryBooks from '@mui/icons-material/LibraryBooks';
 import { InfoCard } from '@mui/docs/InfoCard';
@@ -44,7 +44,7 @@ export default function DesignKitValues() {
       />
       <Grid container spacing={3} mt={4}>
         {content.map(({ icon, title, description }) => (
-          <Grid key={title} xs={12} sm={6} md={4}>
+          <Grid key={title} size={{ xs: 12, sm: 6, md: 4 }}>
             <InfoCard title={title} icon={icon} description={description} />
           </Grid>
         ))}

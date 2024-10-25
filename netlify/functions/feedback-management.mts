@@ -8,24 +8,71 @@ const X_FEEBACKS_CHANNEL_ID = 'C04U3R2V9UK';
 const JOY_FEEBACKS_CHANNEL_ID = 'C050VE13HDL';
 const TOOLPAD_FEEBACKS_CHANNEL_ID = 'C050MHU703Z';
 const CORE_FEEBACKS_CHANNEL_ID = 'C041SDSF32L';
+
+const BASE_UI_FEEBACKS_CHANNEL_ID = 'C075LJG1LMP';
+const MATERIAL_UI_FEEBACKS_CHANNEL_ID = 'C0757QYLK7V';
+// const PIGMENT_CSS_FEEBACKS_CHANNEL_ID = 'C074TBW0JKZ';
+const X_GRID_FEEBACKS_CHANNEL_ID = 'C0757R0KW67';
+const X_CHARTS_FEEBACKS_CHANNEL_ID = 'C0757UBND98';
+const X_EXPLORE_FEEBACKS_CHANNEL_ID = 'C074TBYQK2T';
+// const DESIGN_KITS_FEEBACKS_CHANNEL_ID = 'C075ADGN0UU';
+
 // The design feedback alert was removed in https://github.com/mui/material-ui/pull/39691
 // This dead code is here to simplify the creation of special feedback channel
 const DESIGN_FEEDBACKS_CHANNEL_ID = 'C05HHSFH2QJ';
 
-const getSlackChannelId = (url, specialCases) => {
+export type MuiProductId =
+  | 'null'
+  | 'base-ui'
+  | 'material-ui'
+  | 'joy-ui'
+  | 'system'
+  | 'docs-infra'
+  | 'docs'
+  | 'x-data-grid'
+  | 'x-date-pickers'
+  | 'x-charts'
+  | 'x-tree-view'
+  | 'toolpad-studio'
+  | 'toolpad-core';
+
+const getSlackChannelId = (
+  url: string,
+  productId: MuiProductId,
+  specialCases: { isDesignFeedback?: boolean },
+) => {
   const { isDesignFeedback } = specialCases;
 
   if (isDesignFeedback) {
     return DESIGN_FEEDBACKS_CHANNEL_ID;
   }
+
+  switch (productId) {
+    case 'base-ui':
+      return BASE_UI_FEEBACKS_CHANNEL_ID;
+    case 'material-ui':
+    case 'system':
+      return MATERIAL_UI_FEEBACKS_CHANNEL_ID;
+    case 'joy-ui':
+      return JOY_FEEBACKS_CHANNEL_ID;
+    case 'x-data-grid':
+      return X_GRID_FEEBACKS_CHANNEL_ID;
+    case 'x-date-pickers':
+    case 'x-tree-view':
+      return X_EXPLORE_FEEBACKS_CHANNEL_ID;
+    case 'x-charts':
+      return X_CHARTS_FEEBACKS_CHANNEL_ID;
+    case 'toolpad-studio':
+    case 'toolpad-core':
+      return TOOLPAD_FEEBACKS_CHANNEL_ID;
+    default:
+      break;
+  }
+
+  // Fallback
+
   if (url.includes('/x/')) {
     return X_FEEBACKS_CHANNEL_ID;
-  }
-  if (url.includes('/joy-ui/')) {
-    return JOY_FEEBACKS_CHANNEL_ID;
-  }
-  if (url.includes('/toolpad/')) {
-    return TOOLPAD_FEEBACKS_CHANNEL_ID;
   }
   return CORE_FEEBACKS_CHANNEL_ID;
 };
@@ -154,6 +201,7 @@ export const handler: Handler = async (event, context, callback) => {
         commmentSectionURL: inCommmentSectionURL,
         commmentSectionTitle,
         githubRepo,
+        productId,
       } = data;
 
       // The design feedback alert was removed in https://github.com/mui/material-ui/pull/39691
@@ -181,7 +229,7 @@ from ${commmentSectionURL}
       });
 
       await app.client.chat.postMessage({
-        channel: getSlackChannelId(currentLocationURL, { isDesignFeedback }),
+        channel: getSlackChannelId(currentLocationURL, productId, { isDesignFeedback }),
         text: simpleSlackMessage, // Fallback for notification
         blocks: [
           {

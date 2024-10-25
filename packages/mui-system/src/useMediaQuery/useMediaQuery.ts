@@ -4,27 +4,6 @@ import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import { getThemeProps } from '../useThemeProps';
 import useTheme from '../useThemeWithoutDefault';
 
-/**
- * @deprecated Not used internally. Use `MediaQueryListEvent` from lib.dom.d.ts instead.
- */
-export interface MuiMediaQueryListEvent {
-  matches: boolean;
-}
-
-/**
- * @deprecated Not used internally. Use `MediaQueryList` from lib.dom.d.ts instead.
- */
-export interface MuiMediaQueryList {
-  matches: boolean;
-  addListener: (listener: MuiMediaQueryListListener) => void;
-  removeListener: (listener: MuiMediaQueryListListener) => void;
-}
-
-/**
- * @deprecated Not used internally. Use `(event: MediaQueryListEvent) => void` instead.
- */
-export type MuiMediaQueryListListener = (event: MuiMediaQueryListEvent) => void;
-
 export interface UseMediaQueryOptions {
   /**
    * As `window.matchMedia()` is unavailable on the server,
@@ -51,6 +30,7 @@ export interface UseMediaQueryOptions {
   ssrMatchMedia?: (query: string) => { matches: boolean };
 }
 
+// TODO React 17: Remove `useMediaQueryOld` once React 17 support is removed
 function useMediaQueryOld(
   query: string,
   defaultMatches: boolean,
@@ -72,35 +52,29 @@ function useMediaQueryOld(
   });
 
   useEnhancedEffect(() => {
-    let active = true;
-
     if (!matchMedia) {
       return undefined;
     }
 
     const queryList = matchMedia!(query);
     const updateMatch = () => {
-      // Workaround Safari wrong implementation of matchMedia
-      // TODO can we remove it?
-      // https://github.com/mui/material-ui/pull/17315#issuecomment-528286677
-      if (active) {
-        setMatch(queryList.matches);
-      }
+      setMatch(queryList.matches);
     };
+
     updateMatch();
-    // TODO: Use `addEventListener` once support for Safari < 14 is dropped
-    queryList.addListener(updateMatch);
+    queryList.addEventListener('change', updateMatch);
+
     return () => {
-      active = false;
-      queryList.removeListener(updateMatch);
+      queryList.removeEventListener('change', updateMatch);
     };
   }, [query, matchMedia]);
 
   return match;
 }
 
-// eslint-disable-next-line no-useless-concat -- Workaround for https://github.com/webpack/webpack/issues/14814
-const maybeReactUseSyncExternalStore: undefined | any = (React as any)['useSyncExternalStore' + ''];
+// See https://github.com/mui/material-ui/issues/41190#issuecomment-2040873379 for why
+const safeReact = { ...React };
+const maybeReactUseSyncExternalStore: undefined | any = safeReact.useSyncExternalStore;
 
 function useMediaQueryNew(
   query: string,
@@ -131,10 +105,9 @@ function useMediaQueryNew(
     return [
       () => mediaQueryList.matches,
       (notify: () => void) => {
-        // TODO: Use `addEventListener` once support for Safari < 14 is dropped
-        mediaQueryList.addListener(notify);
+        mediaQueryList.addEventListener('change', notify);
         return () => {
-          mediaQueryList.removeListener(notify);
+          mediaQueryList.removeEventListener('change', notify);
         };
       },
     ];
@@ -177,7 +150,6 @@ export default function useMediaQuery<Theme = unknown>(
   let query = typeof queryInput === 'function' ? queryInput(theme) : queryInput;
   query = query.replace(/^@media( ?)/m, '');
 
-  // TODO: Drop `useMediaQueryOld` and use  `use-sync-external-store` shim in `useMediaQueryNew` once the package is stable
   const useMediaQueryImplementation =
     maybeReactUseSyncExternalStore !== undefined ? useMediaQueryNew : useMediaQueryOld;
   const match = useMediaQueryImplementation(

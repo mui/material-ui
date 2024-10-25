@@ -12,11 +12,7 @@ export default function BackgroundColor() {
       </Grid>
       <Grid item xs={12} sm={4}>
         <Box
-          sx={{
-            bgcolor: 'secondary.main',
-            color: 'secondary.contrastText',
-            p: 2,
-          }}
+          sx={{ bgcolor: 'secondary.main', color: 'secondary.contrastText', p: 2 }}
         >
           secondary.main
         </Box>

@@ -1,40 +1,40 @@
 <Box
   sx={theme => ({
-    backgroundImage: "var(--items-imageDark)",
+    backgroundImage: "var(--imageDark-items-selectedItemIndex)",
     ...theme.applyStyles("light", {
-      backgroundImage: "var(--items-imageLight)"
+      backgroundImage: "var(--imageLight-items-selectedItemIndex)"
     })
   })}
   style={{
-    "--items-imageLight": items[selectedItemIndex].imageLight,
-    "--items-imageDark": items[selectedItemIndex].imageDark
+    "--imageLight-items-selectedItemIndex": items[selectedItemIndex].imageLight,
+    "--imageDark-items-selectedItemIndex": items[selectedItemIndex].imageDark
   }} />;
 
 <Box
   style={{
-    "--items-imageLight": items[selectedItemIndex].imageLight,
-    "--items-imageDark": items[selectedItemIndex].imageDark,
+    "--imageLight-items-selectedItemIndex": items[selectedItemIndex].imageLight,
+    "--imageDark-items-selectedItemIndex": items[selectedItemIndex].imageDark,
     ...props.style
   }}
   sx={theme => ({
-    backgroundImage: "var(--items-imageDark)",
+    backgroundImage: "var(--imageDark-items-selectedItemIndex)",
     ...theme.applyStyles("light", {
-      backgroundImage: "var(--items-imageLight)"
+      backgroundImage: "var(--imageLight-items-selectedItemIndex)"
     })
   })}
 />;
 
 <Box
   style={{
-    "--items-imageLight": items[selectedItemIndex].imageLight,
-    "--items-imageDark": items[selectedItemIndex].imageDark,
+    "--imageLight-items-selectedItemIndex": items[selectedItemIndex].imageLight,
+    "--imageDark-items-selectedItemIndex": items[selectedItemIndex].imageDark,
     color: 'red',
     ...props.style
   }}
   sx={theme => ({
-    backgroundImage: "var(--items-imageDark)",
+    backgroundImage: "var(--imageDark-items-selectedItemIndex)",
     ...theme.applyStyles("light", {
-      backgroundImage: "var(--items-imageLight)"
+      backgroundImage: "var(--imageLight-items-selectedItemIndex)"
     })
   })}
 />;
@@ -42,14 +42,14 @@
 <Box
   {...props}
   sx={theme => ({
-    backgroundImage: "var(--items-imageDark)",
+    backgroundImage: "var(--imageDark-items-selectedItemIndex)",
     ...theme.applyStyles("light", {
-      backgroundImage: "var(--items-imageLight)"
+      backgroundImage: "var(--imageLight-items-selectedItemIndex)"
     })
   })}
   style={{
-    "--items-imageLight": items[selectedItemIndex].imageLight,
-    "--items-imageDark": items[selectedItemIndex].imageDark,
+    "--imageLight-items-selectedItemIndex": items[selectedItemIndex].imageLight,
+    "--imageDark-items-selectedItemIndex": items[selectedItemIndex].imageDark,
     ...props.style
   }} />;
 
@@ -67,3 +67,21 @@
   style={{
     "--post-image": post.image
   }}></Paper>;
+
+<Chip
+  size="sm"
+  variant="outlined"
+  color={colors[data.role]}
+  sx={{
+    ml: 'auto',
+    borderRadius: '2px',
+    minHeight: '20px',
+    paddingInline: '4px',
+    fontSize: 'xs',
+    bgcolor: `${"var(--colors-data-role)"}.softBg`,
+  }}
+  style={{
+    "--colors-data-role": colors[data.role]
+  }}>
+  {data.role}
+</Chip>;

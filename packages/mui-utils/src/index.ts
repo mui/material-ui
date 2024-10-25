@@ -27,12 +27,8 @@ export { default as unstable_useForkRef } from './useForkRef';
 export { default as unstable_useLazyRef } from './useLazyRef';
 export { default as unstable_useTimeout, Timeout as unstable_Timeout } from './useTimeout';
 export { default as unstable_useOnMount } from './useOnMount';
-export { default as unstable_useIsFocusVisible } from './useIsFocusVisible';
+export { default as unstable_isFocusVisible } from './isFocusVisible';
 export { default as unstable_getScrollbarSize } from './getScrollbarSize';
-export {
-  detectScrollType as unstable_detectScrollType,
-  getNormalizedScrollLeft as unstable_getNormalizedScrollLeft,
-} from './scrollLeft';
 export { default as usePreviousProps } from './usePreviousProps';
 export { default as getValidReactChildren } from './getValidReactChildren';
 export { default as visuallyHidden } from './visuallyHidden';
@@ -45,3 +41,9 @@ export * from './generateUtilityClass';
 export { default as unstable_generateUtilityClasses } from './generateUtilityClasses';
 export { default as unstable_ClassNameGenerator } from './ClassNameGenerator';
 export { default as clamp } from './clamp';
+export { default as unstable_useSlotProps } from './useSlotProps';
+export type { UseSlotPropsParameters, UseSlotPropsResult } from './useSlotProps';
+export { default as unstable_resolveComponentProps } from './resolveComponentProps';
+export { default as unstable_extractEventHandlers } from './extractEventHandlers';
+export { default as unstable_getReactElementRef } from './getReactElementRef';
+export * from './types';

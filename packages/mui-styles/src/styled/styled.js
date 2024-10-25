@@ -9,7 +9,7 @@ function omit(input, fields) {
   const output = {};
 
   Object.keys(input).forEach((prop) => {
-    if (fields.indexOf(prop) === -1) {
+    if (!fields.includes(prop)) {
       output[prop] = input[prop];
     }
   });

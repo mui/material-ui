@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { stub, spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Rating, { ratingClasses as classes } from '@mui/material/Rating';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
@@ -212,6 +212,16 @@ describe('<Rating />', () => {
     expect(new Set(radios.map((radio) => radio.name))).to.have.length(1);
   });
 
+  it('should use `name` as prefix of input element ids', () => {
+    render(<Rating name="rating-test" />);
+
+    const radios = document.querySelectorAll('input[type="radio"]');
+
+    for (let i = 0; i < radios.length; i += 1) {
+      expect(radios[i].getAttribute('id')).to.match(/^rating-test-/);
+    }
+  });
+
   describe('prop: readOnly', () => {
     it('renders a role="img"', () => {
       render(<Rating readOnly value={2} />);
@@ -223,6 +233,12 @@ describe('<Rating />', () => {
       render(<Rating getLabelText={(value) => `Stars: ${value}`} readOnly value={2} />);
 
       expect(screen.getByRole('img')).toHaveAccessibleName('Stars: 2');
+    });
+
+    it('should have a correct label when no value is set', () => {
+      render(<Rating readOnly />);
+
+      expect(screen.getByRole('img')).toHaveAccessibleName('0 Stars');
     });
 
     it('should have readOnly class applied', () => {

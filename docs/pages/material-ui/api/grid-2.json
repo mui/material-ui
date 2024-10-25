@@ -1,0 +1,65 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "columns": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;number&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object"
+      }
+    },
+    "columnSpacing": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
+      }
+    },
+    "container": { "type": { "name": "bool" } },
+    "direction": {
+      "type": {
+        "name": "union",
+        "description": "'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row'<br>&#124;&nbsp;Array&lt;'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row'&gt;<br>&#124;&nbsp;object"
+      }
+    },
+    "offset": {
+      "type": {
+        "name": "union",
+        "description": "string<br>&#124;&nbsp;number<br>&#124;&nbsp;Array&lt;string<br>&#124;&nbsp;number&gt;<br>&#124;&nbsp;object"
+      }
+    },
+    "rowSpacing": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
+      }
+    },
+    "size": {
+      "type": {
+        "name": "union",
+        "description": "string<br>&#124;&nbsp;bool<br>&#124;&nbsp;number<br>&#124;&nbsp;Array&lt;string<br>&#124;&nbsp;bool<br>&#124;&nbsp;number&gt;<br>&#124;&nbsp;object"
+      }
+    },
+    "spacing": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
+      }
+    },
+    "wrap": {
+      "type": {
+        "name": "enum",
+        "description": "'nowrap'<br>&#124;&nbsp;'wrap-reverse'<br>&#124;&nbsp;'wrap'"
+      }
+    }
+  },
+  "name": "Grid2",
+  "imports": ["import Grid2 from '@mui/material/Grid2';", "import { Grid2 } from '@mui/material';"],
+  "classes": [],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiGrid2",
+  "forwardsRefTo": "HTMLElement",
+  "filename": "/packages/mui-material/src/Grid2/Grid2.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-grid2/\">Grid version 2</a></li></ul>",
+  "cssComponent": false
+}

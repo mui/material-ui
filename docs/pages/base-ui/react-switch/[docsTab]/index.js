@@ -31,7 +31,7 @@ export const getStaticProps = () => {
   const SwitchApiDescriptions = mapApiPageTranslations(SwitchApiReq);
 
   const useSwitchApiReq = require.context(
-    'docs/translations/api-docs/use-switch',
+    'docs/translations/api-docs-base/use-switch',
     false,
     /use-switch.*.json$/,
   );

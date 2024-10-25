@@ -4,6 +4,7 @@ title: React Typography component
 components: Typography
 githubLabel: 'component: Typography'
 materialDesign: https://m2.material.io/design/typography/the-type-system.html
+githubSource: packages/mui-material/src/Typography
 ---
 
 # Typography
@@ -23,12 +24,12 @@ Add it to your project via Fontsource, or with the Google Fonts CDN.
 npm install @fontsource/roboto
 ```
 
-```bash yarn
-yarn add @fontsource/roboto
-```
-
 ```bash pnpm
 pnpm add @fontsource/roboto
+```
+
+```bash yarn
+yarn add @fontsource/roboto
 ```
 
 </codeblock>
@@ -120,12 +121,15 @@ const theme = createTheme({
 
 ### System props
 
-As a CSS utility component, the Typography component supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component.
-For example, here's how you'd add a margin-top:
+:::info
+System props are deprecated and will be removed in the next major release. Please use the `sx` prop instead.
 
-```jsx
-<Typography mt={2}>
+```diff
+- <Typography mt={2} />
++ <Typography sx={{ mt: 2 }} />
 ```
+
+:::
 
 ## Accessibility
 

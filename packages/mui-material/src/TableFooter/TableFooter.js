@@ -4,10 +4,9 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getTableFooterUtilityClass } from './tableFooterClasses';
-
-const useThemeProps = createUseThemeProps('MuiTableFooter');
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -34,7 +33,7 @@ const tablelvl2 = {
 const defaultComponent = 'tfoot';
 
 const TableFooter = React.forwardRef(function TableFooter(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTableFooter' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTableFooter' });
   const { className, component = defaultComponent, ...other } = props;
 
   const ownerState = {

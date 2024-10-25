@@ -7,7 +7,7 @@ tags: ['Company']
 manualCard: true
 ---
 
-We are excited to share that [Marija Najdova](https://twitter.com/marijanajdova) has joined MUI. She has started this week full-time, and is now part of the community team.
+We are excited to share that [Marija Najdova](https://x.com/marijanajdova) has joined MUI. She has started this week full-time, and is now part of the community team.
 
 Before joining MUI, Marija worked on the React implementation of [Fluent UI](https://www.microsoft.com/design/fluent/) at Microsoft. She's passionate about React, design systems, and component driven development. At Microsoft, as part of the Fluent UI core team since 2018, she was responsible for the icons, animations and various theme related features.
 
@@ -17,4 +17,4 @@ She is now actively working on the unstyled components and [the update of the st
 
 The community team will continue developing the foundations on which to build great design systems.
 
-We couldn't be more excited to have Marija on the team! You can follow her on [X](https://twitter.com/marijanajdova).
+We couldn't be more excited to have Marija on the team! You can follow her on [X](https://x.com/marijanajdova).

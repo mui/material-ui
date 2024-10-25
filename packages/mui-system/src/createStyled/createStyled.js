@@ -1,93 +1,96 @@
-/* eslint-disable no-underscore-dangle */
-import styledEngineStyled, { internal_processStyles as processStyles } from '@mui/styled-engine';
+import styledEngineStyled, { internal_mutateStyles as mutateStyles } from '@mui/styled-engine';
 import { isPlainObject } from '@mui/utils/deepmerge';
 import capitalize from '@mui/utils/capitalize';
 import getDisplayName from '@mui/utils/getDisplayName';
 import createTheme from '../createTheme';
 import styleFunctionSx from '../styleFunctionSx';
+import preprocessStyles from '../preprocessStyles';
 
-function isEmpty(obj) {
-  return Object.keys(obj).length === 0;
-}
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-labels */
+/* eslint-disable no-lone-blocks */
 
-// https://github.com/emotion-js/emotion/blob/26ded6109fcd8ca9875cc2ce4564fee678a3f3c5/packages/styled/src/utils.js#L40
-function isStringTag(tag) {
-  return (
-    typeof tag === 'string' &&
-    // 96 is one less than the char code
-    // for "a" so this is checking that
-    // it's a lowercase character
-    tag.charCodeAt(0) > 96
-  );
-}
+export const systemDefaultTheme = createTheme();
 
 // Update /system/styled/#api in case if this changes
 export function shouldForwardProp(prop) {
   return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
 }
 
-export const systemDefaultTheme = createTheme();
-
-const lowercaseFirstLetter = (string) => {
-  if (!string) {
-    return string;
-  }
-  return string.charAt(0).toLowerCase() + string.slice(1);
-};
-
-function resolveTheme({ defaultTheme, theme, themeId }) {
-  return isEmpty(theme) ? defaultTheme : theme[themeId] || theme;
-}
-
 function defaultOverridesResolver(slot) {
   if (!slot) {
     return null;
   }
-  return (props, styles) => styles[slot];
+  return (_props, styles) => styles[slot];
 }
 
-function processStyleArg(callableStyle, { ownerState, ...props }) {
-  const resolvedStylesArg =
-    typeof callableStyle === 'function' ? callableStyle({ ownerState, ...props }) : callableStyle;
+function attachTheme(props, themeId, defaultTheme) {
+  props.theme = isObjectEmpty(props.theme) ? defaultTheme : props.theme[themeId] || props.theme;
+}
 
-  if (Array.isArray(resolvedStylesArg)) {
-    return resolvedStylesArg.flatMap((resolvedStyle) =>
-      processStyleArg(resolvedStyle, { ownerState, ...props }),
-    );
+function processStyle(props, style) {
+  /*
+   * Style types:
+   *  - null/undefined
+   *  - string
+   *  - CSS style object: { [cssKey]: [cssValue], variants }
+   *  - Processed style object: { style, variants, isProcessed: true }
+   *  - Array of any of the above
+   */
+
+  const resolvedStyle = typeof style === 'function' ? style(props) : style;
+
+  if (Array.isArray(resolvedStyle)) {
+    return resolvedStyle.flatMap((subStyle) => processStyle(props, subStyle));
   }
 
-  if (
-    !!resolvedStylesArg &&
-    typeof resolvedStylesArg === 'object' &&
-    Array.isArray(resolvedStylesArg.variants)
-  ) {
-    const { variants = [], ...otherStyles } = resolvedStylesArg;
-    let result = otherStyles;
-    variants.forEach((variant) => {
-      let isMatch = true;
-      if (typeof variant.props === 'function') {
-        isMatch = variant.props({ ownerState, ...props, ...ownerState });
-      } else {
-        Object.keys(variant.props).forEach((key) => {
-          if (ownerState?.[key] !== variant.props[key] && props[key] !== variant.props[key]) {
-            isMatch = false;
-          }
-        });
+  if (Array.isArray(resolvedStyle?.variants)) {
+    let rootStyle;
+    if (resolvedStyle.isProcessed) {
+      rootStyle = resolvedStyle.style;
+    } else {
+      const { variants, ...otherStyles } = resolvedStyle;
+      rootStyle = otherStyles;
+    }
+
+    return processStyleVariants(props, resolvedStyle.variants, [rootStyle]);
+  }
+
+  if (resolvedStyle?.isProcessed) {
+    return resolvedStyle.style;
+  }
+
+  return resolvedStyle;
+}
+
+function processStyleVariants(props, variants, results = []) {
+  let mergedState; // We might not need it, initialized lazily
+
+  variantLoop: for (let i = 0; i < variants.length; i += 1) {
+    const variant = variants[i];
+
+    if (typeof variant.props === 'function') {
+      mergedState ??= { ...props, ...props.ownerState, ownerState: props.ownerState };
+      if (!variant.props(mergedState)) {
+        continue;
       }
-      if (isMatch) {
-        if (!Array.isArray(result)) {
-          result = [result];
+    } else {
+      for (const key in variant.props) {
+        if (props[key] !== variant.props[key] && props.ownerState?.[key] !== variant.props[key]) {
+          continue variantLoop;
         }
-        result.push(
-          typeof variant.style === 'function'
-            ? variant.style({ ownerState, ...props, ...ownerState })
-            : variant.style,
-        );
       }
-    });
-    return result;
+    }
+
+    if (typeof variant.style === 'function') {
+      mergedState ??= { ...props, ...props.ownerState, ownerState: props.ownerState };
+      results.push(variant.style(mergedState));
+    } else {
+      results.push(variant.style);
+    }
   }
-  return resolvedStylesArg;
+
+  return results;
 }
 
 export default function createStyled(input = {}) {
@@ -98,14 +101,14 @@ export default function createStyled(input = {}) {
     slotShouldForwardProp = shouldForwardProp,
   } = input;
 
-  const systemSx = (props) => {
-    return styleFunctionSx({ ...props, theme: resolveTheme({ ...props, defaultTheme, themeId }) });
-  };
-  systemSx.__mui_systemSx = true;
+  function styleAttachTheme(props) {
+    attachTheme(props, themeId, defaultTheme);
+  }
 
-  return (tag, inputOptions = {}) => {
-    // Filter out the `sx` style function from the previous styled component to prevent unnecessary styles generated by the composite components.
-    processStyles(tag, (styles) => styles.filter((style) => !style?.__mui_systemSx));
+  const styled = (tag, inputOptions = {}) => {
+    // If `tag` is already a styled component, filter out the `sx` style function
+    // to prevent unnecessary styles generated by the composite components.
+    mutateStyles(tag, (styles) => styles.filter((style) => style !== styleFunctionSx));
 
     const {
       name: componentName,
@@ -128,16 +131,6 @@ export default function createStyled(input = {}) {
 
     const skipSx = inputSkipSx || false;
 
-    let label;
-
-    if (process.env.NODE_ENV !== 'production') {
-      if (componentName) {
-        // TODO v6: remove `lowercaseFirstLetter()` in the next major release
-        // For more details: https://github.com/mui/material-ui/pull/37908
-        label = `${componentName}-${lowercaseFirstLetter(componentSlot || 'Root')}`;
-      }
-    }
-
     let shouldForwardPropOption = shouldForwardProp;
 
     // TODO v6: remove `Root` in the next major release
@@ -154,85 +147,104 @@ export default function createStyled(input = {}) {
 
     const defaultStyledResolver = styledEngineStyled(tag, {
       shouldForwardProp: shouldForwardPropOption,
-      label,
+      label: generateStyledLabel(componentName, componentSlot),
       ...options,
     });
 
-    const transformStyleArg = (stylesArg) => {
+    const transformStyle = (style) => {
       // On the server Emotion doesn't use React.forwardRef for creating components, so the created
       // component stays as a function. This condition makes sure that we do not interpolate functions
       // which are basically components used as a selectors.
-      if (
-        (typeof stylesArg === 'function' && stylesArg.__emotion_real !== stylesArg) ||
-        isPlainObject(stylesArg)
-      ) {
-        return (props) =>
-          processStyleArg(stylesArg, {
-            ...props,
-            theme: resolveTheme({ theme: props.theme, defaultTheme, themeId }),
-          });
+      if (typeof style === 'function' && style.__emotion_real !== style) {
+        return function styleFunctionProcessor(props) {
+          return processStyle(props, style);
+        };
       }
-      return stylesArg;
+      if (isPlainObject(style)) {
+        const serialized = preprocessStyles(style);
+        if (!serialized.variants) {
+          return serialized.style;
+        }
+        return function styleObjectProcessor(props) {
+          return processStyle(props, serialized);
+        };
+      }
+      return style;
     };
-    const muiStyledResolver = (styleArg, ...expressions) => {
-      let transformedStyleArg = transformStyleArg(styleArg);
-      const expressionsWithDefaultTheme = expressions ? expressions.map(transformStyleArg) : [];
+
+    const muiStyledResolver = (...expressionsInput) => {
+      const expressionsHead = [];
+      const expressionsBody = expressionsInput.map(transformStyle);
+      const expressionsTail = [];
+
+      // Preprocess `props` to set the scoped theme value.
+      // This must run before any other expression.
+      expressionsHead.push(styleAttachTheme);
 
       if (componentName && overridesResolver) {
-        expressionsWithDefaultTheme.push((props) => {
-          const theme = resolveTheme({ ...props, defaultTheme, themeId });
-          if (
-            !theme.components ||
-            !theme.components[componentName] ||
-            !theme.components[componentName].styleOverrides
-          ) {
+        expressionsTail.push(function styleThemeOverrides(props) {
+          const theme = props.theme;
+          const styleOverrides = theme.components?.[componentName]?.styleOverrides;
+          if (!styleOverrides) {
             return null;
           }
-          const styleOverrides = theme.components[componentName].styleOverrides;
+
           const resolvedStyleOverrides = {};
+
           // TODO: v7 remove iteration and use `resolveStyleArg(styleOverrides[slot])` directly
-          Object.entries(styleOverrides).forEach(([slotKey, slotStyle]) => {
-            resolvedStyleOverrides[slotKey] = processStyleArg(slotStyle, { ...props, theme });
-          });
+          // eslint-disable-next-line guard-for-in
+          for (const slotKey in styleOverrides) {
+            resolvedStyleOverrides[slotKey] = processStyle(props, styleOverrides[slotKey]);
+          }
+
           return overridesResolver(props, resolvedStyleOverrides);
         });
       }
 
       if (componentName && !skipVariantsResolver) {
-        expressionsWithDefaultTheme.push((props) => {
-          const theme = resolveTheme({ ...props, defaultTheme, themeId });
+        expressionsTail.push(function styleThemeVariants(props) {
+          const theme = props.theme;
           const themeVariants = theme?.components?.[componentName]?.variants;
-          return processStyleArg({ variants: themeVariants }, { ...props, theme });
+          if (!themeVariants) {
+            return null;
+          }
+          return processStyleVariants(props, themeVariants);
         });
       }
 
       if (!skipSx) {
-        expressionsWithDefaultTheme.push(systemSx);
+        expressionsTail.push(styleFunctionSx);
       }
 
-      const numOfCustomFnsApplied = expressionsWithDefaultTheme.length - expressions.length;
+      // This function can be called as a tagged template, so the first argument would contain
+      // CSS `string[]` values.
+      if (Array.isArray(expressionsBody[0])) {
+        const inputStrings = expressionsBody.shift();
 
-      if (Array.isArray(styleArg) && numOfCustomFnsApplied > 0) {
-        const placeholders = new Array(numOfCustomFnsApplied).fill('');
-        // If the type is array, than we need to add placeholders in the template for the overrides, variants and the sx styles.
-        transformedStyleArg = [...styleArg, ...placeholders];
-        transformedStyleArg.raw = [...styleArg.raw, ...placeholders];
-      }
-      const Component = defaultStyledResolver(transformedStyleArg, ...expressionsWithDefaultTheme);
+        // We need to add placeholders in the tagged template for the custom functions we have
+        // possibly added (attachTheme, overrides, variants, and sx).
+        const placeholdersHead = new Array(expressionsHead.length).fill('');
+        const placeholdersTail = new Array(expressionsTail.length).fill('');
 
-      if (process.env.NODE_ENV !== 'production') {
-        let displayName;
-        if (componentName) {
-          displayName = `${componentName}${capitalize(componentSlot || '')}`;
+        let outputStrings;
+        // prettier-ignore
+        {
+          outputStrings     = [...placeholdersHead, ...inputStrings,     ...placeholdersTail];
+          outputStrings.raw = [...placeholdersHead, ...inputStrings.raw, ...placeholdersTail];
         }
-        if (displayName === undefined) {
-          displayName = `Styled(${getDisplayName(tag)})`;
-        }
-        Component.displayName = displayName;
+
+        // The only case where we put something before `attachTheme`
+        expressionsHead.unshift(outputStrings);
       }
 
+      const expressions = [...expressionsHead, ...expressionsBody, ...expressionsTail];
+
+      const Component = defaultStyledResolver(...expressions);
       if (tag.muiName) {
         Component.muiName = tag.muiName;
+      }
+      if (process.env.NODE_ENV !== 'production') {
+        Component.displayName = generateDisplayName(componentName, componentSlot, tag);
       }
 
       return Component;
@@ -244,4 +256,53 @@ export default function createStyled(input = {}) {
 
     return muiStyledResolver;
   };
+
+  return styled;
+}
+
+function generateDisplayName(componentName, componentSlot, tag) {
+  if (componentName) {
+    return `${componentName}${capitalize(componentSlot || '')}`;
+  }
+  return `Styled(${getDisplayName(tag)})`;
+}
+
+function generateStyledLabel(componentName, componentSlot) {
+  let label;
+
+  if (process.env.NODE_ENV !== 'production') {
+    if (componentName) {
+      // TODO v6: remove `lowercaseFirstLetter()` in the next major release
+      // For more details: https://github.com/mui/material-ui/pull/37908
+      label = `${componentName}-${lowercaseFirstLetter(componentSlot || 'Root')}`;
+    }
+  }
+
+  return label;
+}
+
+function isObjectEmpty(object) {
+  // eslint-disable-next-line
+  for (const _ in object) {
+    return false;
+  }
+  return true;
+}
+
+// https://github.com/emotion-js/emotion/blob/26ded6109fcd8ca9875cc2ce4564fee678a3f3c5/packages/styled/src/utils.js#L40
+function isStringTag(tag) {
+  return (
+    typeof tag === 'string' &&
+    // 96 is one less than the char code
+    // for "a" so this is checking that
+    // it's a lowercase character
+    tag.charCodeAt(0) > 96
+  );
+}
+
+function lowercaseFirstLetter(string) {
+  if (!string) {
+    return string;
+  }
+  return string.charAt(0).toLowerCase() + string.slice(1);
 }

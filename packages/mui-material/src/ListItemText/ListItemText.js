@@ -3,12 +3,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import Typography from '../Typography';
+import Typography, { typographyClasses } from '../Typography';
 import ListContext from '../List/ListContext';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import listItemTextClasses, { getListItemTextUtilityClass } from './listItemTextClasses';
-
-const useThemeProps = createUseThemeProps('MuiListItemText');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, inset, primary, secondary, dense } = ownerState;
@@ -42,6 +41,12 @@ const ListItemTextRoot = styled('div', {
   minWidth: 0,
   marginTop: 4,
   marginBottom: 4,
+  [`.${typographyClasses.root}:where(& .${listItemTextClasses.primary})`]: {
+    display: 'block',
+  },
+  [`.${typographyClasses.root}:where(& .${listItemTextClasses.secondary})`]: {
+    display: 'block',
+  },
   variants: [
     {
       props: ({ ownerState }) => ownerState.primary && ownerState.secondary,
@@ -60,7 +65,7 @@ const ListItemTextRoot = styled('div', {
 });
 
 const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiListItemText' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiListItemText' });
   const {
     children,
     className,
@@ -94,7 +99,6 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
         variant={dense ? 'body2' : 'body1'}
         className={classes.primary}
         component={primaryTypographyProps?.variant ? undefined : 'span'}
-        display="block"
         {...primaryTypographyProps}
       >
         {primary}
@@ -107,8 +111,7 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
       <Typography
         variant="body2"
         className={classes.secondary}
-        color="text.secondary"
-        display="block"
+        color="textSecondary"
         {...secondaryTypographyProps}
       >
         {secondary}

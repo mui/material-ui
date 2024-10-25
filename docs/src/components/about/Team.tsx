@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Paper, { PaperProps } from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
@@ -157,7 +157,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
             <IconButton
               aria-label={`${props.name} X profile`}
               component="a"
-              href={`https://twitter.com/${props.twitter}`}
+              href={`https://x.com/${props.twitter}`}
               target="_blank"
               rel="noopener"
             >
@@ -177,15 +177,15 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
           )}
         </Box>
       </Box>
-      <Typography variant="body2" fontWeight="bold" sx={{ mt: 2, mb: 0.5 }}>
+      <Typography variant="body2" sx={{ fontWeight: 'bold', mt: 2, mb: 0.5 }}>
         {props.name}
       </Typography>
-      <Typography variant="body2" color="text.secondary">
+      <Typography variant="body2" sx={{ color: 'text.secondary' }}>
         {props.title}
       </Typography>
       {props.about && <Divider sx={{ my: 1.5 }} />}
       {props.about && (
-        <Typography variant="body2" color="text.tertiary">
+        <Typography variant="body2" sx={{ color: 'text.tertiary' }}>
           {props.about}
         </Typography>
       )}
@@ -332,13 +332,7 @@ export default function Team() {
   return (
     <React.Fragment>
       <Section cozy>
-        <Box
-          sx={{
-            my: 4,
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-        >
+        <Box sx={{ my: 4, display: 'flex', flexDirection: 'column' }}>
           <SectionHeadline
             overline="Team"
             title={
@@ -369,7 +363,7 @@ export default function Team() {
               ...profileJson,
             };
             return (
-              <Grid key={profile.name} xs={12} sm={6} md={3}>
+              <Grid key={profile.name} size={{ xs: 12, sm: 6, md: 3 }}>
                 <Person {...profile} />
               </Grid>
             );
@@ -380,31 +374,39 @@ export default function Team() {
       {/* Community contributors */}
       <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'common.black' }}>
         <Container sx={{ py: { xs: 4, sm: 8 } }}>
-          <Typography component="h3" variant="h4" color="primary.200" fontWeight="semiBold">
+          <Typography
+            component="h3"
+            variant="h4"
+            sx={{ color: 'primary.200', fontWeight: 'semiBold' }}
+          >
             Community contributors
           </Typography>
-          <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
+          <Typography sx={{ color: 'text.secondary', maxWidth: { md: 500 } }}>
             Special members of the community deserve a shout-out for their ever-lasting impact on
             MUI&apos;s products.
           </Typography>
           <Grid container spacing={2} mt={2}>
             {contributors.map((profile) => (
-              <Grid key={profile.name} xs={12} sm={6} md={3}>
+              <Grid key={profile.name} size={{ xs: 12, sm: 6, md: 3 }}>
                 <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
               </Grid>
             ))}
           </Grid>
           <Divider sx={{ my: { xs: 2, sm: 6 } }} />
-          <Typography component="h3" variant="h4" color="warning.300" fontWeight="semiBold">
+          <Typography
+            component="h3"
+            variant="h4"
+            sx={{ color: 'warning.300', fontWeight: 'semiBold' }}
+          >
             Community emeriti
           </Typography>
-          <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
+          <Typography sx={{ color: 'text.secondary', maxWidth: { md: 500 } }}>
             We honor some no-longer-active core team members who have made valuable contributions in
             the past. They advise us from time to time.
           </Typography>
           <Grid container spacing={2} mt={2}>
             {emeriti.map((profile) => (
-              <Grid key={profile.name} xs={12} sm={6} md={3}>
+              <Grid key={profile.name} size={{ xs: 12, sm: 6, md: 3 }}>
                 <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
               </Grid>
             ))}

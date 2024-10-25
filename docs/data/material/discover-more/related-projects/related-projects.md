@@ -12,10 +12,6 @@ Feel free to submit a pull request!
 
 - [UXPin](https://www.uxpin.com/merge/mui-library): A large UI kit of Material UI components. It renders the components in a web runtime and uses the same React implementation as your production environment.
 
-## IDE tools
-
-- [eslint-plugin-material-ui-unused-classes](https://github.com/jens-ox/eslint-plugin-material-ui-unused-classes): ESLint plugin to detect unused styling classes with `@mui/styles`.
-
 ## Theming
 
 - [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your Material UI applications that features live previewing.
@@ -25,7 +21,7 @@ Feel free to submit a pull request!
 
 ### Layout
 
-- [MUI Treasury Layout](https://mui-treasury.com/?path=/docs/layout-introduction--docs): Components to handle the overall layout of a page. Check out examples such as [a legacy.reactjs.org clone](https://mui-treasury.com/?path=/story/layout-app-reactlegacy--react-legacy).
+- [MUI Treasury Layout](https://mui-treasury.com/?path=/docs/layout-v6-introduction--docs): Components to handle the overall layout of a page. Check out examples such as [a legacy.reactjs.org clone](https://mui-treasury.com/?path=/story/layout-v6-app-react-legacy--react-legacy).
 
 ### Image
 
@@ -63,5 +59,5 @@ Feel free to submit a pull request!
 
 ## Admin frameworks
 
-- [React Admin](https://github.com/marmelab/react-admin): A frontend Framework for building data-driven applications running in the browser on top of REST/GraphQL APIs.
-- [refine](https://github.com/refinedev/refine): An open source, headless React-based framework for the rapid development of web applications.
+- [React-admin](https://github.com/marmelab/react-admin): A frontend Framework for building data-driven applications running in the browser on top of REST/GraphQL APIs.
+- [Refine](https://github.com/refinedev/refine): An open source, headless React meta-framework for the rapid development of web applications.

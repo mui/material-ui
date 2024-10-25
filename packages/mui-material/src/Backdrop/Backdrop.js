@@ -3,12 +3,16 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import useSlot from '../utils/useSlot';
 import Fade from '../Fade';
 import { getBackdropUtilityClass } from './backdropClasses';
 
-const useThemeProps = createUseThemeProps('MuiBackdrop');
+const removeOwnerState = (props) => {
+  const { ownerState, ...rest } = props;
+  return rest;
+};
 
 const useUtilityClasses = (ownerState) => {
   const { classes, invisible } = ownerState;
@@ -50,7 +54,7 @@ const BackdropRoot = styled('div', {
 });
 
 const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiBackdrop' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiBackdrop' });
   const {
     children,
     className,
@@ -97,11 +101,10 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
     externalForwardedProps,
     ownerState,
   });
-
-  delete transitionProps.ownerState;
+  const transitionPropsRemoved = removeOwnerState(transitionProps);
 
   return (
-    <TransitionSlot in={open} timeout={transitionDuration} {...other} {...transitionProps}>
+    <TransitionSlot in={open} timeout={transitionDuration} {...other} {...transitionPropsRemoved}>
       <RootSlot aria-hidden {...rootProps} classes={classes} ref={ref}>
         {children}
       </RootSlot>
@@ -134,8 +137,7 @@ Backdrop.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated Use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -146,8 +148,7 @@ Backdrop.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -190,9 +191,8 @@ Backdrop.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The component used for the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
-   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionComponent: PropTypes.elementType,
   /**

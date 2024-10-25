@@ -1,5 +1,3 @@
-import MuiError from '@mui/internal-babel-macros/MuiError.macro';
-
 export { css, keyframes, StyledEngineProvider } from '@mui/styled-engine';
 export { default as GlobalStyles } from './GlobalStyles';
 export { default as borders } from './borders';
@@ -38,7 +36,7 @@ export {
 // TODO: Remove this function in v6
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function experimental_sx() {
-  throw new MuiError(
+  throw /* minify-error */ new Error(
     'MUI: The `experimental_sx` has been moved to `theme.unstable_sx`.' +
       'For more details, see https://github.com/mui/material-ui/pull/35150.',
   );
@@ -50,7 +48,7 @@ export { default as createStyled } from './createStyled';
 export * from './createStyled';
 export { default as styled } from './styled';
 export { default as createTheme } from './createTheme';
-export { default as createBreakpoints } from './createTheme/createBreakpoints';
+export { default as createBreakpoints } from './createBreakpoints/createBreakpoints';
 export { default as createSpacing } from './createTheme/createSpacing';
 export { default as shape } from './createTheme/shape';
 export { default as useThemeProps, getThemeProps } from './useThemeProps';
@@ -59,6 +57,7 @@ export { default as useThemeWithoutDefault } from './useThemeWithoutDefault';
 export { default as useMediaQuery } from './useMediaQuery';
 export * from './colorManipulator';
 export { default as ThemeProvider } from './ThemeProvider';
+export { default as unstable_memoTheme } from './memoTheme';
 export { default as unstable_createCssVarsProvider } from './cssVars/createCssVarsProvider';
 export { default as unstable_createGetCssVar } from './cssVars/createGetCssVar';
 export { default as unstable_cssVarsParser } from './cssVars/cssVarsParser';
@@ -67,6 +66,7 @@ export { default as unstable_createCssVarsTheme } from './cssVars/createCssVarsT
 export { default as responsivePropType } from './responsivePropType';
 export { default as RtlProvider } from './RtlProvider';
 export * from './RtlProvider';
+export * from './version';
 
 /** ----------------- */
 /** Layout components */
@@ -74,8 +74,8 @@ export { default as createContainer } from './Container/createContainer';
 export { default as Container } from './Container';
 export * from './Container';
 
-export { default as Unstable_Grid } from './Unstable_Grid/Grid';
-export * from './Unstable_Grid';
+export { default as Grid } from './Grid/Grid';
+export * from './Grid';
 
 export { default as Stack } from './Stack/Stack';
 export * from './Stack';

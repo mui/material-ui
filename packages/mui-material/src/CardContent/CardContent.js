@@ -3,10 +3,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getCardContentUtilityClass } from './cardContentClasses';
-
-const useThemeProps = createUseThemeProps('MuiCardContent');
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -30,7 +29,7 @@ const CardContentRoot = styled('div', {
 });
 
 const CardContent = React.forwardRef(function CardContent(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiCardContent',
   });

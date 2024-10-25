@@ -80,7 +80,6 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link
     noLinkStyle,
     prefetch,
     replace,
-    role, // Link don't have roles.
     scroll,
     shallow,
     ...other
@@ -104,7 +103,7 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link
   if (
     userLanguage !== 'en' &&
     pathname &&
-    pathname.indexOf('/') === 0 &&
+    pathname.startsWith('/') &&
     !LANGUAGES_IGNORE_PAGES(pathname) &&
     !pathname.startsWith(`/${userLanguage}/`)
   ) {

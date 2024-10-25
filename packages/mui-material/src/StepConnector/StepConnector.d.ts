@@ -4,7 +4,7 @@ import { InternalStandardProps as StandardProps } from '..';
 import { Theme } from '../styles';
 import { StepConnectorClasses } from './stepConnectorClasses';
 
-export type StepConnectorIcon = React.ReactElement<any> | string | number;
+export type StepConnectorIcon = React.ReactElement<unknown> | string | number;
 
 export interface StepConnectorProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'> {

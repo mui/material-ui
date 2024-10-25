@@ -18,11 +18,10 @@ Thanks for writing tests! Here's a quick run-down on our current setup.
 - [Karma](https://karma-runner.github.io/latest/index.html)
 - [Playwright](https://playwright.dev/)
 - [jsdom](https://github.com/jsdom/jsdom)
-- [enzyme](https://airbnb.io/enzyme/) (old tests only)
 
 ## Writing tests
 
-For all unit tests, please use the return value from `@mui-internal/test-utils/createRenderer`.
+For all unit tests, please use the return value from `@mui/internal-test-utils/createRenderer`.
 It prepares the test suite and returns a function with the same interface as
 [`render` from `@testing-library/react`](https://testing-library.com/docs/react-testing-library/api#render).
 
@@ -143,7 +142,7 @@ Here is an [example](https://github.com/mui/material-ui/blob/814fb60bbd8e500517b
 
 `pnpm test:coverage:html`
 
-When running this command you should get under `coverage/index.html` a full coverage report in HTML format. This is created using [Istanbul](https://istanbul-js.org)'s HTML reporter and gives good data such as line, branch and function coverage.
+When running this command you should get under `coverage/index.html` a full coverage report in HTML format. This is created using [Istanbul](https://istanbul.js.org)'s HTML reporter and gives good data such as line, branch and function coverage.
 
 ### DOM API level
 
@@ -203,6 +202,9 @@ You can view the screenshots in `test/regressions/screenshots/chrome`.
 
 Alternatively, you might want to open `http://localhost:5001` (while `pnpm test:regressions:dev` is running) to view individual views separately.
 
+For testing the components using Pigment CSS, you can run `pnpm test:regressions-pigment-css:dev`.
+You can then open `http://localhost:5001/fixtures` to vide individual views separately.
+
 ### Caveats
 
 #### Accessibility tree exclusion
@@ -245,7 +247,11 @@ For example, in https://app.circleci.com/pipelines/github/mui/material-ui/32796/
 
 ### Testing multiple versions of React
 
-You can check integration of different versions of React (for example different [release channels](https://react.dev/community/versioning-policy) or PRs to React) by running `node scripts/useReactVersion.mjs <version>`.
+You can check integration of different versions of React (for example different [release channels](https://react.dev/community/versioning-policy) or PRs to React) by running:
+
+```bash
+pnpm use-react-version <version>
+```
 
 Possible values for `version`:
 
@@ -254,6 +260,27 @@ Possible values for `version`:
 - an older version, for example `^17.0.0`
 
 #### CI
+
+##### Circle CI web interface
+
+There are two workflows that can be triggered for any given PR manually in the CircleCI web interface:
+
+- `react-next`
+- `react-17`
+
+Follow these steps:
+
+1. Go to https://app.circleci.com/pipelines/github/mui/material-ui?branch=pull/PR_NUMBER/head and replace `PR_NUMBER` with the PR number you want to test.
+2. Click `Trigger Pipeline` button.
+3. Expand `Add parameters (optional)` and add the following parameter:
+
+   | Parameter type | Name       | Value                      |
+   | :------------- | :--------- | :------------------------- |
+   | `string`       | `workflow` | `react-next` or `react-17` |
+
+4. Click `Trigger Pipeline` button.
+
+##### API request
 
 You can pass the same `version` to our CircleCI pipeline as well:
 

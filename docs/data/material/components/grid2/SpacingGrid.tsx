@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -35,12 +35,14 @@ export default function SpacingGrid() {
         {[0, 1, 2].map((value) => (
           <Grid key={value}>
             <Paper
-              sx={{
+              sx={(theme) => ({
                 height: 140,
                 width: 100,
-                backgroundColor: (theme) =>
-                  theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-              }}
+                backgroundColor: '#fff',
+                ...theme.applyStyles('dark', {
+                  backgroundColor: '#1A2027',
+                }),
+              })}
             />
           </Grid>
         ))}

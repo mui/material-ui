@@ -1,6 +1,3 @@
-'use client';
-import MuiError from '@mui/internal-babel-macros/MuiError.macro';
-
 export { default as THEME_ID } from './identifier';
 export { default as adaptV4Theme } from './adaptV4Theme';
 export {
@@ -18,10 +15,11 @@ export {
   css,
   keyframes,
 } from '@mui/system';
+export { unstable_createBreakpoints } from '@mui/system/createBreakpoints';
 // TODO: Remove this function in v6.
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function experimental_sx() {
-  throw new MuiError(
+  throw /* minify-error */ new Error(
     'MUI: The `experimental_sx` has been moved to `theme.unstable_sx`.' +
       'For more details, see https://github.com/mui/material-ui/pull/35150.',
   );
@@ -31,7 +29,8 @@ export { default as unstable_createMuiStrictModeTheme } from './createMuiStrictM
 export { default as createStyles } from './createStyles';
 export { getUnit as unstable_getUnit, toUnitless as unstable_toUnitless } from './cssUtils';
 export { default as responsiveFontSizes } from './responsiveFontSizes';
-export { duration, easing } from './createTransitions';
+export { default as createTransitions, duration, easing } from './createTransitions';
+export { default as createColorScheme } from './createColorScheme';
 export { default as useTheme } from './useTheme';
 export { default as useThemeProps } from './useThemeProps';
 export { default as styled } from './styled';
@@ -44,8 +43,8 @@ export { default as makeStyles } from './makeStyles';
 export { default as withStyles } from './withStyles';
 export { default as withTheme } from './withTheme';
 
-export * from './CssVarsProvider';
-export { default as extendTheme } from './extendTheme';
+export * from './ThemeProviderWithVars';
+export { default as extendTheme } from './createThemeWithVars';
 export { default as experimental_extendTheme } from './experimental_extendTheme'; // TODO: Remove in v7
 export { default as getOverlayAlpha } from './getOverlayAlpha';
 export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';

@@ -5,11 +5,11 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import unsupportedProp from '../utils/unsupportedProp';
 import tabClasses, { getTabUtilityClass } from './tabClasses';
-
-const useThemeProps = createUseThemeProps('MuiTab');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, textColor, fullWidth, wrapped, icon, label, selected, disabled } = ownerState;
@@ -24,7 +24,7 @@ const useUtilityClasses = (ownerState) => {
       selected && 'selected',
       disabled && 'disabled',
     ],
-    iconWrapper: ['iconWrapper'],
+    icon: ['iconWrapper', 'icon'],
   };
 
   return composeClasses(slots, getTabUtilityClass, classes);
@@ -42,145 +42,153 @@ const TabRoot = styled(ButtonBase, {
       styles[`textColor${capitalize(ownerState.textColor)}`],
       ownerState.fullWidth && styles.fullWidth,
       ownerState.wrapped && styles.wrapped,
+      {
+        [`& .${tabClasses.iconWrapper}`]: styles.iconWrapper,
+      },
+      {
+        [`& .${tabClasses.icon}`]: styles.icon,
+      },
     ];
   },
-})(({ theme }) => ({
-  ...theme.typography.button,
-  maxWidth: 360,
-  minWidth: 90,
-  position: 'relative',
-  minHeight: 48,
-  flexShrink: 0,
-  padding: '12px 16px',
-  overflow: 'hidden',
-  whiteSpace: 'normal',
-  textAlign: 'center',
-  lineHeight: 1.25,
-  variants: [
-    {
-      props: ({ ownerState }) =>
-        ownerState.label &&
-        (ownerState.iconPosition === 'top' || ownerState.iconPosition === 'bottom'),
-      style: {
-        flexDirection: 'column',
-      },
-    },
-    {
-      props: ({ ownerState }) =>
-        ownerState.label &&
-        ownerState.iconPosition !== 'top' &&
-        ownerState.iconPosition !== 'bottom',
-      style: {
-        flexDirection: 'row',
-      },
-    },
-    {
-      props: ({ ownerState }) => ownerState.icon && ownerState.label,
-      style: {
-        minHeight: 72,
-        paddingTop: 9,
-        paddingBottom: 9,
-      },
-    },
-    {
-      props: ({ ownerState, iconPosition }) =>
-        ownerState.icon && ownerState.label && iconPosition === 'top',
-      style: {
-        [`& > .${tabClasses.iconWrapper}`]: {
-          marginBottom: 6,
+})(
+  memoTheme(({ theme }) => ({
+    ...theme.typography.button,
+    maxWidth: 360,
+    minWidth: 90,
+    position: 'relative',
+    minHeight: 48,
+    flexShrink: 0,
+    padding: '12px 16px',
+    overflow: 'hidden',
+    whiteSpace: 'normal',
+    textAlign: 'center',
+    lineHeight: 1.25,
+    variants: [
+      {
+        props: ({ ownerState }) =>
+          ownerState.label &&
+          (ownerState.iconPosition === 'top' || ownerState.iconPosition === 'bottom'),
+        style: {
+          flexDirection: 'column',
         },
       },
-    },
-    {
-      props: ({ ownerState, iconPosition }) =>
-        ownerState.icon && ownerState.label && iconPosition === 'bottom',
-      style: {
-        [`& > .${tabClasses.iconWrapper}`]: {
-          marginTop: 6,
+      {
+        props: ({ ownerState }) =>
+          ownerState.label &&
+          ownerState.iconPosition !== 'top' &&
+          ownerState.iconPosition !== 'bottom',
+        style: {
+          flexDirection: 'row',
         },
       },
-    },
-    {
-      props: ({ ownerState, iconPosition }) =>
-        ownerState.icon && ownerState.label && iconPosition === 'start',
-      style: {
-        [`& > .${tabClasses.iconWrapper}`]: {
-          marginRight: theme.spacing(1),
+      {
+        props: ({ ownerState }) => ownerState.icon && ownerState.label,
+        style: {
+          minHeight: 72,
+          paddingTop: 9,
+          paddingBottom: 9,
         },
       },
-    },
-    {
-      props: ({ ownerState, iconPosition }) =>
-        ownerState.icon && ownerState.label && iconPosition === 'end',
-      style: {
-        [`& > .${tabClasses.iconWrapper}`]: {
-          marginLeft: theme.spacing(1),
+      {
+        props: ({ ownerState, iconPosition }) =>
+          ownerState.icon && ownerState.label && iconPosition === 'top',
+        style: {
+          [`& > .${tabClasses.icon}`]: {
+            marginBottom: 6,
+          },
         },
       },
-    },
-    {
-      props: {
-        textColor: 'inherit',
-      },
-      style: {
-        color: 'inherit',
-        opacity: 0.6, // same opacity as theme.palette.text.secondary
-        [`&.${tabClasses.selected}`]: {
-          opacity: 1,
-        },
-        [`&.${tabClasses.disabled}`]: {
-          opacity: (theme.vars || theme).palette.action.disabledOpacity,
+      {
+        props: ({ ownerState, iconPosition }) =>
+          ownerState.icon && ownerState.label && iconPosition === 'bottom',
+        style: {
+          [`& > .${tabClasses.icon}`]: {
+            marginTop: 6,
+          },
         },
       },
-    },
-    {
-      props: {
-        textColor: 'primary',
-      },
-      style: {
-        color: (theme.vars || theme).palette.text.secondary,
-        [`&.${tabClasses.selected}`]: {
-          color: (theme.vars || theme).palette.primary.main,
-        },
-        [`&.${tabClasses.disabled}`]: {
-          color: (theme.vars || theme).palette.text.disabled,
+      {
+        props: ({ ownerState, iconPosition }) =>
+          ownerState.icon && ownerState.label && iconPosition === 'start',
+        style: {
+          [`& > .${tabClasses.icon}`]: {
+            marginRight: theme.spacing(1),
+          },
         },
       },
-    },
-    {
-      props: {
-        textColor: 'secondary',
-      },
-      style: {
-        color: (theme.vars || theme).palette.text.secondary,
-        [`&.${tabClasses.selected}`]: {
-          color: (theme.vars || theme).palette.secondary.main,
-        },
-        [`&.${tabClasses.disabled}`]: {
-          color: (theme.vars || theme).palette.text.disabled,
+      {
+        props: ({ ownerState, iconPosition }) =>
+          ownerState.icon && ownerState.label && iconPosition === 'end',
+        style: {
+          [`& > .${tabClasses.icon}`]: {
+            marginLeft: theme.spacing(1),
+          },
         },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.fullWidth,
-      style: {
-        flexShrink: 1,
-        flexGrow: 1,
-        flexBasis: 0,
-        maxWidth: 'none',
+      {
+        props: {
+          textColor: 'inherit',
+        },
+        style: {
+          color: 'inherit',
+          opacity: 0.6, // same opacity as theme.palette.text.secondary
+          [`&.${tabClasses.selected}`]: {
+            opacity: 1,
+          },
+          [`&.${tabClasses.disabled}`]: {
+            opacity: (theme.vars || theme).palette.action.disabledOpacity,
+          },
+        },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.wrapped,
-      style: {
-        fontSize: theme.typography.pxToRem(12),
+      {
+        props: {
+          textColor: 'primary',
+        },
+        style: {
+          color: (theme.vars || theme).palette.text.secondary,
+          [`&.${tabClasses.selected}`]: {
+            color: (theme.vars || theme).palette.primary.main,
+          },
+          [`&.${tabClasses.disabled}`]: {
+            color: (theme.vars || theme).palette.text.disabled,
+          },
+        },
       },
-    },
-  ],
-}));
+      {
+        props: {
+          textColor: 'secondary',
+        },
+        style: {
+          color: (theme.vars || theme).palette.text.secondary,
+          [`&.${tabClasses.selected}`]: {
+            color: (theme.vars || theme).palette.secondary.main,
+          },
+          [`&.${tabClasses.disabled}`]: {
+            color: (theme.vars || theme).palette.text.disabled,
+          },
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.fullWidth,
+        style: {
+          flexShrink: 1,
+          flexGrow: 1,
+          flexBasis: 0,
+          maxWidth: 'none',
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.wrapped,
+        style: {
+          fontSize: theme.typography.pxToRem(12),
+        },
+      },
+    ],
+  })),
+);
 
 const Tab = React.forwardRef(function Tab(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTab' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTab' });
   const {
     className,
     disabled = false,
@@ -223,7 +231,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
   const icon =
     iconProp && label && React.isValidElement(iconProp)
       ? React.cloneElement(iconProp, {
-          className: clsx(classes.iconWrapper, iconProp.props.className),
+          className: clsx(classes.icon, iconProp.props.className),
         })
       : iconProp;
   const handleClick = (event) => {

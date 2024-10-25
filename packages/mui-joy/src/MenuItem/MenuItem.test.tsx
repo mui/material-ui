@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import { MenuProvider, MenuProviderValue } from '@mui/base/useMenu';
 import { ThemeProvider } from '@mui/joy/styles';
 import MenuItem, { menuItemClasses as classes } from '@mui/joy/MenuItem';
@@ -36,17 +36,13 @@ describe('Joy <MenuItem />', () => {
     classes,
     inheritComponent: ListItemButton,
     render: (node) => render(<MenuProvider value={testContext}>{node}</MenuProvider>),
-    wrapMount: (mount) => (node) => {
-      const wrapper = mount(<MenuProvider value={testContext}>{node}</MenuProvider>);
-      return wrapper.childAt(0);
-    },
     ThemeProvider,
     refInstanceof: window.HTMLLIElement,
     testComponentPropWith: 'a',
     muiName: 'JoyMenuItem',
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
-    skip: ['propsSpread', 'componentsProp', 'classesRoot', 'reactTestRenderer'],
+    skip: ['propsSpread', 'componentsProp', 'classesRoot'],
     slots: {
       root: {
         expectedClassName: classes.root,
@@ -96,7 +92,7 @@ describe('Joy <MenuItem />', () => {
     ];
 
     events.forEach((eventName) => {
-      it(`should fire ${eventName}`, () => {
+      it(`should fire ${eventName}`, async () => {
         const handlerName = `on${eventName[0].toUpperCase()}${eventName.slice(1)}`;
         const handler = spy();
         render(<MenuItem {...{ [handlerName]: handler }} />);
@@ -107,7 +103,7 @@ describe('Joy <MenuItem />', () => {
       });
     });
 
-    it(`should fire focus, keydown, keyup and blur`, () => {
+    it(`should fire focus, keydown, keyup and blur`, async () => {
       const handleFocus = spy();
       const handleKeyDown = spy();
       const handleKeyUp = spy();
@@ -123,7 +119,7 @@ describe('Joy <MenuItem />', () => {
       );
       const menuitem = screen.getByRole('menuitem');
 
-      act(() => {
+      await act(async () => {
         menuitem.focus();
       });
 
@@ -137,7 +133,7 @@ describe('Joy <MenuItem />', () => {
 
       expect(handleKeyUp.callCount).to.equal(1);
 
-      act(() => {
+      await act(async () => {
         menuitem.blur();
       });
 

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { renderHook } from '@testing-library/react';
-import { act } from '@mui-internal/test-utils';
+import { act } from '@mui/internal-test-utils';
 import { useTransitionTrigger } from './useTransitionTrigger';
 
 describe('useTransitionTrigger', () => {

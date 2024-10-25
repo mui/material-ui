@@ -69,7 +69,7 @@ export default function MenuToolbarExample() {
   const [menuIndex, setMenuIndex] = React.useState<null | number>(null);
 
   const renderShortcut = (text: string) => (
-    <Typography level="body-sm" textColor="text.tertiary" ml="auto">
+    <Typography level="body-sm" textColor="text.tertiary" sx={{ ml: 'auto' }}>
       {text}
     </Typography>
   );

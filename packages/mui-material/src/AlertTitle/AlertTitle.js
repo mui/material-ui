@@ -3,11 +3,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Typography from '../Typography';
 import { getAlertTitleUtilityClass } from './alertTitleClasses';
-
-const useThemeProps = createUseThemeProps('MuiAlertTitle');
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -23,15 +23,17 @@ const AlertTitleRoot = styled(Typography, {
   name: 'MuiAlertTitle',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme }) => {
-  return {
-    fontWeight: theme.typography.fontWeightMedium,
-    marginTop: -2,
-  };
-});
+})(
+  memoTheme(({ theme }) => {
+    return {
+      fontWeight: theme.typography.fontWeightMedium,
+      marginTop: -2,
+    };
+  }),
+);
 
 const AlertTitle = React.forwardRef(function AlertTitle(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiAlertTitle',
   });

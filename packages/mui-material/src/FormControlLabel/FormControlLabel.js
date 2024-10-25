@@ -5,8 +5,9 @@ import clsx from 'clsx';
 import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import { useFormControl } from '../FormControl';
-import { styled, createUseThemeProps } from '../zero-styled';
-import Stack from '../Stack';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Typography from '../Typography';
 import capitalize from '../utils/capitalize';
 import formControlLabelClasses, {
@@ -14,8 +15,6 @@ import formControlLabelClasses, {
 } from './formControlLabelClasses';
 import formControlState from '../FormControl/formControlState';
 import useSlot from '../utils/useSlot';
-
-const useThemeProps = createUseThemeProps('MuiFormControlLabel');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disabled, labelPlacement, error, required } = ownerState;
@@ -46,69 +45,73 @@ export const FormControlLabelRoot = styled('label', {
       styles[`labelPlacement${capitalize(ownerState.labelPlacement)}`],
     ];
   },
-})(({ theme }) => ({
-  display: 'inline-flex',
-  alignItems: 'center',
-  cursor: 'pointer',
-  // For correct alignment with the text.
-  verticalAlign: 'middle',
-  WebkitTapHighlightColor: 'transparent',
-  marginLeft: -11,
-  marginRight: 16, // used for row presentation of radio/checkbox
-  [`&.${formControlLabelClasses.disabled}`]: {
-    cursor: 'default',
-  },
-  [`& .${formControlLabelClasses.label}`]: {
+})(
+  memoTheme(({ theme }) => ({
+    display: 'inline-flex',
+    alignItems: 'center',
+    cursor: 'pointer',
+    // For correct alignment with the text.
+    verticalAlign: 'middle',
+    WebkitTapHighlightColor: 'transparent',
+    marginLeft: -11,
+    marginRight: 16, // used for row presentation of radio/checkbox
     [`&.${formControlLabelClasses.disabled}`]: {
-      color: (theme.vars || theme).palette.text.disabled,
+      cursor: 'default',
     },
-  },
-  variants: [
-    {
-      props: { labelPlacement: 'start' },
-      style: {
-        flexDirection: 'row-reverse',
-        marginRight: -11,
+    [`& .${formControlLabelClasses.label}`]: {
+      [`&.${formControlLabelClasses.disabled}`]: {
+        color: (theme.vars || theme).palette.text.disabled,
       },
     },
-    {
-      props: { labelPlacement: 'top' },
-      style: {
-        flexDirection: 'column-reverse',
+    variants: [
+      {
+        props: { labelPlacement: 'start' },
+        style: {
+          flexDirection: 'row-reverse',
+          marginRight: -11,
+        },
       },
-    },
-    {
-      props: { labelPlacement: 'bottom' },
-      style: {
-        flexDirection: 'column',
+      {
+        props: { labelPlacement: 'top' },
+        style: {
+          flexDirection: 'column-reverse',
+        },
       },
-    },
-    {
-      props: ({ labelPlacement }) =>
-        labelPlacement === 'start' || labelPlacement === 'top' || labelPlacement === 'bottom',
-      style: {
-        marginLeft: 16, // used for row presentation of radio/checkbox
+      {
+        props: { labelPlacement: 'bottom' },
+        style: {
+          flexDirection: 'column',
+        },
       },
-    },
-  ],
-}));
+      {
+        props: ({ labelPlacement }) =>
+          labelPlacement === 'start' || labelPlacement === 'top' || labelPlacement === 'bottom',
+        style: {
+          marginLeft: 16, // used for row presentation of radio/checkbox
+        },
+      },
+    ],
+  })),
+);
 
 const AsteriskComponent = styled('span', {
   name: 'MuiFormControlLabel',
   slot: 'Asterisk',
   overridesResolver: (props, styles) => styles.asterisk,
-})(({ theme }) => ({
-  [`&.${formControlLabelClasses.error}`]: {
-    color: (theme.vars || theme).palette.error.main,
-  },
-}));
+})(
+  memoTheme(({ theme }) => ({
+    [`&.${formControlLabelClasses.error}`]: {
+      color: (theme.vars || theme).palette.error.main,
+    },
+  })),
+);
 
 /**
  * Drop-in replacement of the `Radio`, `Switch` and `Checkbox` component.
  * Use this component if you want to display an extra label.
  */
 const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiFormControlLabel' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiFormControlLabel' });
   const {
     checked,
     className,
@@ -196,12 +199,12 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     >
       {React.cloneElement(control, controlProps)}
       {required ? (
-        <Stack display="block">
+        <div>
           {label}
           <AsteriskComponent ownerState={ownerState} aria-hidden className={classes.asterisk}>
             &thinsp;{'*'}
           </AsteriskComponent>
-        </Stack>
+        </div>
       ) : (
         label
       )}
@@ -229,7 +232,7 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
   /**
    * The props used for each slot inside.
    * @default {}
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps: PropTypes.shape({
     typography: PropTypes.object,

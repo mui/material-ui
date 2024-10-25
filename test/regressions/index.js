@@ -1,9 +1,21 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import * as ReactDOMClient from 'react-dom/client';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import webfontloader from 'webfontloader';
+import { Globals } from '@react-spring/web';
 import TestViewer from './TestViewer';
+
+// Skip charts annimation for screen shots
+Globals.assign({
+  skipAnimation: true,
+});
+
+window.muiFixture = {
+  navigate: () => {
+    throw new Error(`muiFixture.navigate is not ready`);
+  },
+};
 
 // Get all the fixtures specifically written for preventing visual regressions.
 const importRegressionFixtures = require.context('./fixtures', true, /\.(js|ts|tsx)$/, 'lazy');
@@ -27,13 +39,73 @@ importRegressionFixtures.keys().forEach((path) => {
 }, []);
 
 const blacklist = [
-  'docs-getting-started-templates-sign-in-side/CustomIcons.png', // Theme file
-  'docs-getting-started-templates-sign-in/CustomIcons.png', // Theme file
-  'docs-getting-started-templates-sign-up/CustomIcons.png', // Theme file
-  'docs-getting-started-templates-sign-in-side/getSignInSideTheme.png', // Theme file
-  'docs-getting-started-templates-sign-up/getSignUpTheme.png', // Theme file
-  'docs-getting-started-templates-checkout/getCheckoutTheme.png', // Theme file
-  'docs-getting-started-templates-landing-page/getLPTheme.png', // Theme file
+  // Excludes demos that we don't want
+  /^docs-(.*)(?<=NoSnap)\.png$/,
+  // Blog template components and theme customizations
+  'docs-getting-started-templates-blog/Blog.png',
+  'docs-getting-started-templates-blog/TemplateFrame.png',
+  'docs-getting-started-templates-blog-components/AppAppbar.png',
+  'docs-getting-started-templates-blog-components/Footer.png',
+  'docs-getting-started-templates-blog-components/Latest.png',
+  'docs-getting-started-templates-blog-components/SitemarkIcon.png',
+  'docs-getting-started-templates-blog-components/ToggleColorMode.png',
+  'docs-getting-started-templates-blog-theme-customizations/buttons.png',
+  'docs-getting-started-templates-blog-theme-customizations/index.png',
+  'docs-getting-started-templates-blog-theme-customizations/inputs.png',
+  'docs-getting-started-templates-blog-theme-customizations/layoutComponents.png',
+  'docs-getting-started-templates-blog-theme-customizations/menus.png',
+  'docs-getting-started-templates-blog-theme-customizations/others.png',
+  // Dashboard template components and theme customizations
+  'docs-getting-started-templates-dashboard/Dashboard.png',
+  'docs-getting-started-templates-dashboard/TemplateFrame.png',
+  'docs-getting-started-templates-dashboard-components/ChartUserByCountry.png',
+  'docs-getting-started-templates-dashboard-components/CustomDatePicker.png',
+  'docs-getting-started-templates-dashboard-components/CustomizedDataGrid.png',
+  'docs-getting-started-templates-dashboard-components/CustomizedTreeView.png',
+  'docs-getting-started-templates-dashboard-components/Header.png',
+  'docs-getting-started-templates-dashboard-components/HighlightedCard.png',
+  'docs-getting-started-templates-dashboard-components/MenuButton.png',
+  'docs-getting-started-templates-dashboard-components/Navbar.png',
+  'docs-getting-started-templates-dashboard-components/NavbarBreadcrumbs.png',
+  'docs-getting-started-templates-dashboard-components/OptionsMenu.png',
+  'docs-getting-started-templates-dashboard-components/SessionsChart.png',
+  'docs-getting-started-templates-dashboard-components/Search.png',
+  'docs-getting-started-templates-dashboard-components/ToggleColorMode.png',
+  'docs-getting-started-templates-dashboard-components/SideMenuMobile.png',
+  'docs-getting-started-templates-dashboard-components/PageViewsBarChart.png',
+  'docs-getting-started-templates-dashboard-components/StatCard.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/buttons.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/charts.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/dataGrid.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/datePickers.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/index.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/inputs.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/layoutComponents.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/menus.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/others.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/treeView.png',
+  'docs-getting-started-templates-dashboard-internals-components/CustomIcons.png',
+  // Sign-In/Sign-Up Theme Customizations
+  'docs-getting-started-templates-sign-in-side/TemplateFrame.png',
+  'docs-getting-started-templates-sign-in-side-theme-customizations/index.png',
+  'docs-getting-started-templates-sign-in-side/CustomIcons.png',
+  'docs-getting-started-templates-sign-in/TemplateFrame.png',
+  'docs-getting-started-templates-sign-in-theme-customizations/index.png',
+  'docs-getting-started-templates-sign-in/CustomIcons.png',
+  'docs-getting-started-templates-sign-up/TemplateFrame.png',
+  'docs-getting-started-templates-sign-up-theme-customizations/index.png',
+  'docs-getting-started-templates-sign-in-side/getSignInSideTheme.png',
+  'docs-getting-started-templates-sign-up/CustomIcons.png',
+  'docs-getting-started-templates-sign-up/getSignUpTheme.png',
+  // Checkout Theme Customizations
+  'docs-getting-started-templates-checkout/TemplateFrame.png',
+  'docs-getting-started-templates-checkout-theme-customizations/index.png',
+  'docs-getting-started-templates-checkout/getCheckoutTheme.png',
+  // Marketing Page Theme Customizations
+  'docs-getting-started-templates-marketing-page/TemplateFrame.png',
+  'docs-getting-started-templates-marketing-page/getMPTheme.png',
+  'docs-getting-started-templates-marketing-page/MarketingPage.png',
+  'docs-getting-started-templates-marketing-page-theme-customizations/index.png',
   'docs-joy-getting-started-templates/TemplateCollection.png', // No public components
   'docs-joy-core-features-automatic-adjustment/ListThemes.png', // No public components
   'docs-joy-tools/PaletteThemeViewer.png', // No need for theme tokens
@@ -77,7 +149,6 @@ const blacklist = [
   'docs-components-grid/InteractiveGrid.png', // Redux isolation
   'docs-components-grid/SpacingGrid.png', // Needs interaction
   'docs-components-hidden', // Need to dynamically resize to test
-  'docs-components-icons/FontAwesomeIconSize.png', // Relies on cascading network requests
   'docs-components-image-list', // Image don't load
   'docs-components-masonry/ImageMasonry.png', // Image don't load
   'docs-components-material-icons/synonyms.png', // No component
@@ -140,20 +211,10 @@ const blacklist = [
   'docs-customization-transitions/TransitionHover.png', // Need interaction
   'docs-customization-typography/ResponsiveFontSizesChart.png',
   'docs-customization-right-to-left/RtlDemo.png',
+  'docs-customization-container-queries/ResizableDemo.png', // No public components
   'docs-discover-more-languages', // No public components
   'docs-discover-more-showcase', // No public components
   'docs-discover-more-team', // No public components
-  'docs-getting-started-templates-landing-page/LandingPage.png', // Flaky image loading
-  'docs-getting-started-templates-blog', // Flaky random images
-  'docs-getting-started-templates-checkout/AddressForm.png', // Already tested in docs-getting-started-templates-checkout/Checkout
-  'docs-getting-started-templates-checkout/PaymentForm.png', // Already tested in docs-getting-started-templates-checkout/Checkout
-  'docs-getting-started-templates-checkout/Review.png', // Already tested in docs-getting-started-templates-checkout/Checkout
-  'docs-getting-started-templates-dashboard/Chart.png', // Already tested in docs-getting-started-templates-dashboard/Dashboard
-  'docs-getting-started-templates-dashboard/Deposits.png', // Already tested in docs-getting-started-templates-dashboard/Dashboard
-  'docs-getting-started-templates-dashboard/listItems.png', // nothing to test
-  'docs-getting-started-templates-dashboard/Orders.png', // Already tested in docs-getting-started-templates-dashboard/Dashboard
-  'docs-getting-started-templates-dashboard/Title.png', // Already tested in docs-getting-started-templates-dashboard/Dashboard
-  'docs-getting-started-templates-sign-in-side/SignInSide.png', // Flaky
   'docs-getting-started-templates', // No public components
   'docs-getting-started-usage/Usage.png', // No public components
   'docs-getting-started-supported-components/MaterialUIComponents.png', // No public components
@@ -200,7 +261,7 @@ function excludeDemoFixture(suite, name) {
     }
 
     // assume regex
-    if (pattern.test(suite)) {
+    if (pattern.test(`${suite}/${name}.png`)) {
       unusedBlacklistPatterns.delete(pattern);
       return true;
     }
@@ -240,13 +301,13 @@ if (unusedBlacklistPatterns.size > 0) {
 
 const viewerRoot = document.getElementById('test-viewer');
 
-function FixtureRenderer({ component: FixtureComponent }) {
+function FixtureRenderer({ component: FixtureComponent, path }) {
   const viewerReactRoot = React.useRef(null);
 
   React.useLayoutEffect(() => {
     const renderTimeout = setTimeout(() => {
       const children = (
-        <TestViewer>
+        <TestViewer path={path}>
           <FixtureComponent />
         </TestViewer>
       );
@@ -265,38 +326,43 @@ function FixtureRenderer({ component: FixtureComponent }) {
         viewerReactRoot.current = null;
       });
     };
-  }, [FixtureComponent]);
+  }, [FixtureComponent, path]);
 
   return null;
 }
 
 FixtureRenderer.propTypes = {
   component: PropTypes.elementType,
+  path: PropTypes.string.isRequired,
 };
+
+function useHash() {
+  const subscribe = React.useCallback((callback) => {
+    window.addEventListener('hashchange', callback);
+    return () => {
+      window.removeEventListener('hashchange', callback);
+    };
+  }, []);
+  const getSnapshot = React.useCallback(() => window.location.hash, []);
+  const getServerSnapshot = React.useCallback(() => '', []);
+  return React.useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+}
+
+function computeIsDev(hash) {
+  if (hash === '#dev') {
+    return true;
+  }
+  if (hash === '#no-dev') {
+    return false;
+  }
+  return process.env.NODE_ENV === 'development';
+}
 
 function App(props) {
   const { fixtures } = props;
 
-  function computeIsDev() {
-    if (window.location.hash === '#dev') {
-      return true;
-    }
-    if (window.location.hash === '#no-dev') {
-      return false;
-    }
-    return process.env.NODE_ENV === 'development';
-  }
-  const [isDev, setDev] = React.useState(computeIsDev);
-  React.useEffect(() => {
-    function handleHashChange() {
-      setDev(computeIsDev());
-    }
-    window.addEventListener('hashchange', handleHashChange);
-
-    return () => {
-      window.removeEventListener('hashchange', handleHashChange);
-    };
-  }, []);
+  const hash = useHash();
+  const isDev = computeIsDev(hash);
 
   // Using <link rel="stylesheet" /> does not apply the google Roboto font in chromium headless/headfull.
   const [fontState, setFontState] = React.useState('pending');
@@ -307,7 +373,7 @@ function App(props) {
       },
       custom: {
         families: ['Font Awesome 5 Free:n9'],
-        urls: ['https://use.fontawesome.com/releases/v5.1.0/css/all.css'],
+        urls: ['https://use.fontawesome.com/releases/v5.14.0/css/all.css'],
       },
       timeout: 20000,
       active: () => {
@@ -325,8 +391,13 @@ function App(props) {
     return `/${fixture.suite}/${fixture.name}`;
   }
 
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    window.muiFixture.navigate = navigate;
+  }, [navigate]);
+
   return (
-    <Router>
+    <React.Fragment>
       <Routes>
         {fixtures.map((fixture) => {
           const path = computePath(fixture);
@@ -341,36 +412,43 @@ function App(props) {
               key={path}
               exact
               path={path}
-              element={fixturePrepared ? <FixtureRenderer component={FixtureComponent} /> : null}
+              element={
+                fixturePrepared ? (
+                  <FixtureRenderer component={FixtureComponent} path={path} />
+                ) : null
+              }
             />
           );
         })}
       </Routes>
 
-      <div hidden={!isDev}>
-        <div data-webfontloader={fontState}>webfontloader: {fontState}</div>
-        <p>
-          Devtools can be enabled by appending <code>#dev</code> in the addressbar or disabled by
-          appending <code>#no-dev</code>.
-        </p>
-        <a href="#no-dev">Hide devtools</a>
-        <details>
-          <summary id="my-test-summary">nav for all tests</summary>
-          <nav id="tests">
-            <ol>
-              {fixtures.map((fixture) => {
-                const path = computePath(fixture);
-                return (
-                  <li key={path}>
-                    <Link to={path}>{path}</Link>
-                  </li>
-                );
-              })}
-            </ol>
-          </nav>
-        </details>
-      </div>
-    </Router>
+      {isDev ? (
+        <div>
+          <div data-webfontloader={fontState}>webfontloader: {fontState}</div>
+          <p>
+            Devtools can be enabled by appending <code>#dev</code> in the addressbar or disabled by
+            appending <code>#no-dev</code>.
+          </p>
+          <a href="#no-dev">Hide devtools</a>
+          <details>
+            <summary id="my-test-summary">nav for all tests</summary>
+
+            <nav id="tests">
+              <ol>
+                {fixtures.map((fixture) => {
+                  const path = computePath(fixture);
+                  return (
+                    <li key={path}>
+                      <Link to={path}>{path}</Link>
+                    </li>
+                  );
+                })}
+              </ol>
+            </nav>
+          </details>
+        </div>
+      ) : null}
+    </React.Fragment>
   );
 }
 
@@ -379,6 +457,10 @@ App.propTypes = {
 };
 
 const container = document.getElementById('react-root');
-const children = <App fixtures={regressionFixtures.concat(demoFixtures)} />;
+const children = (
+  <Router>
+    <App fixtures={regressionFixtures.concat(demoFixtures)} />{' '}
+  </Router>
+);
 const reactRoot = ReactDOMClient.createRoot(container);
 reactRoot.render(children);

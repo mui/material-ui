@@ -22,27 +22,27 @@ export interface TextFieldSlots {
    * The component that renders the input.
    * @default OutlinedInput
    */
-  input?: React.ElementType;
+  input: React.ElementType;
   /**
    * The component that renders the input's label.
    * @default InputLabel
    */
-  inputLabel?: React.ElementType;
+  inputLabel: React.ElementType;
   /**
    * The html input element.
    * @default 'input'
    */
-  htmlInput?: React.ElementType;
+  htmlInput: React.ElementType;
   /**
    * The component that renders the helper text.
    * @default FormHelperText
    */
-  formHelperText?: React.ElementType;
+  formHelperText: React.ElementType;
   /**
    * The component that renders the select.
    * @default Select
    */
-  select?: React.ElementType;
+  select: React.ElementType;
 }
 
 export type TextFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotProps<
@@ -106,8 +106,8 @@ export interface BaseTextFieldProps
    */
   error?: boolean;
   /**
-   * Props applied to the [`FormHelperText`](/material-ui/api/form-helper-text/) element.
-   * @deprecated Use `slotProps.formHelperText` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * Props applied to the [`FormHelperText`](https://mui.com/material-ui/api/form-helper-text/) element.
+   * @deprecated Use `slotProps.formHelperText` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   FormHelperTextProps?: Partial<FormHelperTextProps>;
   /**
@@ -125,14 +125,14 @@ export interface BaseTextFieldProps
    */
   id?: string;
   /**
-   * Props applied to the [`InputLabel`](/material-ui/api/input-label/) element.
+   * Props applied to the [`InputLabel`](https://mui.com/material-ui/api/input-label/) element.
    * Pointer events like `onClick` are enabled if and only if `shrink` is `true`.
-   * @deprecated Use `slotProps.inputLabel` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.inputLabel` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   InputLabelProps?: Partial<InputLabelProps>;
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
-   * @deprecated Use `slotProps.htmlInput` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.htmlInput` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   inputProps?: InputBaseProps['inputProps'];
   /**
@@ -176,14 +176,14 @@ export interface BaseTextFieldProps
    */
   minRows?: string | number;
   /**
-   * Render a [`Select`](/material-ui/api/select/) element while passing the Input element to `Select` as `input` parameter.
+   * Render a [`Select`](https://mui.com/material-ui/api/select/) element while passing the Input element to `Select` as `input` parameter.
    * If this option is set you must pass the options of the select as children.
    * @default false
    */
   select?: boolean;
   /**
-   * Props applied to the [`Select`](/material-ui/api/select/) element.
-   * @deprecated Use `slotProps.select` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * Props applied to the [`Select`](https://mui.com/material-ui/api/select/) element.
+   * @deprecated Use `slotProps.select` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   SelectProps?: Partial<SelectProps>;
   /**
@@ -221,10 +221,10 @@ export interface StandardTextFieldProps
   variant?: 'standard';
   /**
    * Props applied to the Input element.
-   * It will be a [`FilledInput`](/material-ui/api/filled-input/),
-   * [`OutlinedInput`](/material-ui/api/outlined-input/) or [`Input`](/material-ui/api/input/)
+   * It will be a [`FilledInput`](https://mui.com/material-ui/api/filled-input/),
+   * [`OutlinedInput`](https://mui.com/material-ui/api/outlined-input/) or [`Input`](https://mui.com/material-ui/api/input/)
    * component depending on the `variant` prop value.
-   * @deprecated Use `slotProps.input` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.input` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   InputProps?: Partial<StandardInputProps>;
 }
@@ -246,10 +246,10 @@ export interface FilledTextFieldProps
   variant: 'filled';
   /**
    * Props applied to the Input element.
-   * It will be a [`FilledInput`](/material-ui/api/filled-input/),
-   * [`OutlinedInput`](/material-ui/api/outlined-input/) or [`Input`](/material-ui/api/input/)
+   * It will be a [`FilledInput`](https://mui.com/material-ui/api/filled-input/),
+   * [`OutlinedInput`](https://mui.com/material-ui/api/outlined-input/) or [`Input`](https://mui.com/material-ui/api/input/)
    * component depending on the `variant` prop value.
-   * @deprecated Use `slotProps.input` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.input` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   InputProps?: Partial<FilledInputProps>;
 }
@@ -271,10 +271,10 @@ export interface OutlinedTextFieldProps
   variant: 'outlined';
   /**
    * Props applied to the Input element.
-   * It will be a [`FilledInput`](/material-ui/api/filled-input/),
-   * [`OutlinedInput`](/material-ui/api/outlined-input/) or [`Input`](/material-ui/api/input/)
+   * It will be a [`FilledInput`](https://mui.com/material-ui/api/filled-input/),
+   * [`OutlinedInput`](https://mui.com/material-ui/api/outlined-input/) or [`Input`](https://mui.com/material-ui/api/input/)
    * component depending on the `variant` prop value.
-   * @deprecated Use `slotProps.input` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.input` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   InputProps?: Partial<OutlinedInputProps>;
 }
@@ -299,12 +299,12 @@ export type TextFieldOwnerState = BaseTextFieldProps;
  * It's important to understand that the text field is a simple abstraction
  * on top of the following components:
  *
- * *   [FormControl](https://mui.com/material-ui/api/form-control/)
- * *   [InputLabel](https://mui.com/material-ui/api/input-label/)
- * *   [FilledInput](https://mui.com/material-ui/api/filled-input/)
- * *   [OutlinedInput](https://mui.com/material-ui/api/outlined-input/)
- * *   [Input](https://mui.com/material-ui/api/input/)
- * *   [FormHelperText](https://mui.com/material-ui/api/form-helper-text/)
+ * * [FormControl](https://mui.com/material-ui/api/form-control/)
+ * * [InputLabel](https://mui.com/material-ui/api/input-label/)
+ * * [FilledInput](https://mui.com/material-ui/api/filled-input/)
+ * * [OutlinedInput](https://mui.com/material-ui/api/outlined-input/)
+ * * [Input](https://mui.com/material-ui/api/input/)
+ * * [FormHelperText](https://mui.com/material-ui/api/form-helper-text/)
  *
  * If you wish to alter the props applied to the `input` element, you can do so as follows:
  *
@@ -319,8 +319,8 @@ export type TextFieldOwnerState = BaseTextFieldProps;
  * For advanced cases, please look at the source of TextField by clicking on the
  * "Edit this page" button above. Consider either:
  *
- * *   using the upper case props for passing values directly to the components
- * *   using the underlying components directly as shown in the demos
+ * * using the upper case props for passing values directly to the components
+ * * using the underlying components directly as shown in the demos
  *
  * Demos:
  *

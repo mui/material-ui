@@ -2,7 +2,7 @@ import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
@@ -129,15 +129,8 @@ export function MaterialFigmaComponents({ fadeIn }: MaterialFigmaComponentsProps
 export function MaterialDesignKitInfo() {
   return (
     <Frame.Info data-mui-color-scheme="dark">
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 1,
-          mb: 0.5,
-        }}
-      >
-        <Typography variant="body2" fontWeight="semiBold">
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
+        <Typography variant="body2" sx={{ fontWeight: 'semiBold' }}>
           Available in:
         </Typography>
         <Box sx={{ display: 'flex', gap: 1, '& >img': { width: 20, height: 20 } }}>
@@ -154,7 +147,7 @@ export function MaterialDesignKitInfo() {
           />
         </Box>
       </Box>
-      <Typography variant="body2" color="text.secondary" mb={2}>
+      <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2 }}>
         We frequently update them to stay up-to-date with the latest release.
       </Typography>
       <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 1.5 }}>
@@ -200,7 +193,7 @@ export default function DesignKitsDemo() {
   return (
     <Section bg="gradient" cozy>
       <Grid container spacing={2} alignItems="center">
-        <Grid md={6} sx={{ minWidth: 0 }}>
+        <Grid sx={{ minWidth: 0 }} size={{ md: 6 }}>
           <SectionHeadline
             overline="Design Kits"
             title={
@@ -226,14 +219,9 @@ export default function DesignKitsDemo() {
             />
           </Group>
         </Grid>
-        <Grid xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Frame>
-            <Frame.Demo
-              sx={{
-                overflow: 'clip',
-                height: { xs: 240, sm: 390 },
-              }}
-            >
+            <Frame.Demo sx={{ overflow: 'clip', height: { xs: 240, sm: 390 } }}>
               <MaterialFigmaComponents fadeIn={demo === 'Components'} />
               <Fade in={demo === 'Branding'} timeout={500}>
                 <Image

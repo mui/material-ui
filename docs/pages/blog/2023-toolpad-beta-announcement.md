@@ -98,7 +98,7 @@ Lastly, Toolpad is the only product that offers a drag-and-drop UI builder close
 ## How can I use Toolpad?
 
 Toolpad is available as an npm package. Follow the [Installation guide](https://mui.com/toolpad/studio/getting-started/installation/) in the docs to get started.
-You can learn more about Toolpad by visiting the [home page](https://mui.com/toolpad/).
+You can learn more about Toolpad by visiting the [home page](https://mui.com/toolpad/studio/).
 
 <img alt="Toolpad documentation and instructions on how to use it" src="/static/blog/2023-toolpad-beta-announcement/docs.png" loading="lazy" width="2400" height="1394" />
 
@@ -107,9 +107,9 @@ You can learn more about Toolpad by visiting the [home page](https://mui.com/too
 We plan to continue to iterate on our vision of helping you as a developer to increase the speed and efficiency of your workflow. We want to optimize for the biggest pains that you face when building admin apps.
 Your input is crucial to helping us shape the roadmap from here.
 
-The best places to stay up-to-date about what we're currently working on are [GitHub issues](https://github.com/mui/mui-toolpad) and our [public roadmap](https://github.com/orgs/mui/projects/9/views/1).
+The best places to stay up-to-date about what the team is currently working on are [GitHub issues](https://github.com/mui/toolpad) and the [public roadmap](https://github.com/orgs/mui/projects/9/views/1).
 
-If you have any questions or would like to share feedback, you can directly contact the team at toolpad@mui.com or reach us on [X/Twitter](https://twitter.com/MUI_Toolpad).
+If you have any questions or would like to share feedback, you can directly contact the team at toolpad@mui.com or reach us on [X/Twitter](https://x.com/MUI_Toolpad).
 You can also engage in conversation on our [Discord](https://mui.com/r/discord/) server.
 
 If you'd like an in-depth demo to discuss your use case, please feel free to [schedule a meeting with me on Calendly](https://calendly.com/prakhar-mui).

@@ -17,12 +17,7 @@ export default function LinearProgressWithLabel() {
   }, []);
 
   return (
-    <Box
-      sx={{
-        bgcolor: 'white',
-        width: '100%',
-      }}
-    >
+    <Box sx={{ bgcolor: 'white', width: '100%' }}>
       <LinearProgress
         determinate
         variant="outlined"
@@ -39,9 +34,8 @@ export default function LinearProgressWithLabel() {
       >
         <Typography
           level="body-xs"
-          fontWeight="xl"
           textColor="common.white"
-          sx={{ mixBlendMode: 'difference' }}
+          sx={{ fontWeight: 'xl', mixBlendMode: 'difference' }}
         >
           LOADING… {`${Math.round(progress)}%`}
         </Typography>
