@@ -93,7 +93,7 @@ TabPanel.propTypes /* remove-proptypes */ = {
    * The `value` of the corresponding `Tab`. Must use the index of the `Tab` when
    * no `value` was passed to `Tab`.
    */
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 };
 
 export default TabPanel;
