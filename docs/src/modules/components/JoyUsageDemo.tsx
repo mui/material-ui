@@ -165,7 +165,7 @@ interface JoyUsageDemoProps<ComponentProps> {
    * A function to override the code block result.
    */
   getCodeBlock?: (code: string, props: ComponentProps) => string;
-  renderDemo: (props: ComponentProps) => React.ReactElement<any>;
+  renderDemo: (props: ComponentProps) => React.ReactElement<unknown>;
 }
 
 export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({

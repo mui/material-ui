@@ -125,7 +125,7 @@ function Demo({
 }: {
   name: string;
   theme: Theme | undefined;
-  children: React.ReactElement<any>;
+  children: React.ReactElement<unknown>;
   control?: { prop: string; values: Array<string>; defaultValue?: string };
 }) {
   const [propValue, setPropValue] = React.useState(

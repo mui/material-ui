@@ -340,7 +340,7 @@ export const SliderThumb = styled('span', {
   })),
 );
 
-export const SliderValueLabel = styled(BaseSliderValueLabel, {
+const SliderValueLabel = styled(BaseSliderValueLabel, {
   name: 'MuiSlider',
   slot: 'ValueLabel',
   overridesResolver: (props, styles) => styles.valueLabel,
@@ -421,6 +421,31 @@ export const SliderValueLabel = styled(BaseSliderValueLabel, {
     ],
   })),
 );
+
+SliderValueLabel.propTypes /* remove-proptypes */ = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * @ignore
+   */
+  children: PropTypes.element.isRequired,
+  /**
+   * @ignore
+   */
+  index: PropTypes.number.isRequired,
+  /**
+   * @ignore
+   */
+  open: PropTypes.bool.isRequired,
+  /**
+   * @ignore
+   */
+  value: PropTypes.number.isRequired,
+};
+
+export { SliderValueLabel };
 
 export const SliderMark = styled('span', {
   name: 'MuiSlider',

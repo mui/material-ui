@@ -376,6 +376,20 @@ describe('<Dialog />', () => {
       const label = document.getElementById(dialog.getAttribute('aria-labelledby'));
       expect(label).to.have.text('Choose either one');
     });
+
+    it('should add the aria-modal="true" by default', function test() {
+      const { getByRole } = render(<Dialog open />);
+
+      const dialog = getByRole('dialog');
+      expect(dialog).to.have.attr('aria-modal', 'true');
+    });
+
+    it('should render the custom aria-modal prop if provided', function test() {
+      const { getByRole } = render(<Dialog aria-modal="false" open />);
+
+      const dialog = getByRole('dialog');
+      expect(dialog).to.have.attr('aria-modal', 'false');
+    });
   });
 
   describe('prop: transitionDuration', () => {

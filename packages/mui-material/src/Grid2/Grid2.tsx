@@ -53,24 +53,29 @@ export interface GridBaseProps {
   offset?: ResponsiveStyleValue<GridOffset>;
   /**
    * @internal
-   * The level of the grid starts from `0`
-   * and increases when the grid nests inside another grid regardless of container or item.
+   * The level of the grid starts from `0` and increases when the grid nests
+   * inside another grid. Nesting is defined as a container Grid being a direct
+   * child of a container Grid.
    *
    * ```js
-   * <Grid> // level 0
-   *   <Grid> // level 1
-   *     <Grid> // level 2
-   *   <Grid> // level 1
+   * <Grid container> // level 0
+   *   <Grid container> // level 1
+   *     <Grid container> // level 2
    * ```
    *
-   * Only consecutive grid is considered nesting.
-   * A grid container will start at `0` if there are non-Grid element above it.
+   * Only consecutive grid is considered nesting. A grid container will start at
+   * `0` if there are non-Grid container element above it.
    *
    * ```js
-   * <Grid> // level 0
+   * <Grid container> // level 0
    *   <div>
-   *     <Grid> // level 0
-   *       <Grid> // level 1
+   *     <Grid container> // level 0
+   * ```
+   *
+   * ```js
+   * <Grid container> // level 0
+   *   <Grid>
+   *     <Grid container> // level 0
    * ```
    */
   unstable_level?: number;
@@ -223,24 +228,29 @@ Grid2.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * @internal
-   * The level of the grid starts from `0`
-   * and increases when the grid nests inside another grid regardless of container or item.
+   * The level of the grid starts from `0` and increases when the grid nests
+   * inside another grid. Nesting is defined as a container Grid being a direct
+   * child of a container Grid.
    *
    * ```js
-   * <Grid> // level 0
-   *   <Grid> // level 1
-   *     <Grid> // level 2
-   *   <Grid> // level 1
+   * <Grid container> // level 0
+   *   <Grid container> // level 1
+   *     <Grid container> // level 2
    * ```
    *
-   * Only consecutive grid is considered nesting.
-   * A grid container will start at `0` if there are non-Grid element above it.
+   * Only consecutive grid is considered nesting. A grid container will start at
+   * `0` if there are non-Grid container element above it.
    *
    * ```js
-   * <Grid> // level 0
+   * <Grid container> // level 0
    *   <div>
-   *     <Grid> // level 0
-   *       <Grid> // level 1
+   *     <Grid container> // level 0
+   * ```
+   *
+   * ```js
+   * <Grid container> // level 0
+   *   <Grid>
+   *     <Grid container> // level 0
    * ```
    */
   unstable_level: PropTypes.number,
@@ -260,7 +270,6 @@ if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react/forbid-foreign-prop-types
     ...Component.propTypes,
     direction: requireProp('container'),
-    size: requireProp('item'),
     spacing: requireProp('container'),
     wrap: requireProp('container'),
   };

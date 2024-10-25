@@ -128,7 +128,7 @@ For SSR (server-side rendering) applications, Material UI can not detected user
 
 To prevent the issue, you need to ensure that there is no usage of `theme.palette.mode === 'dark'` in your code base.
 
-If you have such a condition, replace it with the [`theme.applyStyles`](#appling-dark-styles) function:
+If you have such a condition, replace it with the [`theme.applyStyles()`](#appling-dark-styles) function:
 
 ```diff
  import Card from '@mui/material/Card';
@@ -176,7 +176,7 @@ createTheme({
 
 ### Next.js App Router
 
-Add the following code to the [root layout](https://nextjs.org/docs/app/building-your-application/routing/layouts-and-templates#root-layout-required) file:
+Add the following code to the [root layout](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#root-layout-required) file:
 
 ```jsx title="app/layout.js"
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
@@ -272,7 +272,7 @@ In the example below, all the components inside the `div` will always be dark:
 
 ## Disabling CSS color scheme
 
-By default, `createTheme` attaches a [CSS `color-scheme` property](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) based on the palette mode.
+By default, `createTheme()` attaches a [CSS `color-scheme` property](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) based on the palette mode.
 You can disable this by setting `disableCssColorScheme` to `true`:
 
 ```js
