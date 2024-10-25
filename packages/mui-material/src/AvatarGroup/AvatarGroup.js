@@ -130,10 +130,6 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     ownerState,
     additionalProps: {
       variant,
-      style: {
-        '--AvatarGroup-spacing': marginValue ? `${marginValue}px` : undefined,
-        ...other.style,
-      },
     },
   });
 
@@ -142,6 +138,10 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
       as={component}
       ownerState={ownerState}
       className={clsx(classes.root, className)}
+      style={{
+        '--AvatarGroup-spacing': marginValue ? `${marginValue}px` : undefined,
+        ...other.style,
+      }}
       ref={ref}
       {...other}
     >
