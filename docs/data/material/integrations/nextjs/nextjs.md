@@ -38,7 +38,7 @@ pnpm add @mui/material-nextjs@next @emotion/cache
 Inside `app/layout.tsx`, import the `AppRouterCacheProvider` and wrap all elements under the `<body>` with it:
 
 ```diff title="app/layout.tsx"
-+import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
++import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
  // or `v1X-appRouter` if you are using Next.js v1X
 
  export default function RootLayout(props) {
@@ -100,7 +100,7 @@ export default theme;
 Then in `src/app/layout.tsx`, pass the theme to `ThemeProvider`:
 
 ```diff title="app/layout.tsx"
- import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
+ import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 +import { ThemeProvider } from '@mui/material/styles';
 +import theme from '../theme';
 
@@ -186,7 +186,7 @@ Inside the `pages/_document.tsx` file:
 +import {
 +  DocumentHeadTags,
 +  documentGetInitialProps,
-+} from '@mui/material-nextjs/v13-pagesRouter';
++} from '@mui/material-nextjs/v15-pagesRouter';
  // or `v1X-pagesRouter` if you are using Next.js v1X
 
  export default function MyDocument(props) {
@@ -213,7 +213,7 @@ Inside the `pages/_document.tsx` file:
 Then, inside `pages/_app.tsx`, import the `AppCacheProvider` component and render it as the root element:
 
 ```diff title="pages/_app.tsx"
-+import { AppCacheProvider } from '@mui/material-nextjs/v13-pagesRouter';
++import { AppCacheProvider } from '@mui/material-nextjs/v15-pagesRouter';
  // Or `v1X-pages` if you are using Next.js v1X
 
  export default function MyApp(props) {
@@ -318,7 +318,7 @@ MyDocument.getInitialProps = async (ctx) => {
 If you are using TypeScript, add `DocumentHeadTagsProps` to the Document's props interface:
 
 ```diff
-+import type { DocumentHeadTagsProps } from '@mui/material-nextjs/v13-pagesRouter';
++import type { DocumentHeadTagsProps } from '@mui/material-nextjs/v15-pagesRouter';
  // or `v1X-pagesRouter` if you are using Next.js v1X
 
 +export default function MyDocument(props: DocumentProps & DocumentHeadTagsProps) {
@@ -334,7 +334,7 @@ In `pages/_app.tsx`, create a new theme and pass it to `ThemeProvider`:
  import * as React from 'react';
  import Head from 'next/head';
  import { AppProps } from 'next/app';
- import { AppCacheProvider } from '@mui/material-nextjs/v13-pagesRouter';
+ import { AppCacheProvider } from '@mui/material-nextjs/v15-pagesRouter';
 +import { ThemeProvider, createTheme } from '@mui/material/styles';
 +import { Roboto } from 'next/font/google';
 
