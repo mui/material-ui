@@ -52,10 +52,7 @@ function createReactApp(demoData: DemoData) {
   const files: Record<string, string> = {
     'index.html': CRA.getHtml(demoData),
     [`index.${ext}`]: CRA.getRootIndex(demoData),
-    [`Demo.${ext}`]: flattenRelativeImports(
-      demoData.raw,
-      demoData.relativeModules?.map((file) => file.module),
-    ),
+    [`Demo.${ext}`]: flattenRelativeImports(demoData.raw),
     // Spread the relative modules
     ...(demoData.relativeModules &&
       // Transform the relative modules array into an object
@@ -63,10 +60,7 @@ function createReactApp(demoData: DemoData) {
         (acc, curr) => ({
           ...acc,
           // Remove the path and keep the filename
-          [`${curr.module.replace(/^.*[\\/]/g, '')}`]: flattenRelativeImports(
-            curr.raw,
-            demoData.relativeModules?.map((file) => file.module),
-          ),
+          [`${curr.module.replace(/^.*[\\/]/g, '')}`]: flattenRelativeImports(curr.raw),
         }),
         {},
       )),

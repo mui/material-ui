@@ -47,10 +47,7 @@ function createReactApp(demoData: DemoData) {
       content: CRA.getRootIndex(demoData),
     },
     [`src/Demo.${ext}`]: {
-      content: flattenRelativeImports(
-        demoData.raw,
-        demoData.relativeModules?.map((file) => file.module),
-      ),
+      content: flattenRelativeImports(demoData.raw),
     },
     // Spread the relative modules
     ...(demoData.relativeModules &&
@@ -60,10 +57,7 @@ function createReactApp(demoData: DemoData) {
           ...acc,
           // Remove the path and keep the filename
           [`src/${curr.module.replace(/^.*[\\/]/g, '')}`]: {
-            content: flattenRelativeImports(
-              curr.raw,
-              demoData.relativeModules?.map((file) => file.module),
-            ),
+            content: flattenRelativeImports(curr.raw),
           },
         }),
         {},
