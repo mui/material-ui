@@ -55,7 +55,7 @@ async function getFiles(root) {
           files.push(...(await getFiles(filePath)));
         } else if (
           stat.isFile() &&
-          (/\.tsx?$/.test(filePath) || /\.ts?$/.test(filePath)) &&
+          /\.tsx?$/.test(filePath) &&
           !filePath.endsWith('types.ts') &&
           !filePath.endsWith('.d.ts') &&
           !ignoreList.some((ignorePath) => filePath.endsWith(path.normalize(ignorePath)))
