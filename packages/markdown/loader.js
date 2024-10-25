@@ -470,6 +470,11 @@ module.exports = async function demoLoader() {
                 relativeModuleID,
               );
 
+              // the file has already been processed
+              if (addedModulesRelativeToModulePath.has(relativeModuleFilePath)) {
+                continue;
+              }
+
               try {
                 // We are only iterating trough an array that looks
                 // like this: ['JS', 'TS'], so  it is safe to await
