@@ -131,7 +131,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     additionalProps: {
       variant,
       style: {
-        '--AvatarRoot-spacing': marginValue ? `${marginValue}px` : undefined,
+        '--AvatarGroup-spacing': marginValue ? `${marginValue}px` : undefined,
         ...other.style,
       },
     },
