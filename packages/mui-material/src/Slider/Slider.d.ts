@@ -6,6 +6,7 @@ import { SlotComponentProps } from '../utils/types';
 import { Theme } from '../styles';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import SliderValueLabelComponent from './SliderValueLabel';
+import { SliderValueLabelProps as SliderValueLabelPropsType } from './SliderValueLabel.types';
 import { SliderClasses } from './sliderClasses';
 
 export interface SliderPropsColorOverrides {}
@@ -280,11 +281,11 @@ export interface SliderTypeMap<
   defaultComponent: RootComponent;
 }
 
-export interface SliderValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
+export interface SliderValueLabelProps
+  extends React.HTMLAttributes<HTMLSpanElement>,
+    Pick<SliderValueLabelPropsType, 'open' | 'value'> {
   children: React.ReactElement<unknown>;
   index: number;
-  open: boolean;
-  value: React.ReactNode;
 }
 
 type SliderRootProps = NonNullable<SliderTypeMap['props']['componentsProps']>['root'];
