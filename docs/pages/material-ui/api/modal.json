@@ -35,6 +35,7 @@
     "disableAutoFocus": { "type": { "name": "bool" }, "default": "false" },
     "disableEnforceFocus": { "type": { "name": "bool" }, "default": "false" },
     "disableEscapeKeyDown": { "type": { "name": "bool" }, "default": "false" },
+    "disableInitialContentFocus": { "type": { "name": "bool" }, "default": "false" },
     "disablePortal": { "type": { "name": "bool" }, "default": "false" },
     "disableRestoreFocus": { "type": { "name": "bool" }, "default": "false" },
     "disableScrollLock": { "type": { "name": "bool" }, "default": "false" },

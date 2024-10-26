@@ -27,6 +27,9 @@
     "container": {
       "description": "An HTML element, component instance, or function that returns either. The <code>container</code> will passed to the Modal component.<br>By default, it uses the body of the anchorEl&#39;s top-level document object, so it&#39;s simply <code>document.body</code> most of the time."
     },
+    "disableInitialContentFocus": {
+      "description": "By default the dialog content element is focused when opened.<br>Set the property to <code>true</code> to disable this behavior and focus will be placed on the first focusable element respecting <code>tabIndex</code> order, including elements explicitly marked with <code>tabIndex={-1}</code>."
+    },
     "disableScrollLock": { "description": "Disable the scroll lock behavior." },
     "elevation": { "description": "The elevation of the popover." },
     "marginThreshold": {
