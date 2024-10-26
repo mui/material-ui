@@ -442,7 +442,7 @@ SliderValueLabel.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  value: PropTypes.number.isRequired,
+  value: PropTypes.node,
 };
 
 export { SliderValueLabel };
