@@ -90,7 +90,7 @@ function isNodeMatchingSelectorFocusable(node: HTMLInputElement): boolean {
 
 function defaultGetTabbable(
   root: HTMLElement,
-  allowExplicitMinus1: boolean = false,
+  allowExplicitMinusOne: boolean = false,
   allowRootFocus: boolean = false,
 ): HTMLElement[] {
   const regularTabNodes: HTMLElement[] = [];
@@ -105,7 +105,7 @@ function defaultGetTabbable(
   focusableNodes.forEach((node, i) => {
     const nodeTabIndex = getTabIndex(node as HTMLElement);
 
-    if (allowExplicitMinus1 && node.getAttribute('tabindex') === '-1') {
+    if (allowExplicitMinusOne && node.getAttribute('tabindex') === '-1') {
       orderedTabNodes.push({
         documentOrder: i,
         tabIndex: nodeTabIndex,

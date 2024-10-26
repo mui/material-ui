@@ -239,7 +239,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     <DrawerPaper
       elevation={variant === 'temporary' ? elevation : 0}
       square
-      tabIndex={-1}
+      tabIndex={ModalProps.disableInitialContentFocus ? undefined : -1}
       {...PaperProps}
       className={clsx(classes.paper, PaperProps.className)}
       ownerState={ownerState}

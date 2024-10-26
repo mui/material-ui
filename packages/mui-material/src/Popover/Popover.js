@@ -426,7 +426,11 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
         timeout={transitionDuration}
         {...TransitionProps}
       >
-        <PaperSlot {...paperProps} tabIndex={-1} ref={handlePaperRef}>
+        <PaperSlot
+          {...paperProps}
+          tabIndex={other.disableInitialContentFocus ? undefined : -1}
+          ref={handlePaperRef}
+        >
           {children}
         </PaperSlot>
       </TransitionComponent>
