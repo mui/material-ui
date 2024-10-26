@@ -39,6 +39,11 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
   backgroundImage: 'none',
   zIndex: theme.zIndex.drawer + 1,
   flex: '0 0 auto',
+  'html:has(&)': {
+    '--template-frame-height': '52px',
+    '& [data-screenshot="toggle-mode"]': { display: 'none' },
+    '& .MuiInputBase-root:has(> [data-screenshot="toggle-mode"])': { display: 'none' },
+  },
 }));
 
 const defaultTheme = createTheme({
@@ -142,11 +147,25 @@ export function ThemeSelector({ value, onChange }) {
         onChange(event.target.value);
       }}
       startAdornment={
-        <InputAdornment position="start">
+        <InputAdornment position="start" sx={{ display: { sm: 'none' } }}>
           <PaletteIcon fontSize="small" color="primary" />
         </InputAdornment>
       }
-      sx={{ minWidth: 200 }}
+      sx={(theme) => ({
+        pl: { sm: 0 },
+        minWidth: { xs: 64, sm: 176 },
+        '& .MuiSelect-select': {
+          pl: { sm: 1.5 },
+        },
+        [theme.breakpoints.only('xs')]: {
+          '& .MuiSelect-select': {
+            width: 'auto',
+            position: 'absolute',
+            inset: 0,
+            opacity: 0,
+          },
+        },
+      })}
     >
       <MenuItem value="custom">Custom Theme</MenuItem>
       <MenuItem value="material2">Material Design 2</MenuItem>
@@ -205,10 +224,6 @@ export default function TemplateFrame({ children }) {
           height: '100dvh',
           display: 'flex',
           flexDirection: 'column',
-          '&:has(.Docs-templateFrame)': {
-            '--template-frame-height': '52px',
-            '& [data-screenshot="toggle-mode"]': { display: 'none' },
-          },
         }}
       >
         {router.query?.hideFrame !== 'true' && (

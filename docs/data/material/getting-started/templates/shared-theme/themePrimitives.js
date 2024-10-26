@@ -372,7 +372,9 @@ export const shape = {
 };
 
 const defaultShadows = [
-  'var(--mui-palette-baseShadow)',
-  ...defaultTheme.shadows.slice(1),
+  'none',
+  'var(--template-palette-baseShadow)',
+  ...defaultTheme.shadows.slice(2),
 ];
+
 export const shadows = defaultShadows;
