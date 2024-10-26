@@ -6,7 +6,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "devDependencies": {
-    "@babel/runtime": "^7.25.6",
+    "@babel/runtime": "^7.25.7",
     "@emotion/cache": "^11.13.1",
     "@emotion/react": "^11.13.3",
     "@mui/base": "workspace:*",
@@ -17,24 +17,24 @@
     "@mui/material": "workspace:^",
     "@mui/system": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@playwright/test": "1.47.2",
+    "@playwright/test": "1.48.1",
     "@testing-library/dom": "^10.4.0",
     "@types/chai": "^4.3.20",
-    "@types/react": "^18.3.4",
+    "@types/react": "^18.3.11",
     "@types/react-is": "^18.3.0",
     "@types/sinon": "^17.0.3",
     "chai": "^4.5.0",
     "docs": "workspace:^",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
-    "html-webpack-plugin": "^5.6.0",
+    "html-webpack-plugin": "^5.6.2",
     "lodash": "^4.17.21",
-    "playwright": "^1.47.2",
+    "playwright": "^1.48.1",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-is": "^18.3.1",
-    "react-router-dom": "^6.26.2",
+    "react-router-dom": "^6.27.0",
     "sinon": "^18.0.1",
     "styled-components": "^6.1.13",
     "stylis": "4.2.0",
@@ -45,6 +45,6 @@
     "yargs": "^17.7.2"
   },
   "dependencies": {
-    "@react-spring/web": "^9.7.4"
+    "@react-spring/web": "^9.7.5"
   }
 }

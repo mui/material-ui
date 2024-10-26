@@ -218,6 +218,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
   const {
     'aria-describedby': ariaDescribedby,
     'aria-labelledby': ariaLabelledbyProp,
+    'aria-modal': ariaModal = true,
     BackdropComponent,
     BackdropProps,
     children,
@@ -324,6 +325,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
             aria-describedby={ariaDescribedby}
             aria-labelledby={ariaLabelledby}
             tabIndex={disableInitialContentFocus ? undefined : -1}
+            aria-modal={ariaModal}
             {...PaperProps}
             className={clsx(classes.paper, PaperProps.className)}
             ownerState={ownerState}
@@ -349,6 +351,12 @@ Dialog.propTypes /* remove-proptypes */ = {
    * The id(s) of the element(s) that label the dialog.
    */
   'aria-labelledby': PropTypes.string,
+  /**
+   * Informs assistive technologies that the element is modal.
+   * It's added on the element with role="dialog".
+   * @default true
+   */
+  'aria-modal': PropTypes.oneOfType([PropTypes.oneOf(['false', 'true']), PropTypes.bool]),
   /**
    * A backdrop component. This prop enables custom backdrop rendering.
    * @deprecated Use `slots.backdrop` instead. While this prop currently works, it will be removed in the next major version.

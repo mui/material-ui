@@ -44,10 +44,9 @@ const useUtilityClasses = (ownerState: ModalOwnerState) => {
  *
  * - [Modal API](https://mui.com/base-ui/react-modal/components-api/#modal)
  */
-const Modal = React.forwardRef(function Modal<RootComponentType extends React.ElementType>(
-  props: ModalProps<RootComponentType>,
-  forwardedRef: React.ForwardedRef<HTMLElement>,
-) {
+const Modal = React.forwardRef<HTMLElement, ModalProps>(function Modal<
+  RootComponentType extends React.ElementType,
+>(props: ModalProps<RootComponentType>, forwardedRef: React.ForwardedRef<HTMLElement>) {
   const {
     children,
     closeAfterTransition = false,
@@ -158,12 +157,6 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
 
   return (
     <Portal ref={portalRef} container={container} disablePortal={disablePortal}>
-      {/*
-       * Marking an element with the role presentation indicates to assistive technology
-       * that this element should be ignored; it exists to support the web application and
-       * is not meant for humans to interact with directly.
-       * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
-       */}
       <Root {...rootProps}>
         {!hideBackdrop && BackdropComponent ? <BackdropComponent {...backdropProps} /> : null}
         <FocusTrap

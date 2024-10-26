@@ -3,6 +3,13 @@
     "open": { "type": { "name": "bool" }, "required": true },
     "aria-describedby": { "type": { "name": "string" } },
     "aria-labelledby": { "type": { "name": "string" } },
+    "aria-modal": {
+      "type": {
+        "name": "union",
+        "description": "'false'<br>&#124;&nbsp;'true'<br>&#124;&nbsp;bool"
+      },
+      "default": "true"
+    },
     "BackdropComponent": {
       "type": { "name": "elementType" },
       "default": "styled(Backdrop, {\n  name: 'MuiModal',\n  slot: 'Backdrop',\n  overridesResolver: (props, styles) => {\n    return styles.backdrop;\n  },\n})({\n  zIndex: -1,\n})",

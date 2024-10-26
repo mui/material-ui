@@ -110,7 +110,7 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/react-grid2', title: 'Grid v2' },
           { pathname: '/material-ui/react-stack' },
           { pathname: '/material-ui/react-image-list', title: 'Image List' },
-          { pathname: '/material-ui/react-hidden' },
+          { pathname: '/material-ui/react-hidden', deprecated: true },
         ],
       },
       {
@@ -142,10 +142,17 @@ const pages: MuiPage[] = [
       {
         pathname: '/toolpad', // the pathname does not matter here because the links to Toolpad are outbound.
         subheader: 'Toolpad Core',
-        newFeature: true,
         children: [
-          { pathname: '/toolpad/core/react-dashboard-layout/', title: 'Dashboard Layout' },
-          { pathname: '/toolpad/core/react-sign-in-page/', title: 'Sign-in Page' },
+          {
+            pathname: '/toolpad/core/react-dashboard-layout/',
+            title: 'Dashboard Layout',
+            newFeature: true,
+          },
+          {
+            pathname: '/toolpad/core/react-sign-in-page/',
+            title: 'Sign-in Page',
+            newFeature: true,
+          },
         ],
       },
       {

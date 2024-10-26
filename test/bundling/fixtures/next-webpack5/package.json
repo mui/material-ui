@@ -16,14 +16,14 @@
     "@mui/styles": "workspace:*",
     "@mui/system": "workspace:*",
     "@mui/utils": "workspace:*",
-    "next": "12.3.0",
+    "next": "14.2.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-is": "18.2.0"
   },
   "devDependencies": {
     "concurrently": "7.4.0",
-    "playwright": "1.47.2"
+    "playwright": "1.48.1"
   },
   "pnpm": {
     "overrides": {
