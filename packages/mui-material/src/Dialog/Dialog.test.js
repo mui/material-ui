@@ -445,14 +445,11 @@ describe('<Dialog />', () => {
   });
 
   describe('focus is handled properly', () => {
-    clock.withFakeTimers();
-
     it('paper should have focus because it has role=dialog and content', function test() {
       render(<Dialog open />);
 
       const container = document.querySelector(`.${classes.paper}`);
 
-      clock.tick(500); // trigger an interval call
       expect(container).toHaveFocus();
     });
 
@@ -470,7 +467,6 @@ describe('<Dialog />', () => {
         </div>,
       );
 
-      clock.tick(500); // trigger an interval call
       expect(getByRole('textbox')).toHaveFocus();
     });
 
@@ -480,16 +476,15 @@ describe('<Dialog />', () => {
           <Dialog open disableInitialContentFocus>
             <div>
               <div />
-              {/* This will have the focus */}
               <input />
               <button />
+              {/* This will have the focus */}
               <div data-testid="focused" tabIndex={-1} />
             </div>
           </Dialog>
         </div>,
       );
 
-      clock.tick(500); // trigger an interval call
       expect(getByTestId('focused')).toHaveFocus();
     });
 
@@ -507,7 +502,6 @@ describe('<Dialog />', () => {
         ),
       ).toErrorDev('MUI: The modal content node does not have focusable elements');
 
-      clock.tick(500); // trigger an interval call
       const container = document.querySelector(`.${classes.container}`);
       expect(container).toHaveFocus();
     });
