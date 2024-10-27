@@ -36,7 +36,7 @@
     "serve-handler": "^6.1.6",
     "styled-components": "^6.1.13",
     "styled-system": "^5.1.5",
-    "theme-ui": "^0.16.2",
+    "theme-ui": "^0.17.1",
     "webpack": "^5.95.0"
   }
 }
