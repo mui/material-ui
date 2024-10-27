@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   aws-cli: circleci/aws-cli@5.1.1
-  aws-s3: circleci/aws-s3@4.0
+  aws-s3: circleci/aws-s3@4.1.0
 
 parameters:
   browserstack-force:
