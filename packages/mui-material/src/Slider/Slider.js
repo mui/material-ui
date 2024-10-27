@@ -442,7 +442,7 @@ SliderValueLabel.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  value: PropTypes.number.isRequired,
+  value: PropTypes.node,
 };
 
 export { SliderValueLabel };
@@ -966,7 +966,7 @@ Slider.propTypes /* remove-proptypes */ = {
         className: PropTypes.string,
         open: PropTypes.bool,
         style: PropTypes.object,
-        value: PropTypes.number,
+        value: PropTypes.node,
         valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
       }),
     ]),
@@ -1094,7 +1094,7 @@ Slider.propTypes /* remove-proptypes */ = {
         className: PropTypes.string,
         open: PropTypes.bool,
         style: PropTypes.object,
-        value: PropTypes.number,
+        value: PropTypes.node,
         valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
       }),
     ]),

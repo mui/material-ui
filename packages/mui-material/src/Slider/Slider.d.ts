@@ -284,7 +284,7 @@ export interface SliderValueLabelProps extends React.HTMLAttributes<HTMLSpanElem
   children: React.ReactElement<unknown>;
   index: number;
   open: boolean;
-  value: number;
+  value: React.ReactNode;
 }
 
 type SliderRootProps = NonNullable<SliderTypeMap['props']['componentsProps']>['root'];
