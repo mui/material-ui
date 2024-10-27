@@ -11,7 +11,7 @@
     "server:system": "cd ../ && cross-env NODE_ENV=production BABEL_ENV=benchmark babel-node benchmark/server/scenarios/system.js --inspect=0.0.0.0:9229 --extensions \".tsx,.ts,.js\""
   },
   "dependencies": {
-    "@babel/runtime": "^7.25.7",
+    "@babel/runtime": "^7.26.0",
     "@chakra-ui/system": "^2.6.2",
     "@emotion/react": "^11.13.3",
     "@emotion/server": "^11.11.0",
