@@ -46,8 +46,8 @@ importers:
         version: 9.14.2(encoding@0.1.13)
     devDependencies:
       '@argos-ci/core':
-        specifier: ^2.9.0
-        version: 2.9.0
+        specifier: ^2.9.2
+        version: 2.9.2
       '@babel/cli':
         specifier: ^7.25.7
         version: 7.25.7(@babel/core@7.25.8)
@@ -2457,16 +2457,16 @@ packages:
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
 
-  '@argos-ci/api-client@0.6.0':
-    resolution: {integrity: sha512-m8ARJOfdOzyML8bFjTwPNAhGrLD5WaEvYS5g0qoHFD+6Za7Cz3d2mTDoXJX/h3T5aeVZ4WLK+ac0/F6jttd/sQ==}
+  '@argos-ci/api-client@0.6.2':
+    resolution: {integrity: sha512-7TVGBwHmShUc+qit5C8OMeHur11F6HM2trpcCpjI2jsTJWRMkGZCQ/IXG5vHbsXkTrQbh+7gba1jupLNrzDA8Q==}
     engines: {node: '>=18.0.0'}
 
-  '@argos-ci/core@2.9.0':
-    resolution: {integrity: sha512-EVo8Twd/At3r2z/ruycI+czMIJT88K5TrcUyrNH3osdV5eF9Vcp2wp+u9VVbBYTTTfLywIJ30v/ucb662CoUfg==}
+  '@argos-ci/core@2.9.2':
+    resolution: {integrity: sha512-hpGqqUfj7z0TDl3EE5J4oRNX3G/njszmePesexywShkWioBobILcawpbVfOQSxGu/VTIfecGWdBR8qurxTsQdg==}
     engines: {node: '>=18.0.0'}
 
-  '@argos-ci/util@2.1.1':
-    resolution: {integrity: sha512-UyACLQe9rvCPbo9muhrLte1AD75kQlcGBuecjmaotaF9MBMj+9Yz+TYs1jJrlLMgqowfIgbXjBYmkXRUn36tCg==}
+  '@argos-ci/util@2.1.2':
+    resolution: {integrity: sha512-vdCL/5zLl7F6W5+SW8IeOrcNN5Nt+N2U0E1FFWMSzMTmik+Rcn8OWi5hscbwG5NLWzgLeSJA7PSjfx4K3M+u8g==}
     engines: {node: '>=18.0.0'}
 
   '@babel/cli@7.25.7':
@@ -13008,17 +13008,17 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  '@argos-ci/api-client@0.6.0':
+  '@argos-ci/api-client@0.6.2':
     dependencies:
       debug: 4.3.6(supports-color@8.1.1)
       openapi-fetch: 0.11.1
     transitivePeerDependencies:
       - supports-color
 
-  '@argos-ci/core@2.9.0':
+  '@argos-ci/core@2.9.2':
     dependencies:
-      '@argos-ci/api-client': 0.6.0
-      '@argos-ci/util': 2.1.1
+      '@argos-ci/api-client': 0.6.2
+      '@argos-ci/util': 2.1.2
       axios: 1.7.4(debug@4.3.6)
       convict: 6.2.4
       debug: 4.3.6(supports-color@8.1.1)
@@ -13028,7 +13028,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@argos-ci/util@2.1.1': {}
+  '@argos-ci/util@2.1.2': {}
 
   '@babel/cli@7.25.7(@babel/core@7.25.8)':
     dependencies:
