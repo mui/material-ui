@@ -17,26 +17,27 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
+//import close Icon
+import CloseIcon from '@mui/icons-material/Close';
+
+// import useTheme and useMediaquery
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
+
 const drawerWidth = 240;
 
 function ResponsiveDrawer(props) {
   const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
 
-  const handleDrawerClose = () => {
-    setIsClosing(true);
-    setMobileOpen(false);
-  };
+  const [isClosing, setIsClosing] = React.useState(false);
 
-  const handleDrawerTransitionEnd = () => {
-    setIsClosing(false);
-  };
+  //used to make the drawer responsive
+  const theme = useTheme();
+  const isSmUp = useMediaQuery(theme.breakpoints.up("sm"));
 
   const handleDrawerToggle = () => {
-    if (!isClosing) {
-      setMobileOpen(!mobileOpen);
-    }
+      setIsClosing(!isClosing);
   };
 
   const drawer = (
@@ -107,27 +108,15 @@ function ResponsiveDrawer(props) {
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
           container={container}
-          variant="temporary"
-          open={mobileOpen}
-          onTransitionEnd={handleDrawerTransitionEnd}
+          variant={isSmUp ? "permanent" : "temporary"}
+          open={isClosing}
           onClose={handleDrawerClose}
           ModalProps={{
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: 'block', sm: 'none' },
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
-        >
-          {drawer}
-        </Drawer>
-        <Drawer
-          variant="permanent"
-          sx={{
-            display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-          }}
-          open
         >
           {drawer}
         </Drawer>
