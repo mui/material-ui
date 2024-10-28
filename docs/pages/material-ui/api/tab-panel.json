@@ -1,6 +1,9 @@
 {
   "props": {
-    "value": { "type": { "name": "string" }, "required": true },
+    "value": {
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
+      "required": true
+    },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "keepMounted": { "type": { "name": "bool" }, "default": "false" },

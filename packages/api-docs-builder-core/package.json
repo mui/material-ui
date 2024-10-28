@@ -5,7 +5,7 @@
   "private": "true",
   "main": "./index.ts",
   "scripts": {
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/api-docs-builder/**/*.test.{js,ts,tsx}'",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/api-docs-builder/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
@@ -16,11 +16,11 @@
   },
   "devDependencies": {
     "@types/chai": "^4.3.20",
-    "@types/mocha": "^10.0.8",
-    "@types/node": "^20.16.10",
+    "@types/mocha": "^10.0.9",
+    "@types/node": "^20.17.1",
     "@types/sinon": "^17.0.3",
     "chai": "^4.5.0",
     "sinon": "^18.0.1",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.3"
   }
 }
