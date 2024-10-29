@@ -104,7 +104,7 @@ export function unstable_createStyleFunctionSx() {
      * and then recursively check keys & values to create media query object styles.
      * (the result will be used in `styled`)
      */
-    function traverse(sxInput) {
+    function transform(sxInput) {
       let sxObject = sxInput;
       if (typeof sxInput === 'function') {
         sxObject = sxInput(theme);
@@ -148,7 +148,7 @@ export function unstable_createStyleFunctionSx() {
       return sortContainerQueries(theme, removeUnusedBreakpoints(breakpointsKeys, css));
     }
 
-    return Array.isArray(sx) ? sx.map(traverse) : traverse(sx);
+    return Array.isArray(sx) ? sx.map(transform) : transform(sx);
   }
 
   return styleFunctionSx;
