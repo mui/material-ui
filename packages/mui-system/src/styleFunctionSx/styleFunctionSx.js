@@ -1,5 +1,4 @@
 import capitalize from '@mui/utils/capitalize';
-import merge from '../merge';
 import { getPath, getStyleValue } from '../style';
 import {
   handleBreakpoints,
@@ -8,6 +7,8 @@ import {
 } from '../breakpoints';
 import { sortContainerQueries } from '../cssContainerQueries';
 import defaultSxConfig from './defaultSxConfig';
+
+const EMPTY_THEME = {};
 
 function objectsHaveSameKeys(a, b) {
   let aLength = 0;
@@ -60,7 +61,7 @@ function getThemeValue(prop, val, theme, config) {
     return style(props);
   }
 
-  const themeMapping = getPath(theme, themeKey) || {};
+  const themeMapping = getPath(theme, themeKey);
 
   const styleFromPropValue = (propValueFinal) => {
     let value = getStyleValue(themeMapping, transform, propValueFinal);
@@ -87,15 +88,14 @@ function getThemeValue(prop, val, theme, config) {
   return handleBreakpoints(props, val, styleFromPropValue);
 }
 
-
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function unstable_createStyleFunctionSx() {
   function styleFunctionSx(props) {
-    const { sx, theme = {} } = props || {};
-
-    if (!sx) {
-      return null; // Emotion & styled-components will neglect null
+    if (!props.sx) {
+      return null;
     }
+
+    const { sx, theme = EMPTY_THEME } = props;
 
     const config = theme.unstable_sxConfig ?? defaultSxConfig;
 
@@ -118,7 +118,7 @@ export function unstable_createStyleFunctionSx() {
       const emptyBreakpoints = createEmptyBreakpointObject(theme.breakpoints);
       const breakpointsKeys = Object.keys(emptyBreakpoints);
 
-      let css = emptyBreakpoints;
+      const css = emptyBreakpoints;
 
       for (let styleKey in sxObject) {
         const value = callIfFn(sxObject[styleKey], theme);
@@ -126,28 +126,28 @@ export function unstable_createStyleFunctionSx() {
           continue;
         }
         if (typeof value !== 'object') {
-          css = merge(css, getThemeValue(styleKey, value, theme, config));
-        } else {
-          if (config[styleKey]) {
-            css = merge(css, getThemeValue(styleKey, value, theme, config));
-          } else {
-            const breakpointsValues = handleBreakpoints({ theme }, value, (x) => ({
-              [styleKey]: x,
-            }));
+          assign(css, getThemeValue(styleKey, value, theme, config));
+          continue;
+        }
+        if (config[styleKey]) {
+          assign(css, getThemeValue(styleKey, value, theme, config));
+          continue;
+        }
 
-            if (objectsHaveSameKeys(breakpointsValues, value)) {
-              css[styleKey] = styleFunctionSx({ sx: value, theme });
-            } else {
-              css = merge(css, breakpointsValues);
-            }
-          }
+        const breakpointsValues = handleBreakpoints({ theme }, value, (x) => ({
+          [styleKey]: x,
+        }));
+
+        if (objectsHaveSameKeys(breakpointsValues, value)) {
+          css[styleKey] = styleFunctionSx({ sx: value, theme });
+        } else {
+          assign(css, breakpointsValues);
         }
       }
 
       return sortContainerQueries(theme, removeUnusedBreakpoints(breakpointsKeys, css));
     }
 
-    debugger
     return Array.isArray(sx) ? sx.map(traverse) : traverse(sx);
   }
 
@@ -159,3 +159,10 @@ const styleFunctionSx = unstable_createStyleFunctionSx();
 styleFunctionSx.filterProps = ['sx'];
 
 export default styleFunctionSx;
+
+function assign(target, item) {
+  for (let key in item) {
+    target[key] = item[key];
+  }
+  return target;
+}

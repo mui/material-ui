@@ -7,7 +7,7 @@ import type { StyleFunction } from '../Box';
 export type TransformFunction = (
   cssValue: unknown,
   userValue: unknown,
-  transform: object | ((arg: any) => any),
+  transform: object | ((arg: any) => any) | undefined | null,
 ) => number | string | React.CSSProperties | CSSObject;
 
 export interface StyleOptions<PropKey> {
@@ -20,10 +20,16 @@ export interface StyleOptions<PropKey> {
   transform?: TransformFunction;
 }
 
-export function getPath<T extends Record<string, any> | undefined>(obj: T, pathInput: string | undefined, checkVars?: boolean): null | unknown {
-  if (!obj || !pathInput) { return null }
+export function getPath<T extends Record<string, any> | undefined | null>(
+  obj: T,
+  pathInput: string | undefined,
+  checkVars?: boolean,
+): null | unknown {
+  if (!obj || !pathInput) {
+    return null;
+  }
 
-  const path = pathInput.split('.')
+  const path = pathInput.split('.');
 
   // Check if CSS variables are used
   if (checkVars && obj && obj.vars) {
@@ -37,27 +43,26 @@ export function getPath<T extends Record<string, any> | undefined>(obj: T, pathI
 }
 
 function getPathImpl(object: any, path: string[]) {
-  let result = object
-  let counter = 0
+  let result = object;
+  let counter = 0;
 
-  while (counter < path.length){
-    if (result === null || result === undefined){
-      return result
+  while (counter < path.length) {
+    if (result === null || result === undefined) {
+      return result;
     }
 
-    result = result[path[counter]]
-    counter++
+    result = result[path[counter]];
+    counter++;
   }
 
-  return result
+  return result;
 }
 
-
 export function getStyleValue(
-  themeMapping: object | ((arg: any) => any),
+  themeMapping: object | ((arg: any) => any) | null | undefined,
   transform: TransformFunction | null | undefined,
   propValueFinal: unknown,
-  userValue?: unknown,
+  userValue: unknown = propValueFinal,
 ): any {
   let value;
 
@@ -65,8 +70,10 @@ export function getStyleValue(
     value = themeMapping(propValueFinal);
   } else if (Array.isArray(themeMapping)) {
     value = themeMapping[propValueFinal as any] || userValue;
+  } else if (typeof propValueFinal === 'string') {
+    value = getPath(themeMapping, propValueFinal) || userValue;
   } else {
-    value = getPath(themeMapping, propValueFinal as string) || userValue;
+    value = userValue;
   }
 
   if (transform) {
@@ -76,15 +83,15 @@ export function getStyleValue(
   return value;
 }
 
-type StyleResult<PropKey extends string | number | symbol, Theme> =
-  StyleFunction<{ [K in PropKey]?: unknown } & { theme?: Theme }> & { filterProps: string[], propTypes: any }
+type StyleResult<PropKey extends string | number | symbol, Theme> = StyleFunction<
+  { [K in PropKey]?: unknown } & { theme?: Theme }
+> & { filterProps: string[]; propTypes: any };
 
 function style<PropKey extends string, Theme extends object>(
   options: StyleOptions<PropKey>,
 ): StyleResult<PropKey, Theme> {
   const { prop, cssProperty = options.prop, themeKey, transform } = options;
 
-  // false positive
   // eslint-disable-next-line react/function-component-definition
   const fn: StyleResult<PropKey, Theme> = (props) => {
     if (props[prop] == null) {

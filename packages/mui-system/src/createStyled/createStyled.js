@@ -1,4 +1,5 @@
 import styledEngineStyled, { internal_mutateStyles as mutateStyles } from '@mui/styled-engine';
+import isObjectEmpty from '@mui/utils/isObjectEmpty';
 import { isPlainObject } from '@mui/utils/deepmerge';
 import capitalize from '@mui/utils/capitalize';
 import getDisplayName from '@mui/utils/getDisplayName';
@@ -279,14 +280,6 @@ function generateStyledLabel(componentName, componentSlot) {
   }
 
   return label;
-}
-
-function isObjectEmpty(object) {
-  // eslint-disable-next-line
-  for (const _ in object) {
-    return false;
-  }
-  return true;
 }
 
 // https://github.com/emotion-js/emotion/blob/26ded6109fcd8ca9875cc2ce4564fee678a3f3c5/packages/styled/src/utils.js#L40
