@@ -114,10 +114,10 @@ function breakpoints(styleFunction) {
   return newStyleFunction;
 }
 
-export function createEmptyBreakpointObject(breakpointsInput = {}) {
+export function createEmptyBreakpointObject(breakpoints = {}) {
   const result = {};
-  for (const key in breakpointsInput.keys) {
-    result[breakpointsInput.up(key)] = {};
+  for (const key in breakpoints.keys) {
+    result[breakpoints.up(key)] = {};
   }
   return result;
 }
@@ -134,8 +134,8 @@ export function removeUnusedBreakpoints(breakpointKeys, style) {
   return style;
 }
 
-export function mergeBreakpointsInOrder(breakpointsInput, ...styles) {
-  const emptyBreakpoints = createEmptyBreakpointObject(breakpointsInput);
+export function mergeBreakpointsInOrder(breakpoints, ...styles) {
+  const emptyBreakpoints = createEmptyBreakpointObject(breakpoints);
   const mergedOutput = [emptyBreakpoints, ...styles].reduce(
     (prev, next) => deepmerge(prev, next),
     {},
