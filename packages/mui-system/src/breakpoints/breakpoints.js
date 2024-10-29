@@ -43,7 +43,7 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
   if (Array.isArray(propValue)) {
     const themeBreakpoints = theme.breakpoints || defaultBreakpoints;
     const result = {};
-    for (let i = 0; i < propValue.length; i++) {
+    for (let i = 0; i < propValue.length; i += 1) {
       result[themeBreakpoints.up(themeBreakpoints.keys[i])] = styleFromPropValue(propValue[i]);
     }
     return result;
@@ -53,7 +53,7 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
     const themeBreakpoints = theme.breakpoints || defaultBreakpoints;
     const result = {};
 
-    for (let key in propValue) {
+    for (const key in propValue) {
       if (isCqShorthand(themeBreakpoints.keys, key)) {
         const containerKey = getContainerQuery(
           theme.containerQueries ? theme : defaultContainerQueries,
@@ -116,14 +116,14 @@ function breakpoints(styleFunction) {
 
 export function createEmptyBreakpointObject(breakpointsInput = {}) {
   const result = {};
-  for (let key in breakpointsInput.keys) {
+  for (const key in breakpointsInput.keys) {
     result[breakpointsInput.up(key)] = {};
   }
   return result;
 }
 
 export function removeUnusedBreakpoints(breakpointKeys, style) {
-  for (let i = 0; i < breakpointKeys.length; i++) {
+  for (let i = 0; i < breakpointKeys.length; i += 1) {
     const key = breakpointKeys[i];
 
     if (isObjectEmpty(style[key])) {

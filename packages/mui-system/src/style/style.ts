@@ -87,7 +87,7 @@ type StyleResult<PropKey extends string | number | symbol, Theme> = StyleFunctio
   { [K in PropKey]?: unknown } & { theme?: Theme }
 > & { filterProps: string[]; propTypes: any };
 
-export function style<PropKey extends string, Theme extends object>(
+function style<PropKey extends string, Theme extends object>(
   options: StyleOptions<PropKey>,
 ): StyleResult<PropKey, Theme> {
   const { prop, cssProperty = options.prop, themeKey, transform } = options;
