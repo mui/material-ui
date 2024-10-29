@@ -43,12 +43,10 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
   if (Array.isArray(propValue)) {
     const themeBreakpoints = theme.breakpoints || defaultBreakpoints;
     const result = {};
-    for (let key in propValue) {
+    for (let i = 0; i < propValue.length; i++) {
+      result[themeBreakpoints.up(themeBreakpoints.keys[i])] = styleFromPropValue(propValue[i]);
     }
-    return propValue.reduce((acc, item, index) => {
-      acc[themeBreakpoints.up(themeBreakpoints.keys[index])] = styleFromPropValue(propValue[index]);
-      return acc;
-    }, {});
+    return result;
   }
 
   if (typeof propValue === 'object') {
@@ -78,9 +76,7 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
     return result;
   }
 
-  const output = styleFromPropValue(propValue);
-
-  return output;
+  return styleFromPropValue(propValue);
 }
 
 function breakpoints(styleFunction) {
