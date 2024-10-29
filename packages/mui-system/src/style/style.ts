@@ -1,7 +1,7 @@
 import capitalize from '@mui/utils/capitalize';
+import type { CSSObject } from '@mui/styled-engine';
 import responsivePropType from '../responsivePropType';
 import { handleBreakpoints } from '../breakpoints';
-import type { CSSObject } from '@mui/styled-engine';
 import type { StyleFunction } from '../Box';
 
 export type TransformFunction = (
@@ -44,15 +44,15 @@ export function getPath<T extends Record<string, any> | undefined | null>(
 
 function getPathImpl(object: any, path: string[]) {
   let result = object;
-  let counter = 0;
+  let index = 0;
 
-  while (counter < path.length) {
+  while (index < path.length) {
     if (result === null || result === undefined) {
       return result;
     }
 
-    result = result[path[counter]];
-    counter++;
+    result = result[path[index]];
+    index += 1;
   }
 
   return result;

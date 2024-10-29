@@ -120,7 +120,7 @@ export function unstable_createStyleFunctionSx() {
 
       const css = emptyBreakpoints;
 
-      for (let styleKey in sxObject) {
+      for (const styleKey in sxObject) {
         const value = callIfFn(sxObject[styleKey], theme);
         if (value === null || value === undefined) {
           continue;
@@ -161,7 +161,7 @@ styleFunctionSx.filterProps = ['sx'];
 export default styleFunctionSx;
 
 function assign(target, item) {
-  for (let key in item) {
+  for (const key in item) {
     target[key] = item[key];
   }
   return target;
