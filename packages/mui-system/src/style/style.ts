@@ -23,7 +23,7 @@ export interface StyleOptions<PropKey> {
 export function getPath<T extends Record<string, any> | undefined | null>(
   obj: T,
   pathInput: string | undefined,
-  checkVars?: boolean,
+  checkVars: boolean = true,
 ): null | unknown {
   if (!obj || !pathInput) {
     return null;
@@ -32,7 +32,7 @@ export function getPath<T extends Record<string, any> | undefined | null>(
   const path = pathInput.split('.');
 
   // Check if CSS variables are used
-  if (checkVars && obj && obj.vars) {
+  if (obj.vars && checkVars) {
     const val = getPathImpl(obj.vars, path);
     if (val != null) {
       return val;

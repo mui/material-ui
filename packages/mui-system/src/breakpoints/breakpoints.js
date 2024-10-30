@@ -116,8 +116,8 @@ function breakpoints(styleFunction) {
 
 export function createEmptyBreakpointObject(breakpoints = {}) {
   const result = {};
-  for (const key in breakpoints.keys) {
-    result[breakpoints.up(key)] = {};
+  for (let i = 0; i < breakpoints.keys.length; i += 1) {
+    result[breakpoints.up(breakpoints.keys[i])] = {};
   }
   return result;
 }
