@@ -148,6 +148,7 @@ module.exports = async function demoLoader() {
    * @param {*} moduleFilepath
    * @param {*} variant
    * @param {*} importModuleID
+   * @returns {string} The name of the imported module along with a resolved extension if not provided
    * @example detectRelativeImports('ComboBox.js', '', JS', './top100Films') => relativeModules.set('ComboBox.js', new Map([['./top100Films.js', ['JS']]]))
    */
   function detectRelativeImports(demoName, moduleFilepath, variant, importModuleID) {
