@@ -2465,7 +2465,7 @@ describe('<Autocomplete />', () => {
           options={[]}
           renderInput={(params) => <TextField {...params} />}
           slots={{
-            paper: (props) => <div {...props} />
+            paper: (props) => <div {...props} />,
           }}
           slotProps={{
             paper: { 'data-testid': 'paperRoot' },
