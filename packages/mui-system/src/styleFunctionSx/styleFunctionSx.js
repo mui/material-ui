@@ -109,11 +109,9 @@ export function unstable_createStyleFunctionSx() {
 
     const config = theme.unstable_sxConfig ?? defaultSxConfig;
 
-    /*
-     * Receive `sxInput` as object or callback
-     * and then recursively check keys & values to create media query object styles.
-     * (the result will be used in `styled`)
-     */
+    // Pass argument without loop allocations
+    const wrapper = { sx: null, theme };
+
     function transform(sxInput) {
       let sxObject = sxInput;
       if (typeof sxInput === 'function') {
@@ -125,6 +123,7 @@ export function unstable_createStyleFunctionSx() {
       if (!sxObject) {
         return null;
       }
+
       const emptyBreakpoints = createEmptyBreakpointObject(theme.breakpoints);
       const breakpointsKeys = Object.keys(emptyBreakpoints);
 
@@ -144,12 +143,13 @@ export function unstable_createStyleFunctionSx() {
           continue;
         }
 
-        const breakpointsValues = handleBreakpoints({ theme }, value, (x) => ({
+        const breakpointsValues = handleBreakpoints(wrapper, value, (x) => ({
           [styleKey]: x,
         }));
 
         if (objectsHaveSameKeys(breakpointsValues, value)) {
-          css[styleKey] = styleFunctionSx({ sx: value, theme });
+          wrapper.sx = value;
+          css[styleKey] = styleFunctionSx(wrapper);
         } else {
           merge(css, breakpointsValues);
         }
