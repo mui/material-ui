@@ -235,15 +235,12 @@ export default function createStyled(input = {}) {
   };
 }
 
-export function applyStyled(props, componentName, overridesResolver) {
-  const styles = applyThemeOverrides(props, componentName, overridesResolver);
-
-  // NOTE: Later on, we might want to apply other MUI features:
-  // const styles = [
-  //   applyThemeOverrides(props, componentName, overridesResolver),
-  //   applyThemeVariants(props, componentName),
-  //   applySystemSx(props, componentName),
-  // ]
+export function internal_applyStyled(props, componentName, overridesResolver) {
+  const styles = [
+    applyThemeOverrides(props, componentName, overridesResolver),
+    applyThemeVariants(props, componentName),
+    // applySystemSx(props, componentName),
+  ]
 
   return css(styles);
 }

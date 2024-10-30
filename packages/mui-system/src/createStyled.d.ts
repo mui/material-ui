@@ -38,4 +38,4 @@ export default function createStyled<Theme extends object = DefaultTheme>(option
   styleFunctionSx?: typeof styleFunctionSx;
 }): CreateMUIStyled<Theme>;
 
-export function applyStyled(props: any, componentName: string, overridesResolver: Function): string;
+export function internal_applyStyled(props: any, componentName: string, overridesResolver: Function): string;
