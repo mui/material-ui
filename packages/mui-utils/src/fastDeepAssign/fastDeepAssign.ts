@@ -67,8 +67,11 @@ function isPrimitive(value: any) {
   return typeof value !== 'object' || value === null;
 }
 
-const isPrimitiveOrBuiltIn = (value: any) =>
-  typeof value !== 'object' || value === null || value instanceof RegExp || value instanceof Date;
+function isPrimitiveOrBuiltIn(value: any) {
+  return (
+    typeof value !== 'object' || value === null || value instanceof RegExp || value instanceof Date
+  );
+}
 
 function clone(entry: any) {
   // eslint-disable-next-line no-nested-ternary

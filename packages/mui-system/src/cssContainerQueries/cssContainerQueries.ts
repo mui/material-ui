@@ -12,6 +12,8 @@ export interface CssContainerQueries {
   containerQueries: ((name: string) => ContainerQueries) & ContainerQueries;
 }
 
+const MIN_WIDTH_PATTERN = /min-width:\s*([0-9.]+)/;
+
 /**
  * For using in `sx` prop to sort the breakpoint from low to high.
  * Note: this function does not work and will not support multiple units.
@@ -25,24 +27,32 @@ export function sortContainerQueries(
   if (!theme.containerQueries) {
     return css;
   }
-  const sorted = Object.keys(css)
-    .filter((key) => key.startsWith('@container'))
-    .sort((a, b) => {
-      const regex = /min-width:\s*([0-9.]+)/;
-      return +(a.match(regex)?.[1] || 0) - +(b.match(regex)?.[1] || 0);
-    });
-  if (!sorted.length) {
+  const keys = [];
+
+  for (const key in css) {
+    if (key.startsWith('@container')) {
+      keys.push(key);
+    }
+  }
+
+  if (keys.length === 0) {
     return css;
   }
-  return sorted.reduce(
-    (acc, key) => {
-      const value = css[key];
-      delete acc[key];
-      acc[key] = value;
-      return acc;
-    },
-    { ...css },
-  );
+
+  keys.sort((a, b) => {
+    return +(a.match(MIN_WIDTH_PATTERN)?.[1] || 0) - +(b.match(MIN_WIDTH_PATTERN)?.[1] || 0);
+  });
+
+  const result = { ...css };
+
+  for (let i = 0; i < keys.length; i += 1) {
+    const key = keys[i];
+    const value = result[key];
+    delete result[key];
+    result[key] = value;
+  }
+
+  return result;
 }
 
 export function isCqShorthand(breakpointKeys: string[], value: string) {
