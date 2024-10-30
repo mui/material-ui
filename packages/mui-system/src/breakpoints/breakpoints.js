@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
 import isObjectEmpty from '@mui/utils/isObjectEmpty';
+import fastDeepAssign from '@mui/utils/fastDeepAssign';
 import deepmerge from '@mui/utils/deepmerge';
 import merge from '../merge';
 import { isCqShorthand, getContainerQuery } from '../cssContainerQueries';
-
-/* eslint-disable guard-for-in */
 
 // The breakpoint **start** at this value.
 // For instance with the first breakpoint xs: [xs, sm[.
@@ -42,22 +41,31 @@ const EMPTY_BREAKPOINTS = {
   up: (key) => `@media (min-width:${values[key]}px)`,
 };
 
-export function handleBreakpoints(props, propValue, styleFromPropValue) {
-  const theme = props.theme || {};
+function buildBreakpoint(target, key, value, initialKey, callback) {
+  target[key] ??= {};
+  callback(target, key, value, initialKey);
+}
+
+export function buildBreakpoints(target, theme, propValue, styleFromPropValue) {
+  theme ??= {};
 
   if (Array.isArray(propValue)) {
     const breakpoints = theme.breakpoints || defaultBreakpoints;
-    const result = {};
     for (let i = 0; i < propValue.length; i += 1) {
-      result[breakpoints.up(breakpoints.keys[i])] = styleFromPropValue(propValue[i]);
+      buildBreakpoint(
+        target,
+        breakpoints.up(breakpoints.keys[i]),
+        propValue[i],
+        undefined,
+        styleFromPropValue,
+      );
     }
-    return result;
+    return target;
   }
 
   if (typeof propValue === 'object') {
     const breakpoints = theme.breakpoints || defaultBreakpoints;
     const breakpointValues = breakpoints.values ?? values;
-    const result = {};
 
     for (const key in propValue) {
       if (isCqShorthand(breakpoints.keys, key)) {
@@ -66,26 +74,40 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
           key,
         );
         if (containerKey) {
-          result[containerKey] = styleFromPropValue(propValue[key], key);
+          buildBreakpoint(target, containerKey, propValue[key], key, styleFromPropValue);
         }
       }
       // key is key
       else if (key in breakpointValues) {
         const mediaKey = breakpoints.up(key);
-        result[mediaKey] = styleFromPropValue(propValue[key], key);
+        buildBreakpoint(target, mediaKey, propValue[key], key, styleFromPropValue);
       } else {
         const cssKey = key;
-        result[cssKey] = propValue[cssKey];
+        target[cssKey] = propValue[cssKey];
       }
     }
 
-    return result;
+    return target;
   }
 
-  return styleFromPropValue(propValue);
+  styleFromPropValue(target, undefined, propValue);
+
+  return target;
 }
 
-function breakpoints(styleFunction) {
+export function handleBreakpoints(props, propValue, styleFromPropValue) {
+  const result = {};
+  return buildBreakpoints(result, props.theme, propValue, (target, key, value, initialKey) => {
+    const finalValue = styleFromPropValue(value, initialKey);
+    if (key) {
+      target[key] = finalValue;
+    } else {
+      fastDeepAssign(target, finalValue);
+    }
+  });
+}
+
+function setupBreakpoints(styleFunction) {
   // eslint-disable-next-line react/function-component-definition
   const newStyleFunction = (props) => {
     const theme = props.theme || {};
@@ -207,4 +229,4 @@ export function resolveBreakpointValues({
   }, {});
 }
 
-export default breakpoints;
+export default setupBreakpoints;

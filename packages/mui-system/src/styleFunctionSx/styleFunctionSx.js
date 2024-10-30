@@ -2,6 +2,7 @@ import capitalize from '@mui/utils/capitalize';
 import merge from '@mui/utils/fastDeepAssign';
 import { getPath, getStyleValue } from '../style';
 import {
+  buildBreakpoints,
   handleBreakpoints,
   createEmptyBreakpointObject,
   removeUnusedBreakpoints,
@@ -55,19 +56,19 @@ function setThemeValue(css, prop, val, theme, config) {
     return;
   }
 
-  const props = {
-    [prop]: val,
-    theme,
-  };
-
   if (style) {
+    const props = {
+      [prop]: val,
+      theme,
+    };
+
     merge(css, style(props));
     return;
   }
 
   const themeMapping = getPath(theme, themeKey);
 
-  const styleFromPropValue = (propValueFinal) => {
+  buildBreakpoints(css, theme, val, (target, key, propValueFinal) => {
     let value = getStyleValue(themeMapping, transform, propValueFinal);
 
     if (propValueFinal === value && typeof propValueFinal === 'string') {
@@ -81,17 +82,20 @@ function setThemeValue(css, prop, val, theme, config) {
     }
 
     if (cssProperty === false) {
-      return value;
+      if (key) {
+        target[key] = value;
+      } else {
+        merge(target, value);
+      }
+    } else {
+      // eslint-disable-next-line no-lonely-if
+      if (key) {
+        target[key][cssProperty] = value;
+      } else {
+        target[cssProperty] = value;
+      }
     }
-
-    return {
-      [cssProperty]: value,
-    };
-  };
-
-  const result = handleBreakpoints(props, val, styleFromPropValue);
-
-  merge(css, result);
+  });
 }
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
