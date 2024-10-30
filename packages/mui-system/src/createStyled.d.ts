@@ -37,3 +37,5 @@ export default function createStyled<Theme extends object = DefaultTheme>(option
   slotShouldForwardProp?: (prop: PropertyKey) => boolean;
   styleFunctionSx?: typeof styleFunctionSx;
 }): CreateMUIStyled<Theme>;
+
+export function applyStyled(props: any, componentName: string, overridesResolver: Function): string;
