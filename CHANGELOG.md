@@ -15,6 +15,7 @@ A big thanks to the 13 contributors who made this release possible.
 - [AvatarGroup] Fix spacing CSS variable (#44202) @navedqb
 - [Divider] Fix CSS specificity order (#44204) @o-alexandrov
 - [Slider] Fix value prop type warning (#44131) @joshkel
+- Replace `useThemeProps` with `useDefaultProps` (#44193) @siriwatknp
 
 ### `@mui/material-nextjs@6.1.6`
 
@@ -47,6 +48,7 @@ A big thanks to the 13 contributors who made this release possible.
 - Run @mui/icon-material src:icons (#44097) @oliviertassinari
 - [test][material-ui] Add tests for Pigment Grid and Stack (#44132) @DiegoAndai
 - [test] Distinguish private with public tests API (#44188) @oliviertassinari
+- [docs-infra] Add recursively the relative modules in the demos (#44150) @mnajdova
 
 All contributors of this release in alphabetical order: @aarongarciah, @blackcow1987, @DiegoAndai, @jimmycallin, @joshkel, @navedqb, @nphmuller, @o-alexandrov, @oliviertassinari, @prakhargupta1, @renovate[bot], @sai6855, @siriwatknp
 
