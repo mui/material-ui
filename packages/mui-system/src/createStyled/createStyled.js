@@ -1,4 +1,7 @@
-import styledEngineStyled, { internal_mutateStyles as mutateStyles } from '@mui/styled-engine';
+import styledEngineStyled, {
+  css,
+  internal_mutateStyles as mutateStyles,
+} from '@mui/styled-engine';
 import { isPlainObject } from '@mui/utils/deepmerge';
 import capitalize from '@mui/utils/capitalize';
 import getDisplayName from '@mui/utils/getDisplayName';
@@ -181,34 +184,15 @@ export default function createStyled(input = {}) {
       // This must run before any other expression.
       expressionsHead.push(styleAttachTheme);
 
-      if (componentName && overridesResolver) {
+      if (componentName) {
         expressionsTail.push(function styleThemeOverrides(props) {
-          const theme = props.theme;
-          const styleOverrides = theme.components?.[componentName]?.styleOverrides;
-          if (!styleOverrides) {
-            return null;
-          }
-
-          const resolvedStyleOverrides = {};
-
-          // TODO: v7 remove iteration and use `resolveStyleArg(styleOverrides[slot])` directly
-          // eslint-disable-next-line guard-for-in
-          for (const slotKey in styleOverrides) {
-            resolvedStyleOverrides[slotKey] = processStyle(props, styleOverrides[slotKey]);
-          }
-
-          return overridesResolver(props, resolvedStyleOverrides);
+          return applyThemeOverrides(props, componentName, overridesResolver);
         });
       }
 
       if (componentName && !skipVariantsResolver) {
         expressionsTail.push(function styleThemeVariants(props) {
-          const theme = props.theme;
-          const themeVariants = theme?.components?.[componentName]?.variants;
-          if (!themeVariants) {
-            return null;
-          }
-          return processStyleVariants(props, themeVariants);
+          return applyThemeVariants(props, componentName)
         });
       }
 
@@ -258,6 +242,46 @@ export default function createStyled(input = {}) {
   };
 
   return styled;
+}
+
+export function applyStyled(props, componentName, overridesResolver) {
+  const styles = applyThemeOverrides(props, componentName, overridesResolver);
+
+  // NOTE: Later on, we might want to apply other MUI features:
+  // const styles = [
+  //   applyThemeOverrides(props, componentName, overridesResolver),
+  //   applyThemeVariants(props, componentName),
+  //   applySystemSx(props, componentName),
+  // ]
+
+  return css(styles);
+}
+
+function applyThemeOverrides(props, componentName, overridesResolver) {
+  const theme = props.theme;
+  const styleOverrides = theme.components?.[componentName]?.styleOverrides;
+  if (!styleOverrides) {
+    return null;
+  }
+
+  const resolvedStyleOverrides = {};
+
+  // TODO: v7 remove iteration and use `resolveStyleArg(styleOverrides[slot])` directly
+  // eslint-disable-next-line guard-for-in
+  for (const slotKey in styleOverrides) {
+    resolvedStyleOverrides[slotKey] = processStyle(props, styleOverrides[slotKey]);
+  }
+
+  return overridesResolver(props, resolvedStyleOverrides);
+}
+
+function applyThemeVariants(props, componentName) {
+  const theme = props.theme;
+  const themeVariants = theme?.components?.[componentName]?.variants;
+  if (!themeVariants) {
+    return null;
+  }
+  return processStyleVariants(props, themeVariants);
 }
 
 function generateDisplayName(componentName, componentSlot, tag) {
