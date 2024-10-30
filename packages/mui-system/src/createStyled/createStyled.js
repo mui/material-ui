@@ -1,7 +1,4 @@
-import styledEngineStyled, {
-  css,
-  internal_mutateStyles as mutateStyles,
-} from '@mui/styled-engine';
+import styledEngineStyled, { css, internal_mutateStyles as mutateStyles } from '@mui/styled-engine';
 import { isPlainObject } from '@mui/utils/deepmerge';
 import capitalize from '@mui/utils/capitalize';
 import getDisplayName from '@mui/utils/getDisplayName';
@@ -192,7 +189,7 @@ export default function createStyled(input = {}) {
 
       if (componentName && !skipVariantsResolver) {
         expressionsTail.push(function styleThemeVariants(props) {
-          return applyThemeVariants(props, componentName)
+          return applyThemeVariants(props, componentName);
         });
       }
 
