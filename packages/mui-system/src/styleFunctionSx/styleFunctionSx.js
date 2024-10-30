@@ -1,4 +1,5 @@
 import capitalize from '@mui/utils/capitalize';
+import merge from '@mui/utils/fastDeepAssign';
 import { getPath, getStyleValue } from '../style';
 import {
   handleBreakpoints,
@@ -34,22 +35,24 @@ function callIfFn(maybeFn, arg) {
   return typeof maybeFn === 'function' ? maybeFn(arg) : maybeFn;
 }
 
-function getThemeValue(prop, val, theme, config) {
+function setThemeValue(css, prop, val, theme, config) {
   const options = config[prop];
 
   if (!options) {
-    return { [prop]: val };
+    css[prop] = val;
+    return;
+  }
+
+  if (val == null) {
+    return;
   }
 
   const { cssProperty = prop, themeKey, transform, style } = options;
 
-  if (val == null) {
-    return null;
-  }
-
   // TODO v6: remove, see https://github.com/mui/material-ui/pull/38123
   if (themeKey === 'typography' && val === 'inherit') {
-    return { [prop]: val };
+    css[prop] = val;
+    return;
   }
 
   const props = {
@@ -58,7 +61,8 @@ function getThemeValue(prop, val, theme, config) {
   };
 
   if (style) {
-    return style(props);
+    merge(css, style(props));
+    return;
   }
 
   const themeMapping = getPath(theme, themeKey);
@@ -85,7 +89,10 @@ function getThemeValue(prop, val, theme, config) {
     };
   };
 
-  return handleBreakpoints(props, val, styleFromPropValue);
+  const result = handleBreakpoints(props, val, styleFromPropValue);
+  debugger;
+
+  merge(css, result);
 }
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -126,11 +133,11 @@ export function unstable_createStyleFunctionSx() {
           continue;
         }
         if (typeof value !== 'object') {
-          assign(css, getThemeValue(styleKey, value, theme, config));
+          setThemeValue(css, styleKey, value, theme, config);
           continue;
         }
         if (config[styleKey]) {
-          assign(css, getThemeValue(styleKey, value, theme, config));
+          setThemeValue(css, styleKey, value, theme, config);
           continue;
         }
 
@@ -141,7 +148,7 @@ export function unstable_createStyleFunctionSx() {
         if (objectsHaveSameKeys(breakpointsValues, value)) {
           css[styleKey] = styleFunctionSx({ sx: value, theme });
         } else {
-          assign(css, breakpointsValues);
+          merge(css, breakpointsValues);
         }
       }
 
@@ -159,10 +166,3 @@ const styleFunctionSx = unstable_createStyleFunctionSx();
 styleFunctionSx.filterProps = ['sx'];
 
 export default styleFunctionSx;
-
-function assign(target, item) {
-  for (const key in item) {
-    target[key] = item[key];
-  }
-  return target;
-}

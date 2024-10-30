@@ -37,24 +37,30 @@ const defaultContainerQueries = {
   }),
 };
 
+const EMPTY_BREAKPOINTS = {
+  keys: [],
+  up: (key) => `@media (min-width:${values[key]}px)`,
+};
+
 export function handleBreakpoints(props, propValue, styleFromPropValue) {
   const theme = props.theme || {};
 
   if (Array.isArray(propValue)) {
-    const themeBreakpoints = theme.breakpoints || defaultBreakpoints;
+    const breakpoints = theme.breakpoints || defaultBreakpoints;
     const result = {};
     for (let i = 0; i < propValue.length; i += 1) {
-      result[themeBreakpoints.up(themeBreakpoints.keys[i])] = styleFromPropValue(propValue[i]);
+      result[breakpoints.up(breakpoints.keys[i])] = styleFromPropValue(propValue[i]);
     }
     return result;
   }
 
   if (typeof propValue === 'object') {
-    const themeBreakpoints = theme.breakpoints || defaultBreakpoints;
+    const breakpoints = theme.breakpoints || defaultBreakpoints;
+    const breakpointValues = breakpoints.values ?? values;
     const result = {};
 
     for (const key in propValue) {
-      if (isCqShorthand(themeBreakpoints.keys, key)) {
+      if (isCqShorthand(breakpoints.keys, key)) {
         const containerKey = getContainerQuery(
           theme.containerQueries ? theme : defaultContainerQueries,
           key,
@@ -64,8 +70,8 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
         }
       }
       // key is key
-      else if (key in (themeBreakpoints.values ?? values)) {
-        const mediaKey = themeBreakpoints.up(key);
+      else if (key in breakpointValues) {
+        const mediaKey = breakpoints.up(key);
         result[mediaKey] = styleFromPropValue(propValue[key], key);
       } else {
         const cssKey = key;
@@ -114,7 +120,7 @@ function breakpoints(styleFunction) {
   return newStyleFunction;
 }
 
-export function createEmptyBreakpointObject(breakpoints = {}) {
+export function createEmptyBreakpointObject(breakpoints = EMPTY_BREAKPOINTS) {
   const result = {};
   for (let i = 0; i < breakpoints.keys.length; i += 1) {
     result[breakpoints.up(breakpoints.keys[i])] = {};
