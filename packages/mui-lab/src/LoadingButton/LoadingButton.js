@@ -22,7 +22,7 @@ const warn = () => {
 /**
  * @ignore - do not document.
  */
-export default React.forwardRef(function DeprecatedAlert(props, ref) {
+export default React.forwardRef(function DeprecatedLoadingButton(props, ref) {
   warn();
 
   return <Button ref={ref} {...props} />;
