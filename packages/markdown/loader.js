@@ -486,30 +486,26 @@ module.exports = async function demoLoader() {
                 const importedProcessedModuleIDs = new Set();
                 const importedProcessedModulesIDsParents = new Map();
                 // Find the relative paths in the relative module
-                if (relativeModuleID.startsWith('.')) {
-                  extractImports(raw).forEach((importModuleID) => {
-                    // detect relative import
-                    const importModuleIdWithExtension = detectRelativeImports(
-                      importModuleID,
+                extractImports(raw).forEach((importModuleID) => {
+                  // detect relative import
+                  const importModuleIdWithExtension = detectRelativeImports(
+                    importModuleID,
+                    relativeModuleFilePath,
+                    variant,
+                    importModuleID,
+                  );
+                  if (importModuleID.startsWith('.')) {
+                    importedProcessedModuleIDs.add(importModuleIdWithExtension);
+                    importedProcessedModulesIDsParents.set(
+                      importModuleIdWithExtension,
                       relativeModuleFilePath,
-                      variant,
-                      importModuleID,
                     );
-                    if (importModuleID.startsWith('.')) {
-                      importedProcessedModuleIDs.add(importModuleIdWithExtension);
-                      importedProcessedModulesIDsParents.set(
-                        importModuleIdWithExtension,
-                        relativeModuleFilePath,
-                      );
-                    }
-                  });
-
-                  if (!addedModulesRelativeToModulePath.has(relativeModuleFilePath)) {
-                    const moduleData = { module: relativeModuleID, raw };
-                    updateRelativeModules(demoName, moduleData, variant);
-                    addedModulesRelativeToModulePath.add(relativeModuleFilePath);
                   }
-                }
+                });
+
+                updateRelativeModules(demoName, { module: relativeModuleID, raw }, variant);
+                addedModulesRelativeToModulePath.add(relativeModuleFilePath);
+
                 // iterate recursively over the relative imports
                 while (importedProcessedModuleIDs.size > 0) {
                   for (const entry of importedProcessedModuleIDs) {
