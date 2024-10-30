@@ -2455,6 +2455,27 @@ describe('<Autocomplete />', () => {
       const popper = screen.queryByTestId('popperRoot');
       expect(popper).to.equal(null);
     });
+
+    // Test for https://github.com/mui/material-ui/issues/44048
+    it('should render popper if custom paper is passed through slots even when there are no options', () => {
+      render(
+        <Autocomplete
+          open
+          freeSolo
+          options={[]}
+          renderInput={(params) => <TextField {...params} />}
+          slots={{
+            paper: (props) => <div {...props} />
+          }}
+          slotProps={{
+            paper: { 'data-testid': 'paperRoot' },
+          }}
+        />,
+      );
+
+      const paper = screen.queryByTestId('paperRoot');
+      expect(paper).not.to.equal(null);
+    });
   });
 
   describe('prop: onChange', () => {
