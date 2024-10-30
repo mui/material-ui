@@ -90,7 +90,6 @@ function setThemeValue(css, prop, val, theme, config) {
   };
 
   const result = handleBreakpoints(props, val, styleFromPropValue);
-  debugger;
 
   merge(css, result);
 }
