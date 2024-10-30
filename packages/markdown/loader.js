@@ -202,6 +202,26 @@ module.exports = async function demoLoader() {
     return relativeModuleFilename;
   }
 
+  /**
+   * Inserts the moduleData into the relativeModules object
+   * @param string demoName
+   * @param {*} moduleData
+   * @param string variant
+   * @example updateRelativeModules(demoName, {module: 'constants.js', raw: ... }, 'JS') => demos[demoName].relativeModules[variant].push(moduleData)
+   */
+  function updateRelativeModules(demoName, moduleData, variant) {
+    if (demos[demoName].relativeModules[variant]) {
+      // Avoid duplicates
+      if (
+        !demos[demoName].relativeModules[variant].some((elem) => elem.module === moduleData.module)
+      ) {
+        demos[demoName].relativeModules[variant].push(moduleData);
+      }
+    } else {
+      demos[demoName].relativeModules[variant] = [moduleData];
+    }
+  }
+
   await Promise.all(
     demoNames.map(async (demoName) => {
       const multipleDemoVersionsUsed = !demoName.endsWith('.js');
@@ -421,27 +441,6 @@ module.exports = async function demoLoader() {
         // TS version of the demo doesn't exist. This is fine.
       }
 
-      /**
-       * Inserts the moduleData into the relativeModules object
-       * @param {*} moduleData
-       * @param {*} variant
-       * @example updateRelativeModules({module: 'constants.js', raw: ... }, 'JS') => demos[demoName].relativeModules[variant].push(moduleData)
-       */
-      function updateRelativeModules(moduleData, variant) {
-        if (demos[demoName].relativeModules[variant]) {
-          // Avoid duplicates
-          if (
-            !demos[demoName].relativeModules[variant].some(
-              (elem) => elem.module === moduleData.module,
-            )
-          ) {
-            demos[demoName].relativeModules[variant].push(moduleData);
-          }
-        } else {
-          demos[demoName].relativeModules[variant] = [moduleData];
-        }
-      }
-
       /* Map over relative import module IDs and resolve them
        * while grouping by demo variant
        * From:
@@ -507,7 +506,7 @@ module.exports = async function demoLoader() {
 
                   if (!addedModulesRelativeToModulePath.has(relativeModuleFilePath)) {
                     const moduleData = { module: relativeModuleID, raw };
-                    updateRelativeModules(moduleData, variant);
+                    updateRelativeModules(demoName, moduleData, variant);
                     addedModulesRelativeToModulePath.add(relativeModuleFilePath);
                   }
                 }
@@ -551,7 +550,7 @@ module.exports = async function demoLoader() {
                           module: `.${entryModuleFilePath.replace(modulePathDirectory, '')}`,
                           raw: rawEntry,
                         };
-                        updateRelativeModules(moduleData, variant);
+                        updateRelativeModules(demoName, moduleData, variant);
                         addedModulesRelativeToModulePath.add(entryModuleFilePath);
                       }
                     }
