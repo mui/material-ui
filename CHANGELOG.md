@@ -11,7 +11,6 @@ A big thanks to the 13 contributors who made this release possible.
 ### `@mui/material@6.1.6`
 
 - [Autocomplete] Add missing `onMouseDown` type to AutocompleteRenderInputParams (#44183) @sai6855
-- [Avatar] Add AvatarGroup spacing demo (#44209) @aarongarciah
 - [Avatar] Fix AvatarGroup spacing (#44208) @aarongarciah
 - [AvatarGroup] Fix spacing CSS variable (#44202) @navedqb
 - [Divider] Fix CSS specificity order (#44204) @o-alexandrov
@@ -33,6 +32,7 @@ A big thanks to the 13 contributors who made this release possible.
 
 ### Docs
 
+- [material-ui][Avatar] Add AvatarGroup spacing demo (#44209) @aarongarciah
 - Fix a typo in CONTRIBUTING.md (#44200) @prakhargupta1
 - Mark the Hidden component as deprecated in the sidenav (#44068) @jimmycallin
 - Use () when referencing functions (#44184) @oliviertassinari
