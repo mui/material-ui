@@ -489,7 +489,7 @@ module.exports = async function demoLoader() {
                 extractImports(raw).forEach((importModuleID) => {
                   // detect relative import
                   const importModuleIdWithExtension = detectRelativeImports(
-                    importModuleID,
+                    relativeModuleID,
                     relativeModuleFilePath,
                     variant,
                     importModuleID,
@@ -523,7 +523,7 @@ module.exports = async function demoLoader() {
                       extractImports(rawEntry).forEach((importModuleID) => {
                         // detect relative import
                         const importModuleIdWithExtension = detectRelativeImports(
-                          entry,
+                          relativeModuleID,
                           entryModuleFilePath,
                           variant,
                           importModuleID,
