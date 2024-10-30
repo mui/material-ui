@@ -1,5 +1,52 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.1.6
+
+<!-- generated comparing v6.1.5..master -->
+
+_Oct 30, 2024_
+
+A big thanks to the 13 contributors who made this release possible.
+
+### `@mui/material@6.1.6`
+
+- [Autocomplete] Add missing `onMouseDown` type to AutocompleteRenderInputParams (#44183) @sai6855
+- [Avatar] Add AvatarGroup spacing demo (#44209) @aarongarciah
+- [Avatar] Fix AvatarGroup spacing (#44208) @aarongarciah
+- [AvatarGroup] Fix spacing CSS variable (#44202) @navedqb
+- [Divider] Fix CSS specificity order (#44204) @o-alexandrov
+- [Slider] Fix value prop type warning (#44131) @joshkel
+- [Tabs] Fix type of TabPanel component (#44207) @blackcow1987
+
+### `@mui/material-nextjs@6.1.6`
+
+- Support Next 15.0.0 (#42428) @nphmuller
+
+### `@mui/codemod@6.1.6`
+
+- Fix system props default import specifier (#44170) @siriwatknp
+
+### `@mui/utils@6.1.6`
+
+- Bring back useIsFocusVisible (#44256) @aarongarciah
+- Bring back getReactNodeRef (#44248) @aarongarciah
+
+### Docs
+
+- Fix a typo in CONTRIBUTING.md (#44200) @prakhargupta1
+- Mark the Hidden component as deprecated in the sidenav (#44068) @jimmycallin
+- Use () when referencing functions (#44184) @oliviertassinari
+- Follow types description convention (#44187) @oliviertassinari
+
+### Core
+
+- Lock file maintenance (#43947) @renovate[bot]
+- Run @mui/icon-material src:icons (#44097) @oliviertassinari
+- [test][material-ui] Add tests for Pigment Grid and Stack (#44132) @DiegoAndai
+- [test] Distinguish private with public tests API (#44188) @oliviertassinari
+
+All contributors of this release in alphabetical order: @aarongarciah, @blackcow1987, @DiegoAndai, @jimmycallin, @joshkel, @navedqb, @nphmuller, @o-alexandrov, @oliviertassinari, @prakhargupta1, @renovate[bot], @sai6855, @siriwatknp
+
 ## 6.1.5
 
 <!-- generated comparing v6.1.4..master -->
