@@ -718,6 +718,14 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
         {noOptionsText}
       </AutocompleteNoOptions>,
     );
+  } else if (externalForwardedProps.slots.popper || externalForwardedProps.slots.paper) {
+    autocompletePopper = (
+      <AutocompletePopper as={PopperSlot} {...popperProps}>
+        {externalForwardedProps.slots.paper ? (
+          <AutocompletePaper as={PaperSlot} {...paperProps} />
+        ) : null}
+      </AutocompletePopper>
+    );
   }
 
   return (
