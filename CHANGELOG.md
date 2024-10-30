@@ -15,11 +15,14 @@ A big thanks to the 13 contributors who made this release possible.
 - [AvatarGroup] Fix spacing CSS variable (#44202) @navedqb
 - [Divider] Fix CSS specificity order (#44204) @o-alexandrov
 - [Slider] Fix value prop type warning (#44131) @joshkel
-- [Tabs] Fix type of TabPanel component (#44207) @blackcow1987
 
 ### `@mui/material-nextjs@6.1.6`
 
 - Support Next 15.0.0 (#42428) @nphmuller
+
+### `@mui/lab@6.0.0-beta.14`
+
+- [Tabs] Fix type of TabPanel component (#44207) @blackcow1987
 
 ### `@mui/codemod@6.1.6`
 
