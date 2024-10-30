@@ -6,6 +6,27 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable no-else-return */
 
+/**
+ * Assigns props from one object to another. Focused on performance, only normal objects with no
+ * prototype are supported.
+ */
+export default function fastDeepAssign<T extends Record<string, any>>(target: T, source: any) {
+  const sourceIsArray = Array.isArray(source);
+  const targetIsArray = Array.isArray(target);
+
+  if (isPrimitive(source)) {
+    return source;
+  } else if (isPrimitiveOrBuiltIn(target)) {
+    return clone(source);
+  } else if (sourceIsArray && targetIsArray) {
+    return mergeArray(target, source);
+  } else if (sourceIsArray !== targetIsArray) {
+    return clone(source);
+  } else {
+    return mergeObject(target, source);
+  }
+}
+
 function cloneArray(value: any[]) {
   let i = 0;
   const il = value.length;
@@ -68,25 +89,4 @@ function mergeObject(target: any, source: any) {
   }
 
   return target;
-}
-
-/**
- * Assigns props from one object to another. Focused on performance, only normal objects with no
- * prototype are supported.
- */
-export default function fastDeepAssign<T extends Record<string, any>>(target: T, source: any) {
-  const sourceIsArray = Array.isArray(source);
-  const targetIsArray = Array.isArray(target);
-
-  if (isPrimitive(source)) {
-    return source;
-  } else if (isPrimitiveOrBuiltIn(target)) {
-    return clone(source);
-  } else if (sourceIsArray && targetIsArray) {
-    return mergeArray(target, source);
-  } else if (sourceIsArray !== targetIsArray) {
-    return clone(source);
-  } else {
-    return mergeObject(target, source);
-  }
 }
