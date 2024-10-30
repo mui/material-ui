@@ -579,6 +579,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ref={ref}
       type={type}
+      id={id}
       {...other}
       classes={classes}
     >
