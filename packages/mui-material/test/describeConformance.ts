@@ -3,6 +3,7 @@ import {
   ConformanceOptions,
 } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import DefaultPropsProvider from '@mui/material/DefaultPropsProvider';
 
 export default function describeConformance(
   minimalElement: React.ReactElement<unknown>,
@@ -12,6 +13,7 @@ export default function describeConformance(
     return {
       ThemeProvider,
       createTheme,
+      DefaultPropsProvider,
       ...getOptions(),
     };
   }
