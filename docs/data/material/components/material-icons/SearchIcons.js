@@ -5,16 +5,17 @@ import copy from 'clipboard-copy';
 import InputBase from '@mui/material/InputBase';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
-import { debounce } from '@mui/material/utils';
 import Grid from '@mui/material/Grid';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import CircularProgress from '@mui/material/CircularProgress';
+import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Button from '@mui/material/Button';
-import * as flexsearch from 'flexsearch';
+import flexsearch from 'flexsearch';
 import SearchIcon from '@mui/icons-material/Search';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -24,6 +25,7 @@ import * as mui from '@mui/icons-material';
 import { Link } from '@mui/docs/Link';
 import { useTranslate } from '@mui/docs/i18n';
 import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterState';
+
 // For Debugging
 // import Menu from '@mui/icons-material/Menu';
 // import MenuOutlined from '@mui/icons-material/MenuOutlined';
@@ -48,9 +50,7 @@ import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterStat
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import synonyms from './synonyms';
 
-const FlexSearchIndex = flexsearch.default.Index;
-
-const UPDATE_SEARCH_INDEX_WAIT_MS = 220;
+const FlexSearchIndex = flexsearch.Index;
 
 // const mui = {
 //   ExitToApp,
@@ -94,82 +94,132 @@ function selectNode(node) {
   selection.addRange(range);
 }
 
+const iconWidth = 35;
+
+const SVG_ICON_CLASS = 'svg-icon';
+
 const StyledIcon = styled('span')(({ theme }) => ({
   display: 'inline-flex',
   flexDirection: 'column',
   color: theme.palette.text.secondary,
   margin: '0 4px',
   '& > div': {
-    display: 'flex',
-  },
-  '& > div > *': {
     flexGrow: 1,
     fontSize: '.6rem',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     textAlign: 'center',
-    width: 0,
+    width: `calc(${iconWidth}px + ${theme.spacing(2)} * 2 + 2px)`,
+  },
+  [`& .${SVG_ICON_CLASS}`]: {
+    width: iconWidth,
+    height: iconWidth,
+    boxSizing: 'content-box',
+    cursor: 'pointer',
+    color: theme.palette.text.primary,
+    border: '1px solid transparent',
+    fontSize: iconWidth,
+    borderRadius: '12px',
+    transition: theme.transitions.create(['background-color', 'box-shadow'], {
+      duration: theme.transitions.duration.shortest,
+    }),
+    padding: theme.spacing(2),
+    margin: theme.spacing(0.5, 0),
+    '&:hover': {
+      backgroundColor: theme.palette.background.default,
+      borderColor: theme.palette.primary.light,
+    },
   },
 }));
 
-const StyledSvgIcon = styled(SvgIcon)(({ theme }) => ({
-  boxSizing: 'content-box',
-  cursor: 'pointer',
-  color: theme.palette.text.primary,
-  border: '1px solid transparent',
-  borderRadius: '12px',
-  transition: theme.transitions.create(['background-color', 'box-shadow'], {
-    duration: theme.transitions.duration.shortest,
-  }),
-  padding: theme.spacing(2),
-  margin: theme.spacing(0.5, 0),
-  '&:hover': {
-    backgroundColor: theme.palette.background.default,
-    borderColor: theme.palette.primary.light,
-  },
-}));
+const handleIconClick = (icon) => () => {
+  window.gtag('event', 'material-icons', {
+    eventAction: 'click',
+    eventLabel: icon.name,
+  });
+  window.gtag('event', 'material-icons-theme', {
+    eventAction: 'click',
+    eventLabel: icon.theme,
+  });
+};
+
+function handleLabelClick(event) {
+  selectNode(event.currentTarget);
+}
+
+function isElmVisible(elm, margin = 0) {
+  const rect = elm.getBoundingClientRect();
+  return rect.bottom >= -margin && rect.top <= window.innerHeight + margin;
+}
+
+function Icon(props) {
+  const { icon, onOpenClick, initiallyVisible = false } = props;
+
+  const rootRef = React.useRef(null);
+  const [isVisible, setIsVisible] = React.useState(initiallyVisible);
+
+  // Virtualize the icons to reduce page size and React rendering time.
+  // Only render the icons after they become visible in the viewport.
+  React.useEffect(() => {
+    const margin = 200;
+    const root = /** @type {SVGElement} */ (rootRef.current);
+    if (initiallyVisible || isElmVisible(root, margin)) {
+      setIsVisible(true);
+      return () => {};
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (isElmVisible(entries[0].target, margin)) {
+          setIsVisible(true);
+        }
+      },
+      { rootMargin: `${margin}px 0px` },
+    );
+    observer.observe(root);
+    return () => {
+      observer.disconnect();
+    };
+  }, [initiallyVisible]);
+
+  /* eslint-disable jsx-a11y/click-events-have-key-events */
+  return (
+    <StyledIcon
+      key={icon.importName}
+      ref={rootRef}
+      onClick={Math.random() < 0.1 ? handleIconClick(icon) : null}
+    >
+      {isVisible ? (
+        <SvgIcon
+          component={icon.Component}
+          className={SVG_ICON_CLASS}
+          tabIndex={-1}
+          onClick={onOpenClick}
+          title={icon.importName}
+        />
+      ) : (
+        <div className={SVG_ICON_CLASS} />
+      )}
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
+      <div onClick={handleLabelClick}>{icon.importName}</div>
+      {/* eslint-enable jsx-a11y/click-events-have-key-events */}
+    </StyledIcon>
+  );
+}
 
 const Icons = React.memo(function Icons(props) {
   const { icons, handleOpenClick } = props;
 
-  const handleIconClick = (icon) => () => {
-    if (Math.random() < 0.1) {
-      window.gtag('event', 'material-icons', {
-        eventAction: 'click',
-        eventLabel: icon.name,
-      });
-      window.gtag('event', 'material-icons-theme', {
-        eventAction: 'click',
-        eventLabel: icon.theme,
-      });
-    }
-  };
-
-  const handleLabelClick = (event) => {
-    selectNode(event.currentTarget);
-  };
-
   return (
     <div>
-      {icons.map((icon) => {
-        /* eslint-disable jsx-a11y/click-events-have-key-events */
-        return (
-          <StyledIcon key={icon.importName} onClick={handleIconClick(icon)}>
-            <StyledSvgIcon
-              component={icon.Component}
-              fontSize="large"
-              tabIndex={-1}
-              onClick={handleOpenClick}
-              title={icon.importName}
-            />
-            <div>
-              {/*  eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
-              <div onClick={handleLabelClick}>{icon.importName}</div>
-            </div>
-            {/* eslint-enable jsx-a11y/click-events-have-key-events */}
-          </StyledIcon>
-        );
-      })}
+      {icons.map((icon, i) => (
+        <Icon
+          key={icon.importName}
+          icon={icon}
+          onOpenClick={handleOpenClick}
+          // Render the first 50 icons immediately as they would be visible on page load
+          initiallyVisible={i < 50}
+        />
+      ))}
     </div>
   );
 });
@@ -472,25 +522,21 @@ const allIconsMap = {};
 const allIcons = Object.keys(mui)
   .sort()
   .map((importName) => {
-    let theme;
-    if (importName.indexOf('Outlined') !== -1) {
-      theme = 'Outlined';
-    } else if (importName.indexOf('TwoTone') !== -1) {
-      theme = 'Two tone';
-    } else if (importName.indexOf('Rounded') !== -1) {
-      theme = 'Rounded';
-    } else if (importName.indexOf('Sharp') !== -1) {
-      theme = 'Sharp';
-    } else {
-      theme = 'Filled';
-    }
+    let theme = 'Filled';
+    let name = importName;
 
-    const name = importName.replace(/(Outlined|TwoTone|Rounded|Sharp)$/, '');
+    for (const currentTheme of ['Outlined', 'Rounded', 'TwoTone', 'Sharp']) {
+      if (importName.endsWith(currentTheme)) {
+        theme = currentTheme === 'TwoTone' ? 'Two tone' : currentTheme;
+        name = importName.slice(0, -currentTheme.length);
+        break;
+      }
+    }
     let searchable = name;
     if (synonyms[searchable]) {
       searchable += ` ${synonyms[searchable]}`;
     }
-    searchIndex.addAsync(importName, searchable);
+    searchIndex.add(importName, searchable);
 
     const icon = {
       importName,
@@ -516,7 +562,6 @@ function useLatest(value) {
 }
 
 export default function SearchIcons() {
-  const [keys, setKeys] = React.useState(null);
   const [theme, setTheme] = useQueryParameterState('theme', 'Filled');
   const [selectedIcon, setSelectedIcon] = useQueryParameterState('selected', '');
   const [query, setQuery] = useQueryParameterState('query', '');
@@ -532,42 +577,26 @@ export default function SearchIcons() {
     setSelectedIcon('');
   }, [setSelectedIcon]);
 
-  const updateSearchResults = React.useMemo(
-    () =>
-      debounce((value) => {
-        if (value === '') {
-          setKeys(null);
-        } else {
-          searchIndex.searchAsync(value, { limit: 3000 }).then((results) => {
-            setKeys(results);
+  const icons = React.useMemo(() => {
+    const keys = query === '' ? null : searchIndex.search(query, { limit: 3000 });
+    return (keys === null ? allIcons : keys.map((key) => allIconsMap[key])).filter(
+      (icon) => theme === icon.theme,
+    );
+  }, [query, theme]);
 
-            // Keep track of the no results so we can add synonyms in the future.
-            if (value.length >= 4 && results.length === 0) {
-              window.gtag('event', 'material-icons', {
-                eventAction: 'no-results',
-                eventLabel: value,
-              });
-            }
-          });
-        }
-      }, UPDATE_SEARCH_INDEX_WAIT_MS),
-    [],
-  );
+  const deferredIcons = React.useDeferredValue(icons);
+
+  const isPending = deferredIcons !== icons;
 
   React.useEffect(() => {
-    updateSearchResults(query);
-    return () => {
-      updateSearchResults.clear();
-    };
-  }, [query, updateSearchResults]);
-
-  const icons = React.useMemo(
-    () =>
-      (keys === null ? allIcons : keys.map((key) => allIconsMap[key])).filter(
-        (icon) => theme === icon.theme,
-      ),
-    [theme, keys],
-  );
+    // Keep track of the no results so we can add synonyms in the future.
+    if (query.length >= 4 && icons.length === 0) {
+      window.gtag('event', 'material-icons', {
+        eventAction: 'no-results',
+        eventLabel: query,
+      });
+    }
+  }, [query, icons.length]);
 
   const dialogSelectedIcon = useLatest(
     selectedIcon ? allIconsMap[selectedIcon] : null,
@@ -577,21 +606,20 @@ export default function SearchIcons() {
     <Grid container sx={{ minHeight: 500 }}>
       <Grid item xs={12} sm={3}>
         <Form>
-          <Typography sx={{ fontWeight: 500, mb: 1 }}>Filter the style</Typography>
-          <RadioGroup>
+          <Typography fontWeight={500} sx={{ mb: 1 }}>
+            Filter the style
+          </Typography>
+          <RadioGroup
+            value={theme}
+            onChange={(event) => setTheme(event.target.value)}
+          >
             {['Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map(
               (currentTheme) => {
                 return (
                   <FormControlLabel
                     key={currentTheme}
-                    control={
-                      <Radio
-                        size="small"
-                        checked={theme === currentTheme}
-                        onChange={() => setTheme(currentTheme)}
-                        value={currentTheme}
-                      />
-                    }
+                    value={currentTheme}
+                    control={<Radio size="small" />}
                     label={currentTheme}
                   />
                 );
@@ -611,12 +639,19 @@ export default function SearchIcons() {
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search icons…"
             inputProps={{ 'aria-label': 'search icons' }}
+            endAdornment={
+              isPending ? (
+                <InputAdornment position="end">
+                  <CircularProgress size={16} sx={{ mr: 2 }} />
+                </InputAdornment>
+              ) : null
+            }
           />
         </Paper>
         <Typography sx={{ mb: 1 }}>{`${formatNumber(
           icons.length,
         )} matching results`}</Typography>
-        <Icons icons={icons} handleOpenClick={handleOpenClick} />
+        <Icons icons={deferredIcons} handleOpenClick={handleOpenClick} />
       </Grid>
       <DialogDetails
         open={!!selectedIcon}

@@ -16,7 +16,7 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
    */
   allowSwipeInChildren?:
     | boolean
-    | ((e: TouchEvent, swipeArea: HTMLDivElement, paper: HTMLDivElement) => boolean);
+    | ((event: TouchEvent, swipeArea: HTMLDivElement, paper: HTMLDivElement) => boolean);
   /**
    * Disable the backdrop transition.
    * This can improve the FPS on low-end devices.
@@ -81,12 +81,12 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
  *
  * Demos:
  *
- * - [Drawer](https://next.mui.com/material-ui/react-drawer/)
+ * - [Drawer](https://mui.com/material-ui/react-drawer/)
  *
  * API:
  *
- * - [SwipeableDrawer API](https://next.mui.com/material-ui/api/swipeable-drawer/)
- * - inherits [Drawer API](https://next.mui.com/material-ui/api/drawer/)
+ * - [SwipeableDrawer API](https://mui.com/material-ui/api/swipeable-drawer/)
+ * - inherits [Drawer API](https://mui.com/material-ui/api/drawer/)
  */
 declare const SwipeableDrawer: React.JSXElementConstructor<SwipeableDrawerProps>;
 

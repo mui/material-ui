@@ -3,6 +3,7 @@ productId: material-ui
 title: React Button Group component
 components: Button, ButtonGroup
 githubLabel: 'component: ButtonGroup'
+githubSource: packages/mui-material/src/ButtonGroup
 ---
 
 # Button Group

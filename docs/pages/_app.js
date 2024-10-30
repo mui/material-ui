@@ -105,7 +105,7 @@ async function registerServiceWorker() {
   if (
     'serviceWorker' in navigator &&
     process.env.NODE_ENV === 'production' &&
-    window.location.host.indexOf('mui.com') !== -1
+    window.location.host.includes('mui.com')
   ) {
     // register() automatically attempts to refresh the sw.js.
     const registration = await navigator.serviceWorker.register('/sw.js');
@@ -178,7 +178,10 @@ function AppWrapper(props) {
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
           { text: `v${materialPkgJson.version}`, current: true },
-          { text: `v5`, href: `https://mui.com${languagePrefix}/material-ui/getting-started/` },
+          {
+            text: 'v5',
+            href: `https://v5.mui.com${languagePrefix}/getting-started/installation/`,
+          },
           {
             text: 'v4',
             href: `https://v4.mui.com${languagePrefix}/getting-started/installation/`,
@@ -211,7 +214,6 @@ function AppWrapper(props) {
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
           { text: `v${systemPkgJson.version}`, current: true },
-          { text: 'v5', href: `https://mui.com${languagePrefix}/system/getting-started/` },
           { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
           {
             text: 'View all versions',
@@ -329,6 +331,7 @@ function AppWrapper(props) {
       </NextHead>
       <DocsProvider
         config={config}
+        adConfig={{ GADisplayRatio: 0.1 }}
         defaultUserLanguage={pageProps.userLanguage}
         translations={pageProps.translations}
       >

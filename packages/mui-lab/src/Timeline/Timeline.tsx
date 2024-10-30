@@ -21,8 +21,8 @@ const useUtilityClasses = (ownerState: OwnerState) => {
   return composeClasses(slots, getTimelineUtilityClass, classes);
 };
 
-const TimelineRoot = styled('ul' as const, {
-  name: 'MuiTimeline' as const,
+const TimelineRoot = styled('ul', {
+  name: 'MuiTimeline',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
@@ -43,11 +43,11 @@ const TimelineRoot = styled('ul' as const, {
  *
  * Demos:
  *
- * - [Timeline](https://next.mui.com/material-ui/react-timeline/)
+ * - [Timeline](https://mui.com/material-ui/react-timeline/)
  *
  * API:
  *
- * - [Timeline API](https://next.mui.com/material-ui/api/timeline/)
+ * - [Timeline API](https://mui.com/material-ui/api/timeline/)
  */
 const Timeline = React.forwardRef<HTMLUListElement, TimelineProps>(function Timeline(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTimeline' });
@@ -62,7 +62,6 @@ const Timeline = React.forwardRef<HTMLUListElement, TimelineProps>(function Time
       <TimelineRoot
         className={clsx(classes.root, className)}
         ownerState={ownerState}
-        // @ts-expect-error TypeScript bug, need to keep unknown for DX
         ref={ref}
         {...other}
       />

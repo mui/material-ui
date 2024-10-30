@@ -1,6 +1,5 @@
 import { ReactDocgenApi } from 'react-docgen';
 import { JSDocTagInfo } from 'typescript';
-import { ComponentClassDefinition } from '@mui/internal-docs-utils';
 import { ComponentInfo, Slot, HookInfo, SeeMore } from './utils.types';
 
 export type AdditionalPropsInfo = {
@@ -36,6 +35,44 @@ interface CommonReactApi extends ReactDocgenApi {
   deprecated: true | undefined;
 }
 
+export interface PropsTableItem {
+  default: string | undefined;
+  required: boolean | undefined;
+  type: { name: string; description: string | undefined };
+  deprecated: true | undefined;
+  deprecationInfo: string | undefined;
+  signature: undefined | { type: string; describedArgs?: string[]; returned?: string };
+  additionalInfo?: AdditionalPropsInfo;
+  seeMoreLink?: SeeMore['link'];
+}
+
+export interface PropsTranslations {
+  componentDescription: string;
+  deprecationInfo: string | undefined;
+  propDescriptions: {
+    [key: string]: PropDescription;
+  };
+  classDescriptions: {
+    [key: string]: ClassDescription;
+  };
+  slotDescriptions?: { [key: string]: string };
+}
+
+interface PropDescription {
+  description: string;
+  requiresRef?: boolean;
+  deprecated?: string;
+  typeDescriptions?: { [t: string]: string };
+  seeMoreText?: string;
+}
+
+interface ClassDescription {
+  description: string;
+  conditions?: string;
+  nodeName?: string;
+  deprecationInfo?: string;
+}
+
 export interface ComponentReactApi extends CommonReactApi {
   forwardsRefTo: string | undefined;
   inheritance: ReturnType<ComponentInfo['getInheritance']>;
@@ -54,38 +91,25 @@ export interface ComponentReactApi extends CommonReactApi {
   themeDefaultProps: boolean | undefined | null;
   classes: ComponentClassDefinition[];
   slots: Slot[];
-  propsTable: _.Dictionary<{
-    default: string | undefined;
-    required: boolean | undefined;
-    type: { name: string | undefined; description: string | undefined };
-    deprecated: true | undefined;
-    deprecationInfo: string | undefined;
-    signature: undefined | { type: string; describedArgs?: string[]; returned?: string };
-    additionalInfo?: AdditionalPropsInfo;
-    seeMoreLink?: SeeMore['link'];
-  }>;
-  translations: {
-    componentDescription: string;
-    deprecationInfo: string | undefined;
-    propDescriptions: {
-      [key: string]: {
-        description: string;
-        requiresRef?: boolean;
-        deprecated?: string;
-        typeDescriptions?: { [t: string]: string };
-        seeMoreText?: string;
-      };
-    };
-    classDescriptions: {
-      [key: string]: {
-        description: string;
-        conditions?: string;
-        nodeName?: string;
-        deprecationInfo?: string;
-      };
-    };
-    slotDescriptions?: { [key: string]: string };
-  };
+  propsTable: _.Dictionary<PropsTableItem>;
+  translations: PropsTranslations;
+}
+
+export interface ComponentApiContent {
+  props: { [name: string]: PropsTableItem };
+  name: string;
+  imports: string[];
+  slots?: Slot[];
+  classes: ComponentClassDefinition[];
+  spread: boolean | undefined;
+  themeDefaultProps: boolean | null | undefined;
+  muiName: string;
+  forwardsRefTo: string | undefined;
+  filename: string;
+  inheritance: null | { component: string; pathname: string };
+  demos: string;
+  cssComponent: boolean;
+  deprecated: true | undefined;
 }
 
 export interface ParsedProperty {
@@ -96,6 +120,40 @@ export interface ParsedProperty {
   typeStr: string;
 }
 
+export interface HooksTranslations {
+  hookDescription: string;
+  deprecationInfo: string | undefined;
+  parametersDescriptions: {
+    [key: string]: {
+      description: string;
+      deprecated?: string;
+    };
+  };
+  returnValueDescriptions: {
+    [key: string]: {
+      description: string;
+      deprecated?: string;
+    };
+  };
+}
+
+export interface ComponentClassDefinition {
+  key: string;
+  className: string;
+  description: string;
+  isGlobal: boolean;
+  isDeprecated?: boolean;
+  deprecationInfo?: string;
+}
+
+interface AttributeDefinition {
+  default: string | undefined;
+  required: boolean | undefined;
+  type: { name: string; description: string | undefined };
+  deprecated: true | undefined;
+  deprecationInfo: string | undefined;
+}
+
 export interface HookReactApi extends CommonReactApi {
   parameters?: ParsedProperty[];
   returnValue?: ParsedProperty[];
@@ -104,35 +162,17 @@ export interface HookReactApi extends CommonReactApi {
    * @example 'useButton'
    */
   name: string;
+  parametersTable: _.Dictionary<AttributeDefinition>;
+  returnValueTable: _.Dictionary<AttributeDefinition>;
+  translations: HooksTranslations;
+}
 
-  parametersTable: _.Dictionary<{
-    default: string | undefined;
-    required: boolean | undefined;
-    type: { name: string | undefined; description: string | undefined };
-    deprecated: true | undefined;
-    deprecationInfo: string | undefined;
-  }>;
-  returnValueTable: _.Dictionary<{
-    default: string | undefined;
-    required: boolean | undefined;
-    type: { name: string | undefined; description: string | undefined };
-    deprecated: true | undefined;
-    deprecationInfo: string | undefined;
-  }>;
-  translations: {
-    hookDescription: string;
-    deprecationInfo: string | undefined;
-    parametersDescriptions: {
-      [key: string]: {
-        description: string;
-        deprecated?: string;
-      };
-    };
-    returnValueDescriptions: {
-      [key: string]: {
-        description: string;
-        deprecated?: string;
-      };
-    };
-  };
+export interface HookApiContent {
+  parameters: Record<string, AttributeDefinition>;
+  returnValue: Record<string, AttributeDefinition>;
+  name: string;
+  filename: string;
+  imports: string[];
+  demos: string;
+  deprecated: boolean | undefined;
 }

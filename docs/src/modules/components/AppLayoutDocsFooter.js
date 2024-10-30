@@ -81,7 +81,7 @@ function orderedPages(pages, current = []) {
 }
 
 async function postFeedback(data) {
-  const env = window.location.host.indexOf('mui.com') !== -1 ? 'prod' : 'dev';
+  const env = process.env.DEPLOY_ENV === 'production' ? 'prod' : 'dev';
   try {
     const response = await fetch(`${process.env.FEEDBACK_URL}/${env}/feedback`, {
       method: 'POST',
@@ -341,7 +341,7 @@ export default function AppLayoutDocsFooter(props) {
     processFeedback();
   };
 
-  // See https://github.com/mui/mui-toolpad/issues/1164 for context.
+  // See https://github.com/mui/toolpad/issues/1164 for context.
   const handleKeyDownForm = (event) => {
     const modifierKey = (event.metaKey || event.ctrlKey) && !event.shiftKey;
 

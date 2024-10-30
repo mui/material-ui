@@ -51,7 +51,7 @@ export type SystemCssProperties<Theme extends object = {}> = {
   [K in keyof AllSystemCSSProperties]:
     | ResponsiveStyleValue<AllSystemCSSProperties[K]>
     | ((theme: Theme) => ResponsiveStyleValue<AllSystemCSSProperties[K]>)
-    | SystemStyleObject<Theme>;
+    | null;
 };
 
 /**

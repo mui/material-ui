@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import { OverridableComponent, OverrideProps } from '@mui/types';
 import { SxProps } from '@mui/system';
 // @ts-ignore
-import Grid from '@pigment-css/react/Grid';
+import Grid from '@mui/material-pigment-css/Grid';
 import composeClasses from '@mui/utils/composeClasses';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import {
   generateDirectionClasses,
   generateSizeClassNames,
   generateSpacingClassNames,
-} from '@mui/system/Unstable_Grid/gridGenerator';
+} from '@mui/system/Grid/gridGenerator';
 import { Breakpoint, Theme } from '../styles';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
@@ -55,29 +55,6 @@ export interface GridBaseProps {
    * Defines the offset of the grid.
    */
   offset?: ResponsiveStyleValue<number> | undefined;
-  /**
-   * @internal
-   * The level of the grid starts from `0`
-   * and increases when the grid nests inside another grid regardless of container or item.
-   *
-   * ```js
-   * <Grid> // level 0
-   *   <Grid> // level 1
-   *     <Grid> // level 2
-   *   <Grid> // level 1
-   * ```
-   *
-   * Only consecutive grid is considered nesting.
-   * A grid container will start at `0` if there are non-Grid element above it.
-   *
-   * ```js
-   * <Grid> // level 0
-   *   <div>
-   *     <Grid> // level 0
-   *       <Grid> // level 1
-   * ```
-   */
-  unstable_level?: number;
   /**
    * Defines the vertical space between the type `item` components.
    * It overrides the value of the `spacing` prop.
@@ -145,18 +122,18 @@ const useUtilityClasses = (ownerState: GridBaseProps) => {
  *
  * Demos:
  *
- * - [Grid version 2](https://next.mui.com/material-ui/react-grid2/)
+ * - [Grid version 2](https://mui.com/material-ui/react-grid2/)
  *
  * API:
  *
- * - [PigmentGrid API](https://next.mui.com/material-ui/api/pigment-grid/)
+ * - [PigmentGrid API](https://mui.com/material-ui/api/pigment-grid/)
  */
 const PigmentGrid = React.forwardRef(function PigmentGrid(props, ref) {
   const { className, ...other } = props;
 
   const classes = useUtilityClasses(props);
 
-  return <Grid ref={ref} className={clsx(classes.root, className)} {...other} />;
+  return <Grid ref={ref} className={clsx(classes.root, className)} {...(other as any)} />;
 }) as OverridableComponent<GridTypeMap>;
 
 PigmentGrid.propTypes /* remove-proptypes */ = {
@@ -252,29 +229,6 @@ PigmentGrid.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-  /**
-   * @internal
-   * The level of the grid starts from `0`
-   * and increases when the grid nests inside another grid regardless of container or item.
-   *
-   * ```js
-   * <Grid> // level 0
-   *   <Grid> // level 1
-   *     <Grid> // level 2
-   *   <Grid> // level 1
-   * ```
-   *
-   * Only consecutive grid is considered nesting.
-   * A grid container will start at `0` if there are non-Grid element above it.
-   *
-   * ```js
-   * <Grid> // level 0
-   *   <div>
-   *     <Grid> // level 0
-   *       <Grid> // level 1
-   * ```
-   */
-  unstable_level: PropTypes.number,
   /**
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent, OverrideProps } from '@mui/types';
 // @ts-ignore
-import Stack from '@pigment-css/react/Stack';
+import Stack from '@mui/material-pigment-css/Stack';
 import composeClasses from '@mui/utils/composeClasses';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import { SxProps } from '@mui/system';
@@ -63,15 +63,15 @@ const useUtilityClasses = () => {
  *
  * Demos:
  *
- * - [Stack](https://next.mui.com/material-ui/react-stack/)
+ * - [Stack](https://mui.com/material-ui/react-stack/)
  *
  * API:
  *
- * - [PigmentStack API](https://next.mui.com/material-ui/api/pigment-stack/)
+ * - [PigmentStack API](https://mui.com/material-ui/api/pigment-stack/)
  */
 const PigmentStack = React.forwardRef(function PigmentStack({ className, ...props }, ref) {
   const classes = useUtilityClasses();
-  return <Stack ref={ref} className={clsx(classes.root, className)} {...props} />;
+  return <Stack ref={ref} className={clsx(classes.root, className)} {...(props as any)} />;
 }) as OverridableComponent<PigmentStackTypeMap>;
 
 PigmentStack.propTypes /* remove-proptypes */ = {

@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-scripts",
-  "version": "1.0.12",
+  "version": "1.0.25",
   "author": "MUI Team",
   "description": "Utilities supporting MUI libraries build and docs generation. This is an internal package not meant for general use.",
   "main": "build/index.js",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
+    "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages-internal/scripts"
   },
   "license": "MIT",
@@ -21,34 +21,34 @@
     "build": "tsc --build tsconfig.json",
     "release:publish": "pnpm build && pnpm publish --tag latest",
     "release:publish:dry-run": "pnpm build && pnpm publish --tag latest --registry=\"http://localhost:4873/\"",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha --config packages-internal/scripts/typescript-to-proptypes/test/.mocharc.js 'packages-internal/scripts/typescript-to-proptypes/**/*.test.ts'",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha --config packages-internal/scripts/typescript-to-proptypes/test/.mocharc.js 'packages-internal/scripts/typescript-to-proptypes/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc --build tsconfig.typecheck.json"
   },
   "dependencies": {
-    "@babel/core": "^7.24.7",
+    "@babel/core": "^7.26.0",
     "@babel/plugin-syntax-class-properties": "^7.12.13",
-    "@babel/plugin-syntax-jsx": "^7.24.7",
-    "@babel/plugin-syntax-typescript": "^7.24.7",
-    "@babel/types": "^7.24.7",
+    "@babel/plugin-syntax-jsx": "^7.25.9",
+    "@babel/plugin-syntax-typescript": "^7.25.9",
+    "@babel/types": "^7.26.0",
     "@mui/internal-docs-utils": "workspace:^",
     "doctrine": "^3.0.0",
     "lodash": "^4.17.21",
-    "typescript": "^5.4.5",
+    "typescript": "^5.6.3",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "@babel/register": "^7.24.6",
+    "@babel/register": "^7.25.9",
     "@types/babel__core": "^7.20.5",
-    "@types/chai": "^4.3.16",
+    "@types/chai": "^4.3.20",
     "@types/doctrine": "^0.0.9",
-    "@types/lodash": "^4.17.6",
-    "@types/node": "^18.19.39",
-    "@types/react": "^18.3.3",
+    "@types/lodash": "^4.17.12",
+    "@types/node": "^20.17.1",
+    "@types/react": "^18.3.12",
     "@types/uuid": "^9.0.8",
-    "chai": "^4.4.1",
+    "chai": "^4.5.0",
     "fast-glob": "^3.3.2",
-    "prettier": "^3.3.2",
-    "rimraf": "^5.0.8"
+    "prettier": "^3.3.3",
+    "rimraf": "^6.0.1"
   },
   "publishConfig": {
     "access": "public"

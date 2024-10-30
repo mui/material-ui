@@ -31,7 +31,7 @@ export const getStaticProps = () => {
   const SliderApiDescriptions = mapApiPageTranslations(SliderApiReq);
 
   const useSliderApiReq = require.context(
-    'docs/translations/api-docs/use-slider',
+    'docs/translations/api-docs-base/use-slider',
     false,
     /use-slider.*.json$/,
   );

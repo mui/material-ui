@@ -30,11 +30,11 @@ const defaultManager = new ModalManager();
  *
  * Demos:
  *
- * - [Modal](https://next.mui.com/base-ui/react-modal/#hook)
+ * - [Modal](https://mui.com/base-ui/react-modal/#hook)
  *
  * API:
  *
- * - [useModal API](https://next.mui.com/base-ui/react-modal/hooks-api/#use-modal)
+ * - [useModal API](https://mui.com/base-ui/react-modal/hooks-api/#use-modal)
  */
 export function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const {
@@ -180,6 +180,12 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
     };
 
     return {
+      /*
+       * Marking an element with the role presentation indicates to assistive technology
+       * that this element should be ignored; it exists to support the web application and
+       * is not meant for humans to interact with directly.
+       * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
+       */
       role: 'presentation',
       ...externalEventHandlers,
       onKeyDown: createHandleKeyDown(externalEventHandlers),

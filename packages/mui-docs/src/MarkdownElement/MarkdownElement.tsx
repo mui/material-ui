@@ -32,11 +32,7 @@ const Root = styled('div')(
       overflow: 'auto',
       WebkitOverflowScrolling: 'touch',
       fontSize: lightTheme.typography.pxToRem(13),
-      maxWidth: 'calc(100vw - 32px)',
       maxHeight: '400px',
-      [lightTheme.breakpoints.up('md')]: {
-        maxWidth: 'calc(100vw - 32px - 16px)',
-      },
     },
     '& code': {
       ...lightTheme.typography.body2,
@@ -174,8 +170,6 @@ const Root = styled('div')(
         boxShadow: 'none',
         fontWeight: 'inherit',
         position: 'relative',
-        display: 'flex',
-        alignItems: 'center',
         userSelect: 'text',
       },
       '& .anchor-icon': {
@@ -825,6 +819,7 @@ function handleHeaderClick(event: Event) {
 export interface MarkdownElementProps {
   className?: string;
   renderedMarkdown?: string;
+  children?: React.ReactNode;
 }
 
 export const MarkdownElement = React.forwardRef<HTMLDivElement, MarkdownElementProps>(

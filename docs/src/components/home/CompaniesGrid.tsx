@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import IconImage, { IconImageProps } from 'docs/src/components/icon/IconImage';
 
 export const CORE_CUSTOMERS: Array<IconImageProps> = [
@@ -54,12 +54,12 @@ export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
     },
   },
   {
-    alt: 'Boeing logo',
-    name: 'companies/boeing',
-    width: 160,
-    height: 86,
+    alt: 'Tesla logo',
+    name: 'companies/tesla',
+    width: 140,
+    height: 52,
     style: {
-      marginTop: -23,
+      marginTop: -11,
     },
   },
   {

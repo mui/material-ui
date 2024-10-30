@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent, OverrideProps } from '@mui/types';
 // @ts-ignore
-import Container from '@pigment-css/react/Container';
+import Container from '@mui/material-pigment-css/Container';
 import capitalize from '@mui/utils/capitalize';
 import composeClasses from '@mui/utils/composeClasses';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
@@ -76,11 +76,11 @@ const useUtilityClasses = (ownerState: PigmentContainerOwnProps) => {
  *
  * Demos:
  *
- * - [Container](https://next.mui.com/material-ui/react-container/)
+ * - [Container](https://mui.com/material-ui/react-container/)
  *
  * API:
  *
- * - [PigmentContainer API](https://next.mui.com/material-ui/api/pigment-container/)
+ * - [PigmentContainer API](https://mui.com/material-ui/api/pigment-container/)
  */
 const PigmentContainer = React.forwardRef(function PigmentContainer(
   { className, disableGutters = false, fixed = false, maxWidth = 'lg', ...props },
@@ -99,7 +99,7 @@ const PigmentContainer = React.forwardRef(function PigmentContainer(
       disableGutters={disableGutters}
       fixed={fixed}
       maxWidth={maxWidth}
-      {...props}
+      {...(props as any)}
       // @ts-ignore
       ref={ref}
     />

@@ -1,3 +1,9 @@
+// @ts-check
+
+/**
+ * @typedef {import('eslint').Linter.Config} Config
+ */
+
 const path = require('path');
 
 const OneLevelImportMessage = [
@@ -13,7 +19,33 @@ const forbidCreateStylesMessage =
 
 const ENABLE_REACT_COMPILER_PLUGIN = false;
 
-module.exports = {
+const NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES = [
+  {
+    name: '@mui/material',
+    message: OneLevelImportMessage,
+  },
+  {
+    name: '@mui/lab',
+    message: OneLevelImportMessage,
+  },
+];
+
+const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
+  {
+    group: [
+      '@mui/*/*/*',
+      '@pigment-css/*/*/*',
+      '@base_ui/*/*/*',
+      // Allow any import depth with any internal packages
+      '!@mui/internal-*/**',
+      // TODO delete, @mui/docs should be @mui/internal-docs
+      '!@mui/docs/**',
+    ],
+    message: OneLevelImportMessage,
+  },
+];
+
+module.exports = /** @type {Config} */ ({
   root: true, // So parent files don't get applied
   env: {
     es6: true,
@@ -67,20 +99,7 @@ module.exports = {
     'no-restricted-imports': [
       'error',
       {
-        patterns: [
-          {
-            group: [
-              '@mui/*/*/*',
-              '@pigment-css/*/*/*',
-              '@base_ui/*/*/*',
-              // Allow any import depth with any internal packages
-              '!@mui/internal-*/**',
-              // TODO delete, @mui/docs should be @mui/internal-docs
-              '!@mui/docs/**',
-            ],
-            message: OneLevelImportMessage,
-          },
-        ],
+        patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
       },
     ],
     'no-continue': 'off',
@@ -171,6 +190,7 @@ module.exports = {
     // This rule is great for raising people awareness of what a key is and how it works.
     'react/no-array-index-key': 'off',
     'react/no-danger': 'error',
+    'react/no-unknown-property': ['error', { ignore: ['sx'] }],
     'react/no-direct-mutation-state': 'error',
     // Not always relevant
     'react/require-default-props': 'off',
@@ -209,6 +229,15 @@ module.exports = {
         selector:
           'ImportDeclaration[source.value="react-dom/server"] ImportDefaultSpecifier, ImportDeclaration[source.value="react-dom/server"] ImportSpecifier',
       },
+      {
+        message:
+          "The 'use client' pragma can't be used with export * in the same module. This is not supported by Next.js.",
+        selector: 'ExpressionStatement[expression.value="use client"] ~ ExportAllDeclaration',
+      },
+      {
+        message: 'Do not call `Error(...)` without `new`. Use `new Error(...)` instead.',
+        selector: "CallExpression[callee.name='Error']",
+      },
     ],
 
     // We re-export default in many places, remove when https://github.com/airbnb/javascript/issues/2500 gets resolved
@@ -221,15 +250,14 @@ module.exports = {
     'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
     'lines-around-directive': 'off',
     ...(ENABLE_REACT_COMPILER_PLUGIN ? { 'react-compiler/react-compiler': 'error' } : {}),
+    // Prevent the use of `e` as a shorthand for `event`, `error`, etc.
+    'id-denylist': ['error', 'e'],
   },
   overrides: [
     {
       files: [
         // matching the pattern of the test runner
-        '*.test.mjs',
-        '*.test.js',
-        '*.test.ts',
-        '*.test.tsx',
+        '*.test.?(c|m)[jt]s?(x)',
       ],
       extends: ['plugin:mocha/recommended'],
       rules: {
@@ -301,14 +329,14 @@ module.exports = {
     },
     // Next.js entry points pages
     {
-      files: ['docs/pages/**/*{.tsx,.js}'],
+      files: ['docs/pages/**/*.?(c|m)[jt]s?(x)'],
       rules: {
         'react/prop-types': 'off',
       },
     },
     // demos
     {
-      files: ['docs/src/pages/**/*{.tsx,.js}', 'docs/data/**/*{.tsx,.js}'],
+      files: ['docs/src/pages/**/*.?(c|m)[jt]s?(x)', 'docs/data/**/*.?(c|m)[jt]s?(x)'],
       rules: {
         // This most often reports data that is defined after the component definition.
         // This is safe to do and helps readability of the demo code since the data is mostly irrelevant.
@@ -318,23 +346,14 @@ module.exports = {
         'no-console': 'off',
       },
     },
-    // demos - proptype generation
     {
-      files: ['docs/data/base/components/modal/UseModal.js'],
-      rules: {
-        'consistent-return': 'off',
-        'func-names': 'off',
-        'no-else-return': 'off',
-        'prefer-template': 'off',
-      },
-    },
-    {
-      files: ['docs/data/**/*{.tsx,.js}'],
+      files: ['docs/data/**/*.?(c|m)[jt]s?(x)'],
       excludedFiles: [
-        'docs/data/joy/getting-started/templates/**/*.tsx',
-        'docs/data/**/css/*{.tsx,.js}',
-        'docs/data/**/system/*{.tsx,.js}',
-        'docs/data/**/tailwind/*{.tsx,.js}',
+        // filenames/match-exported sees filename as 'file-name.d'
+        // Plugin looks unmaintain, find alternative? (e.g. eslint-plugin-project-structure)
+        '*.d.ts',
+        'docs/data/joy/getting-started/templates/**/*',
+        'docs/data/**/{css,system,tailwind}/*',
       ],
       rules: {
         'filenames/match-exported': ['error'],
@@ -349,6 +368,13 @@ module.exports = {
     {
       files: ['packages/*/src/**/*.tsx'],
       excludedFiles: '*.spec.tsx',
+      rules: {
+        'react/prop-types': 'off',
+      },
+    },
+    {
+      files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
+      excludedFiles: '*.spec.*',
       rules: {
         'no-restricted-imports': [
           'error',
@@ -375,11 +401,10 @@ module.exports = {
             ],
           },
         ],
-        'react/prop-types': 'off',
       },
     },
     {
-      files: ['*.spec.tsx', '*.spec.ts'],
+      files: ['*.spec.*'],
       rules: {
         'no-alert': 'off',
         'no-console': 'off',
@@ -418,22 +443,25 @@ module.exports = {
       },
     },
     {
-      files: ['packages/*/src/**/*{.ts,.tsx,.js}'],
-      excludedFiles: ['*.d.ts', '*.spec.ts', '*.spec.tsx'],
+      files: ['docs/**/*.?(c|m)[jt]s?(x)'],
       rules: {
         'no-restricted-imports': [
           'error',
           {
-            paths: [
-              {
-                name: '@mui/material',
-                message: OneLevelImportMessage,
-              },
-              {
-                name: '@mui/lab',
-                message: OneLevelImportMessage,
-              },
-            ],
+            paths: NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
+            patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
+          },
+        ],
+      },
+    },
+    {
+      files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
+      excludedFiles: ['*.d.ts', '*.spec.*'],
+      rules: {
+        'no-restricted-imports': [
+          'error',
+          {
+            paths: NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
           },
         ],
         // TODO: Consider setting back to `ignoreExternal: true` when the expected behavior is fixed:
@@ -443,19 +471,10 @@ module.exports = {
       },
     },
     {
-      files: ['packages/*/src/**/*{.ts,.tsx,.js}'],
-      excludedFiles: ['*.d.ts', '*.spec.ts', '*.spec.tsx', 'packages/mui-joy/**/*{.ts,.tsx,.js}'],
+      files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
+      excludedFiles: ['*.d.ts', '*.spec.*', 'packages/mui-joy/**/*'],
       rules: {
-        'material-ui/mui-name-matches-component-name': [
-          'error',
-          {
-            customHooks: [
-              'useDatePickerDefaultizedProps',
-              'useDateTimePickerDefaultizedProps',
-              'useTimePickerDefaultizedProps',
-            ],
-          },
-        ],
+        'material-ui/mui-name-matches-component-name': 'error',
       },
     },
     {
@@ -511,4 +530,4 @@ module.exports = {
       },
     },
   ],
-};
+});

@@ -13,7 +13,7 @@ function isSerializable(val: any) {
 }
 
 /**
- * `baseTheme` usually comes from `createTheme` or `extendTheme`.
+ * `baseTheme` usually comes from `createTheme()` or `extendTheme()`.
  *
  * This function is intended to be used with zero-runtime CSS-in-JS like Pigment CSS
  * For example, in a Next.js project:
@@ -50,8 +50,7 @@ export function stringifyTheme(baseTheme: Record<string, any> = {}) {
 
   serializeTheme(serializableTheme);
 
-  return `import { createBreakpoints } from '@mui/system';
-import { createTransitions } from '@mui/material/styles';
+  return `import { unstable_createBreakpoints as createBreakpoints, createTransitions } from '@mui/material/styles';
 
 const theme = ${JSON.stringify(serializableTheme, null, 2)};
 

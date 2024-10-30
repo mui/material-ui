@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Breakpoint } from '@mui/system';
 // @ts-ignore
-import Hidden from '@pigment-css/react/Hidden';
+import Hidden from '@mui/material-pigment-css/Hidden';
 import capitalize from '@mui/utils/capitalize';
 import composeClasses from '@mui/utils/composeClasses';
 import HiddenJs from '../Hidden/HiddenJs';
@@ -250,15 +250,16 @@ HiddenCss.propTypes /* remove-proptypes */ = {
    */
   xsUp: PropTypes.bool,
 } as any;
+
 /**
  *
  * Demos:
  *
- * - [Hidden](https://next.mui.com/material-ui/react-hidden/)
+ * - [Hidden](https://mui.com/material-ui/react-hidden/)
  *
  * API:
  *
- * - [PigmentHidden API](https://next.mui.com/material-ui/api/pigment-hidden/)
+ * - [PigmentHidden API](https://mui.com/material-ui/api/pigment-hidden/)
  */
 function PigmentHidden({ implementation = 'js', ...props }: HiddenProps & { className?: string }) {
   if (implementation === 'js') {

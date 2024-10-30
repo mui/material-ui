@@ -12,6 +12,7 @@ import dialogClasses, { getDialogUtilityClass } from './dialogClasses';
 import DialogContext from './DialogContext';
 import Backdrop from '../Backdrop';
 import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 
 import { useDefaultProps } from '../DefaultPropsProvider';
 
@@ -113,92 +114,95 @@ const DialogPaper = styled(Paper, {
       ownerState.fullScreen && styles.paperFullScreen,
     ];
   },
-})(({ theme }) => ({
-  margin: 32,
-  position: 'relative',
-  '@media print': {
-    overflowY: 'visible',
-    boxShadow: 'none',
-  },
-  variants: [
-    {
-      props: {
-        scroll: 'paper',
-      },
-      style: {
-        display: 'flex',
-        flexDirection: 'column',
-        maxHeight: 'calc(100% - 64px)',
-      },
+})(
+  memoTheme(({ theme }) => ({
+    margin: 32,
+    position: 'relative',
+    overflowY: 'auto',
+    '@media print': {
+      overflowY: 'visible',
+      boxShadow: 'none',
     },
-    {
-      props: {
-        scroll: 'body',
-      },
-      style: {
-        display: 'inline-block',
-        verticalAlign: 'middle',
-        textAlign: 'initial',
-      },
-    },
-    {
-      props: ({ ownerState }) => !ownerState.maxWidth,
-      style: {
-        maxWidth: 'calc(100% - 64px)',
-      },
-    },
-    {
-      props: {
-        maxWidth: 'xs',
-      },
-      style: {
-        maxWidth:
-          theme.breakpoints.unit === 'px'
-            ? Math.max(theme.breakpoints.values.xs, 444)
-            : `max(${theme.breakpoints.values.xs}${theme.breakpoints.unit}, 444px)`,
-        [`&.${dialogClasses.paperScrollBody}`]: {
-          [theme.breakpoints.down(Math.max(theme.breakpoints.values.xs, 444) + 32 * 2)]: {
-            maxWidth: 'calc(100% - 64px)',
-          },
+    variants: [
+      {
+        props: {
+          scroll: 'paper',
+        },
+        style: {
+          display: 'flex',
+          flexDirection: 'column',
+          maxHeight: 'calc(100% - 64px)',
         },
       },
-    },
-    ...Object.keys(theme.breakpoints.values)
-      .filter((maxWidth) => maxWidth !== 'xs')
-      .map((maxWidth) => ({
-        props: { maxWidth },
+      {
+        props: {
+          scroll: 'body',
+        },
         style: {
-          maxWidth: `${theme.breakpoints.values[maxWidth]}${theme.breakpoints.unit}`,
+          display: 'inline-block',
+          verticalAlign: 'middle',
+          textAlign: 'initial',
+        },
+      },
+      {
+        props: ({ ownerState }) => !ownerState.maxWidth,
+        style: {
+          maxWidth: 'calc(100% - 64px)',
+        },
+      },
+      {
+        props: {
+          maxWidth: 'xs',
+        },
+        style: {
+          maxWidth:
+            theme.breakpoints.unit === 'px'
+              ? Math.max(theme.breakpoints.values.xs, 444)
+              : `max(${theme.breakpoints.values.xs}${theme.breakpoints.unit}, 444px)`,
           [`&.${dialogClasses.paperScrollBody}`]: {
-            [theme.breakpoints.down(theme.breakpoints.values[maxWidth] + 32 * 2)]: {
+            [theme.breakpoints.down(Math.max(theme.breakpoints.values.xs, 444) + 32 * 2)]: {
               maxWidth: 'calc(100% - 64px)',
             },
           },
         },
-      })),
-    {
-      props: ({ ownerState }) => ownerState.fullWidth,
-      style: {
-        width: 'calc(100% - 64px)',
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.fullScreen,
-      style: {
-        margin: 0,
-        width: '100%',
-        maxWidth: '100%',
-        height: '100%',
-        maxHeight: 'none',
-        borderRadius: 0,
-        [`&.${dialogClasses.paperScrollBody}`]: {
-          margin: 0,
-          maxWidth: '100%',
+      ...Object.keys(theme.breakpoints.values)
+        .filter((maxWidth) => maxWidth !== 'xs')
+        .map((maxWidth) => ({
+          props: { maxWidth },
+          style: {
+            maxWidth: `${theme.breakpoints.values[maxWidth]}${theme.breakpoints.unit}`,
+            [`&.${dialogClasses.paperScrollBody}`]: {
+              [theme.breakpoints.down(theme.breakpoints.values[maxWidth] + 32 * 2)]: {
+                maxWidth: 'calc(100% - 64px)',
+              },
+            },
+          },
+        })),
+      {
+        props: ({ ownerState }) => ownerState.fullWidth,
+        style: {
+          width: 'calc(100% - 64px)',
         },
       },
-    },
-  ],
-}));
+      {
+        props: ({ ownerState }) => ownerState.fullScreen,
+        style: {
+          margin: 0,
+          width: '100%',
+          maxWidth: '100%',
+          height: '100%',
+          maxHeight: 'none',
+          borderRadius: 0,
+          [`&.${dialogClasses.paperScrollBody}`]: {
+            margin: 0,
+            maxWidth: '100%',
+          },
+        },
+      },
+    ],
+  })),
+);
 
 /**
  * Dialogs are overlaid modal paper based components with a backdrop.
@@ -214,6 +218,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
   const {
     'aria-describedby': ariaDescribedby,
     'aria-labelledby': ariaLabelledbyProp,
+    'aria-modal': ariaModal = true,
     BackdropComponent,
     BackdropProps,
     children,
@@ -318,6 +323,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
             role="dialog"
             aria-describedby={ariaDescribedby}
             aria-labelledby={ariaLabelledby}
+            aria-modal={ariaModal}
             {...PaperProps}
             className={clsx(classes.paper, PaperProps.className)}
             ownerState={ownerState}
@@ -343,6 +349,12 @@ Dialog.propTypes /* remove-proptypes */ = {
    * The id(s) of the element(s) that label the dialog.
    */
   'aria-labelledby': PropTypes.string,
+  /**
+   * Informs assistive technologies that the element is modal.
+   * It's added on the element with role="dialog".
+   * @default true
+   */
+  'aria-modal': PropTypes.oneOfType([PropTypes.oneOf(['false', 'true']), PropTypes.bool]),
   /**
    * A backdrop component. This prop enables custom backdrop rendering.
    * @deprecated Use `slots.backdrop` instead. While this prop currently works, it will be removed in the next major version.
@@ -427,7 +439,7 @@ Dialog.propTypes /* remove-proptypes */ = {
    */
   PaperComponent: PropTypes.elementType,
   /**
-   * Props applied to the [`Paper`](/material-ui/api/paper/) element.
+   * Props applied to the [`Paper`](https://mui.com/material-ui/api/paper/) element.
    * @default {}
    */
   PaperProps: PropTypes.object,
@@ -446,7 +458,7 @@ Dialog.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The component used for the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
    */
   TransitionComponent: PropTypes.elementType,

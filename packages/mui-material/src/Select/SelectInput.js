@@ -3,7 +3,6 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import composeClasses from '@mui/utils/composeClasses';
 import useId from '@mui/utils/useId';
 import refType from '@mui/utils/refType';
@@ -180,6 +179,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       setMenuMinWidthState(autoWidth ? null : anchorElement.clientWidth);
       displayRef.current.focus();
     }
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [displayNode, autoWidth]);
   // `isOpenControlled` is ignored because the component should never switch between controlled and uncontrolled modes.
@@ -316,7 +316,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         'Enter',
       ];
 
-      if (validKeys.indexOf(event.key) !== -1) {
+      if (validKeys.includes(event.key)) {
         event.preventDefault();
         update(true, event);
       }
@@ -371,7 +371,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
     if (multiple) {
       if (!Array.isArray(value)) {
-        throw new MuiError(
+        throw /* minify-error */ new Error(
           'MUI: The `value` prop must be an array ' +
             'when using the `Select` component with `multiple`.',
         );
@@ -415,6 +415,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   });
 
   if (process.env.NODE_ENV !== 'production') {
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (!foundMatch && !multiple && value !== '') {

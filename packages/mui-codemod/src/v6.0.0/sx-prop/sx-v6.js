@@ -339,15 +339,50 @@ export default function sxV6(file, api, options) {
             }
           }
           if (data.node.argument.type === 'ConditionalExpression') {
-            recurseObjectExpression({
-              ...data,
-              node: data.node.argument,
-              parentNode: data.node,
-            });
-            if (data.deleteSelf) {
-              data.deleteSelf();
-            } else {
-              removeProperty(data.parentNode, data.node);
+            const isSxSpread =
+              (data.node.argument.test.type === 'CallExpression' &&
+                data.node.argument.test.callee.type === 'MemberExpression' &&
+                data.node.argument.test.callee.object.name === 'Array' &&
+                data.node.argument.test.callee.property.name === 'isArray') ||
+              (data.node.argument.consequent.type === 'Identifier' &&
+                data.node.argument.consequent.name === 'sx') ||
+              (data.node.argument.alternate.type === 'Identifier' &&
+                data.node.argument.alternate.name === 'sx');
+
+            if (!isSxSpread) {
+              recurseObjectExpression({
+                ...data,
+                node: data.node.argument,
+                parentNode: data.node,
+              });
+              wrapSxInArray(data.node.argument);
+              if (data.deleteSelf) {
+                data.deleteSelf();
+              } else {
+                removeProperty(data.parentNode, data.node);
+              }
+            }
+          }
+          if (data.node.argument.type === 'CallExpression') {
+            if (
+              getObjectKey(data.node.argument.callee)?.name === 'theme' &&
+              data.node.argument.callee.property?.name?.startsWith('apply')
+            ) {
+              const objIndex = data.node.argument.arguments.findIndex(
+                (arg) => arg.type === 'ObjectExpression',
+              );
+              recurseObjectExpression({
+                ...data,
+                node: data.node.argument.arguments[objIndex],
+                buildStyle: (styleExpression) => {
+                  const newArguments = [...data.node.argument.arguments];
+                  newArguments[objIndex] = styleExpression;
+                  return j.arrowFunctionExpression([j.identifier('theme')], {
+                    ...data.node.argument,
+                    arguments: newArguments,
+                  });
+                },
+              });
             }
           }
         }

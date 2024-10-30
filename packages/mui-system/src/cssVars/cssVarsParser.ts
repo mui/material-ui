@@ -88,7 +88,7 @@ const getCssValue = (keys: string[], value: string | number) => {
       return value;
     }
     const lastKey = keys[keys.length - 1];
-    if (lastKey.toLowerCase().indexOf('opacity') >= 0) {
+    if (lastKey.toLowerCase().includes('opacity')) {
       // opacity values are unitless
       return value;
     }

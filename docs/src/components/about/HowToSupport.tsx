@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
@@ -21,7 +21,7 @@ function Widget({
 }: {
   children: React.ReactNode;
   title: string;
-  icon: React.ReactElement<any>;
+  icon: React.ReactElement<unknown>;
 }) {
   return (
     <Paper

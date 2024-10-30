@@ -72,11 +72,11 @@ git remote add upstream https://github.com/mui/material-ui.git
 
 <!-- #default-branch-switch -->
 
-3. Synchronize your local `next` branch with the upstream one:
+3. Synchronize your local `master` branch with the upstream one:
 
 ```bash
-git checkout next
-git pull upstream next
+git checkout master
+git pull upstream master
 ```
 
 4. Install the dependencies with pnpm (yarn or npm aren't supported):
@@ -146,7 +146,7 @@ Make sure the following is true:
 
 <!-- #default-branch-switch -->
 
-- The branch is targeted at `next` for ongoing development. All tests are passing. Code that lands in `next` must be compatible with the latest alpha/beta release. It may contain additional features but no breaking changes. We should be able to release a new minor version from the tip of `next` at any time.
+- The branch is targeted at `master` for ongoing development. All tests are passing. Code that lands in `master` must be compatible with the latest stable release. It may contain additional features but no breaking changes. We should be able to release a new minor version from the tip of `master` at any time.
 - If a feature is being added:
   - If the result was already achievable with the core library, you've explained why this feature needs to be added to the core.
   - If this is a common use case, you've added an example to the documentation.
@@ -263,7 +263,7 @@ $ pnpm docs:api
 ### Coding style
 
 Please follow the coding style of the project.
-MUI Core projects use prettier and ESLint, so if possible, enable linting in your editor to get real-time feedback.
+It uses Prettier and ESLint, so if possible, enable linting in your editor to get real-time feedback.
 
 - `pnpm prettier` reformats the code.
 - `pnpm eslint` runs the linting rules.
@@ -299,7 +299,7 @@ docs/src/pages/components/buttons/
 
 #### 2. Write the demo code
 
-We uses TypeScript to document our components.
+We use TypeScript to document our components.
 We prefer demos written in TypeScript (using the `.tsx` file format).
 
 After creating a TypeScript demo, run `pnpm docs:typescript:formatted` to automatically create the JavaScript version, which is also required.

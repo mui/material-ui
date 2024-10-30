@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { SlotComponentProps } from '@mui/base';
+import { SlotComponentProps } from '../utils/types';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { BreadcrumbsClasses } from './breadcrumbsClasses';
@@ -47,7 +47,7 @@ export interface BreadcrumbsOwnProps {
   /**
    * Override the default label for the expand button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Show path'
    */
   expandText?: string;
@@ -91,12 +91,12 @@ export interface BreadcrumbsTypeMap<
  *
  * Demos:
  *
- * - [Breadcrumbs](https://next.mui.com/material-ui/react-breadcrumbs/)
+ * - [Breadcrumbs](https://mui.com/material-ui/react-breadcrumbs/)
  *
  * API:
  *
- * - [Breadcrumbs API](https://next.mui.com/material-ui/api/breadcrumbs/)
- * - inherits [Typography API](https://next.mui.com/material-ui/api/typography/)
+ * - [Breadcrumbs API](https://mui.com/material-ui/api/breadcrumbs/)
+ * - inherits [Typography API](https://mui.com/material-ui/api/typography/)
  */
 declare const Breadcrumbs: OverridableComponent<BreadcrumbsTypeMap>;
 

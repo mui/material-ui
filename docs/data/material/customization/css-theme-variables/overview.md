@@ -15,12 +15,6 @@ CSS theme variables replace raw values in Material UI components for a better d
 
 In addition with these variables, you can inject a theme into your app's stylesheet _at build time_ to apply the user's selected settings before the whole app is rendered.
 
-:::info
-The `CssVarsProvider` is built on top of the [`ThemeProvider`](/material-ui/customization/theming/#themeprovider) with extra features like CSS variable generation, storage synchronization, unlimited color schemes, and more.
-
-If you have an existing theme, you can migrate to CSS theme variables by following the [migration guide](/material-ui/migration/migration-css-theme-variables/).
-:::
-
 ## Advantages
 
 - It lets you prevent [dark-mode SSR flickering](https://github.com/mui/material-ui/issues/27651).
@@ -44,86 +38,7 @@ For server-side applications, there are some trade-offs to consider:
 The comparison described in the table above may not be applicable to large and complex applications since there are so many factors that can impact performance metrics.
 :::
 
-## Mental model
-
-Adopting CSS variables requires some shifts in your mental model of theming and customizing user-selected modes.
-
-### Colors
-
-**[Default approach](/material-ui/customization/dark-mode/)**: Light and dark colors are created separately.
-
-```js
-import { createTheme } from '@mui/material/styles';
-
-const lightTheme = createTheme();
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-});
-```
-
-**CSS theme variables**: Light and dark colors are consolidated into a theme.
-
-```js
-import { extendTheme } from '@mui/material/styles';
-
-// `extendTheme` is a new API
-const theme = extendTheme({
-  colorSchemes: {
-    light: { // palette for light mode
-      palette: {...}
-    },
-    dark: { // palette for dark mode
-      palette: {...}
-    }
-  }
-})
-```
-
-### Styling
-
-**Default approach**: Usually relies on JavaScript to switch the value between modes:
-
-```js
-createTheme({
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: ({ theme }) => ({
-          // use JavaScript conditional expression
-          color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary.main,
-        }),
-      },
-    },
-  },
-});
-```
-
-**CSS theme variables**: Styling leans toward cascading and specificity by using the appropriate selector which lets you prevent [dark-mode SSR flickering](https://github.com/mui/material-ui/issues/27651):
-
-```js
-extendTheme({
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: ({ theme }) => ({
-          color: theme.vars.palette.primary.main,
-          // When the mode switches to dark, the attribute selector is attached to
-          // the <html> tag by default.
-          '[data-mui-color-scheme="dark"] &': {
-            color: '#fff',
-          },
-        }),
-      },
-    },
-  },
-});
-```
-
 ## What's next
 
 - To start a new project with CSS theme variables, check out the [basic usage guide](/material-ui/customization/css-theme-variables/usage/).
-- For an existing Material UI project, check out the [migration guide](/material-ui/migration/migration-css-theme-variables/).
 - For theming and customization, check out the [how-to guide](/material-ui/customization/css-theme-variables/configuration/).

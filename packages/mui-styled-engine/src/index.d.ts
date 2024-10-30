@@ -21,10 +21,13 @@ export type MUIStyledComponent<
  * For internal usage in `@mui/system` package
  */
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export function internal_processStyles(
+export function internal_mutateStyles(
   tag: React.ElementType,
   processor: (styles: any) => any,
 ): void;
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function internal_serializeStyles<P>(styles: Interpolation<P>): object;
 
 export interface SerializedStyles {
   name: string;
@@ -64,7 +67,9 @@ export interface CSSObject
 interface CSSObjectWithVariants<Props> extends Omit<CSSObject, 'variants'> {
   variants: Array<{
     props: Props | ((props: Props) => boolean);
-    style: CSSObject;
+    style:
+      | CSSObject
+      | ((args: Props extends { theme: any } ? { theme: Props['theme'] } : any) => CSSObject);
   }>;
 }
 

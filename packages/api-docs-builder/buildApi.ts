@@ -111,7 +111,8 @@ async function buildSingleProject(
   const tsProjects = projectSettings.typeScriptProjects.map((project) =>
     buildTypeScriptProject(project.name),
   );
-  const apiPagesManifestPath = projectSettings.output.apiManifestPath;
+
+  const { apiManifestPath: apiPagesManifestPath, writeApiManifest = true } = projectSettings.output;
 
   const manifestDir = apiPagesManifestPath.match(/(.*)\/[^/]+\./)?.[1];
   if (manifestDir) {
@@ -134,6 +135,9 @@ async function buildSingleProject(
     );
 
     const projectHooks = findHooks(path.join(project.rootPath, 'src')).filter((hook) => {
+      if (projectSettings.skipHook?.(hook.filename)) {
+        return false;
+      }
       if (grep === null) {
         return true;
       }
@@ -186,12 +190,14 @@ async function buildSingleProject(
     process.exit(1);
   }
 
-  let source = `module.exports = ${JSON.stringify(projectSettings.getApiPages())}`;
-  if (projectSettings.onWritingManifestFile) {
-    source = projectSettings.onWritingManifestFile(builds, source);
-  }
+  if (writeApiManifest) {
+    let source = `module.exports = ${JSON.stringify(projectSettings.getApiPages())}`;
+    if (projectSettings.onWritingManifestFile) {
+      source = projectSettings.onWritingManifestFile(builds, source);
+    }
 
-  await writePrettifiedFile(apiPagesManifestPath, source);
+    await writePrettifiedFile(apiPagesManifestPath, source);
+  }
 
   await projectSettings.onCompleted?.();
   return builds;

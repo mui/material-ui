@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { createRenderer, waitFor } from '@mui/internal-test-utils';
+import { createRenderer, waitFor, reactMajor } from '@mui/internal-test-utils';
 import elementAcceptingRef from './elementAcceptingRef';
 
 describe('elementAcceptingRef', () => {
@@ -22,6 +22,13 @@ describe('elementAcceptingRef', () => {
   });
 
   describe('acceptance when not required', () => {
+    before(function beforeCallback() {
+      if (reactMajor >= 19) {
+        // React 19 removed prop types support
+        this.skip();
+      }
+    });
+
     function assertPass(element: any, { shouldMount = true } = {}) {
       function testAct() {
         checkPropType(element);
@@ -77,7 +84,7 @@ describe('elementAcceptingRef', () => {
     it('accepts lazy', async () => {
       const Component = React.lazy(() =>
         Promise.resolve({
-          default: React.forwardRef((props, ref) => <div {...props} ref={ref} />),
+          default: React.forwardRef<HTMLDivElement>((props, ref) => <div {...props} ref={ref} />),
         }),
       );
 
@@ -107,6 +114,13 @@ describe('elementAcceptingRef', () => {
   });
 
   describe('rejections', () => {
+    before(function beforeCallback() {
+      if (reactMajor >= 19) {
+        // React 19 removed prop types support
+        this.skip();
+      }
+    });
+
     function assertFail(Component: any, hint: string) {
       expect(() => {
         checkPropType(Component);

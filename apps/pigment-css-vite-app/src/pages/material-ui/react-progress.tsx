@@ -8,7 +8,6 @@ import CircularUnderLoad from '../../../../../docs/data/material/components/prog
 import CircularWithValueLabel from '../../../../../docs/data/material/components/progress/CircularWithValueLabel.tsx';
 import CustomizedProgressBars from '../../../../../docs/data/material/components/progress/CustomizedProgressBars.tsx';
 import DelayingAppearance from '../../../../../docs/data/material/components/progress/DelayingAppearance.tsx';
-import LinearBuffer from '../../../../../docs/data/material/components/progress/LinearBuffer.tsx';
 import LinearColor from '../../../../../docs/data/material/components/progress/LinearColor.tsx';
 import LinearDeterminate from '../../../../../docs/data/material/components/progress/LinearDeterminate.tsx';
 import LinearIndeterminate from '../../../../../docs/data/material/components/progress/LinearIndeterminate.tsx';
@@ -64,12 +63,6 @@ export default function Progress() {
         <h2> Delaying Appearance</h2>
         <div className="demo-container">
           <DelayingAppearance />
-        </div>
-      </section>
-      <section>
-        <h2> Linear Buffer</h2>
-        <div className="demo-container">
-          <LinearBuffer />
         </div>
       </section>
       <section>
