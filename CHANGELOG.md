@@ -6,7 +6,7 @@
 
 _Oct 30, 2024_
 
-A big thanks to the 13 contributors who made this release possible.
+A big thanks to the 14 contributors who made this release possible.
 
 ### `@mui/material@6.1.6`
 
@@ -50,7 +50,7 @@ A big thanks to the 13 contributors who made this release possible.
 - [test] Distinguish private with public tests API (#44188) @oliviertassinari
 - [docs-infra] Add recursively the relative modules in the demos (#44150) @mnajdova
 
-All contributors of this release in alphabetical order: @aarongarciah, @blackcow1987, @DiegoAndai, @jimmycallin, @joshkel, @navedqb, @nphmuller, @o-alexandrov, @oliviertassinari, @prakhargupta1, @renovate[bot], @sai6855, @siriwatknp
+All contributors of this release in alphabetical order: @aarongarciah, @blackcow1987, @DiegoAndai, @jimmycallin, @joshkel, @mnajdova, @navedqb, @nphmuller, @o-alexandrov, @oliviertassinari, @prakhargupta1, @renovate[bot], @sai6855, @siriwatknp
 
 ## 6.1.5
 
