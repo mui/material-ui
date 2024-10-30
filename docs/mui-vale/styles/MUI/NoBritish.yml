@@ -1,5 +1,5 @@
 extends: substitution
-message: Use the US spelling '%s' instead of the British '%s'
+message: Write in the en-US locale '%s' instead of the en-UK one '%s'
 link: https://www.notion.so/mui-org/Writing-style-guide-2a957a4168a54d47b14bae026d06a24b?pvs=4#25755bff02764565b954631236ab183d
 level: error
 ignorecase: true
