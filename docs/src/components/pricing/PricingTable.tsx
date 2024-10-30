@@ -26,13 +26,19 @@ const planInfo = {
   pro: {
     iconName: 'pricing/x-plan-pro',
     title: 'Pro',
-    description: 'Best for professional developers building enterprise or data-rich applications.',
+    description: 'Best for professional developers or startups building data-rich applications.',
   },
   premium: {
     iconName: 'pricing/x-plan-premium',
     title: 'Premium',
     description:
-      'The most advanced features for data-rich applications, as well as the highest priority for support.',
+      'The most advanced features for data-rich applications along with standard support.',
+  },
+  enterprise: {
+    iconName: 'pricing/x-plan-premium',
+    title: 'Enterprise',
+    description:
+      'All features of Premium coupled with enterprise-grade priority support and feature requests.',
   },
 } as const;
 
@@ -46,7 +52,7 @@ export function PlanName({
   plan,
   disableDescription = false,
 }: {
-  plan: 'community' | 'pro' | 'premium';
+  plan: 'community' | 'pro' | 'premium' | 'enterprise';
   disableDescription?: boolean;
 }) {
   const { title, iconName, description } = planInfo[plan];
@@ -85,7 +91,7 @@ export function PlanName({
 }
 
 interface PlanPriceProps {
-  plan: 'community' | 'pro' | 'premium';
+  plan: 'community' | 'pro' | 'premium' | 'enterprise';
 }
 
 export function PlanPrice(props: PlanPriceProps) {
@@ -168,13 +174,60 @@ export function PlanPrice(props: PlanPriceProps) {
       </React.Fragment>
     );
   }
-  // else Premium
-  const premiumMonthlyValue = annual ? 49 : 49 * 3;
-  const premiumAnnualValue = premiumMonthlyValue * 12;
 
-  const premiumDisplayedValue = monthlyDisplay ? premiumMonthlyValue : premiumAnnualValue;
+  if (plan === 'premium') {
+    const premiumMonthlyValue = annual ? 49 : 49 * 3;
+    const premiumAnnualValue = premiumMonthlyValue * 12;
+
+    const premiumDisplayedValue = monthlyDisplay ? premiumMonthlyValue : premiumAnnualValue;
+    const priceExplanation = getPriceExplanation(
+      monthlyDisplay ? premiumAnnualValue : premiumMonthlyValue,
+    );
+
+    return (
+      <React.Fragment>
+        <LicenseModelSwitch />
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
+          <Box sx={{ width: 10 }} />
+          <Typography
+            variant="h3"
+            component="div"
+            sx={{ fontWeight: 'bold', color: 'primary.main' }}
+          >
+            {formatCurrency(premiumDisplayedValue)}
+          </Typography>
+          <Box sx={{ width: 5 }} />
+          <Typography variant="body2" sx={{ color: 'text.secondary', mt: '3px' }}>
+            {priceUnit}
+          </Typography>
+        </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 2,
+            mb: 2,
+            minHeight: planPriceMinHeight,
+          }}
+        >
+          {(annual || monthlyDisplay) && (
+            <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
+              {priceExplanation}
+            </Typography>
+          )}
+        </Box>
+      </React.Fragment>
+    );
+  }
+
+  // else enterprise
+  const enterpriseMonthlyValue = annual ? 79 : 79 * 3;
+  const enterpriseAnnualValue = enterpriseMonthlyValue * 12;
+
+  const enterpriseDisplayedValue = monthlyDisplay ? enterpriseMonthlyValue : enterpriseAnnualValue;
   const priceExplanation = getPriceExplanation(
-    monthlyDisplay ? premiumAnnualValue : premiumMonthlyValue,
+    monthlyDisplay ? enterpriseAnnualValue : enterpriseMonthlyValue,
   );
 
   return (
@@ -183,7 +236,7 @@ export function PlanPrice(props: PlanPriceProps) {
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
         <Box sx={{ width: 10 }} />
         <Typography variant="h3" component="div" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
-          {formatCurrency(premiumDisplayedValue)}
+          {formatCurrency(enterpriseDisplayedValue)}
         </Typography>
         <Box sx={{ width: 5 }} />
         <Typography variant="body2" sx={{ color: 'text.secondary', mt: '3px' }}>
@@ -1017,25 +1070,116 @@ const premiumData: Record<string, React.ReactNode> = {
   'mui-x-development-perpetual': <Info value="Perpetual" />,
   'mui-x-updates': <Info value="1 year" />,
   // Support
-  'core-support': <Info value={pending} metadata="Priority add-on only" />,
+  'core-support': <Info value="Community" />,
   'x-support': <Info value={yes} metadata="Priority over Pro" />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
-  'response-time': (
-    <Info
-      value={pending}
-      metadata={
-        <React.Fragment>
-          Available later on
-          <br />
-          2 business days.
-          <br />1 business day (priority add-on only)
-        </React.Fragment>
-      }
-    />
-  ),
-  'pre-screening': <Info value={pending} metadata="4 hours (priority add-on only)" />,
-  'issue-escalation': <Info value={pending} metadata="Priority add-on only" />,
+  'response-time': <Info value={yes} metadata={<React.Fragment>2 business days</React.Fragment>} />,
+  'pre-screening': no,
+  'issue-escalation': no,
+  'security-questionnaire': <Info value="Available from 4+ devs" />,
+};
+
+const enterpriseData: Record<string, React.ReactNode> = {
+  // Core
+  'Base UI': yes,
+  'MUI System': yes,
+  'Material UI': yes,
+  'Joy UI': yes,
+  // MUI X
+  // data grid - columns
+  'data-grid/column-groups': yes,
+  'data-grid/column-spanning': yes,
+  'data-grid/column-resizing': yes,
+  'data-grid/column-autosizing': yes,
+  'data-grid/column-reorder': yes,
+  'data-grid/column-pinning': yes,
+  // data grid - rows
+  'data-grid/row-height': yes,
+  'data-grid/row-spanning': yes,
+  'data-grid/row-reordering': yes,
+  'data-grid/row-pinning': yes,
+  'data-grid/row-selection': yes,
+  'data-grid/row-multiselection': yes,
+  'data-grid/row-cell-selection': yes,
+  // data grid - filter
+  'data-grid/filter-quick': yes,
+  'data-grid/filter-column': yes,
+  'data-grid/header-filters': yes,
+  'data-grid/filter-multicolumn': yes,
+  'data-grid/column-sorting': yes,
+  'data-grid/multi-column-sorting': yes,
+  'data-grid/pagination': yes,
+  'data-grid/pagination-large': yes,
+  // data grid - edit
+  'data-grid/edit-row': yes,
+  'data-grid/edit-cell': yes,
+  // data grid - export
+  'data-grid/file-csv': yes,
+  'data-grid/file-print': yes,
+  'data-grid/file-clipboard-copy': yes,
+  'data-grid/file-clipboard-paste': yes,
+  'data-grid/file-excel': yes,
+  'data-grid/customizable-components': yes,
+  'data-grid/virtualize-column': yes,
+  'data-grid/virtualize-row': yes,
+  'data-grid/tree-data': yes,
+  'data-grid/master-detail': yes,
+  'data-grid/grouping': yes,
+  'data-grid/aggregation': yes,
+  'data-grid/pivoting': pending,
+  'data-grid/accessibility': yes,
+  'data-grid/keyboard-nav': yes,
+  'data-grid/localization': yes,
+  'date-picker/simple': yes,
+  'date-picker/range': yes,
+
+  // charts - components
+  'charts/line': yes,
+  'charts/bar': yes,
+  'charts/scatter': yes,
+  'charts/pie': yes,
+  'charts/sparkline': yes,
+  'charts/gauge': yes,
+  'charts/heatmap': yes,
+  'charts/treemap': pending,
+  'charts/radar': pending,
+  'charts/funnel': pending,
+  'charts/sankey': pending,
+  'charts/gantt': pending,
+  'charts/gantt-advanced': toBeDefined,
+  'charts/candlestick': toBeDefined,
+  'charts/large-dataset': toBeDefined,
+  // charts - features
+  'charts/legend': yes,
+  'charts/tooltip': yes,
+  'charts/zoom-and-pan': yes,
+  'charts/export': pending,
+  // charts - datagrid
+  'charts/cell-with-charts': yes,
+  'charts/filter-interaction': pending,
+  'charts/selection-interaction': pending,
+  // Tree View
+  'tree-view/simple-tree-view': yes,
+  'tree-view/rich-tree-view': yes,
+  'tree-view/selection': yes,
+  'tree-view/multi-selection': yes,
+  'tree-view/inline-editing': yes,
+  'tree-view/drag-to-reorder': yes,
+  'tree-view/virtualization': pending,
+  // general
+  'mui-x-production': yes,
+  'mui-x-development': <Info value="1 year" />,
+  'mui-x-development-perpetual': <Info value="Perpetual" />,
+  'mui-x-updates': <Info value="1 year" />,
+  // Support
+  'core-support': yes,
+  'x-support': <Info value={yes} metadata="Priority over Premium" />,
+  'tech-advisory': pending,
+  'support-duration': <Info value="1 year" />,
+  'response-time': <Info value={yes} metadata={<React.Fragment>1 business day</React.Fragment>} />,
+  'pre-screening': <Info value={yes} metadata="4 hours" />,
+  'issue-escalation': <Info value={yes} />,
   'security-questionnaire': <Info value="Available from 4+ devs" />,
 };
 
@@ -1136,7 +1280,7 @@ function StickyHead({
         <Typography variant="body2" sx={{ fontWeight: 'bold', px: 2, py: 1 }}>
           Plans
         </Typography>
-        {(['community', 'pro', 'premium'] as const).map((plan) => (
+        {(['community', 'pro', 'premium', 'enterprise'] as const).map((plan) => (
           <Box key={plan} sx={{ px: 2, py: 1 }}>
             <PlanName plan={plan} disableDescription />
           </Box>
@@ -1171,6 +1315,7 @@ function renderMasterRow(key: string, gridSx: object, plans: Array<any>) {
           {id === 'community' && communityData[key]}
           {id === 'pro' && proData[key]}
           {id === 'premium' && premiumData[key]}
+          {id === 'enterprise' && enterpriseData[key]}
         </Cell>
       ))}
     </Box>
@@ -1229,6 +1374,28 @@ function PricingTableBuyPremium() {
   );
 }
 
+function PricingTableBuyEnterprise() {
+  const { licenseModel } = useLicenseModel();
+
+  return (
+    <Button
+      component={Link}
+      noLinkStyle
+      href={
+        licenseModel === 'annual'
+          ? 'https://mui.com/store/items/mui-x-enterprise/'
+          : 'https://mui.com/store/items/mui-x-enterprise-perpetual/'
+      }
+      variant="contained"
+      fullWidth
+      endIcon={<KeyboardArrowRightRounded />}
+      sx={{ py: 1, mt: 'auto' }}
+    >
+      Buy now
+    </Button>
+  );
+}
+
 const StyledCollapse = styled(Collapse, {
   name: 'MuiSlider',
   slot: 'Track',
@@ -1247,11 +1414,11 @@ const StyledCollapse = styled(Collapse, {
 
 export default function PricingTable({
   columnHeaderHidden,
-  plans = ['community', 'pro', 'premium'],
+  plans = ['community', 'pro', 'premium', 'enterprise'],
   ...props
 }: BoxProps & {
   columnHeaderHidden?: boolean;
-  plans?: Array<'community' | 'pro' | 'premium'>;
+  plans?: Array<'community' | 'pro' | 'premium' | 'enterprise'>;
 }) {
   const router = useRouter();
   const [dataGridCollapsed, setDataGridCollapsed] = React.useState(false);
@@ -1341,6 +1508,13 @@ export default function PricingTable({
             <PlanPrice plan="premium" />
             <PricingTableBuyPremium />
           </Box>
+          <ColumnHeadHighlight>
+            <div>
+              <PlanName plan="enterprise" />
+              <PlanPrice plan="enterprise" />
+            </div>
+            <PricingTableBuyEnterprise />
+          </ColumnHeadHighlight>
         </Box>
       )}
       <RowHead startIcon={<IconImage name="product-core" width={28} height={28} />}>
@@ -1371,6 +1545,9 @@ export default function PricingTable({
           {dataGridUnfoldMore}
         </Cell>
         <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+          {dataGridUnfoldMore}
+        </Cell>
+        <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
           {dataGridUnfoldMore}
         </Cell>
         <Button
@@ -1522,6 +1699,9 @@ export default function PricingTable({
           {chartsUnfoldMore}
         </Cell>
         <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>{chartsUnfoldMore}</Cell>
+        <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+          {chartsUnfoldMore}
+        </Cell>
         <Button
           fullWidth
           onClick={() => setChartsCollapsed((bool) => !bool)}
@@ -1625,6 +1805,9 @@ export default function PricingTable({
           {treeViewUnfoldMore}
         </Cell>
         <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+          {treeViewUnfoldMore}
+        </Cell>
+        <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
           {treeViewUnfoldMore}
         </Cell>
         <Button
