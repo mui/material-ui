@@ -15,7 +15,7 @@ import { useLicenseModel } from 'docs/src/components/pricing/LicenseModelContext
 const Plan = React.forwardRef<
   HTMLDivElement,
   {
-    plan: 'community' | 'pro' | 'premium';
+    plan: 'community' | 'pro' | 'premium' | 'enterprise';
     benefits?: Array<string>;
     unavailable?: boolean;
   } & PaperProps
@@ -32,7 +32,7 @@ const Plan = React.forwardRef<
       {...props}
     >
       <PlanName plan={plan} />
-      <Box {...(plan === 'community' && { my: 2 })} {...(plan === 'premium' && { mb: 2 })}>
+      <Box {...(plan === 'community' && { my: 2 })} {...(plan === 'enterprise' && { mb: 2 })}>
         <PlanPrice plan={plan} />
       </Box>
       {unavailable ? (
@@ -46,7 +46,7 @@ const Plan = React.forwardRef<
         </Button>
       ) : (
         <Button
-          variant={plan.match(/(pro|premium)/) ? 'contained' : 'outlined'}
+          variant={plan.match(/(pro|premium|enterprise)/) ? 'contained' : 'outlined'}
           fullWidth
           component={Link}
           noLinkStyle
@@ -61,12 +61,13 @@ const Plan = React.forwardRef<
                 licenseModel === 'annual'
                   ? 'https://mui.com/store/items/mui-x-premium/'
                   : 'https://mui.com/store/items/mui-x-premium-perpetual/',
+              enterprise: 'mailto:sales@mui.com',
             }[plan]
           }
           endIcon={<KeyboardArrowRightRounded />}
           sx={{ py: 1 }}
         >
-          {plan.match(/(pro|premium)/) ? 'Buy now' : 'Get started'}
+          {getButtonText(plan)}
         </Button>
       )}
       {benefits &&
@@ -84,6 +85,16 @@ const Plan = React.forwardRef<
     </Paper>
   );
 });
+
+function getButtonText(plan: string) {
+  if (plan.match(/(pro|premium)/)) {
+    return 'Buy now';
+  }
+  if (plan.match(/enterprise/)) {
+    return 'Contact us';
+  }
+  return 'Get started';
+}
 
 export default function PricingList() {
   const [planIndex, setPlanIndex] = React.useState(0);
@@ -126,7 +137,11 @@ export default function PricingList() {
           label="Pro"
           sx={{ borderWidth: '0 1px 0 1px', borderStyle: 'solid', borderColor: 'divider' }}
         />
-        <Tab label="Premium" />
+        <Tab
+          label="Premium"
+          sx={{ borderWidth: '0 1px 0 1px', borderStyle: 'solid', borderColor: 'divider' }}
+        />
+        <Tab label="Enterprise" />
       </Tabs>
       {planIndex === 0 && (
         <Fade in>
@@ -149,6 +164,14 @@ export default function PricingList() {
           <div>
             <Plan plan="premium" />
             <PricingTable columnHeaderHidden plans={['premium']} />
+          </div>
+        </Fade>
+      )}
+      {planIndex === 3 && (
+        <Fade in>
+          <div>
+            <Plan plan="enterprise" />
+            <PricingTable columnHeaderHidden plans={['enterprise']} />
           </div>
         </Fade>
       )}

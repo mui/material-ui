@@ -1263,7 +1263,7 @@ function StickyHead({
       <Container
         sx={{
           display: 'grid',
-          gridTemplateColumns: `minmax(160px, 1fr) repeat(3, minmax(240px, 1fr))`,
+          gridTemplateColumns: `minmax(160px, 1fr) repeat(4, minmax(240px, 1fr))`,
         }}
       >
         <Typography variant="body2" sx={{ fontWeight: 'bold', px: 2, py: 1 }}>
