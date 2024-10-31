@@ -25,6 +25,7 @@ const useUtilityClasses = (ownerState) => {
   const slots = {
     root: [
       'root',
+      loading && 'loading',
       variant,
       `${variant}${capitalize(color)}`,
       `size${capitalize(size)}`,
@@ -38,13 +39,13 @@ const useUtilityClasses = (ownerState) => {
       'icon',
       'startIcon',
       `iconSize${capitalize(size)}`,
-      `startIconLoading${capitalize(loadingPosition)}`,
+      loading && `startIconLoading${capitalize(loadingPosition)}`,
     ],
     endIcon: [
       'icon',
       'endIcon',
       `iconSize${capitalize(size)}`,
-      `endIconLoading${capitalize(loadingPosition)}`,
+      loading && `endIconLoading${capitalize(loadingPosition)}`,
     ],
     loadingIndicator: [
       'loadingIndicator',
@@ -324,15 +325,7 @@ const ButtonRoot = styled(ButtonBase, {
                 duration: theme.transitions.duration.short,
               },
             ),
-          },
-        },
-        {
-          props: {
-            loadingPosition: 'center',
-            loading: true,
-          },
-          style: {
-            [`&.${buttonClasses.disabled}`]: {
+            [`&.${buttonClasses.loading}`]: {
               color: 'transparent',
             },
           },
@@ -348,7 +341,11 @@ const ButtonStartIcon = styled('span', {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    return [styles.startIcon, styles[`iconSize${capitalize(ownerState.size)}`]];
+    return [
+      styles.startIcon,
+      ownerState.loading && styles.startIconLoadingStart,
+      styles[`iconSize${capitalize(ownerState.size)}`],
+    ];
   },
 })(({ theme }) => ({
   display: 'inherit',
@@ -370,6 +367,16 @@ const ButtonStartIcon = styled('span', {
         opacity: 0,
       },
     },
+    {
+      props: ({ ownerState }) => ownerState.loadingPosition === 'start' && ownerState.fullWidth,
+      style: {
+        transition: theme.transitions.create(['opacity'], {
+          duration: theme.transitions.duration.short,
+        }),
+        opacity: 0,
+        marginRight: -8,
+      },
+    },
     ...commonIconStyles,
   ],
 }));
@@ -380,7 +387,11 @@ const ButtonEndIcon = styled('span', {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    return [styles.endIcon, styles[`iconSize${capitalize(ownerState.size)}`]];
+    return [
+      styles.endIcon,
+      ownerState.loading && styles.endIconLoadingEnd,
+      styles[`iconSize${capitalize(ownerState.size)}`],
+    ];
   },
 })(({ theme }) => ({
   display: 'inherit',
@@ -400,6 +411,16 @@ const ButtonEndIcon = styled('span', {
           duration: theme.transitions.duration.short,
         }),
         opacity: 0,
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.loadingPosition === 'end' && ownerState.fullWidth,
+      style: {
+        transition: theme.transitions.create(['opacity'], {
+          duration: theme.transitions.duration.short,
+        }),
+        opacity: 0,
+        marginLeft: -8,
       },
     },
     ...commonIconStyles,
