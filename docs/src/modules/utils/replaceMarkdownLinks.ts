@@ -39,7 +39,7 @@ export const replaceAPILinks = (markdown: string) => {
       '(/base-ui/api/$1$2)',
     )
     .replace(
-      /\(\/api\/(loading-button|tab-list|tab-panel|date-picker|date-time-picker|time-picker|calendar-picker|calendar-picker-skeleton|desktop-picker|mobile-date-picker|month-picker|pickers-day|static-date-picker|year-picker|masonry|timeline|timeline-connector|timeline-content|timeline-dot|timeline-item|timeline-opposite-content|timeline-separator|unstable-trap-focus|tree-item|tree-view)([^)]*)\)/gm,
+      /\(\/api\/(tab-list|tab-panel|date-picker|date-time-picker|time-picker|calendar-picker|calendar-picker-skeleton|desktop-picker|mobile-date-picker|month-picker|pickers-day|static-date-picker|year-picker|masonry|timeline|timeline-connector|timeline-content|timeline-dot|timeline-item|timeline-opposite-content|timeline-separator|unstable-trap-focus|tree-item|tree-view)([^)]*)\)/gm,
       '(/material-ui/api/$1$2)',
     )
     .replace(/\(\/api\/([^)]*)\)/gm, '(/material-ui/api/$1)');

@@ -216,7 +216,6 @@ describe('replaceUrl', () => {
     expect(replaceAPILinks(`/api/portal/`)).to.equal(`/base-ui/api/portal/`);
     expect(replaceAPILinks(`/api/textarea-autosize/`)).to.equal(`/base-ui/api/textarea-autosize/`);
     expect(replaceAPILinks(`/api/button-unstyled/`)).to.equal(`/base-ui/api/button-unstyled/`);
-    expect(replaceAPILinks(`/api/loading-button/`)).to.equal(`/material-ui/api/loading-button/`);
     expect(replaceAPILinks(`/api/tab-list/`)).to.equal(`/material-ui/api/tab-list/`);
     expect(replaceAPILinks(`/api/tab-panel/`)).to.equal(`/material-ui/api/tab-panel/`);
     expect(replaceAPILinks(`/api/tab-panel-unstyled/`)).to.equal(
@@ -247,9 +246,6 @@ describe('replaceUrl', () => {
     expect(replaceAPILinks(`/material-ui/api/button/`)).to.equal(`/material-ui/api/button/`);
     expect(replaceAPILinks(`/base-ui/api/button-unstyled/`)).to.equal(
       `/base-ui/api/button-unstyled/`,
-    );
-    expect(replaceAPILinks(`/material-ui/api/loading-button/`)).to.equal(
-      `/material-ui/api/loading-button/`,
     );
     expect(replaceAPILinks(`/x/api/data-grid/`)).to.equal(`/x/api/data-grid/`);
   });
