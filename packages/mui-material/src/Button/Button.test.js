@@ -5,7 +5,6 @@ import { ClassNames } from '@emotion/react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button, { buttonClasses as classes } from '@mui/material/Button';
 import ButtonBase, { touchRippleClasses } from '@mui/material/ButtonBase';
-import ButtonGroup, { buttonGroupClasses } from '@mui/material/ButtonGroup';
 import describeConformance from '../../test/describeConformance';
 import * as ripple from '../../test/ripple';
 
