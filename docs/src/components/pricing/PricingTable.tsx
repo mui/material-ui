@@ -16,6 +16,7 @@ import { Link } from '@mui/docs/Link';
 import IconImage from 'docs/src/components/icon/IconImage';
 import LicenseModelSwitch from 'docs/src/components/pricing/LicenseModelSwitch';
 import { useLicenseModel } from 'docs/src/components/pricing/LicenseModelContext';
+import BusinessIcon from '@mui/icons-material/Business';
 
 const planInfo = {
   community: {
@@ -187,7 +188,15 @@ export function PlanPrice(props: PlanPriceProps) {
     return (
       <React.Fragment>
         <LicenseModelSwitch />
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            mt: 1,
+            mb: 4,
+          }}
+        >
           <Box sx={{ width: 10 }} />
           <Typography
             variant="h3"
@@ -222,43 +231,23 @@ export function PlanPrice(props: PlanPriceProps) {
   }
 
   // else enterprise
-  const enterpriseMonthlyValue = annual ? 79 : 79 * 3;
-  const enterpriseAnnualValue = enterpriseMonthlyValue * 12;
-
-  const enterpriseDisplayedValue = monthlyDisplay ? enterpriseMonthlyValue : enterpriseAnnualValue;
-  const priceExplanation = getPriceExplanation(
-    monthlyDisplay ? enterpriseAnnualValue : enterpriseMonthlyValue,
-  );
-
   return (
     <React.Fragment>
-      <LicenseModelSwitch />
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
-        <Box sx={{ width: 10 }} />
-        <Typography variant="h3" component="div" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
-          {formatCurrency(enterpriseDisplayedValue)}
-        </Typography>
-        <Box sx={{ width: 5 }} />
-        <Typography variant="body2" sx={{ color: 'text.secondary', mt: '3px' }}>
-          {priceUnit}
-        </Typography>
-      </Box>
       <Box
         sx={{
           display: 'flex',
-          flexDirection: 'column',
           alignItems: 'center',
-          gap: 2,
-          mb: 2,
-          minHeight: planPriceMinHeight,
+          flexDirection: 'column',
+          justifyContent: 'center',
+          mt: 5,
+          mb: 4,
         }}
       >
-        {(annual || monthlyDisplay) && (
-          <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
-            {priceExplanation}
-          </Typography>
-        )}
+        <BusinessIcon sx={{ fontSize: 60, color: 'text.tertiary' }} />
       </Box>
+      <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
+        Custom pricing
+      </Typography>
     </React.Fragment>
   );
 }
@@ -1375,23 +1364,17 @@ function PricingTableBuyPremium() {
 }
 
 function PricingTableBuyEnterprise() {
-  const { licenseModel } = useLicenseModel();
-
   return (
     <Button
       component={Link}
       noLinkStyle
-      href={
-        licenseModel === 'annual'
-          ? 'https://mui.com/store/items/mui-x-enterprise/'
-          : 'https://mui.com/store/items/mui-x-enterprise-perpetual/'
-      }
+      href="mailto:sales@mui.com"
       variant="contained"
       fullWidth
       endIcon={<KeyboardArrowRightRounded />}
       sx={{ py: 1, mt: 'auto' }}
     >
-      Buy now
+      Contact Sales
     </Button>
   );
 }
