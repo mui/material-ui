@@ -407,7 +407,7 @@ const ButtonEndIcon = styled('span', {
 }));
 
 const ButtonLoadingIndicator = styled('span', {
-  name: 'MuiLoadingButton',
+  name: 'MuiButton',
   slot: 'LoadingIndicator',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
@@ -498,6 +498,18 @@ const ButtonLoadingIndicator = styled('span', {
   ],
 }));
 
+const ButtonLoadingLabel = styled('span', {
+  name: 'MuiButton',
+  slot: 'Label',
+  overridesResolver: (props, styles) => {
+    return [styles.label];
+  },
+})({
+  display: 'inherit',
+  alignItems: 'inherit',
+  justifyContent: 'inherit',
+});
+
 const Button = React.forwardRef(function Button(inProps, ref) {
   // props priority: `inProps` > `contextProps` > `themeDefaultProps`
   const contextProps = React.useContext(ButtonGroupContext);
@@ -584,9 +596,17 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       classes={classes}
     >
       {startIcon}
-      {ownerState.loadingPosition === 'end' ? children : buttonLoadingIndicator}
+      {loading && ownerState.loadingPosition === 'end' ? (
+        <ButtonLoadingLabel className={classes.label}>{children}</ButtonLoadingLabel>
+      ) : (
+        buttonLoadingIndicator
+      )}
 
-      {ownerState.loadingPosition === 'end' ? buttonLoadingIndicator : children}
+      {loading && ownerState.loadingPosition === 'end' ? (
+        buttonLoadingIndicator
+      ) : (
+        <ButtonLoadingLabel className={classes.label}>{children}</ButtonLoadingLabel>
+      )}
 
       {endIcon}
     </ButtonRoot>

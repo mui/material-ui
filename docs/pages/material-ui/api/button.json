@@ -240,6 +240,12 @@
       "isDeprecated": true
     },
     {
+      "key": "label",
+      "className": "MuiButton-label",
+      "description": "Styles applied to the span element that wraps the children when `loading={true}`.",
+      "isGlobal": false
+    },
+    {
       "key": "loading",
       "className": "MuiButton-loading",
       "description": "Styles applied to the root element if `loading={true}`.",

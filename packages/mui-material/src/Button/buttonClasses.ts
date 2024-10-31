@@ -176,6 +176,8 @@ export interface ButtonClasses {
   colorInfo: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the span element that wraps the children when `loading={true}`. */
+  label: string;
   /** Styles applied to the root element if `loading={true}`. */
   loading: string;
   /** Styles applied to the loadingIndicator element. */
@@ -253,6 +255,7 @@ const buttonClasses: ButtonClasses = generateUtilityClasses('MuiButton', [
   'iconSizeSmall',
   'iconSizeMedium',
   'iconSizeLarge',
+  'label',
   'loading',
   'loadingIndicator',
   'loadingIndicatorCenter',
