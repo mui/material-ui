@@ -10,7 +10,7 @@ import { sortContainerQueries } from '../cssContainerQueries';
 import defaultSxConfig from './defaultSxConfig';
 import { DEFAULT_BREAKPOINTS } from '../breakpoints';
 
-const EMPTY_THEME = {}
+const EMPTY_THEME = {};
 
 function objectsHaveSameKeys(a, b) {
   let aLength = 0;
