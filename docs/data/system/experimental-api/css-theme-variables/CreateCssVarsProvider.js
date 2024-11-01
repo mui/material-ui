@@ -62,6 +62,7 @@ function extendTheme({ cssVarPrefix = 'system-demo' } = {}) {
       colorScheme: 'light',
     },
     ...params,
+    internal_cache: {},
   };
 
   return theme;
