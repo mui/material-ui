@@ -13,7 +13,7 @@ function compose(...styles) {
   const fn = (props) => {
     const result = {};
     for (const prop in props) {
-      if (handlers[props]) {
+      if (handlers[prop]) {
         fastDeepAssign(result, handlers[prop](props));
       }
     }
