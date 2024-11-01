@@ -15,8 +15,7 @@ describe('borders', () => {
     });
   });
 
-  it.only('should work with 0', () => {
-    debugger
+  it('should work with 0', () => {
     const output = borders({
       borderRadius: 0,
     });
