@@ -71,20 +71,20 @@ function setThemeValue(css, prop, value, theme, config) {
   const themeMapping = getPath(theme, themeKey);
 
   iterateBreakpoints(css, theme, value, (target, key, valueFinal) => {
-    const value = getStyleValue2(themeMapping, transform, valueFinal, prop);
+    const finalValue = getStyleValue2(themeMapping, transform, valueFinal, prop);
 
     if (cssProperty === false) {
       if (key) {
-        target[key] = value;
+        target[key] = finalValue;
       } else {
-        merge(target, value);
+        merge(target, finalValue);
       }
     } else {
       // eslint-disable-next-line no-lonely-if
       if (key) {
-        target[key][cssProperty] = value;
+        target[key][cssProperty] = finalValue;
       } else {
-        target[cssProperty] = value;
+        target[cssProperty] = finalValue;
       }
     }
   });

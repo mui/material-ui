@@ -2,6 +2,8 @@ import responsivePropType from '../responsivePropType';
 import { iterateBreakpoints } from '../breakpoints';
 import { getPath } from '../style';
 
+/* eslint-disable guard-for-in */
+
 const EMPTY_THEME = { internal_cache: {} };
 
 const properties = {
@@ -187,7 +189,7 @@ const container = [''];
 
 function style(props, keys) {
   const theme = props.theme ?? EMPTY_THEME;
-  const transformer = (theme.internal_cache.unarySpacing ??= createUnarySpacing(theme));
+  const transformer = (theme.internal_cache.unarySpacing ??= createUnarySpacing(theme)); // eslint-disable-line
 
   const result = {};
   for (const prop in props) {
@@ -200,7 +202,7 @@ function style(props, keys) {
 
     iterateBreakpoints(result, props.theme, propValue, (_, key, value) => {
       const target = key ? result[key] : result;
-      for (let i = 0; i < cssProperties.length; i++) {
+      for (let i = 0; i < cssProperties.length; i += 1) {
         target[cssProperties[i]] = getValue(transformer, value);
       }
     });
