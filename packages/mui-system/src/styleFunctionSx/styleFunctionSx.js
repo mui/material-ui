@@ -12,64 +12,6 @@ import defaultSxConfig from './defaultSxConfig';
 
 const EMPTY_THEME = {};
 
-function callIfFn(maybeFn, arg) {
-  return typeof maybeFn === 'function' ? maybeFn(arg) : maybeFn;
-}
-
-function setThemeValue(css, prop, value, theme, config) {
-  const options = config[prop];
-
-  if (!options) {
-    css[prop] = value;
-    return;
-  }
-
-  if (value == null) {
-    return;
-  }
-
-  const { themeKey } = options;
-  // TODO v6: remove, see https://github.com/mui/material-ui/pull/38123
-  if (themeKey === 'typography' && value === 'inherit') {
-    css[prop] = value;
-    return;
-  }
-
-  const { style } = options;
-  if (style) {
-    merge(
-      css,
-      style({
-        [prop]: value,
-        theme,
-      }),
-    );
-    return;
-  }
-
-  const { cssProperty = prop, transform } = options;
-  const themeMapping = getPath(theme, themeKey);
-
-  iterateBreakpoints(css, theme, value, (target, key, valueFinal) => {
-    const finalValue = getStyleValue2(themeMapping, transform, valueFinal, prop);
-
-    if (cssProperty === false) {
-      if (key) {
-        target[key] = finalValue;
-      } else {
-        merge(target, finalValue);
-      }
-    } else {
-      // eslint-disable-next-line no-lonely-if
-      if (key) {
-        target[key][cssProperty] = finalValue;
-      } else {
-        target[cssProperty] = finalValue;
-      }
-    }
-  });
-}
-
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function unstable_createStyleFunctionSx() {
   function styleFunctionSx(props) {
@@ -133,11 +75,67 @@ export function unstable_createStyleFunctionSx() {
     return Array.isArray(sx) ? sx.map(process) : process(sx);
   }
 
+  styleFunctionSx.filterProps = ['sx'];
+
   return styleFunctionSx;
 }
 
-const styleFunctionSx = unstable_createStyleFunctionSx();
+export default unstable_createStyleFunctionSx();
 
-styleFunctionSx.filterProps = ['sx'];
+function setThemeValue(css, prop, value, theme, config) {
+  const options = config[prop];
 
-export default styleFunctionSx;
+  if (!options) {
+    css[prop] = value;
+    return;
+  }
+
+  if (value == null) {
+    return;
+  }
+
+  const { themeKey } = options;
+  // TODO v6: remove, see https://github.com/mui/material-ui/pull/38123
+  if (themeKey === 'typography' && value === 'inherit') {
+    css[prop] = value;
+    return;
+  }
+
+  const { style } = options;
+  if (style) {
+    merge(
+      css,
+      style({
+        [prop]: value,
+        theme,
+      }),
+    );
+    return;
+  }
+
+  const { cssProperty = prop, transform } = options;
+  const themeMapping = getPath(theme, themeKey);
+
+  iterateBreakpoints(css, theme, value, (target, key, valueFinal) => {
+    const finalValue = getStyleValue2(themeMapping, transform, valueFinal, prop);
+
+    if (cssProperty === false) {
+      if (key) {
+        target[key] = finalValue;
+      } else {
+        merge(target, finalValue);
+      }
+    } else {
+      // eslint-disable-next-line no-lonely-if
+      if (key) {
+        target[key][cssProperty] = finalValue;
+      } else {
+        target[cssProperty] = finalValue;
+      }
+    }
+  });
+}
+
+function callIfFn(maybeFn, arg) {
+  return typeof maybeFn === 'function' ? maybeFn(arg) : maybeFn;
+}
