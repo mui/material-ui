@@ -1,4 +1,4 @@
-import merge from '../merge';
+import fastDeepAssign from "@mui/utils/fastDeepAssign";
 
 function compose(...styles) {
   const handlers = styles.reduce((acc, style) => {
@@ -9,16 +9,15 @@ function compose(...styles) {
     return acc;
   }, {});
 
-  // false positive
   // eslint-disable-next-line react/function-component-definition
   const fn = (props) => {
-    return Object.keys(props).reduce((acc, prop) => {
-      if (handlers[prop]) {
-        return merge(acc, handlers[prop](props));
+    const result = {};
+    for (const prop in props) {
+      if (handlers[props]) {
+        fastDeepAssign(result, handlers[prop](props))
       }
-
-      return acc;
-    }, {});
+    }
+    return result;
   };
 
   fn.propTypes =
