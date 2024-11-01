@@ -5,10 +5,10 @@ import {
   handleBreakpoints,
   createEmptyBreakpointObject,
   removeUnusedBreakpoints,
+  DEFAULT_BREAKPOINTS,
 } from '../breakpoints';
 import { sortContainerQueries } from '../cssContainerQueries';
 import defaultSxConfig from './defaultSxConfig';
-import { DEFAULT_BREAKPOINTS } from '../breakpoints';
 
 const EMPTY_THEME = {};
 
@@ -117,7 +117,7 @@ export function unstable_createStyleFunctionSx() {
       const breakpoints = theme.breakpoints ?? DEFAULT_BREAKPOINTS;
 
       const emptyBreakpoints = createEmptyBreakpointObject(breakpoints);
-      const breakpointsKeys = breakpoints._mediaKeys;
+      const breakpointsKeys = breakpoints.mediaKeys;
 
       const css = emptyBreakpoints;
 

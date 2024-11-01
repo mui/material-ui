@@ -135,10 +135,10 @@ function setupBreakpoints(styleFunction) {
 }
 
 export function createEmptyBreakpointObject(breakpoints = EMPTY_BREAKPOINTS) {
-  const { _mediaKeys } = breakpoints;
+  const { mediaKeys } = breakpoints;
   const result = {};
-  for (let i = 0; i < _mediaKeys.length; i += 1) {
-    result[_mediaKeys[i]] = {};
+  for (let i = 0; i < mediaKeys.length; i += 1) {
+    result[mediaKeys[i]] = {};
   }
   return result;
 }
