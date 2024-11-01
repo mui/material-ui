@@ -36,7 +36,7 @@ export interface ClickAwayListenerProps {
   /**
    * The wrapped element.
    */
-  children: React.ReactElement<any>;
+  children: React.ReactElement<unknown>;
   /**
    * If `true`, the React tree is ignored and only the DOM tree is considered.
    * This prop changes how portaled elements are handled.
