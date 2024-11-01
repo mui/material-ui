@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import styleFunctionSx from './styleFunctionSx';
 import cssContainerQueries from '../cssContainerQueries';
+import createBreakpoints from '../createBreakpoints/createBreakpoints';
 
 describe('styleFunctionSx', () => {
   const breakpointsValues = {
@@ -15,14 +16,7 @@ describe('styleFunctionSx', () => {
 
   const theme = cssContainerQueries({
     spacing: (val) => `${val * 10}px`,
-    breakpoints: {
-      keys: ['xs', 'sm', 'md', 'lg', 'xl'],
-      values: breakpointsValues,
-      unit: 'px',
-      up: (key) => {
-        return `@media (min-width:${breakpointsValues[key]}px)`;
-      },
-    },
+    breakpoints: createBreakpoints({ values: breakpointsValues }),
     palette: {
       primary: {
         main: 'rgb(0, 0, 255)',
