@@ -695,9 +695,8 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'priority-support': (
     <ColumnHead
       {...{
-        label: 'Paid priority support',
-        tooltip:
-          'As a paid subscriber, your issues have the highest priority in our support queue.',
+        label: 'Priority support',
+        tooltip: 'SLA & Priority Support with 4 hours pre-screening and 24 hours response time.',
       }}
     />
   ),
@@ -970,9 +969,12 @@ const proData: Record<string, React.ReactNode> = {
   'x-support': <Info value={yes} metadata="Priority over Community" />,
   'priority-support': (
     <Info
-      value={yes}
-      metadata={
-        <Link href="https://mui.com/store/items/mui-x-pro-perpetual/" underline="always">
+      value={
+        <Link
+          href="https://mui.com/store/items/mui-x-pro-perpetual/"
+          underline="always"
+          variant="body2"
+        >
           {'Add-on'}
         </Link>
       }
@@ -1083,9 +1085,12 @@ const premiumData: Record<string, React.ReactNode> = {
   'x-support': <Info value={yes} metadata="Priority over Pro" />,
   'priority-support': (
     <Info
-      value={yes}
-      metadata={
-        <Link href="https://mui.com/store/items/mui-x-pro-perpetual/" underline="always">
+      value={
+        <Link
+          href="https://mui.com/store/items/mui-x-pro-perpetual/"
+          variant="body2"
+          underline="always"
+        >
           {'Add-on'}
         </Link>
       }
