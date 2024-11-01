@@ -3367,7 +3367,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 ### Core
 
 - [blog] Fix images using "MUI Base" instead of "Base UI" (#37044) @danilo-leal
-- [core] Add VSCode extensions recommendations (#37166) @michaldudak
+- [core] Add VS Code extensions recommendations (#37166) @michaldudak
 - [test] `e2e-website` related minor fixes (#37204) @ZeeshanTamboli
 
 All contributors of this release in alphabetical order: @akash191095, @DanailH, @danilo-leal, @DerTimonius, @gerdadesign, @hbjORbj, @kriskw1999, @michaldudak, @mnajdova, @oliviertassinari, @PunitSoniME, @romgrk, @sai6855, @ulrichstark, @uuxxx, @wewakekumar, @ZeeshanTamboli, @zignis
@@ -8226,7 +8226,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
 ### Core
 
-- [test] Allow debugging with Chrome and VSCode inspector (#29777) @eps1lon
+- [test] Allow debugging with Chrome and VS Code inspector (#29777) @eps1lon
 - [test] Use renderer clock instead of custom useFakeTimers call (#29778) @eps1lon
 - [test] Only mock Date in regression tests (#29763) @eps1lon
 - [test] Disable nightly integration tests on `next` branch (#29748) @eps1lon
@@ -16186,7 +16186,7 @@ A big thanks to the 24 contributors who made this release possible.
 - [docs] Add post-update to examples so they run on CodeSandbox (#19605) @garethx
 - [docs] Fix typo in the Avatar docs (#19544) @UltimateForm
 - [docs] Improve entry points for issue repros (#19501) @eps1lon
-- [docs] Link a VSCode extension for working with Material UI (#19280) @jedwards1211
+- [docs] Link a VS Code extension for working with Material UI (#19280) @jedwards1211
 - [docs] Notification blog post @oliviertassinari
 - [docs] Refactor EnchancedTable demo (#19560) @ahmad-reza619
 - [docs] The error style rule is a pseudo-class (#19555) @TommyJackson85
@@ -27065,7 +27065,7 @@ _Apr 21, 2016_
 
 ### General
 
-- [.gitignore] Ignore `jsconfig.json` - VSCode config file (#4011)
+- [.gitignore] Ignore `jsconfig.json` - VS Code config file (#4011)
 - [Docs] Update usage docs with muiTheme instructions (#4034)
 - [Docs] Add beta installation details to the README (#4048)
 - [Examples] Update import statements (#3992)
