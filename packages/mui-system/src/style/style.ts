@@ -119,7 +119,7 @@ export function getPath<T extends Record<string, any> | undefined | null>(
 }
 
 function getPathImpl(object: any, path: string[], alternateProp: string | undefined = undefined) {
-  let lastResult = undefined;
+  let lastResult = undefined; // eslint-disable-line
   let result = object;
   let index = 0;
 
