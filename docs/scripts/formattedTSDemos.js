@@ -56,6 +56,7 @@ async function getFiles(root) {
         } else if (
           stat.isFile() &&
           /\.tsx?$/.test(filePath) &&
+          !filePath.endsWith('types.ts') &&
           !filePath.endsWith('.d.ts') &&
           !ignoreList.some((ignorePath) => filePath.endsWith(path.normalize(ignorePath)))
         ) {

@@ -77,6 +77,12 @@ The `renderSurplus` prop is useful when you need to render the surplus based on 
 
 {{"demo": "CustomSurplusAvatars.js"}}
 
+### Spacing
+
+You can change the spacing between avatars using the `spacing` prop. You can use one of the presets (`"medium"`, the default, or `"small"`) or set a custom numeric value.
+
+{{"demo": "Spacing.js"}}
+
 ## With badge
 
 {{"demo": "BadgeAvatars.js"}}
