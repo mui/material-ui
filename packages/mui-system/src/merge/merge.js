@@ -1,11 +1,12 @@
 import deepmerge from '@mui/utils/deepmerge';
+import fastDeepAssign from '@mui/utils/fastDeepAssign';
 
 const options = {
   clone: false,
 };
 
 function merge(acc, item) {
-  return deepmerge(acc, item, options);
+  return fastDeepAssign(acc, item);
 }
 
 export default merge;
