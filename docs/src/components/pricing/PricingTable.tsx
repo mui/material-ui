@@ -36,7 +36,7 @@ const planInfo = {
       'The most advanced features for data-rich applications along with standard support.',
   },
   enterprise: {
-    iconName: 'pricing/x-plan-premium',
+    iconName: 'pricing/x-plan-enterprise',
     title: 'Enterprise',
     description:
       'All features of Premium coupled with enterprise-grade priority support and feature requests.',
