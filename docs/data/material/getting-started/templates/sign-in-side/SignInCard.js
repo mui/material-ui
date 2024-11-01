@@ -121,7 +121,6 @@ export default function SignInCard() {
             fullWidth
             variant="outlined"
             color={emailError ? 'error' : 'primary'}
-            sx={{ ariaLabel: 'email' }}
           />
         </FormControl>
         <FormControl>
