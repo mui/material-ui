@@ -1,4 +1,3 @@
-import fastDeepAssign from '@mui/utils/fastDeepAssign';
 import responsivePropType from '../responsivePropType';
 import { iterateBreakpoints } from '../breakpoints';
 import { getPath } from '../style';
