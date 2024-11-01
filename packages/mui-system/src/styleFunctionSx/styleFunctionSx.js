@@ -134,7 +134,6 @@ export function unstable_createStyleFunctionSx() {
           continue;
         }
 
-        debugger
         const breakpointsValues = handleBreakpoints(wrapper, value, (x) => ({
           [styleKey]: x,
         }));
