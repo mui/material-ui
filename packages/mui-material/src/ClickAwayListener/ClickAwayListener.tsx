@@ -96,7 +96,7 @@ function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
     };
   }, []);
 
-  const handleRef = useForkRef(getReactElementRef(children), nodeRef);
+  const handleRef = useForkRef<Element>(getReactElementRef(children), nodeRef);
 
   // The handler doesn't take event.defaultPrevented into account:
   //

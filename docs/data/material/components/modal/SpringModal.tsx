@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import { useSpring, animated } from '@react-spring/web';
 
 interface FadeProps {
-  children: React.ReactElement<unknown>;
+  children: React.JSX.Element;
   in?: boolean;
   onClick?: any;
   onEnter?: (node: HTMLElement, isAppearing: boolean) => void;
