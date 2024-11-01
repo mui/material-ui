@@ -484,7 +484,7 @@ export default function createThemeWithVars(options = {}, ...args) {
     ...defaultSxConfig,
     ...input?.unstable_sxConfig,
   };
-  // theme.unstable_sx = function sx(props) {
+  theme.unstable_sx = function sx(props) {
     return styleFunctionSx({
       sx: props,
       theme: this,
