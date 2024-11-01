@@ -78,7 +78,7 @@ export default function createBreakpoints(breakpoints) {
     return between(key, keys[keys.indexOf(key) + 1]).replace('@media', '@media not all and');
   }
 
-  const _mediaKeys = []
+  const _mediaKeys = [];
   for (let i = 0; i < keys.length; i += 1) {
     _mediaKeys.push(up(keys[i]));
   }
