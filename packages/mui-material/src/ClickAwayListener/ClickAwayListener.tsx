@@ -36,7 +36,7 @@ export interface ClickAwayListenerProps {
   /**
    * The wrapped element.
    */
-  children: React.ReactElement<unknown>;
+  children: React.JSX.Element;
   /**
    * If `true`, the React tree is ignored and only the DOM tree is considered.
    * This prop changes how portaled elements are handled.
@@ -96,7 +96,7 @@ function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
     };
   }, []);
 
-  const handleRef = useForkRef<Element>(getReactElementRef(children), nodeRef);
+  const handleRef = useForkRef(getReactElementRef(children), nodeRef);
 
   // The handler doesn't take event.defaultPrevented into account:
   //
