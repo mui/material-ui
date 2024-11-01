@@ -8,8 +8,9 @@ import {
 } from '../breakpoints';
 import { sortContainerQueries } from '../cssContainerQueries';
 import defaultSxConfig from './defaultSxConfig';
+import { DEFAULT_BREAKPOINTS } from '../breakpoints';
 
-const EMPTY_THEME = {};
+const EMPTY_THEME = {}
 
 function objectsHaveSameKeys(a, b) {
   let aLength = 0;
@@ -113,8 +114,10 @@ export function unstable_createStyleFunctionSx() {
         return null;
       }
 
-      const emptyBreakpoints = createEmptyBreakpointObject(theme.breakpoints);
-      const breakpointsKeys = theme.breakpoints._mediaKeys;
+      const breakpoints = theme.breakpoints ?? DEFAULT_BREAKPOINTS;
+
+      const emptyBreakpoints = createEmptyBreakpointObject(breakpoints);
+      const breakpointsKeys = breakpoints._mediaKeys;
 
       const css = emptyBreakpoints;
 
