@@ -1,6 +1,9 @@
 /* eslint-disable no-underscore-dangle */
 import emStyled from '@emotion/styled';
+import { css as emCss } from '@emotion/css';
 import { serializeStyles as emSerializeStyles } from '@emotion/serialize';
+
+/* eslint-disable-next-line @typescript-eslint/naming-convention */
 
 export default function styled(tag, options) {
   const stylesFactory = emStyled(tag, options);
@@ -27,7 +30,6 @@ export default function styled(tag, options) {
   return stylesFactory;
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export function internal_mutateStyles(tag, processor) {
   // Emotion attaches all the styles as `__emotion_styles`.
   // Ref: https://github.com/emotion-js/emotion/blob/16d971d0da229596d6bcc39d282ba9753c9ee7cf/packages/styled/src/base.js#L186
@@ -38,10 +40,13 @@ export function internal_mutateStyles(tag, processor) {
 
 // Emotion only accepts an array, but we want to avoid allocations
 const wrapper = [];
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export function internal_serializeStyles(styles) {
   wrapper[0] = styles;
   return emSerializeStyles(wrapper);
+}
+
+export function internal_css(styles) {
+  return emCss(styles);
 }
 
 export { ThemeContext, keyframes, css } from '@emotion/react';

@@ -1,4 +1,7 @@
-import styledEngineStyled, { css, internal_mutateStyles as mutateStyles } from '@mui/styled-engine';
+import styledEngineStyled, {
+  internal_css,
+  internal_mutateStyles as mutateStyles,
+} from '@mui/styled-engine';
 import { isPlainObject } from '@mui/utils/deepmerge';
 import capitalize from '@mui/utils/capitalize';
 import getDisplayName from '@mui/utils/getDisplayName';
@@ -241,15 +244,20 @@ export default function createStyled(input = {}) {
   return styled;
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export function internal_applyStyled(props, componentName, overridesResolver) {
-  const styles = [
-    applyThemeOverrides(props, componentName, overridesResolver),
-    applyThemeVariants(props, componentName),
-    // applySystemSx(props, componentName),
-  ];
+const EMPTY_CLASSNAME = internal_css(null);
 
-  return css(styles);
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function internal_applyStyled(props, name, slot, overridesResolver) {
+  const styles =
+    slot !== 'root'
+      ? applyThemeOverrides(props, name, overridesResolver)
+      : [applyThemeOverrides(props, name, overridesResolver), applyThemeVariants(props, name)];
+
+  const result = internal_css(styles);
+  if (result === EMPTY_CLASSNAME) {
+    return '';
+  }
+  return result;
 }
 
 function applyThemeOverrides(props, componentName, overridesResolver) {

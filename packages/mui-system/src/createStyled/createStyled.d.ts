@@ -41,6 +41,7 @@ export default function createStyled<Theme extends object = DefaultTheme>(option
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function internal_applyStyled(
   props: any,
-  componentName: string,
+  name: string,
+  slot: string,
   overridesResolver: Function,
 ): string;
