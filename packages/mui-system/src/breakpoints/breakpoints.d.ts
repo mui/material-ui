@@ -35,6 +35,8 @@ export function handleBreakpoints<Props>(
   styleFromPropValue: (value: any, breakpoint?: Breakpoint) => any,
 ): any;
 
+export function hasBreakpoint(breakpoints: Breakpoints, value: any): boolean;
+
 type DefaultBreakPoints = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 /**

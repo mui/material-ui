@@ -223,4 +223,18 @@ export function resolveBreakpointValues({
   }, {});
 }
 
+export function hasBreakpoint(breakpoints, value) {
+  if (Array.isArray(value)) {
+    return true;
+  }
+  if (typeof value === 'object' && value !== null) {
+    for (let i = 0; i < breakpoints.keys.length; i += 1) {
+      if (breakpoints.keys[i] in value) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 export default setupBreakpoints;

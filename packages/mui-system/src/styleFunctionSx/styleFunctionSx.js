@@ -1,8 +1,8 @@
 import merge from '@mui/utils/fastDeepAssign';
 import { getPath, getStyleValue2 } from '../style';
 import {
+  hasBreakpoint,
   iterateBreakpoints,
-  handleBreakpoints,
   createEmptyBreakpointObject,
   removeUnusedBreakpoints,
   DEFAULT_BREAKPOINTS,
@@ -11,26 +11,6 @@ import { sortContainerQueries } from '../cssContainerQueries';
 import defaultSxConfig from './defaultSxConfig';
 
 const EMPTY_THEME = {};
-
-function objectsHaveSameKeys(a, b) {
-  let aLength = 0;
-  let bLength = 0;
-
-  /* eslint-disable guard-for-in */
-  for (const key in a) {
-    aLength += 1;
-
-    if (!(key in b)) {
-      return false;
-    }
-  }
-
-  /* eslint-disable-next-line */
-  for (const _ in b) {
-    bLength += 1;
-  }
-  return aLength === bLength;
-}
 
 function callIfFn(maybeFn, arg) {
   return typeof maybeFn === 'function' ? maybeFn(arg) : maybeFn;
@@ -137,15 +117,13 @@ export function unstable_createStyleFunctionSx() {
           continue;
         }
 
-        const breakpointsValues = handleBreakpoints(wrapper, value, (x) => ({
-          [styleKey]: x,
-        }));
-
-        if (objectsHaveSameKeys(breakpointsValues, value)) {
+        if (hasBreakpoint(breakpoints, value)) {
+          iterateBreakpoints(css, props.theme, value, (_, mediaKey, finalValue) => {
+            css[mediaKey][styleKey] = finalValue;
+          });
+        } else {
           wrapper.sx = value;
           css[styleKey] = styleFunctionSx(wrapper);
-        } else {
-          merge(css, breakpointsValues);
         }
       }
 
