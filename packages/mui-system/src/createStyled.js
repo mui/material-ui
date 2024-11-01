@@ -235,6 +235,7 @@ export default function createStyled(input = {}) {
   };
 }
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export function internal_applyStyled(props, componentName, overridesResolver) {
   const styles = [
     applyThemeOverrides(props, componentName, overridesResolver),
