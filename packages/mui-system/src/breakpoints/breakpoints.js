@@ -4,6 +4,7 @@ import fastDeepAssign from '@mui/utils/fastDeepAssign';
 import deepmerge from '@mui/utils/deepmerge';
 import merge from '../merge';
 import { isCqShorthand, getContainerQuery } from '../cssContainerQueries';
+import createBreakpoints from '../createBreakpoints/createBreakpoints';
 
 // The breakpoint **start** at this value.
 // For instance with the first breakpoint xs: [xs, sm[.
@@ -15,12 +16,8 @@ export const values = {
   xl: 1536, // large screen
 };
 
-const defaultBreakpoints = {
-  // Sorted ASC by size. That's important.
-  // It can't be configured as it's used statically for propTypes.
-  keys: ['xs', 'sm', 'md', 'lg', 'xl'],
-  up: (key) => `@media (min-width:${values[key]}px)`,
-};
+const EMPTY_BREAKPOINTS = createBreakpoints({});
+const DEFAULT_BREAKPOINTS = createBreakpoints(values);
 
 const defaultContainerQueries = {
   containerQueries: (containerName) => ({
@@ -36,11 +33,6 @@ const defaultContainerQueries = {
   }),
 };
 
-const EMPTY_BREAKPOINTS = {
-  keys: [],
-  up: (key) => `@media (min-width:${values[key]}px)`,
-};
-
 function buildBreakpoint(target, key, value, initialKey, callback) {
   target[key] ??= {};
   callback(target, key, value, initialKey);
@@ -50,7 +42,7 @@ export function buildBreakpoints(target, theme, propValue, styleFromPropValue) {
   theme ??= {};
 
   if (Array.isArray(propValue)) {
-    const breakpoints = theme.breakpoints || defaultBreakpoints;
+    const breakpoints = theme.breakpoints || DEFAULT_BREAKPOINTS;
     for (let i = 0; i < propValue.length; i += 1) {
       buildBreakpoint(
         target,
@@ -64,7 +56,7 @@ export function buildBreakpoints(target, theme, propValue, styleFromPropValue) {
   }
 
   if (typeof propValue === 'object') {
-    const breakpoints = theme.breakpoints || defaultBreakpoints;
+    const breakpoints = theme.breakpoints || DEFAULT_BREAKPOINTS;
     const breakpointValues = breakpoints.values ?? values;
 
     for (const key in propValue) {
@@ -112,7 +104,7 @@ function setupBreakpoints(styleFunction) {
   const newStyleFunction = (props) => {
     const theme = props.theme || {};
     const base = styleFunction(props);
-    const themeBreakpoints = theme.breakpoints || defaultBreakpoints;
+    const themeBreakpoints = theme.breakpoints || DEFAULT_BREAKPOINTS;
 
     const extended = themeBreakpoints.keys.reduce((acc, key) => {
       if (props[key]) {
@@ -143,9 +135,10 @@ function setupBreakpoints(styleFunction) {
 }
 
 export function createEmptyBreakpointObject(breakpoints = EMPTY_BREAKPOINTS) {
+  const { _mediaKeys } = breakpoints;
   const result = {};
-  for (let i = 0; i < breakpoints.keys.length; i += 1) {
-    result[breakpoints.up(breakpoints.keys[i])] = {};
+  for (let i = 0; i < _mediaKeys.length; i += 1) {
+    result[_mediaKeys[i]] = {};
   }
   return result;
 }

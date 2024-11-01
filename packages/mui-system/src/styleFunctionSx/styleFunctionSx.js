@@ -114,7 +114,7 @@ export function unstable_createStyleFunctionSx() {
       }
 
       const emptyBreakpoints = createEmptyBreakpointObject(theme.breakpoints);
-      const breakpointsKeys = Object.keys(emptyBreakpoints);
+      const breakpointsKeys = theme.breakpoints._mediaKeys;
 
       const css = emptyBreakpoints;
 
