@@ -47,6 +47,8 @@ function createTheme(options = {}, ...args) {
     });
   };
 
+  muiTheme.internal_cache = {};
+
   return muiTheme;
 }
 

@@ -1,7 +1,7 @@
+import fastDeepAssign from '@mui/utils/fastDeepAssign';
 import responsivePropType from '../responsivePropType';
-import { handleBreakpoints } from '../breakpoints';
+import { iterateBreakpoints } from '../breakpoints';
 import { getPath } from '../style';
-import merge from '../merge';
 import memoize from '../memoize';
 
 const properties = {
@@ -44,7 +44,7 @@ const getCssProperties = memoize((prop) => {
   return Array.isArray(direction) ? direction.map((dir) => property + dir) : [property + direction];
 });
 
-export const marginKeys = [
+export const marginKeys = new Set([
   'm',
   'mt',
   'mr',
@@ -65,9 +65,9 @@ export const marginKeys = [
   'marginBlock',
   'marginBlockStart',
   'marginBlockEnd',
-];
+]);
 
-export const paddingKeys = [
+export const paddingKeys = new Set([
   'p',
   'pt',
   'pr',
@@ -88,9 +88,9 @@ export const paddingKeys = [
   'paddingBlock',
   'paddingBlockStart',
   'paddingBlockEnd',
-];
+]);
 
-const spacingKeys = [...marginKeys, ...paddingKeys];
+const spacingKeys = new Set([...marginKeys, ...paddingKeys]);
 
 export function createUnaryUnit(theme, themeKey, defaultValue, propName) {
   const themeSpacing = getPath(theme, themeKey, true) ?? defaultValue;
@@ -180,38 +180,30 @@ export function getValue(transformer, propValue) {
   if (typeof propValue === 'string' || propValue == null) {
     return propValue;
   }
-
   return transformer(propValue);
 }
 
-export function getStyleFromPropValue(cssProperties, transformer) {
-  return (propValue) =>
-    cssProperties.reduce((acc, cssProperty) => {
-      acc[cssProperty] = getValue(transformer, propValue);
-      return acc;
-    }, {});
-}
+function style(props, keys) {
+  const transformer = (props.theme.internal_cache.unarySpacing ??= createUnarySpacing(props.theme));
 
-function resolveCssProperty(props, keys, prop, transformer) {
-  // Using a hash computation over an array iteration could be faster, but with only 28 items,
-  // it's doesn't worth the bundle size.
-  if (!keys.includes(prop)) {
-    return null;
+  const result = {};
+  for (const prop in props) {
+    if (!keys.has(prop)) {
+      continue;
+    }
+
+    const cssProperties = getCssProperties(prop);
+    const propValue = props[prop];
+
+    iterateBreakpoints(result, props.theme, propValue, (_, key, value) => {
+      const target = key ? result[key] : result;
+      for (let i = 0; i < cssProperties.length; i++) {
+        target[cssProperties[i]] = getValue(transformer, value);
+      }
+    });
   }
 
-  const cssProperties = getCssProperties(prop);
-  const styleFromPropValue = getStyleFromPropValue(cssProperties, transformer);
-
-  const propValue = props[prop];
-  return handleBreakpoints(props, propValue, styleFromPropValue);
-}
-
-function style(props, keys) {
-  const transformer = createUnarySpacing(props.theme);
-
-  return Object.keys(props)
-    .map((prop) => resolveCssProperty(props, keys, prop, transformer))
-    .reduce(merge, {});
+  return result;
 }
 
 export function margin(props) {
@@ -220,7 +212,7 @@ export function margin(props) {
 
 margin.propTypes =
   process.env.NODE_ENV !== 'production'
-    ? marginKeys.reduce((obj, key) => {
+    ? Array.from(marginKeys).reduce((obj, key) => {
         obj[key] = responsivePropType;
         return obj;
       }, {})
@@ -234,7 +226,7 @@ export function padding(props) {
 
 padding.propTypes =
   process.env.NODE_ENV !== 'production'
-    ? paddingKeys.reduce((obj, key) => {
+    ? Array.from(paddingKeys).reduce((obj, key) => {
         obj[key] = responsivePropType;
         return obj;
       }, {})
@@ -248,7 +240,7 @@ function spacing(props) {
 
 spacing.propTypes =
   process.env.NODE_ENV !== 'production'
-    ? spacingKeys.reduce((obj, key) => {
+    ? Array.from(spacingKeys).reduce((obj, key) => {
         obj[key] = responsivePropType;
         return obj;
       }, {})

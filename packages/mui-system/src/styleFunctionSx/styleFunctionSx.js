@@ -57,10 +57,13 @@ function setThemeValue(css, prop, value, theme, config) {
 
   const { style } = options;
   if (style) {
-    merge(css, style({
-      [prop]: value,
-      theme,
-    }));
+    merge(
+      css,
+      style({
+        [prop]: value,
+        theme,
+      }),
+    );
     return;
   }
 
