@@ -692,6 +692,15 @@ const rowHeaders: Record<string, React.ReactNode> = {
       }}
     />
   ),
+  'priority-support': (
+    <ColumnHead
+      {...{
+        label: 'Paid priority support',
+        tooltip:
+          'As a paid subscriber, your issues have the highest priority in our support queue.',
+      }}
+    />
+  ),
   'tech-advisory': (
     <ColumnHead
       {...{
@@ -854,6 +863,7 @@ const communityData: Record<string, React.ReactNode> = {
   // Support
   'core-support': <Info value="Community" />,
   'x-support': <Info value="Community" />,
+  'priority-support': no,
   'tech-advisory': no,
   'support-duration': no,
   'response-time': no,
@@ -958,6 +968,16 @@ const proData: Record<string, React.ReactNode> = {
   // Support
   'core-support': <Info value="Community" />,
   'x-support': <Info value={yes} metadata="Priority over Community" />,
+  'priority-support': (
+    <Info
+      value={yes}
+      metadata={
+        <Link href="https://mui.com/store/items/mui-x-pro-perpetual/" underline="always">
+          {'Add-on'}
+        </Link>
+      }
+    />
+  ),
   'tech-advisory': no,
   'support-duration': <Info value="1 year" />,
   'response-time': no,
@@ -1061,6 +1081,16 @@ const premiumData: Record<string, React.ReactNode> = {
   // Support
   'core-support': <Info value="Community" />,
   'x-support': <Info value={yes} metadata="Priority over Pro" />,
+  'priority-support': (
+    <Info
+      value={yes}
+      metadata={
+        <Link href="https://mui.com/store/items/mui-x-pro-perpetual/" underline="always">
+          {'Add-on'}
+        </Link>
+      }
+    />
+  ),
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
   'response-time': <Info value={yes} metadata={<React.Fragment>72 hours</React.Fragment>} />,
@@ -1164,6 +1194,7 @@ const enterpriseData: Record<string, React.ReactNode> = {
   // Support
   'core-support': yes,
   'x-support': <Info value={yes} metadata="Priority over Premium" />,
+  'priority-support': yes,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
   'response-time': <Info value={yes} metadata={<React.Fragment>24 hours</React.Fragment>} />,
@@ -1860,6 +1891,8 @@ export default function PricingTable({
       {renderRow('core-support')}
       {divider}
       {renderRow('x-support')}
+      {divider}
+      {renderRow('priority-support')}
       {divider}
       {renderRow('support-duration')}
       {divider}

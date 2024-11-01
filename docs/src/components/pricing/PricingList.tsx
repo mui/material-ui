@@ -91,7 +91,7 @@ function getButtonText(plan: string) {
     return 'Buy now';
   }
   if (plan.match(/enterprise/)) {
-    return 'Contact us';
+    return 'Contact sales';
   }
   return 'Get started';
 }
