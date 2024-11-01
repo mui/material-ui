@@ -20,58 +20,23 @@ export interface StyleOptions<PropKey> {
   transform?: TransformFunction;
 }
 
-export function getPath<T extends Record<string, any> | undefined | null>(
-  obj: T,
-  pathInput: string | undefined,
-  checkVars: boolean = true,
-): null | unknown {
-  if (!obj || !pathInput) {
-    return null;
-  }
-
-  const path = pathInput.split('.');
-
-  // Check if CSS variables are used
-  if (obj.vars && checkVars) {
-    const val = getPathImpl(obj.vars, path);
-    if (val != null) {
-      return val;
-    }
-  }
-
-  return getPathImpl(obj, path);
-}
-
-function getPathImpl(object: any, path: string[]) {
-  let result = object;
-  let index = 0;
-
-  while (index < path.length) {
-    if (result === null || result === undefined) {
-      return result;
-    }
-
-    result = result[path[index]];
-    index += 1;
-  }
-
-  return result;
-}
-
+/**
+ * TODO(v8): Keep either this one or `getStyleValue2`
+ */
 export function getStyleValue(
   themeMapping: object | ((arg: any) => any) | null | undefined,
   transform: TransformFunction | null | undefined,
-  propValueFinal: unknown,
-  userValue: unknown = propValueFinal,
+  valueFinal: unknown,
+  userValue: unknown = valueFinal,
 ): any {
   let value;
 
   if (typeof themeMapping === 'function') {
-    value = themeMapping(propValueFinal);
+    value = themeMapping(valueFinal);
   } else if (Array.isArray(themeMapping)) {
-    value = themeMapping[propValueFinal as any] || userValue;
-  } else if (typeof propValueFinal === 'string') {
-    value = getPath(themeMapping, propValueFinal) || userValue;
+    value = themeMapping[valueFinal as any] || userValue;
+  } else if (typeof valueFinal === 'string') {
+    value = getPath(themeMapping, valueFinal) || userValue;
   } else {
     value = userValue;
   }
@@ -81,6 +46,100 @@ export function getStyleValue(
   }
 
   return value;
+}
+
+/**
+ * HACK: The `alternateProp` logic is there because our theme looks like this:
+ * {
+ *   typography: {
+ *     fontFamily: 'comic sans',
+ *     fontFamilyCode: 'courrier new',
+ *   }
+ * }
+ * And we support targetting:
+ * - `typography.fontFamily`     with `sx={{ fontFamily: 'default '}}`
+ * - `typography.fontFamilyCode` with `sx={{ fontFamily: 'code '}}`
+ *
+ * TODO(v8): Refactor our theme to look like this and remove the horrendous logic:
+ * {
+ *   typography: {
+ *     fontFamily: {
+ *       default: 'comic sans',
+ *       code: 'courrier new',
+ *     }
+ *   }
+ * }
+ */
+export function getStyleValue2(
+  themeMapping: object | ((arg: any) => any) | null | undefined,
+  transform: TransformFunction | null | undefined,
+  userValue: unknown,
+  alternateProp: string | undefined,
+): any {
+  let value;
+
+  if (typeof themeMapping === 'function') {
+    value = themeMapping(userValue);
+  } else if (Array.isArray(themeMapping)) {
+    value = themeMapping[userValue as any] || userValue;
+  } else if (typeof userValue === 'string') {
+    value = getPath(themeMapping, userValue, true, alternateProp) || userValue;
+  } else {
+    value = userValue;
+  }
+
+  if (transform) {
+    value = transform(value, userValue, themeMapping);
+  }
+
+  return value;
+}
+
+export function getPath<T extends Record<string, any> | undefined | null>(
+  obj: T,
+  pathInput: string | undefined,
+  checkVars: boolean = true,
+  alternateProp: string | undefined = undefined,
+): null | unknown {
+  if (!obj || !pathInput) {
+    return null;
+  }
+
+  const path = pathInput.split('.');
+
+  // Check if CSS variables are used
+  if (obj.vars && checkVars) {
+    const val = getPathImpl(obj.vars, path, alternateProp);
+    if (val != null) {
+      return val;
+    }
+  }
+
+  return getPathImpl(obj, path, alternateProp);
+}
+
+function getPathImpl(object: any, path: string[], alternateProp: string | undefined = undefined) {
+  let lastResult = undefined;
+  let result = object;
+  let index = 0;
+
+  while (index < path.length) {
+    if (result === null || result === undefined) {
+      return result;
+    }
+
+    lastResult = result;
+    result = result[path[index]];
+    index += 1;
+  }
+
+  if (alternateProp && result === undefined) {
+    const lastKey = path[path.length - 1];
+    const alternateKey = `${alternateProp}${lastKey === 'default' ? '' : capitalize(lastKey)}`;
+    return lastResult?.[alternateKey];
+  }
+
+  return result;
 }
 
 type StyleResult<PropKey extends string | number | symbol, Theme> = StyleFunction<
@@ -101,26 +160,13 @@ export default function style<PropKey extends string, Theme extends object>(
     const propValue = props[prop];
     const theme = props.theme;
     const themeMapping = getPath(theme, themeKey) || {};
-    const styleFromPropValue = (propValueFinal: any) => {
-      let value = getStyleValue(themeMapping, transform, propValueFinal);
-
-      if (propValueFinal === value && typeof propValueFinal === 'string') {
-        // Haven't found value
-        value = getStyleValue(
-          themeMapping,
-          transform,
-          `${prop}${propValueFinal === 'default' ? '' : capitalize(propValueFinal)}`,
-          propValueFinal,
-        );
-      }
-
-      if (cssProperty === false) {
-        return value;
-      }
-
-      return {
-        [cssProperty]: value,
-      };
+    const styleFromPropValue = (valueFinal: any) => {
+      const value = getStyleValue2(themeMapping, transform, valueFinal, prop);
+      return cssProperty === false
+        ? value
+        : {
+            [cssProperty]: value,
+          };
     };
 
     return handleBreakpoints(props, propValue, styleFromPropValue);

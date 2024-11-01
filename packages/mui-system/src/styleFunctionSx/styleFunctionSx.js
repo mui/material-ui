@@ -1,6 +1,6 @@
 import capitalize from '@mui/utils/capitalize';
 import merge from '@mui/utils/fastDeepAssign';
-import { getPath, getStyleValue } from '../style';
+import { getPath, getStyleValue2 } from '../style';
 import {
   buildBreakpoints,
   handleBreakpoints,
@@ -68,18 +68,8 @@ function setThemeValue(css, prop, val, theme, config) {
 
   const themeMapping = getPath(theme, themeKey);
 
-  buildBreakpoints(css, theme, val, (target, key, propValueFinal) => {
-    let value = getStyleValue(themeMapping, transform, propValueFinal);
-
-    if (propValueFinal === value && typeof propValueFinal === 'string') {
-      // Haven't found value
-      value = getStyleValue(
-        themeMapping,
-        transform,
-        `${prop}${propValueFinal === 'default' ? '' : capitalize(propValueFinal)}`,
-        propValueFinal,
-      );
-    }
+  buildBreakpoints(css, theme, val, (target, key, valueFinal) => {
+    const value = getStyleValue2(themeMapping, transform, valueFinal, prop);
 
     if (cssProperty === false) {
       if (key) {
@@ -112,7 +102,7 @@ export function unstable_createStyleFunctionSx() {
     // Pass argument without loop allocations
     const wrapper = { sx: null, theme };
 
-    function transform(sxInput) {
+    function process(sxInput) {
       let sxObject = sxInput;
       if (typeof sxInput === 'function') {
         sxObject = sxInput(theme);
@@ -158,7 +148,7 @@ export function unstable_createStyleFunctionSx() {
       return sortContainerQueries(theme, removeUnusedBreakpoints(breakpointsKeys, css));
     }
 
-    return Array.isArray(sx) ? sx.map(transform) : transform(sx);
+    return Array.isArray(sx) ? sx.map(process) : process(sx);
   }
 
   return styleFunctionSx;

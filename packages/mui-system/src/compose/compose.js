@@ -1,4 +1,4 @@
-import fastDeepAssign from "@mui/utils/fastDeepAssign";
+import fastDeepAssign from '@mui/utils/fastDeepAssign';
 
 function compose(...styles) {
   const handlers = styles.reduce((acc, style) => {
@@ -14,7 +14,7 @@ function compose(...styles) {
     const result = {};
     for (const prop in props) {
       if (handlers[props]) {
-        fastDeepAssign(result, handlers[prop](props))
+        fastDeepAssign(result, handlers[prop](props));
       }
     }
     return result;
