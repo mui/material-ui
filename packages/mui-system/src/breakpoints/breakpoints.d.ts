@@ -18,7 +18,7 @@ export function resolveBreakpointValues<T>(
 
 export function mergeBreakpointsInOrder(breakpoints: Breakpoints, styles: CSSObject[]): CSSObject;
 
-export function buildBreakpoints(
+export function iterateBreakpoints(
   target: any,
   theme: Theme,
   propValue: any,

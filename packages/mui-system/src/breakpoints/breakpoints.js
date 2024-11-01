@@ -6,6 +6,8 @@ import merge from '../merge';
 import { isCqShorthand, getContainerQuery } from '../cssContainerQueries';
 import createBreakpoints from '../createBreakpoints/createBreakpoints';
 
+const EMPTY_THEME = {};
+
 // The breakpoint **start** at this value.
 // For instance with the first breakpoint xs: [xs, sm[.
 export const values = {
@@ -38,11 +40,11 @@ function buildBreakpoint(target, key, value, initialKey, callback) {
   callback(target, key, value, initialKey);
 }
 
-export function buildBreakpoints(target, theme, propValue, styleFromPropValue) {
-  theme ??= {};
+export function iterateBreakpoints(target, theme, propValue, styleFromPropValue) {
+  theme ??= EMPTY_THEME;
 
   if (Array.isArray(propValue)) {
-    const breakpoints = theme.breakpoints || DEFAULT_BREAKPOINTS;
+    const breakpoints = theme.breakpoints ?? DEFAULT_BREAKPOINTS;
     for (let i = 0; i < propValue.length; i += 1) {
       buildBreakpoint(
         target,
@@ -56,7 +58,7 @@ export function buildBreakpoints(target, theme, propValue, styleFromPropValue) {
   }
 
   if (typeof propValue === 'object') {
-    const breakpoints = theme.breakpoints || DEFAULT_BREAKPOINTS;
+    const breakpoints = theme.breakpoints ?? DEFAULT_BREAKPOINTS;
     const breakpointValues = breakpoints.values ?? values;
 
     for (const key in propValue) {
@@ -89,7 +91,7 @@ export function buildBreakpoints(target, theme, propValue, styleFromPropValue) {
 
 export function handleBreakpoints(props, propValue, styleFromPropValue) {
   const result = {};
-  return buildBreakpoints(result, props.theme, propValue, (target, key, value, initialKey) => {
+  return iterateBreakpoints(result, props.theme, propValue, (target, key, value, initialKey) => {
     const finalValue = styleFromPropValue(value, initialKey);
     if (key) {
       target[key] = finalValue;

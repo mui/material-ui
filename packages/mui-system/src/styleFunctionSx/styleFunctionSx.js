@@ -1,7 +1,7 @@
 import merge from '@mui/utils/fastDeepAssign';
 import { getPath, getStyleValue2 } from '../style';
 import {
-  buildBreakpoints,
+  iterateBreakpoints,
   handleBreakpoints,
   createEmptyBreakpointObject,
   removeUnusedBreakpoints,
@@ -36,39 +36,38 @@ function callIfFn(maybeFn, arg) {
   return typeof maybeFn === 'function' ? maybeFn(arg) : maybeFn;
 }
 
-function setThemeValue(css, prop, val, theme, config) {
+function setThemeValue(css, prop, value, theme, config) {
   const options = config[prop];
 
   if (!options) {
-    css[prop] = val;
+    css[prop] = value;
     return;
   }
 
-  if (val == null) {
+  if (value == null) {
     return;
   }
 
-  const { cssProperty = prop, themeKey, transform, style } = options;
-
+  const { themeKey } = options;
   // TODO v6: remove, see https://github.com/mui/material-ui/pull/38123
-  if (themeKey === 'typography' && val === 'inherit') {
-    css[prop] = val;
+  if (themeKey === 'typography' && value === 'inherit') {
+    css[prop] = value;
     return;
   }
 
+  const { style } = options;
   if (style) {
-    const props = {
-      [prop]: val,
+    merge(css, style({
+      [prop]: value,
       theme,
-    };
-
-    merge(css, style(props));
+    }));
     return;
   }
 
+  const { cssProperty = prop, transform } = options;
   const themeMapping = getPath(theme, themeKey);
 
-  buildBreakpoints(css, theme, val, (target, key, valueFinal) => {
+  iterateBreakpoints(css, theme, value, (target, key, valueFinal) => {
     const value = getStyleValue2(themeMapping, transform, valueFinal, prop);
 
     if (cssProperty === false) {
@@ -135,6 +134,7 @@ export function unstable_createStyleFunctionSx() {
           continue;
         }
 
+        debugger
         const breakpointsValues = handleBreakpoints(wrapper, value, (x) => ({
           [styleKey]: x,
         }));
