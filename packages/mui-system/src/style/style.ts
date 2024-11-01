@@ -21,7 +21,7 @@ export interface StyleOptions<PropKey> {
 }
 
 /**
- * TODO(v8): Keep either this one or `getStyleValue2`
+ * TODO(v7): Keep either this one or `getStyleValue2`
  */
 export function getStyleValue(
   themeMapping: object | ((arg: any) => any) | null | undefined,
