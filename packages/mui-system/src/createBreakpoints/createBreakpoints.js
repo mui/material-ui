@@ -92,7 +92,7 @@ export default function createBreakpoints(breakpoints) {
     only,
     not,
     unit,
-    mediaKeys,
+    internal_mediaKeys: mediaKeys,
     ...other,
   };
 }

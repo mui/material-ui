@@ -39,6 +39,7 @@ describe('defaultTheme', () => {
         'generateThemeVars',
         'generateSpacing',
         'applyStyles',
+        'internal_cache',
       ]).to.includes(field);
     });
   });

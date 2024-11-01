@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import styleFunctionSx from './styleFunctionSx';
 import cssContainerQueries from '../cssContainerQueries';
 import createBreakpoints from '../createBreakpoints/createBreakpoints';
+import createTheme from '../createTheme';
 
 describe('styleFunctionSx', () => {
   const breakpointsValues = {
@@ -14,37 +15,39 @@ describe('styleFunctionSx', () => {
 
   const round = (value) => Math.round(value * 1e5) / 1e5;
 
-  const theme = cssContainerQueries({
-    spacing: (val) => `${val * 10}px`,
-    breakpoints: createBreakpoints({ values: breakpointsValues }),
-    palette: {
-      primary: {
-        main: 'rgb(0, 0, 255)',
+  const theme = createTheme(
+    cssContainerQueries({
+      spacing: (val) => `${val * 10}px`,
+      breakpoints: createBreakpoints({ values: breakpointsValues }),
+      palette: {
+        primary: {
+          main: 'rgb(0, 0, 255)',
+        },
+        secondary: {
+          main: 'rgb(0, 255, 0)',
+        },
       },
-      secondary: {
-        main: 'rgb(0, 255, 0)',
-      },
-    },
-    typography: {
-      fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-      fontWeightLight: 300,
-      fontSize: 14,
-      body1: {
+      typography: {
         fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-        fontSize: '1rem',
-        letterSpacing: `${round(0.15 / 16)}em`,
-        fontWeight: 400,
-        lineHeight: 1.5,
+        fontWeightLight: 300,
+        fontSize: 14,
+        body1: {
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+          fontSize: '1rem',
+          letterSpacing: `${round(0.15 / 16)}em`,
+          fontWeight: 400,
+          lineHeight: 1.5,
+        },
+        body2: {
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+          fontSize: `${14 / 16}rem`,
+          letterSpacing: `${round(0.15 / 14)}em`,
+          fontWeight: 400,
+          lineHeight: 1.43,
+        },
       },
-      body2: {
-        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-        fontSize: `${14 / 16}rem`,
-        letterSpacing: `${round(0.15 / 14)}em`,
-        fontWeight: 400,
-        lineHeight: 1.43,
-      },
-    },
-  });
+    }),
+  );
 
   describe('system', () => {
     it('resolves system ', () => {

@@ -46,7 +46,6 @@ export function stringifyTheme(baseTheme: Record<string, any> = {}) {
         serializeTheme(object[key]);
       }
     }
-    delete serializableTheme.breakpoints.mediaKeys;
   }
 
   serializeTheme(serializableTheme);

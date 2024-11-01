@@ -119,7 +119,7 @@ export function unstable_createStyleFunctionSx() {
       const breakpoints = theme.breakpoints ?? DEFAULT_BREAKPOINTS;
 
       const emptyBreakpoints = createEmptyBreakpointObject(breakpoints);
-      const breakpointsKeys = breakpoints.mediaKeys;
+      const breakpointsKeys = breakpoints.internal_mediaKeys;
 
       const css = emptyBreakpoints;
 

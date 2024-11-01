@@ -1,7 +1,8 @@
 import responsivePropType from '../responsivePropType';
 import { iterateBreakpoints } from '../breakpoints';
 import { getPath } from '../style';
-import memoize from '../memoize';
+
+const EMPTY_THEME = { internal_cache: {} };
 
 const properties = {
   m: 'margin',
@@ -24,24 +25,23 @@ const aliases = {
   paddingY: 'py',
 };
 
-// memoize() impact:
-// From 300,000 ops/sec
-// To 350,000 ops/sec
-const getCssProperties = memoize((prop) => {
-  // It's not a shorthand notation.
-  if (prop.length > 2) {
-    if (aliases[prop]) {
-      prop = aliases[prop];
-    } else {
-      return [prop];
-    }
+const CSS_PROPERTIES = {};
+for (const key in properties) {
+  CSS_PROPERTIES[key] = [properties[key]];
+}
+for (const keyProperty in properties) {
+  for (const keyDirection in directions) {
+    const property = properties[keyProperty];
+    const direction = directions[keyDirection];
+    const value = Array.isArray(direction)
+      ? direction.map((dir) => property + dir)
+      : [property + direction];
+    CSS_PROPERTIES[keyProperty + keyDirection] = value;
   }
-
-  const [a, b] = prop.split('');
-  const property = properties[a];
-  const direction = directions[b] || '';
-  return Array.isArray(direction) ? direction.map((dir) => property + dir) : [property + direction];
-});
+}
+for (const key in aliases) {
+  CSS_PROPERTIES[key] = CSS_PROPERTIES[aliases[key]];
+}
 
 export const marginKeys = new Set([
   'm',
@@ -182,8 +182,12 @@ export function getValue(transformer, propValue) {
   return transformer(propValue);
 }
 
+// Avoid allocations
+const container = [''];
+
 function style(props, keys) {
-  const transformer = (props.theme.internal_cache.unarySpacing ??= createUnarySpacing(props.theme));
+  const theme = props.theme ?? EMPTY_THEME;
+  const transformer = (theme.internal_cache.unarySpacing ??= createUnarySpacing(theme));
 
   const result = {};
   for (const prop in props) {
@@ -191,7 +195,7 @@ function style(props, keys) {
       continue;
     }
 
-    const cssProperties = getCssProperties(prop);
+    const cssProperties = CSS_PROPERTIES[prop] ?? ((container[0] = prop), container);
     const propValue = props[prop];
 
     iterateBreakpoints(result, props.theme, propValue, (_, key, value) => {
