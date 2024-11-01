@@ -18,8 +18,7 @@ export const values = {
   xl: 1536, // large screen
 };
 
-export const EMPTY_BREAKPOINTS = createBreakpoints({});
-export const DEFAULT_BREAKPOINTS = createBreakpoints(values);
+export const DEFAULT_BREAKPOINTS = createBreakpoints({});
 
 const defaultContainerQueries = {
   containerQueries: (containerName) => ({
@@ -136,7 +135,7 @@ function setupBreakpoints(styleFunction) {
   return newStyleFunction;
 }
 
-export function createEmptyBreakpointObject(breakpoints = EMPTY_BREAKPOINTS) {
+export function createEmptyBreakpointObject(breakpoints = DEFAULT_BREAKPOINTS) {
   const { internal_mediaKeys: mediaKeys } = breakpoints;
   const result = {};
   for (let i = 0; i < mediaKeys.length; i += 1) {

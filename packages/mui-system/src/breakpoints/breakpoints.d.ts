@@ -4,7 +4,6 @@ import type { Breakpoint, Theme } from '../createTheme';
 import { ResponsiveStyleValue } from '../styleFunctionSx';
 import { StyleFunction } from '../Box';
 
-export const EMPTY_BREAKPOINTS: Breakpoints;
 export const DEFAULT_BREAKPOINTS: Breakpoints;
 
 export interface ResolveBreakpointValuesOptions<T> {
