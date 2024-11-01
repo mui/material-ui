@@ -57,10 +57,10 @@ export function getStyleValue(
  *   }
  * }
  * And we support targetting:
- * - `typography.fontFamily`     with `sx={{ fontFamily: 'default '}}`
- * - `typography.fontFamilyCode` with `sx={{ fontFamily: 'code '}}`
+ * - `typography.fontFamily`     with `sx={{ fontFamily: 'default' }}`
+ * - `typography.fontFamilyCode` with `sx={{ fontFamily: 'code' }}`
  *
- * TODO(v8): Refactor our theme to look like this and remove the horrendous logic:
+ * TODO(v7): Refactor our theme to look like this and remove the horrendous logic:
  * {
  *   typography: {
  *     fontFamily: {
