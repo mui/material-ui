@@ -1,4 +1,3 @@
-import capitalize from '@mui/utils/capitalize';
 import merge from '@mui/utils/fastDeepAssign';
 import { getPath, getStyleValue2 } from '../style';
 import {
