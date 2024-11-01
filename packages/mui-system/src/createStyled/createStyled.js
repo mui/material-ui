@@ -247,7 +247,7 @@ export function internal_applyStyled(props, componentName, overridesResolver) {
     applyThemeOverrides(props, componentName, overridesResolver),
     applyThemeVariants(props, componentName),
     // applySystemSx(props, componentName),
-  ]
+  ];
 
   return css(styles);
 }

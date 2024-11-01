@@ -39,4 +39,8 @@ export default function createStyled<Theme extends object = DefaultTheme>(option
 }): CreateMUIStyled<Theme>;
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export function internal_applyStyled(props: any, componentName: string, overridesResolver: Function): string;
+export function internal_applyStyled(
+  props: any,
+  componentName: string,
+  overridesResolver: Function,
+): string;
