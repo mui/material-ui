@@ -1,2 +1,3 @@
 Broken links found by `pnpm docs:link-check` that exist:
 
+- https://mui.com/material-ui/react-button/#loading-button
