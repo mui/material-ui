@@ -34,12 +34,19 @@ const defaultContainerQueries = {
   }),
 };
 
-function buildBreakpoint(target, key, value, initialKey, callback) {
-  target[key] ??= {};
-  callback(target, key, value, initialKey);
+export function handleBreakpoints(props, propValue, styleFromPropValue) {
+  const result = {};
+  return iterateBreakpoints(result, props.theme, propValue, (mediaKey, value, initialKey) => {
+    const finalValue = styleFromPropValue(value, initialKey);
+    if (mediaKey) {
+      result[mediaKey] = finalValue;
+    } else {
+      fastDeepAssign(result, finalValue);
+    }
+  });
 }
 
-export function iterateBreakpoints(target, theme, propValue, styleFromPropValue) {
+export function iterateBreakpoints(target, theme, propValue, callback) {
   theme ??= EMPTY_THEME;
 
   if (Array.isArray(propValue)) {
@@ -50,7 +57,7 @@ export function iterateBreakpoints(target, theme, propValue, styleFromPropValue)
         breakpoints.up(breakpoints.keys[i]),
         propValue[i],
         undefined,
-        styleFromPropValue,
+        callback,
       );
     }
     return target;
@@ -67,13 +74,13 @@ export function iterateBreakpoints(target, theme, propValue, styleFromPropValue)
           key,
         );
         if (containerKey) {
-          buildBreakpoint(target, containerKey, propValue[key], key, styleFromPropValue);
+          buildBreakpoint(target, containerKey, propValue[key], key, callback);
         }
       }
       // key is key
       else if (key in breakpointValues) {
         const mediaKey = breakpoints.up(key);
-        buildBreakpoint(target, mediaKey, propValue[key], key, styleFromPropValue);
+        buildBreakpoint(target, mediaKey, propValue[key], key, callback);
       } else {
         const cssKey = key;
         target[cssKey] = propValue[cssKey];
@@ -83,21 +90,14 @@ export function iterateBreakpoints(target, theme, propValue, styleFromPropValue)
     return target;
   }
 
-  styleFromPropValue(target, undefined, propValue);
+  callback(undefined, propValue);
 
   return target;
 }
 
-export function handleBreakpoints(props, propValue, styleFromPropValue) {
-  const result = {};
-  return iterateBreakpoints(result, props.theme, propValue, (target, key, value, initialKey) => {
-    const finalValue = styleFromPropValue(value, initialKey);
-    if (key) {
-      target[key] = finalValue;
-    } else {
-      fastDeepAssign(target, finalValue);
-    }
-  });
+function buildBreakpoint(target, mediaKey, value, initialKey, callback) {
+  target[mediaKey] ??= {};
+  callback(mediaKey, value, initialKey);
 }
 
 function setupBreakpoints(styleFunction) {

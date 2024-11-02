@@ -200,8 +200,8 @@ function style(props, keys) {
     const cssProperties = CSS_PROPERTIES[prop] ?? ((container[0] = prop), container);
     const propValue = props[prop];
 
-    iterateBreakpoints(result, props.theme, propValue, (_, key, value) => {
-      const target = key ? result[key] : result;
+    iterateBreakpoints(result, props.theme, propValue, (mediaKey, value) => {
+      const target = mediaKey ? result[mediaKey] : result;
       for (let i = 0; i < cssProperties.length; i += 1) {
         target[cssProperties[i]] = getValue(transformer, value);
       }

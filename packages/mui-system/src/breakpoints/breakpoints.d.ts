@@ -21,12 +21,7 @@ export function iterateBreakpoints(
   target: any,
   theme: Theme,
   propValue: any,
-  styleFromPropValue: (
-    target: any,
-    key: string | undefined,
-    value: any,
-    breakpoint?: Breakpoint,
-  ) => any,
+  callback: (mediaKey: string | undefined, value: any, initialKey?: string) => any,
 ): any;
 
 export function handleBreakpoints<Props>(
