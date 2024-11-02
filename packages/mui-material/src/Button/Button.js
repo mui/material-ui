@@ -582,11 +582,11 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const buttonLoadingIndicator = loading ? (
+  const buttonLoadingIndicator = (
     <ButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
       {loadingIndicator}
     </ButtonLoadingIndicator>
-  ) : null;
+  );
 
   const startIcon = startIconProp && (
     <ButtonStartIcon className={classes.startIcon} ownerState={ownerState}>
@@ -617,22 +617,18 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       classes={classes}
     >
       {startIcon}
-      {loading && ownerState.loadingPosition === 'end' ? (
+      {loading &&
+      (ownerState.loadingPosition === 'start' || ownerState.loadingPosition === 'center')
+        ? buttonLoadingIndicator
+        : null}
+      {loading ? (
         <ButtonLoadingLabel className={classes.label} ownerState={ownerState}>
           {children}
         </ButtonLoadingLabel>
       ) : (
-        buttonLoadingIndicator
+        children
       )}
-
-      {loading && ownerState.loadingPosition === 'end' ? (
-        buttonLoadingIndicator
-      ) : (
-        <ButtonLoadingLabel className={classes.label} ownerState={ownerState}>
-          {children}
-        </ButtonLoadingLabel>
-      )}
-
+      {loading && ownerState.loadingPosition === 'end' ? buttonLoadingIndicator : null}
       {endIcon}
     </ButtonRoot>
   );
