@@ -45,7 +45,7 @@ export function unstable_createStyleFunctionSx() {
 
       const css = emptyBreakpoints;
 
-      for (const styleKey in sxObject) {
+      for (const styleKey in sxObject) { // eslint-disable-line
         const value = callIfFn(sxObject[styleKey], theme);
         if (value === null || value === undefined) {
           continue;
