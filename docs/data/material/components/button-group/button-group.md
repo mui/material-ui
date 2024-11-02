@@ -49,8 +49,8 @@ You can remove the elevation with the `disableElevation` prop.
 
 {{"demo": "DisableElevation.js"}}
 
-## Loading button
+## Loading
 
-You can use the `loading` prop from `Button` to create loading buttons in button groups.
+Use the `loading` prop from `Button` to set buttons in a loading state and disable interactions.
 
 {{"demo": "LoadingButtonGroup.js"}}

@@ -119,7 +119,7 @@ To create a file upload button, turn the button into a label using `component="l
 
 {{"demo": "InputFileUpload.js"}}
 
-## Loading button
+## Loading
 
 Use the `loading` prop to set buttons in a loading state and disable interactions.
 
