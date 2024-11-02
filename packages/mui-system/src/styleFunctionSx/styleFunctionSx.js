@@ -10,6 +10,8 @@ import {
 import { sortContainerQueries } from '../cssContainerQueries';
 import defaultSxConfig from './defaultSxConfig';
 
+/* eslint-disable guard-for-in */
+
 const EMPTY_THEME = {};
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -45,7 +47,7 @@ export function unstable_createStyleFunctionSx() {
 
       const css = emptyBreakpoints;
 
-      for (const styleKey in sxObject) { // eslint-disable-line
+      for (const styleKey in sxObject) {
         const value = callIfFn(sxObject[styleKey], theme);
         if (value === null || value === undefined) {
           continue;
