@@ -88,11 +88,11 @@ export default function SlotsTable(props: SlotsTableProps) {
           </tr>
         </thead>
         <tbody>
-          {slots.map((params, index) => {
+          {slots.map((params) => {
             const { description, className, name, defaultValue, hash } = params;
 
             return (
-              <tr key={`${className}-${index}`} id={hash}>
+              <tr key={`${className}-${hash}`} id={hash}>
                 <td className="slot-name" style={{ fontWeight: '600' }}>
                   {name}
                 </td>
