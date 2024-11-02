@@ -42,10 +42,7 @@ export function unstable_createStyleFunctionSx() {
 
       const breakpoints = theme.breakpoints ?? DEFAULT_BREAKPOINTS;
 
-      const emptyBreakpoints = createEmptyBreakpointObject(breakpoints);
-      const breakpointsKeys = breakpoints.internal_mediaKeys;
-
-      const css = emptyBreakpoints;
+      const css = createEmptyBreakpointObject(breakpoints);
 
       for (const styleKey in sxObject) {
         const value = callIfFn(sxObject[styleKey], theme);
@@ -71,7 +68,7 @@ export function unstable_createStyleFunctionSx() {
         }
       }
 
-      return sortContainerQueries(theme, removeUnusedBreakpoints(breakpointsKeys, css));
+      return sortContainerQueries(theme, removeUnusedBreakpoints(breakpoints, css));
     }
 
     return Array.isArray(sx) ? sx.map(process) : process(sx);

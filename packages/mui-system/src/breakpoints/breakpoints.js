@@ -144,7 +144,9 @@ export function createEmptyBreakpointObject(breakpoints = DEFAULT_BREAKPOINTS) {
   return result;
 }
 
-export function removeUnusedBreakpoints(breakpointKeys, style) {
+export function removeUnusedBreakpoints(breakpoints, style) {
+  const breakpointKeys = breakpoints.internal_mediaKeys;
+
   for (let i = 0; i < breakpointKeys.length; i += 1) {
     const key = breakpointKeys[i];
 
@@ -162,7 +164,7 @@ export function mergeBreakpointsInOrder(breakpoints, ...styles) {
     (prev, next) => deepmerge(prev, next),
     {},
   );
-  return removeUnusedBreakpoints(Object.keys(emptyBreakpoints), mergedOutput);
+  return removeUnusedBreakpoints(breakpoints, mergedOutput);
 }
 
 // compute base for responsive values; e.g.,
