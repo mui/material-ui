@@ -6,7 +6,6 @@ settings:
 
 overrides:
   '@babel/core': ^7.26.0
-  '@babel/code-frame': ^7.26.2
   '@babel/plugin-transform-runtime': ^7.25.9
   '@babel/preset-env': ^7.26.0
   '@babel/preset-react': ^7.25.9
