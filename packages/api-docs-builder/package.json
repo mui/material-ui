@@ -36,6 +36,6 @@
     "@types/react-docgen": "workspace:*",
     "@types/sinon": "^17.0.3",
     "chai": "^4.5.0",
-    "sinon": "^18.0.1"
+    "sinon": "^19.0.2"
   }
 }
