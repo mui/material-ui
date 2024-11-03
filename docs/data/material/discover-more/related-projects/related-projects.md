@@ -17,6 +17,7 @@ Feel free to submit a pull request and the maintainers will work with you to wri
 ### Paid starters
 
 - [Divjoy](https://divjoy.com?via=material-ui):
+
   - Create a Material UI app in minutes.
   - Templates, authentication, database integration, subscription payments, and more.
 
