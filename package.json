@@ -129,7 +129,7 @@
     "@playwright/test": "1.48.2",
     "@types/babel__core": "^7.20.5",
     "@types/fs-extra": "^11.0.4",
-    "@types/lodash": "^4.17.12",
+    "@types/lodash": "^4.17.13",
     "@types/mocha": "^10.0.9",
     "@types/node": "^20.17.1",
     "@types/react": "^18.3.12",
