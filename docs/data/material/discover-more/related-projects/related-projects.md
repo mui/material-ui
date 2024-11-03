@@ -32,7 +32,7 @@ Feel free to submit a pull request and the maintainers will work with you to wri
 
 - [Material palette generator](https://m2.material.io/inline-tools/color/): The official Material Design 2 palette generator tool.
 
-## Complementary components
+## Supplementary components
 
 ### Layout
 

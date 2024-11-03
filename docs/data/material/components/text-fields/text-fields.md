@@ -353,7 +353,7 @@ In order for the text field to be accessible, **the input should be linked to th
 </FormControl>
 ```
 
-## Complementary projects
+## Supplementary projects
 
 <!-- To sync with related-projects.md -->
 
