@@ -32,7 +32,7 @@
     "react-is": "^18.3.1",
     "react-jss": "^10.10.0",
     "react-redux": "^9.1.2",
-    "redux": "^4.2.1",
+    "redux": "^5.0.1",
     "serve-handler": "^6.1.6",
     "styled-components": "^6.1.13",
     "styled-system": "^5.1.5",

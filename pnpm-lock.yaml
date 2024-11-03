@@ -523,10 +523,10 @@ importers:
         version: 10.10.0(react@18.3.1)
       react-redux:
         specifier: ^9.1.2
-        version: 9.1.2(@types/react@18.3.12)(react@18.3.1)(redux@4.2.1)
+        version: 9.1.2(@types/react@18.3.12)(react@18.3.1)(redux@5.0.1)
       redux:
-        specifier: ^4.2.1
-        version: 4.2.1
+        specifier: ^5.0.1
+        version: 5.0.1
       serve-handler:
         specifier: ^6.1.6
         version: 6.1.6
@@ -11212,8 +11212,8 @@ packages:
     resolution: {integrity: sha512-tYkDkVVtYkSVhuQ4zBgfvciymHaeuel+zFKXShfDnFP5SyVEP7qo70Rf1jTOTCx3vGNAbnEi/xFkcfQVMIBWag==}
     engines: {node: '>=12'}
 
-  redux@4.2.1:
-    resolution: {integrity: sha512-LAUYz4lc+Do8/g7aeRa8JkyDErK6ekstQaqWQrNRW//MY1TvCEpMtpTWvlQ+FPbWCx+Xixu/6SHt5N0HR+SB4w==}
+  redux@5.0.1:
+    resolution: {integrity: sha512-M9/ELqF6fy8FwmkpnF0S3YKOqMyoWJ4+CS5Efg2ct3oY9daQvd/Pc71FpGZsVsbl3Cpb+IIcjBDUnnyBdQbq4w==}
 
   reflect.getprototypeof@1.0.4:
     resolution: {integrity: sha512-ECkTw8TmJwW60lOTR+ZkODISW6RQ8+2CL3COqtiJKLd6MmB45hN51HprHFziKLGkAuTGQhBb91V8cy+KHlaCjw==}
@@ -23496,14 +23496,14 @@ snapshots:
       react: 18.3.1
       scheduler: 0.23.2
 
-  react-redux@9.1.2(@types/react@18.3.12)(react@18.3.1)(redux@4.2.1):
+  react-redux@9.1.2(@types/react@18.3.12)(react@18.3.1)(redux@5.0.1):
     dependencies:
       '@types/use-sync-external-store': 0.0.3
       react: 18.3.1
       use-sync-external-store: 1.2.0(react@18.3.1)
     optionalDependencies:
       '@types/react': 18.3.12
-      redux: 4.2.1
+      redux: 5.0.1
 
   react-refresh@0.14.2: {}
 
@@ -23742,9 +23742,7 @@ snapshots:
       indent-string: 5.0.0
       strip-indent: 4.0.0
 
-  redux@4.2.1:
-    dependencies:
-      '@babel/runtime': 7.26.0
+  redux@5.0.1: {}
 
   reflect.getprototypeof@1.0.4:
     dependencies:
