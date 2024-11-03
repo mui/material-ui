@@ -46,8 +46,8 @@ importers:
         version: 9.14.2(encoding@0.1.13)
     devDependencies:
       '@argos-ci/core':
-        specifier: ^2.9.2
-        version: 2.9.2
+        specifier: ^2.10.0
+        version: 2.10.0
       '@babel/cli':
         specifier: ^7.25.9
         version: 7.25.9(@babel/core@7.26.0)
@@ -2457,16 +2457,16 @@ packages:
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
 
-  '@argos-ci/api-client@0.6.2':
-    resolution: {integrity: sha512-7TVGBwHmShUc+qit5C8OMeHur11F6HM2trpcCpjI2jsTJWRMkGZCQ/IXG5vHbsXkTrQbh+7gba1jupLNrzDA8Q==}
+  '@argos-ci/api-client@0.7.0':
+    resolution: {integrity: sha512-oRCaqA4DZn+yxD78/dqPTcz7dJd5SIU+GwnlvqorGLw6bktQ3TMPmKND/jb/GOf8tUpOs9FrSrwxVwFjYfiVeg==}
     engines: {node: '>=18.0.0'}
 
-  '@argos-ci/core@2.9.2':
-    resolution: {integrity: sha512-hpGqqUfj7z0TDl3EE5J4oRNX3G/njszmePesexywShkWioBobILcawpbVfOQSxGu/VTIfecGWdBR8qurxTsQdg==}
+  '@argos-ci/core@2.10.0':
+    resolution: {integrity: sha512-mj+qt+SFYm5lM+TrDiDXEpLy5pTiznVSHktO+uhKBrAgpG3i2n3x21SITK+mERjpkxX40Tz5Dr7MYus6YWTLsQ==}
     engines: {node: '>=18.0.0'}
 
-  '@argos-ci/util@2.1.2':
-    resolution: {integrity: sha512-vdCL/5zLl7F6W5+SW8IeOrcNN5Nt+N2U0E1FFWMSzMTmik+Rcn8OWi5hscbwG5NLWzgLeSJA7PSjfx4K3M+u8g==}
+  '@argos-ci/util@2.2.0':
+    resolution: {integrity: sha512-MLm8276zl/JkBiQKrkNUCdxQ+OcrGxffn3u61GOH7epaMd3PbxipUnD7JnptxBOt5rnXXqIObprCMl1ox7yAyw==}
     engines: {node: '>=18.0.0'}
 
   '@babel/cli@7.25.9':
@@ -6161,8 +6161,8 @@ packages:
     resolution: {integrity: sha512-zIURGIS1E1Q4pcrMjp+nnEh+16G56eG/MUllJH8yEvw7asDo7Ac9uhC9KIH5jzpITueEZolfYglnCGIuSBz39g==}
     engines: {node: '>=4'}
 
-  axios@1.7.4:
-    resolution: {integrity: sha512-DukmaFRnY6AzAALSH4J2M3k6PkaC+MfaAGdEERRWcC9q3/TWQwLpHR8ZRLKTdQ3aBDL64EdluRDjJqKw+BPZEw==}
+  axios@1.7.7:
+    resolution: {integrity: sha512-S4kL7XrjgBmvdGut0sN3yJxqYzrDOnivkBiN0OFs6hLiUam3UPvswUo0kqGyhqUZGEOytHyumEdXsAkgCOUf3Q==}
 
   axobject-query@3.2.1:
     resolution: {integrity: sha512-jsyHu61e6N4Vbz/v18DHwWYKK0bSWLqn47eeDSKPB7m8tqMHF9YJ+mhIk2lVteyZrY8tnSj/jHOv4YiTCuCJgg==}
@@ -7134,8 +7134,8 @@ packages:
       supports-color:
         optional: true
 
-  debug@4.3.6:
-    resolution: {integrity: sha512-O/09Bd4Z1fBrU4VzkhFqVgpPzaGbw6Sm9FEkBT1A/YBXQFGuuSxa1dN2nxgxS34JmKXqYx8CZAwEVoJFImUXIg==}
+  debug@4.3.7:
+    resolution: {integrity: sha512-Er2nc/H7RrMXZBFCEim6TCmMk02Z8vLC2Rbi1KEBggpo0fS6l0S1nnapwmIi3yW/+GOJap1Krg4w0Hg80oCqgQ==}
     engines: {node: '>=6.0'}
     peerDependencies:
       supports-color: '*'
@@ -9850,9 +9850,6 @@ packages:
   ms@2.0.0:
     resolution: {integrity: sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==}
 
-  ms@2.1.2:
-    resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
-
   ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
 
@@ -10197,11 +10194,11 @@ packages:
     resolution: {integrity: sha512-XgFPPM+B28FtCCgSb9I+s9szOC1vZRSwgWsRUA5ylIxRTgKozqjOCrVOqGsYABPYK5qnfqClxZTFBa8PKt2v6Q==}
     engines: {node: '>=12'}
 
-  openapi-fetch@0.11.1:
-    resolution: {integrity: sha512-WtDQsrvxjXuCmo6u6WMQPfUaya8cLfL+ZCaXorPo9MMumqlU/Km/SrCXsEcJH234D4iykOkvJ6Q/iWBzK7+3rA==}
+  openapi-fetch@0.13.0:
+    resolution: {integrity: sha512-6Nlf/BDbtyHwHdNrLPUiyt4CZMzL3ZyAt55yWH8W7+Z+8aYWnvca4uZHQHXViy8KcnCMqAhLM/bifh2Yjjkf6w==}
 
-  openapi-typescript-helpers@0.0.12:
-    resolution: {integrity: sha512-FO+5kTWO6KDutigamr2MRwciYkAUYhqdctlyVRrQOe2uxif2/O2+GcS07jNnP36AUK6ubSsGu3GeBiYIc6eQzA==}
+  openapi-typescript-helpers@0.0.15:
+    resolution: {integrity: sha512-opyTPaunsklCBpTK8JGef6mfPhLSnyy5a0IN9vKtx3+4aExf+KxEqYwIy3hqkedXIB97u357uLMJsOnm3GVjsw==}
 
   opener@1.5.2:
     resolution: {integrity: sha512-ur5UIdyw5Y7yEj9wLzhqXiy6GZ3Mwx0yGI+5sMn2r0N0v3cKJvUmFH5yPP+WXh9e0xfyzyJX95D8l088DNFj7A==}
@@ -13011,27 +13008,27 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  '@argos-ci/api-client@0.6.2':
+  '@argos-ci/api-client@0.7.0':
     dependencies:
-      debug: 4.3.6(supports-color@8.1.1)
-      openapi-fetch: 0.11.1
+      debug: 4.3.7(supports-color@8.1.1)
+      openapi-fetch: 0.13.0
     transitivePeerDependencies:
       - supports-color
 
-  '@argos-ci/core@2.9.2':
+  '@argos-ci/core@2.10.0':
     dependencies:
-      '@argos-ci/api-client': 0.6.2
-      '@argos-ci/util': 2.1.2
-      axios: 1.7.4(debug@4.3.6)
+      '@argos-ci/api-client': 0.7.0
+      '@argos-ci/util': 2.2.0
+      axios: 1.7.7(debug@4.3.7)
       convict: 6.2.4
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
       fast-glob: 3.3.2
       sharp: 0.33.5
       tmp: 0.2.3
     transitivePeerDependencies:
       - supports-color
 
-  '@argos-ci/util@2.1.2': {}
+  '@argos-ci/util@2.2.0': {}
 
   '@babel/cli@7.25.9(@babel/core@7.26.0)':
     dependencies:
@@ -13068,7 +13065,7 @@ snapshots:
       '@babel/traverse': 7.25.9
       '@babel/types': 7.26.0
       convert-source-map: 2.0.0
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
       gensync: 1.0.0-beta.2
       json5: 2.2.3
       semver: 6.3.1
@@ -13127,7 +13124,7 @@ snapshots:
       '@babel/core': 7.26.0
       '@babel/helper-compilation-targets': 7.25.9
       '@babel/helper-plugin-utils': 7.25.9
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
       lodash.debounce: 4.0.8
       resolve: 1.22.8
     transitivePeerDependencies:
@@ -13903,7 +13900,7 @@ snapshots:
       '@babel/parser': 7.26.1
       '@babel/template': 7.25.9
       '@babel/types': 7.26.0
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
@@ -14305,7 +14302,7 @@ snapshots:
   '@eslint/eslintrc@2.1.4':
     dependencies:
       ajv: 6.12.6
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
       espree: 9.6.1
       globals: 13.24.0
       ignore: 5.3.1
@@ -14402,7 +14399,7 @@ snapshots:
   '@humanwhocodes/config-array@0.13.0':
     dependencies:
       '@humanwhocodes/object-schema': 2.0.3
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
       minimatch: 3.1.2
     transitivePeerDependencies:
       - supports-color
@@ -16256,7 +16253,7 @@ snapshots:
       '@types/express': 4.17.17
       '@types/promise.allsettled': 1.0.3
       '@types/tsscmp': 1.0.0
-      axios: 1.7.4(debug@4.3.6)
+      axios: 1.7.7(debug@4.3.7)
       express: 4.21.1
       path-to-regexp: 8.1.0
       promise.allsettled: 1.0.6
@@ -16309,7 +16306,7 @@ snapshots:
       '@slack/types': 2.13.0
       '@types/is-stream': 1.1.0
       '@types/node': 20.17.6
-      axios: 1.7.4(debug@4.3.6)
+      axios: 1.7.7(debug@4.3.7)
       eventemitter3: 3.1.2
       form-data: 2.5.1
       is-electron: 2.2.2
@@ -16817,7 +16814,7 @@ snapshots:
       '@typescript-eslint/types': 7.18.0
       '@typescript-eslint/typescript-estree': 7.18.0(typescript@5.6.3)
       '@typescript-eslint/visitor-keys': 7.18.0
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
       eslint: 8.57.1
     optionalDependencies:
       typescript: 5.6.3
@@ -16833,7 +16830,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/typescript-estree': 7.18.0(typescript@5.6.3)
       '@typescript-eslint/utils': 7.18.0(eslint@8.57.1)(typescript@5.6.3)
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
       eslint: 8.57.1
       ts-api-utils: 1.3.0(typescript@5.6.3)
     optionalDependencies:
@@ -16847,7 +16844,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 7.18.0
       '@typescript-eslint/visitor-keys': 7.18.0
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
       globby: 11.1.0
       is-glob: 4.0.3
       minimatch: 9.0.5
@@ -16998,7 +16995,7 @@ snapshots:
 
   '@wyw-in-js/shared@0.5.4':
     dependencies:
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
       find-up: 5.0.0
       minimatch: 9.0.5
     transitivePeerDependencies:
@@ -17077,13 +17074,13 @@ snapshots:
 
   agent-base@6.0.2:
     dependencies:
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
   agent-base@7.1.0:
     dependencies:
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -17425,9 +17422,9 @@ snapshots:
 
   axe-core@4.7.2: {}
 
-  axios@1.7.4(debug@4.3.6):
+  axios@1.7.7(debug@4.3.7):
     dependencies:
-      follow-redirects: 1.15.6(debug@4.3.6)
+      follow-redirects: 1.15.6(debug@4.3.7)
       form-data: 4.0.0
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
@@ -17519,7 +17516,7 @@ snapshots:
     dependencies:
       '@babel/core': 7.26.0
       core-js: 3.32.1
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
       lodash.mergewith: 4.6.2
       prettier: 2.8.8
       strip-indent: 3.0.0
@@ -18539,7 +18536,7 @@ snapshots:
       chalk: 2.4.2
       commander: 2.20.3
       core-js: 3.32.1
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
       fast-json-patch: 3.1.1
       get-stdin: 6.0.0
       http-proxy-agent: 5.0.0
@@ -18620,9 +18617,9 @@ snapshots:
     dependencies:
       ms: 2.1.3
 
-  debug@4.3.6(supports-color@8.1.1):
+  debug@4.3.7(supports-color@8.1.1):
     dependencies:
-      ms: 2.1.2
+      ms: 2.1.3
     optionalDependencies:
       supports-color: 8.1.1
 
@@ -18878,7 +18875,7 @@ snapshots:
       base64id: 2.0.0
       cookie: 0.7.2
       cors: 2.8.5
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
       engine.io-parser: 5.2.2
       ws: 8.17.1
     transitivePeerDependencies:
@@ -19319,7 +19316,7 @@ snapshots:
       ajv: 6.12.6
       chalk: 4.1.2
       cross-spawn: 7.0.3
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
       doctrine: 3.0.0
       escape-string-regexp: 4.0.0
       eslint-scope: 7.2.2
@@ -19700,9 +19697,9 @@ snapshots:
 
   flow-parser@0.206.0: {}
 
-  follow-redirects@1.15.6(debug@4.3.6):
+  follow-redirects@1.15.6(debug@4.3.7):
     optionalDependencies:
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
 
   for-each@0.3.3:
     dependencies:
@@ -20252,21 +20249,21 @@ snapshots:
     dependencies:
       '@tootallnate/once': 2.0.0
       agent-base: 6.0.2
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
   http-proxy-agent@7.0.0:
     dependencies:
       agent-base: 7.1.0
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
   http-proxy@1.18.1:
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.6(debug@4.3.6)
+      follow-redirects: 1.15.6(debug@4.3.7)
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
@@ -20283,14 +20280,14 @@ snapshots:
   https-proxy-agent@5.0.1:
     dependencies:
       agent-base: 6.0.2
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
   https-proxy-agent@7.0.2:
     dependencies:
       agent-base: 7.1.0
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -20653,7 +20650,7 @@ snapshots:
 
   istanbul-lib-source-maps@3.0.6:
     dependencies:
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
       istanbul-lib-coverage: 2.0.5
       make-dir: 2.1.0
       rimraf: 2.7.1
@@ -20663,7 +20660,7 @@ snapshots:
 
   istanbul-lib-source-maps@4.0.1:
     dependencies:
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
       istanbul-lib-coverage: 3.2.0
       source-map: 0.6.1
     transitivePeerDependencies:
@@ -21457,7 +21454,7 @@ snapshots:
   log4js@6.6.1:
     dependencies:
       date-format: 4.0.13
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
       flatted: 3.2.9
       rfdc: 1.3.0
       streamroller: 3.1.2
@@ -21977,7 +21974,7 @@ snapshots:
   micromark@4.0.0:
     dependencies:
       '@types/debug': 4.1.12
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
       decode-named-character-reference: 1.0.2
       devlop: 1.1.0
       micromark-core-commonmark: 2.0.1
@@ -22127,7 +22124,7 @@ snapshots:
       ansi-colors: 4.1.3
       browser-stdout: 1.3.1
       chokidar: 3.6.0
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
       diff: 5.2.0
       escape-string-regexp: 4.0.0
       find-up: 5.0.0
@@ -22152,8 +22149,6 @@ snapshots:
   mrmime@1.0.1: {}
 
   ms@2.0.0: {}
-
-  ms@2.1.2: {}
 
   ms@2.1.3: {}
 
@@ -22453,7 +22448,7 @@ snapshots:
       '@yarnpkg/lockfile': 1.1.0
       '@yarnpkg/parsers': 3.0.0-rc.46
       '@zkochan/js-yaml': 0.0.7
-      axios: 1.7.4(debug@4.3.6)
+      axios: 1.7.7(debug@4.3.7)
       chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
@@ -22625,11 +22620,11 @@ snapshots:
       is-docker: 2.2.1
       is-wsl: 2.2.0
 
-  openapi-fetch@0.11.1:
+  openapi-fetch@0.13.0:
     dependencies:
-      openapi-typescript-helpers: 0.0.12
+      openapi-typescript-helpers: 0.0.15
 
-  openapi-typescript-helpers@0.0.12: {}
+  openapi-typescript-helpers@0.0.15: {}
 
   opener@1.5.2: {}
 
@@ -24249,7 +24244,7 @@ snapshots:
 
   socket.io-adapter@2.5.5:
     dependencies:
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
       ws: 8.17.1
     transitivePeerDependencies:
       - bufferutil
@@ -24259,7 +24254,7 @@ snapshots:
   socket.io-parser@4.2.4:
     dependencies:
       '@socket.io/component-emitter': 3.1.0
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -24268,7 +24263,7 @@ snapshots:
       accepts: 1.3.8
       base64id: 2.0.0
       cors: 2.8.5
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
       engine.io: 6.6.2
       socket.io-adapter: 2.5.5
       socket.io-parser: 4.2.4
@@ -24280,7 +24275,7 @@ snapshots:
   socks-proxy-agent@8.0.2:
     dependencies:
       agent-base: 7.1.0
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
       socks: 2.7.1
     transitivePeerDependencies:
       - supports-color
@@ -24387,7 +24382,7 @@ snapshots:
   streamroller@3.1.2:
     dependencies:
       date-format: 4.0.13
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
       fs-extra: 8.1.0
     transitivePeerDependencies:
       - supports-color
@@ -24567,7 +24562,7 @@ snapshots:
       cosmiconfig: 8.2.0
       css-functions-list: 3.2.1
       css-tree: 2.3.1
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
       fast-glob: 3.3.2
       fastest-levenshtein: 1.0.16
       file-entry-cache: 7.0.2
@@ -24928,7 +24923,7 @@ snapshots:
   tuf-js@2.2.1:
     dependencies:
       '@tufjs/models': 2.0.1
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
       make-fetch-happen: 13.0.1
     transitivePeerDependencies:
       - supports-color
@@ -25217,7 +25212,7 @@ snapshots:
   vite-plugin-pages@0.32.3(vite@5.4.10(@types/node@20.17.6)(terser@5.29.2)):
     dependencies:
       '@types/debug': 4.1.12
-      debug: 4.3.6(supports-color@8.1.1)
+      debug: 4.3.7(supports-color@8.1.1)
       dequal: 2.0.3
       extract-comments: 1.1.0
       fast-glob: 3.3.2
