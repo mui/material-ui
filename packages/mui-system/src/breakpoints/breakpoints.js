@@ -18,7 +18,7 @@ export const values = {
   xl: 1536, // large screen
 };
 
-export const DEFAULT_BREAKPOINTS = createBreakpoints({});
+export const DEFAULT_BREAKPOINTS = createBreakpoints({ values });
 
 const defaultContainerQueries = {
   containerQueries: (containerName) => ({
