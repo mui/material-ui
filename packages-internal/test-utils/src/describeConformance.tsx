@@ -287,9 +287,31 @@ function testSlotsProp(
     className: string;
     classes: Record<string, string>;
     slots: {
-      [x: string]: keyof React.JSX.IntrinsicElements;
+      [x: string]:
+        | SlotTestingOptions['testWithComponent']
+        | keyof React.JSX.IntrinsicElements
+        | React.ForwardRefExoticComponent<
+            {
+              children: React.ReactNode;
+            } & React.RefAttributes<HTMLDivElement>
+          >;
+    };
+    components: {
+      [x: string]:
+        | SlotTestingOptions['testWithComponent']
+        | keyof React.JSX.IntrinsicElements
+        | React.ForwardRefExoticComponent<
+            {
+              children: React.ReactNode;
+            } & React.RefAttributes<HTMLDivElement>
+          >;
     };
     slotProps: {
+      [x: string]: {
+        'data-testid': string;
+      };
+    };
+    componentsProps: {
       [x: string]: {
         'data-testid': string;
       };
