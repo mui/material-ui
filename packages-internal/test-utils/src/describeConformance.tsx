@@ -174,7 +174,6 @@ export function testPropsSpread(
     DataProps & {
       className: string;
       component: string | React.ElementType;
-      'data-test-props-spread': string;
     }
   >,
 
