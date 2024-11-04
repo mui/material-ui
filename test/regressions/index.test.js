@@ -49,7 +49,6 @@ async function main() {
     return links.map((link) => link.href);
   });
   routes = routes.map((route) => route.replace(baseUrl, ''));
-  routes = routes.filter(route => route.includes('ColorSchemeSelector'))
 
   /**
    * @param {string} route
