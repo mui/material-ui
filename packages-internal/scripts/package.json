@@ -44,7 +44,7 @@
     "@types/lodash": "^4.17.13",
     "@types/node": "^20.17.6",
     "@types/react": "^18.3.12",
-    "@types/uuid": "^9.0.8",
+    "@types/uuid": "^10.0.0",
     "chai": "^4.5.0",
     "fast-glob": "^3.3.2",
     "prettier": "^3.3.3",
