@@ -8,6 +8,10 @@ function capitalize(string: string): string {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+interface DataProps {
+  [key: `data-${string}`]: string;
+}
+
 export interface SlotTestingOptions {
   /**
    * A custom React component to test if the receiving props are correct.
@@ -95,10 +99,11 @@ function throwMissingPropError(field: string): never {
  * the root component.
  */
 export function testClassName(
-  element: React.ReactElement<{
-    'data-testid': string;
-    className: string;
-  }>,
+  element: React.ReactElement<
+    DataProps & {
+      className: string;
+    }
+  >,
   getOptions: () => ConformanceOptions,
 ) {
   it('applies the className to the root component', async () => {
@@ -124,11 +129,12 @@ export function testClassName(
  * Component from @inheritComponent
  */
 export function testComponentProp(
-  element: React.ReactElement<{
-    'data-testid': string;
-    className: string;
-    component?: string | React.ElementType;
-  }>,
+  element: React.ReactElement<
+    DataProps & {
+      className: string;
+      component?: string | React.ElementType;
+    }
+  >,
   getOptions: () => ConformanceOptions,
 ) {
   describe('prop: component', () => {
@@ -164,12 +170,13 @@ export function testComponentProp(
  * MUI components spread additional props to its root.
  */
 export function testPropsSpread(
-  element: React.ReactElement<{
-    'data-testid': string;
-    className: string;
-    component: string | React.ElementType;
-    'data-test-props-spread': string;
-  }>,
+  element: React.ReactElement<
+    DataProps & {
+      className: string;
+      component: string | React.ElementType;
+      'data-test-props-spread': string;
+    }
+  >,
 
   getOptions: () => ConformanceOptions,
 ) {
@@ -307,14 +314,10 @@ function testSlotsProp(
           >;
     };
     slotProps: {
-      [x: string]: {
-        'data-testid': string;
-      };
+      [x: string]: DataProps;
     };
     componentsProps: {
-      [x: string]: {
-        'data-testid': string;
-      };
+      [x: string]: DataProps;
     };
   }>,
   getOptions: () => ConformanceOptions,
