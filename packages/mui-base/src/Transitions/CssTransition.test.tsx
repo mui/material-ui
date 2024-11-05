@@ -30,7 +30,19 @@ describe('CssTransition', () => {
     onExitedSpy.resetHistory();
   });
 
-  const { render, clock } = createRenderer({ clock: 'fake' });
+  const { render, clock } = createRenderer();
+
+  describe('prop: className', () => {
+    it('applies it unconditionally', () => {
+      const { getByTestId } = render(
+        <TestTransitionContextProvider requestEnter>
+          <CssTransition className="foo" data-testid="root" />
+        </TestTransitionContextProvider>,
+      );
+      const root = getByTestId('root');
+      expect(root).to.have.class('foo');
+    });
+  });
 
   describe('prop: enterClassName, exitClassName', () => {
     clock.withFakeTimers();
@@ -53,7 +65,7 @@ describe('CssTransition', () => {
       clock.runToLast();
     });
 
-    it('applies exitClassName, then immediately enterClassName when requested to enter', async () => {
+    it('applies exitClassName, then immediately enterClassName when requested to enter', () => {
       const { getByTestId } = render(
         <TestTransitionContextProvider requestEnter>
           <CssTransition enterClassName="enter" exitClassName="exit" data-testid="root" />
@@ -67,21 +79,8 @@ describe('CssTransition', () => {
       expect(root).not.to.have.class('enter');
 
       clock.runToLast();
-
       expect(root).to.have.class('enter');
       expect(root).not.to.have.class('exit');
-    });
-  });
-
-  describe('prop: className', () => {
-    it('applies it unconditionally', () => {
-      const { getByTestId } = render(
-        <TestTransitionContextProvider requestEnter>
-          <CssTransition className="foo" data-testid="root" />
-        </TestTransitionContextProvider>,
-      );
-      const root = getByTestId('root');
-      expect(root).to.have.class('foo');
     });
   });
 });

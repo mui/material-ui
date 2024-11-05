@@ -1,6 +1,6 @@
 import { SelectOption } from '../useOption';
 
-function defaultOptionStringifier<OptionValue>(option: SelectOption<OptionValue>) {
+const defaultOptionStringifier = <OptionValue>(option: SelectOption<OptionValue>) => {
   const { label, value } = option;
   if (typeof label === 'string') {
     return label;
@@ -12,6 +12,6 @@ function defaultOptionStringifier<OptionValue>(option: SelectOption<OptionValue>
 
   // Fallback string representation
   return String(option);
-}
+};
 
 export { defaultOptionStringifier };

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, describeSkipIf } from '@mui/internal-test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Collapse from '@mui/material/Collapse';
 import Fade from '@mui/material/Fade';
 import Grow from '@mui/material/Grow';
@@ -9,21 +9,27 @@ import Slide from '@mui/material/Slide';
 import Zoom from '@mui/material/Zoom';
 import Popper from '@mui/material/Popper';
 
-const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-describeSkipIf(/jsdom/.test(window.navigator.userAgent))('<Popper />', () => {
+describe('<Popper />', () => {
+  let isSafari;
   const { render } = createRenderer();
+
+  before(function beforeHook() {
+    // JSDOM has neither layout nor window.scrollTo
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  });
 
   let originalScrollX;
   let originalScrollY;
 
-  // eslint-disable-next-line mocha/no-top-level-hooks
   beforeEach(() => {
     originalScrollX = window.screenX;
     originalScrollY = window.scrollY;
   });
 
-  // eslint-disable-next-line mocha/no-top-level-hooks
   afterEach(() => {
     window.scrollTo(originalScrollX, originalScrollY);
   });

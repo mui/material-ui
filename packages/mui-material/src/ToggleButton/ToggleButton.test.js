@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeSkipIf, createRenderer } from '@mui/internal-test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import ToggleButton, { toggleButtonClasses as classes } from '@mui/material/ToggleButton';
 import ButtonBase from '@mui/material/ButtonBase';
 import describeConformance from '../../test/describeConformance';
@@ -125,7 +125,14 @@ describe('<ToggleButton />', () => {
     });
   });
 
-  describeSkipIf(!/jsdom/.test(window.navigator.userAgent))('server-side', () => {
+  describe('server-side', () => {
+    before(function beforeHook() {
+      // Only run the test on node.
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+    });
+
     it('should server-side render', () => {
       const { container } = renderToString(<ToggleButton value="hello">Hello World</ToggleButton>);
       expect(container.firstChild).to.have.text('Hello World');

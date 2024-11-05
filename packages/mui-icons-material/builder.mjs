@@ -9,7 +9,7 @@ import { fileURLToPath } from 'url';
 import intersection from 'lodash/intersection.js';
 import { Queue } from '@mui/internal-waterfall';
 
-const currentDirectory = path.dirname(fileURLToPath(new URL(import.meta.url)));
+const currentDirectory = fileURLToPath(new URL('.', import.meta.url));
 
 export const RENAME_FILTER_DEFAULT = './renameFilters/default.mjs';
 export const RENAME_FILTER_MUI = './renameFilters/material-design-icons.mjs';

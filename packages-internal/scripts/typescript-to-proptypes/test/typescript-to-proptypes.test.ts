@@ -34,7 +34,7 @@ describe('typescript-to-proptypes', () => {
 
   before(function beforeHook() {
     // Creating a TS program might take a while.
-    this?.timeout?.(20000);
+    this.timeout(20000);
 
     const buildProject = createTypeScriptProjectBuilder({
       test: {

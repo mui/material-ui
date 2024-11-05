@@ -28,7 +28,7 @@ describe('createCssVarsProvider', () => {
     originalMatchmedia = window.matchMedia;
 
     // Create mocks of localStorage getItem and setItem functions
-    Object.defineProperty(globalThis, 'localStorage', {
+    Object.defineProperty(global, 'localStorage', {
       value: {
         getItem: spy((key) => storage[key]),
         setItem: spy((key, value) => {

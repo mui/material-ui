@@ -1,3 +1,1 @@
-describe('<Option />', () => {
-  it('To do', () => {});
-});
+describe('<Option />', () => {});

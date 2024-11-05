@@ -9,7 +9,6 @@ import {
   screen,
   strictModeDoubleLoggingSuppressed,
   waitFor,
-  describeSkipIf,
 } from '@mui/internal-test-utils';
 import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
@@ -369,10 +368,15 @@ describe('<Tabs />', () => {
         ]);
       });
 
-      describeSkipIf(!/jsdom/.test(window.navigator.userAgent))('hidden tab / tabs', () => {
+      describe('hidden tab / tabs', () => {
         let nodeEnv;
 
         before(function test() {
+          if (!/jsdom/.test(window.navigator.userAgent)) {
+            this.skip();
+            return;
+          }
+
           nodeEnv = process.env.NODE_ENV;
           // We can't use a regular assignment, because it causes a syntax error in Karma
           Object.defineProperty(process.env, 'NODE_ENV', {

@@ -1,14 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import sinon, { spy, stub } from 'sinon';
-import {
-  describeSkipIf,
-  act,
-  screen,
-  waitFor,
-  createRenderer,
-  fireEvent,
-} from '@mui/internal-test-utils';
+import { act, screen, waitFor, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 function getStyleValue(value: string) {
@@ -144,7 +137,7 @@ describe('<TextareaAutosize />', () => {
     expect(parseInt(input.style.height, 10)).to.be.within(15, 17);
   });
 
-  describeSkipIf(!/jsdom/.test(window.navigator.userAgent))('layout', () => {
+  describe('layout', () => {
     const getComputedStyleStub = new Map<Element, Partial<CSSStyleDeclaration>>();
     function setLayout(
       input: HTMLTextAreaElement,
@@ -173,6 +166,11 @@ describe('<TextareaAutosize />', () => {
     }
 
     before(function beforeHook() {
+      // Only run the test on node.
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
       stub(window, 'getComputedStyle').value(
         (node: Element) => getComputedStyleStub.get(node) || {},
       );

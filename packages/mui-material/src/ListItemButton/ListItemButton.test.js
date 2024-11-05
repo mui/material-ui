@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { act, createRenderer, fireEvent, describeSkipIf } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import ListItemButton, { listItemButtonClasses as classes } from '@mui/material/ListItemButton';
 import ButtonBase from '@mui/material/ButtonBase';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -54,7 +54,14 @@ describe('<ListItemButton />', () => {
     });
   });
 
-  describeSkipIf(/jsdom/.test(window.navigator.userAgent))('prop: focusVisibleClassName', () => {
+  describe('prop: focusVisibleClassName', () => {
+    before(function beforeCallback() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+    });
+
     it('should merge the class names', async () => {
       const { getByRole } = render(
         <ListItemButton focusVisibleClassName="focusVisibleClassName" />,

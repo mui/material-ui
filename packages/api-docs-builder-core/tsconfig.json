@@ -4,5 +4,5 @@
     "types": ["node", "mocha"]
   },
   "include": ["./**/*.ts", "./**/*.js"],
-  "exclude": ["node_modules", "vitest.config.ts"]
+  "exclude": ["node_modules"]
 }

@@ -10,7 +10,6 @@ import {
   focusVisible,
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
-  describeSkipIf,
 } from '@mui/internal-test-utils';
 import PropTypes from 'prop-types';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -248,7 +247,14 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describeSkipIf(/jsdom/.test(window.navigator.userAgent))('ripple', () => {
+  describe('ripple', () => {
+    before(function beforeCallback() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+    });
+
     describe('interactions', () => {
       it('should not have a focus ripple by default', () => {
         const { getByRole } = render(
@@ -605,7 +611,14 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describeSkipIf(/jsdom/.test(window.navigator.userAgent))('focusRipple', () => {
+  describe('focusRipple', () => {
+    before(function beforeCallback() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+    });
+
     it('should pulsate the ripple when focusVisible', async () => {
       const { getByRole } = render(
         <ButtonBase
@@ -910,7 +923,14 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describeSkipIf(/jsdom/.test(window.navigator.userAgent))('event: keydown', () => {
+  describe('event: keydown', () => {
+    before(function beforeCallback() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+    });
+
     it('ripples on repeated keydowns', async () => {
       const { container, getByText } = render(
         <ButtonBase focusRipple TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }}>
@@ -1157,7 +1177,14 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describeSkipIf(/jsdom/.test(window.navigator.userAgent))('prop: action', () => {
+  describe('prop: action', () => {
+    before(function beforeCallback() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+    });
+
     it('should be able to focus visible the button', async () => {
       /**
        * @type {React.RefObject<import('./ButtonBase').ButtonBaseActions>}

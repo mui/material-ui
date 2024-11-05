@@ -30,6 +30,7 @@ describe('<Dropdown />', () => {
   it('registers a popup id correctly', async () => {
     function TestComponent() {
       const { registerPopup, popupId } = React.useContext(DropdownContext)!;
+      expect(context).not.to.equal(null);
 
       React.useEffect(() => {
         registerPopup('test-popup');
@@ -53,6 +54,7 @@ describe('<Dropdown />', () => {
 
     function TestComponent() {
       const { registerTrigger, triggerElement } = React.useContext(DropdownContext)!;
+      expect(context).not.to.equal(null);
 
       React.useEffect(() => {
         registerTrigger(trigger);

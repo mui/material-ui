@@ -12,7 +12,7 @@ describe('ThemeProvider', () => {
     originalMatchmedia = window.matchMedia;
     // Create mocks of localStorage getItem and setItem functions
     storage = {};
-    Object.defineProperty(globalThis, 'localStorage', {
+    Object.defineProperty(global, 'localStorage', {
       value: {
         getItem: (key: string) => storage[key],
         setItem: (key: string, value: string) => {

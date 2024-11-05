@@ -1,3 +1,1 @@
-describe('<CssBaseline />', () => {
-  it('To do', () => {});
-});
+describe('<CssBaseline />', () => {});
