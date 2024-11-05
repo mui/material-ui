@@ -1,5 +1,29 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.1.7
+<!-- generated comparing v6.1.6..master -->
+_Nov 5, 2024_
+
+A big thanks to the 6 contributors who made this release possible.
+
+### Docs
+
+- Add hash to `key` to remove noise from console (#44289) @sai6855
+- Revise Example Projects and Related Projects pages (#44191) @samuelsycamore
+- [material-ui] Fix Sign-in/Sign-up templates layout (#44281) @zanivan
+- [material-ui] Remove noise in template (#44260) @oliviertassinari
+- [material-ui][TextField] Replace InputProps with slotProps.input in demo (#44288) @sai6855
+
+### Core
+
+- Fix tools-public.mui.com redirection (9196fa5) @oliviertassinari
+- Remove blank AlertTitle test file (#44282) @ZeeshanTamboli
+- [docs-infra] Add CodeSandbox and StackBlitz to vale vocab (6db477a) @oliviertassinari
+- [docs-infra] Fix correct spelling of VS Code (#44277) @oliviertassinari
+- [infra] Fix @renovate[bot] appearing in changelog (#44275) @mnajdova
+
+All contributors of this release in alphabetical order: @mnajdova, @oliviertassinari, @sai6855, @samuelsycamore, @zanivan, @ZeeshanTamboli
+
 ## 6.1.6
 
 <!-- generated comparing v6.1.5..master -->
