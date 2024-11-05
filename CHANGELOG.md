@@ -1,7 +1,9 @@
 # [Versions](https://mui.com/versions/)
 
 ## 6.1.7
+
 <!-- generated comparing v6.1.6..master -->
+
 _Nov 5, 2024_
 
 A big thanks to the 6 contributors who made this release possible.
