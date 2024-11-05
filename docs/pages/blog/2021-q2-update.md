@@ -120,7 +120,7 @@ The date picker is at the border between the core component and advanced compone
 
   <img loading="lazy" src="/static/blog/2021-q2-update/single-select.png" alt="" style="width: 481px; margin-bottom: 16px;" />
 
-  <p class="blog-description">the <a href="https://codesandbox.io/p/sandbox/material-demo-forked-iuyo5?file=/demo.js">codesandbox</a></p>
+  <p class="blog-description">the <a href="https://codesandbox.io/p/sandbox/material-demo-forked-iuyo5?file=/demo.js">CodeSandbox</a></p>
 
   and the **boolean** column type.
 

@@ -1926,7 +1926,7 @@ A big thanks to the 22 contributors who made this release possible. Here are som
 ### Core
 
 - [docs-infra] Improve the open diamond sponsor spot callout (#39332) @danilo-leal
-- [docs-infra] Fix Code Sandbox download issue (#39317) @ARJ2160
+- [docs-infra] Fix CodeSandbox download issue (#39317) @ARJ2160
 - [docs-infra] Remove overflow: hidden for demo gradient bg (#39225) @oliviertassinari
 
 All contributors of this release in alphabetical order: @3xp10it3r, @alexfauquette, @ARJ2160, @atharva3333, @axelbostrom, @Bestwebdesign, @brijeshb42, @chirag3003, @danilo-leal, @DarhkVoyd, @DiegoAndai, @gugudwt, @mbrookes, @michaldudak, @mj12albert, @mnajdova, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @ValkonX33, @ZeeshanTamboli
@@ -2420,7 +2420,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [docs][joy-ui] Updated the List playground demo (#38499) @zanivan
 - [docs][joy-ui] Changed bgcolor of the Playground demo (#38502) @zanivan
 - [docs][material-ui] Fix key warning in SimpleDialog demo (#38580) @ZeeshanTamboli
-- [docs][material-ui] Fixed Google Fonts link for material two-tone icons in CodeSandbox and Stackblitz (#38247) @ZeeshanTamboli
+- [docs][material-ui] Fixed Google Fonts link for material two-tone icons in CodeSandbox and StackBlitz (#38247) @ZeeshanTamboli
 - [docs][material-ui] Fix the Drawer's `onClose` API docs (#38273) @johnmatthiggins
 - [docs][material-ui] Improve nav link tab example (#38315) @oliviertassinari
 - [docs][material-ui] Fix missing import in the styled engine guide (#38450) @codersjj
@@ -3367,7 +3367,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 ### Core
 
 - [blog] Fix images using "MUI Base" instead of "Base UI" (#37044) @danilo-leal
-- [core] Add VSCode extensions recommendations (#37166) @michaldudak
+- [core] Add VS Code extensions recommendations (#37166) @michaldudak
 - [test] `e2e-website` related minor fixes (#37204) @ZeeshanTamboli
 
 All contributors of this release in alphabetical order: @akash191095, @DanailH, @danilo-leal, @DerTimonius, @gerdadesign, @hbjORbj, @kriskw1999, @michaldudak, @mnajdova, @oliviertassinari, @PunitSoniME, @romgrk, @sai6855, @ulrichstark, @uuxxx, @wewakekumar, @ZeeshanTamboli, @zignis
@@ -3886,7 +3886,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 - [docs] Add blog post notification for v6 release (#36446) @joserodolfofreitas
 - [docs] Update link to v5 docs (#36421) @m4theushw
 - [docs] Fix 404 in the API page links (#36419) @oliviertassinari
-- [docs][joy] Error in the exemplary Codesandbox of using Material UI and Joy UI together (#36462) @hbjORbj
+- [docs][joy] Error in the exemplary CodeSandbox of using Material UI and Joy UI together (#36462) @hbjORbj
 - [examples] Refactor to have better types in the Next.js + TypeScript examples (#36355) @erikian
 
 All contributors of this release in alphabetical order: @erikian, @hbjORbj, @HeVictor, @hrutik7, @joserodolfofreitas, @m4theushw, @michaldudak, @oliviertassinari, @oyar99, @rayrw, @sai6855, @siriwatknp, @skevprog
@@ -8226,7 +8226,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
 ### Core
 
-- [test] Allow debugging with Chrome and VSCode inspector (#29777) @eps1lon
+- [test] Allow debugging with Chrome and VS Code inspector (#29777) @eps1lon
 - [test] Use renderer clock instead of custom useFakeTimers call (#29778) @eps1lon
 - [test] Only mock Date in regression tests (#29763) @eps1lon
 - [test] Disable nightly integration tests on `next` branch (#29748) @eps1lon
@@ -9147,7 +9147,7 @@ A big thanks to the 26 contributors who made this release possible. Here are som
 - [docs] Consistent line break (#27728) @oliviertassinari
 - [docs] Don't dispatch ignored "reset code variant" actions (#27712) @eps1lon
 - [docs] Fix sentence to be more grammatically correct (#27733) @atorenherrinton
-- [examples] Add code sandbox config with node version (#27798) @qiweiii
+- [examples] Add CodeSandbox config with node version (#27798) @qiweiii
 - Revert "[examples] Fix nextjs with styled-components example (#27583)" (#27921) @mnajdova
 - Revert "[examples] Update create-react-app examples with styled-components to use package aliases (#27591)" (#27917) @mnajdova
 - [I10n] Add Khmer (kh-KH) locale support (#27915) @teachhay
@@ -11538,7 +11538,7 @@ A big thanks to the 26 contributors who made this release possible. Here are som
 - [docs] Remove under construction icons from DataGrid feature pages (#24946) @DanailH
 - [docs] Fix prefers-color-scheme switch (#24902) @oliviertassinari
 - [docs] Add yarn install step, safer @oliviertassinari
-- [examples] Fix code sandbox link GitHub branch (#24996) @kevbarns
+- [examples] Fix CodeSandbox link GitHub branch (#24996) @kevbarns
 
 ### Core
 
@@ -16186,7 +16186,7 @@ A big thanks to the 24 contributors who made this release possible.
 - [docs] Add post-update to examples so they run on CodeSandbox (#19605) @garethx
 - [docs] Fix typo in the Avatar docs (#19544) @UltimateForm
 - [docs] Improve entry points for issue repros (#19501) @eps1lon
-- [docs] Link a VSCode extension for working with Material UI (#19280) @jedwards1211
+- [docs] Link a VS Code extension for working with Material UI (#19280) @jedwards1211
 - [docs] Notification blog post @oliviertassinari
 - [docs] Refactor EnchancedTable demo (#19560) @ahmad-reza619
 - [docs] The error style rule is a pseudo-class (#19555) @TommyJackson85
@@ -27065,7 +27065,7 @@ _Apr 21, 2016_
 
 ### General
 
-- [.gitignore] Ignore `jsconfig.json` - VSCode config file (#4011)
+- [.gitignore] Ignore `jsconfig.json` - VS Code config file (#4011)
 - [Docs] Update usage docs with muiTheme instructions (#4034)
 - [Docs] Add beta installation details to the README (#4048)
 - [Examples] Update import statements (#3992)

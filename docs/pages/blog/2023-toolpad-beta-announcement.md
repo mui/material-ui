@@ -93,7 +93,7 @@ In this domain, there are two categories of products:
 Toolpad is solely focused on professional developers. As much as we are low-code, we are equally code-friendly. Providing the basic functionality that you expect from an open-source tool is non-negotiable for us—we will always prioritize your best interests over all else.
 With nearly a decade of experience building developer tools, we understand the long-term benefits of cultivating a close relationship with our community of users.
 
-Lastly, Toolpad is the only product that offers a drag-and-drop UI builder closely integrated with your favorite IDE, such as VSCode. It's the best of both worlds!
+Lastly, Toolpad is the only product that offers a drag-and-drop UI builder closely integrated with your favorite IDE, such as VS Code. It's the best of both worlds!
 
 ## How can I use Toolpad?
 
