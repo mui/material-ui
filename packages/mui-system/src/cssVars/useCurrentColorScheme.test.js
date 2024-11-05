@@ -45,7 +45,7 @@ describe('useCurrentColorScheme', () => {
     // clear the localstorage
     storage = {};
     // Create mocks of localStorage getItem and setItem functions
-    Object.defineProperty(global, 'localStorage', {
+    Object.defineProperty(globalThis, 'localStorage', {
       value: {
         getItem: spy((key) => storage[key]),
         setItem: spy((key, value) => {

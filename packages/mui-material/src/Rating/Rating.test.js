@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { stub, spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen, describeSkipIf } from '@mui/internal-test-utils';
 import Rating, { ratingClasses as classes } from '@mui/material/Rating';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
@@ -248,15 +248,7 @@ describe('<Rating />', () => {
     });
   });
 
-  describe('<form> integration', () => {
-    before(function beforeHook() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM has issues with form validation for certain elements.
-        // We could address them individually but that doesn't add much value if we already have a working environment.
-        this.skip();
-      }
-    });
-
+  describeSkipIf(/jsdom/.test(window.navigator.userAgent))('<form> integration', () => {
     [
       {
         ratingProps: { name: 'rating', defaultValue: 2 },

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, describeSkipIf } from '@mui/internal-test-utils';
 import { styled } from '@mui/material/styles';
 import Divider, { dividerClasses as classes } from '@mui/material/Divider';
 import describeConformance from '../../test/describeConformance';
@@ -85,39 +85,40 @@ describe('<Divider />', () => {
       });
     });
 
-    describe('custom border style', function test() {
-      before(function beforeHook() {
-        if (/jsdom/.test(window.navigator.userAgent)) {
-          this.skip();
-        }
-      });
+    describeSkipIf(/jsdom/.test(window.navigator.userAgent))(
+      'custom border style',
+      function test() {
+        const StyledDivider = styled(Divider)(() => ({
+          borderStyle: 'dashed',
+        }));
 
-      const StyledDivider = styled(Divider)(() => ({
-        borderStyle: 'dashed',
-      }));
+        it('should set the dashed border-left-style in before and after pseudo-elements when orientation is vertical', () => {
+          const { container } = render(
+            <StyledDivider orientation="vertical">content</StyledDivider>,
+          );
+          expect(
+            getComputedStyle(container.firstChild, '::before').getPropertyValue(
+              'border-left-style',
+            ),
+          ).to.equal('dashed');
+          expect(
+            getComputedStyle(container.firstChild, '::after').getPropertyValue('border-left-style'),
+          ).to.equal('dashed');
+        });
 
-      it('should set the dashed border-left-style in before and after pseudo-elements when orientation is vertical', () => {
-        const { container } = render(<StyledDivider orientation="vertical">content</StyledDivider>);
-        expect(
-          getComputedStyle(container.firstChild, '::before').getPropertyValue('border-left-style'),
-        ).to.equal('dashed');
-        expect(
-          getComputedStyle(container.firstChild, '::after').getPropertyValue('border-left-style'),
-        ).to.equal('dashed');
-      });
-
-      it('should set the dashed border-top-style in before and after pseudo-elements when orientation is horizontal', () => {
-        const { container } = render(
-          <StyledDivider orientation="horizontal">content</StyledDivider>,
-        );
-        expect(
-          getComputedStyle(container.firstChild, '::before').getPropertyValue('border-top-style'),
-        ).to.equal('dashed');
-        expect(
-          getComputedStyle(container.firstChild, '::after').getPropertyValue('border-top-style'),
-        ).to.equal('dashed');
-      });
-    });
+        it('should set the dashed border-top-style in before and after pseudo-elements when orientation is horizontal', () => {
+          const { container } = render(
+            <StyledDivider orientation="horizontal">content</StyledDivider>,
+          );
+          expect(
+            getComputedStyle(container.firstChild, '::before').getPropertyValue('border-top-style'),
+          ).to.equal('dashed');
+          expect(
+            getComputedStyle(container.firstChild, '::after').getPropertyValue('border-top-style'),
+          ).to.equal('dashed');
+        });
+      },
+    );
   });
 
   describe('prop: variant', () => {

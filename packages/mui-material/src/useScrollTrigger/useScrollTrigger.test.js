@@ -1,7 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { act, createRenderer, RenderCounter, screen } from '@mui/internal-test-utils';
+import {
+  act,
+  createRenderer,
+  RenderCounter,
+  screen,
+  describeSkipIf,
+} from '@mui/internal-test-utils';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
@@ -48,7 +54,7 @@ describe('useScrollTrigger', () => {
     });
   });
 
-  describe('scroll', () => {
+  describeSkipIf(!/jsdom/.test(window.navigator.userAgent))('scroll', () => {
     const triggerRef = React.createRef();
     const containerRef = React.createRef(); // Get the scroll container's parent
     const getContainer = () => containerRef.current.children[0]; // Get the scroll container
@@ -74,13 +80,6 @@ describe('useScrollTrigger', () => {
     Test.propTypes = {
       customContainer: PropTypes.bool,
     };
-
-    before(function beforeHook() {
-      // Only run the test on node.
-      if (!/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-    });
 
     function dispatchScroll(offset, element = window) {
       act(() => {
