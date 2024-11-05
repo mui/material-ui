@@ -18,6 +18,10 @@ import { Grid as GridF } from '@mui/joy';
 <GridA />;
 <GridA />;
 
+<GridA />;
+<GridA />;
+<GridA />;
+
 // Transforms responsive sizes
 <GridA
   size={{
