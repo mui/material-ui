@@ -1080,8 +1080,8 @@ importers:
         specifier: ^18.2.0
         version: 18.3.1(react@18.3.1)
       sinon:
-        specifier: ^18.0.1
-        version: 18.0.1
+        specifier: ^19.0.2
+        version: 19.0.2
     devDependencies:
       '@types/chai':
         specifier: ^4.3.20
@@ -1190,8 +1190,8 @@ importers:
         specifier: ^4.5.0
         version: 4.5.0
       sinon:
-        specifier: ^18.0.1
-        version: 18.0.1
+        specifier: ^19.0.2
+        version: 19.0.2
 
   packages/api-docs-builder-core:
     dependencies:
@@ -1224,8 +1224,8 @@ importers:
         specifier: ^4.5.0
         version: 4.5.0
       sinon:
-        specifier: ^18.0.1
-        version: 18.0.1
+        specifier: ^19.0.2
+        version: 19.0.2
       typescript:
         specifier: ^5.6.3
         version: 5.6.3
@@ -1349,8 +1349,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       sinon:
-        specifier: ^18.0.1
-        version: 18.0.1
+        specifier: ^19.0.2
+        version: 19.0.2
     publishDirectory: build
 
   packages/mui-codemod:
@@ -1629,8 +1629,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       sinon:
-        specifier: ^18.0.1
-        version: 18.0.1
+        specifier: ^19.0.2
+        version: 19.0.2
     publishDirectory: build
 
   packages/mui-lab:
@@ -1697,8 +1697,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       sinon:
-        specifier: ^18.0.1
-        version: 18.0.1
+        specifier: ^19.0.2
+        version: 19.0.2
     publishDirectory: build
 
   packages/mui-material:
@@ -1801,8 +1801,8 @@ importers:
         specifier: ^6.27.0
         version: 6.27.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       sinon:
-        specifier: ^18.0.1
-        version: 18.0.1
+        specifier: ^19.0.2
+        version: 19.0.2
     publishDirectory: build
 
   packages/mui-material-nextjs:
@@ -2043,8 +2043,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       sinon:
-        specifier: ^18.0.1
-        version: 18.0.1
+        specifier: ^19.0.2
+        version: 19.0.2
     publishDirectory: build
 
   packages/mui-system:
@@ -2111,8 +2111,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1
       sinon:
-        specifier: ^18.0.1
-        version: 18.0.1
+        specifier: ^19.0.2
+        version: 19.0.2
       styled-components:
         specifier: ^6.1.13
         version: 6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -2183,8 +2183,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       sinon:
-        specifier: ^18.0.1
-        version: 18.0.1
+        specifier: ^19.0.2
+        version: 19.0.2
     publishDirectory: build
 
   packages/netlify-plugin-cache-docs:
@@ -2338,8 +2338,8 @@ importers:
         specifier: ^6.27.0
         version: 6.27.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       sinon:
-        specifier: ^18.0.1
-        version: 18.0.1
+        specifier: ^19.0.2
+        version: 19.0.2
       styled-components:
         specifier: ^6.1.13
         version: 6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -5194,23 +5194,17 @@ packages:
     resolution: {integrity: sha512-tlqY9xq5ukxTUZBmoOp+m61cqwQD5pHJtFY3Mn8CA8ps6yghLH/Hw8UPdqg4OLmFW3IFlcXnQNmo/dh8HzXYIQ==}
     engines: {node: '>=18'}
 
-  '@sinonjs/commons@2.0.0':
-    resolution: {integrity: sha512-uLa0j859mMrg2slwQYdO/AkrOfmH+X6LTVmNTS9CqexuE2IvVORIkSpJLqePAbEnKJ77aMmCwr1NUZ57120Xcg==}
-
   '@sinonjs/commons@3.0.1':
     resolution: {integrity: sha512-K3mCHKQ9sVh8o1C9cxkwxaOmXoAMlDxC1mYyHrjqOWEcBjYr76t96zL2zlj5dUGZ3HSw240X1qgH3Mjf1yJWpQ==}
 
   '@sinonjs/fake-timers@10.3.0':
     resolution: {integrity: sha512-V4BG07kuYSUkTCSBHG8G8TNhM+F19jXFWnQtzj+we8DrkpSBCee9Z3Ms8yiGer/dlmhe35/Xdgyo3/0rQKg7YA==}
 
-  '@sinonjs/fake-timers@11.2.2':
-    resolution: {integrity: sha512-G2piCSxQ7oWOxwGSAyFHfPIsyeJGXYtc6mFbnFA+kRXkiEnTl8c/8jul2S329iFBnDI9HGoeWWAZvuvOkZccgw==}
-
   '@sinonjs/fake-timers@13.0.2':
     resolution: {integrity: sha512-4Bb+oqXZTSTZ1q27Izly9lv8B9dlV61CROxPiVtywwzv5SnytJqhvYe6FclHYuXml4cd1VHPo1zd5PmTeJozvA==}
 
-  '@sinonjs/samsam@8.0.0':
-    resolution: {integrity: sha512-Bp8KUVlLp8ibJZrnvq2foVhP0IVX2CIprMJPK0vqGqgrDa0OHVKeZyBykqskkrdxV6yKBPmGasO8LVjAKR3Gew==}
+  '@sinonjs/samsam@8.0.2':
+    resolution: {integrity: sha512-v46t/fwnhejRSFTGqbpn9u+LQ9xJDse10gNnPgAcxgdoCDMXj/G2asWAC/8Qs+BAZDicX+MNZouXT1A7c83kVw==}
 
   '@sinonjs/text-encoding@0.7.3':
     resolution: {integrity: sha512-DE427ROAphMQzU4ENbliGYrBSYPXF+TtLg9S8vzeA+OF4ZKzoDdzfL8sxuMUGS/lgRhM6j1URSk9ghf7Xo1tyA==}
@@ -7285,6 +7279,10 @@ packages:
 
   diff@5.2.0:
     resolution: {integrity: sha512-uIFDxqpRZGZ6ThOk84hEfqWoHx2devRFvpTZcTHur85vImfaxUbTW9Ryh4CpCuDnToOP1CEtXKIgytHBPVff5A==}
+    engines: {node: '>=0.3.1'}
+
+  diff@7.0.0:
+    resolution: {integrity: sha512-PJWHUb1RFevKCwaFA9RlG5tCd+FO5iRh9A8HEtkmBH2Li03iJriB6m6JIN4rGz3K3JLawI7/veA1xzRKP6ISBw==}
     engines: {node: '>=0.3.1'}
 
   diffie-hellman@5.0.3:
@@ -11638,8 +11636,8 @@ packages:
   simple-swizzle@0.2.2:
     resolution: {integrity: sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==}
 
-  sinon@18.0.1:
-    resolution: {integrity: sha512-a2N2TDY1uGviajJ6r4D1CyRAkzE9NNVlYOV1wX5xQDuAk0ONgzgRl0EjCQuRCPxOwp13ghsMwt9Gdldujs39qw==}
+  sinon@19.0.2:
+    resolution: {integrity: sha512-euuToqM+PjO4UgXeLETsfQiuoyPXlqFezr6YZDFwHR3t4qaX0fZUe1MfPMznTL5f8BWrVS89KduLdMUsxFCO6g==}
 
   sirv@2.0.3:
     resolution: {integrity: sha512-O9jm9BsID1P+0HOi81VpXPoDxYP374pkOLzACAoyUQ/3OUVndNpsz6wMnY2z+yOxzbllCKZrM+9QrWsv4THnyA==}
@@ -16265,10 +16263,6 @@ snapshots:
 
   '@sindresorhus/merge-streams@4.0.0': {}
 
-  '@sinonjs/commons@2.0.0':
-    dependencies:
-      type-detect: 4.0.8
-
   '@sinonjs/commons@3.0.1':
     dependencies:
       type-detect: 4.0.8
@@ -16277,17 +16271,13 @@ snapshots:
     dependencies:
       '@sinonjs/commons': 3.0.1
 
-  '@sinonjs/fake-timers@11.2.2':
-    dependencies:
-      '@sinonjs/commons': 3.0.1
-
   '@sinonjs/fake-timers@13.0.2':
     dependencies:
       '@sinonjs/commons': 3.0.1
 
-  '@sinonjs/samsam@8.0.0':
+  '@sinonjs/samsam@8.0.2':
     dependencies:
-      '@sinonjs/commons': 2.0.0
+      '@sinonjs/commons': 3.0.1
       lodash.get: 4.4.2
       type-detect: 4.1.0
 
@@ -18782,6 +18772,8 @@ snapshots:
   diff-sequences@29.6.3: {}
 
   diff@5.2.0: {}
+
+  diff@7.0.0: {}
 
   diffie-hellman@5.0.3:
     dependencies:
@@ -24345,12 +24337,12 @@ snapshots:
     dependencies:
       is-arrayish: 0.3.2
 
-  sinon@18.0.1:
+  sinon@19.0.2:
     dependencies:
       '@sinonjs/commons': 3.0.1
-      '@sinonjs/fake-timers': 11.2.2
-      '@sinonjs/samsam': 8.0.0
-      diff: 5.2.0
+      '@sinonjs/fake-timers': 13.0.2
+      '@sinonjs/samsam': 8.0.2
+      diff: 7.0.0
       nise: 6.1.1
       supports-color: 7.2.0
 
