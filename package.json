@@ -100,7 +100,7 @@
   "dependencies": {
     "@googleapis/sheets": "^9.3.1",
     "@netlify/functions": "^2.8.2",
-    "@slack/bolt": "^3.22.0",
+    "@slack/bolt": "^4.1.0",
     "execa": "^9.5.1",
     "google-auth-library": "^9.14.2"
   },
@@ -177,7 +177,7 @@
     "lerna": "^8.1.9",
     "lodash": "^4.17.21",
     "markdownlint-cli2": "^0.14.0",
-    "mocha": "^10.7.3",
+    "mocha": "^10.8.2",
     "nx": "^19.8.9",
     "nyc": "^17.1.0",
     "piscina": "^4.7.0",
@@ -192,7 +192,7 @@
     "terser-webpack-plugin": "^5.3.10",
     "tsx": "^4.19.2",
     "typescript": "^5.6.3",
-    "webpack": "^5.95.0",
+    "webpack": "^5.96.1",
     "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^5.1.4",
     "yargs": "^17.7.2"
