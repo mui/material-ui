@@ -581,6 +581,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       {loadingIndicator}
     </ButtonLoadingIndicator>
   );
+
   const positionClassName = buttonGroupButtonContextPositionClassName || '';
 
   return (
