@@ -599,8 +599,8 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     >
       {startIcon}
       {loading && loadingPosition === 'start' && loader}
-      {children}
       {loading && loadingPosition === 'center' && loader}
+      {children}
       {loading && loadingPosition === 'end' && loader}
       {endIcon}
     </ButtonRoot>
