@@ -594,7 +594,7 @@ Having a separate lab package allows us to release breaking changes when necessa
 
 The following components are now available in the lab:
 
-- [LoadingButton](/material-ui/react-button/#loading-button). It does what you would expect. It renders the `Button` with a configurable loading/pending state.
+- [LoadingButton](https://v5.mui.com/material-ui/react-button/#loading-button). It does what you would expect. It renders the `Button` with a configurable loading/pending state.
 - [FocusTrap](/base-ui/react-focus-trap/). This component traps the keyboard focus within a DOM node. For example, it's used by the Modal to prevent tabbing out of the component for accessibility reasons.
 - [Masonry](/material-ui/react-masonry/). One great use case for this component is when using the `Grid` component leads to wasted space. It's frequently used in dashboards.
 
