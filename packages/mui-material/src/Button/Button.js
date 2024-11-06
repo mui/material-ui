@@ -430,13 +430,7 @@ const ButtonEndIcon = styled('span', {
 const ButtonLoadingIndicator = styled('span', {
   name: 'MuiButton',
   slot: 'LoadingIndicator',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-    return [
-      styles.loadingIndicator,
-      styles[`loadingIndicator${capitalize(ownerState.loadingPosition)}`],
-    ];
-  },
+  overridesResolver: (props, styles) => styles.loadingIndicator,
 })(({ theme }) => ({
   position: 'absolute',
   visibility: 'visible',
@@ -519,18 +513,6 @@ const ButtonLoadingIndicator = styled('span', {
   ],
 }));
 
-const ButtonLoadingLabel = styled('span', {
-  name: 'MuiButton',
-  slot: 'Label',
-  overridesResolver: (props, styles) => {
-    return [styles.label];
-  },
-})({
-  display: 'inherit',
-  alignItems: 'inherit',
-  justifyContent: 'inherit',
-});
-
 const Button = React.forwardRef(function Button(inProps, ref) {
   // props priority: `inProps` > `contextProps` > `themeDefaultProps`
   const contextProps = React.useContext(ButtonGroupContext);
@@ -582,12 +564,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const buttonLoadingIndicator = (
-    <ButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
-      {loadingIndicator}
-    </ButtonLoadingIndicator>
-  );
-
   const startIcon = startIconProp && (
     <ButtonStartIcon className={classes.startIcon} ownerState={ownerState}>
       {startIconProp}
@@ -600,6 +576,11 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     </ButtonEndIcon>
   );
 
+  const loader = (
+    <ButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
+      {loadingIndicator}
+    </ButtonLoadingIndicator>
+  );
   const positionClassName = buttonGroupButtonContextPositionClassName || '';
 
   return (
@@ -617,18 +598,10 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       classes={classes}
     >
       {startIcon}
-      {loading &&
-      (ownerState.loadingPosition === 'start' || ownerState.loadingPosition === 'center')
-        ? buttonLoadingIndicator
-        : null}
-      {loading ? (
-        <ButtonLoadingLabel className={classes.label} ownerState={ownerState}>
-          {children}
-        </ButtonLoadingLabel>
-      ) : (
-        children
-      )}
-      {loading && ownerState.loadingPosition === 'end' ? buttonLoadingIndicator : null}
+      {loading && loadingPosition === 'start' && loader}
+      {children}
+      {loading && loadingPosition === 'center' && loader}
+      {loading && loadingPosition === 'end' && loader}
       {endIcon}
     </ButtonRoot>
   );
