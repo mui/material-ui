@@ -121,29 +121,31 @@ export function PlanPrice(props: PlanPriceProps) {
     );
   }
 
-  const monthlyDisplay = annual;
-
-  const priceUnit = monthlyDisplay ? '/ month / dev' : '/ dev';
+  const priceUnit = annual ? '/ year / dev' : '/ dev';
   const getPriceExplanation = (displayedValue: number) => {
-    if (!annual) {
-      return `$${displayedValue}/dev billed once.`;
+    if (annual) {
+      return `Eq. to $${displayedValue}/month/dev.`;
     }
-    return monthlyDisplay
-      ? `Billed annually at $${displayedValue}/dev.`
-      : `$${displayedValue}/dev/month billed annualy.`;
+  };
+  const getBillingExplanation = () => {
+    if (!annual) {
+      return `One-time payment`;
+    }
+    return `Annual billing`;
   };
 
   if (plan === 'pro') {
-    const monthlyValue = annual ? 15 : 15 * 3;
-    const annualValue = monthlyValue * 12;
+    const annualValue = 180;
+    const perpetualValue = annualValue * 3;
+    const monthlyValueForAnnual = annualValue / 12;
 
-    const mainDisplayValue = monthlyDisplay ? monthlyValue : annualValue;
-    const priceExplanation = getPriceExplanation(monthlyDisplay ? annualValue : monthlyValue);
+    const mainDisplayValue = annual ? annualValue : perpetualValue;
+    const priceExplanation = getPriceExplanation(annual ? monthlyValueForAnnual : perpetualValue);
 
     return (
       <React.Fragment>
         <LicenseModelSwitch />
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 0 }}>
           <Typography
             variant="h3"
             component="div"
@@ -161,28 +163,43 @@ export function PlanPrice(props: PlanPriceProps) {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            gap: 2,
             mb: 2,
             minHeight: planPriceMinHeight,
           }}
         >
-          {(annual || monthlyDisplay) && (
-            <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
+          {
+            <Typography
+              variant="body2"
+              sx={{ color: 'text.secondary', textAlign: 'center', fontSize: '0.8125rem' }}
+            >
               {priceExplanation}
             </Typography>
-          )}
+          }
+        </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            minHeight: planPriceMinHeight,
+          }}
+        >
+          <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
+            {getBillingExplanation()}
+          </Typography>
         </Box>
       </React.Fragment>
     );
   }
 
   if (plan === 'premium') {
-    const premiumMonthlyValue = annual ? 49 : 49 * 3;
-    const premiumAnnualValue = premiumMonthlyValue * 12;
+    const premiumAnnualValue = 588;
+    const premiumPerpetualValue = premiumAnnualValue * 3;
+    const premiumMonthlyValueForAnnual = premiumAnnualValue / 12;
 
-    const premiumDisplayedValue = monthlyDisplay ? premiumMonthlyValue : premiumAnnualValue;
+    const premiumDisplayedValue = annual ? premiumAnnualValue : premiumPerpetualValue;
     const priceExplanation = getPriceExplanation(
-      monthlyDisplay ? premiumAnnualValue : premiumMonthlyValue,
+      annual ? premiumMonthlyValueForAnnual : premiumPerpetualValue,
     );
 
     return (
@@ -194,10 +211,9 @@ export function PlanPrice(props: PlanPriceProps) {
             alignItems: 'center',
             justifyContent: 'center',
             mt: 1,
-            mb: 4,
+            mb: 0,
           }}
         >
-          <Box sx={{ width: 10 }} />
           <Typography
             variant="h3"
             component="div"
@@ -215,16 +231,30 @@ export function PlanPrice(props: PlanPriceProps) {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            gap: 2,
             mb: 2,
             minHeight: planPriceMinHeight,
           }}
         >
-          {(annual || monthlyDisplay) && (
-            <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
+          {
+            <Typography
+              variant="body2"
+              sx={{ color: 'text.secondary', textAlign: 'center', fontSize: '0.8125rem' }}
+            >
               {priceExplanation}
             </Typography>
-          )}
+          }
+        </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            minHeight: planPriceMinHeight,
+          }}
+        >
+          <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
+            {getBillingExplanation()}
+          </Typography>
         </Box>
       </React.Fragment>
     );
@@ -427,7 +457,7 @@ function RowHead({
       sx={[
         {
           justifyContent: 'flex-start',
-          borderRadius: 1,
+          borderRadius: '12px 0 0 12px',
           p: 1,
           transition: 'none',
           typography: 'body2',
@@ -677,7 +707,12 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'core-support': (
     <ColumnHead
       {...{
-        label: 'Technical support for MUI Core',
+        label: (
+          <React.Fragment>
+            Technical support for <Box component="span" sx={{ display: ['none', 'block'] }} />
+            MUI Core
+          </React.Fragment>
+        ),
         tooltip:
           'Support for MUI Core (for example Material UI) is provided by the community. MUI Core maintainers focus on solving root issues to support the community at large.',
       }}
@@ -686,7 +721,12 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'x-support': (
     <ColumnHead
       {...{
-        label: 'Technical support for MUI X',
+        label: (
+          <React.Fragment>
+            Technical support for <Box component="span" sx={{ display: ['none', 'block'] }} />
+            MUI X
+          </React.Fragment>
+        ),
         tooltip:
           'You can ask for technical support, report bugs and submit unlimited feature requests to the advanced components. We take your subscription plan as one of the prioritization criteria.',
       }}
@@ -716,7 +756,10 @@ const rowHeaders: Record<string, React.ReactNode> = {
   ),
   'response-time': (
     <ColumnHead
-      {...{ label: 'Guaranteed response time', tooltip: 'Maximum lead time for each response.' }}
+      {...{
+        label: 'Guaranteed response time',
+        tooltip: 'Maximum lead time for each response, only working days are counted.',
+      }}
     />
   ),
   'pre-screening': (
@@ -967,19 +1010,7 @@ const proData: Record<string, React.ReactNode> = {
   // Support
   'core-support': <Info value="Community" />,
   'x-support': <Info value={yes} metadata="Priority over Community" />,
-  'priority-support': (
-    <Info
-      value={
-        <Link
-          href="https://mui.com/store/items/mui-x-pro-perpetual/"
-          underline="always"
-          variant="body2"
-        >
-          {'Add-on'}
-        </Link>
-      }
-    />
-  ),
+  'priority-support': no,
   'tech-advisory': no,
   'support-duration': <Info value="1 year" />,
   'response-time': no,
@@ -1094,6 +1125,7 @@ const premiumData: Record<string, React.ReactNode> = {
           {'Add-on'}
         </Link>
       }
+      metadata={<React.Fragment>available at $399/year/dev</React.Fragment>}
     />
   ),
   'tech-advisory': pending,
@@ -1493,7 +1525,7 @@ export default function PricingTable({
   const renderNestedRow = (key: string) => renderMasterRow(key, nestedGridSx, plans);
 
   return (
-    <Box ref={tableRef} {...props} sx={{ pt: 8, ...props.sx }}>
+    <Box ref={tableRef} {...props} sx={{ pt: 8, width: '100%', ...props.sx }}>
       <StickyHead container={tableRef} disableCalculation={columnHeaderHidden} />
       {!columnHeaderHidden && (
         <Box sx={gridSx}>
@@ -1897,9 +1929,9 @@ export default function PricingTable({
       {divider}
       {renderRow('x-support')}
       {divider}
-      {renderRow('priority-support')}
-      {divider}
       {renderRow('support-duration')}
+      {divider}
+      {renderRow('priority-support')}
       {divider}
       {renderRow('response-time')}
       {divider}
