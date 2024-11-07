@@ -315,7 +315,7 @@ const ButtonRoot = styled(ButtonBase, {
           style: { width: '100%' },
         },
         {
-          props: { fullWidth: true, loading: true, loadingPosition: 'start' },
+          props: { fullWidth: true, loading: true, loadingPosition: 'end' },
           style: { flexDirection: 'row-reverse' },
         },
         {
@@ -583,7 +583,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const loader = (
     <ButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
-      {loadingIndicator}
+      {loading && loadingIndicator}
     </ButtonLoadingIndicator>
   );
 
@@ -604,8 +604,8 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       classes={classes}
     >
       {startIcon}
-      {children}
       {loader}
+      {children}
       {endIcon}
     </ButtonRoot>
   );
