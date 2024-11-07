@@ -315,10 +315,6 @@ const ButtonRoot = styled(ButtonBase, {
           style: { width: '100%' },
         },
         {
-          props: { fullWidth: true, loading: true, loadingPosition: 'end' },
-          style: { flexDirection: 'row-reverse' },
-        },
-        {
           props: {
             loadingPosition: 'center',
           },
@@ -372,12 +368,8 @@ const ButtonStartIcon = styled('span', {
       },
     },
     {
-      props: ({ ownerState }) => ownerState.loadingPosition === 'start' && ownerState.fullWidth,
+      props: { loadingPosition: 'start', loading: true, fullWidth: true },
       style: {
-        transition: theme.transitions.create(['opacity'], {
-          duration: theme.transitions.duration.short,
-        }),
-        opacity: 0,
         marginRight: -8,
       },
     },
@@ -418,13 +410,10 @@ const ButtonEndIcon = styled('span', {
       },
     },
     {
-      props: ({ ownerState }) => ownerState.loadingPosition === 'end' && ownerState.fullWidth,
+      props: { loadingPosition: 'end', loading: true, fullWidth: true },
       style: {
-        transition: theme.transitions.create(['opacity'], {
-          duration: theme.transitions.duration.short,
-        }),
-        opacity: 0,
         marginLeft: -8,
+        order: 2,
       },
     },
     ...commonIconStyles,
@@ -451,8 +440,7 @@ const ButtonLoadingIndicator = styled('span', {
       },
     },
     {
-      props: ({ loadingPosition, ownerState }) =>
-        loadingPosition === 'start' && ownerState.size !== 'small',
+      props: ({ loadingPosition, size }) => loadingPosition === 'start' && size !== 'small',
       style: {
         left: 14,
       },
@@ -486,8 +474,7 @@ const ButtonLoadingIndicator = styled('span', {
       },
     },
     {
-      props: ({ loadingPosition, ownerState }) =>
-        loadingPosition === 'end' && ownerState.size !== 'small',
+      props: ({ loadingPosition, size }) => loadingPosition === 'end' && size !== 'small',
       style: {
         right: 14,
       },
@@ -502,17 +489,18 @@ const ButtonLoadingIndicator = styled('span', {
       },
     },
     {
-      props: ({ ownerState }) => ownerState.loadingPosition === 'start' && ownerState.fullWidth,
+      props: { loadingPosition: 'start', fullWidth: true },
       style: {
         position: 'relative',
         left: -10,
       },
     },
     {
-      props: ({ ownerState }) => ownerState.loadingPosition === 'end' && ownerState.fullWidth,
+      props: { loadingPosition: 'end', fullWidth: true },
       style: {
         position: 'relative',
         right: -10,
+        order: 1,
       },
     },
   ],
