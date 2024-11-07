@@ -20,6 +20,7 @@ import BusinessIcon from '@mui/icons-material/Business';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 
 const planInfo = {
   community: {
@@ -262,7 +263,11 @@ export function PlanPrice(props: PlanPriceProps) {
         <FormGroup>
           <FormControlLabel
             control={<Switch defaultChecked />}
-            label="Include Priority support"
+            label={
+              <Typography variant="body1" sx={{ color: 'text.secondary', textAlign: 'center' }}>
+                Add Priority support
+              </Typography>
+            }
             sx={{ mr: 0 }}
             labelPlacement="bottom"
           />
@@ -1946,7 +1951,9 @@ export default function PricingTable({
       <PricingTableDevelopment renderRow={renderRow} />
       {divider}
       {renderRow('mui-x-updates')}
-      <RowHead>Support</RowHead>
+      <RowHead startIcon={<SupportAgentIcon color="primary" width={28} height={28} />}>
+        Support
+      </RowHead>
       {renderRow('core-support')}
       {divider}
       {renderRow('x-support')}
