@@ -17,6 +17,9 @@ import IconImage from 'docs/src/components/icon/IconImage';
 import LicenseModelSwitch from 'docs/src/components/pricing/LicenseModelSwitch';
 import { useLicenseModel } from 'docs/src/components/pricing/LicenseModelContext';
 import BusinessIcon from '@mui/icons-material/Business';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
 
 const planInfo = {
   community: {
@@ -124,14 +127,14 @@ export function PlanPrice(props: PlanPriceProps) {
   const priceUnit = annual ? '/ year / dev' : '/ dev';
   const getPriceExplanation = (displayedValue: number) => {
     if (annual) {
-      return `Eq. to $${displayedValue}/month/dev.`;
+      return `Eq. to $${displayedValue} / month / dev`;
     }
   };
   const getBillingExplanation = () => {
     if (!annual) {
       return `One-time payment`;
     }
-    return `Annual billing`;
+    return `Billed annually`;
   };
 
   if (plan === 'pro') {
@@ -163,7 +166,19 @@ export function PlanPrice(props: PlanPriceProps) {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            mb: 2,
+            minHeight: planPriceMinHeight,
+          }}
+        >
+          <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
+            {getBillingExplanation()}
+          </Typography>
+        </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            mb: 3,
             minHeight: planPriceMinHeight,
           }}
         >
@@ -175,18 +190,6 @@ export function PlanPrice(props: PlanPriceProps) {
               {priceExplanation}
             </Typography>
           }
-        </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            minHeight: planPriceMinHeight,
-          }}
-        >
-          <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
-            {getBillingExplanation()}
-          </Typography>
         </Box>
       </React.Fragment>
     );
@@ -231,7 +234,19 @@ export function PlanPrice(props: PlanPriceProps) {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            mb: 2,
+            minHeight: planPriceMinHeight,
+          }}
+        >
+          <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
+            {getBillingExplanation()}
+          </Typography>
+        </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            mb: 3,
             minHeight: planPriceMinHeight,
           }}
         >
@@ -244,18 +259,14 @@ export function PlanPrice(props: PlanPriceProps) {
             </Typography>
           }
         </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            minHeight: planPriceMinHeight,
-          }}
-        >
-          <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
-            {getBillingExplanation()}
-          </Typography>
-        </Box>
+        <FormGroup>
+          <FormControlLabel
+            control={<Switch defaultChecked />}
+            label="Include Priority support"
+            sx={{ mr: 0 }}
+            labelPlacement="bottom"
+          />
+        </FormGroup>
       </React.Fragment>
     );
   }
@@ -269,15 +280,24 @@ export function PlanPrice(props: PlanPriceProps) {
           alignItems: 'center',
           flexDirection: 'column',
           justifyContent: 'center',
-          mt: 5,
-          mb: 4,
+          mt: 3,
+          mb: 1,
         }}
       >
-        <BusinessIcon sx={{ fontSize: 60, color: 'text.tertiary' }} />
+        <BusinessIcon sx={{ fontSize: 65, color: 'text.tertiary' }} />
       </Box>
       <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
         Custom pricing
       </Typography>
+      <Box
+        sx={{
+          mt: 9,
+        }}
+      >
+        <Typography variant="body1" sx={{ color: 'text.secondary', textAlign: 'center' }}>
+          + Priority support included
+        </Typography>
+      </Box>
     </React.Fragment>
   );
 }
@@ -735,8 +755,8 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'priority-support': (
     <ColumnHead
       {...{
-        label: 'Priority support',
-        tooltip: 'SLA & Priority Support with 4 hours pre-screening and 24 hours response time.',
+        label: 'Available as add-on',
+        tooltip: 'Option to buy priority support as an add-on.',
       }}
     />
   ),
@@ -1115,22 +1135,16 @@ const premiumData: Record<string, React.ReactNode> = {
   'core-support': <Info value="Community" />,
   'x-support': <Info value={yes} metadata="Priority over Pro" />,
   'priority-support': (
-    <Info
-      value={
-        <Link
-          href="https://mui.com/store/items/mui-x-pro-perpetual/"
-          variant="body2"
-          underline="always"
-        >
-          {'Add-on'}
-        </Link>
-      }
-      metadata={<React.Fragment>available at $399/year/dev</React.Fragment>}
-    />
+    <Info value={yes} metadata={<React.Fragment>Available at $399/year/dev</React.Fragment>} />
   ),
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
-  'response-time': <Info value={yes} metadata={<React.Fragment>72 hours</React.Fragment>} />,
+  'response-time': (
+    <Info
+      value="72 hours"
+      metadata={<React.Fragment>24 hours (with priority support)</React.Fragment>}
+    />
+  ),
   'pre-screening': no,
   'issue-escalation': no,
   'security-questionnaire': <Info value="Available from 4+ devs" />,
@@ -1231,7 +1245,7 @@ const enterpriseData: Record<string, React.ReactNode> = {
   // Support
   'core-support': yes,
   'x-support': <Info value={yes} metadata="Priority over Premium" />,
-  'priority-support': yes,
+  'priority-support': <Info value="Included" />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
   'response-time': <Info value={yes} metadata={<React.Fragment>24 hours</React.Fragment>} />,
@@ -1475,12 +1489,14 @@ export default function PricingTable({
   const [dataGridCollapsed, setDataGridCollapsed] = React.useState(false);
   const [chartsCollapsed, setChartsCollapsed] = React.useState(false);
   const [treeViewCollapsed, setTreeViewCollapsed] = React.useState(false);
+  const [prioritySupportCollapsed, setPrioritySupportCollapsed] = React.useState(false);
 
   React.useEffect(() => {
     if (router.query['expand-path'] === 'all') {
       setDataGridCollapsed(true);
       setChartsCollapsed(true);
       setTreeViewCollapsed(true);
+      setPrioritySupportCollapsed(true);
     }
   }, [router.query]);
 
@@ -1518,6 +1534,12 @@ export default function PricingTable({
     <UnfoldMoreRounded
       fontSize="small"
       sx={{ color: 'grey.600', opacity: treeViewCollapsed ? 0 : 1 }}
+    />
+  );
+  const prioritySupportUnfoldMore = (
+    <UnfoldMoreRounded
+      fontSize="small"
+      sx={{ color: 'grey.600', opacity: prioritySupportCollapsed ? 0 : 1 }}
     />
   );
 
@@ -1931,13 +1953,76 @@ export default function PricingTable({
       {divider}
       {renderRow('support-duration')}
       {divider}
-      {renderRow('priority-support')}
-      {divider}
-      {renderRow('response-time')}
-      {divider}
-      {renderRow('pre-screening')}
-      {divider}
-      {renderRow('issue-escalation')}
+      <Box
+        sx={{
+          position: 'relative',
+          minHeight: 58,
+          '& svg': { transition: '0.3s' },
+          '&:hover svg': { color: 'primary.main' },
+          ...gridSx,
+        }}
+      >
+        <Cell />
+        <Cell sx={{ minHeight: 60 }}>{prioritySupportUnfoldMore}</Cell>
+        <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+          {prioritySupportUnfoldMore}
+        </Cell>
+        <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+          {prioritySupportUnfoldMore}
+        </Cell>
+        <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+          {prioritySupportUnfoldMore}
+        </Cell>
+        <Button
+          fullWidth
+          onClick={() => setPrioritySupportCollapsed((bool) => !bool)}
+          endIcon={
+            <KeyboardArrowRightRounded
+              color="primary"
+              sx={{ transform: prioritySupportCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)' }}
+            />
+          }
+          sx={[
+            (theme) => ({
+              px: 1,
+              justifyContent: 'flex-start',
+              fontSize: '0.875rem',
+              fontWeight: 'medium',
+              borderRadius: '0px',
+              position: 'absolute',
+              left: 0,
+              top: 0,
+              width: '100%',
+              height: '100%',
+              '&:hover': {
+                bgcolor: alpha(theme.palette.primary.main, 0.06),
+                '@media (hover: none)': {
+                  bgcolor: 'initial',
+                },
+              },
+            }),
+            (theme) =>
+              theme.applyDarkStyles({
+                '&:hover': {
+                  bgcolor: alpha(theme.palette.primary.main, 0.06),
+                },
+              }),
+          ]}
+        >
+          Priority Support
+        </Button>
+      </Box>
+      <StyledCollapse in={prioritySupportCollapsed} timeout={700}>
+        {divider}
+        {renderRow('priority-support')}
+        {divider}
+        {renderRow('response-time')}
+        {divider}
+        {renderRow('pre-screening')}
+        {divider}
+        {renderRow('issue-escalation')}
+        {divider}
+      </StyledCollapse>
       {divider}
       {renderRow('security-questionnaire')}
       {divider}
