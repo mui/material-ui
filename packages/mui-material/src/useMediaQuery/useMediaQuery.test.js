@@ -11,7 +11,7 @@ import mediaQuery from 'css-mediaquery';
 import { expect } from 'chai';
 import { stub } from 'sinon';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { THEME_ID, ThemeProvider } from '@mui/material/styles';
+import { THEME_ID, ThemeProvider, createTheme } from '@mui/material/styles';
 
 const usesUseSyncExternalStore = React.useSyncExternalStore !== undefined;
 const matchMediaInstances = new Map();
@@ -362,7 +362,9 @@ describe('useMediaQuery', () => {
         return (
           <ThemeProvider
             theme={{
-              [THEME_ID]: { components: { MuiUseMediaQuery: { defaultProps: { ssrMatchMedia } } } },
+              [THEME_ID]: createTheme({
+                components: { MuiUseMediaQuery: { defaultProps: { ssrMatchMedia } } },
+              }),
             }}
           >
             <MyComponent />
