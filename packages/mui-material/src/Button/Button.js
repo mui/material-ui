@@ -315,6 +315,10 @@ const ButtonRoot = styled(ButtonBase, {
           style: { width: '100%' },
         },
         {
+          props: { fullWidth: true, loading: true, loadingPosition: 'start' },
+          style: { flexDirection: 'row-reverse' },
+        },
+        {
           props: {
             loadingPosition: 'center',
           },
@@ -432,10 +436,11 @@ const ButtonLoadingIndicator = styled('span', {
   slot: 'LoadingIndicator',
   overridesResolver: (props, styles) => styles.loadingIndicator,
 })(({ theme }) => ({
+  display: 'none',
   position: 'absolute',
   visibility: 'visible',
-  display: 'flex',
   variants: [
+    { props: { loading: true }, style: { display: 'flex' } },
     {
       props: {
         loadingPosition: 'start',
@@ -599,10 +604,8 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       classes={classes}
     >
       {startIcon}
-      {loading && loadingPosition === 'start' && loader}
-      {loading && loadingPosition === 'center' && loader}
       {children}
-      {loading && loadingPosition === 'end' && loader}
+      {loader}
       {endIcon}
     </ButtonRoot>
   );

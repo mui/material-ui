@@ -5,20 +5,40 @@ import Stack from '@mui/material/Stack';
 
 export default function LoadingButtons() {
   return (
-    <Stack direction="row" spacing={2}>
-      <Button loading variant="outlined">
-        Submit
-      </Button>
-      <Button loading loadingIndicator="Loading…" variant="outlined">
-        Fetch data
-      </Button>
+    <Stack spacing={2}>
+      <Stack direction="row" spacing={2}>
+        <Button loading variant="outlined">
+          Submit
+        </Button>
+        <Button loading loadingIndicator="Loading…" variant="outlined">
+          Fetch data
+        </Button>
+        <Button
+          loading
+          loadingPosition="start"
+          startIcon={<SaveIcon />}
+          variant="outlined"
+        >
+          Save
+        </Button>
+      </Stack>
       <Button
+        fullWidth
         loading
         loadingPosition="start"
         startIcon={<SaveIcon />}
         variant="outlined"
       >
-        Save
+        Full width
+      </Button>
+      <Button
+        fullWidth
+        loading
+        loadingPosition="end"
+        endIcon={<SaveIcon />}
+        variant="outlined"
+      >
+        Full width
       </Button>
     </Stack>
   );
