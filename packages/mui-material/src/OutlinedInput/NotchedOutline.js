@@ -13,7 +13,7 @@ const NotchedOutlineRoot = styled('fieldset', { shouldForwardProp: rootShouldFor
   top: -5,
   left: 0,
   margin: 0,
-  padding: '0 8px',
+  padding: '0 7px', // 1px off from standard 8px, it is provided by the border
   pointerEvents: 'none',
   borderRadius: 'inherit',
   borderStyle: 'solid',
