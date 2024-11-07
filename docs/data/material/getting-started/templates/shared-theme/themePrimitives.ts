@@ -183,7 +183,7 @@ export const getDesignTokens = (mode: PaletteMode) => {
       },
     },
     typography: {
-      fontFamily: ['"Inter", "sans-serif"'].join(','),
+      fontFamily: ['Inter', 'sans-serif'].join(','),
       h1: {
         fontSize: defaultTheme.typography.pxToRem(48),
         fontWeight: 600,
