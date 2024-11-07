@@ -125,7 +125,7 @@ export function unstable_createUseMediaQuery(params: { themeId?: string } = {}) 
     options: UseMediaQueryOptions = {},
   ): boolean {
     let theme = useTheme<Theme>();
-    if (themeId) {
+    if (theme && themeId) {
       theme = (theme as Record<string, any>)[themeId] || theme;
     }
     // Wait for jsdom to support the match media feature.
