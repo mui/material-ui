@@ -264,7 +264,10 @@ export function PlanPrice(props: PlanPriceProps) {
           <FormControlLabel
             control={<Switch defaultChecked />}
             label={
-              <Typography variant="body1" sx={{ color: 'text.secondary', textAlign: 'center' }}>
+              <Typography
+                variant="body1"
+                sx={{ color: 'text.secondary', textAlign: 'center', fontSize: '0.875rem' }}
+              >
                 Add Priority support
               </Typography>
             }
@@ -299,7 +302,10 @@ export function PlanPrice(props: PlanPriceProps) {
           mt: 9,
         }}
       >
-        <Typography variant="body1" sx={{ color: 'text.secondary', textAlign: 'center' }}>
+        <Typography
+          variant="body1"
+          sx={{ color: 'text.secondary', textAlign: 'center', fontSize: '0.875rem' }}
+        >
           + Priority support included
         </Typography>
       </Box>
