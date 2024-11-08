@@ -21,7 +21,9 @@
     "./setupBabel": "./build/setupBabel.js",
     "./setupBabelPlaywright": "./build/setupBabelPlaywright.js",
     "./setupJSDOM": "./build/setupJSDOM.js",
-    "./setupKarma": "./build/setupKarma.js"
+    "./setupKarma": "./build/setupKarma.js",
+    "./chaiPlugin": "./build/chaiPlugin.js",
+    "./setupVitest": "./build/setupVitest.js"
   },
   "scripts": {
     "prebuild": "rimraf ./build",
