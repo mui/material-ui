@@ -63,7 +63,7 @@ function ThemeProvider(props) {
 
   const engineTheme = useThemeScoping(themeId, upperTheme, localTheme);
   const privateTheme = useThemeScoping(themeId, upperPrivateTheme, localTheme, true);
-  const rtlValue = engineTheme.direction === 'rtl';
+  const rtlValue = (themeId ? engineTheme[themeId] : engineTheme).direction === 'rtl';
   return (
     <MuiThemeProvider theme={privateTheme}>
       <StyledEngineThemeContext.Provider value={engineTheme}>
