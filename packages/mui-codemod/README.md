@@ -1402,43 +1402,6 @@ npx @mui/codemod@latest deprecations/outlined-input-props <path>
 npx @mui/codemod@latest deprecations/slider-props <path>
 ```
 
-#### `step-connector-classes`
-
-JS transforms:
-
-```diff
- import { stepConnectorClasses } from '@mui/material/StepConnector';
-
- MuiStepConnector: {
-   styleOverrides: {
-     root: {
--      [`& .${stepConnectorClasses.lineHorizontal}`]: {
-+      [`&.${stepConnectorClasses.horizontal} > .${stepConnectorClasses.line}`]: {
-         color: 'red',
-        },
--      [`& .${stepConnectorClasses.lineVertical}`]: {
-+      [`&.${stepConnectorClasses.vertical} > .${stepConnectorClasses.line}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
-CSS transforms:
-
-```diff
--.MuiToggleButtonGroup-root .MuiToggleButtonGroup-groupedHorizontal
-+.MuiToggleButtonGroup-root.MuiToggleButtonGroup-horizontal > .MuiToggleButtonGroup-grouped
--.MuiToggleButtonGroup-root .MuiToggleButtonGroup-groupedVertical
-+.MuiToggleButtonGroup-root.MuiToggleButtonGroup-vertical > .MuiToggleButtonGroup-grouped
- />
-```
-
-```bash
-npx @mui/codemod@latest deprecations/toggle-button-group-classes <path>
-```
-
 #### `tooltip-props`
 
 ```diff
