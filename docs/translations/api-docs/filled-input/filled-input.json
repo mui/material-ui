@@ -52,7 +52,7 @@
       "description": "Minimum number of rows to display when multiline option is set to true."
     },
     "multiline": {
-      "description": "If <code>true</code>, a <a href=\"/material-ui/react-textarea-autosize/\">TextareaAutosize</a> element is rendered."
+      "description": "If <code>true</code>, a <a href=\"https://mui.com/material-ui/react-textarea-autosize/\">TextareaAutosize</a> element is rendered."
     },
     "name": { "description": "Name attribute of the <code>input</code> element." },
     "onChange": {
@@ -125,36 +125,6 @@
       "conditions": "<code>hiddenLabel={true}</code>"
     },
     "input": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the input element" },
-    "inputAdornedEnd": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the input element",
-      "conditions": "<code>endAdornment</code> is provided"
-    },
-    "inputAdornedStart": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the input element",
-      "conditions": "<code>startAdornment</code> is provided"
-    },
-    "inputHiddenLabel": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the <code>input</code>",
-      "conditions": "in <code><FormControl hiddenLabel /></code>"
-    },
-    "inputMultiline": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the input element",
-      "conditions": "<code>multiline={true}</code>"
-    },
-    "inputSizeSmall": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the input element",
-      "conditions": "<code>size=\"small\"</code>"
-    },
-    "inputTypeSearch": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the input element",
-      "conditions": "<code>type=\"search\"</code>"
-    },
     "multiline": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -163,7 +133,7 @@
     "root": { "description": "Styles applied to the root element." },
     "sizeSmall": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the input element",
+      "nodeName": "the root element",
       "conditions": "<code>size=\"small\"</code>"
     },
     "underline": {

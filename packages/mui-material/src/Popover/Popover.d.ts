@@ -1,12 +1,25 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { SlotComponentProps } from '@mui/base';
-import { InternalStandardProps as StandardProps } from '..';
+import { BackdropProps, InternalStandardProps as StandardProps } from '..';
 import Paper, { PaperProps } from '../Paper';
 import Modal, { ModalOwnerState, ModalProps } from '../Modal';
 import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
 import { PopoverClasses } from './popoverClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+
+export interface PopoverSlots {
+  root: React.ElementType;
+  paper: React.ElementType;
+}
+
+export type PopoverSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  PopoverSlots,
+  {
+    root: SlotProps<typeof Modal, {}, ModalOwnerState>;
+    paper: SlotProps<typeof Paper, {}, {}>;
+  }
+>;
 
 export interface PopoverOrigin {
   vertical: 'top' | 'center' | 'bottom' | number;
@@ -26,14 +39,18 @@ interface PopoverVirtualElement {
 }
 
 export interface PopoverProps
-  extends StandardProps<Omit<ModalProps, 'slots' | 'slotProps'>, 'children'> {
+  extends StandardProps<
+      Omit<ModalProps, 'slots' | 'slotProps' | 'BackdropProps' | 'BackdropComponent'>,
+      'children'
+    >,
+    PopoverSlotsAndSlotProps {
   /**
    * A ref for imperative actions.
    * It currently only supports updatePosition() action.
    */
   action?: React.Ref<PopoverActions>;
   /**
-   * An HTML element, [PopoverVirtualElement](/material-ui/react-popover/#virtual-element),
+   * An HTML element, [PopoverVirtualElement](https://mui.com/material-ui/react-popover/#virtual-element),
    * or a function that returns either.
    * It's used to set the position of the popover.
    */
@@ -69,6 +86,26 @@ export interface PopoverProps
    */
   anchorReference?: PopoverReference;
   /**
+   * A backdrop component. This prop enables custom backdrop rendering.
+   * @deprecated Use `slotProps.root.slots.backdrop` instead. While this prop currently works, it will be removed in the next major version.
+   * Use the `slotProps.root.slots.backdrop` prop to make your application ready for the next version of Material UI.
+   * @default styled(Backdrop, {
+   *   name: 'MuiModal',
+   *   slot: 'Backdrop',
+   *   overridesResolver: (props, styles) => {
+   *     return styles.backdrop;
+   *   },
+   * })({
+   *   zIndex: -1,
+   * })
+   */
+  BackdropComponent?: React.ElementType<BackdropProps>;
+  /**
+   * Props applied to the [`Backdrop`](/material-ui/api/backdrop/) element.
+   * @deprecated Use `slotProps.root.slotProps.backdrop` instead.
+   */
+  BackdropProps?: Partial<BackdropProps>;
+  /**
    * The content of the component.
    */
   children?: React.ReactNode;
@@ -101,7 +138,7 @@ export interface PopoverProps
    */
   open: boolean;
   /**
-   * Props applied to the [`Paper`](/material-ui/api/paper/) element.
+   * Props applied to the [`Paper`](https://mui.com/material-ui/api/paper/) element.
    *
    * This prop is an alias for `slotProps.paper` and will be overriden by it if both are used.
    * @deprecated Use `slotProps.paper` instead.
@@ -109,25 +146,6 @@ export interface PopoverProps
    * @default {}
    */
   PaperProps?: Partial<PaperProps<React.ElementType>>;
-  /**
-   * The components used for each slot inside.
-   *
-   * @default {}
-   */
-  slots?: {
-    root?: React.ElementType;
-    paper?: React.ElementType;
-  };
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * @default {}
-   */
-  slotProps?: {
-    root?: SlotComponentProps<typeof Modal, {}, ModalOwnerState>;
-    paper?: SlotComponentProps<typeof Paper, {}, {}>;
-  };
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -147,11 +165,11 @@ export interface PopoverProps
   transformOrigin?: PopoverOrigin;
   /**
    * The component used for the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Grow
    */
   TransitionComponent?: React.JSXElementConstructor<
-    TransitionProps & { children: React.ReactElement<any, any> }
+    TransitionProps & { children: React.ReactElement<unknown, any> }
   >;
   /**
    * Set to 'auto' to automatically calculate transition time based on height.

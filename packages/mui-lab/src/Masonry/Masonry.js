@@ -313,7 +313,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
 
     return () => {
       if (animationFrame) {
-        window.cancelAnimationFrame(animationFrame);
+        cancelAnimationFrame(animationFrame);
       }
       if (resizeObserver) {
         resizeObserver.disconnect();

@@ -44,38 +44,34 @@ function ComponentItem({
       <div>
         <Typography
           component="span"
-          color="text.primary"
           variant="body2"
-          fontWeight="bold"
-          display="block"
+          sx={{ color: 'text.primary', fontWeight: 'bold', display: 'block' }}
         >
           {name}
         </Typography>
         {description && (
           <Typography
             component="span"
-            color="text.secondary"
             variant="body2"
-            fontWeight="regular"
-            display="block"
             gutterBottom
+            sx={{ color: 'text.secondary', fontWeight: 'regular', display: 'block' }}
           >
             {description}
           </Typography>
         )}
         <Link
           href={href}
-          color="primary"
           variant="body2"
+          onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
+            event.stopPropagation();
+          }}
           sx={{
+            color: 'primary',
             display: 'inline-flex',
             alignItems: 'center',
             fontWeight: 'semiBold',
             '& > svg': { transition: '0.2s' },
             '&:hover > svg': { transform: 'translateX(2px)' },
-          }}
-          onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
-            event.stopPropagation();
           }}
         >
           <span>View the docs</span>{' '}
@@ -127,11 +123,7 @@ export default function XComponentsSwitcher(props: {
   return (
     <React.Fragment>
       <Box
-        sx={{
-          display: { md: 'none' },
-          maxWidth: 'calc(100vw - 40px)',
-          '& > div': { pr: '32%' },
-        }}
+        sx={{ display: { md: 'none' }, maxWidth: 'calc(100vw - 40px)', '& > div': { pr: '32%' } }}
       >
         <SwipeableViews
           index={componentIndex}

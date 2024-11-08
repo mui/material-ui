@@ -1,215 +1,328 @@
 import * as React from 'react';
-import { alpha } from '@mui/material/styles';
-import Box, { BoxProps } from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
+import NextLink from 'next/link';
+import { styled, alpha, Theme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
-import IconImage from 'docs/src/components/icon/IconImage';
+import Divider from '@mui/material/Divider';
+import MenuList, { MenuListProps } from '@mui/material/MenuList';
+import MenuItem, { MenuItemProps } from '@mui/material/MenuItem';
 import ROUTES from 'docs/src/route';
-import { Link } from '@mui/docs/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
+import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
+import SvgBaseUiLogo from 'docs/src/icons/SvgBaseUiLogo';
+import SvgToolpadCoreLogo from 'docs/src/icons/SvgToolpadCoreLogo';
+import BackupTableRoundedIcon from '@mui/icons-material/BackupTableRounded';
+import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
+import AccountTreeRoundedIcon from '@mui/icons-material/AccountTreeRounded';
+import BarChartRoundedIcon from '@mui/icons-material/BarChartRounded';
+import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
+import WebRoundedIcon from '@mui/icons-material/WebRounded';
+import BrushIcon from '@mui/icons-material/Brush';
 
-interface ProductSubMenuProp extends BoxProps {
-  icon: React.ReactNode;
-  name: React.ReactNode;
-  description: React.ReactNode;
+const iconStyles = (theme: Theme) => ({
+  fontSize: '.875rem',
+  color: (theme.vars || theme).palette.primary.main,
+});
+
+const logoColor = (theme: Theme) => ({
+  '& path': {
+    ...theme.applyDarkStyles({
+      fill: (theme.vars || theme).palette.primary[400],
+    }),
+  },
+});
+
+const NavLabel = styled(Typography)(({ theme }) => ({
+  padding: theme.spacing(0.5, 1, 0.5, 1),
+  fontSize: theme.typography.pxToRem(11),
+  fontWeight: theme.typography.fontWeightSemiBold,
+  textTransform: 'uppercase',
+  letterSpacing: '.1rem',
+  color: (theme.vars || theme).palette.text.tertiary,
+}));
+
+interface ProductItemProps extends MenuItemProps {
+  active?: boolean;
   chip?: React.ReactNode;
+  description?: string;
+  href: string;
+  icon?: React.ReactNode;
+  name: string;
 }
 
-function ProductSubMenu(props: ProductSubMenuProp) {
-  const { icon, name, description, chip, sx = [], ...other } = props;
+function ProductItem({
+  active,
+  chip,
+  description,
+  href,
+  icon,
+  name,
+  sx = [],
+  ...other
+}: ProductItemProps) {
   return (
-    <Box
-      {...other}
+    <MenuItem
+      component={NextLink} // using the Next link directly here as it accepts, as opposed to the docs Link, passing role="menuitem"
+      role="menuitem"
+      href={href}
       sx={[
-        {
-          width: '100%',
+        (theme) => ({
+          p: 1,
+          pl: '6px',
           display: 'flex',
-          alignItems: 'center',
-          gap: 2,
-        },
+          alignItems: 'start',
+          gap: '8px',
+          flexGrow: 1,
+          backgroundColor: active ? alpha(theme.palette.primary[50], 0.8) : undefined,
+          border: '1px solid',
+          borderColor: active ? 'primary.100' : 'transparent',
+          borderRadius: '8px',
+          transition: '100ms ease-in background-color, border',
+          textDecorationLine: 'none',
+          '&:hover': {
+            backgroundColor: active ? alpha(theme.palette.primary[50], 0.8) : 'grey.50',
+            borderColor: 'divider',
+          },
+          '&.Mui-focusVisible': {
+            backgroundColor: active ? (theme.vars || theme).palette.primary[50] : 'transparent',
+          },
+          ...theme.applyDarkStyles({
+            backgroundColor: active ? alpha(theme.palette.primary[900], 0.2) : undefined,
+            borderColor: active ? alpha(theme.palette.primary[300], 0.2) : 'transparent',
+            '&:hover': {
+              backgroundColor: active
+                ? alpha(theme.palette.primary[900], 0.3)
+                : alpha(theme.palette.primaryDark[700], 0.5),
+            },
+            '&.Mui-focusVisible': {
+              backgroundColor: active ? alpha(theme.palette.primary[900], 0.5) : 'transparent',
+            },
+          }),
+        }),
+        // You cannot spread `sx` directly because `SxProps` (typeof sx) can be an array.
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
+      {...other}
     >
-      {icon}
-      <Box sx={{ flexGrow: 1 }}>
-        <Typography color="text.primary" variant="body2" fontWeight="700">
-          {name}
-        </Typography>
-        <Typography color="text.secondary" variant="body2">
+      <Box
+        sx={{
+          height: 21, // match the Typography line-height
+          width: 21,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        {icon}
+      </Box>
+      <div>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <Typography color="text.primary" variant="body2" fontWeight="semiBold">
+            {name}
+          </Typography>
+          {chip}
+        </Box>
+        <Typography color="text.secondary" fontSize=".813rem">
           {description}
         </Typography>
-      </Box>
-      {chip}
-    </Box>
+      </div>
+    </MenuItem>
   );
 }
 
 const coreProducts = [
   {
-    name: 'Material UI',
-    href: ROUTES.materialDocs,
     id: 'material-ui',
+    name: 'Material UI',
+    description: 'Comprehensive foundational components.',
+    icon: <SvgMuiLogomark width={14} height={14} sx={logoColor} />,
+    href: ROUTES.materialDocs,
   },
   {
-    name: 'Joy UI',
-    href: ROUTES.joyDocs,
-    id: 'joy-ui',
-  },
-  {
-    name: 'Base UI',
-    href: ROUTES.baseDocs,
     id: 'base-ui',
+    name: 'Base UI',
+    description: 'Unstyled components and hooks.',
+    icon: <SvgBaseUiLogo width={14} height={14} sx={logoColor} />,
+    href: ROUTES.baseDocs,
   },
   {
-    name: 'MUI System',
-    href: ROUTES.systemDocs,
+    id: 'joy-ui',
+    name: 'Joy UI',
+    description: 'Delightful modern components.',
+    icon: <WebRoundedIcon sx={iconStyles} />,
+    href: ROUTES.joyDocs,
+  },
+  {
     id: 'system',
+    name: 'MUI System',
+    description: 'Ergonomic CSS utilities.',
+    icon: <StyleRoundedIcon sx={iconStyles} />,
+    href: ROUTES.systemDocs,
   },
 ];
 
 const advancedProducts = [
   {
-    name: 'Data Grid',
-    href: ROUTES.dataGridOverview,
     id: 'x-data-grid',
+    name: 'Data Grid',
+    description: 'Fast and extensible data table.',
+    icon: <BackupTableRoundedIcon sx={iconStyles} />,
+    href: ROUTES.dataGridOverview,
   },
   {
-    name: 'Date and Time Pickers',
-    href: ROUTES.datePickersOverview,
     id: 'x-date-pickers',
+    name: 'Date and Time Pickers',
+    description: 'Date, time, and range components.',
+    icon: <CalendarMonthRoundedIcon sx={iconStyles} />,
+    href: ROUTES.datePickersOverview,
   },
   {
-    name: 'Charts',
-    href: ROUTES.chartsOverview,
     id: 'x-charts',
+    name: 'Charts',
+    description: 'Data visualization components.',
+    icon: <BarChartRoundedIcon sx={iconStyles} />,
+    href: ROUTES.chartsOverview,
   },
   {
-    name: 'Tree View',
-    href: ROUTES.treeViewOverview,
     id: 'x-tree-view',
+    name: 'Tree View',
+    description: 'Hierarchical list components.',
+    icon: <AccountTreeRoundedIcon sx={iconStyles} />,
+    href: ROUTES.treeViewOverview,
   },
 ];
 
-export default function MuiProductSelector() {
+const toolpadProducts = [
+  {
+    id: 'toolpad-core',
+    name: 'Toolpad Core',
+    description: 'Components for building dashboards.',
+    icon: <SvgToolpadCoreLogo width={14} height={14} sx={logoColor} />,
+    href: ROUTES.toolpadCoreDocs,
+  },
+  {
+    id: 'toolpad-studio',
+    name: 'Toolpad Studio',
+    description: 'Self-hosted, low-code internal tool builder.',
+    icon: <BrushIcon sx={iconStyles} />,
+    href: ROUTES.toolpadStudioDocs,
+  },
+];
+
+const MuiProductSelector = React.forwardRef(function MuiProductSelector(
+  props: MenuListProps<'div'>,
+  forwardedRef: React.ForwardedRef<HTMLDivElement>,
+) {
   const pageContext = React.useContext(PageContext);
 
   return (
-    <React.Fragment>
-      <Box
-        component="li"
-        role="none"
-        sx={{ p: 2, pr: 3, borderBottom: '1px solid', borderColor: 'divider' }}
-      >
-        <ProductSubMenu
-          role="menuitem"
-          icon={<IconImage name="product-core" />}
-          name="MUI Core"
-          description="Ready-to-use foundational React components, free forever."
+    <MenuList
+      {...props}
+      component="div"
+      ref={forwardedRef}
+      sx={{
+        p: 1,
+        display: 'grid',
+        gridTemplateColumns: {
+          xs: 'repeat(1, minmax(0, 1fr))',
+          sm: 'repeat(2, minmax(0, 1fr))',
+        },
+        gap: '4px',
+      }}
+    >
+      {coreProducts.map((product) => (
+        <ProductItem
+          key={product.name}
+          name={product.name}
+          description={product.description}
+          href={product.href}
+          icon={product.icon}
+          active={pageContext.productId === product.id}
         />
-        <Stack
-          direction={{ xs: 'column', sm: 'row' }}
-          alignItems="flex-start"
-          spacing={1}
-          sx={{
-            ml: '36px',
-            pl: 2,
-            pt: 1.5,
-            position: 'relative',
-            '& > .MuiChip-root': {
-              position: 'initial',
-              '&:hover': {
-                '& .product-description': {
-                  opacity: 1,
-                },
-              },
-            },
-          }}
-        >
-          {coreProducts.map((product) => (
-            <Chip
-              key={product.name}
-              color={pageContext.productId === product.id ? 'primary' : undefined}
-              variant={pageContext.productId === product.id ? 'filled' : 'outlined'}
-              component={Link}
-              href={product.href}
-              label={product.name}
-              clickable
-              size="small"
-            />
-          ))}
-        </Stack>
-      </Box>
+      ))}
+      <Divider
+        sx={{
+          mx: -1,
+          gridColumn: {
+            xs: '1 / span 1',
+            sm: '1 / span 2',
+          },
+        }}
+      />
       <Box
-        component="li"
+        key="X components"
         role="none"
-        sx={{ p: 2, pr: 3, borderBottom: '1px solid', borderColor: 'divider' }}
+        sx={{
+          gridColumn: {
+            xs: '1 / span 1',
+            sm: '1 / span 2',
+          },
+        }}
       >
-        <ProductSubMenu
-          role="menuitem"
-          icon={<IconImage name="product-advanced" />}
-          name="MUI X"
-          description="Advanced and powerful components for complex use cases."
-        />
-        <Stack
-          direction={{ xs: 'column', sm: 'row' }}
-          alignItems="flex-start"
-          spacing={1}
-          sx={{
-            ml: '36px',
-            pl: 2,
-            pt: 1.5,
-            position: 'relative',
-            '& > .MuiChip-root': {
-              position: 'initial',
-              '&:hover': {
-                '& .product-description': {
-                  opacity: 1,
-                },
-              },
-            },
-          }}
-        >
-          {advancedProducts.map((product) => (
-            <Chip
-              key={product.name}
-              color={pageContext.productId === product.id ? 'primary' : undefined}
-              variant={pageContext.productId === product.id ? 'filled' : 'outlined'}
-              component={Link}
-              href={product.href}
-              label={product.name}
-              clickable
-              size="small"
-            />
-          ))}
-        </Stack>
+        <NavLabel>MUI X Components</NavLabel>
       </Box>
-      <li role="none">
-        <Link
-          href={ROUTES.toolpadStudioDocs}
-          sx={(theme) => ({
-            p: 2,
-            pr: 3,
-            width: '100%',
-            '&:hover': {
-              backgroundColor: 'grey.50',
-            },
-            ...theme.applyDarkStyles({
-              '&:hover': {
-                backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+      {advancedProducts.map((product) => (
+        <ProductItem
+          key={product.name}
+          name={product.name}
+          description={product.description}
+          icon={product.icon}
+          href={product.href}
+          active={pageContext.productId === product.id}
+        />
+      ))}
+      <Divider
+        sx={{
+          mx: -1,
+          gridColumn: {
+            xs: '1 / span 1',
+            sm: '1 / span 2',
+          },
+        }}
+      />
+      <Box
+        key="Toolpad"
+        role="none"
+        sx={{
+          gridColumn: {
+            xs: '1 / span 1',
+            sm: '1 / span 2',
+          },
+        }}
+      >
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: '1px' }}>
+          <NavLabel> Toolpad </NavLabel>
+          <Chip
+            label="Beta"
+            size="small"
+            color="primary"
+            variant="outlined"
+            sx={{
+              fontSize: '.625rem',
+              fontWeight: 'semiBold',
+              textTransform: 'uppercase',
+              letterSpacing: '.04rem',
+              height: '16px',
+              '& .MuiChip-label': {
+                px: '4px',
               },
-            }),
-          })}
-        >
-          <ProductSubMenu
-            role="menuitem"
-            icon={<IconImage name="product-toolpad" />}
-            name="Toolpad"
-            description="Low-code admin builder."
-            chip={<Chip size="small" label="Beta" color="primary" variant="outlined" />}
+            }}
           />
-        </Link>
-      </li>
-    </React.Fragment>
+        </Box>
+      </Box>
+      {toolpadProducts.map((product) => (
+        <ProductItem
+          key={product.name}
+          name={product.name}
+          description={product.description}
+          icon={product.icon}
+          href={product.href}
+          active={pageContext.productId === product.id}
+        />
+      ))}
+    </MenuList>
   );
-}
+});
+
+export default MuiProductSelector;

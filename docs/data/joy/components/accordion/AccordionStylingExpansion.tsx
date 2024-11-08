@@ -7,7 +7,7 @@ import AccordionSummary from '@mui/joy/AccordionSummary';
 export default function AccordionStylingExpansion() {
   return (
     <AccordionGroup
-      sx={{
+      sx={(theme) => ({
         maxWidth: 400,
         [`& .${accordionClasses.root}`]: {
           marginTop: '0.5rem',
@@ -27,9 +27,9 @@ export default function AccordionStylingExpansion() {
           borderColor: 'background.level2',
         },
         '& [aria-expanded="true"]': {
-          boxShadow: (theme) => `inset 0 -1px 0 ${theme.vars.palette.divider}`,
+          boxShadow: `inset 0 -1px 0 ${theme.vars.palette.divider}`,
         },
-      }}
+      })}
     >
       <Accordion>
         <AccordionSummary>First accordion</AccordionSummary>

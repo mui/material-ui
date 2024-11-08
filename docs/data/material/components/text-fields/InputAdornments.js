@@ -21,6 +21,10 @@ export default function InputAdornments() {
     event.preventDefault();
   };
 
+  const handleMouseUpPassword = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
       <div>
@@ -53,9 +57,12 @@ export default function InputAdornments() {
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
-                  aria-label="toggle password visibility"
+                  aria-label={
+                    showPassword ? 'hide the password' : 'display the password'
+                  }
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
+                  onMouseUp={handleMouseUpPassword}
                   edge="end"
                 >
                   {showPassword ? <VisibilityOff /> : <Visibility />}
@@ -105,9 +112,12 @@ export default function InputAdornments() {
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
-                  aria-label="toggle password visibility"
+                  aria-label={
+                    showPassword ? 'hide the password' : 'display the password'
+                  }
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
+                  onMouseUp={handleMouseUpPassword}
                   edge="end"
                 >
                   {showPassword ? <VisibilityOff /> : <Visibility />}
@@ -155,9 +165,12 @@ export default function InputAdornments() {
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
-                  aria-label="toggle password visibility"
+                  aria-label={
+                    showPassword ? 'hide the password' : 'display the password'
+                  }
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
+                  onMouseUp={handleMouseUpPassword}
                 >
                   {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>

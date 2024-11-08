@@ -49,13 +49,13 @@ This release features some major highlights:
   - [Change of the package names](#change-of-the-package-names)
   - [Change of the styling solution](#change-of-the-styling-solution)
   - [Changes to the supported platforms](#changes-to-the-supported-platforms)
-- [Design kits](#design-kits)
+- [Design Kits](#design-kits)
 - [What's next?](#whats-next)
   - [A public roadmap](#a-public-roadmap)
   - [Unstyled components and hooks](#unstyled-components-and-hooks)
   - [Second design system](#second-design-system)
   - [MUI X](#mui-x)
-  - [Design kits](#design-kits-1)
+  - [Design Kits](#design-kits-1)
 - [Thank you](#thank-you)
 
 ## High-level goals for v5
@@ -77,7 +77,7 @@ You can find the initial RFC plan for v5 in [issue #20012](https://github.com/mu
 
 ## A new brand
 
-Material-UI is now **Material UI**! Head to the [dedicated blog post](https://mui.com/blog/material-ui-is-now-mui/) to learn more.
+Material-UI is now **Material UI**! We ditched the hyphen, head to the [dedicated blog post](https://mui.com/blog/material-ui-is-now-mui/) to learn more.
 
 We hope you are going to enjoy the DX improvement of only having to type 3 letters to type to find us on the internet: [mui.com](https://mui.com) and to import us from npm `@mui`!
 
@@ -165,7 +165,7 @@ For instance, you can add one unit of vertical margin with:
 
 <p class="blog-description"><a href="https://codesandbox.io/p/sandbox/nostalgic-williams-zmo5r?file=/src/App.js">CodeSandbox</a></p>
 
-Developers already seem to [love it](https://twitter.com/AnsonLowZF/status/1397034690771443715).
+Developers already seem to [love it](https://x.com/AnsonLowZF/status/1397034690771443715).
 You can find a [side-by-side comparison](https://mui.com/system/getting-started/usage/#why-use-mui-system) of `styled()` vs. `sx` in the documentation to determine when you should use the prop.
 Some developers use `sx` for everything, others only in simple cases.
 
@@ -236,7 +236,7 @@ declare module '@mui/material/Button' {
 
 <p class="blog-description"><a href="https://codesandbox.io/p/sandbox/stupefied-mclaren-ho4zs?file=/src/App.tsx">CodeSandbox</a></p>
 
-**Second**, you can add [custom variants](/material-ui/customization/theme-components/#creating-new-component-variants) to the theme, overriding the CSS for specific component prop combinations.
+**Second**, you can add [custom variants](https://v5.mui.com/material-ui/customization/theme-components/#creating-new-component-variants) to the theme, overriding the CSS for specific component prop combinations.
 
 ```jsx
 import { createTheme, Button } from '@mui/material';
@@ -463,7 +463,7 @@ MUI X embodies our initiative to solve the main pain point developers have repo
 We have heard you, you want **more components**.
 
 But, in practice, we wouldn't probably cover all the possible components you might need. It would be a titanic task.
-Instead, we are focusing on the **hardest** and **most requested** components, leaving the long tail to our [community of contributors](/material-ui/discover-more/related-projects/#components).
+Instead, we are focusing on the **hardest** and **most requested** components, leaving the long tail to our [community of contributors](/material-ui/discover-more/related-projects/#supplementary-components).
 
 We started working on this effort over a year ago, in a new GitHub repository: [mui/mui-x](https://github.com/mui/mui-x).
 You might wonder, why work on it as a different product? Building a great data grid or charting solution takes a considerable amount of time. Taking on the challenge of developing them required us to think about a different monetization strategy and we quickly realized that the team working on MUI X would need to become, at least, two times larger than the one working on MUI Core, which already has the community contribution.
@@ -660,7 +660,7 @@ This breaking change is an opportunity to drop the support of legacy upstream de
 
 These changes have allowed us to save [6 kB gzipped](https://github.com/mui/material-ui/pull/22814#issuecomment-700995216) on the `@mui/material` package.
 
-## Design kits
+## Design Kits
 
 We now have design kits for the MUI components available in the three main design tools out there: [Figma](https://mui.com/store/items/figma-react/), [Sketch](https://mui.com/store/items/sketch-react/), and [Adobe XD](https://mui.com/store/items/adobe-xd-react/). If you work together with a designer or team of designers, having them use the design kits makes for easier communication, as you'll be speaking the same language around the components. It'll also help designers to understand how the library is structured, especially theming features and each component prop, enabling much faster development.
 
@@ -704,7 +704,7 @@ We hope we can reach 50% of the React community by 2026. This is an ambitious go
 You can use the GitHub projects to learn about what features we're working on, what stage they're at, and when we expect to bring them to you:
 
 - [MUI Core](https://github.com/mui/material-ui/projects?query=is:open)
-- [MUI X](https://github.com/mui/mui-x/projects/1)
+- [MUI X](https://github.com/orgs/mui/projects/35)
 
 We offer this transparency into what we plan to work on so that you can plan better and share feedback earlier to influence what we're building.
 
@@ -754,7 +754,7 @@ We still have column pinning, tree data, grouping, pivoting, excel export, and m
 
 Once we would have grown the team and made enough progress, we will expand to a second component.
 
-### Design kits
+### Design Kits
 
 We plan to run extended research and surveys.
 We have already identified that accessibility is something leading companies care about.

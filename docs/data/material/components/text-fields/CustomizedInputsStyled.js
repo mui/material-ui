@@ -33,9 +33,9 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
   '& .MuiInputBase-input': {
     borderRadius: 4,
     position: 'relative',
-    backgroundColor: theme.palette.mode === 'light' ? '#F3F6F9' : '#1A2027',
+    backgroundColor: '#F3F6F9',
     border: '1px solid',
-    borderColor: theme.palette.mode === 'light' ? '#E0E3E7' : '#2D3843',
+    borderColor: '#E0E3E7',
     fontSize: 16,
     width: 'auto',
     padding: '10px 12px',
@@ -61,6 +61,10 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
       boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
       borderColor: theme.palette.primary.main,
     },
+    ...theme.applyStyles('dark', {
+      backgroundColor: '#1A2027',
+      borderColor: '#2D3843',
+    }),
   },
 }));
 
@@ -75,9 +79,9 @@ const RedditTextField = styled((props) => (
   '& .MuiFilledInput-root': {
     overflow: 'hidden',
     borderRadius: 4,
-    backgroundColor: theme.palette.mode === 'light' ? '#F3F6F9' : '#1A2027',
     border: '1px solid',
-    borderColor: theme.palette.mode === 'light' ? '#E0E3E7' : '#2D3843',
+    backgroundColor: '#F3F6F9',
+    borderColor: '#E0E3E7',
     transition: theme.transitions.create([
       'border-color',
       'background-color',
@@ -91,6 +95,10 @@ const RedditTextField = styled((props) => (
       boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 2px`,
       borderColor: theme.palette.primary.main,
     },
+    ...theme.applyStyles('dark', {
+      backgroundColor: '#1A2027',
+      borderColor: '#2D3843',
+    }),
   },
 }));
 
@@ -114,11 +122,7 @@ export default function CustomizedInputsStyled() {
     <Box
       component="form"
       noValidate
-      sx={{
-        display: 'grid',
-        gridTemplateColumns: { sm: '1fr 1fr' },
-        gap: 2,
-      }}
+      sx={{ display: 'grid', gridTemplateColumns: { sm: '1fr 1fr' }, gap: 2 }}
     >
       <FormControl variant="standard">
         <InputLabel shrink htmlFor="bootstrap-input">

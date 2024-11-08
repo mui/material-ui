@@ -43,7 +43,7 @@ export default function ThemeModeToggle() {
 
   // Server-side hydration
   if (mode === null) {
-    return <IconButton color="primary" disableTouchRipple />;
+    return <IconButton color="primary" size="small" disableTouchRipple />;
   }
 
   // TODO remove this code branch, all pages should be migrated to use CssVarsProvider

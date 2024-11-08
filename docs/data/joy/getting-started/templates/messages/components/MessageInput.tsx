@@ -33,8 +33,8 @@ export default function MessageInput(props: MessageInputProps) {
           placeholder="Type something here…"
           aria-label="Message"
           ref={textAreaRef}
-          onChange={(e) => {
-            setTextAreaValue(e.target.value);
+          onChange={(event) => {
+            setTextAreaValue(event.target.value);
           }}
           value={textAreaValue}
           minRows={3}
@@ -42,10 +42,10 @@ export default function MessageInput(props: MessageInputProps) {
           endDecorator={
             <Stack
               direction="row"
-              justifyContent="space-between"
-              alignItems="center"
-              flexGrow={1}
               sx={{
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                flexGrow: 1,
                 py: 1,
                 pr: 1,
                 borderTop: '1px solid',

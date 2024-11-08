@@ -11,7 +11,7 @@ interface SectionHeadlineProps {
    */
   inverted?: boolean;
   overline?: React.ReactNode;
-  title: string | React.ReactElement<any>;
+  title: string | React.ReactElement<React.HTMLAttributes<HTMLElement>>;
 }
 
 export default function SectionHeadline(props: SectionHeadlineProps) {
@@ -23,10 +23,11 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
           id={id}
           component="h2"
           variant="body2"
-          fontWeight="bold"
-          color="primary.main"
           sx={{
+            fontWeight: 'bold',
+            color: 'primary.main',
             mb: 1,
+
             ...(alwaysCenter && {
               textAlign: 'center',
             }),

@@ -10,23 +10,22 @@ export default function FullscreenOverflowDivider() {
     <Box sx={{ width: '100%' }}>
       <Box sx={{ width: '100%', overflow: 'hidden' }}>
         <Box
-          sx={{
+          sx={(theme) => ({
             width: 200,
             py: 5,
             mx: 'auto',
             border: '1px solid',
             borderColor: 'success.300',
-            bgcolor: (theme) =>
-              `rgba(${theme.vars.palette.success.lightChannel} / 0.5)`,
-          }}
+            bgcolor: `rgba(${theme.vars.palette.success.lightChannel} / 0.5)`,
+          })}
         >
           <Divider
-            sx={{
-              boxShadow: shadow
-                ? '0 0 0 100vmax var(--Divider-lineColor)'
-                : 'initial',
-              clipPath: clip ? 'inset(0px -100vmax)' : 'initial',
-            }}
+            sx={[
+              shadow
+                ? { boxShadow: '0 0 0 100vmax var(--Divider-lineColor)' }
+                : { boxShadow: 'initial' },
+              clip ? { clipPath: 'inset(0px -100vmax)' } : { clipPath: 'initial' },
+            ]}
           />
         </Box>
       </Box>

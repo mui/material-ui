@@ -3,16 +3,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
 import { useRtl } from '@mui/system/RtlProvider';
+import useSlotProps from '@mui/utils/useSlotProps';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import ButtonBase from '../ButtonBase';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import tabScrollButtonClasses, { getTabScrollButtonUtilityClass } from './tabScrollButtonClasses';
-
-const useThemeProps = createUseThemeProps('MuiTabScrollButton');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, orientation, disabled } = ownerState;
@@ -56,7 +55,7 @@ const TabScrollButtonRoot = styled(ButtonBase, {
 });
 
 const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTabScrollButton' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTabScrollButton' });
   const {
     className,
     slots = {},

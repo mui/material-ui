@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
+import Box from '@mui/material/Box';
 import clsx from 'clsx';
 import { Switch as SwitchUnstyled } from '@mui/base/Switch';
 import { useSwitch, UseSwitchParameters } from '@mui/base/useSwitch';
@@ -120,10 +121,10 @@ function App() {
 `;
 
 const startLine = [6, 89, 64];
-const endLine = [26, 93, 84];
-const scrollTo = [0, 1400, 1140];
+const endLine = [31, 93, 84];
+const scrollTo = [0, 89, 62];
 
-const StyledSwitchRoot = styled('span')(`
+const StyledSwitchRoot = styled('span')`
   font-size: 0;
   position: relative;
   display: inline-block;
@@ -132,11 +133,19 @@ const StyledSwitchRoot = styled('span')(`
   margin: 10px;
   cursor: pointer;
   border-radius: 16px;
-  background: #B0B8C4;
+  background: #b0b8c4;
   transition: all ease 120ms;
 
-  :hover {
-    background: #9DA8B7;
+  :where([data-mui-color-scheme='dark']) & {
+    background: #6b7a90;
+
+    &:hover {
+      background: #434d5b;
+    }
+  }
+
+  &:hover {
+    background: #9da8b7;
   }
 
   &.Mui-disabled {
@@ -145,27 +154,21 @@ const StyledSwitchRoot = styled('span')(`
   }
 
   &.Mui-checked {
-    background: #007FFF;
-    :hover {
-      background: #0072E5;
+    background: #007fff;
+
+    &:hover {
+      background: #0072e5;
     }
+
     & .MuiSwitch-thumb {
       left: 20px;
     }
   }
 
   &.Mui-focusVisible {
-    outline: 4px solid rgba(0, 127, 255, 0.4);
+    outline: 4px solid rgb(0 127 255 / 0.4);
   }
-
-  :where([data-mui-color-scheme='dark']) & {
-    background: #6B7A90;
-  
-    :hover {
-      background: #434D5B;
-    }
-  }
-`);
+`;
 
 const StyledSwitchInput = styled('input')`
   cursor: inherit;
@@ -224,9 +227,10 @@ export default function BaseUICustomization() {
     };
   }
   React.useEffect(() => {
-    if (infoRef.current) {
-      infoRef.current.scroll({ top: scrollTo[index], behavior: 'smooth' });
-    }
+    // 18px line-height
+    // 16px margin-top
+    // 1px border-width
+    infoRef.current!.scroll({ top: scrollTo[index] * 18 + 16 - 1, behavior: 'smooth' });
   }, [index]);
   return (
     <Section>
@@ -300,12 +304,13 @@ export default function BaseUICustomization() {
               ref={infoRef}
               sx={{
                 maxHeight: 450,
-                position: 'relative',
                 overflow: 'auto',
               }}
             >
-              <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
-              <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: 1 }} />
+              <Box sx={{ position: 'relative' }}>
+                <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
+                <FlashCode startLine={startLine[index]} endLine={endLine[index]} />
+              </Box>
             </Frame.Info>
           </Frame>
         </Grid>

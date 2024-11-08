@@ -3,7 +3,7 @@ import * as React from 'react';
 import {
   unstable_useControlled as useControlled,
   unstable_useForkRef as useForkRef,
-  unstable_useIsFocusVisible as useIsFocusVisible,
+  unstable_isFocusVisible as isFocusVisible,
 } from '@mui/utils';
 import { UseSwitchParameters, UseSwitchReturnValue } from './useSwitch.types';
 
@@ -51,21 +51,10 @@ export function useSwitch(props: UseSwitchParameters): UseSwitchReturnValue {
       otherProps.onChange?.(event);
     };
 
-  const {
-    isFocusVisibleRef,
-    onBlur: handleBlurVisible,
-    onFocus: handleFocusVisible,
-    ref: focusVisibleRef,
-  } = useIsFocusVisible();
-
   const [focusVisible, setFocusVisible] = React.useState(false);
   if (disabled && focusVisible) {
     setFocusVisible(false);
   }
-
-  React.useEffect(() => {
-    isFocusVisibleRef.current = focusVisible;
-  }, [focusVisible, isFocusVisibleRef]);
 
   const inputRef = React.useRef<HTMLInputElement | null>(null);
 
@@ -77,8 +66,7 @@ export function useSwitch(props: UseSwitchParameters): UseSwitchReturnValue {
         inputRef.current = event.currentTarget;
       }
 
-      handleFocusVisible(event);
-      if (isFocusVisibleRef.current === true) {
+      if (isFocusVisible(event.target)) {
         setFocusVisible(true);
         onFocusVisible?.(event);
       }
@@ -90,9 +78,7 @@ export function useSwitch(props: UseSwitchParameters): UseSwitchReturnValue {
   const createHandleBlur =
     (otherProps: React.InputHTMLAttributes<HTMLInputElement>) =>
     (event: React.FocusEvent<HTMLInputElement>) => {
-      handleBlurVisible(event);
-
-      if (isFocusVisibleRef.current === false) {
+      if (!isFocusVisible(event.target)) {
         setFocusVisible(false);
       }
 
@@ -100,7 +86,7 @@ export function useSwitch(props: UseSwitchParameters): UseSwitchReturnValue {
       otherProps.onBlur?.(event);
     };
 
-  const handleInputRef = useForkRef(focusVisibleRef, inputRef);
+  const handleInputRef = useForkRef(inputRef);
 
   const getInputProps: UseSwitchReturnValue['getInputProps'] = (otherProps = {}) => ({
     checked: checkedProp,

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import InvertColorsRoundedIcon from '@mui/icons-material/InvertColorsRounded';
 import HandymanRoundedIcon from '@mui/icons-material/HandymanRounded';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
@@ -51,7 +51,7 @@ export default function ValueProposition() {
       />
       <Grid container spacing={3}>
         {content.map(({ icon, title, description }) => (
-          <Grid key={title} xs={12} sm={6} lg={3}>
+          <Grid key={title} size={{ xs: 12, sm: 6, lg: 3 }}>
             <InfoCard title={title} icon={icon} description={description} />
           </Grid>
         ))}

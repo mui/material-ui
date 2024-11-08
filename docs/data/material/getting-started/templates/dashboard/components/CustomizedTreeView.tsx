@@ -105,22 +105,19 @@ interface CustomLabelProps {
 function CustomLabel({ color, expandable, children, ...other }: CustomLabelProps) {
   const theme = useTheme();
   const colors = {
-    blue: theme.palette.primary.main,
-    green: theme.palette.success.main,
+    blue: (theme.vars || theme).palette.primary.main,
+    green: (theme.vars || theme).palette.success.main,
   };
 
   const iconColor = color ? colors[color] : null;
   return (
-    <TreeItem2Label
-      {...other}
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-      }}
-    >
+    <TreeItem2Label {...other} sx={{ display: 'flex', alignItems: 'center' }}>
       {iconColor && <DotIcon color={iconColor} />}
-
-      <Typography className="labelText" variant="body2" color="text.primary">
+      <Typography
+        className="labelText"
+        variant="body2"
+        sx={{ color: 'text.primary' }}
+      >
         {children}
       </Typography>
     </TreeItem2Label>
@@ -184,10 +181,12 @@ export default function CustomizedTreeView() {
   return (
     <Card
       variant="outlined"
-      sx={{ display: 'flex', flexDirection: 'column', gap: '8px' }}
+      sx={{ display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1 }}
     >
       <CardContent>
-        <Typography variant="subtitle2">Product tree</Typography>
+        <Typography component="h2" variant="subtitle2">
+          Product tree
+        </Typography>
         <RichTreeView
           items={ITEMS}
           aria-label="pages"

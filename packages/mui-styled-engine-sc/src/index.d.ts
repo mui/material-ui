@@ -76,10 +76,13 @@ export * from './GlobalStyles';
  * For internal usage in `@mui/system` package
  */
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export function internal_processStyles(
+export function internal_mutateStyles(
   tag: React.ElementType,
   processor: (styles: any) => any,
 ): void;
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function internal_serializeStyles<P>(styles: Interpolation<P>): object;
 
 // These are the same as the ones in @mui/styled-engine
 // CSS.PropertiesFallback are necessary so that we support spreading of the mixins. For example:
@@ -110,7 +113,9 @@ export interface CSSObject
 interface CSSObjectWithVariants<Props> extends Omit<CSSObject, 'variants'> {
   variants: Array<{
     props: Props | ((props: Props) => boolean);
-    style: CSSObject;
+    style:
+      | CSSObject
+      | ((args: Props extends { theme: any } ? { theme: Props['theme'] } : any) => CSSObject);
   }>;
 }
 
@@ -254,14 +259,14 @@ export interface ThemedStyledFunctionBase<
       | TemplateStringsArray
       | CSSObject
       | InterpolationFunction<ThemedStyledProps<StyledComponentPropsWithRef<C> & O, T>>,
-    ...rest: Array<Interpolation<ThemedStyledProps<StyledComponentPropsWithRef<C> & O, T>>>
+    ...other: Array<Interpolation<ThemedStyledProps<StyledComponentPropsWithRef<C> & O, T>>>
   ): StyledComponent<C, T, O, A>;
   <U extends object>(
     first:
       | TemplateStringsArray
       | CSSObject
       | InterpolationFunction<ThemedStyledProps<StyledComponentPropsWithRef<C> & O & U, T>>,
-    ...rest: Array<Interpolation<ThemedStyledProps<StyledComponentPropsWithRef<C> & O & U, T>>>
+    ...other: Array<Interpolation<ThemedStyledProps<StyledComponentPropsWithRef<C> & O & U, T>>>
   ): StyledComponent<C, T, O & U, A>;
 }
 

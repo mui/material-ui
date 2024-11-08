@@ -85,7 +85,7 @@ module.exports = async function demoLoader() {
         if (
           filename.startsWith(englishFilename) &&
           matchNotEnglishMarkdown !== null &&
-          options.languagesInProgress.indexOf(matchNotEnglishMarkdown[1]) !== -1
+          options.languagesInProgress.includes(matchNotEnglishMarkdown[1])
         ) {
           return {
             filename,
@@ -148,11 +148,12 @@ module.exports = async function demoLoader() {
    * @param {*} moduleFilepath
    * @param {*} variant
    * @param {*} importModuleID
+   * @returns {string} The name of the imported module along with a resolved extension if not provided
    * @example detectRelativeImports('ComboBox.js', '', JS', './top100Films') => relativeModules.set('ComboBox.js', new Map([['./top100Films.js', ['JS']]]))
    */
   function detectRelativeImports(demoName, moduleFilepath, variant, importModuleID) {
+    let relativeModuleFilename = importModuleID;
     if (importModuleID.startsWith('.')) {
-      let relativeModuleFilename = importModuleID;
       const demoMap = relativeModules.get(demoName);
       // If the moduleID does not end with an extension, or ends with an unsupported extension (e.g. ".styling") we need to resolve it
       // Fastest way to get a file extension, see: https://stackoverflow.com/a/12900504/
@@ -197,6 +198,27 @@ module.exports = async function demoLoader() {
           demoMap.set(relativeModuleFilename, [variant]);
         }
       }
+    }
+    return relativeModuleFilename;
+  }
+
+  /**
+   * Inserts the moduleData into the relativeModules object
+   * @param string demoName
+   * @param {*} moduleData
+   * @param string variant
+   * @example updateRelativeModules(demoName, {module: 'constants.js', raw: ... }, 'JS') => demos[demoName].relativeModules[variant].push(moduleData)
+   */
+  function updateRelativeModules(demoName, moduleData, variant) {
+    if (demos[demoName].relativeModules[variant]) {
+      // Avoid duplicates
+      if (
+        !demos[demoName].relativeModules[variant].some((elem) => elem.module === moduleData.module)
+      ) {
+        demos[demoName].relativeModules[variant].push(moduleData);
+      }
+    } else {
+      demos[demoName].relativeModules[variant] = [moduleData];
     }
   }
 
@@ -438,32 +460,105 @@ module.exports = async function demoLoader() {
           demos[demoName].relativeModules = {};
         }
 
+        const addedModulesRelativeToModulePath = new Set();
         await Promise.all(
           Array.from(relativeModules.get(demoName)).map(async ([relativeModuleID, variants]) => {
-            let raw = '';
-            try {
-              raw = await fs.readFile(path.join(path.dirname(moduleFilepath), relativeModuleID), {
-                encoding: 'utf8',
-              });
-            } catch {
-              throw new Error(
-                `Could not find a module for the relative import "${relativeModuleID}" in the demo "${demoName}"`,
+            for (const variant of variants) {
+              let raw = '';
+              const relativeModuleFilePath = path.join(
+                path.dirname(moduleFilepath),
+                relativeModuleID,
               );
-            }
 
-            const moduleData = { module: relativeModuleID, raw };
-            const modules = demos[demoName].relativeModules;
-
-            variants.forEach((variant) => {
-              if (modules[variant]) {
-                // Avoid duplicates
-                if (!modules[variant].some((elem) => elem.module === relativeModuleID)) {
-                  modules[variant].push(moduleData);
-                }
-              } else {
-                modules[variant] = [moduleData];
+              // the file has already been processed
+              if (addedModulesRelativeToModulePath.has(relativeModuleFilePath)) {
+                continue;
               }
-            });
+
+              try {
+                // We are only iterating trough an array that looks
+                // like this: ['JS', 'TS'], so  it is safe to await
+                // eslint-disable-next-line no-await-in-loop
+                raw = await fs.readFile(relativeModuleFilePath, {
+                  encoding: 'utf8',
+                });
+
+                const importedProcessedModuleIDs = new Set();
+                const importedProcessedModulesIDsParents = new Map();
+                // Find the relative paths in the relative module
+                extractImports(raw).forEach((importModuleID) => {
+                  // detect relative import
+                  const importModuleIdWithExtension = detectRelativeImports(
+                    relativeModuleID,
+                    relativeModuleFilePath,
+                    variant,
+                    importModuleID,
+                  );
+                  if (importModuleID.startsWith('.')) {
+                    importedProcessedModuleIDs.add(importModuleIdWithExtension);
+                    importedProcessedModulesIDsParents.set(
+                      importModuleIdWithExtension,
+                      relativeModuleFilePath,
+                    );
+                  }
+                });
+
+                updateRelativeModules(demoName, { module: relativeModuleID, raw }, variant);
+                addedModulesRelativeToModulePath.add(relativeModuleFilePath);
+
+                // iterate recursively over the relative imports
+                while (importedProcessedModuleIDs.size > 0) {
+                  for (const entry of importedProcessedModuleIDs) {
+                    if (entry.startsWith('.')) {
+                      const entryModuleFilePath = path.join(
+                        path.dirname(importedProcessedModulesIDsParents.get(entry)),
+                        entry,
+                      );
+
+                      // We are only iterating trough an array that looks
+                      // like this: ['JS', 'TS'], so  it is safe to await
+                      // eslint-disable-next-line no-await-in-loop
+                      const rawEntry = await fs.readFile(entryModuleFilePath, { encoding: 'utf8' });
+
+                      extractImports(rawEntry).forEach((importModuleID) => {
+                        // detect relative import
+                        const importModuleIdWithExtension = detectRelativeImports(
+                          relativeModuleID,
+                          entryModuleFilePath,
+                          variant,
+                          importModuleID,
+                        );
+                        if (importModuleID.startsWith('.')) {
+                          importedProcessedModuleIDs.add(importModuleIdWithExtension);
+                          importedProcessedModulesIDsParents.set(
+                            importModuleIdWithExtension,
+                            entryModuleFilePath,
+                          );
+                        }
+                      });
+
+                      if (!addedModulesRelativeToModulePath.has(entryModuleFilePath)) {
+                        const modulePathDirectory = moduleFilepath
+                          .split('/')
+                          .slice(0, -1)
+                          .join('/');
+                        const moduleData = {
+                          module: `.${entryModuleFilePath.replace(modulePathDirectory, '')}`,
+                          raw: rawEntry,
+                        };
+                        updateRelativeModules(demoName, moduleData, variant);
+                        addedModulesRelativeToModulePath.add(entryModuleFilePath);
+                      }
+                    }
+                    importedProcessedModuleIDs.delete(entry);
+                  }
+                }
+              } catch {
+                throw new Error(
+                  `Could not find a module for the relative import "${relativeModuleID}" in the demo "${demoName}"`,
+                );
+              }
+            }
           }),
         );
       }

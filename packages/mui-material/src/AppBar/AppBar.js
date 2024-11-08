@@ -3,12 +3,13 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import Paper from '../Paper';
 import { getAppBarUtilityClass } from './appBarClasses';
-
-const useThemeProps = createUseThemeProps('MuiAppBar');
 
 const useUtilityClasses = (ownerState) => {
   const { color, position, classes } = ownerState;
@@ -36,132 +37,136 @@ const AppBarRoot = styled(Paper, {
       styles[`color${capitalize(ownerState.color)}`],
     ];
   },
-})(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  width: '100%',
-  boxSizing: 'border-box', // Prevent padding issue with the Modal and fixed positioned AppBar.
-  flexShrink: 0,
-  variants: [
-    {
-      props: { position: 'fixed' },
-      style: {
-        position: 'fixed',
-        zIndex: (theme.vars || theme).zIndex.appBar,
-        top: 0,
-        left: 'auto',
-        right: 0,
-        '@media print': {
-          // Prevent the app bar to be visible on each printed page.
-          position: 'absolute',
+})(
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    boxSizing: 'border-box', // Prevent padding issue with the Modal and fixed positioned AppBar.
+    flexShrink: 0,
+    variants: [
+      {
+        props: { position: 'fixed' },
+        style: {
+          position: 'fixed',
+          zIndex: (theme.vars || theme).zIndex.appBar,
+          top: 0,
+          left: 'auto',
+          right: 0,
+          '@media print': {
+            // Prevent the app bar to be visible on each printed page.
+            position: 'absolute',
+          },
         },
       },
-    },
-    {
-      props: { position: 'absolute' },
-      style: {
-        position: 'absolute',
-        zIndex: (theme.vars || theme).zIndex.appBar,
-        top: 0,
-        left: 'auto',
-        right: 0,
+      {
+        props: { position: 'absolute' },
+        style: {
+          position: 'absolute',
+          zIndex: (theme.vars || theme).zIndex.appBar,
+          top: 0,
+          left: 'auto',
+          right: 0,
+        },
       },
-    },
-    {
-      props: { position: 'sticky' },
-      style: {
-        position: 'sticky',
-        zIndex: (theme.vars || theme).zIndex.appBar,
-        top: 0,
-        left: 'auto',
-        right: 0,
+      {
+        props: { position: 'sticky' },
+        style: {
+          position: 'sticky',
+          zIndex: (theme.vars || theme).zIndex.appBar,
+          top: 0,
+          left: 'auto',
+          right: 0,
+        },
       },
-    },
-    {
-      props: { position: 'static' },
-      style: {
-        position: 'static',
+      {
+        props: { position: 'static' },
+        style: {
+          position: 'static',
+        },
       },
-    },
-    {
-      props: { position: 'relative' },
-      style: {
-        position: 'relative',
+      {
+        props: { position: 'relative' },
+        style: {
+          position: 'relative',
+        },
       },
-    },
-    {
-      props: { color: 'inherit' },
-      style: {
-        '--AppBar-color': 'inherit',
+      {
+        props: { color: 'inherit' },
+        style: {
+          '--AppBar-color': 'inherit',
+        },
       },
-    },
-    {
-      props: { color: 'default' },
-      style: {
-        '--AppBar-background': theme.vars
-          ? theme.vars.palette.AppBar.defaultBg
-          : theme.palette.grey[100],
-        '--AppBar-color': theme.vars
-          ? theme.vars.palette.text.primary
-          : theme.palette.getContrastText(theme.palette.grey[100]),
-        ...theme.applyStyles('dark', {
+      {
+        props: { color: 'default' },
+        style: {
           '--AppBar-background': theme.vars
             ? theme.vars.palette.AppBar.defaultBg
-            : theme.palette.grey[900],
+            : theme.palette.grey[100],
           '--AppBar-color': theme.vars
             ? theme.vars.palette.text.primary
-            : theme.palette.getContrastText(theme.palette.grey[900]),
-        }),
-      },
-    },
-    ...Object.entries(theme.palette)
-      .filter(([, palette]) => palette && palette.main && palette.contrastText)
-      .map(([color]) => ({
-        props: { color },
-        style: {
-          '--AppBar-background': (theme.vars ?? theme).palette[color].main,
-          '--AppBar-color': (theme.vars ?? theme).palette[color].contrastText,
+            : theme.palette.getContrastText(theme.palette.grey[100]),
+          ...theme.applyStyles('dark', {
+            '--AppBar-background': theme.vars
+              ? theme.vars.palette.AppBar.defaultBg
+              : theme.palette.grey[900],
+            '--AppBar-color': theme.vars
+              ? theme.vars.palette.text.primary
+              : theme.palette.getContrastText(theme.palette.grey[900]),
+          }),
         },
-      })),
-    {
-      props: { enableColorOnDark: true },
-      style: {
-        backgroundColor: 'var(--AppBar-background)',
-        color: 'var(--AppBar-color)',
       },
-    },
-    {
-      props: { enableColorOnDark: false },
-      style: {
-        backgroundColor: 'var(--AppBar-background)',
-        color: 'var(--AppBar-color)',
-        ...theme.applyStyles('dark', {
-          backgroundColor: theme.vars
-            ? joinVars(theme.vars.palette.AppBar.darkBg, 'var(--AppBar-background)')
-            : null,
-          color: theme.vars
-            ? joinVars(theme.vars.palette.AppBar.darkColor, 'var(--AppBar-color)')
-            : null,
-        }),
+      ...Object.entries(theme.palette)
+        .filter(createSimplePaletteValueFilter(['contrastText']))
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            '--AppBar-background': (theme.vars ?? theme).palette[color].main,
+            '--AppBar-color': (theme.vars ?? theme).palette[color].contrastText,
+          },
+        })),
+      {
+        props: (props) =>
+          props.enableColorOnDark === true && !['inherit', 'transparent'].includes(props.color),
+        style: {
+          backgroundColor: 'var(--AppBar-background)',
+          color: 'var(--AppBar-color)',
+        },
       },
-    },
-    {
-      props: { color: 'transparent' },
-      style: {
-        '--AppBar-background': 'transparent',
-        '--AppBar-color': 'inherit',
-        backgroundColor: 'var(--AppBar-background)',
-        color: 'var(--AppBar-color)',
-        ...theme.applyStyles('dark', {
-          backgroundImage: 'none',
-        }),
+      {
+        props: (props) =>
+          props.enableColorOnDark === false && !['inherit', 'transparent'].includes(props.color),
+        style: {
+          backgroundColor: 'var(--AppBar-background)',
+          color: 'var(--AppBar-color)',
+          ...theme.applyStyles('dark', {
+            backgroundColor: theme.vars
+              ? joinVars(theme.vars.palette.AppBar.darkBg, 'var(--AppBar-background)')
+              : null,
+            color: theme.vars
+              ? joinVars(theme.vars.palette.AppBar.darkColor, 'var(--AppBar-color)')
+              : null,
+          }),
+        },
       },
-    },
-  ],
-}));
+      {
+        props: { color: 'transparent' },
+        style: {
+          '--AppBar-background': 'transparent',
+          '--AppBar-color': 'inherit',
+          backgroundColor: 'var(--AppBar-background)',
+          color: 'var(--AppBar-color)',
+          ...theme.applyStyles('dark', {
+            backgroundImage: 'none',
+          }),
+        },
+      },
+    ],
+  })),
+);
 
 const AppBar = React.forwardRef(function AppBar(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAppBar' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiAppBar' });
   const {
     className,
     color = 'primary',

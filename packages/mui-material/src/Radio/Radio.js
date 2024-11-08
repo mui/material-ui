@@ -9,12 +9,15 @@ import SwitchBase from '../internal/SwitchBase';
 import RadioButtonIcon from './RadioButtonIcon';
 import capitalize from '../utils/capitalize';
 import createChainedFunction from '../utils/createChainedFunction';
+import useFormControl from '../FormControl/useFormControl';
 import useRadioGroup from '../RadioGroup/useRadioGroup';
 import radioClasses, { getRadioUtilityClass } from './radioClasses';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 
-const useThemeProps = createUseThemeProps('MuiRadio');
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, color, size } = ownerState;
@@ -42,58 +45,60 @@ const RadioRoot = styled(SwitchBase, {
       styles[`color${capitalize(ownerState.color)}`],
     ];
   },
-})(({ theme }) => ({
-  color: (theme.vars || theme).palette.text.secondary,
-  [`&.${radioClasses.disabled}`]: {
-    color: (theme.vars || theme).palette.action.disabled,
-  },
-  variants: [
-    {
-      props: { color: 'default', disableRipple: false },
-      style: {
-        '&:hover': {
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
-            : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
-        },
-      },
+})(
+  memoTheme(({ theme }) => ({
+    color: (theme.vars || theme).palette.text.secondary,
+    [`&.${radioClasses.disabled}`]: {
+      color: (theme.vars || theme).palette.action.disabled,
     },
-    ...Object.entries(theme.palette)
-      .filter(([, palette]) => palette && palette.main)
-      .map(([color]) => ({
-        props: { color, disableRipple: false },
+    variants: [
+      {
+        props: { color: 'default', disabled: false, disableRipple: false },
         style: {
           '&:hover': {
             backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-              : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
-          },
-        },
-      })),
-    ...Object.entries(theme.palette)
-      .filter(([, palette]) => palette && palette.main)
-      .map(([color]) => ({
-        props: { color },
-        style: {
-          [`&.${radioClasses.checked}`]: {
-            color: (theme.vars || theme).palette[color].main,
-          },
-        },
-      })),
-    {
-      // Should be last to override other colors
-      props: { disableRipple: false },
-      style: {
-        // Reset on touch devices, it doesn't add specificity
-        '&:hover': {
-          '@media (hover: none)': {
-            backgroundColor: 'transparent',
+              ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
+              : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
           },
         },
       },
-    },
-  ],
-}));
+      ...Object.entries(theme.palette)
+        .filter(createSimplePaletteValueFilter())
+        .map(([color]) => ({
+          props: { color, disabled: false, disableRipple: false },
+          style: {
+            '&:hover': {
+              backgroundColor: theme.vars
+                ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
+                : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
+            },
+          },
+        })),
+      ...Object.entries(theme.palette)
+        .filter(createSimplePaletteValueFilter())
+        .map(([color]) => ({
+          props: { color, disabled: false },
+          style: {
+            [`&.${radioClasses.checked}`]: {
+              color: (theme.vars || theme).palette[color].main,
+            },
+          },
+        })),
+      {
+        // Should be last to override other colors
+        props: { disableRipple: false },
+        style: {
+          // Reset on touch devices, it doesn't add specificity
+          '&:hover': {
+            '@media (hover: none)': {
+              backgroundColor: 'transparent',
+            },
+          },
+        },
+      },
+    ],
+  })),
+);
 
 function areEqualValues(a, b) {
   if (typeof b === 'object' && b !== null) {
@@ -108,7 +113,7 @@ const defaultCheckedIcon = <RadioButtonIcon checked />;
 const defaultIcon = <RadioButtonIcon />;
 
 const Radio = React.forwardRef(function Radio(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiRadio' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiRadio' });
   const {
     checked: checkedProp,
     checkedIcon = defaultCheckedIcon,
@@ -118,11 +123,26 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     onChange: onChangeProp,
     size = 'medium',
     className,
+    disabled: disabledProp,
     disableRipple = false,
     ...other
   } = props;
+
+  const muiFormControl = useFormControl();
+
+  let disabled = disabledProp;
+
+  if (muiFormControl) {
+    if (typeof disabled === 'undefined') {
+      disabled = muiFormControl.disabled;
+    }
+  }
+
+  disabled ??= false;
+
   const ownerState = {
     ...props,
+    disabled,
     disableRipple,
     color,
     size,
@@ -151,6 +171,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
       checkedIcon={React.cloneElement(checkedIcon, {
         fontSize: defaultCheckedIcon.props.fontSize ?? size,
       })}
+      disabled={disabled}
       ownerState={ownerState}
       classes={classes}
       name={name}

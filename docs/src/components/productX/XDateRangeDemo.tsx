@@ -7,25 +7,25 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePicker';
 import { PickersShortcutsItem, PickersShortcutsProps, DateRange } from '@mui/x-date-pickers-pro';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import { startOfWeek, endOfWeek, subDays } from 'date-fns';
+import dayjs, { Dayjs } from 'dayjs';
 import Frame from 'docs/src/components/action/Frame';
 
-const startDate = new Date();
-startDate.setDate(10);
-const endDate = new Date();
-endDate.setDate(endDate.getDate() + 28);
+const startDate = dayjs();
+startDate.date(10);
+const endDate = dayjs();
+endDate.date(endDate.date() + 28);
 
-function CustomRangeShortcuts(props: PickersShortcutsProps<DateRange<Date>>) {
+function CustomRangeShortcuts(props: PickersShortcutsProps<DateRange<Dayjs>>) {
   const { items, onChange, isValid, changeImportance = 'accept' } = props;
 
   if (items == null || items.length === 0) {
     return null;
   }
 
-  const resolvedItems = items.map((item: PickersShortcutsItem<DateRange<Date>>) => {
+  const resolvedItems = items.map((item: PickersShortcutsItem<DateRange<Dayjs>>) => {
     const newValue = item.getValue({ isValid });
 
     return {
@@ -38,12 +38,7 @@ function CustomRangeShortcuts(props: PickersShortcutsProps<DateRange<Date>>) {
   });
 
   return (
-    <Box
-      sx={{
-        gridRow: 1,
-        gridColumn: 2,
-      }}
-    >
+    <Box sx={{ gridRow: 1, gridColumn: 2 }}>
       <List
         sx={{
           display: 'flex',
@@ -85,25 +80,25 @@ const code = `
 </LocalizationProvider>`;
 
 export default function XDateRangeDemo() {
-  const today = new Date();
-  const shortcutsItems: PickersShortcutsItem<DateRange<Date>>[] = [
+  const today = dayjs();
+  const shortcutsItems: PickersShortcutsItem<DateRange<Dayjs>>[] = [
     {
       label: 'This Week',
       getValue: () => {
-        return [startOfWeek(today), endOfWeek(today)];
+        return [today.startOf('week'), today.endOf('week')];
       },
     },
     {
       label: 'Last Week',
       getValue: () => {
-        const prevWeek = subDays(today, 7);
-        return [startOfWeek(prevWeek), endOfWeek(prevWeek)];
+        const prevWeek = today.add(-7, 'days');
+        return [prevWeek.startOf('week'), prevWeek.endOf('week')];
       },
     },
     {
       label: 'Last 7 Days',
       getValue: () => {
-        return [subDays(today, 7), today];
+        return [today.add(-7, 'days'), today];
       },
     },
     { label: 'Reset', getValue: () => [null, null] },
@@ -169,7 +164,7 @@ export default function XDateRangeDemo() {
               }),
           ]}
         >
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
             <StaticDateRangePicker
               displayStaticWrapperAs="desktop"
               value={[startDate, endDate]}

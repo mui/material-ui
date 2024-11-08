@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CssVarsProvider } from '@mui/material/styles';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
 import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
@@ -16,8 +16,7 @@ import PlayerCard from 'docs/src/components/showcase/PlayerCard';
 const code = `
 <Card
   variant="outlined"
-  sx={{
-    p: 2,
+  sx={{  p: 2,
     width: { xs: '100%', sm: 'auto' },
     display: 'flex',
     flexDirection: { xs: 'column', sm: 'row' },
@@ -31,8 +30,7 @@ const code = `
     height="100"
     alt="Contemplative Reptile album cover"
     src="/images/contemplative-reptile.jpg"
-    sx={{
-      width: { xs: '100%', sm: 100 },
+    sx={{    width: { xs: '100%', sm: 100 },
     }}
   />
   <Stack direction="column" alignItems="center" spacing={1} useFlexGap>
@@ -79,7 +77,7 @@ export default function MaterialTheming() {
   return (
     <Section>
       <Grid container spacing={2}>
-        <Grid md={6} sx={{ minWidth: 0 }}>
+        <Grid sx={{ minWidth: 0 }} size={{ md: 6 }}>
           <SectionHeadline
             overline="Theming"
             title={
@@ -106,7 +104,7 @@ export default function MaterialTheming() {
             </Highlighter>
           </Group>
         </Grid>
-        <Grid xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo
               sx={{

@@ -2,6 +2,7 @@
 productId: material-ui
 title: Media queries in React for responsive design
 githubLabel: 'hook: useMediaQuery'
+githubSource: packages/mui-material/src/useMediaQuery
 ---
 
 # useMediaQuery
@@ -12,6 +13,7 @@ Some of the key features:
 
 - ⚛️ It has an idiomatic React API.
 - 🚀 It's performant, it observes the document to detect when its media queries change, instead of polling the values periodically.
+- 📦 [1.1 kB gzipped](https://bundlephobia.com/package/@mui/material).
 - 🤖 It supports server-side rendering.
 
 {{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
@@ -25,7 +27,7 @@ The media query string can be any valid CSS media query, for example [`'(prefers
 
 ⚠️ You can't use `'print'` per browsers limitation, for example [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
 
-## Using Material UI's breakpoint helpers
+## Using breakpoint helpers
 
 You can use Material UI's [breakpoint helpers](/material-ui/customization/breakpoints/) as follows:
 
@@ -78,8 +80,8 @@ function createMatchMedia(width) {
     matches: mediaQuery.match(query, {
       width,
     }),
-    addListener: () => {},
-    removeListener: () => {},
+    addEventListener: () => {},
+    removeEventListener: () => {},
   });
 }
 

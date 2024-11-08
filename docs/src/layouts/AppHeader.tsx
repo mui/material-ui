@@ -7,7 +7,7 @@ import Container from '@mui/material/Container';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import MuiLogoMenu from 'docs/src/components/action/MuiLogoMenu';
+import LogoWithCopyMenu from 'docs/src/components/action/LogoWithCopyMenu';
 import HeaderNavBar from 'docs/src/components/header/HeaderNavBar';
 import HeaderNavDropdown from 'docs/src/components/header/HeaderNavDropdown';
 import ThemeModeToggle from 'docs/src/components/header/ThemeModeToggle';
@@ -20,12 +20,11 @@ const Header = styled('header')(({ theme }) => [
     top: 0,
     transition: theme.transitions.create('top'),
     zIndex: theme.zIndex.appBar,
-    backdropFilter: 'blur(8px)',
-    boxShadow: `inset 0px -1px 1px ${(theme.vars || theme).palette.grey[100]}`,
     backgroundColor: 'rgba(255,255,255,0.8)',
+    backdropFilter: 'blur(8px)',
+    borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
   } as const,
   theme.applyDarkStyles({
-    boxShadow: `inset 0px -1px 1px ${(theme.vars || theme).palette.primaryDark[700]}`,
     backgroundColor: alpha(theme.palette.primaryDark[900], 0.7),
   }),
 ]);
@@ -50,7 +49,7 @@ export default function AppHeader(props: AppHeaderProps) {
         }}
       />
       <Container sx={{ display: 'flex', alignItems: 'center', minHeight: HEIGHT }}>
-        <MuiLogoMenu />
+        <LogoWithCopyMenu />
         <Box sx={{ display: { xs: 'none', md: 'initial' } }}>
           <HeaderNavBar />
         </Box>

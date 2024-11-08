@@ -4,10 +4,9 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getCardMediaUtilityClass } from './cardMediaClasses';
-
-const useThemeProps = createUseThemeProps('MuiCardMedia');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, isMediaComponent, isImageComponent } = ownerState;
@@ -53,10 +52,10 @@ const MEDIA_COMPONENTS = ['video', 'audio', 'picture', 'iframe', 'img'];
 const IMAGE_COMPONENTS = ['picture', 'img'];
 
 const CardMedia = React.forwardRef(function CardMedia(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiCardMedia' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiCardMedia' });
   const { children, className, component = 'div', image, src, style, ...other } = props;
 
-  const isMediaComponent = MEDIA_COMPONENTS.indexOf(component) !== -1;
+  const isMediaComponent = MEDIA_COMPONENTS.includes(component);
   const composedStyle =
     !isMediaComponent && image ? { backgroundImage: `url("${image}")`, ...style } : style;
 
@@ -64,7 +63,7 @@ const CardMedia = React.forwardRef(function CardMedia(inProps, ref) {
     ...props,
     component,
     isMediaComponent,
-    isImageComponent: IMAGE_COMPONENTS.indexOf(component) !== -1,
+    isImageComponent: IMAGE_COMPONENTS.includes(component),
   };
 
   const classes = useUtilityClasses(ownerState);

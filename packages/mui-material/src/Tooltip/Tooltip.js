@@ -4,24 +4,25 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import useTimeout, { Timeout } from '@mui/utils/useTimeout';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
-import { appendOwnerState, resolveComponentProps } from '@mui/base/utils';
+import { resolveComponentProps } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
-import { styled, createUseThemeProps } from '../zero-styled';
-import useTheme from '../styles/useTheme';
+import isFocusVisible from '@mui/utils/isFocusVisible';
+import appendOwnerState from '@mui/utils/appendOwnerState';
+import getReactElementRef from '@mui/utils/getReactElementRef';
+import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import Popper from '../Popper';
 import useEventCallback from '../utils/useEventCallback';
 import useForkRef from '../utils/useForkRef';
 import useId from '../utils/useId';
-import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useControlled from '../utils/useControlled';
 import tooltipClasses, { getTooltipUtilityClass } from './tooltipClasses';
 import useSlot from '../utils/useSlot';
-
-const useThemeProps = createUseThemeProps('MuiTooltip');
 
 function round(value) {
   return Math.round(value * 1e5) / 1e5;
@@ -57,93 +58,95 @@ const TooltipPopper = styled(Popper, {
       !ownerState.open && styles.popperClose,
     ];
   },
-})(({ theme }) => ({
-  zIndex: (theme.vars || theme).zIndex.tooltip,
-  pointerEvents: 'none',
-  variants: [
-    {
-      props: ({ ownerState }) => !ownerState.disableInteractive,
-      style: {
-        pointerEvents: 'auto',
+})(
+  memoTheme(({ theme }) => ({
+    zIndex: (theme.vars || theme).zIndex.tooltip,
+    pointerEvents: 'none',
+    variants: [
+      {
+        props: ({ ownerState }) => !ownerState.disableInteractive,
+        style: {
+          pointerEvents: 'auto',
+        },
       },
-    },
-    {
-      props: ({ open }) => !open,
-      style: {
-        pointerEvents: 'none',
+      {
+        props: ({ open }) => !open,
+        style: {
+          pointerEvents: 'none',
+        },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.arrow,
-      style: {
-        [`&[data-popper-placement*="bottom"] .${tooltipClasses.arrow}`]: {
-          top: 0,
-          marginTop: '-0.71em',
-          '&::before': {
-            transformOrigin: '0 100%',
+      {
+        props: ({ ownerState }) => ownerState.arrow,
+        style: {
+          [`&[data-popper-placement*="bottom"] .${tooltipClasses.arrow}`]: {
+            top: 0,
+            marginTop: '-0.71em',
+            '&::before': {
+              transformOrigin: '0 100%',
+            },
+          },
+          [`&[data-popper-placement*="top"] .${tooltipClasses.arrow}`]: {
+            bottom: 0,
+            marginBottom: '-0.71em',
+            '&::before': {
+              transformOrigin: '100% 0',
+            },
+          },
+          [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
+            height: '1em',
+            width: '0.71em',
+            '&::before': {
+              transformOrigin: '100% 100%',
+            },
+          },
+          [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
+            height: '1em',
+            width: '0.71em',
+            '&::before': {
+              transformOrigin: '0 0',
+            },
           },
         },
-        [`&[data-popper-placement*="top"] .${tooltipClasses.arrow}`]: {
-          bottom: 0,
-          marginBottom: '-0.71em',
-          '&::before': {
-            transformOrigin: '100% 0',
-          },
-        },
-        [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
-          height: '1em',
-          width: '0.71em',
-          '&::before': {
-            transformOrigin: '100% 100%',
-          },
-        },
-        [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
-          height: '1em',
-          width: '0.71em',
-          '&::before': {
-            transformOrigin: '0 0',
+      },
+      {
+        props: ({ ownerState }) => ownerState.arrow && !ownerState.isRtl,
+        style: {
+          [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
+            left: 0,
+            marginLeft: '-0.71em',
           },
         },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.arrow && !ownerState.isRtl,
-      style: {
-        [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
-          left: 0,
-          marginLeft: '-0.71em',
+      {
+        props: ({ ownerState }) => ownerState.arrow && !!ownerState.isRtl,
+        style: {
+          [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
+            right: 0,
+            marginRight: '-0.71em',
+          },
         },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.arrow && !!ownerState.isRtl,
-      style: {
-        [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
-          right: 0,
-          marginRight: '-0.71em',
+      {
+        props: ({ ownerState }) => ownerState.arrow && !ownerState.isRtl,
+        style: {
+          [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
+            right: 0,
+            marginRight: '-0.71em',
+          },
         },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.arrow && !ownerState.isRtl,
-      style: {
-        [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
-          right: 0,
-          marginRight: '-0.71em',
+      {
+        props: ({ ownerState }) => ownerState.arrow && !!ownerState.isRtl,
+        style: {
+          [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
+            left: 0,
+            marginLeft: '-0.71em',
+          },
         },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.arrow && !!ownerState.isRtl,
-      style: {
-        [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
-          left: 0,
-          marginLeft: '-0.71em',
-        },
-      },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 const TooltipTooltip = styled('div', {
   name: 'MuiTooltip',
@@ -158,134 +161,138 @@ const TooltipTooltip = styled('div', {
       styles[`tooltipPlacement${capitalize(ownerState.placement.split('-')[0])}`],
     ];
   },
-})(({ theme }) => ({
-  backgroundColor: theme.vars
-    ? theme.vars.palette.Tooltip.bg
-    : alpha(theme.palette.grey[700], 0.92),
-  borderRadius: (theme.vars || theme).shape.borderRadius,
-  color: (theme.vars || theme).palette.common.white,
-  fontFamily: theme.typography.fontFamily,
-  padding: '4px 8px',
-  fontSize: theme.typography.pxToRem(11),
-  maxWidth: 300,
-  margin: 2,
-  wordWrap: 'break-word',
-  fontWeight: theme.typography.fontWeightMedium,
-  [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
-    transformOrigin: 'right center',
-  },
-  [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
-    transformOrigin: 'left center',
-  },
-  [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
-    transformOrigin: 'center bottom',
-    marginBottom: '14px',
-  },
-  [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
-    transformOrigin: 'center top',
-    marginTop: '14px',
-  },
-  variants: [
-    {
-      props: ({ ownerState }) => ownerState.arrow,
-      style: {
-        position: 'relative',
-        margin: 0,
-      },
+})(
+  memoTheme(({ theme }) => ({
+    backgroundColor: theme.vars
+      ? theme.vars.palette.Tooltip.bg
+      : alpha(theme.palette.grey[700], 0.92),
+    borderRadius: (theme.vars || theme).shape.borderRadius,
+    color: (theme.vars || theme).palette.common.white,
+    fontFamily: theme.typography.fontFamily,
+    padding: '4px 8px',
+    fontSize: theme.typography.pxToRem(11),
+    maxWidth: 300,
+    margin: 2,
+    wordWrap: 'break-word',
+    fontWeight: theme.typography.fontWeightMedium,
+    [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
+      transformOrigin: 'right center',
     },
-    {
-      props: ({ ownerState }) => ownerState.touch,
-      style: {
-        padding: '8px 16px',
-        fontSize: theme.typography.pxToRem(14),
-        lineHeight: `${round(16 / 14)}em`,
-        fontWeight: theme.typography.fontWeightRegular,
-      },
+    [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
+      transformOrigin: 'left center',
     },
-    {
-      props: ({ ownerState }) => !ownerState.isRtl,
-      style: {
-        [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
-          marginRight: '14px',
-        },
-        [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
-          marginLeft: '14px',
+    [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
+      transformOrigin: 'center bottom',
+      marginBottom: '14px',
+    },
+    [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
+      transformOrigin: 'center top',
+      marginTop: '14px',
+    },
+    variants: [
+      {
+        props: ({ ownerState }) => ownerState.arrow,
+        style: {
+          position: 'relative',
+          margin: 0,
         },
       },
-    },
-    {
-      props: ({ ownerState }) => !ownerState.isRtl && ownerState.touch,
-      style: {
-        [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
-          marginRight: '24px',
-        },
-        [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
-          marginLeft: '24px',
+      {
+        props: ({ ownerState }) => ownerState.touch,
+        style: {
+          padding: '8px 16px',
+          fontSize: theme.typography.pxToRem(14),
+          lineHeight: `${round(16 / 14)}em`,
+          fontWeight: theme.typography.fontWeightRegular,
         },
       },
-    },
-    {
-      props: ({ ownerState }) => !!ownerState.isRtl,
-      style: {
-        [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
-          marginLeft: '14px',
-        },
-        [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
-          marginRight: '14px',
-        },
-      },
-    },
-    {
-      props: ({ ownerState }) => !!ownerState.isRtl && ownerState.touch,
-      style: {
-        [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
-          marginLeft: '24px',
-        },
-        [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
-          marginRight: '24px',
+      {
+        props: ({ ownerState }) => !ownerState.isRtl,
+        style: {
+          [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
+            marginRight: '14px',
+          },
+          [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
+            marginLeft: '14px',
+          },
         },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.touch,
-      style: {
-        [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
-          marginBottom: '24px',
+      {
+        props: ({ ownerState }) => !ownerState.isRtl && ownerState.touch,
+        style: {
+          [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
+            marginRight: '24px',
+          },
+          [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
+            marginLeft: '24px',
+          },
         },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.touch,
-      style: {
-        [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
-          marginTop: '24px',
+      {
+        props: ({ ownerState }) => !!ownerState.isRtl,
+        style: {
+          [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
+            marginLeft: '14px',
+          },
+          [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
+            marginRight: '14px',
+          },
         },
       },
-    },
-  ],
-}));
+      {
+        props: ({ ownerState }) => !!ownerState.isRtl && ownerState.touch,
+        style: {
+          [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
+            marginLeft: '24px',
+          },
+          [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
+            marginRight: '24px',
+          },
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.touch,
+        style: {
+          [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
+            marginBottom: '24px',
+          },
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.touch,
+        style: {
+          [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
+            marginTop: '24px',
+          },
+        },
+      },
+    ],
+  })),
+);
 
 const TooltipArrow = styled('span', {
   name: 'MuiTooltip',
   slot: 'Arrow',
   overridesResolver: (props, styles) => styles.arrow,
-})(({ theme }) => ({
-  overflow: 'hidden',
-  position: 'absolute',
-  width: '1em',
-  height: '0.71em' /* = width / sqrt(2) = (length of the hypotenuse) */,
-  boxSizing: 'border-box',
-  color: theme.vars ? theme.vars.palette.Tooltip.bg : alpha(theme.palette.grey[700], 0.9),
-  '&::before': {
-    content: '""',
-    margin: 'auto',
-    display: 'block',
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'currentColor',
-    transform: 'rotate(45deg)',
-  },
-}));
+})(
+  memoTheme(({ theme }) => ({
+    overflow: 'hidden',
+    position: 'absolute',
+    width: '1em',
+    height: '0.71em' /* = width / sqrt(2) = (length of the hypotenuse) */,
+    boxSizing: 'border-box',
+    color: theme.vars ? theme.vars.palette.Tooltip.bg : alpha(theme.palette.grey[700], 0.9),
+    '&::before': {
+      content: '""',
+      margin: 'auto',
+      display: 'block',
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'currentColor',
+      transform: 'rotate(45deg)',
+    },
+  })),
+);
 
 let hystersisOpen = false;
 const hystersisTimer = new Timeout();
@@ -307,7 +314,7 @@ function composeEventHandler(handler, eventHandler) {
 
 // TODO v6: Remove PopperComponent, PopperProps, TransitionComponent and TransitionProps.
 const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTooltip' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTooltip' });
   const {
     arrow = false,
     children: childrenProp,
@@ -367,10 +374,12 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   let open = openState;
 
   if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
+    // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
     const { current: isControlled } = React.useRef(openProp !== undefined);
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
+    // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
     React.useEffect(() => {
       if (
         childNode &&
@@ -469,18 +478,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     });
   };
 
-  const {
-    isFocusVisibleRef,
-    onBlur: handleBlurVisible,
-    onFocus: handleFocusVisible,
-    ref: focusVisibleRef,
-  } = useIsFocusVisible();
-  // We don't necessarily care about the focusVisible state (which is safe to access via ref anyway).
-  // We just need to re-render the Tooltip if the focus-visible state changes.
   const [, setChildIsFocusVisible] = React.useState(false);
   const handleBlur = (event) => {
-    handleBlurVisible(event);
-    if (isFocusVisibleRef.current === false) {
+    if (!isFocusVisible(event.target)) {
       setChildIsFocusVisible(false);
       handleMouseLeave(event);
     }
@@ -494,8 +494,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       setChildNode(event.currentTarget);
     }
 
-    handleFocusVisible(event);
-    if (isFocusVisibleRef.current === true) {
+    if (isFocusVisible(event.target)) {
       setChildIsFocusVisible(true);
       handleMouseOver(event);
     }
@@ -558,7 +557,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     };
   }, [handleClose, open]);
 
-  const handleRef = useForkRef(children.ref, focusVisibleRef, setChildNode, ref);
+  const handleRef = useForkRef(getReactElementRef(children), setChildNode, ref);
 
   // There is no point in displaying an empty tooltip.
   // So we exclude all falsy values, except 0, which is valid.
@@ -604,7 +603,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   if (process.env.NODE_ENV !== 'production') {
     childrenProps['data-mui-internal-clone-element'] = true;
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
+    // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
     React.useEffect(() => {
       if (childNode && !childNode.getAttribute('data-mui-internal-clone-element')) {
         console.error(
@@ -811,7 +811,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/).
    *
    * @default {}
    */
@@ -825,7 +825,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/).
    *
    * @default {}
    */
@@ -939,7 +939,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
    */
   PopperComponent: PropTypes.elementType,
   /**
-   * Props applied to the [`Popper`](/material-ui/api/popper/) element.
+   * Props applied to the [`Popper`](https://mui.com/material-ui/api/popper/) element.
    * @deprecated Use `slotProps.popper` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
   PopperProps: PropTypes.object,
@@ -984,7 +984,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
   title: PropTypes.node,
   /**
    * The component used for the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @deprecated Use `slots.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
   TransitionComponent: PropTypes.elementType,

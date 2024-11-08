@@ -1,6 +1,6 @@
 {
   "name": "@mui/styled-engine",
-  "version": "6.0.0-alpha.9",
+  "version": "6.1.6",
   "private": false,
   "author": "MUI Team",
   "description": "styled() API wrapper package for emotion.",
@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
+    "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-styled-engine"
   },
   "license": "MIT",
@@ -33,29 +33,31 @@
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "prebuild": "rimraf build",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-styled-engine/**/*.test.{js,ts,tsx}'",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-styled-engine/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.24.6",
-    "@emotion/cache": "^11.11.0",
+    "@babel/runtime": "^7.26.0",
+    "@emotion/cache": "^11.13.1",
+    "@emotion/serialize": "^1.3.2",
+    "@emotion/sheet": "^1.4.0",
     "csstype": "^3.1.3",
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
     "@mui/internal-test-utils": "workspace:^",
     "@mui/styled-engine": "workspace:*",
-    "@types/chai": "^4.3.16",
-    "@types/react": "^18.2.55",
-    "chai": "^4.4.1",
-    "react": "^18.2.0"
+    "@types/chai": "^4.3.20",
+    "@types/react": "^18.3.12",
+    "chai": "^4.5.0",
+    "react": "^18.3.1"
   },
   "peerDependencies": {
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
-    "react": "^17.0.0 || ^18.0.0"
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "peerDependenciesMeta": {
     "@emotion/react": {
@@ -71,6 +73,6 @@
     "directory": "build"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=14.0.0"
   }
 }

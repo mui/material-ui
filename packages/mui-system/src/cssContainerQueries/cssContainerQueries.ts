@@ -1,5 +1,4 @@
-import MuiError from '@mui/internal-babel-macros/MuiError.macro';
-import { Breakpoints, Breakpoint } from '../createTheme/createBreakpoints';
+import { Breakpoints, Breakpoint } from '../createBreakpoints/createBreakpoints';
 
 interface ContainerQueries {
   up: Breakpoints['up'];
@@ -48,25 +47,25 @@ export function sortContainerQueries(
 
 export function isCqShorthand(breakpointKeys: string[], value: string) {
   return (
-    value.startsWith('@') &&
-    (breakpointKeys.some((key) => value.startsWith(`@${key}`)) || !!value.match(/^@\d/))
+    value === '@' ||
+    (value.startsWith('@') &&
+      (breakpointKeys.some((key) => value.startsWith(`@${key}`)) || !!value.match(/^@\d/)))
   );
 }
 
 export function getContainerQuery(theme: CssContainerQueries, shorthand: string) {
-  const matches = shorthand.match(/^@([^/]+)\/?(.+)?$/);
+  const matches = shorthand.match(/^@([^/]+)?\/?(.+)?$/);
   if (!matches) {
     if (process.env.NODE_ENV !== 'production') {
-      throw new MuiError(
-        'MUI: The provided shorthand %s is invalid. The format should be `@<breakpoint | number>` or `@<breakpoint | number>/<container>`.\n' +
+      throw /* minify-error */ new Error(
+        `MUI: The provided shorthand ${`(${shorthand})`} is invalid. The format should be \`@<breakpoint | number>\` or \`@<breakpoint | number>/<container>\`.\n` +
           'For example, `@sm` or `@600` or `@40rem/sidebar`.',
-        `(${shorthand})`,
       );
     }
     return null;
   }
   const [, containerQuery, containerName] = matches;
-  const value = (Number.isNaN(+containerQuery) ? containerQuery : +containerQuery) as
+  const value = (Number.isNaN(+containerQuery) ? containerQuery || 0 : +containerQuery) as
     | Breakpoint
     | number;
   return theme.containerQueries(containerName).up(value);
@@ -98,7 +97,8 @@ export default function cssContainerQueries<T extends { breakpoints: Breakpoints
         return result
           .replace('not all and ', '')
           .replace('min-width:', 'width<')
-          .replace('max-width:', 'width>');
+          .replace('max-width:', 'width>')
+          .replace('and', 'or');
       }
       return result;
     };

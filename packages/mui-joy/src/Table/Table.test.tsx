@@ -22,11 +22,9 @@ describe('<Table />', () => {
     skip: [
       'classesRoot',
       'componentsProp',
-      // Emotion `compat` is not set with `createMount` for these tests
       'componentProp',
       'mergeClassName',
       'propsSpread',
-      'reactTestRenderer',
       'refForwarding',
     ],
     slots: {

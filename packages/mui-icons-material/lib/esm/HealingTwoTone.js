@@ -1,6 +1,6 @@
 "use client";
 
-import createSvgIcon from './utils/createSvgIcon';
+import createSvgIcon from "./utils/createSvgIcon.js";
 import { jsx as _jsx } from "react/jsx-runtime";
 export default createSvgIcon([/*#__PURE__*/_jsx("path", {
   d: "m13.03 16.72 3.63 3.62 3.62-3.63-3.62-3.62zM7.29 3.71 3.66 7.34l3.63 3.62 3.62-3.63z",

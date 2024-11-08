@@ -6,15 +6,19 @@
 import { expect } from 'chai';
 import * as MaterialUI from './index';
 
+// To skip them in the undefined exports test
+// These are checked in the build process (scripts/build.mjs)
+const versionExports = ['version', 'major', 'minor', 'patch', 'prerelease'];
+
 describe('material-ui', () => {
   it('should have exports', () => {
     expect(typeof MaterialUI).to.equal('object');
   });
 
   it('should not have undefined exports', () => {
-    Object.keys(MaterialUI).forEach((exportKey) =>
-      expect(Boolean(MaterialUI[exportKey])).to.equal(true),
-    );
+    Object.keys(MaterialUI)
+      .filter((exportKey) => !versionExports.includes(exportKey))
+      .forEach((exportKey) => expect(Boolean(MaterialUI[exportKey])).to.equal(true));
   });
 
   it('should reexport certain members from @mui/base', () => {

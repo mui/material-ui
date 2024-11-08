@@ -2,6 +2,8 @@
 import * as React from 'react';
 
 let globalId = 0;
+
+// TODO React 17: Remove `useGlobalId` once React 17 support is removed
 function useGlobalId(idOverride?: string): string | undefined {
   const [defaultId, setDefaultId] = React.useState(idOverride);
   const id = idOverride || defaultId;
@@ -18,8 +20,10 @@ function useGlobalId(idOverride?: string): string | undefined {
   return id;
 }
 
-// downstream bundlers may remove unnecessary concatenation, but won't remove toString call -- Workaround for https://github.com/webpack/webpack/issues/14814
-const maybeReactUseId: undefined | (() => string) = (React as any)['useId'.toString()];
+// See https://github.com/mui/material-ui/issues/41190#issuecomment-2040873379 for why
+const safeReact = { ...React };
+const maybeReactUseId: undefined | (() => string) = safeReact.useId;
+
 /**
  *
  * @example <div id={useId()} />
@@ -27,10 +31,13 @@ const maybeReactUseId: undefined | (() => string) = (React as any)['useId'.toStr
  * @returns {string}
  */
 export default function useId(idOverride?: string): string | undefined {
+  // React.useId() is only available from React 17.0.0.
   if (maybeReactUseId !== undefined) {
     const reactId = maybeReactUseId();
     return idOverride ?? reactId;
   }
+
+  // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
   // eslint-disable-next-line react-hooks/rules-of-hooks -- `React.useId` is invariant at runtime.
   return useGlobalId(idOverride);
 }

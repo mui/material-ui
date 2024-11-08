@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
@@ -82,7 +82,7 @@ function renderFAQItem(index: number, defaultExpanded?: boolean) {
       <AccordionSummary
         expandIcon={<KeyboardArrowDownRounded sx={{ fontSize: 20, color: 'primary.main' }} />}
       >
-        <Typography variant="body2" fontWeight="bold" component="h3">
+        <Typography variant="body2" component="h3" sx={{ fontWeight: 'bold' }}>
           {faq.summary}
         </Typography>
       </AccordionSummary>
@@ -90,8 +90,7 @@ function renderFAQItem(index: number, defaultExpanded?: boolean) {
         <Typography
           component="div"
           variant="body2"
-          color="text.secondary"
-          sx={{ '& ul': { pl: 2 } }}
+          sx={{ color: 'text.secondary', '& ul': { pl: 2 } }}
         >
           {faq.detail}
         </Typography>
@@ -107,11 +106,11 @@ export default function CareersFaq() {
         Frequently asked questions
       </Typography>
       <Grid container spacing={2}>
-        <Grid xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           {renderFAQItem(0, true)}
           {renderFAQItem(1)}
         </Grid>
-        <Grid xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           {renderFAQItem(2)}
           <Paper
             variant="outlined"
@@ -126,11 +125,11 @@ export default function CareersFaq() {
             })}
           >
             <Box sx={{ textAlign: 'left' }}>
-              <Typography variant="body2" color="text.primary" fontWeight="bold">
+              <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'bold' }}>
                 Got any questions unanswered or need more help?
               </Typography>
             </Box>
-            <Typography variant="body2" color="text.secondary" sx={{ my: 1, textAlign: 'left' }}>
+            <Typography variant="body2" sx={{ color: 'text.secondary', my: 1, textAlign: 'left' }}>
               We&apos;re here to help you with any other question you have about our hiring process.
             </Typography>
             <Link href="mailto:job@mui.com" variant="body2">

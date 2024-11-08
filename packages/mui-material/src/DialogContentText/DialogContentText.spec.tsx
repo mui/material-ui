@@ -16,7 +16,7 @@ const dialogContentTextTest = () => {
       <DialogContentText align="right" color="primary" display="initial" />
       <DialogContentText align="justify" color="secondary" display="initial" />
       <DialogContentText align="inherit" color="text.primary" />
-      <DialogContentText align="inherit" color="text.secondary" />
+      <DialogContentText align="inherit" color="textSecondary" />
       <DialogContentText align="inherit" color="error" />
       {/* TODO: system props did not catch this error. Add @ts-expect-error after it is fixed. */}
       <DialogContentText display="incorrectValue" />

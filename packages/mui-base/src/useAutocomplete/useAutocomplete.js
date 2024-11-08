@@ -44,9 +44,7 @@ export function createFilterOptions(config = {}) {
             candidate = stripDiacritics(candidate);
           }
 
-          return matchFrom === 'start'
-            ? candidate.indexOf(input) === 0
-            : candidate.indexOf(input) > -1;
+          return matchFrom === 'start' ? candidate.startsWith(input) : candidate.includes(input);
         });
 
     return typeof limit === 'number' ? filteredOptions.slice(0, limit) : filteredOptions;
@@ -61,6 +59,8 @@ const pageSize = 5;
 const defaultIsActiveElementInListbox = (listboxRef) =>
   listboxRef.current !== null && listboxRef.current.parentElement?.contains(document.activeElement);
 
+const MULTIPLE_DEFAULT_VALUE = [];
+
 export function useAutocomplete(props) {
   const {
     // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -74,7 +74,7 @@ export function useAutocomplete(props) {
     clearOnBlur = !props.freeSolo,
     clearOnEscape = false,
     componentName = 'useAutocomplete',
-    defaultValue = props.multiple ? [] : null,
+    defaultValue = props.multiple ? MULTIPLE_DEFAULT_VALUE : null,
     disableClearable = false,
     disableCloseOnSelect = false,
     disabled: disabledProp,
@@ -152,7 +152,7 @@ export function useAutocomplete(props) {
   const [focused, setFocused] = React.useState(false);
 
   const resetInputValue = React.useCallback(
-    (event, newValue) => {
+    (event, newValue, reason) => {
       // retain current `inputValue` if new option isn't selected and `clearOnBlur` is false
       // When `multiple` is enabled, `newValue` is an array of all selected items including the newly selected item
       const isOptionSelected = multiple ? value.length < newValue.length : newValue !== null;
@@ -176,7 +176,7 @@ export function useAutocomplete(props) {
       setInputValueState(newInputValue);
 
       if (onInputChange) {
-        onInputChange(event, newInputValue, 'reset');
+        onInputChange(event, newInputValue, reason);
       }
     },
     [getOptionLabel, inputValue, multiple, onInputChange, setInputValueState, clearOnBlur, value],
@@ -236,7 +236,7 @@ export function useAutocomplete(props) {
       return;
     }
 
-    resetInputValue(null, value);
+    resetInputValue(null, value, 'reset');
   }, [value, resetInputValue, focused, previousProps.value, freeSolo]);
 
   const listboxAvailable = open && filteredOptions.length > 0 && !readOnly;
@@ -681,7 +681,7 @@ export function useAutocomplete(props) {
       }
     }
 
-    resetInputValue(event, newValue);
+    resetInputValue(event, newValue, reason);
 
     handleValue(event, newValue, reason, { option });
     if (!disableCloseOnSelect && (!event || (!event.ctrlKey && !event.metaKey))) {
@@ -782,7 +782,7 @@ export function useAutocomplete(props) {
       return;
     }
 
-    if (focusedTag !== -1 && ['ArrowLeft', 'ArrowRight'].indexOf(event.key) === -1) {
+    if (focusedTag !== -1 && !['ArrowLeft', 'ArrowRight'].includes(event.key)) {
       setFocusedTag(-1);
       focusTag(-1);
     }
@@ -939,7 +939,7 @@ export function useAutocomplete(props) {
     } else if (autoSelect && freeSolo && inputValue !== '') {
       selectNewValue(event, inputValue, 'blur', 'freeSolo');
     } else if (clearOnBlur) {
-      resetInputValue(event, value);
+      resetInputValue(event, value, 'blur');
     }
 
     handleClose(event, 'blur');

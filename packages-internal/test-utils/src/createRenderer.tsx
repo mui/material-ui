@@ -1,21 +1,24 @@
 /* eslint-env mocha */
-import * as React from 'react';
-import * as ReactDOMServer from 'react-dom/server';
 import createEmotionCache from '@emotion/cache';
 import { CacheProvider as EmotionCacheProvider } from '@emotion/react';
 import {
-  act as rtlAct,
   buildQueries,
   cleanup,
-  fireEvent as rtlFireEvent,
-  queries,
-  queryHelpers,
-  render as testingLibraryRender,
   prettyDOM,
-  within,
+  queries,
   RenderResult,
+  act as rtlAct,
+  fireEvent as rtlFireEvent,
+  screen as rtlScreen,
+  Screen,
+  render as testingLibraryRender,
+  within,
 } from '@testing-library/react/pure';
+import { userEvent } from '@testing-library/user-event';
+import * as React from 'react';
+import * as ReactDOMServer from 'react-dom/server';
 import { useFakeTimers } from 'sinon';
+import reactMajor from './reactMajor';
 
 interface Interaction {
   id: number;
@@ -110,8 +113,8 @@ class DispatchingProfiler implements Profiler {
 
   private renders: RenderMark[] = [];
 
-  constructor(test: import('mocha').Test) {
-    this.id = test.fullTitle();
+  constructor(id: string) {
+    this.id = id;
   }
 
   onRender: Profiler['onRender'] = (
@@ -189,18 +192,6 @@ const [
   },
 );
 
-const queryAllByMuiTest = queryHelpers.queryAllByAttribute.bind(null, 'data-mui-test');
-const [queryByMuiTest, getAllByMuiTest, getByMuiTest, findAllByMuiTest, findByMuiTest] =
-  buildQueries(
-    queryAllByMuiTest,
-    function getMultipleError(container, dataMuiTest) {
-      return `Found multiple elements with the data-mui-test attribute of: ${dataMuiTest}`;
-    },
-    function getMissingError(container, dataMuiTest) {
-      return `Found no element with the data-mui-test attribute of: ${dataMuiTest}`;
-    },
-  );
-
 const customQueries = {
   queryDescriptionOf,
   queryAllDescriptionsOf,
@@ -208,30 +199,6 @@ const customQueries = {
   getAllDescriptionsOf,
   findDescriptionOf,
   findAllDescriptionsOf,
-  /**
-   * @deprecated Use `queryAllByTestId` instead
-   */
-  queryAllByMuiTest,
-  /**
-   * @deprecated Use `queryByTestId` instead
-   */
-  queryByMuiTest,
-  /**
-   * @deprecated Use `getAllByTestId` instead
-   */
-  getAllByMuiTest,
-  /**
-   * @deprecated Use `getByTestId` instead
-   */
-  getByMuiTest,
-  /**
-   * @deprecated Use `findAllByTestId` instead
-   */
-  findAllByMuiTest,
-  /**
-   * @deprecated Use `findByTestId` instead
-   */
-  findByMuiTest,
 };
 
 interface RenderConfiguration {
@@ -268,6 +235,7 @@ interface ServerRenderConfiguration extends RenderConfiguration {
 export type RenderOptions = Partial<RenderConfiguration>;
 
 export interface MuiRenderResult extends RenderResult<typeof queries & typeof customQueries> {
+  user: ReturnType<typeof userEvent.setup>;
   forceUpdate(): void;
   /**
    * convenience helper. Better than repeating all props.
@@ -280,8 +248,12 @@ export interface MuiRenderToStringResult {
   hydrate(): MuiRenderResult;
 }
 
+interface DataAttributes {
+  [key: `data-${string}`]: string;
+}
+
 function render(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<DataAttributes>,
   configuration: ClientRenderConfiguration,
 ): MuiRenderResult {
   const { container, hydrate, wrapper } = configuration;
@@ -296,6 +268,7 @@ function render(
   );
   const result: MuiRenderResult = {
     ...testingLibraryRenderResult,
+    user: userEvent.setup(),
     forceUpdate() {
       traceSync('forceUpdate', () =>
         testingLibraryRenderResult.rerender(
@@ -316,7 +289,7 @@ function render(
 }
 
 function renderToString(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<DataAttributes>,
   configuration: ServerRenderConfiguration,
 ): { container: HTMLElement; hydrate(): MuiRenderResult } {
   const { container, wrapper: Wrapper } = configuration;
@@ -333,7 +306,7 @@ function renderToString(
   };
 }
 
-interface Clock {
+export interface Clock {
   /**
    * Runs all timers until there are no more remaining.
    * WARNING: This may cause an infinite loop if a timeout constantly schedules another timeout.
@@ -363,9 +336,90 @@ interface Clock {
   restore(): void;
 }
 
-type ClockConfig = undefined | number | Date;
+export type ClockConfig = undefined | number | Date;
 
-function createClock(defaultMode: 'fake' | 'real', config: ClockConfig): Clock {
+const isVitest =
+  // VITEST is present on the environment when not in browser mode.
+  process.env.VITEST === 'true' ||
+  // VITEST_BROWSER_DEBUG is present on vitest in browser mode.
+  typeof process.env.VITEST_BROWSER_DEBUG !== 'undefined';
+
+function createVitestClock(
+  defaultMode: 'fake' | 'real',
+  config: ClockConfig,
+  options: Exclude<Parameters<typeof useFakeTimers>[0], number | Date>,
+  vi: any,
+): Clock {
+  if (defaultMode === 'fake') {
+    beforeEach(() => {
+      vi.useFakeTimers(options);
+      if (config) {
+        vi.setSystemTime(config);
+      }
+    });
+    afterEach(() => {
+      vi.useRealTimers();
+    });
+  } else {
+    beforeEach(() => {
+      if (config) {
+        vi.setSystemTime(config);
+      }
+    });
+    afterEach(() => {
+      vi.useRealTimers();
+    });
+  }
+
+  return {
+    withFakeTimers: () => {
+      beforeEach(() => {
+        vi.useFakeTimers(options);
+      });
+      afterEach(() => {
+        vi.useRealTimers();
+      });
+    },
+    runToLast: () => {
+      traceSync('runToLast', () => {
+        rtlAct(() => {
+          vi.runOnlyPendingTimers();
+        });
+      });
+    },
+    isReal() {
+      return !vi.isFakeTimers();
+    },
+    restore() {
+      vi.useRealTimers();
+    },
+    tick(timeoutMS: number) {
+      traceSync('tick', () => {
+        rtlAct(() => {
+          vi.advanceTimersByTime(timeoutMS);
+        });
+      });
+    },
+    runAll() {
+      traceSync('runAll', () => {
+        rtlAct(() => {
+          vi.runAllTimers();
+        });
+      });
+    },
+  };
+}
+
+function createClock(
+  defaultMode: 'fake' | 'real',
+  config: ClockConfig,
+  options: Exclude<Parameters<typeof useFakeTimers>[0], number | Date>,
+  vi: any,
+): Clock {
+  if (isVitest) {
+    return createVitestClock(defaultMode, config, options, vi);
+  }
+
   let clock: ReturnType<typeof useFakeTimers> | null = null;
 
   let mode = defaultMode;
@@ -378,6 +432,7 @@ function createClock(defaultMode: 'fake' | 'real', config: ClockConfig): Clock {
         // Technically we'd want to reset all modules between tests but we don't have that technology.
         // In the meantime just continue to clear native timers like with did for the past years when using `sinon` < 8.
         shouldClearNativeTimers: true,
+        ...options,
       });
     }
   });
@@ -436,11 +491,11 @@ function createClock(defaultMode: 'fake' | 'real', config: ClockConfig): Clock {
   };
 }
 
-interface Renderer {
+export interface Renderer {
   clock: Clock;
-  render(element: React.ReactElement<any>, options?: RenderOptions): MuiRenderResult;
+  render(element: React.ReactElement<DataAttributes>, options?: RenderOptions): MuiRenderResult;
   renderToString(
-    element: React.ReactElement<any>,
+    element: React.ReactElement<DataAttributes>,
     options?: RenderOptions,
   ): MuiRenderToStringResult;
 }
@@ -451,6 +506,12 @@ export interface CreateRendererOptions extends Pick<RenderOptions, 'strict' | 's
    */
   clock?: 'fake' | 'real';
   clockConfig?: ClockConfig;
+  clockOptions?: Parameters<typeof createClock>[2];
+  /**
+   * Vitest needs to be injected because this file is transpiled to commonjs and vitest is an esm module.
+   * @default {}
+   */
+  vi?: any;
 }
 
 export function createRenderer(globalOptions: CreateRendererOptions = {}): Renderer {
@@ -459,10 +520,12 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     clockConfig,
     strict: globalStrict = true,
     strictEffects: globalStrictEffects = globalStrict,
+    vi = (globalThis as any).vi || {},
+    clockOptions,
   } = globalOptions;
   // save stack to re-use in test-hooks
   const { stack: createClientRenderStack } = new Error();
-  const clock = createClock(clockMode, clockConfig);
+  const clock = createClock(clockMode, clockConfig, clockOptions, vi);
 
   /**
    * Flag whether `createRenderer` was called in a suite i.e. describe() block.
@@ -514,13 +577,22 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
       throw error;
     }
 
-    const test = this.currentTest;
-    if (test === undefined) {
+    let id: string | null = null;
+
+    if (isVitest) {
+      // @ts-expect-error
+      id = expect.getState().currentTestName;
+    } else {
+      id = this.currentTest?.fullTitle() ?? null;
+    }
+
+    if (!id) {
       throw new Error(
         'Unable to find the currently running test. This is a bug with the client-renderer. Please report this issue to a maintainer.',
       );
     }
-    profiler = new UsedProfiler(test);
+
+    profiler = new UsedProfiler(id);
 
     emotionCache = createEmotionCache({ key: 'emotion-client-render' });
 
@@ -532,7 +604,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
 
   afterEach(() => {
     if (!clock.isReal()) {
-      const error = Error(
+      const error = new Error(
         "Can't cleanup before fake timers are restored.\n" +
           'Be sure to:\n' +
           '  1. Only use `clock` from `createRenderer`.\n' +
@@ -563,7 +635,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
       wrapper: InnerWrapper = React.Fragment,
     } = options;
 
-    const usesLegacyRoot = !React.version.startsWith('18');
+    const usesLegacyRoot = reactMajor < 18;
     const Mode = strict && (strictEffects || usesLegacyRoot) ? React.StrictMode : React.Fragment;
     return function Wrapper({ children }: { children?: React.ReactNode }) {
       return (
@@ -580,7 +652,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
 
   return {
     clock,
-    render(element: React.ReactElement<any>, options: RenderOptions = {}) {
+    render(element: React.ReactElement<DataAttributes>, options: RenderOptions = {}) {
       if (!prepared) {
         throw new Error(
           'Unable to finish setup before `render()` was called. ' +
@@ -595,7 +667,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
         wrapper: createWrapper(options),
       });
     },
-    renderToString(element: React.ReactElement<any>, options: RenderOptions = {}) {
+    renderToString(element: React.ReactElement<DataAttributes>, options: RenderOptions = {}) {
       if (!prepared) {
         throw new Error(
           'Unable to finish setup before `render()` was called. ' +
@@ -732,6 +804,8 @@ function act<T>(callback: () => void | T | Promise<T>) {
   return traceSync('act', () => rtlAct(callback));
 }
 
+const bodyBoundQueries = within(document.body, { ...queries, ...customQueries });
+
 export * from '@testing-library/react/pure';
-export { act, cleanup, fireEvent };
-export const screen = within(document.body, { ...queries, ...customQueries });
+export { act, fireEvent };
+export const screen: Screen & typeof bodyBoundQueries = { ...rtlScreen, ...bodyBoundQueries };

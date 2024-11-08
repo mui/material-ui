@@ -33,15 +33,11 @@ export default function DropZone(
         ratio="1"
         variant="solid"
         color="primary"
-        sx={{
-          minWidth: 32,
-          borderRadius: '50%',
-          '--Icon-fontSize': '16px',
-        }}
+        sx={{ minWidth: 32, borderRadius: '50%', '--Icon-fontSize': '16px' }}
       >
         <div>{icon ?? <FileUploadRoundedIcon />}</div>
       </AspectRatio>
-      <Typography level="body-sm" textAlign="center">
+      <Typography level="body-sm" sx={{ textAlign: 'center' }}>
         <Link component="button" overlay>
           Click to upload
         </Link>{' '}

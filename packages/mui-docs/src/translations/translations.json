@@ -1,5 +1,6 @@
 {
   "adblock": "If you don't mind tech-related ads (no tracking or remarketing), and want to keep us running, please whitelist us in your blocker.",
+  "adPublisher": "ad by {{publisher}}",
   "api-docs": {
     "componentName": "Component name",
     "componentsApi": "Components API",
@@ -44,6 +45,7 @@
     "refNotHeld": "The component cannot hold a ref.",
     "refRootElement": "The <code>ref</code> is forwarded to the root element.",
     "ruleName": "Rule name",
+    "seeSourceCode": "If you did not find the information in this page, consider having a look at the <a href=\"{{href}}\">implementation of the component</a> for more detail.",
     "signature": "Signature",
     "slots": "Slots",
     "spreadHint": "Props of the {{spreadHintElement}} component are also available.",
@@ -51,6 +53,7 @@
     "styleOverrides": "The name <code>{{componentStyles.name}}</code> can be used when providing <a href={{defaultPropsLink}}>default props</a> or <a href={{styleOverridesLink}}>style overrides</a> in the theme.",
     "slotDescription": "To learn how to customize the slot, check out the <a href={{slotGuideLink}}>Overriding component structure</a> guide.",
     "slotName": "Slot name",
+    "source-code": "Source code",
     "type": "Type",
     "required": "Required",
     "optional": "Optional",
@@ -63,8 +66,8 @@
       "joy-variant": "To learn how to add your own variants, check out <a href='/joy-ui/customization/themed-components/#extend-variants'>Themed components—Extend variants</a>."
     }
   },
-  "landingPageDescr": "A responsive landing page layout with common sections found in marketing pages.",
-  "landingPageTitle": "Landing page",
+  "marketingPageDescr": "A responsive marketing page layout with common sections found in marketing pages.",
+  "marketingPageTitle": "Marketing page",
   "searchButton": "Search…",
   "algoliaSearch": "What are you looking for?",
   "appFrame": {
@@ -99,7 +102,7 @@
   "decreaseSpacing": "decrease spacing",
   "demoToolbarLabel": "demo source",
   "demoStylingSelectSystem": "MUI System",
-  "demoStylingSelectTailwind": "Tailwind CSS",
+  "demoStylingSelectTailwind": "Tailwind CSS",
   "demoStylingSelectCSS": "Plain CSS",
   "diamondSponsors": "Diamond sponsors",
   "becomeADiamondSponsor": "Become a Diamond sponsor",

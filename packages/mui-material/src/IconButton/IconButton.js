@@ -5,12 +5,13 @@ import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
-
-const useThemeProps = createUseThemeProps('MuiIconButton');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disabled, color, edge, size } = ownerState;
@@ -42,25 +43,25 @@ const IconButtonRoot = styled(ButtonBase, {
     ];
   },
 })(
-  ({ theme }) => ({
+  memoTheme(({ theme }) => ({
     textAlign: 'center',
     flex: '0 0 auto',
     fontSize: theme.typography.pxToRem(24),
     padding: 8,
     borderRadius: '50%',
-    overflow: 'visible', // Explicitly set the default value to solve a bug on IE11.
     color: (theme.vars || theme).palette.action.active,
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
     }),
     variants: [
       {
-        props: { disableRipple: false },
+        props: (props) => !props.disableRipple,
         style: {
+          '--IconButton-hoverBg': theme.vars
+            ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
+            : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
           '&:hover': {
-            backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
-              : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+            backgroundColor: 'var(--IconButton-hoverBg)',
             // Reset on touch devices, it doesn't add specificity
             '@media (hover: none)': {
               backgroundColor: 'transparent',
@@ -93,64 +94,53 @@ const IconButtonRoot = styled(ButtonBase, {
         },
       },
     ],
-  }),
-  ({ theme }) => {
-    return {
-      variants: [
-        {
-          props: { color: 'inherit' },
-          style: {
-            color: 'inherit',
-          },
+  })),
+  memoTheme(({ theme }) => ({
+    variants: [
+      {
+        props: { color: 'inherit' },
+        style: {
+          color: 'inherit',
         },
-        ...Object.entries(theme.palette)
-          .filter(([, value]) => value && value.main) // check all the used fields in the style below
-          .map(([color]) => ({
-            props: { color },
-            style: {
-              color: (theme.vars || theme).palette[color].main,
-            },
-          })),
-        ...Object.entries(theme.palette)
-          .filter(([, value]) => value && value.main) // check all the used fields in the style below
-          .map(([color]) => ({
-            props: { color, disableRipple: false },
-            style: {
-              '&:hover': {
-                backgroundColor: theme.vars
-                  ? `rgba(${(theme.vars || theme).palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                  : alpha(
-                      (theme.vars || theme).palette[color].main,
-                      theme.palette.action.hoverOpacity,
-                    ),
-                // Reset on touch devices, it doesn't add specificity
-                '@media (hover: none)': {
-                  backgroundColor: 'transparent',
-                },
-              },
-            },
-          })),
-        {
-          props: { size: 'small' },
-          style: {
-            padding: 5,
-            fontSize: theme.typography.pxToRem(18),
-          },
-        },
-        {
-          props: { size: 'large' },
-          style: {
-            padding: 12,
-            fontSize: theme.typography.pxToRem(28),
-          },
-        },
-      ],
-      [`&.${iconButtonClasses.disabled}`]: {
-        backgroundColor: 'transparent',
-        color: (theme.vars || theme).palette.action.disabled,
       },
-    };
-  },
+      ...Object.entries(theme.palette)
+        .filter(createSimplePaletteValueFilter()) // check all the used fields in the style below
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            color: (theme.vars || theme).palette[color].main,
+          },
+        })),
+      ...Object.entries(theme.palette)
+        .filter(createSimplePaletteValueFilter()) // check all the used fields in the style below
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            '--IconButton-hoverBg': theme.vars
+              ? `rgba(${(theme.vars || theme).palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
+              : alpha((theme.vars || theme).palette[color].main, theme.palette.action.hoverOpacity),
+          },
+        })),
+      {
+        props: { size: 'small' },
+        style: {
+          padding: 5,
+          fontSize: theme.typography.pxToRem(18),
+        },
+      },
+      {
+        props: { size: 'large' },
+        style: {
+          padding: 12,
+          fontSize: theme.typography.pxToRem(28),
+        },
+      },
+    ],
+    [`&.${iconButtonClasses.disabled}`]: {
+      backgroundColor: 'transparent',
+      color: (theme.vars || theme).palette.action.disabled,
+    },
+  })),
 );
 
 /**
@@ -158,7 +148,7 @@ const IconButtonRoot = styled(ButtonBase, {
  * regarding the available icon options.
  */
 const IconButton = React.forwardRef(function IconButton(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiIconButton' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiIconButton' });
   const {
     edge = false,
     children,

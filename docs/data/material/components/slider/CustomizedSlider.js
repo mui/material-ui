@@ -18,14 +18,14 @@ function ValueLabelComponent(props) {
 
 ValueLabelComponent.propTypes = {
   children: PropTypes.element.isRequired,
-  value: PropTypes.number.isRequired,
+  value: PropTypes.node,
 };
 
 const iOSBoxShadow =
   '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)';
 
 const IOSSlider = styled(Slider)(({ theme }) => ({
-  color: theme.palette.mode === 'dark' ? '#0a84ff' : '#007bff',
+  color: '#007bff',
   height: 5,
   padding: '15px 0',
   '& .MuiSlider-thumb': {
@@ -56,7 +56,10 @@ const IOSSlider = styled(Slider)(({ theme }) => ({
     },
     '& *': {
       background: 'transparent',
-      color: theme.palette.mode === 'dark' ? '#fff' : '#000',
+      color: '#000',
+      ...theme.applyStyles('dark', {
+        color: '#fff',
+      }),
     },
   },
   '& .MuiSlider-track': {
@@ -68,6 +71,9 @@ const IOSSlider = styled(Slider)(({ theme }) => ({
     boxShadow: 'inset 0px 0px 4px -2px #000',
     backgroundColor: '#d0d0d0',
   },
+  ...theme.applyStyles('dark', {
+    color: '#0a84ff',
+  }),
 }));
 
 const PrettoSlider = styled(Slider)({
@@ -133,9 +139,13 @@ const AirbnbSlider = styled(Slider)(({ theme }) => ({
     height: 3,
   },
   '& .MuiSlider-rail': {
-    color: theme.palette.mode === 'dark' ? '#bfbfbf' : '#d8d8d8',
-    opacity: theme.palette.mode === 'dark' ? undefined : 1,
+    color: '#d8d8d8',
+    opacity: 1,
     height: 3,
+    ...theme.applyStyles('dark', {
+      color: '#bfbfbf',
+      opacity: undefined,
+    }),
   },
 }));
 

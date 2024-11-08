@@ -1,6 +1,6 @@
 {
   "name": "@mui/base",
-  "version": "5.0.0-beta.47",
+  "version": "5.0.0-beta.61",
   "private": false,
   "author": "MUI Team",
   "description": "Base UI is a library of headless ('unstyled') React components and low-level hooks. You gain complete control over your app's CSS and accessibility features.",
@@ -14,7 +14,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
+    "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-base"
   },
   "license": "MIT",
@@ -35,13 +35,13 @@
     "build:types": "node ../../scripts/buildTypes.mjs",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-base/**/*.test.{js,ts,tsx}'",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-base/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.24.6",
-    "@floating-ui/react-dom": "^2.1.0",
+    "@babel/runtime": "^7.26.0",
+    "@floating-ui/react-dom": "^2.1.1",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",
     "@popperjs/core": "^2.11.8",
@@ -49,22 +49,21 @@
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@mui/internal-babel-macros": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",
     "@mui/types": "workspace:^",
-    "@testing-library/react": "^15.0.7",
+    "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
-    "@types/chai": "^4.3.16",
-    "@types/prop-types": "^15.7.12",
-    "@types/react": "18.2.55",
-    "@types/react-dom": "18.3.0",
+    "@types/chai": "^4.3.20",
+    "@types/prop-types": "^15.7.13",
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1",
     "@types/sinon": "^17.0.3",
-    "chai": "^4.4.1",
+    "chai": "^4.5.0",
     "fast-glob": "^3.3.2",
     "lodash": "^4.17.21",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "sinon": "^16.1.3"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sinon": "^19.0.2"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0",
@@ -82,6 +81,6 @@
     "directory": "build"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=14.0.0"
   }
 }

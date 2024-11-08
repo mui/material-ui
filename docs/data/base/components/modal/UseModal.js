@@ -118,12 +118,6 @@ const Modal = React.forwardRef(function Modal(props, forwardedRef) {
 
   return (
     <Portal ref={portalRef} container={container} disablePortal={disablePortal}>
-      {/*
-       * Marking an element with the role presentation indicates to assistive technology
-       * that this element should be ignored; it exists to support the web application and
-       * is not meant for humans to interact with directly.
-       * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
-       */}
       <CustomModalRoot {...rootProps}>
         {!hideBackdrop ? <CustomModalBackdrop {...backdropProps} /> : null}
         <FocusTrap
@@ -144,15 +138,14 @@ Modal.propTypes = {
   children: PropTypes.element.isRequired,
   closeAfterTransition: PropTypes.bool,
   container: PropTypes.oneOfType([
-    function (props, propName) {
+    (props, propName) => {
       if (props[propName] == null) {
-        return new Error("Prop '" + propName + "' is required but wasn't specified");
-      } else if (
-        typeof props[propName] !== 'object' ||
-        props[propName].nodeType !== 1
-      ) {
-        return new Error("Expected prop '" + propName + "' to be of type Element");
+        return new Error(`Prop '${propName}' is required but wasn't specified`);
       }
+      if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {
+        return new Error(`Expected prop '${propName}' to be of type Element`);
+      }
+      return null;
     },
     PropTypes.func,
   ]),

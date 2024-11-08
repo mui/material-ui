@@ -74,12 +74,15 @@ Below is an interactive demo that lets you explore the visual results of the dif
 
 ## System props
 
-As a CSS utility component, the `Stack` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component.
-For instance, a margin-top:
+:::info
+System props are deprecated and will be removed in the next major release. Please use the `sx` prop instead.
 
-```jsx
-<Stack mt={2}>
+```diff
+- <Stack mt={2} />
++ <Stack sx={{ mt: 2 }} />
 ```
+
+:::
 
 ## Limitations
 

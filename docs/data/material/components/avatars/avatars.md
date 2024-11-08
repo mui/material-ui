@@ -3,6 +3,7 @@ productId: material-ui
 title: React Avatar component
 components: Avatar, AvatarGroup, Badge
 githubLabel: 'component: avatar'
+githubSource: packages/mui-material/src/Avatar
 ---
 
 # Avatar
@@ -75,6 +76,12 @@ Set the `renderSurplus` prop as a callback to customize the surplus avatar. The 
 The `renderSurplus` prop is useful when you need to render the surplus based on the data sent from the server.
 
 {{"demo": "CustomSurplusAvatars.js"}}
+
+### Spacing
+
+You can change the spacing between avatars using the `spacing` prop. You can use one of the presets (`"medium"`, the default, or `"small"`) or set a custom numeric value.
+
+{{"demo": "Spacing.js"}}
 
 ## With badge
 

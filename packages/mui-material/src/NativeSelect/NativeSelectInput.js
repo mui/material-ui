@@ -35,10 +35,6 @@ export const StyledSelectSelect = styled('select')(({ theme }) => ({
     // Reset Chrome style
     borderRadius: 0,
   },
-  // Remove IE11 arrow
-  '&::-ms-expand': {
-    display: 'none',
-  },
   [`&.${nativeSelectClasses.disabled}`]: {
     cursor: 'default',
   },

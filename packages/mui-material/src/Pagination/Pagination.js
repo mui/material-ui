@@ -7,9 +7,9 @@ import integerPropType from '@mui/utils/integerPropType';
 import { getPaginationUtilityClass } from './paginationClasses';
 import usePagination from '../usePagination';
 import PaginationItem from '../PaginationItem';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
 
-const useThemeProps = createUseThemeProps('MuiPagination');
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant } = ownerState;
@@ -53,7 +53,7 @@ function defaultGetAriaLabel(type, page, selected) {
 }
 
 const Pagination = React.forwardRef(function Pagination(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiPagination' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiPagination' });
   const {
     boundaryCount = 1,
     className,
@@ -174,10 +174,10 @@ Pagination.propTypes /* remove-proptypes */ = {
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    * This is important for screen reader users.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @param {string} type The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous' | 'start-ellipsis' | 'end-ellipsis'). Defaults to 'page'.
-   * @param {number} page The page number to format.
-   * @param {bool} selected If true, the current page is selected.
+   * @param {number | null} page The page number to format.
+   * @param {boolean} selected If true, the current page is selected.
    * @returns {string}
    */
   getItemAriaLabel: PropTypes.func,

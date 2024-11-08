@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -83,17 +83,6 @@ const faqData = [
     ),
   },
   {
-    summary: 'Why are you calling it "early access"?',
-    detail: (
-      <React.Fragment>
-        We think you'll love the features we've built so far, but we're planning to release more. We
-        opened it up as soon as we had something useful so that you can start getting value from it
-        right away, and we'll be adding new features and components based on our own ideas, and on
-        suggestions from early access customers.
-      </React.Fragment>
-    ),
-  },
-  {
     summary: 'Do developers have to be named?',
     detail: (
       <React.Fragment>
@@ -138,9 +127,9 @@ const faqData = [
           </li>
           <li>
             Modules/components that DO NOT add significant primary functionality. Example: a theme
-            for a set of components that is sold as a separate product and includes the XGrid
-            components. In such cases, we offer reseller arrangements so that everyone has an
-            incentive to enter into a relationship.
+            for a set of components that is sold as a separate product and includes the MUI X Data
+            Grid Pro components. In such cases, we offer reseller arrangements so that everyone has
+            an incentive to enter into a relationship.
           </li>
         </ul>
         If your desired use falls under any of the three categories listed above, please{' '}
@@ -249,7 +238,7 @@ export default function PricingFAQ() {
         <AccordionSummary
           expandIcon={<KeyboardArrowDownRounded sx={{ fontSize: 20, color: 'primary.main' }} />}
         >
-          <Typography variant="body2" fontWeight="bold" component="h3">
+          <Typography variant="body2" component="h3" sx={{ fontWeight: 'bold' }}>
             {faq.summary}
           </Typography>
         </AccordionSummary>
@@ -257,8 +246,7 @@ export default function PricingFAQ() {
           <Typography
             component="div"
             variant="body2"
-            color="text.secondary"
-            sx={{ '& ul': { pl: 2 } }}
+            sx={{ color: 'text.secondary', '& ul': { pl: 2 } }}
           >
             {faq.detail}
           </Typography>
@@ -272,19 +260,19 @@ export default function PricingFAQ() {
         Frequently asked questions
       </Typography>
       <Grid container spacing={2}>
-        <Grid xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           {renderItem(0)}
           {renderItem(1)}
           {renderItem(2)}
           {renderItem(3)}
         </Grid>
-        <Grid xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           {renderItem(4)}
           {renderItem(5)}
           {renderItem(6)}
           {renderItem(7)}
         </Grid>
-        <Grid xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <Paper
             variant="outlined"
             sx={(theme) => ({
@@ -300,15 +288,19 @@ export default function PricingFAQ() {
             })}
           >
             <Box sx={{ textAlign: 'left' }}>
-              <Typography variant="body2" color="text.primary" fontWeight="bold" component="h3">
+              <Typography
+                variant="body2"
+                component="h3"
+                sx={{ color: 'text.primary', fontWeight: 'bold' }}
+              >
                 Got any questions unanswered or need help?
               </Typography>
             </Box>
-            <Typography variant="body2" color="text.secondary" sx={{ my: 1, textAlign: 'left' }}>
+            <Typography variant="body2" sx={{ color: 'text.secondary', my: 1, textAlign: 'left' }}>
               Email us at <Link href="mailto:sales@mui.com">sales@mui.com</Link> for sales-related
               questions.
             </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{ my: 1, textAlign: 'left' }}>
+            <Typography variant="body2" sx={{ color: 'text.secondary', my: 1, textAlign: 'left' }}>
               For product-related problems, please open
               <Link href="https://github.com/mui/mui-x/issues/new/choose">a new GitHub issue</Link>.
               (If you need to share private information, you can{' '}

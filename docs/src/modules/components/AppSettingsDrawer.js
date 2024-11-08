@@ -20,7 +20,7 @@ import { useTranslate } from '@mui/docs/i18n';
 
 const Heading = styled(Typography)(({ theme }) => ({
   margin: '16px 0 8px',
-  fontWeight: theme.typography.fontWeightBold,
+  fontWeight: theme.typography.fontWeightSemiBold,
   fontSize: theme.typography.pxToRem(11),
   textTransform: 'uppercase',
   letterSpacing: '.1rem',
@@ -84,7 +84,7 @@ export default function AppSettingsDrawer(props) {
           py: 1,
         }}
       >
-        <Typography variant="body1" fontWeight="medium">
+        <Typography variant="body1" sx={{ fontWeight: 'medium' }}>
           {t('settings.settings')}
         </Typography>
         <IconButton color="inherit" onClick={onClose} edge="end" aria-label={t('close')}>

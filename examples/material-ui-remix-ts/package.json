@@ -13,7 +13,7 @@
     "@emotion/react": "latest",
     "@emotion/server": "latest",
     "@emotion/styled": "latest",
-    "@mui/material": "next",
+    "@mui/material": "latest",
     "@remix-run/css-bundle": "latest",
     "@remix-run/node": "latest",
     "@remix-run/react": "latest",
@@ -29,7 +29,7 @@
     "typescript": "latest"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=14.0.0"
   },
   "sideEffects": false
 }

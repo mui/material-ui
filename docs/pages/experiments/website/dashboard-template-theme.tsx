@@ -21,34 +21,24 @@ import Typography from '@mui/material/Typography';
 
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
-import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';
-import ModeNightRoundedIcon from '@mui/icons-material/ModeNightRounded';
-
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { PaletteMode } from '@mui/material';
 
 import Head from 'docs/src/modules/components/Head';
-import getDashboardTheme from 'docs/data/material/getting-started/templates/dashboard/getDashboardTheme';
+import AppTheme from 'docs/data/material/getting-started/templates/shared-theme/AppTheme';
+import ColorModeIconDropdown from 'docs/data/material/getting-started/templates/shared-theme/ColorModeIconDropdown';
+import {
+  chartsCustomizations,
+  dataGridCustomizations,
+  datePickersCustomizations,
+  treeViewCustomizations,
+} from 'docs/data/material/getting-started/templates/dashboard/theme/customizations';
 import CustomDatePicker from 'docs/data/material/getting-started/templates/dashboard/components/CustomDatePicker';
 
-interface ToggleColorModeProps {
-  mode: PaletteMode;
-  toggleColorMode: () => void;
-}
-
-export function ToggleColorMode({ mode, toggleColorMode }: ToggleColorModeProps) {
-  return (
-    <Box sx={{ maxWidth: '32px' }}>
-      <IconButton onClick={toggleColorMode} size="small" aria-label="button to toggle theme">
-        {mode === 'dark' ? (
-          <WbSunnyRoundedIcon fontSize="small" />
-        ) : (
-          <ModeNightRoundedIcon fontSize="small" />
-        )}
-      </IconButton>
-    </Box>
-  );
-}
+const xThemeComponents = {
+  ...chartsCustomizations,
+  ...dataGridCustomizations,
+  ...datePickersCustomizations,
+  ...treeViewCustomizations,
+};
 
 function CustomTabPanel(props: { [x: string]: any; children: any; value: any; index: any }) {
   const { children, value, index, ...other } = props;
@@ -84,11 +74,6 @@ function a11yProps(index: number) {
 }
 
 export default function DashboardTemplateTheme() {
-  const [mode, setMode] = React.useState<PaletteMode>('light');
-  const dashboardTheme = createTheme(getDashboardTheme(mode));
-  const toggleColorMode = () => {
-    setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
-  };
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -103,7 +88,7 @@ export default function DashboardTemplateTheme() {
   };
 
   return (
-    <ThemeProvider theme={dashboardTheme}>
+    <AppTheme themeComponents={xThemeComponents}>
       <CssBaseline />
       <Head title="MUI Branding Theme Test" description="" />
       <Container
@@ -114,18 +99,16 @@ export default function DashboardTemplateTheme() {
       >
         <Stack
           direction={{ xs: 'column', md: 'row' }}
-          alignItems="flex-end"
-          justifyContent="space-between"
-          gap={2}
+          sx={{ alignItems: 'flex-end', justifyContent: 'space-between', gap: 2 }}
         >
           <Typography variant="h4" component="h1">
             Dashboard template theme
           </Typography>
-          <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+          <ColorModeIconDropdown />
         </Stack>
         <Divider />
-        <Stack direction="column" gap={2}>
-          <Stack direction="row" gap={2} alignItems="center">
+        <Stack direction="column" sx={{ gap: 2 }}>
+          <Stack direction="row" sx={{ gap: 2, alignItems: 'center' }}>
             <Button variant="contained">Contained</Button>
             <Button variant="outlined">Outlined</Button>
             <Button variant="text">Text</Button>
@@ -139,7 +122,7 @@ export default function DashboardTemplateTheme() {
               Text
             </Button>
           </Stack>
-          <Stack direction="row" gap={2} alignItems="center">
+          <Stack direction="row" sx={{ gap: 2, alignItems: 'center' }}>
             <Button variant="contained" color="secondary">
               Contained
             </Button>
@@ -159,7 +142,7 @@ export default function DashboardTemplateTheme() {
               Text
             </Button>
           </Stack>
-          <Stack direction="row" gap={2} alignItems="center">
+          <Stack direction="row" sx={{ gap: 2, alignItems: 'center' }}>
             <IconButton>
               <NotificationsRoundedIcon />
             </IconButton>
@@ -168,18 +151,16 @@ export default function DashboardTemplateTheme() {
             </IconButton>
           </Stack>
         </Stack>
-        <Stack direction="row" gap={2}>
+        <Stack direction="row" sx={{ gap: 2 }}>
           <Card sx={{ width: 250 }}>
             <CardContent>
-              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+              <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
                 Word of the Day
               </Typography>
               <Typography variant="h5" component="div">
                 be•nev•o•lent
               </Typography>
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                adjective
-              </Typography>
+              <Typography sx={{ color: 'text.secondary', mb: 1.5 }}>adjective</Typography>
               <Typography variant="body2">
                 well meaning and kindly.
                 <br />
@@ -192,15 +173,13 @@ export default function DashboardTemplateTheme() {
           </Card>
           <Card variant="outlined" sx={{ width: 250 }}>
             <CardContent>
-              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+              <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
                 Word of the Day
               </Typography>
               <Typography variant="h5" component="div">
                 be•nev•o•lent
               </Typography>
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                adjective
-              </Typography>
+              <Typography sx={{ color: 'text.secondary', mb: 1.5 }}>adjective</Typography>
               <Typography variant="body2">
                 well meaning and kindly.
                 <br />
@@ -216,7 +195,7 @@ export default function DashboardTemplateTheme() {
         <Link href="/" sx={{ maxWidth: 'fit-content' }}>
           Link
         </Link>
-        <Stack direction="row" gap={2} alignItems="center">
+        <Stack direction="row" sx={{ gap: 2, alignItems: 'center' }}>
           <IconButton size="small" onClick={handleClick} sx={{ maxWidth: 'fit-content' }}>
             <MoreVertIcon />
           </IconButton>
@@ -238,11 +217,11 @@ export default function DashboardTemplateTheme() {
           </Menu>
           <CustomDatePicker />
         </Stack>
-        <Stack direction="row" gap={2} alignItems="center">
+        <Stack direction="row" sx={{ gap: 2, alignItems: 'center' }}>
           <OutlinedInput placeholder="Outlined input" />
           <OutlinedInput size="small" placeholder="Outlined input" />
         </Stack>
-        <Stack direction="row" gap={2} alignItems="center">
+        <Stack direction="row" sx={{ gap: 2, alignItems: 'center' }}>
           <Box
             sx={{
               height: 250,
@@ -281,6 +260,6 @@ export default function DashboardTemplateTheme() {
           </CustomTabPanel>
         </Box>
       </Container>
-    </ThemeProvider>
+    </AppTheme>
   );
 }

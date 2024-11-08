@@ -13,13 +13,11 @@
 
 MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
 Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
-We're a company of 31+ people as of late 2023, and we're growing.
+We're a company of 35+ people as of early 2024, and we're growing.
 
 ## The products
 
-MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
-Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
-We also host Design Kits and pre-built Templates.
+MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain. Base UI is our headless component library, and Pigment CSS is a zero-runtime CSS-in-JS styling engine. We also host Design Kits and pre-built Templates.
 
 Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
 
@@ -30,18 +28,17 @@ Learn more about MUI's products in this blog post: [An introduction to the MUI e
 ## The culture
 
 MUI is a fully remote company with a team that spans the globe.
-The majority of our work is asynchronous, and we rely on written communication to collaborate.
-We're radically transparent: nearly all of our work happens in public.
+The majority of our work is asynchronous, and we rely on written communication to collaborate. We're radically transparent: nearly all of our work happens in public.
 Each contributor has the freedom to decide how and when they work, and that work is primarily self-directed: it's your responsibility to define and complete your own tasks in a timely manner.
 
 For additional details about the culture, you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
 ## Why we're hiring
 
-We also need help to continue to improve the health of the open-source product: make the advanced components easier to use, make it support more use cases, improve performance, make it more accessible, increase the contributions by engaging and collaborating with the community, guide developers to answers, and just generally be a positive presence in the open-source community.
+We need help to continue to improve the health of the open-source product: make the advanced components easier to use, make it support more use cases, improve performance, make it more accessible, increase the contributions by engaging and collaborating with the community, guide developers to answers, and just generally be a positive presence in the open-source community.
 
-Overall, both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
+Overall, both our open-source community and our premium products are growing fast.
+We need talented people to keep up with the demands of our exigent community!
 
 ### Why this is interesting
 
@@ -51,7 +48,7 @@ Our products empower React developers to build awesome applications faster – w
 
 ## The role
 
-### What you'll do on a day-to-day basis
+### Key responsibilities
 
 Depending on the day, you'll:
 
@@ -124,9 +121,7 @@ We're looking for someone with strong front-end skills. More important than spec
 
 ## Benefits and compensation
 
-Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
-You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
+We offer competitive compensation commensurate with your experience level and location and are prepared to pay top market rates for someone who can clearly exceed the role's expectations. You can find the other perks and benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply
 

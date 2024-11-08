@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  createMount,
   createRenderer,
   fireEvent,
   act,
@@ -27,14 +26,13 @@ const testContext: DropdownContextValue = {
 };
 
 describe('<Menu />', () => {
-  const mount = createMount();
   const { render: internalRender } = createRenderer();
 
   async function render(
     element: React.ReactElement<any, string | React.JSXElementConstructor<any>>,
     options?: RenderOptions,
   ): Promise<MuiRenderResult> {
-    const rendered = internalRender(element, options);
+    const rendered = await internalRender(element, options);
     await flushMicrotasks();
     return rendered;
   }
@@ -46,12 +44,6 @@ describe('<Menu />', () => {
         <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
       );
     },
-    mount: (node: React.ReactNode) => {
-      const wrapper = mount(
-        <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
-      );
-      return wrapper.childAt(0);
-    },
     refInstanceof: window.HTMLDivElement,
     slots: {
       root: {
@@ -61,7 +53,7 @@ describe('<Menu />', () => {
         expectedClassName: menuClasses.listbox,
       },
     },
-    skip: ['reactTestRenderer', 'componentProp', 'slotsProp'],
+    skip: ['componentProp', 'slotsProp'],
   }));
 
   describe('after initialization', () => {
@@ -214,7 +206,7 @@ describe('<Menu />', () => {
       const item2 = getByTestId('item-2');
       const item3 = getByTestId('item-3');
 
-      act(() => {
+      await act(async () => {
         item1.focus();
       });
 
@@ -242,7 +234,7 @@ describe('<Menu />', () => {
       const item1 = getByTestId('item-1');
       const item3 = getByTestId('item-3');
 
-      act(() => {
+      await act(async () => {
         item1.focus();
       });
 
@@ -268,7 +260,7 @@ describe('<Menu />', () => {
       const item1 = getByTestId('item-1');
       const item2 = getByTestId('item-2');
 
-      act(() => {
+      await act(async () => {
         item1.focus();
       });
 
@@ -301,7 +293,7 @@ describe('<Menu />', () => {
 
         const items = getAllByRole('menuitem');
 
-        act(() => {
+        await act(async () => {
           items[0].focus();
         });
 
@@ -334,7 +326,7 @@ describe('<Menu />', () => {
 
         const items = getAllByRole('menuitem');
 
-        act(() => {
+        await act(async () => {
           items[0].focus();
         });
 
@@ -365,7 +357,7 @@ describe('<Menu />', () => {
 
         const items = getAllByRole('menuitem');
 
-        act(() => {
+        await act(async () => {
           items[0].focus();
         });
 
@@ -407,7 +399,7 @@ describe('<Menu />', () => {
 
         const items = getAllByRole('menuitem');
 
-        act(() => {
+        await act(async () => {
           items[0].focus();
         });
 
@@ -444,7 +436,7 @@ describe('<Menu />', () => {
 
         const items = getAllByRole('menuitem');
 
-        act(() => {
+        await act(async () => {
           items[0].focus();
         });
 
@@ -479,7 +471,7 @@ describe('<Menu />', () => {
 
         const items = getAllByRole('menuitem');
 
-        act(() => {
+        await act(async () => {
           items[0].focus();
         });
 
@@ -618,7 +610,12 @@ describe('<Menu />', () => {
     });
   });
 
-  it('perf: does not rerender menu items unnecessarily', async () => {
+  it('perf: does not rerender menu items unnecessarily', async function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // JSDOM doesn't support :focus-visible
+      this.skip();
+    }
+
     const renderItem1Spy = spy();
     const renderItem2Spy = spy();
     const renderItem3Spy = spy();
@@ -669,7 +666,7 @@ describe('<Menu />', () => {
     );
 
     const menuItems = getAllByRole('menuitem');
-    act(() => {
+    await act(async () => {
       menuItems[0].focus();
     });
 

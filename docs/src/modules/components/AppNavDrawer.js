@@ -2,19 +2,23 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import { styled, ThemeProvider } from '@mui/material/styles';
+import { styled, alpha, ThemeProvider } from '@mui/material/styles';
 import List from '@mui/material/List';
 import Drawer from '@mui/material/Drawer';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import Fade from '@mui/material/Fade';
+import Paper from '@mui/material/Paper';
+import Popper from '@mui/material/Popper';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import DoneRounded from '@mui/icons-material/DoneRounded';
-import MuiLogoMenu from 'docs/src/components/action/MuiLogoMenu';
+import LogoWithCopyMenu from 'docs/src/components/action/LogoWithCopyMenu';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -53,56 +57,79 @@ const customButtonStyles = (theme) => ({
 });
 
 function ProductDrawerButton(props) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
 
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
   };
 
-  const handleEventDelegation = (event) => {
-    // Assert whether an 'a' tag resides in the parent of the clicked element through which the event bubbles out.
-    const isLinkInParentTree = Boolean(event.target.closest('a'));
-    // If the element clicked is link or just inside of a link element then close the menu.
-    if (isLinkInParentTree) {
-      handleClose();
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
     }
+    setOpen(false);
   };
+
+  function handleListKeyDown(event) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpen(false);
+    } else if (event.key === 'Escape') {
+      setOpen(false);
+    }
+  }
 
   return (
     <React.Fragment>
       <Button
         size="small"
         id="mui-product-selector"
+        ref={anchorRef}
         aria-haspopup="true"
         aria-controls={open ? 'drawer-open-button' : undefined}
         aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
+        onClick={handleToggle}
         endIcon={<ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />}
         sx={customButtonStyles}
       >
         {props.productName}
       </Button>
-      <Menu
-        id="mui-product-menu"
-        anchorEl={anchorEl}
+      <Popper
         open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'mui-product-selector',
-        }}
-        PaperProps={{
-          sx: {
-            width: { xs: 340, sm: 'auto' },
-          },
-        }}
-        onClick={handleEventDelegation}
+        anchorEl={anchorRef.current}
+        role={undefined}
+        placement="bottom-start"
+        disablePortal
+        transition
+        style={{ zIndex: 1200 }}
       >
-        <MuiProductSelector />
-      </Menu>
+        {({ TransitionProps }) => (
+          <Fade {...TransitionProps} timeout={250}>
+            <Paper
+              variant="outlined"
+              sx={(theme) => ({
+                mt: 1,
+                minWidth: { xs: '100%', sm: 600 },
+                overflow: 'clip',
+                boxShadow: `0 4px 16px ${alpha(theme.palette.common.black, 0.15)}`,
+                ...theme.applyDarkStyles({
+                  bgcolor: 'primaryDark.900',
+                }),
+              })}
+            >
+              <ClickAwayListener onClickAway={handleClose}>
+                <MuiProductSelector
+                  autoFocusItem={open}
+                  id="mui-product-menu"
+                  aria-labelledby="mui-product-selector"
+                  onKeyDown={handleListKeyDown}
+                />
+              </ClickAwayListener>
+            </Paper>
+          </Fade>
+        )}
+      </Popper>
     </React.Fragment>
   );
 }
@@ -166,6 +193,7 @@ function PersistScroll(props) {
     }
 
     return () => {
+      // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- useEnhancedEffect uses useEffect under the hood
       savedScrollTop[slot] = scrollContainer.scrollTop;
     };
   }, [enabled, slot]);
@@ -233,8 +261,7 @@ function reduceChildRoutes(context) {
 
   const title = pageToTitleI18n(page, t);
   if (page.children && page.children.length >= 1) {
-    const topLevel =
-      activePageParents.map((parentPage) => parentPage.pathname).indexOf(page.pathname) !== -1;
+    const topLevel = activePageParents.some(({ pathname }) => pathname === page.pathname);
 
     let firstChild = page.children[0];
 
@@ -260,6 +287,7 @@ function reduceChildRoutes(context) {
         planned={page.planned}
         unstable={page.unstable}
         beta={page.beta}
+        deprecated={page.deprecated}
         plan={page.plan}
         icon={page.icon}
         subheader={subheader}
@@ -294,6 +322,7 @@ function reduceChildRoutes(context) {
         planned={page.planned}
         unstable={page.unstable}
         beta={page.beta}
+        deprecated={page.deprecated}
         plan={page.plan}
         icon={page.icon}
         subheader={Boolean(page.subheader)}
@@ -388,7 +417,11 @@ export default function AppNavDrawer(props) {
     return (
       <React.Fragment>
         <ToolbarDiv>
-          <MuiLogoMenu smallerMargin />
+          <LogoWithCopyMenu
+            logo={productIdentifier.logo}
+            logoSvgString={productIdentifier.logoSvg}
+            wordmarkSvgString={productIdentifier.wordmarkSvg}
+          />
           <ProductIdentifier
             name={productIdentifier.name}
             metadata={productIdentifier.metadata}

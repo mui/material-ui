@@ -13,7 +13,7 @@
 
 MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
 Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
-We're a company of 31+ people as of late 2023, and we're growing.
+We're a company of 35+ people as of early 2024, and we're growing.
 
 ## The products
 
@@ -42,8 +42,8 @@ The development and operations of the store are currently almost exclusively run
 This team doesn't have enough bandwidth, the store doesn't receive the care it deserves.
 You will be responsible to step up and carry forward the development of the store on new fronts.
 
-Overall, both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
+Overall, both our open-source community and our premium products are growing fast.
+We need talented people to keep up with the demands of our exigent community!
 
 ### Why this is interesting
 
@@ -53,7 +53,7 @@ Our products empower React developers to build awesome applications faster – w
 
 ## The role
 
-### What you'll do on a day-to-day basis
+### Key responsibilities
 
 Depending on the day, you'll:
 
@@ -102,7 +102,7 @@ You are a [manager of one](https://signalvnoise.com/posts/1430-hire-managers-of-
 ## Benefits and compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
+We are ready to pay top market rates for a person who can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply

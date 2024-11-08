@@ -44,7 +44,7 @@ function InitCodeCopy() {
   React.useEffect(() => {
     let key = 'Ctrl + ';
     if (typeof window !== 'undefined') {
-      const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+      const macOS = window.navigator.platform.toUpperCase().includes('MAC');
       if (macOS) {
         key = '⌘';
       }
@@ -173,7 +173,7 @@ export function CodeCopyProvider({ children }: CodeCopyProviderProps) {
       if (
         !(
           (event.ctrlKey || event.metaKey) &&
-          event.key.toLowerCase() === 'c' &&
+          String.fromCharCode(event.keyCode) === 'C' &&
           !event.shiftKey &&
           !event.altKey
         )

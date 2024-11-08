@@ -23,6 +23,7 @@ describe('<MenuList />', () => {
   const { render } = createRenderer();
 
   describeConformance(<MenuList />, () => ({
+    render,
     classes: {},
     inheritComponent: List,
     refInstanceof: window.HTMLUListElement,
@@ -62,7 +63,7 @@ describe('<MenuList />', () => {
   });
 
   describe('actions: adjustStyleForScrollbar', () => {
-    const expectedPadding = `${getScrollbarSize(document)}px`;
+    const expectedPadding = `${getScrollbarSize(window)}px`;
 
     it('should not adjust style when container element height is greater', () => {
       const menuListActionsRef = React.createRef();

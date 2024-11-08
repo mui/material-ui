@@ -5,7 +5,8 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import useId from '@mui/utils/useId';
 import refType from '@mui/utils/refType';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Input from '../Input';
 import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
@@ -15,8 +16,6 @@ import FormHelperText from '../FormHelperText';
 import Select from '../Select';
 import { getTextFieldUtilityClass } from './textFieldClasses';
 import useSlot from '../utils/useSlot';
-
-const useThemeProps = createUseThemeProps('MuiTextField');
 
 const variantComponent = {
   standard: Input,
@@ -73,7 +72,7 @@ const TextFieldRoot = styled(FormControl, {
  * - using the underlying components directly as shown in the demos
  */
 const TextField = React.forwardRef(function TextField(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTextField' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTextField' });
   const {
     autoComplete,
     autoFocus = false,
@@ -324,8 +323,8 @@ TextField.propTypes /* remove-proptypes */ = {
    */
   error: PropTypes.bool,
   /**
-   * Props applied to the [`FormHelperText`](/material-ui/api/form-helper-text/) element.
-   * @deprecated Use `slotProps.formHelperText` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * Props applied to the [`FormHelperText`](https://mui.com/material-ui/api/form-helper-text/) element.
+   * @deprecated Use `slotProps.formHelperText` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   FormHelperTextProps: PropTypes.object,
   /**
@@ -343,22 +342,22 @@ TextField.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
-   * Props applied to the [`InputLabel`](/material-ui/api/input-label/) element.
+   * Props applied to the [`InputLabel`](https://mui.com/material-ui/api/input-label/) element.
    * Pointer events like `onClick` are enabled if and only if `shrink` is `true`.
-   * @deprecated Use `slotProps.inputLabel` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.inputLabel` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   InputLabelProps: PropTypes.object,
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
-   * @deprecated Use `slotProps.htmlInput` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.htmlInput` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   inputProps: PropTypes.object,
   /**
    * Props applied to the Input element.
-   * It will be a [`FilledInput`](/material-ui/api/filled-input/),
-   * [`OutlinedInput`](/material-ui/api/outlined-input/) or [`Input`](/material-ui/api/input/)
+   * It will be a [`FilledInput`](https://mui.com/material-ui/api/filled-input/),
+   * [`OutlinedInput`](https://mui.com/material-ui/api/outlined-input/) or [`Input`](https://mui.com/material-ui/api/input/)
    * component depending on the `variant` prop value.
-   * @deprecated Use `slotProps.input` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.input` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   InputProps: PropTypes.object,
   /**
@@ -420,14 +419,14 @@ TextField.propTypes /* remove-proptypes */ = {
    */
   rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * Render a [`Select`](/material-ui/api/select/) element while passing the Input element to `Select` as `input` parameter.
+   * Render a [`Select`](https://mui.com/material-ui/api/select/) element while passing the Input element to `Select` as `input` parameter.
    * If this option is set you must pass the options of the select as children.
    * @default false
    */
   select: PropTypes.bool,
   /**
-   * Props applied to the [`Select`](/material-ui/api/select/) element.
-   * @deprecated Use `slotProps.select` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * Props applied to the [`Select`](https://mui.com/material-ui/api/select/) element.
+   * @deprecated Use `slotProps.select` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   SelectProps: PropTypes.object,
   /**

@@ -17,7 +17,16 @@ describe('<Switch />', () => {
       { slotName: 'input', slotClassName: classes.input },
     ],
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp', 'componentsProp', 'propsSpread', 'themeDefaultProps', 'themeVariants'],
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'themeDefaultProps',
+      'themeVariants',
+      // Props are spread to the root's child but className is added to the root
+      // We cannot use the standard mergeClassName test which relies on data-testid on the root
+      // We should fix this when refactoring with Base UI
+      'mergeClassName',
+    ],
   }));
 
   describe('styleSheet', () => {
@@ -140,6 +149,14 @@ describe('<Switch />', () => {
 
         expect(getByRole('checkbox')).not.to.have.attribute('disabled');
       });
+    });
+  });
+
+  describe('mergeClassName', () => {
+    it('should merge the className', () => {
+      const { container } = render(<Switch className="test-class-name" />);
+
+      expect(container.firstChild).to.have.class('test-class-name');
     });
   });
 });

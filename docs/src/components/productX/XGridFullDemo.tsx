@@ -268,7 +268,7 @@ export default function XGridFullDemo() {
         >
           <DataGridPro
             {...data}
-            density="compact"
+            initialState={{ density: 'compact' }}
             slots={{
               toolbar: GridToolbar,
             }}

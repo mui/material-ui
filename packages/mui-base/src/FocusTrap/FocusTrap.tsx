@@ -7,6 +7,7 @@ import {
   elementAcceptingRef,
   unstable_useForkRef as useForkRef,
   unstable_ownerDocument as ownerDocument,
+  unstable_getReactElementRef as getReactElementRef,
 } from '@mui/utils';
 import { FocusTrapProps } from './FocusTrap.types';
 
@@ -37,7 +38,7 @@ function getTabIndex(node: HTMLElement): number {
   }
 
   // Browsers do not return `tabIndex` correctly for contentEditable nodes;
-  // https://bugs.chromium.org/p/chromium/issues/detail?id=661108&q=contenteditable%20tabindex&can=2
+  // https://issues.chromium.org/issues/41283952
   // so if they don't have a tabindex attribute specifically set, assume it's 0.
   // in Chrome, <details/>, <audio controls/> and <video controls/> elements get a default
   //  `tabIndex` of -1 when the 'tabindex' attribute isn't specified in the DOM,
@@ -152,8 +153,7 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
   const activated = React.useRef(false);
 
   const rootRef = React.useRef<HTMLElement>(null);
-  // @ts-expect-error TODO upstream fix
-  const handleRef = useForkRef(children.ref, rootRef);
+  const handleRef = useForkRef(getReactElementRef(children), rootRef);
   const lastKeydown = React.useRef<KeyboardEvent | null>(null);
 
   React.useEffect(() => {

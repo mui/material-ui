@@ -1,13 +1,14 @@
 {
   "props": {
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" } },
     "defaultValue": { "type": { "name": "number" }, "default": "null" },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "emptyIcon": { "type": { "name": "node" }, "default": "<StarBorder fontSize=\"inherit\" />" },
     "emptyLabelText": { "type": { "name": "node" }, "default": "'Empty'" },
     "getLabelText": {
       "type": { "name": "func" },
-      "default": "function defaultLabelText(value) {\n  return `${value} Star${value !== 1 ? 's' : ''}`;\n}",
+      "default": "function defaultLabelText(value) {\n  return `${value || '0'} Star${value !== 1 ? 's' : ''}`;\n}",
       "signature": { "type": "function(value: number) => string", "describedArgs": ["value"] }
     },
     "highlightSelectedOnly": { "type": { "name": "bool" }, "default": "false" },

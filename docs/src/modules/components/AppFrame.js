@@ -22,7 +22,7 @@ import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 import SkipLink from 'docs/src/modules/components/SkipLink';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from '@mui/docs/i18n';
-import MuiLogoMenu from 'docs/src/components/action/MuiLogoMenu';
+import LogoWithCopyMenu from 'docs/src/components/action/LogoWithCopyMenu';
 import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
 
 const nProgressStart = debounce(() => {
@@ -98,18 +98,10 @@ const RootDiv = styled('div')(({ theme }) => {
 
 const StyledAppBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== 'disablePermanent',
-})(({ disablePermanent, theme }) => {
+})(({ theme }) => {
   return {
     padding: theme.spacing(1.5),
     transition: theme.transitions.create('width'),
-    ...(disablePermanent && {
-      boxShadow: 'none',
-    }),
-    ...(!disablePermanent && {
-      [theme.breakpoints.up('lg')]: {
-        width: 'calc(100% - var(--MuiDocs-navDrawer-width))',
-      },
-    }),
     justifyContent: 'center',
     boxShadow: 'none',
     backdropFilter: 'blur(8px)',
@@ -120,33 +112,57 @@ const StyledAppBar = styled(AppBar, {
       backgroundColor: alpha(theme.palette.primaryDark[900], 0.6),
       color: (theme.vars || theme).palette.grey[500],
     }),
+    variants: [
+      {
+        props: ({ disablePermanent }) => disablePermanent,
+        style: {
+          boxShadow: 'none',
+        },
+      },
+      {
+        props: ({ disablePermanent }) => !disablePermanent,
+        style: {
+          [theme.breakpoints.up('lg')]: {
+            width: 'calc(100% - var(--MuiDocs-navDrawer-width))',
+          },
+        },
+      },
+    ],
   };
 });
 
 const NavIconButton = styled(IconButton, {
   shouldForwardProp: (prop) => prop !== 'disablePermanent',
-})(({ disablePermanent, theme }) => {
-  if (disablePermanent) {
-    return {};
-  }
-  return {
-    [theme.breakpoints.up('lg')]: {
-      display: 'none',
+})(({ theme }) => ({
+  variants: [
+    {
+      props: {
+        disablePermanent: false,
+      },
+      style: {
+        [theme.breakpoints.up('lg')]: {
+          display: 'none',
+        },
+      },
     },
-  };
-});
+  ],
+}));
 
-const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) => {
-  if (disablePermanent) {
-    return {};
-  }
-  return {
-    [theme.breakpoints.up('lg')]: {
-      flexShrink: 0,
-      width: 'var(--MuiDocs-navDrawer-width)',
+const StyledAppNavDrawer = styled(AppNavDrawer)(({ theme }) => ({
+  variants: [
+    {
+      props: {
+        disablePermanent: false,
+      },
+      style: {
+        [theme.breakpoints.up('lg')]: {
+          flexShrink: 0,
+          width: 'var(--MuiDocs-navDrawer-width)',
+        },
+      },
     },
-  };
-});
+  ],
+}));
 
 export const HEIGHT = 57;
 
@@ -160,7 +176,7 @@ export default function AppFrame(props) {
   const closeDrawer = React.useCallback(() => setMobileOpen(false), []);
   const openDrawer = React.useCallback(() => setMobileOpen(true), []);
 
-  const { activePage } = React.useContext(PageContext);
+  const { activePage, productIdentifier } = React.useContext(PageContext);
 
   const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
 
@@ -181,7 +197,7 @@ export default function AppFrame(props) {
             },
           }}
         />
-        <Stack direction="row" alignItems="center" sx={{ position: 'relative', width: '100%' }}>
+        <Stack direction="row" sx={{ alignItems: 'center', position: 'relative', width: '100%' }}>
           <NavIconButton
             edge="start"
             color="primary"
@@ -194,7 +210,12 @@ export default function AppFrame(props) {
             <SvgHamburgerMenu />
           </NavIconButton>
           <Box sx={{ display: { md: 'flex', lg: 'none' } }}>
-            <MuiLogoMenu marginLeft />
+            <LogoWithCopyMenu
+              logo={productIdentifier.logo}
+              logoSvgString={productIdentifier.logoSvg}
+              wordmarkSvgString={productIdentifier.wordmarkSvg}
+              marginLeft
+            />
           </Box>
           <Stack direction="row" spacing={1} useFlexGap sx={{ ml: 'auto' }}>
             <BannerComponent />
