@@ -17,22 +17,31 @@ const CodeBlockContext = React.createContext<React.MutableRefObject<HTMLDivEleme
  */
 export function useCodeCopy(): React.HTMLAttributes<HTMLDivElement> {
   const rootNode = React.useContext(CodeBlockContext);
+
+  const setRootNode = React.useCallback(
+    (node: HTMLDivElement | null) => {
+      // eslint-disable-next-line react-compiler/react-compiler
+      rootNode.current = node;
+    },
+    [rootNode],
+  );
+
   return {
     onMouseEnter: (event) => {
-      rootNode.current = event.currentTarget;
+      setRootNode(event.currentTarget as HTMLDivElement);
     },
     onMouseLeave: (event) => {
       if (rootNode.current === event.currentTarget) {
         (rootNode.current.querySelector('.MuiCode-copy') as null | HTMLButtonElement)?.blur();
-        rootNode.current = null;
+        setRootNode(null);
       }
     },
     onFocus: (event) => {
-      rootNode.current = event.currentTarget;
+      setRootNode(event.currentTarget as HTMLDivElement);
     },
     onBlur: (event) => {
       if (rootNode.current === event.currentTarget) {
-        rootNode.current = null;
+        setRootNode(null);
       }
     },
   };
@@ -41,6 +50,15 @@ export function useCodeCopy(): React.HTMLAttributes<HTMLDivElement> {
 function InitCodeCopy() {
   const rootNode = React.useContext(CodeBlockContext);
   const router = useRouter();
+
+  const setRootNode = React.useCallback(
+    (node: HTMLDivElement | null) => {
+      // eslint-disable-next-line react-compiler/react-compiler
+      rootNode.current = node;
+    },
+    [rootNode],
+  );
+
   React.useEffect(() => {
     let key = 'Ctrl + ';
     if (typeof window !== 'undefined') {
@@ -57,7 +75,7 @@ function InitCodeCopy() {
       const listeners: Array<() => void> = [];
       Array.from(codeRoots).forEach((elm) => {
         const handleMouseEnter = () => {
-          rootNode.current = elm;
+          setRootNode(elm);
         };
 
         elm.addEventListener('mouseenter', handleMouseEnter);
@@ -66,7 +84,7 @@ function InitCodeCopy() {
         const handleMouseLeave = () => {
           if (rootNode.current === elm) {
             (rootNode.current.querySelector('.MuiCode-copy') as null | HTMLButtonElement)?.blur();
-            rootNode.current = null;
+            setRootNode(null);
           }
         };
         elm.addEventListener('mouseleave', handleMouseLeave);
@@ -74,7 +92,7 @@ function InitCodeCopy() {
 
         const handleFocusin = () => {
           // use `focusin` because it bubbles from the copy button
-          rootNode.current = elm;
+          setRootNode(elm);
         };
         elm.addEventListener('focusin', handleFocusin);
         listeners.push(() => elm.removeEventListener('focusin', handleFocusin));
@@ -82,7 +100,7 @@ function InitCodeCopy() {
         const handleFocusout = () => {
           // use `focusout` because it bubbles from the copy button
           if (rootNode.current === elm) {
-            rootNode.current = null;
+            setRootNode(null);
           }
         };
         elm.addEventListener('focusout', handleFocusout);
@@ -129,7 +147,7 @@ function InitCodeCopy() {
     }
 
     return undefined;
-  }, [rootNode, router.pathname]);
+  }, [rootNode, router.pathname, setRootNode]);
   return null;
 }
 
