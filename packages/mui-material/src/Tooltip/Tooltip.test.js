@@ -862,6 +862,82 @@ describe('<Tooltip />', () => {
     });
   });
 
+  describe('prop: slotProps.popper', () => {
+    it('should merge popperOptions with arrow modifier', () => {
+      const popperRef = React.createRef();
+      render(
+        <Tooltip
+          title="Hello World"
+          open
+          arrow
+          slotProps={{
+            popper: {
+              popperRef,
+              popperOptions: {
+                modifiers: [
+                  {
+                    name: 'arrow',
+                    options: {
+                      padding: 8,
+                    },
+                  },
+                ],
+              },
+            },
+          }}
+        >
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+
+      const appliedArrowModifier = popperRef.current.state.orderedModifiers.find(
+        (modifier) => modifier.name === 'arrow',
+      );
+
+      expect(appliedArrowModifier).not.to.equal(undefined);
+      expect(appliedArrowModifier.enabled).to.equal(true);
+      expect(appliedArrowModifier.options.padding).to.equal(8);
+    });
+
+    it('should merge popperOptions with custom modifier', () => {
+      const popperRef = React.createRef();
+      render(
+        <Tooltip
+          title="Hello World"
+          open
+          arrow
+          slotProps={{
+            popper: {
+              popperRef,
+              popperOptions: {
+                modifiers: [
+                  {
+                    name: 'foo',
+                    enabled: true,
+                    phase: 'main',
+                    fn: () => {},
+                  },
+                ],
+              },
+            },
+          }}
+        >
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+
+      const appliedComputeStylesModifier = popperRef.current.state.orderedModifiers.find(
+        (modifier) => modifier.name === 'foo',
+      );
+
+      expect(appliedComputeStylesModifier).not.to.equal(undefined);
+    });
+  });
+
   describe('prop forwarding', () => {
     it('should forward props to the child element', () => {
       const { getByText } = render(
