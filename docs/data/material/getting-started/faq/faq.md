@@ -316,7 +316,7 @@ export default function Dashboard(props: { disableCustomTheme?: boolean }) {
 ### Color mode toggle
 
 The shared theme provides 2 appearance of the color mode toggle, `ColorModeSelect` and `ColorModeIconDropdown`.
-You can use either of them in your template, it will be hidden within the `TemplateFrame` but will be visible in the Code Sandbox and Stackblitz.
+You can use either of them in your template, it will be hidden within the `TemplateFrame` but will be visible in the CodeSandbox and StackBlitz.
 
 ### Template frame
 
@@ -334,7 +334,7 @@ For example, the dashboard template has a fixed header that needs to be accounte
 >
 ```
 
-This will make the `AppBar` stay below the `TemplateFrame` in a preview mode but stick to the top in the CodeSandbox and Stackblitz.
+This will make the `AppBar` stay below the `TemplateFrame` in a preview mode but stick to the top in the CodeSandbox and StackBlitz.
 
 ## [legacy] I have several instances of styles on the page
 

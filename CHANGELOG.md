@@ -1,5 +1,57 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.1.6
+
+<!-- generated comparing v6.1.5..master -->
+
+_Oct 30, 2024_
+
+A big thanks to the 13 contributors who made this release possible.
+
+### `@mui/material@6.1.6`
+
+- [Autocomplete] Add missing `onMouseDown` type to AutocompleteRenderInputParams (#44183) @sai6855
+- [Avatar] Fix AvatarGroup spacing (#44208) @aarongarciah
+- [AvatarGroup] Fix spacing CSS variable (#44202) @navedqb
+- [Divider] Fix CSS specificity order (#44204) @o-alexandrov
+- [Slider] Fix value prop type warning (#44131) @joshkel
+- Replace `useThemeProps` with `useDefaultProps` (#44193) @siriwatknp
+
+### `@mui/material-nextjs@6.1.6`
+
+- Support Next 15.0.0 (#42428) @nphmuller
+
+### `@mui/lab@6.0.0-beta.14`
+
+- [Tabs] Fix type of TabPanel component (#44207) @blackcow1987
+
+### `@mui/codemod@6.1.6`
+
+- Fix system props default import specifier (#44170) @siriwatknp
+
+### `@mui/utils@6.1.6`
+
+- Bring back useIsFocusVisible (#44256) @aarongarciah
+- Bring back getReactNodeRef (#44248) @aarongarciah
+
+### Docs
+
+- [material-ui][Avatar] Add AvatarGroup spacing demo (#44209) @aarongarciah
+- Fix a typo in CONTRIBUTING.md (#44200) @prakhargupta1
+- Mark the Hidden component as deprecated in the sidenav (#44068) @jimmycallin
+- Use () when referencing functions (#44184) @oliviertassinari
+- Follow types description convention (#44187) @oliviertassinari
+
+### Core
+
+- Lock file maintenance (#43947)
+- Run @mui/icon-material src:icons (#44097) @oliviertassinari
+- [test][material-ui] Add tests for Pigment Grid and Stack (#44132) @DiegoAndai
+- [test] Distinguish private with public tests API (#44188) @oliviertassinari
+- [docs-infra] Add recursively the relative modules in the demos (#44150) @mnajdova
+
+All contributors of this release in alphabetical order: @aarongarciah, @blackcow1987, @DiegoAndai, @jimmycallin, @joshkel, @mnajdova, @navedqb, @nphmuller, @o-alexandrov, @oliviertassinari, @prakhargupta1, @sai6855, @siriwatknp
+
 ## 6.1.5
 
 <!-- generated comparing v6.1.4..master -->
@@ -32,7 +84,7 @@ A big thanks to the 9 contributors who made this release possible.
 - [material-ui][TextField] Dynamically modify the eye password button aria-label (#44122) @ChinoUkaegbu
 - [icons] Run pnpm docs:mdicons:synonyms (#44098) @oliviertassinari
 - [joy-ui] Update Overview copy to match Readme (#44136) @samuelsycamore
-- Add CodeSandbox/Stackblitz to the rest of the templates (#43708) @siriwatknp
+- Add CodeSandbox/StackBlitz to the rest of the templates (#43708) @siriwatknp
 - Update Figma link to fix 301 (a7b7d9c) @oliviertassinari
 - Link Toolpad from Core repo (#44111) @prakhargupta1
 - Remove HighlightedCode max-width (#43731) @Janpot
@@ -202,7 +254,7 @@ A big thanks to the 13 contributors who made this release possible.
 - Uniformity in version range @oliviertassinari
 - Replace `toBeAriaHidden` matcher with `toBeInaccessible` in tests (#43870) @ZeeshanTamboli
 - [docs-infra] Strengthen CSP (#43711) @oliviertassinari
-- [docs-infra] Open Codesandbox demo with fontsize=12 (#43860) @siriwatknp
+- [docs-infra] Open CodeSandbox demo with fontsize=12 (#43860) @siriwatknp
 - [icons] Reduce Material Icon page size (#43911) @oliviertassinari
 - [test] Point Istanbul to correct URL (#43935) @sai6855
 - [test] Sync React.version parse logic with codebase (#43820) @oliviertassinari

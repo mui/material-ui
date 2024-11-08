@@ -48,7 +48,7 @@ const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
 module.exports = /** @type {Config} */ ({
   root: true, // So parent files don't get applied
   env: {
-    es6: true,
+    es2020: true,
     browser: true,
     node: true,
   },
