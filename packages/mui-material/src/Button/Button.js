@@ -34,7 +34,6 @@ const useUtilityClasses = (ownerState) => {
       disableElevation && 'disableElevation',
       fullWidth && 'fullWidth',
     ],
-    label: ['label'],
     startIcon: [
       'icon',
       'startIcon',
