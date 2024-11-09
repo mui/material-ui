@@ -358,7 +358,7 @@ As the `ListItem` no longer supports these props, the class names related to the
 
 ### Button with Loading State
 
-As of `@mui/material` **v6.2.0**, the `LoadingButton` from MUI Lab has been removed. Loading functionality is now part of the standard `Button` component. Update your import as follows:
+As of `@mui/material` **v6.2.0**, the `LoadingButton` from Lab has been removed. Loading functionality is now part of the standard `Button` component. Update your import as follows:
 
 ```diff
 -import { LoadingButton } from '@mui/lab';
