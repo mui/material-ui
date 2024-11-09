@@ -64,7 +64,7 @@ Depending on the day, you'll:
 
 ### Required
 
-- **Expertise with the modern JavaScript ecosystem**. Base UI is built on modern front-end technologies like TypeScript, Node.js, React, Next.js, Webpack, and Babel. Working knowledge of these technologies is critical.
+- **Expertise with the modern JavaScript ecosystem**. Base UI is built on modern front-end technologies like TypeScript, Node.js, React, Next.js, webpack, and Babel. Working knowledge of these technologies is critical.
 - **Expertise with CSS.** Deep knowledge of the functional aspects of CSS will be required.
 - **Familiarity with a11y requirements.** We are looking for someone familiar with ARIA requirements, who cares about building accessible UI, and wants to make the web a more accessible place.
 - **An eye for detail.** We appreciate people who sweat the details. People who go above and beyond to make interfaces fast, accessible, beautiful, and delightful.
