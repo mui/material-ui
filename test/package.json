@@ -35,7 +35,7 @@
     "react-dom": "^18.3.1",
     "react-is": "^18.3.1",
     "react-router-dom": "^6.27.0",
-    "sinon": "^18.0.1",
+    "sinon": "^19.0.2",
     "styled-components": "^6.1.13",
     "stylis": "4.2.0",
     "stylis-plugin-rtl": "^2.1.1",
