@@ -123,7 +123,7 @@ Now that you've seen what's fundamentally changed with the Pickers, let's briefl
   </video>
 - **Range shortcuts** (available from v6.0.0-beta.1)\
   Add quick and customizable shortcuts for your users. Choose to display them on the left, right, bottom or top.
-  <img src="/static/blog/v6-beta-pickers/date-range-shortcuts.png" style="width: 692px; margin-bottom: 24px;" loading="lazy" alt="Date Range shortcuts." />
+  <img src="/static/blog/v6-beta-pickers/date-range-shortcuts.png" loading="lazy" alt="Date Range shortcuts." width="2222" height="1402" />
 
 ## Should we retire the masked inputs?
 

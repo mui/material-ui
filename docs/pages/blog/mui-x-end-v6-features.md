@@ -9,7 +9,7 @@ tags: ['MUI X', 'Product']
 
 <div style="max-width: 692px; width: 100%; height: 230px; overflow: hidden; margin-bottom: 16px;">
   <a href="https://github.com/mui/mui-x/releases/tag/v6.18.0">
-    <img src="/static/blog/mui-x-end-v6-features/intro.png" alt="MUI X v6.18.0 release" width="1200" height="400" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
+    <img src="/static/blog/mui-x-end-v6-features/intro.png" alt="MUI X v6.18.0 release" width="2400" height="800" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
   </a>
 </div>
 
@@ -47,9 +47,9 @@ And the latest version also includes:
 Bar and Pie Charts currently support animations.
 More to come!
 
-  <video preload="metadata" style="margin-bottom: 16px;" autoplay muted loop playsinline width="680" height="306">
-    <source src="/static/blog/mui-x-end-v6-features/bar-chart-animations.mp4" type="video/mp4">
-  </video>
+<video style="margin-bottom: 16px;" autoplay muted loop playsinline width="680" height="306">
+  <source src="/static/blog/mui-x-end-v6-features/bar-chart-animations.mp4" type="video/mp4">
+</video>
 
 #### Horizontal Bar Chart support
 
@@ -67,7 +67,7 @@ appealing.
 
 After an extensive period of development and refinement in the lab and pre-release packages, and with the invaluable feedback we've received from you and the community, we're happy to share that the package is now officially stable!
 
-<video preload="metadata" style="margin-bottom: 10px;" autoplay muted loop playsinline width="680" height="400">
+<video style="margin-bottom: 10px;" autoplay muted loop playsinline width="680" height="400">
   <source src="/static/blog/mui-x-end-v6-features/tree-view-gmail.mp4" type="video/mp4">
 </video>
 
@@ -80,7 +80,7 @@ After an extensive period of development and refinement in the lab and pre-relea
 A much-anticipated feature, the date and time fields now allow users to clear a selected date with a single click.
 Learn how to use it by visiting the [clearable behavior documentation](/x/react-date-pickers/fields/#clearable-behavior).
 
-<video preload="metadata" style="margin-bottom: 10px;" autoplay muted loop playsinline width="680" height="128">
+<video style="margin-bottom: 10px;" autoplay muted loop playsinline width="680" height="128">
   <source src="/static/blog/mui-x-end-v6-features/clearable-fields.mp4" type="video/mp4">
 </video>
 
@@ -101,7 +101,7 @@ The new autosizing feature automatically adjusts the column width to accommodate
 You can include or exclude both headers and outliers from the calculation and expand to use the entire area of the grid.
 Learn more details at [column autosizing section](/x/react-data-grid/column-dimensions/#autosizing).
 
-<video preload="metadata" style="margin-bottom: 10px;" autoplay muted loop playsinline width="680" height="128">
+<video style="margin-bottom: 10px;" autoplay muted loop playsinline width="680" height="128">
   <source src="/static/blog/mui-x-end-v6-features/column-auto-sizing.mp4" type="video/mp4">
 </video>
 
