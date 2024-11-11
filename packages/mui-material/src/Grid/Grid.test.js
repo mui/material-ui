@@ -746,7 +746,7 @@ describe('Material UI <Grid />', () => {
         generateRowGap({
           ownerState: {
             container: true,
-            rowSpacing: { xs: 1, sm: 2 },
+            rowSpacing: { xs: 1, sm: '16px' },
           },
           theme,
         }),
@@ -769,7 +769,7 @@ describe('Material UI <Grid />', () => {
         generateColumnGap({
           ownerState: {
             container: true,
-            columnSpacing: { xs: 1, sm: 2 },
+            columnSpacing: { xs: 1, sm: '16px' },
           },
           theme,
         }),
