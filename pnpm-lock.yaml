@@ -99,8 +99,8 @@ importers:
         specifier: workspace:^
         version: link:packages/mui-utils/build
       '@next/eslint-plugin-next':
-        specifier: ^15.0.2
-        version: 15.0.2
+        specifier: ^15.0.3
+        version: 15.0.3
       '@octokit/rest':
         specifier: ^21.0.2
         version: 21.0.2
@@ -4462,8 +4462,8 @@ packages:
   '@next/env@15.0.3':
     resolution: {integrity: sha512-t9Xy32pjNOvVn2AS+Utt6VmyrshbpfUMhIjFO60gI58deSo/KgLOp31XZ4O+kY/Is8WAGYwA5gR7kOb1eORDBA==}
 
-  '@next/eslint-plugin-next@15.0.2':
-    resolution: {integrity: sha512-R9Jc7T6Ge0txjmqpPwqD8vx6onQjynO9JT73ArCYiYPvSrwYXepH/UY/WdKDY8JPWJl72sAE4iGMHPeQ5xdEWg==}
+  '@next/eslint-plugin-next@15.0.3':
+    resolution: {integrity: sha512-3Ln/nHq2V+v8uIaxCR6YfYo7ceRgZNXfTd3yW1ukTaFbO+/I8jNakrjYWODvG9BuR2v5kgVtH/C8r0i11quOgw==}
 
   '@next/swc-darwin-arm64@14.2.16':
     resolution: {integrity: sha512-uFT34QojYkf0+nn6MEZ4gIWQ5aqGF11uIZ1HSxG+cSbj+Mg3+tYm8qXYd3dKN5jqKUm5rBVvf1PBRO/MeQ6rxw==}
@@ -15557,7 +15557,7 @@ snapshots:
 
   '@next/env@15.0.3': {}
 
-  '@next/eslint-plugin-next@15.0.2':
+  '@next/eslint-plugin-next@15.0.3':
     dependencies:
       fast-glob: 3.3.1
 
