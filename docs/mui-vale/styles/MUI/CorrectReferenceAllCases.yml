@@ -7,15 +7,16 @@ ignorecase: true
 # for more information: https://vale.sh/docs/topics/styles/#substitution
 swap:
   ' api': API
-  'typescript ': TypeScript
+  typescript: TypeScript
   ' ts': TypeScript
-  ' js': JavaScript
   javascript: JavaScript
+  ' js': JavaScript
   ' css ': CSS
   ' html ': HTML
   NPM: npm # https://css-tricks.com/start-sentence-npm/
   Github: GitHub
   StackOverflow: Stack Overflow
+  Stack Overflow: Stack Overflow
   CSS modules: CSS Modules
   Tailwind CSS: Tailwind CSS
   Heat map: Heatmap
@@ -30,3 +31,9 @@ swap:
   client side: client-side
   server side: server-side
   Material 3: Material Design 3
+  VSCode: VS Code
+  VS Code: VS Code
+  'Codesandbox ': CodeSandbox
+  code sandbox: CodeSandbox
+  Stackblitz: StackBlitz
+  Webpack: webpack # https://twitter.com/wSokra/status/855800490713649152

@@ -21,8 +21,8 @@ It can work alongside Emotion to ease the migration process, but it is recommend
 
 Pigment CSS can be used with one of the following frameworks:
 
-- [Next.js App Router](https://nextjs.org/docs/app) with Webpack v5 (Turbopack is not supported yet)
-- [Vite](https://vitejs.dev/)
+- [Next.js App Router](https://nextjs.org/docs/app) with webpack v5 (Turbopack is not supported yet)
+- [Vite](https://vite.dev/)
 
 ## Installation
 
@@ -191,7 +191,10 @@ Add the following code to your [Next.js](#nextjs) or [Vite](#vite) config file:
 
  const pigmentConfig = {
    transformLibraries: ['@mui/material'],
-+  theme: createTheme(/* parameters if any */),
++  theme: createTheme({
++    cssVariables: true,
++    /* other parameters, if any */
++  }),
  };
 ```
 
@@ -255,7 +258,7 @@ Finally, update the `typography.fontFamily` value with the variable created in t
  };
 ```
 
-### Typescript
+### TypeScript
 
 If you are using TypeScript, you need to extend the Pigment CSS theme types with Material UI `Theme`.
 Add the following code to a file that is included in your `tsconfig.json`:

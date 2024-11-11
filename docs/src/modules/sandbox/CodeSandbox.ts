@@ -28,7 +28,7 @@ function openSandbox({ files, codeVariant, initialFile }: any) {
   addHiddenInput(
     form,
     'query',
-    `module=${initialFile}${initialFile.match(/(\.tsx|\.ts|\.js)$/) ? '' : extension}`,
+    `module=${initialFile}${initialFile.match(/(\.tsx|\.ts|\.js)$/) ? '' : extension}&fontsize=12`,
   );
   document.body.appendChild(form);
   form.submit();
@@ -47,10 +47,7 @@ function createReactApp(demoData: DemoData) {
       content: CRA.getRootIndex(demoData),
     },
     [`src/Demo.${ext}`]: {
-      content: flattenRelativeImports(
-        demoData.raw,
-        demoData.relativeModules?.map((file) => file.module),
-      ),
+      content: flattenRelativeImports(demoData.raw),
     },
     // Spread the relative modules
     ...(demoData.relativeModules &&
@@ -60,7 +57,7 @@ function createReactApp(demoData: DemoData) {
           ...acc,
           // Remove the path and keep the filename
           [`src/${curr.module.replace(/^.*[\\/]/g, '')}`]: {
-            content: curr.raw,
+            content: flattenRelativeImports(curr.raw),
           },
         }),
         {},

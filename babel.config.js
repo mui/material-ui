@@ -43,6 +43,7 @@ module.exports = function getBabelConfig(api) {
     '@mui/utils': resolveAliasPath('./packages/mui-utils/src'),
     '@mui/joy': resolveAliasPath('./packages/mui-joy/src'),
     '@mui/internal-docs-utils': resolveAliasPath('./packages-internal/docs-utils/src'),
+    '@mui/internal-test-utils': resolveAliasPath('./packages-internal/test-utils/src'),
     docs: resolveAliasPath('./docs'),
     test: resolveAliasPath('./test'),
   };
@@ -78,15 +79,6 @@ module.exports = function getBabelConfig(api) {
 
   /** @type {babel.PluginItem[]} */
   const plugins = [
-    [
-      'babel-plugin-macros',
-      {
-        muiError: {
-          errorCodesPath,
-          missingError,
-        },
-      },
-    ],
     'babel-plugin-optimize-clsx',
     [
       '@babel/plugin-transform-runtime',
@@ -112,6 +104,13 @@ module.exports = function getBabelConfig(api) {
           'MUI_PATCH_VERSION',
           'MUI_PRERELEASE',
         ],
+      },
+    ],
+    [
+      '@mui/internal-babel-plugin-minify-errors',
+      {
+        missingError,
+        errorCodesPath,
       },
     ],
     ...(useESModules

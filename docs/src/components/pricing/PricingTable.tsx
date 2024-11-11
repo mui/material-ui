@@ -378,7 +378,7 @@ function RowHead({
   children,
   startIcon,
   ...props
-}: BoxProps & { startIcon?: React.ReactElement<any> }) {
+}: BoxProps & { startIcon?: React.ReactElement<unknown> }) {
   return (
     <Box
       {...props}
@@ -733,7 +733,7 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/column-pinning': no,
   // data grid - rows
   'data-grid/row-height': yes,
-  'data-grid/row-spanning': pending,
+  'data-grid/row-spanning': yes,
   'data-grid/row-reordering': no,
   'data-grid/row-pinning': no,
   'data-grid/row-selection': yes,
@@ -836,7 +836,7 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/column-pinning': yes,
   // data grid - rows
   'data-grid/row-height': yes,
-  'data-grid/row-spanning': pending,
+  'data-grid/row-spanning': yes,
   'data-grid/row-reordering': yes,
   'data-grid/row-pinning': yes,
   'data-grid/row-selection': yes,
@@ -940,7 +940,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/column-pinning': yes,
   // data grid - rows
   'data-grid/row-height': yes,
-  'data-grid/row-spanning': pending,
+  'data-grid/row-spanning': yes,
   'data-grid/row-reordering': yes,
   'data-grid/row-pinning': yes,
   'data-grid/row-selection': yes,

@@ -30,6 +30,7 @@ export interface UseMediaQueryOptions {
   ssrMatchMedia?: (query: string) => { matches: boolean };
 }
 
+// TODO React 17: Remove `useMediaQueryOld` once React 17 support is removed
 function useMediaQueryOld(
   query: string,
   defaultMatches: boolean,
@@ -71,8 +72,9 @@ function useMediaQueryOld(
   return match;
 }
 
-// eslint-disable-next-line no-useless-concat -- Workaround for https://github.com/webpack/webpack/issues/14814
-const maybeReactUseSyncExternalStore: undefined | any = (React as any)['useSyncExternalStore' + ''];
+// See https://github.com/mui/material-ui/issues/41190#issuecomment-2040873379 for why
+const safeReact = { ...React };
+const maybeReactUseSyncExternalStore: undefined | any = safeReact.useSyncExternalStore;
 
 function useMediaQueryNew(
   query: string,
@@ -115,54 +117,64 @@ function useMediaQueryNew(
   return match;
 }
 
-export default function useMediaQuery<Theme = unknown>(
-  queryInput: string | ((theme: Theme) => string),
-  options: UseMediaQueryOptions = {},
-): boolean {
-  const theme = useTheme<Theme>();
-  // Wait for jsdom to support the match media feature.
-  // All the browsers MUI support have this built-in.
-  // This defensive check is here for simplicity.
-  // Most of the time, the match media logic isn't central to people tests.
-  const supportMatchMedia =
-    typeof window !== 'undefined' && typeof window.matchMedia !== 'undefined';
-  const {
-    defaultMatches = false,
-    matchMedia = supportMatchMedia ? window.matchMedia : null,
-    ssrMatchMedia = null,
-    noSsr = false,
-  } = getThemeProps({ name: 'MuiUseMediaQuery', props: options, theme });
-
-  if (process.env.NODE_ENV !== 'production') {
-    if (typeof queryInput === 'function' && theme === null) {
-      console.error(
-        [
-          'MUI: The `query` argument provided is invalid.',
-          'You are providing a function without a theme in the context.',
-          'One of the parent elements needs to use a ThemeProvider.',
-        ].join('\n'),
-      );
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function unstable_createUseMediaQuery(params: { themeId?: string } = {}) {
+  const { themeId } = params;
+  return function useMediaQuery<Theme = unknown>(
+    queryInput: string | ((theme: Theme) => string),
+    options: UseMediaQueryOptions = {},
+  ): boolean {
+    let theme = useTheme<Theme>();
+    if (theme && themeId) {
+      theme = (theme as Record<string, any>)[themeId] || theme;
     }
-  }
+    // Wait for jsdom to support the match media feature.
+    // All the browsers MUI support have this built-in.
+    // This defensive check is here for simplicity.
+    // Most of the time, the match media logic isn't central to people tests.
+    const supportMatchMedia =
+      typeof window !== 'undefined' && typeof window.matchMedia !== 'undefined';
+    const {
+      defaultMatches = false,
+      matchMedia = supportMatchMedia ? window.matchMedia : null,
+      ssrMatchMedia = null,
+      noSsr = false,
+    } = getThemeProps({ name: 'MuiUseMediaQuery', props: options, theme });
 
-  let query = typeof queryInput === 'function' ? queryInput(theme) : queryInput;
-  query = query.replace(/^@media( ?)/m, '');
+    if (process.env.NODE_ENV !== 'production') {
+      if (typeof queryInput === 'function' && theme === null) {
+        console.error(
+          [
+            'MUI: The `query` argument provided is invalid.',
+            'You are providing a function without a theme in the context.',
+            'One of the parent elements needs to use a ThemeProvider.',
+          ].join('\n'),
+        );
+      }
+    }
 
-  // TODO: Drop `useMediaQueryOld` and use  `use-sync-external-store` shim in `useMediaQueryNew` once the package is stable
-  const useMediaQueryImplementation =
-    maybeReactUseSyncExternalStore !== undefined ? useMediaQueryNew : useMediaQueryOld;
-  const match = useMediaQueryImplementation(
-    query,
-    defaultMatches,
-    matchMedia,
-    ssrMatchMedia,
-    noSsr,
-  );
+    let query = typeof queryInput === 'function' ? queryInput(theme) : queryInput;
+    query = query.replace(/^@media( ?)/m, '');
 
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useDebugValue({ query, match });
-  }
+    const useMediaQueryImplementation =
+      maybeReactUseSyncExternalStore !== undefined ? useMediaQueryNew : useMediaQueryOld;
+    const match = useMediaQueryImplementation(
+      query,
+      defaultMatches,
+      matchMedia,
+      ssrMatchMedia,
+      noSsr,
+    );
 
-  return match;
+    if (process.env.NODE_ENV !== 'production') {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      React.useDebugValue({ query, match });
+    }
+
+    return match;
+  };
 }
+
+const useMediaQuery = unstable_createUseMediaQuery();
+
+export default useMediaQuery;

@@ -60,6 +60,7 @@ export default function createCssVarsProvider(options) {
       colorSchemeNode = typeof document === 'undefined' ? undefined : document.documentElement,
       disableNestedContext = false,
       disableStyleSheetGeneration = false,
+      defaultMode: initialMode = 'system',
     } = props;
     const hasMounted = React.useRef(false);
     const upperTheme = muiUseTheme();
@@ -92,7 +93,7 @@ export default function createCssVarsProvider(options) {
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.dark;
     const defaultMode =
       colorSchemes[defaultLightColorScheme] && colorSchemes[defaultDarkColorScheme]
-        ? 'system'
+        ? initialMode
         : colorSchemes[restThemeProp.defaultColorScheme]?.palette?.mode ||
           restThemeProp.palette?.mode;
 
@@ -282,19 +283,13 @@ export default function createCssVarsProvider(options) {
 
     const element = (
       <React.Fragment>
-        {shouldGenerateStyleSheet && (
-          <React.Fragment>
-            {(theme.generateStyleSheets?.() || []).map((styles, index) => (
-              <GlobalStyles key={index} styles={styles} />
-            ))}
-          </React.Fragment>
-        )}
         <ThemeProvider
           themeId={scopedTheme ? themeId : undefined}
           theme={resolveTheme ? resolveTheme(theme) : theme}
         >
           {children}
         </ThemeProvider>
+        {shouldGenerateStyleSheet && <GlobalStyles styles={theme.generateStyleSheets?.() || []} />}
       </React.Fragment>
     );
 
@@ -320,6 +315,11 @@ export default function createCssVarsProvider(options) {
      * localStorage key used to store `colorScheme`
      */
     colorSchemeStorageKey: PropTypes.string,
+    /**
+     * The default mode when the storage is empty,
+     * require the theme to have `colorSchemes` with light and dark.
+     */
+    defaultMode: PropTypes.string,
     /**
      * If `true`, the provider creates its own context and generate stylesheet as if it is a root `CssVarsProvider`.
      */

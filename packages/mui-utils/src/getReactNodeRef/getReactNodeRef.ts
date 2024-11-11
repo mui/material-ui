@@ -6,6 +6,8 @@ import * as React from 'react';
  *
  * @param element React.ReactNode
  * @returns React.Ref<any> | null
+ *
+ * @deprecated Use getReactElementRef instead
  */
 export default function getReactNodeRef(element: React.ReactNode): React.Ref<any> | null {
   if (!element || !React.isValidElement(element)) {

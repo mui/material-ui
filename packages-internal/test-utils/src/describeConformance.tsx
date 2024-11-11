@@ -1,6 +1,6 @@
 /* eslint-env mocha */
-import * as React from 'react';
 import { expect } from 'chai';
+import * as React from 'react';
 import createDescribe from './createDescribe';
 import { MuiRenderResult } from './createRenderer';
 
@@ -63,6 +63,10 @@ export interface ConformanceOptions {
   testLegacyComponentsProp?: boolean;
   slots?: Record<string, SlotTestingOptions>;
   ThemeProvider?: React.ElementType;
+  /**
+   * If provided, the component will be tested by the `DefaultPropsProvider` (in addition to the ThemeProvider).
+   */
+  DefaultPropsProvider?: React.ElementType;
   createTheme?: (arg: any) => any;
 }
 
@@ -611,6 +615,41 @@ function testThemeDefaultProps(
       expect(container.firstChild).to.have.attribute(testProp, 'testProp');
     });
   });
+
+  describe('default props provider:', () => {
+    it('respect custom default props', async function test() {
+      const testProp = 'data-id';
+      const { muiName, render, DefaultPropsProvider } = getOptions();
+
+      if (!DefaultPropsProvider) {
+        this.skip();
+      }
+
+      if (!muiName) {
+        throwMissingPropError('muiName');
+      }
+
+      if (!render) {
+        throwMissingPropError('render');
+      }
+
+      const { container } = await render(
+        <DefaultPropsProvider
+          value={{
+            [muiName]: {
+              defaultProps: {
+                [testProp]: 'testProp',
+              },
+            },
+          }}
+        >
+          {element}
+        </DefaultPropsProvider>,
+      );
+
+      expect(container.firstChild).to.have.attribute(testProp, 'testProp');
+    });
+  });
 }
 
 /**
@@ -622,9 +661,11 @@ function testThemeStyleOverrides(
   getOptions: () => ConformanceOptions,
 ) {
   describe('theme style overrides:', () => {
-    it("respect theme's styleOverrides custom state", async function test() {
+    it("respect theme's styleOverrides custom state", async function test(t = {}) {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
+        // @ts-ignore
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        this?.skip?.() ?? t?.skip();
       }
       const { muiName, testStateOverrides, render, ThemeProvider, createTheme } = getOptions();
 
@@ -677,9 +718,11 @@ function testThemeStyleOverrides(
       expect(container.firstChild).to.toHaveComputedStyle(testStyle);
     });
 
-    it("respect theme's styleOverrides slots", async function test() {
+    it("respect theme's styleOverrides slots", async function test(t = {}) {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
+        // @ts-ignore
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        this?.skip?.() ?? t?.skip();
       }
 
       const {
@@ -788,9 +831,11 @@ function testThemeStyleOverrides(
       }
     });
 
-    it('overrideStyles does not replace each other in slots', async function test() {
+    it('overrideStyles does not replace each other in slots', async function test(t = {}) {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
+        // @ts-ignore
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        this?.skip?.() ?? t?.skip();
       }
 
       const { muiName, classes, testStateOverrides, render, ThemeProvider, createTheme } =
@@ -866,9 +911,11 @@ function testThemeStyleOverrides(
  */
 function testThemeVariants(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
   describe('theme variants:', () => {
-    it("respect theme's variants", async function test() {
+    it("respect theme's variants", async function test(t = {}) {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
+        // @ts-ignore
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        this?.skip?.() ?? t?.skip();
       }
 
       const { muiName, testVariantProps, render, ThemeProvider, createTheme } = getOptions();
@@ -921,9 +968,11 @@ function testThemeVariants(element: React.ReactElement<any>, getOptions: () => C
       expect(getByTestId('without-props')).not.to.toHaveComputedStyle(testStyle);
     });
 
-    it('supports custom variant', async function test() {
+    it('supports custom variant', async function test(t = {}) {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
+        // @ts-ignore
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        this?.skip?.() ?? t?.skip();
       }
 
       const { muiName, testCustomVariant, render, ThemeProvider, createTheme } = getOptions();
@@ -974,12 +1023,14 @@ function testThemeCustomPalette(
   getOptions: () => ConformanceOptions,
 ) {
   describe('theme extended palette:', () => {
-    it('should render without errors', function test() {
+    it('should render without errors', function test(t = {}) {
       const { render, ThemeProvider, createTheme } = getOptions();
       if (!/jsdom/.test(window.navigator.userAgent) || !render || !ThemeProvider || !createTheme) {
-        this.skip();
+        // @ts-ignore
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        this?.skip?.() ?? t?.skip();
       }
-
+      // @ts-ignore
       const theme = createTheme({
         palette: {
           custom: {
@@ -995,7 +1046,7 @@ function testThemeCustomPalette(
           },
         },
       });
-
+      // @ts-ignore
       expect(() => render(<ThemeProvider theme={theme}>{element}</ThemeProvider>)).not.to.throw();
     });
   });
@@ -1030,7 +1081,7 @@ function describeConformance(
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
     // Create mocks of localStorage getItem and setItem functions
-    Object.defineProperty(global, 'localStorage', {
+    Object.defineProperty(globalThis, 'localStorage', {
       value: {
         getItem: (key: string) => storage[key],
         setItem: (key: string, value: string) => {

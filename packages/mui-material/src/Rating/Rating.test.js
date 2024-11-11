@@ -18,7 +18,7 @@ describe('<Rating />', () => {
     testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
     testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentsProp'],
   }));
 
   it('should render', () => {
@@ -210,6 +210,16 @@ describe('<Rating />', () => {
     expect(arbitraryRadio.name).not.to.equal('');
     // all input[type="radio"] have the same name
     expect(new Set(radios.map((radio) => radio.name))).to.have.length(1);
+  });
+
+  it('should use `name` as prefix of input element ids', () => {
+    render(<Rating name="rating-test" />);
+
+    const radios = document.querySelectorAll('input[type="radio"]');
+
+    for (let i = 0; i < radios.length; i += 1) {
+      expect(radios[i].getAttribute('id')).to.match(/^rating-test-/);
+    }
   });
 
   describe('prop: readOnly', () => {

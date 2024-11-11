@@ -62,7 +62,7 @@ Next, head over to your config file and import the `withPigment` plugin:
 // next.config.js
 import { withPigment } from '@pigment-css/nextjs-plugin';
 
-export default withPigment({ nextConfig });
+export default withPigment(nextConfig);
 ```
 
 ```ts Vite
@@ -130,12 +130,12 @@ const mainClass = css({
 
 #### Creating global styles
 
-Use the `globalCSS` API to define global styles to load across an entire app.
+Use the `globalCss` API to define global styles to load across an entire app.
 
 You should define these at the top level of your JavaScript file:
 
 ```js
-import { globalCSS } from '@pigment-css/react';
+import { globalCss } from '@pigment-css/react';
 
 globalCss`
   body {
@@ -287,7 +287,6 @@ Pigment CSS uses the `prefers-color-scheme` media query by default to switch be
 ```js
 const colorScheme = css`
   background-color: ${({ theme }) => theme.colorSchemes.dark.colors.background};
-
   color: ${({ theme }) => theme.colorSchemes.dark.colors.foreground};
 
   @media (prefers-color-scheme: light) {
@@ -299,14 +298,14 @@ const colorScheme = css`
 
 You can also customize the behavior by providing a `getSelector` function:
 
-```js
-  extendTheme({
-    colorSchemes: {
-      light: { ... },
-      dark: { ... },
-    },
-+   getSelector: (colorScheme) => colorScheme ? `.theme-${colorScheme}` : ':root',
-  });
+```diff
+ extendTheme({
+   colorSchemes: {
+     light: { ... },
+     dark: { ... },
+   },
++  getSelector: (colorScheme) => colorScheme ? `.theme-${colorScheme}` : ':root',
+ });
 ```
 
 ### The sx prop
@@ -324,7 +323,7 @@ The `sx` prop works with all Material UI components as well as HTML elements an
 
 If you use the `sx` prop on an HTML element, you'll need to augment the `HTMLAttributes` interface:
 
-```js
+```ts
 type Theme = {
   // your theme type
 };
@@ -335,8 +334,42 @@ declare global {
       sx?:
         | React.CSSProperties
         | ((theme: Theme) => React.CSSProperties)
-        | ReadonlyArray<React.CSSProperties | ((theme: Theme) => React.CSSProperties)>;
+        | ReadonlyArray<
+            React.CSSProperties | ((theme: Theme) => React.CSSProperties)
+          >;
     }
   }
+}
+```
+
+### Runtime theme
+
+:::info
+
+**Caveat**
+
+- Avoid using the runtime theme unless you have a compelling reason.
+- The runtime theme contains [**only serializable values**](https://developer.mozilla.org/en-US/docs/Glossary/Serializable_object) (some functions still exist in `breakpoints` and `transitions` for internal logic inside components but may be removed in the future).
+- The runtime theme will not change between modes (light and dark) because it is pre-compiled at build time. To render something based on the theme structure and its values, use `theme.vars.*` to refer to CSS variables instead.
+
+:::
+
+To access the runtime theme, use the `useTheme` hook:
+
+```js
+import { useTheme } from '@mui/material-pigment-css';
+
+function MyComponent() {
+  const theme = useTheme();
+
+  return (
+    <div>
+      {Object.entries(theme.vars.palette.primary).map(([key, value]) => (
+        <div key={key} style={{ width: 40, height: 40, background: value }}>
+          {key}: {value}
+        </div>
+      ))}
+    </div>
+  );
 }
 ```

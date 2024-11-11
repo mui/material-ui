@@ -27,6 +27,7 @@ export { default as unstable_useForkRef } from './useForkRef';
 export { default as unstable_useLazyRef } from './useLazyRef';
 export { default as unstable_useTimeout, Timeout as unstable_Timeout } from './useTimeout';
 export { default as unstable_useOnMount } from './useOnMount';
+export { default as unstable_useIsFocusVisible } from './useIsFocusVisible';
 export { default as unstable_isFocusVisible } from './isFocusVisible';
 export { default as unstable_getScrollbarSize } from './getScrollbarSize';
 export { default as usePreviousProps } from './usePreviousProps';
@@ -46,4 +47,5 @@ export type { UseSlotPropsParameters, UseSlotPropsResult } from './useSlotProps'
 export { default as unstable_resolveComponentProps } from './resolveComponentProps';
 export { default as unstable_extractEventHandlers } from './extractEventHandlers';
 export { default as unstable_getReactNodeRef } from './getReactNodeRef';
+export { default as unstable_getReactElementRef } from './getReactElementRef';
 export * from './types';

@@ -50,7 +50,10 @@ export default function SignInCard() {
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    if (emailError || passwordError) {
+      event.preventDefault();
+      return;
+    }
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
@@ -118,7 +121,6 @@ export default function SignInCard() {
             fullWidth
             variant="outlined"
             color={emailError ? 'error' : 'primary'}
-            sx={{ ariaLabel: 'email' }}
           />
         </FormControl>
         <FormControl>
@@ -126,6 +128,7 @@ export default function SignInCard() {
             <FormLabel htmlFor="password">Password</FormLabel>
             <Link
               component="button"
+              type="button"
               onClick={handleClickOpen}
               variant="body2"
               sx={{ alignSelf: 'baseline' }}
@@ -172,7 +175,6 @@ export default function SignInCard() {
       <Divider>or</Divider>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
         <Button
-          type="submit"
           fullWidth
           variant="outlined"
           onClick={() => alert('Sign in with Google')}
@@ -181,7 +183,6 @@ export default function SignInCard() {
           Sign in with Google
         </Button>
         <Button
-          type="submit"
           fullWidth
           variant="outlined"
           onClick={() => alert('Sign in with Facebook')}
