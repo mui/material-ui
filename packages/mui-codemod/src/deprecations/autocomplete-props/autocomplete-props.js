@@ -99,47 +99,62 @@ export default function transformer(file, api, options) {
   });
 
   // Move ListboxComponent default prop into slotProps.listbox.component
-  const defaultPropsPathCollection = findComponentDefaultProps(j, { root, componentName: 'Autocomplete' });
-
-  defaultPropsPathCollection.find(j.ObjectProperty, { key: { name: 'ListboxComponent' } }).forEach((path) => {
-    const removedValue = path.value.value;
-    const defaultProps = path.parent.value;
-
-    let hasSlotProps = false;
-    defaultProps.properties.forEach((property) => {
-      if (property.key?.name === 'slotProps') {
-        hasSlotProps = true;
-        const slotIndex = property.value.properties.findIndex(
-          (prop) => prop?.key?.name === 'listbox',
-        );
-        if (slotIndex === -1) {
-          property.value.properties.push(j.objectProperty(j.identifier('listbox'), j.objectExpression([j.objectProperty(j.identifier('component'), removedValue)])));
-        } else {
-          const slotPropsSlotValue = property.value.properties.splice(slotIndex, 1)[0].value;
-          property.value.properties.push(
-            j.objectProperty(
-              j.identifier('listbox'),
-              j.objectExpression([
-                j.objectProperty(j.identifier('component'), removedValue),
-                j.spreadElement(slotPropsSlotValue),
-              ]),
-            ),
-          );
-        }
-      }
-    });
-
-    if (!hasSlotProps) {
-      defaultProps.properties.push(
-        j.objectProperty(
-          j.identifier('slotProps'),
-          j.objectExpression([j.objectProperty(j.identifier('listbox'), j.objectExpression([j.objectProperty(j.identifier('component'), removedValue)]))]),
-        ),
-      );
-    }
-
-    path.prune();
+  const defaultPropsPathCollection = findComponentDefaultProps(j, {
+    root,
+    componentName: 'Autocomplete',
   });
+
+  defaultPropsPathCollection
+    .find(j.ObjectProperty, { key: { name: 'ListboxComponent' } })
+    .forEach((path) => {
+      const removedValue = path.value.value;
+      const defaultProps = path.parent.value;
+
+      let hasSlotProps = false;
+      defaultProps.properties.forEach((property) => {
+        if (property.key?.name === 'slotProps') {
+          hasSlotProps = true;
+          const slotIndex = property.value.properties.findIndex(
+            (prop) => prop?.key?.name === 'listbox',
+          );
+          if (slotIndex === -1) {
+            property.value.properties.push(
+              j.objectProperty(
+                j.identifier('listbox'),
+                j.objectExpression([j.objectProperty(j.identifier('component'), removedValue)]),
+              ),
+            );
+          } else {
+            const slotPropsSlotValue = property.value.properties.splice(slotIndex, 1)[0].value;
+            property.value.properties.push(
+              j.objectProperty(
+                j.identifier('listbox'),
+                j.objectExpression([
+                  j.objectProperty(j.identifier('component'), removedValue),
+                  j.spreadElement(slotPropsSlotValue),
+                ]),
+              ),
+            );
+          }
+        }
+      });
+
+      if (!hasSlotProps) {
+        defaultProps.properties.push(
+          j.objectProperty(
+            j.identifier('slotProps'),
+            j.objectExpression([
+              j.objectProperty(
+                j.identifier('listbox'),
+                j.objectExpression([j.objectProperty(j.identifier('component'), removedValue)]),
+              ),
+            ]),
+          ),
+        );
+      }
+
+      path.prune();
+    });
 
   return root.toSource(printOptions);
 }
