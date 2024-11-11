@@ -52,5 +52,5 @@ For development `pnpm test:regressions:dev` and `pnpm test:regressions:run --wat
 | `pnpm test:regressions`        | Full run                                                                                                              |
 | `pnpm test:regressions:dev`    | Prepares the fixtures to be able to test in watchmode                                                                 |
 | `pnpm test:regressions:run`    | Runs the tests (requires `pnpm test:regressions:dev` or `pnpm test:regressions:build`+`pnpm test:regressions:server`) |
-| `pnpm test:regressions:build`  | Builds the Webpack bundle for viewing the fixtures                                                                    |
+| `pnpm test:regressions:build`  | Builds the webpack bundle for viewing the fixtures                                                                    |
 | `pnpm test:regressions:server` | Serves the fixture bundle.                                                                                            |
