@@ -234,7 +234,7 @@ export interface AutocompleteProps<
   /**
    * The component used to render the listbox.
    * @default 'ul'
-   * @deprecated Use `slots.listbox` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.listbox.component` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ListboxComponent?: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
   /**

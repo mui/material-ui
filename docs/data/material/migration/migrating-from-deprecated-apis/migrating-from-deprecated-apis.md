@@ -283,52 +283,29 @@ npx @mui/codemod@latest deprecations/autocomplete-props <path>
 
 ### \*Component props
 
-All of the Autocomplete's slot (`*Component`) props were deprecated in favor of equivalent `slots` entries:
+All of the Autocomplete's slot (`*Component`) props were deprecated in favor of equivalent `slots` and `slotProps` entries:
 
 ```diff
  <Autocomplete
--    ListboxComponent={CustomListboxComponent}
 -    PaperComponent={CustomPaperComponent}
 -    PopperComponent={CustomPopperComponent}
+-    ListboxComponent={CustomListboxComponent}
 +    slots={{
-+        listbox: CustomListboxComponent,
 +        paper: CustomPaperComponent,
 +        popper: CustomPopperComponent,
 +    }}
- />
-```
-
-### \*Props props
-
-All of the Autocomplete's slot props (`*Props`) props were deprecated in favor of equivalent `slotProps` entries:
-
-```diff
- <Autocomplete
--    ChipProps={CustomChipProps}
--    ListboxProps={CustomListboxProps}
 +    slotProps={{
-+        chip: CustomChipProps,
-+        listbox: CustomListboxProps,
++        listbox: {
++            component: CustomListboxComponent,
++        },
 +    }}
  />
 ```
 
-### \*Component props
-
-All of the Autocomplete's slot (`*Component`) props were deprecated in favor of equivalent `slots` entries:
-
-```diff
- <Autocomplete
--    ListboxComponent={CustomListboxComponent}
--    PaperComponent={CustomPaperComponent}
--    PopperComponent={CustomPopperComponent}
-+    slots={{
-+        listbox: CustomListboxComponent,
-+        paper: CustomPaperComponent,
-+        popper: CustomPopperComponent,
-+    }}
- />
-```
+:::warning
+The listbox slot is a special case because `ListboxComponent` was implemented differently from the other `*Component` props, behaving similar to the `component` and `as` props.
+The `slots.listbox` entry exists and you can use it to replace the component entirely, but if you want to keep `ListboxComponent`'s behavior which maintains the original listbox styles, you should use the `slotProps.listbox.component` entry.
+:::
 
 ### \*Props props
 

@@ -275,12 +275,14 @@ npx @mui/codemod@latest deprecations/alert-props <path>
 -  }}
 +  slots={{
 +    paper: CustomPaper,
-+    popper: CustomPopper,
-+    listbox: CustomListbox,
++    popper: CustomPopper
 +  }}
 +  slotProps={{
 +    chip: { height: 10 },
-+    listbox: { height: 12 },
++    listbox: {
++        component: CustomListbox,
++        ...{ height: 12 },
++    },
 +    clearIndicator: { width: 10 },
 +    paper: { width: 12 },
 +    popper: { width: 14 },
@@ -306,11 +308,13 @@ npx @mui/codemod@latest deprecations/alert-props <path>
 +    slots: {
 +      paper: CustomPaper,
 +      popper: CustomPopper,
-+      listbox: CustomListbox,
 +    },
 +    slotProps: {
 +      chip: { height: 10 },
-+      listbox: { height: 12 },
++      listbox: {
++        component: CustomListbox,
++        ...{ height: 12 },
++      },
 +      clearIndicator: { width: 10 },
 +      paper: { width: 12 },
 +      popper: { width: 14 },
