@@ -87,6 +87,36 @@ You can also manually update your theme as shown in the snippet below:
 
 This reduces the API surface and lets you define variants in other slots of the component.
 
+## Accordion
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/accordion-props <path>
+```
+
+### TransitionComponent
+
+The Accordion's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
+
+```diff
+ <Accordion
+-  TransitionComponent={CustomTransition}
++  slots={{ transition: CustomTransition }}
+ />
+```
+
+### TransitionProps
+
+The Accordion's `TransitionProps` prop was deprecated in favor of `slotProps.transition`:
+
+```diff
+ <Accordion
+-  TransitionProps={{ unmountOnExit: true }}
++  slotProps={{ transition: { unmountOnExit: true } }}
+ />
+```
+
 ## AccordionSummary
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-summary-classes) below to migrate the code as described in the following sections:
@@ -251,6 +281,70 @@ Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-code
 npx @mui/codemod@latest deprecations/autocomplete-props <path>
 ```
 
+### \*Component props
+
+All of the Autocomplete's slot (`*Component`) props were deprecated in favor of equivalent `slots` entries:
+
+```diff
+ <Autocomplete
+-    ListboxComponent={CustomListboxComponent}
+-    PaperComponent={CustomPaperComponent}
+-    PopperComponent={CustomPopperComponent}
++    slots={{
++        listbox: CustomListboxComponent,
++        paper: CustomPaperComponent,
++        popper: CustomPopperComponent,
++    }}
+ />
+```
+
+### \*Props props
+
+All of the Autocomplete's slot props (`*Props`) props were deprecated in favor of equivalent `slotProps` entries:
+
+```diff
+ <Autocomplete
+-    ChipProps={CustomChipProps}
+-    ListboxProps={CustomListboxProps}
++    slotProps={{
++        chip: CustomChipProps,
++        listbox: CustomListboxProps,
++    }}
+ />
+```
+
+### \*Component props
+
+All of the Autocomplete's slot (`*Component`) props were deprecated in favor of equivalent `slots` entries:
+
+```diff
+ <Autocomplete
+-    ListboxComponent={CustomListboxComponent}
+-    PaperComponent={CustomPaperComponent}
+-    PopperComponent={CustomPopperComponent}
++    slots={{
++        listbox: CustomListboxComponent,
++        paper: CustomPaperComponent,
++        popper: CustomPopperComponent,
++    }}
+ />
+```
+
+### \*Props props
+
+All of the Autocomplete's slot props (`*Props`) props were deprecated in favor of equivalent `slotProps` entries:
+
+```diff
+ <Autocomplete
+-    ChipProps={CustomChipProps}
+-    ListboxProps={CustomListboxProps}
++    slotProps={{
++        chip: CustomChipProps,
++        listbox: CustomListboxProps,
++    }}
+ />
+```
+
 ### componentsProps
 
 The Autocomplete's `componentsProps` prop was deprecated in favor of `slotProps`:
@@ -269,6 +363,32 @@ The Autocomplete's `componentsProps` prop was deprecated in favor of `slotProps`
 +    popupIndicator: { width: 16 },
    }}
  />
+```
+
+## Avatar
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/avatar-props <path>
+```
+
+### imgProps
+
+The Avatar's `imgProps` prop was deprecated in favor of `slotProps.img`:
+
+```diff
+ <Avatar
+-  imgProps={{
+-    onError: () => {},
+-    onLoad: () => {},
++  slotProps={{
++    img: {
++      onError: () => {},
++      onLoad: () => {},
++    }
+   }}
+ />;
 ```
 
 ## AvatarGroup
@@ -357,6 +477,16 @@ The Backdrop's `componentsProps` prop was deprecated in favor of `slotProps`:
 -  componentsProps={{ root: { testid: 'test-id' } }}
 +  slotProps={{ root: { testid: 'test-id' } }}
  />
+```
+
+### TransitionComponent
+
+The Backdrop's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
+
+```diff
+ <Slider
+-  TransitionComponent={CustomTransition}
++  slots={{ transition: CustomTransition }}
 ```
 
 ## Badge
@@ -1625,6 +1755,28 @@ The StepLabel's `componentsProps` prop was deprecated in favor of `slotProps`:
  />
 ```
 
+### StepIconComponent
+
+The StepLabel's `StepIconComponent` prop was deprecated in favor of `slots.stepIcon`:
+
+```diff
+ <StepLabel
+-  StepIconComponent={StepIconComponent}
++  slots={{ stepIcon: StepIconComponent }}
+ />
+```
+
+### StepIconProps
+
+The StepLabel's `StepIconProps` prop was deprecated in favor of `slotProps.stepIcon`:
+
+```diff
+ <StepLabel
+-  StepIconProps={StepIconProps}
++  slotProps={{ stepIcon: StepIconProps }}
+ />
+```
+
 ## StepConnector
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#step-connector-classes) below to migrate the code as described in the following sections:
@@ -1663,4 +1815,33 @@ Here's how to migrate:
      },
    },
  },
+```
+
+## SpeedDial
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#speed-dial-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/speed-dial-props <path>
+```
+
+### TransitionComponent
+
+The SpeedDial's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
+
+```diff
+ <SpeedDial
+-  TransitionComponent={CustomTransition}
++  slots={{ transition: CustomTransition }}
+```
+
+### TransitionProps
+
+The SpeedDial's `TransitionProps` prop was deprecated in favor of `slotProps.transition`:
+
+```diff
+ <SpeedDial
+-  TransitionProps={{ unmountOnExit: true }}
++  slotProps={{ transition: { unmountOnExit: true } }}
+ />
 ```
