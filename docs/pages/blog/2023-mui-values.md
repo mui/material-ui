@@ -40,7 +40,7 @@ It was also to give people an opportunity to express what they felt may be _miss
 
 We asked people to reflect on how accurately they felt each value described our internal culture; what they felt our company cared deeply about and why; what is utterly unique about us as a team; and more. 🤔💭
 
-<img alt="A screenshot of the intro page to our discovery survey." src="/static/blog/2023-mui-values/values-survey.png" width="2400" height="2340" loading="lazy" style="margin-bottom: 16px;" />
+<img alt="A screenshot of the intro page to our discovery survey." src="/static/blog/2023-mui-values/values-survey.png" width="2400" height="2340" loading="lazy" />
 
 Then, using keyword and sentiment analysis, we captured clear themes in experience and common language used to describe our culture.
 I presented this back to the team via recorded video presentation, inviting reactions and further dialogue in the open of our Slack workspace.

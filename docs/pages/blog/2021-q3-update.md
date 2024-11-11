@@ -154,7 +154,7 @@ for members of the team that were not prevented by COVID-19 related travel restr
 Less than half the company made it, but it was still fun!
 We spent half the time doing a [Hackathon](https://x.com/olivtassinari/status/1441773885259583491) and the other half on activities (surfing, biking, winery tour, and sightseeing).
 
-<img loading="lazy" src="/static/blog/2021-q3-update/retreat.jpeg" alt="" style="width: 596px; margin-bottom: 8px" />
+<img loading="lazy" src="/static/blog/2021-q3-update/retreat.jpeg" alt="" width="1613" height="1210" />
 
 <p class="blog-description">Sightseeing in Lisbon</p>
 

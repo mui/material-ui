@@ -29,7 +29,7 @@ Additionally, we've created guides to walk you through setting up an app using t
 - [Base UI setup](https://mui.com/base-ui/guides/next-js-app-router/)
 - [Joy UI setup](https://mui.com/joy-ui/integrations/next-js-app-router/)
 
-<img alt="Screenshot of the Material UI documentation" src="/static/blog/mui-next-js-app-router/docs.png" loading="lazy" width="2400" height="1394" style="margin-bottom:24px;" />
+<img alt="Screenshot of the Material UI documentation" src="/static/blog/mui-next-js-app-router/docs.png" loading="lazy" width="2400" height="1394" />
 
 We also have example repos for each, with everything already set up for you:
 

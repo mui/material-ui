@@ -47,7 +47,7 @@ And the latest version also includes:
 Bar and Pie Charts currently support animations.
 More to come!
 
-<video style="margin-bottom: 16px;" autoplay muted loop playsinline width="680" height="306">
+<video autoplay muted loop playsinline width="680" height="306">
   <source src="/static/blog/mui-x-end-v6-features/bar-chart-animations.mp4" type="video/mp4">
 </video>
 
@@ -67,7 +67,7 @@ appealing.
 
 After an extensive period of development and refinement in the lab and pre-release packages, and with the invaluable feedback we've received from you and the community, we're happy to share that the package is now officially stable!
 
-<video style="margin-bottom: 10px;" autoplay muted loop playsinline width="680" height="400">
+<video autoplay muted loop playsinline width="680" height="400">
   <source src="/static/blog/mui-x-end-v6-features/tree-view-gmail.mp4" type="video/mp4">
 </video>
 
@@ -80,7 +80,7 @@ After an extensive period of development and refinement in the lab and pre-relea
 A much-anticipated feature, the date and time fields now allow users to clear a selected date with a single click.
 Learn how to use it by visiting the [clearable behavior documentation](/x/react-date-pickers/fields/#clearable-behavior).
 
-<video style="margin-bottom: 10px;" autoplay muted loop playsinline width="680" height="128">
+<video autoplay muted loop playsinline width="680" height="128">
   <source src="/static/blog/mui-x-end-v6-features/clearable-fields.mp4" type="video/mp4">
 </video>
 
@@ -101,7 +101,7 @@ The new autosizing feature automatically adjusts the column width to accommodate
 You can include or exclude both headers and outliers from the calculation and expand to use the entire area of the grid.
 Learn more details at [column autosizing section](/x/react-data-grid/column-dimensions/#autosizing).
 
-<video style="margin-bottom: 10px;" autoplay muted loop playsinline width="680" height="128">
+<video autoplay muted loop playsinline width="680" height="128">
   <source src="/static/blog/mui-x-end-v6-features/column-auto-sizing.mp4" type="video/mp4">
 </video>
 
@@ -113,7 +113,7 @@ We're continuously improving our docs, and we're starting to add more advanced e
 
 You can integrate the MUI X Charts with the Data Grid to add Sparkline Charts to columns.
 
-<img alt="Sparkline charts on the MUI X Data Grid" src="/static/blog/mui-x-end-v6-features/sparkline-datagrid.png" width="1200" height="840" loading="lazy" style="margin-bottom: 16px;" />
+<img alt="Sparkline charts on the MUI X Data Grid" src="/static/blog/mui-x-end-v6-features/sparkline-datagrid.png" width="1200" height="840" loading="lazy" />
 
 👉 [Get started with Sparkline Charts in the Data Grid now](/x/react-data-grid/custom-columns/#sparkline)!
 
