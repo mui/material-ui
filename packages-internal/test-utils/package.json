@@ -21,7 +21,9 @@
     "./setupBabel": "./build/setupBabel.js",
     "./setupBabelPlaywright": "./build/setupBabelPlaywright.js",
     "./setupJSDOM": "./build/setupJSDOM.js",
-    "./setupKarma": "./build/setupKarma.js"
+    "./setupKarma": "./build/setupKarma.js",
+    "./chaiPlugin": "./build/chaiPlugin.js",
+    "./setupVitest": "./build/setupVitest.js"
   },
   "scripts": {
     "prebuild": "rimraf ./build",
@@ -47,10 +49,10 @@
     "fs-extra": "^11.2.0",
     "jsdom": "^24.0.0",
     "lodash": "^4.17.21",
-    "mocha": "^10.7.3",
+    "mocha": "^10.8.2",
     "playwright": "^1.48.2",
     "prop-types": "^15.8.1",
-    "sinon": "^18.0.1"
+    "sinon": "^19.0.2"
   },
   "devDependencies": {
     "@types/chai": "^4.3.20",

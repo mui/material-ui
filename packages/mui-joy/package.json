@@ -61,7 +61,7 @@
     "next": "^14.2.16",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sinon": "^18.0.1"
+    "sinon": "^19.0.2"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
