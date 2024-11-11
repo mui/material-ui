@@ -230,7 +230,7 @@ You are strongly discouraged to:
 
   :::
 
-A great way to use these bundles is to configure bundler aliases, for example with [Webpack's `resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias):
+A great way to use these bundles is to configure bundler aliases, for example with [webpack's `resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias):
 
 ```js
 {
