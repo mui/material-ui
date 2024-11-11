@@ -10,7 +10,7 @@ tags: ['Product', 'Toolpad']
 It's been over a year since we released the first version of Toolpad. Today, we're excited to take the next step on that journey with the release of Toolpad Beta. If you aren't familiar with Toolpad yet, it's an admin panel builder catering to the internal tooling needs of an organization, designed for developers who want to build a functional application quickly. It harnesses the speed of a UI builder for the front end and closely integrates into your back end. If this excites you, then read on!
 
 <a href="https://mui.com/toolpad/studio/examples/basic-crud-app/">
-<img alt="Introducing Toolpad" src="/static/blog/2023-toolpad-beta-announcement/intro.png" width="2400" height="1200" />
+  <img alt="Introducing Toolpad" src="/static/blog/2023-toolpad-beta-announcement/intro.png" width="2400" height="1200" />
 </a>
 
 ## Why did we decide to build Toolpad?
@@ -35,7 +35,7 @@ Toolpad is not ideal for building static web pages, mobile apps, or customer-fac
 
 Before the arrival of Toolpad, the MUI organization primarily catered to the front-end needs of the development process. Our products were mostly useful for React engineers or designers, but we saw many full-stack engineers use our advanced components for data-intensive apps. These highly customizable components are well-suited for complex apps, but not all apps require the same level of customization: for example, internal tools just need basic theming.
 
-<img alt="Toolpad personas" src="/static/blog/2023-toolpad-beta-announcement/personas.png" loading="lazy" width="2076" height="900" style="margin-bottom:24px;" />
+<img alt="Toolpad personas" src="/static/blog/2023-toolpad-beta-announcement/personas.png" loading="lazy" width="2400" height="1394" />
 
 Toolpad is for you if you're a full-stack or back-end developer who builds, manages, and integrates data pipelines, server-side logic, databases, microservices, and APIs—and knows the most about them. Sharing these endpoints with and maintaining the internal documentation for the front-end teams is a hassle that lasts forever. Toolpad empowers you to take the next step and build the UI you need using our drag-and-drop editor, without losing any part of your normal development workflow.
 
