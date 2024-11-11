@@ -43,6 +43,7 @@ module.exports = function getBabelConfig(api) {
     '@mui/utils': resolveAliasPath('./packages/mui-utils/src'),
     '@mui/joy': resolveAliasPath('./packages/mui-joy/src'),
     '@mui/internal-docs-utils': resolveAliasPath('./packages-internal/docs-utils/src'),
+    '@mui/internal-test-utils': resolveAliasPath('./packages-internal/test-utils/src'),
     docs: resolveAliasPath('./docs'),
     test: resolveAliasPath('./test'),
   };
