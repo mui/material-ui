@@ -58,17 +58,18 @@
     "PopperComponent": {
       "type": { "name": "elementType" },
       "deprecated": true,
-      "deprecationInfo": "Use <code>slots.popper</code> instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
+      "deprecationInfo": "use the <code>slots.popper</code> prop instead. This prop will be removed in v7. <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
     },
     "PopperProps": {
       "type": { "name": "object" },
+      "default": "{}",
       "deprecated": true,
-      "deprecationInfo": "Use <code>slotProps.popper</code> instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
+      "deprecationInfo": "use the <code>slotProps.popper</code> prop instead. This prop will be removed in v7. <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
     },
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ arrow?: object, popper?: object, tooltip?: object, transition?: object }"
+        "description": "{ arrow?: func<br>&#124;&nbsp;object, popper?: func<br>&#124;&nbsp;object, tooltip?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
@@ -90,12 +91,13 @@
     "TransitionComponent": {
       "type": { "name": "elementType" },
       "deprecated": true,
-      "deprecationInfo": "Use <code>slots.transition</code> instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
+      "deprecationInfo": "use the <code>slots.transition</code> prop instead. This prop will be removed in v7. <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
     },
     "TransitionProps": {
       "type": { "name": "object" },
+      "default": "{}",
       "deprecated": true,
-      "deprecationInfo": "Use <code>slotProps.transition</code> instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
+      "deprecationInfo": "use the <code>slotProps.transition</code> prop instead. This prop will be removed in v7. <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
     }
   },
   "name": "Tooltip",
@@ -103,19 +105,31 @@
     "import Tooltip from '@mui/material/Tooltip';",
     "import { Tooltip } from '@mui/material';"
   ],
+  "slots": [
+    {
+      "name": "popper",
+      "description": "The component used for the popper.",
+      "default": "Popper",
+      "class": "MuiTooltip-popper"
+    },
+    {
+      "name": "transition",
+      "description": "The component used for the transition.\n[Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
+      "default": "Grow",
+      "class": null
+    },
+    {
+      "name": "tooltip",
+      "description": "The component used for the tooltip.",
+      "class": "MuiTooltip-tooltip"
+    },
+    {
+      "name": "arrow",
+      "description": "The component used for the arrow.",
+      "class": "MuiTooltip-arrow"
+    }
+  ],
   "classes": [
-    {
-      "key": "arrow",
-      "className": "MuiTooltip-arrow",
-      "description": "Styles applied to the arrow element.",
-      "isGlobal": false
-    },
-    {
-      "key": "popper",
-      "className": "MuiTooltip-popper",
-      "description": "Styles applied to the Popper component.",
-      "isGlobal": false
-    },
     {
       "key": "popperArrow",
       "className": "MuiTooltip-popperArrow",
@@ -132,12 +146,6 @@
       "key": "popperInteractive",
       "className": "MuiTooltip-popperInteractive",
       "description": "Styles applied to the Popper component unless `disableInteractive={true}`.",
-      "isGlobal": false
-    },
-    {
-      "key": "tooltip",
-      "className": "MuiTooltip-tooltip",
-      "description": "Styles applied to the tooltip (label wrapper) element.",
       "isGlobal": false
     },
     {

@@ -926,33 +926,27 @@ Tooltip.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The component used for the popper.
-   * @default Popper
+   * @deprecated use the `slots.popper` prop instead. This prop will be removed in v7. [How to migrate](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/).
    */
   PopperComponent: PropTypes.elementType,
   /**
    * Props applied to the [`Popper`](https://mui.com/material-ui/api/popper/) element.
+   * @deprecated use the `slotProps.popper` prop instead. This prop will be removed in v7. [How to migrate](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/).
    * @default {}
    */
   PopperProps: PropTypes.object,
   /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
+   * The props used for each slot inside.
    * @default {}
    */
   slotProps: PropTypes.shape({
-    arrow: PropTypes.object,
-    popper: PropTypes.object,
-    tooltip: PropTypes.object,
-    transition: PropTypes.object,
+    arrow: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    tooltip: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
-   *
    * @default {}
    */
   slots: PropTypes.shape({
@@ -976,12 +970,14 @@ Tooltip.propTypes /* remove-proptypes */ = {
   /**
    * The component used for the transition.
    * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @default Grow
+   * @deprecated use the `slots.transition` prop instead. This prop will be removed in v7. [How to migrate](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/).
    */
   TransitionComponent: PropTypes.elementType,
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
+   * @deprecated use the `slotProps.transition` prop instead. This prop will be removed in v7. [How to migrate](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/).
+   * @default {}
    */
   TransitionProps: PropTypes.object,
 };
