@@ -20,7 +20,7 @@ import { extendSxProp } from '@mui/system/styleFunctionSx';
 import composeClasses from '@mui/utils/composeClasses';
 import requirePropFactory from '../utils/requirePropFactory';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import useTheme from '../styles/useTheme';
 import GridContext from './GridContext';
 import gridClasses, { getGridUtilityClass } from './gridClasses';
@@ -402,7 +402,7 @@ const useUtilityClasses = (ownerState) => {
  * @deprecated Use the [`Grid2`](https://mui.com/material-ui/react-grid2/) component instead.
  */
 const Grid = React.forwardRef(function Grid(inProps, ref) {
-  const themeProps = useThemeProps({ props: inProps, name: 'MuiGrid' });
+  const themeProps = useDefaultProps({ props: inProps, name: 'MuiGrid' });
   const { breakpoints } = useTheme();
 
   const props = extendSxProp(themeProps);

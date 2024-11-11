@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-test-utils",
-  "version": "1.0.17",
+  "version": "1.0.19",
   "author": "MUI Team",
   "description": "Utilities for MUI tests. This is an internal package not meant for general use.",
   "main": "./build/index.js",
@@ -21,7 +21,9 @@
     "./setupBabel": "./build/setupBabel.js",
     "./setupBabelPlaywright": "./build/setupBabelPlaywright.js",
     "./setupJSDOM": "./build/setupJSDOM.js",
-    "./setupKarma": "./build/setupKarma.js"
+    "./setupKarma": "./build/setupKarma.js",
+    "./chaiPlugin": "./build/chaiPlugin.js",
+    "./setupVitest": "./build/setupVitest.js"
   },
   "scripts": {
     "prebuild": "rimraf ./build",
@@ -31,10 +33,10 @@
     "release:publish:dry-run": "pnpm publish --tag latest --registry=\"http://localhost:4873/\""
   },
   "dependencies": {
-    "@babel/plugin-transform-modules-commonjs": "^7.25.7",
-    "@babel/preset-typescript": "^7.25.7",
-    "@babel/register": "^7.25.7",
-    "@babel/runtime": "^7.25.7",
+    "@babel/plugin-transform-modules-commonjs": "^7.25.9",
+    "@babel/preset-typescript": "^7.26.0",
+    "@babel/register": "^7.25.9",
+    "@babel/runtime": "^7.26.0",
     "@emotion/cache": "^11.13.1",
     "@emotion/react": "^11.13.3",
     "@testing-library/dom": "^10.4.0",
@@ -47,17 +49,17 @@
     "fs-extra": "^11.2.0",
     "jsdom": "^24.0.0",
     "lodash": "^4.17.21",
-    "mocha": "^10.7.3",
-    "playwright": "^1.47.2",
+    "mocha": "^10.8.2",
+    "playwright": "^1.48.2",
     "prop-types": "^15.8.1",
-    "sinon": "^18.0.1"
+    "sinon": "^19.0.2"
   },
   "devDependencies": {
     "@types/chai": "^4.3.20",
     "@types/chai-dom": "^1.11.3",
     "@types/format-util": "^1.0.4",
     "@types/prop-types": "^15.7.13",
-    "@types/react": "^18.3.11",
+    "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@types/sinon": "^17.0.3",
     "typescript": "^5.6.3"

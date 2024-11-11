@@ -648,7 +648,7 @@ These results are very different from last year—TypeScript took off, and it's 
 
 ### Which framework are you using, if any?
 
-<img src="/static/blog/2021-developer-survey-results/21.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Create React App: 62.4%; Next.js: 21.9%; Custom Webpack: 10.7%; None: 2.6%; Gatsby: 0.9%; Other: 1.5%" />
+<img src="/static/blog/2021-developer-survey-results/21.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Create React App: 62.4%; Next.js: 21.9%; Custom webpack: 10.7%; None: 2.6%; Gatsby: 0.9%; Other: 1.5%" />
 
 <p class="blog-description">1497 out of 1589 answered.</p>
 

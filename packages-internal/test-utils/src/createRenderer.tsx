@@ -1,23 +1,22 @@
 /* eslint-env mocha */
-import * as React from 'react';
-import * as ReactDOMServer from 'react-dom/server';
 import createEmotionCache from '@emotion/cache';
 import { CacheProvider as EmotionCacheProvider } from '@emotion/react';
 import {
-  act as rtlAct,
   buildQueries,
   cleanup,
-  fireEvent as rtlFireEvent,
-  queries,
-  queryHelpers,
-  render as testingLibraryRender,
   prettyDOM,
-  within,
+  queries,
   RenderResult,
+  act as rtlAct,
+  fireEvent as rtlFireEvent,
   screen as rtlScreen,
   Screen,
+  render as testingLibraryRender,
+  within,
 } from '@testing-library/react/pure';
 import { userEvent } from '@testing-library/user-event';
+import * as React from 'react';
+import * as ReactDOMServer from 'react-dom/server';
 import { useFakeTimers } from 'sinon';
 import reactMajor from './reactMajor';
 
@@ -114,8 +113,8 @@ class DispatchingProfiler implements Profiler {
 
   private renders: RenderMark[] = [];
 
-  constructor(test: import('mocha').Test) {
-    this.id = test.fullTitle();
+  constructor(id: string) {
+    this.id = id;
   }
 
   onRender: Profiler['onRender'] = (
@@ -193,18 +192,6 @@ const [
   },
 );
 
-const queryAllByMuiTest = queryHelpers.queryAllByAttribute.bind(null, 'data-mui-test');
-const [queryByMuiTest, getAllByMuiTest, getByMuiTest, findAllByMuiTest, findByMuiTest] =
-  buildQueries(
-    queryAllByMuiTest,
-    function getMultipleError(container, dataMuiTest) {
-      return `Found multiple elements with the data-mui-test attribute of: ${dataMuiTest}`;
-    },
-    function getMissingError(container, dataMuiTest) {
-      return `Found no element with the data-mui-test attribute of: ${dataMuiTest}`;
-    },
-  );
-
 const customQueries = {
   queryDescriptionOf,
   queryAllDescriptionsOf,
@@ -212,30 +199,6 @@ const customQueries = {
   getAllDescriptionsOf,
   findDescriptionOf,
   findAllDescriptionsOf,
-  /**
-   * @deprecated Use `queryAllByTestId` instead
-   */
-  queryAllByMuiTest,
-  /**
-   * @deprecated Use `queryByTestId` instead
-   */
-  queryByMuiTest,
-  /**
-   * @deprecated Use `getAllByTestId` instead
-   */
-  getAllByMuiTest,
-  /**
-   * @deprecated Use `getByTestId` instead
-   */
-  getByMuiTest,
-  /**
-   * @deprecated Use `findAllByTestId` instead
-   */
-  findAllByMuiTest,
-  /**
-   * @deprecated Use `findByTestId` instead
-   */
-  findByMuiTest,
 };
 
 interface RenderConfiguration {
@@ -375,11 +338,88 @@ export interface Clock {
 
 export type ClockConfig = undefined | number | Date;
 
+const isVitest =
+  // VITEST is present on the environment when not in browser mode.
+  process.env.VITEST === 'true' ||
+  // VITEST_BROWSER_DEBUG is present on vitest in browser mode.
+  typeof process.env.VITEST_BROWSER_DEBUG !== 'undefined';
+
+function createVitestClock(
+  defaultMode: 'fake' | 'real',
+  config: ClockConfig,
+  options: Exclude<Parameters<typeof useFakeTimers>[0], number | Date>,
+  vi: any,
+): Clock {
+  if (defaultMode === 'fake') {
+    beforeEach(() => {
+      vi.useFakeTimers(options);
+      if (config) {
+        vi.setSystemTime(config);
+      }
+    });
+    afterEach(() => {
+      vi.useRealTimers();
+    });
+  } else {
+    beforeEach(() => {
+      if (config) {
+        vi.setSystemTime(config);
+      }
+    });
+    afterEach(() => {
+      vi.useRealTimers();
+    });
+  }
+
+  return {
+    withFakeTimers: () => {
+      beforeEach(() => {
+        vi.useFakeTimers(options);
+      });
+      afterEach(() => {
+        vi.useRealTimers();
+      });
+    },
+    runToLast: () => {
+      traceSync('runToLast', () => {
+        rtlAct(() => {
+          vi.runOnlyPendingTimers();
+        });
+      });
+    },
+    isReal() {
+      return !vi.isFakeTimers();
+    },
+    restore() {
+      vi.useRealTimers();
+    },
+    tick(timeoutMS: number) {
+      traceSync('tick', () => {
+        rtlAct(() => {
+          vi.advanceTimersByTime(timeoutMS);
+        });
+      });
+    },
+    runAll() {
+      traceSync('runAll', () => {
+        rtlAct(() => {
+          vi.runAllTimers();
+        });
+      });
+    },
+  };
+}
+
 function createClock(
   defaultMode: 'fake' | 'real',
   config: ClockConfig,
-  options?: Exclude<Parameters<typeof useFakeTimers>[0], number | Date>,
+  options: Exclude<Parameters<typeof useFakeTimers>[0], number | Date>,
+  vi: any,
 ): Clock {
+  if (isVitest) {
+    return createVitestClock(defaultMode, config, options, vi);
+  }
+
   let clock: ReturnType<typeof useFakeTimers> | null = null;
 
   let mode = defaultMode;
@@ -467,6 +507,11 @@ export interface CreateRendererOptions extends Pick<RenderOptions, 'strict' | 's
   clock?: 'fake' | 'real';
   clockConfig?: ClockConfig;
   clockOptions?: Parameters<typeof createClock>[2];
+  /**
+   * Vitest needs to be injected because this file is transpiled to commonjs and vitest is an esm module.
+   * @default {}
+   */
+  vi?: any;
 }
 
 export function createRenderer(globalOptions: CreateRendererOptions = {}): Renderer {
@@ -475,11 +520,12 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     clockConfig,
     strict: globalStrict = true,
     strictEffects: globalStrictEffects = globalStrict,
+    vi = (globalThis as any).vi || {},
     clockOptions,
   } = globalOptions;
   // save stack to re-use in test-hooks
   const { stack: createClientRenderStack } = new Error();
-  const clock = createClock(clockMode, clockConfig, clockOptions);
+  const clock = createClock(clockMode, clockConfig, clockOptions, vi);
 
   /**
    * Flag whether `createRenderer` was called in a suite i.e. describe() block.
@@ -531,13 +577,22 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
       throw error;
     }
 
-    const test = this.currentTest;
-    if (test === undefined) {
+    let id: string | null = null;
+
+    if (isVitest) {
+      // @ts-expect-error
+      id = expect.getState().currentTestName;
+    } else {
+      id = this.currentTest?.fullTitle() ?? null;
+    }
+
+    if (!id) {
       throw new Error(
         'Unable to find the currently running test. This is a bug with the client-renderer. Please report this issue to a maintainer.',
       );
     }
-    profiler = new UsedProfiler(test);
+
+    profiler = new UsedProfiler(id);
 
     emotionCache = createEmotionCache({ key: 'emotion-client-render' });
 

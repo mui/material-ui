@@ -47,7 +47,7 @@ npm install @mui/icons-material @mui/material
 
 Because `@mui/material` is a required dependency of `@mui/icons-material`, you have to update your bundler's config to add an alias.
 
-Here is an example of how you can do it, if you use [Webpack](https://webpack.js.org/):
+Here is an example of how you can do it, if you use [webpack](https://webpack.js.org/):
 
 **webpack.config.js**
 

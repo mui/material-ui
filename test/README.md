@@ -117,7 +117,7 @@ trade-off, mainly completeness vs. speed.
 If you want to debug tests with the, for example Chrome inspector (chrome://inspect) you can run `pnpm t <testFilePattern> --debug`.
 Note that the test will not get executed until you start code execution in the inspector.
 
-We have a dedicated task to use VSCode's integrated debugger to debug the currently opened test file.
+We have a dedicated task to use VS Code's integrated debugger to debug the currently opened test file.
 Open the test you want to run and press F5 (launch "Test Current File").
 
 #### Run the core mocha unit/integration test suite
