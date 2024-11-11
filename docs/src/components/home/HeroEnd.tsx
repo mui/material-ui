@@ -10,9 +10,9 @@ function Placeholder() {
     <Box
       sx={{
         height: {
-          xs: 616 - 48 * 2,
-          sm: 438 - 80 * 2,
-          md: 461 - 96 * 2,
+          xs: 202,
+          sm: 180,
+          md: 193,
         },
       }}
     />
