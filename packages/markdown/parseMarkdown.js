@@ -2,22 +2,6 @@ const { marked } = require('marked');
 const textToHash = require('./textToHash');
 const prism = require('./prism');
 
-/**
- * Option used by `marked` the library parsing markdown.
- */
-const markedOptions = {
-  gfm: true,
-  tables: true,
-  breaks: false,
-  pedantic: false,
-  sanitize: false,
-  smartLists: true,
-  smartypants: false,
-  headerPrefix: false,
-  headerIds: false,
-  mangle: false,
-};
-
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
 const titleRegExp = /# (.*)[\r\n]/;
 const descriptionRegExp = /<p class="description">(.*?)<\/p>/s;
@@ -252,12 +236,12 @@ function getFeatureList(content) {
 function renderMarkdown(markdown) {
   // Check if the markdown contains an inline list. Unordered lists are block elements and cannot be parsed inline.
   if (/[-*+] `([A-Za-z]+)`/g.test(markdown)) {
-    return marked.parse(markdown, markedOptions);
+    return marked.parse(markdown);
   }
   // Two new lines result in a newline in the table.
   // All other new lines must be eliminated to prevent markdown mayhem.
   return marked
-    .parseInline(markdown, markedOptions)
+    .parseInline(markdown)
     .replace(/(\r?\n){2}/g, '<br>')
     .replace(/\r?\n/g, ' ');
 }
@@ -483,7 +467,7 @@ function createRender(context) {
       ],
     });
 
-    return marked(markdown, { ...markedOptions, renderer });
+    return marked(markdown, renderer);
   }
 
   return render;
