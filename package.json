@@ -178,7 +178,7 @@
     "karma-webpack": "^5.0.0",
     "lerna": "^8.1.9",
     "lodash": "^4.17.21",
-    "markdownlint-cli2": "^0.14.0",
+    "markdownlint-cli2": "^0.15.0",
     "mocha": "^10.8.2",
     "nx": "^20.0.12",
     "nyc": "^17.1.0",
