@@ -94,7 +94,7 @@ While string values remain compatible for these types, any updates to the `filte
 
 ### Smaller bundle size
 
-Introducing a separate entry point for locales has significantly reduced the bundle size of the barrel index when tree-shaking isn't operational (for example, Webpack in dev mode).
+Introducing a separate entry point for locales has significantly reduced the bundle size of the barrel index when tree-shaking isn't operational (for example, webpack in dev mode).
 
 As a reference, with the `@mui/x-data-grid` npm package, this change led to a reduction of approximately 19% – shrinking the bundle size from [114.2kB](https://bundlephobia.com/package/@mui/x-data-grid@6.19.2) to [92.9kB](https://bundlephobia.com/package/@mui/x-data-grid@7.0.0).
 
