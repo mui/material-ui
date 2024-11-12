@@ -54,7 +54,7 @@ It contains the highlights that will be included in the first versions.
 - [Drag and drop with touch support](https://github.com/mui/mui-x/issues/15385)
 - [New Toolbar](https://github.com/mui/mui-x/issues/11584)
 - [Row spanning](https://mui.com/x/react-data-grid/row-spanning/)(Without `unstable_` prefix)
-- [Pivoting](https://github.com/mui/mui-x/issues/6147) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
+- [Pivoting](https://github.com/mui/mui-x/issues/214) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
 ### Date and Time Pickers
 
