@@ -111,7 +111,9 @@ The date picker is at the border between the core component and advanced compone
   We think that the component is good enough for use in production (and many developers already are using it), but we want to get the public API right before committing to a stable release.
 - ✍️ We have added support for the [cell edit mode](https://mui.com/x/react-data-grid/editing/).
 
-  <img loading="lazy" src="/static/blog/2021-q2-update/cell-edit.gif" alt="" style="width: 842px; margin-bottom: 16px;" />
+  <video autoplay muted loop playsinline width="1684" height="782">
+    <source src="/static/blog/2021-q2-update/cell-edit.mp4" type="video/mp4" />
+  </video>
 
 - 🐛 We have focused on fixing bugs and regressions to ensure early users have a great experience with the component.
   This was done instead of taking on ambitious new features.
@@ -120,7 +122,7 @@ The date picker is at the border between the core component and advanced compone
 
   <img loading="lazy" src="/static/blog/2021-q2-update/single-select.png" alt="" style="width: 481px; margin-bottom: 16px;" />
 
-  <p class="blog-description">the <a href="https://codesandbox.io/p/sandbox/material-demo-forked-iuyo5?file=/demo.js">codesandbox</a></p>
+  <p class="blog-description">the <a href="https://codesandbox.io/p/sandbox/material-demo-forked-iuyo5?file=/demo.js">CodeSandbox</a></p>
 
   and the **boolean** column type.
 

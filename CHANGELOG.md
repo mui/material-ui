@@ -84,7 +84,7 @@ A big thanks to the 9 contributors who made this release possible.
 - [material-ui][TextField] Dynamically modify the eye password button aria-label (#44122) @ChinoUkaegbu
 - [icons] Run pnpm docs:mdicons:synonyms (#44098) @oliviertassinari
 - [joy-ui] Update Overview copy to match Readme (#44136) @samuelsycamore
-- Add CodeSandbox/Stackblitz to the rest of the templates (#43708) @siriwatknp
+- Add CodeSandbox/StackBlitz to the rest of the templates (#43708) @siriwatknp
 - Update Figma link to fix 301 (a7b7d9c) @oliviertassinari
 - Link Toolpad from Core repo (#44111) @prakhargupta1
 - Remove HighlightedCode max-width (#43731) @Janpot
@@ -254,7 +254,7 @@ A big thanks to the 13 contributors who made this release possible.
 - Uniformity in version range @oliviertassinari
 - Replace `toBeAriaHidden` matcher with `toBeInaccessible` in tests (#43870) @ZeeshanTamboli
 - [docs-infra] Strengthen CSP (#43711) @oliviertassinari
-- [docs-infra] Open Codesandbox demo with fontsize=12 (#43860) @siriwatknp
+- [docs-infra] Open CodeSandbox demo with fontsize=12 (#43860) @siriwatknp
 - [icons] Reduce Material Icon page size (#43911) @oliviertassinari
 - [test] Point Istanbul to correct URL (#43935) @sai6855
 - [test] Sync React.version parse logic with codebase (#43820) @oliviertassinari
