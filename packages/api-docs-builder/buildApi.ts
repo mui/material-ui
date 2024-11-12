@@ -1,6 +1,7 @@
 import { mkdirSync } from 'fs';
 import path from 'path';
 import * as fse from 'fs-extra';
+import { renderMarkdown as _renderMarkdown } from '@mui/internal-markdown';
 import findComponents from './utils/findComponents';
 import findHooks from './utils/findHooks';
 import { writePrettifiedFile } from './buildApiUtils';
@@ -13,6 +14,8 @@ import {
 } from './utils/createTypeScriptProject';
 import { ProjectSettings } from './ProjectSettings';
 import { ComponentReactApi } from './types/ApiBuilder.types';
+import _escapeCell from './utils/escapeCell';
+import _escapeEntities from './utils/escapeEntities';
 
 async function removeOutdatedApiDocsTranslations(
   components: readonly ComponentReactApi[],
@@ -103,6 +106,8 @@ export async function buildApi(projectsSettings: ProjectSettings[], grep: RegExp
   }
 }
 
+let rawDescriptions = false;
+
 async function buildSingleProject(
   projectSettings: ProjectSettings,
   buildTypeScriptProject: TypeScriptProjectBuilder,
@@ -119,6 +124,7 @@ async function buildSingleProject(
     mkdirSync(manifestDir, { recursive: true });
   }
 
+  rawDescriptions = Boolean(projectSettings.rawDescriptions);
   const apiBuilds = tsProjects.flatMap((project) => {
     const projectComponents = findComponents(path.join(project.rootPath, 'src')).filter(
       (component) => {
@@ -201,4 +207,17 @@ async function buildSingleProject(
 
   await projectSettings.onCompleted?.();
   return builds;
+}
+
+export function renderMarkdown(markdown: string) {
+  return rawDescriptions ? markdown : _renderMarkdown(markdown);
+}
+export function renderCodeTags(value: string) {
+  return rawDescriptions ? value : value.replace(/`(.*?)`/g, '<code>$1</code>');
+}
+export function escapeEntities(value: string) {
+  return rawDescriptions ? value : _escapeEntities(value);
+}
+export function escapeCell(value: string) {
+  return rawDescriptions ? value : _escapeCell(value);
 }

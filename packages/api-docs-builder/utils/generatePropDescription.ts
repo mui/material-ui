@@ -1,12 +1,12 @@
 import * as doctrine from 'doctrine';
 import * as recast from 'recast';
 import { PropTypeDescriptor } from 'react-docgen';
+import { escapeCell } from '../buildApi';
 import {
   isElementTypeAcceptingRefProp,
   isElementAcceptingRefProp,
 } from './generatePropTypeDescription';
 import { DescribeablePropDescriptor } from './createDescribeableProp';
-import escapeCell from './escapeCell';
 import { SeeMore } from '../types/utils.types';
 
 function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
