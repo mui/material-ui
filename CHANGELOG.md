@@ -33,12 +33,12 @@ This release includes fixes in theme scoping as well as documentation improvemen
 
 - [blog] Follow media asset guidelines (#44374) @oliviertassinari
 - [code-infra] Changes for test util to work in `vitest` (#43625) @JCQuintas
-- [core] Remove old marked JS options (#44375) @ZeeshanTamboli
-- [core] Fix webpack capitalization (#44352) @oliviertassinari
-- [core] Fix Next.js link 404 (710cd95) @oliviertassinari
-- [core] Update Gold sponsoring backlinks (#44316) @oliviertassinari
-- [core] Fix tools-public.mui.com redirection (9196fa5) @oliviertassinari
-- [core] Remove blank AlertTitle test file (#44282) @ZeeshanTamboli
+- Remove old marked JS options (#44375) @ZeeshanTamboli
+- Fix webpack capitalization (#44352) @oliviertassinari
+- Fix Next.js link 404 (710cd95) @oliviertassinari
+- Update Gold sponsoring backlinks (#44316) @oliviertassinari
+- Fix tools-public.mui.com redirection (9196fa5) @oliviertassinari
+- Remove blank AlertTitle test file (#44282) @ZeeshanTamboli
 - [docs-infra] Fix ad in RTL (#44345) @oliviertassinari
 - [docs-infra] Enforce punctuation on descriptions (#44292) @oliviertassinari
 - [docs-infra] Add CodeSandbox and StackBlitz to vale vocab (6db477a) @oliviertassinari
