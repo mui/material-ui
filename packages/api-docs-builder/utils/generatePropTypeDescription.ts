@@ -1,6 +1,6 @@
 import * as recast from 'recast';
 import { parse as docgenParse, PropTypeDescriptor } from 'react-docgen';
-import { escapeCell, joinUnionTypes } from '../buildApi';
+import { escapeCell, escapeEntities, joinUnionTypes } from '../buildApi';
 
 function getDeprecatedInfo(type: PropTypeDescriptor) {
   const marker = /deprecatedPropType\((\r*\n)*\s*PropTypes\./g;
@@ -126,7 +126,7 @@ export default function generatePropTypeDescription(type: PropTypeDescriptor): s
       );
 
     case 'arrayOf': {
-      return `Array&lt;${generatePropTypeDescription(type.value)}&gt;`;
+      return `Array${escapeEntities('<')}${generatePropTypeDescription(type.value)}${escapeEntities('>')}`;
     }
 
     case 'instanceOf': {
