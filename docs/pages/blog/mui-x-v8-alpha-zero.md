@@ -1,5 +1,5 @@
 ---
-title: The road to MUI X V8
+title: The road to MUI X v8
 description: Explore the planned features and our roadmap to the next major version.
 date: 2024-11-20T00:00:00.000Z
 authors: ['josefreitas']
@@ -17,7 +17,7 @@ Only MUI X is getting a new version—Material UI will remain in v6 for now.
 You can rest assured that all MUI X v8 components will be fully compatible with Material UI v5 and v6.
 ::::
 
-## What's the plan to get to a stable release?
+## What's the plan to get to the next major release?
 
 Before the official release of MUI X v8, we’ll go through a few months of pre-releases.
 During this period, we’ll continue with our usual weekly release process and follow [semantic versioning](https://semver.org/).
@@ -28,7 +28,7 @@ In the alpha phase, we’ll introduce all planned breaking changes for this majo
 
 Following the alpha phase, the beta phase will focus on stabilizing the APIs, fixing bugs, and refining the overall experience. This phase is anticipated to take about one month.
 
-Finally, we'll release the first `v8.0.0` stable, and we'll continue improving the components and adding features, but without making any new breaking changes until the next major version by March 2025.
+Finally, we'll release the first `v8.0.0` stable by March 2025, and we'll continue improving the components and adding features, but without making any new breaking changes until the next major version.
 
 ## What happens to v7?
 
@@ -53,25 +53,27 @@ It contains the highlights that will be included in the first versions.
 
 - Drag and drop with touch support
 - [New Toolbar](https://github.com/mui/mui-x/issues/11584)
-- [Row spanning](https://mui.com/x/react-data-grid/row-spanning/)(Removing `unstable_` prefix)
+- [Row spanning](https://mui.com/x/react-data-grid/row-spanning/)(Without `unstable_` prefix)
 - [Pivoting](https://github.com/mui/mui-x/issues/6147) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
 ### Date and Time Pickers
 
-- [Time Range Picker](https://github.com/mui/mui-x/issues/4460)
+- [Improved visual customization](https://github.com/mui/mui-x/issues/14753)
+- [Time Range Picker](https://github.com/mui/mui-x/issues/4460) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+- [Month and year panels for date range picker](https://github.com/mui/mui-x/issues/4546) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 ### Tree View
 
 - [Parent/chidren selection propagation](https://github.com/mui/mui-x/issues/12883)
-- [Lazy loading for tree items](https://github.com/mui/mui-x/issues/9687)[<span class="plan-pro"></span>](/x/introduction/licensing/#premium-plan 'Pro plan')
-- [Virtualization](https://github.com/mui/mui-x/issues/9685)[<span class="plan-pro"></span>](/x/introduction/licensing/#premium-plan 'Pro plan')
+- [Lazy loading for tree items](https://github.com/mui/mui-x/issues/9687)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+- [Virtualization](https://github.com/mui/mui-x/issues/9685)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 ### Charts
 
 - Improved Design
-- [Improved Data Zoom](https://github.com/mui/mui-x/issues/12503)
 - [Radar chart](https://github.com/mui/mui-x/issues/7925)
-- [Funnel chart](https://github.com/mui/mui-x/issues/7929)[<span class="plan-pro"></span>](/x/introduction/licensing/#premium-plan 'Pro plan')
+- [Improved Data Zoom](https://github.com/mui/mui-x/issues/15383)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+- [Funnel chart](https://github.com/mui/mui-x/issues/7929)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 :::info
 You can check our [roadmap](https://github.com/orgs/mui/projects/35) for the full live list.
