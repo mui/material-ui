@@ -25,8 +25,8 @@ export type UseModalParameters = {
   children:
     | React.ReactElement<{
         in?: boolean;
-        onEnter?: () => void;
-        onExited?: () => void;
+        onEnter?: (this: unknown) => void;
+        onExited?: (this: unknown) => void;
       }>
     | undefined
     | null;
