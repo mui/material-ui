@@ -194,18 +194,6 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
             >
               Sign up
             </Button>
-            <Typography sx={{ textAlign: 'center' }}>
-              Already have an account?{' '}
-              <span>
-                <Link
-                  href="/material-ui/getting-started/templates/sign-in/"
-                  variant="body2"
-                  sx={{ alignSelf: 'center' }}
-                >
-                  Sign in
-                </Link>
-              </span>
-            </Typography>
           </Box>
           <Divider>
             <Typography sx={{ color: 'text.secondary' }}>or</Typography>
@@ -227,6 +215,16 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
             >
               Sign up with Facebook
             </Button>
+            <Typography sx={{ textAlign: 'center' }}>
+              Already have an account?{' '}
+              <Link
+                href="/material-ui/getting-started/templates/sign-in/"
+                variant="body2"
+                sx={{ alignSelf: 'center' }}
+              >
+                Sign in
+              </Link>
+            </Typography>
           </Box>
         </Card>
       </SignUpContainer>

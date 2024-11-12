@@ -463,7 +463,7 @@ MUI X embodies our initiative to solve the main pain point developers have repo
 We have heard you, you want **more components**.
 
 But, in practice, we wouldn't probably cover all the possible components you might need. It would be a titanic task.
-Instead, we are focusing on the **hardest** and **most requested** components, leaving the long tail to our [community of contributors](/material-ui/discover-more/related-projects/#components).
+Instead, we are focusing on the **hardest** and **most requested** components, leaving the long tail to our [community of contributors](/material-ui/discover-more/related-projects/#supplementary-components).
 
 We started working on this effort over a year ago, in a new GitHub repository: [mui/mui-x](https://github.com/mui/mui-x).
 You might wonder, why work on it as a different product? Building a great data grid or charting solution takes a considerable amount of time. Taking on the challenge of developing them required us to think about a different monetization strategy and we quickly realized that the team working on MUI X would need to become, at least, two times larger than the one working on MUI Core, which already has the community contribution.
