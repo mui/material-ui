@@ -221,3 +221,7 @@ export function escapeEntities(value: string) {
 export function escapeCell(value: string) {
   return rawDescriptions ? value : _escapeCell(value);
 }
+export function joinUnionTypes(value: string[]) {
+  // Use unopinionated formatting for raw descriptions
+  return rawDescriptions ? value.join(' | ') : value.join('<br>&#124;&nbsp;');
+}
