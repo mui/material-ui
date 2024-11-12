@@ -17,9 +17,9 @@ This release includes fixes in theme scoping as well as documentation improvemen
 ### Docs
 
 - Replace 'Experimental APIs - Toolpad' with 'Toolpad (Beta)' (#44388) @prakhargupta1
-- Fix Pigment CSS install (#44353) @oliviertassinari
+- Fix Pigment CSS install (#44353) @oliviertassinari
 - Fix dashboard menu warning (#44317) @siriwatknp
-- Add runtime theme section for Material Pigment CSS (#44137) @siriwatknp
+- Add runtime theme section for Material Pigment CSS (#44137) @siriwatknp
 - Add hash to `key` to remove noise from console (#44289) @sai6855
 - Revise Example Projects and Related Projects pages (#44191) @samuelsycamore
 - [material-ui] Fix typo in typography theme set up for templates (#44338) @navedqb
