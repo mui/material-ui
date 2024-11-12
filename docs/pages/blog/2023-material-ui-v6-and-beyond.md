@@ -11,7 +11,7 @@ As we approach the end of 2023, we've had our heads down working on some very ex
 We reevaluated our major versioning strategy and concluded that we need to ship smaller releases more frequently.
 Read on to learn why, and find out more about our plans for v6 _and_ v7 of Material UI in 2024.
 
-<img alt="A summary about the major changes coming in Material UI v6 and v7" src="/static/blog/2023-material-ui-v6-and-beyond/post-header.jpg" width="1200" height="600" loading="lazy" />
+<img alt="A summary about the major changes coming in Material UI v6 and v7" src="/static/blog/2023-material-ui-v6-and-beyond/post-header.jpg" width="2400" height="1200" />
 
 ## Two major releases
 
@@ -38,14 +38,14 @@ As a taste of the performance upgrade, here are some early Lighthouse metrics wi
 Material UI v7 is where you can expect to see native support for [Material Design 3](https://m3.material.io/), Google's latest Material Design update, as well as many other design improvements across the component suite.
 It's tentatively planned for Q4 of 2024.
 
-<img alt="Side-to-side comparison of a Card component using Material Design 2 and 3, respectively." src="/static/blog/2023-material-ui-v6-and-beyond/m2-m3.jpg" width="1200" height="600" loading="lazy" />
+<img alt="Side-to-side comparison of a Card component using Material Design 2 and 3, respectively." src="/static/blog/2023-material-ui-v6-and-beyond/m2-m3.jpg" width="2400" height="1200" loading="lazy" />
 
 ## From design to development
 
 In addition to the updates to the React library, we've also been working on a long-requested Figma plug-in to help bridge the gap between designers and developers using Material UI.
 We're getting super close to a first release, which is custom-tailored to work nicely with the [Material UI Design Kits](/material-ui/getting-started/design-resources/).
 
-<img alt="A screenshot of Figma together with the MUI Connect plug-in running on the side, doing customziations to the Material UI Switch component." src="/static/blog/2023-material-ui-v6-and-beyond/connect.jpg" width="1200" height="600" loading="lazy" />
+<img alt="A screenshot of Figma together with the MUI Connect plug-in running on the side, doing customziations to the Material UI Switch component." src="/static/blog/2023-material-ui-v6-and-beyond/connect.jpg" width="2400" height="1200" loading="lazy" />
 
 We're calling it MUI Connect, and it generates a theme file with all the customizations done on Figma.
 You'll be able to export it and paste it into your codebase, as well as visualize it in a Storybook instance.

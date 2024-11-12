@@ -18,7 +18,7 @@ And in that spirit, we're overjoyed to announce that starting from [v5.15.0](htt
 Aggregation functions are used to return a computed result based on the values of a given column.
 For example, you might have a list of financial transactions, and you want to get the sum of all transactions and display it in a summary row, as shown in the video below:
 
-<video style="margin-bottom: 24px;" autoplay muted loop playsinline controls>
+<video width="1280" height="780" autoplay muted loop playsinline controls>
   <source src="/static/blog/aggregation-functions/summary-row.mp4" type="video/mp4" />
 </video>
 
@@ -31,7 +31,7 @@ To make all that work well together, we knew that the focus had to be on creatin
 How easy can it be to get the average transaction value per user?
 Check out the video below to see it in action:
 
-<video style="margin-bottom: 24px;" autoplay muted loop playsinline controls>
+<video width="1280" height="780" autoplay muted loop playsinline controls>
   <source src="/static/blog/aggregation-functions/with-row-grouping.mp4" type="video/mp4" />
 </video>
 
@@ -67,7 +67,7 @@ const firstAlphabeticalAggregation: GridAggregationFunction<
 };
 ```
 
-<video style="margin-bottom: 24px;" autoplay muted loop playsinline controls>
+<video width="1280" height="780" autoplay muted loop playsinline controls>
   <source src="/static/blog/aggregation-functions/with-custom-functions.mp4" type="video/mp4" />
 </video>
 
@@ -98,7 +98,7 @@ The Aggregation footer row is powered by another new feature called [Row pinning
 It enables you to pin rows to the top or bottom of your data grid.
 Pinned rows are visible at all times while the user scrolls the grid vertically.
 
-<video style="margin-bottom: 24px;" autoplay muted loop playsinline controls>
+<video width="1280" height="780" autoplay muted loop playsinline controls>
   <source src="/static/blog/aggregation-functions/row-pinning.mp4" type="video/mp4" />
 </video>
 
