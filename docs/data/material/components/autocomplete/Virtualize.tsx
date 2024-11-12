@@ -1,9 +1,10 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
+import Autocomplete, { autocompleteClasses } from '@mui/material/Autocomplete';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import ListSubheader from '@mui/material/ListSubheader';
-import { useTheme } from '@mui/material/styles';
+import Popper from '@mui/material/Popper';
+import { useTheme, styled } from '@mui/material/styles';
 import { VariableSizeList, ListChildComponentProps } from 'react-window';
 import Typography from '@mui/material/Typography';
 
@@ -126,6 +127,16 @@ function random(length: number) {
   return result;
 }
 
+const StyledPopper = styled(Popper)({
+  [`& .${autocompleteClasses.listbox}`]: {
+    boxSizing: 'border-box',
+    '& ul': {
+      padding: 0,
+      margin: 0,
+    },
+  },
+});
+
 const OPTIONS = Array.from(new Array(10000))
   .map(() => random(10 + Math.ceil(Math.random() * 20)))
   .sort((a: string, b: string) => a.toUpperCase().localeCompare(b.toUpperCase()));
@@ -142,6 +153,9 @@ export default function Virtualize() {
         [props, option, state.index] as React.ReactNode
       }
       renderGroup={(params) => params as any}
+      slots={{
+        popper: StyledPopper,
+      }}
       slotProps={{
         listbox: {
           component: ListboxComponent,

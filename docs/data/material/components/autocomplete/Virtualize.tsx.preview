@@ -8,6 +8,9 @@
     [props, option, state.index] as React.ReactNode
   }
   renderGroup={(params) => params as any}
+  slots={{
+    popper: StyledPopper,
+  }}
   slotProps={{
     listbox: {
       component: ListboxComponent,
