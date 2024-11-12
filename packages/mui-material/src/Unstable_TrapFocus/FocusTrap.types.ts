@@ -24,7 +24,10 @@ export interface FocusTrapProps {
   /**
    * A single child content element.
    */
-  children: React.JSX.Element;
+  children: React.ReactElement<{
+    onFocus?: React.FocusEventHandler;
+    ref?: React.RefCallback<any> | null;
+  }>;
   /**
    * If `true`, the focus trap will not automatically shift focus to itself when it opens, and
    * replace it to the last focused element when it closes.
