@@ -22,6 +22,7 @@ export default function BasicRating() {
         onChange={(event, newValue) => {
           console.log(newValue);
         }}
+        defaultValue={2}
       />
       <Typography component="legend">Read only</Typography>
       <Rating name="read-only" value={value} readOnly />
