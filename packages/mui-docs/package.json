@@ -1,6 +1,6 @@
 {
   "name": "@mui/docs",
-  "version": "6.1.2",
+  "version": "6.1.6",
   "private": false,
   "author": "MUI Team",
   "description": "MUI Docs - Documentation building blocks.",
@@ -34,7 +34,7 @@
     "test": "exit 0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.25.6",
+    "@babel/runtime": "^7.26.0",
     "@mui/internal-markdown": "workspace:^",
     "clipboard-copy": "^4.0.1",
     "clsx": "^2.1.1",
@@ -45,10 +45,10 @@
     "@mui/icons-material": "workspace:*",
     "@mui/material": "workspace:*",
     "@types/gtag.js": "^0.0.20",
-    "@types/node": "^20.16.10",
+    "@types/node": "^20.17.6",
     "@types/prop-types": "^15.7.13",
     "@types/react": "npm:types-react@19.0.0-rc.1",
-    "next": "^14.2.14",
+    "next": "^14.2.17",
     "react": "19.0.0-rc-0751fac7-20241002"
   },
   "peerDependencies": {

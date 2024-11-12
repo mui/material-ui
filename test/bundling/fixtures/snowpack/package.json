@@ -25,8 +25,8 @@
   },
   "devDependencies": {
     "concurrently": "7.4.0",
-    "playwright": "1.47.2",
-    "serve": "14.0.1"
+    "playwright": "1.48.2",
+    "serve": "14.2.4"
   },
   "pnpm": {
     "overrides": {

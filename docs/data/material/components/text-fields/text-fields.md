@@ -318,10 +318,12 @@ const MyInputComponent = React.forwardRef((props, ref) => {
 
 // usage
 <TextField
-  InputProps={{
-    inputComponent: MyInputComponent,
-    inputProps: {
-      component: SomeThirdPartyComponent,
+  slotProps={{
+    input: {
+      inputComponent: MyInputComponent,
+      inputProps: {
+        component: SomeThirdPartyComponent,
+      },
     },
   }}
 />;

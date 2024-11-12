@@ -23,12 +23,12 @@
     "react-dom": "19.0.0-rc-0751fac7-20241002"
   },
   "devDependencies": {
-    "@pigment-css/nextjs-plugin": "0.0.24",
-    "@types/node": "^20.16.10",
+    "@pigment-css/nextjs-plugin": "0.0.26",
+    "@types/node": "^20.17.6",
     "@types/react": "npm:types-react@19.0.0-rc.1",
     "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
     "eslint": "^8.57.1",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.3"
   },
   "nx": {
     "targets": {

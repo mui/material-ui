@@ -56,7 +56,7 @@ That's why we're looking for a skilled JavaScript developer to own the docs infr
 As the first full-time React engineer to own this domain, you will work on developing new features and infrastructure-related tasks to make documentation generation and consumption smoother, faster, and more intuitive.
 
 Because this role involves maintaining a platform that all of our products depend on, you will have frequent opportunities to foster cross-team collaboration to gather feedback and iterate on new features.
-Day-to-day tasks may range from internal configuration improvements (for example, working with Webpack, AST transformation tools, Netlify, and other developer tools) to user-facing feature implementation (for example, developing a playground feature teams can use to showcase components), so you should be comfortable working across the full stack of a Next.js-based app.
+Day-to-day tasks may range from internal configuration improvements (for example, working with webpack, AST transformation tools, Netlify, and other developer tools) to user-facing feature implementation (for example, developing a playground feature teams can use to showcase components), so you should be comfortable working across the full stack of a Next.js-based app.
 You will also play a fundamental role in defining the Docs-infra roadmap and priorities.
 
 ### Key responsibilities
@@ -79,7 +79,7 @@ You will also play a fundamental role in defining the Docs-infra roadmap and pri
 
 ### Required
 
-- You're comfortable with the modern JavaScript ecosystem: we use React, TypeScript, Node.js, Next.js, Webpack, and Babel, among other tools
+- You're comfortable with the modern JavaScript ecosystem: we use React, TypeScript, Node.js, Next.js, webpack, and Babel, among other tools
 - You get energized to dive into complex problems
 - You're excited about helping engineers and designers build amazing UIs
 - You're highly empathetic

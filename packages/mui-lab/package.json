@@ -1,6 +1,6 @@
 {
   "name": "@mui/lab",
-  "version": "6.0.0-beta.10",
+  "version": "6.0.0-beta.14",
   "private": false,
   "author": "MUI Team",
   "description": "Laboratory for new MUI modules.",
@@ -36,11 +36,11 @@
     "build:types": "node ../../scripts/buildTypes.mjs",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-lab/**/*.test.{js,ts,tsx}'",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-lab/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.25.6",
+    "@babel/runtime": "^7.26.0",
     "@mui/base": "workspace:*",
     "@mui/system": "workspace:^",
     "@mui/types": "workspace:^",
@@ -59,7 +59,7 @@
     "chai": "^4.5.0",
     "react": "19.0.0-rc-0751fac7-20241002",
     "react-dom": "19.0.0-rc-0751fac7-20241002",
-    "sinon": "^18.0.1"
+    "sinon": "^19.0.2"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",

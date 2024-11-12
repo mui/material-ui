@@ -48,7 +48,7 @@ const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
 module.exports = /** @type {Config} */ ({
   root: true, // So parent files don't get applied
   env: {
-    es6: true,
+    es2020: true,
     browser: true,
     node: true,
   },
@@ -257,10 +257,7 @@ module.exports = /** @type {Config} */ ({
     {
       files: [
         // matching the pattern of the test runner
-        '*.test.mjs',
-        '*.test.js',
-        '*.test.ts',
-        '*.test.tsx',
+        '*.test.?(c|m)[jt]s?(x)',
       ],
       extends: ['plugin:mocha/recommended'],
       rules: {
@@ -332,14 +329,14 @@ module.exports = /** @type {Config} */ ({
     },
     // Next.js entry points pages
     {
-      files: ['docs/pages/**/*{.tsx,.js}'],
+      files: ['docs/pages/**/*.?(c|m)[jt]s?(x)'],
       rules: {
         'react/prop-types': 'off',
       },
     },
     // demos
     {
-      files: ['docs/src/pages/**/*{.tsx,.js}', 'docs/data/**/*{.tsx,.js}'],
+      files: ['docs/src/pages/**/*.?(c|m)[jt]s?(x)', 'docs/data/**/*.?(c|m)[jt]s?(x)'],
       rules: {
         // This most often reports data that is defined after the component definition.
         // This is safe to do and helps readability of the demo code since the data is mostly irrelevant.
@@ -349,23 +346,14 @@ module.exports = /** @type {Config} */ ({
         'no-console': 'off',
       },
     },
-    // demos - proptype generation
     {
-      files: ['docs/data/base/components/modal/UseModal.js'],
-      rules: {
-        'consistent-return': 'off',
-        'func-names': 'off',
-        'no-else-return': 'off',
-        'prefer-template': 'off',
-      },
-    },
-    {
-      files: ['docs/data/**/*{.tsx,.js}'],
+      files: ['docs/data/**/*.?(c|m)[jt]s?(x)'],
       excludedFiles: [
-        'docs/data/joy/getting-started/templates/**/*.tsx',
-        'docs/data/**/css/*{.tsx,.js}',
-        'docs/data/**/system/*{.tsx,.js}',
-        'docs/data/**/tailwind/*{.tsx,.js}',
+        // filenames/match-exported sees filename as 'file-name.d'
+        // Plugin looks unmaintain, find alternative? (e.g. eslint-plugin-project-structure)
+        '*.d.ts',
+        'docs/data/joy/getting-started/templates/**/*',
+        'docs/data/**/{css,system,tailwind}/*',
       ],
       rules: {
         'filenames/match-exported': ['error'],
@@ -380,6 +368,13 @@ module.exports = /** @type {Config} */ ({
     {
       files: ['packages/*/src/**/*.tsx'],
       excludedFiles: '*.spec.tsx',
+      rules: {
+        'react/prop-types': 'off',
+      },
+    },
+    {
+      files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
+      excludedFiles: '*.spec.*',
       rules: {
         'no-restricted-imports': [
           'error',
@@ -406,11 +401,10 @@ module.exports = /** @type {Config} */ ({
             ],
           },
         ],
-        'react/prop-types': 'off',
       },
     },
     {
-      files: ['*.spec.tsx', '*.spec.ts'],
+      files: ['*.spec.*'],
       rules: {
         'no-alert': 'off',
         'no-console': 'off',
@@ -449,7 +443,7 @@ module.exports = /** @type {Config} */ ({
       },
     },
     {
-      files: ['docs/**/*{.ts,.tsx,.js}'],
+      files: ['docs/**/*.?(c|m)[jt]s?(x)'],
       rules: {
         'no-restricted-imports': [
           'error',
@@ -461,8 +455,8 @@ module.exports = /** @type {Config} */ ({
       },
     },
     {
-      files: ['packages/*/src/**/*{.ts,.tsx,.js}'],
-      excludedFiles: ['*.d.ts', '*.spec.ts', '*.spec.tsx'],
+      files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
+      excludedFiles: ['*.d.ts', '*.spec.*'],
       rules: {
         'no-restricted-imports': [
           'error',
@@ -477,8 +471,8 @@ module.exports = /** @type {Config} */ ({
       },
     },
     {
-      files: ['packages/*/src/**/*{.ts,.tsx,.js}'],
-      excludedFiles: ['*.d.ts', '*.spec.ts', '*.spec.tsx', 'packages/mui-joy/**/*{.ts,.tsx,.js}'],
+      files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
+      excludedFiles: ['*.d.ts', '*.spec.*', 'packages/mui-joy/**/*'],
       rules: {
         'material-ui/mui-name-matches-component-name': 'error',
       },

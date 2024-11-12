@@ -43,13 +43,12 @@ describe('custom matchers', () => {
       expect(caughtError.stack).to.include(
         'Could not match the following console.error calls. ' +
           "Make sure previous actions didn't call console.error by wrapping them in expect(() => {}).not.toErrorDev(): \n\n" +
-          '  - "expected message"\n' +
-          '    at Context.', // `Context.it` in node 12.x, `Context.<anonymous>` in later node version
+          '  - "expected message"\n',
       );
       // check that the top stackframe points to this test
       // if this test is moved to another file the next assertion fails
       expect(caughtError.stack).to.match(
-        /- "expected message"\s+at Context\.(<anonymous>|it) \(.+\/initMatchers\.test\.js:\d+:\d+\)/,
+        /- "expected message"\s+at .*\/initMatchers\.test\.js:\d+:\d+/,
       );
     });
 
@@ -65,13 +64,12 @@ describe('custom matchers', () => {
       expect(caughtError.stack).to.include(
         'Recorded unexpected console.error calls: \n\n' +
           '  - Expected #1 "expected message" to be included in \n' +
-          '"expected Message"\n' +
-          '    at callback',
+          '"expected Message"\n',
       );
       // check that the top stackframe points to this test
       // if this test is moved to another file the next assertion fails
       expect(caughtError.stack).to.match(
-        /"expected Message"\s+at callback \(.+\/initMatchers\.test\.js:\d+:\d+\)/,
+        /"expected Message"\s+at .*\/initMatchers\.test\.js:\d+:\d+/,
       );
     });
 
