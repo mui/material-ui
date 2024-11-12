@@ -5,6 +5,7 @@ import { useTheme as usePrivateTheme } from '@mui/private-theming';
 import { ThemeContext } from '@mui/styled-engine';
 import { ThemeProvider } from '@mui/system';
 import { useRtl } from '@mui/system/RtlProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const useEngineTheme = () => React.useContext(ThemeContext);
 
@@ -295,6 +296,19 @@ describe('ThemeProvider', () => {
       'MUI: You are providing a theme function prop to the ThemeProvider component:',
       '<ThemeProvider theme={outerTheme => outerTheme} />',
     ]);
+  });
+
+  it('theme scope: should pass scoped theme to DefaultPropsProvider', () => {
+    function Test(props) {
+      const defaultProps = useDefaultProps({ props, name: 'MuiTest' });
+      return defaultProps.text;
+    }
+    const { container } = render(
+      <ThemeProvider themeId="mui" theme={{ components: { MuiTest: { text: 'foo' } } }}>
+        <Test />
+      </ThemeProvider>,
+    );
+    expect(container.firstChild).to.have.text('foo');
   });
 
   it('sets the correct value for the RtlProvider based on the theme.direction', () => {
