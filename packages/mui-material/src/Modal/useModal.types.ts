@@ -22,11 +22,14 @@ export type UseModalParameters = {
   /**
    * A single child content element.
    */
-  children: React.ReactElement<{
-    in?: boolean;
-    onEnter?: () => void;
-    onExited?: () => void;
-  }> | undefined | null;
+  children:
+    | React.ReactElement<{
+        in?: boolean;
+        onEnter?: () => void;
+        onExited?: () => void;
+      }>
+    | undefined
+    | null;
   /**
    * When set to true the Modal waits until a nested Transition is completed before closing.
    * @default false
