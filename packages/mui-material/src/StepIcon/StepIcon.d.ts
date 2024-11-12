@@ -5,8 +5,8 @@ import { Theme } from '../styles';
 import { StepIconClasses } from './stepIconClasses';
 
 export interface StepIconProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'>,
-    Omit<SvgIconOwnProps, 'color' | 'children'> {
+  extends StandardProps<React.HTMLAttributes<SVGSVGElement>, 'color' | 'children'>,
+    Omit<SvgIconOwnProps, 'children'> {
   /**
    * Whether this step is active.
    * @default false
