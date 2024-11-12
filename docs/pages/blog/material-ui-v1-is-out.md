@@ -9,7 +9,7 @@ manualCard: true
 
 > React components that implement Google's Material Design.
 
-![Our new [documentation](https://mui.com/) header & logo by @hai-cea](https://cdn-images-1.medium.com/max/2050/1*BKssrX-qEmyN6YaRNTvNlw.png)
+<img src="https://cdn-images-1.medium.com/max/2050/1*BKssrX-qEmyN6YaRNTvNlw.png" width="1025" height="342" alt="Our new [documentation](https://mui.com/) header & logo by @hai-cea" />
 
 <p class="blog-description">Our new documentation header & logo by @hai-cea</p>
 
