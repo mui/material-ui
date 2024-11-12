@@ -51,7 +51,7 @@ It contains the highlights that will be included in the first versions.
 
 ### Data Grid
 
-- Drag and drop with touch support
+- [Drag and drop with touch support](https://github.com/mui/mui-x/issues/15385)
 - [New Toolbar](https://github.com/mui/mui-x/issues/11584)
 - [Row spanning](https://mui.com/x/react-data-grid/row-spanning/)(Without `unstable_` prefix)
 - [Pivoting](https://github.com/mui/mui-x/issues/6147) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
@@ -60,7 +60,7 @@ It contains the highlights that will be included in the first versions.
 
 - [Improved visual customization](https://github.com/mui/mui-x/issues/14753)
 - [Time Range Picker](https://github.com/mui/mui-x/issues/4460) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
-- [Month and year panels for date range picker](https://github.com/mui/mui-x/issues/4546) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+- [Support for month and year edition on date range picker](https://github.com/mui/mui-x/issues/4546) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 ### Tree View
 
