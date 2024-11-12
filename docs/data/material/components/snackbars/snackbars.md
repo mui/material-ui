@@ -141,7 +141,7 @@ The Snackbar component is composed of a root `<div>` that houses interior elemen
 </div>
 ```
 
-## Experimental APIs - Toolpad
+## Toolpad (Beta)
 
 ### useNotifications
 
