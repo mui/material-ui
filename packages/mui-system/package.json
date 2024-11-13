@@ -41,7 +41,7 @@
   "dependencies": {
     "@babel/runtime": "^7.26.0",
     "@mui/private-theming": "workspace:^",
-    "@mui/styled-engine": "workspace:^",
+    "@mui/styled-engine-noop": "workspace:^",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",
     "clsx": "^2.1.1",

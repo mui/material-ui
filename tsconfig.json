@@ -23,6 +23,8 @@
       "@mui/internal-markdown/*": ["./packages/markdown/*"],
       "@mui/styled-engine": ["./packages/mui-styled-engine/src"],
       "@mui/styled-engine/*": ["./packages/mui-styled-engine/src/*"],
+      "@mui/styled-engine-noop": ["./packages/mui-styled-engine-noop/src"],
+      "@mui/styled-engine-noop/*": ["./packages/mui-styled-engine-noop/src/*"],
       "@mui/styled-engine-sc": ["./packages/mui-styled-engine-sc/src"],
       "@mui/styled-engine-sc/*": ["./packages/mui-styled-engine-sc/src/*"],
       "@mui/styles": ["./packages/mui-styles/src"],

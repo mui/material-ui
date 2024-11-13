@@ -1,4 +1,4 @@
-import { internal_serializeStyles } from '@mui/styled-engine';
+import { internal_serializeStyles } from '@mui/styled-engine-noop';
 
 export default function preprocessStyles(input: any) {
   const { variants, ...style } = input;

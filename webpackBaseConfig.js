@@ -15,6 +15,7 @@ module.exports = {
       '@mui/icons-material': path.resolve(__dirname, './packages/mui-icons-material/lib/esm'),
       '@mui/lab': path.resolve(__dirname, './packages/mui-lab/src'),
       '@mui/styled-engine': path.resolve(__dirname, './packages/mui-styled-engine/src'),
+      '@mui/styled-engine-noop': path.resolve(__dirname, './packages/mui-styled-engine-noop/src'),
       '@mui/styled-engine-sc': path.resolve(__dirname, './packages/mui-styled-engine-sc/src'),
       '@mui/styles': path.resolve(__dirname, './packages/mui-styles/src'),
       '@mui/system': path.resolve(__dirname, './packages/mui-system/src'),

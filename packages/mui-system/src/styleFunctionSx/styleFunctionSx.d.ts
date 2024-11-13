@@ -1,5 +1,5 @@
 import * as CSS from 'csstype';
-import { CSSObject } from '@mui/styled-engine';
+import { CSSObject } from '@mui/styled-engine-noop';
 import { StandardCSSProperties } from './StandardCssProperties';
 import { AliasesCSSProperties } from './AliasesCSSProperties';
 import { OverwriteCSSProperties } from './OverwriteCSSProperties';

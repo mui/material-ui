@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { Interpolation, MUIStyledComponent as StyledComponent } from '@mui/styled-engine';
+import { Interpolation, MUIStyledComponent as StyledComponent } from '@mui/styled-engine-noop';
 import { OverridableComponent } from '@mui/types';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import composeClasses from '@mui/utils/composeClasses';

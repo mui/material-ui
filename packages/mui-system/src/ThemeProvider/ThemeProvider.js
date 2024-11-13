@@ -6,7 +6,7 @@ import {
   useTheme as usePrivateTheme,
 } from '@mui/private-theming';
 import exactProp from '@mui/utils/exactProp';
-import { ThemeContext as StyledEngineThemeContext } from '@mui/styled-engine';
+import { ThemeContext as StyledEngineThemeContext } from '@mui/styled-engine-noop';
 import useThemeWithoutDefault from '../useThemeWithoutDefault';
 import RtlProvider from '../RtlProvider';
 import DefaultPropsProvider from '../DefaultPropsProvider';

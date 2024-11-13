@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import clsx from 'clsx';
-import styled from '@mui/styled-engine';
+import styled from '@mui/styled-engine-noop';
 import styleFunctionSx, { extendSxProp } from '../styleFunctionSx';
 import useTheme from '../useTheme';
 

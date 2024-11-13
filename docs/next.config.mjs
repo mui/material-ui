@@ -111,6 +111,7 @@ export default withDocsInfra({
           '@mui/icons-material': path.resolve(workspaceRoot, 'packages/mui-icons-material/lib/esm'),
           '@mui/lab': path.resolve(workspaceRoot, 'packages/mui-lab/src'),
           '@mui/styled-engine': path.resolve(workspaceRoot, 'packages/mui-styled-engine/src'),
+          '@mui/styled-engine-noop': path.resolve(workspaceRoot, 'packages/mui-styled-engine-noop/src'),
           '@mui/styles': path.resolve(workspaceRoot, 'packages/mui-styles/src'),
           '@mui/system': path.resolve(workspaceRoot, 'packages/mui-system/src'),
           '@mui/private-theming': path.resolve(workspaceRoot, 'packages/mui-private-theming/src'),
