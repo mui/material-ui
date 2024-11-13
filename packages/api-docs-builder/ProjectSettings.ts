@@ -113,8 +113,4 @@ export interface ProjectSettings {
    * Determines the base API URL for generated JSDocs
    */
   baseApiUrl?: string;
-  /**
-   * Whether to output raw JSDoc descriptions or process them as markdown, `false` by default
-   */
-  rawDescriptions?: boolean;
 }

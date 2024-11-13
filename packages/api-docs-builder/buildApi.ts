@@ -67,7 +67,14 @@ async function removeOutdatedApiDocsTranslations(
   );
 }
 
-export async function buildApi(projectsSettings: ProjectSettings[], grep: RegExp | null = null) {
+let rawDescriptionsCurrent = false;
+
+export async function buildApi(
+  projectsSettings: ProjectSettings[],
+  grep: RegExp | null = null,
+  rawDescriptions = false,
+) {
+  rawDescriptionsCurrent = rawDescriptions;
   const allTypeScriptProjects = projectsSettings
     .flatMap((setting) => setting.typeScriptProjects)
     .reduce(
@@ -106,8 +113,6 @@ export async function buildApi(projectsSettings: ProjectSettings[], grep: RegExp
   }
 }
 
-let rawDescriptions = false;
-
 async function buildSingleProject(
   projectSettings: ProjectSettings,
   buildTypeScriptProject: TypeScriptProjectBuilder,
@@ -123,8 +128,6 @@ async function buildSingleProject(
   if (manifestDir) {
     mkdirSync(manifestDir, { recursive: true });
   }
-
-  rawDescriptions = Boolean(projectSettings.rawDescriptions);
   const apiBuilds = tsProjects.flatMap((project) => {
     const projectComponents = findComponents(path.join(project.rootPath, 'src')).filter(
       (component) => {
@@ -210,18 +213,18 @@ async function buildSingleProject(
 }
 
 export function renderMarkdown(markdown: string) {
-  return rawDescriptions ? markdown : _renderMarkdown(markdown);
+  return rawDescriptionsCurrent ? markdown : _renderMarkdown(markdown);
 }
 export function renderCodeTags(value: string) {
-  return rawDescriptions ? value : value.replace(/`(.*?)`/g, '<code>$1</code>');
+  return rawDescriptionsCurrent ? value : value.replace(/`(.*?)`/g, '<code>$1</code>');
 }
 export function escapeEntities(value: string) {
-  return rawDescriptions ? value : _escapeEntities(value);
+  return rawDescriptionsCurrent ? value : _escapeEntities(value);
 }
 export function escapeCell(value: string) {
-  return rawDescriptions ? value : _escapeCell(value);
+  return rawDescriptionsCurrent ? value : _escapeCell(value);
 }
 export function joinUnionTypes(value: string[]) {
   // Use unopinionated formatting for raw descriptions
-  return rawDescriptions ? value.join(' | ') : value.join('<br>&#124;&nbsp;');
+  return rawDescriptionsCurrent ? value.join(' | ') : value.join('<br>&#124;&nbsp;');
 }
