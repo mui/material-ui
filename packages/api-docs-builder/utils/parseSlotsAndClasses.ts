@@ -1,6 +1,6 @@
 import * as ts from 'typescript';
 import { ComponentClassDefinition } from '@mui-internal/api-docs-builder';
-import { renderMarkdown } from '@mui/internal-markdown';
+import { renderMarkdown } from '../buildApi';
 import { getSymbolDescription, getSymbolJSDocTags } from '../buildApiUtils';
 import { TypeScriptProject } from './createTypeScriptProject';
 import { getPropsFromComponentNode } from './getPropsFromComponentNode';
