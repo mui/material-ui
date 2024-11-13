@@ -9,11 +9,6 @@ import useSlot from '../utils/useSlot';
 import Fade from '../Fade';
 import { getBackdropUtilityClass } from './backdropClasses';
 
-const removeOwnerState = (props) => {
-  const { ownerState, ...rest } = props;
-  return rest;
-};
-
 const useUtilityClasses = (ownerState) => {
   const { classes, invisible } = ownerState;
 
@@ -100,11 +95,11 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
     elementType: Fade,
     externalForwardedProps,
     ownerState,
+    shouldAppendOwnerState: false
   });
-  const transitionPropsRemoved = removeOwnerState(transitionProps);
 
   return (
-    <TransitionSlot in={open} timeout={transitionDuration} {...other} {...transitionPropsRemoved}>
+    <TransitionSlot in={open} timeout={transitionDuration} {...other} {...transitionProps}>
       <RootSlot aria-hidden {...rootProps} classes={classes} ref={ref}>
         {children}
       </RootSlot>

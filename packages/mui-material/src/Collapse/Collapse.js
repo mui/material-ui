@@ -323,11 +323,9 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
             [isHorizontal ? 'minWidth' : 'minHeight']: collapsedSize,
             ...style,
           }}
+          ownerState={{ ...ownerState, state }}
           ref={handleRef}
           {...childProps}
-          // `ownerState` is set after `childProps` to override any existing `ownerState` property in `childProps`
-          // that might have been forwarded from the Transition component.
-          ownerState={{ ...ownerState, state }}
         >
           <CollapseWrapper
             ownerState={{ ...ownerState, state }}
