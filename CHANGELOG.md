@@ -13,6 +13,7 @@ This release includes fixes in theme scoping as well as documentation improvemen
 
 - Fix default props theme scoping (#44340) @siriwatknp
 - Support theme scoping in `useMediaQuery` (#44339) @siriwatknp
+- [Grid] Fix regression spacing prop with string value (#44376) @siriwatknp
 
 ### Docs
 
