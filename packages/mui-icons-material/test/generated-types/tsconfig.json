@@ -33,6 +33,8 @@
       "@mui/styled-engine-sc/*": ["./mui-styled-engine-sc/src/*"],
       "@mui/styled-engine": ["./mui-styled-engine/src"],
       "@mui/styled-engine/*": ["./mui-styled-engine/src/*"],
+      "@mui/styled-engine-noop": ["./mui-styled-engine-noop/src"],
+      "@mui/styled-engine-noop/*": ["./mui-styled-engine-noop/src/*"],
       "@mui/styles": ["./mui-styles/src"],
       "@mui/styles/*": ["./mui-styles/src/*"],
       "@mui/system": ["./mui-system/src"],
