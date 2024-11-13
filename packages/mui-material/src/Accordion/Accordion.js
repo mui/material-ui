@@ -205,7 +205,7 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     elementType: Collapse,
     externalForwardedProps,
     ownerState,
-    shouldAppendOwnerState: false
+    shouldAppendOwnerState: false,
   });
 
   return (
