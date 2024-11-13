@@ -64,16 +64,10 @@ describe('useSlot', () => {
         elementType: ItemDecorator,
         externalForwardedProps: props,
         ownerState: {},
-        getSlotOwnerState: (mergedProps) => ({
-          size: mergedProps.size ?? 'md',
-        }),
       });
       return (
         <SlotRoot {...rootProps}>
-          <SlotDecorator
-            {...decoratorProps}
-            className={`${decoratorProps.className} size-${decoratorProps.ownerState.size}`}
-          />
+          <SlotDecorator {...decoratorProps} />
         </SlotRoot>
       );
     });
@@ -98,16 +92,6 @@ describe('useSlot', () => {
       expect(getByRole('button')).to.have.class('foo-bar');
       expect(getByRole('button').firstChild).to.have.class('decorator');
       expect(getByRole('button').firstChild).to.have.class('foo-bar');
-    });
-
-    it('slot has default size `md`', () => {
-      const { getByRole } = render(<Item />);
-      expect(getByRole('button').firstChild).to.have.class('size-md');
-    });
-
-    it('slot ownerstate should be overridable', () => {
-      const { getByRole } = render(<Item slotProps={{ decorator: { size: 'sm' } }} />);
-      expect(getByRole('button').firstChild).to.have.class('size-sm');
     });
 
     it('slotProps has higher priority', () => {
