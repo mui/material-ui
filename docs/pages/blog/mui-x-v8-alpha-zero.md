@@ -10,11 +10,11 @@ manualCard: true
 We're kicking off the development of [MUI X v8](https://github.com/mui/mui-x/releases/tag/v8.0.0-alpha.0).
 Following our yearly release cycle, the target for the first stable release is March 2025.
 This major update includes new versions of the Data Grid, Charts, Tree View, and Date & Time Pickers.
-We’re excited to share our roadmap with you and invite you to join us on this journey!
+We're excited to share our roadmap with you and invite you to join us on this journey!
 
 :::warning
 Only MUI X is getting a new version—Material UI will remain in v6 for now.
-You can rest assured that all MUI X v8 components will be fully compatible with Material UI v5 and v6.
+Since only MUI X is getting a new version, you can rest assured that all MUI X v8 components will be fully compatible with Material UI v5 and v6.
 ::::
 
 ## What's the plan to get to the next major release?
@@ -42,18 +42,18 @@ All new features and enhancements will go to v8, and after its first stable rele
 As mentioned above, v7 is still the official version, so by default, the documentation shows v7 features and API.
 The next version's documentation is in the `v8` subdomain.
 
-- [https://v8.mui.com/x/](https://v8.mui.com/x/)
+- [https://next.mui.com/x/](https://next.mui.com/x/)
 
 ## What's coming next?
 
 The following is a list of enhancements in the pipeline for v8.
-It contains the highlights that will be included in the first versions.
+It contains the highlights we aim to include in the first versions:
 
 ### Data Grid
 
 - [Drag and drop with touch support](https://github.com/mui/mui-x/issues/15385)
 - [New Toolbar](https://github.com/mui/mui-x/issues/11584)
-- [Row spanning](https://mui.com/x/react-data-grid/row-spanning/)(Without `unstable_` prefix)
+- [Row spanning](https://mui.com/x/react-data-grid/row-spanning/) (without `unstable_` prefix)
 - [Pivoting](https://github.com/mui/mui-x/issues/214) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
 ### Date and Time Pickers
@@ -72,7 +72,7 @@ It contains the highlights that will be included in the first versions.
 
 - Improved Design
 - [Radar chart](https://github.com/mui/mui-x/issues/7925)
-- [Improved Data Zoom](https://github.com/mui/mui-x/issues/15383)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+- [Improved Data zoom](https://github.com/mui/mui-x/issues/15383)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 - [Funnel chart](https://github.com/mui/mui-x/issues/7929)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 :::info
@@ -81,7 +81,7 @@ You can check our [roadmap](https://github.com/orgs/mui/projects/35) for the ful
 
 ## How to migrate?
 
-As usual, we've prepared a [migration guide](https://deploy-preview-6235--material-ui-x.netlify.app/x/react-data-grid/migration-v5/), and we'll continuously update it as we make any breaking changes during the pre-releases.
+As usual, we've prepared a [migration guide](https://v8.mui.com/x/migration/migration-data-grid-v7/), and we'll continuously update it as we make any breaking changes during the pre-releases.
 It lists every breaking change you may need to update to migrate your codebase.
 
 We strongly encourage you to try the new version—it builds on the solid foundation we established with v7, bringing even more improvements!
