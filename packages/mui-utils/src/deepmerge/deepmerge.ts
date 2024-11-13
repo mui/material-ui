@@ -21,7 +21,7 @@ export interface DeepmergeOptions {
 }
 
 function deepClone<T>(source: T): T | Record<keyof any, unknown> {
-  if (!isPlainObject(source)) {
+  if (React.isValidElement(source) || !isPlainObject(source)) {
     return source;
   }
 
