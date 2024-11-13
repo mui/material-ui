@@ -28,10 +28,8 @@ body:
 
         Please provide a link to a live example and an unambiguous set of steps to reproduce this bug. See our [documentation](https://mui.com/material-ui/getting-started/support/#bug-reproductions) on how to build a reproduction case.
       value: |
-        Link to live example: (required)
-
         Steps:
-        1.
+        1. Open this link to live example: (required)
         2.
         3.
   - type: textarea
