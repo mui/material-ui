@@ -4,16 +4,20 @@
 
 <!-- generated comparing v6.1.6..master -->
 
-_Nov 12, 2024_
+_Nov 13, 2024_
 
-A big thanks to the 11 contributors who made this release possible.
-This release includes fixes in theme scoping as well as documentation improvements.
+A big thanks to the 13 contributors who made this release possible.
+This release includes fixes as well as documentation improvements.
 
-### `@mui/material@6.1.6`
+### `@mui/material@6.1.7`
 
 - Fix default props theme scoping (#44340) @siriwatknp
 - Support theme scoping in `useMediaQuery` (#44339) @siriwatknp
 - [Grid] Fix regression spacing prop with string value (#44376) @siriwatknp
+
+### `@mui/styled-engine-sc@6.1.7`
+
+- Fix missing `@types/hoist-non-react-statics` causing `styled` returns any (#44397) @megos
 
 ### Docs
 
@@ -44,10 +48,11 @@ This release includes fixes in theme scoping as well as documentation improvemen
 - [docs-infra] Enforce punctuation on descriptions (#44292) @oliviertassinari
 - [docs-infra] Add CodeSandbox and StackBlitz to vale vocab (6db477a) @oliviertassinari
 - [docs-infra] Fix correct spelling of VS Code (#44277) @oliviertassinari
+- [docs-infra] Add a `rawDescriptions` option (#44390) @vladmoroz
 - [examples] Add missing `clsx` dependency (#43526) @Janpot
 - [infra] Fix @renovate[bot] appearing in changelog (#44275) @mnajdova
 
-All contributors of this release in alphabetical order: @Janpot, @JCQuintas, @mnajdova, @navedqb, @oliviertassinari, @prakhargupta1, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @Janpot, @JCQuintas, @megos, @mnajdova, @navedqb, @oliviertassinari, @prakhargupta1, @sai6855, @samuelsycamore, @siriwatknp, @vladmoroz, @zanivan, @ZeeshanTamboli
 
 ## v6.1.6
 
