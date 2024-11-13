@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 // https://github.com/sindresorhus/is-plain-obj/blob/main/index.js
 export function isPlainObject(item: unknown): item is Record<keyof any, unknown> {
   if (typeof item !== 'object' || item === null) {
@@ -41,7 +43,9 @@ export default function deepmerge<T>(
 
   if (isPlainObject(target) && isPlainObject(source)) {
     Object.keys(source).forEach((key) => {
-      if (
+      if (React.isValidElement(source[key])) {
+        (output as Record<keyof any, unknown>)[key] = source[key];
+      } else if (
         isPlainObject(source[key]) &&
         // Avoid prototype pollution
         Object.prototype.hasOwnProperty.call(target, key) &&
