@@ -8,8 +8,8 @@
     "@mui/base": "5.0.0-beta.30",
     "@mui/joy": "5.0.0-beta.22",
     "@mui/material": "5.15.4",
-    "react": "19.0.0-rc-0751fac7-20241002",
-    "react-dom": "19.0.0-rc-0751fac7-20241002"
+    "react": "19.0.0-rc-2ec26bc4-20241111",
+    "react-dom": "19.0.0-rc-2ec26bc4-20241111"
   },
   "devDependencies": {
     "@types/react": "npm:types-react@19.0.0-rc.1"

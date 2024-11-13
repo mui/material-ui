@@ -52,7 +52,7 @@
     "@types/chai": "^4.3.20",
     "@types/react": "npm:types-react@19.0.0-rc.1",
     "chai": "^4.5.0",
-    "react": "19.0.0-rc-0751fac7-20241002"
+    "react": "19.0.0-rc-2ec26bc4-20241111"
   },
   "peerDependencies": {
     "@emotion/react": "^11.4.1",

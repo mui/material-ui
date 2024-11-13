@@ -44,7 +44,7 @@
     "@emotion/server": "^11.11.0",
     "@types/react": "npm:types-react@19.0.0-rc.1",
     "next": "canary",
-    "react": "19.0.0-rc-0751fac7-20241002"
+    "react": "19.0.0-rc-2ec26bc4-20241111"
   },
   "peerDependencies": {
     "@emotion/cache": "^11.11.0",

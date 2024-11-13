@@ -43,7 +43,7 @@
     "@types/prop-types": "^15.7.13",
     "clsx": "^2.1.1",
     "prop-types": "^15.8.1",
-    "react-is": "19.0.0-rc-0751fac7-20241002"
+    "react-is": "19.0.0-rc-2ec26bc4-20241111"
   },
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",
@@ -56,8 +56,8 @@
     "@types/react-is": "npm:types-react-is@19.0.0-rc.1",
     "@types/sinon": "^17.0.3",
     "chai": "^4.5.0",
-    "react": "19.0.0-rc-0751fac7-20241002",
-    "react-dom": "19.0.0-rc-0751fac7-20241002",
+    "react": "19.0.0-rc-2ec26bc4-20241111",
+    "react-dom": "19.0.0-rc-2ec26bc4-20241111",
     "sinon": "^19.0.2"
   },
   "peerDependencies": {
