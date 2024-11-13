@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
-import Fade, { FadeProps } from '@mui/material/Fade';
+import Fade from '@mui/material/Fade';
+import { TransitionProps } from '@mui/material/transitions';
 import Popper from '../Popper/BasePopper';
 import { styled } from '../styles';
 import { SlotProps } from './types';
@@ -38,23 +39,33 @@ describe('useSlot', () => {
   });
 
   describe('transition slot', () => {
-    function Transition(props: FadeProps) {
+    function Transition(
+      props: TransitionProps & {
+        component?: React.ElementType;
+        slots?: {
+          transition?: React.ElementType;
+        };
+        slotProps?: {
+          transition?: SlotProps<React.ElementType, Record<string, any>, {}>;
+        };
+      },
+    ) {
       const [SlotTransition, transitionProps] = useSlot('transition', {
         className: 'transition',
         elementType: Fade,
-        externalForwardedProps: {},
+        externalForwardedProps: props,
         ownerState: { disabled: true },
         shouldAppendOwnerState: false,
       });
-      return <SlotTransition {...transitionProps}>{props.children}</SlotTransition>;
+      return (
+        <SlotTransition {...transitionProps}>
+          <div data-testid="root" />
+        </SlotTransition>
+      );
     }
 
     it('should not propagate ownerState props to the DOM', () => {
-      const { getByTestId } = render(
-        <Transition>
-          <div data-testid="root" />
-        </Transition>,
-      );
+      const { getByTestId } = render(<Transition />);
       expect(getByTestId('root')).not.to.have.attribute('ownerstate');
     });
   });
