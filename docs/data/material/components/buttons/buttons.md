@@ -113,6 +113,12 @@ Use `color` prop to apply theme color palette to component.
 
 {{"demo": "IconButtonColors.js"}}
 
+### Loading with badge
+
+Use `loading` prop to set icon buttons in a loading state and disable interactions.
+
+{{"demo": "LoadingWithBadge.js"}}
+
 ## File upload
 
 To create a file upload button, turn the button into a label using `component="label"` and then create a visually-hidden input with type `file`.

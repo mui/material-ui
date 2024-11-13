@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
+import { unstable_useId as useId } from '@mui/material/utils';
+import CircularProgress from '@mui/material/CircularProgress';
 import { alpha } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
@@ -14,16 +16,18 @@ import capitalize from '../utils/capitalize';
 import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, disabled, color, edge, size } = ownerState;
+  const { classes, disabled, color, edge, size, loading } = ownerState;
 
   const slots = {
     root: [
       'root',
+      loading && 'loading',
       disabled && 'disabled',
       color !== 'default' && `color${capitalize(color)}`,
       edge && `edge${capitalize(edge)}`,
       `size${capitalize(size)}`,
     ],
+    loadingIndicator: ['loadingIndicator'],
   };
 
   return composeClasses(slots, getIconButtonUtilityClass, classes);
@@ -140,8 +144,26 @@ const IconButtonRoot = styled(ButtonBase, {
       backgroundColor: 'transparent',
       color: (theme.vars || theme).palette.action.disabled,
     },
+    [`&.${iconButtonClasses.loading}`]: {
+      color: 'transparent',
+    },
   })),
 );
+
+const IconButtonLoadingIndicator = styled('span', {
+  name: 'MuiIconButton',
+  slot: 'LoadingIndicator',
+  overridesResolver: (props, styles) => styles.loadingIndicator,
+})(({ theme }) => ({
+  display: 'none',
+  position: 'absolute',
+  visibility: 'visible',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  color: (theme.vars || theme).palette.action.disabled,
+  variants: [{ props: { loading: true }, style: { display: 'flex' } }],
+}));
 
 /**
  * Refer to the [Icons](/material-ui/icons/) section of the documentation
@@ -157,8 +179,16 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     disabled = false,
     disableFocusRipple = false,
     size = 'medium',
+    id: idProp,
+    loading = false,
+    loadingIndicator: loadingIndicatorProp,
     ...other
   } = props;
+
+  const id = useId(idProp);
+  const loadingIndicator = loadingIndicatorProp ?? (
+    <CircularProgress aria-labelledby={id} color="inherit" size={16} />
+  );
 
   const ownerState = {
     ...props,
@@ -166,6 +196,8 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     color,
     disabled,
     disableFocusRipple,
+    loading,
+    loadingIndicator,
     size,
   };
 
@@ -176,12 +208,15 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
       className={clsx(classes.root, className)}
       centerRipple
       focusRipple={!disableFocusRipple}
-      disabled={disabled}
+      disabled={disabled || loading}
       ref={ref}
       {...other}
       ownerState={ownerState}
     >
       {children}
+      <IconButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
+        {loading && loadingIndicator}
+      </IconButtonLoadingIndicator>
     </IconButtonRoot>
   );
 });
