@@ -77,22 +77,6 @@ export default function useSlot<
     externalForwardedProps: ExternalForwardedProps;
     getSlotProps?: (other: EventHandlers) => WithCommonProps<SlotProps>;
     additionalProps?: WithCommonProps<AdditionalProps>;
-
-    // Material UI specifics
-    /**
-     * For overriding the component's ownerState for the slot.
-     * This is required for some components that need styling via `ownerState`.
-     *
-     * It is a function because `slotProps.{slot}` can be a function which has to be resolved first.
-     */
-    getSlotOwnerState?: (
-      mergedProps: AdditionalProps &
-        SlotProps &
-        ExternalSlotProps &
-        ExtractComponentProps<
-          Exclude<Exclude<ExternalForwardedProps['slotProps'], undefined>[T], undefined>
-        >,
-    ) => SlotOwnerState;
     /**
      * props forward to `T` only if the `slotProps.*.component` is not provided.
      * e.g. Autocomplete's listbox uses Popper + StyledComponent
@@ -105,7 +89,6 @@ export default function useSlot<
     elementType: initialElementType,
     ownerState,
     externalForwardedProps,
-    getSlotOwnerState,
     internalForwardedProps,
     ...useSlotPropsParams
   } = parameters;
@@ -134,9 +117,6 @@ export default function useSlot<
 
   const ref = useForkRef(internalRef, resolvedComponentsProps?.ref, parameters.ref);
 
-  const slotOwnerState = getSlotOwnerState ? getSlotOwnerState(mergedProps as any) : {};
-  const finalOwnerState = { ...ownerState, ...slotOwnerState } as any;
-
   const LeafComponent = (name === 'root' ? slotComponent || rootComponent : slotComponent) as
     | React.ElementType
     | undefined;
@@ -152,12 +132,8 @@ export default function useSlot<
       }),
       ref,
     },
-    finalOwnerState,
+    ownerState,
   );
-
-  Object.keys(slotOwnerState).forEach((propName) => {
-    delete props[propName];
-  });
 
   return [elementType, props] as [
     ElementType,
