@@ -1948,6 +1948,9 @@ importers:
       '@babel/runtime':
         specifier: ^7.26.0
         version: 7.26.0
+      '@types/hoist-non-react-statics':
+        specifier: ^3.3.5
+        version: 3.3.5
       csstype:
         specifier: ^3.1.3
         version: 3.1.3
@@ -1964,9 +1967,6 @@ importers:
       '@types/chai':
         specifier: ^4.3.20
         version: 4.3.20
-      '@types/hoist-non-react-statics':
-        specifier: ^3.3.5
-        version: 3.3.5
       '@types/react':
         specifier: npm:types-react@19.0.0-rc.1
         version: types-react@19.0.0-rc.1
