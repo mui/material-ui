@@ -300,6 +300,22 @@ IconButton.propTypes /* remove-proptypes */ = {
    */
   edge: PropTypes.oneOf(['end', 'start', false]),
   /**
+   * @ignore
+   */
+  id: PropTypes.string,
+  /**
+   * If `true`, the loading indicator is shown and the button becomes disabled.
+   * @default false
+   */
+  loading: PropTypes.bool,
+  /**
+   * Element placed before the children if the button is in loading state.
+   * The node should contain an element with `role="progressbar"` with an accessible name.
+   * By default we render a `CircularProgress` that is labelled by the button itself.
+   * @default <CircularProgress color="inherit" size={16} />
+   */
+  loadingIndicator: PropTypes.node,
+  /**
    * The size of the component.
    * `small` is equivalent to the dense button styling.
    * @default 'medium'
