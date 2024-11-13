@@ -98,6 +98,11 @@ export default function useSlot<
      * e.g. Autocomplete's listbox uses Popper + StyledComponent
      */
     internalForwardedProps?: any;
+    /**
+     * If `false`, does not append `ownerState` prop to the element.
+     *
+     * @default true
+     */
     shouldAppendOwnerState?: boolean;
   },
 ) {

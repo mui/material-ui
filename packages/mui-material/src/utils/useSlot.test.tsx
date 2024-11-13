@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
+import Fade, { FadeProps } from '@mui/material/Fade';
 import Popper from '../Popper/BasePopper';
 import { styled } from '../styles';
 import { SlotProps } from './types';
@@ -33,6 +34,28 @@ describe('useSlot', () => {
     it('should change leaf component and spread props', () => {
       const { getByRole } = render(<Item component="a" href="/" />);
       expect(getByRole('link')).toBeVisible();
+    });
+  });
+
+  describe('transition slot', () => {
+    function Transition(props: FadeProps) {
+      const [SlotTransition, transitionProps] = useSlot('transition', {
+        className: 'transition',
+        elementType: Fade,
+        externalForwardedProps: {},
+        ownerState: { disabled: true },
+        shouldAppendOwnerState: false,
+      });
+      return <SlotTransition {...transitionProps}>{props.children}</SlotTransition>;
+    }
+
+    it('should not propagate ownerState props to the DOM', () => {
+      const { getByTestId } = render(
+        <Transition>
+          <div data-testid="root" />
+        </Transition>,
+      );
+      expect(getByTestId('root')).not.to.have.attribute('ownerstate');
     });
   });
 
