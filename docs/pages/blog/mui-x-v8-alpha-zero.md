@@ -4,7 +4,6 @@ description: Explore the planned features and our roadmap to the next major vers
 date: 2024-11-20T00:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'Product']
-manualCard: true
 ---
 
 We're kicking off the development of [MUI X v8](https://github.com/mui/mui-x/releases/tag/v8.0.0-alpha.0).
