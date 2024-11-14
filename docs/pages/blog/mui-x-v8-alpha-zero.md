@@ -78,7 +78,7 @@ It contains the highlights we aim to include in the first versions:
 You can check our [roadmap](https://github.com/orgs/mui/projects/35) for the full live list.
 :::
 
-## How to migrate?
+## How to migrate
 
 As usual, we've prepared a migration guide for each component, and we'll continuously update them as we make any breaking changes during the pre-releases.
 They list every breaking change you may need to update to migrate your codebase.
@@ -90,7 +90,7 @@ They list every breaking change you may need to update to migrate your codebase.
 
 We strongly encourage you to try the new version—it builds on the solid foundation we established with v7, bringing even more improvements!
 
-## How to get involved?
+## How to get involved
 
 We'd love to hear about your expectations and pain points! Please consider [connecting with us](https://forms.gle/vsBv6CLPz9h57xg8A) for a user interview.
 You'll get an insider's perspective on the development, and you'll be able to help us iterate early on the new features.
