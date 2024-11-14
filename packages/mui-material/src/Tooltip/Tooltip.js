@@ -695,7 +695,13 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const externalForwardedProps = {
-    slots,
+    slots: {
+      popper: components.Popper,
+      transition: components.Transition ?? TransitionComponentProp,
+      tooltip: components.Tooltip,
+      arrow: components.Arrow,
+      ...slots,
+    },
     slotProps: {
       arrow: slotProps.arrow ?? componentsProps.arrow,
       popper: { ...PopperProps, ...(slotProps.popper ?? componentsProps.popper) },
@@ -705,27 +711,27 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   };
 
   const [PopperSlot, popperSlotProps] = useSlot('popper', {
-    elementType: components.Popper ?? TooltipPopper,
+    elementType: TooltipPopper,
     externalForwardedProps,
     ownerState,
     className: clsx(classes.popper, PopperProps?.className),
   });
 
   const [TooltipTransitionSlot, transitionSlotProps] = useSlot('transition', {
-    elementType: components.Transition ?? TransitionComponentProp ?? Grow,
+    elementType: Grow,
     externalForwardedProps,
     ownerState,
   });
 
   const [TooltipTooltipSlot, tooltipSlotProps] = useSlot('tooltip', {
-    elementType: components.Tooltip ?? TooltipTooltip,
+    elementType: TooltipTooltip,
     className: classes.tooltip,
     externalForwardedProps,
     ownerState,
   });
 
   const [TooltipArrowSlot, arrowSlotProps] = useSlot('arrow', {
-    elementType: components.Arrow ?? TooltipArrow,
+    elementType: TooltipArrow,
     className: classes.arrow,
     externalForwardedProps,
     ownerState,
