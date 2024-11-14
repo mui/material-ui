@@ -370,7 +370,7 @@ As of `@mui/material` **v6.2.0**, the `LoadingButton` from Lab has been removed.
 +import Button from '@mui/material/Button';
 ```
 
-For more details, see the [Loading section](/material-ui/react-button/#loading) in the [Material UI `Button` documentation](/material-ui/react-button/).
+For more details, see the [Loading section](/material-ui/react-button/#loading-2) in the [Material UI `Button` documentation](/material-ui/react-button/).
 
 ### Typography
 
