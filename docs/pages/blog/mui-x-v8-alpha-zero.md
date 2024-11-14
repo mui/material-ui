@@ -52,19 +52,19 @@ It contains the highlights we aim to include in the first versions:
 
 - [Drag and drop with touch support](https://github.com/mui/mui-x/issues/15385)
 - [New Toolbar](https://github.com/mui/mui-x/issues/11584)
-- [Row spanning](https://mui.com/x/react-data-grid/row-spanning/) (without `unstable_` prefix)
+- [Row spanning](https://mui.com/x/react-data-grid/row-spanning/) (Now stable)
 - [Pivoting](https://github.com/mui/mui-x/issues/214) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
 ### Date and Time Pickers
 
 - [Improved visual customization](https://github.com/mui/mui-x/issues/14753)
+- [Accessible DOM field by default](https://mui.com/x/react-date-pickers/fields/#accessible-dom-structure)
 - [Time Range Picker](https://github.com/mui/mui-x/issues/4460) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
-- [Support for month and year editing on the Date Range Picker](https://github.com/mui/mui-x/issues/4546) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 ### Tree View
 
 - [Parent/chidren selection propagation](https://github.com/mui/mui-x/issues/12883)
-- [Lazy loading for tree items](https://github.com/mui/mui-x/issues/9687)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+- [Lazy loading](https://github.com/mui/mui-x/issues/9687)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 - [Virtualization](https://github.com/mui/mui-x/issues/9685)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 ### Charts
