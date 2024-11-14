@@ -9,7 +9,7 @@ manualCard: true
 
 > React components that implement Google's Material Design.
 
-![Our new [documentation](https://mui.com/) header & logo by @hai-cea](https://cdn-images-1.medium.com/max/2050/1*BKssrX-qEmyN6YaRNTvNlw.png)
+<img src="https://cdn-images-1.medium.com/max/2050/1*BKssrX-qEmyN6YaRNTvNlw.png" width="1025" height="342" alt="Our new [documentation](https://mui.com/) header & logo by @hai-cea" />
 
 <p class="blog-description">Our new documentation header & logo by @hai-cea</p>
 
@@ -43,7 +43,7 @@ We want Material UI to become whatever is generally useful for application deve
 We know the ease of use is a critical part of user acquisition. The more users we have, the more likely we can make the project sustainable. Improving the ease of use comes in different flavors:
 
 - **Onboarding**. We have reduced the onboarding friction as much as possible. We know the onboarding is a critical step for user acquisition. The onboarding friction comes in different flavors:
-  We have reduced the number of installation steps needed. It should be as simple as 1. npm install @mui/material and 2. import Button from '@mui/material/Button'; . We don't ask for polyfill, custom Webpack plugin or any specific build tool. The usage of MuiThemeProvider is no longer mandatory.
+  We have reduced the number of installation steps needed. It should be as simple as 1. npm install @mui/material and 2. import Button from '@mui/material/Button'; . We don't ask for polyfill, custom webpack plugin or any specific build tool. The usage of MuiThemeProvider is no longer mandatory.
 
 - **Examples**. We are hosting [example projects](https://github.com/mui/material-ui/tree/master/examples) with the most popular solutions to start a project: [create-react-app](https://github.com/facebook/create-react-app), [Next.js](https://github.com/vercel/next.js), [Gatsby](https://github.com/gatsbyjs/gatsby), and CDN.
 

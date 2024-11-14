@@ -1,6 +1,7 @@
 import { mkdirSync } from 'fs';
 import path from 'path';
 import * as fse from 'fs-extra';
+import { renderMarkdown as _renderMarkdown } from '@mui/internal-markdown';
 import findComponents from './utils/findComponents';
 import findHooks from './utils/findHooks';
 import { writePrettifiedFile } from './buildApiUtils';
@@ -13,6 +14,8 @@ import {
 } from './utils/createTypeScriptProject';
 import { ProjectSettings } from './ProjectSettings';
 import { ComponentReactApi } from './types/ApiBuilder.types';
+import _escapeCell from './utils/escapeCell';
+import _escapeEntities from './utils/escapeEntities';
 
 async function removeOutdatedApiDocsTranslations(
   components: readonly ComponentReactApi[],
@@ -64,7 +67,14 @@ async function removeOutdatedApiDocsTranslations(
   );
 }
 
-export async function buildApi(projectsSettings: ProjectSettings[], grep: RegExp | null = null) {
+let rawDescriptionsCurrent = false;
+
+export async function buildApi(
+  projectsSettings: ProjectSettings[],
+  grep: RegExp | null = null,
+  rawDescriptions = false,
+) {
+  rawDescriptionsCurrent = rawDescriptions;
   const allTypeScriptProjects = projectsSettings
     .flatMap((setting) => setting.typeScriptProjects)
     .reduce(
@@ -118,7 +128,6 @@ async function buildSingleProject(
   if (manifestDir) {
     mkdirSync(manifestDir, { recursive: true });
   }
-
   const apiBuilds = tsProjects.flatMap((project) => {
     const projectComponents = findComponents(path.join(project.rootPath, 'src')).filter(
       (component) => {
@@ -201,4 +210,21 @@ async function buildSingleProject(
 
   await projectSettings.onCompleted?.();
   return builds;
+}
+
+export function renderMarkdown(markdown: string) {
+  return rawDescriptionsCurrent ? markdown : _renderMarkdown(markdown);
+}
+export function renderCodeTags(value: string) {
+  return rawDescriptionsCurrent ? value : value.replace(/`(.*?)`/g, '<code>$1</code>');
+}
+export function escapeEntities(value: string) {
+  return rawDescriptionsCurrent ? value : _escapeEntities(value);
+}
+export function escapeCell(value: string) {
+  return rawDescriptionsCurrent ? value : _escapeCell(value);
+}
+export function joinUnionTypes(value: string[]) {
+  // Use unopinionated formatting for raw descriptions
+  return rawDescriptionsCurrent ? value.join(' | ') : value.join('<br>&#124;&nbsp;');
 }
