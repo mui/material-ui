@@ -8,7 +8,7 @@ tags: ['MUI X', 'Product']
 
 We're kicking off the development of [MUI X v8](https://github.com/mui/mui-x/releases/tag/v8.0.0-alpha.0).
 Following our yearly release cycle, the target for the first stable release is March 2025.
-This major update includes new versions of the Data Grid, Charts, Tree View, and Date & Time Pickers.
+This major update includes new versions of the Data Grid, Charts, Tree View, and the Date and Time Pickers.
 We're excited to share our roadmap with you and invite you to join us on this journey!
 
 :::warning
@@ -43,7 +43,7 @@ The next version's documentation is in the `v8` subdomain.
 
 - [https://next.mui.com/x/](https://next.mui.com/x/)
 
-## What's coming next?
+## What's coming in v8
 
 The following is a list of enhancements in the pipeline for v8.
 It contains the highlights we aim to include in the first versions:
@@ -59,7 +59,7 @@ It contains the highlights we aim to include in the first versions:
 
 - [Improved visual customization](https://github.com/mui/mui-x/issues/14753)
 - [Time Range Picker](https://github.com/mui/mui-x/issues/4460) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
-- [Support for month and year edition on date range picker](https://github.com/mui/mui-x/issues/4546) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+- [Support for month and year editing on the Date Range Picker](https://github.com/mui/mui-x/issues/4546) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 ### Tree View
 
@@ -69,27 +69,26 @@ It contains the highlights we aim to include in the first versions:
 
 ### Charts
 
-- Improved Design
-- [Radar chart](https://github.com/mui/mui-x/issues/7925)
-- [Improved Data zoom](https://github.com/mui/mui-x/issues/15383)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
-- [Funnel chart](https://github.com/mui/mui-x/issues/7929)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+- Improved design
+- [Radar Chart](https://github.com/mui/mui-x/issues/7925)
+- [Improved data zoom](https://github.com/mui/mui-x/issues/15383)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+- [Funnel Chart](https://github.com/mui/mui-x/issues/7929)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 :::info
 You can check our [roadmap](https://github.com/orgs/mui/projects/35) for the full live list.
 :::
 
-## How to migrate?
+## How to migrate
 
-As usual, we've prepared a [migration guide](https://v8.mui.com/x/migration/migration-data-grid-v7/), and we'll continuously update it as we make any breaking changes during the pre-releases.
+As usual, we've prepared a [migration guide](https://v8.mui.com/x/migration/migration-data-grid-v7/) that we'll continuously update throughout the pre-release process.
 It lists every breaking change you may need to update to migrate your codebase.
 
-We strongly encourage you to try the new version—it builds on the solid foundation we established with v7, bringing even more improvements!
+We strongly encourage you to try the new version as soon as possible, to take advantage of the new features and components we're shipping and let us know what you think!
 
-## How to get involved?
+## How to get involved
 
-Please consider joining our alpha testers group channel and [connecting with us](https://forms.gle/vsBv6CLPz9h57xg8A) for a user interview.
+We'd love to hear about your expectations and pain points! Please consider [connecting with us](https://forms.gle/vsBv6CLPz9h57xg8A) for a user interview.
 You'll get an insider's perspective on the development, and you'll be able to help us iterate early on the new features.
 
-As always, we're happy to get your feedback.
-You can participate in the discussion by commenting on new features or reporting bugs in our [GitHub repository](https://github.com/mui/mui-x/issues/new/choose).
-Finally, you can follow every step of the development through our [changelog](https://github.com/mui/mui-x/releases).
+We're also happy to receive feedback on new features and bug reports in our [GitHub repository](https://github.com/mui/mui-x/issues/new/choose).
+You can follow every step of the v8 development process through our [changelog](https://github.com/mui/mui-x/releases).
