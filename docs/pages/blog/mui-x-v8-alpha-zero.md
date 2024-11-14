@@ -18,12 +18,12 @@ Since only MUI X is getting a new version, you can rest assured that all MUI X 
 
 ## What's the plan to get to the next major release?
 
-Before the official release of MUI X v8, we’ll go through a few months of pre-releases.
-During this period, we’ll continue with our usual weekly release process and follow [semantic versioning](https://semver.org/).
-While we’ll still release bug fixes for v7, these will become less frequent as we progress toward a stable v8 release.
+Before the official release of MUI X v8, we'll go through a few months of pre-releases.
+During this period, we'll continue with our usual weekly release process and follow [semantic versioning](https://semver.org/).
+While we'll still release bug fixes for v7, these will become less frequent as we progress toward a stable v8 release.
 Our primary focus will be on delivering the new features and implementing the necessary breaking changes in the v8 pre-release packages.
 
-In the alpha phase, we’ll introduce all planned breaking changes for this major version. Some APIs may be unstable—not in terms of functionality, but there may be adjustments or renaming of parameters. This phase is expected to last about two to three months.
+In the alpha phase, we'll introduce all planned breaking changes for this major version. Some APIs may be unstable—not in terms of functionality, but there may be adjustments or renaming of parameters. This phase is expected to last about two to three months.
 
 Following the alpha phase, the beta phase will focus on stabilizing the APIs, fixing bugs, and refining the overall experience. This phase is anticipated to take about one month.
 
