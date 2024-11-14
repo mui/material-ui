@@ -17,7 +17,7 @@ What if designers could generate production-ready code directly from their desig
 That's why we created Sync, a Figma plugin for generating styles that can be copied and pasted straight into your Material UI app's theme.
 We're happy to share that the beta version is [available now on Figma](https://www.figma.com/community/plugin/1336346114713490235/material-ui-sync). 🚀
 
-<img src="/static/blog/introducing-sync-plugin/card.png" alt="Material UI Sync is a Figma plugin that lets you generate a theme from the Material UI for Figma Design Kit." width="1280" height="640" />
+<img src="/static/blog/introducing-sync-plugin/card.png" alt="Material UI Sync is a Figma plugin that lets you generate a theme from the Material UI for Figma Design Kit." width="2560" height="1280" />
 
 Let's take a look at some of its key features:
 
@@ -27,7 +27,7 @@ Figma's local variables significantly matured the use of design tokens, making i
 Sync relies on these local variables to generate code corresponding to each element and state.
 (As such, it requires [v5.16.0 or later](https://github.com/mui/mui-design-kits/releases/tag/v5.16.0) of the Material UI Design Kit; earlier versions do not support local variables.)
 
-<video preload="metadata" controls muted loop playsinline width="1584" height="1080">
+<video controls muted loop playsinline width="1584" height="1080">
   <source src="/static/blog/introducing-sync-plugin/sync-theme.mp4" type="video/mp4">
 </video>
 
@@ -38,7 +38,7 @@ Visit the documentation to learn [how to insert the generated code into your the
 You can fully customize a component's appearance across multiple states in the Design Kit and then generate the corresponding theme code.
 This is one of the most exciting features because it enables designers to use the visual design tools they're already comfortable with to make changes to the code itself.
 
-<video preload="metadata" controls muted loop playsinline width="1584" height="1080">
+<video controls muted loop playsinline width="1584" height="1080">
   <source src="/static/blog/introducing-sync-plugin/sync-component.mp4" type="video/mp4">
 </video>
 
@@ -52,7 +52,7 @@ For now, you can experiment with the Button, Switch, and Typography.
 
 The Material UI Sync plugin also bakes in an embedded Storybook preview panel so that you can conveniently play around with your changes and see how they interact with other props and states available in the component API.
 
-<video preload="metadata" autoplay muted loop playsinline width="1584" height="1080">
+<video autoplay muted loop playsinline width="1584" height="1080">
   <source src="/static/blog/introducing-sync-plugin/sync-storybook.mp4" type="video/mp4">
 </video>
 

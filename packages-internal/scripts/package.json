@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-scripts",
-  "version": "1.0.26",
+  "version": "1.0.27",
   "author": "MUI Team",
   "description": "Utilities supporting MUI libraries build and docs generation. This is an internal package not meant for general use.",
   "main": "build/index.js",

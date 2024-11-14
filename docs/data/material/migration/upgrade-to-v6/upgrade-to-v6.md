@@ -356,9 +356,21 @@ As the `ListItem` no longer supports these props, the class names related to the
 +listItemButtonClasses.selected
 ```
 
-### Loading Button
+### Button with Loading State
 
-In v6, the `children` prop passed to the Loading Button component is now wrapped in a `<span>` tag to avoid [issues](https://github.com/mui/material-ui/issues/27853) when using tools to translate websites.
+As of `@mui/material` **v6.2.0**, the `LoadingButton` from Lab has been removed. Loading functionality is now part of the standard `Button` component. Update your import as follows:
+
+```diff
+-import { LoadingButton } from '@mui/lab';
++import { Button } from '@mui/material';
+```
+
+```diff
+-import LoadingButton from '@mui/lab/LoadingButton';
++import Button from '@mui/material/Button';
+```
+
+For more details, see the [Loading section](/material-ui/react-button/#loading-2) in the [Material UI `Button` documentation](/material-ui/react-button/).
 
 ### Typography
 

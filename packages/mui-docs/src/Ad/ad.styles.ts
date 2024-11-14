@@ -7,9 +7,11 @@ export const adBodyImageStyles = (theme: Theme) => ({
     border: '1px dashed',
     borderColor: theme.palette.divider,
     borderRadius: theme.shape.borderRadius,
-    padding: '8px 8px 8px calc(8px + 130px)',
+    padding: 8,
+    paddingLeft: 8 + 130,
     [theme.breakpoints.up('sm')]: {
-      padding: '12px 12px 12px calc(12px + 130px)',
+      padding: 12,
+      paddingLeft: 12 + 130,
     },
   },
   imgWrapper: {

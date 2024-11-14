@@ -7,7 +7,7 @@ tags: ['Material UI']
 manualCard: true
 ---
 
-<img src="/static/blog/material-ui-is-now-mui/intro.png" alt="The new Material UI logo" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" />
+<img src="/static/blog/material-ui-is-now-mui/intro.png" alt="The new Material UI logo" width="2400" height="800" />
 
 Starting today we are evolving our brand identity to clarifying the difference between our company and our products.
 
@@ -71,11 +71,11 @@ It's basically the same, to keep it familiar –
 we're keeping the geometrical shape, to resonate with the _building blocks_ idea of the components –
 however, we're reducing the emphasis on the 3D perspective, stepping away from the notion of elevation that Material Design coined.
 
-<img loading="lazy" src="/static/blog/material-ui-is-now-mui/old-new.png" alt="Side-by-side of the new and old logo" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" />
+<img loading="lazy" src="/static/blog/material-ui-is-now-mui/old-new.png" alt="Side-by-side of the new and old logo" width="2400" height="800" />
 
 To better identify, market, and promote each product, we're introducing logos for each one of them.
 
-<img loading="lazy" src="/static/blog/material-ui-is-now-mui/products.png" alt="Logos for MUI Core, MUI X and Templates" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" />
+<img loading="lazy" src="/static/blog/material-ui-is-now-mui/products.png" alt="Logos for MUI Core, MUI X and Templates" width="2400" height="1000" />
 
 - **MUI Core** contains ready-to-use foundational components, free forever.
 - **MUI X** includes advanced and powerful components for complex use-cases.
@@ -92,7 +92,7 @@ The npm organization name (scope) has moved from @material-ui to [@mui](https://
 Lastly, to celebrate the start of a new chapter for the company with the release of v5.0.0, and new products in the making, we're introducing a brand new website and documentation design. You'll find a completely different theme from Material Design – new typeface, colors, box-shadows, and more,
 all done using the flexible theming features of v5. [Head to the new website](/)!
 
-<img loading="lazy" src="/static/blog/material-ui-is-now-mui/website-homepage.png" alt="Screenshot of the new website homepage" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" />
+<img loading="lazy" src="/static/blog/material-ui-is-now-mui/website-homepage.png" alt="Screenshot of the new website homepage" width="2400" height="1300" />
 
 :::info
 Note that these changes in the website and documentation do **not** impact the design of the components released under the `@mui/*` npm packages.
