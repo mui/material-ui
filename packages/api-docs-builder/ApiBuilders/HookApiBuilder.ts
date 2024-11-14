@@ -9,7 +9,7 @@ import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import kebabCase from 'lodash/kebabCase';
 import upperFirst from 'lodash/upperFirst';
 import { parse as parseDoctrine, Annotation } from 'doctrine';
-import { renderMarkdown } from '@mui/internal-markdown';
+import { escapeEntities, renderMarkdown } from '../buildApi';
 import { ProjectSettings } from '../ProjectSettings';
 import { computeApiDescription } from './ComponentApiBuilder';
 import {
@@ -268,12 +268,7 @@ const attachTable = (
       const requiredProp = prop.required;
 
       const deprecation = (propDescriptor.description || '').match(/@deprecated(\s+(?<info>.*))?/);
-      const typeDescription = (propDescriptor.typeStr ?? '')
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
+      const typeDescription = escapeEntities(propDescriptor.typeStr ?? '');
       return {
         [propName]: {
           type: {

@@ -51,6 +51,12 @@ describe('createSpacing', () => {
     expect(spacing(1, 'auto', 2, 3)).to.equal('0.25rem auto 0.5rem 0.75rem');
   });
 
+  it('should support valid CSS unit', () => {
+    const spacing = createSpacing();
+    expect(spacing('16px')).to.equal('16px');
+    expect(spacing('1rem')).to.equal('1rem');
+  });
+
   describe('warnings', () => {
     it('should warn for wrong input', () => {
       expect(() => {

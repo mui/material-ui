@@ -21,13 +21,13 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-error-boundary": "^4.1.2",
-    "react-router-dom": "^6.27.0",
+    "react-router-dom": "^6.28.0",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.25.9",
     "@babel/preset-typescript": "^7.26.0",
-    "@pigment-css/vite-plugin": "0.0.25",
+    "@pigment-css/vite-plugin": "0.0.26",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@types/webfontloader": "^1.6.38",

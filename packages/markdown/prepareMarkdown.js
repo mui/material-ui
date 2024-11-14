@@ -102,6 +102,12 @@ function prepareMarkdown(config) {
         );
       }
 
+      if (description.slice(-1) !== '.' && description.slice(-1) !== '!') {
+        throw new Error(
+          `docs-infra: The description "${description}" should end with a "." or "!", those are sentences.`,
+        );
+      }
+
       const contents = getContents(markdown);
 
       if (headers.unstyled) {
