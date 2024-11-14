@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, SvgIconProps } from '..';
+import { InternalStandardProps as StandardProps, SvgIconOwnProps } from '..';
 import { Theme } from '../styles';
 import { StepIconClasses } from './stepIconClasses';
 
 export interface StepIconProps
-  extends Omit<StandardProps<React.HTMLAttributes<SVGSVGElement>, 'color' | 'children'>, 'ref'>,
-    Omit<SvgIconProps, 'children'> {
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'color' | 'children'>,
+    Omit<SvgIconOwnProps, 'children'> {
   /**
    * Whether this step is active.
    * @default false
