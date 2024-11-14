@@ -5,6 +5,7 @@ import { Theme } from '../styles';
 import { StepIconClasses } from './stepIconClasses';
 
 export interface StepIconProps
+  // TODO v7: extend React.HTMLAttributes<SVGSVGElement> as svg is root component of StepIcon not div
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'color' | 'children'>,
     Omit<SvgIconOwnProps, 'children'> {
   /**
