@@ -321,7 +321,9 @@ function testSlotsProp(element: React.ReactElement<any>, getOptions: () => Confo
         const renderedElement = queryByTestId('customized');
         expect(renderedElement).not.to.equal(null);
 
-        expect(renderedElement!.nodeName.toLowerCase()).to.equal(slotElement);
+        if (typeof slotElement === 'string') {
+          expect(renderedElement!.nodeName.toLowerCase()).to.equal(slotElement);
+        }
         if (slotOptions.expectedClassName) {
           expect(renderedElement).to.have.class(slotOptions.expectedClassName);
         }
@@ -425,7 +427,9 @@ function testSlotsProp(element: React.ReactElement<any>, getOptions: () => Confo
           const renderedElement = queryByTestId('customized');
           expect(renderedElement).not.to.equal(null);
 
-          expect(renderedElement!.nodeName.toLowerCase()).to.equal(slotElement);
+          if (typeof slotElement === 'string') {
+            expect(renderedElement!.nodeName.toLowerCase()).to.equal(slotElement);
+          }
           if (slotOptions.expectedClassName) {
             expect(renderedElement).to.have.class(slotOptions.expectedClassName);
           }

@@ -653,8 +653,18 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
   }
 
+  const ownerState = {
+    ...props,
+    isRtl,
+    arrow,
+    disableInteractive,
+    placement,
+    PopperComponentProp,
+    touch: ignoreNonTouchEvents.current,
+  };
+
   const resolvedPopperProps =
-    typeof slotProps.popper === 'function' ? slotProps.popper(props) : slotProps.popper;
+    typeof slotProps.popper === 'function' ? slotProps.popper(ownerState) : slotProps.popper;
   const popperOptions = React.useMemo(() => {
     let tooltipModifiers = [
       {
@@ -682,16 +692,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     };
   }, [arrowRef, PopperProps.popperOptions, resolvedPopperProps?.popperOptions]);
 
-  const ownerState = {
-    ...props,
-    isRtl,
-    arrow,
-    disableInteractive,
-    placement,
-    PopperComponentProp,
-    touch: ignoreNonTouchEvents.current,
-  };
-
   const classes = useUtilityClasses(ownerState);
 
   const externalForwardedProps = {
@@ -704,9 +704,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     },
     slotProps: {
       arrow: slotProps.arrow ?? componentsProps.arrow,
-      popper: { ...PopperProps, ...(slotProps.popper ?? componentsProps.popper) },
+      popper: { ...PopperProps, ...(resolvedPopperProps ?? componentsProps.popper) }, // resolvedPopperProps can be spread because it's already an object
       tooltip: slotProps.tooltip ?? componentsProps.tooltip,
-      transition: { ...TransitionProps, ...(slotProps.transition ?? componentsProps.transition) },
+      transition: slotProps.transition ?? { ...TransitionProps, ...componentsProps.transition },
     },
   };
 

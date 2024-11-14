@@ -32,6 +32,10 @@ describe('<Tooltip />', () => {
     );
   }
 
+  const TestTooltipSlot = React.forwardRef(function TestTooltipSlot({ ownerState, ...props }, ref) {
+    return <div data-testid="custom" ref={ref} {...props} />;
+  });
+
   describeConformance(
     <Tooltip title="Hello World" arrow open>
       <button type="submit">Hello World</button>
@@ -52,15 +56,14 @@ describe('<Tooltip />', () => {
           testWithElement: null,
         },
         transition: { testWithElement: null },
-        tooltip: { expectedClassName: classes.tooltip, testWithElement: null },
+        tooltip: {
+          expectedClassName: classes.tooltip,
+          testWithComponent: TestTooltipSlot,
+          testWithElement: TestTooltipSlot,
+        },
         arrow: { expectedClassName: classes.arrow },
       },
-      skip: [
-        'componentProp',
-        'componentsProp',
-        'themeVariants',
-        'slotPropsCallback', // not supported yet
-      ],
+      skip: ['componentProp', 'componentsProp', 'themeVariants'],
     }),
   );
 
@@ -1358,50 +1361,6 @@ describe('<Tooltip />', () => {
       ));
       render(
         <Tooltip title="Hello World" open arrow slots={{ arrow: CustomArrow }}>
-          <button id="testChild" type="submit">
-            Hello World
-          </button>
-        </Tooltip>,
-      );
-      expect(screen.getByTestId('CustomArrow')).toBeVisible();
-    });
-  });
-
-  describe('prop: slotProps', () => {
-    it('can provide custom props for the inner Popper component', () => {
-      render(
-        <Tooltip title="Hello World" open slotProps={{ popper: { 'data-testid': 'CustomPopper' } }}>
-          <button id="testChild" type="submit">
-            Hello World
-          </button>
-        </Tooltip>,
-      );
-      expect(screen.getByTestId('CustomPopper')).toBeVisible();
-    });
-
-    it('can provide custom props for the inner Tooltip component', () => {
-      render(
-        <Tooltip
-          title="Hello World"
-          open
-          slotProps={{ tooltip: { 'data-testid': 'CustomTooltip' } }}
-        >
-          <button id="testChild" type="submit">
-            Hello World
-          </button>
-        </Tooltip>,
-      );
-      expect(screen.getByTestId('CustomTooltip')).toBeVisible();
-    });
-
-    it('can provide custom props for the inner Arrow component', () => {
-      render(
-        <Tooltip
-          title="Hello World"
-          open
-          arrow
-          slotProps={{ arrow: { 'data-testid': 'CustomArrow' } }}
-        >
           <button id="testChild" type="submit">
             Hello World
           </button>
