@@ -24,6 +24,15 @@
     "href": {
       "description": "The URL to link to when the button is clicked. If defined, an <code>a</code> element will be used as the root node."
     },
+    "loading": {
+      "description": "If <code>true</code>, the loading indicator is shown and the button becomes disabled."
+    },
+    "loadingIndicator": {
+      "description": "Element placed before the children if the button is in loading state. The node should contain an element with <code>role=&quot;progressbar&quot;</code> with an accessible name. By default we render a <code>CircularProgress</code> that is labelled by the button itself."
+    },
+    "loadingPosition": {
+      "description": "The loading indicator can be positioned on the start, end, or the center of the button."
+    },
     "size": {
       "description": "The size of the component. <code>small</code> is equivalent to the dense button styling."
     },
@@ -149,6 +158,11 @@
       "nodeName": "the endIcon element",
       "conditions": "supplied"
     },
+    "endIconLoadingEnd": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the endIcon element",
+      "conditions": "<code>loading={true}</code> and <code>loadingPosition=\"end\"</code>"
+    },
     "focusVisible": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the ButtonBase root element",
@@ -177,6 +191,30 @@
       "nodeName": "the icon element",
       "conditions": "supplied and <code>size=\"small\"</code>",
       "deprecationInfo": "Combine the <a href=\"/material-ui/api/button/#button-classes-icon\">.MuiButton-icon</a> and <a href=\"/material-ui/api/button/#button-classes-sizeSmall\">.MuiButtonSizeSmall</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
+    "loading": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>loading={true}</code>"
+    },
+    "loadingIndicator": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the loadingIndicator element"
+    },
+    "loadingIndicatorCenter": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the loadingIndicator element",
+      "conditions": "<code>loadingPosition=\"center\"</code>"
+    },
+    "loadingIndicatorEnd": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the loadingIndicator element",
+      "conditions": "<code>loadingPosition=\"end\"</code>"
+    },
+    "loadingIndicatorStart": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the loadingIndicator element",
+      "conditions": "<code>loadingPosition=\"start\"</code>"
     },
     "outlined": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -263,6 +301,11 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the startIcon element",
       "conditions": "supplied"
+    },
+    "startIconLoadingStart": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the startIcon element",
+      "conditions": "<code>loading={true}</code> and <code>loadingPosition=\"start\"</code>"
     },
     "text": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

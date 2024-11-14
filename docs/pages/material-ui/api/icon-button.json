@@ -19,6 +19,11 @@
       },
       "default": "false"
     },
+    "loading": { "type": { "name": "bool" }, "default": "false" },
+    "loadingIndicator": {
+      "type": { "name": "node" },
+      "default": "<CircularProgress color=\"inherit\" size={16} />"
+    },
     "size": {
       "type": {
         "name": "union",
@@ -98,6 +103,18 @@
       "key": "edgeStart",
       "className": "MuiIconButton-edgeStart",
       "description": "Styles applied to the root element if `edge=\"start\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "loading",
+      "className": "MuiIconButton-loading",
+      "description": "Styles applied to the root element if `loading={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "loadingIndicator",
+      "className": "MuiIconButton-loadingIndicator",
+      "description": "Styles applied to the loadingIndicator element.",
       "isGlobal": false
     },
     {
