@@ -1,9 +1,9 @@
 ---
-title: The road to MUI X v8
+title: The road to MUI X v8
 description: Explore the planned features and our roadmap to the next major version.
 date: 2024-11-20T00:00:00.000Z
 authors: ['josefreitas']
-tags: ['MUI X', 'Product']
+tags: ['MUI X', 'Product']
 ---
 
 We're kicking off the development of [MUI X v8](https://github.com/mui/mui-x/releases/tag/v8.0.0-alpha.0).
@@ -13,12 +13,12 @@ We're excited to share our roadmap with you and invite you to join us on this jo
 
 :::warning
 Only MUI X is getting a new version—Material UI will remain in v6 for now.
-Since only MUI X is getting a new version, you can rest assured that all MUI X v8 components will be fully compatible with Material UI v5 and v6.
+Since only MUI X is getting a new version, you can rest assured that all MUI X v8 components will be fully compatible with Material UI v5 and v6.
 ::::
 
 ## What's the plan to get to the next major release?
 
-Before the official release of MUI X v8, we'll go through a few months of pre-releases.
+Before the official release of MUI X v8, we'll go through a few months of pre-releases.
 During this period, we'll continue with our usual weekly release process and follow [semantic versioning](https://semver.org/).
 While we'll still release bug fixes for v7, these will become less frequent as we progress toward a stable v8 release.
 Our primary focus will be on delivering the new features and implementing the necessary breaking changes in the v8 pre-release packages.
