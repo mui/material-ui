@@ -39,7 +39,7 @@ const AccordionSummaryRoot = styled(ButtonBase, {
       display: 'flex',
       ...theme.typography.body1,
       width: '100%',
-      justifyContent: 'flex-start',
+      justifyContent: 'space-between',
       minHeight: 48,
       padding: theme.spacing(0, 2),
       transition: theme.transitions.create(['min-height', 'background-color'], transition),
@@ -98,7 +98,6 @@ const AccordionSummaryExpandIconWrapper = styled('span', {
 })(
   memoTheme(({ theme }) => ({
     display: 'flex',
-    marginLeft: 'auto',
     color: (theme.vars || theme).palette.action.active,
     transform: 'rotate(0deg)',
     transition: theme.transitions.create('transform', {
