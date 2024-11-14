@@ -80,10 +80,15 @@ You can check our [roadmap](https://github.com/orgs/mui/projects/35) for the ful
 
 ## How to migrate
 
-As usual, we've prepared a [migration guide](https://v8.mui.com/x/migration/migration-data-grid-v7/) that we'll continuously update throughout the pre-release process.
-It lists every breaking change you may need to update to migrate your codebase.
+As usual, we've prepared a migration guide for each component, and we'll continuously update them as we make any breaking changes during the pre-releases.
+They list every breaking change you may need to update to migrate your codebase.
 
-We strongly encourage you to try the new version as soon as possible, to take advantage of the new features and components we're shipping and let us know what you think!
+- [Data Grid](https://next.mui.com/x/migration/migration-data-grid-v7/)
+- [Date and Time Pickers](https://next.mui.com/x/migration/migration-pickers-v7/)
+- [Charts](https://next.mui.com/x/migration/migration-charts-v7/)
+- [Tree View](https://next.mui.com/x/migration/migration-tree-view-v7/)
+
+We strongly encourage you to try the new version—it builds on the solid foundation we established with v7, bringing even more improvements!
 
 ## How to get involved
 
