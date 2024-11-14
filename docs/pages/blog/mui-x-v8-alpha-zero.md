@@ -43,7 +43,7 @@ The next version's documentation is in the `v8` subdomain.
 
 - [https://next.mui.com/x/introduction/](https://next.mui.com/x/introduction/)
 
-## What's coming in v8?
+## What's new in v8
 
 The following is a list of enhancements in the pipeline for v8.
 It contains the highlights we aim to include in the first versions:
