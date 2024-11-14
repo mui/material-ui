@@ -13,7 +13,7 @@ We're excited to share our roadmap with you and invite you to join us on this jo
 
 :::warning
 Only MUI X is getting a new version—Material UI will remain in v6 for now.
-Since only MUI X is getting a new version, you can rest assured that all MUI X v8 components will be fully compatible with Material UI v5 and v6.
+Since only MUI X is getting a new version, you can rest assured that all MUI X v8 components will be fully compatible with Material UI v5 and v6.
 ::::
 
 ## What's the plan to get to the next major release?
