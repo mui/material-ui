@@ -103,6 +103,7 @@ const ButtonRoot = styled(ButtonBase, {
       ownerState.color === 'inherit' && styles.colorInherit,
       ownerState.disableElevation && styles.disableElevation,
       ownerState.fullWidth && styles.fullWidth,
+      ownerState.loading && styles.loading,
     ];
   },
 })(

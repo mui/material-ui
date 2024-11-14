@@ -41,6 +41,7 @@ const IconButtonRoot = styled(ButtonBase, {
 
     return [
       styles.root,
+      ownerState.loading && styles.loading,
       ownerState.color !== 'default' && styles[`color${capitalize(ownerState.color)}`],
       ownerState.edge && styles[`edge${capitalize(ownerState.edge)}`],
       styles[`size${capitalize(ownerState.size)}`],
