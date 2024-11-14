@@ -37,6 +37,9 @@ const AccordionSummaryRoot = styled(ButtonBase, {
 
     return {
       display: 'flex',
+      ...theme.typography.body1,
+      width: '100%',
+      justifyContent: 'flex-start',
       minHeight: 48,
       padding: theme.spacing(0, 2),
       transition: theme.transitions.create(['min-height', 'background-color'], transition),
@@ -63,38 +66,39 @@ const AccordionSummaryRoot = styled(ButtonBase, {
   }),
 );
 
-const AccordionSummaryContent = styled('div', {
-  name: 'MuiAccordionSummary',
-  slot: 'Content',
-  overridesResolver: (props, styles) => styles.content,
-})(
-  memoTheme(({ theme }) => ({
-    display: 'flex',
-    flexGrow: 1,
-    margin: '12px 0',
-    variants: [
-      {
-        props: (props) => !props.disableGutters,
-        style: {
-          transition: theme.transitions.create(['margin'], {
-            duration: theme.transitions.duration.shortest,
-          }),
-          [`&.${accordionSummaryClasses.expanded}`]: {
-            margin: '20px 0',
-          },
-        },
-      },
-    ],
-  })),
-);
+// const AccordionSummaryContent = styled('div', {
+//   name: 'MuiAccordionSummary',
+//   slot: 'Content',
+//   overridesResolver: (props, styles) => styles.content,
+// })(
+//   memoTheme(({ theme }) => ({
+//     display: 'flex',
+//     flexGrow: 1,
+//     margin: '12px 0',
+//     variants: [
+//       {
+//         props: (props) => !props.disableGutters,
+//         style: {
+//           transition: theme.transitions.create(['margin'], {
+//             duration: theme.transitions.duration.shortest,
+//           }),
+//           [`&.${accordionSummaryClasses.expanded}`]: {
+//             margin: '20px 0',
+//           },
+//         },
+//       },
+//     ],
+//   })),
+// );
 
-const AccordionSummaryExpandIconWrapper = styled('div', {
+const AccordionSummaryExpandIconWrapper = styled('span', {
   name: 'MuiAccordionSummary',
   slot: 'ExpandIconWrapper',
   overridesResolver: (props, styles) => styles.expandIconWrapper,
 })(
   memoTheme(({ theme }) => ({
     display: 'flex',
+    marginLeft: 'auto',
     color: (theme.vars || theme).palette.action.active,
     transform: 'rotate(0deg)',
     transition: theme.transitions.create('transform', {
@@ -134,7 +138,7 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
       focusRipple={false}
       disableRipple
       disabled={disabled}
-      component="div"
+      // component="div"
       aria-expanded={expanded}
       className={clsx(classes.root, className)}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
@@ -143,9 +147,9 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
       ownerState={ownerState}
       {...other}
     >
-      <AccordionSummaryContent className={classes.content} ownerState={ownerState}>
-        {children}
-      </AccordionSummaryContent>
+      {/* <AccordionSummaryContent className={classes.content} ownerState={ownerState}> */}
+      {children}
+      {/* </AccordionSummaryContent> */}
       {expandIcon && (
         <AccordionSummaryExpandIconWrapper
           className={classes.expandIconWrapper}
