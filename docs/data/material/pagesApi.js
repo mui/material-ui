@@ -70,7 +70,6 @@ module.exports = [
   { pathname: '/material-ui/api/list-item-secondary-action' },
   { pathname: '/material-ui/api/list-item-text' },
   { pathname: '/material-ui/api/list-subheader' },
-  { pathname: '/material-ui/api/loading-button' },
   { pathname: '/material-ui/api/masonry' },
   { pathname: '/material-ui/api/menu' },
   { pathname: '/material-ui/api/menu-item' },
