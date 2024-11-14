@@ -205,6 +205,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
 
   return (
     <IconButtonRoot
+      id={id}
       className={clsx(classes.root, className)}
       centerRipple
       focusRipple={!disableFocusRipple}
@@ -213,10 +214,10 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
       {...other}
       ownerState={ownerState}
     >
-      {children}
       <IconButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
         {loading && loadingIndicator}
       </IconButtonLoadingIndicator>
+      {children}
     </IconButtonRoot>
   );
 });
