@@ -43,7 +43,7 @@ export {
   Interpolation,
   CSSInterpolation,
   CSSObject,
-} from '@mui/styled-engine-noop';
+} from '@mui/styled-engine';
 export { default as GlobalStyles } from './GlobalStyles';
 export type { GlobalStylesProps } from './GlobalStyles';
 

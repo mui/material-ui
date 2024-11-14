@@ -1,4 +1,4 @@
-import styledEngineStyled, { internal_mutateStyles as mutateStyles } from '@mui/styled-engine-noop';
+import styledEngineStyled, { internal_mutateStyles as mutateStyles } from '@mui/styled-engine';
 import { isPlainObject } from '@mui/utils/deepmerge';
 import capitalize from '@mui/utils/capitalize';
 import getDisplayName from '@mui/utils/getDisplayName';

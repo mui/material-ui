@@ -1,4 +1,4 @@
-import { CSSObject } from '@mui/styled-engine-noop';
+import { CSSObject } from '@mui/styled-engine';
 import { StyleFunction } from '../Box';
 
 export type TransformFunction = (

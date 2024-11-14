@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import { ThemeContext } from '@mui/styled-engine-noop';
+import { ThemeContext } from '@mui/styled-engine';
 
 function isObjectEmpty(obj) {
   return Object.keys(obj).length === 0;

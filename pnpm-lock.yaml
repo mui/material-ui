@@ -611,8 +611,8 @@ importers:
         specifier: workspace:^
         version: link:../packages/mui-material/build
       '@mui/styled-engine':
-        specifier: workspace:^
-        version: link:../packages/mui-styled-engine/build
+        specifier: npm:@mui/styled-engine@workspace:^
+        version: link:npm:@mui/styled-engine@workspace:^
       '@mui/styled-engine-noop':
         specifier: workspace:^
         version: link:../packages/mui-styled-engine-noop/build
@@ -2108,9 +2108,9 @@ importers:
       '@mui/private-theming':
         specifier: workspace:^
         version: link:../mui-private-theming/build
-      '@mui/styled-engine-noop':
+      '@mui/styled-engine':
         specifier: workspace:^
-        version: link:../mui-styled-engine-noop/build
+        version: link:../mui-styled-engine/build
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build

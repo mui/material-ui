@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import { useTheme as usePrivateTheme } from '@mui/private-theming';
-import { ThemeContext } from '@mui/styled-engine-noop';
+import { ThemeContext } from '@mui/styled-engine';
 import { ThemeProvider } from '@mui/system';
 import { useRtl } from '@mui/system/RtlProvider';
 import { useDefaultProps } from '../DefaultPropsProvider';

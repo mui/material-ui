@@ -1,4 +1,4 @@
-import { CSSObject } from '@mui/styled-engine-noop';
+import { CSSObject } from '@mui/styled-engine';
 
 export interface ApplyStyles<K extends string> {
   (key: K, styles: CSSObject): CSSObject;

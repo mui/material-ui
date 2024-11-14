@@ -1,4 +1,4 @@
-import { CSSObject } from '@mui/styled-engine-noop';
+import { CSSObject } from '@mui/styled-engine';
 import { Breakpoints, BreakpointsOptions } from '../createBreakpoints/createBreakpoints';
 import { Shape, ShapeOptions } from './shape';
 import { Spacing, SpacingOptions } from './createSpacing';

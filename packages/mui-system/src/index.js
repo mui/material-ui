@@ -1,4 +1,4 @@
-export { css, keyframes, StyledEngineProvider } from '@mui/styled-engine-noop';
+export { css, keyframes, StyledEngineProvider } from '@mui/styled-engine';
 export { default as GlobalStyles } from './GlobalStyles';
 export { default as borders } from './borders';
 export * from './borders';
