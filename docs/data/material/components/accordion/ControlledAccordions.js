@@ -103,7 +103,9 @@ export default function ControlledAccordions() {
           aria-controls="panel4bh-content"
           id="panel4bh-header"
         >
-          <Typography sx={{ width: '33%', flexShrink: 0 }}>Personal data</Typography>
+          <Typography sx={{ width: '33%', flexShrink: 0, textAlign: 'start' }}>
+            Personal data
+          </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
