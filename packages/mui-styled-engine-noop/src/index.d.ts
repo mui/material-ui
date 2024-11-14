@@ -4,8 +4,8 @@ export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
 
 export declare const ThemeContext: React.Context<null>;
-export function keyframes(arg:any): string;
-export function css(arg:any): string;
+export function keyframes(arg: any): string;
+export function css(arg: any): string;
 
 /**
  * For internal usage in `@mui/system` package
@@ -47,11 +47,8 @@ export interface CSSObject {}
 export type Interpolation = any;
 
 export interface CreateMUIStyled<A extends any, B extends any, C extends any> {
-  <
-  C extends any,
-  ForwardedProps extends any,
->(
-  component: C,
-  options: object,
-): React.ComponentType<ForwardedProps & A & B & C>;
+  <C extends any, ForwardedProps extends any>(
+    component: C,
+    options: object,
+  ): React.ComponentType<ForwardedProps & A & B & C>;
 }

@@ -3,6 +3,7 @@ import path from 'path';
 import {
   createModulePackages,
   createPackageFile,
+  cssModulesCopy,
   includeFileInBuild,
   prepend,
   typescriptCopy,
@@ -41,6 +42,9 @@ async function run() {
   try {
     // TypeScript
     await typescriptCopy({ from: srcPath, to: buildPath });
+
+    // CSS modules
+    await cssModulesCopy({ from: srcPath, to: buildPath });
 
     const packageData = await createPackageFile();
 

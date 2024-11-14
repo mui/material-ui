@@ -51,10 +51,8 @@
     "chai": "^4.5.0",
     "react": "^18.3.1"
   },
-  "peerDependencies": {
-  },
-  "peerDependenciesMeta": {
-  },
+  "peerDependencies": {},
+  "peerDependenciesMeta": {},
   "sideEffects": false,
   "publishConfig": {
     "access": "public",

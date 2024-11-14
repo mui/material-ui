@@ -19,8 +19,7 @@ export function css() {
 export const ThemeContext = React.createContext(null);
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export function internal_mutateStyles(tag, processor) {
-}
+export function internal_mutateStyles(tag, processor) {}
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function internal_serializeStyles(styles) {
