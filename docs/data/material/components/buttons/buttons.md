@@ -113,11 +113,17 @@ Use `color` prop to apply theme color palette to component.
 
 {{"demo": "IconButtonColors.js"}}
 
-### Loading with badge
+### Loading
 
 Use `loading` prop to set icon buttons in a loading state and disable interactions.
 
-{{"demo": "LoadingWithBadge.js"}}
+{{"demo": "LoadingIconButton.js"}}
+
+### Badge
+
+You can use the [`Badge`](/material-ui/react-badge/) component to add a badge to an `IconButton`.
+
+{{"demo": "IconButtonWithBadge.js"}}
 
 ## File upload
 

@@ -6,14 +6,21 @@ import Stack from '@mui/material/Stack';
 import SaveIcon from '@mui/icons-material/Save';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCartOutlined';
 
-const AppBarCartBadge = styled(Badge)`
+const CartBadge = styled(Badge)`
   .${badgeClasses.badge} {
     top: -12px;
     right: -6px;
   }
 `;
 
-export default function LoadingWithBadge() {
+export default function IconButtonWithBadge() {
+  const [loading, setLoading] = React.useState(false);
+  React.useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+    return () => clearTimeout(timeout);
+  });
   return (
     <Stack spacing={2} direction="row" sx={{ alignItems: 'center' }}>
       <IconButton loading>
@@ -21,9 +28,9 @@ export default function LoadingWithBadge() {
           <SaveIcon />
         </Badge>
       </IconButton>
-      <IconButton loading>
+      <IconButton loading={loading} onClick={() => setLoading(true)}>
         <ShoppingCartIcon fontSize="small" />
-        <AppBarCartBadge badgeContent={2} color="primary" overlap="circular" />
+        <CartBadge badgeContent={2} color="primary" overlap="circular" />
       </IconButton>
     </Stack>
   );
