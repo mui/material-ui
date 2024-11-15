@@ -693,7 +693,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   }, [arrowRef, PopperProps.popperOptions, resolvedPopperProps?.popperOptions]);
 
   const classes = useUtilityClasses(ownerState);
-
+  const resolvedTransitionProps =
+    typeof slotProps.transition === 'function'
+      ? slotProps.transition(ownerState)
+      : slotProps.transition;
   const externalForwardedProps = {
     slots: {
       popper: components.Popper,
@@ -706,7 +709,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       arrow: slotProps.arrow ?? componentsProps.arrow,
       popper: { ...PopperProps, ...(resolvedPopperProps ?? componentsProps.popper) }, // resolvedPopperProps can be spread because it's already an object
       tooltip: slotProps.tooltip ?? componentsProps.tooltip,
-      transition: slotProps.transition ?? { ...TransitionProps, ...componentsProps.transition },
+      transition: {
+        ...TransitionProps,
+        ...(resolvedTransitionProps ?? componentsProps.transition),
+      },
     },
   };
 
