@@ -17,6 +17,18 @@
     "endIcon": { "type": { "name": "node" } },
     "fullWidth": { "type": { "name": "bool" }, "default": "false" },
     "href": { "type": { "name": "string" } },
+    "loading": { "type": { "name": "bool" }, "default": "false" },
+    "loadingIndicator": {
+      "type": { "name": "node" },
+      "default": "<CircularProgress color=\"inherit\" size={16} />"
+    },
+    "loadingPosition": {
+      "type": {
+        "name": "enum",
+        "description": "'center'<br>&#124;&nbsp;'end'<br>&#124;&nbsp;'start'"
+      },
+      "default": "'center'"
+    },
     "size": {
       "type": {
         "name": "union",
@@ -183,6 +195,12 @@
       "isGlobal": false
     },
     {
+      "key": "endIconLoadingEnd",
+      "className": "MuiButton-endIconLoadingEnd",
+      "description": "Styles applied to the endIcon element if `loading={true}` and `loadingPosition=\"end\"`.",
+      "isGlobal": false
+    },
+    {
       "key": "focusVisible",
       "className": "Mui-focusVisible",
       "description": "State class applied to the ButtonBase root element if the button is keyboard focused.",
@@ -220,6 +238,36 @@
       "description": "Styles applied to the icon element if supplied and `size=\"small\"`.",
       "isGlobal": false,
       "isDeprecated": true
+    },
+    {
+      "key": "loading",
+      "className": "MuiButton-loading",
+      "description": "Styles applied to the root element if `loading={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "loadingIndicator",
+      "className": "MuiButton-loadingIndicator",
+      "description": "Styles applied to the loadingIndicator element.",
+      "isGlobal": false
+    },
+    {
+      "key": "loadingIndicatorCenter",
+      "className": "MuiButton-loadingIndicatorCenter",
+      "description": "Styles applied to the loadingIndicator element if `loadingPosition=\"center\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "loadingIndicatorEnd",
+      "className": "MuiButton-loadingIndicatorEnd",
+      "description": "Styles applied to the loadingIndicator element if `loadingPosition=\"end\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "loadingIndicatorStart",
+      "className": "MuiButton-loadingIndicatorStart",
+      "description": "Styles applied to the loadingIndicator element if `loadingPosition=\"start\"`.",
+      "isGlobal": false
     },
     {
       "key": "outlined",
@@ -325,6 +373,12 @@
       "key": "startIcon",
       "className": "MuiButton-startIcon",
       "description": "Styles applied to the startIcon element if supplied.",
+      "isGlobal": false
+    },
+    {
+      "key": "startIconLoadingStart",
+      "className": "MuiButton-startIconLoadingStart",
+      "description": "Styles applied to the startIcon element if `loading={true}` and `loadingPosition=\"start\"`.",
       "isGlobal": false
     },
     {
