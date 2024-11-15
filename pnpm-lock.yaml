@@ -4112,14 +4112,6 @@ packages:
       '@types/react':
         optional: true
 
-  '@mui/types@7.2.19':
-    resolution: {integrity: sha512-6XpZEM/Q3epK9RN8ENoXuygnqUQxE+siN/6rGRi2iwJPgBUR25mphYQ9ZI87plGh58YoZ5pp40bFvKYOCDJ3tA==}
-    peerDependencies:
-      '@types/react': ^18.3.11
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-
   '@mui/utils@5.16.6':
     resolution: {integrity: sha512-tWiQqlhxAt3KENNiSRL+DIn9H5xNVK6Jjf70x3PnfQPz1MPBdh7yyIcAyVBT9xiw7hP3SomRhPR7hzBMBCjqEA==}
     engines: {node: '>=12.0.0'}
@@ -4135,16 +4127,6 @@ packages:
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@types/react': ^18.3.12
-      react: ^17.0.0 || ^18.0.0 || ^19.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-
-  '@mui/utils@6.1.6':
-    resolution: {integrity: sha512-sBS6D9mJECtELASLM+18WUcXF6RH3zNxBRFeyCRg8wad6NbyNrdxLuwK+Ikvc38sTZwBzAz691HmSofLqHd9sQ==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      '@types/react': ^18.3.11
       react: ^17.0.0 || ^18.0.0 || ^19.0.0
     peerDependenciesMeta:
       '@types/react':
@@ -4556,12 +4538,6 @@ packages:
 
   '@next/swc-win32-x64-msvc@15.0.3':
     resolution: {integrity: sha512-VNAz+HN4OGgvZs6MOoVfnn41kBzT+M+tB+OK4cww6DNyWS6wKaDpaAm/qLeOUbnMh0oVx1+mg0uoYARF69dJyA==}
-    engines: {node: '>= 10'}
-    cpu: [x64]
-    os: [win32]
-
-  '@next/swc-win32-x64-msvc@15.0.2':
-    resolution: {integrity: sha512-foaUL0NqJY/dX0Pi/UcZm5zsmSk5MtP/gxx3xOPyREkMFN+CTjctPfu3QaqrQHinaKdPnMWPJDKt4VjDfTBe/Q==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -15222,18 +15198,6 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.12
 
-  '@mui/utils@6.1.6(@types/react@18.3.11)(react@18.3.1)':
-    dependencies:
-      '@babel/runtime': 7.25.7
-      '@mui/types': 7.2.19(@types/react@18.3.11)
-      '@types/prop-types': 15.7.13
-      clsx: 2.1.1
-      prop-types: 15.8.1
-      react: 18.3.1
-      react-is: 18.3.1
-    optionalDependencies:
-      '@types/react': 18.3.11
-
   '@mui/x-charts-vendor@7.20.0':
     dependencies:
       '@babel/runtime': 7.26.0
@@ -15572,9 +15536,6 @@ snapshots:
     optional: true
 
   '@next/swc-win32-x64-msvc@15.0.3':
-    optional: true
-
-  '@next/swc-win32-x64-msvc@15.0.2':
     optional: true
 
   '@nicolo-ribaudo/chokidar-2@2.1.8-no-fsevents.3':
@@ -16008,7 +15969,7 @@ snapshots:
 
   '@opentelemetry/api@1.8.0':
     optional: true
-    
+
   '@pigment-css/nextjs-plugin@0.0.26(@types/react@18.3.12)(next@15.0.3(@babel/core@7.26.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.48.2)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack-sources@3.2.3)':
     dependencies:
       '@pigment-css/unplugin': 0.0.26(@types/react@18.3.12)(react@18.3.1)(webpack-sources@3.2.3)
@@ -22787,33 +22748,6 @@ snapshots:
       - '@babel/core'
       - babel-plugin-macros
 
-  next@15.0.2(@babel/core@7.25.8)(@opentelemetry/api@1.8.0)(@playwright/test@1.47.2)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
-    dependencies:
-      '@next/env': 15.0.2
-      '@swc/counter': 0.1.3
-      '@swc/helpers': 0.5.13
-      busboy: 1.6.0
-      caniuse-lite: 1.0.30001667
-      postcss: 8.4.31
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      styled-jsx: 5.1.6(@babel/core@7.25.8)(babel-plugin-macros@3.1.0)(react@18.3.1)
-    optionalDependencies:
-      '@next/swc-darwin-arm64': 15.0.2
-      '@next/swc-darwin-x64': 15.0.2
-      '@next/swc-linux-arm64-gnu': 15.0.2
-      '@next/swc-linux-arm64-musl': 15.0.2
-      '@next/swc-linux-x64-gnu': 15.0.2
-      '@next/swc-linux-x64-musl': 15.0.2
-      '@next/swc-win32-arm64-msvc': 15.0.2
-      '@next/swc-win32-x64-msvc': 15.0.2
-      '@opentelemetry/api': 1.8.0
-      '@playwright/test': 1.47.2
-      sharp: 0.33.5
-    transitivePeerDependencies:
-      - '@babel/core'
-      - babel-plugin-macros
-
   nise@6.1.1:
     dependencies:
       '@sinonjs/commons': 3.0.1
@@ -25141,14 +25075,6 @@ snapshots:
       react: 18.3.1
     optionalDependencies:
       '@babel/core': 7.26.0
-      babel-plugin-macros: 3.1.0
-
-  styled-jsx@5.1.6(@babel/core@7.25.8)(babel-plugin-macros@3.1.0)(react@18.3.1):
-    dependencies:
-      client-only: 0.0.1
-      react: 18.3.1
-    optionalDependencies:
-      '@babel/core': 7.25.8
       babel-plugin-macros: 3.1.0
 
   styled-system@5.1.5:
