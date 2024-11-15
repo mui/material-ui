@@ -17,14 +17,9 @@ import IconImage from 'docs/src/components/icon/IconImage';
 import LicenseModelSwitch from 'docs/src/components/pricing/LicenseModelSwitch';
 import { useLicenseModel } from 'docs/src/components/pricing/LicenseModelContext';
 import BusinessIcon from '@mui/icons-material/Business';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import { usePrioritySupport } from 'docs/src/components/pricing/PrioritySupportContext';
 import PrioritySupportSwitch from 'docs/src/components/pricing/PrioritySupportSwitch';
-
-const a = false; //to be removed
 
 const planInfo = {
   community: {
@@ -276,11 +271,7 @@ export function PlanPrice(props: PlanPriceProps) {
   );
 }
 
-function Info(props: {
-  value: React.ReactNode;
-  metadata?: React.ReactNode;
-  prioritySupport?: boolean;
-}) {
+function Info(props: { value: React.ReactNode; metadata?: React.ReactNode }) {
   const { prioritySupport } = usePrioritySupport();
   const { value, metadata } = props;
 
@@ -1019,6 +1010,8 @@ const proData: Record<string, React.ReactNode> = {
   'security-questionnaire': <Info value="Available from 10+ devs" />,
 };
 
+const a = false;
+
 const premiumData: Record<string, React.ReactNode> = {
   // Core
   'Base UI': yes,
@@ -1114,29 +1107,7 @@ const premiumData: Record<string, React.ReactNode> = {
   // Support
   'core-support': <Info value="Community" />,
   'x-support': <Info value={yes} metadata="Priority over Pro" />,
-  'priority-support': (
-    <Info
-      value={
-        <FormGroup>
-          <FormControlLabel
-            control={<Switch />}
-            label={
-              <Typography
-                variant="body1"
-                sx={{ color: 'text.secondary', textAlign: 'center', fontSize: '0.875rem' }}
-              >
-                Add
-              </Typography>
-            }
-            // checked={prioritySupport}
-            // onChange={handleSwitchChange}
-            sx={{ mr: 0 }}
-            labelPlacement="bottom"
-          />
-        </FormGroup>
-      }
-    />
-  ),
+  'priority-support': <PrioritySupportSwitch />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
   'response-time': <Info value={`${a ? '24 hours' : '72 hours'}`} />,
@@ -1359,7 +1330,6 @@ function StickyHead({
 const divider = <Divider />;
 
 function renderMasterRow(key: string, gridSx: object, plans: Array<any>) {
-  // const { prioritySupport, setPrioritySupport } = usePrioritySupport();
   return (
     <Box
       sx={[
@@ -1531,20 +1501,6 @@ export default function PricingTable({
     />
   );
 
-  /*  const [prioritySupport, setPrioritySupport] = React.useState(false);
-  const handleSwitchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPrioritySupport(event.target.checked);
-  };
-  console.log('prioritySupportMain', prioritySupport);
-  */
-
-  /*
-  const { prioritySupport, setPrioritySupport } = usePrioritySupport();
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPrioritySupport(event.target.checked);
-  };
-  */
-
   const renderRow = (key: string) => renderMasterRow(key, gridSx, plans);
   const renderNestedRow = (key: string) => renderMasterRow(key, nestedGridSx, plans);
 
@@ -1580,11 +1536,7 @@ export default function PricingTable({
           </ColumnHeadHighlight>
           <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>
             <PlanName plan="premium" />
-            <PlanPrice
-              plan="premium"
-              // checked={prioritySupport}
-              // handleChange={handleSwitchChange}
-            />
+            <PlanPrice plan="premium" />
             <PricingTableBuyPremium />
           </Box>
           <ColumnHeadHighlight>
