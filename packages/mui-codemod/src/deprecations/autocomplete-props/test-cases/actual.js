@@ -47,6 +47,15 @@ import {Autocomplete as MyAutocomplete} from '@mui/material';
 />;
 
 <CustomAutocomplete
+  componentsProps={{
+    clearIndicator: { width: 10 },
+    paper: { width: 12 },
+    popper: { width: 14 },
+    popupIndicator: { width: 16 },
+  }}
+/>;
+
+<CustomAutocomplete
   ChipProps={{ height: 10 }}
   PaperComponent={CustomPaper}
   PopperComponent={CustomPopper}
