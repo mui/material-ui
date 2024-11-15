@@ -1069,6 +1069,7 @@ describe('<Autocomplete />', () => {
       expect(textbox).to.have.attribute('aria-expanded', 'true');
 
       const listbox = getByRole('listbox');
+      expect(listbox.tagName.toLowerCase()).to.equal('ul');
       expect(textbox).to.have.attribute('aria-controls', listbox.getAttribute('id'));
       expect(textbox, 'no option is focused when opened').not.to.have.attribute(
         'aria-activedescendant',
