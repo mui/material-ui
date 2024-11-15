@@ -1111,8 +1111,8 @@ const premiumData: Record<string, React.ReactNode> = {
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
   'response-time': <Info value={`${a ? '24 hours' : '72 hours'}`} />,
-  'pre-screening': no,
-  'issue-escalation': no,
+  'pre-screening': a ? no : yes,
+  'issue-escalation': a ? no : yes,
   'security-questionnaire': <Info value="Available from 4+ devs" />,
 };
 
