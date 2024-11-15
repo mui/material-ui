@@ -37,7 +37,8 @@ const AccordionSummaryRoot = styled(ButtonBase, {
 
     return {
       display: 'flex',
-      ...theme.typography.body1,
+      letterSpacing: 'inherit',
+      font: 'inherit',
       width: '100%',
       minHeight: 48,
       padding: theme.spacing(0, 2),
