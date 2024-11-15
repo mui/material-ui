@@ -99,6 +99,8 @@
   "copySourceLinkTS": "Copy link to TypeScript source",
   "dashboardDescr": "A collection of charts and complex components in a responsive dashboard layout.",
   "dashboardTitle": "Dashboard",
+  "dashboardToolpadTitle": "Functional Dashboard",
+  "dashboardToolpadDescr": "A collection of charts and grids integrated with authentication, layout and navigation. Built using Toolpad Core components.",
   "decreaseSpacing": "decrease spacing",
   "demoToolbarLabel": "demo source",
   "demoStylingSelectSystem": "MUI System",

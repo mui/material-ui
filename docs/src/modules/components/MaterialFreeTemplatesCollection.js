@@ -3,6 +3,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
+import Chip from '@mui/material/Chip';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Link from '@mui/material/Link';
@@ -17,56 +18,68 @@ import { pascalCase } from 'docs/src/modules/utils/helpers';
 import sourceMaterialTemplates from 'docs/src/modules/material/sourceMaterialTemplates';
 import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
 import stackBlitz from 'docs/src/modules/sandbox/StackBlitz';
+import { sxChip } from 'docs/src/modules/components/AppNavDrawerItem';
 
 const sourcePrefix = `${process.env.SOURCE_CODE_REPO}/tree/v${process.env.LIB_VERSION}`;
 
-function layouts(translatation) {
+function layouts(translation) {
   return [
     {
-      title: translatation('dashboardTitle'),
-      description: translatation('dashboardDescr'),
+      title: translation('dashboardTitle'),
+      description: translation('dashboardDescr'),
       href: '/material-ui/getting-started/templates/dashboard/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/dashboard`,
       hasDarkMode: true,
     },
     {
-      title: translatation('marketingPageTitle'),
-      description: translatation('marketingPageDescr'),
+      title: translation('dashboardToolpadTitle'),
+      description: translation('dashboardToolpadDescr'),
+      href: '/toolpad/core/templates/nextjs-dashboard',
+      source: 'https://github.com/mui/toolpad/tree/master/examples/core/auth-nextjs-themed',
+      codeSandbox:
+        'https://codesandbox.io/s/github/mui/toolpad/tree/master/examples/core/auth-nextjs-themed',
+      stackBlitz: null,
+      hasDarkMode: true,
+      new: true,
+    },
+    {
+      title: translation('marketingPageTitle'),
+      description: translation('marketingPageDescr'),
       href: '/material-ui/getting-started/templates/marketing-page/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/marketing-page`,
       hasDarkMode: true,
     },
     {
-      title: translatation('checkoutTitle'),
-      description: translatation('checkoutDescr'),
+      title: translation('checkoutTitle'),
+      description: translation('checkoutDescr'),
       href: '/material-ui/getting-started/templates/checkout/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/checkout`,
       hasDarkMode: true,
     },
     {
-      title: translatation('signInTitle'),
-      description: translatation('signInDescr'),
+      title: translation('signInTitle'),
+      description: translation('signInDescr'),
       href: '/material-ui/getting-started/templates/sign-in/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/sign-in`,
       hasDarkMode: true,
     },
     {
-      title: translatation('signInSideTitle'),
-      description: translatation('signInSideDescr'),
+      title: translation('signInSideTitle'),
+      description: translation('signInSideDescr'),
       href: '/material-ui/getting-started/templates/sign-in-side/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/sign-in-side`,
       hasDarkMode: true,
     },
     {
-      title: translatation('signUpTitle'),
-      description: translatation('signUpDescr'),
+      title: translation('signUpTitle'),
+      description: translation('signUpDescr'),
       href: '/material-ui/getting-started/templates/sign-up/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/sign-up`,
       hasDarkMode: true,
     },
     {
-      title: translatation('blogTitle'),
-      description: translatation('blogDescr'),
+      title: translation('blogTitle'),
+      description: translation('blogDescr'),
       href: '/material-ui/getting-started/templates/blog/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/blog`,
       hasDarkMode: true,
@@ -75,11 +88,11 @@ function layouts(translatation) {
 }
 
 export default function Templates() {
-  const translatation = useTranslate();
+  const translation = useTranslate();
   const materialTemplates = sourceMaterialTemplates();
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4, mb: 4 }}>
-      {layouts(translatation).map((layout) => {
+      {layouts(translation).map((layout) => {
         const templateId = layout.source.split('/').pop();
         const templateName = pascalCase(templateId);
         const item = materialTemplates.map.get(templateId);
@@ -87,6 +100,7 @@ export default function Templates() {
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }} key={layout.title}>
             <Typography component="h3" variant="h6" sx={{ fontWeight: 'semiBold' }}>
               {layout.title}
+              {layout.new && <Chip label="NEW" sx={sxChip('success')} />}
             </Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2 }}>
               {layout.description}
@@ -170,42 +184,48 @@ export default function Templates() {
                     gap: 1,
                   }}
                 >
-                  <Tooltip title="Edit in StackBlitz">
-                    <IconButton
-                      color="primary"
-                      size="small"
-                      aria-label="StackBlitz playground"
-                      data-ga-event-category="material-ui-template"
-                      data-ga-event-label={templateId}
-                      data-ga-event-action="stackblitz"
-                      onClick={() =>
-                        stackBlitz
-                          .createMaterialTemplate({
-                            ...item,
-                            files: { ...item.files, ...materialTemplates.sharedTheme?.files },
-                            title: `${templateName} Template - Material UI`,
-                            githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
-                              process.env.LIB_VERSION
-                            }/docs/data/material/templates/${templateId}/${templateName}.${
-                              item.codeVariant === 'TS' ? 'tsx' : 'js'
-                            }`,
-                          })
-                          .replaceContent((content) => {
-                            if (typeof content === 'string') {
-                              return content
-                                .replace(/\.\.\/shared-theme\//g, './theme/')
-                                .replace('./App', `./${templateName}`);
-                            }
-                            return content;
-                          })
-                          .openStackBlitz(`/${templateName}`)
-                      }
-                    >
-                      <SvgIcon viewBox="0 0 19 28">
-                        <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
-                      </SvgIcon>
-                    </IconButton>
-                  </Tooltip>
+                  {layout.stackBlitz !== null && (
+                    <Tooltip title="Edit in StackBlitz">
+                      <IconButton
+                        color="primary"
+                        size="small"
+                        aria-label="StackBlitz playground"
+                        data-ga-event-category="material-ui-template"
+                        data-ga-event-label={templateId}
+                        data-ga-event-action="stackblitz"
+                        onClick={() => {
+                          if (layout.stackBlitz) {
+                            window.open(layout.stackBlitz, '_blank', 'noopener,noreferrer');
+                            return;
+                          }
+                          stackBlitz
+                            .createMaterialTemplate({
+                              ...item,
+                              files: { ...item.files, ...materialTemplates.sharedTheme?.files },
+                              title: `${templateName} Template - Material UI`,
+                              githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
+                                process.env.LIB_VERSION
+                              }/docs/data/material/templates/${templateId}/${templateName}.${
+                                item.codeVariant === 'TS' ? 'tsx' : 'js'
+                              }`,
+                            })
+                            .replaceContent((content) => {
+                              if (typeof content === 'string') {
+                                return content
+                                  .replace(/\.\.\/shared-theme\//g, './theme/')
+                                  .replace('./App', `./${templateName}`);
+                              }
+                              return content;
+                            })
+                            .openStackBlitz(`/${templateName}`);
+                        }}
+                      >
+                        <SvgIcon viewBox="0 0 19 28">
+                          <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
+                        </SvgIcon>
+                      </IconButton>
+                    </Tooltip>
+                  )}
                   <Tooltip title="Edit in CodeSandbox">
                     <IconButton
                       color="primary"
@@ -214,7 +234,11 @@ export default function Templates() {
                       data-ga-event-category="material-ui-template"
                       data-ga-event-label={templateId}
                       data-ga-event-action="codesandbox"
-                      onClick={() =>
+                      onClick={() => {
+                        if (layout.codeSandbox) {
+                          window.open(layout.codeSandbox, '_blank', 'noopener,noreferrer');
+                          return;
+                        }
                         codeSandbox
                           .createMaterialTemplate({
                             ...item,
@@ -234,8 +258,8 @@ export default function Templates() {
                             }
                             return content;
                           })
-                          .openSandbox(`/${templateName}`)
-                      }
+                          .openSandbox(`/${templateName}`);
+                      }}
                     >
                       <SvgIcon viewBox="0 0 1080 1080">
                         <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
