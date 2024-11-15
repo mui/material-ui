@@ -124,7 +124,10 @@ const StyledPopper = styled(Popper)({
 const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 const OPTIONS = [...Array(100).keys()]
-  .map((number) => `${characters[number % characters.length].repeat(10)}${Math.floor(number / characters.length)}`)
+  .map(
+    (number) =>
+      `${characters[number % characters.length].repeat(10)}${Math.floor(number / characters.length)}`,
+  )
   .sort((a, b) => a.toUpperCase().localeCompare(b.toUpperCase()));
 
 export default function Virtualize() {
