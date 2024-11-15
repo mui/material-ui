@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-pigment-css",
-  "version": "6.1.6",
+  "version": "6.1.7",
   "author": "MUI Team",
   "description": "A wrapper over Pigment CSS that provides the same styled and theming APIs as Material UI.",
   "main": "./src/index.ts",
@@ -41,7 +41,7 @@
   "dependencies": {
     "@babel/runtime": "^7.26.0",
     "@mui/system": "workspace:*",
-    "@pigment-css/react": "0.0.25"
+    "@pigment-css/react": "0.0.26"
   },
   "sideEffects": false,
   "publishConfig": {

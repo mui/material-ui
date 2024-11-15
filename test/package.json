@@ -34,14 +34,14 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-is": "^18.3.1",
-    "react-router-dom": "^6.27.0",
-    "sinon": "^18.0.1",
+    "react-router-dom": "^6.28.0",
+    "sinon": "^19.0.2",
     "styled-components": "^6.1.13",
     "stylis": "4.2.0",
     "stylis-plugin-rtl": "^2.1.1",
     "stylis-plugin-rtl-sc": "npm:stylis-plugin-rtl@^1.1.0",
     "webfontloader": "^1.6.28",
-    "webpack": "^5.95.0",
+    "webpack": "^5.96.1",
     "yargs": "^17.7.2"
   },
   "dependencies": {

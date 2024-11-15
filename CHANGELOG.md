@@ -1,6 +1,60 @@
 # [Versions](https://mui.com/versions/)
 
-## 6.1.6
+## v6.1.7
+
+<!-- generated comparing v6.1.6..master -->
+
+_Nov 13, 2024_
+
+A big thanks to the 13 contributors who made this release possible.
+This release includes fixes as well as documentation improvements.
+
+### `@mui/material@6.1.7`
+
+- Fix default props theme scoping (#44340) @siriwatknp
+- Support theme scoping in `useMediaQuery` (#44339) @siriwatknp
+- [Grid] Fix regression spacing prop with string value (#44376) @siriwatknp
+
+### `@mui/styled-engine-sc@6.1.7`
+
+- Fix missing `@types/hoist-non-react-statics` causing `styled` returns any (#44397) @megos
+
+### Docs
+
+- Replace 'Experimental APIs - Toolpad' with 'Toolpad (Beta)' (#44388) @prakhargupta1
+- Fix Pigment CSS install (#44353) @oliviertassinari
+- Fix dashboard menu warning (#44317) @siriwatknp
+- Add runtime theme section for Material Pigment CSS (#44137) @siriwatknp
+- Add hash to `key` to remove noise from console (#44289) @sai6855
+- Revise Example Projects and Related Projects pages (#44191) @samuelsycamore
+- [material-ui] Fix typo in typography theme set up for templates (#44338) @navedqb
+- [material-ui] Add StackBlitz/CodeSandbox buttons to template cards (#44253) @zanivan
+- [material-ui] Fix Sign-in/Sign-up templates layout (#44281) @zanivan
+- [material-ui] Remove noise in template (#44260) @oliviertassinari
+- [material-ui][Rating] Add uncontrolled example to Basic Rating demo (#44386) @sai6855
+- [material-ui][TextField] Replace InputProps with slotProps.input in demo (#44288) @sai6855
+
+### Core
+
+- [blog] Follow media asset guidelines (#44374) @oliviertassinari
+- [code-infra] Changes for test util to work in `vitest` (#43625) @JCQuintas
+- Remove old marked JS options (#44375) @ZeeshanTamboli
+- Fix webpack capitalization (#44352) @oliviertassinari
+- Fix Next.js link 404 (710cd95) @oliviertassinari
+- Update Gold sponsoring backlinks (#44316) @oliviertassinari
+- Fix tools-public.mui.com redirection (9196fa5) @oliviertassinari
+- Remove blank AlertTitle test file (#44282) @ZeeshanTamboli
+- [docs-infra] Fix ad in RTL (#44345) @oliviertassinari
+- [docs-infra] Enforce punctuation on descriptions (#44292) @oliviertassinari
+- [docs-infra] Add CodeSandbox and StackBlitz to vale vocab (6db477a) @oliviertassinari
+- [docs-infra] Fix correct spelling of VS Code (#44277) @oliviertassinari
+- [docs-infra] Add a `rawDescriptions` option (#44390) @vladmoroz
+- [examples] Add missing `clsx` dependency (#43526) @Janpot
+- [infra] Fix @renovate[bot] appearing in changelog (#44275) @mnajdova
+
+All contributors of this release in alphabetical order: @Janpot, @JCQuintas, @megos, @mnajdova, @navedqb, @oliviertassinari, @prakhargupta1, @sai6855, @samuelsycamore, @siriwatknp, @vladmoroz, @zanivan, @ZeeshanTamboli
+
+## v6.1.6
 
 <!-- generated comparing v6.1.5..master -->
 
@@ -52,7 +106,7 @@ A big thanks to the 13 contributors who made this release possible.
 
 All contributors of this release in alphabetical order: @aarongarciah, @blackcow1987, @DiegoAndai, @jimmycallin, @joshkel, @mnajdova, @navedqb, @nphmuller, @o-alexandrov, @oliviertassinari, @prakhargupta1, @sai6855, @siriwatknp
 
-## 6.1.5
+## v6.1.5
 
 <!-- generated comparing v6.1.4..master -->
 
@@ -84,7 +138,7 @@ A big thanks to the 9 contributors who made this release possible.
 - [material-ui][TextField] Dynamically modify the eye password button aria-label (#44122) @ChinoUkaegbu
 - [icons] Run pnpm docs:mdicons:synonyms (#44098) @oliviertassinari
 - [joy-ui] Update Overview copy to match Readme (#44136) @samuelsycamore
-- Add CodeSandbox/Stackblitz to the rest of the templates (#43708) @siriwatknp
+- Add CodeSandbox/StackBlitz to the rest of the templates (#43708) @siriwatknp
 - Update Figma link to fix 301 (a7b7d9c) @oliviertassinari
 - Link Toolpad from Core repo (#44111) @prakhargupta1
 - Remove HighlightedCode max-width (#43731) @Janpot
@@ -254,7 +308,7 @@ A big thanks to the 13 contributors who made this release possible.
 - Uniformity in version range @oliviertassinari
 - Replace `toBeAriaHidden` matcher with `toBeInaccessible` in tests (#43870) @ZeeshanTamboli
 - [docs-infra] Strengthen CSP (#43711) @oliviertassinari
-- [docs-infra] Open Codesandbox demo with fontsize=12 (#43860) @siriwatknp
+- [docs-infra] Open CodeSandbox demo with fontsize=12 (#43860) @siriwatknp
 - [icons] Reduce Material Icon page size (#43911) @oliviertassinari
 - [test] Point Istanbul to correct URL (#43935) @sai6855
 - [test] Sync React.version parse logic with codebase (#43820) @oliviertassinari

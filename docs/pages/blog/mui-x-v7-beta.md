@@ -9,7 +9,7 @@ manualCard: true
 
 <div style="max-width: 692px; width: 100%; height: 100%; overflow: hidden;">
   <a href="https://github.com/mui/mui-x/releases/tag/v7.0.0-beta.0">
-    <img src="/static/blog/mui-x-v7-beta/intro.jpg" alt="MUI X v7 beta release" width="1200" height="400" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
+    <img src="/static/blog/mui-x-v7-beta/intro.jpg" alt="MUI X v7 beta release" width="2400" height="800" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
   </a>
 </div>
 
@@ -48,7 +48,7 @@ The column headers and pinning implementations have been refactored for an impro
 You'll notice a more responsive Data Grid with smoother horizontal scrolling and better screen reader support.
 The video below showcases some of these improvements.
 
-<video preload="metadata" autoplay muted loop playsinline width="690" height="417" controls>
+<video autoplay muted loop playsinline width="690" height="417" controls>
   <source src="/static/blog/mui-x-v7-beta/sticky-headers.mp4" type="video/mp4">
 </video>
 
@@ -64,7 +64,10 @@ Without the theming system, you may need to manually set an appropriate backgrou
 
 The column management panel now features a sleeker, checkbox-based design, replacing the previous toggle button style. Additionally, we've extracted the internal component to facilitate the introduction of the upcoming pivoting UI.
 
-<img width="310" alt="new column management panel design" src="/static/blog/mui-x-v7-beta/column-management-panel.png">
+<figure>
+  <img style="width: 303px;" width="606" height="900" alt="The new column management panel design" src="/static/blog/mui-x-v7-beta/column-management-panel.png" loading="lazy">
+  <figcaption>The new column management panel design</figcaption>
+</figure>
 
 ### Date Object support in filter model
 
@@ -74,11 +77,14 @@ While string values remain compatible for these types, any updates to the `filte
 
 ### Smaller bundle size
 
-The introduction of a separate entry point for locales has significantly reduced the bundle size of the barrel index when tree-shaking isn't operational (for example Webpack in dev mode).
+The introduction of a separate entry point for locales has significantly reduced the bundle size of the barrel index when tree-shaking isn't operational (for example webpack in dev mode).
 
 For example with the `@mui/x-data-grid` npm package, this change led to a reduction of approximately 22% – shrinking the bundle size from [114.2kB](https://bundlephobia.com/package/@mui/x-data-grid@6.19.2) to [88.5kB](https://bundlephobia.com/package/@mui/x-data-grid@7.0.0-beta.0).
 
-<img width="694" alt="Bundle size change" src="/static/blog/mui-x-v7-beta/new-bundle-size.png" style="padding-left: 20px; padding-right: 5px;">
+<figure>
+  <img style="width: 550px" width="1101" height="869" alt="A chart showcasing the bundle size change" src="/static/blog/mui-x-v7-beta/new-bundle-size.png" loading="lazy">
+  <figcaption>A chart showcasing the Data Grid's bundle size change.</figcaption>
+</figure>
 
 ### New stable features
 
@@ -141,7 +147,10 @@ This includes bug fixes, documentation improvements, and support for more comple
 
 The `ChartsReferenceLine` component enhances data visualization, providing users with a clear reference to better understand and analyze key data points.
 
-<img alt="Charts reference line" src="/static/blog/mui-x-v7-beta/charts-reference-line.png" width="1200" height="840" loading="lazy" />
+<figure>
+  <img alt="A chart with a reference line" src="/static/blog/mui-x-v7-beta/charts-reference-line.png" width="1290" height="822" loading="lazy" />
+  <figcaption>A line chart using a reference line.</figcaption>
+</figure>
 
 You can find more details on its [documentation](https://next.mui.com/x/react-charts/axis/#reference-line).
 
@@ -158,7 +167,7 @@ Support new use cases with this most anticipated component.
 The latest addition to the Date and Time Pickers suite is the `<DateTimeRangePicker />`, a component designed to enrich the user experience with advanced date and time selection.
 This intuitive picker simplifies the process of selecting date and time ranges, making it ideal for applications that require detailed scheduling or period selection.
 
-<video preload="metadata" autoplay muted loop playsinline width="600" height="510">
+<video autoplay muted loop playsinline width="600" height="510">
   <source src="/static/blog/mui-x-v7-beta/date-time-range-picker.mp4" type="video/mp4">
 </video>
 

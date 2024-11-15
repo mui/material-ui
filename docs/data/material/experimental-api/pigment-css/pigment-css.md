@@ -48,8 +48,8 @@ npm install --save-dev @pigment-css/nextjs-plugin
 ```
 
 ```bash Vite
-npm install @pigment-css/react@next
-npm install --save-dev @pigment-css/vite-plugin@next
+npm install @pigment-css/react
+npm install --save-dev @pigment-css/vite-plugin
 ```
 
 </codeblock>
@@ -339,5 +339,37 @@ declare global {
           >;
     }
   }
+}
+```
+
+### Runtime theme
+
+:::info
+
+**Caveat**
+
+- Avoid using the runtime theme unless you have a compelling reason.
+- The runtime theme contains [**only serializable values**](https://developer.mozilla.org/en-US/docs/Glossary/Serializable_object) (some functions still exist in `breakpoints` and `transitions` for internal logic inside components but may be removed in the future).
+- The runtime theme will not change between modes (light and dark) because it is pre-compiled at build time. To render something based on the theme structure and its values, use `theme.vars.*` to refer to CSS variables instead.
+
+:::
+
+To access the runtime theme, use the `useTheme` hook:
+
+```js
+import { useTheme } from '@mui/material-pigment-css';
+
+function MyComponent() {
+  const theme = useTheme();
+
+  return (
+    <div>
+      {Object.entries(theme.vars.palette.primary).map(([key, value]) => (
+        <div key={key} style={{ width: 40, height: 40, background: value }}>
+          {key}: {value}
+        </div>
+      ))}
+    </div>
+  );
 }
 ```

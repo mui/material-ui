@@ -1,6 +1,6 @@
 {
   "name": "@mui/system",
-  "version": "6.1.6",
+  "version": "6.1.7",
   "private": false,
   "author": "MUI Team",
   "description": "MUI System is a set of CSS utilities to help you build custom designs more efficiently. It makes it possible to rapidly lay out custom designs.",
@@ -61,7 +61,7 @@
     "fast-glob": "^3.3.2",
     "lodash": "^4.17.21",
     "react": "^18.3.1",
-    "sinon": "^18.0.1",
+    "sinon": "^19.0.2",
     "styled-components": "^6.1.13"
   },
   "peerDependencies": {

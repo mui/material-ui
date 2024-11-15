@@ -156,7 +156,7 @@ Your organization logo will be placed in:
 - the [README.md](https://github.com/mui/material-ui#sponsors) (80k+ unique visitors/month)
 - the [Gold sponsor list](#gold-sponsors)
 
-\*we accept donations, but we won't show unethical ads.
+\*for backlink sponsors, your logo won't be visible.
 
 ### Silver
 
