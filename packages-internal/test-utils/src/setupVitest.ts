@@ -21,9 +21,19 @@ testingLibrary.configure({
 
 failOnConsole({
   silenceMessage: (message) => {
-    if (process.env.NODE_ENV === 'production' || process.env.IGNORE_ACT_WARNINGS === 'true') {
+    if (process.env.NODE_ENV === 'production') {
       // TODO: mock scheduler
       if (message.includes('act(...) is not supported in production builds of React')) {
+        return true;
+      }
+    }
+
+    if (process.env.IGNORE_ACT_WARNINGS === 'true') {
+      if (
+        message.includes(
+          'When testing, code that causes React state updates should be wrapped into act(...)',
+        )
+      ) {
         return true;
       }
     }
