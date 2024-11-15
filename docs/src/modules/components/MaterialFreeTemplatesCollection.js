@@ -61,7 +61,7 @@ function layouts(translation) {
       description: translation('signInDescr'),
       href: '/material-ui/getting-started/templates/sign-in/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/sign-in`,
-      hasDarkMode: true,
+      hasDarkMode: false,
     },
     {
       title: translation('signInSideTitle'),
