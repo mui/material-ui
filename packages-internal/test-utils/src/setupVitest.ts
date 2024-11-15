@@ -9,9 +9,6 @@ import './initMatchers';
 // from assistive technology
 const defaultHidden = !process.env.CI;
 
-// adds verbosity for something that might be confusing
-console.warn(`${defaultHidden ? 'including' : 'excluding'} inaccessible elements by default`);
-
 testingLibrary.configure({
   // JSDOM logs errors otherwise on `getComputedStyle(element, pseudoElement)` calls.
   computedStyleSupportsPseudoElements: false,
@@ -24,7 +21,7 @@ testingLibrary.configure({
 
 failOnConsole({
   silenceMessage: (message) => {
-    if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === 'production' || process.env.IGNORE_ACT_WARNINGS === 'true') {
       // TODO: mock scheduler
       if (message.includes('act(...) is not supported in production builds of React')) {
         return true;
