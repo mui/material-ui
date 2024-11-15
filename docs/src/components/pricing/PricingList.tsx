@@ -12,6 +12,19 @@ import { Link } from '@mui/docs/Link';
 import PricingTable, { PlanName, PlanPrice } from 'docs/src/components/pricing/PricingTable';
 import { useLicenseModel } from 'docs/src/components/pricing/LicenseModelContext';
 
+function getButtonText(plan: string) {
+  if (plan.match(/(pro|premium)/)) {
+    return 'Buy now';
+  }
+  if (plan === 'enterprise') {
+    return 'Contact sales';
+  }
+  if (plan === 'community') {
+    return 'Get started';
+  }
+  return 'missing';
+}
+
 const Plan = React.forwardRef<
   HTMLDivElement,
   {
@@ -85,19 +98,6 @@ const Plan = React.forwardRef<
     </Paper>
   );
 });
-
-function getButtonText(plan: string) {
-  if (plan.match(/(pro|premium)/)) {
-    return 'Buy now';
-  }
-  if (plan === 'enterprise') {
-    return 'Contact sales';
-  }
-  if (plan === 'community') {
-    return 'Get started';
-  }
-  return 'missing';
-}
 
 export default function PricingList() {
   const [planIndex, setPlanIndex] = React.useState(0);
