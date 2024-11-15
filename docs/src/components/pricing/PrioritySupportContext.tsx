@@ -3,16 +3,11 @@ import * as React from 'react';
 const PrioritySupport = React.createContext<{
   isPrioritySupport: boolean;
   setIsPrioritySupport: React.Dispatch<React.SetStateAction<boolean>>;
-}>({
-  isPrioritySupport: false,
-  setIsPrioritySupport: () => {},
-});
+}>(undefined as any);
 
-/*
 if (process.env.NODE_ENV !== 'production') {
-  LicenseModel.displayName = 'LicenseModel';
+  PrioritySupport.displayName = 'PrioritySupport';
 }
-*/
 
 export function PrioritySupportProvider(props: any) {
   const [isPrioritySupport, setIsPrioritySupport] = React.useState<boolean>(false);
