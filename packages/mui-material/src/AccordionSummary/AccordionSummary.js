@@ -138,7 +138,6 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
       focusRipple={false}
       disableRipple
       disabled={disabled}
-      // component="div"
       aria-expanded={expanded}
       className={clsx(classes.root, className)}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
