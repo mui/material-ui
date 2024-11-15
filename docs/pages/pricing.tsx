@@ -30,16 +30,16 @@ export default function Pricing() {
         <HeroPricing />
         <Divider />
         <LicenseModelProvider>
-          {/* Mobile, Tablet */}
-          <Container sx={{ display: { xs: 'block', md: 'none' }, pb: 3, mt: '-1px' }}>
-            <PricingList />
-          </Container>
-          {/* Desktop */}
-          <Container sx={{ display: { xs: 'none', md: 'block' } }}>
-            <PrioritySupportProvider>
+          <PrioritySupportProvider>
+            {/* Mobile, Tablet */}
+            <Container sx={{ display: { xs: 'block', md: 'none' }, pb: 3, mt: '-1px' }}>
+              <PricingList />
+            </Container>
+            {/* Desktop */}
+            <Container sx={{ display: { xs: 'none', md: 'block' } }}>
               <PricingTable />
-            </PrioritySupportProvider>
-          </Container>
+            </Container>
+          </PrioritySupportProvider>
         </LicenseModelProvider>
         <PricingWhatToExpect />
         <Divider />
