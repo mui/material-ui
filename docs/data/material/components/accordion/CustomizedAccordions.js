@@ -26,11 +26,10 @@ const AccordionSummary = styled((props) => (
 ))(({ theme }) => ({
   backgroundColor: 'rgba(0, 0, 0, .03)',
   flexDirection: 'row-reverse',
-  justifyContent: 'flex-end',
   '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
     transform: 'rotate(90deg)',
   },
-  '& .MuiTypography-root': {
+  '& .MuiAccordionSummary-content': {
     marginLeft: theme.spacing(1),
   },
   ...theme.applyStyles('dark', {
