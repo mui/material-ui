@@ -40,7 +40,6 @@ const AccordionSummaryRoot = styled(ButtonBase, {
       letterSpacing: 'inherit',
       font: 'inherit',
       width: '100%',
-      justifyContent: 'space-between',
       minHeight: 48,
       padding: theme.spacing(0, 2),
       transition: theme.transitions.create(['min-height', 'background-color'], transition),
