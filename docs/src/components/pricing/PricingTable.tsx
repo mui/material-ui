@@ -18,8 +18,8 @@ import LicenseModelSwitch from 'docs/src/components/pricing/LicenseModelSwitch';
 import { useLicenseModel } from 'docs/src/components/pricing/LicenseModelContext';
 import BusinessIcon from '@mui/icons-material/Business';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
-import { usePrioritySupport } from 'docs/src/components/pricing/PrioritySupportContext';
 import PrioritySupportSwitch from 'docs/src/components/pricing/PrioritySupportSwitch';
+import InfoPrioritySupport from 'docs/src/components/pricing/InfoPrioritySupport';
 
 const planInfo = {
   community: {
@@ -272,7 +272,6 @@ export function PlanPrice(props: PlanPriceProps) {
 }
 
 function Info(props: { value: React.ReactNode; metadata?: React.ReactNode }) {
-  const { prioritySupport } = usePrioritySupport();
   const { value, metadata } = props;
 
   return (
@@ -1010,8 +1009,6 @@ const proData: Record<string, React.ReactNode> = {
   'security-questionnaire': <Info value="Available from 10+ devs" />,
 };
 
-const a = false;
-
 const premiumData: Record<string, React.ReactNode> = {
   // Core
   'Base UI': yes,
@@ -1105,14 +1102,14 @@ const premiumData: Record<string, React.ReactNode> = {
   'mui-x-development-perpetual': <Info value="Perpetual" />,
   'mui-x-updates': <Info value="1 year" />,
   // Support
-  'core-support': <Info value="Community" />,
+  'core-support': <InfoPrioritySupport value={yes} value2="Community" />,
   'x-support': <Info value={yes} metadata="Priority over Pro" />,
   'priority-support': <PrioritySupportSwitch />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
-  'response-time': <Info value={`${a ? '24 hours' : '72 hours'}`} />,
-  'pre-screening': a ? no : yes,
-  'issue-escalation': a ? no : yes,
+  'response-time': <InfoPrioritySupport value={yes} metadata="24 hours" value2="48 hours" />,
+  'pre-screening': <InfoPrioritySupport value={yes} metadata="4 hours" value2={no} />,
+  'issue-escalation': <InfoPrioritySupport value={yes} value2={no} />,
   'security-questionnaire': <Info value="Available from 4+ devs" />,
 };
 
@@ -1907,13 +1904,13 @@ export default function PricingTable({
       <RowHead startIcon={<SupportAgentIcon color="primary" width={28} height={28} />}>
         Support
       </RowHead>
-      {renderRow('core-support')}
-      {divider}
       {renderRow('x-support')}
       {divider}
       {renderRow('support-duration')}
       {divider}
       {renderRow('priority-support')}
+      {divider}
+      {renderRow('core-support')}
       {divider}
       {renderRow('response-time')}
       {divider}
