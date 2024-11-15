@@ -10,7 +10,7 @@
       },
       "default": "{}",
       "deprecated": true,
-      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in v7. <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
+      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "componentsProps": {
       "type": {
@@ -19,7 +19,7 @@
       },
       "default": "{}",
       "deprecated": true,
-      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in v7. <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
+      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "describeChild": { "type": { "name": "bool" }, "default": "false" },
     "disableFocusListener": { "type": { "name": "bool" }, "default": "false" },
@@ -58,13 +58,13 @@
     "PopperComponent": {
       "type": { "name": "elementType" },
       "deprecated": true,
-      "deprecationInfo": "use the <code>slots.popper</code> prop instead. This prop will be removed in v7. <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
+      "deprecationInfo": "use the <code>slots.popper</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "PopperProps": {
       "type": { "name": "object" },
       "default": "{}",
       "deprecated": true,
-      "deprecationInfo": "use the <code>slotProps.popper</code> prop instead. This prop will be removed in v7. <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
+      "deprecationInfo": "use the <code>slotProps.popper</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "slotProps": {
       "type": {
@@ -91,13 +91,13 @@
     "TransitionComponent": {
       "type": { "name": "elementType" },
       "deprecated": true,
-      "deprecationInfo": "use the <code>slots.transition</code> prop instead. This prop will be removed in v7. <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
+      "deprecationInfo": "use the <code>slots.transition</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "TransitionProps": {
       "type": { "name": "object" },
       "default": "{}",
       "deprecated": true,
-      "deprecationInfo": "use the <code>slotProps.transition</code> prop instead. This prop will be removed in v7. <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
+      "deprecationInfo": "use the <code>slotProps.transition</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     }
   },
   "name": "Tooltip",
