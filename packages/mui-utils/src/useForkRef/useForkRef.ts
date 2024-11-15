@@ -4,22 +4,19 @@ import setRef from '../setRef';
 
 /**
  * Takes an array of refs and returns a new ref which will apply any modification to all of the refs.
- *
- * This is useful when you want have the ref used in multiple places.
+ * This is useful when you want to have the ref used in multiple places.
  *
  * ```tsx
- * const newRef = React.useRef<Instance>(null);
- * const refFork = useForkRef(newRef, props.ref);
+ * const rootRef = React.useRef<Instance>(null);
+ * const refFork = useForkRef(rootRef, props.ref);
  *
  * return (
- *   <LogicProvider ref={newRef}>
- *    <Component ref={refFork} />
- *   </LogicProvider>
+ *   <Root {...props} ref={refFork} />
  * );
  * ```
  *
- * @param {Array<React.Ref<Instance> | undefined>} refs the ref array.
- * @returns {React.RefCallback<Instance> | null} the new ref callback.
+ * @param {Array<React.Ref<Instance> | undefined>} refs The ref array.
+ * @returns {React.RefCallback<Instance> | null} The new ref callback.
  */
 export default function useForkRef<Instance>(
   ...refs: Array<React.Ref<Instance> | undefined>
