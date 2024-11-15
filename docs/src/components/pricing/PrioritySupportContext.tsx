@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 const PrioritySupport = React.createContext<{
-  isPrioritySupport: boolean;
-  setIsPrioritySupport: React.Dispatch<React.SetStateAction<boolean>>;
+  prioritySupport: boolean;
+  setPrioritySupport: React.Dispatch<React.SetStateAction<boolean>>;
 }>(undefined as any);
 
 if (process.env.NODE_ENV !== 'production') {
@@ -10,10 +10,10 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export function PrioritySupportProvider(props: any) {
-  const [isPrioritySupport, setIsPrioritySupport] = React.useState<boolean>(false);
+  const [prioritySupport, setPrioritySupport] = React.useState<boolean>(false);
   const value = React.useMemo(
-    () => ({ isPrioritySupport, setIsPrioritySupport }),
-    [isPrioritySupport, setIsPrioritySupport],
+    () => ({ prioritySupport, setPrioritySupport }),
+    [prioritySupport, setPrioritySupport],
   );
   return <PrioritySupport.Provider value={value}>{props.children}</PrioritySupport.Provider>;
 }

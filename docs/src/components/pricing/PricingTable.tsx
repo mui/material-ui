@@ -22,6 +22,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import { usePrioritySupport } from 'docs/src/components/pricing/PrioritySupportContext';
+import PrioritySupportSwitch from 'docs/src/components/pricing/PrioritySupportSwitch';
 
 const a = false; //to be removed
 
@@ -111,11 +112,6 @@ export function PlanPrice(props: PlanPriceProps) {
   const annual = licenseModel === 'annual';
   const planPriceMinHeight = 24;
 
-  const { isPrioritySupport, setIsPrioritySupport } = usePrioritySupport();
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIsPrioritySupport(event.target.checked);
-  };
-
   if (plan === 'community') {
     return (
       <React.Fragment>
@@ -198,7 +194,6 @@ export function PlanPrice(props: PlanPriceProps) {
     const priceExplanation = getPriceExplanation(
       annual ? premiumMonthlyValueForAnnual : premiumPerpetualValue,
     );
-    console.log('isPrioritySupportNew', isPrioritySupport); //to be removed
 
     return (
       <React.Fragment>
@@ -242,24 +237,7 @@ export function PlanPrice(props: PlanPriceProps) {
             </Typography>
           }
         </Box>
-        <FormGroup>
-          <FormControlLabel
-            control={<Switch />}
-            label={
-              <Typography
-                variant="body1"
-                sx={{ color: 'text.secondary', textAlign: 'center', fontSize: '0.875rem' }}
-              >
-                Add priority support <Box component="span" sx={{ display: ['none', 'block'] }} />
-                at $399/year/dev
-              </Typography>
-            }
-            checked={isPrioritySupport}
-            onChange={handleChange}
-            sx={{ mr: 0 }}
-            labelPlacement="bottom"
-          />
-        </FormGroup>
+        <PrioritySupportSwitch />
       </React.Fragment>
     );
   }
@@ -301,9 +279,9 @@ export function PlanPrice(props: PlanPriceProps) {
 function Info(props: {
   value: React.ReactNode;
   metadata?: React.ReactNode;
-  isPrioritySupport?: boolean;
+  prioritySupport?: boolean;
 }) {
-  const { isPrioritySupport } = usePrioritySupport();
+  const { prioritySupport } = usePrioritySupport();
   const { value, metadata } = props;
 
   return (
@@ -1150,7 +1128,7 @@ const premiumData: Record<string, React.ReactNode> = {
                 Add
               </Typography>
             }
-            // checked={isPrioritySupport}
+            // checked={prioritySupport}
             // onChange={handleSwitchChange}
             sx={{ mr: 0 }}
             labelPlacement="bottom"
@@ -1381,7 +1359,7 @@ function StickyHead({
 const divider = <Divider />;
 
 function renderMasterRow(key: string, gridSx: object, plans: Array<any>) {
-  // const { isPrioritySupport, setIsPrioritySupport } = usePrioritySupport();
+  // const { prioritySupport, setPrioritySupport } = usePrioritySupport();
   return (
     <Box
       sx={[
@@ -1553,17 +1531,17 @@ export default function PricingTable({
     />
   );
 
-  /*  const [isPrioritySupport, setIsPrioritySupport] = React.useState(false);
+  /*  const [prioritySupport, setPrioritySupport] = React.useState(false);
   const handleSwitchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIsPrioritySupport(event.target.checked);
+    setPrioritySupport(event.target.checked);
   };
-  console.log('isPrioritySupportMain', isPrioritySupport);
+  console.log('prioritySupportMain', prioritySupport);
   */
 
   /*
-  const { isPrioritySupport, setIsPrioritySupport } = usePrioritySupport();
+  const { prioritySupport, setPrioritySupport } = usePrioritySupport();
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIsPrioritySupport(event.target.checked);
+    setPrioritySupport(event.target.checked);
   };
   */
 
@@ -1604,7 +1582,7 @@ export default function PricingTable({
             <PlanName plan="premium" />
             <PlanPrice
               plan="premium"
-              // checked={isPrioritySupport}
+              // checked={prioritySupport}
               // handleChange={handleSwitchChange}
             />
             <PricingTableBuyPremium />
