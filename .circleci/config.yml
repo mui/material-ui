@@ -114,6 +114,7 @@ commands:
 jobs:
   checkout:
     <<: *default-job
+    resource_class: 'medium+'
     steps:
       - checkout
       - install_js
