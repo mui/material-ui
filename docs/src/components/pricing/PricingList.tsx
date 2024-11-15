@@ -90,10 +90,13 @@ function getButtonText(plan: string) {
   if (plan.match(/(pro|premium)/)) {
     return 'Buy now';
   }
-  if (plan.match(/enterprise/)) {
+  if (plan === 'enterprise') {
     return 'Contact sales';
   }
-  return 'Get started';
+  if (plan === 'community') {
+    return 'Get started';
+  }
+  return 'missing';
 }
 
 export default function PricingList() {
