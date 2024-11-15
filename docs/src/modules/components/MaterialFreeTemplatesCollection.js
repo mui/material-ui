@@ -39,7 +39,7 @@ function layouts(translation) {
       codeSandbox:
         'https://codesandbox.io/s/github/mui/toolpad/tree/master/examples/core/auth-nextjs-themed',
       stackBlitz: null,
-      hasDarkMode: true,
+      hasDarkMode: false,
       new: true,
     },
     {
@@ -61,7 +61,7 @@ function layouts(translation) {
       description: translation('signInDescr'),
       href: '/material-ui/getting-started/templates/sign-in/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/sign-in`,
-      hasDarkMode: false,
+      hasDarkMode: true,
     },
     {
       title: translation('signInSideTitle'),
