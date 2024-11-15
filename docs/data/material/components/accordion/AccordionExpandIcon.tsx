@@ -15,7 +15,7 @@ export default function AccordionExpandIcon() {
           aria-controls="panel1-content"
           id="panel1-header"
         >
-          <Typography>Accordion 1</Typography>
+          Accordion 1
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -30,7 +30,7 @@ export default function AccordionExpandIcon() {
           aria-controls="panel2-content"
           id="panel2-header"
         >
-          <Typography>Accordion 2</Typography>
+          Accordion 2
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
