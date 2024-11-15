@@ -39,7 +39,6 @@ const AccordionSummaryRoot = styled(ButtonBase, {
       display: 'flex',
       ...theme.typography.body1,
       width: '100%',
-      justifyContent: 'space-between',
       minHeight: 48,
       padding: theme.spacing(0, 2),
       transition: theme.transitions.create(['min-height', 'background-color'], transition),
@@ -66,7 +65,7 @@ const AccordionSummaryRoot = styled(ButtonBase, {
   }),
 );
 
-const AccordionSummaryContent = styled('div', {
+const AccordionSummaryContent = styled('span', {
   name: 'MuiAccordionSummary',
   slot: 'Content',
   overridesResolver: (props, styles) => styles.content,
