@@ -13,6 +13,7 @@ import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import { PrioritySupportProvider } from 'docs/src/components/pricing/PrioritySupportContext';
 import { LicenseModelProvider } from 'docs/src/components/pricing/LicenseModelContext';
 
 export default function Pricing() {
@@ -35,7 +36,9 @@ export default function Pricing() {
           </Container>
           {/* Desktop */}
           <Container sx={{ display: { xs: 'none', md: 'block' } }}>
-            <PricingTable />
+            <PrioritySupportProvider>
+              <PricingTable />
+            </PrioritySupportProvider>
           </Container>
         </LicenseModelProvider>
         <PricingWhatToExpect />
