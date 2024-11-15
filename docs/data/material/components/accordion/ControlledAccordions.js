@@ -19,14 +19,12 @@ export default function ControlledAccordions() {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
-          sx={{
-            justifyContent: 'initial',
-            '& .MuiAccordionSummary-expandIconWrapper': {
-              marginLeft: 'auto',
-            },
-          }}
         >
-          <Typography sx={{ width: '33%', flexShrink: 0, textAlign: 'start' }}>
+          <Typography
+            component="span"
+            align="left"
+            sx={{ width: '33%', flexShrink: 0 }}
+          >
             General settings
           </Typography>
           <Typography sx={{ color: 'text.secondary' }}>I am an accordion</Typography>
@@ -38,22 +36,17 @@ export default function ControlledAccordions() {
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion
-        expanded={expanded === 'panel2'}
-        onChange={handleChange('panel2')}
-        sx={{
-          justifyContent: 'initial',
-          '& .MuiAccordionSummary-expandIconWrapper': {
-            marginLeft: 'auto',
-          },
-        }}
-      >
+      <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel2bh-content"
           id="panel2bh-header"
         >
-          <Typography sx={{ width: '33%', flexShrink: 0, textAlign: 'start' }}>
+          <Typography
+            component="span"
+            align="left"
+            sx={{ width: '33%', flexShrink: 0 }}
+          >
             Users
           </Typography>
           <Typography sx={{ color: 'text.secondary' }}>
@@ -68,22 +61,17 @@ export default function ControlledAccordions() {
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion
-        expanded={expanded === 'panel3'}
-        onChange={handleChange('panel3')}
-        sx={{
-          justifyContent: 'initial',
-          '& .MuiAccordionSummary-expandIconWrapper': {
-            marginLeft: 'auto',
-          },
-        }}
-      >
+      <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel3bh-content"
           id="panel3bh-header"
         >
-          <Typography sx={{ width: '33%', flexShrink: 0, textAlign: 'start' }}>
+          <Typography
+            component="span"
+            align="left"
+            sx={{ width: '33%', flexShrink: 0 }}
+          >
             Advanced settings
           </Typography>
           <Typography sx={{ color: 'text.secondary' }}>
@@ -103,7 +91,11 @@ export default function ControlledAccordions() {
           aria-controls="panel4bh-content"
           id="panel4bh-header"
         >
-          <Typography sx={{ width: '33%', flexShrink: 0, textAlign: 'start' }}>
+          <Typography
+            component="span"
+            align="left"
+            sx={{ width: '33%', flexShrink: 0 }}
+          >
             Personal data
           </Typography>
         </AccordionSummary>
