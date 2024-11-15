@@ -326,7 +326,7 @@ const AutocompleteNoOptions = styled('div', {
   })),
 );
 
-const AutocompleteListbox = styled('div', {
+const AutocompleteListbox = styled('ul', {
   name: 'MuiAutocomplete',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
