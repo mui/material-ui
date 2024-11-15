@@ -27,7 +27,9 @@ export default function MasonryWithVariableHeightItems() {
           <Paper key={index}>
             <StyledAccordion sx={{ minHeight: height }}>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography component="span">Accordion {index + 1}</Typography>
+                <Typography component="span" align="left">
+                  Accordion {index + 1}
+                </Typography>
               </AccordionSummary>
               <AccordionDetails>Contents</AccordionDetails>
             </StyledAccordion>
