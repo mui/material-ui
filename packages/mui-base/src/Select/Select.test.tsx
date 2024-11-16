@@ -882,9 +882,20 @@ describe('<Select />', () => {
   });
 
   describe('prop: placeholder', () => {
-    it('renders when no value is selected ', async () => {
+    it('renders when no value is selected in Single Select ', async () => {
       const { getByRole } = await render(
         <Select placeholder="Placeholder text">
+          <Option value={1}>One</Option>
+          <Option value={2}>Two</Option>
+        </Select>,
+      );
+
+      expect(getByRole('combobox')).to.have.text('Placeholder text');
+    });
+
+    it('renders when no value is selected in Multi Select', async () => {
+      const { getByRole } = await render(
+        <Select multiple placeholder="Placeholder text">
           <Option value={1}>One</Option>
           <Option value={2}>Two</Option>
         </Select>,

@@ -23,11 +23,13 @@ import { SelectProvider } from '../useSelect/SelectProvider';
 function defaultRenderValue<OptionValue>(
   selectedOptions: SelectOption<OptionValue> | SelectOption<OptionValue>[] | null,
 ) {
-  if (Array.isArray(selectedOptions)) {
+  if (!Array.isArray(selectedOptions)) {
+    return selectedOptions?.label;
+  } else if (Array.isArray(selectedOptions) && selectedOptions.length > 0) {
     return <React.Fragment>{selectedOptions.map((o) => o.label).join(', ')}</React.Fragment>;
   }
 
-  return selectedOptions?.label ?? null;
+  return null;
 }
 
 function useUtilityClasses<OptionValue extends {}, Multiple extends boolean>(
