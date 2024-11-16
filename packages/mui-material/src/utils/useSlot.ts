@@ -100,7 +100,6 @@ export default function useSlot<
     internalForwardedProps?: any;
     /**
      * If `false`, does not append `ownerState` prop to the element.
-     *
      * @default true
      */
     shouldAppendOwnerState?: boolean;
