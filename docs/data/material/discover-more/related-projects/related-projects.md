@@ -78,4 +78,4 @@ Feel free to submit a pull request and the maintainers will work with you to wri
 
 ### Notification
 
-- [notistack](https://github.com/iamhosseindhv/notistack): Makes it easy to display snackbars (so you don't have to deal with open/close state of them).
+- [notistack](https://github.com/iamhosseindhv/notistack): Display multiple snackbars that can be stacked and queued—this tool makes it simpler to handle the open and close states.
