@@ -1,13 +1,13 @@
 # Related projects
 
-<p class="description">A carefully curated list of third-party tools that expand or build on top of Material UI.</p>
+<p class="description">A carefully curated list of tools that expand or build on top of Material UI.</p>
 
-Developers from the community have built some excellent supplemental tools for working with Material UI—this page highlights some of the best that we've seen.
+The MUI org and developers from the community have built some excellent supplemental tools for working with Material UI—this page highlights some of the best that we've seen.
 
 Do you have a project that you think should be featured here?
 Feel free to submit a pull request and the maintainers will work with you to write the description.
 
-## App starters
+## Third-party app starters
 
 ### Admin frameworks
 
@@ -29,7 +29,7 @@ Feel free to submit a pull request and the maintainers will work with you to wri
   - Generate your application, including a complete scaffolded backend.
   - Preview your application online and download the generated code.
 
-## Theming tools
+## Third-party theming tools
 
 - [Material palette generator](https://m2.material.io/inline-tools/color/): The official Material Design 2 palette generator tool.
 
