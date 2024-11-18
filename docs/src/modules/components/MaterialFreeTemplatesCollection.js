@@ -100,7 +100,8 @@ export default function MaterialFreeTemplatesCollection() {
                 borderColor: 'divider',
               }}
             >
-              <Box
+              <Link
+                href={layout.href}
                 sx={{
                   position: 'relative',
                   '&:hover > .MuiCardMedia-root': {
@@ -134,11 +135,12 @@ export default function MaterialFreeTemplatesCollection() {
                 <Button
                   variant="text"
                   endIcon={<OpenInNewRoundedIcon />}
-                  component={Link}
-                  href={layout.href}
+                  component="div"
                   data-ga-event-category="material-ui-template"
                   data-ga-event-label={layout.title}
                   data-ga-event-action="preview-img"
+                  tabIndex={null}
+                  role="none"
                   sx={{
                     position: 'absolute',
                     top: '50%',
@@ -154,7 +156,7 @@ export default function MaterialFreeTemplatesCollection() {
                 >
                   See live preview
                 </Button>
-              </Box>
+              </Link>
               <Box
                 sx={{
                   display: 'flex',
