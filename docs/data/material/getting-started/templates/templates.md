@@ -3,7 +3,7 @@ productId: material-ui
 title: New Free React Templates
 ---
 
-# React Templates
+# React templates
 
 <p class="description">Browse our collection of free React templates to get started building your app with Material UI, including a React dashboard, React marketing page, and more.</p>
 
@@ -11,23 +11,21 @@ title: New Free React Templates
 
 ## Free templates
 
-Our curated collection of free Material UI templates includes dashboards, marketing pages, sign-in and sign-up pages, a blog, a checkout flow, and more.
-They can be combined with one of the [example projects](/material-ui/getting-started/example-projects/) to form a complete starter.
+Our curated collection of free Material UI templates includes a dashboard, a marketing page, a checkout flow, sign-in and sign-up pages, and a blog.
+They all feature a custom theme and a default Material Design 2 theme, with light and dark modes for both.
+You can toggle through each of these style options in the top right corner of the live previews.
 
-Sections of each layout are clearly defined either by comments or use of separate files,
-making it simple to extract parts of a page (such as a "hero unit", or footer, for example)
-for reuse in other pages.
-For multi-part examples, a table in the README at the linked source code location describes
-the purpose of each file.
+Sections of each layout are defined either by comments or use of separate files, so you can extract parts of a page (such as a hero unit or a footer) for reuse in other pages.
+These templates can be combined with one of the [example projects](/material-ui/getting-started/example-projects/) to form a complete starter app.
+
+If you see any room for improvement, please feel free to open an [issue](https://github.com/mui/material-ui/issues/new/choose) or a [pull request](https://github.com/mui/material-ui/pulls) on GitHub.
 
 {{"component": "modules/components/MaterialFreeTemplatesCollection.js"}}
 
-See any room for improvement?
-Please feel free to open an [issue](https://github.com/mui/material-ui/issues/new/choose) or a [pull request](https://github.com/mui/material-ui/pulls) on GitHub, following the [contribution guide](/material-ui/getting-started/faq/#how-can-i-contribute-to-the-free-templates).
-
 ## Premium templates
 
-Looking for something more? You can find complete templates and themes in the <a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store">premium template section</a>.
+Looking for something more? 
+You can find complete templates and themes in the <a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store">premium template section</a> of the MUI Store.
 
 <a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store">
 <span class="only-light-mode">
@@ -40,6 +38,9 @@ Looking for something more? You can find complete templates and themes in the <a
 
 ## Toolpad Core (beta)
 
-[Toolpad Core](https://mui.com/toolpad/core/introduction/) is a set of components designed to build dashboards and internal tools. It leverages the existing suite of components offered by Material UI and ties them together to help you create applications quickly.
+[Toolpad Core](https://mui.com/toolpad/core/introduction/) is a set of components designed for assembling dashboards and internal tools more efficiently. 
+It builds on top of Material UI to provide sophisticated UI components with full-stack functionality, such as the [Dashboard Layout](https://mui.com/toolpad/core/react-dashboard-layout/) shown below.
+
+This is a great option if you don't need a fully-built template but don't want to start building from scratch.
 
 {{"demo": "../../components/app-bar/DashboardLayoutBasic.js", "height": 400, "iframe": true, "defaultExpanded": false, "bg": "inline"}}
