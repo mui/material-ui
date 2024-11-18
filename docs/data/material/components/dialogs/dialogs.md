@@ -179,6 +179,78 @@ You can create and manipulate dialogs imperatively with the [`useDialogs()`](htt
 - stacking multiple dialogs
 - themed, asynchronous versions of `window.alert()`, `window.confirm()` and `window.prompt()`
 
+```tsx
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import Typography from '@mui/material/Typography';
+import LoadingButton from '@mui/lab/LoadingButton';
+import { DialogsProvider, useDialogs } from '@toolpad/core/useDialogs';
+
+function DeleteButton() {
+  const dialogs = useDialogs();
+  const [isDeleting, setIsDeleting] = React.useState(false);
+
+  const handleDelete = async () => {
+    const confirmed = await dialogs.open(({ open, onClose }) => (
+      <Dialog open={open} onClose={() => onClose(false)}>
+        <DialogContent>
+          <Typography>
+            Are you sure you want to delete this item? You will not be able to undo
+            this action.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => onClose(false)}>Cancel</Button>
+          <Button
+            variant="contained"
+            color="error"
+            onClick={() => {
+              onClose(true);
+            }}
+          >
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
+    ));
+
+    if (confirmed) {
+      try {
+        setIsDeleting(true);
+        await new Promise((resolve) => {
+          setTimeout(resolve, 1000);
+        });
+        await dialogs.alert('Successfully deleted!');
+      } finally {
+        setIsDeleting(false);
+      }
+    }
+  };
+
+  return (
+    <LoadingButton
+      loading={isDeleting}
+      variant="contained"
+      color="error"
+      onClick={handleDelete}
+    >
+      Delete
+    </LoadingButton>
+  );
+}
+
+export default function ToolpadDialogsCodeSnippet() {
+  return (
+    <DialogsProvider>
+      <DeleteButton />
+    </DialogsProvider>
+  );
+}
+```
+
 The following example demonstrates some of these features:
 
-{{"demo": "ToolpadDialogsNoSnap.js"}}
+{{"demo": "ToolpadDialogsNoSnap.js", "defaultCodeOpen": false}}

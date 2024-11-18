@@ -22,7 +22,7 @@ function DeleteDialog({ open, onClose, payload }) {
   };
 
   return (
-    <Dialog fullWidth maxWidth="sm" open={open} onClose={() => onClose()}>
+    <Dialog fullWidth maxWidth="sm" open={open} onClose={() => onClose('')}>
       <DialogTitle>Are you sure you want to delete this project?</DialogTitle>
       <DialogContent>
         <Typography variant="body1" gutterBottom>
@@ -47,7 +47,7 @@ function DeleteDialog({ open, onClose, payload }) {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => onClose()}>Cancel</Button>
+        <Button onClick={() => onClose('')}>Cancel</Button>
         <Button
           color="error"
           disabled={!isInputValid}

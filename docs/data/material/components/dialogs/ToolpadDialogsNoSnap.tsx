@@ -10,7 +10,7 @@ import DialogActions from '@mui/material/DialogActions';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
-function DeleteDialog({ open, onClose, payload }: DialogProps<string>) {
+function DeleteDialog({ open, onClose, payload }: DialogProps<string, string>) {
   const [inputValue, setInputValue] = React.useState('');
   const isInputValid = inputValue === payload;
 
@@ -21,7 +21,7 @@ function DeleteDialog({ open, onClose, payload }: DialogProps<string>) {
   };
 
   return (
-    <Dialog fullWidth maxWidth="sm" open={open} onClose={() => onClose()}>
+    <Dialog fullWidth maxWidth="sm" open={open} onClose={() => onClose('')}>
       <DialogTitle>Are you sure you want to delete this project?</DialogTitle>
       <DialogContent>
         <Typography variant="body1" gutterBottom>
@@ -46,7 +46,7 @@ function DeleteDialog({ open, onClose, payload }: DialogProps<string>) {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => onClose()}>Cancel</Button>
+        <Button onClick={() => onClose('')}>Cancel</Button>
         <Button
           color="error"
           disabled={!isInputValid}
