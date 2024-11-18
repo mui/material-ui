@@ -90,7 +90,7 @@ const examples = [
   },
   {
     name: 'Toolpad',
-    label: 'View Typescript',
+    label: 'View TypeScript',
     link: 'https://github.com/mui/toolpad/tree/master/examples/core',
     src: '/static/branding/product-toolpad-light.svg',
   },
