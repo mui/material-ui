@@ -12,7 +12,9 @@ export default function FAQ() {
   const [expanded, setExpanded] = React.useState([]);
 
   const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? [...expanded, panel] : expanded.filter(item => item !== panel));
+    setExpanded(
+      isExpanded ? [...expanded, panel] : expanded.filter((item) => item !== panel),
+    );
   };
 
   return (
@@ -61,7 +63,8 @@ export default function FAQ() {
             >
               You can reach our customer support team by emailing&nbsp;
               <Link href="mailto:support@email.com">support@email.com</Link>
-              &nbsp;or calling our toll-free number. We&apos;re here to assist you promptly.
+              &nbsp;or calling our toll-free number. We&apos;re here to assist you
+              promptly.
             </Typography>
           </AccordionDetails>
         </Accordion>
