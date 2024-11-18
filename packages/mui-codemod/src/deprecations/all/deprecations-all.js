@@ -1,7 +1,9 @@
 import transformAccordionClasses from '../accordion-summary-classes';
+import transformAccordionProps from '../accordion-props';
 import transformAlertClasses from '../alert-classes';
 import transformAvatarGroupProps from '../avatar-group-props';
 import transformAutocompleteProps from '../autocomplete-props';
+import transformAvatarProps from '../avatar-props';
 import transformBackdropProps from '../backdrop-props';
 import transformButtonClasses from '../button-classes';
 import transformButtonGroupClasses from '../button-group-classes';
@@ -16,6 +18,7 @@ import transformInputProps from '../input-props';
 import transformModalProps from '../modal-props';
 import transformOutlinedInputProps from '../outlined-input-props';
 import transformPaginationItemClasses from '../pagination-item-classes';
+import transformSpeedDialProps from '../speed-dial-props';
 import transformTableSortLabelClasses from '../table-sort-label-classes';
 import transformStepConnectorClasses from '../step-connector-classes';
 import transformStepLabelProps from '../step-label-props';
@@ -29,9 +32,11 @@ import transformToggleButtonGroupClasses from '../toggle-button-group-classes';
  */
 export default function deprecationsAll(file, api, options) {
   file.source = transformAccordionClasses(file, api, options);
+  file.source = transformAccordionProps(file, api, options);
   file.source = transformAlertClasses(file, api, options);
   file.source = transformAvatarGroupProps(file, api, options);
   file.source = transformAutocompleteProps(file, api, options);
+  file.source = transformAvatarProps(file, api, options);
   file.source = transformBackdropProps(file, api, options);
   file.source = transformButtonClasses(file, api, options);
   file.source = transformButtonGroupClasses(file, api, options);
@@ -46,6 +51,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformModalProps(file, api, options);
   file.source = transformOutlinedInputProps(file, api, options);
   file.source = transformPaginationItemClasses(file, api, options);
+  file.source = transformSpeedDialProps(file, api, options);
   file.source = transformStepConnectorClasses(file, api, options);
   file.source = transformStepLabelProps(file, api, options);
   file.source = transformTableSortLabelClasses(file, api, options);

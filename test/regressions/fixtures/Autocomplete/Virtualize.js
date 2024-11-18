@@ -112,8 +112,7 @@ ListboxComponent.propTypes = {
 };
 
 function random(length) {
-  const characters =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let result = '';
 
   for (let i = 0; i < length; i += 1) {
@@ -139,22 +138,25 @@ const OPTIONS = Array.from(new Array(10000))
 
 export default function Virtualize() {
   return (
-    <Autocomplete
-      sx={{ width: 300 }}
-      disableListWrap
-      options={OPTIONS}
-      groupBy={(option) => option[0].toUpperCase()}
-      renderInput={(params) => <TextField {...params} label="10,000 options" />}
-      renderOption={(props, option, state) => [props, option, state.index]}
-      renderGroup={(params) => params}
-      slots={{
-        popper: StyledPopper,
-      }}
-      slotProps={{
-        listbox: {
-          component: ListboxComponent,
-        },
-      }}
-    />
+    <div style={{ height: 400 }}>
+      <Autocomplete
+        disableCloseOnSelect
+        sx={{ width: 300 }}
+        disableListWrap
+        options={OPTIONS}
+        groupBy={(option) => option[0].toUpperCase()}
+        renderInput={(params) => <TextField {...params} label="10,000 options" />}
+        renderOption={(props, option, state) => [props, option, state.index]}
+        renderGroup={(params) => params}
+        slots={{
+          popper: StyledPopper,
+        }}
+        slotProps={{
+          listbox: {
+            component: ListboxComponent,
+          },
+        }}
+      />
+    </div>
   );
 }
