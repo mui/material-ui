@@ -1412,19 +1412,43 @@ npx @mui/codemod@latest deprecations/slider-props <path>
  <Tooltip
 -  components={{ Arrow: CustomArrow }}
 -  componentsProps={{ arrow: { testid: 'test-id' } }}
-+  slots={{ arrow: CustomArrow }}
-+  slotProps={{ arrow: { testid: 'test-id' } }}
+-  PopperComponent={CustomPopperComponent}
+-  TransitionComponent={CustomTransitionComponent}
+-  PopperProps={CustomPopperProps}
+-  TransitionProps={CustomTransitionProps}
++  slots={{
++    arrow: CustomArrow,
++    popper: CustomPopperComponent,
++    transition: CustomTransitionComponent,
++  }}
++  slotProps={{
++    arrow: { testid: 'test-id' },
++    popper: CustomPopperProps,
++    transition: CustomTransitionProps,
++  }}
  />
 ```
 
 ```diff
  MuiTooltip: {
    defaultProps: {
+-    PopperComponent: CustomPopperComponent,
+-    TransitionComponent: CustomTransitionComponent,
+-    PopperProps: CustomPopperProps,
+-    TransitionProps: CustomTransitionProps,
 -    components: { Arrow: CustomArrow }
-+    slots: { arrow: CustomArrow },
++    slots: {
++      arrow: CustomArrow,
++      popper: CustomPopperComponent,
++      transition: CustomTransitionComponent,
++    },
 -    componentsProps: { arrow: { testid: 'test-id' }}
-+    slotProps: { arrow: { testid: 'test-id' } },
-  },
++    slotProps: {
++      arrow: { testid: 'test-id' },
++      popper: CustomPopperProps,
++      transition: CustomTransitionProps,
++    },
+   },
  },
 ```
 
@@ -1453,6 +1477,10 @@ JS transforms:
      },
    },
  },
+```
+
+```bash
+npx @mui/codemod@next deprecations/step-connector-classes <path>
 ```
 
 #### `step-label-props`
