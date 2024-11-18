@@ -20,7 +20,6 @@ export default function ServerModal() {
         disablePortal
         disableEnforceFocus
         disableAutoFocus
-        disableScrollLock
         open
         aria-labelledby="server-modal-title"
         aria-describedby="server-modal-description"
