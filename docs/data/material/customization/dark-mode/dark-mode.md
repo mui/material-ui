@@ -132,7 +132,7 @@ To instantly switch between color schemes with no transition, apply the `disable
 </ThemeProvider>
 ```
 
-## Disable rerendering
+## Disable rerender
 
 By default, the `ThemeProvider` rerenders when the theme contains light **and** dark color schemes to prevent SSR hydration mismatches. To disable this behavior, apply the `disableRerender` prop as `true` to the `ThemeProvider` component:
 
