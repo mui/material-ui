@@ -33,7 +33,7 @@ const projects = {
   'material-ui': {
     input: path.join(process.cwd(), 'docs/pages/material-ui/getting-started/templates'),
     output: 'docs/public/static/screenshots',
-    viewport: { width: 1680, height: 1092 },
+    viewport: { width: 813 * 2, height: 457 * 2 },
   },
   'joy-ui': {
     input: path.join(process.cwd(), 'docs/pages/joy-ui/getting-started/templates'),
