@@ -746,7 +746,7 @@ describe('Material UI <Grid />', () => {
         generateRowGap({
           ownerState: {
             container: true,
-            rowSpacing: { xs: 1, sm: 2 },
+            rowSpacing: { xs: 1, sm: 2, md: '16px' },
           },
           theme,
         }),
@@ -763,13 +763,19 @@ describe('Material UI <Grid />', () => {
           },
           marginTop: '-16px',
         },
+        [`@media (min-width:${defaultTheme.breakpoints.values.md}px)`]: {
+          '& > .MuiGrid-item': {
+            paddingTop: '16px',
+          },
+          marginTop: '-16px',
+        },
       });
 
       expect(
         generateColumnGap({
           ownerState: {
             container: true,
-            columnSpacing: { xs: 1, sm: 2 },
+            columnSpacing: { xs: 1, sm: 2, md: '16px' },
           },
           theme,
         }),
@@ -782,6 +788,13 @@ describe('Material UI <Grid />', () => {
           width: 'calc(100% + 8px)',
         },
         [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          '& > .MuiGrid-item': {
+            paddingLeft: '16px',
+          },
+          marginLeft: '-16px',
+          width: 'calc(100% + 16px)',
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.md}px)`]: {
           '& > .MuiGrid-item': {
             paddingLeft: '16px',
           },

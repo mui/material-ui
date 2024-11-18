@@ -38,7 +38,7 @@ This offers significant advancements in performance when it comes to dynamic sty
 Emotion unlocks many new customization options that developers had been requesting for years, such as custom style utility props, color variants, and custom theme variants.
 Check out [this RFC on GitHub](https://github.com/mui/material-ui/issues/22342) for details about this change.
 
-<a href="https://github.com/mui/material-ui/issues/22342"><img src="/static/blog/mui-core-v5-migration-update/style-engine.png" alt="Screenshot of the new style engine GitHub issue in Material UI's repository" style="width: 692px; aspect-ratio: 2/1;" loading="lazy" /></a>
+<a href="https://github.com/mui/material-ui/issues/22342"><img src="/static/blog/mui-core-v5-migration-update/style-engine.png" alt="Screenshot of the new style engine GitHub issue in Material UI's repository" width="1280" height="640" loading="lazy" /></a>
 
 Keep in mind that the new style engine is 100% [incrementally adoptable](/material-ui/migration/migrating-from-jss/): you can use JSS and Emotion together in the same app while migrating your components over.
 
@@ -74,7 +74,7 @@ export default function BoxSx() {
 
 All prop descriptions are now written in TypeScript, which means that you can access details about the usage of a given prop right inside of your IDE—no need to seek out the official documentation to find this information.
 
-<img alt="Screenshot of IntelliSense tooltip showing the details about the Material UI Badge component" src="/static/blog/mui-core-v5-migration-update/intellisense-tooltip.png" style="width: 692px; aspect-ratio: 2/1;" loading="lazy" />
+<img alt="Screenshot of IntelliSense tooltip showing the details about the Material UI Badge component" src="/static/blog/mui-core-v5-migration-update/intellisense-tooltip.png" width="1280" height="640" loading="lazy" />
 
 ### 5. Upcoming CSS variables support
 
