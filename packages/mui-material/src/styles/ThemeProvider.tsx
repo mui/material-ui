@@ -25,11 +25,6 @@ type ThemeProviderCssVariablesProps = CssThemeVariables extends { enabled: true 
        * @default false
        */
       disableStyleSheetGeneration?: boolean;
-      /*
-       * If `true`, the first render mode won't be `undefined` and there is no extra rerendering after the hydration.
-       * You should use this option in conjuction with `InitColorSchemeScript` component.
-       */
-      disableExtraRender?: boolean;
     }
   : {};
 
@@ -62,6 +57,12 @@ export interface ThemeProviderProps<Theme = DefaultTheme> extends ThemeProviderC
    * @default 'mui-color-scheme'
    */
   colorSchemeStorageKey?: string;
+  /*
+   * If `true`, ThemeProvider will not rerender and the initial value of `mode` will come from the local storage.
+   * For SSR applications, you must ensure that the server render output must match the initial render output on the client.
+   * @default false
+   */
+  disableClientRerender?: boolean;
   /**
    * Disable CSS transitions when switching between modes or color schemes
    * @default false

@@ -61,7 +61,7 @@ export default function createCssVarsProvider(options) {
       disableNestedContext = false,
       disableStyleSheetGeneration = false,
       defaultMode: initialMode = 'system',
-      disableExtraRender,
+      disableClientRerender,
     } = props;
     const hasMounted = React.useRef(false);
     const upperTheme = muiUseTheme();
@@ -115,7 +115,7 @@ export default function createCssVarsProvider(options) {
       colorSchemeStorageKey,
       defaultMode,
       storageWindow,
-      disableExtraRender,
+      disableClientRerender,
     });
 
     let mode = stateMode;
@@ -326,7 +326,7 @@ export default function createCssVarsProvider(options) {
      * If `true`, the mode will be the same value as the storage without an extra rerendering after the hydration.
      * You should use this option in conjuction with `InitColorSchemeScript` component.
      */
-    disableExtraRender: PropTypes.bool,
+    disableClientRerender: PropTypes.bool,
     /**
      * If `true`, the provider creates its own context and generate stylesheet as if it is a root `CssVarsProvider`.
      */

@@ -120,10 +120,7 @@ interface UseCurrentColoSchemeOptions<SupportedColorScheme extends string> {
   modeStorageKey?: string;
   colorSchemeStorageKey?: string;
   storageWindow?: Window | null;
-  /**
-   * If `true`, the hook returns the values from the storage without rerendering.
-   */
-  disableExtraRender?: boolean;
+  disableClientRerender?: boolean;
 }
 
 export default function useCurrentColorScheme<SupportedColorScheme extends string>(
@@ -137,7 +134,7 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
     modeStorageKey = DEFAULT_MODE_STORAGE_KEY,
     colorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
     storageWindow = typeof window === 'undefined' ? undefined : window,
-    disableExtraRender,
+    disableClientRerender = false,
   } = options;
 
   const joinedColorSchemes = supportedColorSchemes.join(',');
@@ -160,15 +157,10 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
       darkColorScheme,
     } as State<SupportedColorScheme>;
   });
-  // This could be improved with `React.useSyncExternalStore` in the future.
-  const [, setHasMounted] = React.useState(false);
-  const hasMounted = React.useRef(false);
+  const [isClient, setIsClient] = React.useState(disableClientRerender || !isMultiSchemes);
   React.useEffect(() => {
-    if (isMultiSchemes && !disableExtraRender) {
-      setHasMounted(true); // to rerender the component after hydration
-    }
-    hasMounted.current = true;
-  }, [isMultiSchemes, disableExtraRender]);
+    setIsClient(true); // to rerender the component after hydration
+  }, []);
 
   const colorScheme = getColorScheme(state);
 
@@ -353,12 +345,11 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
     isMultiSchemes,
   ]);
 
-  const isValid = disableExtraRender || hasMounted.current || !isMultiSchemes;
   return {
     ...state,
-    mode: isValid ? state.mode : undefined,
-    systemMode: isValid ? state.systemMode : undefined,
-    colorScheme: isValid ? colorScheme : undefined,
+    mode: isClient ? state.mode : undefined,
+    systemMode: isClient ? state.systemMode : undefined,
+    colorScheme: isClient ? colorScheme : undefined,
     setMode,
     setColorScheme,
   };
