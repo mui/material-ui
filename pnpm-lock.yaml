@@ -19,10 +19,10 @@ overrides:
   '@types/react': ^18.3.12
   '@types/react-dom': 18.3.1
   cross-fetch: ^4.0.0
-  '@pigment-css/react': 0.0.26
-  '@pigment-css/unplugin': 0.0.26
-  '@pigment-css/nextjs-plugin': 0.0.26
-  '@pigment-css/vite-plugin': 0.0.26
+  '@pigment-css/react': 0.0.27
+  '@pigment-css/unplugin': 0.0.27
+  '@pigment-css/nextjs-plugin': 0.0.27
+  '@pigment-css/vite-plugin': 0.0.27
 
 importers:
 
@@ -105,8 +105,8 @@ importers:
         specifier: ^21.0.2
         version: 21.0.2
       '@pigment-css/react':
-        specifier: 0.0.26
-        version: 0.0.26(@types/react@18.3.12)(react@18.3.1)
+        specifier: 0.0.27
+        version: 0.0.27(@types/react@18.3.12)(react@18.3.1)
       '@playwright/test':
         specifier: 1.48.2
         version: 1.48.2
@@ -313,7 +313,7 @@ importers:
         version: 5.6.3
       vitest:
         specifier: ^2.1.4
-        version: 2.1.4(@types/node@20.17.6)(@vitest/browser@2.1.5)(happy-dom@12.10.3)(jsdom@24.0.0)(msw@2.6.5(@types/node@20.17.6)(typescript@5.6.3))(terser@5.29.2)
+        version: 2.1.4(@types/node@20.17.6)(@vitest/browser@2.1.5)(happy-dom@15.11.6)(jsdom@24.0.0)(msw@2.6.5(@types/node@20.17.6)(typescript@5.6.3))(terser@5.29.2)
       vitest-fail-on-console:
         specifier: ^0.7.1
         version: 0.7.1(vite@5.4.10(@types/node@20.17.6)(terser@5.29.2))(vitest@2.1.4)
@@ -370,8 +370,8 @@ importers:
         version: 18.3.1(react@18.3.1)
     devDependencies:
       '@pigment-css/nextjs-plugin':
-        specifier: 0.0.26
-        version: 0.0.26(@types/react@18.3.12)(next@15.0.3(@babel/core@7.26.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.48.2)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack-sources@3.2.3)
+        specifier: 0.0.27
+        version: 0.0.27(@types/react@18.3.12)(next@15.0.3(@babel/core@7.26.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.48.2)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack-sources@3.2.3)
       '@types/node':
         specifier: ^20.17.6
         version: 20.17.6
@@ -440,8 +440,8 @@ importers:
         specifier: ^7.26.0
         version: 7.26.0(@babel/core@7.26.0)
       '@pigment-css/vite-plugin':
-        specifier: 0.0.26
-        version: 0.0.26(@types/react@18.3.12)(react@18.3.1)(vite@5.4.10(@types/node@20.17.6)(terser@5.29.2))
+        specifier: 0.0.27
+        version: 0.0.27(@types/react@18.3.12)(react@18.3.1)(vite@5.4.10(@types/node@20.17.6)(terser@5.29.2))
       '@types/react':
         specifier: ^18.3.12
         version: 18.3.12
@@ -1852,8 +1852,8 @@ importers:
         specifier: workspace:*
         version: link:../mui-system/build
       '@pigment-css/react':
-        specifier: 0.0.26
-        version: 0.0.26(@types/react@18.3.12)(react@18.3.1)
+        specifier: 0.0.27
+        version: 0.0.27(@types/react@18.3.12)(react@18.3.1)
     publishDirectory: build
 
   packages/mui-private-theming:
@@ -4868,24 +4868,24 @@ packages:
     resolution: {integrity: sha512-I/s6F7yKUDdtMsoBWXJe8Qz40Tui5vsuKCWJEWVL+5q9sSWRzzx6v2KeNsOBEwd94j0eWkpWCH4yB6rZg9Mf0w==}
     engines: {node: '>=8.0.0'}
 
-  '@pigment-css/nextjs-plugin@0.0.26':
-    resolution: {integrity: sha512-TYzoMyEuoV5r+y7A0jxNJUH19zo8ay6C5XvaehjZbyP/2PZ458eNV+Ui6b9SNzoh7mWUavn80B1u5fnmuwhrAQ==}
+  '@pigment-css/nextjs-plugin@0.0.27':
+    resolution: {integrity: sha512-gg+vbuPA2HtE6zkcprsiHAZdpEGc+CcBs2NxmLeeNNxYb1Vf+fyphfjlfl1awJ1c/8JsBmcDx4YBc9AnK9SkQw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       next: ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0
 
-  '@pigment-css/react@0.0.26':
-    resolution: {integrity: sha512-K2vTiGL0hOQwvbpPiMDCc9N6Dvv1uFCFujd9EoshOZ13kBWQ8c/X47jAbk65dCr6JdVscrwLH2950j42kdVgbw==}
+  '@pigment-css/react@0.0.27':
+    resolution: {integrity: sha512-ifP18zc6lBh7gV/qZbgZ4fwlHc+z/+ip4LYjnYTPqieEi/oxoVedEUySmgrFs3YgnHpLioHiau51/EflSMKI+A==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0
 
-  '@pigment-css/unplugin@0.0.26':
-    resolution: {integrity: sha512-3yKiJO5TvT0Y2h/CokBeBdJFbIIg3unAk95TX/vKmFBv5IB10r8Lyrwh6jT1sEUvE8V7k02ku4cMpVl2QjG2BA==}
+  '@pigment-css/unplugin@0.0.27':
+    resolution: {integrity: sha512-atVKhJeLSigsU5zqM4FDFHItsuVP71RuxSspR5iocX3ZFEqTvggDKpERwGQKmcGm+r/shePLhTvD3gvdGxC0XA==}
     engines: {node: '>=14.0.0'}
 
-  '@pigment-css/vite-plugin@0.0.26':
-    resolution: {integrity: sha512-ttMqhtRMgFsXIEVnc8dbtfUaLQq3aJxwpPvGzu1EoE4w7zJAPEQWQ1jHDBjYuaCWm7ieE2Y7LWG3gnUOHt/Z7A==}
+  '@pigment-css/vite-plugin@0.0.27':
+    resolution: {integrity: sha512-ZBJoS5jwk1Wuz0npN3bxQiPqyL19AydehlCS31xMoeU3mnKmwKWnPYGPPI9Kt3e2/00kpQW47YO8oM2GiZUFJA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       vite: ^4.0.0 || ^5.0.0
@@ -5905,16 +5905,16 @@ packages:
       webpack-dev-server:
         optional: true
 
-  '@wyw-in-js/processor-utils@0.5.4':
-    resolution: {integrity: sha512-EVyLoZf2N48bQ/KcCytZzx6Jxgfl2txR9agbb9GYVTDCcVt2JXtlexd0lq4bgEpnvLE3GtpzY5rOTSqDyYExfg==}
+  '@wyw-in-js/processor-utils@0.5.5':
+    resolution: {integrity: sha512-L3IcAfoowhM0fw9Cnv2CNzfjWNLKpYl2CFqam6NvwpiXNR1kXz/GpO0AOiKvCs5h4Ps5kWxE2e8knXLpk8q/2g==}
     engines: {node: '>=16.0.0'}
 
-  '@wyw-in-js/shared@0.5.4':
-    resolution: {integrity: sha512-LIu2Aq/m9rN3UzU7ARAc17wRlpNjMumzwjXhbtweR9PMiSSnLpBztIA8GZ5vlUnzppaoKuiiDPTza2yVTFReFg==}
+  '@wyw-in-js/shared@0.5.5':
+    resolution: {integrity: sha512-Wnvp3RGfynHk81lrp/0fA+Yv5yuIr2Ej13N3lawQeqbK4KlMag3P9npyIljGrEiwK2Bv4byHuXsJFgLI0Fo8bw==}
     engines: {node: '>=16.0.0'}
 
-  '@wyw-in-js/transform@0.5.4':
-    resolution: {integrity: sha512-qwbEqO/7IYFPruRH3vscmejUgNvimEhpiI8Hgf9N0pT/fjhBp539QGPVhLQHI8885fWW/LBzbbyL/v9Q72kmoQ==}
+  '@wyw-in-js/transform@0.5.5':
+    resolution: {integrity: sha512-XMZjhS8poHpxfPg41rkc6eh3Mr2BZAFM7OzYN4jPZUicpJKv7uQAU2dLEqnyDcDllo04LbZIryb2fXwpr+pqPw==}
     engines: {node: '>=16.0.0'}
 
   '@xtuc/ieee754@1.2.0':
@@ -7129,9 +7129,6 @@ packages:
   css-what@6.1.0:
     resolution: {integrity: sha512-HTUrgRJ7r4dsZKU6GjmpfRK1O76h97Z8MfS1G0FozR+oF2kG6Vfe8JE6zwrkbxigziPHinCJ+gCPjA9EaBDtRw==}
     engines: {node: '>= 6'}
-
-  css.escape@1.5.1:
-    resolution: {integrity: sha512-YUifsXXuknHlUsmlgyY0PKzgPOr7/FjCePfHNt0jxm83wHZi44VDMQ7/fGNkjY3/jV1MC+1CmZbaHzugyeRtpg==}
 
   cssesc@3.0.0:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
@@ -8424,8 +8421,9 @@ packages:
     engines: {node: '>=0.4.7'}
     hasBin: true
 
-  happy-dom@12.10.3:
-    resolution: {integrity: sha512-JzUXOh0wdNGY54oKng5hliuBkq/+aT1V3YpTM+lrN/GoLQTANZsMaIvmHiHe612rauHvPJnDZkZ+5GZR++1Abg==}
+  happy-dom@15.11.6:
+    resolution: {integrity: sha512-elX7iUTu+5+3b2+NGQc0L3eWyq9jKhuJJ4GpOMxxT/c2pg9O3L5H3ty2VECX0XXZgRmmRqXyOK8brA2hDI6LsQ==}
+    engines: {node: '>=18.0.0'}
 
   hard-rejection@2.1.0:
     resolution: {integrity: sha512-VIZB+ibDhx7ObhAe7OVtoEbuP4h/MuOTHJ+J8h/eBXotJYl0fBgR72xDFCKgIh22OJZIOVNxBMWuhAr10r8HdA==}
@@ -12925,10 +12923,6 @@ packages:
       webpack-cli:
         optional: true
 
-  whatwg-encoding@2.0.0:
-    resolution: {integrity: sha512-p41ogyeMUrw3jWclHWTQg1k05DSVXPLcVxRTYsXUk+ZooOCZLcoYgPZ/HL/D/N+uQPOtcp1me1WhBEaX02mhWg==}
-    engines: {node: '>=12'}
-
   whatwg-encoding@3.1.1:
     resolution: {integrity: sha512-6qN4hJdMwfYBtE3YBTTHhoeuUrDBPZmbQaxWAqSALV/MeEnR5z1xd8UKud2RAkFoPkmB+hli1TZSnyi84xz1vQ==}
     engines: {node: '>=18'}
@@ -15117,7 +15111,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.26.0
       '@mui/system': 6.1.7(@emotion/react@11.13.3(@types/react@18.3.12)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1)
-      '@pigment-css/react': 0.0.26(@types/react@18.3.12)(react@18.3.1)
+      '@pigment-css/react': 0.0.27(@types/react@18.3.12)(react@18.3.1)
     transitivePeerDependencies:
       - '@emotion/react'
       - '@emotion/styled'
@@ -16033,9 +16027,9 @@ snapshots:
   '@opentelemetry/api@1.8.0':
     optional: true
 
-  '@pigment-css/nextjs-plugin@0.0.26(@types/react@18.3.12)(next@15.0.3(@babel/core@7.26.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.48.2)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack-sources@3.2.3)':
+  '@pigment-css/nextjs-plugin@0.0.27(@types/react@18.3.12)(next@15.0.3(@babel/core@7.26.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.48.2)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack-sources@3.2.3)':
     dependencies:
-      '@pigment-css/unplugin': 0.0.26(@types/react@18.3.12)(react@18.3.1)(webpack-sources@3.2.3)
+      '@pigment-css/unplugin': 0.0.27(@types/react@18.3.12)(react@18.3.1)(webpack-sources@3.2.3)
       next: 15.0.3(@babel/core@7.26.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.48.2)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     transitivePeerDependencies:
       - '@types/react'
@@ -16043,7 +16037,7 @@ snapshots:
       - supports-color
       - webpack-sources
 
-  '@pigment-css/react@0.0.26(@types/react@18.3.12)(react@18.3.1)':
+  '@pigment-css/react@0.0.27(@types/react@18.3.12)(react@18.3.1)':
     dependencies:
       '@babel/core': 7.26.0
       '@babel/helper-module-imports': 7.25.9
@@ -16057,9 +16051,9 @@ snapshots:
       '@emotion/styled': 11.13.0(@emotion/react@11.13.3(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1)
       '@mui/system': 6.1.7(@emotion/react@11.13.3(@types/react@18.3.12)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1)
       '@mui/utils': 6.1.7(@types/react@18.3.12)(react@18.3.1)
-      '@wyw-in-js/processor-utils': 0.5.4
-      '@wyw-in-js/shared': 0.5.4
-      '@wyw-in-js/transform': 0.5.4
+      '@wyw-in-js/processor-utils': 0.5.5
+      '@wyw-in-js/shared': 0.5.5
+      '@wyw-in-js/transform': 0.5.5
       clsx: 2.1.1
       cssesc: 3.0.0
       csstype: 3.1.3
@@ -16071,12 +16065,12 @@ snapshots:
       - '@types/react'
       - supports-color
 
-  '@pigment-css/unplugin@0.0.26(@types/react@18.3.12)(react@18.3.1)(webpack-sources@3.2.3)':
+  '@pigment-css/unplugin@0.0.27(@types/react@18.3.12)(react@18.3.1)(webpack-sources@3.2.3)':
     dependencies:
       '@babel/core': 7.26.0
-      '@pigment-css/react': 0.0.26(@types/react@18.3.12)(react@18.3.1)
-      '@wyw-in-js/shared': 0.5.4
-      '@wyw-in-js/transform': 0.5.4
+      '@pigment-css/react': 0.0.27(@types/react@18.3.12)(react@18.3.1)
+      '@wyw-in-js/shared': 0.5.5
+      '@wyw-in-js/transform': 0.5.5
       babel-plugin-define-var: 0.1.0
       unplugin: 1.15.0(webpack-sources@3.2.3)
     transitivePeerDependencies:
@@ -16085,13 +16079,13 @@ snapshots:
       - supports-color
       - webpack-sources
 
-  '@pigment-css/vite-plugin@0.0.26(@types/react@18.3.12)(react@18.3.1)(vite@5.4.10(@types/node@20.17.6)(terser@5.29.2))':
+  '@pigment-css/vite-plugin@0.0.27(@types/react@18.3.12)(react@18.3.1)(vite@5.4.10(@types/node@20.17.6)(terser@5.29.2))':
     dependencies:
       '@babel/core': 7.26.0
       '@babel/preset-typescript': 7.26.0(@babel/core@7.26.0)
-      '@pigment-css/react': 0.0.26(@types/react@18.3.12)(react@18.3.1)
-      '@wyw-in-js/shared': 0.5.4
-      '@wyw-in-js/transform': 0.5.4
+      '@pigment-css/react': 0.0.27(@types/react@18.3.12)(react@18.3.1)
+      '@wyw-in-js/shared': 0.5.5
+      '@wyw-in-js/transform': 0.5.5
       babel-plugin-define-var: 0.1.0
       vite: 5.4.10(@types/node@20.17.6)(terser@5.29.2)
     transitivePeerDependencies:
@@ -17252,7 +17246,7 @@ snapshots:
       msw: 2.6.5(@types/node@20.17.6)(typescript@5.6.3)
       sirv: 3.0.0
       tinyrainbow: 1.2.0
-      vitest: 2.1.4(@types/node@20.17.6)(@vitest/browser@2.1.5)(happy-dom@12.10.3)(jsdom@24.0.0)(msw@2.6.5(@types/node@20.17.6)(typescript@5.6.3))(terser@5.29.2)
+      vitest: 2.1.4(@types/node@20.17.6)(@vitest/browser@2.1.5)(happy-dom@15.11.6)(jsdom@24.0.0)(msw@2.6.5(@types/node@20.17.6)(typescript@5.6.3))(terser@5.29.2)
       ws: 8.18.0
     optionalDependencies:
       playwright: 1.48.2
@@ -17277,7 +17271,7 @@ snapshots:
       std-env: 3.8.0
       test-exclude: 7.0.1
       tinyrainbow: 1.2.0
-      vitest: 2.1.4(@types/node@20.17.6)(@vitest/browser@2.1.5)(happy-dom@12.10.3)(jsdom@24.0.0)(msw@2.6.5(@types/node@20.17.6)(typescript@5.6.3))(terser@5.29.2)
+      vitest: 2.1.4(@types/node@20.17.6)(@vitest/browser@2.1.5)(happy-dom@15.11.6)(jsdom@24.0.0)(msw@2.6.5(@types/node@20.17.6)(typescript@5.6.3))(terser@5.29.2)
     optionalDependencies:
       '@vitest/browser': 2.1.5(@types/node@20.17.6)(playwright@1.48.2)(typescript@5.6.3)(vite@5.4.10(@types/node@20.17.6)(terser@5.29.2))(vitest@2.1.4)
     transitivePeerDependencies:
@@ -17438,14 +17432,14 @@ snapshots:
       webpack: 5.96.1(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.96.1))
       webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.96.1)
 
-  '@wyw-in-js/processor-utils@0.5.4':
+  '@wyw-in-js/processor-utils@0.5.5':
     dependencies:
       '@babel/generator': 7.26.0
-      '@wyw-in-js/shared': 0.5.4
+      '@wyw-in-js/shared': 0.5.5
     transitivePeerDependencies:
       - supports-color
 
-  '@wyw-in-js/shared@0.5.4':
+  '@wyw-in-js/shared@0.5.5':
     dependencies:
       debug: 4.3.7(supports-color@8.1.1)
       find-up: 5.0.0
@@ -17453,7 +17447,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@wyw-in-js/transform@0.5.4':
+  '@wyw-in-js/transform@0.5.5':
     dependencies:
       '@babel/core': 7.26.0
       '@babel/generator': 7.26.0
@@ -17462,11 +17456,11 @@ snapshots:
       '@babel/template': 7.25.9
       '@babel/traverse': 7.25.9
       '@babel/types': 7.26.0
-      '@wyw-in-js/processor-utils': 0.5.4
-      '@wyw-in-js/shared': 0.5.4
+      '@wyw-in-js/processor-utils': 0.5.5
+      '@wyw-in-js/shared': 0.5.5
       babel-merge: 3.0.0(@babel/core@7.26.0)
       cosmiconfig: 8.2.0
-      happy-dom: 12.10.3
+      happy-dom: 15.11.6
       source-map: 0.7.4
       stylis: 4.3.4
       ts-invariant: 0.10.3
@@ -18942,8 +18936,6 @@ snapshots:
       is-in-browser: 1.1.3
 
   css-what@6.1.0: {}
-
-  css.escape@1.5.1: {}
 
   cssesc@3.0.0: {}
 
@@ -20625,13 +20617,10 @@ snapshots:
     optionalDependencies:
       uglify-js: 3.17.4
 
-  happy-dom@12.10.3:
+  happy-dom@15.11.6:
     dependencies:
-      css.escape: 1.5.1
       entities: 4.5.0
-      iconv-lite: 0.6.3
       webidl-conversions: 7.0.0
-      whatwg-encoding: 2.0.0
       whatwg-mimetype: 3.0.0
 
   hard-rejection@2.1.0: {}
@@ -25913,9 +25902,9 @@ snapshots:
     dependencies:
       chalk: 5.3.0
       vite: 5.4.10(@types/node@20.17.6)(terser@5.29.2)
-      vitest: 2.1.4(@types/node@20.17.6)(@vitest/browser@2.1.5)(happy-dom@12.10.3)(jsdom@24.0.0)(msw@2.6.5(@types/node@20.17.6)(typescript@5.6.3))(terser@5.29.2)
+      vitest: 2.1.4(@types/node@20.17.6)(@vitest/browser@2.1.5)(happy-dom@15.11.6)(jsdom@24.0.0)(msw@2.6.5(@types/node@20.17.6)(typescript@5.6.3))(terser@5.29.2)
 
-  vitest@2.1.4(@types/node@20.17.6)(@vitest/browser@2.1.5)(happy-dom@12.10.3)(jsdom@24.0.0)(msw@2.6.5(@types/node@20.17.6)(typescript@5.6.3))(terser@5.29.2):
+  vitest@2.1.4(@types/node@20.17.6)(@vitest/browser@2.1.5)(happy-dom@15.11.6)(jsdom@24.0.0)(msw@2.6.5(@types/node@20.17.6)(typescript@5.6.3))(terser@5.29.2):
     dependencies:
       '@vitest/expect': 2.1.4
       '@vitest/mocker': 2.1.4(msw@2.6.5(@types/node@20.17.6)(typescript@5.6.3))(vite@5.4.10(@types/node@20.17.6)(terser@5.29.2))
@@ -25940,7 +25929,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 20.17.6
       '@vitest/browser': 2.1.5(@types/node@20.17.6)(playwright@1.48.2)(typescript@5.6.3)(vite@5.4.10(@types/node@20.17.6)(terser@5.29.2))(vitest@2.1.4)
-      happy-dom: 12.10.3
+      happy-dom: 15.11.6
       jsdom: 24.0.0
     transitivePeerDependencies:
       - less
@@ -26069,10 +26058,6 @@ snapshots:
       - '@swc/core'
       - esbuild
       - uglify-js
-
-  whatwg-encoding@2.0.0:
-    dependencies:
-      iconv-lite: 0.6.3
 
   whatwg-encoding@3.1.1:
     dependencies:
