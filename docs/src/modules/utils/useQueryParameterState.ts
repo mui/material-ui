@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import { debounce } from '@mui/material/utils';
+import useEventCallback from '@mui/utils/useEventCallback';
 
 const QUERY_UPDATE_WAIT_MS = 220;
 
 /**
  * Similar to `React.useState`, but it syncs back the current state to a query
- * parameter in the url, therefore it only supports strings. Wrap the result with
+ * parameter in the URL, therefore it only supports strings. Wrap the result with
  * parse/stringify logic if more complex values are needed.
  *
  * REMARK: this doesn't listen for router changes (yet) to update back the state.
@@ -16,13 +17,9 @@ export default function useQueryParameterState(
   initialValue = '',
 ): [string, (newValue: string) => void] {
   const initialValueRef = React.useRef(initialValue);
-
   const router = useRouter();
-
   const queryParamValue = router.query[name];
-
   const urlValue = Array.isArray(queryParamValue) ? queryParamValue[0] : queryParamValue;
-
   const [state, setState] = React.useState(urlValue || initialValue);
 
   const setUrlValue = React.useMemo(
@@ -61,13 +58,13 @@ export default function useQueryParameterState(
     [setUrlValue],
   );
 
-  const setUserState = React.useCallback(
+  // TODO remove useEventCallback with App Router migration
+  // https://github.com/vercel/next.js/discussions/45969 see for why
+  const setUserState = useEventCallback(
     (newValue: string) => {
       setUrlValue(newValue);
       setState(newValue);
-    },
-    [setUrlValue],
-  );
+    });
 
   // Make sure to initialize the state when route params are only available client-side
   const isInitialized = React.useRef(false);
