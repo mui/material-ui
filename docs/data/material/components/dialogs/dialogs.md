@@ -241,14 +241,6 @@ function DeleteButton() {
     </LoadingButton>
   );
 }
-
-export default function ToolpadDialogsCodeSnippet() {
-  return (
-    <DialogsProvider>
-      <DeleteButton />
-    </DialogsProvider>
-  );
-}
 ```
 
 The following example demonstrates some of these features:
