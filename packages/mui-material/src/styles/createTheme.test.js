@@ -561,4 +561,12 @@ describe('createTheme', () => {
       ],
     ).to.equal('5 7 10');
   });
+
+  it('should have `toRuntimeSource` for integrating with Pigment CSS', () => {
+    const theme = createTheme();
+    expect(typeof theme.toRuntimeSource).to.equal('function');
+
+    const themeCssVars = createTheme({ cssVariables: true });
+    expect(typeof themeCssVars.toRuntimeSource).to.equal('function');
+  });
 });

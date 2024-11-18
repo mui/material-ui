@@ -20,6 +20,7 @@
     "@mui/styles": "latest",
     "autoprefixer": "latest",
     "clean-css": "latest",
+    "clsx": "latest",
     "next": "latest",
     "postcss": "latest",
     "react": "latest",

@@ -10,6 +10,7 @@ import createTypography from './createTypography';
 import shadows from './shadows';
 import createTransitions from './createTransitions';
 import zIndex from './zIndex';
+import { stringifyTheme } from './stringifyTheme';
 
 function createThemeNoVars(options = {}, ...args) {
   const {
@@ -117,6 +118,7 @@ function createThemeNoVars(options = {}, ...args) {
       theme: this,
     });
   };
+  muiTheme.toRuntimeSource = stringifyTheme; // for Pigment CSS integration
 
   return muiTheme;
 }

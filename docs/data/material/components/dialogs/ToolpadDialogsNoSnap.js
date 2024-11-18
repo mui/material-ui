@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { DialogsProvider, useDialogs } from '@toolpad/core/useDialogs';
 import Button from '@mui/material/Button';
-import LoadingButton from '@mui/lab/LoadingButton';
 import Dialog from '@mui/material/Dialog';
 import Alert from '@mui/material/Alert';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -109,9 +108,9 @@ function DeleteDialogTrigger({ name }) {
   };
 
   return (
-    <LoadingButton variant="contained" loading={isDeleting} onClick={handleDelete}>
+    <Button variant="contained" loading={isDeleting} onClick={handleDelete}>
       Delete
-    </LoadingButton>
+    </Button>
   );
 }
 

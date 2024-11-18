@@ -92,7 +92,7 @@ export default function SlotsTable(props: SlotsTableProps) {
             const { description, className, name, defaultValue, hash } = params;
 
             return (
-              <tr key={className} id={hash}>
+              <tr key={`${className}-${hash}`} id={hash}>
                 <td className="slot-name" style={{ fontWeight: '600' }}>
                   {name}
                 </td>

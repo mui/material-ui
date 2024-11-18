@@ -130,10 +130,6 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     ownerState,
     additionalProps: {
       variant,
-      style: {
-        '--AvatarRoot-spacing': marginValue ? `${marginValue}px` : undefined,
-        ...other.style,
-      },
     },
   });
 
@@ -144,6 +140,10 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}
+      style={{
+        '--AvatarGroup-spacing': marginValue ? `${marginValue}px` : undefined,
+        ...other.style,
+      }}
     >
       {extraAvatars ? <SurplusSlot {...surplusProps}>{extraAvatarsElement}</SurplusSlot> : null}
       {children
