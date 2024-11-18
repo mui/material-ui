@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { expect } from 'chai';
 import { runInNewContext } from 'vm';
 import deepmerge from './deepmerge';
@@ -121,5 +122,13 @@ describe('deepmerge', () => {
 
     expect(result).to.deep.equal({ foo: { baz: 'new test' } });
     expect(foo).to.deep.equal({ foo: { baz: 'test' } });
+  });
+
+  it('should not deep clone React element', () => {
+    const element = React.createElement('div', {}, React.createElement('span'));
+    const element2 = React.createElement('a');
+    const result = deepmerge({ element }, { element: element2 });
+
+    expect(result.element).to.equal(element2);
   });
 });
