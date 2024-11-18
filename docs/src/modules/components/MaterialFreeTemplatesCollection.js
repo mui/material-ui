@@ -79,7 +79,7 @@ export default function MaterialFreeTemplatesCollection() {
   const materialTemplates = sourceMaterialTemplates();
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4, mb: 4 }}>
-      {layouts(translatation).map((layout) => {
+      {layouts(translatation).map((layout, index) => {
         const templateId = layout.source.split('/').pop();
         const templateName = pascalCase(templateId);
         const item = materialTemplates.map.get(templateId);
@@ -115,7 +115,8 @@ export default function MaterialFreeTemplatesCollection() {
                   component="img"
                   // The image source is generated from `pnpm template:screenshot material-ui`, do not modify the image manually.
                   image={`/static/screenshots${layout.href.replace(/\/$/, '')}.jpg`}
-                  title={layout.title}
+                  alt={layout.title}
+                  fetchPriority={index === 0 ? 'high' : undefined}
                   sx={(theme) => ({
                     aspectRatio: '16 / 9',
                     objectPosition: 'top',
