@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
+import { unstable_useId as useId } from '@mui/material/utils';
+import CircularProgress from '@mui/material/CircularProgress';
 import { alpha } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
@@ -14,16 +16,18 @@ import capitalize from '../utils/capitalize';
 import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, disabled, color, edge, size } = ownerState;
+  const { classes, disabled, color, edge, size, loading } = ownerState;
 
   const slots = {
     root: [
       'root',
+      loading && 'loading',
       disabled && 'disabled',
       color !== 'default' && `color${capitalize(color)}`,
       edge && `edge${capitalize(edge)}`,
       `size${capitalize(size)}`,
     ],
+    loadingIndicator: ['loadingIndicator'],
   };
 
   return composeClasses(slots, getIconButtonUtilityClass, classes);
@@ -37,6 +41,7 @@ const IconButtonRoot = styled(ButtonBase, {
 
     return [
       styles.root,
+      ownerState.loading && styles.loading,
       ownerState.color !== 'default' && styles[`color${capitalize(ownerState.color)}`],
       ownerState.edge && styles[`edge${capitalize(ownerState.edge)}`],
       styles[`size${capitalize(ownerState.size)}`],
@@ -140,8 +145,26 @@ const IconButtonRoot = styled(ButtonBase, {
       backgroundColor: 'transparent',
       color: (theme.vars || theme).palette.action.disabled,
     },
+    [`&.${iconButtonClasses.loading}`]: {
+      color: 'transparent',
+    },
   })),
 );
+
+const IconButtonLoadingIndicator = styled('span', {
+  name: 'MuiIconButton',
+  slot: 'LoadingIndicator',
+  overridesResolver: (props, styles) => styles.loadingIndicator,
+})(({ theme }) => ({
+  display: 'none',
+  position: 'absolute',
+  visibility: 'visible',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  color: (theme.vars || theme).palette.action.disabled,
+  variants: [{ props: { loading: true }, style: { display: 'flex' } }],
+}));
 
 /**
  * Refer to the [Icons](/material-ui/icons/) section of the documentation
@@ -157,8 +180,16 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     disabled = false,
     disableFocusRipple = false,
     size = 'medium',
+    id: idProp,
+    loading = false,
+    loadingIndicator: loadingIndicatorProp,
     ...other
   } = props;
+
+  const id = useId(idProp);
+  const loadingIndicator = loadingIndicatorProp ?? (
+    <CircularProgress aria-labelledby={id} color="inherit" size={16} />
+  );
 
   const ownerState = {
     ...props,
@@ -166,6 +197,8 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     color,
     disabled,
     disableFocusRipple,
+    loading,
+    loadingIndicator,
     size,
   };
 
@@ -173,14 +206,18 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
 
   return (
     <IconButtonRoot
+      id={id}
       className={clsx(classes.root, className)}
       centerRipple
       focusRipple={!disableFocusRipple}
-      disabled={disabled}
+      disabled={disabled || loading}
       ref={ref}
       {...other}
       ownerState={ownerState}
     >
+      <IconButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
+        {loading && loadingIndicator}
+      </IconButtonLoadingIndicator>
       {children}
     </IconButtonRoot>
   );
@@ -264,6 +301,22 @@ IconButton.propTypes /* remove-proptypes */ = {
    * @default false
    */
   edge: PropTypes.oneOf(['end', 'start', false]),
+  /**
+   * @ignore
+   */
+  id: PropTypes.string,
+  /**
+   * If `true`, the loading indicator is shown and the button becomes disabled.
+   * @default false
+   */
+  loading: PropTypes.bool,
+  /**
+   * Element placed before the children if the button is in loading state.
+   * The node should contain an element with `role="progressbar"` with an accessible name.
+   * By default we render a `CircularProgress` that is labelled by the button itself.
+   * @default <CircularProgress color="inherit" size={16} />
+   */
+  loadingIndicator: PropTypes.node,
   /**
    * The size of the component.
    * `small` is equivalent to the dense button styling.

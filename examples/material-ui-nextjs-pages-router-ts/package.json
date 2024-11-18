@@ -17,6 +17,7 @@
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
     "@mui/material-nextjs": "latest",
+    "clsx": "latest",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"
