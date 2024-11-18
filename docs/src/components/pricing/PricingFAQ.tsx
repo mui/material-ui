@@ -180,6 +180,22 @@ const faqData = [
       </React.Fragment>
     ),
   },
+  {
+    summary: 'What is the validity of the priority support add-on?',
+    detail: (
+      <React.Fragment>
+        The priority support add-on is valid for 1 year from the date of purchase. It is same for
+        perpetual or annual license model.{' '}
+        <Link
+          target="_blank"
+          rel="noopener"
+          href="https://mui.com/legal/technical-support-sla/#support-plans"
+        >
+          Support plans.
+        </Link>
+      </React.Fragment>
+    ),
+  },
 ];
 
 const Accordion = styled(MuiAccordion)(({ theme }) => ({
@@ -265,12 +281,13 @@ export default function PricingFAQ() {
           {renderItem(1)}
           {renderItem(2)}
           {renderItem(3)}
+          {renderItem(4)}
         </Grid>
         <Grid size={{ xs: 12, md: 4 }}>
-          {renderItem(4)}
           {renderItem(5)}
           {renderItem(6)}
           {renderItem(7)}
+          {renderItem(8)}
         </Grid>
         <Grid size={{ xs: 12, md: 4 }}>
           <Paper

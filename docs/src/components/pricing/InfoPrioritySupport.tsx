@@ -24,7 +24,7 @@ export default function InfoPrioritySupport(props: {
               color: 'text.secondary',
               fontWeight: 'normal',
               display: 'block',
-              mt: 0.8,
+              mt: 0.4,
               textAlign: 'center',
             }}
           >
@@ -42,7 +42,7 @@ export default function InfoPrioritySupport(props: {
               color: 'text.secondary',
               fontWeight: 'normal',
               display: 'block',
-              mt: 0.8,
+              mt: 0.4,
               textAlign: 'center',
             }}
           >

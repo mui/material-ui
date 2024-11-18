@@ -20,6 +20,7 @@ import BusinessIcon from '@mui/icons-material/Business';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import PrioritySupportSwitch from 'docs/src/components/pricing/PrioritySupportSwitch';
 import InfoPrioritySupport from 'docs/src/components/pricing/InfoPrioritySupport';
+import { usePrioritySupport } from 'docs/src/components/pricing/PrioritySupportContext';
 
 const planInfo = {
   community: {
@@ -107,14 +108,16 @@ export function PlanPrice(props: PlanPriceProps) {
   const annual = licenseModel === 'annual';
   const planPriceMinHeight = 24;
 
+  const { prioritySupport } = usePrioritySupport();
+
   if (plan === 'community') {
     return (
       <React.Fragment>
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 7 }}>
           <Typography
             variant="h3"
             component="div"
-            sx={{ fontWeight: 'bold', color: 'success.600', mt: 6 }}
+            sx={{ fontWeight: 'bold', color: 'success.600' }}
           >
             $0
           </Typography>
@@ -185,10 +188,26 @@ export function PlanPrice(props: PlanPriceProps) {
     const premiumPerpetualValue = premiumAnnualValue * 3;
     const premiumMonthlyValueForAnnual = premiumAnnualValue / 12;
 
-    const premiumDisplayedValue = annual ? premiumAnnualValue : premiumPerpetualValue;
+    const premiumAnnualValueWithPrioritySupport = premiumAnnualValue + 399;
+    const premiumPerpetualValueWithPrioritySupport = premiumPerpetualValue + 399;
+    const premiumMonthlyValueForAnnualWithPrioritySupport = 82; // premiumAnnualValueWithPrioritySupport / 12;
+
     const priceExplanation = getPriceExplanation(
-      annual ? premiumMonthlyValueForAnnual : premiumPerpetualValue,
+      prioritySupport
+        ? premiumMonthlyValueForAnnualWithPrioritySupport
+        : premiumMonthlyValueForAnnual,
     );
+
+    let premiumDisplayedValue: number = premiumAnnualValue;
+    if (annual && prioritySupport) {
+      premiumDisplayedValue = premiumAnnualValueWithPrioritySupport;
+    } else if (!annual && prioritySupport) {
+      premiumDisplayedValue = premiumPerpetualValueWithPrioritySupport;
+    } else if (annual && !prioritySupport) {
+      premiumDisplayedValue = premiumAnnualValue;
+    } else if (!annual && !prioritySupport) {
+      premiumDisplayedValue = premiumPerpetualValue;
+    }
 
     return (
       <React.Fragment>
@@ -246,8 +265,7 @@ export function PlanPrice(props: PlanPriceProps) {
           alignItems: 'center',
           flexDirection: 'column',
           justifyContent: 'center',
-          mt: 3,
-          mb: 1,
+          mt: 4,
         }}
       >
         <BusinessIcon sx={{ fontSize: 65, color: 'text.tertiary' }} />
@@ -255,18 +273,6 @@ export function PlanPrice(props: PlanPriceProps) {
       <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
         Custom pricing
       </Typography>
-      <Box
-        sx={{
-          mt: 6,
-        }}
-      >
-        <Typography
-          variant="body1"
-          sx={{ color: 'text.secondary', textAlign: 'center', fontSize: '0.875rem' }}
-        >
-          + Priority support included
-        </Typography>
-      </Box>
     </React.Fragment>
   );
 }
@@ -781,6 +787,14 @@ const rowHeaders: Record<string, React.ReactNode> = {
       }}
     />
   ),
+  'customer-success': (
+    <ColumnHead
+      {...{
+        label: 'Customer success manager',
+        tooltip: 'A dedicated person to help you get the most out of MUI products.',
+      }}
+    />
+  ),
 };
 
 const yes = <IconImage name="pricing/yes" title="Included" />;
@@ -902,6 +916,7 @@ const communityData: Record<string, React.ReactNode> = {
   'pre-screening': no,
   'issue-escalation': no,
   'security-questionnaire': no,
+  'customer-success': no,
 };
 
 const proData: Record<string, React.ReactNode> = {
@@ -1007,6 +1022,7 @@ const proData: Record<string, React.ReactNode> = {
   'pre-screening': no,
   'issue-escalation': no,
   'security-questionnaire': <Info value="Available from 10+ devs" />,
+  'customer-success': no,
 };
 
 const premiumData: Record<string, React.ReactNode> = {
@@ -1107,10 +1123,11 @@ const premiumData: Record<string, React.ReactNode> = {
   'priority-support': <PrioritySupportSwitch />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
-  'response-time': <InfoPrioritySupport value={yes} metadata="24 hours" value2="48 hours" />,
+  'response-time': <InfoPrioritySupport value={yes} metadata="24 hours" value2={no} />,
   'pre-screening': <InfoPrioritySupport value={yes} metadata="4 hours" value2={no} />,
   'issue-escalation': <InfoPrioritySupport value={yes} value2={no} />,
   'security-questionnaire': <Info value="Available from 4+ devs" />,
+  'customer-success': no,
 };
 
 const enterpriseData: Record<string, React.ReactNode> = {
@@ -1211,10 +1228,11 @@ const enterpriseData: Record<string, React.ReactNode> = {
   'priority-support': <Info value="Included" />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
-  'response-time': <Info value={yes} metadata={<React.Fragment>24 hours</React.Fragment>} />,
+  'response-time': <Info value={yes} metadata="24 hours" />,
   'pre-screening': <Info value={yes} metadata="4 hours" />,
   'issue-escalation': <Info value={yes} />,
   'security-questionnaire': <Info value="Available from 4+ devs" />,
+  'customer-success': yes,
 };
 
 function RowCategory(props: BoxProps) {
@@ -1917,6 +1935,8 @@ export default function PricingTable({
       {renderRow('pre-screening')}
       {divider}
       {renderRow('issue-escalation')}
+      {divider}
+      {renderRow('customer-success')}
       {divider}
       {renderRow('security-questionnaire')}
       {divider}
