@@ -74,7 +74,7 @@ function layouts(translatation) {
   ];
 }
 
-export default function Templates() {
+export default function MaterialFreeTemplatesCollection() {
   const translatation = useTranslate();
   const materialTemplates = sourceMaterialTemplates();
   return (
