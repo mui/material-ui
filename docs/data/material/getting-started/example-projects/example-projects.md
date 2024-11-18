@@ -4,7 +4,7 @@
 
 ## Official integrations
 
-The following integration examples feature Material UI paired with other popular React libraries and frameworks, so you can skip the initial setup steps and jump straight into building.
+The following integration examples feature Material UI paired with other popular React libraries and frameworks, so you can skip the initial setup steps and jump straight into building.
 
 :::success
 Not sure which to pick?
