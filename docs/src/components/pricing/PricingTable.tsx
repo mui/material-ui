@@ -43,7 +43,7 @@ const planInfo = {
     iconName: 'pricing/x-plan-enterprise',
     title: 'Enterprise',
     description:
-      'All features of Premium coupled with enterprise-grade priority support and feature requests.',
+      'All features of Premium coupled with enterprise-grade support and customer success.',
   },
 } as const;
 
