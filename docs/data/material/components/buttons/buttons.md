@@ -1,7 +1,7 @@
 ---
 productId: material-ui
 title: React Button component
-components: Button, IconButton, ButtonBase, LoadingButton
+components: Button, IconButton, ButtonBase
 materialDesign: https://m2.material.io/components/buttons
 githubLabel: 'component: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
@@ -113,11 +113,33 @@ Use `color` prop to apply theme color palette to component.
 
 {{"demo": "IconButtonColors.js"}}
 
+### Loading
+
+Use `loading` prop to set icon buttons in a loading state and disable interactions.
+
+{{"demo": "LoadingIconButton.js"}}
+
+### Badge
+
+You can use the [`Badge`](/material-ui/react-badge/) component to add a badge to an `IconButton`.
+
+{{"demo": "IconButtonWithBadge.js"}}
+
 ## File upload
 
 To create a file upload button, turn the button into a label using `component="label"` and then create a visually-hidden input with type `file`.
 
 {{"demo": "InputFileUpload.js"}}
+
+## Loading
+
+Use the `loading` prop to set buttons in a loading state and disable interactions.
+
+{{"demo": "LoadingButtons.js"}}
+
+Toggle the loading switch to see the transition between the different states.
+
+{{"demo": "LoadingButtonsTransition.js"}}
 
 ## Customization
 
@@ -174,15 +196,3 @@ However:
 ```
 
 This has the advantage of supporting any element, for instance, a link `<a>` element.
-
-## Experimental APIs
-
-### Loading button
-
-[`@mui/lab`](/material-ui/about-the-lab/) offers loading buttons that can show loading state and disable interactions.
-
-{{"demo": "LoadingButtons.js"}}
-
-Toggle the loading switch to see the transition between the different states.
-
-{{"demo": "LoadingButtonsTransition.js"}}
