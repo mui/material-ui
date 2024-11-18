@@ -376,8 +376,10 @@ const DialogDetails = React.memo(function DialogDetails(props) {
             <Tooltip
               placement="right"
               title={copied1 ? t('copied') : t('clickToCopy')}
-              TransitionProps={{
-                onExited: () => setCopied1(false),
+              slotProps={{
+                transition: {
+                  onExited: () => setCopied1(false),
+                },
               }}
             >
               <Title component="span" variant="inherit" onClick={handleClick(1)}>
@@ -388,7 +390,9 @@ const DialogDetails = React.memo(function DialogDetails(props) {
           <Tooltip
             placement="top"
             title={copied2 ? t('copied') : t('clickToCopy')}
-            TransitionProps={{ onExited: () => setCopied2(false) }}
+            slotProps={{
+              transition: { onExited: () => setCopied2(false) },
+            }}
           >
             <Markdown
               copyButtonHidden
