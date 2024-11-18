@@ -723,20 +723,20 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     className: clsx(classes.popper, PopperProps?.className),
   });
 
-  const [TooltipTransitionSlot, transitionSlotProps] = useSlot('transition', {
+  const [TransitionSlot, transitionSlotProps] = useSlot('transition', {
     elementType: Grow,
     externalForwardedProps,
     ownerState,
   });
 
-  const [TooltipTooltipSlot, tooltipSlotProps] = useSlot('tooltip', {
+  const [TooltipSlot, tooltipSlotProps] = useSlot('tooltip', {
     elementType: TooltipTooltip,
     className: classes.tooltip,
     externalForwardedProps,
     ownerState,
   });
 
-  const [TooltipArrowSlot, arrowSlotProps] = useSlot('arrow', {
+  const [ArrowSlot, arrowSlotProps] = useSlot('arrow', {
     elementType: TooltipArrow,
     className: classes.arrow,
     externalForwardedProps,
@@ -773,16 +773,16 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
         popperOptions={popperOptions}
       >
         {({ TransitionProps: TransitionPropsInner }) => (
-          <TooltipTransitionSlot
+          <TransitionSlot
             timeout={theme.transitions.duration.shorter}
             {...TransitionPropsInner}
             {...transitionSlotProps}
           >
-            <TooltipTooltipSlot {...tooltipSlotProps}>
+            <TooltipSlot {...tooltipSlotProps}>
               {title}
-              {arrow ? <TooltipArrowSlot {...arrowSlotProps} /> : null}
-            </TooltipTooltipSlot>
-          </TooltipTransitionSlot>
+              {arrow ? <ArrowSlot {...arrowSlotProps} /> : null}
+            </TooltipSlot>
+          </TransitionSlot>
         )}
       </PopperSlot>
     </React.Fragment>
