@@ -1693,12 +1693,12 @@ All of the Tooltip's slot (`*Component`) props were deprecated in favor of equiv
 
 ```diff
  <Tooltip
--    PopperComponent={CustomPopperComponent}
--    TransitionComponent={CustomTransitionComponent}
-+    slots={{
-+        popper: CustomPopperComponent,
-+        transition: CustomTransitionComponent,
-+    }}
+-  PopperComponent={CustomPopperComponent}
+-  TransitionComponent={CustomTransitionComponent}
++  slots={{
++    popper: CustomPopperComponent,
++    transition: CustomTransitionComponent,
++  }}
  />
 ```
 
@@ -1708,12 +1708,12 @@ All of the Tooltip's slot props (`*Props`) props were deprecated in favor of equ
 
 ```diff
  <Tooltip
--    PopperProps={CustomPopperProps}
--    TransitionProps={CustomTransitionProps}
-+    slotProps={{
-+        popper: CustomPopperProps,
-+        transition: CustomTransitionProps,
-+    }}
+-  PopperProps={CustomPopperProps}
+-  TransitionProps={CustomTransitionProps}
++  slotProps={{
++    popper: CustomPopperProps,
++    transition: CustomTransitionProps,
++  }}
  />
 ```
 

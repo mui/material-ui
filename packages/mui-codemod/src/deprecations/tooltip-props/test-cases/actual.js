@@ -1,5 +1,5 @@
 import Tooltip from '@mui/material/Tooltip';
-import {Tooltip as MyTooltip} from '@mui/material';
+import { Tooltip as MyTooltip } from '@mui/material';
 
 <Tooltip
   components={{
