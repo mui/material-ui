@@ -25,6 +25,11 @@ type ThemeProviderCssVariablesProps = CssThemeVariables extends { enabled: true 
        * @default false
        */
       disableStyleSheetGeneration?: boolean;
+      /*
+       * If `true`, the first render mode won't be `undefined` and there is no extra rerendering after the hydration.
+       * You should use this option in conjuction with `InitColorSchemeScript` component.
+       */
+      disableExtraRender?: boolean;
     }
   : {};
 

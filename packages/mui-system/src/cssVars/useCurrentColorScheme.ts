@@ -120,6 +120,10 @@ interface UseCurrentColoSchemeOptions<SupportedColorScheme extends string> {
   modeStorageKey?: string;
   colorSchemeStorageKey?: string;
   storageWindow?: Window | null;
+  /**
+   * If `true`, the hook returns the values from the storage without rerendering.
+   */
+  disableExtraRender?: boolean;
 }
 
 export default function useCurrentColorScheme<SupportedColorScheme extends string>(
@@ -133,6 +137,7 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
     modeStorageKey = DEFAULT_MODE_STORAGE_KEY,
     colorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
     storageWindow = typeof window === 'undefined' ? undefined : window,
+    disableExtraRender,
   } = options;
 
   const joinedColorSchemes = supportedColorSchemes.join(',');
@@ -159,11 +164,11 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
   const [, setHasMounted] = React.useState(false);
   const hasMounted = React.useRef(false);
   React.useEffect(() => {
-    if (isMultiSchemes) {
+    if (isMultiSchemes && !disableExtraRender) {
       setHasMounted(true); // to rerender the component after hydration
     }
     hasMounted.current = true;
-  }, [isMultiSchemes]);
+  }, [isMultiSchemes, disableExtraRender]);
 
   const colorScheme = getColorScheme(state);
 
@@ -348,11 +353,12 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
     isMultiSchemes,
   ]);
 
+  const isValid = disableExtraRender || hasMounted.current || !isMultiSchemes;
   return {
     ...state,
-    mode: hasMounted.current || !isMultiSchemes ? state.mode : undefined,
-    systemMode: hasMounted.current || !isMultiSchemes ? state.systemMode : undefined,
-    colorScheme: hasMounted.current || !isMultiSchemes ? colorScheme : undefined,
+    mode: isValid ? state.mode : undefined,
+    systemMode: isValid ? state.systemMode : undefined,
+    colorScheme: isValid ? colorScheme : undefined,
     setMode,
     setColorScheme,
   };
