@@ -2365,8 +2365,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1(stylis@4.2.0)
       stylis-plugin-rtl-sc:
-        specifier: npm:stylis-plugin-rtl@^1.1.0
-        version: stylis-plugin-rtl@1.1.0(stylis@4.2.0)
+        specifier: npm:stylis-plugin-rtl@^2.1.1
+        version: stylis-plugin-rtl@2.1.1(stylis@4.2.0)
       webfontloader:
         specifier: ^1.6.28
         version: 1.6.28
@@ -7134,10 +7134,6 @@ packages:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
     engines: {node: '>=4'}
     hasBin: true
-
-  cssjanus@1.3.2:
-    resolution: {integrity: sha512-5pM/C1MIfoqhXa7k9PqSnrjj1SSZDakfyB1DZhdYyJoDUH+evGbsUg6/bpQapTJeSnYaj0rdzPUMeM33CvB0vw==}
-    engines: {node: '>=6.0.0'}
 
   cssjanus@2.1.0:
     resolution: {integrity: sha512-kAijbny3GmdOi9k+QT6DGIXqFvL96aksNlGr4Rhk9qXDZYWUojU4bRc3IHWxdaLNOqgEZHuXoe5Wl2l7dxLW5g==}
@@ -12135,11 +12131,6 @@ packages:
     resolution: {integrity: sha512-78O4c6IswZ9TzpcIiQJIN49K3qNoXTM8zEJzhaTE/xRTCZswaovSEVIa/uwbOltZrk16X4jAxjaOhzz/hTm1Kw==}
     engines: {node: ^14.13.1 || >=16.0.0}
     hasBin: true
-
-  stylis-plugin-rtl@1.1.0:
-    resolution: {integrity: sha512-FPoSxP+gbBLJRUXDRDFNBhqy/eToquDLn7ZrjIVBRfXaZ9bunwNnDtDm2qW1EoU0c93krm1Dy+8iVmJpjRGsKw==}
-    peerDependencies:
-      stylis: 3.x
 
   stylis-plugin-rtl@2.1.1:
     resolution: {integrity: sha512-q6xIkri6fBufIO/sV55md2CbgS5c6gg9EhSVATtHHCdOnbN/jcI0u3lYhNVeuI65c4lQPo67g8xmq5jrREvzlg==}
@@ -18939,8 +18930,6 @@ snapshots:
 
   cssesc@3.0.0: {}
 
-  cssjanus@1.3.2: {}
-
   cssjanus@2.1.0: {}
 
   csso@5.0.5:
@@ -25221,11 +25210,6 @@ snapshots:
       write-file-atomic: 5.0.1
     transitivePeerDependencies:
       - supports-color
-
-  stylis-plugin-rtl@1.1.0(stylis@4.2.0):
-    dependencies:
-      cssjanus: 1.3.2
-      stylis: 4.2.0
 
   stylis-plugin-rtl@2.1.1(stylis@4.2.0):
     dependencies:
