@@ -2,6 +2,7 @@ name: Create cherry-pick PR
 on:
   pull_request_target:
     branches:
+      - 'next'
       - 'v*.x'
       - 'master'
     types: ['closed']
