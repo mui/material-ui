@@ -24,8 +24,8 @@ If you see any room for improvement, please feel free to open an [issue](https:/
 
 ## Premium templates
 
-Looking for something more? 
-You can find complete templates and themes in the <a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store">premium template section</a> of the MUI Store.
+Looking for something more?
+You can find complete templates and themes like those shown below in the <a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store">premium template section</a> of the MUI Store.
 
 <a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store">
 <span class="only-light-mode">
@@ -38,7 +38,7 @@ You can find complete templates and themes in the <a href="https://mui.com/store
 
 ## Toolpad Core (beta)
 
-[Toolpad Core](https://mui.com/toolpad/core/introduction/) is a set of components designed for assembling dashboards and internal tools more efficiently. 
+[Toolpad Core](https://mui.com/toolpad/core/introduction/) is a set of components designed for assembling dashboards and internal tools more efficiently.
 It builds on top of Material UI to provide sophisticated UI components with full-stack functionality, such as the [Dashboard Layout](https://mui.com/toolpad/core/react-dashboard-layout/) shown below.
 
 This is a great option if you don't need a fully-built template but don't want to start building from scratch.
