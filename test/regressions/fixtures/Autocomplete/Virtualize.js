@@ -111,18 +111,6 @@ ListboxComponent.propTypes = {
   children: PropTypes.node,
 };
 
-function random(length) {
-  const characters =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let result = '';
-
-  for (let i = 0; i < length; i += 1) {
-    result += characters.charAt(Math.floor(Math.random() * characters.length));
-  }
-
-  return result;
-}
-
 const StyledPopper = styled(Popper)({
   [`& .${autocompleteClasses.listbox}`]: {
     boxSizing: 'border-box',
@@ -133,28 +121,36 @@ const StyledPopper = styled(Popper)({
   },
 });
 
-const OPTIONS = Array.from(new Array(10000))
-  .map(() => random(10 + Math.ceil(Math.random() * 20)))
+const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+const OPTIONS = [...Array(100).keys()]
+  .map(
+    (number) =>
+      `${characters[number % characters.length].repeat(10)}${Math.floor(number / characters.length)}`,
+  )
   .sort((a, b) => a.toUpperCase().localeCompare(b.toUpperCase()));
 
 export default function Virtualize() {
   return (
-    <Autocomplete
-      sx={{ width: 300 }}
-      disableListWrap
-      options={OPTIONS}
-      groupBy={(option) => option[0].toUpperCase()}
-      renderInput={(params) => <TextField {...params} label="10,000 options" />}
-      renderOption={(props, option, state) => [props, option, state.index]}
-      renderGroup={(params) => params}
-      slots={{
-        popper: StyledPopper,
-      }}
-      slotProps={{
-        listbox: {
-          component: ListboxComponent,
-        },
-      }}
-    />
+    <div style={{ height: 400 }}>
+      <Autocomplete
+        disableCloseOnSelect
+        sx={{ width: 300 }}
+        disableListWrap
+        options={OPTIONS}
+        groupBy={(option) => option[0].toUpperCase()}
+        renderInput={(params) => <TextField {...params} label="10,000 options" />}
+        renderOption={(props, option, state) => [props, option, state.index]}
+        renderGroup={(params) => params}
+        slots={{
+          popper: StyledPopper,
+        }}
+        slotProps={{
+          listbox: {
+            component: ListboxComponent,
+          },
+        }}
+      />
+    </div>
   );
 }
