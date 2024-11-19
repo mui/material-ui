@@ -1,5 +1,49 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.2.0
+<!-- generated comparing v6.1.7..master -->
+_Nov 19, 2024_
+
+A big thanks to the 9 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 Added loading prop on the Button component (#42987) @Gavin-10
+- few fixes and docs improvements
+
+### `@mui/material@6.2.0`
+
+- [Button] Add loading feature to Button and IconButton (#42987) @Gavin-10
+- [Autocomplete] Use `ul` element for the listbox  (#44422) @DiegoAndai
+- [StepIcon] Add SvgIconOwnProps type to StepIcon props (#44337) @sai6855
+- [Tooltip] Deprecate *Component and *Props for v6 (#44350) @siriwatknp
+
+### `@mui/system@6.2.0`
+
+- Warn when calling `setMode` without configuring `colorSchemeSelector` (#43783) @siriwatknp
+
+### `@mui/utils@6.2.0`
+
+- Skip deep clone React element (#44400) @siriwatknp
+
+### Docs
+
+- [Accordion] Replace hardcoded classes with constants in demos (#44453) @ZeeshanTamboli
+- [material-ui][Autocomplete] Fix virtualization demo (#44382) @DiegoAndai
+- Add App starters in related-projects.md (#44315) @oliviertassinari
+- Bring back `*Component` and `*Props` codemods and deprecation messages (#44383) @DiegoAndai
+
+### Core
+
+- [test][Autocomplete] Make virtualize regression screenshots deterministic (#44425) @DiegoAndai
+- [blog] Fix reference to subdomain on MUI X v8 alpha zero post (#44416) @joserodolfofreitas
+- [blog] MUI X v8 alpha zero blog post (#44377) @joserodolfofreitas
+- [code-infra] Use vitest-compatible skip in `describeConformance` (#44412) @JCQuintas
+- [core] Keep OpenSSF badge up-to-date (aef2bf2) @oliviertassinari
+- [core] Polish useForkRef docs (#44424) @oliviertassinari
+- [docs] Revert #44388 (#44454) @prakhargupta1
+- [utils] Add documentation to `useForkRef` (#44410) @JCQuintas
+
+All contributors of this release in alphabetical order: @DiegoAndai, @Gavin-10, @JCQuintas, @joserodolfofreitas, @oliviertassinari, @prakhargupta1, @sai6855, @siriwatknp, @ZeeshanTamboli
+
 ## v6.1.7
 
 <!-- generated comparing v6.1.6..master -->
