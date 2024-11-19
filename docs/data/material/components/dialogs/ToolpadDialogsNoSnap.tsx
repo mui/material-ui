@@ -76,9 +76,9 @@ function DeleteDialogTrigger({ name }: { name: string }) {
         setIsDeleting(true);
         await mockApiDelete();
         dialogs.alert(
-          <p>
+          <React.Fragment>
             Deleted project <code>{name}</code>.
-          </p>,
+          </React.Fragment>,
         );
       } finally {
         setIsDeleting(false);
