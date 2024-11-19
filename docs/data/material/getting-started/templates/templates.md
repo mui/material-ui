@@ -40,6 +40,10 @@ Looking for something more? You can find complete templates and themes in the <a
 
 ## Toolpad Core (beta)
 
-[Toolpad Core](https://mui.com/toolpad/core/introduction/) is a set of components designed to build dashboards and internal tools. It leverages the existing suite of components offered by Material UI and ties them together to help you create applications quickly.
+[Toolpad Core](https://mui.com/toolpad/core/introduction/) is a set of components designed for assembling dashboards and internal tools more efficiently.
 
-{{"demo": "../../components/app-bar/DashboardLayoutBasic.js", "height": 400, "iframe": true, "defaultExpanded": false, "bg": "inline"}}
+It builds on top of Material UI to provide sophisticated UI components with full-stack functionality.
+
+Toolpad Core templates are a great option when you want to build internal tools and dashboards fast, but don't want to start building from scratch.
+
+{{"component": "modules/components/ToolpadCoreTemplates.tsx"}}

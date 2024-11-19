@@ -32,17 +32,6 @@ function layouts(translation) {
       hasDarkMode: true,
     },
     {
-      title: translation('dashboardToolpadTitle'),
-      description: translation('dashboardToolpadDescr'),
-      href: '/toolpad/core/templates/nextjs-dashboard',
-      source: 'https://github.com/mui/toolpad/tree/master/examples/core/auth-nextjs-themed',
-      codeSandbox:
-        'https://codesandbox.io/s/github/mui/toolpad/tree/master/examples/core/auth-nextjs-themed',
-      stackBlitz: null,
-      hasDarkMode: false,
-      new: true,
-    },
-    {
       title: translation('marketingPageTitle'),
       description: translation('marketingPageDescr'),
       href: '/material-ui/getting-started/templates/marketing-page/',
