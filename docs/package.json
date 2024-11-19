@@ -22,7 +22,7 @@
     "@babel/core": "^7.26.0",
     "@babel/runtime": "^7.26.0",
     "@babel/runtime-corejs2": "^7.26.0",
-    "@docsearch/react": "^3.7.0",
+    "@docsearch/react": "^3.8.0",
     "@emotion/cache": "^11.13.1",
     "@emotion/react": "^11.13.3",
     "@emotion/server": "^11.11.0",
@@ -80,9 +80,9 @@
     "jss-rtl": "^0.3.0",
     "lodash": "^4.17.21",
     "lz-string": "^1.5.0",
-    "markdown-to-jsx": "^7.5.0",
+    "markdown-to-jsx": "^7.6.2",
     "material-ui-popup-state": "^5.3.1",
-    "next": "^14.2.17",
+    "next": "^14.2.18",
     "notistack": "3.0.1",
     "nprogress": "^0.2.0",
     "postcss": "^8.4.49",
@@ -138,7 +138,7 @@
     "marked": "^14.1.4",
     "playwright": "^1.48.2",
     "prettier": "^3.3.3",
-    "tailwindcss": "^3.4.14",
+    "tailwindcss": "^3.4.15",
     "yargs": "^17.7.2"
   }
 }
