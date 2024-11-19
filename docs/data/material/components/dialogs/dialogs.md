@@ -177,7 +177,7 @@ You can create and manipulate dialogs imperatively with the [`useDialogs()`](htt
 - state management for opening and closing dialogs
 - passing data to dialogs and receiving results back from them
 - stacking multiple dialogs
-- themed, asynchronous versions of `window.alert()`, `window.confirm()` and `window.prompt()`
+- themed, asynchronous versions of `window.alert()`, `window.confirm()`, and `window.prompt()`
 
 ```tsx
 import { DialogsProvider, useDialogs } from '@toolpad/core/useDialogs';
