@@ -1,7 +1,9 @@
 # [Versions](https://mui.com/versions/)
 
 ## v6.2.0
+
 <!-- generated comparing v6.1.7..master -->
+
 _Nov 19, 2024_
 
 A big thanks to the 9 contributors who made this release possible. Here are some highlights ✨:
@@ -12,7 +14,7 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 ### `@mui/material@6.2.0`
 
 - [Button] Add loading feature to Button and IconButton (#42987) @Gavin-10
-- [Autocomplete] Use `ul` element for the listbox  (#44422) @DiegoAndai
+- [Autocomplete] Use `ul` element for the listbox (#44422) @DiegoAndai
 - [StepIcon] Add SvgIconOwnProps type to StepIcon props (#44337) @sai6855
 - [Tooltip] Deprecate *Component and *Props for v6 (#44350) @siriwatknp
 
