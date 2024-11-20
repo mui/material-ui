@@ -19,10 +19,10 @@ function setCookie(name: string, value: string, days: number = 100) {
   document.cookie = `${name}=${value || ''}${expires}; path=/`;
 }
 
-export const ColorSchemeProvider = ({
+export function ColorSchemeProvider({
   colorScheme: initialColorScheme,
   children,
-}: React.PropsWithChildren<{ colorScheme: string }>) => {
+}: React.PropsWithChildren<{ colorScheme: string }>) {
   const [colorScheme, setColorScheme] = React.useState<string>(initialColorScheme);
 
   const contextValue = React.useMemo(
@@ -56,7 +56,7 @@ export const ColorSchemeProvider = ({
   }, [setColorScheme]);
 
   return <ColorSchemeContext.Provider value={contextValue}>{children}</ColorSchemeContext.Provider>;
-};
+}
 
 export const useColorScheme = () => {
   return React.useContext(ColorSchemeContext);
