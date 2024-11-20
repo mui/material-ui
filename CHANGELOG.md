@@ -6,7 +6,7 @@
 
 _Nov 20, 2024_
 
-A big thanks to the 9 contributors who made this release possible.
+A big thanks to the 10 contributors who made this release possible.
 
 TODO INSERT HIGHLIGHTS
 
@@ -38,6 +38,7 @@ TODO INSERT HIGHLIGHTS
 - Revert #44388 (#44454) @prakhargupta1
 - Add App starters in related-projects.md (#44315) @oliviertassinari
 - Bring back `*Component` and `*Props` codemods and deprecation messages (#44383) @DiegoAndai
+- [docs] Copyedit Templates page (#44461) @samuelsycamore
 
 ### Core
 
@@ -50,7 +51,7 @@ TODO INSERT HIGHLIGHTS
 - Polish useForkRef docs (#44424) @oliviertassinari
 - [infra] Upgrade Cherry-pick workflow to latest (#44448) @oliviertassinari
 
-All contributors of this release in alphabetical order: @DiegoAndai, @JCQuintas, @joserodolfofreitas, @mnajdova, @oliviertassinari, @prakhargupta1, @sai6855, @siriwatknp, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @DiegoAndai, @JCQuintas, @joserodolfofreitas, @mnajdova, @oliviertassinari, @prakhargupta1, @sai6855, samuelsycamore, @siriwatknp, @ZeeshanTamboli
 
 ## v6.1.7
 
