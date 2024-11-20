@@ -252,7 +252,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
       timeout={timeout}
       {...other}
     >
-      {(state, childProps) => {
+      {(state, { ownerState, ...restChildProps }) => {
         return React.cloneElement(children, {
           ref: handleRef,
           style: {
@@ -260,7 +260,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
             ...style,
             ...children.props.style,
           },
-          ...childProps,
+          ...restChildProps,
         });
       }}
     </TransitionComponent>

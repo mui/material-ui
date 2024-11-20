@@ -189,7 +189,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
       timeout={timeout === 'auto' ? null : timeout}
       {...other}
     >
-      {(state, childProps) => {
+      {(state, { ownerState, ...restChildProps }) => {
         return React.cloneElement(children, {
           style: {
             opacity: 0,
@@ -200,7 +200,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
             ...children.props.style,
           },
           ref: handleRef,
-          ...childProps,
+          ...restChildProps,
         });
       }}
     </TransitionComponent>
