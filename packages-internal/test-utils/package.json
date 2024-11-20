@@ -47,7 +47,7 @@
     "dom-accessibility-api": "^0.7.0",
     "format-util": "^1.0.5",
     "fs-extra": "^11.2.0",
-    "jsdom": "^24.0.0",
+    "jsdom": "^25.0.1",
     "lodash": "^4.17.21",
     "mocha": "^10.8.2",
     "playwright": "^1.48.2",
