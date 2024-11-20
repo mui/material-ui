@@ -8,8 +8,6 @@ _Nov 20, 2024_
 
 A big thanks to the 10 contributors who made this release possible.
 
-TODO INSERT HIGHLIGHTS
-
 ### `@mui/material@6.1.8`
 
 - [Autocomplete] Use `ul` element for the listbox (#44422) @DiegoAndai
