@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
-import { useColorScheme } from './ColorSchemeProvider';
 import { Roboto } from 'next/font/google';
+import { useColorScheme } from './ColorSchemeProvider';
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -10,9 +10,9 @@ const roboto = Roboto({
   variable: '--font-roboto',
 });
 
-const App = ({ className, ...other }: React.PropsWithChildren<{ className?: string }>) => {
+function App({ className, ...other }: React.PropsWithChildren<{ className?: string }>) {
   const { colorScheme } = useColorScheme();
   return <body {...other} className={`${roboto.variable} ${colorScheme}`} />;
-};
+}
 
 export default App;

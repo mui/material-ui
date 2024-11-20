@@ -1,46 +1,43 @@
 'use client';
-import {
-  Dispatch,
-  PropsWithChildren,
-  SetStateAction,
-  useEffect,
-  createContext,
-  useContext,
-  useState,
-} from 'react';
+import * as React from 'react';
 
-const ColorSchemeContext = createContext<{
+const ColorSchemeContext = React.createContext<{
   colorScheme: string;
-  setColorScheme: Dispatch<SetStateAction<string>>;
+  setColorScheme: React.Dispatch<React.SetStateAction<string>>;
 }>({
   colorScheme: 'dark',
   setColorScheme: () => '',
 });
 
 function setCookie(name: string, value: string, days: number = 100) {
-  var expires = '';
+  let expires = '';
   if (days) {
     const date = new Date();
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    expires = '; expires=' + date.toUTCString();
+    expires = `; expires=${date.toUTCString()}`;
   }
-  document.cookie = name + '=' + (value || '') + expires + '; path=/';
+  document.cookie = `${name}=${value || ''}${expires}; path=/`;
 }
 
 export const ColorSchemeProvider = ({
   colorScheme: initialColorScheme,
   children,
-}: PropsWithChildren<{ colorScheme: string }>) => {
-  const [colorScheme, setColorScheme] = useState<string>(initialColorScheme);
+}: React.PropsWithChildren<{ colorScheme: string }>) => {
+  const [colorScheme, setColorScheme] = React.useState<string>(initialColorScheme);
+
+  const contextValue = React.useMemo(
+    () => ({ colorScheme, setColorScheme }),
+    [colorScheme, setColorScheme],
+  );
 
   // Set the colorScheme in localStorage
-  useEffect(() => {
+  React.useEffect(() => {
     setCookie('colorScheme', colorScheme);
     localStorage.setItem('colorScheme', colorScheme);
   }, [colorScheme]);
 
   // Handle when localStorage has changed
-  useEffect(() => {
+  React.useEffect(() => {
     const handleStorage = (event: StorageEvent) => {
       const value = event.newValue;
       if (
@@ -58,13 +55,9 @@ export const ColorSchemeProvider = ({
     };
   }, [setColorScheme]);
 
-  return (
-    <ColorSchemeContext.Provider value={{ colorScheme, setColorScheme }}>
-      {children}
-    </ColorSchemeContext.Provider>
-  );
+  return <ColorSchemeContext.Provider value={contextValue}>{children}</ColorSchemeContext.Provider>;
 };
 
 export const useColorScheme = () => {
-  return useContext(ColorSchemeContext);
+  return React.useContext(ColorSchemeContext);
 };
