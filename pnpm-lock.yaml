@@ -2364,9 +2364,6 @@ importers:
       stylis-plugin-rtl:
         specifier: ^2.1.1
         version: 2.1.1(stylis@4.2.0)
-      stylis-plugin-rtl-sc:
-        specifier: npm:stylis-plugin-rtl@^2.1.1
-        version: stylis-plugin-rtl@2.1.1(stylis@4.2.0)
       webfontloader:
         specifier: ^1.6.28
         version: 1.6.28
