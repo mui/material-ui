@@ -2,7 +2,7 @@ import * as React from 'react';
 import type { Metadata } from 'next';
 import { cookies } from 'next/headers';
 import '@mui/material-pigment-css/styles.css';
-import { ThemeProvider } from '../components/ThemeProvider';
+import { ColorSchemeProvider } from '../components/ColorSchemeProvider';
 import App from '../components/App';
 
 export const metadata: Metadata = {
@@ -15,12 +15,12 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const cookieStore = await cookies();
-  const { value: theme = 'dark' } = cookieStore.get('theme') ?? {};
+  const { value: colorScheme = 'light' } = cookieStore.get('colorScheme') ?? {};
   return (
     <html lang="en">
-      <ThemeProvider theme={theme}>
+      <ColorSchemeProvider colorScheme={colorScheme}>
         <App>{children}</App>
-      </ThemeProvider>
+      </ColorSchemeProvider>
     </html>
   );
 }

@@ -1,6 +1,5 @@
 'use client';
 import * as React from 'react';
-import { useColorScheme } from '@mui/material/styles';
 import DefaultPropsProvider from '@mui/material/DefaultPropsProvider';
 import CssBaseline from '@mui/material/CssBaseline';
 import IconButton from '@mui/material/IconButton';
@@ -10,7 +9,7 @@ import Stack from '@mui/material-pigment-css/Stack';
 import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
 import { styled } from '@mui/material-pigment-css';
-import { useTheme } from '../components/ThemeProvider';
+import { useColorScheme } from '../components/ColorSchemeProvider';
 
 const Title = styled('div')(({ theme }) => ({
   color: theme.vars.palette.text.primary,
@@ -20,10 +19,10 @@ const Title = styled('div')(({ theme }) => ({
 }));
 
 export default function Home() {
-  const { theme, setTheme } = useTheme();
+  const { colorScheme, setColorScheme } = useColorScheme();
 
-  const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
+  const toggleColorScheme = () => {
+    setColorScheme(colorScheme === 'dark' ? 'light' : 'dark');
   };
 
   return (
@@ -38,8 +37,8 @@ export default function Home() {
         <CssBaseline />
         <Container>
           <div sx={{ position: 'absolute', top: 10, right: 10 }}>
-            <IconButton sx={{ fontSize: 20, px: 1.5 }} onClick={toggleTheme}>
-              {theme === 'light' ? '🌙' : '🔆'}
+            <IconButton sx={{ fontSize: 20, px: 1.5 }} onClick={toggleColorScheme}>
+              {colorScheme === 'light' ? '🌙' : '🔆'}
             </IconButton>
           </div>
           <Grid container spacing={{ xs: 2, sm: 3, md: 4 }}>

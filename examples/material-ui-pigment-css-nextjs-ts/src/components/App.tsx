@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import { useTheme } from './ThemeProvider';
+import { useColorScheme } from './ColorSchemeProvider';
 import { Roboto } from 'next/font/google';
 
 const roboto = Roboto({
@@ -11,8 +11,8 @@ const roboto = Roboto({
 });
 
 const App = ({ className, ...other }: React.PropsWithChildren<{ className?: string }>) => {
-  const { theme } = useTheme();
-  return <body {...other} className={`${roboto.variable} ${theme}`} />;
+  const { colorScheme } = useColorScheme();
+  return <body {...other} className={`${roboto.variable} ${colorScheme}`} />;
 };
 
 export default App;
