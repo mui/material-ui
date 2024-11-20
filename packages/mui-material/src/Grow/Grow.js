@@ -190,7 +190,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
       {...other}
     >
       {/* Ensure "ownerState" is not forwarded to the child DOM element when a direct HTML element is used.
-          This avoids unexpected behavior since "ownerState" is intended for internal styling and not as a DOM attribute. */}
+            This avoids unexpected behavior since "ownerState" is intended for internal styling, component props and not as a DOM attribute. */}
       {(state, { ownerState, ...restChildProps }) => {
         return React.cloneElement(children, {
           style: {
