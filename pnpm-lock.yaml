@@ -157,7 +157,7 @@ importers:
         version: 6.19.1(eslint@8.56.0)(typescript@5.3.3)
       babel-loader:
         specifier: ^9.1.3
-        version: 9.1.3(@babel/core@7.23.9)(webpack@5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4))
+        version: 9.1.3(@babel/core@7.23.9)(webpack@5.90.3)
       babel-plugin-istanbul:
         specifier: ^6.1.1
         version: 6.1.1
@@ -184,7 +184,7 @@ importers:
         version: 5.3.0
       compression-webpack-plugin:
         specifier: ^11.1.0
-        version: 11.1.0(webpack@5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4))
+        version: 11.1.0(webpack@5.90.3)
       concurrently:
         specifier: ^8.2.2
         version: 8.2.2
@@ -202,19 +202,19 @@ importers:
         version: 8.56.0
       eslint-config-airbnb:
         specifier: ^19.0.4
-        version: 19.0.4(eslint-plugin-import@2.29.1(@typescript-eslint/parser@6.19.1(eslint@8.56.0)(typescript@5.3.3))(eslint-import-resolver-webpack@0.13.8)(eslint@8.56.0))(eslint-plugin-jsx-a11y@6.7.1(eslint@8.56.0))(eslint-plugin-react-hooks@4.6.0(eslint@8.56.0))(eslint-plugin-react@7.34.1(eslint@8.56.0))(eslint@8.56.0)
+        version: 19.0.4(eslint-plugin-import@2.29.1)(eslint-plugin-jsx-a11y@6.7.1(eslint@8.56.0))(eslint-plugin-react-hooks@4.6.0(eslint@8.56.0))(eslint-plugin-react@7.34.1(eslint@8.56.0))(eslint@8.56.0)
       eslint-config-airbnb-base:
         specifier: ^15.0.0
-        version: 15.0.0(eslint-plugin-import@2.29.1(@typescript-eslint/parser@6.19.1(eslint@8.56.0)(typescript@5.3.3))(eslint-import-resolver-webpack@0.13.8)(eslint@8.56.0))(eslint@8.56.0)
+        version: 15.0.0(eslint-plugin-import@2.29.1)(eslint@8.56.0)
       eslint-config-airbnb-typescript:
         specifier: ^17.1.0
-        version: 17.1.0(@typescript-eslint/eslint-plugin@6.19.1(@typescript-eslint/parser@6.19.1(eslint@8.56.0)(typescript@5.3.3))(eslint@8.56.0)(typescript@5.3.3))(@typescript-eslint/parser@6.19.1(eslint@8.56.0)(typescript@5.3.3))(eslint-plugin-import@2.29.1(@typescript-eslint/parser@6.19.1(eslint@8.56.0)(typescript@5.3.3))(eslint-import-resolver-webpack@0.13.8)(eslint@8.56.0))(eslint@8.56.0)
+        version: 17.1.0(@typescript-eslint/eslint-plugin@6.19.1(@typescript-eslint/parser@6.19.1(eslint@8.56.0)(typescript@5.3.3))(eslint@8.56.0)(typescript@5.3.3))(@typescript-eslint/parser@6.19.1(eslint@8.56.0)(typescript@5.3.3))(eslint-plugin-import@2.29.1)(eslint@8.56.0)
       eslint-config-prettier:
         specifier: ^9.1.0
         version: 9.1.0(eslint@8.56.0)
       eslint-import-resolver-webpack:
         specifier: ^0.13.8
-        version: 0.13.8(eslint-plugin-import@2.29.1)(webpack@5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4))
+        version: 0.13.8(eslint-plugin-import@2.29.1)(webpack@5.90.3)
       eslint-plugin-babel:
         specifier: ^5.3.1
         version: 5.3.1(eslint@8.56.0)
@@ -271,7 +271,7 @@ importers:
         version: 0.4.0
       karma-webpack:
         specifier: ^5.0.0
-        version: 5.0.0(webpack@5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4))
+        version: 5.0.0(webpack@5.90.3)
       lerna:
         specifier: ^8.1.2
         version: 8.1.2(encoding@0.1.13)
@@ -307,7 +307,7 @@ importers:
         version: 0.11.10
       raw-loader:
         specifier: 4.0.2
-        version: 4.0.2(webpack@5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4))
+        version: 4.0.2(webpack@5.90.3)
       rimraf:
         specifier: ^5.0.5
         version: 5.0.5
@@ -325,7 +325,7 @@ importers:
         version: 1.10.0
       terser-webpack-plugin:
         specifier: ^5.3.10
-        version: 5.3.10(esbuild@0.19.11)(webpack@5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4))
+        version: 5.3.10(esbuild@0.19.11)(webpack@5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3)))
       tsup:
         specifier: ^8.0.2
         version: 8.0.2(postcss@8.4.35)(typescript@5.3.3)
@@ -337,7 +337,7 @@ importers:
         version: 5.3.3
       webpack:
         specifier: ^5.90.3
-        version: 5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4)
+        version: 5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3))
       webpack-bundle-analyzer:
         specifier: ^4.10.1
         version: 4.10.1
@@ -740,7 +740,7 @@ importers:
         version: 18.19.25
       '@types/prop-types':
         specifier: ^15.7.12
-        version: 15.7.12
+        version: 15.7.13
       '@types/react':
         specifier: 18.3.3
         version: 18.3.3
@@ -1090,7 +1090,7 @@ importers:
         version: 7.23.9
       '@floating-ui/react-dom':
         specifier: ^2.0.8
-        version: 2.0.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 2.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build
@@ -1124,7 +1124,7 @@ importers:
         version: 4.3.12
       '@types/prop-types':
         specifier: ^15.7.12
-        version: 15.7.12
+        version: 15.7.13
       '@types/react':
         specifier: 18.3.3
         version: 18.3.3
@@ -1202,7 +1202,7 @@ importers:
         version: 7.23.9
       '@mui/base':
         specifier: '*'
-        version: 5.0.0-beta.40(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 5.0.0-beta.62(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mui/system':
         specifier: ^5.0.0
         version: 5.15.12(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.0(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1)
@@ -1227,7 +1227,7 @@ importers:
         version: 18.19.25
       '@types/prop-types':
         specifier: ^15.7.12
-        version: 15.7.12
+        version: 15.7.13
       '@types/react':
         specifier: 18.3.3
         version: 18.3.3
@@ -1386,7 +1386,7 @@ importers:
         version: 4.3.12
       '@types/prop-types':
         specifier: ^15.7.12
-        version: 15.7.12
+        version: 15.7.13
       '@types/react':
         specifier: 18.3.3
         version: 18.3.3
@@ -1460,7 +1460,7 @@ importers:
         version: 4.3.12
       '@types/prop-types':
         specifier: ^15.7.12
-        version: 15.7.12
+        version: 15.7.13
       '@types/react':
         specifier: 18.3.3
         version: 18.3.3
@@ -1549,7 +1549,7 @@ importers:
         version: 4.3.12
       '@types/prop-types':
         specifier: ^15.7.12
-        version: 15.7.12
+        version: 15.7.13
       '@types/react':
         specifier: 18.3.3
         version: 18.3.3
@@ -1888,7 +1888,7 @@ importers:
         version: 4.3.12
       '@types/prop-types':
         specifier: ^15.7.12
-        version: 15.7.12
+        version: 15.7.13
       '@types/react':
         specifier: 18.3.3
         version: 18.3.3
@@ -1935,7 +1935,7 @@ importers:
         version: link:../mui-types/build
       '@types/prop-types':
         specifier: ^15.7.12
-        version: 15.7.12
+        version: 15.7.13
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -2255,7 +2255,7 @@ importers:
         version: 1.0.4
       '@types/prop-types':
         specifier: ^15.7.12
-        version: 15.7.12
+        version: 15.7.13
       '@types/react':
         specifier: 18.3.3
         version: 18.3.3
@@ -3611,8 +3611,8 @@ packages:
   '@floating-ui/dom@1.6.1':
     resolution: {integrity: sha512-iA8qE43/H5iGozC3W0YSnVSW42Vh522yyM1gj+BqRwVsTNOyr231PsXDaV04yT39PsO0QL2QpbI/M0ZaLUQgRQ==}
 
-  '@floating-ui/react-dom@2.0.8':
-    resolution: {integrity: sha512-HOdqOt3R3OGeTKidaLvJKcgg75S6tibQ3Tif4eyd91QnIJWr0NLvoXFpJA/j8HqkFSL68GDca9AuyWEHlhyClw==}
+  '@floating-ui/react-dom@2.1.2':
+    resolution: {integrity: sha512-06okr5cgPzMNBy+Ycse2A6udMi4bqwW/zgBF/rwjcNqWkyr82Mcg8b0vjX8OJpZFy/FKjJmw6wV7t44kK6kW7A==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -3777,9 +3777,9 @@ packages:
       '@types/react':
         optional: true
 
-  '@mui/base@5.0.0-beta.40':
-    resolution: {integrity: sha512-I/lGHztkCzvwlXpjD2+SNmvNQvB4227xBXhISPjEaJUXGImOQ9f3D2Yj/T3KasSI/h0MLWy74X0J6clhPmsRbQ==}
-    engines: {node: '>=12.0.0'}
+  '@mui/base@5.0.0-beta.62':
+    resolution: {integrity: sha512-TzJLCNlrMkSU4bTCdTT+TVUiGx4sjZLhH673UV6YN+rNNP8wJpkWfRSvjDB5HcbH2T0lUamnz643ZnV+8IiMjw==}
+    engines: {node: '>=14.0.0'}
     peerDependencies:
       '@types/react': 18.3.3
       react: ^17.0.0 || ^18.0.0
@@ -3864,8 +3864,8 @@ packages:
       '@types/react':
         optional: true
 
-  '@mui/types@7.2.14':
-    resolution: {integrity: sha512-MZsBZ4q4HfzBsywtXgM1Ksj6HDThtiwmOKUXH1pKYISI9gAVXCNHNpo7TlGoGrBaYWZTdNoirIN7JsQcQUjmQQ==}
+  '@mui/types@7.2.19':
+    resolution: {integrity: sha512-6XpZEM/Q3epK9RN8ENoXuygnqUQxE+siN/6rGRi2iwJPgBUR25mphYQ9ZI87plGh58YoZ5pp40bFvKYOCDJ3tA==}
     peerDependencies:
       '@types/react': 18.3.3
     peerDependenciesMeta:
@@ -3878,6 +3878,16 @@ packages:
     peerDependencies:
       '@types/react': 18.3.3
       react: ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  '@mui/utils@6.1.8':
+    resolution: {integrity: sha512-O2DWb1kz8hiANVcR7Z4gOB3SvPPsSQGUmStpyBDzde6dJIfBzgV9PbEQOBZd3EBsd1pB+Uv1z5LAJAbymmawrA==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      '@types/react': 18.3.3
+      react: ^17.0.0 || ^18.0.0 || ^19.0.0
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -3901,6 +3911,7 @@ packages:
   '@mui/x-data-grid-generator@7.0.0-beta.7':
     resolution: {integrity: sha512-CV6AaC11RvNRKeN3Pd+ynxUnGE2IoK5NacXSxkelrfoeC+W9UH1GZhoZeh744b7KJxcVnKabxbMRa9qZj0jY5Q==}
     engines: {node: '>=14.0.0'}
+    deprecated: 'Use the stable release channel: @mui/x-data-grid-generator@latest'
     peerDependencies:
       '@mui/icons-material': ^5.4.1
       '@mui/material': ^5.15.0
@@ -3909,6 +3920,7 @@ packages:
   '@mui/x-data-grid-premium@7.0.0-beta.7':
     resolution: {integrity: sha512-8qtdDSvIDVCFnWX6s6hMqSgayU8igdVHK7waGjjPxwrCj3u9JTzMGdxJF2mu6gaCDcQ4Bn3PFT7IA8qt6yHhaw==}
     engines: {node: '>=14.0.0'}
+    deprecated: 'Use the stable release channel: @mui/x-data-grid-premium@latest'
     peerDependencies:
       '@mui/material': ^5.15.0
       react: ^17.0.0 || ^18.0.0
@@ -3917,6 +3929,7 @@ packages:
   '@mui/x-data-grid-pro@7.0.0-beta.7':
     resolution: {integrity: sha512-sVw/r5eOjIqxMpfLtsJzntk1tgdNcWpxndwqo3VT3fmU6i78SbJgihJ7yntWai0nn2rjDjmRZPpZifAc0gNeIg==}
     engines: {node: '>=14.0.0'}
+    deprecated: 'Use the stable release channel: @mui/x-data-grid-pro@latest'
     peerDependencies:
       '@mui/material': ^5.15.0
       react: ^17.0.0 || ^18.0.0
@@ -3925,6 +3938,7 @@ packages:
   '@mui/x-data-grid@7.0.0-beta.7':
     resolution: {integrity: sha512-rZ7lvibUDbGqEABBGlNvfQ5SdIa+8ve3/d8YjdZ2DUOeJwR+K7X4MnVItIrZuKPRYoSy1kWDRsjr8u0sEIIEoA==}
     engines: {node: '>=14.0.0'}
+    deprecated: 'Use the stable release channel: @mui/x-data-grid@latest'
     peerDependencies:
       '@mui/material': ^5.15.0
       react: ^17.0.0 || ^18.0.0
@@ -4007,6 +4021,7 @@ packages:
   '@mui/x-license-pro@6.10.2':
     resolution: {integrity: sha512-Baw3shilU+eHgU+QYKNPFUKvfS5rSyNJ98pQx02E0gKA22hWp/XAt88K1qUfUMPlkPpvg/uci6gviQSSLZkuKw==}
     engines: {node: '>=14.0.0'}
+    deprecated: In MUI X v7 the name of this package changed to @mui/x-license to reflect the existence of the premium plan.
     peerDependencies:
       react: ^17.0.0 || ^18.0.0
 
@@ -5044,8 +5059,8 @@ packages:
   '@types/promise.allsettled@1.0.3':
     resolution: {integrity: sha512-b/IFHHTkYkTqu41IH9UtpICwqrpKj2oNlb4KHPzFQDMiz+h1BgAeATeO0/XTph4+UkH9W2U0E4B4j64KWOovag==}
 
-  '@types/prop-types@15.7.12':
-    resolution: {integrity: sha512-5zvhXYtRNRluoE/jAp4GVsSduVUzNWKkOZrCDBWYtE7biZywwdC2AcEzg+cSMLFRfVgeAFqpfNabiPjxFddV1Q==}
+  '@types/prop-types@15.7.13':
+    resolution: {integrity: sha512-hCZTSvwbzWGvhqxp/RqVqwU999pBf2vp7hzIjiYOsl8wqOmUxkQ6ddw1cV3l8811+kdUFus/q4d1Y3E3SyEifA==}
 
   '@types/qs@6.9.7':
     resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
@@ -5327,6 +5342,7 @@ packages:
 
   acorn-import-assertions@1.9.0:
     resolution: {integrity: sha512-cmMwop9x+8KFhxvKrKfPYmN6/pKTYYHBqLa0DfvVZcKMJWNyWLnaqND7dx/qn66R7ewM1UX5XMaDVP5wlVTaVA==}
+    deprecated: package has been renamed to acorn-import-attributes
     peerDependencies:
       acorn: ^8
 
@@ -7165,6 +7181,7 @@ packages:
   eslint@8.56.0:
     resolution: {integrity: sha512-Go19xM6T9puCOWntie1/P997aXxFsOi37JIHRWI514Hc6ZnaHGKY9xFhrU65RT6CcBEzZoGG1e6Nq+DT04ZtZQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
 
   espree@9.6.1:
@@ -13954,7 +13971,7 @@ snapshots:
       '@floating-ui/core': 1.6.0
       '@floating-ui/utils': 0.2.1
 
-  '@floating-ui/react-dom@2.0.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@floating-ui/react-dom@2.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@floating-ui/dom': 1.6.1
       react: 18.3.1
@@ -14203,8 +14220,8 @@ snapshots:
   '@mui/base@5.0.0-beta.30(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.23.9
-      '@floating-ui/react-dom': 2.0.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@mui/types': 7.2.14(@types/react@18.3.3)
+      '@floating-ui/react-dom': 2.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@mui/types': 7.2.19(@types/react@18.3.3)
       '@mui/utils': 5.15.20(@types/react@18.3.3)(react@18.3.1)
       '@popperjs/core': 2.11.8
       clsx: 2.1.1
@@ -14217,8 +14234,8 @@ snapshots:
   '@mui/base@5.0.0-beta.31(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.23.9
-      '@floating-ui/react-dom': 2.0.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@mui/types': 7.2.14(@types/react@18.3.3)
+      '@floating-ui/react-dom': 2.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@mui/types': 7.2.19(@types/react@18.3.3)
       '@mui/utils': 5.15.20(@types/react@18.3.3)(react@18.3.1)
       '@popperjs/core': 2.11.8
       clsx: 2.1.1
@@ -14228,12 +14245,12 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.3
 
-  '@mui/base@5.0.0-beta.40(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@mui/base@5.0.0-beta.62(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.23.9
-      '@floating-ui/react-dom': 2.0.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@mui/types': 7.2.14(@types/react@18.3.3)
-      '@mui/utils': 5.15.20(@types/react@18.3.3)(react@18.3.1)
+      '@floating-ui/react-dom': 2.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@mui/types': 7.2.19(@types/react@18.3.3)
+      '@mui/utils': 6.1.8(@types/react@18.3.3)(react@18.3.1)
       '@popperjs/core': 2.11.8
       clsx: 2.1.1
       prop-types: 15.8.1
@@ -14250,7 +14267,7 @@ snapshots:
       '@mui/base': 5.0.0-beta.31(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mui/core-downloads-tracker': 5.15.8
       '@mui/system': 5.15.12(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.0(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1)
-      '@mui/types': 7.2.14(@types/react@18.3.3)
+      '@mui/types': 7.2.19(@types/react@18.3.3)
       '@mui/utils': 5.15.20(@types/react@18.3.3)(react@18.3.1)
       clsx: 2.1.1
       prop-types: 15.8.1
@@ -14267,7 +14284,7 @@ snapshots:
       '@mui/base': 5.0.0-beta.31(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mui/core-downloads-tracker': 5.15.8
       '@mui/system': 5.15.12(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.0(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1)
-      '@mui/types': 7.2.14(@types/react@18.3.3)
+      '@mui/types': 7.2.19(@types/react@18.3.3)
       '@mui/utils': 5.15.20(@types/react@18.3.3)(react@18.3.1)
       '@types/react-transition-group': 4.4.10
       clsx: 2.1.1
@@ -14307,7 +14324,7 @@ snapshots:
       '@babel/runtime': 7.23.9
       '@mui/private-theming': 5.15.12(@types/react@18.3.3)(react@18.3.1)
       '@mui/styled-engine': 5.15.11(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.0(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(react@18.3.1)
-      '@mui/types': 7.2.14(@types/react@18.3.3)
+      '@mui/types': 7.2.19(@types/react@18.3.3)
       '@mui/utils': 5.15.20(@types/react@18.3.3)(react@18.3.1)
       clsx: 2.1.1
       csstype: 3.1.3
@@ -14318,14 +14335,26 @@ snapshots:
       '@emotion/styled': 11.11.0(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1)
       '@types/react': 18.3.3
 
-  '@mui/types@7.2.14(@types/react@18.3.3)':
+  '@mui/types@7.2.19(@types/react@18.3.3)':
     optionalDependencies:
       '@types/react': 18.3.3
 
   '@mui/utils@5.15.20(@types/react@18.3.3)(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.23.9
-      '@types/prop-types': 15.7.12
+      '@types/prop-types': 15.7.13
+      prop-types: 15.8.1
+      react: 18.3.1
+      react-is: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.3
+
+  '@mui/utils@6.1.8(@types/react@18.3.3)(react@18.3.1)':
+    dependencies:
+      '@babel/runtime': 7.23.9
+      '@mui/types': 7.2.19(@types/react@18.3.3)
+      '@types/prop-types': 15.7.13
+      clsx: 2.1.1
       prop-types: 15.8.1
       react: 18.3.1
       react-is: 18.3.1
@@ -14356,7 +14385,7 @@ snapshots:
   '@mui/x-data-grid-generator@7.0.0-beta.7(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.0(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.23.9
-      '@mui/base': 5.0.0-beta.40(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@mui/base': 5.0.0-beta.62(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mui/icons-material': link:packages/mui-icons-material/build
       '@mui/material': link:packages/mui-material/build
       '@mui/x-data-grid-premium': 7.0.0-beta.7(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.0(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@mui/material@packages+mui-material+build)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -15827,7 +15856,7 @@ snapshots:
 
   '@types/promise.allsettled@1.0.3': {}
 
-  '@types/prop-types@15.7.12': {}
+  '@types/prop-types@15.7.13': {}
 
   '@types/qs@6.9.7': {}
 
@@ -15869,7 +15898,7 @@ snapshots:
 
   '@types/react@18.3.3':
     dependencies:
-      '@types/prop-types': 15.7.12
+      '@types/prop-types': 15.7.13
       csstype: 3.1.3
 
   '@types/resolve@0.0.8':
@@ -16101,19 +16130,19 @@ snapshots:
       '@webassemblyjs/ast': 1.11.6
       '@xtuc/long': 4.2.2
 
-  '@webpack-cli/configtest@2.1.1(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3))(webpack@5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4))':
+  '@webpack-cli/configtest@2.1.1(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3))(webpack@5.90.3)':
     dependencies:
-      webpack: 5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4)
+      webpack: 5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3))
       webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3)
 
-  '@webpack-cli/info@2.0.2(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3))(webpack@5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4))':
+  '@webpack-cli/info@2.0.2(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3))(webpack@5.90.3)':
     dependencies:
-      webpack: 5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4)
+      webpack: 5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3))
       webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3)
 
-  '@webpack-cli/serve@2.0.5(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3))(webpack@5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4))':
+  '@webpack-cli/serve@2.0.5(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3))(webpack@5.90.3)':
     dependencies:
-      webpack: 5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4)
+      webpack: 5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3))
       webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3)
 
   '@wyw-in-js/processor-utils@0.5.0':
@@ -16600,12 +16629,12 @@ snapshots:
     dependencies:
       '@babel/core': 7.23.9
 
-  babel-loader@9.1.3(@babel/core@7.23.9)(webpack@5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4)):
+  babel-loader@9.1.3(@babel/core@7.23.9)(webpack@5.90.3):
     dependencies:
       '@babel/core': 7.23.9
       find-cache-dir: 4.0.0
       schema-utils: 4.2.0
-      webpack: 5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4)
+      webpack: 5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3))
 
   babel-merge@3.0.0(@babel/core@7.23.9):
     dependencies:
@@ -17311,11 +17340,11 @@ snapshots:
     dependencies:
       mime-db: 1.52.0
 
-  compression-webpack-plugin@11.1.0(webpack@5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4)):
+  compression-webpack-plugin@11.1.0(webpack@5.90.3):
     dependencies:
       schema-utils: 4.2.0
       serialize-javascript: 6.0.2
-      webpack: 5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4)
+      webpack: 5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3))
 
   compression@1.7.4:
     dependencies:
@@ -18184,7 +18213,7 @@ snapshots:
 
   escape-string-regexp@5.0.0: {}
 
-  eslint-config-airbnb-base@15.0.0(eslint-plugin-import@2.29.1(@typescript-eslint/parser@6.19.1(eslint@8.56.0)(typescript@5.3.3))(eslint-import-resolver-webpack@0.13.8)(eslint@8.56.0))(eslint@8.56.0):
+  eslint-config-airbnb-base@15.0.0(eslint-plugin-import@2.29.1)(eslint@8.56.0):
     dependencies:
       confusing-browser-globals: 1.0.11
       eslint: 8.56.0
@@ -18193,18 +18222,18 @@ snapshots:
       object.entries: 1.1.7
       semver: 6.3.1
 
-  eslint-config-airbnb-typescript@17.1.0(@typescript-eslint/eslint-plugin@6.19.1(@typescript-eslint/parser@6.19.1(eslint@8.56.0)(typescript@5.3.3))(eslint@8.56.0)(typescript@5.3.3))(@typescript-eslint/parser@6.19.1(eslint@8.56.0)(typescript@5.3.3))(eslint-plugin-import@2.29.1(@typescript-eslint/parser@6.19.1(eslint@8.56.0)(typescript@5.3.3))(eslint-import-resolver-webpack@0.13.8)(eslint@8.56.0))(eslint@8.56.0):
+  eslint-config-airbnb-typescript@17.1.0(@typescript-eslint/eslint-plugin@6.19.1(@typescript-eslint/parser@6.19.1(eslint@8.56.0)(typescript@5.3.3))(eslint@8.56.0)(typescript@5.3.3))(@typescript-eslint/parser@6.19.1(eslint@8.56.0)(typescript@5.3.3))(eslint-plugin-import@2.29.1)(eslint@8.56.0):
     dependencies:
       '@typescript-eslint/eslint-plugin': 6.19.1(@typescript-eslint/parser@6.19.1(eslint@8.56.0)(typescript@5.3.3))(eslint@8.56.0)(typescript@5.3.3)
       '@typescript-eslint/parser': 6.19.1(eslint@8.56.0)(typescript@5.3.3)
       eslint: 8.56.0
-      eslint-config-airbnb-base: 15.0.0(eslint-plugin-import@2.29.1(@typescript-eslint/parser@6.19.1(eslint@8.56.0)(typescript@5.3.3))(eslint-import-resolver-webpack@0.13.8)(eslint@8.56.0))(eslint@8.56.0)
+      eslint-config-airbnb-base: 15.0.0(eslint-plugin-import@2.29.1)(eslint@8.56.0)
       eslint-plugin-import: 2.29.1(@typescript-eslint/parser@6.19.1(eslint@8.56.0)(typescript@5.3.3))(eslint-import-resolver-webpack@0.13.8)(eslint@8.56.0)
 
-  eslint-config-airbnb@19.0.4(eslint-plugin-import@2.29.1(@typescript-eslint/parser@6.19.1(eslint@8.56.0)(typescript@5.3.3))(eslint-import-resolver-webpack@0.13.8)(eslint@8.56.0))(eslint-plugin-jsx-a11y@6.7.1(eslint@8.56.0))(eslint-plugin-react-hooks@4.6.0(eslint@8.56.0))(eslint-plugin-react@7.34.1(eslint@8.56.0))(eslint@8.56.0):
+  eslint-config-airbnb@19.0.4(eslint-plugin-import@2.29.1)(eslint-plugin-jsx-a11y@6.7.1(eslint@8.56.0))(eslint-plugin-react-hooks@4.6.0(eslint@8.56.0))(eslint-plugin-react@7.34.1(eslint@8.56.0))(eslint@8.56.0):
     dependencies:
       eslint: 8.56.0
-      eslint-config-airbnb-base: 15.0.0(eslint-plugin-import@2.29.1(@typescript-eslint/parser@6.19.1(eslint@8.56.0)(typescript@5.3.3))(eslint-import-resolver-webpack@0.13.8)(eslint@8.56.0))(eslint@8.56.0)
+      eslint-config-airbnb-base: 15.0.0(eslint-plugin-import@2.29.1)(eslint@8.56.0)
       eslint-plugin-import: 2.29.1(@typescript-eslint/parser@6.19.1(eslint@8.56.0)(typescript@5.3.3))(eslint-import-resolver-webpack@0.13.8)(eslint@8.56.0)
       eslint-plugin-jsx-a11y: 6.7.1(eslint@8.56.0)
       eslint-plugin-react: 7.34.1(eslint@8.56.0)
@@ -18224,7 +18253,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-import-resolver-webpack@0.13.8(eslint-plugin-import@2.29.1)(webpack@5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4)):
+  eslint-import-resolver-webpack@0.13.8(eslint-plugin-import@2.29.1)(webpack@5.90.3):
     dependencies:
       array.prototype.find: 2.2.2
       debug: 3.2.7
@@ -18238,18 +18267,18 @@ snapshots:
       lodash: 4.17.21
       resolve: 2.0.0-next.5
       semver: 5.7.2
-      webpack: 5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4)
+      webpack: 5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3))
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.8.0(@typescript-eslint/parser@6.19.1(eslint@8.56.0)(typescript@5.3.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-webpack@0.13.8(eslint-plugin-import@2.29.1)(webpack@5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4)))(eslint@8.56.0):
+  eslint-module-utils@2.8.0(@typescript-eslint/parser@6.19.1(eslint@8.56.0)(typescript@5.3.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-webpack@0.13.8)(eslint@8.56.0):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
       '@typescript-eslint/parser': 6.19.1(eslint@8.56.0)(typescript@5.3.3)
       eslint: 8.56.0
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-webpack: 0.13.8(eslint-plugin-import@2.29.1)(webpack@5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4))
+      eslint-import-resolver-webpack: 0.13.8(eslint-plugin-import@2.29.1)(webpack@5.90.3)
     transitivePeerDependencies:
       - supports-color
 
@@ -18276,7 +18305,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 8.56.0
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.8.0(@typescript-eslint/parser@6.19.1(eslint@8.56.0)(typescript@5.3.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-webpack@0.13.8(eslint-plugin-import@2.29.1)(webpack@5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4)))(eslint@8.56.0)
+      eslint-module-utils: 2.8.0(@typescript-eslint/parser@6.19.1(eslint@8.56.0)(typescript@5.3.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-webpack@0.13.8)(eslint@8.56.0)
       hasown: 2.0.2
       is-core-module: 2.13.1
       is-glob: 4.0.3
@@ -20305,11 +20334,11 @@ snapshots:
     dependencies:
       graceful-fs: 4.2.11
 
-  karma-webpack@5.0.0(webpack@5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4)):
+  karma-webpack@5.0.0(webpack@5.90.3):
     dependencies:
       glob: 7.2.3
       minimatch: 3.1.2
-      webpack: 5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4)
+      webpack: 5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3))
       webpack-merge: 4.2.2
 
   karma@6.4.3:
@@ -22401,11 +22430,11 @@ snapshots:
       iconv-lite: 0.4.24
       unpipe: 1.0.0
 
-  raw-loader@4.0.2(webpack@5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4)):
+  raw-loader@4.0.2(webpack@5.90.3):
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 3.3.0
-      webpack: 5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4)
+      webpack: 5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3))
 
   rc@1.2.8:
     dependencies:
@@ -23973,17 +24002,6 @@ snapshots:
     optionalDependencies:
       esbuild: 0.19.11
 
-  terser-webpack-plugin@5.3.10(esbuild@0.19.11)(webpack@5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4)):
-    dependencies:
-      '@jridgewell/trace-mapping': 0.3.20
-      jest-worker: 27.5.1
-      schema-utils: 3.3.0
-      serialize-javascript: 6.0.2
-      terser: 5.27.0
-      webpack: 5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4)
-    optionalDependencies:
-      esbuild: 0.19.11
-
   terser@5.27.0:
     dependencies:
       '@jridgewell/source-map': 0.3.5
@@ -24541,9 +24559,9 @@ snapshots:
   webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3):
     dependencies:
       '@discoveryjs/json-ext': 0.5.7
-      '@webpack-cli/configtest': 2.1.1(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3))(webpack@5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4))
-      '@webpack-cli/info': 2.0.2(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3))(webpack@5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4))
-      '@webpack-cli/serve': 2.0.5(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3))(webpack@5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4))
+      '@webpack-cli/configtest': 2.1.1(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3))(webpack@5.90.3)
+      '@webpack-cli/info': 2.0.2(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3))(webpack@5.90.3)
+      '@webpack-cli/serve': 2.0.5(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3))(webpack@5.90.3)
       colorette: 2.0.20
       commander: 10.0.1
       cross-spawn: 7.0.3
@@ -24552,7 +24570,7 @@ snapshots:
       import-local: 3.1.0
       interpret: 3.1.1
       rechoir: 0.8.0
-      webpack: 5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4)
+      webpack: 5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3))
       webpack-merge: 5.9.0
     optionalDependencies:
       webpack-bundle-analyzer: 4.10.1
@@ -24594,39 +24612,6 @@ snapshots:
       schema-utils: 3.3.0
       tapable: 2.2.1
       terser-webpack-plugin: 5.3.10(esbuild@0.19.11)(webpack@5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3)))
-      watchpack: 2.4.0
-      webpack-sources: 3.2.3
-    optionalDependencies:
-      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.1)(webpack@5.90.3)
-    transitivePeerDependencies:
-      - '@swc/core'
-      - esbuild
-      - uglify-js
-
-  webpack@5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4):
-    dependencies:
-      '@types/eslint-scope': 3.7.4
-      '@types/estree': 1.0.5
-      '@webassemblyjs/ast': 1.11.6
-      '@webassemblyjs/wasm-edit': 1.11.6
-      '@webassemblyjs/wasm-parser': 1.11.6
-      acorn: 8.11.3
-      acorn-import-assertions: 1.9.0(acorn@8.11.3)
-      browserslist: 4.23.0
-      chrome-trace-event: 1.0.3
-      enhanced-resolve: 5.15.0
-      es-module-lexer: 1.3.0
-      eslint-scope: 5.1.1
-      events: 3.3.0
-      glob-to-regexp: 0.4.1
-      graceful-fs: 4.2.11
-      json-parse-even-better-errors: 2.3.1
-      loader-runner: 4.3.0
-      mime-types: 2.1.35
-      neo-async: 2.6.2
-      schema-utils: 3.3.0
-      tapable: 2.2.1
-      terser-webpack-plugin: 5.3.10(esbuild@0.19.11)(webpack@5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4))
       watchpack: 2.4.0
       webpack-sources: 3.2.3
     optionalDependencies:
