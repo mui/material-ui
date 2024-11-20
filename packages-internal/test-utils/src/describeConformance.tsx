@@ -535,8 +535,8 @@ function testSlotPropsCallback(
   forEachSlot(slots, (slotName) => {
     it(`sets custom properties on the ${slotName} slot's element with the slotProps.${slotName} callback`, async () => {
       const slotProps = {
-        [slotName]: (ownerState: Record<string, any>) => ({
-          'data-testid': ownerState.className,
+        [slotName]: () => ({
+          'data-testid': 'custom',
         }),
       };
 
