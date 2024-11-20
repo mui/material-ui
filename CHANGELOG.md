@@ -43,8 +43,8 @@ TODO INSERT HIGHLIGHTS
 
 - Remove `stylis-plugin-rtl-sc` (#44447) @renovate[bot]
 - [test][Autocomplete] Make virtualize regression screenshots deterministic (#44425) @DiegoAndai
-- [blog] Fix reference to subdomain on MUI X v8 alpha zero post (#44416) @joserodolfofreitas
-- [blog] MUI X v8 alpha zero blog post (#44377) @joserodolfofreitas
+- [blog] Fix reference to subdomain on MUI X v8 alpha zero post (#44416) @joserodolfofreitas
+- [blog] MUI X v8 alpha zero blog post (#44377) @joserodolfofreitas
 - [code-infra] Use vitest-compatible skip in `describeConformance` (#44412) @JCQuintas
 - Keep OpenSSF badge up-to-date (aef2bf2) @oliviertassinari
 - Polish useForkRef docs (#44424) @oliviertassinari
