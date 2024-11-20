@@ -27,7 +27,7 @@ If you see any room for improvement, please feel free to open an [issue](https:/
 ## Premium templates
 
 Looking for something more?
-You can find complete templates and themes like those shown below in the <a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store">premium template section</a> of the MUI Store.
+You can find complete templates and themes like those shown below in the <a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store">premium template section</a> of the MUI Store.
 
 <a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store">
 <span class="only-light-mode">
