@@ -5,13 +5,13 @@ import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
 import { unstable_useId as useId } from '@mui/material/utils';
+import CircularProgress from '@mui/material/CircularProgress';
 import { alpha } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
-import CircularProgress from '../CircularProgress';
 import capitalize from '../utils/capitalize';
 import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
 
@@ -306,14 +306,14 @@ IconButton.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
-   * If `true`, the loading indicator is visible and the button is disabled.
+   * If `true`, the loading indicator is shown and the button becomes disabled.
    * @default false
    */
   loading: PropTypes.bool,
   /**
    * Element placed before the children if the button is in loading state.
    * The node should contain an element with `role="progressbar"` with an accessible name.
-   * By default, it renders a `CircularProgress` that is labeled by the button itself.
+   * By default we render a `CircularProgress` that is labelled by the button itself.
    * @default <CircularProgress color="inherit" size={16} />
    */
   loadingIndicator: PropTypes.node,
