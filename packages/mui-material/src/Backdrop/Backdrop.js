@@ -95,7 +95,6 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
     elementType: Fade,
     externalForwardedProps,
     ownerState,
-    shouldAppendOwnerState: false,
   });
 
   return (

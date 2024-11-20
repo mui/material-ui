@@ -128,7 +128,7 @@ const Fade = React.forwardRef(function Fade(props, ref) {
       timeout={timeout}
       {...other}
     >
-      {(state, childProps) => {
+      {(state, { ownerState, ...restChildProps }) => {
         return React.cloneElement(children, {
           style: {
             opacity: 0,
@@ -138,7 +138,7 @@ const Fade = React.forwardRef(function Fade(props, ref) {
             ...children.props.style,
           },
           ref: handleRef,
-          ...childProps,
+          ...restChildProps,
         });
       }}
     </TransitionComponent>

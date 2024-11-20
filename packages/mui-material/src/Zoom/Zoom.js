@@ -128,7 +128,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
       timeout={timeout}
       {...other}
     >
-      {(state, childProps) => {
+      {(state, { ownerState, ...restChildProps }) => {
         return React.cloneElement(children, {
           style: {
             transform: 'scale(0)',
@@ -138,7 +138,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
             ...children.props.style,
           },
           ref: handleRef,
-          ...childProps,
+          ...restChildProps,
         });
       }}
     </TransitionComponent>

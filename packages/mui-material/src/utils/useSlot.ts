@@ -98,15 +98,9 @@ export default function useSlot<
      * e.g. Autocomplete's listbox uses Popper + StyledComponent
      */
     internalForwardedProps?: any;
-    /**
-     * If `false`, does not append `ownerState` prop to the element.
-     * @default true
-     */
-    shouldAppendOwnerState?: boolean;
   },
 ) {
   const {
-    shouldAppendOwnerState = true,
     className,
     elementType: initialElementType,
     ownerState,
@@ -147,19 +141,19 @@ export default function useSlot<
     | React.ElementType
     | undefined;
 
-  let props = {
-    ...(name === 'root' && !rootComponent && !slots[name] && internalForwardedProps),
-    ...(name !== 'root' && !slots[name] && internalForwardedProps),
-    ...mergedProps,
-    ...(LeafComponent && {
-      as: LeafComponent,
-    }),
-    ref,
-  };
-
-  if (shouldAppendOwnerState) {
-    props = appendOwnerState(elementType, props, finalOwnerState);
-  }
+  const props = appendOwnerState(
+    elementType,
+    {
+      ...(name === 'root' && !rootComponent && !slots[name] && internalForwardedProps),
+      ...(name !== 'root' && !slots[name] && internalForwardedProps),
+      ...mergedProps,
+      ...(LeafComponent && {
+        as: LeafComponent,
+      }),
+      ref,
+    },
+    finalOwnerState,
+  );
 
   Object.keys(slotOwnerState).forEach((propName) => {
     delete props[propName];
