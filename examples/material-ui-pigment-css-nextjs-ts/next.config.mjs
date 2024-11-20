@@ -8,6 +8,8 @@ export default withPigment(nextConfig, {
   theme: createTheme({
     cssVariables: true,
     colorSchemes: { light: true, dark: true },
+    defaultColorScheme: 'light',
+    colorSchemeSelector: 'class',
     typography: {
       fontFamily: 'var(--font-roboto)',
     },
