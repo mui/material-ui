@@ -10,8 +10,8 @@ const warn = () => {
       [
         'MUI: The LoadingButton component functionality is now part of the Button component from Material UI.',
         '',
-        "You should use `import { Button } from '@mui/material'`",
-        "or `import Button from '@mui/material/Button'`",
+        "You should use `import Button from '@mui/material/Button'`",
+        "or `import { Button } from '@mui/material'`",
       ].join('\n'),
     );
 
