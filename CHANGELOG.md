@@ -16,7 +16,7 @@ TODO INSERT HIGHLIGHTS
 - [Grid2] Remove item and zeroMinWidth classes from grid2Classes (#44419) @sai6855
 - [StepIcon] Add SvgIconOwnProps type to StepIcon props (#44337) @sai6855
 - Add generic back to `useMediaQuery` to prevent a breaking change (#44455) @siriwatknp
-- [Tooltip] Deprecate *Component and *Props for v6 (#44350) @siriwatknp
+- [Tooltip] Deprecate `*Component` and `*Props` for v6 (#44350) @siriwatknp
 
 ### `@mui/system@6.1.8`
 
