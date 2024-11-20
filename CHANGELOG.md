@@ -1,5 +1,57 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.1.8
+
+<!-- generated comparing v6.1.7..master -->
+
+_Nov 20, 2024_
+
+A big thanks to the 9 contributors who made this release possible.
+
+TODO INSERT HIGHLIGHTS
+
+### `@mui/material@6.1.8`
+
+- [material-ui][Autocomplete] Use `ul` element for the listbox (#44422) @DiegoAndai
+- [Grid2] Remove item and zeroMinWidth classes from grid2Classes (#44419) @sai6855
+- [materia-ui][StepIcon] Add SvgIconOwnProps type to StepIcon props (#44337) @sai6855
+- [material-ui] Add generic back to `useMediaQuery` to prevent a breaking change (#44455) @siriwatknp
+- [Tooltip] Deprecate *Component and *Props for v6 (#44350) @siriwatknp
+
+### `@mui/system@6.1.8`
+
+- [system] Warn when calling `setMode` without configuring `colorSchemeSelector` (#43783) @siriwatknp
+
+### `@mui/styled-engine@6.1.8`
+
+- [styled-engine] Add back removed internal function (#44421) @mnajdova
+
+### `@mui/utils@6.1.8`
+
+- [utils] skip deep clone React element (#44400) @siriwatknp
+- [utils] Add documentation to `useForkRef` (#44410) @JCQuintas
+
+### Docs
+
+- [docs][Accordion] Replace hardcoded classes with constants in demos (#44453) @ZeeshanTamboli
+- [docs][material-ui][Autocomplete] Fix virtualization demo (#44382) @DiegoAndai
+- [docs] Revert #44388 (#44454) @prakhargupta1
+- [docs] Add App starters in related-projects.md (#44315) @oliviertassinari
+- [docs] Bring back `*Component` and `*Props` codemods and deprecation messages (#44383) @DiegoAndai
+
+### Core
+
+- Remove `stylis-plugin-rtl-sc` (#44447) @renovate[bot]
+- [test][Autocomplete] Make virtualize regression screenshots deterministic (#44425) @DiegoAndai
+- [blog] Fix reference to subdomain on MUI X v8 alpha zero post (#44416) @joserodolfofreitas
+- [blog] MUI X v8 alpha zero blog post (#44377) @joserodolfofreitas
+- [code-infra] Use vitest-compatible skip in `describeConformance` (#44412) @JCQuintas
+- [core] Keep OpenSSF badge up-to-date (aef2bf2) @oliviertassinari
+- [core] Polish useForkRef docs (#44424) @oliviertassinari
+- [infra] Upgrade Cherry-pick workflow to latest (#44448) @oliviertassinari
+
+All contributors of this release in alphabetical order: @DiegoAndai, @JCQuintas, @joserodolfofreitas, @mnajdova, @oliviertassinari, @prakhargupta1, @sai6855, @siriwatknp, @ZeeshanTamboli
+
 ## v6.1.7
 
 <!-- generated comparing v6.1.6..master -->
