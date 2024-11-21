@@ -31,12 +31,12 @@ export default function AlertDialogModal() {
           <DialogContent>
             Are you sure you want to discard all of your notes?
           </DialogContent>
-          <DialogActions>
-            <Button variant="solid" color="danger" onClick={() => setOpen(false)}>
-              Discard notes
-            </Button>
+          <DialogActions sx={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
             <Button variant="plain" color="neutral" onClick={() => setOpen(false)}>
               Cancel
+            </Button>
+            <Button variant="solid" color="danger" onClick={() => setOpen(false)}>
+              Discard notes
             </Button>
           </DialogActions>
         </ModalDialog>

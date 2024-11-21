@@ -40,18 +40,18 @@ export default function ResponsiveModal() {
               mt: 1,
               display: 'flex',
               gap: 1,
-              flexDirection: { xs: 'column', sm: 'row-reverse' },
+              flexDirection: { xs: 'column', sm: 'row', justifyContent: 'flex-end' },
             }}
           >
-            <Button variant="solid" color="primary" onClick={() => setOpen(false)}>
-              Continue
-            </Button>
             <Button
               variant="outlined"
               color="neutral"
               onClick={() => setOpen(false)}
             >
               Cancel
+            </Button>
+            <Button variant="solid" color="primary" onClick={() => setOpen(false)}>
+              Continue
             </Button>
           </Box>
         </ModalDialog>
