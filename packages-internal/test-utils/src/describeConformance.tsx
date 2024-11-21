@@ -1148,7 +1148,12 @@ function describeConformance(
     (testKey) => only.includes(testKey) && !skip.includes(testKey as keyof typeof fullSuite),
   ) as (keyof typeof fullSuite)[];
 
-  const slotBasedTests = ['slotsProp', 'slotPropsProp', 'slotPropsCallback'];
+  const slotBasedTests = [
+    'slotsProp',
+    'slotPropsProp',
+    'slotPropsCallback',
+    'slotPropsCallbackWithPropsAsOwnerState',
+  ];
 
   if (!slots) {
     // if `slots` are not defined, do not run tests that depend on them
