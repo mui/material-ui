@@ -75,7 +75,7 @@ const Slider = styled(BaseSlider)(
   cursor: pointer;
   touch-action: none;
   -webkit-tap-highlight-color: transparent;
-  
+
   &.${sliderClasses.disabled} {
     pointer-events: none;
     cursor: default;
@@ -157,7 +157,7 @@ const Slider = styled(BaseSlider)(
   }
 
   & .${sliderClasses.markLabel} {
-    font-family: IBM Plex Sans;
+    font-family: "IBM Plex Sans", sans-serif;
     font-weight: 600;
     font-size: 12px;
     position: absolute;
