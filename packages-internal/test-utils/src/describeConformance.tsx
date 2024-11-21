@@ -549,6 +549,33 @@ function testSlotPropsCallback(
   });
 }
 
+function testSlotPropsCallbackWithPropsAsOwnerState(
+  element: React.ReactElement<any>,
+  getOptions: () => ConformanceOptions,
+) {
+  const { render, slots } = getOptions();
+
+  if (!render) {
+    throwMissingPropError('render');
+  }
+
+  forEachSlot(slots, (slotName) => {
+    it(`sets custom properties on the ${slotName} slot's element with the slotProps.${slotName} callback using the ownerState`, async () => {
+      const slotProps = {
+        [slotName]: (ownerState: Record<string, any>) => ({
+          'data-testid': ownerState.className,
+        }),
+      };
+
+      const { queryByTestId } = await render(
+        React.cloneElement(element, { slotProps, className: 'custom' }),
+      );
+      const slotComponent = queryByTestId('custom');
+      expect(slotComponent).not.to.equal(null);
+    });
+  });
+}
+
 /**
  * MUI components have a `components` prop that allows rendering a different
  * Components from @inheritComponent
@@ -1068,6 +1095,7 @@ const fullSuite = {
   rootClass: testRootClass,
   slotPropsProp: testSlotPropsProp,
   slotPropsCallback: testSlotPropsCallback,
+  slotPropsCallbackWithPropsAsOwnerState: testSlotPropsCallbackWithPropsAsOwnerState,
   slotsProp: testSlotsProp,
   themeDefaultProps: testThemeDefaultProps,
   themeStyleOverrides: testThemeStyleOverrides,
