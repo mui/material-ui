@@ -75,7 +75,7 @@ const Slider = styled(BaseSlider)(
   cursor: pointer;
   touch-action: none;
   -webkit-tap-highlight-color: transparent;
-
+  
   &.${sliderClasses.disabled} {
     pointer-events: none;
     cursor: default;
