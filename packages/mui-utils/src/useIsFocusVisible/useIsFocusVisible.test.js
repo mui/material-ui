@@ -85,7 +85,12 @@ describe('useIsFocusVisible', () => {
       document.body.removeChild(rootElement);
     });
 
-    it('should set focus state for shadowRoot children', () => {
+    it('should set focus state for shadowRoot children', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+
       const buttonRef = React.createRef();
       render(
         <SimpleButton id="test-button" ref={buttonRef}>
