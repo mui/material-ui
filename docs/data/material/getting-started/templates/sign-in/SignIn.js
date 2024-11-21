@@ -186,7 +186,6 @@ export default function SignIn(props) {
             >
               Sign in
             </Button>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <Link
               component="button"
               type="button"
