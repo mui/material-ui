@@ -48,7 +48,7 @@ function ScrollTop(props) {
 }
 
 ScrollTop.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.element.isRequired,
   /**
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
