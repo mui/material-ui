@@ -1,13 +1,7 @@
 import { expect } from 'chai';
 import * as React from 'react';
 import * as ReactDOMClient from 'react-dom/client';
-import {
-  act,
-  createRenderer,
-  focusVisible,
-  simulatePointerDevice,
-  programmaticFocusTriggersFocusVisible,
-} from '@mui/internal-test-utils';
+import { act, createRenderer, focusVisible, simulatePointerDevice } from '@mui/internal-test-utils';
 import useIsFocusVisible, { teardown as teardownFocusVisible } from './useIsFocusVisible';
 import useForkRef from '../useForkRef';
 
@@ -109,11 +103,7 @@ describe('useIsFocusVisible', () => {
         button.focus();
       });
 
-      if (programmaticFocusTriggersFocusVisible()) {
-        expect(button).to.have.class('focus-visible');
-      } else {
-        expect(button).not.to.have.class('focus-visible');
-      }
+      expect(button).not.to.have.class('focus-visible');
 
       act(() => {
         button.blur();

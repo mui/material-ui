@@ -9,7 +9,6 @@ import {
   screen,
   focusVisible,
   simulatePointerDevice,
-  programmaticFocusTriggersFocusVisible,
 } from '@mui/internal-test-utils';
 import PropTypes from 'prop-types';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -833,11 +832,7 @@ describe('<ButtonBase />', () => {
         button.focus();
       });
 
-      if (programmaticFocusTriggersFocusVisible()) {
-        expect(button).to.have.class(classes.focusVisible);
-      } else {
-        expect(button).not.to.have.class(classes.focusVisible);
-      }
+      expect(button).not.to.have.class(classes.focusVisible);
 
       focusVisible(button);
 

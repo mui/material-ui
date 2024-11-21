@@ -9,7 +9,6 @@ export {
   default as focusVisible,
   simulatePointerDevice,
   simulateKeyboardDevice,
-  programmaticFocusTriggersFocusVisible,
 } from './focusVisible';
 export {} from './initMatchers';
 export * as fireDiscreteEvent from './fireDiscreteEvent';

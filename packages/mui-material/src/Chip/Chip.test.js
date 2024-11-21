@@ -7,7 +7,6 @@ import {
   fireEvent,
   focusVisible,
   simulatePointerDevice,
-  programmaticFocusTriggersFocusVisible,
 } from '@mui/internal-test-utils';
 import Avatar from '@mui/material/Avatar';
 import Chip, { chipClasses as classes } from '@mui/material/Chip';
@@ -682,11 +681,7 @@ describe('<Chip />', () => {
         chip.focus();
       });
 
-      if (programmaticFocusTriggersFocusVisible()) {
-        expect(chip).to.have.class(classes.focusVisible);
-      } else {
-        expect(chip).not.to.have.class(classes.focusVisible);
-      }
+      expect(chip).not.to.have.class(classes.focusVisible);
 
       focusVisible(chip);
 

@@ -17,16 +17,3 @@ export function simulatePointerDevice() {
 export function simulateKeyboardDevice() {
   fireEvent.keyDown(document.body, { key: 'TAB' });
 }
-
-/**
- * See https://issues.chromium.org/issues/40719291 for more details.
- */
-export function programmaticFocusTriggersFocusVisible(): boolean {
-  try {
-    // So far this only applies to Chrome 86 beta which is the only tested browser supporting this pseudo class.
-    document.createElement('button').matches(':focus-visible');
-    return true;
-  } catch (error) {
-    return false;
-  }
-}

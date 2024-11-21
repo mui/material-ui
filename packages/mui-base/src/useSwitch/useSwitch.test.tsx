@@ -5,7 +5,6 @@ import {
   act,
   createRenderer,
   focusVisible,
-  programmaticFocusTriggersFocusVisible,
   screen,
   simulatePointerDevice,
 } from '@mui/internal-test-utils';
@@ -99,9 +98,7 @@ describe('useSwitch', () => {
 
       expect(handleBlur.callCount).to.equal(0);
       expect(handleFocus.callCount).to.equal(1);
-      expect(handleFocusVisible.callCount).to.equal(
-        programmaticFocusTriggersFocusVisible() ? 1 : 0,
-      );
+      expect(handleFocusVisible.callCount).to.equal(0);
 
       act(() => {
         switchElement.blur();
@@ -109,17 +106,13 @@ describe('useSwitch', () => {
 
       expect(handleBlur.callCount).to.equal(1);
       expect(handleFocus.callCount).to.equal(1);
-      expect(handleFocusVisible.callCount).to.equal(
-        programmaticFocusTriggersFocusVisible() ? 1 : 0,
-      );
+      expect(handleFocusVisible.callCount).to.equal(0);
 
       focusVisible(switchElement);
 
       expect(handleBlur.callCount).to.equal(1);
       expect(handleFocus.callCount).to.equal(2);
-      expect(handleFocusVisible.callCount).to.equal(
-        programmaticFocusTriggersFocusVisible() ? 2 : 1,
-      );
+      expect(handleFocusVisible.callCount).to.equal(1);
     });
   });
 });

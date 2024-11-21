@@ -8,7 +8,6 @@ import {
   screen,
   simulatePointerDevice,
   focusVisible,
-  programmaticFocusTriggersFocusVisible,
   reactMajor,
 } from '@mui/internal-test-utils';
 import { camelCase } from 'lodash/string';
@@ -984,11 +983,7 @@ describe('<Tooltip />', () => {
         screen.getByRole('button').focus();
       });
 
-      if (programmaticFocusTriggersFocusVisible()) {
-        expect(screen.queryByRole('tooltip')).not.to.equal(null);
-      } else {
-        expect(screen.queryByRole('tooltip')).to.equal(null);
-      }
+      expect(screen.queryByRole('tooltip')).to.equal(null);
     });
 
     it('opens on focus-visible', () => {
