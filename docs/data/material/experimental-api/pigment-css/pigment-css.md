@@ -48,8 +48,8 @@ npm install --save-dev @pigment-css/nextjs-plugin
 ```
 
 ```bash Vite
-npm install @pigment-css/react@next
-npm install --save-dev @pigment-css/vite-plugin@next
+npm install @pigment-css/react
+npm install --save-dev @pigment-css/vite-plugin
 ```
 
 </codeblock>

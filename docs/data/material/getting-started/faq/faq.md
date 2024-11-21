@@ -351,7 +351,7 @@ There are several common reasons for this to happen:
 
 - You have another `@mui/styles` library somewhere in your dependencies.
 - You have a monorepo structure for your project (for example, lerna or yarn workspaces) and `@mui/styles` module is a dependency in more than one package (this one is more or less the same as the previous one).
-- You have several applications that are using `@mui/styles` running on the same page (for example, several entry points in Webpack are loaded on the same page).
+- You have several applications that are using `@mui/styles` running on the same page (for example, several entry points in webpack are loaded on the same page).
 
 ### Duplicated module in node_modules
 
@@ -365,7 +365,7 @@ If you identified that duplication is the issue that you are encountering there 
 If you are using npm you can try running `npm dedupe`.
 This command searches the local dependencies and tries to simplify the structure by moving common dependencies further up the tree.
 
-If you are using Webpack, you can change the way it will [resolve](https://webpack.js.org/configuration/resolve/#resolve-modules) the @mui/styles module. You can overwrite the default order in which Webpack will look for your dependencies and make your application node_modules more prioritized than default node module resolution order:
+If you are using webpack, you can change the way it will [resolve](https://webpack.js.org/configuration/resolve/#resolve-modules) the @mui/styles module. You can overwrite the default order in which webpack will look for your dependencies and make your application node_modules more prioritized than default node module resolution order:
 
 ```diff
  resolve: {
@@ -377,7 +377,7 @@ If you are using Webpack, you can change the way it will [resolve](https://webpa
 
 ### Running multiple applications on one page
 
-If you have several applications running on one page, consider using one @mui/styles module for all of them. If you are using Webpack, you can use [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) to create an explicit [vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), that will contain the @mui/styles module:
+If you have several applications running on one page, consider using one @mui/styles module for all of them. If you are using webpack, you can use [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) to create an explicit [vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), that will contain the @mui/styles module:
 
 ```diff
   module.exports = {
@@ -409,7 +409,7 @@ You could end up accidentally using two class name generators in a variety of sc
 - You are using a bundler and it is splitting code in a way that causes multiple class name generator instances to be created.
 
 :::success
-If you are using Webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk).
+If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk).
 :::
 
 Overall, it's simple to recover from this problem by wrapping each Material UI application with [`StylesProvider`](/system/styles/api/#stylesprovider) components at the top of their component trees **and using a single class name generator shared among them**.

@@ -2449,7 +2449,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 ### Core
 
 - [changelog] Fix issues in highlight @oliviertassinari
-- [core] Remove redundant `@material-ui/` aliases from regression test Webpack config (#38574) @ZeeshanTamboli
+- [core] Remove redundant `@material-ui/` aliases from regression test webpack config (#38574) @ZeeshanTamboli
 - [core] Fix CI error @oliviertassinari
 - [core] Remove unnecessary Box (#38461) @oliviertassinari
 - [core] Set GitHub Action top level permission @oliviertassinari
@@ -5458,7 +5458,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [docs] Fix typo in `Grid` docs (#34475) @Dustin-Digitar
 - [docs] Fix typo in `Back to top` section in AppBar docs (#34479) @Dustin-Digitar
 - [docs] Standardize all "Installation" pages (#34168) @samuelsycamore
-- [docs] Fix Webpack file name to the standard: `webpack.config.js` (#34446) @CodingItWrong
+- [docs] Fix webpack file name to the standard: `webpack.config.js` (#34446) @CodingItWrong
 - [docs] Fix Select `onChange` call (#34408) @siriwatknp
 - [docs] Notification for pickers blog - v5 stable (#34400) @joserodolfofreitas
 - [docs] Improve social sharing of docs pages (#34346) @oliviertassinari
@@ -6103,7 +6103,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [docs] Update to React 18 (#33196) @mnajdova
 - [docs] Simplify "Upload button" demo (#33326) @baharalidurrani
 - [docs] Add "refine" demo to showcase (#33240) @omeraplak
-- [docs] Add Webpack alias for legacy utils package (#33376) @jgbae
+- [docs] Add webpack alias for legacy utils package (#33376) @jgbae
 - [docs] Improve external link icons synonyms (#33257) @davidgarciab
 - [examples] Update Base UI with Tailwind CSS to use the latest versions of the dependencies (#33401) @mnajdova
 - [examples] Add Base UI example (#33154) @siriwatknp
@@ -8762,7 +8762,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [core] Remove code handling JSS components (#28421) @eps1lon
 - [core] Remove unused dependencies (#28468) @eps1lon
 - [core] Ensure both docs bundles are analyzeable (#28410) @eps1lon
-- [core] Switch to Webpack 5 (#28248) @eps1lon
+- [core] Switch to webpack 5 (#28248) @eps1lon
 - [core] Batch small changes (#28177) @oliviertassinari
 - [core] Update publish tag to latest (#28382) @mnajdova
 - [framer] Update @mui/\* dependencies (#28469) @eps1lon
@@ -9483,7 +9483,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [docs] Sort the size in a more logical order (#27186) @oliviertassinari
 - [docs] Use actual link to paperbase (#27063) @eps1lon
 - [docs] Use custom markdown loader for landing page (#27065) @eps1lon
-- [docs] Use Webpack 5 (#27077) @eps1lon
+- [docs] Use webpack 5 (#27077) @eps1lon
 - [examples] Fix CDN warning (#27229) @oliviertassinari
 - [examples] Remove `StyledEngineProvider` as JSS is not used (#27133) @mnajdova
 - [examples] Remove forgotten StyledEngineProvider (#27163) @oliviertassinari
@@ -9612,7 +9612,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 - [docs] Fix /components/hidden merge conflict (#26997) @eps1lon
 - [docs] Fix 404 links (#26963) @oliviertassinari
 - [docs] Remove link that points to v4 blog post (#26960) @steveafrost
-- [docs] Use custom Webpack loader for markdown (#26774) @eps1lon
+- [docs] Use custom webpack loader for markdown (#26774) @eps1lon
 - [docs] Fix 301 links (#26942) @oliviertassinari
 - [docs] Add page for the `sx` prop (#26769) @mnajdova
 - [docs] pre-fill issue when a demo crashes (#27034) @eps1lon
@@ -15660,7 +15660,7 @@ A big thanks to the 25 contributors who made this release possible.
 - [docs] Improve a11y of the chip array example (#20294) @m4theushw
 - [docs] Refactor markdown parsing (#20549) @eps1lon
 - [docs] Remove old workarounds (#20587) @eps1lon
-- [docs] Remove unnecessary Webpack loaders (#20563) @eps1lon
+- [docs] Remove unnecessary webpack loaders (#20563) @eps1lon
 - [docs] Sync translations (#20498) @oliviertassinari
 - [docs] Use reactStrictMode over custom switch (#20522) @eps1lon
 
@@ -22224,7 +22224,7 @@ A big thanks to the 14 contributors who made this release possible.
 - [RaisedButton] Conditionally apply overlay backgroundColor (#9811) @walwoodr
 - [Snackbar] Static properties for reason string constants (#10300) @RavenHursT
 - [TextField] Fix caret position issue (#10214) @MaratFaskhiev
-- Add sideEffects: false for Webpack 4 (#11167) @matthoffner
+- Add sideEffects: false for webpack 4 (#11167) @matthoffner
 
 ### Docs
 
@@ -25082,7 +25082,7 @@ When `withStyles()` is used as a decorator and `strictNullChecks` is enabled, on
 - [types] Better component typing (#8304) @oliviertassinari
 - [styles] Add a new defensive warning (#8341) @oliviertassinari
 - [core] Upgrade the dependencies (#8284) @oliviertassinari
-- [core] Help Webpack doing dead code elimination (#8340) @oliviertassinari
+- [core] Help webpack doing dead code elimination (#8340) @oliviertassinari
 - [core] Add TypeScript in the CI (#8328) @oliviertassinari
 - [typescript] Fix typo in Tooltip (#8271) @Rid
 - [typescript] Fix definitions for BreakpointsOptions (#8285) @peterprice
@@ -25802,7 +25802,7 @@ We do, we have extended the support of React to the 16.0.0-alpha.13 release (aka
 - [docs] Fix typo in class name (#7192) @ossan-engineer
 - [docs] Add supported server section (#7231) @oliviertassinari
 - [docs] Detail the browser support (#7188) @oliviertassinari
-- [docs] Upgrade to Webpack v3 (#7210) @oliviertassinari
+- [docs] Upgrade to webpack v3 (#7210) @oliviertassinari
 - [docs] More documentation on the typography (#7248) @oliviertassinari
 
 ### Core
@@ -26381,7 +26381,7 @@ _Feb 26, 2017_
 
 ### Docs
 
-- [docs] Use Webpack 2 & dll bundle (#6160) @nathanmarks
+- [docs] Use webpack 2 & dll bundle (#6160) @nathanmarks
 - [docs] Improve the user experience on mobile (#6154) @oliviertassinari
 - [docs] Fix the Table examples on mobile (425d8ed47e0282b8c0409517c53e00ef61374b02) @oliviertassinari
 - [docs] Add an API section (#6239) @oliviertassinari
@@ -26391,7 +26391,7 @@ _Feb 26, 2017_
 
 - [core] Fix typos in styles/transitions pointed out in issue (#6175) @Shahrukh-Zindani
 - [core] Lightweight the build (#6152) @oliviertassinari
-- [core] Add exports to index.js for inclusion in Webpack bundle (#6144) @fkretzer
+- [core] Add exports to index.js for inclusion in webpack bundle (#6144) @fkretzer
 - [test] Integration of test suite to run on BrowserStack (#6236) @oliviertassinari
 - [test] Bump vrtest version for exit code fix (1831aa76fe72e9b22a0b82f2a360f860ca89fdce) @nathanmarks
 
@@ -26535,7 +26535,7 @@ You can preview a **very early** version of the `next` branch following [this li
 
 ### Core
 
-- [core] Add support for Webpack 2/Rollup tree shaking in `svg-icons` sub module (#5774)
+- [core] Add support for webpack 2/Rollup tree shaking in `svg-icons` sub module (#5774)
 
 ## 0.16.5
 
@@ -26595,7 +26595,7 @@ This release is intended to solve an [issue](https://github.com/mui/material-ui/
 
 - [ListItem] Fix hover on touch devices (#5566)
 - [core] include `react-tap-event-plugin@^2.0.0` for `react@^15.4.0` (#5572)
-- [core] Add support for Webpack 2/Rollup tree shaking (#5545)
+- [core] Add support for webpack 2/Rollup tree shaking (#5545)
 
 ### Docs
 

@@ -36,7 +36,7 @@ In this specific example, you would need to bump the version of `@mui/x-data-gri
 
 ## Storybook and Emotion
 
-If your project uses Storybook v6.x, you will need to update the `.storybook/main.js` Webpack config to use the most recent version of Emotion:
+If your project uses Storybook v6.x, you will need to update the `.storybook/main.js` webpack config to use the most recent version of Emotion:
 
 ```js
 // .storybook/main.js

@@ -21,7 +21,7 @@ It can work alongside Emotion to ease the migration process, but it is recommend
 
 Pigment CSS can be used with one of the following frameworks:
 
-- [Next.js App Router](https://nextjs.org/docs/app) with Webpack v5 (Turbopack is not supported yet)
+- [Next.js App Router](https://nextjs.org/docs/app) with webpack v5 (Turbopack is not supported yet)
 - [Vite](https://vite.dev/)
 
 ## Installation

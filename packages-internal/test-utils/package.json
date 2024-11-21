@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-test-utils",
-  "version": "1.0.19",
+  "version": "1.0.21",
   "author": "MUI Team",
   "description": "Utilities for MUI tests. This is an internal package not meant for general use.",
   "main": "./build/index.js",
@@ -21,7 +21,9 @@
     "./setupBabel": "./build/setupBabel.js",
     "./setupBabelPlaywright": "./build/setupBabelPlaywright.js",
     "./setupJSDOM": "./build/setupJSDOM.js",
-    "./setupKarma": "./build/setupKarma.js"
+    "./setupKarma": "./build/setupKarma.js",
+    "./chaiPlugin": "./build/chaiPlugin.js",
+    "./setupVitest": "./build/setupVitest.js"
   },
   "scripts": {
     "prebuild": "rimraf ./build",

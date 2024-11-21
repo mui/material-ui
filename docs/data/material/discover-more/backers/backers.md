@@ -10,8 +10,9 @@ Sponsorship increases the rate of bug fixes, documentation improvements, and fea
 <p style="display: flex; justify-content: start; align-items: center; flex-wrap: wrap; margin-top: 8px;">
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="octopus.com" href="https://octopus.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" class="remove-link-arrow" style="margin-right: 24px;"><img height="128" width="128" src="/static/sponsors/octopus-square.svg" alt="octopus" title="Repeatable, reliable deployments" loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="doit.com" href="https://www.doit.com/flexsave/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" class="remove-link-arrow" style="margin-right: 24px;"><img height="128" width="128" src="/static/sponsors/doit-square.svg" alt="doit" title="Management platform for Google Cloud and AWS" loading="lazy" /></a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="marblism.com" href="https://www.marblism.com/?utm_source=mui" rel="noopener sponsored" target="_blank" class="remove-link-arrow" class="remove-link-arrow" style="margin-right: 24px;"><img height="128" width="128" src="/static/sponsors/marblism-square.svg" alt="marblism" title="AI web app generation" loading="lazy" /></a>
 </p>
+
+_1/3 slots available_
 
 Diamond sponsors are those who've pledged \$1,500/month or more to the MUI organization. [Tier benefits](#diamond).
 
@@ -40,6 +41,7 @@ For example, it could be because the service breaks another service's Terms of s
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="buzzoid.com" href="https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;"><img height="26" width="26" src="https://images.opencollective.com/buzzoidz/d23d9bb/logo/26.png" srcset="https://images.opencollective.com/buzzoidz/d23d9bb/logo/78.png 3x" alt="buzzoid.com" title="Buzzoid: Instant delivery Instagram followers." loading="lazy" style="margin-right: 6px;" />Buzzoid</a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="twicsy.com" href="https://twicsy.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;"><img height="26" width="30" src="https://images.opencollective.com/twicsy/7af290f/logo/26.png" srcset="https://images.opencollective.com/twicsy/7af290f/logo/78.png 3x" alt="twicsy.com" title="Twicsy: Instant delivery Instagram followers." loading="lazy" style="margin-right: 6px;" />Twicsy</a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="views4you.com" href="https://views4you.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;"><img height="26" width="26" src="https://images.opencollective.com/buy-instagram-followers-v4y/6364714/logo/26.png" srcset="https://images.opencollective.com/buy-instagram-followers-v4y/6364714/logo/78.png 3x" alt="views4you.com" title="Views4you: Social media growth services." loading="lazy" style="margin-right: 6px;" />Views4You</a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="poprey.com" href="https://poprey.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;"><img height="26" width="26" src="https://images.opencollective.com/instagram-likes/2a72a03/logo/26.png" srcset="https://images.opencollective.com/instagram-likes/2a72a03/logo/78.png 3x" alt="poprey.com" title="Poprey: Buy Instagram likes with crypto." loading="lazy" style="margin-right: 6px;" />Poprey</a>
 </p>
 
 Gold sponsors are those who've pledged \$500/month or more to the MUI organization. [Tier benefits](#gold).
@@ -156,7 +158,7 @@ Your organization logo will be placed in:
 - the [README.md](https://github.com/mui/material-ui#sponsors) (80k+ unique visitors/month)
 - the [Gold sponsor list](#gold-sponsors)
 
-\*we accept donations, but we won't show unethical ads.
+\*for backlink sponsors, your logo won't be visible.
 
 ### Silver
 

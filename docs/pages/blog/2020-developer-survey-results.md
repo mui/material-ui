@@ -279,7 +279,7 @@ section.
 
 ### 18. Which JavaScript framework are you using, if any?
 
-<img src="/static/blog/2020-survey/18.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Pie chart: 57.34% Create React App, 16.40% Custom Webpack, 12.35% Next.js, 5.40% Gatsby, 8.51% Other." />
+<img src="/static/blog/2020-survey/18.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Pie chart: 57.34% Create React App, 16.40% Custom webpack, 12.35% Next.js, 5.40% Gatsby, 8.51% Other." />
 
 ### 19. What styling system are you using?
 

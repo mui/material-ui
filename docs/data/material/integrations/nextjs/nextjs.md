@@ -1,6 +1,6 @@
 # Next.js integration
 
-<p class="description">Learn how to use Material UI with Next.js</p>
+<p class="description">Learn how to use Material UI with Next.js.</p>
 
 ## App Router
 
