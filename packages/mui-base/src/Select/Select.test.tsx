@@ -1254,7 +1254,6 @@ describe('<Select />', () => {
     const selectButton = getByTestId('select');
 
     act(() => updateButton.click());
-    act(() => selectButton.click());
 
     const option2 = getByText('2');
     act(() => option2.click());

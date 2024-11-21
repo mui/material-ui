@@ -46,7 +46,7 @@ function hasRightScrollButton(container) {
 
 describe('<Tabs />', () => {
   // tests mocking getBoundingClientRect prevent mocha to exit
-  const isJSDOM = navigator.userAgent === 'node.js';
+  const isJSDOM = /jsdom/.test(window.navigator.userAgent);
 
   const { clock, render, renderToString } = createRenderer();
 
