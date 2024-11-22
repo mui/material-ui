@@ -1,4 +1,3 @@
-import { GridClasses } from '@mui/system/Grid';
 import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 
@@ -35,7 +34,7 @@ export function getGrid2UtilityClass(slot: string): string {
   return generateUtilityClass('MuiGrid2', slot);
 }
 
-const grid2Classes: GridClasses = generateUtilityClasses('MuiGrid2', [
+const grid2Classes: Grid2Classes = generateUtilityClasses('MuiGrid2', [
   'root',
   'container',
 
