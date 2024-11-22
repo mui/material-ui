@@ -24,6 +24,14 @@ import { chromium } from 'playwright';
  * - Set `chromium.launch({ headless: false })` in line:50 to see the browser
  */
 
+function sleep(duration: number): Promise<void> {
+  return new Promise<void>((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, duration);
+  });
+}
+
 const host = process.env.DEPLOY_PREVIEW || 'http://localhost:3000';
 
 /**
@@ -33,7 +41,7 @@ const projects = {
   'material-ui': {
     input: path.join(process.cwd(), 'docs/pages/material-ui/getting-started/templates'),
     output: 'docs/public/static/screenshots',
-    viewport: { width: 1680, height: 1092 },
+    viewport: { width: 813 * 2, height: 457 * 2 },
   },
   'joy-ui': {
     input: path.join(process.cwd(), 'docs/pages/joy-ui/getting-started/templates'),
@@ -78,10 +86,9 @@ const names = new Set(process.argv.slice(2));
               await page.click('[data-screenshot="toggle-mode"]');
               await page.getByRole('menuitem').filter({ hasText: /dark/i }).click();
               await page.waitForLoadState('networkidle'); // changing to dark mode might trigger image loading
-              await page.screenshot({
-                path: outputPath,
-                animations: 'disabled',
-              });
+              await sleep(100); // give time for image decoding, resizing, rendering
+
+              await page.screenshot({ path: outputPath, animations: 'disabled' });
 
               await page.click('[data-screenshot="toggle-mode"]');
               await page
@@ -92,10 +99,9 @@ const names = new Set(process.argv.slice(2));
               await page.click('[data-screenshot="toggle-mode"]');
               await page.getByRole('option').filter({ hasText: /dark/i }).click();
               await page.waitForLoadState('networkidle'); // changing to dark mode might trigger image loading
-              await page.screenshot({
-                path: outputPath,
-                animations: 'disabled',
-              });
+              await sleep(100); // give time for image decoding, resizing, rendering
+
+              await page.screenshot({ path: outputPath, animations: 'disabled' });
 
               await page.click('[data-screenshot="toggle-mode"]');
               await page
@@ -105,10 +111,9 @@ const names = new Set(process.argv.slice(2));
             } else {
               await page.click('[data-screenshot="toggle-mode"]');
               await page.waitForLoadState('networkidle'); // changing to dark mode might trigger image loading
-              await page.screenshot({
-                path: outputPath,
-                animations: 'disabled',
-              });
+              await sleep(100); // give time for image decoding, resizing, rendering
+
+              await page.screenshot({ path: outputPath, animations: 'disabled' });
 
               await page.click('[data-screenshot="toggle-mode"]'); // switch back to light
             }
