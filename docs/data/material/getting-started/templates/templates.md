@@ -44,4 +44,4 @@ You can find complete templates and themes like those shown below in the <a href
 
 It builds on top of Material UI to provide sophisticated UI components with full-stack functionality.
 
-Toolpad Core is a great option when you want to build internal tools and dashboards fast, but don't want to start building from scratch. You can find examples of functional dashboards – with authentication, routing and theming already integrated – in the [http://mui.com/toolpad/core/introduction/examples/#featured-examples](featured examples) section of the Toolpad Core docs.
+Toolpad Core is a great option when you want to build internal tools and dashboards fast, but don't want to start building from scratch. You can find examples of functional dashboards – with authentication, routing, and theming already integrated – in the [http://mui.com/toolpad/core/introduction/examples/#featured-examples](featured examples) section of the Toolpad Core docs.

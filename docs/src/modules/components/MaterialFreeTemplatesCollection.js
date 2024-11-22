@@ -3,7 +3,6 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
-import Chip from '@mui/material/Chip';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Link from '@mui/material/Link';
@@ -18,7 +17,6 @@ import { pascalCase } from 'docs/src/modules/utils/helpers';
 import sourceMaterialTemplates from 'docs/src/modules/material/sourceMaterialTemplates';
 import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
 import stackBlitz from 'docs/src/modules/sandbox/StackBlitz';
-import { sxChip } from 'docs/src/modules/components/AppNavDrawerItem';
 
 const sourcePrefix = `${process.env.SOURCE_CODE_REPO}/tree/v${process.env.LIB_VERSION}`;
 
@@ -89,7 +87,6 @@ export default function Templates() {
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }} key={layout.title}>
             <Typography component="h3" variant="h6" sx={{ fontWeight: 'semiBold' }}>
               {layout.title}
-              {layout.new && <Chip label="NEW" sx={sxChip('success')} />}
             </Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2 }}>
               {layout.description}
@@ -173,48 +170,42 @@ export default function Templates() {
                     gap: 1,
                   }}
                 >
-                  {layout.stackBlitz !== null && (
-                    <Tooltip title="Edit in StackBlitz">
-                      <IconButton
-                        color="primary"
-                        size="small"
-                        aria-label="StackBlitz playground"
-                        data-ga-event-category="material-ui-template"
-                        data-ga-event-label={templateId}
-                        data-ga-event-action="stackblitz"
-                        onClick={() => {
-                          if (layout.stackBlitz) {
-                            window.open(layout.stackBlitz, '_blank', 'noopener,noreferrer');
-                            return;
-                          }
-                          stackBlitz
-                            .createMaterialTemplate({
-                              ...item,
-                              files: { ...item.files, ...materialTemplates.sharedTheme?.files },
-                              title: `${templateName} Template - Material UI`,
-                              githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
-                                process.env.LIB_VERSION
-                              }/docs/data/material/templates/${templateId}/${templateName}.${
-                                item.codeVariant === 'TS' ? 'tsx' : 'js'
-                              }`,
-                            })
-                            .replaceContent((content) => {
-                              if (typeof content === 'string') {
-                                return content
-                                  .replace(/\.\.\/shared-theme\//g, './theme/')
-                                  .replace('./App', `./${templateName}`);
-                              }
-                              return content;
-                            })
-                            .openStackBlitz(`/${templateName}`);
-                        }}
-                      >
-                        <SvgIcon viewBox="0 0 19 28">
-                          <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
-                        </SvgIcon>
-                      </IconButton>
-                    </Tooltip>
-                  )}
+                  <Tooltip title="Edit in StackBlitz">
+                    <IconButton
+                      color="primary"
+                      size="small"
+                      aria-label="StackBlitz playground"
+                      data-ga-event-category="material-ui-template"
+                      data-ga-event-label={templateId}
+                      data-ga-event-action="stackblitz"
+                      onClick={() =>
+                        stackBlitz
+                          .createMaterialTemplate({
+                            ...item,
+                            files: { ...item.files, ...materialTemplates.sharedTheme?.files },
+                            title: `${templateName} Template - Material UI`,
+                            githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
+                              process.env.LIB_VERSION
+                            }/docs/data/material/templates/${templateId}/${templateName}.${
+                              item.codeVariant === 'TS' ? 'tsx' : 'js'
+                            }`,
+                          })
+                          .replaceContent((content) => {
+                            if (typeof content === 'string') {
+                              return content
+                                .replace(/\.\.\/shared-theme\//g, './theme/')
+                                .replace('./App', `./${templateName}`);
+                            }
+                            return content;
+                          })
+                          .openStackBlitz(`/${templateName}`)
+                      }
+                    >
+                      <SvgIcon viewBox="0 0 19 28">
+                        <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
+                      </SvgIcon>
+                    </IconButton>
+                  </Tooltip>
                   <Tooltip title="Edit in CodeSandbox">
                     <IconButton
                       color="primary"
@@ -223,11 +214,7 @@ export default function Templates() {
                       data-ga-event-category="material-ui-template"
                       data-ga-event-label={templateId}
                       data-ga-event-action="codesandbox"
-                      onClick={() => {
-                        if (layout.codeSandbox) {
-                          window.open(layout.codeSandbox, '_blank', 'noopener,noreferrer');
-                          return;
-                        }
+                      onClick={() =>
                         codeSandbox
                           .createMaterialTemplate({
                             ...item,
@@ -247,8 +234,8 @@ export default function Templates() {
                             }
                             return content;
                           })
-                          .openSandbox(`/${templateName}`);
-                      }}
+                          .openSandbox(`/${templateName}`)
+                      }
                     >
                       <SvgIcon viewBox="0 0 1080 1080">
                         <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
