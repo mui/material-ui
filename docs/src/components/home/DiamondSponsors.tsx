@@ -21,12 +21,6 @@ const DIAMONDs = [
     description: 'Technology and cloud expertise to buy, optimize and manage public cloud.',
     href: 'https://www.doit.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
-  {
-    src: '/static/sponsors/marblism-square.svg',
-    name: 'Marblism',
-    description: 'Generate fully functional web apps using AI.',
-    href: 'https://www.marblism.com/?utm_source=mui',
-  },
 ];
 
 export default function DiamondSponsors() {
