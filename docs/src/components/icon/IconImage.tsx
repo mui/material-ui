@@ -40,7 +40,7 @@ export type IconImageProps = {
   mode?: '' | 'light' | 'dark';
   sx?: SxProps<Theme>;
   width?: number;
-} & Omit<JSX.IntrinsicElements['img'], 'ref'>;
+} & Omit<React.JSX.IntrinsicElements['img'], 'ref'>;
 
 const Img = styled('img')({ display: 'inline-block', verticalAlign: 'bottom' });
 

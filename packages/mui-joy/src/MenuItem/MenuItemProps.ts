@@ -50,5 +50,5 @@ export interface MenuItemOwnerState extends ApplyColorInversion<MenuItemProps> {
 
 export type ExtendMenuItem<M extends OverridableTypeMap> = ((
   props: OverrideProps<ExtendMenuItemTypeMap<M>, 'a'>,
-) => JSX.Element) &
+) => React.JSX.Element) &
   OverridableComponent<ExtendMenuItemTypeMap<M>>;

@@ -281,7 +281,7 @@ export interface MuiRenderToStringResult {
 }
 
 function render(
-  element: React.ReactElement,
+  element: React.ReactElement<any>,
   configuration: ClientRenderConfiguration,
 ): MuiRenderResult {
   const { container, hydrate, wrapper } = configuration;
@@ -316,7 +316,7 @@ function render(
 }
 
 function renderToString(
-  element: React.ReactElement,
+  element: React.ReactElement<any>,
   configuration: ServerRenderConfiguration,
 ): { container: HTMLElement; hydrate(): MuiRenderResult } {
   const { container, wrapper: Wrapper } = configuration;
@@ -438,8 +438,11 @@ function createClock(defaultMode: 'fake' | 'real', config: ClockConfig): Clock {
 
 interface Renderer {
   clock: Clock;
-  render(element: React.ReactElement, options?: RenderOptions): MuiRenderResult;
-  renderToString(element: React.ReactElement, options?: RenderOptions): MuiRenderToStringResult;
+  render(element: React.ReactElement<any>, options?: RenderOptions): MuiRenderResult;
+  renderToString(
+    element: React.ReactElement<any>,
+    options?: RenderOptions,
+  ): MuiRenderToStringResult;
 }
 
 export interface CreateRendererOptions extends Pick<RenderOptions, 'strict' | 'strictEffects'> {
@@ -577,7 +580,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
 
   return {
     clock,
-    render(element: React.ReactElement, options: RenderOptions = {}) {
+    render(element: React.ReactElement<any>, options: RenderOptions = {}) {
       if (!prepared) {
         throw new Error(
           'Unable to finish setup before `render()` was called. ' +
@@ -592,7 +595,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
         wrapper: createWrapper(options),
       });
     },
-    renderToString(element: React.ReactElement, options: RenderOptions = {}) {
+    renderToString(element: React.ReactElement<any>, options: RenderOptions = {}) {
       if (!prepared) {
         throw new Error(
           'Unable to finish setup before `render()` was called. ' +

@@ -95,19 +95,20 @@ const CSS = `.base-Input-root {${fieldStyles}}
 
 .base-Input-input {${inputStyles}}`;
 
-const StyledFloatingLabelInput = React.forwardRef<HTMLInputElement, JSX.IntrinsicElements['input']>(
-  function StyledFloatingLabelInput(props, ref) {
-    const id = unstable_useId(props.id);
-    return (
-      <React.Fragment>
-        <StyledInput ref={ref} {...props} id={id} />
-        <label htmlFor={id}>Floating label</label>
-      </React.Fragment>
-    );
-  },
-);
+const StyledFloatingLabelInput = React.forwardRef<
+  HTMLInputElement,
+  React.JSX.IntrinsicElements['input']
+>(function StyledFloatingLabelInput(props, ref) {
+  const id = unstable_useId(props.id);
+  return (
+    <React.Fragment>
+      <StyledInput ref={ref} {...props} id={id} />
+      <label htmlFor={id}>Floating label</label>
+    </React.Fragment>
+  );
+});
 
-const FloatingLabelInput = React.forwardRef<HTMLInputElement, JSX.IntrinsicElements['input']>(
+const FloatingLabelInput = React.forwardRef<HTMLInputElement, React.JSX.IntrinsicElements['input']>(
   function FloatingLabelInput(props, ref) {
     const id = unstable_useId(props.id);
     return (
@@ -121,7 +122,7 @@ const FloatingLabelInput = React.forwardRef<HTMLInputElement, JSX.IntrinsicEleme
 
 const TailwindFloatingLabelInput = React.forwardRef<
   HTMLInputElement,
-  JSX.IntrinsicElements['input']
+  React.JSX.IntrinsicElements['input']
   // @ts-ignore
 >(function TailwindFloatingLabelInput({ ownerState, ...props }, ref) {
   const id = unstable_useId(props.id);
@@ -192,7 +193,7 @@ const Field = styled('div')\`${fieldStyles}\`;
 const StyledInput = styled('input')\`${inputStyles}/\`;
 
 const FloatingLabelInput = React.forwardRef<
-  HTMLInputElement, JSX.IntrinsicElements['input']
+  HTMLInputElement, React.JSX.IntrinsicElements['input']
 >(
   function FloatingLabelInput(props, ref) {
     const id = unstable_useId(props.id);
@@ -219,7 +220,7 @@ const FloatingLabelInput = React.forwardRef<
 import './styles.css';
 
 const FloatingLabelInput = React.forwardRef<
-  HTMLInputElement, JSX.IntrinsicElements['input']
+  HTMLInputElement, React.JSX.IntrinsicElements['input']
 >(
   function FloatingLabelInput(props, ref) {
     const id = unstable_useId(props.id);

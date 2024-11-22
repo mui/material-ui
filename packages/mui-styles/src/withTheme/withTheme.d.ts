@@ -25,7 +25,7 @@ export default function withTheme<
   component: C,
 ): React.JSXElementConstructor<
   DistributiveOmit<
-    JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>,
+    React.JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>,
     keyof WithTheme<Theme>
   > &
     Partial<WithTheme<Theme>> &

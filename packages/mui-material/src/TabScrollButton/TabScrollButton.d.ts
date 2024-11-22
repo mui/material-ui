@@ -75,4 +75,4 @@ export interface TabScrollButtonProps extends ButtonBaseProps {
  *
  * - [TabScrollButton API](https://mui.com/material-ui/api/tab-scroll-button/)
  */
-export default function TabScrollButton(props: TabScrollButtonProps): JSX.Element;
+export default function TabScrollButton(props: TabScrollButtonProps): React.JSX.Element;

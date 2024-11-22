@@ -102,4 +102,4 @@ export interface SpeedDialProps
  *
  * - [SpeedDial API](https://mui.com/material-ui/api/speed-dial/)
  */
-export default function SpeedDial(props: SpeedDialProps): JSX.Element;
+export default function SpeedDial(props: SpeedDialProps): React.JSX.Element;

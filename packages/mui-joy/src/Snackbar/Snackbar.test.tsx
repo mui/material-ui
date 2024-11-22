@@ -19,7 +19,7 @@ describe('Joy <Snackbar />', () => {
    * We have to defer the effect manually like `useEffect` would so we have to flush the effect manually instead of relying on `act()`.
    * React bug: https://github.com/facebook/react/issues/20074
    */
-  function render(...args: [React.ReactElement]) {
+  function render(...args: [React.ReactElement<any>]) {
     const result = clientRender(...args);
     clock.tick(0);
     return result;
