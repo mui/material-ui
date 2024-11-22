@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "6.1.7",
+  "version": "6.1.8",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -189,8 +189,8 @@
     "process": "^0.11.10",
     "rimraf": "^6.0.1",
     "serve": "^14.2.4",
-    "stylelint": "^15.11.0",
-    "stylelint-config-standard": "^34.0.0",
+    "stylelint": "^16.10.0",
+    "stylelint-config-standard": "^36.0.1",
     "terser-webpack-plugin": "^5.3.10",
     "tsx": "^4.19.2",
     "typescript": "^5.6.3",
