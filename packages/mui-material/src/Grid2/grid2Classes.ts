@@ -38,8 +38,6 @@ export function getGrid2UtilityClass(slot: string): string {
 const grid2Classes: GridClasses = generateUtilityClasses('MuiGrid2', [
   'root',
   'container',
-  'item',
-  'zeroMinWidth',
 
   // spacings
   ...SPACINGS.map((spacing) => `spacing-xs-${spacing}` as const),
