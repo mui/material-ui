@@ -60,8 +60,7 @@ describe('useIsFocusVisible', () => {
   describe('focus inside shadowRoot', () => {
     before(function beforeHook() {
       // Only run on HeadlessChrome which has native shadowRoot support.
-      // And jsdom which has limited support for shadowRoot (^12.0.0).
-      if (!/HeadlessChrome|jsdom/.test(window.navigator.userAgent)) {
+      if (!/HeadlessChrome/.test(window.navigator.userAgent)) {
         this.skip();
       }
     });
@@ -86,11 +85,6 @@ describe('useIsFocusVisible', () => {
     });
 
     it('should set focus state for shadowRoot children', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-
       const buttonRef = React.createRef();
       render(
         <SimpleButton id="test-button" ref={buttonRef}>
