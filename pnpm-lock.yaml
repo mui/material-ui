@@ -313,7 +313,7 @@ importers:
         version: 5.6.3
       vitest:
         specifier: ^2.1.5
-        version: 2.1.5(@types/node@20.17.6)(@vitest/browser@2.1.5)(happy-dom@15.11.6)(jsdom@24.0.0)(msw@2.6.5(@types/node@20.17.6)(typescript@5.6.3))(terser@5.29.2)
+        version: 2.1.5(@types/node@20.17.6)(@vitest/browser@2.1.5)(happy-dom@15.11.6)(jsdom@25.0.1)(msw@2.6.5(@types/node@20.17.6)(typescript@5.6.3))(terser@5.29.2)
       vitest-fail-on-console:
         specifier: ^0.7.1
         version: 0.7.1(vite@5.4.11(@types/node@20.17.6)(terser@5.29.2))(vitest@2.1.5)
@@ -1071,8 +1071,8 @@ importers:
         specifier: ^11.2.0
         version: 11.2.0
       jsdom:
-        specifier: ^24.0.0
-        version: 24.0.0
+        specifier: ^25.0.1
+        version: 25.0.1
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -7134,8 +7134,8 @@ packages:
     resolution: {integrity: sha512-0LrrStPOdJj+SPCCrGhzryycLjwcgUSHBtxNA8aIDxf0GLsRh1cKYhB00Gd1lDOS4yGH69+SNn13+TWbVHETFQ==}
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0, npm: '>=7.0.0'}
 
-  cssstyle@4.0.1:
-    resolution: {integrity: sha512-8ZYiJ3A/3OkDd093CBT/0UKDWry7ak4BdPTFP2+QEP7cmhouyq/Up709ASSj2cK02BbZiMgk7kYjZNS4QP5qrQ==}
+  cssstyle@4.1.0:
+    resolution: {integrity: sha512-h66W1URKpBS5YMI/V8PyXvTMFT8SupJ1IzoIV8IeBC/ji8WVmrO8dGlTi+2dh6whmdk6BiKJLD/ZBkhWbcg6nA==}
     engines: {node: '>=18'}
 
   csstype@3.1.3:
@@ -8554,8 +8554,8 @@ packages:
     resolution: {integrity: sha512-n2hY8YdoRE1i7r6M0w9DIw5GgZN0G25P8zLCRQ8rjXtTU3vsNFBI/vWK/UIeE6g5MUUz6avwAPXmL6Fy9D/90w==}
     engines: {node: '>= 6'}
 
-  http-proxy-agent@7.0.0:
-    resolution: {integrity: sha512-+ZT+iBxVUQ1asugqnD6oWoRiS25AkjNfG085dKJGtGxkdwLQrMKU5wJr2bOOFAXzKcTuqq+7fZlTMgG3SRfIYQ==}
+  http-proxy-agent@7.0.2:
+    resolution: {integrity: sha512-T1gkAiYYDWYx3V5Bmyu7HcfcvL7mUrTWiM6yOfa3PIphViJ/gFPbvidQ+veqSOHci/PxBcDabeUNCzpOODJZig==}
     engines: {node: '>= 14'}
 
   http-proxy@1.18.1:
@@ -8573,8 +8573,8 @@ packages:
     resolution: {integrity: sha512-dFcAjpTQFgoLMzC2VwU+C/CbS7uRL0lWmxDITmqm7C+7F0Odmj6s9l6alZc6AELXhrnggM2CeWSXHGOdX2YtwA==}
     engines: {node: '>= 6'}
 
-  https-proxy-agent@7.0.2:
-    resolution: {integrity: sha512-NmLNjm6ucYwtcUmL7JQC1ZQ57LmHP4lT15FQ8D61nak1rO6DH+fz5qNK2Ap5UN4ZapYICE3/0KodcLYSPsPbaA==}
+  https-proxy-agent@7.0.5:
+    resolution: {integrity: sha512-1e4Wqeblerz+tMKPIq2EMGiiWW1dIjZOksyHWSUm1rmuvw/how9hBHZ38lAGj5ID4Ik6EdkOw7NmWPy6LAwalw==}
     engines: {node: '>= 14'}
 
   human-signals@2.1.0:
@@ -9131,8 +9131,8 @@ packages:
       '@babel/preset-env':
         optional: true
 
-  jsdom@24.0.0:
-    resolution: {integrity: sha512-UDS2NayCvmXSXVP6mpTj+73JnNQadZlr9N68189xib2tx5Mls7swlTNao26IoHv46BZJFvXygyRtyXd1feAk1A==}
+  jsdom@25.0.1:
+    resolution: {integrity: sha512-8i7LzZj7BF8uplX+ZyOlIz86V6TAsSs+np6m1kpW9u0JWi4z/1t+FzcK1aek+ybTnAC4KhBL4uXCNT0wcUIeCw==}
     engines: {node: '>=18'}
     peerDependencies:
       canvas: ^2.11.2
@@ -10284,8 +10284,8 @@ packages:
   nullthrows@1.1.1:
     resolution: {integrity: sha512-2vPPEi+Z7WqML2jZYddDIfy5Dqb0r2fze2zTxNNknZaFpVHU3mFB3R+DWeJWGVx0ecvttSGlJTI+WG+8Z4cDWw==}
 
-  nwsapi@2.2.7:
-    resolution: {integrity: sha512-ub5E4+FBPKwAZx0UwIQOjYWGHTEq5sPqHQNRN8Z9e4A7u3Tj1weLJsL59yH9vmvqEtBHaOmT6cYQKIZOxp35FQ==}
+  nwsapi@2.2.13:
+    resolution: {integrity: sha512-cTGB9ptp9dY9A5VbMSe7fQBcl/tt22Vcqdq8+eN93rblOuE0aCFu4aZ2vMwct/2t+lFnosm8RkQW1I0Omb1UtQ==}
 
   nx@20.1.2:
     resolution: {integrity: sha512-CvjmuQmI0RWLYZxRSIgQZmzsQv6dPp9oI0YZE3L1dagBPfTf5Cun65I0GLt7bdkDnVx2PGYkDbIoJSv2/V+83Q==}
@@ -11584,8 +11584,8 @@ packages:
     resolution: {integrity: sha512-dIM5zVoG8xhC6rnSN8uoAgFARwTE7BQs8YwHEvK0VCmfxQXMaOuA1uiR1IPwsW7JyK5iTt7Od/TC9StasS2NPQ==}
     engines: {node: '>= 0.10'}
 
-  rrweb-cssom@0.6.0:
-    resolution: {integrity: sha512-APM0Gt1KoXBz0iIkkdB/kfvGOwC4UuJFeG/c+yV7wSc7q96cG/kJ0HiYCnzivD9SB53cLV1MlHFNfOuPaadYSw==}
+  rrweb-cssom@0.7.1:
+    resolution: {integrity: sha512-TrEMa7JGdVm0UThDJSx7ddw5nVm3UJS9o9CCIZ72B1vSyEZoziDqBYP3XIoi/12lKrJR8rE3jeFHMok2F/Mnsg==}
 
   rtl-css-js@1.16.0:
     resolution: {integrity: sha512-Oc7PnzwIEU4M0K1J4h/7qUUaljXhQ0kCObRsZjxs2HjkpKsnoTMvSmvJ4sqgJZd0zBoEfAyTdnK/jMIYvrjySQ==}
@@ -12318,6 +12318,13 @@ packages:
     resolution: {integrity: sha512-TARUb7z1pGvlLxgPk++7wJ6aycXF3GJ0sNSBTAsTuJrQG5QuZlkUQP+zl+nbjAh4gMX9yDw9ZYklMd7vAfJKEw==}
     engines: {node: '>=0.10.0'}
 
+  tldts-core@6.1.61:
+    resolution: {integrity: sha512-In7VffkDWUPgwa+c9picLUxvb0RltVwTkSgMNFgvlGSWveCzGBemBqTsgJCL4EDFWZ6WH0fKTsot6yNhzy3ZzQ==}
+
+  tldts@6.1.61:
+    resolution: {integrity: sha512-rv8LUyez4Ygkopqn+M6OLItAOT9FF3REpPQDkdMx5ix8w4qkuE7Vo2o/vw1nxKQYmJDV8JpAMJQr1b+lTKf0FA==}
+    hasBin: true
+
   tmp@0.0.33:
     resolution: {integrity: sha512-jRCJlojKnZ3addtTOjdIqoRuPEKBvNXcGYqzO6zWZX8KfKEpnGY5jfggJQ3EjKuu8D4bJRr0y+cYJFmYbImXGw==}
     engines: {node: '>=0.6.0'}
@@ -12344,6 +12351,10 @@ packages:
   tough-cookie@4.1.4:
     resolution: {integrity: sha512-Loo5UUvLD9ScZ6jh8beX1T6sO1w2/MpCRpEP7V280GKMVUQ0Jzar2U3UJPsrdbziLEMMhu3Ujnq//rhiFuIeag==}
     engines: {node: '>=6'}
+
+  tough-cookie@5.0.0:
+    resolution: {integrity: sha512-FRKsF7cz96xIIeMZ82ehjC3xW2E+O2+v11udrDYewUbszngYhsGa8z6YUMMzO9QJZzzyd0nGGXnML/TReX6W8Q==}
+    engines: {node: '>=16'}
 
   tr46@0.0.3:
     resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
@@ -15579,8 +15590,8 @@ snapshots:
   '@npmcli/agent@2.2.0':
     dependencies:
       agent-base: 7.1.0
-      http-proxy-agent: 7.0.0
-      https-proxy-agent: 7.0.2
+      http-proxy-agent: 7.0.2
+      https-proxy-agent: 7.0.5
       lru-cache: 10.4.3
       socks-proxy-agent: 8.0.2
     transitivePeerDependencies:
@@ -17212,7 +17223,7 @@ snapshots:
       msw: 2.6.5(@types/node@20.17.6)(typescript@5.6.3)
       sirv: 3.0.0
       tinyrainbow: 1.2.0
-      vitest: 2.1.5(@types/node@20.17.6)(@vitest/browser@2.1.5)(happy-dom@15.11.6)(jsdom@24.0.0)(msw@2.6.5(@types/node@20.17.6)(typescript@5.6.3))(terser@5.29.2)
+      vitest: 2.1.5(@types/node@20.17.6)(@vitest/browser@2.1.5)(happy-dom@15.11.6)(jsdom@25.0.1)(msw@2.6.5(@types/node@20.17.6)(typescript@5.6.3))(terser@5.29.2)
       ws: 8.18.0
     optionalDependencies:
       playwright: 1.48.2
@@ -17237,7 +17248,7 @@ snapshots:
       std-env: 3.8.0
       test-exclude: 7.0.1
       tinyrainbow: 1.2.0
-      vitest: 2.1.5(@types/node@20.17.6)(@vitest/browser@2.1.5)(happy-dom@15.11.6)(jsdom@24.0.0)(msw@2.6.5(@types/node@20.17.6)(typescript@5.6.3))(terser@5.29.2)
+      vitest: 2.1.5(@types/node@20.17.6)(@vitest/browser@2.1.5)(happy-dom@15.11.6)(jsdom@25.0.1)(msw@2.6.5(@types/node@20.17.6)(typescript@5.6.3))(terser@5.29.2)
     optionalDependencies:
       '@vitest/browser': 2.1.5(@types/node@20.17.6)(playwright@1.48.2)(typescript@5.6.3)(vite@5.4.11(@types/node@20.17.6)(terser@5.29.2))(vitest@2.1.5)
     transitivePeerDependencies:
@@ -18886,9 +18897,9 @@ snapshots:
     dependencies:
       css-tree: 2.2.1
 
-  cssstyle@4.0.1:
+  cssstyle@4.1.0:
     dependencies:
-      rrweb-cssom: 0.6.0
+      rrweb-cssom: 0.7.1
 
   csstype@3.1.3: {}
 
@@ -20272,7 +20283,7 @@ snapshots:
   gaxios@6.1.1(encoding@0.1.13):
     dependencies:
       extend: 3.0.2
-      https-proxy-agent: 7.0.2
+      https-proxy-agent: 7.0.5
       is-stream: 2.0.1
       node-fetch: 2.7.0(encoding@0.1.13)
     transitivePeerDependencies:
@@ -20710,7 +20721,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  http-proxy-agent@7.0.0:
+  http-proxy-agent@7.0.2:
     dependencies:
       agent-base: 7.1.0
       debug: 4.3.7(supports-color@8.1.1)
@@ -20741,7 +20752,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  https-proxy-agent@7.0.2:
+  https-proxy-agent@7.0.5:
     dependencies:
       agent-base: 7.1.0
       debug: 4.3.7(supports-color@8.1.1)
@@ -21332,22 +21343,22 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  jsdom@24.0.0:
+  jsdom@25.0.1:
     dependencies:
-      cssstyle: 4.0.1
+      cssstyle: 4.1.0
       data-urls: 5.0.0
       decimal.js: 10.4.3
       form-data: 4.0.0
       html-encoding-sniffer: 4.0.0
-      http-proxy-agent: 7.0.0
-      https-proxy-agent: 7.0.2
+      http-proxy-agent: 7.0.2
+      https-proxy-agent: 7.0.5
       is-potential-custom-element-name: 1.0.1
-      nwsapi: 2.2.7
+      nwsapi: 2.2.13
       parse5: 7.1.2
-      rrweb-cssom: 0.6.0
+      rrweb-cssom: 0.7.1
       saxes: 6.0.0
       symbol-tree: 3.2.4
-      tough-cookie: 4.1.4
+      tough-cookie: 5.0.0
       w3c-xmlserializer: 5.0.0
       webidl-conversions: 7.0.0
       whatwg-encoding: 3.1.1
@@ -22943,7 +22954,7 @@ snapshots:
 
   nullthrows@1.1.1: {}
 
-  nwsapi@2.2.7: {}
+  nwsapi@2.2.13: {}
 
   nx@20.1.2:
     dependencies:
@@ -24433,7 +24444,7 @@ snapshots:
       setprototypeof: 1.2.0
       utils-merge: 1.0.1
 
-  rrweb-cssom@0.6.0: {}
+  rrweb-cssom@0.7.1: {}
 
   rtl-css-js@1.16.0:
     dependencies:
@@ -25370,6 +25381,12 @@ snapshots:
 
   titleize@1.0.0: {}
 
+  tldts-core@6.1.61: {}
+
+  tldts@6.1.61:
+    dependencies:
+      tldts-core: 6.1.61
+
   tmp@0.0.33:
     dependencies:
       os-tmpdir: 1.0.2
@@ -25392,6 +25409,10 @@ snapshots:
       punycode: 2.3.1
       universalify: 0.2.0
       url-parse: 1.5.10
+
+  tough-cookie@5.0.0:
+    dependencies:
+      tldts: 6.1.61
 
   tr46@0.0.3: {}
 
@@ -25789,9 +25810,9 @@ snapshots:
     dependencies:
       chalk: 5.3.0
       vite: 5.4.11(@types/node@20.17.6)(terser@5.29.2)
-      vitest: 2.1.5(@types/node@20.17.6)(@vitest/browser@2.1.5)(happy-dom@15.11.6)(jsdom@24.0.0)(msw@2.6.5(@types/node@20.17.6)(typescript@5.6.3))(terser@5.29.2)
+      vitest: 2.1.5(@types/node@20.17.6)(@vitest/browser@2.1.5)(happy-dom@15.11.6)(jsdom@25.0.1)(msw@2.6.5(@types/node@20.17.6)(typescript@5.6.3))(terser@5.29.2)
 
-  vitest@2.1.5(@types/node@20.17.6)(@vitest/browser@2.1.5)(happy-dom@15.11.6)(jsdom@24.0.0)(msw@2.6.5(@types/node@20.17.6)(typescript@5.6.3))(terser@5.29.2):
+  vitest@2.1.5(@types/node@20.17.6)(@vitest/browser@2.1.5)(happy-dom@15.11.6)(jsdom@25.0.1)(msw@2.6.5(@types/node@20.17.6)(typescript@5.6.3))(terser@5.29.2):
     dependencies:
       '@vitest/expect': 2.1.5
       '@vitest/mocker': 2.1.5(msw@2.6.5(@types/node@20.17.6)(typescript@5.6.3))(vite@5.4.11(@types/node@20.17.6)(terser@5.29.2))
@@ -25817,7 +25838,7 @@ snapshots:
       '@types/node': 20.17.6
       '@vitest/browser': 2.1.5(@types/node@20.17.6)(playwright@1.48.2)(typescript@5.6.3)(vite@5.4.11(@types/node@20.17.6)(terser@5.29.2))(vitest@2.1.5)
       happy-dom: 15.11.6
-      jsdom: 24.0.0
+      jsdom: 25.0.1
     transitivePeerDependencies:
       - less
       - lightningcss
