@@ -571,7 +571,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const loader = (
     <ButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
-      {loading && loadingIndicator}
+      {loadingIndicator}
     </ButtonLoadingIndicator>
   );
 
@@ -592,7 +592,9 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       classes={classes}
     >
       {startIcon}
-      {loader}
+      {/* cannot conditionally render loader next to chidren (a text node) */}
+      {/* use bare bone html with inline style for minimal perf overhead. */}
+      <span style={{ display: 'contents' }}>{loading && loader}</span>
       {children}
       {endIcon}
     </ButtonRoot>
