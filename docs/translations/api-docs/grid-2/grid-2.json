@@ -123,6 +123,7 @@
     "grid-xs-auto": { "description": "" },
     "grid-xs-true": { "description": "" },
     "root": { "description": "Styles applied to the root element." },
+    "spacing-xs-0": { "description": "" },
     "spacing-xs-1": { "description": "" },
     "spacing-xs-10": { "description": "" },
     "spacing-xs-2": { "description": "" },

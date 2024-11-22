@@ -286,6 +286,12 @@
       "isGlobal": false
     },
     {
+      "key": "spacing-xs-0",
+      "className": "MuiGrid2-spacing-xs-0",
+      "description": "",
+      "isGlobal": false
+    },
+    {
       "key": "spacing-xs-1",
       "className": "MuiGrid2-spacing-xs-1",
       "description": "",
