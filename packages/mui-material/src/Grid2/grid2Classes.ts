@@ -100,7 +100,7 @@ export interface Grid2Classes {
   'grid-xl-12': string;
 }
 
-export type Grid2ClassKey = keyof GridClasses;
+export type Grid2ClassKey = keyof Grid2Classes;
 
 export function getGrid2UtilityClass(slot: string): string {
   return generateUtilityClass('MuiGrid2', slot);
