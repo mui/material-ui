@@ -39,7 +39,7 @@ All new features and enhancements will go to v8, and after its first stable rele
 ## Where's the v8 documentation?
 
 As mentioned above, v7 is still the official version, so by default, the documentation shows v7 features and API.
-The next version's documentation is in the `v8` subdomain.
+The next version's documentation is in the `next` subdomain.
 
 - [https://next.mui.com/x/introduction/](https://next.mui.com/x/introduction/)
 

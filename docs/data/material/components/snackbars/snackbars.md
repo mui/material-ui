@@ -87,7 +87,7 @@ This demo shows how to display multiple Snackbars without stacking them by using
 
 {{"demo": "ConsecutiveSnackbars.js"}}
 
-## Third-party integrations
+## Supplementary components
 
 ### notistack
 
