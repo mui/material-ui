@@ -98,7 +98,6 @@ export default function DiamondSponsors() {
           ]}
         />
       </NativeLink>
-      <Divider />
       <Link
         href="/material-ui/discover-more/backers/#diamond-sponsors"
         sx={(theme) => ({
