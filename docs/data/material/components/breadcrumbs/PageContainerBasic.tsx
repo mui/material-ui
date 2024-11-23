@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { extendTheme, styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { AppProvider, Navigation, Router } from '@toolpad/core/AppProvider';
 import { PageContainer, PageContainerToolbar } from '@toolpad/core/PageContainer';
@@ -17,20 +17,6 @@ const NAVIGATION: Navigation = [
     icon: <DashboardIcon />,
   },
 ];
-
-const demoTheme = extendTheme({
-  colorSchemes: { light: true, dark: true },
-  colorSchemeSelector: 'class',
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 600,
-      md: 600,
-      lg: 1200,
-      xl: 1536,
-    },
-  },
-});
 
 function useDemoRouter(initialPath: string): Router {
   const [pathname, setPathname] = React.useState(initialPath);
@@ -81,15 +67,15 @@ function PageToolbar() {
 export default function PageContainerBasic(props: any) {
   const { window } = props;
   const router = useDemoRouter('/orders');
-
+  const theme = useTheme();
   // Remove this const when copying and pasting into your project.
-  const demoWindow = window !== undefined ? window() : undefined;
+  const demoWindow = window ? window() : undefined;
 
   return (
     <AppProvider
       navigation={NAVIGATION}
       router={router}
-      theme={demoTheme}
+      theme={theme}
       window={demoWindow}
       branding={{
         title: 'ACME Inc.',

@@ -170,7 +170,7 @@ export default function createGrid(
       >
         {React.Children.map(children, (child) => {
           if (
-            React.isValidElement(child) &&
+            React.isValidElement<{ container?: unknown }>(child) &&
             isMuiElement(child, ['Grid']) &&
             container &&
             child.props.container

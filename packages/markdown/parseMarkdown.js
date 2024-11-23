@@ -7,15 +7,8 @@ const prism = require('./prism');
  */
 const markedOptions = {
   gfm: true,
-  tables: true,
   breaks: false,
   pedantic: false,
-  sanitize: false,
-  smartLists: true,
-  smartypants: false,
-  headerPrefix: false,
-  headerIds: false,
-  mangle: false,
 };
 
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;

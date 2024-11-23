@@ -7,7 +7,7 @@ tags: ['Base UI', 'Product']
 manualCard: true
 ---
 
-<a href="https://mui.com/base-ui/"><img src="/static/blog/introducing-base-ui/hero-image.png" alt="Demo components built with Base UI, a newly introduced library of unstyled components and hooks" width="1200" height="500" /></a>
+<a href="https://mui.com/base-ui/"><img src="/static/blog/introducing-base-ui/hero-image.png" alt="Demo components built with Base UI, a newly introduced library of unstyled components and hooks" width="2400" height="1000" /></a>
 
 While Material UI is excellent for building sleek user interfaces that adhere closely to Material Design, it can become unwieldy when your design system diverges significantly from the defaults.
 We get it.
@@ -52,14 +52,11 @@ Each unstyled component lets you modify or override its _slots_—smaller subcom
 For example, a `SwitchUnstyled` contains the root, thumb, input, and track slots.
 You can control props passed to each of these slots (including `className`) based on the component's state, and even replace the default slot components with your own.
 
-<img src="/static/blog/introducing-base-ui/switch-slots.png" width="1200" height="500" loading="lazy" alt="Depiction of SwitchUnstyled components' slots" />
+<img src="/static/blog/introducing-base-ui/switch-slots.png" width="2400" height="1000" loading="lazy" alt="Depiction of SwitchUnstyled components' slots" />
 
 See how it works on the live demo:
 
-<iframe src="https://codesandbox.io/embed/mui-base-switch-overview-frsm5f?fontsize=12&hidenavigation=1&module=%2Fsrc%2FMySwitch.tsx&theme=dark"
-  style="width:100%; height:350px; border:0; border-radius: 10px; overflow:hidden; margin-bottom: 24px"
-  title="Base UI Switch overview"
-  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+<iframe src="https://codesandbox.io/embed/mui-base-switch-overview-frsm5f?fontsize=12&hidenavigation=1&module=%2Fsrc%2FMySwitch.tsx&theme=dark" style="width:100%; height:350px; border:0; border-radius: 10px; overflow:hidden; margin-bottom: 24px" title="Base UI Switch overview" sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
 Hooks take this one step further by extracting the logic from the structure entirely, so you can build from scratch using any DOM elements you need.

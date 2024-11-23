@@ -32,11 +32,7 @@ const Root = styled('div')(
       overflow: 'auto',
       WebkitOverflowScrolling: 'touch',
       fontSize: lightTheme.typography.pxToRem(13),
-      maxWidth: 'calc(100vw - 32px)',
       maxHeight: '400px',
-      [lightTheme.breakpoints.up('md')]: {
-        maxWidth: 'calc(100vw - 32px - 16px)',
-      },
     },
     '& code': {
       ...lightTheme.typography.body2,

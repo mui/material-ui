@@ -376,8 +376,10 @@ const DialogDetails = React.memo(function DialogDetails(props) {
             <Tooltip
               placement="right"
               title={copied1 ? t('copied') : t('clickToCopy')}
-              TransitionProps={{
-                onExited: () => setCopied1(false),
+              slotProps={{
+                transition: {
+                  onExited: () => setCopied1(false),
+                },
               }}
             >
               <Title component="span" variant="inherit" onClick={handleClick(1)}>
@@ -388,7 +390,9 @@ const DialogDetails = React.memo(function DialogDetails(props) {
           <Tooltip
             placement="top"
             title={copied2 ? t('copied') : t('clickToCopy')}
-            TransitionProps={{ onExited: () => setCopied2(false) }}
+            slotProps={{
+              transition: { onExited: () => setCopied2(false) },
+            }}
           >
             <Markdown
               copyButtonHidden
@@ -522,25 +526,21 @@ const allIconsMap = {};
 const allIcons = Object.keys(mui)
   .sort()
   .map((importName) => {
-    let theme;
-    if (importName.includes('Outlined')) {
-      theme = 'Outlined';
-    } else if (importName.includes('TwoTone')) {
-      theme = 'Two tone';
-    } else if (importName.includes('Rounded')) {
-      theme = 'Rounded';
-    } else if (importName.includes('Sharp')) {
-      theme = 'Sharp';
-    } else {
-      theme = 'Filled';
-    }
+    let theme = 'Filled';
+    let name = importName;
 
-    const name = importName.replace(/(Outlined|TwoTone|Rounded|Sharp)$/, '');
+    for (const currentTheme of ['Outlined', 'Rounded', 'TwoTone', 'Sharp']) {
+      if (importName.endsWith(currentTheme)) {
+        theme = currentTheme === 'TwoTone' ? 'Two tone' : currentTheme;
+        name = importName.slice(0, -currentTheme.length);
+        break;
+      }
+    }
     let searchable = name;
     if (synonyms[searchable]) {
       searchable += ` ${synonyms[searchable]}`;
     }
-    searchIndex.addAsync(importName, searchable);
+    searchIndex.add(importName, searchable);
 
     const icon = {
       importName,

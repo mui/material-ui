@@ -16,8 +16,6 @@ const GRID_SIZES = ['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as cons
 const grid2Classes: GridClasses = generateUtilityClasses('MuiGrid2', [
   'root',
   'container',
-  'item',
-  'zeroMinWidth',
 
   // spacings
   ...SPACINGS.map((spacing) => `spacing-xs-${spacing}` as const),

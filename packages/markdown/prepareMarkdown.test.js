@@ -13,7 +13,7 @@ describe('prepareMarkdown', () => {
     const markdown = `
 # Support
 
-<p class="description">Foo</p>
+<p class="description">Foo.</p>
 
 ## Community help (free)
 ### GitHub <img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub logo" loading="lazy" />
@@ -64,7 +64,7 @@ describe('prepareMarkdown', () => {
     const markdown = `
 # Theming
 
-<p class="description">Foo</p>
+<p class="description">Foo.</p>
 
 ## API
 ### responsiveFontSizes(theme, options) => theme
@@ -105,7 +105,7 @@ describe('prepareMarkdown', () => {
     const markdownEn = `
 # Localization
 
-<p class="description">Foo</p>
+<p class="description">Foo.</p>
 
 ## Locales
 ### Example
@@ -115,7 +115,7 @@ describe('prepareMarkdown', () => {
     const markdownPt = `
 # Localização
 
-<p class="description">Foo</p>
+<p class="description">Foo.</p>
 
 ## Idiomas
 ### Exemplo
@@ -125,7 +125,7 @@ describe('prepareMarkdown', () => {
     const markdownZh = `
 # 所在位置
 
-<p class="description">Foo</p>
+<p class="description">Foo.</p>
 
 ## 语言环境
 ### 例
@@ -211,7 +211,7 @@ describe('prepareMarkdown', () => {
     const markdownEn = `
 # Localization
 
-<p class="description">Foo</p>
+<p class="description">Foo.</p>
 
 ## Locales
 ### Example
@@ -221,7 +221,7 @@ describe('prepareMarkdown', () => {
     const markdownPt = `
 # Localização
 
-<p class="description">Foo</p>
+<p class="description">Foo.</p>
 
 ## Idiomas
 ### Exemplo
@@ -292,7 +292,7 @@ describe('prepareMarkdown', () => {
     const markdown = `
 # Localization
 
-<p class="description">Foo</p>
+<p class="description">Foo.</p>
 
 [bar](/bar/)
 [foo](/foo)
@@ -314,7 +314,7 @@ See https://ahrefs.com/blog/trailing-slash/ for more details.
     const markdown = `
 # Localization
 
-<p class="description">Foo</p>
+<p class="description">Foo.</p>
 
 [bar](/bar/)
 [foo](foo/)
@@ -334,7 +334,7 @@ See https://ahrefs.com/blog/trailing-slash/ for more details.
     const markdown = `
 # Foooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 
-<p class="description">Foo</p>
+<p class="description">Foo.</p>
 
 `;
 
@@ -354,7 +354,7 @@ https://developers.google.com/search/docs/advanced/appearance/title-link
     const markdown = `
 # Foo
 
-<p class="description">Fooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo</p>
+<p class="description">Foooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo.</p>
 
 `;
 
@@ -364,7 +364,7 @@ https://developers.google.com/search/docs/advanced/appearance/title-link
         translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
       });
     }).to
-      .throw(`docs-infra: The description "Fooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo" is too long (188 characters).
+      .throw(`docs-infra: The description "Foooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo." is too long (188 characters).
 It needs to have fewer than 170 characters—ideally less than 160. For more details, see:
 https://ahrefs.com/blog/meta-description/#4-be-concise
 `);
@@ -374,7 +374,7 @@ https://ahrefs.com/blog/meta-description/#4-be-concise
     const markdown = `
 # Foo
 
-<p class="description">Fo</p>
+<p class="description">Fo.</p>
 
 \`\`\`sh
 npm install @mui/material
@@ -401,7 +401,7 @@ Use "bash" instead.
     const markdown = `
 # Localization
 
-<p class="description">Foo</p>
+<p class="description">Foo.</p>
 
 [foo](/foo/)
 [bar](/bar//#foo)

@@ -523,4 +523,50 @@ describe('createTheme', () => {
       );
     }
   });
+
+  it('should create a new object', () => {
+    const defaultTheme = createTheme({
+      cssVariables: {
+        colorSchemeSelector: 'data-mui-color-scheme',
+      },
+      colorSchemes: { dark: true },
+    });
+
+    expect(
+      defaultTheme.generateStyleSheets()[2]['[data-mui-color-scheme="dark"]'][
+        '--mui-palette-background-defaultChannel'
+      ],
+    ).to.equal('18 18 18');
+
+    const theme = createTheme({
+      cssVariables: {
+        colorSchemeSelector: 'data-mui-color-scheme',
+        cssVarPrefix: 'template',
+      },
+      colorSchemes: {
+        dark: {
+          palette: {
+            background: {
+              default: 'hsl(220, 35%, 3%)',
+              paper: 'hsl(220, 30%, 7%)',
+            },
+          },
+        },
+      },
+    });
+
+    expect(
+      theme.generateStyleSheets()[2]['[data-mui-color-scheme="dark"]'][
+        '--template-palette-background-defaultChannel'
+      ],
+    ).to.equal('5 7 10');
+  });
+
+  it('should have `toRuntimeSource` for integrating with Pigment CSS', () => {
+    const theme = createTheme();
+    expect(typeof theme.toRuntimeSource).to.equal('function');
+
+    const themeCssVars = createTheme({ cssVariables: true });
+    expect(typeof themeCssVars.toRuntimeSource).to.equal('function');
+  });
 });

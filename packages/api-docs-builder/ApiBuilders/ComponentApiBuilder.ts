@@ -9,8 +9,8 @@ import { remark } from 'remark';
 import { visit as remarkVisit } from 'unist-util-visit';
 import type { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
-import { renderMarkdown } from '@mui/internal-markdown';
 import { parse as parseDoctrine, Annotation } from 'doctrine';
+import { renderCodeTags, renderMarkdown } from '../buildApi';
 import { ProjectSettings, SortingStrategiesType } from '../ProjectSettings';
 import { toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
@@ -279,7 +279,7 @@ function extractClassCondition(description: string) {
         description.replace(stylesRegex, '$1{{nodeName}}$5{{conditions}}.'),
       ),
       nodeName: renderMarkdown(conditions[3]),
-      conditions: renderMarkdown(conditions[6].replace(/`(.*?)`/g, '<code>$1</code>')),
+      conditions: renderMarkdown(renderCodeTags(conditions[6])),
     };
   }
 
