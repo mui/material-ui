@@ -31,15 +31,15 @@ First, install the Material UI wrapper package for Pigment CSS:
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/material-pigment-css
+npm install @mui/material-pigment-css @pigment-css/react
 ```
 
 ```bash pnpm
-pnpm add @mui/material-pigment-css
+pnpm add @mui/material-pigment-css @pigment-css/react
 ```
 
 ```bash yarn
-yarn add @mui/material-pigment-css
+yarn add @mui/material-pigment-css @pigment-css/react
 ```
 
 </codeblock>
