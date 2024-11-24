@@ -635,43 +635,49 @@ export default async function generateComponentApi(
   } catch (error) {
     // fallback to default logic if there is no `create*` definition.
     if ((error as Error).message === 'No suitable component definition found.') {
-      reactApi = docgenParse(src, (ast) => {
-        let node;
-        // TODO migrate to react-docgen v6, using Babel AST now
-        astTypes.visit(ast, {
-          visitFunctionDeclaration: (path) => {
-            if (path.node.params[0].name === 'props') {
-              node = path;
-            }
-            return false;
-          },
-          visitVariableDeclaration: (path) => {
-            const definitions: any[] = [];
-            if (path.node.declarations) {
-              path
-                .get('declarations')
-                .each((declarator: any) => definitions.push(declarator.get('init')));
-            }
-            definitions.forEach((definition) => {
-              // definition.value.expression is defined when the source is in TypeScript.
-              const expression = definition.value?.expression
-                ? definition.get('expression')
-                : definition;
-              if (expression.value?.callee) {
-                const definitionName = expression.value.callee.name;
-                if (definitionName === `create${componentInfo.name}`) {
-                  node = expression;
-                }
+      reactApi = docgenParse(
+        src,
+        (ast) => {
+          let node;
+          // TODO migrate to react-docgen v6, using Babel AST now
+          astTypes.visit(ast, {
+            visitFunctionDeclaration: (functionPath) => {
+              // @ts-ignore
+              if (functionPath.node.params[0].name === 'props') {
+                node = functionPath;
               }
-            });
-            return false;
-          },
-        });
+              return false;
+            },
+            visitVariableDeclaration: (variablePath) => {
+              const definitions: any[] = [];
+              if (variablePath.node.declarations) {
+                variablePath
+                  .get('declarations')
+                  .each((declarator: any) => definitions.push(declarator.get('init')));
+              }
+              definitions.forEach((definition) => {
+                // definition.value.expression is defined when the source is in TypeScript.
+                const expression = definition.value?.expression
+                  ? definition.get('expression')
+                  : definition;
+                if (expression.value?.callee) {
+                  const definitionName = expression.value.callee.name;
+                  if (definitionName === `create${componentInfo.name}`) {
+                    node = expression;
+                  }
+                }
+              });
+              return false;
+            },
+          });
 
-        return node;
-      }, defaultHandlers, {
-        filename,
-      });
+          return node;
+        },
+        defaultHandlers.concat(muiDefaultPropsHandler),
+        {
+          filename,
+        },
+      );
     } else {
       throw error;
     }

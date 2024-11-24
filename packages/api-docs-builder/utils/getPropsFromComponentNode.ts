@@ -51,6 +51,7 @@ function isStyledFunction(node: ts.VariableDeclaration): boolean {
   );
 }
 
+// TODO update to reflect https://github.com/DefinitelyTyped/DefinitelyTyped/pull/65135
 function getJSXLikeReturnValueFromFunction(type: ts.Type, project: TypeScriptProject) {
   return type
     .getCallSignatures()
