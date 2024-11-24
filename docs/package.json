@@ -8,7 +8,7 @@
     "build": "cross-env NODE_ENV=production next build",
     "build:clean": "rimraf .next && yarn build",
     "build-sw": "node ./scripts/buildServiceWorker.js",
-    "dev": "rimraf ./node_modules/.cache/babel-loader && next dev",
+    "dev": "rimraf ./node_modules/.cache/babel-loader && cross-env NODE_OPTIONS=--openssl-legacy-provider next dev",
     "deploy": "git push -f material-ui-docs v4.x:v4",
     "export": "rimraf docs/export && next export --threads=3 -o export && yarn build-sw",
     "icons": "rimraf public/static/icons/* && node ./scripts/buildIcons.js",
