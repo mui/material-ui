@@ -38,7 +38,6 @@ function NoSsr(props: NoSsrProps): React.JSX.Element {
     }
   }, [defer]);
 
-  // We need the Fragment here to force react-docgen to recognise NoSsr as a component.
   return <React.Fragment>{mountedState ? children : fallback}</React.Fragment>;
 }
 
