@@ -120,7 +120,7 @@ interface UseCurrentColoSchemeOptions<SupportedColorScheme extends string> {
   modeStorageKey?: string;
   colorSchemeStorageKey?: string;
   storageWindow?: Window | null;
-  disableClientRerender?: boolean;
+  noSsr?: boolean;
 }
 
 export default function useCurrentColorScheme<SupportedColorScheme extends string>(
@@ -134,7 +134,7 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
     modeStorageKey = DEFAULT_MODE_STORAGE_KEY,
     colorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
     storageWindow = typeof window === 'undefined' ? undefined : window,
-    disableClientRerender = false,
+    noSsr = false,
   } = options;
 
   const joinedColorSchemes = supportedColorSchemes.join(',');
@@ -157,7 +157,7 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
       darkColorScheme,
     } as State<SupportedColorScheme>;
   });
-  const [isClient, setIsClient] = React.useState(disableClientRerender || !isMultiSchemes);
+  const [isClient, setIsClient] = React.useState(noSsr || !isMultiSchemes);
   React.useEffect(() => {
     setIsClient(true); // to rerender the component after hydration
   }, []);

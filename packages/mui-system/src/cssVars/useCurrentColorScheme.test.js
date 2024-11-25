@@ -106,12 +106,12 @@ describe('useCurrentColorScheme', () => {
     expect(container.firstChild.textContent).to.equal('light:2'); // 2 because of double render within strict mode
   });
 
-  it('[disableClientRerender] does not trigger a re-render', () => {
+  it('[noSsr] does not trigger a re-render', () => {
     function Data() {
       const { mode } = useCurrentColorScheme({
         defaultMode: 'dark',
         supportedColorSchemes: ['light', 'dark'],
-        disableClientRerender: true,
+        noSsr: true,
       });
       const count = React.useRef(0);
       React.useEffect(() => {
