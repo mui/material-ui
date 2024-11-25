@@ -77,6 +77,16 @@ describe('utils/colorManipulator', () => {
     it('converts a long alpha hex color to an argb color` ', () => {
       expect(hexToRgb('#111111f8')).to.equal('rgba(17, 17, 17, 0.973)');
     });
+
+    it('warns if the color contains space at the end', () => {
+      let result;
+      expect(() => {
+        result = hexToRgb('#aa0099 ');
+      }).toErrorDev([
+        'MUI: The color:"aa0099 " has invalid alpha channel: "NaN". Make sure the color input doesn\'t contain leading/trailing space.',
+      ]);
+      expect(result).to.equal('rgba(170, 0, 153, 1)');
+    });
   });
 
   describe('rgbToHex', () => {
