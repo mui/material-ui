@@ -687,12 +687,10 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     };
   };
 
-  const cssWritingMode = React.useMemo(() => {
-    if (orientation === 'vertical') {
-      return isRtl ? 'vertical-rl' : 'vertical-lr';
-    }
-    return undefined;
-  }, [isRtl, orientation]);
+  let cssWritingMode: 'vertical-rl' | 'vertical-lr' | undefined;
+  if (orientation === 'vertical') {
+    cssWritingMode = isRtl ? 'vertical-rl' : 'vertical-lr';
+  }
 
   const getHiddenInputProps = <ExternalProps extends Record<string, unknown> = {}>(
     externalProps: ExternalProps = {} as ExternalProps,
