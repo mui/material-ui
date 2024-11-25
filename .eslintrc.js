@@ -529,5 +529,13 @@ module.exports = /** @type {Config} */ ({
         'react/react-in-jsx-scope': 'off',
       },
     },
+    {
+      files: ['docs/data/material/getting-started/templates/**/*'],
+      rules: {
+        // So we can use # to improve the page UX
+        // and so developer get eslint warning to remind them to fix the links
+        'jsx-a11y/anchor-is-valid': 'off',
+      },
+    },
   ],
 });
