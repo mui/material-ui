@@ -60,8 +60,7 @@ describe('useIsFocusVisible', () => {
   describe('focus inside shadowRoot', () => {
     before(function beforeHook() {
       // Only run on HeadlessChrome which has native shadowRoot support.
-      // And jsdom which has limited support for shadowRoot (^12.0.0).
-      if (!/HeadlessChrome|jsdom/.test(window.navigator.userAgent)) {
+      if (!/HeadlessChrome/.test(window.navigator.userAgent)) {
         this.skip();
       }
     });
