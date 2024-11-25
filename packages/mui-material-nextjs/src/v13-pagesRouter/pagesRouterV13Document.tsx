@@ -9,7 +9,7 @@ import createEmotionCache from './createCache';
 interface Plugin {
   enhanceApp: (
     App: React.ComponentType<React.ComponentProps<AppType>>,
-  ) => (props: any) => JSX.Element;
+  ) => (props: any) => React.JSX.Element;
   resolveProps: (initialProps: DocumentInitialProps) => Promise<DocumentInitialProps>;
 }
 
@@ -37,7 +37,7 @@ export function createGetInitialProps(plugins: Plugin[]) {
 }
 
 export interface DocumentHeadTagsProps {
-  emotionStyleTags: React.ReactElement[];
+  emotionStyleTags: React.ReactElement<any>[];
 }
 
 export function DocumentHeadTags(props: DocumentHeadTagsProps) {

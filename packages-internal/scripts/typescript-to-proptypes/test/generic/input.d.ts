@@ -7,4 +7,4 @@ interface ParentProps<T extends Type> {
 
 interface ChildProps extends ParentProps<'one' | 'two'> {}
 
-export function Foo(props: ChildProps): JSX.Element;
+export function Foo(props: ChildProps): React.JSX.Element;

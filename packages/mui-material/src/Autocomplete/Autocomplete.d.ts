@@ -305,4 +305,4 @@ export default function Autocomplete<
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
 >(
   props: AutocompleteProps<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
-): JSX.Element;
+): React.JSX.Element;
