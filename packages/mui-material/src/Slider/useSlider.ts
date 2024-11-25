@@ -687,6 +687,13 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     };
   };
 
+  const cssWritingMode = React.useMemo(() => {
+    if (orientation === 'vertical') {
+      return isRtl ? 'vertical-rl' : 'vertical-lr';
+    }
+    return undefined;
+  }, [isRtl, orientation]);
+
   const getHiddenInputProps = <ExternalProps extends Record<string, unknown> = {}>(
     externalProps: ExternalProps = {} as ExternalProps,
   ): UseSliderHiddenInputProps<ExternalProps> => {
@@ -724,6 +731,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
         // So that VoiceOver's focus indicator matches the thumb's dimensions
         width: '100%',
         height: '100%',
+        writingMode: cssWritingMode,
       },
     };
   };
