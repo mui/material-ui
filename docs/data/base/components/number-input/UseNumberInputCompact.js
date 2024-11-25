@@ -72,11 +72,7 @@ const grey = {
 const StyledInputRoot = styled('div')(
   ({ theme }) => `
     display: grid;
-    grid-template-columns: 2rem;
-    grid-template-rows: 2rem 2rem;
-    grid-template-areas:
-      "increment"
-      "decrement";
+    grid-template: "increment" 2rem "decrement" 2rem / 2rem;
     row-gap: 1px;
     overflow: auto;
     border-radius: 8px;
@@ -84,7 +80,7 @@ const StyledInputRoot = styled('div')(
     border-width: 1px;
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
     border-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
-    box-shadow: 0px 2px 4px ${
+    box-shadow: 0 2px 4px ${
       theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
     };
   `,

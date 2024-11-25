@@ -36,7 +36,7 @@ const InputWrapper = styled('div')(
 
   &.focused {
     border-color: ${theme.palette.mode === 'dark' ? '#177ddc' : '#40a9ff'};
-    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+    box-shadow: 0 0 0 2px rgb(24 144 255 / 0.2);
   }
 
   & input {
@@ -118,7 +118,7 @@ const Listbox = styled('ul')(
   overflow: auto;
   max-height: 250px;
   border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
   z-index: 1;
 
   & li {
