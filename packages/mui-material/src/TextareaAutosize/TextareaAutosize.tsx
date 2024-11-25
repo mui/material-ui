@@ -45,6 +45,8 @@ function isEmpty(obj: TextareaStyles) {
   );
 }
 
+const supportsResizeObserver = typeof ResizeObserver !== 'undefined';
+
 /**
  *
  * Demos:
@@ -139,21 +141,22 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
     input.style.overflow = textareaStyles.overflowing ? 'hidden' : '';
   }, [calculateTextareaStyles]);
 
+  const frameRef = React.useRef(-1);
+
   useEnhancedEffect(() => {
-    const handleResize = () => {
+    function handleResize() {
       syncHeight();
-    };
+    }
     // Workaround a "ResizeObserver loop completed with undelivered notifications" error
     // in test.
     // Note that we might need to use this logic in production per https://github.com/WICG/resize-observer/issues/38
     // Also see https://github.com/mui/mui-x/issues/8733
-    let rAF: any;
-    const rAFHandleResize = () => {
-      cancelAnimationFrame(rAF);
-      rAF = requestAnimationFrame(() => {
-        handleResize();
-      });
-    };
+    // const rAFHandleResize = () => {
+    //   cancelAnimationFrame(frameRef.current);
+    //   frameRef.current = requestAnimationFrame(() => {
+    //     handleResize();
+    //   });
+    // };
     const debounceHandleResize = debounce(handleResize);
     const input = inputRef.current!;
     const containerWindow = ownerWindow(input);
@@ -162,16 +165,21 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
 
     let resizeObserver: ResizeObserver;
 
-    if (typeof ResizeObserver !== 'undefined') {
-      resizeObserver = new ResizeObserver(
-        process.env.NODE_ENV === 'test' ? rAFHandleResize : handleResize,
-      );
+    if (supportsResizeObserver) {
+      resizeObserver = new ResizeObserver(() => {
+        resizeObserver.unobserve(input);
+        cancelAnimationFrame(frameRef.current);
+        handleResize();
+        frameRef.current = requestAnimationFrame(() => {
+          resizeObserver.observe(input);
+        });
+      });
       resizeObserver.observe(input);
     }
 
     return () => {
       debounceHandleResize.clear();
-      cancelAnimationFrame(rAF);
+      cancelAnimationFrame(frameRef.current);
       containerWindow.removeEventListener('resize', debounceHandleResize);
       if (resizeObserver) {
         resizeObserver.disconnect();
