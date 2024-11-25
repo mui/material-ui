@@ -36,16 +36,17 @@ type TextareaStyles = {
   overflowing: boolean;
 };
 
-function isEmpty(obj: TextareaStyles) {
-  return (
-    obj === undefined ||
-    obj === null ||
-    Object.keys(obj).length === 0 ||
-    (obj.outerHeightStyle === 0 && !obj.overflowing)
-  );
+function isObjectEmpty(object: TextareaStyles) {
+  // eslint-disable-next-line
+  for (const _ in object) {
+    return false;
+  }
+  return true;
 }
 
-const supportsResizeObserver = typeof ResizeObserver !== 'undefined';
+function isEmpty(obj: TextareaStyles) {
+  return isObjectEmpty(obj) || (obj.outerHeightStyle === 0 && !obj.overflowing);
+}
 
 /**
  *
@@ -64,16 +65,21 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   const { onChange, maxRows, minRows = 1, style, value, ...other } = props;
 
   const { current: isControlled } = React.useRef(value != null);
-  const inputRef = React.useRef<HTMLTextAreaElement>(null);
-  const handleRef = useForkRef(forwardedRef, inputRef);
+  const textareaRef = React.useRef<HTMLTextAreaElement>(null);
+  const handleRef = useForkRef(forwardedRef, textareaRef);
   const heightRef = React.useRef<number | null>(null);
-  const shadowRef = React.useRef<HTMLTextAreaElement>(null);
+  const hiddenTextareaRef = React.useRef<HTMLTextAreaElement>(null);
 
   const calculateTextareaStyles = React.useCallback(() => {
-    const input = inputRef.current!;
+    const textarea = textareaRef.current;
+    const hiddenTextarea = hiddenTextareaRef.current;
 
-    const containerWindow = ownerWindow(input);
-    const computedStyle = containerWindow.getComputedStyle(input);
+    if (!textarea || !hiddenTextarea) {
+      return undefined;
+    }
+
+    const containerWindow = ownerWindow(textarea);
+    const computedStyle = containerWindow.getComputedStyle(textarea);
 
     // If input's width is shrunk and it's not visible, don't sync height.
     if (computedStyle.width === '0px') {
@@ -83,15 +89,13 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
       };
     }
 
-    const inputShallow = shadowRef.current!;
-
-    inputShallow.style.width = computedStyle.width;
-    inputShallow.value = input.value || props.placeholder || 'x';
-    if (inputShallow.value.slice(-1) === '\n') {
+    hiddenTextarea.style.width = computedStyle.width;
+    hiddenTextarea.value = textarea.value || props.placeholder || 'x';
+    if (hiddenTextarea.value.slice(-1) === '\n') {
       // Certain fonts which overflow the line height will cause the textarea
       // to report a different scrollHeight depending on whether the last line
       // is empty. Make it non-empty to avoid this issue.
-      inputShallow.value += ' ';
+      hiddenTextarea.value += ' ';
     }
 
     const boxSizing = computedStyle.boxSizing;
@@ -101,11 +105,11 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
       getStyleValue(computedStyle.borderBottomWidth) + getStyleValue(computedStyle.borderTopWidth);
 
     // The height of the inner content
-    const innerHeight = inputShallow.scrollHeight;
+    const innerHeight = hiddenTextarea.scrollHeight;
 
     // Measure height of a textarea with a single row
-    inputShallow.value = 'x';
-    const singleRowHeight = inputShallow.scrollHeight;
+    hiddenTextarea.value = 'x';
+    const singleRowHeight = hiddenTextarea.scrollHeight;
 
     // The height of the outer content
     let outerHeight = innerHeight;
@@ -126,55 +130,50 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   }, [maxRows, minRows, props.placeholder]);
 
   const syncHeight = React.useCallback(() => {
+    const textarea = textareaRef.current;
     const textareaStyles = calculateTextareaStyles();
 
-    if (isEmpty(textareaStyles)) {
+    if (!textarea || !textareaStyles || isEmpty(textareaStyles)) {
       return;
     }
 
     const outerHeightStyle = textareaStyles.outerHeightStyle;
-    const input = inputRef.current!;
     if (heightRef.current !== outerHeightStyle) {
       heightRef.current = outerHeightStyle;
-      input.style.height = `${outerHeightStyle}px`;
+      textarea.style.height = `${outerHeightStyle}px`;
     }
-    input.style.overflow = textareaStyles.overflowing ? 'hidden' : '';
+    textarea.style.overflow = textareaStyles.overflowing ? 'hidden' : '';
   }, [calculateTextareaStyles]);
 
   const frameRef = React.useRef(-1);
 
   useEnhancedEffect(() => {
-    function handleResize() {
-      syncHeight();
+    const debounceHandleResize = debounce(() => syncHeight());
+    const textarea = textareaRef?.current;
+
+    if (!textarea) {
+      return undefined;
     }
-    // Workaround a "ResizeObserver loop completed with undelivered notifications" error
-    // in test.
-    // Note that we might need to use this logic in production per https://github.com/WICG/resize-observer/issues/38
-    // Also see https://github.com/mui/mui-x/issues/8733
-    // const rAFHandleResize = () => {
-    //   cancelAnimationFrame(frameRef.current);
-    //   frameRef.current = requestAnimationFrame(() => {
-    //     handleResize();
-    //   });
-    // };
-    const debounceHandleResize = debounce(handleResize);
-    const input = inputRef.current!;
-    const containerWindow = ownerWindow(input);
+
+    const containerWindow = ownerWindow(textarea);
 
     containerWindow.addEventListener('resize', debounceHandleResize);
 
     let resizeObserver: ResizeObserver;
 
-    if (supportsResizeObserver) {
+    if (typeof ResizeObserver !== 'undefined') {
       resizeObserver = new ResizeObserver(() => {
-        resizeObserver.unobserve(input);
+        // avoid "ResizeObserver loop completed with undelivered notifications" error
+        // by temporarily unobserving the textarea element while manipulating the height
+        // and reobserving one frame later
+        resizeObserver.unobserve(textarea);
         cancelAnimationFrame(frameRef.current);
-        handleResize();
+        syncHeight();
         frameRef.current = requestAnimationFrame(() => {
-          resizeObserver.observe(input);
+          resizeObserver.observe(textarea);
         });
       });
-      resizeObserver.observe(input);
+      resizeObserver.observe(textarea);
     }
 
     return () => {
@@ -216,7 +215,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
         aria-hidden
         className={props.className}
         readOnly
-        ref={shadowRef}
+        ref={hiddenTextareaRef}
         tabIndex={-1}
         style={{
           ...styles.shadow,
