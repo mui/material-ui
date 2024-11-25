@@ -24,6 +24,16 @@ import areArraysEqual from '../utils/areArraysEqual';
 
 const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
 
+function getNewValue(
+  currentValue: number,
+  step: number,
+  direction: 1 | -1,
+  min: number,
+  max: number,
+): number {
+  return direction === 1 ? Math.min(currentValue + step, max) : Math.max(currentValue - step, min);
+}
+
 function asc(a: number, b: number) {
   return a - b;
 }
@@ -348,24 +358,41 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     (otherHandlers: EventHandlers) => (event: React.KeyboardEvent) => {
       // The Shift + Up/Down keyboard shortcuts for moving the slider makes sense to be supported
       // only if the step is defined. If the step is null, this means tha the marks are used for specifying the valid values.
-      if (step !== null) {
+      if (step != null) {
         const index = Number(event.currentTarget.getAttribute('data-index'));
         const value = values[index];
-
         let newValue = null;
-        if (
-          ((event.key === 'ArrowLeft' || event.key === 'ArrowDown') && event.shiftKey) ||
-          event.key === 'PageDown'
-        ) {
-          newValue = Math.max(value - shiftStep, min);
-        } else if (
-          ((event.key === 'ArrowRight' || event.key === 'ArrowUp') && event.shiftKey) ||
-          event.key === 'PageUp'
-        ) {
-          newValue = Math.min(value + shiftStep, max);
+        const stepSize = event.shiftKey ? shiftStep : step;
+        switch (event.key) {
+          case 'ArrowUp':
+            newValue = getNewValue(value, stepSize, 1, min, max);
+            break;
+          case 'ArrowRight':
+            newValue = getNewValue(value, stepSize, isRtl ? -1 : 1, min, max);
+            break;
+          case 'ArrowDown':
+            newValue = getNewValue(value, stepSize, -1, min, max);
+            break;
+          case 'ArrowLeft':
+            newValue = getNewValue(value, stepSize, isRtl ? 1 : -1, min, max);
+            break;
+          case 'PageUp':
+            newValue = getNewValue(value, stepSize, 1, min, max);
+            break;
+          case 'PageDown':
+            newValue = getNewValue(value, stepSize, -1, min, max);
+            break;
+          case 'Home':
+            newValue = min;
+            break;
+          case 'End':
+            newValue = max;
+            break;
+          default:
+            break;
         }
 
-        if (newValue !== null) {
+        if (newValue != null) {
           changeValue(event, newValue);
           event.preventDefault();
         }
