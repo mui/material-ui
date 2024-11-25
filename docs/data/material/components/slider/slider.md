@@ -106,6 +106,7 @@ Set the `orientation` prop to `"vertical"` to create vertical sliders. The thumb
 Chrome versions below 124 implements `aria-orientation` incorrrectly for vertical sliders and exposes them as `'horizontal'` in the accessibility tree. ([Chromium issue #40736841](https://issues.chromium.org/issues/40736841))
 
 The `-webkit-appearance: slider-vertical` CSS property can be used to correct this for these older versions, with the trade-off of causing a console warning in newer Chrome versions:
+
 ```css
 .MuiSlider-thumb > input {
   -webkit-appearance: slider-vertical;
