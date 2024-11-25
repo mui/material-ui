@@ -101,6 +101,7 @@ const Button = styled('button')(
     opacity: 0.4;
     cursor: not-allowed;
     box-shadow: none;
+
     &:hover {
       background-color: ${blue[500]};
     }

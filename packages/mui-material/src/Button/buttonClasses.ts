@@ -176,20 +176,6 @@ export interface ButtonClasses {
   colorInfo: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element if `loading={true}`. */
-  loading: string;
-  /** Styles applied to the loadingIndicator element. */
-  loadingIndicator: string;
-  /** Styles applied to the loadingIndicator element if `loadingPosition="center"`. */
-  loadingIndicatorCenter: string;
-  /** Styles applied to the loadingIndicator element if `loadingPosition="start"`. */
-  loadingIndicatorStart: string;
-  /** Styles applied to the loadingIndicator element if `loadingPosition="end"`. */
-  loadingIndicatorEnd: string;
-  /** Styles applied to the endIcon element if `loading={true}` and `loadingPosition="end"`. */
-  endIconLoadingEnd: string;
-  /** Styles applied to the startIcon element if `loading={true}` and `loadingPosition="start"`. */
-  startIconLoadingStart: string;
 }
 
 export type ButtonClassKey = keyof ButtonClasses;
@@ -253,13 +239,6 @@ const buttonClasses: ButtonClasses = generateUtilityClasses('MuiButton', [
   'iconSizeSmall',
   'iconSizeMedium',
   'iconSizeLarge',
-  'loading',
-  'loadingIndicator',
-  'loadingIndicatorCenter',
-  'loadingIndicatorStart',
-  'loadingIndicatorEnd',
-  'endIconLoadingEnd',
-  'startIconLoadingStart',
 ]);
 
 export default buttonClasses;
