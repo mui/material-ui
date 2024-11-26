@@ -103,6 +103,7 @@ const pages: readonly MuiPage[] = [
         subheader: 'layout',
         children: [
           { pathname: '/joy-ui/react-box' },
+          { pathname: '/joy-ui/react-container' },
           { pathname: '/joy-ui/react-grid' },
           { pathname: '/joy-ui/react-stack' },
         ],

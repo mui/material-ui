@@ -24,6 +24,7 @@ module.exports = [
   { pathname: '/joy-ui/api/chip' },
   { pathname: '/joy-ui/api/chip-delete' },
   { pathname: '/joy-ui/api/circular-progress' },
+  { pathname: '/joy-ui/api/container' },
   { pathname: '/joy-ui/api/css-baseline' },
   { pathname: '/joy-ui/api/dialog-actions' },
   { pathname: '/joy-ui/api/dialog-content' },
