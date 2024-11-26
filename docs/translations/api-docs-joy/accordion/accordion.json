@@ -46,5 +46,9 @@
       "conditions": "<code>expanded</code> is true"
     }
   },
-  "slotDescriptions": { "root": "The component that renders the root." }
+  "slotDescriptions": { "root": "The component that renders the root." },
+  "cssVariablesDescriptions": {
+    "accordionPanelHeight": "CSS variable for the Acccordion&#39;s panel height.",
+    "accordionPanelWidth": "CSS variable for the Acccordion&#39;s panel height."
+  }
 }

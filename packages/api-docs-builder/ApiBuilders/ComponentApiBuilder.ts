@@ -10,7 +10,7 @@ import { visit as remarkVisit } from 'unist-util-visit';
 import type { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import { parse as parseDoctrine, Annotation } from 'doctrine';
-import { renderCodeTags, renderMarkdown } from '../buildApi';
+import { renderCodeTags, renderMarkdown, escapeEntities } from '../buildApi';
 import { ProjectSettings, SortingStrategiesType } from '../ProjectSettings';
 import { toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
@@ -29,8 +29,10 @@ import {
   AdditionalPropsInfo,
   ComponentApiContent,
   ComponentReactApi,
+  ParsedProperty,
 } from '../types/ApiBuilder.types';
-import { Slot, ComponentInfo } from '../types/utils.types';
+import { Slot, ComponentInfo, CssVariable } from '../types/utils.types';
+import extractInfoFromType from '../utils/extractInfoFromType';
 
 const cssComponents = ['Box', 'Grid', 'Typography', 'Stack'];
 
@@ -321,6 +323,7 @@ const generateApiPage = async (
     name: reactApi.name,
     imports: reactApi.imports,
     ...(reactApi.slots?.length > 0 && { slots: reactApi.slots }),
+    ...(reactApi.cssVariables?.length > 0 && { cssVariables: reactApi.cssVariables }),
     classes: reactApi.classes,
     spread: reactApi.spread,
     themeDefaultProps: reactApi.themeDefaultProps,
@@ -342,7 +345,7 @@ const generateApiPage = async (
     deprecated: reactApi.deprecated,
   };
 
-  const { classesSort = sortAlphabetical('key'), slotsSort = null } = {
+  const { classesSort = sortAlphabetical('key'), slotsSort = null, cssVariablesSort = null } = {
     ...sortingStrategies,
   };
 
@@ -351,6 +354,9 @@ const generateApiPage = async (
   }
   if (slotsSort && pageContent.slots) {
     pageContent.slots = [...pageContent.slots].sort(slotsSort);
+  }
+  if (cssVariablesSort && pageContent.cssVariables) {
+    pageContent.slots = [...pageContent.cssVariables].sort(cssVariablesSort);
   }
 
   await writePrettifiedFile(
@@ -459,6 +465,19 @@ const attachTranslations = (
   reactApi.classes.forEach((classDefinition, index) => {
     delete reactApi.classes[index].deprecationInfo; // store deprecation info in translations only
   });
+
+  /**
+   * CSS variables descriptions.
+   */
+    if (reactApi.cssVariables?.length > 0) {
+      translations.cssVariablesDescriptions = {};
+      [...reactApi.cssVariables]
+        .sort(sortAlphabetical('name')) // Sort to ensure consistency of object key order
+        .forEach((cssVariable: CssVariable) => {
+          const { name, description } = cssVariable;
+          translations.cssVariablesDescriptions![name] = renderMarkdown(description);
+        });
+    }
 
   reactApi.translations = translations;
 };
@@ -607,6 +626,49 @@ const defaultGetComponentImports = (name: string, filename: string) => {
   return [subpathImport, rootImport];
 };
 
+const attachCssVariables = (
+  reactApi: ComponentReactApi,
+  params: ParsedProperty[]
+) => {
+  const cssVarsErrors: Array<[propName: string, error: Error]> = [];
+  const cssVariables: ComponentReactApi['cssVariables'] = params
+    .map((p) => {
+      const { name: propName, ...propDescriptor } = p;
+      let prop: Omit<ParsedProperty, 'name'> | null;
+      try {
+        prop = propDescriptor;
+      } catch (error) {
+        cssVarsErrors.push([propName, error as Error]);
+        prop = null;
+      }
+      if (prop === null) {
+        // have to delete `componentProps.undefined` later
+        return [] as any;
+      }
+
+      const deprecation = (propDescriptor.description || '').match(/@deprecated(\s+(?<info>.*))?/);
+      return {
+        name: propName,
+        description: propDescriptor.description,
+        deprecated: !!deprecation || undefined,
+        deprecationInfo: renderMarkdown(deprecation?.groups?.info || '').trim() || undefined,
+      };
+    });
+
+  if (cssVarsErrors.length > 0) {
+    throw new Error(
+      `There were errors creating CSS variable descriptions:\n${cssVarsErrors
+        .map(([cssVarName, error]) => {
+          return `  - ${cssVarName}: ${error}`;
+        })
+        .join('\n')}`,
+    );
+  }
+
+  reactApi['cssVariables'] = cssVariables;
+};
+
+
 /**
  * - Build react component (specified filename) api by lookup at its definition (.d.ts or ts)
  *   and then generate the API page + json data
@@ -744,14 +806,21 @@ export default async function generateComponentApi(
     reactApi.slots = slots;
     reactApi.classes = classes;
   }
-
+  
   const deprecation = componentJsdoc.tags.find((tag) => tag.title === 'deprecated');
   const deprecationInfo = deprecation?.description || undefined;
-
+  
   reactApi.deprecated = !!deprecation || undefined;
 
+  const cssVars = await extractInfoFromType(`${componentInfo.name}CssVars`, project);
+
   attachPropsTable(reactApi, projectSettings.propsSettings);
+  attachCssVariables(reactApi, cssVars);
+  if(componentInfo.name === 'Accordion') {
+    console.log(reactApi);
+  }
   attachTranslations(reactApi, deprecationInfo, projectSettings.propsSettings);
+
 
   // eslint-disable-next-line no-console
   console.log('Built API docs for', reactApi.apiPathname);

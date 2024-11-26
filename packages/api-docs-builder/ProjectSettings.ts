@@ -5,7 +5,7 @@ import {
   ComponentReactApi,
   HookReactApi,
 } from './types/ApiBuilder.types';
-import { Slot, ComponentInfo, HookInfo } from './types/utils.types';
+import { Slot, ComponentInfo, HookInfo, CssVariable } from './types/utils.types';
 
 export type SortingStrategiesType = {
   /**
@@ -18,6 +18,11 @@ export type SortingStrategiesType = {
    * @default required props first and alphabetcal order otherwise.
    */
   slotsSort?: null | ((a: Slot, b: Slot) => number);
+  /**
+   * Sort slots items. Setting null result in no sorting (respect the order provided by TS).
+   * @default required props first and alphabetcal order otherwise.
+   */
+  cssVariablesSort?: null | ((a: CssVariable, b: CssVariable) => number);
 };
 
 export interface ProjectSettings {
