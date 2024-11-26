@@ -31,7 +31,7 @@ import {
   ComponentReactApi,
   ParsedProperty,
 } from '../types/ApiBuilder.types';
-import { Slot, ComponentInfo, CssVariable } from '../types/utils.types';
+import { Slot, ComponentInfo } from '../types/utils.types';
 import extractInfoFromType from '../utils/extractInfoFromType';
 
 const cssComponents = ['Box', 'Grid', 'Typography', 'Stack'];
@@ -345,10 +345,7 @@ const generateApiPage = async (
     deprecated: reactApi.deprecated,
   };
 
-  const {
-    classesSort = sortAlphabetical('key'),
-    slotsSort = null
-  } = {
+  const { classesSort = sortAlphabetical('key'), slotsSort = null } = {
     ...sortingStrategies,
   };
 
@@ -358,7 +355,6 @@ const generateApiPage = async (
   if (slotsSort && pageContent.slots) {
     pageContent.slots = [...pageContent.slots].sort(slotsSort);
   }
-
 
   await writePrettifiedFile(
     path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.json`),

@@ -5,7 +5,7 @@ import {
   ComponentReactApi,
   HookReactApi,
 } from './types/ApiBuilder.types';
-import { Slot, ComponentInfo, HookInfo, CssVariable } from './types/utils.types';
+import { Slot, ComponentInfo, HookInfo } from './types/utils.types';
 
 export type SortingStrategiesType = {
   /**
