@@ -29,12 +29,11 @@ export type AccordionCssVars = {
   accordionPanelHeight: string;
   /** CSS variable for the Acccordion's panel height. */
   accordionPanelWidth: string;
-}
+};
 
 export const accordionCssVars: AccordionCssVars = {
   accordionPanelHeight: '--accordion-panel-height',
   accordionPanelWidth: '--accordion-panel-width',
 };
-
 
 export default accordionClasses;

@@ -10,7 +10,7 @@ import { visit as remarkVisit } from 'unist-util-visit';
 import type { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import { parse as parseDoctrine, Annotation } from 'doctrine';
-import { renderCodeTags, renderMarkdown, escapeEntities } from '../buildApi';
+import { renderCodeTags, renderMarkdown } from '../buildApi';
 import { ProjectSettings, SortingStrategiesType } from '../ProjectSettings';
 import { toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
@@ -345,7 +345,11 @@ const generateApiPage = async (
     deprecated: reactApi.deprecated,
   };
 
-  const { classesSort = sortAlphabetical('key'), slotsSort = null, cssVariablesSort = null } = {
+  const {
+    classesSort = sortAlphabetical('key'),
+    slotsSort = null,
+    cssVariablesSort = null,
+  } = {
     ...sortingStrategies,
   };
 
@@ -356,7 +360,7 @@ const generateApiPage = async (
     pageContent.slots = [...pageContent.slots].sort(slotsSort);
   }
   if (cssVariablesSort && pageContent.cssVariables) {
-    pageContent.slots = [...pageContent.cssVariables].sort(cssVariablesSort);
+    pageContent.cssVariables = [...pageContent.cssVariables].sort(cssVariablesSort);
   }
 
   await writePrettifiedFile(
@@ -469,15 +473,15 @@ const attachTranslations = (
   /**
    * CSS variables descriptions.
    */
-    if (reactApi.cssVariables?.length > 0) {
-      translations.cssVariablesDescriptions = {};
-      [...reactApi.cssVariables]
-        .sort(sortAlphabetical('name')) // Sort to ensure consistency of object key order
-        .forEach((cssVariable: CssVariable) => {
-          const { name, description } = cssVariable;
-          translations.cssVariablesDescriptions![name] = renderMarkdown(description);
-        });
-    }
+  if (reactApi.cssVariables?.length > 0) {
+    translations.cssVariablesDescriptions = {};
+    [...reactApi.cssVariables]
+      .sort(sortAlphabetical('name')) // Sort to ensure consistency of object key order
+      .forEach((cssVariable: CssVariable) => {
+        const { name, description } = cssVariable;
+        translations.cssVariablesDescriptions![name] = renderMarkdown(description);
+      });
+  }
 
   reactApi.translations = translations;
 };
@@ -626,36 +630,32 @@ const defaultGetComponentImports = (name: string, filename: string) => {
   return [subpathImport, rootImport];
 };
 
-const attachCssVariables = (
-  reactApi: ComponentReactApi,
-  params: ParsedProperty[]
-) => {
+const attachCssVariables = (reactApi: ComponentReactApi, params: ParsedProperty[]) => {
   const cssVarsErrors: Array<[propName: string, error: Error]> = [];
-  const cssVariables: ComponentReactApi['cssVariables'] = params
-    .map((p) => {
-      const { name: propName, ...propDescriptor } = p;
-      let prop: Omit<ParsedProperty, 'name'> | null;
-      try {
-        prop = propDescriptor;
-      } catch (error) {
-        cssVarsErrors.push([propName, error as Error]);
-        prop = null;
-      }
-      if (prop === null) {
-        // have to delete `componentProps.undefined` later
-        return [] as any;
-      }
+  const cssVariables: ComponentReactApi['cssVariables'] = params.map((p) => {
+    const { name: propName, ...propDescriptor } = p;
+    let prop: Omit<ParsedProperty, 'name'> | null;
+    try {
+      prop = propDescriptor;
+    } catch (error) {
+      cssVarsErrors.push([propName, error as Error]);
+      prop = null;
+    }
+    if (prop === null) {
+      // have to delete `componentProps.undefined` later
+      return [] as any;
+    }
 
-      const deprecationTag = propDescriptor.tags?.deprecated;
-      const deprecation = deprecationTag?.text?.[0]?.text;
+    const deprecationTag = propDescriptor.tags?.deprecated;
+    const deprecation = deprecationTag?.text?.[0]?.text;
 
-      return {
-        name: propName,
-        description: propDescriptor.description,
-        deprecated: !!deprecation || undefined,
-        deprecationInfo: renderMarkdown(deprecation || '').trim() || undefined,
-      };
-    });
+    return {
+      name: propName,
+      description: propDescriptor.description,
+      deprecated: !!deprecation || undefined,
+      deprecationInfo: renderMarkdown(deprecation || '').trim() || undefined,
+    };
+  });
 
   if (cssVarsErrors.length > 0) {
     throw new Error(
@@ -667,9 +667,8 @@ const attachCssVariables = (
     );
   }
 
-  reactApi['cssVariables'] = cssVariables;
+  reactApi.cssVariables = cssVariables;
 };
-
 
 /**
  * - Build react component (specified filename) api by lookup at its definition (.d.ts or ts)
@@ -808,10 +807,10 @@ export default async function generateComponentApi(
     reactApi.slots = slots;
     reactApi.classes = classes;
   }
-  
+
   const deprecation = componentJsdoc.tags.find((tag) => tag.title === 'deprecated');
   const deprecationInfo = deprecation?.description || undefined;
-  
+
   reactApi.deprecated = !!deprecation || undefined;
 
   const cssVars = await extractInfoFromType(`${componentInfo.name}CssVars`, project);
@@ -819,7 +818,6 @@ export default async function generateComponentApi(
   attachPropsTable(reactApi, projectSettings.propsSettings);
   attachCssVariables(reactApi, cssVars);
   attachTranslations(reactApi, deprecationInfo, projectSettings.propsSettings);
-
 
   // eslint-disable-next-line no-console
   console.log('Built API docs for', reactApi.apiPathname);
