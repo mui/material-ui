@@ -7,6 +7,8 @@ import requirePropFactory from '../utils/requirePropFactory';
 import { Theme, styled, Breakpoint } from '../styles';
 import { useDefaultProps } from '../DefaultPropsProvider';
 
+export type Grid2Slot = 'root';
+
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 
 export type GridDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
