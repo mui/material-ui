@@ -16,7 +16,7 @@ Soon it will include more components like date picker and tree view.
 This release continues our focus on making the data grid the best in the industry.
 Read on to learn more!
 
-<img src="/static/blog/mui-x-v5/card.png" alt="" style="width: 100%; margin-bottom: 16px;" />
+<img src="/static/blog/mui-x-v5/card.png" alt="" width="2400" height="1256" />
 
 This release features some major highlights:
 
@@ -70,7 +70,7 @@ The time each frame takes to be rendered, indicated by the width of each block, 
 The idea of delaying the re-rendering also can be seen in the large voids between the blocks.
 Each void means that a re-render was not necessary since the required columns were already rendered by the overscan.
 
-![Performance comparison between v5.0.0-beta.4 and v5.0.0](https://user-images.githubusercontent.com/42154031/141475697-11281f83-9a2f-4a2b-8001-f459cbdccbd8.png)
+<img src="/static/blog/mui-x-v5/performance.png" alt="Performance comparison between v5.0.0-beta.4 and v5.0.0" loading="lazy" width="1920" height="860" />
 
 Some of the mentioned improvements were also applied to the rows, however the gains were more subtle.
 Besides the better performance, the new virtualization engine also brings the following fixes:
@@ -83,7 +83,7 @@ Besides the better performance, the new virtualization engine also brings the fo
 
 ## Improved state management
 
-Several enhancements were made to state management to improve developer experience, performance and consistency in the execution order.
+Several enhancements were made to state management to improve developer experience, performance, and consistency in the execution order.
 
 ### Improved DX when using the state
 

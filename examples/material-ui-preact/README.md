@@ -22,7 +22,7 @@ npm run start
 
 The project uses Material UI with [Preact](https://github.com/developit/preact), which is a lightweight (3 kB) alternative to React with the same modern API.
 
-This example uses CRA with `react-app-rewired` for adding Webpack aliases for Preact.
+This example uses CRA with `react-app-rewired` for adding webpack aliases for Preact.
 
 It includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI v6.
 

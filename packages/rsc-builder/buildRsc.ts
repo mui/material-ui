@@ -1,8 +1,8 @@
 import path from 'path';
 import * as yargs from 'yargs';
 import * as fse from 'fs-extra';
-import findComponents from '../api-docs-builder/utils/findComponents';
-import findHooks from '../api-docs-builder/utils/findHooks';
+import findComponents from '@mui-internal/api-docs-builder/utils/findComponents';
+import findHooks from '@mui-internal/api-docs-builder/utils/findHooks';
 
 type CommandOptions = { grep?: string };
 

@@ -115,7 +115,7 @@ export default class MyDocument extends Document {
 
 ### Next.js App Router
 
-To use the Joy UI API with a Next.js project with the App Router, add the following code to the [root layout](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#root-layout-required) file in order to prevent flickering:
+To use the Joy UI API with a Next.js project with the App Router, add the following code to the [root layout](https://nextjs.org/docs/app/building-your-application/routing/layouts-and-templates#root-layout-required) file in order to prevent flickering:
 
 ```jsx title="app/layout.js"
 import InitColorSchemeScript from '@mui/joy/InitColorSchemeScript';

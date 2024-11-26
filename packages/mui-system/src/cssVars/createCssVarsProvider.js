@@ -61,6 +61,7 @@ export default function createCssVarsProvider(options) {
       disableNestedContext = false,
       disableStyleSheetGeneration = false,
       defaultMode: initialMode = 'system',
+      noSsr,
     } = props;
     const hasMounted = React.useRef(false);
     const upperTheme = muiUseTheme();
@@ -114,6 +115,7 @@ export default function createCssVarsProvider(options) {
       colorSchemeStorageKey,
       defaultMode,
       storageWindow,
+      noSsr,
     });
 
     let mode = stateMode;
@@ -242,7 +244,21 @@ export default function createCssVarsProvider(options) {
         lightColorScheme,
         mode,
         setColorScheme,
-        setMode,
+        setMode:
+          process.env.NODE_ENV === 'production'
+            ? setMode
+            : (newMode) => {
+                if (theme.colorSchemeSelector === 'media') {
+                  console.error(
+                    [
+                      'MUI: The `setMode` function has no effect if `colorSchemeSelector` is `media` (`media` is the default value).',
+                      'To toggle the mode manually, please configure `colorSchemeSelector` to use a class or data attribute.',
+                      'To learn more, visit https://mui.com/material-ui/customization/css-theme-variables/configuration/#toggling-dark-mode-manually',
+                    ].join('\n'),
+                  );
+                }
+                setMode(newMode);
+              },
         systemMode,
       }),
       [
@@ -254,6 +270,7 @@ export default function createCssVarsProvider(options) {
         setColorScheme,
         setMode,
         systemMode,
+        theme.colorSchemeSelector,
       ],
     );
 
@@ -327,6 +344,11 @@ export default function createCssVarsProvider(options) {
      * The key in the local storage used to store current color scheme.
      */
     modeStorageKey: PropTypes.string,
+    /**
+     * If `true`, the mode will be the same value as the storage without an extra rerendering after the hydration.
+     * You should use this option in conjuction with `InitColorSchemeScript` component.
+     */
+    noSsr: PropTypes.bool,
     /**
      * The window that attaches the 'storage' event listener.
      * @default window

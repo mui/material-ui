@@ -9,7 +9,7 @@ manualCard: true
 
 <div style="max-width: 692px; width: 100%; height: 230px; overflow: hidden; margin-bottom: 16px;">
   <a href="https://github.com/mui/mui-x/releases/tag/v7.0.0">
-    <img src="/static/blog/mui-x-v7/intro.jpg" alt="MUI X v7 - major stable release" width="1200" height="400" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
+    <img src="/static/blog/mui-x-v7/intro.jpg" alt="MUI X v7 - major stable release" width="2400" height="800" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
   </a>
 </div>
 
@@ -57,7 +57,7 @@ The Data Grid now offers a more responsive experience with smoother scrolling an
 On its first announcement, some of these improvements were showcased, but during the beta phase, the scrolling performance was further polished for an even better user experience.
 
 <figure>
-  <video preload="metadata" autoplay muted loop playsinline width="690" height="417" controls>
+  <video autoplay muted loop playsinline width="690" height="417" controls>
     <source src="/static/blog/mui-x-v7/sticky-headers-and-vertical-scrolling.mp4" type="video/mp4">
   </video>
   <figcaption>A before and after showcase, first with horizontal and then with vertical scrolling.</figcaption>
@@ -82,7 +82,7 @@ As part of an overarching project aimed at enhancing usability in managing colum
 The goal is to further enhance this panel by incorporating additional column management functions, such as column reordering and pinning. Additionally, the internal component has been extracted to ease the introduction of the upcoming pivoting UI.
 
 <figure>
-  <img width="310" alt="The new column management panel design" src="/static/blog/mui-x-v7/column-management-panel.png">
+  <img style="width: 303px;" width="606" height="900" alt="The new column management panel design" src="/static/blog/mui-x-v7/column-management-panel.png" loading="lazy">
   <figcaption>The new column management panel design</figcaption>
 </figure>
 
@@ -94,12 +94,12 @@ While string values remain compatible for these types, any updates to the `filte
 
 ### Smaller bundle size
 
-Introducing a separate entry point for locales has significantly reduced the bundle size of the barrel index when tree-shaking isn't operational (for example, Webpack in dev mode).
+Introducing a separate entry point for locales has significantly reduced the bundle size of the barrel index when tree-shaking isn't operational (for example, webpack in dev mode).
 
 As a reference, with the `@mui/x-data-grid` npm package, this change led to a reduction of approximately 19% – shrinking the bundle size from [114.2kB](https://bundlephobia.com/package/@mui/x-data-grid@6.19.2) to [92.9kB](https://bundlephobia.com/package/@mui/x-data-grid@7.0.0).
 
 <figure>
-  <img width="600" alt="A chart showcasing the bundle size change" src="/static/blog/mui-x-v7/new-bundle-size.png" >
+  <img style="width: 550px" width="1101" height="869" alt="A chart showcasing the bundle size change" src="/static/blog/mui-x-v7/new-bundle-size.png" loading="lazy">
   <figcaption>A chart showcasing the Data Grid's bundle size change.</figcaption>
 </figure>
 
@@ -234,7 +234,7 @@ These charts are particularly useful for showing progress toward a goal or displ
 With customizable options for pointers, sizes, and colors, they allow for a personalized visual representation that makes it easy for users to interpret data at a glance.
 
 <figure>
-  <img alt="Gauge charts" src="/static/blog/mui-x-v7/gauge-charts.png" width="1200" height="800" loading="lazy" />
+  <img alt="Gauge charts" src="/static/blog/mui-x-v7/gauge-charts.png" width="2400" height="800" loading="lazy" />
   <figcaption>Three different styles of Gauge charts.</figcaption>
 </figure>
 
@@ -247,7 +247,7 @@ The charts now have click event handlers, so users can interact with chart eleme
 This feature makes charts more interactive and transforms the way users can explore the data, improving the overall user experience with details and other information accessed on demand.
 
 <figure>
-  <img alt="Gauge charts" src="/static/blog/mui-x-v7/click-handler.png" width="450" height="416" loading="lazy" />
+  <img style="width: 450px;" alt="Gauge charts" src="/static/blog/mui-x-v7/click-handler.png" width="1200" height="1108" loading="lazy" />
   <figcaption>A pie chart with an item click handler.</figcaption>
 </figure>
 
@@ -273,7 +273,7 @@ For details on its usage and configuration, please refer to the [Grid section](/
 The `ChartsReferenceLine` component enhances data visualization, providing users with a clear reference to better understand and analyze key data points.
 
 <figure>
-  <img alt="A chart with a reference line" src="/static/blog/mui-x-v7/charts-reference-line.png" width="1200" height="840" loading="lazy" />
+  <img alt="A chart with a reference line" src="/static/blog/mui-x-v7/charts-reference-line.png" width="1290" height="822" loading="lazy" />
   <figcaption>A line chart using a reference line.</figcaption>
 </figure>
 
@@ -316,7 +316,7 @@ The latest addition to the Date and Time Pickers suite is the `<DateTimeRangePic
 This intuitive picker simplifies the process of selecting date and time ranges, making it ideal for applications that require detailed scheduling or period selection.
 
 <figure>
-  <video preload="metadata" autoplay muted loop playsinline width="600" height="510">
+  <video autoplay muted loop playsinline width="600" height="510">
     <source src="/static/blog/mui-x-v7/date-time-range-picker.mp4" type="video/mp4">
   </video>
   <figcaption>A video showcasing a date and time range selection.</figcaption>

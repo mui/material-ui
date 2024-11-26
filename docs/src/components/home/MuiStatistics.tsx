@@ -5,9 +5,9 @@ import Typography from '@mui/material/Typography';
 
 const data = [
   { title: '5.8M', metadata: 'Weekly downloads on npm' },
-  { title: '90.5k', metadata: 'Stars on GitHub' },
-  { title: '2.9k', metadata: 'Open-source contributors' },
-  { title: '18.9k', metadata: 'Followers on X' },
+  { title: '93.9k', metadata: 'Stars on GitHub' },
+  { title: '3.0k', metadata: 'Open-source contributors' },
+  { title: '19.2k', metadata: 'Followers on X' },
 ];
 
 export default function MuiStatistics() {
