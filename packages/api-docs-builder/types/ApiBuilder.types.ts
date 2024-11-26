@@ -102,7 +102,7 @@ export interface ComponentApiContent {
   name: string;
   imports: string[];
   slots?: Slot[];
-  cssVariables?: CssVariable[];
+  cssVariables?: { [key: string]: CssVariable };
   classes: ComponentClassDefinition[];
   spread: boolean | undefined;
   themeDefaultProps: boolean | null | undefined;
