@@ -362,9 +362,9 @@ describe('useAutocomplete', () => {
   });
 
   it('should allow tuples or arrays as value when multiple=false', () => {
-    function Test() {
-      const defaultValue = ['bar'];
+    const defaultValue = ['bar'];
 
+    function Test() {
       const { getClearProps, getInputProps } = useAutocomplete({
         defaultValue,
         disableClearable: false,
