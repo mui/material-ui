@@ -62,7 +62,9 @@
   "cssVariables": [
     {
       "name": "accordionPanelHeight",
-      "description": "CSS variable for the Acccordion's panel height."
+      "description": "CSS variable for the Acccordion's panel height.",
+      "deprecated": true,
+      "deprecationInfo": "Please use alternative."
     },
     {
       "name": "accordionPanelWidth",

@@ -646,12 +646,14 @@ const attachCssVariables = (
         return [] as any;
       }
 
-      const deprecation = (propDescriptor.description || '').match(/@deprecated(\s+(?<info>.*))?/);
+      const deprecationTag = propDescriptor.tags?.deprecated;
+      const deprecation = deprecationTag?.text?.[0]?.text;
+
       return {
         name: propName,
         description: propDescriptor.description,
         deprecated: !!deprecation || undefined,
-        deprecationInfo: renderMarkdown(deprecation?.groups?.info || '').trim() || undefined,
+        deprecationInfo: renderMarkdown(deprecation || '').trim() || undefined,
       };
     });
 
@@ -816,9 +818,6 @@ export default async function generateComponentApi(
 
   attachPropsTable(reactApi, projectSettings.propsSettings);
   attachCssVariables(reactApi, cssVars);
-  if(componentInfo.name === 'Accordion') {
-    console.log(reactApi);
-  }
   attachTranslations(reactApi, deprecationInfo, projectSettings.propsSettings);
 
 
