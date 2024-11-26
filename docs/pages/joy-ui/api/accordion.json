@@ -59,20 +59,18 @@
       "class": "MuiAccordion-root"
     }
   ],
-  "cssVariables": [
-    {
-      "name": "--accordion-panel-height",
+  "cssVariables": {
+    "--accordion-panel-height": {
       "description": "CSS variable for the Acccordion's panel height.",
       "type": "number",
       "deprecated": true,
       "deprecationInfo": "Please use alternative."
     },
-    {
-      "name": "--accordion-panel-width",
+    "--accordion-panel-width": {
       "description": "CSS variable for the Acccordion's panel height.",
       "type": "string"
     }
-  ],
+  },
   "classes": [
     {
       "key": "disabled",

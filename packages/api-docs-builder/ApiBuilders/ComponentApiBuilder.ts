@@ -323,7 +323,7 @@ const generateApiPage = async (
     name: reactApi.name,
     imports: reactApi.imports,
     ...(reactApi.slots?.length > 0 && { slots: reactApi.slots }),
-    ...(reactApi.cssVariables?.length > 0 && { cssVariables: reactApi.cssVariables }),
+    ...(Object.keys(reactApi.cssVariables).length > 0 && { cssVariables: reactApi.cssVariables }),
     classes: reactApi.classes,
     spread: reactApi.spread,
     themeDefaultProps: reactApi.themeDefaultProps,
@@ -347,8 +347,7 @@ const generateApiPage = async (
 
   const {
     classesSort = sortAlphabetical('key'),
-    slotsSort = null,
-    cssVariablesSort = null,
+    slotsSort = null
   } = {
     ...sortingStrategies,
   };
@@ -359,9 +358,7 @@ const generateApiPage = async (
   if (slotsSort && pageContent.slots) {
     pageContent.slots = [...pageContent.slots].sort(slotsSort);
   }
-  if (cssVariablesSort && pageContent.cssVariables) {
-    pageContent.cssVariables = [...pageContent.cssVariables].sort(cssVariablesSort);
-  }
+
 
   await writePrettifiedFile(
     path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.json`),
@@ -473,13 +470,14 @@ const attachTranslations = (
   /**
    * CSS variables descriptions.
    */
-  if (reactApi.cssVariables?.length > 0) {
+  if (Object.keys(reactApi.cssVariables).length > 0) {
     translations.cssVariablesDescriptions = {};
-    [...reactApi.cssVariables]
-      .sort(sortAlphabetical('name')) // Sort to ensure consistency of object key order
-      .forEach((cssVariable: CssVariable) => {
-        const { name, description } = cssVariable;
-        translations.cssVariablesDescriptions![name] = renderMarkdown(description);
+    [...Object.keys(reactApi.cssVariables)]
+      .sort() // Sort to ensure consistency of object key order
+      .forEach((cssVariableName: string) => {
+        const cssVariable = reactApi.cssVariables[cssVariableName];
+        const { description } = cssVariable;
+        translations.cssVariablesDescriptions![cssVariableName] = renderMarkdown(description);
       });
   }
 
@@ -632,34 +630,42 @@ const defaultGetComponentImports = (name: string, filename: string) => {
 
 const attachCssVariables = (reactApi: ComponentReactApi, params: ParsedProperty[]) => {
   const cssVarsErrors: Array<[propName: string, error: Error]> = [];
-  const cssVariables: ComponentReactApi['cssVariables'] = params.map((p) => {
-    const { name: propName, ...propDescriptor } = p;
-    let prop: Omit<ParsedProperty, 'name'> | null;
-    try {
-      prop = propDescriptor;
-    } catch (error) {
-      cssVarsErrors.push([propName, error as Error]);
-      prop = null;
-    }
-    if (prop === null) {
-      // have to delete `componentProps.undefined` later
-      return [] as any;
-    }
+  const cssVariables: ComponentReactApi['cssVariables'] = params
+    .map((p) => {
+      const { name: propName, ...propDescriptor } = p;
+      let prop: Omit<ParsedProperty, 'name'> | null;
+      try {
+        prop = propDescriptor;
+      } catch (error) {
+        cssVarsErrors.push([propName, error as Error]);
+        prop = null;
+      }
+      if (prop === null) {
+        // have to delete `componentProps.undefined` later
+        return [] as any;
+      }
 
-    const deprecationTag = propDescriptor.tags?.deprecated;
-    const deprecation = deprecationTag?.text?.[0]?.text;
+      const deprecationTag = propDescriptor.tags?.deprecated;
+      const deprecation = deprecationTag?.text?.[0]?.text;
 
-    const typeTag = propDescriptor.tags?.type;
-    const type = typeTag?.text?.[0]?.text ?? 'string';
+      const typeTag = propDescriptor.tags?.type;
+      const type = typeTag?.text?.[0]?.text ?? 'string';
 
-    return {
-      name: `--${kebabCase(propName)}`,
-      description: propDescriptor.description,
-      type,
-      deprecated: !!deprecation || undefined,
-      deprecationInfo: renderMarkdown(deprecation || '').trim() || undefined,
-    };
-  });
+      return {
+        name: `--${kebabCase(propName)}`,
+        description: propDescriptor.description,
+        type,
+        deprecated: !!deprecation || undefined,
+        deprecationInfo: renderMarkdown(deprecation || '').trim() || undefined,
+      };
+    })
+    .reduce((acc, cssVarDefinition) => {
+      const { name, ...rest } = cssVarDefinition;
+      return {
+        ...acc,
+        [name]: rest,
+      };
+    }, {});
 
   if (cssVarsErrors.length > 0) {
     throw new Error(

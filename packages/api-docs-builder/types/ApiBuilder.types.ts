@@ -92,7 +92,7 @@ export interface ComponentReactApi extends CommonReactApi {
   themeDefaultProps: boolean | undefined | null;
   classes: ComponentClassDefinition[];
   slots: Slot[];
-  cssVariables: CssVariable[];
+  cssVariables: { [key: string] : CssVariable };
   propsTable: _.Dictionary<PropsTableItem>;
   translations: PropsTranslations;
 }
