@@ -66,6 +66,28 @@ const theme = createTheme();
 {
   createTheme({
     components: {
+      MuiGrid2: {
+        styleOverrides: {
+          root: {
+            backgroundColor: 'red',
+          },
+          container: {
+            backgroundColor: 'red',
+          },
+          'spacing-xs-0': {
+            backgroundColor: 'red',
+          },
+          'direction-xs-column': {
+            backgroundColor: 'red',
+          },
+          'wrap-xs-nowrap': {
+            backgroundColor: 'red',
+          },
+          'grid-xs-1': {
+            backgroundColor: 'red',
+          },
+        },
+      },
       MuiPopper: {
         styleOverrides: {
           root: {
