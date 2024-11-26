@@ -52,7 +52,7 @@
       "@mui/internal-test-utils/*": ["./packages-internal/test-utils/src/*"]
     },
     // Otherwise we get react-native typings which conflict with dom.lib.
-    "types": ["node", "react"]
+    "types": ["node", "react", "mocha"]
   },
   "exclude": ["**/.*/", "**/build", "**/node_modules", "docs/export"]
 }

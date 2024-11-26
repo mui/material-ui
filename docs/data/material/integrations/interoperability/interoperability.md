@@ -424,7 +424,7 @@ bundling solution people are using.
 ```jsx title="CssModulesSlider.js"
 import * as React from 'react';
 import Slider from '@mui/material/Slider';
-// Webpack, Parcel or else will inject the CSS into the page
+// webpack, Parcel or else will inject the CSS into the page
 import styles from './CssModulesSlider.module.css';
 
 export default function CssModulesSlider() {
@@ -504,7 +504,7 @@ The following examples override the slider's `thumb` style in addition to the cu
 
 ```jsx title="CssModulesSliderDeep1.js"
 import * as React from 'react';
-// Webpack, Parcel or else will inject the CSS into the page
+// webpack, Parcel or else will inject the CSS into the page
 import styles from './CssModulesSliderDeep1.module.css';
 import Slider from '@mui/material/Slider';
 
@@ -536,7 +536,7 @@ The above demo relies on the [default `className` values](/system/styles/advance
 
 ```jsx title="CssModulesSliderDeep2.js"
 import * as React from 'react';
-// Webpack, Parcel or else will inject the CSS into the page
+// webpack, Parcel or else will inject the CSS into the page
 import styles from './CssModulesSliderDeep2.module.css';
 import Slider from '@mui/material/Slider';
 
