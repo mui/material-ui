@@ -21,6 +21,17 @@ import {
 } from './useSlider.types';
 import { EventHandlers } from '../utils/types';
 import areArraysEqual from '../utils/areArraysEqual';
+import {
+  ARROW_UP,
+  ARROW_DOWN,
+  ARROW_LEFT,
+  ARROW_RIGHT,
+  PAGE_UP,
+  PAGE_DOWN,
+  HOME,
+  END,
+  ALL_KEYS,
+} from './constants';
 
 const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
 
@@ -304,8 +315,8 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     const index = Number(event.currentTarget.getAttribute('data-index'));
     const value = values[index];
     const marksIndex = marksValues.indexOf(value);
-    let newValue: number | number[] = valueInput;
 
+    let newValue: number | number[] = valueInput;
     if (marks && step == null) {
       const maxMarksValue = marksValues[marksValues.length - 1];
       if (newValue > maxMarksValue) {
@@ -355,46 +366,69 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
   };
 
   const createHandleHiddenInputKeyDown =
-    (otherHandlers: EventHandlers) => (event: React.KeyboardEvent) => {
-      // The Shift + Up/Down keyboard shortcuts for moving the slider makes sense to be supported
-      // only if the step is defined. If the step is null, this means tha the marks are used for specifying the valid values.
-      if (step != null) {
+    (otherHandlers: EventHandlers) => (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (ALL_KEYS.includes(event.key)) {
+        event.preventDefault();
         const index = Number(event.currentTarget.getAttribute('data-index'));
         const value = values[index];
         let newValue = null;
-        const stepSize = event.shiftKey ? shiftStep : step;
-        switch (event.key) {
-          case 'ArrowUp':
-            newValue = getNewValue(value, stepSize, 1, min, max);
-            break;
-          case 'ArrowRight':
-            newValue = getNewValue(value, stepSize, isRtl ? -1 : 1, min, max);
-            break;
-          case 'ArrowDown':
-            newValue = getNewValue(value, stepSize, -1, min, max);
-            break;
-          case 'ArrowLeft':
-            newValue = getNewValue(value, stepSize, isRtl ? 1 : -1, min, max);
-            break;
-          case 'PageUp':
-            newValue = getNewValue(value, stepSize, 1, min, max);
-            break;
-          case 'PageDown':
-            newValue = getNewValue(value, stepSize, -1, min, max);
-            break;
-          case 'Home':
-            newValue = min;
-            break;
-          case 'End':
-            newValue = max;
-            break;
-          default:
-            break;
+        // Keys actions that change the value by more than the most granular `step`
+        // value are only applied if the step not `null`.
+        // When step is `null`, the `marks` prop is used instead to define valid values.
+        if (step != null) {
+          const stepSize = event.shiftKey ? shiftStep : step;
+          switch (event.key) {
+            case ARROW_UP:
+              newValue = getNewValue(value, stepSize, 1, min, max);
+              break;
+            case ARROW_RIGHT:
+              newValue = getNewValue(value, stepSize, isRtl ? -1 : 1, min, max);
+              break;
+            case ARROW_DOWN:
+              newValue = getNewValue(value, stepSize, -1, min, max);
+              break;
+            case ARROW_LEFT:
+              newValue = getNewValue(value, stepSize, isRtl ? 1 : -1, min, max);
+              break;
+            case PAGE_UP:
+              newValue = getNewValue(value, stepSize, 1, min, max);
+              break;
+            case PAGE_DOWN:
+              newValue = getNewValue(value, stepSize, -1, min, max);
+              break;
+            case HOME:
+              newValue = min;
+              break;
+            case END:
+              newValue = max;
+              break;
+            default:
+              break;
+          }
+        } else if (marks) {
+          const maxMarksValue = marksValues[marksValues.length - 1];
+          const currentMarkIndex = marksValues.indexOf(value);
+
+          const decrementKeys = [isRtl ? ARROW_RIGHT : ARROW_LEFT, ARROW_DOWN, PAGE_DOWN, HOME];
+          const incrementKeys = [isRtl ? ARROW_LEFT : ARROW_RIGHT, ARROW_UP, PAGE_UP, END];
+
+          if (decrementKeys.includes(event.key)) {
+            if (currentMarkIndex === 0) {
+              newValue = marksValues[0];
+            } else {
+              newValue = marksValues[currentMarkIndex - 1];
+            }
+          } else if (incrementKeys.includes(event.key)) {
+            if (currentMarkIndex === marksValues.length - 1) {
+              newValue = maxMarksValue;
+            } else {
+              newValue = marksValues[currentMarkIndex + 1];
+            }
+          }
         }
 
         if (newValue != null) {
           changeValue(event, newValue);
-          event.preventDefault();
         }
       }
 
