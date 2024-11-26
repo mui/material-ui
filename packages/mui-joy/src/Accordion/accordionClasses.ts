@@ -25,6 +25,7 @@ export type AccordionCssVars = {
   /**
    * CSS variable for the Acccordion's panel height.
    * @deprecated Please use alternative.
+   * @type number
    * */
   accordionPanelHeight: string;
   /** CSS variable for the Acccordion's panel height. */

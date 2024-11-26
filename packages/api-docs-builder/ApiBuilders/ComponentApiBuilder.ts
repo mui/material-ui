@@ -649,9 +649,13 @@ const attachCssVariables = (reactApi: ComponentReactApi, params: ParsedProperty[
     const deprecationTag = propDescriptor.tags?.deprecated;
     const deprecation = deprecationTag?.text?.[0]?.text;
 
+    const typeTag = propDescriptor.tags?.type;
+    const type = typeTag?.text?.[0]?.text ?? 'string';
+
     return {
-      name: propName,
+      name: `--${kebabCase(propName)}`,
       description: propDescriptor.description,
+      type,
       deprecated: !!deprecation || undefined,
       deprecationInfo: renderMarkdown(deprecation || '').trim() || undefined,
     };
