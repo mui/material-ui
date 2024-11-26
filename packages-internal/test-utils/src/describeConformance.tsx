@@ -302,7 +302,7 @@ function testSlotsProp(
             } & React.RefAttributes<HTMLDivElement>
           >;
     };
-    components: {
+    components?: {
       [x: string]:
         | SlotTestingOptions['testWithComponent']
         | keyof React.JSX.IntrinsicElements
@@ -315,7 +315,7 @@ function testSlotsProp(
     slotProps: {
       [x: string]: DataProps;
     };
-    componentsProps: {
+    componentsProps?: {
       [x: string]: DataProps;
     };
   }>,
