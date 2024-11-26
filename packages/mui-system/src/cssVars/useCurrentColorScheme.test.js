@@ -84,6 +84,50 @@ describe('useCurrentColorScheme', () => {
     expect(container.firstChild.textContent).to.equal('dark:0');
   });
 
+  it('trigger a re-render for a multi color schemes', () => {
+    function Data() {
+      const { mode } = useCurrentColorScheme({
+        supportedColorSchemes: ['light', 'dark'],
+        defaultLightColorScheme: 'light',
+        defaultDarkColorScheme: 'dark',
+      });
+      const count = React.useRef(0);
+      React.useEffect(() => {
+        count.current += 1;
+      });
+      return (
+        <div>
+          {mode}:{count.current}
+        </div>
+      );
+    }
+    const { container } = render(<Data />);
+
+    expect(container.firstChild.textContent).to.equal('light:2'); // 2 because of double render within strict mode
+  });
+
+  it('[noSsr] does not trigger a re-render', () => {
+    function Data() {
+      const { mode } = useCurrentColorScheme({
+        defaultMode: 'dark',
+        supportedColorSchemes: ['light', 'dark'],
+        noSsr: true,
+      });
+      const count = React.useRef(0);
+      React.useEffect(() => {
+        count.current += 1;
+      });
+      return (
+        <div>
+          {mode}:{count.current}
+        </div>
+      );
+    }
+    const { container } = render(<Data />);
+
+    expect(container.firstChild.textContent).to.equal('dark:0');
+  });
+
   describe('getColorScheme', () => {
     it('use lightColorScheme given mode=light', () => {
       expect(getColorScheme({ mode: 'light', lightColorScheme: 'light' })).to.equal('light');

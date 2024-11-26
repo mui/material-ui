@@ -321,7 +321,9 @@ function testSlotsProp(element: React.ReactElement<any>, getOptions: () => Confo
         const renderedElement = queryByTestId('customized');
         expect(renderedElement).not.to.equal(null);
 
-        expect(renderedElement!.nodeName.toLowerCase()).to.equal(slotElement);
+        if (typeof slotElement === 'string') {
+          expect(renderedElement!.nodeName.toLowerCase()).to.equal(slotElement);
+        }
         if (slotOptions.expectedClassName) {
           expect(renderedElement).to.have.class(slotOptions.expectedClassName);
         }
@@ -425,7 +427,9 @@ function testSlotsProp(element: React.ReactElement<any>, getOptions: () => Confo
           const renderedElement = queryByTestId('customized');
           expect(renderedElement).not.to.equal(null);
 
-          expect(renderedElement!.nodeName.toLowerCase()).to.equal(slotElement);
+          if (typeof slotElement === 'string') {
+            expect(renderedElement!.nodeName.toLowerCase()).to.equal(slotElement);
+          }
           if (slotOptions.expectedClassName) {
             expect(renderedElement).to.have.class(slotOptions.expectedClassName);
           }
@@ -531,6 +535,33 @@ function testSlotPropsCallback(
   forEachSlot(slots, (slotName) => {
     it(`sets custom properties on the ${slotName} slot's element with the slotProps.${slotName} callback`, async () => {
       const slotProps = {
+        [slotName]: () => ({
+          'data-testid': 'custom',
+        }),
+      };
+
+      const { queryByTestId } = await render(
+        React.cloneElement(element, { slotProps, className: 'custom' }),
+      );
+      const slotComponent = queryByTestId('custom');
+      expect(slotComponent).not.to.equal(null);
+    });
+  });
+}
+
+function testSlotPropsCallbackWithPropsAsOwnerState(
+  element: React.ReactElement<any>,
+  getOptions: () => ConformanceOptions,
+) {
+  const { render, slots } = getOptions();
+
+  if (!render) {
+    throwMissingPropError('render');
+  }
+
+  forEachSlot(slots, (slotName) => {
+    it(`sets custom properties on the ${slotName} slot's element with the slotProps.${slotName} callback using the ownerState`, async () => {
+      const slotProps = {
         [slotName]: (ownerState: Record<string, any>) => ({
           'data-testid': ownerState.className,
         }),
@@ -617,12 +648,14 @@ function testThemeDefaultProps(
   });
 
   describe('default props provider:', () => {
-    it('respect custom default props', async function test() {
+    it('respect custom default props', async function test(t = {}) {
       const testProp = 'data-id';
       const { muiName, render, DefaultPropsProvider } = getOptions();
 
       if (!DefaultPropsProvider) {
-        this.skip();
+        // @ts-ignore
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        this?.skip?.() ?? t?.skip();
       }
 
       if (!muiName) {
@@ -634,6 +667,7 @@ function testThemeDefaultProps(
       }
 
       const { container } = await render(
+        // @ts-expect-error we skip it above.
         <DefaultPropsProvider
           value={{
             [muiName]: {
@@ -1061,6 +1095,7 @@ const fullSuite = {
   rootClass: testRootClass,
   slotPropsProp: testSlotPropsProp,
   slotPropsCallback: testSlotPropsCallback,
+  slotPropsCallbackWithPropsAsOwnerState: testSlotPropsCallbackWithPropsAsOwnerState,
   slotsProp: testSlotsProp,
   themeDefaultProps: testThemeDefaultProps,
   themeStyleOverrides: testThemeStyleOverrides,
@@ -1113,7 +1148,12 @@ function describeConformance(
     (testKey) => only.includes(testKey) && !skip.includes(testKey as keyof typeof fullSuite),
   ) as (keyof typeof fullSuite)[];
 
-  const slotBasedTests = ['slotsProp', 'slotPropsProp', 'slotPropsCallback'];
+  const slotBasedTests = [
+    'slotsProp',
+    'slotPropsProp',
+    'slotPropsCallback',
+    'slotPropsCallbackWithPropsAsOwnerState',
+  ];
 
   if (!slots) {
     // if `slots` are not defined, do not run tests that depend on them

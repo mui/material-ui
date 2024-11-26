@@ -167,6 +167,7 @@ export interface AutocompleteProps<
     AutocompleteSlotsAndSlotProps<Value, Multiple, DisableClearable, FreeSolo, ChipComponent> {
   /**
    * Props applied to the [`Chip`](https://mui.com/material-ui/api/chip/) element.
+   * @deprecated Use `slotProps.chip` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ChipProps?: ChipProps<ChipComponent>;
   /**
@@ -233,10 +234,12 @@ export interface AutocompleteProps<
   /**
    * The component used to render the listbox.
    * @default 'ul'
+   * @deprecated Use `slotProps.listbox.component` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ListboxComponent?: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
   /**
    * Props applied to the Listbox element.
+   * @deprecated Use `slotProps.listbox` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ListboxProps?: ReturnType<ReturnType<typeof useAutocomplete>['getListboxProps']> & {
     sx?: SxProps<Theme>;
@@ -281,11 +284,13 @@ export interface AutocompleteProps<
   /**
    * The component used to render the body of the popup.
    * @default Paper
+   * @deprecated Use `slots.paper` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   PaperComponent?: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
   /**
    * The component used to position the popup.
    * @default Popper
+   * @deprecated Use `slots.popper` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   PopperComponent?: React.JSXElementConstructor<PopperProps>;
   /**

@@ -64,9 +64,6 @@ const Slider = styled(BaseSlider)(
     outline: 0;
     background-color: ${theme.palette.mode === 'light' ? blue[500] : blue[400]};  
     left: 50%;
-    -webkit-transform: translate(-50%, 50%);
-    -moz-transform: translate(-50%, 50%);
-    -ms-transform: translate(-50%, 50%);
     transform: translate(-50%, 50%);
     transition-property: box-shadow, width, height;
     transition-timing-function: ease;
