@@ -66,6 +66,7 @@ describe('<Slider />', () => {
       },
       skip: [
         'slotPropsCallback', // not supported yet
+        'slotPropsCallbackWithPropsAsOwnerState', // not supported yet
       ],
     }),
   );
