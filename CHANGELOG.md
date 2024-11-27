@@ -26,14 +26,14 @@ A big thanks to the 8 contributors who made this release possible.
 - Fix versions URL @oliviertassinari
 - Fix use of absolute URLs (#43567) @oliviertassinari
 - Restore search on v5 (#43566) @oliviertassinari
-- fix link from v5 to v6 (#43585) @alexfauquette
+- Fix link from v5 to v6 (#43585) @alexfauquette
 - Updated mui-x roadmap links with the new project URL (@michelengelen) (#43446) @michelengelen
 - Fix broken link to Next.js docs @oliviertassinari
 
 ### Core
 
-- [blog] Polish Upcoming changes to MUI X pricing in 2024 (#43438) @oliviertassinari
-- [blog] Add video to the Pigment CSS blog post (#42500) @oliviertassinari
+- [blog] Polish Upcoming changes to MUI X pricing in 2024 (#43438) @oliviertassinari
+- [blog] Add video to the Pigment CSS blog post (#42500) @oliviertassinari
 - [blog] Announcing pricing changes Sep 2024 (#43272) @cherniavskii
 - Prepare for moving to v5.x branch (#43447) @siriwatknp
 - [core] Cherry pick #42346 to v5 (#44475) @DiegoAndai
