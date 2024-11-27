@@ -2,11 +2,14 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { TablePaginationActionsProps } from './TablePaginationActions';
+import { TablePaginationActionsProps, TablePaginationActionsSlots } from './TablePaginationActions';
 import { TableCellProps } from '../TableCell';
 import { IconButtonProps } from '../IconButton';
 import { SelectProps } from '../Select';
 import { TablePaginationClasses } from './tablePaginationClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { ToolbarOwnProps } from '../Toolbar';
+import { MenuItemOwnProps } from '../MenuItem';
 
 export interface LabelDisplayedRowsArgs {
   from: number;
@@ -14,6 +17,63 @@ export interface LabelDisplayedRowsArgs {
   count: number;
   page: number;
 }
+
+export interface TablePaginationRootSlotPropsOverrides {}
+
+export interface TablePaginationToolbarSlotPropsOverrides {}
+
+export interface TablePaginationSpacerSlotPropsOverrides {}
+
+export interface TablePaginationSelectLabelSlotPropsOverrides {}
+
+export interface TablePaginationMenuItemSlotPropsOverrides {}
+
+export interface TablePaginationDisplayedRowsSlotPropsOverrides {}
+
+export interface TablePaginationSlots {
+  root: React.ElementType;
+  toolbar: React.ElementType;
+  spacer: React.ElementType;
+  selectLabel: React.ElementType;
+  select: React.ElementType;
+  menuItem: React.ElementType;
+  displayedRows: React.ElementType;
+  actions: TablePaginationActionsSlots;
+}
+
+export type TablePaginationSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  TablePaginationSlots,
+  {
+    root: SlotProps<
+      React.ElementType<TableCellProps>,
+      TablePaginationRootSlotPropsOverrides,
+      TablePaginationOwnerState
+    >;
+    toolbar: SlotProps<
+      React.ElementType<ToolbarOwnProps>,
+      TablePaginationToolbarSlotPropsOverrides,
+      TablePaginationOwnerState
+    >;
+    spacer: SlotProps<'div', TablePaginationSpacerSlotPropsOverrides, TablePaginationOwnerState>;
+    selectLabel: SlotProps<
+      'p',
+      TablePaginationSelectLabelSlotPropsOverrides,
+      TablePaginationOwnerState
+    >;
+    menuItem: SlotProps<
+      React.ElementType<MenuItemOwnProps>,
+      TablePaginationMenuItemSlotPropsOverrides,
+      TablePaginationOwnerState
+    >;
+    displayedRows: SlotProps<
+      'p',
+      TablePaginationDisplayedRowsSlotPropsOverrides,
+      TablePaginationOwnerState
+    >;
+    actions: TablePaginationActionsProps['slotProps'];
+    select: Partial<SelectProps>;
+  }
+>;
 
 /**
  * This type is kept for compatibility. Use `TablePaginationOwnProps` instead.
@@ -135,29 +195,15 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    */
   showLastButton?: boolean;
   /**
-   * The props used for each slot inside the TablePagination.
-   * @default {}
-   */
-  slotProps?: {
-    actions?: TablePaginationActionsProps['slotProps'];
-    select?: Partial<SelectProps>;
-  };
-  /**
-   * The components used for each slot inside the TablePagination.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots?: {
-    actions?: TablePaginationActionsProps['slots'];
-  };
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
 }
 
+export interface TablePaginationOwnerState extends TablePaginationOwnProps {}
+
 export interface TablePaginationTypeMap<AdditionalProps, RootComponent extends React.ElementType> {
-  props: AdditionalProps & TablePaginationOwnProps;
+  props: AdditionalProps & TablePaginationOwnProps & TablePaginationSlotsAndSlotProps;
   defaultComponent: RootComponent;
 }
 
