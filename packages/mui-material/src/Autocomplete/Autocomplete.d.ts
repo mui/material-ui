@@ -75,13 +75,22 @@ export interface AutocompleteRenderInputParams {
   disabled: boolean;
   fullWidth: boolean;
   size: 'small' | undefined;
+  /**
+   * @deprecated Use the `slotProps.inputLabel` instead.
+   */
   InputLabelProps: ReturnType<ReturnType<typeof useAutocomplete>['getInputLabelProps']>;
+  /**
+   * @deprecated Use the `slotProps.input` instead.
+   */
   InputProps: {
     ref: React.Ref<any>;
     className: string;
     startAdornment: React.ReactNode;
     endAdornment: React.ReactNode;
   };
+  /**
+   * @deprecated Use the `slotProps.htmlInput` instead.
+   */
   inputProps: ReturnType<ReturnType<typeof useAutocomplete>['getInputProps']>;
 }
 
