@@ -34,6 +34,7 @@ describe('<PaginationItem />', () => {
       'slotsProp',
       'slotPropsProp',
       'slotPropsCallback', // not supported yet
+      'slotPropsCallbackWithPropsAsOwnerState', // not supported yet
     ],
   }));
 

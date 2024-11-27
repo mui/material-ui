@@ -89,6 +89,7 @@ Finally, in `src/app/layout.tsx`, pass the theme to the `ThemeProvider`:
 
 ```diff title="app/layout.tsx"
  import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
++import { Roboto } from 'next/font/google';
 +import { ThemeProvider } from '@mui/material/styles';
 +import theme from '../theme';
 

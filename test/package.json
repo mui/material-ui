@@ -7,8 +7,8 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.26.0",
-    "@emotion/cache": "^11.13.1",
-    "@emotion/react": "^11.13.3",
+    "@emotion/cache": "^11.13.5",
+    "@emotion/react": "^11.13.5",
     "@mui/base": "workspace:*",
     "@mui/icons-material": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",
@@ -35,11 +35,11 @@
     "react-dom": "^18.3.1",
     "react-is": "^18.3.1",
     "react-router-dom": "^6.28.0",
+    "react-window": "^1.8.10",
     "sinon": "^19.0.2",
     "styled-components": "^6.1.13",
     "stylis": "4.2.0",
     "stylis-plugin-rtl": "^2.1.1",
-    "stylis-plugin-rtl-sc": "npm:stylis-plugin-rtl@^1.1.0",
     "webfontloader": "^1.6.28",
     "webpack": "^5.96.1",
     "yargs": "^17.7.2"
