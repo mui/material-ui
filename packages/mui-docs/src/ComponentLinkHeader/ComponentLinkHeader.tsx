@@ -15,7 +15,7 @@ import { useTranslate } from '../i18n';
 
 const Root = styled('ul')(({ theme }) => ({
   margin: 0,
-  marginTop: theme.spacing(3),
+  marginTop: theme.spacing(2),
   padding: 0,
   listStyle: 'none',
   display: 'flex',
