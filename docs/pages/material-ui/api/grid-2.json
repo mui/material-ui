@@ -53,7 +53,20 @@
   },
   "name": "Grid2",
   "imports": ["import Grid2 from '@mui/material/Grid2';", "import { Grid2 } from '@mui/material';"],
-  "classes": [],
+  "classes": [
+    {
+      "key": "container",
+      "className": "MuiGrid2-container",
+      "description": "Styles applied to the root element if `container={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiGrid2-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiGrid2",
