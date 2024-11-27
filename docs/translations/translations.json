@@ -337,6 +337,7 @@
     "/joy-ui/react-stepper": "Stepper",
     "/joy-ui/react-tabs": "Tabs",
     "/joy-ui/react-box": "Box",
+    "/joy-ui/react-container": "Container",
     "/joy-ui/react-grid": "Grid",
     "/joy-ui/react-stack": "Stack",
     "/joy-ui/react-css-baseline": "CSS Baseline",
