@@ -1,5 +1,53 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.1.9
+
+<!-- generated comparing v6.1.8..master -->
+
+_Nov 27, 2024_
+
+A big thanks to the 8 contributors who made this release possible.
+
+### `@mui/material@6.1.9`
+
+- [Select] Omit `placeholder` from props (#44502) @Juneezee
+- [Grid2] Add container class to `Grid2Classes` (#44562) @sai6855
+
+### `@mui/system@6.1.9`
+
+- Add ThemeProvider `noSsr` to prevent double rendering (#44451) @siriwatknp
+
+### `@mui/codemod@6.1.9`
+
+- [codemod] Fix handling of computed `paragraph` props (#44195) @joshkel
+
+### `@mui/material-pigment-css@6.1.9`
+
+- Make @pigment-css/react as peer dependency (#44498) @brijeshb42
+
+### Docs
+
+- [material-ui] Add missing required dependencies in dashboard template README (#44476) @mesqueeb
+- [material-ui] Add missing Roboto import to Next.js integration docs (#44462) @StaceyD22
+- [material-ui][Dialog] Fix padding in SimpleDialog demo (#44467) @oliviertassinari
+- Fix template page issues (#44466) @oliviertassinari
+- [examples] Add dark mode example for Material UI + Pigment CSS (#44480) @mnajdova
+
+### Core
+
+- Remove TODO line in the changelog (#44484) @mnajdova
+- Polish image display (418e888) @oliviertassinari
+- [core-infra] Add no-relative-packages (#44489) @oliviertassinari
+- [docs-infra] Support CSS variables API info (#44559) @mnajdova
+- [docs-infra] Fix display when ad-block triggers (#44567) @oliviertassinari
+- [docs-infra] Improve locator finding using visible option (#44541) @siriwatknp
+- [docs-infra] Correctly flatten the pages tree (#44514) @oliviertassinari
+- [docs-infra] Fix Sponsor design regression (#44515) @oliviertassinari
+- [test] Remove React.ReactElement<any> from describeConformance.tsx (#44318) @sai6855
+- [test] Do not enforce the presence of `ownerState.className` in `describeConformance` (#44479) @flaviendelangle
+
+All contributors of this release in alphabetical order: @brijeshb42, @flaviendelangle, @joshkel, @Juneezee, @mesqueeb, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp, @StaceyD22
+
 ## v6.1.8
 
 <!-- generated comparing v6.1.7..master -->
@@ -7,8 +55,6 @@
 _Nov 20, 2024_
 
 A big thanks to the 10 contributors who made this release possible.
-
-TODO INSERT HIGHLIGHTS
 
 ### `@mui/material@6.1.8`
 

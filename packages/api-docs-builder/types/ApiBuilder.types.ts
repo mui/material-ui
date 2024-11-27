@@ -1,6 +1,6 @@
 import { ReactDocgenApi } from 'react-docgen';
 import { JSDocTagInfo } from 'typescript';
-import { ComponentInfo, Slot, HookInfo, SeeMore } from './utils.types';
+import { ComponentInfo, Slot, HookInfo, SeeMore, CssVariable } from './utils.types';
 
 export type AdditionalPropsInfo = {
   cssApi?: boolean;
@@ -56,6 +56,7 @@ export interface PropsTranslations {
     [key: string]: ClassDescription;
   };
   slotDescriptions?: { [key: string]: string };
+  cssVariablesDescriptions?: { [key: string]: string };
 }
 
 interface PropDescription {
@@ -91,6 +92,7 @@ export interface ComponentReactApi extends CommonReactApi {
   themeDefaultProps: boolean | undefined | null;
   classes: ComponentClassDefinition[];
   slots: Slot[];
+  cssVariables: { [key: string]: CssVariable };
   propsTable: _.Dictionary<PropsTableItem>;
   translations: PropsTranslations;
 }
@@ -100,6 +102,7 @@ export interface ComponentApiContent {
   name: string;
   imports: string[];
   slots?: Slot[];
+  cssVariables?: { [key: string]: CssVariable };
   classes: ComponentClassDefinition[];
   spread: boolean | undefined;
   themeDefaultProps: boolean | null | undefined;

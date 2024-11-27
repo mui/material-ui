@@ -437,7 +437,7 @@ const sortFunctions = {
   stars: sortFactory('stars'),
 };
 
-export default function Showcase() {
+export default function MaterialShowcase() {
   const [sortFunctionName, setSortFunctionName] = React.useState('similarWebVisits');
   const sortFunction = sortFunctions[sortFunctionName];
   const t = useTranslate();

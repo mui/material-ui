@@ -200,7 +200,7 @@ If you use the ListSubheader directly, **no additional code is required**.
 ## Accessibility
 
 To properly label your `Select` input you need an extra element with an `id` that contains a label.
-That `id` needs to match the `labelId` of the `Select` e.g.
+That `id` needs to match the `labelId` of the `Select`, for example:
 
 ```jsx
 <InputLabel id="label">Age</InputLabel>

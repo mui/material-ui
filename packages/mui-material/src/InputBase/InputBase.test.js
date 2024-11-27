@@ -31,6 +31,7 @@ describe('<InputBase />', () => {
     skip: [
       'componentProp',
       'slotPropsCallback', // not supported yet
+      'slotPropsCallbackWithPropsAsOwnerState', // not supported yet
     ],
   }));
 
