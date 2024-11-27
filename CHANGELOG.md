@@ -42,7 +42,6 @@ A big thanks to the 8 contributors who made this release possible.
 - [docs-infra] Fix display when ad-block triggers (#44567) @oliviertassinari
 - [docs-infra] Improve locator finding using visible option (#44541) @siriwatknp
 - [docs-infra] Correctly flatten the pages tree (#44514) @oliviertassinari
-- [docs-infra] Correctly ban the use of eg (#44513) @oliviertassinari
 - [docs-infra] Fix Sponsor design regression (#44515) @oliviertassinari
 - [test] Remove React.ReactElement<any> from describeConformance.tsx (#44318) @sai6855
 - [test] Do not enforce the presence of `ownerState.className` in `describeConformance` (#44479) @flaviendelangle
