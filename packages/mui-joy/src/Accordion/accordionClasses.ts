@@ -21,20 +21,4 @@ const accordionClasses: AccordionClasses = generateUtilityClasses('MuiAccordion'
   'disabled',
 ]);
 
-export type AccordionCssVars = {
-  /**
-   * CSS variable for the Acccordion's panel height.
-   * @deprecated Please use alternative.
-   * @type number
-   * */
-  accordionPanelHeight: string;
-  /** CSS variable for the Acccordion's panel height. */
-  accordionPanelWidth: string;
-};
-
-export const accordionCssVars: AccordionCssVars = {
-  accordionPanelHeight: '--accordion-panel-height',
-  accordionPanelWidth: '--accordion-panel-width',
-};
-
 export default accordionClasses;
