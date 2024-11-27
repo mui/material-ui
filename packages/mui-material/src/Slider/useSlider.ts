@@ -21,17 +21,6 @@ import {
 } from './useSlider.types';
 import { EventHandlers } from '../utils/types';
 import areArraysEqual from '../utils/areArraysEqual';
-import {
-  ARROW_UP,
-  ARROW_DOWN,
-  ARROW_LEFT,
-  ARROW_RIGHT,
-  PAGE_UP,
-  PAGE_DOWN,
-  HOME,
-  END,
-  ALL_KEYS,
-} from './constants';
 
 const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
 
@@ -367,7 +356,18 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
   const createHandleHiddenInputKeyDown =
     (otherHandlers: EventHandlers) => (event: React.KeyboardEvent<HTMLInputElement>) => {
-      if (ALL_KEYS.includes(event.key)) {
+      if (
+        [
+          'ArrowUp',
+          'ArrowDown',
+          'ArrowLeft',
+          'ArrowRight',
+          'PageUp',
+          'PageDown',
+          'Home',
+          'End',
+        ].includes(event.key)
+      ) {
         event.preventDefault();
         const index = Number(event.currentTarget.getAttribute('data-index'));
         const value = values[index];
@@ -378,28 +378,28 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
         if (step != null) {
           const stepSize = event.shiftKey ? shiftStep : step;
           switch (event.key) {
-            case ARROW_UP:
+            case 'ArrowUp':
               newValue = getNewValue(value, stepSize, 1, min, max);
               break;
-            case ARROW_RIGHT:
+            case 'ArrowRight':
               newValue = getNewValue(value, stepSize, isRtl ? -1 : 1, min, max);
               break;
-            case ARROW_DOWN:
+            case 'ArrowDown':
               newValue = getNewValue(value, stepSize, -1, min, max);
               break;
-            case ARROW_LEFT:
+            case 'ArrowLeft':
               newValue = getNewValue(value, stepSize, isRtl ? 1 : -1, min, max);
               break;
-            case PAGE_UP:
+            case 'PageUp':
               newValue = getNewValue(value, shiftStep, 1, min, max);
               break;
-            case PAGE_DOWN:
+            case 'PageDown':
               newValue = getNewValue(value, shiftStep, -1, min, max);
               break;
-            case HOME:
+            case 'Home':
               newValue = min;
               break;
-            case END:
+            case 'End':
               newValue = max;
               break;
             default:
@@ -409,8 +409,13 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
           const maxMarksValue = marksValues[marksValues.length - 1];
           const currentMarkIndex = marksValues.indexOf(value);
 
-          const decrementKeys = [isRtl ? ARROW_RIGHT : ARROW_LEFT, ARROW_DOWN, PAGE_DOWN, HOME];
-          const incrementKeys = [isRtl ? ARROW_LEFT : ARROW_RIGHT, ARROW_UP, PAGE_UP, END];
+          const decrementKeys = [
+            isRtl ? 'ArrowRight' : 'ArrowLeft',
+            'ArrowDown',
+            'PageDown',
+            'Home',
+          ];
+          const incrementKeys = [isRtl ? 'ArrowLeft' : 'ArrowRight', 'ArrowUp', 'PageUp', 'End'];
 
           if (decrementKeys.includes(event.key)) {
             if (currentMarkIndex === 0) {
