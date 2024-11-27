@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useLocation, matchRoutes, Link } from 'react-router-dom';
+import { useLocation, matchRoutes, Link } from 'react-router';
 import webfontloader from 'webfontloader';
 import routes from '~react-pages';
 import IndexLayout from '../../Layout';

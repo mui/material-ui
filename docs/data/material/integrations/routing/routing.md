@@ -24,7 +24,7 @@ The Material UI theme lets you configure this component once.
 For instance, with react-router:
 
 ```tsx
-import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
+import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router';
 import { LinkProps } from '@mui/material/Link';
 
 const LinkBehavior = React.forwardRef<

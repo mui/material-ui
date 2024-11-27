@@ -130,7 +130,7 @@ import Link from '@mui/joy/Link';
 Here is an example with the [Link component](https://reactrouter.com/en/main/components/link) of React Router:
 
 ```js
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router';
 import Link from '@mui/joy/Link';
 
 <Link component={RouterLink} to="/docs">
