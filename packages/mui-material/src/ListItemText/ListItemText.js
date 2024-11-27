@@ -193,6 +193,7 @@ ListItemText.propTypes /* remove-proptypes */ = {
   /**
    * These props will be forwarded to the primary typography component
    * (as long as disableTypography is not `true`).
+   * @deprecated Use `slotProps.primary` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   primaryTypographyProps: PropTypes.object,
   /**
@@ -202,8 +203,25 @@ ListItemText.propTypes /* remove-proptypes */ = {
   /**
    * These props will be forwarded to the secondary typography component
    * (as long as disableTypography is not `true`).
+   * @deprecated Use `slotProps.secondary` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   secondaryTypographyProps: PropTypes.object,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    primary: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    secondary: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    primary: PropTypes.elementType,
+    secondary: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
