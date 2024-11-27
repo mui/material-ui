@@ -50,9 +50,7 @@ export default function MouseHoverPopover() {
         aria-owns={open ? 'mouse-over-popover' : undefined}
         aria-haspopup="true"
         onMouseEnter={handlePopoverOpen}
-        sx={{
-          display: 'inline',
-        }}
+        onMouseLeave={handlePopoverMouseMove}
       >
         Hover with a Popover.
       </Typography>
