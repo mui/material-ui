@@ -8,6 +8,7 @@ ignorecase: false
 swap:
   eg: e.g.
   eg\.: e.g.
-  'e\.g ': 'e.g.'
-  'ie\.': i.e.
-  'i\.e ': 'i.e.'
+  e\.g: e.g.
+  ie: i.e.
+  ie\.: i.e.
+  i\.e: i.e.

@@ -98,33 +98,6 @@ export default function DiamondSponsors() {
           ]}
         />
       </NativeLink>
-      <Divider />
-      <NativeLink
-        data-ga-event-category="sponsor"
-        data-ga-event-action="docs-premium"
-        data-ga-event-label="marblism.com"
-        href="https://www.marblism.com/?utm_source=mui.com&utm_medium=referral"
-        rel="noopener sponsored"
-        target="_blank"
-      >
-        <Box
-          component="img"
-          src="/static/sponsors/marblism-light.svg"
-          alt="marblism"
-          title="AI web app generation"
-          loading="lazy"
-          sx={[
-            {
-              height: '27px',
-              width: '90px',
-            },
-            (theme) =>
-              theme.applyDarkStyles({
-                content: `url(/static/sponsors/marblism-dark.svg)`,
-              }),
-          ]}
-        />
-      </NativeLink>
       <Link
         href="/material-ui/discover-more/backers/#diamond-sponsors"
         sx={(theme) => ({
