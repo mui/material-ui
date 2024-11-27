@@ -391,10 +391,10 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
               newValue = getNewValue(value, stepSize, isRtl ? 1 : -1, min, max);
               break;
             case PAGE_UP:
-              newValue = getNewValue(value, stepSize, 1, min, max);
+              newValue = getNewValue(value, shiftStep, 1, min, max);
               break;
             case PAGE_DOWN:
-              newValue = getNewValue(value, stepSize, -1, min, max);
+              newValue = getNewValue(value, shiftStep, -1, min, max);
               break;
             case HOME:
               newValue = min;
