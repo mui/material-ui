@@ -21,8 +21,8 @@ It can work alongside Emotion to ease the migration process, but it is recommend
 
 Pigment CSS can be used with one of the following frameworks:
 
-- [Next.js App Router](https://nextjs.org/docs/app) with Webpack v5 (Turbopack is not supported yet)
-- [Vite](https://vitejs.dev/)
+- [Next.js App Router](https://nextjs.org/docs/app) with webpack v5 (Turbopack is not supported yet)
+- [Vite](https://vite.dev/)
 
 ## Installation
 
@@ -31,15 +31,15 @@ First, install the Material UI wrapper package for Pigment CSS:
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/material-pigment-css
+npm install @mui/material-pigment-css @pigment-css/react
 ```
 
 ```bash pnpm
-pnpm add @mui/material-pigment-css
+pnpm add @mui/material-pigment-css @pigment-css/react
 ```
 
 ```bash yarn
-yarn add @mui/material-pigment-css
+yarn add @mui/material-pigment-css @pigment-css/react
 ```
 
 </codeblock>
@@ -191,7 +191,10 @@ Add the following code to your [Next.js](#nextjs) or [Vite](#vite) config file:
 
  const pigmentConfig = {
    transformLibraries: ['@mui/material'],
-+  theme: createTheme(/* parameters if any */),
++  theme: createTheme({
++    cssVariables: true,
++    /* other parameters, if any */
++  }),
  };
 ```
 

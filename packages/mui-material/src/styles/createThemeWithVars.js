@@ -1,4 +1,3 @@
-import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import deepmerge from '@mui/utils/deepmerge';
 import { unstable_createGetCssVar as systemCreateGetCssVar, createSpacing } from '@mui/system';
 import { createUnarySpacing } from '@mui/system/spacing';
@@ -158,9 +157,8 @@ export default function createThemeWithVars(options = {}, ...args) {
   }
 
   if (!defaultScheme) {
-    throw new MuiError(
-      'MUI: The `colorSchemes.%s` option is either missing or invalid.',
-      defaultColorScheme,
+    throw /* minify-error */ new Error(
+      `MUI: The \`colorSchemes.${defaultColorScheme}\` option is either missing or invalid.`,
     );
   }
 

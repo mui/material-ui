@@ -16,6 +16,14 @@ export default function BasicRating() {
           setValue(newValue);
         }}
       />
+      <Typography component="legend">Uncontrolled</Typography>
+      <Rating
+        name="simple-uncontrolled"
+        onChange={(event, newValue) => {
+          console.log(newValue);
+        }}
+        defaultValue={2}
+      />
       <Typography component="legend">Read only</Typography>
       <Rating name="read-only" value={value} readOnly />
       <Typography component="legend">Disabled</Typography>

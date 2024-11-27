@@ -1,6 +1,7 @@
 {
   "props": {
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" } },
     "defaultValue": { "type": { "name": "number" }, "default": "null" },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "emptyIcon": { "type": { "name": "node" }, "default": "<StarBorder fontSize=\"inherit\" />" },

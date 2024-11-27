@@ -12,7 +12,7 @@ How do you build trust, comradery, and—dare I say it?—_friendships_, when th
 
 At MUI, we've chosen to prioritize in-person company retreats as a way to grow together and cultivate the culture that informs how we operate.
 
-<img alt="Photo of the MUI team in front of the pool at our accommodations in Tenerife" src="/static/blog/2022-tenerife-retreat/group-photo.jpeg" style="width: 692px; aspect-ratio: 4/3;" />
+<img alt="Photo of the MUI team in front of the pool at our accommodations in Tenerife" src="/static/blog/2022-tenerife-retreat/group-photo.jpeg" width="1920" height="1440" />
 
 <p class="blog-description">The MUI team poses next to the pool during the company retreat.</p>
 
@@ -24,7 +24,7 @@ Oh, and I guess we got some work done along the way, too? 😅
 
 ## Destination
 
-<img alt="Satellite image of Tenerife" src="/static/blog/2022-tenerife-retreat/tenerife.jpeg" style="aspect-ratio: 4/3;" loading="lazy" />
+<img alt="Satellite image of Tenerife" src="/static/blog/2022-tenerife-retreat/tenerife.jpeg" width="2560" height="1920" loading="lazy" />
 
 <p class="blog-description">Satellite photo of Tenerife, via <a href="https://en.wikipedia.org/wiki/Tenerife">Wikipedia</a>.</p>
 
@@ -36,14 +36,14 @@ With an average temperature ranging from about 18-25 °C (68-77 °F) year-round,
 
 ## Accommodation
 
-<img alt="Photo of the pool in the evening at Symbiosis Living" src="/static/blog/2022-tenerife-retreat/pool-evening.jpeg" style="aspect-ratio: 4/3;" loading="lazy" />
+<img alt="Photo of the pool in the evening at Symbiosis Living" src="/static/blog/2022-tenerife-retreat/pool-evening.jpeg" width="1920" height="1440" loading="lazy" />
 
 <p class="blog-description">A view of the pool at Symbiosis Living as dusk approaches.</p>
 
 [Symbiosis Living](https://www.symbiosisliving.com/) is a sustainable retreat venue nestled deep in the hills on the western side of the island.
 The venue is a venerable oasis of lush green flora amid the stark and barren volcanic rock that surrounds it, hosting breezy guest houses adorned with rustic, regionally sourced furniture.
 
-<img alt="Photo of the outdoor kitchen at Symbiosis Living" src="/static/blog/2022-tenerife-retreat/outdoor-kitchen.jpeg" style="aspect-ratio: 4/3;" loading="lazy" />
+<img alt="Photo of the outdoor kitchen at Symbiosis Living" src="/static/blog/2022-tenerife-retreat/outdoor-kitchen.jpeg" width="1918" height="1439" loading="lazy" />
 
 <p class="blog-description">The outdoor kitchen at Symbiosis Living.</p>
 
@@ -52,7 +52,7 @@ Almost all of our meals were cooked fresh by the hosts in their fabulous outdoor
 I don't think I've ever eaten that many incredible home-cooked meals in a single week. 😋
 And somehow each one was even better than the last!
 
-<img alt="MUI X colleagues José and Andrew bond over a bottle of wine at dinner one night during the retreat." src="/static/blog/2022-tenerife-retreat/jose-andrew-wine.jpeg" style="aspect-ratio: 4/3;" loading="lazy" />
+<img alt="MUI X colleagues José and Andrew bond over a bottle of wine at dinner one night during the retreat." src="/static/blog/2022-tenerife-retreat/jose-andrew-wine.jpeg" width="1920" height="1440" loading="lazy" />
 
 <p class="blog-description">MUI X colleagues José and Andrew bond through the tradition of a brüderschaft (German: <em>brotherhood</em>) toast.</p>
 
@@ -62,7 +62,7 @@ Throughout our stay in Tenerife, we arranged group activities to make the most o
 
 ### Whale and dolphin watching
 
-<img alt="Danail from the MUI X team snaps a selfie on the bow of the whale-watching boat, with coworkers in the background." src="/static/blog/2022-tenerife-retreat/whale-watching-danail.jpeg" style="aspect-ratio: 4/3;" loading="lazy" />
+<img alt="Danail from the MUI X team snaps a selfie on the bow of the whale-watching boat, with coworkers in the background." src="/static/blog/2022-tenerife-retreat/whale-watching-danail.jpeg" width="995" height="747" loading="lazy" />
 
 <p class="blog-description">Danail snaps a selfie on the whale-watching boat.</p>
 
@@ -79,7 +79,7 @@ Wear sunscreen.
 
 ### Scuba diving lessons
 
-<img alt="MUI team members and their diving instructors pose in scuba gear before a successful scuba diving lesson." src="/static/blog/2022-tenerife-retreat/scuba-gear.jpeg" style="aspect-ratio: 4/3;" loading="lazy" />
+<img alt="MUI team members and their diving instructors pose in scuba gear before a successful scuba diving lesson." src="/static/blog/2022-tenerife-retreat/scuba-gear.jpeg" width="1222" height="896" loading="lazy" />
 
 <p class="blog-description">MUI team members and their diving instructors pose in scuba gear before a successful scuba diving lesson.</p>
 
@@ -90,13 +90,13 @@ But once I got into the groove, the time underwater went by so quickly!
 The main highlights for me were spotting a [ray](https://aqua-marina.com/rays/) swimming by, and accidentally disturbing a [cuttlefish](https://www.paradisedivers.co.uk/blog/cuttlefish/) who was not pleased by our presence–and put on a great show as a result!
 Sorry, bud!
 
-<img alt="Overhead view of MUI team members learning how to scuba dive underwater." src="/static/blog/2022-tenerife-retreat/scuba-1.jpeg" style="aspect-ratio: 4/3;" loading="lazy" />
+<img alt="Overhead view of MUI team members learning how to scuba dive underwater." src="/static/blog/2022-tenerife-retreat/scuba-1.jpeg" width="1920" height="1079" loading="lazy" />
 
 <p class="blog-description">MUI team members learn how to dive off the coast of Tenerife.</p>
 
 ### Volcanic hike at sunset
 
-<img alt="A group photo of the MUI crew posing near the base of Mount Teide at the start of the hike." src="/static/blog/2022-tenerife-retreat/teide-group.jpeg" loading="lazy" />
+<img alt="A group photo of the MUI crew posing near the base of Mount Teide at the start of the hike." src="/static/blog/2022-tenerife-retreat/teide-group.jpeg" width="1198" height="1598" loading="lazy" />
 
 <p class="blog-description">The group poses at the start of the trail toward Teide.</p>
 
@@ -107,7 +107,7 @@ We learned a lot about the natural history of the island from our guide, who led
 Photos don't even begin to do it justice.
 I completely understand why Teide is one of Europe's most visited parks.
 
-<img alt="The sun setting above the clouds as seen near the top of Teide." src="/static/blog/2022-tenerife-retreat/teide-sunset.jpeg" loading="lazy" />
+<img alt="The sun setting above the clouds as seen near the top of Teide." src="/static/blog/2022-tenerife-retreat/teide-sunset.jpeg" loading="lazy" width="1920" height="1440" />
 
 <p class="blog-description">The Tenerife sunset as seen from Teide, above the clouds.</p>
 
@@ -117,7 +117,7 @@ Believe it or not, we actually did manage to squeeze in some productive work tim
 
 ### Roadmap to v6
 
-<img alt="MUI Core team members Marija, Jun, and Sam discuss the product roadmap." src="/static/blog/2022-tenerife-retreat/focus-group.jpeg" loading="lazy" />
+<img alt="MUI Core team members Marija, Jun, and Sam discuss the product roadmap." src="/static/blog/2022-tenerife-retreat/focus-group.jpeg" width="1920" height="1440" loading="lazy" />
 
 <p class="blog-description">MUI Core team discusses the product roadmap.</p>
 
@@ -127,7 +127,7 @@ We had some great conversations about what we hope to accomplish over the next s
 It's still hard to say when that release day might come, but we're optimistic that we could see it in mid to late 2023.
 [@RemindMe_OfThis](https://x.com/RemindMe_OfThis) September 2023 🙃
 
-<img alt="The product teams are seen spread out around a large indoor/outdoor workspace" src="/static/blog/2022-tenerife-retreat/focus-groups.jpeg" loading="lazy" />
+<img alt="The product teams are seen spread out around a large indoor/outdoor workspace" src="/static/blog/2022-tenerife-retreat/focus-groups.jpeg" width="1920" height="1440" loading="lazy" />
 
 <p class="blog-description">Product teams spread out throughout the breezy indoor/outdoor workspace.</p>
 
@@ -136,7 +136,7 @@ Keep an eye out!
 
 ### Focus groups
 
-<img alt="An impromptu focus group gathered next to the pool with laptops to discuss cross-team marketing strategies." src="/static/blog/2022-tenerife-retreat/outdoor-focus-group.jpeg" loading="lazy" />
+<img alt="An impromptu focus group gathered next to the pool with laptops to discuss cross-team marketing strategies." src="/static/blog/2022-tenerife-retreat/outdoor-focus-group.jpeg" width="1920" heiht="1440" loading="lazy" />
 
 <p class="blog-description">A focus group gathers to talk about developer marketing and outreach.</p>
 
@@ -151,7 +151,7 @@ Others discussed optimizing TypeScript performance, implementing editable demos 
 All throughout our working sessions, we were accompanied by a very friendly young kitty (name unknown) who consistently offered critical support when we needed it the most.
 We can't thank her enough for her contributions to the company roadmap.
 
-<img alt="Collage of several photos of the MUI team members cuddling with the neighborhood cat during our work sessions." src="/static/blog/2022-tenerife-retreat/cat-collage.jpeg" loading="lazy" />
+<img alt="Collage of several photos of the MUI team members cuddling with the neighborhood cat during our work sessions." src="/static/blog/2022-tenerife-retreat/cat-collage.jpeg" width="1600" height="1893" loading="lazy" />
 
 <p class="blog-description">The cat was responsible for all of the cutest moments during the retreat.</p>
 
@@ -185,6 +185,6 @@ If you have a strong opinion one way or the other, then you better join the team
 
 I look forward to meeting new colleagues—as well as reconnecting with the Tenerife crew—in 2023.
 
-<img alt="The path leading down the hill from the sunset view, with Teide glowing red in the background." src="/static/blog/2022-tenerife-retreat/teide-hike.jpeg" loading="lazy" />
+<img alt="The path leading down the hill from the sunset view, with Teide glowing red in the background." src="/static/blog/2022-tenerife-retreat/teide-hike.jpeg" width="1440" height="1920" loading="lazy" />
 
 <p class="blog-description">One final view of Teide glowing red in the sunset.</p>

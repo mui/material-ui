@@ -85,7 +85,7 @@ const Root = styled('span')(
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 120ms;
-    box-shadow: inset 0px 1px 1px ${
+    box-shadow: inset 0 1px 1px ${
       theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.05)'
     };
   }
@@ -113,7 +113,7 @@ const Root = styled('span')(
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 120ms;
-    box-shadow: 0px 1px 2px ${
+    box-shadow: 0 1px 2px ${
       theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.25)' : 'rgba(0, 0, 0, 0.1)'
     };
   }
@@ -122,7 +122,7 @@ const Root = styled('span')(
     .${switchClasses.thumb} {
       left: 18px;
       background-color: #fff;
-      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 1px 2px rgb(0 0 0 / 0.3);
     }
 
     .${switchClasses.track} {
