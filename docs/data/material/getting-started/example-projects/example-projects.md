@@ -24,7 +24,7 @@ See [Start a New React Project](https://react.dev/learn/start-a-new-react-projec
 Once you've chosen your preferred scaffold above, you could move on to our collection of [free templates](/material-ui/getting-started/templates/) and install a readymade user interface to get started even faster.
 
 :::info
-If you want to build internal tools and dashboards fast, but don't want to start building from scratch. You may want to check out the Toolpad Core [template](/material-ui/getting-started/templates/#toolpad-core-beta).
+If you want to build internal tools and dashboards quickly, but don't want to start from scratch, check out the [Toolpad Core template](/material-ui/getting-started/templates/#toolpad-core-beta).
 :::
 
 ## Premium themes and templates
