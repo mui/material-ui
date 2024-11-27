@@ -13,8 +13,9 @@ import W3CIcon from '../svgIcons/W3CIcon';
 import MaterialDesignIcon from '../svgIcons/MaterialDesignIcon';
 import { useTranslate } from '../i18n';
 
-const Root = styled('ul')({
+const Root = styled('ul')(({ theme }) => ({
   margin: 0,
+  marginTop: theme.spacing(2),
   padding: 0,
   listStyle: 'none',
   display: 'flex',
@@ -30,7 +31,7 @@ const Root = styled('ul')({
       fontSize: 14,
     },
   },
-});
+}));
 
 const defaultPackageNames: Record<string, string | undefined> = {
   'material-ui': '@mui/material',

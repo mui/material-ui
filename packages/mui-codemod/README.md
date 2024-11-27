@@ -1670,6 +1670,13 @@ npx @mui/codemod@latest deprecations/table-sort-label-classes <path>
 ```
 
 ```diff
+ <Typography
+-  paragraph={isTypographyParagraph}
++  sx={isTypographyParagraph ? { marginBottom: '16px' } : undefined}
+ />
+```
+
+```diff
  MuiTypography: {
    defaultProps: {
 -    paragraph: true
