@@ -62,7 +62,6 @@ const Timeline = React.forwardRef<HTMLUListElement, TimelineProps>(function Time
       <TimelineRoot
         className={clsx(classes.root, className)}
         ownerState={ownerState}
-        // @ts-expect-error TypeScript bug, need to keep unknown for DX
         ref={ref}
         {...other}
       />
