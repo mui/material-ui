@@ -36,15 +36,7 @@ export interface ClickAwayListenerProps {
   /**
    * The wrapped element.
    */
-  children: React.ReactElement<{
-    onTouchStart?: React.TouchEventHandler;
-    onTouchEnd?: React.TouchEventHandler;
-    onClick?: React.MouseEventHandler;
-    onMouseDown?: React.MouseEventHandler;
-    onMouseUp?: React.MouseEventHandler;
-    onPointerDown?: React.PointerEventHandler;
-    onPointerUp?: React.PointerEventHandler;
-  }>;
+  children: React.ReactElement<any>;
   /**
    * If `true`, the React tree is ignored and only the DOM tree is considered.
    * This prop changes how portaled elements are handled.
@@ -160,9 +152,7 @@ function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
   });
 
   // Keep track of mouse/touch events that bubbled up through the portal.
-  type ReactSyntheticEventName = ClickAwayMouseEventHandler | ClickAwayTouchEventHandler;
-
-  const createHandleSynthetic = (handlerName: ReactSyntheticEventName) => (event: any) => {
+  const createHandleSynthetic = (handlerName: string) => (event: React.SyntheticEvent) => {
     syntheticEventRef.current = true;
 
     const childrenPropsHandler = children.props[handlerName];
