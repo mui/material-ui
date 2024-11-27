@@ -4,7 +4,7 @@
 
 <!-- generated comparing v6.1.8..master -->
 
-_Nov 26, 2024_
+_Nov 27, 2024_
 
 A big thanks to the 8 contributors who made this release possible.
 
@@ -31,7 +31,7 @@ A big thanks to the 8 contributors who made this release possible.
 - [material-ui] Add missing Roboto import to Next.js integration docs (#44462) @StaceyD22
 - [material-ui][Dialog] Fix padding in SimpleDialog demo (#44467) @oliviertassinari
 - Fix template page issues (#44466) @oliviertassinari
-- [examples] Add dark mode example for Material UI + Pigment CSS (#44480) @mnajdova
+- [examples] Add dark mode example for Material UI + Pigment CSS (#44480) @mnajdova
 
 ### Core
 
@@ -42,7 +42,7 @@ A big thanks to the 8 contributors who made this release possible.
 - [docs-infra] Fix display when ad-block triggers (#44567) @oliviertassinari
 - [docs-infra] Improve locator finding using visible option (#44541) @siriwatknp
 - [docs-infra] Correctly flatten the pages tree (#44514) @oliviertassinari
-- [docs-infra] Correctly ban the use of e.g. (#44513) @oliviertassinari
+- [docs-infra] Correctly ban the use of "e.g." (#44513) @oliviertassinari
 - [docs-infra] Fix Sponsor design regression (#44515) @oliviertassinari
 - [test] Remove React.ReactElement<any> from describeConformance.tsx (#44318) @sai6855
 - [test] Do not enforce the presence of `ownerState.className` in `describeConformance` (#44479) @flaviendelangle
