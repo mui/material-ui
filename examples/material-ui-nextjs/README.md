@@ -33,7 +33,7 @@ or:
 ## Upgrading to Next.js 15
 
 This example uses Next.js 14.
-To upgrade to Next.js 15, please follow their [upgrade guide](https://nextjs.org/docs/app/building-your-application/upgrading/version-15).
+To upgrade to version 15, please follow the [official upgrade guide](https://nextjs.org/docs/app/building-your-application/upgrading/version-15) in the Next.js docs.
 
 ## Learn more
 
