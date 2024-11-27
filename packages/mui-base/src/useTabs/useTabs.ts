@@ -8,7 +8,7 @@ import { TabPanelMetadata } from './TabsProvider';
 export interface TabMetadata {
   disabled: boolean;
   id: string | undefined;
-  ref: React.RefObject<HTMLElement>;
+  ref: React.RefObject<HTMLElement | null>;
 }
 
 type IdLookupFunction = (id: string | number) => string | undefined;

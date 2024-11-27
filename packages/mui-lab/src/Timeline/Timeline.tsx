@@ -21,8 +21,8 @@ const useUtilityClasses = (ownerState: OwnerState) => {
   return composeClasses(slots, getTimelineUtilityClass, classes);
 };
 
-const TimelineRoot = styled('ul' as const, {
-  name: 'MuiTimeline' as const,
+const TimelineRoot = styled('ul', {
+  name: 'MuiTimeline',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
@@ -62,7 +62,6 @@ const Timeline = React.forwardRef<HTMLUListElement, TimelineProps>(function Time
       <TimelineRoot
         className={clsx(classes.root, className)}
         ownerState={ownerState}
-        // @ts-expect-error TypeScript bug, need to keep unknown for DX
         ref={ref}
         {...other}
       />

@@ -9,5 +9,5 @@ import * as React from 'react';
 export default function getValidReactChildren(children: React.ReactNode) {
   return React.Children.toArray(children).filter((child) =>
     React.isValidElement(child),
-  ) as React.ReactElement<any>[];
+  ) as React.ReactElement<unknown>[];
 }
