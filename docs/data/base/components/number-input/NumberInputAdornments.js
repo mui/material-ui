@@ -101,7 +101,7 @@ const InputRoot = styled('div')(
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  box-shadow: 0px 2px 4px ${
+  box-shadow: 0 2px 4px ${
     theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
   };
   display: grid;
@@ -119,7 +119,7 @@ const InputRoot = styled('div')(
     border-color: ${blue[400]};
   }
 
-  // firefox
+  /* firefox */
   &:focus-visible {
     outline: 0;
   }
@@ -204,10 +204,6 @@ const Button = styled('button')(
       background: ${theme.palette.mode === 'dark' ? blue[600] : blue[500]};
       border-color: ${theme.palette.mode === 'dark' ? blue[400] : blue[600]};
     }
-  }
-
-  & .arrow {
-    transform: translateY(-1px);
   }
 
   & .arrow {
