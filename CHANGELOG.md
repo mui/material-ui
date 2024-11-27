@@ -11,10 +11,15 @@ A big thanks to the 8 contributors who made this release possible.
 ### `@mui/material@6.1.9`
 
 - [Select] Omit `placeholder` from props (#44502) @Juneezee
+- [Grid2] Add container class to `Grid2Classes` (#44562) @sai6855
 
 ### `@mui/system@6.1.9`
 
 - Add ThemeProvider `noSsr` to prevent double rendering (#44451) @siriwatknp
+
+### `@mui/codemod@6.1.9`
+
+- [codemod] Fix handling of computed `paragraph` props (#44195) @joshkel
 
 ### `@mui/material-pigment-css@6.1.9`
 
@@ -24,21 +29,25 @@ A big thanks to the 8 contributors who made this release possible.
 
 - [material-ui] Add missing required dependencies in dashboard template README (#44476) @mesqueeb
 - [material-ui] Add missing Roboto import to Next.js integration docs (#44462) @StaceyD22
-- [material-ui][dialog] Fix padding in SimpleDialog demo (#44467) @oliviertassinari
+- [material-ui][Dialog] Fix padding in SimpleDialog demo (#44467) @oliviertassinari
 - Fix template page issues (#44466) @oliviertassinari
+- [examples] Add dark mode example for Material UI + Pigment CSS (#44480) @mnajdova
 
 ### Core
 
-- [core] Remove TODO line in the changelog (#44484) @mnajdova
+- Remove TODO line in the changelog (#44484) @mnajdova
+- Polish image display (418e888) @oliviertassinari
 - [core-infra] Add no-relative-packages (#44489) @oliviertassinari
+- [docs-infra] Support CSS variables API info (#44559) @mnajdova
+- [docs-infra] Fix display when ad-block triggers (#44567) @oliviertassinari
 - [docs-infra] Improve locator finding using visible option (#44541) @siriwatknp
 - [docs-infra] Correctly flatten the pages tree (#44514) @oliviertassinari
 - [docs-infra] Correctly ban the use of e.g. (#44513) @oliviertassinari
 - [docs-infra] Fix Sponsor design regression (#44515) @oliviertassinari
-- [examples] Add dark mode example for Material UI + Pigment CSS (#44480) @mnajdova
+- [test] Remove React.ReactElement<any> from describeConformance.tsx (#44318) @sai6855
 - [test] Do not enforce the presence of `ownerState.className` in `describeConformance` (#44479) @flaviendelangle
 
-All contributors of this release in alphabetical order: @brijeshb42, @flaviendelangle, @Juneezee, @mesqueeb, @mnajdova, @oliviertassinari, @siriwatknp, @StaceyD22
+All contributors of this release in alphabetical order: @brijeshb42, @flaviendelangle, @joshkel, @Juneezee, @mesqueeb, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp, @StaceyD22
 
 ## v6.1.8
 
