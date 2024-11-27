@@ -26,9 +26,13 @@ export interface TablePaginationSpacerSlotPropsOverrides {}
 
 export interface TablePaginationSelectLabelSlotPropsOverrides {}
 
+export interface TablePaginationSelectSlotPropsOverrides {}
+
 export interface TablePaginationMenuItemSlotPropsOverrides {}
 
 export interface TablePaginationDisplayedRowsSlotPropsOverrides {}
+
+export interface TablePaginationActionsSlotPropsOverrides {}
 
 export interface TablePaginationSlots {
   root: React.ElementType;
@@ -60,6 +64,7 @@ export type TablePaginationSlotsAndSlotProps = CreateSlotsAndSlotProps<
       TablePaginationSelectLabelSlotPropsOverrides,
       TablePaginationOwnerState
     >;
+    select: Partial<SelectProps> & TablePaginationSelectSlotPropsOverrides;
     menuItem: SlotProps<
       React.ElementType<MenuItemOwnProps>,
       TablePaginationMenuItemSlotPropsOverrides,
@@ -70,8 +75,7 @@ export type TablePaginationSlotsAndSlotProps = CreateSlotsAndSlotProps<
       TablePaginationDisplayedRowsSlotPropsOverrides,
       TablePaginationOwnerState
     >;
-    actions: TablePaginationActionsProps['slotProps'];
-    select: Partial<SelectProps>;
+    actions: TablePaginationActionsProps['slotProps'] & TablePaginationActionsSlotPropsOverrides;
   }
 >;
 

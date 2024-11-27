@@ -60,14 +60,14 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ actions?: { firstButton?: object, firstButtonIcon?: object, lastButton?: object, lastButtonIcon?: object, nextButton?: object, nextButtonIcon?: object, previousButton?: object, previousButtonIcon?: object }, select?: object }"
+        "description": "{ actions?: { firstButton?: object, firstButtonIcon?: object, lastButton?: object, lastButtonIcon?: object, nextButton?: object, nextButtonIcon?: object, previousButton?: object, previousButtonIcon?: object }, displayedRows?: func<br>&#124;&nbsp;object, menuItem?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, select?: object, selectLabel?: func<br>&#124;&nbsp;object, spacer?: func<br>&#124;&nbsp;object, toolbar?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ actions?: { firstButton?: elementType, firstButtonIcon?: elementType, lastButton?: elementType, lastButtonIcon?: elementType, nextButton?: elementType, nextButtonIcon?: elementType, previousButton?: elementType, previousButtonIcon?: elementType } }"
+        "description": "{ actions?: { firstButton?: elementType, firstButtonIcon?: elementType, lastButton?: elementType, lastButtonIcon?: elementType, nextButton?: elementType, nextButtonIcon?: elementType, previousButton?: elementType, previousButtonIcon?: elementType }, displayedRows?: elementType, menuItem?: elementType, root?: elementType, select?: elementType, selectLabel?: elementType, spacer?: elementType, toolbar?: elementType }"
       },
       "default": "{}"
     },
@@ -84,41 +84,21 @@
     "import TablePagination from '@mui/material/TablePagination';",
     "import { TablePagination } from '@mui/material';"
   ],
+  "slots": [
+    { "name": "root", "description": "", "class": "MuiTablePagination-root" },
+    { "name": "toolbar", "description": "", "class": "MuiTablePagination-toolbar" },
+    { "name": "spacer", "description": "", "class": "MuiTablePagination-spacer" },
+    { "name": "selectLabel", "description": "", "class": "MuiTablePagination-selectLabel" },
+    { "name": "select", "description": "", "class": "MuiTablePagination-select" },
+    { "name": "menuItem", "description": "", "class": "MuiTablePagination-menuItem" },
+    { "name": "displayedRows", "description": "", "class": "MuiTablePagination-displayedRows" },
+    { "name": "actions", "description": "", "class": "MuiTablePagination-actions" }
+  ],
   "classes": [
-    {
-      "key": "actions",
-      "className": "MuiTablePagination-actions",
-      "description": "Styles applied to the internal `TablePaginationActions` component.",
-      "isGlobal": false
-    },
-    {
-      "key": "displayedRows",
-      "className": "MuiTablePagination-displayedRows",
-      "description": "Styles applied to the displayed rows Typography element.",
-      "isGlobal": false
-    },
     {
       "key": "input",
       "className": "MuiTablePagination-input",
       "description": "Styles applied to the Select component `root` element.",
-      "isGlobal": false
-    },
-    {
-      "key": "menuItem",
-      "className": "MuiTablePagination-menuItem",
-      "description": "Styles applied to the MenuItem component.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiTablePagination-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
-    },
-    {
-      "key": "select",
-      "className": "MuiTablePagination-select",
-      "description": "Styles applied to the Select component `select` class.",
       "isGlobal": false
     },
     {
@@ -128,27 +108,9 @@
       "isGlobal": false
     },
     {
-      "key": "selectLabel",
-      "className": "MuiTablePagination-selectLabel",
-      "description": "Styles applied to the select label Typography element.",
-      "isGlobal": false
-    },
-    {
       "key": "selectRoot",
       "className": "MuiTablePagination-selectRoot",
       "description": "Styles applied to the Select component `root` element.",
-      "isGlobal": false
-    },
-    {
-      "key": "spacer",
-      "className": "MuiTablePagination-spacer",
-      "description": "Styles applied to the spacer element.",
-      "isGlobal": false
-    },
-    {
-      "key": "toolbar",
-      "className": "MuiTablePagination-toolbar",
-      "description": "Styles applied to the Toolbar component.",
       "isGlobal": false
     }
   ],

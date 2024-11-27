@@ -479,7 +479,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    * @default {}
    */
-  slotProps: PropTypes.shape({
+  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     actions: PropTypes.shape({
       firstButton: PropTypes.object,
       firstButtonIcon: PropTypes.object,
@@ -491,100 +491,12 @@ TablePagination.propTypes /* remove-proptypes */ = {
       previousButtonIcon: PropTypes.object,
     }),
     displayedRows: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    menuItem: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.object,
-      PropTypes.shape({
-        autoFocus: PropTypes.bool,
-        classes: PropTypes.object,
-        component: PropTypes.elementType,
-        dense: PropTypes.bool,
-        disabled: PropTypes.bool,
-        disableGutters: PropTypes.bool,
-        divider: PropTypes.bool,
-        selected: PropTypes.bool,
-        sx: PropTypes.oneOfType([
-          PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-          ),
-          PropTypes.func,
-          PropTypes.object,
-        ]),
-      }),
-      PropTypes.shape({
-        autoFocus: PropTypes.bool,
-        classes: PropTypes.object,
-        component: PropTypes.elementType,
-        dense: PropTypes.bool,
-        disabled: PropTypes.bool,
-        disableGutters: PropTypes.bool,
-        divider: PropTypes.bool,
-        key: PropTypes.oneOfType([
-          PropTypes.number,
-          PropTypes.shape({
-            '__@toStringTag@12826': PropTypes.oneOf(['BigInt']).isRequired,
-            toLocaleString: PropTypes.func.isRequired,
-            toString: PropTypes.func.isRequired,
-            valueOf: PropTypes.func.isRequired,
-          }),
-          PropTypes.string,
-        ]),
-        selected: PropTypes.bool,
-        sx: PropTypes.oneOfType([
-          PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-          ),
-          PropTypes.func,
-          PropTypes.object,
-        ]),
-      }),
-    ]),
+    menuItem: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     select: PropTypes.object,
     selectLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     spacer: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    toolbar: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.object,
-      PropTypes.shape({
-        children: PropTypes.node,
-        classes: PropTypes.object,
-        component: PropTypes.elementType,
-        disableGutters: PropTypes.bool,
-        sx: PropTypes.oneOfType([
-          PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-          ),
-          PropTypes.func,
-          PropTypes.object,
-        ]),
-        variant: PropTypes.oneOf(['dense', 'regular']),
-      }),
-      PropTypes.shape({
-        children: PropTypes.node,
-        classes: PropTypes.object,
-        component: PropTypes.elementType,
-        disableGutters: PropTypes.bool,
-        key: PropTypes.oneOfType([
-          PropTypes.number,
-          PropTypes.shape({
-            '__@toStringTag@12826': PropTypes.oneOf(['BigInt']).isRequired,
-            toLocaleString: PropTypes.func.isRequired,
-            toString: PropTypes.func.isRequired,
-            valueOf: PropTypes.func.isRequired,
-          }),
-          PropTypes.string,
-        ]),
-        sx: PropTypes.oneOfType([
-          PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-          ),
-          PropTypes.func,
-          PropTypes.object,
-        ]),
-        variant: PropTypes.oneOf(['dense', 'regular']),
-      }),
-    ]),
+    toolbar: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
