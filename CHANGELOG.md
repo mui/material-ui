@@ -14,7 +14,7 @@ A big thanks to the 8 contributors who made this release possible.
 
 ### `@mui/utils@5.16.8`
 
-- skip deep clone React element (v5.x) (#44494) @jukkatupamaki
+- Skip deep clone React element (v5.x) (#44494) @jukkatupamaki
 
 ### Docs
 
