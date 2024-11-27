@@ -1,10 +1,10 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import * as ReactDOMClient from 'react-dom/client';
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
-import webfontloader from 'webfontloader';
-import { Globals } from '@react-spring/web';
-import TestViewer from './TestViewer';
+const React = require('react');
+const PropTypes = require('prop-types');
+const ReactDOMClient = require('react-dom/client');
+const { BrowserRouter: Router, Routes, Route, Link, useNavigate } = require('react-router-dom');
+const webfontloader = require('webfontloader');
+const { Globals } = require('@react-spring/web');
+const TestViewer = require('./TestViewer');
 
 // Skip charts annimation for screen shots
 Globals.assign({
