@@ -163,6 +163,18 @@ const theme = createTheme();
           container: {
             justifyContent: 'space-between',
           },
+          'direction-xs-column': {
+            backgroundColor: 'red',
+          },
+          'grid-lg-1': {
+            backgroundColor: 'blue',
+          },
+          'spacing-xs-0': {
+            backgroundColor: 'green',
+          },
+          'wrap-xs-nowrap': {
+            backgroundColor: 'yellow',
+          },
         },
       },
     },
