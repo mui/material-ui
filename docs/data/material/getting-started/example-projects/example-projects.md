@@ -4,7 +4,8 @@
 
 ## Official integrations
 
-The following integration examples feature Material UI paired with other popular React libraries and frameworks, so you can skip the initial setup steps and jump straight into building.
+The following integration examples are available in the [`/examples`](https://github.com/mui/material-ui/tree/master/examples) folder of the Material UI GitHub repository.
+These examples feature Material UI paired with other popular React libraries and frameworks, so you can skip the initial setup steps and jump straight into building.
 
 :::success
 Not sure which to pick?
@@ -21,6 +22,8 @@ See [Start a New React Project](https://react.dev/learn/start-a-new-react-projec
 ## Free templates
 
 Once you've chosen your preferred scaffold above, you could move on to our collection of [free templates](/material-ui/getting-started/templates/) and install a readymade user interface to get started even faster.
+
+If you want to build internal tools and dashboards fast, but don't want to start building from scratch. You can check out the Toolpad Core [template](/material-ui/getting-started/templates/#toolpad-core-beta).
 
 ## Premium themes and templates
 

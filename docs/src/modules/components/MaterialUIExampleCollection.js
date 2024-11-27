@@ -88,12 +88,6 @@ const examples = [
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-gatsby',
     src: '/static/images/examples/gatsby.svg',
   },
-  {
-    name: 'Toolpad',
-    label: 'View TypeScript',
-    link: 'https://github.com/mui/toolpad/tree/master/examples/core',
-    src: '/static/branding/product-toolpad-light.svg',
-  },
 ];
 
 export default function MaterialUIExampleCollection() {
