@@ -1,11 +1,31 @@
 import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 
-export interface Grid2Classes {
+const SPACINGS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const;
+const DIRECTIONS = ['column-reverse', 'column', 'row-reverse', 'row'] as const;
+const WRAPS = ['nowrap', 'wrap-reverse', 'wrap'] as const;
+const GRID_SIZES = ['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const;
+
+export type Grid2DynamicClasses = {
+  [key in
+    | `spacing-xs-${(typeof SPACINGS)[number]}`
+    | `wrap-xs-${(typeof WRAPS)[number]}`
+    | `grid-${'xs' | 'sm' | 'md' | 'lg' | 'xl'}-${(typeof GRID_SIZES)[number]}`]: string;
+};
+
+export interface Grid2Classes extends Grid2DynamicClasses {
   /** Styles applied to the root element. */
   root: string;
   /** Styles applied to the root element if `container={true}`. */
   container: string;
+  /** Styles applied to the root element if `direction="column"`. */
+  'direction-xs-column': string;
+  /** Styles applied to the root element if `direction="column-reverse"`. */
+  'direction-xs-column-reverse': string;
+  /** Styles applied to the root element if `direction="row-reverse"`. */
+  'direction-xs-row-reverse': string;
+  /** Styles applied to the root element if `direction="row"`. */
+  'direction-xs-row': string;
 }
 
 export type Grid2ClassKey = keyof Grid2Classes;
@@ -13,11 +33,6 @@ export type Grid2ClassKey = keyof Grid2Classes;
 export function getGrid2UtilityClass(slot: string): string {
   return generateUtilityClass('MuiGrid2', slot);
 }
-
-const SPACINGS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const;
-const DIRECTIONS = ['column-reverse', 'column', 'row-reverse', 'row'] as const;
-const WRAPS = ['nowrap', 'wrap-reverse', 'wrap'] as const;
-const GRID_SIZES = ['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const;
 
 const grid2Classes: Grid2Classes = generateUtilityClasses('MuiGrid2', [
   'root',
