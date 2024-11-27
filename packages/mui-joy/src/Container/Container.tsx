@@ -6,7 +6,16 @@ import { Theme } from '../styles/types/theme';
 import styled from '../styles/styled';
 import { useThemeProps } from '../styles';
 import { ContainerTypeMap } from './ContainerProps';
-
+/**
+ *
+ * Demos:
+ *
+ * - [Container](https://mui.com/joy-ui/react-container/)
+ *
+ * API:
+ *
+ * - [Container API](https://mui.com/joy-ui/api/container/)
+ */
 const Container = createContainer<Theme>({
   createStyledComponent: styled('div', {
     name: 'JoyContainer',

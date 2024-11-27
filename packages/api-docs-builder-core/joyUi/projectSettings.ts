@@ -27,7 +27,7 @@ export const projectSettings: ProjectSettings = {
     // GlobalStyles's demo isn't ready
     return (
       filename.match(
-        /(ThemeProvider|CssVarsProvider|Container|ColorInversion|GlobalStyles|InitColorSchemeScript)/,
+        /(ThemeProvider|CssVarsProvider|ColorInversion|GlobalStyles|InitColorSchemeScript)/,
       ) !== null
     );
   },

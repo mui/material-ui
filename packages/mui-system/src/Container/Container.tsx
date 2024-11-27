@@ -6,6 +6,7 @@ import createContainer from './createContainer';
  *
  * Demos:
  *
+ * - [Container (Joy UI)](https://mui.com/joy-ui/react-container/)
  * - [Container (Material UI)](https://mui.com/material-ui/react-container/)
  * - [Container (MUI System)](https://mui.com/system/react-container/)
  *

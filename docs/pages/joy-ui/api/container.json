@@ -1,6 +1,5 @@
 {
   "props": {
-    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "component": { "type": { "name": "elementType" } },
     "disableGutters": { "type": { "name": "bool" } },
     "fixed": { "type": { "name": "bool" } },
@@ -75,7 +74,7 @@
   ],
   "spread": true,
   "themeDefaultProps": true,
-  "muiName": "MuiContainer",
+  "muiName": "JoyContainer",
   "forwardsRefTo": "HTMLElement",
   "filename": "/packages/mui-joy/src/Container/Container.tsx",
   "inheritance": null,
