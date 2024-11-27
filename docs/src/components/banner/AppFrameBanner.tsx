@@ -14,7 +14,11 @@ export default function AppFrameBanner() {
   // eslint-disable-next-line react-hooks/rules-of-hooks -- FEATURE_TOGGLE never changes
   const pageContext = React.useContext(PageContext);
   const productName = convertProductIdToName(pageContext) || 'MUI';
-  const message = `Influence ${productName}'s 2024 roadmap! Participate in the latest Developer Survey`;
+  const surveyMessage = `Influence ${productName}'s 2024 roadmap! Participate in the latest Developer Survey`;
+  const blackFridayMessage = `Black Friday is here! Don't miss out on the best offers of the year.`;
+
+  const showSurveyMessage = false;
+  const message = showSurveyMessage ? surveyMessage : blackFridayMessage;
 
   if (process.env.NODE_ENV !== 'production') {
     if (message.length > 100) {
@@ -26,7 +30,11 @@ export default function AppFrameBanner() {
 
   return (
     <Link
-      href="https://tally.so/r/3Ex4PN?source=docs-banner"
+      href={
+        showSurveyMessage
+          ? 'https://tally.so/r/3Ex4PN?source=website'
+          : 'https://mui.com/store/bundles/?deal=black-friday&from=docs'
+      }
       target="_blank"
       variant="caption"
       sx={[
