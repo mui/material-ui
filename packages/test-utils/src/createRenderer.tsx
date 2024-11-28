@@ -16,6 +16,7 @@ import {
   RenderResult,
 } from '@testing-library/react/pure';
 import { useFakeTimers } from 'sinon';
+import reactMajor from './reactMajor';
 
 interface Interaction {
   id: number;
@@ -280,8 +281,12 @@ export interface MuiRenderToStringResult {
   hydrate(): MuiRenderResult;
 }
 
+interface DataAttributes {
+  [key: `data-${string}`]: string;
+}
+
 function render(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<DataAttributes>,
   configuration: ClientRenderConfiguration,
 ): MuiRenderResult {
   const { container, hydrate, wrapper } = configuration;
@@ -316,7 +321,7 @@ function render(
 }
 
 function renderToString(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<DataAttributes>,
   configuration: ServerRenderConfiguration,
 ): { container: HTMLElement; hydrate(): MuiRenderResult } {
   const { container, wrapper: Wrapper } = configuration;
@@ -438,9 +443,9 @@ function createClock(defaultMode: 'fake' | 'real', config: ClockConfig): Clock {
 
 interface Renderer {
   clock: Clock;
-  render(element: React.ReactElement<any>, options?: RenderOptions): MuiRenderResult;
+  render(element: React.ReactElement<DataAttributes>, options?: RenderOptions): MuiRenderResult;
   renderToString(
-    element: React.ReactElement<any>,
+    element: React.ReactElement<DataAttributes>,
     options?: RenderOptions,
   ): MuiRenderToStringResult;
 }
@@ -563,7 +568,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
       wrapper: InnerWrapper = React.Fragment,
     } = options;
 
-    const usesLegacyRoot = !React.version.startsWith('18');
+    const usesLegacyRoot = reactMajor < 18;
     const Mode = strict && (strictEffects || usesLegacyRoot) ? React.StrictMode : React.Fragment;
     return function Wrapper({ children }: { children?: React.ReactNode }) {
       return (
@@ -580,7 +585,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
 
   return {
     clock,
-    render(element: React.ReactElement<any>, options: RenderOptions = {}) {
+    render(element: React.ReactElement<DataAttributes>, options: RenderOptions = {}) {
       if (!prepared) {
         throw new Error(
           'Unable to finish setup before `render()` was called. ' +
@@ -595,7 +600,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
         wrapper: createWrapper(options),
       });
     },
-    renderToString(element: React.ReactElement<any>, options: RenderOptions = {}) {
+    renderToString(element: React.ReactElement<DataAttributes>, options: RenderOptions = {}) {
       if (!prepared) {
         throw new Error(
           'Unable to finish setup before `render()` was called. ' +

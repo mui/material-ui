@@ -983,7 +983,11 @@ function filterGlobalVariantTokens(palette: Partial<PaletteVariant>, variant: Va
   return tokens;
 }
 
-type StateReducer<T> = (state: T, action: Partial<T>) => T;
+type ReducerState = {
+  hover: boolean;
+  active: boolean;
+  disabled: boolean;
+};
 
 function GlobalVariantForm({
   color,
@@ -1001,13 +1005,14 @@ function GlobalVariantForm({
   onRemove: (token: string) => void;
 }) {
   const [selectedVariant, setSelectedVariant] = React.useState<VariantProp>('solid');
-  const [states, setStates] = React.useReducer<
-    StateReducer<{ hover: boolean; active: boolean; disabled: boolean }>
-  >((prevState, action) => ({ ...prevState, ...action }), {
-    hover: false,
-    active: false,
-    disabled: false,
-  });
+  const [states, setStates] = React.useReducer(
+    (prevState: ReducerState, action: Partial<ReducerState>) => ({ ...prevState, ...action }),
+    {
+      hover: false,
+      active: false,
+      disabled: false,
+    },
+  );
   const themeDefaultValue = filterGlobalVariantTokens(themeDefaultValueProp, selectedVariant);
   const value = filterGlobalVariantTokens(valueProp, selectedVariant);
   const mergedValue = { ...themeDefaultValue, ...value };

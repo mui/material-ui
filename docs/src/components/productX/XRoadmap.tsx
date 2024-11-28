@@ -41,7 +41,7 @@ function RoadmapStatusDot({ color }: RoadmapStatusDotProps) {
 }
 
 export default function XRoadmap() {
-  function renderList(content: React.ReactElement<any>, nested?: boolean) {
+  function renderList(content: React.ReactElement<unknown>, nested?: boolean) {
     return (
       <Box
         sx={{
