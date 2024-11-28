@@ -27,7 +27,7 @@ const extractInfoFromEnum = async (
     const type = project.checker.getDeclaredTypeOfSymbol(exportedSymbol);
 
     // @ts-ignore
-    const typeDeclaration = type?.types;
+    const typeDeclaration = type?.types ?? [type];
     if (!typeDeclaration) {
       return [];
     }
