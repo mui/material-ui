@@ -1,5 +1,52 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.16.8
+
+<!-- generated comparing v5.16.7..v5.x -->
+
+_Nov 26, 2024_
+
+A big thanks to the 8 contributors who made this release possible.
+
+### `@mui/material@5.16.8`
+
+- Cherry pick ref accessing PRs (#44543) @DiegoAndai
+
+### `@mui/utils@5.16.8`
+
+- Skip deep clone React element (v5.x) (#44494) @jukkatupamaki
+
+### Docs
+
+- Keep sponsors up to date @oliviertassinari
+- Fix MUI Treasury Layout broken links (#43753) @oliviertassinari
+- Strengthen CSP rule @oliviertassinari
+- Give up on restoring search @oliviertassinari
+- Normalize next major message @oliviertassinari
+- Fix versions URL @oliviertassinari
+- Fix use of absolute URLs (#43567) @oliviertassinari
+- Restore search on v5 (#43566) @oliviertassinari
+- Fix link from v5 to v6 (#43585) @alexfauquette
+- Updated mui-x roadmap links with the new project URL (@michelengelen) (#43446) @michelengelen
+- Fix broken link to Next.js docs @oliviertassinari
+
+### Core
+
+- [blog] Polish Upcoming changes to MUI X pricing in 2024 (#43438) @oliviertassinari
+- [blog] Add video to the Pigment CSS blog post (#42500) @oliviertassinari
+- [blog] Announcing pricing changes Sep 2024 (#43272) @cherniavskii
+- Prepare for moving to v5.x branch (#43447) @siriwatknp
+- [core] Cherry pick #42346 to v5 (#44475) @DiegoAndai
+- [core] Fix CI on v5.x branch (#44487) @DiegoAndai
+- [core] Fix CI on v5.x branch (#43564) @oliviertassinari
+- [examples] Fix v5 clone example instructions (#43755) @oliviertassinari
+- [examples] Fix CLI download instructions @oliviertassinari
+- [examples] Fix CDN live preview example @oliviertassinari
+- [examples] Fix more examples to work with v5 @oliviertassinari
+- [examples] Freeze examples dependency range (#43435) @oliviertassinari
+
+All contributors of this release in alphabetical order: @alexfauquette, @cherniavskii, @DiegoAndai, @jukkatupamaki, @michelengelen, @oliviertassinari, @rluzists1, @siriwatknp
+
 ## 5.16.7
 
 <!-- generated comparing v5.16.6..master -->
