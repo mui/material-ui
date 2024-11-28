@@ -33,19 +33,18 @@ export function hexToRgb(color) {
     colors = colors.map((n) => n + n);
   }
 
+  if (process.env.NODE_ENV !== 'production') {
+    if (colors.length >= 4 && Number.isNaN(parseInt(colors[3], 16))) {
+      console.error(
+        `MUI: The color: "${color}" is invalid. Make sure the color input doesn't contain leading/trailing space.`,
+      );
+    }
+  }
+
   return colors
     ? `rgb${colors.length === 4 ? 'a' : ''}(${colors
         .map((n, index) => {
-          if (index < 3) {
-            return parseInt(n, 16);
-          }
-          const channel = Math.round((parseInt(n, 16) / 255) * 1000) / 1000;
-          if (Number.isNaN(channel)) {
-            console.error(
-              `MUI: The color:"${color}" has invalid alpha channel: "${channel}". Make sure the color input doesn't contain leading/trailing space.`,
-            );
-          }
-          return channel || 1;
+          return index < 3 ? parseInt(n, 16) : Math.round((parseInt(n, 16) / 255) * 1000) / 1000;
         })
         .join(', ')})`
     : '';
