@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-test-utils",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "author": "MUI Team",
   "description": "Utilities for MUI tests. This is an internal package not meant for general use.",
   "main": "./build/index.js",
@@ -37,8 +37,8 @@
     "@babel/preset-typescript": "^7.26.0",
     "@babel/register": "^7.25.9",
     "@babel/runtime": "^7.26.0",
-    "@emotion/cache": "^11.13.1",
-    "@emotion/react": "^11.13.3",
+    "@emotion/cache": "^11.13.5",
+    "@emotion/react": "^11.13.5",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
@@ -62,7 +62,7 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@types/sinon": "^17.0.3",
-    "typescript": "^5.6.3"
+    "typescript": "^5.7.2"
   },
   "peerDependencies": {
     "react": "^18.2.0",
