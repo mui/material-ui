@@ -32,7 +32,7 @@ import {
   ParsedProperty,
 } from '../types/ApiBuilder.types';
 import { Slot, ComponentInfo } from '../types/utils.types';
-import extractInfoFromType from '../utils/extractInfoFromType';
+import extractInfoFromEnum from '../utils/extractInfoFromEnum';
 
 const cssComponents = ['Box', 'Grid', 'Typography', 'Stack'];
 
@@ -648,7 +648,7 @@ const attachCssVariables = (reactApi: ComponentReactApi, params: ParsedProperty[
       const type = typeTag?.text?.[0]?.text ?? 'string';
 
       return {
-        name: `--${kebabCase(propName)}`,
+        name: propName,
         description: propDescriptor.description,
         type,
         deprecated: !!deprecation || undefined,
@@ -819,7 +819,7 @@ export default async function generateComponentApi(
 
   reactApi.deprecated = !!deprecation || undefined;
 
-  const cssVars = await extractInfoFromType(`${componentInfo.name}CssVars`, project);
+  const cssVars = await extractInfoFromEnum(`${componentInfo.name}CssVars`, project);
 
   attachPropsTable(reactApi, projectSettings.propsSettings);
   attachCssVariables(reactApi, cssVars);

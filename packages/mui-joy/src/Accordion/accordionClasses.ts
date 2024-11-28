@@ -21,4 +21,13 @@ const accordionClasses: AccordionClasses = generateUtilityClasses('MuiAccordion'
   'disabled',
 ]);
 
+export enum AccordionCssVars {
+  /**
+   * The max width of the Accordion.
+   * @type {number}
+   */
+  maxWidth = '--max-width',
+  foo = '--foo',
+}
+
 export default accordionClasses;

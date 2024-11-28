@@ -59,6 +59,10 @@
       "class": "MuiAccordion-root"
     }
   ],
+  "cssVariables": {
+    "--foo": { "description": "", "type": "string" },
+    "--max-width": { "description": "The max width of the Accordion.", "type": "{number}" }
+  },
   "classes": [
     {
       "key": "disabled",

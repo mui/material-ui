@@ -46,5 +46,6 @@
       "conditions": "<code>expanded</code> is true"
     }
   },
-  "slotDescriptions": { "root": "The component that renders the root." }
+  "slotDescriptions": { "root": "The component that renders the root." },
+  "cssVariablesDescriptions": { "--foo": "", "--max-width": "The max width of the Accordion." }
 }
