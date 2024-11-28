@@ -107,33 +107,33 @@ Funds transferred to the MUI for-profit organization support the company's missi
 These great services sponsor our open-source projects:
 
 <span class="only-light-mode">
-  <img src="/static/readme/github-lightmode.svg" alt="GitHub logo" loading="lazy" width="300" height="107" style="width:80px;">
+  <img src="/static/readme/github-lightmode.svg" alt="GitHub logo" loading="lazy" width="300" height="107" style="width:80px; display: block; margin-bottom: 2px;">
 </span>
 <span class="only-dark-mode">
-  <img src="/static/readme/github-darkmode.svg" alt="GitHub logo" loading="lazy" width="300" height="107" style="width:80px;">
+  <img src="/static/readme/github-darkmode.svg" alt="GitHub logo" loading="lazy" width="300" height="107" style="width:80px; display: block; margin-bottom: 2px;">
 </span>
 
 [GitHub](https://github.com/) lets us host the Git repository and coordinate contributions.
 
 <span class="only-light-mode">
-  <img src="/static/readme/netlify-lightmode.svg" alt="Netlify logo" loading="lazy" width="180" height="49" style="width: 100px; margin-top: 1rem;">
+  <img src="/static/readme/netlify-lightmode.svg" alt="Netlify logo" loading="lazy" width="180" height="49" style="width: 100px; margin-top: 1.2rem; margin-bottom: 2px; display: block;">
 </span>
 <span class="only-dark-mode">
-  <img src="/static/readme/netlify-darkmode.svg" alt="Netlify logo" loading="lazy" width="180" height="49" style="width: 100px; margin-top: 1rem;">
+  <img src="/static/readme/netlify-darkmode.svg" alt="Netlify logo" loading="lazy" width="180" height="49" style="width: 100px; margin-top: 1.2rem; margin-bottom: 2px; display: block;">
 </span>
 
 [Netlify](https://www.netlify.com/) lets us distribute the documentation.
 
 <span class="only-light-mode">
-  <img src="/static/readme/browserstack-lightmode.svg" alt="BrowserStack logo" loading="lazy" width="180" height="32" style="width: 140px; margin-top: 1rem;">
+  <img src="/static/readme/browserstack-lightmode.svg" alt="BrowserStack logo" loading="lazy" width="180" height="32" style="width: 140px; margin-top: 1.2rem; margin-bottom: 2px; display: block;">
 </span>
 <span class="only-dark-mode">
-  <img src="/static/readme/browserstack-darkmode.svg" alt="BrowserStack logo" loading="lazy" width="180" height="32" style="width: 140px; margin-top: 1rem;">
+  <img src="/static/readme/browserstack-darkmode.svg" alt="BrowserStack logo" loading="lazy" width="180" height="32" style="width: 140px; margin-top: 1.2rem; margin-bottom: 2px; display: block;">
 </span>
 
 [BrowserStack](https://www.browserstack.com/) lets us test in real browsers.
 
-<img loading="lazy" alt="CodeCov logo" src="https://avatars.githubusercontent.com/u/8226205?s=210" width="36" height="36" style="margin-top: 1rem;">
+<img loading="lazy" alt="CodeCov logo" src="https://avatars.githubusercontent.com/u/8226205?s=210" width="36" height="36" style="margin-top: 1.2rem; margin-bottom: 2px; display: block;">
 
 [CodeCov](https://about.codecov.io/) lets us monitor test coverage.
 

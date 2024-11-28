@@ -8,6 +8,10 @@ function capitalize(string: string): string {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+interface DataProps {
+  [key: `data-${string}`]: string;
+}
+
 export interface SlotTestingOptions {
   /**
    * A custom React component to test if the receiving props are correct.
@@ -95,7 +99,11 @@ function throwMissingPropError(field: string): never {
  * the root component.
  */
 export function testClassName(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<
+    DataProps & {
+      className: string;
+    }
+  >,
   getOptions: () => ConformanceOptions,
 ) {
   it('applies the className to the root component', async () => {
@@ -121,7 +129,12 @@ export function testClassName(
  * Component from @inheritComponent
  */
 export function testComponentProp(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<
+    DataProps & {
+      className: string;
+      component?: string | React.ElementType;
+    }
+  >,
   getOptions: () => ConformanceOptions,
 ) {
   describe('prop: component', () => {
@@ -157,7 +170,13 @@ export function testComponentProp(
  * MUI components spread additional props to its root.
  */
 export function testPropsSpread(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<
+    DataProps & {
+      className: string;
+      component: string | React.ElementType;
+    }
+  >,
+
   getOptions: () => ConformanceOptions,
 ) {
   it(`spreads props to the root component`, async () => {
@@ -187,7 +206,9 @@ export function testPropsSpread(
  * components that forward their ref and attach it to a host component.
  */
 export function describeRef(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<{
+    ref: React.RefObject<any>;
+  }>,
   getOptions: () => ConformanceOptions,
 ) {
   describe('ref', () => {
@@ -212,7 +233,10 @@ export function describeRef(
  * Tests that the root component has the root class
  */
 export function testRootClass(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<{
+    className: string;
+    classes: Record<string, string>;
+  }>,
   getOptions: () => ConformanceOptions,
 ) {
   it('applies the root class to the root component if it has this class', async () => {
@@ -264,7 +288,39 @@ function forEachSlot(
   });
 }
 
-function testSlotsProp(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
+function testSlotsProp(
+  element: React.ReactElement<{
+    className: string;
+    classes: Record<string, string>;
+    slots: {
+      [x: string]:
+        | SlotTestingOptions['testWithComponent']
+        | keyof React.JSX.IntrinsicElements
+        | React.ForwardRefExoticComponent<
+            {
+              children: React.ReactNode;
+            } & React.RefAttributes<HTMLDivElement>
+          >;
+    };
+    components?: {
+      [x: string]:
+        | SlotTestingOptions['testWithComponent']
+        | keyof React.JSX.IntrinsicElements
+        | React.ForwardRefExoticComponent<
+            {
+              children: React.ReactNode;
+            } & React.RefAttributes<HTMLDivElement>
+          >;
+    };
+    slotProps: {
+      [x: string]: DataProps;
+    };
+    componentsProps?: {
+      [x: string]: DataProps;
+    };
+  }>,
+  getOptions: () => ConformanceOptions,
+) {
   const { render, slots, testLegacyComponentsProp } = getOptions();
 
   const CustomComponent = React.forwardRef<

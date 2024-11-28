@@ -581,6 +581,7 @@ const StyledBadge = styled(Badge)(
 
   & .${badgeClasses.badge} {
     --_scale: 1.5em;
+
     z-index: auto;
     position: absolute;
     top: 0;

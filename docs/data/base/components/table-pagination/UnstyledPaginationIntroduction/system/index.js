@@ -83,7 +83,7 @@ const Root = styled('div')(
     font-size: 0.875rem;
     width: 100%;
     background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-    box-shadow: 0px 4px 16px ${
+    box-shadow: 0 4px 16px ${
       theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.3)' : grey[200]
     };
     border-radius: 12px;
@@ -164,7 +164,6 @@ const CustomTablePagination = styled(TablePagination)(
     display: flex;
     align-items: center;
     padding: 0;
-    border: transparent;
     border-radius: 50%; 
     background-color: transparent;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
@@ -187,6 +186,7 @@ const CustomTablePagination = styled(TablePagination)(
 
     &:disabled {
       opacity: 0.3;
+
       &:hover {
         border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
         background-color: transparent;
