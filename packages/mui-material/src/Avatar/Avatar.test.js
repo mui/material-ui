@@ -62,6 +62,20 @@ describe('<Avatar />', () => {
       fireEvent.error(img);
       expect(onError.callCount).to.equal(1);
     });
+
+    it('should pass slots.img to `useLoaded` hook', () => {
+      const originalImage = global.Image;
+      const image = {};
+      global.Image = function Image() {
+        return image;
+      };
+
+      render(<Avatar src="/fake.png" slotProps={{ img: { crossOrigin: 'anonymous' } }} />);
+
+      expect(image.crossOrigin).to.equal('anonymous');
+
+      global.Image = originalImage;
+    });
   });
 
   describe('image avatar with unrendered children', () => {
