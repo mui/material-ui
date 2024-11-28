@@ -31,7 +31,7 @@ jobs:
           body: |
             You have created a support request under the ["Priority Support"](https://mui.com/legal/technical-support-sla/#priority-support) terms, which is a paid add-on to MUI X Premium ⏰. Please validate your support key using the link below:
 
-            https://tools-public.mui.com/prod/pages/jyhs86t?repo=mui-x&issueId=${{ github.event.issue.number }}
+            https://tools-public.mui.com/prod/pages/validateSupport?repo=mui-x&issueId=${{ github.event.issue.number }}
 
             Do not share your support key in this issue!
 

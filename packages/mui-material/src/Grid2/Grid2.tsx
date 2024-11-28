@@ -4,9 +4,8 @@ import { createGrid as createGrid2 } from '@mui/system/Grid';
 import { SxProps, SystemProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '@mui/types';
 import requirePropFactory from '../utils/requirePropFactory';
-import { Theme, styled, useThemeProps, Breakpoint } from '../styles';
-
-export type Grid2Slot = 'root';
+import { Theme, styled, Breakpoint } from '../styles';
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 
@@ -131,7 +130,7 @@ const Grid2 = createGrid2({
     overridesResolver: (props, styles) => styles.root,
   }),
   componentName: 'MuiGrid2',
-  useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'MuiGrid2' }),
+  useThemeProps: (inProps) => useDefaultProps({ props: inProps, name: 'MuiGrid2' }),
 }) as OverridableComponent<Grid2TypeMap>;
 
 Grid2.propTypes /* remove-proptypes */ = {

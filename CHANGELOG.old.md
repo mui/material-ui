@@ -918,7 +918,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 - [zero-runtime] Use lodash instead of its subpackages (#40868) @michaldudak
 - Add `applyStyles()` to theme (#40667) @siriwatknp
-- [zero] Use `theme.applyStyles` in the demo app (#40787) @siriwatknp
+- [zero] Use `theme.applyStyles()` in the demo app (#40787) @siriwatknp
 - [zero] Add `useThemeProps` processor (#40648) @siriwatknp
 
 ### `@mui/utils@5.15.7`
@@ -1926,7 +1926,7 @@ A big thanks to the 22 contributors who made this release possible. Here are som
 ### Core
 
 - [docs-infra] Improve the open diamond sponsor spot callout (#39332) @danilo-leal
-- [docs-infra] Fix Code Sandbox download issue (#39317) @ARJ2160
+- [docs-infra] Fix CodeSandbox download issue (#39317) @ARJ2160
 - [docs-infra] Remove overflow: hidden for demo gradient bg (#39225) @oliviertassinari
 
 All contributors of this release in alphabetical order: @3xp10it3r, @alexfauquette, @ARJ2160, @atharva3333, @axelbostrom, @Bestwebdesign, @brijeshb42, @chirag3003, @danilo-leal, @DarhkVoyd, @DiegoAndai, @gugudwt, @mbrookes, @michaldudak, @mj12albert, @mnajdova, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @ValkonX33, @ZeeshanTamboli
@@ -2420,7 +2420,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [docs][joy-ui] Updated the List playground demo (#38499) @zanivan
 - [docs][joy-ui] Changed bgcolor of the Playground demo (#38502) @zanivan
 - [docs][material-ui] Fix key warning in SimpleDialog demo (#38580) @ZeeshanTamboli
-- [docs][material-ui] Fixed Google Fonts link for material two-tone icons in CodeSandbox and Stackblitz (#38247) @ZeeshanTamboli
+- [docs][material-ui] Fixed Google Fonts link for material two-tone icons in CodeSandbox and StackBlitz (#38247) @ZeeshanTamboli
 - [docs][material-ui] Fix the Drawer's `onClose` API docs (#38273) @johnmatthiggins
 - [docs][material-ui] Improve nav link tab example (#38315) @oliviertassinari
 - [docs][material-ui] Fix missing import in the styled engine guide (#38450) @codersjj
@@ -2449,7 +2449,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 ### Core
 
 - [changelog] Fix issues in highlight @oliviertassinari
-- [core] Remove redundant `@material-ui/` aliases from regression test Webpack config (#38574) @ZeeshanTamboli
+- [core] Remove redundant `@material-ui/` aliases from regression test webpack config (#38574) @ZeeshanTamboli
 - [core] Fix CI error @oliviertassinari
 - [core] Remove unnecessary Box (#38461) @oliviertassinari
 - [core] Set GitHub Action top level permission @oliviertassinari
@@ -3301,7 +3301,7 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 - [docs] Add summary and improve `test_static` CI doc in CONTRIBUTING readme file (#36711) @kriskw1999
 - [docs] Update theme customization TypeScript (#35551) @siriwatknp
 - [docs] Add Joy Frames X web blocks template (#37203) @siriwatknp
-- [docs] Change Base UI `alpha` to `beta` in README (#37228) @ZeeshanTamboli
+- [docs] Change Base UI `alpha()` to `beta()` in README (#37228) @ZeeshanTamboli
 - [docs] Improve Base UI overview page (#37227) @mnajdova
 - [docs] Update Joy + Material guide (#36911) @cherniavskii
 
@@ -3367,7 +3367,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 ### Core
 
 - [blog] Fix images using "MUI Base" instead of "Base UI" (#37044) @danilo-leal
-- [core] Add VSCode extensions recommendations (#37166) @michaldudak
+- [core] Add VS Code extensions recommendations (#37166) @michaldudak
 - [test] `e2e-website` related minor fixes (#37204) @ZeeshanTamboli
 
 All contributors of this release in alphabetical order: @akash191095, @DanailH, @danilo-leal, @DerTimonius, @gerdadesign, @hbjORbj, @kriskw1999, @michaldudak, @mnajdova, @oliviertassinari, @PunitSoniME, @romgrk, @sai6855, @ulrichstark, @uuxxx, @wewakekumar, @ZeeshanTamboli, @zignis
@@ -3886,7 +3886,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 - [docs] Add blog post notification for v6 release (#36446) @joserodolfofreitas
 - [docs] Update link to v5 docs (#36421) @m4theushw
 - [docs] Fix 404 in the API page links (#36419) @oliviertassinari
-- [docs][joy] Error in the exemplary Codesandbox of using Material UI and Joy UI together (#36462) @hbjORbj
+- [docs][joy] Error in the exemplary CodeSandbox of using Material UI and Joy UI together (#36462) @hbjORbj
 - [examples] Refactor to have better types in the Next.js + TypeScript examples (#36355) @erikian
 
 All contributors of this release in alphabetical order: @erikian, @hbjORbj, @HeVictor, @hrutik7, @joserodolfofreitas, @m4theushw, @michaldudak, @oliviertassinari, @oyar99, @rayrw, @sai6855, @siriwatknp, @skevprog
@@ -5458,7 +5458,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [docs] Fix typo in `Grid` docs (#34475) @Dustin-Digitar
 - [docs] Fix typo in `Back to top` section in AppBar docs (#34479) @Dustin-Digitar
 - [docs] Standardize all "Installation" pages (#34168) @samuelsycamore
-- [docs] Fix Webpack file name to the standard: `webpack.config.js` (#34446) @CodingItWrong
+- [docs] Fix webpack file name to the standard: `webpack.config.js` (#34446) @CodingItWrong
 - [docs] Fix Select `onChange` call (#34408) @siriwatknp
 - [docs] Notification for pickers blog - v5 stable (#34400) @joserodolfofreitas
 - [docs] Improve social sharing of docs pages (#34346) @oliviertassinari
@@ -5909,7 +5909,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [docs] Fix en-US format in the Skeleton demo (#33699) @husseinsaad98
 - [docs] Update module reference for `usePagination` (#33675) @fullstackzach
 - [docs] Fix code examples in `styled` API vs `sx` prop docs (#33665) @ZeeshanTamboli
-- [docs][system] Throw an informative error when `theme.vars` is used in `createTheme` and mention this in the theming docs (#33619) @hbjORbj
+- [docs][system] Throw an informative error when `theme.vars` is used in `createTheme()` and mention this in the theming docs (#33619) @hbjORbj
 
 ### Core
 
@@ -6103,7 +6103,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [docs] Update to React 18 (#33196) @mnajdova
 - [docs] Simplify "Upload button" demo (#33326) @baharalidurrani
 - [docs] Add "refine" demo to showcase (#33240) @omeraplak
-- [docs] Add Webpack alias for legacy utils package (#33376) @jgbae
+- [docs] Add webpack alias for legacy utils package (#33376) @jgbae
 - [docs] Improve external link icons synonyms (#33257) @davidgarciab
 - [examples] Update Base UI with Tailwind CSS to use the latest versions of the dependencies (#33401) @mnajdova
 - [examples] Add Base UI example (#33154) @siriwatknp
@@ -8226,7 +8226,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
 ### Core
 
-- [test] Allow debugging with Chrome and VSCode inspector (#29777) @eps1lon
+- [test] Allow debugging with Chrome and VS Code inspector (#29777) @eps1lon
 - [test] Use renderer clock instead of custom useFakeTimers call (#29778) @eps1lon
 - [test] Only mock Date in regression tests (#29763) @eps1lon
 - [test] Disable nightly integration tests on `next` branch (#29748) @eps1lon
@@ -8762,7 +8762,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [core] Remove code handling JSS components (#28421) @eps1lon
 - [core] Remove unused dependencies (#28468) @eps1lon
 - [core] Ensure both docs bundles are analyzeable (#28410) @eps1lon
-- [core] Switch to Webpack 5 (#28248) @eps1lon
+- [core] Switch to webpack 5 (#28248) @eps1lon
 - [core] Batch small changes (#28177) @oliviertassinari
 - [core] Update publish tag to latest (#28382) @mnajdova
 - [framer] Update @mui/\* dependencies (#28469) @eps1lon
@@ -9147,7 +9147,7 @@ A big thanks to the 26 contributors who made this release possible. Here are som
 - [docs] Consistent line break (#27728) @oliviertassinari
 - [docs] Don't dispatch ignored "reset code variant" actions (#27712) @eps1lon
 - [docs] Fix sentence to be more grammatically correct (#27733) @atorenherrinton
-- [examples] Add code sandbox config with node version (#27798) @qiweiii
+- [examples] Add CodeSandbox config with node version (#27798) @qiweiii
 - Revert "[examples] Fix nextjs with styled-components example (#27583)" (#27921) @mnajdova
 - Revert "[examples] Update create-react-app examples with styled-components to use package aliases (#27591)" (#27917) @mnajdova
 - [I10n] Add Khmer (kh-KH) locale support (#27915) @teachhay
@@ -9483,7 +9483,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [docs] Sort the size in a more logical order (#27186) @oliviertassinari
 - [docs] Use actual link to paperbase (#27063) @eps1lon
 - [docs] Use custom markdown loader for landing page (#27065) @eps1lon
-- [docs] Use Webpack 5 (#27077) @eps1lon
+- [docs] Use webpack 5 (#27077) @eps1lon
 - [examples] Fix CDN warning (#27229) @oliviertassinari
 - [examples] Remove `StyledEngineProvider` as JSS is not used (#27133) @mnajdova
 - [examples] Remove forgotten StyledEngineProvider (#27163) @oliviertassinari
@@ -9612,7 +9612,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 - [docs] Fix /components/hidden merge conflict (#26997) @eps1lon
 - [docs] Fix 404 links (#26963) @oliviertassinari
 - [docs] Remove link that points to v4 blog post (#26960) @steveafrost
-- [docs] Use custom Webpack loader for markdown (#26774) @eps1lon
+- [docs] Use custom webpack loader for markdown (#26774) @eps1lon
 - [docs] Fix 301 links (#26942) @oliviertassinari
 - [docs] Add page for the `sx` prop (#26769) @mnajdova
 - [docs] pre-fill issue when a demo crashes (#27034) @eps1lon
@@ -10448,7 +10448,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
    }
   ```
 
-- [theme] Rename `createMuiTheme` to `createTheme` (#25992) @m4theushw
+- [theme] Rename `createMuiTheme()` to `createTheme()` (#25992) @m4theushw
 
   Developers only need one theme in their application. A prefix would suggest a second theme is needed. It's not the case. `createMuiTheme` will be removed in v6.
 
@@ -11538,7 +11538,7 @@ A big thanks to the 26 contributors who made this release possible. Here are som
 - [docs] Remove under construction icons from DataGrid feature pages (#24946) @DanailH
 - [docs] Fix prefers-color-scheme switch (#24902) @oliviertassinari
 - [docs] Add yarn install step, safer @oliviertassinari
-- [examples] Fix code sandbox link GitHub branch (#24996) @kevbarns
+- [examples] Fix CodeSandbox link GitHub branch (#24996) @kevbarns
 
 ### Core
 
@@ -13019,7 +13019,7 @@ Here are some highlights ✨:
 ### `@material-ui/lab@v5.0.0-alpha.13`
 
 - [TreeView] Fix bundle size link and refactor array spreads (#22992) @joshwooding
-- [TreeView] Fix `alpha` color utility instead of deprecated `fade` (#22978) @joshwooding
+- [TreeView] Fix `alpha()` color utility instead of deprecated `fade()` (#22978) @joshwooding
 - [core] Ship modern bundle (#22814) @eps1lon
 
 ### `@material-ui/utils@v5.0.0-alpha.13`
@@ -14927,7 +14927,7 @@ You can expect similar releases like this one in the coming months.
 
 #### Deprecations
 
-- [theme] Deprecate `fade` color utility in favor of `alpha` (#22837) @mnajdova
+- [theme] Deprecate `fade()` color utility in favor of `alpha()` (#22837) @mnajdova
 - [theme] Deprecate theme.mixins.gutters (#22245) @joshwooding
 - [Avatar] Add circular variant (#22090) @eps1lon
 - [Badge] Add overlap circular and rectangular (#22076) @eps1lon
@@ -15660,7 +15660,7 @@ A big thanks to the 25 contributors who made this release possible.
 - [docs] Improve a11y of the chip array example (#20294) @m4theushw
 - [docs] Refactor markdown parsing (#20549) @eps1lon
 - [docs] Remove old workarounds (#20587) @eps1lon
-- [docs] Remove unnecessary Webpack loaders (#20563) @eps1lon
+- [docs] Remove unnecessary webpack loaders (#20563) @eps1lon
 - [docs] Sync translations (#20498) @oliviertassinari
 - [docs] Use reactStrictMode over custom switch (#20522) @eps1lon
 
@@ -16186,7 +16186,7 @@ A big thanks to the 24 contributors who made this release possible.
 - [docs] Add post-update to examples so they run on CodeSandbox (#19605) @garethx
 - [docs] Fix typo in the Avatar docs (#19544) @UltimateForm
 - [docs] Improve entry points for issue repros (#19501) @eps1lon
-- [docs] Link a VSCode extension for working with Material UI (#19280) @jedwards1211
+- [docs] Link a VS Code extension for working with Material UI (#19280) @jedwards1211
 - [docs] Notification blog post @oliviertassinari
 - [docs] Refactor EnchancedTable demo (#19560) @ahmad-reza619
 - [docs] The error style rule is a pseudo-class (#19555) @TommyJackson85
@@ -22224,7 +22224,7 @@ A big thanks to the 14 contributors who made this release possible.
 - [RaisedButton] Conditionally apply overlay backgroundColor (#9811) @walwoodr
 - [Snackbar] Static properties for reason string constants (#10300) @RavenHursT
 - [TextField] Fix caret position issue (#10214) @MaratFaskhiev
-- Add sideEffects: false for Webpack 4 (#11167) @matthoffner
+- Add sideEffects: false for webpack 4 (#11167) @matthoffner
 
 ### Docs
 
@@ -25082,7 +25082,7 @@ When `withStyles()` is used as a decorator and `strictNullChecks` is enabled, on
 - [types] Better component typing (#8304) @oliviertassinari
 - [styles] Add a new defensive warning (#8341) @oliviertassinari
 - [core] Upgrade the dependencies (#8284) @oliviertassinari
-- [core] Help Webpack doing dead code elimination (#8340) @oliviertassinari
+- [core] Help webpack doing dead code elimination (#8340) @oliviertassinari
 - [core] Add TypeScript in the CI (#8328) @oliviertassinari
 - [typescript] Fix typo in Tooltip (#8271) @Rid
 - [typescript] Fix definitions for BreakpointsOptions (#8285) @peterprice
@@ -25802,7 +25802,7 @@ We do, we have extended the support of React to the 16.0.0-alpha.13 release (aka
 - [docs] Fix typo in class name (#7192) @ossan-engineer
 - [docs] Add supported server section (#7231) @oliviertassinari
 - [docs] Detail the browser support (#7188) @oliviertassinari
-- [docs] Upgrade to Webpack v3 (#7210) @oliviertassinari
+- [docs] Upgrade to webpack v3 (#7210) @oliviertassinari
 - [docs] More documentation on the typography (#7248) @oliviertassinari
 
 ### Core
@@ -26381,7 +26381,7 @@ _Feb 26, 2017_
 
 ### Docs
 
-- [docs] Use Webpack 2 & dll bundle (#6160) @nathanmarks
+- [docs] Use webpack 2 & dll bundle (#6160) @nathanmarks
 - [docs] Improve the user experience on mobile (#6154) @oliviertassinari
 - [docs] Fix the Table examples on mobile (425d8ed47e0282b8c0409517c53e00ef61374b02) @oliviertassinari
 - [docs] Add an API section (#6239) @oliviertassinari
@@ -26391,7 +26391,7 @@ _Feb 26, 2017_
 
 - [core] Fix typos in styles/transitions pointed out in issue (#6175) @Shahrukh-Zindani
 - [core] Lightweight the build (#6152) @oliviertassinari
-- [core] Add exports to index.js for inclusion in Webpack bundle (#6144) @fkretzer
+- [core] Add exports to index.js for inclusion in webpack bundle (#6144) @fkretzer
 - [test] Integration of test suite to run on BrowserStack (#6236) @oliviertassinari
 - [test] Bump vrtest version for exit code fix (1831aa76fe72e9b22a0b82f2a360f860ca89fdce) @nathanmarks
 
@@ -26535,7 +26535,7 @@ You can preview a **very early** version of the `next` branch following [this li
 
 ### Core
 
-- [core] Add support for Webpack 2/Rollup tree shaking in `svg-icons` sub module (#5774)
+- [core] Add support for webpack 2/Rollup tree shaking in `svg-icons` sub module (#5774)
 
 ## 0.16.5
 
@@ -26595,7 +26595,7 @@ This release is intended to solve an [issue](https://github.com/mui/material-ui/
 
 - [ListItem] Fix hover on touch devices (#5566)
 - [core] include `react-tap-event-plugin@^2.0.0` for `react@^15.4.0` (#5572)
-- [core] Add support for Webpack 2/Rollup tree shaking (#5545)
+- [core] Add support for webpack 2/Rollup tree shaking (#5545)
 
 ### Docs
 
@@ -27065,7 +27065,7 @@ _Apr 21, 2016_
 
 ### General
 
-- [.gitignore] Ignore `jsconfig.json` - VSCode config file (#4011)
+- [.gitignore] Ignore `jsconfig.json` - VS Code config file (#4011)
 - [Docs] Update usage docs with muiTheme instructions (#4034)
 - [Docs] Add beta installation details to the README (#4048)
 - [Examples] Update import statements (#3992)

@@ -37,6 +37,7 @@ function filterCommit(commitsItem) {
   return (
     // Filter renovate dependencies updates
     !commitMessage.startsWith('Bump') &&
+    !commitMessage.startsWith('Lock file maintenance') &&
     // Filter website changes, no implications for library users
     !commitMessage.startsWith('[website]')
   );

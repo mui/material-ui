@@ -528,7 +528,12 @@ describe('<MenuList> integration', () => {
       expect(getByText('Arcansas')).toHaveFocus();
     });
 
-    it('should not get focusVisible class on click', async () => {
+    it('should not get focusVisible class on click', async function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+
       const { user, getByText } = render(
         <MenuList>
           <MenuItem focusVisibleClassName="focus-visible">Arizona</MenuItem>

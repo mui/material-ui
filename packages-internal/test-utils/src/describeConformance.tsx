@@ -1,11 +1,15 @@
 /* eslint-env mocha */
-import * as React from 'react';
 import { expect } from 'chai';
+import * as React from 'react';
 import createDescribe from './createDescribe';
 import { MuiRenderResult } from './createRenderer';
 
 function capitalize(string: string): string {
   return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+interface DataProps {
+  [key: `data-${string}`]: string;
 }
 
 export interface SlotTestingOptions {
@@ -63,6 +67,10 @@ export interface ConformanceOptions {
   testLegacyComponentsProp?: boolean;
   slots?: Record<string, SlotTestingOptions>;
   ThemeProvider?: React.ElementType;
+  /**
+   * If provided, the component will be tested by the `DefaultPropsProvider` (in addition to the ThemeProvider).
+   */
+  DefaultPropsProvider?: React.ElementType;
   createTheme?: (arg: any) => any;
 }
 
@@ -91,7 +99,11 @@ function throwMissingPropError(field: string): never {
  * the root component.
  */
 export function testClassName(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<
+    DataProps & {
+      className: string;
+    }
+  >,
   getOptions: () => ConformanceOptions,
 ) {
   it('applies the className to the root component', async () => {
@@ -117,7 +129,12 @@ export function testClassName(
  * Component from @inheritComponent
  */
 export function testComponentProp(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<
+    DataProps & {
+      className: string;
+      component?: string | React.ElementType;
+    }
+  >,
   getOptions: () => ConformanceOptions,
 ) {
   describe('prop: component', () => {
@@ -153,7 +170,13 @@ export function testComponentProp(
  * MUI components spread additional props to its root.
  */
 export function testPropsSpread(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<
+    DataProps & {
+      className: string;
+      component: string | React.ElementType;
+    }
+  >,
+
   getOptions: () => ConformanceOptions,
 ) {
   it(`spreads props to the root component`, async () => {
@@ -183,7 +206,9 @@ export function testPropsSpread(
  * components that forward their ref and attach it to a host component.
  */
 export function describeRef(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<{
+    ref: React.RefObject<any>;
+  }>,
   getOptions: () => ConformanceOptions,
 ) {
   describe('ref', () => {
@@ -208,7 +233,10 @@ export function describeRef(
  * Tests that the root component has the root class
  */
 export function testRootClass(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<{
+    className: string;
+    classes: Record<string, string>;
+  }>,
   getOptions: () => ConformanceOptions,
 ) {
   it('applies the root class to the root component if it has this class', async () => {
@@ -260,7 +288,39 @@ function forEachSlot(
   });
 }
 
-function testSlotsProp(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
+function testSlotsProp(
+  element: React.ReactElement<{
+    className: string;
+    classes: Record<string, string>;
+    slots: {
+      [x: string]:
+        | SlotTestingOptions['testWithComponent']
+        | keyof React.JSX.IntrinsicElements
+        | React.ForwardRefExoticComponent<
+            {
+              children: React.ReactNode;
+            } & React.RefAttributes<HTMLDivElement>
+          >;
+    };
+    components?: {
+      [x: string]:
+        | SlotTestingOptions['testWithComponent']
+        | keyof React.JSX.IntrinsicElements
+        | React.ForwardRefExoticComponent<
+            {
+              children: React.ReactNode;
+            } & React.RefAttributes<HTMLDivElement>
+          >;
+    };
+    slotProps: {
+      [x: string]: DataProps;
+    };
+    componentsProps?: {
+      [x: string]: DataProps;
+    };
+  }>,
+  getOptions: () => ConformanceOptions,
+) {
   const { render, slots, testLegacyComponentsProp } = getOptions();
 
   const CustomComponent = React.forwardRef<
@@ -317,7 +377,9 @@ function testSlotsProp(element: React.ReactElement<any>, getOptions: () => Confo
         const renderedElement = queryByTestId('customized');
         expect(renderedElement).not.to.equal(null);
 
-        expect(renderedElement!.nodeName.toLowerCase()).to.equal(slotElement);
+        if (typeof slotElement === 'string') {
+          expect(renderedElement!.nodeName.toLowerCase()).to.equal(slotElement);
+        }
         if (slotOptions.expectedClassName) {
           expect(renderedElement).to.have.class(slotOptions.expectedClassName);
         }
@@ -421,7 +483,9 @@ function testSlotsProp(element: React.ReactElement<any>, getOptions: () => Confo
           const renderedElement = queryByTestId('customized');
           expect(renderedElement).not.to.equal(null);
 
-          expect(renderedElement!.nodeName.toLowerCase()).to.equal(slotElement);
+          if (typeof slotElement === 'string') {
+            expect(renderedElement!.nodeName.toLowerCase()).to.equal(slotElement);
+          }
           if (slotOptions.expectedClassName) {
             expect(renderedElement).to.have.class(slotOptions.expectedClassName);
           }
@@ -527,6 +591,33 @@ function testSlotPropsCallback(
   forEachSlot(slots, (slotName) => {
     it(`sets custom properties on the ${slotName} slot's element with the slotProps.${slotName} callback`, async () => {
       const slotProps = {
+        [slotName]: () => ({
+          'data-testid': 'custom',
+        }),
+      };
+
+      const { queryByTestId } = await render(
+        React.cloneElement(element, { slotProps, className: 'custom' }),
+      );
+      const slotComponent = queryByTestId('custom');
+      expect(slotComponent).not.to.equal(null);
+    });
+  });
+}
+
+function testSlotPropsCallbackWithPropsAsOwnerState(
+  element: React.ReactElement<any>,
+  getOptions: () => ConformanceOptions,
+) {
+  const { render, slots } = getOptions();
+
+  if (!render) {
+    throwMissingPropError('render');
+  }
+
+  forEachSlot(slots, (slotName) => {
+    it(`sets custom properties on the ${slotName} slot's element with the slotProps.${slotName} callback using the ownerState`, async () => {
+      const slotProps = {
         [slotName]: (ownerState: Record<string, any>) => ({
           'data-testid': ownerState.className,
         }),
@@ -611,6 +702,44 @@ function testThemeDefaultProps(
       expect(container.firstChild).to.have.attribute(testProp, 'testProp');
     });
   });
+
+  describe('default props provider:', () => {
+    it('respect custom default props', async function test(t = {}) {
+      const testProp = 'data-id';
+      const { muiName, render, DefaultPropsProvider } = getOptions();
+
+      if (!DefaultPropsProvider) {
+        // @ts-ignore
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        this?.skip?.() ?? t?.skip();
+      }
+
+      if (!muiName) {
+        throwMissingPropError('muiName');
+      }
+
+      if (!render) {
+        throwMissingPropError('render');
+      }
+
+      const { container } = await render(
+        // @ts-expect-error we skip it above.
+        <DefaultPropsProvider
+          value={{
+            [muiName]: {
+              defaultProps: {
+                [testProp]: 'testProp',
+              },
+            },
+          }}
+        >
+          {element}
+        </DefaultPropsProvider>,
+      );
+
+      expect(container.firstChild).to.have.attribute(testProp, 'testProp');
+    });
+  });
 }
 
 /**
@@ -622,9 +751,11 @@ function testThemeStyleOverrides(
   getOptions: () => ConformanceOptions,
 ) {
   describe('theme style overrides:', () => {
-    it("respect theme's styleOverrides custom state", async function test() {
+    it("respect theme's styleOverrides custom state", async function test(t = {}) {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
+        // @ts-ignore
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        this?.skip?.() ?? t?.skip();
       }
       const { muiName, testStateOverrides, render, ThemeProvider, createTheme } = getOptions();
 
@@ -677,9 +808,11 @@ function testThemeStyleOverrides(
       expect(container.firstChild).to.toHaveComputedStyle(testStyle);
     });
 
-    it("respect theme's styleOverrides slots", async function test() {
+    it("respect theme's styleOverrides slots", async function test(t = {}) {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
+        // @ts-ignore
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        this?.skip?.() ?? t?.skip();
       }
 
       const {
@@ -788,9 +921,11 @@ function testThemeStyleOverrides(
       }
     });
 
-    it('overrideStyles does not replace each other in slots', async function test() {
+    it('overrideStyles does not replace each other in slots', async function test(t = {}) {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
+        // @ts-ignore
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        this?.skip?.() ?? t?.skip();
       }
 
       const { muiName, classes, testStateOverrides, render, ThemeProvider, createTheme } =
@@ -866,9 +1001,11 @@ function testThemeStyleOverrides(
  */
 function testThemeVariants(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
   describe('theme variants:', () => {
-    it("respect theme's variants", async function test() {
+    it("respect theme's variants", async function test(t = {}) {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
+        // @ts-ignore
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        this?.skip?.() ?? t?.skip();
       }
 
       const { muiName, testVariantProps, render, ThemeProvider, createTheme } = getOptions();
@@ -921,9 +1058,11 @@ function testThemeVariants(element: React.ReactElement<any>, getOptions: () => C
       expect(getByTestId('without-props')).not.to.toHaveComputedStyle(testStyle);
     });
 
-    it('supports custom variant', async function test() {
+    it('supports custom variant', async function test(t = {}) {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
+        // @ts-ignore
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        this?.skip?.() ?? t?.skip();
       }
 
       const { muiName, testCustomVariant, render, ThemeProvider, createTheme } = getOptions();
@@ -974,12 +1113,14 @@ function testThemeCustomPalette(
   getOptions: () => ConformanceOptions,
 ) {
   describe('theme extended palette:', () => {
-    it('should render without errors', function test() {
+    it('should render without errors', function test(t = {}) {
       const { render, ThemeProvider, createTheme } = getOptions();
       if (!/jsdom/.test(window.navigator.userAgent) || !render || !ThemeProvider || !createTheme) {
-        this.skip();
+        // @ts-ignore
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        this?.skip?.() ?? t?.skip();
       }
-
+      // @ts-ignore
       const theme = createTheme({
         palette: {
           custom: {
@@ -995,7 +1136,7 @@ function testThemeCustomPalette(
           },
         },
       });
-
+      // @ts-ignore
       expect(() => render(<ThemeProvider theme={theme}>{element}</ThemeProvider>)).not.to.throw();
     });
   });
@@ -1010,6 +1151,7 @@ const fullSuite = {
   rootClass: testRootClass,
   slotPropsProp: testSlotPropsProp,
   slotPropsCallback: testSlotPropsCallback,
+  slotPropsCallbackWithPropsAsOwnerState: testSlotPropsCallbackWithPropsAsOwnerState,
   slotsProp: testSlotsProp,
   themeDefaultProps: testThemeDefaultProps,
   themeStyleOverrides: testThemeStyleOverrides,
@@ -1030,7 +1172,7 @@ function describeConformance(
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
     // Create mocks of localStorage getItem and setItem functions
-    Object.defineProperty(global, 'localStorage', {
+    Object.defineProperty(globalThis, 'localStorage', {
       value: {
         getItem: (key: string) => storage[key],
         setItem: (key: string, value: string) => {
@@ -1062,7 +1204,12 @@ function describeConformance(
     (testKey) => only.includes(testKey) && !skip.includes(testKey as keyof typeof fullSuite),
   ) as (keyof typeof fullSuite)[];
 
-  const slotBasedTests = ['slotsProp', 'slotPropsProp', 'slotPropsCallback'];
+  const slotBasedTests = [
+    'slotsProp',
+    'slotPropsProp',
+    'slotPropsCallback',
+    'slotPropsCallbackWithPropsAsOwnerState',
+  ];
 
   if (!slots) {
     // if `slots` are not defined, do not run tests that depend on them

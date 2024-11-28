@@ -149,7 +149,11 @@ export default function Virtualize() {
       renderGroup={(params) => params}
       slots={{
         popper: StyledPopper,
-        listbox: ListboxComponent,
+      }}
+      slotProps={{
+        listbox: {
+          component: ListboxComponent,
+        },
       }}
     />
   );

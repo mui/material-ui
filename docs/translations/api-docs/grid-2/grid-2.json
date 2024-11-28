@@ -26,5 +26,12 @@
       "description": "Defines the <code>flex-wrap</code> style property. It&#39;s applied for all screen sizes."
     }
   },
-  "classDescriptions": {}
+  "classDescriptions": {
+    "container": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>container={true}</code>"
+    },
+    "root": { "description": "Styles applied to the root element." }
+  }
 }

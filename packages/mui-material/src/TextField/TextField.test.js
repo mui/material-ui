@@ -60,7 +60,12 @@ describe('<TextField />', () => {
           testWithElement: null,
         },
       },
-      only: ['slotsProp', 'slotPropsProp', 'slotPropsCallback'],
+      only: [
+        'slotsProp',
+        'slotPropsProp',
+        'slotPropsCallback', // not supported yet
+        'slotPropsCallbackWithPropsAsOwnerState', // not supported yet
+      ],
     }),
   );
 

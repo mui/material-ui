@@ -110,7 +110,7 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/react-grid2', title: 'Grid v2' },
           { pathname: '/material-ui/react-stack' },
           { pathname: '/material-ui/react-image-list', title: 'Image List' },
-          { pathname: '/material-ui/react-hidden' },
+          { pathname: '/material-ui/react-hidden', deprecated: true },
         ],
       },
       {

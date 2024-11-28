@@ -8,7 +8,7 @@ declare module '@mui/material/styles' {
     poster: React.CSSProperties;
   }
 
-  // allow configuration using `createTheme`
+  // allow configuration using `createTheme()`
   interface TypographyVariantsOptions {
     poster?: React.CSSProperties;
   }
