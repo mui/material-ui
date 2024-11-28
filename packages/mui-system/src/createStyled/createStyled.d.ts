@@ -6,8 +6,6 @@ import {
 import styleFunctionSx, { SxProps } from '../styleFunctionSx';
 import { Theme as DefaultTheme } from '../createTheme';
 
-export { internal_css } from '@mui/styled-engine';
-
 export function shouldForwardProp(propName: PropertyKey): boolean;
 
 export interface MUIStyledCommonProps<Theme extends object = DefaultTheme> {
@@ -46,4 +44,4 @@ export function internal_applyStyled(
   name: string,
   slot: string,
   overridesResolver: Function,
-): string;
+): string | undefined;

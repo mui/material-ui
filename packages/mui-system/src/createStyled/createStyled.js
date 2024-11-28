@@ -251,10 +251,8 @@ export function internal_applyStyled(props, name, slot, overridesResolver) {
       ? applyThemeOverrides(props, name, overridesResolver)
       : [applyThemeOverrides(props, name, overridesResolver), applyThemeVariants(props, name)];
 
-  return styles;
+  return internal_css(styles);
 }
-
-export { internal_css };
 
 function applyThemeOverrides(props, componentName, overridesResolver) {
   const theme = props.theme;
