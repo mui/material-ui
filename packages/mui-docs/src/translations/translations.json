@@ -99,8 +99,6 @@
   "copySourceLinkTS": "Copy link to TypeScript source",
   "dashboardDescr": "A complex data visualization dashboard featuring the MUI X Data Grid and Charts.",
   "dashboardTitle": "Dashboard",
-  "dashboardToolpadTitle": "Functional Dashboard",
-  "dashboardToolpadDescr": "A collection of charts and grids integrated with authentication, layout and navigation. Built using Toolpad Core components.",
   "decreaseSpacing": "decrease spacing",
   "demoToolbarLabel": "demo source",
   "demoStylingSelectSystem": "MUI System",
