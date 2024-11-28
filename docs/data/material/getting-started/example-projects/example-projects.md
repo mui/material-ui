@@ -23,6 +23,10 @@ See [Start a New React Project](https://react.dev/learn/start-a-new-react-projec
 
 Once you've chosen your preferred scaffold above, you could move on to our collection of [free templates](/material-ui/getting-started/templates/) and install a readymade user interface to get started even faster.
 
+:::info
+If you're looking to build internal tools and dashboards quickly, head to [Toolpad Core templates](/material-ui/getting-started/templates/#toolpad-core) to see examples of functional apps with authentication, routing and theming already integrated.
+:::
+
 ## Premium themes and templates
 
 For more complex prebuilt UIs, check out our [premium themes and templates](https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=example-projects-store) in the MUI Store.
