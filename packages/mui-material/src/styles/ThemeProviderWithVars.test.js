@@ -408,4 +408,31 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       fireEvent.click(screen.getByText('Dark'));
     }).not.toErrorDev();
   });
+
+  it('theme should remain the same when ThemeProvider rerenders', () => {
+    const theme = createTheme({ cssVariables: true });
+
+    function Inner() {
+      const upperTheme = useTheme();
+      const [count, setCount] = React.useState(0);
+      React.useEffect(() => {
+        setCount((prev) => prev + 1);
+      }, [upperTheme]);
+      return <span data-testid="inner">{count}</span>;
+    }
+    function App() {
+      const [count, setCount] = React.useState(0);
+      return (
+        <ThemeProvider theme={theme}>
+          <button onClick={() => setCount(count + 1)}>rerender</button>
+          <Inner />
+        </ThemeProvider>
+      );
+    }
+    render(<App />);
+
+    fireEvent.click(screen.getByRole('button'));
+
+    expect(screen.getByTestId('inner')).to.have.text('2'); // due to double rendering
+  });
 });
