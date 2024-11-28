@@ -414,3 +414,13 @@ If you provide a custom `ListboxComponent` prop, you need to make sure that the 
 
 We encourage the usage of a label for the textbox.
 The component implements the WAI-ARIA authoring practices.
+
+## My Learning
+
+While exploring the Autocomplete component in Material UI, I focused on the renderInput prop, which allows customization of the input field used within Autocomplete. Specifically, I learned that:
+
+1. **renderInput** accepts a function that receives a `params` object, which contains props that should be forwarded to the input element, including `InputLabelProps`, `InputProps`, and `inputProps`.
+2. The **TextField** component is typically used in conjunction with renderInput because it integrates with Material UI's input handling, such as label handling, validation, and styling.
+3. I also learned how to use custom input components with Autocomplete by forwarding the necessary props from the params object.
+
+This commit serves as a documentation of my exploration of the `renderInput` feature and how it fits into the Autocomplete component in Material UI.
