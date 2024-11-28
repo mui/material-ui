@@ -48,6 +48,13 @@ export function internal_mutateStyles(tag, processor) {
   }
 }
 
+// Not needed anymore, but fixes https://github.com/mui/material-ui/issues/44112
+// TODO: Remove it in v7
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function internal_processStyles(tag, processor) {
+  return internal_mutateStyles(tag, processor);
+}
+
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function internal_serializeStyles(styles) {
   return styles;

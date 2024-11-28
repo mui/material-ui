@@ -132,6 +132,21 @@ To instantly switch between color schemes with no transition, apply the `disable
 </ThemeProvider>
 ```
 
+## Disable double rendering
+
+By default, the `ThemeProvider` rerenders when the theme contains light **and** dark color schemes to prevent SSR hydration mismatches.
+
+To disable this behavior, use the `noSsr` prop:
+
+```jsx
+<ThemeProvider theme={theme} noSsr>
+```
+
+`noSsr` is useful if you are building:
+
+- A client-only application, such as a single-page application (SPA). This prop will optimize the performance and prevent the dark mode flickering when users refresh the page.
+- A server-rendered application with [Suspense](https://react.dev/reference/react/Suspense). However, you must ensure that the server render output matches the initial render output on the client.
+
 ## Setting the default mode
 
 When `colorSchemes` is provided, the default mode is `system`, which means the app uses the system preference when users first visit the site.

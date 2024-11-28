@@ -82,6 +82,13 @@ export function internal_mutateStyles(
   processor: (styles: any) => any,
 ): void;
 
+/** Not needed anymore, but fixes https://github.com/mui/material-ui/issues/44112
+ * TODO: Remove it in v7 */
+export function internal_processStyles(
+  tag: React.ElementType,
+  processor: (styles: any) => any,
+): void;
+
 export function internal_serializeStyles<P>(styles: Interpolation<P>): object;
 
 export function internal_css<P>(styles: Interpolation<P>): string | undefined;

@@ -1,6 +1,159 @@
 # [Versions](https://mui.com/versions/)
 
-## 6.1.6
+## 6.1.9
+
+<!-- generated comparing v6.1.8..master -->
+
+_Nov 27, 2024_
+
+A big thanks to the 8 contributors who made this release possible.
+
+### `@mui/material@6.1.9`
+
+- [Select] Omit `placeholder` from props (#44502) @Juneezee
+- [Grid2] Add container class to `Grid2Classes` (#44562) @sai6855
+
+### `@mui/system@6.1.9`
+
+- Add ThemeProvider `noSsr` to prevent double rendering (#44451) @siriwatknp
+
+### `@mui/codemod@6.1.9`
+
+- [codemod] Fix handling of computed `paragraph` props (#44195) @joshkel
+
+### `@mui/material-pigment-css@6.1.9`
+
+- Make @pigment-css/react as peer dependency (#44498) @brijeshb42
+
+### Docs
+
+- [material-ui] Add missing required dependencies in dashboard template README (#44476) @mesqueeb
+- [material-ui] Add missing Roboto import to Next.js integration docs (#44462) @StaceyD22
+- [material-ui][Dialog] Fix padding in SimpleDialog demo (#44467) @oliviertassinari
+- Fix template page issues (#44466) @oliviertassinari
+- [examples] Add dark mode example for Material UI + Pigment CSS (#44480) @mnajdova
+
+### Core
+
+- Remove TODO line in the changelog (#44484) @mnajdova
+- Polish image display (418e888) @oliviertassinari
+- [core-infra] Add no-relative-packages (#44489) @oliviertassinari
+- [docs-infra] Support CSS variables API info (#44559) @mnajdova
+- [docs-infra] Fix display when ad-block triggers (#44567) @oliviertassinari
+- [docs-infra] Improve locator finding using visible option (#44541) @siriwatknp
+- [docs-infra] Correctly flatten the pages tree (#44514) @oliviertassinari
+- [docs-infra] Fix Sponsor design regression (#44515) @oliviertassinari
+- [test] Remove React.ReactElement<any> from describeConformance.tsx (#44318) @sai6855
+- [test] Do not enforce the presence of `ownerState.className` in `describeConformance` (#44479) @flaviendelangle
+
+All contributors of this release in alphabetical order: @brijeshb42, @flaviendelangle, @joshkel, @Juneezee, @mesqueeb, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp, @StaceyD22
+
+## v6.1.8
+
+<!-- generated comparing v6.1.7..master -->
+
+_Nov 20, 2024_
+
+A big thanks to the 10 contributors who made this release possible.
+
+### `@mui/material@6.1.8`
+
+- [Autocomplete] Use `ul` element for the listbox (#44422) @DiegoAndai
+- [Grid2] Remove item and zeroMinWidth classes from grid2Classes (#44419) @sai6855
+- [StepIcon] Add SvgIconOwnProps type to StepIcon props (#44337) @sai6855
+- Add generic back to `useMediaQuery` to prevent a breaking change (#44455) @siriwatknp
+- [Tooltip] Deprecate `*Component` and `*Props` for v6 (#44350) @siriwatknp
+
+### `@mui/system@6.1.8`
+
+- Warn when calling `setMode` without configuring `colorSchemeSelector` (#43783) @siriwatknp
+
+### `@mui/styled-engine@6.1.8`
+
+- Add back removed internal function (#44421) @mnajdova
+
+### `@mui/utils@6.1.8`
+
+- Skip deep clone React element (#44400) @siriwatknp
+- Add documentation to `useForkRef` (#44410) @JCQuintas
+
+### Docs
+
+- [Accordion] Replace hardcoded classes with constants in demos (#44453) @ZeeshanTamboli
+- [material-ui][Autocomplete] Fix virtualization demo (#44382) @DiegoAndai
+- Revert #44388 (#44454) @prakhargupta1
+- Add App starters in related-projects.md (#44315) @oliviertassinari
+- Bring back `*Component` and `*Props` codemods and deprecation messages (#44383) @DiegoAndai
+- [docs] Copyedit Templates page (#44461) @samuelsycamore
+
+### Core
+
+- Remove `stylis-plugin-rtl-sc` (#44447) @renovate[bot]
+- [test][Autocomplete] Make virtualize regression screenshots deterministic (#44425) @DiegoAndai
+- [blog] Fix reference to subdomain on MUI X v8 alpha zero post (#44416) @joserodolfofreitas
+- [blog] MUI X v8 alpha zero blog post (#44377) @joserodolfofreitas
+- [code-infra] Use vitest-compatible skip in `describeConformance` (#44412) @JCQuintas
+- Keep OpenSSF badge up-to-date (aef2bf2) @oliviertassinari
+- Polish useForkRef docs (#44424) @oliviertassinari
+- [infra] Upgrade Cherry-pick workflow to latest (#44448) @oliviertassinari
+
+All contributors of this release in alphabetical order: @DiegoAndai, @JCQuintas, @joserodolfofreitas, @mnajdova, @oliviertassinari, @prakhargupta1, @sai6855, samuelsycamore, @siriwatknp, @ZeeshanTamboli
+
+## v6.1.7
+
+<!-- generated comparing v6.1.6..master -->
+
+_Nov 13, 2024_
+
+A big thanks to the 13 contributors who made this release possible.
+This release includes fixes as well as documentation improvements.
+
+### `@mui/material@6.1.7`
+
+- Fix default props theme scoping (#44340) @siriwatknp
+- Support theme scoping in `useMediaQuery` (#44339) @siriwatknp
+- [Grid] Fix regression spacing prop with string value (#44376) @siriwatknp
+
+### `@mui/styled-engine-sc@6.1.7`
+
+- Fix missing `@types/hoist-non-react-statics` causing `styled` returns any (#44397) @megos
+
+### Docs
+
+- Replace 'Experimental APIs - Toolpad' with 'Toolpad (Beta)' (#44388) @prakhargupta1
+- Fix Pigment CSS install (#44353) @oliviertassinari
+- Fix dashboard menu warning (#44317) @siriwatknp
+- Add runtime theme section for Material Pigment CSS (#44137) @siriwatknp
+- Add hash to `key` to remove noise from console (#44289) @sai6855
+- Revise Example Projects and Related Projects pages (#44191) @samuelsycamore
+- [material-ui] Fix typo in typography theme set up for templates (#44338) @navedqb
+- [material-ui] Add StackBlitz/CodeSandbox buttons to template cards (#44253) @zanivan
+- [material-ui] Fix Sign-in/Sign-up templates layout (#44281) @zanivan
+- [material-ui] Remove noise in template (#44260) @oliviertassinari
+- [material-ui][Rating] Add uncontrolled example to Basic Rating demo (#44386) @sai6855
+- [material-ui][TextField] Replace InputProps with slotProps.input in demo (#44288) @sai6855
+
+### Core
+
+- [blog] Follow media asset guidelines (#44374) @oliviertassinari
+- [code-infra] Changes for test util to work in `vitest` (#43625) @JCQuintas
+- Remove old marked JS options (#44375) @ZeeshanTamboli
+- Fix webpack capitalization (#44352) @oliviertassinari
+- Fix Next.js link 404 (710cd95) @oliviertassinari
+- Update Gold sponsoring backlinks (#44316) @oliviertassinari
+- Fix tools-public.mui.com redirection (9196fa5) @oliviertassinari
+- Remove blank AlertTitle test file (#44282) @ZeeshanTamboli
+- [docs-infra] Fix ad in RTL (#44345) @oliviertassinari
+- [docs-infra] Enforce punctuation on descriptions (#44292) @oliviertassinari
+- [docs-infra] Add CodeSandbox and StackBlitz to vale vocab (6db477a) @oliviertassinari
+- [docs-infra] Fix correct spelling of VS Code (#44277) @oliviertassinari
+- [docs-infra] Add a `rawDescriptions` option (#44390) @vladmoroz
+- [examples] Add missing `clsx` dependency (#43526) @Janpot
+- [infra] Fix @renovate[bot] appearing in changelog (#44275) @mnajdova
+
+All contributors of this release in alphabetical order: @Janpot, @JCQuintas, @megos, @mnajdova, @navedqb, @oliviertassinari, @prakhargupta1, @sai6855, @samuelsycamore, @siriwatknp, @vladmoroz, @zanivan, @ZeeshanTamboli
+
+## v6.1.6
 
 <!-- generated comparing v6.1.5..master -->
 
@@ -52,7 +205,7 @@ A big thanks to the 13 contributors who made this release possible.
 
 All contributors of this release in alphabetical order: @aarongarciah, @blackcow1987, @DiegoAndai, @jimmycallin, @joshkel, @mnajdova, @navedqb, @nphmuller, @o-alexandrov, @oliviertassinari, @prakhargupta1, @sai6855, @siriwatknp
 
-## 6.1.5
+## v6.1.5
 
 <!-- generated comparing v6.1.4..master -->
 
@@ -84,7 +237,7 @@ A big thanks to the 9 contributors who made this release possible.
 - [material-ui][TextField] Dynamically modify the eye password button aria-label (#44122) @ChinoUkaegbu
 - [icons] Run pnpm docs:mdicons:synonyms (#44098) @oliviertassinari
 - [joy-ui] Update Overview copy to match Readme (#44136) @samuelsycamore
-- Add CodeSandbox/Stackblitz to the rest of the templates (#43708) @siriwatknp
+- Add CodeSandbox/StackBlitz to the rest of the templates (#43708) @siriwatknp
 - Update Figma link to fix 301 (a7b7d9c) @oliviertassinari
 - Link Toolpad from Core repo (#44111) @prakhargupta1
 - Remove HighlightedCode max-width (#43731) @Janpot
@@ -254,7 +407,7 @@ A big thanks to the 13 contributors who made this release possible.
 - Uniformity in version range @oliviertassinari
 - Replace `toBeAriaHidden` matcher with `toBeInaccessible` in tests (#43870) @ZeeshanTamboli
 - [docs-infra] Strengthen CSP (#43711) @oliviertassinari
-- [docs-infra] Open Codesandbox demo with fontsize=12 (#43860) @siriwatknp
+- [docs-infra] Open CodeSandbox demo with fontsize=12 (#43860) @siriwatknp
 - [icons] Reduce Material Icon page size (#43911) @oliviertassinari
 - [test] Point Istanbul to correct URL (#43935) @sai6855
 - [test] Sync React.version parse logic with codebase (#43820) @oliviertassinari
