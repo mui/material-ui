@@ -73,7 +73,7 @@ const StyledInputRoot = styled('div')(
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  box-shadow: 0 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
   display: grid;
   grid-template-columns: 1fr 19px;
   grid-template-rows: 1fr 1fr;
@@ -90,7 +90,7 @@ const StyledInputRoot = styled('div')(
     border-color: ${blue[400]};
   }
 
-  // firefox
+  /* firefox */
   &:focus-visible {
     outline: 0;
   }
@@ -148,6 +148,7 @@ const StyledButton = styled('button')(
     border-top-right-radius: 4px;
     border: 1px solid;
     border-bottom: 0;
+
     &:hover {
       cursor: pointer;
       background: ${blue[400]};
@@ -165,6 +166,7 @@ const StyledButton = styled('button')(
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
     border: 1px solid;
+
     &:hover {
       cursor: pointer;
       background: ${blue[400]};
@@ -175,6 +177,7 @@ const StyledButton = styled('button')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
   color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
   }
+
   & .arrow {
     transform: translateY(-1px);
   }
