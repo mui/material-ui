@@ -109,8 +109,7 @@ const TabsList = styled(BaseTabsList)(
   gap: 12px;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  align-content: space-between;
-  box-shadow: 0px 4px 8px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  place-content: space-between center;
+  box-shadow: 0 4px 8px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
   `,
 );
