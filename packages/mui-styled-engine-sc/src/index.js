@@ -53,6 +53,14 @@ export function internal_serializeStyles(styles) {
   return styles;
 }
 
+export function internal_css() {
+  throw new Error(
+    "MUI: The components you are using don't support using `styled-components` for rendering anymore. " +
+      'We recommend using the default `emotion` renderer. ' +
+      'Please open an issue if you need further assistance.',
+  );
+}
+
 export { ThemeContext, keyframes, css } from 'styled-components';
 export { default as StyledEngineProvider } from './StyledEngineProvider';
 export { default as GlobalStyles } from './GlobalStyles';

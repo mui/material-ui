@@ -45,8 +45,13 @@ export function internal_serializeStyles(styles) {
   return emSerializeStyles(wrapper);
 }
 
+const EMPTY_CLASSNAME = emCss(null);
 export function internal_css(styles) {
-  return emCss(styles);
+  const result = emCss(styles);
+  if (result === EMPTY_CLASSNAME) {
+    return undefined;
+  }
+  return result;
 }
 
 export { ThemeContext, keyframes, css } from '@emotion/react';

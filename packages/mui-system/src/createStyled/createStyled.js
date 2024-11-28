@@ -244,8 +244,6 @@ export default function createStyled(input = {}) {
   return styled;
 }
 
-const EMPTY_CLASSNAME = internal_css(null);
-
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function internal_applyStyled(props, name, slot, overridesResolver) {
   const styles =
@@ -253,12 +251,10 @@ export function internal_applyStyled(props, name, slot, overridesResolver) {
       ? applyThemeOverrides(props, name, overridesResolver)
       : [applyThemeOverrides(props, name, overridesResolver), applyThemeVariants(props, name)];
 
-  const result = internal_css(styles);
-  if (result === EMPTY_CLASSNAME) {
-    return '';
-  }
-  return result;
+  return styles;
 }
+
+export { internal_css };
 
 function applyThemeOverrides(props, componentName, overridesResolver) {
   const theme = props.theme;

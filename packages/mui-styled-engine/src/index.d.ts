@@ -11,7 +11,7 @@ export { default as StyledEngineProvider } from './StyledEngineProvider';
 export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
 
-/* eslint-disable-next-line @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/naming-convention */
 
 export type MUIStyledComponent<
   ComponentProps extends {},
@@ -29,7 +29,7 @@ export function internal_mutateStyles(
 
 export function internal_serializeStyles<P>(styles: Interpolation<P>): object;
 
-export function internal_css<P>(styles: Interpolation<P>): string;
+export function internal_css<P>(styles: Interpolation<P>): string | undefined;
 
 export interface SerializedStyles {
   name: string;
