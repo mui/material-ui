@@ -8,7 +8,7 @@ const parseProperty = async (
   project: TypeScriptProject,
   name: string,
 ): Promise<ParsedProperty> => ({
-  name: name,
+  name,
   description: getSymbolDescription(propertySymbol, project),
   tags: getSymbolJSDocTags(propertySymbol),
   required: !propertySymbol.declarations?.find(isPropertySignature)?.questionToken,
