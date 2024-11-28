@@ -645,7 +645,7 @@ const attachCssVariables = (reactApi: ComponentReactApi, params: ParsedProperty[
       const deprecation = deprecationTag?.text?.[0]?.text;
 
       const typeTag = propDescriptor.tags?.type;
-      const type = typeTag?.text?.[0]?.text ?? 'string';
+      const type = (typeTag?.text?.[0]?.text ?? 'string').replace(/{|}/g, '');
 
       return {
         name: propName,
