@@ -68,6 +68,21 @@ export const ButtonBaseRoot = styled('button', {
   },
 });
 
+function useRippleHandler(ripple, rippleAction, eventCallback, skipRippleAction = false) {
+  return useEventCallback((event) => {
+    if (eventCallback) {
+      eventCallback(event);
+    }
+
+    const ignore = skipRippleAction;
+    if (!ignore) {
+      ripple[rippleAction](event);
+    }
+
+    return true;
+  });
+}
+
 /**
  * `ButtonBase` contains as few styles as possible.
  * It aims to be a simple building block for creating a button.
@@ -137,38 +152,29 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     }
   }, [disableRipple, focusRipple, focusVisible, ripple]);
 
-  function useRippleHandler(rippleAction, eventCallback, skipRippleAction = disableTouchRipple) {
-    return useEventCallback((event) => {
-      if (eventCallback) {
-        eventCallback(event);
+  const handleMouseDown = useRippleHandler(ripple, 'start', onMouseDown, disableTouchRipple);
+  const handleContextMenu = useRippleHandler(ripple, 'stop', onContextMenu, disableTouchRipple);
+  const handleDragLeave = useRippleHandler(ripple, 'stop', onDragLeave, disableTouchRipple);
+  const handleMouseUp = useRippleHandler(ripple, 'stop', onMouseUp, disableTouchRipple);
+  const handleMouseLeave = useRippleHandler(
+    ripple,
+    'stop',
+    (event) => {
+      if (focusVisible) {
+        event.preventDefault();
       }
-
-      const ignore = skipRippleAction;
-      if (!ignore) {
-        ripple[rippleAction](event);
+      if (onMouseLeave) {
+        onMouseLeave(event);
       }
-
-      return true;
-    });
-  }
-
-  const handleMouseDown = useRippleHandler('start', onMouseDown);
-  const handleContextMenu = useRippleHandler('stop', onContextMenu);
-  const handleDragLeave = useRippleHandler('stop', onDragLeave);
-  const handleMouseUp = useRippleHandler('stop', onMouseUp);
-  const handleMouseLeave = useRippleHandler('stop', (event) => {
-    if (focusVisible) {
-      event.preventDefault();
-    }
-    if (onMouseLeave) {
-      onMouseLeave(event);
-    }
-  });
-  const handleTouchStart = useRippleHandler('start', onTouchStart);
-  const handleTouchEnd = useRippleHandler('stop', onTouchEnd);
-  const handleTouchMove = useRippleHandler('stop', onTouchMove);
+    },
+    disableTouchRipple,
+  );
+  const handleTouchStart = useRippleHandler(ripple, 'start', onTouchStart, disableTouchRipple);
+  const handleTouchEnd = useRippleHandler(ripple, 'stop', onTouchEnd, disableTouchRipple);
+  const handleTouchMove = useRippleHandler(ripple, 'stop', onTouchMove, disableTouchRipple);
 
   const handleBlur = useRippleHandler(
+    ripple,
     'stop',
     (event) => {
       if (!isFocusVisible(event.target)) {
