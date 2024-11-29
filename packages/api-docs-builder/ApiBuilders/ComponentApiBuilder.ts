@@ -819,7 +819,11 @@ export default async function generateComponentApi(
 
   reactApi.deprecated = !!deprecation || undefined;
 
-  const cssVars = await extractInfoFromEnum(`${componentInfo.name}CssVars`, project);
+  const cssVars = await extractInfoFromEnum(
+    `${componentInfo.name}CssVars`,
+    new RegExp(`${componentInfo.name}(CssVars|Classes)?\.tsx?$`, 'i'),
+    project,
+  );
 
   attachPropsTable(reactApi, projectSettings.propsSettings);
   attachCssVariables(reactApi, cssVars);

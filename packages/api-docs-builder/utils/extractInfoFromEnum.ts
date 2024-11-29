@@ -1,4 +1,4 @@
-import { Symbol, isPropertySignature } from 'typescript';
+import { Symbol, isPropertySignature, isEnumDeclaration, forEachChild } from 'typescript';
 import { TypeScriptProject } from './createTypeScriptProject';
 import { ParsedProperty } from '../types/ApiBuilder.types';
 import { getSymbolDescription, getSymbolJSDocTags, stringifySymbol } from '../buildApiUtils';
@@ -17,21 +17,37 @@ const parseProperty = async (
 
 const extractInfoFromEnum = async (
   typeName: string,
+  sourceFileNamePattern: RegExp,
   project: TypeScriptProject,
 ): Promise<ParsedProperty[]> => {
   // Generate the params
   let result: ParsedProperty[] = [];
 
   try {
-    const exportedSymbol = project.exports[typeName];
-    const type = project.checker.getDeclaredTypeOfSymbol(exportedSymbol);
+    const cssVarDeclarationCandidates = project.program
+      .getSourceFiles()
+      .filter((file) => sourceFileNamePattern.test(file.fileName));
+
+    let enumSymbol: Symbol | null = null;
+    cssVarDeclarationCandidates.forEach((file) => {
+      forEachChild(file, (node: ts.Node) => {
+        if (isEnumDeclaration(node) && node.name.getText() === typeName) {
+          enumSymbol = project.checker.getSymbolAtLocation(node.name)!;
+        }
+      });
+    });
+
+    if (!enumSymbol) {
+      return [];
+    }
+
+    const type = project.checker.getDeclaredTypeOfSymbol(enumSymbol!);
 
     // @ts-ignore
     const typeDeclaration = type?.types ?? [type];
     if (!typeDeclaration) {
       return [];
     }
-
     const properties: Record<string, ParsedProperty> = {};
 
     // @ts-ignore
