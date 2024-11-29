@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
+import { ThemeProvider, THEME_ID, createTheme } from '@mui/material/styles';
 import Grid2, { grid2Classes as classes } from '@mui/material/Grid2';
 import describeConformance from '../../test/describeConformance';
 
@@ -20,4 +22,17 @@ describe('<Grid2 />', () => {
     testVariantProps: { container: true, spacing: 5 },
     skip: ['componentsProp', 'classesRoot'],
   }));
+
+  it('should not crash with theme scoping', () => {
+    expect(() =>
+      render(
+        <ThemeProvider theme={{ [THEME_ID]: createTheme() }}>
+          <Grid2 container spacing={2}>
+            <Grid2 size={{ xs: 12, md: 6 }}>6</Grid2>
+            <Grid2 size={{ xs: 12, md: 6 }}>6</Grid2>
+          </Grid2>
+        </ThemeProvider>,
+      ),
+    ).not.throw();
+  });
 });
