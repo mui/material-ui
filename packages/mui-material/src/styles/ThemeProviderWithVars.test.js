@@ -414,17 +414,21 @@ describe('[Material UI] ThemeProviderWithVars', () => {
 
     function Inner() {
       const upperTheme = useTheme();
-      const [count, setCount] = React.useState(0);
+      const themeRef = React.useRef(upperTheme);
+      const [changed, setChanged] = React.useState(false);
       React.useEffect(() => {
-        setCount((prev) => prev + 1);
+        if (themeRef.current !== upperTheme) {
+          setChanged(true);
+        }
       }, [upperTheme]);
-      return <span data-testid="inner">{count}</span>;
+      return changed ? <div data-testid="theme-changed" /> : null;
     }
     function App() {
-      const [count, setCount] = React.useState(0);
+      const [, setState] = React.useState({});
+      const rerender = () => setState({});
       return (
         <ThemeProvider theme={theme}>
-          <button onClick={() => setCount(count + 1)}>rerender</button>
+          <button onClick={() => rerender()}>rerender</button>
           <Inner />
         </ThemeProvider>
       );
@@ -433,6 +437,6 @@ describe('[Material UI] ThemeProviderWithVars', () => {
 
     fireEvent.click(screen.getByRole('button'));
 
-    expect(screen.getByTestId('inner')).to.have.text('2'); // due to double rendering
+    expect(screen.queryByTestId('theme-changed')).to.equal(null);
   });
 });
