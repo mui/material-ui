@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { createRenderer } from '@mui/internal-test-utils';
 import Grid2, { grid2Classes as classes } from '@mui/material/Grid2';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { expect } from 'chai';
 import describeConformance from '../../test/describeConformance';
-import { createTheme, ThemeProvider } from '..';
 
 // The main tests are in mui-system Grid folder
 describe('<Grid2 />', () => {
