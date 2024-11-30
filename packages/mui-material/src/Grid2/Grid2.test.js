@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import Grid2, { grid2Classes as classes } from '@mui/material/Grid2';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { expect } from 'chai';
@@ -24,8 +24,8 @@ describe('<Grid2 />', () => {
   }));
 
   it('should render with the container class', () => {
-    const { getByTestId } = render(<Grid2 data-testid="grid" container />);
-    expect(getByTestId('grid')).to.have.class(classes.container);
+    render(<Grid2 data-testid="grid" container />);
+    expect(screen.getByTestId('grid')).to.have.class(classes.container);
   });
 
   it('should have container styles passed from theme', () => {
@@ -40,13 +40,13 @@ describe('<Grid2 />', () => {
         },
       },
     });
-    const { getByTestId } = render(
+    render(
       <ThemeProvider theme={theme}>
         <Grid2 data-testid="grid" container>
           hello
         </Grid2>
       </ThemeProvider>,
     );
-    expect(getByTestId('grid')).to.have.style('padding', '11px');
+    expect(screen.getByTestId('grid')).to.have.style('padding', '11px');
   });
 });
