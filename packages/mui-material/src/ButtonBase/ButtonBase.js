@@ -68,21 +68,6 @@ export const ButtonBaseRoot = styled('button', {
   },
 });
 
-function useRippleHandler(ripple, rippleAction, eventCallback, skipRippleAction = false) {
-  return useEventCallback((event) => {
-    if (eventCallback) {
-      eventCallback(event);
-    }
-
-    const ignore = skipRippleAction;
-    if (!ignore) {
-      ripple[rippleAction](event);
-    }
-
-    return true;
-  });
-}
-
 /**
  * `ButtonBase` contains as few styles as possible.
  * It aims to be a simple building block for creating a button.
@@ -331,6 +316,20 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     </ButtonBaseRoot>
   );
 });
+
+function useRippleHandler(ripple, rippleAction, eventCallback, skipRippleAction = false) {
+  return useEventCallback((event) => {
+    if (eventCallback) {
+      eventCallback(event);
+    }
+
+    if (!skipRippleAction) {
+      ripple[rippleAction](event);
+    }
+
+    return true;
+  });
+}
 
 ButtonBase.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
