@@ -27,6 +27,7 @@ export interface Color {
   A700: string;
 }
 
+export {};
 // use standalone interface over typeof colors/commons
 // to enable module augmentation
 export interface CommonColors {
