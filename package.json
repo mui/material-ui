@@ -184,7 +184,7 @@
     "nyc": "^17.1.0",
     "piscina": "^4.7.0",
     "postcss-styled-syntax": "^0.7.0",
-    "prettier": "^3.3.3",
+    "prettier": "^3.4.1",
     "pretty-quick": "^4.0.0",
     "process": "^0.11.10",
     "rimraf": "^6.0.1",
