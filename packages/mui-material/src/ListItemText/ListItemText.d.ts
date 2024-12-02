@@ -7,13 +7,13 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface ListItemTextSlots {
   /**
-   * The component that renders the main content.
-   * @default span
+   * The component that renders the primary slot.
+   * @default Typography
    */
   primary?: React.ElementType;
   /**
-   * The component that renders the main content.
-   * @default p
+   * The component that renders the secondary slot.
+   * @default Typography
    */
   secondary?: React.ElementType;
 }
@@ -21,8 +21,16 @@ export interface ListItemTextSlots {
 export type ListItemTextSlotsAndSlotProps = CreateSlotsAndSlotProps<
   ListItemTextSlots,
   {
-    primary: SlotProps<React.ElementType<HTMLSpanElement>, {}, ListItemTextOwnerState>;
-    secondary: SlotProps<React.ElementType<HTMLParagraphElement>, {}, ListItemTextOwnerState>;
+    /**
+     * Props for the primary slot
+     * By default, the available props are based on the [Typography](https://mui.com/material-ui/api/typography/#props) component
+     */
+    primary: SlotProps<React.ElementType<TypographyProps>, {}, ListItemTextOwnerState>;
+    /**
+     * Props for the secondary slot
+     * By default, the available props are based on the [Typography](https://mui.com/material-ui/api/typography/#props) component
+     */
+    secondary: SlotProps<React.ElementType<TypographyProps>, {}, ListItemTextOwnerState>;
   }
 >;
 
