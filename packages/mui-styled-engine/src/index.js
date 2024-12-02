@@ -3,7 +3,7 @@ import emStyled from '@emotion/styled';
 import { css as emCss } from '@emotion/css';
 import { serializeStyles as emSerializeStyles } from '@emotion/serialize';
 
-/* eslint-disable-next-line @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/naming-convention */
 
 export default function styled(tag, options) {
   const stylesFactory = emStyled(tag, options);
