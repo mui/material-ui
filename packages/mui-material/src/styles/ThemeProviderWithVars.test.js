@@ -408,4 +408,35 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       fireEvent.click(screen.getByText('Dark'));
     }).not.toErrorDev();
   });
+
+  it('theme should remain the same when ThemeProvider rerenders', () => {
+    const theme = createTheme({ cssVariables: true });
+
+    function Inner() {
+      const upperTheme = useTheme();
+      const themeRef = React.useRef(upperTheme);
+      const [changed, setChanged] = React.useState(false);
+      React.useEffect(() => {
+        if (themeRef.current !== upperTheme) {
+          setChanged(true);
+        }
+      }, [upperTheme]);
+      return changed ? <div data-testid="theme-changed" /> : null;
+    }
+    function App() {
+      const [, setState] = React.useState({});
+      const rerender = () => setState({});
+      return (
+        <ThemeProvider theme={theme}>
+          <button onClick={() => rerender()}>rerender</button>
+          <Inner />
+        </ThemeProvider>
+      );
+    }
+    render(<App />);
+
+    fireEvent.click(screen.getByRole('button'));
+
+    expect(screen.queryByTestId('theme-changed')).to.equal(null);
+  });
 });
