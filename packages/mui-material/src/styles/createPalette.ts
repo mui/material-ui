@@ -419,10 +419,10 @@ export default function createPalette(palette: PaletteOptions): Palette {
     return colorInput;
   };
 
-  let modeHydrated;
+  let modeHydrated: ReturnType<typeof getLight> | ReturnType<typeof getDark>;
   if (mode === 'light') {
     modeHydrated = getLight();
-  } else if (mode === 'dark') {
+  } else {
     modeHydrated = getDark();
   }
 
@@ -473,7 +473,7 @@ export default function createPalette(palette: PaletteOptions): Palette {
       ...modeHydrated,
     },
     other,
-  ) as Palette;
+  );
 
   return paletteOutput;
 }
