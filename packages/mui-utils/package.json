@@ -50,7 +50,7 @@
     "@mui/types": "workspace:^",
     "@types/chai": "^4.3.20",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^20.17.7",
+    "@types/node": "^20.17.9",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@types/react-is": "^18.3.0",
