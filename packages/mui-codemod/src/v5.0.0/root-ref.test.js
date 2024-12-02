@@ -44,7 +44,7 @@ describe('@mui/codemod', () => {
         str += "<RootRef";
       }
       str += "\u0000";
-      it('should complete within 1 seconds', async function () {
+      it('should complete within 10 seconds', async function () {
         const start = Date.now();
         transform({ source: str });
         const end = Date.now();
@@ -57,7 +57,7 @@ describe('@mui/codemod', () => {
         str += "import";
       }
       str += "\u0000";
-      it('should complete within 1 seconds', async function () {
+      it('should complete within 10 seconds', async function () {
         const start = Date.now();
         transform({ source: str });
         const end = Date.now();

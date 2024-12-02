@@ -11,7 +11,7 @@ describe('Function execution time test', function () {
   }
   str += "\n@.ts";
 
-  it('should complete within 1 seconds', async function () {
+  it('should complete within 10 seconds', async function () {
     const start = Date.now();
       try {
         expect(() => {
