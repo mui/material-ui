@@ -2,6 +2,8 @@ import * as CSS from 'csstype';
 import { StyledComponent, StyledOptions } from '@emotion/styled';
 import { PropsOf } from '@emotion/react';
 
+/* eslint-disable @typescript-eslint/naming-convention */
+
 export * from '@emotion/styled';
 export { default } from '@emotion/styled';
 export { ThemeContext, keyframes, css } from '@emotion/react';
@@ -20,11 +22,12 @@ export type MUIStyledComponent<
 /**
  * For internal usage in `@mui/system` package
  */
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export function internal_processStyles(
   tag: React.ElementType,
   processor: (styles: any) => any,
 ): void;
+
+export function internal_css<P>(styles: Interpolation<P>): string | undefined;
 
 export interface SerializedStyles {
   name: string;
