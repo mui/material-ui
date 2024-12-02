@@ -74,13 +74,13 @@
     }
   },
   "slotDescriptions": {
-    "actions": "",
-    "displayedRows": "",
-    "menuItem": "",
-    "root": "",
-    "select": "",
-    "selectLabel": "",
-    "spacer": "",
-    "toolbar": ""
+    "actions": "The slots that passed to the actions slot.",
+    "displayedRows": "The tag that renders the displayedRows slot.",
+    "menuItem": "The component that renders the select slot. <a href=\"https://mui.com/material-ui/api/menu-item/#props\">Follow this guide</a> to learn more about the requirements for this component.",
+    "root": "The component that renders the root slot. <a href=\"https://mui.com/material-ui/api/table-cell/#props\">Follow this guide</a> to learn more about the requirements for this component.",
+    "select": "The component that renders the select slot. <a href=\"https://mui.com/material-ui/api/select/#props\">Follow this guide</a> to learn more about the requirements for this component.",
+    "selectLabel": "The tag that renders the selectLabel slot.",
+    "spacer": "The tag that renders the spacer slot.",
+    "toolbar": "The component that renders the toolbar slot. <a href=\"https://mui.com/material-ui/api/toolbar/#props\">Follow this guide</a> to learn more about the requirements for this component."
   }
 }

@@ -85,14 +85,53 @@
     "import { TablePagination } from '@mui/material';"
   ],
   "slots": [
-    { "name": "root", "description": "", "class": "MuiTablePagination-root" },
-    { "name": "toolbar", "description": "", "class": "MuiTablePagination-toolbar" },
-    { "name": "spacer", "description": "", "class": "MuiTablePagination-spacer" },
-    { "name": "selectLabel", "description": "", "class": "MuiTablePagination-selectLabel" },
-    { "name": "select", "description": "", "class": "MuiTablePagination-select" },
-    { "name": "menuItem", "description": "", "class": "MuiTablePagination-menuItem" },
-    { "name": "displayedRows", "description": "", "class": "MuiTablePagination-displayedRows" },
-    { "name": "actions", "description": "", "class": "MuiTablePagination-actions" }
+    {
+      "name": "root",
+      "description": "The component that renders the root slot.\n[Follow this guide](https://mui.com/material-ui/api/table-cell/#props) to learn more about the requirements for this component.",
+      "default": "TableCell",
+      "class": "MuiTablePagination-root"
+    },
+    {
+      "name": "toolbar",
+      "description": "The component that renders the toolbar slot.\n[Follow this guide](https://mui.com/material-ui/api/toolbar/#props) to learn more about the requirements for this component.",
+      "default": "Toolbar",
+      "class": "MuiTablePagination-toolbar"
+    },
+    {
+      "name": "spacer",
+      "description": "The tag that renders the spacer slot.",
+      "default": "'div'",
+      "class": "MuiTablePagination-spacer"
+    },
+    {
+      "name": "selectLabel",
+      "description": "The tag that renders the selectLabel slot.",
+      "default": "'p'",
+      "class": "MuiTablePagination-selectLabel"
+    },
+    {
+      "name": "select",
+      "description": "The component that renders the select slot.\n[Follow this guide](https://mui.com/material-ui/api/select/#props) to learn more about the requirements for this component.",
+      "default": "Select",
+      "class": "MuiTablePagination-select"
+    },
+    {
+      "name": "menuItem",
+      "description": "The component that renders the select slot.\n[Follow this guide](https://mui.com/material-ui/api/menu-item/#props) to learn more about the requirements for this component.",
+      "default": "MenuItem",
+      "class": "MuiTablePagination-menuItem"
+    },
+    {
+      "name": "displayedRows",
+      "description": "The tag that renders the displayedRows slot.",
+      "default": "'p'",
+      "class": "MuiTablePagination-displayedRows"
+    },
+    {
+      "name": "actions",
+      "description": "The slots that passed to the actions slot.",
+      "class": "MuiTablePagination-actions"
+    }
   ],
   "classes": [
     {

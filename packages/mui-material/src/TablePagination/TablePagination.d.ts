@@ -35,13 +35,48 @@ export interface TablePaginationDisplayedRowsSlotPropsOverrides {}
 export interface TablePaginationActionsSlotPropsOverrides {}
 
 export interface TablePaginationSlots {
+  /**
+   * The component that renders the root slot.
+   * [Follow this guide](https://mui.com/material-ui/api/table-cell/#props) to learn more about the requirements for this component.
+   * @default TableCell
+   */
   root: React.ElementType;
+  /**
+   * The component that renders the toolbar slot.
+   * [Follow this guide](https://mui.com/material-ui/api/toolbar/#props) to learn more about the requirements for this component.
+   * @default Toolbar
+   */
   toolbar: React.ElementType;
+  /**
+   * The tag that renders the spacer slot.
+   * @default 'div'
+   */
   spacer: React.ElementType;
+  /**
+   * The tag that renders the selectLabel slot.
+   * @default 'p'
+   */
   selectLabel: React.ElementType;
+  /**
+   * The component that renders the select slot.
+   * [Follow this guide](https://mui.com/material-ui/api/select/#props) to learn more about the requirements for this component.
+   * @default Select
+   */
   select: React.ElementType;
+  /**
+   * The component that renders the select slot.
+   * [Follow this guide](https://mui.com/material-ui/api/menu-item/#props) to learn more about the requirements for this component.
+   * @default MenuItem
+   */
   menuItem: React.ElementType;
+  /**
+   * The tag that renders the displayedRows slot.
+   * @default 'p'
+   */
   displayedRows: React.ElementType;
+  /**
+   * The slots that passed to the actions slot.
+   */
   actions: TablePaginationActionsSlots;
 }
 
