@@ -235,7 +235,7 @@ function addLightOrDark(
 
   if (!intent[direction]) {
     if (intent.hasOwnProperty(shade)) {
-      intent[direction] = intent[shade as keyof typeof intent] as string;
+      intent[direction] = intent[shade as keyof PaletteColor] as string;
     } else if (direction === 'light') {
       intent.light = lighten(intent.main, tonalOffsetLight);
     } else if (direction === 'dark') {
@@ -378,8 +378,8 @@ export default function createPalette(palette: PaletteOptions): Palette {
   }: PaletteAugmentColorOptions): PaletteColor => {
     const colorInput = { ...color } as PaletteColor;
 
-    if (!colorInput.main && colorInput[mainShade as keyof typeof colorInput]) {
-      colorInput.main = colorInput[mainShade as keyof typeof colorInput] as string;
+    if (!colorInput.main && colorInput[mainShade as keyof PaletteColor]) {
+      colorInput.main = colorInput[mainShade as keyof PaletteColor] as string;
     }
 
     if (!colorInput.hasOwnProperty('main')) {
