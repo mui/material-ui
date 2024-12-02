@@ -1,5 +1,7 @@
 import scStyled from 'styled-components';
 
+/* eslint-disable @typescript-eslint/naming-convention */
+
 export default function styled(tag, options) {
   let stylesFactory;
 
@@ -36,7 +38,6 @@ export default function styled(tag, options) {
   return stylesFactory;
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export const internal_processStyles = (tag, processor) => {
   // Styled-components attaches an instance to `componentStyle`.
   // https://github.com/styled-components/styled-components/blob/da8151762dcf72735ffba358173d4c097f6d5888/packages/styled-components/src/models/StyledComponent.ts#L257
@@ -47,6 +48,14 @@ export const internal_processStyles = (tag, processor) => {
     tag.componentStyle.rules = processor(tag.componentStyle.rules);
   }
 };
+
+export function internal_css() {
+  throw new Error(
+    "MUI: The components you are using don't support using `styled-components` for rendering anymore. " +
+      'We recommend using the default `emotion` renderer. ' +
+      'Please open an issue if you need further assistance.',
+  );
+}
 
 export { ThemeContext, keyframes, css } from 'styled-components';
 export { default as StyledEngineProvider } from './StyledEngineProvider';

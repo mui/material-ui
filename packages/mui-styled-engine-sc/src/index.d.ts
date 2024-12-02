@@ -2,6 +2,8 @@ import * as React from 'react';
 import * as CSS from 'csstype';
 import * as hoistNonReactStatics from 'hoist-non-react-statics';
 
+/* eslint-disable @typescript-eslint/naming-convention */
+
 type WithOptionalTheme<P extends { theme?: T | undefined }, T> = OmitU<P, 'theme'> & {
   theme?: T | undefined;
 };
@@ -75,11 +77,12 @@ export * from './GlobalStyles';
 /**
  * For internal usage in `@mui/system` package
  */
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export function internal_processStyles(
   tag: React.ElementType,
   processor: (styles: any) => any,
 ): void;
+
+export function internal_css<P>(styles: Interpolation<P>): string | undefined;
 
 // These are the same as the ones in @mui/styled-engine
 // CSS.PropertiesFallback are necessary so that we support spreading of the mixins. For example:

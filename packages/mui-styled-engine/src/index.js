@@ -1,6 +1,9 @@
 'use client';
 /* eslint-disable no-underscore-dangle */
 import emStyled from '@emotion/styled';
+import { css as emCss } from '@emotion/css';
+
+/* eslint-disable @typescript-eslint/naming-convention */
 
 export default function styled(tag, options) {
   const stylesFactory = emStyled(tag, options);
@@ -35,6 +38,15 @@ export const internal_processStyles = (tag, processor) => {
     tag.__emotion_styles = processor(tag.__emotion_styles);
   }
 };
+
+const EMPTY_CLASSNAME = emCss(null);
+export function internal_css(styles) {
+  const result = emCss(styles);
+  if (result === EMPTY_CLASSNAME) {
+    return undefined;
+  }
+  return result;
+}
 
 export { ThemeContext, keyframes, css } from '@emotion/react';
 export { default as StyledEngineProvider } from './StyledEngineProvider';

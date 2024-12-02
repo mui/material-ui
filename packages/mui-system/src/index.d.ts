@@ -98,6 +98,7 @@ export { DefaultTheme } from '@mui/private-theming';
 export {
   css,
   keyframes,
+  internal_css,
   StyledEngineProvider,
   Interpolation,
   CSSInterpolation,

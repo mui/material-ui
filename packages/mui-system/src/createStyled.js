@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import styledEngineStyled, {
-  css,
+  internal_css,
   internal_processStyles as processStyles,
 } from '@mui/styled-engine';
 import { isPlainObject } from '@mui/utils/deepmerge';
@@ -236,14 +236,13 @@ export default function createStyled(input = {}) {
 }
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export function internal_applyStyled(props, componentName, overridesResolver) {
-  const styles = [
-    applyThemeOverrides(props, componentName, overridesResolver),
-    applyThemeVariants(props, componentName),
-    // applySystemSx(props, componentName),
-  ]
+export function internal_applyStyled(props, name, slot, overridesResolver) {
+  const styles =
+    slot !== 'root'
+      ? applyThemeOverrides(props, name, overridesResolver)
+      : [applyThemeOverrides(props, name, overridesResolver), applyThemeVariants(props, name)];
 
-  return css(styles);
+  return internal_css(styles);
 }
 
 function applyThemeOverrides(theme, props, componentName, overridesResolver) {
