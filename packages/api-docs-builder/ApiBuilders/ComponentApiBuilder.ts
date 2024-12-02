@@ -821,7 +821,7 @@ export default async function generateComponentApi(
 
   const cssVars = await extractInfoFromEnum(
     `${componentInfo.name}CssVars`,
-    new RegExp(`${componentInfo.name}(CssVars|Classes)?\.tsx?$`, 'i'),
+    new RegExp(`${componentInfo.name}(CssVars|Classes)?.tsx?$`, 'i'),
     project,
   );
 
