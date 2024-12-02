@@ -127,7 +127,10 @@ const Grid2 = createGrid2({
   createStyledComponent: styled('div', {
     name: 'MuiGrid2',
     slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
+    overridesResolver: (props, styles) => {
+      const { ownerState } = props;
+      return [styles.root, ownerState.container && styles.container];
+    },
   }),
   componentName: 'MuiGrid2',
   useThemeProps: (inProps) => useDefaultProps({ props: inProps, name: 'MuiGrid2' }),
