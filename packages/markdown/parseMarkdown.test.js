@@ -242,15 +242,15 @@ authors:
       });
     });
 
-    
-    var str = "<codeblock  ";
-    for (var i = 0; i < 100000; i++) {
+    let str = '<codeblock  ';
+    for (let i = 0; i < 100000; i = i + 1) {
       str += "storageKey='";
     }
-    str += "@";
-    it('should complete within 10 seconds', async function () {
+    str += '@';
+
+    it('should complete within 10 seconds', () => {
       const start = Date.now();
-      getCodeblock(str);
+      _ = getCodeblock(str);
       const end = Date.now();
       const duration = (end - start) / 1000; // turn to seconds
       expect(duration).to.be.lessThan(10);

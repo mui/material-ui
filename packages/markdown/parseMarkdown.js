@@ -209,7 +209,9 @@ function getCodeblock(content) {
   if (!content.startsWith('<codeblock')) {
     return undefined;
   }
-  const storageKey = content.match(/^<codeblock (?!<codeblock )[^>]*storageKey=["|'](?!storageKey=["|'])(\S*)["|'].*>/m)?.[1];
+  const storageKey = content.match(
+    /^<codeblock (?!<codeblock )[^>]*storageKey=["|'](?!storageKey=["|'])(\S*)["|'].*>/m,
+  )?.[1];
   const blocks = [...content.matchAll(/^```(\S*) (\S*)\n(.*?)\n```/gmsu)].map(
     ([, language, tab, code]) => ({ language, tab, code }),
   );
