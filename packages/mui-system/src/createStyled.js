@@ -239,8 +239,11 @@ export default function createStyled(input = {}) {
 export function internal_applyStyled(props, name, slot, overridesResolver) {
   const styles =
     slot !== 'root'
-      ? applyThemeOverrides(props, name, overridesResolver)
-      : [applyThemeOverrides(props, name, overridesResolver), applyThemeVariants(props, name)];
+      ? applyThemeOverrides(props.theme, props, name, overridesResolver)
+      : [
+          applyThemeOverrides(props.theme, props, name, overridesResolver),
+          applyThemeVariants(props.theme, props, name),
+        ];
 
   return internal_css(styles);
 }
