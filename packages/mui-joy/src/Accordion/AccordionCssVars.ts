@@ -1,4 +1,4 @@
-export enum AccordionCssVars {
+enum AccordionCssVars {
   /**
    * The max width of the Accordion.
    * @type {number}
@@ -6,3 +6,5 @@ export enum AccordionCssVars {
   maxWidth = '--max-width',
   foo = '--foo',
 }
+
+export default AccordionCssVars;

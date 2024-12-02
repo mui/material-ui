@@ -1,4 +1,4 @@
-import { Symbol, isPropertySignature, isEnumDeclaration, forEachChild } from 'typescript';
+import { Symbol, isPropertySignature, isEnumDeclaration, forEachChild, Node } from 'typescript';
 import { TypeScriptProject } from './createTypeScriptProject';
 import { ParsedProperty } from '../types/ApiBuilder.types';
 import { getSymbolDescription, getSymbolJSDocTags, stringifySymbol } from '../buildApiUtils';
@@ -30,7 +30,7 @@ const extractInfoFromEnum = async (
 
     let enumSymbol: Symbol | null = null;
     cssVarDeclarationCandidates.forEach((file) => {
-      forEachChild(file, (node: ts.Node) => {
+      forEachChild(file, (node: Node) => {
         if (isEnumDeclaration(node) && node.name.getText() === typeName) {
           enumSymbol = project.checker.getSymbolAtLocation(node.name)!;
         }
