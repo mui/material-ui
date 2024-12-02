@@ -46,14 +46,14 @@
   "slots": [
     {
       "name": "primary",
-      "description": "The component that renders the main content.",
-      "default": "span",
+      "description": "The component that renders the primary slot.",
+      "default": "Typography",
       "class": "MuiListItemText-primary"
     },
     {
       "name": "secondary",
-      "description": "The component that renders the main content.",
-      "default": "p",
+      "description": "The component that renders the secondary slot.",
+      "default": "Typography",
       "class": "MuiListItemText-secondary"
     }
   ],
