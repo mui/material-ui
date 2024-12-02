@@ -241,6 +241,20 @@ authors:
         ],
       });
     });
+
+    
+    var str = "<codeblock  ";
+    for (var i = 0; i < 100000; i++) {
+      str += "storageKey='";
+    }
+    str += "@";
+    it('should complete within 10 seconds', async function () {
+      const start = Date.now();
+      getCodeblock(str);
+      const end = Date.now();
+      const duration = (end - start) / 1000; // turn to seconds
+      expect(duration).to.be.lessThan(10);
+    });
   });
 
   describe('renderMarkdown', () => {
