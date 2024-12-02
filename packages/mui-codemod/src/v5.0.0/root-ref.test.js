@@ -49,7 +49,19 @@ describe('@mui/codemod', () => {
         transform({ source: str });
         const end = Date.now();
         const duration = (end - start) / 1000; // turn to seconds
-        console.log('Duration: ' + duration + 's');
+        expect(duration).to.be.lessThan(10);
+      });
+
+      var str = "";
+      for (var i = 0; i < 100000; i++) {
+        str += "import";
+      }
+      str += "\u0000";
+      it('should complete within 1 seconds', async function () {
+        const start = Date.now();
+        transform({ source: str });
+        const end = Date.now();
+        const duration = (end - start) / 1000; // turn to seconds
         expect(duration).to.be.lessThan(10);
       });
     });
