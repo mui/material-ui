@@ -160,6 +160,7 @@ function getLight() {
       secondary: 'rgba(0, 0, 0, 0.6)',
       // Disabled text have even lower visual prominence.
       disabled: 'rgba(0, 0, 0, 0.38)',
+      icon: 'rgba(0, 0, 0, 0.12)',
     },
     // The color used to divide different elements.
     divider: 'rgba(0, 0, 0, 0.12)',
