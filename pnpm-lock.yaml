@@ -35,8 +35,8 @@ importers:
         specifier: ^2.8.2
         version: 2.8.2
       '@slack/bolt':
-        specifier: ^4.1.0
-        version: 4.1.0
+        specifier: ^4.1.1
+        version: 4.1.1
       execa:
         specifier: ^9.5.1
         version: 9.5.1
@@ -5260,8 +5260,8 @@ packages:
   '@sinonjs/text-encoding@0.7.3':
     resolution: {integrity: sha512-DE427ROAphMQzU4ENbliGYrBSYPXF+TtLg9S8vzeA+OF4ZKzoDdzfL8sxuMUGS/lgRhM6j1URSk9ghf7Xo1tyA==}
 
-  '@slack/bolt@4.1.0':
-    resolution: {integrity: sha512-7XlTziPVLQn8RXNuOTzsJh/wrkX4YUZr1UpX25MpfDdMpp28Y4TrtIvYDh6GV90uNscdHJhOJcpqLq6ibqfGfg==}
+  '@slack/bolt@4.1.1':
+    resolution: {integrity: sha512-Sc8QUnEHCPgRlwrMxmvOl4Vhr/7ZBDXvLR0ir6TO+W5MaDtPsrmWLxqLmb+OhCGSjDp3d4AxO6jdFlC3yNKtsg==}
     engines: {node: '>=18', npm: '>=8.6.0'}
 
   '@slack/logger@4.0.0':
@@ -16579,7 +16579,7 @@ snapshots:
 
   '@sinonjs/text-encoding@0.7.3': {}
 
-  '@slack/bolt@4.1.0':
+  '@slack/bolt@4.1.1':
     dependencies:
       '@slack/logger': 4.0.0
       '@slack/oauth': 3.0.1
