@@ -22,12 +22,12 @@ export type ListItemTextSlotsAndSlotProps = CreateSlotsAndSlotProps<
   ListItemTextSlots,
   {
     /**
-     * Props for the primary slot
+     * Props forwared to the primary slot (as long as disableTypography is not `true`)
      * By default, the available props are based on the [Typography](https://mui.com/material-ui/api/typography/#props) component
      */
     primary: SlotProps<React.ElementType<TypographyProps>, {}, ListItemTextOwnerState>;
     /**
-     * Props for the secondary slot
+     * Props forwarded to the secondary slot (as long as disableTypography is not `true`)
      * By default, the available props are based on the [Typography](https://mui.com/material-ui/api/typography/#props) component
      */
     secondary: SlotProps<React.ElementType<TypographyProps>, {}, ListItemTextOwnerState>;
