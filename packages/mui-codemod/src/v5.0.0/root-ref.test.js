@@ -39,29 +39,29 @@ describe('@mui/codemod', () => {
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
 
-      str = '';
-      for (let i = 0; i < 100000; i = i + 1) {
+      let str = '';
+      for (let i = 0; i < 100000; i += 1) {
         str += '<RootRef';
       }
       str += '\u0000';
 
       it('should complete within 10 seconds1', () => {
         const start = Date.now();
-        _ = transform({ source: str });
+        transform({ source: str });
         const end = Date.now();
         const duration = (end - start) / 1000; // turn to seconds
         expect(duration).to.be.lessThan(10);
       });
 
-      let str = '';
-      for (let i = 0; i < 100000; i = i + 1) {
+      str = '';
+      for (let i = 0; i < 100000; i += 1) {
         str += 'import';
       }
       str += '\u0000';
 
       it('should complete within 10 seconds2', () => {
         const start = Date.now();
-        _ = transform({ source: str });
+        transform({ source: str });
         const end = Date.now();
         const duration = (end - start) / 1000; // turn to seconds
         expect(duration).to.be.lessThan(10);

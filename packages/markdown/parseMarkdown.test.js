@@ -243,14 +243,14 @@ authors:
     });
 
     let str = '<codeblock  ';
-    for (let i = 0; i < 100000; i = i + 1) {
+    for (let i = 0; i < 100000; i += 1) {
       str += "storageKey='";
     }
     str += '@';
 
     it('should complete within 10 seconds', () => {
       const start = Date.now();
-      _ = getCodeblock(str);
+      getCodeblock(str);
       const end = Date.now();
       const duration = (end - start) / 1000; // turn to seconds
       expect(duration).to.be.lessThan(10);
