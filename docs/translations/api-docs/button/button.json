@@ -216,6 +216,10 @@
       "nodeName": "the loadingIndicator element",
       "conditions": "<code>loadingPosition=\"start\"</code>"
     },
+    "loadingLabel": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the loadingLabel element"
+    },
     "outlined": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

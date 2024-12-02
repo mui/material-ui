@@ -270,6 +270,12 @@
       "isGlobal": false
     },
     {
+      "key": "loadingLabel",
+      "className": "MuiButton-loadingLabel",
+      "description": "Styles applied to the loadingLabel element.",
+      "isGlobal": false
+    },
+    {
       "key": "outlined",
       "className": "MuiButton-outlined",
       "description": "Styles applied to the root element if `variant=\"outlined\"`.",
