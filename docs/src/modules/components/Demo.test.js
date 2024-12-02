@@ -33,7 +33,7 @@ describe('Function execution time test', () => {
       }).toErrorDev('Any errors do not affect a DoS attack; only time is crucial.');
     } catch (error) {
       // Ignore the error
-      console.log('');
+      // console.log('expected');
     }
     const end = Date.now();
     const duration = (end - start) / 1000; // turn to seconds
