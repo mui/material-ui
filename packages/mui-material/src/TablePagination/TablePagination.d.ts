@@ -83,33 +83,64 @@ export interface TablePaginationSlots {
 export type TablePaginationSlotsAndSlotProps = CreateSlotsAndSlotProps<
   TablePaginationSlots,
   {
+    /**
+     * The props for the root slot.
+     * By default, the avaible props are based on the [TableCell](https://mui.com/material-ui/api/table-cell/#props) component.
+     */
     root: SlotProps<
       React.ElementType<TableCellProps>,
       TablePaginationRootSlotPropsOverrides,
       TablePaginationOwnerState
     >;
+    /**
+     * The props for the toolbar slot.
+     * By default, the avaible props are based on the [Toolbar](https://mui.com/material-ui/api/toolbar/#props) component.
+     */
     toolbar: SlotProps<
       React.ElementType<ToolbarOwnProps>,
       TablePaginationToolbarSlotPropsOverrides,
       TablePaginationOwnerState
     >;
+    /**
+     * The props for the spacer slot.
+     * By default, the avaible props are based on the div element.
+     */
     spacer: SlotProps<'div', TablePaginationSpacerSlotPropsOverrides, TablePaginationOwnerState>;
+    /**
+     * The props for the selectLabel slot.
+     * By default, the avaible props are based on the paragraph element.
+     */
     selectLabel: SlotProps<
       'p',
       TablePaginationSelectLabelSlotPropsOverrides,
       TablePaginationOwnerState
     >;
+    /**
+     * The props for the select slot.
+     * By default, the avaible props are based on the [Select](https://mui.com/material-ui/api/select/#props) component.
+     */
     select: Partial<SelectProps> & TablePaginationSelectSlotPropsOverrides;
+    /**
+     * The props for the menuItem slot.
+     * By default, the avaible props are based on the [MenuItem](https://mui.com/material-ui/api/menu-item/#props) component.
+     */
     menuItem: SlotProps<
       React.ElementType<MenuItemOwnProps>,
       TablePaginationMenuItemSlotPropsOverrides,
       TablePaginationOwnerState
     >;
+    /**
+     * The props for the displayedRows slot.
+     * By default, the avaible props are based on the paragraph element.
+     */
     displayedRows: SlotProps<
       'p',
       TablePaginationDisplayedRowsSlotPropsOverrides,
       TablePaginationOwnerState
     >;
+    /**
+     * The props for the actions slot.
+     */
     actions: TablePaginationActionsProps['slotProps'] & TablePaginationActionsSlotPropsOverrides;
   }
 >;
