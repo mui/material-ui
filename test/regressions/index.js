@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import * as ReactDOMClient from 'react-dom/client';
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router';
 import webfontloader from 'webfontloader';
 import { Globals } from '@react-spring/web';
 import TestViewer from './TestViewer';
