@@ -45,8 +45,7 @@ const NavList = styled(Typography)({
 });
 
 const NavItem = styled(Link, {
-  shouldForwardProp: (prop) =>
-    prop !== 'active' && prop !== 'secondary' && prop !== 'secondarySubItem',
+  shouldForwardProp: (prop) => prop !== 'active' && prop !== 'level',
 })(({ theme }) => {
   const activeStyles = {
     borderLeftColor: (theme.vars || theme).palette.primary[200],
@@ -67,9 +66,8 @@ const NavItem = styled(Link, {
 
   return [
     {
-      '--_padding-left': '12px',
       boxSizing: 'border-box',
-      padding: theme.spacing('6px', 0, '6px', 'var(--_padding-left)'),
+      padding: '6px 0 6px 12px',
       borderLeft: `1px solid transparent`,
       display: 'block',
       fontSize: theme.typography.pxToRem(13),
@@ -93,15 +91,15 @@ const NavItem = styled(Link, {
           },
         },
         {
-          props: ({ secondary }) => secondary,
+          props: ({ level }) => level === 2,
           style: {
-            '--_padding-left': theme.spacing(3),
+            padding: `6px 0 6px ${theme.spacing(3)}`,
           },
         },
         {
-          props: ({ secondarySubItem }) => secondarySubItem,
+          props: ({ level }) => level === 3,
           style: {
-            '--_padding-left': theme.spacing(4.5),
+            padding: `6px 0 6px ${theme.spacing(4.5)}`,
           },
         },
       ],
@@ -250,15 +248,14 @@ export default function AppTableOfContents(props) {
     [],
   );
 
-  const itemLink = (item, secondary, secondarySubItem) => (
+  const itemLink = (item, level) => (
     <NavItem
       display="block"
       href={`#${item.hash}`}
       underline="none"
       onClick={handleClick(item.hash)}
       active={activeState === item.hash}
-      secondary={secondary}
-      secondarySubItem={secondarySubItem}
+      level={level}
     >
       <span dangerouslySetInnerHTML={{ __html: item.text }} />
     </NavItem>
@@ -324,18 +321,16 @@ export default function AppTableOfContents(props) {
           <NavList component="ul">
             {toc.map((item) => (
               <li key={item.text}>
-                {itemLink(item)}
+                {itemLink(item, 1)}
                 {item.children.length > 0 ? (
                   <NavList as="ul">
                     {item.children.map((subitem) => (
                       <li key={subitem.text}>
-                        {itemLink(subitem, true)}
+                        {itemLink(subitem, 2)}
                         {subitem.children?.length > 0 ? (
                           <NavList as="ul">
                             {subitem.children.map((nestedSubItem) => (
-                              <li key={nestedSubItem.text}>
-                                {itemLink(nestedSubItem, false, true)}
-                              </li>
+                              <li key={nestedSubItem.text}>{itemLink(nestedSubItem, 3)}</li>
                             ))}
                           </NavList>
                         ) : null}

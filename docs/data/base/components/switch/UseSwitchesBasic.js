@@ -63,7 +63,7 @@ const BasicSwitchRoot = styled('span')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
   border-radius: 24px;
-  box-shadow: inset 0px 1px 1px ${
+  box-shadow: inset 0 1px 1px ${
     theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.05)'
   };
 
@@ -83,9 +83,10 @@ const BasicSwitchRoot = styled('span')(
   &.Switch-checked {
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     background: ${blue[500]};
-    box-shadow: inset 0px 1px 1px ${
+    box-shadow: inset 0 1px 1px ${
       theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.2)' : 'rgba(0, 0, 0, 0.05)'
     };
+
     &.Switch-focusVisible {
       box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
     }
@@ -122,7 +123,7 @@ const BasicSwitchThumb = styled('span')(
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 120ms;
-  box-shadow: 0px 1px 2px
+  box-shadow: 0 1px 2px
     ${theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.25)' : 'rgba(0, 0, 0, 0.1)'};
 
   &.Switch-checked {

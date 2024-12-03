@@ -1,6 +1,5 @@
 import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
-import { Symbol, isPropertySignature } from 'typescript';
 import * as astTypes from 'ast-types';
 import * as _ from 'lodash';
 import * as babel from '@babel/core';
@@ -12,28 +11,12 @@ import { parse as parseDoctrine, Annotation } from 'doctrine';
 import { escapeEntities, renderMarkdown } from '../buildApi';
 import { ProjectSettings } from '../ProjectSettings';
 import { computeApiDescription } from './ComponentApiBuilder';
-import {
-  getSymbolDescription,
-  getSymbolJSDocTags,
-  stringifySymbol,
-  toGitHubPath,
-  writePrettifiedFile,
-} from '../buildApiUtils';
+import { toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
 import generateApiTranslations from '../utils/generateApiTranslation';
 import { HookApiContent, HookReactApi, ParsedProperty } from '../types/ApiBuilder.types';
 import { HookInfo } from '../types/utils.types';
-
-const parseProperty = async (
-  propertySymbol: Symbol,
-  project: TypeScriptProject,
-): Promise<ParsedProperty> => ({
-  name: propertySymbol.name,
-  description: getSymbolDescription(propertySymbol, project),
-  tags: getSymbolJSDocTags(propertySymbol),
-  required: !propertySymbol.declarations?.find(isPropertySignature)?.questionToken,
-  typeStr: await stringifySymbol(propertySymbol, project),
-});
+import extractInfoFromType from '../utils/extractInfoFromType';
 
 /**
  * Add demos & API comment block to type definitions, e.g.:
@@ -384,43 +367,6 @@ const generateApiJson = async (outputDirectory: string, reactApi: HookReactApi) 
     path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.json`),
     JSON.stringify(pageContent),
   );
-};
-
-const extractInfoFromType = async (
-  typeName: string,
-  project: TypeScriptProject,
-): Promise<ParsedProperty[]> => {
-  // Generate the params
-  let result: ParsedProperty[] = [];
-
-  try {
-    const exportedSymbol = project.exports[typeName];
-    const type = project.checker.getDeclaredTypeOfSymbol(exportedSymbol);
-    // @ts-ignore
-    const typeDeclaration = type?.symbol?.declarations?.[0];
-    if (!typeDeclaration) {
-      return [];
-    }
-
-    const properties: Record<string, ParsedProperty> = {};
-    // @ts-ignore
-    const propertiesOnProject = type.getProperties();
-
-    // @ts-ignore
-    await Promise.all(
-      propertiesOnProject.map(async (propertySymbol) => {
-        properties[propertySymbol.name] = await parseProperty(propertySymbol, project);
-      }),
-    );
-
-    result = Object.values(properties)
-      .filter((property) => !property.tags.ignore)
-      .sort((a, b) => a.name.localeCompare(b.name));
-  } catch {
-    console.error(`No declaration for ${typeName}`);
-  }
-
-  return result;
 };
 
 /**
