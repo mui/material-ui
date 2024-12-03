@@ -474,7 +474,7 @@ export default function Demo(props) {
         '',
         'Please run "pnpm docs:typescript:formatted" to generate a JS version and reference it:',
         // Exclude the dot character in the Kleene star of the regex below to prevent ReDoS
-        `{{"demo": "${demoOptions.demo.replace(/\.([^.]*)$/, '.js')}", …}}.`, 
+        `{{"demo": "${demoOptions.demo.replace(/\.([^.]*)$/, '.js')}", …}}.`,
         '',
         "Otherwise, if it's not a code demo hide the toolbar:",
         `{{"demo": "${demoOptions.demo}", "hideToolbar": true, …}}.`,
