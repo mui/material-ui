@@ -44,9 +44,9 @@ If you're looking to build internal tools and dashboards fast, but don't want to
 
 <a href="https://mui.com/toolpad/core/introduction/examples/#featured-examples">
 <span class="only-light-mode">
-<img src="/static/images/toolpad-core-template-light.png" alt="The Toolpad Core template comes with authentication, navigation and theming integrated" width="2280" height="1200" style="display: block; border: 1px solid #C8CCD466; border-radius: 5px;" />
+<img src="/static/images/toolpad-core-template-light.png" alt="The Toolpad Core template comes with authentication, navigation and theming integrated" width="2280" height="1200" style="display: block;" />
 </span>
 <span class="only-dark-mode">
-<img src="/static/images/toolpad-core-template-dark.png" alt="The Toolpad Core template comes with authentication, navigation and theming integrated" width="2280" height="1200" style="display: block; border: 1px solid #363C4799; border-radius: 5px;"/>
+<img src="/static/images/toolpad-core-template-dark.png" alt="The Toolpad Core template comes with authentication, navigation and theming integrated" width="2280" height="1200" style="display: block;"/>
 </span>
 </a>
