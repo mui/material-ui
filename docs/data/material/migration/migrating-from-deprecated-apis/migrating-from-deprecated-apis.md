@@ -176,8 +176,8 @@ The Alert's `componentsProps` prop was deprecated in favor of `slotProps`:
 
 ```diff
  <Alert
--  componentsProps={{ closeButton: { id: 'test-id' } }}
-+  slotProps={{ closeButton: { id: 'test-id' } }}
+-  componentsProps={{ closeButton: { id: 'close-id' } }}
++  slotProps={{ closeButton: { id: 'close-id' } }}
  />
 ```
 
@@ -451,8 +451,8 @@ The Backdrop's `componentsProps` prop was deprecated in favor of `slotProps`:
 
 ```diff
  <Backdrop
--  componentsProps={{ root: { id: 'test-id' } }}
-+  slotProps={{ root: { id: 'test-id' } }}
+-  componentsProps={{ root: { id: 'root-id' } }}
++  slotProps={{ root: { id: 'root-id' } }}
  />
 ```
 
@@ -491,8 +491,8 @@ The Badge's `componentsProps` prop was deprecated in favor of `slotProps`:
 
 ```diff
  <Badge
--  componentsProps={{ root: { id: 'test-id' } }}
-+  slotProps={{ root: { id: 'test-id' } }}
+-  componentsProps={{ root: { id: 'root-id' } }}
++  slotProps={{ root: { id: 'root-id' } }}
  >
 ```
 
@@ -1238,8 +1238,8 @@ The ListItem's `componentsProps` prop was deprecated in favor of `slotProps`:
 
 ```diff
  <ListItem
--  componentsProps={{ root: { id: 'test-id' } }}
-+  slotProps={{ root: { id: 'test-id' } }}
+-  componentsProps={{ root: { id: 'root-id' } }}
++  slotProps={{ root: { id: 'root-id' } }}
  />
 ```
 
@@ -1479,8 +1479,8 @@ The Popper's prop `componentsProps` was deprecated in favor of `slotProps`:
 
 ```diff
  <Popper
--  componentsProps={{ root: { id: 'test-id' } }}
-+  slotProps={{ root: { id: 'test-id' } }}
+-  componentsProps={{ root: { id: 'root-id' } }}
++  slotProps={{ root: { id: 'root-id' } }}
  />
 ```
 
@@ -1509,8 +1509,8 @@ The Slider's `componentsProps` prop was deprecated in favor of `slotProps`:
 
 ```diff
  <Slider
--  componentsProps={{ track: { id: 'test-id' } }}
-+  slotProps={{ track: { id: 'test-id' } }}
+-  componentsProps={{ track: { id: 'track-id' } }}
++  slotProps={{ track: { id: 'track-id' } }}
  />
 ```
 
@@ -1682,8 +1682,8 @@ The Tooltip's prop `componentsProps` was deprecated in favor of `slotProps`:
 
 ```diff
  <Tooltip
--  componentsProps={{ arrow: { id: 'test-id' } }}
-+  slotProps={{ arrow: { id: 'test-id' } }}
+-  componentsProps={{ arrow: { id: 'arrow-id' } }}
++  slotProps={{ arrow: { id: 'arrow-id' } }}
  />
 ```
 
