@@ -113,7 +113,6 @@ The `-webkit-appearance: slider-vertical` CSS property can be used to correct th
 }
 ```
 
-For Chrome 124 and newer, the slider includes the CSS [`writing-mode`](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_writing_modes/Vertical_controls#range_sliders_meters_and_progress_bars) property that fixes this bug.
 :::
 
 ## Marks placement

@@ -460,6 +460,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
   const createHandleHiddenInputChange =
     (otherHandlers: EventHandlers) => (event: React.ChangeEvent) => {
       otherHandlers.onChange?.(event);
+      // this handles value change by Pointer or Touch events
       // @ts-ignore
       changeValue(event, event.target.valueAsNumber);
     };
