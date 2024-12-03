@@ -45,7 +45,7 @@ export interface ConformanceOptions {
   refInstanceof: any;
   after?: () => void;
   inheritComponent?: React.ElementType;
-  render: (node: React.ReactElement<unknown>) => MuiRenderResult | Promise<MuiRenderResult>;
+  render: (node: React.ReactElement<DataProps>) => MuiRenderResult | Promise<MuiRenderResult>;
   only?: Array<keyof typeof fullSuite>;
   skip?: Array<keyof typeof fullSuite | 'classesRoot'>;
   testComponentsRootPropWith?: string;
