@@ -17,6 +17,9 @@
     "disableRipple": {
       "description": "If <code>true</code>, the ripple effect is disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the <code>.Mui-focusVisible</code> class."
     },
+    "enableLoadingWrapper": {
+      "description": "If <code>true</code>, the loader is rendered in a span element. The span element is always present regardless of the loading state. Use this prop to prevent React error when the loading state is toggled with Google translation. See <a href=\"https://github.com/mui/material-ui/issues/27853\">https://github.com/mui/material-ui/issues/27853</a> for more details."
+    },
     "endIcon": { "description": "Element placed after the children." },
     "fullWidth": {
       "description": "If <code>true</code>, the button will take up the full width of its container."
@@ -215,6 +218,10 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the loadingIndicator element",
       "conditions": "<code>loadingPosition=\"start\"</code>"
+    },
+    "loadingWrapper": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the loadingWrapper element"
     },
     "outlined": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

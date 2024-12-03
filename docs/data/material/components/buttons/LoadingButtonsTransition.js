@@ -30,6 +30,7 @@ export default function LoadingButtonsTransition() {
         <Button
           size="small"
           onClick={handleClick}
+          enableLoadingWrapper
           loading={loading}
           variant="outlined"
           disabled
@@ -39,6 +40,7 @@ export default function LoadingButtonsTransition() {
         <Button
           size="small"
           onClick={handleClick}
+          enableLoadingWrapper
           loading={loading}
           loadingIndicator="Loading…"
           variant="outlined"
@@ -49,6 +51,7 @@ export default function LoadingButtonsTransition() {
           size="small"
           onClick={handleClick}
           endIcon={<SendIcon />}
+          enableLoadingWrapper
           loading={loading}
           loadingPosition="end"
           variant="contained"
@@ -59,6 +62,7 @@ export default function LoadingButtonsTransition() {
           size="small"
           color="secondary"
           onClick={handleClick}
+          enableLoadingWrapper
           loading={loading}
           loadingPosition="start"
           startIcon={<SaveIcon />}
@@ -68,11 +72,18 @@ export default function LoadingButtonsTransition() {
         </Button>
       </Box>
       <Box sx={{ '& > button': { m: 1 } }}>
-        <Button onClick={handleClick} loading={loading} variant="outlined" disabled>
+        <Button
+          onClick={handleClick}
+          enableLoadingWrapper
+          loading={loading}
+          variant="outlined"
+          disabled
+        >
           Disabled
         </Button>
         <Button
           onClick={handleClick}
+          enableLoadingWrapper
           loading={loading}
           loadingIndicator="Loading…"
           variant="outlined"
@@ -82,6 +93,7 @@ export default function LoadingButtonsTransition() {
         <Button
           onClick={handleClick}
           endIcon={<SendIcon />}
+          enableLoadingWrapper
           loading={loading}
           loadingPosition="end"
           variant="contained"
@@ -91,6 +103,7 @@ export default function LoadingButtonsTransition() {
         <Button
           color="secondary"
           onClick={handleClick}
+          enableLoadingWrapper
           loading={loading}
           loadingPosition="start"
           startIcon={<SaveIcon />}

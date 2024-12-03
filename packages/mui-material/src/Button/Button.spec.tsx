@@ -125,6 +125,20 @@ const buttonTest = () => (
     }
     <Button startIcon={<FakeIcon />}>Start Icon</Button>
     <Button endIcon={<FakeIcon />}>endIcon</Button>
+    <Button enableLoadingWrapper>endIcon</Button>
+    <Button loading>Button</Button>
+    <Button loading loadingPosition="center">
+      Button
+    </Button>
+    <Button loading loadingPosition="start">
+      Button
+    </Button>
+    <Button loading loadingPosition="end">
+      Button
+    </Button>
+    <Button loading loadingIndicator={<span>Loading</span>}>
+      Button
+    </Button>
   </div>
 );
 

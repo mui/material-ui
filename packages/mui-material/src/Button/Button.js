@@ -50,6 +50,7 @@ const useUtilityClasses = (ownerState) => {
       'loadingIndicator',
       loading && `loadingIndicator${capitalize(loadingPosition)}`,
     ],
+    loadingWrapper: ['loadingWrapper'],
   };
 
   const composedClasses = composeClasses(slots, getButtonUtilityClass, classes);
@@ -520,6 +521,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     disabled = false,
     disableElevation = false,
     disableFocusRipple = false,
+    enableLoadingWrapper = false,
     endIcon: endIconProp,
     focusVisibleClassName,
     fullWidth = false,
@@ -571,7 +573,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const loader = (
     <ButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
-      {loading && loadingIndicator}
+      {loadingIndicator}
     </ButtonLoadingIndicator>
   );
 
@@ -592,7 +594,14 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       classes={classes}
     >
       {startIcon}
-      {loader}
+      {enableLoadingWrapper ? (
+        // use plain HTML span to minimize the runtime overhead
+        <span className={classes.loadingWrapper} style={{ display: 'contents' }}>
+          {loading && loader}
+        </span>
+      ) : (
+        <React.Fragment>{loading && loader}</React.Fragment>
+      )}
       {children}
       {endIcon}
     </ButtonRoot>
@@ -654,6 +663,12 @@ Button.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableRipple: PropTypes.bool,
+  /**
+   * If `true`, the loader is rendered in a span element. The span element is always present regardless of the loading state.
+   * Use this prop to prevent React error when the loading state is toggled with Google translation. See https://github.com/mui/material-ui/issues/27853 for more details.
+   * @default false
+   */
+  enableLoadingWrapper: PropTypes.bool,
   /**
    * Element placed after the children.
    */
