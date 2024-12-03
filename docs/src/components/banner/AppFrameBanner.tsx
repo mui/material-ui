@@ -14,10 +14,20 @@ function isBlackFriday() {
   return today > start && today < end;
 }
 
+let hadHydrated = false;
+
 export default function AppFrameBanner() {
   if (!FEATURE_TOGGLE.enable_docsnav_banner) {
     return null;
   }
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [mounted, setMounted] = React.useState(hadHydrated);
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  React.useEffect(() => {
+    hadHydrated = true;
+    setMounted(true);
+  }, []);
 
   // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
   // eslint-disable-next-line react-hooks/rules-of-hooks -- FEATURE_TOGGLE never changes
@@ -30,7 +40,7 @@ export default function AppFrameBanner() {
   if (showSurveyMessage) {
     message = `Influence ${productName}'s 2024 roadmap! Participate in the latest Developer Survey`;
     href = 'https://tally.so/r/3Ex4PN?source=website';
-  } else if (isBlackFriday()) {
+  } else if (mounted && isBlackFriday()) {
     message = `Black Friday is here! Don't miss out on the best offers of the year.`;
     href = 'https://mui.com/store/bundles/?deal=black-friday&from=docs';
   }
