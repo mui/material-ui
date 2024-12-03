@@ -27,7 +27,7 @@ A big thanks to the 10 contributors who made this release possible.
 - Notification for the MUI X v8 alpha zero announcement blog post (#44629) @joserodolfofreitas
 - Bump React Router to ^7.0.1 (#44531) @oliviertassinari
 - [material-ui] Replace testid with id in migration guide (#44636) @sai6855
-- [material-ui][TextField] Update usage of `InputLableProps` in docs (#44634) @sai6855
+- [material-ui][TextField] Update usage of `InputLabelProps` in docs (#44634) @sai6855
 - [material-ui][ListItem] Add missing diffs in migration guide (#44638) @sai6855
 - [examples] Use Next.js 14 on examples (#44486) @DiegoAndai
 - Update links and sidebar nav for Base UI components in Material UI (#44581) @samuelsycamore
