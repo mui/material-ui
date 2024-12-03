@@ -6,6 +6,7 @@ import { OverridableComponent, OverrideProps } from '@mui/types';
 import requirePropFactory from '../utils/requirePropFactory';
 import { Theme, styled, Breakpoint } from '../styles';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import useTheme from '../styles/useTheme';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 
@@ -134,6 +135,7 @@ const Grid2 = createGrid2({
   }),
   componentName: 'MuiGrid2',
   useThemeProps: (inProps) => useDefaultProps({ props: inProps, name: 'MuiGrid2' }),
+  useTheme,
 }) as OverridableComponent<Grid2TypeMap>;
 
 Grid2.propTypes /* remove-proptypes */ = {

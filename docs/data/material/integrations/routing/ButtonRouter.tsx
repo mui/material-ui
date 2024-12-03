@@ -3,8 +3,8 @@ import {
   Link as RouterLink,
   LinkProps as RouterLinkProps,
   MemoryRouter,
-} from 'react-router-dom';
-import { StaticRouter } from 'react-router-dom/server';
+  StaticRouter,
+} from 'react-router';
 import Button from '@mui/material/Button';
 
 const LinkBehavior = React.forwardRef<any, Omit<RouterLinkProps, 'to'>>(
