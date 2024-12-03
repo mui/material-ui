@@ -19,10 +19,10 @@ overrides:
   '@types/react': ^18.3.12
   '@types/react-dom': 18.3.1
   cross-fetch: ^4.0.0
-  '@pigment-css/react': 0.0.27
-  '@pigment-css/unplugin': 0.0.27
-  '@pigment-css/nextjs-plugin': 0.0.27
-  '@pigment-css/vite-plugin': 0.0.27
+  '@pigment-css/react': 0.0.28
+  '@pigment-css/unplugin': 0.0.28
+  '@pigment-css/nextjs-plugin': 0.0.28
+  '@pigment-css/vite-plugin': 0.0.28
 
 importers:
 
@@ -105,8 +105,8 @@ importers:
         specifier: ^21.0.2
         version: 21.0.2
       '@pigment-css/react':
-        specifier: 0.0.27
-        version: 0.0.27(@types/react@18.3.12)(react@18.3.1)
+        specifier: 0.0.28
+        version: 0.0.28(@types/react@18.3.12)(react@18.3.1)
       '@playwright/test':
         specifier: 1.48.2
         version: 1.48.2
@@ -370,8 +370,8 @@ importers:
         version: 18.3.1(react@18.3.1)
     devDependencies:
       '@pigment-css/nextjs-plugin':
-        specifier: 0.0.27
-        version: 0.0.27(@types/react@18.3.12)(next@15.0.3(@babel/core@7.26.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.48.2)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack-sources@3.2.3)
+        specifier: 0.0.28
+        version: 0.0.28(@types/react@18.3.12)(next@15.0.3(@babel/core@7.26.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.48.2)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack-sources@3.2.3)
       '@types/node':
         specifier: ^20.17.9
         version: 20.17.9
@@ -440,8 +440,8 @@ importers:
         specifier: ^7.26.0
         version: 7.26.0(@babel/core@7.26.0)
       '@pigment-css/vite-plugin':
-        specifier: 0.0.27
-        version: 0.0.27(@types/react@18.3.12)(react@18.3.1)(vite@5.4.11(@types/node@20.17.9)(terser@5.29.2))
+        specifier: 0.0.28
+        version: 0.0.28(@types/react@18.3.12)(react@18.3.1)(vite@5.4.11(@types/node@20.17.9)(terser@5.29.2))
       '@types/react':
         specifier: ^18.3.12
         version: 18.3.12
@@ -663,7 +663,7 @@ importers:
         version: 9.7.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@toolpad/core':
         specifier: ^0.10.0
-        version: 0.10.0(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@mui/icons-material@packages+mui-icons-material+build)(@mui/material-pigment-css@6.1.9(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@pigment-css/react@0.0.27(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@mui/material@packages+mui-material+build)(@types/react@18.3.12)(next@14.2.18(@babel/core@7.26.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.48.2)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.28.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(vite@5.4.11(@types/node@20.17.9)(terser@5.29.2))
+        version: 0.10.0(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@mui/icons-material@packages+mui-icons-material+build)(@mui/material-pigment-css@6.1.9(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@pigment-css/react@0.0.28(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@mui/material@packages+mui-material+build)(@types/react@18.3.12)(next@14.2.18(@babel/core@7.26.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.48.2)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.28.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(vite@5.4.11(@types/node@20.17.9)(terser@5.29.2))
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.49)
@@ -787,9 +787,9 @@ importers:
       react-number-format:
         specifier: ^5.4.2
         version: 5.4.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react-router-dom:
-        specifier: ^6.28.0
-        version: 6.28.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react-router:
+        specifier: ^7.0.1
+        version: 7.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-runner:
         specifier: ^1.0.5
         version: 1.0.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1809,9 +1809,9 @@ importers:
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
-      react-router-dom:
-        specifier: ^6.28.0
-        version: 6.28.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react-router:
+        specifier: ^7.0.1
+        version: 7.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       sinon:
         specifier: ^19.0.2
         version: 19.0.2
@@ -1852,8 +1852,8 @@ importers:
         specifier: workspace:*
         version: link:../mui-system/build
       '@pigment-css/react':
-        specifier: 0.0.27
-        version: 0.0.27(@types/react@18.3.12)(react@18.3.1)
+        specifier: 0.0.28
+        version: 0.0.28(@types/react@18.3.12)(react@18.3.1)
     publishDirectory: build
 
   packages/mui-private-theming:
@@ -2346,9 +2346,9 @@ importers:
       react-is:
         specifier: ^18.3.1
         version: 18.3.1
-      react-router-dom:
-        specifier: ^6.28.0
-        version: 6.28.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react-router:
+        specifier: ^7.0.1
+        version: 7.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-window:
         specifier: ^1.8.10
         version: 1.8.10(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -4027,7 +4027,7 @@ packages:
     resolution: {integrity: sha512-/Il4h5jbfXYlCxP6vuLQoCdy+MoHNJXoUIzv2zaGgR2GZW6fhlHpvV1uY0+DfDSoL07UKRnKnpQCklIkzII+qw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      '@pigment-css/react': 0.0.27
+      '@pigment-css/react': 0.0.28
 
   '@mui/material@5.15.4':
     resolution: {integrity: sha512-T/LGRAC+M0c+D3+y67eHwIN5bSje0TxbcJCWR0esNvU11T0QwrX3jedXItPNBwMupF2F5VWCDHBVLlFnN3+ABA==}
@@ -4881,24 +4881,24 @@ packages:
     resolution: {integrity: sha512-I/s6F7yKUDdtMsoBWXJe8Qz40Tui5vsuKCWJEWVL+5q9sSWRzzx6v2KeNsOBEwd94j0eWkpWCH4yB6rZg9Mf0w==}
     engines: {node: '>=8.0.0'}
 
-  '@pigment-css/nextjs-plugin@0.0.27':
-    resolution: {integrity: sha512-gg+vbuPA2HtE6zkcprsiHAZdpEGc+CcBs2NxmLeeNNxYb1Vf+fyphfjlfl1awJ1c/8JsBmcDx4YBc9AnK9SkQw==}
+  '@pigment-css/nextjs-plugin@0.0.28':
+    resolution: {integrity: sha512-Ps9EXpul5Evrj24fda8Nr0XNRAlzeInROapThZs7zTanP/e0EMqw9aKn0VAzFA3Q1bazb5oIqg9VhOZIhPut1Q==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       next: ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0
 
-  '@pigment-css/react@0.0.27':
-    resolution: {integrity: sha512-ifP18zc6lBh7gV/qZbgZ4fwlHc+z/+ip4LYjnYTPqieEi/oxoVedEUySmgrFs3YgnHpLioHiau51/EflSMKI+A==}
+  '@pigment-css/react@0.0.28':
+    resolution: {integrity: sha512-i0ws/+mhzKQrHj/TCniYZdPNS62cqXBF0NzGVs59G9AE/cuSUPL+nQNNjLMI43uvo3IgNtavidHVuNQ8uOBr9A==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0
 
-  '@pigment-css/unplugin@0.0.27':
-    resolution: {integrity: sha512-atVKhJeLSigsU5zqM4FDFHItsuVP71RuxSspR5iocX3ZFEqTvggDKpERwGQKmcGm+r/shePLhTvD3gvdGxC0XA==}
+  '@pigment-css/unplugin@0.0.28':
+    resolution: {integrity: sha512-jLDxGbNQsXclMem1JJsTNN7Q7RvUUXQHXYqkmhYs0YfGLdUiy1UOqKlcKMGhDAFkSEBL35gpVT54wYEouXrq1g==}
     engines: {node: '>=14.0.0'}
 
-  '@pigment-css/vite-plugin@0.0.27':
-    resolution: {integrity: sha512-ZBJoS5jwk1Wuz0npN3bxQiPqyL19AydehlCS31xMoeU3mnKmwKWnPYGPPI9Kt3e2/00kpQW47YO8oM2GiZUFJA==}
+  '@pigment-css/vite-plugin@0.0.28':
+    resolution: {integrity: sha512-C3un7ab6mw7gLoTMnlTjPO4cfwCn7z75JRrj9t8BAOQ8ZQPUPAf/wsN8HRVlxrwzB4HXEtRWs/vVK0UTRzrcZw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       vite: ^4.0.0 || ^5.0.0
@@ -7003,6 +7003,10 @@ packages:
   cookie@0.7.2:
     resolution: {integrity: sha512-yki5XnKuf750l50uGTllt6kKILY4nQ1eNIQatoXEByZ5dWgnKqbnqmTrBE5B4N7lrMJKQ2ytWMiTO2o0v6Ew/w==}
     engines: {node: '>= 0.6'}
+
+  cookie@1.0.2:
+    resolution: {integrity: sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==}
+    engines: {node: '>=18'}
 
   core-js-compat@3.38.1:
     resolution: {integrity: sha512-JRH6gfXxGmrzF3tZ57lFx97YARxCXPaMzPo6jELZhv88pBH5VXpQ+y0znKGlFnzuaihqhLbefxSJxWJMPtfDzw==}
@@ -11294,6 +11298,16 @@ packages:
     peerDependencies:
       react: '>=16.8'
 
+  react-router@7.0.1:
+    resolution: {integrity: sha512-WVAhv9oWCNsja5AkK6KLpXJDSJCQizOIyOd4vvB/+eHGbYx5vkhcmcmwWjQ9yqkRClogi+xjEg9fNEOd5EX/tw==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      react: '>=18'
+      react-dom: '>=18'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+
   react-runner@1.0.5:
     resolution: {integrity: sha512-eCIybRpssp6ffjqXqId024esO9UP2lV838Lvm3fC7VgMQ/dQHhR0jJwOY2IPrYD3AaM/bcvMikmASIRZqNUHsw==}
     peerDependencies:
@@ -11749,6 +11763,9 @@ packages:
 
   set-blocking@2.0.0:
     resolution: {integrity: sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==}
+
+  set-cookie-parser@2.7.1:
+    resolution: {integrity: sha512-IOc8uWeOZgnb3ptbCURJWNjWUPcO3ZnTTdzsurqERrP6nPyv+paC55vJM0LpOlT2ne+Ix+9+CRG1MNLlyZ4GjQ==}
 
   set-function-length@1.2.1:
     resolution: {integrity: sha512-j4t6ccc+VsKwYHso+kElc5neZpjtq9EnRICFZtWyBsLojhmeF/ZBd/elqm22WJh/BziDe/SBiOeAt0m2mfLD0g==}
@@ -12462,6 +12479,9 @@ packages:
   tuf-js@2.2.1:
     resolution: {integrity: sha512-GwIJau9XaA8nLVbUXsN3IlFi7WmQ48gBUrl3FTkkL/XLu/POhBzfmX9hd33FNMX1qAsfl6ozO1iMmW9NC8YniA==}
     engines: {node: ^16.14.0 || >=18.0.0}
+
+  turbo-stream@2.4.0:
+    resolution: {integrity: sha512-FHncC10WpBd2eOmGwpmQsWLDoK4cqsA/UT/GqNoaKOQnT8uzhtCbg3EoUDMvqpOSAI0S26mr0rkjzbOO6S3v1g==}
 
   type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
@@ -15115,7 +15135,7 @@ snapshots:
       '@emotion/styled': 11.13.5(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1)
       '@types/react': 18.3.12
 
-  '@mui/lab@6.0.0-beta.16(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@mui/material-pigment-css@6.1.9(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@pigment-css/react@0.0.27(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@mui/material@packages+mui-material+build)(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@mui/lab@6.0.0-beta.16(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@mui/material-pigment-css@6.1.9(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@pigment-css/react@0.0.28(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@mui/material@packages+mui-material+build)(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.0
       '@mui/base': 5.0.0-beta.62(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -15130,14 +15150,14 @@ snapshots:
     optionalDependencies:
       '@emotion/react': 11.13.5(@types/react@18.3.12)(react@18.3.1)
       '@emotion/styled': 11.13.5(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1)
-      '@mui/material-pigment-css': 6.1.9(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@pigment-css/react@0.0.27(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1)
+      '@mui/material-pigment-css': 6.1.9(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@pigment-css/react@0.0.28(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1)
       '@types/react': 18.3.12
 
-  '@mui/material-pigment-css@6.1.9(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@pigment-css/react@0.0.27(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1)':
+  '@mui/material-pigment-css@6.1.9(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@pigment-css/react@0.0.28(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.0
       '@mui/system': 6.1.9(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1)
-      '@pigment-css/react': 0.0.27(@types/react@18.3.12)(react@18.3.1)
+      '@pigment-css/react': 0.0.28(@types/react@18.3.12)(react@18.3.1)
     transitivePeerDependencies:
       - '@emotion/react'
       - '@emotion/styled'
@@ -16052,9 +16072,9 @@ snapshots:
   '@opentelemetry/api@1.8.0':
     optional: true
 
-  '@pigment-css/nextjs-plugin@0.0.27(@types/react@18.3.12)(next@15.0.3(@babel/core@7.26.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.48.2)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack-sources@3.2.3)':
+  '@pigment-css/nextjs-plugin@0.0.28(@types/react@18.3.12)(next@15.0.3(@babel/core@7.26.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.48.2)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack-sources@3.2.3)':
     dependencies:
-      '@pigment-css/unplugin': 0.0.27(@types/react@18.3.12)(react@18.3.1)(webpack-sources@3.2.3)
+      '@pigment-css/unplugin': 0.0.28(@types/react@18.3.12)(react@18.3.1)(webpack-sources@3.2.3)
       next: 15.0.3(@babel/core@7.26.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.48.2)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     transitivePeerDependencies:
       - '@types/react'
@@ -16062,7 +16082,7 @@ snapshots:
       - supports-color
       - webpack-sources
 
-  '@pigment-css/react@0.0.27(@types/react@18.3.12)(react@18.3.1)':
+  '@pigment-css/react@0.0.28(@types/react@18.3.12)(react@18.3.1)':
     dependencies:
       '@babel/core': 7.26.0
       '@babel/helper-module-imports': 7.25.9
@@ -16083,6 +16103,7 @@ snapshots:
       cssesc: 3.0.0
       csstype: 3.1.3
       lodash: 4.17.21
+      prop-types: 15.8.1
       react: 18.3.1
       stylis: 4.3.4
       stylis-plugin-rtl: 2.1.1(stylis@4.3.4)
@@ -16090,10 +16111,10 @@ snapshots:
       - '@types/react'
       - supports-color
 
-  '@pigment-css/unplugin@0.0.27(@types/react@18.3.12)(react@18.3.1)(webpack-sources@3.2.3)':
+  '@pigment-css/unplugin@0.0.28(@types/react@18.3.12)(react@18.3.1)(webpack-sources@3.2.3)':
     dependencies:
       '@babel/core': 7.26.0
-      '@pigment-css/react': 0.0.27(@types/react@18.3.12)(react@18.3.1)
+      '@pigment-css/react': 0.0.28(@types/react@18.3.12)(react@18.3.1)
       '@wyw-in-js/shared': 0.5.5
       '@wyw-in-js/transform': 0.5.5
       babel-plugin-define-var: 0.1.0
@@ -16104,11 +16125,11 @@ snapshots:
       - supports-color
       - webpack-sources
 
-  '@pigment-css/vite-plugin@0.0.27(@types/react@18.3.12)(react@18.3.1)(vite@5.4.11(@types/node@20.17.9)(terser@5.29.2))':
+  '@pigment-css/vite-plugin@0.0.28(@types/react@18.3.12)(react@18.3.1)(vite@5.4.11(@types/node@20.17.9)(terser@5.29.2))':
     dependencies:
       '@babel/core': 7.26.0
       '@babel/preset-typescript': 7.26.0(@babel/core@7.26.0)
-      '@pigment-css/react': 0.0.27(@types/react@18.3.12)(react@18.3.1)
+      '@pigment-css/react': 0.0.28(@types/react@18.3.12)(react@18.3.1)
       '@wyw-in-js/shared': 0.5.5
       '@wyw-in-js/transform': 0.5.5
       babel-plugin-define-var: 0.1.0
@@ -16830,11 +16851,11 @@ snapshots:
       '@theme-ui/css': 0.17.1(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))
       react: 18.3.1
 
-  '@toolpad/core@0.10.0(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@mui/icons-material@packages+mui-icons-material+build)(@mui/material-pigment-css@6.1.9(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@pigment-css/react@0.0.27(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@mui/material@packages+mui-material+build)(@types/react@18.3.12)(next@14.2.18(@babel/core@7.26.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.48.2)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.28.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(vite@5.4.11(@types/node@20.17.9)(terser@5.29.2))':
+  '@toolpad/core@0.10.0(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@mui/icons-material@packages+mui-icons-material+build)(@mui/material-pigment-css@6.1.9(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@pigment-css/react@0.0.28(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@mui/material@packages+mui-material+build)(@types/react@18.3.12)(next@14.2.18(@babel/core@7.26.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.48.2)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.28.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(vite@5.4.11(@types/node@20.17.9)(terser@5.29.2))':
     dependencies:
       '@babel/runtime': 7.26.0
       '@mui/icons-material': link:packages/mui-icons-material/build
-      '@mui/lab': 6.0.0-beta.16(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@mui/material-pigment-css@6.1.9(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@pigment-css/react@0.0.27(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@mui/material@packages+mui-material+build)(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@mui/lab': 6.0.0-beta.16(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@mui/material-pigment-css@6.1.9(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@pigment-css/react@0.0.28(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@mui/material@packages+mui-material+build)(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mui/material': link:packages/mui-material/build
       '@mui/utils': 6.1.8(@types/react@18.3.12)(react@18.3.1)
       '@toolpad/utils': 0.10.0(react@18.3.1)
@@ -18761,6 +18782,8 @@ snapshots:
   cookie@0.7.1: {}
 
   cookie@0.7.2: {}
+
+  cookie@1.0.2: {}
 
   core-js-compat@3.38.1:
     dependencies:
@@ -24119,6 +24142,16 @@ snapshots:
       '@remix-run/router': 1.21.0
       react: 18.3.1
 
+  react-router@7.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      '@types/cookie': 0.6.0
+      cookie: 1.0.2
+      react: 18.3.1
+      set-cookie-parser: 2.7.1
+      turbo-stream: 2.4.0
+    optionalDependencies:
+      react-dom: 18.3.1(react@18.3.1)
+
   react-runner@1.0.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       react: 18.3.1
@@ -24712,6 +24745,8 @@ snapshots:
       - supports-color
 
   set-blocking@2.0.0: {}
+
+  set-cookie-parser@2.7.1: {}
 
   set-function-length@1.2.1:
     dependencies:
@@ -25566,6 +25601,8 @@ snapshots:
       make-fetch-happen: 13.0.1
     transitivePeerDependencies:
       - supports-color
+
+  turbo-stream@2.4.0: {}
 
   type-check@0.4.0:
     dependencies:
