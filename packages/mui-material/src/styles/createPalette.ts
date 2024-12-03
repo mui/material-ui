@@ -423,14 +423,14 @@ export default function createPalette(palette: PaletteOptions): Palette {
   let modeHydrated: ReturnType<typeof getLight> | ReturnType<typeof getDark>;
   if (mode === 'light') {
     modeHydrated = getLight();
-  } else {
+  } else if (mode === 'dark') {
     modeHydrated = getDark();
-  }
-
-  if (process.env.NODE_ENV !== 'production') {
-    if (!modeHydrated) {
+  } else {
+    if (process.env.NODE_ENV !== 'production') {
       console.error(`MUI: The palette mode \`${mode}\` is not supported.`);
     }
+    // Should never reach here due to the default value, but safeguard
+    modeHydrated = getLight();
   }
 
   const paletteOutput = deepmerge(
