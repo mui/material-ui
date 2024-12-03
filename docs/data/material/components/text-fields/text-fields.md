@@ -242,7 +242,7 @@ In some circumstances, we can't determine the "shrink" state (number input, date
 To workaround the issue, you can force the "shrink" state of the label.
 
 ```jsx
-<TextField InputLabelProps={{ shrink: true }} />
+<TextField slotProps={{ inputLabel: { shrink: true } }} />
 ```
 
 or
