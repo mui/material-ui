@@ -209,6 +209,7 @@ function getCodeblock(content) {
   if (!content.startsWith('<codeblock')) {
     return undefined;
   }
+  // Add negative lookahead to the regex below to prevent ReDoS
   const storageKey = content.match(
     /^<codeblock (?!<codeblock )[^>]*storageKey=["|'](?!storageKey=["|'])(\S*)["|'].*>/m,
   )?.[1];
