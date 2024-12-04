@@ -7,23 +7,11 @@ import { StyleSheet } from '@emotion/sheet';
 
 // We might be able to remove this when this issue is fixed:
 // https://github.com/emotion-js/emotion/issues/2790
-const createEmotionCache = (options) => {
+const createEmotionCache = (options, CustomSheet) => {
   const cache = createCache(options);
 
-  /**
-   * This is for client-side apps only.
-   * A custom sheet is required to make the GlobalStyles API work with `prepend: true`.
-   * This is because the [sheet](https://github.com/emotion-js/emotion/blob/main/packages/react/src/global.js#L94-L99) does not consume the options.
-   */
-  class MyStyleSheet extends StyleSheet {
-    constructor(args) {
-      super(args);
-      this.prepend = cache.sheet.prepend;
-    }
-  }
-
   // Do the same as https://github.com/emotion-js/emotion/blob/main/packages/cache/src/index.js#L238-L245
-  cache.sheet = new MyStyleSheet({
+  cache.sheet = new CustomSheet({
     key: cache.key,
     nonce: cache.sheet.nonce,
     container: cache.sheet.container,
@@ -39,7 +27,30 @@ const createEmotionCache = (options) => {
 // It allows developers to easily override MUI styles with other styling solutions, like CSS modules.
 let cache;
 if (typeof document === 'object') {
-  cache = createEmotionCache({ key: 'css', prepend: true });
+  let insertionPoint = document.querySelector('[name="emotion-insertion-point"]');
+  if (!insertionPoint) {
+    insertionPoint = document.createElement('meta');
+    insertionPoint.setAttribute('name', 'emotion-insertion-point');
+    insertionPoint.setAttribute('content', '');
+  }
+  const head = document.querySelector('head');
+  if (head) {
+    head.prepend(insertionPoint);
+  }
+  /**
+   * This is for client-side apps only.
+   * A custom sheet is required to make the GlobalStyles API injected above the insertion point.
+   * This is because the [sheet](https://github.com/emotion-js/emotion/blob/main/packages/react/src/global.js#L94-L99) does not consume the options.
+   */
+  class MyStyleSheet extends StyleSheet {
+    constructor(args) {
+      super(args);
+      if (args.key && args.key.endsWith('global')) {
+        this.before = insertionPoint;
+      }
+    }
+  }
+  cache = createEmotionCache({ key: 'css', prepend: true }, MyStyleSheet);
 }
 
 export default function StyledEngineProvider(props) {
