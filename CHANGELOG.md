@@ -1,5 +1,52 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.1.10
+
+<!-- generated comparing v6.1.9..master -->
+
+_Dec 3, 2024_
+
+A big thanks to the 10 contributors who made this release possible.
+
+### `@mui/material@6.1.10`
+
+- [Avatar] Fix `slotProps.img` not spread to hook (#44536) @siriwatknp
+- [FilledInput] Use `slotProps` instead of `componentsProps` (#44552) @siriwatknp
+- [Grid2] Fix theme scoping error (#44599) @siriwatknp
+- [Grid2] Add container styles from styleOverrides (#44598) @sai6855
+- Skip `tonalOffset` from setting color channel (#44585) @siriwatknp
+- Remove few more React.ReactElement<any> types (#44290) @sai6855
+- [Tabs] Fix `ScrollbarSize` ref being overriden (#44593) @DiegoAndai
+- [Select][TextField] Fix screen reader from saying `&ZeroWidthSpace` (#44631) @arishoham
+
+### `@mui/system@6.1.10`
+
+- [ThemeProvider] Optimize `theme` changes when enabling CSS theme variables (#44588) @siriwatknp
+
+### Docs
+
+- Notification for the MUI X v8 alpha zero announcement blog post (#44629) @joserodolfofreitas
+- Bump React Router to ^7.0.1 (#44531) @oliviertassinari
+- [material-ui] Replace testid with id in migration guide (#44636) @sai6855
+- [material-ui][TextField] Update usage of `InputLabelProps` in docs (#44634) @sai6855
+- [material-ui][ListItem] Add missing diffs in migration guide (#44638) @sai6855
+- [examples] Use Next.js 14 on examples (#44486) @DiegoAndai
+- Update links and sidebar nav for Base UI components in Material UI (#44581) @samuelsycamore
+
+### Core
+
+- Remove `getSlotOwnerState` from `useSlot` util (#44403) @ZeeshanTamboli
+- Extract useRippleHandler outside of ButtonBase (#44591) @albarv340
+- Update eslint config (#44586) @MBilalShafi
+- [core-infra] Remove useless fragments (#44516) @oliviertassinari
+- [docs-infra] Fix Banner CLS (#44632) @oliviertassinari
+- [docs-infra] Change CSS vars generation to be extracted from Enum (#44587) @mnajdova
+- [docs-infra] Automatically hide Black Friday banner (#44630) @oliviertassinari
+- [docs-infra] Fix TOC RTL padding regression (#44535) @oliviertassinari
+- [test-utils] Remove leftover React.ReactElement<any> from describeConformance.tsx (#44639) @sai6855
+
+All contributors of this release in alphabetical order: @albarv340, @arishoham, @DiegoAndai, @joserodolfofreitas, @MBilalShafi, @mnajdova, @oliviertassinari, @renovate[bot], @sai6855, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+
 ## 6.1.9
 
 <!-- generated comparing v6.1.8..master -->
