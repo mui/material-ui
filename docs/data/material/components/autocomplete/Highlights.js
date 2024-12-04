@@ -7,7 +7,6 @@ import match from 'autosuggest-highlight/match';
 export default function Highlights() {
   return (
     <Autocomplete
-      id="highlights-demo"
       sx={{ width: 300 }}
       options={top100Films}
       getOptionLabel={(option) => option.title}
@@ -15,11 +14,12 @@ export default function Highlights() {
         <TextField {...params} label="Highlights" margin="normal" />
       )}
       renderOption={(props, option, { inputValue }) => {
+        const { key, ...optionProps } = props;
         const matches = match(option.title, inputValue, { insideWords: true });
         const parts = parse(option.title, matches);
 
         return (
-          <li {...props}>
+          <li key={key} {...optionProps}>
             <div>
               {parts.map((part, index) => (
                 <span

@@ -11,7 +11,7 @@ export default function TextareaRef() {
   };
 
   return (
-    <Stack direction="row" gap={1}>
+    <Stack direction="row" sx={{ gap: 1 }}>
       <Textarea
         placeholder="Placeholder"
         slotProps={{ textarea: { ref: textareaRef } }}

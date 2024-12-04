@@ -15,7 +15,7 @@ export default function SelectMultipleFormSubmission() {
         alert(JSON.stringify(selectedPets));
       }}
     >
-      <Stack spacing={2} alignItems="flex-start">
+      <Stack spacing={2} sx={{ alignItems: 'flex-start' }}>
         <Select
           placeholder="Select a pet"
           name="pets"

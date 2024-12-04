@@ -4,13 +4,15 @@ import Sheet from '@mui/joy/Sheet';
 import Grid from '@mui/joy/Grid';
 
 const Item = styled(Sheet)(({ theme }) => ({
-  backgroundColor:
-    theme.palette.mode === 'dark' ? theme.palette.background.level1 : '#fff',
+  backgroundColor: '#fff',
   ...theme.typography['body-sm'],
   padding: theme.spacing(1),
   textAlign: 'center',
   borderRadius: 4,
   color: theme.vars.palette.text.secondary,
+  ...theme.applyStyles('dark', {
+    backgroundColor: theme.palette.background.level1,
+  }),
 }));
 
 export default function ResponsiveGrid() {
@@ -22,8 +24,8 @@ export default function ResponsiveGrid() {
       sx={{ flexGrow: 1 }}
     >
       {Array.from(Array(6)).map((_, index) => (
-        <Grid xs={2} sm={4} md={4} key={index}>
-          <Item>xs=2</Item>
+        <Grid key={index} size={{ xs: 2, sm: 4, md: 4 }}>
+          <Item>{index + 1}</Item>
         </Grid>
       ))}
     </Grid>

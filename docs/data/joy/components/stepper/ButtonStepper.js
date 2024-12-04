@@ -22,12 +22,10 @@ export default function ButtonStepper() {
               {activeStep <= index ? index + 1 : <Check />}
             </StepIndicator>
           }
-          sx={{
-            '&::after': {
-              ...(activeStep > index &&
-                index !== 2 && { bgcolor: 'primary.solidBg' }),
-            },
-          }}
+          sx={[
+            activeStep > index &&
+              index !== 2 && { '&::after': { bgcolor: 'primary.solidBg' } },
+          ]}
         >
           <StepButton onClick={() => setActiveStep(index)}>{step}</StepButton>
         </Step>

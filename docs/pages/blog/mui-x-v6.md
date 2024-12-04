@@ -3,11 +3,11 @@ title: Introducing MUI X v6
 description: Introducing the new major version of the advanced components.
 date: 2023-03-06T00:00:00.000Z
 authors: ['josefreitas']
-card: true
+manualCard: true
 tags: ['MUI X', 'Product']
 ---
 
-<img src="/static/blog/mui-x-v6/card.png" alt="" style="margin-bottom: 16px;" width="2400" height="559" />
+<img src="/static/blog/mui-x-v6/card.png" alt="" width="2560" height="1280" />
 
 [MUI X v6.0.0](https://github.com/mui/mui-x/releases/tag/v6.0.0) is finally here with many improvements, new features, customization abilities, and a more robust foundation to accommodate the changes we want to deliver next.
 
@@ -208,7 +208,7 @@ export default function CustomStaticDatePicker() {
 
 Many end-users complained, and we completely agree, the [clock view](/x/react-date-pickers/time-clock/) is not the ideal time-picking experience on Desktop, so we removed it as a default view.
 
-<img src="/static/blog/mui-x-v6/clock.png" loading="lazy" alt="Date Range shortcuts." width="518" height="496" style="width: 259px; margin-bottom: 24px;" />
+<img src="/static/blog/mui-x-v6/clock.png" loading="lazy" alt="Date Range shortcuts." width="518" height="496" style="width: 259px;" />
 
 <p class="blog-description">The clock picker, still present on mobile.</p>
 
@@ -284,7 +284,7 @@ Here's a list of what you can expect to be delivered in the following months (wh
 
 - Preview of chart components 🔥 ([mui-x#1408](https://github.com/mui/mui-x/issues/1408))
 
-You can get more details of our next steps in [MUI X public roadmap](https://github.com/mui/mui-x/projects/1).
+You can get more details of our next steps in [MUI X public roadmap](https://github.com/orgs/mui/projects/35).
 
 ## Decoupling versions from MUI Core
 

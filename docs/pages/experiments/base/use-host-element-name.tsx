@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Button as BaseButton, buttonClasses } from '@mui/base/Button';
 import { prepareForSlot } from '@mui/base/utils';
 import { styled, Theme } from '@mui/system';
-import { Stack } from '@mui/material';
+import Stack from '@mui/material/Stack';
 import Link from 'next/link';
 
 const LinkSlot = prepareForSlot(Link);
@@ -83,7 +83,7 @@ const StyledHtmlAnchor = styled('a')(STYLES);
 export default function ServerRenderedButtons() {
   return (
     <Stack spacing={8} direction="column" style={{ padding: 16 }}>
-      <Stack spacing={3} mb={24}>
+      <Stack spacing={3} sx={{ mb: 24 }}>
         <pre style={{ fontSize: 16, fontWeight: 500, marginBottom: -12 }}>Normal cases:</pre>
         <pre style={{ lineHeight: 1.8, marginBottom: 12 }}>
           1A: defaults

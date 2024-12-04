@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-  Experimental_CssVarsProvider as CssVarsProvider,
-  experimental_extendTheme as extendTheme,
-  createTheme,
-} from '@mui/material/styles';
+import { CssVarsProvider, extendTheme, createTheme } from '@mui/material/styles';
 import { cyan } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';
@@ -18,6 +14,8 @@ const ocean = createTheme({
 });
 
 const theme = extendTheme({
+  colorSchemeSelector: '[data-mui-color-scheme="%s"]',
+  disableCssColorScheme: true,
   colorSchemes: {
     ocean: {
       palette: ocean.palette,

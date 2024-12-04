@@ -16,7 +16,7 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
    */
   allowSwipeInChildren?:
     | boolean
-    | ((e: TouchEvent, swipeArea: HTMLDivElement, paper: HTMLDivElement) => boolean);
+    | ((event: TouchEvent, swipeArea: HTMLDivElement, paper: HTMLDivElement) => boolean);
   /**
    * Disable the backdrop transition.
    * This can improve the FPS on low-end devices.

@@ -4,7 +4,7 @@ description: An update on our mission for Q2 2021.
 date: 2021-07-12T00:00:00.000Z
 authors: ['oliviertassinari', 'mbrookes']
 tags: ['Company']
-card: true
+manualCard: true
 ---
 
 This update covers our progress over the last three months.
@@ -15,7 +15,7 @@ It also covers what we aim to achieve in the months ahead.
 - [Product](#product)
   - [Core components](#core-components)
   - [Advanced components](#advanced-components)
-  - [Design kits](#design-kits)
+  - [Design Kits](#design-kits)
 - [Company](#company)
 - [Our roadmap intent for Q3 2021](#our-roadmap-intent-for-q3-2021)
 
@@ -111,7 +111,9 @@ The date picker is at the border between the core component and advanced compone
   We think that the component is good enough for use in production (and many developers already are using it), but we want to get the public API right before committing to a stable release.
 - ✍️ We have added support for the [cell edit mode](https://mui.com/x/react-data-grid/editing/).
 
-  <img loading="lazy" src="/static/blog/2021-q2-update/cell-edit.gif" alt="" style="width: 842px; margin-bottom: 16px;" />
+  <video autoplay muted loop playsinline width="1684" height="782">
+    <source src="/static/blog/2021-q2-update/cell-edit.mp4" type="video/mp4" />
+  </video>
 
 - 🐛 We have focused on fixing bugs and regressions to ensure early users have a great experience with the component.
   This was done instead of taking on ambitious new features.
@@ -120,7 +122,7 @@ The date picker is at the border between the core component and advanced compone
 
   <img loading="lazy" src="/static/blog/2021-q2-update/single-select.png" alt="" style="width: 481px; margin-bottom: 16px;" />
 
-  <p class="blog-description">the <a href="https://codesandbox.io/p/sandbox/material-demo-forked-iuyo5?file=/demo.js">codesandbox</a></p>
+  <p class="blog-description">the <a href="https://codesandbox.io/p/sandbox/material-demo-forked-iuyo5?file=/demo.js">CodeSandbox</a></p>
 
   and the **boolean** column type.
 
@@ -134,7 +136,7 @@ The date picker is at the border between the core component and advanced compone
 - ⚡️ We have fixed support for components that use portals, like Select and Autocomplete, in the cell editing mode.
 - 🌏 We have accepted many new built-in locales (+15) from the community, after the introduction of [the feature](/x/react-data-grid/localization/#supported-locales) in Q1.
 
-### Design kits
+### Design Kits
 
 #### Figma
 
@@ -217,7 +219,7 @@ We have the following objectives:
 - ⚛️ Support [React 18](https://legacy.reactjs.org/blog/2021/06/08/the-plan-for-react-18.html). [Sebastian](https://github.com/eps1lon) is part of the React [Working Group](https://github.com/reactwg/react-18/discussions), focusing on making us ready ahead of time.
   We want our most demanding users to feel empowered by Material UI, not slowed down by a third-party library.
 - 🦴 Migrate more components to `@mui/base`. [Michał](https://github.com/michaldudak) has recently added support for the [Switch](https://mui.com/base-ui/react-switch/).
-  You can follow our progress in the [umbrella issue](https://github.com/mui/material-ui/issues/27170).
+  You can follow our progress in the [umbrella issue](https://github.com/mui/base-ui/issues/10).
 - 🌈 Do a proof of concept on supporting a second design system.
   Some of our users (and potential users) dislike Material Design. We will try to make the second design system one that they love!
 - 🗓 Execute on all of the items in the [public roadmap](https://github.com/orgs/mui/projects/23/views/12).
@@ -229,10 +231,10 @@ We have the following objectives:
 - ✨ Resume work on the [key features](https://github.com/mui/mui-x/issues?q=is%3Aopen+label%3A%22linked+in+docs%22+sort%3Areactions-%2B1-desc), after a quarter focused on stability.
   It seems that the audience is adopting the data grid as fast as we can build it.
   For instance, we have one issue with over [1,000 upvotes](https://github.com/mui/mui-x/issues/204) 👍.
-- 🗓 Execute on all of the items in the [public roadmap](https://github.com/mui/mui-x/projects/1).
+- 🗓 Execute on all of the items in the [public roadmap](https://github.com/orgs/mui/projects/35).
 - ❓ Please upvote [GitHub issues](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
-### Design kits
+### Design Kits
 
 - Handle designers' pain and bug reports to polish the products.
 - Run a survey on thousands of customers to identify important improvement opportunities. Should we build plugins to more easily switch the token variables between design and code? Should we add more in context examples? Should we focus on inconsistencies? etc.

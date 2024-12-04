@@ -37,7 +37,7 @@ const StyledListbox = styled('ul')(
   min-width: 200px;
   border-radius: 12px;
   overflow: auto;
-  outline: 0px;
+  outline: 0;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
@@ -98,14 +98,14 @@ const StyledMenuButton = styled(MenuButton)(
   `,
 );
 
-const Page = styled('div')(`
+const Page = styled('div')`
   max-width: 800px;
   min-height: calc(100vh - 40px);
   box-sizing: border-box;
   margin: 20px auto;
   padding: 20px;
   border-radius: 4px;
-`);
+`;
 
 function UnstyledSeparator(props: React.HTMLAttributes<HTMLLIElement>) {
   return <li {...props} role="separator" />;

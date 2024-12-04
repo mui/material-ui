@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
+import { CssVarsProvider } from '@mui/material/styles';
+import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
 import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
@@ -11,14 +12,11 @@ import Highlighter from 'docs/src/components/action/Highlighter';
 import SvgMaterialDesign from 'docs/src/icons/SvgMaterialDesign';
 import Frame from 'docs/src/components/action/Frame';
 import PlayerCard from 'docs/src/components/showcase/PlayerCard';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 
 const code = `
 <Card
   variant="outlined"
-  sx={{
-    p: 2,
+  sx={{  p: 2,
     width: { xs: '100%', sm: 'auto' },
     display: 'flex',
     flexDirection: { xs: 'column', sm: 'row' },
@@ -32,8 +30,7 @@ const code = `
     height="100"
     alt="Contemplative Reptile album cover"
     src="/images/contemplative-reptile.jpg"
-    sx={{
-      width: { xs: '100%', sm: 100 },
+    sx={{    width: { xs: '100%', sm: 100 },
     }}
   />
   <Stack direction="column" alignItems="center" spacing={1} useFlexGap>
@@ -80,7 +77,7 @@ export default function MaterialTheming() {
   return (
     <Section>
       <Grid container spacing={2}>
-        <Grid item md={6} sx={{ minWidth: 0 }}>
+        <Grid sx={{ minWidth: 0 }} size={{ md: 6 }}>
           <SectionHeadline
             overline="Theming"
             title={
@@ -107,7 +104,7 @@ export default function MaterialTheming() {
             </Highlighter>
           </Group>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo
               sx={{
@@ -128,12 +125,7 @@ export default function MaterialTheming() {
               )}
             </Frame.Demo>
             <Frame.Info sx={{ maxHeight: 300, overflow: 'auto' }}>
-              <HighlightedCode
-                copyButtonHidden
-                component={MarkdownElement}
-                code={code}
-                language="jsx"
-              />
+              <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
             </Frame.Info>
           </Frame>
         </Grid>

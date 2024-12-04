@@ -13,19 +13,19 @@ export default function AccordionDepthPanel() {
     <AccordionGroup
       variant="outlined"
       transition="0.2s"
-      sx={{
+      sx={(theme) => ({
         maxWidth: 400,
         borderRadius: 'lg',
         [`& .${accordionSummaryClasses.button}:hover`]: {
           bgcolor: 'transparent',
         },
         [`& .${accordionDetailsClasses.content}`]: {
-          boxShadow: (theme) => `inset 0 1px ${theme.vars.palette.divider}`,
+          boxShadow: `inset 0 1px ${theme.vars.palette.divider}`,
           [`&.${accordionDetailsClasses.expanded}`]: {
             paddingBlock: '0.75rem',
           },
         },
-      }}
+      })}
     >
       <Accordion defaultExpanded>
         <AccordionSummary>First accordion</AccordionSummary>

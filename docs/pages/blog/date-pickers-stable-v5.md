@@ -4,7 +4,7 @@ description: Migrate to the latest version for improved DX, customizability, and
 date: 2022-09-19T00:00:00.000Z
 authors: ['alexfauquette', 'josefreitas']
 tags: ['MUI X', 'Product']
-card: true
+manualCard: true
 ---
 
 About four months ago, we moved the date and time pickers from `@mui/lab` and released the first alpha version of the date pickers package.
@@ -30,7 +30,7 @@ More than 150 issues were solved during the pre-releases (alpha/beta), including
 
 A big thanks to all the contributors who took the time to clarify the edge cases they faced. It's been a huge help in refining the components behavior.
 
-<img src="/static/blog/date-pickers-stable-v5/monkeyuser-237-fov.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px; aspect-ratio: 112/59;" loading="lazy" alt="Bug illustration from monkeyuser.com" />
+<img src="/static/blog/date-pickers-stable-v5/monkeyuser-237-fov.png" loading="lazy" alt="Bug illustration from monkeyuser.com" width="1600" height="844" />
 
 ### Better APIs and improved customization
 
@@ -82,7 +82,7 @@ So a significant share has already migrated.
 And the adoption speed across versions is very encouraging.
 Over 40% of users are already using the beta versions.
 
-<img src="/static/blog/date-pickers-stable-v5/date-picker-versions.png" style="width: 796px; margin-top: 16px; aspect-ratio: 168/89;" loading="lazy" alt="Evolution of downloaded version of @mui/x-data-pickers" />
+<img src="/static/blog/date-pickers-stable-v5/date-picker-versions.png" width="1846" height="977" loading="lazy" alt="Evolution of downloaded version of @mui/x-data-pickers" />
 
 <p class="blog-description">Relative distribution of `@mui/x-date-pickers` versions between June and August.</p>
 

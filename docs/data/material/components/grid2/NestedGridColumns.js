@@ -2,40 +2,43 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  backgroundColor: '#fff',
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',
   color: theme.palette.text.secondary,
+  ...theme.applyStyles('dark', {
+    backgroundColor: '#1A2027',
+  }),
 }));
 
 export default function NestedGridColumns() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2} columns={24}>
-        <Grid xs={8}>
-          <Item>xs=8/24</Item>
+        <Grid size={8}>
+          <Item>size=8/24</Item>
         </Grid>
-        <Grid container xs={16}>
-          <Grid xs={12}>
-            <Item>nested xs=12/24</Item>
+        <Grid container size={16}>
+          <Grid size={12}>
+            <Item>nested size=12/24</Item>
           </Grid>
-          <Grid xs={12}>
-            <Item>nested xs=12/24</Item>
+          <Grid size={12}>
+            <Item>nested size=12/24</Item>
           </Grid>
         </Grid>
-        <Grid xs={8}>
-          <Item>xs=8/24</Item>
+        <Grid size={8}>
+          <Item>size=8/24</Item>
         </Grid>
-        <Grid container xs={16} columns={12}>
-          <Grid xs={6}>
-            <Item>nested xs=6/12</Item>
+        <Grid container columns={12} size={16}>
+          <Grid size={6}>
+            <Item>nested size=6/12</Item>
           </Grid>
-          <Grid xs={6}>
-            <Item>nested xs=6/12</Item>
+          <Grid size={6}>
+            <Item>nested size=6/12</Item>
           </Grid>
         </Grid>
       </Grid>

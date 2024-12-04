@@ -10,7 +10,7 @@ unstyled: /base-ui/react-switch/
 
 <p class="description">Switches toggle the state of a single setting on or off.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 

@@ -10,14 +10,13 @@ export default function transformer(file, api) {
     .find(j.ImportDeclaration)
     .filter(({ node }) => {
       const sourceVal = node.source.value;
-      if (sourceVal.startsWith('@mui/base')) {
-        node.source.value = sourceVal.replace(/unstyled/im, '');
-        node.source.raw = sourceVal.replace(/unstyled/im, '');
-      }
-
       return sourceVal.startsWith('@mui/base');
     })
     .forEach((path) => {
+      const sourceVal = path.node.source.value;
+      if (sourceVal.startsWith('@mui/base')) {
+        path.node.source = j.stringLiteral(sourceVal.replace(/unstyled/im, ''));
+      }
       const specifiers = [];
       path.node.specifiers.forEach((elementNode) => {
         const importedName = elementNode.imported?.name || '';

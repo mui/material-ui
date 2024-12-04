@@ -8,4 +8,4 @@ export interface GlobalStylesProps<Theme = {}> {
 
 export default function GlobalStyles<Theme = {}>(
   props: GlobalStylesProps<Theme>,
-): React.ReactElement;
+): React.JSX.Element;

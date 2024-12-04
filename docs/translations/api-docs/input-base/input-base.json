@@ -11,11 +11,9 @@
     "color": {
       "description": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#custom-colors\">palette customization guide</a>. The prop defaults to the value (<code>&#39;primary&#39;</code>) inherited from the parent FormControl component."
     },
-    "components": {
-      "description": "The components used for each slot inside.<br>This prop is an alias for the <code>slots</code> prop. It&#39;s recommended to use the <code>slots</code> prop instead."
-    },
+    "components": { "description": "The components used for each slot inside." },
     "componentsProps": {
-      "description": "The extra props for the slot components. You can override the existing props or add new ones.<br>This prop is an alias for the <code>slotProps</code> prop. It&#39;s recommended to use the <code>slotProps</code> prop instead, as <code>componentsProps</code> will be deprecated in the future."
+      "description": "The extra props for the slot components. You can override the existing props or add new ones."
     },
     "defaultValue": {
       "description": "The default value. Use when the component is not controlled."
@@ -52,7 +50,7 @@
       "description": "Minimum number of rows to display when multiline option is set to true."
     },
     "multiline": {
-      "description": "If <code>true</code>, a <a href=\"/material-ui/react-textarea-autosize/\">TextareaAutosize</a> element is rendered."
+      "description": "If <code>true</code>, a <a href=\"https://mui.com/material-ui/react-textarea-autosize/\">TextareaAutosize</a> element is rendered."
     },
     "name": { "description": "Name attribute of the <code>input</code> element." },
     "onBlur": {

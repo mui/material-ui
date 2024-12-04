@@ -1,4 +1,4 @@
-import { isHostComponent } from '@mui/base/utils';
+import isHostComponent from './isHostComponent';
 
 const shouldSpreadAdditionalProps = (Slot) => {
   return !Slot || !isHostComponent(Slot);

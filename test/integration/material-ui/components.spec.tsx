@@ -73,6 +73,7 @@ import {
   Toolbar,
   Tooltip,
   Typography,
+  ListItemButton,
 } from '@mui/material';
 import { Theme } from '@mui/material/styles';
 import { ButtonBaseActions } from '@mui/material/ButtonBase';
@@ -169,7 +170,7 @@ function BottomNavigationTest() {
   const value = 123;
 
   return (
-    <BottomNavigation value={value} onChange={(e) => log(e)} showLabels>
+    <BottomNavigation value={value} onChange={(event) => log(event)} showLabels>
       <BottomNavigationAction label="Recents" icon={<FakeIcon />} />
       <BottomNavigationAction label="Favorites" />
       <BottomNavigationAction label={<span>Nearby</span>} icon={<FakeIcon />} />
@@ -221,7 +222,7 @@ function CardTest() {
           be-nev-o-lent
         </Typography>
         <Typography variant="body1">adjective</Typography>
-        <Typography component="p">
+        <Typography>
           well meaning and kindly.
           <br />a benevolent smile
         </Typography>
@@ -245,7 +246,7 @@ function CardMediaTest() {
         <img src="image/src.png" alt="Contemplative Reptile" />
       </CardMedia>
       <CardContent>
-        <Typography component="p">
+        <Typography>
           This impressive paella is a perfect party dish and a fun meal to cook together with your
           guests. Add 1 cup of frozen peas along with the mussels, if you like.
         </Typography>
@@ -263,14 +264,12 @@ function CardMediaTest() {
       </CardActions>
       <Collapse in timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph variant="body2">
-            Method:
-          </Typography>
-          <Typography paragraph>
+          <Typography variant="body2">Method:</Typography>
+          <Typography>
             Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
             minutes.
           </Typography>
-          <Typography paragraph>
+          <Typography>
             Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
             heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
             browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken
@@ -278,7 +277,7 @@ function CardMediaTest() {
             pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add
             saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
           </Typography>
-          <Typography paragraph>
+          <Typography>
             Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
             without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to
             medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook
@@ -298,8 +297,12 @@ function ChipsTest() {
   return (
     <div>
       <Chip label="Basic Chip" />
-      <Chip avatar={<Avatar>M</Avatar>} label="Clickable Chip" onClick={(e) => log(e)} />
-      <Chip avatar={<Avatar src="image.bmp" />} label="Deletable Chip" onDelete={(e) => log(e)} />
+      <Chip avatar={<Avatar>M</Avatar>} label="Clickable Chip" onClick={(event) => log(event)} />
+      <Chip
+        avatar={<Avatar src="image.bmp" />}
+        label="Deletable Chip"
+        onDelete={(event) => log(event)}
+      />
       <Chip
         avatar={
           <Avatar>
@@ -307,8 +310,8 @@ function ChipsTest() {
           </Avatar>
         }
         label="Clickable Deletable Chip"
-        onClick={(e) => log(e)}
-        onDelete={(e) => log(e)}
+        onClick={(event) => log(event)}
+        onDelete={(event) => log(event)}
       />
     </div>
   );
@@ -322,22 +325,22 @@ function DialogTest() {
       <div>
         <List>
           {emails.map((email) => (
-            <ListItem button onClick={(e) => log(e)} key={email}>
+            <ListItemButton onClick={(event) => log(event)} key={email}>
               <ListItemAvatar>
                 <Avatar>
                   <FakeIcon />
                 </Avatar>
               </ListItemAvatar>
               <ListItemText primary={email} />
-            </ListItem>
+            </ListItemButton>
           ))}
           <ListItem
             ref={(elem) => {
               expectType<HTMLLIElement | null, typeof elem>(elem);
             }}
-            onClick={(e) => {
-              expectType<React.MouseEvent<HTMLLIElement, MouseEvent>, typeof e>(e);
-              log(e);
+            onClick={(event) => {
+              expectType<React.MouseEvent<HTMLLIElement, MouseEvent>, typeof event>(event);
+              log(event);
             }}
           >
             <ListItemIcon>
@@ -345,14 +348,13 @@ function DialogTest() {
             </ListItemIcon>
             <ListItemText primary="Inbox" />
           </ListItem>
-          <ListItem
-            button
+          <ListItemButton
             ref={(elem) => {
               expectType<HTMLDivElement | null, typeof elem>(elem);
             }}
-            onClick={(e) => {
-              expectType<React.MouseEvent<HTMLDivElement, MouseEvent>, typeof e>(e);
-              log(e);
+            onClick={(event) => {
+              expectType<React.MouseEvent<HTMLDivElement, MouseEvent>, typeof event>(event);
+              log(event);
             }}
           >
             <ListItemAvatar>
@@ -361,29 +363,28 @@ function DialogTest() {
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary="add account" />
-          </ListItem>
-          <ListItem<'a'>
+          </ListItemButton>
+          <ListItemButton<'a'>
             component="a"
             ref={(elem) => {
               expectType<HTMLAnchorElement | null, typeof elem>(elem);
             }}
-            onClick={(e) => {
-              expectType<React.MouseEvent<HTMLAnchorElement, MouseEvent>, typeof e>(e);
-              log(e);
+            onClick={(event) => {
+              expectType<React.MouseEvent<HTMLAnchorElement, MouseEvent>, typeof event>(event);
+              log(event);
             }}
-            button
           >
             <ListItemIcon>
               <FakeIcon />
             </ListItemIcon>
             <ListItemText primary="Inbox" />
-          </ListItem>
-          <ListItem button>
+          </ListItemButton>
+          <ListItemButton>
             <ListItemIcon>
               <FakeIcon />
             </ListItemIcon>
             <ListItemText primary="Inbox" />
-          </ListItem>
+          </ListItemButton>
         </List>
       </div>
       <DialogContent>
@@ -417,7 +418,7 @@ function DrawerTest() {
         variant="persistent"
         open={open.left}
         onClose={(event) => log(event)}
-        onClick={(e) => log(e)}
+        onClick={(event) => log(event)}
       >
         List
       </Drawer>
@@ -426,7 +427,7 @@ function DrawerTest() {
         anchor="top"
         open={open.top}
         onClose={(event) => log(event)}
-        onClick={(e) => log(e)}
+        onClick={(event) => log(event)}
         ModalProps={{
           hideBackdrop: true,
         }}
@@ -438,7 +439,7 @@ function DrawerTest() {
         variant="temporary"
         open={open.bottom}
         onClose={(event) => log(event)}
-        onClick={(e) => log(e)}
+        onClick={(event) => log(event)}
       >
         List
       </Drawer>
@@ -447,7 +448,7 @@ function DrawerTest() {
         anchor="right"
         open={open.right}
         onClose={(event) => log(event)}
-        onClick={(e) => log(e)}
+        onClick={(event) => log(event)}
       >
         List
       </Drawer>
@@ -467,8 +468,8 @@ function SwipeableDrawerTest() {
       <SwipeableDrawer
         open={open.left}
         onClose={(event) => log(event)}
-        onClick={(e) => log(e)}
-        onOpen={(e) => log(e)}
+        onClick={(event) => log(event)}
+        onOpen={(event) => log(event)}
       >
         List
       </SwipeableDrawer>
@@ -476,8 +477,8 @@ function SwipeableDrawerTest() {
         anchor="top"
         open={open.top}
         onClose={(event) => log(event)}
-        onClick={(e) => log(e)}
-        onOpen={(e) => log(e)}
+        onClick={(event) => log(event)}
+        onOpen={(event) => log(event)}
         ModalProps={{
           hideBackdrop: true,
         }}
@@ -488,8 +489,8 @@ function SwipeableDrawerTest() {
         anchor="bottom"
         open={open.bottom}
         onClose={(event) => log(event)}
-        onClick={(e) => log(e)}
-        onOpen={(e) => log(e)}
+        onClick={(event) => log(event)}
+        onOpen={(event) => log(event)}
       >
         List
       </SwipeableDrawer>
@@ -498,8 +499,8 @@ function SwipeableDrawerTest() {
         anchor="right"
         open={open.right}
         onClose={(event) => log(event)}
-        onClick={(e) => log(e)}
-        onOpen={(e) => log(e)}
+        onClick={(event) => log(event)}
+        onOpen={(event) => log(event)}
       >
         List
       </SwipeableDrawer>
@@ -510,7 +511,7 @@ function SwipeableDrawerTest() {
 function AccordionTest() {
   return (
     <div>
-      <Accordion onChange={(e) => log(e)} expanded disabled>
+      <Accordion onChange={(event) => log(event)} expanded disabled>
         <AccordionSummary />
         <AccordionDetails />
       </Accordion>
@@ -550,8 +551,8 @@ function GridTest() {
 
 function ImageListTest() {
   return (
-    <ImageList rowHeight={160} cols={3} onClick={(e) => log(e)}>
-      <ImageListItem cols={1} rows={4} onClick={(e) => log(e)}>
+    <ImageList rowHeight={160} cols={3} onClick={(event) => log(event)}>
+      <ImageListItem cols={1} rows={4} onClick={(event) => log(event)}>
         <img src="img.png" alt="alt text" />
       </ImageListItem>
       ,
@@ -563,7 +564,7 @@ function ListTest() {
   return (
     <List>
       {[0, 1, 2, 3].map((value) => (
-        <ListItem dense button selected={false} key={value} onClick={(e) => log(e)}>
+        <ListItemButton dense selected={false} key={value} onClick={(event) => log(event)}>
           <Checkbox checked tabIndex={-1} disableRipple />
           <ListItemText primary={`Line item ${value + 1}`} />
           <ListItemSecondaryAction>
@@ -571,7 +572,7 @@ function ListTest() {
               <FakeIcon />
             </IconButton>
           </ListItemSecondaryAction>
-        </ListItem>
+        </ListItemButton>
       ))}
       <ListItem ContainerComponent="div" ContainerProps={{ className: 'demo' }}>
         an item
@@ -604,9 +605,9 @@ function MenuTest() {
           ref={(elem) => {
             expectType<HTMLLIElement | null, typeof elem>(elem);
           }}
-          onClick={(e) => {
-            expectType<React.MouseEvent<HTMLLIElement, MouseEvent>, typeof e>(e);
-            log(e);
+          onClick={(event) => {
+            expectType<React.MouseEvent<HTMLLIElement, MouseEvent>, typeof event>(event);
+            log(event);
           }}
         >
           {option}
@@ -620,9 +621,9 @@ function MenuTest() {
         ref={(elem) => {
           expectType<HTMLAnchorElement | null, typeof elem>(elem);
         }}
-        onClick={(e) => {
-          expectType<React.MouseEvent<HTMLAnchorElement, MouseEvent>, typeof e>(e);
-          log(e);
+        onClick={(event) => {
+          expectType<React.MouseEvent<HTMLAnchorElement, MouseEvent>, typeof event>(event);
+          log(event);
         }}
       >
         Link Item
@@ -754,7 +755,7 @@ function SwitchTest() {
 function SnackbarTest() {
   return (
     <div>
-      <Button onClick={(e) => log(e)}>Open simple snackbar</Button>
+      <Button onClick={(event) => log(event)}>Open simple snackbar</Button>
       <Snackbar
         anchorOrigin={{
           vertical: 'bottom',
@@ -771,10 +772,15 @@ function SnackbarTest() {
         }
         message={<span id="message-id">Note archived</span>}
         action={[
-          <Button key="undo" color="secondary" size="small" onClick={(e) => log(e)}>
+          <Button key="undo" color="secondary" size="small" onClick={(event) => log(event)}>
             UNDO
           </Button>,
-          <IconButton key="close" aria-label="close" color="inherit" onClick={(e) => log(e)}>
+          <IconButton
+            key="close"
+            aria-label="close"
+            color="inherit"
+            onClick={(event) => log(event)}
+          >
             <FakeIcon />
           </IconButton>,
         ]}
@@ -909,7 +915,7 @@ function TextFieldTest() {
 
 function SelectTest() {
   return (
-    <Select input={<Input />} value={10} onChange={(e) => log(e.target.value)}>
+    <Select input={<Input />} value={10} onChange={(event) => log(event.target.value)}>
       <MenuItem value="">
         <em>None</em>
       </MenuItem>

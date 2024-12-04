@@ -29,8 +29,8 @@ Render Joy UI's `CssVarsProvider` inside Material UI's provider and use `THEME
 
 ```js
 import {
-  experimental_extendTheme as materialExtendTheme,
-  Experimental_CssVarsProvider as MaterialCssVarsProvider,
+  extendTheme as materialExtendTheme,
+  CssVarsProvider as MaterialCssVarsProvider,
   THEME_ID as MATERIAL_THEME_ID,
 } from '@mui/material/styles';
 import { CssVarsProvider as JoyCssVarsProvider } from '@mui/joy/styles';
@@ -89,22 +89,6 @@ const ModeToggle = () => {
     </IconButton>
   );
 };
-```
-
-### Default mode
-
-If you want to change the `defaultMode`, you have to specify the prop to both of the providers:
-
-```js
-<MaterialCssVarsProvider
-  defaultMode="system"
-  theme={{ [MATERIAL_THEME_ID]: materialTheme }}
->
-  <JoyCssVarsProvider defaultMode="system">
-    <CssBaseline enableColorScheme />
-    ...Material UI and Joy UI components
-  </JoyCssVarsProvider>
-</MaterialCssVarsProvider>
 ```
 
 ## Caveat

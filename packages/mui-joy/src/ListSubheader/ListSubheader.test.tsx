@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import ListSubheader, { listSubheaderClasses as classes } from '@mui/joy/ListSubheader';
 import ListSubheaderContext from './ListSubheaderContext';

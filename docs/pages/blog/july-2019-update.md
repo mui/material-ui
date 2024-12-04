@@ -4,14 +4,16 @@ description: Here are the most significant improvements in July.
 date: 2019-08-04T00:00:00.000Z
 authors: ['oliviertassinari']
 tags: ['Company']
-card: true
+manualCard: true
 ---
 
 Here are the most significant improvements in July:
 
 - 🌳 We have introduced a new [Tree View component](/x/react-tree-view/) in the lab. Big thanks to Josh for it.
 
-  ![Tree View](/static/blog/july-2019-update/tree-view.gif)
+  <video autoplay muted loop playsinline width="562" height="234">
+    <source src="/static/blog/july-2019-update/tree-view.mp4" type="video/mp4" />
+  </video>
 
 - 💄 We have added support for [vertical tabs](/material-ui/react-tabs/#vertical-tabs).
 

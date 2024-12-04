@@ -134,9 +134,9 @@ export default function TeamExample() {
       <Stack
         id="tab-bar"
         direction="row"
-        justifyContent="space-around"
         spacing={1}
         sx={{
+          justifyContent: 'space-around',
           display: { xs: 'flex', sm: 'none' },
           zIndex: '999',
           bottom: 0,
@@ -184,12 +184,12 @@ export default function TeamExample() {
         </Button>
       </Stack>
       <Layout.Root
-        sx={{
-          ...(drawerOpen && {
+        sx={[
+          drawerOpen && {
             height: '100vh',
             overflow: 'hidden',
-          }),
-        }}
+          },
+        ]}
       >
         <Layout.Header>
           <Header />
@@ -398,11 +398,7 @@ export default function TeamExample() {
                 key={index}
                 component="li"
                 variant="outlined"
-                sx={{
-                  borderRadius: 'sm',
-                  p: 2,
-                  listStyle: 'none',
-                }}
+                sx={{ borderRadius: 'sm', p: 2, listStyle: 'none' }}
               >
                 <Box sx={{ display: 'flex', gap: 2 }}>
                   <Avatar

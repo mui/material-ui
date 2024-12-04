@@ -4,7 +4,7 @@ description: Here are the most significant improvements in April.
 date: 2019-05-07T00:00:00.000Z
 authors: ['oliviertassinari']
 tags: ['Company']
-card: true
+manualCard: true
 ---
 
 Here are the most significant improvements in April:

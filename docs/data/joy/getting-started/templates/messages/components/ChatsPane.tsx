@@ -24,22 +24,17 @@ export default function ChatsPane(props: ChatsPaneProps) {
       sx={{
         borderRight: '1px solid',
         borderColor: 'divider',
-        height: 'calc(100dvh - var(--Header-height))',
+        height: { sm: 'calc(100dvh - var(--Header-height))', md: '100dvh' },
         overflowY: 'auto',
       }}
     >
       <Stack
         direction="row"
         spacing={1}
-        alignItems="center"
-        justifyContent="space-between"
-        p={2}
-        pb={1.5}
+        sx={{ alignItems: 'center', justifyContent: 'space-between', p: 2, pb: 1.5 }}
       >
         <Typography
-          fontSize={{ xs: 'md', md: 'lg' }}
           component="h1"
-          fontWeight="lg"
           endDecorator={
             <Chip
               variant="soft"
@@ -50,7 +45,7 @@ export default function ChatsPane(props: ChatsPaneProps) {
               4
             </Chip>
           }
-          sx={{ mr: 'auto' }}
+          sx={{ fontSize: { xs: 'md', md: 'lg' }, fontWeight: 'lg', mr: 'auto' }}
         >
           Messages
         </Typography>

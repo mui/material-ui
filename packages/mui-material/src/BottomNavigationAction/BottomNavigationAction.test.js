@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, within } from '@mui-internal/test-utils';
+import { createRenderer, within } from '@mui/internal-test-utils';
 import BottomNavigationAction, {
   bottomNavigationActionClasses as classes,
 } from '@mui/material/BottomNavigationAction';

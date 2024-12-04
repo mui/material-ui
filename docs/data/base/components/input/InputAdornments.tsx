@@ -58,11 +58,7 @@ export default function InputAdornments() {
 
   return (
     <Box
-      sx={{
-        display: 'flex',
-        flexDirection: { xs: 'column', sm: 'row' },
-        gap: 2,
-      }}
+      sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2 }}
     >
       <Input
         id="outlined-start-adornment"

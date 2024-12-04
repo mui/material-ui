@@ -1,23 +1,17 @@
 import * as ts from 'typescript';
-import { ComponentClassDefinition } from '@mui/internal-docs-utils';
+import { ComponentClassDefinition } from '@mui-internal/api-docs-builder';
 import { renderMarkdown } from '@mui/internal-markdown';
 import { getSymbolDescription, getSymbolJSDocTags } from '../buildApiUtils';
 import { TypeScriptProject } from './createTypeScriptProject';
 import { getPropsFromComponentNode } from './getPropsFromComponentNode';
 import resolveExportSpecifier from './resolveExportSpecifier';
 import { ProjectSettings } from '../ProjectSettings';
+import { Slot } from '../types/utils.types';
 
 interface ClassInfo {
   description: string;
   isDeprecated?: true;
   deprecationInfo?: string;
-}
-
-export interface Slot {
-  class: string | null;
-  name: string;
-  description: string;
-  default?: string;
 }
 
 /**
@@ -135,11 +129,14 @@ function extractClassesFromProps(
   componentName: string,
   muiName: string,
 ): ComponentClassDefinition[] | null {
+  const unstableName = `Unstable_${componentName}`;
   const exportedSymbol =
-    typescriptProject.exports[componentName] ??
-    typescriptProject.exports[`Unstable_${componentName}`];
+    typescriptProject.exports[componentName] ?? typescriptProject.exports[unstableName];
+
   if (!exportedSymbol) {
-    throw new Error(`No exported component for the componentName "${componentName}"`);
+    throw new Error(
+      `No export found in "${typescriptProject.rootPath}" for component "${componentName}" or "${unstableName}".`,
+    );
   }
 
   const localeSymbol = resolveExportSpecifier(exportedSymbol, typescriptProject);

@@ -75,11 +75,7 @@ export default function CustomizedInputsStyleOverrides() {
 
   return (
     <Box
-      sx={{
-        display: 'grid',
-        gridTemplateColumns: { sm: '1fr 1fr 1fr' },
-        gap: 2,
-      }}
+      sx={{ display: 'grid', gridTemplateColumns: { sm: '1fr 1fr 1fr' }, gap: 2 }}
     >
       <ThemeProvider theme={customTheme(outerTheme)}>
         <TextField label="Outlined" />

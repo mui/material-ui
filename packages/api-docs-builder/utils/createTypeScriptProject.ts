@@ -22,9 +22,14 @@ export interface CreateTypeScriptProjectOptions {
   /**
    * File used as root of the package.
    * This property is used to gather the exports of the project.
-   * The path must be relative to the root path.
+   *
+   * Use an array to target more than one entrypoint.
+   *
+   * @example 'src/index.d.ts'
+   * @example ['src/index.d.ts', 'src/PigmentStack/PigmentStack.tsx']
+   *          `PigmentStack` cannot be included in the `index.d.ts` file because it is using Pigment CSS specific API.
    */
-  entryPointPath?: string;
+  entryPointPath?: string | string[];
   /**
    * Files to include in the project.
    * By default, it will use the files defined in the tsconfig.
@@ -77,16 +82,30 @@ export const createTypeScriptProject = (
 
   const checker = program.getTypeChecker();
 
-  let exports: TypeScriptProject['exports'];
+  let exports: TypeScriptProject['exports'] = {};
   if (inputEntryPointPath) {
-    const entryPointPath = path.join(rootPath, inputEntryPointPath);
-    const sourceFile = program.getSourceFile(entryPointPath);
+    const arrayEntryPointPath = Array.isArray(inputEntryPointPath)
+      ? inputEntryPointPath
+      : [inputEntryPointPath];
+    arrayEntryPointPath.forEach((entry) => {
+      const entryPointPath = path.join(rootPath, entry);
+      const sourceFile = program.getSourceFile(entryPointPath);
 
-    exports = Object.fromEntries(
-      checker.getExportsOfModule(checker.getSymbolAtLocation(sourceFile!)!).map((symbol) => {
-        return [symbol.name, symbol];
-      }),
-    );
+      const pathData = path.parse(entryPointPath);
+
+      exports = {
+        ...exports,
+        ...Object.fromEntries(
+          checker.getExportsOfModule(checker.getSymbolAtLocation(sourceFile!)!).map((symbol) => {
+            return [symbol.name, symbol];
+          }),
+        ),
+        ...(pathData.name !== 'index' && {
+          // use the default export when the entrypoint is not `index`.
+          [pathData.name]: checker.getSymbolAtLocation(sourceFile!)!,
+        }),
+      };
+    });
   } else {
     exports = {};
   }

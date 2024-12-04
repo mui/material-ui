@@ -2,8 +2,9 @@
 productId: material-ui
 title: React Hidden component
 description: The Hidden component is deprecated, check out the migration guide for more details.
-components: Hidden
+components: Hidden, PigmentHidden
 githubLabel: 'component: Hidden'
+githubSource: packages/mui-material/src/Hidden
 ---
 
 # Hidden
@@ -15,4 +16,4 @@ To learn more, see [the Hidden section](/material-ui/migration/v5-component-chan
 
 <p class="description"></p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}

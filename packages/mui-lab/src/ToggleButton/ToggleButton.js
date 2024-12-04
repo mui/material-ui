@@ -4,10 +4,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 
 let warnedOnce = false;
 
-/**
- * @ignore - do not document.
- */
-export default React.forwardRef(function DeprecatedToggleButton(props, ref) {
+const warn = () => {
   if (!warnedOnce) {
     console.warn(
       [
@@ -20,6 +17,13 @@ export default React.forwardRef(function DeprecatedToggleButton(props, ref) {
 
     warnedOnce = true;
   }
+};
+
+/**
+ * @ignore - do not document.
+ */
+export default React.forwardRef(function DeprecatedToggleButton(props, ref) {
+  warn();
 
   return <ToggleButton ref={ref} {...props} />;
 });

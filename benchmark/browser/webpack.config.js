@@ -8,7 +8,7 @@ process.env.NODE_ENV = 'production';
 
 module.exports = {
   context: workspaceRoot,
-  entry: 'benchmark/browser/index.js',
+  entry: './benchmark/browser/index.js',
   mode: 'production',
   output: {
     path: path.join(__dirname, 'dist'),

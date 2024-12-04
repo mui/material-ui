@@ -70,13 +70,7 @@ const theme = createTheme({
 return (
   <ThemeProvider theme={theme}>
     <CssBaseline />
-    <Box
-      sx={{
-        fontFamily: 'Raleway',
-      }}
-    >
-      Raleway
-    </Box>
+    <Box sx={{ fontFamily: 'Raleway' }}>Raleway</Box>
   </ThemeProvider>
 );
 ```
@@ -291,7 +285,7 @@ declare module '@mui/material/styles' {
     poster: React.CSSProperties;
   }
 
-  // allow configuration using `createTheme`
+  // allow configuration using `createTheme()`
   interface TypographyVariantsOptions {
     poster?: React.CSSProperties;
   }

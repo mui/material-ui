@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import styleFunctionSx from './styleFunctionSx';
+import cssContainerQueries from '../cssContainerQueries';
 
 describe('styleFunctionSx', () => {
   const breakpointsValues = {
@@ -12,7 +13,7 @@ describe('styleFunctionSx', () => {
 
   const round = (value) => Math.round(value * 1e5) / 1e5;
 
-  const theme = {
+  const theme = cssContainerQueries({
     spacing: (val) => `${val * 10}px`,
     breakpoints: {
       keys: ['xs', 'sm', 'md', 'lg', 'xl'],
@@ -49,7 +50,7 @@ describe('styleFunctionSx', () => {
         lineHeight: 1.43,
       },
     },
-  };
+  });
 
   describe('system', () => {
     it('resolves system ', () => {
@@ -239,6 +240,79 @@ describe('styleFunctionSx', () => {
         '@media (min-width:600px)': { padding: '10px' },
         '@media (min-width:960px)': { padding: '20px', margin: '10px' },
         '@media (min-width:1280px)': { margin: '20px' },
+      });
+    });
+  });
+
+  describe('container queries', () => {
+    const queriesExpectedResult = {
+      '@container (min-width:0px)': { border: '1px solid' },
+      '@container (min-width:600px)': { border: '2px solid' },
+      '@container (min-width:960px)': { border: '3px solid' },
+      '@container (min-width:1280px)': { border: '4px solid' },
+      '@container (min-width:1920px)': { border: '5px solid' },
+    };
+
+    it('resolves queries object', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: {
+          border: {
+            '@xs': 1,
+            '@sm': 2,
+            '@md': 3,
+            '@lg': 4,
+            '@xl': 5,
+          },
+        },
+      });
+
+      expect(result).to.deep.equal(queriesExpectedResult);
+    });
+
+    it('merges multiple queries object', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: {
+          m: {
+            '@xs': 1,
+            '@sm': 2,
+            '@md': 3,
+          },
+          p: {
+            '@xs': 5,
+            '@sm': 6,
+            '@md': 7,
+          },
+        },
+      });
+
+      expect(result).to.deep.equal({
+        '@container (min-width:0px)': { padding: '50px', margin: '10px' },
+        '@container (min-width:600px)': { padding: '60px', margin: '20px' },
+        '@container (min-width:960px)': { padding: '70px', margin: '30px' },
+      });
+    });
+
+    it('writes queries in correct order', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: { m: { '@md': 1, '@lg': 2 }, p: { '@xs': 0, '@sm': 1, '@md': 2 } },
+      });
+
+      // Test the order
+      expect(Object.keys(result)).to.deep.equal([
+        '@container (min-width:0px)',
+        '@container (min-width:600px)',
+        '@container (min-width:960px)',
+        '@container (min-width:1280px)',
+      ]);
+
+      expect(result).to.deep.equal({
+        '@container (min-width:0px)': { padding: '0px' },
+        '@container (min-width:600px)': { padding: '10px' },
+        '@container (min-width:960px)': { padding: '20px', margin: '10px' },
+        '@container (min-width:1280px)': { margin: '20px' },
       });
     });
   });

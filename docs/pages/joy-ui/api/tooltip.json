@@ -223,7 +223,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
+  "spread": false,
   "themeDefaultProps": true,
   "muiName": "JoyTooltip",
   "forwardsRefTo": "HTMLButtonElement",

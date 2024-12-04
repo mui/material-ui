@@ -148,17 +148,14 @@ export default function DrawerFilters() {
               </RadioGroup>
             </FormControl>
 
-            <Typography level="title-md" fontWeight="bold" sx={{ mt: 1 }}>
+            <Typography level="title-md" sx={{ fontWeight: 'bold', mt: 1 }}>
               Amenities
             </Typography>
             <div role="group" aria-labelledby="rank">
               <List
                 orientation="horizontal"
                 size="sm"
-                sx={{
-                  '--List-gap': '12px',
-                  '--ListItem-radius': '20px',
-                }}
+                sx={{ '--List-gap': '12px', '--ListItem-radius': '20px' }}
               >
                 {['Wi-fi', 'Washer', 'A/C', 'Kitchen'].map((item, index) => {
                   const selected = amenities.includes(index);
@@ -206,7 +203,7 @@ export default function DrawerFilters() {
               </List>
             </div>
 
-            <Typography level="title-md" fontWeight="bold" sx={{ mt: 2 }}>
+            <Typography level="title-md" sx={{ fontWeight: 'bold', mt: 2 }}>
               Booking options
             </Typography>
             <FormControl orientation="horizontal">
@@ -235,9 +232,9 @@ export default function DrawerFilters() {
           <Divider sx={{ mt: 'auto' }} />
           <Stack
             direction="row"
-            justifyContent="space-between"
             useFlexGap
             spacing={1}
+            sx={{ justifyContent: 'space-between' }}
           >
             <Button
               variant="outlined"

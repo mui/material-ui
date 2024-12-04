@@ -54,7 +54,7 @@ const CircularProgressRoot = styled('span', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: CircularProgressOwnerState }>(({ ownerState, theme }) => {
-  const { color, backgroundColor, ...rest } =
+  const { color, backgroundColor, ...other } =
     theme.variants[ownerState.variant!]?.[ownerState.color!] || {};
   return {
     // integration with icon
@@ -114,7 +114,7 @@ const CircularProgressRoot = styled('span', {
       fontWeight: theme.vars.fontWeight.md,
       fontSize: 'calc(0.2 * var(--_root-size))',
     }),
-    ...rest,
+    ...other,
     ...(ownerState.variant === 'outlined' && {
       '&::before': {
         content: '""',
@@ -125,7 +125,7 @@ const CircularProgressRoot = styled('span', {
         left: 'var(--_outlined-inset)',
         right: 'var(--_outlined-inset)',
         bottom: 'var(--_outlined-inset)',
-        ...rest,
+        ...other,
       },
     }),
     ...(ownerState.variant === 'soft' && {

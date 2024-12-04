@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Find Comment
-        uses: peter-evans/find-comment@d5fe37641ad8451bdd80312415672ba26c86575e # v3
+        uses: peter-evans/find-comment@3eae4d37986fb5a8592848f6a574fdf654e61f9e # v3
         id: findComment
         with:
           issue-number: ${{ github.event.issue.number }}
@@ -31,7 +31,7 @@ jobs:
           body: |
             You have created a support request under the ["Priority Support"](https://mui.com/legal/technical-support-sla/#priority-support) terms, which is a paid add-on to MUI X Premium ⏰. Please validate your support key using the link below:
 
-            https://tools-public.mui.com/prod/pages/jyhs86t?repo=mui-x&issueId=${{ github.event.issue.number }}
+            https://tools-public.mui.com/prod/pages/validateSupport?repo=mui-x&issueId=${{ github.event.issue.number }}
 
             Do not share your support key in this issue!
 

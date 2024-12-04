@@ -4,13 +4,14 @@ title: React Alert component
 components: Alert, AlertTitle
 githubLabel: 'component: alert'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
+githubSource: packages/mui-material/src/Alert
 ---
 
 # Alert
 
 <p class="description">Alerts display brief messages for the user without interrupting their use of the app.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -28,7 +29,7 @@ This component is no longer documented in the [Material Design guidelines](https
 
 A key trait of the alert pattern is that [it should not interrupt the user's experience](https://www.w3.org/WAI/ARIA/apg/patterns/alert/) of the app.
 Alerts should not be confused with alert _dialogs_ ([ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/)), which _are_ intended to interrupt the user to obtain a response.
-Use the Material UI [Dialog](https://mui.com/material-ui/react-dialog/) component if you need this behavior.
+Use the Material UI [Dialog](/material-ui/react-dialog/) component if you need this behavior.
 
 ## Basics
 

@@ -22,7 +22,7 @@ import { NoSsrProps } from './NoSsr.types';
  *
  * - [NoSsr API](https://mui.com/base-ui/react-no-ssr/components-api/#no-ssr)
  */
-function NoSsr(props: NoSsrProps): JSX.Element {
+function NoSsr(props: NoSsrProps): React.JSX.Element {
   const { children, defer = false, fallback = null } = props;
   const [mountedState, setMountedState] = React.useState(false);
 

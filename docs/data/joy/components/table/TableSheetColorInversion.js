@@ -20,12 +20,11 @@ export default function TableSheetColorInversion() {
       variant="solid"
       color="primary"
       invertedColors
-      sx={{
+      sx={(theme) => ({
         pt: 1,
         borderRadius: 'sm',
         transition: '0.3s',
-        background: (theme) =>
-          `linear-gradient(45deg, ${theme.vars.palette.primary[500]}, ${theme.vars.palette.primary[400]})`,
+        background: `linear-gradient(45deg, ${theme.vars.palette.primary[500]}, ${theme.vars.palette.primary[400]})`,
         '& tr:last-child': {
           '& td:first-child': {
             borderBottomLeftRadius: '8px',
@@ -34,7 +33,7 @@ export default function TableSheetColorInversion() {
             borderBottomRightRadius: '8px',
           },
         },
-      }}
+      })}
     >
       <Table stripe="odd" hoverRow>
         <caption>Nutrition of your favorite menus.</caption>

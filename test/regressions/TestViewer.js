@@ -7,7 +7,7 @@ import JoyBox from '@mui/joy/Box';
 import { CssVarsProvider } from '@mui/joy/styles';
 
 function TestViewer(props) {
-  const { children } = props;
+  const { children, path } = props;
 
   // We're simulating `act(() => ReactDOM.render(children))`
   // In the end children passive effects should've been flushed.
@@ -30,6 +30,7 @@ function TestViewer(props) {
     document.fonts.addEventListener('loadingdone', handleFontsEvent);
 
     // Use a "real timestamp" so that we see a useful date instead of "00:00"
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- useFakeTimers is not a React hook
     // eslint-disable-next-line react-hooks/rules-of-hooks -- not a React hook
     const clock = useFakeTimers({
       now: new Date('Mon Aug 18 14:11:54 2014 -0500'),
@@ -47,6 +48,11 @@ function TestViewer(props) {
       clock.restore();
     };
   }, []);
+
+  const viewerBoxSx = {
+    display: 'block',
+    p: 1,
+  };
 
   return (
     <React.Fragment>
@@ -76,7 +82,8 @@ function TestViewer(props) {
             <JoyBox
               aria-busy={!ready}
               data-testid="testcase"
-              sx={{ bgcolor: 'background.body', display: 'inline-block', p: 1 }}
+              data-testpath={path}
+              sx={{ bgcolor: 'background.body', ...viewerBoxSx }}
             >
               {children}
             </JoyBox>
@@ -85,7 +92,8 @@ function TestViewer(props) {
           <Box
             aria-busy={!ready}
             data-testid="testcase"
-            sx={{ bgcolor: 'background.default', display: 'inline-block', p: 1 }}
+            data-testpath={path}
+            sx={{ bgcolor: 'background.default', ...viewerBoxSx }}
           >
             {children}
           </Box>
@@ -97,6 +105,7 @@ function TestViewer(props) {
 
 TestViewer.propTypes = {
   children: PropTypes.node.isRequired,
+  path: PropTypes.string.isRequired,
 };
 
 export default TestViewer;

@@ -1,14 +1,16 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { SxProps, SystemProps } from '@mui/system';
-import { Theme } from '../styles';
+import { Theme, TypeText } from '../styles';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Variant } from '../styles/createTypography';
 import { TypographyClasses } from './typographyClasses';
 
 export interface TypographyPropsVariantOverrides {}
 
-export interface TypographyOwnProps extends SystemProps<Theme> {
+export interface TypographyPropsColorOverrides {}
+
+export interface TypographyOwnProps extends Omit<SystemProps<Theme>, 'color'> {
   /**
    * Set the text-align on the component.
    * @default 'inherit'
@@ -22,6 +24,23 @@ export interface TypographyOwnProps extends SystemProps<Theme> {
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<TypographyClasses>;
+  /**
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
+   */
+  color?:
+    | OverridableStringUnion<
+        | 'primary'
+        | 'secondary'
+        | 'success'
+        | 'error'
+        | 'info'
+        | 'warning'
+        | `text${Capitalize<keyof TypeText>}`,
+        TypographyPropsColorOverrides
+      >
+    | (string & {}); // to work with v5 color prop type which allows any string
   /**
    * If `true`, the text will have a bottom margin.
    * @default false
@@ -38,6 +57,7 @@ export interface TypographyOwnProps extends SystemProps<Theme> {
   /**
    * If `true`, the element will be a paragraph element.
    * @default false
+   * @deprecated Use the `component` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   paragraph?: boolean;
   /**

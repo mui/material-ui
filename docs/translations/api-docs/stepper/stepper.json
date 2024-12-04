@@ -32,6 +32,11 @@
       "nodeName": "the root element",
       "conditions": "<code>orientation=\"horizontal\"</code>"
     },
+    "nonLinear": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>nonLinear={true}</code>"
+    },
     "root": { "description": "Styles applied to the root element." },
     "vertical": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

@@ -16,7 +16,7 @@ It has gained a large following, not only due to its fidelity to Material Design
 Today, countless teams and organizations rely on our open-source projects to build their design system.
 
 A couple of years ago, we started to expand our suite of products.
-We released [MUI X](https://mui.com/x/), a collection of advanced components; [MUI Design kits](https://mui.com/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](https://mui.com/templates/), a set of pre-built UI kits.
+We released [MUI X](https://mui.com/x/), a collection of advanced components; [MUI Design Kits](https://mui.com/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](https://mui.com/templates/), a set of pre-built UI kits.
 We've seen rapid growth with all of them (2x per year) and we have more to come.
 We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI's libraries.
 
@@ -33,8 +33,8 @@ We believe that the best way to improve on these dimensions is to eliminate [80%
 
 We're in the early stages of exploring what our role could be in the currently emerging low-code space. We've assembled a team to work on a new product and plan to bring it to market in 2022. We have made our initial research and need help to accelerate the development of our MVP.
 
-Overall, both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
+Overall, both our open-source community and our premium products are growing fast.
+We need talented people to keep up with the demands of our exigent community!
 
 ## The role
 
@@ -48,7 +48,7 @@ The Toolpad application offers a wide variety of engineering challenges. Includi
 - Interfacing with many different types of backends
 - Databinding and complex state management
 
-### What you'll do on a day-to-day basis
+### Key responsibilities
 
 Depending on the day, you'll:
 
@@ -79,7 +79,7 @@ We're looking for someone with both strong front-end and back-end skills. More i
 
 ### Required
 
-- **Expertise in the modern JavaScript ecosystem**. Toolpad is built on the shoulders of giants, making use of technologies such as ES2021, TypeScript, Node.js, React, Next.js, Webpack, and Babel.
+- **Expertise in the modern JavaScript ecosystem**. Toolpad is built on the shoulders of giants, making use of technologies such as ES2021, TypeScript, Node.js, React, Next.js, webpack, and Babel.
 - **Expertise in backend development**. Toolpad interfaces with multiple databases, both SQL and NoSQL, as well as APIs such as REST and GraphQL. You'll need to be comfortable in learning and integrating new backend technologies fast. You'll need to have a good understanding of distributed systems and some knowledge of CRDTs is a plus.
 - **A track record of demonstrating an eye for product and solving real-world user problems**. If you have a knack for solving problems at the root cause, shipping beautiful user interfaces and intuitive APIs, we want you on our team.
 - **Experience building and shipping production code in a team setting** with a passion for writing tested, performant, and high-quality code.
@@ -96,7 +96,7 @@ We're looking for someone with both strong front-end and back-end skills. More i
 ## Benefits and compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
+We are ready to pay top market rates for a person who can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply

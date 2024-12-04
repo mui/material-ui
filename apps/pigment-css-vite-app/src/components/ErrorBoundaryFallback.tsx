@@ -1,4 +1,4 @@
-import { css } from '@pigment-css/react';
+import { css } from '@mui/material-pigment-css';
 import Alert from '@mui/material/Alert';
 import { FallbackProps } from 'react-error-boundary';
 

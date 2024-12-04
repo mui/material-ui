@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import InvertColorsRoundedIcon from '@mui/icons-material/InvertColorsRounded';
 import HandymanRoundedIcon from '@mui/icons-material/HandymanRounded';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
@@ -27,13 +27,13 @@ const content = [
     icon: <ArticleRoundedIcon fontSize="small" color="primary" />,
     title: 'Unrivaled documentation',
     description:
-      'The answer to your problem can be found in our documentation. How can we be so sure? Because our docs boast over 2,000 contributors.',
+      'The answer to your problem can be found in our docs. How can we be so sure? Because our docs boast over 2,000 contributors.',
   },
   {
     icon: <AccessibilityNewRounded fontSize="small" color="primary" />,
     title: 'Dedicated to accessibility',
     description:
-      "We believe in building for everyone. That's why accessibility is one of our highest priorities with every new feature we ship.",
+      "We believe in building for everyone. That's why accessibility is a high priority with every new feature we ship.",
   },
 ];
 
@@ -51,7 +51,7 @@ export default function ValueProposition() {
       />
       <Grid container spacing={3}>
         {content.map(({ icon, title, description }) => (
-          <Grid key={title} xs={12} sm={6} lg={3}>
+          <Grid key={title} size={{ xs: 12, sm: 6, lg: 3 }}>
             <InfoCard title={title} icon={icon} description={description} />
           </Grid>
         ))}

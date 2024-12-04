@@ -39,7 +39,7 @@ export default function ToggleButtonSizes() {
   };
 
   return (
-    <Stack spacing={2} alignItems="center">
+    <Stack spacing={2} sx={{ alignItems: 'center' }}>
       <ToggleButtonGroup size="small" {...control} aria-label="Small sizes">
         {children}
       </ToggleButtonGroup>

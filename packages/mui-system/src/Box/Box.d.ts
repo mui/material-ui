@@ -183,11 +183,6 @@ export type SystemProps<Theme extends object = {}> = {
 
 export interface BoxOwnProps<Theme extends object = SystemTheme> extends SystemProps<Theme> {
   children?: React.ReactNode;
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component?: React.ElementType;
   ref?: React.Ref<unknown>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

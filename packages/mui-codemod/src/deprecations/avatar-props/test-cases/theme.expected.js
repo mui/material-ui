@@ -6,6 +6,24 @@ fn({
           onError: () => {},
           onLoad: () => {},
         }
+      },
+    },
+  },
+});
+
+fn({
+  MuiAvatar: {
+    defaultProps: {
+      slotProps: {
+        img: {
+          ...{
+            onLoad: () => {},
+          },
+
+          ...{
+            onError: () => {},
+          }
+        },
       }
     },
   },

@@ -3,6 +3,7 @@ productId: material-ui
 title: Backdrop React Component
 components: Backdrop
 githubLabel: 'component: backdrop'
+githubSource: packages/mui-material/src/Backdrop
 ---
 
 # Backdrop
@@ -12,7 +13,7 @@ githubLabel: 'component: backdrop'
 The Backdrop signals a state change within the application and can be used for creating loaders, dialogs, and more.
 In its simplest form, the Backdrop component will add a dimmed layer over your application.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Example
 

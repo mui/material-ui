@@ -16,7 +16,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
   /**
    * Tooltip reference element.
    */
-  children: React.ReactElement<any, any>;
+  children: React.ReactElement<unknown, any>;
   /**
    * Override or extend the styles applied to the component.
    */
@@ -24,8 +24,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/).
    *
    * @default {}
    */
@@ -39,8 +38,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/).
    *
    * @default {}
    */
@@ -157,7 +155,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    */
   PopperComponent?: React.JSXElementConstructor<PopperProps>;
   /**
-   * Props applied to the [`Popper`](/material-ui/api/popper/) element.
+   * Props applied to the [`Popper`](https://mui.com/material-ui/api/popper/) element.
    * @default {}
    */
   PopperProps?: Partial<PopperProps>;
@@ -202,11 +200,11 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
   title: React.ReactNode;
   /**
    * The component used for the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Grow
    */
   TransitionComponent?: React.JSXElementConstructor<
-    TransitionProps & { children: React.ReactElement<any, any> }
+    TransitionProps & { children: React.ReactElement<unknown, any> }
   >;
   /**
    * Props applied to the transition element.
@@ -225,4 +223,4 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
  *
  * - [Tooltip API](https://mui.com/material-ui/api/tooltip/)
  */
-export default function Tooltip(props: TooltipProps): JSX.Element;
+export default function Tooltip(props: TooltipProps): React.JSX.Element;

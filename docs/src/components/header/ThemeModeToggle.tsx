@@ -14,6 +14,7 @@ function CssVarsModeToggle(props: { onChange: (newMode: string) => void }) {
     <Tooltip title={calculatedMode === 'dark' ? 'Turn on the light' : 'Turn off the light'}>
       <IconButton
         color="primary"
+        size="small"
         disableTouchRipple
         disabled={!calculatedMode}
         onClick={() => {
@@ -42,7 +43,7 @@ export default function ThemeModeToggle() {
 
   // Server-side hydration
   if (mode === null) {
-    return <IconButton color="primary" disableTouchRipple />;
+    return <IconButton color="primary" size="small" disableTouchRipple />;
   }
 
   // TODO remove this code branch, all pages should be migrated to use CssVarsProvider
@@ -51,6 +52,7 @@ export default function ThemeModeToggle() {
       <Tooltip title={calculatedMode === 'dark' ? 'Turn on the light' : 'Turn off the light'}>
         <IconButton
           color="primary"
+          size="small"
           disableTouchRipple
           onClick={() => {
             setMode(calculatedMode === 'dark' ? 'light' : 'dark');

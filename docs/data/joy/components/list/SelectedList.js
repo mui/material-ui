@@ -8,11 +8,7 @@ import Apps from '@mui/icons-material/Apps';
 
 export default function SelectedList() {
   return (
-    <List
-      sx={{
-        maxWidth: 320,
-      }}
-    >
+    <List sx={{ maxWidth: 320 }}>
       <ListItem>
         <ListItemButton selected>
           <ListItemDecorator>

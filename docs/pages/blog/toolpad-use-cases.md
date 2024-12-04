@@ -3,7 +3,7 @@ title: How does MUI use Toolpad?
 description: Explore how we use Toolpad for production use cases at MUI.
 date: 2024-03-04T00:00:00.000Z
 authors: ['prakhargupta']
-card: true
+manualCard: true
 tags: ['Product', 'Toolpad']
 ---
 
@@ -11,11 +11,11 @@ Toolpad helps full-stack engineers build internal tools quickly.
 Internal tools encompass data-intensive CRUD interfaces, analytics dashboards, or custom apps that make teams productive.
 Toolpad offers a low-code, GUI-based, code-friendly way of building apps and comes as an npm package that can be imported into an existing codebase.
 
-We've been dogfooding [Toolpad](https://mui.com/toolpad/) at MUI to build our internal tools, and it has proven beneficial for us to easily assemble well-organized, centrally located KPI dashboards and operations apps.
+We've been dogfooding [Toolpad Studio](https://mui.com/toolpad/studio/) at MUI to build our internal tools, and it has proven beneficial for us to easily assemble well-organized, centrally located KPI dashboards and operations apps.
 In this blog post, we'll discuss four such apps, and explain how we used Toolpad to turn our ideas into reality.
 
 <a href="https://tools-public.mui.com/prod/pages/OverviewPage">
-<img alt="MUI public app for tracking KPIs" src="/static/blog/toolpad-use-cases/tools-public.png" width="2400" height="1394" />
+  <img alt="MUI public app for tracking KPIs" src="/static/blog/toolpad-use-cases/tools-public.png" width="2400" height="1394" />
 </a>
 
 ## Problems tackled through Toolpad
@@ -40,22 +40,22 @@ They share their issue through a Priority Support template in our repository whe
 Here's how we built an app for this:
 
 The [`updateMuiPaidSupport.ts`](https://github.com/mui/mui-public/blob/master/tools-public/toolpad/resources/updateMuiPaidSupport.ts) file hosts all functions that are called from Toolpad.
-It uses the [custom function](https://mui.com/toolpad/concepts/custom-functions/) feature and combines GitHub Actions, Google Sheets, and Octokit to read and verify user information.
+It uses the [custom function](https://mui.com/toolpad/studio/concepts/custom-functions/) feature and combines GitHub Actions, Google Sheets, and Octokit to read and verify user information.
 The fetched data is then bound to the UI components.
-It uses Toolpad's [page parameters](https://mui.com/toolpad/concepts/page-properties/#page-parameters), [secrets handling](https://mui.com/toolpad/concepts/custom-functions/#secrets-handling), [shell removal](https://mui.com/toolpad/concepts/page-properties/#display-mode), and custom styling features.
+It uses Toolpad's [page parameters](https://mui.com/toolpad/studio/concepts/page-properties/#page-parameters), [secrets handling](https://mui.com/toolpad/studio/concepts/custom-functions/#secrets-handling), [shell removal](https://mui.com/toolpad/studio/concepts/page-properties/#display-mode), and custom styling features.
 This app took one developer just a few hours to build which otherwise would have taken much longer.
 
 ## 2. Customer support KPI tracker
 
-The read-only page illustrated below uses [HTTP requests](https://mui.com/toolpad/concepts/http-requests/) for its data source.
+The read-only page illustrated below uses [HTTP requests](https://mui.com/toolpad/studio/concepts/http-requests/) for its data source.
 Through the query builder UI we fetch the 100 latest support tickets from Zendesk to calculate the average time it takes us to respond to and resolve customer requests.
-It uses a [custom component](https://mui.com/toolpad/concepts/custom-components/) which we call the "health badge."
+It uses a [custom component](https://mui.com/toolpad/studio/concepts/custom-components/) which we call the "health badge."
 Based on the metric value, the component shows three color-coded states: Problem (red), Warning (yellow), and OK (green).
 Other KPI pages also use this health badge and pre-built Chart components to compare stats, observe trends, and spot anomalies.
 
 The video below demonstrates the usage of this app in dev mode:
 
-<video controls width="100%" height="auto" style="contain" alt="zendesk first reply in devmode">
+<video controls width="100%" height="auto" alt="zendesk first reply in devmode">
   <source src="/static/blog/toolpad-use-cases/zendesk-first-reply-dev.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
@@ -74,7 +74,7 @@ In the Toolpad app, the operations team can view a table of all customers who ne
 They select one, email them from Zendesk, and update the status to `CONTACTED`, which is then written back to the database.
 This is a private app for internal use that can't be shared, but the following video gives a quick demo:
 
-<video controls width="100%" height="auto" style="contain" alt="overdue invoice page">
+<video controls width="100%" height="auto" alt="overdue invoice page">
   <source src="/static/blog/toolpad-use-cases/overdue-invoice.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
@@ -89,7 +89,7 @@ Our operations team is responsible for paying contributors, but the script prove
 We solved this problem by importing the script into Toolpad and creating a UI for it.
 The video below shows how a user can select the dates, run the script, and receive text that's properly formatted to copy and paste directly into Slack communications:
 
-<video controls width="100%" height="auto" style="contain" alt="contributor payout page">
+<video controls width="100%" height="auto" alt="contributor payout page">
   <source src="/static/blog/toolpad-use-cases/contributor-payout.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
@@ -104,5 +104,5 @@ Internal apps are often very specific to the needs of the organization, but hope
 - Do you wish you didn't have to do any maintenance on the front ends of your internal tools?
 
 Toolpad handles state management, data fetching, routing, and UI creation, and it can be imported directly into your code base to save you time.
-I encourage you to check out more [examples](https://mui.com/toolpad/examples/) and visit our [GitHub repository](https://github.com/mui/mui-toolpad/) to evaluate the product.
+I encourage you to check out more [examples](https://mui.com/toolpad/studio/examples/) and visit the [GitHub repository](https://github.com/mui/toolpad/) to evaluate the product.
 In case you need any further information, feel free to reach out to the team at toolpad@mui.com.

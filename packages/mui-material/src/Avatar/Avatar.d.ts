@@ -9,10 +9,10 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 export interface AvatarSlots {
   /**
    * The component that renders the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
    */
-  img?: React.JSXElementConstructor<React.ImgHTMLAttributes<HTMLImageElement>>;
+  img: React.JSXElementConstructor<React.ImgHTMLAttributes<HTMLImageElement>>;
 }
 
 export interface AvatarPropsVariantOverrides {}
@@ -46,7 +46,6 @@ export interface AvatarOwnProps {
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) applied to the `img` element if the component is used to display an image.
    * It can be used to listen for the loading error event.
-   * @deprecated Use `slotProps.img` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
   imgProps?: React.ImgHTMLAttributes<HTMLImageElement> & {
     sx?: SxProps<Theme>;

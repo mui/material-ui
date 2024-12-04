@@ -7,7 +7,7 @@ export default function SnackbarSizes() {
   const [open, setOpen] = React.useState(false);
   const [size, setSize] = React.useState<SnackbarProps['size']>('md');
   return (
-    <Stack spacing={2} direction="row" alignItems="center">
+    <Stack spacing={2} direction="row" sx={{ alignItems: 'center' }}>
       <Button
         variant="outlined"
         color="neutral"

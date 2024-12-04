@@ -4,11 +4,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Paper from '../Paper';
 import { getCardUtilityClass } from './cardClasses';
-
-const useThemeProps = createUseThemeProps('MuiCard');
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -29,7 +28,7 @@ const CardRoot = styled(Paper, {
 });
 
 const Card = React.forwardRef(function Card(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiCard',
   });

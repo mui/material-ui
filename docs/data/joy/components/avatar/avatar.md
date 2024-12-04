@@ -9,7 +9,7 @@ githubLabel: 'component: avatar'
 
 <p class="description">An avatar is a graphical representation of a user's identity.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 

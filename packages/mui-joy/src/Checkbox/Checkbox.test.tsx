@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { act, createRenderer, fireEvent } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import Checkbox, { checkboxClasses as classes } from '@mui/joy/Checkbox';
 import { ThemeProvider } from '@mui/joy/styles';
 import CloseIcon from '../internal/svg-icons/Close';

@@ -18,12 +18,17 @@ export default function DrawerTransition() {
       <Drawer
         open={open}
         onClose={() => setOpen(false)}
-        sx={{
-          '--Drawer-transitionDuration': open ? '0.4s' : '0.2s',
-          '--Drawer-transitionFunction': open
-            ? 'cubic-bezier(0.79,0.14,0.15,0.86)'
-            : 'cubic-bezier(0.77,0,0.18,1)',
-        }}
+        sx={[
+          open
+            ? {
+                '--Drawer-transitionDuration': '0.4s',
+                '--Drawer-transitionFunction': 'cubic-bezier(0.79,0.14,0.15,0.86)',
+              }
+            : {
+                '--Drawer-transitionDuration': '0.2s',
+                '--Drawer-transitionFunction': 'cubic-bezier(0.77,0,0.18,1)',
+              },
+        ]}
       >
         <Box role="presentation" sx={{ p: 2 }}>
           <List>

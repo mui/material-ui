@@ -7,12 +7,8 @@ import { Divider as MyDivider } from '@mui/material';
 <MyDivider className="test" sx={{
   opacity: "0.6"
 }} />;
-<Divider className="test" sx={{
-  opacity: "0.6"
-}} />;
-<MyDivider className="test" sx={{
-  opacity: "0.6"
-}} />;
+<Divider className="test" />;
+<MyDivider className="test" />;
 <Divider className="test" sx={{
   opacity: "0.6"
 }} />;
@@ -25,3 +21,4 @@ import { Divider as MyDivider } from '@mui/material';
     bgcolor: 'black',
     opacity: "0.6"
   }} />;
+<Divider className="test" />;

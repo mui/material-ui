@@ -1,7 +1,8 @@
 fn({
   MuiBackdrop: {
     defaultProps: {
-      TransitionComponent: CustomTransition,
+      components: { Root: ComponentsRoot },
+      componentsProps: { root: componentsRootProps },
     },
   },
 });
@@ -9,10 +10,28 @@ fn({
 fn({
   MuiBackdrop: {
     defaultProps: {
-      TransitionComponent: CustomTransition,
-      slots: {
-        root: 'div',
-      },
+      components: { Root: ComponentsRoot },
+      slotProps: { root: slotsRootProps },
+    },
+  },
+});
+
+fn({
+  MuiBackdrop: {
+    defaultProps: {
+      slots: { root: SlotsRoot },
+      componentsProps: { root: componentsRootProps },
+    },
+  },
+});
+
+fn({
+  MuiBackdrop: {
+    defaultProps: {
+      slots: { root: SlotsRoot },
+      components: { Root: ComponentsRoot },
+      slotProps: { root: slotsRootProps },
+      componentsProps: { root: componentsRootProps },
     },
   },
 });

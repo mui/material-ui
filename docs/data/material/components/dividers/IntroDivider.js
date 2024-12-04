@@ -10,7 +10,10 @@ export default function IntroDivider() {
   return (
     <Card variant="outlined" sx={{ maxWidth: 360 }}>
       <Box sx={{ p: 2 }}>
-        <Stack direction="row" justifyContent="space-between" alignItems="center">
+        <Stack
+          direction="row"
+          sx={{ justifyContent: 'space-between', alignItems: 'center' }}
+        >
           <Typography gutterBottom variant="h5" component="div">
             Toothbrush
           </Typography>
@@ -18,7 +21,7 @@ export default function IntroDivider() {
             $4.50
           </Typography>
         </Stack>
-        <Typography color="text.secondary" variant="body2">
+        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
           Pinstriped cornflower blue cotton blouse takes you on a walk to the park or
           just down the hall.
         </Typography>

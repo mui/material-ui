@@ -11,9 +11,7 @@ export default function SelectMultiple() {
       defaultValue={['dog']}
       multiple
       onChange={handleChange}
-      sx={{
-        minWidth: '13rem',
-      }}
+      sx={{ minWidth: '13rem' }}
       slotProps={{
         listbox: {
           sx: {

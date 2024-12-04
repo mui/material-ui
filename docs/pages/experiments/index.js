@@ -47,13 +47,12 @@ export default function Experiments({ experiments }) {
               textAlign: 'center',
             }}
           >
-            <Typography variant="body2" color="primary.600" fontWeight="bold">
+            <Typography variant="body2" sx={{ color: 'primary.600', fontWeight: 'bold' }}>
               Welcome to
             </Typography>
             <Typography component="h1" variant="h2" sx={{ my: 1 }}>
               MUI <GradientText>Experiments</GradientText>
             </Typography>
-
             <Box sx={{ textAlign: 'left' }}>
               <ul>
                 <Typography component="li">
@@ -68,18 +67,18 @@ export default function Experiments({ experiments }) {
           </Box>
         </Container>
         <Box
-          sx={{
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
+          sx={(theme) => ({
+            bgcolor: 'grey.50',
             flexGrow: 1,
-          }}
+            ...theme.applyStyles('dark', {
+              bgcolor: 'primaryDark.900',
+            }),
+          })}
         >
           <Container sx={{ py: { xs: 4, md: 8 } }}>
             <Typography
               variant="body2"
-              color="grey.600"
-              fontWeight="bold"
-              textAlign="center"
-              sx={{ mb: 2 }}
+              sx={{ color: 'grey.600', fontWeight: 'bold', textAlign: 'center', mb: 2 }}
             >
               All Experiments ({experiments.length})
             </Typography>
@@ -96,11 +95,7 @@ export default function Experiments({ experiments }) {
                     <Typography
                       component="h2"
                       variant="body2"
-                      sx={{
-                        fontWeight: 500,
-                        color: 'grey.600',
-                        px: 1,
-                      }}
+                      sx={{ fontWeight: 500, color: 'grey.600', px: 1 }}
                     >
                       {categoryName}
                     </Typography>

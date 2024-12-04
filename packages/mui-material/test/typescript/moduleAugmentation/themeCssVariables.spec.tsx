@@ -1,5 +1,5 @@
 // testing docs/src/pages/customization/theme-components/theme-components.md
-import { styled, experimental_extendTheme as extendTheme } from '@mui/material/styles';
+import { styled, extendTheme } from '@mui/material/styles';
 import type {} from '@mui/material/themeCssVarsAugmentation';
 
 declare module '@mui/material/styles' {

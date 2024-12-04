@@ -9,7 +9,7 @@ githubLabel: 'component: breadcrumbs'
 
 <p class="description">A breadcrumb trail is a navigational tool that helps users keep track of their location within an app.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 

@@ -3,7 +3,7 @@
 <p class="description">We have learned a great deal regarding how Material UI is used, and the v1 rewrite allowed us to completely rethink the component API.</p>
 
 > API design is hard because you can make it seem simple but it's actually deceptively complex, or make it actually simple but seem complex.
-> [@sebmarkbage](https://twitter.com/sebmarkbage/status/728433349337841665)
+> [@sebmarkbage](https://x.com/sebmarkbage/status/728433349337841665)
 
 As Sebastian Markbage [pointed out](https://2014.jsconf.eu/speakers/sebastian-markbage-minimal-api-surface-area-learning-patterns-instead-of-frameworks.html), no abstraction is superior to wrong abstractions.
 We are providing low-level components to maximize composition capabilities.

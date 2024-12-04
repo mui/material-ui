@@ -3,14 +3,13 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { isFilled, isAdornedStart } from '../InputBase/utils';
 import capitalize from '../utils/capitalize';
 import isMuiElement from '../utils/isMuiElement';
 import FormControlContext from './FormControlContext';
 import { getFormControlUtilityClasses } from './formControlClasses';
-
-const useThemeProps = createUseThemeProps('MuiFormControl');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, margin, fullWidth } = ownerState;
@@ -90,7 +89,7 @@ const FormControlRoot = styled('div', {
  * For instance, only one input can be focused at the same time, the state shouldn't be shared.
  */
 const FormControl = React.forwardRef(function FormControl(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiFormControl' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiFormControl' });
   const {
     children,
     className,
@@ -173,9 +172,8 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
   const focused = visuallyFocused !== undefined && !disabled ? visuallyFocused : focusedState;
 
   let registerEffect;
+  const registeredInput = React.useRef(false);
   if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const registeredInput = React.useRef(false);
     registerEffect = () => {
       if (registeredInput.current) {
         console.error(

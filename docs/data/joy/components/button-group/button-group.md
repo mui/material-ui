@@ -9,7 +9,7 @@ githubLabel: 'component: ButtonGroup'
 
 <p class="description">The Button Group combines a set of related buttons.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 

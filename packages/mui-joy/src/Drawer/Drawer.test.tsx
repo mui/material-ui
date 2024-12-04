@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider, CssVarsProvider, extendTheme } from '@mui/joy/styles';
 import Drawer, { drawerClasses as classes } from '@mui/joy/Drawer';
 import describeConformance from '../../test/describeConformance';
@@ -31,7 +31,6 @@ describe('<Drawer />', () => {
         'componentsProp', // TODO isRTL is leaking, why do we even have it in the first place?
         'themeDefaultProps', // portal, can't determine the root
         'themeStyleOverrides', // portal, can't determine the root
-        'reactTestRenderer', // portal https://github.com/facebook/react/issues/11565
       ],
     }),
   );

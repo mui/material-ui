@@ -24,7 +24,7 @@ export default function MessagesPane(props: MessagesPaneProps) {
   return (
     <Sheet
       sx={{
-        height: { xs: 'calc(100dvh - var(--Header-height))', lg: '100dvh' },
+        height: { xs: 'calc(100dvh - var(--Header-height))', md: '100dvh' },
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: 'background.level1',
@@ -42,7 +42,7 @@ export default function MessagesPane(props: MessagesPaneProps) {
           flexDirection: 'column-reverse',
         }}
       >
-        <Stack spacing={2} justifyContent="flex-end">
+        <Stack spacing={2} sx={{ justifyContent: 'flex-end' }}>
           {chatMessages.map((message: MessageProps, index: number) => {
             const isYou = message.sender === 'You';
             return (
@@ -50,7 +50,7 @@ export default function MessagesPane(props: MessagesPaneProps) {
                 key={index}
                 direction="row"
                 spacing={2}
-                flexDirection={isYou ? 'row-reverse' : 'row'}
+                sx={{ flexDirection: isYou ? 'row-reverse' : 'row' }}
               >
                 {message.sender !== 'You' && (
                   <AvatarWithStatus

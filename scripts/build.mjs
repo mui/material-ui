@@ -3,13 +3,12 @@ import glob from 'fast-glob';
 import path from 'path';
 import { promisify } from 'util';
 import yargs from 'yargs';
-import { getWorkspaceRoot } from './utils.mjs';
+import * as fs from 'fs/promises';
+import { getVersionEnvVariables, getWorkspaceRoot } from './utils.mjs';
 
 const exec = promisify(childProcess.exec);
 
 const validBundles = [
-  // legacy build using ES6 modules
-  'legacy',
   // modern build with a rolling target using ES6 modules
   'modern',
   // build for node using commonJS modules
@@ -21,9 +20,19 @@ const validBundles = [
 async function run(argv) {
   const { bundle, largeFiles, outDir: relativeOutDir, verbose } = argv;
 
-  if (validBundles.indexOf(bundle) === -1) {
+  if (!validBundles.includes(bundle)) {
     throw new TypeError(
       `Unrecognized bundle '${bundle}'. Did you mean one of "${validBundles.join('", "')}"?`,
+    );
+  }
+
+  const packageJsonPath = path.resolve('./package.json');
+  const packageJson = JSON.parse(await fs.readFile(packageJsonPath, { encoding: 'utf8' }));
+
+  const babelRuntimeVersion = packageJson.dependencies['@babel/runtime'];
+  if (!babelRuntimeVersion) {
+    throw new Error(
+      'package.json needs to have a dependency on `@babel/runtime` when building with `@babel/plugin-transform-runtime`.',
     );
   }
 
@@ -31,7 +40,10 @@ async function run(argv) {
     NODE_ENV: 'production',
     BABEL_ENV: bundle,
     MUI_BUILD_VERBOSE: verbose,
+    MUI_BABEL_RUNTIME_VERSION: babelRuntimeVersion,
+    ...(await getVersionEnvVariables()),
   };
+
   const babelConfigPath = path.resolve(getWorkspaceRoot(), 'babel.config.js');
   const srcDir = path.resolve('./src');
   const extensions = ['.js', '.ts', '.tsx'];
@@ -65,7 +77,6 @@ async function run(argv) {
       node: topLevelPathImportsCanBePackages ? './node' : './',
       modern: './modern',
       stable: topLevelPathImportsCanBePackages ? './' : './esm',
-      legacy: './legacy',
     }[bundle],
   );
 

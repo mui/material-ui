@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import { useSpring, animated } from '@react-spring/web';
 
 interface FadeProps {
-  children: React.ReactElement;
+  children: React.ReactElement<any>;
   in?: boolean;
   onClick?: any;
   onEnter?: (node: HTMLElement, isAppearing: boolean) => void;
@@ -48,7 +48,7 @@ const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, re
 });
 
 const style = {
-  position: 'absolute' as 'absolute',
+  position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',

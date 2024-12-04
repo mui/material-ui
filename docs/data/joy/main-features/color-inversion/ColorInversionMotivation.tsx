@@ -26,7 +26,7 @@ export default function ColorInversionMotivation() {
       >
         <BookmarkOutlinedIcon />
       </IconButton>
-      <Typography level="title-lg" fontWeight="lg">
+      <Typography level="title-lg" sx={{ fontWeight: 'lg' }}>
         Learn how to build super fast websites.
       </Typography>
       <Button variant="solid" endDecorator={<KeyboardArrowRightIcon />}>
@@ -35,30 +35,23 @@ export default function ColorInversionMotivation() {
     </Card>
   );
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        gap: 6,
-      }}
-    >
+    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
       {/* Left: The global variants are applied to children only */}
       <Box sx={{ maxWidth: { xs: '100%', sm: 300 } }}>
         {demo}
-        <Typography level="body-sm" mt={2} textAlign="center">
+        <Typography level="body-sm" sx={{ mt: 2, textAlign: 'center' }}>
           <b>One layer</b>
           <br />
           Global variants are applied only to the children.
         </Typography>
       </Box>
-
       {/* Right: The global variants are applied to both parent and children */}
       <Box sx={{ maxWidth: { xs: '100%', sm: 300 } }}>
         {React.cloneElement(demo, {
           variant: 'solid',
           color: 'primary',
         })}
-        <Typography level="body-sm" mt={2} textAlign="center">
+        <Typography level="body-sm" sx={{ mt: 2, textAlign: 'center' }}>
           <b>Two layers</b>
           <br />
           Global variants are applied to the card <i>and</i> children.

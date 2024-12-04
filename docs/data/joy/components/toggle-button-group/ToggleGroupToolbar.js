@@ -22,7 +22,7 @@ export default function ToggleGroupToolbar() {
   return (
     <Sheet
       variant="outlined"
-      sx={{ borderRadius: 'md', display: 'flex', gap: 2, p: 0.5 }}
+      sx={{ borderRadius: 'md', display: 'inline-flex', gap: 2, p: 0.5 }}
     >
       <ToggleButtonGroup
         variant="plain"
@@ -96,11 +96,7 @@ export default function ToggleGroupToolbar() {
         <AspectRatio
           variant="plain"
           ratio="1"
-          sx={{
-            borderRadius: '50%',
-            width: '1.5em',
-            bgcolor: color,
-          }}
+          sx={{ borderRadius: '50%', width: '1.5em', bgcolor: color }}
         >
           <div />
         </AspectRatio>

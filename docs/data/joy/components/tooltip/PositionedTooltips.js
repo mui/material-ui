@@ -7,7 +7,7 @@ import Tooltip from '@mui/joy/Tooltip';
 export default function PositionedTooltips() {
   return (
     <Box sx={{ width: 500 }}>
-      <Grid container justifyContent="center">
+      <Grid container sx={{ justifyContent: 'center' }}>
         <Grid item>
           <Tooltip title="Add" placement="top-start">
             <Button variant="plain">top-start</Button>
@@ -20,7 +20,7 @@ export default function PositionedTooltips() {
           </Tooltip>
         </Grid>
       </Grid>
-      <Grid container justifyContent="center">
+      <Grid container sx={{ justifyContent: 'center' }}>
         <Grid item xs={6}>
           <Tooltip title="Add" placement="left-start">
             <Button variant="plain">left-start</Button>
@@ -34,7 +34,13 @@ export default function PositionedTooltips() {
             <Button variant="plain">left-end</Button>
           </Tooltip>
         </Grid>
-        <Grid item container xs={6} alignItems="flex-end" direction="column">
+        <Grid
+          item
+          container
+          xs={6}
+          direction="column"
+          sx={{ alignItems: 'flex-end' }}
+        >
           <Grid item>
             <Tooltip title="Add" placement="right-start">
               <Button variant="plain">right-start</Button>
@@ -52,7 +58,7 @@ export default function PositionedTooltips() {
           </Grid>
         </Grid>
       </Grid>
-      <Grid container justifyContent="center">
+      <Grid container sx={{ justifyContent: 'center' }}>
         <Grid item>
           <Tooltip title="Add" placement="bottom-start">
             <Button variant="plain">bottom-start</Button>

@@ -23,7 +23,6 @@ async function runJscodeshiftTransform(transform, files, flags, codemodFlags) {
 
   let transformerPath;
   let error;
-  // eslint-disable-next-line no-restricted-syntax
   for (const item of paths) {
     try {
       // eslint-disable-next-line no-await-in-loop
@@ -113,7 +112,6 @@ async function runPostcssTransform(transform, files) {
 
   let configPath;
   let error;
-  // eslint-disable-next-line no-restricted-syntax
   for (const item of paths) {
     try {
       // eslint-disable-next-line no-await-in-loop

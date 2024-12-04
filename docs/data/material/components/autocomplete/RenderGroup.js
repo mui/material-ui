@@ -8,10 +8,10 @@ const GroupHeader = styled('div')(({ theme }) => ({
   top: '-8px',
   padding: '4px 10px',
   color: theme.palette.primary.main,
-  backgroundColor:
-    theme.palette.mode === 'light'
-      ? lighten(theme.palette.primary.light, 0.85)
-      : darken(theme.palette.primary.main, 0.8),
+  backgroundColor: lighten(theme.palette.primary.light, 0.85),
+  ...theme.applyStyles('dark', {
+    backgroundColor: darken(theme.palette.primary.main, 0.8),
+  }),
 }));
 
 const GroupItems = styled('ul')({
@@ -29,7 +29,6 @@ export default function RenderGroup() {
 
   return (
     <Autocomplete
-      id="grouped-demo"
       options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
       groupBy={(option) => option.firstLetter}
       getOptionLabel={(option) => option.title}

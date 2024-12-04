@@ -133,7 +133,7 @@
       "isGlobal": false
     }
   ],
-  "spread": false,
+  "spread": true,
   "themeDefaultProps": false,
   "muiName": "MuiSwitch",
   "forwardsRefTo": "HTMLSpanElement",

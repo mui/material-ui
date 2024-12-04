@@ -21,23 +21,25 @@ export default function MessagesPaneHeader(props: MessagesPaneHeaderProps) {
   return (
     <Stack
       direction="row"
-      justifyContent="space-between"
       sx={{
+        justifyContent: 'space-between',
+        py: { xs: 2, md: 2 },
+        px: { xs: 1, md: 2 },
         borderBottom: '1px solid',
         borderColor: 'divider',
         backgroundColor: 'background.body',
       }}
-      py={{ xs: 2, md: 2 }}
-      px={{ xs: 1, md: 2 }}
     >
-      <Stack direction="row" spacing={{ xs: 1, md: 2 }} alignItems="center">
+      <Stack
+        direction="row"
+        spacing={{ xs: 1, md: 2 }}
+        sx={{ alignItems: 'center' }}
+      >
         <IconButton
           variant="plain"
           color="neutral"
           size="sm"
-          sx={{
-            display: { xs: 'inline-flex', sm: 'none' },
-          }}
+          sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
           onClick={() => toggleMessagesPane()}
         >
           <ArrowBackIosNewRoundedIcon />
@@ -45,8 +47,6 @@ export default function MessagesPaneHeader(props: MessagesPaneHeaderProps) {
         <Avatar size="lg" src={sender.avatar} />
         <div>
           <Typography
-            fontWeight="lg"
-            fontSize="lg"
             component="h2"
             noWrap
             endDecorator={
@@ -55,9 +55,7 @@ export default function MessagesPaneHeader(props: MessagesPaneHeaderProps) {
                   variant="outlined"
                   size="sm"
                   color="neutral"
-                  sx={{
-                    borderRadius: 'sm',
-                  }}
+                  sx={{ borderRadius: 'sm' }}
                   startDecorator={
                     <CircleIcon sx={{ fontSize: 8 }} color="success" />
                   }
@@ -67,21 +65,20 @@ export default function MessagesPaneHeader(props: MessagesPaneHeaderProps) {
                 </Chip>
               ) : undefined
             }
+            sx={{ fontWeight: 'lg', fontSize: 'lg' }}
           >
             {sender.name}
           </Typography>
           <Typography level="body-sm">{sender.username}</Typography>
         </div>
       </Stack>
-      <Stack spacing={1} direction="row" alignItems="center">
+      <Stack spacing={1} direction="row" sx={{ alignItems: 'center' }}>
         <Button
           startDecorator={<PhoneInTalkRoundedIcon />}
           color="neutral"
           variant="outlined"
           size="sm"
-          sx={{
-            display: { xs: 'none', md: 'inline-flex' },
-          }}
+          sx={{ display: { xs: 'none', md: 'inline-flex' } }}
         >
           Call
         </Button>
@@ -89,9 +86,7 @@ export default function MessagesPaneHeader(props: MessagesPaneHeaderProps) {
           color="neutral"
           variant="outlined"
           size="sm"
-          sx={{
-            display: { xs: 'none', md: 'inline-flex' },
-          }}
+          sx={{ display: { xs: 'none', md: 'inline-flex' } }}
         >
           View profile
         </Button>

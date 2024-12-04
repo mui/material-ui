@@ -7,12 +7,7 @@ import Image from '@mui/icons-material/Image';
 
 export default function NavList() {
   return (
-    <List
-      component="nav"
-      sx={{
-        maxWidth: 320,
-      }}
-    >
+    <List component="nav" sx={{ maxWidth: 320 }}>
       <ListItemButton>
         <ListItemDecorator>
           <Image />

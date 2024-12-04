@@ -4,10 +4,10 @@ description: The Base UI component library gives you complete control over the 
 date: 2022-09-07T00:00:00.000Z
 authors: ['michaldudak', 'samuelsycamore']
 tags: ['Base UI', 'Product']
-card: true
+manualCard: true
 ---
 
-<a href="https://mui.com/base-ui/"><img src="/static/blog/introducing-base-ui/hero-image.png" alt="Demo components built with Base UI, a newly introduced library of unstyled components and hooks" width="1200" height="500" /></a>
+<a href="https://mui.com/base-ui/"><img src="/static/blog/introducing-base-ui/hero-image.png" alt="Demo components built with Base UI, a newly introduced library of unstyled components and hooks" width="2400" height="1000" /></a>
 
 While Material UI is excellent for building sleek user interfaces that adhere closely to Material Design, it can become unwieldy when your design system diverges significantly from the defaults.
 We get it.
@@ -33,7 +33,7 @@ Also, many of the improvements to Material UI proposed by the community over th
 
 While they were created for different use cases, these two libraries share many common features and design patterns, and are intended to be complementary to one another within the MUI ecosystem.
 Base UI's API will be familiar to you if you've used Material UI before, making it easy to migrate a project—or just a part of it—from one library to the other if needed.
-We aim to create [unstyled versions of all Material UI components](https://github.com/mui/material-ui/issues/27170) (that make sense to do so).
+We aim to create [unstyled versions of all Material UI components](https://github.com/mui/base-ui/issues/10) (that make sense to do so).
 
 ## Components and hooks
 
@@ -52,14 +52,11 @@ Each unstyled component lets you modify or override its _slots_—smaller subcom
 For example, a `SwitchUnstyled` contains the root, thumb, input, and track slots.
 You can control props passed to each of these slots (including `className`) based on the component's state, and even replace the default slot components with your own.
 
-<img src="/static/blog/introducing-base-ui/switch-slots.png" width="1200" height="500" loading="lazy" alt="Depiction of SwitchUnstyled components' slots" />
+<img src="/static/blog/introducing-base-ui/switch-slots.png" width="2400" height="1000" loading="lazy" alt="Depiction of SwitchUnstyled components' slots" />
 
 See how it works on the live demo:
 
-<iframe src="https://codesandbox.io/embed/mui-base-switch-overview-frsm5f?fontsize=12&hidenavigation=1&module=%2Fsrc%2FMySwitch.tsx&theme=dark"
-  style="width:100%; height:350px; border:0; border-radius: 10px; overflow:hidden; margin-bottom: 24px"
-  title="Base UI Switch overview"
-  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+<iframe src="https://codesandbox.io/embed/mui-base-switch-overview-frsm5f?fontsize=12&hidenavigation=1&module=%2Fsrc%2FMySwitch.tsx&theme=dark" style="width:100%; height:350px; border:0; border-radius: 10px; overflow:hidden; margin-bottom: 24px" title="Base UI Switch overview" sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
 Hooks take this one step further by extracting the logic from the structure entirely, so you can build from scratch using any DOM elements you need.
@@ -86,7 +83,7 @@ function MySwitch(props: UseSwitchParameters) {
 The initial version of the library contains 17 components.
 Check out the [Base UI documentation](/base-ui/getting-started/) for details.
 
-You can track our progress in adding new components—and comment to influence our priorities—in [this dedicated GitHub issue](https://github.com/mui/material-ui/issues/27170).
+You can track our progress in adding new components—and comment to influence our priorities—in [this dedicated GitHub issue](https://github.com/mui/base-ui/issues/10).
 
 The `@mui/base` package is released as an alpha.
 This means the component APIs are subject to change—especially as we receive feedback from the community about room for improvement.
@@ -104,12 +101,12 @@ Give Base UI a try today by running one of the following commands:
 npm install @mui/base
 ```
 
-```bash yarn
-yarn add @mui/base
-```
-
 ```bash pnpm
 pnpm add @mui/base
+```
+
+```bash yarn
+yarn add @mui/base
 ```
 
 </codeblock>

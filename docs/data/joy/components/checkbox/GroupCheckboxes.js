@@ -7,7 +7,11 @@ import Typography from '@mui/joy/Typography';
 export default function GroupCheckboxes() {
   return (
     <div>
-      <Typography id="sandwich-group" level="body-sm" fontWeight="lg" mb={1}>
+      <Typography
+        id="sandwich-group"
+        level="body-sm"
+        sx={{ fontWeight: 'lg', mb: 1 }}
+      >
         Sandwich Dressings
       </Typography>
       <div role="group" aria-labelledby="sandwich-group">

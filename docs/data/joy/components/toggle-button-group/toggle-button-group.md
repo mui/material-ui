@@ -9,6 +9,8 @@ components: ToggleButtonGroup, Button, IconButton
 
 <p class="description">A group of mutually exclusive buttons.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
 ## Introduction
 
 Toggle Button Group provides a way to get mutually exclusive actions closer together by sharing a common container.

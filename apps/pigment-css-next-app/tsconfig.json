@@ -33,9 +33,6 @@
     },
     {
       "path": "../../packages/mui-material/tsconfig.build.json"
-    },
-    {
-      "path": "../../packages/pigment-css-react/tsconfig.json"
     }
   ]
 }

@@ -40,5 +40,6 @@
   "filename": "/packages/mui-material/src/Hidden/Hidden.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-hidden/\">Hidden</a></li></ul>",
-  "cssComponent": false
+  "cssComponent": false,
+  "deprecated": true
 }

@@ -63,7 +63,6 @@ function Media(props) {
           alt="Nicola Sturgeon on a TED talk stage"
         />
       )}
-
       <CardContent>
         {loading ? (
           <React.Fragment>
@@ -71,7 +70,7 @@ function Media(props) {
             <Skeleton animation="wave" height={10} width="80%" />
           </React.Fragment>
         ) : (
-          <Typography variant="body2" color="text.secondary" component="p">
+          <Typography variant="body2" component="p" sx={{ color: 'text.secondary' }}>
             {
               "Why First Minister of Scotland Nicola Sturgeon thinks GDP is the wrong measure of a country's success:"
             }

@@ -50,14 +50,16 @@ function Toggler({
     <React.Fragment>
       {renderToggle({ open, setOpen })}
       <Box
-        sx={{
-          display: 'grid',
-          gridTemplateRows: open ? '1fr' : '0fr',
-          transition: '0.2s ease',
-          '& > *': {
-            overflow: 'hidden',
+        sx={[
+          {
+            display: 'grid',
+            transition: '0.2s ease',
+            '& > *': {
+              overflow: 'hidden',
+            },
           },
-        }}
+          open ? { gridTemplateRows: '1fr' } : { gridTemplateRows: '0fr' },
+        ]}
       >
         {children}
       </Box>
@@ -182,7 +184,15 @@ export default function Sidebar() {
                     <Typography level="title-sm">Tasks</Typography>
                   </ListItemContent>
                   <KeyboardArrowDownIcon
-                    sx={{ transform: open ? 'rotate(180deg)' : 'none' }}
+                    sx={[
+                      open
+                        ? {
+                            transform: 'rotate(180deg)',
+                          }
+                        : {
+                            transform: 'none',
+                          },
+                    ]}
                   />
                 </ListItemButton>
               )}
@@ -203,7 +213,6 @@ export default function Sidebar() {
               </List>
             </Toggler>
           </ListItem>
-
           <ListItem>
             <ListItemButton
               role="menuitem"
@@ -219,7 +228,6 @@ export default function Sidebar() {
               </Chip>
             </ListItemButton>
           </ListItem>
-
           <ListItem nested>
             <Toggler
               renderToggle={({ open, setOpen }) => (
@@ -229,7 +237,15 @@ export default function Sidebar() {
                     <Typography level="title-sm">Users</Typography>
                   </ListItemContent>
                   <KeyboardArrowDownIcon
-                    sx={{ transform: open ? 'rotate(180deg)' : 'none' }}
+                    sx={[
+                      open
+                        ? {
+                            transform: 'rotate(180deg)',
+                          }
+                        : {
+                            transform: 'none',
+                          },
+                    ]}
                   />
                 </ListItemButton>
               )}
@@ -254,7 +270,6 @@ export default function Sidebar() {
             </Toggler>
           </ListItem>
         </List>
-
         <List
           size="sm"
           sx={{
@@ -285,7 +300,10 @@ export default function Sidebar() {
           size="sm"
           sx={{ boxShadow: 'none' }}
         >
-          <Stack direction="row" justifyContent="space-between" alignItems="center">
+          <Stack
+            direction="row"
+            sx={{ justifyContent: 'space-between', alignItems: 'center' }}
+          >
             <Typography level="title-sm">Used space</Typography>
             <IconButton size="sm">
               <CloseRoundedIcon />

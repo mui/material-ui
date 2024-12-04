@@ -10,9 +10,9 @@ export default function SnackbarHideDuration() {
   const [open, setOpen] = React.useState(false);
   const [duration, setDuration] = React.useState<undefined | number>();
   const [left, setLeft] = React.useState<undefined | number>();
-  const timer = React.useRef<undefined | number>();
+  const timer = React.useRef<ReturnType<typeof setInterval> | undefined>(undefined);
   const countdown = () => {
-    timer.current = window.setInterval(() => {
+    timer.current = setInterval(() => {
       setLeft((prev) => (prev === undefined ? prev : Math.max(0, prev - 100)));
     }, 100);
   };
@@ -32,7 +32,7 @@ export default function SnackbarHideDuration() {
   };
   return (
     <div>
-      <Stack spacing={2} direction="row" alignItems="center">
+      <Stack spacing={2} direction="row" sx={{ alignItems: 'center' }}>
         <FormControl disabled={open} sx={{ display: 'grid', columnGap: 1 }}>
           <FormLabel sx={{ gridColumn: 'span 2' }}>
             Auto Hide Duration (ms)

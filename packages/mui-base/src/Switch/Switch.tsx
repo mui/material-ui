@@ -107,7 +107,7 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
     className: classes.input,
   });
 
-  const Track: React.ElementType = slots.track === null ? () => null : slots.track ?? 'span';
+  const Track: React.ElementType = slots.track === null ? () => null : (slots.track ?? 'span');
   const trackProps: WithOptionalOwnerState<SwitchTrackSlotProps> = useSlotProps({
     elementType: Track,
     externalSlotProps: slotProps.track,

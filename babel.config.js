@@ -1,19 +1,30 @@
+// @ts-check
 const path = require('path');
+
+/**
+ * @typedef {import('@babel/core')} babel
+ */
 
 const errorCodesPath = path.resolve(__dirname, './docs/public/static/error-codes.json');
 const missingError = process.env.MUI_EXTRACT_ERROR_CODES === 'true' ? 'write' : 'annotate';
 
+/**
+ * @param {string} relativeToBabelConf
+ * @returns {string}
+ */
 function resolveAliasPath(relativeToBabelConf) {
   const resolvedPath = path.relative(process.cwd(), path.resolve(__dirname, relativeToBabelConf));
   return `./${resolvedPath.replace('\\', '/')}`;
 }
 
+/** @type {babel.PluginItem[]} */
 const productionPlugins = [
   ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
 ];
 
+/** @type {babel.ConfigFunction} */
 module.exports = function getBabelConfig(api) {
-  const useESModules = api.env(['regressions', 'legacy', 'modern', 'stable', 'rollup']);
+  const useESModules = api.env(['regressions', 'modern', 'stable']);
 
   const defaultAlias = {
     '@mui/material': resolveAliasPath('./packages/mui-material/src'),
@@ -31,8 +42,8 @@ module.exports = function getBabelConfig(api) {
     '@mui/base': resolveAliasPath('./packages/mui-base/src'),
     '@mui/utils': resolveAliasPath('./packages/mui-utils/src'),
     '@mui/joy': resolveAliasPath('./packages/mui-joy/src'),
-    '@pigment-css/react': resolveAliasPath('./packages/pigment-css-react/src'),
     '@mui/internal-docs-utils': resolveAliasPath('./packages-internal/docs-utils/src'),
+    '@mui/internal-test-utils': resolveAliasPath('./packages-internal/test-utils/src'),
     docs: resolveAliasPath('./docs'),
     test: resolveAliasPath('./test'),
   };
@@ -57,29 +68,24 @@ module.exports = function getBabelConfig(api) {
     '@babel/preset-typescript',
   ];
 
+  const usesAliases =
+    // in this config:
+    api.env(['coverage', 'development', 'test', 'benchmark']) ||
+    process.env.NODE_ENV === 'test' ||
+    // in webpack config:
+    api.env(['regressions']);
+
+  const outFileExtension = '.js';
+
+  /** @type {babel.PluginItem[]} */
   const plugins = [
-    [
-      'babel-plugin-macros',
-      {
-        muiError: {
-          errorCodesPath,
-          missingError,
-        },
-      },
-    ],
     'babel-plugin-optimize-clsx',
-    // Need the following 3 proposals for all targets in .browserslistrc.
-    // With our usage the transpiled loose mode is equivalent to spec mode.
-    ['@babel/plugin-proposal-class-properties', { loose: true }],
-    ['@babel/plugin-proposal-private-methods', { loose: true }],
-    ['@babel/plugin-proposal-private-property-in-object', { loose: true }],
-    ['@babel/plugin-proposal-object-rest-spread', { loose: true }],
     [
       '@babel/plugin-transform-runtime',
       {
         useESModules,
-        // any package needs to declare 7.4.4 as a runtime dependency. default is ^7.0.0
-        version: '^7.4.4',
+        // any package needs to declare 7.25.0 as a runtime dependency. default is ^7.0.0
+        version: process.env.MUI_BABEL_RUNTIME_VERSION || '^7.25.0',
       },
     ],
     [
@@ -88,6 +94,37 @@ module.exports = function getBabelConfig(api) {
         mode: 'unsafe-wrap',
       },
     ],
+    [
+      'transform-inline-environment-variables',
+      {
+        include: [
+          'MUI_VERSION',
+          'MUI_MAJOR_VERSION',
+          'MUI_MINOR_VERSION',
+          'MUI_PATCH_VERSION',
+          'MUI_PRERELEASE',
+        ],
+      },
+    ],
+    [
+      '@mui/internal-babel-plugin-minify-errors',
+      {
+        missingError,
+        errorCodesPath,
+      },
+    ],
+    ...(useESModules
+      ? [
+          [
+            '@mui/internal-babel-plugin-resolve-imports',
+            {
+              // Don't replace the extension when we're using aliases.
+              // Essentially only replace in production builds.
+              outExtension: usesAliases ? null : outFileExtension,
+            },
+          ],
+        ]
+      : []),
   ];
 
   if (process.env.NODE_ENV === 'production') {
@@ -115,6 +152,10 @@ module.exports = function getBabelConfig(api) {
         exclude: /\.test\.(js|ts|tsx)$/,
         plugins: ['@babel/plugin-transform-react-constant-elements'],
       },
+      {
+        test: /(\.test\.[^.]+$|\.test\/)/,
+        plugins: [['@mui/internal-babel-plugin-resolve-imports', false]],
+      },
     ],
     env: {
       coverage: {
@@ -141,22 +182,6 @@ module.exports = function getBabelConfig(api) {
               root: ['./'],
             },
           ],
-        ],
-      },
-      rollup: {
-        plugins: [
-          [
-            'babel-plugin-module-resolver',
-            {
-              alias: defaultAlias,
-            },
-          ],
-        ],
-      },
-      legacy: {
-        plugins: [
-          // IE11 support
-          '@babel/plugin-transform-object-assign',
         ],
       },
       test: {

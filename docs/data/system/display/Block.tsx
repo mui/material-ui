@@ -6,39 +6,45 @@ export default function Block() {
     <div style={{ width: '100%' }}>
       <Box
         component="span"
-        sx={{
+        sx={(theme) => ({
           display: 'block',
           p: 1,
           m: 1,
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#101010' : '#fff'),
-          color: (theme) =>
-            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+          bgcolor: '#fff',
+          color: 'grey.800',
           border: '1px solid',
-          borderColor: (theme) =>
-            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+          borderColor: 'grey.300',
           borderRadius: 2,
           fontSize: '0.875rem',
           fontWeight: '700',
-        }}
+          ...theme.applyStyles('dark', {
+            bgcolor: '#101010',
+            color: 'grey.300',
+            borderColor: 'grey.800',
+          }),
+        })}
       >
         block
       </Box>
       <Box
         component="span"
-        sx={{
+        sx={(theme) => ({
           display: 'block',
           p: 1,
           m: 1,
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#101010' : '#fff'),
-          color: (theme) =>
-            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+          bgcolor: '#fff',
+          color: 'grey.800',
           border: '1px solid',
-          borderColor: (theme) =>
-            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+          borderColor: 'grey.300',
           borderRadius: 2,
           fontSize: '0.875rem',
           fontWeight: '700',
-        }}
+          ...theme.applyStyles('dark', {
+            bgcolor: '#101010',
+            color: 'grey.300',
+            borderColor: 'grey.800',
+          }),
+        })}
       >
         block
       </Box>

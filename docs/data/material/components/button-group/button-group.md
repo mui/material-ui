@@ -3,13 +3,14 @@ productId: material-ui
 title: React Button Group component
 components: Button, ButtonGroup, LoadingButton
 githubLabel: 'component: ButtonGroup'
+githubSource: packages/mui-material/src/ButtonGroup
 ---
 
 # Button Group
 
 <p class="description">The ButtonGroup component can be used to group related buttons.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic button group
 

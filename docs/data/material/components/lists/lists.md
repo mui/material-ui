@@ -4,6 +4,7 @@ title: React List component
 components: Collapse, Divider, List, ListItem, ListItemButton, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 githubLabel: 'component: list'
 materialDesign: https://m2.material.io/components/lists
+githubSource: packages/mui-material/src/List
 ---
 
 # Lists
@@ -12,7 +13,7 @@ materialDesign: https://m2.material.io/components/lists
 
 Lists are a continuous group of text or images. They are composed of items containing primary and supplemental actions, which are represented by icons and text.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 

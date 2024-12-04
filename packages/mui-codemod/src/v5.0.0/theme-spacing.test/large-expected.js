@@ -17,7 +17,7 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha, styled } from '@mui/material/styles';
 import { LANGUAGES_SSR } from 'docs/config';
 import Link from 'docs/src/modules/components/Link';
-import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
+import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import getUrlProduct from 'docs/src/modules/utils/getUrlProduct';
 
@@ -211,8 +211,8 @@ export default function AppSearch() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [initialQuery, setInitialQuery] = React.useState(undefined);
   const facetFilterLanguage =
-    LANGUAGES_SSR.indexOf(userLanguage) !== -1 ? `language:${userLanguage}` : `language:en`;
-  const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+    LANGUAGES_SSR.includes(userLanguage) ? `language:${userLanguage}` : `language:en`;
+  const macOS = window.navigator.platform.toUpperCase().includes('MAC');
   const onOpen = React.useCallback(() => {
     setIsOpen(true);
   }, [setIsOpen]);

@@ -8,7 +8,6 @@ import Typography from '@mui/joy/Typography';
 export default function CountrySelect() {
   return (
     <Autocomplete
-      id="country-select-demo"
       placeholder="Choose a country"
       slotProps={{
         input: {

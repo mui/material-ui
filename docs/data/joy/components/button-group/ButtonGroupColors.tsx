@@ -10,7 +10,7 @@ export default function ButtonGroupColors() {
     setVariant(value);
   };
   return (
-    <Stack spacing={1} alignItems="center">
+    <Stack spacing={1} sx={{ alignItems: 'center' }}>
       <ButtonGroup variant={variant} size="sm" aria-label="neutral button group">
         <Button onClick={createOnClick('outlined')}>Outlined</Button>
         <Button onClick={createOnClick('plain')}>Plain</Button>

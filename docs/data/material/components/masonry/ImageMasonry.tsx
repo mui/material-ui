@@ -5,13 +5,16 @@ import Masonry from '@mui/lab/Masonry';
 import { styled } from '@mui/material/styles';
 
 const Label = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  backgroundColor: '#fff',
   ...theme.typography.body2,
   padding: theme.spacing(0.5),
   textAlign: 'center',
   color: theme.palette.text.secondary,
   borderBottomLeftRadius: 0,
   borderBottomRightRadius: 0,
+  ...theme.applyStyles('dark', {
+    backgroundColor: '#1A2027',
+  }),
 }));
 
 export default function ImageMasonry() {

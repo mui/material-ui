@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Badge, { badgeClasses as classes } from '@mui/material/Badge';
 import describeConformance from '../../test/describeConformance';
 
@@ -236,6 +236,20 @@ describe('<Badge />', () => {
         <Badge {...defaultProps} anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }} />,
       );
       expect(findBadge(container)).to.have.class(classes.anchorOriginBottomRightRectangular);
+    });
+
+    it('should apply style for bottom right rectangular when only vertical is specified', () => {
+      const { container } = render(
+        <Badge {...defaultProps} anchorOrigin={{ vertical: 'bottom' }} />,
+      );
+      expect(findBadge(container)).to.have.class(classes.anchorOriginBottomRightRectangular);
+    });
+
+    it('should apply style for top left rectangular when only horizontal is specified', () => {
+      const { container } = render(
+        <Badge {...defaultProps} anchorOrigin={{ horizontal: 'left' }} />,
+      );
+      expect(findBadge(container)).to.have.class(classes.anchorOriginTopLeftRectangular);
     });
 
     it('should apply style for top left circular', () => {

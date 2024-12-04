@@ -1,5 +1,5 @@
 import { CSSObject, CSSInterpolation, Interpolation } from '@mui/system';
-import { PopperClassKey } from '@mui/base/Popper';
+import { PopperClassKey } from '../Popper';
 import { ComponentsPropsList } from './props';
 import { AccordionActionsClassKey } from '../AccordionActions';
 import { AccordionClassKey } from '../Accordion';
@@ -45,7 +45,7 @@ import { FormGroupClassKey } from '../FormGroup';
 import { FormHelperTextClassKey } from '../FormHelperText';
 import { FormLabelClassKey } from '../FormLabel';
 import { GridClassKey } from '../Grid';
-import { Grid2Slot } from '../Unstable_Grid2';
+import { Grid2Slot } from '../Grid2';
 import { IconButtonClassKey } from '../IconButton';
 import { IconClassKey } from '../Icon';
 import { ImageListClassKey } from '../ImageList';

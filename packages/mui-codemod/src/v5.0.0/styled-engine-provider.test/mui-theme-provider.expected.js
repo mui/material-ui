@@ -5,7 +5,7 @@ import Page from './pages';
 
 const App = () => {
   return (
-    <Providers>
+    (<Providers>
       <StyledEngineProvider injectFirst>
         <MuiThemeProvider theme={createMuiTheme()}>
           <OtherProvider>
@@ -13,7 +13,7 @@ const App = () => {
           </OtherProvider>
         </MuiThemeProvider>
       </StyledEngineProvider>
-    </Providers>
+    </Providers>)
   );
 };
 

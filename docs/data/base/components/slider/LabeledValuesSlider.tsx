@@ -11,7 +11,7 @@ export default function LabeledValuesSlider() {
 }
 
 interface SliderValueLabelProps {
-  children: React.ReactElement;
+  children: React.ReactElement<any>;
 }
 
 function SliderValueLabel({ children }: SliderValueLabelProps) {

@@ -4,7 +4,7 @@ description: Let us know what you want to see in MUI X v6 as we begin the alpha
 date: 2022-09-30T00:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'Product']
-card: true
+manualCard: true
 ---
 
 We're kicking off the development of [MUI X v6](https://github.com/mui/mui-x/releases/tag/v6.0.0-alpha.0).
@@ -96,7 +96,7 @@ It contains the highlights that will be included in the first versions.
   - [Enable customization through component slots on every component](https://github.com/mui/mui-x/issues/4466).
 
 :::info
-You can check our [roadmap](https://github.com/mui/mui-x/projects/1) for the full live list.
+You can check our [roadmap](https://github.com/orgs/mui/projects/35) for the full live list.
 :::
 
 ## How to migrate?

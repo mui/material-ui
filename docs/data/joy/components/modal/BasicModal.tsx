@@ -21,12 +21,7 @@ export default function BasicModal() {
       >
         <Sheet
           variant="outlined"
-          sx={{
-            maxWidth: 500,
-            borderRadius: 'md',
-            p: 3,
-            boxShadow: 'lg',
-          }}
+          sx={{ maxWidth: 500, borderRadius: 'md', p: 3, boxShadow: 'lg' }}
         >
           <ModalClose variant="plain" sx={{ m: 1 }} />
           <Typography
@@ -34,8 +29,7 @@ export default function BasicModal() {
             id="modal-title"
             level="h4"
             textColor="inherit"
-            fontWeight="lg"
-            mb={1}
+            sx={{ fontWeight: 'lg', mb: 1 }}
           >
             This is the modal title
           </Typography>

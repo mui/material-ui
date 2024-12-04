@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import StepIcon, { stepIconClasses as classes } from '@mui/material/StepIcon';
 import describeConformance from '../../test/describeConformance';
 

@@ -4,7 +4,7 @@ description: Migrate to the new package to start building with our powerful Date
 date: 2022-04-03T00:00:00.000Z
 authors: ['flaviendelangle']
 tags: ['MUI X', 'Product']
-card: true
+manualCard: true
 ---
 
 After more than 18 months in the lab, the Date and Time Picker components have found a new home as part of MUI X.
@@ -20,7 +20,7 @@ This means we'll be dedicating even more time and effort to these complex compon
 
 Date and Time Pickers are interface controls that enable the user to select a date (or time) from a menu.
 
-<img src="/static/blog/lab-date-pickers-to-mui-x/date-time-picker.png" style="width: 796px; margin-top: 16px;" alt="Date and Time Picker component" />
+<img src="/static/blog/lab-date-pickers-to-mui-x/date-time-picker.png" width="2400" height="1240" loading="lazy" alt="Date and Time Picker component" />
 
 <p class="blog-description">Date and Time Pickers using the default Material UI design</p>
 

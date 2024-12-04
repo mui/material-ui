@@ -45,12 +45,7 @@ export default function ContainerResponsive() {
           />
         </AspectRatio>
         <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 2,
-            maxWidth: 200,
-          }}
+          sx={{ display: 'flex', flexDirection: 'column', gap: 2, maxWidth: 200 }}
         >
           <Box sx={{ display: 'flex' }}>
             <div>

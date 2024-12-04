@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
-import Divider from '@mui/material/Divider';
+import Divider, { dividerClasses } from '@mui/material/Divider';
 import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
 import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
 import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
@@ -16,7 +16,7 @@ export default function VerticalDividerMiddle() {
         '& svg': {
           m: 1,
         },
-        '& hr': {
+        [`& .${dividerClasses.root}`]: {
           mx: 0.5,
         },
       }}

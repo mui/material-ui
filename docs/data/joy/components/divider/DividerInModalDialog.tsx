@@ -23,11 +23,7 @@ export default function DividerInModalDialog() {
         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
         Lorem Ipsum has been the industry standard dummy text ever since the 1500s
       </DialogContent>
-      <CardOverflow
-        sx={{
-          bgcolor: 'background.level1',
-        }}
-      >
+      <CardOverflow sx={{ bgcolor: 'background.level1' }}>
         <Divider inset="context" />
         <DialogActions
           buttonFlex="none"

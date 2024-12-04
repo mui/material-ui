@@ -50,8 +50,8 @@ describe('extendSxProp', () => {
   });
 
   it('should not process non system props with the sx prop of function type', () => {
-    const { sx, ...rest } = extendSxProp({ 'aria-label': 'label', sx: () => ({ mr: 2, mb: 1 }) });
-    expect(rest).to.deep.equal({
+    const { sx, ...other } = extendSxProp({ 'aria-label': 'label', sx: () => ({ mr: 2, mb: 1 }) });
+    expect(other).to.deep.equal({
       'aria-label': 'label',
     });
   });

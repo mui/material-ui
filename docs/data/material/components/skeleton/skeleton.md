@@ -3,6 +3,7 @@ productId: material-ui
 title: React Skeleton component
 components: Skeleton
 githubLabel: 'component: skeleton'
+githubSource: packages/mui-material/src/Skeleton
 ---
 
 # Skeleton
@@ -11,7 +12,7 @@ githubLabel: 'component: skeleton'
 
 The data for your components might not be immediately available. You can improve the perceived responsiveness of the page by using skeletons. It feels like things are happening immediately, then the information is incrementally displayed on the screen (Cf. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797)).
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Usage
 

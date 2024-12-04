@@ -48,8 +48,7 @@ export default function App() {
         variant="solid"
         color="primary"
         invertedColors
-        sx={{
-          borderRadius: "sm",
+        sx={{        borderRadius: "sm",
           m: 1,
           fontSize: "lg",
           background: (theme) =>

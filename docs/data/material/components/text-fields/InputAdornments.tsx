@@ -21,6 +21,10 @@ export default function InputAdornments() {
     event.preventDefault();
   };
 
+  const handleMouseUpPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+  };
+
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
       <div>
@@ -28,8 +32,10 @@ export default function InputAdornments() {
           label="With normal TextField"
           id="outlined-start-adornment"
           sx={{ m: 1, width: '25ch' }}
-          InputProps={{
-            startAdornment: <InputAdornment position="start">kg</InputAdornment>,
+          slotProps={{
+            input: {
+              startAdornment: <InputAdornment position="start">kg</InputAdornment>,
+            },
           }}
         />
         <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
@@ -51,9 +57,12 @@ export default function InputAdornments() {
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
-                  aria-label="toggle password visibility"
+                  aria-label={
+                    showPassword ? 'hide the password' : 'display the password'
+                  }
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
+                  onMouseUp={handleMouseUpPassword}
                   edge="end"
                 >
                   {showPassword ? <VisibilityOff /> : <Visibility />}
@@ -77,8 +86,10 @@ export default function InputAdornments() {
           label="With normal TextField"
           id="filled-start-adornment"
           sx={{ m: 1, width: '25ch' }}
-          InputProps={{
-            startAdornment: <InputAdornment position="start">kg</InputAdornment>,
+          slotProps={{
+            input: {
+              startAdornment: <InputAdornment position="start">kg</InputAdornment>,
+            },
           }}
           variant="filled"
         />
@@ -101,9 +112,12 @@ export default function InputAdornments() {
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
-                  aria-label="toggle password visibility"
+                  aria-label={
+                    showPassword ? 'hide the password' : 'display the password'
+                  }
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
+                  onMouseUp={handleMouseUpPassword}
                   edge="end"
                 >
                   {showPassword ? <VisibilityOff /> : <Visibility />}
@@ -125,8 +139,10 @@ export default function InputAdornments() {
           label="With normal TextField"
           id="standard-start-adornment"
           sx={{ m: 1, width: '25ch' }}
-          InputProps={{
-            startAdornment: <InputAdornment position="start">kg</InputAdornment>,
+          slotProps={{
+            input: {
+              startAdornment: <InputAdornment position="start">kg</InputAdornment>,
+            },
           }}
           variant="standard"
         />
@@ -149,9 +165,12 @@ export default function InputAdornments() {
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
-                  aria-label="toggle password visibility"
+                  aria-label={
+                    showPassword ? 'hide the password' : 'display the password'
+                  }
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
+                  onMouseUp={handleMouseUpPassword}
                 >
                   {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>

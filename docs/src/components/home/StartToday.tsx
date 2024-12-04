@@ -8,11 +8,7 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 export default function StartToday() {
   return (
     <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: { xs: 'auto', sm: 'center' },
-      }}
+      sx={{ display: 'flex', flexDirection: 'column', alignItems: { xs: 'auto', sm: 'center' } }}
     >
       <SectionHeadline
         alwaysCenter

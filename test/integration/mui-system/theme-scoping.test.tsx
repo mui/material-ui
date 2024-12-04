@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeContext } from '@mui/styled-engine';
 import * as material from '@mui/material';
 import * as joy from '@mui/joy';
@@ -68,8 +68,11 @@ describe('Multiple nested theme providers', () => {
   let storage: Record<string, string> = {};
   const createMatchMedia = (matches: boolean) => () => ({
     matches,
+    // Keep mocking legacy methods because @mui/material v5 still uses them
     addListener: () => {},
+    addEventListener: () => {},
     removeListener: () => {},
+    removeEventListener: () => {},
   });
 
   beforeEach(() => {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import DialogActions, { dialogActionsClasses as classes } from '@mui/joy/DialogActions';
 import describeConformance from '../../test/describeConformance';

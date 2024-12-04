@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { fireEvent } from '@testing-library/dom';
 import StepButton, { stepButtonClasses as classes } from '@mui/material/StepButton';
 import Step from '@mui/material/Step';

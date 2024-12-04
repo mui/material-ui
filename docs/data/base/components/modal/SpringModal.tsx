@@ -37,7 +37,7 @@ export default function SpringModal() {
 
 const Backdrop = React.forwardRef<
   HTMLDivElement,
-  { children: React.ReactElement; open: boolean }
+  { children: React.ReactElement<any>; open: boolean }
 >((props, ref) => {
   const { open, ...other } = props;
   return <Fade ref={ref} in={open} {...other} />;
@@ -61,7 +61,7 @@ const StyledBackdrop = styled(Backdrop)`
 `;
 
 interface FadeProps {
-  children: React.ReactElement;
+  children: React.ReactElement<any>;
   in?: boolean;
   onClick?: any;
   onEnter?: (node: HTMLElement, isAppearing: boolean) => void;
@@ -115,7 +115,7 @@ const grey = {
 };
 
 const style = {
-  position: 'absolute' as 'absolute',
+  position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',

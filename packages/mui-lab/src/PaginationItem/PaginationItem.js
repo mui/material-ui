@@ -4,10 +4,7 @@ import PaginationItem from '@mui/material/PaginationItem';
 
 let warnedOnce = false;
 
-/**
- * @ignore - do not document.
- */
-export default React.forwardRef(function DeprecatedPaginationItem(props, ref) {
+const warn = () => {
   if (!warnedOnce) {
     console.warn(
       [
@@ -20,6 +17,13 @@ export default React.forwardRef(function DeprecatedPaginationItem(props, ref) {
 
     warnedOnce = true;
   }
+};
+
+/**
+ * @ignore - do not document.
+ */
+export default React.forwardRef(function DeprecatedPaginationItem(props, ref) {
+  warn();
 
   return <PaginationItem ref={ref} {...props} />;
 });

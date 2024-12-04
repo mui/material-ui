@@ -9,7 +9,7 @@ githubLabel: 'component: TablePagination'
 
 <p class="description">Table Pagination is an interface tool for splitting up large amounts of data to make it easier for users to navigate.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 

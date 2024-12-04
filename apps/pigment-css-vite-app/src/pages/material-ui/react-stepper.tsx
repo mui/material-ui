@@ -7,7 +7,6 @@ import HorizontalLinearStepper from '../../../../../docs/data/material/component
 import HorizontalNonLinearStepper from '../../../../../docs/data/material/components/steppers/HorizontalNonLinearStepper.tsx';
 import HorizontalStepperWithError from '../../../../../docs/data/material/components/steppers/HorizontalStepperWithError.tsx';
 import ProgressMobileStepper from '../../../../../docs/data/material/components/steppers/ProgressMobileStepper.tsx';
-import SwipeableTextMobileStepper from '../../../../../docs/data/material/components/steppers/SwipeableTextMobileStepper.tsx';
 import TextMobileStepper from '../../../../../docs/data/material/components/steppers/TextMobileStepper.tsx';
 import VerticalLinearStepper from '../../../../../docs/data/material/components/steppers/VerticalLinearStepper.tsx';
 
@@ -55,12 +54,6 @@ export default function Steppers() {
         <h2> Progress Mobile Stepper</h2>
         <div className="demo-container">
           <ProgressMobileStepper />
-        </div>
-      </section>
-      <section>
-        <h2> Swipeable Text Mobile Stepper</h2>
-        <div className="demo-container">
-          <SwipeableTextMobileStepper />
         </div>
       </section>
       <section>

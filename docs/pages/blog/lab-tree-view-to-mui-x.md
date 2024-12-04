@@ -4,7 +4,7 @@ description: Migrate to the new package to start building with our powerful Tree
 date: 2023-08-21T00:00:00.000Z
 authors: ['flaviendelangle']
 tags: ['MUI X', 'Product']
-card: true
+manualCard: true
 ---
 
 After more than 4 years in the lab, the [Tree View](https://mui.com/x/react-tree-view/) components have found a new home as part of MUI X.
@@ -24,7 +24,7 @@ The Tree View is a component to represent hierarchical data presented as nodes i
 
 The component allows to select one or multiple nodes.
 
-<video preload="metadata" style="margin-bottom: 16px;" autoplay muted loop>
+<video autoplay muted loop playsinline width="1500" height="554">
   <source src="/static/blog/lab-tree-view-to-mui-x/treeview.mov" type="video/mp4">
 </video>
 

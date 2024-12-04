@@ -5,7 +5,7 @@ import Box from '@mui/joy/Box';
 import IconButton from '@mui/joy/IconButton';
 import ArrowUpward from '@mui/icons-material/ArrowUpward';
 import ArrowDownward from '@mui/icons-material/ArrowDownward';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { BrandingProvider } from '@mui/docs/branding';
 
 export default function BadgeAlignment() {

@@ -14,7 +14,7 @@ export default function SelectFormSubmission() {
         alert(JSON.stringify(formJson));
       }}
     >
-      <Stack spacing={2} alignItems="flex-start">
+      <Stack spacing={2} sx={{ alignItems: 'flex-start' }}>
         <Select
           placeholder="Select a pet"
           name="foo"

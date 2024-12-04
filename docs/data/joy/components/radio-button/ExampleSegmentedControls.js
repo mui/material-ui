@@ -8,7 +8,10 @@ export default function ExampleSegmentedControls() {
   const [justify, setJustify] = React.useState('flex-start');
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-      <Typography id="segmented-controls-example" fontWeight="lg" fontSize="sm">
+      <Typography
+        id="segmented-controls-example"
+        sx={{ fontWeight: 'lg', fontSize: 'sm' }}
+      >
         Justify:
       </Typography>
       <RadioGroup
@@ -34,10 +37,7 @@ export default function ExampleSegmentedControls() {
             disableIcon
             label={item}
             variant="plain"
-            sx={{
-              px: 2,
-              alignItems: 'center',
-            }}
+            sx={{ px: 2, alignItems: 'center' }}
             slotProps={{
               action: ({ checked }) => ({
                 sx: {

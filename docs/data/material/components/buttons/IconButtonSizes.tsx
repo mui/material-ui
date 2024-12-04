@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function IconButtonSizes() {
   return (
-    <Stack direction="row" alignItems="center" spacing={1}>
+    <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
       <IconButton aria-label="delete" size="small">
         <DeleteIcon fontSize="inherit" />
       </IconButton>

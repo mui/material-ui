@@ -3,7 +3,7 @@ import * as React from 'react';
 import { alpha } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
@@ -14,7 +14,7 @@ export default function BaseUITestimonial() {
   return (
     <Section>
       <Grid container spacing={{ xs: 6, sm: 10 }} alignItems="center">
-        <Grid xs={12} sm={6}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <Box
             sx={{
               border: '1px solid',
@@ -32,7 +32,12 @@ export default function BaseUITestimonial() {
               },
             }}
           >
-            <Typography variant="h4" component="h2" fontWeight="medium" color="#FFF" mb={2.5}>
+            <Typography
+              variant="h4"
+              component="h2"
+              color="#FFF"
+              sx={{ fontWeight: 'medium', mb: 2.5 }}
+            >
               Nhost&apos;s dashboard
             </Typography>
             <Box
@@ -41,16 +46,16 @@ export default function BaseUITestimonial() {
               srcSet="/static/branding/base-ui/nhost-screenshot-2x.png 2x"
               alt="Screenshot displaying part of the Nhost dashboard that used Base UI to be built."
               loading="lazy"
-              sx={{
-                backgroundColor: '#fff',
-                width: 510,
-                height: 210,
-              }}
+              sx={{ backgroundColor: '#fff', width: 510, height: 210 }}
             />
           </Box>
           <Typography variant="body2" sx={{ mt: 2 }}>
             Nhost&apos;s new dashboard, powered by Base UI &nbsp;&nbsp;
-            <Typography component="span" variant="inherit" color="grey.500" sx={{ opacity: '50%' }}>
+            <Typography
+              component="span"
+              variant="inherit"
+              sx={{ color: 'grey.500', opacity: '50%' }}
+            >
               /
             </Typography>
             &nbsp;&nbsp;
@@ -59,7 +64,7 @@ export default function BaseUITestimonial() {
             </Link>
           </Typography>
         </Grid>
-        <Grid xs={12} sm={6} sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+        <Grid sx={{ display: 'flex', flexDirection: 'column', gap: 3 }} size={{ xs: 12, sm: 6 }}>
           <Typography>
             “After considering various options, we decided to migrate our custom components to
             Material UI, and that&apos;s when we discovered Base UI. As a set of headless
@@ -90,10 +95,10 @@ export default function BaseUITestimonial() {
               />
             </Box>
             <Box sx={{ flex: 1 }}>
-              <Typography variant="body2" fontWeight="semiBold">
+              <Typography variant="body2" sx={{ fontWeight: 'semiBold' }}>
                 Szilárd Dóró
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                 Senior Software Engineer
               </Typography>
             </Box>

@@ -58,8 +58,8 @@ export default function ComponentShowcaseCard(props: ComponentShowcaseCardProps)
           }),
         })}
       />
-      <Stack direction="row" justifyContent="space-between" sx={{ px: 2, py: 1.5 }}>
-        <Typography component="h2" variant="body2" fontWeight="semiBold">
+      <Stack direction="row" sx={{ justifyContent: 'space-between', px: 2, py: 1.5 }}>
+        <Typography component="h2" variant="body2" sx={{ fontWeight: 'semiBold' }}>
           {name}
         </Typography>
         <Stack direction="row" spacing={0.5} useFlexGap>

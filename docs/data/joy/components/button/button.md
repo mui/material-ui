@@ -11,7 +11,7 @@ unstyled: /base-ui/react-button/
 
 <p class="description">Buttons let users take actions and make choices with a single tap.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import InputBase from '@mui/material/InputBase';
 import Input, { inputClasses as classes } from '@mui/material/Input';
 import describeConformance from '../../test/describeConformance';

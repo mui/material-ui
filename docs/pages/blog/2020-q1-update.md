@@ -4,7 +4,7 @@ description: An update on our mission for Q1 2020.
 date: 2020-04-14T00:00:00.000Z
 authors: ['oliviertassinari']
 tags: ['Company']
-card: true
+manualCard: true
 ---
 
 Welcome to the new format of our mission update. We are moving from monthly to quarterly updates.
@@ -18,7 +18,9 @@ Here are the most significant improvements since the beginning of the year:
 
 - 🔍 We have polished the [Autocomplete](https://mui.com/material-ui/react-autocomplete/) component (Combo box). We have closed more than [270](https://github.com/mui/material-ui/labels/lab%3A%20Autocomplete) issues and pull requests so far. We will promote the component to the core in the next major (v5).
 
-  ![autocomplete](/static/blog/2020-q1-update/autocomplete.gif)
+  <video autoplay muted loop playsinline width="382" height="408">
+    <source src="/static/blog/2020-q1-update/autocomplete.mp4" type="video/mp4" />
+  </video>
 
   <p class="blog-description">useAutocomplete <a href="https://mui.com/material-ui/react-autocomplete/#useautocomplete">hook</a> example, 4.5 kB gzipped.</p>
 

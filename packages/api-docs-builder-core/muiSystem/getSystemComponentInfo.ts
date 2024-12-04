@@ -65,12 +65,12 @@ export function getSystemComponentInfo(filename: string): ComponentInfo {
         })
         .map((markdown) => {
           const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
-          const markdownHeaders = getHeaders(markdownContent) as any;
+          const markdownHeaders = getHeaders(markdownContent);
 
           return {
             ...markdown,
             markdownContent,
-            components: markdownHeaders.components as string[],
+            components: markdownHeaders.components,
           };
         });
       return allMarkdowns

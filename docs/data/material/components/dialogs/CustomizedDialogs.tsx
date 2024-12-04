@@ -44,12 +44,12 @@ export default function CustomizedDialogs() {
         <IconButton
           aria-label="close"
           onClick={handleClose}
-          sx={{
+          sx={(theme) => ({
             position: 'absolute',
             right: 8,
             top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
+            color: theme.palette.grey[500],
+          })}
         >
           <CloseIcon />
         </IconButton>

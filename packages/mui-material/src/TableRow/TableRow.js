@@ -5,8 +5,9 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import tableRowClasses, { getTableRowUtilityClass } from './tableRowClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -27,29 +28,31 @@ const TableRowRoot = styled('tr', {
 
     return [styles.root, ownerState.head && styles.head, ownerState.footer && styles.footer];
   },
-})(({ theme }) => ({
-  color: 'inherit',
-  display: 'table-row',
-  verticalAlign: 'middle',
-  // We disable the focus ring for mouse, touch and keyboard users.
-  outline: 0,
-  [`&.${tableRowClasses.hover}:hover`]: {
-    backgroundColor: (theme.vars || theme).palette.action.hover,
-  },
-  [`&.${tableRowClasses.selected}`]: {
-    backgroundColor: theme.vars
-      ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-      : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-    '&:hover': {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-        : alpha(
-            theme.palette.primary.main,
-            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-          ),
+})(
+  memoTheme(({ theme }) => ({
+    color: 'inherit',
+    display: 'table-row',
+    verticalAlign: 'middle',
+    // We disable the focus ring for mouse, touch and keyboard users.
+    outline: 0,
+    [`&.${tableRowClasses.hover}:hover`]: {
+      backgroundColor: (theme.vars || theme).palette.action.hover,
     },
-  },
-}));
+    [`&.${tableRowClasses.selected}`]: {
+      backgroundColor: theme.vars
+        ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+        : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      '&:hover': {
+        backgroundColor: theme.vars
+          ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+          : alpha(
+              theme.palette.primary.main,
+              theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+            ),
+      },
+    },
+  })),
+);
 
 const defaultComponent = 'tr';
 /**
@@ -57,7 +60,7 @@ const defaultComponent = 'tr';
  * based on the material table element parent (head, body, etc).
  */
 const TableRow = React.forwardRef(function TableRow(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTableRow' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTableRow' });
   const {
     className,
     component = defaultComponent,

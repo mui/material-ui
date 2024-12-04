@@ -70,7 +70,6 @@ export default function ThemeSlider() {
                 fontWeight: 'semiBold',
               },
               [`& .${sliderClasses.thumb}`]: {
-                mx: -1,
                 width: 16,
                 height: 16,
                 '&::before': {

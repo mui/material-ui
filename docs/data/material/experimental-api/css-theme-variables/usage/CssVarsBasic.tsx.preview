@@ -1,3 +1,0 @@
-<CssVarsProvider theme={theme}>
-  <Button variant="contained">Hello world</Button>
-</CssVarsProvider>

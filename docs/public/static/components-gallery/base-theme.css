@@ -410,7 +410,7 @@
   min-width: 200px;
   border-radius: var(--border-radius-lg);
   overflow: auto;
-  outline: 0px;
+  outline: 0;
   background: var(--bg-default);
   border: var(--border-soft);
   box-shadow: var(--shadow-elevation-2);
@@ -620,7 +620,7 @@
   margin: 12px 0;
   border-radius: var(--border-radius-lg);
   overflow: auto;
-  outline: 0px;
+  outline: 0;
   background: var(--bg-default);
   border: var(--border-soft);
   box-shadow: var(--shadow-elevation-2);

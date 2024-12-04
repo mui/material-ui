@@ -7,11 +7,7 @@ export default function BasicRating() {
   const [value, setValue] = React.useState<number | null>(2);
 
   return (
-    <Box
-      sx={{
-        '& > legend': { mt: 2 },
-      }}
-    >
+    <Box sx={{ '& > legend': { mt: 2 } }}>
       <Typography component="legend">Controlled</Typography>
       <Rating
         name="simple-controlled"
@@ -19,6 +15,14 @@ export default function BasicRating() {
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
+      />
+      <Typography component="legend">Uncontrolled</Typography>
+      <Rating
+        name="simple-uncontrolled"
+        onChange={(event, newValue) => {
+          console.log(newValue);
+        }}
+        defaultValue={2}
       />
       <Typography component="legend">Read only</Typography>
       <Rating name="read-only" value={value} readOnly />

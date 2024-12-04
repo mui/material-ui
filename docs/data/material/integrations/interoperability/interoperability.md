@@ -274,8 +274,8 @@ If, however, you would like to use styled-components, you can configure your app
 
 <!-- #default-branch-switch -->
 
-- [Create React App with styled-components](https://github.com/mui/material-ui/tree/next/examples/material-ui-cra-styled-components)
-- [Create React App with styled-components and TypeScript](https://github.com/mui/material-ui/tree/next/examples/material-ui-cra-styled-components-ts)
+- [Create React App with styled-components](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components)
+- [Create React App with styled-components and TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components-ts)
 
 Following this approach reduces the bundle size, and removes the need to configure the CSS injection order.
 
@@ -424,7 +424,7 @@ bundling solution people are using.
 ```jsx title="CssModulesSlider.js"
 import * as React from 'react';
 import Slider from '@mui/material/Slider';
-// Webpack, Parcel or else will inject the CSS into the page
+// webpack, Parcel or else will inject the CSS into the page
 import styles from './CssModulesSlider.module.css';
 
 export default function CssModulesSlider() {
@@ -504,7 +504,7 @@ The following examples override the slider's `thumb` style in addition to the cu
 
 ```jsx title="CssModulesSliderDeep1.js"
 import * as React from 'react';
-// Webpack, Parcel or else will inject the CSS into the page
+// webpack, Parcel or else will inject the CSS into the page
 import styles from './CssModulesSliderDeep1.module.css';
 import Slider from '@mui/material/Slider';
 
@@ -536,7 +536,7 @@ The above demo relies on the [default `className` values](/system/styles/advance
 
 ```jsx title="CssModulesSliderDeep2.js"
 import * as React from 'react';
-// Webpack, Parcel or else will inject the CSS into the page
+// webpack, Parcel or else will inject the CSS into the page
 import styles from './CssModulesSliderDeep2.module.css';
 import Slider from '@mui/material/Slider';
 
@@ -610,7 +610,7 @@ If you use a different framework, or already have set up your project, follow th
 
 ```
 
-Most of the CSS used by Material UI has as specificity of 1, hence this `important` property is unnecessary.
+Most of the CSS used by Material UI has a specificity of 1, hence this `important` property is unnecessary.
 However, in a few edge cases, Material UI uses nested CSS selectors that win over Tailwind CSS.
 Use this step to help ensure that the [deeper elements](#deeper-elements-5) can always be customized using Tailwind's utility classes.
 More details on this option can be found here https://tailwindcss.com/docs/configuration#selector-strategy

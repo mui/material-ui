@@ -196,3 +196,6 @@ const AppSelect = <T extends string>(props: Props<T>) => {
     </Select>
   );
 };
+
+// test for applying Select's static muiName property type to wrapper components
+AppSelect.muiName = Select.muiName;

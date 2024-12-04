@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import BasicPopover from '../../../../../../docs/data/material/components/popover/BasicPopover';
-import MouseOverPopover from '../../../../../../docs/data/material/components/popover/MouseOverPopover';
+import MouseHoverPopover from '../../../../../../docs/data/material/components/popover/MouseHoverPopover';
 import PopoverPopupState from '../../../../../../docs/data/material/components/popover/PopoverPopupState';
 import VirtualElementPopover from '../../../../../../docs/data/material/components/popover/VirtualElementPopover';
 
@@ -17,7 +17,7 @@ export default function Popover() {
       <section>
         <h2> Mouse Over Popover</h2>
         <div className="demo-container">
-          <MouseOverPopover />
+          <MouseHoverPopover />
         </div>
       </section>
       <section>

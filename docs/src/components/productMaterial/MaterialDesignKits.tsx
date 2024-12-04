@@ -1,244 +1,199 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
-import LaunchRounded from '@mui/icons-material/LaunchRounded';
-import TextFieldsRounded from '@mui/icons-material/TextFieldsRounded';
-import WidgetsRounded from '@mui/icons-material/WidgetsRounded';
-import ToggleOnRounded from '@mui/icons-material/ToggleOnRounded';
+import ExtensionRoundedIcon from '@mui/icons-material/ExtensionRounded';
+import DrawRoundedIcon from '@mui/icons-material/DrawRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
-import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
+import {
+  MaterialDesignKitInfo,
+  MaterialFigmaComponents,
+} from 'docs/src/components/productDesignKit/DesignKitDemo';
 import { Link } from '@mui/docs/Link';
 
-const DEMOS = ['Components', 'Branding', 'Iconography'];
-
 const Image = styled('img')(({ theme }) => ({
-  filter: 'drop-shadow(-2px 4px 4px rgba(61, 71, 82, 0.1))',
   transition: '0.4s',
   display: 'block',
   height: 'auto',
-  borderRadius: '10px',
+  borderRadius: 6,
+  border: '1px solid',
+  borderColor: theme.palette.divider,
+  filter: `drop-shadow(-2px 4px 6px ${alpha(theme.palette.grey[500], 0.5)})`,
   ...theme.applyDarkStyles({
-    filter: 'drop-shadow(-2px 4px 4px rgba(0, 0, 0, 0.3))',
+    filter: `drop-shadow(-2px 4px 6px ${alpha(theme.palette.common.black, 0.2)})`,
+    borderColor: theme.palette.primaryDark[600],
   }),
 }));
 
-export default function MaterialDesignKits() {
-  const [demo, setDemo] = React.useState(DEMOS[0]);
-  const icons = {
-    [DEMOS[0]]: <ToggleOnRounded fontSize="small" />,
-    [DEMOS[1]]: <TextFieldsRounded fontSize="small" />,
-    [DEMOS[2]]: <WidgetsRounded fontSize="small" />,
-  };
+interface MaterialDesignKitsProps {
+  gradient?: boolean;
+}
+
+export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps) {
+  const [customized, setCustomized] = React.useState(true);
+
   return (
-    <Section cozy>
+    <Section cozy bg={gradient ? 'gradient' : 'white'}>
       <Grid container spacing={2} alignItems="center">
-        <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box sx={{ maxWidth: 500 }}>
-            <SectionHeadline
-              overline="Design kits"
-              title={
-                <Typography variant="h2">
-                  Enhance your <GradientText>design workflow</GradientText>
-                </Typography>
-              }
-              description="The Design kits contain many of the Material UI components with states, variations, colors, typography, and icons. We frequently update it to sync with the most up-to-date release."
-            />
-          </Box>
-          <Group desktopColumns={2} sx={{ mt: 4 }}>
-            {DEMOS.map((name) => (
-              <Highlighter key={name} selected={name === demo} onClick={() => setDemo(name)}>
-                <Item
-                  icon={React.cloneElement(icons[name], name === demo ? { color: 'primary' } : {})}
-                  title={name}
-                />
-              </Highlighter>
-            ))}
-            <More
-              component={Link}
-              href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=design-cta3#design"
-              noLinkStyle
-            />
+        <Grid sx={{ minWidth: 0 }} size={{ md: 6 }}>
+          <SectionHeadline
+            overline="Design resources"
+            title={
+              <Typography variant="h2">
+                Enhance your <GradientText>design workflow</GradientText>
+              </Typography>
+            }
+            description="Reach out for the Figma Design Kit and the Sync plugin to bridge the gap between development and design when using Material UI."
+          />
+          <Group sx={{ m: -2, p: 2 }}>
+            <Highlighter disableBorder selected={customized} onClick={() => setCustomized(true)}>
+              <Item
+                icon={<DrawRoundedIcon color="primary" />}
+                title="Design Kit"
+                description="Get many Material UI components with states, variations, colors, typography, and icons on your preferred design tool."
+              />
+            </Highlighter>
+            <Highlighter disableBorder selected={!customized} onClick={() => setCustomized(false)}>
+              <Item
+                icon={<ExtensionRoundedIcon color="primary" />}
+                title="Sync plugin"
+                description="Quickly generate a Material UI theme file with token and component customizations done on Figma."
+              />
+            </Highlighter>
           </Group>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Frame>
-            <Frame.Demo
-              sx={{
-                overflow: 'hidden',
-                height: { xs: 240, sm: 390 },
-                perspective: '1000px',
-              }}
-            >
-              <Fade in={demo === 'Components'} timeout={500}>
+            <Frame.Demo sx={{ overflow: 'clip', height: { xs: 240, sm: 420 } }}>
+              <MaterialFigmaComponents fadeIn={customized} />
+              <Fade in={!customized} timeout={500}>
                 <Box
-                  sx={[
-                    {
-                      width: '100%',
-                      height: '100%',
-                      '& img': {
-                        position: 'absolute',
+                  sx={(theme) => ({
+                    display: !customized ? 'auto' : 'none',
+                    width: '100%',
+                    height: '100%',
+                    '& img': {
+                      position: 'absolute',
+                      '&:nth-of-type(1)': {
+                        visibility: { xs: 'hidden', sm: 'visible' },
+                        width: { xs: 240, sm: 600 },
+                        top: 100,
                         left: '50%',
-                        width: { xs: 240, sm: 300 },
-                        '&:nth-of-type(1)': {
-                          top: 120,
-                          transform: 'translate(-70%)',
-                        },
-                        '&:nth-of-type(2)': {
-                          top: 80,
-                          transform: 'translate(-50%)',
-                        },
-                        '&:nth-of-type(3)': {
-                          top: 40,
-                          transform: 'translate(-30%)',
+                        transform: 'translate(-40%)',
+                      },
+                      '&:nth-of-type(2)': {
+                        width: { xs: 240, sm: 560 },
+                        top: { xs: 100, sm: 40 },
+                        left: { xs: '60%', sm: '60%' },
+                        transform: {
+                          xs: 'scale(1.8) translate(-20%)',
+                          sm: 'none',
                         },
                       },
-                      '&:hover': {
-                        '& img': {
-                          filter: 'drop-shadow(-16px 12px 20px rgba(61, 71, 82, 0.2))',
-                          '&:nth-of-type(1)': {
-                            top: 0,
-                            transform: 'scale(0.8) translate(-108%) rotateY(30deg)',
+                    },
+                    '&:hover': {
+                      '& img': {
+                        '&:nth-of-type(2)': {
+                          top: { xs: 100, sm: 60 },
+                          transform: {
+                            xs: 'scale(1.8) translate(-20%)',
+                            sm: 'scale(1.1) translate(-30%)',
                           },
-                          '&:nth-of-type(2)': {
-                            top: 40,
-                            transform: 'scale(0.8) translate(-54%) rotateY(30deg)',
-                          },
-                          '&:nth-of-type(3)': {
-                            top: 40,
-                            transform: 'scale(0.8) translate(-0%) rotateY(30deg)',
+                          filter: {
+                            xs: 'auto',
+                            sm: `drop-shadow(-16px 12px 20px ${alpha(
+                              theme.palette.grey[600],
+                              0.5,
+                            )})`,
                           },
                         },
                       },
                     },
-                    (theme) =>
-                      theme.applyDarkStyles({
-                        '&:hover': {
-                          '& img': {
-                            filter: 'drop-shadow(-16px 12px 20px rgba(0, 0, 0, 0.4))',
+                    ...theme.applyDarkStyles({
+                      '&:hover': {
+                        '& img': {
+                          '&:nth-of-type(2)': {
+                            filter: {
+                              xs: 'auto',
+                              sm: `drop-shadow(-16px 12px 20px ${alpha(
+                                theme.palette.common.black,
+                                0.8,
+                              )})`,
+                            },
                           },
+                          filter: `drop-shadow(-16px 12px 20px ${alpha(
+                            theme.palette.common.black,
+                            0.2,
+                          )})`,
                         },
-                      }),
-                  ]}
+                      },
+                    }),
+                  })}
                 >
                   <Image
-                    src={`/static/branding/design-kits/Button-light.jpeg`}
-                    alt=""
+                    src="/static/branding/design-kits/sync-base2-light.png"
+                    alt="A bunch of customized Material UI buttons in the Figma Design Kit."
                     loading="lazy"
                     sx={(theme) =>
                       theme.applyDarkStyles({
-                        content: `url(/static/branding/design-kits/Button-dark.jpeg)`,
+                        content: `url(/static/branding/design-kits/sync-base2-dark.png)`,
                       })
                     }
                   />
                   <Image
-                    src={`/static/branding/design-kits/Alert-light.jpeg`}
-                    alt=""
+                    src="/static/branding/design-kits/material-sync-light.png"
+                    alt="The Material UI Sync plugin running and showing code for customized buttons."
                     loading="lazy"
                     sx={(theme) =>
                       theme.applyDarkStyles({
-                        content: `url(/static/branding/design-kits/Alert-dark.jpeg)`,
-                      })
-                    }
-                  />
-                  <Image
-                    src={`/static/branding/design-kits/Slider-light.jpeg`}
-                    alt=""
-                    loading="lazy"
-                    sx={(theme) =>
-                      theme.applyDarkStyles({
-                        content: `url(/static/branding/design-kits/Slider-dark.jpeg)`,
+                        content: `url(/static/branding/design-kits/material-sync-dark.png)`,
                       })
                     }
                   />
                 </Box>
-              </Fade>
-              <Fade in={demo === 'Branding'} timeout={500}>
-                <Image
-                  src={`/static/branding/design-kits/Colors-light.jpeg`}
-                  alt=""
-                  loading="lazy"
-                  width="300"
-                  sx={(theme) => ({
-                    width: { sm: 400 },
-                    position: 'absolute',
-                    left: '50%',
-                    top: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    ...theme.applyDarkStyles({
-                      content: `url(/static/branding/design-kits/Colors-dark.jpeg)`,
-                    }),
-                  })}
-                />
-              </Fade>
-              <Fade in={demo === 'Iconography'} timeout={500}>
-                <Image
-                  src={`/static/branding/design-kits/Icons-light.jpeg`}
-                  alt=""
-                  loading="lazy"
-                  width="300"
-                  sx={(theme) => ({
-                    width: { sm: 500 },
-                    position: 'absolute',
-                    left: '50%',
-                    top: 60,
-                    transform: 'translate(-40%)',
-                    ...theme.applyDarkStyles({
-                      content: `url(/static/branding/design-kits/Icons-dark.jpeg)`,
-                    }),
-                  })}
-                />
               </Fade>
             </Frame.Demo>
-            <Frame.Info
-              data-mui-color-scheme="dark"
-              sx={{
-                display: 'flex',
-                alignItems: { xs: 'start', sm: 'center' },
-                flexDirection: { xs: 'column', sm: 'row' },
-                minWidth: 0,
-                gap: { xs: 3, sm: 0 },
-              }}
-            >
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: { xs: 'column', sm: 'row' },
-                  alignItems: { xs: 'start', sm: 'center' },
-                  gap: 1,
-                }}
-              >
-                <Typography variant="body2" fontWeight="semiBold">
-                  Available for:
+            {customized ? (
+              <MaterialDesignKitInfo />
+            ) : (
+              <Frame.Info data-mui-color-scheme="dark">
+                <Typography variant="body2" gutterBottom sx={{ fontWeight: 'bold' }}>
+                  Get the beta version of Material UI Sync now!
                 </Typography>
-                <Box sx={{ display: 'flex', gap: 1, '& >img': { width: 26, height: 26 } }}>
-                  <img src="/static/branding/design-kits/figma-logo.svg" alt="" loading="lazy" />
-                  <img src="/static/branding/design-kits/sketch-logo.svg" alt="" loading="lazy" />
-                  <img src="/static/branding/design-kits/adobexd-logo.svg" alt="" loading="lazy" />
+                <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2 }}>
+                  There&apos;s still a lot to do, and we&apos;re looking forward to hearing from all
+                  of you.
+                </Typography>
+                <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 1.5 }}>
+                  <Button
+                    component={Link}
+                    variant="contained"
+                    size="small"
+                    noLinkStyle
+                    href="https://www.figma.com/community/plugin/1336346114713490235/material-ui-sync"
+                  >
+                    Use Sync now
+                  </Button>
+                  <Button
+                    component={Link}
+                    variant="outlined"
+                    color="secondary"
+                    size="small"
+                    href="/material-ui/design-resources/material-ui-sync/"
+                  >
+                    View documentation
+                  </Button>
                 </Box>
-              </Box>
-              <Button
-                component={Link}
-                variant="outlined"
-                href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=design-cta2#design"
-                endIcon={<LaunchRounded sx={{ '&&': { fontSize: 16 } }} />}
-                sx={{
-                  ml: { xs: 0, sm: 'auto' },
-                  color: 'primary.300',
-                  width: { xs: '100%', sm: 'fit-content' },
-                }}
-              >
-                Buy now
-              </Button>
-            </Frame.Info>
+              </Frame.Info>
+            )}
           </Frame>
         </Grid>
       </Grid>

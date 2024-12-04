@@ -6,7 +6,7 @@ export default function TypographyBasics() {
   return (
     <Card variant="outlined" sx={{ maxWidth: 400 }}>
       <Typography level="h1">National Parks</Typography>
-      <Typography level="h2" fontSize="xl" sx={{ mb: 0.5 }}>
+      <Typography level="h2" sx={{ fontSize: 'xl', mb: 0.5 }}>
         Yosemite National Park
       </Typography>
       <Typography>

@@ -11,3 +11,22 @@ fn({
     },
   },
 });
+
+fn({
+  MuiAccordion: {
+    defaultProps: {
+      slots: { transition: SlotTransition }
+    },
+  },
+});
+
+fn({
+  MuiAccordion: {
+    defaultProps: {
+      slotProps: { transition: {
+        ...{ unmountOnExit: true },
+        ...{ id: 'test' }
+      } }
+    },
+  },
+});

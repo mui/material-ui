@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer } from '@mui-internal/test-utils';
+import { act, createRenderer } from '@mui/internal-test-utils';
 import Checkbox, { checkboxClasses as classes } from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
 import ButtonBase from '@mui/material/ButtonBase';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
+import * as ripple from '../../test/ripple';
 
 describe('<Checkbox />', () => {
   const { render } = createRenderer();
@@ -196,5 +197,21 @@ describe('<Checkbox />', () => {
     render(<Checkbox icon={<MyIcon fontSize="foo" />} />);
 
     expect(fontSizeSpy.args[0][0]).to.equal('foo');
+  });
+
+  it('should have a ripple', async () => {
+    const { getByRole } = render(<Checkbox TouchRippleProps={{ className: 'touch-ripple' }} />);
+    const checkbox = getByRole('checkbox').parentElement;
+    await ripple.startTouch(checkbox);
+    expect(checkbox.querySelector('.touch-ripple')).not.to.equal(null);
+  });
+
+  it('should not have ripple', async () => {
+    const { getByRole } = render(
+      <Checkbox disableRipple TouchRippleProps={{ className: 'touch-ripple' }} />,
+    );
+    const checkbox = getByRole('checkbox').parentElement;
+    await ripple.startTouch(checkbox);
+    expect(checkbox.querySelector('.touch-ripple')).to.equal(null);
   });
 });

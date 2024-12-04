@@ -10,11 +10,7 @@ export default function TabsFlex() {
       <Tabs aria-label="Flex one tabs">
         <TabList tabFlex={1}>
           <Tab>First tab</Tab>
-          <Tab
-            sx={{
-              wordBreak: 'break-word',
-            }}
-          >
+          <Tab sx={{ wordBreak: 'break-word' }}>
             Example of a very long tab label
           </Tab>
           <Tab>Third tab</Tab>

@@ -43,7 +43,8 @@
       "key": "circleDeterminate",
       "className": "MuiCircularProgress-circleDeterminate",
       "description": "Styles applied to the `circle` svg path if `variant=\"determinate\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "circleDisableShrink",
@@ -55,7 +56,8 @@
       "key": "circleIndeterminate",
       "className": "MuiCircularProgress-circleIndeterminate",
       "description": "Styles applied to the `circle` svg path if `variant=\"indeterminate\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "colorPrimary",

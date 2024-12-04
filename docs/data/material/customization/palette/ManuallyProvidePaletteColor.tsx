@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import { Box, Stack } from '@mui/system';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 
 const theme = createTheme({
   palette: {
@@ -24,20 +25,20 @@ const theme = createTheme({
 
 function ColorShowcase({ color }: { color: 'primary' | 'secondary' }) {
   return (
-    <Stack gap={2} alignItems="center">
+    <Stack sx={{ gap: 2, alignItems: 'center' }}>
       <Button variant="contained" color={color}>
         {capitalize(color)}
       </Button>
-      <Stack direction="row" gap={1}>
-        <Stack alignItems="center">
+      <Stack direction="row" sx={{ gap: 1 }}>
+        <Stack sx={{ alignItems: 'center' }}>
           <Typography variant="body2">light</Typography>
           <Box sx={{ bgcolor: `${color}.light`, width: 40, height: 20 }} />
         </Stack>
-        <Stack alignItems="center">
+        <Stack sx={{ alignItems: 'center' }}>
           <Typography variant="body2">main</Typography>
           <Box sx={{ bgcolor: `${color}.main`, width: 40, height: 20 }} />
         </Stack>
-        <Stack alignItems="center">
+        <Stack sx={{ alignItems: 'center' }}>
           <Typography variant="body2">dark</Typography>
           <Box sx={{ bgcolor: `${color}.dark`, width: 40, height: 20 }} />
         </Stack>
@@ -49,7 +50,7 @@ function ColorShowcase({ color }: { color: 'primary' | 'secondary' }) {
 export default function ManuallyProvidePaletteColor() {
   return (
     <ThemeProvider theme={theme}>
-      <Stack direction="row" gap={8}>
+      <Stack direction="row" sx={{ gap: 8 }}>
         <ColorShowcase color="primary" />
         <ColorShowcase color="secondary" />
       </Stack>

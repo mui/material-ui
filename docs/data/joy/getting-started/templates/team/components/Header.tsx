@@ -42,7 +42,7 @@ function ColorSchemeToggle() {
   return (
     <Tooltip title="Change theme" variant="outlined">
       <IconButton
-        id="toggle-mode"
+        data-screenshot="toggle-mode"
         size="sm"
         variant="plain"
         color="neutral"
@@ -64,28 +64,21 @@ function ColorSchemeToggle() {
 export default function Header() {
   const [open, setOpen] = React.useState(false);
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexGrow: 1,
-        justifyContent: 'space-between',
-      }}
-    >
+    <Box sx={{ display: 'flex', flexGrow: 1, justifyContent: 'space-between' }}>
       <Stack
         direction="row"
-        justifyContent="center"
-        alignItems="center"
         spacing={1}
-        sx={{ display: { xs: 'none', sm: 'flex' } }}
+        sx={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          display: { xs: 'none', sm: 'flex' },
+        }}
       >
         <IconButton
           size="md"
           variant="outlined"
           color="neutral"
-          sx={{
-            display: { xs: 'none', sm: 'inline-flex' },
-            borderRadius: '50%',
-          }}
+          sx={{ display: { xs: 'none', sm: 'inline-flex' }, borderRadius: '50%' }}
         >
           <LanguageRoundedIcon />
         </IconButton>
@@ -137,7 +130,6 @@ export default function Header() {
           </Box>
         </Drawer>
       </Box>
-
       <Box
         sx={{
           display: 'flex',
@@ -214,12 +206,7 @@ export default function Header() {
             }}
           >
             <MenuItem>
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-              >
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Avatar
                   src="https://i.pravatar.cc/40?img=2"
                   srcSet="https://i.pravatar.cc/80?img=2"

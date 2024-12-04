@@ -4,11 +4,10 @@ import PropTypes from 'prop-types';
 import { TransitionGroup } from 'react-transition-group';
 import clsx from 'clsx';
 import useTimeout from '@mui/utils/useTimeout';
-import { keyframes, styled, createUseThemeProps } from '../zero-styled';
+import { keyframes, styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Ripple from './Ripple';
 import touchRippleClasses from './touchRippleClasses';
-
-const useThemeProps = createUseThemeProps('MuiTouchRipple');
 
 const DURATION = 550;
 export const DELAY_RIPPLE = 80;
@@ -120,7 +119,7 @@ export const TouchRippleRipple = styled(Ripple, {
  * TODO v5: Make private
  */
 const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTouchRipple' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTouchRipple' });
 
   const { center: centerProp = false, classes = {}, className, ...other } = props;
   const [ripples, setRipples] = React.useState([]);

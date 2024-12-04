@@ -21,7 +21,7 @@ export interface TabPanelProps extends StandardProps<React.HTMLAttributes<HTMLDi
    * The `value` of the corresponding `Tab`. Must use the index of the `Tab` when
    * no `value` was passed to `Tab`.
    */
-  value: string;
+  value: string | number;
   /**
    * Always keep the children in the DOM.
    * @default false
@@ -39,4 +39,4 @@ export interface TabPanelProps extends StandardProps<React.HTMLAttributes<HTMLDi
  *
  * - [TabPanel API](https://mui.com/material-ui/api/tab-panel/)
  */
-export default function TabPanel(props: TabPanelProps): JSX.Element;
+export default function TabPanel(props: TabPanelProps): React.JSX.Element;

@@ -116,11 +116,7 @@ export default function BootstrapVariantTokens() {
   }, []);
 
   return (
-    <CssVarsProvider
-      theme={bootstrapTheme}
-      colorSchemeNode={node || null}
-      colorSchemeSelector="#bootstrap-buttons-demo"
-    >
+    <CssVarsProvider theme={bootstrapTheme} colorSchemeNode={node || null}>
       <Box
         id="bootstrap-buttons-demo"
         sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}

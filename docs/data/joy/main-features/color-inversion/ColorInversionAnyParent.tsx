@@ -22,12 +22,11 @@ function Stat({
     </Box>
   );
 }
-
 export default function ColorInversionAnyParent() {
   return (
     <Box
       sx={[
-        {
+        (theme) => ({
           display: 'grid',
           gridTemplateColumns: { sm: '1fr 1fr' },
           alignItems: 'center',
@@ -35,9 +34,8 @@ export default function ColorInversionAnyParent() {
           columnGap: 8,
           p: 4,
           borderRadius: 'sm',
-          background: (theme) =>
-            `linear-gradient(45deg, ${theme.vars.palette.neutral[800]}, ${theme.vars.palette.neutral[600]})`,
-        },
+          background: `linear-gradient(45deg, ${theme.vars.palette.neutral[800]}, ${theme.vars.palette.neutral[600]})`,
+        }),
         applySolidInversion('neutral'),
       ]}
     >

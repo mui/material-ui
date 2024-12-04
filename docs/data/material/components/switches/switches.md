@@ -5,6 +5,7 @@ components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 githubLabel: 'component: switch'
 materialDesign: https://m2.material.io/components/selection-controls#switches
 unstyled: /base-ui/react-switch/
+githubSource: packages/mui-material/src/Switch
 ---
 
 # Switch
@@ -15,7 +16,7 @@ Switches are the preferred way to adjust settings on mobile.
 The option that the switch controls, as well as the state it's in,
 should be made clear from the corresponding inline label.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic switches
 

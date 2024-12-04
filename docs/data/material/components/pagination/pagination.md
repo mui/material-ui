@@ -3,13 +3,14 @@ productId: material-ui
 title: React Pagination component
 components: Pagination, PaginationItem, TablePagination
 githubLabel: 'component: pagination'
+githubSource: packages/mui-material/src/Pagination
 ---
 
 # Pagination
 
 <p class="description">The Pagination component enables the user to select a specific page from a range of pages.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic pagination
 

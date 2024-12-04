@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Step, { StepProps, stepClasses } from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
@@ -257,5 +257,18 @@ describe('<Stepper />', () => {
 
     expect(stepContent[0]).not.to.have.class(stepContentClasses.last);
     expect(stepContent[1]).to.have.class(stepContentClasses.last);
+  });
+
+  it('should apply non-linear class', () => {
+    const { container } = render(
+      <Stepper nonLinear activeStep={0}>
+        <Step />
+        <Step />
+        <Step />
+      </Stepper>,
+    );
+
+    const stepper = container.querySelector(`.${classes.root}`);
+    expect(stepper).to.have.class(classes.nonLinear);
   });
 });

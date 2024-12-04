@@ -155,6 +155,36 @@ describe('system spacing', () => {
       expect(output).to.deep.equal({ padding: '-2em' });
     });
 
+    it('should support CSS variables single value', () => {
+      const output = spacing({
+        theme: {
+          vars: {
+            spacing: 'var(--mui-spacing)',
+          },
+        },
+        p: 1,
+      });
+      expect(output).to.deep.equal({ padding: 'calc(1 * var(--mui-spacing))' });
+    });
+
+    it('should support CSS variables array', () => {
+      const output = spacing({
+        theme: {
+          vars: {
+            spacing: [
+              'var(--mui-spacing-0)',
+              'var(--mui-spacing-1)',
+              'var(--mui-spacing-2)',
+              'var(--mui-spacing-3)',
+              'var(--mui-spacing-4)',
+            ],
+          },
+        },
+        p: 2,
+      });
+      expect(output).to.deep.equal({ padding: 'var(--mui-spacing-2)' });
+    });
+
     it('should support breakpoints', () => {
       const output1 = spacing({
         p: [1, 2],
@@ -180,6 +210,27 @@ describe('system spacing', () => {
         },
         '@media (min-width:600px)': {
           padding: 16,
+        },
+      });
+    });
+
+    it('should support container queries', () => {
+      const output1 = spacing({
+        p: {
+          '@sm': 1,
+          '@900/sidebar': 2,
+          '@80rem/sidebar': 3,
+        },
+      });
+      expect(output1).to.deep.equal({
+        '@container (min-width:600px)': {
+          padding: 8,
+        },
+        '@container sidebar (min-width:900px)': {
+          padding: 16,
+        },
+        '@container sidebar (min-width:80rem)': {
+          padding: 24,
         },
       });
     });

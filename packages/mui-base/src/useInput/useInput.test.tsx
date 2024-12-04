@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { act, createRenderer } from '@mui-internal/test-utils';
+import { act, createRenderer } from '@mui/internal-test-utils';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { useInput } from './useInput';

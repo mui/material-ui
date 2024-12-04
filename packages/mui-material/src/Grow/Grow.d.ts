@@ -11,7 +11,7 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
   /**
    * A single child content element.
    */
-  children: React.ReactElement<any, any>;
+  children: React.ReactElement<unknown, any>;
   /**
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.
@@ -47,4 +47,4 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
  * - [Grow API](https://mui.com/material-ui/api/grow/)
  * - inherits [Transition API](https://reactcommunity.org/react-transition-group/transition/#Transition-props)
  */
-export default function Grow(props: GrowProps): JSX.Element;
+export default function Grow(props: GrowProps): React.JSX.Element;

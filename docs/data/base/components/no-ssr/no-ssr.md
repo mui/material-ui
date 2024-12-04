@@ -8,7 +8,7 @@ components: NoSsr
 
 <p class="description">The No-SSR component defers the rendering of children components from the server to the client.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 

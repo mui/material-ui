@@ -31,7 +31,7 @@ function sum(column: 'calories' | 'fat' | 'carbs' | 'protein') {
 export default function TableStickyHeader() {
   return (
     <div>
-      <Typography level="body-sm" textAlign="center" sx={{ mb: 2 }}>
+      <Typography level="body-sm" sx={{ textAlign: 'center', mb: 2 }}>
         The table body is scrollable.
       </Typography>
       <Sheet sx={{ height: 300, overflow: 'auto' }}>

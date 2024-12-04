@@ -4,7 +4,7 @@ description: We are excited to share that Matheus Wichman has joined MUI.
 date: 2021-04-05T00:00:00.000Z
 authors: ['oliviertassinari']
 tags: ['Company']
-card: true
+manualCard: true
 ---
 
 We are excited to share that [Matheus Wichman](https://github.com/m4theushw) has joined MUI.
@@ -23,7 +23,7 @@ Matheus is the first of a series of 5 new positions we have recently opened and 
 We will cross the 10 person milestone in the coming weeks.
 We have opened these positions as our revenue growth allows.
 At the current pace, we will soon open new positions.
-You can [follow us on X](https://twitter.com/MUI_hq) to hear about upcoming positions.
+You can [follow us on X](https://x.com/MUI_hq) to hear about upcoming positions.
 These new roles will help accelerate our mission, strengthen our existing offering, and initiate a new vertical.
 
 We couldn't be more excited to have Matheus on the team!

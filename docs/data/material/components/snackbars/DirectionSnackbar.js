@@ -39,11 +39,11 @@ export default function DirectionSnackbar() {
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <Button onClick={handleClick(TransitionUp)}>Up</Button>
       </Box>
-      <Grid container justifyContent="center">
+      <Grid container sx={{ justifyContent: 'center' }}>
         <Grid item xs={6}>
           <Button onClick={handleClick(TransitionRight)}>Left</Button>
         </Grid>
-        <Grid item xs={6} textAlign="right">
+        <Grid item xs={6} sx={{ textAlign: 'right' }}>
           <Button onClick={handleClick(TransitionLeft)}>Right</Button>
         </Grid>
       </Grid>

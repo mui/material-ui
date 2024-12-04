@@ -290,6 +290,9 @@ const defaultSxConfig = {
   boxSizing: {},
 
   // typography
+  font: {
+    themeKey: 'font',
+  },
   fontFamily: {
     themeKey: 'typography',
   },

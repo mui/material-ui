@@ -242,22 +242,6 @@ function getComparator<Key extends keyof any>(
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-// Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
-// stableSort() brings sort stability to non-modern browsers (notably IE11). If you
-// only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
-// with exampleArray.slice().sort(exampleComparator)
-function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
-  const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) {
-      return order;
-    }
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map((el) => el[0]);
-}
-
 function RowMenu() {
   return (
     <Dropdown>
@@ -277,7 +261,6 @@ function RowMenu() {
     </Dropdown>
   );
 }
-
 export default function OrderTable() {
   const [order, setOrder] = React.useState<Order>('desc');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
@@ -324,11 +307,7 @@ export default function OrderTable() {
     <React.Fragment>
       <Sheet
         className="SearchAndFilters-mobile"
-        sx={{
-          display: { xs: 'flex', sm: 'none' },
-          my: 1,
-          gap: 1,
-        }}
+        sx={{ display: { xs: 'flex', sm: 'none' }, my: 1, gap: 1 }}
       >
         <Input
           size="sm"
@@ -431,15 +410,20 @@ export default function OrderTable() {
                   color="primary"
                   component="button"
                   onClick={() => setOrder(order === 'asc' ? 'desc' : 'asc')}
-                  fontWeight="lg"
                   endDecorator={<ArrowDropDownIcon />}
-                  sx={{
-                    '& svg': {
-                      transition: '0.2s',
-                      transform:
-                        order === 'desc' ? 'rotate(0deg)' : 'rotate(180deg)',
+                  sx={[
+                    {
+                      fontWeight: 'lg',
+                      '& svg': {
+                        transition: '0.2s',
+                        transform:
+                          order === 'desc' ? 'rotate(0deg)' : 'rotate(180deg)',
+                      },
                     },
-                  }}
+                    order === 'desc'
+                      ? { '& svg': { transform: 'rotate(0deg)' } }
+                      : { '& svg': { transform: 'rotate(180deg)' } },
+                  ]}
                 >
                   Invoice
                 </Link>
@@ -451,7 +435,7 @@ export default function OrderTable() {
             </tr>
           </thead>
           <tbody>
-            {stableSort(rows, getComparator(order, 'id')).map((row) => (
+            {[...rows].sort(getComparator(order, 'id')).map((row) => (
               <tr key={row.id}>
                 <td style={{ textAlign: 'center', width: 120 }}>
                   <Checkbox
@@ -552,7 +536,6 @@ export default function OrderTable() {
           </IconButton>
         ))}
         <Box sx={{ flex: 1 }} />
-
         <Button
           size="sm"
           variant="outlined"

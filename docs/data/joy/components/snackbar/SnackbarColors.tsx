@@ -10,7 +10,7 @@ export default function SnackbarColors() {
   const [variant, setVariant] = React.useState<SnackbarProps['variant']>('outlined');
   const [color, setColor] = React.useState<SnackbarProps['color']>('neutral');
   return (
-    <Stack spacing={2} alignItems="center">
+    <Stack spacing={2} sx={{ alignItems: 'center' }}>
       <Select
         value={variant}
         onChange={(event, newValue) => setVariant(newValue!)}

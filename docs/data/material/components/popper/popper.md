@@ -4,6 +4,7 @@ title: React Popper component
 components: Popper
 githubLabel: 'component: Popper'
 unstyled: /base-ui/react-popper/
+githubSource: packages/mui-material/src/Popper
 ---
 
 # Popper
@@ -22,7 +23,7 @@ Some important features of the `Popper` component:
   If you need this behavior, you can use [`ClickAwayListener`](/material-ui/react-click-away-listener/) - see the example in the [menu documentation section](/material-ui/react-menu/#menulist-composition).
 - The `anchorEl` is passed as the reference object to create a new `Popper.js` instance.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 ## Basic popper
 
