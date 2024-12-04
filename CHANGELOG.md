@@ -6,7 +6,7 @@
 
 _Dec 3, 2024_
 
-A big thanks to the 10 contributors who made this release possible.
+A big thanks to the 11 contributors who made this release possible.
 
 ### `@mui/material@6.1.10`
 
@@ -45,7 +45,7 @@ A big thanks to the 10 contributors who made this release possible.
 - [docs-infra] Fix TOC RTL padding regression (#44535) @oliviertassinari
 - [test-utils] Remove leftover React.ReactElement<any> from describeConformance.tsx (#44639) @sai6855
 
-All contributors of this release in alphabetical order: @albarv340, @arishoham, @DiegoAndai, @joserodolfofreitas, @MBilalShafi, @mnajdova, @oliviertassinari, @renovate[bot], @sai6855, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @albarv340, @arishoham, @DiegoAndai, @joserodolfofreitas, @MBilalShafi, @mnajdova, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
 
 ## 6.1.9
 
