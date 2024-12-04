@@ -6,27 +6,25 @@ import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-const AccordionSummaryText = styled('span')<{ secondary?: boolean }>(
-  ({ theme }) => ({
-    margin: 0,
-    textAlign: 'left',
-    variants: [
-      {
-        props: { secondary: true },
-        style: {
-          color: theme.palette.text.secondary,
-        },
+const SummaryText = styled('span')<{ secondary?: boolean }>(({ theme }) => ({
+  margin: 0,
+  textAlign: 'left',
+  variants: [
+    {
+      props: { secondary: true },
+      style: {
+        color: theme.palette.text.secondary,
       },
-      {
-        props: ({ secondary }) => !secondary,
-        style: {
-          width: '33%',
-          flexShrink: 0,
-        },
+    },
+    {
+      props: ({ secondary }) => !secondary,
+      style: {
+        width: '33%',
+        flexShrink: 0,
       },
-    ],
-  }),
-);
+    },
+  ],
+}));
 
 export default function ControlledAccordions() {
   const [expanded, setExpanded] = React.useState<string | false>(false);
@@ -44,8 +42,8 @@ export default function ControlledAccordions() {
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
-          <AccordionSummaryText>General settings</AccordionSummaryText>
-          <AccordionSummaryText secondary>I am an accordion</AccordionSummaryText>
+          <SummaryText>General settings</SummaryText>
+          <SummaryText secondary>I am an accordion</SummaryText>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -60,10 +58,8 @@ export default function ControlledAccordions() {
           aria-controls="panel2bh-content"
           id="panel2bh-header"
         >
-          <AccordionSummaryText>Users</AccordionSummaryText>
-          <AccordionSummaryText secondary>
-            You are currently not an owner
-          </AccordionSummaryText>
+          <SummaryText>Users</SummaryText>
+          <SummaryText secondary>You are currently not an owner</SummaryText>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -79,10 +75,10 @@ export default function ControlledAccordions() {
           aria-controls="panel3bh-content"
           id="panel3bh-header"
         >
-          <AccordionSummaryText>Advanced settings</AccordionSummaryText>
-          <AccordionSummaryText secondary>
+          <SummaryText>Advanced settings</SummaryText>
+          <SummaryText secondary>
             Filtering has been entirely disabled for whole web server
-          </AccordionSummaryText>
+          </SummaryText>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -97,7 +93,7 @@ export default function ControlledAccordions() {
           aria-controls="panel4bh-content"
           id="panel4bh-header"
         >
-          <AccordionSummaryText>Personal data</AccordionSummaryText>
+          <SummaryText>Personal data</SummaryText>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>

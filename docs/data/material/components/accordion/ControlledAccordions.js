@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-const AccordionSummaryText = styled('span')(({ theme }) => ({
+const SummaryText = styled('span')(({ theme }) => ({
   margin: 0,
   textAlign: 'left',
   variants: [
@@ -41,8 +41,8 @@ export default function ControlledAccordions() {
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
-          <AccordionSummaryText>General settings</AccordionSummaryText>
-          <AccordionSummaryText secondary>I am an accordion</AccordionSummaryText>
+          <SummaryText>General settings</SummaryText>
+          <SummaryText secondary>I am an accordion</SummaryText>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -57,10 +57,8 @@ export default function ControlledAccordions() {
           aria-controls="panel2bh-content"
           id="panel2bh-header"
         >
-          <AccordionSummaryText>Users</AccordionSummaryText>
-          <AccordionSummaryText secondary>
-            You are currently not an owner
-          </AccordionSummaryText>
+          <SummaryText>Users</SummaryText>
+          <SummaryText secondary>You are currently not an owner</SummaryText>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -76,10 +74,10 @@ export default function ControlledAccordions() {
           aria-controls="panel3bh-content"
           id="panel3bh-header"
         >
-          <AccordionSummaryText>Advanced settings</AccordionSummaryText>
-          <AccordionSummaryText secondary>
+          <SummaryText>Advanced settings</SummaryText>
+          <SummaryText secondary>
             Filtering has been entirely disabled for whole web server
-          </AccordionSummaryText>
+          </SummaryText>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -94,7 +92,7 @@ export default function ControlledAccordions() {
           aria-controls="panel4bh-content"
           id="panel4bh-header"
         >
-          <AccordionSummaryText>Personal data</AccordionSummaryText>
+          <SummaryText>Personal data</SummaryText>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
