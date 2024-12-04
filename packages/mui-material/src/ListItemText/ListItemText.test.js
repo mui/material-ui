@@ -15,6 +15,14 @@ describe('<ListItemText />', () => {
     muiName: 'MuiListItemText',
     testVariantProps: { inset: true },
     refInstanceof: window.HTMLDivElement,
+    slots: {
+      primary: {
+        expectedClassName: classes.primary,
+      },
+      secondary: {
+        expectedClassName: classes.secondary,
+      },
+    },
     skip: ['componentProp', 'componentsProp'],
   }));
 

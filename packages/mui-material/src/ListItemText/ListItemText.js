@@ -106,11 +106,13 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
   };
 
   const [PrimarySlot, primarySlotProps] = useSlot('primary', {
+    className: classes.primary,
     elementType: Typography,
     externalForwardedProps,
     ownerState,
   });
   const [SecondarySlot, secondarySlotProps] = useSlot('secondary', {
+    className: classes.secondary,
     elementType: Typography,
     externalForwardedProps,
     ownerState,
@@ -120,7 +122,6 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
     primary = (
       <PrimarySlot
         variant={dense ? 'body2' : 'body1'}
-        className={classes.primary}
         component={primarySlotProps?.variant ? undefined : 'span'}
         {...primarySlotProps}
       >
@@ -131,12 +132,7 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
 
   if (secondary != null && secondary.type !== Typography && !disableTypography) {
     secondary = (
-      <SecondarySlot
-        variant="body2"
-        className={classes.secondary}
-        color="textSecondary"
-        {...secondarySlotProps}
-      >
+      <SecondarySlot variant="body2" color="textSecondary" {...secondarySlotProps}>
         {secondary}
       </SecondarySlot>
     );
