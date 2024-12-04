@@ -137,7 +137,7 @@ const Root = styled('div')(
       // Allows to remove link arrows for images
       display: 'none',
     },
-    '& .Ad-root a::after': {
+    '& .ad.description a::after': {
       // Remove link arrow for ads
       display: 'none',
     },

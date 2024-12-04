@@ -38,6 +38,7 @@ describe('<Popper />', () => {
       'themeStyleOverrides',
       'themeVariants',
       'slotPropsCallback', // not supported yet
+      'slotPropsCallbackWithPropsAsOwnerState', // not supported yet
     ],
   }));
 

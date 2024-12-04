@@ -7,6 +7,11 @@ export interface Slot {
   default?: string;
 }
 
+export interface CssVariable {
+  name: string;
+  description: string;
+}
+
 export type ComponentInfo = {
   /**
    * Full path to the source file.

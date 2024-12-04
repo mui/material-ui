@@ -8,6 +8,10 @@ function capitalize(string: string): string {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+interface DataProps {
+  [key: `data-${string}`]: string;
+}
+
 export interface SlotTestingOptions {
   /**
    * A custom React component to test if the receiving props are correct.
@@ -41,7 +45,7 @@ export interface ConformanceOptions {
   refInstanceof: any;
   after?: () => void;
   inheritComponent?: React.ElementType;
-  render: (node: React.ReactElement<any>) => MuiRenderResult | Promise<MuiRenderResult>;
+  render: (node: React.ReactElement<DataProps>) => MuiRenderResult | Promise<MuiRenderResult>;
   only?: Array<keyof typeof fullSuite>;
   skip?: Array<keyof typeof fullSuite | 'classesRoot'>;
   testComponentsRootPropWith?: string;
@@ -95,7 +99,11 @@ function throwMissingPropError(field: string): never {
  * the root component.
  */
 export function testClassName(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<
+    DataProps & {
+      className: string;
+    }
+  >,
   getOptions: () => ConformanceOptions,
 ) {
   it('applies the className to the root component', async () => {
@@ -121,7 +129,12 @@ export function testClassName(
  * Component from @inheritComponent
  */
 export function testComponentProp(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<
+    DataProps & {
+      className: string;
+      component?: string | React.ElementType;
+    }
+  >,
   getOptions: () => ConformanceOptions,
 ) {
   describe('prop: component', () => {
@@ -157,7 +170,13 @@ export function testComponentProp(
  * MUI components spread additional props to its root.
  */
 export function testPropsSpread(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<
+    DataProps & {
+      className: string;
+      component: string | React.ElementType;
+    }
+  >,
+
   getOptions: () => ConformanceOptions,
 ) {
   it(`spreads props to the root component`, async () => {
@@ -187,7 +206,9 @@ export function testPropsSpread(
  * components that forward their ref and attach it to a host component.
  */
 export function describeRef(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<{
+    ref: React.RefObject<any>;
+  }>,
   getOptions: () => ConformanceOptions,
 ) {
   describe('ref', () => {
@@ -212,7 +233,10 @@ export function describeRef(
  * Tests that the root component has the root class
  */
 export function testRootClass(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<{
+    className: string;
+    classes: Record<string, string>;
+  }>,
   getOptions: () => ConformanceOptions,
 ) {
   it('applies the root class to the root component if it has this class', async () => {
@@ -264,7 +288,39 @@ function forEachSlot(
   });
 }
 
-function testSlotsProp(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
+function testSlotsProp(
+  element: React.ReactElement<{
+    className: string;
+    classes: Record<string, string>;
+    slots: {
+      [x: string]:
+        | SlotTestingOptions['testWithComponent']
+        | keyof React.JSX.IntrinsicElements
+        | React.ForwardRefExoticComponent<
+            {
+              children: React.ReactNode;
+            } & React.RefAttributes<HTMLDivElement>
+          >;
+    };
+    components?: {
+      [x: string]:
+        | SlotTestingOptions['testWithComponent']
+        | keyof React.JSX.IntrinsicElements
+        | React.ForwardRefExoticComponent<
+            {
+              children: React.ReactNode;
+            } & React.RefAttributes<HTMLDivElement>
+          >;
+    };
+    slotProps: {
+      [x: string]: DataProps;
+    };
+    componentsProps?: {
+      [x: string]: DataProps;
+    };
+  }>,
+  getOptions: () => ConformanceOptions,
+) {
   const { render, slots, testLegacyComponentsProp } = getOptions();
 
   const CustomComponent = React.forwardRef<
@@ -439,7 +495,13 @@ function testSlotsProp(element: React.ReactElement<any>, getOptions: () => Confo
   });
 }
 
-function testSlotPropsProp(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
+function testSlotPropsProp(
+  element: React.ReactElement<{
+    componentsProps?: Record<string, DataProps>;
+    slotProps: Record<string, DataProps>;
+  }>,
+  getOptions: () => ConformanceOptions,
+) {
   const { render, slots, testLegacyComponentsProp } = getOptions();
 
   if (!render) {
@@ -523,7 +585,10 @@ function testSlotPropsProp(element: React.ReactElement<any>, getOptions: () => C
 }
 
 function testSlotPropsCallback(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<{
+    slotProps: Record<string, () => DataProps>;
+    className: string;
+  }>,
   getOptions: () => ConformanceOptions,
 ) {
   const { render, slots } = getOptions();
@@ -534,6 +599,36 @@ function testSlotPropsCallback(
 
   forEachSlot(slots, (slotName) => {
     it(`sets custom properties on the ${slotName} slot's element with the slotProps.${slotName} callback`, async () => {
+      const slotProps = {
+        [slotName]: () => ({
+          'data-testid': 'custom',
+        }),
+      };
+
+      const { queryByTestId } = await render(
+        React.cloneElement(element, { slotProps, className: 'custom' }),
+      );
+      const slotComponent = queryByTestId('custom');
+      expect(slotComponent).not.to.equal(null);
+    });
+  });
+}
+
+function testSlotPropsCallbackWithPropsAsOwnerState(
+  element: React.ReactElement<{
+    slotProps: Record<string, (ownerState: Record<string, any>) => DataProps>;
+    className: string;
+  }>,
+  getOptions: () => ConformanceOptions,
+) {
+  const { render, slots } = getOptions();
+
+  if (!render) {
+    throwMissingPropError('render');
+  }
+
+  forEachSlot(slots, (slotName) => {
+    it(`sets custom properties on the ${slotName} slot's element with the slotProps.${slotName} callback using the ownerState`, async () => {
       const slotProps = {
         [slotName]: (ownerState: Record<string, any>) => ({
           'data-testid': ownerState.className,
@@ -554,7 +649,11 @@ function testSlotPropsCallback(
  * Components from @inheritComponent
  */
 function testComponentsProp(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<
+    {
+      components?: Record<string, string>;
+    } & DataProps
+  >,
   getOptions: () => ConformanceOptions,
 ) {
   describe('prop components:', () => {
@@ -580,7 +679,7 @@ function testComponentsProp(
  * Components from @inheritComponent
  */
 function testThemeDefaultProps(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<unknown>,
   getOptions: () => ConformanceOptions,
 ) {
   describe('theme default components:', () => {
@@ -664,7 +763,7 @@ function testThemeDefaultProps(
  * Components from @inheritComponent
  */
 function testThemeStyleOverrides(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<unknown>,
   getOptions: () => ConformanceOptions,
 ) {
   describe('theme style overrides:', () => {
@@ -916,7 +1015,10 @@ function testThemeStyleOverrides(
  * MUI theme has a components section that allows specifying custom variants.
  * Components from @inheritComponent
  */
-function testThemeVariants(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
+function testThemeVariants(
+  element: React.ReactElement<DataProps & { variant: string }>,
+  getOptions: () => ConformanceOptions,
+) {
   describe('theme variants:', () => {
     it("respect theme's variants", async function test(t = {}) {
       if (/jsdom/.test(window.navigator.userAgent)) {
@@ -1026,7 +1128,7 @@ function testThemeVariants(element: React.ReactElement<any>, getOptions: () => C
  * The components that iterate over the palette via `variants` should be able to render with or without applying the custom palette styles.
  */
 function testThemeCustomPalette(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<unknown>,
   getOptions: () => ConformanceOptions,
 ) {
   describe('theme extended palette:', () => {
@@ -1068,6 +1170,7 @@ const fullSuite = {
   rootClass: testRootClass,
   slotPropsProp: testSlotPropsProp,
   slotPropsCallback: testSlotPropsCallback,
+  slotPropsCallbackWithPropsAsOwnerState: testSlotPropsCallbackWithPropsAsOwnerState,
   slotsProp: testSlotsProp,
   themeDefaultProps: testThemeDefaultProps,
   themeStyleOverrides: testThemeStyleOverrides,
@@ -1120,7 +1223,12 @@ function describeConformance(
     (testKey) => only.includes(testKey) && !skip.includes(testKey as keyof typeof fullSuite),
   ) as (keyof typeof fullSuite)[];
 
-  const slotBasedTests = ['slotsProp', 'slotPropsProp', 'slotPropsCallback'];
+  const slotBasedTests = [
+    'slotsProp',
+    'slotPropsProp',
+    'slotPropsCallback',
+    'slotPropsCallbackWithPropsAsOwnerState',
+  ];
 
   if (!slots) {
     // if `slots` are not defined, do not run tests that depend on them
