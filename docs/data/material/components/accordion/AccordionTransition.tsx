@@ -1,7 +1,12 @@
 import * as React from 'react';
-import Accordion, { AccordionSlots } from '@mui/material/Accordion';
+import Accordion, {
+  AccordionSlots,
+  accordionClasses,
+} from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionDetails, {
+  accordionDetailsClasses,
+} from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Fade from '@mui/material/Fade';
@@ -23,18 +28,18 @@ export default function AccordionTransition() {
         sx={[
           expanded
             ? {
-                '& .MuiAccordion-region': {
+                [`& .${accordionClasses.region}`]: {
                   height: 'auto',
                 },
-                '& .MuiAccordionDetails-root': {
+                [`& .${accordionDetailsClasses.root}`]: {
                   display: 'block',
                 },
               }
             : {
-                '& .MuiAccordion-region': {
+                [`& .${accordionClasses.region}`]: {
                   height: 0,
                 },
-                '& .MuiAccordionDetails-root': {
+                [`& .${accordionDetailsClasses.root}`]: {
                   display: 'none',
                 },
               },

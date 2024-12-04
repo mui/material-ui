@@ -87,7 +87,7 @@ This demo shows how to display multiple Snackbars without stacking them by using
 
 {{"demo": "ConsecutiveSnackbars.js"}}
 
-## Third-party integrations
+## Supplementary components
 
 ### notistack
 
@@ -141,7 +141,7 @@ The Snackbar component is composed of a root `<div>` that houses interior elemen
 </div>
 ```
 
-## Toolpad (Beta)
+## Experimental APIs - Toolpad
 
 ### useNotifications
 

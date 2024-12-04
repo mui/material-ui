@@ -74,12 +74,12 @@ function layouts(translatation) {
   ];
 }
 
-export default function Templates() {
+export default function MaterialFreeTemplatesCollection() {
   const translatation = useTranslate();
   const materialTemplates = sourceMaterialTemplates();
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4, mb: 4 }}>
-      {layouts(translatation).map((layout) => {
+      {layouts(translatation).map((layout, index) => {
         const templateId = layout.source.split('/').pop();
         const templateName = pascalCase(templateId);
         const item = materialTemplates.map.get(templateId);
@@ -100,7 +100,8 @@ export default function Templates() {
                 borderColor: 'divider',
               }}
             >
-              <Box
+              <Link
+                href={layout.href}
                 sx={{
                   position: 'relative',
                   '&:hover > .MuiCardMedia-root': {
@@ -115,7 +116,8 @@ export default function Templates() {
                   component="img"
                   // The image source is generated from `pnpm template:screenshot material-ui`, do not modify the image manually.
                   image={`/static/screenshots${layout.href.replace(/\/$/, '')}.jpg`}
-                  title={layout.title}
+                  alt={layout.title}
+                  fetchPriority={index === 0 ? 'high' : undefined}
                   sx={(theme) => ({
                     aspectRatio: '16 / 9',
                     objectPosition: 'top',
@@ -133,11 +135,12 @@ export default function Templates() {
                 <Button
                   variant="text"
                   endIcon={<OpenInNewRoundedIcon />}
-                  component={Link}
-                  href={layout.href}
+                  component="div"
                   data-ga-event-category="material-ui-template"
                   data-ga-event-label={layout.title}
                   data-ga-event-action="preview-img"
+                  tabIndex={null}
+                  role="none"
                   sx={{
                     position: 'absolute',
                     top: '50%',
@@ -153,7 +156,7 @@ export default function Templates() {
                 >
                   See live preview
                 </Button>
-              </Box>
+              </Link>
               <Box
                 sx={{
                   display: 'flex',
