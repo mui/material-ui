@@ -20,6 +20,10 @@ You can toggle through each of these style options in the top right corner of th
 Sections of each layout are defined either by comments or use of separate files, so you can extract parts of a page (such as a hero unit or a footer) for reuse in other pages.
 These templates can be combined with one of the [example projects](/material-ui/getting-started/example-projects/) to form a complete starter app.
 
+:::info
+If you're looking to build internal tools and dashboards quickly, head to [Toolpad Core examples](/material-ui/getting-started/templates/#toolpad-core) for functional apps with authentication, routing and theming already integrated.
+:::
+
 If you see any room for improvement, please feel free to open an [issue](https://github.com/mui/material-ui/issues/new/choose) or a [pull request](https://github.com/mui/material-ui/pulls) on GitHub.
 
 {{"component": "modules/components/MaterialFreeTemplatesCollection.js"}}
@@ -38,7 +42,7 @@ You can find complete templates and themes like those shown below in the <a href
 </span>
 </a>
 
-## Toolpad Core
+## Toolpad Core (beta)
 
 If you're looking to build internal tools and dashboards fast, but don't want to start building from scratch, you can find examples of functional dashboards – with authentication, routing, and theming already integrated – in the [featured examples](http://mui.com/toolpad/core/introduction/examples/#featured-examples) section of the Toolpad Core docs.
 
