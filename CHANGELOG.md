@@ -17,6 +17,7 @@ A big thanks to the 10 contributors who made this release possible.
 - Skip `tonalOffset` from setting color channel (#44585) @siriwatknp
 - Remove few more React.ReactElement<any> types (#44290) @sai6855
 - [Tabs] Fix `ScrollbarSize` ref being overriden (#44593) @DiegoAndai
+- [Select][TextField] Fix screen reader from saying `&ZeroWidthSpace` (#44631) @arishoham
 
 ### `@mui/system@6.1.10`
 
