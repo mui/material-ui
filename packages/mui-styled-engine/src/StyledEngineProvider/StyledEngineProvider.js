@@ -43,14 +43,14 @@ if (typeof document === 'object') {
    * This is because the [sheet](https://github.com/emotion-js/emotion/blob/main/packages/react/src/global.js#L94-L99) does not consume the options.
    */
   class MyStyleSheet extends StyleSheet {
-    constructor(args) {
-      super(args);
-      if (args.key && args.key.endsWith('global')) {
+    insert(rule, options) {
+      if (this.key && this.key.endsWith('global')) {
         this.before = insertionPoint;
       }
+      return super.insert(rule, options);
     }
   }
-  cache = createEmotionCache({ key: 'css', prepend: true }, MyStyleSheet);
+  cache = createEmotionCache({ key: 'css', insertionPoint }, MyStyleSheet);
 }
 
 export default function StyledEngineProvider(props) {
