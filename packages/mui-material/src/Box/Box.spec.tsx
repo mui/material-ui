@@ -40,4 +40,9 @@ function ColorTest() {
   />;
 }
 
-expectType<SystemBoxProps['component'], MaterialBoxProps['component']>;
+function ComponentTest() {
+  return <span />;
+}
+
+expectType<SystemBoxProps['component'], MaterialBoxProps['component']>('span');
+expectType<SystemBoxProps['component'], MaterialBoxProps['component']>(ComponentTest);
