@@ -1,5 +1,23 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.16.9
+
+<!-- generated comparing v5.16.8..v5.x -->
+
+_Dec 3, 2024_
+
+A big thanks to the 2 contributors who made this release possible.
+
+### `@mui/material@5.16.9`
+
+- [Tabs] Cherry pick `ScrollbarSize` ref being overridden fix (#44595) @DiegoAndai
+
+### Core
+
+- Ignore browserslist and remove tag latest (#44589) @siriwatknp
+
+All contributors of this release in alphabetical order: @DiegoAndai, @siriwatknp
+
 ## 5.16.8
 
 <!-- generated comparing v5.16.7..v5.x -->
