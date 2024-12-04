@@ -1,4 +1,7 @@
-import styledEngineStyled, { internal_mutateStyles as mutateStyles } from '@mui/styled-engine';
+import styledEngineStyled, {
+  internal_css,
+  internal_mutateStyles as mutateStyles,
+} from '@mui/styled-engine';
 import { isPlainObject } from '@mui/utils/deepmerge';
 import capitalize from '@mui/utils/capitalize';
 import getDisplayName from '@mui/utils/getDisplayName';
@@ -181,34 +184,15 @@ export default function createStyled(input = {}) {
       // This must run before any other expression.
       expressionsHead.push(styleAttachTheme);
 
-      if (componentName && overridesResolver) {
+      if (componentName) {
         expressionsTail.push(function styleThemeOverrides(props) {
-          const theme = props.theme;
-          const styleOverrides = theme.components?.[componentName]?.styleOverrides;
-          if (!styleOverrides) {
-            return null;
-          }
-
-          const resolvedStyleOverrides = {};
-
-          // TODO: v7 remove iteration and use `resolveStyleArg(styleOverrides[slot])` directly
-          // eslint-disable-next-line guard-for-in
-          for (const slotKey in styleOverrides) {
-            resolvedStyleOverrides[slotKey] = processStyle(props, styleOverrides[slotKey]);
-          }
-
-          return overridesResolver(props, resolvedStyleOverrides);
+          return applyThemeOverrides(props, componentName, overridesResolver);
         });
       }
 
       if (componentName && !skipVariantsResolver) {
         expressionsTail.push(function styleThemeVariants(props) {
-          const theme = props.theme;
-          const themeVariants = theme?.components?.[componentName]?.variants;
-          if (!themeVariants) {
-            return null;
-          }
-          return processStyleVariants(props, themeVariants);
+          return applyThemeVariants(props, componentName);
         });
       }
 
@@ -258,6 +242,43 @@ export default function createStyled(input = {}) {
   };
 
   return styled;
+}
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function internal_applyStyled(props, name, slot, overridesResolver) {
+  const styles =
+    slot !== 'root'
+      ? applyThemeOverrides(props, name, overridesResolver)
+      : [applyThemeOverrides(props, name, overridesResolver), applyThemeVariants(props, name)];
+
+  return internal_css(styles);
+}
+
+function applyThemeOverrides(props, componentName, overridesResolver) {
+  const theme = props.theme;
+  const styleOverrides = theme.components?.[componentName]?.styleOverrides;
+  if (!styleOverrides) {
+    return null;
+  }
+
+  const resolvedStyleOverrides = {};
+
+  // TODO: v7 remove iteration and use `resolveStyleArg(styleOverrides[slot])` directly
+  // eslint-disable-next-line guard-for-in
+  for (const slotKey in styleOverrides) {
+    resolvedStyleOverrides[slotKey] = processStyle(props, styleOverrides[slotKey]);
+  }
+
+  return overridesResolver(props, resolvedStyleOverrides);
+}
+
+function applyThemeVariants(props, componentName) {
+  const theme = props.theme;
+  const themeVariants = theme?.components?.[componentName]?.variants;
+  if (!themeVariants) {
+    return null;
+  }
+  return processStyleVariants(props, themeVariants);
 }
 
 function generateDisplayName(componentName, componentSlot, tag) {

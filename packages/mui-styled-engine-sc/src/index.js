@@ -1,5 +1,7 @@
 import scStyled from 'styled-components';
 
+/* eslint-disable @typescript-eslint/naming-convention */
+
 export default function styled(tag, options) {
   let stylesFactory;
 
@@ -36,7 +38,6 @@ export default function styled(tag, options) {
   return stylesFactory;
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export function internal_mutateStyles(tag, processor) {
   // Styled-components attaches an instance to `componentStyle`.
   // https://github.com/styled-components/styled-components/blob/da8151762dcf72735ffba358173d4c097f6d5888/packages/styled-components/src/models/StyledComponent.ts#L257
@@ -50,14 +51,20 @@ export function internal_mutateStyles(tag, processor) {
 
 // Not needed anymore, but fixes https://github.com/mui/material-ui/issues/44112
 // TODO: Remove it in v7
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export function internal_processStyles(tag, processor) {
   return internal_mutateStyles(tag, processor);
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export function internal_serializeStyles(styles) {
   return styles;
+}
+
+export function internal_css() {
+  throw new Error(
+    "MUI: The components you are using don't support using `styled-components` for rendering anymore. " +
+      'We recommend using the default `emotion` renderer. ' +
+      'Please open an issue if you need further assistance.',
+  );
 }
 
 export { ThemeContext, keyframes, css } from 'styled-components';
