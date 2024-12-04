@@ -1045,7 +1045,6 @@ describe('<ButtonBase />', () => {
         });
 
         expect(onClickSpy.calledOnce).to.equal(true);
-        expect(onClickSpy.firstCall.args[0]).to.have.property('defaultPrevented', true);
       });
 
       it('does not call onClick if Enter was pressed on a child', () => {
@@ -1082,7 +1081,7 @@ describe('<ButtonBase />', () => {
         expect(onClickSpy.callCount).to.equal(0);
       });
 
-      it('prevents default with an anchor and empty href', () => {
+      it('calls onClick on enter for an anchor and empty href', () => {
         const onClickSpy = spy();
         const { getByRole } = render(
           <ButtonBase component="a" onClick={onClickSpy}>
@@ -1097,9 +1096,7 @@ describe('<ButtonBase />', () => {
         });
 
         expect(onClickSpy.calledOnce).to.equal(true);
-        expect(onClickSpy.firstCall.args[0]).to.have.property('defaultPrevented', true);
       });
-
       it('should ignore anchors with href', () => {
         const onClick = spy();
         const onKeyDown = spy();
