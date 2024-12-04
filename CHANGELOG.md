@@ -44,7 +44,7 @@ A big thanks to the 10 contributors who made this release possible.
 - [docs-infra] Automatically hide Black Friday banner (#44630) @oliviertassinari
 - [docs-infra] Fix TOC RTL padding regression (#44535) @oliviertassinari
 
-All contributors of this release in alphabetical order: @albarv340, @DiegoAndai, @joserodolfofreitas, @MBilalShafi, @mnajdova, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @albarv340, @arishoham, @DiegoAndai, @joserodolfofreitas, @MBilalShafi, @mnajdova, @oliviertassinari, @renovate[bot], @sai6855, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
 
 ## 6.1.9
 
