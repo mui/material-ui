@@ -43,6 +43,7 @@ A big thanks to the 10 contributors who made this release possible.
 - [docs-infra] Change CSS vars generation to be extracted from Enum (#44587) @mnajdova
 - [docs-infra] Automatically hide Black Friday banner (#44630) @oliviertassinari
 - [docs-infra] Fix TOC RTL padding regression (#44535) @oliviertassinari
+- [test-utils] Remove leftover React.ReactElement<any> from describeConformance.tsx (#44639) @sai6855
 
 All contributors of this release in alphabetical order: @albarv340, @arishoham, @DiegoAndai, @joserodolfofreitas, @MBilalShafi, @mnajdova, @oliviertassinari, @renovate[bot], @sai6855, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
 
