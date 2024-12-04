@@ -21,7 +21,7 @@ Sections of each layout are defined either by comments or use of separate files,
 These templates can be combined with one of the [example projects](/material-ui/getting-started/example-projects/) to form a complete starter app.
 
 :::info
-If you're looking to build internal tools and dashboards quickly, head to [Toolpad Core examples](/material-ui/getting-started/templates/#toolpad-core) for functional apps with authentication, routing and theming already integrated.
+If you're looking to build internal tools and dashboards quickly, head to [Toolpad Core examples](http://mui.com/toolpad/core/introduction/examples/#featured-examples) for functional apps with authentication, routing and theming already integrated.
 :::
 
 If you see any room for improvement, please feel free to open an [issue](https://github.com/mui/material-ui/issues/new/choose) or a [pull request](https://github.com/mui/material-ui/pulls) on GitHub.
