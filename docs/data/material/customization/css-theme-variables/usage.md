@@ -84,17 +84,17 @@ This `vars` object mirrors the structure of a serializable theme, with each valu
   }));
   ```
 
-For **TypeScript**, the typings are not enabled by default.
-Follow the [TypeScript setup](#typescript) to enable the typings.
+  For **TypeScript**, the typings are not enabled by default.
+  Follow the [TypeScript setup](#typescript) to enable the typings.
 
-:::success
-If the components need to render outside of the `CssVarsProvider`, add fallback to the theme object.
+  :::success
+  If the components need to render outside of the `CssVarsProvider`, add fallback to the theme object.
 
-```js
-backgroundColor: (theme.vars || theme).palette.primary.main;
-```
+  ```js
+  backgroundColor: (theme.vars || theme).palette.primary.main;
+  ```
 
-:::
+  :::
 
 - **Native CSS**: if you can't access the theme object, for example in a pure CSS file, you can use [`var()`](https://developer.mozilla.org/en-US/docs/Web/CSS/var) directly:
 
