@@ -353,6 +353,27 @@ export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
  *
  * - [useAutocomplete API](https://mui.com/base-ui/react-autocomplete/hooks-api/#use-autocomplete)
  */
+
+export function useAutocomplete<
+  Value,
+  Multiple extends boolean | undefined = false,
+  DisableClearable extends boolean | undefined = false,
+  FreeSolo extends boolean | undefined = false,
+>(
+  props: UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo> & {
+    groupBy: (option: Value) => string;
+  },
+): UseAutocompleteReturnValue<Value, Multiple, DisableClearable, FreeSolo, true>
+export function useAutocomplete<
+  Value,
+  Multiple extends boolean | undefined = false,
+  DisableClearable extends boolean | undefined = false,
+  FreeSolo extends boolean | undefined = false,
+>(
+  props: UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo> & {
+    groupBy?: undefined;
+  },
+): UseAutocompleteReturnValue<Value, Multiple, DisableClearable, FreeSolo, false>
 export function useAutocomplete<
   Value,
   Multiple extends boolean | undefined = false,
@@ -360,7 +381,7 @@ export function useAutocomplete<
   FreeSolo extends boolean | undefined = false,
 >(
   props: UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo>,
-): UseAutocompleteReturnValue<Value, Multiple, DisableClearable, FreeSolo>;
+): UseAutocompleteReturnValue<Value, Multiple, DisableClearable, FreeSolo, unknown>;
 
 export interface UseAutocompleteRenderedOption<Value> {
   option: Value;
@@ -372,6 +393,7 @@ export interface UseAutocompleteReturnValue<
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
+  HasGroupBy extends boolean | unknown = false,
 > {
   /**
    * Resolver for the root slot's props.
@@ -462,5 +484,9 @@ export interface UseAutocompleteReturnValue<
   /**
    * The options to render. It's either `Value[]` or `AutocompleteGroupedOption<Value>[]` if the groupBy prop is provided.
    */
-  groupedOptions: Value[] | Array<AutocompleteGroupedOption<Value>>;
+  groupedOptions: HasGroupBy extends true
+    ? AutocompleteGroupedOption<Value>[]
+    : HasGroupBy extends false
+      ? Value[]
+      : Value[] | AutocompleteGroupedOption<Value>[];
 }
