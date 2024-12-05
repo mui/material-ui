@@ -11,34 +11,28 @@ export interface ApplyStyles<K extends string> {
  *  - [CSS theme variables](https://mui.com/material-ui/customization/css-theme-variables/overview/)
  *  - Zero-runtime engine
  *
- * Tips: Use an array over object spread and place `theme.applyStyles()` last.
- *
- * ✅ [{ background: '#e5e5e5' }, theme.applyStyles('dark', { background: '#1c1c1c' })]
- *
- * 🚫 { background: '#e5e5e5', ...theme.applyStyles('dark', { background: '#1c1c1c' })}
- *
  * @example
  * 1. using with `styled`:
  * ```jsx
- *   const Component = styled('div')(({ theme }) => [
- *     { background: '#e5e5e5' },
- *     theme.applyStyles('dark', {
+ *   const Component = styled('div')(({ theme }) => {
+ *     background: '#e5e5e5',
+ *     ...theme.applyStyles('dark', {
  *       background: '#1c1c1c',
  *       color: '#fff',
  *     }),
- *   ]);
+ *   });
  * ```
  *
  * @example
  * 2. using with `sx` prop:
  * ```jsx
- *   <Box sx={theme => [
- *     { background: '#e5e5e5' },
- *     theme.applyStyles('dark', {
- *        background: '#1c1c1c',
- *        color: '#fff',
- *      }),
- *     ]}
+ *   <Box sx={theme => {
+ *     background: '#e5e5e5',
+ *     ...theme.applyStyles('dark', {
+ *       background: '#1c1c1c',
+ *       color: '#fff',
+ *     }),
+ *   }}
  *   />
  * ```
  *
@@ -49,13 +43,13 @@ export interface ApplyStyles<K extends string> {
  *     components: {
  *       MuiButton: {
  *         styleOverrides: {
- *           root: ({ theme }) => [
- *             { background: '#e5e5e5' },
- *             theme.applyStyles('dark', {
+ *           root: ({ theme }) => {
+ *             background: '#e5e5e5',
+ *             ...theme.applyStyles('dark', {
  *               background: '#1c1c1c',
  *               color: '#fff',
  *             }),
- *           ],
+ *           },
  *         },
  *       }
  *     }
