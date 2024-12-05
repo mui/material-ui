@@ -755,19 +755,19 @@ describe('Material UI <Grid />', () => {
           '& > .MuiGrid-item': {
             paddingTop: '8px',
           },
-          marginTop: '-8px',
+          marginTop: 'calc(-1 * 8px)',
         },
         [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
           '& > .MuiGrid-item': {
             paddingTop: '16px',
           },
-          marginTop: '-16px',
+          marginTop: 'calc(-1 * 16px)',
         },
         [`@media (min-width:${defaultTheme.breakpoints.values.md}px)`]: {
           '& > .MuiGrid-item': {
             paddingTop: '16px',
           },
-          marginTop: '-16px',
+          marginTop: 'calc(-1 * 16px)',
         },
       });
 
@@ -784,21 +784,21 @@ describe('Material UI <Grid />', () => {
           '& > .MuiGrid-item': {
             paddingLeft: '8px',
           },
-          marginLeft: '-8px',
+          marginLeft: 'calc(-1 * 8px)',
           width: 'calc(100% + 8px)',
         },
         [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
           '& > .MuiGrid-item': {
             paddingLeft: '16px',
           },
-          marginLeft: '-16px',
+          marginLeft: 'calc(-1 * 16px)',
           width: 'calc(100% + 16px)',
         },
         [`@media (min-width:${defaultTheme.breakpoints.values.md}px)`]: {
           '& > .MuiGrid-item': {
             paddingLeft: '16px',
           },
-          marginLeft: '-16px',
+          marginLeft: 'calc(-1 * 16px)',
           width: 'calc(100% + 16px)',
         },
       });
@@ -827,13 +827,13 @@ describe('Material UI <Grid />', () => {
           '& > .MuiGrid-item': {
             paddingTop: '12px',
           },
-          marginTop: '-12px',
+          marginTop: 'calc(-1 * 12px)',
         },
         '@media (min-width:1200px)': {
           '& > .MuiGrid-item': {
             paddingTop: '24px',
           },
-          marginTop: '-24px',
+          marginTop: 'calc(-1 * 24px)',
         },
       });
 
@@ -850,14 +850,14 @@ describe('Material UI <Grid />', () => {
           '& > .MuiGrid-item': {
             paddingLeft: '12px',
           },
-          marginLeft: '-12px',
+          marginLeft: 'calc(-1 * 12px)',
           width: 'calc(100% + 12px)',
         },
         '@media (min-width:1200px)': {
           '& > .MuiGrid-item': {
             paddingLeft: '24px',
           },
-          marginLeft: '-24px',
+          marginLeft: 'calc(-1 * 24px)',
           width: 'calc(100% + 24px)',
         },
       });
@@ -887,7 +887,7 @@ describe('Material UI <Grid />', () => {
           '& > .MuiGrid-item': {
             paddingTop: '24px',
           },
-          marginTop: '-24px',
+          marginTop: 'calc(-1 * 24px)',
         },
       });
 
@@ -905,7 +905,7 @@ describe('Material UI <Grid />', () => {
           '& > .MuiGrid-item': {
             paddingLeft: '24px',
           },
-          marginLeft: '-24px',
+          marginLeft: 'calc(-1 * 24px)',
           width: 'calc(100% + 24px)',
         },
       });
@@ -934,7 +934,7 @@ describe('Material UI <Grid />', () => {
           '& > .MuiGrid-item': {
             paddingTop: '24px',
           },
-          marginTop: '-24px',
+          marginTop: 'calc(-1 * 24px)',
         },
       });
 
@@ -951,7 +951,7 @@ describe('Material UI <Grid />', () => {
           '& > .MuiGrid-item': {
             paddingLeft: '24px',
           },
-          marginLeft: '-24px',
+          marginLeft: 'calc(-1 * 24px)',
           width: 'calc(100% + 24px)',
         },
       });
@@ -980,7 +980,7 @@ describe('Material UI <Grid />', () => {
           '& > .MuiGrid-item': {
             paddingTop: '24px',
           },
-          marginTop: '-24px',
+          marginTop: 'calc(-1 * 24px)',
         },
       });
 
@@ -997,7 +997,7 @@ describe('Material UI <Grid />', () => {
           '& > .MuiGrid-item': {
             paddingLeft: '24px',
           },
-          marginLeft: '-24px',
+          marginLeft: 'calc(-1 * 24px)',
           width: 'calc(100% + 24px)',
         },
       });
@@ -1018,13 +1018,13 @@ describe('Material UI <Grid />', () => {
           '& > .MuiGrid-item': {
             paddingTop: '8px',
           },
-          marginTop: '-8px',
+          marginTop: 'calc(-1 * 8px)',
         },
         [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
           '& > .MuiGrid-item': {
             paddingTop: '16px',
           },
-          marginTop: '-16px',
+          marginTop: 'calc(-1 * 16px)',
         },
       });
 
@@ -1041,14 +1041,14 @@ describe('Material UI <Grid />', () => {
           '& > .MuiGrid-item': {
             paddingLeft: '8px',
           },
-          marginLeft: '-8px',
+          marginLeft: 'calc(-1 * 8px)',
           width: 'calc(100% + 8px)',
         },
         [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
           '& > .MuiGrid-item': {
             paddingLeft: '16px',
           },
-          marginLeft: '-16px',
+          marginLeft: 'calc(-1 * 16px)',
           width: 'calc(100% + 16px)',
         },
       });
@@ -1077,13 +1077,13 @@ describe('Material UI <Grid />', () => {
           '& > .MuiGrid-item': {
             paddingTop: '12px',
           },
-          marginTop: '-12px',
+          marginTop: 'calc(-1 * 12px)',
         },
         '@media (min-width:1200px)': {
           '& > .MuiGrid-item': {
             paddingTop: '24px',
           },
-          marginTop: '-24px',
+          marginTop: 'calc(-1 * 24px)',
         },
       });
 
@@ -1100,14 +1100,14 @@ describe('Material UI <Grid />', () => {
           '& > .MuiGrid-item': {
             paddingLeft: '12px',
           },
-          marginLeft: '-12px',
+          marginLeft: 'calc(-1 * 12px)',
           width: 'calc(100% + 12px)',
         },
         '@media (min-width:1200px)': {
           '& > .MuiGrid-item': {
             paddingLeft: '24px',
           },
-          marginLeft: '-24px',
+          marginLeft: 'calc(-1 * 24px)',
           width: 'calc(100% + 24px)',
         },
       });
@@ -1136,7 +1136,7 @@ describe('Material UI <Grid />', () => {
           '& > .MuiGrid-item': {
             paddingTop: '12px',
           },
-          marginTop: '-12px',
+          marginTop: 'calc(-1 * 12px)',
         },
         '@media (min-width:640px)': {
           '& > .MuiGrid-item': {
@@ -1165,7 +1165,7 @@ describe('Material UI <Grid />', () => {
           '& > .MuiGrid-item': {
             paddingLeft: '12px',
           },
-          marginLeft: '-12px',
+          marginLeft: 'calc(-1 * 12px)',
           width: 'calc(100% + 12px)',
         },
         '@media (min-width:640px)': {
@@ -1198,7 +1198,7 @@ describe('Material UI <Grid />', () => {
           '& > .MuiGrid-item': {
             paddingTop: '12px',
           },
-          marginTop: '-12px',
+          marginTop: 'calc(-1 * 12px)',
         },
         '@media (min-width:640px)': {
           '& > .MuiGrid-item': {
@@ -1227,7 +1227,7 @@ describe('Material UI <Grid />', () => {
           '& > .MuiGrid-item': {
             paddingLeft: '12px',
           },
-          marginLeft: '-12px',
+          marginLeft: 'calc(-1 * 12px)',
           width: 'calc(100% + 12px)',
         },
         '@media (min-width:640px)': {
@@ -1271,7 +1271,7 @@ describe('Material UI <Grid />', () => {
           '& > .MuiGrid-item': {
             paddingTop: '12px',
           },
-          marginTop: '-12px',
+          marginTop: 'calc(-1 * 12px)',
         },
         '@media (min-width:1200px)': {
           '& > .MuiGrid-item': {
@@ -1295,7 +1295,7 @@ describe('Material UI <Grid />', () => {
           '& > .MuiGrid-item': {
             paddingLeft: '12px',
           },
-          marginLeft: '-12px',
+          marginLeft: 'calc(-1 * 12px)',
           width: 'calc(100% + 12px)',
         },
         '@media (min-width:1200px)': {
@@ -1322,7 +1322,7 @@ describe('Material UI <Grid />', () => {
           '& > .MuiGrid-item': {
             paddingTop: '12px',
           },
-          marginTop: '-12px',
+          marginTop: 'calc(-1 * 12px)',
         },
         '@media (min-width:1200px)': {
           '& > .MuiGrid-item': {
@@ -1346,7 +1346,7 @@ describe('Material UI <Grid />', () => {
           '& > .MuiGrid-item': {
             paddingLeft: '12px',
           },
-          marginLeft: '-12px',
+          marginLeft: 'calc(-1 * 12px)',
           width: 'calc(100% + 12px)',
         },
         '@media (min-width:1200px)': {
@@ -1356,6 +1356,41 @@ describe('Material UI <Grid />', () => {
           marginLeft: 0,
           width: '100%',
         },
+      });
+    });
+
+    it('should support css variables mode', () => {
+      const theme = createTheme({
+        cssVariables: true,
+      });
+      expect(
+        generateRowGap({
+          ownerState: {
+            container: true,
+            rowSpacing: 2,
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '& > .MuiGrid-item': {
+          paddingTop: 'calc(2 * var(--mui-spacing, 8px))',
+        },
+        marginTop: 'calc(-1 * calc(2 * var(--mui-spacing, 8px)))',
+      });
+      expect(
+        generateColumnGap({
+          ownerState: {
+            container: true,
+            columnSpacing: 2,
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '& > .MuiGrid-item': {
+          paddingLeft: 'calc(2 * var(--mui-spacing, 8px))',
+        },
+        marginLeft: 'calc(-1 * calc(2 * var(--mui-spacing, 8px)))',
+        width: 'calc(100% + calc(2 * var(--mui-spacing, 8px)))',
       });
     });
   });
@@ -1760,8 +1795,8 @@ describe('Material UI <Grid />', () => {
       );
 
       expect(screen.getByTestId('grid')).toHaveComputedStyle({
-        marginTop: '-16px',
-        marginLeft: '-16px',
+        marginTop: 'calc(-1 * 16px)',
+        marginLeft: 'calc(-1 * 16px)',
         width: `${parentWidth + 16}px`, // 'calc(100% + 16px)'
       });
 
