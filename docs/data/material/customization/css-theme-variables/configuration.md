@@ -128,7 +128,7 @@ For SSR (server-side rendering) applications, Material UI can not detected user
 
 To prevent the issue, you need to ensure that there is no usage of `theme.palette.mode === 'dark'` in your code base.
 
-If you have such a condition, replace it with the [`theme.applyStyles()`](/material-ui/customization/css-theme-variables/usage/#applying-dark-styles) function:
+If you have such a condition, replace it with the [`theme.applyStyles()` function](/material-ui/customization/dark-mode/#api):
 
 ```diff
  import Card from '@mui/material/Card';
