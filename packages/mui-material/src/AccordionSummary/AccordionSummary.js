@@ -72,6 +72,7 @@ const AccordionSummaryContent = styled('span', {
 })(
   memoTheme(({ theme }) => ({
     display: 'flex',
+    textAlign: 'start',
     flexGrow: 1,
     margin: '12px 0',
     variants: [
