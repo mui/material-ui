@@ -1795,8 +1795,8 @@ describe('Material UI <Grid />', () => {
       );
 
       expect(screen.getByTestId('grid')).toHaveComputedStyle({
-        marginTop: 'calc(-1 * 16px)',
-        marginLeft: 'calc(-1 * 16px)',
+        marginTop: '-16px',
+        marginLeft: '-16px',
         width: `${parentWidth + 16}px`, // 'calc(100% + 16px)'
       });
 
