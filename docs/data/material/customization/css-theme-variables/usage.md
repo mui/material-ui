@@ -60,7 +60,7 @@ import Card from '@mui/material/Card';
   sx={(theme) => ({
     backgroundColor: theme.vars.palette.background.default,
     ...theme.applyStyles('dark', {
-      backgroundColor: 'white',
+      backgroundColor: theme.vars.palette.grey[50],
     }),
   })}
 />;
@@ -253,7 +253,3 @@ declare module '@mui/material/styles' {
 ## Next steps
 
 If you need to support system preference and manual selection, check out the [advanced configuration](/material-ui/customization/css-theme-variables/configuration/)
-
-```
-
-```

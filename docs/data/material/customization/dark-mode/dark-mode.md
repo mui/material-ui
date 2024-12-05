@@ -276,16 +276,22 @@ A case in which you might need to do it is to return a string instead of an obje
 
 ```js
 const theme = createTheme({
-  // ...
+  cssVariables: {
+    colorSchemeSelector: '.mode-%s',
+  },
+  colorSchemes: {
+    dark: {},
+    light: {},
+  },
   applyStyles: function (key: string, styles: any) {
     // return a string instead of an object
-    return `@media (prefers-color-scheme: %{key}) & {${styles}}`;
+    return `*:where(.mode-${key}) & {${styles}}`;
   },
 });
 
-// This allows to use theme.applyStyles() inside template literals
 const StyledButton = styled('button')`
-  ${theme.applyStyles('dark', `
+  ${theme.applyStyles(
+    'dark', `
       background: white;
     `
   )}
