@@ -209,7 +209,8 @@ function getCodeblock(content) {
   if (!content.startsWith('<codeblock')) {
     return undefined;
   }
-  // Add negative lookahead to the regex below to prevent ReDoS
+  // The regexes below have a negative lookahead to prevent ReDoS
+  // See https://github.com/mui/material-ui/issues/44078
   const storageKey = content.match(
     /^<codeblock (?!<codeblock )[^>]*storageKey=["|'](?!storageKey=["|'])(\S*)["|'].*>/m,
   )?.[1];

@@ -473,7 +473,8 @@ export default function Demo(props) {
         `The following demos use TS directly: ${demoOptions.demo}.`,
         '',
         'Please run "pnpm docs:typescript:formatted" to generate a JS version and reference it:',
-        // Exclude the dot character in the Kleene star of the regex below to prevent ReDoS
+        // This regex intentionally excludes the dot character in the Kleene star to prevent ReDoS
+        // See https://github.com/mui/material-ui/issues/44078
         `{{"demo": "${demoOptions.demo.replace(/\.([^.]*)$/, '.js')}", …}}.`,
         '',
         "Otherwise, if it's not a code demo hide the toolbar:",

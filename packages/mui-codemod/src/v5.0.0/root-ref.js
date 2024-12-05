@@ -2,7 +2,8 @@
  * @param {import('jscodeshift').FileInfo} file
  */
 export default function transformer(file) {
-  // Add negative lookahead to the regexes below to prevent ReDoS
+  // The regexes below have a negative lookahead to prevent ReDoS
+  // See https://github.com/mui/material-ui/issues/44078
   return file.source
     .replace(/\n?import(?!import).*core\/RootRef['"];?/gm, '')
     .replace(/\n?import {\s?RootRef\s?} from ['"]@material-ui\/core\/?['"];?/gm, '')
