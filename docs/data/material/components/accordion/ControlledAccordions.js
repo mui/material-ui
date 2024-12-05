@@ -6,24 +6,13 @@ import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
+const SummaryLabel = styled('span')({
+  width: '33%',
+  flexShrink: 0,
+});
+
 const SummaryText = styled('span')(({ theme }) => ({
-  margin: 0,
-  textAlign: 'left',
-  variants: [
-    {
-      props: { secondary: true },
-      style: {
-        color: theme.palette.text.secondary,
-      },
-    },
-    {
-      props: ({ secondary }) => !secondary,
-      style: {
-        width: '33%',
-        flexShrink: 0,
-      },
-    },
-  ],
+  color: theme.palette.text.secondary,
 }));
 
 export default function ControlledAccordions() {
@@ -41,8 +30,8 @@ export default function ControlledAccordions() {
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
-          <SummaryText>General settings</SummaryText>
-          <SummaryText secondary>I am an accordion</SummaryText>
+          <SummaryLabel>General settings</SummaryLabel>
+          <SummaryText>I am an accordion</SummaryText>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -57,8 +46,8 @@ export default function ControlledAccordions() {
           aria-controls="panel2bh-content"
           id="panel2bh-header"
         >
-          <SummaryText>Users</SummaryText>
-          <SummaryText secondary>You are currently not an owner</SummaryText>
+          <SummaryLabel>Users</SummaryLabel>
+          <SummaryText>You are currently not an owner</SummaryText>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -74,8 +63,8 @@ export default function ControlledAccordions() {
           aria-controls="panel3bh-content"
           id="panel3bh-header"
         >
-          <SummaryText>Advanced settings</SummaryText>
-          <SummaryText secondary>
+          <SummaryLabel>Advanced settings</SummaryLabel>
+          <SummaryText>
             Filtering has been entirely disabled for whole web server
           </SummaryText>
         </AccordionSummary>
@@ -92,7 +81,7 @@ export default function ControlledAccordions() {
           aria-controls="panel4bh-content"
           id="panel4bh-header"
         >
-          <SummaryText>Personal data</SummaryText>
+          <SummaryLabel>Personal data</SummaryLabel>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
