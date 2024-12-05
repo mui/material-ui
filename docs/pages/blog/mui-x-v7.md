@@ -296,7 +296,7 @@ This feature greatly improves the experience for screen reader users, making int
 <DatePicker enableAccessibleFieldDOMStructure />
 ```
 
-For more details, please check out the [documentation section](/x/react-date-pickers/fields/#accessible-dom-structure).
+Check out the [Fields doc](/x/react-date-pickers/fields/) for more details.
 
 ### Support for date-fns v3
 
