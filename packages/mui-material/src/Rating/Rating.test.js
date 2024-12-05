@@ -99,32 +99,6 @@ describe('<Rating />', () => {
     expect(container.querySelectorAll(`.${classes.iconHover}`).length).to.equal(4);
   });
 
-  // it('should return NaN in onChange when width is 0 (division by zero in hover)', async () => {
-  //   const handleChange = spy();
-
-  //   // Render the Rating component
-  //   const { container } = render(<Rating name="rating-test" onChange={handleChange} value={2} />);
-
-  //   // Stub the getBoundingClientRect to return width = 0 (simulating the bug)
-  //   stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
-  //     left: 0,
-  //     right: 0,
-  //     width: 0,  // This is the key part: width is set to 0
-  //   }));
-
-  //   // Simulate mouse movement that would normally trigger the hover effect
-  //   fireEvent.mouseMove(container.firstChild, {
-  //     clientX: 10,  // Any clientX value, since width is 0
-  //   });
-
-  //   // Simulate a click on the rating
-  //   fireEvent.click(container.querySelector('input[name="rating-test"][value="2"]'));
-
-  //   // Check that the value passed to onChange is NaN due to the division by zero
-  //   expect(handleChange.args[0][1]).to.equal(NaN);
-  // });
-
-
   it('should clear the rating', () => {
     const handleChange = spy();
     const { container } = render(<Rating name="rating-test" onChange={handleChange} value={2} />);
