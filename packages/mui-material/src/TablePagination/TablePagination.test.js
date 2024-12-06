@@ -62,6 +62,7 @@ describe('<TablePagination />', () => {
           testWithComponent: React.forwardRef((props, ref) => (
             <TableCell component="th" ref={ref} {...props} data-testid="custom" />
           )),
+          testWithElement: 'th',
         },
         toolbar: { expectedClassName: classes.toolbar },
         spacer: { expectedClassName: classes.spacer },
