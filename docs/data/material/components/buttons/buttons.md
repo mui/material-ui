@@ -141,10 +141,6 @@ Toggle the loading switch to see the transition between the different states.
 
 {{"demo": "LoadingButtonsTransition.js"}}
 
-:::info
-The above demo sets the `enableLoadingWrapper` prop on buttons to prevent [Google Translation Crash](https://github.com/mui/material-ui/issues/27853) after toggling the loading state.
-:::
-
 ## Customization
 
 Here are some examples of customizing the component.

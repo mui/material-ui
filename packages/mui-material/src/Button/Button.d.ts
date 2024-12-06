@@ -47,12 +47,6 @@ export interface ButtonOwnProps {
    */
   disableFocusRipple?: boolean;
   /**
-   * If `true`, the loader is rendered in a span element. The span element is always present regardless of the loading state.
-   * Use this prop to prevent React error when the loading state is toggled with Google translation. See https://github.com/mui/material-ui/issues/27853 for more details.
-   * @default false
-   */
-  enableLoadingWrapper?: boolean;
-  /**
    * Element placed after the children.
    */
   endIcon?: React.ReactNode;

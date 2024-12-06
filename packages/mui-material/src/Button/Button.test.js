@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { createRenderer, screen, simulateKeyboardDevice, within } from '@mui/internal-test-utils';
 import { ClassNames } from '@emotion/react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import Button, { buttonClasses, buttonClasses as classes } from '@mui/material/Button';
+import Button, { buttonClasses as classes } from '@mui/material/Button';
 import ButtonBase, { touchRippleClasses } from '@mui/material/ButtonBase';
 import describeConformance from '../../test/describeConformance';
 import * as ripple from '../../test/ripple';
@@ -793,28 +793,6 @@ describe('<Button />', () => {
       );
 
       expect(screen.getByRole('button')).to.have.text('loading…Test');
-    });
-  });
-
-  describe('prop: enableLoadingWrapper', () => {
-    it('is not rendered by default', () => {
-      const { container } = render(<Button>Test</Button>);
-
-      expect(container.querySelector(`.${buttonClasses.loadingWrapper}`)).to.equal(null);
-    });
-
-    it('is always rendered before the children', () => {
-      const { container, rerender } = render(<Button enableLoadingWrapper>Test</Button>);
-
-      expect(container.querySelector(`.${buttonClasses.loadingWrapper}`)).not.to.equal(null);
-
-      rerender(
-        <Button enableLoadingWrapper loading>
-          Test
-        </Button>,
-      );
-
-      expect(container.querySelector(`.${buttonClasses.loadingWrapper}`)).not.to.equal(null);
     });
   });
 });
