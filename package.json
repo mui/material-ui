@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "6.1.9",
+  "version": "6.1.10",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -136,7 +136,7 @@
     "@types/yargs": "^17.0.33",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
-    "@vitest/browser": "^2.1.5",
+    "@vitest/browser": "^2.1.8",
     "@vitest/coverage-v8": "^2.1.6",
     "babel-loader": "^9.2.1",
     "babel-plugin-istanbul": "^7.0.0",

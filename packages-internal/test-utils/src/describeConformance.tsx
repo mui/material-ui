@@ -45,7 +45,7 @@ export interface ConformanceOptions {
   refInstanceof: any;
   after?: () => void;
   inheritComponent?: React.ElementType;
-  render: (node: React.ReactElement<any>) => MuiRenderResult | Promise<MuiRenderResult>;
+  render: (node: React.ReactElement<DataProps>) => MuiRenderResult | Promise<MuiRenderResult>;
   only?: Array<keyof typeof fullSuite>;
   skip?: Array<keyof typeof fullSuite | 'classesRoot'>;
   testComponentsRootPropWith?: string;
@@ -495,7 +495,13 @@ function testSlotsProp(
   });
 }
 
-function testSlotPropsProp(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
+function testSlotPropsProp(
+  element: React.ReactElement<{
+    componentsProps?: Record<string, DataProps>;
+    slotProps: Record<string, DataProps>;
+  }>,
+  getOptions: () => ConformanceOptions,
+) {
   const { render, slots, testLegacyComponentsProp } = getOptions();
 
   if (!render) {
@@ -579,7 +585,10 @@ function testSlotPropsProp(element: React.ReactElement<any>, getOptions: () => C
 }
 
 function testSlotPropsCallback(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<{
+    slotProps: Record<string, () => DataProps>;
+    className: string;
+  }>,
   getOptions: () => ConformanceOptions,
 ) {
   const { render, slots } = getOptions();
@@ -606,7 +615,10 @@ function testSlotPropsCallback(
 }
 
 function testSlotPropsCallbackWithPropsAsOwnerState(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<{
+    slotProps: Record<string, (ownerState: Record<string, any>) => DataProps>;
+    className: string;
+  }>,
   getOptions: () => ConformanceOptions,
 ) {
   const { render, slots } = getOptions();
@@ -637,7 +649,11 @@ function testSlotPropsCallbackWithPropsAsOwnerState(
  * Components from @inheritComponent
  */
 function testComponentsProp(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<
+    {
+      components?: Record<string, string>;
+    } & DataProps
+  >,
   getOptions: () => ConformanceOptions,
 ) {
   describe('prop components:', () => {
@@ -663,7 +679,7 @@ function testComponentsProp(
  * Components from @inheritComponent
  */
 function testThemeDefaultProps(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<unknown>,
   getOptions: () => ConformanceOptions,
 ) {
   describe('theme default components:', () => {
@@ -747,7 +763,7 @@ function testThemeDefaultProps(
  * Components from @inheritComponent
  */
 function testThemeStyleOverrides(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<unknown>,
   getOptions: () => ConformanceOptions,
 ) {
   describe('theme style overrides:', () => {
@@ -999,7 +1015,10 @@ function testThemeStyleOverrides(
  * MUI theme has a components section that allows specifying custom variants.
  * Components from @inheritComponent
  */
-function testThemeVariants(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
+function testThemeVariants(
+  element: React.ReactElement<DataProps & { variant: string }>,
+  getOptions: () => ConformanceOptions,
+) {
   describe('theme variants:', () => {
     it("respect theme's variants", async function test(t = {}) {
       if (/jsdom/.test(window.navigator.userAgent)) {
@@ -1109,7 +1128,7 @@ function testThemeVariants(element: React.ReactElement<any>, getOptions: () => C
  * The components that iterate over the palette via `variants` should be able to render with or without applying the custom palette styles.
  */
 function testThemeCustomPalette(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<unknown>,
   getOptions: () => ConformanceOptions,
 ) {
   describe('theme extended palette:', () => {
