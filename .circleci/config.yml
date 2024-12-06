@@ -22,6 +22,7 @@ parameters:
     default: ''
 
 default-job: &default-job
+  resource_class: 'medium+'
   parameters:
     react-version:
       description: The version of react to be used
