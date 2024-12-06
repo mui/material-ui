@@ -2,8 +2,12 @@ import * as React from 'react';
 import { useRouter } from 'next/router';
 import clipboardCopy from 'clipboard-copy';
 
-const CodeBlockContext = React.createContext<React.MutableRefObject<HTMLDivElement | null>>({
-  current: null,
+const CodeBlockContext = React.createContext<{
+  rootNode: HTMLDivElement | null;
+  setNode: (node: HTMLDivElement | null) => void;
+}>({
+  rootNode: null,
+  setNode: () => {},
 });
 
 /**
@@ -16,30 +20,30 @@ const CodeBlockContext = React.createContext<React.MutableRefObject<HTMLDivEleme
  * </div>
  */
 export function useCodeCopy(): React.HTMLAttributes<HTMLDivElement> {
-  const rootNode = React.useContext(CodeBlockContext);
+  const { rootNode, setNode } = React.useContext(CodeBlockContext);
   return {
     onMouseEnter: (event) => {
-      rootNode.current = event.currentTarget;
+      setNode(event.currentTarget as HTMLDivElement);
     },
     onMouseLeave: (event) => {
-      if (rootNode.current === event.currentTarget) {
-        (rootNode.current.querySelector('.MuiCode-copy') as null | HTMLButtonElement)?.blur();
-        rootNode.current = null;
+      if (rootNode === event.currentTarget) {
+        (rootNode.querySelector('.MuiCode-copy') as null | HTMLButtonElement)?.blur();
+        setNode(null);
       }
     },
     onFocus: (event) => {
-      rootNode.current = event.currentTarget;
+      setNode(event.currentTarget as HTMLDivElement);
     },
     onBlur: (event) => {
-      if (rootNode.current === event.currentTarget) {
-        rootNode.current = null;
+      if (rootNode === event.currentTarget) {
+        setNode(null);
       }
     },
   };
 }
 
 function InitCodeCopy() {
-  const rootNode = React.useContext(CodeBlockContext);
+  const { rootNode, setNode } = React.useContext(CodeBlockContext);
   const router = useRouter();
   React.useEffect(() => {
     let key = 'Ctrl + ';
@@ -57,16 +61,16 @@ function InitCodeCopy() {
       const listeners: Array<() => void> = [];
       Array.from(codeRoots).forEach((elm) => {
         const handleMouseEnter = () => {
-          rootNode.current = elm;
+          setNode(elm);
         };
 
         elm.addEventListener('mouseenter', handleMouseEnter);
         listeners.push(() => elm.removeEventListener('mouseenter', handleMouseEnter));
 
         const handleMouseLeave = () => {
-          if (rootNode.current === elm) {
-            (rootNode.current.querySelector('.MuiCode-copy') as null | HTMLButtonElement)?.blur();
-            rootNode.current = null;
+          if (rootNode === elm) {
+            (rootNode.querySelector('.MuiCode-copy') as null | HTMLButtonElement)?.blur();
+            setNode(null);
           }
         };
         elm.addEventListener('mouseleave', handleMouseLeave);
@@ -74,15 +78,15 @@ function InitCodeCopy() {
 
         const handleFocusin = () => {
           // use `focusin` because it bubbles from the copy button
-          rootNode.current = elm;
+          setNode(elm);
         };
         elm.addEventListener('focusin', handleFocusin);
         listeners.push(() => elm.removeEventListener('focusin', handleFocusin));
 
         const handleFocusout = () => {
           // use `focusout` because it bubbles from the copy button
-          if (rootNode.current === elm) {
-            rootNode.current = null;
+          if (rootNode === elm) {
+            setNode(null);
           }
         };
         elm.addEventListener('focusout', handleFocusout);
@@ -129,7 +133,7 @@ function InitCodeCopy() {
     }
 
     return undefined;
-  }, [rootNode, router.pathname]);
+  }, [rootNode, router.pathname, setNode]);
   return null;
 }
 
@@ -157,10 +161,12 @@ interface CodeCopyProviderProps {
  * Any code block inside the tree can set the rootNode when mouse enter to leverage keyboard copy.
  */
 export function CodeCopyProvider({ children }: CodeCopyProviderProps) {
-  const rootNode = React.useRef<HTMLDivElement | null>(null);
+  const [rootNode, setNode] = React.useState<HTMLDivElement | null>(null);
+  const contextValue = React.useMemo(() => ({ rootNode, setNode }), [rootNode, setNode]); // memoizes the context value to avoid re-renders
+
   React.useEffect(() => {
     document.addEventListener('keydown', (event) => {
-      if (!rootNode.current) {
+      if (!rootNode) {
         return;
       }
 
@@ -181,7 +187,7 @@ export function CodeCopyProvider({ children }: CodeCopyProviderProps) {
         return;
       }
 
-      const copyBtn = rootNode.current.querySelector('.MuiCode-copy') as HTMLButtonElement;
+      const copyBtn = rootNode.querySelector('.MuiCode-copy') as HTMLButtonElement;
       const initialEventAction = copyBtn.getAttribute('data-ga-event-action');
       // update the 'data-ga-event-action' on the button to track keyboard interaction
       copyBtn.dataset.gaEventAction =
@@ -189,9 +195,9 @@ export function CodeCopyProvider({ children }: CodeCopyProviderProps) {
       copyBtn.click(); // let the GA setup in GoogleAnalytics.js do the job
       copyBtn.dataset.gaEventAction = initialEventAction!; // reset the 'data-ga-event-action' back to initial
     });
-  }, []);
+  }, [rootNode]);
   return (
-    <CodeBlockContext.Provider value={rootNode}>
+    <CodeBlockContext.Provider value={contextValue}>
       <InitCodeCopy />
       {children}
     </CodeBlockContext.Provider>
