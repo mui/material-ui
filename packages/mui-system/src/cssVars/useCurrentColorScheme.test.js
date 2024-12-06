@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent, act, screen } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, act, screen, reactMajor } from '@mui/internal-test-utils';
 import {
   DEFAULT_MODE_STORAGE_KEY,
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
@@ -101,9 +101,10 @@ describe('useCurrentColorScheme', () => {
         </div>
       );
     }
+    const expectedCount = reactMajor >= 19 ? 1 : 2;
     const { container } = render(<Data />);
 
-    expect(container.firstChild.textContent).to.equal('light:2'); // 2 because of double render within strict mode
+    expect(container.firstChild.textContent).to.equal(`light:${expectedCount}`);
   });
 
   it('[noSsr] does not trigger a re-render', () => {
