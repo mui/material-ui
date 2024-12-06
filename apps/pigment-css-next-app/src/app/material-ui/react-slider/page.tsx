@@ -17,7 +17,6 @@ import RangeSlider from '../../../../../../docs/data/material/components/slider/
 import SliderSizes from '../../../../../../docs/data/material/components/slider/SliderSizes';
 import TrackFalseSlider from '../../../../../../docs/data/material/components/slider/TrackFalseSlider';
 import TrackInvertedSlider from '../../../../../../docs/data/material/components/slider/TrackInvertedSlider';
-import VerticalAccessibleSlider from '../../../../../../docs/data/material/components/slider/VerticalAccessibleSlider';
 import VerticalSlider from '../../../../../../docs/data/material/components/slider/VerticalSlider';
 
 export default function Slider() {
@@ -123,12 +122,6 @@ export default function Slider() {
         <h2> Track Inverted Slider</h2>
         <div className="demo-container">
           <TrackInvertedSlider />
-        </div>
-      </section>
-      <section>
-        <h2> Vertical Accessible Slider</h2>
-        <div className="demo-container">
-          <VerticalAccessibleSlider />
         </div>
       </section>
       <section>
