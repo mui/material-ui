@@ -1247,9 +1247,23 @@ The ListItem's `componentsProps` prop was deprecated in favor of `slotProps`:
 
 The ListItem's `ContainerComponent` prop was deprecated in favor of `slots.root` or `component` instead.
 
+```diff
+ <ListItem
+-  ContainerComponent={CustomContainer}
++  slots={{ root: CustomContainer }}
+ />
+```
+
 ### ContainerProps
 
 The ListItem's `ContainerProps` prop was deprecated in favor of `slotProps.root` instead.
+
+```diff
+ <ListItem
+-  ContainerProps={{ id: 'container-id' }}
++  slotProps={{ root: { id: 'container-id' } }}
+ />
+```
 
 ## ListItemSecondaryAction
 
