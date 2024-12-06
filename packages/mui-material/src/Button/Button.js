@@ -50,6 +50,7 @@ const useUtilityClasses = (ownerState) => {
       'loadingIndicator',
       loading && `loadingIndicator${capitalize(loadingPosition)}`,
     ],
+    loadingWrapper: ['loadingWrapper'],
   };
 
   const composedClasses = composeClasses(slots, getButtonUtilityClass, classes);
@@ -524,7 +525,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     focusVisibleClassName,
     fullWidth = false,
     id: idProp,
-    loading = false,
+    loading = null,
     loadingIndicator: loadingIndicatorProp,
     loadingPosition = 'center',
     size = 'medium',
@@ -569,12 +570,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     </ButtonEndIcon>
   );
 
-  const loader = (
-    <ButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
-      {loading && loadingIndicator}
-    </ButtonLoadingIndicator>
-  );
-
   const positionClassName = buttonGroupButtonContextPositionClassName || '';
 
   return (
@@ -592,7 +587,16 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       classes={classes}
     >
       {startIcon}
-      {loader}
+      {typeof loading === 'boolean' && (
+        // use plain HTML span to minimize the runtime overhead
+        <span className={classes.loadingWrapper} style={{ display: 'contents' }}>
+          {loading && (
+            <ButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
+              {loadingIndicator}
+            </ButtonLoadingIndicator>
+          )}
+        </span>
+      )}
       {children}
       {endIcon}
     </ButtonRoot>
@@ -678,7 +682,8 @@ Button.propTypes /* remove-proptypes */ = {
   id: PropTypes.string,
   /**
    * If `true`, the loading indicator is visible and the button is disabled.
-   * @default false
+   * If `true | false`, the loading wrapper is always rendered before the children to prevent [Google Translation Crash](https://github.com/mui/material-ui/issues/27853).
+   * @default null
    */
   loading: PropTypes.bool,
   /**

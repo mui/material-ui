@@ -17,7 +17,7 @@
     "endIcon": { "type": { "name": "node" } },
     "fullWidth": { "type": { "name": "bool" }, "default": "false" },
     "href": { "type": { "name": "string" } },
-    "loading": { "type": { "name": "bool" }, "default": "false" },
+    "loading": { "type": { "name": "bool" }, "default": "null" },
     "loadingIndicator": {
       "type": { "name": "node" },
       "default": "<CircularProgress color=\"inherit\" size={16} />"
@@ -267,6 +267,12 @@
       "key": "loadingIndicatorStart",
       "className": "MuiButton-loadingIndicatorStart",
       "description": "Styles applied to the loadingIndicator element if `loadingPosition=\"start\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "loadingWrapper",
+      "className": "MuiButton-loadingWrapper",
+      "description": "Styles applied to the loadingWrapper element.",
       "isGlobal": false
     },
     {

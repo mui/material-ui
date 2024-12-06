@@ -755,6 +755,22 @@ describe('<Button />', () => {
   });
 
   describe('prop: loading', () => {
+    it('should not have a loading wrapper by default', () => {
+      const { container } = render(<Button>Test</Button>);
+
+      expect(container.querySelector(`.${classes.loadingWrapper}`)).to.equal(null);
+    });
+
+    it('should have a loading wrapper when loading is boolean', () => {
+      const { container, rerender } = render(<Button loading={false}>Test</Button>);
+
+      expect(container.querySelector(`.${classes.loadingWrapper}`)).not.to.equal(null);
+
+      rerender(<Button loading>Test</Button>);
+
+      expect(container.querySelector(`.${classes.loadingWrapper}`)).not.to.equal(null);
+    });
+
     it('disables the button', () => {
       render(<Button loading />);
 
