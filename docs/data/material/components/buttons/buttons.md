@@ -141,6 +141,17 @@ Toggle the loading switch to see the transition between the different states.
 
 {{"demo": "LoadingButtonsTransition.js"}}
 
+:::warning
+When the `loading` prop is set to `boolean`, the loading wrapper is always present in the DOM to prevent a [Google Translation Crash](https://github.com/mui/material-ui/issues/27853).
+
+The `loading` value should always be `null` or `boolean`. The pattern below is not recommended as it can cause the Google Translation Crash:
+
+```jsx
+<Button {...isFetching && { loading: true }}> // ❌ Don't do this
+```
+
+:::
+
 ## Customization
 
 Here are some examples of customizing the component.
