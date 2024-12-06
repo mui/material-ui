@@ -33,6 +33,14 @@ export function hexToRgb(color) {
     colors = colors.map((n) => n + n);
   }
 
+  if (process.env.NODE_ENV !== 'production') {
+    if (colors.length >= 4 && Number.isNaN(parseInt(colors[3], 16))) {
+      console.error(
+        `MUI: The color: "${color}" is invalid. Make sure the color input doesn't contain leading/trailing space.`,
+      );
+    }
+  }
+
   return colors
     ? `rgb${colors.length === 4 ? 'a' : ''}(${colors
         .map((n, index) => {
