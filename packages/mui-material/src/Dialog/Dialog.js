@@ -485,4 +485,6 @@ Dialog.propTypes /* remove-proptypes */ = {
   TransitionProps: PropTypes.object,
 };
 
+Dialog.displayName = 'Dialog';
+
 export default Dialog;

@@ -44,6 +44,8 @@ TabContext.propTypes /* remove-proptypes */ = {
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 };
 
+TabContext.displayName = 'TabContext';
+
 /**
  * @returns {unknown}
  */

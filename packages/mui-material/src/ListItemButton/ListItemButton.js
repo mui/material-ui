@@ -299,4 +299,6 @@ ListItemButton.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+ListItemButton.displayName = 'ListItemButton';
+
 export default ListItemButton;

@@ -88,4 +88,6 @@ Card.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+Card.displayName = 'Card';
+
 export default Card;

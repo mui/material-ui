@@ -514,4 +514,6 @@ Switch.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+Switch.displayName = 'Switch';
+
 export default Switch;

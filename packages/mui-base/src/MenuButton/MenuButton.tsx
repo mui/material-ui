@@ -119,4 +119,6 @@ MenuButton.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
+MenuButton.displayName = 'MenuButton';
+
 export { MenuButton };

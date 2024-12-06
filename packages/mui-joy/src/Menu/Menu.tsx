@@ -316,4 +316,6 @@ Menu.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+Menu.displayName = 'Menu';
+
 export default Menu;

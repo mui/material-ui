@@ -160,4 +160,6 @@ StepIcon.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+StepIcon.displayName = 'StepIcon';
+
 export default StepIcon;

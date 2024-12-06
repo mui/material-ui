@@ -528,4 +528,6 @@ Button.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+Button.displayName = 'Button';
+
 export default Button;

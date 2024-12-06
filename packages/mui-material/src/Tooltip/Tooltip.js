@@ -994,4 +994,6 @@ Tooltip.propTypes /* remove-proptypes */ = {
   TransitionProps: PropTypes.object,
 };
 
+Tooltip.displayName = 'Tooltip';
+
 export default Tooltip;

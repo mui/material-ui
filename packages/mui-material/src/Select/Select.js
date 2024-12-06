@@ -284,6 +284,8 @@ Select.propTypes /* remove-proptypes */ = {
   variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
 };
 
+Select.displayName = 'Select';
+
 Select.muiName = 'Select';
 
 export default Select;

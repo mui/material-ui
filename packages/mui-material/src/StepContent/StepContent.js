@@ -159,4 +159,6 @@ StepContent.propTypes /* remove-proptypes */ = {
   TransitionProps: PropTypes.object,
 };
 
+StepContent.displayName = 'StepContent';
+
 export default StepContent;

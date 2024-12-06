@@ -123,4 +123,6 @@ ModalOverflow.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+ModalOverflow.displayName = 'ModalOverflow';
+
 export default ModalOverflow;

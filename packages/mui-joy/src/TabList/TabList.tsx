@@ -245,4 +245,6 @@ TabList.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+TabList.displayName = 'TabList';
+
 export default TabList;
