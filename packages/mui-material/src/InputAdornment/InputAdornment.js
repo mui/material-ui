@@ -149,7 +149,9 @@ const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
             {/* To have the correct vertical alignment baseline */}
             {position === 'start' ? (
               /* notranslate needed while Google Translate will not fix zero-width space issue */
-              <span className="notranslate">&#8203;</span>
+              <span className="notranslate" aria-hidden>
+                &#8203;
+              </span>
             ) : null}
             {children}
           </React.Fragment>
