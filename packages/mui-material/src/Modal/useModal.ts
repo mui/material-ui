@@ -24,6 +24,8 @@ function getHasTransition(children: UseModalParameters['children']) {
   return children ? children.props.hasOwnProperty('in') : false;
 }
 
+const noop = () => {};
+
 // A modal manager used to track and manage the state of open Modals.
 // Modals don't open on the server so this won't conflict with concurrent requests.
 const manager = new ModalManager();
@@ -227,8 +229,8 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
     };
 
     return {
-      onEnter: createChainedFunction(handleEnter, children?.props.onEnter),
-      onExited: createChainedFunction(handleExited, children?.props.onExited),
+      onEnter: createChainedFunction(handleEnter, children?.props.onEnter ?? noop),
+      onExited: createChainedFunction(handleExited, children?.props.onExited ?? noop),
     };
   };
 

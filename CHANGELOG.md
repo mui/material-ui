@@ -1,5 +1,100 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.1.10
+
+<!-- generated comparing v6.1.9..master -->
+
+_Dec 3, 2024_
+
+A big thanks to the 11 contributors who made this release possible.
+
+### `@mui/material@6.1.10`
+
+- [Avatar] Fix `slotProps.img` not spread to hook (#44536) @siriwatknp
+- [FilledInput] Use `slotProps` instead of `componentsProps` (#44552) @siriwatknp
+- [Grid2] Fix theme scoping error (#44599) @siriwatknp
+- [Grid2] Add container styles from styleOverrides (#44598) @sai6855
+- Skip `tonalOffset` from setting color channel (#44585) @siriwatknp
+- Remove few more React.ReactElement<any> types (#44290) @sai6855
+- [Tabs] Fix `ScrollbarSize` ref being overriden (#44593) @DiegoAndai
+- [Select][TextField] Fix screen reader from saying `&ZeroWidthSpace` (#44631) @arishoham
+
+### `@mui/system@6.1.10`
+
+- [ThemeProvider] Optimize `theme` changes when enabling CSS theme variables (#44588) @siriwatknp
+
+### Docs
+
+- Notification for the MUI X v8 alpha zero announcement blog post (#44629) @joserodolfofreitas
+- Bump React Router to ^7.0.1 (#44531) @oliviertassinari
+- [material-ui] Replace testid with id in migration guide (#44636) @sai6855
+- [material-ui][TextField] Update usage of `InputLabelProps` in docs (#44634) @sai6855
+- [material-ui][ListItem] Add missing diffs in migration guide (#44638) @sai6855
+- [examples] Use Next.js 14 on examples (#44486) @DiegoAndai
+- Update links and sidebar nav for Base UI components in Material UI (#44581) @samuelsycamore
+
+### Core
+
+- Remove `getSlotOwnerState` from `useSlot` util (#44403) @ZeeshanTamboli
+- Extract useRippleHandler outside of ButtonBase (#44591) @albarv340
+- Update eslint config (#44586) @MBilalShafi
+- [core-infra] Remove useless fragments (#44516) @oliviertassinari
+- [docs-infra] Fix Banner CLS (#44632) @oliviertassinari
+- [docs-infra] Change CSS vars generation to be extracted from Enum (#44587) @mnajdova
+- [docs-infra] Automatically hide Black Friday banner (#44630) @oliviertassinari
+- [docs-infra] Fix TOC RTL padding regression (#44535) @oliviertassinari
+- [test-utils] Remove leftover React.ReactElement<any> from describeConformance.tsx (#44639) @sai6855
+
+All contributors of this release in alphabetical order: @albarv340, @arishoham, @DiegoAndai, @joserodolfofreitas, @MBilalShafi, @mnajdova, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+
+## 6.1.9
+
+<!-- generated comparing v6.1.8..master -->
+
+_Nov 27, 2024_
+
+A big thanks to the 8 contributors who made this release possible.
+
+### `@mui/material@6.1.9`
+
+- [Select] Omit `placeholder` from props (#44502) @Juneezee
+- [Grid2] Add container class to `Grid2Classes` (#44562) @sai6855
+
+### `@mui/system@6.1.9`
+
+- Add ThemeProvider `noSsr` to prevent double rendering (#44451) @siriwatknp
+
+### `@mui/codemod@6.1.9`
+
+- [codemod] Fix handling of computed `paragraph` props (#44195) @joshkel
+
+### `@mui/material-pigment-css@6.1.9`
+
+- Make @pigment-css/react as peer dependency (#44498) @brijeshb42
+
+### Docs
+
+- [material-ui] Add missing required dependencies in dashboard template README (#44476) @mesqueeb
+- [material-ui] Add missing Roboto import to Next.js integration docs (#44462) @StaceyD22
+- [material-ui][Dialog] Fix padding in SimpleDialog demo (#44467) @oliviertassinari
+- Fix template page issues (#44466) @oliviertassinari
+- [examples] Add dark mode example for Material UI + Pigment CSS (#44480) @mnajdova
+
+### Core
+
+- Remove TODO line in the changelog (#44484) @mnajdova
+- Polish image display (418e888) @oliviertassinari
+- [core-infra] Add no-relative-packages (#44489) @oliviertassinari
+- [docs-infra] Support CSS variables API info (#44559) @mnajdova
+- [docs-infra] Fix display when ad-block triggers (#44567) @oliviertassinari
+- [docs-infra] Improve locator finding using visible option (#44541) @siriwatknp
+- [docs-infra] Correctly flatten the pages tree (#44514) @oliviertassinari
+- [docs-infra] Fix Sponsor design regression (#44515) @oliviertassinari
+- [test] Remove React.ReactElement<any> from describeConformance.tsx (#44318) @sai6855
+- [test] Do not enforce the presence of `ownerState.className` in `describeConformance` (#44479) @flaviendelangle
+
+All contributors of this release in alphabetical order: @brijeshb42, @flaviendelangle, @joshkel, @Juneezee, @mesqueeb, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp, @StaceyD22
+
 ## v6.1.8
 
 <!-- generated comparing v6.1.7..master -->

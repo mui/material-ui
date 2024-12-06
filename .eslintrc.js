@@ -120,6 +120,10 @@ module.exports = /** @type {Config} */ ({
         variables: true,
       },
     ],
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      { vars: 'all', args: 'after-used', ignoreRestSiblings: true, argsIgnorePattern: '^_' },
+    ],
     'no-use-before-define': 'off',
 
     // disabled type-aware linting due to performance considerations

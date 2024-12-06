@@ -29,8 +29,10 @@ import {
   AdditionalPropsInfo,
   ComponentApiContent,
   ComponentReactApi,
+  ParsedProperty,
 } from '../types/ApiBuilder.types';
 import { Slot, ComponentInfo } from '../types/utils.types';
+import extractInfoFromEnum from '../utils/extractInfoFromEnum';
 
 const cssComponents = ['Box', 'Grid', 'Typography', 'Stack'];
 
@@ -321,6 +323,7 @@ const generateApiPage = async (
     name: reactApi.name,
     imports: reactApi.imports,
     ...(reactApi.slots?.length > 0 && { slots: reactApi.slots }),
+    ...(Object.keys(reactApi.cssVariables).length > 0 && { cssVariables: reactApi.cssVariables }),
     classes: reactApi.classes,
     spread: reactApi.spread,
     themeDefaultProps: reactApi.themeDefaultProps,
@@ -459,6 +462,20 @@ const attachTranslations = (
   reactApi.classes.forEach((classDefinition, index) => {
     delete reactApi.classes[index].deprecationInfo; // store deprecation info in translations only
   });
+
+  /**
+   * CSS variables descriptions.
+   */
+  if (Object.keys(reactApi.cssVariables).length > 0) {
+    translations.cssVariablesDescriptions = {};
+    [...Object.keys(reactApi.cssVariables)]
+      .sort() // Sort to ensure consistency of object key order
+      .forEach((cssVariableName: string) => {
+        const cssVariable = reactApi.cssVariables[cssVariableName];
+        const { description } = cssVariable;
+        translations.cssVariablesDescriptions![cssVariableName] = renderMarkdown(description);
+      });
+  }
 
   reactApi.translations = translations;
 };
@@ -607,6 +624,58 @@ const defaultGetComponentImports = (name: string, filename: string) => {
   return [subpathImport, rootImport];
 };
 
+const attachCssVariables = (reactApi: ComponentReactApi, params: ParsedProperty[]) => {
+  const cssVarsErrors: Array<[propName: string, error: Error]> = [];
+  const cssVariables: ComponentReactApi['cssVariables'] = params
+    .map((p) => {
+      const { name: propName, ...propDescriptor } = p;
+      let prop: Omit<ParsedProperty, 'name'> | null;
+      try {
+        prop = propDescriptor;
+      } catch (error) {
+        cssVarsErrors.push([propName, error as Error]);
+        prop = null;
+      }
+      if (prop === null) {
+        // have to delete `componentProps.undefined` later
+        return [] as any;
+      }
+
+      const deprecationTag = propDescriptor.tags?.deprecated;
+      const deprecation = deprecationTag?.text?.[0]?.text;
+
+      const typeTag = propDescriptor.tags?.type;
+      const type = (typeTag?.text?.[0]?.text ?? 'string').replace(/{|}/g, '');
+
+      return {
+        name: propName,
+        description: propDescriptor.description,
+        type,
+        deprecated: !!deprecation || undefined,
+        deprecationInfo: renderMarkdown(deprecation || '').trim() || undefined,
+      };
+    })
+    .reduce((acc, cssVarDefinition) => {
+      const { name, ...rest } = cssVarDefinition;
+      return {
+        ...acc,
+        [name]: rest,
+      };
+    }, {});
+
+  if (cssVarsErrors.length > 0) {
+    throw new Error(
+      `There were errors creating CSS variable descriptions:\n${cssVarsErrors
+        .map(([cssVarName, error]) => {
+          return `  - ${cssVarName}: ${error}`;
+        })
+        .join('\n')}`,
+    );
+  }
+
+  reactApi.cssVariables = cssVariables;
+};
+
 /**
  * - Build react component (specified filename) api by lookup at its definition (.d.ts or ts)
  *   and then generate the API page + json data
@@ -628,13 +697,26 @@ export default async function generateComponentApi(
   const filename = componentInfo.filename;
   let reactApi: ComponentReactApi;
 
-  if (componentInfo.isSystemComponent || componentInfo.name === 'Grid2') {
-    try {
+  try {
+    reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
+      filename,
+    });
+  } catch (error) {
+    // fallback to default logic if there is no `create*` definition.
+    if ((error as Error).message === 'No suitable component definition found.') {
       reactApi = docgenParse(
         src,
         (ast) => {
           let node;
+          // TODO migrate to react-docgen v6, using Babel AST now
           astTypes.visit(ast, {
+            visitFunctionDeclaration: (functionPath) => {
+              // @ts-ignore
+              if (functionPath.node.params[0].name === 'props') {
+                node = functionPath;
+              }
+              return false;
+            },
             visitVariableDeclaration: (variablePath) => {
               const definitions: any[] = [];
               if (variablePath.node.declarations) {
@@ -642,7 +724,6 @@ export default async function generateComponentApi(
                   .get('declarations')
                   .each((declarator: any) => definitions.push(declarator.get('init')));
               }
-
               definitions.forEach((definition) => {
                 // definition.value.expression is defined when the source is in TypeScript.
                 const expression = definition.value?.expression
@@ -650,36 +731,25 @@ export default async function generateComponentApi(
                   : definition;
                 if (expression.value?.callee) {
                   const definitionName = expression.value.callee.name;
-
                   if (definitionName === `create${componentInfo.name}`) {
                     node = expression;
                   }
                 }
               });
-
               return false;
             },
           });
 
           return node;
         },
-        defaultHandlers,
-        { filename },
-      );
-    } catch (error) {
-      // fallback to default logic if there is no `create*` definition.
-      if ((error as Error).message === 'No suitable component definition found.') {
-        reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
+        defaultHandlers.concat(muiDefaultPropsHandler),
+        {
           filename,
-        });
-      } else {
-        throw error;
-      }
+        },
+      );
+    } else {
+      throw error;
     }
-  } else {
-    reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
-      filename,
-    });
   }
 
   if (!reactApi.props) {
@@ -750,7 +820,14 @@ export default async function generateComponentApi(
 
   reactApi.deprecated = !!deprecation || undefined;
 
+  const cssVars = await extractInfoFromEnum(
+    `${componentInfo.name}CssVars`,
+    new RegExp(`${componentInfo.name}(CssVars|Classes)?.tsx?$`, 'i'),
+    project,
+  );
+
   attachPropsTable(reactApi, projectSettings.propsSettings);
+  attachCssVariables(reactApi, cssVars);
   attachTranslations(reactApi, deprecationInfo, projectSettings.propsSettings);
 
   // eslint-disable-next-line no-console
