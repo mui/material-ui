@@ -49,8 +49,8 @@ describe('<TablePagination />', () => {
       refInstanceof: window.HTMLTableCellElement,
       testComponentPropWith: 'td',
       testComponentsRootPropWith: 'td',
+      testRootOverrides: { slotName: 'root', slotClassName: classes.root },
       testDeepOverrides: [
-        { slotName: 'root', slotClassName: classes.root },
         { slotName: 'toolbar', slotClassName: classes.toolbar },
         { slotName: 'spacer', slotClassName: classes.spacer },
         { slotName: 'selectLabel', slotClassName: classes.selectLabel },
