@@ -36,4 +36,4 @@ import { TablePagination as MyTablePagination } from '@mui/material';
   select: { native: true }
 }} />;
 
-<CustomTooltip ActionsComponent="div" SelectProps={{ native: true }} />;
+<CustomTablePagination ActionsComponent="div" SelectProps={{ native: true }} />;

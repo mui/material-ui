@@ -29,4 +29,4 @@ import { TablePagination as MyTablePagination } from '@mui/material';
 
 <MyTablePagination ActionsComponent="div" SelectProps={{ native: true }} />;
 
-<CustomTooltip ActionsComponent="div" SelectProps={{ native: true }} />;
+<CustomTablePagination ActionsComponent="div" SelectProps={{ native: true }} />;
