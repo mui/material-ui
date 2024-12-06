@@ -8,7 +8,7 @@ import describeConformance from '../../test/describeConformance';
 describe('<ListItemText />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<ListItemText>Conformance?</ListItemText>, () => ({
+  describeConformance(<ListItemText primary="Primary" secondary="Secondary" />, () => ({
     classes,
     inheritComponent: 'div',
     render,
