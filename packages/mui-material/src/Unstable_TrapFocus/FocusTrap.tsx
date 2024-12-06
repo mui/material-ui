@@ -324,7 +324,7 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
     };
   }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, isEnabled, open, getTabbable]);
 
-  const onFocus = (event: FocusEvent) => {
+  const onFocus = (event: React.FocusEvent<Element, Element>) => {
     if (nodeToRestore.current === null) {
       nodeToRestore.current = event.relatedTarget;
     }

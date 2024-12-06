@@ -1,3 +1,4 @@
+/* eslint-disable material-ui/no-hardcoded-labels */
 import * as React from 'react';
 import TypeScriptIcon from '@mui/docs/svgIcons/TypeScript';
 import startCase from 'lodash/startCase';
@@ -1267,7 +1268,15 @@ function getAvailableTokens(colorSchemes: any, colorMode: 'light' | 'dark') {
   return tokens;
 }
 
-function TemplatesDialog({ children, data }: { children: React.ReactElement<any>; data: any }) {
+function TemplatesDialog({
+  children,
+  data,
+}: {
+  children: React.ReactElement<{
+    onClick?: React.MouseEventHandler;
+  }>;
+  data: any;
+}) {
   const [open, setOpen] = React.useState(false);
   const { map: templateMap } = sourceJoyTemplates();
   const renderItem = (name: string, item: TemplateData) => {
@@ -1338,9 +1347,9 @@ function TemplatesDialog({ children, data }: { children: React.ReactElement<any>
   return (
     <React.Fragment>
       {React.cloneElement(children, {
-        onClick: () => {
+        onClick: (event: React.MouseEvent) => {
           setOpen(true);
-          children.props.onClick?.();
+          children.props.onClick?.(event);
         },
       })}
       <Modal open={open} onClose={() => setOpen(false)}>
