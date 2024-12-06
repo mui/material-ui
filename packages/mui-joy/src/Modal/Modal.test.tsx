@@ -259,7 +259,9 @@ describe('<Modal />', () => {
       const { getByTestId } = render(
         <Modal keepMounted open={false}>
           <div>
-            <p data-testid="children">Hello World</p>
+            <p tabIndex={-1} data-testid="children">
+              Hello World
+            </p>
           </div>
         </Modal>,
       );
@@ -271,7 +273,7 @@ describe('<Modal />', () => {
       const modalRef = React.createRef<HTMLDivElement>();
       const { setProps } = render(
         <Modal keepMounted open={false} ref={modalRef}>
-          <div>ModalContent</div>
+          <div tabIndex={-1}>ModalContent</div>
         </Modal>,
       );
       const modalNode = modalRef.current;
@@ -301,7 +303,9 @@ describe('<Modal />', () => {
     it('should focus on the modal when it is opened', () => {
       const { getByTestId, setProps } = render(
         <Modal open>
-          <div data-testid="modal">Foo</div>
+          <div tabIndex={-1} data-testid="modal">
+            Foo
+          </div>
         </Modal>,
       );
 
@@ -333,7 +337,9 @@ describe('<Modal />', () => {
     it('should keep focus on the modal when it is closed', () => {
       const { getByTestId, setProps } = render(
         <Modal open disableRestoreFocus>
-          <div data-testid="modal">Foo</div>
+          <div tabIndex={-1} data-testid="modal">
+            Foo
+          </div>
         </Modal>,
       );
 
@@ -347,7 +353,7 @@ describe('<Modal />', () => {
     it('should not focus on the modal when disableAutoFocus is true', () => {
       render(
         <Modal open disableAutoFocus>
-          <div>Foo</div>
+          <div tabIndex={-1}>Foo</div>
         </Modal>,
       );
 
@@ -436,7 +442,9 @@ describe('<Modal />', () => {
 
           return (
             <Modal open={open}>
-              <div id="modal-body">hello</div>
+              <div tabIndex={-1} id="modal-body">
+                hello
+              </div>
             </Modal>
           );
         }
@@ -454,10 +462,10 @@ describe('<Modal />', () => {
         return (
           <React.Fragment>
             <Modal open={props.open}>
-              <div>Hello</div>
+              <div tabIndex={-1}>Hello</div>
             </Modal>
             <Modal open={props.open}>
-              <div>World</div>
+              <div tabIndex={-1}>World</div>
             </Modal>
           </React.Fragment>
         );
@@ -492,7 +500,7 @@ describe('<Modal />', () => {
       render() {
         return (
           <Modal open={this.state.open}>
-            <div>Hello</div>
+            <div tabIndex={-1}>Hello</div>
           </Modal>
         );
       }
@@ -506,7 +514,7 @@ describe('<Modal />', () => {
         const { anchorEl } = props;
         return (
           <Modal open={Boolean(anchorEl)} container={anchorEl}>
-            <div>Hello</div>
+            <div tabIndex={-1}>Hello</div>
           </Modal>
         );
       }
@@ -523,7 +531,7 @@ describe('<Modal />', () => {
       const { getByTestId } = render(
         <div data-testid="parent">
           <Modal open disablePortal>
-            <div data-testid="child" />
+            <div tabIndex={-1} data-testid="child" />
           </Modal>
         </div>,
       );
