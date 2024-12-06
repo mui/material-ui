@@ -128,7 +128,8 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
       timeout={timeout}
       {...other}
     >
-      {(state, childProps) => {
+      {/* Ensure "ownerState" is not forwarded to the child DOM element when a direct HTML element is used. This avoids unexpected behavior since "ownerState" is intended for internal styling, component props and not as a DOM attribute. */}
+      {(state, { ownerState, ...restChildProps }) => {
         return React.cloneElement(children, {
           style: {
             transform: 'scale(0)',
@@ -138,7 +139,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
             ...children.props.style,
           },
           ref: handleRef,
-          ...childProps,
+          ...restChildProps,
         });
       }}
     </TransitionComponent>
