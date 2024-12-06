@@ -852,8 +852,8 @@ importers:
         specifier: ^3.2.3
         version: 3.2.3
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.1
+        version: 5.0.1
       '@types/chance':
         specifier: ^1.1.6
         version: 1.1.6
@@ -891,8 +891,8 @@ importers:
         specifier: ^4.2.0
         version: 4.2.5
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       cross-fetch:
         specifier: ^4.0.0
         version: 4.0.0(encoding@0.1.13)
@@ -928,8 +928,8 @@ importers:
         specifier: ^11.0.4
         version: 11.0.4(@babel/core@7.26.0)
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
 
   packages-internal/babel-plugin-resolve-imports:
     dependencies:
@@ -996,8 +996,8 @@ importers:
         specifier: ^7.20.5
         version: 7.20.5
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.1
+        version: 5.0.1
       '@types/doctrine':
         specifier: ^0.0.9
         version: 0.0.9
@@ -1014,8 +1014,8 @@ importers:
         specifier: ^10.0.0
         version: 10.0.0
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       fast-glob:
         specifier: ^3.3.2
         version: 3.3.2
@@ -1056,11 +1056,11 @@ importers:
         specifier: ^14.5.2
         version: 14.5.2(@testing-library/dom@10.4.0)
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       chai-dom:
         specifier: ^1.12.0
-        version: 1.12.0(chai@4.5.0)
+        version: 1.12.0(chai@5.1.2)
       dom-accessibility-api:
         specifier: ^0.7.0
         version: 0.7.0
@@ -1096,8 +1096,8 @@ importers:
         version: 19.0.2
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.1
+        version: 5.0.1
       '@types/chai-dom':
         specifier: ^1.11.3
         version: 1.11.3
@@ -1178,8 +1178,8 @@ importers:
         specifier: ^7.20.6
         version: 7.20.6
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.1
+        version: 5.0.1
       '@types/doctrine':
         specifier: ^0.0.9
         version: 0.0.9
@@ -1199,8 +1199,8 @@ importers:
         specifier: ^17.0.3
         version: 17.0.3
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       sinon:
         specifier: ^19.0.2
         version: 19.0.2
@@ -1221,8 +1221,8 @@ importers:
         version: 4.17.21
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.1
+        version: 5.0.1
       '@types/mocha':
         specifier: ^10.0.10
         version: 10.0.10
@@ -1233,8 +1233,8 @@ importers:
         specifier: ^17.0.3
         version: 17.0.3
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       sinon:
         specifier: ^19.0.2
         version: 19.0.2
@@ -1291,11 +1291,11 @@ importers:
         version: 1.29.0
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.1
+        version: 5.0.1
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
 
   packages/mui-base:
     dependencies:
@@ -1331,8 +1331,8 @@ importers:
         specifier: ^14.5.2
         version: 14.5.2(@testing-library/dom@10.4.0)
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.1
+        version: 5.0.1
       '@types/prop-types':
         specifier: ^15.7.13
         version: 15.7.13
@@ -1346,8 +1346,8 @@ importers:
         specifier: ^17.0.3
         version: 17.0.3
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       fast-glob:
         specifier: ^3.3.2
         version: 3.3.2
@@ -1393,14 +1393,14 @@ importers:
         version: 17.7.2
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.1
+        version: 5.0.1
       '@types/jscodeshift':
         specifier: 0.12.0
         version: 0.12.0
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
     publishDirectory: build
 
   packages/mui-core-downloads-tracker:
@@ -1421,8 +1421,8 @@ importers:
         specifier: ^5.0.0 || ^6.0.0
         version: 6.1.10(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1)
       chai:
-        specifier: ^4.4.1
-        version: 4.5.0
+        specifier: ^4.4.1 || ^5.0.0
+        version: 5.1.2
       clipboard-copy:
         specifier: ^4.0.1
         version: 4.0.1
@@ -1472,11 +1472,11 @@ importers:
         version: 7.14.0
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.1
+        version: 5.0.1
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       fs-extra:
         specifier: ^11.2.0
         version: 11.2.0
@@ -1525,14 +1525,14 @@ importers:
         specifier: workspace:^
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.1
+        version: 5.0.1
       '@types/react':
         specifier: ^18.3.12
         version: 18.3.12
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       chalk:
         specifier: ^5.3.0
         version: 5.3.0
@@ -1608,8 +1608,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.1
+        version: 5.0.1
       '@types/prop-types':
         specifier: ^15.7.13
         version: 15.7.13
@@ -1623,8 +1623,8 @@ importers:
         specifier: ^17.0.3
         version: 17.0.3
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       fast-glob:
         specifier: ^3.3.2
         version: 3.3.2
@@ -1685,8 +1685,8 @@ importers:
         specifier: workspace:*
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.1
+        version: 5.0.1
       '@types/prop-types':
         specifier: ^15.7.13
         version: 15.7.13
@@ -1700,8 +1700,8 @@ importers:
         specifier: ^17.0.3
         version: 17.0.3
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -1771,8 +1771,8 @@ importers:
         specifier: ^14.5.2
         version: 14.5.2(@testing-library/dom@10.4.0)
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.1
+        version: 5.0.1
       '@types/prop-types':
         specifier: ^15.7.13
         version: 15.7.13
@@ -1786,8 +1786,8 @@ importers:
         specifier: ^17.0.3
         version: 17.0.3
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       css-mediaquery:
         specifier: ^0.1.2
         version: 0.1.2
@@ -1875,14 +1875,14 @@ importers:
         specifier: workspace:^
         version: link:../mui-types/build
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.1
+        version: 5.0.1
       '@types/react':
         specifier: ^18.3.12
         version: 18.3.12
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -1922,14 +1922,14 @@ importers:
         specifier: workspace:*
         version: link:build
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.1
+        version: 5.0.1
       '@types/react':
         specifier: ^18.3.12
         version: 18.3.12
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -1957,14 +1957,14 @@ importers:
         specifier: workspace:^
         version: link:../../packages-internal/test-utils
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.1
+        version: 5.0.1
       '@types/react':
         specifier: ^18.3.12
         version: 18.3.12
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -2034,8 +2034,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.1
+        version: 5.0.1
       '@types/react':
         specifier: ^18.3.12
         version: 18.3.12
@@ -2046,8 +2046,8 @@ importers:
         specifier: ^17.0.3
         version: 17.0.3
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -2099,8 +2099,8 @@ importers:
         specifier: workspace:*
         version: link:build
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.1
+        version: 5.0.1
       '@types/prop-types':
         specifier: ^15.7.13
         version: 15.7.13
@@ -2111,8 +2111,8 @@ importers:
         specifier: ^17.0.3
         version: 17.0.3
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       fast-glob:
         specifier: ^3.3.2
         version: 3.3.2
@@ -2165,8 +2165,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages-internal/test-utils
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.1
+        version: 5.0.1
       '@types/mocha':
         specifier: ^10.0.10
         version: 10.0.10
@@ -2186,8 +2186,8 @@ importers:
         specifier: ^17.0.3
         version: 17.0.3
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -2302,8 +2302,8 @@ importers:
         specifier: ^10.4.0
         version: 10.4.0
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.0.1
+        version: 5.0.1
       '@types/react':
         specifier: ^18.3.12
         version: 18.3.12
@@ -2314,8 +2314,8 @@ importers:
         specifier: ^17.0.3
         version: 17.0.3
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^5.1.2
+        version: 5.1.2
       docs:
         specifier: workspace:^
         version: link:../docs
@@ -5465,8 +5465,8 @@ packages:
   '@types/chai-dom@1.11.3':
     resolution: {integrity: sha512-EUEZI7uID4ewzxnU7DJXtyvykhQuwe+etJ1wwOiJyQRTH/ifMWKX+ghiXkxCUvNJ6IQDodf0JXhuP6zZcy2qXQ==}
 
-  '@types/chai@4.3.20':
-    resolution: {integrity: sha512-/pC9HAB5I/xMlc5FP77qjCnI16ChlJfW0tGa0IUcFn38VJrTV6DeZ60NU5KZBtaOZqjdpwTWohz5HU1RrhiYxQ==}
+  '@types/chai@5.0.1':
+    resolution: {integrity: sha512-5T8ajsg3M/FOncpLYW7sdOcD6yf4+722sze/tc4KQV0P8Z2rAr3SAuHCIkYmYpt8VbcQlnz8SxlOlPQYefe4cA==}
 
   '@types/chance@1.1.6':
     resolution: {integrity: sha512-V+pm3stv1Mvz8fSKJJod6CglNGVqEQ6OyuqitoDkWywEODM/eJd1eSuIp9xt6DrX8BWZ2eDSIzbw1tPCUTvGbQ==}
@@ -5509,6 +5509,9 @@ packages:
 
   '@types/debug@4.1.12':
     resolution: {integrity: sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==}
+
+  '@types/deep-eql@4.0.2':
+    resolution: {integrity: sha512-c9h9dVVMigMPc4bwTvC5dxqtqJZwQPePsWjPlpSOnojbor6pGqdk541lfA7AqFQr5pB1BRdq0juY9db81BwyFw==}
 
   '@types/doctrine@0.0.9':
     resolution: {integrity: sha512-eOIHzCUSH7SMfonMG1LsC2f8vxBFtho6NGBznK41R84YzPuvSBzrhEps33IsQiOW9+VL6NQ9DbjQJznk/S4uRA==}
@@ -6216,9 +6219,6 @@ packages:
   assert@2.1.0:
     resolution: {integrity: sha512-eLHpSK/Y4nhMJ07gDaAzoX/XAKS8PSaojml3M0DM4JpV1LAi5JOJ/p6H/XWrl8L+DzVEvVCW1z3vWAaB9oTsQw==}
 
-  assertion-error@1.1.0:
-    resolution: {integrity: sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==}
-
   assertion-error@2.0.1:
     resolution: {integrity: sha512-Izi8RQcffqCeNVgFigKli1ssklIbpHnCYc6AknXGYoB6grJqyeby7jv12JUQgmTAnIDnbck1uxksT4dzN3PWBA==}
     engines: {node: '>=12'}
@@ -6606,10 +6606,6 @@ packages:
     peerDependencies:
       chai: '>= 3'
 
-  chai@4.5.0:
-    resolution: {integrity: sha512-RITGBfijLkBddZvnn8jdqoTypxvqbOLYQkGGxXzeFjVHvudaPw0HNFD9x928/eUwYWd2dPCugVqspGALTZZQKw==}
-    engines: {node: '>=4'}
-
   chai@5.1.2:
     resolution: {integrity: sha512-aGtmf24DW6MLHHG5gCx4zaI3uBq3KRtxeVs0DjFH6Z0rDNbsvTxFASFvdj79pxjxZ8/5u3PIiN3IwEIQkiiuPw==}
     engines: {node: '>=12'}
@@ -6653,9 +6649,6 @@ packages:
 
   chardet@0.7.0:
     resolution: {integrity: sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==}
-
-  check-error@1.0.3:
-    resolution: {integrity: sha512-iKEoDYaRmd1mxM90a2OEfWhjsjPpYPuQ+lMYsoxB126+t8fw7ySEO48nmDg5COTjxDI65/Y2OWpeEHk3ZOe8zg==}
 
   check-error@2.1.1:
     resolution: {integrity: sha512-OAlb+T7V4Op9OwdkjmguYRqncdlx5JiofwOAUkmTF+jNdHwzTaTs4sRAGpzLF3oOz5xAyDGrPgeIDFQmDOTiJw==}
@@ -7335,10 +7328,6 @@ packages:
     peerDependenciesMeta:
       babel-plugin-macros:
         optional: true
-
-  deep-eql@4.1.4:
-    resolution: {integrity: sha512-SUwdGfqdKOwxCPeVYjwSyRpJ7Z+fhpwIAtmCUdZIWZ/YP5R9WAsyuSgpLVDi9bjWoN2LXHNss/dk3urXtdQxGg==}
-    engines: {node: '>=6'}
 
   deep-eql@5.0.2:
     resolution: {integrity: sha512-h5k/5U50IJJFpzfL6nO9jaaumfjO/f2NjK/oYB2Djzm4p9L+3T9qWpZqZ2hAbLPuuYq9wrU08WQyBTL5GbPk5Q==}
@@ -8245,9 +8234,6 @@ packages:
   get-caller-file@2.0.5:
     resolution: {integrity: sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==}
     engines: {node: 6.* || 8.* || >= 10.*}
-
-  get-func-name@2.0.2:
-    resolution: {integrity: sha512-8vXOvuE167CtIc3OyItco7N/dpRtBbYOsPsXCz7X/PMnlGjYjSGuZJgM1Y7mmew7BKf9BqvLX2tnOVy1BBUsxQ==}
 
   get-intrinsic@1.2.4:
     resolution: {integrity: sha512-5uYhsJH8VJBTv7oslg4BznJYhDoRI6waYCxMmCdnTrcCrHA/fCFKoTFz2JKKE0HdDFUF7/oQuhzumXJK7paBRQ==}
@@ -9592,9 +9578,6 @@ packages:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
     hasBin: true
 
-  loupe@2.3.7:
-    resolution: {integrity: sha512-zSMINGVYkdpYSOBmLi0D1Uo7JU9nVdQKrHxC8eYlV+9YKK9WePqAlL7lSlorG/U2Fw1w0hTBmaa/jrQ3UbPHtA==}
-
   loupe@3.1.2:
     resolution: {integrity: sha512-23I4pFZHmAemUnz8WZXbYRSKYj801VDaNv9ETuMh7IrMc7VuVVSo+Z9iLE3ni30+U48iDWfi30d3twAXBYmnCg==}
 
@@ -10730,9 +10713,6 @@ packages:
 
   pathe@1.1.2:
     resolution: {integrity: sha512-whLdWMYL2TwI08hn8/ZqAbrVemu0LNaNNJZX73O6qaIdCTfXutsLhMkjdENX0qhsQ9uIimo4/aQOmXkoon2nDQ==}
-
-  pathval@1.1.1:
-    resolution: {integrity: sha512-Dp6zGqpTdETdR63lehJYPeIOqpiNBNtc7BpWSLrOje7UaIsE5aY92r/AunQA7rsXvet3lrJ3JnZX29UPTKXyKQ==}
 
   pathval@2.0.0:
     resolution: {integrity: sha512-vE7JKRyES09KiunauX7nd2Q9/L7lhok4smP9RZTDeD4MVs72Dp2qNFVz39Nz5a0FVEW0BJR6C0DYrq6unoziZA==}
@@ -16939,9 +16919,11 @@ snapshots:
 
   '@types/chai-dom@1.11.3':
     dependencies:
-      '@types/chai': 4.3.20
+      '@types/chai': 5.0.1
 
-  '@types/chai@4.3.20': {}
+  '@types/chai@5.0.1':
+    dependencies:
+      '@types/deep-eql': 4.0.2
 
   '@types/chance@1.1.6': {}
 
@@ -16980,6 +16962,8 @@ snapshots:
   '@types/debug@4.1.12':
     dependencies:
       '@types/ms': 0.7.34
+
+  '@types/deep-eql@4.0.2': {}
 
   '@types/doctrine@0.0.9': {}
 
@@ -17852,8 +17836,6 @@ snapshots:
       object.assign: 4.1.5
       util: 0.12.5
 
-  assertion-error@1.1.0: {}
-
   assertion-error@2.0.1: {}
 
   ast-types-flow@0.0.7: {}
@@ -18346,19 +18328,9 @@ snapshots:
 
   caniuse-lite@1.0.30001667: {}
 
-  chai-dom@1.12.0(chai@4.5.0):
+  chai-dom@1.12.0(chai@5.1.2):
     dependencies:
-      chai: 4.5.0
-
-  chai@4.5.0:
-    dependencies:
-      assertion-error: 1.1.0
-      check-error: 1.0.3
-      deep-eql: 4.1.4
-      get-func-name: 2.0.2
-      loupe: 2.3.7
-      pathval: 1.1.1
-      type-detect: 4.1.0
+      chai: 5.1.2
 
   chai@5.1.2:
     dependencies:
@@ -18407,10 +18379,6 @@ snapshots:
   character-entities@2.0.2: {}
 
   chardet@0.7.0: {}
-
-  check-error@1.0.3:
-    dependencies:
-      get-func-name: 2.0.2
 
   check-error@2.1.1: {}
 
@@ -19181,10 +19149,6 @@ snapshots:
   dedent@1.5.3(babel-plugin-macros@3.1.0):
     optionalDependencies:
       babel-plugin-macros: 3.1.0
-
-  deep-eql@4.1.4:
-    dependencies:
-      type-detect: 4.1.0
 
   deep-eql@5.0.2: {}
 
@@ -20408,8 +20372,6 @@ snapshots:
   gensync@1.0.0-beta.2: {}
 
   get-caller-file@2.0.5: {}
-
-  get-func-name@2.0.2: {}
 
   get-intrinsic@1.2.4:
     dependencies:
@@ -22057,10 +22019,6 @@ snapshots:
     dependencies:
       js-tokens: 4.0.0
 
-  loupe@2.3.7:
-    dependencies:
-      get-func-name: 2.0.2
-
   loupe@3.1.2: {}
 
   lower-case@2.0.2:
@@ -23540,8 +23498,6 @@ snapshots:
   path-type@5.0.0: {}
 
   pathe@1.1.2: {}
-
-  pathval@1.1.1: {}
 
   pathval@2.0.0: {}
 
