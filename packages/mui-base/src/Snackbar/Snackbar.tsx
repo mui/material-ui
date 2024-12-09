@@ -191,4 +191,6 @@ Snackbar.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
+Snackbar.displayName = 'Snackbar';
+
 export { Snackbar };

@@ -89,4 +89,6 @@ TableHead.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+TableHead.displayName = 'TableHead';
+
 export default TableHead;

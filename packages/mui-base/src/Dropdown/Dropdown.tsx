@@ -51,6 +51,8 @@ Dropdown.propTypes /* remove-proptypes */ = {
   open: PropTypes.bool,
 } as any;
 
+Dropdown.displayName = 'Dropdown';
+
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line
   (Dropdown as any)['propTypes' + ''] = exactProp(Dropdown.propTypes);

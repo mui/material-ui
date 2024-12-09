@@ -225,4 +225,6 @@ FormControl.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 } as any;
 
+FormControl.displayName = 'FormControl';
+
 export { FormControl };

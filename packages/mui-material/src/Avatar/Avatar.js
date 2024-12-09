@@ -300,4 +300,6 @@ Avatar.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+Avatar.displayName = 'Avatar';
+
 export default Avatar;

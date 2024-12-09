@@ -401,4 +401,6 @@ Slide.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+Slide.displayName = 'Slide';
+
 export default Slide;

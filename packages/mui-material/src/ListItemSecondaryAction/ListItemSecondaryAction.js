@@ -90,6 +90,8 @@ ListItemSecondaryAction.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+ListItemSecondaryAction.displayName = 'ListItemSecondaryAction';
+
 ListItemSecondaryAction.muiName = 'ListItemSecondaryAction';
 
 export default ListItemSecondaryAction;

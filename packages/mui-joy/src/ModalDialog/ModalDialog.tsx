@@ -314,4 +314,6 @@ ModalDialog.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+ModalDialog.displayName = 'ModalDialog';
+
 export default ModalDialog;

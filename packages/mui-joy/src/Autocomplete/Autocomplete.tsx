@@ -743,6 +743,7 @@ interface AutocompleteComponent {
     props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
   ): React.JSX.Element;
   propTypes?: any;
+  displayName?: string;
 }
 
 Autocomplete.propTypes /* remove-proptypes */ = {
@@ -1216,5 +1217,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
+
+Autocomplete.displayName = 'Autocomplete';
 
 export default Autocomplete;

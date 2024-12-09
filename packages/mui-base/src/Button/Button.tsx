@@ -167,4 +167,6 @@ Button.propTypes /* remove-proptypes */ = {
   to: PropTypes.string,
 } as any;
 
+Button.displayName = 'Button';
+
 export { Button };

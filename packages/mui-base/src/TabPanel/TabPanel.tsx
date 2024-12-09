@@ -100,4 +100,6 @@ TabPanel.propTypes /* remove-proptypes */ = {
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 } as any;
 
+TabPanel.displayName = 'TabPanel';
+
 export { TabPanel };

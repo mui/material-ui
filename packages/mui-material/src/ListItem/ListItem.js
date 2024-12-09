@@ -417,4 +417,6 @@ ListItem.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+ListItem.displayName = 'ListItem';
+
 export default ListItem;

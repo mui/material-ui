@@ -285,4 +285,6 @@ Popup.propTypes /* remove-proptypes */ = {
   strategy: PropTypes.oneOf(['absolute', 'fixed']),
 } as any;
 
+Popup.displayName = 'Popup';
+
 export { Popup };
