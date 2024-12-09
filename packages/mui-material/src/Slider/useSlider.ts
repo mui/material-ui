@@ -269,7 +269,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
   const [focusedThumbIndex, setFocusedThumbIndex] = React.useState(-1);
 
-  const sliderRef = React.useRef<HTMLSpanElement | null>(null);
+  const sliderRef = React.useRef<HTMLSpanElement>(null);
   const handleRef = useForkRef(ref, sliderRef);
 
   const createHandleHiddenInputFocus =
