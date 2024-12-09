@@ -43,7 +43,7 @@ export function internal_serializeStyles(styles, layer) {
   wrapper[0] = styles;
   const serialized = emSerializeStyles(wrapper);
   if (layer) {
-    serialized.layer = layer;
+    serialized.styles = `/*@layer ${layer}*/${serialized.styles}`;
   }
   return serialized;
 }
