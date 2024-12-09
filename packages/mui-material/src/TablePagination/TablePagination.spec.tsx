@@ -1,7 +1,8 @@
 import * as React from 'react';
-import TablePagination from '@mui/material/TablePagination';
+import TablePagination, { TablePaginationOwnerState } from '@mui/material/TablePagination';
 import SvgIcon from '@mui/material/SvgIcon';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
+import { expectType } from '@mui/types';
 
 function SampleIcon() {
   return (
@@ -89,6 +90,87 @@ function classesTest() {
       variant: 'filled',
       hiddenLabel: true,
       disableUnderline: true,
+    },
+  }}
+/>;
+<TablePagination
+  count={1}
+  rowsPerPage={1}
+  page={1}
+  onPageChange={() => {}}
+  slots={{
+    root: 'div',
+    toolbar: 'div',
+    spacer: 'div',
+    displayedRows: 'p',
+    select: 'select',
+    selectLabel: 'label',
+    menuItem: 'div',
+  }}
+  slotProps={{
+    root: {
+      id: 'root',
+    },
+    toolbar: {
+      id: 'toolbar',
+      disableGutters: true,
+    },
+    displayedRows: {
+      id: 'displayedRows',
+    },
+    menuItem: {
+      id: 'menuItem',
+    },
+    selectLabel: {
+      id: 'selectLabel',
+    },
+    spacer: {
+      id: 'spacer',
+    },
+  }}
+/>;
+<TablePagination
+  count={1}
+  rowsPerPage={1}
+  page={1}
+  onPageChange={() => {}}
+  slotProps={{
+    root: (ownerState) => {
+      expectType<TablePaginationOwnerState, typeof ownerState>(ownerState);
+      return {
+        id: 'root',
+      };
+    },
+    toolbar: (ownerState) => {
+      expectType<TablePaginationOwnerState, typeof ownerState>(ownerState);
+      return {
+        id: 'toolbar',
+        disableGutters: true,
+      };
+    },
+    displayedRows: (ownerState) => {
+      expectType<TablePaginationOwnerState, typeof ownerState>(ownerState);
+      return {
+        id: 'displayedRows',
+      };
+    },
+    menuItem: (ownerState) => {
+      expectType<TablePaginationOwnerState, typeof ownerState>(ownerState);
+      return {
+        id: 'menuItem',
+      };
+    },
+    selectLabel: (ownerState) => {
+      expectType<TablePaginationOwnerState, typeof ownerState>(ownerState);
+      return {
+        id: 'selectLabel',
+      };
+    },
+    spacer: (ownerState) => {
+      expectType<TablePaginationOwnerState, typeof ownerState>(ownerState);
+      return {
+        id: 'spacer',
+      };
     },
   }}
 />;
