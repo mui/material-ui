@@ -5,6 +5,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useEventCallback as useEventCallback,
   unstable_createChainedFunction as createChainedFunction,
+  unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@mui/utils';
 import extractEventHandlers from '@mui/utils/extractEventHandlers';
 import { EventHandlers } from '../utils/types';
@@ -42,6 +43,7 @@ const manager = new ModalManager();
 function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const {
     container,
+    disablePortal = false,
     disableEscapeKeyDown = false,
     disableScrollLock = false,
     closeAfterTransition = false,
@@ -83,7 +85,13 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
   };
 
   const handleOpen = useEventCallback(() => {
-    const resolvedContainer = getContainer(container) || getDoc().body;
+    /**
+     * Resolving this could be simplified (mountNodeRef should take priority when it's set)
+     * but this will also work because the logic matches {@link Portal}.
+     */
+    const resolvedContainer = disablePortal
+      ? ((mountNodeRef.current ?? modalRef.current)?.parentElement ?? getDoc().body)
+      : getContainer(container) || getDoc().body;
 
     manager.add(getModal(), resolvedContainer as HTMLElement);
 
@@ -113,7 +121,12 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
     manager.remove(getModal(), ariaHiddenProp);
   }, [ariaHiddenProp]);
 
-  React.useEffect(() => {
+  // We use useLayoutEffect (via useEnhancedEffect) to ensure
+  // aria-hidden attributes are properly cleaned up in the
+  // handleClose -> manager.remove -> ariaHiddenElements chain.
+  // This is important in cases where the Modal gets unmounted
+  // higher up the tree, so cleanup happens before any DOM changes.
+  useEnhancedEffect(() => {
     return () => {
       handleClose();
     };
