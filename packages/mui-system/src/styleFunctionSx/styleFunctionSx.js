@@ -76,7 +76,7 @@ export function unstable_createStyleFunctionSx() {
   }
 
   function styleFunctionSx(props) {
-    const { sx, theme = {} } = props || {};
+    const { sx, theme = {}, serializer } = props || {};
 
     if (!sx) {
       return null; // Emotion & styled-components will neglect null
@@ -131,7 +131,8 @@ export function unstable_createStyleFunctionSx() {
       return sortContainerQueries(theme, removeUnusedBreakpoints(breakpointsKeys, css));
     }
 
-    return Array.isArray(sx) ? sx.map(traverse) : traverse(sx);
+    const array = Array.isArray(sx) ? sx : [sx];
+    return array.map((item) => (serializer ? serializer(traverse(item)) : traverse(item)));
   }
 
   return styleFunctionSx;
