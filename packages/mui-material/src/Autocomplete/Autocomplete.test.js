@@ -100,6 +100,22 @@ describe('<Autocomplete />', () => {
   });
 
   describe('combobox', () => {
+    it('should not open popup on right click', () => {
+      const { getByRole, queryByRole } = render(
+        <Autocomplete
+          disablePortal
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      const textbox = getByRole('combobox');
+      fireEvent.mouseDown(textbox, { button: 2 });
+
+      const listbox = queryByRole('listbox');
+      expect(listbox).to.equal(null);
+    });
+
     it('should clear the input when blur', () => {
       const { getByRole } = render(
         <Autocomplete options={[]} renderInput={(params) => <TextField {...params} />} />,
