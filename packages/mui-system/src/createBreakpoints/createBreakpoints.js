@@ -78,6 +78,11 @@ export default function createBreakpoints(breakpoints) {
     return between(key, keys[keys.indexOf(key) + 1]).replace('@media', '@media not all and');
   }
 
+  const mediaKeys = [];
+  for (let i = 0; i < keys.length; i += 1) {
+    mediaKeys.push(up(keys[i]));
+  }
+
   return {
     keys,
     values: sortedValues,
@@ -87,6 +92,7 @@ export default function createBreakpoints(breakpoints) {
     only,
     not,
     unit,
+    internal_mediaKeys: mediaKeys,
     ...other,
   };
 }
