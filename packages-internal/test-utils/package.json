@@ -42,7 +42,7 @@
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
-    "chai": "^4.5.0",
+    "chai": "^5.1.2",
     "chai-dom": "^1.12.0",
     "dom-accessibility-api": "^0.7.0",
     "format-util": "^1.0.5",
@@ -55,7 +55,7 @@
     "sinon": "^19.0.2"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.20",
+    "@types/chai": "^5.0.1",
     "@types/chai-dom": "^1.11.3",
     "@types/format-util": "^1.0.4",
     "@types/prop-types": "^15.7.13",
