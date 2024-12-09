@@ -1,4 +1,7 @@
-import styledEngineStyled, { internal_mutateStyles as mutateStyles } from '@mui/styled-engine';
+import styledEngineStyled, {
+  internal_mutateStyles as mutateStyles,
+  internal_serializeStyles as serializeStyles,
+} from '@mui/styled-engine';
 import { isPlainObject } from '@mui/utils/deepmerge';
 import capitalize from '@mui/utils/capitalize';
 import getDisplayName from '@mui/utils/getDisplayName';
@@ -17,6 +20,10 @@ export function shouldForwardProp(prop) {
   return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
 }
 
+function sxSerializer(styles) {
+  return serializeStyles(styles, 'sx');
+}
+
 function defaultOverridesResolver(slot) {
   if (!slot) {
     return null;
@@ -28,7 +35,7 @@ function attachTheme(props, themeId, defaultTheme) {
   props.theme = isObjectEmpty(props.theme) ? defaultTheme : props.theme[themeId] || props.theme;
 }
 
-function processStyle(props, style) {
+function processStyle(props, style, layer) {
   /*
    * Style types:
    *  - null/undefined
@@ -41,7 +48,7 @@ function processStyle(props, style) {
   const resolvedStyle = typeof style === 'function' ? style(props) : style;
 
   if (Array.isArray(resolvedStyle)) {
-    return resolvedStyle.flatMap((subStyle) => processStyle(props, subStyle));
+    return resolvedStyle.flatMap((subStyle) => processStyle(props, subStyle, layer));
   }
 
   if (Array.isArray(resolvedStyle?.variants)) {
@@ -53,17 +60,17 @@ function processStyle(props, style) {
       rootStyle = otherStyles;
     }
 
-    return processStyleVariants(props, resolvedStyle.variants, [rootStyle]);
+    return processStyleVariants(props, resolvedStyle.variants, [rootStyle], layer);
   }
 
   if (resolvedStyle?.isProcessed) {
     return resolvedStyle.style;
   }
 
-  return resolvedStyle;
+  return serializeStyles(resolvedStyle, layer);
 }
 
-function processStyleVariants(props, variants, results = []) {
+function processStyleVariants(props, variants, results = [], layer = undefined) {
   let mergedState; // We might not need it, initialized lazily
 
   variantLoop: for (let i = 0; i < variants.length; i += 1) {
@@ -84,9 +91,9 @@ function processStyleVariants(props, variants, results = []) {
 
     if (typeof variant.style === 'function') {
       mergedState ??= { ...props, ...props.ownerState, ownerState: props.ownerState };
-      results.push(variant.style(mergedState));
+      results.push(serializeStyles(variant.style(mergedState), layer));
     } else {
-      results.push(variant.style);
+      results.push(serializeStyles(variant.style, layer));
     }
   }
 
@@ -157,16 +164,16 @@ export default function createStyled(input = {}) {
       // which are basically components used as a selectors.
       if (typeof style === 'function' && style.__emotion_real !== style) {
         return function styleFunctionProcessor(props) {
-          return processStyle(props, style);
+          return processStyle(props, style, 'components');
         };
       }
       if (isPlainObject(style)) {
-        const serialized = preprocessStyles(style);
+        const serialized = preprocessStyles(style, 'components');
         if (!serialized.variants) {
           return serialized.style;
         }
         return function styleObjectProcessor(props) {
-          return processStyle(props, serialized);
+          return processStyle(props, serialized, 'components');
         };
       }
       return style;
@@ -194,7 +201,7 @@ export default function createStyled(input = {}) {
           // TODO: v7 remove iteration and use `resolveStyleArg(styleOverrides[slot])` directly
           // eslint-disable-next-line guard-for-in
           for (const slotKey in styleOverrides) {
-            resolvedStyleOverrides[slotKey] = processStyle(props, styleOverrides[slotKey]);
+            resolvedStyleOverrides[slotKey] = processStyle(props, styleOverrides[slotKey], 'theme');
           }
 
           return overridesResolver(props, resolvedStyleOverrides);
@@ -208,12 +215,12 @@ export default function createStyled(input = {}) {
           if (!themeVariants) {
             return null;
           }
-          return processStyleVariants(props, themeVariants);
+          return processStyleVariants(props, themeVariants, 'theme');
         });
       }
 
       if (!skipSx) {
-        expressionsTail.push(styleFunctionSx);
+        expressionsTail.push((props) => styleFunctionSx({ ...props, serializer: sxSerializer }));
       }
 
       // This function can be called as a tagged template, so the first argument would contain

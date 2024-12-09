@@ -39,9 +39,13 @@ export function internal_mutateStyles(tag, processor) {
 // Emotion only accepts an array, but we want to avoid allocations
 const wrapper = [];
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export function internal_serializeStyles(styles) {
+export function internal_serializeStyles(styles, layer) {
   wrapper[0] = styles;
-  return emSerializeStyles(wrapper);
+  const serialized = emSerializeStyles(wrapper);
+  if (layer) {
+    serialized.layer = layer;
+  }
+  return serialized;
 }
 
 export { ThemeContext, keyframes, css } from '@emotion/react';

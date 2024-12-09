@@ -27,7 +27,7 @@ export function internal_mutateStyles(
 ): void;
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export function internal_serializeStyles<P>(styles: Interpolation<P>): object;
+export function internal_serializeStyles<P>(styles: Interpolation<P>, layer?: string): object;
 
 export interface SerializedStyles {
   name: string;
