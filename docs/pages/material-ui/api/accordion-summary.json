@@ -71,7 +71,7 @@
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiAccordionSummary",
-  "forwardsRefTo": "HTMLDivElement",
+  "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/AccordionSummary/AccordionSummary.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },
   "demos": "<ul><li><a href=\"/material-ui/react-accordion/\">Accordion</a></li></ul>",
