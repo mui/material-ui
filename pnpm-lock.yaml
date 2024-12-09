@@ -280,11 +280,11 @@ importers:
         specifier: ^0.7.0
         version: 0.7.0(postcss@8.4.49)
       prettier:
-        specifier: ^3.4.1
-        version: 3.4.1
+        specifier: ^3.4.2
+        version: 3.4.2
       pretty-quick:
         specifier: ^4.0.0
-        version: 4.0.0(prettier@3.4.1)
+        version: 4.0.0(prettier@3.4.2)
       process:
         specifier: ^0.11.10
         version: 0.11.10
@@ -904,8 +904,8 @@ importers:
         specifier: ^1.48.2
         version: 1.48.2
       prettier:
-        specifier: ^3.4.1
-        version: 3.4.1
+        specifier: ^3.4.2
+        version: 3.4.2
       tailwindcss:
         specifier: ^3.4.15
         version: 3.4.15
@@ -1018,8 +1018,8 @@ importers:
         specifier: ^3.3.2
         version: 3.3.2
       prettier:
-        specifier: ^3.4.1
-        version: 3.4.1
+        specifier: ^3.4.2
+        version: 3.4.2
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
@@ -1151,8 +1151,8 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       prettier:
-        specifier: ^3.4.1
-        version: 3.4.1
+        specifier: ^3.4.2
+        version: 3.4.2
       react-docgen:
         specifier: ^5.4.3
         version: 5.4.3
@@ -10874,8 +10874,8 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
-  prettier@3.4.1:
-    resolution: {integrity: sha512-G+YdqtITVZmOJje6QkXQWzl3fSfMxFwm1tjTyo9exhkmWSqC4Yhd1+lug++IlR2mvRVAxEDDWYkQdeSztajqgg==}
+  prettier@3.4.2:
+    resolution: {integrity: sha512-e9MewbtFo+Fevyuxn/4rrcDAaq0IYxPGLvObpQjiZBMAzB9IGmzlnG9RZy3FFas+eBMu2vA0CszMeduow5dIuQ==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -23645,7 +23645,7 @@ snapshots:
 
   prettier@3.3.3: {}
 
-  prettier@3.4.1: {}
+  prettier@3.4.2: {}
 
   pretty-error@4.0.0:
     dependencies:
@@ -23677,7 +23677,7 @@ snapshots:
     dependencies:
       parse-ms: 4.0.0
 
-  pretty-quick@4.0.0(prettier@3.4.1):
+  pretty-quick@4.0.0(prettier@3.4.2):
     dependencies:
       execa: 5.1.1
       find-up: 5.0.0
@@ -23685,7 +23685,7 @@ snapshots:
       mri: 1.2.0
       picocolors: 1.1.1
       picomatch: 3.0.1
-      prettier: 3.4.1
+      prettier: 3.4.2
       tslib: 2.6.2
 
   prettyjson@1.2.5:
