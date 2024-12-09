@@ -33,6 +33,7 @@ interface CommonReactApi extends ReactDocgenApi {
    */
   apiDocsTranslationFolder?: string;
   deprecated: true | undefined;
+  customAnnotation?: string;
 }
 
 export interface PropsTableItem {

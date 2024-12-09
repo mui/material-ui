@@ -10,6 +10,7 @@ import { visit as remarkVisit } from 'unist-util-visit';
 import type { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import { parse as parseDoctrine, Annotation } from 'doctrine';
+import escapeRegExp from 'lodash/escapeRegExp';
 import { renderCodeTags, renderMarkdown } from '../buildApi';
 import { ProjectSettings, SortingStrategiesType } from '../ProjectSettings';
 import { toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
@@ -229,26 +230,36 @@ async function annotateComponentDefinition(
   if (markdownLines[markdownLines.length - 1] !== '') {
     markdownLines.push('');
   }
-  markdownLines.push(
-    'Demos:',
-    '',
-    ...api.demos.map((demo) => {
-      return `- [${demo.demoPageTitle}](${
-        demo.demoPathname.startsWith('http') ? demo.demoPathname : `${HOST}${demo.demoPathname}`
-      })`;
-    }),
-    '',
-  );
 
-  markdownLines.push(
-    'API:',
-    '',
-    `- [${api.name} API](${
-      api.apiPathname.startsWith('http') ? api.apiPathname : `${HOST}${api.apiPathname}`
-    })`,
-  );
-  if (api.inheritance) {
-    markdownLines.push(`- inherits ${inheritanceAPILink}`);
+  if (api.customAnnotation) {
+    markdownLines.push(
+      ...api.customAnnotation
+        .split('\n')
+        .map((line) => line.trim())
+        .filter(Boolean),
+    );
+  } else {
+    markdownLines.push(
+      'Demos:',
+      '',
+      ...api.demos.map((demo) => {
+        return `- [${demo.demoPageTitle}](${
+          demo.demoPathname.startsWith('http') ? demo.demoPathname : `${HOST}${demo.demoPathname}`
+        })`;
+      }),
+      '',
+    );
+
+    markdownLines.push(
+      'API:',
+      '',
+      `- [${api.name} API](${
+        api.apiPathname.startsWith('http') ? api.apiPathname : `${HOST}${api.apiPathname}`
+      })`,
+    );
+    if (api.inheritance) {
+      markdownLines.push(`- inherits ${inheritanceAPILink}`);
+    }
   }
 
   if (componentJsdoc.tags.length > 0) {
@@ -764,7 +775,13 @@ export default async function generateComponentApi(
   reactApi.description = componentJsdoc.description;
 
   // Ignore what we might have generated in `annotateComponentDefinition`
-  const annotatedDescriptionMatch = reactApi.description.match(/(Demos|API):\r?\n\r?\n/);
+  let annotationBoundary: RegExp = /(Demos|API):\r?\n\r?\n/;
+  if (componentInfo.customAnnotation) {
+    annotationBoundary = new RegExp(
+      escapeRegExp(componentInfo.customAnnotation.trim().split('\n')[0].trim()),
+    );
+  }
+  const annotatedDescriptionMatch = reactApi.description.match(new RegExp(annotationBoundary));
   if (annotatedDescriptionMatch !== null) {
     reactApi.description = reactApi.description.slice(0, annotatedDescriptionMatch.index).trim();
   }
@@ -778,6 +795,7 @@ export default async function generateComponentApi(
   reactApi.slots = [];
   reactApi.classes = [];
   reactApi.demos = componentInfo.getDemos();
+  reactApi.customAnnotation = componentInfo.customAnnotation;
   reactApi.inheritance = null;
   if (reactApi.demos.length === 0) {
     throw new Error(

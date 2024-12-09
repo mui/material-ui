@@ -8,6 +8,7 @@ import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import kebabCase from 'lodash/kebabCase';
 import upperFirst from 'lodash/upperFirst';
 import { parse as parseDoctrine, Annotation } from 'doctrine';
+import escapeRegExp from 'lodash/escapeRegExp';
 import { escapeEntities, renderMarkdown } from '../buildApi';
 import { ProjectSettings } from '../ProjectSettings';
 import { computeApiDescription } from './ComponentApiBuilder';
@@ -184,31 +185,41 @@ async function annotateHookDefinition(
   }
 
   const markdownLines = (await computeApiDescription(api, { host: HOST })).split('\n');
+
   // Ensure a newline between manual and generated description.
   if (markdownLines[markdownLines.length - 1] !== '') {
     markdownLines.push('');
   }
 
-  if (api.demos && api.demos.length > 0) {
+  if (api.customAnnotation) {
     markdownLines.push(
-      'Demos:',
+      ...api.customAnnotation
+        .split('\n')
+        .map((line) => line.trim())
+        .filter(Boolean),
+    );
+  } else {
+    if (api.demos && api.demos.length > 0) {
+      markdownLines.push(
+        'Demos:',
+        '',
+        ...api.demos.map((item) => {
+          return `- [${item.demoPageTitle}](${
+            item.demoPathname.startsWith('http') ? item.demoPathname : `${HOST}${item.demoPathname}`
+          })`;
+        }),
+        '',
+      );
+    }
+
+    markdownLines.push(
+      'API:',
       '',
-      ...api.demos.map((item) => {
-        return `- [${item.demoPageTitle}](${
-          item.demoPathname.startsWith('http') ? item.demoPathname : `${HOST}${item.demoPathname}`
-        })`;
-      }),
-      '',
+      `- [${api.name} API](${
+        api.apiPathname.startsWith('http') ? api.apiPathname : `${HOST}${api.apiPathname}`
+      })`,
     );
   }
-
-  markdownLines.push(
-    'API:',
-    '',
-    `- [${api.name} API](${
-      api.apiPathname.startsWith('http') ? api.apiPathname : `${HOST}${api.apiPathname}`
-    })`,
-  );
 
   if (hookJsdoc.tags.length > 0) {
     markdownLines.push('');
@@ -410,8 +421,16 @@ export default async function generateHookApi(
   project: TypeScriptProject,
   projectSettings: ProjectSettings,
 ) {
-  const { filename, name, apiPathname, apiPagesDirectory, getDemos, readFile, skipApiGeneration } =
-    hooksInfo;
+  const {
+    filename,
+    name,
+    apiPathname,
+    apiPagesDirectory,
+    getDemos,
+    readFile,
+    skipApiGeneration,
+    customAnnotation,
+  } = hooksInfo;
 
   const { shouldSkip, EOL, src } = readFile();
 
@@ -445,8 +464,12 @@ export default async function generateHookApi(
   // the former can include JSDoc tags that we don't want to render in the docs.
   reactApi.description = hookJsdoc.description;
 
-  // Ignore what we might have generated in `annotateHookDefinition`
-  const annotatedDescriptionMatch = reactApi.description.match(/(Demos|API):\r?\n\r?\n/);
+  // Ignore what we might have generated in `annotateComponentDefinition`
+  let annotationBoundary: RegExp = /(Demos|API):\r?\n\r?\n/;
+  if (customAnnotation) {
+    annotationBoundary = new RegExp(escapeRegExp(customAnnotation.trim().split('\n')[0].trim()));
+  }
+  const annotatedDescriptionMatch = reactApi.description.match(new RegExp(annotationBoundary));
   if (annotatedDescriptionMatch !== null) {
     reactApi.description = reactApi.description.slice(0, annotatedDescriptionMatch.index).trim();
   }
@@ -458,6 +481,7 @@ export default async function generateHookApi(
   reactApi.apiPathname = apiPathname;
   reactApi.EOL = EOL;
   reactApi.demos = getDemos();
+  reactApi.customAnnotation = customAnnotation;
   if (reactApi.demos.length === 0) {
     // TODO: Enable this error once all public hooks are documented
     // throw new Error(
