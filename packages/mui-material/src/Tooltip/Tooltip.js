@@ -779,8 +779,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
             {...transitionSlotProps}
           >
             <TooltipSlot {...tooltipSlotProps}>
-              {title}
               {arrow ? <ArrowSlot {...arrowSlotProps} /> : null}
+              {title}
             </TooltipSlot>
           </TransitionSlot>
         )}
