@@ -62,7 +62,7 @@ function ColorSchemePicker() {
 
 function ColorToken({ name, value }: { name: string; value: string }) {
   const [color, setColor] = React.useState('');
-  const ref = React.useRef<HTMLDivElement | null>(null);
+  const ref = React.useRef<HTMLDivElement>(null);
   React.useEffect(() => {
     if (ref.current && typeof window !== 'undefined') {
       const style = window.getComputedStyle(ref.current);
