@@ -488,8 +488,8 @@ const attachTranslations = (
     [...Object.keys(reactApi.dataAttributes)]
       .sort() // Sort to ensure consistency of object key order
       .forEach((dataAttributeName: string) => {
-        const cssVariable = reactApi.dataAttributes[dataAttributeName];
-        const { description } = cssVariable;
+        const dataAttribute = reactApi.dataAttributes[dataAttributeName];
+        const { description } = dataAttribute;
         translations.dataAttributesDescriptions![dataAttributeName] = renderMarkdown(description);
       });
   }
@@ -645,6 +645,7 @@ const attachTable = (
   reactApi: ComponentReactApi,
   params: ParsedProperty[],
   attribute: 'cssVariables' | 'dataAttributes',
+  defaultType: any = undefined,
 ) => {
   const errors: Array<[propName: string, error: Error]> = [];
   const data: { [key: string]: ApiItemDescription } = params
@@ -666,7 +667,11 @@ const attachTable = (
       const deprecation = deprecationTag?.text?.[0]?.text;
 
       const typeTag = propDescriptor.tags?.type;
-      const type = (typeTag?.text?.[0]?.text ?? 'string').replace(/{|}/g, '');
+
+      let type = (typeTag?.text?.[0]?.text ?? defaultType)
+      if (typeof type === 'string') {
+        type = type.replace(/{|}/g, '');
+      }
 
       return {
         name: propName,
@@ -854,7 +859,7 @@ export default async function generateComponentApi(
   );
 
   attachPropsTable(reactApi, projectSettings.propsSettings);
-  attachTable(reactApi, cssVars, 'cssVariables');
+  attachTable(reactApi, cssVars, 'cssVariables', 'string');
   attachTable(reactApi, dataAttributes, 'dataAttributes');
   attachTranslations(reactApi, deprecationInfo, projectSettings.propsSettings);
 

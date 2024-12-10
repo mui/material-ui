@@ -63,5 +63,8 @@
     "heading": "The component that renders the heading.",
     "transition": "The component that renders the transition. <a href=\"https://mui.com/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
   },
-  "dataAttributesDescriptions": { "data-panel-open": "Indicates whether the panel is opened" }
+  "dataAttributesDescriptions": {
+    "[data-nested-dialogs]": "Indicates how many dialogs are nested within.",
+    "[data-panel-open]": "Indicates whether the panel is opened"
+  }
 }
