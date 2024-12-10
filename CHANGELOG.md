@@ -23,6 +23,7 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 
 ### Core
 
+- [docs-infra] Allow custom annotations (#44707) @vladmoroz
 - [Box] Fix `component` prop test (#44651) @DiegoAndai
 - React 19 useRef cleanup (#44704) @DiegoAndai
 - Remove obselete lerna options (#44676) @ZeeshanTamboli
@@ -31,7 +32,7 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 - [docs-infra] Fix RTL dark mode (#41803) @alexfauquette
 - [Grid] Remove deeply nested imports (#43605) @Janpot
 
-All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @bharatkashyap, @DiegoAndai, @Janpot, @mj12albert, @sai6855, @SuperMaxine, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @bharatkashyap, @DiegoAndai, @Janpot, @mj12albert, @sai6855, @SuperMaxine, @vladmoroz, @ZeeshanTamboli
 
 ## 6.1.10
 
