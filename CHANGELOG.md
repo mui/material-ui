@@ -11,7 +11,7 @@ A big thanks to the contributor who made this release possible.
 ### Core
 
 - Bump pnpm to 9.14.4 in v5 (#44705) @DiegoAndai
-- [core] Fix UMD examples (#44706) @DiegoAndai
+- Fix UMD examples (#44706) @DiegoAndai
 
 All contributors of this release in alphabetical order: @DiegoAndai
 
