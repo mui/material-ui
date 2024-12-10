@@ -22,14 +22,13 @@ const extractInfoFromEnum = async (
 ): Promise<ParsedProperty[]> => {
   // Generate the params
   let result: ParsedProperty[] = [];
-
   try {
-    const cssVarDeclarationCandidates = project.program
+    const declarationCandidates = project.program
       .getSourceFiles()
       .filter((file) => sourceFileNamePattern.test(file.fileName));
 
     let enumSymbol: Symbol | null = null;
-    cssVarDeclarationCandidates.forEach((file) => {
+    declarationCandidates.forEach((file) => {
       forEachChild(file, (node: Node) => {
         if (isEnumDeclaration(node) && node.name.getText() === typeName) {
           enumSymbol = project.checker.getSymbolAtLocation(node.name)!;
