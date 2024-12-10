@@ -679,7 +679,7 @@ const attachTable = (
 
       const typeTag = propDescriptor.tags?.type;
 
-      let type = (typeTag?.text?.[0]?.text ?? defaultType)
+      let type = typeTag?.text?.[0]?.text ?? defaultType;
       if (typeof type === 'string') {
         type = type.replace(/{|}/g, '');
       }
