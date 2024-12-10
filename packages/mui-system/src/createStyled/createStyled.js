@@ -175,7 +175,7 @@ export default function createStyled(input = {}) {
     const muiStyledResolver = (...expressionsInput) => {
       const expressionsHead = ['/*@layer components*/'];
       const expressionsBody = expressionsInput.map(transformStyle);
-      const expressionsTail = [];
+      const expressionsTail = ['/*@layer theme*/'];
 
       // Preprocess `props` to set the scoped theme value.
       // This must run before any other expression.
@@ -202,7 +202,6 @@ export default function createStyled(input = {}) {
       }
 
       if (componentName && !skipVariantsResolver) {
-        expressionsTail.push('/*@layer theme*/');
         expressionsTail.push(function styleThemeVariants(props) {
           const theme = props.theme;
           const themeVariants = theme?.components?.[componentName]?.variants;
