@@ -40,7 +40,7 @@
   "dependencies": {
     "@babel/runtime": "^7.26.0",
     "@mui/types": "workspace:^",
-    "@types/prop-types": "^15.7.13",
+    "@types/prop-types": "^15.7.14",
     "clsx": "^2.1.1",
     "prop-types": "^15.8.1",
     "react-is": "^19.0.0"
