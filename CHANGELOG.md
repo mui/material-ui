@@ -25,10 +25,10 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 
 ### Core
 
-- [core] React 19 useRef cleanup (#44704) @DiegoAndai
-- [core] Remove obselete lerna options (#44676) @ZeeshanTamboli
-- [core] Fix Regular Expression Denial of Service (ReDoS) vulnerabilities (#44627) @SuperMaxine
-- [core] Fix number of contributors (#44650) @aarongarciah
+- React 19 useRef cleanup (#44704) @DiegoAndai
+- Remove obselete lerna options (#44676) @ZeeshanTamboli
+- Fix Regular Expression Denial of Service (ReDoS) vulnerabilities (#44627) @SuperMaxine
+- Fix number of contributors (#44650) @aarongarciah
 - [docs-infra] Fix RTL dark mode (#41803) @alexfauquette
 
 All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @bharatkashyap, @DiegoAndai, @Janpot, @mj12albert, @sai6855, @SuperMaxine, @ZeeshanTamboli
