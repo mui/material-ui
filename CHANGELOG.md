@@ -29,10 +29,11 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 - Remove obselete lerna options (#44676) @ZeeshanTamboli
 - Fix Regular Expression Denial of Service (ReDoS) vulnerabilities (#44627) @SuperMaxine
 - Fix number of contributors (#44650) @aarongarciah
+- [docs-infra] Add support for data attributes in the API generation (#44709) @mnajdova
 - [docs-infra] Fix RTL dark mode (#41803) @alexfauquette
 - [Grid] Remove deeply nested imports (#43605) @Janpot
 
-All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @bharatkashyap, @DiegoAndai, @Janpot, @mj12albert, @sai6855, @SuperMaxine, @vladmoroz, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @bharatkashyap, @DiegoAndai, @Janpot, @mj12albert, @mnajdova, @sai6855, @SuperMaxine, @vladmoroz, @ZeeshanTamboli
 
 ## 6.1.10
 
