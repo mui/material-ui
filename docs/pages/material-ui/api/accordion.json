@@ -65,13 +65,6 @@
       "class": null
     }
   ],
-  "dataAttributes": {
-    "[data-nested-dialogs]": {
-      "description": "Indicates how many dialogs are nested within.",
-      "type": "number"
-    },
-    "[data-panel-open]": { "description": "Indicates whether the panel is opened" }
-  },
   "classes": [
     {
       "key": "disabled",
