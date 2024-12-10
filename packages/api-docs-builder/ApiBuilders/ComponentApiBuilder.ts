@@ -324,7 +324,9 @@ const generateApiPage = async (
     imports: reactApi.imports,
     ...(reactApi.slots?.length > 0 && { slots: reactApi.slots }),
     ...(Object.keys(reactApi.cssVariables).length > 0 && { cssVariables: reactApi.cssVariables }),
-    ...(Object.keys(reactApi.dataAttributes).length > 0 && { dataAttributes: reactApi.dataAttributes }),
+    ...(Object.keys(reactApi.dataAttributes).length > 0 && {
+      dataAttributes: reactApi.dataAttributes,
+    }),
     classes: reactApi.classes,
     spread: reactApi.spread,
     themeDefaultProps: reactApi.themeDefaultProps,
@@ -481,16 +483,16 @@ const attachTranslations = (
   /**
    * Data attributes descriptions.
    */
-    if (Object.keys(reactApi.dataAttributes).length > 0) {
-      translations.dataAttributesDescriptions = {};
-      [...Object.keys(reactApi.dataAttributes)]
-        .sort() // Sort to ensure consistency of object key order
-        .forEach((dataAttributeName: string) => {
-          const cssVariable = reactApi.dataAttributes[dataAttributeName];
-          const { description } = cssVariable;
-          translations.dataAttributesDescriptions![dataAttributeName] = renderMarkdown(description);
-        });
-    }
+  if (Object.keys(reactApi.dataAttributes).length > 0) {
+    translations.dataAttributesDescriptions = {};
+    [...Object.keys(reactApi.dataAttributes)]
+      .sort() // Sort to ensure consistency of object key order
+      .forEach((dataAttributeName: string) => {
+        const cssVariable = reactApi.dataAttributes[dataAttributeName];
+        const { description } = cssVariable;
+        translations.dataAttributesDescriptions![dataAttributeName] = renderMarkdown(description);
+      });
+  }
 
   reactApi.translations = translations;
 };
@@ -639,7 +641,11 @@ const defaultGetComponentImports = (name: string, filename: string) => {
   return [subpathImport, rootImport];
 };
 
-const attachTable = (reactApi: ComponentReactApi, params: ParsedProperty[], attribute: 'cssVariables' | 'dataAttributes') => {
+const attachTable = (
+  reactApi: ComponentReactApi,
+  params: ParsedProperty[],
+  attribute: 'cssVariables' | 'dataAttributes',
+) => {
   const errors: Array<[propName: string, error: Error]> = [];
   const data: { [key: string]: ApiItemDescription } = params
     .map((p) => {
@@ -680,7 +686,7 @@ const attachTable = (reactApi: ComponentReactApi, params: ParsedProperty[], attr
 
   if (errors.length > 0) {
     throw new Error(
-      `There were errors creating ${attribute.replace(/([A-Z])/g, " $1")} descriptions:\n${errors
+      `There were errors creating ${attribute.replace(/([A-Z])/g, ' $1')} descriptions:\n${errors
         .map(([item, error]) => {
           return `  - ${item}: ${error}`;
         })
