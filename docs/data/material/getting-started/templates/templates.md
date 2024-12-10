@@ -20,6 +20,10 @@ You can toggle through each of these style options in the top right corner of th
 Sections of each layout are defined either by comments or use of separate files, so you can extract parts of a page (such as a hero unit or a footer) for reuse in other pages.
 These templates can be combined with one of the [example projects](/material-ui/getting-started/example-projects/) to form a complete starter app.
 
+:::info
+If you're looking to build internal tools and dashboards quickly, head to [Toolpad Core examples](http://mui.com/toolpad/core/introduction/examples/#featured-examples) for functional apps with authentication, routing and theming already integrated.
+:::
+
 If you see any room for improvement, please feel free to open an [issue](https://github.com/mui/material-ui/issues/new/choose) or a [pull request](https://github.com/mui/material-ui/pulls) on GitHub.
 
 {{"component": "modules/components/MaterialFreeTemplatesCollection.js"}}
@@ -40,9 +44,13 @@ You can find complete templates and themes like those shown below in the <a href
 
 ## Toolpad Core (beta)
 
-[Toolpad Core](https://mui.com/toolpad/core/introduction/) is a set of components designed for assembling dashboards and internal tools more efficiently.
-It builds on top of Material UI to provide sophisticated UI components with full-stack functionality, such as the [Dashboard Layout](https://mui.com/toolpad/core/react-dashboard-layout/) shown below.
+If you're looking to build internal tools and dashboards fast, but don't want to start building from scratch, you can find examples of functional dashboards – with authentication, routing, and theming already integrated – in the [featured examples](http://mui.com/toolpad/core/introduction/examples/#featured-examples) section of the Toolpad Core docs.
 
-This is a great option if you don't want to start building from scratch but don't need a prebuilt template.
-
-{{"demo": "../../components/app-bar/DashboardLayoutBasic.js", "height": 400, "iframe": true, "defaultExpanded": false, "bg": "inline"}}
+<a href="https://mui.com/toolpad/core/introduction/examples/#featured-examples">
+<span class="only-light-mode">
+<img src="/static/images/toolpad-core-template-light.png" alt="The Toolpad Core template comes with authentication, navigation and theming integrated" width="2280" height="1200" style="display: block;" />
+</span>
+<span class="only-dark-mode">
+<img src="/static/images/toolpad-core-template-dark.png" alt="The Toolpad Core template comes with authentication, navigation and theming integrated" width="2280" height="1200" style="display: block;"/>
+</span>
+</a>
