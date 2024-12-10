@@ -1,10 +1,10 @@
 ---
-title: 'The 2022 MUI developer survey and some of its impacts.'
-description: Your feedback helped us to build better products. Here's what we learned about your needs in our 2022 developer survey.
-date: 2022-08-15T00:00:00.000Z
+title: 'The MUI developer survey and some of its impacts.'
+description: Your feedback helped us to build better products. Here's what we learned about your needs in the past developer surveys.
+date: 2024-11-15T00:00:00.000Z
 authors: ['josefreitas', 'oliviertassinari']
-tags: ['Developer survey']
-card: true
+tags: ['Developer Survey']
+card: false
 ---
 
 Your participation in the previous developer survey has been vital to our growth, and we are grateful for the time you took to share your invaluable thoughts.
@@ -14,6 +14,8 @@ We look forward to your continued engagement as we strive to create an even bett
 And please accept our sincere apologies for the late delivery, especially if you're one of the 1934 respondents.
 
 Here's what we've learned.
+
+{{"demo": "survey-charts/demo.js"}}
 
 ## Table of contents
 
@@ -58,7 +60,7 @@ Here's what we've learned.
 As in the previous survey, most of the community members identified themselves as full-stack developers and represent today 41% of the total; that number was 52% that year, so we might be seeing a trend of specialization on front-end development, which increased 5%.
 Overall, the community is more diverse, and virtually every other category had their representation increased this year.
 
-<img src="/static/blog/2022-developer-survey-results/1.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="Pie chart: 41.32% Fullstack developer, 34.14% Front end developer, 8.13% Entrepeneurs." />
+<img src="/static/blog/developer-survey-impacts/1.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="Pie chart: 41.32% Fullstack developer, 34.14% Front end developer, 8.13% Entrepeneurs." />
 
 <p class="blog-description">1907 respondents.</p>
 
@@ -69,7 +71,7 @@ We plan on starting doing some videos as well, but we'd like to leave a big shou
 
 Thank you, and let us know what you're making!
 
-<img src="/static/blog/2022-developer-survey-results/2.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/2.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 
 <p class="blog-description">1895 respondents.</p>
 
@@ -77,7 +79,7 @@ Thank you, and let us know what you're making!
 
 Almost half of the community, around 45%, are engaged in building enterprise products on a variety of usages; 41% are involved in user-facing dashboards, and 35% are using MUI products to quickly build internal tools.
 
-<img src="/static/blog/2022-developer-survey-results/3.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/3.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 
 <p class="blog-description">1899 respondents.</p>
 
@@ -85,7 +87,7 @@ Almost half of the community, around 45%, are engaged in building enterprise pro
 
 Very similar to the previous survey, a significant proportion of the community (65%) is developing products for the companies they work at, but we've seen a significant rise in work for clients, from 12% previously to over 45% in 2022.
 
-<img src="/static/blog/2022-developer-survey-results/4.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/4.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">1896 respondents.</p>
 
 ## About Your Needs
@@ -95,7 +97,7 @@ Very similar to the previous survey, a significant proportion of the community (
 If MUI ceased to exist, 64% of the community would be very disappointed. A very slight increase compared to the previous survey.
 This rise is within the survey's margin of error, though. Our goal is to continuously focus on user feedback and innovating our offerings to get a more significant increase in the future.
 
-<img src="/static/blog/2022-developer-survey-results/5.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/5.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">1163 respondents.</p>
 
 ### How likely is it that you would recommend MUI to a friend or colleague?
@@ -106,7 +108,7 @@ We deeply appreciate this show of support and trust!
 Nonetheless, we acknowledge that there is room for improvement.
 Our NPS decreased 6 points, and roughly 5% of the community stopped being a promoter to be a passive user.
 
-<img src="/static/blog/2022-developer-survey-results/6.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/6.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">1163 respondents.</p>
 
 ### What are your most important criteria for choosing a UI library?
@@ -114,7 +116,7 @@ Our NPS decreased 6 points, and roughly 5% of the community stopped being a prom
 When it comes to community priorities for choosing a library, “design and look and feel” still ranks first when looking the percentages for the first priority. But overall, documentation quality reached for the first time the highest score. The score is based on the weight of the option overall in all the answers.
 Documentation along with design and customizability, are paramount to both the community and MUI.
 
-<img src="/static/blog/2022-developer-survey-results/7.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="Ranked list: 1. The design - look and feel; 2. Customizability; 3. Documentation quality; 4. Comprehensiveness; 5. Performance; 6. Popularity; 7. Accessibility; 8. Offered support and help; 9. Bundle size" />
+<img src="/static/blog/developer-survey-impacts/7.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="Ranked list: 1. The design - look and feel; 2. Customizability; 3. Documentation quality; 4. Comprehensiveness; 5. Performance; 6. Popularity; 7. Accessibility; 8. Offered support and help; 9. Bundle size" />
 
 <p class="blog-description">1151 respondents.</p>
 
@@ -127,7 +129,7 @@ On a side note, 65%, a significant portion of the community, has not yet heard a
 It is crucial for us to increase the visibility of these tools and encourage more community members to try them out.
 We also see a big opportunity to reach those that are already interested in trying other MUI products.
 
-<img src="/static/blog/2022-developer-survey-results/8.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/8.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">1161 respondents.</p>
 
 ### What is the main benefit you receive from using MUI libraries?
@@ -140,7 +142,7 @@ Surprisingly, only 3% explicitly mentioned Material design as a requirement for 
 
 The following chart is the top 20 most flagged benefits.
 
-<img src="/static/blog/2022-developer-survey-results/9.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/9.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">826 respondents</p>
 
 ### How can we improve MUI for you?
@@ -152,7 +154,7 @@ We hear you, and we've already started many efforts to cover this gap, like the 
 
 Here are the Top 25 Categorized community requests.
 
-<img src="/static/blog/2022-developer-survey-results/10.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/10.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">716 respondents</p>
 
 ### Please rate the following statements (our differentiators)
@@ -160,7 +162,7 @@ Here are the Top 25 Categorized community requests.
 We are pleased to know that 88% of the community finds it easy to create visually appealing UIs using MUI.
 However, we are keen to understand and address the concerns of the 10% who find the components not as easily customizable; we passionately want to fix your pain points, and we're exploring BaseUI and other solutions to bring a concrete answer to your needs.
 
-<img src="/static/blog/2022-developer-survey-results/11.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/11.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">1107 respondents</p>
 
 ### Please rate the following statements (our initiatives)
@@ -172,7 +174,7 @@ Also, over 78% of you think it'd be good to have a discord server, so we've fina
 Another point worth noticing is that a good share of the community would also gladly have the opportunity to pay for support on the Core components.
 We're now testing a priority support offering that covers Material UI, Base UI and Joy UI as well as MUI X components. The plan is still on pilot, but we hope to be able to make it public soon.
 
-<img src="/static/blog/2022-developer-survey-results/12.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/12.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">1094 respondents.</p>
 
 ## Community workspaces
@@ -182,26 +184,26 @@ We're now testing a priority support offering that covers Material UI, Base UI a
 Almost a quarter of the respondents are based in the US, but this data doesn't match exactly the user traffic we have in our doc pages.
 This likely means that the channels we use to reach the community might be a bit biased.
 
-<img src="/static/blog/2022-developer-survey-results/13.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/13.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">1068 respondents</p>
 
 ### How many front-end or full-stack developers are on your team?
 
 Teams with more than 5 developers are the most common, followed by teams with a single developer responsible for UIs.
 
-<img src="/static/blog/2022-developer-survey-results/14.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/14.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">1077 respondents.</p>
 
 ### How many front-end or full-stack developers are in your company?
 
 Almost half, 48%, of the respondents, work in small tech departments with up to 5 developers, which might indicate a big presence of web startups and perhaps some businesses not strongly oriented to web development.
 
-<img src="/static/blog/2022-developer-survey-results/15.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/15.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">1069 respondents.</p>
 
 ### How many total employees work at your company?
 
-<img src="/static/blog/2022-developer-survey-results/16.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/16.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">1068 respondent</p>
 
 ## Community technical environment
@@ -210,7 +212,7 @@ Almost half, 48%, of the respondents, work in small tech departments with up to 
 
 Most developers are comfortable with Javascript and React. However, we see a drop in the level of comfort when it comes to CSS and MUI libraries, suggesting the need for more resources or support in these areas.
 
-<img src="/static/blog/2022-developer-survey-results/17.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/17.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">1077 respondents.</p>
 
 ### What styling solutions are you using?
@@ -219,18 +221,18 @@ It is encouraging to see that 79% have adopted the MUI System to build styles, i
 A significant share of the community, 20%, also uses Tailwind.
 We hear you, and we want to provide the best platform to connect with your favorite libraries.
 
-<img src="/static/blog/2022-developer-survey-results/18.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/18.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">1074 respondents.</p>
 
 ### What other UI libraries do you use? What would you say are their strongest and weakest points?
 
-<img src="/static/blog/2022-developer-survey-results/19.1.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/19.1.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">354 respondents.</p>
 
-<img src="/static/blog/2022-developer-survey-results/19.2.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/19.2.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">354 respondents.</p>
 
-<img src="/static/blog/2022-developer-survey-results/19.3.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/19.3.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">354 respondents.</p>
 
 ## Experience with MUI X
@@ -239,7 +241,7 @@ We hear you, and we want to provide the best platform to connect with your favor
 
 Over 65% of the community uses MUI X components, showcasing the popularity and validating the need for these components. We're working to increase our advanced components portfolio to supply other community demands.
 
-<img src="/static/blog/2022-developer-survey-results/20.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/20.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">1108 respondents.</p>
 
 ### What benefits do you get from the Data Grid?
@@ -248,10 +250,10 @@ The survey results highlight that development speed is an important benefit the 
 Surprisingly, column management emerged as the top use case among users of the commercial plans.
 The community seem to value a lot the ability to effectively control and manipulate data presentation on the user level.
 
-<img src="/static/blog/2022-developer-survey-results/21.1.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/21.1.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">323 respondents.</p>
 
-<img src="/static/blog/2022-developer-survey-results/21.2.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/21.2.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">239 respondents.</p>
 
 ### How can we improve MUI X for you?
@@ -263,16 +265,16 @@ We've already starting putting some gas on the development of new components, an
 
 Your Feedback also indicate a specific pain point with server-side integration, which is now being addressed as a priority in our plans for 2023.
 
-<img src="/static/blog/2022-developer-survey-results/22.1.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/22.1.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 
 <p class="blog-description">123 respondents.</p>
 
-<img src="/static/blog/2022-developer-survey-results/22.2.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/22.2.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">128 respondents.</p>
 
 ### What challenges do you face today that, if solved, could make you consider purchasing a commercial license?
 
-<img src="/static/blog/2022-developer-survey-results/23.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/23.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">124 respondents.</p>
 
 ### Is a perpetual license in development important for you?
@@ -280,7 +282,7 @@ Your Feedback also indicate a specific pain point with server-side integration, 
 All our licenses, MIT and Commercial, are already perpetual in production.
 But we understand the importance of providing a perpetual alternative in development mode, as indicated by 77% of the community. Considering your feedback, We're bringing more alternative to the current model, so you can use MUI X libraries on the model that best suits your requirements. You can already access a perpetual in development license in our [pricing page](https://www.mui.com/pricing/).
 
-<img src="/static/blog/2022-developer-survey-results/24.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/24.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">436 respondents.</p>
 
 ## Perception of low code tools
@@ -289,33 +291,33 @@ But we understand the importance of providing a perpetual alternative in develop
 
 Our survey revealed that over 60% of respondents have not been exposed to low-code tools yet, and among those who have used these tools, a slight majority indicated they would not use them again. This feedback presents a significant opportunity to identify and address the challenges professional developers face with low-code tools.
 
-<img src="/static/blog/2022-developer-survey-results/25.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/25.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">955 respondents.</p>
 
 ### What are your 3 most important features in a low-code tool to build admin apps?
 
 The ability to import and export code freely and easily emerged as a key expectation for low code for our community members, along with great documentation and look and feel of the output. We are attempting to address them through [MUI Toolpad](https://mui.com/toolpad/).
 
-<img src="/static/blog/2022-developer-survey-results/26.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/26.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">467 respondents.</p>
 
 ### How many internal apps (interfaces for business operation) do you currently have in your organization?
 
 About 60% of respondents have between 1-5 internal applications within their companies, and surprisingly, over 10% reported having more than 21 internal applications, indicating that a sizeable portion of our community is engaged in large-scale, complex environments with a likely high degree of demand for diverse use cases in these applications.
 
-<img src="/static/blog/2022-developer-survey-results/27.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/27.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">775 respondents.</p>
 
 ### How many people have access to the above apps?
 
-<img src="/static/blog/2022-developer-survey-results/28.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/28.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">724 respondents.</p>
 
 ### How do your existing internal tools integrate the front end with the back end?
 
 The vast majority, 88%, utilize REST APIs as the backend for their internal applications, reflecting the popularity of this approach.
 
-<img src="/static/blog/2022-developer-survey-results/29.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/29.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">790 respondents.</p>
 
 ### Which low-code products did you use?
@@ -324,7 +326,7 @@ The community uses a wide variety of low-code products for use cases like intern
 
 Note: It was a broad question and in the chart below, we only showed products whose occurence was 3 or more. Apart from these, 90 more such tools were mentioned!
 
-<img src="/static/blog/2022-developer-survey-results/30.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<img src="/static/blog/developer-survey-impacts/30.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">160 respondents.</p>
 
 ## Conclusion
