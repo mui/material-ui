@@ -128,7 +128,7 @@
     "@types/prop-types": "^15.7.13",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "@types/react-swipeable-views": "^0.13.5",
+    "@types/react-swipeable-views": "^0.13.6",
     "@types/react-transition-group": "^4.4.11",
     "@types/react-window": "^1.8.8",
     "@types/stylis": "^4.2.0",
