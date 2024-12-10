@@ -26,7 +26,7 @@
     "@pigment-css/unplugin": "file:../../packages/pigment-css-unplugin",
     "@pigment-css/nextjs-plugin": "file:../../packages/pigment-css-nextjs-plugin",
     "@types/node": "^20.5.7",
-    "@types/react": "^18.3.3",
+    "@types/react": "^18.3.14",
     "@types/react-dom": "^18.3.0",
     "eslint": "^8.56.0",
     "typescript": "^5.3.3"
