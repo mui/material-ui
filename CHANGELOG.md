@@ -1,7 +1,9 @@
 # [Versions](https://mui.com/versions/)
 
 ## 6.2.0
+
 <!-- generated comparing v6.1.10..master -->
+
 _Dec 10, 2024_
 
 A big thanks to the 9 contributors who made this release possible. Here are some highlights ✨:
@@ -16,7 +18,6 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 - [Grid] Remove deeply nested imports (#43605) @Janpot
 - [Grid] Fix spacing when using css variables (#44663) @DiegoAndai
 - [ListItemText] Add `slots` and `slotProps` (#44571) @sai6855
-
 
 ### Docs
 
