@@ -656,7 +656,7 @@ const attachTable = (
   reactApi: ComponentReactApi,
   params: ParsedProperty[],
   attribute: 'cssVariables' | 'dataAttributes',
-  defaultType: any = undefined,
+  defaultType?: string,
 ) => {
   const errors: Array<[propName: string, error: Error]> = [];
   const data: { [key: string]: ApiItemDescription } = params
