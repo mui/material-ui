@@ -24,6 +24,16 @@ import areArraysEqual from '../utils/areArraysEqual';
 
 const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
 
+function getNewValue(
+  currentValue: number,
+  step: number,
+  direction: 1 | -1,
+  min: number,
+  max: number,
+): number {
+  return direction === 1 ? Math.min(currentValue + step, max) : Math.max(currentValue - step, min);
+}
+
 function asc(a: number, b: number) {
   return a - b;
 }
@@ -294,8 +304,8 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     const index = Number(event.currentTarget.getAttribute('data-index'));
     const value = values[index];
     const marksIndex = marksValues.indexOf(value);
-    let newValue: number | number[] = valueInput;
 
+    let newValue: number | number[] = valueInput;
     if (marks && step == null) {
       const maxMarksValue = marksValues[marksValues.length - 1];
       if (newValue > maxMarksValue) {
@@ -345,29 +355,85 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
   };
 
   const createHandleHiddenInputKeyDown =
-    (otherHandlers: EventHandlers) => (event: React.KeyboardEvent) => {
-      // The Shift + Up/Down keyboard shortcuts for moving the slider makes sense to be supported
-      // only if the step is defined. If the step is null, this means tha the marks are used for specifying the valid values.
-      if (step !== null) {
+    (otherHandlers: EventHandlers) => (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (
+        [
+          'ArrowUp',
+          'ArrowDown',
+          'ArrowLeft',
+          'ArrowRight',
+          'PageUp',
+          'PageDown',
+          'Home',
+          'End',
+        ].includes(event.key)
+      ) {
+        event.preventDefault();
         const index = Number(event.currentTarget.getAttribute('data-index'));
         const value = values[index];
-
         let newValue = null;
-        if (
-          ((event.key === 'ArrowLeft' || event.key === 'ArrowDown') && event.shiftKey) ||
-          event.key === 'PageDown'
-        ) {
-          newValue = Math.max(value - shiftStep, min);
-        } else if (
-          ((event.key === 'ArrowRight' || event.key === 'ArrowUp') && event.shiftKey) ||
-          event.key === 'PageUp'
-        ) {
-          newValue = Math.min(value + shiftStep, max);
+        // Keys actions that change the value by more than the most granular `step`
+        // value are only applied if the step not `null`.
+        // When step is `null`, the `marks` prop is used instead to define valid values.
+        if (step != null) {
+          const stepSize = event.shiftKey ? shiftStep : step;
+          switch (event.key) {
+            case 'ArrowUp':
+              newValue = getNewValue(value, stepSize, 1, min, max);
+              break;
+            case 'ArrowRight':
+              newValue = getNewValue(value, stepSize, isRtl ? -1 : 1, min, max);
+              break;
+            case 'ArrowDown':
+              newValue = getNewValue(value, stepSize, -1, min, max);
+              break;
+            case 'ArrowLeft':
+              newValue = getNewValue(value, stepSize, isRtl ? 1 : -1, min, max);
+              break;
+            case 'PageUp':
+              newValue = getNewValue(value, shiftStep, 1, min, max);
+              break;
+            case 'PageDown':
+              newValue = getNewValue(value, shiftStep, -1, min, max);
+              break;
+            case 'Home':
+              newValue = min;
+              break;
+            case 'End':
+              newValue = max;
+              break;
+            default:
+              break;
+          }
+        } else if (marks) {
+          const maxMarksValue = marksValues[marksValues.length - 1];
+          const currentMarkIndex = marksValues.indexOf(value);
+
+          const decrementKeys = [
+            isRtl ? 'ArrowRight' : 'ArrowLeft',
+            'ArrowDown',
+            'PageDown',
+            'Home',
+          ];
+          const incrementKeys = [isRtl ? 'ArrowLeft' : 'ArrowRight', 'ArrowUp', 'PageUp', 'End'];
+
+          if (decrementKeys.includes(event.key)) {
+            if (currentMarkIndex === 0) {
+              newValue = marksValues[0];
+            } else {
+              newValue = marksValues[currentMarkIndex - 1];
+            }
+          } else if (incrementKeys.includes(event.key)) {
+            if (currentMarkIndex === marksValues.length - 1) {
+              newValue = maxMarksValue;
+            } else {
+              newValue = marksValues[currentMarkIndex + 1];
+            }
+          }
         }
 
-        if (newValue !== null) {
+        if (newValue != null) {
           changeValue(event, newValue);
-          event.preventDefault();
         }
       }
 
@@ -394,6 +460,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
   const createHandleHiddenInputChange =
     (otherHandlers: EventHandlers) => (event: React.ChangeEvent) => {
       otherHandlers.onChange?.(event);
+      // this handles value change by Pointer or Touch events
       // @ts-ignore
       changeValue(event, event.target.valueAsNumber);
     };
@@ -687,6 +754,11 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     };
   };
 
+  let cssWritingMode: 'vertical-rl' | 'vertical-lr' | undefined;
+  if (orientation === 'vertical') {
+    cssWritingMode = isRtl ? 'vertical-rl' : 'vertical-lr';
+  }
+
   const getHiddenInputProps = <ExternalProps extends Record<string, unknown> = {}>(
     externalProps: ExternalProps = {} as ExternalProps,
   ): UseSliderHiddenInputProps<ExternalProps> => {
@@ -724,6 +796,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
         // So that VoiceOver's focus indicator matches the thumb's dimensions
         width: '100%',
         height: '100%',
+        writingMode: cssWritingMode,
       },
     };
   };
