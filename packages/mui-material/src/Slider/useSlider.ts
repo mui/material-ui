@@ -230,7 +230,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     value: valueProp,
   } = parameters;
 
-  const touchId = React.useRef<number | undefined>(undefined);
+  const touchId = React.useRef<number>(undefined);
   // We can't use the :active browser pseudo-classes.
   // - The active state isn't triggered when clicking on the rail.
   // - The active state isn't transferred when inversing a range slider.
@@ -279,7 +279,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
   const [focusedThumbIndex, setFocusedThumbIndex] = React.useState(-1);
 
-  const sliderRef = React.useRef<HTMLSpanElement | null>(null);
+  const sliderRef = React.useRef<HTMLSpanElement>(null);
   const handleRef = useForkRef(ref, sliderRef);
 
   const createHandleHiddenInputFocus =
@@ -465,7 +465,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
       changeValue(event, event.target.valueAsNumber);
     };
 
-  const previousIndex = React.useRef<number | undefined>(undefined);
+  const previousIndex = React.useRef<number>(undefined);
   let axis = orientation;
   if (isRtl && orientation === 'horizontal') {
     axis += '-reverse';

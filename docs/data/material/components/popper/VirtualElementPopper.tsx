@@ -8,7 +8,7 @@ export default function VirtualElementPopper() {
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<PopperProps['anchorEl']>(null);
 
-  const previousAnchorElPosition = React.useRef<DOMRect | undefined>(undefined);
+  const previousAnchorElPosition = React.useRef<DOMRect>(undefined);
 
   React.useEffect(() => {
     if (anchorEl) {
