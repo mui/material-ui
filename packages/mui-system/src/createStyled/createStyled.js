@@ -173,7 +173,7 @@ export default function createStyled(input = {}) {
     };
 
     const muiStyledResolver = (...expressionsInput) => {
-      const expressionsHead = [];
+      const expressionsHead = ['/*@layer components*/'];
       const expressionsBody = expressionsInput.map(transformStyle);
       const expressionsTail = [];
 
@@ -202,6 +202,7 @@ export default function createStyled(input = {}) {
       }
 
       if (componentName && !skipVariantsResolver) {
+        expressionsTail.push('/*@layer theme*/');
         expressionsTail.push(function styleThemeVariants(props) {
           const theme = props.theme;
           const themeVariants = theme?.components?.[componentName]?.variants;
@@ -213,6 +214,7 @@ export default function createStyled(input = {}) {
       }
 
       if (!skipSx) {
+        expressionsTail.push('/*@layer sx*/');
         expressionsTail.push(styleFunctionSx);
       }
 
