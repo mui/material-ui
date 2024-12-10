@@ -20,53 +20,53 @@ import stackBlitz from 'docs/src/modules/sandbox/StackBlitz';
 
 const sourcePrefix = `${process.env.SOURCE_CODE_REPO}/tree/v${process.env.LIB_VERSION}`;
 
-function layouts(translatation) {
+function layouts(translation) {
   return [
     {
-      title: translatation('dashboardTitle'),
-      description: translatation('dashboardDescr'),
+      title: translation('dashboardTitle'),
+      description: translation('dashboardDescr'),
       href: '/material-ui/getting-started/templates/dashboard/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/dashboard`,
       hasDarkMode: true,
     },
     {
-      title: translatation('marketingPageTitle'),
-      description: translatation('marketingPageDescr'),
+      title: translation('marketingPageTitle'),
+      description: translation('marketingPageDescr'),
       href: '/material-ui/getting-started/templates/marketing-page/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/marketing-page`,
       hasDarkMode: true,
     },
     {
-      title: translatation('checkoutTitle'),
-      description: translatation('checkoutDescr'),
+      title: translation('checkoutTitle'),
+      description: translation('checkoutDescr'),
       href: '/material-ui/getting-started/templates/checkout/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/checkout`,
       hasDarkMode: true,
     },
     {
-      title: translatation('signInTitle'),
-      description: translatation('signInDescr'),
+      title: translation('signInTitle'),
+      description: translation('signInDescr'),
       href: '/material-ui/getting-started/templates/sign-in/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/sign-in`,
       hasDarkMode: true,
     },
     {
-      title: translatation('signInSideTitle'),
-      description: translatation('signInSideDescr'),
+      title: translation('signInSideTitle'),
+      description: translation('signInSideDescr'),
       href: '/material-ui/getting-started/templates/sign-in-side/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/sign-in-side`,
       hasDarkMode: true,
     },
     {
-      title: translatation('signUpTitle'),
-      description: translatation('signUpDescr'),
+      title: translation('signUpTitle'),
+      description: translation('signUpDescr'),
       href: '/material-ui/getting-started/templates/sign-up/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/sign-up`,
       hasDarkMode: true,
     },
     {
-      title: translatation('blogTitle'),
-      description: translatation('blogDescr'),
+      title: translation('blogTitle'),
+      description: translation('blogDescr'),
       href: '/material-ui/getting-started/templates/blog/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/blog`,
       hasDarkMode: true,
@@ -75,11 +75,11 @@ function layouts(translatation) {
 }
 
 export default function MaterialFreeTemplatesCollection() {
-  const translatation = useTranslate();
+  const translation = useTranslate();
   const materialTemplates = sourceMaterialTemplates();
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4, mb: 4 }}>
-      {layouts(translatation).map((layout, index) => {
+      {layouts(translation).map((layout, index) => {
         const templateId = layout.source.split('/').pop();
         const templateName = pascalCase(templateId);
         const item = materialTemplates.map.get(templateId);

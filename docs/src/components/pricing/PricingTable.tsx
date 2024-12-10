@@ -1284,7 +1284,7 @@ export default function PricingTable({
     }
   }, [router.query]);
 
-  const tableRef = React.useRef<HTMLDivElement | null>(null);
+  const tableRef = React.useRef<HTMLDivElement>(null);
   const gridSx = {
     display: 'grid',
     gridTemplateColumns: `minmax(160px, 1fr) repeat(${plans.length}, minmax(${

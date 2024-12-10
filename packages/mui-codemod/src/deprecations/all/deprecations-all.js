@@ -15,6 +15,7 @@ import transformFormControlLabelProps from '../form-control-label-props';
 import transformImageListItemBarClasses from '../image-list-item-bar-classes';
 import transformInputBaseProps from '../input-base-props';
 import transformInputProps from '../input-props';
+import transformListItemTextProps from '../list-item-text-props';
 import transformModalProps from '../modal-props';
 import transformOutlinedInputProps from '../outlined-input-props';
 import transformPaginationItemClasses from '../pagination-item-classes';
@@ -49,6 +50,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformImageListItemBarClasses(file, api, options);
   file.source = transformInputBaseProps(file, api, options);
   file.source = transformInputProps(file, api, options);
+  file.source = transformListItemTextProps(file, api, options);
   file.source = transformModalProps(file, api, options);
   file.source = transformOutlinedInputProps(file, api, options);
   file.source = transformPaginationItemClasses(file, api, options);
