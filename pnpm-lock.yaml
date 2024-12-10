@@ -332,7 +332,7 @@ importers:
     dependencies:
       '@emotion/cache':
         specifier: latest
-        version: 11.13.5
+        version: 11.14.0
       '@mui/base':
         specifier: workspace:^
         version: link:../../packages/mui-base/build
@@ -568,7 +568,7 @@ importers:
         version: 3.8.0(@algolia/client-search@5.13.0)(@types/react@19.0.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(search-insights@2.13.0)
       '@emotion/cache':
         specifier: ^11.13.5
-        version: 11.13.5
+        version: 11.14.0
       '@emotion/react':
         specifier: ^11.13.5
         version: 11.13.5(@types/react@19.0.0)(react@19.0.0)
@@ -1040,7 +1040,7 @@ importers:
         version: 7.26.0
       '@emotion/cache':
         specifier: ^11.13.5
-        version: 11.13.5
+        version: 11.14.0
       '@emotion/react':
         specifier: ^11.13.5
         version: 11.13.5(@types/react@19.0.0)(react@19.0.0)
@@ -1823,7 +1823,7 @@ importers:
     devDependencies:
       '@emotion/cache':
         specifier: ^11.13.5
-        version: 11.13.5
+        version: 11.14.0
       '@emotion/react':
         specifier: ^11.13.5
         version: 11.13.5(@types/react@19.0.0)(react@19.0.0)
@@ -1893,7 +1893,7 @@ importers:
         version: 7.26.0
       '@emotion/cache':
         specifier: ^11.13.5
-        version: 11.13.5
+        version: 11.14.0
       '@emotion/serialize':
         specifier: ^1.3.3
         version: 1.3.3
@@ -2265,7 +2265,7 @@ importers:
         version: 7.26.0
       '@emotion/cache':
         specifier: ^11.13.5
-        version: 11.13.5
+        version: 11.14.0
       '@emotion/react':
         specifier: ^11.13.5
         version: 11.13.5(@types/react@19.0.0)(react@19.0.0)
@@ -3275,8 +3275,8 @@ packages:
   '@emotion/babel-plugin@11.13.5':
     resolution: {integrity: sha512-pxHCpT2ex+0q+HH91/zsdHkw/lXd468DIN2zvfvLtPKLLMo6gQj7oLObq8PhkrxOZb/gGCq03S3Z7PDhS8pduQ==}
 
-  '@emotion/cache@11.13.5':
-    resolution: {integrity: sha512-Z3xbtJ+UcK76eWkagZ1onvn/wAVb1GOMuR15s30Fm2wrMgC7jzpnO2JZXr4eujTTqoQFUrZIw/rT0c6Zzjca1g==}
+  '@emotion/cache@11.14.0':
+    resolution: {integrity: sha512-L/B1lc/TViYk4DcpGxtAVbx0ZyiKM5ktoIyafGkH6zg/tj+mA+NE//aPYKG0k8kCHSHVJrpLpcAlOBEXQ3SavA==}
 
   '@emotion/css@11.13.4':
     resolution: {integrity: sha512-CthbOD5EBw+iN0rfM96Tuv5kaZN4nxPyYDvGUs0bc7wZBBiU/0mse+l+0O9RshW2d+v5HH1cme+BAbLJ/3Folw==}
@@ -14339,7 +14339,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@emotion/cache@11.13.5':
+  '@emotion/cache@11.14.0':
     dependencies:
       '@emotion/memoize': 0.9.0
       '@emotion/sheet': 1.4.0
@@ -14350,7 +14350,7 @@ snapshots:
   '@emotion/css@11.13.4':
     dependencies:
       '@emotion/babel-plugin': 11.13.5
-      '@emotion/cache': 11.13.5
+      '@emotion/cache': 11.14.0
       '@emotion/serialize': 1.3.3
       '@emotion/sheet': 1.4.0
       '@emotion/utils': 1.4.2
@@ -14389,7 +14389,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.26.0
       '@emotion/babel-plugin': 11.13.5
-      '@emotion/cache': 11.13.5
+      '@emotion/cache': 11.14.0
       '@emotion/serialize': 1.3.3
       '@emotion/use-insertion-effect-with-fallbacks': 1.1.0(react@19.0.0)
       '@emotion/utils': 1.4.2
@@ -14405,7 +14405,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.26.0
       '@emotion/babel-plugin': 11.13.5
-      '@emotion/cache': 11.13.5
+      '@emotion/cache': 11.14.0
       '@emotion/serialize': 1.3.3
       '@emotion/use-insertion-effect-with-fallbacks': 1.1.0(react@19.0.0)
       '@emotion/utils': 1.4.2
@@ -15163,7 +15163,7 @@ snapshots:
   '@mui/styled-engine@5.16.4(@emotion/react@11.13.5(@types/react@19.0.0)(react@19.0.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.0.0)(react@19.0.0))(@types/react@19.0.0)(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@babel/runtime': 7.26.0
-      '@emotion/cache': 11.13.5
+      '@emotion/cache': 11.14.0
       csstype: 3.1.3
       prop-types: 15.8.1
       react: 19.0.0
@@ -15174,7 +15174,7 @@ snapshots:
   '@mui/styled-engine@6.1.10(@emotion/react@11.13.5(@types/react@19.0.0)(react@19.0.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.0.0)(react@19.0.0))(@types/react@19.0.0)(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@babel/runtime': 7.26.0
-      '@emotion/cache': 11.13.5
+      '@emotion/cache': 11.14.0
       '@emotion/serialize': 1.3.3
       '@emotion/sheet': 1.4.0
       csstype: 3.1.3
