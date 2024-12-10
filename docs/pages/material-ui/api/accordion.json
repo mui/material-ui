@@ -65,6 +65,9 @@
       "class": null
     }
   ],
+  "dataAttributes": {
+    "data-panel-open": { "description": "Indicates whether the panel is opened", "type": "boolean" }
+  },
   "classes": [
     {
       "key": "disabled",

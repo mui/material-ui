@@ -31,7 +31,7 @@ import {
   ComponentReactApi,
   ParsedProperty,
 } from '../types/ApiBuilder.types';
-import { Slot, ComponentInfo } from '../types/utils.types';
+import { Slot, ComponentInfo, ApiItemDescription } from '../types/utils.types';
 import extractInfoFromEnum from '../utils/extractInfoFromEnum';
 
 const cssComponents = ['Box', 'Grid', 'Typography', 'Stack'];
@@ -324,6 +324,7 @@ const generateApiPage = async (
     imports: reactApi.imports,
     ...(reactApi.slots?.length > 0 && { slots: reactApi.slots }),
     ...(Object.keys(reactApi.cssVariables).length > 0 && { cssVariables: reactApi.cssVariables }),
+    ...(Object.keys(reactApi.dataAttributes).length > 0 && { dataAttributes: reactApi.dataAttributes }),
     classes: reactApi.classes,
     spread: reactApi.spread,
     themeDefaultProps: reactApi.themeDefaultProps,
@@ -477,6 +478,20 @@ const attachTranslations = (
       });
   }
 
+  /**
+   * Data attributes descriptions.
+   */
+    if (Object.keys(reactApi.dataAttributes).length > 0) {
+      translations.dataAttributesDescriptions = {};
+      [...Object.keys(reactApi.dataAttributes)]
+        .sort() // Sort to ensure consistency of object key order
+        .forEach((dataAttributeName: string) => {
+          const cssVariable = reactApi.dataAttributes[dataAttributeName];
+          const { description } = cssVariable;
+          translations.dataAttributesDescriptions![dataAttributeName] = renderMarkdown(description);
+        });
+    }
+
   reactApi.translations = translations;
 };
 
@@ -624,16 +639,16 @@ const defaultGetComponentImports = (name: string, filename: string) => {
   return [subpathImport, rootImport];
 };
 
-const attachCssVariables = (reactApi: ComponentReactApi, params: ParsedProperty[]) => {
-  const cssVarsErrors: Array<[propName: string, error: Error]> = [];
-  const cssVariables: ComponentReactApi['cssVariables'] = params
+const attachTable = (reactApi: ComponentReactApi, params: ParsedProperty[], attribute: 'cssVariables' | 'dataAttributes') => {
+  const errors: Array<[propName: string, error: Error]> = [];
+  const data: { [key: string]: ApiItemDescription } = params
     .map((p) => {
       const { name: propName, ...propDescriptor } = p;
       let prop: Omit<ParsedProperty, 'name'> | null;
       try {
         prop = propDescriptor;
       } catch (error) {
-        cssVarsErrors.push([propName, error as Error]);
+        errors.push([propName, error as Error]);
         prop = null;
       }
       if (prop === null) {
@@ -663,17 +678,17 @@ const attachCssVariables = (reactApi: ComponentReactApi, params: ParsedProperty[
       };
     }, {});
 
-  if (cssVarsErrors.length > 0) {
+  if (errors.length > 0) {
     throw new Error(
-      `There were errors creating CSS variable descriptions:\n${cssVarsErrors
-        .map(([cssVarName, error]) => {
-          return `  - ${cssVarName}: ${error}`;
+      `There were errors creating ${attribute.replace(/([A-Z])/g, " $1")} descriptions:\n${errors
+        .map(([item, error]) => {
+          return `  - ${item}: ${error}`;
         })
         .join('\n')}`,
     );
   }
 
-  reactApi.cssVariables = cssVariables;
+  reactApi[attribute] = data;
 };
 
 /**
@@ -826,8 +841,15 @@ export default async function generateComponentApi(
     project,
   );
 
+  const dataAttributes = await extractInfoFromEnum(
+    `${componentInfo.name}DataAttributes`,
+    new RegExp(`${componentInfo.name}(DataAttributes)?.tsx?$`, 'i'),
+    project,
+  );
+
   attachPropsTable(reactApi, projectSettings.propsSettings);
-  attachCssVariables(reactApi, cssVars);
+  attachTable(reactApi, cssVars, 'cssVariables');
+  attachTable(reactApi, dataAttributes, 'dataAttributes');
   attachTranslations(reactApi, deprecationInfo, projectSettings.propsSettings);
 
   // eslint-disable-next-line no-console
