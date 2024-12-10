@@ -34,7 +34,7 @@ const Root = styled('div')(({ theme }) => ({
 
 type MarkdownElementProps = {
   renderedMarkdown: string;
-} & Omit<JSX.IntrinsicElements['div'], 'ref'>;
+} & Omit<React.JSX.IntrinsicElements['div'], 'ref'>;
 
 const MarkdownElement = React.forwardRef<HTMLDivElement, MarkdownElementProps>(
   function MarkdownElement(props, ref) {
