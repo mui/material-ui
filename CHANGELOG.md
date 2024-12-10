@@ -8,7 +8,7 @@ _Dec 10, 2024_
 
 A big thanks to the 9 contributors who made this release possible. Here are some highlights ✨:
 
-- Material UI is now compatible with React 19 (#44672) @DiegoAndai
+- Material UI is now compatible with React 19 (#44672) @DiegoAndai
 - Fixed incorrect `aria-orientation` for vertical sliders. Now <kbd>ArrowRight</kbd> increases the value and <kbd>ArrowLeft</kbd> decreases the value in vertical sliders. (#44537) @mj12albert
 
 ### `@mui/material@6.2.0`
