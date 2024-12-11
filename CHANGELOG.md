@@ -1,10 +1,10 @@
 # [Versions](https://mui.com/versions/)
 
-## 5.16.10
+## 5.16.11
 
 <!-- generated comparing v5.16.9..v5.x -->
 
-_Dec 10, 2024_
+_Dec 11, 2024_
 
 A big thanks to the contributor who made this release possible.
 
