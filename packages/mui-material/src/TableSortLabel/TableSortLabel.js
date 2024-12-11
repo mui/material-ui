@@ -10,6 +10,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import tableSortLabelClasses, { getTableSortLabelUtilityClass } from './tableSortLabelClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, direction, active } = ownerState;
@@ -107,6 +108,8 @@ const TableSortLabel = React.forwardRef(function TableSortLabel(inProps, ref) {
     direction = 'asc',
     hideSortIcon = false,
     IconComponent = ArrowDownwardIcon,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -120,6 +123,18 @@ const TableSortLabel = React.forwardRef(function TableSortLabel(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const externalForwardedProps = {
+    slots,
+    slotProps,
+  };
+
+  const [IconSlot, iconProps] = useSlot('icon', {
+    elementType: TableSortLabelIcon,
+    externalForwardedProps,
+    ownerState,
+    className: classes.icon,
+  });
+
   return (
     <TableSortLabelRoot
       className={clsx(classes.root, className)}
@@ -130,13 +145,7 @@ const TableSortLabel = React.forwardRef(function TableSortLabel(inProps, ref) {
       {...other}
     >
       {children}
-      {hideSortIcon && !active ? null : (
-        <TableSortLabelIcon
-          as={IconComponent}
-          className={clsx(classes.icon)}
-          ownerState={ownerState}
-        />
-      )}
+      {hideSortIcon && !active ? null : <IconSlot as={IconComponent} {...iconProps} />}
     </TableSortLabelRoot>
   );
 });
@@ -178,6 +187,20 @@ TableSortLabel.propTypes /* remove-proptypes */ = {
    * @default ArrowDownwardIcon
    */
   IconComponent: PropTypes.elementType,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    icon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    icon: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

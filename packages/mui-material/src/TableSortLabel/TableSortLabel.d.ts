@@ -4,8 +4,30 @@ import { Theme } from '..';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { TableSortLabelClasses } from './tableSortLabelClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
-export interface TableSortLabelOwnProps {
+export interface TableSortLabelSlots {
+  /**
+   * Sort icon to use.
+   * @default ArrowDownwardIcon
+   */
+  icon?: React.ElementType;
+}
+
+export type TableSortLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  TableSortLabelSlots,
+  {
+    icon: SlotProps<
+      React.ElementType<React.SVGAttributes<SVGSVGElement>>,
+      {},
+      TableSortLabelOwnerState
+    >;
+  }
+>;
+
+export interface TableSortLabelOwnerState extends TableSortLabelProps {}
+
+export interface TableSortLabelOwnProps extends TableSortLabelSlotsAndSlotProps {
   /**
    * If `true`, the label will have the active styling (should be true for the sorted column).
    * @default false
