@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent, act, screen } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, act, screen, reactMajor } from '@mui/internal-test-utils';
 import {
   DEFAULT_MODE_STORAGE_KEY,
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
@@ -85,25 +85,23 @@ describe('useCurrentColorScheme', () => {
   });
 
   it('trigger a re-render for a multi color schemes', () => {
+    let effectRunCount = 0;
     function Data() {
       const { mode } = useCurrentColorScheme({
         supportedColorSchemes: ['light', 'dark'],
         defaultLightColorScheme: 'light',
         defaultDarkColorScheme: 'dark',
       });
-      const count = React.useRef(0);
       React.useEffect(() => {
-        count.current += 1;
+        effectRunCount += 1;
       });
-      return (
-        <div>
-          {mode}:{count.current}
-        </div>
-      );
+      return <div>{mode}</div>;
     }
+
     const { container } = render(<Data />);
 
-    expect(container.firstChild.textContent).to.equal('light:2'); // 2 because of double render within strict mode
+    expect(container.firstChild.textContent).to.equal('light');
+    expect(effectRunCount).to.equal(reactMajor >= 19 ? 2 : 3);
   });
 
   it('[noSsr] does not trigger a re-render', () => {
