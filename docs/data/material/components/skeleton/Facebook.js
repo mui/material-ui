@@ -63,6 +63,7 @@ function Media(props) {
           alt="Nicola Sturgeon on a TED talk stage"
         />
       )}
+
       <CardContent>
         {loading ? (
           <React.Fragment>

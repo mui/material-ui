@@ -103,6 +103,7 @@ export default function HorizontalLinearStepper() {
                 Skip
               </Button>
             )}
+
             <Button onClick={handleNext}>
               {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
             </Button>

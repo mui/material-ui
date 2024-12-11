@@ -93,11 +93,13 @@ export default function BottomAppBar() {
                   Today
                 </ListSubheader>
               )}
+
               {id === 3 && (
                 <ListSubheader sx={{ bgcolor: 'background.paper' }}>
                   Yesterday
                 </ListSubheader>
               )}
+
               <ListItemButton>
                 <ListItemAvatar>
                   <Avatar alt="Profile Picture" src={person} />
