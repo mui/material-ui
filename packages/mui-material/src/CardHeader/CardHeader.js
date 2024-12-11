@@ -1,12 +1,12 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import Typography, { typographyClasses } from '../Typography';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import cardHeaderClasses, { getCardHeaderUtilityClass } from './cardHeaderClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -78,13 +78,14 @@ const CardHeader = React.forwardRef(function CardHeader(inProps, ref) {
   const {
     action,
     avatar,
-    className,
     component = 'div',
     disableTypography = false,
     subheader: subheaderProp,
     subheaderTypographyProps,
     title: titleProp,
     titleTypographyProps,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -96,59 +97,92 @@ const CardHeader = React.forwardRef(function CardHeader(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const externalForwardedProps = {
+    slots,
+    slotProps: {
+      ...slotProps,
+      title: slotProps.title ?? titleTypographyProps,
+      subheader: slotProps.subheader ?? subheaderTypographyProps,
+    },
+  };
+
   let title = titleProp;
+  const [TitleSlot, titleSlotProps] = useSlot('title', {
+    className: classes.title,
+    elementType: Typography,
+    externalForwardedProps,
+    ownerState,
+  });
   if (title != null && title.type !== Typography && !disableTypography) {
     title = (
-      <Typography
-        variant={avatar ? 'body2' : 'h5'}
-        className={classes.title}
-        component="span"
-        {...titleTypographyProps}
-      >
+      <TitleSlot variant={avatar ? 'body2' : 'h5'} component="span" {...titleSlotProps}>
         {title}
-      </Typography>
+      </TitleSlot>
     );
   }
 
   let subheader = subheaderProp;
+  const [SubheaderSlot, subheaderSlotProps] = useSlot('subheader', {
+    className: classes.subheader,
+    elementType: Typography,
+    externalForwardedProps,
+    ownerState,
+  });
   if (subheader != null && subheader.type !== Typography && !disableTypography) {
     subheader = (
-      <Typography
+      <SubheaderSlot
         variant={avatar ? 'body2' : 'body1'}
-        className={classes.subheader}
         color="textSecondary"
         component="span"
-        {...subheaderTypographyProps}
+        {...subheaderSlotProps}
       >
         {subheader}
-      </Typography>
+      </SubheaderSlot>
     );
   }
 
-  return (
-    <CardHeaderRoot
-      className={clsx(classes.root, className)}
-      as={component}
-      ref={ref}
-      ownerState={ownerState}
-      {...other}
-    >
-      {avatar && (
-        <CardHeaderAvatar className={classes.avatar} ownerState={ownerState}>
-          {avatar}
-        </CardHeaderAvatar>
-      )}
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    ref,
+    className: classes.root,
+    elementType: CardHeaderRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+      component,
+    },
+    ownerState,
+  });
 
-      <CardHeaderContent className={classes.content} ownerState={ownerState}>
+  const [AvatarSlot, avatarSlotProps] = useSlot('avatar', {
+    className: classes.avatar,
+    elementType: CardHeaderAvatar,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [ContentSlot, contentSlotProps] = useSlot('content', {
+    className: classes.content,
+    elementType: CardHeaderContent,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [ActionSlot, actionSlotProps] = useSlot('action', {
+    className: classes.action,
+    elementType: CardHeaderAction,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  return (
+    <RootSlot {...rootSlotProps}>
+      {avatar && <AvatarSlot {...avatarSlotProps}>{avatar}</AvatarSlot>}
+      <ContentSlot {...contentSlotProps}>
         {title}
         {subheader}
-      </CardHeaderContent>
-      {action && (
-        <CardHeaderAction className={classes.action} ownerState={ownerState}>
-          {action}
-        </CardHeaderAction>
-      )}
-    </CardHeaderRoot>
+      </ContentSlot>
+      {action && <ActionSlot {...actionSlotProps}>{action}</ActionSlot>}
+    </RootSlot>
   );
 });
 
@@ -174,10 +208,6 @@ CardHeader.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
@@ -190,6 +220,102 @@ CardHeader.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableTypography: PropTypes.bool,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    action: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({
+        component: PropTypes.elementType,
+        sx: PropTypes.oneOfType([
+          PropTypes.arrayOf(
+            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
+          ),
+          PropTypes.func,
+          PropTypes.object,
+        ]),
+      }),
+    ]),
+    avatar: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({
+        component: PropTypes.elementType,
+        sx: PropTypes.oneOfType([
+          PropTypes.arrayOf(
+            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
+          ),
+          PropTypes.func,
+          PropTypes.object,
+        ]),
+      }),
+    ]),
+    content: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({
+        component: PropTypes.elementType,
+        sx: PropTypes.oneOfType([
+          PropTypes.arrayOf(
+            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
+          ),
+          PropTypes.func,
+          PropTypes.object,
+        ]),
+      }),
+    ]),
+    root: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({
+        component: PropTypes.elementType,
+        sx: PropTypes.oneOfType([
+          PropTypes.arrayOf(
+            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
+          ),
+          PropTypes.func,
+          PropTypes.object,
+        ]),
+      }),
+    ]),
+    subheader: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({
+        component: PropTypes.elementType,
+        sx: PropTypes.oneOfType([
+          PropTypes.arrayOf(
+            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
+          ),
+          PropTypes.func,
+          PropTypes.object,
+        ]),
+      }),
+    ]),
+    title: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({
+        component: PropTypes.elementType,
+        sx: PropTypes.oneOfType([
+          PropTypes.arrayOf(
+            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
+          ),
+          PropTypes.func,
+          PropTypes.object,
+        ]),
+      }),
+    ]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    action: PropTypes.elementType,
+    avatar: PropTypes.elementType,
+    content: PropTypes.elementType,
+    root: PropTypes.elementType,
+    subheader: PropTypes.elementType,
+    title: PropTypes.elementType,
+  }),
   /**
    * The content of the component.
    */
