@@ -705,6 +705,10 @@ SelectInput.propTypes = {
    */
   renderValue: PropTypes.func,
   /**
+   * If `true`, the component is required.
+   */
+  required: PropTypes.bool,
+  /**
    * Props applied to the clickable div element.
    */
   SelectDisplayProps: PropTypes.object,
