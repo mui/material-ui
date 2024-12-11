@@ -52,7 +52,7 @@ export class SxProcessor extends BaseProcessor {
       }
     } else {
       const styleObjOrFn = values.get(sxStyle.ex.name);
-      cssText = this.processCss(styleObjOrFn, sxStyle);
+      cssText = this.processCss(styleObjOrFn, sxStyle) ?? '';
     }
     const selector = this.elementClassName
       ? `${this.elementClassName}${this.asSelector}`
