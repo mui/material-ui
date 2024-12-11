@@ -195,12 +195,6 @@
       "isGlobal": false
     },
     {
-      "key": "endIconLoadingEnd",
-      "className": "MuiButton-endIconLoadingEnd",
-      "description": "Styles applied to the endIcon element if `loading={true}` and `loadingPosition=\"end\"`.",
-      "isGlobal": false
-    },
-    {
       "key": "focusVisible",
       "className": "Mui-focusVisible",
       "description": "State class applied to the ButtonBase root element if the button is keyboard focused.",
@@ -243,6 +237,12 @@
       "key": "loading",
       "className": "MuiButton-loading",
       "description": "Styles applied to the root element if `loading={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "loadingIconPlaceholder",
+      "className": "MuiButton-loadingIconPlaceholder",
+      "description": "Styles applied to the loadingIconPlaceholder element.",
       "isGlobal": false
     },
     {
@@ -379,12 +379,6 @@
       "key": "startIcon",
       "className": "MuiButton-startIcon",
       "description": "Styles applied to the startIcon element if supplied.",
-      "isGlobal": false
-    },
-    {
-      "key": "startIconLoadingStart",
-      "className": "MuiButton-startIconLoadingStart",
-      "description": "Styles applied to the startIcon element if `loading={true}` and `loadingPosition=\"start\"`.",
       "isGlobal": false
     },
     {

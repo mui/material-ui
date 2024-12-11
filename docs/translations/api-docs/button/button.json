@@ -158,11 +158,6 @@
       "nodeName": "the endIcon element",
       "conditions": "supplied"
     },
-    "endIconLoadingEnd": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the endIcon element",
-      "conditions": "<code>loading={true}</code> and <code>loadingPosition=\"end\"</code>"
-    },
     "focusVisible": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the ButtonBase root element",
@@ -196,6 +191,10 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>loading={true}</code>"
+    },
+    "loadingIconPlaceholder": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the loadingIconPlaceholder element"
     },
     "loadingIndicator": {
       "description": "Styles applied to {{nodeName}}.",
@@ -305,11 +304,6 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the startIcon element",
       "conditions": "supplied"
-    },
-    "startIconLoadingStart": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the startIcon element",
-      "conditions": "<code>loading={true}</code> and <code>loadingPosition=\"start\"</code>"
     },
     "text": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
