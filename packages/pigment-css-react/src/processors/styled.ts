@@ -436,12 +436,13 @@ export class StyledProcessor extends BaseProcessor {
       }
     } else {
       const styleObjOrFn = values.get(styleArg.ex.name);
-      const finalStyle = this.processCss(
-        styleObjOrFn as object | (() => void),
-        styleArg,
-        variantsAccumulator,
-        themeImportIdentifier,
-      );
+      const finalStyle =
+        this.processCss(
+          styleObjOrFn as object | (() => void),
+          styleArg,
+          variantsAccumulator,
+          themeImportIdentifier,
+        ) ?? '';
       const className = this.getClassName();
       this.baseClasses.push(className);
       this.collectedStyles.push([className, finalStyle, styleArg]);
@@ -478,7 +479,7 @@ export class StyledProcessor extends BaseProcessor {
         this.collectedStyles.push([className, overrideStyle, null]);
         return;
       }
-      const finalStyle = this.processCss(overrideStyle, null, variantsAccumulator);
+      const finalStyle = this.processCss(overrideStyle, null, variantsAccumulator) ?? '';
       this.baseClasses.push(className);
       this.collectedStyles.push([className, finalStyle, null]);
     }
@@ -504,7 +505,7 @@ export class StyledProcessor extends BaseProcessor {
     const className = this.getClassName(displayName ? 'variant' : undefined);
     const styleObjOrFn = variant.style;
     const originalExpression = variant.originalExpression;
-    const finalStyle = this.processCss(styleObjOrFn, originalExpression ?? null);
+    const finalStyle = this.processCss(styleObjOrFn, originalExpression ?? null) ?? '';
     this.collectedStyles.push([className, finalStyle, null]);
     this.collectedVariants.push({
       props: variant.props,
