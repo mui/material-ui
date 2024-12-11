@@ -45,5 +45,5 @@
     },
     "root": { "description": "Styles applied to the root element." }
   },
-  "slotDescriptions": { "icon": "Sort icon to use." }
+  "slotDescriptions": { "icon": "The component that renders the icon slot." }
 }

@@ -8,7 +8,7 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface TableSortLabelSlots {
   /**
-   * Sort icon to use.
+   * The component that renders the icon slot.
    * @default ArrowDownwardIcon
    */
   icon?: React.ElementType;
@@ -17,6 +17,9 @@ export interface TableSortLabelSlots {
 export type TableSortLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
   TableSortLabelSlots,
   {
+    /**
+     * Props forwarded to the icon slot.
+     */
     icon: SlotProps<
       React.ElementType<React.SVGAttributes<SVGSVGElement>>,
       {},

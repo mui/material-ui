@@ -33,7 +33,7 @@
   "slots": [
     {
       "name": "icon",
-      "description": "Sort icon to use.",
+      "description": "The component that renders the icon slot.",
       "default": "ArrowDownwardIcon",
       "class": "MuiTableSortLabel-icon"
     }
