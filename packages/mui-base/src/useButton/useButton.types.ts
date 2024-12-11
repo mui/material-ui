@@ -41,7 +41,7 @@ export interface UseButtonRootSlotOwnProps {
   onKeyUp: MuiCancellableEventHandler<React.KeyboardEvent>;
   onMouseDown: React.MouseEventHandler;
   onMouseLeave: React.MouseEventHandler;
-  ref: React.RefCallback<Element> | null;
+  ref?: React.RefCallback<Element> | null;
 }
 
 export type UseButtonRootSlotProps<ExternalProps = {}> = ExternalProps & UseButtonRootSlotOwnProps;

@@ -60,7 +60,8 @@ export default withDocsInfra({
       // We only care about Node runtime at this point.
       (options.nextRuntime === undefined || options.nextRuntime === 'nodejs')
     ) {
-      const [nextExternals, ...externals] = config.externals;
+      const externals = config.externals.slice(0, -1);
+      const nextExternals = config.externals.at(-1);
 
       config.externals = [
         // @ts-ignore
@@ -104,7 +105,7 @@ export default withDocsInfra({
           // for 3rd party packages with dependencies in this repository
           '@mui/material': path.resolve(workspaceRoot, 'packages/mui-material/src'),
           '@mui/docs': path.resolve(workspaceRoot, 'packages/mui-docs/src'),
-          '@mui/icons-material': path.resolve(workspaceRoot, 'packages/mui-icons-material/lib'),
+          '@mui/icons-material': path.resolve(workspaceRoot, 'packages/mui-icons-material/lib/esm'),
           '@mui/lab': path.resolve(workspaceRoot, 'packages/mui-lab/src'),
           '@mui/styled-engine': path.resolve(workspaceRoot, 'packages/mui-styled-engine/src'),
           '@mui/styles': path.resolve(workspaceRoot, 'packages/mui-styles/src'),

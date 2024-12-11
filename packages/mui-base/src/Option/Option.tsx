@@ -21,10 +21,10 @@ function useUtilityClasses<OptionValue>(ownerState: OptionOwnerState<OptionValue
 }
 
 const InnerOption = React.memo(
-  React.forwardRef(function Option<OptionValue, RootComponentType extends React.ElementType>(
-    props: OptionProps<OptionValue, RootComponentType>,
-    forwardedRef: React.ForwardedRef<Element>,
-  ) {
+  React.forwardRef<Element, OptionProps<unknown>>(function Option<
+    OptionValue,
+    RootComponentType extends React.ElementType,
+  >(props: OptionProps<OptionValue, RootComponentType>, forwardedRef: React.ForwardedRef<Element>) {
     const {
       children,
       disabled = false,

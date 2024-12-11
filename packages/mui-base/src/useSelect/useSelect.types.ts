@@ -143,7 +143,7 @@ export type UseSelectButtonSlotProps<TOther = {}> = UseButtonRootSlotProps<
     'aria-expanded': React.AriaAttributes['aria-expanded'];
     'aria-controls': React.AriaAttributes['aria-controls'];
     role: React.HTMLAttributes<Element>['role'];
-    ref: React.RefCallback<Element> | null;
+    ref?: React.RefCallback<Element> | null;
   };
 
 interface UseSelectHiddenInputSlotEventHandlers {

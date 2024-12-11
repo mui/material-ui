@@ -63,7 +63,6 @@ export default function InputSubscription() {
             Oops! something went wrong, please try again later.
           </FormHelperText>
         )}
-
         {data.status === 'sent' && (
           <FormHelperText
             sx={(theme) => ({ color: theme.vars.palette.primary[400] })}

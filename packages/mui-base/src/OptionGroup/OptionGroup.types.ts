@@ -70,7 +70,7 @@ export type OptionGroupRootSlotProps = {
   children?: React.ReactNode;
   className?: string;
   ownerState: OptionGroupOwnerState;
-  ref: React.Ref<HTMLLIElement>;
+  ref?: React.Ref<HTMLLIElement>;
 };
 
 export type OptionGroupLabelSlotProps = {

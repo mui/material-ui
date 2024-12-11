@@ -190,7 +190,7 @@ export type InputInputSlotProps = Simplify<
     ownerState: InputOwnerState;
     placeholder: string | undefined;
     readOnly: boolean | undefined;
-    ref: React.Ref<HTMLInputElement>;
+    ref?: React.Ref<HTMLInputElement>;
     type: React.HTMLInputTypeAttribute | undefined;
   }
 >;

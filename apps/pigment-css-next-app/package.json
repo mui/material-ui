@@ -19,16 +19,16 @@
     "@emotion/cache": "latest",
     "local-ui-lib": "workspace:^",
     "next": "latest",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@pigment-css/unplugin": "file:../../packages/pigment-css-unplugin",
     "@pigment-css/nextjs-plugin": "file:../../packages/pigment-css-nextjs-plugin",
     "@types/node": "^20.5.7",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "eslint": "^8.56.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.6.3"
   }
 }
