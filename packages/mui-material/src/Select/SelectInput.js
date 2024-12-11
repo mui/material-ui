@@ -124,6 +124,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     open: openProp,
     readOnly,
     renderValue,
+    required,
     SelectDisplayProps = {},
     tabIndex: tabIndexProp,
     // catching `type` from Input which makes no sense for SelectInput
@@ -503,6 +504,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         aria-label={ariaLabel}
         aria-labelledby={[labelId, buttonId].filter(Boolean).join(' ') || undefined}
         aria-describedby={ariaDescribedby}
+        aria-required={required}
+        aria-invalid={error}
         onKeyDown={handleKeyDown}
         onMouseDown={disabled || readOnly ? null : handleMouseDown}
         onBlur={handleBlur}
@@ -534,6 +537,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         disabled={disabled}
         className={classes.nativeInput}
         autoFocus={autoFocus}
+        required={required}
         {...other}
         ownerState={ownerState}
       />
