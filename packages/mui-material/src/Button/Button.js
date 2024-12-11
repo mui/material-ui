@@ -34,18 +34,8 @@ const useUtilityClasses = (ownerState) => {
       disableElevation && 'disableElevation',
       fullWidth && 'fullWidth',
     ],
-    startIcon: [
-      'icon',
-      'startIcon',
-      `iconSize${capitalize(size)}`,
-      loading && `startIconLoading${capitalize(loadingPosition)}`,
-    ],
-    endIcon: [
-      'icon',
-      'endIcon',
-      `iconSize${capitalize(size)}`,
-      loading && `endIconLoading${capitalize(loadingPosition)}`,
-    ],
+    startIcon: ['icon', 'startIcon', `iconSize${capitalize(size)}`],
+    endIcon: ['icon', 'endIcon', `iconSize${capitalize(size)}`],
     loadingIndicator: [
       'loadingIndicator',
       loading && `loadingIndicator${capitalize(loadingPosition)}`,
