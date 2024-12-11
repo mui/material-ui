@@ -362,7 +362,7 @@ export function useAutocomplete<
   props: UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo> & {
     groupBy: (option: Value) => string;
   },
-): UseAutocompleteReturnValue<Value, Multiple, DisableClearable, FreeSolo, true>
+): UseAutocompleteReturnValue<Value, Multiple, DisableClearable, FreeSolo, true>;
 export function useAutocomplete<
   Value,
   Multiple extends boolean | undefined = false,
@@ -372,7 +372,7 @@ export function useAutocomplete<
   props: UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo> & {
     groupBy?: undefined;
   },
-): UseAutocompleteReturnValue<Value, Multiple, DisableClearable, FreeSolo, false>
+): UseAutocompleteReturnValue<Value, Multiple, DisableClearable, FreeSolo, false>;
 export function useAutocomplete<
   Value,
   Multiple extends boolean | undefined = false,
