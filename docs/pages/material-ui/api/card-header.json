@@ -20,7 +20,11 @@
       "default": "{}"
     },
     "subheader": { "type": { "name": "node" } },
-    "subheaderTypographyProps": { "type": { "name": "object" } },
+    "subheaderTypographyProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.subheader</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -29,7 +33,11 @@
       "additionalInfo": { "sx": true }
     },
     "title": { "type": { "name": "node" } },
-    "titleTypographyProps": { "type": { "name": "object" } }
+    "titleTypographyProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.title</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    }
   },
   "name": "CardHeader",
   "imports": [

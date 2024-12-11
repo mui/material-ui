@@ -323,6 +323,7 @@ CardHeader.propTypes /* remove-proptypes */ = {
   /**
    * These props will be forwarded to the subheader
    * (as long as disableTypography is not `true`).
+   * @deprecated Use `slotProps.subheader` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   subheaderTypographyProps: PropTypes.object,
   /**
@@ -340,6 +341,7 @@ CardHeader.propTypes /* remove-proptypes */ = {
   /**
    * These props will be forwarded to the title
    * (as long as disableTypography is not `true`).
+   * @deprecated Use `slotProps.title` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   titleTypographyProps: PropTypes.object,
 };
