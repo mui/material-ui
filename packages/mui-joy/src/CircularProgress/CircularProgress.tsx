@@ -391,4 +391,6 @@ CircularProgress.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+CircularProgress.displayName = 'CircularProgress';
+
 export default CircularProgress;

@@ -668,4 +668,6 @@ Popover.propTypes /* remove-proptypes */ = {
   TransitionProps: PropTypes.object,
 };
 
+Popover.displayName = 'Popover';
+
 export default Popover;

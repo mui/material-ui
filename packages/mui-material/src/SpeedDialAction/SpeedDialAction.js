@@ -312,4 +312,6 @@ SpeedDialAction.propTypes /* remove-proptypes */ = {
   tooltipTitle: PropTypes.node,
 };
 
+SpeedDialAction.displayName = 'SpeedDialAction';
+
 export default SpeedDialAction;

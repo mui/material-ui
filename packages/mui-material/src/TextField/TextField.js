@@ -482,4 +482,6 @@ TextField.propTypes /* remove-proptypes */ = {
   variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
 };
 
+TextField.displayName = 'TextField';
+
 export default TextField;

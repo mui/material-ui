@@ -333,4 +333,6 @@ Menu.propTypes /* remove-proptypes */ = {
   variant: PropTypes.oneOf(['menu', 'selectedMenu']),
 };
 
+Menu.displayName = 'Menu';
+
 export default Menu;

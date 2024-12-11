@@ -312,4 +312,6 @@ NumberInput.propTypes /* remove-proptypes */ = {
   value: PropTypes.number,
 } as any;
 
+NumberInput.displayName = 'NumberInput';
+
 export { NumberInput };

@@ -228,4 +228,6 @@ ListItemText.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+ListItemText.displayName = 'ListItemText';
+
 export default ListItemText;

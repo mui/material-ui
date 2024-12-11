@@ -196,4 +196,6 @@ ListDivider.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+ListDivider.displayName = 'ListDivider';
+
 export default ListDivider;

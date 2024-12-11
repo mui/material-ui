@@ -1250,4 +1250,6 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   }),
 };
 
+Autocomplete.displayName = 'Autocomplete';
+
 export default Autocomplete;

@@ -206,6 +206,8 @@ Divider.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+Divider.displayName = 'Divider';
+
 // @ts-ignore internal logic
 Divider.muiName = 'Divider';
 

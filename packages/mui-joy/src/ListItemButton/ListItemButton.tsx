@@ -311,4 +311,6 @@ ListItemButton.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+ListItemButton.displayName = 'ListItemButton';
+
 export default ListItemButton;

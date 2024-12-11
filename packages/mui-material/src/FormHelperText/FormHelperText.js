@@ -204,4 +204,6 @@ FormHelperText.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+FormHelperText.displayName = 'FormHelperText';
+
 export default FormHelperText;

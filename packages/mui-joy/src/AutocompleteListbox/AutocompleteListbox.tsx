@@ -210,4 +210,6 @@ AutocompleteListbox.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+AutocompleteListbox.displayName = 'AutocompleteListbox';
+
 export default AutocompleteListbox;

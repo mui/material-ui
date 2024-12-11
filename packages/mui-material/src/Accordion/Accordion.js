@@ -333,4 +333,6 @@ Accordion.propTypes /* remove-proptypes */ = {
   TransitionProps: PropTypes.object,
 };
 
+Accordion.displayName = 'Accordion';
+
 export default Accordion;
