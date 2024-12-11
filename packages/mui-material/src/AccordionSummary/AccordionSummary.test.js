@@ -7,6 +7,7 @@ import AccordionSummary, {
 } from '@mui/material/AccordionSummary';
 import Accordion from '@mui/material/Accordion';
 import ButtonBase from '@mui/material/ButtonBase';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
 describe('<AccordionSummary />', () => {
@@ -116,5 +117,44 @@ describe('<AccordionSummary />', () => {
     });
 
     expect(handleFocusVisible.callCount).to.equal(1);
+  });
+
+  describe('styleOverrides', () => {
+    it('should apply gutter styles from theme', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const theme = createTheme({
+        components: {
+          MuiAccordionSummary: {
+            styleOverrides: {
+              gutters: {
+                backgroundColor: 'rgb(0, 0, 255)',
+              },
+              contentGutters: {
+                backgroundColor: 'rgb(255, 0, 0)',
+              },
+            },
+          },
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
+          <Accordion>
+            <AccordionSummary />
+          </Accordion>
+        </ThemeProvider>,
+      );
+      const root = document.querySelector(`.${classes.root}`);
+      expect(root).toHaveComputedStyle({
+        backgroundColor: 'rgb(0, 0, 255)',
+      });
+      const content = document.querySelector(`.${classes.content}`);
+      expect(content).toHaveComputedStyle({
+        backgroundColor: 'rgb(255, 0, 0)',
+      });
+    });
   });
 });
