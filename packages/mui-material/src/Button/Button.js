@@ -497,6 +497,16 @@ const ButtonLoadingIndicator = styled('span', {
   ],
 }));
 
+const ButtonLoadingIconPlaceholder = styled('span', {
+  name: 'MuiButton',
+  slot: 'LoadingIconPlaceholder',
+  overridesResolver: (props, styles) => styles.loadingIconPlaceholder,
+})({
+  display: 'inline-block',
+  width: '1em',
+  height: '1em',
+});
+
 const Button = React.forwardRef(function Button(inProps, ref) {
   // props priority: `inProps` > `contextProps` > `themeDefaultProps`
   const contextProps = React.useContext(ButtonGroupContext);
@@ -548,15 +558,25 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const startIcon = startIconProp && (
+  const startIcon = (startIconProp || (loading && loadingPosition === 'start')) && (
     <ButtonStartIcon className={classes.startIcon} ownerState={ownerState}>
-      {startIconProp}
+      {startIconProp || (
+        <ButtonLoadingIconPlaceholder
+          className={classes.loadingIconPlaceholder}
+          ownerState={ownerState}
+        />
+      )}
     </ButtonStartIcon>
   );
 
-  const endIcon = endIconProp && (
+  const endIcon = (endIconProp || (loading && loadingPosition === 'end')) && (
     <ButtonEndIcon className={classes.endIcon} ownerState={ownerState}>
-      {endIconProp}
+      {endIconProp || (
+        <ButtonLoadingIconPlaceholder
+          className={classes.loadingIconPlaceholder}
+          ownerState={ownerState}
+        />
+      )}
     </ButtonEndIcon>
   );
 

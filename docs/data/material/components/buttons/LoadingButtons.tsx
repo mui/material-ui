@@ -40,6 +40,22 @@ export default function LoadingButtons() {
       >
         Full width
       </Button>
+      <Stack direction="row" spacing={2}>
+        <Button loading variant="outlined" loadingPosition="start">
+          Submit
+        </Button>
+        <Button loading variant="outlined" loadingPosition="end">
+          Submit
+        </Button>
+        <Button
+          loading
+          variant="outlined"
+          loadingPosition="end"
+          startIcon={<SaveIcon />}
+        >
+          Save
+        </Button>
+      </Stack>
     </Stack>
   );
 }
