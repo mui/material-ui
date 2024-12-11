@@ -720,6 +720,58 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     );
   }
 
+  const renderInputParams = {
+    InputLabelProps: getInputLabelProps(),
+    InputProps: {
+      ref: setAnchorEl,
+      className: classes.inputRoot,
+      startAdornment,
+      onMouseDown: (event) => {
+        if (event.target === event.currentTarget) {
+          handleInputMouseDown(event);
+        }
+      },
+      ...((hasClearIcon || hasPopupIcon) && {
+        endAdornment: (
+          <AutocompleteEndAdornment className={classes.endAdornment} ownerState={ownerState}>
+            {hasClearIcon ? (
+              <AutocompleteClearIndicator
+                {...getClearProps()}
+                aria-label={clearText}
+                title={clearText}
+                ownerState={ownerState}
+                {...clearIndicatorSlotProps}
+                className={clsx(classes.clearIndicator, clearIndicatorSlotProps?.className)}
+              >
+                {clearIcon}
+              </AutocompleteClearIndicator>
+            ) : null}
+
+            {hasPopupIcon ? (
+              <AutocompletePopupIndicator
+                {...getPopupIndicatorProps()}
+                disabled={disabled}
+                aria-label={popupOpen ? closeText : openText}
+                title={popupOpen ? closeText : openText}
+                ownerState={ownerState}
+                {...popupIndicatorSlotProps}
+                className={clsx(classes.popupIndicator, popupIndicatorSlotProps?.className)}
+              >
+                {popupIcon}
+              </AutocompletePopupIndicator>
+            ) : null}
+          </AutocompleteEndAdornment>
+        ),
+      }),
+    },
+    inputProps: {
+      className: classes.input,
+      disabled,
+      readOnly,
+      ...getInputProps(),
+    },
+  };
+
   return (
     <React.Fragment>
       <AutocompleteRoot
@@ -733,54 +785,13 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           disabled,
           fullWidth: true,
           size: size === 'small' ? 'small' : undefined,
-          InputLabelProps: getInputLabelProps(),
-          InputProps: {
-            ref: setAnchorEl,
-            className: classes.inputRoot,
-            startAdornment,
-            onMouseDown: (event) => {
-              if (event.target === event.currentTarget) {
-                handleInputMouseDown(event);
-              }
-            },
-            ...((hasClearIcon || hasPopupIcon) && {
-              endAdornment: (
-                <AutocompleteEndAdornment className={classes.endAdornment} ownerState={ownerState}>
-                  {hasClearIcon ? (
-                    <AutocompleteClearIndicator
-                      {...getClearProps()}
-                      aria-label={clearText}
-                      title={clearText}
-                      ownerState={ownerState}
-                      {...clearIndicatorSlotProps}
-                      className={clsx(classes.clearIndicator, clearIndicatorSlotProps?.className)}
-                    >
-                      {clearIcon}
-                    </AutocompleteClearIndicator>
-                  ) : null}
-
-                  {hasPopupIcon ? (
-                    <AutocompletePopupIndicator
-                      {...getPopupIndicatorProps()}
-                      disabled={disabled}
-                      aria-label={popupOpen ? closeText : openText}
-                      title={popupOpen ? closeText : openText}
-                      ownerState={ownerState}
-                      {...popupIndicatorSlotProps}
-                      className={clsx(classes.popupIndicator, popupIndicatorSlotProps?.className)}
-                    >
-                      {popupIcon}
-                    </AutocompletePopupIndicator>
-                  ) : null}
-                </AutocompleteEndAdornment>
-              ),
-            }),
-          },
-          inputProps: {
-            className: classes.input,
-            disabled,
-            readOnly,
-            ...getInputProps(),
+          InputLabelProps: renderInputParams.InputLabelProps,
+          InputProps: renderInputParams.InputProps,
+          inputProps: renderInputParams.inputProps,
+          slotProps: {
+            input: renderInputParams.InputProps,
+            inputLabel: renderInputParams.InputLabelProps,
+            htmlInput: renderInputParams.inputProps,
           },
         })}
       </AutocompleteRoot>
