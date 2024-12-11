@@ -41,8 +41,6 @@ Note that, while this major release won't contain visual updates since its only 
 
 ## Follow along
 
-We'd love to chat with you and are as excited as everyone to update how Material UI looks and feels.
-
-To ensure all these updates benefit our community, we'll be conducting interviews throughout this period. If you're interested, you can reach us through [aaron@mui.com](mailto:aaron@mui.com).
+Feel free to leave your feedback on these new features and fixes in our [GitHub](https://github.com/mui/material-ui). We'd love to chat with you and are as excited as everyone to update how Material UI looks and feels.
 
 Thank you for your continued support, we're excited to go into 2025 with you! 🎉
