@@ -11,6 +11,8 @@ unstyled: /base-ui/react-menu/
 
 <p class="description">Menus display a list of choices on temporary surfaces.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
 ## Introduction
 
 Joy UI provides five menu-related components:

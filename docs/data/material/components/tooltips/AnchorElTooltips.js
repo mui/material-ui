@@ -23,16 +23,18 @@ export default function AnchorElTooltips() {
       title="Add"
       placement="top"
       arrow
-      PopperProps={{
-        popperRef,
-        anchorEl: {
-          getBoundingClientRect: () => {
-            return new DOMRect(
-              positionRef.current.x,
-              areaRef.current.getBoundingClientRect().y,
-              0,
-              0,
-            );
+      slotProps={{
+        popper: {
+          popperRef,
+          anchorEl: {
+            getBoundingClientRect: () => {
+              return new DOMRect(
+                positionRef.current.x,
+                areaRef.current.getBoundingClientRect().y,
+                0,
+                0,
+              );
+            },
           },
         },
       }}

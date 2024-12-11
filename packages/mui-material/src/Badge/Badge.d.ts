@@ -29,8 +29,8 @@ export type BadgeOwnerState = Simplify<
 >;
 
 export interface BadgeOrigin {
-  vertical: 'top' | 'bottom';
-  horizontal: 'left' | 'right';
+  vertical?: 'top' | 'bottom';
+  horizontal?: 'left' | 'right';
 }
 
 export interface BadgeOwnProps {

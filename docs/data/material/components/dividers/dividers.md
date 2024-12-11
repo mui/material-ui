@@ -78,7 +78,7 @@ This ensures that it's not announced by screen readers while still preserving th
 
 ```js
 <Divider component="div" role="presentation">
-  <Typograph>Text element</Typography>
+  <Typography>Text element</Typography>
 </Divider>
 ```
 

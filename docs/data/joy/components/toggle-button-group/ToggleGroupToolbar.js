@@ -22,7 +22,7 @@ export default function ToggleGroupToolbar() {
   return (
     <Sheet
       variant="outlined"
-      sx={{ borderRadius: 'md', display: 'flex', gap: 2, p: 0.5 }}
+      sx={{ borderRadius: 'md', display: 'inline-flex', gap: 2, p: 0.5 }}
     >
       <ToggleButtonGroup
         variant="plain"

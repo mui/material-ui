@@ -61,5 +61,16 @@ describe('@mui/codemod', () => {
         expect(actual).to.not.equal(expected);
       });
     });
+
+    it('should skip files that do not import ListItem from @mui/material', () => {
+      const actual = transform(
+        { source: read('./test-cases/not-related.actual.js') },
+        { jscodeshift },
+        {},
+      );
+
+      const expected = read('./test-cases/not-related.expected.js');
+      expect(actual).to.equal(expected, 'The transformed version should be correct');
+    });
   });
 });

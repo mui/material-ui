@@ -71,9 +71,7 @@
         "name": "enum",
         "description": "'nowrap'<br>&#124;&nbsp;'wrap-reverse'<br>&#124;&nbsp;'wrap'"
       },
-      "default": "'wrap'",
-      "deprecated": true,
-      "deprecationInfo": "Use <code>flexWrap</code> instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "default": "'wrap'"
     },
     "xl": {
       "type": {

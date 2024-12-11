@@ -30,7 +30,7 @@ We need to maintain a consistent and reliable developer experience without askin
 That's where [Pigment CSS](https://github.com/mui/pigment-css) comes in.
 
 <a href="https://github.com/mui/pigment-css">
-  <img src="/static/blog/introducing-pigment-css/card.png" alt="Introducing Pigment CSS: the next generation of CSS-in-JS" width="1280" height="640" />
+  <img src="/static/blog/introducing-pigment-css/card.png" alt="Introducing Pigment CSS: the next generation of CSS-in-JS" width="1280" height="640" loading="lazy" />
 </a>
 
 Pigment CSS is a zero-runtime CSS-in-JS library that generates colocated styles to their own CSS files at build time.

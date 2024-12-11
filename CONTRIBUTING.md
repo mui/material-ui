@@ -299,7 +299,7 @@ docs/src/pages/components/buttons/
 
 #### 2. Write the demo code
 
-We uses TypeScript to document our components.
+We use TypeScript to document our components.
 We prefer demos written in TypeScript (using the `.tsx` file format).
 
 After creating a TypeScript demo, run `pnpm docs:typescript:formatted` to automatically create the JavaScript version, which is also required.

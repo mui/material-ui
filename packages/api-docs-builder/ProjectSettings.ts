@@ -26,6 +26,11 @@ export interface ProjectSettings {
      * The output path of `pagesApi` generated from `input.pageDirectory`
      */
     apiManifestPath: string;
+    /**
+     * Determine if the API manifest file is created.
+     * @default true
+     */
+    writeApiManifest?: boolean;
   };
   /**
    * Component directories to be used to generate API

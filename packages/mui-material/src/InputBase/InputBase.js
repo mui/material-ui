@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import refType from '@mui/utils/refType';
-import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import composeClasses from '@mui/utils/composeClasses';
 import TextareaAutosize from '../TextareaAutosize';
 import isHostComponent from '../utils/isHostComponent';
@@ -339,6 +338,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   const muiFormControl = useFormControl();
 
   if (process.env.NODE_ENV !== 'production') {
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (muiFormControl) {
@@ -424,7 +424,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     if (!isControlled) {
       const element = event.target || inputRef.current;
       if (element == null) {
-        throw new MuiError(
+        throw /* minify-error */ new Error(
           'MUI: Expected valid input target. ' +
             'Did you use a custom `inputComponent` and forget to forward refs? ' +
             'See https://mui.com/r/input-component-ref-interface for more info.',
@@ -450,6 +450,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   // or auto filled by the browser before the hydration (for SSR).
   React.useEffect(() => {
     checkDirty(inputRef.current);
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

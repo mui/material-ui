@@ -10,6 +10,8 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 
 <p class="description">Accordions let users show and hide sections of related content on a page.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
 ## Introduction
 
 Joy UI provides four accordion-related components:

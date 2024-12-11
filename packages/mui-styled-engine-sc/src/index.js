@@ -37,7 +37,7 @@ export default function styled(tag, options) {
 }
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export const internal_processStyles = (tag, processor) => {
+export function internal_mutateStyles(tag, processor) {
   // Styled-components attaches an instance to `componentStyle`.
   // https://github.com/styled-components/styled-components/blob/da8151762dcf72735ffba358173d4c097f6d5888/packages/styled-components/src/models/StyledComponent.ts#L257
   //
@@ -46,7 +46,19 @@ export const internal_processStyles = (tag, processor) => {
   if (tag.componentStyle) {
     tag.componentStyle.rules = processor(tag.componentStyle.rules);
   }
-};
+}
+
+// Not needed anymore, but fixes https://github.com/mui/material-ui/issues/44112
+// TODO: Remove it in v7
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function internal_processStyles(tag, processor) {
+  return internal_mutateStyles(tag, processor);
+}
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function internal_serializeStyles(styles) {
+  return styles;
+}
 
 export { ThemeContext, keyframes, css } from 'styled-components';
 export { default as StyledEngineProvider } from './StyledEngineProvider';

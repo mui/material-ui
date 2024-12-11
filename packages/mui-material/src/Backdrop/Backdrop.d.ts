@@ -12,13 +12,13 @@ export interface BackdropSlots {
    * The component that renders the root.
    * @default 'div'
    */
-  root?: React.ElementType;
+  root: React.ElementType;
   /**
    * The component that renders the transition.
    * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
    */
-  transition?: React.JSXElementConstructor<
+  transition: React.JSXElementConstructor<
     TransitionProps & { children: React.ReactElement<unknown, any> }
   >;
 }
@@ -97,6 +97,7 @@ export interface BackdropOwnProps
    * The component used for the transition.
    * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
+   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionComponent?: React.JSXElementConstructor<
     TransitionProps & {

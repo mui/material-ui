@@ -3,7 +3,7 @@
     "anchorOrigin": {
       "type": {
         "name": "shape",
-        "description": "{ horizontal: 'left'<br>&#124;&nbsp;'right', vertical: 'bottom'<br>&#124;&nbsp;'top' }"
+        "description": "{ horizontal?: 'left'<br>&#124;&nbsp;'right', vertical?: 'bottom'<br>&#124;&nbsp;'top' }"
       },
       "default": "{\n  vertical: 'top',\n  horizontal: 'right',\n}"
     },

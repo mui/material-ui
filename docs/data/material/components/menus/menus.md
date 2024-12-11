@@ -90,7 +90,7 @@ If the height of a menu prevents all menu items from being displayed, the menu c
 
 ## Limitations
 
-There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipsis` from working in a flexbox layout.
+There is [a flexbox bug](https://issues.chromium.org/issues/40344463) that prevents `text-overflow: ellipsis` from working in a flexbox layout.
 You can use the `Typography` component with `noWrap` to workaround this issue:
 
 {{"demo": "TypographyMenu.js", "bg": true}}
@@ -107,7 +107,7 @@ Here is an example of a context menu. (Right click to open.)
 
 {{"demo": "ContextMenu.js"}}
 
-## Complementary projects
+## Supplementary projects
 
 For more advanced use cases you might be able to take advantage of:
 

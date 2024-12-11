@@ -57,6 +57,8 @@ const FooterLink = styled(Link)(({ theme }) => {
  */
 
 /**
+ * This function is flattening the pages tree and extracts all the leaves that are internal pages.
+ * To extract the leaves, it skips all the nodes that have at least one child.
  * @param {MuiPage[]} pages
  * @param {MuiPage[]} [current]
  * @returns {OrderedMuiPage[]}
@@ -64,10 +66,10 @@ const FooterLink = styled(Link)(({ theme }) => {
 function orderedPages(pages, current = []) {
   return pages
     .reduce((items, item) => {
-      if (item.children && item.children.length > 1) {
+      if (item.children && item.children.length > 0) {
         items = orderedPages(item.children, items);
       } else {
-        items.push(item.children && item.children.length === 1 ? item.children[0] : item);
+        items.push(item);
       }
       return items;
     }, current)
@@ -341,7 +343,7 @@ export default function AppLayoutDocsFooter(props) {
     processFeedback();
   };
 
-  // See https://github.com/mui/mui-toolpad/issues/1164 for context.
+  // See https://github.com/mui/toolpad/issues/1164 for context.
   const handleKeyDownForm = (event) => {
     const modifierKey = (event.metaKey || event.ctrlKey) && !event.shiftKey;
 

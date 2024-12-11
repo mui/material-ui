@@ -204,6 +204,7 @@ export { default as FormLabel } from './FormLabel';
 export * from './FormLabel';
 
 export { default as Grid } from './Grid';
+export { GridProps, GridTypeMap } from './Grid';
 
 export { default as Grid2 } from './Grid2';
 export * from './Grid2';

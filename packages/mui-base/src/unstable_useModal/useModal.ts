@@ -54,7 +54,7 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
 
   // @ts-ignore internal logic
   const modal = React.useRef<{ modalRef: HTMLDivElement; mount: HTMLElement }>({});
-  const mountNodeRef = React.useRef<HTMLElement | null>(null);
+  const mountNodeRef = React.useRef<HTMLElement>(null);
   const modalRef = React.useRef<HTMLDivElement>(null);
   const handleRef = useForkRef(modalRef, rootRef);
   const [exited, setExited] = React.useState(!open);
@@ -180,6 +180,12 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
     };
 
     return {
+      /*
+       * Marking an element with the role presentation indicates to assistive technology
+       * that this element should be ignored; it exists to support the web application and
+       * is not meant for humans to interact with directly.
+       * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
+       */
       role: 'presentation',
       ...externalEventHandlers,
       onKeyDown: createHandleKeyDown(externalEventHandlers),

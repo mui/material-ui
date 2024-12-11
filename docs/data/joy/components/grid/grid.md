@@ -9,6 +9,8 @@ githubLabel: 'component: Grid'
 
 <p class="description">Grid acts as a generic container, wrapping around the elements to be arranged.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
 ## Introduction
 
 The Grid component, based on a 12-column grid layout, creates visual consistency between layouts while allowing flexibility across a wide variety of designs.

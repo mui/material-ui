@@ -7,6 +7,7 @@ import List from '../List';
 import getScrollbarSize from '../utils/getScrollbarSize';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
+import { ownerWindow } from '../utils';
 
 function nextItem(list, item, disableListWrap) {
   if (list === item) {
@@ -130,7 +131,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
         // of the menu.
         const noExplicitWidth = !listRef.current.style.width;
         if (containerElement.clientHeight < listRef.current.clientHeight && noExplicitWidth) {
-          const scrollbarSize = `${getScrollbarSize(ownerDocument(containerElement))}px`;
+          const scrollbarSize = `${getScrollbarSize(ownerWindow(containerElement))}px`;
           listRef.current.style[direction === 'rtl' ? 'paddingLeft' : 'paddingRight'] =
             scrollbarSize;
           listRef.current.style.width = `calc(100% + ${scrollbarSize})`;

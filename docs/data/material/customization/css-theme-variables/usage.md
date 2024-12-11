@@ -17,7 +17,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 const theme = createTheme({ cssVariables: true });
 
 function App() {
-  return <ThemeProvider>{/* ...you app */}</ThemeProvider>;
+  return <ThemeProvider theme={theme}>{/* ...your app */}</ThemeProvider>;
 }
 ```
 
@@ -48,7 +48,7 @@ If you want to be able to manually toggle modes, see the guide to [toggling dark
 
 ## Applying dark styles
 
-To customize styles for dark mode, use `theme.applyStyles` function.
+To customize styles for dark mode, use `theme.applyStyles()` function.
 This utility function will return the right selector.
 
 The example below shows how to customize the Card component for dark mode:

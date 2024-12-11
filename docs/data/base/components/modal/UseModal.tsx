@@ -142,12 +142,6 @@ const Modal = React.forwardRef(function Modal(
 
   return (
     <Portal ref={portalRef} container={container} disablePortal={disablePortal}>
-      {/*
-       * Marking an element with the role presentation indicates to assistive technology
-       * that this element should be ignored; it exists to support the web application and
-       * is not meant for humans to interact with directly.
-       * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
-       */}
       <CustomModalRoot {...rootProps}>
         {!hideBackdrop ? <CustomModalBackdrop {...backdropProps} /> : null}
         <FocusTrap
@@ -198,7 +192,7 @@ const grey = {
 };
 
 const style = {
-  position: 'absolute' as 'absolute',
+  position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',

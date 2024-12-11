@@ -242,7 +242,12 @@ function RatingItem(props) {
   const isFocused = itemValue <= focus;
   const isChecked = itemValue === ratingValueRounded;
 
-  const id = useId();
+  // "name" ensures unique IDs across different Rating components in React 17,
+  // preventing one component from affecting another. React 18's useId already handles this.
+  // Update to const id = useId(); when React 17 support is dropped.
+  // More details: https://github.com/mui/material-ui/issues/40997
+  const id = `${name}-${useId()}`;
+
   const container = (
     <RatingIcon
       as={IconContainerComponent}
@@ -332,6 +337,7 @@ function defaultLabelText(value) {
 const Rating = React.forwardRef(function Rating(inProps, ref) {
   const props = useDefaultProps({ name: 'MuiRating', props: inProps });
   const {
+    component = 'span',
     className,
     defaultValue = null,
     disabled = false,
@@ -500,6 +506,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
   const ownerState = {
     ...props,
+    component,
     defaultValue,
     disabled,
     emptyIcon,
@@ -519,6 +526,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
   return (
     <RatingRoot
+      as={component}
       ref={handleRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -640,6 +648,10 @@ Rating.propTypes /* remove-proptypes */ = {
   // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
@@ -647,6 +659,11 @@ Rating.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * The default value. Use when the component is not controlled.
    * @default null
@@ -705,7 +722,7 @@ Rating.propTypes /* remove-proptypes */ = {
   /**
    * The name attribute of the radio `input` elements.
    * This input `name` should be unique within the page.
-   * Being unique within a form is insufficient since the `name` is used to generated IDs.
+   * Being unique within a form is insufficient since the `name` is used to generate IDs.
    */
   name: PropTypes.string,
   /**

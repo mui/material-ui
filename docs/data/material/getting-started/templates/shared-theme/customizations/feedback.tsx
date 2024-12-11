@@ -8,7 +8,7 @@ export const feedbackCustomizations: Components<Theme> = {
       root: ({ theme }) => ({
         borderRadius: 10,
         backgroundColor: orange[100],
-        color: theme.palette.text.primary,
+        color: (theme.vars || theme).palette.text.primary,
         border: `1px solid ${alpha(orange[300], 0.5)}`,
         '& .MuiAlert-icon': {
           color: orange[500],
@@ -26,7 +26,7 @@ export const feedbackCustomizations: Components<Theme> = {
         '& .MuiDialog-paper': {
           borderRadius: '10px',
           border: '1px solid',
-          borderColor: theme.palette.divider,
+          borderColor: (theme.vars || theme).palette.divider,
         },
       }),
     },

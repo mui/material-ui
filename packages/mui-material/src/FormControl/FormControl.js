@@ -172,9 +172,8 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
   const focused = visuallyFocused !== undefined && !disabled ? visuallyFocused : focusedState;
 
   let registerEffect;
+  const registeredInput = React.useRef(false);
   if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const registeredInput = React.useRef(false);
     registerEffect = () => {
       if (registeredInput.current) {
         console.error(

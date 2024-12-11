@@ -31,7 +31,7 @@ export const getStaticProps = () => {
   const ModalApiDescriptions = mapApiPageTranslations(ModalApiReq);
 
   const useModalApiReq = require.context(
-    'docs/translations/api-docs/use-modal',
+    'docs/translations/api-docs-base/use-modal',
     false,
     /use-modal.*.json$/,
   );

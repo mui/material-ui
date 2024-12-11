@@ -57,7 +57,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
             <ClearIcon />
           </StyledClearIndicator>
         )}
-
         <StyledPopupIndicator
           {...getPopupIndicatorProps()}
           className={popupOpen ? 'popupOpen' : undefined}
@@ -147,7 +146,7 @@ const StyledAutocompleteRoot = styled('div')(
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  box-shadow: 0px 2px 4px ${
+  box-shadow: 0 2px 4px ${
     theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
   };
   display: flex;
@@ -211,7 +210,7 @@ const StyledListbox = styled('ul')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 6px ${
+  box-shadow: 0 4px 6px ${
     theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.3)' : 'rgba(0,0,0, 0.05)'
   };
   `,
@@ -232,7 +231,7 @@ const StyledOption = styled('li')(
     cursor: pointer;
   }
 
-  &[aria-selected=true] {
+  &[aria-selected="true"] {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
@@ -247,8 +246,8 @@ const StyledOption = styled('li')(
     box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
 
-  &[aria-selected=true].Mui-focused,
-  &[aria-selected=true].Mui-focusVisible {
+  &[aria-selected="true"].Mui-focused,
+  &[aria-selected="true"].Mui-focusVisible {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }

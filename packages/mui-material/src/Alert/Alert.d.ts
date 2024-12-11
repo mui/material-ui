@@ -18,12 +18,12 @@ export interface AlertSlots {
    * The component that renders the close button.
    * @default IconButton
    */
-  closeButton?: React.ElementType;
+  closeButton: React.ElementType;
   /**
    * The component that renders the close icon.
    * @default svg
    */
-  closeIcon?: React.ElementType;
+  closeIcon: React.ElementType;
 }
 
 export type AlertSlotsAndSlotProps = CreateSlotsAndSlotProps<

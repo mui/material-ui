@@ -14,10 +14,10 @@ export interface PaginationItemPropsSizeOverrides {}
 export interface PaginationItemPropsColorOverrides {}
 
 export interface PaginationItemSlots {
-  first?: React.ElementType;
-  last?: React.ElementType;
-  next?: React.ElementType;
-  previous?: React.ElementType;
+  first: React.ElementType;
+  last: React.ElementType;
+  next: React.ElementType;
+  previous: React.ElementType;
 }
 
 export type PaginationItemSlotsAndSlotProps = CreateSlotsAndSlotProps<

@@ -40,7 +40,7 @@ export const getStaticProps = () => {
   const CssTransitionApiDescriptions = mapApiPageTranslations(CssTransitionApiReq);
 
   const useTransitionStateManagerApiReq = require.context(
-    'docs/translations/api-docs/use-transition-state-manager',
+    'docs/translations/api-docs-base/use-transition-state-manager',
     false,
     /use-transition-state-manager.*.json$/,
   );
@@ -49,7 +49,7 @@ export const getStaticProps = () => {
   );
 
   const useTransitionTriggerApiReq = require.context(
-    'docs/translations/api-docs/use-transition-trigger',
+    'docs/translations/api-docs-base/use-transition-trigger',
     false,
     /use-transition-trigger.*.json$/,
   );

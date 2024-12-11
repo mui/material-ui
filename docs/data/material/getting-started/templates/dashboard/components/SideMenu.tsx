@@ -38,7 +38,7 @@ export default function SideMenu() {
       <Box
         sx={{
           display: 'flex',
-          mt: '60px',
+          mt: 'calc(var(--template-frame-height, 0px) + 4px)',
           p: 1.5,
         }}
       >

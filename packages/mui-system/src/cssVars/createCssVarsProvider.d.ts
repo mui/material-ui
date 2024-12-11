@@ -55,6 +55,12 @@ export interface CreateCssVarsProviderResult<
           }
         >;
         /**
+         * The default mode when the storage is empty,
+         * require the theme to have `colorSchemes` with light and dark.
+         * @default 'system'
+         */
+        defaultMode?: 'light' | 'dark' | 'system';
+        /**
          * The document used to perform `disableTransitionOnChange` feature
          * @default document
          */
@@ -82,7 +88,7 @@ export interface CreateCssVarsProviderResult<
         disableStyleSheetGeneration?: boolean;
       }
     >,
-  ) => React.ReactElement<any>;
+  ) => React.JSX.Element;
   useColorScheme: () => ColorSchemeContextValue<ColorScheme>;
   getInitColorSchemeScript: typeof InitColorSchemeScript;
 }

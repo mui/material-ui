@@ -16,7 +16,7 @@ export interface AvatarGroupPropsVariantOverrides {}
 export interface AvatarGroupComponentsPropsOverrides {}
 
 export interface AvatarGroupSlots {
-  surplus?: React.ElementType;
+  surplus: React.ElementType;
 }
 
 export type AvatarGroupSlotsAndSlotProps = CreateSlotsAndSlotProps<

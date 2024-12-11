@@ -9,8 +9,8 @@ import { PopoverClasses } from './popoverClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface PopoverSlots {
-  root?: React.ElementType;
-  paper?: React.ElementType;
+  root: React.ElementType;
+  paper: React.ElementType;
 }
 
 export type PopoverSlotsAndSlotProps = CreateSlotsAndSlotProps<

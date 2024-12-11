@@ -14,7 +14,7 @@ export type UseTabsListRootSlotProps<ExternalProps = {}> = ExternalProps & {
   'aria-labelledby'?: React.AriaAttributes['aria-labelledby'];
   'aria-orientation'?: React.AriaAttributes['aria-orientation'];
   role: React.AriaRole;
-  ref: React.RefCallback<Element> | null;
+  ref?: React.RefCallback<Element> | null;
   onKeyDown?: React.KeyboardEventHandler<HTMLElement>;
 };
 

@@ -137,7 +137,7 @@ interface AwesomeControlHookParameters {
 
 const useAwesomeControlHook = (parameters: AwesomeControlHookParameters) {
   const { rootRef: externalRef } = parameters;
-  const innerRef = React.useRef<HTMLDivElement | null>(null);
+  const innerRef = React.useRef<HTMLDivElement>(null);
 
   const handleRef = useForkRef(externalRef, innerRef);
 

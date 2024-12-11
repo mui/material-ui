@@ -7,6 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
@@ -54,12 +55,13 @@ const IconButtonRoot = styled(ButtonBase, {
     }),
     variants: [
       {
-        props: { disableRipple: false },
+        props: (props) => !props.disableRipple,
         style: {
+          '--IconButton-hoverBg': theme.vars
+            ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
+            : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
           '&:hover': {
-            backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
-              : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+            backgroundColor: 'var(--IconButton-hoverBg)',
             // Reset on touch devices, it doesn't add specificity
             '@media (hover: none)': {
               backgroundColor: 'transparent',
@@ -102,7 +104,7 @@ const IconButtonRoot = styled(ButtonBase, {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value && value.main) // check all the used fields in the style below
+        .filter(createSimplePaletteValueFilter()) // check all the used fields in the style below
         .map(([color]) => ({
           props: { color },
           style: {
@@ -110,22 +112,13 @@ const IconButtonRoot = styled(ButtonBase, {
           },
         })),
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value && value.main) // check all the used fields in the style below
+        .filter(createSimplePaletteValueFilter()) // check all the used fields in the style below
         .map(([color]) => ({
-          props: { color, disableRipple: false },
+          props: { color },
           style: {
-            '&:hover': {
-              backgroundColor: theme.vars
-                ? `rgba(${(theme.vars || theme).palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                : alpha(
-                    (theme.vars || theme).palette[color].main,
-                    theme.palette.action.hoverOpacity,
-                  ),
-              // Reset on touch devices, it doesn't add specificity
-              '@media (hover: none)': {
-                backgroundColor: 'transparent',
-              },
-            },
+            '--IconButton-hoverBg': theme.vars
+              ? `rgba(${(theme.vars || theme).palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
+              : alpha((theme.vars || theme).palette[color].main, theme.palette.action.hoverOpacity),
           },
         })),
       {
@@ -163,7 +156,6 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     color = 'default',
     disabled = false,
     disableFocusRipple = false,
-    disableRipple = false,
     size = 'medium',
     ...other
   } = props;
@@ -174,7 +166,6 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     color,
     disabled,
     disableFocusRipple,
-    disableRipple,
     size,
   };
 
@@ -186,7 +177,6 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
       centerRipple
       focusRipple={!disableFocusRipple}
       disabled={disabled}
-      disableRipple={disableRipple}
       ref={ref}
       {...other}
       ownerState={ownerState}

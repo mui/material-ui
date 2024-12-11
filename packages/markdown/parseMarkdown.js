@@ -7,15 +7,8 @@ const prism = require('./prism');
  */
 const markedOptions = {
   gfm: true,
-  tables: true,
   breaks: false,
   pedantic: false,
-  sanitize: false,
-  smartLists: true,
-  smartypants: false,
-  headerPrefix: false,
-  headerIds: false,
-  mangle: false,
 };
 
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
@@ -79,7 +72,7 @@ function checkUrlHealth(href, linkText, context) {
    * It needs to be:
    * /material-ui/customization/theming/
    */
-  if (url.pathname[url.pathname.length - 1] !== '/') {
+  if (!url.pathname.endsWith('/')) {
     throw new Error(
       [
         'docs-infra: Missing trailing slash. The following link:',
@@ -145,7 +138,7 @@ function getHeaders(markdown) {
     while ((regexMatches = headerKeyValueRegExp.exec(header)) !== null) {
       const key = regexMatches[1];
       let value = regexMatches[2].replace(/(.*)/, '$1');
-      if (value[0] === '[') {
+      if (value.startsWith('[')) {
         // Need double quotes to JSON parse.
         value = value.replace(/'/g, '"');
         // Remove the comma after the last value e.g. ["foo", "bar",] -> ["foo", "bar"].
@@ -216,7 +209,11 @@ function getCodeblock(content) {
   if (!content.startsWith('<codeblock')) {
     return undefined;
   }
-  const storageKey = content.match(/^<codeblock [^>]*storageKey=["|'](\S*)["|'].*>/m)?.[1];
+  // The regexes below have a negative lookahead to prevent ReDoS
+  // See https://github.com/mui/material-ui/issues/44078
+  const storageKey = content.match(
+    /^<codeblock (?!<codeblock )[^>]*storageKey=["|'](?!storageKey=["|'])(\S*)["|'].*>/m,
+  )?.[1];
   const blocks = [...content.matchAll(/^```(\S*) (\S*)\n(.*?)\n```/gmsu)].map(
     ([, language, tab, code]) => ({ language, tab, code }),
   );
@@ -275,12 +272,12 @@ const noSEOadvantage = [
   'https://heroicons.com/',
   'https://react-icons.github.io/',
   'https://fontawesome.com/',
-  'https://www.radix-ui.com/',
   'https://react-spectrum.adobe.com/',
   'https://headlessui.com/',
   'https://refine.dev/',
   'https://scaffoldhub.io/',
   'https://marmelab.com/',
+  'https://framesxdesign.com/',
 ];
 
 /**
@@ -366,7 +363,13 @@ function createRender(context) {
       }
 
       return [
-        `<h${level} id="${hash}"><a href="#${hash}" class="title-link-to-anchor">${headingHtml}<span class="anchor-icon"><svg><use xlink:href="#anchor-link-icon" /></svg></span></a>`,
+        headingHtml.includes('<a ')
+          ? [
+              // Avoid breaking the anchor link button
+              `<h${level} id="${hash}">${headingHtml}`,
+              `<a href="#${hash}" class="title-link-to-anchor" aria-labelledby="${hash}"><span class="anchor-icon"><svg><use xlink:href="#anchor-link-icon" /></svg></span></a>`,
+            ].join('')
+          : `<h${level} id="${hash}"><a href="#${hash}" class="title-link-to-anchor">${headingHtml}<span class="anchor-icon"><svg><use xlink:href="#anchor-link-icon" /></svg></span></a>`,
         `<button title="Post a comment" class="comment-link" data-feedback-hash="${hash}">`,
         '<svg><use xlink:href="#comment-link-icon" /></svg>',
         `</button>`,
@@ -381,7 +384,7 @@ function createRender(context) {
         more += ` title="${title}"`;
       }
 
-      if (noSEOadvantage.some((domain) => href.indexOf(domain) !== -1)) {
+      if (noSEOadvantage.some((domain) => href.includes(domain))) {
         more = ' target="_blank" rel="noopener nofollow"';
       }
 

@@ -11,6 +11,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 import ButtonGroupButtonContext from '../ButtonGroup/ButtonGroupButtonContext';
@@ -161,7 +162,7 @@ const ButtonRoot = styled(ButtonBase, {
           },
         },
         ...Object.entries(theme.palette)
-          .filter(([, palette]) => palette && palette.main && palette.dark && palette.contrastText)
+          .filter(createSimplePaletteValueFilter())
           .map(([color]) => ({
             props: { color },
             style: {
@@ -191,10 +192,8 @@ const ButtonRoot = styled(ButtonBase, {
             color: 'inherit',
           },
           style: {
-            '--variant-containedColor': theme.vars
-              ? // this is safe because grey does not change between default light/dark mode
-                theme.vars.palette.text.primary
-              : theme.palette.getContrastText?.(inheritContainedBackgroundColor),
+            color: 'inherit',
+            borderColor: 'currentColor',
             '--variant-containedBg': theme.vars
               ? theme.vars.palette.Button.inheritContainedBg
               : inheritContainedBackgroundColor,

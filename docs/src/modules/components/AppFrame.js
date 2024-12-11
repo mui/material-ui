@@ -65,24 +65,22 @@ export function NextNProgressBar() {
 const sx = { minWidth: { sm: 160 } };
 
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
+let hadHydrated = false;
 
 export function DeferredAppSearch() {
-  const [mounted, setMounted] = React.useState(false);
+  const [mounted, setMounted] = React.useState(hadHydrated);
   React.useEffect(() => {
+    hadHydrated = true;
     setMounted(true);
   }, []);
 
-  return (
-    <React.Fragment>
-      {/* Suspense isn't supported for SSR yet */}
-      {mounted ? (
-        <React.Suspense fallback={<Box sx={sx} />}>
-          <AppSearch sx={sx} />
-        </React.Suspense>
-      ) : (
-        <Box sx={sx} />
-      )}
-    </React.Fragment>
+  /* Suspense isn't supported for SSR yet */
+  return mounted ? (
+    <React.Suspense fallback={<Box sx={sx} />}>
+      <AppSearch sx={sx} />
+    </React.Suspense>
+  ) : (
+    <Box sx={sx} />
   );
 }
 
