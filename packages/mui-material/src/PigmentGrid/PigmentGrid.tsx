@@ -8,10 +8,10 @@ import Grid from '@mui/material-pigment-css/Grid';
 import composeClasses from '@mui/utils/composeClasses';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import {
-  generateDirectionClasses,
-  generateSizeClassNames,
-  generateSpacingClassNames,
-} from '@mui/system/Grid/gridGenerator';
+  unstable_generateDirectionClasses as generateDirectionClasses,
+  unstable_generateSizeClassNames as generateSizeClassNames,
+  unstable_generateSpacingClassNames as generateSpacingClassNames,
+} from '@mui/system/Grid';
 import { Breakpoint, Theme } from '../styles';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };

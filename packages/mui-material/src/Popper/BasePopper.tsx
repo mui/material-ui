@@ -101,7 +101,7 @@ const PopperTooltip = React.forwardRef<HTMLDivElement, PopperTooltipProps>(funct
   const tooltipRef = React.useRef<HTMLElement>(null);
   const ownRef = useForkRef(tooltipRef, forwardedRef);
 
-  const popperRef = React.useRef<Instance | null>(null);
+  const popperRef = React.useRef<Instance>(null);
   const handlePopperRef = useForkRef(popperRef, popperRefProp);
   const handlePopperRefRef = React.useRef(handlePopperRef);
   useEnhancedEffect(() => {
