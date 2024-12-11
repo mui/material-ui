@@ -1,5 +1,40 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.2.0
+
+<!-- generated comparing v6.1.10..master -->
+
+_Dec 10, 2024_
+
+A big thanks to the 9 contributors who made this release possible. Here are some highlights ✨:
+
+- Material UI is now compatible with React 19 (#44672) @DiegoAndai
+- Fixed incorrect `aria-orientation` for vertical sliders. <kbd>ArrowRight</kbd> now increases the value and <kbd>ArrowLeft</kbd> decreases the value in vertical sliders; they were reversed in prior versions. (#44537) @mj12albert
+
+### `@mui/material@6.2.0`
+
+- [Box] Add missing `component` to `BoxProps` type (#44643) @DiegoAndai
+- [Grid] Fix spacing when using css variables (#44663) @DiegoAndai
+- [ListItemText] Add `slots` and `slotProps` (#44571) @sai6855
+
+### Docs
+
+- Add Toolpad Core template link (#44415) @bharatkashyap
+
+### Core
+
+- [docs-infra] Allow custom annotations (#44707) @vladmoroz
+- [Box] Fix `component` prop test (#44651) @DiegoAndai
+- React 19 useRef cleanup (#44704) @DiegoAndai
+- Remove obselete lerna options (#44676) @ZeeshanTamboli
+- Fix Regular Expression Denial of Service (ReDoS) vulnerabilities (#44627) @SuperMaxine
+- Fix number of contributors (#44650) @aarongarciah
+- [docs-infra] Add support for data attributes in the API generation (#44709) @mnajdova
+- [docs-infra] Fix RTL dark mode (#41803) @alexfauquette
+- [Grid] Remove deeply nested imports (#43605) @Janpot
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @bharatkashyap, @DiegoAndai, @Janpot, @mj12albert, @mnajdova, @sai6855, @SuperMaxine, @vladmoroz, @ZeeshanTamboli
+
 ## 6.1.10
 
 <!-- generated comparing v6.1.9..master -->

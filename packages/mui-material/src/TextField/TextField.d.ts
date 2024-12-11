@@ -188,6 +188,7 @@ export interface BaseTextFieldProps
   SelectProps?: Partial<SelectProps>;
   /**
    * The size of the component.
+   * @default 'medium'
    */
   size?: OverridableStringUnion<'small' | 'medium', TextFieldPropsSizeOverrides>;
   /**
