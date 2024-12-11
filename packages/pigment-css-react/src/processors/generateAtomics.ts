@@ -64,7 +64,7 @@ export class GenerateAtomicsProcessor extends BaseProcessor {
 
       classes.forEach(({ className, css: cssObject }) => {
         const emotionClass = css(cssObject as CSSInterpolation);
-        const cssText = cache.registered[emotionClass];
+        const cssText = cache.registered[emotionClass] ?? '';
 
         const rules: Rules = {
           [`.${className}`]: {

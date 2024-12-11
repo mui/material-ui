@@ -35,7 +35,7 @@ export type UseTabRootSlotProps<ExternalProps = {}> = UseButtonRootSlotProps<Ext
   'aria-controls': React.AriaAttributes['aria-controls'];
   'aria-selected': React.AriaAttributes['aria-selected'];
   id: string | undefined;
-  ref: React.RefCallback<Element> | null;
+  ref?: React.RefCallback<Element> | null;
   role: React.AriaRole;
 };
 
