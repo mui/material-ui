@@ -145,7 +145,7 @@ export default function DesignKitFAQ() {
   }
   return (
     <Section>
-      <Typography variant="h2" sx={{ mb: { xs: 2, sm: 4 } }} id="faq">
+      <Typography id="faq" variant="h2" sx={{ mb: { xs: 2, sm: 4 } }}>
         Frequently asked questions
       </Typography>
       <Grid container spacing={2}>
