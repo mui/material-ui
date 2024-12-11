@@ -1,5 +1,21 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.16.11
+
+<!-- generated comparing v5.16.9..v5.x -->
+
+_Dec 11, 2024_
+
+A big thanks to the contributor who made this release possible.
+
+### Core
+
+- Bump pnpm to 9.14.4 in v5 (#44705) @DiegoAndai
+- Fix UMD examples (#44706) @DiegoAndai
+- [typescript] Rescue missing backports v5 (#44712) @DiegoAndai
+
+All contributors of this release in alphabetical order: @DiegoAndai
+
 ## 5.16.9
 
 <!-- generated comparing v5.16.8..v5.x -->
