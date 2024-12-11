@@ -30,7 +30,7 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getFormLabelUtilityClasses, classes);
 };
 
-export const FormLabelRoot = styled('label', {
+export const FormLabelRoot = styled('legend', {
   name: 'MuiFormLabel',
   slot: 'Root',
   overridesResolver: ({ ownerState }, styles) => {
@@ -91,7 +91,7 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
     children,
     className,
     color,
-    component = 'label',
+    component = 'legend',
     disabled,
     error,
     filled,
