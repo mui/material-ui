@@ -740,7 +740,7 @@ importers:
         version: 18.19.25
       '@types/prop-types':
         specifier: ^15.7.12
-        version: 15.7.13
+        version: 15.7.14
       '@types/react':
         specifier: 18.3.3
         version: 18.3.3
@@ -1124,7 +1124,7 @@ importers:
         version: 4.3.12
       '@types/prop-types':
         specifier: ^15.7.12
-        version: 15.7.13
+        version: 15.7.14
       '@types/react':
         specifier: 18.3.3
         version: 18.3.3
@@ -1202,7 +1202,7 @@ importers:
         version: 7.23.9
       '@mui/base':
         specifier: '*'
-        version: 5.0.0-beta.64(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 5.0.0-beta.66(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mui/system':
         specifier: ^5.0.0
         version: 5.15.12(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.0(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1)
@@ -1227,7 +1227,7 @@ importers:
         version: 18.19.25
       '@types/prop-types':
         specifier: ^15.7.12
-        version: 15.7.13
+        version: 15.7.14
       '@types/react':
         specifier: 18.3.3
         version: 18.3.3
@@ -1386,7 +1386,7 @@ importers:
         version: 4.3.12
       '@types/prop-types':
         specifier: ^15.7.12
-        version: 15.7.13
+        version: 15.7.14
       '@types/react':
         specifier: 18.3.3
         version: 18.3.3
@@ -1460,7 +1460,7 @@ importers:
         version: 4.3.12
       '@types/prop-types':
         specifier: ^15.7.12
-        version: 15.7.13
+        version: 15.7.14
       '@types/react':
         specifier: 18.3.3
         version: 18.3.3
@@ -1549,7 +1549,7 @@ importers:
         version: 4.3.12
       '@types/prop-types':
         specifier: ^15.7.12
-        version: 15.7.13
+        version: 15.7.14
       '@types/react':
         specifier: 18.3.3
         version: 18.3.3
@@ -1888,7 +1888,7 @@ importers:
         version: 4.3.12
       '@types/prop-types':
         specifier: ^15.7.12
-        version: 15.7.13
+        version: 15.7.14
       '@types/react':
         specifier: 18.3.3
         version: 18.3.3
@@ -1935,7 +1935,7 @@ importers:
         version: link:../mui-types/build
       '@types/prop-types':
         specifier: ^15.7.12
-        version: 15.7.13
+        version: 15.7.14
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -2255,7 +2255,7 @@ importers:
         version: 1.0.4
       '@types/prop-types':
         specifier: ^15.7.12
-        version: 15.7.13
+        version: 15.7.14
       '@types/react':
         specifier: 18.3.3
         version: 18.3.3
@@ -3777,13 +3777,13 @@ packages:
       '@types/react':
         optional: true
 
-  '@mui/base@5.0.0-beta.64':
-    resolution: {integrity: sha512-nu663PoZs/Pee0fkPYkjUADfT+AAi2QWvvHghDhLeSx8sa3i+GGaOoUsFmB4CPlyYqWfq9hRGA7H1T3d6VrGgw==}
+  '@mui/base@5.0.0-beta.66':
+    resolution: {integrity: sha512-1SzcNbtIms0o/Dx+599B6QbvR5qUMBUjwc2Gs47h1HsF7RcEFXxqaq7zrWkIWbvGctIIPx0j330oGx/SkF+UmA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@types/react': 18.3.3
-      react: ^17.0.0 || ^18.0.0
-      react-dom: ^17.0.0 || ^18.0.0
+      react: ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -3882,8 +3882,8 @@ packages:
       '@types/react':
         optional: true
 
-  '@mui/utils@6.1.10':
-    resolution: {integrity: sha512-1ETuwswGjUiAf2dP9TkBy8p49qrw2wXa+RuAjNTRE5+91vtXJ1HKrs7H9s8CZd1zDlQVzUcUAPm9lpQwF5ogTw==}
+  '@mui/utils@6.2.0':
+    resolution: {integrity: sha512-77CaFJi+OIi2SjbPwCis8z5DXvE0dfx9hBz5FguZHt1VYFlWEPCWTHcMsQCahSErnfik5ebLsYK8+D+nsjGVfw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@types/react': 18.3.3
@@ -5059,8 +5059,8 @@ packages:
   '@types/promise.allsettled@1.0.3':
     resolution: {integrity: sha512-b/IFHHTkYkTqu41IH9UtpICwqrpKj2oNlb4KHPzFQDMiz+h1BgAeATeO0/XTph4+UkH9W2U0E4B4j64KWOovag==}
 
-  '@types/prop-types@15.7.13':
-    resolution: {integrity: sha512-hCZTSvwbzWGvhqxp/RqVqwU999pBf2vp7hzIjiYOsl8wqOmUxkQ6ddw1cV3l8811+kdUFus/q4d1Y3E3SyEifA==}
+  '@types/prop-types@15.7.14':
+    resolution: {integrity: sha512-gNMvNH49DJ7OJYv+KAKn0Xp45p8PLl6zo2YnvDIbTd4J6MER2BmWN49TG7n9LvkyihINxeKW8+3bfS2yDC9dzQ==}
 
   '@types/qs@6.9.7':
     resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
@@ -10555,6 +10555,9 @@ packages:
   react-is@18.3.1:
     resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
 
+  react-is@19.0.0:
+    resolution: {integrity: sha512-H91OHcwjZsbq3ClIDHMzBShc1rotbfACdWENsmEf0IFvZ3FgGPtdHMcsv45bQ1hAbgdfiA8SnxTKfDS+x/8m2g==}
+
   react-jss@10.10.0:
     resolution: {integrity: sha512-WLiq84UYWqNBF6579/uprcIUnM1TSywYq6AIjKTTTG5ziJl9Uy+pwuvpN3apuyVwflMbD60PraeTKT7uWH9XEQ==}
     peerDependencies:
@@ -14245,12 +14248,12 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.3
 
-  '@mui/base@5.0.0-beta.64(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@mui/base@5.0.0-beta.66(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.23.9
       '@floating-ui/react-dom': 2.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mui/types': 7.2.19(@types/react@18.3.3)
-      '@mui/utils': 6.1.10(@types/react@18.3.3)(react@18.3.1)
+      '@mui/utils': 6.2.0(@types/react@18.3.3)(react@18.3.1)
       '@popperjs/core': 2.11.8
       clsx: 2.1.1
       prop-types: 15.8.1
@@ -14342,22 +14345,22 @@ snapshots:
   '@mui/utils@5.15.20(@types/react@18.3.3)(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.23.9
-      '@types/prop-types': 15.7.13
+      '@types/prop-types': 15.7.14
       prop-types: 15.8.1
       react: 18.3.1
       react-is: 18.3.1
     optionalDependencies:
       '@types/react': 18.3.3
 
-  '@mui/utils@6.1.10(@types/react@18.3.3)(react@18.3.1)':
+  '@mui/utils@6.2.0(@types/react@18.3.3)(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.23.9
       '@mui/types': 7.2.19(@types/react@18.3.3)
-      '@types/prop-types': 15.7.13
+      '@types/prop-types': 15.7.14
       clsx: 2.1.1
       prop-types: 15.8.1
       react: 18.3.1
-      react-is: 18.3.1
+      react-is: 19.0.0
     optionalDependencies:
       '@types/react': 18.3.3
 
@@ -14385,7 +14388,7 @@ snapshots:
   '@mui/x-data-grid-generator@7.0.0-beta.7(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.0(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.23.9
-      '@mui/base': 5.0.0-beta.64(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@mui/base': 5.0.0-beta.66(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mui/icons-material': link:packages/mui-icons-material/build
       '@mui/material': link:packages/mui-material/build
       '@mui/x-data-grid-premium': 7.0.0-beta.7(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.0(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@mui/material@packages+mui-material+build)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -15856,7 +15859,7 @@ snapshots:
 
   '@types/promise.allsettled@1.0.3': {}
 
-  '@types/prop-types@15.7.13': {}
+  '@types/prop-types@15.7.14': {}
 
   '@types/qs@6.9.7': {}
 
@@ -15898,7 +15901,7 @@ snapshots:
 
   '@types/react@18.3.3':
     dependencies:
-      '@types/prop-types': 15.7.13
+      '@types/prop-types': 15.7.14
       csstype: 3.1.3
 
   '@types/resolve@0.0.8':
@@ -22513,6 +22516,8 @@ snapshots:
   react-is@17.0.2: {}
 
   react-is@18.3.1: {}
+
+  react-is@19.0.0: {}
 
   react-jss@10.10.0(react@18.3.1):
     dependencies:
