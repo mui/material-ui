@@ -131,4 +131,10 @@ describe('deepmerge', () => {
 
     expect(result.element).to.equal(element2);
   });
+
+  it('should deep clone example correctly', () => {
+    const result = deepmerge({ a: { b: 1 }, d: 2 }, { a: { c: 2 }, d: 4 });
+
+    expect(result).to.deep.equal({ a: { b: 1, c: 2 }, d: 4 });
+  });
 });

@@ -209,7 +209,11 @@ function getCodeblock(content) {
   if (!content.startsWith('<codeblock')) {
     return undefined;
   }
-  const storageKey = content.match(/^<codeblock [^>]*storageKey=["|'](\S*)["|'].*>/m)?.[1];
+  // The regexes below have a negative lookahead to prevent ReDoS
+  // See https://github.com/mui/material-ui/issues/44078
+  const storageKey = content.match(
+    /^<codeblock (?!<codeblock )[^>]*storageKey=["|'](?!storageKey=["|'])(\S*)["|'].*>/m,
+  )?.[1];
   const blocks = [...content.matchAll(/^```(\S*) (\S*)\n(.*?)\n```/gmsu)].map(
     ([, language, tab, code]) => ({ language, tab, code }),
   );

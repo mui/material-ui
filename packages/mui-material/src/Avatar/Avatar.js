@@ -163,17 +163,23 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
 
   let children = null;
 
-  // Use a hook instead of onError on the img element to support server-side rendering.
-  const loaded = useLoaded({ ...imgProps, src, srcSet });
-  const hasImg = src || srcSet;
-  const hasImgNotFailing = hasImg && loaded !== 'error';
-
   const ownerState = {
     ...props,
-    colorDefault: !hasImgNotFailing,
     component,
     variant,
   };
+
+  // Use a hook instead of onError on the img element to support server-side rendering.
+  const loaded = useLoaded({
+    ...imgProps,
+    ...(typeof slotProps.img === 'function' ? slotProps.img(ownerState) : slotProps.img),
+    src,
+    srcSet,
+  });
+  const hasImg = src || srcSet;
+  const hasImgNotFailing = hasImg && loaded !== 'error';
+
+  ownerState.colorDefault = !hasImgNotFailing;
   // This issue explains why this is required: https://github.com/mui/material-ui/issues/42184
   delete ownerState.ownerState;
 

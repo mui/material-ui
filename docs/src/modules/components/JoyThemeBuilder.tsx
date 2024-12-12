@@ -714,8 +714,8 @@ function PaletteImport({
 
 function ColorTokenCreator({ onChange }: { onChange: (name: string, value: string) => void }) {
   const [open, setOpen] = React.useState(false);
-  const nameRef = React.useRef<HTMLInputElement | null>(null);
-  const colorRef = React.useRef<HTMLInputElement | null>(null);
+  const nameRef = React.useRef<HTMLInputElement>(null);
+  const colorRef = React.useRef<HTMLInputElement>(null);
   const [name, setName] = React.useState('');
   const [color, setColor] = React.useState('');
   if (!open) {
@@ -876,7 +876,7 @@ function GlobalVariantTokenCreator({
   const [open, setOpen] = React.useState(false);
   const [name, setName] = React.useState('');
   const [color, setColor] = React.useState('');
-  const inputRef = React.useRef<HTMLInputElement | null>(null);
+  const inputRef = React.useRef<HTMLInputElement>(null);
   if (!open) {
     return (
       <Button
@@ -1268,7 +1268,15 @@ function getAvailableTokens(colorSchemes: any, colorMode: 'light' | 'dark') {
   return tokens;
 }
 
-function TemplatesDialog({ children, data }: { children: React.ReactElement<any>; data: any }) {
+function TemplatesDialog({
+  children,
+  data,
+}: {
+  children: React.ReactElement<{
+    onClick?: React.MouseEventHandler;
+  }>;
+  data: any;
+}) {
   const [open, setOpen] = React.useState(false);
   const { map: templateMap } = sourceJoyTemplates();
   const renderItem = (name: string, item: TemplateData) => {
@@ -1339,9 +1347,9 @@ function TemplatesDialog({ children, data }: { children: React.ReactElement<any>
   return (
     <React.Fragment>
       {React.cloneElement(children, {
-        onClick: () => {
+        onClick: (event: React.MouseEvent) => {
           setOpen(true);
-          children.props.onClick?.();
+          children.props.onClick?.(event);
         },
       })}
       <Modal open={open} onClose={() => setOpen(false)}>

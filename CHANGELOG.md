@@ -1,5 +1,87 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.2.0
+
+<!-- generated comparing v6.1.10..master -->
+
+_Dec 10, 2024_
+
+A big thanks to the 9 contributors who made this release possible. Here are some highlights ✨:
+
+- Material UI is now compatible with React 19 (#44672) @DiegoAndai
+- Fixed incorrect `aria-orientation` for vertical sliders. <kbd>ArrowRight</kbd> now increases the value and <kbd>ArrowLeft</kbd> decreases the value in vertical sliders; they were reversed in prior versions. (#44537) @mj12albert
+
+### `@mui/material@6.2.0`
+
+- [Box] Add missing `component` to `BoxProps` type (#44643) @DiegoAndai
+- [Grid] Fix spacing when using css variables (#44663) @DiegoAndai
+- [ListItemText] Add `slots` and `slotProps` (#44571) @sai6855
+
+### Docs
+
+- Add Toolpad Core template link (#44415) @bharatkashyap
+
+### Core
+
+- [docs-infra] Allow custom annotations (#44707) @vladmoroz
+- [Box] Fix `component` prop test (#44651) @DiegoAndai
+- React 19 useRef cleanup (#44704) @DiegoAndai
+- Remove obselete lerna options (#44676) @ZeeshanTamboli
+- Fix Regular Expression Denial of Service (ReDoS) vulnerabilities (#44627) @SuperMaxine
+- Fix number of contributors (#44650) @aarongarciah
+- [docs-infra] Add support for data attributes in the API generation (#44709) @mnajdova
+- [docs-infra] Fix RTL dark mode (#41803) @alexfauquette
+- [Grid] Remove deeply nested imports (#43605) @Janpot
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @bharatkashyap, @DiegoAndai, @Janpot, @mj12albert, @mnajdova, @sai6855, @SuperMaxine, @vladmoroz, @ZeeshanTamboli
+
+## 6.1.10
+
+<!-- generated comparing v6.1.9..master -->
+
+_Dec 3, 2024_
+
+A big thanks to the 11 contributors who made this release possible.
+
+### `@mui/material@6.1.10`
+
+- [Avatar] Fix `slotProps.img` not spread to hook (#44536) @siriwatknp
+- [FilledInput] Use `slotProps` instead of `componentsProps` (#44552) @siriwatknp
+- [Grid2] Fix theme scoping error (#44599) @siriwatknp
+- [Grid2] Add container styles from styleOverrides (#44598) @sai6855
+- Skip `tonalOffset` from setting color channel (#44585) @siriwatknp
+- Remove few more React.ReactElement<any> types (#44290) @sai6855
+- [Tabs] Fix `ScrollbarSize` ref being overriden (#44593) @DiegoAndai
+- [Select][TextField] Fix screen reader from saying `&ZeroWidthSpace` (#44631) @arishoham
+
+### `@mui/system@6.1.10`
+
+- [ThemeProvider] Optimize `theme` changes when enabling CSS theme variables (#44588) @siriwatknp
+
+### Docs
+
+- Notification for the MUI X v8 alpha zero announcement blog post (#44629) @joserodolfofreitas
+- Bump React Router to ^7.0.1 (#44531) @oliviertassinari
+- [material-ui] Replace testid with id in migration guide (#44636) @sai6855
+- [material-ui][TextField] Update usage of `InputLabelProps` in docs (#44634) @sai6855
+- [material-ui][ListItem] Add missing diffs in migration guide (#44638) @sai6855
+- [examples] Use Next.js 14 on examples (#44486) @DiegoAndai
+- Update links and sidebar nav for Base UI components in Material UI (#44581) @samuelsycamore
+
+### Core
+
+- Remove `getSlotOwnerState` from `useSlot` util (#44403) @ZeeshanTamboli
+- Extract useRippleHandler outside of ButtonBase (#44591) @albarv340
+- Update eslint config (#44586) @MBilalShafi
+- [core-infra] Remove useless fragments (#44516) @oliviertassinari
+- [docs-infra] Fix Banner CLS (#44632) @oliviertassinari
+- [docs-infra] Change CSS vars generation to be extracted from Enum (#44587) @mnajdova
+- [docs-infra] Automatically hide Black Friday banner (#44630) @oliviertassinari
+- [docs-infra] Fix TOC RTL padding regression (#44535) @oliviertassinari
+- [test-utils] Remove leftover React.ReactElement<any> from describeConformance.tsx (#44639) @sai6855
+
+All contributors of this release in alphabetical order: @albarv340, @arishoham, @DiegoAndai, @joserodolfofreitas, @MBilalShafi, @mnajdova, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+
 ## 6.1.9
 
 <!-- generated comparing v6.1.8..master -->
