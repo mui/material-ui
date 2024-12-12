@@ -9,7 +9,7 @@ import Paper, { PaperProps } from '@mui/material/Paper';
 import Draggable from 'react-draggable';
 
 function PaperComponent(props: PaperProps) {
-  const nodeRef = React.useRef<HTMLDivElement>(null);
+  const nodeRef = React.useRef<HTMLDivElement | null>(null);
   return (
     <Draggable
       nodeRef={nodeRef}
