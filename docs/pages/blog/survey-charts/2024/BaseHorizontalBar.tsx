@@ -18,10 +18,11 @@ function XBar(props) {
   const dataY = data.map((d) => d.value);
   return (
     <BarChart
-      xAxis={[{ scaleType: "band", data: dataX }]}
+      yAxis={[{ scaleType: "band", data: dataX }]}
       series={[{ data: dataY }]}
       width={500}
       height={500}
+      layout="horizontal"
     />
   );
 }

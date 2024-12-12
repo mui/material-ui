@@ -13,16 +13,23 @@ function generateTickValues(maxValue) {
 }
 
 export default function BaseStackedHorizontalBar(props) {
-  const { data } = props;
+  const { data, barProperties } = props;
   const dataX = data.map((d) => d.label);
-  const dataY = data.map((d) => d.value);
-
+  const series = barProperties.map((p) => {
+    const barPropertyData = data.map((d)=>{
+      const propName = p.property
+      return { data: d[propName], label: p.label, stack: d.label }
+    });
+  });
+  
+  console.log("series", series);
   return (
     <BarChart
-      xAxis={[{ scaleType: "band", data: dataX }]}
-      series={[{ data: dataY }]}
+      yAxis={[{ scaleType: "band", data: dataX }]}
+      series={series}
       width={500}
       height={500}
+      layout="horizontal"
     />
   );
 }
