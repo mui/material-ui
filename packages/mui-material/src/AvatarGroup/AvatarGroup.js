@@ -31,10 +31,14 @@ const useUtilityClasses = (ownerState) => {
 const AvatarGroupRoot = styled('div', {
   name: 'MuiAvatarGroup',
   slot: 'Root',
-  overridesResolver: (props, styles) => ({
-    [`& .${avatarGroupClasses.avatar}`]: styles.avatar,
-    ...styles.root,
-  }),
+  overridesResolver: (props, styles) => {
+    const {ownerState} = props;
+
+    return [
+      styles[`& .${avatarGroupClasses.avatar}`],
+      styles.root,
+    ]
+  },
 })(
   memoTheme(({ theme }) => ({
     display: 'flex',
