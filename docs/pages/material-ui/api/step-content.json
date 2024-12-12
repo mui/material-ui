@@ -35,7 +35,7 @@
   "slots": [
     {
       "name": "transition",
-      "description": "The component that renders the transition slot.",
+      "description": "The component that renders the transition slot.\n[Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
       "default": "Collapse",
       "class": "MuiStepContent-transition"
     }
