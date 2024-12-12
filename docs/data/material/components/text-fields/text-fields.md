@@ -70,6 +70,12 @@ For instance, you can use an icon button to hide or reveal the password.
 
 {{"demo": "InputAdornments.js"}}
 
+### Visible on shrink
+
+Use the `sx` prop to control the suffix's opacity based on the shrink attribute. The suffix will be visible when the label is shrunk.
+
+{{"demo": "InputSuffixShrink.js"}}
+
 ## Sizes
 
 Fancy smaller inputs? Use the `size` prop.
