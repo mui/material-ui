@@ -474,6 +474,12 @@ describe('<Select />', () => {
       expect(getByRole('combobox')).to.have.attribute('aria-required', 'true');
     });
 
+    it('aria-required is not present if component is not required', () => {
+      const { getByRole } = render(<Select required={false} value="" />);
+
+      expect(getByRole('combobox')).not.to.have.attribute('aria-required');
+    });
+
     it('sets required attribute in input when component is required', () => {
       const { container } = render(<Select required value="" />);
 
@@ -484,6 +490,12 @@ describe('<Select />', () => {
       const { getByRole } = render(<Select error value="" />);
 
       expect(getByRole('combobox')).to.have.attribute('aria-invalid', 'true');
+    });
+
+    it('aria-invalid is not present if component is not in an error state', () => {
+      const { getByRole } = render(<Select value="" />);
+
+      expect(getByRole('combobox')).not.to.have.attribute('aria-invalid');
     });
 
     it('indicates that activating the button displays a listbox', () => {
