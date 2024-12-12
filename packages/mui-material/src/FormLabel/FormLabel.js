@@ -34,7 +34,7 @@ export const FormLabelRoot = styled('label', {
   name: 'MuiFormLabel',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const {ownerState} = props;
+    const { ownerState } = props;
     return [
       styles.root,
       ownerState.color === 'secondary' && styles.colorSecondary,

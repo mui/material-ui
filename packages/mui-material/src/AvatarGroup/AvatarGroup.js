@@ -32,12 +32,9 @@ const AvatarGroupRoot = styled('div', {
   name: 'MuiAvatarGroup',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const {ownerState} = props;
+    const { ownerState } = props;
 
-    return [
-      styles[`& .${avatarGroupClasses.avatar}`],
-      styles.root,
-    ]
+    return [styles[`& .${avatarGroupClasses.avatar}`], styles.root];
   },
 })(
   memoTheme(({ theme }) => ({
