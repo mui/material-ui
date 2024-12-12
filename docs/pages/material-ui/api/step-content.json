@@ -2,6 +2,14 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ transition?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ transition?: elementType }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -24,6 +32,14 @@
     "import StepContent from '@mui/material/StepContent';",
     "import { StepContent } from '@mui/material';"
   ],
+  "slots": [
+    {
+      "name": "transition",
+      "description": "The component that renders the transition slot.",
+      "default": "Collapse",
+      "class": "MuiStepContent-transition"
+    }
+  ],
   "classes": [
     {
       "key": "last",
@@ -35,12 +51,6 @@
       "key": "root",
       "className": "MuiStepContent-root",
       "description": "Styles applied to the root element.",
-      "isGlobal": false
-    },
-    {
-      "key": "transition",
-      "className": "MuiStepContent-transition",
-      "description": "Styles applied to the Transition component.",
       "isGlobal": false
     }
   ],

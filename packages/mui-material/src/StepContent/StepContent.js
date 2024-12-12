@@ -10,6 +10,7 @@ import Collapse from '../Collapse';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
 import { getStepContentUtilityClass } from './stepContentClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, last } = ownerState;
@@ -62,6 +63,8 @@ const StepContent = React.forwardRef(function StepContent(inProps, ref) {
     TransitionComponent = Collapse,
     transitionDuration: transitionDurationProp = 'auto',
     TransitionProps,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -83,6 +86,24 @@ const StepContent = React.forwardRef(function StepContent(inProps, ref) {
     transitionDuration = undefined;
   }
 
+  const externalForwardedProps = {
+    slots,
+    slotProps: { transition: TransitionProps, ...slotProps },
+  };
+
+  const [TransitionSlot, transitionProps] = useSlot('transition', {
+    elementType: StepContentTransition,
+    externalForwardedProps,
+    ownerState,
+    className: classes.transition,
+    additionalProps: {
+      as: TransitionComponent,
+      in: active || expanded,
+      timeout: transitionDuration,
+      unmountOnExit: true,
+    },
+  });
+
   return (
     <StepContentRoot
       className={clsx(classes.root, className)}
@@ -90,17 +111,9 @@ const StepContent = React.forwardRef(function StepContent(inProps, ref) {
       ownerState={ownerState}
       {...other}
     >
-      <StepContentTransition
-        as={TransitionComponent}
-        in={active || expanded}
-        className={classes.transition}
-        ownerState={ownerState}
-        timeout={transitionDuration}
-        unmountOnExit
-        {...TransitionProps}
-      >
+      <TransitionSlot as={TransitionComponent} {...transitionProps}>
         {children}
-      </StepContentTransition>
+      </TransitionSlot>
     </StepContentRoot>
   );
 });
@@ -122,6 +135,20 @@ StepContent.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    transition: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
