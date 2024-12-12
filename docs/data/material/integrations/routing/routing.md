@@ -24,7 +24,7 @@ The Material UI theme lets you configure this component once.
 For instance, with react-router:
 
 ```tsx
-import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
+import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router';
 import { LinkProps } from '@mui/material/Link';
 
 const LinkBehavior = React.forwardRef<
@@ -65,9 +65,9 @@ In the event you need to provide a richer structure, see the next section.
 You can achieve the integration with third-party routing libraries with the `component` prop.
 You can learn more about this prop in the **[composition guide](/material-ui/guides/composition/#component-prop)**.
 
-## react-router examples
+## React Router examples
 
-Here are a few demos with [react-router](https://github.com/remix-run/react-router).
+Here are a few demos with the [Link component](https://reactrouter.com/start/library/navigating#link) of [React Router](https://github.com/remix-run/react-router).
 You can apply the same strategy with all the components: BottomNavigation, Card, etc.
 
 ### Link

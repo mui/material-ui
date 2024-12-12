@@ -10,6 +10,7 @@ import { visit as remarkVisit } from 'unist-util-visit';
 import type { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import { parse as parseDoctrine, Annotation } from 'doctrine';
+import escapeRegExp from 'lodash/escapeRegExp';
 import { renderCodeTags, renderMarkdown } from '../buildApi';
 import { ProjectSettings, SortingStrategiesType } from '../ProjectSettings';
 import { toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
@@ -31,8 +32,8 @@ import {
   ComponentReactApi,
   ParsedProperty,
 } from '../types/ApiBuilder.types';
-import { Slot, ComponentInfo } from '../types/utils.types';
-import extractInfoFromType from '../utils/extractInfoFromType';
+import { Slot, ComponentInfo, ApiItemDescription } from '../types/utils.types';
+import extractInfoFromEnum from '../utils/extractInfoFromEnum';
 
 const cssComponents = ['Box', 'Grid', 'Typography', 'Stack'];
 
@@ -229,26 +230,36 @@ async function annotateComponentDefinition(
   if (markdownLines[markdownLines.length - 1] !== '') {
     markdownLines.push('');
   }
-  markdownLines.push(
-    'Demos:',
-    '',
-    ...api.demos.map((demo) => {
-      return `- [${demo.demoPageTitle}](${
-        demo.demoPathname.startsWith('http') ? demo.demoPathname : `${HOST}${demo.demoPathname}`
-      })`;
-    }),
-    '',
-  );
 
-  markdownLines.push(
-    'API:',
-    '',
-    `- [${api.name} API](${
-      api.apiPathname.startsWith('http') ? api.apiPathname : `${HOST}${api.apiPathname}`
-    })`,
-  );
-  if (api.inheritance) {
-    markdownLines.push(`- inherits ${inheritanceAPILink}`);
+  if (api.customAnnotation) {
+    markdownLines.push(
+      ...api.customAnnotation
+        .split('\n')
+        .map((line) => line.trim())
+        .filter(Boolean),
+    );
+  } else {
+    markdownLines.push(
+      'Demos:',
+      '',
+      ...api.demos.map((demo) => {
+        return `- [${demo.demoPageTitle}](${
+          demo.demoPathname.startsWith('http') ? demo.demoPathname : `${HOST}${demo.demoPathname}`
+        })`;
+      }),
+      '',
+    );
+
+    markdownLines.push(
+      'API:',
+      '',
+      `- [${api.name} API](${
+        api.apiPathname.startsWith('http') ? api.apiPathname : `${HOST}${api.apiPathname}`
+      })`,
+    );
+    if (api.inheritance) {
+      markdownLines.push(`- inherits ${inheritanceAPILink}`);
+    }
   }
 
   if (componentJsdoc.tags.length > 0) {
@@ -324,6 +335,9 @@ const generateApiPage = async (
     imports: reactApi.imports,
     ...(reactApi.slots?.length > 0 && { slots: reactApi.slots }),
     ...(Object.keys(reactApi.cssVariables).length > 0 && { cssVariables: reactApi.cssVariables }),
+    ...(Object.keys(reactApi.dataAttributes).length > 0 && {
+      dataAttributes: reactApi.dataAttributes,
+    }),
     classes: reactApi.classes,
     spread: reactApi.spread,
     themeDefaultProps: reactApi.themeDefaultProps,
@@ -477,6 +491,20 @@ const attachTranslations = (
       });
   }
 
+  /**
+   * Data attributes descriptions.
+   */
+  if (Object.keys(reactApi.dataAttributes).length > 0) {
+    translations.dataAttributesDescriptions = {};
+    [...Object.keys(reactApi.dataAttributes)]
+      .sort() // Sort to ensure consistency of object key order
+      .forEach((dataAttributeName: string) => {
+        const dataAttribute = reactApi.dataAttributes[dataAttributeName];
+        const { description } = dataAttribute;
+        translations.dataAttributesDescriptions![dataAttributeName] = renderMarkdown(description);
+      });
+  }
+
   reactApi.translations = translations;
 };
 
@@ -624,16 +652,21 @@ const defaultGetComponentImports = (name: string, filename: string) => {
   return [subpathImport, rootImport];
 };
 
-const attachCssVariables = (reactApi: ComponentReactApi, params: ParsedProperty[]) => {
-  const cssVarsErrors: Array<[propName: string, error: Error]> = [];
-  const cssVariables: ComponentReactApi['cssVariables'] = params
+const attachTable = (
+  reactApi: ComponentReactApi,
+  params: ParsedProperty[],
+  attribute: 'cssVariables' | 'dataAttributes',
+  defaultType?: string,
+) => {
+  const errors: Array<[propName: string, error: Error]> = [];
+  const data: { [key: string]: ApiItemDescription } = params
     .map((p) => {
       const { name: propName, ...propDescriptor } = p;
       let prop: Omit<ParsedProperty, 'name'> | null;
       try {
         prop = propDescriptor;
       } catch (error) {
-        cssVarsErrors.push([propName, error as Error]);
+        errors.push([propName, error as Error]);
         prop = null;
       }
       if (prop === null) {
@@ -645,10 +678,14 @@ const attachCssVariables = (reactApi: ComponentReactApi, params: ParsedProperty[
       const deprecation = deprecationTag?.text?.[0]?.text;
 
       const typeTag = propDescriptor.tags?.type;
-      const type = typeTag?.text?.[0]?.text ?? 'string';
+
+      let type = typeTag?.text?.[0]?.text ?? defaultType;
+      if (typeof type === 'string') {
+        type = type.replace(/{|}/g, '');
+      }
 
       return {
-        name: `--${kebabCase(propName)}`,
+        name: propName,
         description: propDescriptor.description,
         type,
         deprecated: !!deprecation || undefined,
@@ -663,17 +700,17 @@ const attachCssVariables = (reactApi: ComponentReactApi, params: ParsedProperty[
       };
     }, {});
 
-  if (cssVarsErrors.length > 0) {
+  if (errors.length > 0) {
     throw new Error(
-      `There were errors creating CSS variable descriptions:\n${cssVarsErrors
-        .map(([cssVarName, error]) => {
-          return `  - ${cssVarName}: ${error}`;
+      `There were errors creating ${attribute.replace(/([A-Z])/g, ' $1')} descriptions:\n${errors
+        .map(([item, error]) => {
+          return `  - ${item}: ${error}`;
         })
         .join('\n')}`,
     );
   }
 
-  reactApi.cssVariables = cssVariables;
+  reactApi[attribute] = data;
 };
 
 /**
@@ -697,13 +734,26 @@ export default async function generateComponentApi(
   const filename = componentInfo.filename;
   let reactApi: ComponentReactApi;
 
-  if (componentInfo.isSystemComponent || componentInfo.name === 'Grid2') {
-    try {
+  try {
+    reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
+      filename,
+    });
+  } catch (error) {
+    // fallback to default logic if there is no `create*` definition.
+    if ((error as Error).message === 'No suitable component definition found.') {
       reactApi = docgenParse(
         src,
         (ast) => {
           let node;
+          // TODO migrate to react-docgen v6, using Babel AST now
           astTypes.visit(ast, {
+            visitFunctionDeclaration: (functionPath) => {
+              // @ts-ignore
+              if (functionPath.node.params[0].name === 'props') {
+                node = functionPath;
+              }
+              return false;
+            },
             visitVariableDeclaration: (variablePath) => {
               const definitions: any[] = [];
               if (variablePath.node.declarations) {
@@ -711,7 +761,6 @@ export default async function generateComponentApi(
                   .get('declarations')
                   .each((declarator: any) => definitions.push(declarator.get('init')));
               }
-
               definitions.forEach((definition) => {
                 // definition.value.expression is defined when the source is in TypeScript.
                 const expression = definition.value?.expression
@@ -719,36 +768,25 @@ export default async function generateComponentApi(
                   : definition;
                 if (expression.value?.callee) {
                   const definitionName = expression.value.callee.name;
-
                   if (definitionName === `create${componentInfo.name}`) {
                     node = expression;
                   }
                 }
               });
-
               return false;
             },
           });
 
           return node;
         },
-        defaultHandlers,
-        { filename },
-      );
-    } catch (error) {
-      // fallback to default logic if there is no `create*` definition.
-      if ((error as Error).message === 'No suitable component definition found.') {
-        reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
+        defaultHandlers.concat(muiDefaultPropsHandler),
+        {
           filename,
-        });
-      } else {
-        throw error;
-      }
+        },
+      );
+    } else {
+      throw error;
     }
-  } else {
-    reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
-      filename,
-    });
   }
 
   if (!reactApi.props) {
@@ -763,7 +801,13 @@ export default async function generateComponentApi(
   reactApi.description = componentJsdoc.description;
 
   // Ignore what we might have generated in `annotateComponentDefinition`
-  const annotatedDescriptionMatch = reactApi.description.match(/(Demos|API):\r?\n\r?\n/);
+  let annotationBoundary: RegExp = /(Demos|API):\r?\n\r?\n/;
+  if (componentInfo.customAnnotation) {
+    annotationBoundary = new RegExp(
+      escapeRegExp(componentInfo.customAnnotation.trim().split('\n')[0].trim()),
+    );
+  }
+  const annotatedDescriptionMatch = reactApi.description.match(new RegExp(annotationBoundary));
   if (annotatedDescriptionMatch !== null) {
     reactApi.description = reactApi.description.slice(0, annotatedDescriptionMatch.index).trim();
   }
@@ -777,6 +821,7 @@ export default async function generateComponentApi(
   reactApi.slots = [];
   reactApi.classes = [];
   reactApi.demos = componentInfo.getDemos();
+  reactApi.customAnnotation = componentInfo.customAnnotation;
   reactApi.inheritance = null;
   if (reactApi.demos.length === 0) {
     throw new Error(
@@ -819,10 +864,21 @@ export default async function generateComponentApi(
 
   reactApi.deprecated = !!deprecation || undefined;
 
-  const cssVars = await extractInfoFromType(`${componentInfo.name}CssVars`, project);
+  const cssVars = await extractInfoFromEnum(
+    `${componentInfo.name}CssVars`,
+    new RegExp(`${componentInfo.name}(CssVars|Classes)?.tsx?$`, 'i'),
+    project,
+  );
+
+  const dataAttributes = await extractInfoFromEnum(
+    `${componentInfo.name}DataAttributes`,
+    new RegExp(`${componentInfo.name}(DataAttributes)?.tsx?$`, 'i'),
+    project,
+  );
 
   attachPropsTable(reactApi, projectSettings.propsSettings);
-  attachCssVariables(reactApi, cssVars);
+  attachTable(reactApi, cssVars, 'cssVariables', 'string');
+  attachTable(reactApi, dataAttributes, 'dataAttributes');
   attachTranslations(reactApi, deprecationInfo, projectSettings.propsSettings);
 
   // eslint-disable-next-line no-console

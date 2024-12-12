@@ -64,7 +64,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   const { current: isControlled } = React.useRef(value != null);
   const inputRef = React.useRef<HTMLTextAreaElement>(null);
   const handleRef = useForkRef(forwardedRef, inputRef);
-  const heightRef = React.useRef<number | null>(null);
+  const heightRef = React.useRef<number>(null);
   const shadowRef = React.useRef<HTMLTextAreaElement>(null);
 
   const calculateTextareaStyles = React.useCallback(() => {

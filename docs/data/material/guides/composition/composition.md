@@ -49,10 +49,10 @@ This pattern is very powerful and allows for great flexibility, as well as a way
 
 ### Passing other React components
 
-You can pass any other React component to `component` prop. For example, you can pass `Link` component from `react-router-dom`:
+You can pass any other React component to `component` prop. For example, you can pass `Link` component from `react-router`:
 
 ```tsx
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import Button from '@mui/material/Button';
 
 function Demo() {
@@ -84,7 +84,7 @@ Now the `CustomComponent` can be used with a `component` prop which should be se
 In addition, the `CustomComponent` will have all props of a `<a>` HTML element.
 The other props of the `Typography` component will also be present in props of the `CustomComponent`.
 
-You can find a code example with the Button and react-router-dom in [these demos](/material-ui/integrations/routing/#component-prop).
+You can find a code example with the Button and react-router in [these demos](/material-ui/integrations/routing/#component-prop).
 
 ### Generic
 

@@ -421,41 +421,43 @@ describe('<Slider />', () => {
   });
 
   describe('prop: step', () => {
-    it('should handle a null step', () => {
-      const { getByRole, container } = render(
-        <Slider
-          step={null}
-          marks={[{ value: 0 }, { value: 20 }, { value: 30 }]}
-          defaultValue={0}
-        />,
-      );
-      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
-        width: 100,
-        height: 10,
-        bottom: 10,
-        left: 0,
-      }));
-      const slider = getByRole('slider');
+    describe('when step is `null`', () => {
+      it('values are defined by mark values', () => {
+        const { getByRole, container } = render(
+          <Slider
+            step={null}
+            marks={[{ value: 0 }, { value: 20 }, { value: 30 }]}
+            defaultValue={0}
+          />,
+        );
+        stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+          width: 100,
+          height: 10,
+          bottom: 10,
+          left: 0,
+        }));
+        const slider = getByRole('slider');
 
-      fireEvent.touchStart(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
-      );
-      expect(slider).to.have.attribute('aria-valuenow', '20');
+        fireEvent.touchStart(
+          container.firstChild,
+          createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
+        );
+        expect(slider).to.have.attribute('aria-valuenow', '20');
 
-      fireEvent.change(slider, {
-        target: {
-          value: 21,
-        },
+        fireEvent.change(slider, {
+          target: {
+            value: 21,
+          },
+        });
+        expect(slider).to.have.attribute('aria-valuenow', '30');
+
+        fireEvent.change(slider, {
+          target: {
+            value: 29,
+          },
+        });
+        expect(slider).to.have.attribute('aria-valuenow', '20');
       });
-      expect(slider).to.have.attribute('aria-valuenow', '30');
-
-      fireEvent.change(slider, {
-        target: {
-          value: 29,
-        },
-      });
-      expect(slider).to.have.attribute('aria-valuenow', '20');
     });
 
     it('change events with non integer numbers should work', () => {
@@ -985,6 +987,213 @@ describe('<Slider />', () => {
       expect(handleChange.callCount).to.equal(2);
       expect(handleChange.args[0][1]).to.equal(80);
       expect(handleChange.args[1][1]).to.equal(78);
+    });
+  });
+
+  describe('keyboard interactions', () => {
+    [
+      ['ltr', 'horizontal', ['ArrowLeft', 'ArrowDown'], ['ArrowRight', 'ArrowUp']],
+      ['ltr', 'vertical', ['ArrowLeft', 'ArrowDown'], ['ArrowRight', 'ArrowUp']],
+      ['rtl', 'horizontal', ['ArrowRight', 'ArrowDown'], ['ArrowLeft', 'ArrowUp']],
+      ['rtl', 'vertical', ['ArrowRight', 'ArrowDown'], ['ArrowLeft', 'ArrowUp']],
+    ].forEach((entry) => {
+      const [direction, orientation, decrementKeys, incrementKeys] = entry;
+
+      describe(direction, () => {
+        describe(`orientation: ${orientation}`, () => {
+          decrementKeys.forEach((key) => {
+            it(`key: ${key} decrements the value`, () => {
+              const { getByRole } = render(
+                <ThemeProvider
+                  theme={createTheme({
+                    direction,
+                  })}
+                >
+                  <Slider defaultValue={50} orientation={orientation} />
+                </ThemeProvider>,
+              );
+
+              const slider = getByRole('slider');
+              expect(slider).to.have.attribute('aria-valuenow', '50');
+
+              act(() => {
+                slider.focus();
+              });
+
+              fireEvent.keyDown(slider, { key });
+              expect(slider).to.have.attribute('aria-valuenow', '49');
+
+              fireEvent.keyDown(slider, { key });
+              expect(slider).to.have.attribute('aria-valuenow', '48');
+            });
+          });
+
+          incrementKeys.forEach((key) => {
+            it(`key: ${key} increments the value`, () => {
+              const { getByRole } = render(
+                <ThemeProvider
+                  theme={createTheme({
+                    direction,
+                  })}
+                >
+                  <Slider defaultValue={50} orientation={orientation} />
+                </ThemeProvider>,
+              );
+
+              const slider = getByRole('slider');
+              expect(slider).to.have.attribute('aria-valuenow', '50');
+
+              act(() => {
+                slider.focus();
+              });
+
+              fireEvent.keyDown(slider, { key });
+              expect(slider).to.have.attribute('aria-valuenow', '51');
+
+              fireEvent.keyDown(slider, { key });
+              expect(slider).to.have.attribute('aria-valuenow', '52');
+            });
+          });
+
+          it('key: PageUp and key: PageDown change the value based on `shiftStep`', () => {
+            const { getByRole } = render(
+              <ThemeProvider
+                theme={createTheme({
+                  direction,
+                })}
+              >
+                <Slider defaultValue={50} orientation={orientation} shiftStep={5} />
+              </ThemeProvider>,
+            );
+
+            const slider = getByRole('slider');
+            expect(slider).to.have.attribute('aria-valuenow', '50');
+
+            act(() => {
+              slider.focus();
+            });
+
+            fireEvent.keyDown(slider, { key: 'PageUp' });
+            expect(slider).to.have.attribute('aria-valuenow', '55');
+
+            fireEvent.keyDown(slider, { key: 'PageDown' });
+            expect(slider).to.have.attribute('aria-valuenow', '50');
+
+            fireEvent.keyDown(slider, { key: 'PageDown' });
+            expect(slider).to.have.attribute('aria-valuenow', '45');
+          });
+
+          it('key: End sets the value to max', () => {
+            const { getByRole } = render(
+              <ThemeProvider
+                theme={createTheme({
+                  direction,
+                })}
+              >
+                <Slider defaultValue={50} max={99} orientation={orientation} />
+              </ThemeProvider>,
+            );
+
+            const slider = getByRole('slider');
+            expect(slider).to.have.attribute('aria-valuenow', '50');
+
+            act(() => {
+              slider.focus();
+            });
+
+            fireEvent.keyDown(slider, { key: 'End' });
+            expect(slider).to.have.attribute('aria-valuenow', '99');
+          });
+
+          it('key: Home sets the value to min', () => {
+            const { getByRole } = render(
+              <ThemeProvider
+                theme={createTheme({
+                  direction,
+                })}
+              >
+                <Slider defaultValue={50} min={1} orientation={orientation} />
+              </ThemeProvider>,
+            );
+
+            const slider = getByRole('slider');
+            expect(slider).to.have.attribute('aria-valuenow', '50');
+
+            act(() => {
+              slider.focus();
+            });
+
+            fireEvent.keyDown(slider, { key: 'Home' });
+            expect(slider).to.have.attribute('aria-valuenow', '1');
+          });
+
+          describe('when `step` is `null` and values are restricted by `marks`', () => {
+            decrementKeys.forEach((key) => {
+              it(`key: ${key} decrements the value`, () => {
+                const { getByRole } = render(
+                  <ThemeProvider
+                    theme={createTheme({
+                      direction,
+                    })}
+                  >
+                    <Slider
+                      step={null}
+                      orientation="horizontal"
+                      marks={[{ value: 9 }, { value: 19 }, { value: 29 }, { value: 79 }]}
+                      defaultValue={79}
+                    />
+                  </ThemeProvider>,
+                );
+
+                const slider = getByRole('slider');
+                expect(slider).to.have.attribute('aria-valuenow', '79');
+
+                act(() => {
+                  slider.focus();
+                });
+
+                fireEvent.keyDown(slider, { key });
+                expect(slider).to.have.attribute('aria-valuenow', '29');
+
+                fireEvent.keyDown(slider, { key });
+                expect(slider).to.have.attribute('aria-valuenow', '19');
+              });
+            });
+
+            incrementKeys.forEach((key) => {
+              it(`key: ${key} increments the value`, () => {
+                const { getByRole } = render(
+                  <ThemeProvider
+                    theme={createTheme({
+                      direction,
+                    })}
+                  >
+                    <Slider
+                      step={null}
+                      orientation="horizontal"
+                      marks={[{ value: 9 }, { value: 19 }, { value: 29 }, { value: 79 }]}
+                      defaultValue={9}
+                    />
+                  </ThemeProvider>,
+                );
+
+                const slider = getByRole('slider');
+                expect(slider).to.have.attribute('aria-valuenow', '9');
+
+                act(() => {
+                  slider.focus();
+                });
+
+                fireEvent.keyDown(slider, { key });
+                expect(slider).to.have.attribute('aria-valuenow', '19');
+
+                fireEvent.keyDown(slider, { key });
+                expect(slider).to.have.attribute('aria-valuenow', '29');
+              });
+            });
+          });
+        });
+      });
     });
   });
 
