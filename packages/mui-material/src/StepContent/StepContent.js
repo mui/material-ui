@@ -97,7 +97,6 @@ const StepContent = React.forwardRef(function StepContent(inProps, ref) {
     ownerState,
     className: classes.transition,
     additionalProps: {
-      as: TransitionComponent,
       in: active || expanded,
       timeout: transitionDuration,
       unmountOnExit: true,
