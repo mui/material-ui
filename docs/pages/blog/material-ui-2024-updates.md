@@ -7,11 +7,12 @@ tags: ['Material UI', 'Product']
 manualCard: true
 ---
 
-As the end of the year approaches, we want to take some time to review some of this year's highlights for Material UI and update you on what the community can expect moving forward.
+As the end of the year approaches, we want to take some time to review some of this year's highlights for Material UI and update you on what you can expect moving forward.
 
 ## Material UI v6 release and support
 
-We released Material UI v6 in August, offering new features, fixes, and a smoother migration experience. So far, almost a million users have successfully migrated.
+We released Material UI v6 in August, offering new features, fixes, and a smoother migration experience. 
+So far, almost a million users have successfully migrated.
 
 The reception for the new version has been very positive, and we hope many more users can migrate in the upcoming months.
 
@@ -27,9 +28,12 @@ We hope you start trying it, and we're very grateful to the community members wh
 
 ## Material Design 3
 
-A year ago, we shared that we expected to have a Material Design 3 implementation by the end of 2024. Due to the efforts mentioned above, this has not been the case yet.
+A year ago, we shared that we expected to have a Material Design 3 implementation ready by the end of 2024. 
+Due to the more pressing efforts mentioned above, we have not been able to deliver on this yet.
 
-Updating the look and feel in such a big way is very complex. We want to provide the best experience for everyone and we're currently discussing and working on the best way to achieve it. This will be one of our main focuses for 2025.
+Updating the library's look and feel in such a big way is an incredibly complex undertaking that can't be rushed.
+We're committed to providing the best experience for all users and use cases, and we're working hard to determine the best way to accomplish that.
+This is one of our top priorities for 2025, and we'll keep you updated on our progress.
 
 ## Looking towards 2025
 
