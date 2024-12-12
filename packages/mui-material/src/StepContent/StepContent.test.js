@@ -27,6 +27,7 @@ describe('<StepContent />', () => {
     slots: {
       transition: {
         expectedClassName: classes.transition,
+        testWithElement: null,
       },
     },
   }));
