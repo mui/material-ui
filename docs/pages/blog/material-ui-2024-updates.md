@@ -1,6 +1,6 @@
 ---
 title: Material UI 2024 end-of-year updates
-description: A look through Material UI during 2024, and a sneak peek of what's to come.
+description: Recapping our biggest accomplishments for Material UI this year; plus, a look at what's to come in 2025.
 date: 2024-12-11T00:00:00.000Z
 authors: ['diegoandai']
 tags: ['Material UI', 'Product']
@@ -22,7 +22,7 @@ Our focus has been on responding to v6-related issues to support your migration.
 
 As of today, Material UI v5 and v6 support React 19. This has been one of our main focuses during the second half of 2024.
 
-We hope you start trying it, and we're very grateful to the community members who have been and continue to test and report issues.
+We've worked hard to ensure that the upgrade experience is as seamless as possible, and we're very grateful to all the community members who've been testing it out and reporting issues.
 
 ## Material Design 3
 
@@ -38,8 +38,7 @@ This is one of our top priorities for 2025, and we'll keep you updated on our pr
 We're planning a new major release for the first half of 2025: Material UI v7.
 
 This version will fix issues that require breaking changes, including the long-awaited ESM support improvements, and other small fixes.
-
-Note that, while this major release won't contain visual updates since its only focus is fixing bugs, we'll keep exploring the best way to update the look and feel in parallel. We'll continue sharing any details as soon as we reach any decisions.
+While v7 won't contain visual updates since its sole focus is fixing bugs, rest assured that we will be working on updating the look and feel in parallel—that work could potentially become Material UI v8, but right now it's too early to say for sure.
 
 ## Follow along
 
