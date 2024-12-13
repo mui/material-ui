@@ -22,8 +22,6 @@ Our focus has been on responding to v6-related issues to support your migration.
 
 As of today, Material UI v5 and v6 support React 19. This has been one of our main focuses during the second half of 2024.
 
-Next up, we'll update Material UI's dependencies and type versions once React 19 is stable.
-
 We hope you start trying it, and we're very grateful to the community members who have been and continue to test and report issues.
 
 ## Material Design 3
