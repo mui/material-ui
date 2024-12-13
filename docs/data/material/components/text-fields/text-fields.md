@@ -72,7 +72,7 @@ For instance, you can use an icon button to hide or reveal the password.
 
 ### Visible on shrink
 
-Use the `sx` prop to control the suffix's opacity based on the shrink attribute. The suffix will be visible when the label is shrunk.
+By customizing the suffix's opacity based on the shrink attribute, the suffix is visible when the label is shrunk.
 
 {{"demo": "InputSuffixShrink.js"}}
 

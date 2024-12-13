@@ -15,7 +15,7 @@ export default function InputSuffixShrink() {
       autoComplete="off"
     >
       <TextField
-        id="outlined-basic"
+        id="outlined-suffix-shrink"
         label="Outlined"
         variant="outlined"
         slotProps={{
@@ -43,7 +43,7 @@ export default function InputSuffixShrink() {
         }}
       />
       <TextField
-        id="filled-basic"
+        id="filled-suffix-shrink"
         label="Filled"
         variant="filled"
         slotProps={{
@@ -71,7 +71,7 @@ export default function InputSuffixShrink() {
         }}
       />
       <TextField
-        id="standard-basic"
+        id="standard-suffix-shrink"
         label="Standard"
         variant="standard"
         slotProps={{
