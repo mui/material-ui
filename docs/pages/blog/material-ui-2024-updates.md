@@ -38,7 +38,7 @@ This is one of our top priorities for 2025, and we'll keep you updated on our pr
 We're planning a new major release for the first half of 2025: Material UI v7.
 
 This version will fix issues that require breaking changes, including the long-awaited ESM support improvements, and other small fixes.
-While v7 won't contain visual updates since its sole focus is fixing bugs, rest assured that we will be working on updating the look and feel in parallel—that work could potentially become Material UI v8, but right now it's too early to say for sure.
+While v7 won't contain visual updates since its sole focus is fixing bugs, rest assured that we will be working on updating the look and feel in parallel.
 
 ## Follow along
 
