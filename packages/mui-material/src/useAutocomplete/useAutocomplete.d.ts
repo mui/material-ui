@@ -178,7 +178,7 @@ export interface UseAutocompleteProps<
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
    *
-   * @param {Value} options The options to group.
+   * @param {Value} option The option to group.
    * @returns {string}
    */
   groupBy?: (option: Value) => string;
@@ -373,14 +373,6 @@ export function useAutocomplete<
     groupBy?: undefined;
   },
 ): UseAutocompleteReturnValue<Value, Multiple, DisableClearable, FreeSolo, false>;
-export function useAutocomplete<
-  Value,
-  Multiple extends boolean | undefined = false,
-  DisableClearable extends boolean | undefined = false,
-  FreeSolo extends boolean | undefined = false,
->(
-  props: UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo>,
-): UseAutocompleteReturnValue<Value, Multiple, DisableClearable, FreeSolo, unknown>;
 
 export interface UseAutocompleteRenderedOption<Value> {
   option: Value;
@@ -392,7 +384,7 @@ export interface UseAutocompleteReturnValue<
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
-  HasGroupBy extends boolean | unknown = false,
+  HasGroupBy extends boolean = false,
 > {
   /**
    * Resolver for the root slot's props.
@@ -481,13 +473,13 @@ export interface UseAutocompleteReturnValue<
    */
   focusedTag: number;
   /**
-   * The options to render. It's either `Value[]` or `AutocompleteGroupedOption<Value>[]` if the groupBy prop is provided.
+   * The options to render.
+   * - If `groupBy` is provided, the options are grouped and represented as `AutocompleteGroupedOption<Value>[]`.
+   * - Otherwise, the options are represented as a flat array of `Value[]`.
    */
   groupedOptions: HasGroupBy extends true
     ? AutocompleteGroupedOption<Value>[]
-    : HasGroupBy extends false
-      ? Value[]
-      : Value[] | AutocompleteGroupedOption<Value>[];
+    : Value[];
 }
 
 export default useAutocomplete;
