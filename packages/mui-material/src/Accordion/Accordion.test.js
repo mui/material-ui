@@ -290,6 +290,7 @@ describe('<Accordion />', () => {
       it(transition.name, () => {
         render(
           <Accordion
+            defaultExpanded
             slots={{
               transition: transition.component,
             }}
