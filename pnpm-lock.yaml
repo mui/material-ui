@@ -43,8 +43,8 @@ importers:
         version: 9.15.0(encoding@0.1.13)
     devDependencies:
       '@argos-ci/core':
-        specifier: ^2.11.0
-        version: 2.11.0
+        specifier: ^2.12.0
+        version: 2.12.0
       '@babel/cli':
         specifier: ^7.25.9
         version: 7.25.9(@babel/core@7.26.0)
@@ -2458,16 +2458,16 @@ packages:
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
 
-  '@argos-ci/api-client@0.7.0':
-    resolution: {integrity: sha512-oRCaqA4DZn+yxD78/dqPTcz7dJd5SIU+GwnlvqorGLw6bktQ3TMPmKND/jb/GOf8tUpOs9FrSrwxVwFjYfiVeg==}
+  '@argos-ci/api-client@0.7.1':
+    resolution: {integrity: sha512-cJBNriNEs4aSBBpvsJH0f1D71rr9zxu/f0xRiqdEIIEN4ioFCCxs/66hNKrTxCw+lTaBnBL6LaM5vrBUkzgkzQ==}
     engines: {node: '>=18.0.0'}
 
-  '@argos-ci/core@2.11.0':
-    resolution: {integrity: sha512-Dvr9iNv/yeGuptjRtVZuO9oO/Z/69Bg9Kndc55eycWhn6GLOTFgLn3yKPYsf1bsobHTFJUa7beuc3n8d/AIxPA==}
+  '@argos-ci/core@2.12.0':
+    resolution: {integrity: sha512-SmJYi93Oh0DYnJ1kZVFtzM0UDr0MfrcUhOuUsBJNpYc4hV2AlCNeoi8hzWYPJvARMKh03ZcbNx4+VY5jXiGLOA==}
     engines: {node: '>=18.0.0'}
 
-  '@argos-ci/util@2.2.0':
-    resolution: {integrity: sha512-MLm8276zl/JkBiQKrkNUCdxQ+OcrGxffn3u61GOH7epaMd3PbxipUnD7JnptxBOt5rnXXqIObprCMl1ox7yAyw==}
+  '@argos-ci/util@2.2.1':
+    resolution: {integrity: sha512-z2B3EYVhDCDYlQwg55C/P8Xvbupb+XjmRHggIYl1R3yiNEBqy/kT9X/uOVMHxFyhLsM2PXsOOruugJoT11dB7Q==}
     engines: {node: '>=18.0.0'}
 
   '@babel/cli@7.25.9':
@@ -10354,8 +10354,8 @@ packages:
     resolution: {integrity: sha512-XgFPPM+B28FtCCgSb9I+s9szOC1vZRSwgWsRUA5ylIxRTgKozqjOCrVOqGsYABPYK5qnfqClxZTFBa8PKt2v6Q==}
     engines: {node: '>=12'}
 
-  openapi-fetch@0.13.0:
-    resolution: {integrity: sha512-6Nlf/BDbtyHwHdNrLPUiyt4CZMzL3ZyAt55yWH8W7+Z+8aYWnvca4uZHQHXViy8KcnCMqAhLM/bifh2Yjjkf6w==}
+  openapi-fetch@0.13.1:
+    resolution: {integrity: sha512-8P77k9Cmp0VNyry8ml293v1mqAyr4AkN7fE9VuUJ2mR0bK1NWihDM+Vj5/Try4aIYwYpT2OyCrYS3ObIRtO4LQ==}
 
   openapi-typescript-helpers@0.0.15:
     resolution: {integrity: sha512-opyTPaunsklCBpTK8JGef6mfPhLSnyy5a0IN9vKtx3+4aExf+KxEqYwIy3hqkedXIB97u357uLMJsOnm3GVjsw==}
@@ -13292,17 +13292,17 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  '@argos-ci/api-client@0.7.0':
+  '@argos-ci/api-client@0.7.1':
     dependencies:
       debug: 4.3.7(supports-color@8.1.1)
-      openapi-fetch: 0.13.0
+      openapi-fetch: 0.13.1
     transitivePeerDependencies:
       - supports-color
 
-  '@argos-ci/core@2.11.0':
+  '@argos-ci/core@2.12.0':
     dependencies:
-      '@argos-ci/api-client': 0.7.0
-      '@argos-ci/util': 2.2.0
+      '@argos-ci/api-client': 0.7.1
+      '@argos-ci/util': 2.2.1
       axios: 1.7.7(debug@4.3.7)
       convict: 6.2.4
       debug: 4.3.7(supports-color@8.1.1)
@@ -13312,7 +13312,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@argos-ci/util@2.2.0': {}
+  '@argos-ci/util@2.2.1': {}
 
   '@babel/cli@7.25.9(@babel/core@7.26.0)':
     dependencies:
@@ -23142,7 +23142,7 @@ snapshots:
       is-docker: 2.2.1
       is-wsl: 2.2.0
 
-  openapi-fetch@0.13.0:
+  openapi-fetch@0.13.1:
     dependencies:
       openapi-typescript-helpers: 0.0.15
 
