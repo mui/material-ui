@@ -14,7 +14,7 @@ cd material-ui-cra
 Install it and run:
 
 ```bash
-npm install
+npm install --legacy-peer-deps --save-dev ajv@^7
 npm start
 ```
 
