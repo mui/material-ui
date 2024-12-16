@@ -224,6 +224,9 @@ export function escapeEntities(value: string) {
 export function escapeCell(value: string) {
   return rawDescriptionsCurrent ? value : _escapeCell(value);
 }
+export function removeNewLines(value: string) {
+  return rawDescriptionsCurrent ? value : value.replace(/\r*\n/g, ' ');
+}
 export function joinUnionTypes(value: string[]) {
   // Use unopinionated formatting for raw descriptions
   return rawDescriptionsCurrent ? value.join(' | ') : value.join('<br>&#124;&nbsp;');
