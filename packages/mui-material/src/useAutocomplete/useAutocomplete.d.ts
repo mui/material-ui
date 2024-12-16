@@ -477,9 +477,7 @@ export interface UseAutocompleteReturnValue<
    * - If `groupBy` is provided, the options are grouped and represented as `AutocompleteGroupedOption<Value>[]`.
    * - Otherwise, the options are represented as a flat array of `Value[]`.
    */
-  groupedOptions: HasGroupBy extends true
-    ? AutocompleteGroupedOption<Value>[]
-    : Value[];
+  groupedOptions: HasGroupBy extends true ? AutocompleteGroupedOption<Value>[] : Value[];
 }
 
 export default useAutocomplete;
