@@ -6,7 +6,7 @@
 
 _Dec 16, 2024_
 
-Material UI v5 is now compatible with React 19 (#44720) @DiegoAndai
+Material UI v5 is now compatible with React 19 (#44720) @DiegoAndai
 
 ### Core
 
