@@ -110,21 +110,29 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/react-grid2', title: 'Grid v2' },
           { pathname: '/material-ui/react-stack' },
           { pathname: '/material-ui/react-image-list', title: 'Image List' },
-          { pathname: '/material-ui/react-hidden' },
+          { pathname: '/material-ui/react-hidden', deprecated: true },
         ],
       },
       {
         pathname: '/material-ui/components/utils',
         subheader: 'utils',
         children: [
-          { pathname: '/material-ui/react-click-away-listener', title: 'Click-Away Listener' },
+          {
+            pathname: '/material-ui/react-click-away-listener',
+            title: 'Click-Away Listener',
+            deprecated: true,
+          },
           { pathname: '/material-ui/react-css-baseline', title: 'CSS Baseline' },
           { pathname: '/material-ui/react-modal' },
-          { pathname: '/material-ui/react-no-ssr', title: 'No SSR' },
+          { pathname: '/material-ui/react-no-ssr', title: 'No SSR', deprecated: true },
           { pathname: '/material-ui/react-popover' },
           { pathname: '/material-ui/react-popper' },
-          { pathname: '/material-ui/react-portal' },
-          { pathname: '/material-ui/react-textarea-autosize', title: 'Textarea Autosize' },
+          { pathname: '/material-ui/react-portal', deprecated: true },
+          {
+            pathname: '/material-ui/react-textarea-autosize',
+            title: 'Textarea Autosize',
+            deprecated: true,
+          },
           { pathname: '/material-ui/transitions' },
           { pathname: '/material-ui/react-use-media-query', title: 'useMediaQuery' },
         ],
@@ -142,10 +150,17 @@ const pages: MuiPage[] = [
       {
         pathname: '/toolpad', // the pathname does not matter here because the links to Toolpad are outbound.
         subheader: 'Toolpad Core',
-        newFeature: true,
         children: [
-          { pathname: '/toolpad/core/react-dashboard-layout/', title: 'Dashboard Layout' },
-          { pathname: '/toolpad/core/react-sign-in-page/', title: 'Sign-in Page' },
+          {
+            pathname: '/toolpad/core/react-dashboard-layout/',
+            title: 'Dashboard Layout',
+            newFeature: true,
+          },
+          {
+            pathname: '/toolpad/core/react-sign-in-page/',
+            title: 'Sign-in Page',
+            newFeature: true,
+          },
         ],
       },
       {

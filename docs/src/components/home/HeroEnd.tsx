@@ -6,7 +6,17 @@ import { alpha } from '@mui/material/styles';
 import Section from 'docs/src/layouts/Section';
 
 function Placeholder() {
-  return <Box sx={{ height: { xs: 616 - 48 * 2, sm: 438 - 80 * 2, md: 461 - 96 * 2 } }} />;
+  return (
+    <Box
+      sx={{
+        height: {
+          xs: 202,
+          sm: 180,
+          md: 193,
+        },
+      }}
+    />
+  );
 }
 const StartToday = dynamic(() => import('./StartToday'), { loading: Placeholder });
 
@@ -20,15 +30,11 @@ export default function HeroEnd() {
     <Box
       ref={ref}
       sx={(theme) => ({
-        background: `linear-gradient(180deg, #FFF 50%, 
-          ${(theme.vars || theme).palette.primary[50]} 100%)
-        `,
+        background: `linear-gradient(180deg, #FFF 50%, ${(theme.vars || theme).palette.primary[50]} 100%)`,
         ...theme.applyDarkStyles({
           background: `linear-gradient(180deg, ${
             (theme.vars || theme).palette.primaryDark[900]
-          } 50%,
-          ${alpha(theme.palette.primary[900], 0.2)} 100%)
-          `,
+          } 50%, ${alpha(theme.palette.primary[900], 0.2)} 100%)`,
         }),
       })}
     >

@@ -1,5 +1,4 @@
 'use client';
-import * as React from 'react';
 import PropTypes from 'prop-types';
 import exactProp from '@mui/utils/exactProp';
 import withWidth, { isWidthDown, isWidthUp } from './withWidth';
@@ -50,7 +49,7 @@ function HiddenJs(props) {
     return null;
   }
 
-  return <React.Fragment>{children}</React.Fragment>;
+  return children;
 }
 
 HiddenJs.propTypes = {

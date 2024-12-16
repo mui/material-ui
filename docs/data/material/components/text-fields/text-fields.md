@@ -44,8 +44,8 @@ The `helperText` prop can then be used to provide feedback to the user about the
 
 ## Multiline
 
-The `multiline` prop transforms the text field into a [TextareaAutosize](/material-ui/react-textarea-autosize/) element.
-Unless the `rows` prop is set, the height of the text field dynamically matches its content (using [TextareaAutosize](/material-ui/react-textarea-autosize/)).
+The `multiline` prop transforms the Text Field into a [Base UI Textarea Autosize](/base-ui/react-textarea-autosize/) element.
+Unless the `rows` prop is set, the height of the text field dynamically matches its content.
 You can use the `minRows` and `maxRows` props to bound it.
 
 {{"demo": "MultilineTextFields.js"}}
@@ -242,7 +242,7 @@ In some circumstances, we can't determine the "shrink" state (number input, date
 To workaround the issue, you can force the "shrink" state of the label.
 
 ```jsx
-<TextField InputLabelProps={{ shrink: true }} />
+<TextField slotProps={{ inputLabel: { shrink: true } }} />
 ```
 
 or
@@ -318,10 +318,12 @@ const MyInputComponent = React.forwardRef((props, ref) => {
 
 // usage
 <TextField
-  InputProps={{
-    inputComponent: MyInputComponent,
-    inputProps: {
-      component: SomeThirdPartyComponent,
+  slotProps={{
+    input: {
+      inputComponent: MyInputComponent,
+      inputProps: {
+        component: SomeThirdPartyComponent,
+      },
     },
   }}
 />;
@@ -351,13 +353,13 @@ In order for the text field to be accessible, **the input should be linked to th
 </FormControl>
 ```
 
-## Complementary projects
+## Supplementary projects
+
+<!-- To sync with related-projects.md -->
 
 For more advanced use cases, you might be able to take advantage of:
 
-- [react-hook-form](https://react-hook-form.com/): React hook for form validation.
-- [react-hook-form-mui](https://github.com/dohomi/react-hook-form-mui): Material UI and react-hook-form combined.
+- [react-hook-form-mui](https://github.com/dohomi/react-hook-form-mui): Material UI and [react-hook-form](https://react-hook-form.com/) combined.
 - [formik-material-ui](https://github.com/stackworx/formik-mui): Bindings for using Material UI with [formik](https://formik.org/).
 - [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using Material UI with [React Final Form](https://final-form.org/react).
 - [@ui-schema/ds-material](https://www.npmjs.com/package/@ui-schema/ds-material) Bindings for using Material UI with [UI Schema](https://github.com/ui-schema/ui-schema). JSON Schema compatible.
-- [@data-driven-forms/mui-component-mapper](https://www.data-driven-forms.org/provided-mappers/mui-component-mapper): Bindings for using Material UI with [Data Driven Forms](https://github.com/data-driven-forms/react-forms).

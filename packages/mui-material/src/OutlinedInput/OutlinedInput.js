@@ -51,6 +51,14 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
       [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
         borderColor: (theme.vars || theme).palette.text.primary,
       },
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+          borderColor: theme.vars
+            ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+            : borderColor,
+        },
+      },
       [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]: {
         borderWidth: 2,
       },
@@ -68,14 +76,6 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
         {
           props: {}, // to overide the above style
           style: {
-            // Reset on touch devices, it doesn't add specificity
-            '@media (hover: none)': {
-              [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
-                borderColor: theme.vars
-                  ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
-                  : borderColor,
-              },
-            },
             [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]: {
               borderColor: (theme.vars || theme).palette.error.main,
             },

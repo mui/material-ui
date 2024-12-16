@@ -112,7 +112,9 @@ After 1.0 second, you can display a loader to keep user's flow of thought uninte
 Under heavy load, you might lose the stroke dash animation or see random `CircularProgress` ring widths.
 You should run processor intensive operations in a web worker or by batch in order not to block the main rendering thread.
 
-![heavy load](/static/images/progress/heavy-load.gif)
+<video autoplay muted loop playsinline width="1082" height="158" style="width: 541px;">
+  <source src="/static/material-ui/react-components/progress-heavy-load.mp4" type="video/mp4" />
+</video>
 
 When it's not possible, you can leverage the `disableShrink` prop to mitigate the issue.
 See [this issue](https://github.com/mui/material-ui/issues/10327).

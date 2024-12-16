@@ -93,15 +93,6 @@ function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher
       }
     }
 
-    // Ignore legacy root deprecation warnings
-    // TODO: Remove once we no longer use legacy roots.
-    if (
-      message.includes('Use createRoot instead.') ||
-      message.includes('Use hydrateRoot instead.')
-    ) {
-      return;
-    }
-
     if (message.includes('Warning: useLayoutEffect does nothing on the server')) {
       // Controversial warning that is commonly ignored by switching to `useEffect` on the server.
       // https://github.com/facebook/react/issues/14927

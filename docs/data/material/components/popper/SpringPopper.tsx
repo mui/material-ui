@@ -4,7 +4,7 @@ import Popper from '@mui/material/Popper';
 import { useSpring, animated } from '@react-spring/web';
 
 interface FadeProps {
-  children?: React.ReactElement<any>;
+  children?: React.ReactElement<unknown>;
   in?: boolean;
   onEnter?: () => void;
   onExited?: () => void;

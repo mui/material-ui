@@ -88,7 +88,7 @@ describe('<Dialog />', () => {
 
     // keyDown not targetted at anything specific
     // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
-    fireEvent.keyDown(document.activeElement, { key: 'Esc' });
+    fireEvent.keyDown(document.activeElement, { key: 'Escape' });
     expect(onClose.calledOnce).to.equal(true);
 
     clock.tick(100);
@@ -107,10 +107,10 @@ describe('<Dialog />', () => {
 
     // Actual Behavior when "あ" (Japanese) is entered and press the Esc for IME cancellation.
     fireEvent.change(textbox, { target: { value: 'あ' } });
-    fireEvent.keyDown(textbox, { key: 'Esc', keyCode: 229 });
+    fireEvent.keyDown(textbox, { key: 'Escape', keyCode: 229 });
     expect(onClose.callCount).to.equal(0);
 
-    fireEvent.keyDown(textbox, { key: 'Esc' });
+    fireEvent.keyDown(textbox, { key: 'Escape' });
     expect(onClose.callCount).to.equal(1);
   });
 
@@ -143,7 +143,7 @@ describe('<Dialog />', () => {
       dialog.click();
       // keyDown is not targetted at anything specific.
       // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
-      fireEvent.keyDown(document.activeElement, { key: 'Esc' });
+      fireEvent.keyDown(document.activeElement, { key: 'Escape' });
     });
 
     expect(onClose.callCount).to.equal(0);
@@ -375,6 +375,20 @@ describe('<Dialog />', () => {
       expect(dialog).to.have.attr('aria-labelledby', 'dialog-title');
       const label = document.getElementById(dialog.getAttribute('aria-labelledby'));
       expect(label).to.have.text('Choose either one');
+    });
+
+    it('should add the aria-modal="true" by default', function test() {
+      const { getByRole } = render(<Dialog open />);
+
+      const dialog = getByRole('dialog');
+      expect(dialog).to.have.attr('aria-modal', 'true');
+    });
+
+    it('should render the custom aria-modal prop if provided', function test() {
+      const { getByRole } = render(<Dialog aria-modal="false" open />);
+
+      const dialog = getByRole('dialog');
+      expect(dialog).to.have.attr('aria-modal', 'false');
     });
   });
 

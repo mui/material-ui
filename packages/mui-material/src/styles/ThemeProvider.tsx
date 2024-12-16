@@ -37,6 +37,12 @@ export interface ThemeProviderProps<Theme = DefaultTheme> extends ThemeProviderC
    */
   documentNode?: Document | null;
   /**
+   * The default mode when the local storage has no mode yet,
+   * requires the theme to have `colorSchemes` with light and dark.
+   * @default 'system'
+   */
+  defaultMode?: 'light' | 'dark' | 'system';
+  /**
    * The window that attaches the 'storage' event listener
    * @default window
    */
@@ -51,6 +57,12 @@ export interface ThemeProviderProps<Theme = DefaultTheme> extends ThemeProviderC
    * @default 'mui-color-scheme'
    */
   colorSchemeStorageKey?: string;
+  /*
+   * If `true`, ThemeProvider will not rerender and the initial value of `mode` comes from the local storage.
+   * For SSR applications, you must ensure that the server render output must match the initial render output on the client.
+   * @default false
+   */
+  noSsr?: boolean;
   /**
    * Disable CSS transitions when switching between modes or color schemes
    * @default false

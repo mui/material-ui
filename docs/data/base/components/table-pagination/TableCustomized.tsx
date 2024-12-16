@@ -223,7 +223,6 @@ const CustomTablePagination = styled(TablePagination)(
     display: flex;
     align-items: center;
     padding: 0;
-    border: transparent;
     border-radius: 50%;
     background-color: transparent;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
@@ -246,6 +245,7 @@ const CustomTablePagination = styled(TablePagination)(
 
     &:disabled {
       opacity: 0.3;
+
       &:hover {
         border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
         background-color: transparent;
