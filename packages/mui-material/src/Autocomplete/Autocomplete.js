@@ -250,10 +250,11 @@ const AutocompleteClearIndicator = styled(IconButton, {
 const AutocompletePopupIndicator = styled(IconButton, {
   name: 'MuiAutocomplete',
   slot: 'PopupIndicator',
-  overridesResolver: ({ ownerState }, styles) => ({
-    ...styles.popupIndicator,
-    ...(ownerState.popupOpen && styles.popupIndicatorOpen),
-  }),
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [styles.popupIndicator, ownerState.popupOpen && styles.popupIndicatorOpen];
+  },
 })({
   padding: 2,
   marginRight: -2,
