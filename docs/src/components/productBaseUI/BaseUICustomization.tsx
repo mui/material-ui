@@ -219,7 +219,7 @@ function SwitchFromHook(props: UseSwitchParameters) {
 
 export default function BaseUICustomization() {
   const [index, setIndex] = React.useState(0);
-  const infoRef = React.useRef<HTMLDivElement | null>(null);
+  const infoRef = React.useRef<HTMLDivElement>(null);
   function getSelectedProps(i: number) {
     return {
       selected: index === i,

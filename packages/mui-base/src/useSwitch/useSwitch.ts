@@ -56,7 +56,7 @@ export function useSwitch(props: UseSwitchParameters): UseSwitchReturnValue {
     setFocusVisible(false);
   }
 
-  const inputRef = React.useRef<HTMLInputElement | null>(null);
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
   const createHandleFocus =
     (otherProps: React.InputHTMLAttributes<HTMLInputElement>) =>

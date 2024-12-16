@@ -4,7 +4,7 @@ import Textarea from '@mui/joy/Textarea';
 import Stack from '@mui/joy/Stack';
 
 export default function TextareaRef() {
-  const textareaRef = React.useRef<HTMLTextAreaElement | null>(null);
+  const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
   const handleTextareaFocus = () => {
     textareaRef.current?.focus();
