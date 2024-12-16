@@ -200,8 +200,6 @@ If the CI job fails, then you most likely need to run the commands that failed l
 This runs the unit tests in a `jsdom` environment.
 If it fails then `pnpm test:unit` should<sup>[1](test/README.md#accessibility-tree-exclusion)</sup> fail locally as well.
 You can narrow the scope of tests run with `pnpm test:unit --grep ComponentName`.
-If you encounter error: `'m)[jt]s?' is not recognized as an internal or external command` while running `pnpm test:unit`, it is likely because of an issue with how the test file extensions are handled in the script. Solution: Modify the `nx_test_unit` script in the root `package.json` to
-`"nx_test_unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,jsx,ts,tsx}' 'packages-internal/**/*.test.{js,jsx,ts,tsx}' 'docs/**/*.test.{js,jsx,ts,tsx}'"` This change ensures that the test files are correctly recognized with the appropriate extensions and allows running tests using the `--grep` flag on Windows.
 If `pnpm test:unit` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessibility-tree-exclusion).
 
 #### ci/circleci: test_browser-1
