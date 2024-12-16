@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import { filledInputClasses } from '@mui/material/FilledInput';
 import { inputBaseClasses } from '@mui/material/InputBase';
 import TextField from '@mui/material/TextField';
@@ -24,13 +23,8 @@ export default function InputSuffixShrink() {
               <InputAdornment
                 position="end"
                 sx={{
-                  alignSelf: 'flex-end',
                   opacity: 0,
-                  marginBottom: '5px',
                   pointerEvents: 'none',
-                  [`.${outlinedInputClasses.root} &`]: {
-                    marginBottom: '16px',
-                  },
                   [`[data-shrink=true] ~ .${inputBaseClasses.root} > &`]: {
                     opacity: 1,
                   },
@@ -54,10 +48,9 @@ export default function InputSuffixShrink() {
                 sx={{
                   alignSelf: 'flex-end',
                   opacity: 0,
-                  marginBottom: '5px',
                   pointerEvents: 'none',
                   [`.${filledInputClasses.root} &`]: {
-                    marginBottom: '8px',
+                    marginBottom: '7.5px',
                   },
                   [`[data-shrink=true] ~ .${inputBaseClasses.root} > &`]: {
                     opacity: 1,

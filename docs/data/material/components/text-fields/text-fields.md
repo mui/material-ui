@@ -70,9 +70,10 @@ For instance, you can use an icon button to hide or reveal the password.
 
 {{"demo": "InputAdornments.js"}}
 
-### Visible on shrink
+#### Customizing adornments
 
-By customizing the suffix's opacity based on the shrink attribute, the suffix is visible when the label is shrunk.
+You can apply custom styles to adornments, and trigger changes to one based on attributes from another.
+For example, the demo below uses the label's `[data-shrink=true]` attribute to make the suffix visible (via opacity) when the label is in its shrunken state.
 
 {{"demo": "InputSuffixShrink.js"}}
 
