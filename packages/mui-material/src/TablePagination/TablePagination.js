@@ -479,7 +479,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    * @default {}
    */
-  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
+  slotProps: PropTypes.shape({
     actions: PropTypes.shape({
       firstButton: PropTypes.object,
       firstButtonIcon: PropTypes.object,

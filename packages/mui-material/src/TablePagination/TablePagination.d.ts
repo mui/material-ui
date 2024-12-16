@@ -8,8 +8,8 @@ import { IconButtonProps } from '../IconButton';
 import { SelectProps } from '../Select';
 import { TablePaginationClasses } from './tablePaginationClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
-import { ToolbarOwnProps } from '../Toolbar';
-import { MenuItemOwnProps } from '../MenuItem';
+import { ToolbarProps } from '../Toolbar';
+import { MenuItemProps } from '../MenuItem';
 
 export interface LabelDisplayedRowsArgs {
   from: number;
@@ -97,7 +97,7 @@ export type TablePaginationSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * By default, the avaible props are based on the [Toolbar](https://mui.com/material-ui/api/toolbar/#props) component.
      */
     toolbar: SlotProps<
-      React.ElementType<ToolbarOwnProps>,
+      React.ElementType<ToolbarProps>,
       TablePaginationToolbarSlotPropsOverrides,
       TablePaginationOwnerState
     >;
@@ -125,7 +125,7 @@ export type TablePaginationSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * By default, the avaible props are based on the [MenuItem](https://mui.com/material-ui/api/menu-item/#props) component.
      */
     menuItem: SlotProps<
-      React.ElementType<MenuItemOwnProps>,
+      React.ElementType<MenuItemProps>,
       TablePaginationMenuItemSlotPropsOverrides,
       TablePaginationOwnerState
     >;
