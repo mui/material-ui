@@ -164,7 +164,9 @@ module.exports = /** @type {Config} */ ({
     ],
     // We are a library, we need to support it too
     'jsx-a11y/no-autofocus': 'off',
-    // Remove when https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/959 gets fixed
+    // Remove when issues are fixed
+    // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/959
+    // https://github.com/airbnb/javascript/issues/3069
     'jsx-a11y/control-has-associated-label': [
       'error',
       {
