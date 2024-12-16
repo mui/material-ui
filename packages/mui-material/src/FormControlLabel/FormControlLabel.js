@@ -45,14 +45,21 @@ export const FormControlLabelRoot = styled('label', {
     ];
   },
 })(({ theme, ownerState }) => ({
-  display: 'inline-flex',
-  alignItems: 'center',
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'flex-start',
   cursor: 'pointer',
   // For correct alignment with the text.
   verticalAlign: 'middle',
   WebkitTapHighlightColor: 'transparent',
   marginLeft: -11,
   marginRight: 16, // used for row presentation of radio/checkbox
+  [`& .MuiCheckbox-root`]: {
+    ...(ownerState.labelPlacement !== 'top' &&
+      ownerState.labelPlacement !== 'bottom' && {
+        marginTop: '-9px', // Adjust only if labelPlacement is not 'top' or 'bottom'
+      }),
+  },
   [`&.${formControlLabelClasses.disabled}`]: {
     cursor: 'default',
   },
@@ -62,10 +69,12 @@ export const FormControlLabelRoot = styled('label', {
     marginRight: -11,
   }),
   ...(ownerState.labelPlacement === 'top' && {
+    alignItems: 'center',
     flexDirection: 'column-reverse',
     marginLeft: 16,
   }),
   ...(ownerState.labelPlacement === 'bottom' && {
+    alignItems: 'center',
     flexDirection: 'column',
     marginLeft: 16,
   }),
@@ -156,7 +165,6 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
       </Typography>
     );
   }
-
   return (
     <FormControlLabelRoot
       className={clsx(classes.root, className)}
