@@ -28,7 +28,7 @@
     "@babel/preset-react": "^7.25.9",
     "@babel/preset-typescript": "^7.26.0",
     "@pigment-css/vite-plugin": "0.0.28",
-    "@types/react": "^19.0.0",
+    "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.0",
     "@types/webfontloader": "^1.6.38",
     "@vitejs/plugin-react": "^4.3.4",
