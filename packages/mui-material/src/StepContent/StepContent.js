@@ -110,7 +110,9 @@ const StepContent = React.forwardRef(function StepContent(inProps, ref) {
       ownerState={ownerState}
       {...other}
     >
-      <TransitionSlot {...transitionProps}>{children}</TransitionSlot>
+      <TransitionSlot as={TransitionComponent} {...transitionProps}>
+        {children}
+      </TransitionSlot>
     </StepContentRoot>
   );
 });
