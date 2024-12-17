@@ -32,10 +32,10 @@ if (typeof document === 'object') {
     insertionPoint = document.createElement('meta');
     insertionPoint.setAttribute('name', 'emotion-insertion-point');
     insertionPoint.setAttribute('content', '');
-  }
-  const head = document.querySelector('head');
-  if (head) {
-    head.prepend(insertionPoint);
+    const head = document.querySelector('head');
+    if (head) {
+      head.prepend(insertionPoint);
+    }
   }
   /**
    * This is for client-side apps only.
