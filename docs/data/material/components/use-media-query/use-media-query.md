@@ -25,7 +25,7 @@ The media query string can be any valid CSS media query, for example [`'(prefers
 
 {{"demo": "SimpleMediaQuery.js", "defaultCodeOpen": true}}
 
-⚠️ You can't use `'print'` per browsers limitation, for example [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
+⚠️ Using the query `'print'` to modify a printing document isn't recommended, as it may not accurately reflect re-rendering changes.
 
 ## Using breakpoint helpers
 
