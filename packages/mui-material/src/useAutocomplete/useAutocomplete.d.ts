@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { PartiallyRequired } from '@mui/types';
 
 export interface CreateFilterOptionsConfig<Value> {
   ignoreAccents?: boolean;
@@ -359,9 +360,10 @@ export function useAutocomplete<
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
 >(
-  props: UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo> & {
-    groupBy: (option: Value) => string;
-  },
+  props: PartiallyRequired<
+    UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo>,
+    'groupBy'
+  >,
 ): UseAutocompleteReturnValue<Value, Multiple, DisableClearable, FreeSolo, true>;
 export function useAutocomplete<
   Value,
@@ -369,9 +371,7 @@ export function useAutocomplete<
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
 >(
-  props: UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo> & {
-    groupBy?: undefined;
-  },
+  props: Omit<UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo>, 'groupBy'>,
 ): UseAutocompleteReturnValue<Value, Multiple, DisableClearable, FreeSolo, false>;
 
 export interface UseAutocompleteRenderedOption<Value> {
@@ -477,9 +477,7 @@ export interface UseAutocompleteReturnValue<
    * - If `groupBy` is provided, the options are grouped and represented as `AutocompleteGroupedOption<Value>[]`.
    * - Otherwise, the options are represented as a flat array of `Value[]`.
    */
-  groupedOptions: HasGroupBy extends true
-    ? AutocompleteGroupedOption<Value>[]
-    : Value[];
+  groupedOptions: HasGroupBy extends true ? AutocompleteGroupedOption<Value>[] : Value[];
 }
 
 export default useAutocomplete;
