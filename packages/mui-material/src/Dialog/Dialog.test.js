@@ -5,8 +5,8 @@ import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils
 import Modal from '@mui/material/Modal';
 import Dialog, { dialogClasses as classes } from '@mui/material/Dialog';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Fade from '@mui/material/Fade';
 import describeConformance from '../../test/describeConformance';
-import Fade from '../Fade';
 
 /**
  * more comprehensive simulation of a user click (mousedown + click)
