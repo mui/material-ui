@@ -87,7 +87,7 @@ const StepContent = React.forwardRef(function StepContent(inProps, ref) {
   }
 
   const externalForwardedProps = {
-    slots,
+    slots: { transition: TransitionComponent, ...slots },
     slotProps: { transition: TransitionProps, ...slotProps },
   };
 
@@ -110,9 +110,7 @@ const StepContent = React.forwardRef(function StepContent(inProps, ref) {
       ownerState={ownerState}
       {...other}
     >
-      <TransitionSlot as={TransitionComponent} {...transitionProps}>
-        {children}
-      </TransitionSlot>
+      <TransitionSlot {...transitionProps}>{children}</TransitionSlot>
     </StepContentRoot>
   );
 });
@@ -160,6 +158,7 @@ StepContent.propTypes /* remove-proptypes */ = {
    * The component used for the transition.
    * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
+   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
   TransitionComponent: PropTypes.elementType,
   /**
@@ -181,6 +180,7 @@ StepContent.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
+   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionProps: PropTypes.object,
 };
