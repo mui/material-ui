@@ -38,7 +38,7 @@ const useUtilityClasses = (ownerState) => {
     endIcon: ['icon', 'endIcon', `iconSize${capitalize(size)}`],
     loadingIndicator: [
       'loadingIndicator',
-      loading && `loadingIndicator${capitalize(loadingPosition)}`,
+      loading && `loadingPosition${capitalize(loadingPosition)}`,
     ],
     loadingWrapper: ['loadingWrapper'],
   };

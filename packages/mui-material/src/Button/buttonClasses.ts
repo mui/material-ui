@@ -185,11 +185,11 @@ export interface ButtonClasses {
   /** Styles applied to the loadingIndicator element. */
   loadingIndicator: string;
   /** Styles applied to the loadingIndicator element if `loadingPosition="center"`. */
-  loadingIndicatorCenter: string;
+  loadingPositionCenter: string;
   /** Styles applied to the loadingIndicator element if `loadingPosition="start"`. */
-  loadingIndicatorStart: string;
+  loadingPositionStart: string;
   /** Styles applied to the loadingIndicator element if `loadingPosition="end"`. */
-  loadingIndicatorEnd: string;
+  loadingPositionEnd: string;
 }
 
 export type ButtonClassKey = keyof ButtonClasses;
@@ -257,9 +257,9 @@ const buttonClasses: ButtonClasses = generateUtilityClasses('MuiButton', [
   'loadingWrapper',
   'loadingIconPlaceholder',
   'loadingIndicator',
-  'loadingIndicatorCenter',
-  'loadingIndicatorStart',
-  'loadingIndicatorEnd',
+  'loadingPositionCenter',
+  'loadingPositionStart',
+  'loadingPositionEnd',
 ]);
 
 export default buttonClasses;
