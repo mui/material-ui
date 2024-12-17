@@ -70,6 +70,13 @@ For instance, you can use an icon button to hide or reveal the password.
 
 {{"demo": "InputAdornments.js"}}
 
+#### Customizing adornments
+
+You can apply custom styles to adornments, and trigger changes to one based on attributes from another.
+For example, the demo below uses the label's `[data-shrink=true]` attribute to make the suffix visible (via opacity) when the label is in its shrunken state.
+
+{{"demo": "InputSuffixShrink.js"}}
+
 ## Sizes
 
 Fancy smaller inputs? Use the `size` prop.
