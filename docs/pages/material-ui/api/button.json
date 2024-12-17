@@ -252,20 +252,20 @@
       "isGlobal": false
     },
     {
-      "key": "loadingIndicatorCenter",
-      "className": "MuiButton-loadingIndicatorCenter",
+      "key": "loadingPositionCenter",
+      "className": "MuiButton-loadingPositionCenter",
       "description": "Styles applied to the loadingIndicator element if `loadingPosition=\"center\"`.",
       "isGlobal": false
     },
     {
-      "key": "loadingIndicatorEnd",
-      "className": "MuiButton-loadingIndicatorEnd",
+      "key": "loadingPositionEnd",
+      "className": "MuiButton-loadingPositionEnd",
       "description": "Styles applied to the loadingIndicator element if `loadingPosition=\"end\"`.",
       "isGlobal": false
     },
     {
-      "key": "loadingIndicatorStart",
-      "className": "MuiButton-loadingIndicatorStart",
+      "key": "loadingPositionStart",
+      "className": "MuiButton-loadingPositionStart",
       "description": "Styles applied to the loadingIndicator element if `loadingPosition=\"start\"`.",
       "isGlobal": false
     },

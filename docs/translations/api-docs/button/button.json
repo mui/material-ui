@@ -200,17 +200,17 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the loadingIndicator element"
     },
-    "loadingIndicatorCenter": {
+    "loadingPositionCenter": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the loadingIndicator element",
       "conditions": "<code>loadingPosition=\"center\"</code>"
     },
-    "loadingIndicatorEnd": {
+    "loadingPositionEnd": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the loadingIndicator element",
       "conditions": "<code>loadingPosition=\"end\"</code>"
     },
-    "loadingIndicatorStart": {
+    "loadingPositionStart": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the loadingIndicator element",
       "conditions": "<code>loadingPosition=\"start\"</code>"
