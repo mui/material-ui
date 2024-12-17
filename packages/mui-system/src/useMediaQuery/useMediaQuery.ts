@@ -156,6 +156,16 @@ export function unstable_createUseMediaQuery(params: { themeId?: string } = {}) 
     let query = typeof queryInput === 'function' ? queryInput(theme) : queryInput;
     query = query.replace(/^@media( ?)/m, '');
 
+    if (query.includes('print')) {
+      console.warn(
+        [
+          `MUI: You have provided a query \`print\` for the useMediaQuery.`,
+          'Using the print media query to modify print styles might lead to unexpected results.',
+          'Consider using the `displayPrint` field in the `sx` prop instead.',
+        ].join('\n'),
+      );
+    }
+
     const useMediaQueryImplementation =
       maybeReactUseSyncExternalStore !== undefined ? useMediaQueryNew : useMediaQueryOld;
     const match = useMediaQueryImplementation(
