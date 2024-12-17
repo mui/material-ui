@@ -23,10 +23,10 @@ const createEmotionCache = (options, CustomSheet) => {
   return cache;
 };
 
-// prepend: true moves MUI styles to the top of the <head> so they're loaded first.
-// It allows developers to easily override MUI styles with other styling solutions, like CSS modules.
 let cache;
 if (typeof document === 'object') {
+  // Use `insertionPoint` over `prepend`(deprecated) because it can be controlled for GlobalStyles injection order
+  // For more information, see https://github.com/mui/material-ui/issues/44597
   let insertionPoint = document.querySelector('[name="emotion-insertion-point"]');
   if (!insertionPoint) {
     insertionPoint = document.createElement('meta');
