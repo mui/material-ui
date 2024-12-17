@@ -404,7 +404,6 @@ const ButtonEndIcon = styled('span', {
       props: { loadingPosition: 'end', loading: true, fullWidth: true },
       style: {
         marginLeft: -8,
-        order: 2,
       },
     },
     ...commonIconStyles,
@@ -491,7 +490,6 @@ const ButtonLoadingIndicator = styled('span', {
       style: {
         position: 'relative',
         right: -10,
-        order: 1,
       },
     },
   ],
@@ -582,6 +580,18 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const positionClassName = buttonGroupButtonContextPositionClassName || '';
 
+  const loader =
+    typeof loading === 'boolean' ? (
+      // use plain HTML span to minimize the runtime overhead
+      <span className={classes.loadingWrapper} style={{ display: 'contents' }}>
+        {loading && (
+          <ButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
+            {loadingIndicator}
+          </ButtonLoadingIndicator>
+        )}
+      </span>
+    ) : null;
+
   return (
     <ButtonRoot
       ownerState={ownerState}
@@ -597,17 +607,9 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       classes={classes}
     >
       {startIcon}
-      {typeof loading === 'boolean' && (
-        // use plain HTML span to minimize the runtime overhead
-        <span className={classes.loadingWrapper} style={{ display: 'contents' }}>
-          {loading && (
-            <ButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
-              {loadingIndicator}
-            </ButtonLoadingIndicator>
-          )}
-        </span>
-      )}
+      {loadingPosition !== 'end' && loader}
       {children}
+      {loadingPosition === 'end' && loader}
       {endIcon}
     </ButtonRoot>
   );
