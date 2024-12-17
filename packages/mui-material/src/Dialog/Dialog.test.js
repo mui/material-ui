@@ -48,6 +48,12 @@ describe('<Dialog />', () => {
       testVariantProps: { variant: 'foo' },
       testDeepOverrides: { slotName: 'paper', slotClassName: classes.paper },
       refInstanceof: window.HTMLDivElement,
+      slots: {
+        transition: {
+          expectedClassName: classes.transition,
+          testWithElement: null,
+        },
+      },
       skip: ['componentProp', 'componentsProp', 'themeVariants'],
     }),
   );
