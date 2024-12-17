@@ -11,7 +11,7 @@ As the end of the year approaches, we want to take some time to review some of t
 
 ## Material UI v6 release and support
 
-We released Material UI v6 in August, offering new features, fixes, and a smoother migration experience. 
+We released Material UI v6 in August, offering new features, fixes, and a smoother migration experience.
 So far, almost a million users have successfully migrated.
 
 The reception for the new version has been very positive, and we hope many more users can migrate in the upcoming months.
@@ -26,12 +26,13 @@ We've worked hard to ensure that the upgrade experience is as seamless as possib
 
 ## Material Design 3
 
-A year ago, we shared that we expected to have a Material Design 3 implementation ready by the end of 2024. 
+A year ago, we shared that we expected to have a Material Design 3 implementation ready by the end of 2024.
 Due to the more pressing efforts mentioned above, we have not been able to deliver on this yet.
 
 Updating the library's look and feel in such a big way is an incredibly complex undertaking that can't be rushed.
 We're committed to providing the best experience for all users and use cases, and we're working hard to determine the best way to accomplish that.
-This is one of our top priorities for 2025, and we'll keep you updated on our progress.
+This is one of our top priorities for 2025, and we'll keep you updated on our progress as soon as we have more definitive details to share.
+Thank you for your continued patience.
 
 ## Looking towards 2025
 
