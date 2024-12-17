@@ -4,7 +4,7 @@
 
 <!-- generated comparing v6.2.0..master -->
 
-_Dec 16, 2024_
+_Dec 17, 2024_
 
 A big thanks to the 10 contributors who made this release possible.
 
@@ -20,9 +20,10 @@ A big thanks to the 10 contributors who made this release possible.
 
 ### Docs
 
-- Update `react-number-format` demo to use the recommended prop (#44743) @siriwatknp
 - [material-ui][Dialog] Fix crashing of DraggableDialog demo (#44747) @sai6855
+- [material-ui][TextField] Update `react-number-format` demo to use the recommended prop (#44743) @siriwatknp
 - [material-ui][TextField] Add size default prop to api docs (#44714) @sai6855
+- [material-ui][TextField] Add suffix shrink demo (#44744) @siriwatknp
 
 ### Core
 
