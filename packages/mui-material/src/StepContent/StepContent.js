@@ -87,7 +87,7 @@ const StepContent = React.forwardRef(function StepContent(inProps, ref) {
   }
 
   const externalForwardedProps = {
-    slots: { transition: TransitionComponent, ...slots },
+    slots,
     slotProps: { transition: TransitionProps, ...slotProps },
   };
 
