@@ -308,7 +308,8 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
       timeout={timeout === 'auto' ? null : timeout}
       {...other}
     >
-      {(state, childProps) => (
+      {/* Destructure child props to prevent the component's "ownerState" from being overridden by incomingOwnerState. */}
+      {(state, { ownerState: incomingOwnerState, ...restChildProps }) => (
         <CollapseRoot
           as={component}
           className={clsx(
@@ -324,10 +325,8 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
             ...style,
           }}
           ref={handleRef}
-          {...childProps}
-          // `ownerState` is set after `childProps` to override any existing `ownerState` property in `childProps`
-          // that might have been forwarded from the Transition component.
           ownerState={{ ...ownerState, state }}
+          {...restChildProps}
         >
           <CollapseWrapper
             ownerState={{ ...ownerState, state }}

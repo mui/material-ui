@@ -5,6 +5,7 @@ import { spy } from 'sinon';
 import { createRenderer, fireEvent, reactMajor, screen } from '@mui/internal-test-utils';
 import Accordion, { accordionClasses as classes } from '@mui/material/Accordion';
 import Paper from '@mui/material/Paper';
+import Collapse from '@mui/material/Collapse';
 import Fade from '@mui/material/Fade';
 import Slide from '@mui/material/Slide';
 import Grow from '@mui/material/Grow';
@@ -268,6 +269,10 @@ describe('<Accordion />', () => {
 
   describe('should not forward ownerState prop to the underlying DOM element when using transition slot', () => {
     const transitions = [
+      {
+        component: Collapse,
+        name: 'Collapse',
+      },
       {
         component: Fade,
         name: 'Fade',
