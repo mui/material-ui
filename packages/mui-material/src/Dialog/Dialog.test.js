@@ -6,6 +6,7 @@ import Modal from '@mui/material/Modal';
 import Dialog, { dialogClasses as classes } from '@mui/material/Dialog';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
+import Fade from '../Fade';
 
 /**
  * more comprehensive simulation of a user click (mousedown + click)
@@ -33,6 +34,10 @@ function clickBackdrop(view) {
   userClick(findBackdrop(view));
 }
 
+const CustomFade = React.forwardRef(function CustomFade(props, ref) {
+  return <Fade {...props} ref={ref} data-testid="custom" />;
+});
+
 describe('<Dialog />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
 
@@ -51,6 +56,7 @@ describe('<Dialog />', () => {
       slots: {
         transition: {
           expectedClassName: classes.transition,
+          testWithComponent: CustomFade,
           testWithElement: null,
         },
       },
