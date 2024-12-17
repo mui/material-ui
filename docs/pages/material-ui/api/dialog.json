@@ -46,6 +46,14 @@
       "type": { "name": "enum", "description": "'body'<br>&#124;&nbsp;'paper'" },
       "default": "'paper'"
     },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ transition?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ transition?: elementType }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -67,6 +75,14 @@
   "imports": [
     "import Dialog from '@mui/material/Dialog';",
     "import { Dialog } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "transition",
+      "description": "The component that renders the transition.\n[Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
+      "default": "Collapse",
+      "class": null
+    }
   ],
   "classes": [
     {
