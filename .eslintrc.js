@@ -5,6 +5,12 @@
  */
 
 const path = require('path');
+const a11yBase = require('eslint-config-airbnb/rules/react-a11y');
+
+const controlHasAssociatedLabelConfig = a11yBase.rules['jsx-a11y/control-has-associated-label'];
+
+const controlHasAssociatedLabelOptions =
+  typeof controlHasAssociatedLabelConfig[1] === 'object' ? controlHasAssociatedLabelConfig[1] : {};
 
 const OneLevelImportMessage = [
   'Prefer one level nested imports to avoid bundling everything in dev mode or breaking CJS/ESM split.',
@@ -158,6 +164,16 @@ module.exports = /** @type {Config} */ ({
     ],
     // We are a library, we need to support it too
     'jsx-a11y/no-autofocus': 'off',
+    // Remove when issues are fixed
+    // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/959
+    // https://github.com/airbnb/javascript/issues/3069
+    'jsx-a11y/control-has-associated-label': [
+      'error',
+      {
+        ...controlHasAssociatedLabelOptions,
+        ignoreElements: [...(controlHasAssociatedLabelOptions.ignoreElements || []), 'th', 'td'],
+      },
+    ],
 
     'material-ui/docgen-ignore-before-comment': 'error',
     'material-ui/rules-of-use-theme-variants': 'error',

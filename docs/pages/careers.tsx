@@ -28,12 +28,12 @@ const openRolesData = [
           'Research, build, document, and help ship a next-gen zero-runtime CSS-in-JS library with a focus on performance and great developer experience.',
         url: '/careers/staff-engineer-pigment-css/',
       },
-      {
-        title: 'React Engineer — xCharts',
-        description:
-          'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-        url: '/careers/react-engineer-x-charts/',
-      },
+      // {
+      //   title: 'React Engineer — xCharts',
+      //   description:
+      //     'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+      //   url: '/careers/react-engineer-x-charts/',
+      // },
       {
         title: 'React Engineer — eXplore',
         description:
