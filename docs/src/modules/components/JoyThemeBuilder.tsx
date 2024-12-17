@@ -714,8 +714,8 @@ function PaletteImport({
 
 function ColorTokenCreator({ onChange }: { onChange: (name: string, value: string) => void }) {
   const [open, setOpen] = React.useState(false);
-  const nameRef = React.useRef<HTMLInputElement | null>(null);
-  const colorRef = React.useRef<HTMLInputElement | null>(null);
+  const nameRef = React.useRef<HTMLInputElement>(null);
+  const colorRef = React.useRef<HTMLInputElement>(null);
   const [name, setName] = React.useState('');
   const [color, setColor] = React.useState('');
   if (!open) {
@@ -876,7 +876,7 @@ function GlobalVariantTokenCreator({
   const [open, setOpen] = React.useState(false);
   const [name, setName] = React.useState('');
   const [color, setColor] = React.useState('');
-  const inputRef = React.useRef<HTMLInputElement | null>(null);
+  const inputRef = React.useRef<HTMLInputElement>(null);
   if (!open) {
     return (
       <Button
