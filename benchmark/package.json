@@ -13,9 +13,9 @@
   "dependencies": {
     "@babel/runtime": "^7.26.0",
     "@chakra-ui/system": "^2.6.2",
-    "@emotion/react": "^11.13.5",
+    "@emotion/react": "^11.14.0",
     "@emotion/server": "^11.11.0",
-    "@emotion/styled": "^11.13.5",
+    "@emotion/styled": "^11.14.0",
     "@mui/material": "workspace:^",
     "@mui/styles": "workspace:^",
     "@mui/system": "workspace:^",
