@@ -276,7 +276,7 @@ describe('<Collapse />', () => {
     }
 
     const { container } = render(
-      <Collapse in={true} ownerState={{}}>
+      <Collapse in ownerState={{}}>
         <div style={{ height: '100px' }} />
       </Collapse>,
     );
