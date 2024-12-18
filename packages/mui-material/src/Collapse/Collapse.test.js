@@ -268,4 +268,18 @@ describe('<Collapse />', () => {
       expect(handleExiting.args[0][0].style.height).to.equal(collapsedSize);
     });
   });
+
+  // Test for https://github.com/mui/material-ui/issues/40653
+  it('should have correct height when external ownerState prop is passed', () => {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const { container } = render(<Collapse {...defaultProps} ownerState={{}} />);
+    const collapse = container.firstChild;
+
+    expect(collapse).toHaveComputedStyle({
+      height: 'auto',
+    });
+  });
 });
