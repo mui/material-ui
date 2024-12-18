@@ -270,7 +270,7 @@ describe('<Collapse />', () => {
   });
 
   // Test for https://github.com/mui/material-ui/issues/40653
-  it('should have correct height when external ownerState prop is passed', () => {
+  it('should render correctly when external ownerState prop is passed', () => {
     if (/jsdom/.test(window.navigator.userAgent)) {
       this.skip();
     }
@@ -278,6 +278,7 @@ describe('<Collapse />', () => {
     const { container } = render(<Collapse {...defaultProps} ownerState={{}} />);
     const collapse = container.firstChild;
 
+    // height: auto is applied when the component has completed transition and is in entered state
     expect(collapse).toHaveComputedStyle({
       height: 'auto',
     });
