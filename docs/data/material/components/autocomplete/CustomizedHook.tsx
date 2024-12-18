@@ -1,6 +1,5 @@
 import * as React from 'react';
-import {
-  useAutocomplete,
+import useAutocomplete, {
   AutocompleteGetTagProps,
 } from '@mui/material/useAutocomplete';
 import CheckIcon from '@mui/icons-material/Check';
