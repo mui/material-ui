@@ -22,6 +22,41 @@ WrappedIcon.muiName = Icon.muiName;
 
 {{"demo": "Composition.js"}}
 
+### Forwarding slot props
+
+To properly combine custom props and slot props to forward to Material UI components, use the `mergeSlotProps` utility function.
+If the arguments are functions, they will be resolved before merging. The result from the first argument will override the second.
+
+```jsx
+import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
+import { mergeSlotProps } from '@mui/material/utils';
+
+export const CustomTooltip = (props: TooltipProps) => {
+  const { children, title, sx: sxProps } = props;
+
+  return (
+    <Tooltip
+      {...props}
+      title={<Box sx={{ p: 4 }}>{title}</Box>}
+      slotProps={{
+        ...props.slotProps,
+        popper: mergeSlotProps(props.slotProps?.popper, {
+          className: 'custom-tooltip-popper',
+          disablePortal: true,
+          placement: 'top',
+        }),
+      }}
+    >
+      {children}
+    </Tooltip>
+  );
+};
+```
+
+:::info
+`className` values will always be concatenated, it will not override each other.
+:::
+
 ## Component prop
 
 Material UI allows you to change the root element that will be rendered via a prop called `component`.
