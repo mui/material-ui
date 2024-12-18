@@ -1,5 +1,9 @@
 import { expectType } from '@mui/types';
-import { useAutocomplete, FilterOptionsState } from '@mui/material/useAutocomplete';
+import {
+  useAutocomplete,
+  FilterOptionsState,
+  AutocompleteGroupedOption,
+} from '@mui/material/useAutocomplete';
 
 interface Person {
   id: string;
@@ -181,4 +185,17 @@ function Component() {
     },
     freeSolo: true,
   });
+
+  const ungroupedAutocomplete = useAutocomplete({ options: persons });
+  expectType<Person[], typeof ungroupedAutocomplete.groupedOptions>(
+    ungroupedAutocomplete.groupedOptions,
+  );
+
+  const groupedAutocomplete = useAutocomplete({
+    options: persons,
+    groupBy: ({ id }) => id,
+  });
+  expectType<AutocompleteGroupedOption<Person>[], typeof groupedAutocomplete.groupedOptions>(
+    groupedAutocomplete.groupedOptions,
+  );
 }
