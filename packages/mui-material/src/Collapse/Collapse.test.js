@@ -275,12 +275,15 @@ describe('<Collapse />', () => {
       this.skip();
     }
 
-    const { container } = render(<Collapse {...defaultProps} ownerState={{}} />);
+    const { container } = render(
+      <Collapse in={true} ownerState={{}}>
+        <div style={{ height: '100px' }} />
+      </Collapse>,
+    );
     const collapse = container.firstChild;
 
-    // height: auto is applied when the component has completed transition and is in entered state
     expect(collapse).toHaveComputedStyle({
-      height: 'auto',
+      height: '100px',
     });
   });
 });
