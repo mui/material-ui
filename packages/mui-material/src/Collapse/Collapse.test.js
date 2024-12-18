@@ -270,7 +270,7 @@ describe('<Collapse />', () => {
   });
 
   // Test for https://github.com/mui/material-ui/issues/40653
-  it('should render correctly when external ownerState prop is passed', () => {
+  it('should render correctly when external ownerState prop is passed', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {
       this.skip();
     }
