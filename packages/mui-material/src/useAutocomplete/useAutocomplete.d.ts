@@ -179,7 +179,7 @@ export interface UseAutocompleteProps<
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
    *
-   * @param {Value} option The option to group.
+   * @param {Value} option The Autocomplete option.
    * @returns {string}
    */
   groupBy?: (option: Value) => string;
