@@ -528,8 +528,6 @@ FilledInput.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 };
 
-if (FilledInput) {
-  FilledInput.muiName = 'Input';
-}
+FilledInput.muiName = 'Input';
 
 export default FilledInput;

@@ -222,8 +222,6 @@ Icon.propTypes /* remove-proptypes */ = {
   ]),
 };
 
-if (Icon) {
-  Icon.muiName = 'Icon';
-}
+Icon.muiName = 'Icon';
 
 export default Icon;
