@@ -30,7 +30,7 @@ cd pigment-css-nextjs-ts
 ```
 
 ```bash Vite
-curl https://codeload.github.com/mui/pigment-css/tar.gz/master | tar -xz --strip=2 pigment-css/examples/pigment-css-vite-ts
+curl https://codeload.github.com/mui/pigment-css/tar.gz/master | tar -xz --strip=2 pigment-css-master/examples/pigment-css-vite-ts
 cd pigment-css-vite-ts
 ```
 
