@@ -48,8 +48,8 @@ If you want to be able to manually toggle modes, see the guide to [toggling dark
 
 ## Applying dark styles
 
-To customize styles for dark mode, use `theme.applyStyles()` function.
-This utility function will return the right selector.
+To customize styles for dark mode, use the [`theme.applyStyles()` function](/material-ui/customization/dark-mode/#api).
+This function returns an object which key is the mode selector and value is the styles object.
 
 The example below shows how to customize the Card component for dark mode:
 
@@ -60,24 +60,14 @@ import Card from '@mui/material/Card';
   sx={(theme) => ({
     backgroundColor: theme.vars.palette.background.default,
     ...theme.applyStyles('dark', {
-      boxShadow: 'none', // remove the box shadow in dark mode
+      backgroundColor: theme.vars.palette.grey[50],
     }),
   })}
 />;
 ```
 
 :::warning
-Do not use `theme.palette.mode` to switch between light and dark styles—this produces an [unwanted flickering effect](/material-ui/customization/dark-mode/#dark-mode-flicker).
-
-```js
-<Card
-  sx={{
-    // 🚫 this will cause flickering
-    backgroundColor: theme.palette.mode === 'dark' ? '…' : '…',
-  }}
-/>
-```
-
+Do not use `theme.palette.mode` to switch between light and dark styles—this produces an [unwanted flickering effect](/material-ui/customization/css-theme-variables/configuration/#preventing-ssr-flickering).
 :::
 
 ## Using theme variables
