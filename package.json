@@ -14,7 +14,7 @@
     "clean:zero": "pnpm --filter \"@pigmentcss/*\" clean",
     "build:codesandbox": "BROWSERSLIST_IGNORE_OLD_DATA=true NODE_OPTIONS=\"--max_old_space_size=4096\" lerna run --concurrency 8 --scope \"@mui/*\" --scope \"@mui-internal/*\" --no-private build",
     "release:version": "lerna version --no-changelog --no-push --no-git-tag-version --no-private --force-publish=@mui/core-downloads-tracker",
-    "release:build": "BROWSERSLIST_IGNORE_OLD_DATA=true lerna run --concurrency 8 --no-private build --skip-nx-cache",
+    "release:build": "BROWSERSLIST_IGNORE_OLD_DATA=true lerna run --concurrency 8 --no-private build --skip-nx-cache && pnpm --filter @mui/material build:umd",
     "release:changelog": "node scripts/releaseChangelog.mjs",
     "release:publish": "pnpm publish --recursive --tag latest-v5",
     "release:publish:dry-run": "pnpm publish --recursive --tag latest-v5 --registry=\"http://localhost:4873/\"",
