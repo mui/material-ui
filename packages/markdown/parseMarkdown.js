@@ -291,13 +291,13 @@ const noSEOadvantage = [
  * @property {number} level
  * @property {string} text
  * @param {object} context
- * @param {Record<string, string>} context.headingHashes - WILL BE MUTATED
- * @param {TableOfContentsEntry[]} context.toc - WILL BE MUTATED
- * @param {string} context.userLanguage
+ * @param {Record<string, string>} [context.headingHashes] - WILL BE MUTATED
+ * @param {TableOfContentsEntry[]} [context.toc] - WILL BE MUTATED
+ * @param {string} [context.userLanguage]
  * @param {object} context.options
  */
 function createRender(context) {
-  const { headingHashes, toc, userLanguage, options } = context;
+  const { headingHashes = {}, toc = [], userLanguage = 'en', options } = context;
   const headingHashesFallbackTranslated = {};
   let headingIndex = -1;
 
