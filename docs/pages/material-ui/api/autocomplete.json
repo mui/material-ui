@@ -83,7 +83,7 @@
     },
     "groupBy": {
       "type": { "name": "func" },
-      "signature": { "type": "function(options: Value) => string", "describedArgs": ["options"] }
+      "signature": { "type": "function(option: Value) => string", "describedArgs": ["option"] }
     },
     "handleHomeEndKeys": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
     "id": { "type": { "name": "string" } },
