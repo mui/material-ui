@@ -1289,6 +1289,36 @@ The ListItemSecondaryAction component was deprecated in favor of the `secondaryA
  </ListItem>
 ```
 
+## ListItemText
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#list-item-text-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/list-item-text-props <path>
+```
+
+### primaryTypographyProps
+
+The ListItemText's `primaryTypographyProps` props were deprecated in favor of `slotProps.primary`:
+
+```diff
+ <ListItemText
+-  primaryTypographyProps={primaryTypographyProps}
++  slotProps={{ primary: primaryTypographyProps }}
+ />
+```
+
+### secondaryTypographyProps
+
+The ListItemText's `secondaryTypographyProps` props were deprecated in favor of `slotProps.secondary`:
+
+```diff
+ <ListItemText
+-  secondaryTypographyProps={secondaryTypographyProps}
++  slotProps={{ secondary: secondaryTypographyProps }}
+ />
+```
+
 ## ImageListItemBar
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#image-list-item-bar-classes) below to migrate the code as described in the following sections:
@@ -1836,6 +1866,36 @@ Here's how to migrate:
      },
    },
  },
+```
+
+## StepContent
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#step-content-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/step-content-props <path>
+```
+
+### TransitionComponent
+
+The StepContent's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
+
+```diff
+ <StepContent
+-  TransitionComponent={CustomTransition}
++  slots={{ transition: CustomTransition }}
+ />
+```
+
+### TransitionProps
+
+The StepContent's `TransitionProps` prop was deprecated in favor of `slotProps.transition`:
+
+```diff
+ <StepContent
+-  TransitionProps={{ unmountOnExit: true }}
++  slotProps={{ transition: { unmountOnExit: true } }}
+ />
 ```
 
 ## SpeedDial
