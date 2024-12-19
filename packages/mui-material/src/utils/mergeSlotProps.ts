@@ -1,25 +1,8 @@
 import { SlotComponentProps } from '@mui/utils';
+import clsx from 'clsx';
 
 type PickFn<T> = T extends Function ? T : never;
 type ExcludeFn<T> = Exclude<T, Function>;
-
-function concatClassName(
-  arg1: undefined | Record<string, any>,
-  arg2: undefined | Record<string, any>,
-  arg3?: Record<string, any>,
-) {
-  let className = '';
-  if (arg1?.className) {
-    className += arg1.className;
-  }
-  if (arg2?.className) {
-    className += `${className ? ` ` : ''}${arg2.className}`;
-  }
-  if (arg3?.className) {
-    className += `${className ? ` ` : ''}${arg3.className}`;
-  }
-  return className;
-}
 
 export default function mergeSlotProps<
   T extends SlotComponentProps<React.ElementType, {}, {}>,
@@ -44,7 +27,11 @@ export default function mergeSlotProps<
           ? externalSlotProps({ ...ownerState, ...defaultSlotPropsValue })
           : externalSlotProps;
 
-      const className = concatClassName(ownerState, defaultSlotPropsValue, externalSlotPropsValue);
+      const className = clsx(
+        ownerState?.className,
+        defaultSlotPropsValue?.className,
+        externalSlotPropsValue?.className,
+      );
       return {
         ...defaultSlotPropsValue,
         ...externalSlotPropsValue,
@@ -52,7 +39,10 @@ export default function mergeSlotProps<
       };
     }) as U;
   }
-  const className = concatClassName(defaultSlotProps as Record<string, any>, externalSlotProps);
+  const className = clsx(
+    (defaultSlotProps as Record<string, any>)?.className,
+    externalSlotProps?.className,
+  );
   return {
     ...defaultSlotProps,
     ...externalSlotProps,
