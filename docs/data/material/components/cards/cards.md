@@ -78,4 +78,12 @@ Here's an example of a media control card.
 
 {{"demo": "MediaControlCard.js", "bg": true}}
 
+## Card Action Area Props
+
+Having an active state attribute that can be defined for conditionally styling the card being interacted with, or the card holding the active state.
+
+The `CardActionArea` component can have props or attributes added to it, that imply to the contents of the Card.
+
+{{"demo": "SelectActionCard.js", "bg": true}}
+
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/card-introduction--docs).
