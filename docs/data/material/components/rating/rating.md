@@ -12,6 +12,19 @@ githubSource: packages/mui-material/src/Rating
 <p class="description">Ratings provide insight regarding others' opinions and experiences, and can allow the user to submit a rating of their own.</p>
 
 {{"component": "@mui/docs/ComponentLinkHeader"}}
+:::warning
+
+Testing with `@testing-library/user-event`
+
+When using `@testing-library/user-event` for testing the `Rating` component, you may encounter an issue where `onChange` returns `NaN`. This happens because the mouse event simulations rely on `getBoundingClientRect`, which returns default values (zeros) in Jest.
+
+Workaround:
+
+1. Stub `getBoundingClientRect` to return meaningful values.
+2. Use `userEvent.setup({ skipHover: true })` to bypass hover events.
+
+For more details, see the [GitHub issue](https://github.com/mui/material-ui/issues/38828).
+:::
 
 ## Basic rating
 
