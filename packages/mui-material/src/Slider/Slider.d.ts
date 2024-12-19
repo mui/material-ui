@@ -4,7 +4,7 @@ import { OverridableStringUnion } from '@mui/types';
 import { Mark } from './useSlider.types';
 import { SlotComponentProps } from '../utils/types';
 import { Theme } from '../styles';
-import { OverrideProps, OverridableComponent } from '../OverridableComponent';
+import { OverrideProps, DefaultComponentProps } from '../OverridableComponent';
 import SliderValueLabelComponent from './SliderValueLabel';
 import { SliderClasses } from './sliderClasses';
 
@@ -20,7 +20,7 @@ export interface SliderOwnerState extends SliderProps {
   focusedThumbIndex: number;
 }
 
-export interface SliderOwnProps {
+export interface SliderOwnProps<Value extends number | number[]> {
   /**
    * The label of the slider.
    */
@@ -93,7 +93,7 @@ export interface SliderOwnProps {
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue?: number | number[];
+  defaultValue?: Value;
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -148,17 +148,17 @@ export interface SliderOwnProps {
    * @param {Event} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (any).
    * **Warning**: This is a generic event not a change event.
-   * @param {number | number[]} value The new value.
+   * @param {Value} value The new value.
    * @param {number} activeThumb Index of the currently moved thumb.
    */
-  onChange?: (event: Event, value: number | number[], activeThumb: number) => void;
+  onChange?: (event: Event, value: Value, activeThumb: number) => void;
   /**
    * Callback function that is fired when the `mouseup` is triggered.
    *
    * @param {React.SyntheticEvent | Event} event The event source of the callback. **Warning**: This is a generic event not a change event.
-   * @param {number | number[]} value The new value.
+   * @param {Value} value The new value.
    */
-  onChangeCommitted?: (event: React.SyntheticEvent | Event, value: number | number[]) => void;
+  onChangeCommitted?: (event: React.SyntheticEvent | Event, value: Value) => void;
   /**
    * The component orientation.
    * @default 'horizontal'
@@ -246,7 +246,7 @@ export interface SliderOwnProps {
    * The value of the slider.
    * For ranged sliders, provide an array with two values.
    */
-  value?: number | number[];
+  value?: Value;
   /**
    * Controls when the value label is displayed:
    *
@@ -275,9 +275,37 @@ export interface SliderOwnProps {
 export interface SliderTypeMap<
   RootComponent extends React.ElementType = 'span',
   AdditionalProps = {},
+  Value extends number | number[] = number | number[],
 > {
-  props: AdditionalProps & SliderOwnProps;
+  props: AdditionalProps & SliderOwnProps<Value>;
   defaultComponent: RootComponent;
+}
+
+type SliderTypeMapNumber<
+  RootComponent extends React.ElementType = 'span',
+  AdditionalProps = {},
+> = SliderTypeMap<RootComponent, AdditionalProps, number>;
+
+type SliderTypeMapNumberArray<
+  RootComponent extends React.ElementType = 'span',
+  AdditionalProps = {},
+> = SliderTypeMap<RootComponent, AdditionalProps, number[]>;
+
+interface SliderType {
+  <RootComponent extends React.ElementType>(
+    props: OverrideProps<SliderTypeMapNumber, RootComponent>,
+  ): React.JSX.Element | null;
+  (props: DefaultComponentProps<SliderTypeMapNumber>): React.JSX.Element | null;
+
+  <RootComponent extends React.ElementType>(
+    props: OverrideProps<SliderTypeMapNumberArray, RootComponent>,
+  ): React.JSX.Element | null;
+  (props: DefaultComponentProps<SliderTypeMapNumberArray>): React.JSX.Element | null;
+
+  <RootComponent extends React.ElementType>(
+    props: OverrideProps<SliderTypeMap, RootComponent>,
+  ): React.JSX.Element | null;
+  (props: DefaultComponentProps<SliderTypeMap>): React.JSX.Element | null;
 }
 
 export interface SliderValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
@@ -312,7 +340,7 @@ export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
  *
  * - [Slider API](https://mui.com/material-ui/api/slider/)
  */
-declare const Slider: OverridableComponent<SliderTypeMap>;
+declare const Slider: SliderType;
 
 export type SliderProps<
   RootComponent extends React.ElementType = SliderTypeMap['defaultComponent'],
