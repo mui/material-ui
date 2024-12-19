@@ -138,15 +138,15 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
   const ignoreNextEnforceFocus = React.useRef(false);
   const sentinelStart = React.useRef<HTMLDivElement>(null);
   const sentinelEnd = React.useRef<HTMLDivElement>(null);
-  const nodeToRestore = React.useRef<EventTarget | null>(null);
-  const reactFocusEventTarget = React.useRef<EventTarget | null>(null);
+  const nodeToRestore = React.useRef<EventTarget>(null);
+  const reactFocusEventTarget = React.useRef<EventTarget>(null);
   // This variable is useful when disableAutoFocus is true.
   // It waits for the active element to move into the component to activate.
   const activated = React.useRef(false);
 
   const rootRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(getReactElementRef(children), rootRef);
-  const lastKeydown = React.useRef<KeyboardEvent | null>(null);
+  const lastKeydown = React.useRef<KeyboardEvent>(null);
 
   React.useEffect(() => {
     // We might render an empty child.
@@ -324,7 +324,7 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
     };
   }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, isEnabled, open, getTabbable]);
 
-  const onFocus = (event: FocusEvent) => {
+  const onFocus = (event: React.FocusEvent<Element, Element>) => {
     if (nodeToRestore.current === null) {
       nodeToRestore.current = event.relatedTarget;
     }

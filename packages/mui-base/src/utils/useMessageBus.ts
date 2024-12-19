@@ -40,7 +40,7 @@ export function createMessageBus(): MessageBus {
  * @ignore - internal hook.
  */
 export function useMessageBus() {
-  const bus = React.useRef<MessageBus | undefined>(undefined);
+  const bus = React.useRef<MessageBus>(undefined);
   if (!bus.current) {
     bus.current = createMessageBus();
   }

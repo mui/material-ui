@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createStyles } from '@mui/styles';
-import { Link as ReactRouterLink, LinkProps as ReactRouterLinkProps } from 'react-router-dom';
+import { Link as ReactRouterLink, LinkProps as ReactRouterLinkProps } from 'react-router';
 import { expectType } from '@mui/types';
 import {
   AppBar,
@@ -588,7 +588,7 @@ function MenuTest() {
     'Hide sensitive notification content',
     'Hide all notification content',
   ];
-  const buttonActionRef = React.useRef<ButtonBaseActions | null>(null);
+  const buttonActionRef = React.useRef<ButtonBaseActions>(null);
 
   return (
     <Menu

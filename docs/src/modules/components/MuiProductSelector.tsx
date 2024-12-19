@@ -260,6 +260,7 @@ const MuiProductSelector = React.forwardRef(function MuiProductSelector(
           },
         }}
       >
+        {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
         <NavLabel>MUI X Components</NavLabel>
       </Box>
       {advancedProducts.map((product) => (
@@ -292,6 +293,7 @@ const MuiProductSelector = React.forwardRef(function MuiProductSelector(
         }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: '1px' }}>
+          {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
           <NavLabel> Toolpad </NavLabel>
           <Chip
             label="Beta"

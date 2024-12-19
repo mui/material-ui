@@ -1107,6 +1107,32 @@ npx @mui/codemod@latest deprecations/form-control-label-props <path>
 npx @mui/codemod@latest deprecations/list-item-props <path>
 ```
 
+#### `list-item-text-props`
+
+```diff
+ <ListItemText
+-  primaryTypographyProps={primaryTypographyProps}
++  slotProps={{ primary: primaryTypographyProps }}
+-  secondaryTypographyProps={secondaryTypographyProps}
++  slotProps={{ secondary: secondaryTypographyProps }}
+ />
+```
+
+```diff
+ MuiListItemText: {
+   defaultProps: {
+-  primaryTypographyProps:primaryTypographyProps
++  slotProps:{ primary: primaryTypographyProps }
+-  secondaryTypographyProps:secondaryTypographyProps
++  slotProps:{ secondary: secondaryTypographyProps }
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/list-item-text-props <path>
+```
+
 #### `image-list-item-bar-classes`
 
 JS transforms:
@@ -1483,6 +1509,21 @@ JS transforms:
 npx @mui/codemod@next deprecations/step-connector-classes <path>
 ```
 
+#### `step-content-props`
+
+```diff
+ <StepContent
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ unmountOnExit: true }}
++  slots={{ transition: CustomTransition }}
++  slotProps={{ transition: { unmountOnExit: true } }}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/step-content-props <path>
+```
+
 #### `step-label-props`
 
 ```diff
@@ -1666,6 +1707,13 @@ npx @mui/codemod@latest deprecations/table-sort-label-classes <path>
  <Typography
 -  paragraph
 +  sx={{ marginBottom: '16px' }}
+ />
+```
+
+```diff
+ <Typography
+-  paragraph={isTypographyParagraph}
++  sx={isTypographyParagraph ? { marginBottom: '16px' } : undefined}
  />
 ```
 

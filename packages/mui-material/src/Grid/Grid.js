@@ -170,7 +170,7 @@ export function generateRowGap({ theme, ownerState }) {
 
       if (themeSpacing !== '0px') {
         return {
-          marginTop: `-${themeSpacing}`,
+          marginTop: `calc(-1 * ${themeSpacing})`,
           [`& > .${gridClasses.item}`]: {
             paddingTop: themeSpacing,
           },
@@ -214,7 +214,7 @@ export function generateColumnGap({ theme, ownerState }) {
     styles = handleBreakpoints({ theme }, columnSpacingValues, (propValue, breakpoint) => {
       const themeSpacing = theme.spacing(propValue);
       if (themeSpacing !== '0px') {
-        const negativeValue = `-${themeSpacing}`;
+        const negativeValue = `calc(-1 * ${themeSpacing})`;
         return {
           width: `calc(100% + ${themeSpacing})`,
           marginLeft: negativeValue,

@@ -113,7 +113,6 @@ const TriggerButton = styled('button')(
   line-height: 1.5;
   padding: 8px 16px;
   border-radius: 8px;
-  color: white;
   transition: all 150ms ease;
   cursor: pointer;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
@@ -157,7 +156,7 @@ const SnackbarContent = styled('div')(
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   box-shadow: ${
     theme.palette.mode === 'dark'
-      ? `0 2px 16px rgba(0,0,0, 0.5)`
+      ? `0 2px 16px rgb(0 0 0 / 0.5)`
       : `0 2px 16px ${grey[200]}`
   };
   padding: 0.75rem;
