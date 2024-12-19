@@ -168,4 +168,6 @@ FormLabel.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+FormLabel.displayName = 'FormLabel';
+
 export default FormLabel;

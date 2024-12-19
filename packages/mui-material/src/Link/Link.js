@@ -330,4 +330,6 @@ Link.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+Link.displayName = 'Link';
+
 export default Link;

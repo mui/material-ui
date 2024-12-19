@@ -146,4 +146,6 @@ Hidden.propTypes /* remove-proptypes */ = {
   xsUp: PropTypes.bool,
 };
 
+Hidden.displayName = 'Hidden';
+
 export default Hidden;

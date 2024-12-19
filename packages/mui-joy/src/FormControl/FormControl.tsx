@@ -263,4 +263,6 @@ FormControl.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+FormControl.displayName = 'FormControl';
+
 export default FormControl;

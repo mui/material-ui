@@ -71,4 +71,6 @@ Stack.propTypes /* remove-proptypes */ = {
   useFlexGap: PropTypes.bool,
 };
 
+Stack.displayName = 'Stack';
+
 export default Stack;

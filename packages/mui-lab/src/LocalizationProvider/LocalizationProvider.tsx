@@ -22,7 +22,7 @@ const warn = () => {
 
 type LocalizationProviderComponent = ((
   props: LocalizationProviderProps & React.RefAttributes<HTMLDivElement>,
-) => React.JSX.Element) & { propTypes?: any };
+) => React.JSX.Element) & { propTypes?: any; displayName?: string };
 
 /**
  * @deprecated The LocalizationProvider component was moved from `@mui/lab` to `@mui/x-date-pickers`. More information about this migration on our blog: https://mui.com/blog/lab-date-pickers-to-mui-x/.
@@ -33,6 +33,8 @@ const LocalizationProvider = React.forwardRef(function DeprecatedLocalizationPro
 
   return null;
 }) as LocalizationProviderComponent;
+
+LocalizationProvider.displayName = 'LocalizationProvider';
 
 export default LocalizationProvider;
 

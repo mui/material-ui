@@ -342,4 +342,6 @@ FormControl.propTypes /* remove-proptypes */ = {
   variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
 };
 
+FormControl.displayName = 'FormControl';
+
 export default FormControl;

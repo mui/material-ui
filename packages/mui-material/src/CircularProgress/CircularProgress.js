@@ -318,4 +318,6 @@ CircularProgress.propTypes /* remove-proptypes */ = {
   variant: PropTypes.oneOf(['determinate', 'indeterminate']),
 };
 
+CircularProgress.displayName = 'CircularProgress';
+
 export default CircularProgress;

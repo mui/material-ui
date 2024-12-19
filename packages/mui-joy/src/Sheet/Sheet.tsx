@@ -197,4 +197,6 @@ Sheet.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+Sheet.displayName = 'Sheet';
+
 export default Sheet;

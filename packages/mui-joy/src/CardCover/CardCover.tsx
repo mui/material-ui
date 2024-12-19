@@ -138,4 +138,6 @@ CardCover.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+CardCover.displayName = 'CardCover';
+
 export default CardCover;

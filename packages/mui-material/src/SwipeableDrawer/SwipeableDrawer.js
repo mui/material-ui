@@ -755,4 +755,6 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
   variant: PropTypes.oneOf(['permanent', 'persistent', 'temporary']),
 };
 
+SwipeableDrawer.displayName = 'SwipeableDrawer';
+
 export default SwipeableDrawer;
