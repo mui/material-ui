@@ -37,6 +37,7 @@ const AccordionSummaryRoot = styled(ButtonBase, {
 
     return {
       display: 'flex',
+      width: '100%',
       minHeight: 48,
       padding: theme.spacing(0, 2),
       transition: theme.transitions.create(['min-height', 'background-color'], transition),
@@ -63,13 +64,14 @@ const AccordionSummaryRoot = styled(ButtonBase, {
   }),
 );
 
-const AccordionSummaryContent = styled('div', {
+const AccordionSummaryContent = styled('span', {
   name: 'MuiAccordionSummary',
   slot: 'Content',
   overridesResolver: (props, styles) => styles.content,
 })(
   memoTheme(({ theme }) => ({
     display: 'flex',
+    textAlign: 'start',
     flexGrow: 1,
     margin: '12px 0',
     variants: [
@@ -88,7 +90,7 @@ const AccordionSummaryContent = styled('div', {
   })),
 );
 
-const AccordionSummaryExpandIconWrapper = styled('div', {
+const AccordionSummaryExpandIconWrapper = styled('span', {
   name: 'MuiAccordionSummary',
   slot: 'ExpandIconWrapper',
   overridesResolver: (props, styles) => styles.expandIconWrapper,
@@ -134,7 +136,6 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
       focusRipple={false}
       disableRipple
       disabled={disabled}
-      component="div"
       aria-expanded={expanded}
       className={clsx(classes.root, className)}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
