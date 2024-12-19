@@ -128,4 +128,6 @@ StepButton.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+StepButton.displayName = 'StepButton';
+
 export default StepButton;

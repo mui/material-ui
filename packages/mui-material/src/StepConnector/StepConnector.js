@@ -144,4 +144,6 @@ StepConnector.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+StepConnector.displayName = 'StepConnector';
+
 export default StepConnector;

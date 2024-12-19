@@ -27,4 +27,6 @@ GlobalStyles.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+GlobalStyles.displayName = 'GlobalStyles';
+
 export default GlobalStyles;

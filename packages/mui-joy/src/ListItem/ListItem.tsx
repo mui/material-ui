@@ -353,6 +353,8 @@ ListItem.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
+ListItem.displayName = 'ListItem';
+
 // @ts-ignore internal logic to prevent <li> in <li>
 ListItem.muiName = 'ListItem';
 

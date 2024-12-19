@@ -1,5 +1,5 @@
 {
-  "componentDescription": "An unstyled menu item to be used within a Menu.",
+  "componentDescription": "",
   "propDescriptions": {
     "disabled": { "description": "If <code>true</code>, the menu item will be disabled." },
     "disableFocusOnHover": {

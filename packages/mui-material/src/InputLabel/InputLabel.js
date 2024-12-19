@@ -300,4 +300,6 @@ InputLabel.propTypes /* remove-proptypes */ = {
   variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
 };
 
+InputLabel.displayName = 'InputLabel';
+
 export default InputLabel;

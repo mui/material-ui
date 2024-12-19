@@ -40,4 +40,6 @@ TabList.propTypes /* remove-proptypes */ = {
   children: PropTypes.node,
 };
 
+TabList.displayName = 'TabList';
+
 export default TabList;

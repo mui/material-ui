@@ -1,5 +1,5 @@
 import * as React from 'react';
-import InitColorSchemeScript from '../InitColorSchemeScript';
+import { InitColorSchemeScriptProps } from '../InitColorSchemeScript';
 import { Result } from './useCurrentColorScheme';
 
 export interface ColorSchemeContextValue<SupportedColorScheme extends string>
@@ -90,7 +90,7 @@ export interface CreateCssVarsProviderResult<
     >,
   ) => React.JSX.Element;
   useColorScheme: () => ColorSchemeContextValue<ColorScheme>;
-  getInitColorSchemeScript: typeof InitColorSchemeScript;
+  getInitColorSchemeScript: (props: InitColorSchemeScriptProps) => React.JSX.Element;
 }
 
 export default function createCssVarsProvider<

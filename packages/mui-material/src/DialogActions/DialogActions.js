@@ -95,4 +95,6 @@ DialogActions.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+DialogActions.displayName = 'DialogActions';
+
 export default DialogActions;

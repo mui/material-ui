@@ -535,4 +535,6 @@ Slider.propTypes /* remove-proptypes */ = {
   valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 } as any;
 
+Slider.displayName = 'Slider';
+
 export { Slider };

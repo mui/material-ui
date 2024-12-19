@@ -787,4 +787,6 @@ Rating.propTypes /* remove-proptypes */ = {
   value: PropTypes.number,
 };
 
+Rating.displayName = 'Rating';
+
 export default Rating;

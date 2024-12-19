@@ -453,6 +453,8 @@ Collapse.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+Collapse.displayName = 'Collapse';
+
 if (Collapse) {
   Collapse.muiSupportAuto = true;
 }
