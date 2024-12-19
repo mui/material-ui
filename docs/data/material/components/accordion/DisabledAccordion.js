@@ -14,7 +14,7 @@ export default function DisabledAccordion() {
           aria-controls="panel1-content"
           id="panel1-header"
         >
-          Accordion 1
+          <Typography component="span">Accordion 1</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -29,7 +29,7 @@ export default function DisabledAccordion() {
           aria-controls="panel2-content"
           id="panel2-header"
         >
-          Accordion 2
+          <Typography component="span">Accordion 2</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -44,7 +44,7 @@ export default function DisabledAccordion() {
           aria-controls="panel3-content"
           id="panel3-header"
         >
-          Disabled Accordion
+          <Typography component="span">Disabled Accordion</Typography>
         </AccordionSummary>
       </Accordion>
     </div>

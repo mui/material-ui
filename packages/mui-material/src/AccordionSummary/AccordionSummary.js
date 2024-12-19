@@ -36,7 +36,6 @@ const AccordionSummaryRoot = styled(ButtonBase, {
     };
 
     return {
-      ...theme.typography.body1,
       display: 'flex',
       width: '100%',
       minHeight: 48,

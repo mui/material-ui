@@ -58,7 +58,7 @@ export default function CustomizedAccordions() {
     <div>
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          Collapsible Group Item #1
+          <Typography component="span">Collapsible Group Item #1</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -71,7 +71,7 @@ export default function CustomizedAccordions() {
       </Accordion>
       <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
         <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-          Collapsible Group Item #2
+          <Typography component="span">Collapsible Group Item #2</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -84,7 +84,7 @@ export default function CustomizedAccordions() {
       </Accordion>
       <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
         <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-          Collapsible Group Item #3
+          <Typography component="span">Collapsible Group Item #3</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>

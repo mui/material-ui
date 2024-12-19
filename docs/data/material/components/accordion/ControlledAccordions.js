@@ -3,17 +3,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
-import { styled } from '@mui/material/styles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
-const SummaryLabel = styled('span')({
-  width: '33%',
-  flexShrink: 0,
-});
-
-const SummaryText = styled('span')(({ theme }) => ({
-  color: theme.palette.text.secondary,
-}));
 
 export default function ControlledAccordions() {
   const [expanded, setExpanded] = React.useState(false);
@@ -30,8 +20,12 @@ export default function ControlledAccordions() {
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
-          <SummaryLabel>General settings</SummaryLabel>
-          <SummaryText>I am an accordion</SummaryText>
+          <Typography component="span" sx={{ width: '33%', flexShrink: 0 }}>
+            General settings
+          </Typography>
+          <Typography component="span" sx={{ color: 'text.secondary' }}>
+            I am an accordion
+          </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -46,8 +40,12 @@ export default function ControlledAccordions() {
           aria-controls="panel2bh-content"
           id="panel2bh-header"
         >
-          <SummaryLabel>Users</SummaryLabel>
-          <SummaryText>You are currently not an owner</SummaryText>
+          <Typography component="span" sx={{ width: '33%', flexShrink: 0 }}>
+            Users
+          </Typography>
+          <Typography component="span" sx={{ color: 'text.secondary' }}>
+            You are currently not an owner
+          </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -63,10 +61,12 @@ export default function ControlledAccordions() {
           aria-controls="panel3bh-content"
           id="panel3bh-header"
         >
-          <SummaryLabel>Advanced settings</SummaryLabel>
-          <SummaryText>
+          <Typography component="span" sx={{ width: '33%', flexShrink: 0 }}>
+            Advanced settings
+          </Typography>
+          <Typography component="span" sx={{ color: 'text.secondary' }}>
             Filtering has been entirely disabled for whole web server
-          </SummaryText>
+          </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -81,7 +81,9 @@ export default function ControlledAccordions() {
           aria-controls="panel4bh-content"
           id="panel4bh-header"
         >
-          <SummaryLabel>Personal data</SummaryLabel>
+          <Typography component="span" sx={{ width: '33%', flexShrink: 0 }}>
+            Personal data
+          </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
