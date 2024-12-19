@@ -78,7 +78,6 @@ export default function OurValues() {
                 height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'space-between',
                 gap: 1.5,
                 background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
                 ...theme.applyDarkStyles({
