@@ -3,7 +3,7 @@ import { TabsTypeMap } from '@mui/material/Tabs';
 import { DistributiveOmit } from '@mui/types';
 import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
 
-interface TabListOwnProps extends DistributiveOmit<TabsTypeMap['props'], 'children' | 'value'> {
+export interface TabListOwnProps extends DistributiveOmit<TabsTypeMap['props'], 'children' | 'value'> {
   /**
    * A list of `<Tab />` elements.
    */
