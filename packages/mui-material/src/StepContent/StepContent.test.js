@@ -24,6 +24,12 @@ describe('<StepContent />', () => {
       return { container: container.firstChild.firstChild, ...other };
     },
     skip: ['componentProp', 'componentsProp', 'themeVariants'],
+    slots: {
+      transition: {
+        expectedClassName: classes.transition,
+        testWithElement: null,
+      },
+    },
   }));
 
   it('renders children inside an Collapse component', () => {

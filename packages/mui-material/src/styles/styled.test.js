@@ -168,10 +168,10 @@ describe('styled', () => {
         },
       });
 
-      const testOverridesResolver = (props, styles) => ({
-        ...styles.root,
-        ...(props.variant && styles[props.variant]),
-      });
+      const testOverridesResolver = (props, styles) => [
+        styles.root,
+        props.variant && styles[props.variant],
+      ];
 
       Test = styled('div', {
         shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
@@ -429,10 +429,10 @@ describe('styled', () => {
     });
 
     it('should respect the skipSx option', () => {
-      const testOverridesResolver = (props, styles) => ({
-        ...styles.root,
-        ...(props.variant && styles[props.variant]),
-      });
+      const testOverridesResolver = (props, styles) => [
+        styles.root,
+        props.variant && styles[props.variant],
+      ];
 
       const TestNoSx = styled('div', {
         shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',

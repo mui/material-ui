@@ -145,7 +145,7 @@ export function useControllableReducer<
 >(
   parameters: ControllableReducerParameters<State, Action, ActionContext>,
 ): [State, (action: Action) => void] {
-  const lastActionRef = React.useRef<Action | null>(null);
+  const lastActionRef = React.useRef<Action>(null);
 
   const {
     reducer,

@@ -431,6 +431,7 @@ TextField.propTypes /* remove-proptypes */ = {
   SelectProps: PropTypes.object,
   /**
    * The size of the component.
+   * @default 'medium'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['medium', 'small']),

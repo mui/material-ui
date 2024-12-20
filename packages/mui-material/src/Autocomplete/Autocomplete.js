@@ -250,10 +250,11 @@ const AutocompleteClearIndicator = styled(IconButton, {
 const AutocompletePopupIndicator = styled(IconButton, {
   name: 'MuiAutocomplete',
   slot: 'PopupIndicator',
-  overridesResolver: ({ ownerState }, styles) => ({
-    ...styles.popupIndicator,
-    ...(ownerState.popupOpen && styles.popupIndicatorOpen),
-  }),
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [styles.popupIndicator, ownerState.popupOpen && styles.popupIndicatorOpen];
+  },
 })({
   padding: 2,
   marginRight: -2,
@@ -993,7 +994,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
    *
-   * @param {Value} options The options to group.
+   * @param {Value} option The Autocomplete option.
    * @returns {string}
    */
   groupBy: PropTypes.func,
