@@ -56,12 +56,15 @@ The example below shows how to customize the Card component for dark mode:
 import Card from '@mui/material/Card';
 
 <Card
-  sx={(theme) => ({
-    backgroundColor: theme.vars.palette.background.default,
-    ...theme.applyStyles('dark', {
-      backgroundColor: theme.vars.palette.grey[50],
+  sx={[
+    (theme) => ({
+      backgroundColor: theme.vars.palette.background.default,
     }),
-  })}
+    (theme) =>
+      theme.applyStyles('dark', {
+        backgroundColor: theme.vars.palette.grey[50],
+      }),
+  ]}
 />;
 ```
 

@@ -186,20 +186,22 @@ With the `styled` function:
 ```jsx
 import { styled } from '@mui/material/styles';
 
-const MyComponent = styled('div')(({ theme }) => ({
-  color: '#fff',
-  backgroundColor: theme.palette.primary.main,
-  ...theme.applyStyles('dark', {
-    backgroundColor: theme.palette.secondary.main,
-  }),
-  '&:hover': {
-    boxShadow: theme.shadows[3],
-    backgroundColor: theme.palette.primary.dark,
-    ...theme.applyStyles('dark', {
-      backgroundColor: theme.palette.secondary.dark,
-    }),
+const MyComponent = styled('div')(({ theme }) => [
+  {
+    color: '#fff',
+    backgroundColor: theme.palette.primary.main,
+    '&:hover': {
+      boxShadow: theme.shadows[3],
+      backgroundColor: theme.palette.primary.dark,
+    },
   },
-}));
+  theme.applyStyles('dark', {
+    backgroundColor: theme.palette.secondary.main,
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.dark,
+    },
+  }),
+]);
 ```
 
 With the `sx` prop:
@@ -212,17 +214,18 @@ import Button from '@mui/material/Button';
     (theme) => ({
       color: '#fff',
       backgroundColor: theme.palette.primary.main,
-      ...theme.applyStyles('dark', {
-        backgroundColor: theme.palette.secondary.main,
-      }),
       '&:hover': {
         boxShadow: theme.shadows[3],
         backgroundColor: theme.palette.primary.dark,
-        ...theme.applyStyles('dark', {
-          backgroundColor: theme.palette.secondary.dark,
-        }),
       },
     }),
+    (theme) =>
+      theme.applyStyles('dark', {
+        backgroundColor: theme.palette.secondary.main,
+        '&:hover': {
+          backgroundColor: theme.palette.secondary.dark,
+        },
+      }),
   ]}
 >
   Submit
