@@ -78,11 +78,9 @@ Here's an example of a media control card.
 
 {{"demo": "MediaControlCard.js", "bg": true}}
 
-## Card Action Area Props
+## Active style
 
-Having an active state attribute that can be defined for conditionally styling the card being interacted with, or the card holding the active state.
-
-The `CardActionArea` component can have props or attributes added to it, that imply to the contents of the Card.
+To style a card to look like it's active, attach a `data-active` and style it with `&[data-active]` selector.
 
 {{"demo": "SelectActionCard.js", "bg": true}}
 

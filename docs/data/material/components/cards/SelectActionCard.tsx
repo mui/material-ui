@@ -1,18 +1,11 @@
+import * as React from 'react';
+import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
-import Container from '@mui/material/Container';
-import Grid2 from '@mui/material/Grid2';
-import * as React from 'react';
 
-type CardDataType = {
-  id: number;
-  title: string;
-  description: string;
-};
-
-const cards: CardDataType[] = [
+const cards = [
   {
     id: 1,
     title: 'Plants',
@@ -31,47 +24,43 @@ const cards: CardDataType[] = [
 ];
 
 function SelectActionCard() {
-  const [selectedCard, setSelectedCard] = React.useState<CardDataType>();
-
-  const selectedCardHandler = (cardData: CardDataType) => {
-    setSelectedCard(cardData);
-  };
-
+  const [selectedCard, setSelectedCard] = React.useState(0);
   return (
-    <Container maxWidth="md" sx={{ py: 4 }}>
-      <Grid2>
-        {cards.map((card: CardDataType) => (
-          <Card>
-            <CardActionArea
-              onClick={() => selectedCardHandler(card)}
-              data-active={selectedCard?.id === card.id ? '' : undefined}
-              sx={{
-                '&[data-active]': {
-                  backgroundColor: 'action.selected',
-                  '&:hover': {
-                    backgroundColor: 'action.selectedHover',
-                  },
+    <Box
+      sx={{
+        width: '100%',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(min(200px, 100%), 1fr))',
+        gap: 2,
+      }}
+    >
+      {cards.map((card, index) => (
+        <Card>
+          <CardActionArea
+            onClick={() => setSelectedCard(index)}
+            data-active={selectedCard === index ? '' : undefined}
+            sx={{
+              height: '100%',
+              '&[data-active]': {
+                backgroundColor: 'action.selected',
+                '&:hover': {
+                  backgroundColor: 'action.selectedHover',
                 },
-              }}
-            >
-              <CardContent>
-                <Typography variant="h5" component="div">
-                  {card.title}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {card.description}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        ))}
-      </Grid2>
-      {selectedCard && (
-        <Typography variant="h6" sx={{ mt: 4 }}>
-          {selectedCard.title}
-        </Typography>
-      )}
-    </Container>
+              },
+            }}
+          >
+            <CardContent sx={{ height: '100%' }}>
+              <Typography variant="h5" component="div">
+                {card.title}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {card.description}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      ))}
+    </Box>
   );
 }
 
