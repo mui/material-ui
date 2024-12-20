@@ -78,7 +78,7 @@ Here's an example of a media control card.
 
 {{"demo": "MediaControlCard.js", "bg": true}}
 
-## Active style
+## Active state styles
 
 To customize a Card's styles when it's in an active state, you can attach a `data-active` attribute to the Card Action Area component and apply styles with the `&[data-active]` selector, as shown below:
 
