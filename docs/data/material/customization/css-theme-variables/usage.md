@@ -62,7 +62,7 @@ import Card from '@mui/material/Card';
     }),
     (theme) =>
       theme.applyStyles('dark', {
-        backgroundColor: theme.vars.palette.grey[50],
+        backgroundColor: theme.vars.palette.grey[900],
       }),
   ]}
 />;

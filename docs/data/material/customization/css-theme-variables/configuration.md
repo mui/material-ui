@@ -136,26 +136,27 @@ If you have such a condition, replace it with the [`theme.applyStyles()` functio
  function App() {
    return (
      <Card
--       sx={(theme) => ({
+-      sx={(theme) => ({
 -        backgroundColor: theme.palette.mode === 'dark' ? '#000' : '#fff',
 -        '&:hover': {
 -          backgroundColor: theme.palette.mode === 'dark' ? '#333' : '#f5f5f5',
 -        },
 -      })}
-+       sx={(theme) => [
-+          {
-+            backgroundColor: '#fff',
-+            '&:hover': {
-+              backgroundColor: '#f5f5f5',
-+            },
++      sx={[
++        {
++          backgroundColor: '#fff',
++          '&:hover': {
++            backgroundColor: '#f5f5f5',
 +          },
++        },
++        (theme) =>
 +          theme.applyStyles('dark', {
 +            backgroundColor: '#000',
 +            '&:hover': {
 +              backgroundColor: '#333',
 +            },
 +          }),
-+        ]}
++      ]}
      />
    );
  }
