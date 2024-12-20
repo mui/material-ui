@@ -269,7 +269,7 @@ Apply styles for a specific mode.
 
 #### Overriding applyStyles
 
-You can override `theme.applyStyles()` with a custom function to have complete control over it.
+You can override `theme.applyStyles()` with a custom function to gain complete control over the values it returns.
 Please review the [source code](https://github.com/mui/material-ui/blob/HEAD/packages/mui-system/src/createTheme/applyStyles.ts) to understand how the default implementation works before overriding it.
 For instance, if you need the function to return a string instead of an object so it can be used inside template literals:
 
