@@ -229,27 +229,9 @@ import Button from '@mui/material/Button';
 </Button>;
 ```
 
-### API
-
-`theme.applyStyles(mode, styles) => CSSObject`
-
-Apply styles for a specific mode.
-
-#### Arguments
-
-- `mode` (`'light' | 'dark'`) - The mode for which the styles should be applied.
-- `styles` (`CSSObject`) - An object which contains the styles to be applied for the specified mode.
-
-#### Returns
-
-A `CSSObject` which key is the mode selector and value is the styles object: `{ [modeSelector]: styles }`.
-
-By default, the `modeSelector` is `'@media (prefers-color-scheme: light)'` for light mode and `'@media (prefers-color-scheme: dark)'` for dark mode.
-
-### Specificity
-
-Styles applied with `theme.applyStyles()` have higher specificity than the styles defined outside of it.
-This means that to override styles applied with it (via the `styled` function or `sx` prop), you need to use `theme.applyStyles()` as well:
+:::warning
+When `cssVariables: true`, styles applied with `theme.applyStyles()` have higher specificity than those defined outside of it.
+This means that to override styles applied with it, you need to use `theme.applyStyles()` as well:
 
 ```jsx
 const BaseButton = styled('button')(({ theme }) =>
@@ -269,10 +251,24 @@ const PinkButton = styled(BaseButton)(({ theme }) =>
 );
 ```
 
-### Overriding applyStyles
+:::
 
-If you need to override `theme.applyStyles()`, you can do so by providing a custom function.
-A case in which you might need to do it is to return a string instead of an object so it can be used inside template literals:
+### API
+
+`theme.applyStyles(mode, styles) => CSSObject`
+
+Apply styles for a specific mode.
+
+#### Arguments
+
+- `mode` (`'light' | 'dark'`) - The mode for which the styles should be applied.
+- `styles` (`CSSObject`) - An object that contains the styles to be applied for the specified mode.
+
+#### Overriding applyStyles
+
+You can override `theme.applyStyles()` with a custom function to have complete control over it.
+Please review the [source code](https://github.com/mui/material-ui/blob/HEAD/packages/mui-system/src/createTheme/applyStyles.ts) to understand how the default implementation works before overriding it.
+For instance, if you need the function to return a string instead of an object so it can be used inside template literals:
 
 ```js
 const theme = createTheme({
@@ -297,9 +293,6 @@ const StyledButton = styled('button')`
   )}
 `;
 ```
-
-When overriding `theme.applyStyles()`, you have complete control over its arguments and return value.
-Please review the [source code](https://github.com/mui/material-ui/blob/HEAD/packages/mui-system/src/createTheme/applyStyles.ts) to understand how the default implementation works before overriding it.
 
 ### Codemod
 
