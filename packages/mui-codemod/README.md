@@ -275,12 +275,14 @@ npx @mui/codemod@latest deprecations/alert-props <path>
 -  }}
 +  slots={{
 +    paper: CustomPaper,
-+    popper: CustomPopper,
-+    listbox: CustomListbox,
++    popper: CustomPopper
 +  }}
 +  slotProps={{
 +    chip: { height: 10 },
-+    listbox: { height: 12 },
++    listbox: {
++        component: CustomListbox,
++        ...{ height: 12 },
++    },
 +    clearIndicator: { width: 10 },
 +    paper: { width: 12 },
 +    popper: { width: 14 },
@@ -306,11 +308,13 @@ npx @mui/codemod@latest deprecations/alert-props <path>
 +    slots: {
 +      paper: CustomPaper,
 +      popper: CustomPopper,
-+      listbox: CustomListbox,
 +    },
 +    slotProps: {
 +      chip: { height: 10 },
-+      listbox: { height: 12 },
++      listbox: {
++        component: CustomListbox,
++        ...{ height: 12 },
++      },
 +      clearIndicator: { width: 10 },
 +      paper: { width: 12 },
 +      popper: { width: 14 },
@@ -1103,6 +1107,32 @@ npx @mui/codemod@latest deprecations/form-control-label-props <path>
 npx @mui/codemod@latest deprecations/list-item-props <path>
 ```
 
+#### `list-item-text-props`
+
+```diff
+ <ListItemText
+-  primaryTypographyProps={primaryTypographyProps}
++  slotProps={{ primary: primaryTypographyProps }}
+-  secondaryTypographyProps={secondaryTypographyProps}
++  slotProps={{ secondary: secondaryTypographyProps }}
+ />
+```
+
+```diff
+ MuiListItemText: {
+   defaultProps: {
+-  primaryTypographyProps:primaryTypographyProps
++  slotProps:{ primary: primaryTypographyProps }
+-  secondaryTypographyProps:secondaryTypographyProps
++  slotProps:{ secondary: secondaryTypographyProps }
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/list-item-text-props <path>
+```
+
 #### `image-list-item-bar-classes`
 
 JS transforms:
@@ -1408,19 +1438,43 @@ npx @mui/codemod@latest deprecations/slider-props <path>
  <Tooltip
 -  components={{ Arrow: CustomArrow }}
 -  componentsProps={{ arrow: { testid: 'test-id' } }}
-+  slots={{ arrow: CustomArrow }}
-+  slotProps={{ arrow: { testid: 'test-id' } }}
+-  PopperComponent={CustomPopperComponent}
+-  TransitionComponent={CustomTransitionComponent}
+-  PopperProps={CustomPopperProps}
+-  TransitionProps={CustomTransitionProps}
++  slots={{
++    arrow: CustomArrow,
++    popper: CustomPopperComponent,
++    transition: CustomTransitionComponent,
++  }}
++  slotProps={{
++    arrow: { testid: 'test-id' },
++    popper: CustomPopperProps,
++    transition: CustomTransitionProps,
++  }}
  />
 ```
 
 ```diff
  MuiTooltip: {
    defaultProps: {
+-    PopperComponent: CustomPopperComponent,
+-    TransitionComponent: CustomTransitionComponent,
+-    PopperProps: CustomPopperProps,
+-    TransitionProps: CustomTransitionProps,
 -    components: { Arrow: CustomArrow }
-+    slots: { arrow: CustomArrow },
++    slots: {
++      arrow: CustomArrow,
++      popper: CustomPopperComponent,
++      transition: CustomTransitionComponent,
++    },
 -    componentsProps: { arrow: { testid: 'test-id' }}
-+    slotProps: { arrow: { testid: 'test-id' } },
-  },
++    slotProps: {
++      arrow: { testid: 'test-id' },
++      popper: CustomPopperProps,
++      transition: CustomTransitionProps,
++    },
+   },
  },
 ```
 
@@ -1449,6 +1503,25 @@ JS transforms:
      },
    },
  },
+```
+
+```bash
+npx @mui/codemod@next deprecations/step-connector-classes <path>
+```
+
+#### `step-content-props`
+
+```diff
+ <StepContent
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ unmountOnExit: true }}
++  slots={{ transition: CustomTransition }}
++  slotProps={{ transition: { unmountOnExit: true } }}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/step-content-props <path>
 ```
 
 #### `step-label-props`
@@ -1634,6 +1707,13 @@ npx @mui/codemod@latest deprecations/table-sort-label-classes <path>
  <Typography
 -  paragraph
 +  sx={{ marginBottom: '16px' }}
+ />
+```
+
+```diff
+ <Typography
+-  paragraph={isTypographyParagraph}
++  sx={isTypographyParagraph ? { marginBottom: '16px' } : undefined}
  />
 ```
 
@@ -2136,7 +2216,7 @@ The list includes these transformers
 
 #### `adapter-v4`
 
-Imports and inserts `adaptV4Theme` into `createTheme` (or `createMuiTheme`)
+Imports and inserts `adaptV4Theme` into `createTheme()` (or `createMuiTheme`)
 
 ```diff
 +import { adaptV4Theme } from '@material-ui/core/styles';
@@ -2422,7 +2502,7 @@ npx @mui/codemod@latest v5.0.0/core-styles-import <path>
 
 #### `create-theme`
 
-Renames the function `createMuiTheme` to `createTheme`
+Renames the function `createMuiTheme()` to `createTheme()`
 
 ```diff
 -import { createMuiTheme } from '@material-ui/core/styles';
@@ -2503,7 +2583,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `fade-rename-alpha`
 
-Renames the `fade` style utility import and calls to `alpha`.
+Renames the `fade` style utility import and calls to `alpha()`.
 
 ```diff
 -import { fade, lighten } from '@material-ui/core/styles';

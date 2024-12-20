@@ -5,6 +5,12 @@
  */
 
 const path = require('path');
+const a11yBase = require('eslint-config-airbnb/rules/react-a11y');
+
+const controlHasAssociatedLabelConfig = a11yBase.rules['jsx-a11y/control-has-associated-label'];
+
+const controlHasAssociatedLabelOptions =
+  typeof controlHasAssociatedLabelConfig[1] === 'object' ? controlHasAssociatedLabelConfig[1] : {};
 
 const OneLevelImportMessage = [
   'Prefer one level nested imports to avoid bundling everything in dev mode or breaking CJS/ESM split.',
@@ -48,7 +54,7 @@ const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
 module.exports = /** @type {Config} */ ({
   root: true, // So parent files don't get applied
   env: {
-    es6: true,
+    es2020: true,
     browser: true,
     node: true,
   },
@@ -120,6 +126,10 @@ module.exports = /** @type {Config} */ ({
         variables: true,
       },
     ],
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      { vars: 'all', args: 'after-used', ignoreRestSiblings: true, argsIgnorePattern: '^_' },
+    ],
     'no-use-before-define': 'off',
 
     // disabled type-aware linting due to performance considerations
@@ -154,6 +164,16 @@ module.exports = /** @type {Config} */ ({
     ],
     // We are a library, we need to support it too
     'jsx-a11y/no-autofocus': 'off',
+    // Remove when issues are fixed
+    // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/959
+    // https://github.com/airbnb/javascript/issues/3069
+    'jsx-a11y/control-has-associated-label': [
+      'error',
+      {
+        ...controlHasAssociatedLabelOptions,
+        ignoreElements: [...(controlHasAssociatedLabelOptions.ignoreElements || []), 'th', 'td'],
+      },
+    ],
 
     'material-ui/docgen-ignore-before-comment': 'error',
     'material-ui/rules-of-use-theme-variants': 'error',
@@ -242,8 +262,6 @@ module.exports = /** @type {Config} */ ({
 
     // We re-export default in many places, remove when https://github.com/airbnb/javascript/issues/2500 gets resolved
     'no-restricted-exports': 'off',
-    // Some of these occurences are deliberate and fixing them will break things in repos that use @monorepo dependency
-    'import/no-relative-packages': 'off',
     // Avoid accidental auto-"fixes" https://github.com/jsx-eslint/eslint-plugin-react/issues/3458
     'react/no-invalid-html-attribute': 'off',
 
@@ -257,10 +275,7 @@ module.exports = /** @type {Config} */ ({
     {
       files: [
         // matching the pattern of the test runner
-        '*.test.mjs',
-        '*.test.js',
-        '*.test.ts',
-        '*.test.tsx',
+        '*.test.?(c|m)[jt]s?(x)',
       ],
       extends: ['plugin:mocha/recommended'],
       rules: {
@@ -307,15 +322,6 @@ module.exports = /** @type {Config} */ ({
         'react/no-unused-prop-types': 'off',
       },
     },
-    {
-      files: ['docs/src/modules/components/**/*.js'],
-      rules: {
-        'material-ui/no-hardcoded-labels': [
-          'error',
-          { allow: ['MUI', 'X', 'GitHub', 'Stack Overflow'] },
-        ],
-      },
-    },
     // Next.js plugin
     {
       files: ['docs/**/*'],
@@ -328,18 +334,27 @@ module.exports = /** @type {Config} */ ({
       rules: {
         // We're not using the Image component at the moment
         '@next/next/no-img-element': 'off',
+        'no-restricted-imports': [
+          'error',
+          {
+            paths: NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
+            patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
+          },
+        ],
       },
     },
-    // Next.js entry points pages
     {
-      files: ['docs/pages/**/*{.tsx,.js}'],
+      files: ['docs/src/modules/components/**/*'],
       rules: {
-        'react/prop-types': 'off',
+        'material-ui/no-hardcoded-labels': [
+          'error',
+          { allow: ['MUI', 'X', 'GitHub', 'Stack Overflow'] },
+        ],
       },
     },
     // demos
     {
-      files: ['docs/src/pages/**/*{.tsx,.js}', 'docs/data/**/*{.tsx,.js}'],
+      files: ['docs/src/pages/**/*', 'docs/data/**/*'],
       rules: {
         // This most often reports data that is defined after the component definition.
         // This is safe to do and helps readability of the demo code since the data is mostly irrelevant.
@@ -349,26 +364,32 @@ module.exports = /** @type {Config} */ ({
         'no-console': 'off',
       },
     },
-    // demos - proptype generation
+    // Next.js entry points pages
     {
-      files: ['docs/data/base/components/modal/UseModal.js'],
+      files: ['docs/pages/**/*'],
       rules: {
-        'consistent-return': 'off',
-        'func-names': 'off',
-        'no-else-return': 'off',
-        'prefer-template': 'off',
+        'react/prop-types': 'off',
       },
     },
     {
-      files: ['docs/data/**/*{.tsx,.js}'],
+      files: ['docs/data/**/*'],
       excludedFiles: [
-        'docs/data/joy/getting-started/templates/**/*.tsx',
-        'docs/data/**/css/*{.tsx,.js}',
-        'docs/data/**/system/*{.tsx,.js}',
-        'docs/data/**/tailwind/*{.tsx,.js}',
+        // filenames/match-exported sees filename as 'file-name.d'
+        // Plugin looks unmaintain, find alternative? (e.g. eslint-plugin-project-structure)
+        '*.d.ts',
+        'docs/data/joy/getting-started/templates/**/*',
+        'docs/data/**/{css,system,tailwind}/*',
       ],
       rules: {
         'filenames/match-exported': ['error'],
+      },
+    },
+    {
+      files: ['docs/data/material/getting-started/templates/**/*'],
+      rules: {
+        // So we can use # to improve the page UX
+        // and so developer get eslint warning to remind them to fix the links
+        'jsx-a11y/anchor-is-valid': 'off',
       },
     },
     {
@@ -380,6 +401,13 @@ module.exports = /** @type {Config} */ ({
     {
       files: ['packages/*/src/**/*.tsx'],
       excludedFiles: '*.spec.tsx',
+      rules: {
+        'react/prop-types': 'off',
+      },
+    },
+    {
+      files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
+      excludedFiles: '*.spec.*',
       rules: {
         'no-restricted-imports': [
           'error',
@@ -406,11 +434,10 @@ module.exports = /** @type {Config} */ ({
             ],
           },
         ],
-        'react/prop-types': 'off',
       },
     },
     {
-      files: ['*.spec.tsx', '*.spec.ts'],
+      files: ['*.spec.*'],
       rules: {
         'no-alert': 'off',
         'no-console': 'off',
@@ -449,20 +476,8 @@ module.exports = /** @type {Config} */ ({
       },
     },
     {
-      files: ['docs/**/*{.ts,.tsx,.js}'],
-      rules: {
-        'no-restricted-imports': [
-          'error',
-          {
-            paths: NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
-            patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
-          },
-        ],
-      },
-    },
-    {
-      files: ['packages/*/src/**/*{.ts,.tsx,.js}'],
-      excludedFiles: ['*.d.ts', '*.spec.ts', '*.spec.tsx'],
+      files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
+      excludedFiles: ['*.d.ts', '*.spec.*'],
       rules: {
         'no-restricted-imports': [
           'error',
@@ -477,8 +492,8 @@ module.exports = /** @type {Config} */ ({
       },
     },
     {
-      files: ['packages/*/src/**/*{.ts,.tsx,.js}'],
-      excludedFiles: ['*.d.ts', '*.spec.ts', '*.spec.tsx', 'packages/mui-joy/**/*{.ts,.tsx,.js}'],
+      files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
+      excludedFiles: ['*.d.ts', '*.spec.*', 'packages/mui-joy/**/*'],
       rules: {
         'material-ui/mui-name-matches-component-name': 'error',
       },
@@ -533,6 +548,12 @@ module.exports = /** @type {Config} */ ({
       files: ['examples/pigment-css-remix-ts/**/*'],
       rules: {
         'react/react-in-jsx-scope': 'off',
+      },
+    },
+    {
+      files: ['apps/**/*'],
+      rules: {
+        'import/no-relative-packages': 'off',
       },
     },
   ],

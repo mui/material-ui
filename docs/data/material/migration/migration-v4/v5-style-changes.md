@@ -308,7 +308,7 @@ For a smoother transition, the `adaptV4Theme` helper allows you to iteratively u
 ```
 
 :::warning
-This adapter only handles the input arguments of `createTheme`.
+This adapter only handles the input arguments of `createTheme()`.
 If you modify the shape of the theme after its creation, you need to migrate the structure manually.
 :::
 
@@ -511,7 +511,7 @@ Nested imports of more than one level are private. For example, you can no longe
 
 ### ✅ Rename fade to alpha
 
-`fade` was renamed to `alpha` to better describe its functionality.
+`fade()` was renamed to `alpha()` to better describe its functionality.
 
 The previous name caused confusion when the input color already had an alpha value. The helper overrides the alpha value of the color.
 
@@ -548,7 +548,7 @@ To generate custom class names without using `@mui/styles`, check out [ClassName
 
 ### ✅ Rename createMuiTheme
 
-The function `createMuiTheme` was renamed to `createTheme` to make it more intuitive to use with `ThemeProvider`.
+The function `createMuiTheme` was renamed to `createTheme()` to make it more intuitive to use with `ThemeProvider`.
 
 ```diff
 -import { createMuiTheme } from '@mui/material/styles';

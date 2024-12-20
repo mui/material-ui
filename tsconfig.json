@@ -3,7 +3,7 @@
     "module": "esnext",
     // aligning with Node18 recommendation: https://www.npmjs.com/package/@tsconfig/node18
     "target": "es2022",
-    "lib": ["es2020", "dom"],
+    "lib": ["es2020", "dom", "dom.iterable"],
     "jsx": "preserve",
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
@@ -52,7 +52,7 @@
       "@mui/internal-test-utils/*": ["./packages-internal/test-utils/src/*"]
     },
     // Otherwise we get react-native typings which conflict with dom.lib.
-    "types": ["node", "react"]
+    "types": ["node", "react", "mocha"]
   },
   "exclude": ["**/.*/", "**/build", "**/node_modules", "docs/export"]
 }

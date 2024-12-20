@@ -221,6 +221,22 @@ describe('createTheme', () => {
       expect(theme.colorSchemes.dark).to.not.equal(undefined);
     });
 
+    it('should be able to customize tonal offset', () => {
+      const theme = createTheme({
+        cssVariables: true,
+        palette: {
+          primary: {
+            main: green[500],
+          },
+          tonalOffset: {
+            light: 0.1,
+            dark: 0.9,
+          },
+        },
+      });
+      expect(theme.palette.primary.main).to.equal('#4caf50');
+    });
+
     describe('spacing', () => {
       it('should provide the default spacing', () => {
         const theme = createTheme({ cssVariables: true });
@@ -560,5 +576,13 @@ describe('createTheme', () => {
         '--template-palette-background-defaultChannel'
       ],
     ).to.equal('5 7 10');
+  });
+
+  it('should have `toRuntimeSource` for integrating with Pigment CSS', () => {
+    const theme = createTheme();
+    expect(typeof theme.toRuntimeSource).to.equal('function');
+
+    const themeCssVars = createTheme({ cssVariables: true });
+    expect(typeof themeCssVars.toRuntimeSource).to.equal('function');
   });
 });

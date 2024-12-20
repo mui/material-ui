@@ -2,7 +2,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
-import InitColorSchemeScript, {
+import InitColorSchemeScript from '@mui/system/InitColorSchemeScript';
+import {
   DEFAULT_ATTRIBUTE,
   DEFAULT_MODE_STORAGE_KEY,
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,

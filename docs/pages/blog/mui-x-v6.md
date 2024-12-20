@@ -7,7 +7,7 @@ manualCard: true
 tags: ['MUI X', 'Product']
 ---
 
-<img src="/static/blog/mui-x-v6/card.png" alt="" style="margin-bottom: 16px;" width="2560" height="1280" />
+<img src="/static/blog/mui-x-v6/card.png" alt="" width="2560" height="1280" />
 
 [MUI X v6.0.0](https://github.com/mui/mui-x/releases/tag/v6.0.0) is finally here with many improvements, new features, customization abilities, and a more robust foundation to accommodate the changes we want to deliver next.
 
@@ -208,7 +208,7 @@ export default function CustomStaticDatePicker() {
 
 Many end-users complained, and we completely agree, the [clock view](/x/react-date-pickers/time-clock/) is not the ideal time-picking experience on Desktop, so we removed it as a default view.
 
-<img src="/static/blog/mui-x-v6/clock.png" loading="lazy" alt="Date Range shortcuts." width="518" height="496" style="width: 259px; margin-bottom: 24px;" />
+<img src="/static/blog/mui-x-v6/clock.png" loading="lazy" alt="Date Range shortcuts." width="518" height="496" style="width: 259px;" />
 
 <p class="blog-description">The clock picker, still present on mobile.</p>
 

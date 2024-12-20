@@ -23,7 +23,6 @@ export type IconImageProps = {
     | 'companies/unity'
     | 'companies/shutterstock'
     | 'companies/southwest'
-    | 'companies/boeing'
     | 'companies/siemens'
     | 'companies/deloitte'
     | 'companies/apple'
@@ -35,6 +34,7 @@ export type IconImageProps = {
     | 'companies/ebay'
     | 'companies/samsung'
     | 'companies/volvo'
+    | 'companies/tesla'
     | string;
   height?: number;
   mode?: '' | 'light' | 'dark';

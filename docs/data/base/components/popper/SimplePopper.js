@@ -30,6 +30,6 @@ const StyledPopperDiv = styled('div')(
   border: 1px solid;
   background-color: ${theme.palette.mode === 'dark' ? '#121212' : '#fff'};
   opacity: 1;
-  margin: 0.25rem 0px;
+  margin: 0.25rem 0;
 `,
 );
