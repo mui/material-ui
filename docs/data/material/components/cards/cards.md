@@ -80,7 +80,7 @@ Here's an example of a media control card.
 
 ## Active style
 
-To style a card to look like it's active, attach a `data-active` and style it with `&[data-active]` selector.
+To style a card to look like it's active, attach a `data-active` to `CardActionArea` component and style it with `&[data-active]` selector.
 
 {{"demo": "SelectActionCard.js", "bg": true}}
 
