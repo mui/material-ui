@@ -14,7 +14,7 @@ const cards = [
   {
     id: 2,
     title: 'Animals',
-    description: 'Animals are part of the nature and wildlife.',
+    description: 'Animals are a part of nature.',
   },
   {
     id: 3,
