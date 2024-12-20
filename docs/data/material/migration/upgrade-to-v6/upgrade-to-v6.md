@@ -155,6 +155,13 @@ If the default heading element conflicts with your existing structure, you can c
 </Accordion>
 ```
 
+### Accordion (Starting from v6.3.0)
+
+- The Accordion Summary HTML structure has been updated to fix invalid HTML introduced by wrapping it with a heading shown above:
+  - The root element is now a `button`.
+  - Summary content and the icon wrapper are rendered as `span`.
+- Developers using the previous `div` element for styling in the `AccordionSummary` should update their styling. Additionally, those using Typography, which defaults to rendering a `p` tag, should replace it with a `span`. You can use the `component` prop to replace the HTML tag (`<Typography component="span" />`), as shown in the [Accordion demos](https://mui.com/material-ui/react-accordion/).
+
 ### Autocomplete
 
 Three new values have been introduced to the `reason` argument in the `onInputChange` callback of the Autocomplete component.
