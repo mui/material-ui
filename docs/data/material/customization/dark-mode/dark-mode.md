@@ -231,7 +231,7 @@ import Button from '@mui/material/Button';
 
 :::warning
 When `cssVariables: true`, styles applied with `theme.applyStyles()` have higher specificity than those defined outside of it.
-This means that to override styles applied with it, you need to use `theme.applyStyles()` as well:
+So if you need to override styles, you must also use `theme.applyStyles()` as shown below:
 
 ```jsx
 const BaseButton = styled('button')(({ theme }) =>
