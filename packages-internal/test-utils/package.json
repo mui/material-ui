@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-test-utils",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "author": "MUI Team",
   "description": "Utilities for MUI tests. This is an internal package not meant for general use.",
   "main": "./build/index.js",
@@ -49,7 +49,7 @@
     "fs-extra": "^11.2.0",
     "jsdom": "^25.0.1",
     "lodash": "^4.17.21",
-    "mocha": "^10.8.2",
+    "mocha": "^11.0.1",
     "playwright": "^1.48.2",
     "prop-types": "^15.8.1",
     "sinon": "^19.0.2"
@@ -58,15 +58,15 @@
     "@types/chai": "^4.3.20",
     "@types/chai-dom": "^1.11.3",
     "@types/format-util": "^1.0.4",
-    "@types/prop-types": "^15.7.13",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
+    "@types/prop-types": "^15.7.14",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.2",
     "@types/sinon": "^17.0.3",
     "typescript": "^5.7.2"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "publishConfig": {
     "access": "public"
