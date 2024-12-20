@@ -263,6 +263,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
         value: { value, name },
       });
 
+      lastChangedValue.current = value;
       onChange(clonedEvent, value, thumbIndex);
     });
 
@@ -352,7 +353,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     }
 
     if (onChangeCommitted) {
-      onChangeCommitted(event, newValue);
+      onChangeCommitted(event, lastChangedValue.current ?? newValue);
     }
   };
 
@@ -569,8 +570,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     }
 
     if (handleChange && !areValuesEqual(newValue, valueDerived)) {
-      lastChangedValue.current = newValue;
-      handleChange(nativeEvent, lastChangedValue.current ?? newValue, activeIndex);
+      handleChange(nativeEvent, newValue, activeIndex);
     }
   });
 
