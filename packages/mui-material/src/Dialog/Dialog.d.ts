@@ -5,8 +5,35 @@ import { PaperProps } from '../Paper';
 import { ModalProps } from '../Modal';
 import { TransitionProps } from '../transitions/transition';
 import { DialogClasses } from './dialogClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
-export interface DialogProps extends StandardProps<ModalProps, 'children'> {
+export interface DialogSlots {
+  /**
+   * The component that renders the transition.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Collapse
+   */
+  transition?: React.JSXElementConstructor<
+    TransitionProps & { children?: React.ReactElement<any, any> }
+  >;
+}
+
+export interface DialogTransitionSlotPropsOverrides {}
+
+export type DialogSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  DialogSlots,
+  {
+    transition: SlotProps<
+      React.ElementType<TransitionProps>,
+      DialogTransitionSlotPropsOverrides,
+      DialogOwnerState
+    >;
+  }
+>;
+
+export interface DialogProps
+  extends Omit<StandardProps<ModalProps, 'children'>, 'slots' | 'slotProps'>,
+    DialogSlotsAndSlotProps {
   /**
    * The id(s) of the element(s) that describe the dialog.
    */
@@ -92,6 +119,7 @@ export interface DialogProps extends StandardProps<ModalProps, 'children'> {
    * The component used for the transition.
    * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
+   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionComponent?: React.JSXElementConstructor<
     TransitionProps & { children: React.ReactElement<unknown, any> }
@@ -108,6 +136,7 @@ export interface DialogProps extends StandardProps<ModalProps, 'children'> {
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
+   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionProps?: TransitionProps;
 }
@@ -125,3 +154,5 @@ export interface DialogProps extends StandardProps<ModalProps, 'children'> {
  * - inherits [Modal API](https://mui.com/material-ui/api/modal/)
  */
 export default function Dialog(props: DialogProps): React.JSX.Element;
+
+export interface DialogOwnerState extends DialogProps {}
