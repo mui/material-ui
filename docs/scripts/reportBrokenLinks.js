@@ -64,13 +64,9 @@ function cleanLink(link) {
 }
 
 function getLinksAndAnchors(fileName) {
-  const toc = [];
   const headingHashes = {};
-  const userLanguage = 'en';
   const render = createRender({
     headingHashes,
-    toc,
-    userLanguage,
     options: {
       ignoreLanguagePages: LANGUAGES_IGNORE_PAGES,
       env: {
