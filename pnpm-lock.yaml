@@ -807,8 +807,8 @@ importers:
         specifier: ^4.12.3
         version: 4.12.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react-window:
-        specifier: ^1.8.10
-        version: 1.8.10(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: ^1.8.11
+        version: 1.8.11(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
@@ -2348,8 +2348,8 @@ importers:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react-window:
-        specifier: ^1.8.10
-        version: 1.8.10(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: ^1.8.11
+        version: 1.8.11(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       sinon:
         specifier: ^19.0.2
         version: 19.0.2
@@ -11284,12 +11284,12 @@ packages:
       react: '>=16 || >=17 || >= 18'
       react-dom: '>=16 || >=17 || >= 18'
 
-  react-window@1.8.10:
-    resolution: {integrity: sha512-Y0Cx+dnU6NLa5/EvoHukUD0BklJ8qITCtVEPY1C/nL8wwoZ0b5aEw8Ff1dOVHw7fCzMt55XfJDd8S8W8LCaUCg==}
+  react-window@1.8.11:
+    resolution: {integrity: sha512-+SRbUVT2scadgFSWx+R1P754xHPEqvcfSfVX10QYg6POOz+WNgkN48pS+BtZNIMGiL1HYrSEiCkwsMS15QogEQ==}
     engines: {node: '>8.0.0'}
     peerDependencies:
-      react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+      react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   react-zdog@1.2.2:
     resolution: {integrity: sha512-Ix7ALha91aOEwiHuxumCeYbARS5XNpc/w0v145oGkM6poF/CvhKJwzLhM5sEZbtrghMA+psAhOJkCTzJoseicA==}
@@ -24120,7 +24120,7 @@ snapshots:
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
 
-  react-window@1.8.10(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  react-window@1.8.11(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
       '@babel/runtime': 7.26.0
       memoize-one: 5.2.1
