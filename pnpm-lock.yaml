@@ -935,8 +935,8 @@ importers:
         specifier: ^7.26.0
         version: 7.26.0
       resolve:
-        specifier: ^1.22.9
-        version: 1.22.9
+        specifier: ^1.22.10
+        version: 1.22.10
     devDependencies:
       '@types/babel__core':
         specifier: ^7.20.5
@@ -11495,8 +11495,9 @@ packages:
   resolve-pkg-maps@1.0.0:
     resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==}
 
-  resolve@1.22.9:
-    resolution: {integrity: sha512-QxrmX1DzraFIi9PxdG5VkRfRwIgjwyud+z/iBwfRRrVmHc+P9Q7u2lSSpQ6bjr2gy5lrqIiU9vb6iAeGf2400A==}
+  resolve@1.22.10:
+    resolution: {integrity: sha512-NPRy+/ncIMeDlTAsuqwKIiferiawhefFJtkNSW0qZJEqMEb+qBt/77B/jGeeek+F0uOeN05CDa6HXbbIgtVX4w==}
+    engines: {node: '>= 0.4'}
     hasBin: true
 
   resolve@2.0.0-next.5:
@@ -13409,7 +13410,7 @@ snapshots:
       '@babel/helper-plugin-utils': 7.25.9
       debug: 4.3.7(supports-color@8.1.1)
       lodash.debounce: 4.0.8
-      resolve: 1.22.9
+      resolve: 1.22.10
     transitivePeerDependencies:
       - supports-color
 
@@ -17871,7 +17872,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.26.0
       cosmiconfig: 7.0.1
-      resolve: 1.22.9
+      resolve: 1.22.10
 
   babel-plugin-module-resolver@5.0.2:
     dependencies:
@@ -17879,7 +17880,7 @@ snapshots:
       glob: 9.3.5
       pkg-up: 3.1.0
       reselect: 4.1.8
-      resolve: 1.22.9
+      resolve: 1.22.10
 
   babel-plugin-optimize-clsx@2.6.2:
     dependencies:
@@ -18048,7 +18049,7 @@ snapshots:
 
   browser-resolve@2.0.0:
     dependencies:
-      resolve: 1.22.9
+      resolve: 1.22.10
 
   browser-stdout@1.3.1: {}
 
@@ -19592,7 +19593,7 @@ snapshots:
     dependencies:
       debug: 3.2.7
       is-core-module: 2.16.0
-      resolve: 1.22.9
+      resolve: 1.22.10
     transitivePeerDependencies:
       - supports-color
 
@@ -22855,7 +22856,7 @@ snapshots:
   normalize-package-data@2.5.0:
     dependencies:
       hosted-git-info: 2.8.9
-      resolve: 1.22.9
+      resolve: 1.22.10
       semver: 5.7.2
       validate-npm-package-license: 3.0.4
 
@@ -23539,14 +23540,14 @@ snapshots:
       postcss: 8.4.49
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
-      resolve: 1.22.9
+      resolve: 1.22.10
 
   postcss-import@16.1.0(postcss@8.4.49):
     dependencies:
       postcss: 8.4.49
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
-      resolve: 1.22.9
+      resolve: 1.22.10
 
   postcss-js@4.0.1(postcss@8.4.49):
     dependencies:
@@ -24241,11 +24242,11 @@ snapshots:
 
   rechoir@0.6.2:
     dependencies:
-      resolve: 1.22.9
+      resolve: 1.22.10
 
   rechoir@0.8.0:
     dependencies:
-      resolve: 1.22.9
+      resolve: 1.22.10
 
   redent@3.0.0:
     dependencies:
@@ -24374,7 +24375,7 @@ snapshots:
 
   resolve-pkg-maps@1.0.0: {}
 
-  resolve@1.22.9:
+  resolve@1.22.10:
     dependencies:
       is-core-module: 2.16.0
       path-parse: 1.0.7
@@ -25255,7 +25256,7 @@ snapshots:
       postcss-load-config: 4.0.2(postcss@8.4.49)
       postcss-nested: 6.2.0(postcss@8.4.49)
       postcss-selector-parser: 6.1.2
-      resolve: 1.22.9
+      resolve: 1.22.10
       sucrase: 3.35.0
     transitivePeerDependencies:
       - ts-node

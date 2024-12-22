@@ -15,7 +15,7 @@
   "license": "MIT",
   "scripts": {},
   "dependencies": {
-    "resolve": "^1.22.9"
+    "resolve": "^1.22.10"
   },
   "devDependencies": {
     "@types/babel__core": "^7.20.5",
