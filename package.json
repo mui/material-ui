@@ -100,7 +100,7 @@
   "dependencies": {
     "@googleapis/sheets": "^9.3.1",
     "@netlify/functions": "^2.8.2",
-    "@slack/bolt": "^4.1.1",
+    "@slack/bolt": "^4.2.0",
     "execa": "^9.5.2",
     "google-auth-library": "^9.15.0"
   },
