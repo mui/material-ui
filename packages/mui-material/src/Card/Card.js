@@ -12,11 +12,7 @@ import { getCardUtilityClass } from './cardClasses';
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
 
-  const slots = {
-    root: ['root'],
-  };
-
-  return composeClasses(slots, getCardUtilityClass, classes);
+  return composeClasses({ root: ['root'] }, getCardUtilityClass, classes);
 };
 
 const CardRoot = styled(Paper, {
@@ -27,21 +23,17 @@ const CardRoot = styled(Paper, {
   overflow: 'hidden',
 });
 
-const Card = React.forwardRef(function Card(inProps, ref) {
-  const props = useDefaultProps({
-    props: inProps,
+const Card = React.forwardRef(function Card(props, ref) {
+  const { className, raised = false, ...other } = useDefaultProps({
+    props,
     name: 'MuiCard',
   });
 
-  const { className, raised = false, ...other } = props;
-
   const ownerState = { ...props, raised };
-
-  const classes = useUtilityClasses(ownerState);
 
   return (
     <CardRoot
-      className={clsx(classes.root, className)}
+      className={clsx(useUtilityClasses(ownerState).root, className)}
       elevation={raised ? 8 : undefined}
       ref={ref}
       ownerState={ownerState}
