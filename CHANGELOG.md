@@ -33,7 +33,7 @@ A big thanks to the 11 contributors who made this release possible. Here are som
 
 ### Core
 
-- Remove unnecessary conditional around `.muiName = ` (#44071) @Janpot
+- Remove unnecessary conditional around `.muiName =` (#44071) @Janpot
 - [blog] Material UI: 2024 EOY updates blog post (#44722) @alelthomas
 - [docs] Fix quickstart command in pigment docs (#44806) @yash49
 - [docs-infra] Remove Next.js production profiler (#44823) @romgrk
