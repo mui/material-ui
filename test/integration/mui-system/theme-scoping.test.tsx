@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer } from '@mui/internal-test-utils';
-import { ThemeContext } from '@mui/styled-engine';
 import * as material from '@mui/material';
 import * as joy from '@mui/joy';
 
@@ -11,16 +10,22 @@ interface LibTheme {
   palette: { brand: string };
   vars: { palette: { brand: string } };
 }
+
+const LibThemeContext = React.createContext<LibTheme>({
+  palette: { brand: '' },
+  vars: { palette: { brand: '' } },
+});
+
 function LibThemeProvider({ children }: React.PropsWithChildren<{}>) {
   const theme = React.useMemo<LibTheme>(
     () => ({ palette: { brand: '#ff5252' }, vars: { palette: { brand: 'var(--palette-brand)' } } }),
     [],
   );
-  return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
+  return <LibThemeContext.Provider value={theme}>{children}</LibThemeContext.Provider>;
 }
 
 function LibComponent() {
-  const theme = React.useContext(ThemeContext as React.Context<LibTheme>);
+  const theme = React.useContext(LibThemeContext);
   return <div style={{ color: theme.palette.brand }} />;
 }
 
