@@ -33,7 +33,7 @@
     "release:publish:dry-run": "pnpm publish --tag latest --registry=\"http://localhost:4873/\""
   },
   "dependencies": {
-    "@babel/plugin-transform-modules-commonjs": "^7.25.9",
+    "@babel/plugin-transform-modules-commonjs": "^7.26.3",
     "@babel/preset-typescript": "^7.26.0",
     "@babel/register": "^7.25.9",
     "@babel/runtime": "^7.26.0",
