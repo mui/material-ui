@@ -33,8 +33,8 @@ importers:
         specifier: ^2.8.2
         version: 2.8.2
       '@slack/bolt':
-        specifier: ^4.1.1
-        version: 4.1.1
+        specifier: ^4.2.0
+        version: 4.2.0
       execa:
         specifier: ^9.5.2
         version: 9.5.2
@@ -5201,28 +5201,28 @@ packages:
   '@sinonjs/text-encoding@0.7.3':
     resolution: {integrity: sha512-DE427ROAphMQzU4ENbliGYrBSYPXF+TtLg9S8vzeA+OF4ZKzoDdzfL8sxuMUGS/lgRhM6j1URSk9ghf7Xo1tyA==}
 
-  '@slack/bolt@4.1.1':
-    resolution: {integrity: sha512-Sc8QUnEHCPgRlwrMxmvOl4Vhr/7ZBDXvLR0ir6TO+W5MaDtPsrmWLxqLmb+OhCGSjDp3d4AxO6jdFlC3yNKtsg==}
+  '@slack/bolt@4.2.0':
+    resolution: {integrity: sha512-KQGUkC37t6DUR+FVglHmcUrMpdCLbY9wpZXfjW6CUNmQnINits+EeOrVN/5xPcISKJcBIhqgrarLpwU9tpESTw==}
     engines: {node: '>=18', npm: '>=8.6.0'}
 
   '@slack/logger@4.0.0':
     resolution: {integrity: sha512-Wz7QYfPAlG/DR+DfABddUZeNgoeY7d1J39OCR2jR+v7VBsB8ezulDK5szTnDDPDwLH5IWhLvXIHlCFZV7MSKgA==}
     engines: {node: '>= 18', npm: '>= 8.6.0'}
 
-  '@slack/oauth@3.0.1':
-    resolution: {integrity: sha512-TuR9PI6bYKX6qHC7FQI4keMnhj45TNfSNQtTU3mtnHUX4XLM2dYLvRkUNADyiLTle2qu2rsOQtCIsZJw6H0sDA==}
+  '@slack/oauth@3.0.2':
+    resolution: {integrity: sha512-MdPS8AP9n3u/hBeqRFu+waArJLD/q+wOSZ48ktMTwxQLc6HJyaWPf8soqAyS/b0D6IlvI5TxAdyRyyv3wQ5IVw==}
     engines: {node: '>=18', npm: '>=8.6.0'}
 
-  '@slack/socket-mode@2.0.2':
-    resolution: {integrity: sha512-WSLBnGY9eE19jx6QLIP78oFpxNVU74soDIP0dupi35MFY6WfLBAikbuy4Y/rR4v9eJ7MNnd5/BdQNETgv32F8Q==}
+  '@slack/socket-mode@2.0.3':
+    resolution: {integrity: sha512-aY1AhQd3HAgxLYC2Mz47dXtW6asjyYp8bJ24MWalg+qFWPaXj8VBYi+5w3rfGqBW5IxlIhs3vJTEQtIBrqQf5A==}
     engines: {node: '>= 18', npm: '>= 8.6.0'}
 
   '@slack/types@2.13.0':
     resolution: {integrity: sha512-OAQVtKYIgBVNRmgIoiTjorGPTlgfcfstU3XYYCBA+czlB9aGcKb9MQc+6Jovi4gq3S98yP/GPBZsJSI/2mHKDQ==}
     engines: {node: '>= 12.13.0', npm: '>= 6.12.0'}
 
-  '@slack/web-api@7.7.0':
-    resolution: {integrity: sha512-DtRyjgQi0mObA2uC6H8nL2OhAISKDhvtOXgRjGRBnBhiaWb6df5vPmKHsOHjpweYALBMHtiqE5ajZFkDW/ag8Q==}
+  '@slack/web-api@7.8.0':
+    resolution: {integrity: sha512-d4SdG+6UmGdzWw38a4sN3lF/nTEzsDxhzU13wm10ejOpPehtmRoqBKnPztQUfFiWbNvSb4czkWYJD4kt+5+Fuw==}
     engines: {node: '>= 18', npm: '>= 8.6.0'}
 
   '@socket.io/component-emitter@3.1.0':
@@ -5397,9 +5397,6 @@ packages:
   '@types/babel__traverse@7.20.6':
     resolution: {integrity: sha512-r1bzfrm0tomOI8g1SzvCaQHo6Lcv6zu0EA+W2kHrt8dyrHQxGzBBL4kdkzIS+jBMV+EYcMAEAqXqYaLJq5rOZg==}
 
-  '@types/body-parser@1.19.2':
-    resolution: {integrity: sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g==}
-
   '@types/chai-dom@1.11.3':
     resolution: {integrity: sha512-EUEZI7uID4ewzxnU7DJXtyvykhQuwe+etJ1wwOiJyQRTH/ifMWKX+ghiXkxCUvNJ6IQDodf0JXhuP6zZcy2qXQ==}
 
@@ -5408,9 +5405,6 @@ packages:
 
   '@types/chance@1.1.6':
     resolution: {integrity: sha512-V+pm3stv1Mvz8fSKJJod6CglNGVqEQ6OyuqitoDkWywEODM/eJd1eSuIp9xt6DrX8BWZ2eDSIzbw1tPCUTvGbQ==}
-
-  '@types/connect@3.4.35':
-    resolution: {integrity: sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==}
 
   '@types/cookie@0.4.1':
     resolution: {integrity: sha512-XW/Aa8APYr6jSVVA1y/DEIZX0/GMKLEVekNG727R8cs56ahETkRAy/3DR7+fJyh7oUgGwNQaRfXCun0+KbWY7Q==}
@@ -5463,12 +5457,6 @@ packages:
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
 
-  '@types/express-serve-static-core@4.17.35':
-    resolution: {integrity: sha512-wALWQwrgiB2AWTT91CB62b6Yt0sNHpznUXeZEcnPU3DRdlDIz74x8Qg1UUYKSVFi+va5vKOLYRBI1bRKiLLKIg==}
-
-  '@types/express@4.17.21':
-    resolution: {integrity: sha512-ejlPM315qwLpaQlQDTjPdsUFSc6ZsP4AN6AlWnogPjQ7CVi7PYF3YVz+CY3jE2pwYf7E/7HlDAN0rV2GxTG0HQ==}
-
   '@types/format-util@1.0.4':
     resolution: {integrity: sha512-xrCYOdHh5zA3LUrn6CvspYwlzSWxPso11Lx32WnAG6KvLCRecKZ/Rh21PLXUkzUFsQmrGcx/traJAFjR6dVS5Q==}
 
@@ -5483,9 +5471,6 @@ packages:
 
   '@types/html-minifier-terser@6.1.0':
     resolution: {integrity: sha512-oh/6byDPnL1zeNXFrDXFLyZjkr1MsBG667IM792caf1L2UPOOMf65NFzjUH/ltyfwjAGfs1rsX1eftK0jC/KIg==}
-
-  '@types/http-errors@2.0.1':
-    resolution: {integrity: sha512-/K3ds8TRAfBvi5vfjuz8y6+GiAYBZ0x4tXv1Av6CWBWn0IlADc+ZX9pMq7oU0fNQPnBwIZl3rmeLp6SBApbxSQ==}
 
   '@types/istanbul-lib-coverage@2.0.6':
     resolution: {integrity: sha512-2QF/t/auWm0lsy8XtKVPG19v3sSOQlJe/YHZgfjb/KBBHOGSV+J2q/S671rcq9uTBrLAXmZpqJiaQbMT+zNU1w==}
@@ -5523,12 +5508,6 @@ packages:
   '@types/mdast@4.0.4':
     resolution: {integrity: sha512-kGaNbPh1k7AFzgpud/gMdvIm5xuECykRR+JnWKQno9TAXVa6WIVCGTPvYGekIDL4uwCZQSYbUxNBSb1aUo79oA==}
 
-  '@types/mime@1.3.2':
-    resolution: {integrity: sha512-YATxVxgRqNH6nHEIsvg6k2Boc1JHI9ZbH5iWFFv/MTkchz3b1ieGDa5T0a9RznNdI0KhVbdbWSN+KWWrQZRxTw==}
-
-  '@types/mime@3.0.1':
-    resolution: {integrity: sha512-Y4XFY5VJAuw0FgAqPNd6NNoV44jbq9Bz2L7Rh/J6jLTiHBSBJa9fxqQIvkIld4GsoDOcCbvzOUAbLPsSKKg+uA==}
-
   '@types/minimatch@3.0.5':
     resolution: {integrity: sha512-Klz949h02Gz2uZCMGwDUSDS1YBlTdDDgbWHi+81l29tQALUtvz4rAYi5uoVhE5Lagoq6DeqAUlbrHvW/mXDgdQ==}
 
@@ -5555,12 +5534,6 @@ packages:
 
   '@types/prop-types@15.7.14':
     resolution: {integrity: sha512-gNMvNH49DJ7OJYv+KAKn0Xp45p8PLl6zo2YnvDIbTd4J6MER2BmWN49TG7n9LvkyihINxeKW8+3bfS2yDC9dzQ==}
-
-  '@types/qs@6.9.7':
-    resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
-
-  '@types/range-parser@1.2.4':
-    resolution: {integrity: sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==}
 
   '@types/react-dom@19.0.2':
     resolution: {integrity: sha512-c1s+7TKFaDRRxr1TxccIX2u7sfCnc3RxkVyBIUA2lCpyqCF+QoAwQ/CBg7bsMdVwP120HEH143VQezKtef5nCg==}
@@ -5598,12 +5571,6 @@ packages:
 
   '@types/retry@0.12.0':
     resolution: {integrity: sha512-wWKOClTTiizcZhXnPY4wikVAwmdYHp8q6DmC+EJUzAMsycb7HB32Kh9RN4+0gExjmPmZSAQjgURXIGATPegAvA==}
-
-  '@types/send@0.17.1':
-    resolution: {integrity: sha512-Cwo8LE/0rnvX7kIIa3QHCkcuF21c05Ayb0ZfxPiv0W8VRiZiNW/WuRupHKpqqGVGf7SUA44QSOUKaEd9lIrd/Q==}
-
-  '@types/serve-static@1.15.2':
-    resolution: {integrity: sha512-J2LqtvFYCzaj8pVYKw8klQXrLLk7TBZmQ4ShlcdkELFKGwGMfevMLneMMRkMgZxotOD9wg497LpC7O8PcvAmfw==}
 
   '@types/sinon@17.0.3':
     resolution: {integrity: sha512-j3uovdn8ewky9kRBG19bOwaZbexJu/XjtkHyjvUgt4xfPFz18dcORIMqnYh66Fx3Powhcr85NT5+er3+oViapw==}
@@ -6212,8 +6179,8 @@ packages:
     resolution: {integrity: sha512-RE3mdQ7P3FRSe7eqCWoeQ/Z9QXrtniSjp1wUjt5nRC3WIpz5rSCve6o3fsZ2aCpJtrZjSZgjwXAoTO5k4tEI0w==}
     engines: {node: '>=4'}
 
-  axios@1.7.7:
-    resolution: {integrity: sha512-S4kL7XrjgBmvdGut0sN3yJxqYzrDOnivkBiN0OFs6hLiUam3UPvswUo0kqGyhqUZGEOytHyumEdXsAkgCOUf3Q==}
+  axios@1.7.9:
+    resolution: {integrity: sha512-LhLcE7Hbiryz8oMDdDptSrWowmB4Bl6RCt6sIJKpRB4XtVf0iEgewX3au/pJqm+Py1kCASkb/FFKjxQaLtxJvw==}
 
   axobject-query@4.1.0:
     resolution: {integrity: sha512-qIj0G9wZbMGNLjLmg1PT6v2mE9AH2zlnADJD/2tC6E00hgmhUOfEB6greHPAfLRSufHqROIUTkw6E+M3lH0PTQ==}
@@ -13303,7 +13270,7 @@ snapshots:
     dependencies:
       '@argos-ci/api-client': 0.7.1
       '@argos-ci/util': 2.2.1
-      axios: 1.7.7(debug@4.3.7)
+      axios: 1.7.9(debug@4.3.7)
       convict: 6.2.4
       debug: 4.3.7(supports-color@8.1.1)
       fast-glob: 3.3.2
@@ -16573,15 +16540,14 @@ snapshots:
 
   '@sinonjs/text-encoding@0.7.3': {}
 
-  '@slack/bolt@4.1.1':
+  '@slack/bolt@4.2.0':
     dependencies:
       '@slack/logger': 4.0.0
-      '@slack/oauth': 3.0.1
-      '@slack/socket-mode': 2.0.2
+      '@slack/oauth': 3.0.2
+      '@slack/socket-mode': 2.0.3
       '@slack/types': 2.13.0
-      '@slack/web-api': 7.7.0
-      '@types/express': 4.17.21
-      axios: 1.7.7(debug@4.3.7)
+      '@slack/web-api': 7.8.0
+      axios: 1.7.9(debug@4.3.7)
       express: 5.0.1
       path-to-regexp: 8.1.0
       raw-body: 3.0.0
@@ -16596,10 +16562,10 @@ snapshots:
     dependencies:
       '@types/node': 20.17.10
 
-  '@slack/oauth@3.0.1':
+  '@slack/oauth@3.0.2':
     dependencies:
       '@slack/logger': 4.0.0
-      '@slack/web-api': 7.7.0
+      '@slack/web-api': 7.8.0
       '@types/jsonwebtoken': 9.0.7
       '@types/node': 20.17.10
       jsonwebtoken: 9.0.0
@@ -16607,10 +16573,10 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@slack/socket-mode@2.0.2':
+  '@slack/socket-mode@2.0.3':
     dependencies:
       '@slack/logger': 4.0.0
-      '@slack/web-api': 7.7.0
+      '@slack/web-api': 7.8.0
       '@types/node': 20.17.10
       '@types/ws': 8.5.13
       eventemitter3: 5.0.1
@@ -16622,13 +16588,13 @@ snapshots:
 
   '@slack/types@2.13.0': {}
 
-  '@slack/web-api@7.7.0':
+  '@slack/web-api@7.8.0':
     dependencies:
       '@slack/logger': 4.0.0
       '@slack/types': 2.13.0
       '@types/node': 20.17.10
       '@types/retry': 0.12.0
-      axios: 1.7.7(debug@4.3.7)
+      axios: 1.7.9(debug@4.3.7)
       eventemitter3: 5.0.1
       form-data: 4.0.0
       is-electron: 2.2.2
@@ -16857,11 +16823,6 @@ snapshots:
     dependencies:
       '@babel/types': 7.26.0
 
-  '@types/body-parser@1.19.2':
-    dependencies:
-      '@types/connect': 3.4.35
-      '@types/node': 20.17.10
-
   '@types/chai-dom@1.11.3':
     dependencies:
       '@types/chai': 4.3.20
@@ -16869,10 +16830,6 @@ snapshots:
   '@types/chai@4.3.20': {}
 
   '@types/chance@1.1.6': {}
-
-  '@types/connect@3.4.35':
-    dependencies:
-      '@types/node': 20.17.10
 
   '@types/cookie@0.4.1': {}
 
@@ -16922,20 +16879,6 @@ snapshots:
 
   '@types/estree@1.0.6': {}
 
-  '@types/express-serve-static-core@4.17.35':
-    dependencies:
-      '@types/node': 20.17.10
-      '@types/qs': 6.9.7
-      '@types/range-parser': 1.2.4
-      '@types/send': 0.17.1
-
-  '@types/express@4.17.21':
-    dependencies:
-      '@types/body-parser': 1.19.2
-      '@types/express-serve-static-core': 4.17.35
-      '@types/qs': 6.9.7
-      '@types/serve-static': 1.15.2
-
   '@types/format-util@1.0.4': {}
 
   '@types/fs-extra@11.0.4':
@@ -16951,8 +16894,6 @@ snapshots:
       hoist-non-react-statics: 3.3.2
 
   '@types/html-minifier-terser@6.1.0': {}
-
-  '@types/http-errors@2.0.1': {}
 
   '@types/istanbul-lib-coverage@2.0.6': {}
 
@@ -16993,10 +16934,6 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.2
 
-  '@types/mime@1.3.2': {}
-
-  '@types/mime@3.0.1': {}
-
   '@types/minimatch@3.0.5': {}
 
   '@types/minimist@1.2.2': {}
@@ -17018,10 +16955,6 @@ snapshots:
   '@types/parse-json@4.0.0': {}
 
   '@types/prop-types@15.7.14': {}
-
-  '@types/qs@6.9.7': {}
-
-  '@types/range-parser@1.2.4': {}
 
   '@types/react-dom@19.0.2(@types/react@19.0.1)':
     dependencies:
@@ -17063,17 +16996,6 @@ snapshots:
   '@types/resolve@1.20.6': {}
 
   '@types/retry@0.12.0': {}
-
-  '@types/send@0.17.1':
-    dependencies:
-      '@types/mime': 1.3.2
-      '@types/node': 20.17.10
-
-  '@types/serve-static@1.15.2':
-    dependencies:
-      '@types/http-errors': 2.0.1
-      '@types/mime': 3.0.1
-      '@types/node': 20.17.10
 
   '@types/sinon@17.0.3':
     dependencies:
@@ -17829,7 +17751,7 @@ snapshots:
 
   axe-core@4.10.2: {}
 
-  axios@1.7.7(debug@4.3.7):
+  axios@1.7.9(debug@4.3.7):
     dependencies:
       follow-redirects: 1.15.6(debug@4.3.7)
       form-data: 4.0.0
@@ -22956,7 +22878,7 @@ snapshots:
       '@yarnpkg/lockfile': 1.1.0
       '@yarnpkg/parsers': 3.0.2
       '@zkochan/js-yaml': 0.0.7
-      axios: 1.7.7(debug@4.3.7)
+      axios: 1.7.9(debug@4.3.7)
       chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
