@@ -27,12 +27,12 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "pnpm build:legacy && pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
+    "build": "pnpm build:legacy && pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:umd && pnpm build:types && pnpm build:copy-files",
     "build:legacy": "node ../../scripts/build.mjs legacy",
     "build:modern": "node ../../scripts/build.mjs modern",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
-    "build:umd": "node ../../scripts/useReactVersion.mjs ^18.0.0 && cross-env BABEL_ENV=rollup rollup -c scripts/rollup.config.mjs && git restore ../../package.json && git restore ../../pnpm-lock.yaml && pnpm install",
+    "build:umd": "cross-env BABEL_ENV=rollup rollup -c scripts/rollup.config.mjs",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "build:types": "node ../../scripts/buildTypes.mjs",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
@@ -58,6 +58,8 @@
   "devDependencies": {
     "@mui-internal/test-utils": "workspace:^",
     "@mui/internal-babel-macros": "workspace:^",
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-replace": "^5.0.5",
     "@testing-library/dom": "^10.3.1",
     "@testing-library/user-event": "^14.5.2",
@@ -76,11 +78,10 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^6.21.3",
+    "react18": "npm:react@^18.3.1",
     "rollup": "^3.29.4",
     "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-globals": "^1.4.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-terser": "^7.0.2",
     "sinon": "^15.2.0"
   },
