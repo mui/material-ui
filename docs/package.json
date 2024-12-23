@@ -5,7 +5,7 @@
   "author": "MUI Team",
   "license": "MIT",
   "scripts": {
-    "build": "rimraf docs/export && cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=8192 next build --profile && pnpm build-sw",
+    "build": "rimraf docs/export && cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=8192 next build && pnpm build-sw",
     "build:clean": "rimraf .next && pnpm build",
     "build-sw": "node ./scripts/buildServiceWorker.js",
     "dev": "next dev",
@@ -82,7 +82,7 @@
     "lz-string": "^1.5.0",
     "markdown-to-jsx": "^7.7.1",
     "material-ui-popup-state": "^5.3.1",
-    "next": "^15.0.4",
+    "next": "^15.1.1",
     "notistack": "3.0.1",
     "nprogress": "^0.2.0",
     "postcss": "^8.4.49",
