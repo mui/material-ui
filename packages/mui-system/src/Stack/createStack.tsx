@@ -51,7 +51,13 @@ function useThemePropsDefault<T extends {}>(props: T) {
  * [1,0,2,0,3]
  */
 function joinChildren(children: React.ReactNode, separator: React.ReactElement<unknown>) {
-  const childrenArray = React.Children.toArray(children).filter(Boolean);
+  const childrenArray = React.Children.toArray(children).filter((child) => {
+    // we exclude all falsy values, except 0, which is valid.
+    if (!child && child !== 0) {
+      return false;
+    }
+    return true;
+  });
 
   return childrenArray.reduce<React.ReactNode[]>((output, child, index) => {
     output.push(child);
