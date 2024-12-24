@@ -104,7 +104,7 @@ async function main() {
       it(`creates screenshots of ${route}`, async function test() {
         // With the playwright inspector we might want to call `page.pause` which would lead to a timeout.
         if (process.env.PWDEBUG) {
-          this.timeout(0);
+          this?.timeout?.(0);
         }
 
         const testcase = await renderFixture(index);
