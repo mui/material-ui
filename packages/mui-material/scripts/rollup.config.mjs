@@ -9,6 +9,7 @@ import babel from 'rollup-plugin-babel';
 import replace from '@rollup/plugin-replace';
 import nodeGlobals from 'rollup-plugin-node-globals';
 import { terser } from 'rollup-plugin-terser';
+import { createRequire } from 'module';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 
@@ -118,10 +119,7 @@ const nestedFolder = {
     }
 
     if (importee.indexOf('react/jsx-runtime') === 0) {
-      return path.resolve(
-        currentDirectory,
-        '../../../packages/mui-material/node_modules/react18/jsx-runtime.js',
-      );
+      return createRequire(import.meta.url).resolve('react18/jsx-runtime');
     }
 
     return undefined;
