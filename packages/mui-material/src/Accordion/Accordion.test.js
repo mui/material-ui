@@ -2,9 +2,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent, reactMajor } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, reactMajor, screen } from '@mui/internal-test-utils';
 import Accordion, { accordionClasses as classes } from '@mui/material/Accordion';
 import Paper from '@mui/material/Paper';
+import Collapse from '@mui/material/Collapse';
+import Fade from '@mui/material/Fade';
+import Slide from '@mui/material/Slide';
+import Grow from '@mui/material/Grow';
+import Zoom from '@mui/material/Zoom';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import describeConformance from '../../test/describeConformance';
 
@@ -259,6 +264,50 @@ describe('<Accordion />', () => {
       );
 
       expect(queryByTestId('details')).to.equal(null);
+    });
+  });
+
+  describe('should not forward ownerState prop to the underlying DOM element when using transition slot', () => {
+    const transitions = [
+      {
+        component: Collapse,
+        name: 'Collapse',
+      },
+      {
+        component: Fade,
+        name: 'Fade',
+      },
+      {
+        component: Grow,
+        name: 'Grow',
+      },
+      {
+        component: Slide,
+        name: 'Slide',
+      },
+      {
+        component: Zoom,
+        name: 'Zoom',
+      },
+    ];
+
+    transitions.forEach((transition) => {
+      it(transition.name, () => {
+        render(
+          <Accordion
+            defaultExpanded
+            slots={{
+              transition: transition.component,
+            }}
+            slotProps={{ transition: { timeout: 400 } }}
+          >
+            <AccordionSummary>Summary</AccordionSummary>
+            Details
+          </Accordion>,
+        );
+
+        expect(screen.getByRole('region')).not.to.have.attribute('ownerstate');
+      });
     });
   });
 });

@@ -70,3 +70,15 @@ function testOnChange() {
     thumb: ({ orientation }) => ({ className: orientation === 'vertical' ? 'thumb_vertical' : '' }),
   }}
 />;
+
+// value, onChange, and onChangeCommitted value type
+<Slider
+  value={5}
+  onChange={(event, value: number) => {}}
+  onChangeCommitted={(event, value: number) => {}}
+/>;
+<Slider
+  value={[5, 10]}
+  onChange={(event, value: number[]) => {}}
+  onChangeCommitted={(event, value: number[]) => {}}
+/>;
