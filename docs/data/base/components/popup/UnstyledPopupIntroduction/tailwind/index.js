@@ -22,7 +22,7 @@ export default function SimplePopup() {
   return (
     <div className={`${isDarkMode ? 'dark' : undefined}`}>
       <button
-        className="cursor-pointer transition text-sm font-sans font-semibold leading-normal bg-violet-500 text-white rounded-lg px-4 py-2 border border-solid border-violet-500 shadow-[0_2px_1px_rgb(45_45_60_/_0.2),_inset_0_1.5px_1px_#a78bfa,_inset_0_-2px_1px_#7c3aed] dark:shadow-[0_2px_1px_rgb(0_0_0/_0.5),_inset_0_1.5px_1px_#a78bfa,_inset_0_-2px_1px_#7c3aed] hover:bg-violet-600 active:bg-violet-700 active:shadow-none focus-visible:shadow-[0_0_0_4px_#ddd6fe] dark:focus-visible:shadow-[0_0_0_4px_#a78bfa] focus-visible:outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
+        className="cursor-pointer rounded-lg border border-solid border-violet-500 bg-violet-500 px-4 py-2 font-sans text-sm font-semibold leading-normal text-white shadow-[0_2px_1px_rgb(45_45_60_/_0.2),_inset_0_1.5px_1px_#a78bfa,_inset_0_-2px_1px_#7c3aed] transition hover:bg-violet-600 focus-visible:shadow-[0_0_0_4px_#ddd6fe] focus-visible:outline-none active:bg-violet-700 active:shadow-none disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none dark:shadow-[0_2px_1px_rgb(0_0_0/_0.5),_inset_0_1.5px_1px_#a78bfa,_inset_0_-2px_1px_#7c3aed] dark:focus-visible:shadow-[0_0_0_4px_#a78bfa]"
         aria-describedby={id}
         type="button"
         onClick={handleClick}
@@ -34,7 +34,7 @@ export default function SimplePopup() {
         open={open}
         anchor={anchor}
         disablePortal
-        className="z-50 rounded-lg font-sans font-medium text-sm mt-2 p-3 border border-solid border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-md text-slate-900 dark:text-slate-100"
+        className="z-50 mt-2 rounded-lg border border-solid border-slate-200 bg-white p-3 font-sans text-sm font-medium text-slate-900 shadow-md dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
       >
         <div>The content of the Popup.</div>
       </BasePopup>

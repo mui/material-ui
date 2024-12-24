@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@types/babel__helper-module-imports": "^7.18.3",
-    "babel-plugin-tester": "^11.0.4",
+    "babel-plugin-tester": "^12.0.0-canary.1",
     "chai": "^4.5.0"
   },
   "sideEffects": false,

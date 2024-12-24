@@ -49,11 +49,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(
         {...getRootProps(other)}
         ref={rootRef}
         className={clsx(
-          'flex gap-[5px] pr-[5px] overflow-hidden w-80 rounded-lg bg-white dark:bg-gray-800 border border-solid border-gray-200 dark:border-gray-700 hover:border-violet-400 dark:hover:border-violet-400 focus-visible:outline-0 shadow-[0_2px_4px_rgb(0_0_0_/_0.05)] dark:shadow-[0_2px_4px_rgb(0_0_0_/_0.5)]',
+          'flex w-80 gap-[5px] overflow-hidden rounded-lg border border-solid border-gray-200 bg-white pr-[5px] shadow-[0_2px_4px_rgb(0_0_0_/_0.05)] hover:border-violet-400 focus-visible:outline-0 dark:border-gray-700 dark:bg-gray-800 dark:shadow-[0_2px_4px_rgb(0_0_0_/_0.5)] dark:hover:border-violet-400',
           !focused &&
             'shadow-[0_2px_2px_transparent] shadow-gray-50 dark:shadow-gray-900',
           focused &&
-            'border-violet-400 dark:border-violet-400 shadow-[0_0_0_3px_transparent] shadow-violet-200 dark:shadow-violet-500',
+            'border-violet-400 shadow-[0_0_0_3px_transparent] shadow-violet-200 dark:border-violet-400 dark:shadow-violet-500',
         )}
       >
         <input
@@ -61,19 +61,19 @@ const Autocomplete = React.forwardRef(function Autocomplete(
           disabled={disabled}
           readOnly={readOnly}
           {...getInputProps()}
-          className="text-sm leading-[1.5] text-gray-900 dark:text-gray-300 bg-inherit border-0 rounded-[inherit] px-3 py-2 outline-0 grow shrink-0 basis-auto"
+          className="shrink-0 grow basis-auto rounded-[inherit] border-0 bg-inherit px-3 py-2 text-sm leading-[1.5] text-gray-900 outline-0 dark:text-gray-300"
         />
         {hasClearIcon && (
           <Button
             {...getClearProps()}
-            className="self-center outline-0 shadow-none border-0 py-0 px-0.5 rounded-[4px] bg-transparent hover:bg-violet-100 dark:hover:bg-gray-700 hover:cursor-pointer"
+            className="self-center rounded-[4px] border-0 bg-transparent px-0.5 py-0 shadow-none outline-0 hover:cursor-pointer hover:bg-violet-100 dark:hover:bg-gray-700"
           >
             <ClearIcon className="translate-y-[2px] scale-90" />
           </Button>
         )}
         <Button
           {...getPopupIndicatorProps()}
-          className="self-center outline-0 shadow-none border-0 py-0 px-0.5 rounded-[4px] bg-transparent hover:bg-violet-100 dark:hover:bg-gray-700 hover:cursor-pointer"
+          className="self-center rounded-[4px] border-0 bg-transparent px-0.5 py-0 shadow-none outline-0 hover:cursor-pointer hover:bg-violet-100 dark:hover:bg-gray-700"
         >
           <ArrowDropDownIcon
             className={clsx('translate-y-[2px]', popupOpen && 'rotate-180')}
@@ -96,7 +96,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
         >
           <ul
             {...getListboxProps()}
-            className="text-sm box-border p-1.5 my-3 mx-0 min-w-[320px] rounded-xl overflow-auto outline-0 max-h-[300px] z-[1] bg-white dark:bg-gray-800 border border-solid border-gray-200 dark:border-gray-900 text-gray-900 dark:text-gray-200 shadow-[0_4px_30px_transparent] shadow-gray-200 dark:shadow-gray-900"
+            className="z-[1] mx-0 my-3 box-border max-h-[300px] min-w-[320px] overflow-auto rounded-xl border border-solid border-gray-200 bg-white p-1.5 text-sm text-gray-900 shadow-[0_4px_30px_transparent] shadow-gray-200 outline-0 dark:border-gray-900 dark:bg-gray-800 dark:text-gray-200 dark:shadow-gray-900"
           >
             {(groupedOptions as typeof top100Films).map((option, index) => {
               const optionProps = getOptionProps({ option, index });
@@ -104,7 +104,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
               return (
                 <li
                   {...optionProps}
-                  className="list-none p-2 rounded-lg cursor-default last-of-type:border-b-0 hover:cursor-pointer aria-selected:bg-violet-100 dark:aria-selected:bg-violet-900 aria-selected:text-violet-900 dark:aria-selected:text-violet-100 ui-focused:bg-gray-100 dark:ui-focused:bg-gray-700 ui-focus-visible:bg-gray-100 dark:ui-focus-visible:bg-gray-800 ui-focused:text-gray-900 dark:ui-focused:text-gray-300 ui-focus-visible:text-gray-900 dark:ui-focus-visible:text-gray-300 ui-focus-visible:shadow-[0_0_0_3px_transparent] ui-focus-visible:shadow-violet-200 dark:ui-focus-visible:shadow-violet-500 ui-focused:aria-selected:bg-violet-100 dark:ui-focused:aria-selected:bg-violet-900 ui-focus-visible:aria-selected:bg-violet-100 dark:ui-focus-visible:aria-selected:bg-violet-900 ui-focused:aria-selected:text-violet-900 dark:ui-focused:aria-selected:text-violet-100 ui-focus-visible:aria-selected:text-violet-900 dark:ui-focus-visible:aria-selected:text-violet-100"
+                  className="ui-focused:bg-gray-100 dark:ui-focused:bg-gray-700 ui-focus-visible:bg-gray-100 dark:ui-focus-visible:bg-gray-800 ui-focused:text-gray-900 dark:ui-focused:text-gray-300 ui-focus-visible:text-gray-900 dark:ui-focus-visible:text-gray-300 ui-focus-visible:shadow-[0_0_0_3px_transparent] ui-focus-visible:shadow-violet-200 dark:ui-focus-visible:shadow-violet-500 ui-focused:aria-selected:bg-violet-100 dark:ui-focused:aria-selected:bg-violet-900 ui-focus-visible:aria-selected:bg-violet-100 dark:ui-focus-visible:aria-selected:bg-violet-900 ui-focused:aria-selected:text-violet-900 dark:ui-focused:aria-selected:text-violet-100 ui-focus-visible:aria-selected:text-violet-900 dark:ui-focus-visible:aria-selected:text-violet-100 cursor-default list-none rounded-lg p-2 last-of-type:border-b-0 hover:cursor-pointer aria-selected:bg-violet-100 aria-selected:text-violet-900 dark:aria-selected:bg-violet-900 dark:aria-selected:text-violet-100"
                 >
                   {option.label}
                 </li>
@@ -112,7 +112,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
             })}
 
             {groupedOptions.length === 0 && (
-              <li className="list-none p-2 cursor-default">No results</li>
+              <li className="cursor-default list-none p-2">No results</li>
             )}
           </ul>
         </Popper>
