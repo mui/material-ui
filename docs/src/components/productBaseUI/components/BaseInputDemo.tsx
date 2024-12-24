@@ -139,7 +139,7 @@ const TailwindFloatingLabelInput = React.forwardRef<
       />
       <label
         htmlFor={id}
-        className="pointer-events-none absolute left-[0.75rem] top-[50%] flex origin-[0_0] translate-y-[-100%] scale-[--TextInput-labelScale] transform items-center overflow-hidden whitespace-nowrap text-start font-[500] leading-[--TextInput-labelLineHeight] text-[--muidocs-palette-grey-600] transition-transform duration-100 ease-out peer-placeholder-shown:translate-y-[-50%] peer-placeholder-shown:scale-100 peer-placeholder-shown:transform peer-focus:translate-y-[-100%] peer-focus:scale-[--TextInput-labelScale] peer-focus:transform peer-focus:text-[--primary] "
+        className="pointer-events-none absolute left-[0.75rem] top-[50%] flex origin-[0_0] translate-y-[-100%] scale-[--TextInput-labelScale] transform items-center overflow-hidden whitespace-nowrap text-start font-[500] leading-[--TextInput-labelLineHeight] text-[--muidocs-palette-grey-600] transition-transform duration-100 ease-out peer-placeholder-shown:translate-y-[-50%] peer-placeholder-shown:scale-100 peer-placeholder-shown:transform peer-focus:translate-y-[-100%] peer-focus:scale-[--TextInput-labelScale] peer-focus:transform peer-focus:text-[--primary]"
       >
         Floating label
       </label>
@@ -177,7 +177,7 @@ export default function BaseInputDemo({ styling }: { styling?: 'system' | 'tailw
       {styling === 'tailwindcss' && (
         <Input
           placeholder="Type something here"
-          className=" p-[0px_0.75rem][box-shadow:var(--shadow)] relative inline-flex h-[--TextInput-height] w-[320px] rounded-[--muidocs-shape-borderRadius] border border-solid border-[--muidocs-palette-grey-300] bg-[--muidocs-palette-background-default] outline-transparent [--TextInput-height:64px] [--TextInput-labelLineHeight:20px] [--TextInput-labelScale:0.75] [--TextInput-paddingTop:2rem] focus-within:!border-[--primary] focus-within:[outline:3px_solid_var(--focus-ring)] hover:border-[--muidocs-palette-grey-400] dark:border-[--muidocs-palette-grey-800] dark:shadow-[0_2px_4px_0_rgba(0_0_0/0.8)] dark:focus-within:!border-[--primary] dark:focus-within:[outline:3px_solid_var(--focus-ring)] dark:hover:border-[--muidocs-palette-grey-700]"
+          className="p-[0px_0.75rem][box-shadow:var(--shadow)] relative inline-flex h-[--TextInput-height] w-[320px] rounded-[--muidocs-shape-borderRadius] border border-solid border-[--muidocs-palette-grey-300] bg-[--muidocs-palette-background-default] outline-transparent [--TextInput-height:64px] [--TextInput-labelLineHeight:20px] [--TextInput-labelScale:0.75] [--TextInput-paddingTop:2rem] focus-within:!border-[--primary] focus-within:[outline:3px_solid_var(--focus-ring)] hover:border-[--muidocs-palette-grey-400] dark:border-[--muidocs-palette-grey-800] dark:shadow-[0_2px_4px_0_rgba(0_0_0/0.8)] dark:focus-within:!border-[--primary] dark:focus-within:[outline:3px_solid_var(--focus-ring)] dark:hover:border-[--muidocs-palette-grey-700]"
           slots={{ input: TailwindFloatingLabelInput }}
         />
       )}

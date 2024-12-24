@@ -15,7 +15,7 @@ export default function UnstyledBadgeIntroduction() {
   return (
     <div className={isDarkMode ? 'dark' : ''}>
       <Badge badgeContent={5}>
-        <span className="w-10 h-10 rounded-xl bg-slate-300 dark:bg-slate-400 inline-block align-middle" />
+        <span className="inline-block h-10 w-10 rounded-xl bg-slate-300 align-middle dark:bg-slate-400" />
       </Badge>
     </div>
   );

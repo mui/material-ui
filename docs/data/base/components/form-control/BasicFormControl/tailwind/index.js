@@ -44,7 +44,7 @@ const Label = React.forwardRef(({ className: classNameProp, children }, ref) => 
   }, [formControlContext]);
 
   if (formControlContext === undefined) {
-    return <p className={clsx('text-sm mb-1', classNameProp)}>{children}</p>;
+    return <p className={clsx('mb-1 text-sm', classNameProp)}>{children}</p>;
   }
 
   const { error, required, filled } = formControlContext;
@@ -54,7 +54,7 @@ const Label = React.forwardRef(({ className: classNameProp, children }, ref) => 
     <p
       ref={ref}
       className={clsx(
-        'text-sm mb-1',
+        'mb-1 text-sm',
         classNameProp,
         error || showRequiredError ? 'invalid text-red-500' : '',
       )}

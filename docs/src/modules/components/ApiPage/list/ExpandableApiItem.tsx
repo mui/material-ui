@@ -188,7 +188,7 @@ export default function ExpandableApiItem(props: ExpandableApiItemProps) {
       ownerState={{ type }}
       {...other}
       className={clsx(
-        `MuiApi-item-root${isExtendable ? ' MuiApi-item-header-extendable' : ''}`,
+        `MuiApi-item-root${isExtendable ? 'MuiApi-item-header-extendable' : ''}`,
         className,
       )}
     >

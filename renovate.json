@@ -119,6 +119,10 @@
       "matchPaths": ["packages/mui-envinfo/test/package.json"],
       "matchPackagePatterns": ["@mui/*"],
       "enabled": false
+    },
+    {
+      "groupName": "Tailwind CSS",
+      "matchPackageNames": ["tailwindcss", "prettier-plugin-tailwindcss"]
     }
   ],
   "postUpdateOptions": ["pnpmDedupe"],
