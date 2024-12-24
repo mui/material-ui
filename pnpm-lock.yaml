@@ -926,8 +926,8 @@ importers:
         specifier: ^7.18.3
         version: 7.18.3
       babel-plugin-tester:
-        specifier: ^11.0.4
-        version: 11.0.4(@babel/core@7.26.0)
+        specifier: ^12.0.0-canary.1
+        version: 12.0.0-canary.1(@babel/core@7.26.0)
       chai:
         specifier: ^4.5.0
         version: 4.5.0
@@ -6230,11 +6230,15 @@ packages:
   babel-plugin-react-remove-properties@0.3.0:
     resolution: {integrity: sha512-vbxegtXGyVcUkCvayLzftU95vuvpYFV85pRpeMpohMHeEY46Qe0VNWfkVVcCbaZ12CXHzDFOj0esumATcW83ng==}
 
-  babel-plugin-tester@11.0.4:
-    resolution: {integrity: sha512-cqswtpSPo0e++rZB0l/54EG17LL25l9gLgh59yXfnmNxX+2lZTIOpx2zt4YI9QIClVXc8xf63J6yWwKkzy0jNg==}
-    engines: {node: ^14.20.0 || ^16.16.0 || >=18.5.0}
+  babel-plugin-tester@12.0.0-canary.1:
+    resolution: {integrity: sha512-Tfa4ojSEUD9vVk+eC/jIE/f5J0w73CO5ynPzmAXFSyxJ/8eTv1AzxEucnRdEvEZr2nXxZ2+3lTQH7a/NQuTugg==}
+    engines: {node: ^18.19.0 || ^20.10.0 || >=21.3.0}
     peerDependencies:
       '@babel/core': ^7.26.0
+      jest: '>=30 || >=30.0.0-alpha.2'
+    peerDependenciesMeta:
+      jest:
+        optional: true
 
   babel-plugin-transform-flow-enums@0.0.2:
     resolution: {integrity: sha512-g4aaCrDDOsWjbm0PUUeVnkcVd6AKJsVc/MbnPhEotEpkeJQP6b8nzewohQi7+QS8UyPehOhGWn0nOwjvWpmMvQ==}
@@ -6909,8 +6913,8 @@ packages:
     resolution: {integrity: sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==}
     deprecated: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
 
-  core-js@3.32.1:
-    resolution: {integrity: sha512-lqufgNn9NLnESg5mQeYsxQP5w7wrViSj0jr/kv6ECQiByzQkrn1MKvV0L3acttpDqfQrHLwr2KCMgX5b8X+lyQ==}
+  core-js@3.39.0:
+    resolution: {integrity: sha512-raM0ew0/jJUqkJ0E6e8UDtl+y/7ktFivgWvqw8dNSQeNWoSDLvQ1H/RN3aPXB9tBd4/FhyR4RDPGhsNIMsAn7g==}
 
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
@@ -10893,11 +10897,6 @@ packages:
       prettier-plugin-svelte:
         optional: true
 
-  prettier@2.8.8:
-    resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
-    engines: {node: '>=10.13.0'}
-    hasBin: true
-
   prettier@3.3.3:
     resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
     engines: {node: '>=14'}
@@ -13515,7 +13514,7 @@ snapshots:
       '@babel/core': 7.26.0
       '@babel/register': 7.25.9(@babel/core@7.26.0)
       commander: 6.2.1
-      core-js: 3.32.1
+      core-js: 3.39.0
       node-environment-flags: 1.0.6
       regenerator-runtime: 0.14.0
       v8flags: 3.2.0
@@ -17875,13 +17874,13 @@ snapshots:
 
   babel-plugin-react-remove-properties@0.3.0: {}
 
-  babel-plugin-tester@11.0.4(@babel/core@7.26.0):
+  babel-plugin-tester@12.0.0-canary.1(@babel/core@7.26.0):
     dependencies:
       '@babel/core': 7.26.0
-      core-js: 3.32.1
+      core-js: 3.39.0
       debug: 4.3.7(supports-color@8.1.1)
       lodash.mergewith: 4.6.2
-      prettier: 2.8.8
+      prettier: 3.4.2
       strip-indent: 3.0.0
     transitivePeerDependencies:
       - supports-color
@@ -18662,7 +18661,7 @@ snapshots:
 
   core-js@2.6.12: {}
 
-  core-js@3.32.1: {}
+  core-js@3.39.0: {}
 
   core-util-is@1.0.3: {}
 
@@ -18930,7 +18929,7 @@ snapshots:
       async-retry: 1.2.3
       chalk: 2.4.2
       commander: 2.20.3
-      core-js: 3.32.1
+      core-js: 3.39.0
       debug: 4.3.7(supports-color@8.1.1)
       fast-json-patch: 3.1.1
       get-stdin: 6.0.0
@@ -23602,8 +23601,6 @@ snapshots:
   prettier-plugin-tailwindcss@0.6.9(prettier@3.4.2):
     dependencies:
       prettier: 3.4.2
-
-  prettier@2.8.8: {}
 
   prettier@3.3.3: {}
 
