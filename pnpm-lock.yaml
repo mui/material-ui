@@ -741,8 +741,8 @@ importers:
         specifier: ^7.7.2
         version: 7.7.2(react@19.0.0)
       material-ui-popup-state:
-        specifier: ^5.3.1
-        version: 5.3.1(@mui/material@packages+mui-material+build)(react@19.0.0)
+        specifier: ^5.3.3
+        version: 5.3.3(@mui/material@packages+mui-material+build)(@types/react@19.0.2)(react@19.0.0)
       next:
         specifier: ^15.1.2
         version: 15.1.2(@babel/core@7.26.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.48.2)(babel-plugin-macros@3.1.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -9594,12 +9594,16 @@ packages:
   marky@1.2.5:
     resolution: {integrity: sha512-q9JtQJKjpsVxCRVgQ+WapguSbKC3SQ5HEzFGPAJMStgh3QjCawp00UKv3MTTAArTmGmmPUvllHZoNbZ3gs0I+Q==}
 
-  material-ui-popup-state@5.3.1:
-    resolution: {integrity: sha512-mmx1DsQwF/2cmcpHvS/QkUwOQG2oAM+cDEQU0DaZVYnvwKyTB3AFgu8l1/E+LQFausmzpSJoljwQSZXkNvt7eA==}
+  material-ui-popup-state@5.3.3:
+    resolution: {integrity: sha512-eaoA4y965neZw1/iPYZ7haCGO369m5QXJT35e0RStzHd4lgrd6PC+UYkYTIRGTrNt+8Vbx8qtYUFDzRjjAGwnw==}
     engines: {node: '>=16'}
     peerDependencies:
       '@mui/material': ^5.0.0 || ^6.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      '@types/react': ^16.8.0 || ^17 || ^18 || ^19
+      react: ^16.8.0 || ^17 || ^18 || ^19
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   math-intrinsics@1.0.0:
     resolution: {integrity: sha512-4MqMiKP90ybymYvsut0CH2g4XWbfLtmlCkXmtmdcDCxNB+mQcu1w/1+L/VD7vi/PSv7X2JYV7SCcR+jiPXnQtA==}
@@ -16974,6 +16978,7 @@ snapshots:
     dependencies:
       '@types/prop-types': 15.7.14
       csstype: 3.1.3
+    optional: true
 
   '@types/react@19.0.2':
     dependencies:
@@ -21987,15 +21992,16 @@ snapshots:
 
   marky@1.2.5: {}
 
-  material-ui-popup-state@5.3.1(@mui/material@packages+mui-material+build)(react@19.0.0):
+  material-ui-popup-state@5.3.3(@mui/material@packages+mui-material+build)(@types/react@19.0.2)(react@19.0.0):
     dependencies:
       '@babel/runtime': 7.26.0
       '@mui/material': link:packages/mui-material/build
       '@types/prop-types': 15.7.14
-      '@types/react': 18.3.12
       classnames: 2.3.2
       prop-types: 15.8.1
       react: 19.0.0
+    optionalDependencies:
+      '@types/react': 19.0.2
 
   math-intrinsics@1.0.0: {}
 
