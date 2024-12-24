@@ -65,9 +65,312 @@
       "isGlobal": false
     },
     {
+      "key": "direction-xs-column",
+      "className": "MuiGrid2-direction-xs-column",
+      "description": "Styles applied to the root element if `direction=\"column\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "direction-xs-column-reverse",
+      "className": "MuiGrid2-direction-xs-column-reverse",
+      "description": "Styles applied to the root element if `direction=\"column-reverse\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "direction-xs-row",
+      "className": "MuiGrid2-direction-xs-row",
+      "description": "Styles applied to the root element if `direction=\"row\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "direction-xs-row-reverse",
+      "className": "MuiGrid2-direction-xs-row-reverse",
+      "description": "Styles applied to the root element if `direction=\"row-reverse\"`.",
+      "isGlobal": false
+    },
+    { "key": "grid-lg-1", "className": "MuiGrid2-grid-lg-1", "description": "", "isGlobal": false },
+    {
+      "key": "grid-lg-10",
+      "className": "MuiGrid2-grid-lg-10",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "grid-lg-11",
+      "className": "MuiGrid2-grid-lg-11",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "grid-lg-12",
+      "className": "MuiGrid2-grid-lg-12",
+      "description": "",
+      "isGlobal": false
+    },
+    { "key": "grid-lg-2", "className": "MuiGrid2-grid-lg-2", "description": "", "isGlobal": false },
+    { "key": "grid-lg-3", "className": "MuiGrid2-grid-lg-3", "description": "", "isGlobal": false },
+    { "key": "grid-lg-4", "className": "MuiGrid2-grid-lg-4", "description": "", "isGlobal": false },
+    { "key": "grid-lg-5", "className": "MuiGrid2-grid-lg-5", "description": "", "isGlobal": false },
+    { "key": "grid-lg-6", "className": "MuiGrid2-grid-lg-6", "description": "", "isGlobal": false },
+    { "key": "grid-lg-7", "className": "MuiGrid2-grid-lg-7", "description": "", "isGlobal": false },
+    { "key": "grid-lg-8", "className": "MuiGrid2-grid-lg-8", "description": "", "isGlobal": false },
+    { "key": "grid-lg-9", "className": "MuiGrid2-grid-lg-9", "description": "", "isGlobal": false },
+    {
+      "key": "grid-lg-auto",
+      "className": "MuiGrid2-grid-lg-auto",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "grid-lg-true",
+      "className": "MuiGrid2-grid-lg-true",
+      "description": "",
+      "isGlobal": false
+    },
+    { "key": "grid-md-1", "className": "MuiGrid2-grid-md-1", "description": "", "isGlobal": false },
+    {
+      "key": "grid-md-10",
+      "className": "MuiGrid2-grid-md-10",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "grid-md-11",
+      "className": "MuiGrid2-grid-md-11",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "grid-md-12",
+      "className": "MuiGrid2-grid-md-12",
+      "description": "",
+      "isGlobal": false
+    },
+    { "key": "grid-md-2", "className": "MuiGrid2-grid-md-2", "description": "", "isGlobal": false },
+    { "key": "grid-md-3", "className": "MuiGrid2-grid-md-3", "description": "", "isGlobal": false },
+    { "key": "grid-md-4", "className": "MuiGrid2-grid-md-4", "description": "", "isGlobal": false },
+    { "key": "grid-md-5", "className": "MuiGrid2-grid-md-5", "description": "", "isGlobal": false },
+    { "key": "grid-md-6", "className": "MuiGrid2-grid-md-6", "description": "", "isGlobal": false },
+    { "key": "grid-md-7", "className": "MuiGrid2-grid-md-7", "description": "", "isGlobal": false },
+    { "key": "grid-md-8", "className": "MuiGrid2-grid-md-8", "description": "", "isGlobal": false },
+    { "key": "grid-md-9", "className": "MuiGrid2-grid-md-9", "description": "", "isGlobal": false },
+    {
+      "key": "grid-md-auto",
+      "className": "MuiGrid2-grid-md-auto",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "grid-md-true",
+      "className": "MuiGrid2-grid-md-true",
+      "description": "",
+      "isGlobal": false
+    },
+    { "key": "grid-sm-1", "className": "MuiGrid2-grid-sm-1", "description": "", "isGlobal": false },
+    {
+      "key": "grid-sm-10",
+      "className": "MuiGrid2-grid-sm-10",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "grid-sm-11",
+      "className": "MuiGrid2-grid-sm-11",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "grid-sm-12",
+      "className": "MuiGrid2-grid-sm-12",
+      "description": "",
+      "isGlobal": false
+    },
+    { "key": "grid-sm-2", "className": "MuiGrid2-grid-sm-2", "description": "", "isGlobal": false },
+    { "key": "grid-sm-3", "className": "MuiGrid2-grid-sm-3", "description": "", "isGlobal": false },
+    { "key": "grid-sm-4", "className": "MuiGrid2-grid-sm-4", "description": "", "isGlobal": false },
+    { "key": "grid-sm-5", "className": "MuiGrid2-grid-sm-5", "description": "", "isGlobal": false },
+    { "key": "grid-sm-6", "className": "MuiGrid2-grid-sm-6", "description": "", "isGlobal": false },
+    { "key": "grid-sm-7", "className": "MuiGrid2-grid-sm-7", "description": "", "isGlobal": false },
+    { "key": "grid-sm-8", "className": "MuiGrid2-grid-sm-8", "description": "", "isGlobal": false },
+    { "key": "grid-sm-9", "className": "MuiGrid2-grid-sm-9", "description": "", "isGlobal": false },
+    {
+      "key": "grid-sm-auto",
+      "className": "MuiGrid2-grid-sm-auto",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "grid-sm-true",
+      "className": "MuiGrid2-grid-sm-true",
+      "description": "",
+      "isGlobal": false
+    },
+    { "key": "grid-xl-1", "className": "MuiGrid2-grid-xl-1", "description": "", "isGlobal": false },
+    {
+      "key": "grid-xl-10",
+      "className": "MuiGrid2-grid-xl-10",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "grid-xl-11",
+      "className": "MuiGrid2-grid-xl-11",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "grid-xl-12",
+      "className": "MuiGrid2-grid-xl-12",
+      "description": "",
+      "isGlobal": false
+    },
+    { "key": "grid-xl-2", "className": "MuiGrid2-grid-xl-2", "description": "", "isGlobal": false },
+    { "key": "grid-xl-3", "className": "MuiGrid2-grid-xl-3", "description": "", "isGlobal": false },
+    { "key": "grid-xl-4", "className": "MuiGrid2-grid-xl-4", "description": "", "isGlobal": false },
+    { "key": "grid-xl-5", "className": "MuiGrid2-grid-xl-5", "description": "", "isGlobal": false },
+    { "key": "grid-xl-6", "className": "MuiGrid2-grid-xl-6", "description": "", "isGlobal": false },
+    { "key": "grid-xl-7", "className": "MuiGrid2-grid-xl-7", "description": "", "isGlobal": false },
+    { "key": "grid-xl-8", "className": "MuiGrid2-grid-xl-8", "description": "", "isGlobal": false },
+    { "key": "grid-xl-9", "className": "MuiGrid2-grid-xl-9", "description": "", "isGlobal": false },
+    {
+      "key": "grid-xl-auto",
+      "className": "MuiGrid2-grid-xl-auto",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "grid-xl-true",
+      "className": "MuiGrid2-grid-xl-true",
+      "description": "",
+      "isGlobal": false
+    },
+    { "key": "grid-xs-1", "className": "MuiGrid2-grid-xs-1", "description": "", "isGlobal": false },
+    {
+      "key": "grid-xs-10",
+      "className": "MuiGrid2-grid-xs-10",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "grid-xs-11",
+      "className": "MuiGrid2-grid-xs-11",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "grid-xs-12",
+      "className": "MuiGrid2-grid-xs-12",
+      "description": "",
+      "isGlobal": false
+    },
+    { "key": "grid-xs-2", "className": "MuiGrid2-grid-xs-2", "description": "", "isGlobal": false },
+    { "key": "grid-xs-3", "className": "MuiGrid2-grid-xs-3", "description": "", "isGlobal": false },
+    { "key": "grid-xs-4", "className": "MuiGrid2-grid-xs-4", "description": "", "isGlobal": false },
+    { "key": "grid-xs-5", "className": "MuiGrid2-grid-xs-5", "description": "", "isGlobal": false },
+    { "key": "grid-xs-6", "className": "MuiGrid2-grid-xs-6", "description": "", "isGlobal": false },
+    { "key": "grid-xs-7", "className": "MuiGrid2-grid-xs-7", "description": "", "isGlobal": false },
+    { "key": "grid-xs-8", "className": "MuiGrid2-grid-xs-8", "description": "", "isGlobal": false },
+    { "key": "grid-xs-9", "className": "MuiGrid2-grid-xs-9", "description": "", "isGlobal": false },
+    {
+      "key": "grid-xs-auto",
+      "className": "MuiGrid2-grid-xs-auto",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "grid-xs-true",
+      "className": "MuiGrid2-grid-xs-true",
+      "description": "",
+      "isGlobal": false
+    },
+    {
       "key": "root",
       "className": "MuiGrid2-root",
       "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "spacing-xs-0",
+      "className": "MuiGrid2-spacing-xs-0",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "spacing-xs-1",
+      "className": "MuiGrid2-spacing-xs-1",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "spacing-xs-10",
+      "className": "MuiGrid2-spacing-xs-10",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "spacing-xs-2",
+      "className": "MuiGrid2-spacing-xs-2",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "spacing-xs-3",
+      "className": "MuiGrid2-spacing-xs-3",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "spacing-xs-4",
+      "className": "MuiGrid2-spacing-xs-4",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "spacing-xs-5",
+      "className": "MuiGrid2-spacing-xs-5",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "spacing-xs-6",
+      "className": "MuiGrid2-spacing-xs-6",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "spacing-xs-7",
+      "className": "MuiGrid2-spacing-xs-7",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "spacing-xs-8",
+      "className": "MuiGrid2-spacing-xs-8",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "spacing-xs-9",
+      "className": "MuiGrid2-spacing-xs-9",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "wrap-xs-nowrap",
+      "className": "MuiGrid2-wrap-xs-nowrap",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "wrap-xs-wrap",
+      "className": "MuiGrid2-wrap-xs-wrap",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "wrap-xs-wrap-reverse",
+      "className": "MuiGrid2-wrap-xs-wrap-reverse",
+      "description": "",
       "isGlobal": false
     }
   ],
