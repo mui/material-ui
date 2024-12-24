@@ -541,6 +541,7 @@ module.exports = /** @type {Config} */ ({
         'import/order': 'off',
         // Reset the default until https://github.com/jsx-eslint/eslint-plugin-react/issues/3672 is fixed.
         'react/jsx-no-target-blank': ['error', { allowReferrer: false }],
+        'react/prop-types': 'off',
       },
     },
     {
