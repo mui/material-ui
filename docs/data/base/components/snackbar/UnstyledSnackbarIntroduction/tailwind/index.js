@@ -40,7 +40,7 @@ export default function UnstyledSnackbarIntroduction() {
   return (
     <div className={`${isDarkMode ? 'dark' : ''}`}>
       <button
-        className="cursor-pointer text-sm font-sans box-border rounded-lg font-semibold px-4 py-2 bg-white dark:bg-slate-900 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-200 hover:bg-slate-50 hover:dark:bg-slate-800 hover:border-slate-300 dark:hover:border-slate-600 focus-visible:shadow-[0_0_0_4px_#ddd6fe] dark:focus-visible:shadow-[0_0_0_4px_#a78bfa] focus-visible:outline-none shadow-sm"
+        className="box-border cursor-pointer rounded-lg border border-solid border-slate-200 bg-white px-4 py-2 font-sans text-sm font-semibold text-slate-900 shadow-sm hover:border-slate-300 hover:bg-slate-50 focus-visible:shadow-[0_0_0_4px_#ddd6fe] focus-visible:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-slate-600 hover:dark:bg-slate-800 dark:focus-visible:shadow-[0_0_0_4px_#a78bfa]"
         type="button"
         onClick={handleClick}
       >
@@ -51,7 +51,7 @@ export default function UnstyledSnackbarIntroduction() {
         open={open}
         onClose={handleClose}
         exited={exited}
-        className="fixed z-50 font-sans flex right-4 bottom-4 left-auto max-w-xl	min-w-xs"
+        className="min-w-xs fixed bottom-4 left-auto right-4 z-50 flex max-w-xl font-sans"
       >
         <Transition
           timeout={{ enter: 400, exit: 400 }}
@@ -64,7 +64,7 @@ export default function UnstyledSnackbarIntroduction() {
         >
           {(status) => (
             <div
-              className="flex gap-4	overflow-hidden	bg-white dark:bg-slate-900 rounded-lg	border border-solid border-slate-200 dark:border-slate-700 shadow-md text-slate-900 dark:text-slate-50 p-3	text-start"
+              className="flex gap-4 overflow-hidden rounded-lg border border-solid border-slate-200 bg-white p-3 text-start text-slate-900 shadow-md dark:border-slate-700 dark:bg-slate-900 dark:text-slate-50"
               style={{
                 transform: positioningStyles[status],
                 transition: 'transform 300ms ease',
@@ -79,17 +79,17 @@ export default function UnstyledSnackbarIntroduction() {
                   height: '1.5rem',
                 }}
               />
-              <div className="flex-1	max-w-full">
-                <p className="m-0 leading-normal mr-2 font-medium">
+              <div className="max-w-full flex-1">
+                <p className="m-0 mr-2 font-medium leading-normal">
                   Notifications sent
                 </p>
-                <p className="m-0 leading-normal font-normal	text-slate-800 dark:text-slate-400">
+                <p className="m-0 font-normal leading-normal text-slate-800 dark:text-slate-400">
                   Everything was sent to the desired address.
                 </p>
               </div>
               <CloseIcon
                 onClick={handleClose}
-                className="cursor-pointer	shrink-0	p-0.5	rounded hover:bg-slate-50 hover:dark:bg-slate-800"
+                className="shrink-0 cursor-pointer rounded p-0.5 hover:bg-slate-50 hover:dark:bg-slate-800"
               />
             </div>
           )}

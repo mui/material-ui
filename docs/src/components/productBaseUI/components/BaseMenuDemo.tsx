@@ -135,12 +135,7 @@ export default function BaseMenuDemo({ styling }: { styling?: 'system' | 'tailwi
       {styling === 'css' && <GlobalStyles styles={CSS} />}
       {styling === 'tailwindcss' && (
         <Dropdown>
-          <MenuButton
-            className="min-h-[calc(1.5em + 22px)] inline-flex items-center gap-[0.5rem] rounded-[8px] font-medium border border-solid border-[--muidocs-palette-grey-200] bg-[--muidocs-palette-background-default] p-[8px_12px_8px_6px] text-[0.875rem] leading-[1.5] transition-all [box-shadow:var(--outlined-btn-shadow)] font-['IBM_Plex_Sans'] hover:bg-[--muidocs-palette-grey-50] hover:border-[--muidocs-palette-grey-300] 
-            ui-focus-visible:[outline:4px_solid_var(--focus-ring)] ui-focus-visible:border-[--primary] 
-            dark:border-[--muidocs-palette-primaryDark-700] dark:hover:bg-[--muidocs-palette-primaryDark-800] 
-            dark:hover:border-[--muidocs-palette-primaryDark-600] select-none"
-          >
+          <MenuButton className="min-h-[calc(1.5em + 22px)] ui-focus-visible:[outline:4px_solid_var(--focus-ring)] ui-focus-visible:border-[--primary] inline-flex select-none items-center gap-[0.5rem] rounded-[8px] border border-solid border-[--muidocs-palette-grey-200] bg-[--muidocs-palette-background-default] p-[8px_12px_8px_6px] font-['IBM_Plex_Sans'] text-[0.875rem] font-medium leading-[1.5] transition-all [box-shadow:var(--outlined-btn-shadow)] hover:border-[--muidocs-palette-grey-300] hover:bg-[--muidocs-palette-grey-50] dark:border-[--muidocs-palette-primaryDark-700] dark:hover:border-[--muidocs-palette-primaryDark-600] dark:hover:bg-[--muidocs-palette-primaryDark-800]">
             <Person className="text-[--primary]" />
             My account
           </MenuButton>

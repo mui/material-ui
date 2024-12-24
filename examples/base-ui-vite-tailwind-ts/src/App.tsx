@@ -3,7 +3,7 @@ import * as React from 'react';
 export default function App() {
   return (
     <div className="p-8">
-      <h1 className="text-3xl font-semibold mb-4">
+      <h1 className="mb-4 text-3xl font-semibold">
         Base UI + Vite.js + Tailwind CSS in TypeScript
       </h1>
       <ul>

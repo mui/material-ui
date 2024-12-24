@@ -40,7 +40,7 @@ const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>((props, ref) =>
     <BaseTabsList
       ref={ref}
       className={clsx(
-        'mb-4 rounded-xl bg-purple-500 flex font-sans items-center justify-center content-between min-w-tabs-list shadow-lg',
+        'min-w-tabs-list mb-4 flex content-between items-center justify-center rounded-xl bg-purple-500 font-sans shadow-lg',
         className,
       )}
       {...other}
@@ -87,7 +87,7 @@ const TabPanel = React.forwardRef<HTMLDivElement, TabPanelProps>((props, ref) =>
     <BaseTabPanel
       ref={ref}
       className={clsx(
-        'py-5 px-3 bg-white dark:bg-slate-900 border border-solid border-slate-200 dark:border-slate-700 rounded-xl opacity-60 w-full font-sans text-sm',
+        'w-full rounded-xl border border-solid border-slate-200 bg-white px-3 py-5 font-sans text-sm opacity-60 dark:border-slate-700 dark:bg-slate-900',
         className,
       )}
       {...other}

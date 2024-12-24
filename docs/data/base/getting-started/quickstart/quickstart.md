@@ -125,7 +125,7 @@ The demo below shows how to create the Primer button using plain CSS with Base 
 After installing Tailwind CSS, pass its utility classes to `className`, as shown below:
 
 ```tsx
-<Button className="bg-green-600 rounded-md py-1 px-4...">Create Repository</Button>
+<Button className="rounded-md bg-green-600 px-4 py-1">Create Repository</Button>
 ```
 
 The demo below shows how to build the Primer button using Tailwind CSS:
