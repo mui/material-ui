@@ -258,6 +258,21 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   };
 
+  const clonedOnChange = (event, newValue, child) => {
+    // Redefine target to allow name and value to be read.
+    // This allows seamless integration with the most popular form libraries.
+    // https://github.com/mui/material-ui/issues/13485#issuecomment-676048492
+    // Clone the event to not override `target` of the original event.
+    const nativeEvent = event.nativeEvent || event;
+    const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
+
+    Object.defineProperty(clonedEvent, 'target', {
+      writable: true,
+      value: { value: newValue, name },
+    });
+    onChange(clonedEvent, child);
+  };
+
   const handleItemClick = (child) => (event) => {
     let newValue;
 
@@ -286,18 +301,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       setValueState(newValue);
 
       if (onChange) {
-        // Redefine target to allow name and value to be read.
-        // This allows seamless integration with the most popular form libraries.
-        // https://github.com/mui/material-ui/issues/13485#issuecomment-676048492
-        // Clone the event to not override `target` of the original event.
-        const nativeEvent = event.nativeEvent || event;
-        const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
-
-        Object.defineProperty(clonedEvent, 'target', {
-          writable: true,
-          value: { value: newValue, name },
-        });
-        onChange(clonedEvent, child);
+        clonedOnChange(event, newValue, child);
       }
     }
 
@@ -322,6 +326,22 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         update(true, event);
       }
     }
+  };
+
+  const handleItemKeyDown = (child) => (event) => {
+    if (event.key === ' ') {
+      const newValue = child.props.value;
+      if (newValue !== value) {
+        setValueState(newValue);
+
+        if (onChange) {
+          clonedOnChange(event, newValue, child);
+        }
+      }
+      update(false, event);
+    }
+
+    child?.props?.onKeyDown?.(event);
   };
 
   const open = displayNode !== null && openState;
@@ -408,6 +428,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
           child.props.onKeyUp(event);
         }
       },
+      onKeyDown: handleItemKeyDown(child),
       role: 'option',
       selected,
       value: undefined, // The value is most likely not a valid HTML attribute.
