@@ -298,7 +298,8 @@ Typography.propTypes /* remove-proptypes */ = {
    * For instance, subtitle1 to `<h6>`.
    * If you wish to change that mapping, you can provide your own.
    * Alternatively, you can use the `component` prop.
-   * @default {
+   * @default
+   * {
    *   h1: 'h1',
    *   h2: 'h2',
    *   h3: 'h3',
