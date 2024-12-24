@@ -3,12 +3,13 @@ import * as url from 'url';
 import path from 'path';
 import zlib from 'zlib';
 import { promisify } from 'util';
-import nodeResolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
+import nodeResolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import replace from '@rollup/plugin-replace';
 import nodeGlobals from 'rollup-plugin-node-globals';
 import { terser } from 'rollup-plugin-terser';
+import { createRequire } from 'module';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 
@@ -117,6 +118,10 @@ const nestedFolder = {
       return resolveNestedImport('mui-system', importee);
     }
 
+    if (importee.indexOf('react/jsx-runtime') === 0) {
+      return createRequire(import.meta.url).resolve('react18/jsx-runtime');
+    }
+
     return undefined;
   },
 };
@@ -136,25 +141,6 @@ const babelOptions = {
 const commonjsOptions = {
   ignoreGlobal: true,
   include: /node_modules/,
-  namedExports: {
-    'node_modules/prop-types/index.js': [
-      'elementType',
-      'bool',
-      'func',
-      'object',
-      'oneOfType',
-      'element',
-    ],
-    'node_modules/react/jsx-runtime.js': ['jsx', 'jsxs'],
-    'node_modules/react-is/index.js': [
-      'ForwardRef',
-      'isFragment',
-      'isLazy',
-      'isMemo',
-      'Memo',
-      'isValidElementType',
-    ],
-  },
 };
 const nodeOptions = {
   extensions: ['.js', '.tsx', '.ts'],

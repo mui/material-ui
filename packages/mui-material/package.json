@@ -58,6 +58,8 @@
   "devDependencies": {
     "@mui-internal/test-utils": "workspace:^",
     "@mui/internal-babel-macros": "workspace:^",
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-replace": "^5.0.5",
     "@testing-library/dom": "^10.3.1",
     "@testing-library/user-event": "^14.5.2",
@@ -76,11 +78,10 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^6.21.3",
+    "react18": "npm:react@^18.3.1",
     "rollup": "^3.29.4",
     "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-globals": "^1.4.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-terser": "^7.0.2",
     "sinon": "^15.2.0"
   },
