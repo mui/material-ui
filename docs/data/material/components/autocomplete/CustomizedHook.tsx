@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { useAutocomplete, AutocompleteGetTagProps } from '@mui/base/useAutocomplete';
+import useAutocomplete, {
+  AutocompleteGetTagProps,
+} from '@mui/material/useAutocomplete';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
@@ -188,7 +190,7 @@ export default function CustomizedHook() {
       </div>
       {groupedOptions.length > 0 ? (
         <Listbox {...getListboxProps()}>
-          {(groupedOptions as typeof top100Films).map((option, index) => {
+          {groupedOptions.map((option, index) => {
             const { key, ...optionProps } = getOptionProps({ option, index });
             return (
               <li key={key} {...optionProps}>
