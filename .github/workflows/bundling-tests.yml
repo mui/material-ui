@@ -1,0 +1,16 @@
+name: Bundling tests
+
+on: pull_request
+
+permissions: read-all
+
+jobs:
+  trigger-circleci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start CircleCI bundling tests
+        uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.0.6
+        env:
+          CCI_TOKEN: ${{ secrets.CIRCLECI_TOKEN }}
+        with:
+          GHA_Meta: 'workflow:bundling'
