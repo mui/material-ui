@@ -4,7 +4,7 @@ import { OverridableStringUnion } from '@mui/types';
 import { Mark } from './useSlider.types';
 import { SlotComponentProps } from '../utils/types';
 import { Theme } from '../styles';
-import { OverrideProps, DefaultComponentProps } from '../OverridableComponent';
+import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import SliderValueLabelComponent from './SliderValueLabel';
 import { SliderClasses } from './sliderClasses';
 
@@ -281,32 +281,11 @@ export interface SliderTypeMap<
   defaultComponent: RootComponent;
 }
 
-type SliderTypeMapNumber<
-  RootComponent extends React.ElementType = 'span',
-  AdditionalProps = {},
-> = SliderTypeMap<RootComponent, AdditionalProps, number>;
+export type SliderComponent<Value extends number | number[]> = OverridableComponent<
+  SliderTypeMap<'span', {}, Value>
+>;
 
-type SliderTypeMapNumberArray<
-  RootComponent extends React.ElementType = 'span',
-  AdditionalProps = {},
-> = SliderTypeMap<RootComponent, AdditionalProps, number[]>;
-
-interface SliderType {
-  <RootComponent extends React.ElementType>(
-    props: OverrideProps<SliderTypeMapNumber, RootComponent>,
-  ): React.JSX.Element | null;
-  (props: DefaultComponentProps<SliderTypeMapNumber>): React.JSX.Element | null;
-
-  <RootComponent extends React.ElementType>(
-    props: OverrideProps<SliderTypeMapNumberArray, RootComponent>,
-  ): React.JSX.Element | null;
-  (props: DefaultComponentProps<SliderTypeMapNumberArray>): React.JSX.Element | null;
-
-  <RootComponent extends React.ElementType>(
-    props: OverrideProps<SliderTypeMap, RootComponent>,
-  ): React.JSX.Element | null;
-  (props: DefaultComponentProps<SliderTypeMap>): React.JSX.Element | null;
-}
+export type SliderType = SliderComponent<number> & SliderComponent<number[]>;
 
 export interface SliderValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
   children: React.ReactElement<unknown>;
