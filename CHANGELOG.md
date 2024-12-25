@@ -1,5 +1,27 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.16.13
+
+<!-- generated comparing v5.16.12..v5.x -->
+
+_Dec 24, 2024_
+
+A big thanks to the 2 contributors who made this release possible.
+
+### `@mui/material-nextjs@5.16.13`
+
+- Support Next 15.0.0 in v5 (#44853) @DiegoAndai
+
+### Docs
+
+- [material-ui] Fix crashing of DraggableDialog demo (#44811) @sai6855
+
+### Core
+
+- Use React 18's JSX runtime for v5.x UMD builds (#44815) @DiegoAndai
+
+All contributors of this release in alphabetical order: @DiegoAndai, @sai6855
+
 ## v5.16.12
 
 <!-- generated comparing v5.16.11..v5.x -->
