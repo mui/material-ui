@@ -82,3 +82,15 @@ function testOnChange() {
   onChange={(event, value: number[]) => {}}
   onChangeCommitted={(event, value: number[]) => {}}
 />;
+
+const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
+  function CustomComponent() {
+    return <div />;
+  };
+
+<Slider component="div" />;
+<Slider component={CustomComponent} stringProp="a" numberProp={1} />;
+/* @ts-expect-error missing stringProp and numberProp */
+<Slider component={CustomComponent} />;
+/* @ts-expect-error does not allow any prop */
+<Slider abc="123" />;
