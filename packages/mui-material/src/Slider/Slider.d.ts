@@ -285,7 +285,9 @@ export type SliderComponent<Value extends number | number[]> = OverridableCompon
   SliderTypeMap<'span', {}, Value>
 >;
 
-export type SliderType = SliderComponent<number> & SliderComponent<number[]>;
+export type SliderType = SliderComponent<number> &
+  SliderComponent<number[]> &
+  SliderComponent<number | number[]>;
 
 export interface SliderValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
   children: React.ReactElement<unknown>;
