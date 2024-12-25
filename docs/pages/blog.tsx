@@ -169,7 +169,7 @@ const PAGE_SIZE = 7;
 
 export default function Blog(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter();
-  const postListRef = React.useRef<HTMLDivElement | null>(null);
+  const postListRef = React.useRef<HTMLDivElement>(null);
   const [page, setPage] = React.useState(0);
   const [selectedTags, setSelectedTags] = React.useState<Record<string, boolean>>({});
   const { allBlogPosts, tagInfo: rawTagInfo } = props;

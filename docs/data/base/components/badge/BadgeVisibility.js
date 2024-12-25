@@ -57,7 +57,7 @@ const Badge = styled(BaseBadge)(
     text-align: center;
     border-radius: 12px;
     background: ${blue[500]};
-    box-shadow: 0px 4px 6x ${theme.palette.mode === 'dark' ? grey[900] : grey[300]};
+    box-shadow: 0 4px 6x ${theme.palette.mode === 'dark' ? grey[900] : grey[300]};
     transform: translate(50%, -50%);
     transform-origin: 100% 0;
   }
@@ -89,7 +89,7 @@ const StyledButton = styled(Button)(
   }
 
   &.${buttonClasses.focusVisible} {
-    box-shadow: 0 3px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 4px rgba(0, 127, 255, 0.5);
+    box-shadow: 0 3px 20px 0 rgb(61 71 82 / 0.1), 0 0 0 4px rgb(0 127 255 / 0.5);
     outline: none;
   }
   `,
