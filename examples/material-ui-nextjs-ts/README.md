@@ -30,11 +30,6 @@ or:
 
 [![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/github/mui/material-ui/tree/master/examples/material-ui-nextjs-ts)
 
-## Upgrading to Next.js 15
-
-This example uses Next.js 14.
-To upgrade to version 15, please follow the [official upgrade guide](https://nextjs.org/docs/app/building-your-application/upgrading/version-15) in the Next.js docs.
-
 ## Learn more
 
 To learn more about this example:
