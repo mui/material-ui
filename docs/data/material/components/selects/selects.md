@@ -35,7 +35,7 @@ It extends the [text field components](/material-ui/react-text-field/) subcompon
 It shares the same styles and many of the same props. Refer to the respective component's API page for details.
 
 :::warning
-The `placeholder` prop is NOT shared.
+Unlike input components, the `placeholder` prop is not available in Select. To add a placeholder, refer to the [placeholder](#placeholder) section below.
 :::
 
 ### Filled and standard variants
