@@ -4,6 +4,7 @@ const plugins = [];
 try {
   // eslint-disable-next-line
   require('tailwindcss');
+  // must be loaded last: https://github.com/tailwindlabs/prettier-plugin-tailwindcss?tab=readme-ov-file#compatibility-with-other-prettier-plugins
   plugins.push('prettier-plugin-tailwindcss');
 } catch (err) {
   // continue regardless of error
