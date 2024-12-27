@@ -929,6 +929,7 @@ workflows:
               only:
                 - master
                 - next
+                - v5.x
     jobs:
       - test_unit:
           <<: *default-context
