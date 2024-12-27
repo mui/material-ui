@@ -270,18 +270,25 @@ function reduceChildRoutes(context) {
     }
 
     const subheader = Boolean(page.subheader);
-    const [path, hash] = firstChild.pathname.split('#');
+
+    let href = firstChild.pathname;
+
+    if (!href.startsWith('http')) {
+      const [pathname, hash] = href.split('#');
+      href = {
+        pathname,
+        ...(firstChild.query && { query: firstChild.query }),
+        ...(hash && { hash }),
+      };
+    }
+
     items.push(
       <AppNavDrawerItem
         linkProps={page.linkProps}
         depth={depth}
         key={title}
         title={title}
-        href={{
-          pathname: path,
-          ...(firstChild.query && { query: firstChild.query }),
-          ...(hash && { hash }),
-        }}
+        href={href}
         legacy={page.legacy}
         newFeature={page.newFeature}
         planned={page.planned}
@@ -291,7 +298,7 @@ function reduceChildRoutes(context) {
         plan={page.plan}
         icon={page.icon}
         subheader={subheader}
-        topLevel={topLevel && !page.subheader}
+        topLevel={topLevel && !subheader}
         initiallyExpanded={topLevel || subheader}
         expandable={!subheader}
       >
@@ -305,18 +312,24 @@ function reduceChildRoutes(context) {
       </AppNavDrawerItem>,
     );
   } else {
-    const [path, hash] = page.pathname.split('#');
+    let href = page.pathname;
+
+    if (!href.startsWith('http')) {
+      const [pathname, hash] = href.split('#');
+      href = {
+        pathname,
+        ...(page.query && { query: page.query }),
+        ...(hash && { hash }),
+      };
+    }
+
     items.push(
       <AppNavDrawerItem
         linkProps={page.linkProps}
         depth={depth}
         key={title}
         title={title}
-        href={{
-          pathname: path,
-          ...(page.query && { query: page.query }),
-          ...(hash && { hash }),
-        }}
+        href={href}
         legacy={page.legacy}
         newFeature={page.newFeature}
         planned={page.planned}
