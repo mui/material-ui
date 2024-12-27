@@ -33,7 +33,6 @@ const classes = [
   },
 ];
 
-// todo: fix `deperecated` -> `deprecated`
 const plugin = () => {
   return {
     postcssPlugin: `Replace deprecated Drawer classes with new classes`,
