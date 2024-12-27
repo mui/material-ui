@@ -4,9 +4,6 @@
 .idea
 # IntelliJ IDEA module file
 *.iml
-.vscode/*
-!.vscode/launch.json
-!.vscode/extensions.json
 *.log
 *.tsbuildinfo
 /.eslintcache
