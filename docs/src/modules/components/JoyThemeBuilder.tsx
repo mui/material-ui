@@ -1496,7 +1496,7 @@ export default function JoyThemeBuilder() {
             value={colorMode}
             onChange={(event, newValue) => {
               if (newValue) {
-                setColorMode(newValue as 'light' | 'dark')
+                setColorMode(newValue as 'light' | 'dark');
               }
             }}
           >
