@@ -181,7 +181,7 @@ createTheme({
 
 ### Next.js App Router
 
-Add the following code to the [root layout](https://nextjs.org/docs/app/building-your-application/routing/layouts-and-templates#root-layout-required) file:
+Add the following code to the [root layout](https://nextjs.org/docs/app/api-reference/file-conventions/layout#root-layouts) file:
 
 ```jsx title="app/layout.js"
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
