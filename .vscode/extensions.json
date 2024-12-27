@@ -15,6 +15,6 @@
     "yoavbls.pretty-ts-errors", // TypeScript
     "stylelint.vscode-stylelint", // Stylelint
     "davidanson.vscode-markdownlint", // markdownlint
-    "chrischinchilla.vale-vscode", // Vale
-  ],
+    "chrischinchilla.vale-vscode" // Vale
+  ]
 }
