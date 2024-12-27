@@ -1494,7 +1494,11 @@ export default function JoyThemeBuilder() {
           <ToggleButtonGroup
             size="sm"
             value={colorMode}
-            onChange={(event, newValue) => setColorMode(newValue as 'light' | 'dark')}
+            onChange={(event, newValue) => {
+              if (newValue) {
+                setColorMode(newValue as 'light' | 'dark')
+              }
+            }}
           >
             <Button value="light">
               <LightMode />
