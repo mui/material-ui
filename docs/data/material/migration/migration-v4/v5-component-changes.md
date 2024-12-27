@@ -1255,7 +1255,7 @@ This component has been removed.
 
 You can get a reference to the underlying DOM node of our components via `ref` prop.
 
-The component relied on [`ReactDOM.findDOMNode`](https://react.dev/reference/react-dom/findDOMNode) which is [deprecated in `React.StrictMode`](https://react.dev/reference/react/StrictMode#warning-about-deprecated-finddomnode-usage).
+The component relied on [`ReactDOM.findDOMNode`](https://legacy.reactjs.org/docs/react-dom.html#finddomnode) which is [deprecated in `React.StrictMode`](https://react.dev/reference/react/StrictMode#warning-about-deprecated-finddomnode-usage).
 
 :::success
 This is handled in the [preset-safe codemod](#preset-safe) by applying fake `RootRef` component to prevent application crash, but further fixes are required.
