@@ -1032,6 +1032,78 @@ npx @mui/codemod@latest deprecations/circular-progress-classes <path>
 npx @mui/codemod@latest deprecations/divider-props <path>
 ```
 
+#### `drawer-classes`
+
+JS transforms:
+
+```diff
+ import { drawerClasses } from '@mui/material/Drawer';
+
+ MuiDrawer: {
+   styleOverrides: {
+     root: {
+-      [`&.${drawerClasses.paperAnchorBottom}`]: {
++      [`&.${drawerClasses.anchorBottom} > .${drawerClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`&.${drawerClasses.paperAnchorLeft}`]: {
++      [`&.${drawerClasses.anchorLeft} > .${drawerClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`&.${drawerClasses.paperAnchorRight}`]: {
++      [`&.${drawerClasses.anchorRight} > .${drawerClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`&.${drawerClasses.paperAnchorTop}`]: {
++      [`&.${drawerClasses.anchorTop} > .${drawerClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`&.${drawerClasses.paperAnchorDockedBottom}`]: {
++      [`&.${drawerClasses.docked}.${drawerClasses.anchorBottom} > .${drawerClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`&.${drawerClasses.paperAnchorDockedLeft}`]: {
++      [`&.${drawerClasses.docked}.${drawerClasses.anchorLeft} > .${drawerClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`&.${drawerClasses.paperAnchorDockedRight}`]: {
++      [`&.${drawerClasses.docked}.${drawerClasses.anchorRight} > .${drawerClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`&.${drawerClasses.paperAnchorDockedTop}`]: {
++      [`&.${drawerClasses.docked}.${drawerClasses.anchorTop} > .${drawerClasses.paper}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiDrawer-paperAnchorBottom
++.MuiDrawer-anchorBottom > .MuiDrawer-paper
+-.MuiDrawer-paperAnchorLeft
++.MuiDrawer-anchorLeft > .MuiDrawer-paper
+-.MuiDrawer-paperAnchorRight
++.MuiDrawer-anchorRight > .MuiDrawer-paper
+-.MuiDrawer-paperAnchorTop
++.MuiDrawer-anchorTop > .MuiDrawer-paper
+-.MuiDrawer-paperAnchorDockedBottom
++.MuiDrawer-docked.MuiDrawer-anchorBottom > .MuiDrawer-paper
+-.MuiDrawer-paperAnchorDockedLeft
++.MuiDrawer-docked.MuiDrawer-anchorLeft > .MuiDrawer-paper
+-.MuiDrawer-paperAnchorDockedRight
++.MuiDrawer-docked.MuiDrawer-anchorRight > .MuiDrawer-paper
+-.MuiDrawer-paperAnchorDockedTop
++.MuiDrawer-docked.MuiDrawer-anchorTop > .MuiDrawer-paper
+```
+
+```bash
+npx @mui/codemod@latest deprecations/drawer-classes <path>
+```
+
 #### `filled-input-props`
 
 ```diff

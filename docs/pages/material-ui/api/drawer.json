@@ -51,6 +51,30 @@
   ],
   "classes": [
     {
+      "key": "anchorBottom",
+      "className": "MuiDrawer-anchorBottom",
+      "description": "Styles applied to the root element if `anchor=\"bottom\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorLeft",
+      "className": "MuiDrawer-anchorLeft",
+      "description": "Styles applied to the root element if `anchor=\"left\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorRight",
+      "className": "MuiDrawer-anchorRight",
+      "description": "Styles applied to the root element if `anchor=\"right\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorTop",
+      "className": "MuiDrawer-anchorTop",
+      "description": "Styles applied to the root element if `anchor=\"top\"`.",
+      "isGlobal": false
+    },
+    {
       "key": "docked",
       "className": "MuiDrawer-docked",
       "description": "Styles applied to the root element if `variant=\"permanent or persistent\"`.",
@@ -72,49 +96,57 @@
       "key": "paperAnchorBottom",
       "className": "MuiDrawer-paperAnchorBottom",
       "description": "Styles applied to the Paper component if `anchor=\"bottom\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "paperAnchorDockedBottom",
       "className": "MuiDrawer-paperAnchorDockedBottom",
       "description": "Styles applied to the Paper component if `anchor=\"bottom\"` and `variant` is not \"temporary\".",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "paperAnchorDockedLeft",
       "className": "MuiDrawer-paperAnchorDockedLeft",
       "description": "Styles applied to the Paper component if `anchor=\"left\"` and `variant` is not \"temporary\".",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "paperAnchorDockedRight",
       "className": "MuiDrawer-paperAnchorDockedRight",
       "description": "Styles applied to the Paper component if `anchor=\"right\"` and `variant` is not \"temporary\".",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "paperAnchorDockedTop",
       "className": "MuiDrawer-paperAnchorDockedTop",
       "description": "Styles applied to the Paper component if `anchor=\"top\"` and `variant` is not \"temporary\".",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "paperAnchorLeft",
       "className": "MuiDrawer-paperAnchorLeft",
       "description": "Styles applied to the Paper component if `anchor=\"left\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "paperAnchorRight",
       "className": "MuiDrawer-paperAnchorRight",
       "description": "Styles applied to the Paper component if `anchor=\"right\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "paperAnchorTop",
       "className": "MuiDrawer-paperAnchorTop",
       "description": "Styles applied to the Paper component if `anchor=\"top\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "root",

@@ -1,0 +1,31 @@
+.MuiDrawer-root.MuiDrawer-anchorBottom > .MuiDrawer-paper {
+  color: red;
+}
+
+.MuiDrawer-root.MuiDrawer-anchorLeft > .MuiDrawer-paper {
+  color: red;
+}
+
+.MuiDrawer-root.MuiDrawer-anchorRight > .MuiDrawer-paper {
+  color: red;
+}
+
+.MuiDrawer-root.MuiDrawer-anchorTop > .MuiDrawer-paper {
+  color: red;
+}
+
+.MuiDrawer-root.MuiDrawer-docked.MuiDrawer-anchorBottom > .MuiDrawer-paper {
+  color: red;
+}
+
+.MuiDrawer-root.MuiDrawer-docked.MuiDrawer-anchorLeft > .MuiDrawer-paper {
+  color: red;
+}
+
+.MuiDrawer-root.MuiDrawer-docked.MuiDrawer-anchorRight > .MuiDrawer-paper {
+  color: red;
+}
+
+.MuiDrawer-root.MuiDrawer-docked.MuiDrawer-anchorTop > .MuiDrawer-paper {
+  color: red;
+}
