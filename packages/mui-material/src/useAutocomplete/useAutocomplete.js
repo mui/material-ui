@@ -1079,7 +1079,7 @@ function useAutocomplete(props) {
     }),
     getInputProps: () => ({
       id,
-      value: inputValue,
+      value: inputValue ?? getOptionLabel(value),
       onBlur: handleBlur,
       onFocus: handleFocus,
       onChange: handleInputChange,
