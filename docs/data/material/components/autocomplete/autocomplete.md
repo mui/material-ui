@@ -221,6 +221,8 @@ The demo relies on [autosuggest-highlight](https://github.com/moroshko/autosugge
 
 :::error
 Before you can start using the Google Maps JavaScript API and Places API, you need to get your own [API key](https://developers.google.com/maps/documentation/javascript/get-api-key).
+
+This demo has limited quotas to make API requests. When your quota exceeds, you will see the response for "Paris".
 :::
 
 ## Multiple values
