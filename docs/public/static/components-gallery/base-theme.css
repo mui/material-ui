@@ -83,7 +83,7 @@
   --bg-soft: hsla(var(--grey-50), 0.9);
   --bg-hard: hsla(var(--grey-100), 0.8);
   --bg-highlight: hsla(var(--primary-600));
-  --bg-overlay: hsla(0, 0, 0, 0.3);
+  --bg-overlay: hsla(0deg 0 0 / 0.3);
 
   --bg-button: hsla(var(--primary-500));
   --bg-button-hover: hsla(var(--primary-700));
@@ -103,22 +103,23 @@
   --border-soft: 1px solid hsla(var(--grey-300), 0.8);
   --border-hard: 1px solid hsla(var(--grey-500));
   --border-interactive: 1px solid hsla(var(--primary-400));
-  --border-transparent: 1px solid hsla(0, 0, 0, 0);
+  --border-transparent: 1px solid hsla(0deg 0 0 / 0);
   --border-active-switch: 1px solid hsla(var(--primary-100));
 
-  --shadow-elevation-1: 0px 1px 2px 0px hsla(0, 0, 0, 0.15);
+  --shadow-elevation-1: 0px 1px 2px 0px hsla(0deg 0 0 / 0.15);
   --shadow-elevation-2: 0px 2px 4px 0px hsla(var(--grey-700), 0.2);
   --shadow-elevation-3: 0px 4px 16px -4px hsla(var(--grey-700), 0.2),
     0px 1px 2px -1px hsla(var(--grey-700), 0.1);
-  --shadow-elevation-4: 0px 8px 32px -4px hsla(0, 0, 0, 0.25), 0px 1px 2px -1px hsla(0, 0, 0, 0.15);
+  --shadow-elevation-4: 0px 8px 32px -4px hsla(0deg 0 0 / 0.25),
+    0px 1px 2px -1px hsla(0deg 0 0 / 0.15);
 
   --shadow-interactive-button: 0 -2px 0.5px 0 hsla(var(--primary-700), 0.4) inset,
     0 2px 0.5px 0 hsla(var(--primary-400), 0.6) inset, 0 1px 0.5px 0 hsla(var(--primary-900), 0.3);
   --shadow-outlined-button: 0 -2px 0.5px 0 hsla(var(--grey-100), 0.5) inset,
     0 1px 0.5px 0 hsla(var(--grey-500), 0.2);
   --shadow-input: 0px 1px 2px hsla(var(--primary-300), 0.2);
-  --shadow-interactive-switch-track: 0px 1px 1px 0px hsla(0, 0, 0, 0.05) inset;
-  --shadow-interactive-switch-thumb: 0px 1px 2px 0px hsla(0, 0, 0, 0.3);
+  --shadow-interactive-switch-track: 0px 1px 1px 0px hsla(0deg 0 0 / 0.05) inset;
+  --shadow-interactive-switch-thumb: 0px 1px 2px 0px hsla(0deg 0 0 / 0.3);
   --shadow-interactive-focus-visible: 0 0 0 4px hsla(var(--primary-300), 0.5);
 
   --border-radius-sm: 4px;
@@ -132,7 +133,6 @@
   .GalleryContainer,
   .GalleryMenu,
   .GalleryPopup,
-  .GalleryPopup,
   .GallerySelect-listbox {
     --canvas: #0f0f0f;
 
@@ -145,7 +145,7 @@
     --bg-soft: hsla(var(--grey-800), 0.6);
     --bg-hard: hsla(var(--grey-900), 0.8);
     --bg-highlight: hsla(var(--primary-500));
-    --bg-overlay: hsla(0, 0, 0, 0.6);
+    --bg-overlay: hsla(0deg 0 0 / 0.6);
 
     --bg-button-base: hsla(var(--primary-500));
     --bg-button-hover: hsla(var(--primary-400));
@@ -168,19 +168,22 @@
     --border-transparent: 1px solid transparent;
     --border-active-switch: 1px solid hsla(var(--primary-400), 0.4);
 
-    --shadow-elevation-1: 0px 2px 4px -0.5px hsla(0, 0, 0, 0.4);
-    --shadow-elevation-2: 0px 2px 8px 0px hsla(0, 0, 0, 0.3), 0px 2px 4px -0.5px hsla(0, 0, 0, 0.4);
-    --shadow-elevation-3: 0px 4px 8px 0px hsla(0, 0, 0, 0.32), 0px 8px 16px 0px hsla(0, 0, 0, 0.32);
-    --shadow-elevation-4: 0px 2px 24px 0px hsla(0, 0, 0, 0.32),
-      0px 16px 32px 0px hsla(0, 0, 0, 0.32);
+    --shadow-elevation-1: 0px 2px 4px -0.5px hsla(0deg 0 0 / 0.4);
+    --shadow-elevation-2: 0px 2px 8px 0px hsla(0deg 0 0 / 0.3),
+      0px 2px 4px -0.5px hsla(0deg 0 0 / 0.4);
+    --shadow-elevation-3: 0px 4px 8px 0px hsla(0deg 0 0 / 0.32),
+      0px 8px 16px 0px hsla(0deg 0 0 / 0.32);
+    --shadow-elevation-4: 0px 2px 24px 0px hsla(0deg 0 0 / 0.32),
+      0px 16px 32px 0px hsla(0deg 0 0 / 0.32);
 
     --shadow-interactive-button: 0 -2px 0.5px 0 hsla(var(--primary-700), 0.4) inset,
-      0 2px 0.5px 0 hsla(var(--primary-400), 0.6) inset, 0 1px 0.5px 0 hsla(var(--primary-900), 0.3);
-    --shadow-outlined-button: 0 -2px 0.5px 0 hsla(0, 0%, 0%, 0.4) inset,
-      0 1px 0.5px 0 hsla(0, 0%, 0%, 0.9);
-    --shadow-input: 0px 1.5px 0.5px 0px hsla(0, 0%, 0%, 0.9);
-    --shadow-interactive-switch-track: 0px 1px 1px 0px hsla(0, 0, 0, 0.35) inset;
-    --shadow-interactive-switch-thumb: 0px 1px 2px 0px hsla(0, 0, 0, 0.3);
+      0 2px 0.5px 0 hsla(var(--primary-400) / 0.6) inset,
+      0 1px 0.5px 0 hsla(var(--primary-900) / 0.3);
+    --shadow-outlined-button: 0 -2px 0.5px 0 hsla(0deg 0% 0% / 0.4) inset,
+      0 1px 0.5px 0 hsla(0deg 0% 0% / 0.9);
+    --shadow-input: 0px 1.5px 0.5px 0px hsla(0deg 0% 0% / 0.9);
+    --shadow-interactive-switch-track: 0px 1px 1px 0px hsla(0deg 0 0 / 0.35) inset;
+    --shadow-interactive-switch-thumb: 0px 1px 2px 0px hsla(0deg 0 0 / 0.3);
   }
 }
 
@@ -472,8 +475,8 @@
 }
 
 .GalleryNumberInput .input {
-  font-family: inherit;
   font: var(--text-body);
+  font-family: inherit;
   grid-column: 1/2;
   grid-row: 1/3;
   color: var(--font-color-soft);
@@ -519,7 +522,6 @@
   cursor: pointer;
   color: var(--font-color-onDark);
   background: var(--bg-button);
-  /* border: var(--border-interactive); */
 }
 
 .GalleryNumberInput .btn.increment:active {
@@ -559,7 +561,7 @@
   border-radius: var(--border-radius-md);
   padding: 0.75rem;
   opacity: 1;
-  margin: 0.25rem 0px;
+  margin: 0.25rem 0;
   color: var(--font-color-soft);
   background: var(--bg-default);
   border: var(--border-soft);
@@ -610,7 +612,6 @@
 }
 
 .GallerySelect-listbox {
-  box-sizing: border-box;
   width: 300px;
   font: var(--text-body);
   line-height: var(--button-line-height);
@@ -920,10 +921,6 @@
   padding: 16px;
 }
 
-.GalleryTablePaginationDemo th {
-  background-color: var(--bg-default);
-}
-
 .GalleryTablePagination .base-TablePagination-spacer {
   display: none;
 }
@@ -1031,8 +1028,8 @@
   margin-bottom: 8px;
   display: flex;
   align-items: center;
-  justify-content: center;
   align-content: space-between;
+  justify-content: center;
 }
 
 .GalleryTab {
@@ -1093,7 +1090,6 @@
   min-height: 100px;
   font: var(--text-body);
   color: var(--GalleryInput-input-color, var(--font-color-soft));
-  /* color: #fff; */
   padding: 6px 12px;
   border-radius: var(--border-radius-md) var(--border-radius-md) 0 var(--border-radius-md);
   background: var(--bg-input-base);

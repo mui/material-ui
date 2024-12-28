@@ -6,8 +6,18 @@ export default {
     'media-feature-range-notation': null,
     'no-empty-source': null,
     'selector-class-pattern': null,
-    'string-no-newline': null, // not compatible with prettier
+    'string-no-newline': null, // not compatible with Prettier
     'value-keyword-case': null,
+    'at-rule-no-unknown': [true, { ignoreAtRules: ['tailwind'] }],
+    'declaration-block-no-redundant-longhand-properties': [
+      true,
+      {
+        ignoreShorthands: [
+          'place-content', // Nobody uses this shorthand property.
+        ],
+      },
+    ],
+    'custom-property-empty-line-before': null, // Allow arbitrary grouping of custom properties
   },
   overrides: [
     {
