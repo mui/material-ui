@@ -163,8 +163,8 @@ importers:
         specifier: ^0.4.24
         version: 0.4.24
       chalk:
-        specifier: ^5.3.0
-        version: 5.3.0
+        specifier: ^5.4.1
+        version: 5.4.1
       compression-webpack-plugin:
         specifier: ^11.1.0
         version: 11.1.0(webpack@5.96.1)
@@ -1532,8 +1532,8 @@ importers:
         specifier: ^4.5.0
         version: 4.5.0
       chalk:
-        specifier: ^5.3.0
-        version: 5.3.0
+        specifier: ^5.4.1
+        version: 5.4.1
       cross-fetch:
         specifier: ^4.0.0
         version: 4.0.0(encoding@0.1.13)
@@ -6531,6 +6531,10 @@ packages:
 
   chalk@5.3.0:
     resolution: {integrity: sha512-dLitG79d+GV1Nb/VYcCDFivJeK1hiukt9QjRNVOsUtTy1rR1YJsmpGGTZ3qJos+uw7WmWF4wUwBd9jxjocFC2w==}
+    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
+
+  chalk@5.4.1:
+    resolution: {integrity: sha512-zgVZuo2WcZgfUEmsn6eO3kINexW8RAE4maiQ8QNs8CtpPCSyMiYsULR3HQYkm3w8FIA3SberyMJMSldGsW+U3w==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
 
   chance@1.1.12:
@@ -17925,7 +17929,7 @@ snapshots:
     dependencies:
       ansi-align: 3.0.1
       camelcase: 7.0.1
-      chalk: 5.3.0
+      chalk: 5.4.1
       cli-boxes: 3.0.0
       string-width: 5.1.2
       type-fest: 2.19.0
@@ -18211,6 +18215,8 @@ snapshots:
   chalk@5.0.1: {}
 
   chalk@5.3.0: {}
+
+  chalk@5.4.1: {}
 
   chance@1.1.12: {}
 
@@ -25301,7 +25307,7 @@ snapshots:
   title@4.0.1:
     dependencies:
       arg: 5.0.2
-      chalk: 5.3.0
+      chalk: 5.4.1
       clipboardy: 4.0.0
 
   tldts-core@6.1.61: {}
