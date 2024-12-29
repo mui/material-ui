@@ -196,7 +196,7 @@
     "typescript": "^5.7.2",
     "vitest": "^2.1.8",
     "vitest-fail-on-console": "^0.7.1",
-    "webpack": "^5.96.1",
+    "webpack": "^5.97.1",
     "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^5.1.4",
     "yargs": "^17.7.2"
