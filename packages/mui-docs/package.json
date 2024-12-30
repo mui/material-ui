@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-docs",
   "scripts": {
-    "prebuild": "rimraf build",
+    "prebuild": "rimraf --glob build \"*.tsbuildinfo\"",
     "build": "pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
     "build:modern": "echo 'Skip modern build'",
     "build:node": "node ../../scripts/build.mjs node",

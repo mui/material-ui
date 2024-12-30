@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-types",
   "scripts": {
-    "prebuild": "rimraf build",
+    "prebuild": "rimraf --glob build \"*.tsbuildinfo\"",
     "build": "mkdir build && cpy index.d.ts build/ && cpy OverridableComponentAugmentation.ts build/ && pnpm build:copy-files",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "release": "pnpm build && pnpm publish",

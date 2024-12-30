@@ -20,7 +20,7 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "prebuild": "rimraf build",
+    "prebuild": "rimraf --glob build \"*.tsbuildinfo\"",
     "build": "mkdir build && pnpm build:copy-files",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "release": "pnpm build && pnpm publish"
