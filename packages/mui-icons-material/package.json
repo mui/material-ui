@@ -28,15 +28,15 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
+    "prebuild": "rimraf build",
     "build": "shx cp -r lib/ build/ && pnpm build:typings && pnpm build:copy-files",
     "build:lib": "pnpm build:node && pnpm build:stable",
     "build:lib:clean": "rimraf lib/ && pnpm build:lib",
     "build:modern": "echo 'Skip modern build'",
     "build:node": "node ../../scripts/build.mjs node --largeFiles --outDir lib",
     "build:stable": "node ../../scripts/build.mjs stable --largeFiles --outDir lib",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "build:typings": "node ./scripts/create-typings.mjs",
-    "prebuild": "rimraf build",
+    "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "release": "pnpm build && pnpm publish",
     "src:download": "node ./scripts/download.mjs",
     "src:icons": "cross-env UV_THREADPOOL_SIZE=64 node ./builder.mjs --output-dir src --svg-dir material-icons --renameFilter ./renameFilters/material-design-icons.mjs && pnpm build:lib:clean",
