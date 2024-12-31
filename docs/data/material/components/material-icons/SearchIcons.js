@@ -15,7 +15,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Button from '@mui/material/Button';
-import MiniSearch from 'minisearch';
+import Fuse from 'fuse.js';
 import SearchIcon from '@mui/icons-material/Search';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -515,7 +515,6 @@ const Input = styled(InputBase)({
   flex: 1,
 });
 
-console.time('MiniSearch')
 const allIconsMap = {};
 const themeRegEx = /(Outlined|Rounded|TwoTone|Sharp)$/g;
 
@@ -547,33 +546,13 @@ const allIcons = Object.keys(mui)
     return icon;
   });
 
-function addSuffixes(term, minLength) {
-  if (term == null) {
-    return undefined;
-  }
-
-  const tokens = [];
-
-  for (let i = 0; i <= term.length - minLength; i += 1) {
-    tokens.push(term.slice(i).toLowerCase());
-  }
-
-  return tokens;
-}
-
-const miniSearch = new MiniSearch({
-  fields: ['searchable'], // fields to index for full-text search
-  processTerm: (term) => addSuffixes(term, 4),
-  storeFields: ['name', 'Component'],
-  searchOptions: {
-    processTerm: MiniSearch.getDefault('processTerm'),
-    prefix: true,
-    fuzzy: 0.1, // Allow some typo
-    boostDocument: (documentId, term, storedFields) => {
-      // Show exact match first
-      return term.toLowerCase() === storedFields.name.toLowerCase() ? 2 : 1;
-    },
-  },
+const fuse = new Fuse([], {
+  keys: ['name', 'searchable'],
+  threshold: 0.2,
+  // We want a long tail
+  findAllMatches: true,
+  // We don't care, we already have the name entry to rank those exact match first.
+  ignoreLocation: true,
 });
 
 // Copied from mui-x/packages/x-data-grid-generator/src/services/asyncWorker.ts
@@ -595,22 +574,22 @@ function asyncWorker({ work, tasks, done }) {
     }
   };
 
-  /*// Don't use requestIdleCallback if the time is mock, better to run synchronously in such case.
+  // Don't use requestIdleCallback if the time is mock, better to run synchronously in such case.
   if (typeof requestIdleCallback === 'function' && !requestIdleCallback.clock) {
     requestIdleCallback(myNonEssentialWork);
-  } else {*/
+  } else {
     while (tasks.current > 0) {
       work();
     }
-  /*  done();
-  }*/
+    done();
+  }
 }
 
 const indexation = new Promise((resolve) => {
   const tasks = { current: allIcons.length };
 
   function work() {
-    miniSearch.addAll([allIcons[tasks.current - 1]]);
+    fuse.add(allIcons[tasks.current - 1]);
     tasks.current -= 1;
   }
 
@@ -620,7 +599,6 @@ const indexation = new Promise((resolve) => {
     done: () => resolve(),
   });
 });
-console.timeEnd('MiniSearch')
 
 /**
  * Returns the last defined value that has been passed in [value]
@@ -666,11 +644,11 @@ export default function SearchIcons() {
 
     async function search() {
       await indexation;
-      const keys = miniSearch.search(query);
+      const keys = fuse.search(query);
 
       setIcons(
         keys
-          .map((key) => allIconsMap[key.id])
+          .map((key) => allIconsMap[key.item.id])
           .filter((icon) => theme === icon.theme),
       );
     }
