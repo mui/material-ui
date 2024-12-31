@@ -29,19 +29,6 @@ const content = [
       />
     ),
   },
-  {
-    title: 'Material UI for Adobe XD',
-    link: 'https://mui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd',
-    svg: (
-      <img
-        src={`/static/branding/design-kits/adobexd-logo.svg`}
-        alt="Adobe XD logo"
-        loading="lazy"
-        width="36"
-        height="36"
-      />
-    ),
-  },
 ];
 
 export default function MaterialUIDesignResources() {
