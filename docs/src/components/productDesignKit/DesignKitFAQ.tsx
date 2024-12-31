@@ -71,8 +71,8 @@ const faqData = [
     summary: 'Figma or Sketch?',
     detail: (
       <React.Fragment>
-        We aim to keep feature parity between the Figma and Sketch kits where possible.
-        We have a 50% off coupon for past customers who want to switch between them.
+        We aim to keep feature parity between the Figma and Sketch kits where possible. We have a
+        50% off coupon for past customers who want to switch between them.
       </React.Fragment>
     ),
   },
