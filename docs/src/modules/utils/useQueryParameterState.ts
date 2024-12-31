@@ -60,11 +60,10 @@ export default function useQueryParameterState(
 
   // TODO Replace useEventCallback() with React.useCallback() after the App Router migration
   // https://github.com/vercel/next.js/discussions/45969 see for why
-  const setUserState = useEventCallback(
-    (newValue: string) => {
-      setUrlValue(newValue);
-      setState(newValue);
-    });
+  const setUserState = useEventCallback((newValue: string) => {
+    // setUrlValue(newValue);
+    setState(newValue);
+  });
 
   // Make sure to initialize the state when route params are only available client-side
   const isInitialized = React.useRef(false);

@@ -204,7 +204,7 @@ function Icon(props) {
   );
 }
 
-const Icons = React.memo(function Icons(props) {
+const SearchIconsIcons = React.memo(function SearchIconsIcons(props) {
   const { icons, handleOpenClick } = props;
 
   return (
@@ -221,11 +221,6 @@ const Icons = React.memo(function Icons(props) {
     </div>
   );
 });
-
-Icons.propTypes = {
-  handleOpenClick: PropTypes.func.isRequired,
-  icons: PropTypes.array.isRequired,
-};
 
 const ImportLink = styled(Link)(({ theme }) => ({
   textAlign: 'right',
@@ -494,6 +489,35 @@ const Form = styled('form')(({ theme }) => ({
   marginBottom: theme.spacing(2),
 }));
 
+const SearchIconsFilter = React.memo(function SearchIconsFilter(props) {
+  const { theme, setTheme } = props;
+  return (
+    <Form>
+      <Typography fontWeight={500} sx={{ mb: 1 }}>
+        Filter the style
+      </Typography>
+      <RadioGroup
+        value={theme}
+        onChange={(event) => setTheme(event.target.value)}
+        sx={{ ml: 0.5 }}
+      >
+        {['Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map(
+          (currentTheme) => {
+            return (
+              <FormControlLabel
+                key={currentTheme}
+                value={currentTheme}
+                control={<Radio size="small" />}
+                label={currentTheme}
+              />
+            );
+          },
+        )}
+      </RadioGroup>
+    </Form>
+  );
+});
+
 const Paper = styled(MuiPaper)(({ theme }) => ({
   position: 'sticky',
   top: 80,
@@ -676,29 +700,7 @@ export default function SearchIcons() {
   return (
     <Grid2 container sx={{ minHeight: 500, width: '100%' }}>
       <Grid2 size={{ xs: 12, sm: 4, md: 3 }}>
-        <Form>
-          <Typography fontWeight={500} sx={{ mb: 1 }}>
-            Filter the style
-          </Typography>
-          <RadioGroup
-            value={theme}
-            onChange={(event) => setTheme(event.target.value)}
-            sx={{ ml: 0.5 }}
-          >
-            {['Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map(
-              (currentTheme) => {
-                return (
-                  <FormControlLabel
-                    key={currentTheme}
-                    value={currentTheme}
-                    control={<Radio size="small" />}
-                    label={currentTheme}
-                  />
-                );
-              },
-            )}
-          </RadioGroup>
-        </Form>
+        <SearchIconsFilter theme={theme} setTheme={setTheme} />
       </Grid2>
       <Grid2 size={{ xs: 12, sm: 8, md: 9 }} sx={{ height: '100%' }}>
         <Paper>
@@ -708,7 +710,9 @@ export default function SearchIcons() {
           <Input
             autoFocus
             value={query}
-            onChange={(event) => setQuery(event.target.value)}
+            onChange={(event) => {
+              setQuery(event.target.value);
+            }}
             placeholder="Search icons…"
             inputProps={{ 'aria-label': 'search icons' }}
             endAdornment={
@@ -720,10 +724,10 @@ export default function SearchIcons() {
             }
           />
         </Paper>
-        <Typography sx={{ mb: 1 }}>{`${formatNumber(
-          icons.length,
-        )} matching results`}</Typography>
-        <Icons icons={deferredIcons} handleOpenClick={handleOpenClick} />
+        <Typography sx={{ mb: 1 }}>
+          {`${formatNumber(icons.length)} matching results`}
+        </Typography>
+        <SearchIconsIcons icons={deferredIcons} handleOpenClick={handleOpenClick} />
       </Grid2>
       <DialogDetails
         open={!!selectedIcon}
