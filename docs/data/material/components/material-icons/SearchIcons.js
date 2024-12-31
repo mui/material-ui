@@ -575,17 +575,16 @@ function addSuffixes(term, minLength) {
     return undefined;
   }
 
-  const tokens = [];
+  const tokens = [term.toLowerCase()];
 
   for (let i = 0; i <= term.length - minLength; i += 1) {
     tokens.push(term.slice(i).toLowerCase());
   }
-
   return tokens;
 }
 
 const miniSearch = new MiniSearch({
-  fields: ['name', 'searchable'], // fields to index for full-text search
+  fields: ['searchable'], // fields to index for full-text search
   processTerm: (term) => addSuffixes(term, 4),
   storeFields: ['name', 'Component'],
   searchOptions: {
