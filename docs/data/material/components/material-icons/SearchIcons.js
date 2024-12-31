@@ -15,7 +15,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Button from '@mui/material/Button';
-import Fuse from 'fuse.js';
+import MiniSearch from 'minisearch';
 import SearchIcon from '@mui/icons-material/Search';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -570,13 +570,33 @@ const allIcons = Object.keys(mui)
     return icon;
   });
 
-const fuse = new Fuse([], {
-  keys: ['name', 'searchable'],
-  threshold: 0.2,
-  // We want a long tail
-  findAllMatches: true,
-  // We don't care, we already have the name entry to rank those exact match first.
-  ignoreLocation: true,
+function addSuffixes(term, minLength) {
+  if (term == null) {
+    return undefined;
+  }
+
+  const tokens = [];
+
+  for (let i = 0; i <= term.length - minLength; i += 1) {
+    tokens.push(term.slice(i).toLowerCase());
+  }
+
+  return tokens;
+}
+
+const miniSearch = new MiniSearch({
+  fields: ['name', 'searchable'], // fields to index for full-text search
+  processTerm: (term) => addSuffixes(term, 4),
+  storeFields: ['name', 'Component'],
+  searchOptions: {
+    processTerm: MiniSearch.getDefault('processTerm'),
+    prefix: true,
+    fuzzy: 0.1, // Allow some typo
+    boostDocument: (documentId, term, storedFields) => {
+      // Show exact match first
+      return term.toLowerCase() === storedFields.name.toLowerCase() ? 2 : 1;
+    },
+  },
 });
 
 // Copied from mui-x/packages/x-data-grid-generator/src/services/asyncWorker.ts
@@ -613,7 +633,7 @@ const indexation = new Promise((resolve) => {
   const tasks = { current: allIcons.length };
 
   function work() {
-    fuse.add(allIcons[tasks.current - 1]);
+    miniSearch.addAll([allIcons[tasks.current - 1]]);
     tasks.current -= 1;
   }
 
@@ -668,11 +688,11 @@ export default function SearchIcons() {
 
     async function search() {
       await indexation;
-      const keys = fuse.search(query);
+      const keys = miniSearch.search(query);
 
       setIcons(
         keys
-          .map((key) => allIconsMap[key.item.id])
+          .map((key) => allIconsMap[key.id])
           .filter((icon) => theme === icon.theme),
       );
     }
