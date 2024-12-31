@@ -718,7 +718,7 @@ export default function SearchIcons() {
             endAdornment={
               isPending ? (
                 <InputAdornment position="end">
-                  <CircularProgress size={16} sx={{ mr: 2 }} />
+                  <CircularProgress disableShrink size={16} sx={{ mr: 2 }} />
                 </InputAdornment>
               ) : null
             }
