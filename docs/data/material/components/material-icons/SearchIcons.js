@@ -200,7 +200,7 @@ function Icon(props) {
         <div className={SVG_ICON_CLASS} />
       )}
       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
-      <div onClick={handleLabelClick}>{icon.importName}</div>
+      <div className="algolia-content" onClick={handleLabelClick}>{icon.importName}</div>
       {/* eslint-enable jsx-a11y/click-events-have-key-events */}
     </StyledIcon>
   );
