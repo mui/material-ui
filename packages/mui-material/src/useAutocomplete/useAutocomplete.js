@@ -1065,6 +1065,13 @@ function useAutocomplete(props) {
     handleBlur();
   }
 
+  let defaultInputValue = '';
+  if (typeof valueProp === 'string') {
+    defaultInputValue = valueProp;
+  } else if (!multiple && value != null && typeof valueProp === 'object') {
+    defaultInputValue = getOptionLabel(valueProp);
+  }
+
   return {
     getRootProps: (other = {}) => ({
       'aria-owns': listboxAvailable ? `${id}-listbox` : null,
@@ -1079,7 +1086,7 @@ function useAutocomplete(props) {
     }),
     getInputProps: () => ({
       id,
-      value: inputValue ?? getOptionLabel(value),
+      value: inputValue || defaultInputValue,
       onBlur: handleBlur,
       onFocus: handleFocus,
       onChange: handleInputChange,
