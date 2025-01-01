@@ -61,6 +61,22 @@ const defaultIsActiveElementInListbox = (listboxRef) =>
 
 const MULTIPLE_DEFAULT_VALUE = [];
 
+function getInitialInputValue(value, defaultValue, multiple, getOptionLabel) {
+  if (typeof value === 'string') {
+    return value;
+  }
+  if (!multiple && value != null && typeof value === 'object') {
+    return getOptionLabel(value);
+  }
+  if (typeof defaultValue === 'string') {
+    return defaultValue;
+  }
+  if (!multiple && defaultValue != null && typeof defaultValue === 'object') {
+    return getOptionLabel(defaultValue);
+  }
+  return '';
+}
+
 function useAutocomplete(props) {
   const {
     // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -137,6 +153,12 @@ function useAutocomplete(props) {
   const defaultHighlighted = autoHighlight ? 0 : -1;
   const highlightedIndexRef = React.useRef(defaultHighlighted);
 
+  const initialInputValue = React.useMemo(
+    () => getInitialInputValue(valueProp, defaultValue, multiple, getOptionLabel),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
+
   const [value, setValueState] = useControlled({
     controlled: valueProp,
     default: defaultValue,
@@ -144,7 +166,7 @@ function useAutocomplete(props) {
   });
   const [inputValue, setInputValueState] = useControlled({
     controlled: inputValueProp,
-    default: '',
+    default: initialInputValue,
     name: componentName,
     state: 'inputValue',
   });
@@ -1065,13 +1087,6 @@ function useAutocomplete(props) {
     handleBlur();
   }
 
-  let defaultInputValue = '';
-  if (typeof valueProp === 'string') {
-    defaultInputValue = valueProp;
-  } else if (!multiple && value != null && typeof valueProp === 'object') {
-    defaultInputValue = getOptionLabel(valueProp);
-  }
-
   return {
     getRootProps: (other = {}) => ({
       'aria-owns': listboxAvailable ? `${id}-listbox` : null,
@@ -1086,7 +1101,7 @@ function useAutocomplete(props) {
     }),
     getInputProps: () => ({
       id,
-      value: inputValue || defaultInputValue,
+      value: inputValue,
       onBlur: handleBlur,
       onFocus: handleFocus,
       onChange: handleInputChange,
