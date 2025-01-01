@@ -34,6 +34,10 @@ The Select component is implemented as a custom `<input>` element of the [InputB
 It extends the [text field components](/material-ui/react-text-field/) subcomponents, either the [OutlinedInput](/material-ui/api/outlined-input/), [Input](/material-ui/api/input/), or [FilledInput](/material-ui/api/filled-input/), depending on the variant selected.
 It shares the same styles and many of the same props. Refer to the respective component's API page for details.
 
+:::warning
+Unlike input components, the `placeholder` prop is not available in Select. To add a placeholder, refer to the [placeholder](#placeholder) section below.
+:::
+
 ### Filled and standard variants
 
 {{"demo": "SelectVariants.js"}}
