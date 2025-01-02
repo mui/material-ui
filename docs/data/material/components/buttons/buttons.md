@@ -133,7 +133,7 @@ To create a file upload button, turn the button into a label using `component="l
 
 ## Loading
 
-Starting from [`v6.2.0`](https://github.com/mui/material-ui/releases/tag/v6.2.0), use the `loading` prop to set buttons in a loading state and disable interactions.
+Starting from [`v6.4.0`](https://github.com/mui/material-ui/releases/tag/v6.4.0), use the `loading` prop to set buttons in a loading state and disable interactions.
 
 {{"demo": "LoadingButtons.js"}}
 
