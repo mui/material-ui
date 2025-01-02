@@ -68,10 +68,10 @@ function getInitialInputValue(value, defaultValue, multiple, getOptionLabel) {
   if (typeof value === 'string') {
     return value;
   }
-  if (typeof value === 'object') {
+  if (value !== null && typeof value === 'object') {
     return getOptionLabel(value);
   }
-  if (typeof defaultValue === 'object') {
+  if (defaultValue !== null && typeof defaultValue === 'object') {
     return getOptionLabel(defaultValue);
   }
   return defaultValue || '';
