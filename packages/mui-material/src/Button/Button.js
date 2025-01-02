@@ -421,18 +421,18 @@ const ButtonLoadingIndicator = styled('span', {
   variants: [
     { props: { loading: true }, style: { display: 'flex' } },
     {
+      props: { loadingPosition: 'start' },
+      style: {
+        left: 14,
+      },
+    },
+    {
       props: {
         loadingPosition: 'start',
         size: 'small',
       },
       style: {
         left: 10,
-      },
-    },
-    {
-      props: ({ loadingPosition, size }) => loadingPosition === 'start' && size !== 'small',
-      style: {
-        left: 14,
       },
     },
     {
@@ -455,18 +455,18 @@ const ButtonLoadingIndicator = styled('span', {
       },
     },
     {
+      props: { loadingPosition: 'end' },
+      style: {
+        right: 14,
+      },
+    },
+    {
       props: {
         loadingPosition: 'end',
         size: 'small',
       },
       style: {
         right: 10,
-      },
-    },
-    {
-      props: ({ loadingPosition, size }) => loadingPosition === 'end' && size !== 'small',
-      style: {
-        right: 14,
       },
     },
     {
