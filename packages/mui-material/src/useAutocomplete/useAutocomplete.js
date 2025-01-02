@@ -153,6 +153,9 @@ function useAutocomplete(props) {
   const defaultHighlighted = autoHighlight ? 0 : -1;
   const highlightedIndexRef = React.useRef(defaultHighlighted);
 
+  // Caculate the initial inputValue only on first render (mount)
+  // Ensurses that the initialInputValue remains constant during the component's lifetime
+  // defaultValue and value do not need to dynamically affect the inputValue after initialization
   const initialInputValue = React.useMemo(
     () => getInitialInputValue(valueProp, defaultValue, multiple, getOptionLabel),
     // eslint-disable-next-line react-hooks/exhaustive-deps
