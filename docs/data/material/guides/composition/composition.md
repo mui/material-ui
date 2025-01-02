@@ -25,7 +25,7 @@ WrappedIcon.muiName = Icon.muiName;
 ### Forwarding slot props
 
 Use the `mergeSlotProps` utility function to merge custom props with the slot props.
-If the arguments are functions, they are resolved before merging. The result from the first argument will override the second.
+If the arguments are functions then they'll be resolved before merging, and the result from the first argument will override the second.
 
 ```jsx
 import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
@@ -54,13 +54,15 @@ export const CustomTooltip = (props: TooltipProps) => {
 ```
 
 :::info
-`className` values are concatenated instead of overriding each other. For example, using the above snippet, the `className` of the popper slot passed to `CustomTooltip` is appended.
+`className` values are concatenated rather than overriding one another.
+In the snippet above, the `custom-tooltip-popper` class is applied to the Tooltip's popper slot.
+If you added another `className` via the `slotProps` prop on the Custom Tooltip—as shown below—then both would be present on the rendered popper slot:
 
 ```js
 <CustomTooltip slotProps={{ popper: { className: 'foo' } }} />
 ```
 
-The popper slot will have the following className: `"… custom-tooltip-popper foo"`.
+The popper slot in the original example would now have both classes applied to it, in addition to any others that may be present: `"[…] custom-tooltip-popper foo"`.
 :::
 
 ## Component prop
