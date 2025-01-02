@@ -1,5 +1,36 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.3.1
+
+<!-- generated comparing v6.3.0..master -->
+
+_Jan 2, 2025_
+
+A big thanks to the 7 contributors who made this release possible. Here are some highlights ✨:
+
+### `@mui/material@6.3.1`
+
+- [Autocomplete] Revert: Fix options list rendering in freeSolo mode (#44858) @ZeeshanTamboli
+- [Tooltip] Warn instead of error when trigger is disabled (#44846) @yash49
+
+### Docs
+
+- [material-ui][Accordion] Update `Anatomy` section in Accordion docs (#44849) @ZeeshanTamboli
+- [material-ui][CardActionArea] Added demo in docs of cards for adding props to CardActionArea (#44789) @siddhantantil39
+- [material-ui][Grid2] Add interactive demo for Grid v2 (#44820) @yash49
+- [material-ui][Select] Update docs to reflect the omission of placeholder prop (#44856) @adityaparab
+- [joy-ui] Fix Color mode button on Theme builder (#44864) @komkanit
+- Fix 301 redirections @oliviertassinari
+
+### Core
+
+- [examples] Update Next.js examples Next.js and React versions (#44852) @DiegoAndai
+- [code-infra] Prevent wrong nested imports in Base UI (#44426) @oliviertassinari
+- [docs-infra] Add vale coverage for App Router and Page Router (060c55c) @oliviertassinari
+- Sync with other repos @oliviertassinari
+
+All contributors of this release in alphabetical order: @adityaparab, @DiegoAndai, @komkanit, @oliviertassinari, @siddhantantil39, @yash49, @ZeeshanTamboli
+
 ## 6.3.0
 
 <!-- generated comparing v6.2.1..master -->
