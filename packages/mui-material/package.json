@@ -70,7 +70,7 @@
     "playwright": "^1.48.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router": "^7.0.2",
+    "react-router": "^7.1.1",
     "sinon": "^19.0.2"
   },
   "peerDependencies": {
