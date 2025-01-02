@@ -1,4 +1,3 @@
-'use client';
 export { default } from './ModalOverflow';
 export * from './modalOverflowClasses';
 export { default as modalOverflowClasses } from './modalOverflowClasses';

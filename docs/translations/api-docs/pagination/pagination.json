@@ -12,7 +12,7 @@
     },
     "disabled": { "description": "If <code>true</code>, the component is disabled." },
     "getItemAriaLabel": {
-      "description": "Accepts a function which returns a string value that provides a user-friendly name for the current page. This is important for screen reader users.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
+      "description": "Accepts a function which returns a string value that provides a user-friendly name for the current page. This is important for screen reader users.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>.",
       "typeDescriptions": {
         "type": "The link or button type to format (&#39;page&#39; | &#39;first&#39; | &#39;last&#39; | &#39;next&#39; | &#39;previous&#39; | &#39;start-ellipsis&#39; | &#39;end-ellipsis&#39;). Defaults to &#39;page&#39;.",
         "page": "The page number to format.",

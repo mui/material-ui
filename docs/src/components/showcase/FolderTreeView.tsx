@@ -129,7 +129,7 @@ interface CustomLabelProps {
 }
 
 function CustomLabel({ color, expandable, children, ...other }: CustomLabelProps) {
-  let Icon;
+  let Icon: null | React.ElementType = null;
   if (expandable) {
     Icon = FolderRounded;
   } else {

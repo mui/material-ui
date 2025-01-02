@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
@@ -70,31 +71,33 @@ const StepConnectorLine = styled('span', {
 
     return [styles.line, styles[`line${capitalize(ownerState.orientation)}`]];
   },
-})(({ theme }) => {
-  const borderColor =
-    theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600];
-  return {
-    display: 'block',
-    borderColor: theme.vars ? theme.vars.palette.StepConnector.border : borderColor,
-    variants: [
-      {
-        props: { orientation: 'horizontal' },
-        style: {
-          borderTopStyle: 'solid',
-          borderTopWidth: 1,
+})(
+  memoTheme(({ theme }) => {
+    const borderColor =
+      theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600];
+    return {
+      display: 'block',
+      borderColor: theme.vars ? theme.vars.palette.StepConnector.border : borderColor,
+      variants: [
+        {
+          props: { orientation: 'horizontal' },
+          style: {
+            borderTopStyle: 'solid',
+            borderTopWidth: 1,
+          },
         },
-      },
-      {
-        props: { orientation: 'vertical' },
-        style: {
-          borderLeftStyle: 'solid',
-          borderLeftWidth: 1,
-          minHeight: 24,
+        {
+          props: { orientation: 'vertical' },
+          style: {
+            borderLeftStyle: 'solid',
+            borderLeftWidth: 1,
+            minHeight: 24,
+          },
         },
-      },
-    ],
-  };
-});
+      ],
+    };
+  }),
+);
 
 const StepConnector = React.forwardRef(function StepConnector(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiStepConnector' });

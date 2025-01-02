@@ -6,7 +6,7 @@
       "description": "Adds a transition delay, to allow a series of SpeedDialActions to be animated."
     },
     "FabProps": {
-      "description": "Props applied to the <a href=\"/material-ui/api/fab/\"><code>Fab</code></a> component."
+      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/fab/\"><code>Fab</code></a> component."
     },
     "icon": { "description": "The icon to display in the SpeedDial Fab." },
     "id": {
@@ -17,7 +17,7 @@
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
     "TooltipClasses": {
-      "description": "<code>classes</code> prop applied to the <a href=\"/material-ui/api/tooltip/\"><code>Tooltip</code></a> element."
+      "description": "<code>classes</code> prop applied to the <a href=\"https://mui.com/material-ui/api/tooltip/\"><code>Tooltip</code></a> element."
     },
     "tooltipOpen": { "description": "Make the tooltip always visible when the SpeedDial is open." },
     "tooltipPlacement": { "description": "Placement of the tooltip." },

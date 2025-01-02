@@ -126,6 +126,21 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/717550?',
     github: 'brijeshb42',
   },
+  aarongarciah: {
+    name: 'Aarón García',
+    avatar: 'https://avatars.githubusercontent.com/u/7225802?',
+    github: 'aarongarciah',
+  },
+  zanivan: {
+    name: 'Victor Zanivan Monteiro',
+    avatar: 'https://avatars.githubusercontent.com/u/37222944?',
+    github: 'zanivan',
+  },
+  romgrk: {
+    name: 'Romain Gregoire',
+    avatar: 'https://avatars.githubusercontent.com/u/1423607',
+    github: 'romgrk',
+  },
 };
 
 const classes = {
@@ -184,8 +199,10 @@ const Root = styled('div')(
       lineHeight: 1.7,
       '& img, & video': {
         border: '1px solid',
+        // Avoid border to change inline style width properties
+        boxSizing: 'content-box',
         borderColor: (theme.vars || theme).palette.grey[200],
-        borderRadius: 12,
+        borderRadius: 8,
         display: 'block',
         margin: 'auto',
         marginBottom: 16,

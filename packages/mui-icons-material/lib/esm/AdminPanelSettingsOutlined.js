@@ -1,8 +1,8 @@
 "use client";
 
-import createSvgIcon from './utils/createSvgIcon';
+import createSvgIcon from "./utils/createSvgIcon.js";
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-export default createSvgIcon( /*#__PURE__*/_jsxs("g", {
+export default createSvgIcon(/*#__PURE__*/_jsxs("g", {
   fillRule: "evenodd",
   children: [/*#__PURE__*/_jsx("circle", {
     cx: "17",

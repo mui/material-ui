@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getBottomNavigationUtilityClass } from './bottomNavigationClasses';
 
@@ -22,12 +23,14 @@ const BottomNavigationRoot = styled('div', {
   name: 'MuiBottomNavigation',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme }) => ({
-  display: 'flex',
-  justifyContent: 'center',
-  height: 56,
-  backgroundColor: (theme.vars || theme).palette.background.paper,
-}));
+})(
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    justifyContent: 'center',
+    height: 56,
+    backgroundColor: (theme.vars || theme).palette.background.paper,
+  })),
+);
 
 const BottomNavigation = React.forwardRef(function BottomNavigation(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiBottomNavigation' });

@@ -139,7 +139,6 @@ export interface GridOwnProps extends SystemProps<Theme>, Breakpoints {
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.
    * @default 'wrap'
-   * @deprecated Use `flexWrap` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   wrap?: GridWrap;
   /**
@@ -150,6 +149,9 @@ export interface GridOwnProps extends SystemProps<Theme>, Breakpoints {
   zeroMinWidth?: boolean;
 }
 
+/**
+ * @deprecated Use the [`Grid2`](https://mui.com/material-ui/react-grid2/) component instead.
+ */
 export interface GridTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = 'div',
@@ -162,14 +164,19 @@ export interface GridTypeMap<
  *
  * Demos:
  *
- * - [Grid](https://next.mui.com/material-ui/react-grid/)
+ * - [Grid](https://mui.com/material-ui/react-grid/)
  *
  * API:
  *
- * - [Grid API](https://next.mui.com/material-ui/api/grid/)
+ * - [Grid API](https://mui.com/material-ui/api/grid/)
+ *
+ * @deprecated Use the [`Grid2`](https://mui.com/material-ui/react-grid2/) component instead.
  */
 declare const Grid: OverridableComponent<GridTypeMap>;
 
+/**
+ * @deprecated Use the [`Grid2`](https://mui.com/material-ui/react-grid2/) component instead.
+ */
 export type GridProps<
   RootComponent extends React.ElementType = GridTypeMap['defaultComponent'],
   AdditionalProps = {},

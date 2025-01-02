@@ -1,8 +1,6 @@
 # Accessibility
 
-<p class="description">
-Learn how to make the most of Base UI's accessibility features and guidelines.
-</p>
+<p class="description">Learn how to make the most of Base UI's accessibility features and guidelines.</p>
 
 Accessibility is our top priority for Base UI components.
 However, the library cannot make your application fully accessible on its own.

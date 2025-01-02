@@ -150,7 +150,7 @@ const theme = createTheme({
 {{"demo": "ManuallyProvideCustomColor.js", "defaultCodeOpen": false}}
 
 If you need to manipulate colors, `@mui/material/styles` provides [a set of utilities](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/styles/index.d.ts#L52-L67) to help with this.
-The following example uses the `alpha` and `getContrastRatio` utilities to define tokens using opacity:
+The following example uses the `alpha()` and `getContrastRatio()` utilities to define tokens using opacity:
 
 ```jsx
 import { createTheme, alpha, getContrastRatio } from '@mui/material/styles';
@@ -303,12 +303,80 @@ const theme = createTheme({
 
 :::warning
 The `contrastThreshold` parameter can produce counterproductive results.\
-Please verify that the [APCA](https://contrast.tools/?tab=apca) color contrast is improved (WCAG 3 [will use](https://typefully.com/DanHollick/sle13GMW2Brp) this new algorithm).
+Please verify that the [APCA](https://contrast.tools/?tab=apca) color contrast is improved (WCAG 3 [will use](https://typefully.com/DanHollick/wcag-3-and-apca-sle13GMW2Brp) this new algorithm).
 :::
 
 ## Picking colors
 
 Need inspiration? The Material Design team has built an [palette configuration tool](/material-ui/customization/color/#picking-colors) to help you.
+
+## Color schemes
+
+To add both built-in light and dark color schemes without creating separate themes, use the `colorSchemes: { light: true, dark: true }`.
+This generates the default tokens for both color schemes:
+
+```js
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  colorSchemes: {
+    light: true,
+    dark: true,
+  },
+});
+```
+
+To override the default tokens for each color scheme, use the same [palette object](#customization) as shown below:
+
+```js
+const theme = createTheme({
+  colorSchemes: {
+    light: {
+      palette: {
+        primary: {
+          main: '#FF5733',
+        },
+        // ...other tokens
+      },
+    },
+    dark: {
+      palette: {
+        primary: {
+          main: '#E0C2FF',
+        },
+        // ...other tokens
+      },
+    },
+  },
+});
+```
+
+:::warning
+The `colorSchemes` API is an enhanced version of the `palette` API, and is the preferred API for this purpose starting from Material UI v6.
+If you provide both `colorSchemes` and `palette`, the latter will override any styles defined in the former.
+
+```js
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '...',
+    },
+  },
+  colorSchemes: {
+    light: {
+      // This will be replaced by the palette defined above
+      palette: {
+        primary: {
+          main: '...',
+        },
+      },
+    },
+    dark: { ... },
+  },
+});
+```
+
+:::
 
 ## Dark mode
 

@@ -296,6 +296,7 @@ export default function AppNavDrawerItem(props) {
   const {
     beta,
     children,
+    deprecated,
     depth,
     href,
     icon,
@@ -378,6 +379,7 @@ export default function AppNavDrawerItem(props) {
         {planned && <Chip label="Planned" sx={sxChip('grey')} />}
         {unstable && <Chip label="Preview" sx={sxChip('primary')} />}
         {beta && <Chip label="Beta" sx={sxChip('primary')} />}
+        {deprecated && <Chip label="Deprecated" sx={sxChip('warning')} />}
       </Item>
       {expandable ? (
         <Collapse in={open} timeout="auto" unmountOnExit>
@@ -393,6 +395,7 @@ export default function AppNavDrawerItem(props) {
 AppNavDrawerItem.propTypes = {
   beta: PropTypes.bool,
   children: PropTypes.node,
+  deprecated: PropTypes.bool,
   depth: PropTypes.number.isRequired,
   expandable: PropTypes.bool,
   href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),

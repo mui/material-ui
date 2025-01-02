@@ -1,14 +1,10 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { useGridApiContext } from '@mui/x-data-grid';
-import {
-  alpha,
-  debounce,
-  Slider,
-  sliderClasses,
-  styled,
-  Tooltip,
-} from '@mui/material';
+import Slider, { sliderClasses } from '@mui/material/Slider';
+import Tooltip from '@mui/material/Tooltip';
+import { alpha, styled } from '@mui/material/styles';
+import { debounce } from '@mui/material/utils';
 
 const Center = styled('div')({
   height: '100%',

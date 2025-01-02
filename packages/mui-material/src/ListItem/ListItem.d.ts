@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
-import { ExtendButtonBase } from '../ButtonBase';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ListItemClasses } from './listItemClasses';
 
@@ -17,13 +16,6 @@ export interface ListItemBaseProps {
    */
   alignItems?: 'flex-start' | 'center';
   /**
-   * If `true`, the list item is focused during the first mount.
-   * Focus will also be triggered if the value changes from false to true.
-   * @default false
-   * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
-   */
-  autoFocus?: boolean;
-  /**
    * The content of the component if a `ListItemSecondaryAction` is used it must
    * be the last child.
    */
@@ -35,13 +27,13 @@ export interface ListItemBaseProps {
   /**
    * The container component used when a `ListItemSecondaryAction` is the last child.
    * @default 'li'
-   * @deprecated Use the `component` or `slots.root` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `component` or `slots.root` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ContainerComponent?: React.ElementType<React.HTMLAttributes<HTMLDivElement>>;
   /**
    * Props applied to the container component if used.
    * @default {}
-   * @deprecated Use the `slotProps.root` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slotProps.root` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ContainerProps?: React.HTMLAttributes<HTMLDivElement>;
   /**
@@ -50,12 +42,6 @@ export interface ListItemBaseProps {
    * @default false
    */
   dense?: boolean;
-  /**
-   * If `true`, the component is disabled.
-   * @default false
-   * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
-   */
-  disabled?: boolean;
   /**
    * If `true`, the left and right padding is removed.
    * @default false
@@ -76,12 +62,6 @@ export interface ListItemBaseProps {
    */
   secondaryAction?: React.ReactNode;
   /**
-   * Use to apply selected styling.
-   * @default false
-   * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
-   */
-  selected?: boolean;
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
@@ -91,7 +71,7 @@ export interface ListItemOwnProps extends ListItemBaseProps {
   /**
    * The components used for each slot inside.
    *
-   * @deprecated Use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   components?: {
@@ -101,7 +81,7 @@ export interface ListItemOwnProps extends ListItemBaseProps {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   componentsProps?: {
@@ -136,42 +116,14 @@ export interface ListItemTypeMap<AdditionalProps, RootComponent extends React.El
  *
  * Demos:
  *
- * - [Lists](https://next.mui.com/material-ui/react-list/)
- * - [Transfer List](https://next.mui.com/material-ui/react-transfer-list/)
+ * - [Lists](https://mui.com/material-ui/react-list/)
+ * - [Transfer List](https://mui.com/material-ui/react-transfer-list/)
  *
  * API:
  *
- * - [ListItem API](https://next.mui.com/material-ui/api/list-item/)
+ * - [ListItem API](https://mui.com/material-ui/api/list-item/)
  */
-declare const ListItem: ExtendButtonBase<
-  ListItemTypeMap<
-    {
-      /**
-       * If `true`, the list item is a button (using `ButtonBase`). Props intended
-       * for `ButtonBase` can then be applied to `ListItem`.
-       * @default false
-       * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
-       *
-       */
-      button: true;
-    },
-    'div'
-  >
-> &
-  OverridableComponent<
-    ListItemTypeMap<
-      {
-        /**
-         * If `true`, the list item is a button (using `ButtonBase`). Props intended
-         * for `ButtonBase` can then be applied to `ListItem`.
-         * @default false
-         * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
-         */
-        button?: false;
-      },
-      'li'
-    >
-  >;
+declare const ListItem: OverridableComponent<ListItemTypeMap<{}, 'li'>>;
 
 export type ListItemProps<
   RootComponent extends React.ElementType = 'li',

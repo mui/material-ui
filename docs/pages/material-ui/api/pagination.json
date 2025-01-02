@@ -15,7 +15,7 @@
     "getItemAriaLabel": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(type: string, page: number, selected: bool) => string",
+        "type": "function(type: string, page: number | null, selected: boolean) => string",
         "describedArgs": ["type", "page", "selected"]
       }
     },

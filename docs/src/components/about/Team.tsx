@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Paper, { PaperProps } from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
@@ -20,7 +20,7 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import teamMembers from 'docs/data/about/teamMembers.json';
 /**
- * The teamMembers data can be imported from: https://tools-public.mui.com/prod/pages/nSwYn51
+ * The teamMembers data can be imported from: https://tools-public.mui.com/prod/pages/muicomabout
 
 curl 'https://tools-public.mui.com/prod/api/data/muicomabout/queryAbout' \
   -H 'content-type: application/json' \

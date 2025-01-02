@@ -6,7 +6,7 @@ export default function isValueSelected(value, candidate) {
   }
 
   if (Array.isArray(candidate)) {
-    return candidate.indexOf(value) >= 0;
+    return candidate.includes(value);
   }
 
   return value === candidate;

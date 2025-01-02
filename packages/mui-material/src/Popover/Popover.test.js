@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, match } from 'sinon';
-import { act, createRenderer, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, reactMajor, screen } from '@mui/internal-test-utils';
 import PropTypes from 'prop-types';
 import Modal from '@mui/material/Modal';
 import Paper, { paperClasses } from '@mui/material/Paper';
@@ -206,7 +206,7 @@ describe('<Popover />', () => {
 
       expect(handleEnter.callCount).to.equal(
         // onEnter is called on mount which is run twice with Strict Effects
-        React.version.startsWith('18') ? 2 : 1,
+        reactMajor >= 18 ? 2 : 1,
       );
     });
 
@@ -245,7 +245,7 @@ describe('<Popover />', () => {
         onExiting: handleExiting.callCount,
       }).to.deep.equal({
         // onEnter is called on mount which is run twice with Strict Effects
-        onEnter: React.version.startsWith('18') ? 2 : 1,
+        onEnter: reactMajor >= 18 ? 2 : 1,
         onEntering: 1,
         onEntered: 0,
         onExit: 0,
@@ -264,7 +264,7 @@ describe('<Popover />', () => {
         onExiting: handleExiting.callCount,
       }).to.deep.equal({
         // onEnter is called on mount which is run twice with Strict Effects
-        onEnter: React.version.startsWith('18') ? 2 : 1,
+        onEnter: reactMajor >= 18 ? 2 : 1,
         onEntering: 1,
         onEntered: 1,
         onExit: 0,
@@ -283,7 +283,7 @@ describe('<Popover />', () => {
         onExiting: handleExiting.callCount,
       }).to.deep.equal({
         // onEnter is called on mount which is run twice with Strict Effects
-        onEnter: React.version.startsWith('18') ? 2 : 1,
+        onEnter: reactMajor >= 18 ? 2 : 1,
         onEntering: 1,
         onEntered: 1,
         onExit: 1,
@@ -302,7 +302,7 @@ describe('<Popover />', () => {
         onExiting: handleExiting.callCount,
       }).to.deep.equal({
         // onEnter is called on mount which is run twice with Strict Effects
-        onEnter: React.version.startsWith('18') ? 2 : 1,
+        onEnter: reactMajor >= 18 ? 2 : 1,
         onEntering: 1,
         onEntered: 1,
         onExit: 1,

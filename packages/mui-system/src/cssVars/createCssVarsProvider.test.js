@@ -2,6 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
+import { ThemeProvider } from '@mui/system';
 import createCssVarsTheme from './createCssVarsTheme';
 import createCssVarsProvider, { DISABLE_CSS_TRANSITION } from './createCssVarsProvider';
 import {
@@ -16,8 +17,11 @@ describe('createCssVarsProvider', () => {
   let storage = {};
   const createMatchMedia = (matches) => () => ({
     matches,
+    // Keep mocking legacy methods because @mui/material v5 still uses them
     addListener: () => {},
+    addEventListener: () => {},
     removeListener: () => {},
+    removeEventListener: () => {},
   });
 
   beforeEach(() => {
@@ -243,6 +247,10 @@ describe('createCssVarsProvider', () => {
     describe('[option]: `disableTransitionOnChange`', () => {
       clock.withFakeTimers();
 
+      beforeEach(() => {
+        document.head.replaceChildren([]);
+      });
+
       it('disable all css transitions when switching between modes, given `disableTransitionOnChange` is true', () => {
         const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
           theme: createCssVarsTheme({
@@ -268,7 +276,7 @@ describe('createCssVarsProvider', () => {
             <Consumer />
           </CssVarsProvider>,
         );
-
+        clock.runToLast();
         expect(document.head.children[document.head.children.length - 1]?.textContent).not.to.equal(
           DISABLE_CSS_TRANSITION,
         );
@@ -309,7 +317,7 @@ describe('createCssVarsProvider', () => {
             <Consumer />
           </CssVarsProvider>,
         );
-
+        clock.runToLast();
         expect(document.head.children[document.head.children.length - 1]?.textContent).not.to.equal(
           DISABLE_CSS_TRANSITION,
         );
@@ -395,29 +403,138 @@ describe('createCssVarsProvider', () => {
 
   describe('DOM', () => {
     it('attach default dataset on html', () => {
-      const { CssVarsProvider } = createCssVarsProvider({
+      const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
         theme: createCssVarsTheme({
-          colorSchemes: { light: {} },
+          colorSchemes: { light: {}, dark: {} },
         }),
-        defaultColorScheme: 'light',
+        defaultColorScheme: { light: 'light', dark: 'dark' },
       });
-      render(<CssVarsProvider />);
+      function Toggle() {
+        const { mode, setMode } = useColorScheme();
+        return (
+          <button
+            onClick={() => {
+              setMode('dark');
+            }}
+          >
+            {mode}
+          </button>
+        );
+      }
+      render(
+        <CssVarsProvider>
+          <Toggle />
+        </CssVarsProvider>,
+      );
 
       expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('light');
+
+      fireEvent.click(screen.getByRole('button'));
+
+      expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('dark');
+    });
+
+    it('attach class on html', () => {
+      const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
+        theme: createCssVarsTheme({
+          colorSchemeSelector: 'class',
+          colorSchemes: { light: {}, dark: {} },
+        }),
+        defaultColorScheme: { light: 'light', dark: 'dark' },
+      });
+      function Toggle() {
+        const { mode, setMode } = useColorScheme();
+        return (
+          <button
+            onClick={() => {
+              setMode('dark');
+            }}
+          >
+            {mode}
+          </button>
+        );
+      }
+      render(
+        <CssVarsProvider>
+          <Toggle />
+        </CssVarsProvider>,
+      );
+
+      expect(document.documentElement.classList.contains('light')).to.equal(true);
+
+      fireEvent.click(screen.getByRole('button'));
+
+      expect(document.documentElement.classList.contains('light')).to.equal(false);
+      expect(document.documentElement.classList.contains('dark')).to.equal(true);
+
+      document.documentElement.classList.remove('dark'); // cleanup
+    });
+
+    it('attach data- on html', () => {
+      const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
+        theme: createCssVarsTheme({
+          colorSchemeSelector: 'data',
+          colorSchemes: { light: {}, dark: {} },
+        }),
+        defaultColorScheme: { light: 'light', dark: 'dark' },
+      });
+      function Toggle() {
+        const { mode, setMode } = useColorScheme();
+        return (
+          <button
+            onClick={() => {
+              setMode('dark');
+            }}
+          >
+            {mode}
+          </button>
+        );
+      }
+      render(
+        <CssVarsProvider>
+          <Toggle />
+        </CssVarsProvider>,
+      );
+
+      expect(document.documentElement.getAttribute('data-light')).to.equal('');
+
+      fireEvent.click(screen.getByRole('button'));
+
+      expect(document.documentElement.getAttribute('data-light')).to.equal(null);
+      expect(document.documentElement.getAttribute('data-dark')).to.equal('');
     });
 
     it('use custom attribute', () => {
-      const { CssVarsProvider } = createCssVarsProvider({
+      const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
         theme: createCssVarsTheme({
           colorSchemeSelector: 'data-foo-bar',
-          colorSchemes: { light: {} },
+          colorSchemes: { light: {}, dark: {} },
         }),
-        defaultColorScheme: 'light',
+        defaultColorScheme: { light: 'light', dark: 'dark' },
       });
-
-      render(<CssVarsProvider />);
+      function Toggle() {
+        const { mode, setMode } = useColorScheme();
+        return (
+          <button
+            onClick={() => {
+              setMode('dark');
+            }}
+          >
+            {mode}
+          </button>
+        );
+      }
+      render(
+        <CssVarsProvider>
+          <Toggle />
+        </CssVarsProvider>,
+      );
 
       expect(document.documentElement.getAttribute('data-foo-bar')).to.equal('light');
+
+      fireEvent.click(screen.getByRole('button'));
+
+      expect(document.documentElement.getAttribute('data-foo-bar')).to.equal('dark');
     });
 
     it('does not crash if documentNode is null', () => {
@@ -782,6 +899,35 @@ describe('createCssVarsProvider', () => {
       expect(getByTestId('outer')).to.have.text('system');
 
       expect(getByTestId('inner')).to.have.text('dark');
+    });
+
+    it('themeId should not exist in the theme if not provided as a prop', () => {
+      const { CssVarsProvider } = createCssVarsProvider({
+        themeId: '$$foo',
+        theme: createCssVarsTheme({
+          colorSchemes: {
+            light: {
+              color: 'light',
+            },
+            dark: {
+              color: 'dark',
+            },
+          },
+        }),
+        defaultColorScheme: 'light',
+      });
+      function Text() {
+        const theme = useTheme();
+        return theme.$$foo ? 'failed' : 'passed';
+      }
+      const { container } = render(
+        <ThemeProvider theme={{ renderText: () => 'foo-bar' }}>
+          <CssVarsProvider>
+            <Text />
+          </CssVarsProvider>
+        </ThemeProvider>,
+      );
+      expect(container.textContent).to.equal('passed');
     });
   });
 });

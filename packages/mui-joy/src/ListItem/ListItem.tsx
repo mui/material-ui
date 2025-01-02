@@ -11,7 +11,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base/composeClas
 import { styled, useThemeProps } from '../styles';
 
 import useSlot from '../utils/useSlot';
-import { ListItemOwnerState, ListItemTypeMap } from './ListItemProps';
+import { ListItemOwnerState, ListItemProps, ListItemTypeMap } from './ListItemProps';
 import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
 import NestedListContext from '../List/NestedListContext';
 import RowListContext from '../List/RowListContext';
@@ -256,7 +256,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
                   ...(index === 0 && { 'data-first-child': '' }),
                   ...(isMuiElement(child, ['ListItem']) && {
                     // The ListItem of ListItem should not be 'li'
-                    component: child.props.component || 'div',
+                    component: (child.props as ListItemProps)?.component || 'div',
                   }),
                 })
               : child,

@@ -36,7 +36,7 @@ function Media(props: MediaProps) {
   const { loading = false } = props;
 
   return (
-    <Grid container sx={{ flexWrap: 'nowrap' }}>
+    <Grid container wrap="nowrap">
       {(loading ? Array.from(new Array(3)) : data).map((item, index) => (
         <Box key={index} sx={{ width: 210, marginRight: 0.5, my: 5 }}>
           {item ? (

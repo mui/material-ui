@@ -92,7 +92,7 @@ function testPropForwarding(
     expect(customRoot).to.have.attribute('data-foobar', otherProps.fooBar);
   });
 
-  it('does forward standard props to the root element if an intrinsic element is provided', () => {
+  it('does forward standard props to the root element if an intrinsic element is provided', async () => {
     const otherProps = {
       lang: 'fr',
       'data-foobar': randomStringValue(),
@@ -100,7 +100,7 @@ function testPropForwarding(
       ...(rootElementNameMustMatchComponentProp ? { rootElementName: Element } : {}),
     };
 
-    render(React.cloneElement(element, { slots: { root: Element }, ...otherProps }));
+    await render(React.cloneElement(element, { slots: { root: Element }, ...otherProps }));
 
     const customRoot = screen.getByTestId('custom-root');
     expect(customRoot).to.have.attribute('lang', otherProps.lang);
@@ -190,7 +190,7 @@ function testSlotsProp(
   });
 
   it('uses the component provided in the `component` prop when both `component` and `slots.root` are provided', async () => {
-    if (skip && skip.indexOf('componentProp') >= 0) {
+    if (skip && skip.includes('componentProp')) {
       return;
     }
 
@@ -267,7 +267,7 @@ function testSlotPropsProp(
   });
 }
 
-function testClassName(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+function testClassName(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
   it('applies the className to the root component', async () => {
     const { render } = getOptions();
 
@@ -346,7 +346,7 @@ function testOwnerStatePropagation(
   }
 
   forEachSlot(slots, (slotName) => {
-    it(`sets the ownerState prop on the ${slotName} slot's component`, () => {
+    it(`sets the ownerState prop on the ${slotName} slot's component`, async () => {
       let componentOwnerState;
       const TestComponent = React.forwardRef(
         ({ ownerState }: WithOwnerState, ref: React.Ref<any>) => {
@@ -365,7 +365,7 @@ function testOwnerStatePropagation(
         id: 'foo',
       };
 
-      render(
+      await render(
         React.cloneElement(element, {
           slots: slotOverrides,
           id: 'foo',
@@ -388,8 +388,8 @@ function testDisablingClassGeneration(
     throwMissingPropError('render');
   }
 
-  it(`does not generate any class names if placed within a ClassNameConfigurator`, () => {
-    render(<ClassNameConfigurator disableDefaultClasses>{element}</ClassNameConfigurator>);
+  it(`does not generate any class names if placed within a ClassNameConfigurator`, async () => {
+    await render(<ClassNameConfigurator disableDefaultClasses>{element}</ClassNameConfigurator>);
 
     const elementsWithClasses = document.querySelectorAll(`[class]`);
 
@@ -419,8 +419,7 @@ function describeConformance(
   const { after: runAfterHook = () => {}, only = Object.keys(fullSuite), skip = [] } = getOptions();
 
   const filteredTests = Object.keys(fullSuite).filter(
-    (testKey) =>
-      only.indexOf(testKey) !== -1 && skip.indexOf(testKey as keyof typeof fullSuite) === -1,
+    (testKey) => only.includes(testKey) && !skip.includes(testKey as keyof typeof fullSuite),
   ) as (keyof typeof fullSuite)[];
 
   after(runAfterHook);

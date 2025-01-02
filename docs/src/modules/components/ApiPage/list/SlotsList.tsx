@@ -7,8 +7,9 @@ import {
 } from '@mui/docs/branding';
 import { useTranslate } from '@mui/docs/i18n';
 import ExpandableApiItem, {
-  ApiItemContaier,
+  ApiItemContainer,
 } from 'docs/src/modules/components/ApiPage/list/ExpandableApiItem';
+import { SlotDefinition } from 'docs/src/modules/components/ApiPage/definitions/slots';
 
 const StyledApiItem = styled(ExpandableApiItem)(
   ({ theme }) => ({
@@ -43,22 +44,8 @@ const StyledApiItem = styled(ExpandableApiItem)(
   }),
 );
 
-type HashParams = { componentName: string; className: string };
-
-export function getHash({ componentName, className }: HashParams) {
-  return `${componentName}-css-${className}`;
-}
-
-export type SlotsFormatedParams = {
-  className: string;
-  componentName: string;
-  description?: string;
-  name: string;
-  defaultValue?: string;
-};
-
 interface SlotsListProps {
-  slots: SlotsFormatedParams[];
+  slots: SlotDefinition[];
   displayOption: 'collapsed' | 'expanded';
 }
 
@@ -67,16 +54,16 @@ export default function SlotsList(props: SlotsListProps) {
   const t = useTranslate();
 
   return (
-    <ApiItemContaier className="MuiApi-slot-list">
+    <ApiItemContainer className="MuiApi-slot-list">
       {slots.map((params) => {
-        const { description, className, name, defaultValue, componentName } = params;
+        const { description, className, name, defaultValue, hash } = params;
 
         const isExtendable = description || defaultValue || className;
 
         return (
           <StyledApiItem
-            id={getHash({ componentName, className })}
-            key={className}
+            id={hash}
+            key={name}
             title={name}
             note=""
             type="slots"
@@ -108,6 +95,6 @@ export default function SlotsList(props: SlotsListProps) {
           </StyledApiItem>
         );
       })}
-    </ApiItemContaier>
+    </ApiItemContainer>
   );
 }

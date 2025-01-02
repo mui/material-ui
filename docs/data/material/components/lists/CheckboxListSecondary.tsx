@@ -34,7 +34,7 @@ export default function CheckboxListSecondary() {
               <Checkbox
                 edge="end"
                 onChange={handleToggle(value)}
-                checked={checked.indexOf(value) !== -1}
+                checked={checked.includes(value)}
                 inputProps={{ 'aria-labelledby': labelId }}
               />
             }

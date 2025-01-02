@@ -67,7 +67,7 @@ const PRODUCTS = [
   },
   {
     name: 'Templates',
-    description: 'Fully built, out-of-the-box, templates for your application.',
+    description: 'Fully built templates for your application.',
     href: ROUTES.productTemplates,
   },
   {
@@ -77,7 +77,7 @@ const PRODUCTS = [
   },
   {
     name: 'Toolpad',
-    description: 'Low-code admin builder.',
+    description: 'Components and tools for dashboards and internal apps.',
     href: ROUTES.productToolpad,
     chip: 'Beta',
   },
@@ -111,8 +111,8 @@ const DOCS = [
   },
   {
     name: 'Toolpad',
-    description: 'Low-code admin builder',
-    href: ROUTES.toolpadStudioDocs,
+    description: 'Components and tools for dashboards and internal apps.',
+    href: ROUTES.toolpadCoreDocs,
     chip: 'Beta',
   },
 ];
@@ -229,6 +229,16 @@ export default function HeaderNavDropdown() {
                                 label={item.chip}
                                 color="primary"
                                 variant="outlined"
+                                sx={{
+                                  fontSize: '.625rem',
+                                  fontWeight: 'semiBold',
+                                  textTransform: 'uppercase',
+                                  letterSpacing: '.04rem',
+                                  height: '16px',
+                                  '& .MuiChip-label': {
+                                    px: '4px',
+                                  },
+                                }}
                               />
                             ) : null}
                           </Box>
@@ -280,6 +290,16 @@ export default function HeaderNavDropdown() {
                                 label={item.chip}
                                 color="primary"
                                 variant="outlined"
+                                sx={{
+                                  fontSize: '.625rem',
+                                  fontWeight: 'semiBold',
+                                  textTransform: 'uppercase',
+                                  letterSpacing: '.04rem',
+                                  height: '16px',
+                                  '& .MuiChip-label': {
+                                    px: '4px',
+                                  },
+                                }}
                               />
                             ) : null}
                           </Box>

@@ -1,6 +1,6 @@
 # Pigment CSS with Vite - Demo app
 
-This is a Pigment CSS with [Vite](https://vitejs.dev/) project.
+This is a Pigment CSS with [Vite](https://vite.dev/) project.
 This project is not part of the workspace yet.
 
 ## How to run

@@ -1,4 +1,3 @@
-'use client';
 export { useList } from './useList';
 export * from './useList.types';
 

@@ -40,8 +40,8 @@ const styles = theme => ({
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
-      '@mui/material': 'next',
-      '@mui/base': 'next',
+      '@mui/material': 'latest',
+      '@mui/base': 'latest',
       'prop-types': 'latest',
     });
   });
@@ -71,7 +71,7 @@ const suggestions = [
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@mui/material': 'next',
+      '@mui/material': 'latest',
       '@unexisting/thing': 'latest',
       'autosuggest-highlight': 'latest',
       'prop-types': 'latest',
@@ -100,8 +100,8 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
       'prop-types': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@mui/material': 'next',
-      '@mui/lab': 'next',
+      '@mui/material': 'latest',
+      '@mui/lab': 'latest',
     });
   });
 
@@ -127,8 +127,8 @@ import 'exceljs';
       'prop-types': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@mui/material': 'next',
-      '@mui/lab': 'next',
+      '@mui/material': 'latest',
+      '@mui/lab': 'latest',
       exceljs: 'latest',
     });
   });
@@ -146,8 +146,8 @@ import 'exceljs';
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
-      '@mui/material': 'next',
-      '@mui/base': 'next',
+      '@mui/material': 'latest',
+      '@mui/base': 'latest',
       '@types/foo-bar__bip': 'latest',
       '@types/prop-types': 'latest',
       '@types/react-dom': 'latest',
@@ -167,7 +167,7 @@ import 'exceljs';
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@mui/material': 'next',
+      '@mui/material': 'latest',
       '@types/react-dom': 'latest',
       '@types/react': 'latest',
       typescript: 'latest',
@@ -195,8 +195,8 @@ import {
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@mui/material': 'next',
-      '@mui/lab': 'next',
+      '@mui/material': 'latest',
+      '@mui/lab': 'latest',
     });
   });
 
@@ -215,8 +215,8 @@ import lab from '@mui/lab';
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@mui/material': 'next',
-      '@mui/lab': 'next',
+      '@mui/material': 'latest',
+      '@mui/lab': 'latest',
     });
   });
 
@@ -517,10 +517,10 @@ export default function EmailExample() {
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@mui/icons-material': 'next',
-      '@mui/joy': 'next',
-      '@mui/material': 'next',
-      '@mui/system': 'next',
+      '@mui/icons-material': 'latest',
+      '@mui/joy': 'latest',
+      '@mui/material': 'latest',
+      '@mui/system': 'latest',
       '@types/react': 'latest',
       '@types/react-dom': 'latest',
       typescript: 'latest',

@@ -65,3 +65,9 @@ fn({
     },
   },
 });
+fn({
+  MuiDivider: {},
+});
+fn({
+  MuiDivider: 123,
+});

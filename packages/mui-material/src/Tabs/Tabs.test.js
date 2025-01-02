@@ -5,6 +5,7 @@ import {
   act,
   createRenderer,
   fireEvent,
+  reactMajor,
   screen,
   strictModeDoubleLoggingSuppressed,
   waitFor,
@@ -358,10 +359,10 @@ describe('<Tabs />', () => {
         }).toErrorDev([
           'You can provide one of the following values: 1, 3',
           // React 18 Strict Effects run mount effects twice
-          React.version.startsWith('18') && 'You can provide one of the following values: 1, 3',
+          reactMajor === 18 && 'You can provide one of the following values: 1, 3',
           'You can provide one of the following values: 1, 3',
           // React 18 Strict Effects run mount effects twice
-          React.version.startsWith('18') && 'You can provide one of the following values: 1, 3',
+          reactMajor === 18 && 'You can provide one of the following values: 1, 3',
           'You can provide one of the following values: 1, 3',
           'You can provide one of the following values: 1, 3',
         ]);

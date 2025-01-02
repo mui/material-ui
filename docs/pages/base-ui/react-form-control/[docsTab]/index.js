@@ -31,7 +31,7 @@ export const getStaticProps = () => {
   const FormControlApiDescriptions = mapApiPageTranslations(FormControlApiReq);
 
   const useFormControlContextApiReq = require.context(
-    'docs/translations/api-docs/use-form-control-context',
+    'docs/translations/api-docs-base/use-form-control-context',
     false,
     /use-form-control-context.*.json$/,
   );

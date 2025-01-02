@@ -155,6 +155,16 @@ const theme = createTheme();
           },
         },
       },
+      MuiGrid2: {
+        styleOverrides: {
+          root: {
+            justifyContent: 'space-between',
+          },
+          container: {
+            justifyContent: 'space-between',
+          },
+        },
+      },
     },
   });
 }
@@ -240,6 +250,16 @@ const theme = createTheme();
     shape: {
       // @ts-expect-error invalid borderRadius string value in theme
       borderRadius: '5px',
+    },
+  });
+}
+
+// CSS variables for shadow DOM
+{
+  createTheme({
+    cssVariables: {
+      rootSelector: ':host',
+      colorSchemeSelector: 'class',
     },
   });
 }

@@ -10,6 +10,8 @@ materialDesign: https://m1.material.io/components/steppers.html
 
 <p class="description">Steppers convey progress through numbered steps. It provides a wizard-like workflow.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
 ## Introduction
 
 Stepper displays progress through a sequence of logical and numbered steps. It support horizontal and vertical orientation for desktop and mobile viewports.

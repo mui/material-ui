@@ -6,6 +6,7 @@ import {
   screen,
   fireEvent,
   strictModeDoubleLoggingSuppressed,
+  reactMajor,
 } from '@mui/internal-test-utils';
 import Menu, { menuClasses as classes } from '@mui/material/Menu';
 import Popover from '@mui/material/Popover';
@@ -59,7 +60,7 @@ describe('<Menu />', () => {
 
         expect(handleEnter.callCount).to.equal(
           // onEnter is called on mount which is run twice with Strict Effects
-          React.version.startsWith('18') ? 2 : 1,
+          reactMajor >= 18 ? 2 : 1,
         );
         expect(handleEnter.args[0].length).to.equal(2);
         expect(handleEntering.callCount).to.equal(1);

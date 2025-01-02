@@ -4,13 +4,12 @@ import { useRouter } from 'next/router';
 import { useTheme } from '@mui/system';
 import { exactProp } from '@mui/utils';
 import { CssVarsProvider as JoyCssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import { Ad, AdGuest } from '@mui/docs/Ad';
 import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useUserLanguage } from '@mui/docs/i18n';
 import { BrandingProvider } from '@mui/docs/branding';
-import Ad from 'docs/src/modules/components/Ad';
-import AdGuest from 'docs/src/modules/components/AdGuest';
 
 function JoyModeObserver({ mode }) {
   const { setMode } = useColorScheme();

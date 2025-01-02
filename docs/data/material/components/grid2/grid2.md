@@ -1,9 +1,10 @@
 ---
 productId: material-ui
 title: React Grid component
-components: PigmentGrid
+components: PigmentGrid, Grid2
 githubLabel: 'component: Grid'
 materialDesign: https://m2.material.io/design/layout/understanding-layout.html
+githubSource: packages/mui-material/src/Grid2
 ---
 
 # Grid version 2
@@ -15,29 +16,6 @@ The columns can be configured with multiple breakpoints to specify the column sp
 
 {{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
-## What's changed
-
-We built the `Grid` component from scratch in order to:
-
-- Fix [known issues](https://github.com/mui/material-ui/pull/32746) introduced in Material UI v5.
-- Simplify the logic with CSS variables, removing the unnecessary `item` prop and reducing CSS specificity.
-- Introduce a proper fix for [preventing a scrollbar](#prevent-scrollbar) by switching between negative margin approaches.
-- Set negative margins of equal size on all sides of the grid container by default.
-
-Since the new implementation is considered a breaking change, we introduced it as `Unstable_Grid2` to gather feedbacks from the community before making it stable in the next major release of Material UI.
-
-We encourage everyone to try the new version of the `Grid` by visiting the [Grid v2 migration guide](/material-ui/migration/migration-grid-v2/).
-
-:::info
-From now on, the `Grid` v1 and `Grid` v2 refer to the import as:
-
-```js
-import Grid from '@mui/material/Grid'; // Grid version 1
-import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
-```
-
-:::
-
 ## How it works
 
 The grid system is implemented with the `Grid` component:
@@ -47,7 +25,7 @@ The grid system is implemented with the `Grid` component:
 - Item widths are set in percentages, so they're always fluid and sized relative to their parent element.
 - There are five default grid breakpoints: xs, sm, md, lg, and xl. If you need custom breakpoints, check out [custom breakpoints grid](#custom-breakpoints).
 - You can give integer values for each breakpoint, to indicate how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint constraints](/material-ui/customization/breakpoints/#default-breakpoints).
-- It uses negative margins and padding to create gaps between children, which behave similarly to [the `gap` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/gap).
+- It uses [the `gap` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/gap) to add spacing between items.
 - It does _not_ support row spanning. Children elements cannot span multiple rows. We recommend using [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout) if you need this functionality.
 - It does _not_ automatically place children. It will try to fit the children one by one, and if there is not enough space, the rest of the children will start on the next line, and so on. If you need auto-placement, we recommend using [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Auto-placement_in_grid_layout) instead.
 
@@ -148,13 +126,13 @@ Note that a nested grid container should be a direct child of another grid conta
 
 ### Inheriting spacing
 
-A nested grid container will inherits the row and column spacing from its parent unless the `spacing` prop is specified to the instance.
+A nested grid container inherits the row and column spacing from its parent unless the `spacing` prop is specified to the instance.
 
 {{"demo": "NestedGrid.js", "bg": true}}
 
 ### Inheriting columns
 
-A nested grid container will inherits the columns from its parent unless the `columns` prop is specified to the instance.
+A nested grid container inherits the columns from its parent unless the `columns` prop is specified to the instance.
 
 {{"demo": "NestedGridColumns.js", "bg": true}}
 

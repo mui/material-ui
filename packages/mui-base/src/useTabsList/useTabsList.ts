@@ -17,11 +17,11 @@ import { tabsListReducer } from './tabsListReducer';
  *
  * Demos:
  *
- * - [Tabs](https://next.mui.com/base-ui/react-tabs/#hooks)
+ * - [Tabs](https://mui.com/base-ui/react-tabs/#hooks)
  *
  * API:
  *
- * - [useTabsList API](https://next.mui.com/base-ui/react-tabs/hooks-api/#use-tabs-list)
+ * - [useTabsList API](https://mui.com/base-ui/react-tabs/hooks-api/#use-tabs-list)
  */
 function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue {
   const { rootRef: externalRef } = parameters;

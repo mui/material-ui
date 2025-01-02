@@ -4,8 +4,9 @@ import * as React from 'react';
 import { stub } from 'sinon';
 import { createMochaHooks } from './mochaHooks';
 import { createRenderer, act } from './createRenderer';
+import describeSkipIf from './describeSkipIf';
 
-describe('mochaHooks', () => {
+describeSkipIf(process.env.VITEST)('mochaHooks', () => {
   // one block per hook.
   describe('afterEach', () => {
     describe('on unexpected console.(warn|error) in afterEach', function suite() {

@@ -2,47 +2,49 @@ import * as React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 
-const defaultTheme = createTheme();
-
-const theme = createTheme({
+const customTheme = createTheme({
   components: {
     MuiButton: {
-      variants: [
-        {
-          props: { variant: 'dashed' },
-          style: {
-            textTransform: 'none',
-            border: `2px dashed ${defaultTheme.palette.primary.main}`,
-            color: defaultTheme.palette.primary.main,
-          },
+      styleOverrides: {
+        root: {
+          variants: [
+            {
+              props: { variant: 'dashed' },
+              style: ({ theme }) => ({
+                textTransform: 'none',
+                border: `2px dashed ${theme.palette.primary.main}`,
+                color: theme.palette.primary.main,
+              }),
+            },
+            {
+              props: { variant: 'dashed', color: 'secondary' },
+              style: ({ theme }) => ({
+                border: `2px dashed ${theme.palette.secondary.main}`,
+                color: theme.palette.secondary.main,
+              }),
+            },
+            {
+              props: { variant: 'dashed', size: 'large' },
+              style: {
+                borderWidth: 4,
+              },
+            },
+            {
+              props: { variant: 'dashed', color: 'secondary', size: 'large' },
+              style: {
+                fontSize: 18,
+              },
+            },
+          ],
         },
-        {
-          props: { variant: 'dashed', color: 'secondary' },
-          style: {
-            border: `2px dashed ${defaultTheme.palette.secondary.main}`,
-            color: defaultTheme.palette.secondary.main,
-          },
-        },
-        {
-          props: { variant: 'dashed', size: 'large' },
-          style: {
-            borderWidth: 4,
-          },
-        },
-        {
-          props: { variant: 'dashed', color: 'secondary', size: 'large' },
-          style: {
-            fontSize: 18,
-          },
-        },
-      ],
+      },
     },
   },
 });
 
 export default function GlobalThemeVariants() {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={customTheme}>
       <Button variant="dashed" sx={{ m: 1 }}>
         Dashed
       </Button>

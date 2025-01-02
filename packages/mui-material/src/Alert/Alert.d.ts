@@ -18,12 +18,12 @@ export interface AlertSlots {
    * The component that renders the close button.
    * @default IconButton
    */
-  closeButton?: React.ElementType;
+  closeButton: React.ElementType;
   /**
    * The component that renders the close icon.
    * @default svg
    */
-  closeIcon?: React.ElementType;
+  closeIcon: React.ElementType;
 }
 
 export type AlertSlotsAndSlotProps = CreateSlotsAndSlotProps<
@@ -54,7 +54,7 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'>, AlertS
   /**
    * Override the default label for the *close popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Close'
    */
   closeText?: string;
@@ -67,7 +67,7 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'>, AlertS
   /**
    * The components used for each slot inside.
    *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -79,7 +79,7 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'>, AlertS
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -135,11 +135,11 @@ export interface AlertOwnerState extends AlertProps {}
  *
  * Demos:
  *
- * - [Alert](https://next.mui.com/material-ui/react-alert/)
+ * - [Alert](https://mui.com/material-ui/react-alert/)
  *
  * API:
  *
- * - [Alert API](https://next.mui.com/material-ui/api/alert/)
- * - inherits [Paper API](https://next.mui.com/material-ui/api/paper/)
+ * - [Alert API](https://mui.com/material-ui/api/alert/)
+ * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
  */
 export default function Alert(props: AlertProps): React.JSX.Element;
