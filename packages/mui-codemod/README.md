@@ -1509,6 +1509,21 @@ JS transforms:
 npx @mui/codemod@next deprecations/step-connector-classes <path>
 ```
 
+#### `step-content-props`
+
+```diff
+ <StepContent
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ unmountOnExit: true }}
++  slots={{ transition: CustomTransition }}
++  slotProps={{ transition: { unmountOnExit: true } }}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/step-content-props <path>
+```
+
 #### `step-label-props`
 
 ```diff

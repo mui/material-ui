@@ -26,11 +26,13 @@ const useUtilityClasses = (ownerState) => {
 const CardHeaderRoot = styled('div', {
   name: 'MuiCardHeader',
   slot: 'Root',
-  overridesResolver: (props, styles) => ({
-    [`& .${cardHeaderClasses.title}`]: styles.title,
-    [`& .${cardHeaderClasses.subheader}`]: styles.subheader,
-    ...styles.root,
-  }),
+  overridesResolver: (props, styles) => {
+    return [
+      { [`& .${cardHeaderClasses.title}`]: styles.title },
+      { [`& .${cardHeaderClasses.subheader}`]: styles.subheader },
+      styles.root,
+    ];
+  },
 })({
   display: 'flex',
   alignItems: 'center',
