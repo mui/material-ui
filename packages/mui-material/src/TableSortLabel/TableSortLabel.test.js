@@ -27,7 +27,7 @@ describe('<TableSortLabel />', () => {
     },
   }));
 
-  it.only('should set the active class when active', () => {
+  it('should set the active class when active', () => {
     const activeFlag = true;
     const { container } = render(<TableSortLabel active={activeFlag} />);
     expect(container.firstChild).to.have.class(classes.active);
