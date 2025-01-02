@@ -5,7 +5,7 @@ import Badge, { badgeClasses } from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 const CartBadge = styled(Badge)`
-  .${badgeClasses.badge} {
+  & .${badgeClasses.badge} {
     top: -12px;
     right: -6px;
   }
