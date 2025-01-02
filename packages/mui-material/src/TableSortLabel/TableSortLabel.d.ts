@@ -12,6 +12,11 @@ export interface TableSortLabelSlots {
    * @default ArrowDownwardIcon
    */
   icon?: React.ElementType;
+  /**
+   * The component that renders the root slot.
+   * @default span
+   */
+  root?: React.ElementType;
 }
 
 export type TableSortLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
@@ -22,6 +27,14 @@ export type TableSortLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
      */
     icon: SlotProps<
       React.ElementType<React.SVGAttributes<SVGSVGElement>>,
+      {},
+      TableSortLabelOwnerState
+    >;
+    /**
+     * Props forwarded to the root slot.
+     */
+    root: SlotProps<
+      React.ElementType<React.HTMLAttributes<HTMLSpanElement>>,
       {},
       TableSortLabelOwnerState
     >;

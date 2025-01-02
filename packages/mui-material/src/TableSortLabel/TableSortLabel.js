@@ -128,6 +128,19 @@ const TableSortLabel = React.forwardRef(function TableSortLabel(inProps, ref) {
     slotProps,
   };
 
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType: TableSortLabelRoot,
+    externalForwardedProps,
+    ownerState,
+    className: clsx(classes.root, className),
+    ref,
+    additionalProps: {
+      component: 'span',
+      disableRipple: true,
+      ...other,
+    },
+  });
+
   const [IconSlot, iconProps] = useSlot('icon', {
     elementType: TableSortLabelIcon,
     externalForwardedProps,
@@ -136,17 +149,10 @@ const TableSortLabel = React.forwardRef(function TableSortLabel(inProps, ref) {
   });
 
   return (
-    <TableSortLabelRoot
-      className={clsx(classes.root, className)}
-      component="span"
-      disableRipple
-      ownerState={ownerState}
-      ref={ref}
-      {...other}
-    >
+    <RootSlot {...rootProps}>
       {children}
       {hideSortIcon && !active ? null : <IconSlot as={IconComponent} {...iconProps} />}
-    </TableSortLabelRoot>
+    </RootSlot>
   );
 });
 
