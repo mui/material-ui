@@ -1,11 +1,38 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps } from '..';
+import { CollapseProps, InternalStandardProps as StandardProps } from '..';
 import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
 import { StepContentClasses } from './stepContentClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
-export interface StepContentProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface StepContentSlots {
+  /**
+   * The component that renders the transition slot.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Collapse
+   */
+  transition?: React.JSXElementConstructor<
+    TransitionProps & { children?: React.ReactElement<unknown, any> }
+  >;
+}
+
+export type StepContentSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  StepContentSlots,
+  {
+    /**
+     * Props forwared to the transition slot.
+     * By default, the available props are based on the [Collapse](https://mui.com/material-ui/api/collapse/#props) component
+     */
+    transition: SlotProps<React.ElementType<CollapseProps>, {}, StepContentOwnerState>;
+  }
+>;
+
+export interface StepContentOwnerState extends StepContentProps {}
+
+export interface StepContentProps
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>>,
+    StepContentSlotsAndSlotProps {
   /**
    * The content of the component.
    */
@@ -22,6 +49,7 @@ export interface StepContentProps extends StandardProps<React.HTMLAttributes<HTM
    * The component used for the transition.
    * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
+   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
   TransitionComponent?: React.JSXElementConstructor<
     TransitionProps & { children: React.ReactElement<unknown, any> }
@@ -37,6 +65,7 @@ export interface StepContentProps extends StandardProps<React.HTMLAttributes<HTM
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
+   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionProps?: TransitionProps;
 }

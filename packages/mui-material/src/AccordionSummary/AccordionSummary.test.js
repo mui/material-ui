@@ -16,7 +16,7 @@ describe('<AccordionSummary />', () => {
     classes,
     inheritComponent: ButtonBase,
     render,
-    refInstanceof: window.HTMLDivElement,
+    refInstanceof: window.HTMLButtonElement,
     muiName: 'MuiAccordionSummary',
     testVariantProps: { disabled: true },
     testDeepOverrides: { slotName: 'content', slotClassName: classes.content },

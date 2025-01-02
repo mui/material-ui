@@ -1868,6 +1868,36 @@ Here's how to migrate:
  },
 ```
 
+## StepContent
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#step-content-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/step-content-props <path>
+```
+
+### TransitionComponent
+
+The StepContent's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
+
+```diff
+ <StepContent
+-  TransitionComponent={CustomTransition}
++  slots={{ transition: CustomTransition }}
+ />
+```
+
+### TransitionProps
+
+The StepContent's `TransitionProps` prop was deprecated in favor of `slotProps.transition`:
+
+```diff
+ <StepContent
+-  TransitionProps={{ unmountOnExit: true }}
++  slotProps={{ transition: { unmountOnExit: true } }}
+ />
+```
+
 ## SpeedDial
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#speed-dial-props) below to migrate the code as described in the following sections:
