@@ -30,6 +30,10 @@ describe('<Menu />', () => {
       paper: {
         expectedClassName: classes.paper,
       },
+      list: {
+        expectedClassName: classes.list,
+        testWithElement: null, // already tested with `testWithComponent`
+      },
     },
     testDeepOverrides: { slotName: 'list', slotClassName: classes.list },
     testRootOverrides: { slotName: 'root', slotClassName: classes.root },
@@ -217,31 +221,61 @@ describe('<Menu />', () => {
     expect(screen.getByRole('menu')).not.toHaveFocus();
   });
 
-  it('should call TransitionProps.onEntering', () => {
+  it('should call slotProps.transition.onEntering', () => {
     const onEnteringSpy = spy();
     render(
       <Menu
         anchorEl={document.createElement('div')}
         open
-        TransitionProps={{ onEntering: onEnteringSpy }}
+        slotProps={{ transition: { onEntering: onEnteringSpy } }}
       />,
     );
 
     expect(onEnteringSpy.callCount).to.equal(1);
   });
 
-  it('should call TransitionProps.onEntering, disableAutoFocusItem', () => {
+  it('should call slotProps.transition.onEntering, disableAutoFocusItem', () => {
     const onEnteringSpy = spy();
     render(
       <Menu
         anchorEl={document.createElement('div')}
         disableAutoFocusItem
         open
-        TransitionProps={{ onEntering: onEnteringSpy }}
+        slotProps={{ transition: { onEntering: onEnteringSpy } }}
       />,
     );
 
     expect(onEnteringSpy.callCount).to.equal(1);
+  });
+
+  // TODO: remove in v7
+  describe('legacy TransitionProps', () => {
+    it('should call TransitionProps.onEntering', () => {
+      const onEnteringSpy = spy();
+      render(
+        <Menu
+          anchorEl={document.createElement('div')}
+          open
+          TransitionProps={{ onEntering: onEnteringSpy }}
+        />,
+      );
+
+      expect(onEnteringSpy.callCount).to.equal(1);
+    });
+
+    it('should call TransitionProps.onEntering, disableAutoFocusItem', () => {
+      const onEnteringSpy = spy();
+      render(
+        <Menu
+          anchorEl={document.createElement('div')}
+          disableAutoFocusItem
+          open
+          TransitionProps={{ onEntering: onEnteringSpy }}
+        />,
+      );
+
+      expect(onEnteringSpy.callCount).to.equal(1);
+    });
   });
 
   it('should call onClose on tab', () => {

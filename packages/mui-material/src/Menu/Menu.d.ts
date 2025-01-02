@@ -4,11 +4,47 @@ import { InternalStandardProps as StandardProps } from '..';
 import { PaperProps } from '../Paper';
 import { PopoverProps } from '../Popover';
 import { MenuListProps } from '../MenuList';
+import { ModalOwnProps } from '../Modal';
 import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
 import { MenuClasses } from './menuClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
-export interface MenuProps extends StandardProps<PopoverProps> {
+export interface MenuRootSlotPropsOverrides {}
+
+export interface MenuPaperSlotPropsOverrides {}
+
+export interface MenuTransitionSlotPropsOverrides {}
+
+export interface MenuListSlotPropsOverrides {}
+
+export interface MenuSlots {
+  /**
+   * The content of the component.
+   */
+  root: React.ElementType;
+  paper: React.ElementType;
+  transition: React.ElementType;
+  list: React.ElementType;
+}
+
+export type MenuSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  MenuSlots,
+  {
+    root: SlotProps<React.ElementType<ModalOwnProps>, MenuRootSlotPropsOverrides, MenuOwnerState>;
+    paper: SlotProps<React.ElementType<PaperProps>, MenuPaperSlotPropsOverrides, MenuOwnerState>;
+    transition: SlotProps<
+      React.ElementType<TransitionProps>,
+      MenuTransitionSlotPropsOverrides,
+      MenuOwnerState
+    >;
+    list: SlotProps<React.ElementType<MenuListProps>, MenuListSlotPropsOverrides, MenuOwnerState>;
+  }
+>;
+
+export interface MenuProps
+  extends StandardProps<Omit<PopoverProps, 'slots' | 'slotProps'>>,
+    MenuSlotsAndSlotProps {
   /**
    * An HTML element, or a function that returns one.
    * It's used to set the position of the menu.
@@ -40,6 +76,7 @@ export interface MenuProps extends StandardProps<PopoverProps> {
   disableAutoFocusItem?: boolean;
   /**
    * Props applied to the [`MenuList`](https://mui.com/material-ui/api/menu-list/) element.
+   * @deprecated use the `slotProps.list` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   MenuListProps?: Partial<MenuListProps>;
@@ -70,6 +107,7 @@ export interface MenuProps extends StandardProps<PopoverProps> {
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
+   * @deprecated use the `slotProps.transition` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   TransitionProps?: TransitionProps;
@@ -79,6 +117,8 @@ export interface MenuProps extends StandardProps<PopoverProps> {
    */
   variant?: 'menu' | 'selectedMenu';
 }
+
+export interface MenuOwnerState extends MenuProps {}
 
 export declare const MenuPaper: React.FC<PaperProps>;
 

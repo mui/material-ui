@@ -13,6 +13,7 @@ import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getMenuUtilityClass } from './menuClasses';
+import useSlot from '../utils/useSlot';
 
 const RTL_ORIGIN = {
   vertical: 'top',
@@ -79,7 +80,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     PaperProps = {},
     PopoverClasses,
     transitionDuration = 'auto',
-    TransitionProps: { onEntering, ...TransitionProps } = {},
+    TransitionProps = {},
     variant = 'selectedMenu',
     slots = {},
     slotProps = {},
@@ -87,6 +88,8 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   } = props;
 
   const isRtl = useRtl();
+
+  const { onEntering, ...transitionProps } = slotProps.transition ?? TransitionProps;
 
   const ownerState = {
     ...props,
@@ -179,6 +182,13 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     className: classes.paper,
   });
 
+  const [ListSlot, listSlotProps] = useSlot('list', {
+    elementType: MenuMenuList,
+    externalForwardedProps: { slots, slotProps },
+    ownerState,
+    className: clsx(classes.list, MenuListProps.className),
+  });
+
   return (
     <MenuRoot
       onClose={onClose}
@@ -198,22 +208,21 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       open={open}
       ref={ref}
       transitionDuration={transitionDuration}
-      TransitionProps={{ onEntering: handleEntering, ...TransitionProps }}
+      TransitionProps={{ onEntering: handleEntering, ...transitionProps }}
       ownerState={ownerState}
       {...other}
       classes={PopoverClasses}
     >
-      <MenuMenuList
+      <ListSlot
         onKeyDown={handleListKeyDown}
         actions={menuListActionsRef}
         autoFocus={autoFocus && (activeItemIndex === -1 || disableAutoFocusItem)}
         autoFocusItem={autoFocusItem}
         variant={variant}
-        {...MenuListProps}
-        className={clsx(classes.list, MenuListProps.className)}
+        {...listSlotProps}
       >
         {children}
-      </MenuMenuList>
+      </ListSlot>
     </MenuRoot>
   );
 });
