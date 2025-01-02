@@ -1533,7 +1533,7 @@ The Popper's prop `componentsProps` was deprecated in favor of `slotProps`:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#select-classes) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/select-classes <path>
+npx @mui/codemod@latest deprecations/select-classes <path>
 ```
 
 ### Composed CSS classes

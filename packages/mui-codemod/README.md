@@ -1451,7 +1451,7 @@ CSS transforms:
 ```
 
 ```bash
-npx @mui/codemod@next deprecations/select-classes <path>
+npx @mui/codemod@latest deprecations/select-classes <path>
 ```
 
 #### `slider-props`
