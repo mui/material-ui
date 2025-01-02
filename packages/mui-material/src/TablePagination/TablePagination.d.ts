@@ -2,11 +2,14 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { TablePaginationActionsProps } from './TablePaginationActions';
+import { TablePaginationActionsProps, TablePaginationActionsSlots } from './TablePaginationActions';
 import { TableCellProps } from '../TableCell';
 import { IconButtonProps } from '../IconButton';
 import { SelectProps } from '../Select';
 import { TablePaginationClasses } from './tablePaginationClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { ToolbarProps } from '../Toolbar';
+import { MenuItemProps } from '../MenuItem';
 
 export interface LabelDisplayedRowsArgs {
   from: number;
@@ -14,6 +17,133 @@ export interface LabelDisplayedRowsArgs {
   count: number;
   page: number;
 }
+
+export interface TablePaginationRootSlotPropsOverrides {}
+
+export interface TablePaginationToolbarSlotPropsOverrides {}
+
+export interface TablePaginationSpacerSlotPropsOverrides {}
+
+export interface TablePaginationSelectLabelSlotPropsOverrides {}
+
+export interface TablePaginationSelectSlotPropsOverrides {}
+
+export interface TablePaginationMenuItemSlotPropsOverrides {}
+
+export interface TablePaginationDisplayedRowsSlotPropsOverrides {}
+
+export interface TablePaginationActionsSlotPropsOverrides {}
+
+export interface TablePaginationSlots {
+  /**
+   * The component that renders the root slot.
+   * [Follow this guide](https://mui.com/material-ui/api/table-cell/#props) to learn more about the requirements for this component.
+   * @default TableCell
+   */
+  root: React.ElementType;
+  /**
+   * The component that renders the toolbar slot.
+   * [Follow this guide](https://mui.com/material-ui/api/toolbar/#props) to learn more about the requirements for this component.
+   * @default Toolbar
+   */
+  toolbar: React.ElementType;
+  /**
+   * The tag that renders the spacer slot.
+   * @default 'div'
+   */
+  spacer: React.ElementType;
+  /**
+   * The tag that renders the selectLabel slot.
+   * @default 'p'
+   */
+  selectLabel: React.ElementType;
+  /**
+   * The component that renders the select slot.
+   * [Follow this guide](https://mui.com/material-ui/api/select/#props) to learn more about the requirements for this component.
+   * @default Select
+   */
+  select: React.ElementType;
+  /**
+   * The component that renders the select slot.
+   * [Follow this guide](https://mui.com/material-ui/api/menu-item/#props) to learn more about the requirements for this component.
+   * @default MenuItem
+   */
+  menuItem: React.ElementType;
+  /**
+   * The tag that renders the displayedRows slot.
+   * @default 'p'
+   */
+  displayedRows: React.ElementType;
+  /**
+   * The slots that passed to the actions slot.
+   */
+  actions: TablePaginationActionsSlots;
+}
+
+export type TablePaginationSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  TablePaginationSlots,
+  {
+    /**
+     * Props forwarded to the root slot.
+     * By default, the avaible props are based on the [TableCell](https://mui.com/material-ui/api/table-cell/#props) component.
+     */
+    root: SlotProps<
+      React.ElementType<TableCellProps>,
+      TablePaginationRootSlotPropsOverrides,
+      TablePaginationOwnerState
+    >;
+    /**
+     * Props forwarded to the toolbar slot.
+     * By default, the avaible props are based on the [Toolbar](https://mui.com/material-ui/api/toolbar/#props) component.
+     */
+    toolbar: SlotProps<
+      React.ElementType<ToolbarProps>,
+      TablePaginationToolbarSlotPropsOverrides,
+      TablePaginationOwnerState
+    >;
+    /**
+     * Props forwarded to the spacer slot.
+     * By default, the avaible props are based on the div element.
+     */
+    spacer: SlotProps<'div', TablePaginationSpacerSlotPropsOverrides, TablePaginationOwnerState>;
+    /**
+     * Props forwarded to the selectLabel slot.
+     * By default, the avaible props are based on the paragraph element.
+     */
+    selectLabel: SlotProps<
+      'p',
+      TablePaginationSelectLabelSlotPropsOverrides,
+      TablePaginationOwnerState
+    >;
+    /**
+     * Props forwarded to the select slot.
+     * By default, the avaible props are based on the [Select](https://mui.com/material-ui/api/select/#props) component.
+     */
+    select: Partial<SelectProps> & TablePaginationSelectSlotPropsOverrides;
+    /**
+     * Props forwarded to the menuItem slot.
+     * By default, the avaible props are based on the [MenuItem](https://mui.com/material-ui/api/menu-item/#props) component.
+     */
+    menuItem: SlotProps<
+      React.ElementType<MenuItemProps>,
+      TablePaginationMenuItemSlotPropsOverrides,
+      TablePaginationOwnerState
+    >;
+    /**
+     * Props forwarded to the displayedRows slot.
+     * By default, the avaible props are based on the paragraph element.
+     */
+    displayedRows: SlotProps<
+      'p',
+      TablePaginationDisplayedRowsSlotPropsOverrides,
+      TablePaginationOwnerState
+    >;
+    /**
+     * Props forwarded to the actions slot.
+     */
+    actions: TablePaginationActionsProps['slotProps'] & TablePaginationActionsSlotPropsOverrides;
+  }
+>;
 
 /**
  * This type is kept for compatibility. Use `TablePaginationOwnProps` instead.
@@ -135,29 +265,15 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    */
   showLastButton?: boolean;
   /**
-   * The props used for each slot inside the TablePagination.
-   * @default {}
-   */
-  slotProps?: {
-    actions?: TablePaginationActionsProps['slotProps'];
-    select?: Partial<SelectProps>;
-  };
-  /**
-   * The components used for each slot inside the TablePagination.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots?: {
-    actions?: TablePaginationActionsProps['slots'];
-  };
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
 }
 
+export interface TablePaginationOwnerState extends TablePaginationOwnProps {}
+
 export interface TablePaginationTypeMap<AdditionalProps, RootComponent extends React.ElementType> {
-  props: AdditionalProps & TablePaginationOwnProps;
+  props: AdditionalProps & TablePaginationOwnProps & TablePaginationSlotsAndSlotProps;
   defaultComponent: RootComponent;
 }
 

@@ -18,7 +18,7 @@ const cacheRtl = createCache({
 
 const theme = createTheme({ direction: 'rtl' });
 
-export default function PositionedTooltips() {
+export default function PositionedTooltipsRtl() {
   return (
     <StyleSheetManager stylisPlugins={[rtlPlugin]}>
       <CacheProvider value={cacheRtl}>

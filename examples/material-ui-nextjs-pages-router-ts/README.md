@@ -41,11 +41,6 @@ If you prefer, you can [use styled-components instead](https://mui.com/material-
 The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-nextjs-pages-router-ts) provides an adapter for the use of [Next.js's Link component](https://nextjs.org/docs/pages/api-reference/components/link) with Material UI.
 More information [in the documentation](https://mui.com/material-ui/integrations/routing/#next-js-pages-router).
 
-## Upgrading to Next.js 15
-
-This example uses Next.js 14.
-To upgrade to version 15, please follow the [official upgrade guide](https://nextjs.org/docs/app/building-your-application/upgrading/version-15) in the Next.js docs.
-
 ## What's next?
 
 <!-- #default-branch-switch -->
