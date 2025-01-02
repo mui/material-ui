@@ -264,6 +264,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     elementType: DrawerPaper,
     className: clsx(classes.paper, PaperProps.className),
     ownerState,
+    externalForwardedProps,
     additionalProps: {
       elevation: variant === 'temporary' ? elevation : 0,
       square: true,
