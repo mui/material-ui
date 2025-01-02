@@ -23,6 +23,8 @@
     "SlideProps": {
       "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/slide/\"><code>Slide</code></a> element."
     },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
@@ -32,18 +34,9 @@
     "variant": { "description": "The variant to use." }
   },
   "classDescriptions": {
-    "docked": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"permanent or persistent\"</code>"
-    },
     "modal": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Modal component"
-    },
-    "paper": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Paper component"
     },
     "paperAnchorBottom": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -84,7 +77,13 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
       "conditions": "<code>anchor=\"top\"</code>"
-    },
-    "root": { "description": "Styles applied to the root element." }
+    }
+  },
+  "slotDescriptions": {
+    "backdrop": "The component used for the backdrop.",
+    "docked": "The component used for the docked. It&#39;s also a root slot when variant is <code>permanent</code> or <code>persistent</code>.",
+    "paper": "The component used for the paper.",
+    "root": "The component used for the popper.",
+    "transition": "The component used for the transition. <a href=\"https://mui.com/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
   }
 }

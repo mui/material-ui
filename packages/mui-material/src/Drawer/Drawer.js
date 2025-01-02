@@ -207,6 +207,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     open = false,
     PaperProps = {},
     SlideProps,
+    // eslint-disable-next-line react/prop-types
     TransitionComponent,
     transitionDuration = defaultTransitionDuration,
     variant = 'temporary',
@@ -356,6 +357,7 @@ Drawer.propTypes /* remove-proptypes */ = {
   hideBackdrop: PropTypes.bool,
   /**
    * Props applied to the [`Modal`](https://mui.com/material-ui/api/modal/) element.
+   * @deprecated use the `slotProps.root` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   ModalProps: PropTypes.object,
@@ -374,13 +376,37 @@ Drawer.propTypes /* remove-proptypes */ = {
   open: PropTypes.bool,
   /**
    * Props applied to the [`Paper`](https://mui.com/material-ui/api/paper/) element.
+   * @deprecated use the `slotProps.paper` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   PaperProps: PropTypes.object,
   /**
    * Props applied to the [`Slide`](https://mui.com/material-ui/api/slide/) element.
+   * @deprecated use the `slotProps.transition` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   SlideProps: PropTypes.object,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    docked: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    backdrop: PropTypes.elementType,
+    docked: PropTypes.elementType,
+    paper: PropTypes.elementType,
+    root: PropTypes.elementType,
+    transition: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -392,6 +418,7 @@ Drawer.propTypes /* remove-proptypes */ = {
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
+   * @deprecated use the `slotProps.transition.transitionDuration` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {
    *   enter: theme.transitions.duration.enteringScreen,
    *   exit: theme.transitions.duration.leavingScreen,
