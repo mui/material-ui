@@ -44,9 +44,7 @@ export function createFilterOptions(config = {}) {
             candidate = stripDiacritics(candidate);
           }
 
-          return matchFrom === 'start'
-            ? candidate.indexOf(input) === 0
-            : candidate.indexOf(input) > -1;
+          return matchFrom === 'start' ? candidate.startsWith(input) : candidate.includes(input);
         });
 
     return typeof limit === 'number' ? filteredOptions.slice(0, limit) : filteredOptions;
@@ -242,28 +240,6 @@ function useAutocomplete(props) {
   }, [value, resetInputValue, focused, previousProps.value, freeSolo]);
 
   const listboxAvailable = open && filteredOptions.length > 0 && !readOnly;
-
-  if (process.env.NODE_ENV !== 'production') {
-    if (value !== null && !freeSolo && options.length > 0) {
-      const missingValue = (multiple ? value : [value]).filter(
-        (value2) => !options.some((option) => isOptionEqualToValue(option, value2)),
-      );
-
-      if (missingValue.length > 0) {
-        console.warn(
-          [
-            `MUI: The value provided to ${componentName} is invalid.`,
-            `None of the options match with \`${
-              missingValue.length > 1
-                ? JSON.stringify(missingValue)
-                : JSON.stringify(missingValue[0])
-            }\`.`,
-            'You can use the `isOptionEqualToValue` prop to customize the equality test.',
-          ].join('\n'),
-        );
-      }
-    }
-  }
 
   const focusTag = useEventCallback((tagToFocus) => {
     if (tagToFocus === -1) {
@@ -784,7 +760,7 @@ function useAutocomplete(props) {
       return;
     }
 
-    if (focusedTag !== -1 && ['ArrowLeft', 'ArrowRight'].indexOf(event.key) === -1) {
+    if (focusedTag !== -1 && !['ArrowLeft', 'ArrowRight'].includes(event.key)) {
       setFocusedTag(-1);
       focusTag(-1);
     }

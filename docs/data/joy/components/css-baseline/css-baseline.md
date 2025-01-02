@@ -135,7 +135,7 @@ function App() {
 
 ### ScopedCssBaseline
 
-You can customize it using the [themed components](https://mui.com/joy-ui/customization/themed-components/) approach. The component identifier is `JoyScopedCssBaseline` which contains only the `root` slot.
+You can customize it using the [themed components](/joy-ui/customization/themed-components/) approach. The component identifier is `JoyScopedCssBaseline` which contains only the `root` slot.
 
 ```js
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';

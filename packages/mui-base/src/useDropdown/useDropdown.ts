@@ -10,17 +10,17 @@ import { dropdownReducer } from './dropdownReducer';
  *
  * Demos:
  *
- * - [Menu](https://next.mui.com/base-ui/react-menu/#hooks)
+ * - [Menu](https://mui.com/base-ui/react-menu/#hooks)
  *
  * API:
  *
- * - [useDropdown API](https://next.mui.com/base-ui/react-menu/hooks-api/#use-dropdown)
+ * - [useDropdown API](https://mui.com/base-ui/react-menu/hooks-api/#use-dropdown)
  */
 export function useDropdown(parameters: UseDropdownParameters = {}) {
   const { defaultOpen, onOpenChange, open: openProp, componentName = 'useDropdown' } = parameters;
   const [popupId, setPopupId] = React.useState<string>('');
   const [triggerElement, setTriggerElement] = React.useState<HTMLElement | null>(null);
-  const lastActionType = React.useRef<string | null>(null);
+  const lastActionType = React.useRef<string>(null);
 
   const handleStateChange: StateChangeCallback<DropdownState> = React.useCallback(
     (event, field, value, reason) => {

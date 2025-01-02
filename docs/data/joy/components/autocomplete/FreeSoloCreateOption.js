@@ -69,7 +69,6 @@ export default function FreeSoloCreateOption() {
                 <Add />
               </ListItemDecorator>
             )}
-
             {option.title}
           </AutocompleteOption>
         )}

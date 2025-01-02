@@ -2,8 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { ComponentApiContent, PropsTranslations } from '@mui-internal/api-docs-builder';
+import exactProp from '@mui/utils/exactProp';
 import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
+import { TableOfContentsEntry } from '@mui/internal-markdown';
 import { Ad, AdGuest } from '@mui/docs/Ad';
 import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
@@ -13,18 +15,29 @@ import { BrandingProvider } from '@mui/docs/branding';
 import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
-import PropertiesSection, {
-  getPropsToC,
-} from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
-import ClassesSection, {
-  getClassesToC,
-} from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
+import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
+import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
 import {
   ApiDisplayOptions,
   DEFAULT_API_LAYOUT_STORAGE_KEYS,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
-import { TableOfContentsEntry } from '@mui/internal-markdown';
+import {
+  getPropertiesToC,
+  getPropsApiDefinitions,
+} from 'docs/src/modules/components/ApiPage/definitions/properties';
+import {
+  getClassApiDefinitions,
+  getClassesToC,
+} from 'docs/src/modules/components/ApiPage/definitions/classes';
+import { getSlotsApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/slots';
+
+// TODO Move this type definition to the AppLayoutDocs file when moved to TS
+export interface TableOfContentsParams {
+  children: (TableOfContentsParams | TableOfContentsEntry)[];
+  hash: string;
+  text: string;
+}
 
 type ApiHeaderKeys =
   | 'demos'
@@ -34,7 +47,8 @@ type ApiHeaderKeys =
   | 'inheritance'
   | 'slots'
   | 'classes'
-  | 'css';
+  | 'css'
+  | 'source-code';
 
 export function getTranslatedHeader(t: Translate, header: ApiHeaderKeys) {
   const translations = {
@@ -46,6 +60,7 @@ export function getTranslatedHeader(t: Translate, header: ApiHeaderKeys) {
     slots: t('api-docs.slots'),
     classes: t('api-docs.classes'),
     css: t('api-docs.css'),
+    'source-code': t('api-docs.source-code'),
   };
 
   // TODO Drop runtime type-checking once we type-check this file
@@ -81,7 +96,7 @@ interface ApiPageProps {
   descriptions: {
     [lang: string]: PropsTranslations & {
       // Table of Content added by the mapApiPageTranslations function
-      componentDescriptionToc: TableOfContentsEntry[];
+      componentDescriptionToc: TableOfContentsParams[];
     };
   };
   disableAd?: boolean;
@@ -150,39 +165,47 @@ export default function ApiPage(props: ApiPageProps) {
   // Prefer linking the .tsx or .d.ts for the "Edit this page" link.
   const apiSourceLocation = filename.replace('.js', '.d.ts');
 
-  function createTocEntry(sectionName: ApiHeaderKeys) {
+  // Merge data and translation
+  const propertiesDef = getPropsApiDefinitions({
+    componentName: pageContent.name,
+    properties: componentProps,
+    propertiesDescriptions: propDescriptions,
+  });
+  const classesDef = getClassApiDefinitions({
+    componentClasses,
+    componentName: pageContent.name,
+    classDescriptions,
+  });
+  const slotsDef = getSlotsApiDefinitions({
+    componentSlots,
+    componentName: pageContent.name,
+    slotDescriptions,
+  });
+
+  function createTocEntry(sectionName: ApiHeaderKeys): TableOfContentsParams {
     return {
       text: getTranslatedHeader(t, sectionName),
       hash: sectionName,
       children: [
         ...(sectionName === 'props' && inheritance
           ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
-          : []),
+          : ([] as TableOfContentsParams[])),
         ...(sectionName === 'props' && pageContent.themeDefaultProps
           ? [{ text: t('api-docs.themeDefaultProps'), hash: 'theme-default-props', children: [] }]
-          : []),
+          : ([] as TableOfContentsParams[])),
       ],
     };
   }
 
-  const toc = [
+  const toc: TableOfContentsParams[] = [
     createTocEntry('demos'),
     createTocEntry('import'),
     ...componentDescriptionToc,
-    getPropsToC({
-      t,
-      componentName: pageContent.name,
-      componentProps,
-      inheritance,
-      themeDefaultProps: pageContent.themeDefaultProps,
-    }),
-    componentSlots?.length > 0 && createTocEntry('slots'),
-    ...getClassesToC({
-      t,
-      componentName: pageContent.name,
-      componentClasses,
-    }),
-  ].filter(Boolean);
+    getPropertiesToC({ properties: propertiesDef, hash: 'props', t }),
+    ...(componentSlots?.length > 0 ? [createTocEntry('slots')] : []),
+    ...getClassesToC({ classes: classesDef, t }),
+    pageContent.filename ? createTocEntry('source-code') : null,
+  ].filter((item): item is TableOfContentsParams => Boolean(item));
 
   // The `ref` is forwarded to the root element.
   let refHint = t('api-docs.refRootElement');
@@ -272,9 +295,7 @@ export default function ApiPage(props: ApiPageProps) {
           </React.Fragment>
         ) : null}
         <PropertiesSection
-          properties={componentProps}
-          propertiesDescriptions={propDescriptions}
-          componentName={pageContent.name}
+          properties={propertiesDef}
           spreadHint={spreadHint}
           defaultLayout={defaultLayout}
           layoutStorageKey={layoutStorageKey.props}
@@ -325,11 +346,8 @@ export default function ApiPage(props: ApiPageProps) {
             />
           </React.Fragment>
         )}
-        (
         <SlotsSection
-          componentSlots={componentSlots}
-          slotDescriptions={slotDescriptions}
-          componentName={pageContent.name}
+          slots={slotsDef}
           spreadHint={
             slotGuideLink &&
             t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
@@ -337,16 +355,23 @@ export default function ApiPage(props: ApiPageProps) {
           defaultLayout={defaultLayout}
           layoutStorageKey={layoutStorageKey.slots}
         />
-        )
         <ClassesSection
-          componentClasses={componentClasses}
-          componentName={pageContent.name}
-          classDescriptions={classDescriptions}
+          classes={classesDef}
           spreadHint={t('api-docs.classesDescription')}
           styleOverridesLink={styleOverridesLink}
           defaultLayout={defaultLayout}
           layoutStorageKey={layoutStorageKey.classes}
           displayClassKeys
+        />
+
+        <Heading hash="source-code" level="h2" />
+        <p
+          dangerouslySetInnerHTML={{
+            __html: t('api-docs.seeSourceCode').replace(
+              '{{href}}',
+              `${process.env.SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}${pageContent.filename}`,
+            ),
+          }}
         />
       </MarkdownElement>
       <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">
@@ -356,4 +381,18 @@ export default function ApiPage(props: ApiPageProps) {
       </svg>
     </AppLayoutDocs>
   );
+}
+
+if (process.env.NODE_ENV !== 'production') {
+  ApiPage.propTypes = exactProp({
+    defaultLayout: PropTypes.oneOf(['collapsed', 'expanded', 'table']),
+    descriptions: PropTypes.object.isRequired,
+    disableAd: PropTypes.bool,
+    layoutStorageKey: PropTypes.shape({
+      classes: PropTypes.string,
+      props: PropTypes.string,
+      slots: PropTypes.string,
+    }),
+    pageContent: PropTypes.object.isRequired,
+  });
 }

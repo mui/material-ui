@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import AutoFixHighRoundedIcon from '@mui/icons-material/AutoFixHighRounded';
@@ -59,7 +59,7 @@ export default function Highlights() {
         pt: { xs: 4, sm: 12 },
         pb: { xs: 8, sm: 16 },
         color: 'white',
-        bgcolor: 'hsl(220, 30%, 2%)',
+        bgcolor: 'grey.900',
       }}
     >
       <Container
@@ -77,7 +77,7 @@ export default function Highlights() {
             textAlign: { sm: 'left', md: 'center' },
           }}
         >
-          <Typography component="h2" variant="h4">
+          <Typography component="h2" variant="h4" gutterBottom>
             Highlights
           </Typography>
           <Typography variant="body1" sx={{ color: 'grey.400' }}>
@@ -86,9 +86,9 @@ export default function Highlights() {
             precision in every detail.
           </Typography>
         </Box>
-        <Grid container spacing={2.5}>
+        <Grid container spacing={2}>
           {items.map((item, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index}>
               <Stack
                 direction="column"
                 component={Card}
@@ -98,11 +98,8 @@ export default function Highlights() {
                   color: 'inherit',
                   p: 3,
                   height: '100%',
-                  border: '1px solid',
-                  borderColor: 'hsla(220, 25%, 25%, .3)',
-                  background: 'transparent',
-                  backgroundColor: 'grey.900',
-                  boxShadow: 'none',
+                  borderColor: 'hsla(220, 25%, 25%, 0.3)',
+                  backgroundColor: 'grey.800',
                 }}
               >
                 <Box sx={{ opacity: '50%' }}>{item.icon}</Box>

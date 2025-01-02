@@ -135,8 +135,8 @@ describe('ModalManager', () => {
       modalManager.add(modal, container1);
       modalManager.mount(modal, {});
       expect(container1.style.overflow).to.equal('hidden');
-      expect(container1.style.paddingRight).to.equal(`${20 + getScrollbarSize(document)}px`);
-      expect(fixedNode.style.paddingRight).to.equal(`${14 + getScrollbarSize(document)}px`);
+      expect(container1.style.paddingRight).to.equal(`${20 + getScrollbarSize(window)}px`);
+      expect(fixedNode.style.paddingRight).to.equal(`${14 + getScrollbarSize(window)}px`);
       modalManager.remove(modal);
       expect(container1.style.overflow).to.equal('');
       expect(container1.style.paddingRight).to.equal('20px');
@@ -171,8 +171,8 @@ describe('ModalManager', () => {
       modalManager.add(modal, container1);
       modalManager.mount(modal, {});
       expect(container1.style.overflow).to.equal('hidden');
-      expect(container1.style.paddingRight).to.equal(`${20 + getScrollbarSize(document)}px`);
-      expect(fixedNode.style.paddingRight).to.equal(`${getScrollbarSize(document)}px`);
+      expect(container1.style.paddingRight).to.equal(`${20 + getScrollbarSize(window)}px`);
+      expect(fixedNode.style.paddingRight).to.equal(`${getScrollbarSize(window)}px`);
       modalManager.remove(modal);
       expect(container1.style.overflow).to.equal('');
       expect(container1.style.paddingRight).to.equal('20px');
@@ -297,17 +297,17 @@ describe('ModalManager', () => {
       const modal2 = getDummyModal();
       modalManager.add(modal1, container3);
       modalManager.mount(modal1, {});
-      expect(container3.children[0]).toBeAriaHidden();
+      expect(container3.children[0]).toBeInaccessible();
 
       modalManager.add(modal2, container4);
       modalManager.mount(modal2, {});
-      expect(container4.children[0]).toBeAriaHidden();
+      expect(container4.children[0]).toBeInaccessible();
 
       modalManager.remove(modal2);
-      expect(container4.children[0]).not.toBeAriaHidden();
+      expect(container4.children[0]).not.toBeInaccessible();
 
       modalManager.remove(modal1);
-      expect(container3.children[0]).not.toBeAriaHidden();
+      expect(container3.children[0]).not.toBeInaccessible();
     });
 
     afterEach(() => {
@@ -338,17 +338,17 @@ describe('ModalManager', () => {
       const modal2 = document.createElement('div');
       modal2.setAttribute('aria-hidden', 'true');
 
-      expect(modal2).toBeAriaHidden();
+      expect(modal2).toBeInaccessible();
       modalManager.add({ ...getDummyModal(), modalRef: modal2 }, container2);
-      expect(modal2).not.toBeAriaHidden();
+      expect(modal2).not.toBeInaccessible();
     });
 
     it('should add aria-hidden to container siblings', () => {
       const secondSibling = document.createElement('input');
       container2.appendChild(secondSibling);
       modalManager.add(getDummyModal(), container2);
-      expect(container2.children[0]).toBeAriaHidden();
-      expect(container2.children[1]).toBeAriaHidden();
+      expect(container2.children[0]).toBeInaccessible();
+      expect(container2.children[1]).toBeInaccessible();
     });
 
     it('should not add aria-hidden to forbidden container siblings', () => {
@@ -379,9 +379,9 @@ describe('ModalManager', () => {
       expect(container2.children.length).equal(numberOfChildren);
 
       modalManager.add(getDummyModal(), container2);
-      expect(container2.children[0]).toBeAriaHidden();
+      expect(container2.children[0]).toBeInaccessible();
       for (let i = 1; i < numberOfChildren; i += 1) {
-        expect(container2.children[i]).not.toBeAriaHidden();
+        expect(container2.children[i].getAttribute('aria-hidden')).to.equal(null);
       }
     });
 
@@ -394,13 +394,13 @@ describe('ModalManager', () => {
 
       modalManager.add({ ...getDummyModal(), modalRef: modal2 }, container2);
       // Simulate the main React DOM true.
-      expect(container2.children[0]).toBeAriaHidden();
-      expect(container2.children[1]).not.toBeAriaHidden();
+      expect(container2.children[0]).toBeInaccessible();
+      expect(container2.children[1]).not.toBeInaccessible();
 
       modalManager.add({ ...getDummyModal(), modalRef: modal3 }, container2);
-      expect(container2.children[0]).toBeAriaHidden();
-      expect(container2.children[1]).toBeAriaHidden();
-      expect(container2.children[2]).not.toBeAriaHidden();
+      expect(container2.children[0]).toBeInaccessible();
+      expect(container2.children[1]).toBeInaccessible();
+      expect(container2.children[2]).not.toBeInaccessible();
     });
 
     it('should remove aria-hidden on siblings', () => {
@@ -408,9 +408,9 @@ describe('ModalManager', () => {
 
       modalManager.add(modal, container2);
       modalManager.mount(modal, {});
-      expect(container2.children[0]).not.toBeAriaHidden();
+      expect(container2.children[0]).not.toBeInaccessible();
       modalManager.remove(modal);
-      expect(container2.children[0]).toBeAriaHidden();
+      expect(container2.children[0]).toBeInaccessible();
     });
 
     it('should keep previous aria-hidden siblings hidden', () => {
@@ -425,11 +425,11 @@ describe('ModalManager', () => {
 
       modalManager.add(modal, container2);
       modalManager.mount(modal, {});
-      expect(container2.children[0]).not.toBeAriaHidden();
+      expect(container2.children[0]).not.toBeInaccessible();
       modalManager.remove(modal);
-      expect(container2.children[0]).toBeAriaHidden();
-      expect(container2.children[1]).toBeAriaHidden();
-      expect(container2.children[2]).not.toBeAriaHidden();
+      expect(container2.children[0]).toBeInaccessible();
+      expect(container2.children[1]).toBeInaccessible();
+      expect(container2.children[2]).not.toBeInaccessible();
     });
   });
 });

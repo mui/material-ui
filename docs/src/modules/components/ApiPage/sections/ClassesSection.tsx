@@ -2,14 +2,19 @@
 import * as React from 'react';
 import { Translate, useTranslate } from '@mui/docs/i18n';
 import { SectionTitle } from '@mui/docs/SectionTitle';
-import { ComponentClassDefinition } from '@mui/internal-docs-utils';
 import Box from '@mui/material/Box';
 import ToggleDisplayOption, {
   ApiDisplayOptions,
   useApiPageOption,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
-import ClassesList, { getHash } from 'docs/src/modules/components/ApiPage/list/ClassesList';
+import ClassesList from 'docs/src/modules/components/ApiPage/list/ClassesList';
 import ClassesTable from 'docs/src/modules/components/ApiPage/table/ClassesTable';
+import {
+  ClassDefinition,
+  getClassApiDefinitions,
+} from 'docs/src/modules/components/ApiPage/definitions/classes';
+import { PropsTranslations, ComponentClassDefinition } from '@mui-internal/api-docs-builder';
+import kebabCase from 'lodash/kebabCase';
 
 export type GetCssToCParams = {
   componentName: string;
@@ -18,6 +23,9 @@ export type GetCssToCParams = {
   hash?: string;
 };
 
+/**
+ * @deprecated Use the function from ApiPage/definitions
+ */
 export const getClassesToC = ({ componentName, componentClasses, t, hash }: GetCssToCParams) =>
   !componentClasses || componentClasses.length === 0
     ? []
@@ -28,24 +36,27 @@ export const getClassesToC = ({ componentName, componentClasses, t, hash }: GetC
           children: [
             ...componentClasses.map((styles) => ({
               text: styles.key,
-              hash: getHash({ componentName, className: styles.key }),
+              hash: `${kebabCase(componentName)}-classes-${styles.key}`,
               children: [],
             })),
           ],
         },
       ];
-type ClassDescription = {
-  [classKey: string]: {
-    description: string;
-    nodeName?: string;
-    conditions?: string;
-    deprecationInfo?: string;
-  };
-};
-export type ClassesSectionProps = {
-  componentClasses: ComponentClassDefinition[];
-  classDescriptions: ClassDescription;
-  componentName: string;
+
+export type ClassesSectionProps = (
+  | {
+      classes: ClassDefinition[];
+      componentClasses?: undefined;
+      classDescriptions?: undefined;
+      componentName?: undefined;
+    }
+  | {
+      classes: undefined;
+      componentClasses: ComponentClassDefinition[];
+      classDescriptions: PropsTranslations['classDescriptions'];
+      componentName: string;
+    }
+) & {
   spreadHint?: string;
   /**
    * The translation key of the section title.
@@ -62,12 +73,13 @@ export type ClassesSectionProps = {
   level?: 'h2' | 'h3' | 'h4';
   defaultLayout: ApiDisplayOptions;
   layoutStorageKey: string;
-  displayClassKeys: boolean;
-  styleOverridesLink: string;
+  displayClassKeys?: boolean;
+  styleOverridesLink?: string;
 };
 
 export default function ClassesSection(props: ClassesSectionProps) {
   const {
+    classes,
     componentClasses,
     classDescriptions,
     componentName,
@@ -84,21 +96,16 @@ export default function ClassesSection(props: ClassesSectionProps) {
 
   const [displayOption, setDisplayOption] = useApiPageOption(layoutStorageKey, defaultLayout);
 
-  if (!componentClasses || componentClasses.length === 0) {
+  const formattedClasses =
+    classes ||
+    getClassApiDefinitions({
+      componentClasses,
+      classDescriptions,
+      componentName,
+    });
+  if (!formattedClasses || formattedClasses.length === 0) {
     return null;
   }
-
-  const classesWithTranslatedDescriptions = componentClasses.map((classDefinition) => {
-    return {
-      ...classDefinition,
-      description:
-        classDescriptions[classDefinition.key]?.description
-          ?.replace(/{{conditions}}/, classDescriptions[classDefinition.key].conditions!)
-          ?.replace(/{{nodeName}}/, classDescriptions[classDefinition.key].nodeName!) ??
-        classDefinition.description,
-      deprecationInfo: classDescriptions[classDefinition.key]?.deprecationInfo,
-    };
-  });
 
   return (
     <React.Fragment>
@@ -112,15 +119,10 @@ export default function ClassesSection(props: ClassesSectionProps) {
       </Box>
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
       {displayOption === 'table' ? (
-        <ClassesTable
-          classes={classesWithTranslatedDescriptions}
-          componentName={componentName}
-          displayClassKeys={displayClassKeys}
-        />
+        <ClassesTable classes={formattedClasses} displayClassKeys={displayClassKeys} />
       ) : (
         <ClassesList
-          classes={classesWithTranslatedDescriptions}
-          componentName={componentName}
+          classes={formattedClasses}
           displayOption={displayOption}
           displayClassKeys={displayClassKeys}
         />

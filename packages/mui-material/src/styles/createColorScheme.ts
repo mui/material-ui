@@ -4,7 +4,7 @@ import getOverlayAlpha from './getOverlayAlpha';
 
 const defaultDarkOverlays = [...Array(25)].map((_, index) => {
   if (index === 0) {
-    return undefined;
+    return 'none';
   }
   const overlay = getOverlayAlpha(index);
   return `linear-gradient(rgba(255 255 255 / ${overlay}), rgba(255 255 255 / ${overlay}))`;

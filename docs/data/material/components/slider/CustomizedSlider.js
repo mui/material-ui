@@ -18,7 +18,7 @@ function ValueLabelComponent(props) {
 
 ValueLabelComponent.propTypes = {
   children: PropTypes.element.isRequired,
-  value: PropTypes.number.isRequired,
+  value: PropTypes.node,
 };
 
 const iOSBoxShadow =

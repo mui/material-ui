@@ -183,7 +183,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
     <BreadcrumbsRoot
       ref={ref}
       component={component}
-      color="text.secondary"
+      color="textSecondary"
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       {...other}
@@ -227,7 +227,7 @@ Breadcrumbs.propTypes /* remove-proptypes */ = {
   /**
    * Override the default label for the expand button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Show path'
    */
   expandText: PropTypes.string,

@@ -5,6 +5,7 @@ components: Tooltip
 githubLabel: 'component: tooltip'
 materialDesign: https://m2.material.io/components/tooltips
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
+githubSource: packages/mui-material/src/Tooltip
 ---
 
 # Tooltip
@@ -70,8 +71,6 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
   <MyComponent />
 </Tooltip>;
 ```
-
-You can find a similar concept in the [wrapping components](/material-ui/guides/composition/#wrapping-components) guide.
 
 If using a class component as a child, you'll also need to ensure that the ref is forwarded to the underlying DOM element. (A ref to the class component itself will not work.)
 

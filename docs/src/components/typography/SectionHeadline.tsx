@@ -11,7 +11,7 @@ interface SectionHeadlineProps {
    */
   inverted?: boolean;
   overline?: React.ReactNode;
-  title: string | React.ReactElement<any>;
+  title: string | React.ReactElement<React.HTMLAttributes<HTMLElement>>;
 }
 
 export default function SectionHeadline(props: SectionHeadlineProps) {

@@ -1,6 +1,5 @@
 'use client';
 import * as React from 'react';
-import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
 import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
@@ -36,11 +35,11 @@ export function getInputValueAsString(v: string): string {
  *
  * Demos:
  *
- * - [Number Input](https://next.mui.com/base-ui/react-number-input/#hook)
+ * - [Number Input](https://mui.com/base-ui/react-number-input/#hook)
  *
  * API:
  *
- * - [useNumberInput API](https://next.mui.com/base-ui/react-number-input/hooks-api/#use-number-input)
+ * - [useNumberInput API](https://mui.com/base-ui/react-number-input/hooks-api/#use-number-input)
  */
 export function useNumberInput(parameters: UseNumberInputParameters): UseNumberInputReturnValue {
   const {
@@ -185,7 +184,7 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     (otherHandlers: Partial<EventHandlers>) =>
     (event: React.ChangeEvent<HTMLInputElement> & MuiCancellableEvent) => {
       if (!isControlled && event.target === null) {
-        throw new MuiError(
+        throw /* minify-error */ new Error(
           'MUI: Expected valid input target. ' +
             'Did you use a custom `slots.input` and forget to forward refs? ' +
             'See https://mui.com/r/input-component-ref-interface for more info.',

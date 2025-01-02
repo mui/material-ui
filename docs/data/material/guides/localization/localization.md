@@ -98,7 +98,7 @@ The [Data Grid and Data Grid Pro](/x/react-data-grid/) components have their own
 
 <!-- #default-branch-switch -->
 
-You can [find the source](https://github.com/mui/material-ui/blob/next/packages/mui-material/src/locale/index.ts) in the GitHub repository.
+You can [find the source](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/locale/index.ts) in the GitHub repository.
 
 To create your own translation, or to customize the English text, copy this file to your project, make any changes needed and import the locale from there.
 
@@ -107,5 +107,5 @@ However, Material UI aims to support the [100 most common](https://en.wikipedia
 
 ## RTL Support
 
-Right-to-left languages such as Arabic, Persian, or Hebrew are supported.
+Right-to-left languages such as Arabic, Persian, Hebrew, Kurdish, and others are supported.
 Follow [this guide](/material-ui/customization/right-to-left/) to use them.

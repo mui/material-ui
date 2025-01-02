@@ -2,6 +2,7 @@ import excludeVariablesFromRoot from './excludeVariablesFromRoot';
 
 export default <
     T extends {
+      rootSelector?: string;
       colorSchemeSelector?: 'media' | 'class' | 'data' | string;
       colorSchemes?: Record<string, any>;
       defaultColorScheme?: string;
@@ -11,6 +12,7 @@ export default <
     theme: T,
   ) =>
   (colorScheme: keyof T['colorSchemes'] | undefined, css: Record<string, any>) => {
+    const root = theme.rootSelector || ':root';
     const selector = theme.colorSchemeSelector;
     let rule = selector;
     if (selector === 'class') {
@@ -32,28 +34,34 @@ export default <
         });
         if (rule === 'media') {
           return {
-            ':root': css,
-            '@media (prefers-color-scheme: dark) { :root': excludedVariables,
+            [root]: css,
+            [`@media (prefers-color-scheme: dark)`]: {
+              [root]: excludedVariables,
+            },
           };
         }
         if (rule) {
           return {
             [rule.replace('%s', colorScheme)]: excludedVariables,
-            [`:root, ${rule.replace('%s', colorScheme)}`]: css,
+            [`${root}, ${rule.replace('%s', colorScheme)}`]: css,
           };
         }
-        return { ':root': { ...css, ...excludedVariables } };
+        return { [root]: { ...css, ...excludedVariables } };
       }
       if (rule && rule !== 'media') {
-        return `:root, ${rule.replace('%s', String(colorScheme))}`;
+        return `${root}, ${rule.replace('%s', String(colorScheme))}`;
       }
     } else if (colorScheme) {
       if (rule === 'media') {
-        return `@media (prefers-color-scheme: ${String(colorScheme)}) { :root`;
+        return {
+          [`@media (prefers-color-scheme: ${String(colorScheme)})`]: {
+            [root]: css,
+          },
+        };
       }
       if (rule) {
         return rule.replace('%s', String(colorScheme));
       }
     }
-    return ':root';
+    return root;
   };

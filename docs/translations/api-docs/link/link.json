@@ -12,7 +12,7 @@
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
     "TypographyClasses": {
-      "description": "<code>classes</code> prop applied to the <a href=\"/material-ui/api/typography/\"><code>Typography</code></a> element."
+      "description": "<code>classes</code> prop applied to the <a href=\"https://mui.com/material-ui/api/typography/\"><code>Typography</code></a> element."
     },
     "underline": { "description": "Controls when the link should have an underline." },
     "variant": { "description": "Applies the theme typography styles." }

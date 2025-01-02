@@ -195,7 +195,7 @@ export function getStyleFromPropValue(cssProperties, transformer) {
 function resolveCssProperty(props, keys, prop, transformer) {
   // Using a hash computation over an array iteration could be faster, but with only 28 items,
   // it's doesn't worth the bundle size.
-  if (keys.indexOf(prop) === -1) {
+  if (!keys.includes(prop)) {
     return null;
   }
 

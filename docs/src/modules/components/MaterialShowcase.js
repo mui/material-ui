@@ -437,7 +437,7 @@ const sortFunctions = {
   stars: sortFactory('stars'),
 };
 
-export default function Showcase() {
+export default function MaterialShowcase() {
   const [sortFunctionName, setSortFunctionName] = React.useState('similarWebVisits');
   const sortFunction = sortFunctions[sortFunctionName];
   const t = useTranslate();
@@ -489,7 +489,7 @@ export default function Showcase() {
                     }),
                   })}
                 >
-                  <a href={app.link} rel="noopener nofollow" target="_blank">
+                  <a href={app.link} rel="noopener nofollow" target="_blank" aria-label={app.title}>
                     <CardMedia
                       component="img"
                       loading="lazy"

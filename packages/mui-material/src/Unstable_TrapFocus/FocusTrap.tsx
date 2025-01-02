@@ -7,7 +7,7 @@ import {
   elementAcceptingRef,
   unstable_useForkRef as useForkRef,
   unstable_ownerDocument as ownerDocument,
-  unstable_getReactNodeRef as getReactNodeRef,
+  unstable_getReactElementRef as getReactElementRef,
 } from '@mui/utils';
 import { FocusTrapProps } from './FocusTrap.types';
 
@@ -38,7 +38,7 @@ function getTabIndex(node: HTMLElement): number {
   }
 
   // Browsers do not return `tabIndex` correctly for contentEditable nodes;
-  // https://bugs.chromium.org/p/chromium/issues/detail?id=661108&q=contenteditable%20tabindex&can=2
+  // https://issues.chromium.org/issues/41283952
   // so if they don't have a tabindex attribute specifically set, assume it's 0.
   // in Chrome, <details/>, <audio controls/> and <video controls/> elements get a default
   //  `tabIndex` of -1 when the 'tabindex' attribute isn't specified in the DOM,
@@ -138,15 +138,15 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
   const ignoreNextEnforceFocus = React.useRef(false);
   const sentinelStart = React.useRef<HTMLDivElement>(null);
   const sentinelEnd = React.useRef<HTMLDivElement>(null);
-  const nodeToRestore = React.useRef<EventTarget | null>(null);
-  const reactFocusEventTarget = React.useRef<EventTarget | null>(null);
+  const nodeToRestore = React.useRef<EventTarget>(null);
+  const reactFocusEventTarget = React.useRef<EventTarget>(null);
   // This variable is useful when disableAutoFocus is true.
   // It waits for the active element to move into the component to activate.
   const activated = React.useRef(false);
 
   const rootRef = React.useRef<HTMLElement>(null);
-  const handleRef = useForkRef(getReactNodeRef(children), rootRef);
-  const lastKeydown = React.useRef<KeyboardEvent | null>(null);
+  const handleRef = useForkRef(getReactElementRef(children), rootRef);
+  const lastKeydown = React.useRef<KeyboardEvent>(null);
 
   React.useEffect(() => {
     // We might render an empty child.
@@ -270,7 +270,7 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
         return;
       }
 
-      let tabbable: ReadonlyArray<string> | HTMLElement[] = [];
+      let tabbable: ReadonlyArray<HTMLElement> = [];
       if (
         doc.activeElement === sentinelStart.current ||
         doc.activeElement === sentinelEnd.current
@@ -324,7 +324,7 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
     };
   }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, isEnabled, open, getTabbable]);
 
-  const onFocus = (event: FocusEvent) => {
+  const onFocus = (event: React.FocusEvent<Element, Element>) => {
     if (nodeToRestore.current === null) {
       nodeToRestore.current = event.relatedTarget;
     }

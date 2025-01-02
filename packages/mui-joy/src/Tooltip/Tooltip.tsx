@@ -11,7 +11,7 @@ import {
   unstable_useId as useId,
   unstable_useTimeout as useTimeout,
   unstable_Timeout as Timeout,
-  unstable_getReactNodeRef as getReactNodeRef,
+  unstable_getReactElementRef as getReactElementRef,
 } from '@mui/utils';
 import { Popper, unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
@@ -262,7 +262,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const id = useId(idProp);
 
-  const prevUserSelect: React.MutableRefObject<string | undefined> = React.useRef();
+  const prevUserSelect = React.useRef<string>(undefined);
   const stopTouchInteraction = useEventCallback(() => {
     if (prevUserSelect.current !== undefined) {
       // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- WebkitUserSelect is required outside the component
@@ -416,7 +416,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   }, [handleClose, open]);
 
   const handleUseRef = useForkRef(setChildNode, ref);
-  const handleRef = useForkRef(getReactNodeRef(children), handleUseRef);
+  const handleRef = useForkRef(getReactElementRef(children), handleUseRef);
 
   // There is no point in displaying an empty tooltip.
   if (typeof title !== 'number' && !title) {

@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Link as RouterLink, MemoryRouter } from 'react-router-dom';
-import { StaticRouter } from 'react-router-dom/server';
+import { Link as RouterLink, MemoryRouter, StaticRouter } from 'react-router';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 

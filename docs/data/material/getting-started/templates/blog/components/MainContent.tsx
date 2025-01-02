@@ -78,7 +78,7 @@ const SyledCard = styled(Card)(({ theme }) => ({
   flexDirection: 'column',
   padding: 0,
   height: '100%',
-  backgroundColor: theme.palette.background.paper,
+  backgroundColor: (theme.vars || theme).palette.background.paper,
   '&:hover': {
     backgroundColor: 'transparent',
     cursor: 'pointer',
@@ -191,18 +191,41 @@ export default function MainContent() {
       </div>
       <Box
         sx={{
+          display: { xs: 'flex', sm: 'none' },
+          flexDirection: 'row',
+          gap: 1,
+          width: { xs: '100%', md: 'fit-content' },
+          overflow: 'auto',
+        }}
+      >
+        <Search />
+        <IconButton size="small" aria-label="RSS feed">
+          <RssFeedRoundedIcon />
+        </IconButton>
+      </Box>
+      <Box
+        sx={{
           display: 'flex',
           flexDirection: { xs: 'column-reverse', md: 'row' },
           width: '100%',
           justifyContent: 'space-between',
           alignItems: { xs: 'start', md: 'center' },
           gap: 4,
+          overflow: 'auto',
         }}
       >
-        <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1 }}>
-          <Chip onClick={handleClick} label="All categories" />
+        <Box
+          sx={{
+            display: 'inline-flex',
+            flexDirection: 'row',
+            gap: 3,
+            overflow: 'auto',
+          }}
+        >
+          <Chip onClick={handleClick} size="medium" label="All categories" />
           <Chip
             onClick={handleClick}
+            size="medium"
             label="Company"
             sx={{
               backgroundColor: 'transparent',
@@ -211,6 +234,7 @@ export default function MainContent() {
           />
           <Chip
             onClick={handleClick}
+            size="medium"
             label="Product"
             sx={{
               backgroundColor: 'transparent',
@@ -219,6 +243,7 @@ export default function MainContent() {
           />
           <Chip
             onClick={handleClick}
+            size="medium"
             label="Design"
             sx={{
               backgroundColor: 'transparent',
@@ -227,6 +252,7 @@ export default function MainContent() {
           />
           <Chip
             onClick={handleClick}
+            size="medium"
             label="Engineering"
             sx={{
               backgroundColor: 'transparent',
@@ -236,10 +262,11 @@ export default function MainContent() {
         </Box>
         <Box
           sx={{
-            display: 'flex',
+            display: { xs: 'none', sm: 'flex' },
             flexDirection: 'row',
             gap: 1,
             width: { xs: '100%', md: 'fit-content' },
+            overflow: 'auto',
           }}
         >
           <Search />
@@ -261,8 +288,8 @@ export default function MainContent() {
               component="img"
               alt="green iguana"
               image={cardData[0].img}
-              aspect-ratio="16 / 9"
               sx={{
+                aspectRatio: '16 / 9',
                 borderBottom: '1px solid',
                 borderColor: 'divider',
               }}

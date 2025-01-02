@@ -190,7 +190,7 @@ function testSlotsProp(
   });
 
   it('uses the component provided in the `component` prop when both `component` and `slots.root` are provided', async () => {
-    if (skip && skip.indexOf('componentProp') >= 0) {
+    if (skip && skip.includes('componentProp')) {
       return;
     }
 
@@ -267,7 +267,7 @@ function testSlotPropsProp(
   });
 }
 
-function testClassName(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+function testClassName(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
   it('applies the className to the root component', async () => {
     const { render } = getOptions();
 
@@ -419,8 +419,7 @@ function describeConformance(
   const { after: runAfterHook = () => {}, only = Object.keys(fullSuite), skip = [] } = getOptions();
 
   const filteredTests = Object.keys(fullSuite).filter(
-    (testKey) =>
-      only.indexOf(testKey) !== -1 && skip.indexOf(testKey as keyof typeof fullSuite) === -1,
+    (testKey) => only.includes(testKey) && !skip.includes(testKey as keyof typeof fullSuite),
   ) as (keyof typeof fullSuite)[];
 
   after(runAfterHook);

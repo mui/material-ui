@@ -6,7 +6,7 @@
 
 <!-- #default-branch-switch -->
 
-Material UI requires a minimum version of TypeScript 4.7. Have a look at the [Create React App with TypeScript](https://github.com/mui/material-ui/tree/next/examples/material-ui-cra-ts) example.
+Material UI requires a minimum version of TypeScript 4.7. Have a look at the [Create React App with TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-ts) example.
 
 For types to work, it's recommended that you have at least the following options enabled in your `tsconfig.json`:
 
@@ -16,7 +16,8 @@ For types to work, it's recommended that you have at least the following options
     "lib": ["es6", "dom"],
     "noImplicitAny": true,
     "noImplicitThis": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "allowSyntheticDefaultImports": true
   }
 }
 ```

@@ -141,4 +141,24 @@ describe('<IconButton />', () => {
       </ThemeProvider>
     )).not.to.throw();
   });
+
+  it('should disable ripple if disableRipple:true is set in MuiButtonBase', async () => {
+    const { container, getByRole } = render(
+      <ThemeProvider
+        theme={createTheme({
+          components: {
+            MuiButtonBase: {
+              defaultProps: {
+                disableRipple: true,
+              },
+            },
+          },
+        })}
+      >
+        <IconButton TouchRippleProps={{ className: 'touch-ripple' }}>book</IconButton>,
+      </ThemeProvider>,
+    );
+    await ripple.startTouch(getByRole('button'));
+    expect(container.querySelector('.touch-ripple')).to.equal(null);
+  });
 });

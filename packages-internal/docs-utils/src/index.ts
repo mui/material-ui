@@ -24,14 +24,14 @@ export function fixLineEndings(source: string, target: string): string {
  * @param filename - the file of the styled or regular mui component
  */
 export function getUnstyledFilename(filename: string, definitionFile: boolean = false): string {
-  if (filename.indexOf('mui-base') > -1) {
+  if (filename.includes('mui-base')) {
     return filename;
   }
   let unstyledFile = '';
 
-  const separator = filename.indexOf('/') > -1 ? '/' : '\\';
+  const separator = filename.includes('/') ? '/' : '\\';
 
-  if (filename.indexOf('mui-base') === -1) {
+  if (!filename.includes('mui-base')) {
     unstyledFile = filename
       .replace(/.d.ts$/, '')
       .replace(/.tsx?$/, '')

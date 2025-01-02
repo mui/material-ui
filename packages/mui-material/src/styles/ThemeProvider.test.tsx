@@ -23,8 +23,11 @@ describe('ThemeProvider', () => {
     });
     window.matchMedia = () =>
       ({
+        // Keep mocking legacy methods because @mui/material v5 still uses them
         addListener: () => {},
+        addEventListener: () => {},
         removeListener: () => {},
+        removeEventListener: () => {},
       }) as unknown as MediaQueryList;
   });
 
@@ -89,6 +92,19 @@ describe('ThemeProvider', () => {
       expect(getByTestId('mode-switcher')).to.have.property('value', 'system');
 
       await user.selectOptions(getByTestId('mode-switcher'), 'dark');
+
+      expect(getByTestId('mode-switcher')).to.have.property('value', 'dark');
+    });
+
+    it('allows default mode to be changed', () => {
+      const theme = createTheme({
+        colorSchemes: { dark: true },
+      });
+      const { getByTestId } = render(
+        <ThemeProvider theme={theme} defaultMode="dark">
+          <ModeSwitcher />
+        </ThemeProvider>,
+      );
 
       expect(getByTestId('mode-switcher')).to.have.property('value', 'dark');
     });

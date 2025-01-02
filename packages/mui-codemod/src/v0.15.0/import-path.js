@@ -60,11 +60,11 @@ const pathBaseSource = ['material-ui/src/', 'material-ui/src/'];
 const pathBasePackage = ['material-ui/lib/', 'material-ui/'];
 
 function getPathsBase(path) {
-  if (path.indexOf(pathBaseSource[0]) === 0) {
+  if (path.startsWith(pathBaseSource[0])) {
     return pathBaseSource;
   }
 
-  if (path.indexOf(pathBasePackage[0]) === 0) {
+  if (path.startsWith(pathBasePackage[0])) {
     return pathBasePackage;
   }
 

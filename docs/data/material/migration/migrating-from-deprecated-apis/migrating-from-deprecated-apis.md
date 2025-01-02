@@ -40,6 +40,83 @@ The composed CSS classes are going to be deprecated and eventually removed in fa
 For example, the `.MuiAccordionSummary-contentGutters` class was deprecated in favor of the `.MuiAccordionSummary-gutters` and `.MuiAccordionSummary-content` classes.
 This improves the developer experience by reducing bloat and cognitive load.
 
+### System props
+
+MUI System props (such as `mt={*}`, `bgcolor={*}`, and more) have been deprecated in the Box, Typography, Link, Grid, and Stack components.
+Use the codemod below to move all System props to the `sx` prop:
+
+```bash
+npx @mui/codemod@latest v6.0.0/system-props <path/to/folder>
+```
+
+You can also manually update your components as shown in the snippet below:
+
+```diff
+-<Button mr={2}>
++<Button sx={{ mr: 2 }}>
+```
+
+The `sx` prop supports all features of system props: callbacks with access to the theme, responsive values, direct access to theme values, shorthands, etc.
+
+### Theme component variants
+
+Custom component variants defined in the theme are now merged with the theme style overrides, defined within the `root` slot of the component.
+
+Use this codemod to update your project's theme file:
+
+```bash
+npx @mui/codemod@latest v6.0.0/theme-v6 <path/to/theme>
+```
+
+You can also manually update your theme as shown in the snippet below:
+
+```diff
+ createTheme({
+   components: {
+     MuiButton: {
+-      variants: [ ... ],
++      styleOverrides: {
++        root: {
++          variants: [ ... ],
++        },
++      },
+     },
+   },
+ });
+```
+
+This reduces the API surface and lets you define variants in other slots of the component.
+
+## Accordion
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/accordion-props <path>
+```
+
+### TransitionComponent
+
+The Accordion's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
+
+```diff
+ <Accordion
+-  TransitionComponent={CustomTransition}
++  slots={{ transition: CustomTransition }}
+ />
+```
+
+### TransitionProps
+
+The Accordion's `TransitionProps` prop was deprecated in favor of `slotProps.transition`:
+
+```diff
+ <Accordion
+-  TransitionProps={{ unmountOnExit: true }}
++  slotProps={{ transition: { unmountOnExit: true } }}
+ />
+```
+
 ## AccordionSummary
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-summary-classes) below to migrate the code as described in the following sections:
@@ -67,7 +144,7 @@ Bear in mind that the `.MuiAccordionSummary-gutters` class is applied to the com
 -      [`& .${accordionSummaryClasses.contentGutters}`]: {
 +      [`&.${accordionSummaryClasses.gutters} .${accordionSummaryClasses.content}`]: {
          color: 'red',
-        },
+       },
      },
    },
  },
@@ -99,8 +176,8 @@ The Alert's `componentsProps` prop was deprecated in favor of `slotProps`:
 
 ```diff
  <Alert
--  componentsProps={{ closeButton: { testid: 'test-id' } }}
-+  slotProps={{ closeButton: { testid: 'test-id' } }}
+-  componentsProps={{ closeButton: { id: 'close-id' } }}
++  slotProps={{ closeButton: { id: 'close-id' } }}
  />
 ```
 
@@ -146,51 +223,51 @@ Here's how to migrate:
 -      [`&.${alertClasses.standardSuccess}`]: {
 +      [`&.${alertClasses.standard}.${alertClasses.colorSuccess}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.standardInfo}`]: {
 +      [`&.${alertClasses.standard}.${alertClasses.colorInfo}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.standardWarning}`]: {
 +      [`&.${alertClasses.standard}.${alertClasses.colorWarning}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.standardError}`]: {
 +      [`&.${alertClasses.standard}.${alertClasses.colorError}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.outlinedSuccess}`]: {
 +      [`&.${alertClasses.outlined}.${alertClasses.colorSuccess}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.outlinedInfo}`]: {
 +      [`&.${alertClasses.outlined}.${alertClasses.colorInfo}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.outlinedWarning}`]: {
 +      [`&.${alertClasses.outlined}.${alertClasses.colorWarning}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.outlinedError}`]: {
 +      [`&.${alertClasses.outlined}.${alertClasses.colorError}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.filledSuccess}`]: {
 +      [`&.${alertClasses.filled}.${alertClasses.colorSuccess}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.filledInfo}`]: {
 +      [`&.${alertClasses.filled}.${alertClasses.colorInfo}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.filledWarning}`]: {
 +      [`&.${alertClasses.filled}.${alertClasses.colorWarning}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${alertClasses.filledError}`]: {
 +      [`&.${alertClasses.filled}.${alertClasses.colorError}`]: {
          color: 'red',
-        },
+       },
      },
    },
  },
@@ -201,7 +278,48 @@ Here's how to migrate:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#autocomplete-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/autocomplete-props <path>
+npx @mui/codemod@latest deprecations/autocomplete-props <path>
+```
+
+### \*Component props
+
+All of the Autocomplete's slot (`*Component`) props were deprecated in favor of equivalent `slots` and `slotProps` entries:
+
+```diff
+ <Autocomplete
+-    PaperComponent={CustomPaperComponent}
+-    PopperComponent={CustomPopperComponent}
+-    ListboxComponent={CustomListboxComponent}
++    slots={{
++        paper: CustomPaperComponent,
++        popper: CustomPopperComponent,
++    }}
++    slotProps={{
++        listbox: {
++            component: CustomListboxComponent,
++        },
++    }}
+ />
+```
+
+:::warning
+The listbox slot is a special case because `ListboxComponent` was implemented differently from the other `*Component` props, behaving similar to the `component` and `as` props.
+The `slots.listbox` entry exists and you can use it to replace the component entirely, but if you want to keep `ListboxComponent`'s behavior which maintains the original listbox styles, you should use the `slotProps.listbox.component` entry.
+:::
+
+### \*Props props
+
+All of the Autocomplete's slot props (`*Props`) props were deprecated in favor of equivalent `slotProps` entries:
+
+```diff
+ <Autocomplete
+-    ChipProps={CustomChipProps}
+-    ListboxProps={CustomListboxProps}
++    slotProps={{
++        chip: CustomChipProps,
++        listbox: CustomListboxProps,
++    }}
+ />
 ```
 
 ### componentsProps
@@ -224,12 +342,38 @@ The Autocomplete's `componentsProps` prop was deprecated in favor of `slotProps`
  />
 ```
 
+## Avatar
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/avatar-props <path>
+```
+
+### imgProps
+
+The Avatar's `imgProps` prop was deprecated in favor of `slotProps.img`:
+
+```diff
+ <Avatar
+-  imgProps={{
+-    onError: () => {},
+-    onLoad: () => {},
++  slotProps={{
++    img: {
++      onError: () => {},
++      onLoad: () => {},
++    }
+   }}
+ />;
+```
+
 ## AvatarGroup
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-group-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/avatar-group-props <path>
+npx @mui/codemod@latest deprecations/avatar-group-props <path>
 ```
 
 ### slotProps.additionalAvatar
@@ -274,9 +418,9 @@ The AvatarGroup's `componentsProps` was deprecated in favor of `slotProps`:
  MuiAvatarGroup: {
    defaultProps: {
 -    componentsProps: {
--      additionalAvatar: {color: "red"}
+-      additionalAvatar: { color: 'red' },
 +    slotProps: {
-+      surplus: {color: "red"}
++      surplus: { color: 'red' },
      },
    },
  },
@@ -287,7 +431,7 @@ The AvatarGroup's `componentsProps` was deprecated in favor of `slotProps`:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#backdrop-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/backdrop-props <path>
+npx @mui/codemod@latest deprecations/backdrop-props <path>
 ```
 
 ### components
@@ -307,9 +451,19 @@ The Backdrop's `componentsProps` prop was deprecated in favor of `slotProps`:
 
 ```diff
  <Backdrop
--  componentsProps={{ root: { testid: 'test-id' } }}
-+  slotProps={{ root: { testid: 'test-id' } }}
+-  componentsProps={{ root: { id: 'root-id' } }}
++  slotProps={{ root: { id: 'root-id' } }}
  />
+```
+
+### TransitionComponent
+
+The Backdrop's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
+
+```diff
+ <Slider
+-  TransitionComponent={CustomTransition}
++  slots={{ transition: CustomTransition }}
 ```
 
 ## Badge
@@ -317,7 +471,7 @@ The Backdrop's `componentsProps` prop was deprecated in favor of `slotProps`:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#badge-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/badge-props <path>
+npx @mui/codemod@latest deprecations/badge-props <path>
 ```
 
 ### components
@@ -337,8 +491,8 @@ The Badge's `componentsProps` prop was deprecated in favor of `slotProps`:
 
 ```diff
  <Badge
--  componentsProps={{ root: { testid: 'test-id' } }}
-+  slotProps={{ root: { testid: 'test-id' } }}
+-  componentsProps={{ root: { id: 'root-id' } }}
++  slotProps={{ root: { id: 'root-id' } }}
  >
 ```
 
@@ -434,135 +588,135 @@ Here's how to migrate:
 -      [`&.${buttonClasses.textInherit}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorInherit}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textPrimary}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textSecondary}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textSuccess}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorSuccess}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textError}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorError}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textInfo}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorInfo}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textWarning}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.colorWarning}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedInherit}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorInherit}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedPrimary}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedSecondary}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedSuccess}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorSuccess}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedError}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorError}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedInfo}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorInfo}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedWarning}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.colorWarning}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedInherit}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorInherit}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedPrimary}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedSecondary}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedSuccess}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorSuccess}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedError}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorError}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedInfo}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorInfo}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedWarning}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.colorWarning}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedSizeSmall}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.sizeSmall}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedSizeMedium}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.sizeMedium}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.containedSizeLarge}`]: {
 +      [`&.${buttonClasses.contained}.${buttonClasses.sizeLarge}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textSizeSmall}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.sizeSmall}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textSizeMedium}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.sizeMedium}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.textSizeLarge}`]: {
 +      [`&.${buttonClasses.text}.${buttonClasses.sizeLarge}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedSizeSmall}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.sizeSmall}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedSizeMedium}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.sizeMedium}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${buttonClasses.outlinedSizeLarge}`]: {
 +      [`&.${buttonClasses.outlined}.${buttonClasses.sizeLarge}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${buttonClasses.iconSizeSmall}`]: {
 +      [`&.${buttonClasses.sizeSmall} > .${buttonClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${buttonClasses.iconSizeMedium}`]: {
 +      [`&.${buttonClasses.sizeMedium} > .${buttonClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${buttonClasses.iconSizeLarge}`]: {
 +      [`&.${buttonClasses.sizeLarge} > .${buttonClasses.icon}`]: {
          color: 'red',
-        },
+       },
      },
    },
  },
@@ -623,7 +777,6 @@ Here's how to migrate:
 ```
 
 ```diff
-
  import { buttonGroupClasses } from '@mui/material/ButtonGroup';
 
   MuiButtonGroup: {
@@ -697,9 +850,9 @@ Here's how to migrate:
 +      [`&.${buttonGroupClasses.contained}.${buttonGroupClasses.colorSecondary} > .${buttonGroupClasses.grouped}`]: {
           color: 'red',
         },
-   },
+      },
+    },
   },
-
 ```
 
 ## Chip
@@ -778,7 +931,6 @@ Here's how to migrate:
 ```
 
 ```diff
-
  import { chipClasses } from '@mui/material/Chip';
 
  MuiChip: {
@@ -787,103 +939,103 @@ Here's how to migrate:
 -      [`&.${chipClasses.clickableColorPrimary}`]: {
 +      [`&.${chipClasses.clickable}.${chipClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.clickableColorSecondary}`]: {
 +      [`&.${chipClasses.clickable}.${chipClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.deletableColorPrimary}`]: {
 +      [`&.${chipClasses.deletable}.${chipClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.deletableColorSecondary}`]: {
 +      [`&.${chipClasses.deletable}.${chipClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.outlinedPrimary}`]: {
 +      [`&.${chipClasses.outlined}.${chipClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.outlinedSecondary}`]: {
 +      [`&.${chipClasses.outlined}.${chipClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.filledPrimary}`]: {
 +      [`&.${chipClasses.filled}.${chipClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${chipClasses.filledSecondary}`]: {
 +      [`&.${chipClasses.filled}.${chipClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.avatarSmall}`]: {
 +      [`&.${chipClasses.sizeSmall} > .${chipClasses.avatar}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.avatarMedium}`]: {
 +      [`&.${chipClasses.sizeMedium} > .${chipClasses.avatar}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.avatarColorPrimary}`]: {
 +      [`&.${chipClasses.colorPrimary} > .${chipClasses.avatar}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.avatarColorSecondary}`]: {
 +      [`&.${chipClasses.colorSecondary} > .${chipClasses.avatar}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.iconSmall}`]: {
 +      [`&.${chipClasses.sizeSmall} > .${chipClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.iconMedium}`]: {
 +      [`&.${chipClasses.sizeMedium} > .${chipClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.iconColorPrimary}`]: {
 +      [`&.${chipClasses.colorPrimary} > .${chipClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.iconColorSecondary}`]: {
 +      [`&.${chipClasses.colorSecondary} > .${chipClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.labelSmall}`]: {
 +      [`&.${chipClasses.sizeSmall} > .${chipClasses.label}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.labelMedium}`]: {
 +      [`&.${chipClasses.sizeMedium} > .${chipClasses.label}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconSmall}`]: {
 +      [`&.${chipClasses.sizeSmall} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconMedium}`]: {
 +      [`&.${chipClasses.sizeMedium} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconColorPrimary}`]: {
 +      [`&.${chipClasses.colorPrimary} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconColorSecondary}`]: {
 +      [`&.${chipClasses.colorSecondary} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconOutlinedColorPrimary}`]: {
 +      [`&.${chipClasses.outlined}.${chipClasses.colorPrimary} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconOutlinedColorSecondary}`]: {
 +      [`&.${chipClasses.outlined}.${chipClasses.colorSecondary} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconFilledColorPrimary}`]: {
 +      [`&.${chipClasses.filled}.${chipClasses.colorPrimary} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${chipClasses.deleteIconFilledColorSecondary}`]: {
 +      [`&.${chipClasses.filled}.${chipClasses.colorSecondary} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
@@ -898,7 +1050,7 @@ Here's how to migrate:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#circular-progress-classes) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/circular-progress-classes <path>
+npx @mui/codemod@latest deprecations/circular-progress-classes <path>
 ```
 
 ### Composed CSS classes
@@ -923,7 +1075,7 @@ Here's how to migrate:
 -      [`& .${circularProgressClasses.circleDeterminate}`]: {
 +      [`&.${circularProgressClasses.determinate} > .${circularProgressClasses.circle}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${circularProgressClasses.circleIndeterminate}`]: {
 +      [`&.${circularProgressClasses.indeterminate} > .${circularProgressClasses.circle}`]: {
          color: 'red',
@@ -957,7 +1109,7 @@ The Divider's `light` prop was deprecated, Use `sx={{ opacity : "0.6" }}` (or an
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#filled-input-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/filled-input-props <path>
+npx @mui/codemod@latest deprecations/filled-input-props <path>
 ```
 
 ### components
@@ -987,7 +1139,7 @@ The FilledInput's prop `componentsProps` was deprecated in favor of `slotProps`:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#form-control-label-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/form-control-label-props <path>
+npx @mui/codemod@latest deprecations/form-control-label-props <path>
 ```
 
 ### componentsProps
@@ -1006,7 +1158,7 @@ The FormControlLabel's `componentsProps` prop was deprecated in favor of `slotPr
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#input-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/input-props <path>
+npx @mui/codemod@latest deprecations/input-props <path>
 ```
 
 ### components
@@ -1036,7 +1188,7 @@ The Input's prop `componentsProps` was deprecated in favor of `slotProps`:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#input-base-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/input-base-props <path>
+npx @mui/codemod@latest deprecations/input-base-props <path>
 ```
 
 ### components
@@ -1066,7 +1218,7 @@ The InputBase's prop `componentsProps` was deprecated in favor of `slotProps`:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#list-item-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/list-item-props <path>
+npx @mui/codemod@latest deprecations/list-item-props <path>
 ```
 
 ### components
@@ -1086,8 +1238,8 @@ The ListItem's `componentsProps` prop was deprecated in favor of `slotProps`:
 
 ```diff
  <ListItem
--  componentsProps={{ root: { testid: 'test-id' } }}
-+  slotProps={{ root: { testid: 'test-id' } }}
+-  componentsProps={{ root: { id: 'root-id' } }}
++  slotProps={{ root: { id: 'root-id' } }}
  />
 ```
 
@@ -1095,9 +1247,23 @@ The ListItem's `componentsProps` prop was deprecated in favor of `slotProps`:
 
 The ListItem's `ContainerComponent` prop was deprecated in favor of `slots.root` or `component` instead.
 
+```diff
+ <ListItem
+-  ContainerComponent={CustomContainer}
++  slots={{ root: CustomContainer }}
+ />
+```
+
 ### ContainerProps
 
 The ListItem's `ContainerProps` prop was deprecated in favor of `slotProps.root` instead.
+
+```diff
+ <ListItem
+-  ContainerProps={{ id: 'container-id' }}
++  slotProps={{ root: { id: 'container-id' } }}
+ />
+```
 
 ## ListItemSecondaryAction
 
@@ -1123,23 +1289,34 @@ The ListItemSecondaryAction component was deprecated in favor of the `secondaryA
  </ListItem>
 ```
 
-## Grid
+## ListItemText
 
-Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#grid-props) below to migrate the code as described in the following sections:
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#list-item-text-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/grid-props <path>
+npx @mui/codemod@latest deprecations/list-item-text-props <path>
 ```
 
-### wrap prop
+### primaryTypographyProps
 
-The Grid's `wrap` prop was deprecated in favor of `flexWrap` MUI System prop:
+The ListItemText's `primaryTypographyProps` props were deprecated in favor of `slotProps.primary`:
 
 ```diff
- <Grid
--  wrap="nowrap"
-+  flexWrap="nowrap"
- >
+ <ListItemText
+-  primaryTypographyProps={primaryTypographyProps}
++  slotProps={{ primary: primaryTypographyProps }}
+ />
+```
+
+### secondaryTypographyProps
+
+The ListItemText's `secondaryTypographyProps` props were deprecated in favor of `slotProps.secondary`:
+
+```diff
+ <ListItemText
+-  secondaryTypographyProps={secondaryTypographyProps}
++  slotProps={{ secondary: secondaryTypographyProps }}
+ />
 ```
 
 ## ImageListItemBar
@@ -1147,7 +1324,7 @@ The Grid's `wrap` prop was deprecated in favor of `flexWrap` MUI System prop:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#image-list-item-bar-classes) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/image-list-item-bar-classes <path>
+npx @mui/codemod@latest deprecations/image-list-item-bar-classes <path>
 ```
 
 ### Composed CSS classes
@@ -1203,7 +1380,7 @@ Here's how to migrate:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#modal-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/modal-props <path>
+npx @mui/codemod@latest deprecations/modal-props <path>
 ```
 
 ### components
@@ -1223,8 +1400,8 @@ The Modal's `componentsProps` prop was deprecated in favor of `slotProps`:
 
 ```diff
  <Modal
--  componentsProps={{ root: { testid: 'root-id' }, backdrop: { testid: 'backdrop-id' } }}
-+  slotProps={{ root: { testid: 'root-id' }, backdrop: { testid: 'backdrop-id' } }}
+-  componentsProps={{ root: { id: 'root-id' }, backdrop: { id: 'backdrop-id' } }}
++  slotProps={{ root: { id: 'root-id' }, backdrop: { id: 'backdrop-id' } }}
  >
 ```
 
@@ -1233,7 +1410,7 @@ The Modal's `componentsProps` prop was deprecated in favor of `slotProps`:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#outlined-input-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/outlined-input-props <path>
+npx @mui/codemod@latest deprecations/outlined-input-props <path>
 ```
 
 ### components
@@ -1263,7 +1440,7 @@ The OutlinedInput's prop `componentsProps` was deprecated in favor of `slotProps
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#pagination-item-classes) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/pagination-item-classes <path>
+npx @mui/codemod@latest deprecations/pagination-item-classes <path>
 ```
 
 ### Composed CSS classes
@@ -1292,19 +1469,19 @@ Here's how to migrate:
 -      [`&.${paginationItemClasses.textPrimary}`]: {
 +      [`&.${paginationItemClasses.text}.${paginationItemClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${paginationItemClasses.outlinedPrimary}`]: {
 +      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.colorPrimary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${paginationItemClasses.textSecondary}`]: {
 +      [`&.${paginationItemClasses.text}.${paginationItemClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
 -      [`&.${paginationItemClasses.outlinedSecondary}`]: {
 +      [`&.${paginationItemClasses.outlined}.${paginationItemClasses.colorSecondary}`]: {
          color: 'red',
-        },
+       },
      },
    },
  },
@@ -1326,7 +1503,7 @@ The PaginationItems's `components` prop was deprecated in favor of `slots`:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#popper-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/popper-props <path>
+npx @mui/codemod@latest deprecations/popper-props <path>
 ```
 
 ### components
@@ -1346,8 +1523,8 @@ The Popper's prop `componentsProps` was deprecated in favor of `slotProps`:
 
 ```diff
  <Popper
--  componentsProps={{ root: { testid: 'test-id' } }}
-+  slotProps={{ root: { testid: 'test-id' } }}
+-  componentsProps={{ root: { id: 'root-id' } }}
++  slotProps={{ root: { id: 'root-id' } }}
  />
 ```
 
@@ -1376,8 +1553,8 @@ The Slider's `componentsProps` prop was deprecated in favor of `slotProps`:
 
 ```diff
  <Slider
--  componentsProps={{ track: { testid: 'test-id' } }}
-+  slotProps={{ track: { testid: 'test-id' } }}
+-  componentsProps={{ track: { id: 'track-id' } }}
++  slotProps={{ track: { id: 'track-id' } }}
  />
 ```
 
@@ -1403,7 +1580,6 @@ Here's how to migrate:
 ```
 
 ```diff
-
  import { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
 
  MuiButtonGroup: {
@@ -1427,7 +1603,7 @@ Here's how to migrate:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tab-classes) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/tab-classes <path>
+npx @mui/codemod@latest deprecations/tab-classes <path>
 ```
 
 ### Composed CSS classes
@@ -1461,7 +1637,7 @@ Here's how to migrate:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#table-sort-label-classes) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/table-sort-label-classes <path>
+npx @mui/codemod@latest deprecations/table-sort-label-classes <path>
 ```
 
 ### Composed CSS classes
@@ -1486,7 +1662,7 @@ Here's how to migrate:
 -      [`& .${tableSortLabelClasses.iconDirectionDesc}`]: {
 +      [`&.${tableSortLabelClasses.directionDesc} > .${tableSortLabelClasses.icon}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${tableSortLabelClasses.iconDirectionAsc}`]: {
 +      [`&.${tableSortLabelClasses.directionAsc} > .${tableSortLabelClasses.icon}`]: {
          color: 'red',
@@ -1501,7 +1677,7 @@ Here's how to migrate:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#text-field-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/text-field-props <path>
+npx @mui/codemod@latest deprecations/text-field-props <path>
 ```
 
 ### \*Props props
@@ -1514,13 +1690,13 @@ All of the TextField's slot props (`*Props`) props were deprecated in favor of e
 -  inputProps={CustomHtmlInputProps}
 -  SelectProps={CustomSelectProps}
 -  InputLabelProps={CustomInputLabelProps}
--  FormHelperTextProps={CustomFormHelperProps}
+-  FormHelperTextProps={CustomFormHelperTextProps}
 +  slotProps={{
 +    input: CustomInputProps
 +    htmlInput: CustomHtmlInputProps
 +    select: CustomSelectProps
 +    inputLabel: CustomInputLabelProps
-+    formHelper: CustomFormHelperProps
++    formHelperText: CustomFormHelperTextProps
 +  }}
  />
 ```
@@ -1530,7 +1706,7 @@ All of the TextField's slot props (`*Props`) props were deprecated in favor of e
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tooltip-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/tooltip-props <path>
+npx @mui/codemod@latest deprecations/tooltip-props <path>
 ```
 
 ### components
@@ -1550,8 +1726,38 @@ The Tooltip's prop `componentsProps` was deprecated in favor of `slotProps`:
 
 ```diff
  <Tooltip
--  componentsProps={{ arrow: { testid: 'test-id' } }}
-+  slotProps={{ arrow: { testid: 'test-id' } }}
+-  componentsProps={{ arrow: { id: 'arrow-id' } }}
++  slotProps={{ arrow: { id: 'arrow-id' } }}
+ />
+```
+
+### \*Component props
+
+All of the Tooltip's slot (`*Component`) props were deprecated in favor of equivalent `slots` entries:
+
+```diff
+ <Tooltip
+-  PopperComponent={CustomPopperComponent}
+-  TransitionComponent={CustomTransitionComponent}
++  slots={{
++    popper: CustomPopperComponent,
++    transition: CustomTransitionComponent,
++  }}
+ />
+```
+
+### \*Props props
+
+All of the Tooltip's slot props (`*Props`) props were deprecated in favor of equivalent `slotProps` entries:
+
+```diff
+ <Tooltip
+-  PopperProps={CustomPopperProps}
+-  TransitionProps={CustomTransitionProps}
++  slotProps={{
++    popper: CustomPopperProps,
++    transition: CustomTransitionProps,
++  }}
  />
 ```
 
@@ -1600,12 +1806,34 @@ The StepLabel's `componentsProps` prop was deprecated in favor of `slotProps`:
  />
 ```
 
+### StepIconComponent
+
+The StepLabel's `StepIconComponent` prop was deprecated in favor of `slots.stepIcon`:
+
+```diff
+ <StepLabel
+-  StepIconComponent={StepIconComponent}
++  slots={{ stepIcon: StepIconComponent }}
+ />
+```
+
+### StepIconProps
+
+The StepLabel's `StepIconProps` prop was deprecated in favor of `slotProps.stepIcon`:
+
+```diff
+ <StepLabel
+-  StepIconProps={StepIconProps}
++  slotProps={{ stepIcon: StepIconProps }}
+ />
+```
+
 ## StepConnector
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#step-connector-classes) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/step-connector-classes <path>
+npx @mui/codemod@latest deprecations/step-connector-classes <path>
 ```
 
 ### Composed CSS classes
@@ -1630,12 +1858,41 @@ Here's how to migrate:
 -      [`& .${stepConnectorClasses.lineHorizontal}`]: {
 +      [`&.${stepConnectorClasses.horizontal} > .${stepConnectorClasses.line}`]: {
          color: 'red',
-        },
+       },
 -      [`& .${stepConnectorClasses.lineVertical}`]: {
 +      [`&.${stepConnectorClasses.vertical} > .${stepConnectorClasses.line}`]: {
          color: 'red',
-        },
+       },
      },
    },
  },
+```
+
+## SpeedDial
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#speed-dial-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/speed-dial-props <path>
+```
+
+### TransitionComponent
+
+The SpeedDial's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
+
+```diff
+ <SpeedDial
+-  TransitionComponent={CustomTransition}
++  slots={{ transition: CustomTransition }}
+```
+
+### TransitionProps
+
+The SpeedDial's `TransitionProps` prop was deprecated in favor of `slotProps.transition`:
+
+```diff
+ <SpeedDial
+-  TransitionProps={{ unmountOnExit: true }}
++  slotProps={{ transition: { unmountOnExit: true } }}
+ />
 ```

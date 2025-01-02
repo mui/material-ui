@@ -9,12 +9,14 @@ githubLabel: 'component: Grid'
 
 <p class="description">Grid acts as a generic container, wrapping around the elements to be arranged.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
 ## Introduction
 
 The Grid component, based on a 12-column grid layout, creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
 
 :::warning
-The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to the [MUI X Data Grid`](/x/react-data-grid/) component.
+The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to the [MUI X Data Grid](/x/react-data-grid/) component.
 :::
 
 ## Basics

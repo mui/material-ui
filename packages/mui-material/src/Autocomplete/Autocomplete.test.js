@@ -130,6 +130,34 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  it('should not throw error when accessing ownerState in styleOverrides', () => {
+    const theme = createTheme({
+      components: {
+        MuiAutocomplete: {
+          styleOverrides: {
+            root: ({ ownerState }) => {
+              return {
+                outlineColor: ownerState.size === 'small' ? 'magenta' : 'crimson',
+              };
+            },
+          },
+        },
+      },
+    });
+
+    expect(() => {
+      render(
+        <ThemeProvider theme={theme}>
+          <Autocomplete
+            open
+            options={['one', 'two', 'three']}
+            renderInput={(params) => <TextField {...params} />}
+          />
+        </ThemeProvider>,
+      );
+    }).not.to.throw();
+  });
+
   describe('combobox', () => {
     it('should clear the input when blur', () => {
       const { getByRole } = render(
@@ -831,6 +859,49 @@ describe('<Autocomplete />', () => {
     expect(handleSubmit.callCount).to.equal(4);
   });
 
+  it('should not open the autocomplete popup when deleting chips', async () => {
+    const { queryByRole, queryByText, user } = render(
+      <Autocomplete
+        multiple
+        options={['one', 'two', 'three']}
+        defaultValue={['one']}
+        renderInput={(params) => <TextField {...params} autoFocus />}
+      />,
+    );
+
+    expect(queryByRole('listbox')).to.equal(null);
+
+    const chip = queryByText('one').parentElement;
+    expect(chip).not.to.equal(null);
+
+    // Delete the chip
+    await user.click(chip.getElementsByClassName(chipClasses.deleteIcon)[0]);
+
+    expect(queryByText('one')).to.equal(null);
+    expect(queryByRole('listbox')).to.equal(null);
+  });
+
+  it('should toggle the autocomplete popup when clicking the popup indicator', async () => {
+    const { queryByRole, getByRole, user } = render(
+      <Autocomplete
+        multiple
+        options={['One', 'Two', 'Three']}
+        renderInput={(params) => <TextField {...params} autoFocus />}
+      />,
+    );
+
+    expect(queryByRole('listbox')).to.equal(null);
+
+    const popupIndicator = getByRole('button', { name: 'Open' });
+    await user.click(popupIndicator);
+
+    expect(queryByRole('listbox')).not.to.equal(null);
+
+    await user.click(popupIndicator);
+
+    expect(queryByRole('listbox')).to.equal(null);
+  });
+
   describe('prop: getOptionDisabled', () => {
     it('should prevent the disabled option to trigger actions but allow focus with disabledItemsFocusable', () => {
       const handleSubmit = spy();
@@ -998,6 +1069,7 @@ describe('<Autocomplete />', () => {
       expect(textbox).to.have.attribute('aria-expanded', 'true');
 
       const listbox = getByRole('listbox');
+      expect(listbox.tagName.toLowerCase()).to.equal('ul');
       expect(textbox).to.have.attribute('aria-controls', listbox.getAttribute('id'));
       expect(textbox, 'no option is focused when opened').not.to.have.attribute(
         'aria-activedescendant',
@@ -1110,7 +1182,7 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      fireEvent.click(ref.current);
+      fireEvent.mouseDown(ref.current);
       expect(handleOpen.callCount).to.equal(1);
     });
 
@@ -1717,31 +1789,6 @@ describe('<Autocomplete />', () => {
       }).toErrorDev(
         'The component expects a single value to match a given option but found 2 matches.',
       );
-    });
-
-    it('warn if value does not exist in options list', () => {
-      const value = 'not a good value';
-      const options = ['first option', 'second option'];
-
-      const errorMessage = 'None of the options match with `"not a good value"`';
-
-      let expectedOccurrences = 4;
-
-      if (reactMajor === 18) {
-        expectedOccurrences = 6;
-      } else if (reactMajor === 17) {
-        expectedOccurrences = 2;
-      }
-
-      expect(() => {
-        render(
-          <Autocomplete
-            value={value}
-            options={options}
-            renderInput={(params) => <TextField {...params} />}
-          />,
-        );
-      }).toWarnDev(Array(expectedOccurrences).fill(errorMessage));
     });
 
     it('warn if groups options are not sorted', () => {

@@ -11,14 +11,13 @@ import InboxIcon from '@mui/icons-material/Inbox';
 import DraftsIcon from '@mui/icons-material/Drafts';
 import Typography from '@mui/material/Typography';
 import {
-  Link as RouterLink,
-  LinkProps as RouterLinkProps,
+  Link,
   Route,
   Routes,
   MemoryRouter,
   useLocation,
-} from 'react-router-dom';
-import { StaticRouter } from 'react-router-dom/server';
+  StaticRouter,
+} from 'react-router';
 
 function Router(props: { children?: React.ReactNode }) {
   const { children } = props;
@@ -34,16 +33,10 @@ function Router(props: { children?: React.ReactNode }) {
 }
 
 interface ListItemLinkProps {
-  icon?: React.ReactElement<any>;
+  icon?: React.ReactElement<unknown>;
   primary: string;
   to: string;
 }
-
-const Link = React.forwardRef<HTMLAnchorElement, RouterLinkProps>(
-  function Link(itemProps, ref) {
-    return <RouterLink ref={ref} {...itemProps} role={undefined} />;
-  },
-);
 
 function ListItemLink(props: ListItemLinkProps) {
   const { icon, primary, to } = props;

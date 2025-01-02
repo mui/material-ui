@@ -146,8 +146,8 @@ export default function MarkdownDocsV2(props) {
       const { componentDescriptionToc = [] } = componentsApiDescriptions[key][userLanguage];
       const {
         name: componentName,
-        inheritance,
         slots,
+        inheritance,
         themeDefaultProps,
         classes,
         props: componentProps,
@@ -198,7 +198,7 @@ export default function MarkdownDocsV2(props) {
   // process the elements before the tabs component
   while (i < localizedDoc.rendered.length && !done) {
     const renderedMarkdownOrDemo = localizedDoc.rendered[i];
-    if (renderedMarkdownOrDemo.component && renderedMarkdownOrDemo.component.indexOf('Tabs') >= 0) {
+    if (renderedMarkdownOrDemo.component && renderedMarkdownOrDemo.component.includes('Tabs')) {
       done = true;
     }
     commonElements.push(

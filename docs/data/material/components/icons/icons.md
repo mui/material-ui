@@ -26,23 +26,19 @@ You can [search the full list of these icons](/material-ui/material-icons/).
 
 Run one of the following commands to install it and save it to your `package.json` dependencies:
 
-:::info
-The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Remove it to get the current stable version.
-:::
-
 <!-- #default-branch-switch -->
 
 <codeblock storageKey="package-manager">
 ```bash npm
-npm install @mui/icons-material@next
-```
-
-```bash yarn
-yarn add @mui/icons-material@next
+npm install @mui/icons-material
 ```
 
 ```bash pnpm
-pnpm add @mui/icons-material@next
+pnpm add @mui/icons-material
+```
+
+```bash yarn
+yarn add @mui/icons-material
 ```
 
 </codeblock>
@@ -124,7 +120,7 @@ This component extends the native `<svg>` element:
 ### Component prop
 
 You can use the `SvgIcon` wrapper even if your icons are saved in the `.svg` format.
-[svgr](https://github.com/gregberge/svgr) has loaders to import SVG files and use them as React components. For example, with Webpack:
+[svgr](https://github.com/gregberge/svgr) has loaders to import SVG files and use them as React components. For example, with webpack:
 
 ```jsx
 // webpack.config.js

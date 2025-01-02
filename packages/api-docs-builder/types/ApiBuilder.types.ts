@@ -1,7 +1,6 @@
 import { ReactDocgenApi } from 'react-docgen';
 import { JSDocTagInfo } from 'typescript';
-import { ComponentClassDefinition } from '@mui/internal-docs-utils';
-import { ComponentInfo, Slot, HookInfo, SeeMore } from './utils.types';
+import { ComponentInfo, Slot, HookInfo, SeeMore, ApiItemDescription } from './utils.types';
 
 export type AdditionalPropsInfo = {
   cssApi?: boolean;
@@ -34,6 +33,7 @@ interface CommonReactApi extends ReactDocgenApi {
    */
   apiDocsTranslationFolder?: string;
   deprecated: true | undefined;
+  customAnnotation?: string;
 }
 
 export interface PropsTableItem {
@@ -51,23 +51,29 @@ export interface PropsTranslations {
   componentDescription: string;
   deprecationInfo: string | undefined;
   propDescriptions: {
-    [key: string]: {
-      description: string;
-      requiresRef?: boolean;
-      deprecated?: string;
-      typeDescriptions?: { [t: string]: string };
-      seeMoreText?: string;
-    };
+    [key: string]: PropDescription;
   };
   classDescriptions: {
-    [key: string]: {
-      description: string;
-      conditions?: string;
-      nodeName?: string;
-      deprecationInfo?: string;
-    };
+    [key: string]: ClassDescription;
   };
   slotDescriptions?: { [key: string]: string };
+  cssVariablesDescriptions?: { [key: string]: string };
+  dataAttributesDescriptions?: { [key: string]: string };
+}
+
+interface PropDescription {
+  description: string;
+  requiresRef?: boolean;
+  deprecated?: string;
+  typeDescriptions?: { [t: string]: string };
+  seeMoreText?: string;
+}
+
+interface ClassDescription {
+  description: string;
+  conditions?: string;
+  nodeName?: string;
+  deprecationInfo?: string;
 }
 
 export interface ComponentReactApi extends CommonReactApi {
@@ -88,6 +94,8 @@ export interface ComponentReactApi extends CommonReactApi {
   themeDefaultProps: boolean | undefined | null;
   classes: ComponentClassDefinition[];
   slots: Slot[];
+  cssVariables: { [key: string]: ApiItemDescription };
+  dataAttributes: { [key: string]: ApiItemDescription };
   propsTable: _.Dictionary<PropsTableItem>;
   translations: PropsTranslations;
 }
@@ -97,6 +105,8 @@ export interface ComponentApiContent {
   name: string;
   imports: string[];
   slots?: Slot[];
+  cssVariables?: { [key: string]: ApiItemDescription };
+  dataAttributes?: { [key: string]: ApiItemDescription };
   classes: ComponentClassDefinition[];
   spread: boolean | undefined;
   themeDefaultProps: boolean | null | undefined;
@@ -132,6 +142,15 @@ export interface HooksTranslations {
       deprecated?: string;
     };
   };
+}
+
+export interface ComponentClassDefinition {
+  key: string;
+  className: string;
+  description: string;
+  isGlobal: boolean;
+  isDeprecated?: boolean;
+  deprecationInfo?: string;
 }
 
 interface AttributeDefinition {

@@ -6,6 +6,7 @@ githubLabel: 'component: select'
 materialDesign: https://m2.material.io/components/menus#exposed-dropdown-menu
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
 unstyled: /base-ui/react-select/
+githubSource: packages/mui-material/src/Select
 ---
 
 # Select
@@ -199,7 +200,7 @@ If you use the ListSubheader directly, **no additional code is required**.
 ## Accessibility
 
 To properly label your `Select` input you need an extra element with an `id` that contains a label.
-That `id` needs to match the `labelId` of the `Select` e.g.
+That `id` needs to match the `labelId` of the `Select`, for example:
 
 ```jsx
 <InputLabel id="label">Age</InputLabel>

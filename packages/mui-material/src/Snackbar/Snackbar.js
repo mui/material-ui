@@ -6,6 +6,7 @@ import useSlotProps from '@mui/utils/useSlotProps';
 import useSnackbar from './useSnackbar';
 import ClickAwayListener from '../ClickAwayListener';
 import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
@@ -40,55 +41,57 @@ const SnackbarRoot = styled('div', {
       ],
     ];
   },
-})(({ theme }) => ({
-  zIndex: (theme.vars || theme).zIndex.snackbar,
-  position: 'fixed',
-  display: 'flex',
-  left: 8,
-  right: 8,
-  justifyContent: 'center',
-  alignItems: 'center',
-  variants: [
-    {
-      props: ({ ownerState }) => ownerState.anchorOrigin.vertical === 'top',
-      style: { top: 8, [theme.breakpoints.up('sm')]: { top: 24 } },
-    },
-    {
-      props: ({ ownerState }) => ownerState.anchorOrigin.vertical !== 'top',
-      style: { bottom: 8, [theme.breakpoints.up('sm')]: { bottom: 24 } },
-    },
-    {
-      props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'left',
-      style: {
-        justifyContent: 'flex-start',
-        [theme.breakpoints.up('sm')]: {
-          left: 24,
-          right: 'auto',
+})(
+  memoTheme(({ theme }) => ({
+    zIndex: (theme.vars || theme).zIndex.snackbar,
+    position: 'fixed',
+    display: 'flex',
+    left: 8,
+    right: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    variants: [
+      {
+        props: ({ ownerState }) => ownerState.anchorOrigin.vertical === 'top',
+        style: { top: 8, [theme.breakpoints.up('sm')]: { top: 24 } },
+      },
+      {
+        props: ({ ownerState }) => ownerState.anchorOrigin.vertical !== 'top',
+        style: { bottom: 8, [theme.breakpoints.up('sm')]: { bottom: 24 } },
+      },
+      {
+        props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'left',
+        style: {
+          justifyContent: 'flex-start',
+          [theme.breakpoints.up('sm')]: {
+            left: 24,
+            right: 'auto',
+          },
         },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'right',
-      style: {
-        justifyContent: 'flex-end',
-        [theme.breakpoints.up('sm')]: {
-          right: 24,
-          left: 'auto',
+      {
+        props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'right',
+        style: {
+          justifyContent: 'flex-end',
+          [theme.breakpoints.up('sm')]: {
+            right: 24,
+            left: 'auto',
+          },
         },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'center',
-      style: {
-        [theme.breakpoints.up('sm')]: {
-          left: '50%',
-          right: 'auto',
-          transform: 'translateX(-50%)',
+      {
+        props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'center',
+        style: {
+          [theme.breakpoints.up('sm')]: {
+            left: '50%',
+            right: 'auto',
+            transform: 'translateX(-50%)',
+          },
         },
       },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiSnackbar' });
@@ -231,7 +234,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
    */
   ClickAwayListenerProps: PropTypes.object,
   /**
-   * Props applied to the [`SnackbarContent`](/material-ui/api/snackbar-content/) element.
+   * Props applied to the [`SnackbarContent`](https://mui.com/material-ui/api/snackbar-content/) element.
    */
   ContentProps: PropTypes.object,
   /**
@@ -298,7 +301,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The component used for the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Grow
    */
   TransitionComponent: PropTypes.elementType,

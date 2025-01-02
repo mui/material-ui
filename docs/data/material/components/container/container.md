@@ -3,6 +3,7 @@ productId: material-ui
 title: React Container component
 components: Container, PigmentContainer
 githubLabel: 'component: Container'
+githubSource: packages/mui-material/src/Container
 ---
 
 # Container
@@ -34,10 +35,10 @@ The max-width matches the min-width of the current breakpoint.
 <Container fixed>
 ```
 
-## Experimental APIs
+## Toolpad (Beta)
 
 ### Page Container
 
-The [PageContainer](https://mui.com/toolpad/core/react-page-container/) component in `@toolpad/core` is the ideal wrapper for the content of your dashboard. It makes the Material UI Container navigation aware and extends it with page title, breadcrumbs, actions, and more.
+The [PageContainer](https://mui.com/toolpad/core/react-page-container/) component in `@toolpad/core` is the ideal wrapper for the content of your dashboard. It makes the Material UI Container navigation-aware and extends it with page title, breadcrumbs, actions, and more.
 
-{{"demo": "../breadcrumbs/PageContainerBasic.js", "height": 400, "hideToolbar": true}}
+{{"demo": "../breadcrumbs/PageContainerBasic.js", "height": 400, "bg": "inline", "defaultExpanded": false}}

@@ -1,6 +1,6 @@
 import path from 'path';
 import url from 'url';
-import fse from 'fs-extra';
+import fs from 'fs/promises';
 
 /**
  * Returns the full path of the root directory of this repository.
@@ -16,16 +16,15 @@ export function getWorkspaceRoot() {
  * Returns the version and destructured values of the version as env variables to be replaced.
  */
 export async function getVersionEnvVariables() {
-  const packageJsonData = await fse.readFile(path.resolve('./package.json'), 'utf8');
+  const packageJsonData = await fs.readFile(path.resolve('./package.json'), 'utf8');
   const { version = null } = JSON.parse(packageJsonData);
 
   if (!version) {
     throw new Error('Could not find the version in the package.json');
   }
 
-  const [versionNumber, preReleaseInfo] = version.split('-');
+  const [versionNumber, prerelease] = version.split('-');
   const [major, minor, patch] = versionNumber.split('.');
-  const [preReleaseLabel, preReleaseNumber] = preReleaseInfo ? preReleaseInfo.split('.') : [];
 
   if (!major || !minor || !patch) {
     throw new Error(`Couldn't parse version from package.json`);
@@ -36,7 +35,6 @@ export async function getVersionEnvVariables() {
     MUI_MAJOR_VERSION: major,
     MUI_MINOR_VERSION: minor,
     MUI_PATCH_VERSION: patch,
-    MUI_PRERELEASE_LABEL: preReleaseLabel,
-    MUI_PRERELEASE_NUMBER: preReleaseNumber,
+    MUI_PRERELEASE: prerelease,
   };
 }

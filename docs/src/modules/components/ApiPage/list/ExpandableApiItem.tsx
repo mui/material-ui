@@ -16,14 +16,18 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
   ({ theme }) => ({
     position: 'relative',
     marginBottom: 12,
-    scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
     '& .MuiApi-item-header': {
+      display: 'flex',
+      alignItems: 'center',
+      marginBottom: 8,
+      marginLeft: -38,
+      lineHeight: 1.5,
+    },
+    '& .MuiApi-item-header-link': {
       minHeight: 26,
       display: 'flex',
       alignItems: 'center',
-      marginLeft: -38,
-      marginBottom: 8,
-      lineHeight: 1.5,
+      scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
     },
     '& .MuiApi-item-link-visual': {
       display: 'none',
@@ -178,27 +182,29 @@ export default function ExpandableApiItem(props: ExpandableApiItemProps) {
   React.useEffect(() => {
     setIsExtended(displayOption === 'expanded');
   }, [displayOption]);
+
   return (
     <Root
       ownerState={{ type }}
       {...other}
-      id={id}
       className={clsx(
-        `MuiApi-item-root ${isExtendable ? 'MuiApi-item-header-extendable' : ''}`,
+        `MuiApi-item-root${isExtendable ? ' MuiApi-item-header-extendable' : ''}`,
         className,
       )}
     >
       <div className="MuiApi-item-header">
-        <a className="MuiApi-item-link-visual" href={`#${id}`}>
-          <svg>
-            <use xlinkHref="#anchor-link-icon" />
-          </svg>
-        </a>
-        <span
-          className="MuiApi-item-title algolia-lvl3" // This className is used by Algolia
-        >
-          {title}
-        </span>
+        <div className="MuiApi-item-header-link" id={id}>
+          <a className="MuiApi-item-link-visual" href={`#${id}`} aria-labelledby={id}>
+            <svg>
+              <use xlinkHref="#anchor-link-icon" />
+            </svg>
+          </a>
+          <span
+            className="MuiApi-item-title algolia-lvl3" // This className is used by Algolia
+          >
+            {title}
+          </span>
+        </div>
         {note && <span className="MuiApi-item-note">{note}</span>}
         {isExtendable && (
           <IconButton
@@ -222,7 +228,7 @@ export default function ExpandableApiItem(props: ExpandableApiItemProps) {
   );
 }
 
-export const ApiItemContaier = styled('div')({
+export const ApiItemContainer = styled('div')({
   width: '100%',
   display: 'flex',
   flexDirection: 'column',

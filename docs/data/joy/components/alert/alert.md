@@ -20,7 +20,7 @@ The Alert component can be used to provide important and potentially time-sensit
 
 :::info
 Alerts should not be confused with alert _dialogs_ ([ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/)), which _are_ intended to interrupt the user to obtain a response.
-Use the Joy UI [Modal](https://mui.com/joy-ui/react-modal/) if you need the behavior of a dialog.
+Use the Joy UI [Modal](/joy-ui/react-modal/) if you need the behavior of a dialog.
 :::
 
 ## Basics

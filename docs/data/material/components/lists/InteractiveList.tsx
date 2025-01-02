@@ -16,7 +16,7 @@ import Typography from '@mui/material/Typography';
 import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-function generate(element: React.ReactElement<any>) {
+function generate(element: React.ReactElement<unknown>) {
   return [0, 1, 2].map((value) =>
     React.cloneElement(element, {
       key: value,

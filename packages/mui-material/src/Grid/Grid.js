@@ -20,7 +20,7 @@ import { extendSxProp } from '@mui/system/styleFunctionSx';
 import composeClasses from '@mui/utils/composeClasses';
 import requirePropFactory from '../utils/requirePropFactory';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import useTheme from '../styles/useTheme';
 import GridContext from './GridContext';
 import gridClasses, { getGridUtilityClass } from './gridClasses';
@@ -112,7 +112,7 @@ export function generateDirection({ theme, ownerState }) {
       flexDirection: propValue,
     };
 
-    if (propValue.indexOf('column') === 0) {
+    if (propValue.startsWith('column')) {
       output[`& > .${gridClasses.item}`] = {
         maxWidth: 'none',
       };
@@ -170,7 +170,7 @@ export function generateRowGap({ theme, ownerState }) {
 
       if (themeSpacing !== '0px') {
         return {
-          marginTop: theme.spacing(-propValue),
+          marginTop: `calc(-1 * ${themeSpacing})`,
           [`& > .${gridClasses.item}`]: {
             paddingTop: themeSpacing,
           },
@@ -214,7 +214,7 @@ export function generateColumnGap({ theme, ownerState }) {
     styles = handleBreakpoints({ theme }, columnSpacingValues, (propValue, breakpoint) => {
       const themeSpacing = theme.spacing(propValue);
       if (themeSpacing !== '0px') {
-        const negativeValue = theme.spacing(-propValue);
+        const negativeValue = `calc(-1 * ${themeSpacing})`;
         return {
           width: `calc(100% + ${themeSpacing})`,
           marginLeft: negativeValue,
@@ -309,6 +309,7 @@ const GridRoot = styled('div', {
     ];
   },
 })(
+  // FIXME(romgrk): Can't use memoTheme here
   ({ ownerState }) => ({
     boxSizing: 'border-box',
     ...(ownerState.container && {
@@ -398,10 +399,10 @@ const useUtilityClasses = (ownerState) => {
 };
 
 /**
- * @deprecated Use the [`Grid2`](https://next.mui.com/material-ui/react-grid2/) component instead.
+ * @deprecated Use the [`Grid2`](https://mui.com/material-ui/react-grid2/) component instead.
  */
 const Grid = React.forwardRef(function Grid(inProps, ref) {
-  const themeProps = useThemeProps({ props: inProps, name: 'MuiGrid' });
+  const themeProps = useDefaultProps({ props: inProps, name: 'MuiGrid' });
   const { breakpoints } = useTheme();
 
   const props = extendSxProp(themeProps);
@@ -594,7 +595,6 @@ Grid.propTypes /* remove-proptypes */ = {
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.
    * @default 'wrap'
-   * @deprecated Use `flexWrap` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   wrap: PropTypes.oneOf(['nowrap', 'wrap-reverse', 'wrap']),
   /**

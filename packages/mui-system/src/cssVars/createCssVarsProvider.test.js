@@ -17,8 +17,11 @@ describe('createCssVarsProvider', () => {
   let storage = {};
   const createMatchMedia = (matches) => () => ({
     matches,
+    // Keep mocking legacy methods because @mui/material v5 still uses them
     addListener: () => {},
+    addEventListener: () => {},
     removeListener: () => {},
+    removeEventListener: () => {},
   });
 
   beforeEach(() => {

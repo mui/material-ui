@@ -4,6 +4,7 @@ title: React Hidden component
 description: The Hidden component is deprecated, check out the migration guide for more details.
 components: Hidden, PigmentHidden
 githubLabel: 'component: Hidden'
+githubSource: packages/mui-material/src/Hidden
 ---
 
 # Hidden

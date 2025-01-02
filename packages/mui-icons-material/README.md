@@ -2,7 +2,7 @@
 
 This package contains Google's [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to Material UI [SVG Icon](https://mui.com/material-ui/icons/#svgicon) components.
 
-> Google also offers [Material Symbols](https://fonts.google.com/icons?icon.set=Material+Symbols) as an alternative to Material Icons. `@mui/icons-material` only covers Icons, and there are no plans to support Symbols at this time.
+> Google also offers [Material Symbols](https://fonts.google.com/icons?icon.set=Material+Symbols) as the successor of Material Icons. `@mui/icons-material` only covers Icons at this time, there are no support for Symbols yet.
 
 ## Installation
 
@@ -11,7 +11,7 @@ The Material Icons package depends on Material UI—install both with the follo
 <!-- #default-branch-switch -->
 
 ```bash
-npm install @mui/icons-material@next @mui/material@next @emotion/styled @emotion/react
+npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
 ```
 
 <!-- #default-branch-switch -->

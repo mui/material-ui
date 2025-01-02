@@ -14,7 +14,7 @@ export default function App() {
           is a library of unstyled React UI components and hooks.
         </li>
         <li className="card">
-          <a href="https://vitejs.dev/" className="link">
+          <a href="https://vite.dev/" className="link">
             Vite
           </a>{' '}
           is a build tool that aims to provide a faster and leaner development experience for modern

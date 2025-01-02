@@ -4,6 +4,8 @@ import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
 export interface LoadingButtonClasses {
   /** Styles applied to the root element. */
   root: string;
+  /** Styles applied to the span element that wraps the children. */
+  label: string;
   /** Styles applied to the root element if `loading={true}`. */
   loading: string;
   /** Styles applied to the loadingIndicator element. */
@@ -28,6 +30,7 @@ export function getLoadingButtonUtilityClass(slot: string): string {
 
 const loadingButtonClasses: LoadingButtonClasses = generateUtilityClasses('MuiLoadingButton', [
   'root',
+  'label',
   'loading',
   'loadingIndicator',
   'loadingIndicatorCenter',

@@ -25,6 +25,7 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getHiddenCssUtilityClass, classes);
 };
 
+// FIXME(romgrk): Can't use memoTheme here, should we memo also on ownerState?
 const HiddenCssRoot = styled('div', {
   name: 'PrivateHiddenCss',
   slot: 'Root',

@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import Typography from '../Typography';
+import Typography, { typographyClasses } from '../Typography';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import cardHeaderClasses, { getCardHeaderUtilityClass } from './cardHeaderClasses';
@@ -65,6 +65,12 @@ const CardHeaderContent = styled('div', {
   overridesResolver: (props, styles) => styles.content,
 })({
   flex: '1 1 auto',
+  [`.${typographyClasses.root}:where(& .${cardHeaderClasses.title})`]: {
+    display: 'block',
+  },
+  [`.${typographyClasses.root}:where(& .${cardHeaderClasses.subheader})`]: {
+    display: 'block',
+  },
 });
 
 const CardHeader = React.forwardRef(function CardHeader(inProps, ref) {
@@ -97,7 +103,6 @@ const CardHeader = React.forwardRef(function CardHeader(inProps, ref) {
         variant={avatar ? 'body2' : 'h5'}
         className={classes.title}
         component="span"
-        display="block"
         {...titleTypographyProps}
       >
         {title}
@@ -111,9 +116,8 @@ const CardHeader = React.forwardRef(function CardHeader(inProps, ref) {
       <Typography
         variant={avatar ? 'body2' : 'body1'}
         className={classes.subheader}
-        color="text.secondary"
+        color="textSecondary"
         component="span"
-        display="block"
         {...subheaderTypographyProps}
       >
         {subheader}

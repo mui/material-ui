@@ -10,11 +10,25 @@ import ToggleDisplayOption, {
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import SlotsList from 'docs/src/modules/components/ApiPage/list/SlotsList';
 import SlotsTable from 'docs/src/modules/components/ApiPage/table/SlotsTable';
+import {
+  SlotDefinition,
+  getSlotsApiDefinitions,
+} from 'docs/src/modules/components/ApiPage/definitions/slots';
 
-export type SlotsSectionProps = {
-  componentSlots: ComponentApiContent['slots'];
-  slotDescriptions: { [key: string]: string };
-  componentName: string;
+export type SlotsSectionProps = (
+  | {
+      slots: SlotDefinition[];
+      componentSlots?: undefined;
+      slotDescriptions?: undefined;
+      componentName?: undefined;
+    }
+  | {
+      slots: undefined;
+      componentSlots: ComponentApiContent['slots'];
+      slotDescriptions: { [key: string]: string };
+      componentName: string;
+    }
+) & {
   title?: string;
   titleHash?: string;
   level?: 'h2' | 'h3' | 'h4';
@@ -25,6 +39,7 @@ export type SlotsSectionProps = {
 
 export default function SlotsSection(props: SlotsSectionProps) {
   const {
+    slots,
     componentSlots,
     slotDescriptions,
     componentName,
@@ -39,21 +54,16 @@ export default function SlotsSection(props: SlotsSectionProps) {
 
   const [displayOption, setDisplayOption] = useApiPageOption(layoutStorageKey, defaultLayout);
 
-  if (!componentSlots || componentSlots.length === 0) {
+  const formattedSlots =
+    slots ??
+    getSlotsApiDefinitions({
+      componentSlots,
+      slotDescriptions,
+      componentName,
+    });
+  if (!formattedSlots || formattedSlots.length === 0) {
     return null;
   }
-
-  const formattedSlots = componentSlots?.map(
-    ({ class: className, name, default: defaultValue }) => {
-      return {
-        description: slotDescriptions[name],
-        className,
-        name,
-        defaultValue,
-        componentName,
-      };
-    },
-  );
 
   return (
     <React.Fragment>

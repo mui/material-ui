@@ -49,11 +49,11 @@ function isEmpty(obj: TextareaStyles) {
  *
  * Demos:
  *
- * - [Textarea Autosize](https://next.mui.com/material-ui/react-textarea-autosize/)
+ * - [Textarea Autosize](https://mui.com/material-ui/react-textarea-autosize/)
  *
  * API:
  *
- * - [TextareaAutosize API](https://next.mui.com/material-ui/api/textarea-autosize/)
+ * - [TextareaAutosize API](https://mui.com/material-ui/api/textarea-autosize/)
  */
 const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   props: TextareaAutosizeProps,
@@ -64,7 +64,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   const { current: isControlled } = React.useRef(value != null);
   const inputRef = React.useRef<HTMLTextAreaElement>(null);
   const handleRef = useForkRef(forwardedRef, inputRef);
-  const heightRef = React.useRef<number | null>(null);
+  const heightRef = React.useRef<number>(null);
   const shadowRef = React.useRef<HTMLTextAreaElement>(null);
 
   const calculateTextareaStyles = React.useCallback(() => {

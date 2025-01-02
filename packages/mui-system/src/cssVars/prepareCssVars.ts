@@ -48,7 +48,10 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
     colorSchemesMap[defaultColorScheme] = { css, vars };
   }
 
-  function defaultGetSelector(colorScheme: keyof T['colorSchemes'] | undefined) {
+  function defaultGetSelector(
+    colorScheme: keyof T['colorSchemes'] | undefined,
+    cssObject: Record<string, any>,
+  ) {
     let rule = selector;
     if (selector === 'class') {
       rule = '.%s';
@@ -66,7 +69,11 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
           return ':root';
         }
         const mode = colorSchemes[colorScheme as string]?.palette?.mode || colorScheme;
-        return `@media (prefers-color-scheme: ${mode}) { :root`;
+        return {
+          [`@media (prefers-color-scheme: ${mode})`]: {
+            ':root': cssObject,
+          },
+        };
       }
       if (rule) {
         if (theme.defaultColorScheme === colorScheme) {

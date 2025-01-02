@@ -49,7 +49,7 @@ export interface UseAutocompleteProps<
    * Temporary for Joy UI because the parent listbox is the document object
    * TODO v6: Normalize the logic and remove this param.
    */
-  unstable_isActiveElementInListbox?: (listbox: React.RefObject<HTMLElement>) => boolean;
+  unstable_isActiveElementInListbox?: (listbox: React.RefObject<HTMLElement | null>) => boolean;
   /**
    * If `true`, the portion of the selected suggestion that the user hasn't typed,
    * known as the completion string, appears inline after the input cursor in the textbox.
@@ -281,7 +281,7 @@ export interface UseAutocompleteProps<
    */
   openOnFocus?: boolean;
   /**
-   * Array of options.
+   * A list of options that will be shown in the Autocomplete.
    */
   options: ReadonlyArray<Value>;
   /**
@@ -347,11 +347,11 @@ export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
  *
  * Demos:
  *
- * - [Autocomplete](https://next.mui.com/base-ui/react-autocomplete/#hook)
+ * - [Autocomplete](https://mui.com/base-ui/react-autocomplete/#hook)
  *
  * API:
  *
- * - [useAutocomplete API](https://next.mui.com/base-ui/react-autocomplete/hooks-api/#use-autocomplete)
+ * - [useAutocomplete API](https://mui.com/base-ui/react-autocomplete/hooks-api/#use-autocomplete)
  */
 export function useAutocomplete<
   Value,

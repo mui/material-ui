@@ -7,7 +7,7 @@ import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import composeClasses from '@mui/utils/composeClasses';
 import systemStyled from '../styled';
 import useThemePropsSystem from '../useThemeProps';
-import useTheme from '../useTheme';
+import useThemeSystem from '../useTheme';
 import { extendSxProp } from '../styleFunctionSx';
 import createTheme, { Breakpoint, Breakpoints } from '../createTheme';
 import {
@@ -46,6 +46,7 @@ export default function createGrid(
   options: {
     createStyledComponent?: typeof defaultCreateStyledComponent;
     useThemeProps?: typeof useThemePropsDefault;
+    useTheme?: typeof useThemeSystem;
     componentName?: string;
   } = {},
 ) {
@@ -53,6 +54,7 @@ export default function createGrid(
     // This will allow adding custom styled fn (for example for custom sx style function)
     createStyledComponent = defaultCreateStyledComponent,
     useThemeProps = useThemePropsDefault,
+    useTheme = useThemeSystem,
     componentName = 'MuiGrid',
   } = options;
 
@@ -169,9 +171,14 @@ export default function createGrid(
         {...other}
       >
         {React.Children.map(children, (child) => {
-          if (React.isValidElement(child) && isMuiElement(child, ['Grid'])) {
+          if (
+            React.isValidElement<{ container?: unknown }>(child) &&
+            isMuiElement(child, ['Grid']) &&
+            container &&
+            child.props.container
+          ) {
             return React.cloneElement(child, {
-              unstable_level: (child.props as any).unstable_level ?? level + 1,
+              unstable_level: (child.props as GridProps)?.unstable_level ?? level + 1,
             } as GridProps);
           }
           return child;

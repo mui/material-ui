@@ -250,15 +250,16 @@ HiddenCss.propTypes /* remove-proptypes */ = {
    */
   xsUp: PropTypes.bool,
 } as any;
+
 /**
  *
  * Demos:
  *
- * - [Hidden](https://next.mui.com/material-ui/react-hidden/)
+ * - [Hidden](https://mui.com/material-ui/react-hidden/)
  *
  * API:
  *
- * - [PigmentHidden API](https://next.mui.com/material-ui/api/pigment-hidden/)
+ * - [PigmentHidden API](https://mui.com/material-ui/api/pigment-hidden/)
  */
 function PigmentHidden({ implementation = 'js', ...props }: HiddenProps & { className?: string }) {
   if (implementation === 'js') {

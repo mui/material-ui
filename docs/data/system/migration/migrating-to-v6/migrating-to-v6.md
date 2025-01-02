@@ -96,7 +96,7 @@ Besides that, the `true` value for the size prop was renamed to `"grow"`:
 Use this codemod to migrate your project to the new size and offset props:
 
 ```bash
-npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder>
+npx @mui/codemod@latest v6.0.0/grid-v2-props <path/to/folder>
 ```
 
 :::warning
@@ -113,7 +113,7 @@ If you have custom breakpoints, the change is the same:
 Which you can cover with the same codemod by providing the custom breakpoints as an argument:
 
 ```bash
-npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder> --jscodeshift='--muiBreakpoints=mobile,desktop'
+npx @mui/codemod@latest v6.0.0/grid-v2-props <path/to/folder> --jscodeshift='--muiBreakpoints=mobile,desktop'
 ```
 
 #### Removal of the disableEqualOverflow prop

@@ -103,7 +103,7 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link
   if (
     userLanguage !== 'en' &&
     pathname &&
-    pathname.indexOf('/') === 0 &&
+    pathname.startsWith('/') &&
     !LANGUAGES_IGNORE_PAGES(pathname) &&
     !pathname.startsWith(`/${userLanguage}/`)
   ) {

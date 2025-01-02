@@ -56,7 +56,8 @@ export default withDocsInfra({
       // We only care about Node runtime at this point.
       (options.nextRuntime === undefined || options.nextRuntime === 'nodejs')
     ) {
-      const [nextExternals, ...externals] = config.externals;
+      const externals = config.externals.slice(0, -1);
+      const nextExternals = config.externals.at(-1);
 
       config.externals = [
         // @ts-ignore
@@ -192,7 +193,7 @@ export default withDocsInfra({
     // docs-infra
     LIB_VERSION: pkg.version,
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
-    SOURCE_GITHUB_BRANCH: 'next', // #default-branch-switch
+    SOURCE_GITHUB_BRANCH: 'master', // #default-branch-switch
     GITHUB_TEMPLATE_DOCS_FEEDBACK: '4.docs-feedback.yml',
     BUILD_ONLY_ENGLISH_LOCALE: String(buildOnlyEnglishLocale),
     // MUI Core related

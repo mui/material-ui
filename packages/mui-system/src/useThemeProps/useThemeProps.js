@@ -7,6 +7,5 @@ export default function useThemeProps({ props, name, defaultTheme, themeId }) {
   if (themeId) {
     theme = theme[themeId] || theme;
   }
-  const mergedProps = getThemeProps({ theme, name, props });
-  return mergedProps;
+  return getThemeProps({ theme, name, props });
 }
