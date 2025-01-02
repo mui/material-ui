@@ -4,7 +4,7 @@ import { InternalStandardProps as StandardProps } from '..';
 import { PaperProps } from '../Paper';
 import { PopoverProps } from '../Popover';
 import { MenuListProps } from '../MenuList';
-import { ModalOwnProps } from '../Modal';
+import { ModalProps } from '../Modal';
 import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
 import { MenuClasses } from './menuClasses';
@@ -20,18 +20,32 @@ export interface MenuListSlotPropsOverrides {}
 
 export interface MenuSlots {
   /**
-   * The content of the component.
+   * The component used for the popper.
+   * @default Modal
    */
   root: React.ElementType;
+  /**
+   * The component used for the paper.
+   * @default Paper
+   */
   paper: React.ElementType;
+  /**
+   * The component used for the transition.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Grow
+   */
   transition: React.ElementType;
+  /**
+   * The component used for the list.
+   * @default MenuList
+   */
   list: React.ElementType;
 }
 
 export type MenuSlotsAndSlotProps = CreateSlotsAndSlotProps<
   MenuSlots,
   {
-    root: SlotProps<React.ElementType<ModalOwnProps>, MenuRootSlotPropsOverrides, MenuOwnerState>;
+    root: SlotProps<React.ElementType<ModalProps>, MenuRootSlotPropsOverrides, MenuOwnerState>;
     paper: SlotProps<React.ElementType<PaperProps>, MenuPaperSlotPropsOverrides, MenuOwnerState>;
     transition: SlotProps<
       React.ElementType<TransitionProps>,
