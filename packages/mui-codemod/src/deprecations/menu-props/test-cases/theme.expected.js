@@ -4,6 +4,10 @@ fn({
       slotProps: {
         list: { disablePadding: true },
         transition: { timeout: 200 }
+      },
+
+      slots: {
+        transition: CustomTransition
       }
     },
   },
@@ -16,6 +20,10 @@ fn({
         root: { disablePortal: true },
         list: { disablePadding: true },
         transition: { timeout: 200 }
+      },
+
+      slots: {
+        transition: CustomTransition
       }
     },
   },

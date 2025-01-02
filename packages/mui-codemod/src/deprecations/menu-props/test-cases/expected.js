@@ -5,6 +5,9 @@ import { Menu as MyMenu } from '@mui/material';
   slotProps={{
     list: { disablePadding: true },
     transition: { timeout: 200 }
+  }}
+  slots={{
+    transition: CustomTransition
   }} />;
 
 <Menu
@@ -15,6 +18,9 @@ import { Menu as MyMenu } from '@mui/material';
 
     list: { disablePadding: true },
     transition: { timeout: 200 }
+  }}
+  slots={{
+    transition: CustomTransition
   }} />;
 
 <Menu
@@ -36,12 +42,22 @@ import { Menu as MyMenu } from '@mui/material';
         'aria-hidden': true,
       }
     },
+  }}
+  slots={{
+    transition: CustomTransition
   }} />;
 
 <MyMenu
   slotProps={{
     list: { disablePadding: true },
     transition: { timeout: 200 }
+  }}
+  slots={{
+    transition: CustomTransition
   }} />;
 
-<CustomMenu MenuListProps={{ disablePadding: true }} TransitionProps={{ timeout: 200 }} />;
+<CustomMenu
+  TransitionComponent={CustomTransition}
+  MenuListProps={{ disablePadding: true }}
+  TransitionProps={{ timeout: 200 }}
+/>;

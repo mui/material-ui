@@ -1,3 +1,4 @@
+import movePropIntoSlots from '../utils/movePropIntoSlots';
 import movePropIntoSlotProps from '../utils/movePropIntoSlotProps';
 
 /**
@@ -14,6 +15,13 @@ export default function transformer(file, api, options) {
     componentName: 'Menu',
     propName: 'MenuListProps',
     slotName: 'list',
+  });
+
+  movePropIntoSlots(j, {
+    root,
+    componentName: 'Menu',
+    propName: 'TransitionComponent',
+    slotName: 'transition',
   });
 
   movePropIntoSlotProps(j, {

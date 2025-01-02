@@ -1,9 +1,14 @@
 import Menu from '@mui/material/Menu';
 import { Menu as MyMenu } from '@mui/material';
 
-<Menu MenuListProps={{ disablePadding: true }} TransitionProps={{ timeout: 200 }} />;
+<Menu
+  TransitionComponent={CustomTransition}
+  MenuListProps={{ disablePadding: true }}
+  TransitionProps={{ timeout: 200 }}
+/>;
 
 <Menu
+  TransitionComponent={CustomTransition}
   MenuListProps={{ disablePadding: true }}
   TransitionProps={{ timeout: 200 }}
   slotProps={{
@@ -14,6 +19,7 @@ import { Menu as MyMenu } from '@mui/material';
 />;
 
 <Menu
+  TransitionComponent={CustomTransition}
   MenuListProps={{ disablePadding: true }}
   TransitionProps={{ timeout: 200 }}
   slotProps={{
@@ -29,6 +35,14 @@ import { Menu as MyMenu } from '@mui/material';
   }}
 />;
 
-<MyMenu MenuListProps={{ disablePadding: true }} TransitionProps={{ timeout: 200 }} />;
+<MyMenu
+  TransitionComponent={CustomTransition}
+  MenuListProps={{ disablePadding: true }}
+  TransitionProps={{ timeout: 200 }}
+/>;
 
-<CustomMenu MenuListProps={{ disablePadding: true }} TransitionProps={{ timeout: 200 }} />;
+<CustomMenu
+  TransitionComponent={CustomTransition}
+  MenuListProps={{ disablePadding: true }}
+  TransitionProps={{ timeout: 200 }}
+/>;
