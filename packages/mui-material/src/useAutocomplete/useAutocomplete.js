@@ -62,19 +62,19 @@ const defaultIsActiveElementInListbox = (listboxRef) =>
 const MULTIPLE_DEFAULT_VALUE = [];
 
 function getInitialInputValue(value, defaultValue, multiple, getOptionLabel) {
+  if (multiple || (value == null && defaultValue == null)) {
+    return '';
+  }
   if (typeof value === 'string') {
     return value;
   }
-  if (!multiple && value != null && typeof value === 'object') {
+  if (typeof value === 'object') {
     return getOptionLabel(value);
   }
-  if (typeof defaultValue === 'string') {
-    return defaultValue;
-  }
-  if (!multiple && defaultValue != null && typeof defaultValue === 'object') {
+  if (typeof defaultValue === 'object') {
     return getOptionLabel(defaultValue);
   }
-  return '';
+  return defaultValue || '';
 }
 
 function useAutocomplete(props) {
