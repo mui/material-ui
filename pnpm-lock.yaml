@@ -169,8 +169,8 @@ importers:
         specifier: ^11.1.0
         version: 11.1.0(webpack@5.96.1)
       concurrently:
-        specifier: ^9.1.0
-        version: 9.1.0
+        specifier: ^9.1.2
+        version: 9.1.2
       cpy-cli:
         specifier: ^5.0.0
         version: 5.0.0
@@ -6796,8 +6796,8 @@ packages:
     resolution: {integrity: sha512-MWufYdFw53ccGjCA+Ol7XJYpAlW6/prSMzuPOTRnJGcGzuhLn4Scrz7qf6o8bROZ514ltazcIFJZevcfbo0x7A==}
     engines: {'0': node >= 6.0}
 
-  concurrently@9.1.0:
-    resolution: {integrity: sha512-VxkzwMAn4LP7WyMnJNbHN5mKV9L2IbyDjpzemKr99sXNR3GqRNMMHdm7prV1ws9wg7ETj6WUkNOigZVsptwbgg==}
+  concurrently@9.1.2:
+    resolution: {integrity: sha512-H9MWcoPsYddwbOGM6difjVwVZHl63nwMEwDJG/L7VGtuaJhb12h2caPG2tVPWs7emuYix252iGfqOyrz1GczTQ==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -18482,7 +18482,7 @@ snapshots:
       readable-stream: 3.6.0
       typedarray: 0.0.6
 
-  concurrently@9.1.0:
+  concurrently@9.1.2:
     dependencies:
       chalk: 4.1.2
       lodash: 4.17.21
