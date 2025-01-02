@@ -194,6 +194,7 @@ TableSortLabel.propTypes /* remove-proptypes */ = {
    */
   slotProps: PropTypes.shape({
     icon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
@@ -201,6 +202,7 @@ TableSortLabel.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes.shape({
     icon: PropTypes.elementType,
+    root: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
