@@ -25,7 +25,7 @@ A big thanks to the 7 contributors who made this release possible. Here are some
 ### Core
 
 - [examples] Update Next.js examples Next.js and React versions (#44852) @DiegoAndai
-- [code-infra] Prevent wrong nested imports in Base UI (#44426) @oliviertassinari
+- [code-infra] Prevent wrong nested imports in Base UI (#44426) @oliviertassinari
 - [docs-infra] Add vale coverage for App Router and Page Router (060c55c) @oliviertassinari
 - Sync with other repos @oliviertassinari
 
