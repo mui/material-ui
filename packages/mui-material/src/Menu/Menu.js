@@ -166,6 +166,11 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     }
   });
 
+  const externalForwardedProps = {
+    slots,
+    slotProps: { ...slotProps, list: slotProps.list || MenuListProps },
+  };
+
   const PaperSlot = slots.paper ?? MenuPaper;
   const paperExternalSlotProps = slotProps.paper ?? PaperProps;
 
@@ -185,7 +190,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
 
   const [ListSlot, listSlotProps] = useSlot('list', {
     elementType: MenuMenuList,
-    externalForwardedProps: { slots, slotProps },
+    externalForwardedProps,
     ownerState,
     className: clsx(classes.list, MenuListProps.className),
   });

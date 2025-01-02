@@ -556,16 +556,16 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
           horizontal: 'center',
         }}
         {...MenuProps}
-        MenuListProps={{
-          'aria-labelledby': labelId,
-          role: 'listbox',
-          'aria-multiselectable': multiple ? 'true' : undefined,
-          disableListWrap: true,
-          id: listboxId,
-          ...MenuProps.MenuListProps,
-        }}
         slotProps={{
           ...MenuProps.slotProps,
+          list: {
+            'aria-labelledby': labelId,
+            role: 'listbox',
+            'aria-multiselectable': multiple ? 'true' : undefined,
+            disableListWrap: true,
+            id: listboxId,
+            ...MenuProps.MenuListProps,
+          },
           paper: {
             ...paperProps,
             style: {
