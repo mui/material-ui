@@ -217,7 +217,7 @@
     "@definitelytyped/typescript-versions": "^0.1.6",
     "@definitelytyped/utils": "^0.1.8",
     "@types/node": "^20.17.10",
-    "cross-fetch": "^4.0.0",
+    "cross-fetch": "^4.1.0",
     "@pigment-css/react": "0.0.29",
     "@pigment-css/unplugin": "0.0.29",
     "@pigment-css/nextjs-plugin": "0.0.29",

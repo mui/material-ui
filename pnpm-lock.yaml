@@ -16,7 +16,7 @@ overrides:
   '@definitelytyped/typescript-versions': ^0.1.6
   '@definitelytyped/utils': ^0.1.8
   '@types/node': ^20.17.10
-  cross-fetch: ^4.0.0
+  cross-fetch: ^4.1.0
   '@pigment-css/react': 0.0.29
   '@pigment-css/unplugin': 0.0.29
   '@pigment-css/nextjs-plugin': 0.0.29
@@ -892,8 +892,8 @@ importers:
         specifier: ^4.5.0
         version: 4.5.0
       cross-fetch:
-        specifier: ^4.0.0
-        version: 4.0.0(encoding@0.1.13)
+        specifier: ^4.1.0
+        version: 4.1.0(encoding@0.1.13)
       gm:
         specifier: ^1.25.0
         version: 1.25.0
@@ -1535,8 +1535,8 @@ importers:
         specifier: ^5.4.1
         version: 5.4.1
       cross-fetch:
-        specifier: ^4.0.0
-        version: 4.0.0(encoding@0.1.13)
+        specifier: ^4.1.0
+        version: 4.1.0(encoding@0.1.13)
       fast-glob:
         specifier: ^3.3.2
         version: 3.3.2
@@ -6999,8 +6999,8 @@ packages:
     engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
     hasBin: true
 
-  cross-fetch@4.0.0:
-    resolution: {integrity: sha512-e4a5N8lVvuLgAWgnCrLr2PP0YyDOTHa9H/Rj54dirp61qXnNq46m82bRhNqIA5VccJtWBvPTFRV3TtvHUKPB1g==}
+  cross-fetch@4.1.0:
+    resolution: {integrity: sha512-uKm5PU+MHTootlWEY+mZ4vvXoCn4fLQxT9dSc1sXVMSFkINTJVN8cAQROpwcKm8bJ/c7rgZVIBWzH5T78sNZZw==}
 
   cross-spawn@4.0.2:
     resolution: {integrity: sha512-yAXz/pA1tD8Gtg2S98Ekf/sewp3Lcp3YoFKJ4Hkp5h5yLWnKVTDU0kwjKJ8NDCYcfTLfyGkzTikst+jWypT1iA==}
@@ -18778,7 +18778,7 @@ snapshots:
     dependencies:
       cross-spawn: 7.0.3
 
-  cross-fetch@4.0.0(encoding@0.1.13):
+  cross-fetch@4.1.0(encoding@0.1.13):
     dependencies:
       node-fetch: 2.7.0(encoding@0.1.13)
     transitivePeerDependencies:
