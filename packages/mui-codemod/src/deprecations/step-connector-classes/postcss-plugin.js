@@ -11,7 +11,7 @@ const classes = [
 
 const plugin = () => {
   return {
-    postcssPlugin: `Replace deperecated StepConnector classes with new classes`,
+    postcssPlugin: `Replace deprecated StepConnector classes with new classes`,
     Rule(rule) {
       const { selector } = rule;
 
