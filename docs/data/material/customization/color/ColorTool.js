@@ -248,7 +248,7 @@ function ColorTool() {
             const backgroundColor = colors[hue][shade];
 
             return (
-              <Tooltip placement="right" title={hue} key={hue}>
+              <Tooltip placement="right" title={hue} key={hue} disableInteractive>
                 <TooltipRadio
                   sx={{ p: 0 }}
                   color="default"
