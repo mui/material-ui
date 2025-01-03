@@ -13,6 +13,7 @@ import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getMenuUtilityClass } from './menuClasses';
+import useSlot from '../utils/useSlot';
 
 const RTL_ORIGIN = {
   vertical: 'top',
@@ -79,7 +80,8 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     PaperProps = {},
     PopoverClasses,
     transitionDuration = 'auto',
-    TransitionProps: { onEntering, ...TransitionProps } = {},
+    TransitionComponent,
+    TransitionProps = {},
     variant = 'selectedMenu',
     slots = {},
     slotProps = {},
@@ -87,6 +89,8 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   } = props;
 
   const isRtl = useRtl();
+
+  const { onEntering, ...transitionProps } = slotProps.transition ?? TransitionProps;
 
   const ownerState = {
     ...props,
@@ -162,6 +166,11 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     }
   });
 
+  const externalForwardedProps = {
+    slots,
+    slotProps: { ...slotProps, list: slotProps.list || MenuListProps },
+  };
+
   const PaperSlot = slots.paper ?? MenuPaper;
   const paperExternalSlotProps = slotProps.paper ?? PaperProps;
 
@@ -177,6 +186,13 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     externalSlotProps: paperExternalSlotProps,
     ownerState,
     className: classes.paper,
+  });
+
+  const [ListSlot, listSlotProps] = useSlot('list', {
+    elementType: MenuMenuList,
+    externalForwardedProps,
+    ownerState,
+    className: clsx(classes.list, MenuListProps.className),
   });
 
   return (
@@ -198,22 +214,22 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       open={open}
       ref={ref}
       transitionDuration={transitionDuration}
-      TransitionProps={{ onEntering: handleEntering, ...TransitionProps }}
+      TransitionProps={{ onEntering: handleEntering, ...transitionProps }}
+      TransitionComponent={slots.transition ?? TransitionComponent}
       ownerState={ownerState}
       {...other}
       classes={PopoverClasses}
     >
-      <MenuMenuList
+      <ListSlot
         onKeyDown={handleListKeyDown}
         actions={menuListActionsRef}
         autoFocus={autoFocus && (activeItemIndex === -1 || disableAutoFocusItem)}
         autoFocusItem={autoFocusItem}
         variant={variant}
-        {...MenuListProps}
-        className={clsx(classes.list, MenuListProps.className)}
+        {...listSlotProps}
       >
         {children}
-      </MenuMenuList>
+      </ListSlot>
     </MenuRoot>
   );
 });
@@ -261,6 +277,7 @@ Menu.propTypes /* remove-proptypes */ = {
   disableAutoFocusItem: PropTypes.bool,
   /**
    * Props applied to the [`MenuList`](https://mui.com/material-ui/api/menu-list/) element.
+   * @deprecated use the `slotProps.list` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   MenuListProps: PropTypes.object,
@@ -288,16 +305,20 @@ Menu.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
+    list: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
    * @default {}
    */
   slots: PropTypes.shape({
+    list: PropTypes.elementType,
     paper: PropTypes.elementType,
     root: PropTypes.elementType,
+    transition: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
@@ -307,6 +328,12 @@ Menu.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * The component used for the transition.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Grow
+   */
+  TransitionComponent: PropTypes.elementType,
   /**
    * The length of the transition in `ms`, or 'auto'
    * @default 'auto'
@@ -323,6 +350,7 @@ Menu.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
+   * @deprecated use the `slotProps.transition` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   TransitionProps: PropTypes.object,

@@ -31,6 +31,9 @@
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
+    "TransitionComponent": {
+      "description": "The component used for the transition. <a href=\"https://mui.com/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
+    },
     "transitionDuration": {
       "description": "The length of the transition in <code>ms</code>, or &#39;auto&#39;"
     },
@@ -41,15 +44,11 @@
       "description": "The variant to use. Use <code>menu</code> to prevent selected items from impacting the initial focus."
     }
   },
-  "classDescriptions": {
-    "list": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the List component via <code>MenuList</code>"
-    },
-    "paper": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Paper component"
-    },
-    "root": { "description": "Styles applied to the root element." }
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "list": "The component used for the list.",
+    "paper": "The component used for the paper.",
+    "root": "The component used for the popper.",
+    "transition": "The component used for the transition. <a href=\"https://mui.com/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
   }
 }
