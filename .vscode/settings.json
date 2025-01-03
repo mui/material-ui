@@ -3,7 +3,6 @@
   "files.trimTrailingWhitespace": true,
 
   // Root workspace only
-  "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.surveys.enabled": false,
   "grammarly.selectors": [
     {
