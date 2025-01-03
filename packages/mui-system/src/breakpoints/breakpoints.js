@@ -1,7 +1,12 @@
 import PropTypes from 'prop-types';
+import isObjectEmpty from '@mui/utils/isObjectEmpty';
+import fastDeepAssign from '@mui/utils/fastDeepAssign';
 import deepmerge from '@mui/utils/deepmerge';
 import merge from '../merge';
 import { isCqShorthand, getContainerQuery } from '../cssContainerQueries';
+import createBreakpoints from '../createBreakpoints/createBreakpoints';
+
+const EMPTY_THEME = {};
 
 // The breakpoint **start** at this value.
 // For instance with the first breakpoint xs: [xs, sm[.
@@ -13,12 +18,7 @@ export const values = {
   xl: 1536, // large screen
 };
 
-const defaultBreakpoints = {
-  // Sorted ASC by size. That's important.
-  // It can't be configured as it's used statically for propTypes.
-  keys: ['xs', 'sm', 'md', 'lg', 'xl'],
-  up: (key) => `@media (min-width:${values[key]}px)`,
-};
+export const DEFAULT_BREAKPOINTS = createBreakpoints({ values });
 
 const defaultContainerQueries = {
   containerQueries: (containerName) => ({
@@ -35,52 +35,77 @@ const defaultContainerQueries = {
 };
 
 export function handleBreakpoints(props, propValue, styleFromPropValue) {
-  const theme = props.theme || {};
+  const result = {};
+  return iterateBreakpoints(result, props.theme, propValue, (mediaKey, value, initialKey) => {
+    const finalValue = styleFromPropValue(value, initialKey);
+    if (mediaKey) {
+      result[mediaKey] = finalValue;
+    } else {
+      fastDeepAssign(result, finalValue);
+    }
+  });
+}
+
+export function iterateBreakpoints(target, theme, propValue, callback) {
+  theme ??= EMPTY_THEME;
 
   if (Array.isArray(propValue)) {
-    const themeBreakpoints = theme.breakpoints || defaultBreakpoints;
-    return propValue.reduce((acc, item, index) => {
-      acc[themeBreakpoints.up(themeBreakpoints.keys[index])] = styleFromPropValue(propValue[index]);
-      return acc;
-    }, {});
+    const breakpoints = theme.breakpoints ?? DEFAULT_BREAKPOINTS;
+    for (let i = 0; i < propValue.length; i += 1) {
+      buildBreakpoint(
+        target,
+        breakpoints.up(breakpoints.keys[i]),
+        propValue[i],
+        undefined,
+        callback,
+      );
+    }
+    return target;
   }
 
   if (typeof propValue === 'object') {
-    const themeBreakpoints = theme.breakpoints || defaultBreakpoints;
-    return Object.keys(propValue).reduce((acc, breakpoint) => {
-      if (isCqShorthand(themeBreakpoints.keys, breakpoint)) {
+    const breakpoints = theme.breakpoints ?? DEFAULT_BREAKPOINTS;
+    const breakpointValues = breakpoints.values ?? values;
+
+    for (const key in propValue) {
+      if (isCqShorthand(breakpoints.keys, key)) {
         const containerKey = getContainerQuery(
           theme.containerQueries ? theme : defaultContainerQueries,
-          breakpoint,
+          key,
         );
         if (containerKey) {
-          acc[containerKey] = styleFromPropValue(propValue[breakpoint], breakpoint);
+          buildBreakpoint(target, containerKey, propValue[key], key, callback);
         }
       }
-      // key is breakpoint
-      else if (Object.keys(themeBreakpoints.values || values).includes(breakpoint)) {
-        const mediaKey = themeBreakpoints.up(breakpoint);
-        acc[mediaKey] = styleFromPropValue(propValue[breakpoint], breakpoint);
+      // key is key
+      else if (key in breakpointValues) {
+        const mediaKey = breakpoints.up(key);
+        buildBreakpoint(target, mediaKey, propValue[key], key, callback);
       } else {
-        const cssKey = breakpoint;
-        acc[cssKey] = propValue[cssKey];
+        const cssKey = key;
+        target[cssKey] = propValue[cssKey];
       }
-      return acc;
-    }, {});
+    }
+
+    return target;
   }
 
-  const output = styleFromPropValue(propValue);
+  callback(undefined, propValue);
 
-  return output;
+  return target;
 }
 
-function breakpoints(styleFunction) {
-  // false positive
+function buildBreakpoint(target, mediaKey, value, initialKey, callback) {
+  target[mediaKey] ??= {};
+  callback(mediaKey, value, initialKey);
+}
+
+function setupBreakpoints(styleFunction) {
   // eslint-disable-next-line react/function-component-definition
   const newStyleFunction = (props) => {
     const theme = props.theme || {};
     const base = styleFunction(props);
-    const themeBreakpoints = theme.breakpoints || defaultBreakpoints;
+    const themeBreakpoints = theme.breakpoints || DEFAULT_BREAKPOINTS;
 
     const extended = themeBreakpoints.keys.reduce((acc, key) => {
       if (props[key]) {
@@ -110,33 +135,36 @@ function breakpoints(styleFunction) {
   return newStyleFunction;
 }
 
-export function createEmptyBreakpointObject(breakpointsInput = {}) {
-  const breakpointsInOrder = breakpointsInput.keys?.reduce((acc, key) => {
-    const breakpointStyleKey = breakpointsInput.up(key);
-    acc[breakpointStyleKey] = {};
-    return acc;
-  }, {});
-  return breakpointsInOrder || {};
+export function createEmptyBreakpointObject(breakpoints = DEFAULT_BREAKPOINTS) {
+  const { internal_mediaKeys: mediaKeys } = breakpoints;
+  const result = {};
+  for (let i = 0; i < mediaKeys.length; i += 1) {
+    result[mediaKeys[i]] = {};
+  }
+  return result;
 }
 
-export function removeUnusedBreakpoints(breakpointKeys, style) {
-  return breakpointKeys.reduce((acc, key) => {
-    const breakpointOutput = acc[key];
-    const isBreakpointUnused = !breakpointOutput || Object.keys(breakpointOutput).length === 0;
-    if (isBreakpointUnused) {
-      delete acc[key];
+export function removeUnusedBreakpoints(breakpoints, style) {
+  const breakpointKeys = breakpoints.internal_mediaKeys;
+
+  for (let i = 0; i < breakpointKeys.length; i += 1) {
+    const key = breakpointKeys[i];
+
+    if (isObjectEmpty(style[key])) {
+      delete style[key];
     }
-    return acc;
-  }, style);
+  }
+
+  return style;
 }
 
-export function mergeBreakpointsInOrder(breakpointsInput, ...styles) {
-  const emptyBreakpoints = createEmptyBreakpointObject(breakpointsInput);
+export function mergeBreakpointsInOrder(breakpoints, ...styles) {
+  const emptyBreakpoints = createEmptyBreakpointObject(breakpoints);
   const mergedOutput = [emptyBreakpoints, ...styles].reduce(
     (prev, next) => deepmerge(prev, next),
     {},
   );
-  return removeUnusedBreakpoints(Object.keys(emptyBreakpoints), mergedOutput);
+  return removeUnusedBreakpoints(breakpoints, mergedOutput);
 }
 
 // compute base for responsive values; e.g.,
@@ -197,4 +225,18 @@ export function resolveBreakpointValues({
   }, {});
 }
 
-export default breakpoints;
+export function hasBreakpoint(breakpoints, value) {
+  if (Array.isArray(value)) {
+    return true;
+  }
+  if (typeof value === 'object' && value !== null) {
+    for (let i = 0; i < breakpoints.keys.length; i += 1) {
+      if (breakpoints.keys[i] in value) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+export default setupBreakpoints;
