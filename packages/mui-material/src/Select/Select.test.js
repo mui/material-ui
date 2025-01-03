@@ -1782,4 +1782,22 @@ describe('<Select />', () => {
 
     expect(getByRole('combobox')).not.toHaveFocus();
   });
+
+  it('outlined icon should be selected from below css selectors', () => {
+    const { container } = render(<Select value="" />);
+    expect(container.querySelector('.MuiSelect-iconOutlined')).not.to.equal(null);
+    expect(container.querySelector('.MuiSelect-outlined ~ .MuiSelect-icon')).not.to.equal(null);
+  });
+
+  it('standard icon should be selected from below css selectors', () => {
+    const { container } = render(<Select value="" variant="standard" />);
+    expect(container.querySelector('.MuiSelect-iconStandard')).not.to.equal(null);
+    expect(container.querySelector('.MuiSelect-standard ~ .MuiSelect-icon')).not.to.equal(null);
+  });
+
+  it('filled icon should be selected from below css selectors', () => {
+    const { container } = render(<Select value="" variant="filled" />);
+    expect(container.querySelector('.MuiSelect-iconFilled')).not.to.equal(null);
+    expect(container.querySelector('.MuiSelect-filled ~ .MuiSelect-icon')).not.to.equal(null);
+  });
 });
