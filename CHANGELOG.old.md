@@ -3070,7 +3070,7 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 - [docs-infra] Simplify product id handling (#37593) @oliviertassinari
 - [changelog] Add missing release date for v5.13.5 @oliviertassinari
 - [examples] Shell command fix in the readme file of material-next-ts example (#37675) @bablukpik
-- [examples] Next.js v13 app router with Material UI (#37315) @smo043
+- [examples] Next.js v13 App Router with Material UI (#37315) @smo043
 
 ### Core
 
