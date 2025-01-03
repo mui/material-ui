@@ -24,12 +24,12 @@ describe('utils/index.js', () => {
     it('external slot props should override', () => {
       expect(
         mergeSlotProps<OwnerState>(
-          { className: 'external' },
+          { className: 'external', 'aria-label': 'bar' },
           { className: 'default', 'aria-label': 'foo' },
         ),
       ).to.deep.equal({
         className: 'default external',
-        'aria-label': 'foo',
+        'aria-label': 'bar',
       });
     });
 
