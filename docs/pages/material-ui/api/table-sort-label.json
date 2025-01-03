@@ -35,16 +35,16 @@
   ],
   "slots": [
     {
-      "name": "icon",
-      "description": "The component that renders the icon slot.",
-      "default": "ArrowDownwardIcon",
-      "class": "MuiTableSortLabel-icon"
-    },
-    {
       "name": "root",
       "description": "The component that renders the root slot.",
       "default": "span",
       "class": "MuiTableSortLabel-root"
+    },
+    {
+      "name": "icon",
+      "description": "The component that renders the icon slot.",
+      "default": "ArrowDownwardIcon",
+      "class": "MuiTableSortLabel-icon"
     }
   ],
   "classes": [
