@@ -39,13 +39,13 @@
   "devDependencies": {
     "@babel/register": "^7.25.9",
     "@types/babel__core": "^7.20.5",
-    "@types/chai": "^4.3.20",
+    "@types/chai": "^5.0.1",
     "@types/doctrine": "^0.0.9",
     "@types/lodash": "^4.17.13",
     "@types/node": "^20.17.10",
     "@types/react": "^19.0.2",
     "@types/uuid": "^10.0.0",
-    "chai": "^4.5.0",
+    "chai": "^5.1.2",
     "fast-glob": "^3.3.2",
     "prettier": "^3.4.2",
     "rimraf": "^6.0.1"

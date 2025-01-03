@@ -25,7 +25,7 @@
   "devDependencies": {
     "@types/babel__helper-module-imports": "^7.18.3",
     "babel-plugin-tester": "^11.0.4",
-    "chai": "^4.5.0"
+    "chai": "^5.1.2"
   },
   "sideEffects": false,
   "type": "commonjs",
