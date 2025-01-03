@@ -133,7 +133,7 @@
     "@types/react-window": "^1.8.8",
     "@types/stylis": "^4.2.0",
     "chai": "^4.5.0",
-    "cross-fetch": "^4.0.0",
+    "cross-fetch": "^4.1.0",
     "gm": "^1.25.0",
     "marked": "^15.0.4",
     "playwright": "^1.48.2",
