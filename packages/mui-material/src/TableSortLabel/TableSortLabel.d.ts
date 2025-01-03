@@ -6,6 +6,10 @@ import { OverrideProps } from '../OverridableComponent';
 import { TableSortLabelClasses } from './tableSortLabelClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
+export interface TableSortLabelRootSlotPropsOverrides {}
+
+export interface TableSortLabelIconSlotPropsOverrides {}
+
 export interface TableSortLabelSlots {
   /**
    * The component that renders the icon slot.
@@ -27,7 +31,7 @@ export type TableSortLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
      */
     icon: SlotProps<
       React.ElementType<React.SVGAttributes<SVGSVGElement>>,
-      {},
+      TableSortLabelIconSlotPropsOverrides,
       TableSortLabelOwnerState
     >;
     /**
@@ -35,7 +39,7 @@ export type TableSortLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
      */
     root: SlotProps<
       React.ElementType<React.HTMLAttributes<HTMLSpanElement>>,
-      {},
+      TableSortLabelRootSlotPropsOverrides,
       TableSortLabelOwnerState
     >;
   }
