@@ -10,6 +10,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import Fade from '@mui/material/Fade';
 import CircularProgress from '@mui/material/CircularProgress';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
@@ -736,9 +737,17 @@ export default function SearchIcons() {
             inputProps={{ 'aria-label': 'search icons' }}
             endAdornment={
               isPending ? (
-                <InputAdornment position="end">
-                  <CircularProgress disableShrink size={16} sx={{ mr: 2 }} />
-                </InputAdornment>
+                <Fade
+                  in={isPending}
+                  style={{
+                    transitionDelay: '100ms',
+                  }}
+                  unmountOnExit
+                >
+                  <InputAdornment position="end">
+                    <CircularProgress disableShrink size={16} sx={{ mr: 2 }} />
+                  </InputAdornment>
+                </Fade>
               ) : null
             }
           />
