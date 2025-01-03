@@ -77,5 +77,23 @@ describe('utils/index.js', () => {
         'aria-label': 'foo',
       });
     });
+
+    it('external callback should be called with default slot props', () => {
+      expect(
+        mergeSlotProps<(ownerState: OwnerState) => OwnerState>(
+          ({ 'aria-label': ariaLabel }) => ({
+            className: 'external',
+            'aria-label': ariaLabel === 'foo' ? 'bar' : 'baz',
+          }),
+          () => ({
+            className: 'default',
+            'aria-label': 'foo',
+          }),
+        )({ className: 'base', 'aria-label': 'unknown' }),
+      ).to.deep.equal({
+        className: 'base default external',
+        'aria-label': 'bar',
+      });
+    });
   });
 });

@@ -1,19 +1,11 @@
 import { SlotComponentProps } from '@mui/utils';
 import clsx from 'clsx';
 
-type PickFn<T> = T extends Function ? T : never;
-type ExcludeFn<T> = Exclude<T, Function>;
-
 export default function mergeSlotProps<
   T extends SlotComponentProps<React.ElementType, {}, {}>,
   K = T,
-  U = T extends Function
-    ? PickFn<T>
-    : K extends Function
-      ? PickFn<K>
-      : T extends undefined
-        ? K
-        : ExcludeFn<T>,
+  // infer external slot props first to provide autocomplete for default slot props
+  U = T extends Function ? T : K extends Function ? K : T extends undefined ? K : T,
 >(externalSlotProps: T | undefined, defaultSlotProps: K): U {
   if (!externalSlotProps) {
     return defaultSlotProps as unknown as U;
