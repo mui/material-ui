@@ -76,29 +76,27 @@ function TestViewer(props) {
           },
         }}
       />
-      <React.Suspense fallback={<div aria-busy />}>
-        {window.location.pathname.startsWith('/docs-joy') ? (
-          <CssVarsProvider>
-            <JoyBox
-              aria-busy={!ready}
-              data-testid="testcase"
-              data-testpath={path}
-              sx={{ bgcolor: 'background.body', ...viewerBoxSx }}
-            >
-              {children}
-            </JoyBox>
-          </CssVarsProvider>
-        ) : (
-          <Box
+      {window.location.pathname.startsWith('/docs-joy') ? (
+        <CssVarsProvider>
+          <JoyBox
             aria-busy={!ready}
             data-testid="testcase"
             data-testpath={path}
-            sx={{ bgcolor: 'background.default', ...viewerBoxSx }}
+            sx={{ bgcolor: 'background.body', ...viewerBoxSx }}
           >
             {children}
-          </Box>
-        )}
-      </React.Suspense>
+          </JoyBox>
+        </CssVarsProvider>
+      ) : (
+        <Box
+          aria-busy={!ready}
+          data-testid="testcase"
+          data-testpath={path}
+          sx={{ bgcolor: 'background.default', ...viewerBoxSx }}
+        >
+          {children}
+        </Box>
+      )}
     </React.Fragment>
   );
 }
