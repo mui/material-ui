@@ -1375,6 +1375,70 @@ Here's how to migrate:
  },
 ```
 
+## LinearProgress
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#linear-progress-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/linear-progress-classes <path>
+```
+
+### Composed CSS classes
+
+The CSS classes that composed the `variant` and `color` prop values were deprecated.
+
+Here's how to migrate:
+
+```diff
+-.MuiLinearProgress-bar1Buffer
++.MuiLinearProgress-bar1.MuiLinearProgress-buffer
+-.MuiLinearProgress-bar1Determinate
++.MuiLinearProgress-bar1.MuiLinearProgress-determinate
+-.MuiLinearProgress-bar1Indeterminate
++.MuiLinearProgress-bar1.MuiLinearProgress-indeterminate
+-.MuiLinearProgress-bar2Buffer
++.MuiLinearProgress-bar2.MuiLinearProgress-buffer
+-.MuiLinearProgress-bar2Indeterminate
++.MuiLinearProgress-bar2.MuiLinearProgress-indeterminate
+-.MuiLinearProgress-barColorPrimary
++.MuiLinearProgress-bar.MuiLinearProgress-colorPrimary
+-.MuiLinearProgress-barColorSecondary
++.MuiLinearProgress-bar.MuiLinearProgress-colorSecondary
+-.MuiLinearProgress-dashedColorPrimary
++.MuiLinearProgress-dashed.MuiLinearProgress-colorPrimary
+-.MuiLinearProgress-dashedColorSecondary
++.MuiLinearProgress-dashed.MuiLinearProgress-colorSecondary
+```
+
+```diff
+ import { linearProgressClasses } from '@mui/material/LinearProgress';
+
+ MuiLinearProgress: {
+   styleOverrides: {
+     root: {
+-      [`&.${linearProgressClasses.bar1Buffer}`]: {},
++      [`&.${linearProgressClasses.bar1}.${linearProgressClasses.buffer}`]: {},
+-      [`&.${linearProgressClasses.bar1Determinate}`]: {},
++      [`&.${linearProgressClasses.bar1}.${linearProgressClasses.determinate}`]: {},
+-      [`&.${linearProgressClasses.bar1Indeterminate}`]: {},
++      [`&.${linearProgressClasses.bar1}.${linearProgressClasses.indeterminate}`]: {},
+-      [`&.${linearProgressClasses.bar2Buffer}`]: {},
++      [`&.${linearProgressClasses.bar2}.${linearProgressClasses.buffer}`]: {},
+-      [`&.${linearProgressClasses.bar2Indeterminate}`]: {},
++      [`&.${linearProgressClasses.bar2}.${linearProgressClasses.indeterminate}`]: {},
+-      [`&.${linearProgressClasses.barColorPrimary}`]: {},
++      [`&.${linearProgressClasses.bar}.${linearProgressClasses.colorPrimary}`]: {},
+-      [`&.${linearProgressClasses.barColorSecondary}`]: {},
++      [`&.${linearProgressClasses.bar}.${linearProgressClasses.colorSecondary}`]: {},
+-      [`&.${linearProgressClasses.dashedColorPrimary}`]: {},
++      [`&.${linearProgressClasses.dashed}.${linearProgressClasses.colorPrimary}`]: {},
+-      [`&.${linearProgressClasses.dashedColorSecondary}`]: {},
++      [`&.${linearProgressClasses.dashed}.${linearProgressClasses.colorSecondary}`]: {},
+     },
+   },
+ }
+```
+
 ## Modal
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#modal-props) below to migrate the code as described in the following sections:
