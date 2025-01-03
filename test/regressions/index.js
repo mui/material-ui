@@ -41,81 +41,21 @@ importRegressionFixtures.keys().forEach((path) => {
 const blacklist = [
   // Excludes demos that we don't want
   /^docs-(.*)(?<=NoSnap)\.png$/,
-  // Blog template components and theme customizations
-  'docs-getting-started-templates-blog/Blog.png',
-  'docs-getting-started-templates-blog/TemplateFrame.png',
-  'docs-getting-started-templates-blog-components/AppAppbar.png',
-  'docs-getting-started-templates-blog-components/Footer.png',
-  'docs-getting-started-templates-blog-components/Latest.png',
-  'docs-getting-started-templates-blog-components/SitemarkIcon.png',
-  'docs-getting-started-templates-blog-components/ToggleColorMode.png',
-  'docs-getting-started-templates-blog-theme-customizations/buttons.png',
-  'docs-getting-started-templates-blog-theme-customizations/index.png',
-  'docs-getting-started-templates-blog-theme-customizations/inputs.png',
-  'docs-getting-started-templates-blog-theme-customizations/layoutComponents.png',
-  'docs-getting-started-templates-blog-theme-customizations/menus.png',
-  'docs-getting-started-templates-blog-theme-customizations/others.png',
-  // Dashboard template components and theme customizations
-  'docs-getting-started-templates-dashboard/Dashboard.png',
-  'docs-getting-started-templates-dashboard/TemplateFrame.png',
-  'docs-getting-started-templates-dashboard-components/ChartUserByCountry.png',
-  'docs-getting-started-templates-dashboard-components/CustomDatePicker.png',
-  'docs-getting-started-templates-dashboard-components/CustomizedDataGrid.png',
-  'docs-getting-started-templates-dashboard-components/CustomizedTreeView.png',
-  'docs-getting-started-templates-dashboard-components/Header.png',
-  'docs-getting-started-templates-dashboard-components/HighlightedCard.png',
-  'docs-getting-started-templates-dashboard-components/MenuButton.png',
-  'docs-getting-started-templates-dashboard-components/Navbar.png',
-  'docs-getting-started-templates-dashboard-components/NavbarBreadcrumbs.png',
-  'docs-getting-started-templates-dashboard-components/OptionsMenu.png',
-  'docs-getting-started-templates-dashboard-components/SessionsChart.png',
-  'docs-getting-started-templates-dashboard-components/Search.png',
-  'docs-getting-started-templates-dashboard-components/ToggleColorMode.png',
-  'docs-getting-started-templates-dashboard-components/SideMenuMobile.png',
-  'docs-getting-started-templates-dashboard-components/PageViewsBarChart.png',
-  'docs-getting-started-templates-dashboard-components/StatCard.png',
-  'docs-getting-started-templates-dashboard-theme-customizations/buttons.png',
-  'docs-getting-started-templates-dashboard-theme-customizations/charts.png',
-  'docs-getting-started-templates-dashboard-theme-customizations/dataGrid.png',
-  'docs-getting-started-templates-dashboard-theme-customizations/datePickers.png',
-  'docs-getting-started-templates-dashboard-theme-customizations/index.png',
-  'docs-getting-started-templates-dashboard-theme-customizations/inputs.png',
-  'docs-getting-started-templates-dashboard-theme-customizations/layoutComponents.png',
-  'docs-getting-started-templates-dashboard-theme-customizations/menus.png',
-  'docs-getting-started-templates-dashboard-theme-customizations/others.png',
-  'docs-getting-started-templates-dashboard-theme-customizations/treeView.png',
-  'docs-getting-started-templates-dashboard-internals-components/CustomIcons.png',
-  // Sign-In/Sign-Up Theme Customizations
-  'docs-getting-started-templates-sign-in-side/TemplateFrame.png',
-  'docs-getting-started-templates-sign-in-side-theme-customizations/index.png',
-  'docs-getting-started-templates-sign-in-side/CustomIcons.png',
-  'docs-getting-started-templates-sign-in/TemplateFrame.png',
-  'docs-getting-started-templates-sign-in-theme-customizations/index.png',
-  'docs-getting-started-templates-sign-in/CustomIcons.png',
-  'docs-getting-started-templates-sign-up/TemplateFrame.png',
-  'docs-getting-started-templates-sign-up-theme-customizations/index.png',
-  'docs-getting-started-templates-sign-in-side/getSignInSideTheme.png',
-  'docs-getting-started-templates-sign-up/CustomIcons.png',
-  'docs-getting-started-templates-sign-up/getSignUpTheme.png',
+  // Template
+  'docs-getting-started-templates-blog-components',
+  'docs-getting-started-templates-checkout-components',
+  'docs-getting-started-templates-dashboard-components',
+  'docs-getting-started-templates-dashboard-internals-components',
+  'docs-getting-started-templates-dashboard-theme-customizations',
+  'docs-getting-started-templates-marketing-page-components',
+  'docs-getting-started-templates-shared-theme',
+  'docs-getting-started-templates-sign-in-components',
+  'docs-getting-started-templates-sign-in-side-components',
+  'docs-getting-started-templates-sign-up-components',
   // Checkout Theme Customizations
-  'docs-getting-started-templates-checkout/TemplateFrame.png',
-  'docs-getting-started-templates-checkout-theme-customizations/index.png',
-  'docs-getting-started-templates-checkout/getCheckoutTheme.png',
   // Marketing Page Theme Customizations
-  'docs-getting-started-templates-marketing-page/TemplateFrame.png',
-  'docs-getting-started-templates-marketing-page/getMPTheme.png',
-  'docs-getting-started-templates-marketing-page/MarketingPage.png',
-  'docs-getting-started-templates-marketing-page-theme-customizations/index.png',
-  'docs-joy-getting-started-templates/TemplateCollection.png', // No public components
-  'docs-joy-core-features-automatic-adjustment/ListThemes.png', // No public components
-  'docs-joy-tools/PaletteThemeViewer.png', // No need for theme tokens
-  'docs-joy-tools/ShadowThemeViewer.png', // No need for theme tokens
-  'docs-joy-customization-theme-typography/TypographyThemeViewer.png', // No need for theme tokens
-  'docs-joy-components-circular-progress/CircularProgressCountUp.png', // Flaky due to animation
-  'docs-joy-components-divider/DividerChildPosition.png', // Needs interaction
-  'docs-joy-components-linear-progress/LinearProgressCountUp.png', // Flaky due to animation
-  'docs-base-guides-working-with-tailwind-css/PlayerFinal.png', // No public components
   'docs-base-getting-started-quickstart/BaseButtonTailwind.png', // CodeSandbox
+  'docs-base-guides-working-with-tailwind-css/PlayerFinal.png', // No public components
   'docs-components-alert/TransitionAlerts.png', // Needs interaction
   'docs-components-app-bar/BackToTop.png', // Needs interaction
   'docs-components-app-bar/ElevateAppBar.png', // Needs interaction
@@ -148,20 +88,17 @@ const blacklist = [
   'docs-components-floating-action-button/FloatingActionButtonZoom.png', // Needs interaction
   'docs-components-grid/InteractiveGrid.png', // Redux isolation
   'docs-components-grid/SpacingGrid.png', // Needs interaction
-  'docs-components-hidden', // Need to dynamically resize to test
   'docs-components-image-list', // Image don't load
   'docs-components-masonry/ImageMasonry.png', // Image don't load
-  'docs-components-material-icons/synonyms.png', // No component
   'docs-components-menus', // Need interaction
-  'docs-components-modal/KeepMountedModal.png', // Needs interaction
   'docs-components-modal/BasicModal.png', // Needs interaction
+  'docs-components-modal/KeepMountedModal.png', // Needs interaction
   'docs-components-modal/SpringModal.png', // Needs interaction
   'docs-components-modal/TransitionsModal.png', // Needs interaction
   'docs-components-no-ssr/FrameDeferring.png', // Needs interaction
   'docs-components-popover/AnchorPlayground.png', // Redux isolation
-  'docs-components-popover/MouseOverPopover.png', // Needs interaction
-  'docs-components-popover/PopoverPopupState.png', // Needs interaction
   'docs-components-popover/BasicPopover.png', // Needs interaction
+  'docs-components-popover/PopoverPopupState.png', // Needs interaction
   'docs-components-popper/PopperPopupState.png', // Needs interaction
   'docs-components-popper/PositionedPopper.png', // Needs interaction
   'docs-components-popper/ScrollPlayground.png', // Redux isolation
@@ -169,7 +106,6 @@ const blacklist = [
   'docs-components-popper/SpringPopper.png', // Needs interaction
   'docs-components-popper/TransitionsPopper.png', // Needs interaction
   'docs-components-popper/VirtualElementPopper.png', // Needs interaction
-  'docs-components-portal/SimplePortal.png', // Needs interaction
   'docs-components-progress', // Flaky
   'docs-components-selects/ControlledOpenSelect.png', // Needs interaction
   'docs-components-selects/DialogSelect.png', // Needs interaction
@@ -189,39 +125,30 @@ const blacklist = [
   'docs-components-speed-dial', // Needs interaction
   'docs-components-stack/InteractiveStack.png', // Redundant
   'docs-components-steppers/HorizontalNonLinearStepper.png', // Redundant
-  'docs-components-steppers/SwipeableTextMobileStepper.png', // Flaky image loading
   'docs-components-steppers/TextMobileStepper.png', // Flaky image loading
   'docs-components-tabs/AccessibleTabs1.png', // Need interaction
   'docs-components-tabs/AccessibleTabs2.png', // Need interaction
   'docs-components-textarea-autosize', // Superseded by a dedicated regression test
   'docs-components-tooltips', // Needs interaction
   'docs-components-transitions', // Needs interaction
-  'docs-components-trap-focus', // Need interaction
-  'docs-components-tree-view/ControlledTreeView.png', // Redundant
-  'docs-components-tree-view/CustomizedTreeView.png', // Flaky
-  'docs-components-tree-view/IconExpansionTreeView.png', // Need interaction
-  'docs-components-tree-view/MultiSelectTreeView.png', // Need interaction
   'docs-components-use-media-query', // Need to dynamically resize to test
-  'docs-components-buttons/ButtonMaterialYouPlayground.png', // playground
   'docs-customization-breakpoints', // Need to dynamically resize to test
   'docs-customization-color', // Escape viewport
+  'docs-customization-container-queries/ResizableDemo.png', // No public components
   'docs-customization-default-theme', // Redux isolation
   'docs-customization-density/DensityTool.png', // Redux isolation
+  'docs-customization-right-to-left/RtlDemo.png',
   'docs-customization-transitions/TransitionHover.png', // Need interaction
   'docs-customization-typography/ResponsiveFontSizesChart.png',
-  'docs-customization-right-to-left/RtlDemo.png',
-  'docs-customization-container-queries/ResizableDemo.png', // No public components
-  'docs-discover-more-languages', // No public components
-  'docs-discover-more-showcase', // No public components
-  'docs-discover-more-team', // No public components
-  'docs-getting-started-templates', // No public components
-  'docs-getting-started-usage/Usage.png', // No public components
   'docs-getting-started-supported-components/MaterialUIComponents.png', // No public components
-  'docs-landing', // Mostly images, redundant
-  'docs-production-error', // No components, page for DX
+  'docs-getting-started-templates-marketing-page/MarketingPage.png',
+  'docs-joy-components-circular-progress/CircularProgressCountUp.png', // Flaky due to animation
+  'docs-joy-components-divider/DividerChildPosition.png', // Needs interaction
+  'docs-joy-components-linear-progress/LinearProgressCountUp.png', // Flaky due to animation
+  'docs-joy-customization-theme-typography/TypographyThemeViewer.png', // No need for theme tokens
+  'docs-joy-getting-started-templates/TemplateCollection.png', // No public components
   'docs-styles-advanced', // Redundant
   'docs-styles-basics/StressTest.png', // Need interaction
-  'docs-versions', // No public components
   /^docs-guides-.*/, // No public components
 ];
 
