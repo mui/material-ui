@@ -386,7 +386,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
         title !== '' &&
         childNode.tagName.toLowerCase() === 'button'
       ) {
-        console.error(
+        console.warn(
           [
             'MUI: You are providing a disabled `button` child to the Tooltip component.',
             'A disabled element does not fire events.',

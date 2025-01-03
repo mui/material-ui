@@ -92,6 +92,12 @@ Responsive values are supported by:
 - `spacing`
 - `offset`
 
+## Interactive
+
+Below is an interactive demo that lets you explore the visual results of the different settings:
+
+{{"demo": "InteractiveGrid.js", "hideToolbar": true, "bg": true}}
+
 ## Auto-layout
 
 The auto-layout feature gives equal space to all items present.
