@@ -33,13 +33,11 @@ const useUtilityClasses = (ownerState) => {
       `color${capitalize(color)}`,
       disableElevation && 'disableElevation',
       fullWidth && 'fullWidth',
+      loading && `loadingPosition${capitalize(loadingPosition)}`,
     ],
     startIcon: ['icon', 'startIcon', `iconSize${capitalize(size)}`],
     endIcon: ['icon', 'endIcon', `iconSize${capitalize(size)}`],
-    loadingIndicator: [
-      'loadingIndicator',
-      loading && `loadingPosition${capitalize(loadingPosition)}`,
-    ],
+    loadingIndicator: ['loadingIndicator'],
     loadingWrapper: ['loadingWrapper'],
   };
 

@@ -810,5 +810,24 @@ describe('<Button />', () => {
 
       expect(screen.getByRole('button')).to.have.text('loading…Test');
     });
+
+    it('should have loading position class attached to root when `loading`', () => {
+      const { rerender } = render(<Button loading>Test</Button>);
+      expect(screen.getByRole('button')).to.have.class(classes.loadingPositionCenter);
+
+      rerender(
+        <Button loading loadingPosition="start">
+          Test
+        </Button>,
+      );
+      expect(screen.getByRole('button')).to.have.class(classes.loadingPositionStart);
+
+      rerender(
+        <Button loading loadingPosition="end">
+          Test
+        </Button>,
+      );
+      expect(screen.getByRole('button')).to.have.class(classes.loadingPositionEnd);
+    });
   });
 });
