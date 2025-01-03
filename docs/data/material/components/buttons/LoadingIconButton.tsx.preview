@@ -1,0 +1,5 @@
+<Tooltip title="Click to see loading">
+  <IconButton onClick={() => setLoading(true)} loading={loading}>
+    <ShoppingCartIcon />
+  </IconButton>
+</Tooltip>
