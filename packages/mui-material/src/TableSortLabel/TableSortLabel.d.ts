@@ -12,28 +12,20 @@ export interface TableSortLabelIconSlotPropsOverrides {}
 
 export interface TableSortLabelSlots {
   /**
-   * The component that renders the icon slot.
-   * @default ArrowDownwardIcon
-   */
-  icon?: React.ElementType;
-  /**
    * The component that renders the root slot.
    * @default span
    */
   root?: React.ElementType;
+  /**
+   * The component that renders the icon slot.
+   * @default ArrowDownwardIcon
+   */
+  icon?: React.ElementType;
 }
 
 export type TableSortLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
   TableSortLabelSlots,
   {
-    /**
-     * Props forwarded to the icon slot.
-     */
-    icon: SlotProps<
-      React.ElementType<React.SVGAttributes<SVGSVGElement>>,
-      TableSortLabelIconSlotPropsOverrides,
-      TableSortLabelOwnerState
-    >;
     /**
      * Props forwarded to the root slot.
      */
@@ -42,10 +34,18 @@ export type TableSortLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
       TableSortLabelRootSlotPropsOverrides,
       TableSortLabelOwnerState
     >;
+    /**
+     * Props forwarded to the icon slot.
+     */
+    icon: SlotProps<
+      React.ElementType<React.SVGAttributes<SVGSVGElement>>,
+      TableSortLabelIconSlotPropsOverrides,
+      TableSortLabelOwnerState
+    >;
   }
 >;
 
-export interface TableSortLabelOwnerState extends TableSortLabelProps {}
+export interface TableSortLabelOwnerState extends TableSortLabelOwnProps {}
 
 export interface TableSortLabelOwnProps extends TableSortLabelSlotsAndSlotProps {
   /**
