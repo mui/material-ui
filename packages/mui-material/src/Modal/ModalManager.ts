@@ -8,15 +8,9 @@ export interface ManagedModalProps {
   disableScrollLock?: boolean;
 }
 
-// Is a vertical scrollbar displayed?
-function isOverflowing(container: Element): boolean {
-  const doc = ownerDocument(container);
-
-  if (doc.body === container) {
-    return ownerWindow(container).innerWidth > doc.documentElement.clientWidth;
-  }
-
-  return container.scrollHeight > container.clientHeight;
+// Is a vertical scrollbar displayed on body?
+function isBodyOverflowing(body: HTMLElement): boolean {
+  return ownerWindow(body).innerWidth > ownerDocument(body).documentElement.clientWidth;
 }
 
 export function ariaHidden(element: Element, hide: boolean): void {
@@ -56,22 +50,47 @@ function isAriaHiddenForbiddenOnElement(element: Element): boolean {
   return isForbiddenTagName || isInputHidden;
 }
 
-function ariaHiddenSiblings(
+function ariaHiddenElements(
   container: Element,
-  mountElement: Element,
+  mountElement: Element | null,
   currentElement: Element,
   elementsToExclude: readonly Element[],
   hide: boolean,
 ): void {
-  const blacklist = [mountElement, currentElement, ...elementsToExclude];
+  let current: Element | null = container;
+  let previousElement: Element =
+    container === mountElement ? currentElement : (mountElement ?? currentElement);
+  const html = ownerDocument(container).body.parentElement;
+  const blacklist = [mountElement, ...elementsToExclude];
 
-  [].forEach.call(container.children, (element: Element) => {
-    const isNotExcludedElement = !blacklist.includes(element);
-    const isNotForbiddenElement = !isAriaHiddenForbiddenOnElement(element);
-    if (isNotExcludedElement && isNotForbiddenElement) {
-      ariaHidden(element, hide);
+  while (current != null && html !== current) {
+    for (let i = 0; i < current.children.length; i += 1) {
+      const element = current.children[i];
+      const isNotExcludedElement = blacklist.indexOf(element) === -1;
+      const isNotForbiddenElement = !isAriaHiddenForbiddenOnElement(element);
+      const isPreviousElement = element === previousElement;
+
+      // We came from here
+      if (isPreviousElement) {
+        if (!isNotExcludedElement) {
+          // If any ancestor has aria-hidden applied (e.g. by another modal), the current modal could become inaccessible.
+          // We remove aria-hidden from ancestors to ensure the current modal is accessible, even though this might not be ideal if aria-hidden wasn't added by another modal (For example, if a developer manually applied aria-hidden to hide certain content, removing it could lead to unintended accessibility issues.).
+          if (hide) {
+            ariaHidden(element, !hide);
+          }
+          // we restore it if it was originally hidden
+          else {
+            ariaHidden(element, hide);
+          }
+        }
+      } else if (isNotExcludedElement && isNotForbiddenElement) {
+        ariaHidden(element, hide);
+      }
     }
-  });
+
+    previousElement = current;
+    current = current.parentElement;
+  }
 }
 
 function findIndexOf<T>(items: readonly T[], callback: (item: T) => boolean): number {
@@ -95,23 +114,27 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
     el: HTMLElement | SVGElement;
     value: string;
   }> = [];
-  const container = containerInfo.container;
+
+  // We always try to apply the scrollLock to body in case disablePortal was used
+  // on the modal and container is deeply nested. This method seems to block
+  // scrolling on all containers so it still works with disablePortal
+  const body = ownerDocument(containerInfo.container).body;
 
   if (!props.disableScrollLock) {
-    if (isOverflowing(container)) {
+    if (isBodyOverflowing(body)) {
       // Compute the size before applying overflow hidden to avoid any scroll jumps.
-      const scrollbarSize = getScrollbarSize(ownerWindow(container));
+      const scrollbarSize = getScrollbarSize(ownerWindow(body));
 
       restoreStyle.push({
-        value: container.style.paddingRight,
+        value: body.style.paddingRight,
         property: 'padding-right',
-        el: container,
+        el: body,
       });
       // Use computed style, here to get the real padding to add our scrollbar width.
-      container.style.paddingRight = `${getPaddingRight(container) + scrollbarSize}px`;
+      body.style.paddingRight = `${getPaddingRight(body) + scrollbarSize}px`;
 
       // .mui-fixed is a global helper.
-      const fixedElements = ownerDocument(container).querySelectorAll('.mui-fixed');
+      const fixedElements = ownerDocument(body).querySelectorAll('.mui-fixed');
       [].forEach.call(fixedElements, (element: HTMLElement | SVGElement) => {
         restoreStyle.push({
           value: element.style.paddingRight,
@@ -122,21 +145,12 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
       });
     }
 
-    let scrollContainer: HTMLElement;
-
-    if (container.parentNode instanceof DocumentFragment) {
-      scrollContainer = ownerDocument(container).body;
-    } else {
-      // Support html overflow-y: auto for scroll stability between pages
-      // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
-      const parent = container.parentElement;
-      const containerWindow = ownerWindow(container);
-      scrollContainer =
-        parent?.nodeName === 'HTML' &&
-        containerWindow.getComputedStyle(parent).overflowY === 'scroll'
-          ? parent
-          : container;
-    }
+    // Support html overflow-y: auto for scroll stability between pages
+    // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
+    const html = document.documentElement;
+    const containerWindow = ownerWindow(body);
+    const scrollContainer =
+      containerWindow.getComputedStyle(html).overflowY === 'scroll' ? html : body;
 
     // Block the scroll even if no scrollbar is visible to account for mobile keyboard
     // screensize shrink.
@@ -174,24 +188,38 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
   return restore;
 }
 
-function getHiddenSiblings(container: Element) {
-  const hiddenSiblings: Element[] = [];
-  [].forEach.call(container.children, (element: Element) => {
-    if (element.getAttribute('aria-hidden') === 'true') {
-      hiddenSiblings.push(element);
-    }
-  });
-  return hiddenSiblings;
+function getHiddenElements(container: Element) {
+  const hiddenElements: Element[] = [];
+  const html = ownerDocument(container).body.parentElement;
+  let current: Element | null = container;
+
+  while (current != null && html !== current) {
+    [].forEach.call(current.children, (element: Element) => {
+      if (element.getAttribute('aria-hidden') === 'true') {
+        hiddenElements.push(element);
+      }
+    });
+    current = current.parentElement;
+  }
+  return hiddenElements;
 }
 
 interface Modal {
-  mount: Element;
+  /**
+   * The immediate child of the container argument {@link ModalManager.add}.
+   *
+   * If you pass in {@link modalRef} or the container itself it's also handled
+   */
+  mount: Element | null;
+  /**
+   * The modal element itself.
+   */
   modalRef: Element;
 }
 
 interface Container {
   container: HTMLElement;
-  hiddenSiblings: Element[];
+  hiddenElements: Element[];
   modals: Modal[];
   restore: null | (() => void);
 }
@@ -213,6 +241,12 @@ export class ModalManager {
     this.containers = [];
   }
 
+  /**
+   *
+   * @param modal
+   * @param container {@link Modal["mount"]}
+   * @returns
+   */
   add(modal: Modal, container: HTMLElement): number {
     let modalIndex = this.modals.indexOf(modal);
     if (modalIndex !== -1) {
@@ -227,8 +261,8 @@ export class ModalManager {
       ariaHidden(modal.modalRef, false);
     }
 
-    const hiddenSiblings = getHiddenSiblings(container);
-    ariaHiddenSiblings(container, modal.mount, modal.modalRef, hiddenSiblings, true);
+    const hiddenElements = getHiddenElements(container);
+    ariaHiddenElements(container, modal.mount, modal.modalRef, hiddenElements, true);
 
     const containerIndex = findIndexOf(this.containers, (item) => item.container === container);
     if (containerIndex !== -1) {
@@ -240,7 +274,7 @@ export class ModalManager {
       modals: [modal],
       container,
       restore: null,
-      hiddenSiblings,
+      hiddenElements,
     });
 
     return modalIndex;
@@ -280,11 +314,11 @@ export class ModalManager {
         ariaHidden(modal.modalRef, ariaHiddenState);
       }
 
-      ariaHiddenSiblings(
+      ariaHiddenElements(
         containerInfo.container,
         modal.mount,
         modal.modalRef,
-        containerInfo.hiddenSiblings,
+        containerInfo.hiddenElements,
         false,
       );
       this.containers.splice(containerIndex, 1);
