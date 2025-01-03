@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import NextLink from 'next/link';
@@ -38,19 +37,6 @@ export const NextLinkComposed = React.forwardRef(function NextLinkComposed(props
     </NextLink>
   );
 });
-
-NextLinkComposed.propTypes = {
-  href: PropTypes.any,
-  legacyBehavior: PropTypes.bool,
-  linkAs: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  locale: PropTypes.string,
-  passHref: PropTypes.bool,
-  prefetch: PropTypes.bool,
-  replace: PropTypes.bool,
-  scroll: PropTypes.bool,
-  shallow: PropTypes.bool,
-  to: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
-};
 
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/pages/api-reference/components/link
@@ -104,21 +90,5 @@ const Link = React.forwardRef(function Link(props, ref) {
     />
   );
 });
-
-Link.propTypes = {
-  activeClassName: PropTypes.string,
-  as: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  className: PropTypes.string,
-  href: PropTypes.any,
-  legacyBehavior: PropTypes.bool,
-  linkAs: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  locale: PropTypes.string,
-  noLinkStyle: PropTypes.bool,
-  prefetch: PropTypes.bool,
-  replace: PropTypes.bool,
-  role: PropTypes.string,
-  scroll: PropTypes.bool,
-  shallow: PropTypes.bool,
-};
 
 export default Link;
