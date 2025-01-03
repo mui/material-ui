@@ -24,7 +24,7 @@ const SelectButton = React.forwardRef(function SelectButton<
         height="24"
         viewBox="0 0 24 24"
         fill="none"
-        className="text-base absolute h-full top-0 right-1"
+        className="absolute right-1 top-0 h-full text-base"
       >
         <path d="m7 10 5 5 5-5H7z" />
       </svg>

@@ -188,7 +188,7 @@ export default function PropertiesList(props: PropertiesListProps) {
             )}
             {additionalInfo?.map((key) => (
               <p
-                className="prop-list-additional-description  MuiApi-collapsible"
+                className="prop-list-additional-description MuiApi-collapsible"
                 key={key}
                 dangerouslySetInnerHTML={{
                   __html: t(`api-docs.additional-info.${key}`)!,
