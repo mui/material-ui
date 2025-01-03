@@ -35,8 +35,8 @@ const circularDashKeyframe = keyframes`
   }
 
   100% {
-    stroke-dasharray: 100px, 200px;
-    stroke-dashoffset: -125px;
+    stroke-dasharray: 1px, 200px;
+    stroke-dashoffset: -126px;
   }
 `;
 
