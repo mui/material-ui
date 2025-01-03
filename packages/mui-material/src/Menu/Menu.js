@@ -7,6 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import { useRtl } from '@mui/system/RtlProvider';
 import useSlotProps from '@mui/utils/useSlotProps';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import MenuList from '../MenuList';
 import Popover, { PopoverPaper } from '../Popover';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
@@ -105,6 +106,21 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   const autoFocusItem = autoFocus && !disableAutoFocusItem && open;
 
   const menuListActionsRef = React.useRef(null);
+
+  useEnhancedEffect(() => {
+    if (open) {
+      const selection = document.getSelection();
+
+      if (selection && selection.rangeCount > 0) {
+        const range = selection.getRangeAt(0);
+
+        setTimeout(() => {
+          // Restore the selection before focusing, to not affect the text selection on Safari and Firefox.
+          selection.addRange(range);
+        });
+      }
+    }
+  }, [open]);
 
   const handleEntering = (element, isAppearing) => {
     if (menuListActionsRef.current) {

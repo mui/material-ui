@@ -81,6 +81,16 @@ function moveFocus(
       // Move to the next element.
       nextFocus = traversalFunction(list, nextFocus, disableListWrap);
     } else {
+      const selection = document.getSelection();
+      if (selection && selection.rangeCount > 0) {
+        const range = selection.getRangeAt(0);
+
+        setTimeout(() => {
+          // Restore the selection before focusing, to not affect the text selection on Safari and Firefox.
+          selection.addRange(range);
+        });
+      }
+
       nextFocus.focus();
       return true;
     }
