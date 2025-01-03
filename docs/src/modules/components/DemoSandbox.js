@@ -149,6 +149,7 @@ function getTheme(outerTheme, injectTheme) {
     outerTheme.palette.primary.main !== brandingDesignTokens.palette.primary.main;
   const resultTheme = createTheme(
     {
+      experimentalColorMix: outerTheme.experimentalColorMix,
       palette: {
         mode: outerTheme.palette.mode || 'light',
         ...(isCustomized && {
