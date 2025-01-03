@@ -47,7 +47,7 @@ export type TableSortLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface TableSortLabelOwnerState extends TableSortLabelOwnProps {}
 
-export interface TableSortLabelOwnProps extends TableSortLabelSlotsAndSlotProps {
+export interface TableSortLabelOwnProps {
   /**
    * If `true`, the label will have the active styling (should be true for the sorted column).
    * @default false
@@ -88,7 +88,7 @@ export type TableSortLabelTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = 'span',
 > = ExtendButtonBaseTypeMap<{
-  props: AdditionalProps & TableSortLabelOwnProps;
+  props: AdditionalProps & TableSortLabelOwnProps & TableSortLabelSlotsAndSlotProps;
   defaultComponent: RootComponent;
 }>;
 
