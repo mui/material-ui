@@ -61,6 +61,22 @@ const defaultIsActiveElementInListbox = (listboxRef) =>
 
 const MULTIPLE_DEFAULT_VALUE = [];
 
+function getInitialInputValue(value, defaultValue, multiple, getOptionLabel) {
+  if (multiple || (value == null && defaultValue == null)) {
+    return '';
+  }
+  if (typeof value === 'string') {
+    return value;
+  }
+  if (value !== null && typeof value === 'object') {
+    return getOptionLabel(value);
+  }
+  if (defaultValue !== null && typeof defaultValue === 'object') {
+    return getOptionLabel(defaultValue);
+  }
+  return defaultValue || '';
+}
+
 function useAutocomplete(props) {
   const {
     // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -137,6 +153,15 @@ function useAutocomplete(props) {
   const defaultHighlighted = autoHighlight ? 0 : -1;
   const highlightedIndexRef = React.useRef(defaultHighlighted);
 
+  // Caculate the initial inputValue only on first render (mount)
+  // Ensurses that the initialInputValue remains constant during the component's lifetime
+  // defaultValue and value do not need to dynamically affect the inputValue after initialization
+  const initialInputValue = React.useMemo(
+    () => getInitialInputValue(valueProp, defaultValue, multiple, getOptionLabel),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
+
   const [value, setValueState] = useControlled({
     controlled: valueProp,
     default: defaultValue,
@@ -144,7 +169,7 @@ function useAutocomplete(props) {
   });
   const [inputValue, setInputValueState] = useControlled({
     controlled: inputValueProp,
-    default: '',
+    default: initialInputValue,
     name: componentName,
     state: 'inputValue',
   });
