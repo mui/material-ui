@@ -61,20 +61,11 @@ const defaultIsActiveElementInListbox = (listboxRef) =>
 
 const MULTIPLE_DEFAULT_VALUE = [];
 
-function getInitialInputValue(value, defaultValue, multiple, getOptionLabel) {
-  if (multiple || (value == null && defaultValue == null)) {
+function getInitialInputValue(defaultValue, multiple, getOptionLabel) {
+  if (multiple || defaultValue == null) {
     return '';
   }
-  if (typeof value === 'string') {
-    return value;
-  }
-  if (value !== null && typeof value === 'object') {
-    return getOptionLabel(value);
-  }
-  if (defaultValue !== null && typeof defaultValue === 'object') {
-    return getOptionLabel(defaultValue);
-  }
-  return defaultValue || '';
+  return typeof defaultValue === 'object' ? getOptionLabel(defaultValue) : defaultValue;
 }
 
 function useAutocomplete(props) {
@@ -155,9 +146,9 @@ function useAutocomplete(props) {
 
   // Caculate the initial inputValue only on first render (mount)
   // Ensurses that the initialInputValue remains constant during the component's lifetime
-  // defaultValue and value do not need to dynamically affect the inputValue after initialization
+  // defaultValue does not need to dynamically affect the inputValue after initialization
   const initialInputValue = React.useMemo(
-    () => getInitialInputValue(valueProp, defaultValue, multiple, getOptionLabel),
+    () => getInitialInputValue(defaultValue, multiple, getOptionLabel),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   );
