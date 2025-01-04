@@ -15,6 +15,9 @@ const {
 const {
   plugin: circularProgressClassesPlugin,
 } = require('../circular-progress-classes/postcss-plugin');
+const {
+  plugin: linearProgressClassesPlugin,
+} = require('../linear-progress-classes/postcss-plugin');
 const { plugin: tabClassesPlugin } = require('../tab-classes/postcss-plugin');
 const {
   plugin: tableSortLabelClassesPlugin,
@@ -29,6 +32,7 @@ module.exports = {
     buttonGroupClassesPlugin,
     chipClassesPlugin,
     circularProgressClassesPlugin,
+    linearProgressClassesPlugin,
     paginationItemClassesPlugin,
     stepConnectorClassesPlugin,
     toggleButtonGroupClassesPlugin,
