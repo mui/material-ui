@@ -1298,6 +1298,10 @@ CSS transforms:
 +.MuiLinearProgress-dashed.MuiLinearProgress-colorSecondary
 ```
 
+```bash
+npx @mui/codemod@latest deprecations/linear-progress-classes <path>
+```
+
 #### `modal-props`
 
 ```diff
