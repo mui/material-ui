@@ -1665,4 +1665,38 @@ describe('<Slider />', () => {
       width: '10px',
     });
   });
+
+  describe('When the onMouseUp event occurs at a different location than the last onChange event', () => {
+    it('should pass onChangeCommitted the same value that was passed to the last onChange event', () => {
+      const handleChange = spy();
+      const handleChangeCommitted = spy();
+
+      const { container } = render(
+        <Slider onChange={handleChange} onChangeCommitted={handleChangeCommitted} value={0} />,
+      );
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        left: 0,
+      }));
+
+      fireEvent.mouseDown(container.firstChild, {
+        buttons: 1,
+        clientX: 10,
+      });
+      fireEvent.mouseMove(container.firstChild, {
+        buttons: 1,
+        clientX: 15,
+      });
+      fireEvent.mouseUp(container.firstChild, {
+        buttons: 1,
+        clientX: 20,
+      });
+
+      expect(handleChange.callCount).to.equal(2);
+      expect(handleChange.args[0][1]).to.equal(10);
+      expect(handleChange.args[1][1]).to.equal(15);
+      expect(handleChangeCommitted.callCount).to.equal(1);
+      expect(handleChangeCommitted.args[0][1]).to.equal(15);
+    });
+  });
 });
