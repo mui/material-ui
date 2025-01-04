@@ -1253,23 +1253,23 @@ JS transforms:
    styleOverrides: {
      root: {
 -      [`&.${linearProgressClasses.bar1Buffer}`]: {},
-+      [`&.${linearProgressClasses.bar1}.${linearProgressClasses.buffer}`]: {},
++      [`&.${linearProgressClasses.buffer} > .${linearProgressClasses.bar1}`]: {},
 -      [`&.${linearProgressClasses.bar1Determinate}`]: {},
-+      [`&.${linearProgressClasses.bar1}.${linearProgressClasses.determinate}`]: {},
++      [`&.${linearProgressClasses.determinate} > .${linearProgressClasses.bar1}`]: {},
 -      [`&.${linearProgressClasses.bar1Indeterminate}`]: {},
-+      [`&.${linearProgressClasses.bar1}.${linearProgressClasses.indeterminate}`]: {},
++      [`&.${linearProgressClasses.indeterminate} > .${linearProgressClasses.bar1}`]: {},
 -      [`&.${linearProgressClasses.bar2Buffer}`]: {},
-+      [`&.${linearProgressClasses.bar2}.${linearProgressClasses.buffer}`]: {},
++      [`&.${linearProgressClasses.buffer} > .${linearProgressClasses.bar2}`]: {},
 -      [`&.${linearProgressClasses.bar2Indeterminate}`]: {},
-+      [`&.${linearProgressClasses.bar2}.${linearProgressClasses.indeterminate}`]: {},
++      [`&.${linearProgressClasses.indeterminate} > .${linearProgressClasses.bar2}`]: {},
 -      [`&.${linearProgressClasses.barColorPrimary}`]: {},
-+      [`&.${linearProgressClasses.bar}.${linearProgressClasses.colorPrimary}`]: {},
++      [`&.${linearProgressClasses.colorPrimary} > .${linearProgressClasses.bar}`]: {},
 -      [`&.${linearProgressClasses.barColorSecondary}`]: {},
-+      [`&.${linearProgressClasses.bar}.${linearProgressClasses.colorSecondary}`]: {},
++      [`&.${linearProgressClasses.colorSecondary} > .${linearProgressClasses.bar}`]: {},
 -      [`&.${linearProgressClasses.dashedColorPrimary}`]: {},
-+      [`&.${linearProgressClasses.dashed}.${linearProgressClasses.colorPrimary}`]: {},
++      [`&.${linearProgressClasses.colorPrimary} > .${linearProgressClasses.dashed}`]: {},
 -      [`&.${linearProgressClasses.dashedColorSecondary}`]: {},
-+      [`&.${linearProgressClasses.dashed}.${linearProgressClasses.colorSecondary}`]: {},
++      [`&.${linearProgressClasses.colorSecondary} > .${linearProgressClasses.dashed}`]: {},
      },
    },
   }
@@ -1279,23 +1279,23 @@ CSS transforms:
 
 ```diff
 -.MuiLinearProgress-bar1Buffer
-+.MuiLinearProgress-bar1.MuiLinearProgress-buffer
++.MuiLinearProgress-buffer > .MuiLinearProgress-bar1
 -.MuiLinearProgress-bar1Determinate
-+.MuiLinearProgress-bar1.MuiLinearProgress-determinate
++.MuiLinearProgress-determinate > .MuiLinearProgress-bar1
 -.MuiLinearProgress-bar1Indeterminate
-+.MuiLinearProgress-bar1.MuiLinearProgress-indeterminate
++.MuiLinearProgress-indeterminate > .MuiLinearProgress-bar1
 -.MuiLinearProgress-bar2Buffer
-+.MuiLinearProgress-bar2.MuiLinearProgress-buffer
++.MuiLinearProgress-buffer > .MuiLinearProgress-bar2
 -.MuiLinearProgress-bar2Indeterminate
-+.MuiLinearProgress-bar2.MuiLinearProgress-indeterminate
++.MuiLinearProgress-indeterminate > .MuiLinearProgress-bar2
 -.MuiLinearProgress-barColorPrimary
-+.MuiLinearProgress-bar.MuiLinearProgress-colorPrimary
++.MuiLinearProgress-colorPrimary > .MuiLinearProgress-bar
 -.MuiLinearProgress-barColorSecondary
-+.MuiLinearProgress-bar.MuiLinearProgress-colorSecondary
++.MuiLinearProgress-colorSecondary > .MuiLinearProgress-bar
 -.MuiLinearProgress-dashedColorPrimary
-+.MuiLinearProgress-dashed.MuiLinearProgress-colorPrimary
++.MuiLinearProgress-colorPrimary > .MuiLinearProgress-dashed
 -.MuiLinearProgress-dashedColorSecondary
-+.MuiLinearProgress-dashed.MuiLinearProgress-colorSecondary
++.MuiLinearProgress-colorSecondary > .MuiLinearProgress-dashed
 ```
 
 ```bash
