@@ -519,7 +519,7 @@ describe('<Select />', () => {
 
     it('indicates that input element has combobox role and aria-controls set to "" when in a non-open state', () => {
       const { getByRole } = render(<Select open={false} value="" />);
-      expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-controls', '');
+      expect(getByRole('combobox', { hidden: true })).to.not.have.attribute('aria-controls');
     });
 
     specify('the listbox is focusable', async () => {
