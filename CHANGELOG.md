@@ -1,5 +1,19 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.16.14
+
+<!-- generated comparing v5.16.13..v5.x -->
+
+_Jan 6, 2025_
+
+A big thanks to the 1 contributor who made this release possible.
+
+### `@mui/material@5.16.14`
+
+- [Autocomplete] Revert: Fix options list rendering in freeSolo mode (#44857) @ZeeshanTamboli
+
+All contributors of this release in alphabetical order: @ZeeshanTamboli
+
 ## v5.16.13
 
 <!-- generated comparing v5.16.12..v5.x -->
