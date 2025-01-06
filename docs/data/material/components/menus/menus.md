@@ -17,13 +17,23 @@ A menu displays a list of choices on a temporary surface. It appears when the us
 
 {{"component": "@mui/docs/ComponentLinkHeader"}}
 
+## Introduction
+
+Menus are implemented using a collection of related components:
+
+- Menu: The container/surface of the menu.
+- Menu Item: List item options for the menu.
+- Menu List (optional): Alternative composable container for Menu Items—see [Composition with Menu List](#composition-with-menu-list) for details.
+
 ## Basic menu
 
 A basic menu opens over the anchor element by default (this option can be [changed](#menu-positioning) via props). When close to a screen edge, a basic menu vertically realigns to make sure that all menu items are completely visible.
 
 Choosing an option should immediately ideally commit the option and close the menu.
 
-**Disambiguation**: In contrast to simple menus, simple dialogs can present additional detail related to the options available for a list item or provide navigational or orthogonal actions related to the primary task. Although they can display the same content, simple menus are preferred over simple dialogs because simple menus are less disruptive to the user's current context.
+### Usage
+
+In contrast to simple menus, simple dialogs can present additional detail related to the options available for a list item or provide navigational or orthogonal actions related to the primary task. Although they can display the same content, simple menus are preferred over simple dialogs because simple menus are less disruptive to the user's current context.
 
 {{"demo": "BasicMenu.js"}}
 
@@ -54,13 +64,13 @@ For instance, you can display the menu on top of the anchor:
 
 {{"demo": "PositionedMenu.js"}}
 
-## MenuList composition
+## Composition with Menu List
 
-The `Menu` component uses the `Popover` component internally.
-However, you might want to use a different positioning strategy, or not blocking the scroll.
-For answering those needs, we expose a `MenuList` component that you can compose, with `Popper` in this example.
+The Menu component uses the Popover component internally.
+But you might want to use a different positioning strategy, or prefer not to block scrolling.
 
-The primary responsibility of the `MenuList` component is to handle the focus.
+The Menu List component lets you compose your own menu for these kinds of use cases—its primary purpose is to handle focus.
+See the demo below for an example of composition that uses Menu List and replaces the Menu's default Popover with a Popper component instead:
 
 {{"demo": "MenuListComposition.js", "bg": true}}
 
