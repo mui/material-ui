@@ -1,5 +1,41 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.3.1
+
+<!-- generated comparing v6.3.0..master -->
+
+_Jan 3, 2025_
+
+A big thanks to the 8 contributors who made this release possible.
+
+### `@mui/material@6.3.1`
+
+- [Autocomplete] Revert: Fix options list rendering in freeSolo mode (#44858) @ZeeshanTamboli
+- [Tooltip] Warn instead of error when trigger is disabled (#44846) @yash49
+- [TableSortLabel] Add slots and slotProps (#44728) @sai6855
+- [Select] Deprecate composed classes (#44925) @sai6855
+
+### Docs
+
+- [material-ui][Accordion] Update `Anatomy` section in Accordion docs (#44849) @ZeeshanTamboli
+- [material-ui][CardActionArea] Added demo in docs of cards for adding props to CardActionArea (#44789) @siddhantantil39
+- [material-ui][Grid2] Add interactive demo for Grid v2 (#44820) @yash49
+- [material-ui][Select] Update docs to reflect the omission of placeholder prop (#44856) @adityaparab
+- [joy-ui] Fix Color mode button on Theme builder (#44864) @komkanit
+- Fix 301 redirections @oliviertassinari
+
+### Core
+
+- [examples] Update Next.js examples Next.js and React versions (#44852) @DiegoAndai
+- [code-infra] Prevent wrong nested imports in Base UI (#44426) @oliviertassinari
+- [docs-infra] Add vale coverage for App Router and Page Router (060c55c) @oliviertassinari
+- Sync with other repos (1b9300f) @oliviertassinari
+- Fix docs:build to work in docs folder too (6b923a4) @oliviertassinari
+- Setup React 18 CI tests (#44868) @DiegoAndai
+- Update test to use public API (#44875) @oliviertassinari
+
+All contributors of this release in alphabetical order: @adityaparab, @DiegoAndai, @komkanit, @oliviertassinari, @sai6855, @siddhantantil39, @yash49, @ZeeshanTamboli
+
 ## 6.3.0
 
 <!-- generated comparing v6.2.1..master -->
