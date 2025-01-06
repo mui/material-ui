@@ -195,7 +195,7 @@ export function DesignKitImagesSet2({
 }
 
 export function DesignKitTools({ disableLink, ...props }: { disableLink?: boolean } & BoxProps) {
-  function renderTool(brand: 'figma' | 'sketch' ) {
+  function renderTool(brand: 'figma' | 'sketch') {
     if (disableLink) {
       return <DesignToolLogo brand={brand} />;
     }
