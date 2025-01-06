@@ -40,18 +40,34 @@
         "describedArgs": ["event", "reason"]
       }
     },
-    "PaperComponent": { "type": { "name": "elementType" }, "default": "Paper" },
-    "PaperProps": { "type": { "name": "object" }, "default": "{}" },
+    "PaperComponent": {
+      "type": { "name": "elementType" },
+      "default": "Paper",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.paper.component</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
+    "PaperProps": {
+      "type": { "name": "object" },
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.paper</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
     "scroll": {
       "type": { "name": "enum", "description": "'body'<br>&#124;&nbsp;'paper'" },
       "default": "'paper'"
     },
     "slotProps": {
-      "type": { "name": "shape", "description": "{ transition?: func<br>&#124;&nbsp;object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ paper?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
+      },
       "default": "{}"
     },
     "slots": {
-      "type": { "name": "shape", "description": "{ transition?: elementType }" },
+      "type": {
+        "name": "shape",
+        "description": "{ paper?: elementType, transition?: elementType }"
+      },
       "default": "{}"
     },
     "sx": {
@@ -61,7 +77,12 @@
       },
       "additionalInfo": { "sx": true }
     },
-    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Fade" },
+    "TransitionComponent": {
+      "type": { "name": "elementType" },
+      "default": "Fade",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slots.transition</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
     "transitionDuration": {
       "type": {
         "name": "union",
@@ -69,7 +90,11 @@
       },
       "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}"
     },
-    "TransitionProps": { "type": { "name": "object" } }
+    "TransitionProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.transition</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    }
   },
   "name": "Dialog",
   "imports": [
