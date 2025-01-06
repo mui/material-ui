@@ -9,7 +9,7 @@ function TestIcon() {
 
 const steps = ['Step 1', 'Step 2'];
 
-export default function CustomizedSteppers() {
+export default function NoShrinkIcon() {
   return (
     <Stepper sx={{ width: 200 }}>
       {steps.map((label) => (
