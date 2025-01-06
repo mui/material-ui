@@ -1,6 +1,6 @@
 {
   "name": "@mui/lab",
-  "version": "6.0.0-beta.19",
+  "version": "6.0.0-beta.20",
   "private": false,
   "author": "MUI Team",
   "description": "Laboratory for new MUI modules.",
@@ -53,8 +53,8 @@
     "@mui/material": "workspace:*",
     "@types/chai": "^4.3.20",
     "@types/prop-types": "^15.7.14",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.2",
     "@types/sinon": "^17.0.3",
     "chai": "^4.5.0",
     "react": "^19.0.0",
