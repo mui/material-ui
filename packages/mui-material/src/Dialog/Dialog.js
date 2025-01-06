@@ -321,7 +321,6 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     elementType: DialogPaper,
     externalForwardedProps,
     ownerState,
-    className: clsx(classes.paper, PaperProps.className),
   });
 
   return (
@@ -360,6 +359,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
             aria-labelledby={ariaLabelledby}
             aria-modal={ariaModal}
             {...paperSlotProps}
+            className={clsx(classes.paper, paperSlotProps.className)}
           >
             <DialogContext.Provider value={dialogContextValue}>{children}</DialogContext.Provider>
           </PaperSlot>
