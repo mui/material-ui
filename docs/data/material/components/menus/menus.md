@@ -22,7 +22,7 @@ A menu displays a list of choices on a temporary surface. It appears when the us
 Menus are implemented using a collection of related components:
 
 - Menu: The container/surface of the menu.
-- Menu Item: List item options for the menu.
+- Menu Item: List item option for the menu.
 - Menu List (optional): Alternative composable container for Menu Items—see [Composition with Menu List](#composition-with-menu-list) for details.
 
 ## Basic menu
